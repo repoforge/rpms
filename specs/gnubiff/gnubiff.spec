@@ -54,7 +54,6 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %{_datadir}/info/gnubiff.info.gz
 %{_mandir}/man1/gnubiff.*
 %{_datadir}/pixmaps
-%{_datadir}/sounds/gnubiff
 
 %changelog
 * Sun Sep 12 2004 Dries Verachtert <dries@ulyssis.org> 2.0.1-1
