@@ -18,6 +18,7 @@ Source: http://dl.sf.net/krusader/krusader-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
+%{?fc2:BuildRequires: libselinux-devel}
 
 # Screenshot: http://krusader.sourceforge.net/img/scr01.png
 # ScreenshotURL: http://krusader.sourceforge.net/scr.php
