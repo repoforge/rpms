@@ -4,7 +4,7 @@
 
 Summary: Internationalized string processing library
 Name: libidn
-Version: 0.4.5
+Version: 0.4.6
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -91,6 +91,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed May 26 2004 Dag Wieers <dag@wieers.com> - 0.4.6-1
+- Updated to release 0.4.6.
+
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 0.4.5-1
 - Updated to release 0.4.5.
 
