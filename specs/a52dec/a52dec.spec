@@ -47,7 +47,6 @@ to build programs that use it.
 %ifnarch %{ix86}
 %{__libtoolize} --force
 %{__aclocal}
-%{__autoheader}
 %{__automake} -a
 %{__autoconf}
 %endif
