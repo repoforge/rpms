@@ -21,7 +21,7 @@ Source: http://dl.sf.net/gcipher/gcipher-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.2
+BuildRequires: python >= 2.2, desktop-file-utils
 Requires: python >= 2.2
 
 %description
