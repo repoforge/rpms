@@ -11,6 +11,7 @@ License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
 Source: http://dl.sf.net/gxmame/gxmame-%{version}%{?date:cvs}.tar.gz
+Patch: gxmame-0.35cvs-mkinstalldirs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1
 BuildRequires: gtk2-devel, zlib-devel, expat-devel, gettext-devel, intltool
@@ -26,6 +27,8 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 %prep
 %setup -n %{name}-%{version}%{?date:cvs}
+%patch -p1 -b .mkinstalldirs
+chmod +x po/mkinstalldirs
 
 
 %build
