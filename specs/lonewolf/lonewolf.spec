@@ -64,6 +64,7 @@ userdel lonewolf &>/dev/null || :
 %{_datadir}/lonewolf/lwscripts/Script_Updates.txt
 %{_datadir}/lonewolf/lwscripts/dummy.txt
 %{_datadir}/lonewolf/lwscripts/install.html
+%{_datadir}/lonewolf/lwscripts/shards_server.smp
 
 %defattr(-, lonewolf, lonewolf, 0755)
 %config(noreplace)  %{_datadir}/lonewolf/lwscripts/*.scp
