@@ -14,9 +14,6 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Generator-vCard-RDF/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASCOPE/XML-Generator-vCard-RDF-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
