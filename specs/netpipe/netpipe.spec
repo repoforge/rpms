@@ -35,7 +35,7 @@ the round trip time in half for small messages ( < 64 Bytes ).
 %setup -n %{real_name}_%{version}
 
 %build
-%{__make} %{_smp_mflags} memcpy tcp \
+%{__make} %{?_smp_mflags} memcpy tcp \
 	CFLAGS="%{optflags}"
 
 %install
