@@ -9,18 +9,16 @@ Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
-
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
+Requires(pre): scrollkeeper
+Requires(postun): scrollkeeper
 BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0
 BuildRequires: gtk2-devel, libglade2-devel >= 2.0
 BuildRequires: gcc-c++, libstdc++-devel, docbook-utils, gettext, xmlto
 BuildRequires: scrollkeeper
 BuildRequires: perl(XML::Parser)
-Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
-Requires(pre): scrollkeeper
-Requires(postun): scrollkeeper
 
 %description
 Synaptic (previously known as raptor) is a graphical package management
@@ -102,7 +100,7 @@ EOF
 
 
 %changelog
-* Mon May 18 2004 Dag Wieers <dag@wieers.com> - 0.48.2-2
+* Tue May 18 2004 Dag Wieers <dag@wieers.com> - 0.48.2-2
 - Bumped release to work with my pre-merge packages.
 
 * Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 0.48.2-1

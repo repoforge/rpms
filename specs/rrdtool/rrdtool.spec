@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
-
 # Distcc: 0
 
 %define phpextdir %(php-config --extension-dir)
@@ -16,10 +15,10 @@ URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
 Patch: php-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
-BuildRequires: libpng-devel, zlib-devel
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 Requires: libpng, zlib
+BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
+BuildRequires: libpng-devel, zlib-devel
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and 
@@ -58,10 +57,10 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--enable-shared \
-	--enable-local-libpng \
-	--enable-local-zlib
+    --program-prefix="%{?_program_prefix}" \
+    --enable-shared \
+    --enable-local-libpng \
+    --enable-local-zlib
 %{__make} %{?_smp_mflags}
 
 # Build the php4 module, the tmp install is required

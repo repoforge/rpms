@@ -2,25 +2,22 @@
 # Authority: matthias
 
 %define desktop_vendor  freshrpms
-
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 %define __find_provides /usr/lib/rpm/find-provides.perl
 
-Summary: DVD ripping graphical tool using transcode
+Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
 Version: 0.50.18
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
-
 Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 AutoReq: no
-BuildRequires: Gtk-Perl, desktop-file-utils
 Requires: transcode >= 0.6.3
 Requires: Gtk-Perl, ImageMagick, ogmtools, subtitleripper, vcdimager, xvidcore
+BuildRequires: Gtk-Perl, desktop-file-utils
 
 %description
 dvd::rip is a Perl Gtk+ based DVD copy program built on top of a low level
@@ -32,7 +29,7 @@ DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 
 
 %build
-perl Makefile.PL
+%{__perl} Makefile.PL
 %{__make} %{?_smp_mflags}
 
 
@@ -56,7 +53,7 @@ perl Makefile.PL
 %{__rm} -rf %{buildroot}%{perl_sitearch}
 
 # Desktop entry
-cat > dvdrip.desktop << EOF
+%{__cat} > dvdrip.desktop << EOF
 [Desktop Entry]
 Name=DVD Ripper and Encoder
 Comment=Backup and compression utility for DVDs
@@ -66,12 +63,11 @@ Terminal=0
 Type=Application
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category AudioVideo                                       \
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+  --dir %{buildroot}%{_datadir}/applications    \
+  --add-category Application                    \
+  --add-category AudioVideo                     \
   dvdrip.desktop
 
 # Add Red Hat NPTL workaround
@@ -91,6 +87,9 @@ perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_AS
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.50.18-2
+- Rebuild for Fedora Core 2.
+
 * Mon Apr 19 2004 Matthias Saou <http://freshrpms.net/> 0.50.18-1
 - Update to 0.50.18.
 

@@ -7,7 +7,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 0.6.12
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
@@ -108,6 +108,9 @@ Available rpmbuild rebuild options :
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-4
+- Rebuild for Fedora Core 2.
+
 * Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-3
 - Rebuild against new libdv.
 

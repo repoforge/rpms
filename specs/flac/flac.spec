@@ -1,6 +1,5 @@
 # $Id$
 # Authority: matthias
-
 # ExcludeDist: fc2
 
 %define xmms_inputdir %(xmms-config --input-plugin-dir)
@@ -12,17 +11,15 @@ Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://flac.sourceforge.net/
-
 Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: libogg
 BuildRequires: xmms-devel, id3lib-devel, libogg-devel, doxygen
 # Actually, xmms-devel should requires gtk+-devel itself
 BuildRequires: gtk+-devel
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
-Requires: libogg
 
 %description
 FLAC stands for Free Lossless Audio Codec. Grossly oversimplified, FLAC is
@@ -63,15 +60,22 @@ xmms.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{xmms_inputdir}
+%{__mkdir_p} %{buildroot}%{xmms_inputdir}
 %makeinstall xmmsinputplugindir="%{buildroot}%{xmms_inputdir}"
 find doc/ -name "Makefile*" -exec rm -f {} \;
+
+
+%clean
+%{__rm} -rf %{buildroot}
+
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -79,8 +83,6 @@ find doc/ -name "Makefile*" -exec rm -f {} \;
 %postun
 /sbin/ldconfig 2>/dev/null
 
-%clean
-%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
@@ -103,8 +105,9 @@ find doc/ -name "Makefile*" -exec rm -f {} \;
 %{xmms_inputdir}/*.so
 %exclude %{xmms_inputdir}/*.la
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.0-4.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.0-4
 - Rebuild for Fedora Core 1.
 - Added gtk+-devel build dep for the xmms plugin to build.
 - Renamed the flac-xmms sub-package to xmms-flac for consistency.
