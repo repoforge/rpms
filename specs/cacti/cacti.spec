@@ -8,7 +8,7 @@
 Summary: Network monitoring/graphing tool
 Name: cacti
 Version: 0.8.5
-Release: 1.a
+Release: 2.a
 License: GPL
 Group: Applications/System
 URL: http://www.raxnet.net/products/cacti/
@@ -56,7 +56,9 @@ This package includes the documentation for %{name}.
 %prep
 %setup -n %{name}-%{real_version}
 
-echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/html/cacti/cmd.php &>/dev/null" >cacti.crontab
+%{__perl} -pi.orig -e 's|/lib([ /])|/%{_lib}$1|g' cactid/configure
+
+echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/cmd.php &>/dev/null" >cacti.crontab
 
 ### Add a default cacti.conf for Apache.
 %{__cat} <<EOF >cacti.httpd
@@ -126,6 +128,9 @@ userdel cacti &>/dev/null || :
 %doc docs/
 
 %changelog
+* Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 0.8.5-2.a
+- Fixed correct location in cron script. (Alex Vitola)
+
 * Fri Apr 02 2004 Dag Wieers <dag@wieers.com> - 0.8.5-1.a
 - Updated to release 0.8.5a.
 
