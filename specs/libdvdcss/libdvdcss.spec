@@ -5,11 +5,11 @@
 Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss
 Version: 1.2.8
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
-Source: http://download.videolan.org/pub/libdvdcss/%{version}/libdvdcss-%{version}.tar.bz2
 URL: http://developers.videolan.org/libdvdcss/
+Source: http://download.videolan.org/pub/libdvdcss/%{version}/libdvdcss-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -37,25 +37,33 @@ any of the above programs.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
+
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README
 %{_libdir}/%{name}.so.*
+
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -64,11 +72,15 @@ any of the above programs.
 %exclude %{_libdir}/%{name}.la
 %{_libdir}/%{name}.so
 
+
 %changelog
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 1.2.8-3.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.2.8-4
+- Rebuild for Fedora Core 2.
+
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 1.2.8-3
 - Updated the URL and Source tags to point to the new locations.
 
-* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 1.2.8-2.fr
+* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 1.2.8-2
 - Rebuild for Fedora Core 1.
 
 * Sun Aug  3 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>

@@ -33,21 +33,26 @@ applications which will use libdvdnav.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_libdir}/*.so.*
+
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -56,8 +61,12 @@ applications which will use libdvdnav.
 %{_libdir}/*.so
 %{_includedir}/dvdnav
 
+
 %changelog
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.1.9-2.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.1.9-3
+- Rebuild for Fedora Core 2.
+
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.1.9-2
 - Rebuild for Fedora Core 1.
 
 * Mon Aug  4 2003 Matthias Saou <http://freshrpms.net/>

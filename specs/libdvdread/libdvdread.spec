@@ -7,11 +7,11 @@
 Summary: Library for reading DVD video disks
 Name: libdvdread
 Version: 0.9.4
-Release: 4%{?cvs:cvs}
+Release: 5%{?cvs:cvs}
 License: GPL
 Group: System Environment/Libraries
-Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}%{?cvs}.tar.gz
 URL: http://www.dtek.chalmers.se/groups/dvd/
+Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}%{?cvs}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss >= 1.2.5
 
@@ -40,20 +40,27 @@ programs that use this library.
 %prep
 %setup -n %{name}-%{version}%{?cvs}
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
+
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -67,8 +74,12 @@ programs that use this library.
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
+
 %changelog
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.4-4.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.4-5
+- Rebuild for Fedora Core 2.
+
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.4-4
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
