@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Diego Bazzanella <diegobazzanella@tiscalinet.it>
 
@@ -41,6 +40,7 @@ and delete jobs. It has a GNOME panel applet.
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README
 %{_bindir}/*
 %{_datadir}/pixmaps/gqueue/
