@@ -40,15 +40,13 @@ mv ${RPM_BUILD_ROOT}/usr/share/gtk-doc/html ./html
 %doc README html AUTHORS ChangeLog COPYING FAQ INSTALL NEWS THANKS TODO
 %{_bindir}/enca
 %{_includedir}/enca.h
-%{_libdir}/libenca.a
-%{_libdir}/libenca.la
-%{_libdir}/libenca.so.0.4.0
+%{_libdir}/libenca.*
 %{_libdir}/pkgconfig/enca.pc
-/usr/libexec/enca/extconv/cstocs
-/usr/libexec/enca/extconv/map
-/usr/libexec/enca/extconv/piconv
-/usr/libexec/enca/extconv/recode
-/usr/libexec/enca/extconv/umap
+%{_libexecdir}/enca/extconv/cstocs
+%{_libexecdir}/enca/extconv/map
+%{_libexecdir}/enca/extconv/piconv
+%{_libexecdir}/enca/extconv/recode
+%{_libexecdir}/enca/extconv/umap
 %{_datadir}/man/man1/enca.1.gz
 
 %changelog
