@@ -8,7 +8,7 @@
 Summary: APC UPS power control daemon
 Name: apcupsd
 Version: 3.10.13
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.sibbald.com/apcupsd/
@@ -57,12 +57,13 @@ EOF
 %configure \
 	--sysconfdir="%{_sysconfdir}/apcupsd" \
 	--with-cgi-bin="%{_localstatedir}/www/apcupsd" \
-	--enable-cgi \
-	--enable-pthreads \
-	--enable-net \
-	--enable-master-slave \
 	--enable-apcsmart \
+	--enable-cgi \
 	--enable-dumb \
+	--enable-master-slave \
+	--enable-net \
+	--enable-pthreads \
+	--enable-snmp \
 	--enable-usb
 %{__make} %{?_smp_mflags}
 %{__make} -C examples hid-ups
@@ -72,10 +73,10 @@ EOF
 
 ### FIXME: 'make install' doesn't create sysv-dir and bails out.
 %{__install} -d -m0755 %{buildroot}%{_initrddir}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -p -m0755 examples/hid-ups examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/
+%{__install} -Dp -m0755 examples/hid-ups %{buildroot}%{_sysconfdir}/apcupsd/hid-ups
+%{__install} -Dp -m0755 examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/make-hiddev
 %{__install} -Dp -m0644 apcupsd.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/apcupsd.conf
 %{__install} -Dp -m0644 apcupsd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/apcupsd
 
@@ -107,13 +108,16 @@ fi
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/apcupsd/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/apcupsd.conf
-%config(noreplace) %{_sysconfdir}/logrotate.d/*
+%config(noreplace) %{_sysconfdir}/logrotate.d/apcupsd
 %config %{_initrddir}/*
 %{_sbindir}/*
 %{_localstatedir}/www/apcupsd/
 %exclude %{_initrddir}/halt*
 
 %changelog
+* Fri Mar 25 2005 Dag Wieers <dag@wieers.com> - 3.10.13-2
+- Added --enable-snmp configure option. (Bobby Kuo)
+
 * Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 3.10.13-1
 - Updated to new release 3.10.13.
 

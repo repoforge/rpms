@@ -16,8 +16,8 @@ URL: http://gnochm.sourceforge.net/
 Source: http://dl.sf.net/gnochm/pychm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, chmlib-devel
-Requires: python, chmlib
+BuildRequires: python >= 2.2, chmlib-devel
+Requires: python >= 2.2, chmlib
 
 %description
 The python chm package provides three modules, chm, chmlib and extra,

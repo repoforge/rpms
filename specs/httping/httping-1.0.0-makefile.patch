@@ -1,0 +1,37 @@
+--- Makefile.orig	2005-03-23 14:27:45.000000000 +0100
++++ Makefile	2005-03-28 05:19:01.514615032 +0200
+@@ -12,13 +12,16 @@
+ # version.  If you delete this exception statement from all source
+ # files in the program, then also delete it here.
+ 
+-VERSION=1.0.0
++VERSION = 1.0.0
+ 
+-DEBUG=#-g
+-LDFLAGS=-lssl -lcrypto $(DEBUG)
+-CFLAGS=-O2 -Wall -DVERSION=\"$(VERSION)\" $(DEBUG)
++prefix = /usr
++bindir = $(prefix)/bin
+ 
+-OBJS=http.o io.o str.o error.o utils.o main.o tcp.o mssl.o
++DEBUG = #-g
++LDFLAGS = -lssl -lcrypto $(DEBUG)
++CFLAGS = -O2 -Wall
++
++OBJS = http.o io.o str.o error.o utils.o main.o tcp.o mssl.o
+ 
+ all: httping
+ 
+@@ -27,8 +30,11 @@
+ 	#
+ 	# Oh, blatant plug: http://keetweej.vanheusden.com/wishlist.html
+ 
++.c.o:
++	 $(CC) -c $(CFLAGS) -I/usr/kerberos/include -DVERSION=\"$(VERSION)\" $(DEBUG) -o $@ $<
++
+ install: httping
+-	cp httping $(DESTDIR)/usr/bin
++	install -Dp -m0755 httping $(DESTDIR)$(bindir)/httping
+ 
+ clean:
+ 	rm -f $(OBJS) core httping

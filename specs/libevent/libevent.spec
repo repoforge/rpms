@@ -4,8 +4,8 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.0
-Release: 2
+Version: 1.0b
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://monkey.org/~provos/libevent/
@@ -67,11 +67,13 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/event.3*
+%doc README
 %{_libdir}/libevent.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc sample/
+%doc %{_mandir}/man3/event.3*
 %{_includedir}/event.h
 %{_includedir}/event-internal.h
 %{_includedir}/libevent.h
@@ -79,6 +81,9 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %{_libdir}/libevent.so
 
 %changelog
+* Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.0b-1
+- Updated to release 1.0b.
+
 * Thu Jan 20 2005 Dag Wieers <dag@wieers.com> - 1.0-2
 - Added deprecated interface.
 

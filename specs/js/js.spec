@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dag
-# Distcc: 0
 
 %define real_version 1.5-rc6a
 
@@ -15,7 +14,6 @@ Source: http://ftp.mozilla.org/pub/mozilla.org/js/js-%{real_version}.tar.gz
 Patch0: js-make.patch
 Patch1: js-shlib.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 JavaScript is the Netscape-developed object scripting languages.
@@ -36,6 +34,8 @@ you will need to install %{name}-devel.
 %setup -n %{name}
 %patch0 -b .make
 %patch1 -b .shlib
+
+%{__perl} -pi.orig -e 's|\bVA_COPY\(|va_copy\(|g' src/jsprf.c
 
 %build
 BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
@@ -77,6 +77,9 @@ BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
 %{_includedir}/js/
 
 %changelog
+* Sat Mar 26 2005 Dag Wieers <dag@wieers.com> - 1.5-0.rc6a
+- Added x86_64 VA_COPY patch. (Stef Van Dessel)
+
 * Tue Jun 15 2004 Matthias Saou <http://freshrpms.net> 1.5-0.rc6a
 - Update to 1.5rc6a.
 

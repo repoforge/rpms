@@ -14,11 +14,12 @@ URL: http://gdesklets.gnomedesktop.org/
 Source: http://www.pycage.de/download/gdesklets/gDesklets-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgtop2-devel >= 2.0.0, python-devel >= 2.0.0, gcc-c++
-BuildRequires: gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
-BuildRequires: libcroco-devel, perl(XML::Parser), intltool, pygtk2-devel >= 2.4.0
-BuildRequires: gtk2-devel
-Requires: python >= 2.2, gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
+BuildRequires: libgtop2-devel >= 2.8, python-devel >= 2.3, gcc-c++
+BuildRequires: gnome-python2 >= 2.6, gnome-python2-gconf >= 2.4
+BuildRequires: libcroco-devel, perl(XML::Parser), intltool, pygtk2-devel >= 2.4
+BuildRequires: gtk2-devel, librsvg2 >= 2.8
+Requires: python >= 2.3, gnome-python2 >= 2.4, gnome-python2-gconf >= 2.4
+Requires: gnome-python2-gnomevfs
 
 %description
 gDesklets provides an advanced architecture for desktop applets - tiny

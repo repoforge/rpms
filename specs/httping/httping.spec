@@ -6,13 +6,14 @@
 
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 0.0.96
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.vanheusden.com/httping/
 
 Source: http://www.vanheusden.com/httping/httping-%{version}.tgz
+Patch: httping-1.0.0-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -23,18 +24,17 @@ that the transmission across the network also takes time!
 
 %prep
 %setup
+%patch0 -b .orig
 
-%{?el3:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
-%{?rh9:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
-%{__perl} -pi.orig -e 's|/usr/bin|\$(bindir)|' Makefile
+#{?el3:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
+#{?rh9:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS:="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,6 +45,9 @@ that the transmission across the network also takes time!
 %{_bindir}/httping
 
 %changelog
+* Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Sun Jan 09 2005 Dag Wieers <dag@wieers.com> - 0.0.96-1
 - Updated to release 0.0.96.
 

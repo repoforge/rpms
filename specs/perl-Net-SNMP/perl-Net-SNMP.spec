@@ -1,12 +1,15 @@
 # $Id$
-# Authority: axel
+# Authority: dag
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Net-SNMP
 
 Summary: Net-SNMP Perl module
 Name: perl-Net-SNMP
-Version: 4.1.2
-Release: 0
+Version: 5.0.1
+Release: 1
 License: distributable
 Group: Development/Libraries
 URL: http://search.cpan.org/dist/Net-SNMP/
@@ -26,7 +29,7 @@ Simple Network Management Protocol.
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+%{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
@@ -36,19 +39,25 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc %{_mandir}/man1/snmpkey.1*
+%doc %{_mandir}/man3/*
+%{_bindir}/snmpkey
+%dir %{perl_vendorlib}/Net/
+%{perl_vendorlib}/Net/SNMP/
+%{perl_vendorlib}/Net/SNMP.pm
 
 %changelog
+* Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 5.0.1-1
+- Updated to release 5.0.1.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 4.1.2-1
 - Added perl-Crypt-DES BuildRequires. (Russ Herrold)
 

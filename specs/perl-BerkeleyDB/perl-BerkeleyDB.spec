@@ -3,19 +3,21 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name BerkeleyDB
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
 Version: 0.26
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BerkeleyDB/
 
 Source: http://www.cpan.org/modules/by-module/BerkeleyDB/BerkeleyDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
@@ -31,19 +33,16 @@ Perl extension for Berkeley DB version 2, 3 or 4.
 %setup -n %{real_name}-%{version} 
 
 %build
-FLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+FLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,9 +51,15 @@ FLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README Todo
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorarch}/BerkeleyDB/
+%{perl_vendorarch}/BerkeleyDB.pm
+%{perl_vendorarch}/BerkeleyDB.pod
+%{perl_vendorarch}/auto/BerkeleyDB/
 
 %changelog
+* Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 0.26-2
+- Cosmetic changes.
+
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> 0.26-0
 - Update to release 0.26.
 

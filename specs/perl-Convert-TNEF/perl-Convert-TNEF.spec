@@ -1,12 +1,15 @@
 # $Id$
 # Authority: dag
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Convert-TNEF
 
 Summary: Convert-TNEF module for perl
 Name: perl-Convert-TNEF
 Version: 0.17
-Release: 2
+Release: 3
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-TNEF/
@@ -25,9 +28,7 @@ Convert-TNEF module for perl
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -35,19 +36,22 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
-                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
-                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean 
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc Changes README
+%doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Convert/
+%{perl_vendorlib}/Convert/TNEF.pm
 
 %changelog
+* Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 0.17-3
+- Cosmetic changes.
+
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)

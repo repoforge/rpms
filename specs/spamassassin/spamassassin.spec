@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
+# ExcludeDist: fc3 el4
 
 %define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -10,29 +10,29 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 2.64
-Release: 2
-License: GPL or Artistic
-Group: System Environment/Daemons
-URL: http://spamassassin.org/
+Version: 3.0.2
+Release: 1
+License: Apache License
+Group: Applications/Internet
+URL: http://spamassassin.apache.org/
 
-Source: http://old.spamassassin.org/released/Mail-SpamAssassin-%{version}.tar.bz2
+Source: http://www.apache.org/dist/spamassassin/Mail-SpamAssassin-%{version}.tar.bz2
 Source2: redhat_local.cf
 Source3: spamassassin-default.rc
 Source4: spamassassin-spamc.rc
 Source5: spamassassin.sysconfig
 Source10: spamassassin-helper.sh
 Source99: filter-requires-spamassassin.sh
-Patch3: spamassassin-2.63-krb5-backcompat.patch
-Patch4: spamassassin-2.63-init.patch
+Patch3: spamassassin-3.0.2-krb5-backcompat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Prefix: %{_prefix}
 
-BuildRequires: perl(HTML::Parser), perl-Net-DNS, perl-Time-HiRes, openssl-devel
-Requires: procmail, perl-Net-DNS, perl(Time::HiRes)
+BuildRequires: perl(HTML::Parser), perl(Net::DNS), perl(Time::HiRes), openssl-devel
+Requires: procmail, perl(Net::DNS), perl(Time::HiRes)
 Requires: /sbin/chkconfig, /sbin/service
 #Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
 Obsoletes: perl-Mail-SpamAssassin
+
+%define __find_requires %{SOURCE99}
 
 %description
 SpamAssassin provides you with a way to reduce if not completely eliminate
@@ -62,35 +62,37 @@ with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch3 -p1
-%patch4 -p0
+%patch3 -p0
 
 %build
 export CFLAGS="%{optflags} -fPIC"
 
 %{__perl} Makefile.PL \
+		PREFIX="%{buildroot}%{_prefix}" \
 		SYSCONFDIR="%{_sysconfdir}" \
-		DESTDIR="%{buildroot}" \
 		INSTALLDIRS="vendor" \
 		ENABLE_SSL="yes" </dev/null
 %{__make} %{?_smp_mflags} \
 	OPTIMIZE="%{optflags} -fPIC"
-%{__make} %{?_smp_mflags} spamd/libspamc.so \
+%{__make} %{?_smp_mflags} spamc/libspamc.so \
 	LIBS="-ldl %{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	INSTALLMAN1DIR="%{buildroot}%{_mandir}/man1" \
-	INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3"
+	INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3" \
+	LOCAL_RULES_DIR="%{buildroot}%{_sysconfdir}/mail/spamassassin"
 
 %{__install} -Dp -m0755 spamd/redhat-rc-script.sh %{buildroot}%{_initrddir}/spamassassin
-%{__install} -Dp -m0644 spamd/libspamc.so %{buildroot}%{_libdir}/libspamc.so
-%{__install} -Dp -m0644 spamd/libspamc.h %{buildroot}%{_includedir}/libspamc.h
+%{__install} -Dp -m0644 spamc/libspamc.so %{buildroot}%{_libdir}/libspamc.so
+%{__install} -Dp -m0644 spamc/libspamc.h %{buildroot}%{_includedir}/libspamc.h
 
-%{__install} -Dp -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
 %{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
-%{__install} -p -m0644 %{SOURCE3} %{SOURCE4} %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/
+%{__install} -Dp -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
+%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-default.rc
+%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-spamc.rc
+%{__install} -Dp -m0644 %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-helper.sh
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}
@@ -127,12 +129,13 @@ fi
 
 %files 
 %defattr(-, root, root, 0755)
-%doc BUGS Changes COPYRIGHT License README TRADEMARK USAGE *.txt spamd/README.spamd
+%doc BUGS Changes CREDITS LICENSE NOTICE PACKAGING README STATUS TRADEMARK
+%doc UPGRADE USAGE *.txt spamc/README.qmail
 %doc %{_mandir}/man1/*.1*
 %doc %{_mandir}/man3/*.3pm*
-%config %{_initrddir}/*
+%config %{_initrddir}/spamassassin
 %config(noreplace) %{_sysconfdir}/mail/spamassassin/
-%config(noreplace) %{_sysconfdir}/sysconfig/*
+%config(noreplace) %{_sysconfdir}/sysconfig/spamassassin
 %{_bindir}/*
 %{_datadir}/spamassassin/
 %{_libdir}/*.so
@@ -144,6 +147,9 @@ fi
 %doc sql/ tools/ masses/ contrib/
 
 %changelog
+* Fri Mar 25 2005 Dag Wieers <dag@wieers.com> - 3.0.2-1
+- Updated to release 3.0.2.
+
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 2.64-2
 - Cosmetic changes.
 

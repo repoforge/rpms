@@ -34,20 +34,21 @@ you will need to install %{name}-devel.
 #patch0 -p1
 
 %build
-%{__libtoolize} --force --copy
-%{__make} %{?_smp_mflags} all examples \
-	CC="${CC:-%{__cc}}" \
-	LD="${CC:-%{__cc}}" \
+%{__make} %{?_smp_mflags} \
 	INSTALLPREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir} \
+%{__install} -d -m0755 %{buildroot}%{_libdir} \
 			%{buildroot}%{_includedir}
-%makeinstall \
+%{__make} install \
 	INSTALLPREFIX="%{buildroot}%{_prefix}"
-%{__install} -p -m0755 *_chmLib chm_http %{buildroot}%{_bindir}
+#%{__install} -Dp -m0755 chm_http %{buildroot}%{_bindir}/chm_http
+#%{__install} -Dp -m0755 enum_chmLib %{buildroot}%{_bindir}/enum_chmLib
+#%{__install} -Dp -m0755 enumdir_chmLib %{buildroot}%{_bindir}/enumdir_chmLib
+#%{__install} -Dp -m0755 extract_chmLib %{buildroot}%{_bindir}/extract_chmLib
+#%{__install} -Dp -m0755 test_chmLib %{buildroot}%{_bindir}/test_chmLib
+
 
 ### Fix library symlinks
 for lib in $(ls %{buildroot}%{_libdir}); do
@@ -67,16 +68,20 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README
-%{_bindir}/*
-%{_libdir}/*.so.*
+#%{_bindir}/chm_http
+#%{_bindir}/enum_chmLib
+#%{_bindir}/enumdir_chmLib
+#%{_bindir}/extract_chmLib
+#%{_bindir}/test_chmLib
+%{_libdir}/libchm.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc ChmLib-ds6.zip
-%{_libdir}/*.a
-%{_libdir}/*.la
-%{_libdir}/*.so
-%{_includedir}/*.h
+%{_libdir}/libchm.a
+%{_libdir}/libchm.la
+%{_libdir}/libchm.so
+%{_includedir}/chm_lib.h
 
 %changelog
 * Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 0.35-1

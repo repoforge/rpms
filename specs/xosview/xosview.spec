@@ -11,7 +11,7 @@
 
 Summary: X Window System utility for monitoring system resources
 Name: xosview
-Version: 1.8.0
+Version: 1.8.2
 Release: 1
 License: GPL/BSD
 Group: Applications/System
@@ -19,16 +19,6 @@ URL: http://xosview.sourceforge.net/
 
 Source: http://dl.sf.net/xosview/xosview-%{version}.tar.gz
 Source1: xosview.png
-Patch0: xosview-non-i386.patch
-Patch2: xosview-ppc.patch
-Patch3: xosview-1.8.0-rpath.patch
-Patch5: xosview-1.8.0-s390.patch
-Patch6: xosview-1.8.0-proc.patch
-Patch8: xosview-1.8.0-procstat.patch
-Patch9: xosview-1.8.0-strip.patch
-Patch10: xosview-1.8.0-gcc33.patch
-Patch11: xosview-1.8.0-kernel26.patch
-Patch12: xosview-1.8.0-nfs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -40,16 +30,6 @@ etc. Xosview runs under the X Window System.
 
 %prep
 %setup
-%patch0 -p0
-%patch2 -p0 -b .ppc
-%patch3 -p1
-%patch5 -p1 -b .s390
-%patch6 -p1 -b .proc
-%patch8 -p1 -b .procstat
-%patch9 -p1 -b .strip
-%patch10 -p1 -b .gcc33
-%patch11 -p1 -b .kernel26
-%patch12 -p1
 
 %{__cat} <<EOF >xosview.desktop
 [Desktop Entry]
@@ -91,6 +71,9 @@ EOF
 		xosview.desktop
 %endif
 
+### FIXME: Binary does not get stripped by brp-strip (RPM bug?)
+strip %{buildroot}%{_prefix}/X11R6/bin/xosview
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -105,5 +88,8 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xosview.desktop}
 
 %changelog
+* Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.8.2-1
+- Updated to release 1.8.2.
+
 * Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 1.8.0-1
 - Initial package. (using DAR)

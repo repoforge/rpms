@@ -6,14 +6,13 @@
 
 Summary: XSLT, XPath and DOM processor
 Name: sablotron
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.gingerall.com/charlie/ga/xml/p_sab.xml
 
 Source: http://download-1.gingerall.cz/download/sablot/Sablot-%{version}.tar.gz
-Patch: sablot-lib-1.0.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: expat-devel >= 1.95.2, ncurses-devel, libstdc++-devel
@@ -40,7 +39,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch
 
 %build
 export CPLUS_INCLUDE_PATH="%{_includedir}/js"
@@ -66,20 +64,23 @@ export SABLOT_GPL="1"
 
 %files
 %defattr(-, root, root, 0755)
-%doc README RELEASE doc/misc/DEBUGGER doc/misc/NOTES
-%doc %{_mandir}/man?/*
+%doc README* RELEASE doc/misc/DEBUGGER doc/misc/NOTES src/TODO
+%doc %{_mandir}/man1/sabcmd.1*
 %{_bindir}/sabcmd
-%{_libdir}/*.so.*
+%{_libdir}/libsablot.so.*
 
 %files devel
 %defattr(-,root,root,0755)
 %doc doc/apidoc/jsdom-ref doc/apidoc/sablot doc/apidoc/sxp
 %{_bindir}/sablot-config
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_libdir}/libsablot.a
+%exclude %{_libdir}/libsablot.la
+%{_libdir}/libsablot.so
 %{_includedir}/*.h
-%exclude %{_libdir}/*.la
 
 %changelog
+* Sat Mar 26 2005 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Initial package. (using DAR)

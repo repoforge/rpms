@@ -1,4 +1,7 @@
 # $Id$
+# Authority: dag
+
+# ExclusiveDist: rh6 el2 rh7 rh8
 
 Summary: libnet module for perl
 Name: perl-libnet
