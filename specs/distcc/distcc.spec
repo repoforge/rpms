@@ -9,6 +9,11 @@
 %{?el2:%define _without_gtk2 1}
 %{?rh6:%define _without_gtk2 1}
 
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+
 %define gccversion %(rpm -q gcc --qf '%{RPMTAG_VERSION}' | tail -1)
 
 Summary: Distributed C/C++ compilation client program
@@ -32,6 +37,7 @@ Requires: gcc, gcc-c++
 %{?rh9:Requires: compat-gcc, compat-gcc-c++}
 %{?rh8:Requires: compat-gcc, compat-gcc-c++}
 BuildRequires: libgnome-devel, libgnomeui-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 distcc is a distributed compilation front-end.  It sends command lines

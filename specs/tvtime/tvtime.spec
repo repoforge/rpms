@@ -23,7 +23,7 @@ Source: http://dl.sf.net/tvtime/tvtime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel >= 2.0, zlib-devel, libpng-devel, XFree86-libs
-BuildRequires: SDL-devel, gcc-c++
+BuildRequires: SDL-devel, gcc-c++, libxml2-devel
 #BuildRequires: libstdc++-devel
 
 %description

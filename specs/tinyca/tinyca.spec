@@ -25,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: openssl, Gtk-Perl
 BuildRequires: gettext
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description 
 TinyCA is a graphical tool written in Perl/Gtk to manage a small

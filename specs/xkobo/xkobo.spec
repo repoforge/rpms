@@ -28,6 +28,7 @@ BuildRequires: gcc-c++
 %{?fc2:BuildRequires: xorg-x11-devel}
 %{?fc1:BuildRequires: XFree86-devel}
 %{?rh9:BuildRequires: XFree86-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Xkobo is a arcade video game for X11. The goal is to
