@@ -2,11 +2,9 @@
 # Authority: matthias
 # Upstream: Julian Seward <jseward@acm.org>
 
-%define _pkglibdir %{_libdir}/%{name}
-%define valgrind_find_provides %{_builddir}/valgrind-find-provides
-%define valgrind_find_requires %{_builddir}/valgrind-find-requires
-
 %define _use_internal_dependency_generator 0
+
+%define _pkglibdir %{_libdir}/%{name}
 
 Summary: Debugging and profiling system for x86-GNU/Linux platforms
 Name: valgrind
@@ -48,22 +46,6 @@ are intercepted. As a result, Valgrind can detect problems such as:
 
 %{__perl} -pi.orig -e 's|^(nptl_threading)=.*$|nptl_threading="$($VALGRIND/nptltest)"|' coregrind/valgrind.in
 
-%{__cat} <<EOF >%{valgrind_find_provides}
-#!/bin/sh
-%{__find_provides} | grep -v '^libpthread.so'
-exit 0
-EOF
-chmod +x %{valgrind_find_provides}
-%define __find_provides %{valgrind_find_provides}
-
-%{__cat} <<EOF >%{valgrind_find_requires}
-#! /bin/sh
-%{__find_requires} | grep -v 'libc.so.6(GLIBC_PRIVATE)'
-exit 0
-EOF
-chmod +x %{valgrind_find_requires}
-%define __find_requires %{valgrind_find_requires}
-
 %build
 %{__cc} %{optflags} %{SOURCE1} -lpthread -o nptltest || echo -e '#!/bin/sh\necho no' >nptltest
 
@@ -78,7 +60,16 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %makeinstall \
 	docdir="%{_builddir}/%{buildsubdir}/rpm-doc"
 
-%{__install} -m0755 nptltest %{buildroot}%{_libdir}/valgrind/
+%{__install} -D -m0755 nptltest %{buildroot}%{_libdir}/valgrind/nptltest
+
+echo -e "#!/bin/sh\nexec %{__find_provides} | grep -v '^libpthread.so'" >%{_builddir}/%{buildsubdir}/find-provides
+chmod +x %{_builddir}/%{buildsubdir}/find-provides
+%define __find_provides %{_builddir}/%{buildsubdir}/find-provides
+
+echo -e "#!/bin/sh\nexec %{__find_requires} | grep -v GLIBC_PRIVATE" >%{_builddir}/%{buildsubdir}/find-requires
+chmod +x %{_builddir}/%{buildsubdir}/find-requires
+%define __find_requires %{_builddir}/%{buildsubdir}/find-requires
+
 
 %clean
 %{__rm} -rf %{buildroot}
