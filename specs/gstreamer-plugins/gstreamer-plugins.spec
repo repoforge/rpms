@@ -3,10 +3,10 @@
 
 Summary: GStreamer Streaming-media framework plugins
 Name: gstreamer-plugins
-Version: 0.8.2.1
+Version: 0.8.2
 %define majmin 0.8
 %define po_package gst-plugins-%{majmin}
-Release: 0
+Release: 2.1
 License: LGPL
 Group: Applications/Multimedia
 Source: gst-plugins-%{version}.tar.bz2
@@ -17,6 +17,7 @@ Source5: gst-fionread.m4
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 Patch1: gstreamer-plugins-0.7.5-alsa.patch
+Patch2: gstreamer-plugins-0.8.2-alsa-fixes.patch
 
 Requires: glib2 >= %_glib2
 Requires: gstreamer >= %{version}
@@ -81,8 +82,7 @@ applications and plugins for GStreamer.
 %prep
 %setup -q -n gst-plugins-%{version} -a 4
 %patch1 -p1 -b .alsa
-
-mkdir gst-libs/ext/ffmpeg
+%patch2 -p1 -b .alsa-fixes
 
 for docfile in AUTHORS COPYING README ; do
 	cp Hermes-%{hermes_version}/${docfile} ${docfile}.Hermes
@@ -175,8 +175,9 @@ env DISPLAY= /usr/bin/gst-register-%{majmin} >/dev/null 2>&1 || true
 %{_libdir}/*so
 
 %changelog
-* Tue Jul 05 2004 Colin Walters <walters@redhat.com> - 0.8.2-3
-- Another rebuild to placate beehive!
+* Fri Jul 16 2004 Colin Walters <walters@redhat.com> - 0.8.2-2.1
+- Rebuild for FC2
+- Backported ALSA fixes from CVS HEAD
 
 * Tue Jul 05 2004 Colin Walters <walters@redhat.com> - 0.8.2-2
 - Rebuild to placate beehive

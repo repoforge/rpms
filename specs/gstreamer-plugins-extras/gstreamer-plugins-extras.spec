@@ -4,20 +4,20 @@
 %define		gstreamer	gstreamer
 %define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
 
-Name: 		%{gstreamer}-plugins-extra
-Version: 	0.8.1
-Release: 	0
-Summary: 	GStreamer extra streaming media framework plugins
+Name:		%{gstreamer}-plugins-extra
+Version:	0.8.2
+Release:	0
+Summary:	GStreamer extra streaming media framework plugins
 
-Group: 		Applications/Multimedia
-License: 	LGPL
+Group:		Applications/Multimedia
+License:	LGPL
 URL:		http://gstreamer.net/
-Source: 	http://freedesktop.org/~gstreamer/src/gst-plugins/gst-plugins-%{version}.tar.gz
+Source:		http://gstreamer.freedesktop.org/src/gst-plugins/gst-plugins-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires: 	%{gstreamer}-devel >= %{gst_minver}
+BuildRequires:	%{gstreamer}-devel >= %{gst_minver}
 # libtool needs this, sigh
-BuildRequires: 	gcc-c++
+BuildRequires:	gcc-c++
 # so gst-libs can build
 BuildRequires:	XFree86-devel
 
@@ -29,14 +29,12 @@ else media-related.  Its plugin-based architecture means that new data
 types or processing capabilities can be added simply by installing new 
 plugins.
 
-This package provides extra plugins currently hosted on http://rpm.livna.org/
-
 %package audio
-Summary: 	extra audio plugins for GStreamer
-Group: 		Applications/Multimedia
+Summary:	Extra audio plugins for GStreamer
+Group:		Applications/Multimedia
 
 BuildRequires:	faad2-devel >= 2.0
-BuildRequires:  gsm-devel >= 1.0.10
+BuildRequires:	gsm-devel >= 1.0.10
 BuildRequires:	lame-devel >= 3.89
 BuildRequires:	libid3tag-devel >= 0.15.0
 BuildRequires:	libmad-devel >= 0.15.0
@@ -70,8 +68,8 @@ This package contains extra audio plugins for GStreamer, including
 %{_libdir}/gstreamer-%{majorminor}/libgstmad.so
 
 %package dvd
-Summary: 	DVD plugins for GStreamer
-Group: 		Applications/Multimedia
+Summary:	DVD plugins for GStreamer
+Group:		Applications/Multimedia
 
 BuildRequires:	a52dec-devel >= 0.7.3
 BuildRequires:	libdvdnav-devel >= 0.1.3
@@ -105,8 +103,8 @@ This package contains dvd plugins for GStreamer, including
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdreadsrc.so
 
 %package video
-Summary: 	extra video plugins for GStreamer
-Group: 		Applications/Multimedia
+Summary:	Extra video plugins for GStreamer
+Group:		Applications/Multimedia
 
 BuildRequires:	libfame-devel >= 0.9.0
 BuildRequires:	mpeg2dec-devel >= 0.4.0
@@ -188,6 +186,9 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 0.8.2-0
+- Update to 0.8.2.
+
 * Thu Apr 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
 - 0.8.1-0.lvn.1: new source release
 

@@ -1,0 +1,690 @@
+--- gst-plugins-0.8.2/ext/alsa/gstalsa.c	2004-06-23 08:31:58.000000000 -0400
++++ gst-plugins/ext/alsa/gstalsa.c	2004-07-14 12:13:01.000000000 -0400
+@@ -1085,7 +1085,8 @@
+       if (!(GST_FLAG_IS_SET (element, GST_ALSA_RUNNING) ||
+               gst_alsa_start_audio (this)))
+         return GST_STATE_FAILURE;
+-      this->transmitted = 0;
++      this->played = 0;
++      this->captured = 0;
+       break;
+     case GST_STATE_PAUSED_TO_PLAYING:
+       if (snd_pcm_state (this->handle) == SND_PCM_STATE_PAUSED) {
+@@ -1130,7 +1131,7 @@
+       break;
+ 
+     default:
+-      g_assert_not_reached ();
++      break;
+   }
+ 
+   if (GST_ELEMENT_CLASS (parent_class)->change_state)
+@@ -1212,6 +1213,7 @@
+       ERROR_CHECK (snd_pcm_prepare (this->handle), "error preparing: %s");
+     case SND_PCM_STATE_SUSPENDED:
+     case SND_PCM_STATE_PREPARED:
++      this->captured = 0;
+       ERROR_CHECK (snd_pcm_start (this->handle), "error starting playback: %s");
+       break;
+     case SND_PCM_STATE_PAUSED:
+@@ -1249,8 +1251,6 @@
+     gettimeofday (&now, 0);
+     snd_pcm_status_get_trigger_tstamp (status, &tstamp);
+     timersub (&now, &tstamp, &diff);
+-    GST_INFO_OBJECT (this, "alsa: xrun of at least %.3f msecs",
+-        diff.tv_sec * 1000 + diff.tv_usec / 1000.0);
+ 
+     /* if we're allowed to recover, ... */
+     if (this->autorecover) {
+@@ -1264,12 +1264,11 @@
+         this->period_count *= 2;
+       }
+     }
+-  }
+-
+-  if (!(gst_alsa_stop_audio (this) && gst_alsa_start_audio (this))) {
+-    GST_ELEMENT_ERROR (this, RESOURCE, FAILED, (NULL),
+-        ("Error restarting audio after xrun"));
+-    return FALSE;
++    if (!(gst_alsa_stop_audio (this) && gst_alsa_start_audio (this))) {
++      GST_ELEMENT_ERROR (this, RESOURCE, FAILED, (NULL),
++          ("Error restarting audio after xrun"));
++      return FALSE;
++    }
+   }
+ 
+   return TRUE;
+@@ -1580,6 +1579,7 @@
+       break;
+   }
+ 
++  GST_DEBUG ("stopped alsa");
+   GST_FLAG_UNSET (this, GST_ALSA_RUNNING);
+   return TRUE;
+ }
+--- gst-plugins-0.8.2/ext/alsa/gstalsa.h	2004-06-23 08:31:58.000000000 -0400
++++ gst-plugins/ext/alsa/gstalsa.h	2004-07-14 12:13:01.000000000 -0400
+@@ -156,11 +156,12 @@
+ 
+   /* clocking */
+   GstAlsaClock *		clock;		/* our provided clock */
+-  snd_pcm_uframes_t		transmitted; 	/* samples transmitted since last sync 
++  snd_pcm_uframes_t		played; 	/* samples transmitted since last sync 
+ 						   This thing actually is our master clock.
+ 						   We will event insert silent samples or
+ 						   drop some to sync to incoming timestamps.
+ 						 */
++  snd_pcm_uframes_t		captured;
+   GstClockTime			max_discont;	/* max difference between current
+   						   playback timestamp and buffers timestamps
+ 						 */
+--- gst-plugins-0.8.2/ext/alsa/gstalsaplugin.c	2004-06-23 08:31:58.000000000 -0400
++++ gst-plugins/ext/alsa/gstalsaplugin.c	2004-07-14 12:13:02.000000000 -0400
+@@ -34,6 +34,7 @@
+ gst_alsa_error_wrapper (const char *file, int line, const char *function,
+     int err, const char *fmt, ...)
+ {
++#ifndef GST_DISABLE_GST_DEBUG
+   va_list args;
+   gchar *str;
+ 
+@@ -47,6 +48,7 @@
+       "alsalib error: %s%s%s", str, err ? ": " : "",
+       err ? snd_strerror (err) : "");
+   g_free (str);
++#endif
+ }
+ 
+ static gboolean
+--- gst-plugins-0.8.2/ext/alsa/gstalsasink.c	2004-06-23 09:19:48.000000000 -0400
++++ gst-plugins/ext/alsa/gstalsasink.c	2004-07-14 12:13:02.000000000 -0400
+@@ -160,18 +160,21 @@
+ static inline void
+ gst_alsa_sink_flush_one_pad (GstAlsaSink * sink, gint i)
+ {
++  GST_DEBUG_OBJECT (sink, "flushing pad %d", i);
+   switch (sink->behaviour[i]) {
+     case 0:
+-      if (sink->buf[i])
+-        gst_data_unref (GST_DATA (sink->buf[i]));
+-      sink->buf[i] = NULL;
+-      sink->data[i] = NULL;
++      if (sink->gst_data[i]) {
++        GST_DEBUG_OBJECT (sink, "unreffing gst data %p", sink->gst_data[i]);
++        gst_data_unref (GST_DATA (sink->gst_data[i]));
++      }
++      sink->gst_data[i] = NULL;
++      sink->buf_data[i] = NULL;
+       sink->behaviour[i] = 0;
+       sink->size[i] = 0;
+       break;
+     case 1:
+-      g_free (sink->data[i]);
+-      sink->data[i] = NULL;
++      g_free (sink->buf_data[i]);
++      sink->buf_data[i] = NULL;
+       sink->behaviour[i] = 0;
+       sink->size[i] = 0;
+       break;
+@@ -196,9 +199,14 @@
+ gst_alsa_sink_check_event (GstAlsaSink * sink, gint pad_nr)
+ {
+   gboolean cont = TRUE;
+-  GstEvent *event = GST_EVENT (sink->buf[pad_nr]);
++  GstEvent *event;
+   GstAlsa *this = GST_ALSA (sink);
+ 
++  /* we get the event from our internal buffer and clear the internal one */
++  event = GST_EVENT (sink->gst_data[pad_nr]);
++  sink->gst_data[pad_nr] = 0;
++  GST_LOG_OBJECT (sink, "checking event %p of type %d on sink pad %d",
++      event, GST_EVENT_TYPE (event), pad_nr);
+   if (event) {
+     switch (GST_EVENT_TYPE (event)) {
+       case GST_EVENT_EOS:
+@@ -217,16 +225,18 @@
+           break;
+         }
+         delay = (this->format == NULL) ? 0 :
+-            GST_SECOND * this->transmitted / this->format->rate -
++            GST_SECOND * this->played / this->format->rate -
+             gst_alsa_sink_get_time (this);
+         if (gst_event_discont_get_value (event, GST_FORMAT_TIME, &value)) {
+-          gst_element_set_time_delay (GST_ELEMENT (this), MIN (value, delay), delay);
+-        } else if (this->format &&
+-            (gst_event_discont_get_value (event, GST_FORMAT_DEFAULT, &value) ||
+-                gst_event_discont_get_value (event, GST_FORMAT_BYTES,
++          gst_element_set_time_delay (GST_ELEMENT (this), value,
++              MIN (value, delay));
++        } else if (this->format
++            && (gst_event_discont_get_value (event, GST_FORMAT_DEFAULT, &value)
++                || gst_event_discont_get_value (event, GST_FORMAT_BYTES,
+                     &value))) {
+           value = gst_alsa_samples_to_timestamp (this, value);
+-          gst_element_set_time_delay (GST_ELEMENT (this), MIN (value, delay), delay);
++          gst_element_set_time_delay (GST_ELEMENT (this), value, MIN (value,
++                  delay));
+         } else {
+           GST_WARNING_OBJECT (this,
+               "couldn't extract time from discont event. Bad things might happen!");
+@@ -239,8 +249,10 @@
+             GST_EVENT_TYPE (event));
+         break;
+     }
++    GST_LOG_OBJECT (sink, "unreffing event %p of type %d with refcount %d",
++        event, GST_EVENT_TYPE (event), GST_DATA_REFCOUNT (event));
+     gst_event_unref (event);
+-    sink->buf[pad_nr] = NULL;
++    sink->gst_data[pad_nr] = NULL;
+   } else {
+     /* the element at the top of the chain did not emit an event. */
+     g_assert_not_reached ();
+@@ -264,14 +276,14 @@
+   if (((GstElement *) this)->numpads == 1) {
+     /* interleaved */
+     for (i = 0; i < this->format->channels; i++) {
+-      src[i].addr = sink->data[0];
++      src[i].addr = sink->buf_data[0];
+       src[i].first = i * width;
+       src[i].step = this->format->channels * width;
+     }
+   } else {
+     /* noninterleaved */
+     for (i = 0; i < this->format->channels; i++) {
+-      src[i].addr = sink->data[i];
++      src[i].addr = sink->buf_data[i];
+       src[i].first = 0;
+       src[i].step = width;
+     }
+@@ -307,11 +319,11 @@
+ 
+   if (((GstElement *) this)->numpads == 1) {
+     /* interleaved */
+-    err = snd_pcm_writei (this->handle, sink->data[0], *avail);
++    err = snd_pcm_writei (this->handle, sink->buf_data[0], *avail);
+   } else {
+     /* noninterleaved */
+     for (i = 0; i < this->format->channels; i++) {
+-      channels[i] = sink->data[i];
++      channels[i] = sink->buf_data[i];
+     }
+     err = snd_pcm_writen (this->handle, channels, *avail);
+   }
+@@ -352,43 +364,54 @@
+     }
+ 
+     /* check how many bytes we still have in all our bytestreams */
+-    /* initialize this value to a somewhat sane state, we might alloc this much data below (which would be a bug, but who knows)... */
++    /* initialize this value to a somewhat sane state, we might alloc
++     * this much data below (which would be a bug, but who knows)... */
+     bytes = this->period_size * this->period_count * element->numpads * 8;      /* must be > max sample size in bytes */
+     for (i = 0; i < element->numpads; i++) {
++      GstBuffer *buf;
++
+       g_assert (this->pad[i] != NULL);
+       while (sink->size[i] == 0) {
+-        if (!sink->buf[i])
+-          sink->buf[i] = GST_BUFFER (gst_pad_pull (this->pad[i]));
+-        if (GST_IS_EVENT (sink->buf[i])) {
++        if (!sink->gst_data[i]) {
++          sink->gst_data[i] = gst_pad_pull (this->pad[i]);
++          GST_LOG_OBJECT (sink, "pulled data %p from pad %d",
++              sink->gst_data[i], i);
++        }
++
++        if (GST_IS_EVENT (sink->gst_data[i])) {
++          GST_LOG_OBJECT (sink, "pulled data %p is an event, checking",
++              sink->gst_data[i]);
+           if (gst_alsa_sink_check_event (sink, i))
+             continue;
+           return;
+         }
+-        /* caps nego failed somewhere */
++        /* it's a buffer */
++        g_return_if_fail (GST_IS_BUFFER (sink->gst_data[i]));
++        buf = GST_BUFFER (sink->gst_data[i]);
++        /* check if caps nego failed somewhere */
+         if (this->format == NULL) {
+           GST_ELEMENT_ERROR (this, CORE, NEGOTIATION, (NULL),
+               ("ALSA format not negotiated"));
+         }
+-        samplestamp =
+-            gst_alsa_timestamp_to_samples (this,
+-            GST_BUFFER_TIMESTAMP (sink->buf[i]));
++        samplestamp = gst_alsa_timestamp_to_samples (this,
++            GST_BUFFER_TIMESTAMP (buf));
+         max_discont = gst_alsa_timestamp_to_samples (this, this->max_discont);
+         /* optimization: check if we're using our own clock
+-         * This optimization is important because if we're using our own clock 
+-         * gst_element_get_time calls snd_pcm_delay and the following code assumes
+-         * that both calls return the same value. However they can be wildly 
+-         * different, since snd_pcm_delay goes deep into the kernel.
++         * This optimization is important because if we're using our own clock
++         * gst_element_get_time calls snd_pcm_delay and the following code
++         * assumes that both calls return the same value. However they can be
++         * wildly different, since snd_pcm_delay goes deep into the kernel.
+          */
+         if (gst_element_get_clock (element) == GST_CLOCK (this->clock)) {
+-          /* FIXME: this is ugly because of the variables it uses but I don't know a 
+-           * better way to get this info */
++          /* FIXME: this is ugly because of the variables it uses but I
++           * don't know a better way to get this info */
+           if (element->base_time > this->clock->start_time) {
+             expected =
+-                this->transmitted - gst_alsa_timestamp_to_samples (this,
++                this->played - gst_alsa_timestamp_to_samples (this,
+                 element->base_time - this->clock->start_time);
+           } else {
+             expected =
+-                this->transmitted + gst_alsa_timestamp_to_samples (this,
++                this->played + gst_alsa_timestamp_to_samples (this,
+                 this->clock->start_time - element->base_time);
+           }
+         } else {
+@@ -402,13 +425,13 @@
+         }
+         sample_diff = samplestamp - expected;
+ 
+-        if ((!GST_BUFFER_TIMESTAMP_IS_VALID (sink->buf[i])) ||
++        if ((!GST_BUFFER_TIMESTAMP_IS_VALID (buf)) ||
+             (-max_discont <= sample_diff && sample_diff <= max_discont)) {
+ 
+           /* difference between expected and current is < GST_ALSA_DEVIATION */
+         no_difference:
+-          sink->size[i] = sink->buf[i]->size;
+-          sink->data[i] = sink->buf[i]->data;
++          sink->size[i] = GST_BUFFER_SIZE (buf);
++          sink->buf_data[i] = GST_BUFFER_DATA (buf);
+           sink->behaviour[i] = 0;
+         } else if (sample_diff > 0) {
+           /* there are empty samples in front of us, fill them with silence */
+@@ -420,28 +443,28 @@
+           GST_INFO_OBJECT (this,
+               "Allocating %d bytes (%ld samples) now to resync: sample %lu expected, but got %ld",
+               size, MIN (bytes, sample_diff), expected, samplestamp);
+-          sink->data[i] = g_try_malloc (size);
+-          if (!sink->data[i]) {
++          sink->buf_data[i] = g_try_malloc (size);
++          if (!sink->buf_data[i]) {
+             GST_WARNING_OBJECT (this,
+                 "error allocating %d bytes, buffers unsynced now.", size);
+             goto no_difference;
+           }
+           sink->size[i] = size;
+           if (0 != snd_pcm_format_set_silence (this->format->format,
+-                  sink->data[i], samples)) {
++                  sink->buf_data[i], samples)) {
+             GST_WARNING_OBJECT (this,
+                 "error silencing buffer, enjoy the noise.");
+           }
+           sink->behaviour[i] = 1;
+-        } else if (gst_alsa_samples_to_bytes (this,
+-                -sample_diff) >= sink->buf[i]->size) {
++        } else if (gst_alsa_samples_to_bytes (this, -sample_diff) >=
++            GST_BUFFER_SIZE (buf)) {
+           GST_INFO_OBJECT (this,
+               "Skipping %lu samples to resync (complete buffer): sample %lu expected, but got %ld",
+-              gst_alsa_bytes_to_samples (this, sink->buf[i]->size), expected,
++              gst_alsa_bytes_to_samples (this, GST_BUFFER_SIZE (buf)), expected,
+               samplestamp);
+           /* this buffer is way behind */
+-          gst_buffer_unref (sink->buf[i]);
+-          sink->buf[i] = NULL;
++          gst_buffer_unref (buf);
++          sink->gst_data[i] = NULL;
+           continue;
+         } else if (sample_diff < 0) {
+           gint difference = gst_alsa_samples_to_bytes (this, -sample_diff);
+@@ -450,8 +473,8 @@
+               "Skipping %lu samples to resync: sample %lu expected, but got %ld",
+               (gulong) - sample_diff, expected, samplestamp);
+           /* this buffer is only a bit behind */
+-          sink->size[i] = sink->buf[i]->size - difference;
+-          sink->data[i] = sink->buf[i]->data + difference;
++          sink->size[i] = GST_BUFFER_SIZE (buf) - difference;
++          sink->buf_data[i] = GST_BUFFER_DATA (buf) + difference;
+           sink->behaviour[i] = 0;
+         } else {
+           g_assert_not_reached ();
+@@ -477,13 +500,14 @@
+         return;
+     }
+ 
+-    /* FIXME: lotsa stuff can have happened while fetching data. Do we need to check something? */
++    /* FIXME: lotsa stuff can have happened while fetching data.
++     * Do we need to check something? */
+ 
+     /* put this data into alsa */
+     if ((copied = this->transmit (this, &avail)) < 0)
+       return;
+     /* update our clock */
+-    this->transmitted += copied;
++    this->played += copied;
+     /* flush the data */
+     bytes = gst_alsa_samples_to_bytes (this, copied);
+     for (i = 0; i < element->numpads; i++) {
+@@ -493,7 +517,7 @@
+       }
+       g_assert (sink->size[i] > 0);
+       if (sink->behaviour[i] != 1)
+-        sink->data[i] += bytes;
++        sink->buf_data[i] += bytes;
+     }
+   }
+ 
+@@ -524,7 +548,7 @@
+     case GST_STATE_READY_TO_NULL:
+       break;
+     default:
+-      g_assert_not_reached ();
++      break;
+   }
+ 
+   if (GST_ELEMENT_CLASS (sink_parent_class)->change_state)
+@@ -541,11 +565,11 @@
+   if (!this->format)
+     return 0;
+   if (snd_pcm_delay (this->handle, &delay) != 0) {
+-    return this->transmitted / this->format->rate;
++    return this->played / this->format->rate;
+   }
+-  if (this->transmitted <= delay) {
++  if (this->played <= delay) {
+     return 0;
+   }
+ 
+-  return GST_SECOND * (this->transmitted - delay) / this->format->rate;
++  return GST_SECOND * (this->played - delay) / this->format->rate;
+ }
+--- gst-plugins-0.8.2/ext/alsa/gstalsasink.h	2004-06-23 08:31:58.000000000 -0400
++++ gst-plugins/ext/alsa/gstalsasink.h	2004-07-14 12:13:02.000000000 -0400
+@@ -39,9 +39,9 @@
+   GstAlsaMixer parent;
+ 
+   /* array of the data on the channels */
+-  guint8    *data[GST_ALSA_MAX_TRACKS];      /* pointer into buffer */
++  guint8    *buf_data[GST_ALSA_MAX_TRACKS];  /* pointer into buffer */
+   guint      size[GST_ALSA_MAX_TRACKS];      /* sink: bytes left in buffer */
+-  GstBuffer *buf[GST_ALSA_MAX_TRACKS];       /* current buffer */
++  GstData   *gst_data[GST_ALSA_MAX_TRACKS];  /* current data */
+   guint      behaviour[GST_ALSA_MAX_TRACKS]; /* 0 = data points into buffer (so unref when size == 0),
+                                                   1 = data should be freed, use buffer after that */
+ };
+--- gst-plugins-0.8.2/ext/alsa/gstalsasrc.c	2004-06-23 11:43:53.000000000 -0400
++++ gst-plugins/ext/alsa/gstalsasrc.c	2004-07-14 12:13:02.000000000 -0400
+@@ -43,7 +43,6 @@
+ static void gst_alsa_src_loop (GstElement * element);
+ static void gst_alsa_src_flush (GstAlsaSrc * src);
+ static GstElementStateReturn gst_alsa_src_change_state (GstElement * element);
+-
+ static GstClockTime gst_alsa_src_get_time (GstAlsa * this);
+ 
+ static GstAlsa *src_parent_class = NULL;
+@@ -118,6 +117,7 @@
+ 
+   element_class->change_state = gst_alsa_src_change_state;
+ }
++
+ static void
+ gst_alsa_src_init (GstAlsaSrc * src)
+ {
+@@ -134,8 +134,53 @@
+   gst_object_ref (GST_OBJECT (this->clock));
+   gst_object_sink (GST_OBJECT (this->clock));
+ 
++  src->status = NULL;
+   gst_element_set_loop_function (GST_ELEMENT (this), gst_alsa_src_loop);
+ }
++
++/* alsasrc provides a clock starting from the trigger tstamp
++ * (last play/pause/stop), and added to that the time for the currently
++ * processed samples, and the current fill state of the buffer */
++static GstClockTime
++gst_alsa_src_get_time (GstAlsa * this)
++{
++  struct timeval trigger;
++  snd_pcm_sframes_t delay;
++  GstClockTime gct_trigger, gct_captured, gct_delay, retval =
++      GST_CLOCK_TIME_NONE;
++  int err;
++  GstAlsaSrc *src = GST_ALSA_SRC (this);
++
++  GTimeVal now;
++
++  g_get_current_time (&now);
++  return GST_TIMEVAL_TO_TIME (now);
++
++  if (src->status == NULL)
++    return GST_CLOCK_TIME_NONE;
++
++  if ((err = snd_pcm_status (this->handle, src->status)) < 0) {
++    GST_ERROR_OBJECT (this, "status error: %s", snd_strerror (err));
++    return GST_CLOCK_TIME_NONE;
++  }
++
++  /* trigger tstamp is the last time the device got started/stopped/paused */
++  snd_pcm_status_get_trigger_tstamp (src->status, &trigger);
++  gct_trigger = GST_TIMEVAL_TO_TIME (trigger);
++
++  /* captured is the number of samples already sent out as buffers */
++  gct_captured = gst_alsa_samples_to_timestamp (this, this->captured);
++
++  /* delay is the number of samples in the buffer not yet processed */
++  delay = snd_pcm_status_get_delay (src->status);
++  gct_delay = gst_alsa_samples_to_timestamp (this, delay);
++
++  retval = gct_trigger + gct_captured + gct_delay;
++  GST_LOG_OBJECT (src, "returning clock time of %" GST_TIME_FORMAT,
++      GST_TIME_ARGS (retval));
++  return retval;
++}
++
+ static int
+ gst_alsa_src_mmap (GstAlsa * this, snd_pcm_sframes_t * avail)
+ {
+@@ -311,6 +356,30 @@
+   return FALSE;
+ }
+ 
++inline snd_pcm_sframes_t
++gst_alsa_src_update_avail (GstAlsa * this)
++{
++  snd_pcm_sframes_t avail = -1;
++
++  while (avail < 0) {
++    avail = snd_pcm_avail_update (this->handle);
++    if (avail < 0) {
++      if (avail == -EPIPE) {
++        gst_alsa_xrun_recovery (this);
++      } else {
++        GST_WARNING_OBJECT (this, "unknown ALSA avail_update return value (%d)",
++            (int) avail);
++      }
++    }
++    if (snd_pcm_state (this->handle) != SND_PCM_STATE_RUNNING) {
++      if (!gst_alsa_start (this)) {
++        return 0;
++      }
++    }
++  }
++  return avail;
++}
++
+ /* we transmit buffers of period_size frames */
+ static void
+ gst_alsa_src_loop (GstElement * element)
+@@ -331,22 +400,7 @@
+ 
+   /* the cast to long is explicitly needed;
+    * with avail = -32 and period_size = 100, avail < period_size is false */
+-  while ((avail = gst_alsa_update_avail (this)) < (long) this->period_size) {
+-    if (avail == -EPIPE) {
+-      GST_DEBUG_OBJECT (this, "got EPIPE when checking for available bytes");
+-      continue;
+-    }
+-    if (avail < 0) {
+-      GST_DEBUG_OBJECT (this,
+-          "got error %s (%d) when checking for available bytes",
+-          snd_strerror (avail));
+-      return;
+-    }
+-    if (snd_pcm_state (this->handle) != SND_PCM_STATE_RUNNING) {
+-      if (!gst_alsa_start (this))
+-        return;
+-      continue;
+-    };
++  while ((avail = gst_alsa_src_update_avail (this)) < this->period_size) {
+     /* wait */
+     if (gst_alsa_pcm_wait (this) == FALSE)
+       return;
+@@ -359,28 +413,73 @@
+     src->buf[i] =
+         gst_buffer_new_and_alloc (gst_alsa_samples_to_bytes (this, avail));
+   }
++
+   /* fill buffer with data */
+   if ((copied = this->transmit (this, &avail)) <= 0)
+     return;
+-  /* push the buffers out and let them have fun */
+-  for (i = 0; i < element->numpads; i++) {
+-    GstBuffer *buf;
+ 
+-    if (!src->buf[i])
+-      return;
+-    if (copied != this->period_size)
+-      GST_BUFFER_SIZE (src->buf[i]) = gst_alsa_samples_to_bytes (this, copied);
+-    GST_BUFFER_TIMESTAMP (src->buf[i]) =
+-        gst_alsa_samples_to_timestamp (this, this->transmitted);
+-    GST_BUFFER_DURATION (src->buf[i]) =
+-        gst_alsa_samples_to_timestamp (this, copied);
+-    GST_BUFFER_OFFSET (src->buf[i]) = this->transmitted;
+-    GST_BUFFER_OFFSET_END (src->buf[i]) = this->transmitted + copied;
+-    buf = src->buf[i];
+-    src->buf[i] = NULL;
+-    gst_pad_push (this->pad[i], GST_DATA (buf));
++  {
++    gint outsize;
++    GstClockTime outtime, outdur, outreal, outideal, startalsa, outalsa;
++    gint64 diff, offset;
++    struct timeval tstamp;
++    int err;
++
++
++    if ((err = snd_pcm_status (this->handle, src->status)) < 0)
++      GST_ERROR_OBJECT (this, "status error: %s", snd_strerror (err));
++
++    offset = this->captured;
++
++    /* duration of buffer is just the time of the samples */
++    outdur = gst_alsa_samples_to_timestamp (this, copied);
++
++    /* The real capture time is the time of the clock minus the duration and
++     * what is now in the buffer */
++    outreal = gst_element_get_time (GST_ELEMENT (this)) - outdur;
++    /* ideal time is counting samples */
++    outideal = gst_alsa_samples_to_timestamp (this, offset);
++
++    snd_pcm_status_get_trigger_tstamp (src->status, &tstamp);
++    startalsa = GST_TIMEVAL_TO_TIME (tstamp) - element->base_time;
++    outalsa = startalsa + outideal;
++
++    outsize = gst_alsa_samples_to_bytes (this, copied);
++    outtime = GST_CLOCK_TIME_NONE;
++
++    if (GST_ELEMENT_CLOCK (this)) {
++      if (GST_CLOCK (GST_ALSA (this)->clock) == GST_ELEMENT_CLOCK (this)) {
++        outtime = outalsa;
++        diff = outideal - outreal;
++        GST_DEBUG_OBJECT (this, "ideal %lld, real %lld, diff %lld\n", outideal,
++            outreal, diff);
++        offset = gst_alsa_timestamp_to_samples (this, outtime);
++      } else {
++        outtime = outreal;
++        offset = gst_alsa_timestamp_to_samples (this, outtime);
++      }
++    }
++
++    /* push the buffers out and let them have fun */
++    for (i = 0; i < element->numpads; i++) {
++      GstBuffer *buf;
++
++      if (!src->buf[i])
++        return;
++      if (copied != this->period_size)
++        GST_BUFFER_SIZE (src->buf[i]) = outsize;
++
++      GST_BUFFER_TIMESTAMP (src->buf[i]) = outtime;
++      GST_BUFFER_DURATION (src->buf[i]) = outdur;
++      GST_BUFFER_OFFSET (src->buf[i]) = offset;
++      GST_BUFFER_OFFSET_END (src->buf[i]) = offset + copied;
++
++      buf = src->buf[i];
++      src->buf[i] = NULL;
++      gst_pad_push (this->pad[i], GST_DATA (buf));
++    }
++    this->captured += copied;
+   }
+-  this->transmitted += copied;
+ }
+ 
+ static void
+@@ -395,6 +494,7 @@
+     }
+   }
+ }
++
+ static GstElementStateReturn
+ gst_alsa_src_change_state (GstElement * element)
+ {
+@@ -405,17 +505,23 @@
+ 
+   switch (GST_STATE_TRANSITION (element)) {
+     case GST_STATE_NULL_TO_READY:
++      break;
+     case GST_STATE_READY_TO_PAUSED:
++      snd_pcm_status_malloc (&src->status);
++      break;
+     case GST_STATE_PAUSED_TO_PLAYING:
++      break;
+     case GST_STATE_PLAYING_TO_PAUSED:
+       break;
+     case GST_STATE_PAUSED_TO_READY:
++      snd_pcm_status_free (src->status);
++      src->status = NULL;
+       gst_alsa_src_flush (src);
+       break;
+     case GST_STATE_READY_TO_NULL:
+       break;
+     default:
+-      g_assert_not_reached ();
++      break;
+   }
+ 
+   if (GST_ELEMENT_CLASS (src_parent_class)->change_state)
+@@ -423,15 +529,3 @@
+ 
+   return GST_STATE_SUCCESS;
+ }
+-
+-static GstClockTime
+-gst_alsa_src_get_time (GstAlsa * this)
+-{
+-  snd_pcm_sframes_t delay;
+-
+-  if (snd_pcm_delay (this->handle, &delay) == 0 && this->format) {
+-    return GST_SECOND * (this->transmitted + delay) / this->format->rate;
+-  } else {
+-    return 0;
+-  }
+-}
+--- gst-plugins-0.8.2/ext/alsa/gstalsasrc.h	2004-06-23 08:31:58.000000000 -0400
++++ gst-plugins/ext/alsa/gstalsasrc.h	2004-07-14 12:13:02.000000000 -0400
+@@ -38,6 +38,8 @@
+ struct _GstAlsaSrc {
+   GstAlsaMixer   parent;
+   GstBuffer     *buf[GST_ALSA_MAX_TRACKS];
++  snd_pcm_status_t *status;
++  GstClockTime  base_time; /* FIXME: move this up ? already present in element ? */
+ };
+ 
+ struct _GstAlsaSrcClass {

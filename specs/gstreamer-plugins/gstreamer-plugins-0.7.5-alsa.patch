@@ -1,0 +1,20 @@
+--- gst-plugins-0.7.5/gconf/gstreamer.schemas.in.alsa	2004-03-01 09:10:40.000000000 +0100
++++ gst-plugins-0.7.5/gconf/gstreamer.schemas.in	2004-03-01 09:11:12.000000000 +0100
+@@ -5,7 +5,7 @@
+       <applyto>/system/gstreamer-@GST_MAJORMINOR@/default/audiosink</applyto>
+       <owner>gstreamer</owner>
+       <type>string</type>
+-      <default>osssink</default>
++      <default>alsasink</default>
+       <locale name="C">
+         <short>default GStreamer audiosink</short>
+         <long>GStreamer can play audio using any number of output elements.  Some possible choices are osssink, esdsink and alsasink.  The audiosink can be a partial pipeline instead of just one element.</long>
+@@ -27,7 +27,7 @@
+       <applyto>/system/gstreamer-@GST_MAJORMINOR@/default/audiosrc</applyto>
+       <owner>gstreamer</owner>
+       <type>string</type>
+-      <default>osssrc</default>
++      <default>alsasrc</default>
+       <locale name="C">
+         <short>default GStreamer audio source</short>
+         <long>GStreamer can record audio using any number of input elements.  Some possible choices are osssrc, esdsrc and alsasrc.  The audio source can be a partial pipeline instead of just one element.</long>

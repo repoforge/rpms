@@ -5,23 +5,23 @@
 %define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
 
 Name: 		%{gstreamer}-ffmpeg
-Version: 	0.8.0
+Version: 	0.8.1
 Release: 	0
 Summary: 	GStreamer FFmpeg-based streaming media framework plugin
 
 Group: 		Applications/Multimedia
 License: 	LGPL
 URL:		http://gstreamer.net/
-Source: 	http://freedesktop.org/~gstreamer/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.gz
+Source: 	http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Requires(pre):	%{_bindir}/gst-register-%{majorminor}
 Requires(post):	%{_bindir}/gst-register-%{majorminor}
 Requires:	%{gstreamer}-plugins >= %{gstp_minver}
 
-BuildRequires: 	%{gstreamer}-devel >= %{gst_minver}
+BuildRequires:	%{gstreamer}-devel >= %{gst_minver}
 # libtool needs this, sigh
-BuildRequires: 	gcc-c++
+BuildRequires:	gcc-c++
 
 # all of the FFmpeg dependencies we need to get the codecs we want
 BuildRequires:	freetype-devel
@@ -65,6 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %{register}
+
 %postun
 %{register}
 
@@ -73,6 +74,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
 
 %changelog
+* Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 0.8.1-0
+- Update to 0.8.1.
+
 * Fri May 21 2004 Thomas Vander Stichele <thomas at apestaart dot org>
 - 0.8.0-0.lvn.2: update for FC2 and SDL-devel not requiring alsa-lib-devel
 
