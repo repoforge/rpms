@@ -5,7 +5,7 @@ Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.24
 Release: 1
-License: GPL
+License: LGPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
 Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
@@ -72,6 +72,9 @@ sh bootstrap
 
 
 %changelog
+* Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 1.24-1
+- Fix license tag, it's LGPL not GPL.
+
 * Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 1.24-1
 - Update to 1.24.
 
