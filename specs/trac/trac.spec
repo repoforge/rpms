@@ -5,7 +5,7 @@
 Name: trac
 Summary: Integrated SCM and project management tool
 Version: 0.8
-Release: 2
+Release: 3
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
@@ -61,7 +61,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 python ./setup.py install \
-	--prefix="%{buildroot}%{_prefix}"
+	--root="%{buildroot}"
 
 %{__install} -D -m0644 trac.httpd %buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
 
@@ -77,6 +77,9 @@ python ./setup.py install \
 %{_libdir}/python*/site-packages/trac/
 
 %changelog
+* Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.8-3
+- Fixed buildroot in %%install phase. (Dimiter Manevski)
+
 * Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.8-2
 - Remove the deprecated subversion-python requirement. (Dimiter Manevski)
 

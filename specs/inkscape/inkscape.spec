@@ -12,7 +12,7 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.39
+Version: 0.40
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -80,6 +80,9 @@ EOF
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Tue Nov 30 2004 Dag Wieers <dag@wieers.com> - 0.40-1
+- Updated to release 0.40.
+
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.39-1
 - Updated to release 0.39.
 

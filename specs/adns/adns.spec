@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream: Ian Jackson <adns-maint$chiark,greenend,org,uk>
 
 Summary: Asynchronous-capable resolver library
 Name: adns
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -32,7 +33,11 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
+### FIXME: Adapt buildtools to autotool directories. (Please fix upstream)
 %{__perl} -pi.orig -e 's|\$\(lib_dir\)|\$(libdir)|g' Makefile* */Makefile*
+
+### FIXME: Fix conflicting types. (Please fix upstream)
+%{__perl} -pi.orig -e 's|adns_queryflags flags,|parsedomain_flags flags,|g' src/parse.c
 
 %build
 %configure
@@ -58,14 +63,17 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc README TODO
-%{_bindir}/*
-%{_libdir}/*.so.*
+%{_bindir}/adns*
+%{_libdir}/libadns.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/*.a
-%{_includedir}/*.h
+%{_includedir}/adns.h
+%{_libdir}/libadns.a
 
 %changelog
-* Wed Jan 08 2003 Dag Wieers <dag@wieers.com> - 1.0
+* Tue Nov 10 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
+* Wed Jan 08 2003 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

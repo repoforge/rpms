@@ -7,7 +7,7 @@
 Summary: Programmable completion for Bash
 Name: bash-completion
 Version: 20041017
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Shells
 URL: http://www.caliban.org/bash/
@@ -40,8 +40,8 @@ if [ -z "$BASH_VERSION" ]; then
 	return
 fi
 
-### Check for correct version of Bash
-if [ \( "${BASH_VERSINFO[0]}" -eq 2 -a "${BASH_VERSINFO[1]}" -lt 05 \) -o "${BASH_VERSINFO[0]}" -lt 2 ]; then
+### Check for correct version of Bash (use \< instead of -lt because of 2.05b)
+if [ \( "${BASH_VERSINFO[0]}" -eq 2 -a "${BASH_VERSINFO[1]}" \< 05 \) -o "${BASH_VERSINFO[0]}" -lt 2 ]; then
 	return
 fi
 
@@ -70,6 +70,9 @@ EOF
 %config %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 20041017-3
+- Reverted wrong change to Bash version check. (Juergen Moellenhoff)
+
 * Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 20041017-2
 - Correct version check for Bash 3. (Matteo Corti)
 
