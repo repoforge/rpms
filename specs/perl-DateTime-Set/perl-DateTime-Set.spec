@@ -37,6 +37,7 @@ pattern, within a time range.
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} -pi -e 's|use Set::Infinite 0.5502;|use Set::Infinite;|g;' lib/Set/Infinite/_recurrence.pm
 %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
 %{__make} %{?_smp_mflags}
 
