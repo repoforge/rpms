@@ -28,6 +28,9 @@ BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
 %{?el3:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?rh9:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?rh8:BuildRequires: libraw1394-devel, libavc1394-devel}
+# A bug, the devel libs don't require the main ones :-(
+%{?yd3:BuildRequires: libraw1394, libavc1394}
+%{?yd3:BuildRequires: libraw1394-devel, libavc1394-devel}
 
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch %{ix86}
