@@ -8,12 +8,13 @@
 
 Summary: Make A CHroot
 Name: mach
-Version: 0.4.5
-Release: 3
+Version: 0.4.6
+Release: 1
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
 Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.bz2
+Source1: fedora-2-x86_64
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: rpm-python, apt, sed, cpio
 BuildRequires:	%{python} >= 2.0.0
@@ -46,6 +47,9 @@ to build clean packages.
 %{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/roots
 %{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/packages
 %{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/archives
+
+# Additionnal x86_64 Fedora Core 2 config
+%{__install} -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/mach/dist.d/
 
 
 %clean
@@ -97,6 +101,9 @@ fi
 
 
 %changelog
+* Sun Jul 11 2004 Matthias Saou <http://freshrpms.net> - 0.4.6-1
+- Update to 0.4.6.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-3
 - Rebuild for Fedora Core 2.
 - Don't remove the roots and states upon last removal.
@@ -105,7 +112,7 @@ fi
 - Added %%{python} macro to allow python2 dependency.
 
 * Fri Mar 19 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-1
-- Update to 0.4.5
+- Update to 0.4.5.
 
 * Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> - 0.4.3.1-1
 - Update to 0.4.3.1.
