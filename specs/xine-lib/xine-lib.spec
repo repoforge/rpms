@@ -41,11 +41,12 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
+Patch: xine-lib-1.0-unbreak-64bit-faad.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
@@ -108,6 +109,7 @@ use the Xine library.
 
 %prep
 %setup -n %{name}-%{libver}
+%patch -p1 -b .faad
 
 
 %build
@@ -160,6 +162,9 @@ use the Xine library.
 
 
 %changelog
+* Fri Feb  4 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-2
+- Added patch to fix faad on x86_64, thanks to Nicholas Miell.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0 final! (had to keep 1.0.0 as the version, though)
 - Added libXvMCW support (for the VIA Unichrome, mostly).
