@@ -11,8 +11,8 @@
 
 Summary: Flash animations rendering library
 Name: swfdec
-Version: 0.3.2
-Release: 2
+Version: 0.3.4
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
@@ -20,7 +20,7 @@ Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: mozilla-devel, libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
-BuildRequires: liboil-devel
+BuildRequires: liboil-devel, gstreamer-plugins-devel, GConf2-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
 
 %description
@@ -60,7 +60,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 
 
 %clean
@@ -89,10 +89,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %files 
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO 
-%exclude %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %{_bindir}/swf_play
 %{_libdir}/libswfdec*.so.*
-%{?gimp_plugin:%{_libdir}/gimp/1.3/plug-ins/swf}
+%{?gimp_plugin:%{_libdir}/gimp/2.0/plug-ins/swf}
 %{_libdir}/gtk-2.0/*/loaders/swf_loader.so
 
 %files devel
@@ -107,12 +106,17 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %files -n mozilla-swfdec
 %defattr(-, root, root, 0755)
-%exclude %{_libdir}/mozilla/plugins/libmozswfdec.a
-%exclude %{_libdir}/mozilla/plugins/libmozswfdec.la
-%{_libdir}/mozilla/plugins/libmozswfdec.so
+%{_bindir}/swfdec-mozilla-player
+%exclude %{_libdir}/mozilla/plugins/libswfdecmozilla.a
+%exclude %{_libdir}/mozilla/plugins/libswfdecmozilla.la
+%{_libdir}/mozilla/plugins/libswfdecmozilla.so
 
 
 %changelog
+* Sat Apr  2 2005 Matthias Saou <http://freshrpms.net/> 0.3.4-1
+- Update to 0.3.4.
+- Change %%makeinstall for DESTDIR method because of the gimp plugin.
+
 * Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 0.3.2-2
 - Added update-gdk-pixbuf-loaders to scriptlets.
 
