@@ -63,14 +63,14 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__rm} -rf %{buildroot}
 
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/spit/
+# %{__install} -d -m0755 %{buildroot}%{_bindir} \
+#			%{buildroot}%{_datadir}/spit/
 
 # Makefile doesn't use the defines of makeinstall and doesn't use the
 # default DESTDIR
 # export INSTALL_ROOT=%{buildroot}
-%makeinstall
-
+%makeinstall INSTALL_ROOT=%{buildroot}
+%{__rm} -Rf %{buildroot}%{_datadir}/doc/spit
 %{__install} -D -m0644 pixmaps/spit.svg %{buildroot}%{_datadir}/pixmaps/spit.svg
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
