@@ -1,0 +1,59 @@
+#!/bin/sh
+# Startup script for Zope
+#
+# chkconfig: - 80 20
+# description: Zope, an powerful and flexible web application server
+#
+# config: <<CONFIG_FILE>>
+
+# Source function library.
+. /etc/init.d/functions
+
+RETVAL=0
+zopectl="<<ZOPECTL>>"
+prog="zope"
+
+start() {
+#	action $"Starting $prog: " $zopectl start
+	echo -n $"Starting $prog: "
+	daemon $zopectl start >/dev/null 2>&1 || :
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
+	return $RETVAL
+}
+
+stop() {
+	action $"Stopping $prog: " $zopectl stop
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$prog
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	$zopectl status
+	;;
+  restart)
+	restart
+	;;
+  condrestart)
+	[ -e /var/lock/subsys/$prog ] && restart
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|condrestart}"
+	RETVAL=1
+esac
+
+exit $REVAL
