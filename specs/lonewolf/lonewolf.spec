@@ -30,6 +30,7 @@ everything started with Cironian who created the first emulator back in
 
 %build
 sed -i 's/\-pipe/-Wall -ggdb -pipe/g;' Makefile
+sed -i 's/\-L/-lncurses -ggdb -Wall -L/g;' Makefile
 %{__make} LDFLAGS="-lncurses -ggdb -Wall" %{?_smp_mflags}
 
 %install
