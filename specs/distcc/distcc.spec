@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Martin Pool <mbp@sourcefrog.net>
+# Upstream: <distcc@lists.samba.org>
 
 %define gui 1
 %{?rh73:%undefine gui}
@@ -11,8 +12,8 @@
 
 Summary: Distributed C/C++ compilation client program
 Name: distcc
-Version: 2.13
-Release: 3
+Version: 2.14
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://distcc.samba.org/
@@ -21,7 +22,6 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://samba.org/ftp/distcc/distcc-%{version}.tar.bz2
-Patch: distcc-2.12.2-gtk.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?gui:BuildRequires: gtk2-devel >= 2.0}
@@ -56,7 +56,6 @@ in order to use distcc.
 
 %prep
 %setup
-%patch0
 
 %{__cat} <<EOF >distccmon-gnome.desktop
 [Desktop Entry]
@@ -306,6 +305,9 @@ fi
 %endif
 
 %changelog
+* Sun May 02 2004 Dag Wieers <dag@wieers.com> - 2.14-1
+- Updated to release 2.14.
+
 * Tue Apr 20 2004 Dag Wieers <dag@wieers.com> - 2.13-3
 - Fixed a bug in the sysv script introduced in 2.13-1. (Martijn Lievaart)
 
