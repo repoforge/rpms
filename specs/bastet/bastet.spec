@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://fph.altervista.org/prog/bastet-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: 
+#BuildRequires: 
 
 %description
 Bastet (stands for "bastard tetris") is a free (GPL'd) clone of Tetris(r)
