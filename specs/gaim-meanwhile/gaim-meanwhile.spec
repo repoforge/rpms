@@ -4,9 +4,9 @@
 
 %define real_name meanwhile-gaim
 
-Summary: Meanwhile Gaim
+Summary: Lotus Sametime Community Client plugin for Gaim
 Name: gaim-meanwhile
-Version: 0.78
+Version: 0.79
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -19,19 +19,17 @@ Source: http://dl.sf.net/meanwhile/meanwhile-gaim-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 Obsoletes: meanwhile-gaim <= %{version}
-Requires: gaim >= 1:0.78, meanwhile >= 0.2
+Requires: gaim, meanwhile >= 0.3
 
 %description
-Lotus Sametime Community Client library plugin for Gaim
+Lotus Sametime Community Client plugin for Gaim
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
 %configure
-# %configure --with-gaim-source=$gaim_src_dir
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags} -Wall -Werror -I%{_includedir}/gaim/"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,9 +40,15 @@ Lotus Sametime Community Client library plugin for Gaim
 
 %files
 %defattr(-, root, root, 0755)
-%{_libdir}/gaim/
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%{_libdir}/gaim/*.so
+%exclude %{_libdir}/gaim/*.a
+%exclude %{_libdir}/gaim/*.la
 %{_datadir}/pixmaps/gaim/
 
 %changelog
+* Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 0.79-1
+- Updated to releas 0.79.
+
 * Fri Jun 25 2004 Dag Wieers <dag@wieers.com> - 0.78-1
 - Initial package. (using DAR)

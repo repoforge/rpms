@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: <tcptrace@tcptrace.org>
 
 Summary: Performs analysis of tcp flows from packet dumps
 Name: tcptrace

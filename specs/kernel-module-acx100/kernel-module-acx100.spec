@@ -23,7 +23,6 @@
 
 %define real_name acx100
 %define real_version 0.2.0pre8
-%define real_release 1.pre8
 
 %define moduledir /kernel/drivers/net/wireless/acx100
 %define modules src/acx_pci.o
@@ -31,7 +30,7 @@
 Summary: Linux driver for the ACX100-based wireless cards
 Name: kernel-module-acx100
 Version: 0.2.0
-Release: %{real_release}
+Release: 1.pre8
 License: GPL
 Group: System Environment/Kernel
 URL: http://acx100.sourceforge.net/
@@ -56,7 +55,7 @@ Requires: /boot/vmlinuz-%{kernel}
 Requires: kernel = %{kernel}
 Requires: acx100-utils
 
-Provides: kernel-module-%{real_name} = %{version}-%{real_release}
+Provides: kernel-module-acx100 = %{version}-%{release}
 Provides: kernel-modules
 
 %description -n kernel-module-acx100-%{kernel}
@@ -75,7 +74,7 @@ Requires: /boot/vmlinuz-%{kernel}smp
 Requires: kernel-smp = %{kernel}
 Requires: acx100-utils
 
-Provides: kernel-module-%{real_name} = %{version}-%{real_release}
+Provides: kernel-module-acx100 = %{version}-%{release}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-acx100-%{kernel}
@@ -88,7 +87,6 @@ They might work with newer/older kernels.
 
 %package -n acx100-utils
 Summary: ACX100 wireless driver add-ons
-Release: %{real_release}
 Group: System Environment/Base
 
 Obsoletes: acx100
@@ -98,7 +96,7 @@ Provides: acx100
 ACX100 wireless driver utilities.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 ####FIXME: Fix for defining own kernel version and get rid of Configure/config.mk (Please fix upstream)
 %{__ln_s} -f /bin/true Configure
