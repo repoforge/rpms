@@ -7,7 +7,7 @@
 
 Summary: Activates network interfaces on cable plug
 Name: ifplugd
-Version: 0.25
+Version: 0.26
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -33,7 +33,7 @@ and is thus not very intrusive.
 %setup
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e 's|\${DESTDIR}\${sysvinitdir}|\$(DESTDIR)\$(sysconfdir)/rc.d/init.d|' conf/Makefile.in
+%{__perl} -pi.orig -e 's|\@SYSINITDIR\@|\$(DESTDIR)\$(sysconfdir)/rc.d/init.d|' conf/Makefile.in
 
 %{__perl} -pi.orig -e 's|^(INTERFACES)=.*$|$1="auto"|' conf/ifplugd.conf
 
@@ -63,12 +63,15 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README doc/NEWS doc/README.html doc/SUPPORTED_DRIVERS
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man?/ifplug*
 %config(noreplace) %{_sysconfdir}/ifplugd/
-%config %{_initrddir}/*
-%{_sbindir}
+%config %{_initrddir}/ifplugd
+%{_sbindir}/ifplug*
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.25-1
 - Updated to release 0.25.
 

@@ -31,6 +31,8 @@ text-based online multi-player role-playing game.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+
 %build
 . /etc/profile.d/qt.sh
 %configure

@@ -2,6 +2,9 @@
 # Authority: matthias
 # Upstream: Julian Seward <jseward$acm,org>
 
+### Valgrind ships with FC3
+# ExcludeDist: fc3
+
 %define _use_internal_dependency_generator 0
 
 %define _pkglibdir %{_libdir}/%{name}
