@@ -1,10 +1,10 @@
 # $Id$
 # Authority: matthias
 
-%define	desktop_vendor	freshrpms
-%define beta 3
+%define desktop_vendor freshrpms
+%define beta 5
 
-Summary: breakout-style arcade game for Linux
+Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
 Version: 2.5
 Release: %{?beta:0.beta%{beta}.}1
@@ -17,12 +17,15 @@ Requires: SDL >= 1.1.5, SDL_mixer
 Requires: zlib, libpng
 BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils
 BuildRequires: zlib-devel, libpng-devel
+BuildRequires: ImageMagick
 
 %description
 A breakout-style arcade game for Linux that uses the SDL
 
+
 %prep
 %setup -n %{name}-%{version}%{?beta:beta-%{beta}}
+
 
 %build
 %configure \
@@ -30,36 +33,43 @@ A breakout-style arcade game for Linux that uses the SDL
     --with-doc-path=%{_docdir}
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{_localstatedir}/lib/games
+%{__mkdir_p} %{buildroot}%{_localstatedir}/lib/games
 %{__make} install DESTDIR=%{buildroot}
 %{__install} -m 644 -D lbreakout48.gif %{buildroot}%{_datadir}/pixmaps/lbreakout.gif
 
 # Put the doc back into place
-mv %{buildroot}%{_docdir}/%{name} doc
+%{__mv} %{buildroot}%{_docdir}/%{name} doc
+
+# Change that gif to a nice png
+convert %{buildroot}%{_datadir}/pixmaps/lbreakout.gif \
+        %{buildroot}%{_datadir}/pixmaps/lbreakout.png && \
+        %{__rm} -f  %{buildroot}%{_datadir}/pixmaps/lbreakout.gif
 
 # Create the system menu entry
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Linux Breakout 2
-Comment=%{summary}
+Comment=Breakout and Arkanoid style arcade game
 Exec=lbreakout2
-Icon=lbreakout.gif
+Icon=lbreakout.png
 Terminal=false
 Type=Application
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category Game                                             \
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+  --dir %{buildroot}%{_datadir}/applications    \
+  --add-category Application                    \
+  --add-category Game                           \
   %{name}.desktop
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -67,11 +77,16 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %attr(2551, root, games) %{_bindir}/%{name}*
 %{_datadir}/applications/*%{name}.desktop
 %{_datadir}/games/%{name}
-%{_datadir}/pixmaps/lbreakout.gif
+%{_datadir}/pixmaps/lbreakout.png
 %config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/%{name}.hscr
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.3.0-2.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.5-0.beta5.1
+- Update to 2.5beta-5.
+- Change the gif pixmap to png.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.5-0.beta3.1
 - Update to 2.5beta-3.
 - Added missing zlib and libpng dependencies.
 - Rebuild for Fedora Core 1.

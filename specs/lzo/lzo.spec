@@ -1,19 +1,15 @@
 # $Id$
-
 # Authority: dag
 
 # Archs: i386 i686
 
-Summary: portable lossless data compression library
+Summary: Portable lossless data compression library
 Name: lzo
 Version: 1.08
 Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

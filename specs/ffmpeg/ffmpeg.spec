@@ -7,10 +7,10 @@
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
 Version: 0.4.8
-Release: 2%{?date:.%{sqdate}}
+Release: 3%{?date:.%{sqdate}}
 License: GPL
 Group: System Environment/Libraries
-URL: http://ffmpeg.sf.net/
+URL: http://ffmpeg.sourceforge.net/
 %if %{?date:0}%{!?date:1}
 Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}.tar.gz
 %else
@@ -63,6 +63,7 @@ Install this package if you want to compile apps with ffmpeg support.
 %prep
 %setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}}
 
+
 %build
 %configure \
     --enable-shared \
@@ -80,6 +81,7 @@ Install this package if you want to compile apps with ffmpeg support.
     %{!?_without_a52dec: --enable-a52}
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
@@ -96,8 +98,10 @@ Install this package if you want to compile apps with ffmpeg support.
 # Remove from the included docs
 %{__rm} -f doc/Makefile doc/*.1
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -108,7 +112,7 @@ Install this package if you want to compile apps with ffmpeg support.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING CREDITS INSTALL README doc/
+%doc Changelog COPYING CREDITS README doc/
 %doc %{_mandir}/man1/*
 %{_bindir}/*
 %{_libdir}/*.so
@@ -123,6 +127,9 @@ Install this package if you want to compile apps with ffmpeg support.
 
 
 %changelog
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.4.8-3
+- Rebuilt for Fedora Core 2.
+
 * Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.4.8-2
 - Add faac support.
 - Enable pp.
