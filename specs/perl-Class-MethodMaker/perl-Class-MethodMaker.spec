@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Martyn J. Pearce <fluffy$cpan,org>
 
-%define real_name Class-MethodMaker
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Class-MethodMaker
 
 Summary: Create generic methods for OO Perl
 Name: perl-Class-MethodMaker
@@ -29,12 +27,16 @@ This package allows you to create generic methods for OO Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,13 +45,12 @@ This package allows you to create generic methods for OO Perl.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Class/
 %{perl_vendorarch}/Class/MethodMaker.pm
-%{perl_vendorarch}/Class/MethodMaker
-%{perl_vendorarch}/auto/Class/MethodMaker
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%{perl_vendorarch}/Class/MethodMaker/
+%dir %{perl_vendorarch}/auto/Class/
+%{perl_vendorarch}/auto/Class/MethodMaker/
 
 %changelog
 * Wed Feb  2 2005 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Initial package.
-

@@ -2,8 +2,6 @@
 # Authority: dries
 # Upstream: Rocco Caputo <rcaputo$pobox,com>
 
-##ExcludeDist: el2 rh7 rh8 rh9 el3
-
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -37,7 +35,7 @@ exit 1
 %build
 %{__perl} Makefile.PL \
 	--default \
-        destdir="%{buildroot}%{_prefix}" \
+	PREFIX="%{buildroot}%{_prefix}" \
         INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
@@ -56,7 +54,7 @@ exit 1
 %defattr(-, root, root, 0755)
 %doc README CHANGES TODO HISTORY
 %doc %{_mandir}/man3/*
-%{perl_vendorlib}/*
+%{perl_vendorlib}/POE/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.3009-1

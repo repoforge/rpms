@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-%define real_name DateTime
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name DateTime
 
 Summary: Date and time object
 Name: perl-DateTime
@@ -39,12 +37,16 @@ module.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,10 +58,9 @@ module.
 %{perl_vendorarch}/DateTime.pm
 %{perl_vendorarch}/DateTimePP.pm
 %{perl_vendorarch}/DateTimePPExtra.pm
-%{perl_vendorarch}/DateTime
+%{perl_vendorarch}/DateTime/
+%dir %{perl_vendorarch}/auto/DateTime/
 %{perl_vendorarch}/auto/DateTime/DateTime.*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.28-1

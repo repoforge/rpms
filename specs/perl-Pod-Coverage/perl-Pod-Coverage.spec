@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Richard Clamp <richardc$unixbeard,net>
 
-%define real_name Pod-Coverage
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Pod-Coverage
 
 Summary: Checks if the documentation of a module is comprehensive
 Name: perl-Pod-Coverage
@@ -29,7 +27,7 @@ Checks if the documentation of a module is comprehensive.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -44,8 +42,10 @@ Checks if the documentation of a module is comprehensive.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{_bindir}/*
+%dir %{perl_vendorarch}/Pod/
 %{perl_vendorarch}/Pod/Coverage.pm
 %{perl_vendorarch}/Pod/Coverage/*
+%dir %{perl_vendorarch}/auto/Pod/
 %{perl_vendorarch}/auto/Pod/Coverage/*
 
 %changelog

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Marc Kerr <coder$stray-toaster,co,uk>
 
-%define real_name Plucene
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Plucene
 
 Summary: A Perl port of the Lucene search engine
 Name: perl-Plucene
@@ -33,7 +31,7 @@ and search for things in them later.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,14 +46,7 @@ and search for things in them later.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Plucene.pm
-%{perl_vendorlib}/Plucene
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
+%{perl_vendorlib}/Plucene/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1

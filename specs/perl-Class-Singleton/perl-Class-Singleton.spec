@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Andy Wardley <cpan$wardley,org>
 
-%define real_name Class-Singleton
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Class-Singleton
 
 Summary: Implementation of a "Singleton" class
 Name: perl-Class-Singleton
@@ -37,12 +35,16 @@ implement whatever specific functionality is required.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,9 +53,8 @@ implement whatever specific functionality is required.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/Singleton.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Marco Carnut <kiko$tempest,com,br>
 
-%define real_name Net-Pcap
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Net-Pcap
 
 Summary: Interface to pcap(3) LBL packet capture library
 Name: perl-Net-Pcap
@@ -29,12 +27,16 @@ This module is an interface to pcap(3) LBL packet capture library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,10 +45,10 @@ This module is an interface to pcap(3) LBL packet capture library.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/Pcap.pm
-%{perl_vendorarch}/auto/Net/Pcap
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%dir %{perl_vendorarch}/auto/Net/
+%{perl_vendorarch}/auto/Net/Pcap/
 
 %changelog
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.05-1

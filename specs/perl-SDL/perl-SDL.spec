@@ -13,6 +13,7 @@ Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdl.perl.org/
+
 Source: http://www.cpan.org/modules/by-module/SDL_Perl/SDL_Perl-%{version}.tar.gz
 Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -48,7 +49,7 @@ The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 %install
 %{__rm} -rf %{buildroot}
-./Build install destdir=%{buildroot}
+./Build install PREFIX="%{buildroot}%{_prefix}"
 
 # Remove files we don't want to include
 %{__rm} -f `/usr/bin/find %{buildroot} -type f \

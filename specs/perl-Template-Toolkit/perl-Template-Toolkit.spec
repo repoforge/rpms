@@ -3,11 +3,10 @@
 # Authority: dries
 # Upstream: Andy Wardley <cpan$wardley,org>
 
-%define real_name Template-Toolkit
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Template-Toolkit
 
 Summary: Template processing system
 Name: perl-Template-Toolkit
@@ -34,7 +33,7 @@ LaTeX, and so on.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL TT_DBI=n TT_XS_ENABLE=y TT_ACCEPT=y INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL TT_DBI=n TT_XS_ENABLE=y TT_ACCEPT=y INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} \
 	TT_PREFIX=/usr/share/tt2
 
@@ -48,22 +47,25 @@ LaTeX, and so on.
 #	SITEPREFIX=%{buildroot}/usr \
 #	VENDORPREFIX=%{buildroot}/usr \
 
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
-%doc %{_mandir}/man3/*
+%doc Changes README
 %doc %{_mandir}/man1/*
-%{perl_vendorarch}/Template.pm
-%{perl_vendorarch}/Template
-%{perl_vendorarch}/auto/Template
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
+%doc %{_mandir}/man3/*
 %{_datadir}/tt2
 %{_bindir}/tpage
 %{_bindir}/ttree
+%{perl_vendorarch}/Template.pm
+%{perl_vendorarch}/Template/
+%{perl_vendorarch}/auto/Template/
 
 %changelog
 * Thu Nov 04 2004 Dries Verachtert <dries@ulyssis.org> - 2.14-1

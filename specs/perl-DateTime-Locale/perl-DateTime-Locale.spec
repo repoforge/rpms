@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-%define real_name DateTime-Locale
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name DateTime-Locale
 
 Summary: Localization support for DateTime
 Name: perl-DateTime-Locale
@@ -30,12 +28,16 @@ DateTime.pm class.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,8 +46,9 @@ DateTime.pm class.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/DateTime/
 %{perl_vendorlib}/DateTime/Locale.pm
-%{perl_vendorlib}/DateTime/Locale
+%{perl_vendorlib}/DateTime/Locale/
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog

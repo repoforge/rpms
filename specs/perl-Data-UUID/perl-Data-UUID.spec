@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Alexander Golomshtok <agolomsh$cronossystems,com>
 
-%define real_name Data-UUID
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Data-UUID
 
 Summary: Generates Globally/Universally Unique Identifiers
 Name: perl-Data-UUID
@@ -38,12 +36,16 @@ systems.
 %setup -n %{real_name}-%{version}
 
 %build
-(echo; echo; ) | %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+(echo; echo; ) | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,15 +54,10 @@ systems.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Data/
 %{perl_vendorarch}/Data/UUID.pm
-%{perl_vendorarch}/auto/Data/UUID/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
+%dir %{perl_vendorarch}/auto/Data/
+%{perl_vendorarch}/auto/Data/UUID/
 
 %changelog
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 0.11-1

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: John Macdonald <john$perlwolf,com>
 
-%define real_name Heap
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Heap
 
 Summary: Perl extensions for keeping data partially sorted
 Name: perl-Heap
@@ -33,12 +31,16 @@ supported by all heap packages.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,10 +50,8 @@ supported by all heap packages.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Heap.pm
-%{perl_vendorlib}/Heap
-%{perl_vendorlib}/auto/Heap
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
+%{perl_vendorlib}/Heap/
+%{perl_vendorlib}/auto/Heap/
 
 %changelog
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 0.71-1

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Daniel P. Berrangé <dan$berrange,com>
 
-%define real_name Test-AutoBuild
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Test-AutoBuild
 
 Summary: Automated build engine
 Name: perl-Test-AutoBuild
@@ -53,12 +51,16 @@ programming language used for the software.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -72,10 +74,9 @@ programming language used for the software.
 %config(noreplace) %{_sysconfdir}/auto-build.d/auto-build.*
 %config(noreplace) %{_sysconfdir}/auto-build.d/*
 %{_bindir}/auto-build.pl
+%dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/AutoBuild.pm
-%{perl_vendorlib}/Test/AutoBuild/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
+%{perl_vendorlib}/Test/AutoBuild/
 
 # perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
 # perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi

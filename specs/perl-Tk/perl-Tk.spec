@@ -12,11 +12,10 @@
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
 
-%define real_name Tk
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Tk
 
 Summary: Object Oriented Tk extension for Perl
 Name: perl-Tk
@@ -41,12 +40,13 @@ This module contains an object oriented Tk extension for Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
 %{__perl} -pi -e 's|/bin/perl|%{_bindir}/perl|g' %{buildroot}%{perl_vendorarch}/Tk/reindex.pl
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g' \
 	%{buildroot}%{perl_vendorarch}/Tk/demos/widtrib/plop.pl \
@@ -71,10 +71,9 @@ This module contains an object oriented Tk extension for Perl.
 %{perl_vendorarch}/Tie/Watch.pm
 %{perl_vendorarch}/Tk.pm
 %{perl_vendorarch}/Tk.pod
-%{perl_vendorarch}/Tk
-%{perl_vendorarch}/auto/Tk
+%{perl_vendorarch}/Tk/
+%{perl_vendorarch}/auto/Tk/
 %{perl_vendorarch}/fix_4_os2.pl
-%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 804.027-1

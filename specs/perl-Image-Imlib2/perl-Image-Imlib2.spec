@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Leon Brocard <leon$astray,com>
 
-%define real_name Image-Imlib2
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Image-Imlib2
 
 Summary: Interface to the Imlib2 image library
 Name: perl-Image-Imlib2
@@ -33,12 +31,16 @@ output the images in a range of formats.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,7 +49,9 @@ output the images in a range of formats.
 %defattr(-, root, root, 0755)
 %doc README CHANGES
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Image/
 %{perl_vendorarch}/Image/Imlib2.pm
+%dir %{perl_vendorarch}/auto/Image/
 %{perl_vendorarch}/auto/Image/Imlib2
 
 %changelog

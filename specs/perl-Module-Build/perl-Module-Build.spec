@@ -2,10 +2,12 @@
 # Authority: dries
 # Upstream: Ken Williams <ken$mathforum,org>
 
-# Todo: package YAML, ExtUtils::ParseXS
+# TODO: package YAML, ExtUtils::ParseXS
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Module-Build
-%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 
 Summary: System for building perl modules
 Name: perl-Module-Build
@@ -14,6 +16,7 @@ Release: 1
 License: Artistic or GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Build/
+
 Source: http://www.cpan.org/modules/by-module/Module/Module-Build-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(Archive::Tar)
@@ -31,12 +34,16 @@ pure-perl and written in a very cross-platform way.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,10 +51,11 @@ pure-perl and written in a very cross-platform way.
 %files
 %defattr(-, root, root, 0755)
 %doc README Changes
+%doc %{_mandir}/man?/*
 %{_bindir}/config_data
+%dir %{perl_vendorlib}/Module/
 %{perl_vendorlib}/Module/Build/
 %{perl_vendorlib}/Module/Build.pm
-%{_mandir}/man?/*
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.2608-1

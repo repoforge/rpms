@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Daisuke Maki <dmaki$cpan,org>
 
-%define real_name DateTime-Event-Chinese
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name DateTime-Event-Chinese
 
 Summary: DateTime Extension for Calculating Important Chinese Dates 
 Name: perl-DateTime-Event-Chinese
@@ -30,20 +28,26 @@ DateTime Extension for Calculating Important Chinese Dates.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE CHANGES
+%doc CHANGES LICENSE
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/DateTime/
+%dir %{perl_vendorlib}/DateTime/Event/
 %{perl_vendorlib}/DateTime/Event/Chinese.pm
 
 %changelog

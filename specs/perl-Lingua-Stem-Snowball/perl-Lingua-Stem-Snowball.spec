@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Fabien Potencier <fabpot$cpan,org>
 
-%define real_name Lingua-Stem-Snowball
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Lingua-Stem-Snowball
 
 Summary: Perl interface to Snowball stemmers
 Name: perl-Lingua-Stem-Snowball
@@ -29,12 +27,16 @@ Perl interface to Snowball stemmers.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,11 +45,12 @@ Perl interface to Snowball stemmers.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Lingua/
+%dir %{perl_vendorarch}/Lingua/Stem/
 %{perl_vendorarch}/Lingua/Stem/Snowball.pm
 %{perl_vendorarch}/Lingua/Stem/add_stemmer.pl
-%{perl_vendorarch}/auto/Lingua/Stem/Snowball/Snowball.*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
+%dir %{perl_vendorarch}/auto/Lingua/Stem/
+%dir %{perl_vendorarch}/auto/Lingua/Stem/Snowball/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1

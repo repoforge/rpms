@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Benjamin Bennett <fiji$limey,net>
 
-%define real_name DateTime-Event-NameDay
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name DateTime-Event-NameDay
 
 Summary: Perl DateTime extension to work with namedays from various countries
 Name: perl-DateTime-Event-NameDay
@@ -30,12 +28,16 @@ This module handles generating name days from dates and vice versa.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,6 +46,8 @@ This module handles generating name days from dates and vice versa.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/DateTime/
+%dir %{perl_vendorlib}/DateTime/Event/
 %{perl_vendorlib}/DateTime/Event/NameDay.pm
 %{perl_vendorlib}/DateTime/Event/NameDay/*
 
