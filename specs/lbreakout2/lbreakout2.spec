@@ -6,7 +6,7 @@
 
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
-Version: 2.5.1
+Version: 2.5.2
 Release: %{?beta:0.beta%{beta}.}1
 License: GPL
 Group: Amusements/Games
@@ -62,7 +62,7 @@ Categories=Application;Game;
 Encoding=UTF-8
 EOF
 
-%if %{!?_without_freedesktop:1}0
+%if 0%{!?_without_freedesktop:1}
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
     --vendor %{desktop_vendor} \
@@ -86,7 +86,7 @@ desktop-file-install \
 %{_datadir}/games/lbreakout2
 %{_datadir}/pixmaps/lbreakout.png
 %config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/lbreakout2.hscr
-%if %{!?_without_freedesktop:1}0
+%if 0%{!?_without_freedesktop:1}
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %else
 %{_sysconfdir}/X11/applnk/Games/%{name}.desktop
@@ -94,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri Jan 14 2005 Matthias Saou <http://freshrpms.net/> 2.5.2-1
+- Update to 2.5.2.
+
 * Sun Sep 26 2004 Matthias Saou <http://freshrpms.net/> 2.5.1-1
 - Update to 2.5.1.
 
