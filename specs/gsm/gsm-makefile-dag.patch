@@ -16,7 +16,7 @@
  
  CC		= gcc -ansi -pedantic
 -CCFLAGS 	= -c -O2 -DNeedFunctionPrototypes=1
-+CCFLAGS 	= -c $$RPM_OPT_FLAGS -D_REENTRANT -DNeedFunctionPrototypes=1
++CCFLAGS 	= -c $(RPM_OPT_FLAGS) -D_REENTRANT -DNeedFunctionPrototypes=1
  
  LD 		= $(CC)
  

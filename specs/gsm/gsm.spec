@@ -7,7 +7,7 @@
 Summary: Shared libraries for GSM speech compressor
 Name: gsm
 Version: 1.0.10
-Release: 4
+Release: 5
 License: MIT
 Group: System Environment/Libraries
 URL: http://kbs.cs.tu-berlin.de/~jutta/toast.html
@@ -34,12 +34,11 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}-%{srcver}
-
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %patch0 -b .orig
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} RPM_OPT_FLAGS="%{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -72,6 +71,9 @@ you will need to install %{name}-devel.
 %{_includedir}/gsm/
 
 %changelog
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.0.10-5
+- Update patch and spec to fix x86_64 build (-fPIC).
+
 * Tue May 04 2004 Dag Wieers <dag@wieers.com> - 1.0.10-4
 - Fixed bad symlinks. (Russ Herrold)
 
