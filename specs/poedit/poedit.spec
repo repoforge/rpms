@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/poedit/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, gcc-c++, wxGTK-devel, db4-devel, gettext
+BuildRequires: gcc, gcc-c++, wxGTK-devel, db4-devel, gettext, zip
 Requires: wxGTK, db4, gettext
 
 %description

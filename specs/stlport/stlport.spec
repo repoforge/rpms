@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.stlport.org/beta/STLport-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, compat-gcc-c++
 
 %description
 The ANSI/ISO C++ specifcation includes a standard C++ library, also known as
@@ -43,7 +43,7 @@ you will need to install %{name}-devel.
 %setup -n STLport-%{real_version}
 
 %build
-%{__make} %{?_smp_mflags} -C src -f gcc.mak
+%{__make} %{?_smp_mflags} -C src -f gcc.mak CXX=g++33 CC=gcc33
 
 %install
 %{__rm} -rf %{buildroot}

@@ -40,11 +40,13 @@ directly from Amazon.com.
 %setup
 
 %build
+source  /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source  /etc/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 
