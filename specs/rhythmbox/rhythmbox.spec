@@ -10,7 +10,7 @@
 Name: rhythmbox%{?_with_xine:-xine}
 Summary: Music Management Application 
 Version: %{majmin}.8
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
@@ -28,7 +28,6 @@ Obsoletes: net-rhythmbox <= 0.4.8
 
 %if %{xine}
 Conflicts: rhythmbox
-Provides: rhythmbox = %{version}-%{release}
 BuildRequires: xine-lib-devel >= 1.0.0
 BuildRequires: libvorbis-devel, libid3tag-devel, flac-devel, faad2-devel
 %else
@@ -100,6 +99,10 @@ scrollkeeper-update
 
 
 %changelog
+* Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 0.8.8-1
+- Remove the rhythmbox provides from the xine version as apt doesn't stand
+  having it along with the conflicts.
+
 * Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.8-0
 - Added scrollkeeper-update to the scriplets.
 

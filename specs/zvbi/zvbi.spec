@@ -3,12 +3,12 @@
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.8
+Version: 0.2.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
-Source: http://dl.sf.net/zapping/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/zapping/zvbi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, doxygen, gettext
 Obsoletes: libzvbi <= 0.2.4
@@ -25,7 +25,7 @@ Teletext browser. Documentation included.
 %package devel
 Summary: Static libraries and header files for zvbi development
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, pkgconfig
 Obsoletes: libzvbi-devel <= 0.2.4
 
 %description devel
@@ -62,7 +62,11 @@ the zvbi library.
 %files -f %{name}.lang
 %defattr (-, root, root)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO doc/html
+%{_bindir}/zvbi-chains
+%{_sbindir}/zvbid
 %{_libdir}/*.so.*
+%{_mandir}/man1/zvbi-chains.1*
+%{_mandir}/man1/zvbid.1*
 
 %files devel
 %defattr (-, root, root)
@@ -70,9 +74,14 @@ the zvbi library.
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
 
 
 %changelog
+* Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 0.2.9-1
+- Update to 0.2.9.
+- Include new binaries, man pages and pkgconfig file.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.2.8-1
 - Update to 0.2.8.
 - Rebuilt for Fedora Core 2.

@@ -1,13 +1,12 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor rpmforge
-#define prever         cvs7
+#define prever cvs7
 
-Summary: A TV viewer for GNOME
+Summary: TV viewer for GNOME
 Name: zapping
-Version: 0.7.3
-Release: %{?prever:0.%{prever}.}2
+Version: 0.8
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -37,22 +36,15 @@ features, plus extensibility through a plugin system.
 %build
 %configure
 # Workaround
-%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' configure {,*/,*/*/}Makefile*
+#{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' configure {,*/,*/*/}Makefile*
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-
-# It's still a GNOME 1 type desktop file
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category Application                                      \
-  --add-category AudioVideo                                       \
-  %{buildroot}%{_datadir}/gnome/apps/Multimedia/%{name}.desktop
 
 
 %post
@@ -74,7 +66,7 @@ scrollkeeper-update
 %{_bindir}/*
 %{_libdir}/%{name}/
 %{_sbindir}/*
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/gnome/help/%{name}/
 %{_datadir}/omf/%{name}/
 %{_datadir}/pixmaps/%{name}/
@@ -83,6 +75,10 @@ scrollkeeper-update
 
 
 %changelog
+* Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 0.8-1
+- Update to 0.8.
+- Change desktop file installation, as it's a GNOME 2 one at last.
+
 * Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 0.7.3-2
 - Added scrollkeeper-update scriplet calls.
 
