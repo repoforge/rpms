@@ -32,6 +32,9 @@ of documentation is available at http://fann.sourceforge.net/
 %install
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %package devel
 Summary: fann devel
 Group: Development/Libraries
