@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROONEG/SVN-Log-Index-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, subversion-perl
+BuildRequires: perl, subversion-perl, perl-Module-Build
 
 %description
 SVN::Log::Index builds a Plucene index of commit logs from any number of
