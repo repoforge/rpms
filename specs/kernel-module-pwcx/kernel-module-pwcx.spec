@@ -23,18 +23,20 @@
 %define develdir %{basedeveldir}/kernel%{ktype}-%{krel}.%{_target_cpu}.rpm
 
 # Do we want to put the module into "updates" (don't define for "no")
-#define updates /updates
+%if %{post26}
+%define updates /updates
+%endif
 
 
-Summary: Driver for Logitech QuickCam webcams using qc-usb
-Name: kernel-module-qc-usb
-Version: 0.6.0
-Release: 0
-License: GPL
+Summary: Driver for Philips pwc-based webcams
+Name: kernel-module-pwcx
+Version: 9.0
+Release: 0.beta2
+License: GPL with proprietary code
 Group: System Environment/Kernel
-URL: http://qce-ga.sourceforge.net/
-Source: http://dl.sf.net/qce-ga/qc-usb-%{version}.tar.gz
-Patch: qc-usb.autotools.patch
+URL: http://www.smcc.demon.nl/webcam/
+Source: http://www.smcc.demon.nl/webcam/pwcx-%{version}-beta-2.tar.gz
+Patch: pwcx.autotools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -44,8 +46,7 @@ BuildRequires: kernel-source = %{krel}
 BuildRequires: autoconf, automake
 
 %description
-This package contains a kernel module for the qc-usb Logitech QuickCam USB
-driver.
+This package contains a kernel module for the Philips USB webcams.
 
 To rebuild this package you should use :
 --define "kernel <uname -r output>"
@@ -53,7 +54,7 @@ To rebuild this package you should use :
 
 
 %package %{kernel}
-Summary: Driver for Logitech QuickCam webcams using qc-usb
+Summary: Driver for Philips pwc-based webcams
 Group: System Environment/Kernel
 Provides: %{name} = %{version}-%{release}, kernel-module
 Requires(post): modutils
@@ -61,12 +62,11 @@ Requires(postun): modutils
 Requires: /boot/vmlinuz-%{kernel}
 
 %description %{kernel}
-This package contains a kernel module for the qc-usb Logitech QuickCam USB
-driver.
+This package contains a kernel module for the Philips USB webcams.
 
 
 %prep
-%setup -q -n qc-usb-%{version}
+%setup -q -n pwcx-9.0-beta-2
 %patch -p2
 
 
@@ -102,15 +102,20 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 %files %{kernel}
 %defattr(-, root, root, 0755)
-/lib/modules/%{kernel}%{?updates}/kernel/drivers/video/quickcam.*o
+/lib/modules/%{kernel}%{?updates}/kernel/drivers/usb/media/pwc.*o
+/lib/modules/%{kernel}%{?updates}/kernel/drivers/usb/media/pwcx.*o
 
 
 %changelog
-* Thu Jun 17 2004 Matthias Saou <http://freshrpms.net> 0.6.0-0
+* Thu Jun 17 2004 Matthias Saou <http://freshrpms.net> 9.0-0.beta2
 - Takeover the spec.
 
-* Wed Jun 16 2004 Thomas Vander Stichele <thomas at apestaart dot org>
-- 0.6.0-0.fdr.2: updated for both 2.4 and 2.6
+* Tue Jun 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 9.0-0.0.beta.2.fdr.3: move to updates since a recent FC2 update kernel
+  reinstated pwc.ko
 
-* Sun Feb 29 2004 Thomas Vander Stichele <thomas at apestaart dot org>
-- Initial package
+* Fri Jun 04 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 9.0-0.0.beta.2.fdr.2: now works for 2.4 and 2.6
+
+* Mon May 24 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 9.0-0.0.beta.2.fdr.1: initial package

@@ -22,6 +22,9 @@
 %define basedeveldir %{_libdir}/kernel-module-devel-%{krel}
 %define develdir %{basedeveldir}/kernel%{ktype}-%{krel}.%{_target_cpu}.rpm
 
+# Do we want to put the module into "updates" (don't define for "no")
+#define updates /updates
+
 
 Summary: Driver for Intel® PRO/Wireless 2100 network adaptors
 Name: kernel-module-ipw2100
@@ -40,7 +43,7 @@ BuildRequires: kernel-module-hostap-devel-%{krel}
 BuildRequires: kernel-source = %{krel}
 BuildRequires: kernel-module-hostap-%{krel}
 %endif
-BuildRequires:	autoconf, automake
+BuildRequires: autoconf, automake
 
 %description
 This package contains a kernel module for the Intel® PRO/Wireless 2100
@@ -74,15 +77,12 @@ network adaptors, found for instance in Centrino laptops.
 
 
 %build
-%if %{post26}
-# For post 2.6 kernels
 sh autogen.sh || :
+%if %{post26}
 %configure \
     --with-linuxdir="%{develdir}" \
     --disable-legacy-fw-load
 %else
-# For pre 2.6 kernels
-sh autogen.sh || :
 %configure \
     --with-rpm-target="%{_target_cpu}" \
     --with-kernel-release="%{kernel}" \
@@ -93,7 +93,7 @@ sh autogen.sh || :
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall modulesdir="%{buildroot}/lib/modules/%{kernel}"
+%makeinstall modulesdir="%{buildroot}/lib/modules/%{kernel}%{?updates}"
 
 
 %clean
@@ -109,7 +109,7 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 %files %{kernel}
 %defattr(-, root, root, 0755)
-/lib/modules/%{kernel}/kernel/drivers/net/wireless/ipw2100.*o
+/lib/modules/%{kernel}%{?updates}/kernel/drivers/net/wireless/ipw2100.*o
 
 
 %changelog
