@@ -1,0 +1,60 @@
+diff -uNr gl-117-1.3-src/src/3ds.cpp gl-117-1.3-src-fix/src/3ds.cpp
+--- gl-117-1.3-src/src/3ds.cpp	2004-06-12 07:44:13.000000000 +0200
++++ gl-117-1.3-src-fix/src/3ds.cpp	2004-11-08 17:58:05.222974960 +0100
+@@ -759,7 +759,7 @@
+       v->vector.z /= sc;
+     }
+   }
+-};
++}
+ 
+ #endif
+ 
+diff -uNr gl-117-1.3-src/src/audio.cpp gl-117-1.3-src-fix/src/audio.cpp
+--- gl-117-1.3-src/src/audio.cpp	2004-06-12 07:44:13.000000000 +0200
++++ gl-117-1.3-src-fix/src/audio.cpp	2004-11-08 17:57:44.105185352 +0100
+@@ -322,7 +322,7 @@
+   wavemissile1->setVolume (110);
+   waveclick1->setVolume (80);
+ #endif
+-};
++}
+ 
+ SoundSystem::~SoundSystem ()
+ {
+diff -uNr gl-117-1.3-src/src/glland.cpp gl-117-1.3-src-fix/src/glland.cpp
+--- gl-117-1.3-src/src/glland.cpp	2004-06-12 07:44:13.000000000 +0200
++++ gl-117-1.3-src-fix/src/glland.cpp	2004-11-08 17:57:25.766973184 +0100
+@@ -79,7 +79,7 @@
+     n ++;
+     return n - 1;
+   }
+-};
++}
+ 
+ IndexCounter ic;
+ 
+diff -uNr gl-117-1.3-src/src/model.cpp gl-117-1.3-src-fix/src/model.cpp
+--- gl-117-1.3-src/src/model.cpp	2004-06-12 07:44:13.000000000 +0200
++++ gl-117-1.3-src-fix/src/model.cpp	2004-11-08 17:55:37.727397696 +0100
+@@ -57,7 +57,7 @@
+   c [0] = cr; c [1] = cg; c [2] = cb; c [3] = ca;
+ }
+ 
+-CColor::~CColor () {};
++CColor::~CColor () {}
+ 
+ void CColor::setColor (CColor *col)
+ {
+diff -uNr gl-117-1.3-src/src/objload.cpp gl-117-1.3-src-fix/src/objload.cpp
+--- gl-117-1.3-src/src/objload.cpp	2004-06-12 07:44:13.000000000 +0200
++++ gl-117-1.3-src-fix/src/objload.cpp	2004-11-08 17:57:12.688961344 +0100
+@@ -247,7 +247,7 @@
+   }
+ 
+ //  model->scale = sc;
+-};
++}
+ 
+ bool CLoadOBJ::ImportOBJ (CModel *model, char *filename)
+ {
