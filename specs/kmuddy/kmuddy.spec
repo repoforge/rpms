@@ -15,7 +15,7 @@ URL: http://www.kmuddy.org/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://www.kmuddy.org/files/kmuddy-%{version}.tar.gz
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
