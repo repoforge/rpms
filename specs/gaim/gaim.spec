@@ -2,15 +2,15 @@
 # Authority: matthias
 
 ### rh9 and el3 wants to install perl modules outside buildroot
-%{?el3:%define _without_perl 1}
-%{?rh9:%define _without_perl 1}
+#%{?el3:%define _without_perl 1}
+#%{?rh9:%define _without_perl 1}
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 0.80
+Version: 0.81
 Release: 1
 Epoch: 1
 License: GPL
@@ -20,7 +20,6 @@ URL: http://gaim.sourceforge.net/
 Source: http://dl.sf.net/gaim/gaim-%{version}.tar.bz2
 #Source1: gaim-rpmforge-prefs.xml
 Patch0: gaim-0.80-desktop.patch
-Patch1: gaim-prefs.patch
 ### soon to be replaced by upstream fix
 Patch4: gaim-0.76-xinput.patch
 Patch128: gaim-0.79-cached_buddy_icons.patch
@@ -64,7 +63,6 @@ Available rpmbuild rebuild options :
 %prep
 %setup -n %{name}-%{?date:%{date}}%{!?date:%{version}}
 %patch0 -b .desktop
-%patch1 -p1 -b .prefs
 %patch4 -p1
 
 
@@ -79,13 +77,17 @@ Available rpmbuild rebuild options :
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+#%{__make} install DESTDIR="%{buildroot}"
+%makeinstall \
+	PREFIX="%{buildroot}%{_prefix}"
 %find_lang %{name}
-%{__strip} %{buildroot}%{_libdir}/{*.so*,%{name}/*.so} || :
-%{!?_without_perl:%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod}
+%{__strip} %{buildroot}%{_libdir}/*.so* %{buildroot}%{_libdir}/gaim/*.so || :
 
 #%{__install} -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/gaim/prefs.xml
 
+### Clean up buildroot
+#%{!?_without_perl:%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod}
+%{__rm} -rf %{buildroot}%{perl_archlib}
 
 %post
 /sbin/ldconfig -n %{_libdir}/gaim
@@ -107,10 +109,9 @@ Available rpmbuild rebuild options :
 %{_includedir}/gaim/
 %dir %{_libdir}/gaim/
 %exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/libgaim-remote.a
-%exclude %{_libdir}/libgaim-remote.la
-%{_libdir}/libgaim-remote.so*
+%{_libdir}/*.so*
+%exclude %{_libdir}/gaim/*.la
+%{_libdir}/gaim/*.so
 %{_datadir}/applications/gaim.desktop
 %{_datadir}/pixmaps/gaim.png
 %{_datadir}/pixmaps/gaim/
@@ -124,6 +125,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 0.81-1
+- Updated to 0.81.
+
 * Sun Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.80-2
 - Removed .la files.
 
