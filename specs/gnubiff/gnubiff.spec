@@ -33,7 +33,7 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %configure \
 	--with-gnome \
 	--with-password
-%{__sed} -i "s/\#include \"Mailbox.h\"/\#include \"Mailbox.h\"\n\#include \"sys\/stat.h\"/g;" src/File.h
+# sed -i "s/\#include \"Mailbox.h\"/\#include \"Mailbox.h\"\n\#include \"sys\/stat.h\"/g;" src/File.h
 %{__make} %{?_smp_mflags}
 
 %install
