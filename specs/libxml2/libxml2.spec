@@ -1,36 +1,40 @@
 # $Id$
 # Authority: axel
-# Dists: rh9
+# ExclusiveDist: rh7 rh8 rh9 el3
+
+%define python_version %(python2 -c 'import sys; print sys.version[:3]')
 
 Summary: Library providing XML and HTML support
 Name: libxml2
 Version: 2.5.11
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
-URL: http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.5/
+URL: http://xmlsoft.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.5/%{name}-%{version}.tar.bz2
+Source: ftp://xmlsoft.org/libxml2-%{version}.tar.gz
+#Source: http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.5/libxml2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
-This library lets you manipulate XML files. It includes support to
-read, modify, and write XML and HTML files. It has DTD support,
-including parsing and validation, even with complex DTDs. The output
-can be a simple SAX stream or an in-memory DOM like representation.
-In this case you can use the built-in XPath and XPointer
-implementation to select subnodes or ranges. A flexible Input/Output
-mechanism is available, with existing HTTP and FTP modules and
-combined to an URI library.
+This library allows to manipulate XML files. It includes support
+to read, modify and write XML and HTML files. There is DTDs support
+this includes parsing and validation even with complex DtDs, either
+at parse time or later once the document has been modified. The output
+can be a simple SAX stream or and in-memory DOM like representations.
+In this case one can use the built-in XPath and XPointer implementation
+to select subnodes or ranges. A flexible Input/Output mechanism is
+available, with existing HTTP and FTP modules and combined to an
+URI library.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: libxml2 = %{version}-%{release}
+Requires: zlib-devel
 
 %description devel
 This package contains the header files, static libraries and development
@@ -38,12 +42,20 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package python
-Summary: Python scripts for %{name}
-Group: System Environment/Libraries
-Requires: %{name} = %{version}-%{release}
+Summary: Python bindings for the libxml2 library
+Group: Development/Libraries
+Requires: libxml2 = %{version}
+Requires: %{_libdir}/python%{python_version}
 
 %description python
-Python files for %{name}
+The libxml2-python package contains a module that permits applications
+written in the Python programming language to use the interface
+supplied by the libxml2 library to manipulate XML files.
+
+This library allows to manipulate XML files. It includes support
+to read, modify and write XML and HTML files. There is DTDs support
+this includes parsing and validation even with complex DTDs, either
+at parse time or later once the document has been modified.
 
 %prep
 %setup
@@ -51,21 +63,17 @@ Python files for %{name}
 %build
 %configure
 %{__make} %{?_smp_mflags}
+%{__make} clean -C doc/examples
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-### Needed by conglomerate, libgda, ... (?!)
-#%{__rm} -f %{buildroot}%{_libdir}/*.la
-%{__rm} -f %{buildroot}%{_libdir}/python2.2/site-packages/*.la
-
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,19 +91,26 @@ Python files for %{name}
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/xml2-config.1.gz
-%doc %{_datadir}/doc/libxml2-python-%{version}/
+%doc doc/*.html doc/html doc/*.gif doc/*.png
+%doc doc/tutorial doc/libxml2-api.xml
+%doc doc/examples
+#%doc %{_datadir}/doc/libxml2-python-%{version}/
 %{_bindir}/xml2-config
 %{_includedir}/libxml2/
 %{_libdir}/xml2Conf.sh
-%{_datadir}/aclocal/*.m4
+%{_datadir}/aclocal/libxml.m4
 %{_libdir}/*.so
+### Needed by conglomerate, libgda, ... (?!)
 %{_libdir}/*.la
 %{_libdir}/*.a
 %{_libdir}/python2.2/site-packages/*.a
-%{_libdir}/pkgconfig/*.pc
+%exclude %{_libdir}/python2.2/site-packages/*.la
+%{_libdir}/pkgconfig/libxml-2.0.pc
 
 %files python
 %defattr(-, root, root, 0755)
+%doc python/TODO python/libxml2class.txt
+%doc python/tests/*.py doc/*.py doc/python.html
 %{_libdir}/python2.2/site-packages/*.py
 %{_libdir}/python2.2/site-packages/*.so
 
