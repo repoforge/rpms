@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: Darren L. LaChausse <the_trapper$users,sourceforge,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 Summary: Graphical checksum verifier
 Name: awesum
 Version: 0.6.0
@@ -19,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python, pygtk2
 Requires: python, pygtk2
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Awesum is a graphical checksum verification utility. Awesum is very easy to
