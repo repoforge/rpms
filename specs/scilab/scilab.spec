@@ -19,7 +19,7 @@ Source: ftp://ftp.inria.fr/INRIA/Scilab/distributions/scilab-%{version}.src.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcl tk Xaw3d-devel, libpng10-devel 
-BuildRequires: perl gtkhtml2-devel, gcc-g77
+BuildRequires: perl gtkhtml2-devel, gcc-g77, gcc-c++
 Requires: libpng10
 
 %description
