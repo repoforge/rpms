@@ -62,7 +62,7 @@ Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.3.tar.gz
 # http://eol.init1.nl/content/category/2/36/54/
 Source22: http://eelco.is.a.rootboy.net/fortunecookies/oneliners-0.1.tar.gz
 # fortune macintosh
-Source23: http://www.diablonet.net/~mercadal/projects/fortune/macintosh.tgz
+Source23: http://www.diablonet.net/~mercadal/projects/fortune/macintosh-1.3.tgz
 
 Obsoletes: fortune-mod < %{version}-%{release}
 Provides:  fortune-mod = %{version}-%{release}
@@ -650,6 +650,7 @@ All fortune packages will be installed if you install this package.
 * Tue Mar 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0-35
 - Added macintosh quotes
 - New url for Tao quotes
+- Updated macintosh quotes to 1.3
 
 * Sun Jan 02 2005 Dries Verachtert <dries@ulyssis.org> 1.0-33
 - Fixed a grammatical error found by Greg Hogan.
