@@ -3,7 +3,7 @@
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
-Version: 2.1.28
+Version: 2.2.0
 Release: 1
 License: GPL
 Group: Applications/System
@@ -55,11 +55,11 @@ machines you intend to monitor with gkrellm from a different location.
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{_sysconfdir}
-mkdir -p %{buildroot}%{_libdir}/gkrellm2/plugins
-mkdir -p %{buildroot}%{_datadir}/gkrellm2/themes
+%{__mkdir_p} %{buildroot}%{_sysconfdir}
+%{__mkdir_p} %{buildroot}%{_libdir}/gkrellm2/plugins
+%{__mkdir_p} %{buildroot}%{_datadir}/gkrellm2/themes
 %{__make} install INSTALLROOT=%{buildroot}%{_prefix}
-cat server/gkrellmd.conf | sed 's/#allow-host/allow-host/g' \
+%{__cat} server/gkrellmd.conf | %{__sed} 's/#allow-host/allow-host/g' \
     > %{buildroot}%{_sysconfdir}/gkrellmd.conf
 %find_lang %{name}
 
@@ -91,6 +91,9 @@ cat server/gkrellmd.conf | sed 's/#allow-host/allow-host/g' \
 
 
 %changelog
+* Mon May 24 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-1
+- Update to 2.2.0.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 2.1.28-1
 - Update to 2.1.28.
 
