@@ -1,0 +1,51 @@
+diff -Naupr viruskiller-0.9.orig/makefile viruskiller-0.9/makefile
+--- viruskiller-0.9.orig/makefile	2004-02-22 18:39:38.000000000 +0100
++++ viruskiller-0.9/makefile	2004-06-08 14:26:46.969873032 +0200
+@@ -7,17 +7,15 @@ VERSION = 0.9
+ RELEASE = 1
+ USEPAK = 1
+ 
+-PREFIX=$(DESTDIR)/usr
++PREFIX = $(DESTDIR)/usr
+ BINDIR = $(PREFIX)/games/
+-DATADIR = $(PREFIX)/share/games/parallelrealities/
+-DOCDIR = $(PREFIX)/share/doc/$(PROG)-$(VERSION)-$(RELEASE)/
+-ICONDIR = $(PREFIX)/share/icons/
+-KDE = $(PREFIX)/share/applnk/Games/Arcade/
+-GNOME = $(PREFIX)/share/gnome/apps/Games/
+-
+-CFLAGS += `sdl-config --cflags` `zzip-config --cflags` -DVERSION=$(VERSION) -DRELEASE=$(RELEASE) -DUSEPAK=$(USEPAK)
+-CFLAGS += -DPAKNAME=\"$(PAKNAME)\" -DPAKLOCATION=\"$(DATADIR)\" -DUNIX -DTEMPDIR=\"/tmp/\" -DGAMEPLAYMANUAL=\"$(DOCDIR)manual.html\" -Wall
+-LIBS = `sdl-config --libs` `/usr/bin/zzip-config --libs` -lSDL_mixer -lSDL_image -lSDL_ttf -lzzip
++DATADIR = $(PREFIX)/share/games/viruskiller/
++ICONDIR = $(PREFIX)/share/pixmaps/
++GNOME = $(PREFIX)/share/applications/
++
++CFLAGS += $(OPTFLAGS) `sdl-config --cflags` `png-config --cflags zziplib` -DVERSION=$(VERSION) -DRELEASE=$(RELEASE) -DUSEPAK=$(USEPAK)
++CFLAGS += -DPAKNAME=\"$(PAKNAME)\" -DPAKLOCATION=\"$(DATADIR)\" -DUNIX -DTEMPDIR=\"/tmp/\" -DGAMEPLAYMANUAL=\"$(DATADIR)manual.html\" -Wall
++LIBS = `sdl-config --libs` `pkg-config --libs zziplib` -lSDL_mixer -lSDL_image -lSDL_ttf
+ 
+ OBJS = CAudio.o CBase.o CCollision.o CData.o CDirectory.o CEngine.o CFile.o CGameData.o CGameObject.o
+ OBJS += CGraphics.o CHighScore.o CItem.o CList.o CMath.o CParticle.o CSprite.o CVirus.o CWidget.o
+@@ -42,19 +40,10 @@ clean:
+ install:
+ 	mkdir -p $(BINDIR)
+ 	mkdir -p $(DATADIR)
+-	mkdir -p $(DOCDIR)
+ 	mkdir -p $(ICONDIR)
+-	mkdir -p $(ICONDIR)mini
+-	mkdir -p $(ICONDIR)large
+-	mkdir -p $(KDE)
+ 	mkdir -p $(GNOME)
+ 
+-	strip $(PROG)
+-	install -o root -g games -m 755 $(PROG) $(BINDIR)$(PROG)
+-	install -o root -g games -m 644 $(PAKNAME) $(DATADIR)$(PAKNAME)
+-	cp $(DOCS) $(DOCDIR)
++	install -m 755 $(PROG) $(BINDIR)$(PROG)
++	install -m 644 $(PAKNAME) $(DATADIR)$(PAKNAME)
+ 	cp $(ICONS)$(PROG).png $(ICONDIR)
+-	cp $(ICONS)$(PROG)-mini.png $(ICONDIR)mini/$(PROG).png
+-	cp $(ICONS)$(PROG)-large.png $(ICONDIR)large/$(PROG).png
+-	cp $(ICONS)$(PROG).desktop $(KDE)
+ 	cp $(ICONS)$(PROG).desktop $(GNOME)

@@ -1,0 +1,12 @@
+diff -Naupr viruskiller-0.9.orig/code/CEngine.h viruskiller-0.9/code/CEngine.h
+--- viruskiller-0.9.orig/code/CEngine.h	2004-02-22 18:39:38.000000000 +0100
++++ viruskiller-0.9/code/CEngine.h	2004-06-08 14:32:41.455982952 +0200
+@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place - Suit
+ */
+ 
+ #if USEPAK
+-#include <zziplib.h>
++#include <zzip/zzip.h>
+ #endif
+ 
+ class Engine {
