@@ -25,7 +25,7 @@ predefined levels of video quality and an amount of viewing ranges let you
 perfectly adjust the game to the performance of your system.
 
 %prep
-%setup -n gl-117-1.1-src
+%setup -n gl-117-%{version}-src
 
 %build
 export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
