@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.ex-parrot.com/~chris/driftnet/driftnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap, gtk+-devel
+BuildRequires: libpcap, gtk+-devel, libungif-devel, libjpeg-devel
 
 %description
 Driftnet is a program which listens to network traffic and picks out images
