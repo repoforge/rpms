@@ -5,6 +5,8 @@
 
 %define real_version 0.2.4a
 
+# ExcludeDist: fc1 fc2 el3
+
 Summary: Server for DAAP, the digital audio access protocol
 Name: daapd
 Version: 0.2.4
