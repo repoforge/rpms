@@ -1,7 +1,12 @@
 # $Id$
 # Authority: dag
 
-%define desktop_vendor dag
+%{?fc1:%define _without_alsa 1}
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh8:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?el2:%define _without_alsa 1}
 
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
@@ -20,8 +25,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glibc-devel, XFree86-devel, qt3-devel, glib-devel
 BuildRequires: audiofile-devel, libmad-devel, libid3tag-devel
 BuildRequires: libvorbis-devel, libogg-devel, libsndfile-devel
-BuildRequires: portaudio, alsa-lib-devel, fftw-devel
+BuildRequires: portaudio, fftw-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 Press play. Mixxx gives you full access to your digital sound library. Go
@@ -37,8 +43,20 @@ in a live gig. Mixxx supports it all.
 %prep
 %setup
 
+%{__cat} <<EOF >mixxx.desktop
+[Desktop Entry]
+Name=Mixxx DJ Software
+Comment=Create your own mixes
+Icon=mixxx.png
+Exec=mixxx
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;AudioVideo;
+EOF
+
 %build
-source "%{_sysconfdir}/profile.d/qt.sh"
+source "/etc/profile.d/qt.sh"
 # The PWD thing is an ugly hack since relative paths mess everything up...
 pushd src
     # Alsa doesn't seem to get enabled for now (unimplemented?)
@@ -49,37 +67,20 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-pushd src
-    # That trailing slash is mandatory because of "$(INSTALL_ROOT)usr" lines
-    %{__make} install INSTALL_ROOT="%{buildroot}/"
-popd
+# That trailing slash is mandatory because of "$(INSTALL_ROOT)usr" lines
+%{__make} install -C src \
+	INSTALL_ROOT="%{buildroot}/"
 
-# Install menu entry
-%{__cat} > %{name}.desktop << EOF
-[Desktop Entry]
-Name=Mixxx
-Comment=DJ mixing software
-Icon=mixxx.png
-Exec=mixxx
-Terminal=false
-Type=Application
-Categories=Application;AudioVideo;
-Encoding=UTF-8
-EOF
-                                                                                
+%{__install} -D -m0644 src/icon.png %{buildroot}%{_datadir}/pixmaps/mixxx.png
+
 %if %{!?_without_freedesktop:1}0
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install \
-    --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor net \
+		--dir %{buildroot}%{_datadir}/applications \
+		mixxx.desktop
 %else
-%{__install} -D -m 0644 %{name}.desktop \
-    %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
+	%{__install} -D -m0644 mixxx.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/mixxx.desktop
 %endif
-
-# Install icon for the menu entry
-%{__install} -D -m 644 src/icon.png %{buildroot}%{_datadir}/pixmaps/mixxx.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -90,11 +91,8 @@ desktop-file-install \
 %{_bindir}/*
 %{_datadir}/mixxx/
 %{_datadir}/pixmaps/mixxx.png
-%if %{!?_without_freedesktop:1}0
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%else
-%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/net-mixxx.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/mixxx.desktop}
 
 %changelog
 * Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 1.3-0
