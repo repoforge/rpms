@@ -88,10 +88,11 @@ convert src/xrickST.ico %{buildroot}%{_datadir}/pixmaps/xrick.png
 %defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/xrick
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/games/%{name}/
 %{_mandir}/man6/xrick.6*
 %{_datadir}/pixmaps/xrick.png
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
+%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Games/%{name}.desktop}
 
 
 %changelog
