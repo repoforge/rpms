@@ -38,7 +38,7 @@ pure-perl and written in a very cross-platform way.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
