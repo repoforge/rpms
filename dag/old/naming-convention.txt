@@ -1,0 +1,87 @@
+Dag Apt Repository - Naming Convention
+""""""""""""""""""""""""""""""""""""""
+** This document is Work In Progress **
+
+Package-format:
+
+	%{name}-%{version}-%{release}.%{tag}.%{dist}.%{arch}.rpm
+
+		eg.	lilo-22.5-0.test.rh73.i386.rpm
+			tpctl-4.2-0.dag.rh80.i386.rpm
+
+
+Package-name format:
+
+	Library-packages (not containing binaries) are named by its libraries
+	(or if more than one, lib%{name} until it makes sense to split these)
+
+		eg.	libmad
+			libzvbi
+			libflac
+			libflac-devel
+
+
+	Library-versioning, each package should define %{lversion} which
+	contains the major of the library version. This should be appended to
+	the package-name.
+
+		eg.	libflac1
+
+
+	Library tools have their own package called simply %{name}, but
+	they should (could?) provide %{name}-tools, %{name}-utils and
+	%{name}-bin. So that they are compatible with Debian, Mandrake
+	and Red Hat.
+
+		eq.	flac
+
+
+	Module/plug-in packages or packages that extend some package
+	start with the main-package name. (Not necessarily a sub-package)
+
+		eg.	lame-devel
+			mplayer-skins
+			nagios-plugins
+			php-rrdtool
+			perl-
+			squidguard-blacklists
+			xmms-flac
+			xmms-xosd
+
+	Kernel module packages start with kernel-module-, these are packages
+	that (just as normal kernel-packages) are virtual packages that can
+	have multiple instances installed.
+
+	kernel-module-%{drivername}-%{driverversion}-%{release}_%{kernelversion}_%{kernelrelease}.%{tag}.%{dist}.%{arch}.rpm
+
+		eg.	kernel-module-alsa
+			kernel-module-syscalltrack
+			kernel-module-thinkpad
+
+
+Version format:
+
+	Interesting links:
+		http://elysium-project.sourceforge.net/policy/chap03.phtml
+		http://www.gentoo.org/doc/en/policy.xml
+		http://www.freestandards.org/cgi-bin/mailman/listinfo/packaging
+
+	If possible, use the real version.
+
+	If version contains non-numerical characters, then the following
+	scheme applies:
+
+		X.Y.Zalpa1	->	X.Y.(Z-1).71
+		X.Y.Zalpha11	->	X.Y.(Z-1).771
+		X.Y.Zbeta1	->	X.Y.(Z-1).81
+		X.Y.Zbeta11	->	X.Y.(Z-1).881
+		X.Y.Zpre1	->	X.Y.(Z-1).81
+		X.Y.Zpre11	->	X.Y.(Z-1).881
+		X.Y.Zrc1	->	X.Y.(Z-1).91
+		X.Y.Zrc11	->	X.Y.(Z-1).991
+
+	Or add 7s, 8s or 9s to overrule previous packages.
+
+	In any other case (eg. 2.3a3) make sure that future version can be
+	increased properly and there is a safe upgrade path.
+

@@ -1,0 +1,145 @@
+This is a proposal to a more standardised naming convention, close to what
+Debian and Mandrake already seem to have.
+
+	Interesting links:
+		http://www.debian.org/devel/
+		http://www.debian.org/doc/debian-policy/ch-sharedlibs.html
+
+		http://www.linux-mandrake.com/en/howtos/mdk-rpm/advanced.html#LIB-POLICY
+		http://people.mandrakesoft.com/~warly/files/policy/
+
+		http://moin.conectiva.com.br/PackagingRules
+
+		http://www.freestandards.org/cgi-bin/mailman/listinfo/packaging
+
+
+Here is a list of packages I already have (or plan to have) and what they've
+become.
+
+Packages marked with (x) are not yet changed in my repository.
+Packages marked with (%) are packages that are not in my repository.
+
+Normal packages
+"""""""""""""""
+Packages should be all lowercase (less confusion). If renamed, packages should
+provide and obsolete (as a package) their real name too. (so that it becomes
+transparant for end-users in apt/yum)
+
+Delimiter for package-parts is the dash '-'. (Not a '_' or a '.')
+
+(%)	alsa-utils		->	alsa
+	hardware-monitor	->	hardware-monitor-applet
+	Mail-SpamAssassin	->	spamassassin
+	mplayerplug-in		->	mozilla-mplayer
+	MPlayer			->	mplayer
+(x)	netspeed_applet		->	netspeed-applet
+	NuppelVideo		->	nuppelvideo
+	ogle_gui		->	ogle
+	rarlinux		->	unrar
+	Regina			->	regina-rexx
+	snackAmp		->	snackamp
+	squidGuard		->	squidguard
+	vlc			->	videolan-client
+	WindowMaker		->	windowmaker
+	Xdialog			->	xdialog
+	xpenguins_applet	->	xpenguins-applet
+
+
+Kernel modules
+""""""""""""""
+
+(%)	alsa (module)		->	kernel-module-alsa
+	lirc (module)		->	kernel-module-lirc
+	ltmodem			->	kernel-module-ltmodem
+	openafs-kernel		->	kernel-module-openafs
+	ov511			->	kernel-module-ov511
+	syscalltrack (module)	->	kernel-module-syscalltrack
+	thinkpad		->	kernel-module-thinkpad
+	tun			->	kernel-module-tun
+
+
+Libraries
+"""""""""
+This is a list of packages that contain shared libraries. Because of that they
+should be split (if there are tools too) and renamed. If a package does
+contain libraries but they are not used by any other package there's no urge
+to move over to this scheme. New packages however should.
+
+
+(x)	aalib			->	libaa		(contains tools)
+(x)	adns			->	libadns		(contains tools)
+(%)	alsa-lib		->	libalsa		(contains other stuff)
+(x)	aviplay			->	libaviplay
+(%)	clibpdf			->	libcpdf
+(x)	diacanvas2		->	libdiacanvas2
+(x)	edb			->	libedb		(contains tools)
+(x)	faad2			->	libfaad2	(maybe just libfaad)
+(x)	fame			->	libfame		(contains a binary)
+(x)	ffmpeg			->	libavcodec
+(x)	fftw			->	libfftw
+(x)	flac			->	libflac		(contains tools)
+	gc			->	libgc
+	gpgme			->	libgpgme
+(x)	gnet			->	libgnet
+(x)	gnomemm			->	libgnomemm
+(x)	gtkmm			->	libgtkmm
+(x)	id3lib			->	libid3		(ending with number)
+(x)	imlib2			->	libimlib2	(ending with number)
+	jpeg-mmx		->	libjpeg-mmx
+(x)	lame			->	libmp3lame	(contains a binary)
+(x)	lirc			->	liblirc
+	mad			->	libmad		(contains tools)
+(x)	lzo			->	liblzo
+	mcrypt			->	libmcrypt
+	mhash			->	libmhash
+	ogle			->	libogle		(contains tools)
+	rte			->	librte
+	snack			->	libsnack
+(x)	smpeg			->	libsmpeg
+	speex			->	libspeex
+	xclass			->	libxclass
+(x)	xine-lib		->	libxine
+(x)	xosd			->	libxosd		(contains a binary)
+	xvidcore		->	libxvidcore
+	zvbi			->	libzvbi
+
+
+Perl packages
+"""""""""""""
+All perl module packages are prefixed perl-%{name}. (Should they not become
+lowercase ? Exception because RH doesn't do it ?), eg.
+
+	Mail-SpamAssassin (perl)->	perl-Mail-SpamAssassin
+	razor-agents (perl)	->	perl-Razor
+
+
+PHP packages
+""""""""""""
+All php library packages are prefixed php-%{name}, eg.
+
+	adodb			->	php-adodb
+	jpgraph			->	php-jpgraph
+	rrdtool (php)		->	php-rrdtool
+
+
+Add-on packages
+"""""""""""""""
+Add-on packages to existing projects, ie extra's that are not useful on its own.
+
+(%)	alsa (xmms)		->	xmms-alsa
+	Blursk			->	xmms-blursk
+	flac (xmms)		->	xmms-flac
+	goom			->	xmms-goom
+	lirc (xmms)		->	xmms-lirc
+	real_random		->	xmms-real-random
+	smpeg-xmms		->	xmms-smpeg
+	xosd (xmms)		->	xmms-xosd
+or
+	distcc-compilers-redhat
+	nagios-logos
+	squidguard-blacklists
+	xpenguins-themes
+or
+	mozilla-bonobo
+	mozilla-j2re
+	mozilla-mplayer

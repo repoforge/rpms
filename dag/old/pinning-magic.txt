@@ -1,0 +1,64 @@
+Pinning magic
+"""""""""""""
+** This document is Work In Progress **
+
+This document demonstrated the usefulness of apt's pinning ability.
+
+
+1. Preferring Red Hat packages over other repos
+"""""""""""""""""""""""""""""""""""""""""""""""
+Add the following lines to your /etc/apt/preferences
+
+	Explanation: Prioritize Red Hat updates
+	Package: *
+	Pin: release c=updates
+	Pin-Priority: 1001
+
+	Explanation: Prioritize Red Hat packages
+	Package: *
+	Pin: release c=os
+	Pin-Priority: 1001
+
+
+2. Preferring stable packages but not excluding unstable
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Add the following lines to your /etc/apt/preferences
+
+	Explanation: Prioritize Stable packages
+	Package: *
+	Pin: release c=stable
+	Pin-Priority: +200
+
+	Explanation: Make Unstable packages less prefered
+	Package: *
+	Pin: release c=unstable
+	Pin-Priority: -200
+
+
+4. Lowering Fedora packages in priority
+"""""""""""""""""""""""""""""""""""""""
+Add the following lines to your /etc/apt/preferences
+
+	Explanation: Make Fedora packages less prefered
+	Package: *
+	Pin: release o=Fedora
+	Pin-Priority: -400
+
+
+4. Pinning a specific package
+"""""""""""""""""""""""""""""
+Here's an example of how to pin to a specific release
+
+	Explanation: Pin screem to 0.6.*
+	Package: screem
+	Pin: version 0.6.*
+
+
+5. Pinning a specific package from a certain provider
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+Here's an example of how to pin to a specific release from FreshRPMS
+
+	Explanation: Pin screem to 0.6.x from FreshRPMS
+	Package: screem
+	Pin: version 0.6.*
+	Pin: release c=freshrpms

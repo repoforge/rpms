@@ -1,0 +1,39 @@
+Dag Apt Repository - Dar Commands
+"""""""""""""""""""""""""""""""""
+** This document is Work In Progress **
+
+Building packages:
+
+	Example 1: Building a test package for RH 8.0
+
+		dar-build -d rh80 -t test tpctl
+
+	Example 2: Rebuilding all packages for RH 6.2
+
+		dar-build -f -d rh62 *.spec
+
+	Example 3: Rebuilding a package for i686 (for default dists)
+
+		dar-build -a i686 sodipodi
+
+	Example 4: Upgrading build environments
+
+		dar-update
+
+
+Maintaining build environments:
+
+	Example 1: Upgrade environments
+
+		dar-update
+
+	Example 2: Install a package
+
+		dar-update libdvdcss-devel
+
+
+Creating and syncing repositories:
+
+	Example 1:
+
+		dar-sync

@@ -1,0 +1,36 @@
+Dag Apt Repository - Spec Convention
+""""""""""""""""""""""""""""""""""""
+** This document is Work In Progress **
+
+Since a lot of packages need some special tuning, we provide the following
+standard macros names that you _should_ use if they make sense for the
+package.
+
+	rname		- 'real' name of the project (if different from %{name})
+
+	rversion	- 'real' version of the project (if needs to be adapted)
+
+	kversion	- kernel version (if kernel package)
+
+		%define kversion %(rpm -q kernel-source --queryformat %'%{RPMTAG_VERSION}' | tail -1)
+
+
+	krelease	- kernel release (if kernel package)
+
+		%define krelease %(rpm -q kernel-source --queryformat %'%{RPMTAG_RELEASE}' | tail -1)
+
+
+	moduledir	- module dir (in /lib/modules/...)
+
+	modules		- list of modules
+
+	modules_orig	- list of orig modules+path (if needed)
+
+	plugindir	- directory for plugins (xmms, xine, ...)
+
+		%define _plugindir %(xmms-config --general-plugin-dir)
+
+
+	dfi		- boolean, if 1 no desktop-file-utils
+
+		%define dfi %(which desktop-file-install &>/dev/null; echo $?)

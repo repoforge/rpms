@@ -1,0 +1,115 @@
+Inter-repository standards
+""""""""""""""""""""""""""
+** This document is Work In Progress **
+
+This document is in no way set in stone, but susceptible to change.
+Please provide feedback.
+
+
+A. Packages/Packagers
+"""""""""""""""""""""
+Each package has an 'authoritative' packager designated. (A packager could be
+more than one person in this context) There is a public definitive list with
+who the authoritative packager is.
+
+The authoritative packager is the person that makes new releases of a package.
+Other packagers can make changes (through a versioning system) to another
+packager's packages, but of course every change should be communicated to
+prevent discussions. The authoritative packager has always the last say and
+decides ultimately about the release.
+
+
+B. Repositories
+"""""""""""""""
+The following repository-levels exist:
+
+	1. main / rpmforge	- stable (at least 4 days in testing first)
+	2. testing		- unstable testing bed, moving target
+
+	9. obsolete		- unsuported/E-O-L, old packages
+
+We might add an unstable or another stable repository if there's sufficient
+need for this. (unstable, good, ... ?)
+
+Each repo with less 'stability' consists of 'more stable' repos.
+
+
+C. Distributions
+""""""""""""""""
+The following distributions are (currently!) supported in several levels:
+
+	1. Latest Red Hat (RH9/i386)
+	3. Enterprise Red Hat (RHAS21/i386)
+	4. Yellow Dog Linux (YDL30/ppc)
+
+And others are unsupported but may exist:
+
+	4. Older Red Hat (RH8,RH73,RH62/i386)
+
+Packages are build by those packagers that have an affinity with a certain
+distribution/architecture. Changes to source-packages have to be clearly
+communicated with the authoritative packager.
+
+Older distributions may have another scope (not desktop oriented), but if
+packages build without any major effort for older distro's, there no reason
+why we shouldn't provide them. (Especially as this is very valuable for the
+project's author)
+
+
+D. Naming and versioning
+""""""""""""""""""""""""
+We will not adopt the Library-naming scheme, but the other naming-decisions
+was agreed upon. New additions to the naming-scheme will be discussed on
+beforehand. (The packages still can be mixed case ?)
+
+Convention:
+
+	%{rname}	the 'real' name of the software
+
+	%{rversion}	the 'real' version of the software (eg. 1.2.3beta4)
+
+	%{kversion}	the kernel-version (eg. 2.4.20)
+
+	%{krelease}	the kernel-release (eg. 13.9)
+
+
+The default naming-scheme:
+
+	Name: %{name}
+	Version: %{version}
+	Release: %{release}[.%{extra}][_%{kernel}].%{tag}.%{dist}
+
+
+Where
+	%{release}	a number that we have to increase each new release
+			and zero each new version, it starts with the official
+			Red Hat release (if it exists) or 0 otherwise. (eg. 0.5 or4.5)
+
+	%{extra}	the extra stuff that we have to hide from the real version
+			eg. pre6, beta2, rc2, alpha5, ...
+
+	%{kernel}	the <kernelversion>_<kernelrelease>
+
+	%{tag}		the repository/project name eg. rf
+
+	%{dist}		eg. rh6.2, rh7.3, rh8.0, rh9
+
+D1. Kernel packages
+"""""""""""""""""""
+	Name: kernel-module | kernel-smp-module | kernel-bigmem-module | kernel-enterprise-module
+
+	BuildRequires: kernel-source
+	Requires: kernel = %{kversion}-%{krelease}
+
+	Provides: %{rname}
+
+D2. Perl/PHP packages
+"""""""""""""""""""""
+	Name: perl-%{rname} | php-%{rname}
+
+	Provides: %{rname}
+	Obsoletes: %{rname}
+
+D3. Add-on packages
+"""""""""""""""""""
+	Name: xmms-%{rname} | mozilla-%{rname} | ...
