@@ -9,7 +9,7 @@ Release: 3
 #Epoch: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://libsigc.sf.net/
+URL: http://libsigc.sourceforge.net/
 Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libsigc++-examples <= %{version}
@@ -53,15 +53,16 @@ needed for development with libsigc++.
 find doc -name "Makefile*" | xargs rm -f
 
 
+%clean
+%{__rm} -rf %{buildroot}
+
+
 %post
 /sbin/ldconfig 2>/dev/null
 
 %postun
 /sbin/ldconfig 2>/dev/null
 
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
