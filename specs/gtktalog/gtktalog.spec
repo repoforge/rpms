@@ -9,7 +9,7 @@ Version: 1.0.4
 Release: 3
 License: GPL
 Group: Applications/Archiving
-Source: http://savannah.nongnu.org/download/gtktalog/gtktalog/sources/%{name}-%{version}.tar.bz2
+Source: ftp://ftp.gnu.org/savannah/files/gtktalog/gtktalog.pkg/%{version}/gtktalog-%{version}.tar.bz2
 URL: http://www.nongnu.org/gtktalog/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gnome-libs >= 1.2, zlib, eject, bzip2, /usr/bin/file
@@ -40,6 +40,7 @@ information parameter, and find in which CD the file you are looking for is.
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
+    --delete-original \
     --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     %{buildroot}%{_datadir}/gnome/apps/Applications/%{name}.desktop

@@ -15,6 +15,8 @@ Source2: i8kbuttons.init
 URL: http://people.debian.org/~dz/i8k/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gkrellm >= 2.0.0
+Requires(post): /sbin/chkconfig
+Requires(preun): /sbin/chkconfig, /sbin/service
 BuildRequires: gkrellm-devel >= 2.0.0
 # Stock Red Hat / Fedora gkrellm-devel should require these
 BuildRequires: gtk2-devel, pkgconfig

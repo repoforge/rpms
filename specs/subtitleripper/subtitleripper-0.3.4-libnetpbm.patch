@@ -1,0 +1,12 @@
+diff -Naupr subtitleripper.orig/Makefile subtitleripper/Makefile
+--- subtitleripper.orig/Makefile	2003-12-08 10:28:02.000000000 +0100
++++ subtitleripper/Makefile	2004-05-19 11:40:15.750167272 +0200
+@@ -9,7 +9,7 @@ INCLUDES :=
+ 
+ ### enable ppm support ###
+ DEFINES  += -D_HAVE_LIB_PPM_
+-LIBS     += -lppm
++LIBS     += -lnetpbm
+ 
+ ### enable PNG support ###
+ DEFINES += -D_HAVE_PNG_
