@@ -7,7 +7,7 @@
 
 Summary: Library for performing sample rate conversion on audio
 Name: libsamplerate
-Version: 0.1.0
+Version: 0.1.2
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -75,5 +75,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri Sep 17 2004 Matthias Saou <http://freshrpms.net/> 0.1.2-1
+- Update to 0.1.2.
+
 * Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 0.0.15-1
 - Initial package. (using DAR)
+
