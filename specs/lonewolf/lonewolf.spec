@@ -8,7 +8,7 @@ Name: lonewolf
 Version: 1.0
 Release: 0.%{real_version}
 License: GPL
-Group: Applications/Internet
+Group: Amusements/Games
 URL: http://home1.tiscalinet.de/aduke/main2/news2.htm
 
 Source: lonewolf-%{version}-%{real_version}.tar.bz2
