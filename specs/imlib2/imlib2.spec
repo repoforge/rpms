@@ -3,20 +3,17 @@
 
 #define date 20030417
 
-Summary: Powerful image loading and rendering library.
+Summary: Powerful image loading and rendering library
 Name: imlib2
 Version: 1.1.0
-Release: %{?date:0.%{date}.}1
+Release: %{?date:0.%{date}.}2
 License: BSD
 Group: System Environment/Libraries
-Source: http://dl.sf.net/enlightenment/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.gz
 URL: http://www.enlightenment.org/pages/imlib2.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: freetype >= 1.2, XFree86-libs
-Requires: libjpeg, libpng, libtiff, libungif, zlib
-BuildRequires: libjpeg-devel, libpng-devel
-BuildRequires: XFree86-devel, freetype-devel >= 1.2
-BuildRequires: libungif-devel
+BuildRequires: XFree86-devel, freetype-devel >= 1.2, zlib-devel
+BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -38,20 +35,27 @@ Header, static libraries and documentation for Imlib2.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -79,8 +83,12 @@ Header, static libraries and documentation for Imlib2.
 %exclude %{_libdir}/loaders/image/*.la
 %{_libdir}/pkgconfig/*.pc
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.0-1.fr
+* Thu Mar 25 2004 Matthias Saou <http://freshrpms.net/> 1.1.0-2
+- Removed the explicit XFree86-libs dependency.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.0-1
 - Update to 1.1.0.
 - Added pkgconfig entry and devel dependency.
 - Rebuild for Fedora Core 1.

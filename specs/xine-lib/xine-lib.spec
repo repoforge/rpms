@@ -10,11 +10,11 @@
 Summary: Core library for the xine video player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.10.rc3b.fr
+Release: 0.10.rc3b
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
-Source: http://dl.sf.net/xine/%{name}-%{libver}.tar.gz
+Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: zlib, libvorbis, SDL
 Requires: libpng, libmng
@@ -143,27 +143,30 @@ use the Xine library.
 
 
 %changelog
-* Thu Mar 18 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.9.rc3b.fr
+* Thu Mar 25 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.10.rc3b
+- Removed explicit XFree86 dependency.
+
+* Thu Mar 18 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.9.rc3b
 - Update to 1.0rc3b.
 
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.8.rc3a.fr
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.8.rc3a
 - Rebuild against new libfame.
 
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.7.rc3a.fr
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.7.rc3a
 - Rebuilt to get the debuginfo package.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.6.rc3a.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.6.rc3a
 - Update to 1.0rc3a.
 
-* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.5.rc3.fr
+* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.5.rc3
 - Update to 1.0rc3.
 
-* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.4.rc2.fr
+* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.4.rc2
 - Added an obsoletes tag for libxine.
 - Added --with-pic configure option to allow prelinking.
 - Added libdvdcss dependency to be sure it gets pulled in.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.3.rc2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.3.rc2
 - Update to 1.0rc2.
 - Rebuild for Fedora Core 1.
 

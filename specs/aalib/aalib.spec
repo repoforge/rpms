@@ -6,7 +6,7 @@
 Summary: An ASCII art library
 Name: aalib
 Version: 1.4.0
-Release: 4
+Release: 5
 Group: System Environment/Libraries
 License: LGPL
 URL: http://aa-project.sourceforge.net/aalib/
@@ -65,7 +65,8 @@ if [ -e %{_infodir}/libaa.info.gz ]; then
     /sbin/install-info --delete %{_infodir}/libaa.info.gz %{_infodir}/dir
 fi
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 
 
 %clean
@@ -96,11 +97,11 @@ fi
 
 
 %changelog
-* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-4.fr
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-5
 - Minor spec cleanups.
 - Removed explicit dependencies for the binay package.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.4rc5-4.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.4rc5-4
 - Rebuild for Fedora Core 1.
 
 * Tue Oct 21 2003 Matthias Saou <http://freshrpms.net/>

@@ -74,16 +74,16 @@ libmpeg2.
 
 
 %changelog
-* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-3b.fr
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-3b
 - Removed explicit dependency on XFree86 for the binary package.
 
-* Thu Feb  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-2b.fr
+* Thu Feb  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-2b
 - Update to 0.4.0b.
 
-* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-1.fr
+* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-1
 - Update to 0.4.0.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.2-0.20030701.2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.2-0.20030701.2
 - Rebuild for Fedora Core 1.
 
 * Tue Jul  1 2003 Matthias Saou <http://freshrpms.net/>

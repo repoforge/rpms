@@ -4,17 +4,16 @@
 %define desktop_vendor freshrpms
 %define date           20040125
 
-Summary: A 3D multi-player tank battle game.
+Summary: A 3D multi-player tank battle game
 Name: bzflag
 Version: 1.10.4
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
-Source: http://dl.sourceforge.net/bzflag/%{name}-%{version}.%{date}.tar.bz2
+Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
 URL: http://bzflag.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-Requires: XFree86, libstdc++
-BuildRequires: XFree86-devel, libstdc++-devel, gcc-c++, desktop-file-utils
+BuildRequires: XFree86-devel, gcc-c++, desktop-file-utils
 
 %description
 BZFlag is a 3D multi-player tank battle game  that  allows users to play
@@ -25,12 +24,15 @@ scores a loss.  Rogues have no teammates (not even other rogues), so they
 cannot shoot teammates and they do not have a team score.
 There are two main styles of play: capture-the-flag and free-for-all.
 
+
 %prep
 %setup -n %{name}-%{version}.%{date}
+
 
 %build
 %configure
 %{__make}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -39,7 +41,7 @@ There are two main styles of play: capture-the-flag and free-for-all.
     %{buildroot}%{_datadir}/pixmaps/bzflag.xpm
 
 # Desktop menu entry
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=BZFlag
 Comment=%{summary}
@@ -57,8 +59,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   --add-category Game                           \
   %{name}.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -72,12 +76,16 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/bzflag.xpm
 %{_mandir}/man6/*
 
+
 %changelog
-* Mon Feb 16 2004 Matthias Saou <http://freshrpms.net/> 1.10.4-1.fr
+* Thu Mar 25 2004 Matthias Saou <http://freshrpms.net/> 1.10.4-2
+- Removed explicit XFree86 dependency.
+
+* Mon Feb 16 2004 Matthias Saou <http://freshrpms.net/> 1.10.4-1
 - Update to 1.10.4.20040125, update the included docs.
 - Removed no longer existing bzfls file and added bzadmin.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.7g2-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.7g2-2
 - Rebuild for Fedora Core 1.
 - Added missing gcc-c++ build dependency.
 
