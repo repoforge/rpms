@@ -1,8 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Sebastiano Vigna <vigna@dsi.unimi.it>
-
-# Distcc: 0
+# Upstream: Sebastiano Vigna <vigna$dsi,unimi,it>
 
 Summary: Nice editor
 Name: ne
@@ -76,4 +74,3 @@ This package includes the documentation for package %{name}.
 %changelog
 * Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 1.32-1
 - Initial package. (using DAR)
-
