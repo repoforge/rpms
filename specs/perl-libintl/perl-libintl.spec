@@ -5,7 +5,7 @@
 Summary: Internationalization library for Perl, compatible with gettext
 Name: perl-libintl
 Version: 1.11
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libintl-perl/
@@ -13,6 +13,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUIDO/libintl-perl-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 2:5.8.0
 Provides: perl-libintl-perl = %{version}-%{release}
+Provides: perl(Locale::gettext_xs)
 BuildArch: noarch
 
 %description
@@ -52,6 +53,9 @@ implemented for example in GNU gettext.
 
 
 %changelog
+* Tue Nov  9 2004 Matthias Saou <http://freshrpms.net/> 1.11-2
+- Fix : Added perl(Locale::gettext_xs) provides.
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 1.11-1
 - Initial RPM release.
 
