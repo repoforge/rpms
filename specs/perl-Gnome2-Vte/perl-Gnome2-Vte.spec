@@ -23,7 +23,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-Vte-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig, perl-Glib, perl-Gtk2, pgkconfig
+BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig
+BuildRequires: perl-Glib, perl-Gtk2, pkgconfig, gtk2-devel
 
 %description
 This module allows you to use the Virtual Terminal Emulation library (libvte

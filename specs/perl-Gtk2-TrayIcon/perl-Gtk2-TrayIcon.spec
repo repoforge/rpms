@@ -23,8 +23,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Gtk2-TrayIcon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig, 
-BuildRequires: perl-Glib, perl-Gtk2, pkgconfig
+BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig
+BuildRequires: perl-Glib, perl-Gtk2, pkgconfig, gtk2-devel
 
 %description
 This module contains a perl interface to the EggTrayIcon library.
