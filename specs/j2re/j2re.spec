@@ -38,6 +38,7 @@ This packages provides the environment to run java 2 aplications with JRE.
 Summary: Sun Java(tm) 2 Plug-in for the mozilla browser
 Group: Applications/Internet
 Requires: j2re = %{version}
+Requires: %{_libdir}/mozilla/plugins/
 Provides: java-plugin = %{version}, j2re-java-plugin = %{version}
 Obsoletes: java-plugin < %{version}, j2re-java-plugin = < %{version}
 
