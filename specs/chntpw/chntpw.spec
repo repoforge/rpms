@@ -3,12 +3,12 @@
 # Authority: dag
 # Upstream: Petter Nordahl-Hagen <pnordahl$eunet,no>
 
-%define real_version 040116
+%define real_version 040818
 
 Summary: Offline NT password and registry editor
 Name: chntpw
-Version: 0.0.20040116
-Release: 2
+Version: 0.0.20040818
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://home.eunet.no/~pnordahl/ntpasswd/
@@ -53,6 +53,9 @@ and scripts to glue the whole thing together.
 %{_bindir}/*
 
 %changelog
+* Thu Aug 19 2004 Bert de Bruijn <bert@debruijn.be> - 0.0.20040818-1
+- update.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.0.20040116-2
 - Cosmetic rebuild for Group-tag.
 
