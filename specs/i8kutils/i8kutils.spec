@@ -1,12 +1,13 @@
 # $Id$
 # Authority: matthias
+# Archs: i386
 
 %define gkrellmpluginver 2.5
 
 Summary: Dell laptop (Inspiron 8000 and others) SMM BIOS support tools
 Name: i8kutils
 Version: 1.25
-Release: 2
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://people.debian.org/~dz/i8k/
@@ -20,6 +21,8 @@ Requires(preun): /sbin/chkconfig, /sbin/service
 BuildRequires: gkrellm-devel >= 2.0.0
 # Stock Red Hat / Fedora gkrellm-devel should require these
 BuildRequires: gtk2-devel, pkgconfig
+# This package is only relevant on Dell laptops, thus i386 only
+ExclusiveArch: i386
 
 %description
 This package contains a user-space programs for accessing the SMM BIOS of
@@ -86,6 +89,9 @@ fi
 
 
 %changelog
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.25-1
+- Make it ExclusiveArch i386 since relevance is only for some x86 Dell laptops.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.25-1
 - Update to 1.25.
 
