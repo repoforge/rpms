@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <xine-user@lists.sf.net>
 
 %define libname libxine1
 %define libver  1-rc3c
@@ -14,8 +15,10 @@ Release: 0.11.rc3c
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
+
 Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Requires: zlib, libvorbis, SDL
 Requires: libpng, libmng
 Requires: libdvdcss
@@ -112,10 +115,10 @@ use the Xine library.
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %clean
@@ -126,20 +129,21 @@ use the Xine library.
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_libdir}/*.so.*
-%{_libdir}/xine
-%{_datadir}/xine
+%{_libdir}/xine/
+%{_datadir}/xine/
 
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/hackersguide/*.sgml
+%doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_includedir}/*
-%exclude %{_libdir}/*.la
+%{_includedir}/xine.h
+%{_includedir}/xine/
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
-%{_datadir}/aclocal/*
-%{_mandir}/man1/*
+%{_datadir}/aclocal/*.m4
+%exclude %{_libdir}/*.la
 
 
 %changelog
