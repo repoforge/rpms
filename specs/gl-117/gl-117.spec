@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: <tom.drexl@gmx.de>
+# Upstream: <tom,drexl$gmx,de>
 
 # Screenshot: http://home.t-online.de/home/Primetime./gl-117/sshot2_092_700.jpg
 # ScreenshotURL: http://home.t-online.de/home/Primetime./gl-117/gallery.htm
