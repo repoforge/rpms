@@ -63,22 +63,13 @@ you will need to install %{name}-devel.
 #{?rh6:%patch3 -b .402}
 %patch4 -b .rpmhandler
 
-%{?fc2:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC2 APT-HTTP/1.3|' methods/http.cc}
-%{?fc1:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC1 APT-HTTP/1.3|' methods/http.cc}
-%{?el3:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH EL3 APT-HTTP/1.3|' methods/http.cc}
-%{?rh9:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 9 APT-HTTP/1.3|' methods/http.cc}
-%{?rh8:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 8.0 APT-HTTP/1.3|' methods/http.cc}
-%{?rh7:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 7.3 APT-HTTP/1.3|' methods/http.cc}
-%{?el2:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH EL2.1 APT-HTTP/1.3|' methods/http.cc}
-%{?rh6:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 6.2 APT-HTTP/1.3|' methods/http.cc}
+%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
 %{__cat} <<EOF >dag.list
-### Dag RPM Repository
-### """"""""""""""""""
-### More information of this repository at:
-###	http://dag.wieers.com/apt/
+# Name: Dag RPM Repository
+# URL: http://dag.wieers.com/apt/
 
-### Dag RPM Repository for Red Hat Fedore Core
+### Dag RPM Repository for Fedora Core
 %{!?fc2:#}rpm http://apt.sw.be fedora/2/en/%{_arch} dag
 %{!?fc1:#}rpm http://apt.sw.be fedora/1/en/i386 dag
 
@@ -94,12 +85,10 @@ you will need to install %{name}-devel.
 EOF
 
 %{__cat} <<EOF >os.list
-### List of available apt repositories available from ayo.freshrpms.net.
-### This file should contain an uncommented default suitable for your system.
-###
-### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
+# Name: FreshRPMS OS/updates
+# URL: http://ayo.freshrpms.net/
 
-### Red Hat Fedora Core
+### Fedora Core
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/%{_arch} core updates
 
@@ -114,12 +103,10 @@ EOF
 EOF
 
 %{__cat} <<EOF >freshrpms.list
-### List of available apt repositories available from ayo.freshrpms.net.
-### This file should contain an uncommented default suitable for your system.
-###
-### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
+# Name: FreshRPMS
+# URL: http://ayo.freshrpms.net/
 
-### Red Hat Fedora Core
+### Fedora Core
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/i386 freshrpms
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 
@@ -131,9 +118,10 @@ EOF
 EOF
 
 %{__cat} <<EOF >newrpms.list
-### See http://newrpms.sunsite.dk/ for more information.
+# Name: NewRPMS
+# URL: http://newrpms.sunsite.dk/
 
-### Red Hat Fedora Core
+### Fedora Core
 %{!?fc2:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
 %{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 
@@ -143,18 +131,19 @@ EOF
 EOF
 
 %{__cat} <<EOF >dries.list
-### See http://dries.studentenweb.org/apt/ for more information.
+# Name: Dries RPM Repository
+# URL: http://dries.studentenweb.org/apt/
 
-### Red Hat Fedora Core
+### Fedora Core
 %{!?fc2:#}rpm http://dries.studentenweb.org apt/fedora/fc2/i386 dries
 %{!?fc1:#}rpm http://dries.studentenweb.org apt/fedora/fc1/i386 dries
 EOF
 
 %{__cat} <<EOF >atrpms.list
-### See http://atrpms.physik.fu-berlin.de/ for more information.
-### Possible sections: at-stable, at-good, at-testing, at-bleeding
+# Name: ATrpms
+# URL: http://atrpms.physik.fu-berlin.de/
 
-### Red Hat Fedora Core
+### Fedora Core
 #rpm http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
 #rpm http://apt.physik.fu-berlin.de fedora/1/en/i386 at-testing
 
