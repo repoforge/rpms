@@ -4,7 +4,7 @@
 
 Summary: Reliable 802.11 (wireless) sniffer and WEP key cracker
 Name: aircrack
-Version: 1.3
+Version: 1.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -24,27 +24,27 @@ Reliable 802.11 (wireless) sniffer and WEP key cracker
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags} -D_GNU_SOURCE"
+	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 802ether %{buildroot}%{_bindir}/802ether
-%{__install} -D -m0755 aircrack %{buildroot}%{_bindir}/aircrack
-%{__install} -D -m0755 aireplay %{buildroot}%{_bindir}/aireplay
-%{__install} -D -m0755 airodump %{buildroot}%{_bindir}/airodump
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog *.patch *.txt
+%doc ChangeLog *.patch *.sh *.txt
 %{_bindir}/802ether
 %{_bindir}/aircrack
 %{_bindir}/aireplay
 %{_bindir}/airodump
 
 %changelog
+* Thu Aug 26 2004 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
 * Fri Aug 20 2004 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updated to release 1.3.
 
