@@ -5,17 +5,17 @@
 
 Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
-Version: 1.0.0
-Release: 1
+Version: 1.0.2
+Release: 0
 License: GPL
 Group: Applications/Internet
 URL: http://sylpheed.good-day.net/
-Source: http://sylpheed.good-day.net/sylpheed/%{name}-%{version}.tar.bz2
+Source: http://sylpheed.good-day.net/sylpheed/v1.0/sylpheed-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, gettext, desktop-file-utils, gcc-c++
 BuildRequires: openssl-devel >= 0.9.6
-%{!?_without_gpgme:BuildRequires: gpgme03-devel >= 0.3.10}
+%{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.4.5}
 %{!?_without_ldap:BuildRequires: openldap-devel}
 %{!?_without_compface:BuildRequires: compface-devel}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
@@ -83,6 +83,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-0
+- Update to 1.0.2.
+- Update gpgme dependency to gpgme >= 0.4.5.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0.0 final!
 - Update gpgme dependency to gpgme03.
