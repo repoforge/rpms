@@ -6,7 +6,7 @@
 
 Summary: Python SDL game where you have to collect energy cubes
 Name: solarwolf
-Version: 1.4
+Version: 1.5
 Release: 2
 License: LGPL
 Group: Amusements/Games
@@ -44,6 +44,9 @@ make install
 %{_datadir}/applications/solarwolf.desktop
 
 %changelog
+* Mon Mar 14 2005 Dries Verachtert <dries@ulyssis.org> 1.5-1
+- update to release 1.5
+
 * Sun Jan 25 2004 Dries Verachtert <dries@ulyssis.org> 1.4-2
 - update of spec file
 
