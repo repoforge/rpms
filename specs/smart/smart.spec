@@ -15,7 +15,7 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.27
+Version: 0.27.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -24,13 +24,8 @@ URL: http://www.smartpm.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://smart.conectiva.com.br/files/smart-%{version}.tar.bz2
-# rpmmodule.so is a patched rpm-python module, intended to reduce memory consumption
-# when using APT repositories. You can use smart without it at the cost of
-# a warning message and increased memory usage.
-# This module was generated from Fedora Core 3's own rpm-4.3.2-21 package,
-# patched by smart's contrib/patches/rpm4.3.2-python.patch
-#Source1: rpmmodule.so
+Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
+#Source: http://smart.conectiva.com.br/files/smart-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
@@ -72,13 +67,14 @@ sysconf.set(("channels", "rpm-db"), {
 	"alias": "rpm-db",
 	"type": "rpm-sys",
 	"name": "RPM Database",
+	"priority": 10,
 })
 
 sysconf.set(("channels", "os"), {
 	"alias": "%{dist}-os",
 	"type": "rpm-md",
 	"name": "$name $version",
-	"baseurl": "http://ayo.freshrpms.net/" "$path/linux/$version/%{_arch}/core/",
+	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core/",
 	"priority": 10,
 })
 
@@ -86,7 +82,7 @@ sysconf.set(("channels", "updates"), {
 	"alias": "%{dist}-updates",
 	"type": "rpm-md",
 	"name": "$name $version Updates",
-	"baseurl": "http://ayo.freshrpms.net/" "$path/linux/$version/%{_arch}/updates/",
+	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/updates/",
 	"priority": 10,
 })
 
@@ -94,54 +90,81 @@ sysconf.set(("channels", "mirrors"), {
 	"alias": "%{dist}-mirrors",
 	"type": "up2date-mirrors",
 	"name": "$name $version (Mirrors Channel)",
-	"url": "http://fedora.redhat.com/download/" "up2date-mirrors/fedora-core-$version",
+	"url": "http://fedora.redhat.com/download/up2date-mirrors/fedora-core-$version",
 })
 
 sysconf.set(("channels", "mirrors-updates"), {
 	"alias": "%{dist}-mirrors-updates",
 	"type": "up2date-mirrors",
 	"name": "$name $version Updates (Mirrors Channel)",
-	"url": "http://fedora.redhat.com/download/" "up2date-mirrors/updates-released-fc$version",
+	"url": "http://fedora.redhat.com/download/up2date-mirrors/updates-released-fc$version",
 })
 
 sysconf.set(("channels", "repo-dag"), {
 	"alias": "repo-%{dist}-dag",
 	"type": "rpm-md",
-	"name": "Dag RPM Repository for $name $version",
-	"baseurl": "http://apt.sw.be/" "$path/$version/en/%{_arch}/dag",
-	"priority": 5,
+	"name": "Various packages from RPMforge.net (dag) for $name $version",
+	"baseurl": "http://apt.sw.be/$path/$version/en/%{_arch}/dag",
+	"priority": 10,
 })
 
 sysconf.set(("channels", "repo-freshrpms"), {
 	"alias": "repo-%{dist}-freshrpms",
 	"type": "rpm-md",
-	"name": "freshrpms.net for $name $version",
-	"baseurl": "http://ayo.freshrpms.net/" "$path/linux/$version/%{_arch}/freshrpms",
-	"priority": 5,
+	"name": "Varios packages from RPMforge.net (freshrpms) for $name $version",
+	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/freshrpms",
+	"priority": 10,
 })
 
 sysconf.set(("channels", "repo-dries"), {
 	"alias": "repo-%{dist}-dries",
 	"type": "rpm-md",
-	"name": "Dries RPM Repository for $name $version",
-	"baseurl": "http://apt.sw.be/" "dries/$path/fc$version/%{_arch}/dries/RPMS",
-	"priority": 5,
+	"name": "Various packages from RPMforge.net (dries) for $name $version",
+	"baseurl": "http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS",
+	"priority": 10,
+})
+
+sysconf.set(("channels", "repo-jpackage"), {
+	"alias": "repo-%{dist}-jpackage",
+	"type": "rpm-md",
+	"name": "Java packages from JPackage.org for $name $version",
+	"baseurl": "http://mirrors.sunsite.dk/jpackage/1.6/fedora-3/free/",
+	"priority": 0,
+	"disabled": "true"
 })
 
 sysconf.set(("channels", "repo-newrpms"), {
 	"alias": "repo-%{dist}-newrpms",
 	"type": "rpm-md",
-	"name": "NewRPMS packages for $name $version",
-	"baseurl": "http://newrpms.sunsite.dk/apt/" "redhat/en/%{_arch}/fc$version",
-	"priority": 0,
+	"name": "Various packages from NewRPMS for $name $version",
+	"baseurl": "http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version",
+	"priority": -5,
+})
+
+sysconf.set(("channels", "repo-kde-redhat"), {
+	"alias": "repo-%{dist}-kde-redhat",
+	"type": "rpm-md",
+	"name": "KDE packages from the kde-redhat project for $name $version",
+	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/$version/stable",
+	"priority": -5,
+	"disabled": "true"
+})
+
+sysconf.set(("channels", "repo-kde-redhat-all"), {
+	"alias": "repo-%{dist}-kde-redhat-all",
+	"type": "rpm-md",
+	"name": "KDE (nodist) packages from the kde-redhat project for $name $version",
+	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/all/stable",
+	"priority": -5,
+	"disabled": "true"
 })
 
 sysconf.set(("channels", "repo-atrpms"), {
 	"alias": "repo-%{dist}-atrpms",
 	"type": "rpm-md",
-	"name": "AtRPMS packages for $name $version",
-	"baseurl": "http://apt.physik.fu-berlin.de/" "$path/$version/en/%{_arch}/at-testing",
-	"priority": 0,
+	"name": "Various packages from ATrpms for $name $version",
+	"baseurl": "http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing",
+	"priority": -10,
 	"disabled": "true",
 })
 
@@ -229,7 +252,7 @@ python setup.py install \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc HACKING README LICENSE TODO IDEAS
+%doc HACKING IDEAS LICENSE README TODO
 %config %{_libdir}/smart/distro.py
 %dir %{_libdir}/smart/
 %{_sysconfdir}/security/console.apps/smart
@@ -252,5 +275,5 @@ python setup.py install \
 %{_datadir}/apps/ksmarttray/
 
 %changelog
-* Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 0.27-1
+* Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 0.27.1-1
 - Initial package. (using DAR)
