@@ -2,8 +2,34 @@
 # Authority: matthias
 # Upstream: <vlc-devel@videolan.org>
 
+%{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_theora 1}
+
+%{?el3:%define _without_alsa 1}
+%{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_theora 1}
+
+%{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_fribidi 1}
+%{?rh9:%define _without_theora 1}
+
+%{?rh8:%define _without_alsa 1}
+%{?rh8:%define _without_fribidi 1}
+%{?rh8:%define _without_theora 1}
+
+%{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_fribidi 1}
+%{?rh7:%define _without_theora 1}
+
+%{?el2:%define _without_alsa 1}
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_fribidi 1}
+%{?el2:%define _without_theora 1}
+
 %define desktop_vendor freshrpms
-%define ffmpeg_date    20040520
+%define ffmpeg_date 20040520
+%define real_name vlc
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
@@ -12,11 +38,14 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
+
 Source0: http://download.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://download.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, XFree86-devel, libpng-devel, desktop-file-utils
-BuildRequires: fribidi-devel
+
+BuildRequires: gcc-c++, XFree86-devel, libpng-devel
+%{!?_without_fribidi:BuildRequires: fribidi-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_dvd:BuildRequires: libdvdcss-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvdplay:BuildRequires: libdvdplay-devel}
@@ -80,7 +109,7 @@ to link statically to it.
 
 
 %prep
-%setup -n vlc-%{version} -a 1
+%setup -n %{real_name}-%{version} -a 1
 
 
 %build
@@ -95,7 +124,7 @@ pushd ffmpeg-%{ffmpeg_date}
         --enable-pp
 #       --enable-mp3lame \
 #       --enable-faac
-    make
+    %{__make} %{?_smp_mflags}
 popd
 
 %configure \
@@ -178,7 +207,7 @@ find  %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
 %{__cp} -a %{buildroot}%{_datadir}/vlc/vlc48x48.png \
     %{buildroot}%{_datadir}/pixmaps/vlc.png
 
-%{__cat} > %{name}.desktop << EOF
+%{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=VideoLAN Client
 Comment=Play DVDs, other various video formats and network streamed videos
@@ -189,12 +218,19 @@ Type=Application
 Encoding=UTF-8
 EOF
 
+%if %{!?_without_freedesktop:1}0
+# Convert the menu entry
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
   --add-category Application                    \
   --add-category AudioVideo                     \
   %{name}.desktop
+%else
+%{__install} -D -m644 misc/desktops/%{name}.desktop \
+    %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
+%endif
+
 
 
 %clean

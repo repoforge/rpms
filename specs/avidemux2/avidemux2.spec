@@ -2,7 +2,10 @@
 # Authority: dag
 # Upstream: <fixounet@free.fr>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 %define real_name avidemux
 
@@ -22,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.0.0
 BuildRequires: nasm >= 0.98.32
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Avidemux is a graphical tool to edit AVI. It allows you to multiplex and
@@ -47,8 +51,11 @@ EOF
 
 %build
 %{__make} -f Makefile.dist
+%{__perl} -pi.orig -e 's|/usr/X11R6/lib|\$x_libraries|g' configure
+%{__perl} -pi.orig -e 's|/usr/X11R6/lib|%{_prefix}/X11R6/%{_lib}|g' Makefile.in */Makefile.in */*/Makefile.in
+
 %configure \
-	--disable-dependency-tracking \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
 	--disable-warnings
 %{__make} %{?_smp_mflags}
 
@@ -59,11 +66,15 @@ EOF
 	kde_locale="%{buildroot}%{_datadir}/locale"
 #%find_lang %{real_name}
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	avidemux2.desktop
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0755 avidemux2.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop
+%else
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor gnome                \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		avidemux2.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -73,7 +84,8 @@ desktop-file-install --vendor gnome                \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING History README TODO
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-avidemux2.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop}
 
 %changelog
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 2.0.24-1
