@@ -1,10 +1,12 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://poedit.sourceforge.net/screenshots/poEditUnicode_s.png
+# ScreenshotURL: http://poedit.sourceforge.net/screenshots.php
 
 Summary: PoEdit is a cross-platform gettext catalogs (.po files) editor
 Name: poedit
-Version: 1.2.5
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -18,15 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, gcc-c++, wxGTK-devel, db4-devel, gettext
 Requires: wxGTK, db4, gettext
 
-# Screenshot: http://poedit.sourceforge.net/screenshots/poEditUnicode_s.png
-# ScreenshotURL: http://poedit.sourceforge.net/screenshots.php
-
 %description
 poEdit is a cross-platform gettext catalogs (.po files) editor. It is built
 with wxWindows.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
+%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -35,11 +34,10 @@ with wxWindows.
 
 %install
 %{__rm} -rf %{buildroot}
-export DESTDIR=$RPM_BUILD_ROOT
-%{__make} install-strip
+%{__make} install-strip DESTDIR=%{buildroot}
 %find_lang %{name}
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications
-cat > $RPM_BUILD_ROOT/usr/share/applications/poedit.desktop <<EOF
+mkdir -p %{buildroot}%{datadir}/applications
+cat > %{buildroot}%{datadir}/applications/poedit.desktop <<EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -56,11 +54,14 @@ EOF
 %defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/poedit
-%{_mandir}/man1/poedit.1.gz
+%{_mandir}/man1/poedit*
 %{_datadir}/poedit
 %{_datadir}/applications/poedit.desktop
 
 %changelog
+* Sun Sep 12 2004 Dries Verachtert <dries@ulyssis.org> 1.3.1-1
+- Update to version 1.3.1.
+
 * Sun Feb 29 2004 Dries Verachtert <dries@ulyssis.org> 1.2.5-1
 - update to 1.2.5
 
