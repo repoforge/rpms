@@ -46,8 +46,7 @@ or "cat /dev/null >file") transparently, without losing any input.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}
@@ -59,8 +58,7 @@ or "cat /dev/null >file") transparently, without losing any input.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
-%{perl_vendorlib}/File/
-%{perl_vendorlib}/auto/File/
+%{perl_vendorlib}/File/Tail.pm
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.99.1-1
