@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWCLARK/PerlIO-gzip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, zlib-devel
 
 %description
 This module contains a layer for the PerlIO system to 
