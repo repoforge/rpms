@@ -75,6 +75,7 @@ OS X platforms.
 %setup -n kexi-%{real_version}
 
 %build
+source /etc/profile.d/qt.sh
 %configure --enable-debug=full
 %{__sed} -i 's/-lpqxx/-lpqxx -lpq/g;'  kexi/kexidb/drivers/pqxx/Makefile
 %{__cp} -f %{SOURCE2} kexi/main/keximainwindowimpl.cpp
@@ -82,6 +83,7 @@ OS X platforms.
 
 %install
 %{__rm} -rf %{buildroot}
+source /etc/profile.d/qt.sh
 %makeinstall
 
 %post

@@ -27,7 +27,7 @@
 
 Summary: File manager
 Name: krusader
-Version: 1.50
+Version: 1.51
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -101,6 +101,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/services/iso.protocol
 
 %changelog
+* Tue Dec 14 2004 Dries Verachtert <dries@ulyssis.org> - 1.51-1
+- Update to version 1.51.
+
 * Mon Nov 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.50-1
 - Update to version 1.50.
 
