@@ -3,6 +3,8 @@
 # Screenshot: http://www.newbreedsoftware.com/tuxpaint/screenshots/example_simple-t.png
 # ScreenshotURL: http://www.newbreedsoftware.com/tuxpaint/screenshots/
 
+# ExcludeDist: el3
+
 Summary: Drawing program designed for young children
 Name: tuxpaint
 Version: 0.9.14

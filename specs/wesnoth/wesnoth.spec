@@ -5,6 +5,8 @@
 # Screenshot: http://www.wesnoth.org/images/sshots/wesnoth-10-175.jpg
 # ScreenshotURL: http://www.wesnoth.org/sshots.htm
 
+# ExcludeDist: fc1
+
 Summary: Battle for Wesnoth is a fantasy turn-based strategy game
 Name: wesnoth
 Version: 0.8.8
