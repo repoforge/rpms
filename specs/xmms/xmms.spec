@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?fc2:%define _without_mikmod 1}
 
 %{?fc1:%define _without_alsa 1}
