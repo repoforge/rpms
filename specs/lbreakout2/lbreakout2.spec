@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.1.5, SDL_mixer
 BuildRequires: SDL-devel, SDL_mixer-devel, zlib-devel, libpng-devel
 BuildRequires: ImageMagick
-#{__mkdir_p} %{buildroot}%{_localstatedir}/lib/games
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 The successor to LBreakout offers you a new challenge in more than 50 levels
