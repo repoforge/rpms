@@ -7,8 +7,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc3:%define _without_mjpeg 1}
-
 %{?fc1:%define _without_theora 1}
 
 %{?el3:%define _without_theora 1}
@@ -27,7 +25,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 0.6.14
-Release: %{?prever:0.%{prever}.}0
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -120,6 +118,9 @@ Available rpmbuild rebuild options :
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-0.pre1.1
+- Rebuild with mjpegtools (fixed at last) support on FC3.
+
 * Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-0.pre1.0
 - Update to 0.6.14pre1.
 
