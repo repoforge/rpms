@@ -6,7 +6,7 @@
 
 Summary: Personal photo management application
 Name: f-spot
-Version: 0.0.9
+Version: 0.0.10
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.gnome.org/Public/GNOME/sources/f-spot/0.0/f-spot-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mono-devel, libexif-devel, lcms-devel
+BuildRequires: mono-devel, gtk-sharp-devel, libexif-devel, lcms-devel
 Requires: mono, gtk-sharp, libexif
 
 %description
@@ -29,16 +29,20 @@ sorting of digital images.
 %prep
 %setup
 
-%{__cat} <<EOF >f-spot.desktop
+%{__cat} <<EOF >f-spot.desktop.in.in
 [Desktop Entry]
 Name=F-spot Photo Manager
 Comment=Manage your photos
-Icon=f-spot.png
+Icon=f-spot-logo
 Exec=f-spot
 Terminal=false
 Type=Application
-Categories=GNOME;Application;Graphics;
+Categories=GNOME;Application;Graphics;Photograph;
 StartupNotify=true
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=f-spot
+X-GNOME-Bugzilla-Component=General
+X-GNOME-Bugzilla-Version=@VERSION@
 EOF
 
 %build
@@ -50,14 +54,6 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 icons/f-spot-camera.png %{buildroot}%{_datadir}/pixmaps/f-spot.png
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor}    \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	f-spot.desktop
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -66,12 +62,15 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %doc AUTHORS ChangeLog COPYING INSTALL MAINTAINERS NEWS README TODO
 %{_bindir}/f-spot
 %{_libdir}/f-spot/
-%{_datadir}/pixmaps/f-spot.png
-%{_datadir}/applications/%{desktop_vendor}-f-spot.desktop
+%{_datadir}/pixmaps/f-spot-logo.png
+%{_datadir}/applications/f-spot.desktop
 %exclude %{_libdir}/f-spot/*.a
 %exclude %{_libdir}/f-spot/*.la
 
 %changelog
+* Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 0.0.10-1
+- Updated to release 0.0.10.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.0.9-1
 - Updated to release 0.0.9.
 

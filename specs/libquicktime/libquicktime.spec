@@ -4,6 +4,16 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc1:%define _without_alsa 1}
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh8:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_1394 1}
+%{?el2:%define _without_alsa 1}
+%{?el2:%define _without_1394 1}
+%{?yd3:%define _without_alsa 1}
+
 # We want to explicitely disable MMX for ppc, x86_64 etc.
 %ifnarch %{ix86}
     %define _without_mmx 1
@@ -22,18 +32,11 @@ Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
-%{?!dist:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
-%{?el4:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
-%{?fc3:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
-%{?fc2:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
-%{?fc1:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?el3:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?rh9:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?rh8:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?!_without_1394:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?!_without_alsa:BuildRequires: alsa-lib-devel}
+%{?!_without_ffmpeg:BuildRequires: ffmpeg-devel}
 # A bug, the devel libs don't require the main ones :-(
 %{?yd3:BuildRequires: libraw1394, libavc1394}
-%{?yd3:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?yd4:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
 # Required for the autogen.sh script to work
 BuildRequires: libtool, autoconf, automake
 

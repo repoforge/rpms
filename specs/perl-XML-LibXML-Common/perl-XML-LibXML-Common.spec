@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# DistExclude: el4
+### Already ships with 0.13
+# DistExclude: fc2 fc3 el4
 
 %define real_name XML-LibXML-Common
 

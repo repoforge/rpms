@@ -2,7 +2,7 @@
 # Authority: dag
 
 ### Already in xorg package
-# ExcludeDist: fc3
+# ExclusiveDist: el2 rh7 rh9 el3 fc1 fc2
 
 Summary: X Render Extension
 Name: xrender

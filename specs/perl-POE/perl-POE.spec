@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Rocco Caputo <rcaputo$pobox,com>
 
-# ExcludeDist: el2 rh7 rh8 rh9 el3
+##ExcludeDist: el2 rh7 rh8 rh9 el3
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -33,6 +33,9 @@ framework for Perl.
 
 %prep
 %setup -n %{real_name}-%{version}
+
+### Disable, causes filesystem to fill up
+exit 1
 
 %build
 %{__perl} Makefile.PL \

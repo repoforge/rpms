@@ -35,7 +35,7 @@ implemented for use from Python. Among the contents of the package:
     * Miscellaneous: RFC1751 module for converting 128-key keys into a set of English words, primality testing.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 python2 setup.py build
