@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0, libart_lgpl-devel >= 2.0, pango-devel >= 1.2
 BuildRequires: libgnomecanvas-devel >= 2.0, libgnomeprintui-devel >= 1.116
-BuildRequires: perl, pygtk2-devel >= 1.99.10, python-devel >= 2.2
+BuildRequires: perl, pygtk2-devel >= 1.99.10, python-devel >= 2.2, gettext
 
 %description
 DiaCanvas2 is providing you with a full featured diagramming canvas for GNOME.
