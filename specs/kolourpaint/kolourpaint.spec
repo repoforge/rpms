@@ -70,17 +70,19 @@ source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %{__mv} %{buildroot}/usr/share/applications/kde/kolourpaint.desktop %{buildroot}/usr/share/applications/kolourpaint.desktop
 %{__sed} -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{buildroot}/usr/share/applications/kolourpaint.desktop
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README BUGS
 %{_bindir}/kolourpaint
 %{_datadir}/applications/kolourpaint.desktop
 %{_datadir}/apps/kolourpaint
 %{_datadir}/icons/hicolor/*/apps/kolourpaint.png
+%{_datadir}/icons/crystalsvg/*/apps/kolourpaint.png
 %{_datadir}/doc/HTML/en/kolourpaint
 
 %changelog
