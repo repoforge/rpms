@@ -1,0 +1,75 @@
+--- etc/clamav.conf.orig	2004-02-15 12:44:07.000000000 +0100
++++ etc/clamav.conf	2004-03-08 02:41:56.000000000 +0100
+@@ -5,12 +5,12 @@
+ 
+ 
+ # Comment or remove the line below.
+-Example
++#Example
+ 
+ # Uncomment this option to enable logging.
+ # LogFile must be writable for the user running the daemon.
+ # Full path is required.
+-#LogFile /tmp/clamd.log
++LogFile /var/log/clamav/clamd.log
+ 
+ # By default the log file is locked for writing - the lock protects against
+ # running clamd multiple times (if want to run another clamd, please
+@@ -41,7 +41,7 @@
+ 
+ # This option allows you to save the process identifier of the listening
+ # daemon (main thread).
+-#PidFile /var/run/clamd.pid
++PidFile /var/run/clamav/clamd.pid
+ 
+ # Optional path to the global temporary directory.
+ # Default is system specific - usually /var/tmp or /tmp.
+@@ -50,7 +50,7 @@
+ # Path to the database directory.
+ # Default is the hardcoded directory (mostly /usr/local/share/clamav,
+ # but it depends on installation options).
+-#DatabaseDirectory /var/lib/clamav
++DatabaseDirectory /var/clamav
+ 
+ # The daemon works in local or network mode. Currently the local mode is
+ # recommended for security reasons.
+@@ -58,7 +58,7 @@
+ # Path to the local socket. The daemon doesn't change the mode of the
+ # created file (portability reasons). You may want to create it in a directory
+ # which is only accessible for a user running daemon.
+-LocalSocket /tmp/clamd
++LocalSocket /var/clamav/clamd.socket
+ 
+ # Remove stale socket after unclean shutdown.
+ #FixStaleSocket
+@@ -78,10 +78,10 @@
+ 
+ # When activated, input stream (see STREAM command) will be saved to disk before
+ # scanning - this allows scanning within archives.
+-#StreamSaveToDisk
++StreamSaveToDisk
+ 
+ # Close the connection if this limit is exceeded.
+-#StreamMaxLength 10M
++StreamMaxLength 10M
+ 
+ # Maximal number of a threads running at the same time.
+ # Default is 5, and it should be sufficient for a typical workstation.
+@@ -119,7 +119,7 @@
+ 
+ # Run as selected user (clamd must be started by root).
+ # By default it doesn't drop privileges.
+-#User clamav
++User clamav
+ 
+ # Initialize the supplementary group access (for all groups in /etc/group
+ # user is added in. clamd must be started by root).
+@@ -136,7 +136,7 @@
+ ##
+ 
+ # Uncomment this option if you are planning to scan mail files.
+-#ScanMail
++ScanMail
+ 
+ ##
+ ## Archive support

@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# Startup script for the Clamav Milter Daemon
+#
+# chkconfig: 2345 80 30
+# description: clamav-milter is a daemon which hooks into sendmail \
+#              and routes email messages to clamav.
+# processname: clamav-milter
+# pidfile: /var/run/clamav/clamav-milter.pid
+# config: /etc/sysconfig/clamav-milter
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+[ -x /usr/sbin/clamav-milter ] || exit 0
+
+# Local clamav-milter config
+CLAMAV_FLAGS=
+test -f /etc/sysconfig/clamav-milter && . /etc/sysconfig/clamav-milter
+
+# See how we were called.
+case "$1" in
+  start)
+	echo -n "Starting Clamav Milter Daemon: "
+        daemon clamav-milter ${CLAMAV_FLAGS}
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/clamav-milter
+	;;
+  stop)
+	echo -n "Stopping Clamav Milter Daemon: "
+	killproc clamav-milter
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/clamav-milter
+	;;
+  status)
+	status clamav-milter
+	RETVAL=$?
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  *)
+	echo "Usage: clamav-milter {start|stop|status|restart|reload}"
+	exit 1
+esac
+
+exit $RETVAL

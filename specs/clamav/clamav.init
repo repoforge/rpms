@@ -1,0 +1,54 @@
+#!/bin/sh
+#
+# Startup script for the Clam AntiVirus Daemon
+#
+# chkconfig: 2345 80 30
+# description: Clam AntiVirus Daemon is a TCP/IP or socket protocol \
+#              server.
+# processname: clamd
+# pidfile: /var/run/clamav/clamd.pid
+# config: /etc/clamav.conf
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+[ -x /usr/sbin/clamd ] || exit 0
+
+# See how we were called.
+case "$1" in
+  start)
+	echo -n "Starting Clam AntiVirus Daemon: "
+	daemon clamd
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/clamd
+	;;
+  stop)
+	echo -n "Stopping Clam AntiVirus Daemon: "
+	killproc clamd
+	rm -f /var/clamav/clamd.socket
+	rm -f /var/run/clamav/clamav.pid
+	RETVAL=$?
+	echo
+### heres the fix... we gotta remove the stale files on restart
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/clamd 	
+	;;
+  status)
+	status clamd
+	RETVAL=$?
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  *)
+	echo "Usage: clamd {start|stop|status|restart|reload}"
+	exit 1
+esac
+
+exit $RETVAL
+
