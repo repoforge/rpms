@@ -15,7 +15,8 @@ URL: http://www.uox3.org/
 Source: http://www.uox3.org/files/uox3-source.zip
 Source1: ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla%{mozilla_version}/src/mozilla-source-%{mozilla_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip, mozilla-devel
+BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip
+#, mozilla-devel
 
 %description
 todo
@@ -37,7 +38,7 @@ aclocal
 automake --add-missing --copy || echo automake --add-missing --copy gives a warning
 autoconf
 automake || echo automake gives a warning
-export CXXFLAGS="%{optflags} -I/usr/include/mozilla-1.6/js "
+# export CXXFLAGS="%{optflags} -I/usr/include/mozilla-1.6/js "
 %configure --enable-debug
 dos2unix Makefile
 dos2unix depcomp
