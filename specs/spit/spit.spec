@@ -55,7 +55,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %install
 %{__rm} -rf %{buildroot}
 # install part doesn't work in mach chroot without this
-perl -i -npe "s/..INSTALL_ROOT.\/(\.\.\/)*(usr\/)?/${RPM_BUILD_ROOT//\//\\/}\/usr\//g;" src/Makefile
+perl -i -npe "s/..INSTALL_ROOT.(\.\.\/)*(\/usr\/)?/${RPM_BUILD_ROOT//\//\\/}\/usr\//g;" src/Makefile
 %makeinstall
 %{__rm} -Rf %{buildroot}%{_datadir}/doc/spit
 %{__install} -D -m0644 pixmaps/spit.svg %{buildroot}%{_datadir}/pixmaps/spit.svg
