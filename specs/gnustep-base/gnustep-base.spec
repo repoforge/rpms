@@ -1,22 +1,18 @@
 # $Id$
-
 # Authority: dries
 
-# NeedsCleanup
-
-Summary: GNUstep base
-Summary(nl): GNUstep base
+Summary: GNUstep base library package
 Name: gnustep-base
+Version: 1.9.1
+Release: 1
 License: GPL
-Version: 1.8.0
-Release: 4
 Group: Development/Libraries
 URL: http://www.gnustep.org/
 
-Source0: ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-base-%{version}.tar.gz
+Source: http://ftp.gnustep.org/pub/gnustep/core/gnustep-base-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh, diffutils, openssl-devel, gcc-objc, ffcall-devel, gnustep-make
+BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh, diffutils, openssl-devel, gcc-objc, ffcall, gnustep-make
 Requires: ffcall
 
 %description
@@ -31,38 +27,33 @@ and event loops.
 %setup
 
 %build
-rm -f config.cache
-. /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
-./configure
+source /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
+%configure \
+	--prefix="%{_prefix}/GNUstep"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
-mkdir -p ${RPM_BUILD_ROOT}
-make install \
+source /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
+#%{__install} -d -m0755 %{buildroot}
+%makeinstall \
 	INSTALL_ROOT_DIR="%{buildroot}" \
-	GNUSTEP_INSTALLATION_DIR="%{buildroot}/usr/GNUstep/"
-chmod -s-t ${RPM_BUILD_ROOT}/usr/GNUstep/Tools/gdomap
+	GNUSTEP_INSTALLATION_DIR="%{buildroot}%{_prefix}/GNUstep"
+chmod -s-t %{buildroot}%{_prefix}/GNUstep/Tools/gdomap
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
-/usr/GNUstep/Library/DTDs/*
-/usr/GNUstep/Library/DocTemplates/*
-/usr/GNUstep/Library/Documentation/*
-/usr/GNUstep/Library/Headers/*
-/usr/GNUstep/Library/Libraries/*
-/usr/GNUstep/System/Library/Makefiles/Additional/base.make
-/usr/GNUstep/Tools/*
-/usr/GNUstep/Library/Bundles/SSL.bundle/Resources/Info-gnustep.plist
-/usr/GNUstep/Library/Bundles/SSL.bundle/SSL
-/usr/GNUstep/Library/Bundles/SSL.bundle/stamp.make
+%defattr(-, root, root, 0755)
+%{_prefix}/GNUstep/
 
 %changelog
-* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0.4
+* Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 1.9.1-1
+- Updated to release 1.9.1.
+- Cosmetic cleanup.
+
+* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-4
 - added some BuildRequires
 - removed the setuid of gdomap
 

@@ -1,17 +1,15 @@
 # $Id$
 # Authority: dries
 
-%define real_version 1.8d
-
 Summary: Foreign function call libraries
 Name: ffcall
-Version: 1.8
-Release: 5.d
+Version: 1.9
+Release: 1
 License: GPL
 Group: Development/Libraries
-URL: ftp://ftp.gnustep.org/
+URL: http://www.gnustep.org/
 
-Source: ftp://ftp.gnustep.org/pub/gnustep/libs/ffcall-%{real_version}.tar.gz
+Source: http://ftp.gnustep.org/pub/gnustep/libs/ffcall-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -34,7 +32,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n ffcall-%{real_version}
+%setup
 
 %build
 %configure \
@@ -52,7 +50,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README NEWS
+%doc COPYING README NEWS
 %{_libdir}/*.so.*
 
 %files devel
@@ -66,6 +64,9 @@ you will need to install %{name}-devel.
 %exclude %{_datadir}/html/
 
 %changelog
+* Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.8-5.d
 - Cosmetic cleanup.
 
