@@ -135,8 +135,11 @@ EOF
 # URL: http://dries.studentenweb.org/apt/
 
 ### Fedora Core
-%{!?fc2:#}rpm http://dries.studentenweb.org apt/fedora/fc2/i386 dries
-%{!?fc1:#}rpm http://dries.studentenweb.org apt/fedora/fc1/i386 dries
+%{!?fc2:#}rpm http://apt.sw.be dries/fedora/fc2/i386 dries
+%{!?fc1:#}rpm http://apt.sw.be dries/fedora/fc1/i386 dries
+
+### Red Hat Enterprise Linux
+%{!?el3:#}rpm http://apt.sw.be dries/redhat/el3/en/i386 dries
 EOF
 
 %{__cat} <<EOF >atrpms.list
