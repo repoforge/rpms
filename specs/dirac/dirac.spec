@@ -2,11 +2,9 @@
 # Authority: dries
 # Upstream: <dirac-develop@lists.sf.net>
 
-%define real_name Dirac
-
 Summary: General-purpose video codec
 Name: dirac
-Version: 0.2.0
+Version: 0.3.0
 Release: 1
 License: MPL 1.1
 Group: System Environment/Libraries
@@ -15,7 +13,9 @@ URL: http://sf.net/projects/dirac
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/dirac/Dirac-%{version}.tar.gz
+# Dirac 0.3.0 isn't available yet on all the sourceforge mirrors
+Source: http://heanet.dl.sourceforge.net/sourceforge/dirac/dirac-%{version}.tar.gz
+#Source: http://dl.sf.net/dirac/dirac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, xparam, doxygen, tetex-latex
@@ -37,7 +37,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup
 
 %build
 %configure
@@ -64,18 +64,19 @@ you will need to install %{name}-devel.
 #%doc %{_mandir}/man?/*
 %{_bindir}/*
 #%{_libdir}/*.so.*
-#%{_datadir}/pixmaps/*.png
-#%{_datadir}/applications/*.desktop
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc rpm-doc/*
-%{_includedir}/Dirac/
+%{_includedir}/dirac/
 %{_libdir}/*.a
 #%exclude %{_libdir}/*.la
 #%{_libdir}/*.so
 
 %changelog
+* Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.3.0
+- Updated to release 0.3.0.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.2.0
 - Updated to release 0.2.0.
 
