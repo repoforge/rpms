@@ -1,4 +1,4 @@
-# $Id: xmule.spec,v 1.2 2004/03/01 19:40:06 thias Exp $
+# $Id$
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
