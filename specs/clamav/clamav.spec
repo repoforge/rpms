@@ -198,8 +198,8 @@ ZONES="/usr/share/zoneinfo/zone.tab"
 CONFIG="/etc/sysconfig/clock"
 
 if [ -r "$CONFIG" -a -r "$ZONES" ]; then
-	source $CONFIG
-	CODE="$(grep -E "\b$ZONE\b" "$ZONES" | cut -f1 | head -1 | tr [A-Z] [a-z] )"
+	source "$CONFIG"
+	CODE="$(grep -E "\b$ZONE\b" "$ZONES" | head -1 | cut -f1 | tr [A-Z] [a-z])"
 fi
 
 if [ -z "$CODE" ]; then
