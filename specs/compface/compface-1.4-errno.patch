@@ -1,0 +1,22 @@
+diff -Naupr compface-1.4.orig/cmain.c compface-1.4/cmain.c
+--- compface-1.4.orig/cmain.c	2000-11-23 01:51:03.000000000 +0100
++++ compface-1.4/cmain.c	2004-05-11 11:09:17.165276536 +0200
+@@ -21,6 +21,7 @@
+ 
+ #ifdef	STDC_HEADERS
+ #include <stdlib.h>
++#include <errno.h>
+ #else	/* Not STDC_HEADERS */
+ extern void exit ();
+ extern char *malloc ();
+diff -Naupr compface-1.4.orig/uncmain.c compface-1.4/uncmain.c
+--- compface-1.4.orig/uncmain.c	2000-11-23 01:51:24.000000000 +0100
++++ compface-1.4/uncmain.c	2004-05-11 11:09:39.804834800 +0200
+@@ -25,6 +25,7 @@
+ 
+ #ifdef	STDC_HEADERS
+ #include <stdlib.h>
++#include <errno.h>
+ #else	/* Not STDC_HEADERS */
+ extern void exit ();
+ extern char *malloc ();

@@ -4,13 +4,13 @@
 #define prever         pre3
 %define desktop_vendor freshrpms
 
-Summary: powerful audio editor
+Summary: Powerful audio editor
 Name: audacity
-Version: 1.2.0
-Release: %{?prever:0.%{prever}.}2
+Version: 1.2.1
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
-Source: http://dl.sf.net/audacity/%{name}-src-%{version}%{?prever:-%{prever}}.tar.gz
+Source: http://dl.sf.net/audacity/audacity-src-%{version}%{?prever:-%{prever}}.tar.bz2
 URL: http://audacity.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK >= 2.4.0, libogg, libvorbis
@@ -28,8 +28,10 @@ editor, a customizable spectrogram mode and a frequency analysis window for
 audio analysis applications. Built-in effects include Bass Boost, Wahwah,
 and Noise Removal, and it also supports VST plug-in effects. 
 
+
 %prep
-%setup -n %{name}-src-%{version}%{?prever:-%{prever}}
+%setup -n audacity-src-%{version}%{?prever:-%{prever}}
+
 
 %build
 %configure \
@@ -38,13 +40,15 @@ and Noise Removal, and it also supports VST plug-in effects.
     --without-portmixer
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
+
 # Create a desktop entry
-cat << EOF > %{name}.desktop
+%{__cat} << EOF > %{name}.desktop
 [Desktop Entry]
 Name=Audacity Audio Editor
 Comment=Audio editor to record, play sounds and import, export files
@@ -55,7 +59,7 @@ Type=Application
 EOF
 
 # Complete the modifications
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     --add-category X-Red-Hat-Extra              \
@@ -82,16 +86,19 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_mandir}/man1/*
 
 %changelog
-* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2.fr
+* Mon May 10 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-1
+- Update to 1.2.1.
+
+* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2
 - Recompile with ALSA support (should be near stable now).
 
-* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-1.fr
+* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-1
 - Update to 1.2.0 final.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.2.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.2
 - Rebuild against gtk+ wxGTK to fix crashes with the gtk2 version.
 
-* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.1.fr
+* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.1
 - Update to 1.2.0pre3.
 - Added find_lang macro.
 - Updated the menu entry.

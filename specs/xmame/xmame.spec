@@ -6,7 +6,7 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.81.1
+Version: 0.82.1
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
@@ -16,11 +16,11 @@ Source12: http://www.mame.net/roms/gridlee.zip
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 8.3 - 09/04/2004
 Source21: http://www.mameworld.net/highscore/uhsdat83.zip
-# http://www.arcade-history.com/ 0.81g - 28/04/2004
-Source22: http://www.arcade-history.com/download/history0_81g.zip
-# http://www.mameworld.net/mameinfo/ 0.81u7a - 24/04/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo081u7a.zip
-# http://www.mameworld.net/catlist/ 0.81u9 - 01/05/2004
+# http://www.arcade-history.com/ 0.82b - 12/05/2004
+Source22: http://www.arcade-history.com/download/history0_82b.zip
+# http://www.mameworld.net/mameinfo/ 0.82 - 16/05/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo082.zip
+# http://www.mameworld.net/catlist/ 0.82 - 16/05/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -372,6 +372,9 @@ unzip -o %{SOURCE30}
 
 
 %changelog
+* Sun May 16 2004 Matthias Saou <http://freshrpms.net/> 0.82.1-1
+- Update to 0.82.1, with the usual related files too.
+
 * Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 0.81.1-1
 - Update to 0.81.1, with the usual related files too.
 - Added arts support by default.

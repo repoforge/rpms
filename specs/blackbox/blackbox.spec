@@ -38,19 +38,17 @@ export LANG="en_US" LC_ALL="en_US"
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-mkdir -p %{buildroot}%{_datadir}/apps/switchdesk
-cat > %{buildroot}%{_datadir}/apps/switchdesk/Xclients.%{name} << EOF
-#!/bin/sh
-exec %{_bindir}/%{name}
-EOF
-mkdir -p %{buildroot}/etc/X11/gdm/Sessions
-cat > %{buildroot}/etc/X11/gdm/Sessions/Blackbox << EOF
+
+# Install GDM session filee
+%{__mkdir_p} %{buildroot}/etc/X11/gdm/Sessions
+%{__cat} > %{buildroot}/etc/X11/gdm/Sessions/Blackbox << EOF
 #!/bin/sh
 exec /etc/X11/xdm/Xsession %{name}
 EOF
 
 # Install the desktop entry
-%{__install} -m 644 -D %{SOURCE1} %{buildroot}%{_datadir}/xsessions/%{name}.desktop
+%{__install} -m 644 -D %{SOURCE1} \
+    %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 
 
 %clean
@@ -64,11 +62,13 @@ EOF
 %{_bindir}/*
 %{_datadir}/%{name}
 %{_datadir}/xsessions/%{name}.desktop
-%attr(755, root, root) %{_datadir}/apps/switchdesk/Xclients.%{name}
 %{_mandir}/man1/*
 
 
 %changelog
+* Thu May  6 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-8
+- Removed switchdesk file, it doesn't work because of hardcoded stuff.
+
 * Wed Mar 24 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-8
 - Removed explicit XFree86 dependency.
 

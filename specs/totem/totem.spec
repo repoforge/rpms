@@ -6,7 +6,7 @@
 
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
-Version: 0.99.10
+Version: 0.99.11
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -140,6 +140,9 @@ gconftool-2 --makefile-install-rule \
 
 
 %changelog
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 0.99.11-1
+- Update to 0.99.11.
+
 * Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 0.99.10-1
 - Update to 0.99.10, rebuild against GNOME 2.6.
 

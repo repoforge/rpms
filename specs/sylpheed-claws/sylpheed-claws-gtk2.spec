@@ -24,6 +24,7 @@ BuildRequires: flex, desktop-file-utils, pkgconfig, gcc-c++
 %{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.3.10}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{!?_without_ldap:BuildRequires: openldap-devel}
+%{!?_without_compface:BuildRequires: compface-devel}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
 Conflicts: sylpheed
 
@@ -42,7 +43,7 @@ You have been warned ;-)
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : openssl, ipv6, gpgme, ldap, aspell
+--without : openssl, ipv6, gpgme, ldap, aspell, compface
 
 %prep
 %setup -n sylpheed-%{version}claws
@@ -59,6 +60,7 @@ fi
     %{!?_without_gpgme: --enable-gpgme} \
     %{!?_without_aspell: --enable-aspell} \
     %{!?_without_ldap: --enable-ldap} \
+    %{!?_without_compface: --enable-compface} \
     %{?_with_pilot: --enable-jpilot} \
     --enable-trayicon-plugin \
     --enable-spamassassin-plugin
@@ -68,9 +70,9 @@ fi
 %{__rm} -rf %{buildroot}
 %makeinstall gnomedatadir=%{buildroot}%{_datadir}
 #find_lang sylpheed
-strip %{buildroot}%{_libdir}/sylpheed/plugins/*.so
+%{__strip} %{buildroot}%{_libdir}/sylpheed/plugins/*.so
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications                      \
   --add-category X-Red-Hat-Extra                                  \
@@ -80,8 +82,8 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 # Temp fix...
 test -d %{buildroot}%{_prefix}/sylpheed && \
-    mkdir -p %{buildroot}%{_datadir} && \
-    mv %{buildroot}%{_prefix}/sylpheed %{buildroot}%{_datadir}/sylpheed
+    %{__mkdir_p} %{buildroot}%{_datadir} && \
+    %{__mv} %{buildroot}%{_prefix}/sylpheed %{buildroot}%{_datadir}/sylpheed
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -105,22 +107,25 @@ test -d %{buildroot}%{_prefix}/sylpheed && \
 %{_mandir}/man1/sylpheed.1*
 
 %changelog
-* Mon Feb 23 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.gtk2.fr
+* Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.gtk2
+- Added compface (X-Face) support.
+
+* Mon Feb 23 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.gtk2
 - Fork to the gtk2 branch.
 
-* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.fr
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1
 - Update to 0.9.9claws.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.8-1.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.8-1
 - Update to 0.9.8claws.
 
-* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.9.7-1.fr
+* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.9.7-1
 - Update to 0.9.7claws.
 
-* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-3.fr
+* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-3
 - Re-enabled aspell support by default.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-2.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-2
 - Rebuild for Fedora Core 1.
 
 * Fri Oct  3 2003 Matthias Saou <http://freshrpms.net/>

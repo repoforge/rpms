@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define prever rc4
+#define prever rc4
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
@@ -16,21 +16,25 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm
 %endif
 Provides: lib%{name} = %{version}-%{release}
-Provides: lib%{name}-devel = %{version}-%{release}
-Provides: %{name}-devel = %{version}-%{release}
 
 %description
 Free reimplementation of the OpenDivX video codec. You can play OpenDivX
 and DivX4 videos with it, as well as encode compatible files.
 
 
-%package static
-Summary: Static library and API documentation of the XviD video codec
+%package devel
+Summary: Static library, headers and documentation of the XviD video codec
 Group: Development/Libraries
 Requires: %{name} = %{version}
+Provides: lib%{name}-devel = %{version}-%{release}
+Obsoletes: xvidcore-static <= 1.0.0
 
-%description static
-Static library and API documentation of the XviD video codec.
+%description devel
+Free reimplementation of the OpenDivX video codec. You can play OpenDivX
+and DivX4 videos with it, as well as encode compatible files.
+
+This package contains the static library, header files and API documentation
+needed to build applications that will use the XviD video codec.
 
 
 %prep
@@ -71,17 +75,23 @@ popd
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE README TODO
-%{_includedir}/*
-%{_libdir}/*.so*
+%{_libdir}/*.so.*
 
 
-%files static
+%files devel
 %defattr(-, root, root, 0755)
 %doc CodingStyle doc/* examples
+%{_includedir}/*
 %{_libdir}/*.a
+%{_libdir}/*.so
 
 
 %changelog
+* Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-1
+- Update to 1.0.0 final.
+- Change the -static sub-package to -devel.
+- Updated descriptions.
+
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc4.1
 - Update to 1.0.0-rc4.
 

@@ -12,10 +12,8 @@ Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://libdv.sf.net/
-
 Source: http://dl.sf.net/libdv/libdv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gtk+-devel >= 1.2.4, pkgconfig >= 0.9.0
 # libtool, *sigh*
 BuildRequires: gcc-c++
@@ -30,7 +28,7 @@ according to the official standards for DV video: IEC 61834 and SMPTE 314M.
 %package tools
 Summary: Basic tools to manipulate Digital Video streams
 Group: Applications/Multimedia
-Requires: libdv = %{version}-%{release}
+Requires: libdv = %{version}
 
 %description tools
 This package contains some basic programs to display and encode

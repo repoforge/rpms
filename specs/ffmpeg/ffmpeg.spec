@@ -11,26 +11,23 @@ Release: 2%{?date:.%{sqdate}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sf.net/
-
 %if %{?date:0}%{!?date:1}
 Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}.tar.gz
 %else
 Source: http://ffmpeg.sourceforge.net/cvs/%{name}-cvs-%{date}.tar.gz
 %endif
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: imlib2, SDL, freetype, zlib
+%{!?_without_lame:Requires: lame}
+%{!?_without_vorbis:Requires: libogg, libvorbis}
+%{!?_without_faad:Requires: faad2}
+%{!?_without_faac:Requires: faac}
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
-
-Requires: imlib2, SDL, freetype, zlib
-%{!?_without_lame:Requires: lame}
-%{!?_without_vorbis:Requires: libogg, libvorbis}
-%{!?_without_faad:Requires: faad2}
-%{!?_without_faac:Requires: faac}
 Provides: libavcodec.so, libavformat.so
 
 %description
@@ -88,11 +85,11 @@ Install this package if you want to compile apps with ffmpeg support.
 %makeinstall
 
 # Make installlib is broken in 0.4.6-8, so we do it by hand
-%{__install} -m0644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/
-%{__install} -m0644 libavformat/libavformat.a %{buildroot}%{_libdir}/
+%{__install} -m 644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/
+%{__install} -m 644 libavformat/libavformat.a %{buildroot}%{_libdir}/
 
 # Create compat symlink
-%{__install} -d -m0755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/
+%{__install} -d -m 755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/
 %{__ln_s} -f ../libavcodec.a %{buildroot}%{_libdir}/libavcodec/libavcodec.a
 %{__ln_s} -f ../libavformat.a %{buildroot}%{_libdir}/libavformat/libavformat.a
 
@@ -126,12 +123,12 @@ Install this package if you want to compile apps with ffmpeg support.
 
 
 %changelog
-* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.4.8-2.fr
+* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.4.8-2
 - Add faac support.
 - Enable pp.
 - Remove unneeded explicit main a52dec dependency.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.4.8-1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.4.8-1
 - Update to 0.4.8.
 - Steal some changes back from Troy Engel : Disabling mmx to make the build
   succeed and added man pages.

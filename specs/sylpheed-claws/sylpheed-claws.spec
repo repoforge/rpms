@@ -23,6 +23,7 @@ BuildRequires: flex, desktop-file-utils, pkgconfig, gcc-c++
 %{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.3.10}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{!?_without_ldap:BuildRequires: openldap-devel}
+%{!?_without_compface:BuildRequires: compface-devel}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
 Conflicts: sylpheed
 
@@ -41,10 +42,12 @@ You have been warned ;-)
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : openssl, ipv6, gpgme, ldap, aspell
+--without : openssl, ipv6, gpgme, ldap, aspell, compface
+
 
 %prep
 %setup -q -n sylpheed-%{version}claws
+
 
 %build
 if pkg-config openssl; then
@@ -58,18 +61,20 @@ fi
     %{!?_without_gpgme: --enable-gpgme} \
     %{!?_without_aspell: --enable-aspell} \
     %{!?_without_ldap: --enable-ldap} \
+    %{!?_without_compface: --enable-compface} \
     %{?_with_pilot: --enable-jpilot} \
     --enable-trayicon-plugin \
     --enable-spamassassin-plugin
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
+
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall gnomedatadir=%{buildroot}%{_datadir}
 %find_lang sylpheed
-strip %{buildroot}%{_libdir}/sylpheed/plugins/*.so
+%{__strip} %{buildroot}%{_libdir}/sylpheed/plugins/*.so
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications                      \
   --add-category X-Red-Hat-Extra                                  \
@@ -77,8 +82,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --add-category Network                                          \
   %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
 
+
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
+
 
 %files -f sylpheed.lang
 %defattr(-, root, root)
@@ -97,23 +104,27 @@ rm -rf %{buildroot}
 %{_datadir}/sylpheed
 %{_mandir}/man1/sylpheed.1*
 
+
 %changelog
+* Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
+- Added compface (X-Face) support.
+
 * Mon Mar  8 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
 - Update to 0.9.10claws.
 
-* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.fr
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1
 - Update to 0.9.9claws.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.8-1.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.8-1
 - Update to 0.9.8claws.
 
-* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.9.7-1.fr
+* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.9.7-1
 - Update to 0.9.7claws.
 
-* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-3.fr
+* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-3
 - Re-enabled aspell support by default.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-2.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-2
 - Rebuild for Fedora Core 1.
 
 * Fri Oct  3 2003 Matthias Saou <http://freshrpms.net/>

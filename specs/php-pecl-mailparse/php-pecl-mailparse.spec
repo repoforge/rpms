@@ -5,7 +5,7 @@
 Summary: RECL package for parsing and working with email messages
 Name: php-pecl-mailparse
 Version: 2.0b
-Release: 1
+Release: 2
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/mailparse
@@ -27,16 +27,26 @@ It can deal with rfc822 and rfc2045 (MIME) compliant messages.
 
 
 %build
-mkdir -p ext/mbstring/libmbfl/
-mv mbfl-* ext/mbstring/libmbfl/mbfl
+%{__mkdir_p} ext/mbstring/libmbfl/
+%{__mv} mbfl-* ext/mbstring/libmbfl/mbfl
 phpize
 %configure
-make
+%{__make}
 
 
 %install
 %{__rm} -rf %{buildroot}
-make install INSTALL_ROOT=%{buildroot}
+%{__make} install INSTALL_ROOT=%{buildroot}
+
+# Drop in the bit of configuration
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/php.d
+%{__cat} > %{buildroot}%{_sysconfdir}/php.d/mailparse.ini << 'EOF'
+; Enable mailparse extension module
+extension=mailparse.so
+
+; Set the default charset
+;mailparse.def_charset = us-ascii
+EOF
 
 
 %clean
@@ -46,10 +56,15 @@ make install INSTALL_ROOT=%{buildroot}
 %files
 %defattr(-, root, root, 0755)
 %doc README try.php
+%config(noreplace) %{_sysconfdir}/php.d/mailparse.ini
 %{php_extdir}/mailparse.so
 
 
 %changelog
+* Fri May  7 2004 Matthias Saou <http://freshrpms.net/> 2.0b-2
+- Added php.d entry to auto-load the module with recent php packages.
+- Added more macros to the spec file.
+
 * Mon Apr 26 2004 Matthias Saou <http://freshrpms.net/> 2.0b-1
 - Initial RPM release.
 - Included part of php-4.3.4's mbfl includes, ugly.

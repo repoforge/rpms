@@ -1,17 +1,18 @@
 # $Id$
 
-%define php_extdir %(php-config --extension-dir)
+%define php_extdir %(php-config --extension-dir || echo /usr/lib/php4)
+%define php_version %(php-config --version || echo foo)
 
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-mmcache
 Version: 2.4.6
-Release: 1
+Release: 3
 License: GPL
 Group: Development/Languages
 URL: http://turck-mmcache.sourceforge.net/
 Source: http://dl.sf.net/turck-mmcache/turck-mmcache-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: php
+Requires: php = %{php_version}
 Provides: php-zend_extension
 BuildRequires: php, php-devel
 # Required by phpize
@@ -48,22 +49,22 @@ phpize
 %{__cat} > %{buildroot}%{_sysconfdir}/php.d/mmcache.ini << 'EOF'
 ; Enable Turck MMCache extension module
 zend_extension = %{php_extdir}/mmcache.so
-
-; Options to the MMCache module
+; Options for the MMCache module
 mmcache.cache_dir = %{_localstatedir}/cache/php-mmcache
-mmcache.shm_size = 8
+mmcache.shm_size = 0
 mmcache.enable = 1
 mmcache.optimizer = 1
-mmcache.check_mtime = 1
 mmcache.debug = 0
+mmcache.check_mtime = 1
 mmcache.filter = ""
 mmcache.shm_max = 0
-mmcache.shm_ttl = 0
+mmcache.shm_ttl = 3600
 mmcache.shm_prune_period = 0
+mmcache.shm_only = 0
+mmcache.compress = 1
 mmcache.keys = shm
 mmcache.sessions = shm
 mmcache.content = shm
-
 EOF
 
 

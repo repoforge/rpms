@@ -7,25 +7,21 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.2
-Release: %{?prever:0.%{prever}.}2
+Release: %{?prever:0.%{prever}.}3
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sf.net/
-
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-%ifarch i386
-%{!?_without_mmx:BuildArch: i586}
-%endif
-
+Requires: gtk+, libdv, libvorbis, libpng, libjpeg
+%{!?_without_firewire:Requires: libraw1394 >= 0.9, libavc1394}
 BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel
 BuildRequires: libpng-devel, libjpeg-devel
 %{!?_without_firewire:BuildRequires: libraw1394-devel >= 0.9, libavc1394-devel}
 # The configure automatically adds MMX stuff it detected
-
-Requires: gtk+, libdv, libvorbis, libpng, libjpeg
-%{!?_without_firewire:Requires: libraw1394 >= 0.9, libavc1394}
+%ifarch i386
+%{!?_without_mmx:BuildArch: i586}
+%endif
 
 %description
 libquicktime is a library for reading and writing quicktime files. It

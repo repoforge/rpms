@@ -3,16 +3,15 @@
 # Upstream: <vlc-devel@videolan.org>
 
 %define desktop_vendor freshrpms
-%define ffmpeg_date    20040103
+%define ffmpeg_date    20040222
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.7.1
-Release: 0.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
-
 Source0: http://download.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://download.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -167,24 +166,27 @@ find  %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
 %find_lang vlc
 # Include the docs below, our way
 %{__rm} -rf installed-docs
-mv %{buildroot}%{_docdir}/vlc installed-docs
+%{__mv} %{buildroot}%{_docdir}/vlc installed-docs
+# So that the icon gets themable
+%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
+%{__cp} -a %{buildroot}%{_datadir}/vlc/vlc48x48.png \
+    %{buildroot}%{_datadir}/pixmaps/vlc.png
 
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=VideoLAN Client
-Comment=%{summary}
-Icon=%{_datadir}/vlc/vlc48x48.png
+Comment=Play DVDs, other various video formats and network streamed videos
+Icon=vlc.png
 Exec=vlc
 Terminal=0
 Type=Application
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category AudioVideo                                       \
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+  --dir %{buildroot}%{_datadir}/applications    \
+  --add-category Application                    \
+  --add-category AudioVideo                     \
   %{name}.desktop
 
 %clean
@@ -198,6 +200,7 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{_bindir}/*vlc
 %{_libdir}/vlc
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%{_datadir}/pixmaps/vlc.png
 %{_datadir}/vlc
 
 %files devel
@@ -209,19 +212,22 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-1
+- Fix the desktop entry's description, make the icon themable.
+
 * Sat May 15 2004 Dag Wieers <dag@wieers.com> - 0.7.1-0.1
 - Updated to release 0.7.1.
 
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.3.fr
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.3
 - Rebuild against new libfame.
 
-* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.1.fr
+* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.1
 - Update to 0.7.0.
 - Bundle ffmpeg to avoid all the hassles of using the shared lib.
 - Move the (now installed) docs to the proper location.
 - Added wxWindows interface, the currently most maintained.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.6.2-0.2.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.6.2-0.2
 - Rebuild for Fedora Core 1.
 
 * Thu Aug 14 2003 Matthias Saou <http://freshrpms.net/>

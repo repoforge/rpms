@@ -3,8 +3,8 @@
 
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo
-Version: 4.07
-Release: 3
+Version: 4.09
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.deater.net/weave/vmwprod/linux_logo/
@@ -15,30 +15,32 @@ BuildRequires: gettext
 %description
 Linux logo creates a colorful penguin logo on the console.
 
+
 %prep
-### This seems to be a bug in the 4.07 release ?
-%setup -n %{name}-4.09
+%setup
+
 
 %build
-# Disabled many logos since they prevent building on FC1 :-(
-#for logo in ./logos/*.logo ./logos/*/*.logo; do
-for logo in ./logos/*.logo; do
+for logo in ./logos/*.logo ./logos/*/*.logo; do
     echo "$logo" >> logo_config
 done
 %{__make} %{?_smp_mflags} C_OPTS="-I./libsysinfo $RPM_OPT_FLAGS"
 
+
 %install
 %{__rm} -rf %{buildroot}
 
-mkdir -p %{buildroot}{%{_bindir},%{_mandir}/man1}
+%{__mkdir_p} %{buildroot}{%{_bindir},%{_mandir}/man1}
 %{__make} install \
     INSTALL_BINPATH=%{buildroot}%{_bindir} \
     INSTALL_MANPATH=%{buildroot}%{_mandir} \
     INSTALLDIR=%{buildroot}%{_datadir}/locale
 %find_lang %{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -46,8 +48,13 @@ mkdir -p %{buildroot}{%{_bindir},%{_mandir}/man1}
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 
+
 %changelog
-* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 4.07-3.fr
+* Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 4.09-1
+- Update to 4.09.
+- Re-enabled all logos, they build fine again.
+
+* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 4.07-3
 - Disabled many of the logos as they prevent building :-(
 - Rebuild for Fedora Core 1.
 

@@ -7,14 +7,14 @@ Version: 0.7.7
 Release: 1
 License: GPL
 Group: Amusements/Games
-Source0: http://download.sourceforge.net/gtetrinet/%{name}-%{version}.tar.bz2
+Source0: http://ftp.gnome.org/pub/GNOME/sources/gtetrinet/0.7/gtetrinet-%{version}.tar.gz
 Source1: tetrinet.txt
 Source2: http://www.mavit.pwp.blueyonder.co.uk/mmr-sounds-1.0.tar.gz
 URL: http://gtetrinet.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnome >= 2.0.0, libgnomeui >= 2.0.0
 BuildRequires: libgnome-devel >= 2.0.0, libgnomeui-devel >= 2.0.0, GConf2-devel
-BuildRequires: gettext
+BuildRequires: gettext, perl(XML::Parser)
 
 %description
 GTetrinet is a client program for the popular Tetrinet game, a multiplayer
@@ -61,7 +61,8 @@ is, check out tetrinet.org)
 %changelog
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 0.7.7-1
 - Update to 0.7.7.
-- Minor spec updates (more macros).
+- Minor spec updates (more macros), added perl(XML::Parser) build dep.
+- Updated download URL (dl.sf.net -> ftp.gnome.org).
 
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.7.5-1
 - Update to 0.7.5.

@@ -10,11 +10,9 @@ Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libsigc.sf.net/
-
 Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-Obsoletes: libsigc++-examples
+Obsoletes: libsigc++-examples <= %{version}
 BuildRequires: gcc-c++, m4
 
 %description
@@ -42,9 +40,11 @@ needed for development with libsigc++.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,11 +52,13 @@ needed for development with libsigc++.
 # Clean up the docs
 find doc -name "Makefile*" | xargs rm -f
 
+
 %post
 /sbin/ldconfig 2>/dev/null
 
 %postun
 /sbin/ldconfig 2>/dev/null
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -76,8 +78,9 @@ find doc -name "Makefile*" | xargs rm -f
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/sigc++*
 
+
 %changelog
-* Thu Nov 12 2003 Matthias Saou <http://freshrpms.net/> 1.2.5-2.fr
+* Thu Nov 12 2003 Matthias Saou <http://freshrpms.net/> 1.2.5-2
 - Rebuild for Fedora Core 1.
 
 * Fri May 16 2003 Matthias Saou <http://freshrpms.net/>

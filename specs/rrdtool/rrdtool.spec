@@ -13,11 +13,9 @@ Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
-
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
 Patch: php-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
 BuildRequires: libpng-devel, zlib-devel
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
@@ -68,8 +66,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 # Build the php4 module, the tmp install is required
 %define rrdtmpdir %{_tmppath}/%{buildsubdir}-tmpinstall
-%{__make} install \
-	DESTDIR="%{rrdtmpdir}"
+%{__make} install DESTDIR="%{rrdtmpdir}"
 pushd contrib/php4
     ./configure \
 	--with-rrdtool="%{rrdtmpdir}%{_prefix}"
@@ -85,39 +82,39 @@ find examples/ -name "*.pl" \
 
 
 %install
-rm -rf %{buildroot}
-make install \
-	DESTDIR="%{buildroot}"
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 # Install the php4 module
-install -m755 -D contrib/php4/modules/rrdtool.so %{buildroot}%{phpextdir}/rrdtool.so
+%{__install} -m 755 -D contrib/php4/modules/rrdtool.so \
+    %{buildroot}%{phpextdir}/rrdtool.so
 # Clean up the examples for inclusion as docs
-rm -rf contrib/php4/examples/CVS
+%{__rm} -rf contrib/php4/examples/CVS
 
 # Put perl files back where they belong
-mkdir -p %{buildroot}%{perl_sitearch}/
-mv %{buildroot}%{_libdir}/perl/* %{buildroot}%{perl_sitearch}/
+%{__mkdir_p} %{buildroot}%{perl_sitearch}/
+%{__mv} %{buildroot}%{_libdir}/perl/* %{buildroot}%{perl_sitearch}/
 
 # We only want .txt and .html files for the main documentation
-mkdir -p doc2/doc
-cp -a doc/*.txt doc/*.html doc2/doc/
+%{__mkdir_p} doc2/doc
+%{__cp} -a doc/*.txt doc/*.html doc2/doc/
 
 # Clean up the examples and contrib
-rm -f examples/Makefile*
-rm -f contrib/Makefile*
+%{__rm} -f examples/Makefile*
+%{__rm} -f contrib/Makefile*
 # This is so rpm doesn't pick up perl module dependencies automatically
 find examples contrib -type f -exec chmod 644 {} \;
 
 # Put man pages back into place...
-mkdir -p %{buildroot}%{_mandir}/
-mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
+%{__mkdir_p} %{buildroot}%{_mandir}/
+%{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
 
 # Clean up the buildroot
-rm -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}
+%{__rm} -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
  
 %files
@@ -155,21 +152,20 @@ rm -rf %{buildroot}
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.0.47-1
 - Updated to release 1.0.47.
 
-- Change the strict dependency on perl to fix problem with the recent
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-2.fr
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-2
 - Change the strict dependency on perl to fix problem with the recent
   update.
 
-* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-1.fr
+* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-1
 - Update to 1.0.46.
 - Use system libpng and zlib instead of bundled ones.
 - Added php-rrdtool sub-package for the php4 module.
 
-* Fri Dec  5 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-4.fr
+* Fri Dec  5 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-4
 - Added epoch to the perl dependency to work with rpm > 4.2.
 - Fixed the %% escaping in the perl dep.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-2.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-2
 - Rebuild for Fedora Core 1.
 
 * Sun Aug  3 2003 Matthias Saou <http://freshrpms.net/>

@@ -8,50 +8,58 @@ Release: 4
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdlperl.org/
-
 Source: ftp://sdlperl.org/SDL_perl/SDL_perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.2.3, SDL_mixer >= 1.0.5, SDL_image >= 1.0.0
 Requires: SDL_net
 Requires: libjpeg, libpng, perl
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
-BuildRequires: libjpeg-devel, libpng-devel, perl, XFree86-Mesa-libGLU
+BuildRequires: libjpeg-devel, libpng-devel, perl, /usr/bin/find
+# This was to pull in missing libs
+#BuildRequires: XFree86-Mesa-libGLU
+BuildRequires: XFree86-devel
 
 %description
 The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
+
 %prep
 %setup -n SDL_perl-%{version}
+
 
 %build
 CFLAGS="%{optflags}" perl Makefile.PL PREFIX=%{buildroot}%{_prefix}
 %{__make} OPTIMIZE="%{optflags}"
 
+
 %install
 %{__rm} -rf %{buildroot}
 eval `perl '-V:installarchlib'`
-mkdir -p %{buildroot}$installarchlib
+%{__mkdir_p} %{buildroot}$installarchlib
 %makeinstall
-%{__rm} -f `find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
+%{__rm} -f `/usr/bin/find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
 
 # Build the file list to include
 find %{buildroot}%{_prefix} -type f -print | \
-    sed "s|^%{buildroot}||g" | \
-    sed "s|3pm$|3pm*|g" > %{name}.list
+    %{__sed} "s|^%{buildroot}||g" | \
+    %{__sed} "s|3pm$|3pm*|g" > %{name}.list
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.list
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGELOG COPYING MANIFEST README TODO
 
+
 %changelog
-* Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 1.20.0-4.fr
+* Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 1.20.0-4
 - Fix the package at last by adding XFree86-Mesa-libGLU build dep, thanks to
   Ian Burrell.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.20.0-3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.20.0-3
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>

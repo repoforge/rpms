@@ -4,15 +4,13 @@
 
 Summary: Recompression utilities for .PNG, .MNG and .ZIP files
 Name: advancecomp
-Version: 1.7
-Release: 2
+Version: 1.10
+Release: 1
 License: GPL
 Group: Applications/Emulators
 URL: http://advancemame.sf.net/
-
 Source: http://dl.sf.net/advancemame/advancecomp-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}root
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel
 
 %description
@@ -21,19 +19,24 @@ The main features are :
 * Recompress ZIP, PNG and MNG files using the Deflate 7-Zip implementation.
 * Recompress MNG files using Delta and Move optimization. 
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -41,8 +44,12 @@ The main features are :
 %{_bindir}/*
 %{_mandir}/man1/*
 
+
 %changelog
-* Mon Nov  3 2003 Matthias Saou <http://freshrpms.net/> 1.7-2.fr
+* Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 1.10-1
+- Update to 1.10.
+
+* Mon Nov  3 2003 Matthias Saou <http://freshrpms.net/> 1.7-2
 - Rebuild for Fedora Core 1.
 - Added missing build dependencies, thanks to mach.
 
@@ -51,3 +58,4 @@ The main features are :
 
 * Thu May 22 2003 Matthias Saou <http://freshrpms.net/>
 - Initial RPM release.
+

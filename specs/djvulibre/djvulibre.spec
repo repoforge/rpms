@@ -3,8 +3,8 @@
 
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
-Version: 3.5.12
-Release: 3
+Version: 3.5.13
+Release: 1
 License: GPL
 Group: Applications/Publishing
 Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
@@ -60,15 +60,20 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYRIGHT COPYING INSTALL NEWS TODO doc
+%doc README COPYRIGHT COPYING NEWS TODO doc
 %{_bindir}/*
 %{_libdir}/*.so*
 %{_libdir}/*/plugins/*.so
 %{_datadir}/djvu
-%{_mandir}/man?/*
+%{_mandir}/man1/*
+%lang(ja) %{_mandir}/ja/man1/*
 
 
 %changelog
+* Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 3.5.13-1
+- Update to 3.5.13.
+- Added new Japanese man pages.
+
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 3.5.12-4
 - Changed the plugin directory for mozilla to %{_libdir}/mozilla,
   as suggested by Matteo Corti.

@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: full-featured GTK+ based fast e-mail client
+Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
 Version: 0.9.10
 Release: 1
@@ -22,6 +22,7 @@ BuildRequires: flex, desktop-file-utils, gcc-c++
 %{!?_without_ssl:BuildRequires: openssl-devel >= 0.9.6}
 %{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.3.10}
 %{!?_without_ldap:BuildRequires: openldap-devel}
+%{!?_without_compface:BuildRequires: compface-devel}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
 
 %description
@@ -36,10 +37,12 @@ accessible with the keyboard.
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : ssl, ipv6, gpgme, ldap
+--without : ssl, ipv6, gpgme, ldap, compface
+
 
 %prep
 %setup
+
 
 %build
 if pkg-config openssl; then
@@ -52,8 +55,10 @@ fi
     %{!?_without_ipv6: --enable-ipv6} \
     %{!?_without_gpgme: --enable-gpgme} \
     %{!?_without_ldap: --enable-ldap} \
+    %{!?_without_compface: --enable-compface} \
     %{?_with_pilot: --enable-jpilot}
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,7 +66,7 @@ fi
 %find_lang %{name}
 %{__install} -D -m644 %{name}-64x64.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications                      \
   --add-category X-Red-Hat-Extra                                  \
@@ -69,8 +74,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --add-category Network                                          \
   %{name}.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f  %{name}.lang
 %defattr(-, root, root, 0755)
@@ -80,17 +87,21 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/%{name}
 
+
 %changelog
-* Sun Feb 29 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1.fr
+* Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
+- Added compface (X-Face) support.
+
+* Sun Feb 29 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
 - Update to 0.9.10.
 
-* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.fr
+* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1
 - Update to 0.9.9.
 
-* Mon Dec 15 2003 Matthias Saou <http://freshrpms.net/> 0.9.8a-1.fr
+* Mon Dec 15 2003 Matthias Saou <http://freshrpms.net/> 0.9.8a-1
 - Update to 0.9.8a.
 
-* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1.fr
+* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1
 - Update to 0.9.8.
 - First rebuild for Fedora Core 1.
 

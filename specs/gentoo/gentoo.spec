@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: graphical file managment program in GTK+ for Linux
+Summary: Graphical file managment program in GTK+ for Linux
 Name: gentoo
 Version: 0.11.51
 Release: 1
@@ -43,7 +43,7 @@ file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 %{__install} -D docs/gentoo.1x %{buildroot}%{_mandir}/man1/gentoo.1
 %{__install} -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Gentoo File Manager
 Comment=%{summary}
@@ -53,12 +53,11 @@ Terminal=false
 Type=Application
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category Utility                                          \
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+  --dir %{buildroot}%{_datadir}/applications    \
+  --add-category Application                    \
+  --add-category Utility                        \
   %{name}.desktop
 
 
