@@ -5,7 +5,7 @@
 Summary: OpenSSH backup xinetd entry
 Name: openssh-xinetd
 Version: 0.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/packages/openssh-xinetd/
@@ -16,6 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 #Source:
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: xinetd
 Requires: xinetd, openssh-server
 
@@ -79,6 +80,9 @@ fi
 %config(noreplace) %{_sysconfdir}/xinetd.d/*
 
 %changelog
+* Tue Dec 28 2004 Dag Wieers <dag@wieers.com> - 0.2-2
+- Change to noarch (Doncho Gunchev)
+
 * Thu Apr 22 2004 Dag Wieers <dag@wieers.com> - 0.2-1
 - Restart xinetd when installed.
 - Added only_from example with multiple arguments.
