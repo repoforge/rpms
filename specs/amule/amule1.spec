@@ -44,10 +44,10 @@ same network.
 
 
 %post
-/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60
+/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60 || :
 
 %preun
-/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name}
+/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
 
 %clean

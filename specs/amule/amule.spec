@@ -45,10 +45,10 @@ same network.
 
 
 %post
-/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60
+/usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60 || :
 
 %preun
-/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name}
+/usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
 
 %clean
@@ -66,6 +66,9 @@ same network.
 
 
 %changelog
+* Fri Jul 30 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc5.1
+- Add "|| :" to alternatives calls to ignore error return codes.
+
 * Wed Jul 21 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc5.1
 - Update to 2.0.0rc5.
 
