@@ -49,7 +49,8 @@ a program which uses the GNU Readline Library.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__sed} -i "s/\/usr\/local\/bin\/perl/\/usr\/bin\/perl/g;" %{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
+%{__sed} -i "s|/usr/local/bin/perl|/usr/bin/perl|g;" \
+	%{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,7 +59,7 @@ a program which uses the GNU Readline Library.
 %defattr(-, root, root, 0755)
 %doc README
 %{_mandir}/man3/*
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
+%exclude %{perl_archlib}/perllocal.pod
 %{perl_vendorarch}/Term/ReadLine/Gnu*
 %{perl_vendorarch}/auto/Term/ReadLine/Gnu/*
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
