@@ -48,10 +48,14 @@ Kvirc is an irc client with the following features:
 %{__rm} -rf %{buildroot}
 %makeinstall \
   applnkdir=%{buildroot}/usr/share/applications \
+  iconapps16datadir=%{buildroot}/usr/share/icons/hicolor/16x16/apps \
   iconapps32datadir=%{buildroot}/usr/share/icons/hicolor/32x32/apps \
   iconapps48datadir=%{buildroot}/usr/share/icons/hicolor/48x48/apps \
+  iconapps64datadir=%{buildroot}/usr/share/icons/hicolor/64x64/apps \
+  iconmime16datadir=%{buildroot}/usr/share/icons/hicolor/16x16/mimetypes \
   iconmime32datadir=%{buildroot}/usr/share/icons/hicolor/32x32/mimetypes \
   iconmime48datadir=%{buildroot}/usr/share/icons/hicolor/48x48/mimetypes \
+  iconmime64datadir=%{buildroot}/usr/share/icons/hicolor/64x64/mimetypes \
   mimelnkdir=%{buildroot}/usr/share/mimelnk/text \
   kdeservicesdir=%{buildroot}/usr/share/services
 echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/applications/kvirc.desktop
