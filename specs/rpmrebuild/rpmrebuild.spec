@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Build new RPM packages from an old installed package
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 # Source: http://dl.sf.net/rpmrebuild/rpmrebuild-%{version}-1.src.rpm
 Source: rpmrebuild.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 Requires: rpm
@@ -147,6 +145,7 @@ this tool is for you.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 /a
 
 %changelog
