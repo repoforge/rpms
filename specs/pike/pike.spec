@@ -28,6 +28,7 @@ BuildRequires: sane-backends-devel, openssl-devel, ffmpeg-devel
 BuildRequires: freetype-devel, libjpeg-devel, libtiff-devel
 BuildRequires: pcre-devel, bzip2-devel, freeglut-devel, gtk2-devel
 BuildRequires: SDL-devel, pkgconfig, gtkglarea2-devel
+BuildRequires: gtkglarea, gtk+, gtk+-devel, SDL_mixer-devel
 %{?fc2:BuildRequires:xorg-x11-Mesa-libGLU,xorg-x11-Mesa-libGL}
 %{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 
@@ -57,7 +58,8 @@ cd src
 ./run_autoconfig
 mkdir ../build; cd ../build
 ${STARTPWD}/src/configure \
-  --prefix=/usr 
+  --prefix=/usr
+  --with-perl 
 %{__make} %{?_smp_mflags}
 %{__make} documentation %{?_smp_mflags}
 
