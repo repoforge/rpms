@@ -22,6 +22,8 @@ stirring up the water.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|' Makefile
+
 
 %build
 %{__make} %{?_smp_mflags}
