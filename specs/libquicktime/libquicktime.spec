@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
-# Upstream: <libquicktime-devel$lists,sf,net>
+# Upstream: <libquicktime-devel$lists,sourceforge,net>
+
+%{?dist: %{expand: %%define %dist 1}}
 
 # We want to explicitely disable MMX for ppc, x86_64 etc.
 %ifnarch %{ix86}
@@ -11,11 +13,11 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 0.9.2
+Version: 0.9.3
 Release: %{?prever:0.%{prever}.}3
 License: GPL
 Group: System Environment/Libraries
-URL: http://libquicktime.sf.net/
+URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 #Patch0: libquicktime-0.9.2-lib64.patch
 #Patch1: libquicktime-0.9.2-64bit-fixes.patch
@@ -65,7 +67,7 @@ programs that need to access quicktime files using libquicktime.
 #%patch0 -p1 -b .lib64
 #%patch1 -p1 -b .64bit-fixes
 %patch0 -p1 -b .lib64
-%patch1 -p1 -b .rtjpeg
+#%patch1 -p1 -b .rtjpeg
 
 %{__perl} -pi.orig -e 's|(OPTIMIZE_CFLAGS)="-O3|$1="%{optflags}|' configure.ac
 
@@ -74,6 +76,7 @@ programs that need to access quicktime files using libquicktime.
 #%{__libtoolize} --force
 #autoreconf --force --install
 %configure \
+    --enable-static \
     %{?_without_mmx:--disable-mmx}
 %{__make} %{?_smp_mflags}
 
@@ -98,6 +101,7 @@ programs that need to access quicktime files using libquicktime.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/lqtplay
+%{_bindir}/lqt_transcode
 %{_bindir}/qt*
 %{_libdir}/*.so.*
 %dir %{_libdir}/libquicktime/
@@ -119,6 +123,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
+- Updated to release 0.9.3.
+
 * Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.9.2-3
 - Fixes for x86_64 from MandrakeCooker.
 
