@@ -1,15 +1,18 @@
 # $Id$
 # Authority: matthias
+# Upstream: <dvd-devel@lists.sourceforge.net>
 
 Summary: DVD menu navigation library
 Name: libdvdnav
-Version: 0.1.9
-Release: 3
+Version: 0.1.10
+Release: 1
 Group: System Environment/Libraries
 License: GPL
 URL: http://dvd.sourceforge.net/
-Source: http://dl.sf.net/dvd/%{name}-%{version}.tar.gz
+
+Source: http://dl.sf.net/dvd/libdvdnav-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: doxygen, m4
 
 %description
@@ -35,7 +38,8 @@ applications which will use libdvdnav.
 
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 
@@ -57,12 +61,17 @@ applications which will use libdvdnav.
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/dvdnav-config
+%{_datadir}/aclocal/dvdnav.m4
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%{_includedir}/dvdnav
+%{_includedir}/dvdnav/
 
 
 %changelog
+* Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 0.1.10-1
+- Added --program-prefix to %%configure.
+- Updated to release 0.1.10.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.1.9-3
 - Rebuild for Fedora Core 2.
 
