@@ -6,7 +6,7 @@
 
 Summary: Image viewer for KDE
 Name: gwenview
-Version: 1.1.2
+Version: 1.1.3
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -29,14 +29,14 @@ images to any size.
 %setup
 
 %build
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
-make install \
+source /etc/profile.d/qt.sh
+%{__make} install \
 	DESTDIR="%{buildroot}"
 
 %files
@@ -57,6 +57,9 @@ make install \
 
 
 %changelog
+* Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> 1.1.3-1
+- update to 1.1.3
+
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 1.1.2-1
 - update to 1.1.2
 
