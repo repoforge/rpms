@@ -121,7 +121,7 @@ to use MPlayer, transcode or other similar programs.
 %patch0 -p1 -b .runtimemsg
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
-%patch10 -p0 -b .fribidi
+%patch10 -p1 -b .fribidi
 
 # Overwrite the system menu entry with ours
 %{__cat} <<EOF > etc/mplayer.desktop
