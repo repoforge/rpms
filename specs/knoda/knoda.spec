@@ -85,9 +85,11 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_libdir}/kde3/libhk*
 %{_datadir}/apps/hk_kdeclasses
 %{_datadir}/apps/knoda
+%{_datadir}/config/magic/hk_classes.magic
 %{_datadir}/services/*.desktop
 %{_datadir}/icons/*/*/apps/*.png
 %{_datadir}/applnk/Office/*.desktop
+%{_datadir}/mimelnk/application/x-hk_classes-sqlite*.desktop
 %{_datadir}/doc/HTML/en/knoda
 
 %files devel
