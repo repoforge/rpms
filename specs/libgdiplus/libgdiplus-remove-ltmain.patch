@@ -1,0 +1,21 @@
+diff -Nru -x '*~' -x '*.o' -x '*.orig' -x '*.rej' libgdiplus-0.9.orig/ltmain.sh libgdiplus-0.9/ltmain.sh
+--- libgdiplus-0.9.orig/ltmain.sh	2004-06-14 16:01:39.000000000 -0400
++++ libgdiplus-0.9/ltmain.sh	2004-06-17 17:30:22.000000000 -0400
+@@ -870,7 +870,7 @@
+     no_install=no
+     objs=
+     non_pic_objects=
+-    prefer_static_libs=yes
++    prefer_static_libs=no
+     preload=no
+     prev=
+     prevarg=
+@@ -902,7 +902,7 @@
+ 	fi
+ 	build_libtool_libs=no
+ 	build_old_libs=yes
+-	prefer_static_libs=yes
++	prefer_static_libs=no
+ 	break
+ 	;;
+       esac

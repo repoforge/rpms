@@ -1,0 +1,11 @@
+--- src/sniffd/autoconfig.c.orig	2005-01-02 11:38:39.036924216 +0100
++++ src/sniffd/autoconfig.c	2005-01-02 11:38:46.653766280 +0100
+@@ -771,7 +771,7 @@
+       }
+       fclose(fh);
+       break;
+-    case DRV_PRISM2:
++    case DRV_PRISM2:;
+       
+ 	
+     }

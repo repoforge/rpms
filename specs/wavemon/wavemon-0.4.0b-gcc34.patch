@@ -1,0 +1,40 @@
+--- conf.c.orig	2005-01-02 11:25:24.541705848 +0100
++++ conf.c	2005-01-02 11:25:43.686795352 +0100
+@@ -410,7 +410,7 @@
+ 									}
+ 									break;
+ 					case t_sep: 	/* gcc -Wall sucks */
+-					case t_func:
++					case t_func:;
+ 				}
+ 			}
+ 		}
+@@ -481,7 +481,7 @@
+ 							break;
+ 				case t_listval: sprintf(rv, "%s", (char *)ci->v);
+ 				case t_sep: break;
+-				case t_func:
++				case t_func:;
+ 			}
+ 			
+ 			add = 1;
+--- /dar/build/wavemon-0.4.0b/conf_scr.c.orig	2005-01-02 11:27:24.060536224 +0100
++++ /dar/build/wavemon-0.4.0b/conf_scr.c	2005-01-02 11:27:37.790448960 +0100
+@@ -63,7 +63,7 @@
+ 			case t_listval:	strncpy(s, (char *)item->v, 32);
+ 							break;
+ 			case t_sep:		/* gcc -Wall sucks */
+-			case t_func:
++			case t_func:;
+ 		}
+ 
+ 		if (!item->unit) {
+@@ -136,7 +136,7 @@
+ 						strncpy((char *)item->v, ll_get(item->list, tmp), 32);
+ 						break;
+ 		case t_sep:		/* gcc -Wall sucks */
+-		case t_func:
++		case t_func:;
+ 	}
+ }	
+ 
