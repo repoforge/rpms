@@ -45,6 +45,7 @@ actual session output.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/sudosh
+%{_bindir}/sudosh-replay
 
 %changelog
 * Mon Nov 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
