@@ -11,7 +11,7 @@
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.2
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
@@ -70,13 +70,13 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 /sbin/ldconfig 2>/dev/null
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
     %{_bindir}/gdk-pixbuf-query-loaders > \
-        %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+        %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders || :
 
 %postun
 /sbin/ldconfig 2>/dev/null
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
     %{_bindir}/gdk-pixbuf-query-loaders > \
-        %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+        %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders || :
 
 
 %files 
@@ -106,6 +106,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.3.2-2
+- Make scriplets never return a failure.
+
 * Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.3.2-1
 - Update to 0.3.2.
 
