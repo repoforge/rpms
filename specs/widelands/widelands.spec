@@ -5,7 +5,7 @@
 
 Summary: Game like Settlers II
 Name: widelands
-Version: b8
+Version: b9
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -72,6 +72,9 @@ export DESTDIR=%{buildroot}
 %{_datadir}/applications/widelands.desktop
 
 %changelog
+* Tue Jan 11 2005 Dries Verachtert <dries@ulyssis.org> b9-1
+- Updated to release b9.
+
 * Fri Nov 26 2004 Dries Verachtert <dries@ulyssis.org> b8-1
 - Update to release b8.
 
