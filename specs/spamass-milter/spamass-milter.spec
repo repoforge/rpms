@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <spamass-milt-list@nongnu.org>
 
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://savannah.nongnu.org/download/spamass-milt/spamass-milter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: spamassassin, sendmail-devel
 Requires: spamassassin, sendmail
@@ -127,10 +126,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/sysconfig/
-%{__install} -m0755 spamass-milter.sysv %{buildroot}%{_initrddir}/spamass-milter
-%{__install} -m0644 spamass-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/spamass-milter
+%{__install} -D -m0755 spamass-milter.sysv %{buildroot}%{_initrddir}/spamass-milter
+%{__install} -D -m0644 spamass-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/spamass-milter
 
 %post
 /sbin/chkconfig --add spamass-milter
