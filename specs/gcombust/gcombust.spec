@@ -52,6 +52,9 @@ hinting which directories and files to use.
 
 
 %changelog
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1:0.1.55-3
+- Rebuild for Fedora Core 2.
+
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1:0.1.55-2
 - Rebuild for Fedora Core 1.
 

@@ -61,7 +61,6 @@ EOF
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
-    --add-category X-Red-Hat-Extra              \
     --add-category Application                  \
     --add-category Game                         \
     %{name}.desktop

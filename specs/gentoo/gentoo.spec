@@ -46,9 +46,9 @@ file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Gentoo File Manager
-Comment=%{summary}
+Comment=Graphical file managment program in GTK+ for Linux
 Icon=%{name}.png
-Exec=%{_bindir}/gentoo
+Exec=gentoo
 Terminal=false
 Type=Application
 EOF

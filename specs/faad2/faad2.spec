@@ -10,9 +10,9 @@ Version: 2.0
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
+URL: http://www.audiocoding.com/
 Source: http://dl.sf.net/faac/%{name}-%{version}%{?prever:-%{prever}}.tar.gz
 Patch: faad2-2.0-Makefile-separator.patch
-URL: http://www.audiocoding.com/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool, gcc-c++, zlib-devel
 BuildRequires: libsndfile-devel >= 1.0.0
@@ -26,7 +26,7 @@ written from scratch.
 %package -n xmms-aac
 Summary: X MultiMedia System input plugin to play AAC files
 Group: Applications/Multimedia
-Requires: %{name} = %{version}-%{release}, xmms, id3lib
+Requires: %{name} = %{version}, xmms, id3lib
 Provides: xmms-%{name} = %{version}-%{release}
 
 %description -n xmms-aac
@@ -38,7 +38,7 @@ AAC files are MPEG2 or MPEG4 files that can be found in MPEG4 audio files
 %package devel
 Summary: Development libraries of the FAAD 2 AAC decoder
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}
 
 %description devel
 FAAD 2 is a LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC decoder, completely
@@ -51,6 +51,7 @@ This package contains development files and documentation for libfaad.
 %setup -n %{name}
 %patch -p1 -b .makefile-separator
 
+
 %build
 sh bootstrap
 %configure \
@@ -59,6 +60,7 @@ sh bootstrap
 #   --with-drm
 %{__make}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
@@ -66,12 +68,17 @@ sh bootstrap
 # Remove this wrong include
 perl -pi -e 's|#include <systems.h>||g' %{buildroot}%{_includedir}/mpeg4ip.h
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -94,21 +101,25 @@ perl -pi -e 's|#include <systems.h>||g' %{buildroot}%{_includedir}/mpeg4ip.h
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
+
 %changelog
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 2.0-1.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.0-2
+- Rebuild for Fedora Core 2.
+
+* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 2.0-1
 - Update to 2.0 final.
 
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.5.rc3.fr
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.5.rc3
 - Added xmms-%{name} provides to the xmms-aac sub-package.
 
-* Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.4.rc3.fr
+* Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.4.rc3
 - Added missing zlib-devel build dependency.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 2.0-0.3.rc3.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 2.0-0.3.rc3
 - Update to 2.0-rc3.
 - Remove systems.h include from mpeg4ip.h.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.0-0.2.rc1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.0-0.2.rc1
 - Rebuild for Fedora Core 1.
 
 * Tue Aug 12 2003 Matthias Saou <http://freshrpms.net/>

@@ -10,8 +10,7 @@ Group: System Environment/Libraries
 Source: http://dl.sf.net/id3lib/id3lib-%{version}.tar.gz
 URL: http://id3lib.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libstdc++
-BuildRequires: gcc-c++, libstdc++-devel, zlib-devel
+BuildRequires: gcc-c++, zlib-devel
 
 %description
 This package provides a software library for manipulating ID3v1 and ID3v2 tags.
@@ -36,24 +35,30 @@ tag manipulation.
 %prep
 %setup
 
+
 %build
-%configure --enable-debug=no
+%configure --enable-debug="no"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
 # Clean docs for inclusion
 %{__rm} -f doc/{Doxyfile*,Makefile*,*.in}
 %{__rm} -rf examples/{Makefile*,.deps/,.libs/}
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -69,11 +74,15 @@ tag manipulation.
 %{_libdir}/*.a
 %{_libdir}/*.so
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.8.3-6.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 3.8.3-7
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.8.3-6
 - Rebuild for Fedora Core 1.
 
-* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 3.8.3-5.fr
+* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 3.8.3-5
 - Also added gcc-c++, libstdc++-devel, zlib-devel deps to the devel package.
 
 * Sat Oct  4 2003 Matthias Saou <http://freshrpms.net/>
