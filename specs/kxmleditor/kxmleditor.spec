@@ -56,7 +56,16 @@ sed -i "s/<UI version=\"3.2\" /<UI version=\"3.3\"/g;" $(find . | egrep "\.ui$")
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
-%{_libdir}/*.so.*
+%{_libdir}/*.so*
+%{_libdir}/libkxmleditorpart.*
+%{_datadir}/applnk/Applications/kxmleditor.desktop
+%{_datadir}/apps/kxmleditor/icons/*/*/actions/*.png
+%{_datadir}/apps/kxmleditor/kxmleditorpartBrowseUI.rc
+%{_datadir}/apps/kxmleditor/kxmleditor*.rc
+%{_datadir}/apps/kxmleditor/pics/*.png
+%{_datadir}/doc/HTML/en/kxmleditor
+%{_datadir}/icons/*/*/apps/kxmleditor.png
+%{_datadir}/services/kxmleditorpart.desktop
 
 %changelog
 * Sun May 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
