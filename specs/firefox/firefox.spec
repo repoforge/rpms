@@ -23,7 +23,7 @@ Source3: bookmarks.html
 Source4: firefox.xpm
 Patch0: firefox-0.9.2-gcc34.patch
 Patch1: firefox-0.9.2-extensions.patch
-Patch2: firefox-0.9.2-extensions2.patch
+Patch2: firefox-0.9.3-uri.patch
 Patch3: mozilla-default-plugin-less-annoying.patch
 Patch4: firefox-0.9.2-nsFormHistory-64bit.patch
 Patch5: mozilla-1.7-psfonts.patch
@@ -47,7 +47,7 @@ compliance, performance and portability.
 %setup -q -n mozilla
 %patch0 -p1 -b .gcc34
 %patch1 -p0 -b .extensions
-%patch2 -p0 -b .extensions2
+%patch2 -p0 -b .uri
 %patch3 -p1 -b .plugin
 %patch4 -b .nsformhistory
 %patch5 -p1 -b .psfonts
@@ -209,7 +209,7 @@ fi
 %endif
 
 ### Clean up buildroot
-find %{buildroot}%{_libdir}/firefox/chrome/ -type d -maxdepth 1 -exec %{__rm} -rf {} \;
+find %{buildroot}%{_libdir}/firefox/chrome/ -type d -maxdepth 1 -exec %{__rmdir} --ignore-fail-on-non-empty {} \; || :
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -242,7 +242,7 @@ fi
 %changelog
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Added upstream psfonts patch from mozilla 1.7.
-- Added another upstream extensions patch.
+- Added upstream file:// URI extensions patch.
 - Re-added xpm icon, small improvements and cleanup.
 
 * Fri Aug  6 2004 Matthias Saou <http://freshrpms.net/> 0.9.3-0
