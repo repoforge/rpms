@@ -1,11 +1,12 @@
 # $Id$
-
 # Authority: dries
+# Screenshot: http://widelands.sourceforge.net/images/screens/build-6/00.jpg
+# ScreenshotURL: http://widelands.sourceforge.net/screenshots.html
 
 Summary: Game like Settlers II
 Name: widelands
-Version: b6
-Release: 2
+Version: b8
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://widelands.sourceforge.net/
@@ -15,12 +16,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://dl.sf.net/widelands/widelands-%{version}-source.tar.bz2
-Source1: http://dl.sf.net/widelands/widelands-%{version}-binary.tar.bz2
+Source1: http://dl.sf.net/widelands/widelands-%{version}-linux.tar.bz2
 BuildRequires: SDL-devel, make, gcc-c++, SDL_image-devel
 Requires: SDL
-
-# Screenshot: http://widelands.sourceforge.net/images/screens/build-6/00.jpg
-# ScreenshotURL: http://widelands.sourceforge.net/screenshots.html
 
 %description
 In Widelands, you are the regent of a small tribe. You start out with
@@ -35,11 +33,11 @@ to rule the world, you will have to train soldiers and fight.
 %setup -b 1 -n widelands
 
 %build
-rm -f widelands
-make
-mv widelands widelands.orig
+%{__rm} -f widelands
+%{__make} %{?_smp_mflags}
+%{__mv} widelands widelands.orig
 (echo "#!/bin/bash";echo "cd /usr/share/widelands";echo "./widelands") > widelands
-chmod +x widelands
+%{__chmod} +x widelands
 
 cat > widelands.desktop <<EOF
 [Desktop Entry]
@@ -54,14 +52,14 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 export DESTDIR=%{buildroot}
-mkdir -p %{buildroot}/usr/share/widelands
-mkdir -p %{buildroot}/usr/bin
-mkdir -p %{buildroot}/usr/share/applications/
+%{__install} -d %{buildroot}%{_datadir}/widelands
+%{__install} -d %{buildroot}%{_bindir}
+%{__install} -d %{buildroot}%{_datadir}/applications
 
-%{__install} -s -m 755 widelands.orig %{buildroot}/usr/share/widelands/widelands
-%{__install} -m 755 widelands %{buildroot}/usr/bin/widelands
-cp -r fonts maps pics tribes worlds %{buildroot}/usr/share/widelands/
-cp widelands.desktop %{buildroot}/usr/share/applications/
+%{__install} -s -m 755 widelands.orig %{buildroot}%{_datadir}/widelands/widelands
+%{__install} -m 755 widelands %{buildroot}%{_bindir}/widelands
+%{__cp} -r fonts maps pics tribes worlds %{buildroot}%{_datadir}/widelands/
+%{__cp} widelands.desktop %{buildroot}%{_datadir}/applications/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -74,6 +72,9 @@ cp widelands.desktop %{buildroot}/usr/share/applications/
 %{_datadir}/applications/widelands.desktop
 
 %changelog
+* Fri Nov 26 2004 Dries Verachtert <dries@ulyssis.org> b8-1
+- Update to release b8.
+
 * Fri Jan 02 2004 Dries Verachtert <dries@ulyssis.org> b6-2
 - added a desktop icon
 
