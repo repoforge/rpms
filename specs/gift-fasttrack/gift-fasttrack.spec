@@ -12,6 +12,9 @@ License: GPL
 Group: Development/Libraries
 URL: http://developer.berlios.de/projects/gift-fasttrack
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 Source: http://download.berlios.de/gift-fasttrack/giFT-FastTrack-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
