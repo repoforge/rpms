@@ -15,7 +15,7 @@ URL: http://glame.sourceforge.net/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): info
 Requires(preun): info
-BuildRequires: libgnomeui-devel, guile-devel, fftw-devel
+BuildRequires: gcc-c++, libgnomeui-devel, guile-devel, fftw-devel
 BuildRequires: audiofile-devel, esound-devel, alsa-lib-devel
 BuildRequires: lame-devel, libmad-devel, libvorbis-devel, ladspa-devel
 
