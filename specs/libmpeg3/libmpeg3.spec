@@ -10,6 +10,9 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
 
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
 Source: http://dl.sf.net/heroines/libmpeg3-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -31,8 +34,10 @@ libmpeg3 currently decodes:
 %setup
 
 %{__perl} -pi.orig -e '
-		s|^USE_MMX = 0|USE_MMX = 1|;
 		s| /usr/bin$| \$(DESTDIR)\$(bindir)|;
+%ifarch %{ix86}
+		s|^(USE_MMX) = 0|$1 = 1|;|';
+%endif
 	' Makefile
 
 %build
@@ -40,11 +45,13 @@ libmpeg3 currently decodes:
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-		%{buildroot}%{_includedir}
-%{__install} -m0755 i686/mpeg3dump i686/mpeg3cat i686/mpeg3toc %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -m0755 */mpeg3dump */mpeg3cat */mpeg3toc %{buildroot}%{_bindir}
+
+%{__install} -d -m0755 %{buildroot}%{_includedir}
 %{__install} -m0644 libmpeg3.h mpeg3private.h mpeg3protos.h %{buildroot}%{_includedir}
-%{__install} -D -m0755 i686/libmpeg3.a %{buildroot}%{_libdir}/libmpeg3.a
+
+%{__install} -D -m0755 */libmpeg3.a %{buildroot}%{_libdir}/libmpeg3.a
 
 %post
 /sbin/ldconfig 2>/dev/null
