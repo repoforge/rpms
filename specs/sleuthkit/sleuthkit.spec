@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Brian Carrier <carrier@sleuthkit.org>
 
 Summary: Open Source forensic toolkit
 Name: sleuthkit
-Version: 1.68
+Version: 1.69
 Release: 1
 License: GPL/IBM
 Group: Applications/Internet
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/sleuthkit/sleuthkit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 The Sleuth Kit is a collection of UNIX-based command line file system
@@ -63,6 +61,9 @@ cd src/file
 #%{_datadir}/sleuthkit/
 
 %changelog
+* Sun May 30 2004 Dag Wieers <dag@wieers.com> - 1.69-1
+- Updated to release 1.69.
+
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 1.68-1
 - Updated to release 1.68.
 
