@@ -34,7 +34,6 @@ between songs and a gap-killer.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall libdir="%{buildroot}/%{xmms_outputdir}"
-strip %{buildroot}/%{xmms_outputdir}/*.so
 
 
 %clean
@@ -49,7 +48,11 @@ strip %{buildroot}/%{xmms_outputdir}/*.so
 
 
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.4-2.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.3.4-3
+- Rebuild for Fedora Core 2.
+- Removed explicit stripping, that's for the debuginfo package now.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.4-2
 - Rebuild for Fedora Core 1.
 
 * Wed Oct  8 2003 Matthias Saou <http://freshrpms.net/>

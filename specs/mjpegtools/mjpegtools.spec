@@ -3,26 +3,28 @@
 # Upstream: Gernot Ziegler <gz@lysator.liu.se>
 # Upstream: <mjpeg-developer@lists.sf.net>
 
+%define jpegmmx_version 0.1.5
+
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
+Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
+Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL, libjpeg, libpng, gtk+
-Requires: libquicktime
-%{?_with_avifile:Requires: avifile}
-%{?_with_dv:Requires: libdv}
+Requires: libquicktime, libdv
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk+-devel
-BuildRequires: libquicktime-devel
-%{?_with_avifile:BuildRequires: avifile-devel}
-%{?_with_dv:BuildRequires: libdv-devel < 0.99}
-#%{!?_with_dv:BuildConflicts: libdv-devel}
-%{?_with_cmov:BuildArch: i686}
+BuildRequires: libquicktime-devel, libdv-devel
+# Some other -devel package surely forgot this as a dependency
+BuildRequires: alsa-lib-devel
 %ifarch %{ix86}
+# Optimisations are automatically turned on when detected
+# as we build on i686, this will be an i686 only package
+BuildArch: i686
 BuildRequires: nasm
 %endif
 
@@ -34,9 +36,6 @@ be done with zoran-based MJPEG-boards (LML33, Iomega Buz, Pinnacle
 DC10(+), Marvel G200/G400), these can also playback video using the
 hardware. With the rest of the tools, this video can be edited and
 encoded into mpeg1/2 or divx video.
-
-Available rpmbuild rebuild options :
---with : avifile dv cmov
 
 
 %package devel
@@ -51,14 +50,22 @@ of the mjpegtools package.
 
 
 %prep
-%setup
+%setup -a 1
 
 
 %build
+%ifarch %{ix86}
+pushd jpeg-mmx-%{jpegmmx_version}
+    ./configure && %{__make}
+popd
+%endif
+# ### FIXME Stripping of libmjpegutils.a fails (hence --disable-static)
 %configure \
     --enable-shared \
     --disable-static \
-    %{?_with_cmov:--enable-cmov-extension} \
+%ifarch %{ix86}
+    --with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}" \
+%endif
     --with-quicktime
 %{__make}
 
@@ -80,6 +87,7 @@ of the mjpegtools package.
 
 %postun
 /sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -114,6 +122,13 @@ of the mjpegtools package.
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-3
+- Rebuild for Fedora Core 2.
+- Bundle jpeg-mmx again, seems to be the only way to use it
+  (can't be packaged separately and included sanely).
+- Removed obsolete avifile conditionnal build.
+- Removed no longer working cmov conditional build.
+
 * Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 1.6.2-2
 - Rebuild against libdv 0.102.
 
