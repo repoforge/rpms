@@ -1,0 +1,26 @@
+--- iptraf-2.4.0/src/Makefile.orig	Mon May 21 16:34:14 2001
++++ iptraf-2.4.0/src/Makefile	Mon May 21 16:36:55 2001
+@@ -59,17 +59,21 @@
+ # installation target directory.  The iptraf and rvnamed programs get
+ # stored here.  iptraf also exec's rvnamed from this directory.
+ 
+-TARGET		= /usr/local/bin
++TARGET		= /usr/bin
++RHTARGET       = $(RPM_BUILD_ROOT)/usr/bin
+ 
+ # The IPTraf working directory; if you change this.  Starting with this
+ # version, this definition overrides dirs.h.
+ 
+-WORKDIR		= /var/local/iptraf
++WORKDIR		= /var/iptraf
++RHWORKDIR  = $(RPM_BUILD_ROOT)/var/iptraf
+ 
+ # The IPTraf log file directory.  IPTraf log files are placed here.
+ # This definition overrides dirs.h
+ 
+ LOGDIR		= /var/log/iptraf
++RHLOGDIR = $(RPM_BUILD_ROOT)/var/log/iptraf
++RHMANDIR = $(RPM_BUILD_ROOT)$(_mandir)/man8
+ 
+ #
+ # IPTraf lock file directory.  This is /var/run/iptraf/ and will not

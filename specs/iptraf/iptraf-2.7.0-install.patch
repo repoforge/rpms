@@ -1,0 +1,60 @@
+--- iptraf-2.7.0/src/install.sh.instl	Wed Apr 24 13:39:27 2002
++++ iptraf-2.7.0/src/install.sh	Fri Jun 21 11:23:30 2002
+@@ -21,9 +21,9 @@
+ echo "*** Installing executable programs and preparing work directories"
+ echo
+ echo ">>> Installing iptraf in $TARGET"
+-$INSTALL -m 0700 -o root -g root -s iptraf $TARGET
++$INSTALL -m 0700 -s iptraf $TARGET
+ echo ">>> Installing rvnamed in $TARGET"
+-$INSTALL -m 0700 -o root -g root -s rvnamed $TARGET
++$INSTALL -m 0700 -s rvnamed $TARGET
+ 
+ if [ ! -d $WORKDIR ]; then
+     echo ">>> Creating IPTraf work directory $WORKDIR"
+@@ -32,21 +32,21 @@
+     echo "*** Clearing non-TCP filter data file"
+     rm -f $WORKDIR/othfilter.dat
+ fi
+-$INSTALL -m 0700 -o root -g root -d $WORKDIR
++$INSTALL -m 0700 -d $WORKDIR
+ 
+ if [ ! -d $LOGDIR ]; then
+     echo ">>> Creating IPTraf log directory $LOGDIR"
+ else
+     echo ">>> IPTraf log directory $LOGDIR already exists"
+ fi
+-$INSTALL -m 0700 -o root -g root -d $LOGDIR
++$INSTALL -m 0700 -d $LOGDIR
+ 
+ if [ ! -d $LOCKDIR ]; then
+     echo ">>> Creating IPTraf lockfile directory $LOCKDIR"
+ else
+    echo ">>> IPTraf lockfile directory $LOCKDIR already exists"
+ fi
+-$INSTALL -m 0700 -o root -g root -d $LOCKDIR
++$INSTALL -m 0700 -d $LOCKDIR
+ 
+ echo
+ echo "*** iptraf and rvnamed executables are in $TARGET"
+@@ -58,13 +58,13 @@
+ echo "this version. You can view this file now (will require the 'less'"
+ echo "program in /usr/bin.  Press Q to quit when done)."
+ echo
+-echo -n "Would you like to view the RELEASE-NOTES file now (Y/N)? "; read YESNO
+-
+-if [ "$YESNO" = "y" -o "$YESNO" = "Y" ]; then
+-	less ../RELEASE-NOTES
+-fi
+-
+-clear
++#echo -n "Would you like to view the RELEASE-NOTES file now (Y/N)? "; read YESNO
++#
++#if [ "$YESNO" = "y" -o "$YESNO" = "Y" ]; then
++#	less ../RELEASE-NOTES
++#fi
++#
++#clear
+ echo
+ echo "====================================================================="
+ echo
