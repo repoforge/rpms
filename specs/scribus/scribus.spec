@@ -24,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.0, XFree86-devel, gcc-c++
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, libtiff-devel
+BuildRequires: libart_lgpl-devel, arts-devel, gettext, kdelibs-devel
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
