@@ -94,13 +94,17 @@ Available rpmbuild rebuild options :
     %{!?_without_libfame:--enable-libfame} \
     %{!?_without_magick:--enable-imagemagick} \
     %{!?_without_ffmpeg:--enable-ffbin}
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+    pkgdir="%{_libdir}/transcode" \
+    MOD_PATH="%{_libdir}/transcode"
 
 
 %install
 %{__rm} -rf %{buildroot} _docs
 %makeinstall \
-    docsdir="../_docs/"
+    docsdir="../_docs/" \
+    pkgdir="%{buildroot}%{_libdir}/transcode" \
+    MOD_PATH="%{buildroot}%{_libdir}/transcode"
 
 
 %clean
@@ -119,6 +123,7 @@ Available rpmbuild rebuild options :
 %changelog
 * Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-1
 - Update to 0.6.14 final.
+- Override pkgdir and MOD_PATH to fix lib vs. lib64.
 
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-0.pre1.1
 - Rebuild with mjpegtools (fixed at last) support on FC3.
