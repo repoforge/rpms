@@ -1,10 +1,11 @@
 # $Id$
 
 # Authority: dries
+# Upstream: bugreport@knoda.org
 
 Summary: C++ library for rapid development of database applications
 Name: hk_classes
-Version: 0.6.3
+Version: 0.7
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -15,7 +16,10 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/hk-classes/hk_classes-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, gcc-c++, postgresql-devel, mysql-devel, unixODBC-devel, python, python-devel
+BuildRequires: gcc, make, gcc-c++
+BuildRequires: postgresql-devel, mysql-devel
+BuildRequires: unixODBC-devel, python
+BuildRequires: python-devel, sqlite-devel
 
 %description
 hk_classes is C++ library which allows rapid development of database
@@ -23,7 +27,7 @@ applications with all features a modern database application should have
 like forms an reports. hk_classes is database and GUI independent.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
+%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -31,7 +35,7 @@ like forms an reports. hk_classes is database and GUI independent.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__make} install-strip DESTDIR=$RPM_BUILD_ROOT
+%{__make} install-strip DESTDIR=%{buildroot}
 
 %files
 %defattr(-,root,root,0755)
@@ -45,5 +49,8 @@ like forms an reports. hk_classes is database and GUI independent.
 %{_datadir}/man/man1/hk_*
 
 %changelog
+* Mon Jul 12 2004 Dries Verachtert <dries@ulyssis.org> 0.7-1
+- Update to version 0.7.
+
 * Tue Dec 30 2003 Dries Verachtert <dries@ulyssis.org> 0.6.2a-1
-- first packaging for Fedora Core 1
+- first packaging.
