@@ -34,6 +34,9 @@ export LDFLAGS=-L`pwd`/libdal/.libs
 %install
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %package devel
 Summary: Progsreiserfs development files
 Group: Development/Libraries

@@ -37,6 +37,9 @@ make
 export DESTDIR=$RPM_BUILD_ROOT
 make install
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root)
 %doc readme.txt lgpl.txt

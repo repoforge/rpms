@@ -46,6 +46,9 @@ export DESTDIR=$RPM_BUILD_ROOT
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc README 

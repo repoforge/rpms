@@ -49,6 +49,9 @@ python setup.py build
 cd wxPython
 python setup.py install --root ${RPM_BUILD_ROOT}
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root, 0755)
 %{_libdir}/python*/site-packages/wxPython
