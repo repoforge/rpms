@@ -1,11 +1,11 @@
 # $Id$
 # Authority: matthias
 
-%define skindir %(rpm -ql xine|grep '/skins$')
+%define skindir %(rpm -ql xine | grep '/skins$' || :)
 
-Summary: collection of skins for the Xine video player
+Summary: Collection of skins for the Xine multimedia player
 Name: xine-skins
-Version: 1.7
+Version: 1.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -27,9 +27,13 @@ Source13: http://www.xinehq.de/index.php/force-download/skins/mplayer.tar.gz
 Source14: http://www.xinehq.de/index.php/force-download/skins/KeramicRH8.tar.gz
 Source15: http://www.xinehq.de/index.php/force-download/skins/OMS_legacy.tar.gz
 Source16: http://www.xinehq.de/index.php/force-download/skins/Sunset.tar.gz
+Source17: http://www.xinehq.de/index.php/force-download/skins/blackslim2.tar.gz
+Source18: http://www.xinehq.de/index.php/force-download/skins/caramel.tar.gz
+Source19: http://www.xinehq.de/index.php/force-download/skins/Bambino-Blue.tar.gz
+Source20: http://www.xinehq.de/index.php/force-download/skins/Antares.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xine >= 0.9.22
-BuildRequires: xine >= 0.9.22
+Requires: xine >= 0.99.0
+BuildRequires: xine >= 0.99.0
 BuildArch: noarch
 
 %description
@@ -37,31 +41,40 @@ This package contains a collection of additional skins for the original
 Xine video player frontend. Install this package if you wish to change the
 appeareance of Xine.
 
+
 %prep
-%setup -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16
+%setup -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20
+
 
 %build
 find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
-    -exec rm -rf {} \; || :
+    -exec %{__rm} -rf {} \; || :
+
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{skindir}
-cp -a * %{buildroot}%{skindir}/
+%{__mkdir_p} %{buildroot}%{skindir}
+%{__cp} -a * %{buildroot}%{skindir}/
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
-%defattr(-, root, root, 0755)
+%defattr(0644, root, root, 0755)
 %{skindir}/*
 
+
 %changelog
-* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.7-1.fr
+* Tue Jul  6 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
+- Added blackslim2, caramel, Bambino-Blue (no more, it's big) and Antarès.
+
+* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.7-1
 - Removed cloudy (included in xine-ui).
 - Added Sunset.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.6-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.6-2
 - Rebuild for Fedora Core 1.
 
 * Tue Aug 26 2003 Matthias Saou <http://freshrpms.net/>
