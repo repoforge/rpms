@@ -4,13 +4,13 @@
 
 # Far from finished, not to be released :)
 
-Summary: todo
+Summary: A far from finished attempt of a buildserver in python
 Name: pydar
 Version: 0.001
 Release: 1
 License: GPL
 Group: Development/Tools
-URL: todo
+URL: NoUrlYet
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -19,7 +19,7 @@ Source: pydar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 
 %description
-todo
+Not finished, not to be released!
 
 %prep
 %setup -q pydar
