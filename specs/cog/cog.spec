@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <maxx@daimi.au.dk>
+# Upstream: <maxximum@krakoa.dk>
 
 %define _localstatedir %{_var}/lib
 
