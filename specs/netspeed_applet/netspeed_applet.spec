@@ -2,12 +2,10 @@
 # Authority: dag
 # Upstream: Jörgen Scheibengruber <mfcn@gmx.de>
 
-# Distcc: 0
-
 Summary: GNOME applet that shows traffic on a network device
 Name: netspeed_applet
-Version: 0.9.2
-Release: 0
+Version: 0.10
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://mfcn.ilo.de/netspeed_applet/
@@ -18,10 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.wh-hms.uni-ulm.de/~mfcn/shared/netspeed/netspeed_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, intltool
+BuildRequires: pkgconfig, intltool, scrollkeeper
 BuildRequires: libgnomeui-devel >= 2.0, libgtop2-devel >= 2.0
-BuildRequires: scrollkeeper
-
 Requires(post): scrollkeeper
 
 %description
@@ -40,9 +36,6 @@ specified network device (for example eth0) in kbytes/s.
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
-
 %post
 scrollkeeper-update -q || :
 
@@ -60,8 +53,12 @@ scrollkeeper-update -q || :
 %{_libdir}/bonobo/servers/*
 %{_datadir}/pixmaps/*
 %{_datadir}/omf/netspeed_applet/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Sat Feb 07 2004 Dag Wieers <dag@wieers.com> - 0.9.2-0
 - Updated to release 0.9.2.
 
