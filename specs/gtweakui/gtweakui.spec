@@ -103,6 +103,9 @@ EOF
 
 
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-1
+- Update to 0.4.0.
+
 * Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 0.0.6-3
 - Fixed typo in summary.
 - Rebuild with proper category.

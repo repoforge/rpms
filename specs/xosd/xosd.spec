@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: Tim Wright <tim$ignavus,net>
 
-%define xmms_generaldir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/General)
 
 Summary: Displays transparent text on your screen like the OSD of TVs
 Name: xosd
@@ -37,7 +37,7 @@ display.
 %package -n xmms-xosd
 Summary: XMMS plugin for on-screen display that uses the XOSD library
 Group: Applications/Multimedia
-Requires: %{name} = %{version}, xmms, gtk+, gdk-pixbuf
+Requires: %{name} = %{version}, xmms
 Obsoletes: xosd-xmms <= 2.2.1
 
 %description -n xmms-xosd

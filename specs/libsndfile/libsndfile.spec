@@ -7,8 +7,8 @@ Version: 1.0.10
 Release: 2
 License: LGPL
 Group: System Environment/Libraries
-Source: http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
 URL: http://www.mega-nerd.com/libsndfile/
+Source: http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -21,7 +21,7 @@ through one standard library interface.
 %package devel
 Summary: Header files and development documentation for libsndfile
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}, pkgconfig
+Requires: %{name} = %{version}, pkgconfig
 
 %description devel
 Libsndfile is a C library for reading and writing files containing
@@ -42,8 +42,8 @@ documentation for libsndfile.
 
 
 %install
-%{__rm} -rf %{buildroot} htmldocdir
-%makeinstall htmldocdir="`pwd`/htmldocdir"
+%{__rm} -rf %{buildroot} _docs
+%makeinstall htmldocdir="`pwd`/_docs"
 # Clean up examples for inclusion in docs
 %{__rm} -rf examples/.libs/
 
@@ -66,10 +66,9 @@ documentation for libsndfile.
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
 
-
 %files devel
 %defattr(-, root, root, 0755)
-%doc htmldocdir/* examples/
+%doc _docs/* examples/
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

@@ -3,13 +3,14 @@
 Summary: Flumotion - the Fluendo Streaming Server
 Name: flumotion
 Version: 0.1.1
-Release: 0.3
+Release: 0.4
 Group: Applications/Internet
 License: GPL
 URL: http://www.fluendo.com/
 Source: http://www.fluendo.com/downloads/flumotion-%{version}.tar.bz2
 Patch0: flumotion-0.1.1-overlay.patch
 Patch1: flumotion-0.1.1-firewire.patch
+Patch2: flumotion-0.1.1-double-dv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): openssl
 Requires: python >= 2.3
@@ -33,6 +34,7 @@ Fluendo Streaming Server.
 %setup -q
 %patch0 -p0 -b .overlay
 %patch1 -p0 -b .firewire
+%patch2 -p0 -b .doubledv
 
 
 %build

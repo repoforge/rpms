@@ -11,7 +11,7 @@ License: GPL
 Group: Amusements/Games
 URL: http://cannonsmash.sourceforge.net/
 Source: http://dl.sf.net/cannonsmash/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: Mesa-devel, libjpeg-devel, zlib-devel, gtk2-devel >= 2.0.0
 BuildRequires: SDL-devel >= 1.2.0, SDL_mixer-devel, SDL_image-devel
 BuildRequires: gcc-c++, desktop-file-utils

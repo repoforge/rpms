@@ -7,7 +7,7 @@
 Summary: A TV viewer for GNOME
 Name: zapping
 Version: 0.7.3
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -63,6 +63,13 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{buildroot}%{_datadir}/gnome/apps/Multimedia/%{name}.desktop
 
 
+%post
+scrollkeeper-update
+
+%postun
+scrollkeeper-update
+
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -84,6 +91,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 0.7.3-2
+- Added scrollkeeper-update scriplet calls.
+
 * Wed Oct 13 2004 Matthias Saou <http://freshrpms.net/> 0.7.3-1
 - Update to 0.7.3.
 

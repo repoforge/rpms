@@ -12,7 +12,6 @@ License: GPL
 URL: http://bluefish.openoffice.nl/
 Source: http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/bluefish-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk2 >= 2.0.6, pcre >= 3.9, gnome-vfs2, aspell
 BuildRequires: gtk2-devel >= 2.0.6, pcre-devel >= 3.9, gnome-vfs2-devel
 BuildRequires: aspell-devel, gettext, desktop-file-utils, perl
 

@@ -1,18 +1,22 @@
 # $Id$
 # Authority: matthias
 
-%define xmmsinputdir %(xmms-config --input-plugin-dir)
+%define xmmsinputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 #define prever       rc3
+%define date         15092004
 
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
+%if %{?date:1}0
+Source: http://www.audiocoding.com/snapshot/faad2-%{date}.tar.gz
+%else
 Source: http://dl.sf.net/faac/%{name}-%{version}%{?prever:-%{prever}}.tar.gz
-Patch: faad2-2.0-Makefile-separator.patch
+%endif
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool, gcc-c++, zlib-devel
 BuildRequires: libsndfile-devel >= 1.0.0, libstdc++-devel
@@ -48,13 +52,17 @@ This package contains development files and documentation for libfaad.
 
 
 %prep
+%if %{?date:1}0
+%setup -c %{name}
+%else
 %setup -n %{name}
-%patch -p1 -b .makefile-separator
+%endif
 
 
 %build
 sh bootstrap
 %configure \
+    --disable-static \
     --with-xmms \
     --with-mp4v2
 #   --with-drm
@@ -66,7 +74,8 @@ sh bootstrap
 %{__make} install DESTDIR=%{buildroot}
 
 # Remove this wrong include
-perl -pi -e 's|#include <systems.h>||g' %{buildroot}%{_includedir}/mpeg4ip.h
+%{__perl} -pi -e 's|#include <systems.h>||g' \
+    %{buildroot}%{_includedir}/mpeg4ip.h
 
 
 %clean
@@ -90,19 +99,24 @@ perl -pi -e 's|#include <systems.h>||g' %{buildroot}%{_includedir}/mpeg4ip.h
 %defattr(-, root, root, 0755)
 %doc plugins/xmms/AUTHORS plugins/xmms/NEWS
 %doc plugins/xmms/README plugins/xmms/TODO
-%exclude %{xmmsinputdir}/*.a
+#exclude %{xmmsinputdir}/*.a
 %exclude %{xmmsinputdir}/*.la
 %{xmmsinputdir}/*.so
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*
-%{_libdir}/*.a
+#{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 2.0-2.15092004
+- Update to 15092004 snapshot to fix compilation on FC3.
+- Disable static libs since they fail to be stripped :-( #88417.
+- Remove merged makefile separator patch.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.0-2
 - Rebuild for Fedora Core 2.
 

@@ -14,8 +14,11 @@ Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/imlib2.html
 Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, freetype-devel >= 1.2, zlib-devel
+BuildRequires: XFree86-devel, freetype-devel >= 1.2
+BuildRequires: zlib-devel, bzip2-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel, libtiff-devel
+# The ltdl.h file is required...
+BuildRequires: libtool
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -91,7 +94,11 @@ Header, static libraries and documentation for Imlib2.
 %exclude %{_libdir}/imlib2_loaders/image/*.la
 %{_libdir}/pkgconfig/*.pc
 
+
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 1.1.2-2
+- Added bzip2 support.
+
 * Sat Sep 25 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Updated to release 1.1.2. (Antti Markus)
 

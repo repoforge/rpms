@@ -7,11 +7,12 @@
 Summary: Frozen Bubble arcade game
 Name: frozen-bubble
 Version: 1.0.0
-Release: 6
+Release: 7
 License: GPL
 Group: Amusements/Games
 URL: http://www.frozen-bubble.org/
 Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}.tar.bz2
+Patch: http://www.frozen-bubble.org/perl-SDL.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl-SDL >= 1.19.0, SDL, SDL_mixer >= 1.2.2
 BuildRequires: perl-SDL >= 1.19.0, SDL-devel, SDL_mixer-devel >= 1.2.2
@@ -27,6 +28,7 @@ editor.
 
 %prep
 %setup
+%patch -p0 -b .perlSDL
 
 
 %build
@@ -95,6 +97,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-7
+- Added perl-SDL.patch to fix running against recent releases.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-6
 - Updated the source location.
 - Rebuild for Fedora Core 2.

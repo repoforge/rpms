@@ -64,8 +64,9 @@ Styled text control add-on for wxGTK. Based on the Scintillia project.
 
 %prep
 %setup
+%{__perl} -pi.orig -e 's| /usr/lib| %{_libdir} %{_prefix}/X11R6/%{_lib}|g' \
+    configure
 
-%{__perl} -pi.orig -e 's| /usr/lib| %{_libdir} %{_prefix}/X11R6/%{_lib}|g' configure
 
 %build
 # For the shared libs
@@ -82,6 +83,7 @@ pushd contrib/src
     make -C stc %{?_smp_mflags}
 popd
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
@@ -92,40 +94,46 @@ pushd contrib/src/
     %makeinstall -C stc
 popd
 
+
+%clean
+%{__rm} -rf %{buildroot}
+
+
 %post
 /sbin/ldconfig
+
 %postun
 /sbin/ldconfig
 
 %post gl
 /sbin/ldconfig
+
 %postun gl
 /sbin/ldconfig
 
 %post xrc
 /sbin/ldconfig
+
 %postun xrc
 /sbin/ldconfig
 
 %post stc
 /sbin/ldconfig
+
 %postun stc
 /sbin/ldconfig
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %files -f wxstd.lang
 %defattr(-, root, root, 0755)
 %doc COPYING.LIB *.txt
 %{_libdir}/libwx_gtk-*
-%{_datadir}/wx
+%{_datadir}/wx/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/*-config
-%{_includedir}/wx
-%{_libdir}/wx
+%{_includedir}/wx/
+%{_libdir}/wx/
 %{_datadir}/aclocal/*.m4
 
 %files gl
@@ -139,6 +147,7 @@ popd
 %files stc
 %defattr(-, root, root, 0755)
 %{_libdir}/libwx_gtk_stc-*
+
 
 %changelog
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.4.2-4

@@ -3,8 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc2: %define _freetype_fix 1}
 %{!?dist: %define _freetype_fix 1}
+%{?fc3:   %define _freetype_fix 1}
+%{?fc2:   %define _freetype_fix 1}
 
 Summary: Simple DirectMedia Layer - Sample TrueType Font Library
 Name: SDL_ttf

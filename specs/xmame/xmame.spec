@@ -12,17 +12,17 @@
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.87cvs
-Release: %{?rcver:0.%{rcver}.}2
+Release: %{?rcver:0.%{rcver}.}4
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 0.87 - 25/07/2004
 Source21: http://www.mameworld.net/highscore/uhsdat087.zip
-# http://www.arcade-history.com/ 0.87a - 30/09/2004
-Source22: http://www.arcade-history.com/download/history0_87a.zip
-# http://www.mameworld.net/mameinfo/ 0.87u1 - 30/09/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo087u1.zip
-# http://www.mameworld.net/catlist/ 0.87u1 - 03/10/2004
+# http://www.arcade-history.com/ 0.88a - 28/10/2004
+Source22: http://www.arcade-history.com/download/history0_88a.zip
+# http://www.mameworld.net/mameinfo/ 0.88 - 25/10/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo088.zip
+# http://www.mameworld.net/catlist/ 0.88 - 25/10/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -130,11 +130,13 @@ export JOY_PAD=1
 %ifarch x86_64
     export MY_CPU="amd64"
     %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=k8 -m64 -Wall -fno-merge-constants"}
-    # If you enable X86_ASM_68000, you'll get "Illegal instruction" (0.87)
+    # If you enable X86_ASM_68000, you'll get "Illegal instruction" (0.88)
     #{!?_without_asm68000: export X86_ASM_68000=1}
-    # If you enable X86_MIPS3_DRC, you'll get "Segmentation fault" (0.87)
+    # If you enable X86_MIPS3_DRC, you'll get "Segmentation fault" (0.88)
     #{!?_without_mips3drc: export X86_MIPS3_DRC=1}
-    %{!?_without_effmmx: export EFFECT_MMX_ASM=1}
+    # If you enable EFFECT_MMX_ASM, you'll get "Illegal instruction" for
+    # the 6tap2x effect (0.88)
+    #{!?_without_effmmx: export EFFECT_MMX_ASM=1}
 %endif
 
 # Now, do all the building (this is long!)
@@ -219,12 +221,6 @@ popd
 %{_mandir}/man6/xmame.6*
 %endif
 
-#if %{?_without_SDL:0}%{!?_without_SDL:%{?_without_mame:0}%{!?_without_mame:1}}
-#files SDL
-#attr(2755, root, games) %{_bindir}/xmame.SDL
-#endif
-
-
 %if %{?_without_mess:0}%{!?_without_mess:1}
 %files -n xmess
 %defattr(-, root, root, 0755)
@@ -242,6 +238,11 @@ popd
 
 
 %changelog
+* Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 0.87cvs-3
+- Update all related files for 0.88.
+- This is still versionned 0.87cvs, but it has 0.88 core.
+- Disable EFFECT_MMX_ASM for x86_64, it fails too.
+
 * Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 0.87cvs-2
 - Disable X86_ASM_68000 on x86_64, it bombs out otherwise.
 - Disable X86_MIPS3_DRC on x86_64, it segfaults otherwise.

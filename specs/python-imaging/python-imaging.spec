@@ -2,6 +2,12 @@
 # Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist: %define ft2build 1}
+%{?fc3:   %define ft2build 1}
+%{?fc2:   %define ft2build 1}
+%{?yd4:   %define ft2build 1}
+
 %define pyver %(%{__python} -c 'import sys; print sys.version[:3]' || echo 2.0)
 
 Summary: Python's own image processing library
@@ -37,7 +43,7 @@ internal representation, and powerful image processing capabilities.
 %patch -p1 -b .setup
 %{__perl} -pi -e 's|/usr/local|%{_prefix}|' \
     Setup.in Scripts/*.py libImaging/Makefile.in libImaging/configure
-%{?fc2:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' _imagingft.c}
+%{?ft2build:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' _imagingft.c}
 
 
 %build

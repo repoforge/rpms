@@ -7,10 +7,10 @@ Version: 0.65.0
 Release: 8
 License: GPL
 Group: User Interface/Desktops
+URL: http://blackboxwm.sourceforge.net/
 Source0: http://dl.sf.net/blackboxwm/blackbox-%{version}.tar.gz
 Source1: blackbox.desktop
 Patch: blackbox-0.65.0-assert.patch.txt
-URL: http://blackboxwm.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gcc-c++
 

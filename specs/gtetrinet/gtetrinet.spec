@@ -9,7 +9,7 @@ Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://gtetrinet.sourceforge.net/
-Source0: http://ftp.gnome.org/pub/GNOME/sources/gtetrinet/0.7/gtetrinet-%{version}.tar.gz
+Source0: http://ftp.gnome.org/pub/GNOME/sources/gtetrinet/0.7/gtetrinet-%{version}.tar.bz2
 Source1: tetrinet.txt
 Source2: http://www.mavit.pwp.blueyonder.co.uk/mmr-sounds-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
