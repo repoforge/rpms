@@ -1,9 +1,5 @@
 # $Id$
-
 # Authority: dag
-
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
 
 %define real_name WindowMaker
 
@@ -24,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, libpng-devel, libjpeg-devel, libungif-devel 
 BuildRequires: libtiff-devel, zlib-devel, gettext
 
-Provides: %{real_name}, %{real_name}-libs, windowmanager
-Obsoletes: %{real_name}, %{real_name}-libs
+Provides: WindowMaker, WindowMaker-libs, windowmanager
+Obsoletes: WindowMaker <= %{version}, WindowMaker-libs <= %{version}
 
 %description
 Window Maker is an X11 window manager designed to give additional
@@ -66,7 +62,7 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %{__make} %{?_smp_mflags}
 
 ### FIXME: Replace fixed /usr/lib by $(libdir). (Please fix upstream)
-%{__perl} -pi.orig -e 's|/usr/lib/|\$(libdir)/|g' WPrefs.app/Makefile
+%{__perl} -pi.orig -e 's|/usr/lib/|\$(libdir)/|g' WPrefs.app/Makefile WPrefs.app/*/Makefile
 
 %install
 %{__rm} -rf %{buildroot}
@@ -77,11 +73,7 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %find_lang WINGs
 %{__cat} WINGs.lang WPrefs.lang >> %{real_name}.lang
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/X11/gdm/Sessions/
-%{__install} -m0755 windowmaker.xsession "%{buildroot}%{_sysconfdir}/X11/gdm/Sessions/Window Maker"
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
+%{__install} -D -m0755 windowmaker.xsession "%{buildroot}%{_sysconfdir}/X11/gdm/Sessions/Window Maker"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -101,8 +93,9 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
-%{_libdir}/*.so
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 %changelog
 * Wed Sep 24 2003 Dag Wieers <dag@wieers.com> - 0.80.2-4

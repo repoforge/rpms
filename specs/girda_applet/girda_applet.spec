@@ -61,6 +61,7 @@ scrollkeeper-update -q || :
 %{_datadir}/girda_applet/
 %{_datadir}/omf/girda_applet/
 %{_datadir}/pixmaps/girda_applet/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
 * Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 2.0.3-0

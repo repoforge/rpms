@@ -1,9 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-### FIXME: frontline triggers a strange bug in Distcc 2.2 (RH9 maybe others)
-# Distcc: 0
+%define gimp %(rpm -q gimp-devel | grep -q 1\.2; echo $?)
 
 Summary: GUI frontend program and library for autotrace
 Name: frontline
@@ -18,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/autotrace/frontline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libart_lgpl-devel >= 2.0, gimp-devel, autotrace-devel
 
@@ -37,8 +34,12 @@ autotrace.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
+
+%if %{gimp}0
+%else
 %{__install} -d -m0755 %{buildroot}%{_libdir}/gimp/1.2/plug-ins/
-mv %{buildroot}/usr/libexec/trace %{buildroot}%{_libdir}/gimp/1.2/plug-ins/
+%{__mv} -f %{buildroot}/usr/libexec/trace %{buildroot}%{_libdir}/gimp/1.2/plug-ins/
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,7 +56,10 @@ mv %{buildroot}/usr/libexec/trace %{buildroot}%{_libdir}/gimp/1.2/plug-ins/
 %{_datadir}/pixmaps/*
 %{_datadir}/aclocal/frontline.m4
 %{_libdir}/pkgconfig/frontline.pc
+%if %{gimp}0
+%else
 %{_libdir}/gimp/1.2/plug-ins/trace
+%endif
 
 %changelog
 * Tue Nov 26 2002 Dag Wieers <dag@wieers.com> - 0.5.4
