@@ -13,9 +13,7 @@ URL: http://sf.net/projects/dirac
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-# Dirac 0.3.0 isn't available yet on all the sourceforge mirrors
-Source: http://heanet.dl.sourceforge.net/sourceforge/dirac/dirac-%{version}.tar.gz
-#Source: http://dl.sf.net/dirac/dirac-%{version}.tar.gz
+Source: http://dl.sf.net/dirac/dirac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, xparam, doxygen, tetex-latex
