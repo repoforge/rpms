@@ -1,16 +1,13 @@
 # $Id$
-
 # Authority: dag
 # Upstream: James Yonan <jim@yonan.net>
 
 ### FIXME: Add sysv script based on own template.
 
-%define real_version 1.5.0
-
 Summary: Secure tunneling daemon
 Name: openvpn
-Version: 1.5.0
-Release: 0
+Version: 1.6.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.sf.net/
@@ -18,7 +15,7 @@ URL: http://openvpn.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/openvpn/openvpn-%{real_version}.tar.gz
+Source: http://dl.sf.net/openvpn/openvpn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lzo-devel, openssl-devel
@@ -31,24 +28,24 @@ UDP or TCP port. It can use the Marcus Franz Xaver Johannes Oberhumer's
 LZO library for compression.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure \
-	--enable-pthread
+	--enable-dependency-tracking \
+	--enable-pthread \
+	--enable-iproute2
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/ \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/openvpn/ \
-			%{buildroot}/dev/net/
-%{__install} -m0755 openvpn.8 %{buildroot}%{_mandir}/man8/
-%{__install} -m0755 openvpn %{buildroot}%{_sbindir}
-%{__install} -m0755 sample-scripts/openvpn.init %{buildroot}%{_initrddir}/openvpn
+%{__install} -D -m0755 openvpn.8 %{buildroot}%{_mandir}/man8/openvpn.8
+%{__install} -D -m0755 openvpn %{buildroot}%{_sbindir}/openvpn
+%{__install} -D -m0755 sample-scripts/openvpn.init %{buildroot}%{_initrddir}/openvpn
 
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/openvpn/
+
+%{__install} -d -m0755 %{buildroot}/dev/net/
 %{?rh73:touch %{buildroot}/dev/net/tun}
 %{?rh62:touch %{buildroot}/dev/net/tun}
 
@@ -79,7 +76,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT.GPL INSTALL NEWS PORTS README
-%doc easy-rsa/ sample-config-files/ sample-keys/ sample-scripts/
+%doc contrib/ easy-rsa/ sample-config-files/ sample-keys/ sample-scripts/
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/openvpn/
 %config %{_initrddir}/*
@@ -88,6 +85,9 @@ fi
 %{?rh62:%ghost /dev/net/tun}
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 1.6.0-1
+- Updated to release 1.6.0.
+
 * Tue Nov 25 2003 Dag Wieers <dag@wieers.com> - 1.5.0-0
 - Updated to release 1.5.0.
 
