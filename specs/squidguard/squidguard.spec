@@ -2,9 +2,6 @@
 # Authority: dag
 # Upstream: <squidguard$squidguard,org>
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
-
 %{?dist: %{expand: %%define %dist 1}}
 
 %define real_name squidGuard
@@ -22,10 +19,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.teledanmark.no/pub/www/proxy/squidGuard/squidGuard-%{version}.tar.gz
-Source1: guard-distrib.tar.gz
 Patch0: squidguard-1.2.0-db4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: bison, flex, perl
 %{?fc3:BuildRequires: db4-devel}
@@ -47,9 +42,11 @@ users to a list of webservers, based on keywords.
 
 %prep
 %setup -n %{real_name}-%{version}
-%{?fc2:%patch0}
-%{?fc1:%patch0}
-%{?el3:%patch0}
+%patch0
+#{?fc3:%patch0}
+#{?fc2:%patch0}
+#{?fc1:%patch0}
+#{?el3:%patch0}
 
 %{__perl} -pi.orig -e '
 		s|^(dbhome) .+$|$1 \@sg_dbhome\@|;
@@ -81,7 +78,6 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 %{SOURCE1} samples/guard-distrib.tar.gz
 %{__install} -D -m0644 squidguard.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard
 %{__install} -D -m0644 samples/sample.conf %{buildroot}%{_sysconfdir}/squid/squidguard.conf
 %{__ln_s} -f squidGuard %{buildroot}%{_bindir}/squidguard
@@ -96,7 +92,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc samples/sample.conf samples/squidGuard-simple.cgi samples/squidGuard.cgi
-%doc samples/guard-distrib.tar.gz doc/*.txt doc/*.html doc/*.gif
+%doc doc/*.txt doc/*.html doc/*.gif
 %config(noreplace) %{_sysconfdir}/squid/
 %config %{_sysconfdir}/logrotate.d/*
 %{_bindir}/*

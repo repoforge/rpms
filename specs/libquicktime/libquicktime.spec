@@ -13,7 +13,7 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 0.9.3
+Version: 0.9.4
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
@@ -71,7 +71,7 @@ programs that need to access quicktime files using libquicktime.
     ' configure.ac
 
 %build
-./autogen.sh
+#./autogen.sh
 %configure \
     --enable-static \
     %{?_without_mmx:--disable-mmx}
@@ -80,7 +80,8 @@ programs that need to access quicktime files using libquicktime.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
 
 %clean
@@ -98,6 +99,7 @@ programs that need to access quicktime files using libquicktime.
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
 %{_bindir}/lqtplay
+%{_bindir}/lqtvrplay
 %{_bindir}/lqt_transcode
 %{_bindir}/qt*
 %{_libdir}/*.so.*
@@ -117,9 +119,13 @@ programs that need to access quicktime files using libquicktime.
 %{_libdir}/%{name}/*.a
 %exclude %{_libdir}/%{name}/*.la
 %{_datadir}/aclocal/*.m4
+%{_libdir}/pkgconfig/libquicktime.pc
 
 
 %changelog
+* Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Updated to release 0.9.3.
 

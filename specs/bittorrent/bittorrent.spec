@@ -12,10 +12,10 @@
 Summary: Network file transfer tool
 Name: bittorrent
 Version: 3.9.0
-Release: 2
+Release: 3
 License: MIT
 Group: Applications/Internet
-URL: http://bitconjurer.org/BitTorrent/
+URL: http://bitconjurer.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -38,7 +38,7 @@ download, making the publisher's burden almost nothing.
 %package gui
 Summary: GUI versions of the BitTorrent file transfer tool
 Group: Applications/Internet
-Requires: wxPython
+Requires: pygtk2 >= 2.4.0
 Requires: %{name} = %{version}-%{release}
 
 %description gui 
@@ -113,6 +113,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/bittorrent.desktop}
 
 %changelog
+* Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 3.9.0-3
+- Replaced wxpython dependency by pgtk2. (Paul Howarth, Jorge Bartos)
+
 * Fri Jan 07 2005 Dag Wieers <dag@wieers.com> - 3.9.0-2
 - Fixed python dependency problem. (Igor Guarisma)
 

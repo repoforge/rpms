@@ -6,7 +6,7 @@
 
 Summary: Programmable completion for Bash
 Name: bash-completion
-Version: 20050103
+Version: 20050112
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -70,6 +70,9 @@ EOF
 %config %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Sun Jan 16 2005 Dag Wieers <dag@wieers.com> - 20050112-1
+- Updated to release 20050112.
+
 * Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 20050103-1
 - Updated to release 20050103.
 

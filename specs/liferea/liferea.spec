@@ -5,7 +5,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 0.6.4
+Version: 0.9.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -18,7 +18,7 @@ Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
-BuildRequires: gettext, gcc-c++, desktop-file-utils
+BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
 
 %description
 Liferea (Linux Feed Reader) is an RSS/RDF feed reader. 
@@ -89,6 +89,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_libdir}/liferea/*.so*
 
 %changelog
+* Sat Jan 15 2005 Dag Wieers <dag@wieers.com> - 0.9.0-1
+- Updated to release 0.9.0.
+
 * Tue Nov 30 2004 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.
 

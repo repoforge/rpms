@@ -3,7 +3,7 @@
 
 Summary: SIFT Feature Detection implementation
 Name: autopano-sift
-Version: 2.1
+Version: 2.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -70,5 +70,8 @@ available at http://hugin.sf.net/
 %{_libdir}/libsift.dll
 
 %changelog
+* Sun Jan 16 2005 Dag Wieers <dag@wieers.com> - 2.2-1
+- Updated to release 2.2.
+
 * Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 2.1-1
 - Initial package. (using DAR)

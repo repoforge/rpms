@@ -16,8 +16,9 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): info
 Requires(preun): info
 BuildRequires: gcc-c++, libgnomeui-devel, guile-devel, fftw-devel
-BuildRequires: audiofile-devel, esound-devel, alsa-lib-devel
+BuildRequires: audiofile-devel, esound-devel
 BuildRequires: lame-devel, libmad-devel, libvorbis-devel, ladspa-devel
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 GLAME is meant to be the GIMP of audio processing. It is designed to be

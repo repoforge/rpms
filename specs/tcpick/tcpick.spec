@@ -4,7 +4,7 @@
 
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick
-Version: 0.1.24
+Version: 0.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -42,11 +42,15 @@ are doing, and is usable with textmode tools like grep, sed, awk.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL KNOWN-BUGS NEWS OPTIONS README THANKS TODO
+%doc AUTHORS ChangeLog COPYING INSTALL KNOWN-BUGS NEWS README THANKS TODO
 %doc %{_mandir}/man8/tcpick.8*
+%exclude %{_mandir}/man8/tcpick_italian.8*
 %{_bindir}/tcpick
 
 %changelog
+* Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 0.2.0-1
+- Updated to release 0.2.0.
+
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.1.24-1
 - Updated to release 0.1.24.
 

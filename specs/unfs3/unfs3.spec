@@ -5,7 +5,7 @@
 
 Summary: UNFS3 user-space NFSv3 server
 Name: unfs3
-Version: 0.9.10
+Version: 0.9.12
 Release: 1
 License: BSD
 Group: Applications/System
@@ -43,3 +43,10 @@ the MOUNT and NFS protocol.
 %doc %{_mandir}/man7/tags.7*
 %doc %{_mandir}/man8/unfsd.8*
 %{_sbindir}/unfsd
+
+%changelog
+* Sun Jan 16 2005 Dag Wieers <dag@wieers.com> - 0.9.12-1
+- Updated to release 0.9.12.
+
+* Thu Aug 12 2004 Dag Wieers <dag@wieers.com> - 0.9.10-1
+- Initial package. (using DAR)

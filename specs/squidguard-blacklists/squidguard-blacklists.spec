@@ -11,7 +11,7 @@
 
 Summary: Regularly updated blacklists for use with squidguard
 Name: squidguard-blacklists
-Version: 20040918
+Version: 20050108
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -140,6 +140,9 @@ echo '\.(mpe?g?|wmv|mov|movie|qt|avi|dvd?|divx)($|\?)' >>%{buildroot}%{_sysconfd
 %ghost %{_localstatedir}/log/squidguard/*.log
 
 %changelog
+* Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 20050108-1
+- Updated to release 20050108.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 20040918-1
 - Updated to release 20040918.
 

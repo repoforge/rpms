@@ -1,24 +1,20 @@
 # $Id$
-
 # Authority: dag
-
-# Upstream: <lft-bugs$mainnerve,com>
+# Upstream: <lft$oppleman,com>
 
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
-Version: 2.2
-Release: 0
+Version: 2.3
+Release: 1
 License: MainNerve Public License
 Group: Applications/Internet
-URL: http://www.mainnerve.com/lft/
+URL: http://oppleman.com/lft/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://mainnerve.com/lft/%{name}-%{version}.tar.gz
-#Patch: %{name}-install.patch
+Source: http://oppleman.com/dl/?file=lft-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libpcap
 Obsoletes: fft
@@ -32,7 +28,6 @@ lookups, loose source routing, netblock name lookups, et al.
 
 %prep
 %setup
-#%patch0 -p0
 
 %build
 %configure
@@ -40,7 +35,9 @@ lookups, loose source routing, netblock name lookups, et al.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR="%{buildroot}%{_bindir}" MANDIR="%{buildroot}%{_mandir}/man8"
+%makeinstall \
+	DESTDIR="%{buildroot}%{_bindir}" \
+	MANDIR="%{buildroot}%{_mandir}/man8"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,10 +45,13 @@ lookups, loose source routing, netblock name lookups, et al.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYING README TODO lft-manpage.html
-%doc %{_mandir}/man8/*
-%attr(4755, -, -) %{_bindir}/*
+%doc %{_mandir}/man8/lft.8*
+%attr(4755, -, -) %{_bindir}/lft
 
 %changelog
+* Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 2.3-1
+- Updated to release 2.3.
+
 * Thu May 22 2003 Dag Wieers <dag@wieers.com> - 2.2-0
 - Updated to release 2.2.
 

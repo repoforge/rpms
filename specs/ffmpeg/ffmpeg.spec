@@ -18,7 +18,7 @@
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
 Version: 0.4.9
-Release: %{?date:0.%{sqdate}.}%{?prever:0.%{prever}.}2
+Release: %{?date:0.%{sqdate}.}%{?prever:0.%{prever}.}3
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
@@ -186,6 +186,7 @@ to use MPlayer, transcode or other similar programs.
 %doc Changelog COPYING CREDITS README
 %{_bindir}/*
 %{_libdir}/*.so
+%exclude %{_libdir}/libpostproc.so*
 %{_libdir}/vhook/
 %{_mandir}/man1/*
 
@@ -202,6 +203,9 @@ to use MPlayer, transcode or other similar programs.
 
 
 %changelog
+* Sat Jan 15 2005 Dag Wieers <dag@wieers.com> - 0.4.9-0.20041110.3
+- Exclude libpostproc.so* from ffmpeg package.
+
 * Sun Nov 21 2004 Matthias Saou <http://freshrpms.net/> 0.4.9-0.20041110.2
 - Put back explicit requirements since some (all?) don't get properly added
   automatically, like faad2 (thanks to Holden McGroin).

@@ -9,7 +9,7 @@
 Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 2.6.4
-Release: 0.cvs20050111
+Release: 0.cvs20050114
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
@@ -18,7 +18,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 #Source: http://rsync.samba.org/ftp/rsync/preview/rsync-%{real_version}.tar.gz
-Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}-cvs20050111.tar.bz2
+Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}-cvs20050114.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -31,7 +31,7 @@ report which describes the rsync algorithm is included in this
 package.
 
 %prep
-%setup -n %{name}-%{version}-cvs20050111
+%setup -n %{name}-%{version}-cvs20050114
 
 patch -p0 < patches/delay-renames.diff
 
@@ -72,9 +72,12 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.cvs20050114
+- Updated to release 2.6.4-cvs20050114.
+
 * Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.cvs20050111
 - Added delay-renames patch from CVS.
-- Updated to release 2.6.4-cvs20050111
+- Updated to release 2.6.4-cvs20050111.
 
 * Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 2.6.3-1
 - Updated to release 2.6.3.

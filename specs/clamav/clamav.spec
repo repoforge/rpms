@@ -140,12 +140,19 @@ you will need to install %{name}-devel.
 
 %{__cat} <<EOF >clamd.logrotate
 %{_localstatedir}/log/clamav/clamd.log {
+	missingok
+	notifempty
 	create 644 clamav clamav
+	postrotate
+		killall -HUP clamd 2>/dev/null || :
+	endscript
 }
 EOF
 
 %{__cat} <<EOF >freshclam.logrotate
 %{_localstatedir}/log/clamav/freshclam.log {
+	missingok
+	notifempty
 	create 644 clamav clamav
 }
 EOF
@@ -340,6 +347,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 0.80-3
+- Improved logrotate scripts. (Filippo Grassilli)
+
 * Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 0.80-2
 - Added %dir /var/clamav/log. (Adam Bowns)
 - Changed logrotate script to use clamd.log. (Stuart Schneider)

@@ -11,7 +11,7 @@
 
 Summary: Small and fast GUI web browser
 Name: dillo
-Version: 0.8.3
+Version: 0.8.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,6 +44,7 @@ Terminal=false
 Type=Application
 Encoding=UTF-8
 Categories=Network;Application;
+MimeType=text/html;
 EOF
 
 %build
@@ -71,6 +72,12 @@ EOF
 		dillo.desktop
 %endif
 
+%post
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%postun
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -81,10 +88,13 @@ EOF
 %{_bindir}/*
 %{_libdir}/dillo/
 %{_datadir}/pixmaps/dillo.png
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dillo.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/dillo.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dillo.desktop}
 
 %changelog
+* Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 0.8.4-1
+- Updated to release 0.8.4.
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.8.3-1
 - Updated to release 0.8.3.
 
