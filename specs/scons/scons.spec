@@ -4,7 +4,7 @@
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
 Version: 0.95
-Release: 2
+Release: 3
 License: MIT
 Group: Development/Tools
 URL: http://www.scons.org/
@@ -46,12 +46,15 @@ SCons is an easier, more reliable and faster way to build software.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt 
-%{_bindir}/*
-%{_libdir}/scons
+%{_prefix}/bin/*
+%{_prefix}/lib/scons
 %{_mandir}/man1/*
 
 
 %changelog
+* Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 0.95-2
+- Files fix for x86_64.
+
 * Fri Jun  4 2004 Matthias Saou <http://freshrpms.net/> 0.95-2
 - Spec file cleanup.
 - Don't manually compress man pages, let rpm do that.
