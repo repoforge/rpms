@@ -13,7 +13,7 @@ License: GPL
 Group: Applications/Publishing
 URL: http://www.lyx.org/
 
-Packager: Dag Wieers <dag@wieers.com>
+Packager: Bert de Bruijn <bert@debruijn.be>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
@@ -21,9 +21,10 @@ Source1: lyx-icon.png
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
+BuildRequires: qt-devel 
 Requires: qt >= 2.2.1, tetex-xdvi, tetex, tetex-latex
 Obsoletes: tetex-lyx
-BuildRequires: qt-devel 
+
 
 %description
 LyX is a modern approach to writing documents which breaks with the
@@ -42,19 +43,22 @@ to the backends (like LaTeX) that are specifically designed for the task.
 With LyX, the author can concentrate on the contents of his writing,
 and let the computer take care of the rest.
 
+
 %prep
 %setup
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=LyX LaTeX frontend
-Comment=A WYSIWYM LaTeX frontend
+Name=LyX LaTeX Editor
+Comment=Edit your LaTeX documents in a WYSIWYM fashion
 Exec=lyx
 Icon=lyx-icon.png
 Type=Application
 Terminal=false
 Encoding=UTF-8
+Categories=Application;Office;
 EOF
+
 
 %build
 %{?rhfc1:export QTDIR="/usr/lib/qt-3.1"}
@@ -68,8 +72,9 @@ EOF
 	--with-frontend="qt" \
 	--without-warnings \
 	--disable-debug \
-	--enable-optimization="-O2"
+	--enable-optimization="%{optflags}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -78,25 +83,25 @@ EOF
 
 ### Set up the lyx-specific class files where TeX can see them
 %{__install} -d -m0755 %{buildroot}%{_datadir}/texmf/tex/latex/
-%{__mv} -f %{buildroot}%{_datadir}/lyx/tex %{buildroot}/%{_datadir}/texmf/tex/latex/lyx
+%{__mv} -f %{buildroot}%{_datadir}/lyx/tex %{buildroot}%{_datadir}/texmf/tex/latex/lyx
 
 ### Miscellaneous files
-%{__cp} -av lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/
-%{__cp} -av lib/reLyX/README README.reLyX
+%{__install} -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/
+%{__install} -m0644 lib/reLyX/README README.reLyX
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
 
-### install desktop file and icon
+### Install desktop file and icon
 %if %{dfi}
-        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/%{name}.desktop
+        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor kde        \
                 --add-category X-Red-Hat-Extra   \
-                --add-category Application       \
-                --add-category Office            \
                 --dir %{buildroot}%{_datadir}/applications \
                 %{name}.desktop
 %endif
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/lyx-icon.png
+
+
 %post
 ### Make TeX understand where LyX-specific packages are
 texhash &>/dev/null
@@ -113,27 +118,29 @@ cd %{_datadir}/lyx/
 ### Fix reLyX perl program if the prefix is non-standard
 %{__perl} -pi -e 's|/usr/share/lyx|%{_datadir}/lyx|' %{_bindir}/reLyX
 
+
 %postun
 ### Fix the TeX file hash
 texhash &>/dev/null
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE ChangeLog COPYING NEWS README* UPGRADING
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-#%{_datadir}/locale/*/LC_MESSAGES/*
 %{_datadir}/lyx/
 %{_datadir}/texmf/tex/latex/lyx/
+%{_datadir}/pixmaps/*.png
 %if %{dfi}
         %{_datadir}/gnome/apps/Applications/*.desktop
 %else
         %{_datadir}/applications/*.desktop
 %endif
-%{_datadir}/pixmaps/*png
 
 %changelog
 * Thu Mar 18 2004 Bert de Bruijn <bert@debruijn.be> - 1.3.4-1
