@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://smb4k.berlios.de/shots/0.3.0/Smb4K-0.3.0-1.png
 
 Summary: SMB (samba) share browser for KDE
 Name: smb4k
@@ -21,8 +22,6 @@ BuildRequires: gcc-c++, XFree86-devel, qt-devel, fam-devel, fam
 %{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs, fam
 
-# Screenshot: http://smb4k.berlios.de/shots/0.3.0/Smb4K-0.3.0-1.png
-
 %description
 Smb4K is an SMB share browser for KDE. It uses the Samba software suite for
 an easy access to the SMB shares of your local network neighborhood. 
@@ -38,22 +37,8 @@ an easy access to the SMB shares of your local network neighborhood.
 %install
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-export DESTDIR=%{buildroot}
-make install-strip
+make install-strip DESTDIR=%{buildroot}
 %find_lang %{name}
-rm -f ${DESTDIR}/usr/share/applnk/Applications/smb4k.desktop
-mkdir -p ${DESTDIR}/usr/share/applications
-cat > ${DESTDIR}/usr/share/applications/smb4k.desktop <<EOF
-[Desktop Entry]
-Name=Smb4K
-Icon=smb4k.png
-Comment=SMB Share Browser
-Exec=smb4k
-Terminal=0
-Type=Application
-Encoding=UTF-8
-Categories=Application;Network;X-Red-Hat-Base;
-EOF
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,7 +46,7 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %{_bindir}/smb4k
-%{_datadir}/applications/smb4k.desktop
+%{_datadir}/applications/kde/smb4k.desktop
 %{_datadir}/apps/smb4k
 %{_datadir}/doc/HTML/en/smb4k
 %{_datadir}/icons/crystalsvg/*/apps/smb4k.png
