@@ -7,7 +7,7 @@
 
 Summary: Activates network interfaces on cable plug
 Name: ifplugd
-Version: 0.24
+Version: 0.25
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -69,6 +69,9 @@ fi
 %{_sbindir}
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.25-1
+- Updated to release 0.25.
+
 * Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 
