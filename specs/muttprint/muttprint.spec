@@ -5,19 +5,19 @@
 # Upstream: <Bernhard.Walle@gmx.de>
 #
 
-Name: 			muttprint
-Version: 		0.72
-Release: 		1	
-License: 		GPL
-Group: 			Applications/Mail
-Source: 		muttprint-%{version}.tar.gz
-BuildArch: 		noarch
-URL: 			http://muttprint.sourceforge.net/
-Packager: 		Bert de Bruijn <bert@debruijn.be)
-Requires:		tetex >= 1.0 psutils perl
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root
-Prefix:			%{_prefix}
-Summary: 		pretty printing of mails with Mutt
+Name: muttprint
+Version: 0.72
+Release: 1	
+License: GPL
+Group: Applications/Mail
+Source: muttprint-%{version}.tar.gz
+BuildArch: noarch
+URL: http://muttprint.sourceforge.net/
+Packager: Bert de Bruijn <bert@debruijn.be)
+Requires: tetex >= 1.0 psutils perl
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Prefix: %{_prefix}
+Summary: pretty printing of mails with Mutt
 
 %description
 Muttprint is a utility that formats the printing of Mutt and other mail clients
@@ -25,8 +25,6 @@ like XFMail or PINE to be like the printing of Netscape Messenger or Kmail. It
 can print a little penguin on the first page and a headline on every page.
 Furthermore, it only prints the most important headers, but not the whole
 plethora of them.
-
-Author: Bernhard Walle <Bernhard.Walle@gmx.de>
 
 %build
 make
@@ -51,6 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files
+%defattr(-, root, root, 0755)
 %{_bindir}/*
 %{_datadir}/%{name}
 %{_mandir}/man1/muttprint.1.gz
