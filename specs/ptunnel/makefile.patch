@@ -1,0 +1,21 @@
+diff -uNr PingTunnel-orig/Makefile PingTunnel/Makefile
+--- PingTunnel-orig/Makefile	2005-01-02 17:03:49.000000000 +0100
++++ PingTunnel/Makefile	2005-01-02 23:43:00.465971816 +0100
+@@ -5,6 +5,8 @@
+ CFLAGS		= -Wall -g
+ LDOPTS		= -lpthread -lpcap
+ PT_OBJS		= ptunnel.o
++prefix		= /usr
++bindir		= $(prefix)/bin
+ 
+ all: ptunnel
+ 
+@@ -16,7 +18,7 @@
+ 	
+ 
+ install: ptunnel
+-	cp ./ptunnel /usr/bin/
++	install -D ./ptunnel $(bindir)/ptunnel
+ 
+ ptunnel: $(PT_OBJS)
+ 	$(CC) $(LDOPTS) -o $@ $^
