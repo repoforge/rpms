@@ -73,6 +73,7 @@ chmod +x %{buildroot}/usr/bin/uox3-wrapper
 %config %{_datadir}/uox3/accounts/*/*.uad
 %config %{_datadir}/uox3/banlist.ini
 %config %{_datadir}/uox3/dfndata/*/*.dfn
+%config %{_datadir}/uox3/dfndata/*/*/*.dfn
 %config %{_datadir}/uox3/dfndata/*/*/*/*.dfn
 %config %{_datadir}/uox3/dfndata/*/*/*/*/*.dfn
 %config %{_datadir}/uox3/dfndata/items/gear/weapons/NOTE*
@@ -80,7 +81,10 @@ chmod +x %{buildroot}/usr/bin/uox3-wrapper
 %config %{_datadir}/uox3/js/*/*/*.js
 %config %{_datadir}/uox3/shared/*.wsc
 %config %{_datadir}/uox3/uox.ini
+%config %{_datadir}/uox3/dfndata/html/*.htf
 
+%{_datadir}/uox3/dfndata/dfnupdates.txt
+%{_datadir}/uox3/dfndata/items/item-updates.txt
 %{_datadir}/uox3/logs/readme.txt
 %{_datadir}/uox3/msgboards/readme.txt
 %{_datadir}/uox3/shared/Readme.txt
