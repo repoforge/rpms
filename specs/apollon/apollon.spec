@@ -20,7 +20,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/apollon/%{name}-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, gift
-%{?fc2:BuildRequires: selinux}
+%{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs, gift
 
 # Screenshot: http://apollon.sourceforge.net/apollon1.png
@@ -41,6 +41,7 @@ for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3
 %install
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
+mkdir -p %{buildroot}/usr/share/apps/apollon
 %makeinstall
 rm %{buildroot}/usr/share/applnk/Applications/Apollon.desktop
 mkdir -p %{buildroot}/usr/share/applications/
@@ -97,6 +98,7 @@ EOF
 %{_datadir}/icons/hicolor/*/apps/openft.png
 %{_datadir}/icons/hicolor/*/apps/soulseek.png
 %{_datadir}/locale/*/LC_MESSAGES/apollon.mo
+%{?fc2:%{_datadir}/apps/apollon/tips}
 
 %changelog
 * Thu Feb 25 2004 Dries Verachtert <dries@ulyssis.org> 0.9.2-3

@@ -30,8 +30,7 @@ Openft plugin for gift
 
 %install
 %{__rm} -rf %{buildroot}
-make install-strip \
-	DESTDIR="%{buildroot}"
+make install-strip DESTDIR="%{buildroot}"
 
 %files
 %defattr(-,root,root,0755)

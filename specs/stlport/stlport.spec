@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.stlport.org/archive/STLport-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+BuildRequires: gcc-c++
 
 %description
 The ANSI/ISO C++ specifcation includes a standard C++ library, also known as
@@ -38,11 +38,11 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n STLport-%{version}
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+cd src
+%{__make} %{?_smp_mflags} -f gcc-linux.mak
 
 %install
 %{__rm} -rf %{buildroot}
