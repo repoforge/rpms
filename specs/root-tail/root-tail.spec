@@ -30,8 +30,8 @@ that transparent effect.
 
 %build
 xmkmf -a
-export CFLAGS="%{optflags}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
