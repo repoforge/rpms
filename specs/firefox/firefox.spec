@@ -11,26 +11,25 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.9.2
-Release: 4
+Release: 5
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-%{version}-source.tar.bz2
 Source1: firefox-rebuild-databases.pl.in
-Patch1: firefox-gcc34.patch
+Source2: firefox.png
+Patch0: firefox-0.9.2-gcc34.patch
+Patch1: firefox-0.9.2-extensions.patch
+Patch2: mozilla-default-plugin-less-annoying.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, zlib-devel, zip, gzip, perl
+BuildRequires: XFree86-devel, zlib-devel, zip
 BuildRequires: libpng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, gcc-c++, krb5-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel, gnome-vfs2-devel}
 %{?_without_gtk2:BuildRequires: gtk+-devel}
-Requires(post): /usr/X11R6/bin/Xvfb
 
 Obsoletes: phoenix, MozillaFirebird, mozilla-firebird, mozilla-firefox
 Provides: webclient
@@ -41,7 +40,9 @@ compliance, performance and portability.
 
 %prep
 %setup -n mozilla
-%patch1 -p1
+%patch0 -p1 -b .gcc34
+%patch1 -p0 -b .extensions
+%patch2 -p1 -b .plugin
 
 %{__cat} <<EOF >bookmarks.html
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
@@ -67,9 +68,9 @@ Do Not Edit! -->
         <DT><A HREF="http://dag.wieers.com/apt/">Dag RPM Repository</A>
         <DT><A HREF="http://dries.studentenweb.org/apt/">Dries RPM Repository</A>
         <DT><A HREF="http://freshrpms.net/">FreshRPMS</A>
-	<DT><A HREF="http://newrpms.sunsite.dk/">NewRPMS</A>
+        <DT><A HREF="http://newrpms.sunsite.dk/">NewRPMS</A>
         <DT><A HREF="http://rpm.pbone.net/">RPM PBone search</A>
-	<DT><A HREF="http://www.rpmseek.com/">RPMSeek search</A>
+        <DT><A HREF="http://www.rpmseek.com/">RPMSeek search</A>
     </DL><p>
     <DT><H3>News</H3>
     <DL><p>
@@ -90,12 +91,12 @@ Do Not Edit! -->
     </DL><p>
     <DT><H3>Firefox Web Browser</H3>
     <DL><p>
-	<DT><A HREF="http://texturizer.net/firefox/">Firefox Help</A>
-	<DT><A HREF="http://www.mozillazine.org/forums/?c=4">Firefox Forum</A>
-	<DT><A HREF="http://plugindoc.mozdev.org/faqs/">Firefox Plugin FAQ</A>
-	<DT><A HREF="http://www.mozilla.org/projects/firefox/">Firefox Website</A>
-	<DT><a HREF="http://texturizer.net/firefox/extensions.html">Firefox Extensions</A>
-	<DT><a HREF="http://texturizer.net/firefox/themes.html">Firefox Themes</A>
+        <DT><A HREF="http://texturizer.net/firefox/">Firefox Help</A>
+        <DT><A HREF="http://www.mozillazine.org/forums/?c=4">Firefox Forum</A>
+        <DT><A HREF="http://plugindoc.mozdev.org/faqs/">Firefox Plugin FAQ</A>
+        <DT><A HREF="http://www.mozilla.org/projects/firefox/">Firefox Website</A>
+        <DT><a HREF="http://texturizer.net/firefox/extensions.html">Firefox Extensions</A>
+        <DT><a HREF="http://texturizer.net/firefox/themes.html">Firefox Themes</A>
     </DL><p>
     <HR>
     <DT><H3>Quick Searches</H3>
@@ -106,9 +107,9 @@ Do Not Edit! -->
         <DT><A HREF="http://dictionary.reference.com/search?q=%s" SHORTCUTURL="dict">Dictionary.com Quicksearch</A>
         <DT><A HREF="http://www.webster.com/cgi-bin/dictionary?va=%s" SHORTCUTURL="webster">Dictionary Quicksearch</A>
         <DT><A HREF="http://www.google.com/search?&q=stocks:%s" SHORTCUTURL="quot">Stock Symbol Quicksearch</A>
-	<DT><A HREF="http://freshmeat.net/search?q=%s" SHORTCUTURL="freshmeat">Freshmeat Quicksearch</A>
-	<DT><A HREF="http://us.imdb.com/Find?select=All&for=%s" SHORTCUTURL="movie">Movies Quicksearch</A>
-	<DT><A HREF="http://be2.php.net/manual-lookup.php?pattern=%s" SHORTCUTURL="php">PHP Documentation Quicksearch</A>
+        <DT><A HREF="http://freshmeat.net/search?q=%s" SHORTCUTURL="freshmeat">Freshmeat Quicksearch</A>
+        <DT><A HREF="http://us.imdb.com/Find?select=All&for=%s" SHORTCUTURL="movie">Movies Quicksearch</A>
+        <DT><A HREF="http://be2.php.net/manual-lookup.php?pattern=%s" SHORTCUTURL="php">PHP Documentation Quicksearch</A>
     </DL><p>
     <HR>
 </DL><p>
@@ -148,7 +149,7 @@ EOF
 Name=Firefox Web Browser
 Comment=Browse the Internet
 Exec=firefox
-Icon=firefox.xpm
+Icon=firefox.png
 Terminal=false
 Type=Application
 StartupNotify=false
@@ -172,13 +173,11 @@ export FONTCONFIG_PATH LD_LIBRARY_PATH MOZ_PLUGIN_PATH MOZILLA_FIVE_HOME
 
 MOZARGS=""
 MOZLOCALE="$(echo $LANG | sed 's|_\([^.]*\).*|-\1|g')"
-if [ -f "$MOZILLA_FIVE_HOME/chrome/$MOZLOCALE.jar" ]; then
-	MOZARGS="-UILocale $MOZLOCALE"
-fi
+[ -f "$MOZILLA_FIVE_HOME/chrome/$MOZLOCALE.jar" ] && MOZARGS="-UILocale $MOZLOCALE"
 
 $MOZ_PROGRAM -a firefox -remote 'ping()' &>/dev/null
 RUNNING=$?
-if [ $? -eq 2 ]; then RUNNING=0; fi
+[ $? -eq 2 ] && RUNNING=0
 
 REMOTE=0
 while [ "$1" ]; do
@@ -193,20 +192,6 @@ while [ "$1" ]; do
 #			MOZARGS="-remote xfeDoCommand(composeMessage) $MOZARGS"
 #			REMOTE=1
 #		fi;;
-	  -register)
-		if [ -x "/usr/X11R6/bin/Xvfb" ]; then
-			export HOME="$(mktemp -d /tmp/firefox-rpm.$$)"
-			mkdir -p $HOME/.mozilla/firefox/default/
-			cp -rf $MOZILLA_FIVE_HOME/defaults/profile/* $HOME/.mozilla/firefox/default/
-			echo -e "[General]\nStartWithLastProfile=1\n\n[Profile0]\nName=default\nIsRelative=1\nPath=default" >$HOME/.mozilla/firefox/profiles.ini
-			/usr/X11R6/bin/Xvfb :69 -nolisten tcp -ac -terminate &
-			DISPLAY=:69 $MOZILLA_FIVE_HOME/firefox-bin -a firefox -install-global-extension -install-global-theme
-			rm -rf $HOME
-			exit 0
-		else
-			echo "/usr/X11R6/bin/Xvfb cannot be executed. Please run firefox once as root." >&2
-			exit 1
-		fi;;
 	  -remote)
 		if [ $REMOTE -ne 1 ]; then
 			MOZARGS="-remote $2 $MOZARGS"
@@ -258,7 +243,7 @@ export MOZ_PHOENIX=1
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
 %{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
-%{__install} -D -m0644 other-licenses/branding/firefox/mozicon50.xpm %{buildroot}%{_datadir}/pixmaps/firefox.xpm
+%{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/firefox.png
 
 %{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
@@ -274,11 +259,11 @@ if [ ! -f %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so ]; then
 fi
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 firefox.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/firefox.desktop
+	%{__install} -D -m0644 firefox.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/firefox.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
-		--add-category X-Red-Hat-Base              \
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor net \
+		--add-category X-Red-Hat-Base \
 		--dir %{buildroot}%{_datadir}/applications \
 		firefox.desktop
 %endif
@@ -306,14 +291,19 @@ fi
 %doc LEGAL LICENSE README.txt
 %{_bindir}/firefox
 %{_libdir}/firefox/
-%{_datadir}/pixmaps/firefox.xpm
+%{_datadir}/pixmaps/firefox.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/firefox.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Fri Jul 30 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-5
+- Revert included xpm icon to an add-on png that looks nicer.
+
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-4
 - Fixed register by calling firefox instead of firefox-bin.
 - Added krb5/gssapi support.
+- Included the upstream -register patch.
+- Included the mozilla "less annoying" plugin patch.
 - Removed unneeded configure options (unexisting or defaults).
 - Removed unneeded exports and defines.
 - Other minor cleanups.
