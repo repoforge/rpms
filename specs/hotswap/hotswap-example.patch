@@ -1,0 +1,23 @@
+Make hotswaprc.example usable as /etc/hotswaprc.
+
+*** doc/hotswaprc.example.~1~	2002-11-24 10:06:02.000000000 -0500
+--- doc/hotswaprc.example	2003-12-05 19:05:33.000000000 -0500
+***************
+*** 12,17 ****
+--- 12,18 ----
+  
+  <hotswap>
+  
++ <!-- Example:
+    <device>
+  
+      <name>SAMSUNG CD-ROM SN-124</name>
+***************
+*** 26,30 ****
+--- 27,32 ----
+      </pre-remove>
+  
+    </device>
++ -->
+  
+  </hotswap>
