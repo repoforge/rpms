@@ -3,6 +3,8 @@
 # Upstream: <distros$mj2,freeswan,org>
 # Obsoleted: kernel-module-openswan
 
+# ExcludeDist: fc2 fc3
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0

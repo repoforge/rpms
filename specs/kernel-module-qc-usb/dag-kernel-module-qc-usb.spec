@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <tuukkat$ee,oulu,fi>
+
+# ExcludeDist: fc2 fc3
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

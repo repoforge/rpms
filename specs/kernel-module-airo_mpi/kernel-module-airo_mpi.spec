@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Fabrice Bellet <fabrice$bellet,info>
 
+# ExcludeDist: fc2 fc3
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0

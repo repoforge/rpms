@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Muli Ben-Yehuda <mulix$mulix,org>
 
+# ExcludeDist: fc2 fc3
+
 # Distcc: 0
 # Soapbox: 0
 # BuildAsRoot: 1

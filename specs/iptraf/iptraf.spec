@@ -14,7 +14,8 @@ URL: http://iptraf.seul.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.cebu.mozcom.com/pub/linux/net/iptraf-%{version}.tar.gz
+Source: ftp://iptraf.seul.org/pub/iptraf/iptraf-%{version}.tar.gz
+#Source: ftp://ftp.cebu.mozcom.com/pub/linux/net/iptraf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: fc2 fc3
+
 # Distcc: 0
 # BuildAsRoot: 1
 
