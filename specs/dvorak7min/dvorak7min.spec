@@ -2,10 +2,10 @@
 
 # Authority: dries
 
-Summary: ncurses based dvorak typing tutor
+Summary: Dvorak typing tutor
 Name: dvorak7min
 Version: 1.6.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.linalco.com/comunidad.html
@@ -34,9 +34,9 @@ rm -f dvorak7min *.o
 
 %install
 %{__rm} -rf %{buildroot}
-sed -i "s/^INSTALL =.*/INSTALL = ${RPM_BUILD_ROOT//\//\\/}\/usr\/bin/g;" Makefile
+# sed -i "s/^INSTALL =.*/INSTALL = ${RPM_BUILD_ROOT//\//\\/}\/usr\/bin/g;" Makefile
 strip dvorak7min
-%{__make} install
+%{__make} install INSTALL=%{buildroot}/usr/bin
 
 %files
 %defattr(-,root,root, 0755)
@@ -44,6 +44,9 @@ strip dvorak7min
 %{_bindir}/%{name}
 
 %changelog
+* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 1.6.1-3
+- rebuild
+
 * Tue Feb 24 2004 Dries Verachtert <dries@ulyssis.org> 1.6.1-2
 - force rebuild
 - check build requirements with mach
