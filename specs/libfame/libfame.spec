@@ -4,13 +4,13 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
 Source: http://dl.sf.net/fame/%{name}-%{version}.tar.gz
+Patch: libfame-0.9.1-fstrict-aliasing.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libtool
 
 %description
 A library for fast (real-time) MPEG video encoding, written in C and assembly.
@@ -22,6 +22,7 @@ compatible) rectangular and arbitrary shaped video.
 Summary: Development files and static libraries for libfame
 Group: Development/Libraries
 Requires: %{name} = %{version}
+BuildRequires: autoconf, automake, libtool
 
 %description devel
 A library for fast (real-time) MPEG video encoding, written in C and assembly.
@@ -34,17 +35,37 @@ libfame library.
 
 %prep
 %setup
+%patch -p1 -b .fstrict-aliasing
 
 
 %build
-%{__libtoolize} --force
-%configure
+for file in ChangeLog NEWS; do
+    test -e ${file} || touch ${file}
+done
+autoreconf --force --install --symlink
+# Compile a special MMX & SSE enabled lib first
+%ifarch %{ix86}
+    %configure --enable-sse --enable-mmx
+    %{__make} %{?_smp_mflags}
+    %{__mkdir} sse2/
+    %{__mv} src/.libs/libfame*.so.* sse2/
+    %{__make} clean
+%endif
+
+# Now, the normal build
+%configure --disable-mmx
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+# Install the MMX & SSE build in its special dir
+%ifarch %{ix86}
+    %{__mkdir_p} %{buildroot}%{_libdir}/sse2
+    %{__cp} -a sse2/* %{buildroot}%{_libdir}/sse2/
+%endif
 
 # Workaround for direct <libfame/fame.h> includes (include/libfame -> .)
 %{__ln_s} . %{buildroot}%{_includedir}/%{name}
@@ -65,6 +86,9 @@ libfame library.
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING README TODO 
 %{_libdir}/*.so.*
+%ifarch %{ix86}
+    %{_libdir}/sse2/*.so.*
+%endif
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -78,6 +102,13 @@ libfame library.
 
 
 %changelog
+* Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-3
+- Add libfame-0.9.1-fstrict-aliasing.patch to actually make the lib work,
+  thanks to Nicholas Miell.
+
+* Tue Aug 31 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-2
+- Add specially compiled MMX & SSE lib on x86.
+
 * Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-1
 - Update to 0.9.1.
 - Updated the Source URL.
