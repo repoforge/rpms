@@ -41,7 +41,8 @@ needed to develop programs that will use RTE.
 
 
 %build
-%configure
+# In 0.5.2, configure has an exit status of 1...
+%configure || :
 %{__make} %{?_smp_mflags}
 
 
