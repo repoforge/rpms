@@ -2,29 +2,28 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
+%define cvs 20040802
+
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.7.2
-Release: 1
+Release: 1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
-Source0: http://kino.schirmacher.de/filemanager/download/36/kino-%{version}.tar.gz
-Source1: kino.png
+Source: http://kino.schirmacher.de/filemanager/download/36/kino-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel
-BuildRequires: dos2unix
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
+%if %{?cvs:1}0
+BuildRequires: automake, autoconf, libtool
+%endif
 
 Obsoletes: kino-devel <= %{version}
 
@@ -36,18 +35,19 @@ commands for fast navigating and editing inside the movie.
 
 %prep
 %setup
-# Fix up the desktop entry (it has CRLF line ends in 0.7.2, dfi barfs on it!)
-dos2unix kino.desktop
-# Use the kino icon we include
-%{__perl} -pi.orig -e 's|gnome-multimedia.png|kino.png|g' kino.desktop
+# Fix path for the icon
+%{__perl} -pi.orig -e 's|(^Icon)=.*|$1=%{_datadir}/kino/kino.png|' kino.desktop
+
 
 %build
+%{?cvs:./autogen.sh}
 %configure \
     --with-hotplug-script-dir=%{_sysconfdir}/hotplug/usb \
     --with-hotplug-usermap-dir=%{_libdir}/hotplug/kino \
     %{!?_without_quicktime:--with-quicktime} \
     %{!?_without_ffmpeg:--with-avcodec}
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,38 +56,27 @@ dos2unix kino.desktop
     hotplugusermapdir=%{buildroot}%{_libdir}/hotplug/kino
 %find_lang %{name}
 
-%if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 kino.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/kino.desktop
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		kino.desktop
-%endif
-
-# Install the pixmap for the menu entry
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/kino.png
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files -f %{name}.lang
 %defattr (-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README*
-%doc %{_mandir}/man?/*
-#%doc %{_datadir}/gnome/help/kino/
 %config %{_sysconfdir}/hotplug/usb/*
 %{_bindir}/*
-%dir %{_libdir}/hotplug/
+%{_includedir}/kino/
 %{_libdir}/hotplug/kino/
 %{_datadir}/kino/
-%{_datadir}/pixmaps/kino.png
-%{_includedir}/kino/
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/kino.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-kino.desktop}
+%{_datadir}/applications/kino.desktop
+%{_mandir}/man1/*
+
 
 %changelog
+* Mon Aug  2 2004 Matthias Saou <http://freshrpms.net> 0.7.2-1.20040802
+- Update to today's CVS tree to fix various bugs.
+
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net> 0.7.2-1
 - Update to 0.7.2.
 - Spec file changes to match upstream build fixes.
