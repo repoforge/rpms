@@ -2,6 +2,8 @@
 # Authority: matthias
 # Upstream: <libexif-devel@lists.sf.net>
 
+# ExcludeDist: fc2
+
 Name: libexif
 Summary: EXIF image tag library
 Version: 0.5.12
