@@ -33,7 +33,7 @@ This module gets the list of modules shipped with versions of perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
