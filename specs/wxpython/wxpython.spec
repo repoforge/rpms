@@ -39,7 +39,7 @@ Macintosh OS X.
 
 %prep
 %{__rm} -rf "${RPM_BUILD_ROOT}"
-%setup -n wxPythonSrc-2.4.2.4
+%setup -n wxPythonSrc-%{version}
 
 %build
 cd wxPython
