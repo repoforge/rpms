@@ -38,10 +38,10 @@ Available rpmbuild rebuild options :
 %prep
 %setup -n xine-ui-%{version}
 
-%{__cat} <<EOF >xine.desktop
+%{__cat} << EOF > xine.desktop
 [Desktop Entry]
-Name=Xine Movie Player
-Comment=Video Player
+Name=Xine Multimedia Player
+Comment=Versatile Multimedia Player
 Exec=xine
 MimeType=video/mpeg;video/quicktime;video/x-msvideo;audio/x-mp3;audio/x-mp2;
 Icon=xine.xpm
@@ -51,10 +51,11 @@ Encoding=UTF-8
 Categories=Application;AudioVideo;
 EOF
 
+
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-%{?_without_lirc:--disable-lirc}
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    %{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
 
 
@@ -64,10 +65,10 @@ EOF
 %find_lang xine-ui
 
 # Remove unpackaged files
-/usr/bin/find %{buildroot} -name "xitk*" | xargs rm -rf || :
+find %{buildroot} -name "xitk*" | xargs rm -rf || :
 
 # Move the docs back into place
-mv %{buildroot}%{_docdir}/xine-ui xine-ui-doc
+%{__mv} %{buildroot}%{_docdir}/xine-ui xine-ui-doc
 
 %if %{?_without_freedesktop:1}0
 %{__install} -D -m644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
@@ -75,7 +76,6 @@ mv %{buildroot}%{_docdir}/xine-ui xine-ui-doc
 %{__mkdir_p} %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
-    --add-category X-Red-Hat-Base               \
     xine.desktop
 %endif
 
