@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/boson/boson-all-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, XFree86-devel, zlib-devel
+BuildRequires: gcc-c++, XFree86-devel, zlib-devel, qt-devel
 
 %description
 Boson is an OpenGL real-time strategy game, with the feeling of
@@ -43,11 +43,13 @@ Categories=Application;Network;X-Red-Hat-Extra;
 EOF
 
 %build
+. /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+. /etc/profile.d/qt.sh
 %makeinstall
 
 %clean
