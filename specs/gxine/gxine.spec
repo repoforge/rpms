@@ -49,6 +49,20 @@ Encoding=UTF-8
 Categories=GNOME;Application;AudioVideo;
 EOF
 
+%{__cat} <<EOF >gxine.applications
+gxine
+	command=gxine
+	name=GXine
+	can_open_multiple_files=true
+	expects_uris=yes
+	requires_terminal=false
+	all_gnome_vfs_schemes_supported=yes
+	uses_gnomevfs=true
+	startup_notify=false
+	supported_uri_schemes=rtp,mms,net,rtsp,pnm
+	mime_types=video/mpeg,video/msvideo,video/quicktime,video/x-avi,video/x-ms-asf,video/x-ms-wmv,video/x-msvideo,application/x-ogg,application/ogg,audio/x-mp3,audio/x-mpeg,video/x-mpeg,video/x-fli,audio/x-wav,audio/x-mpegurl,audio/x-scpls,audio/x-ms-asx,application/vnd.rn-realmedia,audio/x-real-audio,audio/x-pn-realaudio,application/x-flac,audio/x-flac,application/x-shockwave-flash,audio/mpeg,audio/x-ms-asf,audio/x-m4a,audio/x-ms-wax,video/dv,video/x-anim,video/x-flc,misc/ultravox,application/x-matroska,audio/vnd.rn-realaudio,audio/x-pn-aiff,audio/x-pn-au,audio/x-pn-wav,audio/x-pn-windows-acm,image/vnd.rn-realpix,video/vnd.rn-realvideo
+EOF
+
 %build
 %configure \
 	--x-libraries="%{_prefix}/X11R6/%{_lib}"
@@ -59,6 +73,7 @@ EOF
 %{__make} install DESTDIR=%{buildroot}
 
 %{__install} -D -m0644 pixmaps/gxine-logo.png %{buildroot}%{_datadir}/pixmaps/gxine.png
+%{__install} -D -m0644 xine.applications %{buildroot}%{_datadir}/applications/xine.applications
 
 ### We don't want those...
 %{__rm} -f %{buildroot}%{_libdir}/gxine/{*.a,*.la}
@@ -84,10 +99,14 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %lang(de) %{_mandir}/de/man1/*
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gxine.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/gxine.desktop}
+%{_datadir}/application-registry/gxine.applications
 %{_datadir}/gxine/
 %{_datadir}/pixmaps/gxine.png
 
 %changelog
+* Sun Aug 01 2004 Dag Wieers <dag@wieers.com> - 0.3.3-3
+- Added gxine.applications to application-registry.
+
 * Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.3.3-3
 - Added improved desktop file.
 

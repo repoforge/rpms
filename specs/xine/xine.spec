@@ -38,17 +38,31 @@ Available rpmbuild rebuild options :
 %prep
 %setup -n xine-ui-%{version}
 
-%{__cat} << EOF > xine.desktop
+%{__cat} <<EOF >xine.desktop
 [Desktop Entry]
 Name=Xine Multimedia Player
 Comment=Versatile Multimedia Player
 Exec=xine
-MimeType=video/mpeg;video/quicktime;video/x-msvideo;audio/x-mp3;audio/x-mp2;
+MimeType=video/mpeg;video/quicktime;video/x-msvideo;audio/x-mp3;audio/x-mp2;audio/x-mpegurl;
 Icon=xine.xpm
 Terminal=false
 Type=Application
 Encoding=UTF-8
 Categories=Application;AudioVideo;
+EOF
+
+%{__cat} <<EOF >xine.applications
+xine
+	command=xine
+	name=Xine
+	can_open_multiple_files=true
+	expects_uris=yes
+	requires_terminal=false
+	all_gnome_vfs_schemes_supported=yes
+	uses_gnomevfs=true
+	startup_notify=false
+	supported_uri_schemes=rtp,mms,net,rtsp,pnm
+	mime_types=video/mpeg,video/msvideo,video/quicktime,video/x-avi,video/x-ms-asf,video/x-ms-wmv,video/x-msvideo,application/x-ogg,application/ogg,audio/x-mp3,audio/x-mpeg,video/x-mpeg,video/x-fli,audio/x-wav,audio/x-mpegurl,audio/x-scpls,audio/x-ms-asx,application/vnd.rn-realmedia,audio/x-real-audio,audio/x-pn-realaudio,application/x-flac,audio/x-flac,application/x-shockwave-flash,audio/mpeg,audio/x-ms-asf,audio/x-m4a,audio/x-ms-wax,video/dv,video/x-anim,video/x-flc,misc/ultravox,application/x-matroska,audio/vnd.rn-realaudio,audio/x-pn-aiff,audio/x-pn-au,audio/x-pn-wav,audio/x-pn-windows-acm,image/vnd.rn-realpix,video/vnd.rn-realvideo
 EOF
 
 
@@ -63,6 +77,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang xine-ui
+
+%{__install} -D -m0644 xine.applications %{buildroot}%{_datadir}/applications/xine.applications
 
 # Remove unpackaged files
 find %{buildroot} -name "xitk*" | xargs rm -rf || :
@@ -89,6 +105,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 %doc xine-ui-doc/*
 #{!?_without_aalib:%{_bindir}/aaxine}
 %{_bindir}/*
+%{_datadir}/application-registry/xine.applications
 %{_datadir}/pixmaps/*
 %{_datadir}/xine/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
@@ -101,6 +118,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Sun Aug 01 2004 Dag Wieers <dag@wieers.com> - 0.99.2-1
+- Added xine.applications to application-registry.
+
 * Mon Jul 05 2004 Dag Wieers <dag@wieers.com>> - 0.99.2-1
 - Added an improved desktop file.
 - Updated to release 0.99.2
