@@ -1,14 +1,15 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
-# Upstream: Tom Deblauwe <tom.deblauwe@pandora.be>
+# Upstream: Tom Deblauwe <tom,deblauwe$pandora,be>
+
 # Screenshot: http://ksubtile.sourceforge.net/images/ksubtile.png
 # ScreenshotURL: http://ksubtile.sourceforge.net/
+
+%define real_version 1.0-1
 
 Summary: Program for editing subtitles in the SRT format
 Name: ksubtile
 Version: 1.0.1
-%define real_version 1.0-1
 Release: 2
 License: GPL
 Group: Applications/Multimedia
@@ -34,14 +35,14 @@ in the SRT subtitle format.
 %setup -n ksubtile-1.0
 
 %build
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %configure
 for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %makeinstall
 mkdir -p %{buildroot}/usr/share/applications
 mv %{buildroot}/usr/share/applnk/Editors/ksubtile.desktop %{buildroot}/usr/share/applications/ksubtile.desktop
@@ -51,7 +52,7 @@ echo "Categories=Application;AudioVideo;X-Red-Hat-Extra;" >> %{buildroot}/usr/sh
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING TODO
 %{_bindir}/ksubtile
 %{_bindir}/ksubtile_client
