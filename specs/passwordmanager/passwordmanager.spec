@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Michael Buesch <mbuesch@freenet.de>
+# Upstream: Michael Buesch <mbuesch$freenet,de>
 
 # Screenshot: http://passwordmanager.sourceforge.net/1.png
 # ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
