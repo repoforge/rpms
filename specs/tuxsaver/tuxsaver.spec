@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: koen muylkens <koen.muylkens@esat.kuleuven.ac.be>
+# Upstream: koen muylkens <koen,muylkens$esat,kuleuven,ac,be>
 
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
