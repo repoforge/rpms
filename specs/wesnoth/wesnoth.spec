@@ -46,7 +46,8 @@ Categories=Application;Game;ArcadeGame
 EOF
 
 %install
-export DESTDIR=$RPM_BUILD_ROOT
+mkdir -p %{buildroot}
+export DESTDIR=%{buildroot}
 make install-strip
 mkdir -p %{buildroot}/usr/share/applications/
 cp wesnoth.desktop %{buildroot}/usr/share/applications/
