@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Source: http://dl.sf.net/vncselector/VncSelector_1.6.tar.gz
 Source: http://vncselector.sourceforge.net/VncSelector_%{version}.tar.gz
 BuildRequires: fltk-devel, gcc-c++, XFree86-devel, autoconf, automake
+BuildRequires: libtool
 Requires: fltk
 
 %description

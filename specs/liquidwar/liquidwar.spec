@@ -4,7 +4,7 @@
 Summary: Multiplayer wargame with liquid armies
 Name: liquidwar
 Version: 5.6.2
-Release: 2
+Release: 3
 License: GPL
 Group: Amusements/Games
 URL: http://www.ufoot.org/liquidwar/
@@ -40,7 +40,7 @@ and info format.
 
 %build
 # little problem in Makefile.in
-%{__perl} -pi.orig -e 's|$\(DESKTOPDIR\)|$(DESTDIR)$(DESKTOPDIR)|g' Makefile.in
+%{__perl} -pi.orig -e "s|\$.DESKTOPDIR.|\$\(DESTDIR\)\$\(DESKTOPDIR\)|g" Makefile.in
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -50,6 +50,7 @@ and info format.
 # fix the desktop file
 %{__perl} -pi.orig -e 's|Exec=|Exec=%{_prefix}/games/|' \
     %{buildroot}%{_datadir}/applications/liquidwar.desktop
+%{__mv} %{buildroot}%{_datadir}/doc/liquidwar liquidwardocs
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,16 +70,20 @@ and info format.
 %{_datadir}/games/liquidwar/
 %{_datadir}/pixmaps/liquidwar.xpm
 %{_datadir}/applications/liquidwar.desktop
+%exclude %{_datadir}/applications/liquidwar.desktop.orig
 
 %files doc
 %defattr(-, root, root, 0755)
-%docdir %{_datadir}/doc/liquidwar/
+%doc liquidwardocs/*
 %{_infodir}/liquidwar.*
 %{_mandir}/man6/liquidwar-mapgen.6.gz
 %{_mandir}/man6/liquidwar-server.6.gz
 %{_mandir}/man6/liquidwar.6.gz
 
 %changelog
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 5.6.2-3
+- Some fixes in the spec file
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 5.6.2-2
 - Major spec cleanup, not sure why the docs are apart, though.
 - Can't build... where is allegro??
