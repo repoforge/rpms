@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/DateTime-Util-Calc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Module::Build), perl(Math::BigInt::GMP)
+BuildRequires: perl, perl-Module-Build, perl-Math-BigInt-GMP
 BuildRequires: perl(Math::Round), perl(DateTime)
 
 %description
