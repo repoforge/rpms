@@ -16,7 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/desk3d/3ddesktop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%{?fc2:BuildRequires: kdelibs-devel, imlib2-devel, XFree86-devel, gcc-c++, zlib-devel, qt-devel}
+%{?fc2:BuildRequires: kdelibs-devel, imlib2-devel, XFree86-devel, gcc-c++, zlib-devel, qt-devel, xorg-x11-Mesa-libGLU}
 %{?fc1:BuildRequires: kdelibs-devel, imlib-devel, XFree86-devel, gcc-c++, zlib-devel, qt-devel}
 %{?el3:BuildRequires: kdelibs-devel, imlib-devel, XFree86-devel, gcc-c++, zlib-devel, qt-devel}
 %{?rh9:BuildRequires: kdelibs-devel, imlib-devel, XFree86-devel, gcc-c++, zlib-devel, qt-devel}
