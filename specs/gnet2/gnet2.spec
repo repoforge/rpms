@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: David Helder <dhelder$umich,edu>
 
 Summary: Simple network library
 Name: gnet2
-Version: 2.0.5
+Version: 2.0.7
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -50,10 +49,6 @@ you will need to install %{name}-devel.
 %setup -n gnet-%{version}
 
 %build
-%{__libtoolize} --force
-%{__aclocal}
-%{__automake}
-%{__autoconf}
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--with-html-dir="%{buildroot}%{_docdir}/libgnet2.0-dev/"
@@ -62,9 +57,6 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -78,21 +70,24 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{_libdir}/*.so.*
+%{_libdir}/libgnet-2.0.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc HACKING
 %doc %{_docdir}/libgnet2.0-dev/
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/gnet-2.0/
-%{_libdir}/pkgconfig/*.pc
-%{_datadir}/aclocal/*
+%{_datadir}/aclocal/gnet-2.0.m4
 %{_includedir}/gnet-2.0/
-#exclude %{_libdir}/*.la
+%{_libdir}/gnet-2.0/
+%{_libdir}/libgnet-2.0.a
+%exclude %{_libdir}/libgnet-2.0.la
+%{_libdir}/libgnet-2.0.so
+%{_libdir}/pkgconfig/gnet-2.0.pc
 
 %changelog
+* Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 2.0.7-1
+- Updated to release 2.0.7.
+
 * Tue Mar 02 2004 Dag Wieers <dag@wieers.com> - 2.0.5-1
 - Updated to release 2.0.5.
 

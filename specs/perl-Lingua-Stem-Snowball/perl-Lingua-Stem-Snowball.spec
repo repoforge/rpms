@@ -27,8 +27,8 @@ Perl interface to Snowball stemmers.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -36,21 +36,21 @@ Perl interface to Snowball stemmers.
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorarch}/Lingua/
 %dir %{perl_vendorarch}/Lingua/Stem/
 %{perl_vendorarch}/Lingua/Stem/Snowball.pm
 %{perl_vendorarch}/Lingua/Stem/add_stemmer.pl
 %dir %{perl_vendorarch}/auto/Lingua/Stem/
-%dir %{perl_vendorarch}/auto/Lingua/Stem/Snowball/
+%{perl_vendorarch}/auto/Lingua/Stem/Snowball/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1

@@ -1,6 +1,8 @@
 # $Id: perl-Convert-UUlib.spec 125 2004-03-16 22:05:34Z dag $
 # Authority: matthias
 
+# ExclusiveDist: rh6 el2 rh7
+
 %define real_name Storable
 
 Summary: %{real_name} module for perl

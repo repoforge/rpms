@@ -2,17 +2,16 @@
 # Authority: dag
 # Upstream: Martin Pool <mbp$sourcefrog,net>
 
-# Rationale: rsync 2.6.3 uses less resources and has lots of improvements
+# Rationale: rsync 2.6.3+ uses less resources and has lots of improvements
 
 Summary: Program for synchronizing files over a network
 Name: rsync
-Version: 2.6.3
+Version: 2.6.4
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
 
-#Source: http://rsync.samba.org/ftp/rsync/preview/rsync-%{real_version}.tar.gz
 Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -58,13 +57,16 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING NEWS README tech_report.tex TODO *.txt
+%doc COPYING INSTALL NEWS OLDNEWS README tech_report.tex TODO *.txt doc/ support/
 %doc %{_mandir}/man1/rsync.1*
 %doc %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/xinetd.d/rsync
 %{_bindir}/rsync
 
 %changelog
+* Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 2.6.4-1
+- Updated to release 2.6.4.
+
 * Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 2.6.3-1
 - Updated to release 2.6.3.
 

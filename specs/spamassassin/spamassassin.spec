@@ -30,6 +30,7 @@ BuildRequires: perl(HTML::Parser), perl(Net::DNS), perl(Time::HiRes), openssl-de
 Requires: procmail, perl(Net::DNS), perl(Time::HiRes)
 Requires: /sbin/chkconfig, /sbin/service
 #Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
+Provides: perl(Mail::SpamAssassin) = %{version}-%{release}
 Obsoletes: perl-Mail-SpamAssassin
 
 %define __find_requires %{SOURCE99}

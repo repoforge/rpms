@@ -54,11 +54,11 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
+%post
+/sbin/ldconfig 2>/dev/null
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -66,21 +66,21 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog NEWS README TODO
-%{_libdir}/*.so.*
+%{_libdir}/libgnet.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc HACKING
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/gnet-config.1*
 %doc %{_docdir}/libgnet1.1-dev/
-%{_bindir}/*
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/gnet/
-%{_libdir}/pkgconfig/*.pc
-%{_datadir}/aclocal/*.m4
+%{_bindir}/gnet-config
+%{_datadir}/aclocal/gnet.m4
 %{_includedir}/gnet/
-#exclude %{_libdir}/*.la
+%{_libdir}/gnet/
+%{_libdir}/libgnet.a
+%exclude %{_libdir}/libgnet.la
+%{_libdir}/libgnet.so
+%{_libdir}/pkgconfig/gnet.pc
 
 %changelog
 * Sun Sep 07 2003 Dag Wieers <dag@wieers.com> - 1.1.9-0
