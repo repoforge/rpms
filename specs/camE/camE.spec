@@ -3,7 +3,7 @@
 
 Summary: rewrite of the xawtv webcam app, which adds imlib2 support
 Name: camE
-Version: 1.8
+Version: 1.9
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -43,6 +43,9 @@ thus many new possibilities.
 
 
 %changelog
+* Thu Jul  1 2004 Matthias Saou <http://freshrpms.net/> 1.9-1
+- Update to 1.9.
+
 * Fri Jun 25 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
 - Update to 1.8.
 
