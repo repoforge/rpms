@@ -8,12 +8,13 @@
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.3.2
-Release: 4
+Release: 5
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
 Source: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
-Patch: mblox_optionals_0.1.diff
+Patch0: mblox_optionals_0.1.diff
+Patch1: kavkaz.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
@@ -51,7 +52,8 @@ use the kannel WAP and SMS gateway.
 
 %prep
 %setup -n gateway-%{version}
-%patch -p1 -b .mblox
+%patch0 -p1 -b .mblox
+%patch1 -p1 -b .kavkaz
 
 
 %build
@@ -105,6 +107,9 @@ use the kannel WAP and SMS gateway.
 
 
 %changelog
+* Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-5
+- Added Kavkaz operator patch.
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-4
 - Added pcre support, doc building (almost) and sqlite backend...
   it still fails with a corrupt first line of .depend on FC3, though.
