@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Psi Jabber Client:: home</title>
+  <link REL="icon" HREF="/favicon.ico" TYPE="image/png">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script language="javascript" type="text/javascript">
+  function Disable()
+  {
+  document.form1.buSubmit.disabled = true;
+  document.form1.submit();
+  }
+		</script>
+  <link href="psi.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="20"><img src="gfx/spacer.gif" width="20" height="1" alt="" /></td>
+    <td><img src="gfx/spacer.gif" width="627" height="1" alt="" /></td>
+    <td width="22"><img src="gfx/spacer.gif" width="22" height="1" alt="" /></td>
+    <td><img src="gfx/spacer.gif" width="1" height="1" alt="" /></td>
+  </tr>
+  <tr>
+    <td width="20" height="76"><img src="gfx/p_r1_c1.png" width="20" alt="" /></td>
+    <td height="76" style="background: url('gfx/p_r1_c2.png');">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><img src="gfx/tmplogo.png" alt="Psi" width="129" height="76" /></td>
+          <td> <div align="right"><img src="gfx/psilogo.png" alt="Psi sign" width="101" height="76" /></div></td>
+        </tr>
+      </table></td>
+    <td width="22" height="76"><img src="gfx/p_r1_c3.png" width="22" alt="" /></td>
+    <td height="76"><img src="gfx/spacer.gif" width="1" height="75" alt="" /></td>
+  </tr>
+  <tr>
+    <td style="background: url('gfx/p_r2_c1.png');" width="20" height="19"><img src="gfx/spacer.gif" alt="" width="1" height="23"/></td>
+    <td height="20" bgcolor="#E6ECF3"> <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <!-- Begin Menu -->
+          <td height="23" bgcolor="#FFFFFF"> &nbsp;&nbsp;<a href="?page=home&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Home</a>&nbsp;&nbsp;</td>
+          <td height="23" > &nbsp;&nbsp;<a href="?page=about&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">About</a>&nbsp;&nbsp;</td>
+          <td height="23" > &nbsp;&nbsp;<a href="?page=screenshots&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Screenshots</a>&nbsp;&nbsp;</td>
+          <td height="23"> &nbsp;&nbsp;<a href="forums/?PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Forums</a>&nbsp;&nbsp;</td>
+          <td height="23" > &nbsp;&nbsp;<a href="?page=download&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Download</a>&nbsp;&nbsp;</td>
+          <td height="23" > &nbsp;&nbsp;<a href="?page=development&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Development</a>&nbsp;&nbsp;</td>
+          <td height="23" > &nbsp;&nbsp;<a href="/flyspray/?PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Bug&nbsp;Tracker</a>&nbsp;&nbsp;</td>
+          <td height="23" > &nbsp;&nbsp;<a href="?page=changelog&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Changelog</a>&nbsp;&nbsp;</td>
+          <td height="23" > &nbsp;&nbsp;<a href="?page=authors&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">Authors</a>&nbsp;&nbsp;</td>
+          <td height="23"> &nbsp;&nbsp;<a href="forums/index.php?act=ST&amp;f=1&amp;t=428&PHPSESSID=4f210fd64b33acaff0d787165f848399" class="men">FAQ</a>&nbsp;&nbsp;</td>
+          <!-- End Menu -->
+        </tr>
+      </table></td>
+    <td width="22" height="23" style="background: url('gfx/p_r2_c3.png');">
+      <img src="gfx/spacer.gif" alt="" width="1" height="23"/></td>
+    <td height="19"><img src="gfx/spacer.gif" width="1" height="23" alt="" /></td>
+  </tr>
+  <tr>
+    <td width="20" style="background: url('gfx/p_r3_c1.png');">&nbsp; </td>
+    <td align="left" valign="top" bgcolor="#FFFFFF">
+    <div class="poll" style="float: right; width: 250px;"> <strong>Today's Survey:</strong> <br />
+    <i>Most Important New Feature?</i><br /><a href="/forums/index.php?act=ST&amp;f=5&amp;t=883&PHPSESSID=4f210fd64b33acaff0d787165f848399">Members can vote and comment</a>.
+    </div>
+
+      <!-- Begin Content -->
+      <div class="cont">
+      <div class="txt" style="margin-bottom:15px;">
+      <img src="gfx/roster_angle.jpg" width="148" height="355" alt="Psi roster" align="left" />
+      <p style="padding-top: 60px;"><strong>Psi - an awesome client for the Jabber network.</strong>
+      <br />
+      <a href="?page=download&PHPSESSID=4f210fd64b33acaff0d787165f848399">Download version 0.9.1 today!</a>
+      <br /><br />
+      Are you tired of the barriers between typical Instant Messaging Networks?  Have you had enough of
+      having to use five chat programs to talk to all your friends?  These problems can be easily
+      solved by switching to the Jabber network!
+      </p>
+	  <img src="gfx/chat.png" width="405" height="160" alt="Chat!" />
+</div>
+<br>
+<div class="poll" style="width:95%;"><table><tr><td valign="top"><img src="gfx/yellowstar.png" width="16" height="16" alt="Star" /></td><td><strong style="font-size: 12px;">
+Psi 0.9.2-test2 Is Available For Download</strong><br />
+<span class="datex">
+By halr9000 - Saturday 08 May, 2004
+</span>
+</td></tr></table><div class="txt" style="font-size:11px;">
+ Source: <a href='http://psi.affinix.com/beta/psi-0.9.2-test2.tar.bz2' target='_blank'>psi-0.9.2-test2.tar.bz2</a><br />Windows: <a href='http://psi.affinix.com/beta/psi-0.9.2-test2-win.zip' target='_blank'>psi-0.9.2-test2-win.zip</a><br />Mac: <a href='http://psi.affinix.com/beta/psi-0.9.2-test2-mac.dmg' target='_blank'>psi-0.9.2-test2-mac.dmg</a><br /><br />Notes:<br /><br />- Read the README and INSTALL for compiling source.<br />- There is no installer for the Win and Mac builds, just unpack into a convenient folder.<br /><br />Discussion for the BETA BUILDS ONLY (not 0.9.1!) goes here: <a href='http://psi.affinix.com/forums/index.php?s=&amp;act=SF&amp;f=9' target='_blank'>New Beta Discussion Forum</a><br /><br />I'm closing this thread.  Please discuss in the new forum. <br />
+<a href="/forums/index.php?act=ST&amp;f=5&amp;t=1652&PHPSESSID=4f210fd64b33acaff0d787165f848399" style="text-decoration: underline;">Discuss this...</a>
+<br /><br /></div></div><div class="poll" style="width:95%;"><table><tr><td valign="top"><img src="gfx/yellowstar.png" width="16" height="16" alt="Star" /></td><td><strong style="font-size: 12px;">
+Updated Development Plan</strong><br />
+<span class="datex">
+By halr9000 - Monday 03 May, 2004
+</span>
+</td></tr></table><div class="txt" style="font-size:11px;">
+ (copied from infiniti's post to the psi-devel mailing list)<br /><br />- - May 6th: 0.9.2-test1.  This will be rushed as necessary, to make the Qt/Mac <br />deadline.<br /><br />- - May 10th: 0.9.2-test2.<br /><br />- - June 1st: 0.9.2.<br /><br />The reason for the late release is to time it with Akito's language pack <br />management system, and June 1st is the projected date for that.  Psi could be <br />released earlier or even later (!) than this depending on when the system is <br />actually ready.<br /><br />Work will begin on 0.9.3 once test2 (or further tests as necessary) are deemed <br />acceptable. <br />
+<a href="/forums/index.php?act=ST&amp;f=5&amp;t=1638&PHPSESSID=4f210fd64b33acaff0d787165f848399" style="text-decoration: underline;">Discuss this...</a>
+<br /><br /></div></div><div class="poll" style="width:95%;"><table><tr><td valign="top"><img src="gfx/yellowstar.png" width="16" height="16" alt="Star" /></td><td><strong style="font-size: 12px;">
+New &quot;Infrastructure&quot; forum category</strong><br />
+<span class="datex">
+By halr9000 - Monday 05 Apr, 2004
+</span>
+</td></tr></table><div class="txt" style="font-size:11px;">
+ Guys and gals, there is now a new forum category titled &amp;quot;Infrastructure&amp;quot;.  This is for topics not related to the Psi software, but to the back-end pieces that help us tie things together, like this forum itself, and the website in general.  <br /><br />For now the new Website Administration forum and the Forum Administration forum (formerly known as the Forum Jabber Integration forum) are full access which means anyone can post new topics and reply to existing ones. <br /><br />Check the <a href='http://psi.affinix.com/forums/index.php' target='_blank'>Forum Index</a> to see the new stuff. <br />
+<a href="/forums/index.php?act=ST&amp;f=5&amp;t=1561&PHPSESSID=4f210fd64b33acaff0d787165f848399" style="text-decoration: underline;">Discuss this...</a>
+<br /><br /></div></div><!--
+<table border="0" cellpadding="4" cellspacing="0" align="center">
+	<tr>
+		<td><a href="http://www.devianttechnologies.com/"><img border="0" src="/gfx/deviant_logo.gif"></a></td>
+		<td><a href="http://jabber.org/"><img  border="0" src="/gfx/jsf.png"></a></td>
+	</tr>
+</table> -->
+
+<style type="text/css">
+.banner {
+	padding: 15px;
+	
+}
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" cellpadding="0" align="center">
+<tr>
+	<td style="vertical-align:top">
+		<a href="http://jabber.org/"><img border="0" class="banner" src="/gfx/banner/jsf_logo.gif"></a>
+		<a href="http://www.trolltech.com/"><img border="0" class="banner" src="/gfx/banner/logo_face_trolltech2.png"></a>
+	</td>
+</tr>
+</table>
+
+      </div>
+      <!-- End Content -->
+    </td>
+    <td width="22" style="background: url('gfx/p_r3_c3.png');">&nbsp; </td>
+    <td><img src="gfx/spacer.gif" width="1" height="309" alt="" /></td>
+  </tr>
+  <tr>
+    <td width="20" height="24"><img src="gfx/p_r4_c1.png" width="20" height="24" alt="" /></td>
+    <td height="24" style="background: url('gfx/p_r4_c2.png');">&nbsp; </td>
+    <td width="22" height="24"><img src="gfx/p_r4_c3.png" width="22" height="24" alt="" /></td>
+    <td height="24"><img src="gfx/spacer.gif" width="1" height="24" alt="" /></td>
+  </tr>
+  <tr>
+    <td height="24" colspan="3"> <div align="center">
+        <!-- Begin Links
+        <a href="http://validator.w3.org/check/referer"><img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid HTML 4.0!" width="88"
+	height="31" border="0" /></a> &nbsp;
+	<a href="http://www.jabber.org/">
+	<img src="http://psi.affinix.com/gfx/oim_button.png" alt="Jabber Software Foundation" border="0" /></a>&nbsp;
+	<img src="http://sourceforge.net/sflogo.php?group_id=14635" alt="SourceForge" border="0" />
+	<a href="http://www.itmom.com">
+	<img src="gfx/itmom.png" width="88" height="31" border="0" alt="ITmom.com - provided this webspace for us" title="ITmom.com - provided this webspace for us" /></a>
+	End links -->
+	<br />
+	&copy; Tony Collins, Tom Germeau, Justin Karneges &amp; Kevin Smith  2002, 2003, 2004
+      </div></td>
+    <td height="24">&nbsp;</td>
+  </tr>
+</table>
+<br />
+</body>
+</html>
+
