@@ -16,14 +16,16 @@ URL: http://www.gnustep.org/
 Source0: ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-base-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh, diffutils, openssl-devel, gcc-objc, ffcall-devel, gnustep-make, gcc
+BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh, diffutils, openssl-devel, gcc-objc, ffcall-devel, gnustep-make
 Requires: ffcall
 
 %description
-todo
-
-%description -l nl
-todo
+The GNUstep Base Library is a library of general-purpose,
+non-graphical Objective C objects.  For example, it includes classes
+for strings, object collections, byte streams, typed coders,
+invocations, notifications, notification dispatchers, moments in time,
+network ports, remote object messaging support (distributed objects),
+and event loops.
 
 %prep
 %setup
