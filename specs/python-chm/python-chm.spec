@@ -5,8 +5,8 @@
 
 Summary: Python package to handle CHM files
 Name: python-chm
-Version: 0.8.0
-Release: 0
+Version: 0.8.1
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://gnochm.sourceforge.net/
@@ -47,6 +47,9 @@ python setup.py install \
 %{_libdir}/python*/site-packages/chm/
 
 %changelog
+* Mon Nov 08 2004 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Tue Feb 24 2004 Dag Wieers <dag@wieers.com> - 0.8.0-0
 - Updated to release 0.8.0.
 

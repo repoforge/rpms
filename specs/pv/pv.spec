@@ -4,7 +4,7 @@
 
 Summary: Monitor the progress of data through a pipe
 Name: pv
-Version: 0.8.6
+Version: 0.8.9
 Release: 1
 License: Artistic
 Group: Development/Tools
@@ -51,11 +51,14 @@ will be until completion.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README doc/COPYING doc/NEWS doc/TODO doc/*.html doc/*.txt
-%doc %{_mandir}/man?/*
-%doc %{_infodir}/*.info*
-%{_bindir}/*
+%doc %{_mandir}/man1/pv.1*
+%doc %{_infodir}/pv.info*
+%{_bindir}/pv
 
 %changelog
+* Sun Nov 07 2004 Dag Wieers <dag@wieers.com> - 0.8.9-1
+- Updated to release 0.8.9.
+
 * Wed Jun 30 2004 Dag Wieers <dag@wieers.com> - 0.8.6-1
 - Updated to release 0.8.6.
 
