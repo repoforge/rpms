@@ -1,5 +1,9 @@
 # $Id$
 # Authority: matthias
+# Upstream: Thomas Östreich <ostreich@theorie.physik.uni-goettingen.de>
+# Upstream: Tilmann Bitterberg <transcode@tibit.org>
+
+# Distcc: 0
 
 Summary: Linux video stream processing utility
 Name: transcode
@@ -8,23 +12,10 @@ Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
-Source: http://zebra.fh-weingarten.de/~transcode/pre/%{name}-%{version}.tar.bz2
+
+Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%{?_with_avifile6:Requires: avifile >= 0.6.0}
-%{!?_without_text:Requires: freetype >= 2.0}
-%{!?_without_lame:Requires: lame >= 3.89}
-%{!?_without_ogg:Requires: libogg}
-%{!?_without_vorbis:Requires: libvorbis}
-%{!?_without_dvdread:Requires: libdvdread}
-%{!?_without_xvidcore:Requires: xvidcore}
-#{!?_without_postproc:Requires: libpostproc}
-%{!?_without_quicktime:Requires: libquicktime}
-%{!?_without_dv:Requires: libdv}
-%{!?_without_lzo:Requires: lzo >= 1.08}
-%{!?_without_libfame:Requires: libfame}
-%{!?_without_magick:Requires: ImageMagick >= 5.4.3, bzip2}
-%{!?_without_mjpeg:Requires: mjpegtools}
-Requires: SDL, libxml2, libjpeg
+
 %{?_with_avifile6:BuildRequires: avifile-devel >= 0.6.0}
 %{!?_without_text:BuildRequires: freetype-devel >= 2.0}
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
@@ -45,6 +36,22 @@ BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
+
+%{?_with_avifile6:Requires: avifile >= 0.6.0}
+%{!?_without_text:Requires: freetype >= 2.0}
+%{!?_without_lame:Requires: lame >= 3.89}
+%{!?_without_ogg:Requires: libogg}
+%{!?_without_vorbis:Requires: libvorbis}
+%{!?_without_dvdread:Requires: libdvdread}
+%{!?_without_xvidcore:Requires: xvidcore}
+#{!?_without_postproc:Requires: libpostproc}
+%{!?_without_quicktime:Requires: libquicktime}
+%{!?_without_dv:Requires: libdv}
+%{!?_without_lzo:Requires: lzo >= 1.08}
+%{!?_without_libfame:Requires: libfame}
+%{!?_without_magick:Requires: ImageMagick >= 5.4.3, bzip2}
+%{!?_without_mjpeg:Requires: mjpegtools}
+Requires: SDL, libxml2, libjpeg
 
 %description
 Transcode is a linux text-console utility for video stream processing.
@@ -87,8 +94,8 @@ Available rpmbuild rebuild options :
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-mv %{buildroot}%{_docdir}/transcode installed-docs
-strip %{buildroot}%{_libdir}/transcode/*.so
+%{__mv} -f %{buildroot}%{_docdir}/transcode installed-docs
+%{__strip} %{buildroot}%{_libdir}/transcode/*.so
 
 
 %clean
@@ -97,11 +104,11 @@ strip %{buildroot}%{_libdir}/transcode/*.so
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README TODO installed-docs/*
+%doc AUTHORS ChangeLog COPYING README TODO installed-docs/*
+%doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_libdir}/transcode
+%{_libdir}/transcode/
 %exclude %{_libdir}/transcode/*.la
-%{_mandir}/man1/*
 
 
 %changelog
