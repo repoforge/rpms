@@ -5,10 +5,10 @@
 
 Summary: KDE filesharing client which uses gift
 Name: apollon
-#Version: 0.9.3.2
-#define real_version 0.9.3
-Version: 0.9.2
-%define real_version 0.9.2
+%{?fc2:Version: 0.9.3.2}
+%{?fc2:%define real_version 0.9.3}
+%{?fc1:Version: 0.9.2}
+%{?fc1:%define real_version 0.9.2}
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -20,6 +20,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/apollon/%{name}-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, gift
+%{?fc2:BuildRequires: selinux}
 Requires: kdelibs, gift
 
 # Screenshot: http://apollon.sourceforge.net/apollon1.png
