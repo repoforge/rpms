@@ -5,7 +5,7 @@
 Summary: CPU emulator
 Name: qemu
 Version: 0.6.1
-Release: 3
+Release: 2
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
@@ -14,7 +14,7 @@ Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
 #Patch: qemu-0.6.0-glibc-private.patch
 Patch0: qemu-0.6.1-build.patch
 Patch1: qemu-0.6.1-dyngen.patch
-Patch2: qemu-0.6.1-segv.patch
+#Patch2: qemu-0.6.1-segv.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
@@ -42,7 +42,7 @@ reasonnable speed while being easy to port on new host CPUs.
 #%patch0 -b .glibc
 %patch0 -p1 -b .build
 %patch1 -p0 -b .dyngen
-%patch2 -p1 -b .segv
+#%patch2 -p0 -b .segv
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -183,11 +183,9 @@ fi
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
-* Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 0.6.1-3
-- Added patch for segmentation fauls on FC3.
-
 * Mon Feb 28 2005 Dag Wieers <dag@wieers.com> - 0.6.1-2
 - Added SDL-devel buildrequirement. (Matthias Saou)
+- Fix for build problem on FC2.
 
 * Wed Nov 17 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.

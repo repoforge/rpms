@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Michael Buesch <mbuesch$freenet,de>
+
 # Screenshot: http://passwordmanager.sourceforge.net/1.png
 # ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
 
@@ -33,19 +34,17 @@
 %{?rh6:%define _without_kwallet 1}
 %{?yd3:%define _without_kwallet 1}
 
-
-%define real_version 1.0
-%define short_name pwmanager
+%define real_name pwmanager
 
 Summary: Personal password manager
 Name: passwordmanager
 Version: 1.0.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Productivity
 URL: http://passwordmanager.sourceforge.net/
 
-Source: http://dl.sf.net/passwordmanager/%{short_name}-%{real_version}.tar.bz2
+Source: http://dl.sf.net/passwordmanager/pwmanager-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++,
@@ -62,7 +61,7 @@ master-password you can use a chipcard, so you don't have to remember a
 password to access the list.
 
 %prep
-%setup -n %{short_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
@@ -74,28 +73,25 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{__rm} -rf %{buildroot}
 source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
-%find_lang %{short_name}
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%find_lang %{real_name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{short_name}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
 %{!?_without_kwallet:%{_datadir}/services/kded/pwmanager_kwalletemu.desktop}
 %{_datadir}/applnk/Applications/pwmanager.desktop
 %{_datadir}/icons/*/*/apps/pw*.png
-%{_datadir}/apps/pwmanager
+%{_datadir}/apps/pwmanager/
 %{!?_without_kwallet:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Fri Mar 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.2-2
+- Included the real 1.0.2. (Ian MacGregor)
+
 * Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1
 - Update to version 1.0.2.
 
