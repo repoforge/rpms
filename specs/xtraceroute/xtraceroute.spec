@@ -4,6 +4,16 @@
 # Upstream: Björn Augustsson <d3august $ dtek , chalmers , se>
 # Screenshot: http://www.dtek.chalmers.se/~d3august/xt/bigshot.jpg
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Graphical version of the traceroute program
 Name: xtraceroute
 Version: 0.9.1
@@ -19,7 +29,9 @@ Source: http://www.dtek.chalmers.se/~d3august/xt/dl/xtraceroute-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bind-utils, traceroute, gettext, gtk2-devel, gtk+-devel
-BuildRequires: gdk-pixbuf-devel, gtkglarea2-devel
+BuildRequires: gdk-pixbuf-devel, gtkglarea
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
 
 %description
 Xtraceroute is a graphical version of the traceroute program, which traces
