@@ -38,7 +38,7 @@ data, and prevents most bad data from getting to the icecast server.
 %makeinstall
 test -d %{buildroot}/usr/doc && rm -rf %{buildroot}/usr/doc
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %post

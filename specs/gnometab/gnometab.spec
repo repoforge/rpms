@@ -75,7 +75,7 @@ scrollkeeper-update -q
 scrollkeeper-update -q
 
 %clean
-%{__rm} -fr %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

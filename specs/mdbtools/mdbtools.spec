@@ -85,7 +85,7 @@ EOF
 %postun
 /sbin/ldconfig 2>/dev/null
  
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
  
 %files 

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dries
+# Upstream: Matija Grabnar <matija,grabnar$arnes,si>
 
 %define real_name File-Tail
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -40,11 +40,13 @@ or "cat /dev/null >file") transparently, without losing any input.
 %{__perl} Makefile.PL \
 	INSTALLDIRS="vendor" \
 	PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}
@@ -56,7 +58,6 @@ or "cat /dev/null >file") transparently, without losing any input.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
-%exclude %{perl_vendorarch}
 %{perl_vendorlib}/File/
 %{perl_vendorlib}/auto/File/
 

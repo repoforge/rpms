@@ -143,7 +143,7 @@ cp client/dhclient.conf dhclient.conf.sample
 chmod 755 %{buildroot}/sbin/dhclient-script
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add dhcpd

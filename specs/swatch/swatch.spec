@@ -46,7 +46,7 @@ chmod 644 tools/*
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

@@ -43,6 +43,9 @@ written to it.
 	INSTALL_RCDIR="%{buildroot}%{_sysconfdir}" \
 	SPEECHD_FIFO="%{buildroot}/dev/speech"
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGELOG COPYING INSTALL README TODO

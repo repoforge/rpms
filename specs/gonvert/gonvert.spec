@@ -50,7 +50,7 @@ your own units.
 		%{buildroot}%{_datadir}/gnome/apps/Utilities/gonvert.desktop
 %endif
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files 

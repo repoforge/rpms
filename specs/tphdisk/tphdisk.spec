@@ -33,6 +33,9 @@ ${CC:-%{__cc}} %{optflags} -o tphdisk %{SOURCE0}
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0755 tphdisk %{buildroot}%{_sbindir}/tphdisk
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files 
 %defattr(-, root, root, 0755)
 %{_sbindir}/*

@@ -146,7 +146,7 @@ fi
 /sbin/chkconfig --add named
 
 %clean
-rm -rf %{buildroot} ${RPM_BUILD_DIR}/%{name}-%{version}
+%{__rm} -rf %{buildroot} ${RPM_BUILD_DIR}/%{name}-%{version}
 
 %post utils
 /sbin/ldconfig 2>/dev/null

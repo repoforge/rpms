@@ -202,7 +202,7 @@ ln -s ../../netscape/plugins/libflashplayer.so \
    %{buildroot}%{_libdir}/mozilla/plugins/libflashplayer.so
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -n netscape-common
 %defattr(-,root,root)
