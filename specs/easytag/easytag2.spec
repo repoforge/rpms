@@ -3,14 +3,14 @@
 
 Summary: Tag editor for mp3, ogg, flac and other music files
 Name: easytag
-Version: 1.0
+Version: 1.99.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://easytag.sourceforge.net/
 Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk+-devel >= 1.2.7, id3lib-devel >= 3.7.12
+BuildRequires: gtk2-devel >= 2.4.0, id3lib-devel >= 3.7.12
 BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext
 
 %description
@@ -50,7 +50,7 @@ tagging easier.
 
 %changelog
 * Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 1.0-1
-- Update to stable 1.0.
+- Fork off to "unstable" 1.99.1.
 
 * Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.31-1
 - Update to stable 0.31.
