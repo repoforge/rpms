@@ -7,7 +7,7 @@
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.84.1
-Release: %{?rcver:0.%{rcver}.}1
+Release: %{?rcver:0.%{rcver}.}2
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
 Source10: http://www.mame.net/roms/polyplay.zip
@@ -22,6 +22,7 @@ Source22: http://www.arcade-history.com/download/history0_84b.zip
 Source23: http://www.mameworld.net/mameinfo/update/Mameinfo084u3.zip
 # http://www.mameworld.net/catlist/ 0.84u2 - 11/07/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
+Patch: 0.84.1-0.84.2-preview.diff
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -186,6 +187,7 @@ This version has been compiled for OpenGL display.
 
 %prep
 %setup -n %{name}-%{version}%{?rcver:-%{rcver}}
+%patch -p1 -b .preview
 
 
 %build
@@ -196,9 +198,6 @@ test -e Makefile || %{__cp} -a makefile.unix Makefile
 
 # Replace lib with lib64 when required
 %{__perl} -pi -e 's|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g' Makefile
-
-# Fix \" entries which cause make to fail, replace with "
-%{__perl} -pi -e 's|\\"|"|g' Makefile
 
 # Make the package build verbose by default (to see opts etc.)
 %{?_without_quietbuild: %{__perl} -pi -e 's/^QUIET/# QUIET/g' src/unix/unix.mak}
@@ -388,6 +387,9 @@ popd
 
 
 %changelog
+* Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 0.84.1-2
+- Add 0.84.2 preview patch to fix xmess xgl build and other improvements.
+
 * Sat Jul 17 2004 Matthias Saou <http://freshrpms.net/> 0.84.1-1
 - Update to 0.84.1, with the usual related files too.
 - Added the xml2info utility to be built and included.

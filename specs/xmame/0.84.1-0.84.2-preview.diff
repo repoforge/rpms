@@ -1,0 +1,562 @@
+diff -Nur xmame-0.84.1/makefile.unix xmame-0.84.2/makefile.unix
+--- xmame-0.84.1/makefile.unix	2004-07-02 11:09:36.000000000 -0600
++++ xmame-0.84.2/makefile.unix	2004-07-20 21:36:27.000000000 -0600
+@@ -120,7 +120,7 @@
+ 
+ # GCC on Linux/PowerPC
+ # CFLAGS = -O2 -Wall -Wno-unused -funroll-loops -fstrength-reduce \
+-#  -fomit-frame-pointer -ffast-math -fsigned-char
++#  -fomit-frame-pointer -ffast-math -fsigned-char -mlongcall
+ 
+ # GCC on OpenStep/Intel
+ # CFLAGS = -O2 -Wall -Wno-unused -finline-functions -ffast-math \
+@@ -154,7 +154,7 @@
+   #########################################################################
+ 
+   # Uncomment for Linux on a PowerPC system.
+-  # CFLAGS += -fsigned-char
++  # CFLAGS += -fsigned-char -mlongcall
+ 
+   # Uncomment for OpenStep.  This might also apply to some versions of 
+   # Mac OS X, but it definitely breaks things in OS X 10.3 with GCC 3.3.
+@@ -372,7 +372,7 @@
+ ###########################################################################
+ 
+ # Normal linking.
+-LD	= $(CC) -Wl,-s
++LD	= $(CC) -Wl,-s,--relax
+ 
+ # For the Intel C++ Compiler -- expect large link time due to -ipo 
+ # optimization.
+@@ -757,8 +757,8 @@
+ 
+ # Uncomment depending on which is supplying GLX functions.  nVidia uses
+ # libglx, Mesa/SGI use libglut 
+-GLCFLAGS+=-DGLXLIB_NAME='\"libglut.so\"'
+-# GLCFLAGS+=-DGLXLIB_NAME='\"libglx.so\"'
++GLCFLAGS+=-DGLXLIB_NAME='"libglut.so"'
++# GLCFLAGS+=-DGLXLIB_NAME='"libglx.so"'
+ 
+ ###########################################################################
+ # Debug support and object file format
+diff -Nur xmame-0.84.1/src/unix/doc/changes.unix xmame-0.84.2/src/unix/doc/changes.unix
+--- xmame-0.84.1/src/unix/doc/changes.unix	2004-07-17 02:21:38.000000000 -0600
++++ xmame-0.84.2/src/unix/doc/changes.unix	2004-07-21 10:52:42.860459648 -0600
+@@ -2,6 +2,19 @@
+ 
+ Last Modified by Lawrence Gold (gold@aros.net)
+ 
++Release 0.84.2
++	- Fixed a problem in makefile.unix that prevented the xgl target from 
++	  building.
++	- Those who have the commercial NVIDIA drivers installed should now be 
++	  able to build the xgl target against the NVIDIA headers.
++	- Adjusted the LinuxPPC compile and link flags to prevent relocation 
++	  errors resulting from the application being too large for 24-bit 
++	  offsets in branch instructions.  (Christian Groessler)
++	- Improved the NetBSD USB joystick driver: Added support for up to 8 
++	  axes and 1 hat and made manual calibration optional via the command 
++	  line option -joyusb-calibrate.  (Dieter Baron)
++	- Building xmess.xgl no longer results in link errors from messtest.
++
+ Release 0.84.1, 17 July 2004
+ 	- Everything from MAME 0.84 (http://x.mame.net/changes-mame.html) and
+ 	  MESS 0.84 (http://x.mame.net/changes-mess.html).
+diff -Nur xmame-0.84.1/src/unix/joystick-drivers/joy_usb.c xmame-0.84.2/src/unix/joystick-drivers/joy_usb.c
+--- xmame-0.84.1/src/unix/joystick-drivers/joy_usb.c	2004-07-02 11:09:36.000000000 -0600
++++ xmame-0.84.2/src/unix/joystick-drivers/joy_usb.c	2004-07-20 21:41:19.000000000 -0600
+@@ -2,12 +2,18 @@
+  * X-Mame USB HID joystick driver for NetBSD.
+  *
+  * Written by Krister Walfridsson <cato@df.lth.se>
++ * Improved by Dieter Baron <dillo@giga.or.at>
+  */
+ #include "xmame.h"
+ #include "devices.h"
+ 
++static int calibrate=0;
++
+ struct rc_option joy_usb_opts[] = {
+    /* name, shortname, type, dest, deflt, min, max, func, help */
++   { "joyusb-calibrate", NULL,                  rc_bool,        &calibrate,
++     "0",               0,                      0,              NULL,
++     "Manually calibrate USB joysticks" },
+    { NULL,		NULL,			rc_end,		NULL,
+      NULL,		0,			0,		NULL,
+      NULL }
+@@ -16,8 +22,7 @@
+ #ifdef USB_JOYSTICK
+ 
+ #if !defined(__ARCH_netbsd) && !defined(__ARCH_freebsd)
+-#error "USB joysticks are only supported under NetBSD and FreeBSD. "
+-   "Patches to support other archs are welcome ;)"
++#error "USB joysticks are only supported under NetBSD and FreeBSD.  Patches to support other archs are welcome ;)"
+ #endif
+ 
+ #if defined(HAVE_USBHID_H) || defined(HAVE_LIBUSBHID_H)
+@@ -44,14 +49,26 @@
+ #include <dev/usb/usb.h>
+ #include <dev/usb/usbhid.h>
+ 
++int axis_usage[] = {
++  HUG_X, HUG_Y, HUG_Z,
++  HUG_RX, HUG_RY, HUG_RZ,
++  HUG_SLIDER,
++};
++
++int axis_max = sizeof(axis_usage)/sizeof(axis_usage[0]);
++
+ struct priv_joydata_struct
+ {
+-  struct hid_item *hids;
+   int dlen;
+   int offset;
+   char *data_buf;
++  struct hid_item *axis_item[JOY_AXIS];
++  struct hid_item *button_item[JOY_BUTTONS];
++  struct hid_item *hat_item;
++  int hat_axis;
+ } priv_joy_data[JOY];
+ 
++static struct hid_item *itemdup(struct hid_item *s);
+ static int joy_initialize_hid(int i);
+ static void joy_usb_poll(void);
+ static int joy_read(int fd, int i);
+@@ -88,7 +105,10 @@
+   int size, is_joystick, report_id = 0;
+   struct hid_data *d;
+   struct hid_item h;
++  struct hid_item *axis_item[axis_max];
+   report_desc_t rd;
++  int got_something;
++  int j, n;
+ 
+   if ((rd = hid_get_report_desc(joy_data[i].fd)) == 0)
+     {
+@@ -96,8 +116,6 @@
+       return FALSE;
+     }
+ 
+-  priv_joy_data[i].hids = NULL;
+-
+ #if defined(HAVE_USBHID_H) || defined(HAVE_LIBUSBHID_H)
+ #if defined(__ARCH_netbsd) || (defined(__ARCH_freebsd) && __FreeBSD_version > 500000)
+   if (ioctl(joy_data[i].fd, USB_GET_REPORT_ID, &report_id) < 0)
+@@ -121,7 +139,16 @@
+     }
+   priv_joy_data[i].dlen = size;
+ 
++  for (j=0; j<axis_max; j++)
++    axis_item[j] = NULL;
++  priv_joy_data[i].hat_item = NULL;
++  for (j=0; j<JOY_AXIS; j++)
++    priv_joy_data[i].axis_item[j] = NULL;
++  for (j=0; j<JOY_BUTTONS; j++)
++    priv_joy_data[i].button_item[j] = NULL;
++
+   is_joystick = 0;
++  got_something = 0;
+ #if defined(HAVE_USBHID_H)
+   for (d = hid_start_parse(rd, 1 << hid_input, report_id);
+        hid_get_item(d, &h); )
+@@ -129,7 +156,7 @@
+   for (d = hid_start_parse(rd, 1 << hid_input); hid_get_item(d, &h); )
+ #endif
+     {
+-      int axis, usage, page, interesting_hid;
++      int axis, usage, page;
+ 
+       page = HID_PAGE(h.usage);
+       usage = HID_USAGE(h.usage);
+@@ -147,92 +174,135 @@
+       if (!is_joystick)
+ 	continue;
+ 
+-      interesting_hid = TRUE;
+       if (page == HUP_GENERIC_DESKTOP)
+ 	{
+-	  if (usage == HUG_X || usage == HUG_RX)
+-	    axis = 0;
+-	  else if (usage == HUG_Y || usage == HUG_RY)
+-	    axis = 1;
+-	  else if (usage == HUG_Z || usage == HUG_RZ)
+-	    axis = 2;
++	  if (usage == HUG_HAT_SWITCH)
++	    {
++	      got_something = 1;
++	      if (priv_joy_data[i].hat_item == NULL)
++		priv_joy_data[i].hat_item = itemdup(&h);
++	    }
+ 	  else
+-	    interesting_hid = FALSE;
+-
+-	  if (interesting_hid)
+ 	    {
+-	      joy_data[i].axis[axis].min = h.logical_minimum;
+-	      joy_data[i].axis[axis].max = h.logical_maximum;
+-
+-	      /* Set the theoretical center. This will be used in case
+-	       * the heuristic below fails. */
+-	      joy_data[i].axis[axis].center =
+-		(h.logical_minimum + h.logical_maximum) / 2;
+-
+-	      if (joy_data[i].num_axis < (axis + 1))
+-		joy_data[i].num_axis = axis + 1;
++	      for (j=0; j<axis_max; j++)
++		if (usage == axis_usage[j])
++		  {
++		    got_something = 1;
++		    if (axis_item[j] == NULL)
++		      axis_item[j] = itemdup(&h);
++		    break;
++		  }
+ 	    }
+ 	}
+       else if (page == HUP_BUTTON)
+ 	{
+-	  interesting_hid = (usage > 0) && (usage <= JOY_BUTTONS);
+-
+-	  if (interesting_hid && usage > joy_data[i].num_buttons)
+-	    joy_data[i].num_buttons = usage;
+-	}
+-
+-      if (interesting_hid)
+-	{
+-	  h.next = priv_joy_data[i].hids;
+-	  priv_joy_data[i].hids = malloc(sizeof *(priv_joy_data[i].hids));
+-	  if (priv_joy_data[i].hids == NULL)
++	  if ((usage > 0) && (usage <= JOY_BUTTONS))
+ 	    {
+-	      fprintf(stderr_file, "error: Not enough memory for joystick. "
+-		      "Your joystick may fail to work correctly.\n");
+-	      break;
++	      got_something = 1;
++	      if (priv_joy_data[i].button_item[usage-1] == NULL)
++		priv_joy_data[i].button_item[usage-1] = itemdup(&h);
++	      if (usage > joy_data[i].num_buttons)
++		joy_data[i].num_buttons = usage;
+ 	    }
+-	  *(priv_joy_data[i].hids) = h;
+ 	}
+     }
+   hid_end_parse(d);
+ 
+-  if (priv_joy_data[i].hids != NULL)
++  if (!got_something)
+     {
+-      /* We'll approximate the center with the current joystick value if
+-       * that can be read (some HID devices returns no data if the state
+-       * has not changed since the last time it was read.) */
+-      if (joy_read(joy_data[i].fd, i))
+-	{
+-	  joy_data[i].axis[0].center = joy_data[i].axis[0].val;
+-	  joy_data[i].axis[1].center = joy_data[i].axis[1].val;
+-	  joy_data[i].axis[2].center = joy_data[i].axis[2].val;
++      free(priv_joy_data[i].data_buf);
++      return 0;
++    }
++
++      
++  for (j=0; j<axis_max; j++)
++    {
++      if (axis_item[j])
++        {
++	  n = joy_data[i].num_axis++;
++	  priv_joy_data[i].axis_item[n] = axis_item[j];
++	  
++	  joy_data[i].axis[n].min
++	    = priv_joy_data[i].axis_item[n]->logical_minimum;
++	  joy_data[i].axis[n].max
++	    = priv_joy_data[i].axis_item[n]->logical_maximum;
++	  joy_data[i].axis[n].center
++	    = ((joy_data[i].axis[n].max-joy_data[i].axis[n].min+1)/2
++	       + joy_data[i].axis[n].min);
++	  joy_data[i].axis[n].val = joy_data[i].axis[n].center;
++	}
++    }
++      
++  if (priv_joy_data[i].hat_item)
++    {
++      if (joy_data[i].num_axis < JOY_AXIS-2)
++        {
++	  n = joy_data[i].num_axis;
++	  joy_data[i].num_axis += 2;
++	  priv_joy_data[i].hat_axis = n;
++	  for (j=0; j<2; j++)
++	    {
++	      joy_data[i].axis[n+j].min = -1;
++	      joy_data[i].axis[n+j].max = 1;
++	      joy_data[i].axis[n+j].center = 0;
++	      joy_data[i].axis[n+j].val = 0;
++	    }
+ 	}
+       else
+-	{
+-	  /* Assume that the joystick is positioned in the center.
+-	   * This is needed, or else the system will think that the
+-	   * joystick is in position left/up (or something) until it
+-	   * is moved the first time. */
+-	  joy_data[i].axis[0].val = joy_data[i].axis[0].center;
+-	  joy_data[i].axis[1].val = joy_data[i].axis[1].center;
+-	  joy_data[i].axis[2].val = joy_data[i].axis[2].center;
++        {
++	  /* too many axes to support hat */
++	  free(priv_joy_data[i].hat_item);
++	  priv_joy_data[i].hat_item = NULL;
+ 	}
+-
+-      /* Approximate min/max values. Observe that we cannot use the
+-       * max/min values that the HID reports, since that is theoretical
+-       * values that may be wrong for analogs joystics (especially if
+-       * you have a joystick -> USB adaptor.) We cannot use greater delta
+-       * values than +/- 1, since it is OK for a gamepad (or my USB TAC 2)
+-       * to reports directions as center +/- 1. */
+-      joy_data[i].axis[0].min = joy_data[i].axis[0].center - 1;
+-      joy_data[i].axis[1].min = joy_data[i].axis[1].center - 1;
+-      joy_data[i].axis[2].min = joy_data[i].axis[2].center - 1;
+-      joy_data[i].axis[0].max = joy_data[i].axis[0].center + 1;
+-      joy_data[i].axis[1].max = joy_data[i].axis[1].center + 1;
+-      joy_data[i].axis[2].max = joy_data[i].axis[2].center + 1;
+     }
+ 
+-  return (priv_joy_data[i].hids != NULL);
++  if (calibrate)
++    {
++      int got_values;
++      
++      /*
++	The values returned in the HID report may be wrong.  However,
++	it works for most joysticks and krister's method requires
++	moving the joystick about when starting xmame to calibrate,
++	which is annoying.
++	
++	For such joysticks, calibration can be enabled with the
++	-joyusb-calibrate command line option.
++
++	We'll approximate the center with the current joystick value
++	if that can be read (some HID devices returns no data if the
++	state has not changed since the last time it was read.)
++      */
++	  
++      got_values = joy_read(joy_data[i].fd, i);
++      
++      for (j=0; j<joy_data[i].num_axis; j++)
++        {
++	  if (priv_joy_data[i].axis_item[j] == NULL)
++	    {
++	      /* HAT item doesn't need calibration */
++	      continue;
++	    }
++
++	  if (got_values)
++	    joy_data[i].axis[j].center = joy_data[i].axis[j].val;
++	  
++	  /*
++	    Approximate min/max values. Observe that we cannot use the
++	    max/min values that the HID reports, since that is
++	    theoretical values that may be wrong for analogs joystics
++	    (especially if you have a joystick -> USB adaptor.) We
++	    cannot use greater delta values than +/- 1, since it is OK
++	    for a gamepad (or my USB TAC 2) to reports directions as
++	    center +/- 1.
++	  */
++	  
++	  joy_data[i].axis[j].min = joy_data[i].axis[j].center - 1;
++	  joy_data[i].axis[j].max = joy_data[i].axis[j].center + 1;
++	}
++    }
++	  
++  return 1;
+ }
+ 
+ 
+@@ -255,37 +325,76 @@
+ 
+ static int joy_read(int fd, int i)
+ {
+-  int len, axis, usage, page, d;
+-  struct hid_item *h;
+-
+-  len = read(fd, priv_joy_data[i].data_buf, priv_joy_data[i].dlen);
+-  if (len != priv_joy_data[i].dlen)
++  /* 0   1   2   3   4   5   6   7 */
++  /* u  ru  r   rd   d  ld  l   lu */
++  const int hat_x[] = {
++     0,  1,  1,  1,  0, -1, -1, -1
++  };
++  const int hat_y[] = {
++    -1, -1,  0,  1,  1,  1,  0, -1
++  };
++
++  int len, new, d, j;
++  char *p;
++
++  new = 0;
++  while ((len=read(fd, priv_joy_data[i].data_buf, priv_joy_data[i].dlen))
++	 == priv_joy_data[i].dlen)
++      new = 1;
++  if (!new)
+     return FALSE;
+ 
+-  for (h = priv_joy_data[i].hids; h; h = h->next)
+-    {
+-      d = hid_get_data(priv_joy_data[i].data_buf + priv_joy_data[i].offset, h);
+-
+-      page = HID_PAGE(h->usage);
+-      usage = HID_USAGE(h->usage);
++  p = priv_joy_data[i].data_buf + priv_joy_data[i].offset;
+ 
+-      if (page == HUP_GENERIC_DESKTOP)
+-	{
+-	  if (usage == HUG_X || usage == HUG_RX)
+-	    axis = 0;
+-	  else if (usage == HUG_Y || usage == HUG_RY)
+-	    axis = 1;
+-	  else
+-	    axis = 2;
++  for (j=0; j<joy_data[i].num_axis; j++)
++    {
++      if (priv_joy_data[i].axis_item[j])
++	joy_data[i].axis[j].val=hid_get_data(p, priv_joy_data[i].axis_item[j]);
++    }
+ 
+-	  joy_data[i].axis[axis].val = d;
++  if (priv_joy_data[i].hat_item != NULL)
++    {
++      d = hid_get_data(p, priv_joy_data[i].hat_item);
++      j = priv_joy_data[i].hat_axis;
++      if (d < 0 || d >= 8)
++        {
++	  joy_data[i].axis[j].val = 0;
++	  joy_data[i].axis[j+1].val = 0;
+ 	}
+-      else if (page == HUP_BUTTON)
+-	{
+-	  joy_data[i].buttons[usage - 1] = (d == h->logical_maximum);
++      else
++        {
++	  printf("hat: %d (%2d,%2d)\n", d, hat_x[d], hat_y[d]);
++	  joy_data[i].axis[j].val = hat_x[d];
++	  joy_data[i].axis[j+1].val = hat_y[d];
+ 	}
+     }
+ 
++  for (j=0; j<joy_data[i].num_buttons; j++)
++    {
++      if (priv_joy_data[i].button_item[j])
++	joy_data[i].buttons[j]
++	  = (hid_get_data(p, priv_joy_data[i].button_item[j])
++	     == priv_joy_data[i].button_item[j]->logical_maximum);
++    }
++
+   return TRUE;
+ }
++
++static struct hid_item *itemdup(struct hid_item *s)
++{
++  struct hid_item *t;
++
++  t = malloc(sizeof(*t));
++  if (t == NULL)
++    {
++      fprintf(stderr_file, "error: Not enough memory for joystick. "
++	      "Your joystick may fail to work correctly.\n");
++      return NULL;
++    }
++
++  memcpy(t, s, sizeof(*t));
++
++  return t;
++}
++
+ #endif
+diff -Nur xmame-0.84.1/src/unix/unix.mak xmame-0.84.2/src/unix/unix.mak
+--- xmame-0.84.1/src/unix/unix.mak	2004-07-17 12:14:25.000000000 -0600
++++ xmame-0.84.2/src/unix/unix.mak	2004-07-21 11:19:11.755910824 -0600
+@@ -195,7 +195,7 @@
+ endif
+ 
+ # Perhaps one day original mame/mess sources will use POSIX strcasecmp and
+-# M_PI instead MS-DOS counterparts... ( a long and sad history ...)
++# M_PI instead MS-DOS counterparts... (a long and sad history ...)
+ MY_CFLAGS = $(CFLAGS) $(IL) $(CFLAGS.$(MY_CPU)) \
+ 	-D__ARCH_$(ARCH) -D__CPU_$(MY_CPU) -D$(DISPLAY_METHOD) \
+ 	-Dstricmp=strcasecmp -Dstrnicmp=strncasecmp \
+@@ -304,8 +304,12 @@
+ FRAMESKIP_OBJS = $(FRAMESKIP_DIR)/dos.o $(FRAMESKIP_DIR)/barath.o
+ 
+ # all objs
+-UNIX_OBJS = $(COMMON_OBJS) $(SYSDEP_OBJS) $(VID_OBJS) $(SOUND_OBJS) $(JOY_OBJS) \
+-   $(FRAMESKIP_OBJS)
++UNIX_OBJS = $(COMMON_OBJS) $(SYSDEP_OBJS) $(VID_OBJS) $(SOUND_OBJS) \
++	    $(JOY_OBJS) $(FRAMESKIP_OBJS)
++
++ifneq ($(DISPLAY_METHOD), xgl)
++UNIX_OBJS += $(VECTOR)
++endif
+ 
+ ##############################################################################
+ # CFLAGS
+@@ -426,9 +430,10 @@
+ ##############################################################################
+ # Start of the real makefile.
+ ##############################################################################
+-$(NAME).$(DISPLAY_METHOD): $(ZLIB) $(OBJS) $(UNIX_OBJS) $(VECTOR) $(OSDEPEND)
++
++$(NAME).$(DISPLAY_METHOD): $(ZLIB) $(OBJS) $(UNIX_OBJS) $(OSDEPEND)
+ 	$(CC_COMMENT) @echo 'Linking $@ ...'
+-	$(CC_COMPILE) $(LD) $(LDFLAGS) -o $@ $(OBJS) $(UNIX_OBJS) $(OSDEPEND) $(VECTOR) $(MY_LIBS)
++	$(CC_COMPILE) $(LD) $(LDFLAGS) -o $@ $(OBJS) $(UNIX_OBJS) $(OSDEPEND) $(MY_LIBS)
+ 
+ maketree: $(sort $(OBJDIRS))
+ 
+@@ -477,7 +482,7 @@
+ 	$(OBJDIR)/sysdep/misc.o \
+ 	$(OBJDIR)/sysdep/rc.o \
+ 	$(OBJDIR)/tststubs.o \
+-	$(OBJDIR)/vector.o
++	$(VECTOR)
+ 	$(CC_COMMENT) @echo Linking $@...
+ 	$(CC_COMPILE) $(LD) $(LDFLAGS) $(MY_LIBS) $^ -o $@
+ 
+diff -Nur xmame-0.84.1/src/unix/video-drivers/gltool.h xmame-0.84.2/src/unix/video-drivers/gltool.h
+--- xmame-0.84.1/src/unix/video-drivers/gltool.h	2004-07-02 11:09:36.000000000 -0600
++++ xmame-0.84.2/src/unix/video-drivers/gltool.h	2004-07-20 15:33:25.000000000 -0600
+@@ -50,6 +50,11 @@
+ 		#include <X11/Xlib.h>
+ 		#include <X11/Xutil.h>
+ 		#include <X11/Xatom.h>
++
++		#ifndef __ARCH_solaris
++		#define XMD_H 1
++		#endif
++
+ 		#include <GL/glx.h>
+ 	#endif
+ 
+diff -Nur xmame-0.84.1/src/version.c xmame-0.84.2/src/version.c
+--- xmame-0.84.1/src/version.c	2004-07-16 18:56:11.000000000 -0600
++++ xmame-0.84.2/src/version.c	2004-07-21 11:03:13.788544000 -0600
+@@ -1 +1 @@
+-char build_version[] = "0.84.1 ("__DATE__")";
++char build_version[] = "0.84.2 ("__DATE__")";
+diff -Nur xmame-0.84.1/src/vidhrdw/vector.c xmame-0.84.2/src/vidhrdw/vector.c
+--- xmame-0.84.1/src/vidhrdw/vector.c	2004-07-02 11:09:35.000000000 -0600
++++ xmame-0.84.2/src/vidhrdw/vector.c	2004-07-21 10:03:31.140189336 -0600
+@@ -30,9 +30,6 @@
+  *
+  **************************************************************************** */
+ 
+-/* GLmame and FXmame provide their own vector implementations */
+-#if !(defined xgl)
+-
+ #include <math.h>
+ #include "osinline.h"
+ #include "driver.h"
+@@ -786,5 +783,3 @@
+ 
+ 	vector_dirty_list[dirty_index] = VECTOR_PIXEL_END;
+ }
+-
+-#endif /* if !(defined xgl) */
+
