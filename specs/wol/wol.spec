@@ -5,7 +5,7 @@
 Summary: The Wake On Lan client
 Name: wol
 Version: 0.7.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://ahh.sf.net/wol/
@@ -44,12 +44,16 @@ provided by wol.
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_infodir}/*.info*
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 
 %changelog
+* Mon May 03 2004 Dag Wieers <dag@wieers.com> - 0.7.1-2
+- Fixed ownership by adding missing defattr(). (Alain Rykaert)
+
 * Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Updated to release 0.7.1.
 
