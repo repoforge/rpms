@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Open Source implementation of the GDI+ API
 Name: libgdiplus
-Version: 0.2
-Release: 0
+Version: 1.0.5
+Release: 1
 License: MIT X11
 Group: System Environment/Libraries
 URL: http://www.go-mono.com/
@@ -13,12 +12,13 @@ URL: http://www.go-mono.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.go-mono.com/archive/libgdiplus-%{version}.tar.gz
+Source: http://www.go-mono.com/archive/%{version}/libgdiplus-%{version}.tar.gz
+Patch: libgdiplus-remove-ltmain.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: pkgconfig, cairo-devel >= 0.1.17, glib2-devel >= 2.2.1
-BuildRequires: mono-devel, zlib-devel
+BuildRequires: pkgconfig, cairo-devel >= 0.1.17, glib2-devel >= 2.2.3
+BuildRequires: mono-devel, zlib-devel, freetype-devel, libungif-devel,
+BuildRequires: libjpeg-devel, 
 
 %description
 libgdiplus is an Open Source implementation of the GDI+ API, it is part
@@ -36,6 +36,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure
@@ -44,9 +45,6 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -60,16 +58,19 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%{_libdir}/*.so.*
+%{_libdir}/libgdiplus.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/*.so
-%{_libdir}/*.a
-%{_libdir}/pkgconfig/*.pc
-#%{_libdir}/*.la
+%{_libdir}/libgdiplus.so
+%{_libdir}/libgdiplus.a
+%{_libdir}/pkgconfig/libgdiplus.pc
+%exclude %{_libdir}/libgdiplus.la
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Fri Mar 19 2004 Dag Wieers <dag@wieers.com> - 0.2-0
 - Updated to release 0.2.
 

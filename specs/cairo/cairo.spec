@@ -4,7 +4,7 @@
 
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
-Version: 0.1.23
+Version: 0.2.0
 Release: 1
 License: MIT
 Group: System Environment/Libraries
@@ -17,8 +17,8 @@ Source: http://cairo.freedesktop.org/snapshots/cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, freetype-devel, fontconfig-devel, libpixman-devel, XFree86-devel
-BuildRequires: libpixman-devel, glitz-devel
-#BuildRequires: libxcb-devel
+BuildRequires: libpng-devel
+#BuildRequires: glitz-devel, libxcb-devel
 
 %description
 Cairo provides anti-aliased vector-based rendering for X. Paths consist
@@ -42,9 +42,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-### Disable glitz
-%configure \
-	--disable-gl
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -67,7 +65,8 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
+%{_includedir}/cairo.h
+%{_includedir}/cairo-features.h
 %{_libdir}/libcairo.a
 %exclude %{_libdir}/libcairo.la
 %{_libdir}/libcairo.so

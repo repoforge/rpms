@@ -41,8 +41,8 @@ extension. Library and server implementations are separate.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL README
-%{_datadir}/doc/render/
-%{_libdir}/pkgconfig/*.pc
+%{_docdir}/render/
+%{_libdir}/pkgconfig/render.pc
 #%{_includedir}/X11/extensions/
 
 %changelog

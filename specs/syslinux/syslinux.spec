@@ -4,11 +4,11 @@
 
 # Rationale: If you need syslinux, you'd appreciate the latest, trust me.
 
-##BuildAsRoot: 1
+%define _sbindir /sbin
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 2.13
+Version: 3.00
 Release: 1
 License: GPL
 Group: Applications/System
@@ -41,9 +41,9 @@ ISO 9660 CD-ROMs (ISOLINUX).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir}/syslinux/ \
-			%{buildroot}%{_includedir}
+#%{__install} -d -m0755 %{buildroot}%{_bindir} \
+#			%{buildroot}%{_libdir}/syslinux/ \
+#			%{buildroot}%{_includedir}
 %makeinstall install-lib \
 	INSTALLROOT="%{buildroot}" \
 	BINDIR="%{_bindir}" \
@@ -63,12 +63,16 @@ ISO 9660 CD-ROMs (ISOLINUX).
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS COPYING NEWS README TODO *.doc memdisk/memdisk.doc sample/
+%{_sbindir}/extlinux
 %{_bindir}/*
 %{_libdir}/syslinux/
-%{_libdir}/libsyslinux*
-%{_includedir}/syslinux.h
+#%{_libdir}/libsyslinux.*
+#%{_includedir}/syslinux.h
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 3.00-1
+- Updated to release 3.00.
+
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 2.13-1
 - Updated to release 2.13.
 

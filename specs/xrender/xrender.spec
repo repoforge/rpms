@@ -18,6 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://freedesktop.org/~xlibs/release/xrender-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Requires: render
+
 %description
 This package contains header files and documentation for the X render
 extension. Library and server implementations are separate.
@@ -35,7 +37,7 @@ extension. Library and server implementations are separate.
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_includedir}/X11/
-%{__rm} -f %{buildroot}%{_libdir}/*.la
+%{__rm} -f %{buildroot}%{_libdir}/libXrender.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,11 +45,11 @@ extension. Library and server implementations are separate.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/*.so.*
-%{_libdir}/pkgconfig/*.pc
-#%{_libdir}/*.la
+%{_libdir}/libXrender.a
+%{_libdir}/libXrender.so
+%{_libdir}/libXrender.so.*
+%{_libdir}/pkgconfig/xrender.pc
+#%{_libdir}/libXrender.la
 
 %changelog
 * Fri Feb 27 2004 Dag Wieers <dag@wieers.com> - 0.8.3-0

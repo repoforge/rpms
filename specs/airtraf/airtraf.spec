@@ -13,6 +13,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.elixar.com/airtraf-%{version}.tar.gz
+Patch: airtraf-1.1-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel
 
@@ -25,6 +26,7 @@ signal strength of network components, and more.
 
 %prep
 %setup
+%patch
 
 ### FIXME: Remove interactive read from Makefile during install
 #{__perl} -pi.orig -e 's|^\t\@read|#\t\@read|' src/Makefile

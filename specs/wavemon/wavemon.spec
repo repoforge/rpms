@@ -17,7 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.janmorgenstern.de/wavemon-%{real_version}.tar.gz
 #Source: http://www.wavemage.com/wavemon-%{real_version}.tar.bz2
-Patch: wavemon.c.diff
+Patch0: wavemon.c.diff
+Patch1: /dar/rpms/wavemon/wavemon-0.4.0b-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel
 
@@ -31,7 +32,8 @@ devices supported by the wireless kernel extensions by Jean Tourrilhes.
 
 %prep
 %setup -n %{name}-%{real_version}
-%patch -p1
+%patch0 -p1
+%patch1
 
 %build
 %configure

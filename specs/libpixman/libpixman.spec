@@ -3,7 +3,7 @@
 
 Summary: Merge of libpixregion and libic
 Name: libpixman
-Version: 0.1.1
+Version: 0.1.2
 Release: 1
 License: MIT
 Group: System Environment/Libraries
@@ -15,7 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cairographics.org/snapshots/libpixman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, gcc-c++
+BuildRequires: pkgconfig
 Obsoletes: slim, libic, libpixregion
 
 %description
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libpixman.pc
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.1.2-1
+- Updated to release 0.1.1.
+
 * Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 0.1.1-1
 - Updated to release 0.1.1.
 

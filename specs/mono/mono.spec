@@ -1,239 +1,478 @@
 # $Id$
-
 # Authority: dag
 
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
-
-Summary: Mono CIL runtime, suitable for running .NET code
+Summary: The Mono CIL runtime, suitable for running .NET code
 Name: mono
-Version: 0.31
-Release: 0
+Version: 1.0.5
+Release: 1
 License: LGPL
-Group: System Environment/Base
+Group: Development/Tools
 URL: http://www.go-mono.com/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://www.go-mono.com/archive/mono-%{version}.tar.gz
-#Source1: http://www.go-mono.com/archive/mcs-%{version}.tar.gz
+Source: http://www.go-mono.com/archive/%{version}/mono-%{version}.tar.gz
+Patch: mono-remove-gacdir-flag.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, glib2-devel, libxml2-devel, libxslt-devel
-BuildRequires: pkgconfig, icu, libicu-devel
-Requires: /sbin/ldconfig
-#Requires: mono-classes
+BuildRequires: bison, glib2-devel >= 1.3.11, pkgconfig, libicu-devel
+#BuildRequires: rsync, j2sdk
 
 %description
 The Mono runtime implements a JIT engine for the ECMA CLI
-virtual machine as well as a byte code interpreter, the
+virtual machine (as well as a byte code interpreter, the
 class loader, the garbage collector, threading system and
 metadata access libraries.
 
+%package core
+Summary: The Mono CIL runtime, suitable for running .NET code
+Group: Development/Tools
+
+Provides: mono
+Obsoletes: mono <= %{version}-%{release}
+Obsoletes: mono-drawing <= %{version}-%{release}, mono-cairo <= %{version}-%{release}
+Obsoletes: mono-xml-relaxng <= %{version}-%{release}, mono-posix <= %{version}-%{release}
+Obsoletes: mono-ziplib <= %{version}-%{release}, mono-nunit <= %{version}-%{release}
+
+%description core
+The Mono runtime implements a JIT engine for the ECMA CLI
+virtual machine (as well as a byte code interpreter, the
+class loader, the garbage collector, threading system and
+metadata access libraries.
+
+%package basic
+Summary: Mono's VB runtime
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description basic
+Mono's VB runtime
+
+%package ikvm
+Summary: Support for IKVM
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description ikvm
+Support for IKVM
+
+%package winforms
+Summary: Mono's Windows Forms implementation
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+Provides: mono-window-forms
+Obsoletes: mono-window-forms <= %{version}-%{release}
+
+%description winforms
+Mono's Windows Forms implementation
+
+%package web
+Summary: Mono implementation of ASP.NET, Remoting and Web Services
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+Obsoletes: mono-web-forms <= %{version}-%{release}, mono-web-services <= %{version}-%{release}
+Obsoletes: mono-remoting <= %{version}-%{release}
+
+%description web
+Mono implementation of ASP.NET, Remoting and Web Services
+
+%package extras
+Summary: Extra packages
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+Obsoletes: mono-ms-extras <= %{version}-%{release}
+
+%description extras
+Extra packages
+
+%package -n ibm-data-db2
+Summary: Database connectivity for DB2
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description -n ibm-data-db2
+Database connectivity for DB2
+
 %package devel
-Summary: Header files, libraries and development documentation for %{name}
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Summary: Development tools for Mono
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+Obsoletes: mono-peapi <= %{version}-%{release}, mono-runtime-devel <= %{version}-%{release}
+Obsoletes: mono-core-devel <= %{version}-%{release}, mono-complete-devel %{version}-%{release}
 
 %description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
+Development tools for Mono
+
+%package data-oracle
+Summary: Database connectivity for Mono
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description data-oracle
+Database connectivity for Mono
+
+%package data
+Summary: Database connectivity for Mono
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+Obsoletes: mono-ms-enterprise <= %{version}-%{release}, mono-novell-directory <= %{version}-%{release}
+Obsoletes: mono-directory <= %{version}-%{release}
+
+%description data
+Database connectivity for Mono
+
+%package locale-extras
+Summary: Extra Locale information
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+Obsoletes: mono-locale-cjk <= %{version}-%{release}, mono-locale-mideast <= %{version}-%{release}
+Obsoletes: mono-locale-other <= %{version}-%{release}, mono-locale-rare <= %{version}-%{release}
+
+%description locale-extras
+Extra Locale information
+
+%package data-postgresql
+Summary: Database connectivity for Mono
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description data-postgresql
+Database connectivity for Mono
+
+%package -n bytefx-data-mysql
+Summary: Database connectivity for Mono
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description -n bytefx-data-mysql
+Database connectivity for Mono
+
+%package data-sybase
+Summary: Database connectivity for Mono
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description data-sybase
+Database connectivity for Mono
+
+%package data-sqlite
+Summary: Database connectivity for Mono
+Group: Development/Tools
+Requires: mono-core = %{version}-%{release}
+
+%description data-sqlite
+Database connectivity for Mono
+
+%package complete
+Summary: This package contains all runtime Mono packages
+Group: Development/Tools
+Requires: bytefx-data-mysql = %{version}-%{release}
+Requires: ibm-data-db2 = %{version}-%{release}
+Requires: mono-basic = %{version}-%{release}
+Requires: mono-core = %{version}-%{release}
+Requires: mono-data = %{version}-%{release}
+Requires: mono-data-oracle = %{version}-%{release}
+Requires: mono-data-postgresql = %{version}-%{release}
+Requires: mono-data-sqlite = %{version}-%{release}
+Requires: mono-data-sybase = %{version}-%{release}
+Requires: mono-extras = %{version}-%{release}
+#Requires: mono-ikvm = %{version}-%{release}
+Requires: mono-locale-extras = %{version}-%{release}
+Requires: mono-web = %{version}-%{release}
+
+%description complete
+This package contains all runtime Mono packages
 
 %prep
 %setup
-
-### FIXME: Makefiles still have /usr/include hardcoded which breaks building as user. (Please fix upstream)
-%{__perl} -pi.orig -e 's|\$\(privateincludedir\)|%{buildroot}%{_includedir}/mono/private|' libgc/include/Makefile*
-
-#%{__ln_s} -f amd64/ mono/arch/x86-64
-%{__perl} -pi.orig -e 's|(arch_target)=x86-64|$1=amd64|' configure*
-
-### FIXME: TODO: Make wine and mono work together once and for all
-%{__cat} <<'EOF' >mono.sysv
-#!/bin/sh
-#
-# Allow users to run Mono (.Net) applications by just clicking on them
-# (or typing ./file.exe)
-#
-# chkconfig: - 98 02
-# description: Allow users to run Mono (.Net) applications by just clicking \
-#	       on them (or typing ./file.exe)
-
-source %{_initrddir}/functions
-
-### Disable wine (conflicts)
-chkconfig --level 12345 wine off
-
-[ -x %{_bindir}/mono ] || exit 1
-
-RETVAL=0
-
-start() {
-	echo $"Registering binary handler for Mono (.Net) applications"
-	if [ ! -e /proc/sys/fs/binfmt_misc/register ]; then
-		/sbin/modprobe binfmt_misc &>/dev/null
-		mount -t binfmt_misc none /proc/sys/fs/binfmt_misc
-	fi
-	if [ -e /proc/sys/fs/binfmt_misc/register ]; then
-		echo ':CLR:M::MZ::%{_bindir}/mono:' >/proc/sys/fs/binfmt_misc/register || :
-		echo ':dotNet:M::MZ::%{_bindir}/mono:' > /proc/sys/fs/binfmt_misc/register || :
-	else
-		echo "No binfmt_misc support."
-		RETVAL=1
-	fi
-}
-
-stop() {
-	echo $"Unregistering binary handler for Mono (.Net) applications"
-	if [ -e /proc/sys/fs/binfmt_misc/CLR ]; then
-		echo "-1" >/proc/sys/fs/binfmt_misc/CLR || :
-	fi
-}
-
-restart() {
-	stop
-	start
-}
-
-mono_status() {
-	if [ -e /proc/sys/fs/binfmt_misc/CLR ]; then
-		echo $"Mono (.Net) binary format handlers are registered."
-		return 0
-	else
-		echo $"Mono (.Net) binary format handlers are not registered."
-		return 3
-	fi
-}
-
-case "$1" in
-  start)
-	start
-	;;
-  stop)
-	stop
-	;;
-  restart|reload)
-	restart
-	;;
-  condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
-  status)
-	mono_status
-	RETVAL=$?
-	;;
-  *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
-esac
-
-exit $RETVAL
-EOF
+%patch -p1 -P 0
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}"
-%{__make} %{?_smp_mflags} \
-	CC="${CC:-%{__cc}} -gdwarf-2"
+	--with-nptl="no" \
+	--with-ikvm="yes" \
+	--with-signaltstack="no" \
+	--with-jdk="/usr/java/j2sdk1.4.2_04"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
-%makeinstall
-#	privateincludedir="%{buildroot}%{_includedir}/mono/private"
-%{__install} -d -m0755 %{buildroot}%{_initrddir}
-%{__install} -m0755 mono.sysv %{buildroot}%{_initrddir}/mono
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
-%post 
-/sbin/ldconfig 2>/dev/null
-/sbin/chkconfig --add mono
-
-%postun 
-/sbin/ldconfig 2>/dev/null
-if [ $1 -eq 0 ]; then
-        /sbin/chkconfig --del mono
-fi
+#%post
+#echo "You must install libgdiplus separately."
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files core
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING.LIB NEWS README web/
-%doc %{_mandir}/man1/mcs.*
-%doc %{_mandir}/man1/mono.*
-%doc %{_mandir}/man1/mint.*
-%doc %{_mandir}/man1/oldmono.*
-%config %{_initrddir}/*
-%config %{_sysconfdir}/mono/
-%{_bindir}/mbas*
-%{_bindir}/mcs*
-%{_bindir}/mint*
-%{_bindir}/mono*
-%{_libdir}/*.so.*
-%{_libdir}/*.dll
+%doc AUTHORS ChangeLog COPYING.LIB NEWS README
+%doc %{_mandir}/man1/certmgr.1*
+%doc %{_mandir}/man1/chktrust.1*
+%doc %{_mandir}/man1/gacutil.1*
+%doc %{_mandir}/man1/mcs.1*
+%doc %{_mandir}/man1/mint.1*
+%doc %{_mandir}/man5/mono-config.5*
+%doc %{_mandir}/man1/mono.1*
+%doc %{_mandir}/man1/setreg.1*
+%doc %{_mandir}/man1/sn.1*
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/1.0/
+%dir %{_libdir}/mono/gac/
+%{_sysconfdir}/mono/config
+%{_sysconfdir}/mono/machine.config
+%{_bindir}/certmgr*
+%{_bindir}/chktrust*
+%{_bindir}/gacutil*
+%{_bindir}/mcs
+%{_bindir}/mint
+%{_bindir}/mono
+%{_bindir}/mono-find-provides*
+%{_bindir}/mono-find-requires*
+%{_bindir}/setreg*
+%{_bindir}/sn*
+%{_libdir}/libmint.so*
+%{_libdir}/libmono.so*
+%{_libdir}/libMonoPosixHelper.so*
+%{_libdir}/mono/*/mcs.exe
+%{_libdir}/mono/*/cscompmgd*
+%{_libdir}/mono/1.0/Commons.Xml.Relaxng.dll
+%{_libdir}/mono/gac/Commons.Xml.Relaxng/
+%{_libdir}/mono/1.0/I18N.dll
+%{_libdir}/mono/gac/I18N/
+%{_libdir}/mono/1.0/I18N.West.dll
+%{_libdir}/mono/gac/I18N.West/
+%{_libdir}/mono/1.0/ICSharpCode.SharpZipLib.dll
+%{_libdir}/mono/gac/ICSharpCode.SharpZipLib/
+%{_libdir}/mono/1.0/Microsoft.VisualC.dll
+%{_libdir}/mono/gac/Microsoft.VisualC/
+%{_libdir}/mono/1.0/Mono.Cairo.dll
+%{_libdir}/mono/gac/Mono.Cairo/
+%{_libdir}/mono/1.0/Mono.CSharp.Debugger.dll
+%{_libdir}/mono/gac/Mono.CSharp.Debugger/
+%{_libdir}/mono/1.0/Mono.GetOptions.dll
+%{_libdir}/mono/gac/Mono.GetOptions/
+%{_libdir}/mono/1.0/Mono.Posix.dll
+%{_libdir}/mono/gac/Mono.Posix/
+%{_libdir}/mono/1.0/Mono.Security.dll
+%{_libdir}/mono/gac/Mono.Security/
+%{_libdir}/mono/1.0/System.dll
+%{_libdir}/mono/gac/System/
+%{_libdir}/mono/1.0/System.Drawing.dll
+%{_libdir}/mono/gac/System.Drawing/
+%{_libdir}/mono/1.0/System.Security.dll
+%{_libdir}/mono/gac/System.Security/
+%{_libdir}/mono/1.0/System.Xml.dll
+%{_libdir}/mono/gac/System.Xml/
+%{_libdir}/mscorlib.dll
+%exclude %{_datadir}/libgc-mono/
+
+%files -n bytefx-data-mysql
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/ByteFX.Data.dll
+%{_libdir}/mono/gac/ByteFX.Data/
+
+%files -n ibm-data-db2
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/IBM.Data.DB2.dll
+%{_libdir}/mono/gac/IBM.Data.DB2/
+
+%files basic
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_bindir}/mbas
+%{_libdir}/mono/1.0/mbas.exe
+%{_libdir}/mono/1.0/Microsoft.VisualBasic.dll
+%{_libdir}/mono/gac/Microsoft.VisualBasic/
+
+%files data
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/sqlsharp.1*
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_bindir}/sqlsharp*
+%{_libdir}/mono/1.0/Mono.Data.Tds.dll
+%{_libdir}/mono/gac/Mono.Data.Tds/
+%{_libdir}/mono/1.0/Mono.Data.TdsClient.dll
+%{_libdir}/mono/gac/Mono.Data.TdsClient/
+%{_libdir}/mono/1.0/System.Data.dll
+%{_libdir}/mono/gac/System.Data/
+%{_libdir}/mono/1.0/Novell.Directory.Ldap.dll
+%{_libdir}/mono/gac/Novell.Directory.Ldap/
+%{_libdir}/mono/1.0/System.DirectoryServices.dll
+%{_libdir}/mono/gac/System.DirectoryServices/
+%{_libdir}/mono/1.0/System.EnterpriseServices.dll
+%{_libdir}/mono/gac/System.EnterpriseServices/
+
+%files data-oracle
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/System.Data.OracleClient.dll
+%{_libdir}/mono/gac/System.Data.OracleClient/
+
+%files data-postgresql
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/Npgsql.dll
+%{_libdir}/mono/gac/Npgsql/
+
+%files data-sqlite
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/Mono.Data.SqliteClient.dll
+%{_libdir}/mono/gac/Mono.Data.SqliteClient/
+
+%files data-sybase
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/Mono.Data.SybaseClient.dll
+%{_libdir}/mono/gac/Mono.Data.SybaseClient/
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc docs/
-%doc %{_mandir}/man5/*
-%doc %{_mandir}/man1/cert2spc.*
-%doc %{_mandir}/man1/certmgr.*
-%doc %{_mandir}/man1/chktrust.*
-%doc %{_mandir}/man1/cilc.*
-%doc %{_mandir}/man1/disco.*
-%doc %{_mandir}/man1/genxs.*
-%doc %{_mandir}/man1/ilasm.*
-%doc %{_mandir}/man1/makecert.*
-%doc %{_mandir}/man1/monodis.*
-%doc %{_mandir}/man1/monoburg.*
-%doc %{_mandir}/man1/monop.*
-%doc %{_mandir}/man1/monostyle.*
-%doc %{_mandir}/man1/secutil.*
-%doc %{_mandir}/man1/setreg.*
-%doc %{_mandir}/man1/signcode.*
-%doc %{_mandir}/man1/sn.*
-%doc %{_mandir}/man1/soapsuds.*
-%doc %{_mandir}/man1/sqlsharp.*
-%doc %{_mandir}/man1/wsdl.*
+%doc %{_mandir}/man1/cert2spc.1*
+%doc %{_mandir}/man1/cilc.1.gz
+%doc %{_mandir}/man1/genxs.1*
+%doc %{_mandir}/man1/ilasm.1*
+%doc %{_mandir}/man1/makecert.1*
+%doc %{_mandir}/man1/monoburg.1*
+%doc %{_mandir}/man1/monodis.1*
+%doc %{_mandir}/man1/monop.1*
+%doc %{_mandir}/man1/monostyle.1.gz
+%doc %{_mandir}/man1/oldmono.1.gz
+%doc %{_mandir}/man1/secutil.1*
+%doc %{_mandir}/man1/signcode.1*
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_bindir}/cilc*
+%{_bindir}/gmcs
 %{_bindir}/al*
 %{_bindir}/cert2spc*
-%{_bindir}/certmgr*
-%{_bindir}/chktrust*
-%{_bindir}/cilc*
-%{_bindir}/disco*
 %{_bindir}/genxs*
 %{_bindir}/ilasm*
-%{_bindir}/MakeCert*
-%{_bindir}/makecert*
-%{_bindir}/monodis
+%{_bindir}/makecert
+%{_bindir}/MakeCert.exe
+%{_bindir}/monodis*
 %{_bindir}/monograph
+%{_bindir}/monop*
 %{_bindir}/monoresgen*
-%{_bindir}/monosn
 %{_bindir}/pedump
-%{_bindir}/resgen*
+%{_bindir}/resgen
 %{_bindir}/secutil*
-%{_bindir}/setreg*
 %{_bindir}/signcode*
-%{_bindir}/sn
+%dir %{_datadir}/mono/
+%dir %{_datadir}/mono/*
+%{_datadir}/mono/cil/cil-opcodes.xml
+%dir %{_includedir}/mono/
+%dir %{_includedir}/mono/*
+%{_includedir}/mono/*/*.h
+%{_includedir}/mono/cil/opcode.def
+%{_libdir}/libmono-profiler-cov.*
+%exclude %{_libdir}/libMonoPosixHelper.a
+%exclude %{_libdir}/libMonoPosixHelper.la
+%exclude %{_libdir}/libmint.a
+%exclude %{_libdir}/libmint.la
+%exclude %{_libdir}/libmono.a
+%exclude %{_libdir}/libmono.la
+%{_libdir}/mono/1.0/PEAPI.dll
+%{_libdir}/mono/gac/PEAPI/
+%{_libdir}/mono/2.0/gmcs.exe
+%{_libdir}/mono/2.0/mscorlib.dll
+%{_libdir}/mono/gac/Mono.Security.Win32/
+%{_libdir}/mono/gac/nunit.core/
+%{_libdir}/mono/gac/nunit.framework/
+%{_libdir}/mono/gac/nunit.util/
+%{_libdir}/pkgconfig/*.pc
+
+%files extras
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/Microsoft.Vsa.dll
+%{_libdir}/mono/gac/Microsoft.Vsa/
+%{_libdir}/mono/1.0/System.Configuration.Install.dll
+%{_libdir}/mono/gac/System.Configuration.Install/
+%{_libdir}/mono/1.0/System.Management.dll
+%{_libdir}/mono/gac/System.Management/
+%{_libdir}/mono/1.0/System.Messaging.dll
+%{_libdir}/mono/gac/System.Messaging/
+%{_libdir}/mono/1.0/System.ServiceProcess.dll
+%{_libdir}/mono/gac/System.ServiceProcess/
+
+#%files ikvm
+#%defattr(-, root, root, 0755)
+#%{_libdir}/libmono-ikvm-jni.so*
+
+%files locale-extras
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/I18N.MidEast.dll
+%{_libdir}/mono/gac/I18N.MidEast/
+%{_libdir}/mono/1.0/I18N.Rare.dll
+%{_libdir}/mono/gac/I18N.Rare/
+%{_libdir}/mono/1.0/I18N.CJK.dll
+%{_libdir}/mono/gac/I18N.CJK/
+%{_libdir}/mono/1.0/I18N.Other.dll
+%{_libdir}/mono/gac/I18N.Other/
+
+%files web
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/disco.1*
+%doc %{_mandir}/man1/soapsuds.1*
+%doc %{_mandir}/man1/wsdl.1*
+%doc %{_mandir}/man1/xsd.1*
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_sysconfdir}/mono/browscap.ini
+%{_sysconfdir}/mono/DefaultWsdlHelpGenerator.aspx
+%{_bindir}/disco*
 %{_bindir}/soapsuds*
-%{_bindir}/sqlsharp*
 %{_bindir}/wsdl*
 %{_bindir}/xsd*
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
-%{_includedir}/mono/
-%{_datadir}/mono/
-#exclude %{_libdir}/*.la
+%{_libdir}/mono/1.0/Mono.Http.dll
+%{_libdir}/mono/gac/Mono.Http/
+%{_libdir}/mono/1.0/System.Runtime.Remoting.dll
+%{_libdir}/mono/gac/System.Runtime.Remoting/
+%{_libdir}/mono/1.0/System.Runtime.Serialization.Formatters.Soap.dll
+%{_libdir}/mono/gac/System.Runtime.Serialization.Formatters.Soap/
+%{_libdir}/mono/1.0/System.Web.dll
+%{_libdir}/mono/gac/System.Web/
+%{_libdir}/mono/1.0/System.Web.Services.dll
+%{_libdir}/mono/gac/System.Web.Services/
+
+%files winforms
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/*
+%{_libdir}/mono/1.0/Accessibility.dll
+%{_libdir}/mono/gac/Accessibility/
+%{_libdir}/mono/1.0/System.Design.dll
+%{_libdir}/mono/gac/System.Design/
+%{_libdir}/mono/1.0/System.Drawing.Design.dll
+%{_libdir}/mono/gac/System.Drawing.Design/
+%{_libdir}/mono/1.0/System.Windows.Forms.dll
+%{_libdir}/mono/gac/System.Windows.Forms/
+
+%files complete
+%defattr(-, root, root, 0755)
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Fri Mar 19 2004 Dag Wieers <dag@wieers.com> - 0.31-0
 - Updated to release 0.31.
 

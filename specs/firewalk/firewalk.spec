@@ -14,6 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.packetfactory.net/firewalk/dist/firewalk-%{version}.tgz
+Patch: firewalk-5.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet >= 1.1.0, libpcap, libdnet
@@ -31,8 +32,14 @@ response.
 
 %prep
 %setup -n Firewalk
+%patch
 
 %build
+%{__libtoolize} --force --copy
+%{__aclocal} #--force
+%{__autoheader}
+%{__automake} --add-missing -a --foreign
+%{__autoconf}
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -48,8 +55,8 @@ response.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS README TODO
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/firewalk.8*
+%{_sbindir}/firewalk
 
 %changelog
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 5.0-1

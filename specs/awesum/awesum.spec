@@ -71,7 +71,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %defattr(-, root, root, 0755)
 %doc *.txt doc/html/
 %{_bindir}/awesum
-%{_datadir}/applications/%{desktop-vendor}-awesum.desktop
+%{_datadir}/applications/%{desktop_vendor}-awesum.desktop
 %{_datadir}/awesum/
 %exclude %{_docdir}/awesum/
 

@@ -2,9 +2,16 @@
 # Authority: dag
 # Upstream: <gtk-sharp-list$ximian,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el3:%define _without_croco 1}
+%{?rh9:%define _without_croco 1}
+%{?rh7:%define _without_croco 1}
+%{?el2:%define _without_croco 1}
+
 Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp
-Version: 0.18
+Version: 1.0.4
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -16,15 +23,31 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/gtk-sharp/gtk-sharp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mono-devel
+BuildRequires: mono-core, mono-devel
 BuildRequires: libgnomeui-devel >= 2.0, libgnomecanvas-devel >= 2.0, libglade2-devel, gtk2-devel >= 2.2.0
-BuildRequires: libgnomedb-devel, libgda-devel
-Requires: libgnomeui >= 2.0, libgnomecanvas >= 2.0, libglade2
+BuildRequires: libgnomedb-devel, libgda-devel, librsvg2-devel, gtkhtml3-devel, glib2-devel
+BuildRequires: libart_lgpl-devel, libgsf-devel, vte-devel
+%{!?_without_croco:BuildRequires: libcroco-devel}
+Requires: gtkhtml3, librsvg2
+%{!?_without_croco:Requires: libcroco}
+#Requires: libgnomeui >= 2.0, libgnomecanvas >= 2.0, libglade2
 
 %description
 A C source parser and C# code generator to produce .Net assemblies
 which bind to GObject based libraries.  The Gtk+-2.0 libraries are
 included along with several GNOME platform libraries.
+
+%package gapi
+Summary: C source parser and C generator
+Group: Development/Libraries
+Requires: perl-XML-LibXML-Common, perl-XML-LibXML, perl-XML-NamespaceSupport
+Requires: perl-XML-SAX, gtk-sharp = %{version}-%{release}
+
+%description gapi
+The gtk-sharp-gapi package includes the parser and code
+generator used by the Gtk if you want to bind
+GObject-based libraries, or need to compile a project that
+uses it to bind such a library.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
@@ -38,7 +61,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%{__perl} -pi.orig -e 's|\@prefix\@/lib|\$(libdir)|g;' Makefile.in
 
 %build
 %configure
@@ -46,7 +68,9 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}" \
+	GACUTIL_FLAGS="/package gtk-sharp /root %{buildroot}%{_libdir}"
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -60,21 +84,30 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
-%{_bindir}/gconfsharp-schemagen*
-%{_libdir}/*.dll
+%{_bindir}/*
+%exclude %{_bindir}/gapi*
+%{_libdir}/mono/
 %{_libdir}/*.so
+
+%files gapi
+%defattr(-, root, root, 0755)
+%{_bindir}/gapi*
+%{_libdir}/pkgconfig/gapi.pc
+%{_datadir}/gapi/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc README.generator sample/
-%{_bindir}/gapi*
 %{_libdir}/*.a
 %{_libdir}/pkgconfig/*.pc
-%{_datadir}/gapi/
-%{_datadir}/perl5/GAPI/
+%exclude %{_libdir}/pkgconfig/gapi.pc
+#%{_datadir}/perl5/GAPI/
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 

@@ -117,7 +117,7 @@ EOF
 
 %changelog
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.44-2
-- Added binutils dependency. ()
+- Added binutils dependency. (Sutha Kathir)
 
 * Mon Dec 06 2004 Dag Wieers <dag@wieers.com> - 0.44-2
 - Fixed problem where options were discarded. (Steven Balthazor)

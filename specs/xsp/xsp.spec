@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Small web server that hosts ASP.NET
 Name: xsp
-Version: 0.9
-Release: 0
+Version: 1.0.5
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.go-mono.com/
@@ -13,11 +12,10 @@ URL: http://www.go-mono.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.go-mono.org/archive/xsp-%{version}.tar.gz
+Source: http://www.go-mono.com/archive/%{version}/xsp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: mono-devel
+BuildRequires: mono-core, mono-data, mono-web
 
 %description
 The XSP server is a small web server that hosts the Mono System.Web
@@ -51,10 +49,20 @@ classes for running what is commonly known as ASP.NET.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README rpm-doc/*
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+#%doc %{_mandir}/man1/asp_state.1*
+#%doc %{_mandir}/man1/dbsessmgr.1*
+%doc %{_mandir}/man1/mod-mono-server.1*
+%doc %{_mandir}/man1/xsp.1*
+#%{_bindir}/asp_state.exe*
+#%{_bindir}/dbsessmgr.exe*
+%{_bindir}/mod-mono-server*
+%{_bindir}/xsp*
 %{_libdir}/*.dll
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+- Updated to release 1.0.4.
+
 * Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 0.9-0
 - Initial package. (using DAR)
