@@ -6,7 +6,7 @@
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
 Version: 1.3.13
-Release: 1
+Release: 2
 License: Other
 Group: System Environment/Libraries
 URL: http://botan.randombit.net/
@@ -66,11 +66,15 @@ mv %{buildroot}%{_datadir}/doc/Botan-%{version} botandocs
 %{_libdir}/libbotan-*.so
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/botan
 %{_libdir}/*.a
 %{_libdir}/*.so
 
 %changelog
+* Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.13-2
+- fix the ownership of the devel files
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.13-1
 - Update to 1.3.13
 
