@@ -2,20 +2,19 @@
 # Authority: newrpms
 # Upstream: <clamav-devel@lists.sourceforge.net>
 
-%define rversion 0.67-1
 %define milter 1
 %{?rhel3:%undefine milter}
 
 Summary: Anti-virus utility for Unix.
 Name: clamav
-Version: 0.67.1
+Version: 0.68
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://clamav.sf.net/
 
-Source0: http://dl.sf.net/clamav/clamav-%{rversion}.tar.gz
-Source1: http://dl.sf.net/clamav/clamav-%{rversion}.tar.gz.sig
+Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
+Source1: http://dl.sf.net/clamav/clamav-%{version}.tar.gz.sig
 Source2: clamav.init
 Source3: clamav-milter.init
 Patch0: clamav-0.67-config.patch
@@ -25,7 +24,7 @@ Prefix: %{_prefix}
 BuildRequires: bzip2-devel, zlib-devel
 %{?milter:BuildRequires: sendmail-devel >= 8.12}
 Requires: clamav-db = %{version}-%{release}
-Obsoletes: libclamav = 0.54	
+Obsoletes: libclamav = 0.54
 Provides: libclamav
 
 %description 
@@ -71,8 +70,15 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup
 %patch0
+
+%{__perl} -pi.orig -e '
+		s|\@DBDIR\@|\$(localstatedir)/clamav|g;
+		s|\@DBINST\@|\$(localstatedir)/clamav|g;
+		s|\@CFGDIR\@|\$(sysconfdir)|g;
+		s|\@CFGINST\@|\$(sysconfdir)|g;
+	' database/Makefile.in etc/Makefile.in
 
 %{__cat} <<EOF >clamav.logrotate
 %{_localstatedir}/log/clamav/clamav.log {
@@ -135,9 +141,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_initrddir} \
 			%{buildroot}%{_sysconfdir}/sysconfig/ \
@@ -157,9 +161,6 @@ EOF
 touch %{buildroot}/var/log/clamav/freshclam.log
 touch %{buildroot}/var/log/clamav/clamav.log
 
-### huh? a bug?
-%{__install} -m0644 etc/clamav.conf %{buildroot}%{_sysconfdir}/clamav.conf
-
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la \
 %{!?milter:	%{buildroot}%{_mandir}/man8/clamav-milter.8*}
@@ -175,30 +176,28 @@ touch %{buildroot}/var/log/clamav/clamav.log
 /usr/sbin/useradd -r -d /var/clamav -s /sbin/nologin -c "Clam Anti Virus Checker" -g clamav clamav 2>/dev/null || :
 
 %post -n clamd
-if [ $1 -eq 1 ]; then
-	/sbin/chkconfig --add clamd
-elif [ -f /var/lock/subsys/clamd ]; then 
-	service clamd restart > /dev/null 2>/dev/null || :
-fi
+/sbin/chkconfig --add clamd
 
 %preun -n clamd
 if [ $1 -eq 0 ]; then
-	service clamd stop > /dev/null 2>/dev/null || :
+	/sbin/service clamd stop &>/dev/null || :
 	/sbin/chkconfig --del clamd
 fi
 
+%postun -n clamd
+/sbin/service clamd condrestart &>/dev/null || :
+
 %post milter
-if [ $1 -eq 1 ]; then
-	/sbin/chkconfig --add clamav-milter
-elif [ -f /var/lock/subsys/clamav-milter ]; then
-	service clamav-milter restart &>/dev/null || :
-fi
+/sbin/chkconfig --add clamav-milter
                                                                                
 %preun milter
 if [ $1 -eq 0 ]; then
-	service clamav-milter stop &>/dev/null || :
+	/sbin/service clamav-milter stop &>/dev/null || :
 	/sbin/chkconfig --del clamav-milter
 fi
+
+%postun milter
+/sbin/service clamav-milter condrestart &>/dev/null || :
 
 %pre db
 /usr/sbin/groupadd -r clamav 2>/dev/null || :
@@ -267,6 +266,9 @@ fi
 #%exclude %{_libdir}/*.la
 
 %changelog
+* Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 0.68-1
+- Updated to release 0.68.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 0.67.1-1
 - Updated to release 0.67-1.
 - Added clamdwatch and trashcan to clamd.

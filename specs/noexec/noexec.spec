@@ -27,7 +27,7 @@ You want to run a process which will be unable to create a child
 
 %build
 %configure \
-	--program-prefix="%{?program_prefix}"
+	--program-prefix="%{?_program_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
