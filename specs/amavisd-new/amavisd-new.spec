@@ -20,7 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}-%{real_release}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: sendmail-devel >= 8.12
+BuildRequires: sendmail-devel >= 8.12, sendmail
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
 Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
 Requires: perl(Archive::Tar), perl(Archive::Zip), perl(Compress::Zlib)
