@@ -9,6 +9,7 @@ Release: 1
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://www.sentex.net/~mwandel/jhead/
+
 Source: http://www.sentex.net/~mwandel/jhead/jhead-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -19,6 +20,7 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 
 %prep
 %setup
+
 %{__perl} -pi.orig -e 's|-O3 -Wall|%{optflags}|' makefile
 
 
@@ -28,8 +30,8 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0755 jhead %{buildroot}%{_bindir}/jhead
-%{__install} -D -m 0755 jhead.1.gz %{buildroot}%{_mandir}/man1/jhead.1.gz
+%{__install} -D -m0755 jhead %{buildroot}%{_bindir}/jhead
+%{__install} -D -m0755 jhead.1.gz %{buildroot}%{_mandir}/man1/jhead.1.gz
 
 
 %clean
