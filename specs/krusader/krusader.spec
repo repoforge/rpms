@@ -2,7 +2,7 @@
 
 # Authority: dries
 # Upstream: 
-# Screenshot: http://krusader.sourceforge.net/img/scr01.png
+# Screenshot: http://krusader.sourceforge.net/scr/thumbs/krusader-150cvs_01.png
 # ScreenshotURL: http://krusader.sourceforge.net/scr.php
 
 %{?dist: %{expand: %%define %dist 1}}
