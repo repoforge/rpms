@@ -1,19 +1,19 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
 #define date           20031202
 
 Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.34b
-Release: %{?date:0.%{date}.}2
+Release: %{?date:0.%{date}.}3
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
 Source: http://dl.sf.net/gxmame/gxmame-%{!?date:%{version}}%{?date}.tar.gz
+Patch: gxmame-xml.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xmame >= 0.77.1
+Requires: xmame >= 0.77.1, %{_bindir}/xml2info
 BuildRequires: gtk2-devel, zlib-devel, gettext
 %if %{?date:1}%{!?date:0}
 BuildRequires: automake, autoconf, cvs
@@ -30,6 +30,7 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 %prep
 %setup -n %{name}-%{!?date:%{version}}%{?date}
+%patch -p1 -b .xml
 
 
 %build
@@ -62,6 +63,9 @@ test -x configure || ./autogen.sh
 
 
 %changelog
+* Sun Jul 18 2004 Matthias Saou <http://freshrpms.net/> 0.34b-3
+- Added patch for the -li option removed, so added %{_bindir}/xml2info req.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.34b-2
 - Rebuilt for Fedora Core 2.
 
@@ -71,13 +75,13 @@ test -x configure || ./autogen.sh
 * Tue Dec 16 2003 Matthias Saou <http://freshrpms.net/> 0.34-1
 - Update to 0.34 final.
 
-* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.34-0.20031202.1.fr
+* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.34-0.20031202.1
 - Update to today's CVS checkout.
 
-* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.34-0.20031119.1.fr
+* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.34-0.20031119.1
 - Update to today's CVS checkout.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.33-3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.33-3
 - Rebuild for Fedora Core 1.
 
 * Tue Oct 21 2003 Matthias Saou <http://freshrpms.net/>

@@ -1,0 +1,17 @@
+diff -Nur gxmame-0.34b/src/mameio.c gxmame-0.34b-xml/src/mameio.c
+--- gxmame-0.34b/src/mameio.c	2003-11-26 02:38:21.000000000 -0700
++++ gxmame-0.34b-xml/src/mameio.c	2004-07-17 12:41:19.661517600 -0600
+@@ -217,10 +217,8 @@
+ 		
+ 	/* Generate the list */
+ 	/* without including neither history nor mameinfo to have less to parse after*/
+-	opt=g_strdup_printf("%s -listinfo -%s /dev/null -%s /dev/null 2>/dev/null",
+-			current_exec->path,
+-			available_options->mameinfo_file_option,
+-			available_options->history_file_option);
++	opt=g_strdup_printf("%s -listxml | xml2info 2>/dev/null",
++			current_exec->path);
+ 	
+ 	xmame_pipe = popen(opt, "r");
+ 	g_free(opt);
+
