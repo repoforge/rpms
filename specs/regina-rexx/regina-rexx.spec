@@ -8,7 +8,7 @@
 Summary: Regina Rexx interpreter.
 Name: regina-rexx
 Version: 3.3
-Release: 0
+Release: 0.rc1
 License: LGPL
 Group: Development/Languages
 URL: http://regina-rexx.sf.net/
@@ -29,12 +29,14 @@ ANSI Standard for Rexx (1996). It is also available on several other
 operating systems. 
 
 %package devel
-Summary: Development files for Regina Rexx interpreter.
-Group: Development/Languages
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-Development files for Regina Rexx interpreter.
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup -n %{rname}-%{version}
@@ -45,7 +47,7 @@ Development files for Regina Rexx interpreter.
 			s|regina.\$\(OBJ\) \$\(LINKREG\)|regina.\$(OBJ) \$(EXECISER_DEP)|g;' \
 	Makefile.in
 
-%{__cat} <<EOF >rxstack.sysv
+%{__cat} <<'EOF' >rxstack.sysv
 #!/bin/bash
 #
 # Init file for Regina REXX stack daemon
@@ -66,21 +68,21 @@ prog="rxstack"
 desc="Regina REXX Stack daemon"
 
 start() {
-	echo -n \$"Starting \$desc: "
-	daemon \$prog -d
-	RETVAL=\$?
+	echo -n $"Starting $desc: "
+	daemon $prog -d
+	RETVAL=$?
 	echo
-	[ \$RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
-	return \$RETVAL
+	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
 }
 
 stop() {
-	echo -n \$"Shutting down \$desc: "
-	killproc \$prog -2
-	RETVAL=\$?
+	echo -n $"Shutting down $desc: "
+	killproc $prog -2
+	RETVAL=$?
 	echo
-	[ \$RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/\$prog
-	return \$RETVAL
+	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
 }
 
 restart(){
@@ -88,7 +90,7 @@ restart(){
 	start
 }
 
-case "\$1" in
+case "$1" in
   start)
 	start
 	;;
@@ -99,19 +101,19 @@ case "\$1" in
 	restart
 	;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/\$prog ] && restart
-	RETVAL=\$?
+	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+	RETVAL=$?
 	;;
   status)
-	status \$prog
-	RETVAL=\$?
+	status $prog
+	RETVAL=$?
 	;;
   *)
-	echo \$"Usage: \$0 {start|stop|restart|condrestart|status}"
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
 	RETVAL=1
 esac
 
-exit \$RETVAL
+exit $RETVAL
 EOF
 
 %build
@@ -149,7 +151,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS COPYING-LIB HACKERS.txt README.Unix README_SAFE TODO trip/
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man?/*
 %config %{_initrddir}/rxstack
 %{_bindir}/regina
 %{_bindir}/rexx
@@ -165,8 +167,8 @@ fi
 %{_includedir}/rexxsaa.h
 
 %changelog
-* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 3.3-0
-- Updated to release 3.3.
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 3.3-0.rc1
+- Updated to release 3.3rc1.
 
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 3.2-0
 - Updated to release 3.2.
