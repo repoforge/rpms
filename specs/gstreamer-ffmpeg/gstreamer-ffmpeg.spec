@@ -5,7 +5,7 @@
 %define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
 
 Name: 		%{gstreamer}-ffmpeg
-Version: 	0.8.1
+Version: 	0.8.2
 Release: 	0
 Summary: 	GStreamer FFmpeg-based streaming media framework plugin
 
@@ -74,6 +74,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
 
 %changelog
+* Wed Oct 20 2004 Matthias Saou <http://freshrpms.net/> 0.8.2-0
+- Update to 0.8.2.
+
 * Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 0.8.1-0
 - Update to 0.8.1.
 

@@ -1,0 +1,13 @@
+--- gst-plugins-0.8.4/ext/vorbis/vorbisdec.c	22 Sep 2004 21:48:20 -0400	1.44
++++ gst-plugins-0.8.4/ext/vorbis/vorbisdec.c	24 Sep 2004 17:23:31 -0400	
+@@ -377,10 +377,6 @@
+   if (packet.packet[0] & 1) {
+     /* header packet */
+     if (packet.packet[0] / 2 != packet.packetno) {
+-      /* FIXME: just skip? */
+-      GST_ELEMENT_ERROR (GST_ELEMENT (vd), STREAM, DECODE,
+-          (NULL), ("unexpected packet type %d, expected %d",
+-              (gint) packet.packet[0], (gint) packet.packetno));
+       gst_data_unref (data);
+       return;
+     }

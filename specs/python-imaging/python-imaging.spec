@@ -2,12 +2,12 @@
 # Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
-%define pyver %(python2 -c 'import sys; print sys.version[:3]')
+%define pyver %(%{__python} -c 'import sys; print sys.version[:3]' || echo 2.0)
 
 Summary: Python's own image processing library
 Name: python-imaging
 Version: 1.1.4
-Release: 1
+Release: 2
 License: Distributable
 Group: Development/Libraries
 URL: http://www.pythonware.com/products/pil/
@@ -15,12 +15,12 @@ URL: http://www.pythonware.com/products/pil/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pythonware.com/downloads/Imaging-%{version}.tar.gz
-Source1: Imaging-doc.tar.bz2
+Source: http://effbot.org/downloads/Imaging-%{version}.tar.gz
+Patch: python-imaging-1.1.4-setup.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildPreReq: libjpeg-devel >= 6b, zlib-devel >= 1.1.2, libpng-devel >= 1.0.1, tk
-Requires: python >= %{pyver}, libjpeg >= 6b, zlib >= 1.1.2, libpng >= 1.0.1
+Requires: python >= %{pyver}
+BuildRequires: python, python-devel, gtk+-devel
+BuildRequires: libjpeg-devel, libpng-devel, freetype-devel, zlib-devel
 Obsoletes: PIL <= %{version}
 Provides: PIL = %{version}-%{release}
 
@@ -31,46 +31,54 @@ to your Python interpreter.
 This library provides extensive file format support, an efficient
 internal representation, and powerful image processing capabilities.
 
-%prep
-%setup -n Imaging-%{version} -a1
-%{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|g' *.in Makefile libImaging/configure libImaging/Makefile.in Scripts/*.py
 
+%prep
+%setup -n Imaging-%{version}
+%patch -p1 -b .setup
+%{__perl} -pi -e 's|/usr/local|%{_prefix}|' \
+    Setup.in Scripts/*.py libImaging/Makefile.in libImaging/configure
 %{?fc2:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' _imagingft.c}
-%{?fc2:%{__perl} -pi.orig -e 's|\@DEFS\@|-DHAVE_CONFIG_H|; s|tcl8.3|tcl8.4|; s|tk8.3|tk8.4|;' Makefile* Setup*}
+
 
 %build
-cd libImaging
-%configure
-%{__make} \
-	OPT="%{optflags}"
-cd -
+pushd libImaging
+    %configure
+    %{__make} OPT="%{optflags}"
+popd
+%{__python} setup.py build
 
-#python2 setup.py build_ext -i
-%{__make} -f Makefile.pre.in boot
-%{__make} \
-	OPT="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 PIL.pth %{buildroot}%{_libdir}/python%{pyver}/site-packages/PIL.pth
-%{__install} -D -m0755 _imaging.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/_imaging.so
-%{__install} -D -m0755 _imagingtk.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/_imagingtk.so
-%{__cp} -av  PIL/* %{buildroot}%{_libdir}/python%{pyver}/site-packages/
+%{__python} setup.py install --root=%{buildroot}
 
-%{__install} -d -m0755 %{buildroot}%{_includedir}/python%{pyver}/
-%{__cp} -av  libImaging/*.h %{buildroot}%{_includedir}/python%{pyver}/
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES* CONTENTS README handbook/ Images/ notes/ Sane/ Scripts/
-%{_libdir}/python*/lib-dynload/*
-%{_libdir}/python*/site-packages/*
-%{_includedir}/python*/*.h
+%doc CHANGES* CONTENTS README Images/ Sane/ Scripts/
+%{_libdir}/python*/site-packages/PIL.pth
+%{_libdir}/python*/site-packages/PIL/
+
 
 %changelog
+* Thu Oct 21 2004 Matthias Saou <http://freshrpms.net/> 1.1.4-2
+- Further spec file updates.
+- Build without tcl/tk... which shouldn't harm for a python/gtk module!
+
+* Mon Oct 18 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 1.1.4-2.fdr.1: adapted for Fedora
+
+* Sat Oct 16 2004 Johan Dahlin <johan@fluendo.com> - 1.1.4-2
+- stole dags spec
+- remove includes
+- install in PIL/ with .pth
+- install freetype bindings
+- don't depend on doc package
+
 * Mon Dec 08 2003 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Fixed python location for RHFC1. (Ian Burrell)
 

@@ -1,0 +1,20 @@
+--- gstreamer-0.7.5/docs/manuals.mak.nops	2004-02-27 08:52:16.000000000 +0100
++++ gstreamer-0.7.5/docs/manuals.mak	2004-02-27 08:52:48.000000000 +0100
+@@ -42,7 +42,7 @@
+ 
+ # can we generate PS ?
+ if     DOC_PS
+-PS_DAT = $(DOC).ps
++PS_DAT =
+ else  #!DOC_PS
+ PS_DAT =
+ endif #DOC_PS
+@@ -50,7 +50,7 @@
+ 
+ # can we generate PDF ?
+ if     DOC_PDF
+-PDF_DAT = $(DOC).pdf
++PDF_DAT =
+ else  #!DOC_PDF
+ PDF_DAT =
+ endif #DOC_PDF
