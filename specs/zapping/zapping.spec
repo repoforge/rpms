@@ -1,25 +1,25 @@
 # $Id$
 # Authority: matthias
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%define desktop_vendor freshrpms
+%define prever         cvs7
 
-Summary: TV viewer for GNOME
+Summary: A TV viewer for GNOME
 Name: zapping
-Version: 0.6.8
-Release: 0
+Version: 0.7.0
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
-URL: http://zapping.sf.net/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
-Source: http://dl.sf.net/zapping/zapping-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gnome-libs-devel, libxml-devel, libglade-devel, gdk-pixbuf-devel
-BuildRequires: libunicode-devel, librte-devel, libzvbi-devel
-#BuildRequires: lirc
+URL: http://zapping.sourceforge.net/
+Source: http://dl.sf.net/zapping/zapping-0.7%{prever}.tar.bz2
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: libgnomeui, libglade2, zvbi, arts, rte, lirc
+BuildRequires: libgnomeui-devel, libglade2-devel
+BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
+BuildRequires: zvbi-devel, arts-devel, rte-devel >= 0.5, lirc
+BuildRequires: python-devel, desktop-file-utils
+# This one is to get /usr/bin/consolehelper
+BuildRequires: usermode
 
 %description
 GNOME (GNU Network Object Model Environment) is a user-friendly set of
@@ -30,8 +30,10 @@ to CDE and KDE, but GNOME is based completely on free software.
 This is a TV viewer for the GNOME desktop. It has all the needed
 features, plus extensibility through a plugin system.
 
+
 %prep
-%setup
+%setup -q -n %{name}-0.7%{prever}
+
 
 %build
 %configure
@@ -39,52 +41,99 @@ features, plus extensibility through a plugin system.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__make} install DESTDIR="%{buildroot}"
-%makeinstall \
-	pixmapdir="%{buildroot}%{_datadir}/pixmaps" \
-	PLUGIN_DEFAULT_DIR="%{buildroot}%{_libdir}/zapping/plugins"
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
-%{__ln_s} -f %{_bindir}/zapping %{buildroot}%{_bindir}/zapzilla
-%{__ln_s} -f %{_sbindir}/zapping_setup_fb %{buildroot}%{_bindir}/zapping_setup_fb
+# Fix buggy symlinks (point into the %{buildroot})
+#%{__ln_s} -f zapping %{buildroot}%{_bindir}/zapzilla
 
-%if %{dfi}
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor "gnome" --delete-original \
-		--add-category X-Red-Hat-Base                   \
-		--add-category Application                      \
-		--add-category AudioVideo                       \
-		--dir %{buildroot}%{_datadir}/applications      \
-		%{buildroot}%{_datadir}/gnome/apps/Multimedia/%{name}.desktop
-%endif
+# It's still a GNOME 1 type desktop file
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} --delete-original \
+  --dir %{buildroot}%{_datadir}/applications                      \
+  --add-category Application                                      \
+  --add-category AudioVideo                                       \
+  %{buildroot}%{_datadir}/gnome/apps/Multimedia/%{name}.desktop
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files -f %{name}.lang
-%defattr (-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog NEWS README* THANKS TODO
-%doc %{_mandir}/man1/*
-%doc %{_datadir}/gnome/help/zapping/
+%defattr (-, root, root)
+%doc AUTHORS BUGS COPYING ChangeLog NEWS README* THANKS TODO
+%config %{_sysconfdir}/pam.d/zapping_setup_fb
+%config %{_sysconfdir}/security/console.apps/zapping_setup_fb
 %{_bindir}/*
+%{_libdir}/%{name}
 %{_sbindir}/*
-%{_libdir}/zapping/
-%{_datadir}/pixmaps/zapping/
-%{_datadir}/zapping/
-%if %{dfi}
-        %{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%{_datadir}/gnome/help/%{name}
+%{_datadir}/omf/%{name}
+%{_datadir}/pixmaps/%{name}
+%{_datadir}/%{name}
+%{_mandir}/man1/*
+
 
 %changelog
-* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.8-0
-- Updated to 0.6.8.
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> - 0.7.0-0.cvs7.1
+- Rebuild for Fedora Core 2.
+- Update to 0.7cvs7.
+- Removed explicit stripping, that's for the debuginfo now.
+- No longer require the "absolute buildroot path in symlink" fix.
 
-* Fri Feb 28 2003 Dag Wieers <dag@wieers.com> - 0.6.6-0
-- Updated to 0.6.6.
+* Tue Jan 20 2004 Matthias Saou <http://freshrpms.net/> - 0.7.0-0.cvs6.1
+- Update to 0.7cvs6.
+- Major spec file changes to relect the GNOME1 -> GNOME2 step.
 
-* Sun Jan 05 2003 Dag Wieers <dag@wieers.com> - 0.6.5.20030105-0
-- Initial package. (using DAR)
+* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> - 0.6.8-1
+- Update to 0.6.8.
+- Rebuild for Fedora Core 1 at last.
+
+* Mon Jun  2 2003 Matthias Saou <http://freshrpms.net/>
+- Update to 0.6.7.
+
+* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
+- Rebuilt for Red Hat Linux 9.
+
+* Thu Mar 20 2003 Matthias Saou <http://freshrpms.net/>
+- Update to 0.6.6.
+
+* Wed Oct  9 2002 Matthias Saou <http://freshrpms.net/>
+- Update to 0.6.5.
+
+* Sat Sep 28 2002 Matthias Saou <http://freshrpms.net/>
+- Rebuilt for Red Hat Linux 8.0.
+- New menu entry.
+
+* Tue Aug  6 2002 Matthias Saou <http://freshrpms.net/>
+- Update to 0.6.4.
+- Spec file cleanup.
+
+* Thu Nov 22 2001 Matthias Saou <http://freshrpms.net/>
+- Update (at last!) to 0.6.1.
+- Added the manpages and quick spec file cleanup as usual.
+
+* Tue May 15 2001 Matthias Saou <http://freshrpms.net/>
+- Replaced the pre/post sections with a real link in the package.
+
+* Fri Feb  2 2001 Tim Powers <timp@redhat.com>
+- pamified zapping_setup_fb, now no need for suid root bits, and no
+crippling of the app :)
+
+* Thu Sep 12 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+- Removed the LibPng dependency, now libjpeg is used.
+
+* Mon Sep 11 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+- Added the dependency to GdkPixbuf and LibPng
+
+* Mon Jun 19 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+- Added the desktop entry and removed the specified --datadir
+
+* Mon Jun 12 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+- Fixed, it didn't include the translations properly.
+
+* Thu Jun 06 2000 Iñaki García Etxebarria <garetxe@users.sourceforge.net>
+- Created, it works fine.
+
