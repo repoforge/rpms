@@ -3,7 +3,7 @@
 
 Summary: Gift plugin to access the Gnutella network
 Name: gift-gnutella
-Version: 0.0.9.2
+Version: 0.0.10
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -53,6 +53,9 @@ packages provides the plugin to access the Gnutella network.
 %{_datadir}/giFT/Gnutella/hostiles.txt
 
 %changelog
+* Wed Feb 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.10-1
+- Update to version 0.0.10.
+
 * Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.0.9.2-1
 - Include .la file because gift requires it. (Willy De la Court)
 

@@ -6,7 +6,7 @@
 
 Summary: Dutch online dictionary
 Name: gnuvd
-Version: 1.0beta5
+Version: 1.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Feb 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0.
+- Update to release 1.0.
+
 * Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 1.0beta5
 - Update to release 1.0beta5
 

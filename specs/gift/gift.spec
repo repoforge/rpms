@@ -4,7 +4,7 @@
 
 Summary: Deamon for communicating with filesharing protocols
 Name: gift
-Version: 0.11.8
+Version: 0.11.8.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %{_includedir}/libgift/
 
 %changelog
+* Wed Feb 02 2005 Dries Verachtert <dries@ulyssis.org> 0.11.8.1-1
+- Update to release 0.11.8.1.
+
 * Fri Nov 26 2004 Dries Verachtert <dries@ulyssis.org> 0.11.8-1
 - Update to release 0.11.8.
 

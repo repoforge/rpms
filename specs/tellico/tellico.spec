@@ -8,7 +8,7 @@
 Summary: collection manager
 Name: tellico
 Version: 0.13.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.periapsis.org/tellico/
@@ -23,6 +23,7 @@ BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, libgcrypt-devel
 BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel, libxslt-devel
 BuildRequires: kdelibs-devel, desktop-file-utils, libxml2-devel
+BuildRequires: kdemultimedia-devel
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 
@@ -72,6 +73,10 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/mimelnk/application/x-tellico.desktop
 
 %changelog
+* Sat Jan 29 2005 Dries Verachtert <dries@ulyssis.org> - 0.13.1-2
+- kdemultimedia-devel added to the buildrequirements so it picks up 
+  kcddb support (Thanks to Vic Gedris)
+
 * Sun Dec 12 2004 Dries Verachtert <dries@ulyssis.org> - 0.13.1-1
 - Update to release 0.13.1.
 

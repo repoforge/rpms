@@ -11,31 +11,38 @@
 %{?rh6:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
+%define qca            qca-1.0
 %define tls_plugin     qca-tls-1.0
+%define sasl_plugin    qca-sasl-1.0
 %define qtdir          %(echo ${QTDIR})
 
 Summary: Client application for the Jabber network
 Name: psi
 Version: 0.9.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
 Source0: http://dl.sf.net/psi/psi-%{version}.tar.bz2
 Source1: http://psi.affinix.com/beta/%{tls_plugin}.tar.bz2
-Source20: psi_ca.qm
+Source2: http://delta.affinix.com/qca/%{qca}.tar.bz2
+Source3: http://delta.affinix.com/qca/%{sasl_plugin}.tar.bz2
+# Source20: psi_ca.qm
 Source21: psi_cs.qm
 Source22: psi_de.qm
 Source23: psi_el.qm
 Source24: psi_es.qm
 Source25: psi_fr.qm
-Source26: psi_it.qm
+# Source26: psi_it.qm
 Source27: psi_mk.qm
 Source28: psi_nl.qm
 Source29: psi_pl.qm
-Source30: psi_se.qm
+# Source30: psi_se.qm
 Source31: psi_sk.qm
 Source32: psi_zh.qm
+Source33: psi_et.qm
+Source34: psi_vi.qm
+Source35: psi_ru.qm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, kdelibs-devel, openssl-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -60,7 +67,7 @@ in other languages than English.
 
 
 %prep
-%setup -a 1
+%setup -a 1 -a 2 -a 3
 
 %{__cat} <<EOF >psi.desktop
 [Desktop Entry]
@@ -76,13 +83,22 @@ Categories=Application;Network;
 EOF
 
 %build
+# We need to build QCA-1.0 first
+pushd %{qca}
+    ./configure \
+    --prefix="${PWD}%{_prefix}"
+    %{__perl} -pi.orig -e "s|${PWD}/src||g" Makefile
+    %{__make}
+popd
 source %{_sysconfdir}/profile.d/qt.sh
 # It's not an autoconf generated script...
 # The PWD thing is an ugly hack since relative paths mess everything up...
 ./configure \
     --prefix="${PWD}/src%{_prefix}" \
     --bindir="${PWD}/src%{_bindir}" \
-    --libdir="${PWD}/src%{_datadir}/%{name}"
+    --libdir="${PWD}/src%{_datadir}/%{name}" \
+    --with-qca-inc="${PWD}/%{qca}/src" \
+    --with-qca-lib="${PWD}/%{qca}"
 %{__perl} -pi.orig -e "s|${PWD}/src||g" Makefile src/config.h
 %{__make} %{?_smp_mflags}
 
@@ -98,6 +114,12 @@ popd
 %{__rm} -rf %{buildroot}
 source %{_sysconfdir}/profile.d/qt.sh
 # That trailing "/" is mandatory because of "$(INSTALL_ROOT)usr" type of lines
+
+# Install QCA-1.0
+pushd %{qca}
+    %{__make} install INSTALL_ROOT="%{buildroot}/"
+popd
+
 %{__make} install INSTALL_ROOT="%{buildroot}/"
 
 # Transport Layer Security plugin
@@ -125,9 +147,9 @@ desktop-file-install \
  
 # Install the languagepack files
 %{__install} -m0644 \
-    %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \
-    %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} \
-    %{SOURCE30} %{SOURCE31} %{SOURCE32} \
+    %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \
+    %{SOURCE25} %{SOURCE27} %{SOURCE28} %{SOURCE29} \
+    %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} \
     %{buildroot}%{_datadir}/psi
 
 %clean
@@ -137,6 +159,8 @@ desktop-file-install \
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
+%{_libdir}/libqca.so*
+%{_includedir}/qca.h
 %{_bindir}/psi
 %exclude %{_datadir}/psi/COPYING
 %exclude %{_datadir}/psi/README
@@ -149,21 +173,27 @@ desktop-file-install \
 
 %files languagepack
 %defattr(-, root, root, 0755)
-%lang(ca) %{_datadir}/psi/psi_ca.qm
+# %lang(ca) %{_datadir}/psi/psi_ca.qm
 %lang(cs) %{_datadir}/psi/psi_cs.qm
 %lang(de) %{_datadir}/psi/psi_de.qm
 %lang(el) %{_datadir}/psi/psi_el.qm
 %lang(es) %{_datadir}/psi/psi_es.qm
 %lang(fr) %{_datadir}/psi/psi_fr.qm
-%lang(it) %{_datadir}/psi/psi_it.qm
+# %lang(it) %{_datadir}/psi/psi_it.qm
 %lang(mk) %{_datadir}/psi/psi_mk.qm
 %lang(nl) %{_datadir}/psi/psi_nl.qm
 %lang(pl) %{_datadir}/psi/psi_pl.qm
-%lang(se) %{_datadir}/psi/psi_se.qm
+# %lang(se) %{_datadir}/psi/psi_se.qm
 %lang(sk) %{_datadir}/psi/psi_sk.qm
 %lang(zh) %{_datadir}/psi/psi_zh.qm
+%lang(et) %{_datadir}/psi/psi_et.qm
+%lang(vi) %{_datadir}/psi/psi_vi.qm
+%lang(ru) %{_datadir}/psi/psi_ru.qm
 
 %changelog
+* Thu Jan 20 2005 Derek Atkins <warlord@mit.edu> 0.9.3-2
+- Changes for QCA 1.0 support.
+
 * Sun Jan 09 2005 Dries Verachtert <dries@ulyssis.org> 0.9.3-1
 - Updated to release 0.9.3.
 
