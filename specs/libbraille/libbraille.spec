@@ -15,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/libbraille/libbraille-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, libusb-devel
 
 %description
 This library makes it possible to easily access Braille displays and
