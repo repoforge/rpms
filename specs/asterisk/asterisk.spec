@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # The user and group names
 %define uname asterisk
