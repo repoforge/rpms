@@ -17,7 +17,7 @@ Source: http://dentrassi.de/download/gregexp/0.3/gregexp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires: intltool, pcre-devel, gtk2-devel >= 2.0.0, libglade2-devel >= 2.0.0
-BuildRequires: libgnomeui-devel
+BuildRequires: libgnomeui-devel, desktop-file-utils
 
 %description
 A graphical regular expression explorer which uses PCRE as regular expression

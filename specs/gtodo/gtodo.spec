@@ -14,7 +14,7 @@ Source: http://download.qballcow.nl/programs/gtodo/gtodo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0, libxml2-devel >= 2.5
-BuildRequires: perl(XML::Parser)
+BuildRequires: perl(XML::Parser), intltool
 
 %description
 gToDo is as the name suggests a todo list application.

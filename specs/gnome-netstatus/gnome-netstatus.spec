@@ -17,7 +17,7 @@ Source: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/2.6/gnome-netstat
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.4, libgnomeui-devel >= 2.6
-BuildRequires: libglade2-devel >= 2.0
+BuildRequires: libglade2-devel >= 2.0, gettext
 BuildRequires: gnome-panel-devel >= 2.6, gcc-c++
 
 %description

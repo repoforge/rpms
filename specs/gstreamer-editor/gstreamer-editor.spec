@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0, libxml2-devel >= 2.0.0, libgnomeui-devel >= 1.109.0
 BuildRequires: libglade2-devel >= 2, gstreamer-devel >= 0.8.0, scrollkeeper
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, gettext
 
 Requires(post): scrollkeeper
 
