@@ -4,8 +4,8 @@
 
 Summary: Interactive packet manipulation tool and network scanner
 Name: scapy
-Version: 0.9.14
-Release: 0
+Version: 0.9.17
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.cartel-securite.fr/pbiondi/scapy.html
@@ -13,7 +13,7 @@ URL: http://www.cartel-securite.fr/pbiondi/scapy.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cartel-securite.fr/pbiondi/python/scapy-%{version}.tgz
+Source: http://www.cartel-securite.fr/pbiondi/python/scapy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,15 +32,13 @@ session (variables, functions, intances, ...) will be saved when you leave
 the interpretor, and restored the next time you launch scapy. 
 
 %prep
-%setup -n %{name}
+%setup
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 scapy.py %{buildroot}%{_bindir}/
-%{__ln_s} -f scapy.py %{buildroot}%{_bindir}/scapy
+%{__install} -D -m0755 scapy.py %{buildroot}%{_bindir}/scapy
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,9 +46,12 @@ the interpretor, and restored the next time you launch scapy.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
-%{_bindir}/*
+%{_bindir}/scapy
 
 %changelog
+* Fri Sep 03 2004 Dag Wieers <dag@wieers.com> - 0.9.17-1
+- Updated to release 0.9.17.
+
 * Fri Aug 01 2003 Dag Wieers <dag@wieers.com> - 0.9.14-0
 - Added nmap as a dependency.
 - Updated to release 0.9.14.

@@ -7,7 +7,7 @@
 
 Summary: The boot loader for Linux and other operating systems
 Name: lilo
-Version: 22.5.9
+Version: 22.6
 Release: 1
 License: MIT
 Group: System Environment/Base
@@ -29,10 +29,9 @@ Source2: keytab-lilo.c
 #Patch100: lilo-21.4.4-lvm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Exclusivearch: i386
+Exclusivearch: i386 x86_64
 
 BuildRequires: tetex-latex, fileutils, tetex-dvips
-%{!?fc1:BuildRequires: dev86}
 Requires: mkinitrd >= 3.4.7
 Prereq: /sbin/grubby
 
@@ -57,9 +56,7 @@ can also boot other operating systems.
 %{__perl} -pi.orig -e 's|^(#define LILO_H)|$1\n#include <asm/page.h>|' lilo.h
 
 %build
-%{__make} %{?_smp_mflags} \
-	AS86="echo" \
-	LD86="echo" || :
+%{__make} %{?_smp_mflags}
 ${CC:-gcc} %{optflags} -o keytab-lilo %{SOURCE2}
 %{__make} -C doc || :
 dvips doc/user.dvi -o doc/User_Guide.ps
@@ -71,18 +68,13 @@ dvips doc/tech.dvi -o doc/Technical_Guide.ps
 %{__install} -d -m0755 %{buildroot}%{_mandir}
 %makeinstall \
 	ROOT="%{buildroot}" \
-	MAN_DIR="%{_mandir}" \
-	AS86="echo" \
-	LD86="echo" || :
+	MAN_DIR="%{_mandir}"
 #%{__mv} -f %{buildroot}%{_sbindir} %{buildroot}%{_bindir}
 %{__install} -D -m0755 keytab-lilo %{buildroot}%{_bindir}/keytab-lilo
 
-# remove unpackaged file from the buildroot
-#%{__rm} -f %{buildroot}%{_bindir}/keytab-lilo.pl
-
 %post
 if [ -f /etc/lilo.conf ]; then
-    if [ "$(/sbin/grubby --bootloader-probe | grep -q lilo)" ]; then
+    if /sbin/grubby --bootloader-probe | grep -q lilo; then
         /sbin/lilo > /dev/null
     fi
 fi
@@ -97,8 +89,12 @@ fi
 %{_bindir}/*
 /boot/*
 /sbin/*
+%exclude %{_sbindir}/keytab-lilo.pl
 
 %changelog
+* Fri Sep 03 2004 Dag Wieers <dag@wieers.com> - 21.6-1
+- Updated to release 21.6.
+
 * Tue Apr 13 2004 Dag Wieers <dag@wieers.com> - 21.5.9-1
 - Updated to release 21.5.9.
 

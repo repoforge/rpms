@@ -5,7 +5,7 @@
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter
 Version: 0.2.0
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://savannah.gnu.org/projects/spamass-milt/
@@ -29,11 +29,11 @@ a highly customizable SpamFilter.
 
 %{__cat} <<EOF >spamass-milter.sysconfig
 ### Override for your different local config
-#SM_SOCKET=/var/run/spamass.sock
+#SOCKET=/var/run/spamass.sock
 
 ### Default parameter for spamass-milter is -f (work in the background)
 ### you may add another parameters here, see spamass-milter(1)
-#SM_EXTRA_FLAGS="-m -r 15"
+#EXTRA_FLAGS="-m -r 15"
 EOF
 
 %{__cat} <<'EOF' >spamass-milter.sysv
@@ -147,11 +147,14 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README
-%doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/sysconfig/*
+%doc %{_mandir}/man1/spamass-milter.1*
+%config(noreplace) %{_sysconfdir}/sysconfig/spamass-milter
 %config %{_initrddir}/spamass-milter
-%{_sbindir}/*
+%{_sbindir}/spamass-milter
 
 %changelog
+* Wed Sep 01 2004 Dag Wieers <dag@wieers.com> - 0.2.0-1
+- Fixed variables in sysconfig file. (mator)
+
 * Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 0.2.0-0
 - Initial package. (using DAR)

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Nils Philippsen <nphilipp$redhat,com>
 
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://people.redhat.com/nphilipp/spectool/spectool-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 BuildRequires: perl
 Requires: perl
@@ -28,15 +26,11 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %prep
 %setup
 
-#### FIXME: Don't do a dependency check. (Please fix upstream)
-#%{__perl} -pi.orig -e 's|(rpmbuild -bp \$filename)|$1 --nodeps|' spectool
-
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 spectool %{buildroot}%{_bindir}
+%{__install} -D -m0755 spectool %{buildroot}%{_bindir}/spectool
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,7 +38,7 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%{_bindir}/*
+%{_bindir}/spectool
 
 %changelog
 * Wed Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.0.3-1

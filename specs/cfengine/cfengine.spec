@@ -4,9 +4,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh7:%define _without_db4 1}
+%{?el2:%define _without_db4 1}
+%{?rh6:%define _without_db4 1}
+
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.9
+Version: 2.1.10
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -20,14 +24,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, m4, openssl-devel, tetex, texinfo, ghostscript
 BuildRequires: tetex-latex, tetex-dvips
-%{?fc2:BuildRequires: db4-devel}
-%{?fc1:BuildRequires: db4-devel}
-%{?el3:BuildRequires: db4-devel}
-%{?rh9:BuildRequires: db4-devel}
-%{?rh8:BuildRequires: db4-devel}
-%{?rh7:BuildRequires: db3-devel}
-%{?el2:BuildRequires: db3-devel}
-%{?rh6:BuildRequires: db3-devel}
+%{!?_without_db4:BuildRequires: db4-devel}
+%{?_without_db4:BuildRequires: db3-devel}
 
 %description
 Cfengine, or the configuration engine is an agent/software robot and a
@@ -250,8 +248,7 @@ EOF
 
 %build
 %configure BERKELEY_DB_LIB="-ldb" \
-	--program-prefix="%{?_program_prefix}" \
-	--disable-dependency-tracking
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -267,7 +264,7 @@ EOF
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_infodir}/dir
+#%{__rm} -f %{buildroot}%{_infodir}/dir
 
 %post
 %{_sbindir}/cfkey &>/dev/null || :
@@ -307,6 +304,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Thu Sep 02 2004 Dag Wieers <dag@wieers.com> - 2.1.10-1
+- Updated to release 2.1.10.
+
 * Wed Aug 11 2004 Dag Wieers <dag@wieers.com> - 2.1.9-1
 - Updated to release 2.1.9.
 

@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
 # Upstream: Hisham Muhammad <lode$gobolinux,org>
-# Upstream: <htop-general$lists,sf,net>
+# Upstream: <htop-general$lists,sourceforge,net>
 
 Summary: Interactive process viewer
 Name: htop
-Version: 0.4
+Version: 0.4.1
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://htop.sf.net/
+URL: http://htop.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -43,6 +43,9 @@ htop is an interactive process viewer for Linux.
 %{_bindir}/htop
 
 %changelog
+* Tue Aug 31 2004 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.4-1
 - Updated to release 0.4.
 
