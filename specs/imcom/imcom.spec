@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Casey Crabb <crabbkw@nafai.dyndns.org>
+# Upstream: Casey Crabb <crabbkw$nafai,dyndns,org>
 
 Summary: A command line Jabber client written in Python
 Name: imcom
