@@ -11,7 +11,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.140
+Version: 1.150
 Release: 1
 License: BSD
 Group: Applications/Emulators
@@ -33,25 +33,8 @@ A web-based administration interface for Unix systems. Using Webmin you can
 configure DNS, Samba, NFS, local/remote filesystems and more using your
 web browser.
 
-After installation, set password for user admin by typing:
-
-	%{_libexecdir}/webmin/changepass.pl %{_sysconfdir}/webmin admin your_new_password
-
-Then enter the URL https://localhost:10000/ into your browser and login as
-admin with your_new_password.
-
 %prep
 %setup
-
-%{__cat} <<EOF >README.redhat
-Install this package and set your favourite password for user admin by
-typing this command:
-
-	%{_libexecdir}/webmin/changepass.pl %{_sysconfdir}/webmin admin your_new_password
-
-Then enter the URL https://localhost:10000/ into your browser and login as
-admin with your_new_password.
-EOF
 
 %{__perl} -pi -e 's|^\S*#!/\S*bin/perl|#!%{__perl}|i;' *.{cgi,pl} */*.{cgi,pl}
 #find . -type f -name "*.cgi" -exec %{__perl} -pi -e 's|^\S*#!/\S*bin/perl|#!%{__perl}|i;' {} \;
@@ -83,8 +66,8 @@ echo "rpm" >%{buildroot}%{_libexecdir}/webmin/install-type
 ### Prepare configuration
 export os_type="redhat-linux"
 export real_os_type="Redhat Linux"
-%{?fc2:export oscheck="Fedora Core 2";		export os_version="11.0";	export real_os_version="11.0"}
-%{?fc1:export oscheck="Fedora Core 1";		export os_version="10.0";	export real_os_version="10.0"}
+%{?fc2:export oscheck="Redhat Linux Fedora 2";	export os_version="11.0";	export real_os_version="11.0"}
+%{?fc1:export oscheck="Redhat Linux Fedora 1";	export os_version="10.0";	export real_os_version="10.0"}
 %{?el3:export oscheck="Redhat Linux 3.0AS";	export os_version="9.0";	export real_os_version="3.0AS"}
 %{?rh9:export oscheck="Redhat Linux 9";		export os_version="9.0";	export real_os_version="9.0"}
 %{?rh8:export oscheck="Redhat Linux 8.0";	export os_version="8.0";	export real_os_version="8.0"}
@@ -97,7 +80,7 @@ export var_dir="%{_localstatedir}/webmin"
 export perl="%{__perl}"
 export autoos=3
 export port="10000"
-export login="admin"
+export login="root"
 export crypt="x"
 export host="localhost"
 export ssl=1
@@ -107,7 +90,7 @@ export autothird=1
 export noperlpath=1
 export nouninstall=1
 export nostart=1
-export password="webmin-admin"
+#export password="webmin-admin"
 export makeboot=0
 %{buildroot}%{_libexecdir}/webmin/setup.sh
 
@@ -145,5 +128,11 @@ fi
 /sbin/service webmin condrestart &>/dev/null || :
 
 %changelog
-* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 1.121-1
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.150-1
+- Updated to release 1.150.
+
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 1.140-1
+- Updated to release 1.140.
+
+* Tue Feb 03 2004 Dag Wieers <dag@wieers.com> - 1.060-1
 - Initial package. (using DAR)
