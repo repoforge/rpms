@@ -66,7 +66,7 @@ in other languages than English.
 #    --libdir="${PWD}/src%{_datadir}/%{name}"
 ./configure --prefix=/usr \
 	--bindir=/usr/bin \
-	--libdir-/usr/share/psi
+	--libdir=/usr/share/psi
 %{__perl} -pi.orig -e "s|${PWD}||g" Makefile
 %{__make} %{?_smp_mflags}
 
