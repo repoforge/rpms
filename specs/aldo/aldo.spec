@@ -1,7 +1,7 @@
 # $Id: $
-
 # Authority: dries
-# Upstream:
+# Upstream: Giuseppe Martino <denever@users.sf.net>
+# Upstream: <aldo-main@nongnu.org>
 
 Summary: Morse tutor
 Name: aldo
@@ -10,8 +10,10 @@ Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/aldo/
+
 Source: http://savannah.nongnu.org/download/aldo/aldo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
@@ -28,20 +30,24 @@ random generated callsigns
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's| -oroot | |' Makefile */Makefile
+
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}/usr/bin
-%makeinstall PREFIX=%{buildroot}/usr
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%makeinstall \
+	PREFIX="%{buildroot}%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README.sources THANKS VERSION AUTHORS ChangeLog
+%doc AUTHORS ChangeLog README.sources THANKS VERSION
 %{_bindir}/aldo
 
 %changelog
