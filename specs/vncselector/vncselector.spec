@@ -26,7 +26,7 @@ server sessions. This can be useful in a thin client situation (run from
 
 %prep
 %{__rm} -rf %{buildroot}
-%setup -n VncSelector
+%setup -n VncSelector_%{version}
 
 %build
 %configure
