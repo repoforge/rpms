@@ -32,7 +32,7 @@
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 %define ffmpeg_date    20041101
 %define real_name      vlc
 #define prever         test2
