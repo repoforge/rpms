@@ -2,11 +2,9 @@
 # Authority: dries
 # Upstream: <pport-developement@lists.sf.net>
 
-%define real_version 0.5h
-
 Summary: Utility for accessing the output pins of a parallel port
 Name: pport
-Version: 0.6
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -15,9 +13,8 @@ URL: http://sf.net/projects/pport/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/pport/pport-%{real_version}.tar.bz2
+Source: http://dl.sf.net/pport/pport-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: openssl-devel
 
 %description
 PPort is a simple yet handy program for accessing the output pins of a 
@@ -26,7 +23,7 @@ household appliance or electronic device with minimal hassle and
 practically no changes.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure
@@ -34,16 +31,25 @@ practically no changes.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 pport %{buildroot}%{_sbindir}/pport
-%{__install} -D -m0644 man/pport.8.gz %{buildroot}%{_mandir}/man8/pport.8.gz
+%makeinstall
+#%{__install} -D -m0755 src/pport %{buildroot}%{_sbindir}/pport
+#%{__install} -D -m0644 man/pport.8.gz %{buildroot}%{_mandir}/man8/pport.8.gz
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS doc/README THANKS doc/FRANKY-HOWTO
-%doc %{_mandir}/man8/pport.8.gz
-%{_sbindir}/pport
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS THANKS README
+%doc %{_mandir}/man8/*
+%config(noreplace) %{_sysconfdir}/pportd.conf
+%{_bindir}/*
+%exclude %{_prefix}/doc/pport/
 
 %changelog
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
+* Mon May 31 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.6-1
 - Updated to release 0.6.
 - Cosmetic changes.
