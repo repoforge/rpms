@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://www-126.ibm.com/pub/icu/2.6.2/icu-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: gcc-c++
 
 %description
 ICU is a C++ and C library that provides robust and full-featured Unicode

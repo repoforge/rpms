@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.conmicro.cx/hercules/hercules-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: bison, zlib-devel, bzip2-devel, libgcrypt
+BuildRequires: bison, zlib-devel, bzip2-devel, libgcrypt, gcc-c++
 
 %description
 Hercules is an emulator for the IBM System/370, ESA/390, and z/Architecture
