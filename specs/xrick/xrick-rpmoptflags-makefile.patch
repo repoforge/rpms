@@ -1,0 +1,12 @@
+diff -Naur xrick-021212-orig/Makefile xrick-021212/Makefile
+--- xrick-021212-orig/Makefile	2002-12-24 17:58:26.000000000 +0100
++++ xrick-021212/Makefile	2003-05-13 17:53:14.000000000 +0200
+@@ -71,7 +71,7 @@
+ all:
+ 	@echo "ROOTDIR=$(ROOTDIR)" > Makefile.global
+ 	@echo "XOBJ=$(XOBJ)" >> Makefile.global
+-	@echo "CFLAGS=-g -ansi -pedantic -Wall -W -O2 -I $(ROOTDIR)/include $(shell sdl-config --cflags)" >> Makefile.global
++	@echo "CFLAGS=$(RPM_OPT_FLAGS) -ansi -pedantic -Wall -W -I $(ROOTDIR)/include $(shell sdl-config --cflags)" >> Makefile.global
+ 	@echo "LDFLAGS=-lz $(shell sdl-config --libs)" >> Makefile.global
+ 	@echo "CC=gcc" >> Makefile.global
+ 	@echo "CPP=gcc -E" >> Makefile.global
