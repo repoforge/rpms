@@ -23,7 +23,7 @@
 
 # Where the kernel build tree lives for post 2.6
 %define basedeveldir %{_libdir}/kernel-module-devel-%{krel}
-                                                                                
+
 
 Summary: Driver for Intersil Prism2/2.5/3 802.11b wireless cards
 Name: kernel-module-hostap

@@ -65,6 +65,7 @@ BuildRequires: indexhtml, perl
 %{?el3:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
 %{?rh9:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
 %{?rh8:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
+%{?yd3:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
 Requires: fileutils, perl, /usr/bin/killall, indexhtml
 Requires: mozilla-nspr = %{epoch}:%{version}-%{release}
 Requires: mozilla-nss = %{epoch}:%{version}-%{release}
@@ -241,6 +242,9 @@ export NATIVE_THEME_SUPPORT="1"
 %{?rh8:--enable-default-toolkit="gtk2"} \
 %{?rh8:--enable-xft} \
 %{?rh8:--disable-freetype2} \
+%{?yd3:--enable-default-toolkit="gtk2"} \
+%{?yd3:--enable-xft} \
+%{?yd3:--disable-freetype2} \
 %{?rh7:--disable-xft} \
 %{?el2:--disable-xft} \
 %{?rh6:--disable-xft}

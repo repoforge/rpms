@@ -15,6 +15,8 @@ Requires(postun): scrollkeeper
 BuildRequires: libgnomeui-devel >= 2.0.0, libgnomeprintui22-devel
 BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
 BuildRequires: scrollkeeper, gettext, libexif-devel, gphoto2-devel
+# Required for intltool
+BuildRequires: perl(XML::Parser)
 
 %description
 Image viewer and browser for the GNOME Desktop. View single images (including

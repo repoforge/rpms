@@ -49,7 +49,6 @@ Requires: libdvdcss
 %{!?_without_libfame:Requires: libfame}
 %{!?_without_arts:Requires: arts}
 %{!?_without_gnomevfs2:Requires: gnome-vfs2}
-%{!?_without_xvid:Requires: xvidcore}
 %{!?_without_speex:Requires: speex}
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
 BuildRequires: libvorbis-devel, SDL-devel
@@ -66,7 +65,6 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{!?_without_libfame:BuildRequires: libfame-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
 %{!?_without_gnomevfs2:BuildRequires: gnome-vfs2-devel}
-%{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_speex:BuildRequires: speex-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
@@ -88,7 +86,7 @@ This package contains the backend files for the Xine multimedia player.
 
 Available rpmbuild rebuild options :
 --with : rte ext-dvdnav
---without : alsa aalib libfame flac esound arts gnomevfs2 xvid speex caca
+--without : alsa aalib libfame flac esound arts gnomevfs2 speex caca
 (only alsa can be really disabled, others only remove explicit package
  dependency which won't make much difference if devel files are found)
 
@@ -163,6 +161,9 @@ use the Xine library.
 
 
 %changelog
+* Tue Jun 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.13.rc4a
+- Remove explicit xvidcore dependencies, as they don't exist anymore.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.13.rc4a
 - Update to 1.0rc4a.
 - Remove the plugin stripping since now all goes into the debuginfo package.

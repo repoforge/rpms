@@ -9,17 +9,15 @@ Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://anjuta.sourceforge.net/
-
 Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
+Requires: libgnomeprintui22 >= 2.0.1
+Requires: vte, pcre, libxml2
 BuildRequires: libgnome-devel >= 2.0.2, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.0.2, libgnomeprintui22-devel >= 2.0.1
 BuildRequires: vte-devel, pcre-devel, libxml2-devel, gettext, gcc-c++
 BuildRequires: scrollkeeper, ncurses-devel
-Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
-Requires: libgnomeprintui22 >= 2.0.1
-Requires: vte, pcre, libxml2
 
 %description
 Anjuta is a versatile Integrated Development Environment (IDE) for C and C++ 
@@ -32,10 +30,9 @@ These are usually run via a text console, and can be unfriendly to use.
 %prep
 %setup
 
-### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e '
-		s|^(plugindir) = .+$|$1 = \$(libdir)/anjuta|;
-	' Makefile.in */Makefile.in */*/Makefile.in
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream)
+%{__perl} -pi.orig -e 's|^(plugindir) = .+$|$1 = \$(libdir)/anjuta|' \
+    Makefile.in */Makefile.in */*/Makefile.in
 
 %build
 %configure

@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define extraver       67.8
+%define extraver       67.10
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws

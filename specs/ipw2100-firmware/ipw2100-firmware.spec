@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Firmware for the Intel® PRO/Wireless 2100 chipsets
+Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
 Version: 1.1
 Release: 1

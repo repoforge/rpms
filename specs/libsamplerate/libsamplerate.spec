@@ -19,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.mega-nerd.com/SRC/libsamplerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libsndfile-devel >= 0:1.0.2
+BuildRequires: libsndfile-devel >= 1.0.2
 BuildRequires: pkgconfig, fftw-devel
 
 %description

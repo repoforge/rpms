@@ -29,7 +29,7 @@
 Summary: Driver for Intel® PRO/Wireless 2100 network adaptors
 Name: kernel-module-ipw2100
 Version: 0.46_3
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/
@@ -80,8 +80,8 @@ network adaptors, found for instance in Centrino laptops.
 sh autogen.sh || :
 %if %{post26}
 %configure \
-    --with-linuxdir="%{develdir}" \
-    --disable-legacy-fw-load
+    --with-linuxdir="%{develdir}"
+#   --disable-legacy-fw-load
 %else
 %configure \
     --with-rpm-target="%{_target_cpu}" \
@@ -113,7 +113,10 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 
 %changelog
-* Thu Jun 17 2004 Matthias Saou <http://freshrpms.net> 0.46-0
+* Tue Jun 22 2004 Matthias Saou <http://freshrpms.net> 0.46_3-1
+- Re-enable legacy firmware loading, since it fails a bootup otherwise.
+
+* Thu Jun 17 2004 Matthias Saou <http://freshrpms.net> 0.46_3-0
 - Takeover the spec, make changes and update to 0.46_3.
 
 * Tue Jun 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
