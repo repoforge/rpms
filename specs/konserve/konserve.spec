@@ -4,8 +4,7 @@
 
 Summary: Small backup application
 Name: konserve
-%{?fc2:Version: 0.10.3}
-%{?fc1:Version: 0.9}
+Version: 0.10.3
 Release: 1
 License: GPL
 Group: Applications/Archiving
