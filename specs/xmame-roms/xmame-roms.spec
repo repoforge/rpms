@@ -6,15 +6,14 @@ Summary: Freely available ROMs to use with xmame
 Name: xmame-roms
 Group: Applications/Emulators
 Version: 1.0
-Release: 0
+Release: 1
 License: Freeware
 URL: http://www.mame.net/downmisc.html
 Source0: http://www.mame.net/roms/polyplay.zip
 Source1: http://www.mame.net/roms/robby.zip
 Source2: http://www.mame.net/roms/gridlee.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-# This is provided by all the xmame targets (x11, xgl, SDL)
-Requires: xmame-bin
+Requires: xmame
 BuildArch: noarch
 BuildRequires: unzip
 
@@ -49,6 +48,9 @@ This package contains 3 arcade games that are freely available:
 
 
 %changelog
+* Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 1.0-1
+- Change the dependency from xmame-bin to xmame.
+
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 1.0-0
 - Split off the roms from the main xmame source package at last, it will save
   unnecessary downloads since they don't change much.
