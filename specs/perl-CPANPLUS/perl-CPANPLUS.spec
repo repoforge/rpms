@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jos Boumans <gro,miwd$enak>
 
-%define real_name CPANPLUS
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name CPANPLUS
 
 Summary: Command-line access to the CPAN interface
 Name: perl-CPANPLUS
@@ -21,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/CPANPLUS-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.1
 
 %description
 The "CPANPLUS" library is an API to the "CPAN" mirrors and a collection
@@ -34,7 +32,7 @@ this API.
 %build
 #%{__perl} -pi -e 's|^ *\@ARGV = grep \{.*||g;' Makefile.PL
 %{__perl} -pi -e 's|use Your::Module::Here|your use statements here|g;' lib/CPANPLUS/Internals/Constants/Report.pm
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix} AUTOINSTALL=1 SETUP=0 JFDI=1
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" AUTOINSTALL=1 SETUP=0 JFDI=1
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,12 +51,12 @@ this API.
 %files
 %defattr(-, root, root, 0755)
 %doc README ChangeLog
+%doc %{_mandir}/man1/*
+%doc %{_mandir}/man3/*
 %{_bindir}/cpan2dist
 %{_bindir}/cpanp
-%doc %{_mandir}/man3/*
-%doc %{_mandir}/man1/*
 %{perl_vendorlib}/CPANPLUS.pm
-%{perl_vendorlib}/CPANPLUS/*
+%{perl_vendorlib}/CPANPLUS/
 
 %changelog
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.053-2

@@ -12,7 +12,7 @@ Version: 2.0
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Internet
-URL: http://openvpn.sourceforge.net/
+URL: http://openvpn.net/
 
 Source: http://openvpn.net/release/openvpn-%{version}%{?prever:_%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -60,6 +60,7 @@ for pi in auth-pam down-root; do
 	%{__mv} -f plugin/$pi/README plugin/README.$pi
 	%{__install} -Dp -m0755 plugin/$pi/openvpn-$pi.so %{buildroot}%{_datadir}/openvpn/plugin/lib/openvpn-$pi.so
 done
+%{__mv} -f plugin/README plugin/README.plugins
 
 
 %clean

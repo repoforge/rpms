@@ -78,7 +78,7 @@ fi
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/openvpn/
 %config %{_initrddir}/*
-%{_sbindir}/*
+%{_sbindir}/openvpn
 %{?rh7:%ghost /dev/net/tun}
 %{?rh6:%ghost /dev/net/tun}
 
