@@ -1,15 +1,18 @@
 # $Id$
 # Authority: matthias
+# Upstream: Sam Hocevar <sam@zoy.org>
 
-Summary: The library for Colour AsCii Art, text mode graphics
+Summary: Library for Colour AsCii Art, text mode graphics
 Name: libcaca
 Version: 0.9
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sam.zoy.org/projects/libcaca/
+
 Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Buildrequires: XFree86-devel, ncurses-devel >= 5, slang-devel, imlib2-devel
 Buildrequires: zlib-devel, doxygen, tetex-latex, tetex-dvips
 
@@ -59,6 +62,7 @@ sprite blitting.
 
 %build
 %configure \
+    --program-prefix="%{?_program_prefix}" \
     --enable-slang \
     --enable-ncurses \
     --enable-x11 \
