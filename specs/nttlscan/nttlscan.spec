@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.honeyd.org/data/nttlscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap
+BuildRequires: libpcap, libdnet, libevent-devel 
 
 %description
 Nttlscan is a quick network topology scanner and functions as a highly
@@ -41,9 +41,12 @@ Nttlscan can be used to construct virtual routing topologies for Honeyd.
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/nttlscan.1*
+%{_bindir}/nttlscan
 
 %changelog
-* Sat Jul 10 2004 Dag Wieers <dag@wieers.com> - 01-1
+* Fri Sep 03 2004 Dag Wieers <dag@wieers.com> - 0.1-1
+- Added missing BuildRequires. (Robert Hardy)
+
+* Sat Jul 10 2004 Dag Wieers <dag@wieers.com> - 0.1-1
 - Initial package. (using DAR)
