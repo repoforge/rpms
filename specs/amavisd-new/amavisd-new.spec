@@ -245,7 +245,7 @@ if ! /usr/bin/id amavis &>/dev/null; then
 		%logmsg "Unexpected error adding user \"amavis\"."
 fi
 
-if ! /usr/bin/id -n -G dag | grep -q clamav; then
+if ! /usr/bin/id -n -G amavis | grep -q "\<clamav\>"; then
 	/usr/sbin/usermod -G $(id -Gn clamav | tr ' ' ','),amavis clamav || \
 		%logmsg "Failed to add user \"amavis\" to group \"clamav\"."
 fi

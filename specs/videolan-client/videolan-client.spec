@@ -33,7 +33,7 @@
 %{?el2:%define _without_glx 1}
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_vorbis 1}
-%{?rh7:%define _without_xosd 1}
+%{?el2:%define _without_xosd 1}
 
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}

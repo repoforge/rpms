@@ -24,6 +24,8 @@ menu navigation with keyboard shortcuts.
 %prep
 %setup -n %{name}-%{version}%{?cvs}
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+
 
 %build
 %configure --enable-gtk2
