@@ -14,6 +14,7 @@
 
 ### FIXME: Can't use python_dir because smart install does not seem to obey/follow it, fallback to python_version.
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define python_version %(%{__python} -c 'import sys; print sys.version[:3]')
 
 Summary: Next generation package handling tool
@@ -346,8 +347,8 @@ popd
 %config(noreplace) %{_sysconfdir}/smart/channels/
 %{_bindir}/smart
 #{python_sitearch}/smart/
-%{_libdir}/python%{python_version}/site-packages/smart/
-%exclude %{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
+%{python_sitelib}/smart/
+%exclude %{python_sitelib}/smart/interfaces/gtk/
 
 %files gui
 %defattr(-, root, root, 0755)
@@ -355,7 +356,9 @@ popd
 %{_bindir}/smart-gui
 %{_sbindir}/smart-gui
 %{_sysconfdir}/security/console.apps/smart-gui
-%{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
+%dir %{python_sitelib}/smart/
+%dir %{python_sitelib}/smart/interfaces/
+%{python_sitelib}/smart/interfaces/gtk/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-smart-gui.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/smart-gui.desktop}
 %{_datadir}/pixmaps/smart.png

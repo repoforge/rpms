@@ -4,7 +4,7 @@
 
 Summary: NMB/SMB network scanner
 Name: nmbscan
-Version: 1.2.3
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: Applications/System 
@@ -47,6 +47,9 @@ lists maintained by master browsers.
 %{_bindir}/nmbscan
 
 %changelog
+* Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 1.2.4-1
+- Updated to release 1.2.4.
+
 * Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
 - Updated to release 1.2.3.
 

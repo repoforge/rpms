@@ -36,7 +36,7 @@ ${CC:-%{__cc}} %{optflags} -o dreamland %{SOURCE0}
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
+%{_bindir}/dreamland
 
 %changelog
 * Sun May 04 2003 Dag Wieers <dag@wieers.com> - 0.1-0

@@ -6,8 +6,8 @@
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 0.9.4.1
-Release: 2
+Version: 0.9.5
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://meld.sourceforge.net/
@@ -79,13 +79,17 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS changelog COPYING INSTALL TODO.txt manual/manual.html manual/stylesheet.css
+#%doc AUTHORS changelog COPYING INSTALL TODO.txt manual/manual.html manual/stylesheet.css
+%doc AUTHORS changelog COPYING INSTALL
 %{_bindir}/meld
 %{_datadir}/applications/%{desktop_vendor}-meld.desktop
 %{_datadir}/meld/
 %{_datadir}/pixmaps/meld.png
 
 %changelog
+* Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 0.9.5-1
+- Updated to release 0.9.5.
+
 * Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 0.9.4.1-2
 - Moved desktop entry from Utilities to Development. (Rudolf Kastl)
 

@@ -4,7 +4,7 @@
 
 Summary: Versatile desktop calculator
 Name: qalculate
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -69,6 +69,9 @@ scrollkeeper-update -q
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Updated to release 0.7.2.
+
 * Mon Nov 22 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Updated to release 0.7.1.
 

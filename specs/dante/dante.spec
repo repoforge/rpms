@@ -7,8 +7,8 @@
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.1.14
-Release: 2
+Version: 1.1.15
+Release: 1
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.inet.no/pub/socks/dante-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: flex, bison
 %{!?rh62:BuildRequires: pam-devel}
@@ -282,30 +281,38 @@ fi
 %defattr(-, root, root, 0755)
 %doc BUGS CREDITS INSTALL LICENSE NEWS README SUPPORT TODO doc/README* doc/faq.*
 %doc example/socks*.conf
-%doc %{_mandir}/man5/socks.*
+%doc %{_mandir}/man5/socks.conf.5*
 %config %{_sysconfdir}/socks.conf
 %config %{_initrddir}/dsocksify
-%{_libdir}/*.so.*
-%{_bindir}/*
+%{_libdir}/libdsocks.so.*
+%{_libdir}/libsocks.so.*
+%{_bindir}/dsocksify
+%{_bindir}/socksify
 
 %files server
 %defattr(-, root, root, 0755)
 %doc example/sockd*.conf
 %doc %{_mandir}/man[58]/sockd.*
 %config(noreplace) %{_sysconfdir}/sockd.conf
-%config(noreplace) %{_sysconfdir}/logrotate.d/*
+%config(noreplace) %{_sysconfdir}/logrotate.d/sockd
 %config %{_initrddir}/sockd
-%{_sbindir}/*
+%{_sbindir}/sockd
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc INSTALL doc/rfc* doc/SOCKS4.protocol
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_includedir}/*.h
+#%{_libdir}/libdsocks.a
+%exclude %{_libdir}/libdsocks.la
+%{_libdir}/libdsocks.so
+%{_libdir}/libsocks.a
+%exclude %{_libdir}/libsocks.la
+%{_libdir}/libsocks.so
+%{_includedir}/socks.h
 
 %changelog
+* Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 1.1.15-1
+- Updated to release 1.1.15.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.1.14-2
 - Fixed no-replacing config files.
 - Documentation clean-up.
