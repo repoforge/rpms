@@ -3,7 +3,7 @@
 
 Summary: Single master,query based,synchronous replication server
 Name: pgpool
-Version: 1.1
+Version: 2.0
 Release: 1
 License: BSD
 Group: Applications/Databases
@@ -63,6 +63,9 @@ pgpool can work with PostgreSQL 7.0 to 7.4.
 %{_bindir}/pgpool
 
 %changelog
+* Sun Jun 26 2004 Dries Verachtert <dries@ulyssis.org> 2.0-1
+- Updated to release 2.0.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Cosmetic changes.
 - Updated to release 1.1.
