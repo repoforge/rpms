@@ -3,16 +3,14 @@
 
 Summary: The bastard son of Blackbox, a small and fast Window Manager
 Name: hackedbox
-Version: 0.8.3
+Version: 0.8.4
 Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://scrudgeware.org/projects/Hackedbox
-
-Source0: http://scrudgeware.org/downloads/hackedbox/hackedbox-%{version}.tar.gz
+Source: http://scrudgeware.org/downloads/hackedbox/hackedbox-%{version}.tar.gz
 Source1: hackedbox.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: XFree86-devel, libstdc++-devel, gcc-c++, perl
 
 %description
@@ -27,17 +25,14 @@ add any functionality, only bugfixes and speed enhancements whenever possible.
 
 
 %build
-# Work around NLS problem
-export LANG="en_US" LC_ALL="en_US"
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}"
+    --x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
-#rm -rf %{buildroot}%{_mandir}/??_??
 
 # Install Session file
 %{__mkdir_p} %{buildroot}/etc/X11/gdm/Sessions
@@ -55,7 +50,7 @@ EOF
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files
@@ -63,21 +58,29 @@ rm -rf %{buildroot}
 %doc AUTHORS ChangeLog README TODO
 %attr(755, root, root) /etc/X11/gdm/Sessions/Hackedbox
 %{_bindir}/*
+%config(noreplace) %{_datadir}/%{name}/bgmenu.mk
 %config(noreplace) %{_datadir}/%{name}/menu
 %{_datadir}/%{name}/backgrounds
-%{_datadir}/%{name}/keys
 %{_datadir}/%{name}/nls
 %{_datadir}/%{name}/styles
-%{_datadir}/xsessions/%{name}
+%{_datadir}/xsessions/%{name}.desktop
 %{_mandir}/man1/*
+%lang(fr_FR) %{_mandir}/fr_FR/man1/*
+%lang(ja JP) %{_mandir}/ja_JP/man1/*
+%lang(nl_NL) %{_mandir}/nl_NL/man1/*
+%lang(sl_SI) %{_mandir}/sl_SI/man1/*
 
 
 %changelog
-* Mon Feb 23 2004 Matthias Saou <http://freshrpms.net/> - 0.8.2-3
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.4-1
+- Update to 0.8.4.
+- Remove the NLS workaround, no longer required.
+
+* Mon Feb 23 2004 Matthias Saou <http://freshrpms.net/> 0.8.2-3
 - Apply the same nls workaround as for blackbox.
 - Add the xsessions desktop file for recent gdm/kdm.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> - 0.8.2-2
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.8.2-2
 - Rebuild for Fedora Core 1.
 - Added the (currently mandatory) without nls conditional build.
 
