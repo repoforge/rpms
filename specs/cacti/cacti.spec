@@ -7,25 +7,28 @@
 %{?el2:%define _without_net_snmp 1}
 %{?rh6:%define _without_net_snmp 1}
 
+%define logmsg logger -t %{name}/rpm
+
 Summary: Network monitoring/graphing tool
 Name: cacti
 Version: 0.8.6c
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
 
 Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
-#Source1: http://www.cacti.net/downloads/cacti-cactid-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mysql-devel, net-snmp-utils, openssl-devel
+BuildRequires: mysql-devel, openssl-devel
 
-%{!?_without_net_snmp:BuildRequires: net-snmp-devel}
-%{?_without_net_snmp:BuildRequires: ucd-snmp-devel}
+%{!?_without_net_snmp:BuildRequires: net-snmp-devel, net-snmp-utils}
+%{?_without_net_snmp:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
 
-Requires: webserver, mysql, net-snmp, rrdtool
-Requires: php, php-mysql, php-snmp, php-rrdtool
+Requires: webserver, mysql, rrdtool
+Requires: php, php-mysql, php-snmp
+%{!?_without_net_snmp:Requires: net-snmp}
+%{?_without_net_snmp:Requires: ucd-snmp}
 
 %description
 Cacti is a complete frontend to RRDTool. It stores all of the necessary 
@@ -36,15 +39,6 @@ The frontend is completely PHP driven. Along with being able to maintain
 graphs, data sources, and round robin archives in a database, Cacti also
 handles the data gathering. There is SNMP support for those used to
 creating traffic graphs with MRTG.
-
-%package cactid
-Summary: Fast c-based poller for package %{name}
-Group: Application/System
-Requires: %{name} = %{version}-%{release}
-
-%description cactid
-Cactid is a supplemental poller for Cacti that makes use of pthreads
-to achieve excellent performance.
 
 %package docs
 Summary: Documentation for package %{name}
@@ -60,9 +54,7 @@ This package includes the documentation for %{name}.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|/lib([ /])|/%{_lib}$1|g' cactid/configure
-
-echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/cmd.php &>/dev/null" >cacti.crontab
+echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/null" >cacti.crontab
 
 ### Add a default cacti.conf for Apache.
 %{__cat} <<EOF >cacti.httpd
@@ -81,9 +73,6 @@ Alias /cacti/ %{_localstatedir}/www/cacti/
 EOF
 
 %build
-#cd cactid
-#configure
-#%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -91,16 +80,19 @@ EOF
 %{__install} -p -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
 %{__cp} -apvx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
-#%{__install} -Dp -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
-#%{__install} -Dp -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
 %{__install} -Dp -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
 %{__install} -Dp -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
 
 %pre
-useradd -d %{_localstatedir}/www/cacti cacti &>/dev/null || :
+if ! /usr/bin/id cacti &>/dev/null; then
+	/usr/sbin/useradd -r -d %{_localstatedir}/www/cacti -s /bin/sh -c "cacti" cacti || \
+		%logmsg "Unexpected error adding user \"cacti\". Aborting installation."
+fi
 
 %postun
-userdel cacti &>/dev/null || :
+if [ $1 -eq 0 ]; then
+	/usr/sbin/userdel cacti || %logmsg "User \"cacti\" could not be deleted."
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -108,10 +100,9 @@ userdel cacti &>/dev/null || :
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README
-#%config(noreplace) %{_sysconfdir}/cactid.conf
 %config(noreplace) %{_localstatedir}/www/cacti/include/config.php
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/*
-%config %{_sysconfdir}/cron.d/*
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/cacti.conf
+%config %{_sysconfdir}/cron.d/cacti
 %dir %{_localstatedir}/www/cacti/
 %{_localstatedir}/www/cacti/*.php
 %{_localstatedir}/www/cacti/cacti.sql
@@ -122,22 +113,20 @@ userdel cacti &>/dev/null || :
 %{_localstatedir}/www/cacti/lib/
 %{_localstatedir}/www/cacti/resource/
 %{_localstatedir}/www/cacti/scripts/
-#%{_bindir}/*
+
 %defattr(-, cacti, cacti, 0755 )
 %{_localstatedir}/www/cacti/log/
 %{_localstatedir}/www/cacti/rra/
-
-#%files cactid
-#%defattr(-, root, root, 0755)
-#%doc cacti-cactid-%{version}/AUTHORS cacti-cactid-%{version}/CHANGELOG cacti-cactid-%{version}/COPYING cacti-cactid-%{version}/INSTALL cacti-cactid-%{version}/NEWS
-#%config %{_sysconfdir}/cactid.conf
-#%{_bindir}/*
 
 %files docs
 %defattr(-, root, root, 0755)
 %doc docs/
 
 %changelog
+* Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.8.6c-2
+- Fix for the crontab entry. (Gilles Chauvin, Joe Pruett)
+- Removed the php-rrdtool dependency. (Gilles Chauvin, Joe Pruett)
+
 * Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 0.8.6c-1
 - Updated to release 0.8.6c.
 

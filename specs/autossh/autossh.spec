@@ -25,7 +25,7 @@ off on rate of connection attempts when experiencing rapid failures
 such as connection refused.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
 %{__perl} -pi.orig -e 's|-Wall |%{optflags} |g' Makefile.linux
 

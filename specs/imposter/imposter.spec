@@ -6,7 +6,7 @@
 
 Summary: Standalone viewer for OpenOffice presentations
 Name: imposter
-Version: 0.2
+Version: 0.3
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -71,5 +71,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/applications/%{desktop_vendor}-imposter.desktop
 
 %changelog
+* Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.3-1
+- Updated to release 0.3.
+
 * Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.2-1
 - Initial package. (using DAR)

@@ -80,8 +80,8 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	NLSDIR="%{buildroot}%{_datadir}/locale"
+%{__make} install \
+	DESTDIR="%{buildroot}"
 %find_lang %{real_name}
 %find_lang WPrefs
 %find_lang WINGs
@@ -96,7 +96,8 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGFORM BUGS ChangeLog COPYING* FAQ* NEWS README* TODO
-%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man1/*.1x*
+%doc %{_mandir}/sk/man1/*.1x*
 %config %{_sysconfdir}/X11/gdm/Sessions/*
 %config %{_sysconfdir}/X11/dm/Sessions/windowmaker.desktop
 %config %{_sysconfdir}/WindowMaker/
@@ -109,6 +110,7 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
+%{_includedir}/WINGs/
 %{_libdir}/lib*.a
 %exclude %{_libdir}/libwraster.la
 %{_libdir}/libwraster.so

@@ -5,6 +5,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Digest-HMAC
 
 Name: perl-Digest-HMAC
@@ -15,7 +18,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-HMAC/
 
-Source: %{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-HMAC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -39,9 +42,7 @@ the secret key and the name of some other simple Digest:: as argument.
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 #{__make} %{?_smp_mflags} test
 
@@ -50,9 +51,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
-                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
-                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,8 +59,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc Changes README rfc2104.txt
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Digest/
+%{perl_vendorlib}/Digest/HMAC.pm
 
 %changelog
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com>

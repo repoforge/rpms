@@ -62,6 +62,7 @@ EOF
 %{__python} setup.py install --root="%{buildroot}"
 
 %{__install} -Dp -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/trac/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -74,6 +75,7 @@ EOF
 %{_bindir}/trac*
 %{_datadir}/trac/
 %{python_sitelib}/trac/
+%{_localstatedir}/lib/trac/
 
 %changelog
 * Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1

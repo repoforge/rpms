@@ -5,7 +5,7 @@
 
 Summary: Graphical front-end for cdrtools
 Name: graveman
-Version: 0.3.9
+Version: 0.3.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -14,7 +14,7 @@ URL: http://graveman.tuxfamily.org/
 Source: http://savannah.nongnu.org/download/graveman/graveman-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.4
+BuildRequires: gtk2-devel >= 2.4, libglade2-devel >= 2.4
 BuildRequires: libid3tag-devel, libmad-devel, libogg-devel, libvorbis-devel
 Requires: cdrecord, mkisofs, sox
 
@@ -26,14 +26,16 @@ and data CDs, and to duplicate CDs.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|^(Applicationman)\s*=.*|$1 = \$(DESTDIR)\$(mandir)|' man/Makefile.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__install} -d -m0755 %{buildroot}%{_mandir}{,/fr}/man1/
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 desktop-file-install --delete-original             \
@@ -51,12 +53,17 @@ desktop-file-install --delete-original             \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
+%doc %{_mandir}/man1/*
+%doc %{_mandir}/fr/man1/*
 %{_bindir}/graveman
 %{_datadir}/applications/%{desktop_vendor}-graveman.desktop
 %{_datadir}/graveman/
 %{_datadir}/pixmaps/graveman48.png
 
 %changelog
+* Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.3.10-1
+- Updated to release 0.3.10.
+
 * Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 0.3.9-1
 - Updated to release 0.3.9.
 

@@ -35,9 +35,9 @@ you will need to install %{name}-devel.
 %prep
 %setup
 %patch -p0 -b .asm
-%{__autoconf}
 
 %build
+#%{__autoconf}
 %configure \
     --enable-shared
 %{__make} %{?_smp_mflags}

@@ -4,12 +4,12 @@
 
 # Tag: test
 
-%define prever rc19
+%define prever rc20
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
 Version: 2.0
-Release: %{?prever:0.%{prever}.}2
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.net/
@@ -44,6 +44,7 @@ fi
 %{__make} %{?_smp_mflags}
 %{__make} %{?_smp_mflags} -C plugin/auth-pam
 %{__make} %{?_smp_mflags} -C plugin/down-root
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -95,6 +96,9 @@ fi
 
 
 %changelog
+* Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 2.0-0.rc20.1
+- Updated to release 2.0_rc20.
+
 * Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 2.0-0.rc19.2
 - Disabled find-requires for %%doc.
 
