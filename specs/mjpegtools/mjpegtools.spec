@@ -3,6 +3,18 @@
 # Upstream: Gernot Ziegler <gz$lysator,liu,se>
 # Upstream: <mjpeg-developer$lists,sourceforge,net>
 
+%{?fc1:%define _without_alsa 1}
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh8:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?el2:%define _without_alsa 1}
+
+# We want to explicitely disable MMX for ppc, x86_64 etc.
+%ifnarch %{ix86}
+    %define _without_mmx 1
+%endif
+
 %define jpegmmx_version 0.1.5
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
@@ -20,11 +32,12 @@ Requires: libquicktime, libdv
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk+-devel
 BuildRequires: libquicktime-devel, libdv-devel
 # Some other -devel package surely forgot this as a dependency
-BuildRequires: alsa-lib-devel
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
+
 %ifarch %{ix86}
 # Optimisations are automatically turned on when detected
 # as we build on i686, this will be an i686 only package
-BuildArch: i686
+%{!?_without_mmx:BuildArch: i686}
 BuildRequires: nasm
 %endif
 
@@ -59,14 +72,26 @@ pushd jpeg-mmx-%{jpegmmx_version}
     ./configure && %{__make} %{?_smp_mflags}
 popd
 %endif
+
+### FIXME: Tried using --with-pic="yes", but fails for libmjpegutils
+%ifnarch %{ix86}
+export CFLAGS="$CFLAGS -fPIC"
+%endif
+
 # ### FIXME Stripping of libmjpegutils.a fails (hence --disable-static)
 %configure \
-    --enable-shared \
     --disable-static \
+    --enable-shared \
 %ifarch %{ix86}
-    --with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}" \
+    %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"} \
 %endif
-    --with-quicktime
+    --with-dv=%{_prefix} --with-dv-yv12 \
+    --with-quicktime \
+    --enable-large-file \
+    --enable-cmov-extension \
+    --enable-xfree-ext \
+    --enable-simd-accel \
+    --enable-zalpha
 %{__make} %{?_smp_mflags}
 
 

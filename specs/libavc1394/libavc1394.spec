@@ -36,10 +36,10 @@ developing applications that use libavc1394.
 %setup
 
 %build
-%{__libtoolize} --force --copy
-%{__aclocal}
-%{__automake}
-#%{__autoconf}
+#%{__libtoolize} --force --copy
+#%{__aclocal}
+#%{__automake}
+##%{__autoconf}
 %configure
 %{__make} %{?_smp_mflags}
 

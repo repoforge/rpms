@@ -19,10 +19,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
-#Patch0: libquicktime-0.9.2-lib64.patch
-#Patch1: libquicktime-0.9.2-64bit-fixes.patch
-Patch0: libquicktime-lib64.patch
-Patch1: libquicktime-rtjpeg.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel
@@ -64,12 +60,11 @@ programs that need to access quicktime files using libquicktime.
 
 %prep
 %setup -n %{name}-%{version}%{?prever}
-#%patch0 -p1 -b .lib64
-#%patch1 -p1 -b .64bit-fixes
-%patch0 -p1 -b .lib64
-#%patch1 -p1 -b .rtjpeg
 
-%{__perl} -pi.orig -e 's|(OPTIMIZE_CFLAGS)="-O3|$1="%{optflags}|' configure.ac
+%{__perl} -pi.orig -e '
+		s|\$exec_prefix/lib|\$libdir|g;
+		s|(OPTIMIZE_CFLAGS)="-O3|$1="%{optflags}|;
+	' configure.ac
 
 %build
 ./autogen.sh

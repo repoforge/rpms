@@ -14,16 +14,10 @@
 %{?el2:%define _without_theora 1}
 %{?rh6:%define _without_theora 1}
 
-%ifarch x86_64
-	%define _without_mjpeg 1
-	%define _without_nasm 1
-	%define _without_quicktime 1
-%endif
-
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 0.6.12
-Release: 5
+Release: 6
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
@@ -125,6 +119,9 @@ Available rpmbuild rebuild options :
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-6
+- Rebuild for x86_64 with quicktime support.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-5
 - Rebuild for Fedora Core 2.
 - Remove explicit stripping, it goes into the debuginfo package.
