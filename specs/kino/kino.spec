@@ -6,7 +6,7 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.7.4
+Version: 0.7.5
 Release: 1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
@@ -19,8 +19,6 @@ BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel
-# libtool *sigh*
-BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
 %if %{?cvs:1}0
@@ -68,13 +66,16 @@ commands for fast navigating and editing inside the movie.
 %{_bindir}/*
 %{_includedir}/kino/
 %{_libdir}/hotplug/kino/
-%{_datadir}/applications/kino.desktop
+%{_datadir}/applications/Kino.desktop
 %{_datadir}/kino/
 %{_datadir}/pixmaps/kino.png
 %{_mandir}/man1/*
 
 
 %changelog
+* Mon Nov 22 2004 Matthias Saou <http://freshrpms.net> 0.7.5-1
+- Update to 0.7.5.
+
 * Tue Oct 05 2004 Dag Wieers <dag@wieers.com> - 0.7.4-1
 - Update to 0.7.4.
 
