@@ -1,0 +1,22 @@
+diff -Naupr rhythmbox-0.8.8.orig/metadata/rb-metadata-gst.c rhythmbox-0.8.8/metadata/rb-metadata-gst.c
+--- rhythmbox-0.8.8.orig/metadata/rb-metadata-gst.c	2004-05-17 21:15:12.000000000 +0200
++++ rhythmbox-0.8.8/metadata/rb-metadata-gst.c	2004-12-10 18:25:14.778394144 +0100
+@@ -127,7 +127,17 @@ rb_metadata_init (RBMetaData *md)
+ 	add_supported_type (md, "application/x-ape", NULL, "MonkeysAudio");
+ 	add_supported_type (md, "audio/x-mod", NULL, "MOD");
+ 	add_supported_type (md, "audio/mpeg", NULL, "MP3");
+-	
++
++	if ((elt = gst_element_factory_make ("ffdec_wmav2", "ffdec_wmav2")) != NULL) {
++		add_supported_type (md, "video/x-ms-asf", NULL, "Windows Media");
++		gst_object_unref (GST_OBJECT (elt));
++	}
++
++	if ((elt = gst_element_factory_make ("musepackdec", "musepackdec")) != NULL) {
++		add_supported_type (md, "audio/x-musepack", NULL, "MusePack");
++		gst_object_unref (GST_OBJECT (elt));
++	}
++
+ 	if ((elt = gst_element_factory_make ("faad", "faad")) != NULL) {
+ 		add_supported_type (md, "audio/x-m4a", NULL, "MPEG-4");
+ 		gst_object_unref (GST_OBJECT (elt));
