@@ -41,8 +41,8 @@ at runtime using a simple command line syntax.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man1/balance.1*
+%{_sbindir}/balance
 
 %defattr(-, root, root, 1777)
 %{_localstatedir}/run/balance/

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Oskar Liljeblad <oskar@osk.mine.nu>
 
-Summary: Execute a command when the contents of a directory change
+Summary: Execute a command when the content of a directory changes
 Name: dnotify
 Version: 0.18.0
 Release: 1
@@ -42,7 +42,7 @@ when one was created, deleted and so on.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
-%{_mandir}/man1/dnotify.1*
+%doc %{_mandir}/man1/dnotify.1*
 %{_bindir}/dnotify
 
 %changelog
