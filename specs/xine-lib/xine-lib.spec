@@ -22,27 +22,27 @@
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_gnomevfs2 1}
 
+%{?yd3:%define _without_alsa 1}
+%{?yd3:%define _without_fribidi 1}
+%{?yd3:%define _without_theora 1}
+
 %define libname libxine1
-%define libver  1-rc4a
+%define libver  1-rc5
 %define apiver  1.0.0
 
-Summary: Core library of the xine video player
+Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.13.rc4a
+Release: 0.14.rc5
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: zlib, libvorbis, SDL
-Requires: libpng, libmng
 Requires: libdvdcss
 %{?_with_rte:Requires: rte}
 %{?_with_ext-dvdnav:Requires: libdvdnav >= 0.1.4}
-%ifnarch ppc
 %{!?_without_alsa:Requires: alsa-lib}
-%endif
 %{!?_without_esound:Requires: esound}
 %{!?_without_aalib:Requires: aalib}
 %{!?_without_flac:Requires: flac}
@@ -56,9 +56,7 @@ BuildRequires: libvorbis-devel, SDL-devel
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{?_with_rte:BuildRequires: rte-devel}
 %{?_with_ext-dvdnav:BuildRequires: libdvdnav-devel >= 0.1.4}
-%ifnarch ppc
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%endif
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_flac:BuildRequires: flac-devel}
@@ -161,6 +159,9 @@ use the Xine library.
 
 
 %changelog
+* Wed Jun 30 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.14.rc5
+- Update to 1.0rc5.
+
 * Tue Jun 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.13.rc4a
 - Remove explicit xvidcore dependencies, as they don't exist anymore.
 
