@@ -1,9 +1,12 @@
+# $Id$
+# Authority: matthias
+
 %define webroot /srv/www/lighttpd
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.3.11
-Release: 0
+Version: 1.3.13
+Release: 1
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
@@ -14,7 +17,6 @@ Source10: index.html
 Source11: lighttpd.png
 Source12: powered_by_fedora.png
 Patch0: lighttpd-1.3.10-defaultconf.patch
-Patch1: lighttpd-1.3.11-empty_cgi_handler.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(pre): /usr/sbin/useradd
 Requires(post): /sbin/chkconfig
@@ -46,7 +48,7 @@ Virtual host module for lighttpd that uses a MySQL database.
 
 
 %package fastcgi
-Summary: FastCGI spawning helper for lighttpd and PHP configuration
+Summary: FastCGI module and spawning helper for lighttpd and PHP configuration
 Group: System Environment/Daemons
 Requires: %{name} = %{version}
 
@@ -62,7 +64,6 @@ recompile PHP yourself.
 %prep
 %setup
 %patch0 -p1 -b .defaultconf
-%patch1 -p1 -b .empty_cgi_handler
 
 
 %build
@@ -147,19 +148,32 @@ fi
 %{webroot}/
 
 %files mod_mysql_vhost
+%defattr(-, root, root, 0755)
 %doc doc/mysqlvhost.txt
 %dir %{_libdir}/lighttpd/
 %{_libdir}/lighttpd/mod_mysql_vhost.so
 
 %files fastcgi
+%defattr(-, root, root, 0755)
 %doc doc/fastcgi*.txt
 %config(noreplace) %{_sysconfdir}/php.d/lighttpd.ini
 %{_bindir}/spawn-fcgi
 %dir %{_libdir}/lighttpd/
 %{_libdir}/lighttpd/mod_fastcgi.so
+%{_mandir}/man1/spawn-fcgi.1*
 
 
 %changelog
+* Sun Mar  6 2005 Matthias Saou <http://freshrpms.net/> 1.3.13-1
+- Update to 1.3.13.
+
+* Wed Mar  2 2005 Matthias Saou <http://freshrpms.net/> 1.3.12-1
+- Update to 1.3.12.
+- Remove obsolete empty_cgi_handler patch.
+
+* Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 1.3.11-2
+- Add missing defattr to sub-packages (#150018).
+
 * Mon Feb 21 2005 Matthias Saou <http://freshrpms.net/> 1.3.11-0
 - Update to 1.3.11.
 - Remove cleanconf and init.d patches (merged upstream).
@@ -194,3 +208,4 @@ fi
 
 * Sun Feb 23 2003 <jan@kneschke.de>
 - initial version
+
