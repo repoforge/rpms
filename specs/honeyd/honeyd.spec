@@ -5,10 +5,12 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
+%define real_version 0.8b
+
 Summary: Honeypot daemon
 Name: honeyd
 Version: 0.8
-Release: 1
+Release: 1.b
 License: BSD
 Group: Applications/Internet
 URL: http://www.citi.umich.edu/u/provos/honeyd/
@@ -16,7 +18,7 @@ URL: http://www.citi.umich.edu/u/provos/honeyd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
+Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libevent-devel
@@ -29,7 +31,7 @@ certain versions of operating systems. Honeyd enables a single
 host to claim multiple addresses on a LAN for network simulation.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %configure
@@ -58,5 +60,8 @@ host to claim multiple addresses on a LAN for network simulation.
 %{_datadir}/honeyd/
 
 %changelog
+* Tue Apr 20 2004 Dag Wieers <dag@wieers.com> - 0.8-1.b
+- Updated to release 0.8b.
+
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 0.8-1
 - Initial package. (using DAR)
