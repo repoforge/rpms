@@ -6,8 +6,8 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 3.70
-Release: 2
+Version: 3.75
+Release: 0
 Epoch: 2
 License: GPL
 Group: Applications/System
@@ -81,6 +81,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Oct 19 2004 Matthias Saou <http://freshrpms.net/> 3.75-0
+- Update to 3.75.
+
 * Mon Sep  6 2004 Matthias Saou <http://freshrpms.net/> 3.70-2
 - Fix menu entry (TryExec vs. Exec).
 
