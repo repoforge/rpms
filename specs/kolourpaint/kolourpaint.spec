@@ -3,16 +3,21 @@
 # Authority: dries
 # Screenshot: http://kolourpaint.sourceforge.net/screenshot0_big.png
 # ScrenshotURL: http://kolourpaint.sourceforge.net/screenshots.html
+# Upstream: Clarence Dang <dang$kde,org>
+
+%define real_version 1.2_kde3
 
 Summary: Free easy-to-use paint program
 Name: kolourpaint
-Version: 1.0.2
+Version: 1.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kolourpaint.sourceforge.net/
 
-Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
+#Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
+# temp:
+Source: http://kolourpaint.sourceforge.net/kolourpaint-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
@@ -32,8 +37,7 @@ targeted towards the average user. It's designed for daily tasks like:
 * Icon Editing - drawing clipart and logos with transparency 
 
 %prep
-%setup
-# patch -p1
+%setup -n kolourpaint-%{real_version}
 
 %build
 %configure
@@ -42,8 +46,8 @@ targeted towards the average user. It's designed for daily tasks like:
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-mv %{buildroot}/usr/share/applications/kde/kolourpaint.desktop %{buildroot}/usr/share/applications/kolourpaint.desktop
-sed -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{buildroot}/usr/share/applications/kolourpaint.desktop
+%{__mv} %{buildroot}/usr/share/applications/kde/kolourpaint.desktop %{buildroot}/usr/share/applications/kolourpaint.desktop
+%{__sed} -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{buildroot}/usr/share/applications/kolourpaint.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,6 +62,9 @@ sed -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{b
 %{_datadir}/doc/HTML/en/kolourpaint
 
 %changelog
+* Tue Aug 17 2004 Dries Verachtert <dries@ulyssis.org> 1.2-1
+- Update to version 1.2.
+
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0.2-1
 - update to 1.0.2
 
