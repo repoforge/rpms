@@ -5,13 +5,15 @@
 
 Summary: Real-time visual space simulation
 Name: celestia
-Version: 1.3.1
+Version: 1.3.2
 Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.shatters.net/celestia/
+
 Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: freeglut-devel, gtkglarea, kdelibs-devel
 BuildRequires: libpng-devel, libjpeg-devel
 BuildRequires: desktop-file-utils, unzip, gcc-c++, libstdc++-devel
@@ -42,6 +44,8 @@ simple to navigate through the universe to the object you want to visit.
 
 %install
 %{__rm} -rf %{buildroot}
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+export GCONF_SCHEMA_FILE_DIR="%{buildroot}%{_sysconfdir}/gconf/schemas"
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
@@ -51,6 +55,16 @@ desktop-file-install \
     --add-category Graphics \
     --delete-original \
     %{buildroot}%{_datadir}/applnk/Edutainment/Science/celestia.desktop
+
+
+%post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/celestia.schemas &>/dev/null || :
+
+
+%preun
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/celestia.schemas &>/dev/null || :
 
 
 %clean
@@ -69,6 +83,8 @@ desktop-file-install \
 %doc %{_datadir}/apps/celestia/COPYING
 %config %{_datadir}/apps/celestia/celestiaui.rc
 %{_datadir}/apps/celestia/*.cel
+%{_datadir}/apps/celestia/celestia-splash.jpg
+%{_datadir}/apps/celestia/celestia.png
 %{_datadir}/apps/celestia/data/
 %{_datadir}/apps/celestia/extras/
 %{_datadir}/apps/celestia/favicons/
@@ -82,9 +98,13 @@ desktop-file-install \
 %{_datadir}/icons/hicolor/*/apps/celestia.png
 %{_datadir}/mimelnk/application/x-celestia-script.desktop
 %{_datadir}/services/celestia.protocol
+%{_sysconfdir}/gconf/schemas/celestia.schemas
 
 
 %changelog
+* Fri Aug 27 2004 Dag Wieers <dag@wieers.com> -  1.3.2-1
+- Updated to release 1.3.2.
+
 * Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-2
 - Add Qt lib fix for x86_64 build.
 

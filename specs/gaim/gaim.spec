@@ -10,7 +10,7 @@
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 0.81
+Version: 0.82
 Release: 1
 Epoch: 1
 License: GPL
@@ -34,7 +34,7 @@ BuildRequires: startup-notification-devel, audiofile-devel
 %{?_with_arts:BuildRequires: arts-devel}
 %{!?_without_perl:BuildRequires: perl}
 %{?_with_tcltk:Requires: tcl, tk}
-%{?_with_perl:Requires: perl}
+%{!?_without_perl:Requires: perl}
 
 %description
 Gaim is a multi-protocol instant messaging client compatible with AIM (Oscar
@@ -86,7 +86,6 @@ Available rpmbuild rebuild options :
 #%{__install} -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/gaim/prefs.xml
 
 ### Clean up buildroot
-#%{!?_without_perl:%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod}
 %{__rm} -rf %{buildroot}%{perl_archlib}
 
 %post
@@ -125,6 +124,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Fri Aug 27 2004 Dag Wieers <dag@wieers.com> - 0.82-1
+- Updated to 0.82.
+
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 0.81-1
 - Updated to 0.81.
 

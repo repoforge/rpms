@@ -4,8 +4,8 @@
 
 Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, rsync, http, ftp, ...)
 Name: yam
-Version: 0.6
-Release: 2
+Version: 0.6.1
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/yam/
@@ -26,7 +26,7 @@ downloaded updates and extra packages from 3rd party repositories.
 It can download all updates and extras automatically, creates
 the repository structure and meta-data, enables HTTP access to 
 the repository and creates a directory-structure for remote
-installations using PXE/TFTP.
+network installations using PXE/TFTP.
 
 With Yam, you can enable your laptop or a local server to provide
 updates for the whole network and provide the proper files to
@@ -58,6 +58,9 @@ allow installations via the network.
 %{_localstatedir}/www/yam/
 
 %changelog
+* Fri Aug 27 2004 Dag Wieers <dag@wieers.com> - 0.6-1
+- Updated to release 0.6.1.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.6-2
 - Updated to release 0.6.
 - Fix a version problem.

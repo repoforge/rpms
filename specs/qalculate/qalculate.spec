@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream: Niklas Knutsson <nq$altern,org>
 
 Summary: Versatile desktop calculator
 Name: qalculate
