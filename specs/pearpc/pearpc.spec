@@ -5,7 +5,7 @@
 
 Summary: PowerPC Architecture Emulator
 Name: pearpc
-Version: 0.2.0
+Version: 0.3.0
 Release: 1
 Group: Applications/Emulators
 License: GPL
@@ -15,7 +15,7 @@ Source1: http://pearpc.sourceforge.net/pearpc3.png
 Source2: http://dl.sf.net/pearpc/pearpc-3gib.img.bz2
 Source3: http://dl.sf.net/pearpc/pearpc-6gib.img.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, qt-devel
+BuildRequires: XFree86-devel, SDL-devel
 BuildRequires: desktop-file-utils
 %ifarch %{ix86}
 BuildRequires: nasm
@@ -32,7 +32,7 @@ running most PowerPC operating systems.
 
 %build
 %configure \
-    --enable-gui="qt" \
+    --enable-ui="sdl" \
 %ifarch %{ix86}
     --enable-cpu="jitc_x86"
 %endif
@@ -48,7 +48,7 @@ running most PowerPC operating systems.
 [Desktop Entry]
 Name=PearPC
 Comment=PowerPC Architecture Emulator
-Exec=ppc %{_sysconfdir}/pearpc.conf
+Exec=ppc %{_sysconfdir}/ppc.conf
 Icon=pearpc.png
 Terminal=false
 Type=Application
@@ -74,7 +74,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__install} -m 0644 video.x %{buildroot}%{_datadir}/pearpc/
 
 # Change some paths in the configuration file
-%{__perl} -pi.orig -e \
+%{__perl} -pi -e \
     's|^(prom_driver_graphic =).*|$1 "%{_datadir}/pearpc/video.x"|g;
      s|^(pci_ide0_master_image =).*|$1 "%{_datadir}/pearpc/pearpc-3gib.img"|g' \
     %{buildroot}%{_sysconfdir}/ppc.conf
@@ -96,6 +96,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed Aug 25 2004 Matthias Saou <http://freshrpms.net/> 0.3.0-0
+- Update to 0.3.0.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 0.2.0-0
 - Update to 0.2.0 and cleanups.
 
