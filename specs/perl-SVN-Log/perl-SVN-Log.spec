@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROONEG/SVN-Log-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Module-Build
+BuildRequires: perl, perl-Module-Build, subversion-perl
 
 %description
 SVN::Log retrieves and parses the commit logs from Subversion
