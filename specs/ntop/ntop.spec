@@ -42,7 +42,7 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 	' main.c
 
 %{__cat} <<EOF >ntop.logrotate
-%{_localstatedir}/log/ntop.access.log
+%{_localstatedir}/log/ntop.access.log {
 	missingok
 	postrotate
 		/sbin/service ntop condrestart >/dev/null 2>&1
@@ -270,6 +270,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 3.0-2
+- Fixed missing { in logrotate conf. (Martijn Lievaart)
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 3.0-1
 - Updated to release 3.0.
 
