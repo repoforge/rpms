@@ -57,7 +57,7 @@ allow installations via the network.
 %{_localstatedir}/www/yam/
 
 %changelog
-* Tue Aug 17 2004 Dag Wieers <dag@wieers.com> - 0.5-1
+* Thu Aug 19 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 
 * Wed May 19 2004 Dag Wieers <dag@wieers.com> - 0.3-1
