@@ -1,0 +1,91 @@
+diff -Naupr bluefish-0.9.orig/data/Makefile.in bluefish-0.9/data/Makefile.in
+--- bluefish-0.9.orig/data/Makefile.in	2003-02-16 12:22:56.000000000 +0100
++++ bluefish-0.9/data/Makefile.in	2003-02-18 16:06:07.000000000 +0100
+@@ -28,15 +28,16 @@ DEFAULTFILES = highlighting.default file
+ all: $(DEFAULTFILES)
+ 
+ install: all
+-	$(INSTALL_DIR) $(pkgdatadir)
++	$(INSTALL_DIR) $(DESTDIR)$(pkgdatadir)
+ 	@for file in $(DEFAULTFILES) ; do \
+-		$(INSTALL_DATA) $$file $(pkgdatadir)/$$file ;\
++		$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$$file ;\
+ 	done
+-	if [ -d /usr/share/applications ] ; then \
+-		$(INSTALL_DATA) bluefish.desktop /usr/share/applications/ ;\
++	if [ -d $(DESTDIR)$(datadir)/applications ] ; then \
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(datadir)/applications/ ;\
+ 	fi
+-	if [ -d /usr/share/gnome/apps/Applications ] ; then \
+-		$(INSTALL_DATA) bluefish.desktop /usr/share/gnome/apps/Applications ;\
++	if [ ! -d $(DESTDIR)$(datadir)/applications ] ; then \
++		$(INSTALL_DIR) $(DESTDIR)$(datadir)/gnome/apps/Applications ;\
++		$(INSTALL_DATA) bluefish.desktop $(DESTDIR)$(datadir)/gnome/apps/Applications ;\
+ 	fi
+ 
+ uninstall:
+diff -Naupr bluefish-0.9.orig/icons/Makefile.in bluefish-0.9/icons/Makefile.in
+--- bluefish-0.9.orig/icons/Makefile.in	2002-12-27 23:42:52.000000000 +0100
++++ bluefish-0.9/icons/Makefile.in	2003-02-18 13:29:44.000000000 +0100
+@@ -49,9 +49,9 @@ all: bluefish
+ bluefish:
+ 
+ install: all
+-	$(INSTALL_DIR) $(pkgdatadir)
++	$(INSTALL_DIR) $(DESTDIR)$(pkgdatadir)
+ 	for file in $(OBJS) ; \
+-		do $(INSTALL_DATA) $$file $(pkgdatadir) ; \
++		do $(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir) ; \
+ 	done
+ 
+ uninstall:
+diff -Naupr bluefish-0.9.orig/Makefile.in bluefish-0.9/Makefile.in
+--- bluefish-0.9.orig/Makefile.in	2003-02-16 12:16:29.000000000 +0100
++++ bluefish-0.9/Makefile.in	2003-02-18 18:40:30.000000000 +0100
+@@ -65,12 +65,11 @@ distclean:
+ 
+ install: src/bluefish
+ 	pkgdatadir=@pkgdatadir@
+-	$(INSTALL_DIR) $(pkgdatadir)
+-	$(INSTALL_DATA) images/bluefish_splash.png $(pkgdatadir)
++	$(INSTALL_DIR) $(DESTDIR)$(pkgdatadir)
++	$(INSTALL_DATA) images/bluefish_splash.png $(DESTDIR)$(pkgdatadir)
+ 	@cd icons/ && $(MAKE) install
+-	if [ -d /usr/share/pixmaps ]; then \
+-		$(INSTALL_DATA) inline_images/bluefish_icon1.png /usr/share/pixmaps/bluefish-icon.png ;\
+-	fi
++	$(INSTALL_DIR) $(DESTDIR)$(datadir)/pixmaps
++	$(INSTALL_DATA) inline_images/bluefish_icon1.png $(DESTDIR)$(datadir)/pixmaps/bluefish-icon.png
+ 	@cd src/ && $(MAKE) install
+ 	@cd po/ && $(MAKE) install
+ 	@cd data/ && $(MAKE) install
+diff -Naupr bluefish-0.9.orig/po/Makefile.in bluefish-0.9/po/Makefile.in
+--- bluefish-0.9.orig/po/Makefile.in	2003-02-13 23:14:31.000000000 +0100
++++ bluefish-0.9/po/Makefile.in	2003-02-18 15:55:50.000000000 +0100
+@@ -40,9 +40,9 @@ all-no:
+ install:
+ 	@for file in $(FINISHED_CATALOGS) ; do \
+ 		lang=`echo $${file} | sed -e 's/\.gmo$$//'`;\
+-		$(INSTALL_DIR) $(localedir)/$${lang}/ ;\
+-		$(INSTALL_DIR) $(localedir)/$${lang}/LC_MESSAGES/ ;\
+-		$(INSTALL_DATA) $${lang}.gmo $(localedir)/$${lang}/LC_MESSAGES/${PACKAGE}.mo;\
++		$(INSTALL_DIR) $(DESTDIR)$(localedir)/$${lang}/ ;\
++		$(INSTALL_DIR) $(DESTDIR)$(localedir)/$${lang}/LC_MESSAGES/ ;\
++		$(INSTALL_DATA) $${lang}.gmo $(DESTDIR)$(localedir)/$${lang}/LC_MESSAGES/${PACKAGE}.mo;\
+ 	done
+ 
+ uninstall:
+diff -Naupr bluefish-0.9.orig/src/Makefile.in bluefish-0.9/src/Makefile.in
+--- bluefish-0.9.orig/src/Makefile.in	2003-02-07 18:53:10.000000000 +0100
++++ bluefish-0.9/src/Makefile.in	2003-02-18 13:30:08.000000000 +0100
+@@ -89,8 +89,8 @@ distclean: patchclean
+ 	rm -f config.h Makefile *~ *.bak core
+ 
+ install: all
+-	$(INSTALL_DIR) $(bindir)
+-	$(INSTALL_PROGRAM) ./bluefish $(bindir)/bluefish
++	$(INSTALL_DIR) $(DESTDIR)$(bindir)
++	$(INSTALL_PROGRAM) ./bluefish $(DESTDIR)$(bindir)/bluefish
+ 
+ uninstall:
+ 	/bin/rm -f $(bindir)/bluefish

@@ -1,0 +1,20 @@
+--- gnome-applets-2.0.1/modemlights/modemlights.schemas.ppp-command	Mon Jul 29 15:39:30 2002
++++ gnome-applets-2.0.1/modemlights/modemlights.schemas	Mon Jul 29 15:42:14 2002
+@@ -27,7 +27,7 @@
+         <key>/schemas/apps/modemlights/prefs/connect</key>
+         <owner>modemlights_applet2</owner>
+         <type>string</type>
+-        <default>pppon</default>
++        <default>ifup ppp0</default>
+         <locale name="C">
+           <short>Command executed when connecting</short>
+           <long></long>
+@@ -38,7 +38,7 @@
+         <key>/schemas/apps/modemlights/prefs/disconnect</key>
+         <owner>modemlights_applet2</owner>
+         <type>string</type>
+-        <default>pppoff</default>
++        <default>ifdown ppp0</default>
+         <locale name="C">
+           <short>Command executed when disconnecting</short>
+           <long></long>

@@ -1,0 +1,50 @@
+--- apt-0.5.15cnc4/buildlib/config.h.in.rpm421	2003-12-09 18:29:39.000000000 +0200
++++ apt-0.5.15cnc4/buildlib/config.h.in	2003-12-09 18:30:04.000000000 +0200
+@@ -123,6 +123,9 @@
+ /* Define to 1 if RPM >= 4.1 is available */
+ #undef HAVE_RPM41
+ 
++/* Define to 1 if RPM >= 4.2.1 is available */
++#undef HAVE_RPM421
++
+ /* Define to 1 if you have the `setenv' function. */
+ #undef HAVE_SETENV
+ 
+--- apt-0.5.15cnc4/configure.in.rpm421	2003-12-09 18:21:16.000000000 +0200
++++ apt-0.5.15cnc4/configure.in	2003-12-09 19:11:41.000000000 +0200
+@@ -42,6 +42,7 @@
+ AH_TEMPLATE(HAVE_RPM, [Define to 1 if RPM is available])
+ AH_TEMPLATE(HAVE_RPM4, [Define to 1 if RPM >= 4 is available])
+ AH_TEMPLATE(HAVE_RPM41, [Define to 1 if RPM >= 4.1 is available])
++AH_TEMPLATE(HAVE_RPM421, [Define to 1 if RPM >= 4.2.1 is available])
+ rpm_version="none"
+ AC_CHECK_HEADERS(db1/db.h)
+ CPPFLAGS="$CPPFLAGS -I/usr/include/rpm"
+@@ -58,7 +59,11 @@
+       RPMLIBS="-lrpm $RPMDBLIBS -lrpmio -lz -lbz2 -lpopt"
+       AC_CHECK_LIB(rpm, rpmtsUpdateDSI,
+      	      [AC_DEFINE_UNQUOTED(HAVE_RPM41, 1)
+-     	       rpm_version="4.1"],
++     			AC_CHECK_LIB(rpm, rpmtsOp,
++	      			[AC_DEFINE_UNQUOTED(HAVE_RPM421, 1)
++	       			 rpm_version="4.2.1"],
++     	       			[rpm_version="4.1"])
++			],
+      	      [rpm_version="4.0.X"],
+ 	      [$RPMLIBS])
+      ],
+--- apt-0.5.15cnc4/apt-pkg/rpm/rpmsystem.cc.rpm421	2003-12-09 20:12:01.000000000 +0200
++++ apt-0.5.15cnc4/apt-pkg/rpm/rpmsystem.cc	2003-12-09 20:34:04.000000000 +0200
+@@ -188,7 +188,12 @@
+       "RPM::Erase-Options",
+       NULL,
+    };
++// Nopromote behavior was only enabled in rpm-4.2.1
++#ifdef HAVE_RPM421
+    int NoPromote = 1;
++#else
++   int NoPromote = 0;
++#endif
+    const char *Opt = *RPMOptions;
+    while (*Opt && NoPromote)
+    {
