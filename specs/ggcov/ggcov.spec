@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.alphalink.com.au/~gnb/ggcov/ggcov-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: gcc
+Requires: gcc, gcc-c++
 
 %description
 Ggcov is a simple GUI program for browsing test coverage data
