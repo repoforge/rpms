@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+
+# Screenshot: http://apollon.sourceforge.net/apollon1.png
+# ScreenshotURL: http://apollon.sourceforge.net/pictures.html
 
 Summary: KDE filesharing client which uses gift
 Name: apollon
@@ -12,19 +13,17 @@ Name: apollon
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://apollon.sf.net/
+URL: http://apollon.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/apollon/%{name}-%{real_version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+Source: http://dl.sf.net/apollon/apollon-%{real_version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, gift
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs, gift
-
-# Screenshot: http://apollon.sourceforge.net/apollon1.png
-# ScreenshotURL: http://apollon.sourceforge.net/pictures.html
 
 %description
 Apollon is a KDE filesharing client which uses gift.
@@ -32,30 +31,37 @@ Apollon is a KDE filesharing client which uses gift.
 %prep
 %setup -n apollon-%{real_version}
 
-%build
-. /etc/profile.d/qt.sh
-for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done
-%configure
-%{__make} %{?_smp_mflags}
-
-%install
-%{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
-mkdir -p %{buildroot}/usr/share/apps/apollon
-%makeinstall
-rm %{buildroot}/usr/share/applnk/Applications/Apollon.desktop
-mkdir -p %{buildroot}/usr/share/applications/
-cat > %{buildroot}/usr/share/applications/Apollon.desktop <<EOF
+%{__cat} <<EOF >apollon.desktop
 [Desktop Entry]
 Name=Apollon
 Comment=File Sharing Client
 Exec=apollon
 Type=Application
-Terminal=0
+Terminal=false
 Icon=apollon
 Encoding=UTF-8
-Categories=Application;Network;X-Red-Hat-Extra;
+Categories=Application;Network;
 EOF
+
+%build
+source /etc/profile.d/qt.sh
+for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+source  /etc/profile.d/qt.sh
+%{__install} -d -m0755 %{buildroot}%{_datadir}/apps/apollon
+%makeinstall
+%find_lang %{name}
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor kde                  \
+	--dir %{buildroot}%{_datadir}/applications \
+	--add-category X-Red-Hat-Extras            \
+	apollon.desktop
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -66,20 +72,16 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
-%defattr(-,root,root, 0755)
+%files -f %{name}.lang
+%defattr(-, root, root, 0755)
 %doc README
+%doc %{_docdir}/HTML/en/apollon/*
 %{_bindir}/apollon
-%{_libdir}/libapollon.la
-%{_libdir}/libapollon.so.0
-%{_libdir}/libapollon.so
-%{_libdir}/libapollon.so.0.0.1
-%{_datadir}/applications/Apollon.desktop
-%{_datadir}/apps/apollon/gift/OpenFT.conf.template
-%{_datadir}/apps/apollon/gift/giftd.conf.template
-%{_datadir}/apps/apollon/gift/nodes
-%{_datadir}/apps/apollon/gift/ui.conf.template
-%{_datadir}/doc/HTML/en/apollon/*
+%exclude %{_libdir}/libapollon.la
+%{_libdir}/libapollon.so*
+%exclude %{_datadir}/applnk/Applications/Apollon.desktop
+%{_datadir}/applications/kde-apollon.desktop
+%{_datadir}/apps/apollon/
 %{_datadir}/icons/crystalsvg/*/filesystems/folder_apollon.png
 %{_datadir}/icons/hicolor/16x16/actions/gnutelladown.png
 %{_datadir}/icons/hicolor/16x16/actions/gnutellaup.png
@@ -97,8 +99,6 @@ EOF
 %{_datadir}/icons/hicolor/*/apps/napster.png
 %{_datadir}/icons/hicolor/*/apps/openft.png
 %{_datadir}/icons/hicolor/*/apps/soulseek.png
-%{_datadir}/locale/*/LC_MESSAGES/apollon.mo
-%{?fc2:%{_datadir}/apps/apollon/tips}
 
 %changelog
 * Thu Feb 25 2004 Dries Verachtert <dries@ulyssis.org> 0.9.2-3
