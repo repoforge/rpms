@@ -1,11 +1,14 @@
 # $Id$
 # Authority: dries
+# Upstream: Alvaro J. Iradier Muro <airadier@users.sf.net>
 
 # Screenshot: http://amsn.sf.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sf.net/shots.htm
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 %define tls_maj 1.4
 %define tls_min 1
@@ -33,11 +36,13 @@ Patch1: amsn-0.92-login.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
+BuildRequires: tcl >= 8.3, tk >= 8.3, openssl-devel
+BuildRequires: imlib-devel, libpng-devel
 %{?fc2:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?fc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?el3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-BuildRequires: tcl >= 8.3, tk >= 8.3, openssl-devel
-BuildRequires: imlib-devel, libpng-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Requires: tcl >= 8.3, tk >= 8.3
 
 %description
 amsn is a Tcl/Tk clone that implements the Microsoft Messenger (MSN) for
@@ -60,9 +65,9 @@ Exec=amsn
 Icon=amsn.png
 Type=Application
 Terminal=false
+Encoding=UTF-8
 StartupNotify=true
 Categories=Application;Network;
-Encoding=UTF-8
 EOF
 
 %{__cat} <<'EOF2' >%{name}.sh
@@ -124,14 +129,14 @@ cd plugins/traydock
 %{__install} -d -m0755 %{buildroot}%{_datadir}/amsn/plugins/tls%{tls_maj}/
 %{__install} -m0755 tls%{tls_maj}/libtls%{tls_maj}.so tls%{tls_maj}/pkgIndex.tcl tls%{tls_maj}/tls.tcl %{buildroot}%{_datadir}/amsn/plugins/tls%{tls_maj}/
 
-%if %{dfi}
-        %{__install} -D -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
-%else   
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor net                  \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+%if %{!?_without_freedesktop:1}0
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor net                  \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		amsn.desktop
+%else
+	%{__install} -D -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
 %endif
 
 %clean
@@ -143,11 +148,8 @@ cd plugins/traydock
 %{_bindir}/*
 %{_datadir}/amsn/
 %{_datadir}/pixmaps/*.png
-%if %{dfi}
-        %{_datadir}/gnome/apps/Internet/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/net-amsn.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/amsn.desktop}
 
 %changelog
 * Mon May 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.92-1
