@@ -1,6 +1,11 @@
 # $Id$
 # Authority: matthias
 
+%{?fc1:%define _without_alsa 1}
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh8:%define _without_alsa 1}
+
 #define prever         pre3
 %define desktop_vendor freshrpms
 
@@ -17,8 +22,9 @@ Requires: wxGTK >= 2.4.0, libogg, libvorbis
 Requires: libmad, flac, libsndfile
 BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
 BuildRequires: wxGTK-devel >= 2.4.0, libogg-devel, libvorbis-devel
-BuildRequires: libmad-devel, flac-devel, libsndfile-devel, alsa-lib-devel
+BuildRequires: libmad-devel, flac-devel, libsndfile-devel
 BuildRequires: autoconf
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 Audacity is a free audio editor. You can record sounds, play sounds, import
@@ -41,6 +47,7 @@ and Noise Removal, and it also supports VST plug-in effects.
     --with-libsndfile=system \
     --with-portaudio=v19 \
     --without-portmixer
+%{__perl} -pi.orig -e 's|^(CFLAGS) = -g |$1 = -fPIC |' lib-src/portaudio-v19/Makefile
 %{__make} %{?_smp_mflags}
 
 

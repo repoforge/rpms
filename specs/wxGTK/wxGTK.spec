@@ -65,9 +65,12 @@ Styled text control add-on for wxGTK. Based on the Scintillia project.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's| /usr/lib| %{_libdir} %{_prefix}/X11R6/%{_lib}|g' configure
+
 %build
 # For the shared libs
 %configure \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --enable-soname \
     --enable-optimise \
     --with-opengl

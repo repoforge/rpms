@@ -13,7 +13,7 @@ Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.parallelrealities.co.uk/starfighter.php
-Source0: starfighter-%{version}-1.tar.bz2
+Source0: starfighter-%{version}-1.tar.gz
 Source1: starfighter.png
 Patch: starfighter-1.1-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -40,7 +40,9 @@ Available rpmbuild rebuild options :
 
 
 %build
-%{__make} %{?_smp_mflags} PREFIX="%{_prefix}" OPTFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} \
+	PREFIX="%{_prefix}" \
+	OPTFLAGS="%{optflags}"
 
 
 %install
