@@ -68,14 +68,15 @@ echo 'rpm' >%{buildroot}%{_libexecdir}/webmin/install-type
 
 ### Prepare configuration (see os_list.txt)
 os_type="redhat-linux"
+%{?el4:os_version="12.0"; real_os_type="Red Hat Enterprise Linux"; real_os_version="4"}
+%{?el3:os_version="9.0";  real_os_type="Red Hat Enterprise Linux"; real_os_version="3"}
+%{?el2:os_version="7.2";  real_os_type="Red Hat Enterprise Linux"; real_os_version="2.1"}
 %{?fc3:os_version="12.0"; real_os_type="Fedora Core";      real_os_version="3"}
 %{?fc2:os_version="11.0"; real_os_type="Fedora Core";      real_os_version="2"}
 %{?fc1:os_version="10.0"; real_os_type="Fedora Core";      real_os_version="1"}
-%{?el3:os_version="9.0";  real_os_type="Red Hat Enterprise Linux"; real_os_version="3"}
 %{?rh9:os_version="9.0";  real_os_type="Red Hat Linux";    real_os_version="9"}
 %{?rh8:os_version="8.0";  real_os_type="Red Hat Linux";    real_os_version="8.0"}
 %{?rh7:os_version="7.3";  real_os_type="Red Hat Linux";    real_os_version="7.3"}
-%{?el2:os_version="7.2";  real_os_type="Red Hat Enterprise Linux"; real_os_version="2.1"}
 %{?rh6:os_version="6.2";  real_os_type="Red Hat Linux";    real_os_version="6.2"}
 %{?yd4:os_version="11.0"; real_os_type="Yellow Dog Linux"; real_os_version="4.0"}
 %{?yd3:os_version="9.0";  real_os_type="Yellow Dog Linux"; real_os_version="3.0"}

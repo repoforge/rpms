@@ -3,7 +3,7 @@
 # Upstream: Chris Rogers <gandalf$darkcorner,net>
 
 ### Goes into a loop with x86_64 (Please investigate)
-# ExcludeDist: el3a fc2a fc3
+# ExcludeDist: el3a fc2a fc3 el4
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

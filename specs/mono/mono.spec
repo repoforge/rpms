@@ -3,7 +3,7 @@
 
 Summary: The Mono CIL runtime, suitable for running .NET code
 Name: mono
-Version: 1.0.5
+Version: 1.0.6
 Release: 1
 License: LGPL
 Group: Development/Tools
@@ -190,19 +190,16 @@ This package contains all runtime Mono packages
 
 %build
 %configure \
-	--with-nptl="no" \
 	--with-ikvm="yes" \
 	--with-signaltstack="no" \
 	--with-jdk="/usr/java/j2sdk1.4.2_04"
+#	--with-nptl="no"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install \
 	DESTDIR="%{buildroot}"
-
-#%post
-#echo "You must install libgdiplus separately."
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -470,6 +467,9 @@ This package contains all runtime Mono packages
 %defattr(-, root, root, 0755)
 
 %changelog
+* Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 1.0.6-1
+- Updated to release 1.0.6.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 

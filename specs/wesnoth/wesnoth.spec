@@ -1,15 +1,14 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+
 # Screenshot: http://www.wesnoth.org/images/sshots/wesnoth-10-175.jpg
 # ScreenshotURL: http://www.wesnoth.org/sshots.htm
 
-# ExcludeDist: fc1
+%define desktop_vendor rpmforge
 
 Summary: Battle for Wesnoth is a fantasy turn-based strategy game
 Name: wesnoth
-Version: 0.8.10
+Version: 0.8.11
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -34,15 +33,15 @@ different types of attacks. Units gain experience and advance levels,
 and are carried over from one scenario to the next campaign. 
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
-%{__cat} > wesnoth.desktop <<EOF
+
+%{__cat} <<EOF >wesnoth.desktop
 [Desktop Entry]
 Version=1.0
 Type=Application
 Encoding=UTF-8
 Name=Wesnoth
-Exec=/usr/bin/wesnoth
+Exec=wesnoth
 Categories=Application;Game;ArcadeGame;
 EOF
 
@@ -52,9 +51,11 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install-strip DESTDIR=%{buildroot}
+%{__make} install \
+	DESTDIR="%{buildroot}"
+
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	wesnoth.desktop
@@ -64,14 +65,17 @@ desktop-file-install --vendor rpmforge             \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING MANUAL MANUAL.*
+%doc COPYING MANUAL MANUAL.* README
 %{_bindir}/wesnoth
 %{_bindir}/wmlxgettext
 %{_mandir}/man6/wesnoth*
-%{_datadir}/wesnoth
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-wesnoth.desktop
+%{_datadir}/wesnoth/
 
 %changelog
+* Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 0.8.11-1
+- Update to version 0.8.11.
+
 * Tue Feb 08 2005 Dries Verachtert <dries@ulyssis.org> 0.8.10-1
 - Update to version 0.8.10.
 

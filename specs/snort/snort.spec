@@ -10,9 +10,9 @@
 %{?el2:%define _without_net_snmp 1}
 %{?rh6:%define _without_net_snmp 1}
 
-Summary: Open Source network intrusion detection system
+Summary: Open Source network intrusion detection system (NIDS)
 Name: snort
-Version: 2.2.0
+Version: 2.3.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -90,134 +90,8 @@ Requires snort libnet rpm.
 		s|(\$ODBC_DIR)/lib|$1/%{_lib}|;
 	' configure
 
-%{__cat} <<EOF >snort.sysconf
-### Specify your network interface here
-INTERFACE="eth0"
-
-### Add extra options here
-#OPTIONS="-s -d"
-EOF
-
-%{__cat} <<'EOF' >snortd.sysv
-#!/bin/sh
-#
-# Init file for Snort - An Open Source network intrusion detection system.
-#
-# Written by Dag Wieers <dag@wieers.com>.
-#
-# chkconfig: 2345 40 60
-# description:  snort is a lightweight network intrusion detection system \
-#               that currently detects more than 1100 host and network \
-#		vulnerabilities, portscans, backdoors, and more.
-#
-# processname: snort
-# config: %{_sysconfdir}/sysconfig/snort
-# config: %{_sysconfdir}/snort/snort.conf
-# pidfile: %{_localstatedir}/lock/subsys/snort.pid
-
-source %{_initrddir}/functions
-source %{_sysconfdir}/sysconfig/network
-
-### Check that networking is up.
-[ "${NETWORKING}" == "no" ] && exit 0
-
-[ -x %{_sbindir}/snort ] || exit 1
-[ -r %{_sysconfdir}/snort/snort.conf ] || exit 1
-
-### Default variables
-SYSCONFIG="%{_sysconfdir}/sysconfig/snort"
-OPTIONS="-s -d"
-INTERFACE="eth0"
-USER="snort"
-
-### Read configuration
-[ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
-
-RETVAL=0
-prog="snort"
-desc="Intrusion Detection System"
-
-start() {
-	echo -n $"Starting $desc ($prog): "
-	cd %{_localstatedir}/log/snort
-	daemon $prog -u $USER -g $USER -D -i $INTERFACE -l %{_localstatedir}/log/snort -c %{_sysconfdir}/snort/snort.conf $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
-}
-
-stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
-}
-
-restart() {
-	stop
-	start
-}
-
-
-reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
-}
-
-dump() {
-	echo -n $"Dumping $prog database to syslog: "
-	killproc $prog -USR1
-	RETVAL=$?
-	echo
-	return $RETVAL
-}
-
-case "$1" in
-  start)
-	start
-	;;
-  stop)
-	stop
-	;;
-  restart)
-	restart
-	;;
-  reload)
-	reload
-	;;
-  condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
-  status)
-	status $prog
-	RETVAL=$?
-	;;
-  dump)
-	dump
-	;;
-  *)
-	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status|dump}"
-	RETVAL=1
-esac
-
-exit $RETVAL
-EOF
-
 %build
-#touch -r . *
-### Ugly workaround
-#%{__perl} -pi.orig -e 's|^DIST_SOURCES|#DIST_SOURCES|' doc/Makefile.am
-#%{__aclocal}
-#%{__automake} --add-missing
-#%{__rm} -rf building && mkdir -p building && cd building
-
+export CFLAGS="%{optflags}"
 export AM_CFLAGS="%{optflags}"
 SNORT_BASE_CONFIG="
 	--prefix=%{_prefix}
@@ -274,9 +148,9 @@ cd -
 
 mkdir bloat; cd bloat
 ../configure $SNORT_BASE_CONFIG \
-%{?mysql:	--with-mysql} \
-%{?pgsql:	--with-postgresql} \
-%{?odbc:	--with-odbc}
+%{!?_without_mysql:	--with-mysql} \
+%{!?_without_pgsql:	--with-postgresql} \
+%{!?_without_odbc:	--with-odbc}
 %{__make} %{?_smp_mflags}
 %{__mv} -f src/snort ../snort-bloat
 cd -
@@ -291,8 +165,11 @@ cd -
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/snort
 %{__install} -m0644 etc/*.config etc/*.conf etc/*.map rules/*.rules %{buildroot}%{_sysconfdir}/snort/
 
-%{__install} -D -m0755 snortd.sysv %{buildroot}%{_initrddir}/snortd
-%{__install} -D -m0644 snort.sysconf %{buildroot}%{_sysconfdir}/sysconfig/snort
+#%{__install} -D -m0755 snortd.sysv %{buildroot}%{_initrddir}/snortd
+#%{__install} -D -m0644 snort.sysconf %{buildroot}%{_sysconfdir}/sysconfig/snort
+%{__install} -D -m0755 rpm/snortd %{buildroot}%{_initrddir}/snortd
+%{__install} -D -m0644 rpm/snort.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/snort
+%{__install} -D -m0644 rpm/snort.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/snort
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/snort/
 
@@ -345,10 +222,13 @@ fi
 						
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog contrib doc/AUTHORS doc/BUGS doc/CREDITS doc/FAQ doc/NEWS
-%doc doc/README* doc/TODO doc/USAGE doc/snort_manual.* doc/signatures/
+%doc ChangeLog COPYING LICENSE RELEASE.NOTES contrib/
+%doc doc/AUTHORS doc/BUGS doc/CREDITS doc/NEWS doc/PROBLEMS
+%doc doc/README* doc/RULES.todo doc/TODO doc/USAGE doc/WISHLIST
+%doc doc/*.pdf doc/signatures/ rpm/CHANGES.rpms rpm/README* rpm/RPM-TODO
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/sysconfig/*
+%config(noreplace) %{_sysconfdir}/logrotate.d/snort
 %config %{_initrddir}/snortd
 %{_sbindir}/snort-plain
 
@@ -379,6 +259,10 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
+* Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Replaced own sysv logic by provided one.
+- Updated to release 2.3.0.
+
 * Thu Aug 12 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
 - Replaced Obsoletes by Conflicts.
 

@@ -1,13 +1,14 @@
 # $Id$
 # Authority: dag
 
+### FIXME: FC3 and EL4 do not have kernel-source packages. No IPVS
 %{?dist: %{expand: %%define %dist 1}}
-%{!?kernel:%define kernel %(rpm --quiet -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
+%{!?kernel:%define kernel %(rpm --quiet -q kernel-source && rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}\\n' | tail -1)}
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
 Version: 1.1.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://keepalived.sourceforge.net/
@@ -86,6 +87,9 @@ fi
 %{_sbindir}/keepalived
 
 %changelog
+* Wed Feb 23 2005 Dag Wieers <dag@wieers.com> - 1.1.10-2
+- Fixed IPVS/LVS support. (Joe Sauer)
+
 * Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 1.1.10-1
 - Updated to release 1.1.10.
 

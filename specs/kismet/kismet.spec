@@ -7,7 +7,7 @@
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-Release: 1.200410r1
+Release: 1.200501r1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -58,7 +58,7 @@ cd -
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall rpm \
-	ETC="%{buildroot}%{_sysconfdir}" \
+	ETC="%{buildroot}%{_sysconfdir}/kismet" \
 	BIN="%{buildroot}%{_bindir}" \
 	SHARE="%{buildroot}%{_datadir}/kismet/" \
 	MAN="%{buildroot}%{_mandir}" \
@@ -71,11 +71,14 @@ cd -
 %defattr(-, root, root, 0755)
 %doc CHANGELOG GPL README TODO docs/DEVEL.* docs/README*
 %doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/*
+%config(noreplace) %{_sysconfdir}/kismet/
 %{_bindir}/*
 %{_datadir}/kismet/
 
 %changelog
+* Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 3.0.1-1.200501r1
+- Updated to release 2005-01-R1.
+
 * Thu Dec 23 2004 Dag Wieers <dag@wieers.com> - 3.0.1-1.200410r1
 - Updated to release 2004-10-R1.
 

@@ -4,8 +4,8 @@
 
 Summary: Curses based bandwidth monitor
 Name: bwm-ng
-Version: 0.3
-Release: 2
+Version: 0.5
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://users.informatik.haw-hamburg.de/~gropp_v/
@@ -13,7 +13,7 @@ URL: http://users.informatik.haw-hamburg.de/~gropp_v/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://users.informatik.haw-hamburg.de/~gropp_v/bwm-ng-%{version}.tar.gz
+Source: http://freshmeat.net/redir/bwm-ng/52961/url_tgz/bwm-ng-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
@@ -25,21 +25,29 @@ A small and simple curses Bandwidth Monitor.
 %setup
 
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 bwm-ng %{buildroot}%{_bindir}/bwm-ng
+#%{__make} install \
+#	DESTDIR="%{buildroot}"
+%{__install} -D -m0755 src/bwm-ng %{buildroot}%{_bindir}/bwm-ng
+%{__install} -D -m0644 bwm-ng.1 %{buildroot}%{_mandir}/man1/bwm-ng.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
+%doc AUTHORS changelog README bwm-ng.conf-example
+%doc %{_mandir}/man1/bwm-ng.1*
 %{_bindir}/bwm-ng
 
 %changelog
+* Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 0.3-2
 - Fixed Group tag.
 

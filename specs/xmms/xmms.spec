@@ -1,16 +1,12 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
-
 %{?fc2:%define _without_mikmod 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_mikmod 1}
 
 %{?el3:%define _without_alsa 1}
-%{?el3:%define _without_arts 1}
-%{?el3:%define _without_mikmod 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_arts 1}
@@ -30,10 +26,10 @@
 
 %define artsplugin_ver 0.6.0
 
-Summary: Media player
+Summary: Media player for X which resembles Winamp
 Name: xmms
 Version: 1.2.10
-Release: 9.2
+Release: 11.1
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -54,6 +50,7 @@ Patch6: xmms-1.2.8-alsalib.patch
 #Patch8: http://www3.big.or.jp/~sian/linux/products/xmms/xmms-1.2.5pre1j_20010601.diff.bz2
 Patch10: arts_output-0.6.0-buffer.patch
 Patch11: xmms-underquoted.patch
+Patch12: xmms-alsa-backport.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, gtk+-devel, esound-devel
@@ -67,6 +64,7 @@ BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf-2.13
 Requires: gtk+ >= 1:1.2.2, unzip
 # the desktop file and redhat-menus are redundant requires really
 Requires: /usr/share/desktop-menu-patches/redhat-audio-player.desktop
+%{!?_without_freedesktop:Requires: desktop-file-utils}
 Requires: redhat-menus >= 0.11
 
 Obsoletes: x11amp0.7-1-1, x11amp, xmms-esd, xmms-gl, xmms-mikmod, xmms-gnome
@@ -130,6 +128,7 @@ skins were obtained from http://www.xmms.org/skins.html .
 # Don't link *everything* against alsa-lib
 %patch6 -p1 -b .alsalib
 %patch11 -p1 -b .underquoted
+%patch12 -p0 -b .alsa-backport
 
 #%patch8 -p1 -b .ja
 
@@ -141,6 +140,8 @@ skins were obtained from http://www.xmms.org/skins.html .
   --enable-arts-shared \
 %endif
   --enable-ipv6
+
+%{__perl} -pi.orig -e 's|-lpthread|-lpthread -L/%{_lib}|g' Makefile */Makefile */*/Makefile */*/*/Makefile
 
 make
 

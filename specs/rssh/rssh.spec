@@ -5,7 +5,7 @@
 
 Summary: Restricted shell for use with OpenSSH, allowing only scp and/or sftp
 Name: rssh
-Version: 2.2.2
+Version: 2.2.3
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -14,7 +14,7 @@ URL: http://www.pizzashack.org/rssh/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pizzashack.org/rssh/src/rssh-%{version}.tar.gz
+Source: http://dl.sf.net/rssh/rssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssh-server, openssh-clients

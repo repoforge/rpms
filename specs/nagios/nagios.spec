@@ -2,13 +2,15 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
+# Tag: test
+
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 1.2
-Release: 1
+Version: 2.0
+Release: 0.b2
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -16,12 +18,12 @@ URL: http://www.nagios.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
+### TODO : change when RC2 is out
+Source: http://dl.sf.net/nagios/nagios-%{version}b2.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
-Patch0: nagios-1.2-embedperl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gd-devel, zlib-devel, libpng-devel, libjpeg-devel
+BuildRequires: gd-devel > 1.8, zlib-devel, libpng-devel, libjpeg-devel
 Obsoletes: %{name}-www
 
 %description
@@ -47,21 +49,9 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
-%patch0
+%setup -n %{name}-%{version}b2
 
-%{__perl} -pi.orig -e '
-		s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/log/nagios/rw/nagios.cmd|;
-		s|^(resource_file)=\@sysconfdir\@/resource.cfg|$1=\@sysconfdir\@/private/resource.cfg|;
-	' sample-config/nagios.cfg.in
-
-%{__perl} -pi -e '
-		s|/usr/local/nagios/var/rw|%{_localstatedir}/log/nagios/rw|;
-		s|/usr/local/nagios/libexec/eventhandlers|%{_libdir}/nagios/plugins/eventhandlers|;
-		s|/usr/local/nagios/test/var|%{_localstatedir}/log/nagios|;
-	' contrib/eventhandlers/* contrib/eventhandlers/*/*
 %build
-### FIXME: Disabled embedded perl on RH80 and RH9 to fix segfaults
 %configure \
 	--datadir="%{_datadir}/nagios" \
 	--libexecdir="%{_libdir}/nagios/plugins" \
@@ -70,7 +60,7 @@ you will need to install %{name}-devel.
 	--sysconfdir="%{_sysconfdir}/nagios" \
 	--with-cgiurl="/nagios/cgi-bin" \
 	--with-command-user="apache" \
-	--with-command-grp="apache" \
+	--with-command-group="apache" \
 	--with-gd-lib="%{_libdir}" \
 	--with-gd-inc="%{_includedir}" \
 	--with-init-dir="%{_initrddir}" \
@@ -78,42 +68,39 @@ you will need to install %{name}-devel.
 	--with-lockfile="%{_localstatedir}/run/nagios.pid" \
 	--with-mail="/bin/mail" \
 	--with-nagios-user="nagios" \
-	--with-nagios-grp="nagios" \
+	--with-nagios-group="nagios" \
 	--enable-embedded-perl \
+	--with-perlcache \
 	--with-template-objects \
-	--with-template-extinfo
+	--with-template-extinfo \
+	--enable-event-broker
 %{__make} %{?_smp_mflags} all
 %{__make} %{?_smp_mflags} -C contrib
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0775 %{buildroot}%{_localstatedir}/log/nagios/rw/
-%{__install} -d -m0755 %{buildroot}%{_includedir}/nagios/ \
-			%{buildroot}%{_libdir}/nagios/cgi/ \
-			%{buildroot}%{_sysconfdir}/logrotate.d/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/ \
-			%{buildroot}%{_sysconfdir}/nagios/private/ \
-			%{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
-%{__make} install DESTDIR="%{buildroot}" INSTALL_OPTS="" COMMAND_OPTS=""
-%{__make} install-daemoninit DESTDIR="%{buildroot}" INSTALL_OPTS="" COMMAND_OPTS="" INIT_OPTS=""
+%{__make} install install-init install-commandmode install-config \
+        DESTDIR="%{buildroot}" \
+        INSTALL_OPTS="" \
+        COMMAND_OPTS="" \
+        INIT_OPTS=""
 
-%{__install} -m0664 sample-config/{cgi,nagios}.cfg %{buildroot}%{_sysconfdir}/nagios/
-%{__install} -m0640 sample-config/resource.cfg %{buildroot}%{_sysconfdir}/nagios/private/
-%{__install} -m0664 sample-config/template-object/*.cfg %{buildroot}%{_sysconfdir}/nagios/
-#%{__ln_s} -f private/resource.cfg %{buildroot}%{_sysconfdir}/nagios/resource.cfg
+for file in %{buildroot}%{_sysconfdir}/nagios/*.cfg-sample; do
+	%{__mv} -f $file ${file%%-*}
+done
 
-%{__install} -m0644 common/locations.h %{buildroot}%{_includedir}/nagios/
-#%{__install} -m0644 common/common.h common/config.h common/locations.h ./cgi/cgiutils.h cgi/popen.h %{buildroot}%{_includedir}/nagios/
+%{__make} install -C contrib \
+	DESTDIR="%{buildroot}" \
+	INSTALL_OPTS=""
 
-### FIXME: Add default .htpasswd file in /etc/nagios/ (in nagios.conf) (Please fix upstream)
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|' contrib/htaccess.sample
-%{__install} -m0644 contrib/htaccess.sample %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
-
-%makeinstall -C contrib INSTALL="%{__install}" INSTALL_OPTS="" CGIDIR="%{buildroot}%{_libdir}/nagios/cgi"
-%{__mv} -f %{buildroot}%{_libdir}/nagios/cgi/convertcfg %{buildroot}%{_libdir}/nagios/
-%{__mv} -f %{buildroot}%{_libdir}/nagios/cgi/mini_epn %{buildroot}%{_bindir}
-
+%{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 %{__cp} -afv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
+
+%{__install} -d -m0755 %{buildroot}%{_includedir}/nagios/
+%{__install} -m0644 include/*.h %{buildroot}%{_includedir}/nagios/
+
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -m0644 sample-config/httpd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
 
 ### Install logos
 tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}
@@ -160,7 +147,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog INSTALLING LICENSE README UPGRADING pkg/rpm/nagios.logrotate
+%doc Changelog INSTALLING LICENSE README UPGRADING
 %dir %{_sysconfdir}/nagios/
 %config(noreplace) %{_sysconfdir}/nagios/*.cfg
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/nagios.conf
@@ -169,20 +156,28 @@ fi
 %{_libdir}/nagios/
 %{_datadir}/nagios/
 
-%defattr(-, root, nagios, 0755)
-%config(noreplace) %{_sysconfdir}/nagios/private/
+#%defattr(-, root, nagios, 0755)
+#%config(noreplace) %{_sysconfdir}/nagios/private/
 
 %defattr(-, nagios, nagios, 0755)
 %{_localstatedir}/log/nagios/
+#%dir %{_localstatedir}/run/nagios/
 
 %defattr(-, nagios, apache, 2755)
-%dir %{_localstatedir}/log/nagios/rw/
+%{_localstatedir}/log/nagios/rw/
+#%dir %{_localstatedir}/log/nagios/rw/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/nagios/
 
 %changelog
+* Mon Feb 21 2005 Tim Verhoeven <dj@rootshell.be> - 2.0-0.b2
+- Updated to release 2.0b2.
+
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 2.0-0.b1
+* Updated to release 2.0b1.
+
 * Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 * Fixed %%{_libdir} in httpd nagios.conf. (Thomas Zehetbauer)
 

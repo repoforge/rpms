@@ -6,7 +6,7 @@
 
 Name: xdialog
 Summary: X11 drop in replacement for cdialog
-Version: 2.1.1
+Version: 2.1.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel >= 1.2.0
 
 Provides: Xdialog
-Obsoletes: Xdialog
+Obsoletes: Xdialog < %{version}
 
 %description
 Xdialog is designed to be a drop in replacement for the cdialog program.
@@ -35,15 +35,16 @@ range box, and much more).
 
 %build
 %configure
+%{__perl} -pi.orig -e '
+		s|\@AR\@|%{_bindir}/ar|g;
+		s|\@RANLIB\@|%{_bindir}/ranlib|g;
+	' lib/Makefile
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{real_name}
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_docdir}/%{real_name}-%{version}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,7 +55,11 @@ range box, and much more).
 %doc samples/ doc/*.html doc/*.png
 %doc %{_mandir}/man1/Xdialog.1*
 %{_bindir}/Xdialog
+%exclude %{_docdir}/%{real_name}-%{version}
 
 %changelog
+* Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 2.1.2-1
+- Updated to release 2.1.2.
+
 * Tue Apr 29 2003 Dag Wieers <dag@wieers.com> - 2.1.1-0
 - Initial package. (using DAR)
