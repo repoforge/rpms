@@ -1,25 +1,24 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Andy Dustman <webmaster@dustman.net>
 
 %define real_name adns-python
 
 Summary: Python bindings for GNU adns library
 Name: python-adns
 Version: 1.0.0
-Release: 0
-License: Unknown
+Release: 1
+License: GPL
 Group: Development/Libraries
 URL: http://dustman.net/andy/python/adns-python/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dustman.net/andy/python/adns-python/%{version}/%{real_name}-%{version}.tar.gz
+Source: http://dustman.net/andy/python/adns-python/%{version}/adns-python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: python
+BuildRequires: python, adns-devel
 Requires: python, adns
 
 %description
@@ -47,5 +46,8 @@ python setup.py install \
 %{_libdir}/python*/site-packages/*
 
 %changelog
+* Mon May 10 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Added missing adns-devel buildrequires. (Chong Kai Xiong)
+
 * Sat Aug 02 2003 Dag Wieers <dag@wieers.com> - 1.0.0-0
 - Initial package. (using DAR)
