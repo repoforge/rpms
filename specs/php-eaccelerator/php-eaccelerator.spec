@@ -7,7 +7,7 @@
 %define module_version 0.9.2a
 
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
-Name: php-mmcache
+Name: php-eaccelerator
 Version: %{php_version}_%{module_version}
 Release: 0
 License: GPL
