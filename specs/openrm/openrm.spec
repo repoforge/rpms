@@ -33,6 +33,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/openrm/openrm-devel-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: i486
+
 BuildRequires: gcc-c++, libjpeg-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
@@ -57,6 +59,9 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n rm152
+
+%{__perl} -pi.orig -e 's|/lib/|/%{_lib}/|g' Makefile
+#%{__perl} -pi.orig -e 's|-c -O2 -march=i486|%{optflags}|g' make.cfg
 
 %build
 %{__make} %{?_smp_mflags} linux
