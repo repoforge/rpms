@@ -1,7 +1,15 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
 
 Summary: Real-time strategy game
 Name: boson
@@ -17,8 +25,11 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/boson/boson-all-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel, gcc-c++, XFree86-devel, zlib-devel, qt-devel, kdelibs-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, lib3ds
-%{?fc2:BuildRequires: xorg-x11-Mesa-libGLU, libselinux-devel}
+BuildRequires: python-devel, gcc-c++, XFree86-devel, zlib-devel, qt-devel
+BuildRequires: kdelibs-devel, gettext, libart_lgpl-devel, libjpeg-devel
+BuildRequires: libpng-devel, arts-devel, lib3ds
+%{?_without_xorg:BuildRequires: XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-Mesa-libGLU}
 
 %description
 Boson is an OpenGL real-time strategy game, with the feeling of
@@ -31,14 +42,14 @@ intelligence yet.
 %setup -n boson-all-%{version}
 
 %build
-. /etc/profile.d/qt.sh
+source "/etc/profile.d/qt.sh"
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
-%makeinstall kde_widgetdir=%{buildroot}/usr/lib/kde3/plugins/designer
+source "/etc/profile.d/qt.sh"
+%makeinstall kde_widgetdir=%{buildroot}%{_libdir}/kde3/plugins/designer
 
 %clean
 %{__rm} -rf %{buildroot}
