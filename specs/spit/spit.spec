@@ -48,6 +48,7 @@ EOF
 source "%{_sysconfdir}/profile.d/qt.sh"
 # export CXX=g++296
 ./configure \
+	--debug \
 	--prefix="%{_prefix}"
 %{__make} src/Makefile
 
