@@ -17,6 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/pport/pport-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: openssl-devel
 
 %description
 PPort is a simple yet handy program for accessing the output pins of a 
