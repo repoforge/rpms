@@ -7,13 +7,13 @@
 Summary: Display the temperature of harddisks
 Name: hddtemp
 Version: 0.3
-Release: 0.beta12
+Release: 0.beta12.2
 License: GPL
 Group: Applications/System
 URL: http://coredump.free.fr/linux/hddtemp.php
 
 Source: http://www.guzu.net/linux/hddtemp-%{real_version}.tar.bz2
-Source1: http://coredump.free.fr/linux/hddtemp.db
+Source1: http://www.guzu.net/linux/hddtemp.db
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # BuildRequires: 
@@ -27,8 +27,7 @@ Note: only recent hard drives have a temperature sensor.
 %setup -n hddtemp-%{real_version}
 
 %build
-%configure \
-	--with-db-path=%{_datadir}/hddtemp
+%configure --with-db-path=%{_datadir}/hddtemp/hddtemp.db
 %{__make} %{?_smp_mflags}
 
 %install
@@ -37,8 +36,8 @@ Note: only recent hard drives have a temperature sensor.
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/hddtemp/hddtemp.db
 %find_lang %{name}
 
-%clean
-%{__rm} -rf %{buildroot}
+#%clean
+#%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -48,6 +47,9 @@ Note: only recent hard drives have a temperature sensor.
 %{_datadir}/hddtemp
 
 %changelog
+* Tue Mar 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-0.beta12.2
+- Update of the hddtemp database.
+
 * Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.3-0.beta12
 - Update to release 0.3-beta12.
 
