@@ -18,11 +18,12 @@ URL: http://search.cpan.org/dist/Glib/
 Source: http://www.cpan.org/modules/by-module/Glib/Glib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0, glib2-devel, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
+BuildRequires: perl >= 0:5.8.0, glib2-devel, perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
 Requires: perl >= 0:5.8.0, glib2 >= 2.0.6
 
 %description
-This module provides perl access to GLib and GLib's GObject libraries.  GLib is
+perl-Glib provides perl access to GLib and GLib's GObject libraries.  GLib is
 a portability and utility library; GObject provides a generic type system with
 inheritance and a powerful signal system.  Together these libraries are used as
 the foundation for many of the libraries that make up the Gnome environment,
