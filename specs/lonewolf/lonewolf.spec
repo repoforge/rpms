@@ -12,8 +12,8 @@ License: GPL
 Group: Applications/Internet
 URL: http://home1.tiscalinet.de/aduke/main2/news2.htm
 
-Source: lonewolf-%{version}-%{release}.tar.bz2
-Source1: lwscripts-%{version}-%{release}.tar.bz2
+Source: lonewolf-%{version}-%{real_version}.tar.bz2
+Source1: lwscripts-%{version}-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, ncurses-devel
