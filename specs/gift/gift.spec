@@ -1,4 +1,4 @@
-# $Id: gift.spec,v 1.1 2004/03/01 15:41:09 driesve Exp $
+# $Id$
 
 # Authority: dries
 

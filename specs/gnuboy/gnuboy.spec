@@ -1,4 +1,4 @@
-# $Id: gnuboy.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: A Nintendo GameBoy Color emulator.
 Name: gnuboy

@@ -1,4 +1,4 @@
-# $Id: gpgme.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: GnuPG Made Easy.
 Name: gpgme

@@ -1,4 +1,4 @@
-# $Id: gtk-sharp.spec,v 1.3 2004/02/28 02:39:00 dag- Exp $
+# $Id$
 
 # Authority: dag
 

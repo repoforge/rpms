@@ -1,9 +1,9 @@
-# $Id: gurlchecker.spec,v 1.3 2004/02/27 13:12:06 dag- Exp $
+# $Id$
 
 # Authority: dag
 # Upstream: Emmanuel Saracco <esaracco@noos.fr>
 
-Summary: GNOME link validity checker.
+Summary: Graphical link validity checker.
 Name: gurlchecker
 Version: 0.7.9
 Release: 0
@@ -21,8 +21,8 @@ Prefix: %{_prefix}
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 
 %description
-gURLChecker is a GNOME tool that can check links on a single web page
-or on a whole web site in order to determine validity of each page.
+gURLChecker is a graphical web link checker. It can work on a whole
+site, a single local page or a browser bookmarks file.
 
 %prep
 %setup

@@ -1,4 +1,4 @@
-# $Id: gaim.spec,v 1.1 2004/02/26 15:57:42 thias Exp $
+# $Id$
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)

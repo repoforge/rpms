@@ -1,4 +1,4 @@
-# $Id: gentoo.spec,v 1.1 2004/03/01 10:40:02 thias Exp $
+# $Id$
 
 %define desktop_vendor freshrpms
 

@@ -1,4 +1,4 @@
-# $Id: gkrellm-themes.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: Some themes for the GNU Krell Monitor.
 Name: gkrellm-themes

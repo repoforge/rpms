@@ -1,4 +1,4 @@
-# $Id: gnustep-make.spec,v 1.1 2004/03/01 15:41:10 driesve Exp $
+# $Id$
 
 # Authority: dries
 

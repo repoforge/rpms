@@ -1,4 +1,4 @@
-# $Id: gcombust.spec,v 1.1 2004/02/26 16:02:10 thias Exp $
+# $Id$
 
 Summary: A useful GTK+ front-end for mkisofs and cdrecord
 Name: gcombust

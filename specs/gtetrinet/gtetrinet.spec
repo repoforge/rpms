@@ -1,4 +1,4 @@
-# $Id: gtetrinet.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: A GNOME version of a tetris game playable on the net.
 Name: gtetrinet

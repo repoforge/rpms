@@ -1,4 +1,4 @@
-# $Id: giblib.spec,v 1.1 2004/02/26 16:02:10 thias Exp $
+# $Id$
 
 Summary: Simple library and a wrapper for imlib2
 Name: giblib

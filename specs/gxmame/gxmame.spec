@@ -1,4 +1,4 @@
-# $Id: gxmame.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 %define desktop_vendor freshrpms
 #define date           20031202

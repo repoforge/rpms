@@ -1,4 +1,4 @@
-# $Id: gthumb.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: An image viewer and browser for the GNOME desktop.
 Name: gthumb

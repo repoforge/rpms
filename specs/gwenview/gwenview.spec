@@ -1,4 +1,4 @@
-# $Id: gwenview.spec,v 1.2 2004/02/27 17:08:23 driesve Exp $
+# $Id$
 # Authority: dries
 
 Summary: Image viewer for KDE.
