@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Mike Oliphant <grip@nostatic.org>
 
 Summary: Graphical CD player, CD ripper and encoder frontend
 Name: grip
@@ -50,10 +51,10 @@ servers.
 %files -f %{name}-2.2.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING CREDITS README TODO
-%{_bindir}/%{name}
-%{_datadir}/applications/*%{name}.desktop
-%{_datadir}/gnome/help/%{name}
-%{_datadir}/pixmaps/gripicon.png
+%doc %{_datadir}/gnome/help/grip/
+%{_bindir}/*
+%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/*.png
 
 
 %changelog
