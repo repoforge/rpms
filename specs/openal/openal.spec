@@ -51,9 +51,9 @@ install -p -D %{SOURCE2} linux/aclocal.m4
 
 %build
 cd linux
-aclocal
-autoconf 
-autoheader configure.in
+%{__aclocal}
+%{__autoconf}
+%{__autoheader} configure.in
 %configure --enable-arts \
            --enable-esd \
            --enable-vorbis \
@@ -69,10 +69,8 @@ autoheader configure.in
 	DESTDIR="%{buildroot}%{_prefix}" \
 	DESTLIB="%{buildroot}%{_libdir}"
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_infodir}
-%{__install} -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/openalrc
-%{__install} -m0644 linux/doc/openal.info %{buildroot}%{_infodir}
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/openalrc
+%{__install} -D -m0644 linux/doc/openal.info %{buildroot}%{_infodir}
 
 %clean
 %{__rm} -rf %{buildroot}
