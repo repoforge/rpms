@@ -1,0 +1,305 @@
+diff -uNr klvemkdvd-0.4-orig/src/t_ui_main.cpp klvemkdvd-0.4/src/t_ui_main.cpp
+--- klvemkdvd-0.4-orig/src/t_ui_main.cpp	2004-01-23 08:42:55.000000000 +0100
++++ klvemkdvd-0.4/src/t_ui_main.cpp	2004-12-23 10:53:47.175388464 +0100
+@@ -32,7 +32,7 @@
+ T_PROJECT_VIEW::T_PROJECT_VIEW(QWidget *parent, const char *name)
+   : KFileDetailView(parent, name)
+ {
+-};
++}
+ 
+ void T_PROJECT_VIEW::sort()
+ {
+diff -uNr klvemkdvd-0.4-orig/src/t_ui_main.cpp~ klvemkdvd-0.4/src/t_ui_main.cpp~
+--- klvemkdvd-0.4-orig/src/t_ui_main.cpp~	2004-01-20 21:55:41.000000000 +0100
++++ klvemkdvd-0.4/src/t_ui_main.cpp~	1970-01-01 01:00:00.000000000 +0100
+@@ -1,289 +0,0 @@
+-/***************************************************************************
+- *   Copyright (C) 2003 by Gerhard Monzel                                  *
+- *   none                                                                  *
+- *                                                                         *
+- *   This program is free software; you can redistribute it and/or modify  *
+- *   it under the terms of the GNU General Public License as published by  *
+- *   the Free Software Foundation; either version 2 of the License, or     *
+- *   (at your option) any later version.                                   *
+- *                                                                         *
+- *   This program is distributed in the hope that it will be useful,       *
+- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+- *   GNU General Public License for more details.                          *
+- *                                                                         *
+- *   You should have received a copy of the GNU General Public License     *
+- *   along with this program; if not, write to the                         *
+- *   Free Software Foundation, Inc.,                                       *
+- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+- ***************************************************************************/
+-
+-#include <stdio.h>
+-#include <stdlib.h>
+-
+-#include "t_ui_main.h"
+-#include "t_add_files.h"
+-#include "t_dvd_fs.h"
+-#include "t_writer.h"
+-
+-//#include <keditlistbox.h>
+-//static KEditListBox *el_project = NULL;
+-
+-T_PROJECT_VIEW::T_PROJECT_VIEW(QWidget *parent, const char *name)
+-  : KFileDetailView(parent, name)
+-{
+-};
+-
+-void T_PROJECT_VIEW::sort()
+-{
+-  fprintf(stderr, "*** SORT ***\n");
+-}
+-
+-//=========================
+-//== program termination ==
+-//=========================
+-void T_UI_MAIN::closeEvent(QCloseEvent *e)
+-{
+-  addFiles->clearProject(true);
+-
+-  saveConfig();
+-
+-  UI_MAIN::closeEvent(e);
+-}
+-
+-//===========================
+-//== show start Log widget ==
+-//===========================
+-void T_UI_MAIN::slotShowLog(void)
+-{
+-  if (winLog) winLog->show();
+-}
+-
+-//==========================
+-//== DVD Filesystem stuff ==
+-//==========================
+-void T_UI_MAIN::slotUpdateDvdFs(const QString &dest)
+-{
+-  if (dvdFs) dvdFs->updateSpace(&dest);
+-}
+-
+-//=================================
+-//== project files (title) stuff ==
+-//=================================
+-void T_UI_MAIN::slotClearProject(void)
+-{
+-  if (addFiles) addFiles->clearProject(false);
+-}
+-
+-//========================
+-//== file browser stuff ==
+-//========================
+-void T_UI_MAIN::slotGetDir(void)
+-{
+-  if (!cb_browse->currentText().isEmpty())
+-  {
+-    op_browse->setURL(KURL(cb_browse->currentText()), FALSE);
+-  }
+-  else
+-    op_browse->setURL(KURL("$HOME"), FALSE);
+-}
+-
+-void T_UI_MAIN::slotSetDir(const KURL& url)
+-{
+-  cb_browse->setURLs( QStringList(url.prettyURL()) + cb_browse->urls() );
+-}
+-
+-void T_UI_MAIN::slotUpdateDir(const KURL &url)
+-{
+-  op_browse->setURL(url, FALSE);
+-}
+-
+-//=============================
+-//== lock/unlock UI elements ==
+-//=============================
+-void T_UI_MAIN::setEnableUI(int t, bool s)
+-{
+-  rq_dest->setEnabled(s);
+-  
+-  bt_add_title->setEnabled(s);
+-  bt_remove_titles->setEnabled(s);
+-
+-  bt_add_files->setEnabled(s);
+-  bt_clear_files->setEnabled(s);
+-
+-  switch(t)
+-  {
+-    case PROJECT_UI:
+-	case DVD_FS_UI:
+-	  bt_burn->setEnabled(s);
+-      bt_format->setEnabled(s);
+-
+-	  op_browse->setEnabled(s);
+-      cb_browse->setEnabled(s);
+-      bt_browse_back->setEnabled(s);
+-      bt_browse_parent->setEnabled(s);
+-
+-	  fv_project->setEnabled(s);
+-      gb_detail->setEnabled(s);
+-	  break;
+-
+-    case WRITER_UI:
+-      gb_writer->setEnabled(s);
+-	  break;
+-  }
+-}
+-
+-//==================
+-//== config stuff ==
+-//==================
+-
+-#define C_FNAME            "klvemkdvdrc"
+-#define C_GROUP_MAIN       "klvemkdvd main"
+-
+-#define C_DVD_FS_DIR       "DVDFsDir"
+-#define C_BROWSER_DIR      "BrowserDir"
+-#define C_LAST_BROWSER_DIR "LastBrowserDir"
+-
+-#define C_WRITER_DEV       "WriterDevice"
+-#define C_WRITER_CAP       "WriterCapacity"
+-#define C_WRITER_SPD       "WriterSpeed"
+-
+-void T_UI_MAIN::loadConfig(void)
+-{
+-  config = new T_CONFIG(C_FNAME, FALSE, FALSE);
+-  if (config)
+-  {
+-    config->setGroup(C_GROUP_MAIN);
+-
+-	//-- path to DVD Filesystem last used --
+-	//--------------------------------------
+-	rq_dest->setURL(config->readPathEntry(C_DVD_FS_DIR));
+-    slotUpdateDvdFs(rq_dest->url());
+-
+-	//-- path to Sources last browsed --
+-	//----------------------------------
+-	cb_browse->setURLs(config->readPathListEntry(C_BROWSER_DIR));
+-    slotSetDir(config->readPathEntry(C_LAST_BROWSER_DIR));
+-	slotGetDir();
+-
+-    //-- Writer settings last used --
+-	//-------------------------------
+-    cb_device->setCurrentItem(config->readNumEntry(C_WRITER_DEV));
+-	cb_writer_cap->setCurrentItem(config->readNumEntry(C_WRITER_CAP));
+-	cb_writer_speed->setCurrentItem(config->readNumEntry(C_WRITER_SPD));
+-
+-	//-- some checks --
+-	//-----------------
+-	if (config->workDir().isEmpty())
+-	  lb_log->setText("couldn't create work dir -> program won't work!");
+-  }
+-
+-}
+-
+-void T_UI_MAIN::saveConfig(void)
+-{
+-  if (config)
+-  {
+-    config->setGroup(C_GROUP_MAIN);
+-
+-    config->writePathEntry(C_DVD_FS_DIR, rq_dest->url());
+-    config->writePathEntry(C_BROWSER_DIR, cb_browse->urls());
+-    config->writePathEntry(C_LAST_BROWSER_DIR, cb_browse->currentText());
+-    config->writeEntry(C_WRITER_DEV, cb_device->currentItem());
+-    config->writeEntry(C_WRITER_CAP, cb_writer_cap->currentItem());
+-    config->writeEntry(C_WRITER_SPD, cb_writer_speed->currentItem());
+-
+-    config->sync();
+-    delete config;
+-  }
+-}
+-
+-//=================
+-//== Konstructor ==
+-//=================
+-T_UI_MAIN::T_UI_MAIN(QWidget* parent, const char* name, WFlags fl)
+-: UI_MAIN(parent,name,fl)
+-{
+-  op_browse    = new KDirOperator( KURL( "$HOME" ), this );
+-  cb_browse    = new KURLComboBox(KURLComboBox::Directories, this);
+-  fv_project   = new KFileDetailView(this, "Project");
+-  //fv_project   = new T_PROJECT_VIEW(this, "Project");
+-  winLog       = new T_UI_LOG(this, "Log", 0);
+-  addFiles     = new T_ADD_FILES(this);
+-  dvdFs        = new T_DVD_FS(this);
+-  mpegBuild    = new T_MPEG_BUILD(this);
+-  writer       = new T_WRITER(this);
+-
+-  fv_project->setGeometry(fr_project->geometry());
+-  fv_project->setSelectionMode(KFile::Extended);
+-  fv_project->KListView::setSorting(0, true);
+-  //fv_project->setItemsMovable(true);
+-  //fv_project->setDragEnabled(true);
+-  //fv_project->setDropVisualizer(true);
+-  //fv_project->setAcceptDrops(true);
+-  //fv_project->addColumn("No");
+-  //fv_project->KListView::setSortColumn(-1);
+-  //fv_project->setSorting(-1);
+-  //for (int i=2; i<6; i++) fv_project->hideColumn(i);
+-  //el_project->setGeometry(fr_project->geometry());
+-
+-
+-  op_browse->setGeometry(fr_browse->geometry());
+-  op_browse->setView(KFile::Detail); //SeparateDirs);
+-  op_browse->setShowHiddenFiles(TRUE);
+-  op_browse->view()->setSelectionMode(KFile::Extended);
+-
+-  cb_browse->setGeometry(fr_browse_dir->geometry());
+-  cb_browse->setEditable(TRUE);
+-  cb_browse->setMaxItems(10);
+-  cb_browse->setMaxCount(10);
+-  cb_browse->setDuplicatesEnabled(FALSE);
+-
+-  rq_dest->lineEdit()->setReadOnly(TRUE);
+-  rq_dest->setMode(KFile::Directory);
+-
+-  loadConfig();
+-
+-  //-- file browser --
+-  connect(op_browse, SIGNAL(urlEntered(const KURL &)), SLOT(slotSetDir(const KURL &)));
+-  connect(cb_browse, SIGNAL(returnPressed()), SLOT(slotGetDir()));
+-  connect(cb_browse, SIGNAL(urlActivated(const KURL&)), SLOT(slotUpdateDir(const KURL&)));
+-  connect(bt_browse_back, SIGNAL(clicked()), op_browse, SLOT(back()));
+-  connect(bt_browse_parent, SIGNAL(clicked()), op_browse, SLOT(cdUp()));
+-
+-  //-- add / remove files from proect --
+-  connect(bt_add_files, SIGNAL(clicked()), addFiles, SLOT(slotBegin()));
+-  connect(bt_clear_files, SIGNAL(clicked()), SLOT(slotClearProject()));
+-
+-  //-- dvd filesystem --
+-  connect(bt_add_title, SIGNAL(clicked()), dvdFs, SLOT(slotBegin()));
+-  connect(bt_build_mpeg, SIGNAL(clicked()), mpegBuild, SLOT(slotBegin()));
+-  connect(rq_dest, SIGNAL(urlSelected(const QString &)), SLOT(slotUpdateDvdFs(const QString &)));
+-
+-  //-- writer --
+-  connect(bt_format, SIGNAL(clicked()), writer, SLOT(slotFormat()));
+-  connect(bt_burn, SIGNAL(clicked()), writer, SLOT(slotBurn()));
+-
+-  //-- log list --
+-  connect(bt_log, SIGNAL(clicked()), SLOT(slotShowLog()));
+-
+-}
+-
+-//================
+-//== Destructor ==
+-//================
+-T_UI_MAIN::~T_UI_MAIN()
+-{
+-  if (cb_browse) delete cb_browse;
+-  if (op_browse) delete op_browse;
+-  if (fv_project) delete fv_project;
+-  if (winLog) delete winLog;
+-  if (addFiles) delete addFiles;
+-  if (dvdFs) delete dvdFs;
+-  if (mpegBuild) delete mpegBuild;
+-  if (writer) delete writer;
+-}
+-
+-/*$SPECIALIZATION$*/
+-#include "t_ui_main.moc"
+-

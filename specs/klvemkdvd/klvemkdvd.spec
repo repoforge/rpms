@@ -35,6 +35,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/lvempeg/klvemkdvd-%{version}.src.tgz
+Patch: gcc34-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
@@ -61,6 +62,7 @@ lve package.
 
 %prep
 %setup
+%patch -p1
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh
