@@ -27,12 +27,14 @@ Tag informations are converted from unicode to your system locale.
 
 
 %build
-%ifarch ppc
-perl -pi.orig -e 's|#define ARCH_X86.*|#undef ARCH_X86|g;
-                  s|#define __CPU__.*|#define __CPU__ PPC|g' \
+%ifnarch %{ix86}
+%{__perl} -pi.orig -e 's|#define ARCH_X86.*|#undef ARCH_X86|g;
+                  s|#define __CPU__.*|#undef __CPU__|g' \
     ffmpeg-strip-wma/config.h
 %endif
-OPTFLAGS="%{optflags}" %{__make} %{?_smp_mflags}
+%{__perl} -pi.orig -e 's| (-shared)| $1 -fPIC|; s| (-DX86)| $1 -fPIC|;' Makefile.inc
+%{__make} %{?_smp_mflags} \
+	OPTFLAGS="%{optflags} -fPIC"
 
 
 %install
