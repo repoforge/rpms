@@ -4,6 +4,8 @@
 # Upstream: 
 # Screenshot: http://www.dooglio.net/VncSelector/screenshot.png
 
+# DistExclude: el3
+
 Summary: Manage a list of currently active VNC server sessions
 Name: vncselector
 Version: 1.6
