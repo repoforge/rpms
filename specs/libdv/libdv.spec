@@ -3,14 +3,16 @@
 
 Summary: Codec for DV video, used by most digital camcorders
 Name: libdv
-Version: 0.101
-Release: 2
+Version: 0.102
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 Source: http://dl.sf.net/libdv/libdv-%{version}.tar.gz
 URL: http://libdv.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel >= 1.2.4, pkgconfig >= 0.9.0
+# libtool, *sigh*
+BuildRequires: gcc-c++
 
 %description 
 The Quasar DV codec (libdv) is a software codec for DV video, the encoding
@@ -37,20 +39,27 @@ incorporate libdv into applications.
 %prep
 %setup
 
+
 %build
-%configure
+%configure --program-prefix=%{?_program_prefix}
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -67,14 +76,18 @@ incorporate libdv into applications.
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 
+
 %changelog
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.101-2.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 0.102-1
+- Update to 0.102, which has a newer library version.
+
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.101-2
 - Add missing gtk+-devel dependency on the devel package.
 
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.101-1.fr
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.101-1
 - Update to 0.101.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.99-3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.99-3
 - Rebuild for Fedora Core 1.
 
 * Tue Aug 12 2003 Matthias Saou <http://freshrpms.net/>

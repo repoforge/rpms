@@ -2,7 +2,7 @@
 # Authority: matthias
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20040325
+%define date      20040415
 #define rcver     pre2
 
 %define xmms_plugindir %(xmms-config --input-plugin-dir)
@@ -11,7 +11,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.8%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.9%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -243,6 +243,9 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 
 
 %changelog
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.9.20040415
+- Updated to today's CVS snapshot to fix http vulnerability.
+
 * Wed Feb 11 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.8.20040325
 - Updated to today's CVS snapshot.
 - Updated Blue skin to 1.1.

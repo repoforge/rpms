@@ -6,7 +6,7 @@
 Summary: library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.2
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -46,6 +46,7 @@ programs that need to access quicktime files using libquicktime.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 
+
 %build
 # Fix plugin compilation
 #perl -pi -e 's|^LDFLAGS = |LDFLAGS = -L../../src/.libs |' plugins/*/Makefile
@@ -56,16 +57,22 @@ perl -pi -e 's|^LQT_LIBS = (.*)|LQT_LIBS = -L../../src/.libs $1|g' \
     %{?_without_mmx:--disable-mmx}
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -90,8 +97,12 @@ perl -pi -e 's|^LQT_LIBS = (.*)|LQT_LIBS = -L../../src/.libs $1|g' \
 %exclude %{_libdir}/%{name}/*.la
 %{_datadir}/aclocal/*.m4
 
+
 %changelog
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-1.fr
+* Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-2
+- Rebuild against new libdv.
+
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-1
 - Update to 0.9.2 final.
 - Rebuild for Fedora Core 1.
 

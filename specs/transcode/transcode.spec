@@ -4,7 +4,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 0.6.12
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_dv:Requires: libdv}
 %{!?_without_lzo:Requires: lzo >= 1.08}
 %{!?_without_libfame:Requires: libfame}
-%{!?_without_magick:Requires: ImageMagick >= 5.4.3, bzip2-devel}
+%{!?_without_magick:Requires: ImageMagick >= 5.4.3, bzip2}
 %{!?_without_mjpeg:Requires: mjpegtools}
 Requires: SDL, libxml2, libjpeg
 %{?_with_avifile6:BuildRequires: avifile-devel >= 0.6.0}
@@ -38,7 +38,7 @@ Requires: SDL, libxml2, libjpeg
 %{!?_without_lzo:BuildRequires: lzo-devel >= 1.08}
 %{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
 %{!?_without_libfame:BuildRequires: libfame-devel}
-%{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3, bzip2}
+%{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3, bzip2-devel}
 %{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
 BuildRequires: gcc-c++, glib-devel
 BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
@@ -61,8 +61,10 @@ Available rpmbuild rebuild options :
 --without : text lame ogg vorbis dvdread xvidcore postproc quicktime dv lzo
             a52 libfame magick mjpeg
 
+
 %prep
 %setup
+
 
 %build
 %configure \
@@ -81,14 +83,17 @@ Available rpmbuild rebuild options :
     %{?_without_libfame:--without-libfame}
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 mv %{buildroot}%{_docdir}/transcode installed-docs
 strip %{buildroot}%{_libdir}/transcode/*.so
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -98,11 +103,18 @@ strip %{buildroot}%{_libdir}/transcode/*.so
 %exclude %{_libdir}/transcode/*.la
 %{_mandir}/man1/*
 
+
 %changelog
-* Sat Jan 10 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-1.fr
+* Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-3
+- Rebuild against new libdv.
+
+* Thu Mar 25 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-2
+- Fix bzip2-devel dependency.
+
+* Sat Jan 10 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-1
 - Update to 0.6.12.
 
-* Mon Nov 10 2003 Matthias Saou <http://freshrpms.net/> 0.6.11-1.fr
+* Mon Nov 10 2003 Matthias Saou <http://freshrpms.net/> 0.6.11-1
 - Rebuild for Fedora Core 1.
 - Update to 0.6.11.
 - Remove ffmpeg, looks like a snapshot is included now.
