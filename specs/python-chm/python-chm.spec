@@ -1,11 +1,13 @@
 # $Id$
 # Authority: dag
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name pychm
 
 Summary: Python package to handle CHM files
 Name: python-chm
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -44,9 +46,12 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING NEWS README
-%{_libdir}/python*/site-packages/chm/
+%{python_sitearch}/chm/
 
 %changelog
+* Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 0.8.2-1
+- Updated to release 0.8.2.
+
 * Mon Nov 08 2004 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Updated to release 0.8.1.
 

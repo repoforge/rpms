@@ -7,16 +7,17 @@
 
 Summary: Browser plugin for mplayer
 Name: mplayerplug-in
-Version: 2.70
-Release: 2
+Version: 2.80
+Release: 13
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
 
 Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
+Patch: mplayerplug-in-2.80-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, mozilla-devel, glib2-devel, gtk2-devel, mozilla-devel
+BuildRequires: XFree86-devel, mozilla-devel, glib2-devel, gtk2-devel >= 2.2.1, mozilla-devel
 BuildRequires: gcc-c++
 
 Obsoletes: mozilla-mplayer <= %{version}-%{release}
@@ -30,6 +31,7 @@ in your browser.
 
 %prep
 %setup -n %{name}
+%patch0
 
 %build
 %configure
@@ -37,15 +39,14 @@ in your browser.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 mplayerplug-in.so %{buildroot}%{_libdir}/mozilla/plugins/mplayerplug-in.so
-%{__install} -D -m0755 mplayerplug-in.xpt %{buildroot}%{_libdir}/mozilla/components/mplayerplug-in.xpt
-%{__install} -D -m0644 mplayerplug-in.conf %{buildroot}%{_sysconfdir}/mplayerplug-in.conf
-%{__install} -D -m0644 mplayerplug-in.types %{buildroot}%{_sysconfdir}/mplayerplug-in.types
+%{__make} install \
+	DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog INSTALL README TODO
 %config(noreplace) %{_sysconfdir}/mplayerplug-in.conf
@@ -54,6 +55,13 @@ in your browser.
 %{_libdir}/mozilla/components/mplayerplug-in.xpt
 
 %changelog
+* Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 2.80-13
+- Added makefile patch, that adds locale.
+- Increased the accidental release inflation :)
+
+* Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 2.80-1
+- Updated to release 2.80.
+
 * Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 2.70-2
 - Removed %%{_libdir}/mozilla/plugins/
 

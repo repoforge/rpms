@@ -21,7 +21,7 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.40
+Version: 0.41
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -30,13 +30,14 @@ URL: http://inkscape.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
+Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(XML::Parser), libsigc++2-devel, libgc-devel
 BuildRequires: gtkmm24-devel, glibmm-devel, gcc-c++, pkgconfig
 BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
-BuildRequires: gtk2-devel, libxml2-devel
+BuildRequires: gtk2-devel, libxml2-devel, libxslt-devel
+BuildRequires: python-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
@@ -63,7 +64,10 @@ Categories=GNOME;Application;Graphics;
 EOF
 
 %build
-%configure 
+%configure \
+	--with-xinerama \
+	--enable-static="no" \
+	--with-inkjar
 %{__make} %{?_smp_mflags}
 
 %install
@@ -94,6 +98,9 @@ EOF
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Thu Feb 10 2005 Dag Wieers <dag@wieers.com> - 0.41-1
+- Updated to release 0.41.
+
 * Tue Nov 30 2004 Dag Wieers <dag@wieers.com> - 0.40-1
 - Updated to release 0.40.
 

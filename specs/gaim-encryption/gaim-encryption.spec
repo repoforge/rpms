@@ -43,7 +43,7 @@ Openssl encryption support for gaim.
 %{_libdir}/gaim/encrypt.so
 
 %changelog
-* Mon Jan 31 2005 Chris Weyl <cweyl@us.ibm.com> - 2.34-1
+* Mon Jan 31 2005 Chris Weyl <cweyl@alumni.drew.edu> - 2.34-1
 - Updated gaim-e release
 
 * Sat Apr 18 2004 Che

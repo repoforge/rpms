@@ -42,11 +42,13 @@ you will need to install %{name}-devel.
 
 %build
 %configure
-%{__make} %{_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+%{__install} -D -m0600 etc/xsupplicant.conf %{buildroot}%{_sysconfdir}/xsupplicant.conf
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,6 +62,7 @@ you will need to install %{name}-devel.
 %files 
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README README.wireless_cards doc/html/ doc/txt/ doc/README* etc/*.conf
+%config(noreplace) %{_sysconfdir}/xsupplicant.conf
 %{_bindir}/config-parser
 %{_bindir}/xsup_monitor
 %{_bindir}/xsup_set_pwd
@@ -70,5 +73,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libcardif.a
 
 %changelog
-* Tue Jan 11 2005 Chris Weyl <cweyl@us.ibm.com> - 1.0.1-1
+* Sun Feb 13 2005 Dag Wieers <dag@wieers.coM> - 1.0.1-2
+- Added default xsupplicant.conf.
+
+* Tue Jan 11 2005 Chris Weyl <cweyl@alumni.drew.edu> - 1.0.1-1
 - Initial RPM release.

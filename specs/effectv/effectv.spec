@@ -4,8 +4,8 @@
 
 Summary: Real-time video effector
 Name: effectv
-Version: 0.3.9
-Release: 0
+Version: 0.3.10
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://effectv.sourceforge.net/
@@ -27,7 +27,8 @@ amazing effectors.
 
 %build
 #configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	CFLAGS.opt="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,10 +42,13 @@ amazing effectors.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING CREWS FAQ README* TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/effectv.1*
+%{_bindir}/effectv
 
 %changelog
+* Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 0.3.10-1
+- Updated to release 0.3.10.
+
 * Tue Jan 13 2004 Dag Wieers <dag@wieers.com> - 0.3.9-0
 - Updated to release 0.3.9.
 

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Multimedia container format library
 Name: libmatroska

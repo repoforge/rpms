@@ -6,7 +6,7 @@
 
 Summary: Library that implements an embeddable SQL database engine
 Name: sqlite
-Version: 2.8.15
+Version: 2.8.16
 Release: 1
 License: LGPL
 Group: Applications/Databases
@@ -50,7 +50,8 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}
+%setup
+
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e 's|\$\(exec_prefix\)/lib|\$(libdir)|g' Makefile.in
 
@@ -66,7 +67,7 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %{__rm} -rf %{buildroot}
 
 %makeinstall
-# Install the man page, it's not automatically (2.8.15)
+# Install the man page, it's not automatically (2.8.16)
 %{__install} -D -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/sqlite.1
 
 %post
@@ -82,19 +83,22 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/sqlite
-%{_libdir}/*.so.*
-%{_mandir}/man1/*
+%{_libdir}/libsqlite.so.*
+%{_mandir}/man1/sqlite.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
-%{_includedir}/*.h
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
+%{_includedir}/sqlite.h
+%{_libdir}/libsqlite.a
+%exclude %{_libdir}/libsqlite.la
+%{_libdir}/libsqlite.so
+%{_libdir}/pkgconfig/sqlite.pc
 
 %changelog
+* Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 2.8.15-1
+- Updated to release 2.8.16.
+
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 2.8.15-1
 - Update to 2.8.15.
 - Minor cleanups, removed now unneeded workarounds.

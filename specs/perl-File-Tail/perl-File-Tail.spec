@@ -1,4 +1,5 @@
 # $Id$
+# Authority: dries
 # Upstream: Matija Grabnar <matija,grabnar$arnes,si>
 
 %define real_name File-Tail

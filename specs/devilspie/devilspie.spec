@@ -4,7 +4,7 @@
 
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
-Version: 0.7
+Version: 0.8
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -36,6 +36,7 @@ in the pager or task list.
 
 %build
 %configure
+%{__make} clean
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,6 +54,9 @@ in the pager or task list.
 %{_bindir}/devilspie
 
 %changelog
+* Mon Feb 14 2005 Dag Wieers <dag@wieers.com> - 0.8-1
+- Updated to release 0.8.
+
 * Sat Nov 13 2004 Dag Wieers <dag@wieers.com> - 0.7-1
 - Updated to release 0.7.
 

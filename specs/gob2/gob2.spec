@@ -17,7 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.5z.com/pub/gob/gob2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.0.0
+### gob2 2.0.9 was the last one to generate glib 2.2 compatible code
+BuildRequires: glib2-devel >= 2.4.0
 
 %description
 GOB is a simple preprocessor for making GTK+ objects.  It makes objects from a

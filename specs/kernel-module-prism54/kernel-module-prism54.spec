@@ -5,8 +5,6 @@
 # ExcludeDist: fc2 fc3
 
 # Archs: i686 i586 i386 athlon
-# Distcc: 0
-# Soapbox: 0
 # BuildAsRoot: 1
 
 %{?dist: %{expand: %%define %dist 1}}

@@ -1,17 +1,16 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <gtk-perl-list$gnome,org>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Gtk2
 
 Summary: Perl interface to the 2.x series of the Gimp Toolkit library
 Name: perl-Gtk2
-Version: 1.040
-Release: 0
+Version: 1.062
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2/
@@ -19,9 +18,8 @@ URL: http://search.cpan.org/dist/Gtk2/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gtk2-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.8.0, perl(Glib) >= 1.0.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
 BuildRequires: gtk2-devel >= 2.0.0
@@ -48,8 +46,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -58,9 +56,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE MANIFEST NEWS README TODO examples/ gtk-demo/
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorarch}/Gtk2/
+%{perl_vendorarch}/Gtk2.pm
+%{perl_vendorarch}/auto/Gtk2/
 
 %changelog
+* Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.062-1
+- Updated to release 1.062.
+
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 1.040-0
 - Updated to release 1.040.
 

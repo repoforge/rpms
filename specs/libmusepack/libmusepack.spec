@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Musepack audio decoding library
 Name: libmusepack

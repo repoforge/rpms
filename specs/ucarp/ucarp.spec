@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Common Address Redundancy Protocol (CARP) for Unix
 Name: ucarp

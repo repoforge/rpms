@@ -8,13 +8,16 @@
 %{?el2:%define _without_net_snmp 1}
 %{?rh6:%define _without_net_snmp 1}
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define _libexecdir %{_libdir}/nagios/plugins
-%define extraplugins check_cluster check_dhcp
+%define extraplugins cluster cluster2 cpqarray hltherm ipxping logins rbl timeout uptime
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.3.1
-Release: 10
+Version: 1.4
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
@@ -65,6 +68,7 @@ find contrib -type f -exec %{__perl} -pi -e '
 	' {} \;
 
 %build
+PATH="/sbin:/bin:/usr/sbin:/usr/sbin:$PATH" \
 %configure \
 	--with-cgiurl="/nagios/cgi-bin" \
 	--with-nagios-user="nagios" \
@@ -73,33 +77,39 @@ find contrib -type f -exec %{__perl} -pi -e '
 
 ### Build some contrib plugins
 for plugin in %{extraplugins}; do
-	${CC:-%{__cc}} %{optflags} -o $plugin contrib/$plugin.c
-	%{__rm} -f contrib/$plugin.c
+	${CC:-%{__cc}} %{optflags} -I. -Iplugins/ -I%{_datadir}/gettext/ -o check_$plugin contrib/check_$plugin.c || :
 done
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/contrib/
-%{__install} -m0755 %{extraplugins} %{buildroot}%{_libdir}/nagios/plugins/
 %{__install} -m0755 contrib/check* %{buildroot}%{_libdir}/nagios/plugins/contrib/
+%{__install} -m0755 check_* %{buildroot}%{_libdir}/nagios/plugins/
 
-%{__install} -D -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_archlib}/utils.pm
+%{__install} -D -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_vendorlib}/utils.pm
 %{__install} -D -m0644 command.cfg %{buildroot}%{_sysconfdir}/nagios/command-plugins.cfg
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 #%defattr(-, nagios, nagios, 0755)
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README REQUIREMENTS command.cfg
+%doc ACKNOWLEDGEMENTS AUTHORS BUGS ChangeLog CHANGES COPYING FAQ INSTALL
+%doc LEGAL NEWS README REQUIREMENTS SUPPORT THANKS command.cfg
 %config(noreplace) %{_sysconfdir}/nagios/
 %{_libdir}/nagios/plugins/
-%{perl_archlib}
+%{perl_vendorlib}/utils.pm
 
 %changelog
+* Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.4-2
+- Fixed setuid bit for ping and fping.
+- Added /sbin and /usr/sbin to $PATH.
+- Updated to release 1.4.
+
 * Tue Apr 27 2004 Dag Wieers <dag@wieers.com> - 1.3.1-10
 - Everything owned by user root. (James Wilkinson)
 

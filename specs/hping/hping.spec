@@ -6,7 +6,7 @@
 Summary: Command-line oriented TCP/IP packet assembler/analyzer
 Name: hping
 Version: 2.0.0
-Release: 0.rc3
+Release: 1.rc3
 License: GPL
 Group: Applications/Internet
 URL: http://www.hping.org/
@@ -15,7 +15,10 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.hping.org/hping%{real_version}.tar.gz
+Patch0: hping-2.0.0-x86_64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Obsoletes: hping2 <= %{version}-%{release}
 
 %description
 hping is a command-line oriented TCP/IP packet assembler/analyzer.
@@ -26,6 +29,7 @@ send files between a covered channel, and many other features.
 
 %prep
 %setup -n %{name}2-rc3
+%patch0 -p0
 
 %build
 %configure
@@ -44,10 +48,15 @@ send files between a covered channel, and many other features.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING KNOWN-BUGS NEWS README TODO docs/*.txt
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/hping.8*
+%doc %{_mandir}/man8/hping2.8*
+%{_sbindir}/hping
+%{_sbindir}/hping2
 
 %changelog
+* Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 2.0.0-1.rc3
+- Added patch for x86_64.
+
 * Mon May 03 2004 Dag Wieers <dag@wieers.com> - 2.0.0-0.rc3
 - Updated to release 2.0.0-rc3.
 

@@ -18,7 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/glchess/glchess-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel >= 1.2.0, gtkglarea, automake, autoconf
+BuildRequires: gtk+-devel >= 1.2.0, automake, autoconf
+#BuildRequires: gtkglarea
 
 %description
 glChess is a 3D OpenGL based chess game that interfaces via the Chess Engine

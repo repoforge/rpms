@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define real_name XML-DOM
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)

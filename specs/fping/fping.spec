@@ -7,7 +7,7 @@
 Summary: Utility to ping multiple hosts at once
 Name: fping
 Version: 2.4
-Release: 0.b2
+Release: 1.b2
 License: distributable
 Group: Applications/Internet
 URL: http://www.fping.com/
@@ -19,6 +19,7 @@ Source: http://www.fping.com/download/fping-%{real_version}.tar.gz
 Patch0: fping-ac_fixes.patch
 Patch1: fping-ipv6.patch
 Patch2: fping-ipv6-ac.patch
+Patch3: fping-2.4b2-fflush.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake
@@ -41,6 +42,7 @@ will be considered unreachable.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -59,6 +61,7 @@ will be considered unreachable.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__install} -D -m4750 fping6 %{buildroot}%{_sbindir}/fping6
+%{__ln_s} -f fping.8 %{buildroot}%{_mandir}/man8/fping6.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -66,10 +69,16 @@ will be considered unreachable.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
-%doc %{_mandir}/man?/*
-%attr(4750, root, adm) %{_sbindir}/*
+%doc %{_mandir}/man8/fping.8*
+%doc %{_mandir}/man8/fping6.8*
+%attr(4750, root, adm) %{_sbindir}/fping
+%attr(4750, root, adm) %{_sbindir}/fping6
 
 %changelog
+* Tue Feb 15 2005 Ken Tsukahara <ken.tsukahara@tmt-d.co.jp> 2.4-1.b2
+- Flush stdout for each line.
+- Fix stdout/stderr confusion in Patch1.
+
 * Sun Jun 01 2003 Dag Wieers <dag@wieers.com> - 2.4-0.b2
 - Adapted version to new scheme.
 

@@ -4,13 +4,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define _without_shared_mime 1
-%{?fc3:%undefine _without_shared_mime}
-%{?fc2:%undefine _without_shared_mime}
+%define _without_shmime 1
+%{?fc3:%undefine _without_shmime}
+%{?fc2:%undefine _without_shmime}
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.3
+Version: 0.9.4
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -39,16 +39,6 @@ http links and internationalisation.
 %prep
 %setup
 
-#%{__cat} <<EOF >gnochm.xml
-#<?xml version="1.0" encoding="utf-8"?>
-#<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-#	<mime-type type="application/x-chm">
-#		<comment>HTML Help</comment>
-#		<glob pattern="*.chm"/>
-#	</mime-type>
-#</mime-info>
-#EOF
-
 %build
 %configure \
 	--disable-schemas-install
@@ -70,15 +60,18 @@ export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 scrollkeeper-update -q || :
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %postun
 scrollkeeper-update -q || :
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man?/*
+%doc %{_mandir}/it/man?/*
 %doc %{_datadir}/gnome/help/gnochm/
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/gnochm
@@ -86,16 +79,19 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/gnochm.desktop
 %{_datadir}/gnochm/
 %{_datadir}/mime/packages/gnochm.xml
-%{!?_without_shared_mime:%{_datadir}/mime/application/x-chm.xml}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
+%{!?_without_shmime:%{_datadir}/mime/application/x-chm.xml}
+%{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
+%{!?_without_shmime:%exclude %{_datadir}/mime/globs}
+%{!?_without_shmime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Mon Nov 08 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Updated to release 0.9.3.
 
