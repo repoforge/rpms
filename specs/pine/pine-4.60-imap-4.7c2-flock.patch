@@ -1,0 +1,13 @@
+--- imap/src/osdep/unix/Makefile.orig	2004-05-18 03:49:56.000000000 +0200
++++ imap/src/osdep/unix/Makefile	2004-05-18 03:50:51.000000000 +0200
+@@ -116,8 +116,8 @@
+ BINARIES=osdep.o mail.o misc.o newsrc.o smanager.o utf8.o siglocal.o \
+  dummy.o pseudo.o netmsg.o flstring.o fdstring.o \
+  rfc822.o nntp.o smtp.o imap4r1.o pop3.o \
+- unix.o mbx.o mmdf.o tenex.o mtx.o news.o phile.o mh.o mx.o
+-CFLAGS=-g
++ unix.o mbx.o mmdf.o tenex.o mtx.o news.o phile.o mh.o mx.o flock.o
++CFLAGS=$(BASECFLAGS) $(EXTRACFLAGS)
+ 
+ CAT=cat
+ MAKE=make
