@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ian Macdonald <ian@caliban.org>
 
@@ -7,7 +6,7 @@
 
 Summary: Programmable completion for Bash
 Name: bash-completion
-Version: 20040331
+Version: 20040526
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -56,9 +55,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/bash_completion.d/
 %{__install} -D -m0755 bash_completion %{buildroot}%{_sysconfdir}/bash_completion
 %{__install} -D -m0755 bash_completion.sh %{buildroot}%{_sysconfdir}/profile.d/bash_completion.sh
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/bash_completion.d/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -71,6 +70,9 @@ EOF
 %config %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Thu May 27 2004 Dag Wieers <dag@wieers.com> - 20040526-1
+- Updated to release 20040526.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 20040331-1
 - Updated to release 20040331.
 
