@@ -1,0 +1,47 @@
+# $Id: $
+
+# Authority: dries
+# Upstream: 
+
+Summary: Convert C++ code to latex 
+Name: cpp2latex
+Version: 2.3
+Release: 1
+License: GPL
+Group: Applications/
+URL: http://www.arnoldarts.de/cpp2latex.html
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://www.arnoldarts.de/cpp2latex-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gcc-c++
+
+%description
+Cpp2latex can convert C++ code listings to a file you can input in a
+LaTeX-document. 
+
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO
+%{_bindir}/*
+
+%changelog
+* Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 2.3-1
+- Initial package.
