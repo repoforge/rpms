@@ -7,7 +7,7 @@
 
 %define majmin 0.8
 
-Name: rhythmbox%{?xine:-xine}
+Name: rhythmbox%{?_with_xine:-xine}
 Summary: Music Management Application 
 Version: %{majmin}.6
 Release: 0
