@@ -15,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/gift/gift-gnutella-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gift
-BuildRequires: gift, gcc-c++, pkgconfig, zlib-devel
+BuildRequires: gift-devel, gcc-c++, pkgconfig, zlib-devel
 
 %description
 giFT is a modular daemon capable of abstracting the communication between the

@@ -14,7 +14,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/gift/gift-openft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gift, gcc-c++, pkgconfig, zlib-devel
+BuildRequires: gift-devel, gcc-c++, pkgconfig, zlib-devel
 Requires: gift
 
 %description

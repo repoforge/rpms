@@ -15,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://download.berlios.de/gift-fasttrack/giFT-FastTrack-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gift, pkgconfig
+BuildRequires: gift-devel, pkgconfig
 Requires: gift
 
 %description
