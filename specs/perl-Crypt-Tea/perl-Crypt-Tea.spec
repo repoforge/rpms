@@ -1,13 +1,10 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Peter Billam <contact,html$pjb,com,au>
 
 %define real_name Crypt-Tea
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: The Tiny Encryption Algorithm in Perl and JavaScript
 Name: perl-Crypt-Tea
@@ -20,7 +17,7 @@ URL: http://search.cpan.org/dist/Crypt-Tea/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PJ/PJB/Crypt-Tea-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Tea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -40,26 +37,27 @@ a browser. A wrapper executable 'tea' is included for command-line use.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
-
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
-%doc %{_mandir}/man3/*
+%doc Changes README
 %doc %{_mandir}/man1/*
+%doc %{_mandir}/man3/*
 %{_bindir}/tea
-%{perl_vendorlib}/Crypt/Tea.pm
+%{perl_vendorlib}/Crypt/
 
 %changelog
 * Mon Feb 21 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
@@ -67,4 +65,3 @@ a browser. A wrapper executable 'tea' is included for command-line use.
 
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 2.07-1
 - Initial package.
-
