@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, glut, python-devel
 BuildRequires: XFree86-devel, openssl-devel, SDL-devel, libvorbis-devel
 BuildRequires: libogg-devel esound-devel, openal-devel, libtool, gettext
-BuildRequires: scons
+BuildRequires: scons, gcc-c++
 
 %description
 Blender is the essential software solution you need for 3D, from modeling,
