@@ -54,11 +54,11 @@ password to access the list.
 %doc BUGS VERSION COPYING.LGPL AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/*
 %{_datadir}/locale/*/LC_MESSAGES/pwmanager.mo
-%{_datadir}/services/kded/pwmanager_kwalletemu.desktop
+%{?fc2:%{_datadir}/services/kded/pwmanager_kwalletemu.desktop}
 %{_datadir}/applnk/Applications/pwmanager.desktop
 %{_datadir}/icons/*/*/apps/pw*.png
 %{_datadir}/apps/pwmanager
-%{_libdir}/kde3/kded_pwmanager_kwalletemu.*
+%{?fc2:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
 * Tue Jun 1 2004 Dries Verachtert <dries@ulyssis.org> - 0.8-1
