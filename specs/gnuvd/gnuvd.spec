@@ -16,6 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.djcbsoftware.nl/projecten/gnuvd/gnuvd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRequires: gcc-c++
 
 # Screenshot: http://www.djcbsoftware.nl/projecten/gnuvd/gnuvd1.png
 
@@ -38,7 +39,7 @@ A program which searches Dutch words in the online dictionary Van Dale.
 
 %files
 %defattr(-,root,root, 0755)
-%doc README
+%doc README ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS TODO README.nl
 
 %changelog
 * Sat May 5 2004 Dries Verachtert <dries@ulyssis.org> 1.0beta4
