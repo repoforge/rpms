@@ -40,6 +40,7 @@ lve package.
 
 %build
 %configure
+%{?fc1:for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done}
 %{__make} %{?_smp_mflags}
 
 %install
