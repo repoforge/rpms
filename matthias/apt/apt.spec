@@ -1,23 +1,23 @@
 # $Id$
 
-Summary: Debian's Advanced Packaging Tool with RPM support.
+Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-Version: 0.5.15cnc5
-Release: 0.2.2.fr
+Version: 0.5.15cnc6
+Release: 0.1.fr
 Group: System Environment/Base
 License: GPL
 URL: https://moin.conectiva.com.br/AptRpm
-Source0: http://moin.conectiva.com.br/files/AptRpm/attachments/%{name}-%{version}.tar.bz2
+# The full URL can't be downloaded directly (referer protection?)
+Source0: apt-%{version}.tar.bz2
 Source1: apt.conf
 Source2: vendors.list
 Source3: RPM-GPG-KEY.freshrpms
 Source4: sources.list.i386
 Source5: sources.list.ppc
 Patch0: apt-0.5.5cnc1-freshrpms.patch
-Patch1: apt-0.5.5cnc4.1-rpmpriorities.patch
+Patch1: apt-0.5.15cnc6-rpmpriorities.patch
 Patch10: apt-0.5.15cnc5-nodigest.patch
 Patch50: apt-0.5.5cnc6-rpm402.patch
-Patch90: apt-0.5.15cnc5-promoteepoch.patch
 Requires: rpm >= 4.0, libstdc++
 # Common to all
 BuildRequires: gcc-c++, rpm-devel >= 4.0, zlib-devel, libstdc++-devel
@@ -32,7 +32,7 @@ BuildRequires: gettext, ncurses-devel, readline-devel
 # For Red Hat Linux 8.0 & 9, Fedora Core
 BuildRequires: bzip2-devel, docbook-utils, beecrypt-devel, elfutils-devel
 # For Fedora Core Development
-BuildRequires: libselinux-devel
+#BuildRequires: libselinux-devel
 BuildRoot: %{_tmppath}/%{name}-root
 
 %description
@@ -47,9 +47,9 @@ Available rpmbuild rebuild options :
 
 
 %package devel
-Summary: Development files and documentation for APT's libapt-pkg.
+Summary: Development files and documentation for APT's libapt-pkg
 Group: Development/Libraries
-PreReq: %{name} = %{version}-%{release}
+PreReq: %{name} = %{version}
 
 %description devel
 This package contains the header files and static libraries for developing
@@ -57,23 +57,24 @@ with APT's libapt-pkg package manipulation library, modified for RPM.
 
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1 -b .httpversion
 %patch1 -p1 -b .rpmpriorities
 %patch10 -p1 -b .nodigest
 # Only needed for rpm 4.0.2
 #patch50 -p1 -b .402
-%patch90 -p1 -b .promoteepoch
+
 
 %build
 %configure \
     --program-prefix=%{?_program_prefix} \
     --includedir=%{_includedir}/apt-pkg \
     %{?_without_scripts: --disable-scripts}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
+
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall includedir=%{buildroot}%{_includedir}/apt-pkg
 %find_lang %{name}
 
@@ -98,12 +99,17 @@ cp -a %{SOURCE3} .
 mkdir -p %{buildroot}%{_localstatedir}/cache/apt/archives/partial
 mkdir -p %{buildroot}%{_localstatedir}/state/apt/lists/partial
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root)
@@ -115,12 +121,21 @@ rm -rf %{buildroot}
 %config %{_sysconfdir}/apt/rpmpriorities
 %dir %{_sysconfdir}/apt/apt.conf.d
 %dir %{_sysconfdir}/apt/sources.list.d
-%{_bindir}/*
+# List all to be informed if the building of one breaks some day
+%{_bindir}/apt-cache
+%{_bindir}/apt-cdrom
+%{_bindir}/apt-config
+%{_bindir}/apt-get
+%{_bindir}/apt-shell
+%{_bindir}/genbasedir
+%{_bindir}/genpkglist
+%{_bindir}/gensrclist
 %{_libdir}/*.so.*
-%{_libdir}/apt
+%{_libdir}/apt/
 %{_mandir}/man?/*
 %{_localstatedir}/cache/apt
 %{_localstatedir}/state/apt
+
 
 %files devel
 %defattr(-, root, root)
@@ -129,51 +144,57 @@ rm -rf %{buildroot}
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
+
 %changelog
-* Tue Feb 10 2004 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc5-0.2.fr
+* Tue Mar 23 2004 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc6-0.1
+- Update to 0.5.15cnc6.
+- Updated rpmpriorities patch.
+- Removed merged promoteepoch patch.
+
+* Tue Feb 10 2004 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc5-0.2
 - Added missing URL tag.
 - Rebuild for Yellow Dog Linux 3.0.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc5-0.1.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc5-0.1
 - Update to 0.5.15cnc5.
 - updated the nodigest patch to not change genpkglist.cc nor gensrclist.cc.
 
-* Thu Nov 27 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc3-0.2.fr
+* Thu Nov 27 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc3-0.2
 - Added missing ncurses-devel and readline-devel for apt-shell to be built,
   thanks to Gary Peck.
 
 - Update to 0.5.15cnc3.
-* Wed Nov 26 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc3-0.1.fr
+* Wed Nov 26 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc3-0.1
 - Update to 0.5.15cnc3.
 - Added the testing update to the default sources.list.
 
-* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc2-1.fr
+* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc2-1
 - Update to 0.5.15cnc2.
 - Removed obsolete fclose and pinning patches.
 
-* Sun Nov  9 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc1-1.fr
+* Sun Nov  9 2003 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc1-1
 - Update to 0.5.15cnc1.
 - Added pinning patch.
 
-* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> - 0.5.5cnc7-1.fr
+* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> - 0.5.5cnc7-1
 - Update to 0.5.5cnc7.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> - 0.5.5cnc6-2.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> - 0.5.5cnc6-2
 - Rebuild for Fedora Core 1.
 
-* Mon Jun 16 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Jun 16 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.5cnc6 at last.
 
-* Sat May 20 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Sat May 20 2003 Matthias Saou <http://freshrpms.net/>
 - Added a different sources.list for ppc.
 
-* Wed Apr 16 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Apr 16 2003 Matthias Saou <http://freshrpms.net/>
 - Added Panu's nodigest patch to speed up basic operations.
 
-* Tue Apr 15 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Tue Apr 15 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.5cnc5.
 
-* Mon Apr  7 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Apr  7 2003 Matthias Saou <http://freshrpms.net/>
 - Removed fileutils from the rpmpriorities file, as coreutils replaces it.
 - Cleaned up sources.list
 - Added empty apt.conf.d and sources.list.d dirs.
@@ -182,73 +203,73 @@ rm -rf %{buildroot}
 - Removed explicit bzip2-libs dep as old systems only have bzip2.
 - Added the program-prefix to workaround bad binary prefix on RHL 7.x.
 
-* Mon Mar 31 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
 - Update to latest snapshot, first Red Hat 9 build.
 
-* Mon Mar 10 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Mar 10 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.5cnc4.1.
 
-* Fri Mar  7 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Mar  7 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.5cnc4.
 
-* Fri Feb 28 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Feb 28 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.5cnc3.
 - Re-enabled the man pages.
 
-* Sat Feb 22 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Sat Feb 22 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.5cnc2.
 
-* Thu Jan 30 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Thu Jan 30 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.5cnc1_rc1.
 - Removed static libraries.
 - Minor apt.conf tweaks.
 - Disabled man pages since they are not being built properly.
 
-* Mon Oct 21 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Oct 21 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.4cnc9.
 
-* Wed Oct  9 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Oct  9 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.4cnc8.
 - Added Show-Upgraded "true" to apt.conf.
 
-* Fri Sep 27 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Sep 27 2002 Matthias Saou <http://freshrpms.net/>
 - Added empty /etc/apt/preferences file to make synaptic happy.
 - Updated default apt.conf file to handle gpg keys.
 
-* Thu Sep 26 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Thu Sep 26 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.4cnc7.
 - Removed obsolete %%docs entries.
 - Now build for Red Hat Linux 8.0 with updated sources.list.
 
-* Wed Jul 17 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Jul 17 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.5.4cnc1.
 - Updated the freshrpms version and rpmpriorities patches.
 - Added mdfile, gcc3 + rpm 4.1 patches.
 - Removed the flat, md5fix and nodeps patches.
 
-* Wed Jul 10 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Jul 10 2002 Matthias Saou <http://freshrpms.net/>
 - Removed the mirror patch that was preventing signed repositories from working.
 - Added my RPM-GPG-KEY file.
 
-* Thu May  2 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Thu May  2 2002 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 7.3.
 - Changed the rpmpriorities file a bit.
 - Added the %%{?_smp_mflags} expansion.
 
-* Thu Mar 21 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Thu Mar 21 2002 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for rpm 4.0.4 and changed the sources.list.
 - Added patch to fix md5 issue.
 
-* Fri Feb  1 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Feb  1 2002 Matthias Saou <http://freshrpms.net/>
 - Synced against Stelian Pop's version, new patches : algo and flat.
 
-* Wed Jan 30 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Jan 30 2002 Matthias Saou <http://freshrpms.net/>
 - Updated the source.list file with the new freshrpms.net layout.
 
-* Wed Jan  2 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Jan  2 2002 Matthias Saou <http://freshrpms.net/>
 - Fixed the default sources.list to not authenticate.
 
-* Mon Dec 24 2001 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Dec 24 2001 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup and rebuild for Red Hat Linux.
 
 * Tue Dec 11 2001 Alfredo K. Kojima <kojima@conectiva.com.br>

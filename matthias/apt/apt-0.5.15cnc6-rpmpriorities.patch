@@ -1,0 +1,17 @@
+diff -Naupr apt-0.5.15cnc6.orig/rpmpriorities apt-0.5.15cnc6/rpmpriorities
+--- apt-0.5.15cnc6.orig/rpmpriorities	2004-03-22 20:38:50.000000000 +0100
++++ apt-0.5.15cnc6/rpmpriorities	2004-04-30 11:30:31.748135144 +0200
+@@ -2,12 +2,11 @@ Essential:
+   apt
+   basesystem
+   bash
+-  conectiva-release
+   dev
+   e2fsprogs
+   filesystem
+   fileutils
+-  glibc-base
++  glibc
+   initscripts
+   modutils
+   mount
