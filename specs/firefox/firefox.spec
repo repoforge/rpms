@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### Builds on RH73, but doesn't work.
+# DistExclude: rh73
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_autoconf213 1}
@@ -32,12 +35,12 @@ Patch5: mozilla-xremote-stfu.patch
 Patch1001: firefox-0.8-gtk2xtbin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, zlib-devel, zip, perl
+BuildRequires: XFree86-devel, zlib-devel, zip, perl,
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
-BuildRequires: ORBit-devel, libIDL-devel, gcc-c++
+BuildRequires: ORBit-devel, gcc-c++
 %{!?_without_autoconf213:BuildRequires: autoconf213}
 %{?_without_autoconf213:BuildRequires: autoconf = 2.13}
-%{!?_without_gtk2:BuildRequires: gtk2-devel}
+%{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel}
 %{?_without_gtk2:BuildRequires: gtk+-devel}
 
 Obsoletes: phoenix, MozillaFirebird, mozilla-firebird, mozilla-firefox
@@ -241,7 +244,8 @@ EOF
 
 %build
 export MOZ_APP_NAME="firefox"
-autoconf-2.13
+%{!?_without_autoconf213:autoconf-2.13}
+%{?_without_autoconf213:autoconf}
 
 export MOZ_PHOENIX="1"
 export CFLAGS="%{optflags}"
@@ -316,7 +320,7 @@ fi
 - Added xremote patches. (Peter Peltonen)
 - Open new window instead of new tab.
 - Enabled all default extensions except irc and venkman. (Luke Ross, Edward Rudd, Anthony Ball, Ian Burrell)
-- Firefox start-up script now handles file://-URLs
+- Firefox start-up script now handles file://-URLs.
 
 * Wed Jun  2 2004 Matthias Saou <http://freshrpms.net/> 0.8-2
 - Added Yellow Dog 3.0 build dependencies.
