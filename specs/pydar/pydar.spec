@@ -19,6 +19,7 @@ Source: pydar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: mach
 Requires: mach, coreutils
+Requires: mach = 0.4.3
 
 %description
 Not finished, not to be released!
@@ -32,7 +33,7 @@ Not finished, not to be released!
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-cat /usr/bin/mach | grep -v builtin > %{buildroot}/%{_datadir}/pydar/pydar/mach.py
+# cat /usr/bin/mach | grep -v builtin > %{buildroot}/%{_datadir}/pydar/pydar/mach.py
 
 %clean
 %{__rm} -rf %{buildroot}
