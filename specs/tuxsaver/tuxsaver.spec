@@ -6,7 +6,7 @@
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
 Version: 1.0
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
@@ -45,14 +45,17 @@ mv ${DESTDIR}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop ${DESTDIR}/u
 %files
 %defattr(-,root,root, 0755)
 %{_bindir}/tuxsaver.kss
-/usr/share/apps/kscreensaver/ScreenSavers/tuxsaver.desktop
-/usr/share/apps/tuxsaver/objects
-/usr/share/apps/tuxsaver/pics
-/usr/share/apps/tuxsaver/sounds
-/usr/share/apps/tuxsaver/stories
-/usr/share/doc/HTML/en/tuxsaver
-/usr/share/locale/*/LC_MESSAGES/tuxsaver.mo
+%{_datadir}/apps/kscreensaver/ScreenSavers/tuxsaver.desktop
+%{_datadir}/apps/tuxsaver/objects
+%{_datadir}/apps/tuxsaver/pics
+%{_datadir}/apps/tuxsaver/sounds
+%{_datadir}/apps/tuxsaver/stories
+%{_datadir}/doc/HTML/en/tuxsaver
+%{_datadir}/locale/*/LC_MESSAGES/tuxsaver.mo
 
 %changelog
+* Wed Apr 14 2004 Dries Verachtert <dries@ulyssis.org> 1.0-2
+- spec file cleanup
+
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 1.0-1
 - first packaging for Fedora Core 1
