@@ -3,7 +3,7 @@
 # Authority: dries
 # Screenshot: http://smb4k.berlios.de/shots/0.3.0/Smb4K-0.3.0-1.png
 
-# ExcludeDist el3
+# ExcludeDist: el3
 
 Summary: SMB (samba) share browser for KDE
 Name: smb4k

@@ -5,6 +5,8 @@
 # Screenshot: http://krusader.sourceforge.net/scr/thumbs/krusader-150cvs_01.png
 # ScreenshotURL: http://krusader.sourceforge.net/scr.php
 
+# ExcludeDist: el3
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc1:%define _without_xorg 1}

@@ -5,7 +5,7 @@
 # Screenshot: http://hk-classes.sourceforge.net/screenshots/relationeditor.html
 # ScreenshotURL: http://hk-classes.sourceforge.net/screenshot.html
 
-# ExcludeDist el3
+# ExcludeDist: el3
 
 Summary: Database frontend
 Name: knoda

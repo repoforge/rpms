@@ -4,7 +4,7 @@
 # Upstream: scilab@inria.fr
 # Screenshot: http://scilabsoft.inria.fr/images/session_27.png
 
-# ExcludeDist el3
+# ExcludeDist: el3
 
 Summary: Scientific software package
 Name: scilab

@@ -3,7 +3,7 @@
 # Screenshot: http://uml.sourceforge.net/images/thumbnails/activity-diagram.png
 # ScreenshotURL: http://uml.sourceforge.net/screen.php
 
-# ExcludeDist el3
+# ExcludeDist: el3
 
 %{?dist: %{expand: %%define %dist 1}}
 

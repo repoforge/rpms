@@ -3,6 +3,8 @@
 # Authority: dries
 # Upstream: 
 
+# ExcludeDist: el3
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc1:%define _without_xorg 1}
