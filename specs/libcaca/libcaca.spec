@@ -5,13 +5,15 @@ Summary: The library for Colour AsCii Art, text mode graphics
 Name: libcaca
 Version: 0.9
 Release: 1
-URL: http://sam.zoy.org/projects/libcaca/
-Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
 License: LGPL
 Group: System Environment/Libraries
+URL: http://sam.zoy.org/projects/libcaca/
+
+Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Buildrequires: XFree86-devel, ncurses-devel >= 5, slang-devel, imlib2-devel
 Buildrequires: zlib-devel, doxygen, tetex-latex, tetex-dvips
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 libcaca is the Colour AsCii Art library. It provides high level functions
