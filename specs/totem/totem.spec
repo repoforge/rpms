@@ -80,9 +80,9 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 # Install the GStreamer version
 %{__install} -m 755 src/%{name}-gstreamer %{buildroot}%{_bindir}/%{name}-gstreamer
 # Rename the xine version
-mv %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-xine
+%{__mv} %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-xine
 # Make the wrapper script
-cat > %{buildroot}%{_bindir}/%{name} << 'EOF'
+%{__cat} > %{buildroot}%{_bindir}/%{name} << 'EOF'
 #!/bin/sh
 
 if [ -x %{_bindir}/%{name}-gstreamer -a ! "$1" = "--xine" ]; then

@@ -30,7 +30,7 @@ a ".rar" extension. ZIP and other formats are not supported.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -m 755 -D rar %{buildroot}%{_bindir}/rar
-%{__install} -m 644 -D rarfiles.lst %{buildroot}%{_sysconfig}/rarfiles.lst
+%{__install} -m 644 -D rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
 %{__install} -m 755 -D default.sfx %{buildroot}%{_libdir}/default.sfx
 
 
@@ -41,6 +41,7 @@ a ".rar" extension. ZIP and other formats are not supported.
 %files
 %defattr(-, root, root, 0755)
 %doc file_id.diz *.txt
+%{_sysconfdir}/rarfiles.lst
 %{_bindir}/rar
 %{_libdir}/default.sfx
 
@@ -48,6 +49,7 @@ a ".rar" extension. ZIP and other formats are not supported.
 %changelog
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 3.3.0-2
 - Updated description.
+- Fixed the rarfiles.lst installation.
 - Rebuild for Fedora Core 2.
 
 * Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 3.3.0-1
