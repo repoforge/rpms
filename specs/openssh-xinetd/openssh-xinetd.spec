@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Dag Wieers <dag@wieers.com>
 
 Summary: OpenSSH backup xinetd entry
 Name: openssh-xinetd
-Version: 0.1
-Release: 0
+Version: 0.2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/packages/openssh-xinetd/
@@ -18,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 #Source:
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: xinetd
+Requires: xinetd, openssh-server
 
 %description
 This package contains an OpenSSH xinetd entry that makes OpenSSH
@@ -43,20 +41,21 @@ EOF
 
 %{__cat} <<EOF >ssh-backup.xinetd
 # default: on
-# description: The ssh-backup service allows you to connect to your system using ssh on port 2022 even when the ssh daemon isn't running.
+# description: The ssh-backup service allows you to connect to your system
+#	using ssh on port 2022 even when the ssh daemon isn't running.
 service ssh-backup
 {
-        disable = no
-        socket_type             = stream
-        protocol                = tcp
-	port			= 2022
-	type			= UNLISTED
-        wait                    = no
-        user                    = root
-        server                  = %{_sbindir}/sshd
-        server_args             = -i -b 1024
-        log_on_failure          += USERID
-#	only_from               = 10.15.0.0/24
+	disable = no
+	socket_type     = stream
+	protocol        = tcp
+	port            = 2022
+	type            = UNLISTED
+	wait            = no
+	user            = root
+	server          = %{_sbindir}/sshd
+	server_args     = -i -b 1024
+	log_on_failure  += USERID
+#	only_from       = 127.0.0.1 10.15.0.0/24
 }
 EOF
 
@@ -64,8 +63,12 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/xinetd.d/
-%{__install} -m0644 ssh-backup.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/ssh-backup
+%{__install} -D -m0644 ssh-backup.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/ssh-backup
+
+%post
+if [ $1 -ne 0 ]; then
+    /sbin/service xinetd reload &>/dev/null || :
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -76,5 +79,9 @@ EOF
 %config(noreplace) %{_sysconfdir}/xinetd.d/*
 
 %changelog
+* Thu Apr 22 2004 Dag Wieers <dag@wieers.com> - 0.2-1
+- Restart xinetd when installed.
+- Added only_from example with multiple arguments.
+
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 0.1-0
 - Initial package. (using DAR)
