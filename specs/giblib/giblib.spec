@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://linuxbrit.co.uk/giblib/
 Source: http://linuxbrit.co.uk/downloads/giblib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, imlib2-devel
+BuildRequires: gcc-c++, imlib2-devel, zlib-devel
 
 %description
 giblib is a utility library used by many of the applications from

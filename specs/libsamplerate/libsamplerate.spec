@@ -20,7 +20,7 @@ Source: http://www.mega-nerd.com/SRC/libsamplerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsndfile-devel >= 1.0.2
-BuildRequires: pkgconfig, fftw-devel
+BuildRequires: pkgconfig, fftw-devel, gcc-c++
 
 %description
 Secret Rabbit Code is a sample rate converter for audio. It is capable
