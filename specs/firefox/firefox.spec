@@ -67,11 +67,17 @@ compliance, performance and portability.
 
 %{__cat} <<'EOF' >.mozconfig
 . $topsrcdir/browser/config/mozconfig
+export BUILD_OFFICIAL=1
+export MOZILLA_OFFICIAL=1
+mk_add_options BUILD_OFFICIAL=1
+mk_add_options MOZILLA_OFFICIAL=1
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-debug
 ac_add_options --disable-installer
 ac_add_options --disable-jsd
+ac_add_options --disable-strip
 ac_add_options --disable-tests
+ac_add_options --disable-xprint
 ac_add_options --enable-extensions="default,-content-packs,-editor,-help,-irc,-spellcheck,-typeaheadfind"
 ac_add_options --enable-official-branding
 # We want to replace -O? with -Os to optimize compilation for size
@@ -173,38 +179,28 @@ while [ "$1" ]; do
 			URL="file://$1"
 		else
 			URL="$1"
-		fi
-		if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
-			MOZARGS="$MOZARGS -remote openURL($URL,$METHOD)"
-			REMOTE=1
-		else
-			MOZARGS="$MOZARGS $URL"
 		fi;;
 	esac
 	shift
 done
 
-if [ $RUNNING -ne 0 -a $REMOTE -ne 1 ]; then
-	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS -remote "xfeDoCommand(openBrowser)"
-elif [ $REMOTE -ne 1 ]; then
-	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS -remote "openURL(about:blank,$METHOD)"
-else
-	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS &
-fi;
+if [ -z "$URL" ]; then URL="about:blank"; fi
+
+if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
+        exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS -remote "openURL($URL,$METHOD)"
+fi      
+
+exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS $URL
 EOF
 
 %build
-export MOZ_PHOENIX=1
 export MOZILLA_OFFICIAL=1
 export BUILD_OFFICIAL=1
-%{__make} -f client.mk depend
+#%{__make} -f client.mk depend
 %{__make} %{?_smp_mflags} -f client.mk build
 
 %install
 %{__rm} -rf %{buildroot}
-export MOZ_PHOENIX=1
-export MOZILLA_OFFICIAL=1
-export BUILD_OFFICIAL=1
 %{__make} -C xpinstall/packager/ \
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
@@ -275,6 +271,11 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Mon Oct 04 2004 Dag Wieers <dag@wieers.com> - 0.10.1-0.1
+- Disable typeaheadfind as it breaks things. (Matthias Hensler)
+- Added more patches from rawhide.
+- A few improvements to the firefox startup script. (Nicolai Langfeldt)
+
 * Tue Sep 28 2004 Dag Wieers <dag@wieers.com> - 0.10-0.1
 - Include default mozconfig.
 - Add mozilla and mozilla plugins directory to package.
