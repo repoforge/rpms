@@ -51,6 +51,7 @@ Kvirc is an irc client with the following features:
   iconmime48datadir=%{buildroot}/usr/share/icons/hicolor/48x48/mimetypes \
   mimelnkdir=%{buildroot}/usr/share/mimelnk/text \
   kdeservicesdir=%{buildroot}/usr/share/services
+echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/applications/kvirc.desktop
 
 %post
 /sbin/ldconfig 2>/dev/null
