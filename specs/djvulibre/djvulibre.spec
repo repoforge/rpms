@@ -1,15 +1,13 @@
 # $Id$
 # Authority: matthias
 
-%define mozver 1.4.1
-
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
 Version: 3.5.12
 Release: 3
 License: GPL
 Group: Applications/Publishing
-Source: http://dl.sf.net/djvu/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
 URL: http://djvu.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-root
 Requires: qt, libjpeg, libstdc++
@@ -31,35 +29,34 @@ GNU GPL in October 2000.  DjVuLibre (which means free DjVu), is an enhanced
 version of that code maintained by the original inventors of DjVu. It is
 compatible with version 3.5 of the LizardTech DjVu software suite.
 
-DjVulibre-3.5 contains:
-- a standalone DjVu viewer based on the Qt library. 
-- A browser plugin that works with most Unix browsers.
-- A full-fledged wavelet-based compressor for pictures. 
-- A simple compressor for bitonal (black and white) scanned pages. 
-- A compressor for palettized images (a la GIF/PNG). 
-- A set of utilities to manipulate and assemble DjVu images and documents. 
-- A set of decoders to convert DjVu to a number of other formats. 
-- An up-to-date version of the C++ DjVu Reference Library.
 
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-mkdir -p %{buildroot}%{_libdir}/mozilla-%{mozver}/plugins
-ln -s ../../netscape/plugins/nsdejavu.so %{buildroot}%{_libdir}/mozilla-%{mozver}/plugins/
+%{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
+%{__ln_s} ../../netscape/plugins/nsdejavu.so %{buildroot}%{_libdir}/mozilla/plugins/
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -70,11 +67,17 @@ ln -s ../../netscape/plugins/nsdejavu.so %{buildroot}%{_libdir}/mozilla-%{mozver
 %{_datadir}/djvu
 %{_mandir}/man?/*
 
+
 %changelog
-* Wed Jan 14 2004 Matthias Saou <http://freshrpms.net/> 3.5.12-3.fr
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 3.5.12-4
+- Changed the plugin directory for mozilla to %{_libdir}/mozilla,
+  as suggested by Matteo Corti.
+- Shortened the description.
+
+* Wed Jan 14 2004 Matthias Saou <http://freshrpms.net/> 3.5.12-3
 - Added XFree86-devel and libjpeg-devel build requirements.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.5.12-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.5.12-2
 - Rebuild for Fedora Core 1.
 
 * Mon Sep  1 2003 Matthias Saou <http://freshrpms.net/>
