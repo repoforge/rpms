@@ -73,5 +73,5 @@ desktop-file-install --vendor net                  \
 %{_datadir}/applications/*.desktop
 
 %changelog
-* Mar May 4 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1 
+* Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1 
 - Initial package.
