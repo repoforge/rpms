@@ -6,8 +6,8 @@
 
 Summary: Network traffic probe that shows the network usage.
 Name: ntop
-Version: 2.2
-Release: 0
+Version: 3.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
@@ -16,8 +16,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/ntop/ntop-%{version}.tgz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
 Prereq: /sbin/chkconfig, /sbin/ldconfig
@@ -29,7 +28,16 @@ web interface. Optionally, data may be stored into a database for analysis or
 extracted from the web server in formats suitable for manipulation in perl or php.
 
 %prep
-%setup -n %{name}-%{version}/ntop
+%setup
+
+%{__cat} <<EOF >ntop.logrotate
+%{_localstatedir}/log/ntop.access.log
+	missingok
+	postrotate
+		/sbin/service ntop condrestart >/dev/null 2>&1
+	endscript
+}
+EOF
 
 %{__cat} <<'EOF' >ntop.sysv
 #!/bin/bash
@@ -108,15 +116,6 @@ esac
 exit $RETVAL
 EOF
 
-%{__cat} <<EOF >ntop.logrotate
-%{_localstatedir}/log/ntop.access.log { 
-	missingok 
-	postrotate 
-		/sbin/service ntop condrestart >/dev/null 2>&1
-	endscript 
-} 
-EOF
-
 %{__cat} <<EOF >ntop.conf.sample
 ###  You should copy this file to it's normal location, /etc/ntop.conf
 ###  and edit it to fit your needs.
@@ -182,10 +181,7 @@ EOF
 EOF
 
 %build
-%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|' configure*
-cd ../gdchart0.94c
-./buildAll.sh
-cd -
+%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|' configure configure.in
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--enable-optimize \
@@ -195,22 +191,19 @@ cd -
 	--enable-i18n
 #	--with-pcap-include="%{_includedir}/pcap" \
 #	--enable-xmldump \
-#%{__make} %{?_smp_mflags} faq.html ntop.txt ntop.html all
-%{__make} %{?_smp_mflags} ntop.txt ntop.html all
+%{__make} %{?_smp_mflags} faq.html ntop.txt ntop.html all
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_bindir} \
-			%{buildroot}%{_sysconfdir}/logrotate.d \
-			%{buildroot}%{_datadir}/ntop \
-			%{buildroot}%{_localstatedir}/ntop #/rrd/{flows,graphics,interfaces/eth0}
+%{__install} -d -m0755 %{buildroot}%{_bindir} \
+			%{buildroot}%{_datadir}/ntop/ \
+			%{buildroot}%{_localstatedir}/ntop/ #/rrd/{flows,graphics,interfaces/eth0}
 %makeinstall
 %{__make} DESTDIR="%{buildroot}" install-data-local
 
-%{__install} -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
-%{__install} -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
-%{__install} -m0700 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
+%{__install} -D -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
+%{__install} -D -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
+%{__install} -D -m0700 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.a %{buildroot}%{_libdir}/*.la
@@ -258,5 +251,8 @@ fi
 %{_localstatedir}/ntop/
 
 %changelog
+* Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 3.0-1
+- Updated to release 3.0.
+
 * Mon Apr 28 2003 Dag Wieers <dag@wieers.com> - 2.2-0
 - Initial package. (using DAR)

@@ -15,8 +15,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: %{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: 
 
@@ -63,9 +62,6 @@ desktop-file-install --vendor net                  \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -90,7 +86,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
-#%{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
 * Son Jan 19 2004 Dag Wieers <dag@wieers.com> - 

@@ -6,7 +6,7 @@
 
 Summary: Advanced television viewing and recording program.
 Name: fftv
-Version: 0.7.3
+Version: 0.7.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -51,10 +51,7 @@ EOF
 #	--enable-shared
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e '
-		s|^(sharedir)=.*$|$1=\$(datadir)|;
-		s|^(FFTV_SHARE_ICON)=share/(.*)$|$1=$2|;
-	' config.mak
+%{__perl} -pi.orig -e 's|^(FFTV_SHARE_ICON)=share/(.*)$|$1=$2|;' config.mak
 
 %{__make} %{?_smp_mflags}
 
@@ -87,6 +84,9 @@ desktop-file-install --vendor gnome                \
 #%{_includedir}/ffmpeg/
 
 %changelog
+* Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.7.4-1
+- Updated to release 0.7.4.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 0.7.3-1
 - Updated to release 0.7.3.
 

@@ -4,10 +4,10 @@
 
 %define rname XML-LibXML-Common
 
-Summary: XML-LibXML-Common Perl module.
+Summary: Routines and Constants common for XML::LibXML and XML::GDOME.
 Name: perl-XML-LibXML-Common
 Version: 0.13
-Release: 1
+Release: 2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML-Common/
@@ -15,16 +15,14 @@ URL: http://search.cpan.org/dist/XML-LibXML-Common/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{rname}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHISH/XML-LibXML-Common-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl
 Requires: perl
 
 %description
-XML-LibXML-Common Perl module.
+Routines and Constants common for XML::LibXML and XML::GDOME.
 
 %prep
 %setup -n %{rname}-%{version}
@@ -33,7 +31,8 @@ XML-LibXML-Common Perl module.
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,7 +40,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.13-2
+- This is not a noarch package. (Ivo Clarysse)
+
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 0.13-1
 - Fixed site -> vendor. (Matthew Mastracci)
 

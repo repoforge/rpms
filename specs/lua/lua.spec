@@ -1,13 +1,14 @@
 # $Id$
 
 # Authority: newrpms
+
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
 Summary: Lua scripting language.
 Name: lua
-Version: 5.0
-Release: 0
+Version: 5.0.2
+Release: 1
 License: MIT
 Group: Development/Libraries
 URL: http://www.lua.org/
@@ -15,9 +16,8 @@ URL: http://www.lua.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.lua.org/ftp/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+Source: http://www.lua.org/ftp/lua-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Lua is a powerful light-weight programming language designed for extending
@@ -64,17 +64,17 @@ you will need to install %{name}-devel.
 %{__install} -m0755 lib/*.so* %{buildroot}%{_libdir}
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYRIGHT HISTORY MANIFEST README doc/*html doc/*gif
+%doc COPYRIGHT HISTORY INSTALL MANIFEST README UPDATE doc/*html doc/*gif
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
@@ -86,5 +86,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 5.0.2-1
+- Updated to release 5.0.2.
+
 * Sun Oct 12 2003 Dag Wieers <dag@wieers.com> - 5.0-0
 - Initial package. (using DAR)

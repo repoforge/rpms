@@ -1,5 +1,7 @@
 # $Id$
+
 # Authority: matthias
+# Upstream: <libexif-devel@lists.sourceforge.net>
 
 Name: libexif
 Summary: EXIF image tag library
@@ -7,7 +9,7 @@ Version: 0.5.12
 Release: 2
 License: GPL
 URL: http://libexif.sourceforge.net/
-Source: http://dl.sf.net/libexif/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/libexif/libexif-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -17,8 +17,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.thekelleys.org.uk/dnsmasq/dnsmasq-%{version}test1.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: chkconfig
 
@@ -110,6 +109,10 @@ case "$1" in
 	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
 	RETVAL=$?
 	;;
+  status) 
+	status $prog
+	RETVAL=$?
+	;;
   *)
 	echo $"Usage $0 {start|stop|restart|reload|condrestart|status}"
 	RETVAL=1
@@ -124,14 +127,11 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_mandir}/man8/ \
-			%{buildroot}%{_localstatedir}/lib/misc/
-%{__install} -m0644 dnsmasq.conf.example %{buildroot}%{_sysconfdir}/dnsmasq.conf
-%{__install} -m0755 dnsmasq.sysv %{buildroot}%{_initrddir}/dnsmasq
-%{__install} -m0755 src/dnsmasq %{buildroot}%{_sbindir}
-%{__install} -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/misc/
+%{__install} -D -m0755 src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
+%{__install} -D -m0644 dnsmasq.conf.example %{buildroot}%{_sysconfdir}/dnsmasq.conf
+%{__install} -D -m0755 dnsmasq.sysv %{buildroot}%{_initrddir}/dnsmasq
+%{__install} -D -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/
 
 %post
 /sbin/chkconfig --add dnsmasq

@@ -1,13 +1,12 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Todor T. Zviskov <warder@warder.ath.cx>
 
-Summary: A Video-For-Linux frontend of transcode.
+Summary: Video-For-Linux frontend of transcode.
 Name: gv4l
-Version: 2.2.2
-Release: 0
+Version: 2.2.3
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://gv4l.sf.net/
@@ -28,6 +27,18 @@ Gv4l is a gui frontend for the v4l (Video For Linux) functions of transcode.
 %prep
 %setup
 
+### FIXME: The default gv4l desktop file has buildroot in it. (Please fix upstream)
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Gv4l Video Recorder
+Comment=Schedule and record from a video4linux device
+Icon=gv4l/gv4l.png
+Exec=gv4l
+Terminal=false
+Type=Application
+Categories=GNOME;Application;AudioVideo;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -35,18 +46,6 @@ Gv4l is a gui frontend for the v4l (Video For Linux) functions of transcode.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### FIXME: The default gv4l desktop file has buildroot in it. (Please fix upstream)
-%{__cat} <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=Gv4l Video Recorder
-Comment=A Video-For-Linux frontend for transcode
-Icon=gv4l/gv4l.png
-Exec=gv4l
-Terminal=false
-Type=Application
-Categories=GNOME;Application;AudioVideo;
-EOF
 
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
@@ -58,11 +57,15 @@ desktop-file-install --vendor gnome                \
 
 %files
 %defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/*
 %{_datadir}/pixmaps/gv4l/
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 2.2.3-1
+- Updated to release 2.2.3.
+
 * Fri Jan 02 2004 Dag Wieers <dag@wieers.com> - 2.2.2-0
 - Updated to release 2.2.2.
 

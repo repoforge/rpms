@@ -1,14 +1,15 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Todd Kulesza <todd@dropline.net>
 
-Summary: A LiveJournal client for GNOME.
+Summary: LiveJournal client for GNOME.
 Name: drivel
-Version: 0.9.1
-Release: 0
+Version: 0.9.4
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.sf.net/projects/drivel
+URL: http://www.dropline.net/drivel/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -29,7 +30,7 @@ in mind, and presents an elegant user interface.
 
 %build
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,10 +42,14 @@ in mind, and presents an elegant user interface.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README TODO
+%config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_datadir}/pixmaps/*
 %{_datadir}/applications/*
 
 %changelog
+* Thu Mar 25 2004 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Tue May 06 2003 Dag Wieers <dag@wieers.com> - 0.9.1-0
 - Initial package. (using DAR)

@@ -1,9 +1,10 @@
 # $Id$
 
 # Authority: atrpms
+
 Summary: GNU cryptographic library.
 Name: libgcrypt
-Version: 1.1.12
+Version: 1.1.93
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
@@ -12,7 +13,7 @@ URL: http://www.gnupg.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnupg.org/gcrypt/alpha/libgcrypt/%{name}-%{version}.tar.gz
+Source: ftp://ftp.gnupg.org/gcrypt/alpha/libgcrypt/libgcrypt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -80,5 +81,8 @@ you will need to install %{name}-devel.
 %{_infodir}/*
 
 %changelog
+* Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 1.1.93-0
+- Updated to release 1.1.93.
+
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 1.1.12-0
 - Initial package. (using DAR)

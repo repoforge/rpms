@@ -4,7 +4,7 @@
 
 Summary: Open Source implementation of the GDI+ API.
 Name: libgdiplus
-Version: 0.1
+Version: 0.2
 Release: 0
 License: MIT X11
 Group: System Environment/Libraries
@@ -70,5 +70,8 @@ you will need to install %{name}-devel.
 #%{_libdir}/*.la
 
 %changelog
+* Fri Mar 19 2004 Dag Wieers <dag@wieers.com> - 0.2-0
+- Updated to release 0.2.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.1-0
 - Initial package. (using DAR)

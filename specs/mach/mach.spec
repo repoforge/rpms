@@ -7,8 +7,8 @@
 
 Summary: Make a chroot.
 Name: mach
-Version: 0.4.3
-Release: 0
+Version: 0.4.5
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://thomas.apestaart.org/projects/mach/
@@ -88,6 +88,9 @@ fi
 %{_sbindir}/mach-helper
 
 %changelog
+* Sat Mar 20 2004 Dag Wieers <dag@wieers.com> - 0.4.5-1
+- Updated to release 0.4.5.
+
 * Wed Dec 17 2003 Dag Wieers <dag@wieers.com> - 0.4.3-0
 - Updated to release 0.4.3.
 

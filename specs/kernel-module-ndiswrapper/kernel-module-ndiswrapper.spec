@@ -16,7 +16,7 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname ndiswrapper
-%define rrelease 1
+%define rrelease 2
 
 %define moduledir /kernel/drivers/net/ndiswrapper
 %define modules ndiswrapper.o
@@ -33,8 +33,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/ndiswrapper/ndiswrapper-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: ndiswrapper-utils
@@ -88,8 +87,8 @@ cd -
 	CFLAGS="%{optflags}"
 
 %install
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 utils/loadndisdriver %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
+%{__install} -m0755 utils/loadndisdriver utils/ndiswrapper utils/wlan_radio_averatec_5110hx %{buildroot}%{_sbindir}
 
 %post
 /sbin/depmod -ae %{kversion}-%{krelease} || :
@@ -107,9 +106,12 @@ cd -
 %files -n ndiswrapper-utils
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL README
-%{_bindir}/*
+%{_sbindir}/*
 
 %changelog
+* Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.6-2
+- Added missing ndiswrapper to ndiswrapper-utils. (Mathias Schulze)
+
 * Wed Mar 17 2004 Dag Wieers <dag@wieers.com> - 0.6-1
 - Updated to release 0.6.
 

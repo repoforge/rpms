@@ -5,8 +5,8 @@
 
 Summary: Graphical link validity checker.
 Name: gurlchecker
-Version: 0.7.10
-Release: 0
+Version: 0.7.11
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/gurlchecker/
@@ -15,8 +15,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://savannah.nongnu.org/download/gurlchecker/gurlchecker-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 
@@ -48,9 +47,6 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-#%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
-#%{__install} -m0644 gui/gurlchecker_logo.xpm %{buildroot}%{_datadir}/pixmaps/gurlchecker.xpm
-
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
@@ -69,6 +65,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.7.11-1
+- Updated to release 0.7.11.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 0.7.10-0
 - Updated to release 0.7.10.
 
