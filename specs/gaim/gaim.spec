@@ -2,19 +2,18 @@
 # Authority: matthias
 
 ### FC3 comes with the latest gaim
-# ExcludeDist: fc3
+##ExcludeDist: fc3
 
 ### rh9 and el3 wants to install perl modules outside buildroot
-#%{?el3:%define _without_perl 1}
-#%{?rh9:%define _without_perl 1}
-#%define _without_perl 1
+%{?el3:%define _without_perl 1}
+%{?rh9:%define _without_perl 1}
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)
 
 Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.0.3
+Version: 1.1.1
 Release: 1
 Epoch: 1
 License: GPL
@@ -81,9 +80,8 @@ Available rpmbuild rebuild options :
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__make} install DESTDIR="%{buildroot}"
-%makeinstall \
-	PREFIX="%{buildroot}%{_prefix}"
+%{__make} install \
+	DESTDIR="%{buildroot}"
 %find_lang %{name}
 %{__strip} %{buildroot}%{_libdir}/*.so* %{buildroot}%{_libdir}/gaim/*.so || :
 
@@ -122,10 +120,14 @@ Available rpmbuild rebuild options :
 %{perl_vendorarch}/Gaim.pm
 %{perl_vendorarch}/auto/Gaim
 %{perl_vendorman3dir}/*
-%exclude %{buildroot}%{perl_archlib}
+%exclude %{perl_archlib}
 %endif
 
 %changelog
+* Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Re-enabled perl support. (Chris Weyl)
+- Updated to release 1.1.1.
+
 * Wed Nov 17 2004 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3.
 
