@@ -1,21 +1,19 @@
 # $Id$
 # Authority: matthias
 
-#$Id$
-
 Summary: Graphical CD player, CD ripper and MP3 encoder frontend
 Name: grip
-Version: 3.1.5
+Version: 3.1.8
 Release: 1
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/grip/grip-%{version}.tar.gz
-Patch: grip-3.1.5-default.patch
+Patch: grip-3.1.7-default.patch
 URL: http://www.nostatic.org/grip/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: vorbis-tools
-BuildRequires: libgnomeui-devel >= 2.2.0, vte-devel, libghttp-devel
+BuildRequires: libgnomeui-devel >= 2.2.0, vte-devel, curl-devel
 BuildRequires: id3lib-devel, gettext
 
 %description
@@ -26,21 +24,26 @@ you take a disc and transform it easily straight into MP3s. The CDDB
 protocol is supported for retrieving track information from disc database
 servers.
 
+
 %prep
 %setup
 %patch -p1 -b .rh-default-encoder
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}-2.2
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}-2.2.lang
 %defattr(-, root, root, 0755)
@@ -50,7 +53,15 @@ servers.
 %{_datadir}/gnome/help/%{name}
 %{_datadir}/pixmaps/gripicon.png
 
+
 %changelog
+* Sat Mar 27 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.8-1.fr
+- Update to 3.1.8.
+
+* Tue Mar 23 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.7-1.fr
+- Update to 3.1.7.
+- Change libghttp dependency to curl.
+
 * Wed Mar  3 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.5-1.fr
 - Update to 3.1.5.
 

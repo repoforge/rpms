@@ -10,12 +10,13 @@
 
 Name: rhythmbox
 Summary: Music Management Application 
-Version: 0.6.8
+Version: 0.6.10
 Release: 0.1%{?_with_xine:xine}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/0.6/%{name}-%{version}.tar.bz2
+#Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/0.6/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/rhythmbox/rhythmbox-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.3
 Requires: libgnomeui >= 2.0.0
@@ -102,28 +103,32 @@ done
 
 
 %changelog
-* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.8-0.1.fr
+* Mon Mar 29 2004 Matthias Saou <http://freshrpms.net/> 0.6.10-0.1
+- Update to 0.6.10.
+- Use sf.net source URL for now since ftp.gnome.org isn't up-to-date.
+
+* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.8-0.1
 - Update to 0.6.8.
 
-* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 0.6.7-0.1.fr
+* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 0.6.7-0.1
 - Update to 0.6.7.
 
-* Thu Jan 22 2004 Matthias Saou <http://freshrpms.net/> 0.6.5-0.1.fr
+* Thu Jan 22 2004 Matthias Saou <http://freshrpms.net/> 0.6.5-0.1
 - Update to 0.6.5.
 
-* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.6.4-0.1.fr
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.6.4-0.1
 - Update to 0.6.4.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.6.3-0.1.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.6.3-0.1
 - Update to 0.6.3.
 
-* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 0.6.2-0.1.fr
+* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 0.6.2-0.1
 - Update to 0.6.2.
 
-* Sat Nov 22 2003 Matthias Saou <http://freshrpms.net/> 0.6.1-0.1.fr
+* Sat Nov 22 2003 Matthias Saou <http://freshrpms.net/> 0.6.1-0.1
 - Update to 0.6.1.
 
-* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 0.6.0-0.1.fr
+* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 0.6.0-0.1
 - Rebuild for Fedora Core 1.
 - Add xine backend build time support.
 - Include xine backend fix patch.

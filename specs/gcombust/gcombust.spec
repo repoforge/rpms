@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: useful GTK+ front-end for mkisofs and cdrecord
+Summary: Powerful GTK+ front-end for mkisofs and cdrecord
 Name: gcombust
 Version: 0.1.55
 Release: 2
@@ -46,7 +46,7 @@ hinting which directories and files to use.
 %{_datadir}/pixmaps/%{name}.xpm
 
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.1.55-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1:0.1.55-2
 - Rebuild for Fedora Core 1.
 
 * Thu Jul 24 2003 Matthias Saou <http://freshrpms.net/>
