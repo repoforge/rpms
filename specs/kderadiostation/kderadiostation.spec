@@ -4,8 +4,8 @@
 
 Summary: Tool which presents you a list of internet streaming radio stations
 Name: kderadiostation
-Version: 0.5
-Release: 3
+Version: 0.6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kderadiostation.coolprojects.org/
@@ -26,7 +26,7 @@ This tool presents you a list of internet streaming radio stations. Just
 select your favorite one, and xmms or noatun will pick up the right stream.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
+%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -37,7 +37,6 @@ select your favorite one, and xmms or noatun will pick up the right stream.
 %install
 . /etc/profile.d/qt.sh
 %{__make} install-strip DESTDIR=$RPM_BUILD_ROOT
-mv $RPM_BUILD_ROOT/usr/lib/kde3/libkradiopart* $RPM_BUILD_ROOT/usr/lib/
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -49,17 +48,17 @@ mv $RPM_BUILD_ROOT/usr/lib/kde3/libkradiopart* $RPM_BUILD_ROOT/usr/lib/
 %defattr(-,root,root,0755)
 %doc README
 %{_bindir}/kderadiostation
-%{_libdir}/libkradiopart.la
-%{_libdir}/libkradiopart.so.1
-%{_libdir}/libkradiopart.so
-%{_libdir}/libkradiopart.so.1.0.0
+%{_libdir}/kde3/libkradiopart.*
 %{_datadir}/applnk/Multimedia/kderadiostation.desktop
 %{_datadir}/apps/kderadiostation
 %{_datadir}/config/kderadiostationrc
-%{_datadir}/icons/hicolor/32x32/apps/kderadiostation.png
+%{_datadir}/icons/*/*/apps/kderadiostation.png
 %{_datadir}/locale/*/LC_MESSAGES/kderadiostation.mo
 
 %changelog
+* Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> 0.6-1
+- update to version 0.6
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 0.5-3
 - cleanup of spec file
 
