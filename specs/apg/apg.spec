@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Adel I. Mirzazhanov <a-del@iname.com>
 
 Summary: Automated Password Generator for random password generation
 Name: apg
@@ -7,9 +8,10 @@ Version: 2.2.3
 Release: 2
 License: GPL
 Group: System Environment/Base
-Source: http://www.adel.nursat.kz/apg/download/%{name}-%{version}.tar.gz
 URL: http://www.adel.nursat.kz/apg/
-BuildRoot: %{_tmppath}/%{name}-root
+
+Source: http://www.adel.nursat.kz/apg/download/apg-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 APG (Automated Password Generator) is the tool set for random password
@@ -25,8 +27,8 @@ find . | xargs chmod u+w
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D apg %{buildroot}%{_bindir}/apg
-%{__install} -D doc/man/apg.1 %{buildroot}%{_mandir}/man1/apg.1
+%{__install} -D -m0755 apg %{buildroot}%{_bindir}/apg
+%{__install} -D -m0644 doc/man/apg.1 %{buildroot}%{_mandir}/man1/apg.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -35,7 +37,7 @@ find . | xargs chmod u+w
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README THANKS TODO doc/rfc*
 %{_bindir}/apg
-%{_mandir}/man*/*
+%{_mandir}/man?/*
 
 %changelog
 * Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 2.2.3-2.fr
