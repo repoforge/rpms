@@ -1,7 +1,5 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
 
 Summary: General-purpose tool for parameter handling in C++
 Name: xparam
@@ -9,7 +7,7 @@ Version: 1.22
 Release: 1
 License: GPL+Other
 Group: Applications/
-URL: http://xparam.sourceforge.net/
+URL: http://xparam.sf.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -44,18 +42,26 @@ you will need to install %{name}-devel.
 %{__aclocal}
 %{__autoconf}
 # {__automake} --add-missing
-%configure --disable-config-examples
+%configure \
+	--disable-config-examples
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Clean up buildroot (cannot be just excluded for rh8)
+%{__rm} -f %{buildroot}%{_infodir}/dir
+
 %post
 /sbin/ldconfig 2>/dev/null
+/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
 
 %postun
 /sbin/ldconfig 2>/dev/null
+
+%preun
+/sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,10 +70,10 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO BUGS XPARAM-VERSION doc
 %{_libdir}/*.so.*
-%{_infodir}/xparam*
-%exclude %{_infodir}/dir
 
 %files devel
+%defattr(-, root, root, 0755)
+%doc %{_infodir}/*.info*
 %{_includedir}/xparam/*.h
 %{_includedir}/*.h
 %{_libdir}/*.a
