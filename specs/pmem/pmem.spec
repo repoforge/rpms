@@ -40,7 +40,7 @@ files system.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Authors ChangeLog COPYING INSTALL NEWS README
+%doc ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/*
 
 %changelog
