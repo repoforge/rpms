@@ -46,7 +46,6 @@ An XMMS plugin to stop playing/quit XMMS/suspend/shutdown at a given time.
 %defattr(-, root, root, 0755)
 %doc Changes COPYING README TODO
 %{xmms_generaldir}/*.so
-%exclude %{xmms_generaldir}/*.la
 
 
 %changelog

@@ -1,13 +1,15 @@
 # $Id$
 # Authority: dag
+# Upstream: Michael Grigoriev <mag@luminal.org>
 
-%define xmms_generaldir %(xmms-config --general-plugin-dir)
-%define real_name imms
+%define plugindir %(xmms-config --general-plugin-dir)
 
-Summary: Intelligent Multimedia Management System plugin for XMMS
+%define rname imms
+
+Summary: Intelligent Multimedia Management System plugin for XMMS.
 Name: xmms-imms
-Version: 0.9.9
-Release: 0
+Version: 1.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.luminal.org/phpwiki/index.php/IMMS
@@ -15,13 +17,12 @@ URL: http://www.luminal.org/phpwiki/index.php/IMMS
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.luminal.org/files/imms/%{real_name}-%{version}.tar.bz2
+Source: http://dl.sf.net/imms/imms-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, glib-devel, gtk+-devel, id3lib-devel
 BuildRequires: libogg-devel, pcre-devel, libstdc++-devel,
 BuildRequires: libvorbis-devel, xmms-devel, sqlite-devel, zlib-devel
-
 
 %description
 IMMS is an adaptive playlist plug-in for XMMS designed to simplify management
@@ -37,10 +38,8 @@ Some of the key features include:
 * IMMS does a better job of shuffling than XMMS. It is able to recognise
   different versions of the same song and not play them in quick succession.
 
-
 %prep
-%setup -n %{real_name}-%{version}
-
+%setup -n %{rname}-%{version}
 
 %build
 %{__aclocal}
@@ -49,17 +48,18 @@ Some of the key features include:
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
-%{__install} -D -m0644 libimms.so %{buildroot}%{xmms_generaldir}/libimms.so
-
+%{__install} -d -m0755 %{buildroot}%{plugindir}
+%{__install} -m0644 libimms.so %{buildroot}%{plugindir}
 
 %files
 %doc LICENSE README 
-%{xmms_generaldir}/*
-
+%{plugindir}/*
 
 %changelog
+* Fri Apr 16 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Mon Dec 15 2003 Dag Wieers <dag@wieers.com> - 0.9.9-0
 - Updated to release 0.9.9.
 

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Adam Feakin <adamf@snika.uklinux.net>
 
+# Distcc: 0
+
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
 
 Summary: General plugin for using xmms as an alarm clock
@@ -19,7 +21,6 @@ Source: http://www.snika.uklinux.net/xmms-alarm/xmms-alarm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xmms-devel, glib-devel >= 1.2.6, gtk+-devel >= 1.2.6
-
 
 %description
 xmms plugin for using xmms as an alarm clock.

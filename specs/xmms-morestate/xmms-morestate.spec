@@ -49,7 +49,7 @@ XMMS Morestate restores ESD volume, song time, and playing/paused status.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{xmms_generaldir}/*.so
-%exclude %{xmms_generaldir}/*.la
+#%exclude %{xmms_generaldir}/*.la
 
 
 %changelog
