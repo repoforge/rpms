@@ -18,6 +18,16 @@
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_theora 1}
 
+%{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_fribidi 1}
+%{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_theora 1}
+
+%{?el2:%define _without_alsa 1}
+%{?el2:%define _without_fribidi 1}
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_theora 1}
+
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}
 %{?yd3:%define _without_theora 1}
@@ -36,7 +46,7 @@ Release: 0.11%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
-%if %{?date:1}%{!?date:0}
+%if %{?date:1}0
 Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-current.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
@@ -99,7 +109,7 @@ to use MPlayer, transcode or other similar programs.
 
 
 %prep
-%if %{?date:1}%{!?date:0}
+%if %{?date:1}0
 %setup -n MPlayer-%{date}
 %else
 %setup -n MPlayer-%{version}%{?rcver}
