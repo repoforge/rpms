@@ -10,7 +10,7 @@
 
 Summary: LaTeX editor
 Name: texmaker
-Version: 1.1
+Version: 1.11
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -19,7 +19,7 @@ URL: http://www.xm1math.net/texmaker/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.xm1math.net/texmaker/texmaker_%{version}.tar.bz2
+Source: http://www.xm1math.net/texmaker/texmaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.0, kdelibs-devel
@@ -52,7 +52,7 @@ It have thoses features:
   corresponding line in the editor 
 
 %prep
-%setup -n %{name}_%{version}
+%setup
 
 %{__perl} -pi.orig -e 's|PREFIX"|"%{_prefix}|' *.cpp
 
@@ -102,13 +102,16 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %defattr(-, root, root, 0755)
 %doc INSTALL utilities/AUTHORS utilities/COPYING
 %doc utilities/*.css utilities/*.gif utilities/*.html utilities/*.png
-%{_bindir}/*
+%{_bindir}/texmaker
 %{?_without_freedesktop:%{_datadir}/applications/texmaker.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/kde-texmaker.desktop}
-%{_datadir}/icons/hicolor/*/apps/*.png
-%{_datadir}/pixmaps/*.png
+%{_datadir}/icons/hicolor/*/apps/texmaker.png
+%{_datadir}/pixmaps/texmaker.png
 
 %changelog
+* Sun Aug 15 2004 Dag Wieers <dag@weers.com> - 1.11-1
+- Updated to release 1.11.
+
 * Sun Jul 11 2004 Dag Wieers <dag@weers.com> - 1.1-1
 - Updated to release 1.1.
 
