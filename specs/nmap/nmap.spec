@@ -7,7 +7,7 @@
 Summary: Network exploration tool and security scanner
 Name: nmap
 Version: 3.70
-Release: 1
+Release: 2
 Epoch: 2
 License: GPL
 Group: Applications/System
@@ -38,6 +38,7 @@ be installed before installing nmap-frontend.
 
 %prep
 %setup
+%{__perl} -pi.orig -e 's|^TryExec=|Exec=|g' nmapfe.desktop
 
 
 %build
@@ -52,12 +53,11 @@ be installed before installing nmap-frontend.
 
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category Network                                          \
-  %{buildroot}%{_datadir}/gnome/apps/Utilities/nmapfe.desktop
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --delete-original \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/gnome/apps/Utilities/nmapfe.desktop
 
 
 %clean
@@ -81,6 +81,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Mon Sep  6 2004 Matthias Saou <http://freshrpms.net/> 3.70-2
+- Fix menu entry (TryExec vs. Exec).
+
 * Wed Sep  1 2004 Matthias Saou <http://freshrpms.net/> 3.70-1
 - Update to 3.70.
 - Enable IPv6.

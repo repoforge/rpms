@@ -3,8 +3,8 @@
 
 Summary: Simple library and a wrapper for imlib2
 Name: giblib
-Version: 1.2.3
-Release: 4
+Version: 1.2.4
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://linuxbrit.co.uk/giblib/
@@ -24,7 +24,7 @@ and more importantly, wraps imlib2's context API.
 %package devel
 Summary: Static library and header files for giblib
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, imlib2-devel, pkgconfig
 
 %description devel
 Install this package if you intend to develop using the giblib library.
@@ -59,18 +59,22 @@ Install this package if you intend to develop using the giblib library.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog
-%{_libdir}/lib%{name}.so.*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/%{name}-config
-%{_includedir}/%{name}
-%{_libdir}/lib%{name}.a
-%exclude %{_libdir}/lib%{name}.la
-%{_libdir}/lib%{name}.so
+%{_bindir}/*-config
+%{_includedir}/*
+%{_libdir}/*.a
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
 
 
 %changelog
+* Mon Sep  6 2004 Matthias Saou <http://freshrpms.net/> 1.2.4-1
+- Update to 1.2.4.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.2.3-4
 - Rebuild for Fedora Core 2.
 

@@ -4,7 +4,7 @@
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
-Version: 3.96
+Version: 3.96.1
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
@@ -110,6 +110,9 @@ find doc/html -name "Makefile*" | xargs rm -f
 
 
 %changelog
+* Mon Sep  6 2004 Matthias Saou <http://freshrpms.net/> 3.96.1-1
+- Update to 3.96.1.
+
 * Wed Apr 21 2004 Matthias Saou <http://freshrpms.net/> 3.96-1
 - Update to 3.96 w/ spec changes from Dag.
 
