@@ -24,9 +24,6 @@ License: LGPL
 Group: Development/Libraries
 URL: http://libvisual.sourceforge.net/v2/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/libvisual/libvisual-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.hping.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.hping.org/hping%{real_version}.tar.gz
 Patch0: hping-2.0.0-x86_64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

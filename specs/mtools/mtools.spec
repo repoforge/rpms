@@ -12,9 +12,6 @@ License: GPL/Lilux
 Group: System Environment/Base
 URL: http://mtools.linux.lu/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://mtools.linux.lu/mtools-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: texinfo

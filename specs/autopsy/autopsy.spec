@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.sleuthkit.org/autopsy/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/autopsy/autopsy-%{version}.tar.gz
 Patch0: autopsy.patch-1.74
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

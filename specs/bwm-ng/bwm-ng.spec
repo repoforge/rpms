@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.gropp.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://freshmeat.net/redir/bwm-ng/52961/url_tgz/bwm-ng-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

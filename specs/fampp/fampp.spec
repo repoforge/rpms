@@ -12,9 +12,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://fampp.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/fampp/fampp2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, stlport-devel, pkgconfig

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.kerneled.com/projects/elf/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source: http://www.kerneled.com/projects/elf/elf-%{real_version}.tar.bz2
 Source: http://distro.ibiblio.org/pub/linux/distributions/sorcerer/sources/elf/%{real_version}/elf-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -35,9 +35,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://bellet.info/~bellet/laptop/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://bellet.info/~bellet/laptop/airo_mpi-20031220.tar.gz
 #Source: http://bellet.info/laptop/airo.c-2.4.25.diff
 Source1: airo_mpi.153.c

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Productivity
 URL: http://gpasman.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://gpasman.sf.net/files/gpasman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(XML::Parser), intltool, pkgconfig, glib2-devel

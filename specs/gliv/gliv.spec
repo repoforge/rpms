@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://guichaz.free.fr/gliv/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://guichaz.free.fr/gliv/gliv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.greatnorthern.demon.co.uk/gnome-pkgview.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.greatnorthern.demon.co.uk/packages/gnome-pkgview/gnome-pkgview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

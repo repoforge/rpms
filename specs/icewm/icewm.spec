@@ -18,9 +18,6 @@ License: LGPL
 Group: User Interface/Desktops
 URL: http://www.icewm.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/sourceforge/icewm/icewm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

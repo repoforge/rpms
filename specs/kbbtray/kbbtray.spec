@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://coldstonelabs.org/index.jsp?projectIndex=4
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://coldstonelabs.org/files/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: PyKDE, python

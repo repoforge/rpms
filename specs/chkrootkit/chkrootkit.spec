@@ -17,9 +17,6 @@ License: BSD-like
 Group: Applications/System
 URL: http://www.chkrootkit.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit-%{version}.tar.gz
 Source1: chkrootkit.png
 Patch: chkrootkit-0.44-getCMD.patch

@@ -12,9 +12,6 @@ Group: Applications/File
 License: GPL
 URL: http://www.student.hk-r.se/~pt98jan/colortail.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.student.hk-r.se/~pt98jan/%{name}-%{version}.tar.gz
 Patch: colortail-0.3.0-gcc3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

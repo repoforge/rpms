@@ -10,9 +10,6 @@ License: Other
 Group: Applications/Internet
 URL: http://imcom.floobin.cx/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://imcom.floobin.cx/files/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python

@@ -9,9 +9,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.bms-austria.com/projects/paragui/
 
-Packager: Rudolf Kastl <che666 at uni.de>
-Vendor: http://newrpms.sunsite.dk/
-
 Source: http://savannah.nongnu.org/download/paragui/paragui-%{version}.tar.gz
 Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

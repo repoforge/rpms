@@ -13,9 +13,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.cs.aau.dk/~olau/monster-masher/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.cs.aau.dk/~olau/monster-masher/source/monster-masher-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

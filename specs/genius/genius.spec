@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Engineering
 URL: http://www.5z.com/jirka/genius.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.5z.com/pub/genius/genius-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

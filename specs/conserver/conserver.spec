@@ -13,9 +13,6 @@ License: BSD style
 Group: System Environment/Daemons
 URL: http://www.conserver.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.conserver.com/conserver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

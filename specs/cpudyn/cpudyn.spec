@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://mnm.uib.es/~gallir/cpudyn/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://mnm.uib.es/~gallir/cpudyn/download/cpudyn-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

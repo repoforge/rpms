@@ -12,9 +12,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://ebtables.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/ebtables/ebtables-v%{version}.tar.gz
 Patch0: ebtables-2.0.6-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.aimsniff.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.aimsniff.com/releases/aimsniff-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

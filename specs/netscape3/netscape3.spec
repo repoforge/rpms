@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.netscape.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 ExclusiveArch: i386
 Source: ftp://ftp.netscape.com/pub/communicator/english/%{version}/unix/unsupported/linux12/navigator_standalone/netscape-v304-us.x86-unknown-linux-elf.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -12,9 +12,6 @@ License: BSD
 Group: System Environment/Libraries
 URL: http://libuninameslist.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/libuninameslist/%{name}_src-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

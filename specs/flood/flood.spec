@@ -14,9 +14,6 @@ License: Apache
 Group: Applications/Internet
 URL: http://httpd.apache.org/test/flood/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.apache.org/dist/httpd/flood/flood-%{real_version}.tar.bz2
 Patch: flood-openssl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

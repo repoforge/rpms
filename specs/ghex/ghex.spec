@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Editors
 URL: http://pluton.ijs.si/~jaka/gnome.html#GHEX
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/GNOME/sources/ghex/2.8/ghex-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

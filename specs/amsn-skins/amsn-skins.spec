@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://amsn.sourceforge.net/
 
-Packager: Dries Verachtert <skotty@ulyssis.org>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://dl.sf.net/amsn/Alloque_Lavender.zip
 Source1: http://dl.sf.net/amsn/Alternative-Tux.zip
 Source2: http://dl.sf.net/amsn/BSDmsn.zip

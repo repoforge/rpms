@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Archiving
 URL: http://konserve.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://dl.sf.net/konserve/konserve-%{version}.tar.bz2
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel

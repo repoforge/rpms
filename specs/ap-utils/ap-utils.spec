@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://ap-utils.polesye.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://linux.zhitomir.net/ap-utils/ap-utils-%{version}.tar.bz2
 #Source: http://dl.sf.net/ap-utils/ap-utils-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

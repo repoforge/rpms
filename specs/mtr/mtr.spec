@@ -19,9 +19,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.BitWizard.nl/mtr
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.bitwizard.nl/mtr/mtr-%{version}.tar.gz
 Patch0: mtr-0.49-s390x.patch
 Patch1: mtr-0.54-ipv6-kame.patch

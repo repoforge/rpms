@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Databases
 URL: http://www.gnome-db.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/GNOME/sources/mergeant/%{version}/mergeant-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

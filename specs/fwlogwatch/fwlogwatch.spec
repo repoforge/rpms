@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://cert.uni-stuttgart.de/projects/fwlogwatch/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.kyb.uni-stuttgart.de/boris/sw/fwlogwatch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: BSD
 Group: System Environment/Libraries
 URL: http://www.feep.net/libtar/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://ftp.feep.net/pub/software/libtar/libtar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

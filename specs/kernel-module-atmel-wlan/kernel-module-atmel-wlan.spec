@@ -34,9 +34,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://atmelwlandriver.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/atmelwlandriver/atmelwlandriver-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

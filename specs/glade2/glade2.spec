@@ -16,9 +16,6 @@ License: GPL
 Group: Development/Tools
 URL: http://glade.gnome.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.gnome.org/pub/GNOME/pre-gnome2/sources/glade/glade-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

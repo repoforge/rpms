@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: ftp://ftp.redhat.com/pub/redhat/mirror-tools/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.redhat.com/pub/redhat/mirror-tools/hardlink.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

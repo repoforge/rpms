@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://autotrace.sourceforge.net/frontline/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/autotrace/frontline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

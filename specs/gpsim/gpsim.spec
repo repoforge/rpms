@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Engineering
 URL: http://www.dattalo.com/gnupic/gpsim.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.dattalo.com/gnupic/gpsim-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

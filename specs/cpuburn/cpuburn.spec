@@ -14,9 +14,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://users.ev1.net/~redelm/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://pages.sbcglobal.net/redelm/cpuburn_%{real_version}_tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://www.openquicktime.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/openquicktime/openquicktime-%{version}-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, glib-devel, zlib-devel

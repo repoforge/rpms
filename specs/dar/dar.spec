@@ -10,9 +10,6 @@ License: GPL
 Group: Development/Tools
 URL: http://dag.wieers.com/home-made/dar/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dag.wieers.com/home-made/dar/dar-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

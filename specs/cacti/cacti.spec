@@ -15,9 +15,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.raxnet.net/products/cacti/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.raxnet.net/downloads/cacti/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://linux-ha.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://linux-ha.org/download/%{name}-%{version}.tar.gz
 Patch0: ldirectord.passwd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

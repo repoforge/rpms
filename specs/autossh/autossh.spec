@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.harding.motd.ca/autossh/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.harding.motd.ca/autossh/autossh-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

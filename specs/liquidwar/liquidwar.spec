@@ -9,9 +9,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.ufoot.org/liquidwar/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://liquidwar.sunsite.dk/archive/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: allegro-devel, allegro-tools, tetex-latex, python, texinfo

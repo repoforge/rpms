@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.djcbsoftware.nl/projecten/gnuvd/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.djcbsoftware.nl/code/gnuvd/gnuvd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++

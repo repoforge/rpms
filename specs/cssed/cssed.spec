@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://cssed.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/cssed/cssed-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, make, gcc-c++, expat-devel

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Databases
 URL: http://www.mysql.com/products/mysqlcc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.mysql.com/get/Downloads/MySQLCC/%{name}-%{version}-src.tar.gz
 Patch0: mysqlcc-path.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

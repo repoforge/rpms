@@ -16,9 +16,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.usebox.net/jjm/dd2/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.usebox.net/jjm/dd2/releases/dd2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

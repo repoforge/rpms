@@ -13,9 +13,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://xmlsoft.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://xmlsoft.org/sources/libxml2-%{version}.tar.gz
 #Source: http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.5/libxml2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

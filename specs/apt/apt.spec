@@ -13,9 +13,6 @@ License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source: https://moin.conectiva.com.br/AptRpm?action=AttachFile&do=get&target=apt-0.5.15cnc6.tar.bz2
 Source: http://moin.conectiva.com.br/files/AptRpm/attachments/apt-%{version}.tar.bz2
 Patch0: apt-0.5.15cnc6-rpmpriorities.patch

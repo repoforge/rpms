@@ -12,9 +12,6 @@ URL: http://www.gnustep.org
 Source: http://ftp.gnustep.org/pub/gnustep/core/gnustep-make-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 %description
 This package contains the basic scripts, makefiles and directory layout
 needed to run and compile any GNUstep software.

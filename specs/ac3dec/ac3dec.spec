@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://liba52.sourceforge.net/downloads.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://liba52.sourceforge.net/files/ac3dec-%{version}.tar.gz
 Patch0: ac3dec-0.6.1-libac3-memcpy.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -12,9 +12,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.cs.auc.dk/~olau/hardware-monitor/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cs.aau.dk/~olau/hardware-monitor/source/hardware-monitor-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

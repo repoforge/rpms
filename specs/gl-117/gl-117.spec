@@ -15,9 +15,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.bz2
 Patch: gcc-fc3-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://liferea.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/liferea/liferea-%{version}b.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://web.tiscali.it/diegobazzanella/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://web.tiscali.it/diegobazzanella/gqueue-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

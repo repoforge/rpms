@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.antcom.de/gtick/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.antcom.de/gtick/download/gtick-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

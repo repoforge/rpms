@@ -15,9 +15,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://kgeography.berlios.de/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://download.berlios.de/kgeography/kgeography-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

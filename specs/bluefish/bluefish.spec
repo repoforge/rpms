@@ -11,9 +11,10 @@ URL: http://bluefish.openoffice.nl/
 Source: http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/bluefish-%{version}.tar.bz2
 Patch: bluefish-1.0-desktop_icon.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: shared-mime-info >= 0.15
+
 BuildRequires: gtk2-devel >= 2.0.6, pcre-devel >= 3.9, gnome-vfs2-devel
 BuildRequires: aspell-devel, gettext, desktop-file-utils
+Requires: shared-mime-info >= 0.14
 
 %description
 Bluefish is a GTK+ HTML editor for the experienced web designer or

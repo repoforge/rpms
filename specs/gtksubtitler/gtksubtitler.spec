@@ -11,9 +11,6 @@ Group: Applications/Multimedia
 #Source1: %{name}.desktop
 URL: http://www.gtksubtitler.prv.pl/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.gtksubtitler.prv.pl/download/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

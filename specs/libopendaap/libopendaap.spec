@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://crazney.net/programs/itunes/libopendaap.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://crazney.net/programs/itunes/files/libopendaap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: BSD
 Group: Applications/Multimedia
 URL: http://johnst.org/sw/exiftags/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://johnst.org/sw/exiftags/exiftags-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Editors
 URL: http://ne.dsi.unimi.it/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ne.dsi.unimi.it/ne-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.opaque.net/ming/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/ming/ming-%{real_version}.tar.bz2
 Patch: ming-listmp3.c.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -13,9 +13,6 @@ License: Other
 Group: Amusements/Games
 URL: http://www.eternal-lands.com/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 # cvs command: cvs -d :pserver:anonymous@cvs.elc.berlios.de:/cvsroot/elc co -r elc_0_9_9 elc
 Source: eternallands-src-%{version}.tar.gz
 Source1: http://el.tfm.ro/el_%{real_version}.zip

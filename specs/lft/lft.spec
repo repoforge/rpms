@@ -10,9 +10,6 @@ License: MainNerve Public License
 Group: Applications/Internet
 URL: http://oppleman.com/lft/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://oppleman.com/dl/?file=lft-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: MIT
 Group: System Environment/Libraries
 URL: http://www.ioplex.com/~miallen/libmba/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.ioplex.com/~miallen/libmba/dl/libmba-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

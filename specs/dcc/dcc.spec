@@ -12,9 +12,6 @@ License: BSD-like
 Group: Applications/Internet
 URL: http://www.rhyolite.com/anti-spam/dcc/
 
-Packager: Edward Rudd <eddie@omegaware.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source:	dcc-dccd.tar.Z
 Patch: dcc-1.2.2-sysv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

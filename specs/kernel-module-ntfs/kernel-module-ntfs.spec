@@ -34,9 +34,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://linux-ntfs.sourceforge.net/info/redhat.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kernel-source

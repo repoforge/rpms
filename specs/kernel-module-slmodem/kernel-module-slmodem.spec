@@ -32,9 +32,6 @@ License: Proprietary
 Group: System Environment/Kernel
 URL: http://linmodems.technion.ac.il/packages/smartlink/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.smlink.com/linux/unsupported/slmodem-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

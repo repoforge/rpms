@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.mavetju.org/unix/general.php
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.mavetju.org/download/dnstracer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

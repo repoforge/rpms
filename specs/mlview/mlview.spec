@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Editors
 URL: http://www.mlview.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source: http://savannah.gnu.org/download/mlview/tarballs/mlview-%{version}.tar.bz2
 Source: http://ftp.gnome.org/pub/GNOME/sources/mlview/0.7/mlview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

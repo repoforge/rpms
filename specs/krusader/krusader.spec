@@ -35,9 +35,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://krusader.sourceforge.net/home.php
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/krusader/krusader-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

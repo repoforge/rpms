@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.zeroflux.org/knock/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.zeroflux.org/knock/knock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

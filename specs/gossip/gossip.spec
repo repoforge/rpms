@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://gossip.imendio.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.imendio.com/pub/imendio/gossip/src/gossip-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.spinnaker.de/lbdb/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.spinnaker.de/debian/lbdb_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ License: MIT
 Group: System Environment/Base
 URL: http://home.san.rr.com/johninsd/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://home.san.rr.com/johninsd/pub/linux/lilo/lilo-%{version}.src.tar.gz
 Source2: keytab-lilo.c
 #Patch3: lilo-21.4.4-graphical.patch

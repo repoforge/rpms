@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/System
 URL: http://asic-linux.com.mx/~izto/checkinstall/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://checkinstall.izto.org/files/source/checkinstall-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

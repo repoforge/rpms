@@ -29,9 +29,6 @@ BuildRequires: libogg-devel esound-devel, openal-devel, libtool, gettext
 BuildRequires: scons, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 %description
 Blender is the essential software solution you need for 3D, from modeling,
 animation, rendering and post-production to interactive creation and

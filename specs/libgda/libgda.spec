@@ -16,9 +16,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/1.1/libgda-%{version}.tar.bz2
 #Source: ftp://ftp.gnome-db.org/pub/gnome-db/sources/v%{version}/libgda-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

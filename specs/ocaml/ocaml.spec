@@ -20,9 +20,6 @@ License: QPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-%{version}.tar.bz2
 Source1: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.html.tar.gz
 Source2: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.ps.gz

@@ -13,9 +13,6 @@ License: BSD
 Group: System Environment/Libraries
 URL: http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.hpl.hp.com/personal/Hans_Boehm/%{real_name}/gc_source/%{real_name}%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

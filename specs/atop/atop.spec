@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/System
 URL: ftp://ftp.atcomputing.nl/pub/tools/linux/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.atcomputing.nl/pub/tools/linux/atop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Communications
 URL: http://www.mwiacek.com/gsm/gammu/gammu.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.mwiacek.com/zips/gsm/gammu/older/gammu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://user.cs.tu-berlin.de/~nowozin/autopano-sift/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://user.cs.tu-berlin.de/~nowozin/autopano-sift/autopano-sift-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -17,9 +17,6 @@ License: MIT
 Group: Applications/Internet
 URL: http://bitconjurer.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://bittorrent.com/BitTorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

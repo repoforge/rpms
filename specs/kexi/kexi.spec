@@ -48,9 +48,6 @@ License: GPL
 Group: Applications/Databases
 URL: http://www.koffice.org/kexi/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://ftp.scarlet.be/pub/kde/unstable/apps/KDE3.x/office/kexi-%{real_version}.tar.bz2
 Source2: http://www.kexi-project.org/fixes/keximainwindowimpl.cpp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

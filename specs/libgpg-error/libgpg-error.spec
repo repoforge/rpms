@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpgme.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/libgpg-error/libgpg-error-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

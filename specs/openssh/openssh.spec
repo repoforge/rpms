@@ -99,9 +99,6 @@ Patch11: http://www.sxw.org.uk/computing/patches/openssh-3.4p1-gssapi-20020627.d
 License: BSD
 Group: Applications/Internet
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

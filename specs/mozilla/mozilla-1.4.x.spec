@@ -16,9 +16,6 @@ License: MPL/NPL/GPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: ftp://ftp.mozilla.org/pub/mozilla/releases/%{name}%{real_version}/src/%{name}-source-%{real_version}.tar.bz2
 Source1: mozilla.sh.in
 Source2: mozilla-icon.png

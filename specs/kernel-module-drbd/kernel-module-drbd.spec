@@ -35,9 +35,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://www.drbd.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.drbd.org/uploads/media/drbd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

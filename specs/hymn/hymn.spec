@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://hymn-project.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source: http://hymn-project.org/download.php?dl=dlsrc
 Source: hymn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

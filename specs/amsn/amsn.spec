@@ -27,9 +27,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://amsn.sourceforge.net/
 
-Packager: Dries Verachtert <skotty@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/amsn/amsn-%{real_version}.tar.gz
 ### FIXME: tls-plugin doesn't build because of missing tclPort.h in tcl-devel
 #Source1: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-src.tar.bz2

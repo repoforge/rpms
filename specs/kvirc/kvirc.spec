@@ -32,9 +32,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.kvirc.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://ftp.kvirc.net/pub/kvirc/%{version}/source/kvirc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: openssl-devel, libvorbis-devel, gettext, libart_lgpl-devel

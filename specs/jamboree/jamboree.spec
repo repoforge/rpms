@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.imendio.com/projects/jamboree/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/gnome/sources/jamboree/%{version}/jamboree-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

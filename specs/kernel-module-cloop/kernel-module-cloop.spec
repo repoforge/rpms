@@ -35,9 +35,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://developer.linuxtag.net/knoppix/sources/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://developer.linuxtag.net/knoppix/sources/cloop_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

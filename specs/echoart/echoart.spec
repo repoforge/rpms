@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://mirror1.internap.com/echoart/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://mirror1.internap.com/echoart/echoart.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

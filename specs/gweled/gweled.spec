@@ -10,9 +10,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://sebdelestaing.free.fr/gweled/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://sebdelestaing.free.fr/gweled/Release/gweled-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel

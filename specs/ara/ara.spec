@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Utilities
 URL: http://ara.alioth.debian.org/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://ara.alioth.debian.org/incoming/ara_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/File
 URL: http://kdirstat.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://kdirstat.sourceforge.net/download/kdirstat-%{version}.tar.bz2
 Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

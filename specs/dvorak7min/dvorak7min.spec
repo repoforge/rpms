@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.linalco.com/comunidad.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.linalco.com/ragnar/dvorak7min-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.leo.org/~elmar/nttcp/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.leo.org/~elmar/nttcp/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

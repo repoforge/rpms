@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Archiving
 URL: http://www.lzop.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.lzop.org/download/lzop-%{version}.tar.gz
 Patch0: lzop-1.01-gcc29.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

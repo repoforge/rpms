@@ -11,9 +11,6 @@ License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/apps/gst-editor/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://gstreamer.freedesktop.org/src/gst-editor/gst-editor-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

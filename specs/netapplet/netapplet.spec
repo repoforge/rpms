@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://primates.ximian.com/~rml/netapplet/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://primates.ximian.com/~rml/netapplet/netapplet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: BSD
 Group: Applications/System
 URL: https://svn.swapoff.org/op/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://swapoff.org/files/op/op-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -21,9 +21,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://www.pixelbeat.org/fslint/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.iol.ie/~padraiga/fslint/FSlint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

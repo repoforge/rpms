@@ -12,9 +12,6 @@ License: LGPL
 Group: Development/Libraries
 URL: http://gtkextra.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://gtkextra.sourceforge.net/src/gtk+extra-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

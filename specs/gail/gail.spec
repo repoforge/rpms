@@ -11,9 +11,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://developer.gnome.org/projects/gap/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/GNOME/sources/gail/1.3/gail-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

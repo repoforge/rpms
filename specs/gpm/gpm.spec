@@ -14,9 +14,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://linux.schottelius.org/gpm/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.linux.it/pub/People/rubini/gpm/%{name}-%{version}.tar.bz2
 Source1: gpm.init
 Patch5: gpm-1.20.1-secenhance.patch

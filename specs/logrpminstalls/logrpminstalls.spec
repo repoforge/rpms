@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://dries.ulyssis.org/projects/logrpminstalls/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dries.ulyssis.org/projects/logrpminstalls/logrpminstalls-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

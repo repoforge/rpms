@@ -24,9 +24,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.kill-9.org/mbrowse/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.kill-9.org/mbrowse/mbrowse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

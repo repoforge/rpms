@@ -29,9 +29,6 @@ License: MPL
 Group: System Environment/Kernel
 URL: http://www.cisco.com/warp/public/102/wlan/linux.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: Linux-ACU-Driver-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

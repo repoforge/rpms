@@ -32,9 +32,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://www.freeswan.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: ftp://ftp.xs4all.nl/pub/crypto/freeswan/freeswan-%{real_version}.tar.gz
 Source1: http://www.strongsec.com/freeswan/x509-1.5.2-freeswan-%{real_version}.tar.gz
 Patch0: freeswan-2.05-mts.patch

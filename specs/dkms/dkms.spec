@@ -10,9 +10,6 @@ Group: System Environment/Kernel
 License: GPL
 URL: http://www.lerhaupt.com/linux.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.lerhaupt.com/dkms/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

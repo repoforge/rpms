@@ -9,9 +9,6 @@ License: OpenSource
 Group: Applications/Internet
 URL: http://www.citi.umich.edu/u/provos/arpd/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.citi.umich.edu/u/provos/honeyd/arpd-%{version}.tar.gz
 Patch: arpd-0.2-function.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

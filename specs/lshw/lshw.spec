@@ -19,9 +19,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.ezix.org/software/lshw.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ezix.sourceforge.net/software/files/lshw-%{real_version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ License: LGPL
 Group: Applications/Internet
 URL: http://lcamtuf.coredump.cx/p0f.shtml
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://lcamtuf.coredump.cx/p0f/p0f-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ URL: http://www.haible.de/bruno/packages-ffcall.html
 Source: http://www.haible.de/bruno/gnu/ffcall-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 %description
 This is a collection of four libraries which can be used to build
 foreign function call interfaces in embedded interpreters.

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://forgate.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://forgate.sf.net/forgate-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

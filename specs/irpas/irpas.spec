@@ -11,9 +11,6 @@ License: distributable
 Group: Applications/Internet
 URL: http://www.phenoelit.de/irpas/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.phenoelit.de/irpas/irpas_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap

@@ -33,9 +33,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://lvempeg.sourceforge.net/klvemkdvd.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/lvempeg/klvemkdvd-%{version}.src.tgz
 Patch: gcc34-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -11,9 +11,6 @@ License: X License
 Group: System Environment/Libraries
 URL: http://oss.software.ibm.com/icu/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://www-126.ibm.com/pub/icu/2.4/icu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Prefix: %{_prefix}

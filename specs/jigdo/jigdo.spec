@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://atterer.net/jigdo/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://atterer.net/jigdo/jigdo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

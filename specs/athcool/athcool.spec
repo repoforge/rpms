@@ -9,9 +9,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://members.jcom.home.ne.jp/jacobi/linux/softwares.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source:	http://members.jcom.home.ne.jp/jacobi/linux/files/athcool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

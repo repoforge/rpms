@@ -11,9 +11,6 @@ License: BSD-like
 Group: System Environment/Libraries
 URL: http://libdnet.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/libdnet/libdnet-%{version}.tar.gz
 Patch0: libdnet-1.7-fw-ipchains.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

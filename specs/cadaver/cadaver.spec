@@ -18,9 +18,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.webdav.org/cadaver/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.webdav.org/cadaver/cadaver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Development/Languages
 URL: http://nice.sourceforge.net
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/nice/Nice-%{version}-source.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # to fix: buildrequires: j2se sdk

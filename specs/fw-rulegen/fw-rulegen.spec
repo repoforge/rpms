@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.b0rken.net/fw-rulegen/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source0: http://www.b0rken.net/fw-rulegen/data/fw/example/rules.conf
 Source1: http://www.b0rken.net/fw-rulegen/data/fw/example/global.conf
 Source2: http://www.b0rken.net/fw-rulegen/data/fw/example/interfaces.conf

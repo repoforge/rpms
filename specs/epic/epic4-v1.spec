@@ -13,9 +13,6 @@ License: Distributable
 Group: Applications/Communications
 URL: http://www.epicsol.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: ftp://ftp.epicsol.org/pub/epic/EPIC4-PRODUCTION/epic4-%{version}.tar.bz2
 Source1: ftp://ftp.epicsol.org/pub/epic/EPIC4-PRODUCTION/epic4-help-current.tar.gz
 Source2: epic.wmconfig

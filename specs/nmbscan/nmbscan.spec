@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System 
 URL: http://gbarbier.free.fr/prj/dev/#nmbscan
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://gbarbier.free.fr/prj/dev/down.php3?file=nmbscan-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

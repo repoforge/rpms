@@ -18,9 +18,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.goron.de/~froese/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.goron.de/~froese/alevt/alevt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

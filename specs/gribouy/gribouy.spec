@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/gribouy/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://savannah.nongnu.org/download/gribouy/unstable.pkg/0.0/gribouy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

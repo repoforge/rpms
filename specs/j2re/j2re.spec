@@ -3,7 +3,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc2:%define _without_compat_xorg 1}
+%{?fc1:%define _without_compat_xorg 1}
+%{?el3:%define _without_compat_xorg 1}
+%{?rh9:%define _without_compat_xorg 1}
+%{?rh7:%define _without_compat_xorg 1}
 %{?rh7:%define _without_gcc3 1}
+%{?el2:%define _without_compat_xorg 1}
 %{?el2:%define _without_gcc3 1}
 %{?rh6:%define _without_gcc3 1}
 
@@ -18,9 +24,6 @@ Group: Development/Languages
 License: Redistributable, BCLA
 URL: http://java.sun.com/j2se/1.4.2/download.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: j2re-%{real_version}_%{real_release}-linux-i586.bin
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -30,6 +33,7 @@ BuildRequires: expect
 Provides: j2re = %{version}, java = %{version}, j2re-java = %{version}
 Obsoletes: kaffe, java < %{version}, j2re-java < %{version}
 #Requires: shared-mime-info
+%{!?_without_compat_xorg:Requires: xorg-x11-deprecated-libs}
 
 %description
 This packages provides the environment to run java 2 aplications with JRE.
@@ -241,6 +245,9 @@ find %{buildroot}%{_libdir}/jre/ -type f -name "*.so" -exec %{__chmod} 0755 {} \
 %{_libdir}/netscape/plugins/libjavaplugin.so
 
 %changelog
+* Wed Mar 02 2005 Dag Wieers <dag@wieers.com> - ??
+- Added dependency to xorg-x11-deprecated-libs. (Jim Bartus)
+
 * Thu Nov 25 2004 Dag Wieers <dag@wieers.com> - 1.4.2-11
 - Updated to release 1_4_2_06.
 - Made plugins executable. (Nils Toedtmann)

@@ -11,9 +11,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://librsync.sourceforge.net/
 
-Packager: Wim Vandersmissen <wim@bofh.be>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/librsync/librsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
 Source1: http://dl.sf.net/mjpeg/quicktime4linux-1.4-patched-2.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -17,9 +17,6 @@ License: GPL
 Group: Applications/Emulators
 URL: http://gwenole.beauchesne.online.fr/basilisk2/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://gwenole.beauchesne.online.fr/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.cr0.net:8040/code/network/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cr0.net:8040/code/network/aircrack-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

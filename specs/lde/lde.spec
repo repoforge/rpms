@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://lde.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/lde/lde-%{version}.tar.gz
 Patch: lde-2.6.0-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

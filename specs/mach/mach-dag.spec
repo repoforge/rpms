@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://thomas.apestaart.org/projects/mach/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: distributable
 Group: Applications/Internet
 URL: http://www.fping.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.fping.com/download/fping-%{real_version}.tar.gz
 Patch0: fping-ac_fixes.patch
 Patch1: fping-ipv6.patch

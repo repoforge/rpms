@@ -20,9 +20,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://download.berlios.de/avidemux/avidemux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

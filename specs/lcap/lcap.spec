@@ -9,9 +9,6 @@ Release: 6
 License: GPL
 Group: System Environment/Base
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://svn.rpmforge.net/svn/trunk/rpms/lcap/lcap-%{version}.tar.bz2
 Patch1: lcap-0.0.6-morecaps.patch
 Patch2: lcap-0.0.6-manpage.patch

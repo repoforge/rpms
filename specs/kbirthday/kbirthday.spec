@@ -33,9 +33,6 @@ License: GPL
 Group: Applications/Communications
 URL: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.gfai.de/~jaham/download/kbirthday-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://dmr.ath.cx/net/darkstat/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dmr.ath.cx/net/darkstat/darkstat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

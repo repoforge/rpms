@@ -13,9 +13,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.saunalahti.fi/~laakkon1/linux/luola/index.php
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source0: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/stdlevels.tar.gz
 Source1: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/nostalgy.tar.gz
 Source2: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/demolevel.tar.gz

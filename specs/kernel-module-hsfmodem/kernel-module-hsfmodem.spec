@@ -31,9 +31,6 @@ License: Copyright (c) 2003 Linuxant inc. All rights reserved.
 Group: System Environment/Kernel
 URL: http://www.linuxant.com/drivers/hsf/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.linuxant.com/drivers/hsf/free/archive/hsfmodem-%{real_version}/hsfmodem-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

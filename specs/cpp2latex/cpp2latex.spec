@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Publishing
 URL: http://www.arnoldarts.de/cpp2latex.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.arnoldarts.de/cpp2latex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

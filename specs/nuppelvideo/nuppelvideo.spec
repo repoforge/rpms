@@ -15,9 +15,6 @@ Group: Applications/Multimedia
 License: GPL
 URL: http://frost.htu.tuwien.ac.at/~roman/nuppelvideo/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://frost.htu.tuwien.ac.at/~roman/%{name}/%{real_name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

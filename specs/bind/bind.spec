@@ -12,9 +12,6 @@ License: BSD-like
 Group: System Environment/Daemons
 URL: http://www.isc.org/products/BIND/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.isc.org/isc/bind9/%{version}/bind-%{version}.tar.bz2
 Source1: bind-manpages.tar.bz2
 Source2: named.sysconfig

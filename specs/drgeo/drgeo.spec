@@ -18,9 +18,6 @@ License: GPL
 Group: Applications/Engineering
 URL: http://ofset.sourceforge.net/drgeo/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/ofset/drgeo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

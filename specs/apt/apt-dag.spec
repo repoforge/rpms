@@ -13,9 +13,6 @@ License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://moin.conectiva.com.br/files/AptRpm/attachments/apt-%{version}.tar.bz2
 Patch0: apt-0.5.15cnc1-rpmpriorities.patch
 Patch1: apt-0.5.5cnc5-nodignosig.patch

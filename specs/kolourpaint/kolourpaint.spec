@@ -44,9 +44,6 @@ BuildRequires: gcc-c++, qt-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 %description
 KolourPaint is a free, easy-to-use paint program for KDE. It aims to be
 conceptually simply to understand; providing a level of functionality

@@ -18,9 +18,6 @@ License: GPL
 Group: Development/Tools
 URL: http://asp2php.naken.cc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://downloads.mikekohn.net/asp2php/asp2php-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://www.videolan.org/libdvdplay/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.videolan.org/pub/libdvdplay/%{version}/libdvdplay-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

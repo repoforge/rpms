@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://coredump.free.fr/linux/hddtemp.php
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.guzu.net/linux/hddtemp-%{real_version}.tar.bz2
 Source1: http://coredump.free.fr/linux/hddtemp.db
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

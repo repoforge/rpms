@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Text
 URL: http://www.vanheusden.com/multitail/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.vanheusden.com/multitail/multitail-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

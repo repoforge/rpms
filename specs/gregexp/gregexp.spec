@@ -10,9 +10,6 @@ License: GPL
 Group: Development/Tools
 URL: http://dentrassi.de/download/gregexp
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dentrassi.de/download/gregexp/0.3/gregexp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

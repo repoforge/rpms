@@ -13,9 +13,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.saunalahti.fi/~laakkon1/linux/luola/index.php
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/luola-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

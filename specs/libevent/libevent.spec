@@ -10,9 +10,6 @@ License: BSD
 Group: System Environment/Libraries
 URL: http://monkey.org/~provos/libevent/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://monkey.org/~provos/libevent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Tools
 URL: http://wolfpack.twu.net/ManEdit/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://wolfpack.twu.net/users/wolfpack/manedit-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

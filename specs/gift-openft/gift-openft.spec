@@ -9,9 +9,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://www.giftproject.org/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/gift/gift-openft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gift-devel, gcc-c++, pkgconfig, zlib-devel

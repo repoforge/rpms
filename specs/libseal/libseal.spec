@@ -15,9 +15,6 @@ Group: System Environment/Libraries
 License: LGPL
 URL: http://linux.tlk.fr/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://files1.sonicspot.com/sealsdk/%{real_name}%{real_version}.zip
 Patch: libseal-1.07-debian.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

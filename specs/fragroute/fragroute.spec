@@ -11,9 +11,6 @@ License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragroute/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.monkey.org/~dugsong/fragroute/fragroute-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

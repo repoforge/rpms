@@ -14,9 +14,6 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Zip/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/Archive/Archive-Zip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

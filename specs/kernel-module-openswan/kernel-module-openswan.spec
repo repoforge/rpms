@@ -33,9 +33,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://www.openswan.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.openswan.org/download/openswan-%{version}.tar.gz
 Patch0: openswan-2.1.1-mts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

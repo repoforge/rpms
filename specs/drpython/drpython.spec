@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Tools
 URL: http://drpython.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/drpython/%{name}-%{version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: wxGTK-devel

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://kempele.fi/~skyostil/projects/albumart/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://louhi.kempele.fi/~skyostil/projects/albumart/dist/albumart-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

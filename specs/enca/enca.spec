@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Text
 URL: http://trific.ath.cx/software/enca/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://trific.ath.cx/Ftp//enca/enca-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: recode, recode-devel, gcc-c++

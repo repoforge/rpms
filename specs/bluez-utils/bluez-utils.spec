@@ -24,9 +24,6 @@ License: GPL
 Group: Applications/System
 URL: http://bluez.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://bluez.sf.net/download/bluez-utils-%{version}.tar.gz
 Patch3: bluez-utils-2.9-pie.patch
 Patch10: bluez-utils-2.9-conf.patch

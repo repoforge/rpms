@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.giftproject.org/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
 BuildRequires: libtool, libtool-libs, gcc-c++
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

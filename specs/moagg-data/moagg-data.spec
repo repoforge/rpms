@@ -18,9 +18,6 @@ URL: http://moagg.sourceforge.net/
 BuildArch: noarch
 Requires: moagg >= %{version}
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

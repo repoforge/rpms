@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://users.ox.ac.uk/~univ1377/c600.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://users.ox.ac.uk/~univ1377/hotswap-%{version}.tar.gz
 Patch1: hotswap-example.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://www.kismetwireless.net/code/kismet-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

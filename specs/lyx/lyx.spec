@@ -17,9 +17,6 @@ License: GPL
 Group: Applications/Publishing
 URL: http://www.lyx.org/
 
-Packager: Bert de Bruijn <bert@debruijn.be>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
 Source1: lyx-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

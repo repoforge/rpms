@@ -25,9 +25,6 @@ License: GPL
 Group: Development/Tools
 URL: http://distcc.samba.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://samba.org/ftp/distcc/distcc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.gumbynet.org.uk/software/furl.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.gumbynet.org.uk/software/furl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

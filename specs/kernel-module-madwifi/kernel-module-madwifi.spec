@@ -35,9 +35,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://www.mattfoster.clara.co.uk/madwifi-faq.htm
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/madwifi/madwifi-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

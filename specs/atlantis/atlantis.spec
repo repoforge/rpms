@@ -10,9 +10,6 @@ Group: Applications/Internet
 License: Proprietary/Binary Only
 URL: http://www.akcaagac.com/index_atlantis.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://mirrors.egwn.net/cvsgnome/atlantis-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

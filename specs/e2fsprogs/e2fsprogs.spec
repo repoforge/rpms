@@ -15,9 +15,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://e2fsprogs.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source:  http://dl.sf.net/e2fsprogs/e2fsprogs-%{version}.tar.gz
 Patch2: e2fsprogs-1.27-nostrip.patch
 Patch4: e2fsprogs-1.32-mainframe.patch

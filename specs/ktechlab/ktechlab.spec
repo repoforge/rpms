@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Engineering
 URL: http://ktechlab.fadedminds.com/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://ktechlab.fadedminds.com/download/ktechlab-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

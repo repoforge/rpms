@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/File
 URL: http://www.ovmj.org/doodle/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.ovmj.org/doodle/download/doodle-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

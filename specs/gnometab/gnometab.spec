@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Productivity
 URL: http://www.solutionm.com/gnometab/gnometab.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.solutionm.com/gnometab/gnometab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

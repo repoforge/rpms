@@ -10,9 +10,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://fph.altervista.org/prog/bastet.shtml
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://fph.altervista.org/prog/bastet-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

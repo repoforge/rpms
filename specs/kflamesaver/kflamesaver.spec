@@ -10,9 +10,6 @@ License: GPL
 Group: Amusements/Graphics
 URL: http://kde-apps.org/content/show.php?content=4485
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: %{name}-%{version}.tar.gz
 Patch: gcc34-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

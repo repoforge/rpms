@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://lvempeg.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/lvempeg/lve-%{real_version}.src.tar.bz2
 Source1: http://dl.sf.net/ffmpeg/ffmpeg-0.4.8.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

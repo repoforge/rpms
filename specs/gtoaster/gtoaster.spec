@@ -19,9 +19,6 @@ License: GPL
 Group: Applications/Archiving
 URL: http://gnometoaster.rulez.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://gnometoaster.rulez.org/archive/gtoaster%{real_version}.tgz
 Source1: gtoaster.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

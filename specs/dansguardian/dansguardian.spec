@@ -12,9 +12,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://www.dansguardian.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dansguardian.org/downloads/2/Stable/dansguardian-%{version}.source.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel

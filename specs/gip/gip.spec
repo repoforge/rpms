@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.debain.org/?session=&project=19
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source: http://debain.org/dlcounter.php?id=78&file=gip-1.2.1-1.tar.gz
 Source: gip-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

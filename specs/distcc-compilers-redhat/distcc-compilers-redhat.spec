@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Tools
 URL: http://dag.wieers.com/home-made/distcc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: ftp://ftp.redhat.com/pub/redhat/linux/6.2/en/os/i386/RedHat/RPMS/egcs-1.1.2-30.i386.rpm
 Source1: ftp://ftp.redhat.com/pub/redhat/linux/6.2/en/os/i386/RedHat/RPMS/egcs-c++-1.1.2-30.i386.rpm
 Source2: ftp://ftp.redhat.com/pub/redhat/linux/as2.1/en/os/i386/RedHat/RPMS/gcc-2.96-124.7.2.i386.rpm

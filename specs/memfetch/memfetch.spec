@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/System
 URL: http://lcamtuf.coredump.cx/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://lcamtuf.coredump.cx/soft/memfetch.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

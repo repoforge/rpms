@@ -10,9 +10,6 @@ Group: System Environment/Daemons
 License: GPL
 URL: http://www.7ka.mipt.ru/~szh/dreamland/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.7ka.mipt.ru/~szh/dreamland/dreamland.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -15,9 +15,6 @@ License: GPL
 Group: Applications/Databases
 URL: http://kpogre.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/kpogre/kpogre-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Patch: fc2-compile-fixes.patch

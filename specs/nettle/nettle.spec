@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://www.lysator.liu.se/~nisse/nettle/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.lysator.liu.se/~nisse/archive/nettle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

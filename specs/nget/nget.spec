@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://nget.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/nget/nget-%{version}+uulib.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

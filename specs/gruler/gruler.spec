@@ -14,9 +14,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://linuxadvocate.org/projects/gruler/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://linuxadvocate.org/projects/gruler/downloads/gruler-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.gtk-papaya.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: papaya-src-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

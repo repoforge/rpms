@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://yallara.cs.rmit.edu.au/~malsmith/products/antinat/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/antinat/antinat-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

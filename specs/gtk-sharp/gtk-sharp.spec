@@ -20,9 +20,6 @@ License: LGPL
 Group: Development/Libraries
 URL: http://gtk-sharp.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/gtk-sharp/gtk-sharp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

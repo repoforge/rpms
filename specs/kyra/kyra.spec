@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://grinninglizard.com/kyra/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/kyra/kyra_src_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.mat.univie.ac.at/~gerald/ftp/autoupdate/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.mat.univie.ac.at/pub/teschl/autoupdate/autoupdate-%{version}-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

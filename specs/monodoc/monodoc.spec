@@ -9,9 +9,6 @@ License: GPL
 Group: Development/Tools
 URL: http://www.go-mono.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.go-mono.com/archive/%{version}/monodoc-%{version}.tar.gz
 Patch: monodoc-fix-gac.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

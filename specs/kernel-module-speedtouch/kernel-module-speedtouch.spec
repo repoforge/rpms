@@ -31,9 +31,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://linux-usb.sourceforge.net/SpeedTouch/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/linux-usb/speedtouch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

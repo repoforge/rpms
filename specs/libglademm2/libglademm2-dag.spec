@@ -11,9 +11,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/gtkmm/libglademm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

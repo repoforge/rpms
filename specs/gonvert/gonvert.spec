@@ -15,9 +15,6 @@ License: GPL
 Group: Applications/Engineering
 URL: http://unihedron.com/projects/gonvert/gonvert.php
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.unihedron.com/projects/gonvert/downloads/gonvert-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

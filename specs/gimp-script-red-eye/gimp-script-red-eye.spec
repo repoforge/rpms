@@ -17,9 +17,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.linuxjournal.com/article.php?sid=6567
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: red-eye.scm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

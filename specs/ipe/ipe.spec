@@ -12,9 +12,6 @@ License: GPL
 Group: Publishing
 URL: http://ipe.compgeom.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ipe.compgeom.org/ipe-%{real_version}-src.tar.gz
 #Patch: http://cg.scs.carleton.ca/~morin/misc/ipe/ipe-6.0pre13-usr.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

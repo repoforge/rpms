@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://freshmeat.net/projects/netsed/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dione.ids.pl/~lcamtuf/netsed.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

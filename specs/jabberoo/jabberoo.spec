@@ -11,9 +11,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://gabber.jabberstudio.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.jabberstudio.org/files/gabber/jabberoo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: MPL/LGPL
 Group: Development/Tools
 URL: http://monodevelop.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.go-mono.com/packagers/gecko-sharp/gecko-sharp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -15,9 +15,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://www.pc.ibm.com/support/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: IBMBE RPM Repository, http://linux.be.ibm.com/apt/
-
 Source: ftp://ftp.software.ibm.com/pc/pccbbs/pc_servers/ibmusbasm-%{real_version}.i386.rpm
 #Source: ftp://ftp.software.ibm.com/pc/pccbbs/pc_servers/ibmusbasm-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

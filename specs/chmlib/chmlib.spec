@@ -10,9 +10,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://66.93.236.84/~jedwin/projects/chmlib/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://66.93.236.84/~jedwin/projects/chmlib/chmlib-%{version}.tgz
 Patch0: chmlib-0.31-morearchs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -14,9 +14,6 @@ License: Apache License style
 Group: Development/Libraries
 URL: http://www.clearsilver.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.clearsilver.net/downloads/clearsilver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

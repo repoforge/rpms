@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/System
 URL: http://vkcorp.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://vedder.homelinux.org:81/%{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: lm_sensors-devel

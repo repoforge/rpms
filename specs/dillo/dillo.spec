@@ -17,9 +17,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.dillo.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.dillo.org/download/dillo-%{version}.tar.bz2
 Source1: dillo48.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

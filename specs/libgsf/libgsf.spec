@@ -13,9 +13,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/libgsf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

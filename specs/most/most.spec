@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Text
 URL: ftp://space.mit.edu/pub/davis/most/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://space.mit.edu/pub/davis/most/most-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

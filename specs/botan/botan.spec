@@ -9,9 +9,6 @@ License: Other
 Group: System Environment/Libraries
 URL: http://botan.randombit.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 #Source: http://botan.randombit.net/files/Botan-%{version}.tgz
 Source: http://files.randombit.net/botan/archive/v1.4/Botan-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

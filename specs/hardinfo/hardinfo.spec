@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/System
 URL: http://alpha.linuxmag.com.br/~leandro/hardinfo/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://alpha.linuxmag.com.br/~leandro/hardinfo/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

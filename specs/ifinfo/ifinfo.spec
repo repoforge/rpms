@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/System
 URL: http://scalableinformatics.com/ifinfo.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://scalableinformatics.com/downloads/ifinfo/ifinfo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: Proprietary
 Group: Applications/Internet
 URL: http://www.netscape.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
-
 Source0: ftp://ftp.netscape.com/pub/communicator/english/4.8/unix/supported/linux22/complete_install/communicator-v48-us.x86-unknown-linux2.2.tar.gz
 Source1: ftp://ftp.netscape.com/pub/communicator/english/4.8/unix/supported/linux22/navigator_standalone/navigator-v48-us.x86-unknown-linux2.2.tar.gz
 Source2: netscape.sh

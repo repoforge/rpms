@@ -15,9 +15,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dovecot.org/releases/dovecot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -14,9 +14,6 @@ License: MIT
 Group: Applications/System
 URL: http://www.logwatch.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.kaybee.org/pub/linux/logwatch-%{version}.tar.gz
 Patch: logwatch-4.3.2-nounicode.patch
 Patch1: logwatch-4.3.2-nosegfault.patch

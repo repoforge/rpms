@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://mfcn.ilo.de/gnomeradio/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://mfcn.ilo.de/gnomeradio/gnomeradio-%{version}.tar.gz
 Patch: gnomeradio-1.4-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -12,9 +12,6 @@ License: GPL
 Group: System Environment/Shells
 URL: http://www.caliban.org/bash/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.caliban.org/files/bash/bash-completion-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://easysok.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/easysok/%{name}-%{version}.tar.bz2 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: assert-include.patch

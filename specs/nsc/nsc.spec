@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.goth.dk/nsc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.goth.dk/nsc/nsc-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

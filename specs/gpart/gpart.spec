@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://home.pages.de/~michab/gpart/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.stud.uni-hannover.de/user/76201/gpart/gpart-%{real_version}.tar.gz
 Patch: ftp://ftp.namesys.com/pub/misc-patches/gpart-0.1h-reiserfs-3.6.patch.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -9,9 +9,6 @@ License: Artistic License
 Group: System Environment/Base
 URL: http://www.procyon.com/~pda/lphdisk/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.procyon.com/~pda/lphdisk/lphdisk-%{version}.tar.gz
 Patch: lphdisk-0.9.1-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.doxpara.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.doxpara.com/paketto-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

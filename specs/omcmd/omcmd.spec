@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: ftp://dist.taolinux.org/pub/projects/omcmd
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://dist.taolinux.org/pub/projects/omcmd/omcmd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.hansmatzen.de/english/kleds.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://www.hansmatzen.de/software/kleds/kleds-%{version}.tar.bz2
 BuildRequires: gcc, gcc-c++, qt-devel, kdelibs-devel, XFree86-devel

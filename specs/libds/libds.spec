@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 BuildRequires: gcc-c++
 
 Source: http://yallara.cs.rmit.edu.au/~malsmith/C0A00201/libds/libds-%{version}.tar.bz2

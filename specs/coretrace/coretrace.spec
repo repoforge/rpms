@@ -9,9 +9,6 @@ License: GPL
 Group: Development/Debuggers
 URL: http://www.arbetsmyra.dyndns.org/coretrace/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.arbetsmyra.dyndns.org/coretrace/download/coretrace_v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.kernel.org/software/mon/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: ftp://ftp.kernel.org/pub/software/admin/mon/mon-%{version}.tar.bz2
 Source1: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/cgi-bin/mon.cgi/mon.cgi-%{moncgi_version}.tar.bz2
 Source2: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/all-alerts.tar.bz2

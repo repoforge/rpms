@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.honeyd.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.honeyd.org/data/nttlscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

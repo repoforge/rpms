@@ -30,9 +30,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://www.ee.oulu.fi/~tuukkat/quickcam/quickcam.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.ee.oulu.fi/~tuukkat/quickcam/qc-usb-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

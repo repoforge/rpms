@@ -10,9 +10,6 @@ License: BSD
 Group: Applications/Internet
 URL: http://www.packetfactory.net/projects/firewalk/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.packetfactory.net/firewalk/dist/firewalk-%{version}.tgz
 Patch: firewalk-5.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

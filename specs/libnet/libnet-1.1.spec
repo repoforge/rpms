@@ -10,9 +10,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://www.packetfactory.net/projects/libnet/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.packetfactory.net/libnet/dist/libnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: distributable
 Group: Applications/Archiving
 URL: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/arc%{real_version}.tar.Z
 Patch: arc-5.21e-timeh.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

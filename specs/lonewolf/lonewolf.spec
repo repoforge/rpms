@@ -17,9 +17,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, ncurses-devel
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 %description
 LoneWolf is a free open source emulator for the Ultima Online server. It
 allows you to play UO on a single machine, in a LAN or on the internet.

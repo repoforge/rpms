@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/System
 URL: http://opensource.creative.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/emu10k1/emu-tools-%{version}.tar.gz
 Patch0: emu-tools-0.9.4-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

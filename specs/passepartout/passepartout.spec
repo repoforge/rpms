@@ -12,9 +12,6 @@ License: BSD
 Group: Applications/Multimedia
 URL: http://www.stacken.kth.se/project/pptout/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.stacken.kth.se/project/pptout/files/passepartout-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

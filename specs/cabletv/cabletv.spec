@@ -21,9 +21,6 @@ Group: Applications/Multimedia
 License: Freeware
 URL: http://sector17.tvand.net/cabletv/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://sector17.tvand.net/cabletv/download/cabletv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

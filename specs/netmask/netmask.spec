@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://packages.qa.debian.org/n/netmask.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://http.us.debian.org/debian/pool/main/n/netmask/netmask_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

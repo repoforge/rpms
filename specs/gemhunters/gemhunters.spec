@@ -14,9 +14,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://gemhun.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/gemhun/GemHunters-src-%{real_version}.tar.gz
 # Source1: http://dl.sf.net/gemhun/GemHunters-data-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

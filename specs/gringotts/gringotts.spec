@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Productivity
 URL: http://devel.pluto.linux.it/projects/Gringotts/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://devel.pluto.linux.it/projects/Gringotts/current/gringotts-%{version}.tar.bz2
 Patch: gringotts-1.2.8-gtk24.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

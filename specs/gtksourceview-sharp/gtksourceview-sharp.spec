@@ -9,9 +9,6 @@ License: GPL
 Group: Development/Library
 URL: http://go-mono.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.go-mono.com/packagers/gtksourceview-sharp/gtksourceview-sharp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

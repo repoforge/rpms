@@ -20,9 +20,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://avifile.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/avifile/avifile-0.7-%{version}.tar.gz
 #Source: http://dl.sf.net/avifile/avifile-%{version}-%{date}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

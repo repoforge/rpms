@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://gwget.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/gwget/gwget-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildrequires: libgnomeui-devel, libglade-devel, gtk2-devel >= 2.4

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Productivity
 URL: http://www.jamiehillman.co.uk/ccal/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.jamiehillman.co.uk/ccal/ccal%{real_version}.py
 Source1: http://www.jamiehillman.co.uk/ccal/instructions.htm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

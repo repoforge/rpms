@@ -10,9 +10,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.burtonini.com/blog/computers/devilspie/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.burtonini.com/computing/devilspie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

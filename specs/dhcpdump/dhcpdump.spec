@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/mavetju/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.mavetju.org/download/dhcpdump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

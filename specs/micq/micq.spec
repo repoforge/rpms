@@ -13,9 +13,6 @@ Group: Applications/Internet
 License: GPL
 URL: http://www.micq.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.micq.org/source/micq-%{version}.tgz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

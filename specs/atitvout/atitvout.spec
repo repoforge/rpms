@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.stud.uni-hamburg.de/users/lennart/projects/atitvout/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.stud.uni-hamburg.de/users/lennart/projects/atitvout/atitvout-%{version}.tar.gz
 Patch0: atitvout-rv200.patch
 Patch1: http://ftp.debian.org/debian/pool/main/a/atitvout/atitvout_0.4-2.diff.gz

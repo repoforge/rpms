@@ -37,9 +37,6 @@ License: IBM Public License
 Group: System Environment/Daemons
 URL: http://www.openafs.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://www.openafs.org/dl/openafs/%{version}/openafs-%{version}-src.tar.bz2
 ### http://grand.central.org/dl/cellservdb/CellServDB
 Source5: openafs-CellServDB

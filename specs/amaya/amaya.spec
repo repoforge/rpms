@@ -11,9 +11,6 @@ License: W3C
 Group: Applications/Internet
 URL: http://www.w3.org/Amaya/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.w3.org/Amaya/Distribution/amaya-src-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

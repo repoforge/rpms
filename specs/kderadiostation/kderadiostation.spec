@@ -15,9 +15,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://kderadiostation.coolprojects.org/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://kderadiostation.coolprojects.org/source/kderadiostation-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel

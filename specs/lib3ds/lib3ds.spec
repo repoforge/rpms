@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://lib3ds.sourceforge.net/
 
-Packager: Rudolf Kastl <che666 at uni.de>
-Vendor: http://newrpms.sunsite.dk/
-
 Source: http://dl.sf.net/lib3ds/lib3ds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

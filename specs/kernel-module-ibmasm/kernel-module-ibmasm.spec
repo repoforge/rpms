@@ -37,9 +37,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://www.pc.ibm.com/support/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source: ftp://ftp.software.ibm.com/pc/pccbbs/pc_servers/ibmasm-%{real_version}.src.rpm
 Source: ftp://ftp.software.ibm.com/pc/pccbbs/pc_servers/ibmasm-src-redhat-wrp136a.rpm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

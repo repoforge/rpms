@@ -10,9 +10,6 @@ Group: Applications/Multimedia
 License: GPL
 URL: http://www.smcc.demon.nl/camstream/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.smcc.demon.nl/camstream/download/camstream-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++

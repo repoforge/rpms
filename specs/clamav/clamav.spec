@@ -16,9 +16,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.clamav.net/clamav-%{version}.tar.gz
 #Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
 Source1: clamav.init

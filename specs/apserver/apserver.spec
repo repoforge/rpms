@@ -13,9 +13,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://apserver.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://apserver.sf.net/aps%{real_release}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

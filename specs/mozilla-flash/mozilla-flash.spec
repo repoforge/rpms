@@ -9,9 +9,6 @@ License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://macromedia.rediris.es/rpmsource/flash-plugin-7.0.25.tar.gz
 #Source: http://fpdownload.macromedia.com/get/shockwave/flash/english/linux/7.0r25/install_flash_player_7_linux.tar.gz
 Source1: http://macromedia.rediris.es/rpmsource/LICENSE

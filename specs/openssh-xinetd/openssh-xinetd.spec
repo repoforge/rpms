@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/packages/openssh-xinetd/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source:
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

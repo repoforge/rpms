@@ -11,9 +11,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/download/passwdgen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.moonlight3d.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ml3d.sf.net/install/moonlight-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

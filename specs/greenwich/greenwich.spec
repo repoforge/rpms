@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://jodrell.net/projects/greenwich/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://jodrell.net/download.html?file=/files/greenwich-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

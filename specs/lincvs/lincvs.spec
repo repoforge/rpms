@@ -10,9 +10,6 @@ License: GPL
 Group: Development/Tools
 URL: http://www.lincvs.org/
 
-Packager: Andre Costa <acosta@ar.microlink.com.br>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ppprs1.phy.tu-dresden.de/~trogisch/lincvs/download/20_LinCVS/hn_lincvs-%{version}/lincvs-%{version}-1-generic-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

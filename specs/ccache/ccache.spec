@@ -10,9 +10,6 @@ License: GPL
 Group: Development/Tools
 URL: http://ccache.samba.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ccache.samba.org/ftp/ccache/ccache-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://dvdauthor.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/dvdauthor/dvdauthor-%{version}.tar.gz
 Patch0: dvdauthor-0.6.10-gcc34.patch
 Patch1: dvdauthor-0.6.10-readxml.patch

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Editors
 URL: http://sourceforge.net/projects/amyedit/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/amyedit/amyedit-%{version}.tar.bz2
 Patch: makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

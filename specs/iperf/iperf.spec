@@ -10,9 +10,6 @@ License: GPL
 Group:  Applications/Internet
 URL: http://dast.nlanr.net/Projects/Iperf/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dast.nlanr.net/Projects/Iperf/iperf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

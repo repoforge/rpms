@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Databases
 URL: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/%{name}-%{version}.tar.gz
 Patch: dbview-patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

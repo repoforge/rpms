@@ -9,9 +9,6 @@ License: GPL
 Group: Development/Environment
 URL: http://www.monodevelop.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.go-mono.com/archive/1.0.5/monodevelop-%{version}.tar.gz
 Patch: monodevelop-remove-mime-update.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

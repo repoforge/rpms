@@ -30,9 +30,6 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://www-3.ibm.com/pc/support/site.wss/MIGR-39729.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ips-%{real_version}.tgz
 Source1: ips-Makefile
 Source2: ips-kernel-ver.c

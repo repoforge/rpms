@@ -15,9 +15,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://www.stud.uni-hamburg.de/users/lennart/projects/libdaemon/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://0pointer.de/lennart/projects/libdaemon/libdaemon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.jumpbump.mine.nu/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.jumpbump.mine.nu/port/jumpnbump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

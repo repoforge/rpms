@@ -12,9 +12,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.pycage.de/download/gdesklets/%{real_name}-%{version}.tgz
 Source1: Makefile_install_scripts.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

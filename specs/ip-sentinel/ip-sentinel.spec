@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://www.tu-chemnitz.de/~ensc/ip-sentinel/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.tu-chemnitz.de/~ensc/ip-sentinel/files/ip-sentinel-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

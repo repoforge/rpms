@@ -12,9 +12,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://www.bluez.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://bluez.sf.net/download/bluez-libs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

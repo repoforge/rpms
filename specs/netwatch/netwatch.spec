@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.slctech.org/~mackay/netwatch.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.slctech.org/~mackay/netwatch-%{real_version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel

@@ -13,9 +13,6 @@ Group: System Environment/Base
 License: GPL
 URL: http://js.hu/package/imprison.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://js.hu/package/imprison/imprison-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.openal.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: openal-20031006.tar.bz2
 Source1: openalrc
 Source2: acinclude.m4

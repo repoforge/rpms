@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://lxdvdrip.berlios.de/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://download.berlios.de/lxdvdrip/lxdvdrip-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

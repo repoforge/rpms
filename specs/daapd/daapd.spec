@@ -15,9 +15,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.deleet.de/projekte/daap/daapd/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.deleet.de/projekte/daap/daapd/daapd-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

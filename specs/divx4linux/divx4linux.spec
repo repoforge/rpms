@@ -12,9 +12,6 @@ License: Distributable
 Group: System Environment/Libraries
 URL: http://www.divx.com/divx/linux/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://download.divx.com/divx/divx4linux-std-%{date}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

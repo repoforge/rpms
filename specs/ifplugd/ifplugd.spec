@@ -13,9 +13,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://0pointer.de/lennart/projects/ifplugd/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://0pointer.de/lennart/projects/ifplugd/ifplugd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/gaim-encryption/gaim-encryption-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 

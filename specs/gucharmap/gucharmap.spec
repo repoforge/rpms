@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://gucharmap.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/gnome/sources/gucharmap/1.0/gucharmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -17,9 +17,6 @@ License: GPL
 Group: Applications/System
 URL: http://ipsc.sourceforge.net/software.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://ipsc.sf.net/dist/ipsc/ipsc-%{version}-src.tar.gz
 Source1: http://ipsc.sf.net/dist/prips/prips-0.9.4-src.tar.gz
 Patch0: ipsc-0.4.3-gcc33.patch

@@ -12,9 +12,6 @@ Group: Applications/Text
 License: GPL
 URL: http://www.figlet.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.figlet.org/pub/figlet/program/unix/%{name}%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

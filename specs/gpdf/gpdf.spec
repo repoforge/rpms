@@ -11,9 +11,6 @@ Group: Applications/Publishing
 License: GPL
 URL: http://www.inf.tu-dresden.de/~mk793652/gpdf/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/GNOME/sources/gpdf/%{version}/gpdf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

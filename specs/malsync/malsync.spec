@@ -12,9 +12,6 @@ License: MPL
 Group: Applications/Communications
 URL: http://www.tomw.org/malsync/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.tomw.org/%{name}/%{name}_%{version}.src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://www.ginac.de/CLN/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftpthep.physik.uni-mainz.de/pub/gnu/cln-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

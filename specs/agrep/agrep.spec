@@ -10,9 +10,6 @@ Group: Applications/Text
 License: Redistributable for non-profit use
 URL: http://www.tgries.de/agrep/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://gd.tuwien.ac.at/utils/admin-tools/agrep/agrep-%{version}.tar.Z
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.nottale.net/index.php?project=arphound
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.nottale.net/arphound/download/arphound-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/zapping/mp1e-%{version}.tar.bz2
 Patch0: mp1e-1.9.3-common.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Archiving
 URL: http://namazu.org/~satoru/pdumpfs/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://namazu.org/~satoru/pdumpfs/pdumpfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ License: GPL
 Group: Development/Languages
 URL: http://gnu-prolog.inria.fr/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://ftp.inria.fr/INRIA/Projects/contraintes/gprolog/gprolog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

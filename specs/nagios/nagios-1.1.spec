@@ -16,9 +16,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/nagios/%{name}-%{version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
 Patch0: nagios-1.1-embedperl.patch

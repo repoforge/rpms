@@ -17,9 +17,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.beatforce.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.beatforce.org/files/beatforce-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

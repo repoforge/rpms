@@ -9,9 +9,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/gnutls/download.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.gnutls.org/pub/gnutls/libtasn1/libtasn1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

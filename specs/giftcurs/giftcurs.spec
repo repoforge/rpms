@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/giftcurs/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://savannah.nongnu.org/download/giftcurs/giFTcurs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -9,9 +9,6 @@ Release: 12.0
 License: LGPL
 Group: System Environment/Libraries
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.pango.org/download/libunicode-%{version}.tar.gz
 Patch0: libunicode-0.4-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://lillesvin.linux.dk/dyndnsupdate/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://lillesvin.linux.dk/stuff/dyndnsupdate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

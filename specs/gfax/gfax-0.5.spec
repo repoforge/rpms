@@ -9,9 +9,6 @@ License: GPL
 URL: http://www.cowlug.org/gfax/
 Group: Applications/Communications
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
