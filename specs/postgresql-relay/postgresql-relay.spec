@@ -1,16 +1,11 @@
 # $Id: $
-
 # Authority: dries
-
-# doesn't work
-# i always get the error:
-# Makefile:14: *** missing separator.  Stop.
-
+# Upstream: Edwin Groothuis <edwin@mavetju.org>
 
 Summary: Multiplex all your databases to one point of origin
 Name: postgresql-relay
 Version: 1.3
-Release: 1
+Release: 2
 License: BSD
 Group: Applications/Databases
 URL: http://www.mavetju.org/unix/general.php
@@ -19,7 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.mavetju.org/download/postgresql-relay-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Postgresql-relay can be used to as a single point of origin for all
@@ -34,31 +29,35 @@ server.
 %setup
 
 %build
-echo '
-prefix=/usr
-CC=gcc
+%{__cat} <<'EOF' >Makefile
+prefix = /usr
+bindir = $(prefix)/bin
+datadir = $(prefix)/share
+mandir = $(datadir)/man
+
+CC = gcc
 CFLAGS=-Wall -g
+
+DESTDIR =
+
 all: postgresql-relay postgresql-relay.8
 
 postgresql-relay: postgresql-relay.o
-	${CC} ${AFLAGS} ${LFLAGS} -o $@ $? ${MYLDFLAGS}
+	$(CC) $(AFLAGS) $(LFLAGS) -o $@ $? $(MYLDFLAGS)
 
 postgresql-relay.o: postgresql-relay.c
-	${CC} ${MYCFLAGS} ${AFLAGS} ${CFLAGS} -o $@ -c $?
+	$(CC) $(MYCFLAGS) $(AFLAGS) $(CFLAGS) -o $@ -c $?
 
 postgresql-relay.8: postgresql-relay.pod
 	pod2man --release="March 22, 2004" --date="March 22, 2004" --center="General Commands Manual" --section=8 $? > $@
 
 install: postgresql-relay postgresql-relay.8
-	install -m 755 -d ${prefix}/bin
-	install -m 755 -d ${prefix}/share/man/man8
-	install -m 755 postgresql-relay ${prefix}/bin
-	install -m 644 postgresql-relay.8 ${prefix}/share/man/man8
+	install -D -m0755 postgresql-relay $(DESTDIR)$(bindir)/postgresql-relay
+	install -D -m0644 postgresql-relay.8 $(DESTDIR)$(mandir)/man8/postgresql-relay.8
 
 clean:
 	rm -f postgresql-relay *.o postgresql-relay.8
-
-' > Makefile
+EOF
 
 %{__make} %{?_smp_mflags}
 
@@ -72,9 +71,12 @@ clean:
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES
+%doc %{_mandir}/man?/*
 %{_bindir}/postgresql-relay
-%{_datadir}/man/man?/postgresql-relay.*
 
 %changelog
+* Sat Jun 05 2004 Dag Wieers <dag@wieers.com> - 1.3-2
+- Cosmetic cleanup.
+
 * Sun Mar 21 2004 Dries Verachtert <dries@ulyssis.org> 1.3-1
 - Initial package
