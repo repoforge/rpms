@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: CableCrypt Decoder for Linux
@@ -16,10 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://sector17.tvand.net/cabletv/download/cabletv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: nasm
 #BuildRequires: liblirc-devel 
-
 Requires: xawtv
 
 %description
@@ -33,18 +30,16 @@ Supports color MMX decoding and b/w x86 assembler decoding.
 %setup
 
 %build
-%{__perl} -pi -e 's#prefix=/usr/local#prefix=%{_prefix}#' Makefile
+%{__perl} -pi.orig -e 's|(prefix)=/usr/local|$1=%{_prefix}|' Makefile
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir} \
-	%{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults
 
-%{__install} cabletv %{buildroot}%{_bindir}
-#%{__install} v4l-conf %{buildroot}%{_bindir}
-%{__install} CableTV.ad %{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/CableTV
+%{__install} -D cabletv %{buildroot}%{_bindir}/cabletv
+#%{__install} -D v4l-conf %{buildroot}%{_bindir}/v4l-conf
+%{__install} -D CableTV.ad %{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/CableTV
 
 #%{__make} install prefix="%{buildroot}%{_prefix}"
 
