@@ -22,6 +22,7 @@ Source: http://dl.sf.net/gsubedit/gsubedit-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ORBit-devel, gtk+-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 GSubEdit, or GNOME Subtitle Editor, is a tool for editing and converting

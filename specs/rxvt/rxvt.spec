@@ -21,6 +21,7 @@ Source: http://dl.sf.net/rxvt/rxvt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libtool
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: utempter
 
 %description

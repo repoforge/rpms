@@ -21,6 +21,7 @@ Source: http://devel.pluto.linux.it/projects/Gringotts/current/gringotts-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Gringotts is a small but (hopely ;) useful utility that stores sensitive

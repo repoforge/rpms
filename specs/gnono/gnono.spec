@@ -20,6 +20,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://ftp.paw.co.za/pub/PAW/sources/gnono-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+
 %description
 An interesting card game, like UNO.
 

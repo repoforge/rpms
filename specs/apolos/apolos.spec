@@ -4,8 +4,8 @@
 
 Summary: Small cd player for GNOME
 Name: apolos
-Version: 0.1.5
-Release: 0
+Version: 0.1.7
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.nongnu.org/apolos/
@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://savannah.nongnu.org/download/apolos/unstable.pkg/%{version}/apolos-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: gtk2 >= 2.0, cdparanoia-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Apolos is a small cd player for GNOME.
@@ -27,7 +27,20 @@ Apolos is a small cd player for GNOME.
 
 ### FIXME: Add /usr/include/cdda to include dirs. (Please fix upstream)
 %{__perl} -pi.orig -e 's|^(CFLAGS =)|$1 -I%{_includedir}/cdda|' src/Makefile.in
-%{__perl} -pi.orig -e 's|Aplication|Application|' apolos.desktop
+
+### FIXME: Include improved desktop-file. (Please fix upstream)
+%{__cat} <<EOF >apolos.desktop
+[Desktop Entry]
+Name=Apolos CD Player
+Comment=Play audio CDs
+Icon=gnome-multimedia.png
+Exec=apolos
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;AudioVideo;
+EOF
 
 %build
 %configure \
@@ -39,10 +52,12 @@ Apolos is a small cd player for GNOME.
 %makeinstall
 %find_lang %{name}
 
-desktop-file-install --vendor gnome --delete-original \
-	--add-category X-Red-Hat-Base                 \
-	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/applications/*.desktop
+%if %{!?_without_freedesktop:1}0
+	desktop-file-install --vendor gnome --delete-original \
+		--add-category X-Red-Hat-Base                 \
+		--dir %{buildroot}%{_datadir}/applications    \
+		%{buildroot}%{_datadir}/applications/apolos.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,9 +66,13 @@ desktop-file-install --vendor gnome --delete-original \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/gnome-apolos.desktop
 
 %changelog
+* Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.1.7-1
+- Added improved desktop file.
+- Updated to release 0.1.7.
+
 * Wed Oct 29 2003 Dag Wieers <dag@wieers.com> - 0.1.5-0
 - Updated to release 0.1.5.
 

@@ -17,6 +17,7 @@ Source: http://savannah.nongnu.org/download/gribouy/unstable.pkg/0.0/gribouy-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.0
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Gribouy is a GNOME Type1 font editor.
