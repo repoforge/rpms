@@ -2,6 +2,7 @@
 
 # Authority: dries
 # Upstream: 
+# Screenshot: http://snmpbrowser.sourceforge.net/screenshot.png
 
 Summary: SNMP browser
 Name: snmpbrowser
@@ -19,11 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++
 BuildRequires: gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel
-BuildRequires: kdelibs-devel
+BuildRequires: kdelibs-devel, fam-devel
 BuildRequires: net-snmp-devel, openssl-devel
 %{?fc2:BuildRequires: libselinux-devel}
-
-# Screenshot: http://snmpbrowser.sourceforge.net/screenshot.png
 
 %description
 Snmpbrowser displays data from SNMP devices.
@@ -53,8 +52,7 @@ Snmpbrowser displays data from SNMP devices.
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
 %{_datadir}/applnk/Applications/snmpbrowser.desktop
-%{_datadir}/apps/snmpbrowser/icons/*/*/actions/*_node.png
-%{_datadir}/apps/snmpbrowser/snmpbrowserui.rc
+%{_datadir}/apps/snmpbrowser
 %{_datadir}/doc/HTML/en/snmpbrowser
 %{_datadir}/icons/*/*/apps/snmpbrowser.png
 
