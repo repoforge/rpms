@@ -6,8 +6,8 @@
 
 Summary: Multiplayer game in space
 Name: kajaani-kombat
-Version: 0.5
-Release: 2
+Version: 0.6
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://kombat.kajaani.net/
@@ -16,7 +16,6 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://kombat.kajaani.net/dl/kajaani-kombat-%{version}.tar.gz
-Patch: gcc-3.4-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, SDL_ttf-devel, SDL_net-devel
 BuildRequires: SDL_image-devel, SDL_mixer-devel
@@ -33,7 +32,6 @@ same computer. Enjoy it with your friends!
 
 %prep
 %setup
-%patch -p1
 
 %build
 %{__perl} -pi -e 's|MEDIA_PATH=\\"\./\\"|MEDIA_PATH=\\"/usr/share/games/kajaanikombat/\\"|g;' Makefile
@@ -45,8 +43,7 @@ same computer. Enjoy it with your friends!
 %{__install} -m 0755 -d %{buildroot}/%{_datadir}/games/kajaanikombat
 %{__install} -m 0755 -d %{buildroot}/%{_mandir}/man6
 %{__install} -m 0755 kajaani-kombat %{buildroot}/%{_bindir}/kajaani-kombat
-%{__install} -m 0644 *.png %{buildroot}/%{_datadir}/games/kajaanikombat/
-%{__install} -m 0644 *.ttf *.ogg %{buildroot}/%{_datadir}/games/kajaanikombat/
+%{__install} -m 0644 *.ttf *.ogg *.png %{buildroot}/%{_datadir}/games/kajaanikombat/
 %{__install} -m 0644 kajaani-kombat.6 %{buildroot}/%{_mandir}/man6/
 
 #%clean
@@ -60,6 +57,10 @@ same computer. Enjoy it with your friends!
 %{_mandir}/man6/*
 
 %changelog
+* Mon Jan 10 2005 Dries Verachtert <dries@ulyssis.org> 0.6-1
+- Updated to release 0.6.
+- Removed the patch (is applied upstream).
+
 * Tue Jan 04 2005 Dries Verachtert <dries@ulyssis.org> 0.5-2
 - Some fixes: gcc 3.4 patch and also include the ogg files.
 
