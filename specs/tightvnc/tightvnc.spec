@@ -2,15 +2,13 @@
 # Authority: dag
 # Upstream: <vnc-tight-list@lists.sf.net>
 
-### Problem with distcc ?
-# Distcc: 0
-
+%{?dist: %{expand: %%define %dist 1}}
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: remote administration system
+Summary: Graphical remote administration system
 Name: tightvnc
 Version: 1.2.9
-Release: 2
+Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
@@ -38,7 +36,15 @@ to connect to other desktops running a VNC or a TightVNC server.
 Summary: TightVNC server
 Group: User Interface/X
 
-Requires: XFree86, bash >= 2.0
+%{?fc2:Requires: xorg-x11}
+%{?fc1:Requires: XFree86}
+%{?el3:Requires: XFree86}
+%{?rh9:Requires: XFree86}
+%{?rh8:Requires: XFree86}
+%{?rh7:Requires: XFree86}
+%{?el2:Requires: XFree86}
+%{?rh6:Requires: XFree86}
+Requires: bash >= 2.0
 Prereq: /sbin/chkconfig, /sbin/service
 #Obsoletes: vnc-server
 Conflicts: vnc-server
@@ -191,21 +197,18 @@ cd Xvnc
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_datadir}/vnc/ \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/sysconfig/
+			%{buildroot}%{_datadir}/vnc/
 ./vncinstall %{buildroot}%{_bindir} %{buildroot}%{_mandir}
 
 %{__cp} -aR classes %{buildroot}%{_datadir}/vnc/
 
-%{__install} -m0755 vncserver.sysv %{buildroot}%{_initrddir}/vncserver
-%{__install} -m0644 vncservers.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vncservers
+%{__install} -D -m0755 vncserver.sysv %{buildroot}%{_initrddir}/vncserver
+%{__install} -D -m0644 vncservers.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vncservers
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Internet/
-        %{__install} -m0644 vncviewer.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/
+        %{__install} -D -m0644 vncviewer.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/vncviewer.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor gnome                \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
@@ -253,6 +256,9 @@ fi
 %{_datadir}/vnc/
 
 %changelog
+* Sun May 23 2004 Dag Wieers <dag@wieers.com> - 1.2.9-3
+- Fixed dependency on xorg-x11 instead of XFree86 on fc2. (Christopher V. Browne)
+
 * Sat Apr 17 2004 Dag Wieers <dag@wieers.com> - 1.2.9-2
 - Fixed the vncserver script to check for Xvnc instead of sockd. (Alfredo Milani-Comparetti)
 
