@@ -9,7 +9,7 @@ Name: sablotron
 Version: 1.0.1
 Release: 1
 License: GPL
-Group: Utilities/Text
+Group: Applications/Text
 URL: http://www.gingerall.com/charlie/ga/xml/p_sab.xml
 
 Packager: Dag Wieers <dag@wieers.com>
