@@ -19,6 +19,7 @@ Source: http://www.alphalink.com.au/~gnb/ggcov/ggcov-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, pkgconfig, gtk2-devel, libglade2-devel
+BuildRequires: libgnomeui-devel
 Requires: gcc, gcc-c++
 
 %description

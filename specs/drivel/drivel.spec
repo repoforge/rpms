@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/drivel/drivel-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, perl(XML::Parser), intltool, pkgconfig
-BuildRequires: gtk2-devel
+BuildRequires: gtk2-devel, GConf2-devel
 Requires: gtk2 >= 2.0.0, curl >= 7.10.0
 
 %description

@@ -16,6 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://gpasman.sf.net/files/gpasman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(XML::Parser), intltool, pkgconfig, glib2-devel
+BuildRequires: gtk2-devel
 
 %description
 Gpasman is a password manager. People working with the internet have to
