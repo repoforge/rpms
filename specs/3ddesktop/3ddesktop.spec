@@ -49,7 +49,7 @@ source /etc/profile.d/qt.sh
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING INSTALL NEWS README* TODO
 %config(noreplace) %{_sysconfdir}/3ddesktop.conf
 %{_bindir}/3ddesk
