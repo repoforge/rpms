@@ -29,7 +29,6 @@ camera and digitized image.
 %setup
 
 %build
-%configure
 %{__make} %{?_smp_mflags}
 
 %install
