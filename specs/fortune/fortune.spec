@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 32
+Release: 33
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -66,8 +66,8 @@ Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.3.tar.gz
 Source22: http://eelco.is.a.rootboy.net/fortunecookies/oneliners-0.1.tar.gz
 
 
-Obsoletes: fortune-mod
-Provides: fortune-mod
+Obsoletes: fortune-mod < %{version}-%{release}
+Provides:  fortune-mod = %{version}-%{release}
 
 Patch0: fortune-mod-offense.patch
 Patch1: fortune-mod-1.0-remove-offensive.patch
@@ -113,13 +113,13 @@ wisdom each time they log in.
 
 %build
 make COOKIEDIR=%{_datadir}/games/fortune \
-	FORTDIR=%{_prefix}/games BINDIR=%{_sbindir}
+	FORTDIR=%{_bindir} BINDIR=%{_sbindir}
 
 %install
 %{__rm} -rf %{buildroot}
 
 make    COOKIEDIR=%{_datadir}/games/fortune fortune/fortune.man
-make	FORTDIR=%{buildroot}/%{_prefix}/games \
+make	FORTDIR=%{buildroot}/%{_bindir} \
 	COOKIEDIR=%{buildroot}%{_datadir}/games/fortune \
 	BINDIR=%{buildroot}/%{_sbindir} \
 	BINMANDIR=%{buildroot}/%{_mandir}/man1 \
@@ -169,10 +169,6 @@ util/strfile ralph
 # WTF they'll change it too next.
 
 bzcat %{SOURCE2} | %{__tar} xvf - -C %{buildroot}%{_datadir}/games/fortune/
-
-%{__install} -d %{buildroot}%{_bindir}
-%{__mv} %{buildroot}/usr/games/fortune %{buildroot}%{_bindir}
-%{__ln_s} %{_bindir}/fortune %{buildroot}/usr/games/fortune
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -494,7 +490,6 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 %doc README ChangeLog TODO
 %{_bindir}/fortune
-%{_prefix}/games/fortune
 %{_sbindir}/strfile
 %{_sbindir}/unstr
 %{_datadir}/games/fortune/art*
@@ -532,6 +527,7 @@ All fortune packages will be installed if you install this package.
 %{_datadir}/games/fortune/work*
 %{_datadir}/games/fortune/zippy
 %{_datadir}/games/fortune/zippy.dat
+%dir %{_datadir}/games/fortune
 %{_mandir}/man*/*
 
 %files bofh-excuses
@@ -636,6 +632,12 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 
 %changelog
+* Sat Dec 04 2004 Rex Dieter 1.0-33
+- Use versioned Obsoletes/Provides: fortune-mod.
+- Add ownership %%_datadir/games/fortune.
+- Get rid of %%_prefix/games/fortune symlink: fixes upgrade issues
+  from fortune-mod.
+
 * Wed Nov 24 2004 Dries Verachtert <dries@ulyssis.org> 1.0-32
 - Added the Provides: fortune-mod (thanks to Jeff Pitman & Rex Dieter)
 - Update of powerpuff quotes
