@@ -3,7 +3,7 @@
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
-Version: 1.0.9
+Version: 1.0.10
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -42,8 +42,8 @@ documentation for libsndfile.
 
 
 %install
-%{__rm} -rf %{buildroot}
-%makeinstall
+%{__rm} -rf %{buildroot} htmldocdir
+%makeinstall htmldocdir="`pwd`/htmldocdir"
 
 
 %clean
@@ -59,7 +59,7 @@ documentation for libsndfile.
 
 %files
 %defattr(-, root, root, 0755)
-%doc NEWS TODO
+%doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
@@ -67,7 +67,7 @@ documentation for libsndfile.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/*.html doc/*.jpg
+%doc htmldocdir/* examples/
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -77,6 +77,11 @@ documentation for libsndfile.
 
 
 %changelog
+* Wed Jun 16 2004 Matthias Saou <http://freshrpms.net/> 1.0.10-1
+- Update to 1.0.10.
+- Added "examples" directory to the devel package.
+- Added htmldocdir install workaround.
+
 * Tue Mar 30 2004 Matthias Saou <http://freshrpms.net/> 1.0.9-1
 - Update to 1.0.9.
 
