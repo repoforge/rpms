@@ -1,26 +1,29 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout
-Version: 1.0.9
-Release: 3
+Version: 2.0
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://developer.icecast.org/libshout/
-Source: http://developer.icecast.org/libshout/releases/%{name}-%{version}.tar.gz
+URL: http://www.icecast.org/
+Source: http://www.icecast.org/files/libshout/libshout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libvorbis-devel, pkgconfig
 
 %description
 Libshout is a library for communicating with and sending data to an
 icecast server.  It handles the socket connection, the timing of the
-data, and prevents most bad data from getting to the icecast server.
+data, and prevents bad data from getting to the icecast server.
 
 
 %package devel
 Summary: Development files for the libshout icecast library
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, libvorbis-devel, pkgconfig
 
 %description devel
 This package contains the header files needed for developing applications
@@ -31,36 +34,50 @@ develop applications using libshout.
 %prep
 %setup
 
+
 %build
-%configure
+%configure %{?rh9:--disable-thread}
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-test -d %{buildroot}/usr/doc && rm -rf %{buildroot}/usr/doc
+# Remove those docs, we include the same nicely
+test -d %{buildroot}%{_datadir}/doc && %{__rm} -rf %{buildroot}%{_datadir}/doc
+
 
 %clean 
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGES COPYING README
+%doc COPYING README examples/example.c
 %{_libdir}/*.so.*
 
 %files devel
-%doc doc/*.html doc/*.css
 %{_includedir}/*
+%{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_datadir}/aclocal/*.m4
+
 
 %changelog
-* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 1.0.9-3.fr
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 2.0-1
+- Rebuild for Fedora Core 2.
+- Update to 2.0, major spec changes to match.
+
+* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 1.0.9-3
 - Rebuild for Fedora Core 1.
 
 * Thu Aug 28 2003 Matthias Saou <http://freshrpms.net/>
