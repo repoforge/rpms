@@ -69,15 +69,19 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc
+%config(noreplace) %{_sysconfdir}/libbraille.conf
 %{_bindir}/*
 %{_libdir}/*.so.*
+%{_libdir}/libbraille/*.so.*
 %{_datadir}/libbraille
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.a
+%{_libdir}/libbraille/*.a
 %{_libdir}/*.so
+%{_libdir}/libbraille/*.so
 %exclude %{_libdir}/*.la
 
 %changelog
