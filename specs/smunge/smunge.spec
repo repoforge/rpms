@@ -4,11 +4,11 @@
 
 # Upstream: Joshua Reich <josh@i2pi.com>
 
-%define real_version 1.3.6
+%define real_version 1.3.7
 
 Summary: Funneling POP proxy
 Name: smunge
-Version: 1.3.6
+Version: 1.3.7
 Release: 0
 License: GPL
 Group: System Environment/Daemons
@@ -35,9 +35,9 @@ It was initially designed to smooth over the transition of pop services
 from one machine to another, without users losing mail (by keeping the
 old server active whilst the new one was being installed). 
 
-It also supports DRAC for pop-before-smtp authentication. Also featured is
-support for LDAP based authentication and lookups for mapping users to sets
-of pop servers.
+It supports DRAC for pop-before-smtp authentication, and LDAP based 
+authentication and lookups for mapping users to sets of pop servers.
+The DRAC feature is not compiled by default in this package.
 
 %prep
 %setup -n %{name}
@@ -127,6 +127,7 @@ exit $RETVAL
 EOF
 
 %build
+# we don't require libdrac for now
 #%{__make} CFLAGS="%{optflags} -DLINUX -DUSE_DRAC -DUSE_LDAP" LDFLAGS="-ldrac -llber -lldap"
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags} -DLINUX -DUSE_LDAP" \
@@ -165,6 +166,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Wed Apr 21 2004 Bert de Bruijn <bert@debruijn.be> - 1.3.7-0
+- Updated to release 1.3.7.
+
 * Mon Dec 01 2003 Dag Wieers <dag@wieers.com> - 1.3.6.0-0
 - Updated to release 1.3.6.
 
