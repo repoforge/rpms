@@ -15,7 +15,7 @@ URL: http://www.uox3.org/
 Source: http://www.uox3.org/files/uox3-source.zip
 Source1: ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla%{mozilla_version}/src/mozilla-source-%{mozilla_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip
+BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip, mozilla-devel
 
 %description
 todo
@@ -29,6 +29,7 @@ dos2unix autogen.sh
 bash autogen.sh || echo autogen.sh problem
 dos2unix configure
 chmod +x configure
+export CXXFLAGS=-I/usr/include/mozilla-1.6/js
 %configure --enable-debug
 dos2unix Makefile
 dos2unix depcomp
