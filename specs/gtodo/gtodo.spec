@@ -13,7 +13,8 @@ URL: http://qball.no-ip.com/test/index.php?s=4
 Source: http://download.qballcow.nl/programs/gtodo/gtodo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: gtk2-devel >= 2.0, libxml2-devel >= 2.5
+BuildRequires: gtk2-devel >= 2.0, libxml2-devel >= 2.5
+BuildRequires: perl-XML-Parser
 
 %description
 gToDo is as the name suggests a todo list application.
