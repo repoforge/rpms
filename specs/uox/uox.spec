@@ -27,6 +27,8 @@ todo
 tar xjvf %{SOURCE1} mozilla/js
 dos2unix autogen.sh
 bash autogen.sh || echo autogen.sh problem
+chmod +x configure
+dos2unix configure
 %configure --enable-debug
 %{__make} %{?_smp_mflags}
 
