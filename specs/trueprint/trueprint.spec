@@ -16,6 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://ftp.gnu.org/gnu/trueprint/trueprint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: lpr
 
 %description
 GNU Trueprint takes C source files and other text files and prints them on
@@ -42,7 +43,7 @@ including C++, Java, and Perl.
 
 %files
 %defattr(-, root, root, 0755)
-%doc
+%doc README AUTHORS COPYING NEWS 
 
 %changelog
 * Thu Apr 22 2004 Dries Verachtert <dries@ulyssis.org> 5.3-1
