@@ -35,11 +35,12 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.16.rc7
+Release: 0.17.rc7
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
+Patch: xine-lib-1-rc7-memleak.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
@@ -101,6 +102,7 @@ use the Xine library.
 
 %prep
 %setup -n %{name}-%{libver}
+%patch -p0 -b .memleak
 
 
 %build
@@ -152,6 +154,9 @@ use the Xine library.
 
 
 %changelog
+* Fri Dec  3 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.17.rc7
+- Added xine-lib-1-rc7-memleak.patch, thanks to Bastien Nocera.
+
 * Wed Dec  1 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.16.rc7
 - Update to 1.0rc7.
 
