@@ -4,7 +4,7 @@
 # Upstream: Ethan Galstad <nagios@nagios.org>
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
-%define logmsg logger -t nagios/rpm
+%define logmsg logger -t %{name}/rpm
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
@@ -21,7 +21,6 @@ Source: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
 Patch0: nagios-1.2-embedperl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gd-devel, zlib-devel, libpng-devel, libjpeg-devel
 Obsoletes: %{name}-www

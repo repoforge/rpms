@@ -1,9 +1,6 @@
 # $Id$
-
 # Authority: dag
-
-### FIXME: When using Soapbox configure has problems with defining PS_COMMAND and PS_FORMAT
-# Soapbox: 0
+# Upstream: <nagiosplug-devel@lists.sf.net>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
@@ -14,7 +11,7 @@
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
 Version: 1.3.1
-Release: 7
+Release: 10
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sf.net/
@@ -22,26 +19,27 @@ URL: http://nagiosplug.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/nagiosplug/nagiosplug-%{version}.tar.gz
+Source: http://dl.sf.net/nagiosplug/nagios-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 AutoReq: no
 #BuildRequires: nagios-devel
 #BuildRequires: bind-devel (not needed for check_dns)
-BuildRequires: openssl-devel, openldap-devel, mysql-devel, radiusclient-devel
+BuildRequires: openssl-devel, radiusclient-devel
 BuildRequires: fping, bind-utils, ntp, samba-client, openssh-clients, qstat
+BuildRequires: openldap-devel, mysql-devel, postgresql-devel
 BuildRequires: perl(Net::SNMP)
-%{?rhfc1:BuildRequires: net-snmp-devel, net-snmp-utils, postgresql-devel}
+%{?rhfc1:BuildRequires: net-snmp-devel, net-snmp-utils}
 %{?rhel3:BuildRequires: net-snmp-devel, net-snmp-utils}
-%{?rh90:BuildRequires: net-snmp-devel, net-snmp-utils, postgresql-devel}
-%{?rh80:BuildRequires: net-snmp-devel, net-snmp-utils, postgresql-devel}
-%{?rh73:BuildRequires: ucd-snmp-devel, ucd-snmp-utils, postgresql-devel}
-%{?rhel21:BuildRequires: ucd-snmp-devel, ucd-snmp-utils, postgresql-devel}
-%{?rh62:BuildRequires: ucd-snmp-devel, ucd-snmp-utils, postgresql-devel}
+%{?rh90:BuildRequires: net-snmp-devel, net-snmp-utils}
+%{?rh80:BuildRequires: net-snmp-devel, net-snmp-utils}
+%{?rh73:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
+%{?rhel21:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
+%{?rh62:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
 
 #Requires: openldap, openssl, mysql, postgresql-libs
-Requires: nagios, perl, perl(Net::SNMP), fping
+Requires: perl, perl(Net::SNMP), fping
+#Requires: nagios
 
 %description
 This package contains the basic plugins necessary for use with the
@@ -51,7 +49,7 @@ RPM-based system.
 But you may need additional packages. Depending on what plugins you
 use, the following packages may be required:
 
-    bind, mysql, net-snmp-utils, ntp, openldap,
+    bind-utils, mysql, net-snmp-utils, ntp, openldap,
     openssh-clients, openssl, postgresql-libs
     qstat, radiusclient, samba-client, sendmail
 
@@ -85,25 +83,34 @@ done
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/contrib/ \
-			%{buildroot}%{perl_archlib} \
-			%{buildroot}%{_sysconfdir}/nagios/
+%{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/contrib/
 %{__install} -m0755 %{extraplugins} %{buildroot}%{_libdir}/nagios/plugins/
 %{__install} -m0755 contrib/check* %{buildroot}%{_libdir}/nagios/plugins/contrib/
-%{__install} -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_archlib}
-%{__install} -m0644 command.cfg %{buildroot}%{_sysconfdir}/nagios/command-plugins.cfg
+
+%{__install} -D -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_archlib}/utils.pm
+%{__install} -D -m0644 command.cfg %{buildroot}%{_sysconfdir}/nagios/command-plugins.cfg
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, nagios, nagios, 0755)
+#%defattr(-, nagios, nagios, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README REQUIREMENTS command.cfg
 %config(noreplace) %{_sysconfdir}/nagios/
 %{_libdir}/nagios/plugins/
 %{perl_archlib}
 
 %changelog
+* Tue Apr 27 2004 Dag Wieers <dag@wieers.com> - 1.3.1-10
+- Everything owned by user root. (James Wilkinson)
+
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 1.3.1-9
+- Removed nagios requirement (for nrpe). (James Wilkinson)
+
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 1.3.1-8
+- Added postgresql plugins for RHEL3.
+
 * Mon Mar 01 2004 Dag Wieers <dag@wieers.com> - 1.3.1-7
 - Added net-snmp-utils as a BuildRequires. (Dan Tucny)
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name nrpe
@@ -7,7 +6,7 @@
 Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
 Version: 2.0
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -15,13 +14,13 @@ URL: http://www.nagios.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/nagios/%{real_name}-%{version}.tar.gz
+Source: http://dl.sf.net/nagios/nrpe-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: openssl-devel, krb5-devel
 Provides: nrpe
 Obsoletes: nrpe, netsaint-nrpe
+Requires: nagios-plugins
 
 %description
 The nagios-nrpe packages contains the Nagios Remote Plug-ins Executor
@@ -161,16 +160,11 @@ EOF
 %{__make} %{?_smp_mflags}
 
 %install
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/nagios/ \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_libdir}/nagios/plugins/ \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/xinetd.d/
-%{__install} -m0711 src/nrpe %{buildroot}%{_sbindir}
-%{__install} -m0711 src/check_nrpe %{buildroot}%{_libdir}/nagios/plugins/
-%{__install} -m0644 nrpe.cfg %{buildroot}%{_sysconfdir}/nagios/
-%{__install} -m0755 nrpe.sysv %{buildroot}%{_initrddir}/nrpe
-%{__install} -m0644 nrpe.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nrpe
+%{__install} -D -m0711 src/nrpe %{buildroot}%{_sbindir}/nrpe
+%{__install} -D -m0711 src/check_nrpe %{buildroot}%{_libdir}/nagios/plugins/check_nrpe
+%{__install} -D -m0644 nrpe.cfg %{buildroot}%{_sysconfdir}/nagios/nrpe.cfg
+%{__install} -D -m0755 nrpe.sysv %{buildroot}%{_initrddir}/nrpe
+%{__install} -D -m0644 nrpe.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nrpe
 
 %post
 /sbin/chkconfig --add nrpe
@@ -198,6 +192,9 @@ fi
 %{_libdir}/nagios/plugins/
 
 %changelog
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 2.0-3
+- Added nagios-plugins requirement. (James Wilkinson)
+
 * Tue Nov 06 2003 Dag Wieers <dag@wieers.com> - 2.0-2
 - Removed the nagios dependency. (Johan Krisar)
 
