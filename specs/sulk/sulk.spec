@@ -17,7 +17,7 @@ URL: http://sulk.sf.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/sulk/sulk-%{realversion}.tar.gz
+Source: http://dl.sf.net/sulk/sulk-%{real_version}.tar.gz
 Patch: makefile-and-shellscript.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
