@@ -47,7 +47,7 @@ sed -i "s|/usr/local|%{_prefix}|g" kbbtray.py
 * Mon Sep 13 2004 Dries Verachtert <dries@ulyssis.org> 0.04-1
 - Update to version 0.04.
 
-* Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 0.03-2
+* Sun Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 0.03-2
 - cleanup of spec file
 
 * Sat Dec 27 2003 Dries Verachtert <dries@ulyssis.org> 0.03-1
