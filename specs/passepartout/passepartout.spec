@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Fredrik Arnerup <e97_far@e.kth.se>
 
 Summary: Open Source desktop publishing application
 Name: passepartout
-Version: 0.4
-Release: 0
+Version: 0.5
+Release: 1
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.stacken.kth.se/project/pptout/
@@ -15,11 +13,11 @@ URL: http://www.stacken.kth.se/project/pptout/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.stacken.kth.se/project/pptout/files/%{name}-%{version}.tar.bz2
+Source: http://www.stacken.kth.se/project/pptout/files/passepartout-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: libxml++ >= 1.0, gtkmm2
+BuildRequires: gtkmm2
+BuildRequires: libxml++ >= 1.0
 
 %description
 Passepartout is an Open Source Desktop Publishing application for the
@@ -34,10 +32,10 @@ leaflets.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >passepartout.desktop
 [Desktop Entry]
 Name=Passepartout Desktop Publishing
-Comment=%{summary}
+Comment=Create publications for magazines, brochures or leaflets
 Icon=redhat-presentations.png
 Exec=passepartout
 Terminal=false
@@ -54,15 +52,14 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_docdir}/passepartout/*.xslt \
-		%{buildroot}%{_docdir}/passepartout/examples/*.xslt
-
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	passepartout.desktop
+
+### Clean up docdir
+%{__rm} -f doc/examples/Makefile*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -70,13 +67,17 @@ desktop-file-install --vendor gnome                \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING NEWS README
+%doc doc/*.html doc/*.pp doc/*.xml doc/examples/
 %doc %{_mandir}/man?/*
-%doc %{_docdir}/passepartout/
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/xml/passepartout/
+%exclude %{_docdir}/passepartout/
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Thu Jan 15 2004 Dag Wieers <dag@wieers.com> - 0.4-0
 - Updated to release 0.4.
 
