@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Lauris Kaplinski <lauris@kaplinski.com>
 
-# Archs: i686 i386
+##Archs: i686 i386 x86_64
 
 %{?dist: %{expand: %%define %dist 1}}
 
