@@ -15,7 +15,7 @@
 Summary: Objective Caml
 Name: ocaml
 Version: 3.08.2
-Release: 1
+Release: 2
 License: QPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
@@ -24,6 +24,9 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-%{version}.tar.bz2
+Source1: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.html.tar.gz
+Source2: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.ps.gz
+Source3: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.info.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gdbm-devel, tcl-devel, tk-devel
@@ -40,6 +43,9 @@ with possible default value.
 
 %prep
 %setup
+%setup -T -q -D -a 1
+%setup -T -q -D -a 3
+cp %{SOURCE2} refman.ps.gz
 
 %build
 ./configure -prefix %{_prefix} -bindir %{_bindir} -libdir %{_libdir}/ocaml -mandir %{_mandir} -verbose
@@ -55,6 +61,8 @@ with possible default value.
 %{__perl} -pi -e 's|^LIBDIR=.*|LIBDIR=%{buildroot}%{_libdir}/ocaml|g;' config/Makefile camlp4/config/Makefile
 %{__perl} -pi -e 's|^MANDIR=.*|MANDIR=%{buildroot}%{_mandir}|g;' config/Makefile camlp4/config/Makefile
 %makeinstall
+%{__install} -d %{buildroot}%{_infodir}
+%{__cp} infoman/ocaml*.gz %{buildroot}%{_infodir}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -67,7 +75,7 @@ with possible default value.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL LICENSE README
+%doc Changes INSTALL LICENSE README refman.ps.gz htmlman
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man3/*
 %{_bindir}/camlp4o.opt
@@ -118,7 +126,12 @@ with possible default value.
 %{_libdir}/ocaml/stublibs
 %{_libdir}/ocaml/threads
 %{_libdir}/ocaml/vmthreads
+%{_infodir}/*
 
 %changelog
+* Thu Mar 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.08.2-2
+- Added the documentation, thanks to David Aspinall for informing me 
+  about the missing documentation.
+
 * Thu Dec 09 2004 Dries Verachtert <dries@ulyssis.org> - 3.08.2
 - Initial package.
