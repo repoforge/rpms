@@ -1,0 +1,28 @@
+diff -uNr amyedit-0.4.1-orig/Makefile amyedit-0.4.1/Makefile
+--- amyedit-0.4.1-orig/Makefile	2004-12-22 14:34:05.000000000 +0100
++++ amyedit-0.4.1/Makefile	2004-12-22 18:40:12.720936688 +0100
+@@ -1,5 +1,8 @@
+ OBJS=AboutDialog.o EditTabs.o AmyEdit.o ChoiceDialog.o FileDialog.o NewDialog.o Preferences.o amyedit.o
+ 
++bindir=/usr/local/bin
++datadir=/usr/local/share
++
+ LD=g++ -O0 -o amyedit `pkg-config gtkmm-2.4 --libs`
+ CC=g++ -O0 -pipe -c `pkg-config gtkmm-2.4 --cflags`
+ 
+@@ -16,10 +19,11 @@
+ 	${CC} $< -o $@
+ 
+ install: amyedit
+-	cp amyedit /usr/local/bin
+-	chmod a=rx,u+w /usr/local/bin/amyedit
+-	mkdir -p /usr/local/share/doc/amyedit-0.4.1
+-	cp COPYING Changelog INSTALL README TODO /usr/local/share/doc/amyedit-0.4.1
++	mkdir -p ${bindir}
++	cp amyedit ${bindir}
++	chmod a=rx,u+w ${bindir}/amyedit
++	mkdir -p ${datadir}/doc/amyedit-0.4.1
++	cp COPYING Changelog INSTALL README TODO ${datadir}/doc/amyedit-0.4.1
+ 
+ clean:
+ 	rm -f amyedit
