@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/MLDBM/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHAMAS/perl-MLDBM-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/MLDBM/MLDBM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,7 +51,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
 %doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
+%{perl_vendorlib}/MLDBM/
+%{perl_vendorlib}/MLDBM.pm
 
 %changelog
 * Wed Jul 16 2003 Dag Wieers <dag@wieers.com> - 2.01-0

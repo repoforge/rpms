@@ -4,14 +4,14 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc3:%define _without_shared_mime 1}
-%{?fc1:%define _without_shared_mime 1}
-%{?el3:%define _without_shared_mime 1}
-%{?rh9:%define _without_shared_mime 1}
+#%{?fc3:#define _without_shared_mime 1}
+#%{?fc1:#define _without_shared_mime 1}
+#%{?el3:#define _without_shared_mime 1}
+#%{?rh9:#define _without_shared_mime 1}
 
 Summary: GUI program to create labels and business cards
 Name: glabels
-Version: 2.0.1
+Version: 2.0.2
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -99,14 +99,19 @@ scrollkeeper-update -q || :
 %{_datadir}/application-registry/glabels.applications
 %{_datadir}/applications/gnome-glabels.desktop
 %{_datadir}/glabels/
-%{!?_without_shared_mime:%{_datadir}/mime/application/x-glabels.xml}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
+#%{_datadir}/mime/application/x-glabels.xml
+#%exclude %{_datadir}/mime/XMLnamespaces
+#%exclude %{_datadir}/mime/globs
+#%exclude %{_datadir}/mime/magic
+#%{!?_without_shared_mime:%{_datadir}/mime/application/x-glabels.xml}
+#%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
+#%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
+#%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime/packages/glabels.xml
 %{_datadir}/mime-info/glabels.*
 %{_datadir}/pixmaps/glabels/
 %{_datadir}/pixmaps/glabels.png
+%{_datadir}/pixmaps/glabels-application-x-glabels.png
 %{_datadir}/omf/glabels/
 %exclude %{_localstatedir}/scrollkeeper
 
@@ -117,6 +122,9 @@ scrollkeeper-update -q || :
 %exclude %{_libdir}/libglabels.la
 
 %changelog
+* Mon Jan 24 2005 Dag Wieers <dag@wieers.com> - 2.0.2-1
+- Updated to release 2.0.2.
+
 * Sun Aug 15 2004 Dag Wieers <dag@wieers.com> - 2.0.1-1
 - Updated to release 2.0.1.
 

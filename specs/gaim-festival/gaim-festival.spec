@@ -8,7 +8,7 @@
 Summary: Voice plugin for gaim
 Name: gaim-festival
 Version: 1.00
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://festival-gaim.sourceforge.net/
@@ -17,6 +17,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/festival-gaim/festival-gaim-%{version}.tar.gz
+Patch0: gaim-festival-1.00-voice-selection.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gaim, pkgconfig, libtool
@@ -28,8 +29,10 @@ This plugin speak your incoming messages from gaim.
 It use festival and is configurable.
 
 %prep
-
 %setup -n %{real_name}-%{version}
+%patch0 -p1
+
+%{__perl} -pi.orig -e 's|-march=\w+||g' Makefile
 
 %build
 %{__make} %{?_smp_mflags} \
@@ -54,9 +57,12 @@ It use festival and is configurable.
 %files
 %defattr(-, root, root, 0755)
 %doc INSTALL LICENSE README THANKS
-%{_libdir}/gaim/*
+%{_libdir}/gaim/
 
 %changelog
+* Sat Jan 22 2005 Dag Wieers <dag@wieers.com> - 1.00-2
+- Added voice selection fix. (David L Norris)
+
 * Thu Sep 23 2004 Dag Wieers <dag@wieers.com> - 1.00-1
 - Updated to release 1.00.
 

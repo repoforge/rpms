@@ -60,8 +60,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc CHANGES MANIFEST LICENSE README
 %doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
-%{_bindir}/*
+%{perl_vendorlib}/Apache/ASP/
+%{perl_vendorlib}/Apache/ASP.pm
+%dir %{perl_vendorlib}/Bundle/
+%dir %{perl_vendorlib}/Bundle/Apache/
+%{perl_vendorlib}/Bundle/Apache/ASP/
+%{perl_vendorlib}/Bundle/Apache/ASP.pm
+%{_bindir}/asp-perl
 
 %changelog
 * Fri Aug 06 2004 Dag Wieers <dag@wieers.com> - 2.57-2

@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python >= 2.0, python-crypto >= 1.9, python-devel
-Requires: python-crypto >= 1.9, gnome-python2-canvas, gnome-python2-gconf
+Requires: python >= 2.0, python-crypto >= 1.9, gnome-python2-canvas, gnome-python2-gconf
 
 %description
 Revelation is a password manager. It organizes accounts in

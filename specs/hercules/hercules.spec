@@ -2,9 +2,8 @@
 # Authority: dag
 # Upstream: Jay Maynard <jmaynard$conmicro,cx>
 # Upstream: <hercules-390$yahoogroups,com>
-# Distcc: 0
 
-%define date 20041025
+#define date 20041025
 
 Summary: Hercules S/370, ESA/390, and z/Architecture emulator
 Name: hercules
@@ -170,16 +169,22 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc CHANGES README* RELEASE* hercules.cnf.sample html/ util/
+%doc %{_mandir}/man?/*
 %dir %{_sysconfdir}/hercules/
 %config(noreplace) %{_sysconfdir}/hercules/*
 %{_bindir}/*
 %{_datadir}/hercules/
 %{_libdir}/hercules/
-%{_libdir}/*.so
-%exclude %{_libdir}/*.la
-%{_mandir}/man?/*
+%{_libdir}/libherc.so
+%{_libdir}/libhercs.so
+%exclude %{_libdir}/libherc.la
+%exclude %{_libdir}/libhercs.la
+%exclude %{_libdir}/hercules/*.la
 
 %changelog
+* Tue Jan 25 2005 Dag Wieers <dag@wieers.com> - 3.02-1
+- Updated to release 3.02.
+
 * Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 3.02-0.20041025.1
 - Update to today's CVS snapshot.
 

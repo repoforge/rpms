@@ -13,7 +13,7 @@
 
 Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.1.1
+Version: 1.1.2
 Release: 1
 Epoch: 1
 License: GPL
@@ -118,12 +118,15 @@ Available rpmbuild rebuild options :
 %{_libdir}/pkgconfig/gaim.pc
 %if %{!?_without_perl:1}0
 %{perl_vendorarch}/Gaim.pm
-%{perl_vendorarch}/auto/Gaim
+%{perl_vendorarch}/auto/Gaim/
 %{perl_vendorman3dir}/*
 %exclude %{perl_archlib}
 %endif
 
 %changelog
+* Fri Jan 21 2005 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 1.1.1-1
 - Re-enabled perl support. (Chris Weyl)
 - Updated to release 1.1.1.

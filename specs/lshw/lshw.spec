@@ -9,11 +9,11 @@
 %{?rh7:%define _without_gtk24 1}
 %{?el2:%define _without_gtk24 1}
 
-%define real_version B.02.00
+%define real_version B.02.02
 
 Summary: Hardware lister
 Name: lshw
-Version: 2.0
+Version: 2.02
 Release: 1
 License: GPL
 Group: Applications/System
@@ -74,7 +74,7 @@ Information can be output in plain text, XML or HTML.
 	PREFIX="%{_prefix}" \
 	SBINDIR="%{_sbindir}" \
 	MANDIR="%{_mandir}" 
-%{__ln_s} -f %{buildroot}%{_sbindir}/gtk-lshw %{buildroot}%{_sbindir}/lshw-gui
+%{__ln_s} -f gtk-lshw %{buildroot}%{_sbindir}/lshw-gui
 %endif
 
 %clean
@@ -96,5 +96,8 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Fri Jan 21 2005 Dag Wieers <dag@wieers.com> - 2.02-1
+- Updated to release B.02.02.
+
 * Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 2.0-1
 - Initial package. (using DAR)

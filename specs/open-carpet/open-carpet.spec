@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Joe Shaw <joe$assbarn,com>
 
+# Tag: test
+
 Summary: Open Carpet server generation tool
 Name: open-carpet
 Version: 0.3

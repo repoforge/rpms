@@ -5,7 +5,7 @@
 Summary: Abstract asynchronous event notification library
 Name: libevent
 Version: 1.0
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Libraries
 URL: http://monkey.org/~provos/libevent/
@@ -55,8 +55,9 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %{__ln_s} -f libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so
 %{__ln_s} -f libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so.0
 
-%{__install} -m0755 event.h %{buildroot}%{_includedir}/libevent.h
-%{__ln_s} -f libevent.h %{buildroot}%{_includedir}/event.h
+%{__install} -m0755 event.h %{buildroot}%{_includedir}/event.h
+%{__ln_s} -f event.h %{buildroot}%{_includedir}/libevent.h
+%{__install} -m0755 event-internal.h %{buildroot}%{_includedir}/event-internal.h
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -75,11 +76,15 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/event.h
+%{_includedir}/event-internal.h
 %{_includedir}/libevent.h
 %{_libdir}/libevent.a
 %{_libdir}/libevent.so
 
 %changelog
+* Thu Jan 20 2005 Dag Wieers <dag@wieers.com> - 1.0-2
+- Added deprecated interface.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/MLDBM-Sync/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHAMAS/MLDBM-Sync-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/MLDBM/MLDBM-Sync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -55,7 +55,9 @@ writes.
 %defattr(-, root, root, 0755)
 %doc CHANGES README
 %doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
+%dir %{perl_vendorlib}/MLDBM/
+%{perl_vendorlib}/MLDBM/Sync/
+%{perl_vendorlib}/MLDBM/Sync.pm
 
 %changelog
 * Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 0.30-1

@@ -4,7 +4,7 @@
 
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
-Version: 0.8.5
+Version: 0.8.6
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -56,6 +56,9 @@ tools to manage users, groups and passwords.
 %{_sbindir}/*
 
 %changelog
+* Sat Jan 22 2005 Dag Wieers <dag@wieers.com> - 0.8.6-1
+- Updated to release 0.8.6.
+
 * Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 0.8.5-1
 - Updated to release 0.8.5.
 
