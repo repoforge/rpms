@@ -17,8 +17,8 @@ Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, lesstif-devel, byacc, zlib-devel, libjpeg-devel, libpng-devel, XFree86, XFree86-Xvfb, flex, ImageMagick
 
-#(d) primscreenshot: http://www.csv.ica.uni-stuttgart.de/vrml/dune/_gfx/screen02.jpg
-#(d) screenshotsurl: http://www.csv.ica.uni-stuttgart.de/vrml/dune/screen.html
+# Screenshot: http://www.csv.ica.uni-stuttgart.de/vrml/dune/_gfx/screen02.jpg
+# ScreenshotURL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/screen.html
 
 %description
 The white_dune program is a graphical VRML97 editor and animation tool.
@@ -102,13 +102,13 @@ mkdir -p $RPM_BUILD_ROOT//usr/share/icons/hicolor/48x48/apps
 %{_bindir}/dune
 %{_bindir}/dune4kids
 %{_mandir}/man1/dune.1*
-/usr/share/misc/white_dune/NurbsCurvePROTO.wrl
-/usr/share/misc/white_dune/NurbsGroupPROTO.wrl
-/usr/share/misc/white_dune/NurbsSurfacePROTO.wrl
-/usr/share/applications/dune.desktop
-/usr/share/applications/dune4kids.desktop
-/usr/share/icons/hicolor/48x48/apps/dune.png
-/usr/share/icons/hicolor/48x48/apps/dune4kids.png
+%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl
+%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl
+%{_datadir}/misc/white_dune/NurbsSurfacePROTO.wrl
+%{_datadir}/applications/dune.desktop
+%{_datadir}/applications/dune4kids.desktop
+%{_datadir}/icons/hicolor/48x48/apps/dune.png
+%{_datadir}/icons/hicolor/48x48/apps/dune4kids.png
 
 
 %changelog
