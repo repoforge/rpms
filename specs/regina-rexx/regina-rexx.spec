@@ -1,5 +1,7 @@
 # Authority: dag
 # Upstream: Mark Hessling <M.Hessling@qut.edu.au>
+### FIXME: Makefiles don't allow -jX (parallel compilation)
+# Distcc: 0
 
 %define rname Regina
 
