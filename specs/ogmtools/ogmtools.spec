@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Moritz Bunkus <moritz@bunkus.org>
 
 Summary: Tools for Ogg media streams
 Name: ogmtools
@@ -8,11 +9,13 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/ogmtools/
-Source: http://www.bunkus.org/videotools/ogmtools/%{name}-%{version}.tar.bz2
+
+Source: http://www.bunkus.org/videotools/ogmtools/ogmtools-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libdvdread, libogg, libvorbis
+
 BuildRequires: gcc-c++
 BuildRequires: libdvdread-devel, libogg-devel, libvorbis-devel
+Requires: libdvdread, libogg, libvorbis
 
 %description
 These tools allow information about (ogminfo) or extraction from (ogmdemux) or
