@@ -3,6 +3,6 @@
     notifempty
     sharedscripts
     postrotate
-	/bin/kill -USR1 `cat /var/run/lighttpd.pid 2>/dev/null` 2>/dev/null || :
+	/bin/kill -HUP `cat /var/run/lighttpd.pid 2>/dev/null` 2>/dev/null || :
     endscript
 }

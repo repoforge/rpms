@@ -6,7 +6,7 @@
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
 Version: 1.3.13
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
@@ -22,7 +22,7 @@ Requires(pre): /usr/sbin/useradd
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service
-BuildRequires: openssl-devel, pcre-devel, bzip2-devel, zlib-devel
+BuildRequires: openssl-devel, pcre-devel, bzip2-devel, zlib-devel, gcc-c++
 %{?_with_ldap:BuildRequires: openldap-devel}
 
 %description
@@ -134,6 +134,7 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %doc doc/*.txt doc/lighttpd.conf doc/lighttpd.user
+%dir %{_sysconfdir}/lighttpd/
 %config(noreplace) %{_sysconfdir}/lighttpd/lighttpd.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/lighttpd
 %config(noreplace) %{_sysconfdir}/sysconfig/lighttpd
@@ -164,6 +165,11 @@ fi
 
 
 %changelog
+* Mon Apr  4 2005 Matthias Saou <http://freshrpms.net/> 1.3.13-2
+- Change signal sent from the logrotate script from USR1 to HUP, as that's the
+  correct one.
+- Add /etc/lighttpd directory (Michael Schwendt).
+
 * Sun Mar  6 2005 Matthias Saou <http://freshrpms.net/> 1.3.13-1
 - Update to 1.3.13.
 
