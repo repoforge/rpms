@@ -4,15 +4,15 @@
 #define rcver rc2
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
 
-%{!?_without_opengl: %{expand %%define opengl true}}
+%{!?_without_opengl:%define opengl 1}
 %ifarch %{ix86}
-%{!?_without_3dfx:   %{expand %%define 3dfx true}}
+%{!?_without_glide3:%define glide3 1}
 %endif
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.87cvs
-Release: %{?rcver:0.%{rcver}.}1
+Release: %{?rcver:0.%{rcver}.}2
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
@@ -32,13 +32,13 @@ Obsoletes: %{name}-x11 <= 0.87
 Obsoletes: %{name}-xgl <= 0.87
 BuildRequires: unzip, XFree86-devel, zlib-devel, expat-devel
 %{?opengl:BuildRequires: Mesa-devel, libjpeg-devel}
-%{?3dfx:BuildRequires: Glide3-devel}
+%{?glide3:BuildRequires: Glide3-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
 %ifarch %{ix86} x86_64
 %{!?_without_asm68000:BuildRequires: nasm >= 0.98}
-%{!?_without_mips3:BuildRequires: nasm >= 0.98}
+%{!?_without_mips3drc:BuildRequires: nasm >= 0.98}
 %endif
 
 %description
@@ -47,58 +47,24 @@ machine emulator, started in 1997 by Nicola Salmoria. It started out as a
 series of emulators for individual games. This series of emulators was
 combined into a single multi-game emulator.
 
-The main package contains the docs, data files, and three free games so that
-you have your X-Mame ready to run in no time! You will still need to pick
-a package containing the main xmame binary though, from either the basic
-x11 version, the SDL version or the special OpenGL xgl version.
-
-This version has been compiled for X11 DGA and XV, and OpenGL displays.
+This version has been compiled with X11, XV, OpenGL and Glide3 displays.
 
 Available rpmbuild rebuild options :
---without mame mess asm68000 mips3 effmmx opengl 3dfx
+--without mame mess asm68000 mips3drc effmmx opengl glide3
           alsa esound arts opts quietbuild
-
-
-#package SDL
-#Summary: X-Mame arcade game emulator compiled for SDL display
-#Group: Applications/Emulators
-#Provides: %{name}-bin = %{version}
-#BuildRequires: SDL-devel
-#
-#description SDL
-#This the the *nix port of the almost legendary mame. Mame is an arcade
-#machine emulator, started in 1997 by Nicola Salmoria. It started out as a
-#series of emulators for individual games. This series of emulators was
-#combined into a single multi-game emulator.
-#
-#This version has been compiled for SDL display.
 
 
 %package -n xmess
 Summary: The Multi Emulator Super System
 Group: Applications/Emulators
-Obsoletes: mess-x11 <= 0.87
-Obsoletes: mess-xgl <= 0.87
+Obsoletes: xmess-x11 <= 0.87
+Obsoletes: xmess-xgl <= 0.87
 
 %description -n xmess
 This is the *nix port of MESS. MESS is a free emulator which emulates a
 large variety of different systems, including old Atari, Apple, BBC,
 Commodore, MSX, ZX Spectrum computers. For full list of supported systems
-see http://www.mess.org/
-
-
-#package -n xmess-SDL
-#Summary: The Multi Emulator Super System compiled for SDL display
-#Group: Applications/Emulators
-#BuildRequires: SDL-devel
-#
-#description -n xmess-SDL
-#This is the *nix port of MESS. MESS is a free emulator which emulates a
-#large variety of different systems, including old Atari, Apple, BBC,
-#Commodore, MSX, ZX Spectrum computers. For full list of supported systems
-#see http://www.mess.org/
-#
-#This version has been compiled for SDL display.
+see http://www.mess.org/.
 
 
 %prep
@@ -144,7 +110,7 @@ export JOY_PAD=1
     # With FC3 gcc, -mtune is preferred as -mcpu is marked obsolete
     %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=i386 -mcpu=pentium4 -Wall -fno-merge-constants"}
     %{!?_without_asm68000: export X86_ASM_68000=1}
-    %{!?_without_mips3: export X86_MIPS3_DRC=1}
+    %{!?_without_mips3drc: export X86_MIPS3_DRC=1}
     %{!?_without_effmmx: export EFFECT_MMX_ASM=1}
 %endif
 
@@ -164,25 +130,27 @@ export JOY_PAD=1
 %ifarch x86_64
     export MY_CPU="amd64"
     %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=k8 -m64 -Wall -fno-merge-constants"}
-    %{!?_without_asm68000: export X86_ASM_68000=1}
-    %{!?_without_mips3: export X86_MIPS3_DRC=1}
+    # If you enable X86_ASM_68000, you'll get "Illegal instruction" (0.87)
+    #{!?_without_asm68000: export X86_ASM_68000=1}
+    # If you enable X86_MIPS3_DRC, you'll get "Segmentation fault" (0.87)
+    #{!?_without_mips3drc: export X86_MIPS3_DRC=1}
     %{!?_without_effmmx: export EFFECT_MMX_ASM=1}
 %endif
 
 # Now, do all the building (this is long!)
 for target in %{targets}; do
-    %{__make} %{?_smp_mflags} %{?opengl:X11_OPENGL=1} %{?3dfx:X11_GLIDE=1} TARGET=$target
-#   %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL TARGET=$target}
+    %{__make} %{?_smp_mflags} \
+        %{?opengl:X11_OPENGL=1} %{?glide3:X11_GLIDE=1} TARGET=${target}
 done
 
 
 %install
-%{__rm} -rf %{buildroot} _doc _datfiles
+%{__rm} -rf %{buildroot} _docs _datfiles
 
 # Prepare all the extra .dat files
 %{__mkdir} _datfiles
 for file in %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23}; do
-    %{__unzip} -o -d _datfiles/ $file
+    %{__unzip} -o -d _datfiles/ ${file}
 done
 
 for target in %{targets}; do
@@ -190,43 +158,42 @@ for target in %{targets}; do
         INSTALL_USER=`id -un` \
         INSTALL_GROUP=`id -gn` \
         MANDIR=%{buildroot}%{_mandir}/man6 \
-        TARGET=$target
+        TARGET=${target}
 done
 
 %{__mkdir_p} %{buildroot}%{_bindir}
 for target in %{targets}; do
-    %{__install} -m 755 x${target}.x11 %{buildroot}%{_bindir}/x${target}
-#   %{!?_without_SDL: %{__install} -m 755 x${target}.SDL %{buildroot}%{_bindir}/}
+    %{__install} -m 0755 x${target}.x11 %{buildroot}%{_bindir}/x${target}
 done
-%{?!_without_mame: %{__install} -m 755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
+%{?!_without_mame: %{__install} -m 0755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
 
 # We don't want all the docs
-%{__mkdir_p} _doc/{xmame/html,xmess}
+%{__mkdir_p} _docs/{xmame/html,xmess}
 pushd src/unix/doc
-    %{__cp} -a {*.html,*.css,img} ../../../_doc/xmame/html/
+    %{__cp} -a {*.html,*.css,img} ../../../_docs/xmame/html/
     %{__cp} -a changes.* dga2.txt multiplayer-readme.txt \
-        xmame-doc.txt xmamerc.dist mame/* ../../../_doc/xmame/
-    %{__cp} -a xmessrc.dist mess/* ../../../_doc/xmess/
+        xmame-doc.txt xmamerc.dist mame/* ../../../_docs/xmame/
+    %{__cp} -a xmessrc.dist mess/* ../../../_docs/xmess/
 popd
 
+# XMAME specific
 %if %{?_without_mame:0}%{!?_without_mame:1}
 # Add all directories
 %{__mkdir_p} %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
-
 # The extra dat files
 %{__install} -m 0664 _datfiles/*.dat %{buildroot}%{_datadir}/xmame/
-
 # Install the OpenGL cabinets
-%{!?_without_xgl: %{__cp} -a src/unix/cab %{buildroot}%{_datadir}/xmame/}
+%{__cp} -a src/unix/cab %{buildroot}%{_datadir}/xmame/
+# Uncompress catver.ini (will be in the docs)
+%{__unzip} -o -d _docs/ %{SOURCE30}
+
 %endif
 
+# XMESS specific
 %if %{?_without_mess:0}%{!?_without_mess:1}
 # Add all directories
 %{__mkdir_p} %{buildroot}%{_datadir}/xmess/{artwork,bios,crc,samples,snap,software}
 %endif
-
-# Uncompress catver.ini (will be in the docs)
-%{__unzip} -o %{SOURCE30}
 
 
 %clean
@@ -236,8 +203,8 @@ popd
 %if %{?_without_mame:0}%{!?_without_mame:1}
 %files
 %defattr(-, root, root, 0755)
-%doc README _doc/xmame/* contrib/tools/mame-cd 
-%doc catver.ini
+%doc README _docs/xmame/* contrib/tools/mame-cd 
+%doc _docs/catver.ini
 %{_bindir}/chdman
 %{_bindir}/romcmp
 %attr(2755, root, games) %{_bindir}/xmame
@@ -261,7 +228,7 @@ popd
 %if %{?_without_mess:0}%{!?_without_mess:1}
 %files -n xmess
 %defattr(-, root, root, 0755)
-%doc README _doc/xmess/*
+%doc README _docs/xmess/*
 %attr(2755, root, games) %{_bindir}/xmess
 %dir %attr(2775, root, games) %{_datadir}/xmess
 %dir %attr(2775, root, games) %{_datadir}/xmess/artwork
@@ -273,13 +240,13 @@ popd
 %{_mandir}/man6/xmess.6.*
 %endif
 
-#if %{?_without_SDL:0}%{!?_without_SDL:%{?_without_mess:0}%{!?_without_mess:1}}
-#files -n xmess-SDL
-#attr(2755, root, games) %{_bindir}/xmess.SDL
-#endif
-
 
 %changelog
+* Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 0.87cvs-2
+- Disable X86_ASM_68000 on x86_64, it bombs out otherwise.
+- Disable X86_MIPS3_DRC on x86_64, it segfaults otherwise.
+- Replace invalid "3dfx" macro name with "glide3".
+
 * Sun Oct 24 2004 Matthias Saou <http://freshrpms.net/> 0.87cvs-1
 - Removed specific sparc opts, please report if broken.
 - Removed xgl target, as the OpenGL support is now built in the x11 one.
