@@ -28,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel
+%{?fc2:BuildRequires: gtk2-devel}
 %{?fc1:BuildRequires: gtk2-devel}
 %{?el3:BuildRequires: gtk2-devel}
 %{?rh9:BuildRequires: gtk2-devel}
@@ -124,6 +125,8 @@ ac_add_options --enable-reorder
 ac_add_options --enable-mathml
 ac_add_options --enable-xinerama
 ac_add_options --enable-extensions="pref,cookie,wallet,typeaheadfind,xmlextras"
+%{?fc2:ac_add_options --enable-xft}
+%{?fc2:ac_add_options --enable-default-toolkit="gtk2"}
 %{?fc1:ac_add_options --enable-xft}
 %{?fc1:ac_add_options --enable-default-toolkit="gtk2"}
 %{?el3:ac_add_options --enable-xft}

@@ -23,6 +23,7 @@ BuildArch: i586
 BuildRequires: autoconf, automake, libpng-devel >= 1.0.8, libjpeg-devel
 BuildRequires: libdv-devel, libogg-devel, libvorbis-devel
 BuildRequires: glib-devel
+%{?fc2:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?fc1:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?el3:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?rh9:BuildRequires: libraw1394-devel, libavc1394-devel}

@@ -30,6 +30,7 @@ Patch1: amsn-0.83-login.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386
+%{?fc2:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?fc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?el3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 BuildRequires: tcl >= 8.3, tk >= 8.3, openssl-devel

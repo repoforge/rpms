@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Prereq: /usr/sbin/useradd, /usr/sbin/usermod
 BuildRequires: openssl-devel
 BuildRequires: openldap-devel, cyrus-sasl-devel
+%{?fc2:BuildRequires: pam-devel, postgresql-devel}
 %{?fc1:BuildRequires: pam-devel, postgresql-devel}
 %{?el3:BuildRequires: pam-devel, rh-postgresql-devel}
 %{?rh9:BuildRequires: pam-devel, postgresql-devel}

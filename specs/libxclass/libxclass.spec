@@ -42,6 +42,7 @@ against.
 	' lib/libxclass/Makefile.in
 
 %build
+%{?fc2:export CXX="g++296"}
 %{?fc1:export CXX="g++296"}
 %{?el3:export CXX="g++296"}
 %{?rh9:export CXX="g++296"}
@@ -51,17 +52,16 @@ against.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}/%{_includedir}/xclass \
-			%{buildroot}/%{_libdir} \
-			%{buildroot}/%{_bindir} \
-			%{buildroot}/%{_sysconfdir}/xclass \
-			%{buildroot}/%{_datadir}/xclass/icons
-%{__install} -m 0644 include/xclass/*.h %{buildroot}/%{_includedir}/xclass
-%{__install} -m 0644 lib/libxclass/libxclass.a %{buildroot}/%{_libdir}
-%{__install} -m 0755 config/xc-config %{buildroot}/%{_bindir}
-%{__install} -m 0644 doc/xclassrc %{buildroot}/%{_sysconfdir}/xclass
-%{__install} -m 0644 icons/*.xpm %{buildroot}/%{_datadir}/xclass/icons
-%{__install} -m 0644 lib/libxclass/icons/*.xpm %{buildroot}/%{_datadir}/xclass/icons
+%{__install} -D -m0644 lib/libxclass/libxclass.a %{buildroot}/%{_libdir}/libxclass.a
+%{__install} -D -m0755 config/xc-config %{buildroot}/%{_bindir}/xc-config
+%{__install} -D -m0644 doc/xclassrc %{buildroot}/%{_sysconfdir}/xclass/xclassrc
+
+%{__install} -d -m0755 %{buildroot}/%{_includedir}/xclass
+%{__install} -m0644 include/xclass/*.h %{buildroot}/%{_includedir}/xclass/
+
+%{__install} -d -m0755 %{buildroot}/%{_datadir}/xclass/icons
+%{__install} -m0644 icons/*.xpm %{buildroot}/%{_datadir}/xclass/icons
+%{__install} -m0644 lib/libxclass/icons/*.xpm %{buildroot}/%{_datadir}/xclass/icons
 
 %clean
 %{__rm} -rf %{buildroot}

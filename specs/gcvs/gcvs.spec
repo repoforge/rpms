@@ -25,6 +25,7 @@ Source: http://dl.sf.net/cvsgui/gcvs-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel
+%{?fc2:BuildRequires: tcl-devel}
 %{?fc1:BuildRequires: tcl-devel}
 %{?el3:BuildRequires: tcl-devel}
 BuildRequires: tcl

@@ -59,6 +59,7 @@ you will need to install %{name}-devel.
 #patch2 -p1 -b .nopromote
 #{?rh62:%patch3 -b .402}
 
+%{?fc2:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC2 APT-HTTP/1.3|' methods/http.cc}
 %{?fc1:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC1 APT-HTTP/1.3|' methods/http.cc}
 %{?el3:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH EL3 APT-HTTP/1.3|' methods/http.cc}
 %{?rh9:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 9 APT-HTTP/1.3|' methods/http.cc}
@@ -73,9 +74,13 @@ you will need to install %{name}-devel.
 ### More information of this repository at:
 ###	http://dag.wieers.com/apt/
 
+### Dag Apt Repository for Red Hat Fedore Core 2
+%{!?fc2:#}rpm http://apt.sw.be fedora/2/en/i386 dag
+#rpm-src http://apt.sw.be fedora/2/en/i386 dag
+
 ### Dag Apt Repository for Red Hat Fedore Core 1
-%{!?fc1:#}rpm http://apt.sw.be redhat/fc1/en/i386 dag
-#rpm-src http://apt.sw.be redhat/fc1/en/i386 dag
+%{!?fc1:#}rpm http://apt.sw.be fedora/1/en/i386 dag
+#rpm-src http://apt.sw.be fedora/1/en/i386 dag
 
 ### Dag Apt Repository for Red Hat Enterprise Linux 3
 %{!?el3:#}rpm http://apt.sw.be redhat/el3/en/i386 dag
@@ -108,6 +113,10 @@ EOF
 ###
 ### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
 
+### Red Hat Fedora Core 2
+%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/i386 core updates
+#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 core updates
+
 ### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates
 #rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 core updates
@@ -135,6 +144,10 @@ EOF
 ###
 ### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
 
+### Red Hat Fedora Core 2
+%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/i386 freshrpms
+#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 freshrpms
+
 ### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 #rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
@@ -159,6 +172,10 @@ EOF
 %{__cat} <<EOF >newrpms.list
 ### See http://newrpms.sunsite.dk/ for more information.
 
+### Red Hat Fedora Core 2
+%{!?fc2:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
+#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
+
 ### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 #rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
@@ -175,6 +192,10 @@ EOF
 %{__cat} <<EOF >atrpms.list
 ### See http://atrpms.physik.fu-berlin.de/ for more information.
 ### Possible sections: at-stable, at-good, at-testing, at-bleeding
+
+### Red Hat Fedora Core 2
+#rpm http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
+#rpm-src http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
 
 ### Red Hat Fedora Core 1
 #rpm http://apt.physik.fu-berlin.de fedora/1/en/i386 at-testing

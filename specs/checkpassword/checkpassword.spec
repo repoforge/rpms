@@ -35,6 +35,7 @@ support POP toasters.
 %setup
 
 ### FIXME: Fix the errno problem on RH9, RHEL3 and RHFC1
+%{?fc2: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
 %{?fc1: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
 %{?el3: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
 %{?rh9: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}

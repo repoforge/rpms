@@ -1,7 +1,6 @@
 # $Id: $
-
-# Upstream: Dries Verachtert <dries@ulyssis.org>
 # Authority: dries
+# Upstream: Dries Verachtert <dries@ulyssis.org>
 
 Summary: Creates a log with timestamps of every install of an rpm
 Name: logrpminstalls
@@ -29,13 +28,13 @@ timestamp name-version-release
 %setup
 
 %install
-%{__rm} -rf ${RPM_BUILD_ROOT}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_sysconfdir}/cron.daily/logrpminstalls
+%config %{_sysconfdir}/cron.daily/logrpminstalls
 
 %changelog
 * Fri Mar 19 2004 Dries Verachtert <dries@ulyssis.org> 1.0-1

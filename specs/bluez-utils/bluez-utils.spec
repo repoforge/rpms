@@ -34,6 +34,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 ExcludeArch: s390 s390x
 BuildRequires: bluez-libs-devel >= 2.0
 BuildRequires: flex, autoconf, automake14
+%{?fc2:BuildRequires: dbus-devel}
 %{?fc1:BuildRequires: dbus-devel}
 
 %description

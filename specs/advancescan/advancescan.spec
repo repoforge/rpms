@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <advancemame-devel@lists.sf.net>
 
 Summary: Command line rom manager for MAME, MESS and Raine
 Name: advancescan
@@ -7,9 +8,11 @@ Version: 1.8
 Release: 1
 License: GPL
 Group: Applications/Emulators
-Source: http://dl.sf.net/advancemame/%{name}-%{version}.tar.gz
-URL: http://advancemame.sourceforge.net/
+URL: http://advancemame.sf.net/
+
+Source: http://dl.sf.net/advancemame/advancescan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-root
+
 BuildRequires: gcc-c++, zlib-devel
 
 %description

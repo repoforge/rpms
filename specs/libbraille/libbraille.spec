@@ -1,7 +1,6 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
+# Upstream: Sébastien Sablé <sable@users.sf.net>
 
 Summary: Easy access to Braille displays and terminals 
 Name: libbraille
@@ -9,7 +8,7 @@ Version: 0.12.0
 Release: 1
 License: LGPL
 Group: Development/Libraries
-URL: http://libbraille.sourceforge.net/
+URL: http://libbraille.sf.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

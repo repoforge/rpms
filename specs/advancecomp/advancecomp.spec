@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Emulators
 URL: http://advancemame.sf.net/
 
-Source: http://dl.sf.net/advancemame/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/advancemame/advancecomp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}root
 
 BuildRequires: gcc-c++, zlib-devel
@@ -51,4 +51,3 @@ The main features are :
 
 * Thu May 22 2003 Matthias Saou <http://freshrpms.net/>
 - Initial RPM release.
-

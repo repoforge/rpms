@@ -19,6 +19,7 @@ Source: ftp://ftp.iu.hio.no/pub/cfengine/cfengine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, m4, openssl-devel, tetex
+%{?fc2:BuildRequires: db4-devel}
 %{?fc1:BuildRequires: db4-devel}
 %{?el3:BuildRequires: db4-devel}
 %{?rh9:BuildRequires: db4-devel}

@@ -79,9 +79,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__mv} -f %{buildroot}%{_datadir}/lyx/tex %{buildroot}%{_datadir}/texmf/tex/latex/lyx
 
 ### Miscellaneous files
-%{__install} -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/
-%{__install} -m0644 lib/reLyX/README README.reLyX
+%{__install} -D -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
+%{__install} -m0644 lib/reLyX/README README.reLyX
 
 ### Install desktop file and icon
 %if %{dfi}

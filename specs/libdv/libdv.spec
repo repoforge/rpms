@@ -27,6 +27,19 @@ IEEE 1394 (a.k.a. FireWire or i.Link) interface. Libdv was developed
 according to the official standards for DV video: IEC 61834 and SMPTE 314M. 
 
 
+%package tools
+Summary: Basic tools to manipulate Digital Video streams
+Group: Applications/Multimedia
+Requires: libdv = %{version}-%{release}
+
+%description tools
+This package contains some basic programs to display and encode
+digital video streams. This programs uses the Quasar DV codec (libdv),
+a software codec for DV video, the encoding format used by most
+digital camcorders, typically those that support the IEEE 1394
+(a.k.a. FireWire or i.Link) interface.
+
+
 %package devel
 Summary: Development file for programs which use the libdv library
 Group: Development/Libraries

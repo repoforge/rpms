@@ -1,15 +1,15 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: 
 
 Summary: Ultima Online emulator
 Name: lonewolf
-Version: cvs20040503
-Release: 1
+Version: 0.0
+Release: 0.cvs20040503
 License: GPL
 Group: Applications/Internet
 URL: http://home1.tiscalinet.de/aduke/main2/news2.htm
+
 Source: lonewolf-%{version}.tar.bz2
 Source1: lwscripts-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
