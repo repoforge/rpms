@@ -12,6 +12,7 @@ Group: Applications/File
 URL: http://www.obsession.se/gentoo/
 Source0: http://dl.sf.net/gentoo/gentoo-%{version}.tar.gz
 Source1: gnome-db-icon.png
+Patch: gentoo-0.11.52-pomkinstalldirs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, fam-devel, desktop-file-utils
 
@@ -28,6 +29,7 @@ file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 
 %prep
 %setup
+%patch -p1 -b .pomkinstalldirs
 
 
 %build
@@ -79,6 +81,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 %changelog
 * Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 0.11.52-1
 - Update to 0.11.52.
+- Add gentoo-0.11.52-pomkinstalldirs.patch to fix building.
 
 * Mon May 10 2004 Matthias Saou <http://freshrpms.net/> 0.11.51-1
 - Update to 0.11.51.

@@ -1,0 +1,12 @@
+diff -Naupr gentoo-0.11.52.orig/po/Makefile.in.in gentoo-0.11.52/po/Makefile.in.in
+--- gentoo-0.11.52.orig/po/Makefile.in.in	2003-10-12 15:45:24.000000000 +0200
++++ gentoo-0.11.52/po/Makefile.in.in	2004-11-04 10:38:03.500162040 +0100
+@@ -27,7 +27,7 @@ gettextsrcdir = $(datadir)/gettext/po
+ INSTALL = @INSTALL@
+ INSTALL_DATA = @INSTALL_DATA@
+ MKINSTALLDIRS = @MKINSTALLDIRS@
+-mkinstalldirs = $(SHELL) `case "$(MKINSTALLDIRS)" in /*) echo "$(MKINSTALLDIRS)" ;; *) echo "$(top_builddir)/$(MKINSTALLDIRS)" ;; esac`
++mkinstalldirs = @MKINSTALLDIRS@
+ 
+ GMSGFMT = @GMSGFMT@
+ MSGFMT = @MSGFMT@
