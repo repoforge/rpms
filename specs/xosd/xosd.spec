@@ -6,12 +6,12 @@
 
 Summary: Displays transparent text on your screen like the OSD of TVs
 Name: xosd
-Version: 2.2.5
-Release: 2
+Version: 2.2.7
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ignavus.net/software.html
-Source: http://www.ignavus.net/xosd-%{version}.tar.gz
+Source: http://www.ignavus.net/xosd-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel, xmms-devel
 
@@ -99,6 +99,9 @@ XOSD library, similarly to TV OSD.
 
 
 %changelog
+* Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 2.2.7-1
+- Update to 2.2.7.
+
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 2.2.5-2
 - Minor spec file cleanups.
 

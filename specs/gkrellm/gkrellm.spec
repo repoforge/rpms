@@ -5,8 +5,8 @@
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
-Version: 2.2.0
-Release: 2
+Version: 2.2.1
+Release: 1
 License: GPL
 Group: Applications/System
 Source0: http://web.wt.net/~billw/gkrellm/gkrellm-%{version}.tar.bz2
@@ -148,6 +148,9 @@ fi
 
 
 %changelog
+* Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 2.2.1-1
+- Update to 2.2.1.
+
 * Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-2
 - Change the daemon to be built with gtk2 from now on.
 - Add debug=1 to the build to get symbols into the debuginfo package.
