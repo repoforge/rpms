@@ -13,7 +13,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.170
+Version: 1.180
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -64,7 +64,7 @@ web browser.
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/webmin/
 
-echo "rpm" >%{buildroot}%{_libexecdir}/webmin/install-type
+echo 'rpm' >%{buildroot}%{_libexecdir}/webmin/install-type
 
 ### Prepare configuration (see os_list.txt)
 os_type="redhat-linux"
@@ -147,6 +147,9 @@ fi
 %{_libexecdir}/webmin
 
 %changelog
+* Fri Jan 28 2005 Dag Wieers <dag@wieers.com> - 1.180-1
+- Updated to release 1.180.
+
 * Sun Nov 21 2004 Dag Wieers <dag@wieers.com> - 1.170-1
 - Updated to release 1.170.
 - Added -set_serial to openssl. (Donavan Nelson)

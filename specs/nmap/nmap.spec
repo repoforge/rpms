@@ -6,8 +6,8 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 3.75
-Release: 0
+Version: 3.81
+Release: 1
 Epoch: 2
 License: GPL
 Group: Applications/System
@@ -81,6 +81,9 @@ desktop-file-install \
 
 
 %changelog
+* Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 3.81-1
+- Updated to release 3.81.
+
 * Tue Oct 19 2004 Matthias Saou <http://freshrpms.net/> 3.75-0
 - Update to 3.75.
 

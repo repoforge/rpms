@@ -9,11 +9,11 @@
 %{?rh7:%define _without_gtk24 1}
 %{?el2:%define _without_gtk24 1}
 
-%define real_version B.02.02
+%define real_version B.02.03
 
 Summary: Hardware lister
 Name: lshw
-Version: 2.02
+Version: 2.03
 Release: 1
 License: GPL
 Group: Applications/System
@@ -82,7 +82,7 @@ Information can be output in plain text, XML or HTML.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING TODO docs/*
+%doc COPYING docs/*
 %doc %{_mandir}/man1/lshw.1*
 %{_sbindir}/lshw
 %{_datadir}/lshw/
@@ -96,6 +96,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 2.03-1
+- Updated to release B.02.03.
+
 * Fri Jan 21 2005 Dag Wieers <dag@wieers.com> - 2.02-1
 - Updated to release B.02.02.
 

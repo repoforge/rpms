@@ -6,8 +6,8 @@
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
-Version: 1.1.7
-Release: 2
+Version: 1.1.9
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://keepalived.sourceforge.net/
@@ -38,7 +38,11 @@ nodes healthchecks and LVS directors failover.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|\$\(prefix\)/man|\$(mandir)|' Makefile.in */Makefile.in
+### FIXME: Fix macros in buildtools (Please fix upstream)
+%{__perl} -pi.orig -e '
+		s|\$\(prefix\)(\@mandir\@)|$1|;
+		s|(\@mandir\@)/man|$1|;
+	' Makefile.in */Makefile.in
 
 %build
 %{?el3:export CPPFLAGS="-I/usr/kerberos/include"}
@@ -51,7 +55,8 @@ nodes healthchecks and LVS directors failover.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
 %post
 /sbin/chkconfig --add keepalived
@@ -71,7 +76,9 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHOR ChangeLog CONTRIBUTORS COPYING README TODO doc/
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/genhash.1*
+%doc %{_mandir}/man5/keepalived.conf.5*
+%doc %{_mandir}/man8/keepalived.8*
 #%config %{_initrddir}/*
 %config(noreplace) %{_sysconfdir}/keepalived/
 %config %{_sysconfdir}/init.d/keepalived
@@ -79,6 +86,9 @@ fi
 %{_sbindir}/keepalived
 
 %changelog
+* Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 1.1.9-1
+- Updated to release 1.1.9.
+
 * Sun Oct 17 2004 Dag Wieers <dag@wieers.com> - 1.1.7-2
 - Fixes to build with kernel IPVS support. (Tim Verhoeven)
 

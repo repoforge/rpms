@@ -10,7 +10,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.81
+Version: 0.82
 Release: 1
 License: GPL
 Group: Applications/System
@@ -223,8 +223,8 @@ EOF
 %endif
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/clamav/
-touch %{buildroot}/var/log/clamav/freshclam.log
-touch %{buildroot}/var/log/clamav/clamd.log
+touch %{buildroot}%{_localstatedir}/log/clamav/freshclam.log
+touch %{buildroot}%{_localstatedir}/log/clamav/clamd.log
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/clamav/
 
@@ -348,6 +348,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 0.82-1
+- Updated to release 0.82.
+
 * Thu Jan 27 2005 Dag Wieers <dag@wieers.com> - 0.81-1
 - Improved logrotate scripts. (Filippo Grassilli)
 - Updated to release 0.81.

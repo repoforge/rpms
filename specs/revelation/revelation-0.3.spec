@@ -3,11 +3,9 @@
 # Upstream: Erik Grinaker <erikg$codepoet,no>
 # Upstream: <revelation-list$oss,codepoet,no>
 
-%define python_dir %(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
-
-Summary: Graphical password manager
+Summary: Password manager
 Name: revelation
-Version: 0.4.0
+Version: 0.3.4
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -19,35 +17,28 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.3, python-crypto >= 1.9, python-devel, pygtk2 >= 2.4
-Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9, gnome-python2-canvas, gnome-python2-gconf
+BuildArch: noarch
+BuildRequires: python >= 2.0, python-crypto >= 1.9, python-devel
+Requires: python >= 2.0, python-crypto >= 1.9, gnome-python2-canvas, gnome-python2-gconf
 
 %description
 Revelation is a password manager. It organizes accounts in
 a tree structure, and stores them as AES-encrypted XML files.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
 %build
-%configure \
-	--disable-desktop-update \
-	--disable-mime-update \
-	--disable-schemas-install
-%{__make} %{?_smp_mflags}
+python2 setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+python2 setup.py install \
+	--root="%{buildroot}"
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
-/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
-
-%postun
-/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,17 +48,12 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %doc AUTHORS ChangeLog COPYING README TODO
 %config %{_sysconfdir}/gconf/schemas/revelation.schemas
 %{_bindir}/revelation
-%{python_dir}/revelation/
+%{_libdir}/python*/site-packages/revelation/
 %{_datadir}/applications/revelation.desktop
+%{_datadir}/pixmaps/revelation.png
 %{_datadir}/revelation/
-%{_datadir}/icons/hicolor/*/apps/revelation.png
-%{_datadir}/icons/hicolor/48x48/mimetypes/gnome-mime-application-x-revelation.png
-%{_datadir}/mime/packages/revelation.xml
 
 %changelog
-* Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.4.0-1
-- Updated to release 0.4.0
-
 * Tue Sep 28 2004 Dag Wieers <dag@wieers.com> - 0.3.4-1
 - Updated to release 0.3.4.
 

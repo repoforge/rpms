@@ -8,7 +8,7 @@
 
 Summary: Encoder/decoder for the Free Lossless Audio Codec
 Name: flac
-Version: 1.1.1
+Version: 1.1.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -92,7 +92,8 @@ find doc/ -name "Makefile*" -exec rm -f {} \;
 %{_bindir}/flac
 %{_bindir}/metaflac
 %{_libdir}/*.so.*
-%{_mandir}/man1/*
+%{_mandir}/man1/flac.1*
+%{_mandir}/man1/metaflac.1*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -104,11 +105,14 @@ find doc/ -name "Makefile*" -exec rm -f {} \;
 
 %files -n xmms-flac
 %defattr(-, root, root, 0755)
-%{xmms_inputdir}/*.so
-%exclude %{xmms_inputdir}/*.la
+%{xmms_inputdir}/libxmms-flac.so
+%exclude %{xmms_inputdir}/libxmms-flac.la
 
 
 %changelog
+* Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2.
+
 * Fri Oct 01 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
 - Updated to release 1.1.1.
 

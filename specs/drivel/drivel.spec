@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/drivel/drivel-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, perl(XML::Parser), intltool, pkgconfig
-BuildRequires: gtk2-devel, GConf2-devel, gnome-vfs2-devel
+BuildRequires: gtk2-devel, GConf2-devel, gnome-vfs2-devel, glib2 >= 2.4
 Requires: gtk2 >= 2.0.0, curl >= 7.10.0
 
 %description
@@ -29,14 +29,15 @@ in mind, and presents an elegant user interface.
 
 %build
 %configure \
+	--disable-desktop-update \
+	--disable-mime-update \
         --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%makeinstall
 %find_lang %{name}
 
 %post
@@ -62,16 +63,12 @@ scrollkeeper-update -q || :
 %{_datadir}/application-registry/drivel.applications
 %{_datadir}/applications/drivel.desktop
 %{_datadir}/drivel/
+%{_datadir}/icons/gnome/48x48/mimetypes/gnome-mime-application-x-drivel.png
 %{_datadir}/mime-info/drivel.*
-%{!?_without_shared_mime:%{_datadir}/mime/application/x-drivel.xml}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
-%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime/packages/drivel.xml
-%{_datadir}/pixmaps/gnome-application-x-drivel.png
-%{_datadir}/pixmaps/livejournal.png
-%{_datadir}/pixmaps/drivel/
 %{_datadir}/omf/drivel/
+%{_datadir}/pixmaps/drivel/
+%{_datadir}/pixmaps/livejournal.png
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog

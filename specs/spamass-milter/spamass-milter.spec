@@ -4,7 +4,7 @@
 
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter
-Version: 0.2.0
+Version: 0.3.0
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -153,6 +153,9 @@ fi
 %{_sbindir}/spamass-milter
 
 %changelog
+* Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.3.0-1
+- Updated to release 0.3.0.
+
 * Wed Sep 01 2004 Dag Wieers <dag@wieers.com> - 0.2.0-1
 - Fixed variables in sysconfig file. (mator)
 

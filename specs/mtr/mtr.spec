@@ -10,7 +10,7 @@
 
 Summary: Network diagnostic tool
 Name: mtr
-Version: 0.65
+Version: 0.69
 Release: 1
 Epoch: 2
 License: GPL
@@ -148,6 +148,9 @@ autoconf
 %{_sysconfdir}/security/console.apps/xmtr
 
 %changelog
+* Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 2:0.69-1
+- Updated to release 0.69.
+
 * Thu Nov 25 2004 Dag Wieers <dag@wieers.com> - 2:0.65-1
 - Updated to release 0.65.
 

@@ -4,7 +4,7 @@
 
 Summary: Gettext po file editor
 Name: gtranslator
-Version: 1.1.5
+Version: 1.1.6
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -63,16 +63,21 @@ scrollkeeper-update -q || :
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO
 %doc %{_mandir}/man?/*
 %doc %{_datadir}/gnome/help/gtranslator/
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_bindir}/gtranslator
+%{_bindir}/pozilla.sh
+%{_datadir}/applications/gtranslator.desktop
 %{_datadir}/gtranslator/
-%{_datadir}/mime-info/*
+%{_datadir}/mime-info/gtranslater.mime
+%{_datadir}/mime-info/gtranslator.keys
 %{_datadir}/omf/gtranslator/
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/gtranslator/
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 1.1.6-1
+- Updated to release 1.1.6.
+
 * Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 1.1.5-1
 - Updated to release 1.1.5.
 

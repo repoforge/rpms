@@ -1,7 +1,9 @@
 # $Id$
 # Authority: matthias
 
-%define php_extdir %(php-config --extension-dir 2>/dev/null || echo /usr/lib/php4)
+### FIXME: phpize on fc2/x86_64 is utterly broken as it uses /usr/lib/php4
+
+%define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_prefix}/%{_lib}/php4)
 %{!?php_version:%define php_version %(php-config --version 2>/dev/null || echo 4.3.10)}
 
 %define module_version 0.9.2a

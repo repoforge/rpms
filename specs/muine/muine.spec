@@ -5,7 +5,7 @@
 Summary: Simple music player
 Name: muine
 Version: 0.6.3
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://muine.gooeylinux.org/
@@ -20,7 +20,7 @@ BuildRequires: glib2-devel, mono-core, mono-devel, gtk-sharp-devel, gstreamer-de
 BuildRequires: gstreamer-plugins-devel, libvorbis-devel, libid3tag-devel, flac-devel
 BuildRequires: gtk-sharp-gapi
 #BuildRequires: libxine
-Requires: mono-core, mono-web, gtk-sharp, gstreamer, gstreamer-plugins
+Requires: mono-core, mono-web, mono-data, gtk-sharp, gstreamer, gstreamer-plugins
 
 %description
 Muine is an innovative music player. It is much easier and comfortable to
@@ -62,6 +62,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/applications/muine.desktop
 
 %changelog
+* Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.6.3-3
+- Added mono-data dependency too. (Hassan Aurag)
+
 * Wed Jan 05 2005 Dag Wieers <dag@wieers.com> - 0.6.3-2
 - Added mono-web dependency. (Felix Roeser)
 
