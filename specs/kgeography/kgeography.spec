@@ -33,15 +33,14 @@ KGeography is a geography learning tool. Right now it has three usage modes:
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=Name Thingy Tool
-Comment=Do things with things
-Icon=name.png
-Exec=name
+Name=KGeography
+Comment=Geography learning tool
+Exec=kgeography
 Terminal=false
 Type=Application
 StartupNotify=true
 Encoding=UTF-8
-Categories=Application;Network;X-Red-Hat-Extra;
+Categories=Application;Games;X-Red-Hat-Extra;
 EOF
 
 %build
@@ -65,11 +64,8 @@ desktop-file-install --vendor net                  \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS COPYING INSTALL README TODO
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
 %{_datadir}/applications/*.desktop
 
 %changelog
