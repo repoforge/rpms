@@ -8,7 +8,7 @@
 
 Summary: Mozilla Thunderbird mail/news client
 Name: thunderbird
-Version: 0.5
+Version: 0.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -21,14 +21,12 @@ Source: http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/t
 Source1: http://downloads.mozdev.org/enigmail/src/ipc-1.0.5.tar.gz
 Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.83.3.tar.gz
 Source3: thunderbird-icon.png
-Patch1: mozilla-1.4-x86_64.patch
-Patch2: mozilla-xremote.patch
-Patch1001: mozilla-1.6-gtk2xtbin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
-BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel
-BuildRequires: vim-enhanced, csh
+BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel
+BuildRequires: libIDL-devel, ORBit-devel
+BuildRequires: vim-enhanced, csh, gcc-c++
 %{?fc1:BuildRequires: gtk2-devel}
 %{?el3:BuildRequires: gtk2-devel}
 %{?rh9:BuildRequires: gtk2-devel}
@@ -36,6 +34,7 @@ BuildRequires: vim-enhanced, csh
 %{?rh7:BuildRequires: gtk+-devel}
 %{?el2:BuildRequires: gtk+-devel}
 %{?rh6:BuildRequires: gtk+-devel}
+%{?yd3:BuildRequires: gtk2-devel}
 
 Obsoletes: phoenix, MozillaThunderbird, mozilla-thunderbird
 
@@ -44,9 +43,6 @@ Mozilla Thunderbird is a redesign of the Mozilla mail component.
 
 %prep
 %setup -n mozilla
-%patch1001
-%patch1 -p1 -b .x86_64
-%patch2 -p0 -b .xremote
 %setup -T -D -a1 -n mozilla/extensions
 %setup -T -D -a2 -n mozilla/extensions
 %setup -T -D -n mozilla
@@ -88,6 +84,8 @@ ac_add_options --enable-image-decoders="png,gif,jpeg,bmp"
 %{?rh8:ac_add_options --enable-default-toolkit="gtk2"}
 %{?rh7:ac_add_options --disable-xft}
 %{?rh6:ac_add_options --disable-xft}
+%{?yd3:ac_add_options --enable-xft}
+%{?yd3:ac_add_options --enable-default-toolkit="gtk2"}
 EOF
 
 %{__cat} <<EOF >%{name}.desktop
@@ -221,6 +219,12 @@ tar -xzv -C %{buildroot}%{_libdir} -f dist/thunderbird-*-linux-gnu.tar.gz
 %endif
 
 %changelog
+* Wed Jun  2 2004 Matthias Saou <http://freshrpms.net/> 0.6-1
+- Update to 0.6.
+- Removed all patches since they seem to have been applied upstream.
+- Added Yellow Dog Linux 3.0 dependencies.
+- Added libIDL-devel, gcc-c++ build dependencies.
+
 * Sat Apr 03 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 - Fixed off-by-1 border for plugins. (Daniele Paoni)

@@ -27,7 +27,8 @@ Patch1001: firefox-0.8-gtk2xtbin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
-BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel
+BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel
+BuildRequires: ORBit-devel, libIDL-devel, gcc-c++
 %{?fc2:BuildRequires: gtk2-devel}
 %{?fc1:BuildRequires: gtk2-devel}
 %{?el3:BuildRequires: gtk2-devel}
@@ -36,6 +37,7 @@ BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-deve
 %{?rh7:BuildRequires: gtk+-devel}
 %{?el2:BuildRequires: gtk+-devel}
 %{?rh6:BuildRequires: gtk+-devel}
+%{?yd3:BuildRequires: gtk2-devel}
 
 Obsoletes: phoenix, MozillaFirebird, mozilla-firebird, mozilla-firefox
 
@@ -44,7 +46,7 @@ Mozilla Firefox is an open-source web browser, designed for standards
 compliance, performance and portability.
 
 %prep
-%setup -n mozilla
+%setup -q -n mozilla
 %patch1001
 
 %{__cat} <<EOF >bookmarks.html
@@ -141,6 +143,8 @@ ac_add_options --enable-extensions="pref,cookie,wallet,typeaheadfind,xmlextras"
 %{?el2:ac_add_options --enable-default-toolkit="gtk"}
 %{?rh6:ac_add_options --disable-xft}
 %{?rh6:ac_add_options --enable-default-toolkit="gtk"}
+%{?yd3:ac_add_options --enable-xft}
+%{?yd3:ac_add_options --enable-default-toolkit="gtk2"}
 EOF
 
 %{__cat} <<EOF >%{name}.desktop
@@ -231,7 +235,7 @@ export CXXFLAGS="%{optflags}"
 %{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
 %{__install} -D -m0644 browser/base/skin/Throbber.png %{buildroot}%{_datadir}/pixmaps/firefox.png
 
-tar -xvz -C %{buildroot}%{_libdir} -f dist/firefox-i*-linux-gnu.tar.gz
+%{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/US/
@@ -266,6 +270,11 @@ fi
 %endif
 
 %changelog
+* Wed Jun  2 2004 Matthias Saou <http://freshrpms.net/> 0.8-2
+- Added Yellow Dog 3.0 build dependencies.
+- Added libIDL-devel and gcc-c++ build requirements.
+- Change dist/firefox-i*-linux-gnu to dist/firefox-*-linux-gnu because of ppc.
+
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.8-2
 - Fixed off-by-1 border for plugins. (Daniele Paoni)
 - Open new window by default, added --profile-manager. (Gary Peck)
