@@ -40,8 +40,8 @@ like forms an reports. hk_classes is database and GUI independent.
 %{_includedir}/hk_classes/*.h
 %{_libdir}/hk_classes/drivers/libhk_*driver.*
 %{_libdir}/hk_classes/libhk_classes.*
-%{_libdir}/python2.2/site-packages/_hk_classes.*
-%{_libdir}/python2.2/site-packages/hk_classes.*
+%{_libdir}/python*/site-packages/_hk_classes.*
+%{_libdir}/python*/site-packages/hk_classes.*
 %{_datadir}/man/man1/hk_*
 
 %changelog
