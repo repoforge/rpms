@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Thomas Linden <tom$daemon,de>
 
-%define real_name Config-General
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Config-General
 
 Summary: Generic config module
 Name: perl-Config-General
@@ -20,7 +18,7 @@ URL: http://search.cpan.org/dist/Config-General/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TL/TLINDEN/Config-General-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Config/Config-General-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -3,11 +3,10 @@
 # Authority: dries
 # Upstream: Bob Mathews <bobmathews$alumni,calpoly,edu>
 
-%define real_name Crypt-CAST5
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Crypt-CAST5
 
 Summary: CAST5 block cipher
 Name: perl-Crypt-CAST5
@@ -20,7 +19,7 @@ URL: http://search.cpan.org/dist/Crypt-CAST5/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBMATH/Crypt-CAST5-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-CAST5-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

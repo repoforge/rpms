@@ -3,11 +3,10 @@
 # Authority: dries
 # Upstream: John Hughes <jhughes$frostburg,edu>
 
-%define real_name Crypt-RC6
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Crypt-RC6
 
 Summary: Crypt::CBC compliant RC6 block cipher encryption module
 Name: perl-Crypt-RC6
@@ -20,7 +19,7 @@ URL: http://search.cpan.org/dist/Crypt-RC6/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHUGHES/Crypt-RC6-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-RC6-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

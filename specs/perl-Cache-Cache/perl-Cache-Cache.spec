@@ -10,7 +10,7 @@ Release: 3
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Cache/
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCLINTON/Cache-Cache-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Cache/Cache-Cache-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 Requires: perl(Error), perl(Storable), perl(IPC::ShareLite)

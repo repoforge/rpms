@@ -4,11 +4,10 @@
 # Upstream: T,J, Mather <tjmather$maxmind,com>
 
 
-%define real_name Crypt-OpenSSL-DSA
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Crypt-OpenSSL-DSA
 
 Summary: DSA encryption
 Name: perl-Crypt-OpenSSL-DSA
@@ -21,7 +20,7 @@ URL: http://search.cpan.org/dist/Crypt-OpenSSL-DSA/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TJ/TJMATHER/Crypt-OpenSSL-DSA-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-OpenSSL-DSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, openssl-devel, krb5-devel

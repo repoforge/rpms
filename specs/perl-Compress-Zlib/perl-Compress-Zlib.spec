@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -18,7 +17,7 @@ URL: http://search.cpan.org/dist/Compress-Zlib/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/P/PM/PMQS/Compress-Zlib-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Compress/Compress-Zlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.004, zlib-devel >= 1.0.2

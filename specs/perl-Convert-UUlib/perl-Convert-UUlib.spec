@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Convert-UUlib/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/Convert-UUlib-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Convert/Convert-UUlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0

@@ -1,5 +1,4 @@
 # $Id: perl-Archive-Tar.spec 120 2004-03-15 17:26:20Z dag $
-
 # Authority: dag
 
 %define real_name Convert-BER
@@ -16,7 +15,7 @@ URL: http://search.cpan.org/dist/Convert-BER/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Convert/Convert-BER-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

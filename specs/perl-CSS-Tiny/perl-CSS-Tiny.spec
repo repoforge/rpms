@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Adam Kennedy <cpan$ali,as>
 
-%define real_name CSS-Tiny
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name CSS-Tiny
 
 Summary: Read and write CSS files
 Name: perl-CSS-Tiny

@@ -3,11 +3,10 @@
 # Authority: dries
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
-%define real_name Array-RefElem
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Array-RefElem
 
 Summary: Use references as elements in hashes and arrays
 Name: perl-Array-RefElem
@@ -20,7 +19,7 @@ URL: http://search.cpan.org/dist/Array-RefElem/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Array-RefElem-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Array/Array-RefElem-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

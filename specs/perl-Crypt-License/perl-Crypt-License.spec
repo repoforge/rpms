@@ -3,11 +3,10 @@
 # Authority: dries
 # Upstream: Michael Robinton <michael$bizsystems,com>
 
-%define real_name Crypt-License
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Crypt-License
 
 Summary: Crypt License module
 Name: perl-Crypt-License
@@ -20,7 +19,7 @@ URL: http://search.cpan.org/dist/Crypt-License/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/Crypt-License-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-License-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
