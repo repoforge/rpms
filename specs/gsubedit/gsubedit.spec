@@ -1,13 +1,16 @@
 # $Id$
-
 # Authority: dag
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 %define real_version 0.4pre1
 
 Summary: Tool for editing and converting DivX ;-) subtitles
 Name: gsubedit
-Version: 0.3.20020604
-Release: 0
+Version: 0.4
+Release: 0.pre1
 Group: Applications/Multimedia
 License: GPL
 URL: http://gsubedit.sf.net/
@@ -17,7 +20,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gsubedit/gsubedit-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: ORBit-devel, gtk+-devel
 
@@ -30,6 +32,19 @@ and MicroDVD (.sub) subtitles. Framerate conversion and frame displacement
 %prep
 %setup -n %{name}-%{real_version}
 
+### FIXME: Include improved desktop-file. (Please fix upstream)
+%{__cat} <<EOF >gsubedit.desktop.in
+[Desktop Entry]
+Name=Subtitle Editor
+Comment=Edit subtitle files
+Icon=gsubedit.png
+Exec=gsubedit
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GNOME;Application;AudioVideo;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -39,7 +54,15 @@ and MicroDVD (.sub) subtitles. Framerate conversion and frame displacement
 %makeinstall
 %find_lang %{name}
 
-%{__rm} -rf %{buildroot}%{_prefix}/doc/
+%{__install} -D -m0644 pixmaps/gsubedit_icon.png %{buildroot}%{_datadir}/pixmaps/gsubedit.png
+
+%if %{!?_without_freedesktop:1}0
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+        desktop-file-install --vendor gnome --delete-original \
+                --add-category X-Red-Hat-Base                 \
+                --dir %{buildroot}%{_datadir}/applications    \
+                %{buildroot}%{_datadir}/gnome/apps/Applications/gsubedit.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,9 +72,15 @@ and MicroDVD (.sub) subtitles. Framerate conversion and frame displacement
 %doc AUTHORS ChangeLog README TODO
 %doc %{_datadir}/gnome/help/gsubedit/
 %{_bindir}/*
-%{_datadir}/gnome/apps/Applications/*.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-gsubedit.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/gsubedit.desktop}
+%{_datadir}/pixmaps/gsubedit.png
 %{_datadir}/pixmaps/gsubedit/
+%exclude %{_prefix}/doc/
 
 %changelog
-* Sat Feb 01 2003 Dag Wieers <dag@wieers.com> - 0.3.20020604
+* Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.4-0.pre1
+- Added improved desktop file.
+
+* Sat Feb 01 2003 Dag Wieers <dag@wieers.com> - 0.3.20020604-0
 - Initial package. (using DAR)
