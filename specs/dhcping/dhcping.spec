@@ -13,7 +13,8 @@ URL: http://sourceforge.net/projects/mavetju/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/mavetju/dhcping-%{version}.tar.gz
+#Source: http://dl.sf.net/mavetju/dhcping-%{version}.tar.gz
+Source: http://www.mavetju.org/download/dhcping-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
