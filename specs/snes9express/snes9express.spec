@@ -20,7 +20,7 @@ Source0: http://dl.sf.net/snes9express/snes9express-%{version}.tar.gz
 Source1: snes.png
 Patch: snes9express-1.42-errno.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel
+BuildRequires: gcc-c++, gtk2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
