@@ -15,8 +15,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.river-bank.demon.co.uk/download/PyKDE2/PyKDE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: python, sip, PyQt, qt-devel, sip-devel, kdelibs-devel
-Requires: kdelibs, sip, python, PyQt, PyQt-devel
+BuildRequires: python, sip, PyQt, qt-devel, sip-devel, kdelibs-devel, PyQt-devel
+Requires: sip, python, PyQt, PyQt-devel
 
 %description
 PyKDE is a set of Python bindings for the KDE desktop environment. The
