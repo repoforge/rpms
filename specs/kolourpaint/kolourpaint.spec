@@ -4,15 +4,15 @@
 
 Summary: Free easy-to-use paint program
 Name: kolourpaint
-Version: 1.0.1
-Release: 2
+Version: 1.0.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kolourpaint.sourceforge.net/
 
 
 Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
-Patch: brush_1x1_kolourpaint-1.0.1.diff
+# Patch: brush_1x1_kolourpaint-1.0.1.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
@@ -31,7 +31,7 @@ targeted towards the average user. It's designed for daily tasks like:
 
 %prep
 %setup
-%patch -p1
+# patch -p1
 
 %build
 %configure
@@ -55,6 +55,9 @@ sed -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{b
 %{_datadir}/icons/hicolor/*/apps/kolourpaint.png
 
 %changelog
+* Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0.2-1
+- update to 1.0.2
+
 * Sun Apr 18 2004 Dries Verachtert <dries@ulyssis.org> 1.0.1-2
 - spec file changes
 
