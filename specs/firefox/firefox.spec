@@ -146,7 +146,7 @@ while [ "$1" ]; do
 			URL="$1"
 		fi
 		if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
-			MOZARGS="-remote openURL(\"$URL\",new-window) $MOZARGS"
+			MOZARGS="$MOZARGS -remote openURL(\'$URL\',new-window)"
 			REMOTE=1
 		else
 			MOZARGS="$MOZARGS $URL"
@@ -156,7 +156,7 @@ while [ "$1" ]; do
 done
 
 if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
-	exec $MOZ_PROGRAM -a $MOZ_APP_NAME -remote "xfeDoCommand(openBrowser)" $MOZARGS
+	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS -remote "xfeDoCommand(openBrowser)"
 else
 	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS &
 fi;
