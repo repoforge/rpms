@@ -9,7 +9,7 @@
 
 Name: rhythmbox
 Summary: Music Management Application 
-Version: 0.6.7
+Version: 0.6.8
 Release: 0.1%{?_with_xine:xine}.fr
 License: GPL
 Group: Applications/Multimedia
@@ -44,12 +44,15 @@ GStreamer media framework. It has a number of features, including and easy to
 use music browser, searching and sorting, comprehensive audio format support
 through GStreamer, Internet Radio support, playlists and more.
 
+
 %prep
 %setup -q
+
 
 %build
 %configure %{?_with_xine:--enable-xine}
 make 
+
 
 %install
 rm -rf %{buildroot}
@@ -62,8 +65,10 @@ rm -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
 rm %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 touch %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 
+
 %clean
 rm -rf %{buildroot}
+
 
 %post 
 /sbin/ldconfig
@@ -74,6 +79,7 @@ for S in $SCHEMAS; do
 done
 
 %postun -p /sbin/ldconfig
+
 
 %files -f %{name}.lang
 %defattr(-, root, root)
@@ -93,7 +99,11 @@ done
 %{_libdir}/bonobo/servers/*.server
 %{_libdir}/pkgconfig/rhythmbox.pc
 
+
 %changelog
+* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.8-0.1.fr
+- Update to 0.6.8.
+
 * Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 0.6.7-0.1.fr
 - Update to 0.6.7.
 
