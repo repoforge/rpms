@@ -62,14 +62,14 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO BUGS XPARAM-VERSION doc
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
+%{_infodir}/xparam*
 
 %files devel
+%{_includedir}/xparam/*.h
 %{_includedir}/*.h
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
