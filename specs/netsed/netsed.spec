@@ -24,7 +24,7 @@ and dynamic filtering, and cooperates with ipfwadm/ipchains transparent
 proxy rules to pick specific packets.
 
 %prep
-%setup -n %{name}
+%setup -c -n %{name}
 
 %build
 %{__make} %{?_smp_mflags} \
@@ -39,8 +39,8 @@ proxy rules to pick specific packets.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README
-%{_bindir}/*
+%doc README
+%{_bindir}/netsed
 
 %changelog
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.0.1-0.b

@@ -1,10 +1,12 @@
 # $Id$
 # Authority: dag
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical editor for creating man pages. 
 Name: manedit
-Version: 0.5.10
-Release: 0
+Version: 0.5.12
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://wolfpack.twu.net/ManEdit/
@@ -12,7 +14,7 @@ URL: http://wolfpack.twu.net/ManEdit/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://wolfpack.twu.net/users/wolfpack/manedit-%{version}.tar.bz2
+Source: http://wolfpack.twu.net/users/wolfpack/manedit-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, zlib-devel
@@ -27,7 +29,8 @@ and requires the X Window Systems.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|/usr/man|%{_mandir}|' manedit/pref.c manedit/prefcb.c
+%{__perl} -pi.orig -e 's|/usr/man|%{_mandir}|g' manedit/pref.c manedit/prefcb.c
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' pconf/platforms.ini
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -44,6 +47,7 @@ EOF
 ./configure Linux \
 	--prefix="%{_prefix}" \
 	--mandir="%{_mandir}" \
+	--libdir="%{_libdir}" \
 	--disable="arch-i486" \
 	--disable="arch-i586" \
 	--disable="arch-i686" \
@@ -59,8 +63,8 @@ EOF
 %{__install} -D -m0644 manedit/manedit.xpm %{buildroot}%{_datadir}/pixmaps/manedit.xpm
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor net                  \
-	--add-category X-Red-Hat-Base                \
+desktop-file-install --vendor %{desktop_vendor}    \
+	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop
 
@@ -71,12 +75,15 @@ desktop-file-install --vendor net                  \
 %defattr(-, root, root, 0755)
 %doc AUTHORS LICENSE  README 
 %doc %{_mandir}/man?/*
-%{_bindir}/*
+%{_bindir}/man*
 %{_datadir}/manedit/
 %{_datadir}/icons/*
 %{_datadir}/pixmaps/*.xpm
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-manedit.desktop
  
 %changelog
+* Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.5.12-1
+- Updated to release 0.5.12.
+
 * Sun Oct 05 2003 Dag Wieers <dag@wieers.com> - 0.5.10-0
 - Initial package. (using DAR)

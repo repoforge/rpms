@@ -8,7 +8,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15cnc6
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
@@ -16,7 +16,8 @@ URL: https://moin.conectiva.com.br/AptRpm
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://moin.conectiva.com.br/files/AptRpm/attachments/apt-%{version}.tar.bz2
+Source: https://moin.conectiva.com.br/AptRpm?action=AttachFile&do=get&target=apt-0.5.15cnc6.tar.bz2
+#Source: http://moin.conectiva.com.br/files/AptRpm/attachments/apt-%{version}.tar.bz2
 Patch0: apt-0.5.15cnc6-rpmpriorities.patch
 Patch1: apt-0.5.15cnc5-nodignosig.patch
 Patch2: apt-0.5.15cnc4-nopromote.patch
@@ -25,6 +26,7 @@ Patch4: apt-0.5.15cnc6-rpmhandler.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 4.0, zlib-devel, gettext
+BuildRequires: readline-devel, bison
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
 %{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
@@ -205,7 +207,6 @@ EOF
 %build
 #{__autoconf}
 %configure \
-	--disable-dependency-tracking \
 	--program-prefix="%{?_program_prefix}" \
 	--includedir="%{_includedir}/apt-pkg"
 #	--with-hashmap
@@ -241,7 +242,7 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS* COPYING* TODO contrib/ doc/examples/
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man?/apt*
 %dir %{_sysconfdir}/apt/
 %config(noreplace) %{_sysconfdir}/apt/apt.conf
 %config(noreplace) %{_sysconfdir}/apt/preferences
@@ -250,21 +251,28 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 %config %{_sysconfdir}/apt/rpmpriorities
 %config(noreplace) %{_sysconfdir}/apt/apt.conf.d/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/
-%{_bindir}/*
-%{_libdir}/*.so.*
+%{_bindir}/apt-cache
+%{_bindir}/apt-cdrom
+%{_bindir}/apt-config
+%{_bindir}/apt-get
+%{_bindir}/apt-shell
+%{_libdir}/libapt-pkg-*.so.*
 %{_libdir}/apt/
 %{_localstatedir}/cache/apt/
 %{_localstatedir}/state/apt/
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_libdir}/libapt-pkg-*.a
+%exclude %{_libdir}/libapt-pkg-*.la
+%{_libdir}/libapt-pkg-*.so
 %{_includedir}/apt-pkg/
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.5.15cnc6-4
+- Added readline-devel as buildrequirement for apt-shell.
+
 * Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 0.5.15cnc6-3
 - Fix for apt-bug triggered by mach.
 

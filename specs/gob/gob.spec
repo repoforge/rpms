@@ -1,8 +1,5 @@
 # $Id$
-
 # Authority: dag
-
-# Soapbox: 0
 
 Summary: GOB, The GTK+ Object Builder
 Name: gob
@@ -15,9 +12,8 @@ URL: http://www.5z.com/jirka/gob.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.5z.com/pub/%{name}/%{name}-%{version}.tar.bz2
+Source: http://ftp.5z.com/pub/gob/gob-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 GOB is a simple preprocessor for making GTK+ objects.  It makes objects from a
@@ -42,9 +38,9 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 %defattr(-,root,root)
 %doc AUTHORS NEWS README TODO
 %doc -P examples/[^M]*
-%doc %{_mandir}/man1/*
-%{_bindir}/*
-%{_datadir}/aclocal/*
+%doc %{_mandir}/man1/gob.1*
+%{_bindir}/gob
+%{_datadir}/aclocal/gob.m4
 
 %changelog
 * Tue Jan 07 2003 Dag Wieers <dag@wieers.com> - 1.0.12

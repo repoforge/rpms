@@ -5,7 +5,7 @@
 
 Summary: The GTK+ Object Builder, a preprocessor for making GObjects with inline C code
 Name: gob2
-Version: 2.0.10
+Version: 2.0.11
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -39,7 +39,7 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS NEWS README TODO
 %doc examples/*.gob
 %doc %{_mandir}/man1/gob2.1*
@@ -47,6 +47,9 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 %{_datadir}/aclocal/gob2.m4
 
 %changelog
+* Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 2.0.11-1
+- Updated to release 2.0.11.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 2.0.10-1
 - Updated to release 2.0.10.
 

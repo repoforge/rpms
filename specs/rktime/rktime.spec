@@ -14,7 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 ### Source is not available from homepage, only SRPM
-Source: rktime-%{version}.tgz
+Source: http://people.redhat.com/rkeech/rktime-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

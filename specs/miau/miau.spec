@@ -5,7 +5,7 @@
 Summary: Full featured IRC bouncer
 Name: miau
 Version: 0.5.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://miau.sourceforge.net/
@@ -42,7 +42,6 @@ export OPTIONS="
 	--enable-privlog
 	--enable-onconnect
 	--enable-empty-awaymsg
-	--disable-dependency-tracking
 	"
 %configure \
 	--enable-ipv6 \
@@ -50,6 +49,7 @@ export OPTIONS="
 %{__make} %{?_smp_mflags}
 %{__mv} -f src/miau src/miau-ipv6
 
+%{__make} clean
 %configure \
 	$OPTIONS
 %{__make} %{?_smp_mflags}
@@ -73,9 +73,12 @@ export OPTIONS="
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO misc/miaurc
 %doc %{_infodir}/*.info*
-%{_bindir}/*
+%{_bindir}/miau*
 %exclude %{_datadir}/miaurc
 
 %changelog
+* Mon Nov 15 2004 Dag Wieers <dag@wieers.com> - 0.5.3-2
+- Fixed the non-ipv6 build by doing make clean. (Chris Grau)
+
 * Mon Mar 03 2004 Dag Wieers <dag@wieers.com> - 0.5.3-1
 - Initial package. (using DAR)

@@ -4,7 +4,7 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -37,7 +37,7 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-%patch0 -b .glibc
+#%patch0 -b .glibc
 
 %build
 %configure
@@ -68,6 +68,9 @@ reasonnable speed while being easy to port on new host CPUs.
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Wed Nov 17 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Updated to release 0.6.0.
 

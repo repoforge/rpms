@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc1 fc2
+# ExcludeDist: fc1 fc2 fc3
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -40,8 +40,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-
-%{?fc1:echo "Don't build for RHFC1 !"; exit 1}
 
 %build
 %configure

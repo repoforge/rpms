@@ -78,7 +78,7 @@ EOF
 %doc COPYING NEWS README doc/*
 %{_bindir}/gtklife
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Games/gtklife.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-gtklife.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gtklife.desktop}
 %{_datadir}/gtklife/
 %{_datadir}/pixmaps/gtklife.png
 

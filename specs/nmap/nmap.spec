@@ -57,7 +57,7 @@ desktop-file-install \
     --vendor %{desktop_vendor} \
     --delete-original \
     --dir %{buildroot}%{_datadir}/applications \
-    %{buildroot}%{_datadir}/gnome/apps/Utilities/nmapfe.desktop
+    %{buildroot}%{_datadir}/applications/nmapfe.desktop
 
 
 %clean

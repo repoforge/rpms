@@ -14,7 +14,7 @@
 
 Summary: Powerful audio editor
 Name: audacity
-Version: 1.2.2
+Version: 1.2.3
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -99,6 +99,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1
 - Update to 1.2.2.
 

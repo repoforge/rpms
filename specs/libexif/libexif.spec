@@ -2,6 +2,9 @@
 # Authority: matthias
 # Upstream: <libexif-devel$lists,sf,net>
 
+### Beware FC3 comes with older libexif !
+# Tag: test
+
 Name: libexif
 Summary: EXIF image tag library
 Version: 0.6.9

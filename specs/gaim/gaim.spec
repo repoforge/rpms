@@ -1,17 +1,20 @@
 # $Id$
 # Authority: matthias
 
+### FC3 comes with the latest gaim
+# ExcludeDist: fc3
+
 ### rh9 and el3 wants to install perl modules outside buildroot
 #%{?el3:%define _without_perl 1}
 #%{?rh9:%define _without_perl 1}
-%define _without_perl 1
+#%define _without_perl 1
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)
 
-Summary: Gtk2 based multiprotocol instant messaging client
+Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.0.2
+Version: 1.0.3
 Release: 1
 Epoch: 1
 License: GPL
@@ -105,15 +108,15 @@ Available rpmbuild rebuild options :
 %{_bindir}/gaim*
 %{_includedir}/gaim/
 %dir %{_libdir}/gaim/
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so*
+%exclude %{_libdir}/libgaim-remote.la
+%{_libdir}/libgaim-remote.so*
 %exclude %{_libdir}/gaim/*.la
 %{_libdir}/gaim/*.so
 %{_datadir}/applications/gaim.desktop
 %{_datadir}/pixmaps/gaim.png
 %{_datadir}/pixmaps/gaim/
 %{_datadir}/sounds/gaim/
-%{_mandir}/man1/*
+%{_mandir}/man1/gaim*.1*
 %{_libdir}/pkgconfig/gaim.pc
 %if %{!?_without_perl:1}0
 %{perl_vendorarch}/Gaim.pm
@@ -123,6 +126,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Wed Nov 17 2004 Dag Wieers <dag@wieers.com> - 1.0.3-1
+- Updated to release 1.0.3.
+
 * Sun Oct 31 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 

@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: fc2
+##ExclusiveDist: fc2 fc3
+# ExcludeDist: el3
 
 %define _sbindir /sbin
 %define real_version 0.0.3-2
@@ -17,7 +18,7 @@ URL: http://ebtables.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/ebtables/arptables-v%{real_version}.tar.bz2
+Source: http://dl.sf.net/ebtables/arptables-v%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires:  kernel-source >= 2.6.0

@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
+# Upstream: Suso Banderas <suso$suso,org>
 
-Summary: set of programs for dealing with numbers
+Summary: Programs for dealing with numbers
 Name: num-utils
-Version: 0.3
-Release: 0
+Version: 0.5
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://suso.suso.org/programs/num-utils/
@@ -12,9 +13,8 @@ URL: http://suso.suso.org/programs/num-utils/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://suso.suso.org/programs/num-utils/downloads/%{name}-%{version}.tar.gz
+Source: http://suso.suso.org/programs/num-utils/downloads/num-utils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
@@ -49,5 +49,8 @@ and aim to help complete the Unix shell vocabulary.
 %{_bindir}/*
 
 %changelog
+* Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Mon Jul 28 2003 Dag Wieers <dag@wieers.com> - 0.3-0
 - Initial package. (using DAR)

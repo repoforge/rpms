@@ -7,7 +7,7 @@
 
 Summary: The boot loader for Linux and other operating systems
 Name: lilo
-Version: 22.6
+Version: 22.6.1
 Release: 1
 License: MIT
 Group: System Environment/Base
@@ -16,7 +16,7 @@ URL: http://home.san.rr.com/johninsd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://home.san.rr.com/johninsd/pub/linux/lilo/lilo-%{version}.tar.gz
+Source: http://home.san.rr.com/johninsd/pub/linux/lilo/lilo-%{version}.src.tar.gz
 Source2: keytab-lilo.c
 #Patch3: lilo-21.4.4-graphical.patch
 #Patch4: lilo-0.21-enableflame.patch
@@ -92,6 +92,9 @@ fi
 %exclude %{_sbindir}/keytab-lilo.pl
 
 %changelog
+* Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 21.6.1-1
+- Updated to release 21.6.1.
+
 * Fri Sep 03 2004 Dag Wieers <dag@wieers.com> - 21.6-1
 - Updated to release 21.6.
 

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: fc3
+
 ### FIXME: It's obvious that the mozilla developers are not able to release something that is working on Linux without patches, don't expect it to work without problems.
 
 %{?dist: %{expand: %%define %dist 1}}

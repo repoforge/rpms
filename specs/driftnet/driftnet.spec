@@ -40,8 +40,8 @@ traffic.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING CREDITS README TODO
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man1/driftnet.1*
+%{_sbindir}/driftnet
 
 %changelog
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 0.1.6-1

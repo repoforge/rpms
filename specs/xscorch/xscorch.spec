@@ -8,10 +8,12 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Clone of the classic DOS game, "Scorched Earth"
 Name: xscorch
 Version: 0.2.0
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://xscorch.org/
@@ -78,6 +80,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xscorch.desktop}
 
 %changelog
+* Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 0.2.0-2
+- Samll fix in desktop entry.
+
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 0.2.0-1
 - Updated to release 0.2.0.
 

@@ -8,7 +8,7 @@
 Summary: Browser plugin for mplayer
 Name: mplayerplug-in
 Version: 2.70
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
@@ -21,7 +21,7 @@ BuildRequires: gcc-c++
 
 Obsoletes: mozilla-mplayer <= %{version}-%{release}
 #Requires: mplayer, mozilla = %{mversion}
-Requires: %{_libdir}/mozilla/plugins/
+#Requires: %{_libdir}/mozilla/plugins/
 Requires: mplayer
 
 %description
@@ -54,6 +54,9 @@ in your browser.
 %{_libdir}/mozilla/components/mplayerplug-in.xpt
 
 %changelog
+* Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 2.70-2
+- Removed %%{_libdir}/mozilla/plugins/
+
 * Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 2.70-1
 - Updated to release 2.70.
 

@@ -131,6 +131,9 @@ EOF
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/misc/
 
+### Disable contrib stuff from being considered for dependencies
+find contrib -type f -exec chmod 0644 {} \;
+
 %post
 /sbin/chkconfig --add dnsmasq
 

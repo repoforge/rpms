@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
-# ExcludeDist: fc2
+
+# ExcludeDist: fc2 fc3
+# Tag: test
 
 %define xmms_inputdir %(xmms-config --input-plugin-dir)
 

@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: dag
+
+### Already in xorg package
+# ExcludeDist: fc3
 
 Summary: X Render Extension
 Name: xrender
@@ -15,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://freedesktop.org/~xlibs/release/xrender-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 This package contains header files and documentation for the X render

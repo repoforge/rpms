@@ -35,6 +35,8 @@ Available rpmbuild rebuild options :
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|(\@XTEST_LIBS\@)|$1 \@X_LIBS\@|g' Makefile.in */Makefile.in
+
 ### FIXME: Include improved desktop-file. (Please fix upstream)
 %{__cat} <<EOF >gxine.desktop
 [Desktop Entry]
@@ -73,7 +75,7 @@ EOF
 %{__make} install DESTDIR=%{buildroot}
 
 %{__install} -D -m0644 pixmaps/gxine-logo.png %{buildroot}%{_datadir}/pixmaps/gxine.png
-%{__install} -D -m0644 xine.applications %{buildroot}%{_datadir}/applications/xine.applications
+%{__install} -D -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
 
 ### We don't want those...
 %{__rm} -f %{buildroot}%{_libdir}/gxine/{*.a,*.la}

@@ -24,6 +24,8 @@ the web. All of it works well together.
 Summary: Set of portable libraries especially useful for games
 Group: Development/Libraries
 
+Obsoletes: plib < %{version}-%{release}
+
 %description devel
 This is a set of OpenSource (LGPL) libraries that will permit programmers
 to write games and other realtime interactive applications that are 100%

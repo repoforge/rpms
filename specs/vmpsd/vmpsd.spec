@@ -4,7 +4,7 @@
 
 Summary: VLAN Management Policy Server
 Name: vmpsd
-Version: 1.2
+Version: 1.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -22,7 +22,7 @@ to specific VLANs based on MAC address of connecting device. OpenVMPS
 is a GPL implementation of VMPS.
 
 %prep
-%setup
+%setup -n %{name}
 
 %{__cat} <<'EOF' >vmpsd.sysconfig
 ### See man vmpsd(1) for details.
@@ -122,22 +122,27 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 doc/vlan.db.example %{buildroot}%{_sysconfdir}/vmps.db
 %{__install} -D -m0755 vmpsd.sysv %{buildroot}%{_initrddir}/vmpsd
 %{__install} -D -m0644 vmpsd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vmpsd
+
+#find . -name CVS -type d -exec rm -rf {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* INSTALL NEWS README doc/ tools/
+%doc AUTHORS ChangeLog COPYING* INSTALL NEWS README vlan.db
+%doc contrib/ doc/ tools/
 %doc %{_mandir}/man1/vmpsd.1*
-%config(noreplace) %{_sysconfdir}/vmps.db
+%config(noreplace) %{_sysconfdir}/vlan.db
 %config(noreplace) %{_sysconfdir}/sysconfig/vmpsd
 %config %{_initrddir}/vmpsd
 %{_bindir}/vmpsd
 
 %changelog
+* Mon Nov 15 2004 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
+
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Initial package. (using DAR)

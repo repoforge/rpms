@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://guichaz.free.fr/gliv/gliv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, gtk2-devel >= 2.2.0, gtkglext-devel >= 0.7.0
+BuildRequires: bison, gtk2-devel >= 2.4.0, gtkglext-devel >= 0.7.0
 
 %description
 GLiv is an OpenGL image viewer. GLiv is very fast and smooth at rotating,
@@ -78,10 +78,10 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %defattr(-, root, root, 0755)
 %doc COPYING NEWS README THANKS
 %doc %{_mandir}/man1/gliv.1*
-%{_bindir}/*
-%{_datadir}/applications/gnome-gliv.desktop
+%{_bindir}/gliv
+%{_datadir}/applications/%{desktop_vendor}-gliv.desktop
 %{_datadir}/application-registry/gliv.applications
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/gliv.png
 
 %changelog
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 1.8.4-1

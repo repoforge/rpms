@@ -14,7 +14,7 @@
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
 Version: 5.0.9
-Release: 1
+Release: 2
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
@@ -47,7 +47,7 @@ for Netscape Navigator to to view PDF files inline
 Summary: Adobe Reader plug-in for viewing PDF files with the mozilla browser
 Group: Applications/Internet
 Requires: %{name} = %{version}
-Requires: %{_libdir}/mozilla/plugins/
+#Requires: %{_libdir}/mozilla/plugins/
 Provides: %{name}-plugin = %{version}-%{release}
 Obsoletes: %{name}-plugin < %{version}
 
@@ -159,6 +159,9 @@ export MALLOC_CHECK_|;
 %{_libdir}/netscape/plugins/*
 
 %changelog
+* Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 5.0.9-2
+- Removed %%{_libdir}/mozilla/plugins/
+
 * Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 5.0.9-1
 - Updated to release 5.0.9.
 - Fixed the acroread icon. (Sahak Petrosyan)

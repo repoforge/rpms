@@ -13,7 +13,7 @@
 Summary: Sun Java(tm) 2 Runtime Environment
 Name: j2re
 Version: 1.4.2
-Release: 9
+Release: 10
 Group: Development/Languages
 License: Redistributable, BCLA
 URL: http://java.sun.com/j2se/1.4.2/download.html
@@ -38,7 +38,7 @@ This packages provides the environment to run java 2 aplications with JRE.
 Summary: Sun Java(tm) 2 Plug-in for the mozilla browser
 Group: Applications/Internet
 Requires: j2re = %{version}
-Requires: %{_libdir}/mozilla/plugins/
+#Requires: %{_libdir}/mozilla/plugins/
 Provides: java-plugin = %{version}, j2re-java-plugin = %{version}
 Obsoletes: java-plugin < %{version}, j2re-java-plugin = < %{version}
 
@@ -238,6 +238,9 @@ find %{buildroot}%{_libdir}/jre/bin/ -type f -exec %{__chmod} 0755 {} \;
 %{_libdir}/netscape/plugins/*
 
 %changelog
+* Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 1.4.2-10
+- Removed %%{_libdir}/mozilla/plugins/
+
 * Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 1.4.2-9
 - Removed mozilla dependency. (Anand Buddhdev)
 

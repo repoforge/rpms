@@ -52,7 +52,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+#find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -67,7 +67,8 @@ EOF
 %{__rm} -rf %{buildroot}
 
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README* TODO
 %{_bindir}/*

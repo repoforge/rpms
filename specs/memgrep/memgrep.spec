@@ -52,7 +52,8 @@ chmod +x %{memgrep_find_requires}
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+### Has problems with -jX and X > 1
+%{__make} #%{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

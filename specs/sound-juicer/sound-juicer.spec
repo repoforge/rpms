@@ -2,11 +2,13 @@
 # Authority: dag
 # Upstream: Ross Burton <ross$burtonini,com>
 
+# ExcludeDist: fc3
+
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Clean and lean CD ripper
 Name: sound-juicer
-Version: 0.5.11
+Version: 0.5.14
 Release: 1
 License: GPL
 Group: Applications/Multimedia

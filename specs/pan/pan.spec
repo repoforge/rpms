@@ -7,6 +7,8 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: The Pan Newsreader
 Name: pan
 Version: 0.14.2.91
@@ -25,7 +27,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
 BuildRequires: gnet2-devel, gtkspell >= 2.0.2, pcre-devel >= 4.0, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-
 
 %description
 Pan is a newsreader, loosely based on Agent and Gravity, which attempts
@@ -56,7 +57,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category Network                     \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/gnome/apps/Internet/*.desktop
+	%{buildroot}%{_datadir}/gnome/apps/Internet/pan.desktop
 %endif
 
 %clean
@@ -65,9 +66,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE.html AUTHORS ChangeLog COPYING CREDITS INSTALL NEWS README TODO
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_bindir}/pan
+%{_datadir}/applications/%{desktop_vendor}-pan.desktop
+%{_datadir}/pixmaps/pan.png
 
 %changelog
 * Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-2

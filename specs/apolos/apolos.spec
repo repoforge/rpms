@@ -21,7 +21,7 @@ URL: http://www.nongnu.org/apolos/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/apolos/unstable.pkg/%{version}/apolos-%{version}.tar.bz2
+Source: http://savannah.nongnu.org/download/apolos/apolos-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2 >= 2.0, cdparanoia-devel
@@ -75,12 +75,14 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%{_bindir}/*
-%{_datadir}/applications/gnome-apolos.desktop
+%{_bindir}/apolos
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/apolos.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-apolos.desktop}
 
 %changelog
+* Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.1.8-1
+- Updated to release 0.1.8.
+
 * Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.1.7-1
 - Added improved desktop file.
 - Updated to release 0.1.7.

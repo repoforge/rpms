@@ -6,6 +6,10 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%ifarch x86_64
+%define _without_lirc 1
+%endif
+
 %define desktop_vendor rpmforge
 
 Summary: Free multimedia player

@@ -9,7 +9,7 @@
 
 Summary: Units conversion utility
 Name: gonvert
-Version: 0.2.04
+Version: 0.2.11
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -64,6 +64,9 @@ your own units.
 %exclude %{_docdir}/gonvert/
 
 %changelog 
+* Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.2.11-1
+- Updated to release 0.2.11.
+
 * Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 0.2.04-1
 - Updated to release 0.2.04.
 

@@ -3,8 +3,8 @@
 
 Summary: GNOME binary editor
 Name: ghex
-Version: 2.2.1
-Release: 0
+Version: 2.8.1
+Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://pluton.ijs.si/~jaka/gnome.html#GHEX
@@ -12,7 +12,7 @@ URL: http://pluton.ijs.si/~jaka/gnome.html#GHEX
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/ghex/ghex-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/ghex/2.8/ghex-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnome-devel, ORBit
@@ -56,14 +56,23 @@ scrollkeeper-update -q || :
 %files -f %{name}-2.0.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* NEWS README
-%{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
-%{_datadir}/applications/*
+%{_sysconfdir}/gconf/schemas/ghex2.schemas
+%{_bindir}/ghex2
+%{_datadir}/applications/ghex.desktop
 %{_datadir}/gnome/help/ghex2/
-%{_datadir}/pixmaps/*
-%{_datadir}/gnome-2.0/ui/*
+%{_datadir}/pixmaps/gnome-ghex.png
+%{_datadir}/gnome-2.0/ui/ghex-ui.xml
 %{_datadir}/omf/ghex/
+%{_includedir}/gtkhex/
+%{_libdir}/libgtkhex.a
+%exclude %{_libdir}/libgtkhex.la
+%{_libdir}/libgtkhex.so*
+%{_libdir}/pkgconfig/gtkhex.pc
+
 
 %changelog
+* Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 2.8.1-1
+- Updated to release 2.8.1.
+
 * Mon Apr 14 2003 Dag Wieers <dag@wieers.com> - 2.2.1-0
 - Initial package. (using DAR)
