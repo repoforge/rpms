@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Simon Kelley <simon@thekelleys.org.uk>
 
-Summary: Lightweight caching nameserver
+Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
-Version: 2.6
+Version: 2.7
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -13,7 +13,7 @@ URL: http://www.thekelleys.org.uk/dnsmasq/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.thekelleys.org.uk/dnsmasq/dnsmasq-%{version}test1.tar.gz
+Source: http://www.thekelleys.org.uk/dnsmasq/dnsmasq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: chkconfig
@@ -31,7 +31,7 @@ BOOTP for network booting of diskless machines.
 %prep
 %setup
 
-%{__cat} <<'EOF' >%{name}.sysv
+%{__cat} <<'EOF' >dnsmasq.sysv
 #!/bin/bash
 #
 # Startup script for the DNS caching server
@@ -124,11 +124,12 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/misc/
 %{__install} -D -m0755 src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 %{__install} -D -m0644 dnsmasq.conf.example %{buildroot}%{_sysconfdir}/dnsmasq.conf
 %{__install} -D -m0755 dnsmasq.sysv %{buildroot}%{_initrddir}/dnsmasq
 %{__install} -D -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/dnsmasq.8
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/misc/
 
 %post
 /sbin/chkconfig --add dnsmasq
@@ -155,6 +156,12 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Sat Apr 24 2004 Dag Wieers <dag@wieers.com> - 2.7-1
+- Updated to release 2.7.
+
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 2.6-2
+- Use 2.6 tarball, not 2.6test1. (Bert de Bruijn)
+
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 2.6-1
 - Updated to release 2.6.
 
