@@ -24,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gcc-c++, pkgconfig, libglade2-devel, libgnomeui-devel
 BuildRequires: gettext
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Etherape is a graphical network monitor for Unix modeled after
@@ -105,7 +106,7 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-etherape.desktop}
 
 %changelog
-* Wed Dec 22 2003 Dag Wieers <dag@wieers.com> - 0.9.1-1
+* Wed Dec 22 2004 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 
 * Tue Apr 29 2003 Dag Wieers <dag@wieers.com> - 0.9.0-0

@@ -33,6 +33,9 @@ BuildRequires: tetex-latex, guile-devel, gcc-c++
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
+### Fedora Extras introduced them differently :(
+Obsoletes: TeXmacs < %{version}-%{release}
+
 %description
 GNU TeXmacs is a free scientific text editor, which was both inspired by TeX
 and GNU Emacs. The editor allows you to write structured documents via a

@@ -4,7 +4,7 @@
 
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
-Version: 0.6.1
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/File
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
+* Thu Jan 06 2005 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

@@ -31,7 +31,11 @@ libmpeg3 currently decodes:
 
 %build
 # With gcc 3.4 (FC3), build fails with -O2 and also with -fPIC :-(
+%ifarch %{ix86}
 export CFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`"
+%else
+export CFLAGS="`echo "%{optflags} -fPIC" | sed 's/-O./-O1/'`"
+%endif
 %{__make} %{?_smp_mflags}
 
 %install

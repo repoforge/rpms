@@ -5,7 +5,7 @@
 Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, rsync, http, ftp, ...)
 Name: yam
 Version: 0.7.2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/yam/
@@ -44,6 +44,14 @@ allow installations via the network.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%post
+/sbin/chkconfig --add yam
+
+%postun
+if [ $1 -eq 0 ]; then
+	/sbin/chkconfig --del yam
+fi
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -59,6 +67,9 @@ allow installations via the network.
 %{_localstatedir}/www/yam/
 
 %changelog
+* Fri Jan 07 2005 Dag Wieers <dag@wieers.com> - 0.7.2-2
+- Add %%post and %%postun scripts. (Bert de Bruijn)
+
 * Fri Dec 31 2004 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 

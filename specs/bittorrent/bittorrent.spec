@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream: Bram Cohen <bram$bitconjurer,org>
 
-%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+### Needs python >= 2.3
+# ExcludeDist: el2 rh7 rh8 rh9 el3 fc1
 
 %define desktop_vendor rpmforge
 
@@ -11,7 +12,7 @@
 Summary: Network file transfer tool
 Name: bittorrent
 Version: 3.9.0
-Release: 1
+Release: 2
 License: MIT
 Group: Applications/Internet
 URL: http://bitconjurer.org/BitTorrent/
@@ -24,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: python, %{python_sitelib}
+Requires: python >= 2.3
 BuildArch: noarch
 
 %description
@@ -97,10 +98,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc *.html *.txt
 %{_bindir}/*.py
 %exclude %{_bindir}/btdownloadgui.py
-%dir %{python_sitelib}/BitTorrent/
-%{python_sitelib}/BitTorrent/*.py
-%{python_sitelib}/BitTorrent/*.pyc
-%ghost %{python_sitelib}/BitTorrent/*.pyo
+%dir %{_libdir}/python*/site-packages/BitTorrent/
+%{_libdir}/python*/site-packages/BitTorrent/*.py
+%{_libdir}/python*/site-packages/BitTorrent/*.pyc
+%ghost %{_libdir}/python*/site-packages/BitTorrent/*.pyo
 %exclude %{_docdir}/BitTorrent-%{version}/
 %{_datadir}/pixmaps/BitTorrent-%{version}/
 
@@ -112,6 +113,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/bittorrent.desktop}
 
 %changelog
+* Fri Jan 07 2005 Dag Wieers <dag@wieers.com> - 3.9.0-2
+- Fixed python dependency problem. (Igor Guarisma)
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 3.9.0-1
 - Updated to release 3.9.0.
 

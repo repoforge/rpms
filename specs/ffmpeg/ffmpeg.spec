@@ -5,8 +5,11 @@
 
 %{?rh9:%define _without_fast_memcpy 1}
 %{?rh8:%define _without_fast_memcpy 1}
+%{?rh7:%define _without_faac 1}
 %{?rh7:%define _without_fast_memcpy 1}
+%{?el2:%define _without_faac 1}
 %{?el2:%define _without_fast_memcpy 1}
+%{?el2:%define _without_vorbis 1}
 
 %define date   2004-11-10
 #define prever pre1
@@ -26,6 +29,7 @@ Source: http://ffmpeg.sourceforge.net/cvs/%{name}-cvs-%{date}.tar.gz
 %endif
 Patch0: ffmpeg-0.4.9-pre1-sharedppfix.patch
 Patch2: ffmpeg-0.4.9-pre1-pic.patch
+Patch3: ffmpeg-cvs-ldlibs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Seems like automatic req/provs _really_ don't work well on this package
 %{!?_without_lame:BuildRequires: lame}
@@ -109,6 +113,7 @@ to use MPlayer, transcode or other similar programs.
 %setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}%{?prever:-%{prever}}}
 #patch0 -p1 -b .sharedpp
 #patch2 -p1 -b .pic
+%patch3
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi -e 's|\$\(prefix\)/lib|\$(libdir)|g;
@@ -137,8 +142,8 @@ to use MPlayer, transcode or other similar programs.
 #   %{!?_without_a52: --enable-a52} \
 # Make!
 %{__make} %{?_smp_mflags} -C libavcodec/libpostproc
-%{__make} %{?_smp_mflags} \
-%{?_without_fast_memcpy:OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"}
+%{__make} %{?_smp_mflags}
+#%{?_without_fast_memcpy:OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"}
 %{__make} documentation
 # Leftover, for reference :
 # OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"

@@ -73,21 +73,25 @@ of the mjpegtools package.
 %build
 %ifarch %{ix86}
 pushd jpeg-mmx-%{jpegmmx_version}
-    ./configure && %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+#    ./configure && %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+    ./configure && %{__make} CFLAGS="%{optflags}"
 popd
 %endif
 
 # This -fPIC is required (1.6.2) to build on x86_64
 # ### FIXME Stripping of libmjpegutils.a fails (hence --disable-static)
-CFLAGS="%{optflags} -fPIC" \
+#CFLAGS="%{optflags} -fPIC" \
+CFLAGS="%{optflags}" \
 %configure \
+    --program-prefix="%{?_program_prefix}" \
     --disable-static \
     --enable-shared \
+    --with-pic \
 %ifarch %{ix86}
     %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"} \
     --enable-cmov-extension \
 %endif
-    --with-dv=%{_prefix} --with-dv-yv12 \
+    --with-dv="%{_prefix}" --with-dv-yv12 \
     --with-quicktime \
     --enable-large-file \
     --enable-xfree-ext \

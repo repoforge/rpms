@@ -27,8 +27,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bzip2-devel, zlib-devel, gmp-devel, curl-devel
 %{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
 Requires: clamav-db = %{version}-%{release}
-Obsoletes: libclamav <= %{version}-%{release}
-Obsoletes: clamav-lib <= %{version}-%{release}
+
+### Fedora Extras introduced them differently :(
+Obsoletes: libclamav < %{version}-%{release}
+Obsoletes: clamav-lib < %{version}-%{release}
 Provides: libclamav
 
 %description 
@@ -45,6 +47,8 @@ importantly, the virus database is kept up to date
 Summary: The Clam AntiVirus Daemon
 Group: System Environment/Daemons
 Requires: clamav = %{version}-%{release}
+
+### Fedora Extras introduced them differently :(
 Obsoletes: clamav-server <= %{version}-%{release}
 
 %description -n clamd
@@ -62,6 +66,8 @@ The Clam AntiVirus sendmail-milter Daemon
 %package db
 Summary: Virus database for %{name}
 Group: Applications/Databases
+
+### Fedora Extras introduced them differently :(
 Obsoletes: clamav-update <= %{version}-%{release}
 Obsoletes: clamav-data <= %{version}-%{release}
 
@@ -72,6 +78,8 @@ The actual virus database for %{name}
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: clamav = %{version}-%{release}
+
+### Fedora Extras introduced them differently :(
 Obsoletes: libclamav-static-devel <= %{version}-%{release}
 Obsoletes: libclamav-devel <= %{version}-%{release}
 Provides: libclamav-static-devel, libclamav-devel

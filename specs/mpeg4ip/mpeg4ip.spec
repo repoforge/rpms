@@ -49,6 +49,7 @@ done
 find . -type f | xargs %{__perl} -pi.orig -e 's|-Werror||g'
 
 %build
+rm -f libtool && cp -a `which libtool` . || :
 %configure \
 	--enable-server \
 	--enable-player
@@ -57,8 +58,9 @@ find . -type f | xargs %{__perl} -pi.orig -e 's|-Werror||g'
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-#make install DESTDIR="%{buildroot}"
+#%makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
 %{__install} -D -m0755 lib/mp4v2/test/mp4broadcaster %{buildroot}%{_bindir}
 

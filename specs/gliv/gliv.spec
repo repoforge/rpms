@@ -6,7 +6,7 @@
 
 Summary: Image viewing utility
 Name: gliv
-Version: 1.8.4
+Version: 1.9.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -78,12 +78,16 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %defattr(-, root, root, 0755)
 %doc COPYING NEWS README THANKS
 %doc %{_mandir}/man1/gliv.1*
+%doc %{_mandir}/*/man1/gliv.1*
 %{_bindir}/gliv
 %{_datadir}/applications/%{desktop_vendor}-gliv.desktop
 %{_datadir}/application-registry/gliv.applications
 %{_datadir}/pixmaps/gliv.png
 
 %changelog
+* Wed Jan 05 2005 Dag Wieers <dag@wieers.com> - 1.9.1-1
+- Updated to release 1.9.1.
+
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 1.8.4-1
 - Updated to release 1.8.4.
 

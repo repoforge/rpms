@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.01
+Version: 3.02
 Release: 1
 License: GPL
 Group: Applications/System
@@ -70,6 +70,9 @@ ISO 9660 CD-ROMs (ISOLINUX).
 #%{_includedir}/syslinux.h
 
 %changelog
+* Wed Jan 05 2005 Dag Wieers <dag@wieers.com> - 3.02-1
+- Updated to release 3.02.
+
 * Mon Jan 03 2005 Dag Wieers <dag@wieers.com> - 3.01-1
 - Updated to release 3.01.
 

@@ -9,7 +9,7 @@
 
 Summary: Dovecot secure IMAP server
 Name: dovecot
-Version: 0.99.12
+Version: 0.99.13
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -146,8 +146,9 @@ export LDFLAGS="-L%{_libdir}/mysql"
 	--with-ldap \
 	--with-pgsql \
 	--with-mysql \
-	--with-cyrus-sasl2 \
 	--with-rawlog
+### Causes crashes when used with ldap
+#	--with-cyrus-sasl2
 %{__make} %{?_smp_mflags}
 
 %install
@@ -225,6 +226,12 @@ fi
 %{_localstatedir}/run/dovecot-login/
 
 %changelog
+* Sun Jan 09 2005 Dag Wieers <dag@wieers.com> - 0.99.13-1
+- Updated to release 0.99.13.
+
+* Wed Jan 05 2005 Dag Wieers <dag@wieers.com> - 0.99.12-2
+- Build without cyrus-sasl support. (Roger Bystrom)
+
 * Sun Dec 05 2004 Dag Wieers <dag@wieers.com> - 0.99.12-1
 - Updated to release 0.99.12.
 

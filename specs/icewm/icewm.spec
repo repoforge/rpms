@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -9,7 +9,7 @@
 
 Summary: Fast and small X11 window manager
 Name: icewm
-Version: 1.2.16
+Version: 1.2.19
 Release: 1
 License: LGPL
 Group: User Interface/Desktops
@@ -72,5 +72,8 @@ status.
 %{_datadir}/icewm/
 
 %changelog
+* Thu Jan 06 2005 Dag Wieers <dag@wieers.com> - 1.2.19-1
+- Updated to release 1.2.19.
+
 * Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 1.2.16-1
 - Initial package. (using DAR)

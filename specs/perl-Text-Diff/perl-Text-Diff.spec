@@ -1,13 +1,10 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Barrie Slaymaker <barries$slaysys,com>
 
 %define real_name Text-Diff
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Perform diffs on files and record sets
 Name: perl-Text-Diff
@@ -33,12 +30,18 @@ Perform diffs on files and record sets.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,8 +52,6 @@ Perform diffs on files and record sets.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Text/Diff.pm
 %{perl_vendorlib}/Text/Diff
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Fri Jan  7 2005 Dries Verachtert <dries@ulyssis.org> - 0.35-1
