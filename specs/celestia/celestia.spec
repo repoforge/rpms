@@ -35,7 +35,8 @@ simple to navigate through the universe to the object you want to visit.
 %build
 %configure \
     --with-kde \
-    --x-libraries="%{_prefix}/X11R6/%{_lib}"
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --with-qt-libraries="${QTDIR}/lib"
 %{__make} %{?_smp_mflags}
 
 
@@ -84,6 +85,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-2
+- Add Qt lib fix for x86_64 build.
+
 * Thu Jul  8 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-1
 - Switch from gtk to kde GUI for now, as the gtk build seems broken.
 - Remove the additionnal extras, they're now bundled in.

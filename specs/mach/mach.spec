@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Thomas Vander Stichele <thomas$apestaart,org>
 
 %{!?builduser:  %define builduser  machbuild}
 %{!?buildgroup: %define buildgroup machbuild}
@@ -101,23 +102,23 @@ fi
 
 
 %changelog
-* Sun Jul 11 2004 Matthias Saou <http://freshrpms.net> - 0.4.6-1
+* Sun Jul 11 2004 Matthias Saou <http://freshrpms.net> 0.4.6-1
 - Update to 0.4.6.
 
-* Thu May 20 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-3
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net> 0.4.5-3
 - Rebuild for Fedora Core 2.
 - Don't remove the roots and states upon last removal.
 
-* Thu May  6 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-2
+* Thu May  6 2004 Matthias Saou <http://freshrpms.net> 0.4.5-2
 - Added %%{python} macro to allow python2 dependency.
 
-* Fri Mar 19 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-1
+* Fri Mar 19 2004 Matthias Saou <http://freshrpms.net> 0.4.5-1
 - Update to 0.4.5.
 
-* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> - 0.4.3.1-1
+* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> 0.4.3.1-1
 - Update to 0.4.3.1.
 
-* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net> - 0.4.3-1
+* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net> 0.4.3-1
 - Cosmetic spec file changes.
 - Update to 0.4.3.
 

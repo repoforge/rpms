@@ -86,7 +86,7 @@ perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_AS
 
 
 %changelog
-* Sun Jul 11 2004 Matthias Saou <http://freshrpms.net/> - 0.50.18-3
+* Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 0.50.18-3
 - Changed LD_ASSUME_KERNEL to 2.4.1 for x86_64.
 
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.50.18-2
