@@ -16,7 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://digilander.libero.it/nfragale/download/rubrica/rubrica-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeui-devel >= 2.0, libxslt-devel >= 1.0, libmcrypt-devel
+BuildRequires: libgnomeui-devel >= 2.0, libxslt-devel >= 1.0
+BuildRequires: libmcrypt-devel, gettext
 
 %description
 An address book for GNOME. 

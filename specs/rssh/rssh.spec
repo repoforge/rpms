@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.pizzashack.org/rssh/src/rssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssh-server
-Requires: openssh-server
+BuildRequires: openssh-server, openssh-clients
+Requires: openssh-server, openssh-clients
 
 %description
 rssh is a restricted shell for use with OpenSSH, allowing only scp
