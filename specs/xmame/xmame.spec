@@ -6,7 +6,7 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.83.1
+Version: 0.84.1
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
@@ -14,13 +14,13 @@ Source10: http://www.mame.net/roms/polyplay.zip
 Source11: http://www.mame.net/roms/robby.zip
 Source12: http://www.mame.net/roms/gridlee.zip
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 8.3 - 09/04/2004
-Source21: http://www.mameworld.net/highscore/uhsdat83.zip
-# http://www.arcade-history.com/ 0.83 - 05/06/2004
-Source22: http://www.arcade-history.com/download/history0_83.zip
-# http://www.mameworld.net/mameinfo/ 0.83 - 05/06/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo083.zip
-# http://www.mameworld.net/catlist/ 0.83 - 07/06/2004
+# http://www.mameworld.net/highscore/ 0.84 - 03/07/2004
+Source21: http://www.mameworld.net/highscore/uhsdat084.zip
+# http://www.arcade-history.com/ 0.84b - 16/07/2004
+Source22: http://www.arcade-history.com/download/history0_84b.zip
+# http://www.mameworld.net/mameinfo/ 0.84u3 - 16/07/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo084u3.zip
+# http://www.mameworld.net/catlist/ 0.84u2 - 11/07/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -197,6 +197,9 @@ test -e Makefile || %{__cp} -a makefile.unix Makefile
 # Replace lib with lib64 when required
 %{__perl} -pi -e 's|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g' Makefile
 
+# Fix \" entries which cause make to fail, replace with "
+%{__perl} -pi -e 's|\\"|"|g' Makefile
+
 # Make the package build verbose by default (to see opts etc.)
 %{?_without_quietbuild: %{__perl} -pi -e 's/^QUIET/# QUIET/g' src/unix/unix.mak}
 
@@ -248,8 +251,9 @@ for target in %{targets}; do
     %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL SOUND_SDL=1} TARGET=$target
     %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl} TARGET=$target
 #   %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl GLCFLAGS="-D_X11_ -DGLU_VERSION_1_2"} TARGET=$target
-    # The MAME chd manager
+    # The MAME chd manager and the xml listing to old listinfo utility
     %{?!_without_mame: %{__make} %{?_smp_mflags} chdman}
+    %{?!_without_mame: (cd src/xml2info; %{__cc} %{optflags} -o xml2info xml2info.c)}
 done
 
 
@@ -271,7 +275,7 @@ for target in %{targets}; do
     %{!?_without_SDL: %{__install} -m 755 x${target}.SDL %{buildroot}%{_bindir}/}
     %{!?_without_xgl: %{__install} -m 755 x${target}.xgl %{buildroot}%{_bindir}/}
 done
-%{?!_without_mame: %{__install} -m 755 chdman %{buildroot}%{_bindir}/}
+%{?!_without_mame: %{__install} -m 755 chdman src/xml2info/xml2info %{buildroot}%{_bindir}/}
 
 # We don't want all the docs
 %{__mkdir_p} doc2/{xmame/html,xmess}
@@ -316,10 +320,11 @@ popd
 %if %{?_without_mame:0}%{!?_without_mame:1}
 %files
 %defattr(-, root, root, 0755)
-%doc README doc2/xmame/* contrib/tools/romalizer contrib/tools/mame-cd 
+%doc README doc2/xmame/* contrib/tools/mame-cd 
 %doc catver.ini
 %{_bindir}/chdman
 %{_bindir}/xmame
+%{_bindir}/xml2info
 %dir %attr(2775, root, games) %{_datadir}/xmame
 %dir %attr(2775, root, games) %{_datadir}/xmame/artwork
 %dir %attr(2775, root, games) %{_datadir}/xmame/roms
@@ -383,6 +388,11 @@ popd
 
 
 %changelog
+* Sat Jul 17 2004 Matthias Saou <http://freshrpms.net/> 0.84.1-1
+- Update to 0.84.1, with the usual related files too.
+- Added the xml2info utility to be built and included.
+- Added temporary fix for \" -> " to fix make problems with xgl target.
+
 * Sun Jun 13 2004 Matthias Saou <http://freshrpms.net/> 0.83.1-1
 - Update to 0.83.1, with the usual related files too.
 
