@@ -1,4 +1,4 @@
-# $Id: djvulibre.spec,v 1.1 2004/02/26 12:32:02 thias Exp $
+# $Id$
 
 %define mozver 1.4.1
 

@@ -1,4 +1,4 @@
-# $Id: diradmin.spec,v 1.1 2004/02/26 12:32:02 thias Exp $
+# $Id$
 
 %define real_name      directory_administrator
 %define desktop_vendor freshrpms
