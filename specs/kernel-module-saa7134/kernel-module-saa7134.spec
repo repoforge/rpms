@@ -1,6 +1,8 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Gerd Knorr <kraxel@bytesex.org>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
@@ -14,11 +16,10 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname saa7134
+%define rrelease 1
 
 %define moduledir /kernel/drivers/video/media/saa7134
 %define modules ir-common.o msp3400.o saa6752hs.o saa7134.o tda9887.o tuner.o tvaudio.o v4l1-compat.o v4l2-common.o video-buf.o
-
-%define rrelease 1
 
 Summary: Linux saa7130/7134 (TV/capture card) drivers.
 Name: kernel-module-saa7134
@@ -72,10 +73,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -87,9 +87,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -110,10 +110,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-saa7134
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-saa7134
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -129,5 +129,8 @@ cd -
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 0.2.10-1
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Sun Feb 29 2004 Dag Wieers <dag@wieers.com> - 0.2.10-0
 - Initial package. (using DAR)

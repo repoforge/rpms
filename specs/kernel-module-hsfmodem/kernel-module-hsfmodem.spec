@@ -1,9 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <modem.support@linuxant.com>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
@@ -14,7 +17,7 @@
 
 %define rname hsfmodem
 %define rversion 6.03.00lnxt04011900full
-%define rrelease 0.lnxt04011900full
+%define rrelease 1.lnxt04011900full
 
 %define moduledir /kernel/drivers/char/hsfmodem
 %define modules hsfengine.o hsfmc97ali.o hsfmc97ich.o hsfmc97via.o hsfosspec.o hsfpcibasic2.o hsfserial.o hsfsoar.o
@@ -83,10 +86,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -102,9 +104,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -146,7 +148,7 @@ fi
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-hsfmodem
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 if [ ! -e /dev/ttySHSF0 ]; then
 	mknod -m660 /dev/ttySHSF0 c 240 64
 	mknod -m660 /dev/hsfdiag0 c 243 0
@@ -157,7 +159,7 @@ if [ ! -e /dev/ttySHSF0 ]; then
 fi
 
 %postun -n kernel-smp-module-hsfmodem
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %preun -n hsfmodem-utils
 %{_sbindir}/hsfstop
@@ -190,6 +192,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 6.03.00-1.lnxt04011900full
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Fri Feb 20 2004 Dag Wieers <dag@wieers.com> - 6.03.00-0.lnxt04011900full
 - Updated to release 6.03.00.lnxt04011900full.
 

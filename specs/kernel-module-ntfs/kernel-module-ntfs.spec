@@ -1,9 +1,11 @@
 # $Id$
 
 # Authority: dag
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
@@ -13,7 +15,7 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname ntfs
-%define rrelease 0
+%define rrelease 1
 
 %define moduledir /kernel/fs/ntfs
 %define modules ntfs.o
@@ -71,10 +73,9 @@ echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -88,9 +89,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -113,10 +114,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-ntfs
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-ntfs
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -130,5 +131,8 @@ cd -
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com>
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Fri Jan 16 2004 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)

@@ -1,6 +1,8 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Thomas Hood <jdthood@yahoo.co.uk>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
@@ -73,10 +75,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.

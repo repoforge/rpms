@@ -1,9 +1,11 @@
 # $Id$
 
 # Authority: dag
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -16,7 +18,7 @@
 
 %define rname cloop
 %define rversion 2.00-1
-%define rrelease 0
+%define rrelease 1
 
 %define moduledir /kernel/drivers/block
 %define modules cloop.o
@@ -93,10 +95,9 @@ echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -108,9 +109,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -137,10 +138,10 @@ done
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-cloop
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-cloop
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -160,6 +161,9 @@ done
 %{_bindir}/*
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.00-1
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Mon Dec 08 2003 Dag Wieers <dag@wieers.com> - 2.00-0
 - Updated to release 2.00.
 

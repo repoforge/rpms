@@ -1,9 +1,11 @@
 # $Id$
 
 # Authority: dag
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
@@ -13,11 +15,10 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname mpi350
+%define rrelease 2
 
 %define moduledir /kernel/drivers/net/wireless/mpi350
 %define modules mpi350.o
-
-%define rrelease 1
 
 Summary: Linux MPI350 (Aironet 350) mini PCI drivers.
 Name: kernel-module-mpi350
@@ -85,10 +86,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -101,9 +101,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -129,10 +129,10 @@ cd driver/
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-mpi350
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-mpi350
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -153,6 +153,9 @@ cd driver/
 /opt/cisco/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.0-2
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Thu Jul 24 2003 Dag Wieers <dag@wieers.com> - 2.0-1
 - Remove airo module, please use the one supplied by the kernel.
 - Renamed aironet-utilities to aironet-utils.

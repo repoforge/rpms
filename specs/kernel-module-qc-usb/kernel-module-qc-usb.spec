@@ -1,9 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <tuukkat@ee.oulu.fi>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
@@ -13,7 +16,7 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname qc-usb
-%define rrelease 0
+%define rrelease 1
 
 %define moduledir /kernel/drivers/usb/qc-usb
 %define modules quickcam.o
@@ -29,7 +32,7 @@ URL: http://www.ee.oulu.fi/~tuukkat/quickcam/quickcam.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ee.oulu.fi/~tuukkat/quickcam/%{rname}-%{version}.tar.gz
+Source: http://www.ee.oulu.fi/~tuukkat/quickcam/qc-usb-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -85,10 +88,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -99,9 +101,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -122,10 +124,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-qc-usb
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-qc-usb
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -144,6 +146,9 @@ cd -
 %{_bindir}/qcset
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Wed Sep 17 2003 Dag Wieers <dag@wieers.com> - 0.5.1-0
 - User contributed package. (Bert de Bruijn)
 

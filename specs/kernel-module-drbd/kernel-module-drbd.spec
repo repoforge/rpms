@@ -1,9 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <drbd-devel@lists.sourceforge.net>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -11,7 +14,7 @@
 %define _sbindir /sbin
 
 %define rname drbd
-%define rrelease 0
+%define rrelease 1
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
@@ -107,10 +110,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -122,9 +124,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -151,10 +153,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-drbd
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-drbd
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %post -n drbd-utils
 /sbin/chkconfig --add drbd
@@ -187,6 +189,9 @@ fi
 %{_localstatedir}/lib/drbd/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 0.6.11-1
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Fri Feb 20 2004 Dag Wieers <dag@wieers.com> - 0.6.11-0
 - Updated to release 0.6.11.
 

@@ -1,9 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Fabrice Bellet <fabrice@bellet.info>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -16,6 +19,7 @@
 
 %define rname airo_mpi
 %define rversion 20031220
+%define rrelease 2
 
 %define moduledir /kernel/drivers/net/wireless/airo_mpi
 %define modules airo_mpi.o
@@ -23,7 +27,7 @@
 Summary: Linux driver for the Cisco 350 miniPCI series.
 Name: kernel-module-airo_mpi
 Version: 1.6
-Release: 0.%{rversion}_%{kversion}_%{krelease}
+Release: %{rrelease}.%{rversion}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://bellet.info/~bellet/laptop/
@@ -78,10 +82,9 @@ echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -93,9 +96,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -115,10 +118,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-airo_mpi
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-airo_mpi
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -134,6 +137,9 @@ cd -
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.6-2.20031220
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Sun Dec 21 2003 Dag Wieers <dag@wieers.com> - 1.6-1.20031220
 - Updated to release 20031220.
 

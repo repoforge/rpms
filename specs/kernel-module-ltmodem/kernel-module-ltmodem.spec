@@ -1,14 +1,17 @@
 # $Id$
 
 # Authority: dag
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
 %define rname ltmodem
 %define rversion 8.26a9
+%define rrelease 1
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
@@ -21,7 +24,7 @@
 Summary: Linux Linmodem drivers.
 Name: kernel-module-ltmodem
 Version: 8.26
-Release: 0.a9_%{kversion}_%{krelease}
+Release: %{rrelease}.a9_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ltmodem.heby.de/
@@ -29,7 +32,7 @@ URL: http://ltmodem.heby.de/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.physcip.uni-stuttgart.de/heby/%{rname}-%{rversion}.tar.gz
+Source: http://www.physcip.uni-stuttgart.de/heby/ltmodem-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -72,10 +75,9 @@ echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -90,9 +92,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -129,7 +131,7 @@ fi
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-ltmodem
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 if [ -e /dev/.devfsd ]; then
         if [ -x /usr/sbin/update-devfsd ]; then
                 /usr/sbin/update-devfsd
@@ -145,7 +147,7 @@ else
 fi
 
 %postun -n kernel-smp-module-ltmodem
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -163,5 +165,8 @@ fi
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 8.26-1.a9
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Wed Mar 12 2003 Dag Wieers <dag@wieers.com> - 8.26-0.a9
 - Initial package. (using DAR)

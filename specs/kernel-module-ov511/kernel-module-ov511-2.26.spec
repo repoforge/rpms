@@ -1,9 +1,12 @@
 # $Id: kernel-module-ov511-2.26.spec 72 2004-03-09 14:37:51Z dag $
 
 # Authority: dag
+# Upstream: Mark McClelland <mark@alpha.dyndns.org>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
@@ -13,6 +16,7 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname ov511
+%define rrelease 1
 
 %define moduledir /kernel/drivers/usb/ov511
 %define modules ov511.o ovfx2.o ovcamchip.o saa7111-new.o tda7313.o tuner.o
@@ -20,7 +24,7 @@
 Summary: Linux OVCam Drivers.
 Name: kernel-module-ov511
 Version: 2.26
-Release: 0_%{kversion}_%{krelease}
+Release: %{rrelease}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://alpha.dyndns.org/ov511/
@@ -28,7 +32,7 @@ URL: http://alpha.dyndns.org/ov511/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://alpha.dyndns.org/ov511/download/2.xx/distros/%{rname}-%{version}.tar.bz2
+Source: http://alpha.dyndns.org/ov511/download/2.xx/distros/ov511-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -73,10 +77,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -87,9 +90,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ### Make SMP module.
@@ -107,10 +110,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %post -n kernel-smp-module-ov511
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %postun -n kernel-smp-module-ov511
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -126,6 +129,9 @@ cd -
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.26-1
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Mon Dec 01 2003 Dag Wieers <dag@wieers.com> - 2.26-0
 - Updated to release 2.26.
 

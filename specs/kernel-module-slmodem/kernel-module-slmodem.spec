@@ -1,9 +1,11 @@
 # $Id$
 
 # Authority: dag
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 ####FIXME: Only 2.7.10 works properly, 2.7.14 (and others) are broken.
 
@@ -103,10 +105,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -118,9 +119,9 @@ cd -
 
 #### Prepare SMP kernel.
 #cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-#%{__make} -s distclean
+#%{__make} -s distclean &>/dev/null
 #%{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-#%{__make} -s symlinks oldconfig dep
+#%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 #cd -
 
 #### Make SMP module.
@@ -153,7 +154,7 @@ done
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 #%post -n kernel-smp-module-slmodem
-#/sbin/depmod -ae %{kversion}-%{krelease} || :
+#/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 #for i in 0 1 2 3; do
 #	rm -f /dev/slamr$i /dev/slusb$i
 #	mknod -m660 /dev/slamr$i c 212 $i
@@ -162,7 +163,7 @@ done
 #done
 #
 #%postun -n kernel-smp-module-slmodem
-#/sbin/depmod -ae %{kversion}-%{krelease} || :
+#/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}

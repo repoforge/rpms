@@ -1,11 +1,14 @@
-# $Id$
+# $Id: kernel-module-airo_mpi.spec 72 2004-03-09 14:37:51Z dag $
 
 # Authority: dag
+# Upstream: <atmelwlandriver-devel>
 
 # Archs: i686 i586 i386 athlon
-# Soapbox: 0
 # Distcc: 0
+# Soapbox: 0
 # BuildAsUser: 0
+
+%{?rhfc1:%define __cc gcc32}
 
 %define _libmoddir /lib/modules
 
@@ -14,62 +17,63 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname ips
-%define rversion 611
+%define rname atmelwlandriver
 %define rrelease 1
 
-%define moduledir /kernel/drivers/misc/ips
-%define modules ips.o
+%define moduledir /kernel/drivers/net/wireless/airo_mpi
+%define modules airo_mpi.o
 
-Summary: Linux IBM PCI ServeRAID drivers.
-Name: kernel-module-ips
-Version: 6.11
-Release: %{rrelease}_%{kversion}_%{krelease}
+Summary: Linux driver for the Atmel Wireless devices.
+Name: kernel-module-atmel-wlan
+Version: 3.2.4.4
+Release: %{rrelease}.%{rversion}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://www-3.ibm.com/pc/support/site.wss/MIGR-39729.html
+URL: http://atmelwlandriver.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ips-%{rversion}.tgz
-Source1: ips-Makefile
-Source2: ips-kernel-ver.c
+Source: http://dl.sf.net/atmelwlandriver/atmelwlandriver-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
+BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 
+Obsoletes: %{rname}, kernel-%{rname}
+Provides: %{rname}, kernel-%{rname}
 Provides: kernel-modules
 
 %description
-Linux IBM PCI ServeRAID drivers.
+Linux driver for the Atmel Wireless devices.
 
 These drivers are built for kernel %{kversion}-%{krelease}
 and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
-%package -n kernel-smp-module-ips
-Release: %{rrelease}_%{kversion}_%{krelease}
-Summary: Linux IBM PCI ServeRAID drivers for SMP.
-License: GPL
+%package -n kernel-smp-module-atmel-wlan
+Summary: Linux SMP driver for the Cisco 350 miniPCI series.
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 
+Obsoletes: %{rname}, kernel-%{rname}
+Provides: %{rname}, kernel-%{rname}
 Provides: kernel-modules
 
-%description -n kernel-smp-module-ips
-Linux IBM PCI ServeRAID drivers for SMP.
+%description -n kernel-smp-module-atmel-wlan
+Linux SMP driver for the Atmel Wireless devices.
 
-These drivers are built for kernel %{kversion}-%{krelease}smp
+These drivers are build for kernel %{kversion}-%{krelease}smp
 and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -c -n %{rname}-%{rversion}
-%{__install} -m0644 %{SOURCE1} Makefile
-%{__install} -m0644 %{SOURCE2} kernel-ver.c
+%setup -n %{rname}-%{rversion}
+
+### FIXME: Fix Makefile to override KERNEL_VERSION
+%{__perl} -pi.orig -e 's|^#(KERNEL_VERSION)=.*$|$1 = %{kversion}-%{krelease}|' Makefile
 
 %build
 %{__rm} -rf %{buildroot}
@@ -83,7 +87,9 @@ cd %{_usrsrc}/linux-%{kversion}-%{krelease}
 cd -
 
 ### Make UP module.
-%{__make} clean all
+%{__make} %{?_smp_mflags} clean all \
+	KERNEL_VERSION="%{kversion}-%{krelease}" \
+	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 %{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
@@ -95,11 +101,14 @@ cd %{_usrsrc}/linux-%{kversion}-%{krelease}
 cd -
 
 ### Make SMP module.
-%{__make} clean all
+%{__make} %{?_smp_mflags} clean all \
+	KERNEL_VERSION="%{kversion}-%{krelease}" \
+	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 %{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
+### Install utilities
 
 %post
 /sbin/depmod -ae %{kversion}-%{krelease} || :
@@ -107,10 +116,10 @@ cd -
 %postun
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
-%post -n kernel-smp-module-ips
+%post -n kernel-smp-module-atmel-wlan
 /sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
-%postun -n kernel-smp-module-ips
+%postun -n kernel-smp-module-atmel-wlan
 /sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
@@ -118,17 +127,14 @@ cd -
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog.ips README
+%doc airo_mpi.HOWTO.txt
 %{_libmoddir}/%{kversion}-%{krelease}%{moduledir}/
 
-%files -n kernel-smp-module-ips
+%files -n kernel-smp-module-atmel-wlan
 %defattr(-, root, root, 0755)
-%doc Changelog.ips README
+%doc airo_mpi.HOWTO.txt
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
-* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 6.11-1
-- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
-
-* Fri Jan 16 2004 Dag Wieers <dag@wieers.com> - 6.11-0
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 3.2.4.4-1
 - Initial package. (using DAR)

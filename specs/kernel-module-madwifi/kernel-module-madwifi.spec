@@ -1,9 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Matt Foster <mattfoster@clara.co.uk>
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -16,6 +19,7 @@
 
 %define rname madwifi
 %define rversion 20040107
+%define rrelease 1
 
 %define moduledir /kernel/drivers/net/wireless/madwifi
 %define modules ath_hal/ath_hal.o wlan/wlan.o driver/ath_pci.o
@@ -23,7 +27,7 @@
 Summary: Linux driver for the Multiband Atheros Wifi.
 Name: kernel-module-madwifi
 Version: 0.0.%{rversion}
-Release: 0_%{kversion}_%{krelease}
+Release: %{rrelease}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.mattfoster.clara.co.uk/madwifi-faq.htm
@@ -31,7 +35,7 @@ URL: http://www.mattfoster.clara.co.uk/madwifi-faq.htm
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/madwifi/%{rname}-%{rversion}.tgz
+Source: http://dl.sf.net/madwifi/madwifi-%{rversion}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -83,10 +87,9 @@ echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -98,9 +101,9 @@ cd -
 
 #### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 #### Make SMP module.
@@ -122,10 +125,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 %postun -n kernel-smp-module-madwifi
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %post -n kernel-smp-module-madwifi
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -146,5 +149,8 @@ cd -
 #%{_bindir}/*
 
 %changelog
+* Wed Jan 07 2004 Dag Wieers <dag@wieers.com> - 0.0.20040107-1
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Wed Jan 07 2004 Dag Wieers <dag@wieers.com> - 0.0.20040107-0
 - Initial package. (using DAR)

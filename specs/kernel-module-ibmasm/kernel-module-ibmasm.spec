@@ -1,9 +1,11 @@
 # $Id$
 
 # Authority: dag
+
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -17,12 +19,12 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname ibmasm
-%define rrelease 0
+%define rrelease 1
 
 %define moduledir /kernel/drivers/char/ibmasm
 %define modules src/ibmasm.o src/ibmser.o
 
-Summary: IBM Advanced System Management drivers
+Summary: IBM Advanced System Management drivers.
 Name: kernel-module-ibmasm
 Version: 2.02
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -33,7 +35,7 @@ URL: http://www.pc.ibm.com/support/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.software.ibm.com/pc/pccbbs/pc_servers/%{rname}-src.tgz
+Source: ftp://ftp.software.ibm.com/pc/pccbbs/pc_servers/ibmasm-src.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -184,10 +186,9 @@ echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__perl} -pi -e 's|%{krelease}custom|%{krelease}|' Makefile
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
 cd -
 
 ### Make UP module.
@@ -202,9 +203,9 @@ cd -
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
-%{__make} -s distclean
+%{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep
+%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
 cd -
 
 ## Make SMP module.
@@ -239,10 +240,10 @@ cd -
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
 #%post -n kernel-smp-module-ibmasm
-#/sbin/depmod -ae %{kversion}-%{krelease} || :
+#/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 #%postun -n kernel-smp-module-ibmasm
-#/sbin/depmod -ae %{kversion}-%{krelease} || :
+#/sbin/depmod -ae %{kversion}-%{krelease}smp || :
 
 %post -n ibmasm-utils
 /sbin/ldconfig 2>/dev/null
@@ -292,6 +293,9 @@ fi
 %{_libdir}/*.so*
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.02-1
+- Fixed the longstanding smp kernel bug. (Bert de Bruijn)
+
 * Mon Dec 08 2003 Dag Wieers <dag@wieers.com> - 2.02-0
 - Updated to release 2.02.
 
