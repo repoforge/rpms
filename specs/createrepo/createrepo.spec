@@ -7,7 +7,7 @@
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.3.4
+Version: 0.3.5
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -24,6 +24,11 @@ rpm packages
 
 %prep
 %setup
+# Replace interpreter's name if it's not "python"
+if [ "%{python}" != "python" ]; then
+    find . -type f | \
+        xargs %{__perl} -pi -e 's|/usr/bin/python|/usr/bin/%{python}|g'
+fi
 
 
 %build
@@ -46,7 +51,7 @@ rpm packages
 
 
 %changelog
-* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 0.3.4-1
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 0.3.5-1
 - Picked up package.
 
 * Mon Jul 19 2004 Seth Vidal <skvidal@phy.duke.edu>
