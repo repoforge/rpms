@@ -18,7 +18,7 @@ URL: http://linux.tlk.fr/games/Powermanga/
 Source0: http://linux.tlk.fr/games/Powermanga/download/powermanga-%{version}.tgz
 Source1: powermanga.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, SDL-devel, SDL_mixer-devel
+BuildRequires: XFree86-devel, SDL-devel, SDL_mixer-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

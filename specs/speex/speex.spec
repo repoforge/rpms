@@ -12,7 +12,7 @@ Source: http://www.speex.org/download/speex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Provides: libspeex = %{version}-%{release}
 Obsoletes: libspeex <= 1.0.0
-BuildRequires: libogg-devel
+BuildRequires: libogg-devel, gcc-c++
 
 %description
 Speex is a patent-free audio codec designed especially for voice (unlike 
