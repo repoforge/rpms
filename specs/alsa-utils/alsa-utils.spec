@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: fc2
+
 #define prever rc2
 
 Summary: The Advanced Linux Sound Architecture (ALSA) utilities
