@@ -26,7 +26,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.10%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.11%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -45,11 +45,11 @@ Requires: libpostproc = %{version}-%{release}
 BuildRequires: gtk+-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
-BuildRequires: libogg-devel, libvorbis-devel, libmad-devel
-BuildRequires: xmms-devel, libdv-devel
+BuildRequires: libogg-devel, libvorbis-devel, libmatroska-devel
+BuildRequires: libmad-devel, xmms-devel, libdv-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-#{?_with_dvdnav:BuildRequires: libdvdnav-devel}
 %{?_with_samba:BuildRequires: samba-common}
+%{?_with_dvb:BuildRequires: kernel-source}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
@@ -64,6 +64,7 @@ BuildRequires: xmms-devel, libdv-devel
 %{!?_without_fame:BuildRequires: libfame-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
+#{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
 
 %description
 MPlayer is a movie player. It plays most video formats as well as DVDs.
@@ -71,7 +72,7 @@ Its big feature is the wide range of supported output drivers. There are also
 nice antialiased shaded subtitles and OSD.
 
 Available rpmbuild rebuild options :
---with : samba
+--with : samba dvb
 --without : aalib lirc cdparanoia arts xvid esd dvdread faad2 lzo libfame caca
             theora osdmenu gcccheck freedesktop
 
@@ -104,9 +105,7 @@ to use MPlayer, transcode or other similar programs.
 
 %build
 find . -name "CVS" | xargs %{__rm} -rf
-#       %{?_with_dvdnav:--enable-dvdnav} \
 ./configure \
-    --target=%{_target_platform} \
     --prefix=%{_prefix} \
     --datadir=%{_datadir}/mplayer \
     --confdir=%{_sysconfdir}/mplayer \
@@ -117,6 +116,7 @@ find . -name "CVS" | xargs %{__rm} -rf
     --enable-xmms \
     --with-xmmsplugindir=%{xmms_plugindir} \
 %ifarch %{ix86}
+    --enable-runtime-cpudetection \
     --enable-win32 \
     --with-win32libdir=%{_libdir}/win32 \
     --with-reallibdir=%{_libdir}/win32 \
@@ -140,16 +140,22 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{?_without_libfame:--disable-libfame} \
     %{?_without_caca:--disable-caca} \
     %{?_without_theora:--disable-theora} \
-%ifnarch ppc
-    --enable-runtime-cpudetection \
-%endif
+    %{?_with_dvb:--enable-dvbhead} \
+    %{?_with_dvb:--with-dvbincdir=/lib/modules/`uname -r`/build/include} \
     --enable-shared-pp \
     --enable-i18n \
     --language=all \
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb}
 
-%{__perl} -pi.orig -e 's|/usr/lib|%{_libdir}|' config.mak
+    # "dvdnav disabled, it does not work" (1.0pre5, still the same)
+    #{!?_without_dvdnav:--enable-dvdnav} \
+
+# Fix some lib vs. lib64 issues
+%{__perl} -pi.orig -e 's|/usr/lib/libxmms|%{_libdir}/libxmms|s' config.mak
+%{__perl} -pi.orig -e 's|\$\(prefix\)/lib|\$(libdir)|g' \
+    libavcodec/libpostproc/Makefile
+
 %{__make} %{?_smp_mflags}
 
 
@@ -250,6 +256,11 @@ fi
 
 
 %changelog
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.11.pre5
+- Add fixes for x86_64, it now builds and works.
+- Added external libmatroska support.
+- Added optional DVB conditional build.
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.10.pre5
 - Update to 1.0pre5.
 - Updated Blue skin to 1.4.
