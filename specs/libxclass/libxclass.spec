@@ -18,6 +18,13 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
+%{?fc2:BuildRequires: compat-gcc-c++}
+%{?fc1:BuildRequires: compat-gcc-c++}
+%{?el3:BuildRequires: compat-gcc-c++}
+%{?rh9:BuildRequires: compat-gcc-c++}
+%{?rh8:BuildRequires: compat-gcc-c++}
+
 
 Obsoletes: xclass, xclass-devel
 Provides: xclass

@@ -14,6 +14,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.cityline.net/pub/radiusclient/radiusclient-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libtool
 
 %description
 Radiusclient is a framework and library for writing RADIUS clients.

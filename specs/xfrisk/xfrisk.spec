@@ -3,6 +3,8 @@
 # Authority: dag
 # Upstream: <xfrisk-devel$tuxick,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Multi-user network version of the classic "Risk"
 Name: xfrisk
 Version: 1.2
@@ -17,6 +19,10 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://tuxick.net/xfrisk/files/XFrisk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{!?dist:BuildRequires: xorg-x11-devel}
+%{?fc2:BuildRequires: xorg-x11-devel}
+%{?fc1:BuildRequires: XFree86-devel}
+%{?rh9:BuildRequires: XFree86-devel}
 
 Obsoletes: XFrisk
 

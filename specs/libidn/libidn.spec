@@ -17,7 +17,7 @@ Source: ftp://alpha.gnu.org/pub/gnu/libidn/libidn-%{version}.tar.gz
 #Source: http://josefsson.org/libidn/releases/libidn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: texinfo
+BuildRequires: texinfo, gcc-c++
 Prereq: info
 
 %description

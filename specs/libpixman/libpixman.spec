@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cairographics.org/snapshots/libpixman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig
+BuildRequires: pkgconfig, gcc-c++
 Obsoletes: slim, libic, libpixregion
 
 %description

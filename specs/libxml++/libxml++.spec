@@ -18,7 +18,7 @@ Source: http://dl.sf.net/libxmlplusplus/libxml++-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: libxml2-devel >= 2.5.1
+BuildRequires: gcc-c++, libxml2-devel >= 2.5.1
 
 %description
 libxml++ is a C++ interface for working with XML files, using libxml

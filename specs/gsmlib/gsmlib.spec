@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.pxh.de/fs/gsmlib/download/gsmlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildRequires: gcc-c++
 Obsoletes: libgsm-ext <= %{version}
 Provides: libgsm-ext
 

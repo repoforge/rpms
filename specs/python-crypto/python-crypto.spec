@@ -20,7 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.amk.ca/files/python/crypto/%{real_name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildRequires: python-devel
 BuildRequires: python >= 2.2
 Requires: python >= 2.2
 Obsoletes: pycrypto < 1.9

@@ -2,6 +2,10 @@
 # Authority: dag
 # Upstream: Timothy Musson <trmusson$ihug,co,nz>
 
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
 Summary: Simple, friendly, sliding tile puzzle
 Name: skoosh
 Version: 2.5.0
@@ -18,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, libgnomeui-devel >= 2.0
 BuildRequires: scrollkeeper
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 Requires(post): scrollkeeper
 

@@ -15,6 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.daimi.au.dk/~sandmann/sysprof-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: pkgconfig, gtk2-devel, libglade2-devel
 
 %description
 Sysprof is a sampling profiler that uses a kernel module, sysprof-module,

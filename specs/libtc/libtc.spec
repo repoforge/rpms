@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Måns Rullgård <mru$kth,se>
+# Upstream: Mï¿½s Rullgï¿½d <mru$kth,se>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
@@ -22,7 +22,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/libtc/libtc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex
+BuildRequires: flex, gcc-c++
 
 %description
 Libtc is a collection of useful functions for C programming. It

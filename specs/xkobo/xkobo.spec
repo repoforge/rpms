@@ -24,6 +24,11 @@ Source: http://www.redhead.dk/download/pub/Xkobo/xkobo-%{real_version}.tar.gz
 Patch0: xkobo-1.11+w01-imake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{!?dist:BuildRequires: xorg-x11-devel}
+%{?fc2:BuildRequires: xorg-x11-devel}
+%{?fc1:BuildRequires: XFree86-devel}
+%{?rh9:BuildRequires: XFree86-devel}
+
 %description
 Xkobo is a arcade video game for X11. The goal is to
 destroy the enemi bases. But the enemi will fire at
@@ -88,7 +93,7 @@ xmkmf -a
 - Added documentation and license.
 
 * Fri May 03 2002 Kenneth 'Redhead' Nielsen <kn@redhead.dk> - 1.11
-- Found that Wolfgang Jährling <wolfgang@pro-linux.de> had added some 
+- Found that Wolfgang Jï¿½rling <wolfgang@pro-linux.de> had added some 
   more levels and enemies to xkobo. 
 
 * Wed May 01 2002 Kenneth 'Redhead' Nielsen <kn@redhead.dk>
@@ -96,5 +101,5 @@ xmkmf -a
   compilers. 
 - Changed the source location, since Akira seems to have gone of the net.
 
-* Tue Sep 22 1998 Kjetil Wiekhorst Jørgensen <jorgens@pvv.org> [1.11-1]
+* Tue Sep 22 1998 Kjetil Wiekhorst Jrgensen <jorgens@pvv.org> [1.11-1]
 - upgraded to version 1.11

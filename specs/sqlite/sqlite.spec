@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source:	http://www.sqlite.org/sqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: readline-devel
+BuildRequires: gcc-c++, readline-devel
 %{!?dist:BuildRequires: tcl-devel}
 %{?fc2:BuildRequires: tcl-devel}
 %{?fc1:BuildRequires: tcllib}

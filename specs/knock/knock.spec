@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.zeroflux.org/knock/knock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: libpcap
 
 %description
 knockd is a port-knock server. It listens to all traffic on an ethernet

@@ -20,7 +20,7 @@ Source: http://www.egenix.com/files/python/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: python
+BuildRequires: python, python-devel
 Requires: python
 Provides: mx
 Conflicts: mx

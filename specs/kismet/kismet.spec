@@ -20,7 +20,7 @@ Source0: http://www.kismetwireless.net/code/kismet-%{real_version}.tar.gz
 #Patch0: http://www.kismetwireless.net/code/kismet-feb.04.01.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ImageMagick-devel, ncurses-devel
+BuildRequires: ImageMagick-devel, ncurses-devel, autoconf
 
 %description
 Kismet is an 802.11 (wireless) network sniffer and network dissector.
