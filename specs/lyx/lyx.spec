@@ -49,8 +49,8 @@ and let the computer take care of the rest.
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=LyX LaTeX Editor
-Comment=Edit your LaTeX documents in a WYSIWYM fashion
+Name=LyX LaTeX frontend
+Comment=Write documents in a WYSIWYM way
 Exec=lyx
 Icon=lyx-icon.png
 Type=Application
