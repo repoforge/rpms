@@ -7,8 +7,8 @@
 
 Summary: File editor, viewer and analyzer for text, binary and executables
 Name: ht
-Version: 0.7.5
-Release: 2
+Version: 0.8.0
+Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://hte.sf.net/
@@ -49,6 +49,9 @@ portable executables (PE32, PE64), java class files (CLASS).
 %{_bindir}/ht
 
 %changelog
+* Mon Aug 09 2004 Dries Verachtert <dries@ulyssis.org> 0.8.0-1
+- Update to version 0.8.0.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.coM> - 0.7.5-2
 - Cosmetic changes.
 - Fixed --program-prefix problem for RH73 and older.
