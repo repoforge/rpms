@@ -6,8 +6,8 @@
 
 Summary: KDE filesharing client which uses gift
 Name: apollon
-%{?fc2:Version: 0.9.3.2}
-%{?fc2:%define real_version 0.9.3}
+%{?fc2:Version: 1.0b1}
+%{?fc2:%define real_version 1.0b1}
 %{?fc1:Version: 0.9.2}
 %{?fc1:%define real_version 0.9.2}
 Release: 1
@@ -86,24 +86,13 @@ desktop-file-install --vendor kde                  \
 %{_datadir}/applications/kde-apollon.desktop
 %{_datadir}/apps/apollon/
 %{_datadir}/icons/crystalsvg/*/filesystems/folder_apollon.png
-%{_datadir}/icons/hicolor/16x16/actions/gnutelladown.png
-%{_datadir}/icons/hicolor/16x16/actions/gnutellaup.png
-%{_datadir}/icons/hicolor/16x16/actions/kazaadown.png
-%{_datadir}/icons/hicolor/16x16/actions/kazaaup.png
-%{_datadir}/icons/hicolor/16x16/actions/napsterdown.png
-%{_datadir}/icons/hicolor/16x16/actions/napsterup.png
-%{_datadir}/icons/hicolor/16x16/actions/openftdown.png
-%{_datadir}/icons/hicolor/16x16/actions/openftup.png
-%{_datadir}/icons/hicolor/16x16/actions/soulseekdown.png
-%{_datadir}/icons/hicolor/16x16/actions/soulseekup.png
-%{_datadir}/icons/hicolor/*/apps/apollon.png
-%{_datadir}/icons/hicolor/*/apps/gnutella.png
-%{_datadir}/icons/hicolor/*/apps/kazaa.png
-%{_datadir}/icons/hicolor/*/apps/napster.png
-%{_datadir}/icons/hicolor/*/apps/openft.png
-%{_datadir}/icons/hicolor/*/apps/soulseek.png
+%{_datadir}/icons/*/*/actions/*.png
+%{_datadir}/icons/*/*/apps/*.png
 
 %changelog
+* Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 1.0b1-1
+- Update to version 1.0 beta 1.
+
 * Thu Feb 25 2004 Dries Verachtert <dries@ulyssis.org> 0.9.2-3
 - moved the apollon menu entry to 'more internet applications'
   bug found by Sindre Pedersen Bjørda, thanks!
