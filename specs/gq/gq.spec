@@ -48,7 +48,6 @@ EOF
 %configure \
 	--enable-cache \
 	--enable-browser-dnd
-#	--with-ldap-prefix="%{_prefix}" \
 
 %{__make} %{?_smp_mflags}
 
