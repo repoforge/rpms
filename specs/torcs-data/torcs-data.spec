@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# Dist: nodist
+
 Summary: The Open Racing Car Simulator data files
 Name: torcs-data
 Version: 1.2.2

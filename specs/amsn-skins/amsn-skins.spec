@@ -1,7 +1,10 @@
 # $Id$
 # Authority: dries
+
 # Screenshot: http://amsn.sf.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sf.net/modules.php?name=Skins
+
+# Dist: nodist
 
 Summary: Collection of skins for aMSN
 Name: amsn-skins

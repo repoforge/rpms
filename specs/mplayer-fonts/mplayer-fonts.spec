@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# Dist: nodist
+
 # Default font encoding, iso-8859-1 iso-8859-2 iso-8859-7 or cp1250
 %define font iso-8859-1
 

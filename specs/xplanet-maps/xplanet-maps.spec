@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# Dist: nodist
+
 Summary: Additional maps for Xplanet, the planet image rendering program
 Name: xplanet-maps
 Version: 1.0

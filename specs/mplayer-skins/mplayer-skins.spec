@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# Dist: nodist
+
 %define	skindir	%{_datadir}/mplayer/Skin
 
 Summary: Collection of skins for MPlayer

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# Dist: nodist
+
 %define skindir %(rpm -ql xine | grep '/skins$' || :)
 
 Summary: Collection of skins for the Xine multimedia player
