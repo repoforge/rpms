@@ -2,10 +2,12 @@
 
 # Authority: dries
 # Upstream: 
+# Screenshot: http://www.prima.eu.org/big-picture/vb_unix_large.gif
+# ScreenshotURL: http://www.prima.eu.org/big-picture/
 
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
-Version: 1.15
+Version: 1.16
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -17,9 +19,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.prima.eu.org/download/Prima.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gdbm-devel, db4-devel
-
-# Screenshot: http://www.prima.eu.org/big-picture/vb_unix_large.gif
-# ScreenshotURL: http://www.prima.eu.org/big-picture/
 
 %description
 Prima is an extensible Perl toolkit for multi-platform GUI development.
@@ -57,5 +56,8 @@ identically on X, Win32 and OS/2 PM.
 %{_bindir}/*
 
 %changelog
+* Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 1.16-1
+- Update to release 1.16.
+
 * Wed May 5 2004 Dries Verachtert <dries@ulyssis.org> 1.15-1
 - Initial package.

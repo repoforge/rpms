@@ -1,9 +1,11 @@
 # $Id$
 # Authority: dries
+# Screenshot: http://cssed.sourceforge.net/images/screens/screenshor_doc_menu.png
+# ScreenshotURL: http://cssed.sourceforge.net/screenshots.html
 
 Summary: CSS stylesheets editor
 Name: cssed
-Version: 0.2.1
+Version: 0.3.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -18,8 +20,6 @@ BuildRequires: autoconf, make, gcc-c++, expat-devel
 BuildRequires: gtk2-devel, gettext, vte-devel
 Requires: gtk2, vte
 
-# Screenshot: http://cssed.sourceforge.net/images/screens/screenshor_doc_menu.png
-# ScreenshotURL: http://cssed.sourceforge.net/screenshots.html
 
 %description
 Cssed is a GTK2 application for creating and maintaining CSS style sheets.
@@ -58,6 +58,9 @@ EOF
 %{_datadir}/cssed
 
 %changelog
+* Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 0.3.0-1
+- Update to release 0.3.0.
+
 * Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> 0.2.1-1
 - update to 0.2.1
 

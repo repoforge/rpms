@@ -2,10 +2,11 @@
 
 # Authority: dries
 # Upstream:
+# Screenshot: http://www.djcbsoftware.nl/projecten/gnuvd/gnuvd1.png
 
 Summary: Dutch online dictionary
 Name: gnuvd
-Version: 1.0beta4
+Version: 1.0beta5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -17,8 +18,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.djcbsoftware.nl/projecten/gnuvd/gnuvd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
-
-# Screenshot: http://www.djcbsoftware.nl/projecten/gnuvd/gnuvd1.png
 
 %description
 A program which searches Dutch words in the online dictionary Van Dale.
@@ -68,5 +67,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 1.0beta5
+- Update to release 1.0beta5
+
 * Sat May 5 2004 Dries Verachtert <dries@ulyssis.org> 1.0beta4
 - initial package
