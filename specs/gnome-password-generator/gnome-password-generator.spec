@@ -6,7 +6,7 @@
 Summary: Graphical secure password generator
 Name: gnome-password-generator
 Version: 1.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://gnome-password.sf.net/
@@ -29,6 +29,7 @@ passwords of a specified length.
 %prep
 %setup
 
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '
 		s|/usr/bin|%{buildroot}%{_bindir}|g;
 		s|/usr/share|%{buildroot}%{_datadir}|g;
@@ -54,7 +55,8 @@ sh install.sh
 %{_datadir}/applications/*.desktop
 
 %changelog
-#- Changed BuildArch to noarch.
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.0-2
+- Cosmetic rebuild for Group-tag and BuildArch-tag.
 
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

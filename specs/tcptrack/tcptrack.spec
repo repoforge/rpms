@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.rhythm.cx/~steve/devel/tcptrack/release/%{version}/source/tcptrack-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description 
 tcptrack is a sniffer which displays information about TCP connections it
 sees on a network interface. It passively watches for connections on the
@@ -46,7 +45,7 @@ bandwidth usage.
 %{_bindir}/*
 
 %changelog
-* Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 1.0.2-0
+* Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 
 * Tue Nov 23 2003 Dag Wieers <dag@wieers.com> - 1.0.0-0

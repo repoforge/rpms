@@ -6,7 +6,7 @@
 Summary: Firewall log analyzer, report generator and realtime response agent
 Name: fwlogwatch
 Version: 0.9.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://cert.uni-stuttgart.de/projects/fwlogwatch/
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.kyb.uni-stuttgart.de/boris/sw/fwlogwatch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: flex
 
@@ -73,5 +72,8 @@ reporting anomalies or starting attack countermeasures.
 %{_sbindir}/f*
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.9.3-2
+- Cosmetic rebuild for Group-tag.
+
 * Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Initial package. (using DAR)

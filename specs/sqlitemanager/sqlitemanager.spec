@@ -8,7 +8,7 @@
 Summary: Multilingual web based tool to manage SQLite database
 Name: sqlitemanager
 Version: 0.9.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://sqlitemanager.sf.net/
@@ -19,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/sqlitemanager/SQLiteManager-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildArch: noarch
 Requires: php
 
 %description
@@ -79,6 +79,9 @@ fi
 %{_localstatedir}/www/sqlitemanager/
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.9.4-2
+- Cosmetic rebuild for Group-tag and BuildArch-tag.
+
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Updated to release 0.9.4.
 

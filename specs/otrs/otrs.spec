@@ -8,7 +8,7 @@
 Summary: Open Ticket Request System
 Name: otrs
 Version: 1.2.2
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://otrs.org/
@@ -20,6 +20,7 @@ Source: ftp://ftp.otrs.org/pub/otrs/otrs-%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #Autoreqprov:  no
+BuildArch: noarch
 Requires: perl, perl-DBI, perl-DBD-MySQL, perl-URI, mod_perl
 Requires: mysql, mysql-server, fetchmail, procmail, sendmail
 %{?rhfc1:BuildRequires: httpd}
@@ -48,7 +49,7 @@ This package includes the documentation for %{name}.
 %setup -n %{name}
 
 for file in */*.dist */*/*.dist; do
-	%{__mv} -f $(dirname $file)/$(basename $file .dist)
+	%{__mv} -f $file $(dirname $file)/$(basename $file .dist)
 done
 
 %build
@@ -134,6 +135,12 @@ fi
 %doc doc/
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Cosmetic rebuild for Group-tag and BuildArch-tag.
+
+* Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.2.2-0
+- Updated to release 1.2.2.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.2.2-0
 - Updated to release 1.2.2.
 

@@ -5,8 +5,8 @@
 
 Summary: Internationalized string processing library
 Name: libidn
-Version: 0.4.2
-Release: 1
+Version: 0.3.6
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://josefsson.org/libidn/releases/
@@ -46,7 +46,6 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
 
 %{__make} -C examples distclean
 
@@ -66,7 +65,7 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* FAQ INSTALL NEWS README* THANKS TODO doc/libidn.html contrib
 %doc %{_mandir}/man1/*
@@ -87,5 +86,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.3.6-2
+- Cosmetic rebuild for Group-tag.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 0.3.6-1
 - Initial package. (using DAR)

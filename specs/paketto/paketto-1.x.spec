@@ -1,11 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Dan Kaminsky <dan@doxpara.com>
 
 Summary: Unusual TCP/IP testing tools
 Name: paketto
 Version: 1.10
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.doxpara.com/
@@ -16,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.doxpara.com/paketto-%{version}.tar.gz
 Patch0: paketto-1.10-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libpcap, bison, flex
 
@@ -59,5 +59,8 @@ and	phentropy (plots a large data source onto a 3D matrix)
 %{_includedir}/*.h
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.10-1
+- Cosmetic rebuild for Group-tag.
+
 * Wed Feb 18 2004 Dag Wieers <dag@wieers.com> - 1.10-0
 - Initial package. (using DAR)

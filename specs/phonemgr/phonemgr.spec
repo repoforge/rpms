@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <gnome-bluetooth@usefulinc.com>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
@@ -8,7 +9,7 @@
 Summary: Phone manager
 Name: phonemgr
 Version: 0.2.1
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://usefulinc.com/software/phonemgr/
@@ -21,7 +22,7 @@ Patch0: phonemgr-0.2.1-orbit2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomemm2-devel, libgnomeuimm2-devel, ORBit2-devel
-BuildRequires: gsmlib-devel, gnome-bluetooth
+#BuildRequires: gsmlib-devel, gnome-bluetooth
 
 %description
 A phone manager.
@@ -36,7 +37,7 @@ A phone manager.
 	--disable-dependency-tracking \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags} \
-	ORBIT_IDL='%{_bindir}/orbit-idl-2'
+	ORBIT_IDL="%{_bindir}/orbit-idl-2"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,5 +62,8 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_libexecdir}/*
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.2.1-1
+- Cosmetic rebuild for Group-tag.
+
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 0.2.1-0
 - Initial package. (using DAR)

@@ -1,11 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <nester@users.sf.net>
 
 Summary: Secure file deletion utility
 Name: wipe
 Version: 2.2.0
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://wipe.sf.net/
@@ -16,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/wipe/wipe-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 Wipe is a tool that effectively degauses the surface of a hard
 disk, making it virtually impossible to retrieve the data that was
@@ -26,6 +26,7 @@ erased from a hard drive is unrecoverable.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|-o root| |g' Makefile.in
 #%{__perl} -pi.orig -e '
 #		s|\$\(prefix\)/man|\$(mandir)|g;
 #		s|\$\(prefix\)/doc|\$(datadir)/doc|g;
@@ -53,5 +54,8 @@ erased from a hard drive is unrecoverable.
 %{_bindir}/*
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Cosmetic rebuild for Group-tag.
+
 * Sun Jan 11 2004 Dag Wieers <dag@wieers.com> - 2.2.0-0
 - Initial package. (using DAR)

@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <cacti-user@lists.sourceforge.net>
 
 %define _localdatadir %{_var}/www/html/cacti
 
@@ -17,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.raxnet.net/downloads/cacti/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: mysql-devel
 %{?rhel3:BuildRequires: net-snmp-devel}
@@ -56,7 +56,7 @@ This package includes the documentation for %{name}.
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/html/cacti/cmd.php &>/dev/null" >cacti.crontab
 
-### Add a default apcupsd.conf for Apache.
+### Add a default cacti.conf for Apache.
 %{__cat} <<EOF >cacti.conf
 ScriptAlias /cacti/ %{_localstatedir}/www/cacti/
 <Directory %{_localstatedir}/www/cacti/>
@@ -79,17 +79,14 @@ cd cactid
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/cacti/ \
-			%{buildroot}%{_bindir} \
-			%{buildroot}%{_sysconfdir}/cron.d/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/
-%{__install} -m0755 cactid/cactid %{buildroot}%{_bindir}
-%{__install} -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/cacti/
+%{__install} -D -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
+%{__install} -D -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
 %{__install} -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
 %{__cp} -avx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
-%{__install} -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
-%{__install} -m0644 cacti.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -D -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
+%{__install} -D -m0644 cacti.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
 
 %pre
 useradd -d %{_localstatedir}/www/cacti cacti &>/dev/null || :
@@ -127,5 +124,6 @@ userdel cacti &>/dev/null || :
 %doc docs/
 
 %changelog
-* Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 0.8.5-0.
+* Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 0.8.5-0
+- Cosmetic rebuild for Group-tag.
 - Initial package. (using DAR)

@@ -5,7 +5,7 @@
 Summary: Archiver and compressor
 Name: freeze
 Version: 2.5
-Release: 1
+Release: 2
 License: distributable
 Group: Applications/Archiving
 
@@ -51,5 +51,8 @@ done
 %{_bindir}/*
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.5-2
+- Cosmetic rebuild for Group-tag.
+
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 2.5-1
 - Initial package. (using DAR)

@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Dan Kaminsky <dan@doxpara.com>
 # Distcc: 0
 
 %define rversion 2.00pre3
@@ -8,7 +9,7 @@
 Summary: Unusual TCP/IP testing tools
 Name: paketto
 Version: 2.00
-Release: 0.pre3
+Release: 1.pre3
 License: GPL
 Group: Applications/Internet
 URL: http://www.doxpara.com/
@@ -16,9 +17,8 @@ URL: http://www.doxpara.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.doxpara.com/%{name}-%{rversion}.tar.gz
+Source: http://www.doxpara.com/paketto-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libpcap, bison, flex
 
@@ -66,5 +66,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.00-1.pre3
+- Cosmetic rebuild for Group-tag.
+
 * Wed Feb 18 2004 Dag Wieers <dag@wieers.com> - 2.00-0.pre3
 - Initial package. (using DAR)
