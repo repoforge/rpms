@@ -5,7 +5,7 @@
 Summary: Extra configuration dialogus for GNOME
 Name: gtweakui
 Version: 0.0.6
-Release: 1
+Release: 2
 Group: User Interface/Desktop
 License: GPL
 URL: http://gtweakui.sourceforge.net/
@@ -21,6 +21,47 @@ gTweakUI Provides extra configuration dialogs for the GNOME 2.0 desktop.
 %prep
 %setup -n %{real_name}-%{version}
 
+%{__cat} <<EOF >gtweakui-menus.desktop.in
+[Desktop Entry]
+Name=Menus
+Comment=Change extra menu preferences
+Exec=gtweakui-menus
+Icon=gnome-desktop-config.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;Settings
+OnlyShowIn=GNOME;
+EOF
+
+%{__cat} <<EOF >gtweakui-nautilus.desktop.in
+[Desktop Entry]
+Name=Nautilus
+Comment=Change extra nautilus preferences
+Exec=gtweakui-nautilus
+Icon=gnome-desktop-config.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;Settings
+OnlyShowIn=GNOME;
+EOF
+
+%{__cat} <<EOF >gtweakui-session.desktop.in
+[Desktop Entry]
+Name=Session
+Comment=Change extra session preferences
+Exec=gtweakui-session
+Icon=gnome-desktop-config.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;Settings
+OnlyShowIn=GNOME;
+EOF
 
 %build
 %configure
@@ -45,6 +86,9 @@ gTweakUI Provides extra configuration dialogs for the GNOME 2.0 desktop.
 
 
 %changelog
+* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 0.6.2
+- Added improved desktop files.
+
 * Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 0.6-1
 - Adopted for freshrpms, based on provided source package.
 - Changed the name from gTweakUI to gtweakui.

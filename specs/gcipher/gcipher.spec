@@ -36,7 +36,7 @@ It can run as either a GUI, a command-line application, or a network proxy.
 
 %{__cat} <<EOF >gcipher.desktop
 [Desktop Entry]
-Name=GCipher
+Name=GCipher Encryption Tool
 Comment=Encrypt data and network traffic
 Exec=gcipher
 Icon=gnome-lockscreen.png
