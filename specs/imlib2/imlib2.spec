@@ -1,5 +1,7 @@
 # $Id$
 # Authority: matthias
+# Upstream: Carsten Haitzler <raster@rasterman.com>
+# Upstream: <enlightenment-devel@lists.sf.net>
 
 #define date 20030417
 
@@ -9,11 +11,13 @@ Version: 1.1.0
 Release: %{?date:0.%{date}.}2
 License: BSD
 Group: System Environment/Libraries
+URL: http://enlightenment.org/pages/imlib2.html
+
 Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.gz
-URL: http://www.enlightenment.org/pages/imlib2.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: XFree86-devel, freetype-devel >= 1.2, zlib-devel
-BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
+BuildRequires: libpng-devel, libjpeg-devel, libungif-devel, libtiff-devel
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -37,7 +41,12 @@ Header, static libraries and documentation for Imlib2.
 
 
 %build
-%configure
+%configure \
+%ifarch %ix86
+	--enable-mmx
+%else
+	--disable-mmx
+%endif
 %{__make} %{?_smp_mflags}
 
 
@@ -61,9 +70,9 @@ Header, static libraries and documentation for Imlib2.
 %defattr(-, root, root, 0755)
 %doc AUTHORS README COPYING ChangeLog doc/
 %{_libdir}/*.so.*
-%dir %{_libdir}/loaders
-%dir %{_libdir}/loaders/filter
-%dir %{_libdir}/loaders/image
+%dir %{_libdir}/loaders/
+%dir %{_libdir}/loaders/filter/
+%dir %{_libdir}/loaders/image/
 %{_libdir}/loaders/filter/*.so
 %{_libdir}/loaders/image/*.so
 
@@ -72,19 +81,20 @@ Header, static libraries and documentation for Imlib2.
 %{_bindir}/*
 %{_includedir}/*
 %{_libdir}/*.a
-%{_libdir}/*.so
-%dir %{_libdir}/loaders
-%dir %{_libdir}/loaders/filter
-%dir %{_libdir}/loaders/image
-%{_libdir}/loaders/filter/*.a
-%{_libdir}/loaders/image/*.a
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%exclude %{_libdir}/loaders/filter/*.a
 %exclude %{_libdir}/loaders/filter/*.la
+%exclude %{_libdir}/loaders/image/*.a
 %exclude %{_libdir}/loaders/image/*.la
 %{_libdir}/pkgconfig/*.pc
 
 
 %changelog
+* Sat May 29 2004 Dag Wieers <dag@wieers.com> - 1.1.0-3
+- Merged my imlib2 package.
+- Disable mmx on non-ix86 architectures.
+
 * Thu Mar 25 2004 Matthias Saou <http://freshrpms.net/> 1.1.0-2
 - Removed the explicit XFree86-libs dependency.
 
