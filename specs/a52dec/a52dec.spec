@@ -38,24 +38,27 @@ to build programs that use it.
 
 %build
 %configure --enable-shared
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING HISTORY NEWS README TODO doc/liba52.txt
 %{_bindir}/*
 %{_libdir}/*.so.*
@@ -63,7 +66,7 @@ rm -rf %{buildroot}
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -71,13 +74,16 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.7.4-7
+- Rebuilt for Fedora Core 2.
+
 * Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 0.7.4-6
 - Rebuilt.
 
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 0.7.4-5.fr
+* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 0.7.4-5
 - Added the building of the shared library.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.7.4-4.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.7.4-4
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
