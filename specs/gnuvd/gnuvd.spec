@@ -37,9 +37,35 @@ A program which searches Dutch words in the online dictionary Van Dale.
 %clean
 %{__rm} -rf %{buildroot}
 
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
+
+%post
+/sbin/ldconfig 2>/dev/null
+
+%postun
+/sbin/ldconfig 2>/dev/null
+
 %files
 %defattr(-,root,root, 0755)
 %doc README ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS TODO README.nl
+%{_bindir}/gnuvd
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+%{_libdir}/*.so.*
+
+%files devel
+%{_includedir}/libgnuvd/*.h
+%{_libdir}/*.a
+%{_libdir}/*.so
+
 
 %changelog
 * Sat May 5 2004 Dries Verachtert <dries@ulyssis.org> 1.0beta4
