@@ -1,61 +1,78 @@
 # $Id$
 # Authority: matthias
 
+%define perl_archsitelib %(eval "`%{__perl} -V:installsitearch`"; echo $installsitearch)
+%define _use_internal_dependency_generator 0
+
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
-Version: 1.20.0
-Release: 6
+Version: 2.1.2
+Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://sdlperl.org/
-Source: ftp://sdlperl.org/SDL_perl/SDL_perl-%{version}.tar.gz
+URL: http://sdl.perl.org/
+Source: http://search.cpan.org/CPAN/authors/id/D/DG/DGOEHRIG/SDL_Perl-%{version}.tar.gz
+Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
-BuildRequires: SDL_ttf-devel, libjpeg-devel, libpng-devel, smpeg-devel
+BuildRequires: SDL_ttf-devel, SDL_gfx-devel
+BuildRequires: smpeg-devel, libjpeg-devel, libpng-devel, XFree86-devel
+BuildRequires: perl(Module::Build)
 # This is to pull in missing libs, to fix the "undefined symbol: _Znwj" problem
 %{?!dist:BuildRequires: xorg-x11-Mesa-libGLU}
 %{?fc3:BuildRequires: xorg-x11-Mesa-libGLU}
 %{?fc2:BuildRequires: xorg-x11-Mesa-libGLU}
 %{?fc1:BuildRequires: XFree86-Mesa-libGLU}
-BuildRequires: XFree86-devel
+Provides: SDL_perl = %{version}-%{release}
+Provides: SDL_Perl = %{version}-%{release}
+
+%define __find_requires %{SOURCE10}
 
 %description
 The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 
 %prep
-%setup -n SDL_perl-%{version}
+%setup -n SDL_Perl-%{version}
 
 
 %build
-CFLAGS="%{optflags}" perl Makefile.PL PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Build.PL
+./Build
+# This, we don't want since it'll fail the audio dev check in a minimal chroot
+#./Build test
 
 
 %install
 %{__rm} -rf %{buildroot}
-eval `%{__perl} '-V:installarchlib'`
-%{__mkdir_p} %{buildroot}${installarchlib}
-%makeinstall
+./Build install destdir=%{buildroot}
+
+# Remove files we don't want to include
 %{__rm} -f `/usr/bin/find %{buildroot} -type f \
     -name perllocal.pod -o -name .packlist -o -name '*.bs'`
-
-# Build the file list to include
-find %{buildroot}%{_prefix} -type f -print | \
-    %{__sed} "s|^%{buildroot}||g" | \
-    %{__sed} "s|3pm$|3pm*|g" > %{name}.list
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files -f %{name}.list
+%files
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGELOG COPYING MANIFEST README TODO
+%{perl_archsitelib}/auto/SDL/
+%{perl_archsitelib}/auto/SDL_perl/
+%{perl_archsitelib}/SDL/
+%{perl_archsitelib}/SDL.pm
+%{perl_archsitelib}/SDL_perl.pm
+%{_mandir}/man3/*
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 2.1.2-1
+- Update to 2.1.2.
+- Add provides of "SDL_perl" and "SDL_Perl".
+- Add SDL_gfx dependency.
+
 * Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 1.20.0-6
 - Bump release number to fix smpeg dependency caused by old headers.
 

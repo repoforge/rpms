@@ -1,34 +1,23 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Ken Williams <ken$mathforum,org>
-
 
 # Todo: package YAML, ExtUtils::ParseXS
 
 %define real_name Module-Build
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.26
+Version: 0.2601
 Release: 1
-License: Artistic/GPL
+License: Artistic or GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Build/
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: perl(Archive::Tar)
 BuildArch: noarch
-BuildRequires: perl, perl-Archive-Tar
-Requires: perl-Archive-Tar
 
 %description
 "Module::Build" is a system for building, testing, and installing Perl
@@ -55,14 +44,19 @@ pure-perl and written in a very cross-platform way.
 %files
 %defattr(-, root, root, 0755)
 %doc README Changes
-%doc %{_mandir}/man?/*
-%{perl_vendorlib}/Module/Build.pm
-%{perl_vendorlib}/Module/Build
 %{_bindir}/config_data
+%{perl_vendorlib}/Module/Build/
+%{perl_vendorlib}/Module/Build.pm
+%{_mandir}/man?/*
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 0.26-2
+- Update to 0.2601.
+- Change deps to be "perl style".
+
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 0.26-1
 - Update to release 0.26.
 
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.
+
