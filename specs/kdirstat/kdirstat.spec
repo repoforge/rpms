@@ -1,5 +1,4 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
 # Upstream:
 # Screenshot: http://kdirstat.sourceforge.net/thumbnails/kdirstat-main.jpg
