@@ -17,6 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: pydar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Requires: mach, coreutils
 
 %description
 Not finished, not to be released!
