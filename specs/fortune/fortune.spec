@@ -135,6 +135,7 @@ cp fortune-mod-dune-quotes.2.0.1/chapterhouse-dune fortune-mod-dune-quotes.2.0.1
   fortune-mod-dune-quotes.2.0.1/children-of-dune.dat fortune-mod-dune-quotes.2.0.1/dune.dat fortune-mod-dune-quotes.2.0.1/dune-messiah.dat \
   fortune-mod-dune-quotes.2.0.1/god-emperor.dat fortune-mod-dune-quotes.2.0.1/heretics-of-dune.dat fortune-mod-dune-quotes.2.0.1/house-atreides.dat \
   fortune-mod-dune-quotes.2.0.1/house-harkonnen.dat %{buildroot}%{_datadir}/games/fortune/
+echo "before cbg"
 cp cbg cbg.dat %{buildroot}%{_datadir}/games/fortune/
 util/strfile ralph
 cp ralph ralph.dat %{buildroot}%{_datadir}/games/fortune/
