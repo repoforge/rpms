@@ -10,22 +10,21 @@ Version: 1.4.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://web.onda.com.br/orso/sarg.html
+URL: http://sarg.sf.net/sarg.php
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://web.onda.com.br/orso/sarg-%{version}.tar.gz
+Source: http://dl.sf.net/sarg/sarg-%{version}.tar.gz
 Patch0: sarg-1.4.1-indexsort.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl
 Requires: squid
 Obsoletes: sqmgrlog
 
 %description
-Squid Analysis Report Generator is a tool that allow you to view "where"
+Squid Analysis Report Generator is a tool that allows you to view "where"
 your users are going to on the Internet. Sarg generate reports in html
 showing users, IP Addresses, bytes, sites and times. 
 
@@ -47,7 +46,7 @@ showing users, IP Addresses, bytes, sites and times.
 		s|^#(show_successful_message) (.+)$|#$1 $2\n$1 no|;
 	' sarg.conf
 
-%{__cat} <<'EOF' >sarg.daily
+%{__cat} <<EOF >sarg.daily
 #!/bin/bash
 %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/daily \
@@ -55,7 +54,7 @@ showing users, IP Addresses, bytes, sites and times.
 exit $?
 EOF
 
-%{__cat} <<'EOF' >sarg.weekly
+%{__cat} <<EOF >sarg.weekly
 #!/bin/bash
 %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/weekly \
@@ -63,7 +62,7 @@ EOF
 exit $?
 EOF
 
-%{__cat} <<'EOF' >sarg.monthly
+%{__cat} <<EOF >sarg.monthly
 #!/bin/bash
 %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/monthly \
@@ -71,7 +70,7 @@ EOF
 exit $?
 EOF
 
-%{__cat} <<'EOF' >sarg-index.html
+%{__cat} <<EOF >sarg-index.html
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -123,19 +122,19 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
+
+### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/sarg/ \
 			%{buildroot}%{_bindir} \
 			%{buildroot}%{_mandir}/man1/ \
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/ \
-			%{buildroot}%{_sysconfdir}/cron.{daily,weekly,monthly}/ \
-			%{buildroot}%{_localstatedir}/www/sarg/{ONE-SHOT,daily,weekly,monthly}/
-%{__install} -m0644 sarg-http.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/sarg.conf
-%{__install} -m0755 sarg.daily %{buildroot}%{_sysconfdir}/cron.daily/sarg
-%{__install} -m0755 sarg.weekly %{buildroot}%{_sysconfdir}/cron.weekly/sarg
-%{__install} -m0755 sarg.monthly %{buildroot}%{_sysconfdir}/cron.monthly/sarg
-%{__install} -m0644 sarg-index.html %{buildroot}%{_localstatedir}/www/sarg/index.html
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sarg/{ONE-SHOT,daily,weekly,monthly}/
+%{__install} -D -m0644 sarg-http.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/sarg.conf
+%{__install} -D -m0755 sarg.daily %{buildroot}%{_sysconfdir}/cron.daily/sarg
+%{__install} -D -m0755 sarg.weekly %{buildroot}%{_sysconfdir}/cron.weekly/sarg
+%{__install} -D -m0755 sarg.monthly %{buildroot}%{_sysconfdir}/cron.monthly/sarg
+%{__install} -D -m0644 sarg-index.html %{buildroot}%{_localstatedir}/www/sarg/index.html
 
 %clean
 %{__rm} -rf %{buildroot}

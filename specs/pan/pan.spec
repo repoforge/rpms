@@ -1,13 +1,14 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <pan-devel@nongnu.org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: The Pan Newsreader
 Name: pan
 Version: 0.14.2.91
-Release: 1
+Release: 2
 Epoch: 1
 License: GPL
 Group: Applications/Internet
@@ -18,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://pan.rebelbase.com/download/releases/%{version}/SOURCE/pan-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
 BuildRequires: gnet2-devel, gtkspell >= 2.0.2
@@ -48,6 +48,8 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 %if %{dfi}
 %else
 desktop-file-install --vendor gnome --delete-original \
+	--add-category Application                    \
+	--add-category Network                        \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/gnome/apps/Internet/*.desktop
@@ -64,6 +66,9 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/pixmaps/*
 
 %changelog
+* Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-2
+- Fixed missing categories in desktop-file. (Neil Bird)
+
 * Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-1
 - Updated to release 0.14.2.91.
 

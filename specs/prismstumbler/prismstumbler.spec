@@ -2,7 +2,6 @@
 
 # Authority: dag
 # Upstream: Florian <florian.boor@unix-ag.org>
-# Upstream: Jafer <jan.b.fernquist@telia.com>
 # Distcc: 0
 
 %define rversion 0.7.1a

@@ -3,9 +3,9 @@
 # Authority: dag
 # Upstream: Brian Carrier <carrier@sleuthkit.org>
 
-Summary: forensic browser for use with Sleuth Kit
+Summary: Forensic browser for use with Sleuth Kit
 Name: autopsy
-Version: 1.74
+Version: 2.00
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -83,6 +83,9 @@ EOF
 %{_datadir}/autopsy/
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.00-1
+- Fix installation.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 1.74-1
 - Fix installation.
 

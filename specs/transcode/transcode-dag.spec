@@ -1,4 +1,4 @@
-# Authority: freshrpms
+# Authority: matthias
 # Upstream: Thomas Östreich <ostreich@theorie.physik.uni-goettingen.de>
 # Upstream: Tilmann Bitterberg <transcode@tibit.org>
 
@@ -13,7 +13,7 @@ URL: http://zebra.fh-weingarten.de/~transcode/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://zebra.fh-weingarten.de/~transcode/pre/%{name}-%{version}.tar.gz
+Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

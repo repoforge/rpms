@@ -8,7 +8,7 @@
 Summary: Offline NT password and registry editor
 Name: chntpw
 Version: 0.0.20040116
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://home.eunet.no/~pnordahl/ntpasswd/
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://home.eunet.no/~pnordahl/ntpasswd/chntpw-source-%{rversion}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: openssl-devel
 
@@ -42,8 +41,7 @@ and scripts to glue the whole thing together.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 chntpw %{buildroot}%{_bindir}
+%{__install} -D -m0755 chntpw %{buildroot}%{_bindir}/chntpw
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,5 +52,8 @@ and scripts to glue the whole thing together.
 %{_bindir}/*
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.0.20040116-2
+- Cosmetic rebuild for Group-tag.
+
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 0.0.20040116-1
 - Initial package. (using DAR)

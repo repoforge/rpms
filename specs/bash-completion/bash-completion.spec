@@ -7,7 +7,7 @@
 
 Summary: Programmable completion for Bash
 Name: bash-completion
-Version: 20040214
+Version: 20040331
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -19,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.caliban.org/files/bash/bash-completion-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 Requires: bash >= 2.05-12, grep, textutils, sed, fileutils
 
@@ -30,10 +29,10 @@ of the programmable completion feature of bash 2.04 and later.
 %prep
 %setup -n %{rname}
 
-### TODO: Remove this line the next release !
-%{__perl} -pi -e 's|_comp-dpkg-hold-packages|_comp_dpkg_hold_packages|g' bash_completion
+### FIXME: Remove this line the next release !
+%{__perl} -pi.orig -e 's|_comp-dpkg-hold-packages|_comp_dpkg_hold_packages|g' bash_completion
 
-### FIXME: Make this script work with other shells too !!
+### FIXME: TODO: Make this script work with other shells too !!
 %{__cat} <<'EOF' >bash_completion.sh
 #!/bin/sh
 
@@ -57,10 +56,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/profile.d \
-			%{buildroot}%{_sysconfdir}/bash_completion.d
-%{__install} -m0755 bash_completion %{buildroot}%{_sysconfdir}
-%{__install} -m0755 bash_completion.sh %{buildroot}%{_sysconfdir}/profile.d/
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/bash_completion.d/
+%{__install} -D -m0755 bash_completion %{buildroot}%{_sysconfdir}/bash_completion
+%{__install} -D -m0755 bash_completion.sh %{buildroot}%{_sysconfdir}/profile.d/bash_completion.sh
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,10 +67,13 @@ EOF
 %defattr(-, root, root, 0755)
 %doc BUGS Changelog COPYING README contrib/
 %config %{_sysconfdir}/bash_completion
-%config %{_sysconfdir}/bash_completion.d/
 %config %{_sysconfdir}/profile.d/*
+%config %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 20040331-1
+- Updated to release 20040331.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 20040214-1
 - Fix for bash-completion problem with gdm. (Rudolf Kastl)
 

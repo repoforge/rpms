@@ -78,6 +78,9 @@ scrollkeeper-update -q
 * Sun Nov 23 2003 Dag Wieers <dag@wieers.com> - 2.0.3-0
 - Updated to release 2.0.3.
 
+* Sun Nov 23 2003 Dag Wieers <dag@wieers.com> - 2.0.3-0
+- Updated to release 2.0.3.
+
 * Tue Nov 18 2003 Dag Wieers <dag@wieers.com> - 2.0.2-0
 - Updated to release 2.0.2.
 

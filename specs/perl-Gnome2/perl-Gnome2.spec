@@ -7,7 +7,7 @@
 
 Summary: Perl interface to the 2.x series of the GNOME libraries
 Name: perl-Gnome2
-Version: 0.90
+Version: 1.00
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),
 BuildRequires: perl(Glib), perl(Gtk2)
@@ -59,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.90-1
 - Updated to release 0.90.
 

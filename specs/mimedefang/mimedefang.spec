@@ -5,7 +5,7 @@
 
 Summary: Email filtering application using sendmail's milter interface
 Name: mimedefang
-Version: 2.40
+Version: 2.42
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -14,9 +14,8 @@ URL: http://www.roaringpenguin.com/mimedefang/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.roaringpenguin.com/mimedefang/mimedefang-%{version}.tar.gz
+Source: http://www.mimedefang.org/static/mimedefang-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: sendmail-devel > 8.12.0, perl-Mail-SpamAssassin
 BuildRequires: perl-Digest-SHA1, perl-MIME-tools, perl-IO-stringy, perl-MailTools
@@ -115,6 +114,9 @@ fi
 %dir %{_localstatedir}/spool/MD-Quarantine
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.42-1
+- Updated to release 2.42.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 2.40-1
 - Updated to release 2.40.
 

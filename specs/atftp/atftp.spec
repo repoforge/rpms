@@ -6,7 +6,7 @@
 Summary: Advanced Trivial File Transfer Protocol (TFTP) client
 Name: atftp
 Version: 0.7
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: ftp://ftp.mamalinux.com/pub/atftp/
@@ -33,7 +33,7 @@ lacks IPv6 support.
 Summary: Advanced Trivial File Transfer Protocol (TFTP) server
 Group: System Environment/Daemons
 
-Conflicts: tftp-server
+#Conflicts: tftp-server
 Provides: tftp-server
 
 %description server
@@ -102,6 +102,9 @@ EOF
 %{_sbindir}/in.tftpd
 
 %changelog
+* Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.7.0-3
+- Removed Conflicts-tag.
+
 * Thu Mar 25 2004 Dag Wieers <dag@wieers.com> - 0.7.0-2
 - Provide tftp and tftp-server.
 

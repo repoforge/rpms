@@ -1,11 +1,12 @@
 # $Id$
 
-# Authority: newrpms
+# Authority: dag
+# Upstream: <irssi-dev@dragoncat.net>
 
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.9
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -80,6 +81,12 @@ Support for other protocols like ICQ could be created some day too.
 %{_libdir}/perl5/
 
 %changelog
+* Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.8.9-1
+- Rebuild against new fc1 perl package. (Christopher Stone)
+
+* Fri Dec 12 2003 Dag Wieers <dag@wieers.com> - 0.8.9-0
+- Updated to release 0.8.9.
+
 * Fri Dec 12 2003 Dag Wieers <dag@wieers.com> - 0.8.9-0
 - Updated to release 0.8.9.
 

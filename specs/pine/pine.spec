@@ -1,8 +1,7 @@
 # $Id$
 
 # Authority: dag
-
-# Dists: rhfc1
+# Upstream: news://comp.mail.pine/
 
 %define pgpver		0.18.0
 #%define with_gpgpine	1
@@ -53,8 +52,7 @@ Patch34: pine-4.33-sendmail-options.patch
 # Fix bug #60818
 Patch36: pine-4.44-overflow.patch
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, ncurses-devel
 BuildRequires: openssl-devel, openldap-devel, krb5-devel
@@ -145,19 +143,19 @@ cd pinepgp-%{pgpver}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_libdir} \
-			%{buildroot}%{_sysconfdir}
-%{__install} -m0755 bin/{pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_libdir}
 
 %{__make} -C pinepgp-%{pgpver} install-pinegpg \
 	DESTDIR="%{buildroot}"
 
-%{__install} -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pine.conf
-%{__install} -m0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/pine.conf.fixed
+%{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pine.conf
+%{__install} -D -m0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/pine.conf.fixed
+
+%{__install} -d -m0755 %{buildroot}%{_bindir} \
+			%{buildroot}%{_mandir}/man1/
+%{__install} -m0755 bin/{pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
 %{__install} -m0755 %{SOURCE3} %{buildroot}%{_bindir}
+%{__install} -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -4,8 +4,8 @@
 
 Summary: CPU frequency scaling monitor applet
 Name: gnome-cpufreq-applet
-Version: 0.1.1
-Release: 0
+Version: 0.1.2
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://linups.org/~kal/gnome-cpufreq-applet/
@@ -60,5 +60,8 @@ scrollkeeper-update -q || :
 %{_libdir}/bonobo/servers/*.server
 
 %changelog
-* Wed Mar 03 2004 Dag Wieers <dag@wieers.com> - 0.1.1
+* Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 0.1.2-1
+- Updated to release 0.1.2.
+
+* Wed Mar 03 2004 Dag Wieers <dag@wieers.com> - 0.1.1-0
 - Initial package. (using DAR)
