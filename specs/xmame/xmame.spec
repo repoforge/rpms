@@ -22,19 +22,21 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.92
+Version: 0.94
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.91 - 31/01/2005
-Source21: http://www.mameworld.net/highscore/uhsdat091.zip
-# http://www.arcade-history.com/ 0.92 - 13/02/2005
-Source22: http://www.arcade-history.com/download/history0_92.zip
-# http://www.mameworld.net/mameinfo/ 0.92u1 - 23/02/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo092u1a.zip
-# http://www.mameworld.net/catlist/ 0.92 - 14/02/2005
+# http://www.mameworld.net/highscore/ 0.94 - 07/03/2005
+Source21: http://www.mameworld.net/highscore/uhsdat094.zip
+# http://www.arcade-history.com/ 0.94b - 16/03/2005
+Source22: http://www.arcade-history.com/download/history0_94b.zip
+# http://www.mameworld.net/mameinfo/ 0.94u1 - 13/03/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo094u1a.zip
+# http://www.mameworld.net/catlist/ 0.94 - 06/03/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
+Patch0: http://www.anthrofox.org/code/mame/64bitclean/seibuspi_64bit_patch.txt
+Patch1: http://www.anthrofox.org/code/mame/64bitclean/wecleman_64bit_patch.txt
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -47,8 +49,8 @@ BuildRequires: unzip, XFree86-devel, zlib-devel, expat-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
+%{!?_without_lirc:BuildRequires: lirc-devel}
 %ifarch %{ix86} x86_64
-%{!?_without_asm68000:BuildRequires: nasm >= 0.98}
 %{!?_without_mips3drc:BuildRequires: nasm >= 0.98}
 %endif
 
@@ -61,8 +63,8 @@ combined into a single multi-game emulator.
 This version has been compiled with X11, XV, OpenGL and Glide3 displays.
 
 Available rpmbuild rebuild options :
---without mame mess asm68000 mips3drc effmmx opengl glide3
-          alsa esound arts opts quietbuild
+--without mame mess mips3drc effmmx opengl glide3
+          alsa esound arts lirc opts quietbuild
 
 
 %package -n xmess
@@ -80,6 +82,8 @@ see http://www.mess.org/.
 
 %prep
 %setup -n %{name}-%{version}%{?rcver:-%{rcver}}
+%patch0 -p0 -b .64bit
+%patch1 -p0 -b .64bit
 # Cleanup CVS stuff
 find . -type d -name CVS | xargs %{__rm} -rf
 
@@ -121,13 +125,13 @@ export JOY_PAD=1
 %{!?_without_esound: export SOUND_ESOUND=1}
 %{!?_without_arts:   export SOUND_ARTS_SMOTEK=1}
 %{!?_without_arts:   export SOUND_ARTS_TEIRA=1}
+%{!?_without_lirc:   export LIRC=1}
 
 # Optimization flags, CPU type and defaults for the makefile
 %ifarch %{ix86}
     export MY_CPU="i386"
     # With FC3 gcc, -mtune is preferred as -mcpu is marked obsolete
     %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=i386 -mcpu=pentium4 -Wall -fno-merge-constants"}
-    %{!?_without_asm68000: export X86_ASM_68000=1}
     %{!?_without_mips3drc: export X86_MIPS3_DRC=1}
     %{!?_without_effmmx:   export EFFECT_MMX_ASM=1}
 %endif
@@ -149,8 +153,6 @@ export JOY_PAD=1
 %ifarch x86_64
     export MY_CPU="amd64"
     %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=k8 -m64 -Wall -fno-merge-constants"}
-    # If you enable X86_ASM_68000, you'll get "Illegal instruction" (0.88)
-    #{!?_without_asm68000: export X86_ASM_68000=1}
     # If you enable X86_MIPS3_DRC, you'll get "Segmentation fault" (0.88)
     #{!?_without_mips3drc: export X86_MIPS3_DRC=1}
     # If you enable EFFECT_MMX_ASM, you'll get "Illegal instruction" for
@@ -257,6 +259,12 @@ popd
 
 
 %changelog
+* Wed Mar 16 2005 Matthias Saou <http://freshrpms.net/> 0.94-1
+- Update to 0.94.
+- Completely remove asm68000, it's now totally unmaintained and broken.
+- Include 64bit fixes for seibuspi and wecleman by F.J. McCloud.
+- Add Mads Villadsen's proposed lirc support.
+
 * Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 0.92-1
 - Remove wrong -march for powerpc.
 - Add LDFLAGS override for ppc to fix YDL4 build, thanks to Stig Sørensen.
