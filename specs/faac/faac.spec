@@ -53,7 +53,6 @@ sh bootstrap
 %post
 /sbin/ldconfig 2>/dev/null
 
-
 %postun
 /sbin/ldconfig 2>/dev/null
 

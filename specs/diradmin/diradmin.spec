@@ -12,12 +12,10 @@ Release: 3
 License: GPL
 Group: Applications/System
 URL: http://diradmin.open-it.org/
-
 Source: http://diradmin.open-it.org/directory_administrator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{release}-%{version}-root
-
-BuildRequires: gnome-libs-devel, openldap-devel, desktop-file-utils
 Requires: gnome-libs, openldap
+BuildRequires: gnome-libs-devel, openldap-devel, desktop-file-utils
 Obsoletes: directory_administrator <= 1.3.5
 
 %description
@@ -28,31 +26,36 @@ advanced mail routing. It's extremely easy to install and use, yet powerful
 at the same time. Along with popular software, it's the preferred solution
 for single sign-on maintenance.
 
+
 %prep
 %setup -n %{real_name}-%{version}
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 # Replace desktop file, removing the categories
 %{__rm} -f %{buildroot}%{_datadir}/applications/*
-cat applnk/dragonfear-%{real_name}.desktop \
+%{__cat} applnk/dragonfear-%{real_name}.desktop \
   | grep -v ^Categories > %{name}.desktop
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Extra                \
   --add-category Application                    \
   --add-category System                         \
   %{name}.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -61,8 +64,12 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/pixmaps/%{real_name}
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.5.1-2.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.5.1-3
+- Rebuild For Fedora Core 1.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.5.1-2
 - Rebuild For Fedora Core 1.
 
 * Wed Jul  9 2003 Matthias Saou <http://freshrpms.net/>

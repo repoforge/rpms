@@ -9,7 +9,7 @@ Version: 1.3.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
-Source0: http://dl.sf.net/celestia/celestia-%{version}.tar.bz2
+Source0: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
 Source1: http://www.shatters.net/celestia/files/minormoons.ssc
 Source2: http://www.shatters.net/celestia/files/numberedmoons.ssc
 URL: http://www.shatters.net/celestia/

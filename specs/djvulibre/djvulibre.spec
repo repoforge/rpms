@@ -53,7 +53,6 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 %post
 /sbin/ldconfig
 
-
 %postun
 /sbin/ldconfig
 
