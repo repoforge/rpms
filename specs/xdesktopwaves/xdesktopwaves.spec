@@ -22,11 +22,9 @@ stirring up the water.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|' Makefile
-
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} LFLAGS="-L/usr/X11R6/%{_lib}"
 
 
 %install
@@ -48,6 +46,10 @@ stirring up the water.
 
 
 %changelog
+* Wed Dec  1 2004 Matthias Saou <http://freshrpms.net/> 1.1-1
+- Remove i386 exclusivearch.
+- Add LFLAGS override to fix linking on 64bit archs.
+
 * Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 
