@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/etherape/etherape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap
+BuildRequires: libpcap, gcc-c++
 
 %description
 Etherape is a graphical network monitor for Unix modeled after
