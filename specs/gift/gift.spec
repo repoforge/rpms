@@ -16,7 +16,7 @@ URL: http://gift.sf.net/
 Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make
+BuildRequires: gcc, make, gcc-c++
 
 %description
 giFT is a modular daemon capable of abstracting the communication between
@@ -42,30 +42,30 @@ make install-strip \
 ls -l ${DESTDIR}/usr/lib/libgift.so*
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc README AUTHORS COPYING HACKING INSTALL QUICKSTART TODO
-/usr/bin/gift-setup
-/usr/bin/giftd
-/usr/include/libgift
-/usr/lib/libgift.la
-/usr/lib/libgift.so
-/usr/lib/libgift.so.0
-/usr/lib/libgift.so.0.0.0
-/usr/lib/libgiftproto.la
-/usr/lib/libgiftproto.so
-/usr/lib/libgiftproto.so.0
-/usr/lib/libgiftproto.so.0.0.0
-/usr/lib/pkgconfig/libgift.pc
-/usr/share/giFT/giftd.conf.template
-/usr/share/giFT/mime.types
-/usr/share/giFT/ui/ui.conf.template
-/usr/share/man/man1/giftd.1.gz
+%{_bindir}/gift-setup
+%{_bindir}/giftd
+%{_includedir}/libgift
+%{_libdir}/libgift.la
+%{_libdir}/libgift.so
+%{_libdir}/libgift.so.0
+%{_libdir}/libgift.so.0.0.0
+%{_libdir}/libgiftproto.la
+%{_libdir}/libgiftproto.so
+%{_libdir}/libgiftproto.so.0
+%{_libdir}/libgiftproto.so.0.0.0
+%{_libdir}/pkgconfig/libgift.pc
+%{_datadir}/giFT/giftd.conf.template
+%{_datadir}/giFT/mime.types
+%{_datadir}/giFT/ui/ui.conf.template
+%{_datadir}/man/man1/giftd.1.gz
 
 %changelog
 * Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.11.5-1.dries
