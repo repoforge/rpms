@@ -1,0 +1,29 @@
+Index: configure.in
+===================================================================
+RCS file: /home/cvspublic/httpd-test/flood/configure.in,v
+retrieving revision 1.27
+diff -u -r1.27 configure.in
+--- configure.in	11 Sep 2002 14:45:23 -0000	1.27
++++ configure.in	3 Dec 2002 16:04:59 -0000
+@@ -80,7 +80,7 @@
+     [#if (OPENSSL_VERSION_NUMBER < 0x0090600fL)
+      #error You need OpenSSL version 0.9.6 or greater.
+      #endif],,
+-    AC_MSG_ERROR('OpenSSL version 0.9.6 or greater required.'))
++    AC_MSG_WARN('My OpenSSL version detection is broken.'))
+   
+   AC_CHECK_LIB(crypto, SHA1, LIBS="$LIBS -lcrypto")
+   dnl BIO_next only appears in newer versions of OpenSSL
+--- configure.in.orig	2003-07-29 15:26:40.000000000 +0200
++++ configure.in	2003-07-29 15:26:59.000000000 +0200
+@@ -49,8 +49,8 @@
+   dnl Prefix these to the list, so they override env var settings
+   CPPFLAGS="-I${fl_openssl_prefix}/include $CPPFLAGS"
+   dnl We may need to also include $fl_openssl_prefix/openssl
+-  LDFLAGS="-L${fl_openssl_prefix}/lib $LDFLAGS"
+-  LIBTOOL_LDFLAGS="-R${fl_openssl_prefix}/lib"
++#  LDFLAGS="-L${fl_openssl_prefix}/lib $LDFLAGS"
++#  LIBTOOL_LDFLAGS="-R${fl_openssl_prefix}/lib"
+ fi])
+ 
+ dnl If the OS provides random support, use it.  Otherwise, we'll be 

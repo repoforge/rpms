@@ -1,0 +1,235 @@
+/* $Id: muhrc.in,v 1.18 2002/05/08 16:49:15 leemh Exp $
+    ## 
+  #####  ###    ##      ##   ##     ##   ##
+ ### ## ## ##   ##      ##   ##     ##  ####
+###  ####   ##  ##      ##  #########   ###
+ #    ##    ##   ###  ###   ##    ##    
+            #     ######   ##      ##   ##
+                                        #
+             CONFIGURATION FILE
+
+ muh @VERSION@ (c)1998-2000 by Sebastian Kienzl <zap@riot.org>
+ 
+ muh will try to read this file from is $HOME/.muh/muhrc by default.
+
+ notes:
+  strings always have to be inbetween ""!
+  don't forget a ; after each instruction!
+  comments are in c/c++ and bash-style!
+*/
+
+/*************************************
+ ********* REQUIRED SETTINGS *********
+ *************************************/
+
+/* nickname <string>: your nickname on irc */
+nickname = "muuh";
+
+/* altnickname <string>: alternative nickname if nickname is occupied
+ *                       if this one is occupied as well muh will use a
+ *                       random nickname
+ */
+altnickname = "muuh-";
+
+/* realname <string>: your 'real' name on irc */
+realname = "John Doe";
+
+/* username <string>: your ident (incase identd ain't running) */
+username = "muh";
+
+/* listenhost: host muh uses to listen on
+ *
+ * if you are compiled with ipv6 and need this to listen on an ipv4 port,
+ * you must use an IP in the form ::ffff:127.0.0.1
+ */
+// listenhost = "::ffff:127.0.0.1";
+
+/* listenport <number>: the port muh will wait for incoming connections */
+listenport = 9999;
+
+/* password <string>: the password the connection to muh is secured with
+ *                    if it is 13 chars in length muh assumes it's crypted
+ *                    (try ./muh -c)
+ */
+password = "blah";
+
+/* servers: muh's server-list
+ *
+ * example:
+ * servers {
+ *	"irc.myfavserver.net",
+ *	"irc.foo.bar":6666,
+ *	"localhost":6668:"password"
+ * };
+ * - default-port is 6667
+ * - server-format: "server"[:port[:"password"]]
+ */
+servers {
+ 	"irc.myfavserver.net",
+	"irc.foo.bar":6666,
+	"localhost":6668:"password"
+};
+
+/*************************************
+ ********* OPTIONAL SETTINGS *********
+ *************************************/
+
+/* logging <boolean>: log private messages while no client is connected?
+ * (default true)
+ */
+// logging = false;
+
+/* channels <string>: channels to join when we first connect to a server.
+ *                    if leave below is set to true, these channels will
+ *                    also be joined when a client reconnects
+ */
+// channels = "#channel1,#channel2";
+
+/* leave <boolean>: leave channels when client disconnects?
+ * (default true)
+ */
+// leave = false;
+
+/* leavemsg <string>: this string will be /me'd to all channels
+ *                    when the client disconnects
+ * (default none)
+ */
+// leavemsg = "is leaving...";
+
+/* away <string>: people will receive this as a notice once if
+ *                no client is connected
+ */
+away = "i'm not here, your messages get logged.";
+
+/* getnick <boolean>: attempt to get the nickname specified with "nick"
+ *                    if occupied?
+ * (default true)
+ */
+// getnick = false;
+
+/* nevergiveup <boolean>: muh will never stop trying to connect somewhere 
+ *                        (even if all servers are disfunctional)
+ * (default false)
+ */
+// nevergiveup = true;
+
+/* rejoin <superboolean>: rejoin the channels after changing irc-server?
+ *                false will not rejoin
+ *		  true will rejoin the channels muh was in before changing
+ *		  config will rejoin those in the channels = ""; line
+ * (default false)
+ */
+// rejoin = true;
+
+/* bind <string>: host/ip muh uses for outgoing connections
+ * (default none)
+ */
+// bind = "::ffff:10.27.3.4";
+
+/* antiidle <boolean>: reset idle-time every 10 minutes?
+ * (default false)
+ */
+// antiidle = true;
+
+/* norestricted <boolean>: muh will jump to the next server if the
+ *                         connection is restricted
+ * (default false)
+ */
+// norestricted = true;
+
+/* forwardmsg <string>: muh will collect the messages within 3 minutes
+ *                      and pipe them into the program specified
+ * example:                       
+ * forwardmsg = "mail sms@blah.org";
+ * this will mail the messages to sms@blah.org
+ * (default none)
+ */
+// forwardmsg = "mail sms@blah.org";
+
+/* hosts: the hosts allowed to connect to muh
+ * example:
+ * hosts {
+ *     	"127.0.0.?" : yes,
+ *     	"*.trusted.dom" : yes,
+ *	"*" : no
+ * };
+ * this would allow connections from 127.0.0.? and *.trusted.dom only
+ *
+ * - wildcards are * and ?
+ * - default-match is always "yes"
+ * - muh tries to match the ip and (if resolvable) hostname
+ */
+// hosts {
+//     	"127.0.0.?" : yes,
+//     	"*.trusted.dom" : yes,
+//	"*" : no
+// };
+
+/* people: people allowed to message & notice muh
+ * example:
+ * people {
+ * 	"*.stupid.org" : no,
+ * 	"idiot*!*" : no,
+ *	"quite!*@annoying.com" : no
+ * };
+ * this would allow anyone except the hostmasks listed
+ *
+ * - wildcards are * and ?
+ * - default-match is always "yes"
+ */
+// people {
+//	"*.stupid.org" : no,
+//  	"idiot*!*" : no,
+//	"quite!*@annoying.com" : no
+// };
+
+/* log: log channel activity
+ * multiple log {}; entries are allowed
+ * multiple channels are supported in one log {}; entry
+ *
+ * types available are:
+ *	messages    - log notices/messages to a channel
+ *	muhclient   - log client disconnects/connects to the muh
+ *      modes       - log channel mode changes
+ *	joins       - log people joining the channel
+ *      exits       - log kicks/parts in the channel
+ *      quits       - log quits from channels
+ *      nickchanges - log nick changes
+ *      misc        - log topics/anything else
+ *      all         - log all of the above
+ *
+ * note: muh does not know when a user does a nickchange/quit what channel
+ *       they are on, so will log all quits/nickchanges to all logfiles
+ *       with them enabled.  its ugly, but its the best I could do.. :)
+ */
+// log {
+//	channel = "#goats";
+//	type = messages, muhclient, misc;
+//	logfile = "goats.log";
+// };
+
+/* multiple channels in one entry, or "all other channels" are supported.
+ * specific entries take precedence over the global entry.
+ * logentries are written to a logfile called "#channel.log"
+ */
+// log {
+// 	channel = "#foo,&bar,#meep";
+//	type = all;
+// };
+// log {
+//	channel = "*";
+//	type = messages, joins, exits, quits;
+// };
+ 
+/* dccbounce <boolean>: should muh bounce dcc's? (mirc resumes work, too)
+ * (default false)
+ */
+// dccbounce = true;
+
+/* dccbindclient <string>: host/ip to bind dcc-bounces clientsided
+ * (default none)
+ */
+// dccbindclient = "::ffff:10.0.0.1";
+
+
+// end of file

@@ -1,0 +1,38 @@
+--- doc/pinentry.info~	2003-02-07 19:33:02.000000000 +0200
++++ doc/pinentry.info	2003-02-08 23:48:55.000000000 +0200
+@@ -3,13 +3,12 @@
+ 
+ INFO-DIR-SECTION GNU Utilities
+ START-INFO-DIR-ENTRY
+-* gpg: (gnupg).            OpenPGP encryption and signing tool.
+-* gpgsm: (gnupg).          S/MIME encryption and signing tool.
++* PINEntry: (pinentry).    PIN or passphrase entry dialog.
+ END-INFO-DIR-ENTRY
+-   This file documents the use and the internals of the PINEnrty.
++   This file documents the use and the internals of the PINEntry.
+ 
+    This is edition 0.6.8, last updated 11 October 2002, of `The
+-`PINEnrty' Manual', for version 0.6.8.
++`PINEntry' Manual', for version 0.6.8.
+ 
+    Published by g10 Code GmbH
+ Remscheider Str. 22
+--- doc/pinentry.texi~	2002-10-11 17:33:34.000000000 +0300
++++ doc/pinentry.texi	2003-02-08 23:49:29.000000000 +0200
+@@ -60,13 +60,12 @@
+ @ifnottex
+ @dircategory GNU Utilities
+ @direntry
+-* gpg: (gnupg).            OpenPGP encryption and signing tool.
+-* gpgsm: (gnupg).          S/MIME encryption and signing tool.
++* PINEntry: (pinentry).    PIN or passphrase entry dialog.
+ @end direntry
+-This file documents the use and the internals of the PINEnrty.
++This file documents the use and the internals of the PINEntry.
+ 
+ This is edition @value{EDITION}, last updated @value{UPDATED}, of
+-@cite{The `PINEnrty' Manual}, for version @value{VERSION}.
++@cite{The `PINEntry' Manual}, for version @value{VERSION}.
+ @sp 1
+ Published by g10 Code GmbH@*
+ Remscheider Str. 22@*
