@@ -1,12 +1,9 @@
 # $Id$
 # Authority: matthias
 
-%{?_without_gstreamer:  %{expand: %%define gstreamer 0}}
-%{!?_without_gstreamer: %{expand: %%define gstreamer 1}}
-
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
-Version: 0.99.12
+Version: 0.99.15.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -33,7 +30,6 @@ Available rpmbuild rebuild options :
 --without : lirc
 
 
-%if %{gstreamer}
 %package gstreamer
 Summary: Movie player for GNOME 2 based on the GStreamer engine
 Group: Applications/Multimedia
@@ -48,7 +44,6 @@ complete keyboard navigation.
 
 Install this package to use totem with the GStreamer backend instead of the
 xine one. You can still use the xine backend by running "totem --xine".
-%endif
 
 
 %package -n mozilla-totem
@@ -83,7 +78,7 @@ watching and resizing live video.
 
 
 %build
-%if %{gstreamer}
+%if %{!?_without_gstreamer:1}0
 %configure \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --enable-gstreamer \
@@ -107,7 +102,7 @@ watching and resizing live video.
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %{name}
-%if %{gstreamer}
+%if %{!?_without_gstreamer:1}0
 # Install the GStreamer version
 %{__install} -m 755 src/%{name}-gstreamer %{buildroot}%{_bindir}/%{name}-gstreamer
 # Rename the xine version
@@ -147,7 +142,7 @@ gconftool-2 --makefile-install-rule \
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/%{name}
 %{_bindir}/%{name}-video-thumbnailer
-%if %{gstreamer}
+%if %{!?_without_gstreamer:1}0
 %{_bindir}/%{name}-xine
 %endif
 %{_libdir}/bonobo/servers/*.server
@@ -162,7 +157,7 @@ gconftool-2 --makefile-install-rule \
 %exclude %{_datadir}/%{name}/vanity.*
 %{_mandir}/man1/%{name}.1*
 
-%if %{gstreamer}
+%if %{!?_without_gstreamer:1}0
 %files gstreamer
 %defattr(-, root, root, 0755)
 %{_bindir}/%{name}-gstreamer
@@ -185,6 +180,9 @@ gconftool-2 --makefile-install-rule \
 
 
 %changelog
+* Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.99.15.1-1
+- Updated to release 0.99.15.1.
+
 * Tue Jun  8 2004 Matthias Saou <http://freshrpms.net/> 0.99.12-1
 - Update to 0.99.12.
 - Split off vanity at last.
