@@ -16,7 +16,7 @@ Source: http://dl.sf.net/stardict/stardict-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.2.0
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, gcc-c++
 
 Requires(post): scrollkeeper
 

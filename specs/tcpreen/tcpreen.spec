@@ -16,6 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/tcpreen/tcpreen-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 A tool to monitor and analyse data transmitted between a client and a server

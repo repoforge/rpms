@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: scrollkeeper, pkgconfig, libgnome-devel, libgnomecanvas-devel, atk-devel
 BuildRequires: libbonoboui-devel, pango-devel, gnome-panel, libgnomeui-devel
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, gnome-panel-devel
 
 Requires(post): scrollkeeper
 

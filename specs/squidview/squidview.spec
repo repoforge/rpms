@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.rillion.net/squidview/squidview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel
+BuildRequires: ncurses-devel, gcc-c++
 
 %description
 Squidview is an interactive program which monitors squid logs and

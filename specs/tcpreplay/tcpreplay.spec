@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet >= 1.1.1, tcpdump
+BuildRequires: libnet >= 1.1.1, tcpdump, libpcap
 
 %description
 Tcpreplay is a tool to replay captured network traffic.  Currently, tcpreplay

@@ -15,6 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.circlemud.org/pub/jelson/tcpflow/tcpflow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libpcap
 
 %description
 tcpflow is a program that captures data transmitted as part of TCP

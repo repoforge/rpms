@@ -22,7 +22,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.xm1math.net/texmaker/texmaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 3.0, kdelibs-devel
+BuildRequires: qt-devel >= 3.0, kdelibs-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
