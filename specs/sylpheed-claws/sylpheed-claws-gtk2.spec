@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor rpmforge
-%define extraver       cvs134.1
+%define extraver       cvs146.13
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
