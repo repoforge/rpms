@@ -10,8 +10,8 @@
 
 Summary: Mozilla Firefox web browser
 Name: firefox
-Version: 0.9.2
-Release: 5
+Version: 0.9.3
+Release: 0
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -19,6 +19,7 @@ URL: http://www.mozilla.org/projects/firefox/
 Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-%{version}-source.tar.bz2
 Source1: firefox-rebuild-databases.pl.in
 Source2: firefox.png
+Source3: bookmarks.html
 Patch0: firefox-0.9.2-gcc34.patch
 Patch1: firefox-0.9.2-extensions.patch
 Patch2: mozilla-default-plugin-less-annoying.patch
@@ -40,89 +41,17 @@ Mozilla Firefox is an open-source web browser, designed for standards
 compliance, performance and portability.
 
 %prep
-%setup -n mozilla
+%setup -q -n mozilla
 %patch0 -p1 -b .gcc34
 %patch1 -p0 -b .extensions
 %patch2 -p1 -b .plugin
 %patch3 -b .nsformhistory
-
-%{__cat} <<EOF >bookmarks.html
-<!DOCTYPE NETSCAPE-Bookmark-file-1>
-<!-- This is an automatically generated file.
-It will be read and overwritten.
-Do Not Edit! -->
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
-<TITLE>Bookmarks</TITLE>
-<H1>Bookmarks</H1>
-
-<DL><p>
-    <DT><H3 PERSONAL_TOOLBAR_FOLDER="true" ID="NC:PersonalToolbarFolder">Personal Toolbar Folder</H3>
-    <DL><p>
-        <DT><A HREF="http://dag.wieers.com/apt/">Dag RPM Repository</A>
-        <DT><A HREF="http://dries.studentenweb.org/apt/">Dries RPM Repository</A>
-        <DT><A HREF="http://freshrpms.net/">FreshRPMS</A>
-        <DT><A HREF="http://www.google.com/">Google</A>
-        <DT><A HREF="http://www.redhat.com/">Red Hat</A>
-    </DL><p>
-    <HR>
-    <DT><H3>RPMS</H3>
-    <DL><p>
-        <DT><A HREF="http://dag.wieers.com/apt/">Dag RPM Repository</A>
-        <DT><A HREF="http://dries.studentenweb.org/apt/">Dries RPM Repository</A>
-        <DT><A HREF="http://freshrpms.net/">FreshRPMS</A>
-        <DT><A HREF="http://newrpms.sunsite.dk/">NewRPMS</A>
-        <DT><A HREF="http://rpm.pbone.net/">RPM PBone search</A>
-        <DT><A HREF="http://www.rpmseek.com/">RPMSeek search</A>
-    </DL><p>
-    <DT><H3>News</H3>
-    <DL><p>
-        <DT><A HREF="http://freshmeat.net/">Freshmeat.net</A>
-        <DT><A HREF="http://news.google.com/">Google news</A>
-        <DT><A HREF="http://linuxtoday.com/">LinuxToday news</A>
-        <DT><A HREF="http://lwn.net/">Linux Weekly News</A>
-        <DT><A HREF="http://slashdot.org/">Slashdot: News for nerds, stuff that matters</A>
-        <DT><A HREF="http://www.theregister.co.uk/">The Register</A>
-    </DL><p>
-    <DT><H3>Mozilla Project</H3>
-    <DL><p>
-        <DT><A HREF="http://www.mozilla.org/">The Mozilla Organization</A>
-        <DT><A HREF="http://www.mozilla.org/get-involved.html">Getting Involved</A>
-        <DT><A HREF="http://www.mozilla.org/feedback.html">Feedback</A>
-        <DT><A HREF="http://www.mozilla.org/docs/">Documentation</A>
-        <DT><A HREF="http://www.mozillazine.org/">MozillaZine</A>
-    </DL><p>
-    <DT><H3>Firefox Web Browser</H3>
-    <DL><p>
-        <DT><A HREF="http://texturizer.net/firefox/">Firefox Help</A>
-        <DT><A HREF="http://www.mozillazine.org/forums/?c=4">Firefox Forum</A>
-        <DT><A HREF="http://plugindoc.mozdev.org/faqs/">Firefox Plugin FAQ</A>
-        <DT><A HREF="http://www.mozilla.org/projects/firefox/">Firefox Website</A>
-        <DT><a HREF="http://texturizer.net/firefox/extensions.html">Firefox Extensions</A>
-        <DT><a HREF="http://texturizer.net/firefox/themes.html">Firefox Themes</A>
-    </DL><p>
-    <HR>
-    <DT><H3>Quick Searches</H3>
-    <DL><p>
-        <DT><A HREF="http://devedge.netscape.com/viewsource/2002/bookmarks/">Using Mozilla Firefox Quick Searches</A>
-        <DT><A HREF="http://www.google.com/search?q=%s" SHORTCUTURL="google">Google Quicksearch</A>
-        <DT><A HREF="http://www.google.com/search?q=%s&btnI=I'm+Feeling+Lucky" SHORTCUTURL="goto">I'm Feeling Lucky Quicksearch</A>
-        <DT><A HREF="http://dictionary.reference.com/search?q=%s" SHORTCUTURL="dict">Dictionary.com Quicksearch</A>
-        <DT><A HREF="http://www.webster.com/cgi-bin/dictionary?va=%s" SHORTCUTURL="webster">Dictionary Quicksearch</A>
-        <DT><A HREF="http://www.google.com/search?&q=stocks:%s" SHORTCUTURL="quot">Stock Symbol Quicksearch</A>
-        <DT><A HREF="http://freshmeat.net/search?q=%s" SHORTCUTURL="freshmeat">Freshmeat Quicksearch</A>
-        <DT><A HREF="http://us.imdb.com/Find?select=All&for=%s" SHORTCUTURL="movie">Movies Quicksearch</A>
-        <DT><A HREF="http://be2.php.net/manual-lookup.php?pattern=%s" SHORTCUTURL="php">PHP Documentation Quicksearch</A>
-    </DL><p>
-    <HR>
-</DL><p>
-EOF
 
 ### FIXME: Shouldn't the default firefox config be part of original source ?
 %{__cat} <<EOF >.mozconfig
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-composer
 ac_add_options --disable-debug
-ac_add_options --disable-freetype2
 ac_add_options --disable-installer
 ac_add_options --disable-jsd
 ac_add_options --disable-ldap
@@ -249,8 +178,8 @@ export MOZ_PHOENIX=1
 
 %{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
-%{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/
-%{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/US/
+%{__install} -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/
+%{__install} -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/US/
 
 %{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 %{__perl} -pi -e 's|\$MOZ_DIST_BIN|%{_libdir}/firefox|g;' %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
@@ -298,6 +227,10 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Fri Aug  6 2004 Matthias Saou <http://freshrpms.net/> 0.9.3-0
+- Update to 0.9.3.
+- Took the bookmarks.html file out of the spec and added entries to it.
+
 * Tue Aug 03 2004 Dag Wieers <dag@wieers.com> - 0.9.2-5
 - Added patch to fix crashes on x86_64. (Nicholas Miell)
 
