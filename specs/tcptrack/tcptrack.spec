@@ -15,7 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.rhythm.cx/~steve/devel/tcptrack/release/%{version}/source/tcptrack-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, ncurses-devel
+BuildRequires: gcc-c++, ncurses-devel, libpcap
 
 %description 
 tcptrack is a sniffer which displays information about TCP connections it
