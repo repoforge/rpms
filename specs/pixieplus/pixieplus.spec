@@ -13,6 +13,7 @@ URL: http://www.mosfet.org
 # license is GPL i think
 
 BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, libungif-devel, libtiff-devel, qt-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel
+%{?fc2:BuildRequires:libselinux-devel}
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
