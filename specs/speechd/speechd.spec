@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Darxus <darxus@chaosreigns.com>
 
@@ -45,6 +44,7 @@ written to it.
 	SPEECHD_FIFO="%{buildroot}/dev/speech"
 
 %files
+%defattr(-, root, root, 0755)
 %doc AUTHORS CHANGELOG COPYING INSTALL README TODO
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*
