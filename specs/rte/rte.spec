@@ -3,8 +3,8 @@
 
 Summary: Real Time software audio/video Encoder library
 Name: rte
-Version: 0.5.1
-Release: 4
+Version: 0.5.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -61,6 +61,7 @@ needed to develop programs that will use RTE.
 %postun
 /sbin/ldconfig
 
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO
@@ -68,7 +69,7 @@ needed to develop programs that will use RTE.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/html
+%doc doc/html/*
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -76,6 +77,9 @@ needed to develop programs that will use RTE.
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 0.5.2-1
+- Update to 0.5.2.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.5.1-4
 - Rebuild for Fedora Core 2.
 
