@@ -5,9 +5,15 @@
 # Screenshot: http://moagg.sourceforge.net/screenshots/blackhole.png
 # ScreenshotURL: http://moagg.sourceforge.net/screenshots.php
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
 Summary: Mother of all Gravity Games
 Name: moagg
-Version: 0.11
+Version: 0.12
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -22,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel 
 BuildRequires: paragui-devel, freetype-devel, gcc-c++, SDL_image-devel
 BuildRequires: desktop-file-utils, zlib-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: SDL, SDL_gfx, SDL_mixer, paragui, freetype, SDL_image, zlib
 
 %description
@@ -57,22 +64,29 @@ EOF
 %makeinstall
 %{__rm} -Rf %{buildroot}%{_datadir}/doc/moagg
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor net                  \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
-
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/applnk/Games/%{name}.desktop
+%else
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor net                  \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		%{name}.desktop
+%endif
 
 %files
 %defattr(-,root,root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO doc moagg.dxy 
 %{_bindir}/moagg
 %{_datadir}/moagg
-%{_datadir}/applications/*.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
+%{?_without_freedesktop:%{_datadir}/applnk/Games/*.desktop}
 %{_mandir}/man6/moagg*
 
 %changelog
+* Mon Jul 12 2004 Dries Verachtert <dries@ulyssis.org> 0.12-1
+* Update to version 0.12.
+
 * Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> 0.11-1
 - Update to version 0.11.
 
