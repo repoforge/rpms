@@ -15,8 +15,10 @@ Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
 Patch: brush_1x1_kolourpaint-1.0.1.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
-#Requires:
-#BuildRequires:
+BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
+
+# Screenshot: http://kolourpaint.sourceforge.net/screenshot0_big.png
+# ScrenshotURL: http://kolourpaint.sourceforge.net/screenshots.html
 
 %description
 KolourPaint is a free, easy-to-use paint program for KDE. It aims to be
