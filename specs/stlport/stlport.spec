@@ -73,4 +73,3 @@ you will need to install %{name}-devel.
 %changelog
 * Fri May 21 2004 Dries Verachtert <dries@ulyssis.org> 4.6.2-1
 - Initial package.
-
