@@ -3,12 +3,12 @@
 
 Summary: Extensible Binary Meta Language library
 Name: libebml
-Version: 0.7.0
+Version: 0.7.1
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.matroska.org/
-Source: http://www.bunkus.org/videotools/mkvtoolnix/sources/libebml-%{version}.tar.bz2
+Source: http://dl.matroska.org/downloads/libebml/libebml-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -71,6 +71,9 @@ use the Extensible Binary Meta Language.
 
 
 %changelog
+* Tue Aug  3 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-1
+- Update to 0.7.1.
+
 * Thu Jul  1 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-1
 - Initial RPM release.
 
