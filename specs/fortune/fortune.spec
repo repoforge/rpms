@@ -57,7 +57,9 @@ Source18: http://eol.init1.nl/linux/SP-0.1.tar.gz
 # http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 # homer simpson quotes
 Source19: http://www.cs.indiana.edu/~crcarter/homer/homer-quotes.tar.gz
-# 
+# Osho quotes
+# http://www.geocities.com/avitiw/fortune.html
+Source20: http://www.geocities.com/avitiw/fortune-osho.tar.gz
 
 Obsoletes: fortune-mod
 
@@ -93,6 +95,7 @@ wisdom each time they log in.
 %setup -D -T -a 17 -n fortune-mod-9708
 %setup -D -T -a 18 -n fortune-mod-9708
 %setup -D -T -a 19 -n fortune-mod-9708
+%setup -D -T -a 20 -n fortune-mod-9708
 
 %if %{DisableOffensiveFortunes}
 %patch0 -p1 -b .disable-offensive1
@@ -431,6 +434,15 @@ http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 Enkele fortune quotes van Homer Simpson, gedownload van 
 http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 
+%package osho
+Summary: Fortune files with quotes from the spiritual guru Osho
+Group: Amusements/Games
+Requires: fortune = %{version}-%{release}
+
+%description osho
+Fortune files with quotes from the spiritual guru Osho, found at:
+http://www.geocities.com/avitiw/fortune.html
+
 %files
 %defattr(-,root,root,0755)
 %doc README ChangeLog TODO
@@ -560,8 +572,16 @@ http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 %defattr(-,root,root,0755)
 %{_datadir}/games/fortune/homer*
 
+%files osho
+%defattr(-,root,root,0755)
+%{_datadir}/games/fortune/osho*
+
 
 %changelog
+* Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0-29
+- added quotes found on freshmeat: quotes from the spiritual 
+  guru Osho. 
+
 * Thu Apr 22 2004 Dries Verachtert <dries@ulyssis.org> 1.0-28
 - spec cleanup, fix file ownerships
 
