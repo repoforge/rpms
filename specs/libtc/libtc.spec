@@ -1,18 +1,19 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Måns Rullgård <mru@kth.se>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
+### configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
 Summary: A collection of useful functions for C programming.
 Name: libtc
-Version: 1.0.3
+Version: 1.1.0
 Release: 0
-License: GPL
+License: MIT/X11
 Group: System Environment/Libraries
 URL: http://libtc.sf.net/
 
@@ -80,6 +81,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 1.1.0-0
+- Updated to release 1.1.0.
+
 * Sun Nov 23 2003 Dag Wieers <dag@wieers.com> - 1.0.3-0
 - Updated to release 1.0.3.
 
