@@ -10,15 +10,13 @@ License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
-Source1: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz.sig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
+Requires: apt >= 0.5.4, usermode
 Requires(pre): scrollkeeper
 Requires(postun): scrollkeeper
 BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0
 BuildRequires: gtk2-devel, libglade2-devel >= 2.0
-BuildRequires: gcc-c++, libstdc++-devel, docbook-utils, gettext, xmlto
-BuildRequires: scrollkeeper
+BuildRequires: gcc-c++, docbook-utils, gettext, xmlto, scrollkeeper
 BuildRequires: perl(XML::Parser)
 
 %description
@@ -52,12 +50,13 @@ EOF
 [Desktop Entry]
 Name=Synaptic Package Manager
 Comment=Install and remove applications
+Exec=synaptic
 Icon=synaptic.png
-Exec=%{_bindir}/synaptic
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;Application;SystemSetup;
+Encoding=UTF-8
+Categories=GNOME;Application;SystemSetup;X-Red-Hat-Base;
 EOF
 
 
@@ -71,19 +70,17 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__ln_s} -f %{_bindir}/consolehelper %{buildroot}%{_bindir}/synaptic
+# Install the consolehelper symlink
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__ln_s} consolehelper %{buildroot}%{_bindir}/synaptic
 
-%{__install} -D -m0644 synaptic.apps %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
-%{__install} -D -m0644 synaptic.pam %{buildroot}%{_sysconfdir}/pam.d/synaptic
+# Install the consolehelper required files
+%{__install} -D -m 0644 synaptic.apps \
+    %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
+%{__install} -D -m 0644 synaptic.pam \
+    %{buildroot}%{_sysconfdir}/pam.d/synaptic
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor "gnome" --delete-original \
-	--add-category X-Red-Hat-Base                   \
-	--dir %{buildroot}%{_datadir}/applications      \
-	%{buildroot}%{_datadir}/applications/synaptic.desktop
-
-# Remove legacy menu entries
+# Remove legacy menu entry
 %{__rm} -f %{buildroot}%{_sysconfdir}/X11/sysconfig/synaptic.desktop
 
 
@@ -105,7 +102,7 @@ desktop-file-install --vendor "gnome" --delete-original \
 %{_sysconfdir}/security/console.apps/synaptic
 %{_bindir}/synaptic
 %{_sbindir}/synaptic
-%{_datadir}/applications/gnome-synaptic.desktop
+%{_datadir}/applications/synaptic.desktop
 %{_datadir}/gnome/help/synaptic/
 %{_datadir}/omf/synaptic/
 %{_datadir}/pixmaps/synaptic.png
