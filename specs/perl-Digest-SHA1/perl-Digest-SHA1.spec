@@ -3,11 +3,14 @@
 
 # ExcludeDist: el4
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name Digest-SHA1
 
 Summary: Digest-SHA1 Perl module
 Name: perl-Digest-SHA1
-Version: 2.07
+Version: 2.10
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -36,19 +39,16 @@ characters long. A base64 digest will be 27 characters long.
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,9 +57,15 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README fip180-1*
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%dir %{perl_vendorarch}/Digest/
+%{perl_vendorarch}/Digest/SHA1.pm
+%dir %{perl_vendorarch}/auto/Digest/
+%{perl_vendorarch}/auto/Digest/SHA1/
 
 %changelog
+* Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 2.10-1
+- Cosmetic cleanup.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 2.07-1
 - Updated to release 2.07.
 
