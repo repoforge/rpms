@@ -7,6 +7,37 @@
 
 %define real_version 0.1beta5
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
+%{?fc2:%define _without_qt_config 1}
+%{?fc1:%define _without_qt_config 1}
+%{?el3:%define _without_qt_config 1}
+%{?rh9:%define _without_qt_config 1}
+%{?rh8:%define _without_qt_config 1}
+%{?rh7:%define _without_qt_config 1}
+%{?el2:%define _without_qt_config 1}
+%{?rh6:%define _without_qt_config 1}
+%{?yd3:%define _without_qt_config 1}
+
+
 Summary: Integrated environment for managing data.
 Name: kexi
 Version: 0.1
@@ -22,13 +53,16 @@ Source: http://ftp.scarlet.be/pub/kde/unstable/apps/KDE3.x/office/kexi-%{real_ve
 Source2: http://www.kexi-project.org/fixes/keximainwindowimpl.cpp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel, 
-BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: libpng-devel, libart_lgpl-devel 
+BuildRequires: arts-devel, gcc-c++, gettext 
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 BuildRequires: postgresql-devel, mysql-devel
 BuildRequires: sqlite-devel, libpqxx-devel
-%{?fc2:BuildRequires: libselinux-devel}
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_qt_config:BuildRequires: qt-config}
 
 %description
 Kexi is an integrated environment for managing data. It helps in creating
