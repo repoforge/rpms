@@ -1,18 +1,20 @@
 # $Id$
-
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
 
-%define _bindir /usr/X11R6/bin
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
 %define real_version 1.11+w01
 
 Summary: Space arcade game
 Name: xkobo
 Version: 1.11
 Release: 3
-Group: Amusements/Games
 License: GPL
+Group: Amusements/Games
 URL: http://seki.math.hokudai.ac.jp:20080/xkobo-current.html
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -32,15 +34,15 @@ have hours and hours of fun with this game.
 %setup -n %{name}-%{real_version}
 %patch0 -p1
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >xkobo.desktop
 [Desktop Entry]
 Name=Xkobo
 Comment=Destroy enemy ships and enemy constructions
+Exec=xkobo
 Icon=redhat-games.png
-Exec=%{_bindir}/xkobo
 Terminal=false
 Type=Application
-Categories=GNOME;Application;Game;ArcadeGame;
+Categories=Application;Game;ArcadeGame;
 EOF
 
 %build
@@ -49,21 +51,18 @@ xmkmf -a
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0775 %{buildroot}%{_localstatedir}/lib/games/xkobo/ \
-			%{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man6/
-%{__install} -m2755 xkobo %{buildroot}%{_bindir}
-%{__install} -m0644 xkobo.man %{buildroot}%{_mandir}/man6/xkobo.6
+%{__install} -D -m2755 xkobo %{buildroot}%{_bindir}/xkobo
+%{__install} -D -m0644 xkobo.man %{buildroot}%{_mandir}/man6/xkobo.6
+%{__install} -d -m0775 %{buildroot}%{_localstatedir}/lib/games/xkobo/
 
-%if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Games/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Games/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 xkobo.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xkobo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-%{name}.desktop
+		xkobo.desktop
 %endif
 
 %clean
@@ -74,11 +73,9 @@ xmkmf -a
 %doc CHANGES COPYING README
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Games/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/xkobo.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/net-xkobo.desktop}
+
 %defattr(-, root, games, 0775)
 %{_localstatedir}/lib/games/xkobo/
 
