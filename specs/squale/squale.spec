@@ -5,8 +5,8 @@
 
 Summary: Persistent SQL database connection libarary and daemon
 Name: squale
-Version: 0.1.1
-Release: 2
+Version: 0.1.2
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://squale.sourceforge.net/
@@ -133,6 +133,9 @@ fi
 
 
 %changelog
+* Tue Jan  4 2005 Matthias Saou <http://freshrpms.net/> 0.1.2-1
+- Update to 0.1.2.
+
 * Tue Nov 30 2004 Matthias Saou <http://freshrpms.net/> 0.1.1-1
 - Changed python to be conditional, and disable on rh7.
 

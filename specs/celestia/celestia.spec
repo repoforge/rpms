@@ -12,7 +12,7 @@ Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
 Patch: celestia-1.3.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel, gtkglext-devel, freeglut-devel
-BuildRequires: libpng-devel, libjpeg-devel
+BuildRequires: libpng-devel, libjpeg-devel, gcc-c++
 
 %description
 Celestia is a free real-time space simulation that lets you experience our

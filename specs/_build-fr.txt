@@ -111,6 +111,7 @@ libmpeg3
 libshout
 libsidplay x (c++)
 # libtheora
+libXvMCW
 linux_logo
 lirc
 lmarbles
@@ -123,6 +124,7 @@ metakit
 * portaudio
 mixxx
 mjpegtools
+mpeg4ip
 mpg321
 mplayer
 mplayer-fonts O
@@ -157,6 +159,8 @@ rar O
 rpmlint o
 rrdtool
 rte
+snes9express
+snes9x
 sqlite
 squale
 starfighter
@@ -189,6 +193,7 @@ xmms-musepack
 xmms-speex
 xmms-wma
 xmule
+xorp
 xplanet
 xplanet-maps O
 xrick

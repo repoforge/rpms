@@ -11,18 +11,18 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.89
-Release: %{?rcver:0.%{rcver}.}1
+Version: 0.90
+Release: %{?rcver:0.%{rcver}.}0
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 0.89 - 26/11/2004
 Source21: http://www.mameworld.net/highscore/uhsdat089.zip
-# http://www.arcade-history.com/ 0.89b - 28/11/2004
-Source22: http://www.arcade-history.com/download/history0_89b.zip
-# http://www.mameworld.net/mameinfo/ 0.89u3 - 08/12/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo089u3.zip
-# http://www.mameworld.net/catlist/ 0.89 - 25/11/2004
+# http://www.arcade-history.com/ 0.90 - 04/01/2005
+Source22: http://www.arcade-history.com/download/history0_90.zip
+# http://www.mameworld.net/mameinfo/ 0.90 - 05/01/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo090.zip
+# http://www.mameworld.net/catlist/ 0.89u6 - 18/12/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -247,6 +247,9 @@ popd
 
 
 %changelog
+* Fri Jan  7 2005 Matthias Saou <http://freshrpms.net/> 0.90-0
+- Update to today's CVS code (pre 0.90 xmame final release).
+
 * Thu Dec  9 2004 Matthias Saou <http://freshrpms.net/> 0.89-1
 - Update to 0.89 final.
 - Remove no longer needed libGL patch.

@@ -12,6 +12,7 @@ Source1: http://dl.sf.net/smooth-engine/smooth-themes-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.4.0, gtk+
 BuildRequires: gtk2-devel >= 2.4.0, gtk+-devel >= 1.2.9, gdk-pixbuf-devel
+BuildRequires: gcc-c++
 
 %description
 The Smooth Theme Engine is a simple theme engine intended to be smooth, fast,
