@@ -3,8 +3,8 @@
 
 Summary: rewrite of the xawtv webcam app, which adds imlib2 support
 Name: camE
-Version: 1.7
-Release: 2
+Version: 1.8
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 Source: http://linuxbrit.co.uk/downloads/camE-%{version}.tar.gz
@@ -43,7 +43,10 @@ thus many new possibilities.
 
 
 %changelog
-* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
+* Fri Jun 25 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
+- Update to 1.8.
+
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.7-2
 - Rebuilt for Fedora Core 2.
 
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.7-2
