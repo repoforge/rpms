@@ -2,11 +2,11 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
-%define cvs 20040802
+#define cvs 20040802
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.7.2
+Version: 0.7.3
 Release: 1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
@@ -35,8 +35,6 @@ commands for fast navigating and editing inside the movie.
 
 %prep
 %setup
-# Fix path for the icon
-%{__perl} -pi.orig -e 's|(^Icon)=.*|$1=%{_datadir}/kino/kino.png|' kino.desktop
 
 
 %build
@@ -68,12 +66,16 @@ commands for fast navigating and editing inside the movie.
 %{_bindir}/*
 %{_includedir}/kino/
 %{_libdir}/hotplug/kino/
-%{_datadir}/kino/
 %{_datadir}/applications/kino.desktop
+%{_datadir}/kino/
+%{_datadir}/pixmaps/kino.png
 %{_mandir}/man1/*
 
 
 %changelog
+* Mon Aug 16 2004 Matthias Saou <http://freshrpms.net> 0.7.3-1
+- Update to 0.7.3.
+
 * Mon Aug  2 2004 Matthias Saou <http://freshrpms.net> 0.7.2-1.20040802
 - Update to today's CVS tree to fix various bugs.
 
