@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 
 Summary: Compiler for the Scheme programming language
@@ -14,7 +13,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: ftp://ftp-sop.inria.fr/mimosa/fp/Bigloo/bigloo%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Bigloo is a Scheme implementation devoted to one goal: enabling Scheme based
@@ -25,10 +24,6 @@ Bigloo compiles Scheme modules. It delivers small and fast stand alone
 binary executables. Bigloo enables full connections between Scheme and C
 programs, between Scheme and Java programs, and between Scheme and C#
 programs.
-
-The Bigloo run-time system and the libraries are distributed under the terms
-of the GNU Library General Public License. The compiler and the tools are 
-distributed under the terms of the Gnu Public License.
 
 %prep
 %setup -n bigloo%{version}
@@ -47,15 +42,15 @@ distributed under the terms of the Gnu Public License.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
-mv %{buildroot}/usr/doc/bigloo-2.6d bigloo-docs
-mv %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigloo
+%{__mv} -f %{buildroot}%{_prefix}/doc/bigloo-2.6d rpm-doc
+%{__mv} -f %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigloo
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README bigloo-docs
+%doc README rpm-doc/*
 %{_bindir}/*
 %{_libdir}/bigloo
 %{_datadir}/info/bigloo*
