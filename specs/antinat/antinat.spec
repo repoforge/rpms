@@ -8,8 +8,8 @@
 
 Summary: SOCKS4 and SOCKS5 compliant SOCKS server
 Name: antinat
-Version: 0.70
-Release: 0
+Version: 0.71
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://yallara.cs.rmit.edu.au/~malsmith/products/antinat/
@@ -48,11 +48,6 @@ you will need to install %{name}-devel.
 %install
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/antinat-%{version}/*/*.{a,la} \
-		%{buildroot}%{_libdir}/antinat-%{version}/*/*/*.{a,la} \
-		%{buildroot}%{_libdir}/antinat-%{version}/*/*/*/*.{a,la} \
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -63,15 +58,21 @@ you will need to install %{name}-devel.
 %config(noreplace) %{_sysconfdir}/antinat.conf
 %{_bindir}/*
 %{_libdir}/*.so*
-%{_libdir}/antinat-%{version}/
+%{_libdir}/antinat-%{version}/*.so.
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
 %{_includedir}/*.h
 %exclude %{_libdir}/*.la
+%exclude %{_libdir}/antinat-%{version}/*/*.{a,la}
+%exclude %{_libdir}/antinat-%{version}/*/*/*.{a,la}
+%exclude %{_libdir}/antinat-%{version}/*/*/*/*.{a,la}
 
 %changelog
+* Thu May 13 2004 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 0.70-0
 - Updated to release 0.70.
 
