@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dries
 # Upstream: <lincity-users@lists.sf.net>
-
 # Screenshot: http://lincity.sf.net/screenshots/power.png
 # ScreenshotURL: http://lincity.sf.net/screenshots/index.html
 
@@ -9,8 +8,8 @@
 
 Summary: City simulation game
 Name: lincity
-Version: 1.12.0
-Release: 3
+Version: 1.13.1
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://lincity.sf.net/
@@ -69,7 +68,7 @@ EOF
 %doc CHANGES COPYING COPYRIGHT README TODO
 %doc %{_mandir}/man6/*
 %{_bindir}/xlincity
-%{_datadir}/lincity/
+%{_datadir}/lincity
 %if %{dfi}
 	%{_datadir}/gnome/apps/Games/*.desktop
 %else   
@@ -77,6 +76,9 @@ EOF
 %endif
 
 %changelog
+* Tue Jul 13 2004 Dries Verachtert <dries@ulyssis.org> 1.13.1-1
+- Update to version 1.13.1.
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 1.12.0-3
 - cleanup of spec file
 
