@@ -46,7 +46,7 @@ This module provides a Perl interface to the PAM library.
 %defattr(-, root, root, 0755)
 %doc README Changes FAQ.pod
 %{_mandir}/man3/*
-%{perl_vendorarch}/Authen/FAQ.pod
+%{perl_vendorarch}/Authen/PAM/FAQ.pod
 %{perl_vendorarch}/Authen/PAM.pm
 %{perl_vendorarch}/auto/Authen/PAM/PAM.bs
 %{perl_vendorarch}/auto/Authen/PAM/PAM.so
