@@ -16,6 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.prima.eu.org/download/Prima.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: XFree86-devel, gdbm-devel, db4-devel
 
 # Screenshot: http://www.prima.eu.org/big-picture/vb_unix_large.gif
 # ScreenshotURL: http://www.prima.eu.org/big-picture/
