@@ -1,0 +1,35 @@
+--- logwatch-5.1/scripts/services/sendmail.orig	2004-03-20 19:47:11.000000000 +0100
++++ logwatch-5.1/scripts/services/sendmail	2004-03-20 20:10:11.000000000 +0100
+@@ -150,7 +150,7 @@
+       ( $ThisLine =~ m/X-Spam/ ) or
+       ( $ThisLine =~ m/Milter message: body replaced/ ) or
+       ( $ThisLine =~ m/Milter: data/ ) or
+-      ( $ThisLine =~ m/Milter (change|delete): header/ ) or
++      ( $ThisLine =~ m/Milter (add|change|delete): header/ ) or
+       ( $ThisLine =~ m/Milter add: header: X-Virus-Scanned: by amavis/ ) or
+       ( $ThisLine =~ m/AUTH=server, relay=/ ) or
+       ( $ThisLine =~ m/discarded/ ) or
+@@ -270,6 +270,9 @@
+       # We block some particularly annoying spam domains with the following in /etc/mail/access...
+       # From:worduphosting.com	ERROR:550 5.7.1 Relaying Denied (Spammer)
+       $KnownSpammer{$1}++;
++   } elsif ( ($Name) = ($ThisLine =~ /^Milter: data, reject=554 5\.6\.1 Rejecting dangerous E-mail attachment: ([^ \n]*)/) ) {
++      $RejectedAttNum++;
++      $RejectedAtt{$Name}++;
+    } elsif ($ThisLine =~ /ruleset=check_relay, arg1=([^ ]*),.* reject=550 5\.7\.1 Access denied/) {
+       # We block some particularly annoying spam domains with the
+       # following in /etc/mail/access...
+@@ -572,6 +575,13 @@
+    }
+ }
+ 
++if (keys %RejectedAtt) {
++   print "\n\nRejected attachments Total: $RejectedAttNum Time(s)\n";
++   foreach $ThisOne (sort {$RejectedAtt{$b}<=>$RejectedAtt{$a}} keys %RejectedAtt) {
++      print "    " . $ThisOne . ": " . $RejectedAtt{$ThisOne} . " Times(s)\n";
++   }
++}
++
+ if (keys %LoadAvg) {
+    print "\n\nWarning!!!:\n";
+    print "Connections Rejected due to high load average $LoadAvgReject Time(s)\n";

@@ -1,0 +1,22 @@
+--- logwatch-5.1/scripts/services/sendmail.sopwith	2004-02-03 13:39:34.000000000 -0500
++++ logwatch-5.1/scripts/services/sendmail	2004-03-12 10:56:34.069164276 -0500
+@@ -167,7 +167,7 @@
+       ( $ThisLine =~ m/^accepting connections again for daemon / )
+    ) {
+       # We don't care about these
+-   } elsif ( ($FromUser, $FromDomain, $Bytes, $NumRcpts, $RelayHost) = ($ThisLine =~ /^from=[\<]?([^@]+)[@]?([^\> ]+).*size=([0-9]+).*nrcpts=([0-9]+).*relay=(\[[0-9\.]+\]|[^ ]* \[[0-9\.]+\]|[^ ]+).*$/) ) {
++   } elsif ( ($FromUser, $FromDomain, $Bytes, $NumRcpts, $RelayHost) = ($ThisLine =~ /^from=[\<]?([^@]+)[@]?([^\> ]+).*size=([0-9]+).*nrcpts=([0-9]+).*relay=([^ ]+\@[^ ]+|\[[0-9\.]+\]|[^ ]* \[[0-9\.]+\]|[^ ]+).*$/) ) {
+       if ($NumRcpts > 0) {
+          $MsgsSent++;
+          $TotalRcpts += $NumRcpts;
+@@ -209,7 +209,9 @@
+       }
+       
+       # Add The message to a hash for later per-domain analysis.
+-      $Msgs{$QueueID}{"Relay"} = $RelayHost;
++      if ($RelayHost !~ /\@/) {
++	  chomp($Msgs{$QueueID}{"Relay"} = $RelayHost);
++      }
+       if (($Detail >= 10)) {
+          $Msgs{$QueueID}{"FromDomain"} = $FromDomain;
+          $Msgs{$QueueID}{"FromUser"} = $FromUser;

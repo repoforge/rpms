@@ -1,0 +1,10 @@
+--- logwatch-4.3.2/scripts/logwatch.pl.sopwith	Thu Jul 10 11:14:32 2003
++++ logwatch-4.3.2/scripts/logwatch.pl	Thu Jul 10 11:16:03 2003
+@@ -1,4 +1,7 @@
+ #!/usr/bin/perl -w
++
++$ENV{'LANG'} = 'en_US'; # Hack to fix RH bug #81144
++
+ use strict;
+ ##########################################################################
+ # $Id: logwatch.pl,v 1.88 2003/02/18 15:53:27 kirk Exp $

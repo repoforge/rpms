@@ -1,0 +1,11 @@
+--- logwatch-4.3.2/conf/services/kernel.conf.sopwith	Sat Oct 12 22:01:51 2002
++++ logwatch-4.3.2/conf/services/kernel.conf	Thu Jul 10 13:40:41 2003
+@@ -20,6 +20,8 @@
+ # Only give lines pertaining to the kernel service...
+ *OnlyService = kernel
+ *RemoveHeaders
++*Remove = segfault
++*Remove = locate module
+ 
+ # Set this to yes to lookup IPs in kernel firewall report
+ $kernel_ip_lookup = No
