@@ -6,21 +6,19 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.85
-Release: %{?rcver:0.%{rcver}.}2
+Version: 0.86
+Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
-Source10: http://www.mame.net/roms/polyplay.zip
-Source11: http://www.mame.net/roms/robby.zip
-Source12: http://www.mame.net/roms/gridlee.zip
+# http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 0.85 - 14/08/2004
 Source21: http://www.mameworld.net/highscore/uhsdat085.zip
-# http://www.arcade-history.com/ 0.85c - 15/08/2004
-Source22: http://www.arcade-history.com/download/history0_85c.zip
-# http://www.mameworld.net/mameinfo/ 0.85u2a - 15/08/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo085u2a.zip
-# http://www.mameworld.net/catlist/ 0.85u2 - 15/08/2004
+# http://www.arcade-history.com/ 0.86 - 23/08/2004
+Source22: http://www.arcade-history.com/download/history0_86.zip
+# http://www.mameworld.net/mameinfo/ 0.86 - 23/08/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo086.zip
+# http://www.mameworld.net/catlist/ 0.86 - 23/08/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -102,25 +100,6 @@ series of emulators for individual games. This series of emulators was
 combined into a single multi-game emulator.
 
 This version has been compiled for OpenGL display.
-
-
-%package roms
-Summary: Freely available ROMs to use with xmame
-Group: Applications/Emulators
-License: Freeware
-URL: http://www.mame.net/downmisc.html
-Requires: %{name}-bin
-
-%description roms
-This the the *nix port of the almost legendary mame. Mame is an arcade
-machine emulator, started in 1997 by Nicola Salmoria. It started out as a
-series of emulators for individual games. This series of emulators was
-combined into a single multi-game emulator.
-
-This package contains 3 arcade games that are freely available:
-- Gridlee © 1983 Videa.
-- Poly-Play © 1985 VEB Polytechnik Karl-Marx-Stadt.
-- Robby Roto © 1981 Bally Midway, © 1999 Jay Fenton.
 
 
 %package -n xmess
@@ -244,9 +223,9 @@ done
 
 # Now, do all the building (this is long!)
 for target in %{targets}; do
-    %{!?_without_x11: %{__make} %{?_smp_mflags} DISPLAY_METHOD=x11 X11_DGA=1 X11_XV=1} TARGET=$target
-    %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL SOUND_SDL=1} TARGET=$target
-    %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl} TARGET=$target
+    %{!?_without_x11: %{__make} %{?_smp_mflags} DISPLAY_METHOD=x11 X11_DGA=1 X11_XV=1 TARGET=$target}
+    %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL SOUND_SDL=1 JOY_SDL=1 TARGET=$target}
+    %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl TARGET=$target}
 done
 
 
@@ -283,10 +262,6 @@ popd
 %if %{?_without_mame:0}%{!?_without_mame:1}
 # Add all directories
 %{__mkdir_p} %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
-
-# Install the ROMs
-%{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
-    %{buildroot}%{_datadir}/xmame/roms/
 
 # The extra dat files
 %{__install} -m 664 datfiles/*.dat %{buildroot}%{_datadir}/xmame/
@@ -344,11 +319,6 @@ popd
 %attr(-, root, root) %{_datadir}/xmame/cab
 %endif
 
-%if %{?_without_mame:0}%{!?_without_mame:1}
-%files roms
-%attr(664, root, games) %{_datadir}/xmame/roms/*.zip
-%endif
-
 
 %if %{?_without_mess:0}%{!?_without_mess:1}
 %files -n xmess
@@ -382,6 +352,10 @@ popd
 
 
 %changelog
+* Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 0.86-1
+- Update to 0.86, with the usual related files too.
+- Split off the roms to a separate source package.
+
 * Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 0.85-1
 - Update to 0.85, with the usual related files too.
 - Added romcmp to be included, simplified the chdman and xml2info build.
