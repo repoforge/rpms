@@ -18,7 +18,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/gift/gift-gnutella-0.0.8.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, gift, gcc-c++, pkgconfig
+BuildRequires: gcc, make, gift, gcc-c++, pkgconfig, zlib-devel
 Requires: gift
 
 %description
