@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Arnaud Launay <asl$launay,org>
 
 %define _datadir %{_prefix}/share/hlfl
@@ -43,8 +41,8 @@ NetFilter, IPFilter, Cisco, and many others.
 %files
 %defattr(-, root, root, 0755)
 %doc doc/*.hlfl doc/RoadMap doc/syntax.txt doc/TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/hlfl.1*
+%{_bindir}/hlfl
 %{_datadir}/
 
 %changelog

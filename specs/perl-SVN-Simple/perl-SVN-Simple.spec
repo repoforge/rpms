@@ -1,23 +1,18 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Chia-liang Kao <clkao$clkao,org>
 
 %define real_name SVN-Simple
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Simple interface for delta editors
 Name: perl-SVN-Simple
-Version: 0.25
+Version: 0.26
 Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Simple/
-
-BuildArch: noarch
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -25,11 +20,11 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLKAO/SVN-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl, subversion-perl
 
 %description
-SVN::Simple is a simple interface to
-subversion's editor interface.
+SVN::Simple is a simple interface to subversion's editor interface.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -54,5 +49,8 @@ subversion's editor interface.
 %exclude %{perl_vendorarch}/auto/SVN/Simple/Edit/.packlist
 
 %changelog
+* Sun Nov 14 2004 Dries Verachtert <dries@ulyssis.org> - 0.26-1
+- Updated to release 0.26.
+
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.

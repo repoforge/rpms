@@ -84,7 +84,7 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|/usr/lib |%{_libdir} |g;' libtool
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 
 %{__perl} -pi.orig -e '
 		s|\@DBDIR\@|\$(localstatedir)/clamav|g;
@@ -182,7 +182,7 @@ EOF
 %build
 %configure  \
 	--program-prefix="%{?_program_prefix}" \
-%{?_without_milter:--enable-milter} \
+%{!?_without_milter:--enable-milter} \
 	--enable-id-check \
 	--with-libcurl \
 	--enable-dns \

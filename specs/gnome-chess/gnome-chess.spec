@@ -18,7 +18,7 @@ URL: http://www.gnome.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-chess/gnome-chess-%{version}.tar.bz2
+Source: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-chess/0.3/gnome-chess-%{version}.tar.bz2
 Source1: gnome-chess.png
 Patch0: gnome-chess-mime.patch
 Patch1: gnome-chess-0.3.3-quit.patch

@@ -66,7 +66,7 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root, -)
+%defattr (-, root, root, 0755)
 %doc rktime.conf.sample
 %doc %{_mandir}/man1/rktime.1*
 %doc %{_mandir}/man5/rktime.conf.5*

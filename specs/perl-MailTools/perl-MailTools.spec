@@ -8,7 +8,7 @@
 Summary: MailTools module for perl 
 Name: perl-MailTools
 Version: 1.64
-Release: 0
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MailTools/
@@ -16,9 +16,8 @@ URL: http://search.cpan.org/dist/MailTools/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/G/GB/GBARR/%{real_name}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Obsoletes: perl-Mail
 

@@ -4,7 +4,7 @@
 
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
-Version: 0.7.15
+Version: 0.7.16
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -13,7 +13,7 @@ URL: http://www.conglomerate.org/
 Source: http://dl.sf.net/conglomerate/conglomerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, libxml2-devel >= 2.0, gcc-c++
+BuildRequires: gettext, libxml2-devel >= 2.0, gcc-c++, gtk2-devel >= 2.4
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 BuildRequires: libgnomeprintui22-devel, gtksourceview-devel, gtk-doc
 BuildRequires: scrollkeeper
@@ -62,18 +62,21 @@ scrollkeeper-update -q || :
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO
 %doc %{_datadir}/gnome/help/conglomerate/
 %doc %{_datadir}/gtk-doc/html/conglomerate/
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
-%{_datadir}/application-registry/*.applications
-%{_datadir}/applications/*.desktop
+%config %{_sysconfdir}/gconf/schemas/conglomerate.schemas
+%{_bindir}/conglomerate
+%{_datadir}/application-registry/conglomerate.applications
+%{_datadir}/applications/conglomerate.desktop
 %{_datadir}/conglomerate/
-%{_datadir}/mime-info/*
+%{_datadir}/mime-info/conglomerate.*
 %{_datadir}/omf/conglomerate/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/conglomerate-icon-16.png
 %{_datadir}/pixmaps/conglomerate/
 %exclude %{_localstatedir}/scrollkeeper/ 
 
 %changelog
+* Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 0.7.16-1
+- Updated to release 0.7.16.
+
 * Tue Nov  2 2004 Matthias Saou <http://freshrpms.net> 0.7.15-1
 - Update to 0.7.15.
 - Enable printing again, it seems to work now.
