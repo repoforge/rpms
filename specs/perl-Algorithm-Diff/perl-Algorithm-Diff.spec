@@ -1,58 +1,59 @@
 # $Id$
 
 # Authority: dries
-# Upstream: clkao$clkao,org
+# Upstream: Tye McQueen <tyemq$cpan,org>
 
-%define real_name SVN-Web
+%define real_name Algorithm-Diff
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
 %define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
-Summary: Subversion repository web frontend
-Name: perl-SVN-Web
-Version: 0.38
+Summary: Compute intelligent differences between two files or lists
+Name: perl-Algorithm-Diff
+Version: 1.1901
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/SVN-Web/
+URL: http://search.cpan.org/dist/Algorithm-Diff/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLKAO/SVN-Web-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TY/TYEMQ/Algorithm-Diff-%{version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl perl-Template-Toolkit perl-YAML perl-XML-RSS perl-Text-Diff
-BuildRequires: perl-Locale-Maketext-Simple subversion-perl
+BuildRequires: perl
 
 %description
-SVN::Web is a subversion repository web frontend.
+This is a module for computing the difference between two files, two
+strings, or any other two lists of things.  It uses an intelligent
+algorithm similar to (or identical to) the one used by the Unix "diff"
+program.  It is guaranteed to find the *smallest possible* set of
+differences.
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES TODO
+%doc README Changes
 %doc %{_mandir}/man3/*
-%{perl_vendorlib}/SVN/Web.pm
-%{perl_vendorlib}/SVN/Web/*
-%{_bindir}/svnweb-install
+%{perl_vendorlib}/Algorithm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 # perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
 # perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
@@ -60,8 +61,6 @@ SVN::Web is a subversion repository web frontend.
 # perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
-* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.38-1
-- Updated to release 0.38.
-
-* Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.37-1
+* Fri Jan  7 2005 Dries Verachtert <dries@ulyssis.org> - 1.1901-1
 - Initial package.
+

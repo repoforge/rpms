@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/MKDoc-XML/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHIVER/MKDoc-XML-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BP/BPOSTLE/MKDoc-XML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

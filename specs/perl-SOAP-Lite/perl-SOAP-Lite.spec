@@ -1,7 +1,5 @@
 # $Id: $
 
-not ready yet
-
 # Authority: dries
 # Upstream: Byrne Reese <cpancontact$majordomo,com>
 
@@ -27,7 +25,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BY/BYRNE/SOAP/SOAP-Lite-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-XML-Parser, perl-Crypt-SSLeay, perl-Compress-Zlib
 
 %description
 SOAP::Lite for Perl is a collection of Perl modules which provides a simple 
@@ -38,7 +36,7 @@ on client and server side.
 %setup -n %{real_name}-%{dir_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+(echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}") || echo "ignore warnings"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -53,9 +51,16 @@ on client and server side.
 %files
 %defattr(-, root, root, 0755)
 %doc README Changes
-%{_mandir}/man3/*
-#%{_libdir}/perl5/vendor_perl/*/SOAP/Lite.pm
-%{_libdir}/perl5/vendor_perl/*/SOAP/Lite/*
+%{_mandir}/man?/*
+%{_bindir}/SOAPsh.pl
+%{_bindir}/XMLRPCsh.pl
+%{_bindir}/stubmaker.pl
+%{perl_vendorlib}/Apache
+%{perl_vendorlib}/IO
+%{perl_vendorlib}/SOAP
+%{perl_vendorlib}/UDDI
+%{perl_vendorlib}/XML
+%{perl_vendorlib}/XMLRPC
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.60a
