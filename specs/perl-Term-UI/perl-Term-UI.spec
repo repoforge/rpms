@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jos Boumans <gro,miwd$enak>
 
-%define real_name Term-UI
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Term-UI
 
 Summary: Term::ReadLine UI made easy
 Name: perl-Term-UI
@@ -15,10 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-UI/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
-Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/Term-UI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Term/Term-UI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -33,7 +30,7 @@ template. It can also parse options per unix style.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,6 +45,7 @@ template. It can also parse options per unix style.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Term/
 %{perl_vendorlib}/Term/UI.pm
 
 %changelog

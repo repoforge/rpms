@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jos Boumans <gro,miwd$enak>
 
-%define real_name Module-Load-Conditional
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Module-Load-Conditional
 
 Summary: Looking up module information / loading at runtime
 Name: perl-Module-Load-Conditional
@@ -15,10 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Load-Conditional/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
-Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/Module-Load-Conditional-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Load-Conditional-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -35,7 +32,7 @@ requires.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -50,6 +47,8 @@ requires.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Module/
+%dir %{perl_vendorlib}/Module/Load/
 %{perl_vendorlib}/Module/Load/Conditional.pm
 
 %changelog

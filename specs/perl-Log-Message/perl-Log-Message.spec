@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jos Boumans <gro,miwd$enak>
 
-%define real_name Log-Message
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Log-Message
 
 Summary: Generic message storage mechanism
 Name: perl-Log-Message
@@ -15,10 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Message/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
-Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/Log-Message-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Log/Log-Message-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -38,7 +35,7 @@ regexes on messages, tags and level.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,8 +50,9 @@ regexes on messages, tags and level.
 %defattr(-, root, root, 0755)
 %doc  README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Log/
 %{perl_vendorlib}/Log/Message.pm
-%{perl_vendorlib}/Log/Message
+%{perl_vendorlib}/Log/Message/
 
 %changelog
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1

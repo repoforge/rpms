@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jos Boumans <gro,miwd$enak>
 
-%define real_name Archive-Extract
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Archive-Extract
 
 Summary: Generic archive extracting mechanism
 Name: perl-Archive-Extract
@@ -15,10 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Extract/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
-Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/Archive-Extract-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Archive/Archive-Extract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -31,7 +28,7 @@ A generic archive extracting mechanism.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -45,6 +42,7 @@ A generic archive extracting mechanism.
 %files
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Archive/
 %{perl_vendorlib}/Archive/Extract.pm
 
 %changelog
