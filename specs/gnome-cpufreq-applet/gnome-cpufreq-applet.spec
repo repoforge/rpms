@@ -4,7 +4,7 @@
 
 Summary: CPU frequency scaling monitor applet
 Name: gnome-cpufreq-applet
-Version: 0.2.1
+Version: 0.3
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -54,15 +54,19 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* INSTALL NEWS README TODO
 %doc %{_datadir}/gnome/help/gnome-cpufreq-applet/
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_libexecdir}/*
+%config %{_sysconfdir}/gconf/schemas/cpufreq-applet.schemas
+%{_bindir}/cpufreq-selector
+%{_libexecdir}/gnome-cpufreq-applet
 %{_datadir}/gnome-cpufreq-applet/
 %{_datadir}/pixmaps/gnome-cpufreq-applet/
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/omf/gnome-cpufreq-applet/
-%{_libdir}/bonobo/servers/*.server
+%{_libdir}/bonobo/servers/GNOME_CPUFreqApplet.server
 
 %changelog
+* Wed Oct 06 2004 Dag Wieers <dag@wieers.com> - 0.3-1
+- Updated to release 0.3.
+
 * Sat Sep 25 2004 Dag Wieers <dag@wieers.com> - 0.2.1-1
 - Updated to release 0.2.1.
 

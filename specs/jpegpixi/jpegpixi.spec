@@ -4,7 +4,7 @@
 
 Summary: JPEG pixel interpolator
 Name: jpegpixi
-Version: 1.0.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -45,6 +45,9 @@ pixel can be interpolated with jpegpixi.
 %{_bindir}/*
 
 %changelog
+* Tue Oct 05 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Sun Oct 03 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 
