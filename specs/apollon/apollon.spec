@@ -27,7 +27,7 @@ Requires: kdelibs, gift
 Apollon is a KDE filesharing client which uses gift.
 
 %prep
-%setup -n %{real_version}
+%setup -n apollon-%{real_version}
 
 %build
 . /etc/profile.d/qt.sh
