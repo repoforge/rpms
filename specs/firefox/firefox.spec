@@ -22,6 +22,7 @@ Source2: firefox.png
 Patch0: firefox-0.9.2-gcc34.patch
 Patch1: firefox-0.9.2-extensions.patch
 Patch2: mozilla-default-plugin-less-annoying.patch
+Patch3: firefox-0.9.2-nsFormHistory-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip
@@ -43,6 +44,7 @@ compliance, performance and portability.
 %patch0 -p1 -b .gcc34
 %patch1 -p0 -b .extensions
 %patch2 -p1 -b .plugin
+%patch3 -b .nsformhistory
 
 %{__cat} <<EOF >bookmarks.html
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
@@ -296,6 +298,9 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Tue Aug 03 2004 Dag Wieers <dag@wieers.com> - 0.9.2-5
+- Added patch to fix crashes on x86_64. (Nicholas Miell)
+
 * Fri Jul 30 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-5
 - Revert included xpm icon to an add-on png that looks nicer.
 
