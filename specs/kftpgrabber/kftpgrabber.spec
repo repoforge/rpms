@@ -30,7 +30,7 @@ for all file transfer operations, it supports encrypted connections
 system and also has a built in support for Zeroconf site discovery.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
 %build
 source  /etc/profile.d/qt.sh

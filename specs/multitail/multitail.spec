@@ -51,7 +51,7 @@ given regular expressions and deleting and adding windows.
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme.txt
+%doc Changes license.txt readme.txt *.conf *.html
 %doc %{_mandir}/man1/multitail.1*
 %config(noreplace) %{_sysconfdir}/multitail.conf
 %{_bindir}/multitail
