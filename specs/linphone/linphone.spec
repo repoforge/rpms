@@ -8,10 +8,6 @@
 %{?el3:%define _without_gnome_applet 1}
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_gnome_applet 1}
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_gnome_applet 1}
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_gnome_applet 1}
 
 %define desktop_vendor rpmforge
 
