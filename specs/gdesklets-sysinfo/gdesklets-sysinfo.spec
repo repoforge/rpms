@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name SysInfo
 
 Summary: SysInfo sensor and display for gdesklets
 Name: gdesklets-sysinfo
-Version: 0.21.2
-Release: 0
+Version: 0.26
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -15,10 +14,9 @@ URL: http://gdesklets.gnomedesktop.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pycage.de/download/gdesklets/%{real_name}-%{version}.tar.bz2
+Source: http://www.pycage.de/download/gdesklets/SysInfo-%{version}.tar.gz
 Source1: Makefile_install_scripts.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: gdesklets
@@ -32,7 +30,7 @@ To add the display, use :
 	gdesklets-add-sysinfo-display
 
 %prep
-%setup -n %{real_name}-%{version} -a 1
+%setup -n %{real_name}
 
 %build
 %{__make} \
@@ -54,5 +52,8 @@ To add the display, use :
 %{_datadir}/gdesklets/Sensors/*
 
 %changelog
+* Thu May 27 2004 Dag Wieers <dag@wieers.com> - 0.26.2-1
+- Updated to release 0.26.2.
+
 * Wed Dec 03 2003 Dag Wieers <dag@wieers.com> - 0.22.1-0
 - Initial package. (using DAR)
