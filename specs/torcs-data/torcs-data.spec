@@ -1,4 +1,4 @@
-# $Id: torcs-data.spec,v 1.3 2004/02/27 00:11:30 thias Exp $
+# $Id$
 
 Summary: The Open Racing Car Simulator data files
 Name: torcs-data

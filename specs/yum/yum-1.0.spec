@@ -1,4 +1,4 @@
-# $Id: yum-1.0.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 # Which distro to make the default configuration for, defaults to 'rh'
 %{?_with_yd: %{expand: %%define distro yd}}

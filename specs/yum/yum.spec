@@ -1,4 +1,4 @@
-# $Id: yum.spec,v 1.2 2004/03/01 14:07:36 thias Exp $
+# $Id$
 
 # Which distro to make the default configuration for, defaults to 'rh'
 %{?_with_yellowdog: %{expand: %%define distro yd}}

@@ -1,4 +1,4 @@
-# $Id: xine-skins.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 %define skindir %(rpm -ql xine|grep '/skins$')
 

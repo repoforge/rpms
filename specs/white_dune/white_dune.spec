@@ -1,4 +1,4 @@
-# $Id: white_dune.spec,v 1.4 2004/02/27 17:08:22 driesve Exp $
+# $Id$
 
 # Authority: dries
 

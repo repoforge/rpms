@@ -1,4 +1,4 @@
-# $Id: wxGTK.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 Summary: The GTK port of the wxWindows library
 Name: wxGTK

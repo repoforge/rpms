@@ -1,4 +1,4 @@
-# $Id: torcs.spec,v 1.2 2004/02/26 23:45:18 thias Exp $
+# $Id$
 
 %define desktop_vendor freshrpms
 

@@ -1,4 +1,4 @@
-# $Id: xvidcore.spec,v 1.2 2004/03/04 00:28:34 thias Exp $
+# $Id$
 
 %define prever rc3
 

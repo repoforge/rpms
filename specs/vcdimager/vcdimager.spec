@@ -1,4 +1,4 @@
-# $Id: vcdimager.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager

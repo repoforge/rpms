@@ -1,4 +1,4 @@
-# $Id: xmame.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 #define rcver rc2
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}

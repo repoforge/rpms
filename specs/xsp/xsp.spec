@@ -1,4 +1,4 @@
-# $Id: xsp.spec,v 1.1 2004/02/28 22:48:24 dag- Exp $
+# $Id$
 
 # Authority: dag
 

@@ -1,4 +1,4 @@
-# $Id: xvattr.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 Summary: Utility for getting and setting Xv attributes
 Name: xvattr

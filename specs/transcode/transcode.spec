@@ -1,4 +1,4 @@
-# $Id: transcode.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 Summary: A Linux video stream processing utility
 Name: transcode

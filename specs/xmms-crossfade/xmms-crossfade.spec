@@ -1,4 +1,4 @@
-# $Id: xmms-crossfade.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 %define _xmmsoutputdir %(xmms-config --output-plugin-dir)
 

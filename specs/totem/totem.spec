@@ -1,4 +1,4 @@
-# $Id: totem.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 %{?_without_gstreamer:  %{expand: %%define gstreamer 0}}
 %{!?_without_gstreamer: %{expand: %%define gstreamer 1}}

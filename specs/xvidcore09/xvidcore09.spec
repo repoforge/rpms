@@ -1,4 +1,4 @@
-# $Id: xvidcore09.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+# $Id$
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore09
