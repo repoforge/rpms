@@ -5,11 +5,12 @@
 Summary: Madman Administrates Digital Music Archives Neatly
 Name: madman
 Version: 0.93
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://madman.sourceforge.net/
 Source: http://dl.sf.net/madman/madman-%{version}.tar.gz
+Patch: madman-0.93-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms
 BuildRequires: scons, gcc-c++, glib-devel, qt-devel
@@ -25,6 +26,7 @@ be happier, brighten your teeth and quickly restore world peace.
 
 %prep
 %setup
+%patch -p1 -b .gcc34
 
 
 %build
@@ -51,6 +53,9 @@ scons prefix=%{buildroot}%{_prefix} install
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 0.93-2
+- Add gcc 3.4 fix from Debian bug #260503.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 0.93-1
 - Update to 0.93.
 - Update to use the new SCons build.
