@@ -43,13 +43,19 @@ programs.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
+mv %{buildroot}/usr/doc/bigloo-2.6d bigloo-docs
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
+%doc README bigloo-docs
+%{_bindir}/*
+%{_libdir}/bigloo
+%{_datadir}/info/bigloo*
+%exclude %{_datadir}/info/dir
+%{_datadir}/man/bigloo.1*
 
 %changelog
 * Sat Mar 20 2004 Dries Verachtert <dries@ulyssis.org> 2.6c-1
