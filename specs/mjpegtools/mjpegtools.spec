@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
-# Upstream: Gernot Ziegler <gz@lysator.liu.se>
-# Upstream: <mjpeg-developer@lists.sf.net>
+# Upstream: Gernot Ziegler <gz$lysator,liu,se>
+# Upstream: <mjpeg-developer$lists,sourceforge,net>
 
 %define jpegmmx_version 0.1.5
 
