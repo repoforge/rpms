@@ -8,7 +8,7 @@
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.32
+Version: 2.33
 Release: 0
 License: GPL
 Group: Applications/Multimedia
