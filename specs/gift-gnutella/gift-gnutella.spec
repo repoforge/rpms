@@ -5,7 +5,6 @@
 # NeedsCleanup
 
 Summary: Gift gnutella plugin
-Summary(nl): gnutella plugin voor gift
 Name: gift-gnutella
 Version: 0.0.8
 Release: 1
@@ -13,17 +12,17 @@ License: GPL
 Group: Development/Libraries
 URL: http://apollon.sourceforge.net/
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 Source: http://dl.sf.net/gift/gift-gnutella-0.0.8.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, gift
+BuildRequires: gcc, make, gift, gcc-c++
 Requires: gift
 
 %description
 Gnutella plugin for gift
-
-%description -l nl
-Gnutella plugin voor gift
 
 %prep
 %setup
