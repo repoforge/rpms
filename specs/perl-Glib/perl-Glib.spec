@@ -7,7 +7,7 @@
 
 %define real_name Glib
 
-Summary: Perl wrappers for the GLib utility and Object libraries
+Summary: Perl wrappers for the GLib utility and object libraries
 Name: perl-Glib
 Version: 1.080
 Release: 1
