@@ -9,7 +9,7 @@
 
 Summary: Parses and beautifies perl source
 Name: perl-Tidy
-Version: 
+Version: 20031021
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -53,8 +53,5 @@ write scripts in html format.
 %{perl_vendorlib}/Perl/Tidy.pm
 
 %changelog
-* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - -1
-- Updated to release .
-
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 20031021-1
 - Initial package.

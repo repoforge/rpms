@@ -34,7 +34,7 @@ pure-perl and written in a very cross-platform way.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -73,4 +73,3 @@ pure-perl and written in a very cross-platform way.
 
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.
-

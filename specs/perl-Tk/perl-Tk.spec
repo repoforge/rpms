@@ -54,6 +54,7 @@ This module contains an object oriented Tk extension for Perl.
 	%{buildroot}%{perl_vendorarch}/Tk/pTk/mkVFunc \
 	%{buildroot}%{perl_vendorarch}/Tk/pTk/Tcl-pTk \
 	%{buildroot}%{perl_vendorarch}/Tk/Text.pod
+%{__rm} -rf %{buildroot}%{perl_archlib}
 
 %clean
 %{__rm} -rf %{buildroot}
