@@ -16,6 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://knowit.sourceforge.net/files/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
+%{?fc2:BuildRequires:libselinux-devel}
 
 # Screenshot: http://knowit.sourceforge.net/images/knowit.png
 # ScreenshotURL: http://knowit.sourceforge.net/screenshots.html
@@ -49,7 +50,6 @@ hierarchy.
 %{_datadir}/doc/HTML/en/knowit/screenshot.png
 %{_datadir}/icons/hicolor/*/apps/knowit.png
 %{_datadir}/locale/*/LC_MESSAGES/knowit.mo
-%{_datadir}/mimelnk/application/x-knowit.desktop
 
 %changelog
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1
