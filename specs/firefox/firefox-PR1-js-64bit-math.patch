@@ -1,0 +1,17 @@
+Index: js/src/fdlibm/fdlibm.h
+===================================================================
+RCS file: /cvsroot/mozilla/js/src/fdlibm/fdlibm.h,v
+retrieving revision 1.13
+retrieving revision 1.13.18.1
+diff -d -u -p -r1.13 -r1.13.18.1
+--- js/src/fdlibm/fdlibm.h	15 Nov 2003 00:11:05 -0000	1.13
++++ js/src/fdlibm/fdlibm.h	23 Sep 2004 23:34:19 -0000	1.13.18.1
+@@ -61,7 +61,7 @@
+ #define __LITTLE_ENDIAN
+ #endif
+ 
+-#if defined(linux) && defined(__i386__)
++#if defined(linux) && (defined(__i386__) || defined(__x86_64__))
+ #define __LITTLE_ENDIAN
+ #endif
+ 

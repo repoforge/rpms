@@ -24,8 +24,10 @@ Source3: bookmarks.html
 Source4: firefox.xpm
 Patch2: firefox-0.9.3-uri.patch
 Patch3: mozilla-default-plugin-less-annoying.patch
+Patch4: firefox-0.7.3-freetype-compile.patch
 Patch5: mozilla-1.7-psfonts.patch
 Patch6: firefox-0.10-gcc3-alpha.patch
+Patch7: firefox-PR1-js-64bit-math.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip
@@ -46,8 +48,11 @@ compliance, performance and portability.
 %setup -q -n mozilla
 %patch2 -p0 -b .uri
 %patch3 -p1 -b .plugin
+#patch4 -p0 -b .freetype
 %patch5 -p1 -b .psfonts
 %patch6 -p1 -b .gcc3-alpha
+%patch7 -p0 -b .64bit-math
+
 
 %{__cat} <<'EOF' >.mozconfig
 . $topsrcdir/browser/config/mozconfig

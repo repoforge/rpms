@@ -1,0 +1,121 @@
+diff -Naur mozilla.orig/xpcom/reflect/xptcall/src/md/unix/xptcinvoke_linux_alpha.cpp mozilla/xpcom/reflect/xptcall/src/md/unix/xptcinvoke_linux_alpha.cpp
+--- mozilla.orig/xpcom/reflect/xptcall/src/md/unix/xptcinvoke_linux_alpha.cpp	2001-09-29 06:12:51.000000000 +1000
++++ mozilla/xpcom/reflect/xptcall/src/md/unix/xptcinvoke_linux_alpha.cpp	2004-07-22 00:18:41.000000000 +1000
+@@ -20,6 +20,7 @@
+  * the Initial Developer. All Rights Reserved.
+  *
+  * Contributor(s):
++ *   Glen Nakamura <glen@imodulo.com>
+  *
+  * Alternatively, the contents of this file may be used under the terms of
+  * either the GNU General Public License Version 2 or later (the "GPL"), or 
+@@ -37,8 +38,6 @@
+ 
+ /* Platform specific code to invoke XPCOM methods on native objects */
+ 
+-/* contributed by Glen Nakamura <glen.nakamura@usa.net> */
+-
+ #include "xptcprivate.h"
+ 
+ /* Prototype specifies unmangled function name and disables unused warning */
+@@ -163,7 +162,11 @@
+     "bis $16,$16,$1\n\t"    /* load "this" */
+     "ldq $2,16($15)\n\t"    /* load "methodIndex" */
+     "ldq $1,0($1)\n\t"      /* load vtable */
++#if defined(__GXX_ABI_VERSION) && __GXX_ABI_VERSION >= 100 /* G++ V3 ABI */
++    "s8addq $2,$31,$2\n\t"  /* vtable index = "methodIndex" * 8 */
++#else /* not G++ V3 ABI */
+     "s8addq $2,16,$2\n\t"   /* vtable index = "methodIndex" * 8 + 16 */
++#endif /* G++ V3 ABI */
+     "addq $1,$2,$1\n\t"
+     "ldq $27,0($1)\n\t"     /* load address of function */
+     "jsr $26,($27),0\n\t"   /* call virtual function */
+@@ -176,4 +179,3 @@
+     "ret $31,($26),1\n\t"
+     ".end XPTC_InvokeByIndex"
+     );
+-
+diff -Naur mozilla.orig/xpcom/reflect/xptcall/src/md/unix/xptcstubs_linux_alpha.cpp mozilla/xpcom/reflect/xptcall/src/md/unix/xptcstubs_linux_alpha.cpp
+--- mozilla.orig/xpcom/reflect/xptcall/src/md/unix/xptcstubs_linux_alpha.cpp	2001-09-29 06:12:52.000000000 +1000
++++ mozilla/xpcom/reflect/xptcall/src/md/unix/xptcstubs_linux_alpha.cpp	2004-07-22 00:18:41.000000000 +1000
+@@ -20,6 +20,7 @@
+  * the Initial Developer. All Rights Reserved.
+  *
+  * Contributor(s):
++ *   Glen Nakamura <glen@imodulo.com>
+  *
+  * Alternatively, the contents of this file may be used under the terms of
+  * either the GNU General Public License Version 2 or later (the "GPL"), or 
+@@ -37,8 +38,6 @@
+ 
+ /* Implement shared vtbl methods. */
+ 
+-/* contributed by Glen Nakamura <glen.nakamura@usa.net> */
+-
+ #include "xptcprivate.h"
+ 
+ /* Prototype specifies unmangled function name and disables unused warning */
+@@ -188,23 +187,45 @@
+  * nsresult nsXPTCStubBase::Stub##n()
+  *  Sets register $1 to "methodIndex" and jumps to SharedStub.
+  */
++#define STUB_MANGLED_ENTRY(n, symbol) \
++    "#### Stub"#n" ####"      "\n\t" \
++    ".text"                   "\n\t" \
++    ".align 5"                "\n\t" \
++    ".globl " symbol          "\n\t" \
++    ".ent " symbol            "\n"   \
++symbol ":"                    "\n\t" \
++    ".frame $30,0,$26,0"      "\n\t" \
++    "ldgp $29,0($27)"         "\n"   \
++"$" symbol "..ng:"            "\n\t" \
++    ".prologue 1"             "\n\t" \
++    "lda $1,"#n               "\n\t" \
++    "br $31,$SharedStub..ng"  "\n\t" \
++    ".end " symbol
++
++#if defined(__GXX_ABI_VERSION) && __GXX_ABI_VERSION >= 100 /* G++ V3 ABI */
++
++#define STUB_ENTRY(n) \
++__asm__( \
++    ".if "#n" < 10"                                              "\n\t" \
++        STUB_MANGLED_ENTRY(n, "_ZN14nsXPTCStubBase5Stub"#n"Ev")  "\n\t" \
++    ".elseif "#n" < 100"                                         "\n\t" \
++        STUB_MANGLED_ENTRY(n, "_ZN14nsXPTCStubBase6Stub"#n"Ev")  "\n\t" \
++    ".elseif "#n" < 1000"                                        "\n\t" \
++        STUB_MANGLED_ENTRY(n, "_ZN14nsXPTCStubBase7Stub"#n"Ev")  "\n\t" \
++    ".else"                                                      "\n\t" \
++    ".err \"Stub"#n" >= 1000 not yet supported.\""               "\n\t" \
++    ".endif" \
++    );
++
++#else /* not G++ V3 ABI */
++
+ #define STUB_ENTRY(n) \
+ __asm__( \
+-    "#### Stub"#n" ####\n" \
+-".text\n\t" \
+-    ".align 5\n\t" \
+-    ".globl Stub"#n"__14nsXPTCStubBase\n\t" \
+-    ".ent Stub"#n"__14nsXPTCStubBase\n" \
+-"Stub"#n"__14nsXPTCStubBase:\n\t" \
+-    ".frame $30,0,$26,0\n\t" \
+-    "ldgp $29,0($27)\n" \
+-"$Stub"#n"__14nsXPTCStubBase..ng:\n\t" \
+-    ".prologue 1\n\t" \
+-    "lda $1,"#n"\n\t" \
+-    "br $31,$SharedStub..ng\n\t" \
+-    ".end Stub"#n"__14nsXPTCStubBase" \
++    STUB_MANGLED_ENTRY(n, "Stub"#n"__14nsXPTCStubBase") \
+     );
+ 
++#endif /* G++ V3 ABI */
++
+ #define SENTINEL_ENTRY(n) \
+ nsresult nsXPTCStubBase::Sentinel##n() \
+ { \
+@@ -213,4 +234,3 @@
+ }
+ 
+ #include "xptcstubsdef.inc"
+-
