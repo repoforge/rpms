@@ -4,6 +4,8 @@
 # Screenshot: http://sulk.sourceforge.net/pics/sulk-screen-0.26.1.png
 # ScreenshotURL: http://sulk.sourceforge.net/pics.html
 
+%define real_version 0.29-snapshot-20030623
+
 Summary: Sulk, the hackable Space Hulk
 Name: sulk
 Version: 0.29
@@ -15,7 +17,7 @@ URL: http://sulk.sf.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/sulk/sulk-%{version}.tar.gz
+Source: http://dl.sf.net/sulk/sulk-%{realversion}.tar.gz
 Patch: makefile-and-shellscript.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
