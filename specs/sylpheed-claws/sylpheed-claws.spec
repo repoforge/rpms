@@ -4,6 +4,12 @@
 %define desktop_vendor rpmforge
 #define extraver       cvs2.1
 
+%{?dist:  %{expand: %%define %dist 1}}
+%{!?dist: %define gettextdevel 1}
+%{?fc4:   %define gettextdevel 1}
+%{?el4:   %define gettextdevel 1}
+%{?fc3:   %define gettextdevel 1}
+
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
 Version: 1.9.6
@@ -20,7 +26,8 @@ BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
 BuildRequires: openssl-devel, gpgme03-devel >= 0.3.10, openldap-devel
 BuildRequires: compface-devel, startup-notification-devel
-BuildRequires: gettext-devel
+%{?gettextdevel:BuildRequires: gettext-devel}
+BuildRequires: gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
@@ -117,6 +124,7 @@ desktop-file-install \
 %changelog
 * Wed Mar 30 2005 Matthias Saou <http://freshrpms.net/> 1.9.6-1
 - Update to 1.9.6, the first "released" tarball of the claws gtk2 version.
+- Make gettext(-devel) build dep friendly to older distributions.
 
 * Mon Mar 14 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1.cvs2.1
 - Update to 1.0.3cvs2.1.
