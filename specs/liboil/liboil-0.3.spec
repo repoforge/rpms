@@ -1,11 +1,9 @@
 # $Id$
 # Authority: matthias
 
-# Tag: test
-
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.0
+Version: 0.3.1
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -74,9 +72,14 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
+%{_datadir}/gtk-doc/html/liboil/
 
 
 %changelog
+* Sat Apr  2 2005 Matthias Saou <http://freshrpms.net/> 0.3.1-1
+- Update to 0.3.1.
+- Include gtk-doc files.
+
 * Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 0.3.0-1
 - Update to 0.3.0.
 
