@@ -4,9 +4,9 @@
 
 Summary: CSS stylesheets editor
 Name: cssed
-Version: 0.1.2pre
+Version: 0.2.1
 Release: 1
-License: GPLGPL
+License: GPL
 Group: Applications/Internet
 URL: http://cssed.sourceforge.net/
 
@@ -18,8 +18,8 @@ BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
 BuildRequires: autoconf, make, gcc, gtk2-devel, gettext, vte-devel
 Requires: gtk2, vte
 
-#(d) primscreenshot: http://cssed.sourceforge.net/images/screens/screenshor_doc_menu.png
-#(d) screenshotsurl: http://cssed.sourceforge.net/screenshots.html
+# Screenshot: http://cssed.sourceforge.net/images/screens/screenshor_doc_menu.png
+# ScreenshotURL: http://cssed.sourceforge.net/screenshots.html
 
 %description
 Cssed is a GTK2 application for creating and maintaining CSS style sheets.
@@ -49,14 +49,15 @@ Categories=Application;Network;X-Red-Hat-Base;
 EOF
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc README
 %{_bindir}/cssed
-/usr/share/applications/cssed.desktop
-/usr/share/cssed/data/cssed-def.xml
-/usr/share/cssed/pixmaps/cssed-about.png
-/usr/share/cssed/pixmaps/cssed-icon.png
+%{_datadir}/applications/cssed.desktop
+%{_datadir}/cssed
 
 %changelog
-* Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 0.1.1pre-1.dries
+* Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> 0.2.1-1
+- update to 0.2.1
+
+* Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 0.1.1pre-1
 - first packaging for Fedora Core 1
