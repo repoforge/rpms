@@ -47,8 +47,7 @@ Marked audio files are still playable.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/*
 
 %changelog
