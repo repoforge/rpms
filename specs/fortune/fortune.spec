@@ -47,16 +47,16 @@ Source14: http://www.schwarzvogel.de/pkgs/kernelcookies.tar.gz
 # http://dune.s31.pl/
 Source15: http://dune.s31.pl/fortune-mod-dune-quotes.2.0.1.tar.gz
 # quotes of 'Comic Book Guy'
-Source16: http://freshmeat.net/redir/cbg-quotes/16138/url_tgz/cbg-quotes.tar.gz
+Source16: http://www.pinkemostar.com/files/cbg-quotes.tar.gz
 # Simpsons Ralph Wiggum Quotes is a 'fortune' quote file with quotes from
 # the one, the only, Ralph Wiggum. This was inspired by the Quotable Homer
 # fortune file. 
-Source17: http://freshmeat.net/redir/ralph-quotes/16139/url_tgz/ralph-quotes.tar.gz
+Source17: http://www.pinkemostar.com/files/ralph-quotes.tar.gz
 # http://eol.init1.nl/linux/index.php   (southpark quotes)
 Source18: http://eol.init1.nl/linux/SP-0.1.tar.gz
 # http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 # homer simpson quotes
-Source19: http://freshmeat.net/redir/quotablehomerquotes/8751/url_tgz/homer-quotes.tar.gz
+Source19: http://www.cs.indiana.edu/~crcarter/homer/homer-quotes.tar.gz
 # 
 
 Obsoletes: fortune-mod
