@@ -4,8 +4,8 @@
 
 Summary: GUI program to create labels and business cards
 Name: glabels
-Version: 1.93.3
-Release: 0
+Version: 2.0.0
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://snaught.com/glabels/
@@ -67,14 +67,13 @@ desktop-file-install --vendor gnome --delete-original \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/applications/%{name}.desktop
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/*.la
-
 %post
 scrollkeeper-update -q || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 
 %postun
 scrollkeeper-update -q || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,23 +82,33 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_datadir}/gnome/help/glabels/
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/application-registry/*.applications
-%{_datadir}/applications/*.desktop
+%doc %{_mandir}/man1/glabels.1*
+%{_bindir}/glabels*
+%{_libdir}/libglabels.so.*
+%{_datadir}/application-registry/glabels.applications
+%{_datadir}/applications/gnome-glabels.desktop
 %{_datadir}/glabels/
-%{_datadir}/mime-info/*
+%{?fc2:%{_datadir}/mime/application/x-glabels.xml}
+%{_datadir}/mime/packages/glabels.xml
+%{_datadir}/mime-info/glabels.*
 %{_datadir}/pixmaps/glabels/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/glabels.png
 %{_datadir}/omf/glabels/
 %exclude %{_localstatedir}/scrollkeeper
+%{?fc2:%exclude %{_datadir}/mime/XMLnamespaces}
+%{?fc2:%exclude %{_datadir}/mime/globs}
+%{?fc2:%exclude %{_datadir}/mime/magic}
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libglabels/
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 
 %changelog
+* Mon Aug 09 2004 Dag Wieers <dag@wieers.com> - 2.0.0-1
+- Updated to release 2.0.0.
+
 * Sun Feb 22 2004 Dag Wieers <dag@wieers.com> - 1.93.3-0
 - Updated to release 1.93.3.
 

@@ -1,20 +1,19 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Rafal Wojtczuk <nergal$icm,edu,pl>
 
 Summary: Implementation of an E-component of Network Intrusion Detection System
 Name: libnids
-Version: 1.18
-Release: 0
+Version: 1.19
+Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://libnids.sf.net/
+URL: http://libnids.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.packetfactory.net/projects/libnids/dist/libnids-%{version}.tar.gz
+Source: http://dl.sf.net/libnids/libnids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet, libpcap
@@ -45,11 +44,14 @@ TCP stream, no matter how artfully obscured by an attacker.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING MISC README doc/ samples/
-%doc %{_mandir}/man?/*
-%{_libdir}/*.a
-%{_includedir}/*.h
+%doc %{_mandir}/man3/libnids.3*
+%{_libdir}/libnids.a
+%{_includedir}/nids.h
 
 %changelog
+* Mon Aug 09 2004 Dag Wieers <dag@wieers.com> - 1.19-1
+- Updated to release 1.18
+
 * Sun Nov 23 2003 Dag Wieers <dag@wieers.com> - 1.18-0
 - Updated to release 1.18
 

@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
-# Upstream: 
+# Upstream: Christophe Devine <c,devine$cr0,net>
 
 Summary: Reliable 802.11 (wireless) sniffer and WEP key cracker
 Name: aircrack
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -16,15 +16,13 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cr0.net:8040/code/network/aircrack-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
-
 %description
 Reliable 802.11 (wireless) sniffer and WEP key cracker
 
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|-Os -W -Wall|%{optflags}|' Makefile
+%{__perl} -pi.orig -e 's|-W -Wall -O2 -march=i686|%{optflags}|' Makefile
 
 %build
 %{__make} %{?_smp_mflags}
@@ -40,11 +38,14 @@ Reliable 802.11 (wireless) sniffer and WEP key cracker
 
 %files
 %defattr(-, root, root, 0755)
-%doc README*
+%doc ChangeLog *.txt
 %{_bindir}/aircrack
 %{_bindir}/airodump
 %{_bindir}/airunwep
 
 %changelog
+* Wed Aug 11 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

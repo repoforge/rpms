@@ -4,7 +4,7 @@
 
 Summary: Daily backup system similar to Plan9's dumpfs
 Name: pdumpfs
-Version: 1.1
+Version: 1.2
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -48,9 +48,12 @@ day's snapshot for saving a disk space.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README doc/
-%doc %{_mandir}/man8/*
-%{_bindir}/*
+%doc %{_mandir}/man8/pdumpfs.8*
+%{_bindir}/pdumpfs
 
 %changelog
+* Wed Aug 11 2004 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Mon Jul 12 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Initial package. (using DAR)

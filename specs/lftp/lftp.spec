@@ -7,7 +7,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.6
+Version: 3.0.7
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -53,13 +53,16 @@ reliability in mind.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc BUGS ChangeLog COPYING FAQ FEATURES INSTALL MIRRORS README* NEWS THANKS TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/lftp.1*
 %config(noreplace) %{_sysconfdir}/lftp.conf
-%{_bindir}/*
+%{_bindir}/lftp*
 %{_datadir}/lftp/
 %{_libdir}/lftp/
 
 %changelog
+* Wed Aug 11 2004 Dag Wieers <dag@wieers.com> - 3.0.7-1
+- Updated to release 3.0.7.
+
 * Sat Jun 12 2004 Dag Wieers <dag@wieers.com> - 3.0.6-1
 - Updated to release 3.0.6.
 

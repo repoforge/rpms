@@ -7,8 +7,8 @@
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
-Version: 1.3.16
-Release: 1
+Version: 1.3.17
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://galeon.sourceforge.net/
@@ -49,7 +49,7 @@ MOZ_PLUGIN_PATH="$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins:$LD_LIBRA
 
 export LD_LIBRARY_PATH MOZILLA_FIVE_HOME MOZ_PLUGIN_PATH
 
-exec %{_bindir}/galeon-bin $@
+exec %{_libdir}/galeon $@
 EOF
 
 %build
@@ -64,6 +64,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}-2.0
 
+%{__mv} -f %{buildroot}%{_bindir}/galeon %{buildroot}%{_libdir}/galeon/galeon
 %{__install} -D -m0755 galeon.sh %{buildroot}%{_bindir}/galeon
 
 %post
@@ -80,22 +81,28 @@ scrollkeeper-update -q || :
 %files -f %{name}-2.0.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* FAQ* NEWS README* THANKS TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/galeon.1*
 %doc %{_datadir}/gnome/help/galeon/
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%config %{_sysconfdir}/sound/events/*.soundlist
-%{_bindir}/*
+%config %{_sysconfdir}/gconf/schemas/galeon.schemas
+%config %{_sysconfdir}/sound/events/galeon.soundlist
+%{_bindir}/galeon*
 %{_libdir}/bonobo/servers/*.server
 %{_libdir}/galeon/
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/galeon.desktop
 %{_datadir}/galeon/
-%{_datadir}/gnome-2.0/ui/*
+%{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/omf/galeon/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/galeon.png
 %{_datadir}/sounds/galeon/
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Wed Aug 11 2004 Dag Wieers <dag@wieers.com> - 1.3.17-2
+- Re-added the galeon startup script. (Darren Brierton)
+
+* Mon Aug 09 2004 Dag Wieers <dag@wieers.com> - 1.3.17-1
+- Updated to release 1.3.17.
+
 * Sun Jul 04 2004 Dag Wieers <dag@wieers.com> - 1.3.16-1
 - Updated to release 1.3.16.
 

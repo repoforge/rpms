@@ -5,8 +5,8 @@
 
 Summary: Password manager
 Name: revelation
-Version: 0.3.0
-Release: 3
+Version: 0.3.2
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.wired-networks.net/revelation/
@@ -46,14 +46,18 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
+%config %{_sysconfdir}/gconf/schemas/revelation.schemas
+%{_bindir}/revelation
 %{_libdir}/python*/site-packages/revelation/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*.png
+%{_datadir}/applications/revelation.desktop
+%{_datadir}/pixmaps/revelation.png
 %{_datadir}/revelation/
 
 %changelog
+* Mon Aug 09 2004 Dag Wieers <dag@wieers.com> - 0.3.2-1
+- Updated to release 0.3.2.
+- Updated to release 0.3.1.
+
 * Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 0.3.0-3
 - Install schema.
 

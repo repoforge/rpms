@@ -1,17 +1,17 @@
 # $Id$
 # Authority: axel
-# Upstream: Kevin DeKorte <kdekorte$users,sf,net>
-# Upstream: <mplayerplug-in-devel$lists,sf,net>
+# Upstream: Kevin DeKorte <kdekorte$users,sourceforge,net>
+# Upstream: <mplayerplug-in-devel$lists,sourceforge,net>
 
-%define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
+#%define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
 
 Summary: Browser plugin for mplayer
 Name: mplayerplug-in
-Version: 2.65
+Version: 2.66
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://mplayerplug-in.sf.net/
+URL: http://mplayerplug-in.sourceforge.net/
 
 Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -19,7 +19,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, mozilla-devel, glib2-devel, gtk2-devel, mozilla-devel
 
 Obsoletes: mozilla-mplayer <= %{version}-%{release}
-Requires: mplayer, mozilla = %{mversion}
+#Requires: mplayer, mozilla = %{mversion}
+Requires: mplayer
 
 %description
 mplayerplug-in is a browser plugin that uses mplayer to play videos
@@ -51,6 +52,10 @@ in your browser.
 %{_libdir}/mozilla/components/mplayerplug-in.xpt
 
 %changelog
+* Thu Aug 12 2004 Dag Wieers <dag@wieers.com> - 2.66-1
+- Don't require mozilla. (Wayne Steenburg)
+- Updated to release 2.66.
+
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 2.65-1
 - Updated to release 2.65.
 
