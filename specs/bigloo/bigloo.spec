@@ -42,7 +42,7 @@ programs.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
-%{__mv} -f %{buildroot}%{_prefix}/doc/bigloo-2.6d rpm-doc
+%{__mv} -f %{buildroot}%{_prefix}/doc/bigloo-%{version} rpm-doc
 %{__mv} -f %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigloo
 
 %clean
