@@ -40,6 +40,7 @@ for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %makeinstall
+mkdir -p %{buildroot}/usr/share/applications
 mv %{buildroot}/usr/share/applnk/Editors/ksubtile.desktop %{buildroot}/usr/share/applications/ksubtile.desktop
 echo "Categories=Application;AudioVideo;X-Red-Hat-Extra;" >> %{buildroot}/usr/share/applications/ksubtile.desktop
 
