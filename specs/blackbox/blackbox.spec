@@ -3,15 +3,13 @@
 
 Summary: Very small and fast Window Manager
 Name: blackbox
-Version: 0.65.0
-Release: 9
+Version: 0.70.0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://blackboxwm.sourceforge.net/
-Source0: http://dl.sf.net/blackboxwm/blackbox-%{version}.tar.gz
+Source0: http://dl.sf.net/blackboxwm/blackbox-%{version}.tar.bz2
 Source1: blackbox.desktop
-Patch0: blackbox-0.65.0-assert.patch
-Patch1: blackbox-0.65.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gcc-c++
 
@@ -24,15 +22,21 @@ gradients and bevels is used to draw window decorations. Remaining
 small in size, blackbox preserves memory and CPU.
 
 
+%package devel
+Summary: Blackbox Toolbox library for writing small applications
+Group: Development/Libraries
+Requires: gcc-c++, pkgconfig
+
+%description devel
+This package contains the Blackbox Toolbox files, headers and static library
+of the utility class library for writing small applications.
+
+
 %prep
 %setup
-%patch0 -p0 -b .assert
-%patch1 -p1 -b .gcc34
 
 
 %build
-# Work around NLS problem
-export LANG="en_US" LC_ALL="en_US"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -59,15 +63,27 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog* LICENSE README*
+%doc AUTHORS ChangeLog* COMPLIANCE LICENSE README* RELNOTES TODO
 %attr(755, root, root) /etc/X11/gdm/Sessions/Blackbox
 %{_bindir}/*
-%{_datadir}/%{name}
+%{_datadir}/%{name}/
 %{_datadir}/xsessions/%{name}.desktop
 %{_mandir}/man1/*
 
+%files devel
+%defattr(-, root, root, 0755)
+%{_includedir}/bt/
+%{_libdir}/libbt.a
+%exclude %{_libdir}/libbt.la
+%{_libdir}/pkgconfig/libbt.pc
+
 
 %changelog
+* Sat Mar 12 2005 Mattthias Saou <http://freshrpms.net/> 0.70.0-1
+- Update to 0.70.0.
+- Use bz2 source instead of gz.
+- Add devel sub-package for the libbt stuff.
+
 * Mon Nov 15 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-9
 - Added gcc 3.4 patch from Arch Linux.
 

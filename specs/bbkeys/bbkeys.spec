@@ -3,14 +3,14 @@
 
 Summary: Completely configurable key-combo grabber for blackbox
 Name: bbkeys
-Version: 0.8.6
-Release: 3
+Version: 0.9.0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://bbkeys.sourceforge.net/
 Source: http://dl.sf.net/bbkeys/bbkeys-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, gcc-c++
+BuildRequires: blackbox-devel, XFree86-devel
 
 %description
 bbkeys is a configurable key-grabber designed for the blackbox window manager
@@ -32,8 +32,8 @@ as well.  bbkeys is easily configurable via directly hand-editing the user's
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-# Clean this up, we don't want to package it
-%{__rm} -rf %{buildroot}%{_prefix}/doc
+# Clean this up, we package the exact same files cleanly in %%doc
+%{__rm} -rf %{buildroot}%{_datadir}/doc/bbkeys/
 
 
 %clean
@@ -42,14 +42,18 @@ as well.  bbkeys is easily configurable via directly hand-editing the user's
 
 %files 
 %defattr(-, root, root, 0755) 
-%doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO
-%{_bindir}/*
-%dir %{_datadir}/bbtools
-%config %{_datadir}/bbtools/*
+%doc AUTHORS BUGS ChangeLog LICENSE NEWS README TODO
+%{_bindir}/bbkeys
+%dir %{_datadir}/bbkeys/
+%config %{_datadir}/bbkeys/bbkeysrc
+%config %{_datadir}/bbkeys/defaultStyle
 %{_mandir}/man?/*
 
  
 %changelog 
+* Fri Apr  1 2005 Matthias Saou <http://freshrpms.net/> 0.9.0-1
+- Update to 0.9.0.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.8.6-4
 - Rebuild for Fedora Core 2.
 
