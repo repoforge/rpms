@@ -13,7 +13,7 @@ URL: http://dvtitler.sourceforge.net/
 Source0: http://dl.sf.net/dvtitler/dvtitler-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: kino >= 0.7.0
-BuildRequires: kino >= 0.7.0, libgnomeui-devel
+BuildRequires: kino >= 0.7.0, libgnomeui-devel, gcc-c++
 
 %description
 A GNOME2 titler for Kino that uses fontconfig and the Freetype2 rendering
