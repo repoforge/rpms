@@ -7,8 +7,8 @@
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
-Version: 1.1.10
-Release: 2
+Version: 1.1.11
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://keepalived.sourceforge.net/
@@ -87,6 +87,9 @@ fi
 %{_sbindir}/keepalived
 
 %changelog
+* Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 1.1.11-1
+- Updated to release 1.1.11.
+
 * Wed Feb 23 2005 Dag Wieers <dag@wieers.com> - 1.1.10-2
 - Fixed IPVS/LVS support. (Joe Sauer)
 

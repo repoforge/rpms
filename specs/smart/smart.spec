@@ -19,8 +19,8 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.28
-Release: 3
+Version: 0.29.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -33,7 +33,7 @@ Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.
 #Source1: channelsync.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
+BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, pygtk2-devel >= 2.3.94
 BuildRequires: gcc-c++, kdelibs-devel
 # *** KDE requires autoconf 2.52, 2.53 or 2.54
 # *** KDE requires automake 1.6.1 or newer
@@ -342,7 +342,7 @@ popd
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc HACKING IDEAS LICENSE README TODO
+%doc HACKING IDEAS LICENSE README TODO doc/*
 %config %{_prefix}/lib/smart/distro.py
 %dir %{_prefix}/lib/smart/
 %config(noreplace) %{_sysconfdir}/smart/channels/
@@ -373,6 +373,9 @@ popd
 %{_datadir}/apps/ksmarttray/
 
 %changelog
+* Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 0.29.1-1
+- Updated to release 0.29.1.
+
 * Wed Feb 16 2005 Dag Wieers <dag@wieers.com> - 0.28-3
 - Correct the location for distro.py on x86_64. (Edward Rudd)
 

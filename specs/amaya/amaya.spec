@@ -1,7 +1,7 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
+
+%define desktop-vendor rpmforge
 
 Summary: The W3C Web browser and editor
 Name: amaya
@@ -46,7 +46,7 @@ EOF
 %build
 %{__mkdir} linux
 cd linux
-../configure --prefix=%{_libdir} --exec-prefix=%{_usr}
+../configure --prefix="%{_libdir}" --exec-prefix="%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -55,16 +55,16 @@ cd linux
 %{__install} -d %{buildroot}%{_bindir}
 %{__mkdir_p} %{buildroot}
 cd linux
-%makeinstall prefix=%{buildroot}%{_libdir} exec_prefix=%{buildroot}%{_usr}
+%makeinstall prefix="%{buildroot}%{_libdir}" exec_prefix="%{buildroot}%{_prefix}"
 %{__rm} -f %{buildroot}%{_bindir}/amaya*
 %{__ln_s} %{_bindir}/amaya-gtk %{buildroot}%{_bindir}/amaya
 %{__ln_s} %{_libdir}/Amaya/gtk/bin/amaya %{buildroot}%{_bindir}/amaya-gtk
-cd ..
+cd -
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	amaya.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -72,11 +72,11 @@ desktop-file-install --vendor rpmforge             \
 %files
 %defattr(-, root, root, 0755)
 %doc README* 
-%{_bindir}/amaya*
-%{_libdir}/Amaya
-%{_datadir}/applications/*.desktop
+%{_bindir}/amaya
+%{_bindir}/amaya-gtk
+%{_libdir}/Amaya/
+%{_datadir}/applications/%{desktop_vendor}-amaya.desktop
 
 %changelog
 * Wed Jan 05 2005 Dries Verachtert <dries@ulyssis.org> - 8.7-1
 - Initial package.
-

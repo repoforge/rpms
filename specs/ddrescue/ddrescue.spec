@@ -6,7 +6,7 @@
 
 Summary: Fault tolerant "dd" utility for rescueing data from bad media
 Name: ddrescue
-Version: 1.10
+Version: 1.11
 Release: 1
 License: GPL
 Group: Applications/System
@@ -40,7 +40,6 @@ rescuing data from media with errors, e.g. a disk with bad sectors.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0755 dd_rescue %{buildroot}%{_bindir}/dd_rescue
-%{__ln_s} -f dd_rescue %{buildroot}%{_bindir}/ddrescue
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,6 +50,9 @@ rescuing data from media with errors, e.g. a disk with bad sectors.
 %{_bindir}/dd_rescue
 
 %changelog
+* Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 1.11-1
+- Updated to release 1.11.
+
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 1.10-1
 - Updated to release 1.10.
 

@@ -1,14 +1,14 @@
 # $Id$
 # Authority: dag
-# Upstream: Volker Gropp <gropp_v$informatik.haw-hamburg.de>
+# Upstream: Volker Gropp <bwmng$gropp,org>
 
 Summary: Curses based bandwidth monitor
 Name: bwm-ng
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
-URL: http://users.informatik.haw-hamburg.de/~gropp_v/
+URL: http://www.gropp.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -19,13 +19,39 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel
 
 %description
-A small and simple curses Bandwidth Monitor.
+Bandwidth Monitor NG is a small and simple console-based live bandwidth
+monitor.
+
+Short list of features:
+- supports /proc/net/dev, netstat, getifaddr, sysctl, kstat and libstatgrab
+- unlimited number of interfaces supported
+- interfaces are added or removed dynamically from list
+- white-/blacklist of interfaces
+- output of KB/s, Kb/s, packets, errors, average, max and total sum
+- output in curses, plain console, CSV or HTML
+- configfile
 
 %prep
 %setup
 
 %build
-%configure
+%configure \
+	--enable-html \
+	--enable-csv \
+	--enable-extendedstats \
+	--enable-configfile \
+	--enable-64bit \
+	--enable-netstatpath \
+	--enable-netstatbyte \
+	--enable-netstatlink \
+	--with-ncurses \
+	--with-time \
+	--with-getopt_long \
+	--with-getifaddrs \
+	--with-sysctl \
+	--with-procnetdev \
+	--with-netstatlinux \
+	--with-strip
 %{__make} %{?_smp_mflags}
 
 %install
@@ -45,6 +71,9 @@ A small and simple curses Bandwidth Monitor.
 %{_bindir}/bwm-ng
 
 %changelog
+* Thu Mar 03 2005 Dag Wieers <dag@wieers.com> - 0.5-2
+- Synced with upstream SPEC file.
+
 * Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 

@@ -7,7 +7,7 @@
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-Release: 1.200501r1
+Release: 2.200501r1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -16,8 +16,6 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://www.kismetwireless.net/code/kismet-%{real_version}.tar.gz
-#Source1: http://www.kismetwireless.net/code/configure
-#Patch0: http://www.kismetwireless.net/code/kismet-feb.04.01.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ImageMagick-devel, ncurses-devel, autoconf, flex, gcc-c++
@@ -34,23 +32,14 @@ downloaded maps or user supplied image files.
 
 %prep
 %setup -n %{name}-%{real_version}
-#%patch0 -p1
-#%{__install} -m0755 %{SOURCE1} .
 
-### FIXME: Get rid of the ownership changes
+#### FIXME: Get rid of the ownership changes (RH9)
 %{__perl} -pi.orig -e '
 		s|-o \$\(INSTUSR\) -g \$\(INSTGRP\) ||g;
 		s|-o \$\(INSTUSR\) -g \$\(MANGRP\) ||g;
 	' Makefile.in
 
-### FIXME: Fix configure to work
-#%{__perl} -pi.orig -e 's|^,$||' configure
-
 %build
-cd libpcap-*
-%{__autoconf}
-cd -
-%{__autoconf}
 %configure
 #	--enable-syspcap
 %{__make} %{?_smp_mflags} dep all
@@ -58,7 +47,7 @@ cd -
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall rpm \
-	ETC="%{buildroot}%{_sysconfdir}/kismet" \
+	ETC="%{buildroot}%{_sysconfdir}" \
 	BIN="%{buildroot}%{_bindir}" \
 	SHARE="%{buildroot}%{_datadir}/kismet/" \
 	MAN="%{buildroot}%{_mandir}" \
@@ -71,13 +60,13 @@ cd -
 %defattr(-, root, root, 0755)
 %doc CHANGELOG GPL README TODO docs/DEVEL.* docs/README*
 %doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/kismet/
+%config(noreplace) %{_sysconfdir}/*
 %{_bindir}/*
 %{_datadir}/kismet/
 
 %changelog
-* Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 3.0.1-1.200501r1
-- Updated to release 2005-01-R1.
+* Thu Feb 24 2005 Dag Wieers <dag@wieers.com> - 3.0.1-2.200501r1
+- Revert config directory to /etc.
 
 * Thu Dec 23 2004 Dag Wieers <dag@wieers.com> - 3.0.1-1.200410r1
 - Updated to release 2004-10-R1.
