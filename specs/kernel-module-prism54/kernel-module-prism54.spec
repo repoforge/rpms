@@ -4,6 +4,7 @@
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -15,7 +16,7 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define rname prism54
-%define rversion 20040205
+%define rversion 20040307
 
 %define moduledir /kernel/drivers/net/wireless/prism54
 %define modules ksrc/prism54.o
@@ -31,7 +32,7 @@ URL: http://prism54.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prism54.org/pub/linux/snapshot/tars/2004-02/%{rname}-cvs%{rversion}.tar.bz2
+Source: http://prism54.org/pub/linux/snapshot/tars/2004-03/prism54-cvs%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -148,5 +149,8 @@ cd -
 #%{_libdir}/hotplug/firmware/*
 
 %changelog
+* Thu Feb 05 2004 Dag Wieers <dag@wieers.com> - 0.0.20040307-0
+- Updated to release 20040307.
+
 * Thu Feb 05 2004 Dag Wieers <dag@wieers.com> - 0.0.20040205-0
 - Initial package. (using DAR)
