@@ -2,6 +2,8 @@
 # Authority: matthias
 # Upstream: <xine-user$lists,sf,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
 
