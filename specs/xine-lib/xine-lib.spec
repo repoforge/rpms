@@ -2,6 +2,27 @@
 # Authority: matthias
 # Upstream: <xine-user@lists.sf.net>
 
+%{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_fribidi 1}
+%{?fc1:%define _without_theora 1}
+
+%{?el3:%define _without_alsa 1}
+%{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_theora 1}
+
+%{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_fribidi 1}
+%{?rh9:%define _without_theora 1}
+
+%{?rh8:%define _without_alsa 1}
+%{?rh8:%define _without_fribidi 1}
+%{?rh8:%define _without_theora 1}
+
+%{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_fribidi 1}
+%{?rh7:%define _without_gnomevfs2 1}
+%{?rh7:%define _without_theora 1}
+
 %define libname libxine1
 %define libver  1-rc4a
 %define apiver  1.0.0
@@ -32,7 +53,7 @@ Requires: libdvdcss
 %{!?_without_xvid:Requires: xvidcore}
 %{!?_without_speex:Requires: speex}
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
-BuildRequires: libvorbis-devel, SDL-devel, freeglut-devel
+BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{?_with_rte:BuildRequires: rte-devel}
@@ -50,6 +71,10 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{!?_without_speex:BuildRequires: speex-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
+%{!?dist:BuildRequires: freeglut-devel}
+%{?fc2:BuildRequires: freeglut-devel}
+%{?fc1:BuildRequires: freeglut-devel}
+%{?rh9:BuildRequires: glut-devel}
 Obsoletes: xine-libs <= 1.0.0
 Obsoletes: libxine <= %{version}
 
