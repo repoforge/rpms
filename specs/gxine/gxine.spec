@@ -1,20 +1,25 @@
 # $Id$
 # Authority: matthias
 
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define desktop_vendor freshrpms
 
-Summary: GTK based frontend for the xine multimedia library
+Summary: Frontend for the xine multimedia library
 Name: gxine
 Version: 0.3.3
 Release: 2
 License: GPL
 Group: Applications/Multimedia
-Source:http://dl.sf.net/xine/%{name}-%{version}.tar.gz
 URL: http://xinehq.de/
+
+Source:http://dl.sf.net/xine/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk2 >= 2.0, xine-lib >= 1.0.0
+
 BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Requires: gtk2 >= 2.0, xine-lib >= 1.0.0
 
 %description
 xine is a fully-featured free audio/video player for unix-like systems which
@@ -37,9 +42,9 @@ Available rpmbuild rebuild options :
 %{__make} install DESTDIR=%{buildroot}
 
 # We don't want those...
-%{__rm} -f %{buildroot}%{_libdir}/%{name}/{*.a,*.la}
+%{__rm} -f %{buildroot}%{_libdir}/gxine/{*.a,*.la}
 
-%if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
+%if %{!?_without_freedesktop:1}0
 # Desktop entry
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
@@ -48,7 +53,7 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --add-category X-Red-Hat-Extra                                  \
   --add-category Application                                      \
   --add-category AudioVideo                                       \
-  %{buildroot}%{_datadir}/gnome/apps/Multimedia/%{name}.desktop
+  %{buildroot}%{_datadir}/gnome/apps/Multimedia/gxine.desktop
 %endif
 
 %clean
@@ -57,13 +62,13 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
-%{_bindir}/%{name}*
-%{_libdir}/%{name}
-%{_mandir}/man1/%{name}.1*
-%lang(de) %{_mandir}/de/man1/%{name}.1*
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/%{name}.desktop}
-%{_datadir}/%{name}
+%{_bindir}/*
+%{_libdir}/gxine/
+%{_mandir}/man1/*
+%lang(de) %{_mandir}/de/man1/*
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gxine.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/gxine.desktop}
+%{_datadir}/gxine/
 
 %changelog
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.3-2.fr
