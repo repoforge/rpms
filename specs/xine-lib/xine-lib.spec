@@ -3,7 +3,7 @@
 # Upstream: <xine-user@lists.sf.net>
 
 %define libname libxine1
-%define libver  1-rc3c
+%define libver  1-rc4
 %define apiver  1.0.0
 
 %define __libtoolize :
@@ -11,14 +11,12 @@
 Summary: Core library for the xine video player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.11.rc3c
+Release: 0.12.rc4
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
-
 Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 Requires: zlib, libvorbis, SDL
 Requires: libpng, libmng
 Requires: libdvdcss
@@ -136,7 +134,6 @@ use the Xine library.
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/hackersguide/*.sgml
-%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_includedir}/xine.h
 %{_includedir}/xine/
@@ -144,9 +141,13 @@ use the Xine library.
 %{_libdir}/pkgconfig/*
 %{_datadir}/aclocal/*.m4
 %exclude %{_libdir}/*.la
+%{_mandir}/man?/*
 
 
 %changelog
+* Tue May  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.12.rc4
+- Update to 1.0rc4.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.11.rc3c
 - Update to 1.0rc3c.
 

@@ -6,7 +6,7 @@
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 0.76
+Version: 0.77
 Release: 1
 Epoch: 1
 License: GPL
@@ -53,10 +53,12 @@ away, and more.
 Available rpmbuild rebuild options :
 --with : tcltk arts perl
 
+
 %prep
 %setup -n %{name}-%{?date:%{date}}%{!?date:%{version}}
 %patch0 -p1 -b .desktop
 %patch1 -p1 -b .prefs
+
 
 %build
 %configure \
@@ -65,18 +67,21 @@ Available rpmbuild rebuild options :
     %{!?_with_perl:--disable-perl}
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
-strip %{buildroot}%{_libdir}/{*.so*,%{name}/*.so} || :
-%{?_with_perl:rm -f %{buildroot}%{perl_archlib}/perllocal.pod}
+%{__strip} %{buildroot}%{_libdir}/{*.so*,%{name}/*.so} || :
+%{?_with_perl:%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod}
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files -f %{name}.lang
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc doc/the_penguin.txt doc/CREDITS NEWS COPYING AUTHORS doc/FAQ README
 %doc ChangeLog doc/PERL-HOWTO.dox HACKING doc/gaims_funniest_home_convos.txt
 %{_bindir}/%{name}*
@@ -95,7 +100,12 @@ strip %{buildroot}%{_libdir}/{*.so*,%{name}/*.so} || :
 %endif
 
 %changelog
+* Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 0.77-1
+- Update to 0.77.
+
 * Fri Apr  2 2004 Matthias Saou <http://freshrpms.net/> 0.76-1
+- Update to 0.76.
+
 * Mon Feb  2 2004 Matthias Saou <http://freshrpms.net/> 0.75-2
 - Include latest security patch to fix potential vulnerabilities.
 

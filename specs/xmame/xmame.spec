@@ -6,7 +6,7 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.79.1
+Version: 0.81.1
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
@@ -14,13 +14,13 @@ Source10: http://www.mame.net/roms/polyplay.zip
 Source11: http://www.mame.net/roms/robby.zip
 Source12: http://www.mame.net/roms/gridlee.zip
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 8.2 - 18/10/2003
-Source21: http://www.mameworld.net/highscore/uhsdat82.zip
-# http://fandemame.emu-france.com/ 0.79c - 12/02/2004
-Source22: http://fandemame.emu-france.com/files/history079c.zip
-# http://www.mameworld.net/mameinfo/ 0.79u1 - 09/02/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo079u1.zip
-# http://www.mameworld.net/catlist/ 0.79u1 - 13/02/2004
+# http://www.mameworld.net/highscore/ 8.3 - 09/04/2004
+Source21: http://www.mameworld.net/highscore/uhsdat83.zip
+# http://www.arcade-history.com/ 0.81g - 28/04/2004
+Source22: http://www.arcade-history.com/download/history0_81g.zip
+# http://www.mameworld.net/mameinfo/ 0.81u7a - 24/04/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo081u7a.zip
+# http://www.mameworld.net/catlist/ 0.81u9 - 01/05/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -30,6 +30,7 @@ Requires: %{name}-bin = %{version}
 BuildRequires: unzip, XFree86-devel, zlib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
+%{!?_without_arts:BuildRequires: arts-devel}
 %ifarch %ix86
 %{!?_without_asm68000:BuildRequires: nasm >= 0.98}
 %{!?_without_mips3:BuildRequires: nasm >= 0.98}
@@ -47,7 +48,7 @@ a package containing the main xmame binary though, from either the basic
 x11 version, the SDL version or the special OpenGL xgl version.
 
 Available rpmbuild rebuild options :
---without mame mess x11 xgl SDL asm68000 mips3 alsa esound opts quietbuild
+--without mame mess x11 xgl SDL asm68000 mips3 alsa esound arts opts quietbuild
 
 
 %package x11
@@ -202,6 +203,7 @@ export CFLAGS="%{optflags}"
 export JOY_I386=1
 %{!?_without_alsa:export SOUND_ALSA=1}
 %{!?_without_esound:export SOUND_ESOUND=1}
+%{!?_without_arts:export SOUND_ARTS_TEIRA=1}
 
 # Optimization flags, CPU type and defaults for the makefile
 %ifarch %ix86
@@ -370,22 +372,26 @@ unzip -o %{SOURCE30}
 
 
 %changelog
-* Fri Feb 20 2004 Matthias Saou <http://freshrpms.net/> 0.79.1-1.fr
+* Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 0.81.1-1
+- Update to 0.81.1, with the usual related files too.
+- Added arts support by default.
+
+* Fri Feb 20 2004 Matthias Saou <http://freshrpms.net/> 0.79.1-1
 - Update to 0.79.1, with the usual related files too.
 
-* Thu Feb 12 2004 Matthias Saou <http://freshrpms.net/> 0.78.1-3.fr
+* Thu Feb 12 2004 Matthias Saou <http://freshrpms.net/> 0.78.1-3
 - Added xmame-0.78.1-fix.patch to fix PPC build.
 
-* Fri Jan 16 2004 Matthias Saou <http://freshrpms.net/> 0.78.1-1.fr
+* Fri Jan 16 2004 Matthias Saou <http://freshrpms.net/> 0.78.1-1
 - Update to 0.78.1.
 - Updated all related files too.
 - Added chdman to the mame build.
 
-* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.77.1-1.fr
+* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.77.1-1
 - Update to 0.77.1.
 - Updated all related files too, catver is up-to-date at last.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.76.1-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.76.1-2
 - Rebuild for Fedora Core 1.
 
 * Sun Oct 26 2003 Matthias Saou <http://freshrpms.net/>

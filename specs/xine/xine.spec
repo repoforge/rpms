@@ -1,13 +1,11 @@
 # $Id$
 # Authority: matthias
 
-#$Id$
-
 %define desktop_vendor freshrpms
 
-Summary: free multimedia player
+Summary: Free multimedia player
 Name: xine
-Version: 0.9.23
+Version: 0.99.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -15,11 +13,9 @@ URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
-%{!?_without_curl:Requires: curl >= 7.10.2}
 BuildRequires: XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
-BuildRequires: libtermcap-devel, pkgconfig
+BuildRequires: curl-devel, libtermcap-devel, pkgconfig, /usr/bin/find
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{!?_without_curl:BuildRequires: curl-devel >= 7.10.2}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_lirc:BuildRequires: lirc}
 
@@ -33,14 +29,17 @@ formats, too.
 This package contains the GUI of the Xine multimedia player.
 
 Available rpmbuild rebuild options :
---without : curl aalib lirc freedesktop
+--without : aalib lirc freedesktop
+
 
 %prep
 %setup -n xine-ui-%{version}
 
+
 %build
 %configure %{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,14 +47,14 @@ Available rpmbuild rebuild options :
 %find_lang xine-ui
 
 # Remove unpackaged files
-find %{buildroot} -name "xitk*" | xargs rm -rf || :
+/usr/bin/find %{buildroot} -name "xitk*" | xargs rm -rf || :
 
 # Move the docs back into place
 mv %{buildroot}%{_docdir}/xine-ui xine-ui-doc
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
 # Convert the menu entry
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     --add-category X-Red-Hat-Base               \
@@ -67,8 +66,10 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f xine-ui.lang
 %defattr(-, root, root, 0755)
@@ -85,14 +86,19 @@ desktop-file-install --vendor %{desktop_vendor} \
 %lang(fr)%{_mandir}/fr/man1/*
 %lang(pl)%{_mandir}/pl/man1/*
 
+
 %changelog
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.23-1.fr
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 0.99.1-1
+- Update to 0.99.1.
+- Have curl enabled by default, if it's too old, it'll be disabled anyway.
+
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.23-1
 - Update to 0.9.23.
 
-* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 0.9.22-3.fr
+* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 0.9.22-3
 - Fix a typo that made the package require curl-devel.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.22-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.22-2
 - Rebuild for Fedora Core 1.
 
 * Fri Aug  8 2003 Matthias Saou <http://freshrpms.net/>

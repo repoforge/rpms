@@ -6,19 +6,20 @@
 
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
-Version: 0.99.9
+Version: 0.99.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.hadess.net/totem.php3
-Source: http://www.hadess.net/files/software/totem/%{name}-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/totem/0.99/totem-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gnome-desktop >= 2.1.0
+Requires(post): GConf2
+Requires: gnome-desktop >= 2.6.0
 Requires: xine-lib >= 1.0.0
 %{!?_without_lirc:Requires: lirc}
 BuildRequires: gcc-c++, pkgconfig, gettext, scrollkeeper
 BuildRequires: xine-lib-devel >= 1.0.0
-BuildRequires: gnome-desktop-devel >= 2.0.0, gnome-vfs2-devel, libglade2-devel
+BuildRequires: gnome-desktop-devel >= 2.6.0, gnome-vfs2-devel, libglade2-devel
 BuildRequires: perl-XML-Parser
 %{!?_without_lirc:BuildRequires: lirc}
 
@@ -53,6 +54,7 @@ xine one. You can still use the xine backend by running "totem --xine".
 %prep
 %setup
 
+
 %build
 %if %{gstreamer}
 %configure \
@@ -67,6 +69,7 @@ mv src/%{name} src/%{name}-gstreamer
 %configure \
     %{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -95,14 +98,17 @@ EOF
 chmod 755 %{buildroot}%{_bindir}/%{name}
 %endif
 
+
 %post
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 gconftool-2 --makefile-install-rule \
     %{_sysconfdir}/gconf/schemas/totem.schemas \
     %{_sysconfdir}/gconf/schemas/totem-video-thumbnail.schemas >/dev/null || :
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -124,6 +130,7 @@ gconftool-2 --makefile-install-rule \
 %{_datadir}/omf/%{name}
 %{_datadir}/pixmaps/*
 %{_datadir}/%{name}
+%{_mandir}/man1/%{name}.1*
 
 %if %{gstreamer}
 %files gstreamer
@@ -131,20 +138,24 @@ gconftool-2 --makefile-install-rule \
 %{_bindir}/%{name}-gstreamer
 %endif
 
+
 %changelog
-* Fri Feb 13 2004 Matthias Saou <http://freshrpms.net/> 0.99.9-1.fr
+* Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 0.99.10-1
+- Update to 0.99.10, rebuild against GNOME 2.6.
+
+* Fri Feb 13 2004 Matthias Saou <http://freshrpms.net/> 0.99.9-1
 - Update to 0.99.9, rebuild against gstreamer 0.7.4.
 - New required perl-XML-Parser build dep (!?).
 - Added missing defattr for the gstreamer sub-package.
 
-* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.99.8-2.fr
+* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.99.8-2
 - Disable the obsolete xinitthreads patch.
 
-* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.99.8-1.fr
+* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.99.8-1
 - Update to 0.99.8.
 - Added help and omf files.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.99.7-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.99.7-2
 - Rebuild for Fedora Core 1.
 
 * Thu Oct 16 2003 Matthias Saou <http://freshrpms.net/>

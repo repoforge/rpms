@@ -10,7 +10,8 @@ Group: System Environment/Libraries
 Source: http://www.fftw.org/fftw-%{version}.tar.gz
 URL: http://www.fftw.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: /sbin/ldconfig
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
 
 %description
 FFTW is a C subroutine library for computing the Discrete Fourier Transform
@@ -41,6 +42,7 @@ develop programs using the FFTW fast Fourier transform library.
 %prep
 %setup
 
+
 %build
 # Build double precision
 %configure \
@@ -66,6 +68,7 @@ develop programs using the FFTW fast Fourier transform library.
     --enable-float
 %{__make} %{?_smp_mflags}
 
+
 %install
 # Don't remove previously installed double precision
 #rm -rf %{buildroot}
@@ -76,12 +79,17 @@ develop programs using the FFTW fast Fourier transform library.
 # Clean up docs
 %{__rm} -f doc/Makefile*
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -97,11 +105,12 @@ develop programs using the FFTW fast Fourier transform library.
 %{_infodir}/*.info*
 %exclude %{_libdir}/*.la
 
+
 %changelog
-* Fri Jan 16 2004 Matthias Saou <http://freshrpms.net/> 2.1.5-3.fr
+* Fri Jan 16 2004 Matthias Saou <http://freshrpms.net/> 2.1.5-3
 - Re-enable build of both single and double precision libraries.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.5-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.5-2
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
