@@ -68,6 +68,8 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %{__mv} -f %{buildroot}%{_bindir}/galeon %{buildroot}%{_libdir}/galeon/galeon
 %{__install} -D -m0755 galeon.sh %{buildroot}%{_bindir}/galeon
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
+
 %post
 %{_bindir}/galeon-config-tool --fix-gconf-permissions
 %{_bindir}/galeon-config-tool --pkg-install-schemas
@@ -95,6 +97,8 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/galeon/
 %{_datadir}/pixmaps/galeon.png
 %{_datadir}/sounds/galeon/
+%dir %{_libdir}/mozilla/
+%dir %{_libdir}/mozilla/plugins/
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
