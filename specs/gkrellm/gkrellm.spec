@@ -5,7 +5,7 @@
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
-Version: 2.2.1
+Version: 2.2.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -53,6 +53,11 @@ machines you intend to monitor with gkrellm from a different location.
 %patch0 -p0 -b .i18n
 %patch1 -p1 -b .config
 
+# Fix for lib vs. lib64
+%{__perl} -pi.orig -e 's|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g' \
+    Makefile Makefile.i18n */Makefile
+%{__perl} -pi.orig -e 's|lib/pkgconfig|%{_lib}/pkgconfig|g' Makefile
+
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" debug=1
@@ -84,8 +89,8 @@ Comment=Monitor for CPU, memory, disks, network, mail
 Exec=gkrellm
 Icon=gkrellm.png
 Terminal=false
-Categories=Application;System;Monitor;
 Encoding=UTF-8
+Categories=Application;System;Monitor;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
@@ -148,6 +153,10 @@ fi
 
 
 %changelog
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 2.2.2-1
+- Update to 2.2.2.
+- Add fixes for x86_64.
+
 * Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 2.2.1-1
 - Update to 2.2.1.
 
