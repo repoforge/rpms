@@ -45,7 +45,7 @@ chmod +x configure
 %configure --enable-debug
 dos2unix Makefile
 dos2unix depcomp
-%{__make} INCLUDES=-I/usr/include/mozilla-1.6/js %{?_smp_mflags}
+%{__make} CXXFLAGS="-ggdb -O2 -I./mozilla/js/src"  %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
