@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jonathan Gonzalez V. <jonathan@blueplanet.cl>
 
