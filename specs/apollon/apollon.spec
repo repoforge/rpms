@@ -8,9 +8,7 @@
 
 Summary: KDE filesharing client which uses gift
 Name: apollon
-%{?fc3:Version: 1.0b1}
-%{?fc2:Version: 1.0b1}
-%{?fc1:Version: 0.9.2}
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -50,7 +48,7 @@ EOF
 
 %build
 source /etc/profile.d/qt.sh
-for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done
+# for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done
 %configure \
 	--x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
@@ -92,6 +90,9 @@ desktop-file-install --vendor %{desktop_vendor}   \
 %{_datadir}/icons/*/*/apps/*.png
 
 %changelog
+* Fri Nov 26 2004 Dries Verachtert <dries@ulyssis.org> 1.0.1-1
+- Update to version 1.0.1.
+
 * Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 1.0b1-1
 - Update to version 1.0 beta 1.
 
