@@ -1,6 +1,0 @@
-files=20
-buffers=20
-screen=0x12
- 
-device=c:\dosemu\emufs.sys /
-device=c:\dosemu\ems.sys

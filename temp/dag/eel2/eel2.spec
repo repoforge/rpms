@@ -1,2 +1,0 @@
-# Authority: dag
-
