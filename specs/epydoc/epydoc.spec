@@ -3,7 +3,7 @@
 Summary: Edward Loper's Python API documentation generation tool
 Name: epydoc
 Version: 2.1
-Release: 2
+Release: 3
 Group: Development/Tools
 License: MIT
 URL: http://epydoc.sourceforge.net/
@@ -47,12 +47,15 @@ ReStructuredText, Javadoc, and plaintext.
 %doc LICENSE.TXT README.TXT doc/
 %{_bindir}/epydoc
 %{_bindir}/epydocgui
-%{_libdir}/python?.?/site-packages/epydoc/
+%{_prefix}/lib/python?.?/site-packages/epydoc/
 %{_mandir}/man1/epydoc.1*
 %{_mandir}/man1/epydocgui.1*
 
 
 %changelog
+* Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 2.1-3
+- Fix for building on 64bit hosts (lib64 vs. lib).
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 2.1-2
 - Make the package noarch as it contains no binaries.
 
