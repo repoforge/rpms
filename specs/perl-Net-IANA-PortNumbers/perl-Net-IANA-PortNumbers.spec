@@ -47,7 +47,9 @@ With this module, you can translate ports to services and vice versa.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/IANA/PortNumbers.pm
+%{perl_vendorlib}/Net/IANA
 %exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/Net-IANA-PortNumbers/.packlist
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.16-1
