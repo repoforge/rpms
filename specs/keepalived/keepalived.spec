@@ -5,16 +5,16 @@
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
-Version: 1.1.6
-Release: 0
+Version: 1.1.7
+Release: 1
 License: GPL
 Group: Applications/System
-URL: http://keepalived.sf.net/
+URL: http://keepalived.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://keepalived.sf.net/software/keepalived-%{version}.tar.gz
+Source: http://www.keepalived.org/software/keepalived-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
@@ -36,6 +36,8 @@ nodes healthchecks and LVS directors failover.
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's|\$\(prefix\)/man|\$(mandir)|' Makefile.in */Makefile.in
 
 %build
 %{?el3:export CPPFLAGS="-I/usr/kerberos/include"}
@@ -67,13 +69,17 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHOR ChangeLog CONTRIBUTORS COPYING README TODO doc/
+%doc %{_mandir}/man?/*
 #%config %{_initrddir}/*
 %config(noreplace) %{_sysconfdir}/keepalived/
-%config %{_sysconfdir}/init.d/*
-%{_bindir}/*
-%{_sbindir}/*
+%config %{_sysconfdir}/init.d/keepalived
+%{_bindir}/genhash
+%{_sbindir}/keepalived
 
 %changelog
+* Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 1.1.7-1
+- Updated to release 1.1.7. (Mathieu Lubrano)
+
 * Mon Feb 23 2004 Dag Wieers <dag@wieers.com> - 1.1.6-0
 - Updated to release 1.1.6.
 

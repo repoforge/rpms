@@ -8,7 +8,7 @@
 
 Summary: Interactive educational geometry software
 Name: drgeo
-Version: 0.9.13
+Version: 0.9.14
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -83,6 +83,9 @@ EOF
 %{?_without_freedesktop:%{_datadir}/applications/drgeo.desktop}
 
 %changelog
+* Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 0.9.14-1
+- Updated to release 0.9.14.
+
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 0.9.13-1
 - Updated to release 0.9.13.
 

@@ -5,11 +5,13 @@
 ### DB files are different depending on version of db3/db4
 ##Dist: nodist
 
+### FIXME: TODO: Add a tool that updates blacklists and reconfigs squidguards.
+
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
 Summary: Regularly updated blacklists for use with squidguard
 Name: squidguard-blacklists
-Version: 20040318
+Version: 20040918
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -138,6 +140,9 @@ echo '\.(mpe?g?|wmv|mov|movie|qt|avi|dvd?|divx)($|\?)' >>%{buildroot}%{_sysconfd
 %ghost %{_localstatedir}/log/squidguard/*.log
 
 %changelog
+* Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 20040918-1
+- Updated to release 20040918.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 20040318-1
 - Updated to release 20040318.
 - Fixed problem with multiple blacklists per destination. (Tom Gordon)
