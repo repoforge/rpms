@@ -4,11 +4,11 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define real_version 2.1-0
+%define real_version %{version}-0
 
 Summary: File integrity checker
 Name: afick
-Version: 2.1
+Version: 2.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -108,5 +108,8 @@ It comes with menu for integration in kde/gnome ...
 %endif
 
 %changelog
+* Wed May 12 2004 Dag Wieers <dag@wieers.com> - 2.2-1
+- Updated to release 2.2.
+
 * Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 2.1-1
 - Initial package. (using DAR)
