@@ -21,7 +21,7 @@ BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip
 todo
 
 %prep
-%setup -D -c -a 1 
+%setup -c -a 1 
 
 %build
 dos2unix autogen.sh
