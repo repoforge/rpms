@@ -35,7 +35,7 @@ Source9: http://www.splitbrain.org/Fortunes/simpsons/fortune-simpsons-chalkboard
 # The Elements of Programming Style - fortune cookie is a fortune cookie
 # file containing the 69 tips from the "Elements of Programming Style" by
 # Kernighan & Plaugher. 
-Source10: http://freshmeat.net/redir/fortune-mod-prog-style/19342/url_tgz/fortune-mod-prog-style.tar.gz
+Source10: http://db.ilug-bom.org.in/lug-authors/philip/misc/fortune-mod-prog-style.tar.gz
 # http://www.splitbrain.org/./Fortunes/fgump/
 Source11: http://www.splitbrain.org/Fortunes/fgump/fortune-fgump.tgz
 # http://www.splitbrain.org/./Fortunes/discworld/
@@ -51,7 +51,7 @@ Source16: http://pinkemostar.com:8008/files/cbg-quotes.tar.gz
 # Simpsons Ralph Wiggum Quotes is a 'fortune' quote file with quotes from
 # the one, the only, Ralph Wiggum. This was inspired by the Quotable Homer
 # fortune file. 
-Source17: http://www.pinkemostar.com/files/ralph-quotes.tar.gz
+Source17: http://www.pinkemostar.com:8008/files/ralph-quotes.tar.gz
 # http://eol.init1.nl/linux/index.php   (southpark quotes)
 Source18: http://eol.init1.nl/linux/SP-0.1.tar.gz
 # http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
