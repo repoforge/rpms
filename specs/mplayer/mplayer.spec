@@ -2,15 +2,16 @@
 # Authority: matthias
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20040211
+%define date      20040325
 #define rcver     pre2
 
+%define xmmsplugindir  %(xmms-config --input-plugin-dir)
 %define desktop_vendor freshrpms
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.7%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.8%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -19,13 +20,14 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-current.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.0.tar.bz2
+Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.1.tar.bz2
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk+, SDL, libpng, lame, libogg, libvorbis
-Requires: mplayer-fonts, libpostproc = %{version}-%{release}
+Requires: mplayer-fonts
+Requires: libpostproc = %{version}-%{release}
+Requires(post,postun): /sbin/ldconfig
 #{?_with_dvdnav:Requires: libdvdnav}
 %{?_with_samba:Requires: samba-common}
 %{!?_without_alsa:Requires: alsa-lib}
@@ -39,8 +41,11 @@ Requires: mplayer-fonts, libpostproc = %{version}-%{release}
 %{!?_without_faad2:Requires: faad2}
 %{!?_without_lzo:Requires: lzo}
 %{!?_without_fame:Requires: libfame}
-BuildRequires: gtk+-devel, SDL-devel, libpng-devel, lame-devel, libogg-devel
-BuildRequires: libvorbis-devel, libmad-devel
+BuildRequires: gtk+-devel, SDL-devel
+BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
+BuildRequires: lame-devel, libmad-devel, flac-devel
+BuildRequires: libogg-devel, libvorbis-devel, libmad-devel
+BuildRequires: xmms-devel, fribidi-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #{?_with_dvdnav:BuildRequires: libdvdnav-devel}
 %{?_with_samba:BuildRequires: samba-common}
@@ -73,6 +78,7 @@ Available rpmbuild rebuild options :
 Summary: Video postprocessing library from MPlayer
 Group: System Environment/Libraries
 Provides: libpostproc-devel = %{version}-%{release}
+Requires(post,postun): /sbin/ldconfig
 
 %description -n libpostproc
 MPlayer is a movie player. It plays most video formats as well as DVDs.
@@ -94,8 +100,9 @@ to use MPlayer, transcode or other similar programs.
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
 
+
 %build
-find . -name "CVS" | xargs rm -rf
+find . -name "CVS" | xargs %{__rm} -rf
 #       %{?_with_dvdnav:--enable-dvdnav} \
 ./configure \
     --prefix=%{_prefix} \
@@ -104,12 +111,15 @@ find . -name "CVS" | xargs rm -rf
     --mandir=%{_mandir} \
     --enable-gui \
     --enable-largefiles \
+    --enable-dynamic-plugins \
+    --enable-xmms \
+    --with-xmmsplugindir=%{xmmsplugindir} \
 %ifarch %ix86
     --enable-win32 \
     --with-win32libdir=%{_libdir}/win32 \
     --with-reallibdir=%{_libdir}/win32 \
 %else
-	--with-reallibdir=%{_libdir}/real \
+    --with-reallibdir=%{_libdir}/real \
 %endif
     --enable-joystick \
     --disable-mpdvdkit \
@@ -133,9 +143,10 @@ find . -name "CVS" | xargs rm -rf
     --enable-i18n \
     --language=all \
     %{!?_without_osdmenu:--enable-menu} \
-    %{?_with_samba:--enable-smb} << EOF
-EOF
+    %{?_with_samba:--enable-smb}
+
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -145,7 +156,7 @@ EOF
 mkdir -p %{buildroot}%{_datadir}/mplayer/Skin
 pushd %{buildroot}%{_datadir}/mplayer/Skin
     tar -xjf %{SOURCE2}
-    mv * default || :
+    mv * default
 popd
 
 # Fix eventual skin permissions :-(
@@ -160,7 +171,7 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
     %{buildroot}%{_datadir}/pixmaps/mplayer-logo.xpm
 
 # Last, add system menu entries!
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Movie Player
 Comment=Play DivX ;-), MPEG, DVDs and more
@@ -186,22 +197,29 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
     make prefix=%{buildroot}%{_prefix} -C libavcodec/libpostproc install
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
 
-%post -n libpostproc -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 
-%postun -n libpostproc -p /sbin/ldconfig
+%post -n libpostproc
+/sbin/ldconfig
+
+%postun -n libpostproc
+/sbin/ldconfig
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 755)
 %doc AUTHORS ChangeLog DOCS/ README etc/*.conf
 %dir %{_sysconfdir}/mplayer
-#%config %{_sysconfdir}/mplayer/codecs.conf
+#config %{_sysconfdir}/mplayer/mplayer.conf
 %{_prefix}/bin/*
 %{_prefix}/lib/libdha.so*
 %{_prefix}/lib/%{name}
@@ -215,6 +233,7 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 %lang(es) %{_mandir}/es/man1/*.1*
 %lang(fr) %{_mandir}/fr/man1/*.1*
 %lang(hu) %{_mandir}/hu/man1/*.1*
+%lang(it) %{_mandir}/it/man1/*.1*
 %lang(pl) %{_mandir}/pl/man1/*.1*
 
 %files -n libpostproc
@@ -222,7 +241,14 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 %{_prefix}/include/postproc
 %{_prefix}/lib/libpostproc.so*
 
+
 %changelog
+* Wed Feb 11 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.8.20040325
+- Updated to today's CVS snapshot.
+- Updated Blue skin to 1.1.
+- Added xmms support to mencoder.
+- Added it man page.
+
 * Wed Feb 11 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.7.20040211.fr
 - Updated to today's CVS snapshot.
 
