@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Mike D. Schiffman <mike@infonexus.com>
 
 Summary: Active reconnaissance network security tool
 Name: firewalk
 Version: 5.0
-Release: 0
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.packetfactory.net/projects/firewalk/
@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.packetfactory.net/firewalk/dist/firewalk-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet-devel >= 1.1.0, libpcap, libdnet
+BuildRequires: libnet >= 1.1.0, libpcap, libdnet
 
 %description
 Firewalk is an active reconnaissance network security tool that attempts
@@ -29,18 +29,8 @@ ICMP_TIME_EXCEEDED message. If the gateway hostdoes not allow the
 traffic, it will likely drop the packets on the floor and we will see no
 response.
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
-
 %prep
-%setup
+%setup -n Firewalk
 
 %build
 %configure
@@ -50,16 +40,17 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__install} -D -m0644 man/firewalk.8 %{buildroot}%{_mandir}/man8/firewalk.8
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc BUGS README TODO
 %doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/*
+%{_sbindir}/*
 
 %changelog
-* Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 5.0-0
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 5.0-1
 - Initial package. (using DAR)

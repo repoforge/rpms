@@ -94,7 +94,7 @@ develop programs using the FFTW fast Fourier transform library.
 %{_includedir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
-%{_infodir}/*
+%{_infodir}/*.info*
 %exclude %{_libdir}/*.la
 
 %changelog

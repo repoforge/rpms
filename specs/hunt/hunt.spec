@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Pavel Krauz <kra@gncz.cz>
 
 Summary: TCP hijacking tool
 Name: hunt
@@ -13,9 +13,8 @@ URL: http://lin.fsid.cvut.cz/~kra/#HUNT
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://lin.fsid.cvut.cz/~kra/hunt/%{name}-%{version}.tgz
+Source: http://lin.fsid.cvut.cz/~kra/hunt/hunt-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 hunt is a program for intruding into a connection, watching it
@@ -41,17 +40,17 @@ connections it sees.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -m0755 hunt tpserv/tpserv tpsetup/transproxy %{buildroot}%{_sbindir}
-%{__install} -m0644 man/hunt.1 %{buildroot}%{_mandir}/man1/
+
+%{__install} -D -m0644 man/hunt.1 %{buildroot}%{_mandir}/man1/hunt.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING README README.tp TODO
+%doc CHANGES COPYING README* TODO
 %doc %{_mandir}/man?/*
 %{_sbindir}/*
 

@@ -11,8 +11,10 @@ Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ignavus.net/software.html
+
 Source: http://www.ignavus.net/xosd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel, xmms-devel
 
 %description
@@ -50,16 +52,14 @@ XOSD library, similarly to TV OSD.
 
 %build
 %configure \
+	--disable-dependency-tracking \
 	--enable-old-plugin \
 	--with-plugindir="%{xmms_generaldir}"
-%{__make} %{_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -67,23 +67,26 @@ XOSD library, similarly to TV OSD.
 %postun
 /sbin/ldconfig 2>/dev/null
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
+%doc %{_mandir}/man1/osd_cat*
 %{_bindir}/osd_cat
 %{_libdir}/*.so.*
-%{_datadir}/xosd
-%{_mandir}/man1/osd_cat*
+%{_datadir}/xosd/
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/xosd-config*
+%doc %{_mandir}/man3/*
 %{_bindir}/xosd-config
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
-%{_mandir}/man1/xosd-config*
-%{_mandir}/man3/*
 %exclude %{_libdir}/*.la
 
 %files -n xmms-xosd

@@ -56,7 +56,7 @@ Group: System Environment/Base
 
 %package devel
 Summary: Development headers and libraries for interfacing to the DHCP server
-Requires: dhcp = %{version}
+Requires: dhcp = %{epoch}:%{version}
 Group: Development/Libraries
 
 %description -n dhclient

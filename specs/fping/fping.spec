@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Thomas Dzubin <dzubin@vcn.bc.ca>
 
 %define real_version 2.4b2
 
@@ -31,6 +31,7 @@ fping is different from ping in that you can specify any number of hosts
 on the command line, or specify a file containing the lists of hosts to
 ping. Instead of trying one host until it timeouts or replies, fping will
 send out a ping packet and move on to the next host in a round-robin fashion.
+
 If a host replies, it is noted and removed from the list of hosts to check.
 If a host does not respond within a certain time limit and/or retry limit it
 will be considered unreachable.
@@ -57,7 +58,7 @@ will be considered unreachable.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -m4750 fping6 %{buildroot}%{_sbindir}/
+%{__install} -D -m4750 fping6 %{buildroot}%{_sbindir}/fping6
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,7 +66,7 @@ will be considered unreachable.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
-%doc %{_mandir}/man8/*
+%doc %{_mandir}/man?/*
 %attr(4750, root, adm) %{_sbindir}/*
 
 %changelog

@@ -6,13 +6,12 @@
 %define pgsql 1
 %define odbc 1
 %define bloat 1
-%{?rhel3:%undefine pgsql}
-%{?rhel3:%undefine odbc}
+#{?rhel3:%undefine odbc}
 
 Summary: Open Source network intrusion detection system
 Name: snort
 Version: 2.1.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.snort.org/
@@ -23,10 +22,10 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.snort.org/dl/snort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet = 1.0.2
+BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet
 BuildRequires: pcre-devel, perl
 %{?rhfc1:BuildRequires: net-snmp-devel, postgresql-devel, unixODBC-devel}
-%{?rhel3:BuildRequires: net-snmp-devel}
+%{?rhel3:BuildRequires: net-snmp-devel, rh-postgresql-devel}
 %{?rh90:BuildRequires: net-snmp-devel, postgresql-devel, unixODBC-devel}
 %{?rh80:BuildRequires: net-snmp-devel, postgresql-devel, unixODBC-devel}
 %{?rh73:BuildRequires: ucd-snmp-devel, postgresql-devel, unixODBC-devel}
@@ -375,6 +374,10 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
+* Tue Apr 13 2004 Dag Wieers <dag@wieers.com> - 2.1.2-2
+- Added rh-postgresql-devel for RHEL3.
+- Build against libnet 1.2.2.1.
+
 * Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 2.1.2-1
 - Updated to release 2.1.2.
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Wez Furlong <wez@php.net>
 
@@ -18,9 +17,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 ### Source: http://pecl.php.net/get/SQLite
-Source: SQLite-%{version}.tgz
+Source: http://pecl.php.net/get/SQLite-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: php-devel >= 4.0, sqlite >= 2.8
 Requires: php = %{pversion}, sqlite >= 2.8
@@ -39,8 +37,7 @@ ${CC:-%{__cc}} %{optflags} -shared -lsqlite -L%{_libdir} -rdynamic -o sqlite.so 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir}/php4/
-%{__install} -m0755 sqlite.so %{buildroot}%{_libdir}/php4/
+%{__install} -D -m0755 sqlite.so %{buildroot}%{_libdir}/php4/sqlite.so
 
 %clean
 %{__rm} -rf %{buildroot}

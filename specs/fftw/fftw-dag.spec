@@ -61,14 +61,11 @@ you will need to install %{name}-devel.
 #%{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -81,11 +78,11 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc FAQ/fftw-faq.html/ doc/*.html doc/*.gif doc/*.ps
+%doc %{_infodir}/*.info*
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
-%{_infodir}/*
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
 * Fri Feb 20 2004 Dag Wieers <dag@wieers.com> - 2.1.5-2

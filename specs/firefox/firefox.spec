@@ -217,19 +217,17 @@ export CXXFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir} \
-			%{buildroot}%{_datadir}/pixmaps/
+%{__install} -d -m0755 %{buildroot}%{_libdir}
 
 %{__make} -C xpinstall/packager/ \
 	MOZ_PKG_APPNAME="firefox" \
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
-%{__install} -m0755 %{name}.sh %{buildroot}%{_bindir}/firefox
+%{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
+%{__install} -D -m0644 browser/base/skin/Throbber.png %{buildroot}%{_datadir}/pixmaps/firefox.png
 
 tar -xvz -C %{buildroot}%{_libdir} -f dist/firefox-i*-linux-gnu.tar.gz
 
-%{__install} -m0644 browser/base/skin/Throbber.png %{buildroot}%{_datadir}/pixmaps/firefox.png
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/US/
 
@@ -239,14 +237,13 @@ if [ ! -f %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so ]; then
 fi
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Internet/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/
+        %{__install} -D -m0644 firefox.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/firefox.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		firefox.desktop
 %endif
 
 %clean
@@ -256,7 +253,7 @@ fi
 %defattr(-, root, root, 0755)
 %{_bindir}/*
 %{_libdir}/firefox/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 %if %{dfi}
 	%{_datadir}/gnome/apps/Internet/*.desktop
 %else

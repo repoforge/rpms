@@ -73,7 +73,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_includedir}/*.h
 %{_libdir}/*.a

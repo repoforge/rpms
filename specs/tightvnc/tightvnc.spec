@@ -10,7 +10,7 @@
 Summary: remote administration system
 Name: tightvnc
 Version: 1.2.9
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
@@ -97,8 +97,7 @@ source %{_sysconfdir}/sysconfig/network
 # Check that networking is up.
 [ ${NETWORKING} = "no" ] && exit 1
 
-[ -x %{_sbindir}/sockd ] || exit 1
-[ -r %{_sysconfdir}/sockd.conf ] || exit 1
+[ -x %{_bindir}/Xvnc ] || exit 1
 
 ### Default variables
 SYSCONFIG="%{_sysconfdir}/sysconfig/vncservers"
@@ -254,6 +253,9 @@ fi
 %{_datadir}/vnc/
 
 %changelog
+* Sat Apr 17 2004 Dag Wieers <dag@wieers.com> - 1.2.9-2
+- Fixed the vncserver script to check for Xvnc instead of sockd. (Alfredo Milani-Comparetti)
+
 * Wed Mar 10 2004 Dag Wieers <dag@wieers.com> - 1.2.9-1
 - Don't obsolete vnc, just conflict. (Reuben Thomas)
 

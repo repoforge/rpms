@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Amos Waterland <apw@us.ibm.com>
 
 Summary: tool to impose stress on a POSIX-compliant operating system
@@ -15,9 +13,8 @@ URL: http://weather.ou.edu/~apw/projects/stress/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://weather.ou.edu/~apw/projects/stress/%{name}-%{version}.tar.gz
+Source: http://weather.ou.edu/~apw/projects/stress/stress-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Stress is a tool which imposes a configurable amount of CPU, memory, I/O,
@@ -58,7 +55,7 @@ specific components thereof.
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc doc/*.html
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 
 %changelog

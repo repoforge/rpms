@@ -1,5 +1,4 @@
 # $Id: _template.spec 201 2004-04-03 15:24:49Z dag $
-
 # Authority: dag
 # Upstream: <gnupg-devel@gnupg.org>
 
@@ -64,9 +63,9 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO
+%doc %{_infodir}/*.info*
 %{_bindir}/pinentry-*
 %ghost %{_bindir}/pinentry
-%{_infodir}/*
 
 %changelog
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.6.8-1

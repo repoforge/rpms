@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: tool for figuring out network masks
@@ -13,9 +12,8 @@ URL: http://packages.qa.debian.org/n/netmask.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://http.us.debian.org/debian/pool/main/n/netmask/%{name}_%{version}.tar.gz
+Source: http://http.us.debian.org/debian/pool/main/n/netmask/netmask_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 This is a tiny program handy if you work with firewalls or routers
@@ -55,7 +53,7 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 
 %changelog

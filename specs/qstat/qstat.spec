@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: newrpms
+# Upstream: Steve Jankowski <steve@qstat.org>
+
 %define real_version 25c
 
 Summary: Real-time Game Server Status for Quake servers
@@ -14,9 +15,8 @@ URL: http://www.qstat.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.qstat.org/%{name}%{real_version}.tar.gz
+Source: http://www.qstat.org/qstat%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 QStat is a command-line program that gathers real-time statistics
@@ -27,14 +27,13 @@ person shooter variety (Quake, Half-Life, etc)
 %setup -n %{name}%{real_version}
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_bindir}
-%{__install} -m755 qstat %{buildroot}%{_bindir}
-%{__install} -m644 qstat.cfg %{buildroot}%{_sysconfdir}
+%{__install} -D -m0755 qstat %{buildroot}%{_bindir}/qstat
+%{__install} -D -m0644 qstat.cfg %{buildroot}%{_sysconfdir}/qstat.cfg
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -5,7 +5,7 @@ Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 0.9.2
 Release: 3
-License: XVID
+License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
 
@@ -14,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://files.xvid.org/downloads/xvidcore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Provides: lib%{name} = %{version}-%{release}
 Obsoletes: libxvidcore <= 0.9.1, libxvid <= 0.9.1
@@ -51,20 +50,19 @@ cd build/generic
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_includedir} \
-                        %{buildroot}%{_libdir}
+%{__install} -d -m0755 %{buildroot}%{_libdir}
 %makeinstall -C build/generic
 
-%{__install} -m0644 src/divx4.h %{buildroot}%{_includedir}
+%{__install} -D -m0644 src/divx4.h %{buildroot}%{_includedir}/divx4.h
 %{__ln_s} -f libxvidcore.so.* %{buildroot}%{_libdir}/libxvidcore.so
 %{__ln_s} -f libxvidcore.so.* %{buildroot}%{_libdir}/libxvid.so
 %{__ln_s} -f libxvid.a %{buildroot}%{_libdir}/libxvidcore.a
 
 %post
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -44,6 +44,9 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %{name}
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
+
 %clean
 %{__rm} -rf %{buildroot}
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 ### FIXME: TODO: Add sysv script based on own template.
@@ -74,7 +73,7 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README src/TODO
 %doc doc/complex-example/
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_sbindir}/*
 

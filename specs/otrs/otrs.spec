@@ -2,12 +2,13 @@
 # Authority: dag
 # Upstream: <info@otrs.de>
 
+%define logmsg logger -t %{name}/rpm
 %define real_version 1.2.3-01
 
 Summary: Open Ticket Request System
 Name: otrs
 Version: 1.2.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://otrs.org/
@@ -21,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Autoreqprov:  no
 BuildArch: noarch
 Requires: perl, perl-DBI, perl-DBD-MySQL, perl-URI, mod_perl
-Requires: mysql, mysql-server, fetchmail, procmail, sendmail
+Requires: mysql, mysql-server, fetchmail, procmail, smtpdaemon
 %{?rhfc1:BuildRequires: httpd}
 %{?rhel3:BuildRequires: httpd}
 %{?rh90:BuildRequires: httpd}
@@ -135,6 +136,9 @@ fi
 %doc doc/
 
 %changelog
+* Wed Apr 14 2004 Dag Wieers <dag@wieers.com> - 1.2.3-2
+- Require smtpdaemon instead of sendmail.
+
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
 - Updated to release 1.2.3.
 

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: François Dupoux <fdupoux@partimage.org>
+
+# Distcc: 0
 
 Summary: partition imaging utility, much like Ghost
 Name: partimage
@@ -16,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/partimage/partimage-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: parted-devel, newt-devel, libmcrypt-devel
 
@@ -209,19 +209,17 @@ EOF
 
 %{__install} -m0755 partimage-static %{buildroot}%{_sbindir}
 
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/logrotate.d/ \
-			%{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%{_localstatedir}/partimaged/ \
-			%{buildroot}%{_localstatedir}/log/
-%{__install} -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
-%{__install} -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
-%{__install} -m0644 partimaged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/partimaged
+%{__install} -D -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
+%{__install} -D -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
+%{__install} -D -m0644 partimaged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/partimaged
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/partimaged.log
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/partimaged/
+
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_datadir}/info/
+%{__rm} -rf %{buildroot}%{_infodir}
 
 %pre server
 /usr/sbin/useradd -M -r -s "/sbin/nologin" -d "%{_localstatedir}/partimaged" partimag &>/dev/null || :

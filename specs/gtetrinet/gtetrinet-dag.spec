@@ -1,10 +1,11 @@
+# $Id$
 # Authority: matthias
 # Upstream: Ka-shu Wong <kswong@zip.com.au>
 
-Summary: GNOME version of the online multiplayer Tetrinet game
+Summary: Online multiplayer Tetrinet game
 Name: gtetrinet
-Version: 0.7.2
-Release: 0
+Version: 0.7.7
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://gtetrinet.sf.net/
@@ -17,7 +18,8 @@ Source1: tetrinet.txt
 Source2: http://www.mavit.pwp.blueyonder.co.uk/mmr-sounds-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnome-devel >= 2.0.0, libgnomeui-devel >= 2.0.0
+BuildRequires: libgnome-devel >= 2.0.0, libgnomeui-devel >= 2.0.0, GConf2-devel
+BuildRequires: gettext
 
 %description
 GTetrinet is a client program for the popular Tetrinet game, a multiplayer
@@ -53,9 +55,13 @@ tar -xzvf %{SOURCE2} -C %{buildroot}%{_datadir}/gtetrinet/themes/
 %{_prefix}/games/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/gtetrinet/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/gtetrinet/
 
 %changelog
+* Mon Apr 19 2004 Dag Wieers <dag@wieers.com> - 0.7.7-0
+- Updated to release 0.7.7.
+
 * Wed Jun 11 2003 Dag Wieers <dag@wieers.com> - 0.7.2-0
 - Updated to release 0.7.2.
 

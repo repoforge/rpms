@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 Summary: Image and photo viewer, browser, manager and simple editor
@@ -26,13 +25,13 @@ An image and photo viewer, browser, manager and simple editor.
 %setup
 
 %build
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %{__make} install-strip \
 	DESTDIR="%{buildroot}"
 rm -f $RPM_BUILD_ROOT/usr/share/mimelnk/image/x-pcx.desktop

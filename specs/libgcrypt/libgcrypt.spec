@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/libgcrypt/libgcrypt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 libgcrypt is a general purpose cryptographic library based on the code
 from GNU Privacy Guard. It provides functions for all cryptograhic
@@ -50,14 +49,13 @@ you will need to install %{name}-devel.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_infodir}/dir \
-		%{buildroot}%{_libdir}/*.la
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 %post
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %post devel
 /sbin/install-info %{_infodir}/gcrypt.info.gz %{_infodir}/dir
@@ -75,12 +73,13 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
-%{_infodir}/*
+%exclude %{_libdir}/*.la
 
 %changelog
 * Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 1.1.93-0

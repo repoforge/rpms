@@ -2,17 +2,14 @@
 # Authority: dag
 # Upstream: <amavis-user@lists.sf.net>
 
-%define milter 1
-%{?rhel3:%undefine milter}
-
 %define real_release p9
 
-%define logmsg logger -t amavisd-new/rpm
+%define logmsg logger -t %{name}/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 20030616
-Release: 6.%{real_release}
+Release: 8.%{real_release}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -23,9 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}-%{real_release}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: sendmail
-#BuildRequires: postfix
-%{?milter:BuildRequires: sendmail-devel >= 8.12}
+BuildRequires: sendmail-devel >= 8.12
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
 Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
 Requires: perl(Archive::Tar), perl(Archive::Zip), perl(Compress::Zlib)
@@ -34,6 +29,7 @@ Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
 Requires: perl(Time::HiRes), perl(Digest::MD5), perl(Digest::SHA1)
 Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
 Requires: perl-MailTools, perl(Net::Server) >= 0.86, perl-HTML-Parser >= 3.24
+Requires: perl(DB_File)
 Obsoletes: amavisd
 
 %description
@@ -44,6 +40,15 @@ Amavisd-new is a development branch created by Mark Martinec that
 adds serveral performance and robustness features. It's partly based on 
 work being done on the official amavisd branch. Please see the
 README.amavisd-new-RELNOTES file for a detailed description.
+
+%package milter
+Summary: The Amavisd-new sendmail-milter Daemon
+Group: Applications/System
+Requires: amavisd-new = %{version}-%{release}
+Requires: sendmail
+
+%description milter
+The Amavisd-new sendmail-milter Daemon
 
 %prep
 %setup -n amavisd-new-%{version}
@@ -172,7 +177,6 @@ exit $RETVAL
 EOF
 
 %build
-%if %{?milter:1}%{!?milter:0}
 cd helper-progs
 %configure \
 	--with-user="amavis" \
@@ -181,12 +185,11 @@ cd helper-progs
 	--enable-postfix \
 	--enable-all
 %{__make} %{?_smp_mflags}
-%endif
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{?milter:%makeinstall -C helper-progs}
+%makeinstall -C helper-progs
 
 %{__perl} -pi.orig -e '
 		s|= '\''vscan'\''|= "amavis"|;
@@ -197,7 +200,6 @@ cd helper-progs
 
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/spool/amavis/virusmails/
 
-#%{__install} -m0755 amavisd amavisdconf %{buildroot}%{_sbindir}
 %{__install} -D -m0755 amavisd %{buildroot}%{_sbindir}/amavisd
 %{__install} -D -m0755 amavisd.sysv %{buildroot}%{_initrddir}/amavisd
 %{__install} -D -m0700 amavisd.conf %{buildroot}%{_sysconfdir}/amavisd.conf
@@ -236,13 +238,12 @@ if [ -r /etc/mail/aliases ]; then
 	fi
 fi
 
-%if %{?milter:1}%{!?milter:0}
+%post milter
 if [ -f /etc/mail/sendmail.mc ]; then
 	if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
 		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/spool/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
 	fi
 fi
-%endif
 
 %preun
 if [ $1 -eq 0 ] ; then
@@ -260,7 +261,8 @@ fi
 %doc AAAREADME.first LDAP.schema LICENSE MANIFEST RELEASE_NOTES README_FILES/* test-messages/
 %config %{_initrddir}/amavisd
 %config %{_sysconfdir}/openldap/schema/*.schema
-%{_sbindir}/*
+%{_sbindir}/amavis
+%{_sbindir}/amavisd
 
 %defattr(0640, amavis, amavis, 0755)
 %config(noreplace) %{_sysconfdir}/amavisd.conf
@@ -270,7 +272,17 @@ fi
 %dir %{_localstatedir}/spool/amavis/
 %dir %{_localstatedir}/spool/amavis/virusmails/
 
+%files milter
+%defattr(-, root, root, 0755)
+%{_sbindir}/amavis-milter
+
 %changelog
+* Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 20030616-8.p9
+- Moved milter to subpackage. Please add it if you use it !
+
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 20030616-7.p9
+- Added perl(DB_File) dependency. (Edward Rudd)
+
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 20030616-6.p9
 - Updated to new release 20030616-p9.
 

@@ -1,9 +1,9 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: François Dupoux <fdupoux@partimage.org>
+
 # Test: test
+# Distcc: 0
 
 Summary: partition imaging utility, much like Ghost
 Name: partimage
@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/partimage/partimage-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: parted-devel, newt-devel, libmcrypt-devel
+BuildRequires: parted-devel, newt-devel, libmcrypt-devel, slang-devel
+BuildRequires: zlib-devel, bzip2-devel
 
 %description
 partimage is a Linux/UNIX partition imaging utility: it saves all used

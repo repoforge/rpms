@@ -71,10 +71,10 @@ fi
 %{_bindir}/%{name}-config
 %{_includedir}/*
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_datadir}/aclocal/%{name}.m4
 %{_infodir}/%{name}.info*
+%exclude %{_libdir}/*.la
 
 %changelog
 * Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4.fr

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Timo Sirainen <tss@iki.fi>
+
+# Distcc: 0
 
 Summary: Dovecot secure IMAP server
 Name: dovecot
@@ -17,12 +18,16 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dovecot.procontrol.fi/dovecot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 Prereq: /usr/sbin/useradd, /usr/sbin/usermod
 BuildRequires: openssl-devel
-BuildRequires: openldap-devel, postgresql-devel, cyrus-sasl-devel
-%{!?rh62:BuildRequires: pam-devel}
-%{?rh62:BuildRequires: pam}
+BuildRequires: openldap-devel, cyrus-sasl-devel
+%{?rhfc1:BuildRequires: pam-devel, postgresql-devel}
+%{?rhel3:BuildRequires: pam-devel, rh-postgresql-devel}
+%{?rh90:BuildRequires: pam-devel, postgresql-devel}
+%{?rh80:BuildRequires: pam-devel, postgresql-devel}
+%{?rh73:BuildRequires: pam-devel, postgresql-devel}
+%{?rhel21:BuildRequires: pam-devel, postgresql-devel}
+%{?rh62:BuildRequires: pam, postgresql-devel}
 
 %description
 Dovecot is an IMAP and POP3 server for Linux/UNIX-like systems,
@@ -180,6 +185,7 @@ fi
 %changelog
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 0.99.10.4-0
 - Updated to release 0.99.10.4.
+- Added rh-postgresql for RHEL3.
 
 * Mon Oct 20 2003 Dag Wieers <dag@wieers.com> - 0.99.10-4
 - Fix for kernel 2.6. (Koenraad Heijlen)

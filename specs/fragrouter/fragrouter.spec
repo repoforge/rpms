@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Dug Song <dugsong@monkey.org>
 
 Summary: Fragrouter is a network intrusion detection evasion toolkit
@@ -15,9 +13,8 @@ URL: http://www.monkey.org/~dugsong/fragrouter/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{name}-%{version}.tar.gz
+Source: fragrouter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Fragrouter is a network intrusion detection evasion toolkit. It
@@ -43,9 +40,7 @@ them into a fragmented data stream to forward to the victim.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
-%{__install} -m0644 fragrouter.8 %{buildroot}%{_mandir}/man8/
+%{__install} -D -m0644 fragrouter.8 %{buildroot}%{_mandir}/man8/fragrouter.8
 
 %clean
 %{__rm} -rf %{buildroot}

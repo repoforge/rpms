@@ -1,7 +1,7 @@
 # $Id$
-
 # Authority: dag
 # Upstream: CamStream Author <camstream@smcc.demon.nl>
+
 # Dists: rh80
 
 Summary: collection of tools for webcams and other video-devices
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.smcc.demon.nl/camstream/download/camstream-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 A collection of tools for webcams and other video-devices, enxtending

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: newrpms
 
 Summary: Open Audio Library

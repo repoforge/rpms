@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jörgen Scheibengruber <mfcn@gmx.de>
+
+# Distcc: 0
 
 Summary: GNOME applet that shows traffic on a network device
 Name: netspeed_applet
@@ -16,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.wh-hms.uni-ulm.de/~mfcn/shared/netspeed/netspeed_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: pkgconfig, intltool
 BuildRequires: libgnomeui-devel >= 2.0, libgtop2-devel >= 2.0

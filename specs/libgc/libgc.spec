@@ -19,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.hpl.hp.com/personal/Hans_Boehm/%{real_name}/gc_source/%{real_name}%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 Obsoletes: libgc-6, libgc-6.1alpha5, gc
 
 %description

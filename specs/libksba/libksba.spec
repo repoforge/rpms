@@ -71,7 +71,7 @@ fi
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so

@@ -42,9 +42,9 @@ and showing some information about the VideoCD.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS FAQ TODO COPYING ChangeLog INSTALL NEWS README THANKS
+%doc %{_mandir}/man1/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
-%{_infodir}/*
-%{_mandir}/man1/*
 
 %changelog
 * Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.20-1.fr

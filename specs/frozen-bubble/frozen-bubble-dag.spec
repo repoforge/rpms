@@ -15,9 +15,8 @@ URL: http://www.frozen-bubble.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://frozenbubble.free.fr/fb/frozen-bubble-%{version}.tar.bz2
+Source: http://zarb.org/~gc/fb//frozen-bubble-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl-SDL, SDL-devel, SDL_mixer-devel >= 1.2.2
 Requires: perl(SDL), SDL >= 1.2, SDL_mixer >= 1.2.2
@@ -31,6 +30,17 @@ stereo sound effects, 7 unique graphical transition effects.
 %prep
 %setup
 
+%{__cat} <<EOF >frozen-bubble.desktop
+[Desktop Entry]
+Name=Frozen Bubble
+Comment=Shoot bubbles and group similar colored bubbles
+Icon=frozen-bubble.png
+Exec=frozen-bubble
+Terminal=false
+Type=Application
+Categories=Application;Game;
+EOF
+
 %build
 %{__make} %{?_smp_mflags} \
 	PREFIX="%{_prefix}" \
@@ -43,32 +53,21 @@ stereo sound effects, 7 unique graphical transition effects.
 	INSTALLARCHLIB="%{buildroot}%{perl_sitearch}" \
 	INSTALLSITEARCH="%{buildroot}%{perl_sitearch}" \
 	INSTALLVENDORARCH="%{buildroot}%{perl_sitearch}"
-%{__rm} -f %{buildroot}%{perl_sitearch}/{build_fbsyms,perllocal.pod}
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps
-%{__install} -m0644 icons/frozen-bubble-icon-48x48.png %{buildroot}%{_datadir}/pixmaps/frozen-bubble.png
 
-cat <<EOF >gnome-%{name}.desktop
-[Desktop Entry]
-Name=Frozen Bubble
-Comment=%{summary}
-Icon=frozen-bubble.png
-Exec=%{_bindir}/%{name}
-Terminal=false
-Type=Application
-EOF
+%{__install} -D -m0644 icons/frozen-bubble-icon-48x48.png %{buildroot}%{_datadir}/pixmaps/frozen-bubble.png
 
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Games/
-	%{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Games/
+	%{__install} -D -m0644 frozen-bubble.desktop %{buildroot}%{_datadir}/gnome/apps/Games/frozen-bubble.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor gnome                \
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category Game                        \
 		--dir %{buildroot}%{_datadir}/applications \
-		gnome-%{name}.desktop
+		frozen-bubble.desktop
 %endif
+
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{perl_sitearch}/{build_fbsyms,perllocal.pod}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -79,7 +78,7 @@ EOF
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/frozen-bubble/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 %{perl_sitearch}/
 %if %{dfi}
         %{_datadir}/gnome/apps/Games/*.desktop

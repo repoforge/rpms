@@ -12,7 +12,7 @@
 Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp
 Version: 0.18
-Release: 0
+Release: 1
 License: LGPL
 Group: Development/Libraries
 URL: http://gtk-sharp.sf.net/
@@ -25,9 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mono-devel
 BuildRequires: libgnomeui-devel >= 2.0, libgnomecanvas-devel >= 2.0, libglade2-devel, gtk2-devel >= 2.2.0
-%{?rhfc1:BuildRequires: libgnomedb-devel, libgda-devel}
-%{?rh90:BuildRequires: libgnomedb-devel, libgda-devel}
-%{?rh80:BuildRequires: libgnomedb-devel, libgda-devel}
+BuildRequires: libgnomedb-devel, libgda-devel
 Requires: libgnomeui >= 2.0, libgnomecanvas >= 2.0, libglade2
 
 %description
@@ -57,9 +55,6 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -84,6 +79,7 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/gapi/
 %{_datadir}/perl5/GAPI/
+%exclude %{_libdir}/*.la
 
 %changelog
 * Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 0.18-1

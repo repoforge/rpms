@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <contact@frozen-bubble.org>
 
 %define desktop_vendor freshrpms
 
@@ -9,9 +10,11 @@ Version: 1.0.0
 Release: 5
 License: GPL
 Group: Amusements/Games
-Source: http://frozenbubble.free.fr/fb/%{name}-%{version}.tar.bz2
 URL: http://www.frozen-bubble.org/
-BuildRoot: %{_tmppath}/%{name}-root
+
+Source: http://frozenbubble.free.fr/fb/%{name}-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 #AutoReq: no
 Requires: perl-SDL >= 1.19.0, SDL, SDL_mixer >= 1.2.2
 BuildRequires: perl-SDL >= 1.19.0, SDL-devel, SDL_mixer-devel >= 1.2.2

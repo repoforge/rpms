@@ -1,23 +1,22 @@
 # $Id$
-
 # Authority: dag
+# Upstream: John Smith <imipak@sf.net>
 
 %define real_name mcrypt
 
-Summary: libmcrypt is a data encryption library
+Summary: Data encryption library
 Name: libmcrypt
 Version: 2.5.7
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://mcrypt.hellug.gr/
+URL: http://mcrypt.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/mcrypt/libmcrypt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libtool >= 1.3.4
 
@@ -30,12 +29,14 @@ SERPENT, RIJNDAEL, 3DES, GOST, SAFER+, CAST-256, RC2, XTEA, 3WAY,
 TWOFISH, BLOWFISH, ARCFOUR, WAKE and more.
 
 %package devel
-Summary: Development files of the libmcrypt data encryption library
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-Header file and static libraries of libmcrypt data encryption library.
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -50,9 +51,6 @@ Header file and static libraries of libmcrypt data encryption library.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -76,10 +74,13 @@ Header file and static libraries of libmcrypt data encryption library.
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-%{_datadir}/aclocal/*
-#exclude %{_libdir}/*.la
+%{_datadir}/aclocal/*.m4
+%exclude %{_libdir}/*.la
 
 %changelog
+* Fri Apr 16 2004 ---
+- Updated URL and Source tags. (Russ Herrold)
+
 * Wed Jul 30 2003 Dag Wieers <dag@wieers.com> - 2.5.7-1
 - Added static library.
 

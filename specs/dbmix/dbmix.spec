@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+
 # Distcc: 0
 
 %define plugindir %(xmms-config --output-plugin-dir)
@@ -20,8 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/DBMix/DBMix-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: xmms >= 1.2.0
+BuildRequires: xmms-devel >= 1.2.0
 Obsoletes: DBMix <= %{version}
 Provides: DBMix = %{version}-%{release}
 
@@ -51,9 +50,6 @@ to transform/modify each stream independently.
 %{__install} -d %{buildroot}%{plugindir}
 %{__mv} -f %{buildroot}%{_libdir}/libdbmix.* %{buildroot}%{plugindir}
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{plugindir}/*.la
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -63,6 +59,7 @@ to transform/modify each stream independently.
 %{_bindir}/*
 %{_libdir}/libdbaudiolib.*
 %{plugindir}/*
+%exclude %{plugindir}/*.la
      
 %changelog
 * Tue Feb 24 2004 Dag Wieers <dag@wieers.com> - 0.9.8-3

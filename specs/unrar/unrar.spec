@@ -1,18 +1,21 @@
 # $Id$
 # Authority: matthias
+# Upstream: <dev@rarlab.com>
 
-Summary: unRAR - extract, test and view RAR archives
+Summary: Extract, test and view RAR archives
 Name: unrar
 Version: 3.3.6
 Release: 1
 License: Freeware
 Group: Applications/Archiving
 URL: http://www.rarlab.com/
+
 Source0: http://www.rarlab.com/rar/unrarsrc-%{version}.tar.gz
 Source1: unrar.1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libstdc++
+
 BuildRequires: gcc-c++, libstdc++-devel
+Requires: libstdc++
 
 %description
 The unRAR utility is a freeware program, distributed with source code
@@ -23,12 +26,13 @@ archives created with the RAR archiver version 1.50 and above.
 %setup -n %{name}
 
 %build
-CXXFLAGS="%{optflags}" make -f makefile.unix
+%{__make} -f makefile.unix \
+	CXXFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m755 -D unrar %{buildroot}%{_bindir}/%{name}
-%{__install} -m644 -D %{SOURCE1} %{buildroot}%{_mandir}/man1/%{name}.1
+%{__install} -m755 -D unrar %{buildroot}%{_bindir}/unrar
+%{__install} -m644 -D %{SOURCE1} %{buildroot}%{_mandir}/man1/unrar.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -36,8 +40,8 @@ CXXFLAGS="%{optflags}" make -f makefile.unix
 %files
 %defattr(-, root, root, 0755)
 %doc *.txt
-%{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1*
+%doc %{_mandir}/man1/unrar.1*
+%{_bindir}/unrar
 
 %changelog
 * Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 3.3.6-1.fr

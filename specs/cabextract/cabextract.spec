@@ -1,15 +1,17 @@
 # $Id$
 # Authority: matthias
+# Upstream: Stuart Caie <kyzer@4u.net>
 
 Summary: program to extract Microsoft Cabinet files
 Name: cabextract
 Version: 1.0
 Release: 1
-Group: Applications/Archiving
 License: GPL
-Source: http://www.kyz.uklinux.net/downloads/%{name}-%{version}.tar.gz
+Group: Applications/Archiving
 URL: http://www.kyz.uklinux.net/cabextract.php3
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+
+Source: http://www.kyz.uklinux.net/downloads/cabextract-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Cabinet (.CAB) files are a form of archive, which Microsoft use to
@@ -38,8 +40,8 @@ cabextract program simply unpacks such files.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README
-%{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1*
+%doc %{_mandir}/man?/*
+%{_bindir}/*
 
 
 %changelog

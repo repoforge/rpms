@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Mike Newman <mike@gtnorthern.demon.co.uk>
 
@@ -14,7 +13,7 @@ URL: http://www.greatnorthern.demon.co.uk/gnome-pkgview.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.gtnorthern,demon.co.uk/packages/pkgview/gnome-pkgview-%{version}.tar.gz
+Source: http://www.gtnorthern.demon.co.uk/packages/pkgview/gnome-pkgview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2 >= 2.0.0, libxml2 >= 2.0.0, libgnomeui >= 2.0
@@ -58,10 +57,10 @@ scrollkeeper-update -q
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%config %{_sysconfdir}/gconf/schemas/*
+%config %{_sysconfdir}/gconf/schemas/*.schema
 %{_bindir}/*
-%{_datadir}/pixmaps/gnome-pkgview/*
-%{_datadir}/applications/*
+%{_datadir}/pixmaps/gnome-pkgview/
+%{_datadir}/applications/*.desktop
 
 %changelog
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 1.0.5-0

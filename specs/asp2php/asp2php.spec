@@ -2,12 +2,14 @@
 # DarAuthority: dag
 # Upstream: Michael Kohn <mike@mikekohn.net>
 
+# Tag: test
+
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Converts WWW Active Server Pages to PHP pages
 Name: asp2php
 Version: 0.76.19
-Release: 2
+Release: 3
 License: GPL
 Group: Development/Tools
 URL: http://asp2php.naken.cc/
@@ -24,13 +26,13 @@ BuildRequires: gtk+-devel
 asp2php converts WWW Active Server Pages (ASP) files that run on the Microsoft
 IIS Web Server into PHP pages to run on Apache.
 
-%package gui
+%package gtk
 Summary: Graphical frontend for asp2php
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
-Obsoletes: asp2php-gtk <= %{version}
+#Obsoletes: asp2php-gtk <= %{version}
 
-%description gui
+%description gtk
 Graphical frontend to asp2php.
 
 %prep
@@ -85,8 +87,5 @@ EOF
 %endif
 
 %changelog
-* Sat Apr 11 2004 Dag Wieers <dag@wieers.com> - 0.76.19-2
-- Obsoletes asp2php-gtk.
-
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.76.19-1
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
 Version: 1.4.1
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Daemons
 URL: http://sarg.sf.net/sarg.php
@@ -48,21 +48,21 @@ showing users, IP Addresses, bytes, sites and times.
 		s|^#(show_successful_message) (.+)$|#$1 $2\n$1 no|;
 	' sarg.conf
 
-%{__cat} <<EOF >sarg.daily
+%{__cat} <<'EOF' >sarg.daily
 #!/bin/bash
 exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/daily \
 	-d "$(date --date "1 day ago" +%d/%m/%Y)"
 EOF
 
-%{__cat} <<EOF >sarg.weekly
+%{__cat} <<'EOF' >sarg.weekly
 #!/bin/bash
 exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/weekly \
 	-d "$(date --date "1 day ago" +%d/%m/%Y)-$(date --date "1 week ago" +%d/%m/%Y)"
 EOF
 
-%{__cat} <<EOF >sarg.monthly
+%{__cat} <<'EOF' >sarg.monthly
 #!/bin/bash
 exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/monthly \
@@ -125,7 +125,7 @@ EOF
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/sarg/ \
 			%{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/ \
+			%{buildroot}%{_mandir}/man1/
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sarg/{ONE-SHOT,daily,weekly,monthly}/
@@ -152,6 +152,9 @@ EOF
 %{_localstatedir}/www/sarg/
 
 %changelog
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 1.4.1-3
+- Fixed problem with inline cron-scripts. (Luigi Iotti)
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.4.1-2
 - Fixed missing directories in sarg. (William Hooper)
 
