@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem-Snowball/
 
-Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Stem-Snowball-chmod-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Stem-Snowball-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

@@ -72,7 +72,7 @@ Requires: redhat-menus >= 0.11
 Obsoletes: x11amp0.7-1-1, x11amp, xmms-esd, xmms-gl, xmms-mikmod, xmms-gnome
 Obsoletes: xmms-alsa, alsa-xmms
 
-%{!?_without_arts:Conflicts: arts < 1.2.0-1.5}
+#%{!?_without_arts:Conflicts: arts < 1.2.0-1.5}
 
 %define _use_internal_dependency_generator 0
 %define __find_requires %{SOURCE5}

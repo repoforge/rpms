@@ -16,7 +16,7 @@ URL: http://www.wesnoth.org/
 
 Source: http://www.wesnoth.org/files/wesnoth-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, make, SDL, SDL_net, SDL_mixer, SDL-devel
+BuildRequires: gcc-c++, make, SDL-devel >= 1.2.7
 BuildRequires: SDL_image-devel, SDL_ttf-devel, SDL_net-devel
 BuildRequires: SDL_mixer-devel, desktop-file-utils
 BuildRequires: gettext
@@ -63,9 +63,10 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING MANUAL MANUAL.* README
+%doc %{_mandir}/man6/wesnoth*
+%doc %{_mandir}/*/man6/wesnoth*
 %{_bindir}/wesnoth
 %{_bindir}/wmlxgettext
-%{_mandir}/man6/wesnoth*
 %{_datadir}/applications/%{desktop_vendor}-wesnoth.desktop
 %{_datadir}/wesnoth/
 

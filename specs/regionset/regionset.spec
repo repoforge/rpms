@@ -12,9 +12,6 @@ URL: http://linvdr.org/projects/regionset/
 Source: http://linvdr.org/download/regionset/regionset-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
-#Requires:
-
 %description
 regionset is a tool to read and set the region setting on a DVD drive.
 
