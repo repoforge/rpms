@@ -1,8 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: Ross McFarland <rmcfarla$neces,com>
-
+# Upstream: Torsten Schönfeld <kaffeetisch$gmx,de>
 
 %define real_name Gnome2-Vte
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -21,7 +20,7 @@ URL: http://search.cpan.org/dist/Gnome2-Vte/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-Vte-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TS/TSCH/Gnome2-Vte-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig
