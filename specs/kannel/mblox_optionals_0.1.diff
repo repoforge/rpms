@@ -1,0 +1,474 @@
+diff -ru gateway-1.3.2/ChangeLog gateway-1.3.2-mblox/ChangeLog
+--- gateway-1.3.2/ChangeLog	2004-07-14 10:42:18.000000000 +0000
++++ gateway-1.3.2-mblox/ChangeLog	2004-08-24 08:33:58.000000000 +0000
+@@ -1,2 +1,5 @@
+-2004-07-14  Stipe Tolj  <tolj@wapme-systems.de> 
+-    * Making development release 1.3.2.
++2004-07-09 Ian Cass <ian.cass@mblox.com?
++    * Add mBlox optional parameters for PSMS
++2004-07-09  Stipe Tolj  <tolj@wapme-systems.de> 
++    * test/test_headers.c: fixing command line options and argument handling
++      which breaks "make check" target.
+diff -ru gateway-1.3.2/VERSION gateway-1.3.2-mblox/VERSION
+--- gateway-1.3.2/VERSION	2004-07-14 13:17:26.000000000 +0000
++++ gateway-1.3.2-mblox/VERSION	2004-08-24 08:34:25.000000000 +0000
+@@ -1,4 +1,4 @@
+-1.3.2
++1.3.2-mblox
+ This file contains the version number of the gateway.
+ It is stored on the first line. Nothing else should
+ be there. 
+diff -ru gateway-1.3.2/gw/bb_alog.c gateway-1.3.2-mblox/gw/bb_alog.c
+--- gateway-1.3.2/gw/bb_alog.c	2004-06-20 21:25:19.000000000 +0000
++++ gateway-1.3.2-mblox/gw/bb_alog.c	2004-08-24 08:32:25.000000000 +0000
+@@ -80,6 +80,8 @@
+  *   %i - smsc-id
+  *   %n - service-name (for MO) or sendsms-user (for MT)
+  *   %A  - account
++ *   %O - mBlox billing tag
++ *   %o - mBlox operator tag
+  *   %B - billing identifier/information
+  *   %p - sender (from) 
+  *   %P - receiver (to)
+@@ -285,6 +287,18 @@
+ 	    octstr_append_decimal(result, octstr_len(msg->sms.udhdata));
+ 	    break;
+ 
++	case 'O':  /* mBlox billing identifier
++	    if (octstr_len(msg->sms.mblox_billing)) {
++                octstr_append(result, msg->sms.mblox_billing);
++            }
++            break;
++
++	case 'o':  /* mBlox operator identifier
++	    if (octstr_len(msg->sms.mblox_operator)) {
++                octstr_append(result, msg->sms.mblox_operator);
++            }
++            break;
++
+ 	case 'B':  /* billing identifier/information */
+ 	    if (octstr_len(msg->sms.binfo)) {
+                 octstr_append(result, msg->sms.binfo);
+diff -ru gateway-1.3.2/gw/msg-decl.h gateway-1.3.2-mblox/gw/msg-decl.h
+--- gateway-1.3.2/gw/msg-decl.h	2004-06-21 21:16:05.000000000 +0000
++++ gateway-1.3.2-mblox/gw/msg-decl.h	2004-08-24 08:32:25.000000000 +0000
+@@ -103,6 +103,8 @@
+ 		OCTSTR(charset);
+ 		OCTSTR(boxc_id);
+ 		OCTSTR(binfo);
++		OCTSTR(mblox_billing);
++		OCTSTR(mblox_operator);
+ 		INTEGER(msg_left);
+ 	})
+ 
+diff -ru gateway-1.3.2/gw/smsbox.c gateway-1.3.2-mblox/gw/smsbox.c
+--- gateway-1.3.2/gw/smsbox.c	2004-06-28 10:37:19.000000000 +0000
++++ gateway-1.3.2-mblox/gw/smsbox.c	2004-08-24 08:32:25.000000000 +0000
+@@ -429,7 +429,8 @@
+ 				      int *validity, int *deferred,
+ 				      int *dlr_mask, Octstr **dlr_url, 
+ 				      Octstr **account, int *pid, int *alt_dcs, 
+-				      int *rpi, Octstr **binfo)
++				      int *rpi, Octstr **binfo, 
++                                      Octstr **mblox_billing, Octstr **mblox_operator)
+ {
+     Octstr *name, *val;
+     long l;
+@@ -482,6 +483,14 @@
+ 	    *account = octstr_duplicate(val);
+ 	    octstr_strip_blanks(*account);
+ 	}
++	else if (octstr_case_compare(name, octstr_imm("X-Kannel-mBlox-Billing")) == 0) {
++            *mblox_billing = octstr_duplicate(val);
++            octstr_strip_blanks(*mblox_billing);
++	}
++	else if (octstr_case_compare(name, octstr_imm("X-Kannel-mBlox-Operator")) == 0) {
++            *mblox_operator = octstr_duplicate(val);
++            octstr_strip_blanks(*mblox_operator);
++	}
+ 	else if (octstr_case_compare(name, octstr_imm("X-Kannel-BInfo")) == 0) {
+             *binfo = octstr_duplicate(val);
+             octstr_strip_blanks(*binfo);
+@@ -572,7 +581,8 @@
+                                   int *dlr_mask, Octstr **dlr_url,
+                                   Octstr **account, int *pid, int *alt_dcs,
+                                   int *rpi, List **tolist, Octstr **charset,
+-                                  Octstr **binfo)
++                                  Octstr **binfo,
++                                  Octstr **mblox_billing, Octstr **mblox_operator)
+ {                                    
+ 
+     Octstr *text, *tmp, *tmp2;
+@@ -598,6 +608,12 @@
+ 	/* account */
+ 	get_tag(tmp, octstr_imm("account"), account, 0, 0);
+ 
++	/* mblox_billing */
++	get_tag(tmp, octstr_imm("mblox_billing"), mblox_billing, 0, 0);
++
++	/* mblox_operator */
++	get_tag(tmp, octstr_imm("mblox_operator"), mblox_operator, 0, 0);
++
+ 	/* binfo */
+ 	get_tag(tmp, octstr_imm("binfo"), binfo, 0, 0);
+ 
+@@ -778,7 +794,8 @@
+ 			 int validity, int deferred,
+ 			 Octstr *dlr_url, int dlr_mask, int pid, int alt_dcs,
+ 			 int rpi, Octstr *smsc, Octstr *account,
+-			 Octstr *charset, Octstr *binfo)
++			 Octstr *charset, Octstr *binfo,
++                         Octstr *mblox_billing, Octstr *mblox_operator)
+ {
+     msg->sms.msgdata = replytext;
+     msg->sms.time = time(NULL);
+@@ -920,6 +937,26 @@
+         }
+     }
+ 
++    if (mblox_billing) {
++        if (urltrans_accept_x_kannel_headers(trans)) {
++            msg->sms.mblox_billing = mblox_billing;
++        } else {
++            warning(0, "Tried to change mBlox billing info to '%s', denied.",
++                    octstr_get_cstr(mblox_billing));
++            octstr_destroy(mblox_billing);
++        }
++    }
++
++    if (mblox_operator) {
++        if (urltrans_accept_x_kannel_headers(trans)) {
++            msg->sms.mblox_operator = mblox_operator;
++        } else {
++            warning(0, "Tried to change mBlox operator info to '%s', denied.",
++                    octstr_get_cstr(mblox_operator));
++            octstr_destroy(mblox_operator);
++        }
++    }
++
+     if (binfo) {
+         if (urltrans_accept_x_kannel_headers(trans)) {
+             msg->sms.binfo = binfo;
+@@ -1005,7 +1042,7 @@
+     unsigned int queued; /* indicate if processes reply is requeued */
+ 
+     Octstr *reply_body, *charset;
+-    Octstr *udh, *from, *to, *dlr_url, *account, *smsc, *binfo;
++    Octstr *udh, *from, *to, *dlr_url, *account, *smsc, *binfo, *mblox_billing, *mblox_operator;
+     int dlr_mask, mclass, mwi, coding, compress, pid, alt_dcs, rpi;
+     int validity, deferred;
+ 
+@@ -1023,7 +1060,7 @@
+             break;
+ 
+ 	octets = 0;
+-    from = to = udh = smsc = dlr_url = account = binfo = charset = NULL;
++    from = to = udh = smsc = dlr_url = account = binfo = charset = mblox_billing = mblox_operator = NULL;
+ 	mclass = mwi = coding = compress = pid = alt_dcs = rpi = dlr_mask 
+         = validity = deferred = -1;
+ 
+@@ -1043,7 +1080,8 @@
+ 					  &coding, &compress, &validity,
+ 					  &deferred, &dlr_mask, &dlr_url,
+ 					  &account, &pid, &alt_dcs, &rpi,
+-					  &binfo);
++					  &binfo,
++                                          &mblox_billing, &mblox_operator);
+             } else if (octstr_case_compare(type, text_plain) == 0) {
+                 replytext = octstr_duplicate(reply_body);
+                 octstr_destroy(reply_body);
+@@ -1053,7 +1091,8 @@
+ 					  &coding, &compress, &validity,
+ 					  &deferred, &dlr_mask, &dlr_url,
+ 					  &account, &pid, &alt_dcs, &rpi,
+-					  &binfo);
++					  &binfo,
++                                          &mblox_billing, &mblox_operator);
+             } else if (octstr_case_compare(type, text_xml) == 0) {
+                 replytext = octstr_duplicate(reply_body);
+                 octstr_destroy(reply_body);
+@@ -1062,7 +1101,8 @@
+                         &from, &to, &udh, NULL, NULL, &smsc, &mclass, &mwi,
+                         &coding, &compress, &validity, &deferred, &dlr_mask,
+                         &dlr_url, &account, &pid, &alt_dcs, &rpi, NULL, &charset,
+-                        &binfo);
++                        &binfo,
++                        &mblox_billing, &mblox_operator);
+             } else if (octstr_case_compare(type, octet_stream) == 0) {
+                 replytext = octstr_duplicate(reply_body);
+                 octstr_destroy(reply_body);
+@@ -1073,7 +1113,8 @@
+ 					  &coding, &compress, &validity,
+ 					  &deferred, &dlr_mask, &dlr_url,
+ 					  &account, &pid, &alt_dcs, &rpi,
+-					  &binfo);
++					  &binfo,
++                                          &mblox_billing, &mblox_operator);
+             } else {
+                 replytext = octstr_duplicate(reply_couldnotrepresent);
+             }
+@@ -1093,7 +1134,7 @@
+         fill_message(msg, trans, replytext, octets, from, to, udh, mclass,
+             mwi, coding, compress, validity, deferred, dlr_url,
+             dlr_mask, pid, alt_dcs, rpi, smsc, account, charset,
+-            binfo);
++            binfo, mblox_billing, mblox_operator);
+ 
+         if (final_url == NULL)
+             final_url = octstr_imm("");
+@@ -1346,6 +1387,20 @@
+ 	    	octstr_get_cstr(os));
+ 	    octstr_destroy(os);
+ 	}
++	if (octstr_len(msg->sms.mblox_billing)) {
++	    Octstr *os;
++	    os = octstr_duplicate(msg->sms.mblox_billing);
++	    http_header_add(request_headers, "X-Kannel-mBlox-Billing",
++	    	octstr_get_cstr(os));
++	    octstr_destroy(os);
++	}
++	if (octstr_len(msg->sms.mblox_operator)) {
++	    Octstr *os;
++	    os = octstr_duplicate(msg->sms.mblox_operator);
++	    http_header_add(request_headers, "X-Kannel-mBlox-Operator",
++	    	octstr_get_cstr(os));
++	    octstr_destroy(os);
++	}
+ 	if (octstr_len(msg->sms.binfo)) {
+ 	    Octstr *os;
+ 	    os = octstr_duplicate(msg->sms.binfo);
+@@ -1842,7 +1897,8 @@
+ 				 int validity, int deferred,
+ 				 int *status, int dlr_mask, Octstr *dlr_url, 
+ 				 Octstr *account, int pid, int alt_dcs, int rpi,
+-				 List *receiver, Octstr *binfo)
++				 List *receiver, Octstr *binfo,
++				 Octstr *mblox_billing, Octstr *mblox_operator)
+ {				     
+     Msg *msg = NULL;
+     Octstr *newfrom, *returnerror, *receiv;
+@@ -2027,6 +2083,12 @@
+     msg->sms.msgdata = text ? octstr_duplicate(text) : octstr_create("");
+     msg->sms.udhdata = udh ? octstr_duplicate(udh) : octstr_create("");
+     
++    if (octstr_len(mblox_billing))
++        msg->sms.mblox_billing = octstr_duplicate(mblox_billing);
++
++    if (octstr_len(mblox_operator))
++        msg->sms.mblox_operator = octstr_duplicate(mblox_operator);
++
+     if (octstr_len(binfo))
+         msg->sms.binfo = octstr_duplicate(binfo);
+ 
+@@ -2337,10 +2399,12 @@
+     Octstr *tmp_string;
+     Octstr *from, *to, *charset, *text, *udh, *smsc, *dlr_url, *account;
+     Octstr *binfo;
++    Octstr *mblox_billing, *mblox_operator;
+     int	dlr_mask, mclass, mwi, coding, compress, validity, deferred, pid;
+     int alt_dcs, rpi;
+ 
+-    from = to = udh = text = smsc = account = dlr_url = charset = binfo = NULL;
++    from = to = udh = text = smsc = account = dlr_url = charset = binfo = 
++	mblox_billing = mblox_operator = NULL;
+     mclass = mwi = coding = compress = validity = deferred = dlr_mask = 
+         pid = alt_dcs = rpi = -1;
+  
+@@ -2358,6 +2422,8 @@
+     from = http_cgi_variable(args, "from");
+     to = http_cgi_variable(args, "to");
+     account = http_cgi_variable(args, "account");
++    mblox_billing = http_cgi_variable(args, "mblox_billing");
++    mblox_operator = http_cgi_variable(args, "mblox_operator");
+     binfo = http_cgi_variable(args, "binfo");
+     dlr_url = http_cgi_variable(args, "dlr-url");
+     if(dlr_url == NULL) { /* deprecated dlrurl without "-" */
+@@ -2428,7 +2494,7 @@
+     return smsbox_req_handle(t, client_ip, from, to, text, charset, udh,
+ 			     smsc, mclass, mwi, coding, compress, validity, 
+ 			     deferred, status, dlr_mask, dlr_url, account,
+-			     pid, alt_dcs, rpi, NULL, binfo);
++			     pid, alt_dcs, rpi, NULL, binfo, mblox_billing, mblox_operator);
+     
+ }
+ 
+@@ -2446,6 +2512,7 @@
+     Octstr *text_html, *text_plain, *text_wml, *text_xml, *octet_stream;
+     Octstr *text;
+     Octstr *from, *to, *udh, *smsc, *charset, *dlr_url, *account, *binfo;
++    Octstr *mblox_billing, *mblox_operator;
+     int dlr_mask, mclass, mwi, coding, compress, validity, deferred;
+     int pid, alt_dcs, rpi;
+  
+@@ -2457,7 +2524,8 @@
+ 
+     user = pass = ret = type = NULL;
+     tolist = NULL;
+-    from = to = udh = smsc = account = dlr_url = charset = binfo = NULL;
++    from = to = udh = smsc = account = dlr_url = charset = binfo = 
++	mblox_billing, mblox_operator = NULL;
+     mclass = mwi = coding = compress = validity = deferred = dlr_mask = 
+         pid = alt_dcs = rpi = -1;
+  
+@@ -2473,7 +2541,7 @@
+ 				  &coding, &compress, &validity, 
+ 				  &deferred, &dlr_mask, &dlr_url, 
+ 				  &account, &pid, &alt_dcs, &rpi,
+-				  &binfo);
++				  &binfo, &mblox_billing, &mblox_operator);
+     } else if (octstr_case_compare(type, text_plain) == 0 ||
+                octstr_case_compare(type, octet_stream) == 0) {
+ 	get_x_kannel_from_headers(headers, &from, &to, &udh,
+@@ -2481,13 +2549,13 @@
+ 				  &coding, &compress, &validity, 
+ 				  &deferred, &dlr_mask, &dlr_url, 
+ 				  &account, &pid, &alt_dcs, &rpi,
+-				  &binfo);
++				  &binfo, &mblox_billing, &mblox_operator);
+     } else if (octstr_case_compare(type, text_xml) == 0) {
+ 	get_x_kannel_from_xml(mt_push, &type, &body, headers, 
+                               &from, &to, &udh, &user, &pass, &smsc, &mclass, 
+ 			      &mwi, &coding, &compress, &validity, &deferred,
+ 			      &dlr_mask, &dlr_url, &account, &pid, &alt_dcs,
+-			      &rpi, &tolist, &charset, &binfo);
++			      &rpi, &tolist, &charset, &binfo, &mblox_billing, &mblox_operator);
+     } else {
+ 	*status = HTTP_BAD_REQUEST;
+ 	ret = octstr_create("Invalid content-type");
+@@ -2538,7 +2606,7 @@
+ 				    udh, smsc, mclass, mwi, coding, compress, 
+ 				    validity, deferred, status, dlr_mask, 
+ 				    dlr_url, account, pid, alt_dcs, rpi, tolist,
+-				    binfo);
++				    binfo, mblox_billing, mblox_operator);
+ 
+     }
+ error2:
+@@ -2550,6 +2618,8 @@
+     octstr_destroy(smsc);
+     octstr_destroy(dlr_url);
+     octstr_destroy(account);
++    octstr_destroy(mblox_billing);
++    octstr_destroy(mblox_operator);
+     octstr_destroy(binfo);
+ error:
+     octstr_destroy(type);
+@@ -2574,6 +2644,7 @@
+ {
+     Octstr *ret, *type, *user, *pass;
+     Octstr *from, *to, *udh, *smsc, *charset, *dlr_url, *account, *binfo;
++    Octstr *mblox_billing, *mblox_operator;
+     Octstr *output;
+     Octstr *method_name;
+     XMLRPCDocument *msg;
+@@ -2581,7 +2652,8 @@
+     int	dlr_mask, mclass, mwi, coding, compress, validity, 
+ 	deferred, pid, alt_dcs, rpi;
+ 
+-    from = to = udh = smsc = account = dlr_url = charset = binfo = NULL;
++    from = to = udh = smsc = account = dlr_url = charset = binfo = 
++	mblox_billing = mblox_operator = NULL;
+     mclass = mwi = coding = compress = validity = deferred = dlr_mask = 
+         pid = alt_dcs = rpi = -1;
+  
+diff -ru gateway-1.3.2/gw/smsc/smpp_pdu.def gateway-1.3.2-mblox/gw/smsc/smpp_pdu.def
+--- gateway-1.3.2/gw/smsc/smpp_pdu.def	2004-03-27 17:55:43.000000000 +0000
++++ gateway-1.3.2-mblox/gw/smsc/smpp_pdu.def	2004-08-24 08:32:25.000000000 +0000
+@@ -253,6 +253,8 @@
+     TLV_INTEGER(its_reply_type, 1)
+     TLV_OCTETS(its_session_info, 2, 2)
+     TLV_OCTETS(ussd_service_op, 1, 1)
++    TLV_OCTETS(mblox_billing, 0, 5)
++    TLV_OCTETS(mblox_operator, 0, 5)
+     OPTIONAL_END
+ )
+ 
+@@ -355,6 +357,8 @@
+     TLV_OCTETS(network_error_code, 3, 3)
+     TLV_INTEGER(message_state, 1)
+     TLV_NULTERMINATED(receipted_message_id, 65)
++    TLV_OCTETS(mblox_billing, 0, 5)
++    TLV_OCTETS(mblox_operator, 0, 5)
+     OPTIONAL_END
+ )
+ 
+diff -ru gateway-1.3.2/gw/smsc/smpp_pdu_opt.def gateway-1.3.2-mblox/gw/smsc/smpp_pdu_opt.def
+--- gateway-1.3.2/gw/smsc/smpp_pdu_opt.def	2004-03-27 17:55:43.000000000 +0000
++++ gateway-1.3.2-mblox/gw/smsc/smpp_pdu_opt.def	2004-08-24 08:32:25.000000000 +0000
+@@ -105,6 +105,8 @@
+ #define	SMPP_alert_on_message_delivery 		0x130C 
+ #define	SMPP_its_reply_type 			0x1380 
+ #define	SMPP_its_session_info 			0x1383 
++#define	SMPP_mblox_operator 			0x1402 
++#define	SMPP_mblox_billing 			0x1403 
+ 
+ #endif
+ 
+diff -ru gateway-1.3.2/gw/smsc/smsc_smpp.c gateway-1.3.2-mblox/gw/smsc/smsc_smpp.c
+--- gateway-1.3.2/gw/smsc/smsc_smpp.c	2004-06-29 08:17:45.000000000 +0000
++++ gateway-1.3.2-mblox/gw/smsc/smsc_smpp.c	2004-08-24 08:32:25.000000000 +0000
+@@ -408,6 +408,18 @@
+     msg->sms.receiver = pdu->u.deliver_sm.destination_addr;
+     pdu->u.deliver_sm.destination_addr = NULL;
+ 
++    /* Check for mBlox billing identifier */
++    if (smpp->version > 0x33 && octstr_len(pdu->u.deliver_sm.mblox_billing)) {
++        msg->sms.mblox_billing = pdu->u.deliver_sm.mblox_billing;
++        pdu->u.deliver_sm.mblox_billing = NULL;
++    }
++
++    /* Check for mBlox operator identifier */
++    if (smpp->version > 0x33 && octstr_len(pdu->u.deliver_sm.mblox_operator)) {
++        msg->sms.mblox_operator = pdu->u.deliver_sm.mblox_operator;
++        pdu->u.deliver_sm.mblox_operator = NULL;
++    }
++
+     /* SMSCs use service_type for billing information */
+     msg->sms.binfo = pdu->u.deliver_sm.service_type;
+     pdu->u.deliver_sm.service_type = NULL;
+@@ -739,6 +751,16 @@
+     if (smpp->version > 0x33 && msg->sms.msg_left > 0)
+         pdu->u.submit_sm.more_messages_to_send = 1;
+ 
++    /* set mBlox billing identifier */
++    if (smpp->version > 0x33 && octstr_len(msg->sms.mblox_billing)) {
++        pdu->u.submit_sm.mblox_billing = octstr_duplicate(msg->sms.mblox_billing);
++    }
++
++    /* set mBlox operator identifier */
++    if (smpp->version > 0x33 && octstr_len(msg->sms.mblox_operator)) {
++        pdu->u.submit_sm.mblox_operator = octstr_duplicate(msg->sms.mblox_operator);
++    }
++
+     return pdu;
+ }
+ 
+diff -ru gateway-1.3.2/gw/urltrans.c gateway-1.3.2-mblox/gw/urltrans.c
+--- gateway-1.3.2/gw/urltrans.c	2004-03-08 23:12:56.000000000 +0000
++++ gateway-1.3.2-mblox/gw/urltrans.c	2004-08-24 08:32:25.000000000 +0000
+@@ -625,6 +625,24 @@
+ 	    }
+ 	    break;
+ 
++	case 'O':  /* mBlox billing identifier */
++	    if (octstr_len(request->sms.mblox_billing)) {
++            enc = octstr_duplicate(request->sms.mblox_billing);
++            octstr_url_encode(enc);
++            octstr_append(result, enc);
++            octstr_destroy(enc);
++        }
++        break;
++
++	case 'o':  /* mBlox operator identifier */
++	    if (octstr_len(request->sms.mblox_operator)) {
++            enc = octstr_duplicate(request->sms.mblox_operator);
++            octstr_url_encode(enc);
++            octstr_append(result, enc);
++            octstr_destroy(enc);
++        }
++        break;
++
+ 	case 'B':  /* billing identifier/information */
+ 	    if (octstr_len(request->sms.binfo)) {
+             enc = octstr_duplicate(request->sms.binfo);
+

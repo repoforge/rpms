@@ -8,11 +8,12 @@
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.3.2
-Release: 2
+Release: 3
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
 Source: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
+Patch: mblox_optionals_0.1.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
 
@@ -44,6 +45,7 @@ use the kannel WAP and SMS gateway.
 
 %prep
 %setup -n gateway-%{version}
+%patch -p1 -b .mblox
 
 
 %build
@@ -96,6 +98,9 @@ use the kannel WAP and SMS gateway.
 
 
 %changelog
+* Mon Sep 20 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-3
+- Added mblox_optionals_0.1.diff patch.
+
 * Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-2
 - Really comment out all scriplets, they're not yet used.
 
