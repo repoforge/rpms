@@ -1,8 +1,11 @@
 # $Id$
-
 # Authority: dries
+# Upstream: <tom.drexl@gmx.de>
+
 # Screenshot: http://home.t-online.de/home/Primetime./gl-117/sshot2_092_700.jpg
 # ScreenshotURL: http://home.t-online.de/home/Primetime./gl-117/gallery.htm
+
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Action flight simulator
 Name: gl-117
@@ -15,8 +18,11 @@ URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
 Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, glut-devel, glut, SDL-devel, SDL_mixer-devel, XFree86-devel, gcc-c++
-Requires: glut
+BuildRequires: SDL-devel, SDL_mixer-devel
+%{!?dist:BuildRequires: freeglut-devel, xorg-x11-devel}
+%{?fc2:BuildRequires: freeglut-devel, xorg-x11-devel}
+%{?fc1:BuildRequires: freeglut-devel, XFree86-devel}
+%{?rh9:BuildRequires: glut-devel, XFree86-devel}
 
 %description
 GL-117 is an action flight simulator. Enter the Eagle Squadron and succeed 
@@ -25,7 +31,7 @@ predefined levels of video quality and an amount of viewing ranges let you
 perfectly adjust the game to the performance of your system.
 
 %prep
-%setup -n gl-117-%{version}-src
+%setup -n %{name}-%{version}-src
 
 %build
 export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
@@ -34,16 +40,18 @@ export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
 
 %install
 %{__rm} -rf %{buildroot}
-make install-strip \
-	DESTDIR="%{buildroot}"
+%makeinstall
 
 %files
-%defattr(-,root,root,0755)
-%doc README AUTHORS COPYING FAQ INSTALL NEWS
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING FAQ INSTALL NEWS README
 %{_bindir}/gl-117
-%{_datadir}/gl-117
+%{_datadir}/gl-117/
 
 %changelog
+* Mon May 24 2004 Dag Wieers <dag@wieers.com> - 1.2-1
+- Cosmetic cleanup.
+
 * Thu May 20 2004 Dries Verachtert <dries@ulyssis.org> 1.2-1
 - update to 1.2
 
