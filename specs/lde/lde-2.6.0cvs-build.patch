@@ -1,0 +1,134 @@
+--- lde/src/swiped/cnews/getdate.y.orig	2002-01-13 08:31:44.000000000 +0100
++++ lde/src/swiped/cnews/getdate.y	2004-03-16 00:59:54.082060984 +0100
+@@ -17,7 +17,7 @@
+ #include <sys/time.h>
+ #endif
+ #define	timezone	tmzn	/* ugly hack for obscure name clash */
+-#include "../../swiped.h"
++#include "../swiped.h"
+ 
+ 
+ #define daysec (24L*60L*60L)
+@@ -50,78 +50,78 @@
+ timedate: 		/* empty */
+ 	| timedate item;
+ 
+-item:	tspec =
++item:	tspec
+ 		{timeflag++;}
+-	| zone =
++	| zone
+ 		{zoneflag++;}
+-	| dtspec =
++	| dtspec
+ 		{dateflag++;}
+-	| dyspec =
++	| dyspec
+ 		{dayflag++;}
+-	| rspec =
++	| rspec
+ 		{relflag++;}
+ 	| nspec;
+ 
+-nspec:	NUMBER =
++nspec:	NUMBER
+ 		{if (timeflag && dateflag && !relflag) year = $1;
+ 		else {timeflag++;hh = $1/100;mm = $1%100;ss = 0;merid = 24;}};
+ 
+-tspec:	NUMBER MERIDIAN =
++tspec:	NUMBER MERIDIAN
+ 		{hh = $1; mm = 0; ss = 0; merid = $2;}
+-	| NUMBER ':' NUMBER =
++	| NUMBER ':' NUMBER
+ 		{hh = $1; mm = $3; merid = 24;}
+-	| NUMBER ':' NUMBER MERIDIAN =
++	| NUMBER ':' NUMBER MERIDIAN
+ 		{hh = $1; mm = $3; merid = $4;}
+-	| NUMBER ':' NUMBER NUMBER =
++	| NUMBER ':' NUMBER NUMBER
+ 		{hh = $1; mm = $3; merid = 24;
+ 		daylight = STANDARD; ourzone = $4%100 + 60*$4/100;}
+-	| NUMBER ':' NUMBER ':' NUMBER =
++	| NUMBER ':' NUMBER ':' NUMBER
+ 		{hh = $1; mm = $3; ss = $5; merid = 24;}
+-	| NUMBER ':' NUMBER ':' NUMBER MERIDIAN =
++	| NUMBER ':' NUMBER ':' NUMBER MERIDIAN
+ 		{hh = $1; mm = $3; ss = $5; merid = $6;}
+-	| NUMBER ':' NUMBER ':' NUMBER NUMBER =
++	| NUMBER ':' NUMBER ':' NUMBER NUMBER
+ 		{hh = $1; mm = $3; ss = $5; merid = 24;
+ 		daylight = STANDARD; ourzone = $6%100 + 60*$6/100;};
+ 
+-zone:	ZONE =
++zone:	ZONE
+ 		{ourzone = $1; daylight = STANDARD;}
+-	| DAYZONE =
++	| DAYZONE
+ 		{ourzone = $1; daylight = DAYLIGHT;};
+ 
+-dyspec:	DAY =
++dyspec:	DAY
+ 		{dayord = 1; dayreq = $1;}
+-	| DAY ',' =
++	| DAY ','
+ 		{dayord = 1; dayreq = $1;}
+-	| NUMBER DAY =
++	| NUMBER DAY
+ 		{dayord = $1; dayreq = $2;};
+ 
+-dtspec:	NUMBER '/' NUMBER =
++dtspec:	NUMBER '/' NUMBER
+ 		{month = $1; day = $3;}
+-	| NUMBER '/' NUMBER '/' NUMBER =
++	| NUMBER '/' NUMBER '/' NUMBER
+ 		{month = $1; day = $3; year = $5;}
+-	| MONTH NUMBER =
++	| MONTH NUMBER
+ 		{month = $1; day = $2;}
+-	| MONTH NUMBER ',' NUMBER =
++	| MONTH NUMBER ',' NUMBER
+ 		{month = $1; day = $2; year = $4;}
+-	| NUMBER MONTH =
++	| NUMBER MONTH
+ 		{month = $2; day = $1;}
+-	| NUMBER MONTH NUMBER =
++	| NUMBER MONTH NUMBER
+ 		{month = $2; day = $1; year = $3;};
+ 
+ 
+-rspec:	NUMBER UNIT =
++rspec:	NUMBER UNIT
+ 		{relsec +=  60L * $1 * $2;}
+-	| NUMBER MUNIT =
++	| NUMBER MUNIT
+ 		{relmonth += $1 * $2;}
+-	| NUMBER SUNIT =
++	| NUMBER SUNIT
+ 		{relsec += $1;}
+-	| UNIT =
++	| UNIT
+ 		{relsec +=  60L * $1;}
+-	| MUNIT =
++	| MUNIT
+ 		{relmonth += $1;}
+-	| SUNIT =
++	| SUNIT
+ 		{relsec++;}
+-	| rspec AGO =
++	| rspec AGO
+ 		{relsec = -relsec; relmonth = -relmonth;};
+ %%
+ 
+--- lde/src/main_lde.c.orig	2002-01-14 19:53:35.000000000 +0100
++++ lde/src/main_lde.c	2004-03-16 00:52:44.177416424 +0100
+@@ -33,10 +33,6 @@
+ #  include "nc_lde.h"
+ #endif
+ 
+-#ifndef volatile
+-#define volatile
+-#endif
+-
+ /* Some internal structures */
+ struct _main_opts {
+   int search_len;
