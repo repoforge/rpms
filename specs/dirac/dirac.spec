@@ -68,8 +68,7 @@ you will need to install %{name}-devel.
 %doc rpm-doc/*
 %{_includedir}/dirac/
 %{_libdir}/*.a
-#%exclude %{_libdir}/*.la
-#%{_libdir}/*.so
+%{_libdir}/pkgconfig/dirac.pc
 
 %changelog
 * Wed Sep 01 2004 Dries Verachtert <dries@ulyssis.org> - 0.4.1
