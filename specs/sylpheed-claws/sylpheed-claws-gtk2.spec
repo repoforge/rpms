@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define extraver       67.4
+%define extraver       67.8
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
@@ -14,18 +14,15 @@ URL: http://claws.sylpheed.org/
 Source: http://dl.sf.net/sylpheed-claws/sylpheed-%{version}claws%{?extraver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0, pkgconfig
-%{!?_without_openssl:Requires: openssl >= 0.9.6}
-%{!?_without_gpgme:Requires: gpgme >= 0.3.10}
+Requires: openssl, gpgme, openldap
 %{!?_without_aspell:Requires: aspell >= 0.50}
-%{!?_without_ldap:Requires: openldap}
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
-BuildRequires: flex, desktop-file-utils, pkgconfig, gcc-c++
-%{!?_without_openssl:BuildRequires: openssl-devel >= 0.9.6}
-%{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.3.10}
+BuildRequires: flex, pkgconfig, gcc-c++
+BuildRequires: openssl-devel, gpgme-devel, openldap-devel
+BuildRequires: compface-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
-%{!?_without_ldap:BuildRequires: openldap-devel}
-%{!?_without_compface:BuildRequires: compface-devel}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
 Conflicts: sylpheed
 
@@ -44,7 +41,7 @@ You have been warned ;-)
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : openssl, ipv6, gpgme, ldap, aspell, compface
+--without : aspell freedesktop
 
 
 %prep
@@ -52,41 +49,43 @@ Available rpmbuild rebuild options :
 
 
 %build
+# Workaround for missing krb5 includes (on RHL9 was it?)
 if pkg-config openssl; then
     CFLAGS="%{optflags} `pkg-config --cflags openssl`"
     LDFLAGS="$LDFLAGS `pkg-config --libs-only-L openssl`"
 fi
+
 %configure \
     --program-prefix="%{?_program_prefix}" \
-    %{!?_without_openssl: --enable-openssl} \
-    %{!?_without_ipv6: --enable-ipv6} \
-    %{!?_without_gpgme: --enable-gpgme} \
+    --enable-openssl \
     %{!?_without_aspell: --enable-aspell} \
-    %{!?_without_ldap: --enable-ldap} \
-    %{!?_without_compface: --enable-compface} \
     %{?_with_pilot: --enable-jpilot} \
-    --enable-trayicon-plugin \
+    --enable-gpgme \
     --enable-spamassassin-plugin
+    # Disable for now :-(
+    #--enable-ldap \
 %{__make} %{?_smp_mflags}
+
+# Fix this path for the make install stage
+%{__perl} -pi -e 's|gnomedatadir = .*|gnomedatadir = \$\(datadir\)|g' Makefile
 
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-# gnomedatadir=%{buildroot}%{_datadir}
 %find_lang sylpheed
 
-#%{__mkdir_p} %{buildroot}%{_datadir}/applications
-#desktop-file-install --vendor %{desktop_vendor} --delete-original \
-#  --dir %{buildroot}%{_datadir}/applications                      \
-#  --add-category Application                                      \
-#  --add-category Network                                          \
-#  %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
-
-# Temp fix...
-#test -d %{buildroot}%{_prefix}/sylpheed && \
-#    %{__mkdir_p} %{buildroot}%{_datadir} && \
-#    %{__mv} %{buildroot}%{_prefix}/sylpheed %{buildroot}%{_datadir}/sylpheed
+%if %{!?_without_freedesktop:1}0
+# Convert the menu entry
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install \
+    --delete-original \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    --add-category Application \
+    --add-category Network \
+    %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+%endif
 
 
 %clean
@@ -105,15 +104,19 @@ fi
 %exclude %{_libdir}/sylpheed/plugins/*.a
 %exclude %{_libdir}/sylpheed/plugins/*.la
 %{_libdir}/sylpheed/plugins/*.so
-%{_datadir}/applications/*sylpheed.desktop
+%if %{!?_without_freedesktop:1}0
+%{_datadir}/applications/%{desktop_vendor}-sylpheed.desktop
+%else
+%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+%endif
 %{_datadir}/pixmaps/sylpheed.png
 %{_datadir}/sylpheed
 %{_mandir}/man1/sylpheed.1*
 
 
 %changelog
-* Tue May 25 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1.gtk2.67.4
-- Update to 0.9.10claws67.4.
+* Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1.gtk2.67.8
+- Update to 0.9.10claws67.8.
 
 * Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.gtk2
 - Added compface (X-Face) support.

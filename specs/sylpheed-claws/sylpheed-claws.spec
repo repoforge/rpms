@@ -1,24 +1,27 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
+%define extraver       %{nil}
 
-Summary: DEVELOPMENT branch of the sylpheed GTK+ e-mail client
+Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
 Version: 0.9.11
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
-Source: http://dl.sf.net/sylpheed-claws/sylpheed-%{version}claws.tar.bz2
+Source: http://dl.sf.net/sylpheed-claws/sylpheed-%{version}claws%{?extraver}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk+ >= 1.2.6, gdk-pixbuf >= 0.8.0, pkgconfig
 Requires: openssl, gpgme, openldap
 %{!?_without_aspell:Requires: aspell >= 0.50}
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
-BuildRequires: flex, desktop-file-utils, pkgconfig, gcc-c++
+BuildRequires: flex, pkgconfig, gcc-c++
 BuildRequires: openssl-devel, gpgme-devel, openldap-devel
 BuildRequires: compface-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
 Conflicts: sylpheed
@@ -38,43 +41,51 @@ You have been warned ;-)
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : aspell
+--without : aspell freedesktop
 
 
 %prep
-%setup -q -n sylpheed-%{version}claws
+%setup -n sylpheed-%{version}claws%{?extraver}
 
 
 %build
+# Workaround for missing krb5 includes (on RHL9 was it?)
 if pkg-config openssl; then
     CFLAGS="%{optflags} `pkg-config --cflags openssl`"
     LDFLAGS="$LDFLAGS `pkg-config --libs-only-L openssl`"
 fi
+
 %configure \
-    --program-prefix=%{?_program_prefix} \
-    %{!?_without_openssl: --enable-openssl} \
-    %{!?_without_ipv6: --enable-ipv6} \
-    %{!?_without_gpgme: --enable-gpgme} \
+    --program-prefix="%{?_program_prefix}" \
+    --enable-openssl \
     %{!?_without_aspell: --enable-aspell} \
-    %{!?_without_ldap: --enable-ldap} \
-    %{!?_without_compface: --enable-compface} \
     %{?_with_pilot: --enable-jpilot} \
-    --enable-trayicon-plugin \
+    --enable-gpgme \
     --enable-spamassassin-plugin
+    # Disable for now :-(
+    #--enable-ldap \
 %{__make} %{?_smp_mflags}
+
+# Fix this path for the make install stage
+%{__perl} -pi -e 's|gnomedatadir = .*|gnomedatadir = \$\(datadir\)|g' Makefile
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall gnomedatadir=%{buildroot}%{_datadir}
+%makeinstall
 %find_lang sylpheed
 
+%if %{!?_without_freedesktop:1}0
+# Convert the menu entry
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category Application                                      \
-  --add-category Network                                          \
-  %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+desktop-file-install \
+    --delete-original \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    --add-category Application \
+    --add-category Network \
+    %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+%endif
 
 
 %clean
@@ -82,8 +93,8 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %files -f sylpheed.lang
-%defattr(-, root, root)
-%doc AUTHORS COPYING ChangeLog* README* INSTALL* TODO*
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING ChangeLog* README* TODO*
 %{_bindir}/sylpheed
 %{_includedir}/sylpheed
 %{_libdir}/pkgconfig/%{name}.pc
@@ -93,7 +104,11 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %exclude %{_libdir}/sylpheed/plugins/*.a
 %exclude %{_libdir}/sylpheed/plugins/*.la
 %{_libdir}/sylpheed/plugins/*.so
-%{_datadir}/applications/*sylpheed.desktop
+%if %{!?_without_freedesktop:1}0
+%{_datadir}/applications/%{desktop_vendor}-sylpheed.desktop
+%else
+%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+%endif
 %{_datadir}/pixmaps/sylpheed.png
 %{_datadir}/sylpheed
 %{_mandir}/man1/sylpheed.1*
