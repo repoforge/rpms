@@ -19,8 +19,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHILLI/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-Requires: perl-IPC-Shareable, perl-Log-Dispatch, perl-Log-Dispatch-FileRotate, rrdtool
+BuildRequires: perl, perl-Time-HiRes
+Requires: perl-IPC-Shareable, perl-Log-Dispatch, perl-Log-Dispatch-FileRotate, rrdtool, perl-Time-HiRes
 
 %description
 Log::Log4perl is a Perl port of the widely popular log4j logging package. It
