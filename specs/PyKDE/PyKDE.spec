@@ -58,13 +58,14 @@ sed -i "s/-lDCOP -lkdecore/-lDCOP -lkdeui -lkdecore/g;" kdecore/Makefile
 
 %files devel
 %defattr(-,root,root,0755)
-%{_libdir}/python2.2/site-packages/*.so
+%{_libdir}/python*/site-packages/*.so
+%{_datadir}/sip
 %{_libdir}/kde3/*.so
 %{_libdir}/*.so
 
 %files
 %defattr(-,root,root, 0755)
-%doc README AUTHORS BUGS ChangeLog COPYING DETAILS INSTALL importTest.py NEWS THANKS doc
+%doc README AUTHORS BUGS ChangeLog COPYING INSTALL importTest.py NEWS THANKS doc
 %{_libdir}/python2.2/site-packages/*.so.*
 %{_libdir}/python2.2/site-packages/*.py
 %{_libdir}/python2.2/site-packages/*.pyc
