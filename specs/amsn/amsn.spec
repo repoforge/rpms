@@ -9,11 +9,11 @@
 
 %define tls_maj 1.4
 %define tls_min 1
-%define real_version 0_90
+%define real_version 0_92
 
 Summary: Full featured MSN Messenger clone
 Name: amsn
-Version: 0.90
+Version: 0.92
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -26,8 +26,10 @@ Source: http://dl.sf.net/amsn/amsn-%{real_version}.tar.gz
 ### FIXME: tls-plugin doesn't build because of missing tclPort.h in tcl-devel
 #Source1: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-src.tar.bz2
 Source2: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-linux-x86.tar.gz
-Patch: amsn-0.83-makefile.patch
-Patch1: amsn-0.83-login.patch
+
+# Makefile is completely different
+#Patch: amsn-0.83-makefile.patch
+Patch1: amsn-0.92-login.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386
@@ -60,6 +62,7 @@ Type=Application
 Terminal=false
 StartupNotify=true
 Categories=Application;Network;
+Encoding=UTF-8
 EOF
 
 %{__cat} <<'EOF2' >%{name}.sh
@@ -149,6 +152,10 @@ cd plugins/traydock
 %endif
 
 %changelog
+* Mon May 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.92-1
+- update to version 0.92
+- added Encoding tag to desktop file
+
 * Sun Feb 22 2004 Dag Wieers <dag@wieers.com> - 0.90-0
 - Updated to release 0.90.
 

@@ -1,0 +1,11 @@
+--- gui.tcl.orig	2004-05-31 12:02:02.165655232 +0200
++++ gui.tcl	2004-05-31 12:02:35.109646984 +0200
+@@ -4314,7 +4314,7 @@
+ 
+ 
+ 	#Log in
+-	.main_menu.file entryconfigure 0 -state normal
++	#.main_menu.file entryconfigure 0 -state normal
+ 	.main_menu.file entryconfigure 1 -state normal
+ 	#Log out
+ 	.main_menu.file entryconfigure 2 -state disabled
