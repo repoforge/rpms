@@ -1,8 +1,8 @@
 # $Id$
 
 # Authority: dries
-
-# Todo: replace .desktop file by a freedesktop compliant one
+# Screenshot: http://scret.sourceforge.net/shot1.png
+# ScreenshotURL: http://scret.sourceforge.net/
 
 Summary: musical score reading trainer
 Name: scorereadingtrainer
@@ -19,12 +19,9 @@ Source: http://dl.sf.net/scret/ScoreReadingTrainer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel
+BuildRequires: XFree86-devel, qt-devel, fam-devel
 %{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs
-
-# Screenshot: http://scret.sourceforge.net/shot1.png
-# ScreenshotURL: http://scret.sourceforge.net/
 
 %description
 Score Reading Trainer helps you improve your (musical) score reading skills
@@ -56,7 +53,6 @@ export DESTDIR=$RPM_BUILD_ROOT
 %doc README
 %{_bindir}/ScoreReadingTrainer
 %{_datadir}/applnk/Edutainment/Miscellaneous/ScoreReadingTrainer.desktop
-%{_datadir}/apps/ScoreReadingTrainer/ScoreReadingTrainerui.rc
 %{_datadir}/apps/ScoreReadingTrainer
 %{_datadir}/doc/HTML/en/ScoreReadingTrainer
 %{_datadir}/icons/*/*/apps/ScoreReadingTrainer.png
