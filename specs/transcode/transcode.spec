@@ -3,6 +3,8 @@
 # Upstream: Thomas Östreich <ostreich$theorie,physik,uni-goettingen,de>
 # Upstream: Tilmann Bitterberg <transcode$tibit,org>
 
+%define prever pre1
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc3:%define _without_mjpeg 1}
@@ -24,13 +26,12 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 0.6.13
-Release: 0
+Version: 0.6.14
+Release: %{?prever:0.%{prever}.}0
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
-Source: http://www.jakemsr.com/transcode-%{version}.tar.gz
-Patch: http://www.exit1.org/dvdrip/dist/patches/transcode-0.6.13-bitstream.patch
+Source: http://www.jakemsr.com/transcode-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
@@ -69,8 +70,7 @@ Available rpmbuild rebuild options :
 
 
 %prep
-%setup
-%patch -p1 -b .bitstream
+%setup -n %{name}-%{version}%{?prever}
 
 ### FIXME: Use standard autotools directories (Fix upstream please)
 #{__perl} -pi.orig -e 's|${prefix}/lib|%{_libdir}|g' configure
@@ -120,6 +120,9 @@ Available rpmbuild rebuild options :
 
 
 %changelog
+* Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-0.pre1.0
+- Update to 0.6.14pre1.
+
 * Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 0.6.13-0
 - Update to 0.6.13.
 - Reworked the configure options, build reqs and rpmbuild conditionals.
