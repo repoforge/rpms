@@ -1,7 +1,16 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Nick Ing-Simmons <nick$ing-simmons,net>
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
 
 %define real_name Tk
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -23,7 +32,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/N/NI/NI-S/Tk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, tk-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Provides: perl(Tk::LabRadio), perl(Tk::TextReindex)
 
 %description
