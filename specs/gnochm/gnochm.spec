@@ -4,9 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define _without_shmime 1
-%{?fc3:%undefine _without_shmime}
-%{?fc2:%undefine _without_shmime}
+%define _without_shared_mime 1
+%{?fc3:%undefine _without_shared_mime}
+%{?fc2:%undefine _without_shared_mime}
 
 Summary: CHM file viewer
 Name: gnochm
@@ -29,7 +29,7 @@ BuildRequires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
 Requires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2
 Requires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
 Requires: gnome-python2-canvas
-%{!?_without_shmime:Requires: shared-mime-info}
+%{!?_without_shared_mime:Requires: shared-mime-info}
 
 %description
 A CHM file viewer. Features are: full text search, bookmarks
@@ -86,10 +86,10 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/gnochm.desktop
 %{_datadir}/gnochm/
 %{_datadir}/mime/packages/gnochm.xml
-%{!?_without_shmime:%{_datadir}/mime/application/x-chm.xml}
-%{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
-%{!?_without_shmime:%exclude %{_datadir}/mime/globs}
-%{!?_without_shmime:%exclude %{_datadir}/mime/magic}
+%{!?_without_shared_mime:%{_datadir}/mime/application/x-chm.xml}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png

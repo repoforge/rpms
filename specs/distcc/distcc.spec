@@ -13,12 +13,11 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
-
 %define gccversion %(rpm -q gcc --qf '%{RPMTAG_VERSION}' | tail -1)
 
 Summary: Distributed C/C++ compilation client program
 Name: distcc
-Version: 2.18
+Version: 2.18.1
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -321,6 +320,9 @@ fi
 %endif
 
 %changelog
+* Tue Nov 09 2004 Dag Wieers <dag@wieers.com> - 2.18.1-1
+- Updated to release 2.18.1.
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 2.18-1
 - Updated to release 2.18.
 
