@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Noah Levitt <nlevitt@columbia.edu>
+
+# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3
 
 Summary: Unicode/ISO10646 character map and font viewer
 Name: gucharmap

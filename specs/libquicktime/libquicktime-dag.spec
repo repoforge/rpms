@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: <libquicktime-devel@lists.sf.net>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime

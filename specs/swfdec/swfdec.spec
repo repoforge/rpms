@@ -8,8 +8,10 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sf.net/
+
 Source: http://dl.sf.net/swfdec/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: mozilla-devel, libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
 
@@ -43,7 +45,7 @@ library
 %{__perl} -pi.orig -e 's|^NPError NP_GetValue\(NPP |NPError NP_GetValue\(void *|' plugin/plugin.c
 
 %build
-export CFLAGS="%optflags -DMOZ_X11"
+export CFLAGS="%{optflags} -DMOZ_X11"
 %configure \
 	--disable-dependency-tracking \
 	--enable-shared
@@ -54,12 +56,6 @@ export CFLAGS="%optflags -DMOZ_X11"
 %makeinstall
 #	transform="" \
 #	plugindir="%{buildroot}%{_libdir}/mozilla/plugins"
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la \
-		%{buildroot}%{_libdir}/mozilla/plugins/*.{a,la} \
-		%{buildroot}%{_libdir}/gtk-2.0/2.2.0/loaders/*.{a,la} \
-		%{buildroot}%{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -81,14 +77,21 @@ fi
 %doc AUTHORS COPYING NEWS README TODO 
 %{_bindir}/*
 %{_libdir}/*.so.*
-%{_libdir}/gtk-2.0/2.2.0/loaders/*.so
+%{_libdir}/gtk-2.0/*/loaders/*.so
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/swfdec/
+%exclude %{_libdir}/mozilla/plugins/*.a
+%exclude %{_libdir}/mozilla/plugins/*.la
+%exclude %{_libdir}/gtk-2.0/*/loaders/*.a
+%exclude %{_libdir}/gtk-2.0/*/loaders/*.la
+%exclude %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
+
 
 %files -n mozilla-swfdec
 %defattr(-, root, root, 0755)

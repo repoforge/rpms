@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name bsddb3
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/pybsddb/bsddb3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: python
 Requires: python

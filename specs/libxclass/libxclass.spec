@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define real_name xclass
 
@@ -40,7 +40,7 @@ against.
 	' lib/libxclass/Makefile.in
 
 %build
-#%{?fc2:export CXX="g++296"}
+%{?fc2:export CXX="g++296"}
 %{?fc1:export CXX="g++296"}
 %{?el3:export CXX="g++296"}
 %{?rh9:export CXX="g++296"}

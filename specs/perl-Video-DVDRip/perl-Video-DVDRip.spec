@@ -12,13 +12,15 @@ Version: 0.50.18
 Release: 1
 License: Artistic
 Group: Applications/Multimedia
-Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
 URL: http://www.exit1.org/dvdrip/
+
+Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 AutoReq: no
+BuildRequires: Gtk-Perl, desktop-file-utils
 Requires: transcode >= 0.6.3
 Requires: Gtk-Perl, ImageMagick, ogmtools, subtitleripper, vcdimager, xvidcore
-BuildRequires: Gtk-Perl, desktop-file-utils
 
 %description
 dvd::rip is a Perl Gtk+ based DVD copy program built on top of a low level

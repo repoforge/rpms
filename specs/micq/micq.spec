@@ -3,7 +3,7 @@
 # Upstream: RÃdiger Kuhlmann <info@ruediger-kuhlmann.de>
 # Upstream: <micq-list@micq.org>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Clone of the Mirabilis ICQ online messaging program
 Name: micq
@@ -20,6 +20,7 @@ Source: http://www.micq.org/source/micq-%{version}.tgz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, tcl
+%{?fc2:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
 %{?fc1:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
 #%{?el3:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
 %{?el3:BuildRequires: libgcrypt-devel, gnutls-devel}

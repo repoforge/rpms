@@ -1,11 +1,15 @@
 # $Id$
-
 # Authority: dries
+
+# Screenshot: http://gambas.sourceforge.net/2003-06-25.png
+# ScreenshotURL: http://gambas.sourceforge.net/screenshots.html
+
+%define real_version 0.92a
 
 Summary: Free development environment based on a basic interpreter with object extensions
 Name: gambas
-Version: 0.92a
-Release: 1
+Version: 0.92
+Release: 0.a
 License: GPL
 Group: Development/Tools
 URL: http://gambas.sourceforge.net/
@@ -13,15 +17,13 @@ URL: http://gambas.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://gambas.sourceforge.net/%{name}-%{version}.tar.bz2
+Source: http://gambas.sourceforge.net/gambas-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 # Patch0: makefiles-destdir.patch.bz2
 Patch0: dont-make-links.patch
 BuildRequires: kdelibs-devel, libjpeg-devel, automake, autoconf, gcc, make, qt-devel, SDL-devel, mysql-devel, postgresql-devel, XFree86-devel, zlib-devel, glibc-headers, sqlite-devel, gcc-c++
-Requires: qt, zlib, XFree86, sqlite, SDL, libjpeg
-
-# Screenshot: http://gambas.sourceforge.net/2003-06-25.png
-# ScreenshotURL: http://gambas.sourceforge.net/screenshots.html
+#Requires: qt, zlib, XFree86, sqlite, SDL, libjpeg
 
 %description
 Gambas is a free development environment based on a Basic interpreter
@@ -30,23 +32,16 @@ Gambas, you can quickly design your program GUI, access MySQL or PostgreSQL
 databases, pilot KDE applications with DCOP, translate your program into
 many languages, create network applications easily, and so on...
 
-
-%description -l nl
-Gambas is een vrije ontwikkelomgeving gebaseerd op een basic interpreter met
-object extensies, zoals Visual Basic (maar het is geen kloon!). Met Gambas
-kan u eenvoudig een GUI ontwerpen, MySQL of PostgreSQL databases gebruiken,
-KDE programma's aansturen met DCOP, uw programma vertalen naar vele talen,
-eenvoudig netwerktoepassingen maken, enzoverder...
-
 %prep
-%setup -n gambas-0.92
+%setup
 %patch -p1
 
 %build
 rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.in$")
 ./reconf || echo reconf gives a warning but lets continue anyway
 # (cd libltdl/;../reconf || echo reconf gives a warning but lets continue anyway)
-%configure --datadir=/usr/share/gambas \
+%configure 
+	--datadir="%{_datadir}/gambas" \
 	--enable-intl \
 	--enable-conv \
 	--enable-qt \
@@ -64,7 +59,8 @@ rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.
 %{__rm} -rf "${RPM_BUILD_ROOT}"
 export PATH=%{buildroot}/usr/bin:$PATH
 #  {__make} bindir=$RPM_BUILD_ROOT/usr/bin includedir=$RPM_BUILD_ROOT/usr/include libdir=$RPM_BUILD_ROOT/usr/lib datadir=$RPM_BUILD_ROOT/usr/share/gambas install-strip
-%makeinstall datadir=%{buildroot}/usr/share/gambas
+%makeinstall \
+	datadir="%{buildroot}/usr/share/gambas"
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -90,10 +86,9 @@ Requires: %{name} = %{version}
 The gambas-examples package contains some examples for gambas.
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING INSTALL NEWS README README.REDHAT TODO
-%{_libdir}/lib.gb*.so.0.0.0
-%{_libdir}/lib.gb*.so.0
+%{_libdir}/*.so.*
 %{_libdir}/lib.gb*.component
 %{_libdir}/info
 %{_bindir}/gambas
@@ -104,15 +99,17 @@ The gambas-examples package contains some examples for gambas.
 %{_bindir}/gambas-database-manager
 %{_bindir}/Util
 %{_includedir}/gambas.h
-%{_libdir}/lib.gb*.la
-%{_libdir}/lib.gb*.so
+%exclude %{_libdir}/lib.*.la
+%{_libdir}/lib.*.so
 
 %files help
 %defattr(-,root,root,0755)
+%dir %{_datadir}/gambas/
 %{_datadir}/gambas/help
 
 %files examples
 %defattr(-,root,root,0755)
+%dir %{_datadir}/gambas/
 %{_datadir}/gambas/examples
 
 %changelog

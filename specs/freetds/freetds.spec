@@ -1,13 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <freetds@lists.ibiblio.org>
 
 %define _includedir %{_prefix}/include/freetds
  
 Summary: Implementation of the Sybase/Microsoft TDS (Tabular DataStream) protocol
 Name: freetds
-Version: 0.61.2
-Release: 0
+Version: 0.62.3
+Release: 1
 License: LGPL 
 Group: System Environment/Libraries
 URL: http://www.freetds.org/
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source:	ftp://ftp.ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: unixODBC-devel
 Obsoletes: freetds-unixodbc <= %{version}, freetds-doc <= %{version}
@@ -54,15 +53,11 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-#%{__rm} -rf %{buildroot}%{_docdir}
- 
 %post
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
  
 %clean 
 %{__rm} -rf %{buildroot}
@@ -81,11 +76,15 @@ you will need to install %{name}-devel.
 %defattr (-, root, root, 0755) 
 %doc samples/
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 ### Redefined _includedir to be %{_includedir}/freetds/
 %{_includedir}/
  
 %changelog 
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.62.3-1
+- Updated to release 0.62.3.
+
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 0.61.2-0
 - Added --enable-msdblib configure option. (Dean Mumby)
 - Updated to release 0.61.2.

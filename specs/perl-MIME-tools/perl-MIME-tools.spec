@@ -1,7 +1,7 @@
 # $Id$
 # Authority: atrpms
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define real_name MIME-tools
 

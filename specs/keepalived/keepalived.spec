@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived

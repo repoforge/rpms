@@ -2,7 +2,7 @@
 # Authority: dag
 # Distcc: 0
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: James Yonan <jim@yonan.net>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 ### FIXME: Add sysv script based on own template.
 

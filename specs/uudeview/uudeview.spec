@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Frank Pilhofer <fp@fpx.de>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview

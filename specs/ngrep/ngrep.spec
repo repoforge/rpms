@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jordan Ritter <jpr5@darkridge.com>
+
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Realtime network grep tool
 Name: ngrep
@@ -36,6 +37,8 @@ more common packet sniffing tools, such as tcpdump and snoop.
 		s|^(BINDIR).+$|$1=\$(bindir)|g;
 		s|^(MANDIR).+$|$1=\$(mandir)/man8|g;
 	' Makefile.in
+
+%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure *.c *.h}
 
 %build
 %configure

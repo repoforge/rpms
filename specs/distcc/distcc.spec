@@ -3,7 +3,7 @@
 # Upstream: Martin Pool <mbp@sourcefrog.net>
 # Upstream: <distcc@lists.samba.org>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define gui 1
 %{?rh7:%undefine gui}
@@ -28,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?gui:BuildRequires: gtk2-devel >= 2.0}
 Requires: gcc, gcc-c++
+%{?fc2:Requires: compat-gcc, compat-gcc-c++, gcc34}
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
 %{?rh9:Requires: compat-gcc, compat-gcc-c++}
 %{?rh8:Requires: compat-gcc, compat-gcc-c++}
@@ -217,6 +218,7 @@ for compiler in cc c++ gcc g++; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/i386-redhat-linux-$compiler-%{gccversion}
 done
 
+%{?fc2:%define has_gcc296 1}
 %{?fc1:%define has_gcc296 1}
 %{?rh9:%define has_gcc296 1}
 %{?rh8:%define has_gcc296 1}
@@ -232,6 +234,13 @@ done
 %{?fc1:%define has_gcc323 1}
 %if %{?has_gcc323:1}%{!?has_gcc323:0}
 for compiler in gcc32 gcc323; do
+	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler
+done
+%endif
+
+%{?fc2:%define has_gcc34 1}
+%if %{?has_gcc34:1}%{?has_fcc34:0}
+for compiler in gcc34 g++34; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler
 done
 %endif

@@ -2,7 +2,7 @@
 # Authority: dag
 # Reason: This package doesn't need a lot of devel-packages.
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define real_name glade
 

@@ -2,11 +2,9 @@
 # Authority: dag
 # Upstream: <gnupg-devel@gnupg.org>
 
-# Distcc: 0
-
 Summary: Temporary project to work on GnuPG extensions
 Name: newpg
-Version: 0.9.4
+Version: 0.9.5
 Release: 1
 License: GPL
 Group: System Environment/Libraries

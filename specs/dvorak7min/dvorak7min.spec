@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 Summary: Dvorak typing tutor
@@ -28,19 +27,19 @@ written in 7 min.
 %setup
 
 %build
-# force rebuild
-rm -f dvorak7min *.o
+### force rebuild
+%{__rm} -f dvorak7min *.o
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 strip dvorak7min
-%{__make} install INSTALL=%{buildroot}/usr/bin
+%{__make} install INSTALL="%{buildroot}%{_bindir}"
 
 %files
-%defattr(-,root,root, 0755)
-%doc README ChangeLog COPYING
-%{_bindir}/%{name}
+%defattr(-, root, root, 0755)
+%doc ChangeLog COPYING README
+%{_bindir}/*
 
 %changelog
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 1.6.1-3

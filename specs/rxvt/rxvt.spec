@@ -94,7 +94,7 @@ EOF
 	bindir="%{buildroot}%{_prefix}/X11R6/bin" \
 	mandir="%{buildroot}%{_prefix}/X11R6/man/man1"
 
-%{__install} -d -m0755 %{buildroot}%{_docdir}/rxvt-%{version}/menu/ \
+%{__install} -d -m0755 %{buildroot}%{_docdir}/rxvt-%{version}/menu/
 %{__install} -m0644 doc/menu/* %{buildroot}%{_docdir}/rxvt-%{version}/menu/
 
 %if %{dfi}

@@ -1,11 +1,15 @@
 # $Id$
-
 # Authority: dag
+
+%define memgrep_find_provides %{_builddir}/memgrep-find-provides
+%define memgrep_find_requires %{_builddir}/memgrep-find-requires
+
+%define _use_internal_dependency_generator 0
 
 Summary: Search/replace/dump memory from running processes and core files
 Name: memgrep
 Version: 0.8.0
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.hick.org/code/skape/memgrep/
@@ -13,11 +17,8 @@ URL: http://www.hick.org/code/skape/memgrep/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.hick.org/code/skape/memgrep/%{name}-%{version}.tar.gz
+Source: http://www.hick.org/code/skape/memgrep/memgrep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 Search/replace/dump memory from running processes and core files.
@@ -32,16 +33,35 @@ Search/replace/dump memory from running processes and core files.
 		s|/usr/include$|\$(includedir)|g;
 	' Makefile.in
 
+%{__cat} <<EOF >%{memgrep_find_provides}
+#!/bin/sh
+%{__find_provides} | grep -v '^libpthread.so'
+exit 0
+EOF
+chmod +x %{memgrep_find_provides}
+%define __find_provides %{memgrep_find_provides}
+
+%{__cat} <<EOF >%{memgrep_find_requires}
+#! /bin/sh
+%{__find_requires} | grep -v 'libc.so.6(GLIBC_PRIVATE)'
+exit 0
+EOF
+chmod +x %{memgrep_find_requires}
+%define __find_requires %{memgrep_find_requires}
+
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_libdir} \
 			%{buildroot}%{_includedir}
+
 %makeinstall
 
 %clean
@@ -55,6 +75,9 @@ Search/replace/dump memory from running processes and core files.
 %{_includedir}/*.h
 
 %changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Fixes find_provides and find_requires.
+
 * Tue Dec 30 2003 Dag Wieers <dag@wieers.com> - 0.8.0-0
 - Updated to release 0.8.0.
 

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: rh9 fc1 fc2
+
 Summary: Diagram drawing program
 Name: dia
 Version: 0.93
@@ -31,6 +33,13 @@ format, and can export to PostScript(TM).
 
 %prep
 %setup
+
+### FIXME: Create proper desktop file
+%{__cat} <<EOF >dia.desktop
+[desktop]
+Name=Dia Diagrams
+Comment=Create diagrams
+EOF
 
 %build
 #{__aclocal}

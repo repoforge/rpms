@@ -3,7 +3,7 @@
 # Upstream: <nxtvepg-users@lists.sf.net>
 # Distcc: 0
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg

@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%define real_name tftp-hpa
 
 Summary: The client for the Trivial File Transfer Protocol (TFTP)
 Name: tftp
@@ -13,10 +14,9 @@ URL: http://www.kernel.org/pub/software/network/tftp/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.kernel.org/pub/software/network/tftp/%{name}-hpa-%{version}.tar.bz2
+Source: http://www.kernel.org/pub/software/network/tftp/tftp-hpa-%{version}.tar.bz2
 Patch: tftp-0.28-malta.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: tcp_wrappers
 
@@ -41,7 +41,7 @@ enabled unless it is expressly needed.  The TFTP server is run from
 /etc/xinetd.d/tftp, and is disabled by default on Red Hat Linux systems.
 
 %prep
-%setup -n tftp-hpa-%{version} 
+%setup -n %{real_name}-%{version} 
 %patch -p1 -b .malta
 
 %{__cat} <<EOF >tftp.xinetd
@@ -74,13 +74,12 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_mandir}/man{1,8} \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_sysconfdir}/xinetd.d/
+			%{buildroot}%{_sbindir}
 %makeinstall \
 	BINDIR="%{buildroot}%{_bindir}" \
 	SBINDIR="%{buildroot}%{_sbindir}" \
 	MANDIR="%{buildroot}%{_mandir}" 
-%{__install} -m644 tftp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/tftp
+%{__install} -D -m644 tftp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/tftp
 
 %post server
 /sbin/service xinetd reload &>/dev/null || :

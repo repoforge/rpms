@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: atrpms
 
 Summary: Display IP Tables state table information in a "top"-like interface

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <bluez-devel@lists.sf.net>
 
+# ExclusiveDist: rh6 el2 rh7 rh8 rh9 fc1
+
 %define _sbindir /sbin
 
 Summary: Bluetooth firmware loader

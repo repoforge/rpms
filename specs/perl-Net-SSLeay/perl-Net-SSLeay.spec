@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name Net_SSLeay.pm
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: %{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
@@ -51,7 +49,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} \
 %files
 %defattr(-, root, root, 0755)
 %doc Changes Credits MANIFEST QuickRef README examples/*
-#%doc %{_mandir}/man?/*
+%doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios@nagios.org>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 ### FIXME: TODO: Add sysv script based on own template.
 

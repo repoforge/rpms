@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <irssi-dev@dragoncat.net>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: news://comp.mail.pine/
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define pgpver		0.18.0
 #%define with_gpgpine	1
@@ -14,7 +14,7 @@
 
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
-Version: 4.58
+Version: 4.60
 Release: 1
 License: Freely Distributable
 Group: Applications/Internet
@@ -34,7 +34,7 @@ Patch0: pine-4.58-makefile.patch
 Patch2: pine-4.04-noflock.patch
 Patch3: pine-4.21-passwd.patch
 Patch4: pine-4.21-fixhome.patch
-Patch8: imap-4.7c2-flock.patch 
+Patch8: pine-4.60-imap-4.7c2-flock.patch
 Patch9: pine-4.30-ldap.patch
 Patch14: pine-4.55-bogus-lock-warning.patch
 
@@ -103,7 +103,7 @@ mail, and MH style folders.
 %patch22 -p0 -b .lockfile-perm
 
 %patch32 -p1 -b .time-h
-%patch33 -p1 -b .whitespace-fix
+#%patch33 -p1 -b .whitespace-fix
 # This patch does evil things
 #%patch34 -p0 -b .sendmail-options
 %patch36 -p1 -b .overflow
@@ -152,10 +152,10 @@ cd pinepgp-%{pgpver}
 %{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pine.conf
 %{__install} -D -m0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/pine.conf.fixed
 
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 %{SOURCE3} %{buildroot}%{_bindir}/pine-spellcheck
 %{__install} -m0755 bin/{mailutil,pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
-%{__install} -m0755 %{SOURCE3} %{buildroot}%{_bindir}
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -m0644 doc/*.1 imap/src/mailutil/mailutil.1 %{buildroot}%{_mandir}/man1/
 
 %clean
@@ -170,6 +170,9 @@ cd pinepgp-%{pgpver}
 %{_bindir}/*
 
 %changelog
+* Tue May 18 2004 Dag Wieers <dag@wieers.com> - 4.60-1
+- Updated to release 4.60.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 4.58-1
 - Added mailutil. (James A Hunsaker)
 

@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Samuel Demeulemeester <memtest@memtest.org>
+
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
+
+# ExcludeDist: fc2
 
 %define _prefix /boot
 
@@ -19,7 +21,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.memtest.org/download/memtest_source_v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 ExclusiveArch: i386 i486 i586 i686 x86_64
 

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-# Soapbox: 0
+# ExcludeDist fc2
 
 Summary: The GTK+ Object Builder, a preprocessor for making GObjects with inline C code
 Name: gob2

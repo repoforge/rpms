@@ -62,6 +62,7 @@ desktop-file-install --vendor gnome                \
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/*.png
 
 %changelog
 * Sat Feb 07 2004 Dag Wieers <dag@wieers.com> - 1.8.1-0

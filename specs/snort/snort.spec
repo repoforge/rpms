@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Marty Roesch <roesch@sourcefire.com>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define mysql 1
 %define pgsql 1
@@ -26,6 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet
 BuildRequires: pcre-devel, perl, postgresql-devel, unixODBC-devel
+%{?fc2:BuildRequires: net-snmp-devel}
 %{?fc1:BuildRequires: net-snmp-devel}
 %{?el3:BuildRequires: net-snmp-devel}
 %{?rh9:BuildRequires: net-snmp-devel}

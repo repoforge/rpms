@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <info@otrs.de>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define logmsg logger -t %{name}/rpm
 %define real_version 1.2.3-01

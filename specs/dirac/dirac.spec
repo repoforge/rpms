@@ -6,7 +6,7 @@
 
 Summary: General-purpose video codec
 Name: dirac
-Version: 0.1.0
+Version: 0.2.0
 Release: 1
 License: MPL 1.1
 Group: System Environment/Libraries
@@ -47,6 +47,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__mv} -f %{buildroot}%{_docdir}/ rpm-doc/
+
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -58,20 +60,24 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+#%doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
+#%{_libdir}/*.so.*
+#%{_datadir}/pixmaps/*.png
+#%{_datadir}/applications/*.desktop
 
 %files devel
-%{_includedir}/*.h
+%defattr(-, root, root, 0755)
+%doc rpm-doc/*
+%{_includedir}/Dirac/
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+#%exclude %{_libdir}/*.la
+#%{_libdir}/*.so
 
 %changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.2.0
+- Updated to release 0.2.0.
+
 * Tue May 11 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.0
 - Initial package.
-

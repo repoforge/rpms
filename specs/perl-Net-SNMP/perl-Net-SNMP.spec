@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: atrpms
 
 %define real_name Net-SNMP
@@ -15,9 +14,8 @@ URL: http://search.cpan.org/dist/Net-SNMP/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/D/DT/DTOWN/Net-SNMP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-SNMP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6, perl(Digest::HMAC), perl(Crypt::DES)

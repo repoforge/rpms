@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: This is the ASN.1 library used in GNUTLS
 Name: libtasn1
-Version: 0.2.5
-Release: 0
+Version: 0.2.9
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/gnutls/download.html
@@ -13,9 +12,8 @@ URL: http://www.gnu.org/software/gnutls/download.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnutls.org/pub/gnutls/libtasn1/%{name}-%{version}.tar.gz
+Source: ftp://ftp.gnutls.org/pub/gnutls/libtasn1/libtasn1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: bison
 
@@ -68,5 +66,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.2.9-1
+- Updated to release 0.2.9.
+
 * Wed Dec 03 2003 Dag Wieers <dag@wieers.com> - 0.2.5-0
 - Initial package. (using DAR)

@@ -2,7 +2,7 @@
 # Authority: dag
 # Distcc: 0
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %define _bindir /usr/X11R6/bin
@@ -22,12 +22,12 @@ Source: http://download.hexonet.com/software/rfb/%{name}-%{version}.tar.gz
 Patch: rfb-0.6.1-rpmoptflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildRequires: libxclass
+%{?fc2:BuildRequires: compat-gcc-c++}
 %{?fc1:BuildRequires: compat-gcc-c++}
 %{?el3:BuildRequires: compat-gcc-c++}
 %{?rh9:BuildRequires: compat-gcc-c++}
 %{?rh8:BuildRequires: compat-gcc-c++}
-BuildRequires: libxclass
 
 ### Fix problem with apt requiring compat-gcc-c++ (Panu)
 Requires: compat-libstdc++
@@ -67,6 +67,7 @@ EOF
 
 %build
 ### FIXME: Workaround for RH80 and RH9
+%{?fc2:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
 %{?fc1:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
 %{?el3:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
 %{?rh9:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}

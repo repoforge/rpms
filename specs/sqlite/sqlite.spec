@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Richard Hipp <drh@hwaci.com>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: library that implements an embeddable SQL database engine
 Name: sqlite

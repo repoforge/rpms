@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dries
+
 # Screenshot: http://amsn.sf.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sf.net/shots.htm
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define tls_maj 1.4
 %define tls_min 1

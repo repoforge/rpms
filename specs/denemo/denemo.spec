@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 0.7.2a
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/denemo/denemo-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
- 
 
 %description
 Denemo is a graphical music notation program written in C with
@@ -46,7 +44,7 @@ computer-music-related purposes as well.
 %config(noreplace) %{_datadir}/denemo/denemo.conf
 %config %{_datadir}/denemo/*.keymaprc
 %dir %{_datadir}/denemo/
-%{_datadir}/denemo/pixmaps/
+%{_datadir}/denemo/
 %{_bindir}/*
 %{_includedir}/denemo/
 

@@ -3,6 +3,8 @@
 # Upstream: Michal Zalewski <lcamtuf@coredump.cx>
 # Upstream: William Stearns <wstearns@pobox.com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Passive OS fingerprinting tool
 Name: p0f
 Version: 2.0.3
@@ -29,6 +31,8 @@ this host.
 
 %prep
 %setup -n %{name}
+
+%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' *.c *.h}
 
 %{__cat} <<EOF >p0f.sysconfig
 ### Uncomment and change this if you want to change the default p0f options.
@@ -58,7 +62,7 @@ source %{_initrddir}/functions
 ### Default variables
 BPFFILTER="tcp"
 OPTIONS="-p -t -M -u pcap"
-SYSCONFIG="%{_sysconfdir}/sysconfig/amavisd"
+SYSCONFIG="%{_sysconfdir}/sysconfig/p0f"
 
 ### Read configuration
 [ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
@@ -175,5 +179,8 @@ fi
 /sbin/service p0f condrestart &>/dev/null || :
 
 %changelog
+* Tue May 18 2004 Dag Wieers <dag@wieers.com> - 2.0.3-2
+- Fixed sysconfig location.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 2.0.3-1
 - Initial package. (using DAR)

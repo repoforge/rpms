@@ -1,23 +1,26 @@
 # $Id$
 # Authority: matthias
+# Upstream: Daniel Paarmann <daniel@paarmann.net>
 
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.48.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
+
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
-Requires(pre): scrollkeeper
-Requires(postun): scrollkeeper
+
 BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0
 BuildRequires: gtk2-devel, libglade2-devel >= 2.0
 BuildRequires: gcc-c++, libstdc++-devel, docbook-utils, gettext, xmlto
 BuildRequires: scrollkeeper
 BuildRequires: perl(XML::Parser)
+Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
+Requires(pre): scrollkeeper
+Requires(postun): scrollkeeper
 
 %description
 Synaptic (previously known as raptor) is a graphical package management
@@ -87,18 +90,21 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{_sysconfdir}/pam.d/%{name}
-%{_sysconfdir}/security/console.apps/%{name}
-%{_bindir}/%{name}
-%{_sbindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/gnome/help/%{name}
-%{_datadir}/omf/%{name}
-%{_datadir}/%{name}
-%{_mandir}/man8/%{name}.8*
+%{_sysconfdir}/pam.d/*
+%{_sysconfdir}/security/console.apps/*
+%{_bindir}/*
+%{_sbindir}/*
+%{_datadir}/applications/synaptic.desktop
+%{_datadir}/gnome/help/synaptic/
+%{_datadir}/omf/synaptic/
+%{_datadir}/synaptic/
+%{_mandir}/man8/*
 
 
 %changelog
+* Mon May 18 2004 Dag Wieers <dag@wieers.com> - 0.48.2-2
+- Bumped release to work with my pre-merge packages.
+
 * Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 0.48.2-1
 - Update to 0.48.2.
 - Added macros to the spec file.

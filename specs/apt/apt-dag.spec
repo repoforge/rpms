@@ -1,7 +1,7 @@
 # Authority: atrpms
 # Upstream: Gustavo Niemeyer <niemeyer@conectiva.com>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 %define LIBVER 3.3
 
 Summary: Debian's Advanced Packaging Tool with RPM support

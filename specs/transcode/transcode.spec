@@ -90,7 +90,7 @@ Available rpmbuild rebuild options :
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__mv} -f %{buildroot}%{_docdir}/transcode installed-docs
+%{__mv} -f %{buildroot}%{_docdir}/transcode rpm-doc
 %{__strip} %{buildroot}%{_libdir}/transcode/*.so
 
 
@@ -100,7 +100,7 @@ Available rpmbuild rebuild options :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO installed-docs/*
+%doc AUTHORS COPYING README TODO rpm-doc/*
 %{_bindir}/*
 %{_libdir}/transcode/
 %exclude %{_libdir}/transcode/*.la

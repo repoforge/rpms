@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# ExclusiveDist: rh6 el2 rh7 rh8 rh9 fc1
 
 Summary: Bluetooth libraries
 Name: bluez-libs
@@ -15,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://bluez.sf.net/download/bluez-libs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 ExcludeArch: s390 s390x
 BuildRequires: glib-devel >= 1.2
@@ -47,9 +47,6 @@ you will need to install %{name}-devel.
 %makeinstall \
 	includedir="%{buildroot}%{_includedir}/bluetooth"
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -68,6 +65,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/bluetooth/*
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 %changelog

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-%define mversion 38:1.6
+%define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/galeon/galeon-%{version}a.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: mozilla-devel = %{mversion}, gtk2-devel >= 2.0, libxml2-devel >= 2.4
 BuildRequires: libgnomeui-devel >= 2.0.5, libbonoboui-devel >= 2.1.1, libglade2-devel >= 2.0.0

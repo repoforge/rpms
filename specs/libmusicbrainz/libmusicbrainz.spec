@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# ExcludeDist: fc1 fc2
 
 Summary: MusicBrainz client library
 Name: libmusicbrainz
@@ -13,9 +14,8 @@ URL: http://www.musicbrainz.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.musicbrainz.org/pub/musicbrainz/%{name}-%{version}.tar.gz
+Source: ftp://ftp.musicbrainz.org/pub/musicbrainz/libmusicbrainz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Provides: musicbrainz
 Obsoletes: musicbrainz

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Glynn Foster <glynn.foster@sun.com>
 
+# ExclusiveDist: rh7 rh8 rh9 el3
+
 Summary: Display GNOME dialogs from the command line
 Name: zenity
 Version: 1.7

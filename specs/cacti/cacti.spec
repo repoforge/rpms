@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <cacti-user@lists.sf.net>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 %define real_version 0.8.5a
 
 Summary: Network monitoring/graphing tool

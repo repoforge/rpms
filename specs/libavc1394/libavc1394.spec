@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExclusiveDist: el3
+
 Summary: library for providing raw access to IEEE 1394 devices
 Name: libavc1394
 Version: 0.4.1

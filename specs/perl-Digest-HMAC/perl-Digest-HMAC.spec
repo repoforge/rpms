@@ -3,7 +3,7 @@
 
 # Dists: rh6 rh7 rh8
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define real_name Digest-HMAC
 

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: fc2
+
 %define xmms_inputdir %(xmms-config --input-plugin-dir)
 
 Summary: Encoder/decoder for the Free Lossless Audio Codec
@@ -9,16 +11,18 @@ Version: 1.1.0
 Release: 4
 License: GPL
 Group: Applications/Multimedia
-Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 URL: http://flac.sourceforge.net/
+
+Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libogg
+
 BuildRequires: xmms-devel, id3lib-devel, libogg-devel, doxygen
 # Actually, xmms-devel should requires gtk+-devel itself
 BuildRequires: gtk+-devel
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
+Requires: libogg
 
 %description
 FLAC stands for Free Lossless Audio Codec. Grossly oversimplified, FLAC is

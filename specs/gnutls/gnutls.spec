@@ -1,16 +1,17 @@
 # $Id$
 # Authority: matthias
 
-
-Summary:  The GNU Transport Layer Security library
+Summary: The GNU Transport Layer Security library
 Name: gnutls
-Version: 1.0.7
+Version: 1.0.13
 Release: 1
 License: LGPL/GPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/gnutls/
-Source: ftp://ftp.gnutls.org/pub/gnutls/%{name}-%{version}.tar.gz
+
+Source: ftp://ftp.gnutls.org/pub/gnutls/gnutls-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: zlib-devel, lzo-devel
 
 %description
@@ -66,11 +67,12 @@ This package contains some tools using for GnuTLS.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
+%postun
+/sbin/ldconfig 2>/dev/null
 
 
 %clean
@@ -86,19 +88,25 @@ This package contains some tools using for GnuTLS.
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/tex/gnutls.ps doc/examples/ doc/README*
+%doc %{_mandir}/man1/*
 %{_bindir}/*-config
 %{_includedir}/*
 %{_libdir}/*.a
-%{_libdir}/*.so
+%{_libdir}/*.la
+%exclude %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
 
 
 %files utils
 %defattr(-, root, root, 0755)
 %{_bindir}/gnutls-*
+%{_bindir}/*tool
 
 
 %changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.0.13-1
+- Updated to release 1.0.13.
+
 * Sat Feb 28 2004 Matthias Saou <http://freshrpms.net/> 1.0.7-1.fr
 - Takeover the spec, update to 1.0.7.
 

@@ -3,7 +3,7 @@
 
 # Tag: test
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: The Samba SMB server
 Name: samba

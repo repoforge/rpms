@@ -1,16 +1,13 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Tigrux <tigrux@avantel.net>
 
 %define real_name festival-gaim
-%define real_version 0.68
 
 Summary: Voice plugin for gaim
 Name: gaim-festival
-Version: 0.68.2
-Release: 0
+Version: 0.77
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://primates.ximian.com/~sandino/festival/
@@ -18,12 +15,12 @@ URL: http://primates.ximian.com/~sandino/festival/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://primates.ximian.com/~sandino/festival/SOURCES/%{real_name}-%{version}.tar.gz
+Source: http://dl.sf.net/festival-gaim/festival-gaim-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-Requires: gaim festival
-Obsoletes: %{real_name}
+BuildRequires: gaim
+Requires: gaim, festival
+Obsoletes: festival-gaim
 
 %description
 This plugin speak your incoming messages from gaim.
@@ -31,7 +28,7 @@ It use festival and is configurable.
 
 %prep
 
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__make} %{?_smp_mflags} \
@@ -59,6 +56,9 @@ It use festival and is configurable.
 %{_libdir}/gaim/*
 
 %changelog
+* Tue May 18 2004 Dag Wieers <dag@wieers.com> - 0.77-1
+- Updated to release 0.77.
+
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 0.68.2-0
 - Updated to release 0.68.2.
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Utility for internationalizing various kinds of data files

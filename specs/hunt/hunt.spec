@@ -32,6 +32,8 @@ connections it sees.
 %prep
 %setup 
 
+%{__perl} -pi.orig -e 's|egcs|%{__cc}|' tpserv/Makefile
+
 %build
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags}"

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Chris Brady <bugs@memtest86.com>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define _prefix /boot
 %define real_version 3.1a

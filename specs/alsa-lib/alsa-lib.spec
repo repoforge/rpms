@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: fc2
+
 #define prever rc2
 
 Summary: The Advanced Linux Sound Architecture (ALSA) library
@@ -9,9 +11,11 @@ Version: 1.0.4
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
-Source: ftp://ftp.alsa-project.org/pub/lib/%{name}-%{version}%{?prever}.tar.bz2
 URL: http://www.alsa-project.org/
+
+Source: ftp://ftp.alsa-project.org/pub/lib/%{name}-%{version}%{?prever}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
+
 BuildRequires: alsa-driver >= %{version}, doxygen, pkgconfig
 
 %description

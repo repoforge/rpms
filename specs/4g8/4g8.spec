@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Darren Bounds <dbounds@intrusense.com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Packet redirection tool for interception on switched networks 
 Name: 4g8
 Version: 1.0
@@ -27,6 +29,8 @@ should work with nearly all TCP, ICMP and UDP IPv4 traffic.
 
 %prep
 %setup
+
+%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
 
 %build
 %configure

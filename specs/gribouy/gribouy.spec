@@ -43,6 +43,8 @@ EOF
 %makeinstall
 %find_lang %{name}
 
+%{__rm} -rf %{buildroot}%{_datadir}/applications/*.desktop
+
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
@@ -50,6 +52,7 @@ desktop-file-install --vendor gnome                \
 	gribouy.desktop
 
 %{__install} -D -m0755 graphics/gribouy.png %{buildroot}%{_datadir}/pixmaps/gribouy.png
+
 
 %clean
 %{__rm} -rf %{buildroot}

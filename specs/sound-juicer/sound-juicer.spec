@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Ross Burton <ross@burtonini.com>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Clean and lean CD ripper
 Name: sound-juicer
@@ -43,12 +43,10 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-%if %{?fc1:1}%{!?fc1:0}
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/applications/%{name}.desktop
-%endif
+	%{buildroot}%{_datadir}/applications/sound-juicer.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,7 +61,7 @@ scrollkeeper-update -q || :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog INSTALL README NEWS
+%doc AUTHORS ChangeLog COPYING INSTALL README NEWS
 %doc %{_datadir}/gnome/help/sound-juicer/
 %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/*.schemas
@@ -71,6 +69,7 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*
 %{_datadir}/omf/sound-juicer/
+%exclude %{_localstatedir}/scrollkeeper
 
 %changelog
 * Mon May 03 2004 Dag Wieers <dag@wieers.com> - 0.5.11-1

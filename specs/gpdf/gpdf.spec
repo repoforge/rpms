@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# ExcludeDist: fc2
 
 Summary: Grpahical PDF viewer
 Name: gpdf

@@ -1,10 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Distcc: 0
-# Soapbox: 0
-
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Random Password Generator
 Name: passwdgen

@@ -38,7 +38,6 @@ Exec=awesum
 Terminal=false
 Type=Application
 StartupNotify=true
-StartupNotify=true
 Categories=GNOME;Application;Utility;
 EOF
 

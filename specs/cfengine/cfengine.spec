@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Mark Burgess <Mark.Burgess@iu.hio.no>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: System administration tool for networks
 Name: cfengine

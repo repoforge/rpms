@@ -1,17 +1,15 @@
 # $Id: perl-Text-Iconv 201 2004-06-03 15:24:49Z bert $
-
 # Upstream: Michael Piotrowski <mxp@dynalabs.de>
-
 # Authority: bert
 
-Summary:	Text::Iconv perl module
-Name:		perl-Text-Iconv
-Version:	1.2
-Release:	0
-License:	GPL
-Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/Text/Text-Iconv-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+Summary: Text::Iconv perl module
+Name: perl-Text-Iconv
+Version: 1.2
+Release: 0
+License: GPL
+Group: Development/Languages/Perl
+Source: http://www.cpan.org/modules/by-module/Text/Text-Iconv-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 %description

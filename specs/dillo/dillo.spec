@@ -5,7 +5,7 @@
 
 Summary: Small and fast GUI web browser
 Name: dillo
-Version: 0.8.0
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.dillo.org/download/dillo-%{version}.tar.bz2
 Source1: dillo48.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel, zlib-devel, libjpeg-devel
 Provides: webclient
@@ -49,20 +48,19 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/ \
-			%{buildroot}%{_datadir}/pixmaps/
-%{__install} %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/dillo.png
+%{__install} -D %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/dillo.png
 
 ### Remove buildroot from config files
 %{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}%{_sysconfdir}/*
 
 %if %{dfi}
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/applications/
+        %{__install} -D -m0644 dillo.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/dillo.desktop
 %else
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		dillo.desktop
 %endif
 
 %clean
@@ -74,10 +72,17 @@ EOF
 %config(noreplace) %{_sysconfdir}/*
 %{_bindir}/*
 %{_libdir}/dillo/
-%{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.png
+%if %{dfi}
+	%{_datadir}/gnome/apps/Internet/*.desktop
+%else
+	%{_datadir}/applications/*.desktop
+%endif
 
 %changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Wed Feb 11 2004 Dag Wieers <dag@wieers.com> - 0.8.0-1
 - Remove %%{buildroot} occurances in configuration files. (Andre Costa)
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Darren Bounds <dbounds@intrusense.com>
 
-# Distcc: 0
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Network injection and capturing tool
 Name: packit
@@ -31,6 +31,8 @@ learning TCP/IP.
 
 %prep
 %setup
+
+%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' src/*.c src/*.h}
 
 %build
 %configure

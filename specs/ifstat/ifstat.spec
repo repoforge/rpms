@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Gaël Roualland <gael.roualland@iname.com>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Interface statistics
 Name: ifstat

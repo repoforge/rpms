@@ -2,9 +2,7 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
 
-# Distcc: 0
-
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 

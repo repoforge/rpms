@@ -5,7 +5,7 @@
 # Screenshot: http://www.kill-9.org/mbrowse/screenshot/tree.png
 # ScreenshotURL: http://www.kill-9.org/mbrowse/#Screenshots
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -52,20 +52,23 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*
+%doc %{_mandir}/man5/*
 %config(noreplace) %{_sysconfdir}/antinat.conf
 %{_bindir}/*
-%{_libdir}/*.so*
-%{_libdir}/antinat-%{version}/*.so.
+%{_libdir}/*.so.*
+%{_libdir}/antinat-%{version}/
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*
 %{_libdir}/*.a
+%{_libdir}/*.so
 %{_includedir}/*.h
 %exclude %{_libdir}/*.la
-%exclude %{_libdir}/antinat-%{version}/*/*.{a,la}
-%exclude %{_libdir}/antinat-%{version}/*/*/*.{a,la}
-%exclude %{_libdir}/antinat-%{version}/*/*/*/*.{a,la}
+%exclude %{_libdir}/antinat-%{version}/*/*.la
+%exclude %{_libdir}/antinat-%{version}/*/*/*.la
+%exclude %{_libdir}/antinat-%{version}/*/*/*/*.la
 
 %changelog
 * Thu May 13 2004 Dag Wieers <dag@wieers.com> - 0.71-1

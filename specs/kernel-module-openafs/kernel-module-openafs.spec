@@ -4,7 +4,7 @@
 # Distcc: 0
 # BuildAsRoot: 1
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 ### FIXME: IBM openafs-1.2.9-rh9.0.5 and openafs-kernel-1.2.9-rh9.0.5 conflict with these packages.
 

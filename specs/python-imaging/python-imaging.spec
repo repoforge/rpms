@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
+%{?fc1:%define pyver 2.3}
 %{?fc1:%define pyver 2.2}
 %{?el3:%define pyver 2.2}
 %{?rh9:%define pyver 2.2}

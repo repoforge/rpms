@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name XML-SAX
@@ -19,7 +18,6 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{real_name}-%{ver
 Source1: ParserDetails.ini
 Patch0: perl-XML-SAX-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl

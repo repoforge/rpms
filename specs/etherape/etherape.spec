@@ -2,6 +2,7 @@
 # Authority: dag
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Graphical network viewer modeled after etherman
 Name: etherape
@@ -17,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/etherape/etherape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libpcap
 
 %description
@@ -30,6 +30,8 @@ from a file as well as live from the network.
 
 %prep
 %setup
+
+%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 
 %build
 %configure \

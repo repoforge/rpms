@@ -2,7 +2,7 @@
 # Authority: dag
 # Dists: rh8 rh9
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: The GNOME Structure file library
 Name: libgsf

@@ -1,59 +1,59 @@
-Summary:	A user-friendly file manager and visual shell
-Name:		mc
-Version:	4.5.55
-Release: 	13.legacy
-License:	GPL
+Summary: User-friendly file manager and visual shell
+Name: mc
+Version: 4.5.55
+Release: 13.legacy
+License: GPL
 Group: System Environment/Shells
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/mc/mc-%{version}.tar.gz
-Source1:	redhat.links
-Source10:	mc-ja.po
-Source11:	redhat.links.ja
-Source12:       mc-pofiles.tar.gz
-Source14:       mc-cvs-uzip
-URL:		http://www.gnome.org/mc/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
-Requires:	pam >= 0.59, %{_sysconfdir}/pam.d/system-auth
+Source0: ftp://ftp.gnome.org/pub/GNOME/sources/mc/mc-%{version}.tar.gz
+Source1: redhat.links
+Source10: mc-ja.po
+Source11: redhat.links.ja
+Source12: mc-pofiles.tar.gz
+Source14: mc-cvs-uzip
+URL: http://www.gnome.org/mc/
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: pam >= 0.59, %{_sysconfdir}/pam.d/system-auth
 %ifnarch s390 s390x
 BuildRequires: gpm-devel
 %endif
 BuildRequires: gnome-libs-devel
 BuildRequires: slang
 
-Prereq:    /sbin/chkconfig
-Prereq:    dev >= 3.3-3
+Prereq: /sbin/chkconfig
+Prereq: dev >= 3.3-3
 
-Patch0:    mc-4.5.35-xtermcolor.patch
-Patch2:    mc-4.5.35-fixwarning.patch
+Patch0: mc-4.5.35-xtermcolor.patch
+Patch2: mc-4.5.35-fixwarning.patch
 
-Patch3:    mc-4.5.36-mimekeys.patch
+Patch3: mc-4.5.36-mimekeys.patch
 
-Patch10:   mc-4.5.35-homedir.patch
-Patch16:   mc-4.5.30-norpmmime.patch
-Patch17:   mc-4.5.42-absoluterm.patch
-Patch20:   mc-4.5.42-fixsh.patch
-Patch21:   samba-ia64.patch
-Patch22:   mc-4.5.43-prototype.patch
-Patch23:   mc-4.5.46-system-auth.patch
-Patch24:   mc-4.5.51-initscript.patch
-Patch25:   mc-4.5.51-showagain.patch
-Patch26:   mc-4.5.51-stderr.patch
-Patch27:   mc-4.5.51-gnome-editor.patch 
-Patch28:   mc-4.5.51-extention.patch
-Patch29:   mc-4.5.51-fixrescan.patch
-Patch30:   mc-4.5.51-time.patch
+Patch10: mc-4.5.35-homedir.patch
+Patch16: mc-4.5.30-norpmmime.patch
+Patch17: mc-4.5.42-absoluterm.patch
+Patch20: mc-4.5.42-fixsh.patch
+Patch21: samba-ia64.patch
+Patch22: mc-4.5.43-prototype.patch
+Patch23: mc-4.5.46-system-auth.patch
+Patch24: mc-4.5.51-initscript.patch
+Patch25: mc-4.5.51-showagain.patch
+Patch26: mc-4.5.51-stderr.patch
+Patch27: mc-4.5.51-gnome-editor.patch 
+Patch28: mc-4.5.51-extention.patch
+Patch29: mc-4.5.51-fixrescan.patch
+Patch30: mc-4.5.51-time.patch
 #
-Patch40:   mc-4.5.51-desktop.patch
-Patch41:   mc-4.5.51-kudzu.patch
-Patch42:   mc-4.5.51-troff.patch
-Patch43:   mc-4.5.51-initialdevices.patch
-Patch44:   gmc-4.5.51-mountfix.patch
-Patch45:   mc-4.5.55-vcsa.patch
-Patch46:   mc-4.5.55-zsh.patch
-Patch47:   mc-4.5.55-zip-fix.patch
-Patch48:   mc-4.5.55-trpm-fix.patch
-Patch49:   mc-4.5.55-regex.patch
-Patch50:   mc-4.5.55-mb.patch
-Patch51:   mc-CVE-CAN-2003-1023.patch
+Patch40: mc-4.5.51-desktop.patch
+Patch41: mc-4.5.51-kudzu.patch
+Patch42: mc-4.5.51-troff.patch
+Patch43: mc-4.5.51-initialdevices.patch
+Patch44: gmc-4.5.51-mountfix.patch
+Patch45: mc-4.5.55-vcsa.patch
+Patch46: mc-4.5.55-zsh.patch
+Patch47: mc-4.5.55-zip-fix.patch
+Patch48: mc-4.5.55-trpm-fix.patch
+Patch49: mc-4.5.55-regex.patch
+Patch50: mc-4.5.55-mb.patch
+Patch51: mc-CVE-CAN-2003-1023.patch
 
 %description
 Midnight Commander is a visual shell much like a file manager, only

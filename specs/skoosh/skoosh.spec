@@ -4,7 +4,7 @@
 
 Summary: Simple, friendly, sliding tile puzzle
 Name: skoosh
-Version: 2.0.8
+Version: 2.5.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -22,7 +22,7 @@ BuildRequires: scrollkeeper
 Requires(post): scrollkeeper
 
 %description
-A simple, friendly, sliding tile puzzle for GNOME2.
+A simple, friendly, sliding tile puzzle.
 
 %prep
 %setup
@@ -82,11 +82,14 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 2.5.0-1
+- Updated to release 2.5.0.
+
 * Fri Jan 23 2004 Dag Wieers <dag@wieers.com> - 2.0.8-1
 - Remove duplicate desktop file.
 
 * Tue Dec 30 2003 Dag Wieers <dag@wieers.com> - 2.0.8-0
-- Updated to releases 2.0.8.
+- Updated to release 2.0.8.
 
 * Wed Oct 01 2003 Dag Wieers <dag@wieers.com> - 2.0.7-0
 - Initial package. (using DAR)

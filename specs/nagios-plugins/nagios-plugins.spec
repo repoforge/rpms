@@ -2,10 +2,7 @@
 # Authority: dag
 # Upstream: <nagiosplug-devel@lists.sf.net>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
-
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define _libexecdir %{_libdir}/nagios/plugins
 %define extraplugins check_cluster check_dhcp
@@ -31,6 +28,7 @@ BuildRequires: openssl-devel, radiusclient-devel
 BuildRequires: fping, bind-utils, ntp, samba-client, openssh-clients, qstat
 BuildRequires: openldap-devel, mysql-devel, postgresql-devel
 BuildRequires: perl(Net::SNMP)
+%{?fc2:BuildRequires: net-snmp-devel, net-snmp-utils}
 %{?fc1:BuildRequires: net-snmp-devel, net-snmp-utils}
 %{?el3:BuildRequires: net-snmp-devel, net-snmp-utils}
 %{?rh9:BuildRequires: net-snmp-devel, net-snmp-utils}
@@ -59,7 +57,7 @@ use, the following packages may be required:
 %setup
 
 ### Allow non-root builds
-#%{__perl} -pi.orig -e 's|^INSTALL_OPTS|#INSTALL_OPTS|' configure
+%{__perl} -pi.orig -e 's|^INSTALL_OPTS|#INSTALL_OPTS|' configure
 
 ### FIXME: Change to real perl and plugins location. (Please fix upstream)
 find contrib -type f -exec %{__perl} -pi -e '

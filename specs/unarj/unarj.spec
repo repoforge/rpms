@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 2.63a
@@ -34,8 +33,7 @@ The UNARJ program is used to uncompress .arj format archives.  The
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 unarj %{buildroot}%{_bindir}
+%{__install} -D -m0755 unarj %{buildroot}%{_bindir}/unarj
 
 %clean
 %{__rm} -rf %{buildroot}

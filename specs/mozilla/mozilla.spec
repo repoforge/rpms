@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 ### FIXME: TODO: Build RH73 builds with gcc 3.2.3
 ### FIXME: TODO: Improve firefox start-up script for file:// URLs.

@@ -1,10 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand %%define %dist 1}}
-
-### Disable Ccache as Distcc is faster
-# Ccache: 0
+%{?dist: %{expand: %%define %dist 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %define real_version 1.5

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <mtools@tux.org>
 
+# ExclusiveDist: el2 el3
+
 Summary: Read/write/list/format DOS disks
 Name: mtools
 Version: 3.9.9

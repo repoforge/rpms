@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Dug Song <dugsong@monkey.org>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define _libdir %{_sysconfdir}
 

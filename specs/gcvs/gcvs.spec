@@ -1,10 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Alexandre Parenteau <aubonbeurre@hotmail.com>
-# Distcc: 0
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 ### FIXME: Modified to co-exist with cvs. (Please fix upstream)
 

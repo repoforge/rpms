@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Folkert Vanheusden <folkert@vanheusden.com>
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Ping alike tool for http requests
 Name: httping

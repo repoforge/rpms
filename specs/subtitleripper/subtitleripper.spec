@@ -9,11 +9,13 @@ Version: 0.3.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://subtitleripper.sourceforge.net
-Source: http://dl.sf.net/subtitleripper/%{name}-%{real_version}.tgz
+URL: http://subtitleripper.sf.net/
+
+Source: http://dl.sf.net/subtitleripper/subtitleripper-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: netpbm, netpbm-devel, zlib-devel
 Requires: netpbm, zlib, transcode
-BuildRequires: netpbm-devel, zlib-devel
 
 %description
 Converts DVD subtitles into text format (e.g. subrip) or VobSub.
@@ -26,8 +28,8 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{_bindir}
-cp -a pgm2txt srttool subtitle2pgm subtitle2vobsub %{buildroot}%{_bindir}/
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -m0755 pgm2txt srttool subtitle2pgm subtitle2vobsub %{buildroot}%{_bindir}
 
 %clean
 %{__rm} -rf %{buildroot}

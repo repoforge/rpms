@@ -33,6 +33,9 @@ them into a fragmented data stream to forward to the victim.
 %prep
 %setup
 
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
+%{__perl} -pi.orig -e 's|\$\(man8dir\)|\$(mandir)/man8|' Makefile.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -40,7 +43,6 @@ them into a fragmented data stream to forward to the victim.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0644 fragrouter.8 %{buildroot}%{_mandir}/man8/fragrouter.8
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -1,13 +1,15 @@
 # $Id: $
 # Authority: newrpms
 
+%{?dist:%{expand: %%define %{dist} 1}}
+
 Summary: The 3D Studio File Format Library
 Name: lib3ds
 Version: 1.2.0
-Release: 1
+Release: 0
 License: GPL
 Group: Development/Libraries
-URL: http://lib3ds.sourceforge.net
+URL: http://lib3ds.sf.net/
 
 Packager: Rudolf Kastl <che666 at uni.de>
 Vendor: http://newrpms.sunsite.dk/
@@ -15,7 +17,11 @@ Vendor: http://newrpms.sunsite.dk/
 Source: http://dl.sf.net/lib3ds/lib3ds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glut-devel
+### No default is needed (works without BuildRequires too)
+#%{!?dist:BuildRequires: freeglut-devel}
+%{?fc2:BuildRequires: freeglut-devel}
+%{?fc1:BuildRequires: freeglut-devel}
+%{?rh9:BuildRequires: glut-devel}
 
 %description
 Lib3ds is a free alternative to Autodesk's 3DS File Toolkit for handling
@@ -24,11 +30,6 @@ export filters.
 
 This project is not related in any form to Autodesk. The library is
 based on unofficial information about the 3DS format found on the web.
-
-This  program  is  distributed in  the  hope that it will  be useful,  but
-WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
-License for more details.
 
 %prep
 %setup

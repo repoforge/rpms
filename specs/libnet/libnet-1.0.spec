@@ -5,7 +5,7 @@
 %define real_version 1.0.2a
 
 Summary: Routines to help with network packet construction and handling
-Name: libnet10
+Name: libnet
 Version: 1.0.2
 Release: 2
 License: GPL
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.packetfactory.net/libnet/dist/libnet-%{real_version}.tar.gz
 Patch: libnet-1.0.2a-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Libnet is a high-level API (toolkit) allowing the application programmer to

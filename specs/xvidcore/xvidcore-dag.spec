@@ -1,108 +1,125 @@
-# $Id$
+# $Id: xvidcore.spec 494 2004-05-05 10:54:25Z dude $
 # Authority: matthias
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 0.9.2
-Release: 3
+Version: 1.0.0
+Release: 1
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://files.xvid.org/downloads/xvidcore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-Provides: lib%{name} = %{version}-%{release}
-Obsoletes: libxvidcore <= 0.9.1, libxvid <= 0.9.1
-
-%ifarch %ix86
-BuildRequires: nasm > 0.98
+%ifarch %ix86 ia64 x86_64
+BuildRequires: nasm
 %endif
+Provides: lib%{name} = %{version}-%{release}
+Provides: lib%{name}-devel = %{version}-%{release}
+Provides: %{name}-devel = %{version}-%{release}
 
 %description
 Free reimplementation of the OpenDivX video codec. You can play OpenDivX
 and DivX4 videos with it, as well as encode compatible files.
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}
+
+%package static
+Summary: Static library and API documentation of the XviD video codec
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}
 
-Provides: libxvidcore-devel = %{version}-%{release}, libxvid-devel = %{version}-%{release}
-Obsoletes: xvidcore-static, libxvidcore-devel <= 0.9.1, libxvid-devel <= 0.9.1
+%description static
+Static library and API documentation of the XviD video codec.
 
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
 
 %prep
 %setup
 
+
 %build
-cd build/generic
-%configure \
-	--enable-divx4compat
-%{__make} %{?_smp_mflags}
+pushd build/generic
+    %configure
+    %{__make} %{?_smp_mflags}
+popd
+
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir}
-%makeinstall -C build/generic
+pushd build/generic
+    %makeinstall
+popd
+# Make a .so symlink to the so.x.x file
+pushd %{buildroot}%{_libdir}
+    %{__ln_s} lib%{name}.so* lib%{name}.so
+popd
+# Remove unwanted files from the docs
+%{__rm} -f doc/Makefile
 
-%{__install} -D -m0644 src/divx4.h %{buildroot}%{_includedir}/divx4.h
-%{__ln_s} -f libxvidcore.so.* %{buildroot}%{_libdir}/libxvidcore.so
-%{__ln_s} -f libxvidcore.so.* %{buildroot}%{_libdir}/libxvid.so
-%{__ln_s} -f libxvid.a %{buildroot}%{_libdir}/libxvidcore.a
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README.txt authors.txt changelog.txt todo.txt
-%{_libdir}/*.so.*
+%doc AUTHORS ChangeLog LICENSE README TODO
+%{_includedir}/*
+%{_libdir}/*.so*
 
-%files devel
+
+%files static
 %defattr(-, root, root, 0755)
-%doc CodingStyle doc/API.dox doc/README doc/*.pdf doc/*.txt doc/xvid-api-ref/ examples/
-%{_includedir}/*.h
+%doc CodingStyle doc/* examples
 %{_libdir}/*.a
-%{_libdir}/*.so
+
 
 %changelog
-* Fri Jan 09 2004 Dag Wieers <dag@wieers.com> - 0.9.2-3
-- Fixed problem with .so symbolic links. (Erik Sunde)
+* Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-1
+- Updated to release 1.0.0.
 
-* Sat Dec 20 2003 Dag Wieers <dag@wieers.com> - 0.9.2-2
-- Added extra provides to be compatible with FreshRPMS.
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc4.1
+- Update to 1.0.0-rc4.
 
-* Tue Sep 16 2003 Dag Wieers <dag@wieers.com> - 0.9.2-1
-- Fixed the problematic Obsoletes-tag.
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc3.1
+- Update to 1.0.0-rc3.
 
-* Sat Aug 23 2003 Dag Wieers <dag@wieers.com> - 0.9.2-0
-- Renamed package back to "xvidcore". ;)
+* Wed Feb 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1
+- Update to 1.0.0-rc2.
 
-* Tue Apr 08 2003 Dag Wieers <dag@wieers.com> - 0.9.1-2
-- Renamed package to "libxvidcore".
+* Sun Jan 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.beta3.1
+- Update to 1.0.0-beta3, quite a few spec file changes to match.
 
-* Sun Apr 06 2003 Dag Wieers <dag@wieers.com> - 0.9.1-1
-- Renamed package to "libxvid".
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-3
+- Rebuild for Fedora Core 1.
+- Added libxvidcore provides for compatibility.
 
-* Thu Feb 20 2003 Dag Wieers <dag@wieers.com> - 0.9.1-0
-- Updated to release 0.9.1.
+* Mon Sep 15 2003 Matthias Saou <http://freshrpms.net/>
+- Added a .so symlink to the lib for proper detection.
 
-* Fri Feb 07 2003 Dag Wieers <dag@wieers.com> - 0.9.0-1
-- Added link to libxvid.so and libxvid.a.
+* Thu Aug  7 2003 Matthias Saou <http://freshrpms.net/>
+- Update to 0.9.2.
+- The .so file has now a version appended.
 
-* Fri Feb 07 2003 Dag Wieers <dag@wieers.com> - 0.9.0-0
-- Initial package. (using DAR)
+* Mon Apr  7 2003 Matthias Saou <http://freshrpms.net/>
+- Update to 0.9.1.
+- Build and install changes since there is now a nice configure script.
+
+* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
+- Rebuilt for Red Hat Linux 9.
+
+* Wed Jan 29 2003 Matthias Saou <http://freshrpms.net/>
+- Fixed the location of the .h files... doh!
+
+* Sun Jan 12 2003 Matthias Saou <http://freshrpms.net/>
+- Remove the decore.h and encore2.h inks as divx4linux 5.01 will provide them.
+- Rename -devel to -static as it seems more logic.
+
+* Fri Dec 27 2002 Matthias Saou <http://freshrpms.net/>
+- Initial RPM release.
+

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Billy Biggs <vektor@dumbterm.net>
 
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/tvtime/tvtime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: freetype-devel >= 2.0, zlib-devel, libpng-devel, XFree86-libs
 BuildRequires: SDL-devel

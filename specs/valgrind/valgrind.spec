@@ -5,7 +5,8 @@
 %define _pkglibdir %{_libdir}/%{name}
 %define valgrind_find_provides %{_builddir}/valgrind-find-provides
 %define valgrind_find_requires %{_builddir}/valgrind-find-requires
-%define _use_internal_dependency_generator      0
+
+%define _use_internal_dependency_generator 0
 
 Summary: Debugging and profiling system for x86-GNU/Linux platforms
 Name: valgrind
@@ -75,7 +76,7 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	docdir="../../rpm-doc"
+	docdir="%{_builddir}/%{buildsubdir}/rpm-doc"
 
 %{__install} -m0755 nptltest %{buildroot}%{_libdir}/valgrind/
 

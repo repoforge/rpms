@@ -1,12 +1,5 @@
 # $Id$
-
 # Authority: dag
-
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
-
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -102,14 +95,14 @@ EOF
 %endif
 
 %pre
-/usr/sbin/groupadd -r -f gnokii 2>/dev/null
+/usr/sbin/groupadd -r -f gnokii &>/dev/null || :
 
 %post
 /sbin/ldconfig 2>/dev/null
 
 %postun
 /sbin/ldconfig 2>/dev/null
-/usr/sbin/groupdel gnokii 2>/dev/null
+/usr/sbin/groupdel gnokii &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}

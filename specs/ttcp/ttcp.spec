@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Danny Davids <daniel.davids@cern.ch>
 
 Summary: tool to do memory to memory performance measurements with TCP/IP. 
@@ -20,7 +18,6 @@ Source1: ftp://ftp.sgi.com/sgi/src/ttcp/ttcp.1
 Source2: ftp://ftp.sgi.com/sgi/src/ttcp/README
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 The TTCP program is used to do memory to memory performance measurements
 with TCP/IP. The program we use, comes from the public domain and has
@@ -35,10 +32,8 @@ ${CC:-%{__cc}} %{optflags} -o ttcp ttcp.c
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 ttcp %{buildroot}%{_bindir}
-%{__install} -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 ttcp %{buildroot}%{_bindir}/ttcp
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/ttcp.1
 
 %clean
 %{__rm} -rf %{buildroot}

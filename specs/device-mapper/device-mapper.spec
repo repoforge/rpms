@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
 
 %define _sbindir /sbin
 %define _libdir /lib

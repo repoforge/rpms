@@ -7,7 +7,7 @@
 # Soapbox: 0
 # BuildAsRoot: 1
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %{?fc1:%define __cc gcc32}
 

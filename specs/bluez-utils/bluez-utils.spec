@@ -1,10 +1,9 @@
 # $Id$
 # Authority: dag
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
+# ExclusiveDist: rh6 el2 rh7 rh8 rh9 fc1
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define _bindir /bin
 %define _sbindir /sbin
@@ -29,7 +28,6 @@ Patch8: bluez-utils-2.5-dbus.patch
 Patch10: bluez-utils-2.3-conf.patch
 Patch11: bluez-utils-2.3-status.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 ExcludeArch: s390 s390x
 BuildRequires: bluez-libs-devel >= 2.0

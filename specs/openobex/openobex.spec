@@ -1,7 +1,9 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand %%define %dist 1}}
+# ExcludeDist: fc1 fc2
+
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Library for using OBEX
 Name: openobex
@@ -17,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/openobex/openobex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: glib-devel >= 1.2.0
+%{?fc2:BuildRequires: bluez-libs-devel}
 %{?fc1:BuildRequires: bluez-libs-devel}
 %{?rh9:BuildRequires: bluez-libs-devel}
 
@@ -49,17 +51,14 @@ you will need to install %{name}-devel.
 %makeinstall \
 	includedir="%{buildroot}%{_includedir}/openobex"
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %files
 %defattr(-, root, root, 0755)
@@ -70,6 +69,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_bindir}/*
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/openobex/
 %{_datadir}/aclocal/*.m4

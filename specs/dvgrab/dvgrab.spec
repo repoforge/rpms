@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy@users.sf.net>
 
+# ExcludeDist: fc2
+
 Summary: DV grabber through the FireWire interface
 Name: dvgrab
 Version: 1.5

@@ -4,7 +4,7 @@
 
 # Archs: i686 i386
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Vector drawing application
 Name: sodipodi

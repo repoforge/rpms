@@ -30,6 +30,9 @@ the user, or written to files for later processing.
 %prep
 %setup -n %{name}-%{real_version}
 
+### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
+%{__perl} -pi.orig -e 's|\$\(sharedir\)|\$(DESTDIR)\$(datadir)/shmux|' Makefile.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}

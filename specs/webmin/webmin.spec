@@ -4,7 +4,7 @@
 
 # BuildAsRoot: 1
 
-%{?dist: %{expand %%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 %define logmsg logger -t %{name}/rpm
 #define __spec_install_post %{nil}

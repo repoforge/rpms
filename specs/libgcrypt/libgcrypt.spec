@@ -2,12 +2,12 @@
 # Authority: atrpms
 # Upstream: <gnupg-devel@gnupg.org>
 
-# Tag: test
+# ExcludeDist: fc1 fc2
 
 Summary: GNU cryptographic library
 Name: libgcrypt
-Version: 1.1.93
-Release: 0
+Version: 1.1.12
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnupg.org/
@@ -48,9 +48,6 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_infodir}/dir
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -80,10 +77,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
 %exclude %{_libdir}/*.la
+#%exclude %{_infodir}/dir
 
 %changelog
-* Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 1.1.93-0
-- Updated to release 1.1.93.
-
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 1.1.12-0
 - Initial package. (using DAR)

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Kirk Bauer <kirk@kaybee.org>
 
+# ExcludeDist: fc2
+
 Summary: Log file analysis program
 Name: logwatch
 Version: 5.1
