@@ -1,9 +1,6 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <pancho-discuss@lunarmedia.net>
-
-# Distcc: 0
 
 %define perl_sitelib  %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 
@@ -11,7 +8,7 @@
 
 Summary: Archive and manage remote nodes using SNMP and TFTP
 Name: pancho
-Version: 9.3.1
+Version: 9.3.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -71,6 +68,9 @@ and shared with the community via the Pancho Project website.
 %{perl_sitelib}/*
 
 %changelog
+* Wed May 26 2004 Dag Wieers <dag@wieers.com> - 9.3.2-1
+- Updated to release 9.3.2.
+
 * Wed Mar 10 2004 Dag Wieers <dag@wieers.com> - 9.3.1-1
 - Updated to release 9.3.1.
 
