@@ -3,23 +3,26 @@
 # Authority: dries
 # Upstream: 
 
-# Need to package kyra first
+%define real_version 20040529
 
 Summary: Group gems together
 Name: gemhunters
-Version: 
+Version: 0.%{real_version}
 Release: 1
 License: GPL
-Group: Applications/
+Group: Amusements/Games
 URL: http://gemhun.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: %{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gemhun/GemHunters-src-%{real_version}.tar.gz
+# Source1: http://dl.sf.net/gemhun/GemHunters-data-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: 
+BuildRequires: SDL-devel, kyra-devel, SDL_image-devel, SDL_mixer-devel, SDL_net-devel
+
+# Screenshot: http://gemhun.sourceforge.net/images/screenshots/20031016/jungle.jpg
 
 %description
 Gemhun is all about grouping gems/stones of a chosen amount together which
@@ -37,31 +40,28 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n GemHunters-%{real_version}
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=Name Thingy Tool
-Comment=Do things with things
-Icon=name.png
-Exec=name
+Name=Gem Hunters
+Comment=Hunt the gems
+Exec=gemhun
 Terminal=false
 Type=Application
 StartupNotify=true
 Encoding=UTF-8
-Categories=Application;Network;X-Red-Hat-Extra;
+Categories=Application;Game;X-Red-Hat-Extra;
 EOF
 
 %build
-%configure \
-	--disable-schemas-install
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-%find_lang %{name}
+%{__rm} -Rf %{buildroot}/usr/doc/GemHunters
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor net                  \
@@ -71,8 +71,6 @@ desktop-file-install --vendor net                  \
 
 %post
 /sbin/ldconfig 2>/dev/null
-export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
 %postun
 /sbin/ldconfig 2>/dev/null
@@ -80,22 +78,18 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO ABOUT-NLS
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
 %{_datadir}/applications/*.desktop
+%{_datadir}/GemHunters
 
 %files devel
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
-%exclude %{_libdir}/*.la
+%defattr(-, root, root, 0755)
+%{_includedir}/GemHunters/*.h
 
 %changelog
-* Son May 19 2004 Dries Verachtert <dries@ulyssis.org> - 
+* Sun May 30 2004 Dries Verachtert <dries@ulyssis.org> - 
 - Initial package.
 
