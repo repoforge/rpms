@@ -4,7 +4,7 @@
 
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
-Version: 1.6.0
+Version: 1.6.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -35,7 +35,7 @@ Icon=workrave/workrave-icon-small.png
 Exec=workrave
 Terminal=false
 Type=Application
-Categories=GNOME;Application;Utility
+Categories=GNOME;Application;Utility;
 EOF
 
 %build
@@ -70,6 +70,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/workrave/
 
 %changelog
+* Fri May 14 2004 Dag Wieers <dag@wieers.com> - 1.6.1-1
+- Updated to release 1.6.1.
+
 * Sat May 01 2004 Dag Wieers <dag@wieers.com> - 1.6.0-1
 - Updated to release 1.6.0.
 
