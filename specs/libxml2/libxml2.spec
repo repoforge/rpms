@@ -1,8 +1,9 @@
 # $Id$
 # Authority: axel
-# ExclusiveDist: rh7 rh8 rh9 el3
+# ExclusiveDist: el2 rh7 rh8 rh9 el3
 
-%define python_version %(python2 -c 'import sys; print sys.version[:3]')
+#%define python_version %(python2 -c 'import sys; print sys.version[:3]')
+%define python_version %(python -c 'import sys; print sys.version[:3]')
 
 Summary: Library providing XML and HTML support
 Name: libxml2
@@ -15,7 +16,7 @@ URL: http://xmlsoft.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://xmlsoft.org/libxml2-%{version}.tar.gz
+Source: ftp://xmlsoft.org/libxml2-%{version}.tar.bz2
 #Source: http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.5/libxml2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -63,7 +64,7 @@ at parse time or later once the document has been modified.
 %build
 %configure
 %{__make} %{?_smp_mflags}
-%{__make} clean -C doc/examples
+#%{__make} clean -C doc/examples
 
 %install
 %{__rm} -rf %{buildroot}
@@ -103,16 +104,16 @@ at parse time or later once the document has been modified.
 ### Needed by conglomerate, libgda, ... (?!)
 %{_libdir}/*.la
 %{_libdir}/*.a
-%{_libdir}/python2.2/site-packages/*.a
-%exclude %{_libdir}/python2.2/site-packages/*.la
+%{_libdir}/python%{python_version}/site-packages/*.a
+%exclude %{_libdir}/python%{python_version}/site-packages/*.la
 %{_libdir}/pkgconfig/libxml-2.0.pc
 
 %files python
 %defattr(-, root, root, 0755)
 %doc python/TODO python/libxml2class.txt
 %doc python/tests/*.py doc/*.py doc/python.html
-%{_libdir}/python2.2/site-packages/*.py
-%{_libdir}/python2.2/site-packages/*.so
+%{_libdir}/python%{python_version}/site-packages/*.py
+%{_libdir}/python%{python_version}/site-packages/*.so
 
 %changelog
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 2.5.11-1
