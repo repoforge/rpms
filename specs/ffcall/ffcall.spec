@@ -37,7 +37,8 @@ you will need to install %{name}-devel.
 %setup -n ffcall-%{real_version}
 
 %build
-%configure
+%configure \
+	--enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
