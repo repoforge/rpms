@@ -1,11 +1,11 @@
 # $Id: $
 
 # Authority: dries
-# Upstream:
+# Upstream: George J. Gesslein
 
 Summary: Small, portable symbolic math program
 Name: mathomatic
-Version: 11.2b
+Version: 11.2c
 Release: 1
 License: LGPL
 Group: Applications/Engineering
@@ -31,21 +31,27 @@ Gesslein II and has been under development since 1986.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 755 am %{buildroot}%{_bindir}/am
-%{__install} -D -m 644 am.1 %{buildroot}%{_datadir}/man/man1/am.1
+%{__install} -d -m 755 %{buildroot}%{_bindir} \
+	%{buildroot}%{_mandir}/man1
+%{__sed} -i "s/.PREFIX.\/bin/\(bindir\)/g;" makefile
+%{__sed} -i "s/.PREFIX.\/man/\(mandir\)/g;" makefile
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc changes_old.txt changes.txt lgpl.txt readme.txt source.txt am.htm manual.htm notes.htm
+%doc *.txt *.htm
 %{_bindir}/*
 %{_datadir}/man/man1/am.*
 
 %changelog
+* Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> 11.2c-1
+- Update to 11.2c
+
 * Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> 11.2b-1
-- Update to 11.1b
+- Update to 11.2b
 
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> 11.1d-1
 - Update to 11.1d
