@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: Jay Reding <blogtk$jayreding,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define real_name BloGTK
 
 Summary: Graphical weblogging client
@@ -19,6 +24,7 @@ Source: http://dl.sf.net/blogtk/blogtk_%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, pygtk2, pygtk2-libglade
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: python, pygtk2, pygtk2-libglade
 
 %description
