@@ -18,7 +18,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.winterdrache.de/freeware/png2ico/data/png2ico-src-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, libpng-devel, zlib-devel
 
 %description
 Png2ico is an utility which converts PNG files to Windows icon resource
