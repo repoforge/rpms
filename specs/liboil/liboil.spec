@@ -3,14 +3,14 @@
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.2.0
+Version: 0.2.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.schleef.org/liboil/
 Source: http://www.schleef.org/liboil/download/liboil-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: glib2-devel
+BuildRequires: glib2-devel, gcc-c++
 
 %description
 Liboil is a library of simple functions that are optimized for various CPUs.
@@ -75,6 +75,9 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 
 %changelog
+* Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.2.2-1
+- Update to 0.2.2.
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.2.0-1
 - Initial RPM release.
 

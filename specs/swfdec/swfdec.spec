@@ -10,7 +10,7 @@
 
 Summary: Flash animations rendering library
 Name: swfdec
-Version: 0.3.1
+Version: 0.3.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -90,7 +90,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/swfdec/
+%{_includedir}/swfdec*/
 %exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.a
 %exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.la
 %{_libdir}/libswfdec*.a
@@ -106,6 +106,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.3.2-1
+- Update to 0.3.2.
+
 * Tue Nov  9 2004 Matthias Saou <http://freshrpms.net/> 0.3.1-1
 - Make gimp plugin conditional and build only for FC2, FC3 and YD4 (gimp2).
 
