@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
-BuildRequires: kdelibs-devel
+BuildRequires: kdelibs-devel, automake, autoconf
 
 %description
 KKeyled is a KDE panel tray widget which displays the LED states of
