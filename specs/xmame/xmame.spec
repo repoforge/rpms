@@ -131,7 +131,8 @@ export JOY_PAD=1
 
 %ifarch ppc
     export MY_CPU="risc"
-    %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=powerpc -Wall -mlongcall -fno-merge-constants"}
+    export LDFLAGS="-Wl,--relax"
+    %{!?_without_opts: export CFLAGS="-O3 -g -pipe -Wall -mlongcall -fno-merge-constants"}
 %endif
 
 %ifarch x86_64
@@ -245,6 +246,10 @@ popd
 
 
 %changelog
+* Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 0.92-1
+- Remove wrong -march for powerpc.
+- Add LDFLAGS override for ppc to fix YDL4 build, thanks to Stig Sørensen.
+
 * Thu Feb 24 2005 Matthias Saou <http://freshrpms.net/> 0.92-1
 - Update to 0.92.
 - Remove EXPAT Makefile change, the default is to use external lib now.
