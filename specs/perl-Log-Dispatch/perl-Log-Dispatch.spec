@@ -2,8 +2,8 @@
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo %$installvendorlib)
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo %$installvendorarch)
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Log-Dispatch
 
@@ -58,8 +58,13 @@ not to change the message format.
 %doc LICENSE README Changes
 %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Log/
-%dir %{perl_vendorlib}/Log/Dispatch.pm
 %dir %{perl_vendorlib}/Log/Dispatch/
+%dir %{perl_vendorlib}/Log/Dispatch/Email/
+%dir %{perl_vendorlib}/Log/Dispatch/File/
+%{perl_vendorlib}/Log/Dispatch.pm
+%{perl_vendorlib}/Log/Dispatch/*.pm
+%{perl_vendorlib}/Log/Dispatch/Email/*.pm
+%{perl_vendorlib}/Log/Dispatch/File/*.pm
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 2.10-1
