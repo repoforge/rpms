@@ -59,13 +59,13 @@ Requires: %{name} = %{version}, pkgconfig
 if [ $1 -eq 1 ]; then
     /sbin/chkconfig --add foobar
 fi
-                                                                                
+
 %preun
 if [ $1 -eq 0 ]; then
     /sbin/service foobar stop >/dev/null 2>&1 || :
     /sbin/chkconfig --del foobar
 fi
-                                                                                
+
 %postun
 if [ $1 -ge 1 ]; then
     /sbin/service foobar condrestart >/dev/null 2>&1 || :
