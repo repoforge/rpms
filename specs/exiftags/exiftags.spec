@@ -4,7 +4,7 @@
 
 Summary: Shows Exif (Exchangeable Image File) image metadata
 Name: exiftags
-Version: 0.99
+Version: 0.99.1
 Release: 1
 License: BSD
 Group: Applications/Multimedia
@@ -45,9 +45,12 @@ camera and digitized image.
 %defattr(-, root, root, 0755)
 %doc CHANGES README
 %doc %{_mandir}/man?/*
-%{_bindir}/exif*
+%{_bindir}/*
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.99.1-1
+- Updated to release 0.99.1.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.99-2
 - Cosmetic changes.
 
