@@ -1,11 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <bluez-devel@lists.sf.net>
+
+%define _sbindir /sbin
 
 Summary: Bluetooth firmware loader
 Name: bluez-bluefw
 Version: 1.0
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://bluez.sf.net/
@@ -17,7 +19,6 @@ Source: http://bluez.sf.net/download/bluez-bluefw-%{version}.tar.gz
 Source1: pcmcia-includes.tar.gz
 Patch0: bluez-bluefw-0.9-path.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 ExcludeArch: s390 s390x
 BuildRequires: glibc-devel >= 2.2.4
@@ -54,5 +55,8 @@ The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 %{_sbindir}/bluefw
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+- Changed %%{_sbindir} to /sbin. (Soós Péter, RHbz #120881)
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.0-0
 - Initial package. (using DAR)
