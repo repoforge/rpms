@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <ra@maisondubonheur.com>
+
+%define pyver %(python2 -c 'import sys; print sys.version[:3]')
 
 Summary: Graphical interface for RPM analyze
 Name: rpm-analyzer
