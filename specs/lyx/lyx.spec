@@ -3,10 +3,12 @@
 # Authority: dag
 # Upstream: <lyx-devel@lists.lyx.org>
 
+%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX.
 Name: lyx
 Version: 1.3.4
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://www.lyx.org/
@@ -15,11 +17,13 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
+Source1: lyx-icon.png
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 Requires: qt >= 2.2.1, tetex-xdvi, tetex, tetex-latex
 Obsoletes: tetex-lyx
+BuildRequires: qt-devel 
 
 %description
 LyX is a modern approach to writing documents which breaks with the
@@ -40,6 +44,17 @@ and let the computer take care of the rest.
 
 %prep
 %setup
+
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=LyX LaTeX frontend
+Comment=A WYSIWYM LaTeX frontend
+Exec=lyx
+Icon=lyx-icon.png
+Type=Application
+Terminal=false
+Encoding=UTF-8
+EOF
 
 %build
 %{?rhfc1:export QTDIR="/usr/lib/qt-3.1"}
@@ -69,6 +84,19 @@ and let the computer take care of the rest.
 %{__cp} -av lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/
 %{__cp} -av lib/reLyX/README README.reLyX
 
+### install desktop file and icon
+%if %{dfi}
+        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/%{name}.desktop
+%else
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+        desktop-file-install --vendor kde        \
+                --add-category X-Red-Hat-Extra   \
+                --add-category Application       \
+                --add-category Office            \
+                --dir %{buildroot}%{_datadir}/applications \
+                %{name}.desktop
+%endif
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/lyx-icon.png
 %post
 ### Make TeX understand where LyX-specific packages are
 texhash &>/dev/null
@@ -100,8 +128,17 @@ texhash &>/dev/null
 #%{_datadir}/locale/*/LC_MESSAGES/*
 %{_datadir}/lyx/
 %{_datadir}/texmf/tex/latex/lyx/
+%if %{dfi}
+        %{_datadir}/gnome/apps/Applications/*.desktop
+%else
+        %{_datadir}/applications/*.desktop
+%endif
+%{_datadir}/pixmaps/*png
 
 %changelog
+* Thu Mar 18 2004 Bert de Bruijn <bert@debruijn.be> - 1.3.4-1
+- Added .desktop file and icon.
+
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.3.4-0
 - Updated to release 1.3.4.
 
