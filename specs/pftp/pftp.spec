@@ -24,8 +24,12 @@ host on the net running pftp.
 %prep
 %setup
 
+### FIXME: Fix needed for 64bit systems. (Please fix upstream)
+%{__perl} -pi.orig -e 's|/lib /usr/lib|/%{_lib} %{_libdir}|g' Makefile
+
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
