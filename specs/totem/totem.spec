@@ -17,7 +17,7 @@ Requires: xine-lib >= 1.0.0
 BuildRequires: gcc-c++, pkgconfig, gettext, scrollkeeper
 BuildRequires: xine-lib-devel >= 1.0.0
 BuildRequires: gnome-desktop-devel >= 2.6.0, gnome-vfs2-devel, libglade2-devel
-BuildRequires: perl-XML-Parser
+BuildRequires: perl(XML::Parser)
 %{!?_without_lirc:BuildRequires: lirc}
 
 %description

@@ -26,7 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl-XML-Parser, perl-Array-RefElem
+Requires: perl(XML::Parser), perl-Array-RefElem
 
 %description
 Dump arbitrary perl data structures as XML and restore them.

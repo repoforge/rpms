@@ -20,7 +20,7 @@ BuildRequires: scrollkeeper >= 0.1.4
 BuildRequires: glib2-devel >= 2.0, gtk2-devel >= 2.0, libxml2-devel => 2.4
 BuildRequires: libgnomeui-devel >= 1.105, libbonoboui-devel >= 1.108
 BuildRequires: libgnomecanvas-devel >= 1.112, gnome-vfs2-devel >= 1.9.4
-BuildRequires: GConf2-devel >= 1.2, gettext, perl-XML-Parser
+BuildRequires: GConf2-devel >= 1.2, gettext, perl(XML::Parser)
 
 Requires(post): scrollkeeper
 Requires(postun): scrollkeeper

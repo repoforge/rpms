@@ -19,7 +19,7 @@ Source: http://www.nrh-up2date.org/download/nrh-up2date-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: perl, perl-Frontier-RPC, perl-XML-Parser, perl-BerkeleyDB, python, python-bsddb3
+Requires: perl, perl-Frontier-RPC, perl(XML::Parser), perl-BerkeleyDB, python, python-bsddb3
 %{!?dist:Requires: httpd, rpm, rpm-python, db4}
 %{?fc2:Requires: httpd, rpm, rpm-python, db4}
 %{?fc1:Requires: httpd, rpm, rpm-python, db4}
