@@ -42,12 +42,12 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 s &>/dev/null
-/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 scrollkeeper-update -q || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 
 %postun
-/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 scrollkeeper-update -q || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,10 +62,10 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/drivel.desktop
 %{_datadir}/drivel/
 %{_datadir}/mime-info/drivel.*
-%exclude %{_datadir}/mime/XMLnamespaces
-%{_datadir}/mime/application/x-drivel.xml
-%exclude %{_datadir}/mime/globs
-%exclude %{_datadir}/mime/magic
+%{!?_without_shared_mime:%{_datadir}/mime/application/x-drivel.xml}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime/packages/drivel.xml
 %{_datadir}/pixmaps/gnome-application-x-drivel.png
 %{_datadir}/pixmaps/livejournal.png

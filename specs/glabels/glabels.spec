@@ -2,6 +2,12 @@
 # Authority: dag
 # Upstream: Jim Evins <evins$snaught,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_shared_mime 1}
+%{?el3:%define _without_shared_mime 1}
+%{?rh9:%define _without_shared_mime 1}
+
 Summary: GUI program to create labels and business cards
 Name: glabels
 Version: 2.0.1
@@ -90,16 +96,16 @@ scrollkeeper-update -q || :
 %{_datadir}/application-registry/glabels.applications
 %{_datadir}/applications/gnome-glabels.desktop
 %{_datadir}/glabels/
-%{?fc2:%{_datadir}/mime/application/x-glabels.xml}
+%{!?_without_shared_mime:%{_datadir}/mime/application/x-glabels.xml}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime/packages/glabels.xml
 %{_datadir}/mime-info/glabels.*
 %{_datadir}/pixmaps/glabels/
 %{_datadir}/pixmaps/glabels.png
 %{_datadir}/omf/glabels/
 %exclude %{_localstatedir}/scrollkeeper
-%{?fc2:%exclude %{_datadir}/mime/XMLnamespaces}
-%{?fc2:%exclude %{_datadir}/mime/globs}
-%{?fc2:%exclude %{_datadir}/mime/magic}
 
 %files devel
 %defattr(-, root, root, 0755)

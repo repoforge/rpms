@@ -9,7 +9,7 @@
 
 Summary: Graphical project management tool
 Name: planner
-Version: 0.12
+Version: 0.12.1
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -18,11 +18,11 @@ URL: http://planner.imendio.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source:	http://ftp.gnome.org/pub/GNOME/sources/planner/%{version}/planner-%{version}.tar.bz2
+Source: http://ftp.imendio.com/pub/imendio/planner/src/planner-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0.3, libgnomeui-devel >= 2.0.1, libglade2-devel >= 2.0.0
-BuildRequires: libgnomecanvas >= 2.0.1, libbonoboui-devel >= 2.0.1
+BuildRequires: libgnomecanvas >= 2.0.1, libbonoboui-devel >= 2.0.1, libgsf-devel
 BuildRequires: intltool, libgnomeprint22, libgnomeprintui22, gcc-c++
 %{!?_without_shared_mime:BuildRequires: shared-mime-info}
 
@@ -83,8 +83,6 @@ intltoolize
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/planner{,/file-modules,/storage-modules,/views,/plugins}/*.la
-%{__rm} -f %{buildroot}%{_datadir}/mime/{XMLnamespaces,globs,magic}
-%{__rm} -rf %{buildroot}%{_docdir}/planner/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -93,7 +91,7 @@ intltoolize
 /sbin/ldconfig &>/dev/null
 scrollkeeper-update -q || :
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
-                                                                                                                        
+ 
 %postun
 /sbin/ldconfig &>/dev/null
 scrollkeeper-update -q || :
@@ -103,26 +101,32 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README* examples/*.planner
 %doc %{_datadir}/gnome/help/planner/
-%{_bindir}/*
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/*.so.*
+%{_bindir}/planner
+%{_libdir}/libplanner-1.so.*
 %{_libdir}/planner/
 %{_datadir}/planner/
-%{_datadir}/application-registry/*.applications
-%{_datadir}/applications/*.desktop
+%{_datadir}/application-registry/planner.applications
+%{_datadir}/applications/planner.desktop
 #%{_datadir}/gnome-2.0/ui/*.ui
-%{_datadir}/mime-info/*
+%{_datadir}/mime-info/planner.*
 %{!?_without_shared_mime:%{_datadir}/mime/application/x-planner.xml}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime/packages/planner.xml
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/gnome-application-x-planner.png
+%{_datadir}/pixmaps/gnome-planner.png
+%{_datadir}/pixmaps/planner/
 %{_datadir}/omf/planner/
+%exclude %{_docdir}/planner/
 %exclude %{_localstatedir}/scrollkeeper/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_datadir}/gtk-doc/html/libplanner/
-%{_libdir}/pkgconfig/*.pc
+%exclude %{_libdir}/libplanner-1.la
+%{_libdir}/libplanner-1.so
+%{_libdir}/pkgconfig/libplanner-1.pc
 %{_includedir}/planner-1.0/
 
 %files -n python-planner
@@ -131,6 +135,9 @@ scrollkeeper-update -q || :
 %{_libdir}/python*/site-packages/gtk-2.0/planner.so
 
 %changelog
+* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.12.1-1
+- Updated to release 0.12.1.
+
 * Fri Jul 09 2004 Dag Wieers <dag@wieers.com> - 0.12-1
 - Updated to release 0.12.
 

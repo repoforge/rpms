@@ -80,10 +80,10 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/gnochm.desktop
 %{_datadir}/gnochm/
 %{_datadir}/mime/packages/gnochm.xml
-%{?fc2:%{_datadir}/mime/application/x-chm.xml}
-%{?fc2:%exclude %{_datadir}/mime/XMLnamespaces}
-%{?fc2:%exclude %{_datadir}/mime/globs}
-%{?fc2:%exclude %{_datadir}/mime/magic}
+%{!?_without_shared_mime:%{_datadir}/mime/application/x-chm.xml}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/XMLnamespaces}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/globs}
+%{!?_without_shared_mime:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png
