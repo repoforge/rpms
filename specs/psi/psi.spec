@@ -64,7 +64,9 @@ in other languages than English.
 #    --prefix="${PWD}/src%{_prefix}" \
 #    --bindir="${PWD}/src%{_bindir}" \
 #    --libdir="${PWD}/src%{_datadir}/%{name}"
-./configure --prefix=/usr
+./configure --prefix=/usr \
+	--bindir=/usr/bin \
+	--libdir-/usr/share/psi
 %{__perl} -pi.orig -e "s|${PWD}||g" Makefile
 %{__make} %{?_smp_mflags}
 
