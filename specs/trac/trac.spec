@@ -4,7 +4,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.6.1
+Version: 0.7
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -35,6 +35,8 @@ tracking progress very easy.
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}|g' setup.py
 
 %{__cat} <<EOF >trac.httpd
 Alias /trac/ "%{_datadir}/trac/htdocs/"
@@ -73,5 +75,8 @@ python ./setup.py install \
 %{_libdir}/python*/site-packages/trac/
 
 %changelog
+* Sun May 30 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Initial package. (using DAR)
