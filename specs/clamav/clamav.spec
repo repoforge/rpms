@@ -1,231 +1,273 @@
 # $Id$
+# Authority: newrpms
+# Upstream: <clamav-devel@lists.sourceforge.net>
 
-%{!?_without_milter: %{expand: %%define milter 1}}
-%{?_without_milter:  %{expand: %%define milter 0}}
+%define milter 1
+%{?rhel3:%undefine milter}
 
-Name:			clamav
-Summary:		An anti-virus utility for Unix.
-Version:		0.60
-Release:		4
-Source0:		%{name}-%{version}.tar.gz
-Source1:		%{name}-%{version}.tar.gz.sig
-Source2:		%{name}.init.bz2
-Source3:		%{name}-milter.init.bz2
-Source4:		%{name}-milter.sysconfig.bz2
-Source5:		freshclam.cron.bz2
-Source6:		freshclam.logrotate.bz2
-Source7:		%{name}.logrotate.bz2
-Patch0:			%{name}-%{version}-config.patch.bz2
-URL:			http://clamav.elektrapro.com/
-License:		GPL
-Group:			Applications/System
-Requires:		%{name}-db = %{version}-%{release}
-BuildRequires:		bzip2-devel zlib-devel
-%if %{milter}
-BuildRequires:		sendmail-devel
-%endif
-Obsoletes:		lib%{name} = 0.54	
-Provides:		lib%{name}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-root
+Summary: Anti-virus utility for Unix.
+Name: clamav
+Version: 0.67
+Release: 1
+License: GPL
+Group: Applications/System
+URL: http://clamav.sf.net/
+
+Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
+Source1: http://dl.sf.net/clamav/clamav-%{version}.tar.gz.sig
+Source2: clamav.init
+Source3: clamav-milter.init
+Patch0: clamav-0.67-config.patch
+BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Prefix: %{_prefix}
+
+BuildRequires: bzip2-devel, zlib-devel
+%{?milter:BuildRequires: sendmail-devel >= 8.12}
+Requires: clamav-db = %{version}-%{release}
+Obsoletes: libclamav = 0.54	
+Provides: libclamav
 
 %description 
 Clam Antivirus is a powerful anti-virus scanner for Unix. It
 supports AMaViS, compressed files, uses the virus database from
 OpenAntivirus.org, and includes a program for auto-updating.
 
-The scanner is multithreaded, written in C, and POSIX compliant. 
+%package -n clamd
+Summary: The Clam AntiVirus Daemon
+Group: System Environment/Daemons
+Requires: clamav = %{version}-%{release}
 
-Available rpmbuild rebuild options :
---without : milter
-
-%package -n		clamd
-Summary:		The Clam AntiVirus Daemon
-Group:			System Environment/Daemons
-License: 		GPL
-Requires:		%{name} = %{version}-%{release}
-Requires:		%{name}-db = %{version}-%{release}
-
-%description -n		clamd
+%description -n clamd
 The Clam AntiVirus Daemon
 
-%package -n		%{name}-milter
-Summary:		The Clam AntiVirus sendmail-milter Daemon
-Group:			Applications/System
-License: 		GPL
-Requires:		%{name} = %{version}-%{release}
-Requires:		%{name}-db = %{version}-%{release}
-Requires:		clamd = %{version}-%{release}
-Requires:		sendmail
+%package milter
+Summary: The Clam AntiVirus sendmail-milter Daemon
+Group: Applications/System
+Requires: clamd = %{version}-%{release}
+Requires: sendmail
 
-%description -n		%{name}-milter
+%description milter
 The Clam AntiVirus sendmail-milter Daemon
 
-%package		db
-Summary:		Virus database for %{name}
-Group:			Applications/Databases
-License: 		GPL
+%package db
+Summary: Virus database for %{name}
+Group: Applications/Databases
 
-%description		db
+%description db
 The actual virus database for %{name}
 
 %package devel
-Summary:		Headers and static libarys for Development
-Group:			Development/Libraries
-License:		GPL
-Requires:		%{name} = %{version}-%{release}
-Obsoletes:		lib%{name}-static-devel = 0.54 
-Obsoletes:		lib%{name}-devel = 0.54
-Provides:		lib%{name}-static-devel lib%{name}-devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: clamav = %{version}-%{release}
+Obsoletes: libclamav-static-devel = 0.54 
+Obsoletes: libclamav-devel = 0.54
+Provides: libclamav-static-devel, libclamav-devel
 
 %description devel
-Headers and static libarys for Development
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -q
-%patch0 -p0
+%setup
+%patch0
 
-bzcat %{SOURCE2} > clamd.init
-bzcat %{SOURCE3} > %{name}-milter.init
-bzcat %{SOURCE4} > %{name}-milter.sysconfig
-bzcat %{SOURCE5} > freshclam.cron
-bzcat %{SOURCE6} > freshclam.logrotate
-bzcat %{SOURCE7} > %{name}.logrotate
+%{__cat} <<EOF >clamav.logrotate
+%{_localstatedir}/log/clamav/clamav.log {
+	create 644 clamav clamav
+	monthly
+	compress
+}
+EOF
+
+%{__cat} <<EOF >freshclam.logrotate
+%{_localstatedir}/log/clamav/freshclam.log {
+	create 644 clamav clamav
+	monthly
+	compress
+}
+EOF
+
+%{__cat} <<'EOF' >freshclam.cron
+#!/bin/sh
+
+### A simple update script for the clamav virus database.
+### This could as well be replaced by a SysV script.
+
+### fix log file if needed
+LOG_FILE="%{_localstatedir}/log/clamav/freshclam.log"
+if [ ! -f "$LOG_FILE" ]; then
+    touch "$LOG_FILE"
+    chmod 644 "$LOG_FILE"
+    chown clamav.clamav "$LOG_FILE"
+fi
+
+/usr/bin/freshclam \
+    --quiet \
+    --datadir="%{_localstatedir}/clamav" \
+    --log="$LOG_FILE" \
+    --log-verbose \
+    --daemon-notify="%{_sysconfdir}/clamav.conf"
+EOF
+
+%{__cat} <<EOF >clamav-milter.sysconfig
+### Simple config file for clamav-milter, you should
+### read the documentation and tweak it as you wish.
+
+CLAMAV_FLAGS="
+	--config-file=%{_sysconfdir}/clamav.conf
+	--max-children=2
+	-obl local:%{_localstatedir}/clamav/clmilter.socket
+"
+EOF
 
 %build
 %configure  \
-	--program-prefix=%{?_program_prefix} \
-	%if %{milter}
-	--enable-milter \
-	%endif
-	--disable-%{name} \
-	--with-user=%{name} \
-	--with-group=%{name} \
-	--with-dbdir=%{_localstatedir}/%{name}
-%{__make}
+	--program-prefix="%{?_program_prefix}" \
+%{?milter:--enable-milter} \
+	--disable-clamav \
+	--with-user="clamav" \
+	--with-group="clamav" \
+	--with-dbdir="%{_localstatedir}/clamav"
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make DESTDIR="%{buildroot}" install
+%{__rm} -rf %{buildroot}
+#makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
-# install the init scripts
-install -d %{buildroot}%{_initrddir}
-install -m755 clamd.init %{buildroot}%{_initrddir}/clamd
-%if %{milter}
-install -m755 %{name}-milter.init %{buildroot}%{_initrddir}/%{name}-milter
-%endif
+%{__install} -d -m0755 %{buildroot}%{_initrddir} \
+			%{buildroot}%{_sysconfdir}/sysconfig/ \
+			%{buildroot}%{_sysconfdir}/cron.daily/ \
+			%{buildroot}%{_sysconfdir}/logrotate.d/ \
+			%{buildroot}%{_localstatedir}/log/clamav/ \
+			%{buildroot}%{_localstatedir}/run/clamav/
 
-# install the milter config
-%if %{milter}
-install -d %{buildroot}%{_sysconfdir}/sysconfig
-install -m644 %{name}-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}-milter
-%endif
+%{__install} -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamd
 
-# install the cron script to auto update the virus database 
-install -d %{buildroot}%{_sysconfdir}/cron.daily
-install -m755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
+%{?milter:%{__install} -m0755 %{SOURCE3} %{buildroot}%{_initrddir}/clamav-milter}
+%{?milter:%{__install} -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter}
 
-# install the logrotate stuff
-install -d %{buildroot}%{_sysconfdir}/logrotate.d
-install -m644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
-install -m644 %{name}.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
+%{__install} -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
+%{__install} -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
+%{__install} -m0644 clamav.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
+touch %{buildroot}/var/log/clamav/freshclam.log
+touch %{buildroot}/var/log/clamav/clamav.log
 
-install -d %{buildroot}/var/log/%{name}
-touch %{buildroot}/var/log/%{name}/freshclam.log
-touch %{buildroot}/var/log/%{name}/%{name}.log
+### huh? a bug?
+%{__install} -m0644 etc/clamav.conf %{buildroot}%{_sysconfdir}/clamav.conf
 
-# huh? a bug?
-install -m644 etc/%{name}.conf %{buildroot}%{_sysconfdir}/%{name}.conf
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_libdir}/*.la \
+%{!?milter:	%{buildroot}%{_mandir}/man8/clamav-milter.8*}
 
-# pid file dir
-install -d %{buildroot}/var/run/%{name}
+%post
+/sbin/ldconfig 2>/dev/null
+
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %pre -n clamd
 /usr/sbin/groupadd -r clamav 2>/dev/null || :
-/usr/sbin/useradd -r -d /var/clamav  -s /sbin/nologin -c "Clam Anti Virus Checker" -g clamav clamav 2>/dev/null || :
+/usr/sbin/useradd -r -d /var/clamav -s /sbin/nologin -c "Clam Anti Virus Checker" -g clamav clamav 2>/dev/null || :
 
 %post -n clamd
-if [ $1 = 1 ]; then /sbin/chkconfig --add clamd; else if [ -f /var/lock/subsys/clamd ]; then service clamd restart > /dev/null 2>/dev/null || : ; fi; fi;
+if [ $1 -eq 1 ]; then
+	/sbin/chkconfig --add clamd
+elif [ -f /var/lock/subsys/clamd ]; then 
+	service clamd restart > /dev/null 2>/dev/null || :
+fi
 
 %preun -n clamd
-if [ $1 = 0 ]; then service clamd stop > /dev/null 2>/dev/null || :; /sbin/chkconfig --del clamd; fi;
+if [ $1 -eq 0 ]; then
+	service clamd stop > /dev/null 2>/dev/null || :
+	/sbin/chkconfig --del clamd
+fi
 
-%post -n %{name}-milter
-if [ $1 = 1 ]; then /sbin/chkconfig --add clamav-milter; else if [ -f /var/lock/subsys/clamav-milter ]; then service clamav-milter restart > /dev/null 2>/dev/null || : ; fi; fi;
+%post milter
+if [ $1 -eq 1 ]; then
+	/sbin/chkconfig --add clamav-milter
+elif [ -f /var/lock/subsys/clamav-milter ]; then
+	service clamav-milter restart &>/dev/null || :
+fi
                                                                                
-%preun -n %{name}-milter
-if [ $1 = 0 ]; then service clamav-milter stop > /dev/null 2>/dev/null || :; /sbin/chkconfig --del clamav-milter; fi;
+%preun milter
+if [ $1 -eq 0 ]; then
+	service clamav-milter stop &>/dev/null || :
+	/sbin/chkconfig --del clamav-milter
+fi
 
-%pre -n %{name}-db
+%pre db
 /usr/sbin/groupadd -r clamav 2>/dev/null || :
-/usr/sbin/useradd -r -d /var/clamav  -s /sbin/nologin -c "Clam Anti Virus Checker" -g clamav clamav 2>/dev/null || : 
-
-%post -n %{name} -p /sbin/ldconfig
-%postun -n %{name} -p /sbin/ldconfig
-
-%post -n %{name}-db -p /sbin/ldconfig
-%postun -n %{name}-db -p /sbin/ldconfig
+/usr/sbin/useradd -r -d /var/clamav -s /sbin/nologin -c "Clam Anti Virus Checker" -g clamav clamav 2>/dev/null || : 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-,root, root, 0755)
 %doc AUTHORS BUGS ChangeLog FAQ NEWS README TODO test
-%doc docs/DMS/Debian_Mail_server.html 
-%doc docs/clamdoc.*
-%doc docs/html
-%doc docs/Japanese
-%doc docs/Spanish
+%doc docs/DMS/Debian_Mail_server.html docs/clamdoc.*
+%doc docs/html/ docs/clamd_supervised/
+%doc docs/French/ docs/Japanese/ docs/Polish/ docs/Portugese/
+%doc docs/Spanish/ docs/Turkish/
+%doc %{_mandir}/man1/sigtool.1*
+%doc %{_mandir}/man1/clamscan.1*
+%doc %{_mandir}/man1/freshclam.1*
+%config(noreplace) %{_sysconfdir}/freshclam.conf
 %{_bindir}/clamscan
 %{_bindir}/freshclam
 %{_bindir}/sigtool
-%{_mandir}/man1/sigtool.1*
-%{_mandir}/man1/clamscan.1*
-%{_mandir}/man1/freshclam.1*
 %{_libdir}/*.so.*
 
 %files -n clamd
-%defattr(-,root,root)
-%attr(0644,root,root) %config %{_sysconfdir}/%{name}.conf
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
-%attr(0755,root,root) %config(noreplace) %{_initrddir}/clamd
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/clamdscan.1*
+%doc %{_mandir}/man5/clamav.conf.5*
+%doc %{_mandir}/man8/clamd.8*
+%config(noreplace) %{_sysconfdir}/clamav.conf
+%config(noreplace) %{_sysconfdir}/logrotate.d/clamav
+%config %{_initrddir}/clamd
 %{_sbindir}/clamd
 %{_bindir}/clamdscan
-%{_mandir}/man5/%{name}.conf.5*
-%{_mandir}/man8/clamd.8*
-%{_mandir}/man1/clamdscan.1*
-%dir %attr(0755,%{name},%{name}) /var/run/%{name}
-%dir %attr(0755,%{name},%{name}) %{_localstatedir}/%{name}
-%attr(0644,%{name},%{name}) /var/log/%{name}/%{name}.log
 
-%if %{milter}
-%files -n %{name}-milter
-%defattr(-,root,root)
-%doc %{name}-milter/INSTALL
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/%{name}-milter
-%attr(0755,root,root) %config(noreplace) %{_initrddir}/%{name}-milter
-%{_sbindir}/%{name}-milter
-%{_mandir}/man1/%{name}-milter.1*
+%defattr(0644, clamav, clamav, 0755)
+%{_localstatedir}/run/clamav/
+%{_localstatedir}/clamav/
+%{_localstatedir}/log/clamav/clamav.log
+
+%if %{?milter:1}%{!?milter:0}
+%files milter
+%defattr(-, root, root, 0755)
+%doc clamav-milter/INSTALL
+%doc %{_mandir}/man8/clamav-milter.8*
+%config(noreplace) %{_sysconfdir}/sysconfig/clamav-milter
+%config %{_initrddir}/clamav-milter
+%{_sbindir}/clamav-milter
 %endif
 
-%files -n %{name}-db
-%defattr(-,root,root)
-%attr(0755,root,root) %config(noreplace) %{_sysconfdir}/cron.daily/freshclam
-%attr(0644,root,root) %config(noreplace) %{_sysconfdir}/logrotate.d/freshclam
-%dir %attr(0755,%{name},%{name}) %{_localstatedir}/%{name}
-%attr(0644,%{name},%{name}) %config(noreplace) %{_localstatedir}/%{name}/viruses.db*
-%attr(0644,%{name},%{name}) %config(noreplace) %{_localstatedir}/%{name}/mirrors.txt
-%attr(0644,%{name},%{name}) /var/log/%{name}/freshclam.log
+%files db
+%defattr(-, root, root, 0755)
+%config(noreplace) %{_sysconfdir}/cron.daily/freshclam
+%config(noreplace) %{_sysconfdir}/logrotate.d/freshclam
 
-%files -n %{name}-devel
-%defattr(-,root,root)
+%defattr(0644, clamav, clamav, 0755)
+%config(noreplace) %{_localstatedir}/clamav/
+%{_localstatedir}/log/clamav/freshclam.log
+
+%files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*.la
 %{_libdir}/*.a
+#%exclude %{_libdir}/*.la
 
 %changelog
+* Mon Mar 08 2004 Dag Wieers <dag@wieers.com> - 0.67-1
+- Personalized SPEC file.
+
 * Mon Aug 22 2003 Matthias Saou/Che
 - Added "--without milter" build option. (Matthias Saou)
 - Fixed freshclam cron (Matthias Saou)

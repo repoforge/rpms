@@ -1,4 +1,4 @@
-# $Id: chkrootkit.spec,v 1.3 2004/03/02 23:17:34 dag- Exp $
+# $Id$
 
 # Authority: dag
 

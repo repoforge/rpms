@@ -1,4 +1,4 @@
-# $Id: cabextract.spec,v 1.1 2004/02/26 12:32:02 thias Exp $
+# $Id$
 
 Summary: A program to extract Microsoft Cabinet files.
 Name: cabextract
