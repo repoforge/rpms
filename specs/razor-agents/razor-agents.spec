@@ -1,31 +1,25 @@
 # $Id$
-
 # Authority: dag
+
+%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
-Version: 1.20
+Version: 2.40
 Release: 1
-Group: Applications/Internet
 License: Artistic
+Group: Applications/Internet
 URL: http://razor.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/razor-agents/razor-agents-%{version}.tar.gz
-Patch0: %{name}-makefile.patch
-Patch1: %{name}-redhat.patch
+Source: http://dl.sf.net/razor/razor-agents-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildArch: noarch
 BuildRequires: perl, perl(Net::DNS), perl(Digest::SHA1), perl(Time::HiRes), perl(MIME::Base64)
-BuildRequires: perl(Mail::Header), perl(Mail::Internet)
-#BuildRequires: perl-MailTools
-BuildRequires: perl(Getopt::Long), perl(Net::Ping)
-Requires: perl-Razor = %{version}-%{release}
-Prereq: /sbin/chkconfig
+Requires: perl-Razor-Agent = %{version}-%{release}
 
 %description
 Vipul's Razor is a distributed, collaborative, spam detection and filtering
@@ -41,50 +35,58 @@ Catalogue Server and filter out or deny transport in case of a signature
 match.  Catalogued spam, once identified and reported by a Reporting Agent, 
 can be blocked out by the rest of the Filtering Agents on the network. 
 
-%package -n perl-Razor
+%package -n perl-Razor-Agent
 Group: Applications/CPAN
 Summary: perl-Razor Perl module
-Obsoletes: razor-agents-sdk
+Requires: perl(Net::DNS)
+Obsoletes: razor-agents-sdk, perl-Razor
 
-%description -n perl-Razor
+%description -n perl-Razor-Agent
 Implements perl class Razor, a SPAM/UCE filtering agent.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
 
 %build
 CFLAGS="%{optflags}" perl Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLMAN5DIR="%{buildroot}%{_mandir}/man5" \
 	INSTALLDIRS="vendor"
+cd Razor2-Preproc-deHTMLxs
+CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+	INSTALLDIRS="vendor"
+cd -
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 %{__mv} -f Changes Changes.pod
 pod2text Changes.pod > Changes
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall -C Razor2-Preproc-deHTMLxs \
+	PERL_INSTALL_ROOT="%{buildroot}"
+%makeinstall \
+	PERL_INSTALL_ROOT="%{buildroot}" \
+	PERL5LIB="%{buildroot}%{perl_vendorarch}" \
+	INSTALLMAN5DIR="%{_mandir}/man5"
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/mail/razor/
-%{__install} -m0644 etc/razor.conf %{buildroot}%{_sysconfdir}/mail/razor/
-%{__install} -m0664 etc/whitelist %{buildroot}%{_sysconfdir}/mail/razor/
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+for bin in razor-check razor-report razor-admin razor-revoke; do
+    %{__ln_s} -f razor-client %{buildroot}%{_bindir}/$bin
+done
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%doc BUGS Changes CREDITS FAQ INSTALL README docs/
 %doc %{_mandir}/man1/*
+%doc %{_mandir}/man5/*
 %{_bindir}/*
 
-%files -n perl-Razor
+%files -n perl-Razor-Agent
 %defattr(-, root, root, 0755)
-%doc ARTISTIC Changes sample.txt
+%doc Changes
 %doc %{_mandir}/man3/*
-%config(noreplace) %{_sysconfdir}/mail/razor/
-%{_libdir}/perl5/
+%{perl_vendorlib}
 
 %changelog
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 1.20-0
