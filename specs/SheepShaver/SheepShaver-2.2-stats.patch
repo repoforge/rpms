@@ -1,0 +1,13 @@
+--- SheepShaver-2.2/src/Unix/sysdeps.h.stats	2003-12-01 14:50:17.000000000 +0100
++++ SheepShaver-2.2/src/Unix/sysdeps.h	2003-12-01 14:58:08.000000000 +0100
+@@ -81,8 +81,8 @@
+ #define PPC_CHECK_INTERRUPTS (ASYNC_IRQ ? 0 : 1)
+ #define PPC_DECODE_CACHE 1
+ #define PPC_FLIGHT_RECORDER 1
+-#define PPC_PROFILE_COMPILE_TIME 0
+-#define PPC_PROFILE_GENERIC_CALLS 0
++#define PPC_PROFILE_COMPILE_TIME 1
++#define PPC_PROFILE_GENERIC_CALLS 1
+ #define KPX_MAX_CPUS 1
+ #else
+ // Mac ROM is write protected

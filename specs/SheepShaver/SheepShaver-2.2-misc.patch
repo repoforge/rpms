@@ -1,0 +1,11 @@
+--- SheepShaver-2.2/src/Unix/Linux/ether_linux.cpp.misc	2004-05-14 18:31:28.000000000 +0200
++++ SheepShaver-2.2/src/Unix/Linux/ether_linux.cpp	2004-05-14 18:58:40.000000000 +0200
+@@ -427,7 +427,7 @@ void EtherIRQ(void)
+ 	uint8 packet[1516];
+ 	for (;;) {
+ 
+-		if (net_if_type != NET_IF_SHEEPNET) {
++		if (1) {
+ 
+ 			// Read packet from ethertap device
+ 			ssize_t size = read(fd, packet, net_if_type == NET_IF_ETHERTAP ? 1516 : 1514);
