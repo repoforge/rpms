@@ -21,7 +21,7 @@ Source: ftp://pike.ida.liu.se/pub/pike/latest-stable/%{real_name}-%{real_version
 Source1: ftp://pike.ida.liu.se/pub/pike/latest-stable/%{real_name}-%{real_version}-doc.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: nettle-devel
+BuildRequires: nettle-devel, gmp-devel
 
 %description
 Pike is a general purpose programming language, which means that you can put
