@@ -6,8 +6,8 @@
 
 Summary: Encoder/decoder for the Free Lossless Audio Codec
 Name: flac
-Version: 1.1.0
-Release: 4
+Version: 1.1.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://flac.sourceforge.net/
@@ -107,6 +107,9 @@ find doc/ -name "Makefile*" -exec rm -f {} \;
 
 
 %changelog
+* Fri Oct 01 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.1.0-5
 - Added obsoletes flac-libs from Dag's spec file.
 

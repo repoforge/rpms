@@ -3,7 +3,7 @@
 
 Summary: UCL compression library
 Name: ucl
-Version: 1.02
+Version: 1.03
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -56,17 +56,20 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README NEWS THANKS TODO
-%{_libdir}/*.so.*
+%doc COPYING NEWS README THANKS TODO
+%{_libdir}/libucl.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/ucl/*
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_includedir}/ucl/
+%{_libdir}/libucl.a
+%exclude %{_libdir}/libucl.la
+%{_libdir}/libucl.so
 
 %changelog
+* Fri Oct 01 2004 Dag Wieers <dag@wieers.com> - 1.03-1
+- Updated to release 1.03.
+
 * Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 1.02-1
 - Updated to release 1.02.
 
