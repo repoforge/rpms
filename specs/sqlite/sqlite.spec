@@ -6,7 +6,7 @@
 
 Summary: library that implements an embeddable SQL database engine
 Name: sqlite
-Version: 2.8.12
+Version: 2.8.13
 Release: 0
 License: LGPL
 Group: Applications/Databases
@@ -20,6 +20,7 @@ Patch0: sqlite-2.8.12-encode.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: readline-devel
+%{?fc2:BuildRequires: tcl-devel}
 %{?fc1:BuildRequires: tcllib}
 %{?rh9:BuildRequires: tcllib}
 %{?rh8:BuildRequires: tcllib}
@@ -99,6 +100,10 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Thu May 27 2004 Matthias Saou <http://freshrpms.net/> 2.8.13-0
+- Updated to release 2.8.13.
+- Added tcl-devel build dependency for Fedora Core 2.
+
 * Sun Feb 29 2004 Dag Wieers <dag@wieers.com> - 2.8.12-0
 - Updated to release 2.8.12.
 
