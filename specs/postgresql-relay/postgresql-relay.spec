@@ -71,7 +71,9 @@ clean:
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
+%doc CHANGES
+%{_bindir}/postgresql-relay
+%{_datadir}/man/man?/postgresql-relay.*
 
 %changelog
 * Sun Mar 21 2004 Dries Verachtert <dries@ulyssis.org> 1.3-1
