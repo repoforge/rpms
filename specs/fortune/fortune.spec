@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 33
+Release: 34
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -72,6 +72,7 @@ Provides:  fortune-mod = %{version}-%{release}
 Patch0: fortune-mod-offense.patch
 Patch1: fortune-mod-1.0-remove-offensive.patch
 Patch2: fortune-mod-1.0-remove-offensive-option.patch
+Patch3: known-as-dentists-typo.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -109,6 +110,7 @@ wisdom each time they log in.
 %patch0 -p1 -b .disable-offensive1
 %patch1 -p0 -b .disable-offensive2
 %patch2 -p0 -b .remove-offensive-option
+%patch3 -p1
 %endif
 
 %build
@@ -632,6 +634,9 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 
 %changelog
+* Sun Jan 02 2005 Dries Verachtert <dries@ulyssis.org> 1.0-33
+- Fixed a grammatical error found by Greg Hogan.
+
 * Sat Dec 04 2004 Rex Dieter 1.0-33
 - Use versioned Obsoletes/Provides: fortune-mod.
 - Add ownership %%_datadir/games/fortune.

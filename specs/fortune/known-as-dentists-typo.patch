@@ -1,0 +1,12 @@
+diff -uNr fortune-mod-9708-orig/datfiles/cookie fortune-mod-9708/datfiles/cookie
+--- fortune-mod-9708-orig/datfiles/cookie	1997-07-18 16:47:12.000000000 +0200
++++ fortune-mod-9708/datfiles/cookie	2005-01-02 15:27:25.418386152 +0100
+@@ -2389,7 +2389,7 @@
+ Gary Hart:  living proof that you *can* screw your brains out.
+ %
+ Blessed be those who initiate lively discussions with the hopelessly mute,
+-for they shall be know as Dentists.
++for they shall be known as Dentists.
+ %
+ "I don't believe in sweeping social change being manifested by one person, 
+ unless he has an atomic weapon."
