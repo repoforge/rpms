@@ -10,8 +10,8 @@
 
 Summary: Frontend for the xine multimedia library
 Name: gxine
-Version: 0.3.3
-Release: 3
+Version: 0.4.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -49,6 +49,7 @@ Type=Application
 StartupNotify=true
 Encoding=UTF-8
 Categories=GNOME;Application;AudioVideo;
+MimeType=video/mpeg;video/msvideo;video/quicktime;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;application/x-ogg;application/ogg;audio/x-mp3;audio/x-mpeg;video/x-mpeg;video/x-fli;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-ms-asx;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;application/x-flac;audio/x-flac;application/x-shockwave-flash;audio/mpeg;audio/x-ms-asf;audio/x-m4a;audio/x-ms-wax;video/dv;video/x-anim;video/x-flc;misc/ultravox;application/x-matroska;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo
 EOF
 
 %{__cat} <<EOF >gxine.applications
@@ -72,33 +73,38 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install \
+	DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %{__install} -D -m0644 pixmaps/gxine-logo.png %{buildroot}%{_datadir}/pixmaps/gxine.png
 %{__install} -D -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
 
-### We don't want those...
-%{__rm} -f %{buildroot}%{_libdir}/gxine/{*.a,*.la}
-
-%if %{!?_without_freedesktop:1}0
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 gxine.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gxine.desktop
+	%{__rm} -f %{buildroot}%{_datadir}/applications/gxine.desktop
+%else
 ### Desktop entry
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Base                                   \
-  %{buildroot}%{_datadir}/gnome/apps/Multimedia/gxine.desktop
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --delete-original \
+		--vendor %{desktop_vendor}                 \
+		--dir %{buildroot}%{_datadir}/applications \
+		--add-category X-Red-Hat-Base              \
+		%{buildroot}%{_datadir}/applications/gxine.desktop
 %endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
-%{_bindir}/*
+%{_bindir}/gxine*
 %{_libdir}/gxine/
-%{_mandir}/man1/*
-%lang(de) %{_mandir}/de/man1/*
+%exclude %{_libdir}/gxine/*.a
+%exclude %{_libdir}/gxine/*.la
+%{_mandir}/man1/gxine*.1*
+%lang(de) %{_mandir}/de/man1/gxine*.1*
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gxine.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/gxine.desktop}
 %{_datadir}/application-registry/gxine.applications
@@ -106,6 +112,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{_datadir}/pixmaps/gxine.png
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Sun Aug 01 2004 Dag Wieers <dag@wieers.com> - 0.3.3-3
 - Added gxine.applications to application-registry.
 

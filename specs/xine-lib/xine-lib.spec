@@ -6,27 +6,33 @@
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
+%{?fc1:%define _without_xvmc 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_theora 1}
+%{?el3:%define _without_xvmc 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_theora 1}
+%{?rh9:%define _without_xvmc 1}
 
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_theora 1}
+%{?rh8:%define _without_xvmc 1}
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_gnomevfs2 1}
+%{?rh7:%define _without_xvmc 1}
 
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}
 %{?yd3:%define _without_theora 1}
+%{?yd3:%define _without_xvmc 1}
 
 %define libname libxine1
 %define libver  1.0

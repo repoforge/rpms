@@ -4,7 +4,7 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 0.9
+Version: 1.0
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -24,7 +24,6 @@ loop found in event driven network servers. An application just needs
 to call event_dispatch() and can then add or remove events dynamically
 without having to change the event loop.
 
-
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
@@ -34,7 +33,6 @@ Requires: %{name} = %{version}-%{release}
 This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
-
 
 %prep
 %setup
@@ -71,16 +69,20 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/*
-%{_libdir}/*.so.*
+%doc %{_mandir}/man3/event.3*
+%{_libdir}/libevent.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_includedir}/event.h
+%{_includedir}/libevent.h
+%{_libdir}/libevent.a
+%{_libdir}/libevent.so
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.9-1
 - Updated to release 0.9.
 

@@ -7,6 +7,9 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?el3:%define _without_swig 1}
+%{?rh9:%define _without_swig 1}
+%{?rh7:%define _without_swig 1}
+%{?el2:%define _without_swig 1}
 
 # set to zero to avoid running test suite
 %define make_check 0
@@ -235,7 +238,7 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %endif
 
 %changelog
-* Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Updated to release 1.1.2.
 
 * Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 1.1.1-0.1

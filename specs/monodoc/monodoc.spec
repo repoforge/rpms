@@ -12,12 +12,12 @@ URL: http://www.go-mono.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.go-mono.org/archive/monodoc-%{version}.tar.gz
-Patch0: monodoc-fix-gac.patch
+Source: http://www.go-mono.com/archive/%{version}/monodoc-%{version}.tar.gz
+Patch: monodoc-fix-gac.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mono-core, mono-web, gtk-sharp-gapi
-Requires: mono-core, gtkhtml3 >= 3.0, libglade2-devel, gtk2-devel, 
+Requires: mono-core, gtkhtml3 >= 3.0, libglade2-devel, gtk2-devel, gtk-sharp
 
 %description
 Monodoc is a documentation browser for the Mono Project. It's written
@@ -33,7 +33,10 @@ in C# using the GTK# libraries.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}" \
+	GACUTIL_FLAGS="/package gtk-sharp /root %{buildroot}%{_libdir}"
+%{__ln_s} -f %{_libdir}/mono/gac/monodoc/*/monodoc.dll %{buildroot}%{_libdir}/mono/gtk-sharp/monodoc.dll
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,9 +44,14 @@ in C# using the GTK# libraries.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%{_bindir}/*
-%{_libdir}/*
+%{_bindir}/mod
+%{_bindir}/monodoc
 %{_libdir}/monodoc/
+%dir %{_libdir}/mono/
+%dir %{_libdir}/mono/gac/
+%{_libdir}/mono/gac/monodoc/
+%{_libdir}/mono/gtk-sharp/
+%{_libdir}/pkgconfig/monodoc.pc
 %{_datadir}/applications/monodoc.desktop
 %{_datadir}/pixmaps/monodoc.png
 

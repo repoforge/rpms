@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: Daniel Stodle <daniels$stud,cs,uit,no>
 

@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dag
 
-%define real_version 20030825
+%define real_version 20050103
 
 Summary: Enhanced NetBSD ftp client
 Name: tnftp
-Version: 0.0.20030825
+Version: 0.0.20050103
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -46,5 +46,8 @@ in February 2003.
 %{_bindir}/tnftp
 
 %changelog 
+* Mon Jan 03 2005 Dag Wieers <dag@wieers.com> - 0.0.20050103-1
+- Updated to release 20050103.
+
 * Sat Oct 09 2004 Dag Wieers <dag@wieers.com> - 0.0.20030825-1
 - Contributed package by Florin Andrei.

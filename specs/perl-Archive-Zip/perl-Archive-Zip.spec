@@ -9,7 +9,7 @@
 Summary: Archive-Zip module for perl
 Name: perl-Archive-Zip
 Version: 1.09
-Release: 0
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Zip/
@@ -52,12 +52,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+		%{buildroot}%{perl_vendorarch}
 
 
 %clean 
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -65,7 +64,6 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{perl_vendorlib}/*
-
 
 %changelog
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.09-0

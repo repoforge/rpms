@@ -6,8 +6,11 @@
 
 %{?el3:%define _without_croco 1}
 %{?rh9:%define _without_croco 1}
+%{?rh9:%define _without_gtkhtml3 1}
 %{?rh7:%define _without_croco 1}
+%{?rh7:%define _without_gtkhtml3 1}
 %{?el2:%define _without_croco 1}
+%{?el2:%define _without_gtkhtml3 1}
 
 Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp
@@ -25,11 +28,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mono-core, mono-devel
 BuildRequires: libgnomeui-devel >= 2.0, libgnomecanvas-devel >= 2.0, libglade2-devel, gtk2-devel >= 2.2.0
-BuildRequires: libgnomedb-devel, libgda-devel, librsvg2-devel, gtkhtml3-devel, glib2-devel
-BuildRequires: libart_lgpl-devel, libgsf-devel, vte-devel
+BuildRequires: libgnomedb-devel, libgda-devel, librsvg2-devel, glib2-devel, libart_lgpl-devel, libgsf-devel
+#BuildRequires: vte-devel >= 0.11.10
+BuildRequires: vte-devel
 %{!?_without_croco:BuildRequires: libcroco-devel}
-Requires: gtkhtml3, librsvg2
+%{!?_without_gtkhtml3:BuildRequires: gtkhtml3-devel}
+Requires: librsvg2
 %{!?_without_croco:Requires: libcroco}
+%{!?_without_gtkhtml3:Requires: gtkhtml3}
 #Requires: libgnomeui >= 2.0, libgnomecanvas >= 2.0, libglade2
 
 %description

@@ -4,7 +4,7 @@
 
 Summary: Simple music player
 Name: muine
-Version: 0.5.3
+Version: 0.6.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -16,10 +16,11 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://muine.gooeylinux.org/muine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel, mono-devel, gtk-sharp-devel >= 0.17, gstreamer-devel
+BuildRequires: glib2-devel, mono-core, mono-devel, gtk-sharp-devel, gstreamer-devel
 BuildRequires: gstreamer-plugins-devel, libvorbis-devel, libid3tag-devel, flac-devel
+BuildRequires: gtk-sharp-gapi
 #BuildRequires: libxine
-Requires: mono, gtk-sharp >= 0.17
+Requires: mono-core, gtk-sharp, gstreamer, gstreamer-plugins
 
 %description
 Muine is an innovative music player. It is much easier and comfortable to
@@ -29,7 +30,8 @@ use than the iTunes model, which is used by both Rhythmbox and Jamboree.
 %setup
 
 %build
-%configure
+%configure \
+	--enable-gstreamer="yes"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -52,14 +54,17 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
+%config %{_sysconfdir}/gconf/schemas/muine.schemas
+%{_bindir}/muine
 %{_libdir}/muine/
-%{_datadir}/pixmaps/*.png
-%{_datadir}/application-registry/*.applications
-%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/muine.png
+%{_datadir}/application-registry/muine.applications
+%{_datadir}/applications/muine.desktop
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.6.3-1
+- Updated to release 0.6.3.
+
 * Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.5.3-1
 - Updated to release 0.5.3.
 

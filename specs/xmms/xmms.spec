@@ -26,13 +26,13 @@
 Summary: Media player
 Name: xmms
 Version: 1.2.10
-Release: 9.1
+Release: 9.2
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.xmms.org/
 
-Source: http://www.xmms.org/files/1.2.x/%{name}-%{version}.tar.bz2
+Source: http://www.xmms.org/files/1.2.x/xmms-%{version}.tar.bz2
 Source4: arts_output-%{artsplugin_ver}.tar.gz
 Source5: xmms.req
 Source6: xmms.xpm
@@ -78,7 +78,7 @@ streaming content and has a configurable interface.
 Summary: Static libraries and header files for Xmms plug-in development.
 Group: Development/Libraries
 Obsoletes: x11amp-devel
-Requires: %{name} = %{epoch}:%{version} gtk+-devel
+Requires: %{name} = %{epoch}:%{version}, gtk+-devel
 
 %description devel
 The static libraries and header files needed for building plug-ins for
@@ -104,7 +104,7 @@ This is a collection of skins for the xmms multimedia player. The
 skins were obtained from http://www.xmms.org/skins.html .
 
 %prep
-%setup -q -a 4
+%setup -a 4
 # Set default output plugin to ALSA
 %patch1 -p1 -b .audio
 # Use RTLD_LAZY, not RTLD_NOW
@@ -150,15 +150,16 @@ cd ..
 #     %{SOURCE8} -I. `gtk-config --cflags gtk`
 
 %install
-rm -rf %{buildroot}
-
-mkdir %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}
+%{__make} install \
+	DESTDIR=%{buildroot}
 
 %if %{!?_without_arts:1}0
 make install -C arts_output-%{artsplugin_ver}\
 	DESTDIR="%{buildroot}"
 %endif
+%find_lang %{name}
 
 #install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
 
@@ -171,10 +172,9 @@ mkdir -pv %{buildroot}%{_datadir}/applications
 (cd $RPM_BUILD_ROOT%{_datadir}/applications && ln -sf \
   %{_datadir}/desktop-menu-patches/redhat-audio-player.desktop)
 
-mkdir -p %{buildroot}%{_datadir}/pixmaps/mini
-install xmms/xmms_logo.xpm %{buildroot}%{_datadir}/pixmaps
-install xmms/xmms_mini.xpm %{buildroot}%{_datadir}/pixmaps/mini
-install -m 644 $RPM_SOURCE_DIR/xmms.xpm %{buildroot}%{_datadir}/pixmaps
+%{__install} -D -m0644 xmms/xmms_logo.xpm %{buildroot}%{_datadir}/pixmaps/xmms_logo.xpm
+%{__install} -D -m0644 xmms/xmms_mini.xpm %{buildroot}%{_datadir}/pixmaps/mini/xmms_mini.xpm
+%{__install} -D -m0644 $RPM_SOURCE_DIR/xmms.xpm %{buildroot}%{_datadir}/pixmaps/xmms.xpm
 
 # unpackaged files
 rm -f %{buildroot}/%{_datadir}/xmms/*/lib*.{a,la} \
@@ -182,15 +182,14 @@ rm -f %{buildroot}/%{_datadir}/xmms/*/lib*.{a,la} \
       %{buildroot}/%{_libdir}/xmms/*/*.la \
       %{buildroot}/%{_mandir}/man1/gnomexmms*
 
-%find_lang %{name}
 
 %post
 /sbin/ldconfig  
-update-desktop-database %{_datadir}/desktop-menu-patches
+update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %postun
 /sbin/ldconfig 
-update-desktop-database %{_datadir}/desktop-menu-patches
+update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %clean
 rm -rf %{buildroot}
@@ -201,27 +200,27 @@ rm -rf %{buildroot}
 %{_bindir}/xmms
 %{_bindir}/wmxmms
 %{_libdir}/libxmms.so.1*
-%dir %{_libdir}/xmms
-%{_libdir}/xmms/Effect
-%{_libdir}/xmms/General
-%dir %{_libdir}/xmms/Input
+%dir %{_libdir}/xmms/
+%{_libdir}/xmms/Effect/
+%{_libdir}/xmms/General/
+%dir %{_libdir}/xmms/Input/
 %{_libdir}/xmms/Input/libcdaudio.so
 %{_libdir}/xmms/Input/libmikmod.so
 %{_libdir}/xmms/Input/libtonegen.so
 %{_libdir}/xmms/Input/libvorbis.so
 %{_libdir}/xmms/Input/libwav.so
-%{_libdir}/xmms/Output
-%{_libdir}/xmms/Visualization
+%{_libdir}/xmms/Output/
+%{_libdir}/xmms/Visualization/
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/xmms.xpm
 %{_datadir}/pixmaps/xmms_logo.xpm
 %{_datadir}/pixmaps/mini/xmms_mini.xpm
-%dir %{_datadir}/xmms
+%dir %{_datadir}/xmms/
 %{_datadir}/xmms/*.xpm
 %{_mandir}/man1/[wx]*
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_includedir}/xmms
 %{_bindir}/xmms-config
 %{_datadir}/aclocal/xmms.m4
@@ -229,15 +228,18 @@ rm -rf %{buildroot}
 %{_libdir}/lib*.so
 
 %files mp3
-%defattr(-,root,root)
-%dir %{_libdir}/xmms/Input
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/xmms/Input/
 %{_libdir}/xmms/Input/libmpg123.so
 
 %files skins
-%defattr(-,root,root)
-%{_datadir}/xmms/Skins
+%defattr(-, root, root, 0755)
+%{_datadir}/xmms/Skins/
 
 %changelog
+* Mon Jan 03 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
+- Fix a problem with update-desktop-database on older dists. (Erik Kjær Pedersen)
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 1:1.2.10-9.1
 - Put back pristine sources.
 - Added the usual mp3 sub-package.

@@ -32,7 +32,10 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
 
-%{__perl} -pi.orig -e 's|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;' Makefile.in
+%{__perl} -pi.orig -e '
+		s|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;
+		s|(\$\(CFG_DBFILE_DIR\))|\$(DESTDIR)$1|;
+	' Makefile.in
 
 %{__perl} -pi.orig -e '
 		s|user = "nobody"|user = "ntop"|;
@@ -203,8 +206,8 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_datadir}/ntop/ \
 			%{buildroot}%{_localstatedir}/ntop/ #/rrd/{flows,graphics,interfaces/eth0}
-%makeinstall
-%{__make} DESTDIR="%{buildroot}" install-data-local
+%{__make} install install-data-local \
+	DESTDIR="%{buildroot}"
 
 %{__install} -D -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
 %{__install} -D -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
