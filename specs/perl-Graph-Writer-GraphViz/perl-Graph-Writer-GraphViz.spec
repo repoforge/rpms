@@ -1,38 +1,35 @@
 # $Id$
 
 # Authority: dries
-# Upstream: Tom Zoerner <Tom,Zoerner$informatik,uni-erlangen,de>
+# Upstream: Kang-min Liu <gugod$gugod,org>
 
-%define real_name Quota
+%define real_name Graph-Writer-GraphViz
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
 %define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
-Summary: Perl interface to file system quotas
-Name: perl-Quota
-Version: 1.5.0
+Summary: GraphViz Writer for Graph object
+Name: perl-Graph-Writer-GraphViz
+Version: 0.06
 Release: 1
-License: Artistic
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Quota/
+URL: http://search.cpan.org/dist/Graph-Writer-GraphViz/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TO/TOMZO/Quota-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUGOD/Graph-Writer-GraphViz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, quota
+BuildArch: noarch
+BuildRequires: perl
 
 %description
-The Quota module provides access to file system quotas.  The
-quotactl system call or ioctl is used to query or set quotas
-on the local host, or queries are submitted via RPC to a
-remote host.  Mount tables can be parsed with getmntent and
-paths can be translated to device files (or whatever the
-actual quotactl implementations needs as argument) of the
-according file system.
+Graph::Writer::GraphViz is an Writer object of Graph, using
+GraphViz module. All GraphViz output format should be supported
+by nature.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -50,13 +47,12 @@ according file system.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc README
 %doc %{_mandir}/man3/*
-%{perl_vendorarch}/Quota.pm
-%{perl_vendorarch}/auto/Quota
+%{perl_vendorlib}/Graph/Writer/GraphViz.pm
 %exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
+%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
-* Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 1.5.0
+* Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.
