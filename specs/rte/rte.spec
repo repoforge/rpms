@@ -3,14 +3,14 @@
 
 Summary: Real Time software audio/video Encoder library
 Name: rte
-Version: 0.5.4
+Version: 0.5.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/rte-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: doxygen
+BuildRequires: doxygen, gettext
 # Definitely doesn't build on anything else... (0.5.4)
 ExclusiveArch: %{ix86}
 
@@ -80,6 +80,9 @@ needed to develop programs that will use RTE.
 
 
 %changelog
+* Fri Apr  1 2005 Matthias Saou <http://freshrpms.net/> 0.5.6-1
+- Update to 0.5.6.
+
 * Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 0.5.4-1
 - Update to 0.5.4.
 - Add exclusivarch to x86 given all the failed attempts on x86_64... between
