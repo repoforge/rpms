@@ -44,12 +44,11 @@ With this module, you can publish Rendezvous services.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/Rendezvous/Publish.pm
 %{perl_vendorlib}/Net/Rendezvous/Publish/*
 %exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.01
