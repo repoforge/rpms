@@ -72,7 +72,6 @@ scrollkeeper-update -q || :
 %{_datadir}/mime-info/*
 %{_datadir}/omf/conglomerate/
 %{_datadir}/pixmaps/*.png
-%{_datadir}/pixmaps/conglomerate/
 
 %changelog
 * Wed Feb 18 2004 Dag Wieers <dag@wieers.com> - 0.7.12-0

@@ -83,29 +83,14 @@ echo "rpm" >%{buildroot}%{_libexecdir}/webmin/install-type
 ### Prepare configuration
 export os_type="redhat-linux"
 export real_os_type="Redhat Linux"
-%{?fc1:export oscheck="Fedora Core 1"}
-%{?el3:export oscheck="Redhat Linux 3.0AS"}
-%{?rh9:export oscheck="Redhat Linux 9"}
-%{?rh8:export oscheck="Redhat Linux 8.0"}
-%{?rh7:export oscheck="Redhat Linux 7.3"}
-%{?el2:export oscheck="Redhat Linux 2.1AS"}
-%{?rh6:export oscheck="Redhat Linux 6.2"}
-
-%{?fc1:export os_version="10.0"}
-%{?el3:export os_version="9.0"}
-%{?rh9:export os_version="9.0"}
-%{?rh8:export os_version="8.0"}
-%{?rh7:export os_version="7.3"}
-%{?el2:export os_version="7.2"}
-%{?rh6:export os_version="6.2"}
-
-%{?fc1:export real_os_version="10.0"}
-%{?el3:export real_os_version="3.0AS"}
-%{?rh9:export real_os_version="9.0"}
-%{?rh8:export real_os_version="8.0"}
-%{?rh7:export real_os_version="7.3"}
-%{?el2:export real_os_version="2.1AS"}
-%{?rh6:export real_os_version="6.2"}
+%{?fc2:export oscheck="Fedora Core 2";		export os_version="11.0";	export real_os_version="11.0"}
+%{?fc1:export oscheck="Fedora Core 1";		export os_version="10.0";	export real_os_version="10.0"}
+%{?el3:export oscheck="Redhat Linux 3.0AS";	export os_version="9.0";	export real_os_version="3.0AS"}
+%{?rh9:export oscheck="Redhat Linux 9";		export os_version="9.0";	export real_os_version="9.0"}
+%{?rh8:export oscheck="Redhat Linux 8.0";	export os_version="8.0";	export real_os_version="8.0"}
+%{?rh7:export oscheck="Redhat Linux 7.3";	export os_version="7.3";	export real_os_version="7.3"}
+%{?el2:export oscheck="Redhat Linux 2.1AS";	export os_version="7.2";	export real_os_version="2.1AS"}
+%{?rh6:export oscheck="Redhat Linux 6.2";	export os_version="6.2";	export real_os_version="6.2"}
 
 export config_dir="%{buildroot}%{_sysconfdir}/webmin"
 export var_dir="%{_localstatedir}/webmin"

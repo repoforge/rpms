@@ -2,22 +2,28 @@
 # Authority: matthias
 # Upstream: Julian Seward <jseward@acm.org>
 
-# Distcc: 0
+%define _pkglibdir %{_libdir}/%{name}
+%define valgrind_find_provides %{_builddir}/valgrind-find-provides
+%define valgrind_find_requires %{_builddir}/valgrind-find-requires
+%define _use_internal_dependency_generator      0
 
 Summary: Debugging and profiling system for x86-GNU/Linux platforms
 Name: valgrind
 Version: 2.1.1
 Release: 1
 License: GPL
-Group: Development/Tools
+Group: Development/Debuggers
 URL: http://valgrind.kde.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://developer.kde.org/~sewardj/valgrind-%{version}.tar.bz2
+Source1: valgrind-nptltest.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel
+
+ExclusiveArch: %{ix86}
+BuildRequires: XFree86-devel, gdb
 
 %description
 Valgrind is a GPL'd tool to help you find memory-management problems in
@@ -38,16 +44,39 @@ are intercepted. As a result, Valgrind can detect problems such as:
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|^(nptl_threading)=.*$|nptl_threading="$($VALGRIND/nptltest)"|' coregrind/valgrind.in
+
+%{__cat} <<EOF >%{valgrind_find_provides}
+#!/bin/sh
+%{__find_provides} | grep -v '^libpthread.so'
+exit 0
+EOF
+chmod +x %{valgrind_find_provides}
+%define __find_provides %{valgrind_find_provides}
+
+%{__cat} <<EOF >%{valgrind_find_requires}
+#! /bin/sh
+%{__find_requires} | grep -v 'libc.so.6(GLIBC_PRIVATE)'
+exit 0
+EOF
+chmod +x %{valgrind_find_requires}
+%define __find_requires %{valgrind_find_requires}
 
 %build
+%{__cc} %{optflags} %{SOURCE1} -lpthread -o nptltest || echo -e '#!/bin/sh\necho no' >nptltest
+
 %configure
+### Workaround for broken make (RHbz #88846)
+unset CFLAGS
 env - PATH="$PATH" %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall \
+	docdir="rpm-doc"
 
+%{__install} -m0755 nptltest %{buildroot}%{_libdir}/valgrind/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,7 +85,7 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %files
 %defattr(-, root, root, 0755)
 %doc ACKNOWLEDGEMENTS AUTHORS COPYING NEWS README* TODO
-%doc docs/*.html
+%doc rpm-doc/
 %{_bindir}/*
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/valgrind/

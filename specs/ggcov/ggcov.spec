@@ -55,11 +55,12 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 %{_datadir}/ggcov/logo.xpm %{buildroot}%{_datadir}/pixmaps/ggcov.xpm
+%{__install} -D -m0644 %{buildroot}%{_datadir}/ggcov/logo.xpm %{buildroot}%{_datadir}/pixmaps/ggcov.xpm
 
 %if %{dfi}
         %{__install} -D -m0644 ggcov.desktop %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
 %else
+	%{__rm} -f %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
@@ -73,6 +74,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc %{_mandir}/man1/*
 %{_bindir}/*
 %{_datadir}/ggcov/
 %{_datadir}/pixmaps/*.xpm

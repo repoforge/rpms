@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf >= 2.52, automake >= 1.6, scrollkeeper >= 0.1.4
 BuildRequires: gnome-python2-canvas, gnome-python2-gconf
-BuildRequires: pygtk2, pygtk2-libglade
+BuildRequires: pygtk2, pygtk2-libglade, gnome-python2-vfs
 
 Requires(post): scrollkeeper
 Requires: python >= 2.2, gnome-python2-canvas, gnome-python2-gconf

@@ -62,6 +62,7 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/gribouy/
 %{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/gribouy/
 
 %changelog
 * Sat Nov 22 2003 Dag Wieers <dag@wieers.com> - 0.0.8-0

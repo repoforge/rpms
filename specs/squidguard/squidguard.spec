@@ -28,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: bison, flex, perl
+%{?fc2:BuildRequires: db4-devel}
 %{?fc1:BuildRequires: db4-devel}
 %{?el3:BuildRequires: db4-devel}
 %{?rh9:BuildRequires: db4-devel}
@@ -45,6 +46,7 @@ users to a list of webservers, based on keywords.
 
 %prep
 %setup -n %{real_name}-%{version}
+%{?fc2:%patch0}
 %{?fc1:%patch0}
 %{?el3:%patch0}
 
@@ -78,17 +80,14 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__install} -D -m0644 %{SOURCE1} samples/guard-distrib.tar.gz
+%{__install} -D -m0644 squidguard.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard
+%{__install} -D -m0644 samples/sample.conf %{buildroot}%{_sysconfdir}/squid/squidguard.conf
+%{__ln_s} -f squidGuard %{buildroot}%{_bindir}/squidguard
+
 %{__install} -d -m0755 \
-	%{buildroot}%{_datadir}/squidguard/ \
-	%{buildroot}%{_sysconfdir}/squid/ \
-	%{buildroot}%{_sysconfdir}/logrotate.d/ \
 	%{buildroot}%{dbhomedir} \
 	%{buildroot}%{_localstatedir}/log/squidguard/
-
-%{__install} -m0644 samples/sample.conf %{buildroot}%{_sysconfdir}/squid/squidguard.conf
-%{__install} -m0644 %{SOURCE1} samples/
-%{__install} -m0644 %{name}.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard
-%{__ln_s} -f squidGuard %{buildroot}%{_bindir}/squidguard
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool
 BuildRequires: tetex-dvips, tetex-latex, transfig
+%{?fc2:BuildRequires: tcl-devel, tk-devel}
 %{?fc1:BuildRequires: tcl-devel, tk-devel}
 %{?el3:BuildRequires: tcl-devel, tk-devel}
 BuildRequires: tcl, tk

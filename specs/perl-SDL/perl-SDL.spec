@@ -7,8 +7,9 @@ Version: 1.20.0
 Release: 4
 License: GPL
 Group: System Environment/Libraries
-Source: http://sdlperl.org/downloads/SDL_perl-%{version}.tar.gz
 URL: http://sdlperl.org/
+
+Source: ftp://sdlperl.org/SDL_perl/SDL_perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.2.3, SDL_mixer >= 1.0.5, SDL_image >= 1.0.0
 Requires: SDL_net
