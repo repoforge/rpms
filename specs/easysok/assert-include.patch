@@ -1,0 +1,24 @@
+diff -uNr easysok-0.3.2-orig/src/piece_image_layer.cpp easysok-0.3.2/src/piece_image_layer.cpp
+--- easysok-0.3.2-orig/src/piece_image_layer.cpp	2002-05-05 14:06:21.000000000 +0200
++++ easysok-0.3.2/src/piece_image_layer.cpp	2003-12-13 10:53:04.000000000 +0100
+@@ -26,7 +26,7 @@
+ #include <kstddirs.h>
+ 
+ #include "dom_helper.h"
+-
++#include <assert.h>
+ 
+ 
+ 
+diff -uNr easysok-0.3.2-orig/src/pixmap_provider.cpp easysok-0.3.2/src/pixmap_provider.cpp
+--- easysok-0.3.2-orig/src/pixmap_provider.cpp	2003-01-13 21:01:19.000000000 +0100
++++ easysok-0.3.2/src/pixmap_provider.cpp	2003-12-13 10:53:36.000000000 +0100
+@@ -28,7 +28,7 @@
+ #include "image_effect.h"
+ #include "piece_image.h"
+ #include "theme.h"
+-
++#include <assert.h>
+ 
+ 
+ 
