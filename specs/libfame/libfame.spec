@@ -36,6 +36,7 @@ libfame library.
 
 
 %build
+%{__libtoolize} --force
 %configure
 %{__make} %{?_smp_mflags}
 
