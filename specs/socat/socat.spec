@@ -4,7 +4,7 @@
 
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
-Version: 1.4.0.0
+Version: 1.4.0.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -54,11 +54,14 @@ line editor, a program, or a combination of two of these.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGREPORTS CHANGES COPYING* DEVELOPMENT EXAMPLES FAQ FILES PORTING README SECURITY
-%doc xio.help socat.html
-%doc %{_mandir}/man?/*
+%doc xio.help socat.html *.sh
+%doc %{_mandir}/man1/socat.1*
 %{_bindir}/*
 
 %changelog
+* Sat Sep 25 2004 Dag Wieers <dag@wieers.com> - 1.4.0.2-1
+- Updated to release 1.4.0.2.
+
 * Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 1.4.0.0-1
 - Updated to release 1.4.0.0.
 
