@@ -17,7 +17,7 @@ Source: http://www.krakoa.dk/progs/cog/cog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0.3, glib2-devel >= 2.0.1, GConf2-devel >= 1.1.11
-BuildRequires: libxml2-devel >= 2.4.21
+BuildRequires: libxml2-devel >= 2.4.21, libgnomeui-devel
 BuildRequires: desktop-file-utils
 
 %description
