@@ -2,14 +2,12 @@
 # Authority: dag
 # Upstream: Timo Sirainen <tss@iki.fi>
 
-# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
-
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Dovecot secure IMAP server
 Name: dovecot
-Version: 0.99.10.4
-Release: 0
+Version: 0.99.10.5
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.procontrol.fi/
@@ -21,16 +19,8 @@ Source: http://dovecot.procontrol.fi/dovecot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Prereq: /usr/sbin/useradd, /usr/sbin/usermod
-BuildRequires: openssl-devel
-BuildRequires: openldap-devel, cyrus-sasl-devel
-%{?fc2:BuildRequires: pam-devel, postgresql-devel}
-%{?fc1:BuildRequires: pam-devel, postgresql-devel}
-%{?el3:BuildRequires: pam-devel, rh-postgresql-devel}
-%{?rh9:BuildRequires: pam-devel, postgresql-devel}
-%{?rh8:BuildRequires: pam-devel, postgresql-devel}
-%{?rh7:BuildRequires: pam-devel, postgresql-devel}
-%{?el2:BuildRequires: pam-devel, postgresql-devel}
-%{?rh6:BuildRequires: pam, postgresql-devel}
+BuildRequires: openssl-devel, cyrus-sasl-devel, pam-devel
+BuildRequires: openldap-devel, postgresql-devel, mysql-devel
 
 %description
 Dovecot is an IMAP and POP3 server for Linux/UNIX-like systems,
@@ -135,12 +125,14 @@ exit $RETVAL
 EOF
 
 %build
-export CPPFLAGS="-I/usr/kerberos/include"
+export CPPFLAGS="-I%{_prefix}/kerberos/include -I %{_includedir}/mysql"
+export LDFLAGS="-L%{_libdir}/mysql"
 %configure \
 	--with-ssl="openssl" \
 	--with-ssldir="%{_datadir}/ssl" \
 	--with-ldap \
 	--with-pgsql \
+	--with-mysql \
 	--with-cyrus-sasl2
 %{__make} %{?_smp_mflags}
 
@@ -150,9 +142,6 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{__install} -D -m0755 dovecot.sysv %{buildroot}%{_initrddir}/dovecot
 %{__install} -D -m0644 dovecot.pam %{buildroot}%{_sysconfdir}/pam.d/dovecot
 %{__mv} -f %{buildroot}%{_sysconfdir}/dovecot-example.conf %{buildroot}%{_sysconfdir}/dovecot.conf
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_datadir}/doc/dovecot/
 
 %pre
 /usr/sbin/useradd -M -d "%{_libexecdir}/dovecot/" -c "Dovecot daemon" -r dovecot &>/dev/null || :
@@ -182,8 +171,12 @@ fi
 %config %{_initrddir}/dovecot
 %{_sbindir}/*
 %{_libexecdir}/dovecot/
+%exclude %{_datadir}/doc/dovecot/
 
 %changelog
+* Fri May 28 2004 Dag Wieers <dag@wieers.com> - 0.99.10.5-1
+- Updated to release 0.99.10.5.
+
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 0.99.10.4-0
 - Updated to release 0.99.10.4.
 - Added rh-postgresql for RHEL3.
