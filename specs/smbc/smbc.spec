@@ -49,7 +49,7 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %{_bindir}/*
 %exclude %{_datadir}/smbc/FAQ
 %exclude %{_datadir}/smbc/README
-%exclude %{_datadir}/smbc/sample.smbrc
+%exclude %{_datadir}/smbc/sample.smbcrc
 
 
 %changelog
