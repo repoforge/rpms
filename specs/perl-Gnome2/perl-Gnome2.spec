@@ -20,7 +20,7 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),
-BuildRequires: perl(Glib), perl(Gtk2)
+BuildRequires: perl(Glib), perl(Gtk2), perl(Gnome2::VFS)
 BuildRequires: libgnomeui-devel >= 2.0.0
 Requires: perl >= 0:5.8.0
 

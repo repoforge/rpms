@@ -49,8 +49,11 @@ Some of the key features include:
 %{__make} %{?_smp_mflags}
 
 %install
-%{__install} -d -m0755 %{buildroot}%{plugindir}
-%{__install} -m0644 libimms.so %{buildroot}%{plugindir}
+%{__rm} -rf %{buildroot}
+%{__install} -D -m0644 libimms.so %{buildroot}%{plugindir}/libimms.so
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

@@ -6,7 +6,7 @@
 
 Summary: GNOME Applet for hardware monitoring
 Name: hardware-monitor-applet
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -15,7 +15,7 @@ URL: http://www.cs.auc.dk/~olau/hardware-monitor/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cs.auc.dk/~olau/hardware-monitor/source/hardware-monitor-%{version}.tar.gz
+Source: http://www.cs.aau.dk/~olau/hardware-monitor/source/hardware-monitor-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtkmm2 >= 2.0.0, libgnomemm2 >= 1.3.9, libgnomeuimm2 >= 1.3.11
@@ -54,6 +54,9 @@ pleasantly with the rest of your GNOME desktop.
 %{_datadir}/pixmaps/*
 
 %changelog
+* Sat Jul 10 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Fri May 28 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 
