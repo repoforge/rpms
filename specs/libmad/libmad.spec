@@ -4,7 +4,7 @@
 Summary: MPEG audio decoding library
 Name: libmad
 Version: 0.15.1b
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.underbit.com/products/mad/
@@ -75,6 +75,13 @@ EOF
 %{__rm} -rf %{buildroot}
 
 
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+
 %files 
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING COPYRIGHT CREDITS README TODO
@@ -90,6 +97,9 @@ EOF
 
 
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-3
+- Added missing /sbin/ldconfig calls.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-2
 - Rebuilt for Fedora Core 2.
 - Added pkgconfig dependency to the devel package.

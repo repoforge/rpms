@@ -5,7 +5,7 @@
 Summary: GnuPG Made Easy
 Name: gpgme
 Version: 0.3.15
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/System
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/gpgme-%{version}.tar.gz
@@ -59,13 +59,19 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 %{__rm} -rf %{buildroot}
 
 
-%post devel
-/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
+%post
+/sbin/ldconfig
 
+%postun
+/sbin/ldconfig
+
+
+%post devel
+/sbin/install-info %{_infodir}/gpgme.info.gz %{_infodir}/dir
 
 %preun devel
 if [ $1 -eq 0 ]; then
-    /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
+    /sbin/install-info --delete %{_infodir}/gpgme.info.gz %{_infodir}/dir
 fi
 
 
@@ -76,16 +82,19 @@ fi
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/%{name}-config
+%{_bindir}/gpgme-config
 %{_includedir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
-%{_datadir}/aclocal/%{name}.m4
-%{_infodir}/%{name}.info*
+%{_datadir}/aclocal/gpgme.m4
+%{_infodir}/gpgme.info*
 %exclude %{_libdir}/*.la
 
 
 %changelog
+* Mon Aug 30 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-5
+- Added missing /sbin/ldconfig calls.
+
 * Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4
 - Exclude the dir info file.
 - Added scriplets for info file install.

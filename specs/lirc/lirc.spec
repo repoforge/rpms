@@ -22,7 +22,7 @@ Version: 0.6.6
 #%%if %{kmodule}
 #Release: fr1_%{krelver}
 #%%else
-Release: 2
+Release: 3
 #%%endif
 License: GPL
 Group: System Environment/Daemons
@@ -75,6 +75,7 @@ touch %{buildroot}/etc/lircd.conf
 touch %{buildroot}/etc/lircmd.conf
 
 %post
+/sbin/ldconfig
 /sbin/chkconfig --add lircd
 
 %preun
@@ -84,6 +85,7 @@ if [ $1 = 0 ]; then
 fi
 
 %postun
+/sbin/ldconfig
 if [ "$1" -ge "1" ]; then
     /sbin/service lircd condrestart >/dev/null 2>&1 || :
 fi
@@ -112,7 +114,10 @@ fi
 %endif
 
 %changelog
-* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-3
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-3
+- Added missing /sbin/ldconfig calls.
+
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-2
 - Rebuild for Fedora Core 2... this spec file still _really_ needs reworking!
 
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.6.6-2

@@ -4,7 +4,7 @@
 Summary: Some themes for the GNU Krell Monitor
 Name: gkrellm-themes
 Version: 2.1.8
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/System
 Source: gkrellm-themes.tar.bz2
@@ -34,10 +34,10 @@ course have to install the main GKrellM package to use them.
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{_datadir}/gkrellm2/themes
-%{__cd} %{buildroot}%{_datadir}/gkrellm2/themes
-/usr/bin/find $RPM_BUILD_DIR/%{name} -name "*gz" -exec tar -xzvf {} \;
+cd %{buildroot}%{_datadir}/gkrellm2/themes
+/usr/bin/find %{_builddir}/%{name} -name "*gz" -exec %{__tar} -xzvf {} \;
 # Cleanup / Fixup
-/usr/bin/find . -name ".xvpics" | xargs rm -rf
+/usr/bin/find . -name ".xvpics" -o -name "CVS" -o -name "*~" | xargs %{__rm} -rf
 /usr/bin/find . -type d -exec chmod 755 {} \;
 /usr/bin/find . -type f -exec chmod 644 {} \;
 
@@ -52,6 +52,9 @@ course have to install the main GKrellM package to use them.
 
 
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 2.1.8-4
+- Also prevent CVS and *~ files from being included.
+
 * Wed Jan  7 2004 Matthias Saou <http://freshrpms.net/> 2.1.8-3
 - Fix permissions for the installed files, thanks to Brett Pemberton.
 

@@ -109,6 +109,12 @@ export CFLAGS="$CFLAGS -fPIC"
 
 %post
 /sbin/ldconfig
+#/sbin/install-info %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
+
+#preun
+#if [ $1 -eq 0]; then
+#    /sbin/install-info --delete %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
+#fi
 
 %postun
 /sbin/ldconfig
@@ -117,8 +123,6 @@ export CFLAGS="$CFLAGS -fPIC"
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING HINTS PLANS README TODO
-%doc %{_mandir}/man?/*
-%doc %{_infodir}/*.info*
 %{?_with_avifile:%{_bindir}/divxdec}
 %{_bindir}/glav
 #%{_bindir}/img2mpg
@@ -134,6 +138,8 @@ export CFLAGS="$CFLAGS -fPIC"
 %{_bindir}/yuv*
 %{_bindir}/*.flt
 %{_libdir}/*.so.*
+%{_mandir}/man?/*
+%{_infodir}/mjpeg-howto.info*
 %exclude %{_infodir}/dir
 
 %files devel
@@ -147,6 +153,9 @@ export CFLAGS="$CFLAGS -fPIC"
 
 
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-3
+- Added install-info calls... not, "no info dir entry" :-(
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-3
 - Rebuild for Fedora Core 2.
 - Bundle jpeg-mmx again, seems to be the only way to use it

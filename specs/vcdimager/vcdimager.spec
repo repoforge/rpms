@@ -4,7 +4,7 @@
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
 Version: 0.7.14
-Release: 1
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
@@ -42,15 +42,33 @@ and showing some information about the VideoCD.
 %{__rm} -rf %{buildroot}
 
 
+%post
+for infofile in vcdxrip.info.gz vcdimager.info.gz vcddump.info.gz; do
+    /sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir
+done
+
+%preun
+if [ $1 -eq 0 ]; then
+    for infofile in vcdxrip.info.gz vcdimager.info.gz vcddump.info.gz; do
+        /sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir
+    done
+fi
+
+
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS FAQ TODO COPYING ChangeLog INSTALL NEWS README THANKS
+%doc AUTHORS BUGS FAQ TODO COPYING ChangeLog NEWS README THANKS
 %{_bindir}/*
-%{_infodir}/*.info*
+%{_infodir}/vcdxrip.info*
+%{_infodir}/vcdimager.info*
+%{_infodir}/vcddump.info*
 %{_mandir}/man1/*
 
 
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.7.14-4
+- Added missing install-info calls.
+
 * Mon May 24 2004 Matthias Saou <http://freshrpms.net/> 0.7.14-3
 - Tried and update to 0.7.20, but the looping libcd* deps are a problem.
 - Rebuild for Fedora Core 2.

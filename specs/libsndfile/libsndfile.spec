@@ -4,7 +4,7 @@
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
 Version: 1.0.10
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 Source: http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
@@ -39,6 +39,8 @@ documentation for libsndfile.
 %build
 %configure
 %{__make} %{?_smp_mflags}
+# Clean up examples for inclusion in docs
+%{__rm} -rf examples/.libs/
 
 
 %install
@@ -77,6 +79,9 @@ documentation for libsndfile.
 
 
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 1.0.10-2
+- Remove .libs from the included examples.
+
 * Wed Jun 16 2004 Matthias Saou <http://freshrpms.net/> 1.0.10-1
 - Update to 1.0.10.
 - Added "examples" directory to the devel package.
