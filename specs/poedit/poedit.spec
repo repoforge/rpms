@@ -3,7 +3,6 @@
 # Authority: dries
 
 Summary: PoEdit is a cross-platform gettext catalogs (.po files) editor
-Summary(nl): PoEdit is een cross-platform gettext catalogs (.po bestanden) editor.
 Name: poedit
 Version: 1.2.5
 Release: 1
@@ -16,19 +15,15 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/poedit/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, wxGTK-devel, db4-devel, gettext
+BuildRequires: gcc, gcc-c++, wxGTK-devel, db4-devel, gettext
 Requires: wxGTK, db4, gettext
 
-#(d) primscreenshot: http://poedit.sourceforge.net/screenshots/poEditUnicode_s.png
-#(d) screenshotsurl: http://poedit.sourceforge.net/screenshots.php
+# Screenshot: http://poedit.sourceforge.net/screenshots/poEditUnicode_s.png
+# ScreenshotURL: http://poedit.sourceforge.net/screenshots.php
 
 %description
 poEdit is a cross-platform gettext catalogs (.po files) editor. It is built
 with wxWindows.
-
-%description -l nl
-PoEdit is een cross-platform gettext catalogs (.po bestanden) editor. Het is
-gemaakt met wxWindows.
 
 %prep
 %{__rm} -rf "${RPM_BUILD_ROOT}"
