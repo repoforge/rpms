@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Log-Dispatch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Params-Validate
+BuildRequires: perl, perl-Params-Validate, perl-Module-Build
 Requires: perl-Params-Validate, perl-Mail-Sender, perl-Mail-Sendmail
 
 %description
