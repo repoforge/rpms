@@ -30,6 +30,7 @@ BuildRequires: readline-devel, bison
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
 %{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
+%{?el4:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc3:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc2:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc1:BuildRequires: beecrypt-devel, elfutils-devel}
@@ -79,6 +80,7 @@ you will need to install %{name}-devel.
 %{!?fc1:#}rpm http://apt.sw.be fedora/1/en/i386 dag
 
 ### Dag RPM Repository for Red Hat Enterprise Linux
+%{!?el4:#}rpm http://apt.sw.be redhat/el4/en/%{_arch} dag
 %{!?el3:#}rpm http://apt.sw.be redhat/el3/en/%{_arch} dag
 %{!?el2:#}rpm http://apt.sw.be redhat/el2.1/en/%{_arch} dag
 
@@ -97,9 +99,6 @@ EOF
 %{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} core updates
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/%{_arch} core updates
-
-### Tao Linux 1.0
-#rpm http://dist.taolinux.org tao-1.0-%{_arch} os updates
 
 ### Red Hat Linux
 %{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 os updates
@@ -148,6 +147,7 @@ EOF
 %{!?fc1:#}rpm http://apt.sw.be dries/fedora/fc1/i386 dries
 
 ### Red Hat Enterprise Linux
+#rpm http://apt.sw.be dries/redhat/el4/en/i386 dries
 %{!?el3:#}rpm http://apt.sw.be dries/redhat/el3/en/i386 dries
 EOF
 
