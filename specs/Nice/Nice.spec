@@ -31,6 +31,7 @@ compilation (null pointers, casts).
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %{__make} PREFIX=$RPM_BUILD_ROOT/usr install
 
 %clean

@@ -29,6 +29,7 @@ of documentation is available at http://fann.sourceforge.net/
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean

@@ -47,6 +47,7 @@ programma bevat ook een aantal hulpmiddelen om terug vrije ruimte te winnen.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}

@@ -107,7 +107,7 @@ make COOKIEDIR=%{_datadir}/games/fortune \
 	FORTDIR=%{_prefix}/games BINDIR=%{_sbindir}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 make    COOKIEDIR=%{_datadir}/games/fortune fortune/fortune.man
 make	FORTDIR=%{buildroot}/%{_prefix}/games \

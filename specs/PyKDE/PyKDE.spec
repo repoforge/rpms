@@ -53,6 +53,7 @@ sed -i "s/-lDCOP -lkdecore/-lDCOP -lkdeui -lkdecore/g;" kdecore/Makefile
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %makeinstall DESTDIR=%{buildroot}
 
