@@ -5,7 +5,7 @@
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
-Version: 0.25
+Version: 0.26
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
-{?fc2:BuildRequires: db4-devel}
+%{?fc2:BuildRequires: db4-devel}
 
 %description
 Perl extension for Berkeley DB version 2, 3 or 4.
@@ -53,5 +53,8 @@ FLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> 0.26-0
+- Update to release 0.26.
+
 * Tue Mar 02 2004 Dag Wieers <dag@wieers.com> - 0.25-0
 - Initial package. (using DAR)

@@ -10,7 +10,7 @@
 
 Summary: Net-DNS Perl module
 Name: perl-Net-DNS
-Version: 0.47
+Version: 0.48
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -57,9 +57,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes README TODO
 %doc %{_mandir}/man?/*
-%{_perl_vendorlib}/*
+%{perl_vendorlib}/*
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org - 0.48-1
+- Update to release 0.48.
+
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 0.47-1
 - Updated to release 0.47.
 

@@ -10,7 +10,7 @@
 
 Summary: Extension for the GNU Readline/History library
 Name: perl-Term-ReadLine-Gnu
-Version: 1.14
+Version: 1.15
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -49,7 +49,7 @@ a program which uses the GNU Readline Library.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %{__perl} -pi -e "s|^#!/.*bin/perl|#!%{__perl}|i;" %{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
@@ -65,5 +65,8 @@ a program which uses the GNU Readline Library.
 %{perl_vendorarch}/auto/Term/ReadLine/Gnu/*
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.15-1
+- Update to release 1.15.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Initial package.
