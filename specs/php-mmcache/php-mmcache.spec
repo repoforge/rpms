@@ -35,7 +35,8 @@ speed of your PHP code by 1-10 times.
 
 
 %build
-phpize
+# Workaround for broken phpize on 64 bits
+%{__cat} %{_bindir}/phpize | sed 's|/lib/|/%{_lib}/|g' > phpize && sh phpize
 %configure
 %{__make} %{?_smp_mflags}
 
