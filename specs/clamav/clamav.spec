@@ -1,10 +1,14 @@
 # $Id$
-# Authority: rudolf
+# Authority: dag
 # Upstream: <clamav-devel$lists,sf,net>
+
+### FIXME: Sysv script does not have condrestart option
+
+%{?el2:%define _without_milter 1}
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.75.1
+Version: 0.80
 Release: 1
 License: GPL
 Group: Applications/System
@@ -16,20 +20,24 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
-Patch0: clamav-0.67-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel, zlib-devel, gmp-devel
-BuildRequires: sendmail-devel >= 8.12
+%{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
 Requires: clamav-db = %{version}-%{release}
 Obsoletes: libclamav <= %{version}-%{release}
 Obsoletes: clamav-lib <= %{version}-%{release}
 Provides: libclamav
 
 %description 
-Clam Antivirus is a powerful anti-virus scanner for Unix. It
-supports AMaViS, compressed files, uses the virus database from
-OpenAntivirus.org, and includes a program for auto-updating.
+Clam AntiVirus is a GPL anti-virus toolkit for UNIX. The main purpose of
+this software is the integration with mail servers (attachment scanning).
+The package provides a flexible and scalable multi-threaded daemon, a
+command line scanner, and a tool for automatic updating via Internet.
+
+The programs are based on a shared library distributed with the Clam
+AntiVirus package, which you can use with your own software. Most
+importantly, the virus database is kept up to date
 
 %package -n clamd
 Summary: The Clam AntiVirus Daemon
@@ -73,7 +81,8 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0
+
+%{__perl} -pi.orig -e 's|/usr/lib |%{_libdir} |g;' libtool
 
 %{__perl} -pi.orig -e '
 		s|\@DBDIR\@|\$(localstatedir)/clamav|g;
@@ -103,14 +112,14 @@ you will need to install %{name}-devel.
 		s|^#(AllowSupplementaryGroups)|$1|;
 		s|^#(ScanMail)|$1|;
 		s|^#(ArchiveBlockEncrypted)|$1|;
-	' etc/clamav.conf
+	' etc/clamd.conf
 
 %{__perl} -pi.orig -e '
 		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
 		s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
 		s|^#(DatabaseOwner) .+$|$1 clamav|;
 		s|^(Checks) .+$|$1 24|;
-		s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamav.conf|;
+		s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamd.conf|;
 	' etc/freshclam.conf
 
 %{__cat} <<EOF >clamav.logrotate
@@ -144,7 +153,7 @@ fi
     --datadir="%{_localstatedir}/clamav" \
     --log="$LOG_FILE" \
     --log-verbose \
-    --daemon-notify="%{_sysconfdir}/clamav.conf"
+    --daemon-notify="%{_sysconfdir}/clamd.conf"
 EOF
 
 %{__cat} <<EOF >clamav-milter.sysconfig
@@ -178,11 +187,14 @@ EOF
 %makeinstall
 
 %{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/clamd
-%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamav-milter
-%{__install} -D -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter
 %{__install} -D -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
 %{__install} -D -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
 %{__install} -D -m0644 clamav.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
+
+%if %{!?_without_milter:1}0
+%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamav-milter
+%{__install} -D -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter
+%endif
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/clamav/
 touch %{buildroot}/var/log/clamav/freshclam.log
@@ -251,10 +263,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README TODO test/
-%doc docs/DMS/Debian_Mail_server.html docs/clamdoc.*
-%doc docs/html/ docs/clamd_supervised/
-%doc docs/French/ docs/Japanese/ docs/Polish/ docs/Portugese/
-%doc docs/Spanish/ docs/Turkish/ etc/freshclam.conf
+%doc docs/clamdoc.* docs/html/ etc/freshclam.conf
 %doc %{_mandir}/man1/sigtool.1*
 %doc %{_mandir}/man1/clamscan.1*
 %doc %{_mandir}/man1/freshclam.1*
@@ -267,11 +276,11 @@ fi
 
 %files -n clamd
 %defattr(-, root, root, 0755)
-%doc contrib/clamdwatch/ etc/clamav.conf
+%doc contrib/clamdwatch/ etc/clamd.conf
 %doc %{_mandir}/man1/clamdscan.1*
-%doc %{_mandir}/man5/clamav.conf.5*
+%doc %{_mandir}/man5/clamd.conf.5*
 %doc %{_mandir}/man8/clamd.8*
-%config(noreplace) %{_sysconfdir}/clamav.conf
+%config(noreplace) %{_sysconfdir}/clamd.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/clamav
 %config %{_initrddir}/clamd
 %{_sbindir}/clamd
@@ -282,6 +291,7 @@ fi
 %{_localstatedir}/clamav/
 %{_localstatedir}/log/clamav/clamav.log
 
+%if %{!?_without_milter:1}0
 %files milter
 %defattr(-, root, root, 0755)
 %doc clamav-milter/INSTALL
@@ -289,6 +299,7 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/clamav-milter
 %config %{_initrddir}/clamav-milter
 %{_sbindir}/clamav-milter
+%endif
 
 %files db
 %defattr(-, root, root, 0755)
@@ -309,6 +320,14 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.80-1
+- Updated package description. (Arvin Troels)
+- Incorporated fixes from Jima. (Jima)
+- Config clamav.conf renamed to clamd.conf.
+- Removed obsolete patch.
+- Added macros for building without milter.
+- Updated to release 0.80.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.75.1-1
 - Added obsoletes for fedora.us.
 
