@@ -1,14 +1,18 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Tom Wilkason <tom.wilkason@cox.net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
 %define real_name snackAmp
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Versatile music player
 Name: snackamp
-Version: 2.2.1
+Version: 3.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -21,10 +25,9 @@ Source: http://dl.sf.net/snackamp/snackAmp-%{version}.tar.gz
 Source1: snackamp.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
-BuildRequires: dos2unix
-Requires: libsnack, tk
+BuildRequires: dos2unix, tcl >= 8.4
+Requires: tcl >= 8.4, tk, libsnack, metakit
 
 %description
 SnackAmp is a multi-platform music player with normal music player
@@ -43,38 +46,36 @@ Comment=%{summary}
 Icon=snackamp.png
 Terminal=false
 Type=Application
+Categories=Application;AudioVideo;
 EOF
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir}/tcl/snackAmp/ \
-		%{buildroot}%{_bindir} \
-		%{buildroot}%{_datadir}/pixmaps/
+		%{buildroot}%{_bindir}
 ### FIXME: add docs/*.tml in next release
 #dos2unix docs/*.tml docs/*/*.tml docs/*.css docs/*/*.css
 dos2unix docs/*/*.tml docs/*.css
-dos2unix lib/*.tcl lib/tablelist/*.tcl lib/tablelist/scripts/*.tcl lib/mySnack/*.tcl *.tcl
+#dos2unix lib/*.tcl lib/tablelist/*.tcl lib/tablelist/scripts/*.tcl lib/mySnack/*.tcl *.tcl
+dos2unix *.tcl */*.tcl */*/*.tcl
 %{__cp} -af docs lib %{buildroot}%{_libdir}/tcl/snackAmp/
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type f -exec chmod 0644 {} \;
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 #%{__install} -m0755 icons/snackAmp.ico %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0755 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0755 snackAmp.tcl %{buildroot}%{_libdir}/tcl/snackAmp/
+%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/snackamp.png
+%{__install} -D -m0755 snackAmp.tcl %{buildroot}%{_libdir}/tcl/snackAmp/snackAmp.tcl
 %{__install} -m0644 main.tcl snackAmphotKeys.tcl %{buildroot}%{_libdir}/tcl/snackAmp/
 %{__ln_s} -f %{_libdir}/tcl/snackAmp/snackAmp.tcl %{buildroot}%{_bindir}/snackamp
 %{__ln_s} -f %{_libdir}/tcl/snackAmp/snackAmp.tcl %{buildroot}%{_bindir}/snackAmp
 
-%if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 snackamp.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/snackamp.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor gnome                \
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+        desktop-file-install --vendor net                  \
                 --add-category X-Red-Hat-Base              \
-                --add-category Application                 \
-                --add-category AudioVideo                  \
                 --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+                snackamp.desktop
 %endif
 
 ### Clean up buildroot
@@ -90,13 +91,13 @@ find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 %{_bindir}/*
 %{_libdir}/tcl/snackAmp/
 %{_datadir}/pixmaps/*
-%if %{dfi}
-	%{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/snackamp.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/net-snackamp.desktop}
 
 %changelog
+* Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 2.2.1-1
 - Updated to release 2.2.1.
 

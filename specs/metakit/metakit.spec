@@ -2,15 +2,20 @@
 # Authority: matthias
 # Upstream: <metakit@equi4.com>
 
+%define _lib32dir %{_prefix}/lib
+%define python_version %(python -c 'import sys; print sys.version[:3]')
+
 Summary: Embeddable database
 Name: metakit
 Version: 2.4.9.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.equi4.com/metakit/
+
 Source: http://www.equi4.com/pub/mk/metakit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, tcl
 
 %description
@@ -37,16 +42,18 @@ Header files and development documentation for metakit.
 
 %build
 pushd unix
-    %configure
+    %configure \
+	--libdir="%{_lib32dir}" \
+	--with-python="%{_includedir}/python%{python_version},%{_libdir}/python%{python_version}" \
+	--with-tcl
     %{__make} %{?_smp_mflags}
 popd
 
 
 %install
 %{__rm} -rf %{buildroot}
-pushd unix
-    %{__make} install DESTDIR=%{buildroot}
-popd
+%{__install} -d -m0755 %{buildroot}%{_libdir}/python%{python_version}/site-packages/
+%{__make} install -C unix DESTDIR=%{buildroot}
 
 
 %clean
@@ -63,17 +70,26 @@ popd
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_libdir}/*.so
+%{_lib32dir}/*.so
+#%{_libdir}/python%{python_version}/site-packages/Mk4py.so
+#%{_libdir}/python%{python_version}/site-packages/metakit.py
+%{_libdir}/python%{python_version}/Mk4py.so
+%{_libdir}/python%{python_version}/metakit.py
+%{_lib32dir}/tcl*/Mk4tcl/
+
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc CHANGES WHATSNEW doc
 %{_includedir}/*
-%exclude %{_libdir}/*.la
-%{_libdir}/*.a
+%exclude %{_lib32dir}/*.la
+%{_lib32dir}/*.a
 
 
 %changelog
+* Mon Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.4.9.3-2
+- Added tcl and python libraries.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 2.4.9.3-2
 - Rebuild for Fedora Core 2.
 

@@ -18,7 +18,11 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.speech.kth.se/~kare/snack%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: tcl-devel, sphere-devel
+%{!?dist:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
+%{?fc2:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
+%{?fc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
+%{?el3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
+BuildRequires: tcl >= 8.3, tk >= 8.3, sphere-devel
 Obsoletes: snack-ogg, snack-sphere
 Provides: libsnack-ogg, libsnack-sphere
 
@@ -38,7 +42,6 @@ This packages includes Ogg and NIST/Sphere libraries.
 %prep
 %setup -n %{real_name}%{version}
 
-#%{__perl} -pi.orig -e 's|(\@SHLIB_LD\@)|$1 -fPIC|' unix/Makefile.in
 %{__perl} -pi.orig -e 's|playgrain = 100;|playgrain = 1;|' generic/jkSoundEngine.c
 
 %build
@@ -55,10 +58,10 @@ cd unix
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -d -m0755 %{buildroot}%{_libdir}/snack%{version}/
+%{__install} -d -m0755 %{buildroot}%{_prefix}/lib/snack%{version}/
 %makeinstall -C unix \
 	VERSION="%{version}" \
-	SNACK_INSTALL_PATH="%{buildroot}%{_libdir}"
+	SNACK_INSTALL_PATH="%{buildroot}%{_prefix}/lib"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -66,7 +69,8 @@ cd unix
 %files
 %defattr(-, root, root, 0755)
 %doc changes README doc/*
-%{_libdir}/snack%{version}/
+#%{_libdir}/snack%{version}/
+%{_prefix}/lib/snack%{version}/
 
 %changelog
 * Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.2.7-1
