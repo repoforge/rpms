@@ -21,7 +21,10 @@ Source: eternallands-src-%{version}.tar.gz
 Source1: http://el.tfm.ro/el_%{real_version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL
+BuildRequires: SDL-devel, openal-devel, SDL_net-devel, libxml2-devel
+BuildRequires: libogg-devel, libvorbis-devel
+%{?fc2: BuildRequires: xorg-x11-devel}
+%{?fc1: BuildRequires: XFree86-devel}
 
 %description
 The eternallands package contains the Eternal Lands free MMMORPG (massive
