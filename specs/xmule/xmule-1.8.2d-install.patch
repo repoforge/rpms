@@ -1,0 +1,26 @@
+diff -Naupr xmule-1.8.2d.orig/Makefile.in xmule-1.8.2d/Makefile.in
+--- xmule-1.8.2d.orig/Makefile.in	2004-06-21 18:59:41.000000000 +0200
++++ xmule-1.8.2d/Makefile.in	2004-06-22 18:29:03.412928704 +0200
+@@ -1,4 +1,6 @@
+ prefix=@prefix@
++bindir=$(prefix)/bin
++datadir=$(prefix)/share
+ exec_prefix=@exec_prefix@
+ 
+ all:
+@@ -54,10 +56,9 @@ distclean: clean
+ 	@rm -rf Compilation.flags Makefile aclocal.m4 autom4te.cache config.h* config.l* config.st* config.rp* configure depcomp intl
+ 
+ install: all
+-	@./install.sh
+-	@mkdir -p @bindir@
+-	@mkdir -p @datadir@/{applications,locale,pixmaps}
+-	@cp -f src/{ed2k,xmule} @bindir@
++	@mkdir -p $(bindir)
++	@mkdir -p $(datadir)/{applications,locale,pixmaps}
++	@cp -f src/{ed2k,xmule} $(bindir)
+ 	@cd po && $(MAKE) install
+-	@cp -f xmule.desktop @datadir@/applications
+-	@cp -f xmule.xpm @datadir@/pixmaps
++	@cp -f xmule.desktop $(datadir)/applications
++	@cp -f xmule.xpm $(datadir)/pixmaps

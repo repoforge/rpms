@@ -8,7 +8,7 @@ Release: 1
 License: GPL
 Group: Applications/Internet
 Source: http://dl.sf.net/xmule/%{name}-%{version}.tar.bz2
-Patch: xmule-1.7.1-destdir.patch
+Patch: xmule-1.8.2d-install.patch
 URL: http://www.xmule.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK, /usr/sbin/alternatives
@@ -23,7 +23,7 @@ same network.
 
 %prep
 %setup
-%patch -p1 -b .destdir
+%patch -p1 -b .install
 
 
 %build
@@ -33,9 +33,9 @@ same network.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
-%{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
+%makeinstall
 %find_lang %{name}
+%{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 
 
 %clean
@@ -51,7 +51,7 @@ same network.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog README TODO
+%doc AUTHORS COPYING ChangeLog ED2K-Links.HOWTO README TODO
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
@@ -60,6 +60,7 @@ same network.
 %changelog
 * Tue Jun 22 2004 Matthias Saou <http://freshrpms.net/> 1.8.2d-1
 - Update to 1.8.2d.
+- Makefile now works with %%makeinstall, but still needs a patch.
 
 * Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 1.8.2c-1
 - Update to 1.8.2c.
