@@ -2,10 +2,12 @@
 
 # Authority: dries
 # Upstream: 
+# Screenshot: http://krusader.sourceforge.net/img/scr01.png
+# ScreenshotURL: http://krusader.sourceforge.net/scr.php
 
 Summary: File manager
 Name: krusader
-Version: 1.30
+Version: 1.40
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -21,9 +23,6 @@ BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
 BuildRequires: XFree86-devel, zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel
 %{?fc2:BuildRequires: libselinux-devel}
-
-# Screenshot: http://krusader.sourceforge.net/img/scr01.png
-# ScreenshotURL: http://krusader.sourceforge.net/scr.php
 
 %description
 Krusader is an advanced twin-panel (commander-style) file-manager for KDE
@@ -74,5 +73,8 @@ export KDEDIR=/usr
 %{_libdir}/kde3/kio_krarc.*
 
 %changelog
+* Wed Jul 21 2004 Dries Verachtert <dries@ulyssis.org> - 1.40-1
+- Update to version 1.40.
+
 * Thu Jun 3 2004 Dries Verachtert <dries@ulyssis.org> - 1.30-1
 - Initial package.
