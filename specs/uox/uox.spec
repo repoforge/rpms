@@ -34,7 +34,7 @@ echo CXX flags: $CXXFLAGS
 %configure --enable-debug
 dos2unix Makefile
 dos2unix depcomp
-%{__make} %{?_smp_mflags}
+%{__make} INCLUDES=-I/usr/include/mozilla-1.6/js %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
