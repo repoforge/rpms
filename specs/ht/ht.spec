@@ -15,6 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/hte/ht-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRequires: ncurses-devel
 
 # Screenshot: http://hte.sourceforge.net/screenshots/screenshot5.gif
 # ScreenshotURL: http://hte.sourceforge.net/screenshots.htm
