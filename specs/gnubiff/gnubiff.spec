@@ -14,7 +14,7 @@ URL: http://gnubiff.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.bz2
+Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++
 BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel 
