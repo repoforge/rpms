@@ -19,7 +19,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Log-Dispatch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl-Params-Validate
+Requires: perl-Params-Validate
 
 %description
 Log::Dispatch is a suite of OO modules for logging messages to
