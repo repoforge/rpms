@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: <pancho-discuss@lunarmedia.net>
 
@@ -5,7 +7,7 @@
 
 Summary: Archive and manage remote nodes using SNMP and TFTP.
 Name: pancho
-Version: 9.3.0
+Version: 9.3.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -43,7 +45,8 @@ and shared with the community via the Pancho Project website.
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	PREFIX="%{buildroot}%{_prefix}" \
-	SYS_CONFDIR="%{buildroot}%{_sysconfdir}"
+	SYS_CONFDIR="%{buildroot}%{_sysconfdir}" \
+	INSTALLSITELIB="%{buildroot}%{_libdir}"
 
 %{__perl} -pi.orig -e 's|%{buildroot}||' blib/script/pancho
 
@@ -65,5 +68,8 @@ and shared with the community via the Pancho Project website.
 %{_libdir}/perl5/site_perl/*/Pancho/
 
 %changelog
+* Wed Mar 10 2004 Dag Wieers <dag@wieers.com> - 9.3.1-1
+- Updated to release 9.3.1.
+
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 9.3.0-1
 - Initial package. (using DAR)

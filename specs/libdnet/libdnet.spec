@@ -1,10 +1,10 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Dug Song <dugsong@monkey.org>
+# Upstream: <libdnet-devel@lists.sourceforge.net>
 
-Summary: A simple portable interface to lowlevel networking routines.
+Summary: Simple portable interface to lowlevel networking routines.
 Name: libdnet
 Version: 1.7
 Release: 0
@@ -16,6 +16,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/libdnet/libdnet-%{version}.tar.gz
+Patch0: libdnet-1.7-fw-ipchains.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -24,6 +25,7 @@ Libdnet provides a simple portable interface to lowlevel networking routines.
 
 %prep
 %setup
+%patch0
 
 %build
 %configure

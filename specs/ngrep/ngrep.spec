@@ -40,6 +40,8 @@ more common packet sniffing tools, such as tcpdump and snoop.
 
 %build
 %configure
+### FIXME: Disable incorrect HAVE_DUMB_UDPHDR on RHEL3 and RHFC1.
+%{__perl} -pi.orig -e 's|-DHAVE_DUMB_UDPHDR=1||' Makefile
 %{__make} %{?_smp_mflags}
 
 %install
