@@ -3,19 +3,18 @@
 
 Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb
-Version: 2.3.3
+Version: 2.4.0
 Release: 1
 License: GPL
 URL: http://gthumb.sourceforge.net/
 Group: Applications/Multimedia
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/gtumb/2.3/gthumb-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.4/gthumb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: scrollkeeper, libexif, libgnomeui >= 2.0.0, libgnomeprintui22
-Requires: gphoto2
-BuildRequires: pkgconfig, scrollkeeper, gettext, libexif-devel
-BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
+Requires(pre): scrollkeeper
+Requires(postun): scrollkeeper
 BuildRequires: libgnomeui-devel >= 2.0.0, libgnomeprintui22-devel
-BuildRequires: gphoto2-devel
+BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
+BuildRequires: scrollkeeper, gettext, libexif-devel, gphoto2-devel
 
 %description
 Image viewer and browser for the GNOME Desktop. View single images (including
@@ -37,24 +36,25 @@ images rotated, flipped, in black and white.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
-%{__rm} -rf %{buildroot}%{_localstatedir}
-strip %{buildroot}%{_libdir}/%{name}/{*.so,modules/*.so}
-find %{buildroot}%{_libdir} -name "*.a" -o -name "*.la" | xargs rm -f
 %find_lang %{name}
+
+# Clean up the files we don't want to include
+%{__rm} -rf %{buildroot}%{_localstatedir}
+find %{buildroot}%{_libdir} -name "*.a" -o -name "*.la" | xargs rm -f
+
+
+%clean
+%{__rm} -rf %{buildroot}
 
 
 %post
-/usr/bin/scrollkeeper-update -q || :
+scrollkeeper-update -q || :
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 gconftool-2 --makefile-install-rule \
     %{_sysconfdir}/gconf/schemas/%{name}.schemas >/dev/null || :
 
 %postun
-/usr/bin/scrollkeeper-update -q || :
-
-
-%clean
-%{__rm} -rf %{buildroot}
+scrollkeeper-update -q || :
 
 
 %files -f %{name}.lang
@@ -75,6 +75,11 @@ gconftool-2 --makefile-install-rule \
 
 
 %changelog
+* Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 2.4.0-1
+- Update to 2.4.0.
+- Remove explicit stripping, let the debuginfo package live its life.
+- Remove explicit requirement.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.3.3-1
 - Update to 2.3.3.
 - Added gphoto2 support.
