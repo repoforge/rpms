@@ -6,13 +6,12 @@
 
 Summary: Graphic primitives, rotozoomer, framerate control and image filters
 Name: SDL_gfx
-Version: 2.0.12
-Release: 3
+Version: 2.0.13
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
 Source: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
-Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl
 
@@ -37,7 +36,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p1
 
 %build
 %configure \
@@ -73,6 +71,10 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Dec 21 2004 Dries Verachtert <dries@ulyssis.org> 2.0.13-1
+- Updated to release 2.0.13 and removed the patch (has been 
+  applied upstream)
+
 * Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 2.0.12-3
 - Explicitly disable mmx for non-ix86 to fix build on x86_64.
 
@@ -88,4 +90,3 @@ you will need to install %{name}-devel.
 
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 2.0.10-1
 - Initial package
-
