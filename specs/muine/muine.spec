@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jorn Baayen <muine-list@gnome.org>
+# Upstream: Jorn Baayen <muine-list$gnome,org>
 
 Summary: Simple music player
 Name: muine

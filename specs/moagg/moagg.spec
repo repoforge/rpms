@@ -1,7 +1,7 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: moagg-devel@lists.sourceforge.net
+# Upstream: <moagg-devel$lists,sourceforge,net>
+
 # Screenshot: http://moagg.sourceforge.net/screenshots/blackhole.png
 # ScreenshotURL: http://moagg.sourceforge.net/screenshots.php
 
