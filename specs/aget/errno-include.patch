@@ -1,0 +1,48 @@
+diff -uNr aget-0.4-orig/Aget.c aget-0.4/Aget.c
+--- aget-0.4-orig/Aget.c	2002-11-22 09:10:23.000000000 +0100
++++ aget-0.4/Aget.c	2003-12-12 13:57:41.000000000 +0100
+@@ -30,7 +30,7 @@
+ extern int fsuggested, nthreads;
+ extern int bwritten;
+ extern pthread_t hthread;
+-
++#include <errno.h>
+ extern int errno;
+ 
+ 
+diff -uNr aget-0.4-orig/Download.c aget-0.4/Download.c
+--- aget-0.4-orig/Download.c	2002-11-19 15:00:39.000000000 +0100
++++ aget-0.4/Download.c	2003-12-12 13:57:40.000000000 +0100
+@@ -28,7 +28,7 @@
+ 
+ extern sigset_t signal_set;
+ 
+-
++#include <errno.h>
+ extern int errno;
+ 
+ unsigned int bwritten = 0;
+diff -uNr aget-0.4-orig/Head.c aget-0.4/Head.c
+--- aget-0.4-orig/Head.c	2002-11-22 08:38:03.000000000 +0100
++++ aget-0.4/Head.c	2003-12-12 13:57:41.000000000 +0100
+@@ -29,7 +29,7 @@
+ #include "Defs.h"
+ #include "Misc.h"
+ 
+-
++#include <errno.h>
+ extern int errno;
+ extern int h_errno;
+ 
+diff -uNr aget-0.4-orig/main.c aget-0.4/main.c
+--- aget-0.4-orig/main.c	2003-06-04 10:42:09.000000000 +0200
++++ aget-0.4/main.c	2003-12-12 13:57:42.000000000 +0100
+@@ -13,7 +13,7 @@
+ #include "Signal.h"
+ #include "Resume.h"
+ #include "main.h"
+-
++#include <errno.h>
+ extern int errno;
+ 
+ int main(int argc, char **argv)

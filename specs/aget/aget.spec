@@ -1,21 +1,17 @@
-# $Id: aget.spec,v 1.4 2004/02/27 17:08:23 driesve Exp $
+# $Id$
 
 # Authority: dries
 
-Summary: a console download accelerator
+Summary: A console download accelerator
 Name: aget
 Version: 0.4
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://www.enderunix.org/aget/
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.enderunix.org/aget/%{name}-%{version}.tar.gz
-Patch: errno-include.patch.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Patch: errno-include.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #(d) primscreenshot: http://www.enderunix.org/aget/aget-shot.jpg
 
@@ -24,25 +20,29 @@ Aget is a multi-threaded download accelerator. It supports HTTP downloads
 and can be run from the console.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
-%patch -p 1
+%patch -p1 -b .errno
 
 %build
 %{__make} %{?_smp_mflags}
-%{__make} strip
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr/bin
-cp -f aget $RPM_BUILD_ROOT/usr/bin/
+%{__rm} -rf ${RPM_BUILD_ROOT}
+%{__install} -m 0755 -D aget ${RPM_BUILD_ROOT}%{_bindir}/aget
+
+%clean
+%{__rm} -rf ${RPM_BUILD_ROOT}
 
 %files
-%defattr(-,root,root, 0755)
-%doc AUTHORS COPYING INSTALL README THANKS TODO
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING README THANKS TODO
 %{_bindir}/aget
 
 %changelog
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net> 0.4-4
+- More cleanups.
+- uncompress the patch (plays better with CVS/SVN).
+
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.4-3
 - specfile cleanup
 
@@ -51,3 +51,4 @@ cp -f aget $RPM_BUILD_ROOT/usr/bin/
 
 * Fri Dec 12 2003 Dries Verachtert <dries@ulyssis.org> 0.4-1
 - first packaging for Fedora Core 1
+
