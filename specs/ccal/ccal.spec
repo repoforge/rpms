@@ -2,11 +2,11 @@
 # Authority: dag
 # Upstream: Jamie Hillman <ccal@jamiehillman.co.uk>
 
-%define real_version 05
+%define real_version 06
 
 Summary: Curses-based calendar/journal/diary & todo list program
 Name: ccal
-Version: 0.5
+Version: 0.6
 Release: 1
 License: GPL
 Group: Applications/
@@ -45,5 +45,8 @@ Ccal is a curses-based calendar/journal/diary & todo list program.
 %{_bindir}/ccal
 
 %changelog
+* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.6-1
+- Updated to release 0.6.
+
 * Fri Aug 20 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Initial package. (using DAR)

@@ -10,7 +10,7 @@
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.9
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -58,15 +58,10 @@ Support for other protocols like ICQ could be created some day too.
 	PREFIX="%{buildroot}%{_prefix}"
 #	PERL_USE_LIB="%{buildroot}%{perl_vendorarch}"
 
-### Clean up buildroot
-#%{__rm} -rf %{buildroot}%{perl_archlib} \
-#                %{buildroot}%{perl_vendorarch}
-
 %{__rm} -f %{buildroot}%{_libdir}/irssi/modules/*.{a,la} \
 		%{buildroot}%{perl_vendorarch}/auto/Irssi/.packlist \
 		%{buildroot}%{perl_vendorarch}/auto/Irssi/*/.packlist \
 		%{buildroot}%{perl_vendorarch}/perllocal.pod
-%{__rm} -rf %{buildroot}%{_docdir}/irssi/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -81,8 +76,16 @@ Support for other protocols like ICQ could be created some day too.
 %{_libdir}/irssi/
 %{_datadir}/irssi/
 %{perl_vendorlib}/*
+#%{perl_vendorlib}/Irssi/
+#%{perl_vendorlib}/auto/Irssi/
+%exclude %{_docdir}/irssi/
+#%exclude %{perl_vendorarch}
 
 %changelog
+### FIXME: Cannot work around RHbz #106123 because of fucked-up irssi buildtools
+#* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.8.9-3
+#- Workaround directory-conflicts bug in up2date. (RHbz #106123)
+
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.8.9-2
 - Another attempt to fix the brokeness of the irssi perl stuff.
 - Now using %%perl_vendorlib instead of the correcter %%perl_archlib.

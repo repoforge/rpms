@@ -5,7 +5,7 @@
 Summary: API document browser
 Name: devhelp
 Version: 0.9.1
-Release: 2
+Release: 3
 License: GPL
 Group: Development/Tools
 URL: http://www.imendio.com/projects/devhelp/
@@ -33,6 +33,24 @@ Library of Devhelp for embedding into other applications.
 %prep
 %setup
 
+%{__cat} <<'EOF' >devhelp.sh
+#!/bin/sh
+
+### Written by Dag Wieers <dag@wieers.com>
+### Please send suggestions and fixes to me.
+
+[ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.6"
+[ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7"
+[ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7.2"
+[ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.8"
+[ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla"
+
+export LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$LD_LIBRARY_PATH"
+export MOZ_PLUGIN_PATH="$MOZ_PLUGIN_PATH:%{_libdir}/mozilla/plugins:$MOZILLA_FIVE_HOME/plugins"
+
+exec %{_bindir}/devhelp-bin $@
+EOF
+
 %build
 intltoolize
 %configure \
@@ -44,6 +62,8 @@ intltoolize
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
+
+%{__install} -D -m0755 devhelp.sh %{buildroot}%{_bindir}/devhelp
 
 %{__ln_s} -f libdevhelp-1.so.0.0.0 %{buildroot}%{_libdir}/libdevhelp-1.so.0
 %{__ln_s} -f libdevhelp-1.so.0.0.0 %{buildroot}%{_libdir}/libdevhelp-1.so
@@ -71,6 +91,9 @@ intltoolize
 %{_libdir}/pkgconfig/libdevhelp-1.0.pc
 
 %changelog
+* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.9.1-3
+- Fix for newly release mozilla 1.7.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.9.1-2
 - Added seperate devel subpackage to be in line with Red Hat. (Mads Kiilerich)
 

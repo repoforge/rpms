@@ -1,20 +1,20 @@
 # $Id$
 # Authority: dag
-# Upstream: Erik Grinaker <erikg$wired-networks,net>
-# Upstream: <revelation-devel$oss,wired-networks,net>
+# Upstream: Erik Grinaker <erikg$codepoet,no>
+# Upstream: <revelation-list$oss,codepoet,no>
 
 Summary: Password manager
 Name: revelation
-Version: 0.3.2
+Version: 0.3.3
 Release: 1
 License: GPL
 Group: Applications/Productivity
-URL: http://oss.wired-networks.net/revelation/
+URL: http://oss.codepoet.no/revelation/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://oss.wired-networks.net/revelation/revelation-%{version}.tar.bz2
+Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -54,6 +54,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/revelation/
 
 %changelog
+* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.3.3-1
+- Updated to release 0.3.3.
+
 * Mon Aug 09 2004 Dag Wieers <dag@wieers.com> - 0.3.2-1
 - Updated to release 0.3.2.
 - Updated to release 0.3.1.

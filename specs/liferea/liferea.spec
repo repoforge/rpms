@@ -33,6 +33,9 @@ using GtkHTML.
 %{__cat} <<'EOF' >liferea.sh
 #!/bin/bash
 
+### Written by Dag Wieers <dag@wieers.com>
+### Please send suggestions and fixes to me.
+
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.6"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.8"

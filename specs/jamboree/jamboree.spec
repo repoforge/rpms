@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
+# Upstream: Richard Hult <richard$imendio,com>
 
 Summary: Music player
 Name: jamboree
 Version: 0.4
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnome.org/~jdahlin/jamboree/
@@ -53,7 +54,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/*
 
 %changelog
-* Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 0.4-0
+* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.4-1
 - Updated to release 0.4.
 
 * Tue Sep 30 2003 Dag Wieers <dag@wieers.com> - 0.3-0
