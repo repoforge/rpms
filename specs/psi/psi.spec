@@ -1,25 +1,21 @@
 # $Id$
-
 # Authority: dries
 # Screenshot: http://psi.affinix.com/gfx/screenshots/iceram-roster.png
 # ScreenshotURL: http://psi.affinix.com/?page=screenshots
 
-# NeedsCleanup
+%define desktop_vendor rpmforge
+%define tls_plugin     qca-tls-1.0
+%define qtdir          %(echo ${QTDIR})
 
-%{?fc2:%define qt_version_dir 3.3}
-%{?fc1:%define qt_version_dir 3.1}
-
-Summary: Qt program for connecting to the Jabber messaging network
+Summary: Client application for the Jabber network
 Name: psi
-Version: 0.9.1
-Release: 2
+Version: 0.9.2
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
-
-Source: http://dl.sf.net/psi/psi-%{version}.tar.bz2
-Source50: http://psi.affinix.com/beta/qca-tls-1.0.tar.bz2
-
+Source0: http://dl.sf.net/psi/psi-%{version}.tar.bz2
+Source1: http://psi.affinix.com/beta/%{tls_plugin}.tar.bz2
 Source20: psi_ca.qm
 Source21: psi_cs.qm
 Source22: psi_de.qm
@@ -33,109 +29,128 @@ Source29: psi_pl.qm
 Source30: psi_se.qm
 Source31: psi_sk.qm
 Source32: psi_zh.qm
-
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-Obsoletes: psi-iconsets
-
-BuildRequires: gcc, make, gcc-c++, XFree86-devel, qt-devel, openssl, openssl-devel
-Requires: qt, openssl
+BuildRequires: XFree86-devel, kdelibs-devel, openssl-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Obsoletes: psi-iconsets < 0.9.1
 
 %description
 Psi is a client program for the Jabber messaging network. It supports
-multiple accounts, group chat, Unicode and encryption with SSL.
+multiple accounts, group chat, Unicode and SSL encryption.
 
-%prep
-%setup
-
-%build
-# psi doesn't use normal autoconf scripts
-. /etc/profile.d/qt.sh
-export KDEDIR=/usr
-./configure --prefix=/usr 
-make
-
-# ssl plugin
-tar -xjvf %{SOURCE50}
-(cd qca-tls-1.0; ./configure; make)
-
-%install
-%{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-export KDEDIR=/usr
-test -d "${RPM_BUILD_ROOT}/usr/share/psi/" || mkdir -p "${RPM_BUILD_ROOT}/usr/share/psi/"
-#no images? cp -f -pR "image" "${RPM_BUILD_ROOT}/usr/share/psi/"
-cp -f -pR "iconsets" "${RPM_BUILD_ROOT}/usr/share/psi/"
-cp -f -pR "sound" "${RPM_BUILD_ROOT}/usr/share/psi/"
-cp -f -pR "certs" "${RPM_BUILD_ROOT}/usr/share/psi/"
-#cp -f -p "README" "${RPM_BUILD_ROOT}/usr/share/psi/"
-#cp -f -p "COPYING" "${RPM_BUILD_ROOT}/usr/share/psi/"
-test -d "${RPM_BUILD_ROOT}/usr/bin/" || mkdir -p "${RPM_BUILD_ROOT}/usr/bin/"
-cp -f "psi" "${RPM_BUILD_ROOT}/usr/bin/psi"
-strip "${RPM_BUILD_ROOT}/usr/bin/psi"
-mkdir -p ${RPM_BUILD_ROOT}/usr/share/applnk/Internet/
-cp psi.desktop ${RPM_BUILD_ROOT}/usr/share/applnk/Internet/
-
-mkdir -p "${RPM_BUILD_ROOT}/usr/share/icons/hicolor/16x16/apps/"
-cp -f -p iconsets/system/default/icon_16.png ${RPM_BUILD_ROOT}/usr/share/icons/hicolor/16x16/apps/psi.png
-mkdir -p "${RPM_BUILD_ROOT}/usr/share/icons/hicolor/32x32/apps/"
-cp -f -p iconsets/system/default/icon_32.png ${RPM_BUILD_ROOT}/usr/share/icons/hicolor/32x32/apps/psi.png
-mkdir -p "${RPM_BUILD_ROOT}/usr/share/icons/hicolor/48x48/apps/"
-cp -f -p iconsets/system/default/icon_48.png ${RPM_BUILD_ROOT}/usr/share/icons/hicolor/48x48/apps/psi.png
- 
-
-cp %{SOURCE20} ${DESTDIR}/usr/share/psi
-cp %{SOURCE21} ${DESTDIR}/usr/share/psi
-cp %{SOURCE22} ${DESTDIR}/usr/share/psi
-cp %{SOURCE23} ${DESTDIR}/usr/share/psi
-cp %{SOURCE24} ${DESTDIR}/usr/share/psi
-cp %{SOURCE25} ${DESTDIR}/usr/share/psi
-cp %{SOURCE26} ${DESTDIR}/usr/share/psi
-cp %{SOURCE27} ${DESTDIR}/usr/share/psi
-cp %{SOURCE28} ${DESTDIR}/usr/share/psi
-cp %{SOURCE29} ${DESTDIR}/usr/share/psi
-cp %{SOURCE30} ${DESTDIR}/usr/share/psi
-cp %{SOURCE31} ${DESTDIR}/usr/share/psi
-cp %{SOURCE32} ${DESTDIR}/usr/share/psi
-
-# ssl plugin
-mkdir -p ${DESTDIR}/usr/lib/qt-%{qt_version_dir}/plugins/crypto/
-cp -f "qca-tls-1.0/libqca-tls.so" "${DESTDIR}/usr/lib/qt-%{qt_version_dir}/plugins/crypto/libqca-tls.so"
-strip --strip-unneeded "${DESTDIR}/usr/lib/qt-%{qt_version_dir}/plugins/crypto/libqca-tls.so"
-
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
 
 %package languagepack
-Summary: translations of the jabber client Psi
+Summary: Translations for the Psi jabber client
 Group: Applications/Communications
-Requires: psi = %{version}-%{release}
+Requires: %{name} = %{version}
 
 %description languagepack
 This package contains the necessairy files for using the jabber client Psi
-in other languages then English.
+in other languages than English.
+
+
+%prep
+%setup -a 1
+
+%build
+# It's not an autoconf generated script...
+# The PWD thing is an ugly hack since relative paths mess everything up...
+./configure \
+    --prefix="${PWD}/src%{_prefix}" \
+    --bindir="${PWD}/src%{_bindir}" \
+    --libdir="${PWD}/src%{_datadir}/%{name}"
+%{__perl} -pi.orig -e "s|${PWD}||g" Makefile
+%{__make} %{?_smp_mflags}
+
+# Transport Layer Security plugin
+# Again, impossible to get the prefix right easily (see install below)...
+pushd %{tls_plugin}
+    ./configure
+    %{__make}
+popd
+
+
+%install
+%{__rm} -rf %{buildroot}
+
+# That trailing "/" is mandatory because of "$(INSTALL_ROOT)usr" type of lines
+%{__make} install INSTALL_ROOT="%{buildroot}/"
+
+# Transport Layer Security plugin
+%{__install} -D -m 0755 %{tls_plugin}/libqca-tls.so \
+    %{buildroot}%{qtdir}/plugins/crypto/libqca-tls.so
+
+# Install the pixmap for the menu entry
+%{__install} -D -m 0644 iconsets/system/default/icon_32.png \
+    %{buildroot}%{_datadir}/pixmaps/psi.png
+
+# Install an enhanced menu entry (supplied psi.desktop is sparse)
+%{__cat} > %{name}.desktop << EOF
+[Desktop Entry]
+Name=Psi Jabber Client
+Comment=Connect and chat on the Jabber network
+Icon=psi.png
+Exec=psi -caption "%%c" %%i %%m
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Network;
+StartupNotify=true
+EOF
+
+%if %{!?_without_freedesktop:1}0
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
+%else
+%{__install} -D -m 0644 %{name}.desktop \
+    %{buildroot}%{_sysconfdir}/X11/applnk/Internet/%{name}.desktop
+%endif
+ 
+# Install the languagepack files
+%{__install} -m 0644 \
+    %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \
+    %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} \
+    %{SOURCE30} %{SOURCE31} %{SOURCE32} \
+    %{buildroot}%{_datadir}/psi
+
 
 %files
-%defattr(-,root,root,0755)
-%doc README COPYING TODO
+%defattr(-, root, root, 0755)
+%doc COPYING README TODO
 %{_bindir}/psi
-%{_datadir}/psi/certs
-%{_datadir}/psi/sound
-%{_libdir}/qt-*/plugins/crypto/libqca-tls.so
-%{_datadir}/icons/hicolor/*/apps/psi.png
-%{_datadir}/applnk/Internet/psi.desktop
-%{_datadir}/psi/iconsets
+%exclude %{_datadir}/psi/COPYING
+%exclude %{_datadir}/psi/README
+%exclude %{_datadir}/psi/*.qm
+%{_datadir}/psi
+%{qtdir}/plugins/crypto/libqca-tls.so
+%{_datadir}/pixmaps/psi.png
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
+%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/%{name}.desktop}
 
 %files languagepack
-/usr/share/psi/psi_*.qm
+%lang(ca) %{_datadir}/%{name}/psi_ca.qm
+%lang(cs) %{_datadir}/%{name}/psi_cs.qm
+%lang(de) %{_datadir}/%{name}/psi_de.qm
+%lang(el) %{_datadir}/%{name}/psi_el.qm
+%lang(es) %{_datadir}/%{name}/psi_es.qm
+%lang(fr) %{_datadir}/%{name}/psi_fr.qm
+%lang(it) %{_datadir}/%{name}/psi_it.qm
+%lang(mk) %{_datadir}/%{name}/psi_mk.qm
+%lang(nl) %{_datadir}/%{name}/psi_nl.qm
+%lang(pl) %{_datadir}/%{name}/psi_pl.qm
+%lang(se) %{_datadir}/%{name}/psi_se.qm
+%lang(sk) %{_datadir}/%{name}/psi_sk.qm
+%lang(zh) %{_datadir}/%{name}/psi_zh.qm
+
 
 %changelog
+* Fri Jun 11 2004 Matthias Saou <http://freshrpms.net> 0.9.2-1
+- Update to 0.9.2 (not the language files yet, not available for now).
+- Major spec file cleanup, leaning towards a rewrite :-).
+
 * Thu May 27 2004 Dries Verachtert <dries@ulyssis.org> 0.9.1-2
 - small changes in spec file
 
@@ -150,3 +165,4 @@ released (spike tells so on irc). Ok upgrade..
 
 * Thu Jan 1 2004 Dries Verachtert <dries@ulyssis.org> 0.9-1
 - first packaging for Fedora Core 1
+
