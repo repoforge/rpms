@@ -5,7 +5,7 @@
 
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
-Version: 1.3.14
+Version: 1.4.0
 Release: 1
 License: Other
 Group: System Environment/Libraries
@@ -40,7 +40,7 @@ you will need to install %{name}-devel.
 %setup -n Botan-%{version}
 
 %build
-./configure.pl --prefix=%{buildroot}/usr gcc-linux-ia32
+./configure.pl --prefix=%{buildroot}/usr
 %{__make} %{?_smp_mflags}
 
 %install
@@ -70,8 +70,11 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sat Jun 26 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.0-1
+- Update to version 1.4.0.
+
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.14-1
-- update to 1.3.14
+- Update to version 1.3.14.
 
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.13-2
 - fix the ownership of the devel files
