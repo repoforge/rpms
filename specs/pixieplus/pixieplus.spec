@@ -39,8 +39,8 @@ source /etc/profile.d/qt.sh
 rm -f $RPM_BUILD_ROOT/usr/share/mimelnk/image/x-pcx.desktop
 rm -f $RPM_BUILD_ROOT/usr/share/applnk/Graphics/pixie-mini.desktop
 rm -f $RPM_BUILD_ROOT/usr/share/applnk/Graphics/pixie.desktop
-mkdir -p ${DESTDIR}/usr/share/applications/
-cat >  ${DESTDIR}/usr/share/applications/pixieplus.desktop <<EOF
+mkdir -p $RPM_BUILD_ROOT/usr/share/applications/
+cat >  $RPM_BUILD_ROOT/usr/share/applications/pixieplus.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Comment=PixiePlus Image Manager and Editor
