@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 Summary: C++ client API for PostgreSQL

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 Summary: General-purpose tool for parameter handling in C++

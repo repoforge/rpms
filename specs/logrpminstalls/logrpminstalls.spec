@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Dries Verachtert <dries$ulyssis,org>
 

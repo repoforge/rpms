@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: newrpms
 
 %{?dist:%{expand: %%define %{dist} 1}}

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Screenshot: http://kasablanca.berlios.de/images/screenshots/sshot031.png

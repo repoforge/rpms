@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 

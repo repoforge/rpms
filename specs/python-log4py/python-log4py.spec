@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Upstream: Martin Preishuber <Martin,Preishuber$eclipt,at>

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: newrpms
 
 Summary: Graphical User Interface based on SDL

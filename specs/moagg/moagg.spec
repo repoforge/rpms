@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: <moagg-devel$lists,sourceforge,net>
 

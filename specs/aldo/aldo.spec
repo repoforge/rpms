@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Giuseppe Martino <denever$users,sourceforge,net>
 # Upstream: <aldo-main$nongnu,org>

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Upstream: mailto:log4perl-devel$lists,sourceforge,net

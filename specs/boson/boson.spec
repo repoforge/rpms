@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 %{?dist: %{expand: %%define %dist 1}}

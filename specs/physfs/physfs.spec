@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: newrpms
 # Upstream: <physfs$icculus,org>
 

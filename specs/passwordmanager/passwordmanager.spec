@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Michael Buesch <mbuesch$freenet,de>
 

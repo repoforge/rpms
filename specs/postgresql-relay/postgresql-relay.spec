@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Edwin Groothuis <edwin$mavetju,org>
 

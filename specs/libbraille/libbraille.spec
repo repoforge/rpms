@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Sébastien Sablé <sable$users,sf,net>
 

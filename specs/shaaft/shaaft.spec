@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 # Screenshot: http://criticalmass.sourceforge.net/images-shaaft/shaaft02.jpg

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 %define real_version 2_0_7

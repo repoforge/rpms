@@ -1,5 +1,4 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
 
 Summary: Drawing program designed for young children
@@ -30,7 +29,6 @@ and up). It has a simple, easy-to-use interface, fun sound effects, and an
 encouraging cartoon mascot who helps guide children as they use the program. 
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -49,7 +47,9 @@ cd src
 
 %files
 %defattr(-, root, root, 0755)
+### FIXME : No files!?
 
 %changelog
 * Thu Dec 25 2003 Dries Verachtert <dries@ulyssis.org> 0.9.13-1
 - Initial packaging
+

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 Summary: Compiler for the Scheme programming language

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Screenshot: http://kolourpaint.sourceforge.net/screenshot0_big.png

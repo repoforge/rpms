@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Juan J. Martínez <jjm$usebox,net>
 

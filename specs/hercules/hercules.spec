@@ -1,7 +1,7 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Jay Maynard <jmaynard$conmicro,cx>
-# Upstream: <hercules-390$yahoogroups,com>
+# Upstream: Jay Maynard <jmaynard@conmicro.cx>
+# Upstream: <hercules-390@yahoogroups.com>
 
 # Distcc: 0
 
@@ -9,7 +9,7 @@ Summary: Hercules S/370, ESA/390, and z/Architecture emulator
 Name: hercules
 Version: 3.01
 Release: 1
-License: Q Public License
+License: QPL
 Group: Applications/Emulators
 URL: http://www.conmicro.cx/hercules/
 
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.conmicro.cx/hercules/hercules-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: bison, zlib-devel, bzip2-devel, libgcrypt
 
 %description
@@ -30,11 +29,18 @@ card reader, card punch, channel-to-channel adapter, LCS Ethernet, and
 printer-keyboard, 3270 terminal, and 3287 printer devices.
 
 %package docs
-Summary: Documentation for package %{name}
+Summary: Documentation for the Hercules emulator
 Group: Documentation
 
 %description docs
-This package includes the documentation for package %{name}.
+Hercules is an emulator for the IBM System/370, ESA/390, and z/Architecture
+series of mainframe computers. It is capable of running any IBM operating
+system and applications that a real system will run, as long as the hardwre
+needed is emulated. Hercules can emulate FBA and CKD DASD, tape, printer,
+card reader, card punch, channel-to-channel adapter, LCS Ethernet, and
+printer-keyboard, 3270 terminal, and 3287 printer devices.
+
+This package contains documentation for Hercules.
 
 %prep
 %setup
@@ -84,8 +90,7 @@ MODPATH   %{_libdir}/hercules
 #0581 3420 /dev/st0
 #0582 3420 ickdsf.ipl
 # networking, channel-to-channel adapter
-0600  3088 CTCI /dev/net/tun 1500 192.168.200.3 192.168.200.4 255.255.255.255
-0601  3088 CTCI /dev/net/tun 1500 192.168.200.3 192.168.200.4 255.255.255.255
+0600  3088 CTCI -n /dev/net/tun -t 1500 192.168.200.3 192.168.200.4
 # networking, LCS adaptor
 #0700 3088 LCS 192.168.200.4 -n /dev/net/tun -m 01:02:03:04:05:06
 EOF
@@ -170,32 +175,34 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-
-%{__install} -D -m0644 hercules-rh.cnf %{buildroot}%{_sysconfdir}/hercules/hercules.cnf
-%{__install} -D -m0644 hercules.ins %{buildroot}%{_sysconfdir}/hercules/hercules.ins
-%{__install} -D -m0644 hercules.prm %{buildroot}%{_sysconfdir}/hercules/hercules.prm
-%{__install} -D -m0644 hercules.tdf %{buildroot}%{_sysconfdir}/hercules/hercules.tdf
-%{__install} -D -m0755 hercules.init %{buildroot}%{_sysconfdir}/hercules/hercules.init
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/hercules/
+%{__install} -m0755 hercules.init %{buildroot}%{_sysconfdir}/hercules/
+%{__install} -m0644 hercules-rh.cnf hercules.{ins,prm,tdf} \
+    %{buildroot}%{_sysconfdir}/hercules/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc CHANGES INSTALL README* RELEASE* hercules.cnf util/
-%doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/hercules/
+%doc CHANGES README* RELEASE* hercules.cnf util/
+%dir %{_sysconfdir}/hercules/
+%config(noreplace) %{_sysconfdir}/hercules/*
 %{_bindir}/*
 %{_datadir}/hercules/
 %{_libdir}/hercules/
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
+%{_mandir}/man?/*
 
 %files docs
 %defattr(-, root, root, 0755)
-%doc html/
+%doc html/*
 
 %changelog
+* Sat Jul 17 2004 Matthias Saou <http://freshrpms.net/> 3.01-2
+- Updated config's ctc entry to the new syntax.
+
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 3.01-1
 - Updated to release 3.01.
 - Added default configuration from Florian La Roche.

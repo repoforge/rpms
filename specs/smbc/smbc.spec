@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: <smbc-list$lists,sourceforge,net>
 

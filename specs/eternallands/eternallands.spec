@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Screenshot: http://www.eternal-lands.com/gfx/screenshots/01.jpg
 # ScreenshotURL: http://www.eternal-lands.com/index.php?content=screenshots
