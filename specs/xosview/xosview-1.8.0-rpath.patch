@@ -1,0 +1,25 @@
+--- xosview-1.8.0/config/configure.in.orig	2002-02-18 03:11:13.000000000 +0100
++++ xosview-1.8.0/config/configure.in	2004-02-24 18:44:31.392502243 +0100
+@@ -10,8 +10,8 @@
+ ICE_CXX_LONG_LONG
+ AC_PATH_X
+ CXXFLAGS="$CXXFLAGS -I$x_includes"
+-LIBS="-L$x_libraries -R$x_libraries $LIBS"
+-ELF_LINK_FLAGS="-Wl,-R$x_libraries"
++LIBS="-L$x_libraries"
++#ELF_LINK_FLAGS="-Wl,-R$x_libraries"
+ dnl AC_PREFIX_DEFAULT(/usr/X11)	dnl No longer needed with our
+ dnl 				x_includes magic in Makefile.top.in.
+ dnl  Check for /usr/X11R6.  If it exists, make that the default prefix.
+--- xosview-1.8.0/configure.rpath	2004-02-24 18:50:32.900789381 +0100
++++ xosview-1.8.0/configure	2004-02-24 18:50:49.020152232 +0100
+@@ -1197,8 +1197,7 @@
+ fi
+ 
+ CXXFLAGS="$CXXFLAGS -I$x_includes"
+-LIBS="-L$x_libraries -R$x_libraries $LIBS"
+-ELF_LINK_FLAGS="-Wl,-R$x_libraries"
++LIBS="-L$x_libraries"
+ 
+ if test -r /usr/X11R6 ; then
+     ac_default_prefix=/usr/X11R6

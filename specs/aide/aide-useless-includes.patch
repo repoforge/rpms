@@ -1,0 +1,11 @@
+--- aide-0.9/src/Makefile.in.orig	2002-06-06 11:08:32.000000000 +0200
++++ aide-0.9/src/Makefile.in	2002-06-06 11:08:48.000000000 +0200
+@@ -98,7 +98,7 @@
+ aide_SOURCES =  		conf_yacc.y			conf_lex.l			getopt.c			getopt1.c			gnu_regex.c			error.c				md.c				db.c				commandconf.c			db_file.c			db_disk.c			db_lex.l			db_sql.c			gen_list.c			list.c				do_md.c				base64.c			symboltable.c			compare_db.c			be.c				util.c				aide.c
+ 
+ 
+-INCLUDES = -I$(prefix)/include -I$(top_srcdir)/include
++INCLUDES = -I$(top_srcdir)/include
+ 
+ LDADD = @CRYPTLIB@ @ACLLIB@
+ 

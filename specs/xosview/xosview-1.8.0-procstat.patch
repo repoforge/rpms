@@ -1,0 +1,91 @@
+--- xosview-1.8.0/linux/cpumeter.cc.orig	Wed Feb 24 23:16:20 1999
++++ xosview-1.8.0/linux/cpumeter.cc	Sun Jun  2 22:43:46 2002
+@@ -15,6 +15,7 @@
+ #include <ctype.h>
+ 
+ static const char STATFILENAME[] = "/proc/stat";
++#define MAX_PROCSTAT_LENGTH 4096
+ 
+ CPUMeter::CPUMeter(XOSView *parent, const char *cpuID)
+ : FieldMeterGraph( parent, 4, toUpper(cpuID), "USR/NICE/SYS/FREE" ) {
+@@ -49,7 +50,7 @@
+ 
+ void CPUMeter::getcputime( void ){
+   total_ = 0;
+-  char tmp[1024];
++  char tmp[MAX_PROCSTAT_LENGTH];
+   ifstream stats( STATFILENAME );
+ 
+   if ( !stats ){
+@@ -59,11 +60,11 @@
+ 
+   // read until we are at the right line.
+   for (int i = 0 ; i < _lineNum ; i++)
+-    stats.getline(tmp, 1024);
++    stats.getline(tmp, MAX_PROCSTAT_LENGTH);
+ 
+-  stats >>tmp >>cputime_[cpuindex_][0]  
+-	      >>cputime_[cpuindex_][1]  
+-	      >>cputime_[cpuindex_][2]  
++  stats >>tmp >>cputime_[cpuindex_][0]
++	      >>cputime_[cpuindex_][1]
++	      >>cputime_[cpuindex_][2]
+ 	      >>cputime_[cpuindex_][3];
+ 
+   int oldindex = (cpuindex_+1)%2;
+@@ -87,9 +88,9 @@
+   }
+ 
+   int line = -1;
+-  char buf[1024];
++  char buf[MAX_PROCSTAT_LENGTH];
+   while (!stats.eof()){
+-    stats.getline(buf, 1024);
++    stats.getline(buf, MAX_PROCSTAT_LENGTH);
+     if (!stats.eof()){
+       line++;
+       if (!strncmp(cpuID, buf, strlen(cpuID)) && buf[strlen(cpuID)] == ' ')
+@@ -99,9 +100,9 @@
+   return -1;
+ }
+ 
+-// Checks for the SMP kernel patch by forissier@isia.cma.fr.  
++// Checks for the SMP kernel patch by forissier@isia.cma.fr.
+ // http://www-isia.cma.fr/~forissie/smp_kernel_patch/
+-// If it finds that this patch has been applied to the current kernel 
++// If it finds that this patch has been applied to the current kernel
+ // then returns the number of cpus that are on this machine.
+ int CPUMeter::countCPUs(void){
+   ifstream stats( STATFILENAME );
+@@ -112,9 +113,9 @@
+   }
+ 
+   int cpuCount = 0;
+-  char buf[1024];
++  char buf[MAX_PROCSTAT_LENGTH];
+   while (!stats.eof()){
+-    stats.getline(buf, 1024);
++    stats.getline(buf, MAX_PROCSTAT_LENGTH);
+     if (!stats.eof()){
+       if (!strncmp(buf, "cpu", 3) && buf[3] != ' ')
+           cpuCount++;
+@@ -127,7 +128,7 @@
+ const char *CPUMeter::cpuStr(int num){
+   static char buffer[32];
+   ostrstream str(buffer, 32);
+-  
++
+   str << "cpu";
+   if (num != 0)
+     str << (num - 1);
+@@ -137,8 +138,8 @@
+ }
+ 
+ const char *CPUMeter::toUpper(const char *str){
+-  static char buffer[1024];
+-  strncpy(buffer, str, 1024);
++  static char buffer[MAX_PROCSTAT_LENGTH];
++  strncpy(buffer, str, MAX_PROCSTAT_LENGTH);
+   for (char *tmp = buffer ; *tmp != '\0' ; tmp++)
+     *tmp = toupper(*tmp);
+ 

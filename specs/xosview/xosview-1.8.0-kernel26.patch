@@ -1,0 +1,37 @@
+--- xosview-1.8.0/linux/diskmeter.cc.kernel26	2004-01-20 11:21:01.176672751 +0100
++++ xosview-1.8.0/linux/diskmeter.cc	2004-01-20 11:21:48.949830071 +0100
+@@ -64,6 +64,8 @@
+         {
+         stats.ignore(1024, '\n');
+         stats >> buf;
++        if (stats.eof())
++           break;
+         }
+ 
+ 	// read values
+--- xosview-1.8.0/linux/cpumeter.cc.kernel26	2004-01-20 11:23:36.035973182 +0100
++++ xosview-1.8.0/linux/cpumeter.cc	2004-01-20 11:25:10.643379468 +0100
+@@ -61,8 +61,11 @@
+   }
+ 
+   // read until we are at the right line.
+-  for (int i = 0 ; i < _lineNum ; i++)
++  for (int i = 0 ; i < _lineNum ; i++) {
++    if (stats.eof())
++       break;
+     stats.getline(tmp, MAX_PROCSTAT_LENGTH);
++  }
+ 
+   stats >>tmp >>cputime_[cpuindex_][0]
+ 	      >>cputime_[cpuindex_][1]
+--- xosview-1.8.0/linux/pagemeter.cc.kernel26	2004-01-20 11:25:27.043716194 +0100
++++ xosview-1.8.0/linux/pagemeter.cc	2004-01-20 11:26:12.630092678 +0100
+@@ -58,7 +58,7 @@
+ 
+   do {
+     stats >>buf;
+-  } while (strncasecmp(buf, "swap", 5));
++  } while (!stats.eof() && strncasecmp(buf, "swap", 5));
+ 	  
+   stats >>pageinfo_[pageindex_][0] >>pageinfo_[pageindex_][1];
+ 

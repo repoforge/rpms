@@ -8,9 +8,11 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor freshrpms
+
 Summary: Mindmapping tool for creating texts
 Name: kdissert
-Version: 0.2.5
+Version: 0.2.7
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -46,6 +48,11 @@ EOF
 
 %build
 source "/etc/profile.d/qt.sh"
+%{__libtoolize} --force --copy
+#%{__aclocal} --force
+%{__automake} --add-missing
+%{__autoconf}
+%{__autoheader}
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -59,11 +66,9 @@ source "/etc/profile.d/qt.sh"
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 kdissert.desktop %{buildroot}%{_datadir}/applications/kdissert.desktop
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/gxine.desktop}
-
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor kde                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--dir %{buildroot}%{_datadir}/applications \
 		--add-category X-Red-Hat-Base              \
 		kdissert.desktop
@@ -93,9 +98,12 @@ source "/etc/profile.d/qt.sh"
 %{_datadir}/mimelnk/application/x-kdissert.desktop
 %{_datadir}/pixmaps/kdissert.png
 %{_libdir}/libkdiss*.so
-%{!?_without_freedesktop:%{_datadir}/applications/kde-kdissert.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-kdissert.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/kdissert.desktop}
 
 %changelog
+* Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.2.7-1
+- Updated to release 0.2.7.
+
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.2.5-1
 - Initial package. (using DAR)

@@ -1,0 +1,25 @@
+--- xosview-1.8.0/config/Makefile.linux.in.s390	2002-02-24 17:00:47.000000000 -0500
++++ xosview-1.8.0/config/Makefile.linux.in	2003-01-06 13:27:20.000000000 -0500
+@@ -23,9 +23,9 @@
+ lmstemp.o \
+ MeterMaker.o
+ 
+-FAIL_ARCHS =3D m68k sparc
++FAIL_ARCHS =3D m68k sparc s390 s390x powerpc powerpc64
+ ifneq (,$(findstring @host_cpu@, $(FAIL_ARCHS)))
+-# nothing else for m68k
++# nothing else for FAIL_ARCHS
+ else
+ OBJS += serialmeter.o
+ endif
+--- xosview-1.8.0/linux/MeterMaker.cc.s390	2003-01-06 13:24:14.000000000 -0500
++++ xosview-1.8.0/linux/MeterMaker.cc	2003-01-06 13:24:49.000000000 -0500
+@@ -57,7 +57,7 @@
+       push(new DiskMeter(_xos, atof(_xos->getResource("diskBandwidth"))));
+ 
+   // check for the serial meters.
+-#if !defined(__mc68000__) && !defined(__powerpc__)
++#if !defined(__mc68000__) && !defined(__powerpc__) && !defined(__s390__) && !defined(__s390x__)
+   for (int i = 0 ; i < SerialMeter::numDevices() ; i++)
+     if (_xos->isResourceTrue(SerialMeter::getResourceName(
+       (SerialMeter::Device)i)))

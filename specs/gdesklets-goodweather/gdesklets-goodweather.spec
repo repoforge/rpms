@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name GoodWeather
 
 Summary: GoodWeather sensor and display for gdesklets
 Name: gdesklets-goodweather
-Version: 0.3
-Release: 0
+Version: 0.4
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -15,7 +14,7 @@ URL: http://gdesklets.gnomedesktop.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pycage.de/download/gdesklets/%{real_name}-%{version}.tar.bz2
+Source: http://gdesklets.gnomedesktop.org/files/GoodWeather-%{version}.tar.bz2
 Source1: Makefile_install_scripts.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -52,10 +51,13 @@ To add the display, use :
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_bindir}/*
-%{_datadir}/gdesklets/Displays/*
-%{_datadir}/gdesklets/Sensors/*
+%{_bindir}/gdesklets-add-GoodWeather-display
+%{_datadir}/gdesklets/Displays/GoodWeather/
+%{_datadir}/gdesklets/Sensors/GoodWeather/
 
 %changelog
+* Thu Aug 19 2004 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+
 * Wed Dec 03 2003 Dag Wieers <dag@wieers.com> - 0.3-0
 - Initial package. (using DAR)

@@ -2,14 +2,12 @@
 # Authority: dag
 # Upstream: <amavis-user$lists,sourceforge,net>
 
-%define real_release p10
-
 %define logmsg logger -t %{name}/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 20030616
-Release: 9.%{real_release}
+Version: 2.2.0
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -17,7 +15,7 @@ URL: http://www.ijs.si/software/amavisd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}-%{real_release}.tar.gz
+Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: sendmail-devel >= 8.12, sendmail
@@ -56,11 +54,24 @@ The Amavisd-new sendmail-milter Daemon
 ### FIXME: Some versions of install fail to change permissions when failing to change ownership. (Please fix upstream)
 %{__perl} -pi.orig -e 's| -o root | |g' helper-progs/Makefile.in
 
+%{__cat} <<EOF >amavisd.logrotate
+%{_localstatedir}/log/amavis.log {
+        create 600 vscan vscan
+	missingok
+	copytruncate
+	notifempty
+}
+EOF
+
+%{__cat} <<EOF >amavisd.cron
+/usr/sbin/tmpwatch 720 %{_localstatedir}/virusmails/
+EOF
+
 %{__cat} <<'EOF' >amavisd.sysconfig
 ### Uncomment this if you want to use amavis with sendmail milter interface.
 ### See README.milter for details.
 #
-#MILTER_SOCKET="local:/var/spool/amavis/amavis-milter.sock"
+#MILTER_SOCKET="local:/var/amavis/amavis-milter.sock"
 #MILTER_SOCKET="10024@127.0.0.1"
 
 ### These are other defaults.
@@ -79,7 +90,7 @@ EOF
 # description: AMaViS virus scanner.
 #
 # processname: amavisd
-# config: %{_sysconfdir}/amavis.conf
+# config: %{_sysconfdir}/amavisd.conf
 # pidfile: %{_localstatedir}/run/amavisd.pid
 
 source %{_initrddir}/functions
@@ -88,13 +99,16 @@ source %{_initrddir}/functions
 [ -r %{_sysconfdir}/amavisd.conf ] || exit 1
 
 ### Default variables
-AMAVIS_ACCOUNT="amavis"
+AMAVIS_USER="vscan"
 MILTER_SOCKET=""
 MILTER_FLAGS=""
 SYSCONFIG="%{_sysconfdir}/sysconfig/amavisd"
 
 ### Read configuration
 [ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
+
+### Backward compatibility
+[ "$AMAVIS_ACCOUNT" ] && AMAVIS_USER="$AMAVIS_ACCOUNT"
 
 RETVAL=0
 prog="amavisd"
@@ -104,13 +118,13 @@ desc="Mail Virus Scanner"
 start() {
 	if [ "$MILTER_SOCKET" -a -x "%{_sbindir}/$prog2" ]; then
 		echo -n $"Starting $desc ($prog2): "
-		daemon --user "$AMAVIS_ACCOUNT" %{_sbindir}/$prog2 -p "$MILTER_SOCKET" $MILTER_FLAGS
+		daemon --user "$AMAVIS_USER" %{_sbindir}/$prog2 -p "$MILTER_SOCKET" $MILTER_FLAGS
 		RETVAL=$?
 		echo
 		[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog2
 	fi
 	echo -n $"Starting $desc ($prog): "
-	daemon --user "$AMAVIS_ACCOUNT" %{_sbindir}/$prog
+	daemon --user "$AMAVIS_USER" %{_sbindir}/$prog
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -180,9 +194,9 @@ EOF
 cd helper-progs
 %configure \
 	--with-milterlib="%{_libdir}" \
-	--with-user="amavis" \
-	--with-sockname="%{_localstatedir}/spool/amavis/amavisd.sock" \
-	--with-runtime-dir="%{_localstatedir}/spool/amavis" \
+	--with-user="vscan" \
+	--with-sockname="%{_localstatedir}/amavis/amavisd.sock" \
+	--with-runtime-dir="%{_localstatedir}/amavis" \
 	--enable-postfix \
 	--enable-all
 %{__make} %{?_smp_mflags}
@@ -192,32 +206,38 @@ cd helper-progs
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 %makeinstall -C helper-progs
 
+#%{__perl} -pi.orig -e '
+#		s|=\s+'\''vscan'\''|= "amavis"|;
+#		s|=\s+'\''sweep'\''|= "amavis"|; 
+#		s|^#*(\$MYHOME)\s+=.*$|$1 = "%{_localstatedir}/amavis";|;
+#		s|^#*(\$QUARANTINEDIR)\s+=.*$|$1 = "%{_localstatedir}/virusmails";|;
+#	' amavisd.conf
 %{__perl} -pi.orig -e '
-		s|= '\''vscan'\''|= "amavis"|;
-		s|= '\''sweep'\''|= "amavis"|; 
-		s|^#*(\$MYHOME) =.*$|$1 = "%{_localstatedir}/spool/amavis";|;
-		s|^#*(\$QUARANTINEDIR) =.*$|$1 = "%{_localstatedir}/spool/amavis/virusmails";|;
+		s|^(#*\$SYSLOG.+)$|$1\n\$LOGFILE = "%{_localstatedir}/log/amavis.log";|;
 	' amavisd.conf
 
-%{__install} -d -m0700 %{buildroot}%{_localstatedir}/spool/amavis/virusmails/
+%{__install} -d -m0700 %{buildroot}%{_localstatedir}/virusmails/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/amavis/{db,tmp,var}/
 
 %{__install} -D -m0755 amavisd %{buildroot}%{_sbindir}/amavisd
 %{__install} -D -m0755 amavisd.sysv %{buildroot}%{_initrddir}/amavisd
 %{__install} -D -m0700 amavisd.conf %{buildroot}%{_sysconfdir}/amavisd.conf
 %{__install} -D -m0644 LDAP.schema %{buildroot}%{_sysconfdir}/openldap/schema/amavisd-new.schema
 %{__install} -D -m0644 amavisd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/amavisd
+%{__install} -D -m0644 amavisd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/amavisd
+%{__install} -D -m0755 amavisd.cron %{buildroot}%{_sysconfdir}/cron.daily/amavisd
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %pre
-/usr/sbin/useradd -c "AMaViS email scanner user" -M -s /bin/sh -r amavis \
-		-d "/var/spool/amavis" &>/dev/null || :
+/usr/sbin/useradd -c "Virus scan user" -M -s /bin/sh -r vscan \
+		-d "/var/tmp" &>/dev/null || :
 
 %post
 /sbin/chkconfig --add amavisd
 
-if [ -r /etc/postfixes/aliases ]; then
+if [ -r /etc/postfix/aliases ]; then
 	if ! grep -q "^virusalert:" /etc/postfix/aliases; then
 		echo -e "virusalert:\troot" >> /etc/postfix/aliases
 		if [ -x /usr/bin/newaliases ]; then
@@ -242,7 +262,7 @@ fi
 %post milter
 if [ -f /etc/mail/sendmail.mc ]; then
 	if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
-		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/spool/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
+		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
 	fi
 fi
 
@@ -257,27 +277,43 @@ if [ $1 -ne 0 ]; then
     /sbin/service amavisd condrestart &>/dev/null || :
 fi
 
+### Remove obsolete amavis user
+/usr/sbin/userdel amavis &>/dev/null || :
+
 %files
 %defattr(-, root, root, 0755)
 %doc AAAREADME.first LDAP.schema LICENSE MANIFEST RELEASE_NOTES README_FILES/* test-messages/
 %config %{_initrddir}/amavisd
 %config %{_sysconfdir}/openldap/schema/*.schema
+%config(noreplace) %{_sysconfdir}/logrotate.d/amavisd
+%config(noreplace) %{_sysconfdir}/cron.daily/amavisd
 %{_sbindir}/amavis
 %{_sbindir}/amavisd
 
-%defattr(0640, amavis, amavis, 0755)
+%defattr(0640, vscan, vscan, 0755)
 %config(noreplace) %{_sysconfdir}/amavisd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/amavisd
 
-%defattr(0700, amavis, amavis, 0700)
-%dir %{_localstatedir}/spool/amavis/
-%dir %{_localstatedir}/spool/amavis/virusmails/
+%defattr(0750, vscan, vscan, 0750)
+%dir %{_localstatedir}/amavis/
+%dir %{_localstatedir}/amavis/db/
+%dir %{_localstatedir}/amavis/tmp/
+%dir %{_localstatedir}/amavis/var/
+%dir %{_localstatedir}/virusmails/
 
 %files milter
 %defattr(-, root, root, 0755)
 %{_sbindir}/amavis-milter
 
 %changelog
+* Thu Nov 04 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Change of version format, requires manual intervention.
+- Directory changes to conform to amavisd standard.
+- Now using user vscan instead of amavis.
+- Added logrotate config for amavisd. (Anders Nielsen)
+- Added a clean-up cron script for /var/virusmails. (Anders Nielsen)
+- Updated to release 2.2.0.
+
 * Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 20030616-9.p10
 - Updated to release 20030616-p10.
 

@@ -1,0 +1,90 @@
+--- xosview-1.8.0/linux/cpumeter.cc.gcc	2003-05-22 22:42:40.000000000 +0200
++++ xosview-1.8.0/linux/cpumeter.cc	2003-05-22 23:07:10.000000000 +0200
+@@ -11,9 +11,11 @@
+ #include <fstream.h>
+ #include <stdlib.h>
+ #include <string.h>
+-#include <strstream.h>
++#include <strstream>
+ #include <ctype.h>
+ 
++using namespace std;
++
+ static const char STATFILENAME[] = "/proc/stat";
+ #define MAX_PROCSTAT_LENGTH 4096
+ 
+--- xosview-1.8.0/linux/memmeter.cc.gcc	2003-05-22 23:00:40.000000000 +0200
++++ xosview-1.8.0/linux/memmeter.cc	2003-05-22 23:01:22.000000000 +0200
+@@ -8,9 +8,11 @@
+ #include "memmeter.h"
+ #include "xosview.h"
+ #include <fstream.h>
+-#include <strstream.h>
++#include <strstream>
+ #include <stdlib.h>
+ 
++using namespace std;
++
+ static const char MEMFILENAME[] = "/proc/meminfo";
+ static const char MEMSTATFNAME[] = "/proc/memstat";
+ 
+--- xosview-1.8.0/linux/swapmeter.cc.gcc	2003-05-22 23:01:38.000000000 +0200
++++ xosview-1.8.0/linux/swapmeter.cc	2003-05-22 23:01:45.000000000 +0200
+@@ -10,7 +10,7 @@
+ #include "swapmeter.h"
+ #include "xosview.h"
+ #include <fstream.h>
+-#include <strstream.h>
++#include <strstream>
+ #include <stdlib.h>
+ 
+ #ifdef USESYSCALLS
+--- xosview-1.8.0/linux/intmeter.cc.gcc	2003-05-22 23:02:00.000000000 +0200
++++ xosview-1.8.0/linux/intmeter.cc	2003-05-22 23:02:31.000000000 +0200
+@@ -10,12 +10,13 @@
+ #include "xosview.h"
+ #include "cpumeter.h"
+ #include <fstream.h>
+-#include <strstream.h>
++#include <strstream>
+ #include <stdlib.h>
+ #ifdef __alpha__
+ #include <asm/irq.h>
+ #endif 
+ 
++using namespace std;
+ 
+ static const char *INTFILE     = "/proc/interrupts";
+ static const char *VERSIONFILE = "/proc/version";
+--- xosview-1.8.0/linux/raidmeter.cc.gcc	2003-05-22 23:02:47.000000000 +0200
++++ xosview-1.8.0/linux/raidmeter.cc	2003-05-22 23:03:05.000000000 +0200
+@@ -8,11 +8,13 @@
+ #include "raidmeter.h"
+ #include "xosview.h"
+ #include <fstream.h>
+-#include <strstream.h>
++#include <strstream>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ 
++using namespace std;
++
+ RAIDMeter::RAIDMeter( XOSView *parent, int raiddev)
+   : BitFieldMeter( parent, 1, 2, "RAID") {
+   _raiddev = raiddev;
+--- xosview-1.8.0/linux/serialmeter.cc.gcc	2003-05-22 23:03:21.000000000 +0200
++++ xosview-1.8.0/linux/serialmeter.cc	2003-05-22 23:03:46.000000000 +0200
+@@ -16,9 +16,11 @@
+ #include <sys/ioctl.h>
+ #include <errno.h>
+ #include <stdlib.h>
+-#include <strstream.h>
++#include <strstream>
+ #include <iomanip.h>
+ 
++using namespace std;
++
+ // This should go away after types.h gets fixed in the kernel.
+ #ifdef __alpha__
+ typedef unsigned char u8;

@@ -1,0 +1,28 @@
+--- ./linux/serialmeter.cc.fred	Tue Feb 16 15:09:26 1999
++++ ./linux/serialmeter.cc	Fri Jan 21 12:03:45 2000
+@@ -32,11 +32,11 @@
+ #include <unistd.h>
+ #if defined(GNULIBC) || defined(__GLIBC__)
+ #include <sys/io.h>
+-#ifndef __alpha__
++#if !defined(__alpha__) && !defined(__sparc__) && !defined(__powerpc__) && !defined(__ia64__)
+ #include <sys/perm.h>
+ #endif
+ #else
+-#ifndef __alpha__
++#if !defined(__alpha__) && !defined(__sparc__) && !defined(__powerpc__) && !defined(__ia64__)
+ #include <asm/io.h>
+ #endif
+ #endif
+@@ -72,7 +72,11 @@
+ }
+ 
+ bool SerialMeter::getport(unsigned short int port){
++#if !defined(__i386__) && !defined(__ia64__)
++  return 1;
++#else
+   return ioperm(port, 1, 1) != -1;
++#endif
+ }
+ 
+ void SerialMeter::getserial( void ){

@@ -3,6 +3,7 @@
 # Upstream: <clamav-devel$lists,sf,net>
 
 ### FIXME: Sysv script does not have condrestart option (redo sysv script)
+### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
 
 %{?el2:%define _without_milter 1}
 

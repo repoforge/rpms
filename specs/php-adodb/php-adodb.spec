@@ -2,11 +2,11 @@
 # Authority: dag
 
 %define real_name adodb
-%define real_version 422
+%define real_version 452
 
 Summary: Portable Database Library for PHP
 Name: php-adodb
-Version: 4.22
+Version: 4.52
 Release: 1
 License: BSD or LGPL
 Group: Development/Languages
@@ -55,6 +55,9 @@ Sybase, DB2 and generic ODBC.
 %{_localstatedir}/www/adodb/
 
 %changelog
+* Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 4.52-1
+- Updated to release 4.52.
+
 * Mon May 03 2004 Dag Wieers <dag@wieers.com> - 4.22-1
 - Updated to release 4.22.
 

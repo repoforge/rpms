@@ -1,0 +1,50 @@
+# $Id$
+# Authority: dag
+
+%define real_version 20030825
+
+Summary: Enhanced NetBSD ftp client
+Name: tnftp
+Version: 0.0.20030825
+Release: 1
+License: BSD
+Group: Applications/Internet
+URL: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/tnftp-%{real_version}.tar.gz
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Requires: libtermcap
+
+%description 
+tnftp is a port of the NetBSD FTP client to other systems.
+tnftp was formerly known as `lukemftp' and was renamed by Luke Mewburn
+in February 2003.
+
+%prep 
+%setup -n %{name}-%{real_version}
+
+%build 
+%configure 
+%{__make} %{?_smp_mflags}
+
+%install 
+%{__rm} -rf %{buildroot}
+%{__install} -D -m0755 src/ftp %{buildroot}%{_bindir}/tnftp
+%{__install} -D -m0644 src/ftp.1 %{buildroot}%{_mandir}/man1/tnftp.1
+
+%clean 
+%{__rm} -rf %{buildroot}
+
+%files 
+%defattr(-, root, root, 0755) 
+%doc ChangeLog COPYING README THANKS todo
+%doc %{_mandir}/man1/tnftp.1*
+%{_bindir}/tnftp
+
+%changelog 
+* Sat Oct 09 2004 Dag Wieers <dag@wieers.com> - 0.0.20030825-1
+- Contributed package by Florin Andrei.

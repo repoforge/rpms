@@ -1,0 +1,20 @@
+--- xosview-1.8.0/config/aclocal.m4.orig	2002-06-20 14:15:27.000000000 +0200
++++ xosview-1.8.0/config/aclocal.m4	2002-06-20 14:16:05.000000000 +0200
+@@ -139,7 +139,7 @@
+ #endif
+ ], [USE_MOD_VERSIONS=-DMODVERSIONS] AC_MSG_RESULT(yes), AC_MSG_RESULT(no))
+ SMP_LINUX
+-INSTALL_ARGS='-s -m 4755'
++INSTALL_ARGS='-m 755'
+ fi
+ ,
+ AC_SYS_LINUX_VERS
+@@ -165,7 +165,7 @@
+         echo "disabled the Linux $LVERSION memstat module by default"
+ fi
+ )
+-INSTALL_ARGS='-s -m 4755'
++INSTALL_ARGS='-m 755'
+ if test "$smp" = "yes"
+ then
+ LINUX_SMP="-D__SMP__"

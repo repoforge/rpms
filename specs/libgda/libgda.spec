@@ -4,9 +4,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh7:%define _without_mdbtools 1}
+%{?el2:%define _without_mdbtools 1}
+%{?rh6:%define _without_mdbtools 1}
+
 Summary: Library for writing gnome database programs
 Name: libgda
-Version: 1.1.4
+Version: 1.1.6
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -22,11 +26,7 @@ BuildRequires: pkgconfig >= 0.8, glib2-devel >= 2.0, ncurses-devel
 BuildRequires: libxml2-devel, libxslt-devel >= 1.0.9
 BuildRequires: mysql-devel, postgresql-devel, unixODBC-devel, sqlite-devel
 BuildRequires: freetds-devel, xbase-devel
-%{?fc2:BuildRequires: mdbtools-devel}
-%{?fc1:BuildRequires: mdbtools-devel}
-%{?el3:BuildRequires: mdbtools-devel}
-%{?rh9:BuildRequires: mdbtools-devel}
-%{?rh8:BuildRequires: mdbtools-devel}
+%{!?_without_mdbtools:BuildRequires: mdbtools-devel}
 BuildRequires: scrollkeeper
 
 Requires(post): scrollkeeper
@@ -111,6 +111,9 @@ scrollkeeper-update -q || :
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 1.1.6-1
+- Updated to release 1.1.6.
+
 * Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 

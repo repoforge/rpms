@@ -1,0 +1,12 @@
+--- CGI-Kwiki-0.18/lib/CGI/Kwiki/Privacy.pm.orig	2003-08-25 15:45:08.000000000 -0500
++++ CGI-Kwiki-0.18/lib/CGI/Kwiki/Privacy.pm	2004-04-04 14:41:30.000000000 -0500
+@@ -96,6 +96,9 @@
+ # Name of the current script
+ sub script {
+     my $script = $0;
++    if ($script eq '/dev/null' or $script eq '-e') { # probably mod_perl
++        $script = Apache->request->filename;
++    }
+     $script =~ s/.*[\\\/]//;
+     return $script;
+ }

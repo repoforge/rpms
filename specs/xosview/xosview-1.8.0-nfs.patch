@@ -1,0 +1,380 @@
+--- xosview-1.8.0/config/Makefile.linux.in.org	2002-02-24 17:00:47.000000000 -0500
++++ xosview-1.8.0/config/Makefile.linux.in	2003-07-02 13:45:12.000000000 -0400
+@@ -15,6 +15,7 @@
+ swapmeter.o \
+ pagemeter.o \
+ netmeter.o \
++nfsmeter.o \
+ intmeter.o \
+ loadmeter.o \
+ btrymeter.o \
+--- xosview-1.8.0/linux/MeterMaker.cc.org	2002-02-24 17:00:47.000000000 -0500
++++ xosview-1.8.0/linux/MeterMaker.cc	2003-01-30 15:43:38.000000000 -0500
+@@ -21,6 +21,7 @@
+ #include "diskmeter.h"
+ #include "raidmeter.h"
+ #include "lmstemp.h"
++#include "nfsmeter.h"
+ 
+ #include <stdlib.h>
+ 
+@@ -99,4 +100,11 @@
+       push(new LmsTemp(_xos, res, lab, caption));
+     }
+   }
++  // check for the NFS mesters
++  if (_xos->isResourceTrue("NFSDStats")){
++      push(new NFSDStats(_xos));
++  }
++  if (_xos->isResourceTrue("NFSStats")){
++      push(new NFSStats(_xos));
++  }
+ }
+--- xosview-1.8.0/linux/nfsmeter.cc.org	2003-07-02 13:44:31.000000000 -0400
++++ xosview-1.8.0/linux/nfsmeter.cc	2003-01-31 12:18:36.000000000 -0500
+@@ -0,0 +1,248 @@
++//
++//  Copyright (c) 1994, 1995, 2002 by Mike Romberg ( romberg@fsl.noaa.gov )
++//
++//  Modifications to support dynamic addresses by:
++//    Michael N. Lipp (mnl@dtro.e-technik.th-darmstadt.de)
++//
++//  This file may be distributed under terms of the GPL
++//
++//
++// $Id$
++//
++
++#include "nfsmeter.h"
++#include "xosview.h"
++
++#include <unistd.h>
++#include <fstream.h>
++#include <stdlib.h>
++#include <sys/socket.h>
++#include <sys/ioctl.h>
++#if defined(GNULIBC) || defined(__GLIBC__)
++#include <net/if.h>
++#else
++#include <linux/if.h>
++#endif
++#include <netinet/in.h>
++#include <errno.h>
++#include <iostream.h>
++#include <iomanip.h>
++
++#ifndef MAX
++#define MAX(_a, _b) ((_a) > (_b) ? (_a) : (_b))
++#endif
++
++#define NFSSVCSTAT  "/proc/net/rpc/nfsd"
++#define NFSCLTSTAT  "/proc/net/rpc/nfs"
++
++NFSMeter::NFSMeter(XOSView *parent, const char *name, int nfields, 
++		char *fields, const char *statfile)
++  : FieldMeterGraph( parent, nfields, name, fields ){
++	_statfile = statfile; 
++	_statname = name;
++}
++
++NFSMeter::~NFSMeter( void ){
++}
++
++void NFSMeter::checkResources( void ){
++  FieldMeterGraph::checkResources();
++}
++
++NFSDStats::NFSDStats(XOSView *parent)
++  : NFSMeter(parent, "NFSD", 4, "BAD/UDP/TCP/IDLE", NFSSVCSTAT ){
++	starttimer();
++}
++
++NFSDStats::~NFSDStats( void ) {
++}
++
++void NFSDStats::checkResources( void ){
++  NFSMeter::checkResources();
++
++  setfieldcolor( 0, parent_->getResource( "NFSDStatBadCallsColor" ) );
++  setfieldcolor( 1, parent_->getResource( "NFSDStatUDPColor" ) );
++  setfieldcolor( 2, parent_->getResource( "NFSDStatTCPColor" ) );
++  setfieldcolor( 3, parent_->getResource( "NFSDStatIdleColor" ) );
++
++  useGraph_ = 1;
++  dodecay_ = 1;
++  SetUsedFormat ("autoscale");
++  //SetUsedFormat ("percent");
++}
++void NFSDStats::checkevent(void)
++{
++	char buf[4096], name[64];
++	unsigned long netcnt, netudpcnt, nettcpcnt, nettcpconn;
++	unsigned long calls, badcalls;
++	int found;
++
++    ifstream ifs(_statfile);
++
++    if (!ifs) {
++        // cerr <<"Can not open file : " <<_statfile <<endl;
++        // parent_->done(1);
++        return;
++	}
++
++	fields_[0] = fields_[1] = fields_[2] = 0;  // network activity
++    stoptimer();
++
++	name[0] = '\0';
++	found = 0;
++	while (!ifs.eof() && found != 2) {
++		ifs.getline(buf, 4096, '\n');
++		if (strncmp("net", buf, strlen("net")) == 0) {
++			sscanf(buf, "%s %lu %lu %lu %lu\n", name, 
++				&netcnt, &netudpcnt, &nettcpcnt, &nettcpconn);
++			found++;
++		}
++		if (strncmp("rpc", buf, strlen("rpc")) == 0) {
++			sscanf(buf, "%s %lu %lu\n", name, &calls, &badcalls);
++			found++;
++		}
++	}
++
++    float t = 1000000.0 / usecs();
++
++    if (t < 0)
++        t = 0.1;
++
++	maxpackets_ = MAX(netcnt, calls) - _lastNetCnt;
++	if (maxpackets_ == 0) {
++		maxpackets_ = netcnt;
++	} else {
++		fields_[0] = (badcalls - _lastBad) * t;
++		fields_[1] = (netudpcnt - _lastUdp) * t;
++		fields_[2] = (nettcpcnt - _lastTcp) * t;
++	}
++
++    total_ = fields_[0] + fields_[1] + fields_[2];
++    if (total_ > maxpackets_)
++        fields_[3] = 0;
++    else {
++        total_ = maxpackets_;
++        fields_[3] = total_ - fields_[0] - fields_[1] - fields_[2];
++	}
++
++    if (total_)
++        setUsed(fields_[0] + fields_[1] + fields_[2], total_);
++
++    starttimer();
++    drawfields();
++
++	_lastNetCnt = MAX(netcnt, calls);
++    _lastTcp = nettcpcnt;
++    _lastUdp = netudpcnt;
++    _lastBad = badcalls;
++}
++
++NFSStats::NFSStats(XOSView *parent)
++  : NFSMeter(parent, "NFS", 4, "RETRY/AUTH/CALL/IDLE", NFSCLTSTAT ){
++	starttimer();
++}
++
++NFSStats::~NFSStats( void ) {
++}
++
++void NFSStats::checkResources( void ){
++  NFSMeter::checkResources();
++
++  setfieldcolor( 0, parent_->getResource( "NFSStatReTransColor" ) );
++  setfieldcolor( 1, parent_->getResource( "NFSStatAuthRefrshColor" ) );
++  setfieldcolor( 2, parent_->getResource( "NFSStatCallsColor" ) );
++  setfieldcolor( 3, parent_->getResource( "NFSStatIdleColor" ) );
++
++  useGraph_ = 1;
++  dodecay_ = 1;
++  SetUsedFormat ("autoscale");
++  // SetUsedFormat ("percent");
++}
++
++void NFSStats::checkevent(void)
++{
++	char buf[4096], name[64];
++	unsigned long calls, retrns, authrefresh, maxpackets_;
++	
++    ifstream ifs(_statfile);
++
++    if (!ifs) {
++        // cerr <<"Can not open file : " <<_statfile <<endl;
++        // parent_->done(1);
++        return;
++	}
++
++	fields_[0] = fields_[1] = fields_[2] = 0;
++    stoptimer();
++
++	name[0] = '\0';
++	while (!ifs.eof()) {
++		ifs.getline(buf, 4096, '\n');
++		if (strncmp("rpc", buf, strlen("rpc")))
++			continue;
++		sscanf(buf, "%s %lu %lu %lu\n", name, &calls, &retrns, &authrefresh);
++		break;
++	}
++
++    float t = 1000000.0 / usecs();
++
++    if (t < 0)
++        t = 0.1;
++
++	maxpackets_ = calls - _lastcalls;
++	if (maxpackets_ == 0) {
++		maxpackets_ = calls;
++	} else {
++		fields_[2] = (calls - _lastcalls) * t;
++		fields_[1] = (authrefresh - _lastauthrefresh) * t;
++		fields_[0] = (retrns - _lastretrns) * t;
++	}
++
++    total_ = fields_[0] + fields_[1] + fields_[2];
++    if (total_ > maxpackets_)
++        fields_[3] = 0;
++    else {
++        total_ = maxpackets_;
++        fields_[3] = total_ - fields_[2] - fields_[1] - fields_[0];
++	}
++
++    if (total_)
++        setUsed(fields_[0] + fields_[1] + fields_[2], total_);
++
++    starttimer();
++    drawfields();
++
++	_lastcalls = calls;
++	_lastretrns = retrns;
++	_lastauthrefresh = authrefresh;
++}
++#if 0
++NFSV3::NFSV3( XOSView *parent)
++	: BitMeter( parent, "NFSv3", "", 1, 0, 0 ) {
++
++	setNumBits(23);
++	legend("Version 3");
++
++	for ( int i = 0 ; i < numBits() ; i++ )
++		procs[i] = lastprocs[i] = 0;
++}
++NFSV3::~NFSV3( void ) {
++}
++
++void NFSV3::checkResources( void ){
++  BitMeter::checkResources();
++  onColor_  = parent_->allocColor( parent_->getResource( "NFSv3OnColor" ) );
++  offColor_ = parent_->allocColor( parent_->getResource( "NFSv3OffColor" ) );
++}
++
++void NFSV3::checkevent( void ){
++  getirqs();
++
++  for ( int i = 0 ; i < numBits() ; i++ ){
++    bits_[i] = ((irqs_[i] - lastirqs_[i]) != 0);
++    lastirqs_[i] = irqs_[i];
++  }
++
++  BitMeter::checkevent();
++}
++#endif
+--- xosview-1.8.0/linux/nfsmeter.h.org	2003-07-02 13:48:53.000000000 -0400
++++ xosview-1.8.0/linux/nfsmeter.h	2003-07-02 13:44:42.000000000 -0400
+@@ -0,0 +1,69 @@
++//  
++//
++//  This file may be distributed under terms of the GPL
++//
++//
++// $Id$
++//
++#ifndef _NFSMETER_H_
++#define _NFSMETER_H_
++
++#include "fieldmetergraph.h"
++#include "timer.h"
++
++class Host;
++
++class NFSMeter : public FieldMeterGraph {
++public:
++	NFSMeter(
++		XOSView *parent, 
++		const char *name, 
++		int   nfields, 
++		char *files, 
++		const char *statfile);
++  ~NFSMeter( void );
++
++  const char *name( void ) const { return _statname; }  
++  void checkResources( void );
++  void starttimer(void) { return _timer.start(); };
++  void stoptimer(void) { return _timer.stop(); };
++  double usecs(void) { return _timer.report_usecs(); };
++
++protected:
++  const char *_statname;
++  const char *_statfile;
++
++private:
++  Timer _timer;
++
++};
++
++class NFSStats : public NFSMeter {
++public:
++  NFSStats(XOSView *parent);
++  ~NFSStats(void);
++
++  void checkevent( void );
++
++  void checkResources( void );
++private:
++	unsigned long _lastcalls, _lastretrns, _lastauthrefresh;
++};
++
++class NFSDStats : public NFSMeter {
++public:
++  NFSDStats(XOSView *parent);
++  ~NFSDStats(void);
++
++  void checkevent( void );
++
++  void checkResources( void );
++
++protected:
++  float maxpackets_;
++
++private:
++  unsigned long _lastTcp, _lastUdp, _lastNetCnt, _lastBad;
++};
++
++#endif
+--- xosview-1.8.0/Xdefaults.in.orig	2004-03-11 12:10:01.625819389 +0100
++++ xosview-1.8.0/Xdefaults.in	2004-03-11 12:09:49.398061490 +0100
+@@ -247,3 +247,22 @@
+ xosview*lmstempLabel2:	RTMP
+ xosview*lmstempPriority: 20
+ xosview*lmstempUsedFormat: autoscale
++
++xosview*NFSDStats:       True
++xosview*NFSDStatCallsColor:     green
++xosview*NFSDStatBadCallsColor: red
++xosview*NFSDStatUDPColor:       yellow
++xosview*NFSDStatTCPColor:       orange
++xosview*NFSDStatIdleColor:      aquamarine
++xosview*NFSDNetStats: True
++xosview*NFSDNetUDPColor: yellow
++xosview*NFSDNetTCPColor: orange
++xosview*NFSDNetIdleColor: aquamarine
++! xosview*NFSDNetBandwidth:   10000000  ! for 100Mbit/s Ethernet (could be 12500000)
++xosview*NFSDNetBandwidth:   2000  ! for 100Mbit/s Ethernet (could be 12500000)
++
++xosview*NFSStats:	True
++xosview*NFSStatReTransColor:	aquamarine
++xosview*NFSStatAuthRefrshColor:	seagreen
++xosview*NFSStatCallsColor:	green
++xosview*NFSStatIdleColor:	aquamarine

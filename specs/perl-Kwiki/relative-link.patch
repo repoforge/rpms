@@ -1,0 +1,11 @@
+--- CGI-Kwiki-0.18/lib/CGI/Kwiki/Formatter.pm.orig	2003-09-11 00:18:12.000000000 -0500
++++ CGI-Kwiki-0.18/lib/CGI/Kwiki/Formatter.pm	2004-04-04 13:34:07.000000000 -0500
+@@ -319,7 +319,7 @@
+     $text =~ s/(^\s*|\s+(?=\s)|\s$)//g;
+     my $url = $text;
+     $url = $1 if $text =~ s/(.*?) +//;
+-    $url =~ s/^http:(?!=\/\/)//; # relative links
++    $url =~ s/^https?:(?!\/\/)//; # relative links
+     return qq{<a href="$url">$text</a>};
+ }
+ 
