@@ -17,6 +17,7 @@ Source: http://jan.kneschke.de/projects/modlogan/download/modlogan-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gd-devel >= 1.8.3, libxml2-devel, pcre-devel, adns-devel, perl, libtool
+BuildRequires: gcc-c++
 
 %description
 Modlogan is a modular logfile analyzer written.

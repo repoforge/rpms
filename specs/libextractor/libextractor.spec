@@ -15,7 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.ovmj.org/libextractor/download/libextractor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libvorbis-devel, libogg-devel, zlib-devel
+BuildRequires: libvorbis-devel, libogg-devel, zlib-devel, gcc-c++
 
 %description
 libextractor is a simple library for meta-data extraction.

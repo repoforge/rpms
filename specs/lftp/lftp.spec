@@ -19,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel
+BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel, gcc-c++
 
 %description
 LFTP is a sophisticated ftp/http file transfer program. Like bash, it has job
