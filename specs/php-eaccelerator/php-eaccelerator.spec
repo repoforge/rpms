@@ -2,8 +2,7 @@
 # Authority: matthias
 
 ### FIXME: phpize on fc2/x86_64 is utterly broken as it uses /usr/lib/php4
-
-%define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_prefix}/%{_lib}/php4)
+%define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 %{!?php_version:%define php_version %(php-config --version 2>/dev/null || echo 4.3.10)}
 
 %define module_version 0.9.2a
@@ -34,7 +33,8 @@ that the overhead of compiling is almost completely eliminated.
 
 
 %build
-phpize
+# Workaround for broken phpize on 64 bits
+%{__cat} %{_bindir}/phpize | sed 's|/lib/|/%{_lib}/|g' > phpize && sh phpize
 %configure
 %{__make} %{?_smp_mflags}
 
