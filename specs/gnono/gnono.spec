@@ -1,11 +1,15 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Derrick J. Houy <djhouy@paw.za.org>
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: UNO card game
 Name: gnono
 Version: 0.0.3
-Release: 0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.paw.co.za/projects/gnono/
@@ -17,13 +21,27 @@ Source: ftp://ftp.paw.co.za/pub/PAW/sources/gnono-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-An interesting card game for GNOME
+An interesting card game, like UNO.
 
 %prep
 %setup
 
+### FIXME: Include improved desktop-file. (Please fix upstream)
+%{__cat} <<EOF >gnono.desktop.in
+[Desktop Entry]
+Name=Gnono
+Comment=UNO alike card game
+Exec=gnono
+Icon=gnono.png
+Type=Application
+Terminal=false
+Encoding=UTF-8
+Categories=GNOME;Application;Game;CardGame;
+EOF
+
 %build
-%configure --without-debug
+%configure \
+	--without-debug
 %{__make} %{?_smp_mflags}
 
 %install
@@ -31,8 +49,15 @@ An interesting card game for GNOME
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/doc/
+%{__install} -D -m0644 pixmaps/gnono-icon.png %{buildroot}%{_datadir}/pixmaps/gnono.png
+
+%if %{?!_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor net --delete-original \
+		--add-category X-Red-Hat-Base               \
+		--dir %{buildroot}%{_datadir}/applications  \
+		%{buildroot}%{_datadir}/gnome/apps/Games/gnono.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,9 +66,15 @@ An interesting card game for GNOME
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/*
-%{_datadir}/gnome/apps/Games/gnono.desktop
+%{_datadir}/pixmaps/gnono.png
 %{_datadir}/pixmaps/gnono/
+%exclude %{_prefix}/doc/
+%{!?_without_freedesktop:%{_datadir}/applications/net-gnono.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/gnono.desktop}
 
 %changelog
-* Fri Jan 07 2003 Dag Wieers <dag@wieers.com> - 0.0.3
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.0.3-1
+- Add improved desktop file.
+
+* Fri Jan 07 2003 Dag Wieers <dag@wieers.com> - 0.0.3-0
 - Initial package. (using DAR)

@@ -2,14 +2,14 @@
 # Authority: dag
 # Upstream: Hilaire Fernandes <hilaire@ext.cri74.org>
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
-# Distcc: 0
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Interactive educational geometry software
 Name: drgeo
 Version: 0.9.12
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://www.ofset.org/drgeo/
@@ -34,6 +34,20 @@ situation with students from primary or secondary level.
 %prep
 %setup
 
+### FIXME: Include improved desktop-file. (Please fix upstream)
+%{__cat} <<EOF >drgeo.desktop.in
+[Desktop Entry]
+Name=Dr.Geo Math Tool
+Comment=Learn geometry interactively
+Exec=drgeo
+Icon=drgeo.png
+Type=Application
+Terminal=false
+Encoding=UTF-8
+StartupNotify=true
+Categories=GNOME;Application;Game;Math;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -42,6 +56,16 @@ situation with students from primary or secondary level.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
+
+%{__install} -D -m0644 glade/drgeo.png %{buildroot}%{_datadir}/pixmaps/drgeo.png
+
+%if %{?!_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor gnome --delete-original \
+		--add-category X-Red-Hat-Base                 \
+		--dir %{buildroot}%{_datadir}/applications    \
+		%{buildroot}%{_datadir}/applications/drgeo.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,11 +76,15 @@ situation with students from primary or secondary level.
 #%doc %{_datadir}/gnome/help/*
 %{_bindir}/*
 %{_datadir}/drgeo/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 %{_datadir}/texmacs/TeXmacs/plugins/drgeo/
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-drgeo.desktop}
+%{?_without_freedesktop:%{_datadir}/applications/drgeo.desktop}
 
 %changelog
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.9.12-1
+- Add improved desktop file.
+
 * Sun Jan 31 2004 Dag Wieers <dag@wieers.com> - 0.9.12-0
 - Updated to release 0.9.12.
 

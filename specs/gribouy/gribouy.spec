@@ -5,7 +5,7 @@
 Summary: Graphical Type1 font editor
 Name: gribouy
 Version: 0.0.8
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/gribouy/
@@ -16,6 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://savannah.nongnu.org/download/gribouy/unstable.pkg/0.0/gribouy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: libgnomeui-devel >= 2.0
+
 %description
 Gribouy is a GNOME Type1 font editor.
 
@@ -25,13 +27,14 @@ Gribouy is a GNOME Type1 font editor.
 %{__cat} <<EOF >gribouy.desktop
 [Desktop Entry]
 Name=Gribouy Font Editor
-Comment=Change and design Type1 fonts
+Comment=Design and edit Type1 fonts
 Icon=gribouy.png
 Exec=gribouy
 Terminal=false
 Type=Application
-Categories=GNOME;Graphics;Application;
 StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Graphics;Application;
 EOF
 
 %build
@@ -53,7 +56,6 @@ desktop-file-install --vendor gnome                \
 
 %{__install} -D -m0755 graphics/gribouy.png %{buildroot}%{_datadir}/pixmaps/gribouy.png
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -61,13 +63,16 @@ desktop-file-install --vendor gnome                \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/gnome-gribouy.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/gribouy/
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/gribouy/
 
 %changelog
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.0.8-1
+- Add improved desktop file.
+
 * Sat Nov 22 2003 Dag Wieers <dag@wieers.com> - 0.0.8-0
 - Updated to release 0.0.8.
 

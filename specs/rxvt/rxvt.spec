@@ -1,13 +1,15 @@
 # $Id$
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
-Summary: color VT102 terminal emulator for the X Window System
+Summary: Color VT102 terminal emulator for the X Window System
 Name: rxvt
 Version: 2.7.10
-Release: 0
-Epoch: 4
+Release: 1
+Epoch: 18
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.rxvt.org/
@@ -43,15 +45,17 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
+### FIXME: Include improved desktop-file. (Please fix upstream)
 %{__cat} <<EOF >rxvt.desktop
 [Desktop Entry]
 Name=Rxvt Terminal
 Comment=Small and fast X terminal application
 Exec=rxvt
-Icon=rterm.xpm
+Icon=gnome-term-linux.png
 Type=Application
 Terminal=false
-Categories=GNOME;Application;System;Utility;TerminalEmulator;
+Encoding=UTF-8
+Categories=GNOME;Application;System;TerminalEmulator;
 StartupNotify=true
 EOF
 
@@ -61,50 +65,30 @@ EOF
 #%{__cp} -f /usr/share/libtool/config.* autoconf
 
 %configure \
-	--prefix="%{_prefix}/X11R6" \
-	--exec-prefix="%{_prefix}/X11R6" \
-	--mandir="%{_prefix}/X11R6/man/man1" \
-	--enable-shared \
-	--enable-languages \
+	--enable-256-color \
+	--enable-everything \
 	--enable-greek \
-	--enable-ttygid \
-	--enable-mousewheel \
-	--with-x \
-	--with-xpm-includes="%{_includedir}/include/X11" \
-	--with-xpm-library="%{_prefix}/X11R6/lib" \
-	--with-xpm \
-	--enable-utmp \
-	--enable-wtmp \
-	--disable-frills \
-	--enable-xgetdefault \
+	--enable-languages \
+	--enable-shared \
 	--enable-smart-resize \
-	--enable-256-color
-#	--with-term="rxvt" \
-#	--disable-xgetdefault \
-
+	--enable-ttygid \
+	--enable-xgetdefault \
+	--with-x
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir} \
-			%{buildroot}%{_prefix}/X11R6/man/man1/ \
-			%{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/ \
-			%{buildroot}%{_prefix}/X11R6/lib/X11/{ja,ko,zh_CN,zh_TW}/{app-defaults,rxvt}/
 %makeinstall \
-	bindir="%{buildroot}%{_prefix}/X11R6/bin" \
-	mandir="%{buildroot}%{_prefix}/X11R6/man/man1"
+	mandir="%{buildroot}%{_mandir}/man1"
 
-%{__install} -d -m0755 %{buildroot}%{_docdir}/rxvt-%{version}/menu/
-%{__install} -m0644 doc/menu/* %{buildroot}%{_docdir}/rxvt-%{version}/menu/
-
-%if %{dfi}
-        %{__install} -D -m0644 rxvt.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/rxvt.desktop
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+%if %{?!_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		rxvt.desktop
+%else
+        %{__install} -D -m0644 rxvt.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/rxvt.desktop
 %endif
 
 %clean
@@ -112,24 +96,24 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc/BUGS doc/FAQ doc/README.* doc/TODO doc/changes.txt doc/menu/ doc/rxvt* doc/xterm.seq
-%doc %{_prefix}/X11R6/man/man?/*
-%{_prefix}/X11R6/bin/*
+%doc doc/BUGS doc/FAQ doc/README* doc/TODO doc/*.txt doc/*.html
+%doc doc/menu/ doc/rxvt* doc/xterm.seq
+%doc %{_mandir}/man?/*
+%{_bindir}/*
 %{_libdir}/*.so.*
 %exclude %{_libdir}/*.la
-%if %{dfi}
-        %{_datadir}/gnome/apps/Utilities/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/net-rxvt.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/rxvt.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)
+%{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
-%{_includedir}/*.h
-
 
 %changelog
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 2.7.10-1
+- Add improved desktop file.
+
 * Sun Oct 11 2003 Dag Wieers <dag@wieers.com> - 2.7.10-0
 - Initial package. (using DAR)
