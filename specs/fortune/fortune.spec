@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 31
+Release: 32
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -61,12 +61,13 @@ Source19: http://www.cs.indiana.edu/~crcarter/homer/homer-quotes.tar.gz
 # http://www.geocities.com/avitiw/fortune.html
 Source20: http://www.geocities.com/avitiw/fortune-osho-1.1.tar.gz
 # http://eol.init1.nl/content/category/2/36/54/
-Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.2.tar.gz
+Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.3.tar.gz
 # http://eol.init1.nl/content/category/2/36/54/
 Source22: http://eelco.is.a.rootboy.net/fortunecookies/oneliners-0.1.tar.gz
 
 
 Obsoletes: fortune-mod
+Provides: fortune-mod
 
 Patch0: fortune-mod-offense.patch
 Patch1: fortune-mod-1.0-remove-offensive.patch
@@ -167,8 +168,11 @@ util/strfile ralph
 # for bzip.  It was "y" at one point, then "I", and now it is "j".  God knows
 # WTF they'll change it too next.
 
-echo bla2
 bzcat %{SOURCE2} | %{__tar} xvf - -C %{buildroot}%{_datadir}/games/fortune/
+
+%{__install} -d %{buildroot}%{_bindir}
+%{__mv} %{buildroot}/usr/games/fortune %{buildroot}%{_bindir}
+%{__ln_s} %{_bindir}/fortune %{buildroot}/usr/games/fortune
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -489,6 +493,7 @@ All fortune packages will be installed if you install this package.
 %files
 %defattr(-, root, root, 0755)
 %doc README ChangeLog TODO
+%{_bindir}/fortune
 %{_prefix}/games/fortune
 %{_sbindir}/strfile
 %{_sbindir}/unstr
@@ -631,6 +636,11 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 
 %changelog
+* Wed Nov 24 2004 Dries Verachtert <dries@ulyssis.org> 1.0-32
+- Added the Provides: fortune-mod (thanks to Jeff Pitman & Rex Dieter)
+- Update of powerpuff quotes
+- moved the binary to /usr/bin/
+
 * Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 1.0-31
 - Update of South Park quotes
 - Added oneliners & powerpuff
