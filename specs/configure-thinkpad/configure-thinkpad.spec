@@ -4,7 +4,7 @@
 
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
-Version: 0.3
+Version: 0.8
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -71,10 +71,10 @@ EOF
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/configure-thinkpad
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	configure-thinkpad.desktop
+desktop-file-install --vendor gnome --delete-original \
+	--add-category X-Red-Hat-Base                 \
+	--dir %{buildroot}%{_datadir}/applications    \
+	%{buildroot}%{_datadir}/applications/configure-thinkpad.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -82,15 +82,18 @@ desktop-file-install --vendor gnome                \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%config %{_sysconfdir}/pam.d/*
-%config %{_sysconfdir}/security/console.apps/*
-%{_bindir}/*
-%{_sbindir}/*
-%{_datadir}/applications/*.desktop
+%config %{_sysconfdir}/pam.d/configure-thinkpad
+%config %{_sysconfdir}/security/console.apps/configure-thinkpad
+%{_bindir}/configure-thinkpad
+%{_sbindir}/configure-thinkpad
+%{_datadir}/applications/gnome-configure-thinkpad.desktop
 %{_datadir}/pixmaps/configure-thinkpad.png
 %{_datadir}/pixmaps/configure-thinkpad/
 
 %changelog
+* Tue Oct 05 2004 Dag Wieers <dag@wieers.com> - 0.8-1
+- Updated to release 0.8.
+
 * Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 

@@ -6,7 +6,7 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.7.3
+Version: 0.7.4
 Release: 1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
@@ -73,6 +73,9 @@ commands for fast navigating and editing inside the movie.
 
 
 %changelog
+* Tue Oct 05 2004 Dag Wieers <dag@wieers.com> - 0.7.4-1
+- Update to 0.7.4.
+
 * Mon Aug 16 2004 Matthias Saou <http://freshrpms.net> 0.7.3-1
 - Update to 0.7.3.
 
