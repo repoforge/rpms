@@ -8,7 +8,7 @@
 
 Summary: SOCKS4 and SOCKS5 compliant SOCKS server
 Name: antinat
-Version: 0.80
+Version: 0.81
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -76,6 +76,9 @@ export CFLAGS="%{optflags} -fPIC"
 #%exclude %{_libdir}/antinat-%{version}/*/*/*/*.la
 
 %changelog
+* Mon Oct 04 2004 Dag Wieers <dag@wieers.com> - 0.81-1
+- Updated to release 0.81.
+
 * Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 0.80-1
 - Updated to release 0.80.
 
