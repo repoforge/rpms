@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Blair W. Thompson <blair@tangbu.com>
 
 Summary: The X2 text editor
 Name: x2
-Version: 2.02.2
-Release: 2
+Version: 2.04.1
+Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://www.tangbu.com/
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.tangbu.com/DOWNLOAD/xlinux.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 X2 is a text mode editor that is designed to make the code writing process as
@@ -37,16 +36,15 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}{%{_bindir},%{_libdir},%{_datadir}/x2/,%{_sysconfdir}/profile.d/}
-%{__install} x %{buildroot}%{_bindir}
-%{__install} xx %{buildroot}%{_bindir}
-%{__install} xutils.so %{buildroot}%{_libdir}
-%{__install} xprofile %{buildroot}%{_datadir}/x2/
-%{__install} xprofile.def %{buildroot}%{_datadir}/x2/
-%{__install} xprofile.unx %{buildroot}%{_datadir}/x2/
-%{__install} xunix.hlp %{buildroot}%{_datadir}/x2/X.HLP
-%{__install} XUNIX.PRO %{buildroot}%{_datadir}/x2/
-%{__install} x2.sh %{buildroot}%{_sysconfdir}/profile.d/
+%{__install} -D -m0755 x %{buildroot}%{_bindir}/x
+%{__install} -D -m0755 xx %{buildroot}%{_bindir}/xx
+%{__install} -D -m0755 xutils.so %{buildroot}%{_libdir}/xutils.so
+%{__install} -D -m0644 xprofile %{buildroot}%{_datadir}/x2/xprofile
+%{__install} -D -m0644 xprofile.def %{buildroot}%{_datadir}/x2/xprofile.def
+%{__install} -D -m0644 xprofile.unx %{buildroot}%{_datadir}/x2/xprofile.unx
+%{__install} -D -m0644 xunix.hlp %{buildroot}%{_datadir}/x2/X.HLP
+%{__install} -D -m0644 XUNIX.PRO %{buildroot}%{_datadir}/x2/XUNIX.PRO
+%{__install} -D -m0755 x2.sh %{buildroot}%{_sysconfdir}/profile.d/x2.sh
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -58,7 +56,7 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc README
 %config %{_datadir}/x2/XUNIX.PRO
 %config %{_sysconfdir}/profile.d/
@@ -70,5 +68,8 @@ EOF
 %{_datadir}/x2/X.HLP
 
 %changelog
-* Sat Nov 09 2002 Dag Wieers <dag@wieers.com> - 2.02.2
+* Wed May 12 2004 Dag Wieers <dag@wieers.com> - 2.04.1-1
+- Updated to release 2.04.1.
+
+* Sat Nov 09 2002 Dag Wieers <dag@wieers.com> - 2.02.2-1
 - Initial package. (using DAR)
