@@ -2,16 +2,11 @@
 # Authority: matthias
 
 # ExcludeDist: fc3
-# Tag: test
+##Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?el3:%define _without_swig 1}
-
-%if %{?_without_swig:1}0
-%define _without_perl 1
-%define _without_python 1
-%endif
 
 # set to zero to avoid running test suite
 %define make_check 0
@@ -21,7 +16,8 @@
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.1.1
-Release: 1
+### FC3 comes with 1.1
+Release: 0.1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -37,10 +33,11 @@ Patch6: subversion-1.0.3-pie.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo
-BuildRequires: db4-devel >= 4.1.25, expat-devel, docbook-style-xsl
+BuildRequires: expat-devel, docbook-style-xsl
 BuildRequires: apr-devel >= 0.9.3-2, apr-util-devel >= 0.9.3-2, openssl-devel
-#%{!?_without_swig:BuildRequires: swig >= 1.3.21-5, neon-devel >= 0.24.7-1}
-%{!?_without_swig:BuildRequires: swig, neon-devel}
+BuildRequires: neon-devel >= 0.24.7-1
+#%{!?_without_swig:BuildRequires: swig >= 1.3.21-5}
+%{!?_without_swig:BuildRequires: swig}
 
 %define __perl_requires %{SOURCE3}
 
@@ -88,13 +85,13 @@ Requires: subversion = %{version}-%{release}
 This package includes the Perl bindings to the Subversion libraries.
 
 %prep
-%setup -q
+%setup
 %patch1 -p1 -b .swig
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
 %patch6 -p1 -b .pie
 
-rm -rf neon apr apr-util db4
+%{__rm} -rf neon apr apr-util
 
 %build
 ./autogen.sh
@@ -111,18 +108,16 @@ export CC=gcc CXX=g++
 	--with-apr-util="%{_prefix}" \
         --with-apxs="%{_sbindir}/apxs" \
 	--disable-mod-activation \
-%{!?_without_perl:--with-neon=%{_prefix} --with-swig} \
-%{!?_without_python:--with-swig} \
+	--with-neon="%{_prefix}" \
+%{!?_without_swig:--with-swig} \
 	--with-expat \
 	--with-ssl
 %{__make} %{?_smp_mflags} all
 
-%if %{!?_without_python:1}0
-%{__make} %{?_smp_mflags} swig-py %{swigdirs}}
-%endif
+%if %{!?_without_swig:1}0
+%{__make} %{?_smp_mflags} swig-py %{swigdirs}
 
-%if %{!?_without_perl:1}0
-%{__make} %{?_smp_mflags} swig-pl %{swigdirs}}
+%{__make} %{?_smp_mflags} swig-pl %{swigdirs}
 
 # build the perl modules
 #pushd subversion/bindings/swig/perl
@@ -136,12 +131,9 @@ export CC=gcc CXX=g++
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%if %{!?_without_python:1}0
+%if %{!?_without_swig:1}0
 %{__make} install-swig-py %{swigdirs} \
         DESTDIR="%{buildroot}"
-%endif
-
-%if %{!?_without_perl:1}0
 %{__make} install-swig-pl-lib %{swigdirs} \
         DESTDIR="%{buildroot}"
 
@@ -158,7 +150,7 @@ export CC=gcc CXX=g++
 %{__rm} -rf %{buildroot}%{_includedir}/subversion-*/*.txt \
        %{buildroot}%{pydir}/*/*.{a,la}
 
-%if %{!?_without_perl:1}0
+%if %{!?_without_swig:1}0
 # remove stuff produced with Perl modules
 find %{buildroot} -type f \
     -a \( -name .packlist -o \( -name '*.bs' -a -empty \) \) \
@@ -177,8 +169,8 @@ find %{buildroot}%{_libdir}/perl5 -type f -perm 555 -print0 |
        doc/book/book/images/images doc/book/book/images/*.ppt
 
 # Install psvn for emacs and xemacs
-%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/emacs/site-lisp
-%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/xemacs/site-packages/lisp
+%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/emacs/site-lisp/psvn.el
+%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/xemacs/site-packages/lisp/psvn.el
 
 # Rename authz_svn INSTALL doc for docdir
 ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
@@ -191,13 +183,17 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
-%post perl -p /sbin/ldconfig
+%post perl
+/sbin/ldconfig 2>/dev/null
 
-%postun perl -p /sbin/ldconfig
+%postun perl
+/sbin/ldconfig 2>/dev/null
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -208,24 +204,20 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %{_bindir}/*
 %{_libdir}/libsvn_*.so.*
 %{_mandir}/man*/*
-#%exclude %{_bindir}/neon-config
-#%exclude %{_mandir}/man3/*
-%{_datadir}/emacs/site-lisp
-%{_datadir}/xemacs/site-packages/lisp
-%{!?_without_perl:%exclude %{_libdir}/libsvn_swig_perl*}
-%{!?_without_perl:%exclude %{_mandir}/man*/*::*}
-%{!?_without_python:%{pydir}/svn}
-%{!?_without_python:%{pydir}/libsvn}
+%{_datadir}/emacs/site-lisp/
+%{_datadir}/xemacs/site-packages/lisp/
+%{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
+%{!?_without_swig:%exclude %{_mandir}/man*/*::*}
+%{!?_without_swig:%{pydir}/svn}
+%{!?_without_swig:%{pydir}/libsvn}
 
 %files devel
 %defattr(-, root, root, 0755)
-#%{_bindir}/neon-config
 %{_includedir}/subversion-1/
 %{_libdir}/libsvn*.a
 %{_libdir}/libsvn*.la
 %{_libdir}/libsvn*.so
-#%{_mandir}/man3/*
-%{!?_without_perl:%exclude %{_libdir}/libsvn_swig_perl*}
+%{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
 
 %files -n mod_dav_svn
 %defattr(-, root, root, 0755)
@@ -233,7 +225,7 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %{_libdir}/httpd/modules/mod_dav_svn.so
 %{_libdir}/httpd/modules/mod_authz_svn.so
 
-%if %{!?_without_perl:1}0
+%if %{!?_without_swig:1}0
 %files perl
 %defattr(-, root, root, 0755)
 %{perl_vendorarch}/auto/SVN
@@ -243,6 +235,9 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %endif
 
 %changelog
+* Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 1.1.1-0.1
+- Updated to release 1.1.1.
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.0.9-2
 - Backported changes from Red Hat's EL3 packages. (Joe Orton)
 
