@@ -5,11 +5,11 @@
 
 Summary: Atomix clone where you create figures out of marbles
 Name: lmarbles
-Version: 1.0.6
-Release: 3
+Version: 1.0.7
+Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://www.lgames.org/
+URL: http://lgames.sourceforge.net/
 Source: http://dl.sf.net/lgames/lmarbles-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.1.4, SDL_mixer
@@ -31,23 +31,23 @@ a time limit. This way you have as much time as you need to think.
 
 
 %build
-%configure
+%configure --localstatedir=%{_var}/lib/games
 %{__make} %{?_smp_mflags}
 # Having it as png seems more consistent
-convert lmarbles48.gif %{name}.png
+convert lmarbles48.gif lmarbles.png
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -D %{name}.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D lmarbles.png %{buildroot}%{_datadir}/pixmaps/lmarbles.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=LMarbles
 Comment=Atomix clone where you create figures out of marbles
-Exec=%{name}
-Icon=%{name}.png
+Exec=lmarbles
+Icon=lmarbles.png
 Terminal=false
 Type=Application
 Categories=Application;Game;
@@ -64,18 +64,28 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__rm} -rf %{buildroot}
 
 
+%post
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%postun
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
-%attr(2551, root, games) %{_bindir}/%{name}
+%attr(2551, root, games) %{_bindir}/lmarbles
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/games/%{name}
-%{_datadir}/pixmaps/%{name}.png
-%{_mandir}/man6/%{name}*
-%config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/marbles.prfs
+%{_datadir}/lmarbles/
+%{_datadir}/pixmaps/lmarbles.png
+%{_mandir}/man6/lmarbles.6*
+%config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/lmarbles.prfs
 
 
 %changelog
+* Wed Jan 26 2005 Matthias Saou <http://freshrpms.net/> 1.0.7-1
+- Update to 1.0.7.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.6-3
 - Rebuild for Fedora Core 2.
 - Added menu icon.
