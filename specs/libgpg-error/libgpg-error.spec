@@ -58,9 +58,10 @@ you will need to install %{name}-devel.
 %{_bindir}/gpg-error-config
 %{_includedir}/*.h
 %{_libdir}/*.a
+### Needed by dctc ?
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
-%exclude %{_libdir}/*.la
 
 %changelog
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.7-1
