@@ -20,12 +20,14 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.2
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
 Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
 Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
+Patch0: mjpegtools-1.6.2-gcc34.patch
+Patch1: jpeg-mmx-0.1.5-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL, libjpeg, libpng, gtk+
 Requires: libquicktime, libdv
@@ -39,6 +41,8 @@ BuildRequires: libquicktime-devel, libdv-devel
 # as we build on i686, this will be an i686 only package
 %{!?_without_mmx:BuildArch: i686}
 BuildRequires: nasm
+%else
+BuildRequires: autoconf, automake, libtool
 %endif
 
 
@@ -64,6 +68,8 @@ of the mjpegtools package.
 
 %prep
 %setup -a 1
+%patch0 -p1 -b .gcc34
+%patch1 -p0 -b .jpegmmx-gcc34
 
 
 %build
@@ -71,24 +77,21 @@ of the mjpegtools package.
 pushd jpeg-mmx-%{jpegmmx_version}
     ./configure && %{__make} %{?_smp_mflags}
 popd
-%endif
-
-### FIXME: Tried using --with-pic="yes", but fails for libmjpegutils
-%ifnarch %{ix86}
-export CFLAGS="$CFLAGS -fPIC"
+%else
+autoreconf
 %endif
 
 # ### FIXME Stripping of libmjpegutils.a fails (hence --disable-static)
 %configure \
-    --disable-static \
+    --enable-static \
     --enable-shared \
 %ifarch %{ix86}
     %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"} \
+    --enable-cmov-extension \
 %endif
     --with-dv=%{_prefix} --with-dv-yv12 \
     --with-quicktime \
     --enable-large-file \
-    --enable-cmov-extension \
     --enable-xfree-ext \
     --enable-simd-accel \
     --enable-zalpha
@@ -153,6 +156,10 @@ export CFLAGS="$CFLAGS -fPIC"
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-4
+- Add gcc34 patch from bugs.gentoo.org #48890.
+- Add gcc34 patch to jpeg-mmx from linuxfromscratch commit 629.
+
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-3
 - Added install-info calls... not, "no info dir entry" :-(
 
