@@ -15,7 +15,7 @@ URL: http://kombat.kajaani.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://kombat.kajaani.net/dl/kajaani_kombat_%{version}.tar.gz
+Source: http://kombat.kajaani.net/dl/kajaani-kombat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, SDL-devel, SDL_ttf-devel, SDL_net-devel, SDL_image-devel
@@ -30,7 +30,7 @@ over the internet with, for example, 4 players of which two are sharing the
 same computer. Enjoy it with your friends! 
 
 %prep
-%setup -n kajaani_kombat_v%{version}
+%setup -n kajaani-kombat-%{version}
 
 %build
 %{__make} %{?_smp_mflags}
