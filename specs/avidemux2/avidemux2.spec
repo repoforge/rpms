@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <fixounet@free.fr>
 
@@ -9,8 +8,8 @@
 
 Summary: Graphical video editing tool
 Name: avidemux2
-Version: 2.0.22
-Release: 0
+Version: 2.0.24
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/
@@ -20,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://fixounet.free.fr/avidemux/avidemux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.0.0
 BuildRequires: nasm >= 0.98.32
@@ -36,7 +34,7 @@ compatible encoder and the Gimp Toolkit (GTK) libraries.
 %prep
 %setup -n %{real_name}-%{version}
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >avidemux2.desktop
 [Desktop Entry]
 Name=Avidemux Video Editor
 Comment=Edit your videos in real-time
@@ -48,6 +46,7 @@ Categories=GNOME;Application;AudioVideo;
 EOF
 
 %build
+%{__make} -f Makefile.dist
 %configure \
 	--disable-dependency-tracking \
 	--disable-warnings
@@ -60,11 +59,11 @@ EOF
 	kde_locale="%{buildroot}%{_datadir}/locale"
 %find_lang %{real_name}
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	avidemux2.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -76,6 +75,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 2.0.24-1
+- Updated to release 2.0.24.
+
 * Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 2.0.22-0
 - Updated to release 2.0.22.
 
