@@ -36,6 +36,7 @@ applications which will use paragui, a GUI on top of SDL.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure
