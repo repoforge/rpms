@@ -1,15 +1,19 @@
 # $Id$
 
+%{?dist: %{expand: %%define %dist 1}}
+ 
+%{?rh7:%define _without_newsslcheck 1}
+
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.3.2
-Release: 0
+Release: 1
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
 Source: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libxml2-devel, openssl-devel
+BuildRequires: libxml2-devel, openssl-devel, zlib-devel
 
 %description
 The Kannel Open Source WAP and SMS gateway works as both an SMS gateway, for
@@ -43,9 +47,9 @@ use the kannel WAP and SMS gateway.
 
 %build
 # Fix for the openssl THREADS check, which should be OPENSSL_THREADS
-%{__perl} -pi.orig -e 's|(defined\()THREADS\)|$1OPENSSL_THREADS)|g' configure
+%{!?_without_newsslcheck: %{__perl} -pi.orig -e 's|(defined\()THREADS\)|$1OPENSSL_THREADS)|g' configure}
 %configure \
-    --enable-start-stop-daemon \
+    --enable-start-stop-daemon
 %{__make} %{?_smp_mflags}
 
 
@@ -91,6 +95,9 @@ fi
 
 
 %changelog
+* Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-1
+- Don't fix the openssl detection for RHL 7.x.
+
 * Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-0
 - Update to 1.3.2 development version.
 - Added -devel sub-package since there are now headers and a static lib.
