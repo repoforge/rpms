@@ -20,7 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://pecl.php.net/get/SQLite-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: php-devel >= 4.0, sqlite >= 2.8
+BuildRequires: php-devel >= 4.0, sqlite >= 2.8, sqlite-devel
 Requires: php = %{pversion}, sqlite >= 2.8
 
 %description

@@ -19,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://rdiff-backup.stanford.edu/OLD/%{version}/rdiff-backup-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel >= 2.2, librsync-devel >= 0.9.6
+BuildRequires: python-devel >= 2.2, librsync-devel >= 0.9.6, python
 Requires: python
 
 %description

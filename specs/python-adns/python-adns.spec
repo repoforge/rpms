@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dustman.net/andy/python/adns-python/%{version}/adns-python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, adns-devel
+BuildRequires: python, adns-devel, python-devel
 Requires: python, adns
 
 %description

@@ -15,6 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.ossp.org/pkg/lib/pth/pth-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 Pth is a very portable POSIX/ANSI-C based library for Unix platforms

@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/pysqlite/pysqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
-BuildRequires: python-devel, sqlite-devel 
+BuildRequires: python-devel, sqlite-devel, python
 
 %description
 This packages allows you to use sqlite with python.

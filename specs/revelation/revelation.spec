@@ -18,7 +18,7 @@ Source: ftp://oss.wired-networks.net/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.0, python-crypto >= 1.9
+BuildRequires: python >= 2.0, python-crypto >= 1.9, python-devel
 Requires: python-crypto >= 1.9, gnome-python2-canvas, gnome-python2-gconf
 
 %description

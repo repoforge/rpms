@@ -18,7 +18,7 @@ Patch: %{name}-info.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel >= 1:1.2.0, gtk+-devel >= 1:1.2.0, qt-devel
-BuildRequires: ncurses-devel
+BuildRequires: ncurses-devel, gcc-c++
 Requires: chkconfig, info
 
 %description

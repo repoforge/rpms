@@ -15,6 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.ivarch.com/programs/sources/pv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gettext
 
 %description
 PV ("Pipe Viewer") is a tool for monitoring the progress of data through a

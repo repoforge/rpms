@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: pwrtweak
 Requires: pciutils
+BuildRequires: libxml2-devel, gtk+-devel
 
 %description
 Powertweak is a utility for tweaking your Linux system to peak performance.

@@ -15,7 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/plasticfs/plasticfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: groff
+BuildRequires: groff, gcc-c++
 
 %description
 The Plastic File System is an LD_PRELOAD module for manipulating what the

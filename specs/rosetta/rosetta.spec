@@ -18,7 +18,7 @@ Source: http://www.irule.be/bvh/c++/rosetta/rosetta-0.01.tar.gz
 Patch0: rosetta-rh8.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel
+BuildRequires: qt-devel, gcc-c++
 
 %description
 Rosetta is an interactive tool to help translate documents in the DocBook
