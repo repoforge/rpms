@@ -11,7 +11,7 @@
 
 Summary: HTML Templates for CGI scripts
 Name: perl-HTML-Template
-Version: 2.7 
+Version: 2.7
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN

@@ -11,7 +11,7 @@
 
 Summary: Implementation of a "Singleton" class
 Name: perl-Class-Singleton
-Version: 1.03 
+Version: 1.03
 Release: 1
 License: Artistic
 Group: Applications/CPAN

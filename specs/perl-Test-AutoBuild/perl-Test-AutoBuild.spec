@@ -11,7 +11,7 @@
 
 Summary: Automated build engine
 Name: perl-Test-AutoBuild
-Version: 1.0.2 
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: Applications/CPAN

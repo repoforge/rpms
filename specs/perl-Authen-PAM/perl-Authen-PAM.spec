@@ -9,7 +9,7 @@
 
 Summary: Interface to the PAM library
 Name: perl-Authen-PAM
-Version: 0.14 
+Version: 0.14
 Release: 1
 License: Artistic
 Group: Applications/CPAN
