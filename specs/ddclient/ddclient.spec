@@ -4,7 +4,7 @@
 
 Summary: Updates dynamic DNS entries
 Name: ddclient
-Version: 3.6.4
+Version: 3.6.5
 Release: 2
 License: GPL
 Group: Applications/Internet
@@ -53,6 +53,9 @@ updates, and sending update status to syslog and through e-mail.
 
 
 %changelog
+* Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.5-1
+- Update to release 3.6.5.
+
 * Sun Dec 05 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4-2
 - Install additional files.
 
