@@ -6,7 +6,7 @@
 Summary: RSS/RDF feed reader
 Name: liferea
 Version: 0.4.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://liferea.sf.net/
@@ -15,9 +15,10 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
+Patch: liferea-0.4.8-gconf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: GConf2-devel, gtkhtml2-devel, libxml2-devel >= 2.5.10
+BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
 BuildRequires: gettext
 
 %description
@@ -29,6 +30,7 @@ using GtkHTML.
 
 %prep
 %setup
+%patch0
 
 %{__cat} <<EOF >liferea.desktop
 [Desktop Entry]
@@ -40,7 +42,7 @@ StartupNotify=true
 Terminal=false
 Type=Application
 Encoding=UTF-8
-Categories=GNOME;Application;Network;
+Categories=Application;Network;
 EOF
 
 %build
@@ -74,5 +76,8 @@ desktop-file-install --vendor gnome --delete-original \
 %exclude %{_libdir}/liferea/*.la
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.4.8-2
+- Added patch for building on RH90 and RHEL3. (Nathan Conrad)
+
 * Fri May 07 2004 Dag Wieers <dag@wieers.com> - 0.4.8-1
 - Initial package. (using DAR)
