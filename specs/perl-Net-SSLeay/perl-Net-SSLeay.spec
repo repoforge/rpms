@@ -5,7 +5,7 @@
 
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
-Version: 1.23
+Version: 1.25
 Release: 0
 License: distributable
 Group: Applications/CPAN
@@ -14,7 +14,7 @@ URL: http://search.cpan.org/dist/Net-SSLeay.pm/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{real_name}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAMPO/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> 1.25-0
+- Update to release 1.25.
+
 * Mon Jul 14 2003 Dag Wieers <dag@wieers.com> - 1.23-0
 - Initial package. (using DAR)

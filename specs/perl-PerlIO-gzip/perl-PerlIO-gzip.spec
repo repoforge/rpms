@@ -12,7 +12,7 @@
 
 Summary: PerlIO layer to gzip and gunzip
 Name: perl-PerlIO-gzip
-Version: 0.15
+Version: 0.17
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ transparently gzip/gunzip files.
 %{perl_vendorarch}/auto/PerlIO
 
 %changelog
+* Wed Oct 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
+- Update to release 0.17.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Interact with a t/test_manifest file
 Name: perl-Test-Manifest
-Version: 0.93
+Version: 1.11
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ This module allows you to interact with a t/test_manifest file.
 %{perl_vendorlib}/Test/Manifest.pm
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Update to release 1.11.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.93-1
 - Initial package.
