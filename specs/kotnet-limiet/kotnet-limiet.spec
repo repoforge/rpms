@@ -13,7 +13,7 @@ URL: http://cernunos.studentenweb.org/kotnet-limiet.html
 
 Source: http://cernunos.studentenweb.org/kotnet-limiet.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch: fedora.patch.bz2
+Patch: fedora.patch
 Requires: superkaramba python
 
 # Screenshot: http://cernunos.studentenweb.org/images/kotnet-limiet.png

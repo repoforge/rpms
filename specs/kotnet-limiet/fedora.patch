@@ -1,0 +1,61 @@
+diff -uNr kotnet-limiet-orig/knl.py kotnet-limiet/knl.py
+--- kotnet-limiet-orig/knl.py	2003-11-19 22:38:05.000000000 +0100
++++ kotnet-limiet/knl.py	2003-11-30 21:35:30.000000000 +0100
+@@ -3,8 +3,14 @@
+ # opmerkingen mailen naar stijn.opheide@kotnet.org
+ 
+ # settings
+-loginID = 'uid'
+-passwd = 'pass'
++#loginID = 'uid'
++#passwd = 'pass'
++import os
++filename = os.environ.get('HOME') + '/.kotnet-limiet.conf'
++if filename and os.path.isfile(filename):
++    execfile(filename)
++
++
+ url = 'https://netlogin.kuleuven.be/cgi-bin/weblogin.cgi'
+ 
+ # do not change below
+diff -uNr kotnet-limiet-orig/kotnet-limiet kotnet-limiet/kotnet-limiet
+--- kotnet-limiet-orig/kotnet-limiet	1970-01-01 01:00:00.000000000 +0100
++++ kotnet-limiet/kotnet-limiet	2003-11-30 21:26:31.000000000 +0100
+@@ -0,0 +1,9 @@
++#!/bin/bash
++
++if [[ ! -e ~/.kotnet-limiet.conf ]] 
++then 	echo You need to fill in your kotnet login and password in the file ~/.kotnet-limiet.conf
++	cp /usr/share/apps/kotnet-limiet/kotnet-limiet.conf.template ~/.kotnet-limiet.conf
++	chmod g-r,o-r ~/.kotnet-limiet.conf
++	exit
++fi
++superkaramba /usr/share/apps/kotnet-limiet/kotnet-limiet.theme
+diff -uNr kotnet-limiet-orig/kotnet-limiet.conf.template kotnet-limiet/kotnet-limiet.conf.template
+--- kotnet-limiet-orig/kotnet-limiet.conf.template	1970-01-01 01:00:00.000000000 +0100
++++ kotnet-limiet/kotnet-limiet.conf.template	2003-11-30 21:17:54.000000000 +0100
+@@ -0,0 +1,2 @@
++loginID = 'uid'
++passwd = 'pass'
+diff -uNr kotnet-limiet-orig/kotnet-limiet.theme kotnet-limiet/kotnet-limiet.theme
+--- kotnet-limiet-orig/kotnet-limiet.theme	2003-11-19 22:31:43.000000000 +0100
++++ kotnet-limiet/kotnet-limiet.theme	2003-11-30 21:47:51.000000000 +0100
+@@ -5,12 +5,12 @@
+ <GROUP>
+ 
+ text COLOR=220,220,220 shadow=1 x=0 y=0 value="Download:"
+-text COLOR=220,220,220 shadow=1 x=100 y=0 sensor=program program="knl.py" interval=500000 LINE=3
+-bar x=10 y=22 path="pics/bar_background.png" value=100
+-bar x=12 y=24 w=196 h=10 path="pics/green.png" sensor=program program="knl.py" LINE=1
++text COLOR=220,220,220 shadow=1 x=100 y=0 sensor=program program="/usr/bin/knl.py" interval=500000 LINE=3
++bar x=10 y=22 path="/usr/share/apps/kotnet-limiet/pics/bar_background.png" value=100
++bar x=12 y=24 w=196 h=10 path="/usr/share/apps/kotnet-limiet/pics/green.png" sensor=program program="/usr/bin/knl.py" LINE=1
+ text COLOR=220,220,220 shadow=1 x=0 y=42 value="Upload:"
+-text COLOR=220,220,220 shadow=1 x=100 y=44 sensor=program program="knl.py" interval=500000 LINE=4
+-bar x=10 y=64 path="pics/bar_background.png" value=100
+-bar x=12 y=66 w=196 h=10 path="pics/green.png" sensor=program program="knl.py" LINE=2
++text COLOR=220,220,220 shadow=1 x=100 y=44 sensor=program program="/usr/bin/knl.py" interval=500000 LINE=4
++bar x=10 y=64 path="/usr/share/apps/kotnet-limiet/pics/bar_background.png" value=100
++bar x=12 y=66 w=196 h=10 path="/usr/share/apps/kotnet-limiet/pics/green.png" sensor=program program="/usr/bin/knl.py" LINE=2
+ 
+ </GROUP>
