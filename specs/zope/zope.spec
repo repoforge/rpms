@@ -1,17 +1,18 @@
 # $Id$
 
 %define real_name      Zope
-%define python         /usr/bin/python
-%define python_minver  2.3.2
+%define real_version   2.7.2-0
+%define python         %{_bindir}/python
+%define python_minver  2.3.3
 %define zope_user      zope
-%define zope_group     %{zope_user}
+%define zope_group     zope
 
 %define zope_home      %{_prefix}/lib/zope
 %define software_home  %{zope_home}/lib/python
-%define instance_home  %{_localstatedir}/lib/zope
+%define instance_home  %{_var}/lib/zope
 %define client_home    %{instance_home}/data
-%define run_dir        %{_localstatedir}/run/zope
-%define log_dir        %{_localstatedir}/log/zope
+%define run_dir        %{_var}/run/zope
+%define log_dir        %{_var}/log/zope
 %define config_file    %{_sysconfdir}/zope.conf
 
 %define zopectl        %{_bindir}/zopectl
@@ -20,12 +21,12 @@
 
 Summary: Web application server for flexible content management applications
 Name: zope
-Version: 2.7.1
+Version: 2.7.2
 Release: 0.1
 License: ZPL
 Group: System Environment/Daemons
 URL: http://www.zope.org/
-Source0: http://zope.org/Products/Zope/%{version}/%{real_name}-%{version}.tgz
+Source0: http://zope.org/Products/Zope/%{version}/%{real_name}-%{real_version}.tgz
 Source1: zope.init.in
 Source2: zope.logrotate.in
 Patch: Zope-2.7.0-config.patch
@@ -58,8 +59,7 @@ highly-productive, object-oriented scripting language.
 
 
 %install
-%{__rm} -rf %{buildroot}
-%{__rm} -rf rpm-skel
+%{__rm} -rf %{buildroot} rpm-skel
 
 # Copy over files from the default skel to the rpm-skel
 %{__install} -D -m 644 skel/etc/zope.conf.in rpm-skel/etc/zope.conf.in
@@ -69,11 +69,11 @@ highly-productive, object-oriented scripting language.
 # Create all required additional directories
 for dir in %{zope_home} %{software_home} %{client_home} %{log_dir} %{run_dir} \
     %{instance_home}/{Products,bin}; do
-    %{__mkdir_p} %{buildroot}$dir
+        %{__mkdir_p} %{buildroot}$dir
 done
 
 # Install additional files in the rpm-skel
-%{__install} -D -m 755 %{SOURCE1} rpm-skel%{_initrddir}/zope.in
+%{__install} -D -m 755 %{SOURCE1} rpm-skel%{_sysconfdir}/rc.d/init.d/zope.in
 %{__install} -D -m 644 %{SOURCE2} rpm-skel%{_sysconfdir}/logrotate.d/zope.in
 
 # Install the skel, translating paths, into the build root
@@ -92,7 +92,7 @@ done
      --replace="ZOPECTL:%{zopectl}" \
      --replace="RUNZOPE:%{runzope}"
 
-# Actually copy all the other files over
+# Now, copy all the other files over
 %{__make} install
 
 # Symlink to include in the docs
@@ -117,7 +117,7 @@ done
 
 %preun
 if [ $1 -eq 0 ]; then
-    /sbin/service zope stop >/dev/null 2>&1
+    /sbin/service zope stop >/dev/null 2>&1 || :
     /sbin/chkconfig --del zope
 fi
 
@@ -133,21 +133,25 @@ fi
 %doc docs
 %config(noreplace) %{config_file}
 %config(noreplace) %{_sysconfdir}/logrotate.d/zope
-%config %{_initrddir}/zope
+%config %{_sysconfdir}/rc.d/init.d/zope
 %attr(0755, root, root) %{runzope}
 %attr(0755, root, root) %{zopectl}
-%dir %{zope_home}
-%{zope_home}/bin
-%{zope_home}/doc
-%{zope_home}/import
-%{zope_home}/lib
-%exclude %{zope_home}/skel
-%attr(0700, %{zope_user}, %{zope_group}) %verify(not md5 size mtime) %{instance_home}
-%attr(0755, %{zope_user}, %{zope_group}) %dir %{_localstatedir}/log/zope
-%attr(0755, %{zope_user}, %{zope_group}) %dir %{_localstatedir}/run/zope
+%dir %{zope_home}/
+%{zope_home}/bin/
+%{zope_home}/doc/
+%{zope_home}/import/
+%{zope_home}/lib/
+%exclude %{zope_home}/skel/
+%attr(0700, %{zope_user}, %{zope_group}) %verify(not md5 size mtime) %{instance_home}/
+%attr(0755, %{zope_user}, %{zope_group}) %dir %{_var}/log/zope/
+%attr(0755, %{zope_user}, %{zope_group}) %dir %{_var}/run/zope/
 
 
 %changelog
+* Wed Oct 20 2004 Matthias Saou <http://freshrpms.net/> 2.7.2-0.1
+- Update to 2.7.2.
+- Minor spec updates and cleanups.
+
 * Wed Jul 14 2004 Matthias Saou <http://freshrpms.net/> 2.7.1-0.1
 - Update to 2.7.1.
 

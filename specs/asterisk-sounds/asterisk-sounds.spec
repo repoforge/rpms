@@ -1,13 +1,14 @@
 # $Id$
 # Authority: matthias
+# Dist: nodist
 
 # For pre-versions
-%define prever RC1
+#define prever RC2
 
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
-Version: 1.0
-Release: %{?prever:0.%{prever}.}1
+Version: 1.0.1
+Release: %{?prever:0.%{prever}.}0
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
@@ -54,6 +55,12 @@ used with Asterisk.
 
 
 %changelog
+* Mon Oct 18 2004 Matthias Saou <http://freshrpms.net> 1.0.1-0
+- Update to 1.0.1.
+
+* Thu Aug 26 2004 Matthias Saou <http://freshrpms.net> 1.0-0.RC2.0
+- Update to 1.0-RC2.
+
 * Mon Jul 26 2004 Matthias Saou <http://freshrpms.net> 1.0-0.RC1.1
 - Initial RPM release.
 

@@ -1,0 +1,15 @@
+diff -Naur Imaging-1.1.4/setup.py Imaging-1.1.4.patched/setup.py
+--- Imaging-1.1.4/setup.py	2003-05-09 14:00:56.000000000 +0200
++++ Imaging-1.1.4.patched/setup.py	2004-10-18 21:17:44.688210376 +0200
+@@ -45,6 +45,11 @@
+ LIBRARY_DIRS = ["libImaging"]
+ LIBRARIES = ["Imaging"]
+ 
++# thomasvs: in my build this was not defined, and this setup.py is
++# badly written
++EXTRA_COMPILE_ARGS = None
++EXTRA_LINK_ARGS = None
++
+ # Add some standard search spots for MacOSX/darwin
+ if os.path.exists('/sw/include'):
+     INCLUDE_DIRS.append('/sw/include')

@@ -2,25 +2,23 @@
 # Authority: matthias
 
 %define real_name      Plone
-%define real_version   2.0.2
+%define real_version   2.0.4
 %define zope_minver    2.6.4
-%define cmf_minver     1.4.2
 
 %define zope_home      %{_prefix}/lib/zope
 %define software_home  %{zope_home}/lib/python
 
-Summary: Content management system built over Zope's content management framework
+Summary: Content management system built over Zope's framework
 Name: plone
-Version: 2.0.2
+Version: 2.0.4
 Release: 0.1
 License: GPL
 Group: System Environment/Daemons
 Source: http://dl.sf.net/plone/%{real_name}-%{real_version}.tar.gz
 URL: http://plone.org/
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: zope >= %{zope_minver}
-#Requires: zope-cmf >= %{cmf_minver}
 BuildRequires: python
 
 %description
@@ -57,8 +55,12 @@ used and the policies and services it provides.
 
 
 %changelog
+* Wed Oct 20 2004 Matthias Saou <http://freshrpms.net/> 2.0.4-0.1
+- Update to 2.0.4.
+
 * Fri May 14 2004 Matthias Saou <http://freshrpms.net/> 2.0.2-0.1
 - Update to 2.0.2.
+- No longer require zope-cmf, it seems provided now.
 
 * Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.3
 - Update to 2.0 final.

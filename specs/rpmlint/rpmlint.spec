@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dag
+# Authority: matthias
 
 Summary: RPM correctness checker
 Name: rpmlint
@@ -8,17 +8,12 @@ Release: 0
 License: GPL
 Group: Development/Tools
 URL: http://people.mandrakesoft.com/~flepied/projects/rpmlint/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://people.mandrakesoft.com/~flepied/projects/rpmlint/dist/rpmlint-%{version}.tar.bz2
 Source1: config.fedora
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildArch: noarch
-BuildRequires: python >= 1.5.2, rpm-python
 Requires: python >= 1.5.2, rpm-python
+BuildRequires: python >= 1.5.2, rpm-python
+BuildArch: noarch
 
 %description
 Rpmlint is a tool to check common errors on rpm packages.

@@ -1,12 +1,12 @@
 # $Id$
 # Authority: matthias
 
-%define xmms_generaldir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir || echo %{_libdir}/xmms/General)
 
 Summary: XMMS plugin to use special multimedia keys in GNOME or through acme
 Name: xmms-acme
-Version: 0.4.1
-Release: 3
+Version: 0.4.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.devin.com/xmms-xf86audio/
@@ -49,6 +49,9 @@ mapping and expects those media players to listen for the XF86Audio keysyms.
 
 
 %changelog
+* Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 0.4.2-1
+- Update to 0.4.2.
+
 * Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-3
 - Fix for x86_64.
 

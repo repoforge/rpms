@@ -9,7 +9,7 @@
 
 Name: rhythmbox%{?_with_xine:-xine}
 Summary: Music Management Application 
-Version: %{majmin}.7
+Version: %{majmin}.8
 Release: 0
 License: GPL
 Group: Applications/Multimedia
@@ -66,8 +66,9 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %{__rm} -rf %{buildroot}
 
 
-%post 
+%post
 /sbin/ldconfig
+scrollkeeper-update
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 SCHEMAS="rhythmbox.schemas"
 for S in $SCHEMAS; do 
@@ -76,6 +77,7 @@ done
 
 %postun
 /sbin/ldconfig
+scrollkeeper-update
 
 
 %files -f rhythmbox.lang
@@ -83,13 +85,13 @@ done
 %doc AUTHORS COPYING ChangeLog README NEWS
 %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/rhythmbox.schemas
-%{_datadir}/rhythmbox/*
+%{_datadir}/rhythmbox/
 %{_datadir}/applications/rhythmbox.desktop
 %{_datadir}/pixmaps/rhythmbox.png
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/application-registry/*
-%{_datadir}/gnome/help/rhythmbox
-%{_datadir}/omf/rhythmbox/*
+%{_datadir}/gnome/help/rhythmbox/
+%{_datadir}/omf/rhythmbox/
 %{_datadir}/idl/Rhythmbox.idl
 %{_datadir}/mime-info/rhythmbox.keys
 %{_libdir}/bonobo/librb-nautilus-context-menu.so
@@ -98,6 +100,12 @@ done
 
 
 %changelog
+* Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.8-0
+- Added scrollkeeper-update to the scriplets.
+
+* Wed Oct 13 2004 Matthias Saou <http://freshrpms.net/> 0.8.8-0
+- Update to 0.8.8.
+
 * Fri Oct  1 2004 Matthias Saou <http://freshrpms.net/> 0.8.7-0
 - Update to 0.8.7.
 

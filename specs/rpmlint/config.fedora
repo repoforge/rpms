@@ -26,7 +26,7 @@ from Config import *
 # Configuration options used by the checks for Fedora Core Development
 
 setOption("Vendor", "Red Hat, Inc.")
-setOption("Distribution", "Red Hat Linux")
+setOption("Distribution", "Red Hat (FC-3)")
 setOption("Packager", "Red Hat, Inc. <http://bugzilla.redhat.com/bugzilla>")
 setOption("ValidBuildHost", "\.redhat\.com$")
 setOption("UseBzip2", 0)
@@ -74,14 +74,16 @@ addFilter(".* python-naming-policy-not-applied")
 addFilter(".* perl5-naming-policy-not-applied")
 
 # filters for TagsCheck.py
-addFilter("gcc3. devel-dependency glibc-devel")
+addFilter("gcc(3.|4) devel-dependency glibc-devel")
 addFilter("(compat-)?gcc.*-c\+\+ devel-dependency (compat-)?libstdc\+\+-devel")
 addFilter("(compat-)?gcc-java devel-dependency (compat-)?libgcj-devel")
 # No changelog is included in fedora-release
 addFilter("fedora-release no-changelogname-tag")
+# Tool for developing KDE applications
+addFilter("kdevelop devel-dependency kdelibs-devel")
 # Tool for developing python modules
 addFilter("Pyrex devel-dependency python-devel")
-# Tool for developing qt applications
+# Tool for developing Qt applications
 addFilter("qt-designer devel-dependency qt-devel")
 
 # filters for BinariesCheck.py
@@ -93,8 +95,10 @@ addFilter("filesystem no-binary")
 addFilter("gal no-binary")
 # Specificities for x86_64 at least
 addFilter("glibc-kernheaders no-binary")
+# From the spec : WE ARE NOT NOARCH, /usr/lib/pkgconfig is not noarch.
+addFilter("gnome-mime-data no-binary")
 # The binary is in /boot, doesn't get detected properly by rpmlint it seems
-addFilter("memtest86+ no-binary")
+addFilter("memtest86\+ no-binary")
 # Binaries are in mew-common
 addFilter("mew no-binary")
 # Deps are different across archs (genromfs, slilo, syslinux)
@@ -117,13 +121,13 @@ addFilter("wordtrans no-binary")
 addFilter(".* dangling-symlink .* /usr/share/desktop-menu-patches/")
 addFilter(".* symlink-should-be-relative .* /usr/share/desktop-menu-patches/")
 # KDE docs often link back to the main docs, or so it seems
-addFilter(".* dangling-symlink .* /usr/share/doc/HTML/en/common$")
-addFilter(".* symlink-should-be-relative .* /usr/share/doc/HTML/en/common$")
+addFilter(".* dangling-symlink .* /usr/share/doc/HTML/../common$")
+addFilter(".* symlink-should-be-relative .* /usr/share/doc/HTML/../common$")
 # Log has group utmp and logrotate is done from the main /etc/logrotate.conf
 addFilter("initscripts non-root-group-log-file /var/log/wtmp utmp")
 addFilter("initscripts log-files-without-logrotate /var/log/wtmp")
 # Log belongs to mysql
-addFilter("mysql-server non-root-.*-log-file /var/log/mysqld.log mysql")
+addFilter("mysql-server non-root-.*-log-file /var/log/mysqld\.log mysql")
 
 # filters for PostCheck.py
 # Proper shell syntax : mkdir -p "${device%/*}"
@@ -132,6 +136,8 @@ addFilter("brltty percent-in-%post")
 addFilter("cyrus-imapd percent-in-%post")
 # Uses TMP=$(mktemp /tmp/fstab.XXXXXX)
 addFilter("dev use-tmp-in-%post")
+# Uses rel=${rel%.cat}
+addFilter("docbook-style-dsssl percent-in-%post")
 # HOME=/root is used, since fc-cache being run will use ~/fc.cache
 addFilter("fontconfig use-of-home-in-%post")
 # echo -e '%s/color="#20305a"/color="#444444"/g\nw'
@@ -144,4 +150,10 @@ addFilter("taipeifonts use-tmp-in-(%post|%postun)")
 addFilter("xorg-x11 spurious-bracket-in-%pre")
 # Uses TmpFile=`/bin/mktemp /tmp/.zshrpmXXXXXX`
 addFilter("zsh use-tmp-in-%postun")
+
+# filters for DistributionCheck.py
+# Bug in rpmlint : serial/8250/many/ports.h matches man?/*.?
+addFilter("kernel(-smp)? manpage-not-gzipped /lib/modules/.*")
+# This is the old value, not replaced everywhere yet
+addFilter("invalid-distribution Red Hat Linux")
 

@@ -23,6 +23,8 @@ typically superior to that of other publicly available FFT software.
 %package devel
 Summary: Headers, development libraries and documentation for the FFTW library
 Group: Development/Libraries
+#Requires(post): info
+#Requires(preun): info
 Requires: %{name} = %{version}
 
 %description devel
@@ -89,6 +91,16 @@ develop programs using the FFTW fast Fourier transform library.
 /sbin/ldconfig
 
 
+#post devel
+# warning: no info dir entry in `/usr/share/info/fftw.info.gz'
+#/sbin/install-info %{_infodir}/fftw.info.gz %{_infodir}/dir
+
+#preun devel
+#if [ $1 -eq 0]; then
+#    /sbin/install-info --delete %{_infodir}/fftw.info.gz %{_infodir}/dir
+#fi
+
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING COPYRIGHT ChangeLog NEWS README* TODO
@@ -101,10 +113,13 @@ develop programs using the FFTW fast Fourier transform library.
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%{_infodir}/*.info*
+%{_infodir}/fftw.info*
 
 
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 2.1.5-4
+- Added install-info calls for the devel sub-package... nope, doesn't work.
+
 * Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 2.1.5-4
 - Rebuild for Fedora Core 2.
 
