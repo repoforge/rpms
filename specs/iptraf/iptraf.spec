@@ -6,7 +6,7 @@
 Summary: Console-based network monitoring utility
 Name: iptraf
 Version: 2.7.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://iptraf.seul.org/
@@ -46,10 +46,10 @@ so it can be used on a wide variety of supported network cards.
 %{__rm} -f src/{cfconv,iptraf,rvnamed}
 
 %{__perl} -pi.orig -e '
-		s|^(TARGET)\w*=.+$|$1=\$(bindir)|;
-		s|^(WORKDIR)\w*=.+$|$1=\$(localstatedir)/run/iptraf|;
-		s|^(LOCKDIR)\w*=.+$|$1=\$(localstatedir)/lock/iptraf|;
-		s|^(LOGDIR)\w*=.+$|$1=\$(localstatedir)/log/iptraf|;
+		s|^(TARGET)\s*=.+$|$1=\$(bindir)|;
+		s|^(WORKDIR)\s*=.+$|$1=\$(localstatedir)/run/iptraf|;
+		s|^(LOCKDIR)\s*=.+$|$1=\$(localstatedir)/lock/iptraf|;
+		s|^(LOGDIR)\s*=.+$|$1=\$(localstatedir)/log/iptraf|;
 	' src/Makefile
 
 %build
@@ -90,5 +90,8 @@ touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \
 %{_localstatedir}/lock/iptraf/
 
 %changelog
+* Mon May 03 2004 Dag Wieers <dag@wieers.com> - 2.7.0-2
+- Fix inline makefile patch.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 2.7.0-1
 - Initial package. (using DAR)
