@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jeff Weisberg <jaw+pause$tcp4me,com>
 
-%define real_name Chart-Strip
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Chart-Strip
 
 Summary: Draw strip chart type graphs
 Name: perl-Chart-Strip
@@ -20,7 +18,7 @@ URL: http://search.cpan.org/dist/Chart-Strip/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JA/JAW/Chart-Strip-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Chart/Chart-Strip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -33,12 +31,18 @@ With this module you can draw strip chart type graphs.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,9 +51,8 @@ With this module you can draw strip chart type graphs.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Chart/
 %{perl_vendorlib}/Chart/Strip.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1

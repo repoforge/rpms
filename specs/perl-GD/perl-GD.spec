@@ -1,12 +1,15 @@
 # $Id$
 # Authority: dag
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name GD
 
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
-Version: 2.11
-Release: 0
+Version: 2.16
+Release: 1
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD/
@@ -14,10 +17,10 @@ URL: http://search.cpan.org/dist/GD/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LD/LDS/GD-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GD/GD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.8.0, gd-devel, libpng-devel, zlib-devel
+BuildRequires: perl >= 0:5.8.0, gd-devel >= 2.0.12, libpng-devel, zlib-devel
 BuildRequires: freetype-devel, libjpeg-devel, XFree86-devel
 Requires: perl >= 0:5.8.0
 
@@ -48,8 +51,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -58,8 +61,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorarch}/GD.pm
+%{perl_vendorarch}/GD/
+%{perl_vendorarch}/auto/GD/
+%{perl_vendorarch}/qd.pl
 
 %changelog
+* Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 2.16-1
+- Updated to release 2.16.
+
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 2.11-0
 - Initial package. (using DAR)
