@@ -29,13 +29,13 @@
 %{?yd3:%define _without_theora 1}
 
 %define libname libxine1
-%define libver  1-rc5
+%define libver  1-rc6a
 %define apiver  1.0.0
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.14.rc5
+Release: 0.14.rc6a
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -111,15 +111,6 @@ use the Xine library.
 %prep
 %setup -n %{name}-%{libver}
 
-### Disable MMX on non-x86 archs
-%ifnarch %{ix86}
-	%{__perl} -pi.orig -e '
-			s|(enable_ffmmx)="yes"|$1="no"|;
-			s|(#define FPM_INTEL) 1|$1 0|;
-			s|(#define FPM_64BIT)|$1 1|;
-		' configure
-%endif
-
 
 %build
 %configure \
@@ -171,6 +162,11 @@ use the Xine library.
 
 
 %changelog
+* Fri Sep 17 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.14.rc6a
+- Update to 1.0rc6a.
+- Removed wrong !x86 = 64bit assumptions and build changes which seem properly
+  autodetected now anyway.
+
 * Wed Jun 30 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.14.rc5
 - Update to 1.0rc5.
 
