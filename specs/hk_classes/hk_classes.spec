@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: bugreport@knoda.org
+# Upstream: <bugreport$knoda,org>
 
 Summary: C++ library for rapid development of database applications
 Name: hk_classes
