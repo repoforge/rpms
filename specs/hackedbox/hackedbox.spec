@@ -1,4 +1,5 @@
 # $Id: hackedbox.spec,v 1.9 2004/02/23 12:36:00 dude Exp $
+# Authority: matthias
 
 Summary: The bastard son of Blackbox, a small and fast Window Manager
 Name: hackedbox
@@ -6,10 +7,12 @@ Version: 0.8.3
 Release: 1
 License: GPL
 Group: User Interface/Desktops
+URL: http://scrudgeware.org/projects/Hackedbox
+
 Source0: http://scrudgeware.org/downloads/hackedbox/hackedbox-%{version}.tar.gz
 Source1: hackedbox.desktop
-URL: http://scrudgeware.org/projects/Hackedbox
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: XFree86-devel, libstdc++-devel, gcc-c++, perl
 
 %description
@@ -26,7 +29,8 @@ add any functionality, only bugfixes and speed enhancements whenever possible.
 %build
 # Work around NLS problem
 export LANG="en_US" LC_ALL="en_US"
-%configure
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 
