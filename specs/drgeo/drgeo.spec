@@ -8,16 +8,16 @@
 
 Summary: Interactive educational geometry software
 Name: drgeo
-Version: 0.9.12
+Version: 0.9.13
 Release: 1
 License: GPL
 Group: Applications/Engineering
-URL: http://www.ofset.org/drgeo/
+URL: http://ofset.sourceforge.net/drgeo/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ofset.org/drgeo/drgeo-%{version}.tar.gz
+Source: http://dl.sf.net/ofset/drgeo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex, bison, gmp-devel >= 2.0.2, glib-devel, gtk+-devel
@@ -83,6 +83,9 @@ EOF
 %{?_without_freedesktop:%{_datadir}/applications/drgeo.desktop}
 
 %changelog
+* Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 0.9.13-1
+- Updated to release 0.9.13.
+
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.9.12-1
 - Add improved desktop file.
 
