@@ -19,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/evms/evms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib-devel >= 1.2.0, gtk+-devel >= 1.2.0
+BuildRequires: glib-devel >= 1.2.0, gtk+-devel >= 1.2.0, ncurses-devel
 
 %description
 This package contains the user-space tools needed to manage EVMS (Enterprise
