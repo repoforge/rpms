@@ -1,16 +1,16 @@
 # $Id$
 # Authority: matthias
-
 # Dist: nodist
 
 Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
-Version: 1.1
+Version: 1.2
 Release: 1
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/firmware.php
-Source0: http://cache-www.intel.com/cd/00/00/09/63/96377_96377.zip
+# Full path not available because of the end user agreement
+Source: ipw2100-fw-1.2.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -52,6 +52,9 @@ done
 
 
 %changelog
+* Wed Aug 25 2004 Matthias Saou <http://freshrpms.net> 1.2-1
+- Update to 1.2.
+
 * Wed Jun 16 2004 Matthias Saou <http://freshrpms.net> 1.1-1
 - Cosmetic spec file changes.
 

@@ -1,73 +1,6 @@
-Index: kernel-module-ipw2100/ipw2100-0.45/configure.ac
---- kernel-module-ipw2100~autotools.0.45/ipw2100-0.45/configure.ac	2004-05-22 13:40:37.000000000 +0200
-+++ kernel-module-ipw2100/ipw2100-0.45/configure.ac	2004-05-22 15:32:23.000000000 +0200
-@@ -0,0 +1,63 @@
-+AC_INIT(ipw2100_main.c)
-+
-+AM_INIT_AUTOMAKE(ipw2100, 0.40)
-+dnl AM_CONFIG_HEADER(config.h)
-+
-+dnl pick up ACLOCAL flags
-+ACLOCAL_AMFLAGS="\${ACLOCAL_FLAGS} -I m4"
-+AC_SUBST(ACLOCAL_AMFLAGS)
-+
-+dnl do all checks
-+AS_LINUX
-+
-+dnl generate modtool
-+AS_LINUX_MODTOOL
-+
-+dnl to do proper versioning, we need to know if we have pre-2.4 style
-+dnl kernel or post-2.6
-+AC_MSG_CHECKING([for correct way to include symbol versions])
-+case $LINUX_VERSION_MAJOR.$LINUX_VERSION_MINOR in
-+  2.[[67]])
-+    dnl we have to modtool include a .symvers symbol file
-+    AC_MSG_RESULT([post-2.6 .symvers modtool include])
-+    SYMVERS_MODE="symvers"
-+    ;;
-+  2.[[01234]])
-+    dnl we have to source include a .ver include file
-+    AC_MSG_RESULT([pre-2.6 .ver compile include])
-+    SYMVERS_MODE="ver"
-+    ;;
-+  *)
-+    AC_MSG_ERROR([Unknown Linux major.minor $LINUX_VERSION_MAJOR.$LINUX_VERSION_MINOR])
-+    ;;
-+esac
-+AM_CONDITIONAL(SYMVERS_MODE, [test "$SYMVERS_MODE" = "symvers"])
-+
-+dnl add a parameter to disable legacy loading of firmware
-+AC_ARG_ENABLE(legacy-fw-load,
-+  AC_HELP_STRING([--disable-legacy-fw-load],
-+                 [disable loading of firmware the legacy way]),
-+  LEGACY_FW_LOAD=$enableval, LEGACY_FW_LOAD=yes)
-+if test "x$LEGACY_FW_LOAD" = "xyes"
-+then
-+  AC_MSG_NOTICE([Compiling with legacy firmware loading])
-+else
-+  AC_MSG_NOTICE([Compiling with hotplug firmware loading])
-+fi
-+AM_CONDITIONAL(LEGACY_FW_LOAD, test "x$LEGACY_FW_LOAD" = "xyes")
-+
-+dnl add a parameter to disable WEP
-+AC_ARG_ENABLE(wep,
-+  AC_HELP_STRING([--disable-wep],
-+                 [disable WEP support]),
-+  WEP=$enableval, WEP=yes)
-+if test "x$WEP" = "xyes"
-+then
-+  AC_MSG_NOTICE([Compiling with WEP support (which needs hostap)])
-+  dnl FIXME: add a check for hostap.ver here ?
-+else
-+  AC_MSG_NOTICE([Compiling without WEP support])
-+fi
-+AM_CONDITIONAL(WEP, test "x$WEP" = "xyes")
-+
-+AC_OUTPUT(Makefile)
-Index: kernel-module-ipw2100/ipw2100-0.45/autogen.sh
---- kernel-module-ipw2100~autotools.0.45/ipw2100-0.45/autogen.sh	2004-05-22 13:40:41.000000000 +0200
-+++ kernel-module-ipw2100/ipw2100-0.45/autogen.sh	2004-05-22 13:41:31.000000000 +0200
+diff -Naupr qc-usb-0.6.1.orig/autogen.sh qc-usb-0.6.1/autogen.sh
+--- qc-usb-0.6.1.orig/autogen.sh	1970-01-01 01:00:00.000000000 +0100
++++ qc-usb-0.6.1/autogen.sh	2004-08-25 15:54:48.811827976 +0200
 @@ -0,0 +1,6 @@
 +#!/bin/bash
 +set -x
@@ -75,84 +8,25 @@ Index: kernel-module-ipw2100/ipw2100-0.45/autogen.sh
 +autoconf || exit 1
 +automake -a --foreign || exit 1
 +./configure $@
-Index: kernel-module-ipw2100/ipw2100-0.45/Makefile.am
---- kernel-module-ipw2100~autotools.0.45/ipw2100-0.45/Makefile.am	2004-05-22 13:40:44.000000000 +0200
-+++ kernel-module-ipw2100/ipw2100-0.45/Makefile.am	2004-06-04 12:10:09.000000000 +0200
-@@ -0,0 +1,69 @@
-+moduledir = $(modulesdir)/kernel/drivers/net/wireless
-+module_PROGRAMS = ipw2100.ko
-+                                                                                
-+# check if we want legacy firmware loading
-+if LEGACY_FW_LOAD
-+LEGACY_FW_LOAD_CFLAGS = -DCONFIG_IPW2100_LEGACY_FW_LOAD
-+else
-+LEGACY_FW_LOAD_CFLAGS =
-+endif
+diff -Naupr qc-usb-0.6.1.orig/configure.ac qc-usb-0.6.1/configure.ac
+--- qc-usb-0.6.1.orig/configure.ac	1970-01-01 01:00:00.000000000 +0100
++++ qc-usb-0.6.1/configure.ac	2004-08-25 15:54:48.811827976 +0200
+@@ -0,0 +1,10 @@
++AC_INIT(qc-driver.c)
 +
-+# check if we want to disable WEP
-+# FIXME: maybe we should also check if we're compiling with module versioning
-+if WEP
-+if SYMVERS_MODE
-+# for post-2.6
-+WEP_SYMVERSFLAGS = -i $(LINUX_DIR)/hostap.o.symvers
-+WEP_CFLAGS =
-+else
-+# for 2.4
-+WEP_SYMVERSFLAGS =
-+WEP_CFLAGS = -include linux/modules/hostap.ver
-+endif
-+else
-+WEP_CFLAGS = -DCONFIG_IPW2100_NOWEP
-+WEP_SYMVERSFLAGS =
-+endif
++AM_INIT_AUTOMAKE(qc-usb, 0.5.1)
++dnl AM_CONFIG_HEADER(config.h)
 +
-+ipw2100_ko_SOURCES = \
-+        ipw2100_main.c \
-+        ipw2100_fw.c \
-+        ipw2100_wx.c \
-+        ieee80211_tx.c \
-+        ieee80211_rx.c \
-+        ieee80211.c \
-+        ieee80211_wx.c
++dnl look for Linux kernel source
++AS_LINUX
++AS_LINUX_MODTOOL
 +
-+# we are building from this package and not included in kernel
-+# we add an include path for builddir/include/modules/hostap
-+# we also include the hostap version file since we use module versioning
-+ipw2100_ko_CFLAGS = \
-+  $(LINUX_CFLAGS) \
-+  -I $(LINUX_DIR)/include/modules/hostap \
-+  -DNOKERNEL \
-+  $(LEGACY_FW_LOAD_CFLAGS) \
-+  $(WEP_CFLAGS)
-+ipw2100_ko_LINK = $(top_builddir)/modtool --link $(WEP_SYMVERSFLAGS) -o $@
-+
-+# FIXME: might be good to make hostap install the hostap_crypt header !
-+noinst_HEADERS = \
-+  ieee80211_crypt.h \
-+  ieee80211.h \
-+  ipw2100_fw.h \
-+  ipw2100.h \
-+  ipw2100_hw.h \
-+  ipw2100_wx.h \
-+  ipwversion.h
-+
-+EXTRA_DIST = \
-+  m4/as-linux.m4 \
-+  av5100.c \
-+  ieee80211.c \
-+  pbe5.c
-+
-+DISTCHECK_CONFIGURE_FLAGS = --with-modulesdir=`mktemp -d`
-+
-+DISTCLEANFILES = modtool
-+
-+distclean-local:
-+	-rm -rf .mods
-Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
---- kernel-module-ipw2100~autotools.0.45/ipw2100-0.45/m4/as-linux.m4	2004-05-22 13:40:58.000000000 +0200
-+++ kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4	2004-06-04 11:31:16.000000000 +0200
-@@ -0,0 +1,704 @@
-+dnl as-linux.m4 0.2.1
++AC_OUTPUT(Makefile testquickcam/Makefile)
+diff -Naupr qc-usb-0.6.1.orig/m4/as-linux.m4 qc-usb-0.6.1/m4/as-linux.m4
+--- qc-usb-0.6.1.orig/m4/as-linux.m4	1970-01-01 01:00:00.000000000 +0100
++++ qc-usb-0.6.1/m4/as-linux.m4	2004-08-25 15:54:48.815827368 +0200
+@@ -0,0 +1,775 @@
++dnl as-linux.m4 0.2.4
 +
 +dnl autostars m4 macro for detecting a Linux source tree (or
 +dnl equivalent) for compiling modules.
@@ -161,7 +35,7 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +dnl Frank Mori Hess <fmhess@users.sourceforge.net>
 +dnl Thomas Vander Stichele <thomas@apestaart.org>
 +
-+dnl $Id: as-linux.m4,v 1.18 2004/06/03 16:35:58 thomasvs Exp $
++dnl $Id: as-linux.m4,v 1.21 2004/08/24 15:52:07 thomasvs Exp $
 +
 +dnl AS_LINUX()
 +dnl
@@ -174,6 +48,8 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +dnl --with-extraversion    to specify an EXTRAVERSION override
 +dnl --with-modulesdir      to specify the base install location of modules
 +dnl --with-modulesdeveldir to specify the base install location of build stuff
++dnl --without-modules      to specify not to build the modules
++dnl --without-userspace    to specify not to build userspace stuff
 +
 +dnl this macro defines:
 +dnl LINUX_DIR
@@ -219,6 +95,13 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +dnl checks the version, and figures out all flags to use to make modules.
 +AC_DEFUN([AS_LINUX],
 +[
++	dnl check whether or not to build modules
++	AS_LINUX_CHECK_BUILD_MODULES()
++	dnl check whether or not to build userspace
++	AS_LINUX_CHECK_BUILD_USERSPACE()
++
++	if test "x$BUILD_MODULES" != "xno"
++        then
 +	dnl check if user supplied a uname -r, and if not use the running one
 +	AS_LINUX_KERNEL_RELEASE()
 +	dnl check if user supplied a uname -m, and if not use the running one
@@ -259,6 +142,7 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +			AC_MSG_ERROR([Unknown Linux major.minor $LINUX_VERSION_MAJOR.$LINUX_VERSION_MINOR])
 +			;;
 +	esac
++        fi
 +])
 +
 +
@@ -272,23 +156,30 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +		[LINUX_DIR="${withval}"],
 +		[LINUX_DIR=default])
 +
++	dnl if specified, use the specified one
 +	if test "${LINUX_DIR}" != "default" ; then
 +		AS_TRY_LINUX_DIR([${LINUX_DIR}], , AC_MSG_ERROR([Linux dir not found]) )
 +	fi
 +
++	dnl if not specified, first try with previously set LINUX_KERNEL_RELEASE
 +	if test "${LINUX_DIR}" = "default" ; then
-+		dir="/lib/modules/`uname -r`/build";
++		dir="/lib/modules/$LINUX_KERNEL_RELEASE/build";
 +		AS_TRY_LINUX_DIR([${dir}], [LINUX_DIR=${dir}], )
 +	fi
++
++	dnl next try using the kernel source dir
 +	if test "${LINUX_DIR}" = "default" ; then
-+		dir="../linux";
++		dir="/usr/src/linux-$LINUX_KERNEL_RELEASE";
 +		AS_TRY_LINUX_DIR([${dir}], [LINUX_DIR=${dir}], )
 +	fi
++
++	dnl then try a common default of /usr/src/linux
 +	if test "${LINUX_DIR}" = "default" ; then
 +		dir="/usr/src/linux";
 +		AS_TRY_LINUX_DIR([${dir}], [LINUX_DIR=${dir}], )
 +	fi
 +
++	dnl if still nothing found, fail
 +	if test "${LINUX_DIR}" = "default" ; then
 +		AC_MSG_ERROR([Linux source directory not found])
 +	fi
@@ -617,6 +508,47 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +	AC_MSG_NOTICE([Putting kernel module development files under ${MODULESDEVELDIR}])
 +])
 +
++dnl add an argument to build without modules
++dnl sets variable BUILD_MODULES
++AC_DEFUN([AS_LINUX_CHECK_BUILD_MODULES],
++[
++	AC_ARG_WITH([modules],
++		[AC_HELP_STRING([--without-modules],
++			[do not build kernel modules])],
++		[BUILD_MODULES="${withval}"],
++		[BUILD_MODULES="yes"])
++
++	AC_MSG_CHECKING([whether to build kernel modules])
++	if test "x$BUILD_MODULES" = "xno"
++	then
++		AC_MSG_RESULT([no])
++	else
++		AC_MSG_RESULT([yes])
++	fi
++	dnl make it available as a conditional to Makefiles
++	AM_CONDITIONAL(BUILD_MODULES, test "x$BUILD_MODULES" != "xno")
++])
++
++dnl add an argument to build without userspace
++AC_DEFUN([AS_LINUX_CHECK_BUILD_USERSPACE],
++[
++	AC_ARG_WITH([userspace],
++		[AC_HELP_STRING([--without-userspace],
++			[do not build userspace stuff])],
++		[BUILD_USERSPACE="${withval}"],
++		[BUILD_USERSPACE="yes"])
++
++	AC_MSG_CHECKING([whether to build userspace stuff])
++	if test "x$BUILD_USERSPACE" = "xno"
++	then
++		AC_MSG_RESULT([no])
++	else
++		AC_MSG_RESULT([yes])
++	fi
++	dnl make it available as a conditional to Makefiles
++	AM_CONDITIONAL(BUILD_USERSPACE, test "x$BUILD_USERSPACE" != "xno")
++])
++
 +AC_DEFUN([AS_LINUX_2_6],
 +[
 +	AC_MSG_CHECKING(for Linux CFLAGS)
@@ -665,8 +597,6 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +	LINUX_MODULE_EXT=".ko"
 +
 +	LINUX_CFLAGS="$LINUX_CFLAGS $LINUX_CFLAGS_MODULE"
-+	LINUX_MODPOST="$LINUX_DIR/scripts/modpost"
-+
 +	AC_SUBST(LINUX_ARCH)
 +	AC_SUBST(LINUX_AFLAGS)
 +	AC_SUBST(LINUX_LDFLAGS)
@@ -678,9 +608,24 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +	AC_SUBST(LINUX_LD)
 +	AC_SUBST(LINUX_AS)
 +	AC_SUBST(LINUX_MODULE_EXT)
-+	AC_SUBST(LINUX_MODPOST)
-+
 +	AC_MSG_RESULT([$LINUX_CFLAGS])
++
++	dnl find a usable modpost script
++	AC_MSG_CHECKING([usable modpost])
++	for CAND in $LINUX_DIR/scripts/modpost $LINUX_DIR/scripts/mod/modpost
++	do
++		if test -f "$CAND"
++		then
++			LINUX_MODPOST=$CAND
++		fi
++	done
++	AC_SUBST(LINUX_MODPOST)
++	if test -z "$LINUX_MODPOST"
++	then
++		AC_MSG_WARN([No usable modpost script found])
++	else
++		AC_MSG_RESULT([$LINUX_MODPOST])
++	fi
 +])
 +
 +dnl checks kernel's Makefile for make variables for Linux 2.4
@@ -856,9 +801,9 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-linux.m4
 +	dnl restore CFLAGS
 +        CFLAGS="$ac_save_CFLAGS"
 +])
-Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-modtool.m4
---- kernel-module-ipw2100~autotools.0.45/ipw2100-0.45/m4/as-modtool.m4	2004-05-22 13:41:02.000000000 +0200
-+++ kernel-module-ipw2100/ipw2100-0.45/m4/as-modtool.m4	2004-06-04 11:31:18.000000000 +0200
+diff -Naupr qc-usb-0.6.1.orig/m4/as-modtool.m4 qc-usb-0.6.1/m4/as-modtool.m4
+--- qc-usb-0.6.1.orig/m4/as-modtool.m4	1970-01-01 01:00:00.000000000 +0100
++++ qc-usb-0.6.1/m4/as-modtool.m4	2004-08-25 15:54:48.827825544 +0200
 @@ -0,0 +1,147 @@
 +dnl as-modtool.m4 0.0.1
 +dnl autostars m4 macro for building modtool, a linker for Linux kernel
@@ -1007,3 +952,37 @@ Index: kernel-module-ipw2100/ipw2100-0.45/m4/as-modtool.m4
 +])
 +
 +
+diff -Naupr qc-usb-0.6.1.orig/Makefile.am qc-usb-0.6.1/Makefile.am
+--- qc-usb-0.6.1.orig/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ qc-usb-0.6.1/Makefile.am	2004-08-25 16:06:20.704644280 +0200
+@@ -0,0 +1,22 @@
++SUBDIRS = testquickcam
++
++bin_PROGRAMS = qcset
++
++noinst_HEADERS = quickcam.h qc-memory.h
++
++moduledir = $(modulesdir)/kernel/drivers/video
++module_PROGRAMS = quickcam.ko
++
++# we are building from this package and not included in kernel
++quickcam_ko_CFLAGS = $(LINUX_CFLAGS) -DNOKERNEL
++quickcam_ko_SOURCES = \
++	qc-driver.c qc-formats.c qc-mjpeg.c qc-hdcs.c \
++	qc-pb0100.c qc-vv6410.c qc-memory.c
++quickcam_ko_LINK = $(top_builddir)/modtool --link -o $@
++                                                                                
++distclean-local:
++	-rm -rf .mods
++
++qcset_SOURCES = qcset.c
++qcset_LDFLAGS = -lm
++
+diff -Naupr qc-usb-0.6.1.orig/testquickcam/Makefile.am qc-usb-0.6.1/testquickcam/Makefile.am
+--- qc-usb-0.6.1.orig/testquickcam/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ qc-usb-0.6.1/testquickcam/Makefile.am	2004-08-25 15:54:48.839823720 +0200
+@@ -0,0 +1,4 @@
++noinst_PROGRAMS = testquickcam
++
++testquickcam_SOURCES = testquickcam.c
++noinst_HEADERS = testquickcam.h

@@ -1,0 +1,120 @@
+diff -u ipw2100-0.53.orig/ipw2100_fw.c ipw2100-0.53/ipw2100_fw.c
+--- ipw2100-0.53.orig/ipw2100_fw.c	2004-08-19 12:30:23.000000000 +0800
++++ ipw2100-0.53/ipw2100_fw.c	2004-08-20 22:31:02.000000000 +0800
+@@ -39,7 +39,6 @@
+ 
+ #include <linux/compiler.h>
+ #include <linux/config.h>
+-#include <linux/errno.h>
+ #include <linux/if_arp.h>
+ #include <linux/in6.h>
+ #include <linux/in.h>
+@@ -58,14 +57,6 @@
+ #include <linux/types.h>
+ #include <linux/version.h>
+ 
+-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,8)
+-#include <linux/syscalls.h>
+-#define read sys_read
+-#define lseek sys_lseek
+-#define open sys_open
+-#define close sys_close
+-#endif
+-
+ #include <asm/io.h>
+ #include <asm/uaccess.h>
+ #define __KERNEL_SYSCALLS__
+@@ -169,7 +160,11 @@
+ }
+ 
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,0)
+ static int ipw2100_fw_load(int fd, struct ipw2100_fw_chunk_set *cs, long size)
++#else
++static int ipw2100_fw_load(struct file *filp, struct ipw2100_fw_chunk_set *cs, long size)
++#endif
+ {
+ 	struct ipw2100_fw_chunk *c;
+ 	int i = 0;
+@@ -209,7 +204,11 @@
+ 			goto fail;
+ 			
+ 		}
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,0)
+ 		if (read(fd, c->buf, c->len) != c->len) {
++#else
++		if (vfs_read(filp, c->buf, c->len, &filp->f_pos) != c->len) {
++#endif
+ 			printk(KERN_INFO "Failed to read chunk firmware "
+ 			       "chunk %d.\n", i);
+ 			goto fail;
+@@ -228,6 +227,8 @@
+ 	return 1;
+ }
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,0)
++
+ static int errno;
+ static int ipw2100_do_mod_firmware_load(const char *fn, struct ipw2100_fw *fw)
+ {
+@@ -280,6 +281,60 @@
+ 	return 1;
+ }
+ 
++#else
++
++static int ipw2100_do_mod_firmware_load(const char *fn, struct ipw2100_fw *fw)
++{
++	struct file *filp;
++	long l;
++	struct ipw2100_fw_header h;
++
++	/* Make sure the lists are init'd so that error paths can safely walk
++        * them to free potentially allocated storage */
++	INIT_LIST_HEAD(&fw->fw.chunk_list);
++	INIT_LIST_HEAD(&fw->uc.chunk_list);
++	
++	filp = filp_open(fn, 0, 0);
++	if (IS_ERR(filp)) {
++		printk(KERN_INFO "Unable to load '%s'.\n", fn);
++		return 1;
++	}
++
++	l = i_size_read(filp->f_dentry->d_inode);
++	IPW2100_DEBUG_FW("Loading %ld bytes for firmware '%s'\n", l, fn);
++	
++	if (vfs_read(filp, (char *)&h, sizeof(h), &filp->f_pos) != sizeof(h)) {
++		printk(KERN_INFO "Failed to read '%s'.\n", fn);
++		goto fail;
++	}
++
++	if (IPW2100_FW_MAJOR(h.version) != IPW2100_FW_MAJOR_VERSION) {
++		printk(KERN_WARNING "Firmware image not compatible "
++		       "(detected version id of %u). "
++		       "See Documentation/networking/README.ipw2100\n",
++		       h.version);
++		goto fail;
++	}
++
++	fw->version = h.version;
++
++	if (ipw2100_fw_load(filp, &fw->fw, h.fw_size))
++		goto fail;
++
++	if (ipw2100_fw_load(filp, &fw->uc, h.uc_size))
++		goto fail;
++
++	filp_close(filp, current->files);
++	return 0;
++
++ fail:
++	ipw2100_fw_free(fw);
++	filp_close(filp, current->files);
++	return 1;
++}
++
++#endif /* LINUX_VERSION_CODE < 2.6.0 */
++
+ 
+ static int ipw2100_mod_firmware_load(const char *fn, struct ipw2100_fw *fw)
+ {

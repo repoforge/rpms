@@ -31,13 +31,13 @@
 
 Summary: Driver for Logitech QuickCam webcams using qc-usb
 Name: kernel-module-qc-usb
-Version: 0.6.0
+Version: 0.6.1
 Release: 0
 License: GPL
 Group: System Environment/Kernel
 URL: http://qce-ga.sourceforge.net/
 Source: http://dl.sf.net/qce-ga/qc-usb-%{version}.tar.gz
-Patch: qc-usb.autotools.patch
+Patch: qc-usb-0.6.1-autotools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -78,7 +78,7 @@ Simple command-line utility to configure the QuickCam USB webcam settings.
 
 %prep
 %setup -q -n qc-usb-%{version}
-%patch -p2
+%patch -p1
 
 
 %build
@@ -134,6 +134,10 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 
 %changelog
+* Wed Aug 25 2004 Matthias Saou <http://freshrpms.net> 0.6.1-0
+- Update to 0.6.1.
+- Updated m4 files to Thomas's latest.
+
 * Thu Jun 17 2004 Matthias Saou <http://freshrpms.net> 0.6.0-0
 - Takeover the spec.
 

@@ -28,21 +28,20 @@
 
 Summary: Driver for Intel® PRO/Wireless 2100 network adaptors
 Name: kernel-module-ipw2100
-Version: 0.49
-Release: 1
+Version: 0.53
+Release: 0
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/
 Source: http://dl.sf.net/ipw2100/ipw2100-%{version}.tgz
 Source1: ieee802_11.h
-Patch: ipw2100-0.49-autotools.patch
+Patch0: ipw2100-0.53-autotools.patch
+Patch1: ipw2100-0.53-vfs_read_2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
-BuildRequires: kernel-module-hostap-devel-%{krel}
 %else
 BuildRequires: kernel-source = %{krel}
-BuildRequires: kernel-module-hostap-%{krel}
 %endif
 BuildRequires: autoconf, automake
 
@@ -62,10 +61,8 @@ Provides: %{name} = %{version}-%{release}, kernel-module
 Requires(post): modutils
 Requires(postun): modutils
 Requires: /boot/vmlinuz-%{kernel}
-# We require the hostap module
-Requires: kernel-module-hostap-%{krel}
 # And firmware too
-Requires: ipw2100-firmware
+Requires: ipw2100-firmware >= 1.2
 
 %description %{kernel}
 This package contains a kernel module for the Intel® PRO/Wireless 2100
@@ -74,7 +71,8 @@ network adaptors, found for instance in Centrino laptops.
 
 %prep
 %setup -q -n ipw2100-%{version}
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 # Include file missing from the Fedora Core kernels (as of 2.6.6-1.435.2.3)
 %{__install} -m 0644 %{SOURCE1} ieee802_11.h
 
@@ -113,9 +111,18 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 %files %{kernel}
 %defattr(-, root, root, 0755)
 /lib/modules/%{kernel}%{?updates}/kernel/drivers/net/wireless/ipw2100.*o
+/lib/modules/%{kernel}%{?updates}/kernel/drivers/net/wireless/ieee80211.*o
+/lib/modules/%{kernel}%{?updates}/kernel/drivers/net/wireless/ieee80211_crypt.*o
+/lib/modules/%{kernel}%{?updates}/kernel/drivers/net/wireless/ieee80211_crypt_wep.*o
 
 
 %changelog
+* Wed Aug 25 2004 Matthias Saou <http://freshrpms.net> 0.53-0
+- Update to 0.53 with Thomas's new patch.
+- Remove no longer needed hostap module stuff.
+- Added ipw2100-0.53-vfs_read_2.patch to workaround sys_* symbols not being
+  exported in RH kernels (see bugzilla #115843).
+
 * Tue Jul 13 2004 Matthias Saou <http://freshrpms.net> 0.49-1
 - Update to 0.49.
 - Bundle ieee802_11.h for now, ugly.
