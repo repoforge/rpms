@@ -2,14 +2,13 @@
 # Authority: matthias
 # Upstream: Stuart Caie <kyzer@4u.net>
 
-Summary: program to extract Microsoft Cabinet files
+Summary: Program to extract Microsoft Cabinet files
 Name: cabextract
 Version: 1.0
 Release: 1
 License: GPL
 Group: Applications/Archiving
 URL: http://www.kyz.uklinux.net/cabextract.php3
-
 Source: http://www.kyz.uklinux.net/downloads/cabextract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -40,15 +39,15 @@ cabextract program simply unpacks such files.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README
-%doc %{_mandir}/man?/*
 %{_bindir}/*
+%{_mandir}/man?/*
 
 
 %changelog
-* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 1.0-1.fr
+* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 1.0-1
 - Update to 1.0.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.6-3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.6-3
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>

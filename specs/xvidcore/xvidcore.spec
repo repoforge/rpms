@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define prever rc3
+%define prever rc4
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
@@ -40,7 +40,7 @@ Static library and API documentation of the XviD video codec.
 %build
 pushd build/generic
     %configure
-    make %{?_smp_mflags}
+    %{__make} %{?_smp_mflags}
 popd
 
 
@@ -51,7 +51,7 @@ pushd build/generic
 popd
 # Make a .so symlink to the so.x.x file
 pushd %{buildroot}%{_libdir}
-    ln -s lib%{name}.so* lib%{name}.so
+    %{__ln_s} lib%{name}.so* lib%{name}.so
 popd
 # Remove unwanted files from the docs
 %{__rm} -f doc/Makefile
@@ -61,9 +61,11 @@ popd
 %{__rm} -rf %{buildroot}
 
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 
 
 %files
@@ -80,16 +82,19 @@ popd
 
 
 %changelog
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc3.1.fr
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc4.1
+- Update to 1.0.0-rc4.
+
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc3.1
 - Update to 1.0.0-rc3.
 
-* Wed Feb 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1.fr
+* Wed Feb 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1
 - Update to 1.0.0-rc2.
 
-* Sun Jan 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.beta3.1.fr
+* Sun Jan 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.beta3.1
 - Update to 1.0.0-beta3, quite a few spec file changes to match.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-3
 - Rebuild for Fedora Core 1.
 - Added libxvidcore provides for compatibility.
 

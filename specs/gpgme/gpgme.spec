@@ -27,6 +27,8 @@ uses GnuPG as its backend but the API isn't restricted to this engine
 Summary: Static libraries and header files from GPGME, GnuPG Made Easy
 Group: Development/Libraries
 Requires: %{name} = %{version}
+Requires(post): info
+Requires(preun): info
 Provides: libgpgme-devel = %{version}-%{release}
 
 %description devel
@@ -41,25 +43,31 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__rm} -f %{buildroot}%{_infodir}/dir || :
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %post devel
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
+
 
 %preun devel
 if [ $1 -eq 0 ]; then
     /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
 fi
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -76,15 +84,16 @@ fi
 %{_infodir}/%{name}.info*
 %exclude %{_libdir}/*.la
 
+
 %changelog
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4
 - Exclude the dir info file.
 - Added scriplets for info file install.
 
-* Wed Nov 12 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-3.fr
+* Wed Nov 12 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-3
 - Added missing gnupg build requirement.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-2.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-2
 - Revert to latest semi-stable for now.
 - Rebuild for Fedora Core 1.
 

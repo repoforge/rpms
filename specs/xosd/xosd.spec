@@ -4,17 +4,15 @@
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
 
-Summary: XOSD displays transparent text on your screen like the OSD of TVs
+Summary: Displays transparent text on your screen like the OSD of TVs
 Name: xosd
 Version: 2.2.5
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ignavus.net/software.html
-
 Source: http://www.ignavus.net/xosd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel, xmms-devel
 
 %description
@@ -50,16 +48,19 @@ XOSD library, similarly to TV OSD.
 %prep
 %setup
 
+
 %build
 %configure \
-	--disable-dependency-tracking \
-	--enable-old-plugin \
-	--with-plugindir="%{xmms_generaldir}"
+    --disable-dependency-tracking \
+    --enable-old-plugin \
+    --with-plugindir="%{xmms_generaldir}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
+
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -67,35 +68,41 @@ XOSD library, similarly to TV OSD.
 %postun
 /sbin/ldconfig 2>/dev/null
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man1/osd_cat*
 %{_bindir}/osd_cat
 %{_libdir}/*.so.*
 %{_datadir}/xosd/
+%{_mandir}/man1/osd_cat*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/xosd-config*
-%doc %{_mandir}/man3/*
 %{_bindir}/xosd-config
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
 %exclude %{_libdir}/*.la
+%{_mandir}/man1/xosd-config*
+%{_mandir}/man3/*
 
 %files -n xmms-xosd
 %defattr(-, root, root, 0755)
 %{xmms_generaldir}/*.so
 %exclude %{xmms_generaldir}/*.la
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.2.5-1.fr
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 2.2.5-2
+- Minor spec file cleanups.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.2.5-1
 - Update to 2.2.5 at last.
 - Rebuild for Fedora Core 1.
 

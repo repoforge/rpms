@@ -10,8 +10,7 @@ Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
 Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7_UNSTABLE/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libxml2, zlib, libcdio
-BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, libcdio-devel >= 0.65, popt
+BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, popt
 
 %description 
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
@@ -22,36 +21,41 @@ VCDRip, which comes with VCDImager, does the reverse operation. That
 is, ripping mpeg streams from images (and already burned VideoCDs)
 and showing some information about the VideoCD.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} DESTDIR=%{buildroot} install
-
 # Sometimes this file gets created... but we don't want it!
 %{__rm} -f %{buildroot}%{_infodir}/dir
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS FAQ TODO COPYING ChangeLog INSTALL NEWS README THANKS
-%doc %{_mandir}/man1/*
-%doc %{_infodir}/*.info*
 %{_bindir}/*
+%{_infodir}/*.info*
+%{_mandir}/man1/*
+
 
 %changelog
-* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.20-1.fr
+* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.20-1
 - Update to 0.7.20.
 - Added libcdio requirement.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.7.14-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.7.14-2
 - Rebuild for Fedora Core 1.
 
 * Fri May  2 2003 Matthias Saou <http://freshrpms.net/>

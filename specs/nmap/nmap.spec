@@ -5,8 +5,8 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 3.48
-Release: 2
+Version: 3.50
+Release: 1
 Epoch: 2
 License: GPL
 Group: Applications/System
@@ -38,15 +38,18 @@ be installed before installing nmap-frontend.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall nmapdatadir=%{buildroot}%{_datadir}/nmap
 
-mkdir -p %{buildroot}%{_datadir}/applications
+
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications                      \
   --add-category X-Red-Hat-Extra                                  \
@@ -54,13 +57,14 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --add-category Network                                          \
   %{buildroot}%{_datadir}/gnome/apps/Utilities/nmapfe.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files 
 %defattr(-, root, root, 0755)
-%doc COPYING
-%doc docs/README docs/*.html docs/*.txt
+%doc COPYING docs/README docs/*.html docs/*.txt
 %{_bindir}/nmap
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.1*
@@ -73,8 +77,13 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{_mandir}/man1/nmapfe.1*
 %{_mandir}/man1/xnmap.1*
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.48-2.fr
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 3.50-1
+- Update to 3.50.
+- Minor spec cleanups.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.48-2
 - Rebuild for Fedora Core 1.
 - Added openssl support, it works at last!
 

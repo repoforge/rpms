@@ -3,7 +3,7 @@
 
 Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
-Version: 0.7.5
+Version: 0.7.7
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -21,23 +21,30 @@ GTetrinet is a client program for the popular Tetrinet game, a multiplayer
 tetris game that is played over the internet. (If you don't know what Tetrinet
 is, check out tetrinet.org)
 
+
 %prep
 %setup
 
+
 %build
 %configure
-perl -pi -e 's|Exec=%{name}|Exec=%{_prefix}/games/%{name}|g' %{name}.desktop
 %{__make} %{?_smp_mflags}
+# Fix the desktop entry
+%{__perl} -pi -e 's|Exec=%{name}|Exec=%{_prefix}/games/%{name}|g' \
+    %{name}.desktop
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %find_lang %{name}
-cp -a %{SOURCE1} .
-tar -xzvf %{SOURCE2} -C %{buildroot}/%{_datadir}/gtetrinet/themes/
+%{__cp} -a %{SOURCE1} .
+%{__tar} -xzvf %{SOURCE2} -C %{buildroot}/%{_datadir}/gtetrinet/themes/
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -50,8 +57,13 @@ tar -xzvf %{SOURCE2} -C %{buildroot}/%{_datadir}/gtetrinet/themes/
 %{_datadir}/pixmaps/%{name}.png
 %{_mandir}/man6/%{name}.6*
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.7.5-1.fr
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 0.7.7-1
+- Update to 0.7.7.
+- Minor spec updates (more macros).
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.7.5-1
 - Update to 0.7.5.
 - Rebuild for Fedora Core 1.
 
