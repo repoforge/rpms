@@ -1,7 +1,7 @@
 # $Id: _template.spec 765 2004-05-20 17:33:53Z dag $
 # Authority: dag
 
-%{?dist:%{expand:%%define %dist 1}}
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
@@ -25,74 +25,68 @@ RPM macros used by the RPMForge project.
 %{__cat} <<EOF >macros.rpmforge
 %if %{?dist:1}0
 ### Current distribution
-%%define dist %dist
-%%define %dist 1
+%%dist %dist
+%%%dist 1
 %else
 ### Current disitribution undefine in original buildsystem
 #%%define dist ???
 #%%define ??? 1
 %endif
 
+%if "%dist" == "fc1"
 ### Fedora Core 1
-%%if "%%dist" == "fc1"
-%%define errata 100
-%%define _without_alsa 1
-%%define _without_theora 1
-%%endif
-
+%%errata 100
+%%_without_alsa 1
+%%_without_theora 1
+%endif
+%if "%dist" == "el3"
 ### Red Hat Enterprise Linux 3
-%%if "%%dist" == "el3"
-%%define errata 91
-%%define _without_alsa 1
-%%define _without_fribidi 1
-%%define _without_theora 1
-%%endif
-
+%%errata 91
+%%_without_alsa 1
+%%_without_fribidi 1
+%%_without_theora 1
+%endif
+%if "%dist" == "rh9"
 ### Red Hat Linux 9
-%%if "%%dist" == "rh9"
-%%define errata 90
-%%define _without_alsa 1
-%%define _without_fribidi 1
-%%define _without_theora 1
-%%endif
-
+%%errata 90
+%%_without_alsa 1
+%%_without_fribidi 1
+%%_without_theora 1
+%endif
+%if "%dist" == "rh8"
 ### Red Hat Linux 8.0
-%%if "%%dist" == "rh8"
-%%define errata 80
-%%define _without_alsa 1
-%%define _without_fribidi 1
-%%define _without_theora 1
-%%endif
-
+%%errata 80
+%%_without_alsa 1
+%%_without_fribidi 1
+%%_without_theora 1
+%endif
+%if "%dist" == "rh7"
 ### Red Hat Linux 7.3
-%%if "%%dist" == "rh7"
-%%define errata 73
-%%define _without_alsa 1
-%%define _without_freedesktop 1
-%%define _without_fribidi 1
-%%define _without_gnomevfs2 1
-%%define _without_theora 1
-%%endif
-
+%%errata 73
+%%_without_alsa 1
+%%_without_freedesktop 1
+%%_without_fribidi 1
+%%_without_gnomevfs2 1
+%%_without_theora 1
+%endif
+%if "%dist" == "el2"
 ### Red hat Enterprise Linux 2.1
-%%if "%%dist" == "el2"
-%%define errata 72
-%%define _without_alsa 1
-%%define _without_freedesktop 1
-%%define _without_fribidi 1
-%%define _without_gnomevfs2 1
-%%define _without_theora 1
-%%endif
-
+%%errata 72
+%%_without_alsa 1
+%%_without_freedesktop 1
+%%_without_fribidi 1
+%%_without_gnomevfs2 1
+%%_without_theora 1
+%endif
+%if "%dist" == "rh6"
 ### Red Hat Linux 6.2
-%%if "%%dist" == "rh6"
-%%define errata 62
-%%define _without_alsa 1
-%%define _without_freedesktop 1
-%%define _without_fribidi 1
-%%define _without_gnomevfs2 1
-%%define _without_theora 1
-%%endif
+%%errata 62
+%%_without_alsa 1
+%%_without_freedesktop 1
+%%_without_fribidi 1
+%%_without_gnomevfs2 1
+%%_without_theora 1
+%endif
 EOF
 
 %build
