@@ -25,7 +25,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/lincity/lincity-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, gcc-c++
+BuildRequires: XFree86-devel, gcc-c++, libpng-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
