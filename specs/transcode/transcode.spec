@@ -21,14 +21,12 @@ Release: 6
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
-
 Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gcc-c++, glib-devel, gtk+-devel
 BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel, libdv-devel
-BuildRequires: bzip2-devel
+BuildRequires: bzip2-devel, ed
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
@@ -45,18 +43,6 @@ BuildRequires: libexif-devel
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3}
 %{!?_without_nasm:BuildRequires: nasm}
-Requires: SDL, libxml2, libjpeg
-Requires: freetype >= 2.0, libogg, libvorbis, libdv
-Requires: bzip2
-%{!?_without_lame:Requires: lame >= 3.89}
-%{!?_without_dvdread:Requires: libdvdread}
-%{!?_without_xvidcore:Requires: xvidcore}
-#{!?_without_postproc:Requires: libpostproc}
-%{!?_without_quicktime:Requires: libquicktime}
-%{!?_without_lzo:Requires: lzo >= 1.08}
-%{!?_without_a52:Requires: a52dec}
-%{!?_without_libfame:Requires: libfame}
-%{!?_without_magick:Requires: ImageMagick >= 5.4.3}
 
 %description
 Transcode is a linux text-console utility for video stream processing.
@@ -69,20 +55,22 @@ video frames and loading of external filters.
 Please see the included README file for more.
 
 Available rpmbuild rebuild options :
---without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg mpeg3 theora magick
---with : avifile
+--with    : avifile
+--without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg mpeg3
+            theora magick
 
 
 %prep
 %setup
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e 's|\@MOD_PATH\@|\$(libdir)/transcode|' Makefile.in */Makefile.in */*/Makefile.in
+%{__perl} -pi.orig -e 's|\@MOD_PATH\@|\$(libdir)/transcode|' \
+    Makefile.in */Makefile.in */*/Makefile.in
 
 
 %build
 %configure \
-    --program-prefix="%{?_program_prefix}"
+    --program-prefix="%{?_program_prefix}" \
     %{?_without_lame:--without-lame} \
     %{?_without_dvdread:--without-dvdread} \
     %{?_without_xvidcore:--without-xvidcore} \
@@ -102,7 +90,7 @@ Available rpmbuild rebuild options :
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	docsdir="../rpm-doc/"
+    docsdir="../rpm-doc/"
 
 
 %clean
@@ -119,7 +107,12 @@ Available rpmbuild rebuild options :
 
 
 %changelog
-* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-6
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-6
+- Added ed build requirement for x86_64 build to succeed...
+- Fix missing \ to configure lines.
+- Remove explicit binary dependencies.
+
+* Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.6.12-6
 - Rebuild for x86_64 with quicktime support.
 
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-5
