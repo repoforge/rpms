@@ -64,10 +64,9 @@ Install this package if you want to compile apps with ffmpeg support.
 %setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}}
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|\$\(prefix\)/lib|\$(libdir)|;
-		s|\$\(prefix\)/include|\$(includedir)|;
-	' Makefile */Makefile
+%{__perl} -pi -e 's|\$\(prefix\)/lib|\$(libdir)|' Makefile */Makefile
+%{__perl} -pi -e 's|\$\(prefix\)/include|\$(includedir)|' Makefile */Makefile
+
 
 %build
 %configure \
@@ -85,8 +84,8 @@ Install this package if you want to compile apps with ffmpeg support.
     %{!?_without_faac: --enable-faac} \
     %{!?_without_a52dec: --enable-a52}
 %{__make} %{?_smp_mflags} \
-	OPTFLAGS="-fPIC %{optflags}" \
-	SHFLAGS="-shared -Wl,-soname -Wl,\$@"
+    OPTFLAGS="-fPIC %{optflags}" \
+    SHFLAGS="-shared -Wl,-soname -Wl,\$@"
 
 
 %install

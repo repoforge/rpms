@@ -2,15 +2,16 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
+%define extraver       67.4
 
-Summary: DEVELOPMENT branch of the sylpheed GTK+ e-mail client
+Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 0.9.9
-Release: 1.gtk2
+Version: 0.9.10
+Release: 1.gtk2%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
-Source: http://dl.sf.net/sylpheed-claws/sylpheed-%{version}claws.tar.gz
+Source: http://dl.sf.net/sylpheed-claws/sylpheed-%{version}claws%{?extraver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0, pkgconfig
 %{!?_without_openssl:Requires: openssl >= 0.9.6}
@@ -45,8 +46,10 @@ Available rpmbuild rebuild options :
 --with : pilot
 --without : openssl, ipv6, gpgme, ldap, aspell, compface
 
+
 %prep
-%setup -n sylpheed-%{version}claws
+%setup -n sylpheed-%{version}claws%{?extraver}
+
 
 %build
 if pkg-config openssl; then
@@ -54,7 +57,7 @@ if pkg-config openssl; then
     LDFLAGS="$LDFLAGS `pkg-config --libs-only-L openssl`"
 fi
 %configure \
-    --program-prefix=%{?_program_prefix} \
+    --program-prefix="%{?_program_prefix}" \
     %{!?_without_openssl: --enable-openssl} \
     %{!?_without_ipv6: --enable-ipv6} \
     %{!?_without_gpgme: --enable-gpgme} \
@@ -66,32 +69,33 @@ fi
     --enable-spamassassin-plugin
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall gnomedatadir=%{buildroot}%{_datadir}
-#find_lang sylpheed
-%{__strip} %{buildroot}%{_libdir}/sylpheed/plugins/*.so
+%makeinstall
+# gnomedatadir=%{buildroot}%{_datadir}
+%find_lang sylpheed
 
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category Network                                          \
-  %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+#%{__mkdir_p} %{buildroot}%{_datadir}/applications
+#desktop-file-install --vendor %{desktop_vendor} --delete-original \
+#  --dir %{buildroot}%{_datadir}/applications                      \
+#  --add-category Application                                      \
+#  --add-category Network                                          \
+#  %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
 
 # Temp fix...
-test -d %{buildroot}%{_prefix}/sylpheed && \
-    %{__mkdir_p} %{buildroot}%{_datadir} && \
-    %{__mv} %{buildroot}%{_prefix}/sylpheed %{buildroot}%{_datadir}/sylpheed
+#test -d %{buildroot}%{_prefix}/sylpheed && \
+#    %{__mkdir_p} %{buildroot}%{_datadir} && \
+#    %{__mv} %{buildroot}%{_prefix}/sylpheed %{buildroot}%{_datadir}/sylpheed
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
-#files -f sylpheed.lang
-%files
+
+%files -f sylpheed.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog* README* INSTALL* TODO*
+%doc AUTHORS COPYING ChangeLog* README* TODO*
 %{_bindir}/sylpheed
 %{_includedir}/sylpheed
 %{_libdir}/pkgconfig/%{name}.pc
@@ -106,7 +110,11 @@ test -d %{buildroot}%{_prefix}/sylpheed && \
 %{_datadir}/sylpheed
 %{_mandir}/man1/sylpheed.1*
 
+
 %changelog
+* Tue May 25 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1.gtk2.67.4
+- Update to 0.9.10claws67.4.
+
 * Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.gtk2
 - Added compface (X-Face) support.
 

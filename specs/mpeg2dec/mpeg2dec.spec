@@ -7,16 +7,13 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: %{?date:0.%{date}.}3b
+Release: %{?date:0.%{date}.}4b
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sf.net/
-
 Source: http://libmpeg2.sf.net/files/mpeg2dec-%{?date:date}%{!?date:%{version}b}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: XFree86-devel, pkgconfig, gcc-c++
-Requires(post,postun): /sbin/ldconfig
 
 %description
 A free library for decoding MPEG-2 and MPEG-1 video streams.
@@ -41,7 +38,6 @@ libmpeg2.
 %build
 CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" \
 %configure --enable-shared
-#	--disable-sdl
 %{__make} %{?_smp_mflags}
 
 

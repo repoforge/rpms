@@ -17,7 +17,7 @@ Requires(post): /usr/sbin/alternatives
 Requires(preun): /usr/sbin/alternatives
 BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
 BuildRequires: cryptopp-devel
-# Required on Yellwo Dog Linux 3.0
+# Required on Yellow Dog Linux 3.0
 BuildRequires: openssl-devel
 
 %description
@@ -38,7 +38,7 @@ same network.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-mv %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
+%{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %find_lang %{name}
 
 

@@ -5,7 +5,7 @@
 
 Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
-Version: 0.9.10
+Version: 0.9.11
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -89,6 +89,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.9.11-1
+- Update to 0.9.11.
+
 * Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
 - Added compface (X-Face) support.
 

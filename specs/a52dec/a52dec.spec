@@ -7,10 +7,12 @@ Release: 7
 License: GPL
 Group: Applications/Multimedia
 URL: http://liba52.sourceforge.net/
-
 Source: http://liba52.sf.net/files/a52dec-%{version}.tar.gz
 Patch: a52dec-0.7.4-PIC.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+%ifnarch %{ix86}
+BuildRequires: autoconf, automake, libtool
+%endif
 
 %description
 liba52 is a free library for decoding ATSC A/52 streams. It is released
@@ -36,12 +38,13 @@ to build programs that use it.
 
 %prep
 %setup
-%ifnarch %ix86
+%ifnarch %{ix86}
 %patch -p1 -b .PIC
 %endif
 
+
 %build
-%ifnarch %ix86
+%ifnarch %{ix86}
 %{__libtoolize} --force
 %{__aclocal}
 %{__autoheader}

@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
-# Archs: i386 i686 x86_64
+# Archs: i386 i686 ppc x86_64
 
-Summary: portable lossless data compression library
+Summary: Portable lossless data compression library
 Name: lzo
 Version: 1.08
 Release: 3
@@ -17,7 +17,7 @@ Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel
-%ifarch %ix86
+%ifarch %{ix86}
 BuildRequires: nasm
 %endif
 Requires: zlib >= 1.0.0

@@ -1,6 +1,5 @@
 # $Id$
 # Authority: matthias
-
 # ExcludeDist: fc2
 
 #define prever rc2
@@ -43,9 +42,9 @@ This package includes utilities for systems using ALSA.
 %{__rm} -rf %{buildroot}
 %{__make} DESTDIR=%{buildroot} install
 %{__install} -D -m755 %{SOURCE1} %{buildroot}%{_initrddir}/alsactl
-mkdir -p %{buildroot}/etc/rc{0,6}.d
-ln -sf ../init.d/alsactl %{buildroot}/etc/rc0.d/S01alsactl
-ln -sf ../init.d/alsactl %{buildroot}/etc/rc6.d/S01alsactl
+%{__mkdir_p} %{buildroot}/etc/rc{0,6}.d
+%{__ln_s} -f ../init.d/alsactl %{buildroot}/etc/rc0.d/S01alsactl
+%{__ln_s} -f ../init.d/alsactl %{buildroot}/etc/rc6.d/S01alsactl
 
 
 %clean

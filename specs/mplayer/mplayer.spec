@@ -2,7 +2,6 @@
 # Authority: matthias
 
 %{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_fribidi 1}
 %{?fc1:%define _without_theora 1}
 
 %{?el3:%define _without_alsa 1}
@@ -128,7 +127,7 @@ find . -name "CVS" | xargs %{__rm} -rf
     --enable-dynamic-plugins \
     --enable-xmms \
     --with-xmmsplugindir=%{xmms_plugindir} \
-%ifarch %ix86
+%ifarch %{ix86}
     --enable-win32 \
     --with-win32libdir=%{_libdir}/win32 \
     --with-reallibdir=%{_libdir}/win32 \
@@ -161,8 +160,7 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb}
 
-%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|' config.mak
-
+%{__perl} -pi -e 's|/usr/lib/|%{_libdir}/|' config.mak
 %{__make} %{?_smp_mflags}
 
 
@@ -213,7 +211,7 @@ desktop-file-install \
 
 ### Install libpostproc if not already installed
 if [ ! -e "%{buildroot}%{_libdir}/libpostproc.so" ]; then
-	%makeinstall -C libavcodec/libpostproc
+    %makeinstall -C libavcodec/libpostproc
 fi
 
 

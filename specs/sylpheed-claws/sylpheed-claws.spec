@@ -4,8 +4,8 @@
 
 Summary: DEVELOPMENT branch of the sylpheed GTK+ e-mail client
 Name: sylpheed-claws
-Version: 0.9.10
-Release: 2
+Version: 0.9.11
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
@@ -100,6 +100,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Mon Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.9.11-1
+- Update to 0.9.11claws.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-2
 - Rebuilt for Fedora Core 2.
 
