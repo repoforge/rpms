@@ -8,7 +8,7 @@
 
 Summary: SOCKS4 and SOCKS5 compliant SOCKS server
 Name: antinat
-Version: 0.71
+Version: 0.80
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -39,6 +39,8 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|\@LOGDIR\@|\$(localstatedir)/log/antinat|g' etc/Makefile.in
+
 %build
 export CFLAGS="%{optflags} -fPIC"
 %configure
@@ -54,25 +56,29 @@ export CFLAGS="%{optflags} -fPIC"
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man5/*
-%config(noreplace) %{_sysconfdir}/antinat.conf
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_libdir}/antinat-%{version}/
+%doc %{_mandir}/man1/antinat.1*
+%doc %{_mandir}/man4/antinat.xml.4*
+%config(noreplace) %{_sysconfdir}/antinat.xml
+%{_bindir}/antinat
+%{_libdir}/libantinat.so.*
+#%{_libdir}/antinat-%{version}/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/*
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_includedir}/*.h
-%exclude %{_libdir}/*.la
-%exclude %{_libdir}/antinat-%{version}/*/*.la
-%exclude %{_libdir}/antinat-%{version}/*/*/*.la
-%exclude %{_libdir}/antinat-%{version}/*/*/*/*.la
+%{_bindir}/antinat-config
+%{_libdir}/libantinat.a
+%{_libdir}/libantinat.so
+%{_includedir}/antinat.h
+%exclude %{_libdir}/libantinat.la
+#%exclude %{_libdir}/antinat-%{version}/*/*.la
+#%exclude %{_libdir}/antinat-%{version}/*/*/*.la
+#%exclude %{_libdir}/antinat-%{version}/*/*/*/*.la
 
 %changelog
+* Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 0.80-1
+- Updated to release 0.80.
+
 * Thu May 13 2004 Dag Wieers <dag@wieers.com> - 0.71-1
 - Updated to release 0.71.
 

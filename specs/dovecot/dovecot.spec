@@ -7,8 +7,8 @@
 
 Summary: Dovecot secure IMAP server
 Name: dovecot
-Version: 0.99.10.9
-Release: 2
+Version: 0.99.11
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.org/
@@ -223,6 +223,9 @@ fi
 %{_localstatedir}/run/dovecot-login/
 
 %changelog
+* Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 0.99.11-1
+- Updated to release 0.99.11.
+
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 0.99.10.9-2
 - Bring in line with newly introduced dovecot in FC2. (Morten Kjeldgaard)
 

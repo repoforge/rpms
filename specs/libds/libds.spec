@@ -4,7 +4,7 @@
 
 Summary: Shared Library for Data Structures
 Name: libds
-Version: 1.5.2
+Version: 1.5.3
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -55,18 +55,21 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%{_libdir}/*.so.*
+%{_libdir}/libds.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc htmldocs/*
-%{_bindir}/*
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_includedir}/*
-%exclude %{_libdir}/*.la
+%{_bindir}/libds-config
+%{_libdir}/libds.a
+%{_libdir}/libds.so
+%{_includedir}/*.h
+%exclude %{_libdir}/libds.la
 
 %changelog
+* Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 1.5.3-1
+- Updated to release 1.5.3.
+
 * Sun May 16 2004 Dag Wieers <dag@wieers.com> - 1.5.2-1
 - Updated to release 1.5.2.
 

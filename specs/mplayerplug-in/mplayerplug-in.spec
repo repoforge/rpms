@@ -20,6 +20,7 @@ BuildRequires: XFree86-devel, mozilla-devel, glib2-devel, gtk2-devel, mozilla-de
 
 Obsoletes: mozilla-mplayer <= %{version}-%{release}
 #Requires: mplayer, mozilla = %{mversion}
+Requires: %{_libdir}/mozilla/plugins/
 Requires: mplayer
 
 %description

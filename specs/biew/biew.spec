@@ -2,15 +2,15 @@
 # Authority: dag
 # Upstream: <biew-general$lists,sf,net>
 
-%define real_version 561
+%define real_version 562
 
 Summary: Console hex viewer/editor with disassembler
 Name: biew
-Version: 5.6.1
+Version: 5.6.2
 Release: 1
 License: GPL
 Group: Development/Debuggers
-URL: http://biew.sf.net/
+URL: http://biew.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -51,10 +51,13 @@ other features, making it invaluable for examining binary code.
 %files
 %defattr(-, root, root, 0755)
 %doc doc/*.txt doc/*.en
-%{_bindir}/*
+%{_bindir}/biew
 %{_datadir}/biew/
 
 %changelog
+* Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 5.6.2-1
+- Updated to release 5.6.2.
+
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 5.6.1-1
 - Updated to release 5.6.1.
 
