@@ -442,6 +442,38 @@ Requires: fortune = %{version}-%{release}
 Fortune files with quotes from the spiritual guru Osho, found at:
 http://www.geocities.com/avitiw/fortune.html
 
+%package all
+Summary: Installs all fortune packages
+Group: Amusements/Games
+Requires: fortune = %{version}-%{release}
+Requires: fortune-bofh-excuses = %{version}-%{release}
+Requires: fortune-kernelnewbies = %{version}-%{release}
+Requires: fortune-starwars = %{version}-%{release}
+Requires: fortune-futurama = %{version}-%{release}
+Requires: fortune-calvin = %{version}-%{release}
+Requires: fortune-zippy2 = %{version}-%{release}
+Requires: fortune-tao = %{version}-%{release}
+Requires: fortune-hitchhiker = %{version}-%{release}
+Requires: fortune-simpsons-chalkboard = %{version}-%{release}
+Requires: fortune-prog-style = %{version}-%{release}
+Requires: fortune-fgump = %{version}-%{release}
+Requires: fortune-discworld = %{version}-%{release}
+Requires: fortune-xfiles = %{version}-%{release}
+Requires: fortune-kernelcookies = %{version}-%{release}
+Requires: fortune-dune = %{version}-%{release}
+Requires: fortune-cbg = %{version}-%{release}
+Requires: fortune-simpsons-ralph = %{version}-%{release}
+%if %{DisableOffensiveFortunes}
+# Southpark will not be included
+%else
+Requires: fortune-southpark = %{version}-%{release}
+%endif
+Requires: fortune-simpsons-homer = %{version}-%{release}
+Requires: fortune-osho = %{version}-%{release}
+
+%description all
+All fortune packages will be installed if you install this package.
+
 %files
 %defattr(-,root,root,0755)
 %doc README ChangeLog TODO
@@ -575,11 +607,15 @@ http://www.geocities.com/avitiw/fortune.html
 %defattr(-,root,root,0755)
 %{_datadir}/games/fortune/osho*
 
+%files all
+%defattr(-,root,root,0755)
 
 %changelog
 * Mon Jun 21 2004 Dries Verachtert <dries@ulyssis.org> 1.0-30
 - Update of the kernelcookies to version 8 with 80 new 
   cookies from the 2.6.6 kernel tree.
+- Added a subpackage 'all' which requires all the other 
+  subpackages.
 
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0-29
 - added quotes found on freshmeat: quotes from the spiritual 
