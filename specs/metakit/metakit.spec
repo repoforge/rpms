@@ -9,10 +9,8 @@ Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.equi4.com/metakit/
-
 Source: http://www.equi4.com/pub/mk/metakit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gcc-c++, tcl
 
 %description
@@ -36,24 +34,29 @@ Header files and development documentation for metakit.
 %prep
 %setup
 
+
 %build
 cd unix
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 cd unix
 %{__make} install DESTDIR=%{buildroot}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %post
 /sbin/ldconfig 2>/dev/null
 
 %postun
 /sbin/ldconfig 2>/dev/null
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -67,11 +70,15 @@ cd unix
 %exclude %{_libdir}/*.la
 %{_libdir}/*.a
 
+
 %changelog
-* Sun May 16 2004 Matthias Saou <http://freshrpms.net/> 2.4.9.2-1
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 2.4.9.3-2
+- Rebuild for Fedora Core 2.
+
+* Sun May 16 2004 Matthias Saou <http://freshrpms.net/> 2.4.9.3-1
 - Updated to release 2.4.9.3.
 
-* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 2.4.9.2-3.fr
+* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 2.4.9.2-3
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
