@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/orsa/orsa-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: fftw, qt-devel readline-devel
+BuildRequires: fftw-devel, qt-devel, readline-devel, gcc-c++
 
 %description
 ORSA is an interactive tool for scientific grade Celestial Mechanics

@@ -2,21 +2,21 @@
 # Authority: dries
 # Upstream: <smbc-list$lists,sourceforge,net>
 
-# Screenshot: http://www.air.rzeszow.pl/smbc/smbc/screenshots/mainpage.jpg
-# ScreenshotURL: http://www.air.rzeszow.pl/smbc/smbc/screenshots/
+# Screenshot: http://smbc.airm.net/screenshots/mainpage.jpg
+# ScreenshotURL: http://smbc.airm.net/screenshots/
 
 Summary: Text mode SMB (Samba) commander
 Name: smbc
 Version: 1.0.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
-URL: http://www.rafim.prv.pl/smbc/smbc/
+URL: http://smbc.airm.net/en/index.php
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://www.air.rzeszow.pl/smbc/smbc/%{version}/smbc-%{version}.tgz
+Source: http://smbc.airm.net/1.0.0/smbc-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, ncurses-devel, samba-common
@@ -48,6 +48,9 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %exclude %{_datadir}/doc
 
 %changelog
+* Sun Oct 03 2004 Dries Verachtert <dries@ulyssis.org> 1.0.0-2
+- Fix the urls.
+
 * Sat Oct 02 2004 Dries Verachtert <dries@ulyssis.org> 1.0.0-1
 - Updated to version 1.0.0.
 

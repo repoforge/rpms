@@ -23,7 +23,7 @@ perform polynomial and complex arithmetic, etc. It was written by George
 Gesslein II and has been under development since 1986.
 
 %prep
-%setup -n am
+%setup
 
 %build
 %{__make} %{?_smp_mflags}
