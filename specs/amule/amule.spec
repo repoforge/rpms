@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define prever rc4a
+%define prever rc5
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
@@ -47,7 +47,6 @@ same network.
 %post
 /usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60
 
-
 %preun
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name}
 
@@ -62,11 +61,14 @@ same network.
 %{_bindir}/*
 %{_libdir}/xchat/plugins/xas.pl
 %{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/%{name}.xpm
+%{_datadir}/pixmaps/*.xpm
 %{_datadir}/pixmaps/stat.png
 
 
 %changelog
+* Wed Jul 21 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc5.1
+- Update to 2.0.0rc5.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc4a.1
 - Update to 2.0.0rc4a.
 
