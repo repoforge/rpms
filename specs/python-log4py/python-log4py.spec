@@ -11,7 +11,7 @@ Name: python-log4py
 Version: 1.3
 Release: 1
 License: MIT
-Group: Applications/
+Group: Development/Libraries
 URL: http://www.its4you.at/english/log4py.html
 
 Packager: Dries Verachtert <dries@ulyssis.org>
