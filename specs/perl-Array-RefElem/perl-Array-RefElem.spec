@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Array-RefElem
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Use references as elements in hashes and arrays
 Name: perl-Array-RefElem
@@ -43,10 +47,10 @@ you store reference to things in arrays and hashes.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Array/RefElem.pm
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Array/RefElem/RefElem.*
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Array/RefElem/.packlist
+%{perl_vendorarch}/Array/RefElem.pm
+%{perl_vendorarch}/auto/Array/RefElem/RefElem.*
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/Array/RefElem/.packlist
 
 %changelog
 * Sat Jun 15 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
