@@ -5,7 +5,7 @@
 
 Summary: Collection of skins for MPlayer
 Name: mplayer-skins
-Version: 1.4
+Version: 1.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -26,7 +26,7 @@ Source9: http://www1.mplayerhq.hu/MPlayer/Skin/Cyrus-1.2.tar.bz2
 Source10: http://www1.mplayerhq.hu/MPlayer/Skin/DVDPlayer-1.1.tar.bz2
 Source11: http://www1.mplayerhq.hu/MPlayer/Skin/Dushku-1.2.tar.bz2
 Source12: http://www1.mplayerhq.hu/MPlayer/Skin/Industrial-1.0.tar.bz2
-Source13: http://www1.mplayerhq.hu/MPlayer/Skin/JiMPlayer-1.3.tar.bz2
+Source13: http://www1.mplayerhq.hu/MPlayer/Skin/JiMPlayer-1.4.tar.bz2
 Source14: http://www1.mplayerhq.hu/MPlayer/Skin/KDE-0.3.tar.bz2
 Source15: http://www1.mplayerhq.hu/MPlayer/Skin/MidnightLove-1.6.tar.bz2
 Source16: http://www1.mplayerhq.hu/MPlayer/Skin/OSX-Brushed-2.3.tar.bz2
@@ -35,7 +35,7 @@ Source18: http://www1.mplayerhq.hu/MPlayer/Skin/Orange-1.3.tar.bz2
 Source19: http://www1.mplayerhq.hu/MPlayer/Skin/PowerPlayer-1.1.tar.bz2
 Source20: http://www1.mplayerhq.hu/MPlayer/Skin/QPlayer-1.2.tar.bz2
 Source21: http://www1.mplayerhq.hu/MPlayer/Skin/Terminator3-1.1.tar.bz2
-Source22: http://www1.mplayerhq.hu/MPlayer/Skin/WMP6-2.0.tar.bz2
+Source22: http://www1.mplayerhq.hu/MPlayer/Skin/WMP6-2.2.tar.bz2
 Source23: http://www1.mplayerhq.hu/MPlayer/Skin/WindowsMediaPlayer6-2.0.tar.bz2
 Source24: http://www1.mplayerhq.hu/MPlayer/Skin/XFce4-1.0.tar.bz2
 Source25: http://www1.mplayerhq.hu/MPlayer/Skin/avifile-1.6.tar.bz2
@@ -104,6 +104,9 @@ change the appeareance of MPlayer.
 
 
 %changelog
+* Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 1.5-1
+- Updated JiMPlayer and WMP6.
+
 * Mon Jun 14 2004 Matthias Saou <http://freshrpms.net/> 1.4-1
 - Update all existing skins and add all new available ones.
 - Remove mplayer_red, it's 1.3MB alone!
