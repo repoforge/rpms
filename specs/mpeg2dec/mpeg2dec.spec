@@ -6,13 +6,12 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: %{?date:0.%{date}.}3b
+Release: %{?date:0.%{date}.}4b
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
 Source: http://libmpeg2.sourceforge.net/files/%{name}-%{?date:date}%{!?date:%{version}b}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires(post,postun): /sbin/ldconfig
 BuildRequires: XFree86-devel, pkgconfig, gcc-c++
 
 %description
@@ -36,7 +35,9 @@ libmpeg2.
 
 
 %build
-%configure --enable-shared --disable-sdl
+%configure \
+    --enable-shared \
+    --disable-sdl
 %{__make} %{?_smp_mflags}
 
 
@@ -74,7 +75,7 @@ libmpeg2.
 
 
 %changelog
-* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-3b
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-4b
 - Removed explicit dependency on XFree86 for the binary package.
 
 * Thu Feb  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-2b

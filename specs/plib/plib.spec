@@ -4,15 +4,13 @@
 Summary: Set of portable libraries especially useful for games
 Name: plib
 Version: 1.8.3
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/
 Source: http://plib.sourceforge.net/dist/plib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: Mesa, libpng
-BuildRequires: gcc-c++
-BuildRequires: Mesa-devel, glut-devel, libpng-devel
+BuildRequires: gcc-c++, Mesa-devel, freeglut-devel, libpng-devel
 
 %description
 This is a set of OpenSource (LGPL) libraries that will permit programmers
@@ -48,10 +46,13 @@ the web. All of it works well together.
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.8.3-2
+- Rebuild for Fedora Core 2.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.8.3-1
 - Update to 1.8.3.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.6.0-3.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.6.0-3
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>

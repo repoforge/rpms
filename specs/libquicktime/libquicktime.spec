@@ -91,6 +91,9 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-3
+- Rebuild for Fedora Core 1.
+
 * Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-2
 - Rebuild against new libdv.
 

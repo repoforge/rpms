@@ -4,7 +4,7 @@
 Summary: Mouse and keyboard sharing utility
 Name: synergy
 Version: 1.0.14
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/
@@ -19,19 +19,24 @@ own display, without special hardware.  It's intended for users
 with multiple computers on their desk since each system uses its
 own display.
 
+
 %prep
 %setup
 
+
 %build
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -39,7 +44,11 @@ own display.
 %doc examples/synergy.conf
 %{_bindir}/*
 
+
 %changelog
-* Wed Jan 21 2004 Matthias Saou <http://freshrpms.net/> 1.0.14-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.14-2
+- Rebuilt for Fedora Core 2.
+
+* Wed Jan 21 2004 Matthias Saou <http://freshrpms.net/> 1.0.14-1
 - Initial RPM package.
 

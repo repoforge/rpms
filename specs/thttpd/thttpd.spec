@@ -7,7 +7,7 @@
 Summary: Tiny, turbo, throttleable lightweight http server
 Name: thttpd
 Version: 2.25b
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.acme.com/software/thttpd/
@@ -37,12 +37,12 @@ Available rpmbuild rebuild options :
 %build
 %configure
 # Hacks :-)
-perl -pi -e 's/-o bin -g bin//g' Makefile
-perl -pi -e 's/.*chgrp.*//g; s/.*chmod.*//g' extras/Makefile
+%{__perl} -pi -e 's/-o bin -g bin//g' Makefile
+%{__perl} -pi -e 's/.*chgrp.*//g; s/.*chmod.*//g' extras/Makefile
 # Config changes
-%{!?_with_indexes: perl -pi -e 's/#define GENERATE_INDEXES/#undef GENERATE_INDEXES/g' config.h}
-%{!?_with_showversion: perl -pi -e 's/#define SHOW_SERVER_VERSION/#undef SHOW_SERVER_VERSION/g' config.h}
-%{!?_with_expliciterrors: perl -pi -e 's/#define EXPLICIT_ERROR_PAGES/#undef EXPLICIT_ERROR_PAGES/g' config.h}
+%{!?_with_indexes:        %{__perl} -pi -e 's/#define GENERATE_INDEXES/#undef GENERATE_INDEXES/g' config.h}
+%{!?_with_showversion:    %{__perl} -pi -e 's/#define SHOW_SERVER_VERSION/#undef SHOW_SERVER_VERSION/g' config.h}
+%{!?_with_expliciterrors: %{__perl} -pi -e 's/#define EXPLICIT_ERROR_PAGES/#undef EXPLICIT_ERROR_PAGES/g' config.h}
 %{__make} WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin
 
 
@@ -50,9 +50,9 @@ perl -pi -e 's/.*chgrp.*//g; s/.*chmod.*//g' extras/Makefile
 %{__rm} -rf %{buildroot}
 
 # Prepare required directories
-mkdir -p %{buildroot}%{webroot}/{cgi-bin,html,logs}
-mkdir -p %{buildroot}%{_mandir}/man{1,8}
-mkdir -p %{buildroot}%{_sbindir}
+%{__mkdir_p} %{buildroot}%{webroot}/{cgi-bin,html,logs}
+%{__mkdir_p} %{buildroot}%{_mandir}/man{1,8}
+%{__mkdir_p} %{buildroot}%{_sbindir}
 
 # Install init script and logrotate entry
 %{__install} -D -m 755 %{SOURCE1} %{buildroot}%{_initrddir}/thttpd
@@ -65,17 +65,17 @@ mkdir -p %{buildroot}%{_sbindir}
     CGIBINDIR=%{buildroot}%{webroot}/cgi-bin
 
 # Rename htpasswd in case apache is installed too
-mkdir -p %{buildroot}%{_bindir}
-mv %{buildroot}%{_sbindir}/htpasswd \
-    %{buildroot}%{_bindir}/htpasswd.thttpd
-mv %{buildroot}%{_mandir}/man1/htpasswd.1 \
-    %{buildroot}%{_mandir}/man1/htpasswd.thttpd.1
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__mv} %{buildroot}%{_sbindir}/htpasswd \
+        %{buildroot}%{_bindir}/htpasswd.thttpd
+%{__mv} %{buildroot}%{_mandir}/man1/htpasswd.1 \
+        %{buildroot}%{_mandir}/man1/htpasswd.thttpd.1
 
 # Install the default index.html file
 %{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{buildroot}%{webroot}/html/
 
 # Install a default configuration file
-cat << EOF > %{buildroot}%{_sysconfdir}/thttpd.conf
+%{__cat} << EOF > %{buildroot}%{_sysconfdir}/thttpd.conf
 # BEWARE : No empty lines are allowed!
 # This section overrides defaults
 dir=%{webroot}/html
@@ -92,6 +92,10 @@ pidfile=/var/run/thttpd.pid
 # host=0.0.0.0
 # charset=iso-8859-1
 EOF
+
+
+%clean
+%{__rm} -rf %{buildroot}
 
 
 %pre
@@ -116,10 +120,6 @@ if [ $1 -ge 1 ]; then
 fi
 
 
-%clean
-%{__rm} -rf %{buildroot}
-
-
 %files
 %defattr(-, root, root, 0755)
 %doc README TODO
@@ -141,6 +141,9 @@ fi
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 2.25b-2
+- Rebuild for Fedora Core 2.
+
 * Mon Apr 26 2004 Matthias Saou <http://freshrpms.net/> 2.25b-2
 - Add logrotate entry, it needs to restart thttpd completely because
   of the permissions dropped after opening the log file :-(
