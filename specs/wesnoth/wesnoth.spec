@@ -63,7 +63,7 @@ cp wesnoth.desktop %{buildroot}/usr/share/applications/
 %{_datadir}/applications/wesnoth.desktop
 
 %changelog
-* Mar May 4 2004 Dries Verachtert <dries@ulyssis.org> 0.7.6-1
+* Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> 0.7.6-1
 - update
 * Fri Dec 2 2004 Dries Verachtert <dries@ulyssis.org> 0.6.1-2
 - added a desktop file
