@@ -34,11 +34,13 @@ playlist, a Konqueror plugin, a Mozilla plugin, OSD, and much more.
 %setup
 
 %build
+source /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source /etc/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 
