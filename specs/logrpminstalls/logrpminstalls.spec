@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Dries Verachtert <dries@ulyssis.org>
+# Upstream: Dries Verachtert <dries$ulyssis,org>
 
 Summary: Creates a log with timestamps of every install of an rpm
 Name: logrpminstalls
