@@ -29,12 +29,12 @@ SCons is an easier, more reliable and faster way to build software.
 
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install --root=%{buildroot}
+%{__python} setup.py install --root=%{buildroot}
 %{__install} -D -m 644 scons.1 %{buildroot}/%{_mandir}/man1/scons.1
 %{__install} -D -m 644 sconsign.1 %{buildroot}/%{_mandir}/man1/sconsign.1
 

@@ -110,7 +110,7 @@ desktop-file-install \
 %{_datadir}/gnome/apps/Internet/sylpheed.desktop
 %endif
 %{_datadir}/pixmaps/sylpheed.png
-%{_datadir}/sylpheed-claws
+%{_datadir}/sylpheed-claws/
 %{_mandir}/man1/sylpheed.1*
 
 

@@ -9,8 +9,8 @@
 
 Name: rhythmbox
 Summary: Music Management Application 
-Version: %{majmin}.4
-Release: 1%{?_with_xine:xine}
+Version: %{majmin}.5
+Release: 0%{?_with_xine:xine}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
@@ -53,15 +53,15 @@ through GStreamer, Internet Radio support, playlists and more.
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %name
-rm -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %post 
@@ -96,6 +96,9 @@ done
 
 
 %changelog
+* Fri Jun 25 2004 Matthias Saou <http://freshrpms.net/> 0.8.5-0
+- Update to 0.8.5.
+
 * Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 0.8.4-0
 - Update to 0.8.4.
 - Enabled iPod and dashboard support.
@@ -107,26 +110,26 @@ done
 - Update to 0.7.1.
 - Minor spec file updates.
 
-* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.1.fr
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.1
 - Update to 0.7.0.
 - GStreamer build no longer requires libid3tag or flac, only the xine one does.
 
-* Thu Jan 22 2004 Matthias Saou <http://freshrpms.net/> 0.6.5-0.1.fr
+* Thu Jan 22 2004 Matthias Saou <http://freshrpms.net/> 0.6.5-0.1
 - Update to 0.6.5.
 
-* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.6.4-0.1.fr
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.6.4-0.1
 - Update to 0.6.4.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.6.3-0.1.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.6.3-0.1
 - Update to 0.6.3.
 
-* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 0.6.2-0.1.fr
+* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 0.6.2-0.1
 - Update to 0.6.2.
 
-* Sat Nov 22 2003 Matthias Saou <http://freshrpms.net/> 0.6.1-0.1.fr
+* Sat Nov 22 2003 Matthias Saou <http://freshrpms.net/> 0.6.1-0.1
 - Update to 0.6.1.
 
-* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 0.6.0-0.1.fr
+* Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 0.6.0-0.1
 - Rebuild for Fedora Core 1.
 - Add xine backend build time support.
 - Include xine backend fix patch.

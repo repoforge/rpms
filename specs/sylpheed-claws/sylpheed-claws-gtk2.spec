@@ -2,16 +2,16 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define extraver       67.10
+%define extraver       cvs17.3
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 0.9.10
+Version: 0.9.11
 Release: 1.gtk2%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
-Source: http://dl.sf.net/sylpheed-claws/sylpheed-%{version}claws%{?extraver}.tar.gz
+Source: http://dl.sf.net/sylpheed-claws/sylpheed-claws-%{version}%{?extraver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0, pkgconfig
 Requires: openssl, gpgme, openldap
@@ -45,7 +45,7 @@ Available rpmbuild rebuild options :
 
 
 %prep
-%setup -n sylpheed-%{version}claws%{?extraver}
+%setup -n %{name}-%{version}%{?extraver}
 
 
 %build
@@ -73,7 +73,7 @@ fi
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang sylpheed
+%find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
 # Convert the menu entry
@@ -92,29 +92,32 @@ desktop-file-install \
 %{__rm} -rf %{buildroot}
 
 
-%files -f sylpheed.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog* README* TODO*
 %{_bindir}/sylpheed
-%{_includedir}/sylpheed
-%{_libdir}/pkgconfig/%{name}.pc
-%dir %{_libdir}/sylpheed
-%dir %{_libdir}/sylpheed/plugins
+%{_includedir}/sylpheed-claws
+%{_libdir}/pkgconfig/sylpheed-claws.pc
+%dir %{_libdir}/sylpheed-claws
+%dir %{_libdir}/sylpheed-claws/plugins
 # Who needs the static lib for that!?
-%exclude %{_libdir}/sylpheed/plugins/*.a
-%exclude %{_libdir}/sylpheed/plugins/*.la
-%{_libdir}/sylpheed/plugins/*.so
+%exclude %{_libdir}/sylpheed-claws/plugins/*.a
+%exclude %{_libdir}/sylpheed-claws/plugins/*.la
+%{_libdir}/sylpheed-claws/plugins/*.so
 %if %{!?_without_freedesktop:1}0
 %{_datadir}/applications/%{desktop_vendor}-sylpheed.desktop
 %else
 %{_datadir}/gnome/apps/Internet/sylpheed.desktop
 %endif
 %{_datadir}/pixmaps/sylpheed.png
-%{_datadir}/sylpheed
+%{_datadir}/sylpheed-claws/
 %{_mandir}/man1/sylpheed.1*
 
 
 %changelog
+* Thu Jul  1 2004 Matthias Saou <http://freshrpms.net/> 0.9.11-1.gtk2.cvs17.3
+- Update to 0.9.11cvs17.3.
+
 * Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1.gtk2.67.8
 - Update to 0.9.10claws67.8.
 
