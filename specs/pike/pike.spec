@@ -58,8 +58,7 @@ cd src
 ./run_autoconfig
 mkdir ../build; cd ../build
 ${STARTPWD}/src/configure \
-  --prefix=/usr \
-  --with-perl 
+  --prefix=/usr
 %{__make} %{?_smp_mflags}
 %{__make} documentation %{?_smp_mflags}
 
