@@ -1,15 +1,12 @@
 # $Id$
-
 # Authority: dag
-# Distcc: 0
 
 %define real_name pycrypto
-%define real_version 1.9a6
 
 Summary: Collection of cryptographic algorithms and protocols for python
 Name: python-crypto
-Version: 1.9
-Release: 0.a6
+Version: 2.0
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.amk.ca/python/code/crypto.html
@@ -17,14 +14,14 @@ URL: http://www.amk.ca/python/code/crypto.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.amk.ca/files/python/crypto/%{real_name}-%{real_version}.tar.gz
+Source: http://www.amk.ca/files/python/crypto/pycrypto-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
 BuildRequires: python >= 2.2
 Requires: python >= 2.2
-Obsoletes: pycrypto < 1.9
-Provides: pycrypto < 1.9
+Obsoletes: pycrypto <= %{version}
+Provides: pycrypto <= %{version}
 
 %description
 pycrypto is a collection of cryptographic algorithms and protocols,
@@ -57,5 +54,8 @@ python2 setup.py install \
 %{_libdir}/python*/site-packages/Crypto/
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 1.9-0.a6
 - Initial package. (using DAR)

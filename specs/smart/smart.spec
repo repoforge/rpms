@@ -13,13 +13,13 @@
 %define desktop_vendor rpmforge
 
 ### FIXME: Can't use python_dir because smart install does not seem to obey/follow it fallback to python_version.
-%define python_dir %(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_dir %(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_version %(python2 -c 'import sys; print sys.version[:3]')
 
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.28
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -70,6 +70,8 @@ KDE tray program for watching updates with Smart Package Manager.
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's|(get_python_lib\()\)|${1}1)|g' setup.py
 
 %{?fc3:name="Fedora Core"; version="3"; path="fedora"}
 %{?fc2:name="Fedora Core"; version="2"; path="fedora"}
@@ -132,15 +134,6 @@ type = rpm-md
 priority = 10
 EOF
 
-%{__cat} <<EOF >dries.channel
-### URL: http://dries.studentenweb.org/ayo/
-[dries]
-name = RPMforge.net: Various packages from Dries RPM Repository for $name $version (%{_arch})
-baseurl = http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS
-type = rpm-md
-priority = 10
-EOF
-
 %{__cat} <<EOF >planetccrma.channel
 ### URL: http://ccrma.stanford.edu/planetccrma/software/
 [planetcrrma]
@@ -152,22 +145,13 @@ priority = 10
 disabled = true
 EOF
 
-%{__cat} <<EOF >jpackage.channel
-### URL: http://jpackage.org/
-[jpackage]
-name = Java packages from JPackage.org for $name $version (%{_arch})
-baseurl = http://mirrors.sunsite.dk/jpackage/1.6/$path-$version/free
+%{__cat} <<EOF >dries.channel
+### URL: http://dries.studentenweb.org/ayo/
+[dries]
+name = RPMforge.net: Various packages from Dries RPM Repository for $name $version (%{_arch})
+baseurl = http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS
 type = rpm-md
-priority = 0
-EOF
-
-%{__cat} <<EOF >jpackage-generic.channel
-### URL: http://jpackage.org/
-[jpackage-generic]
-name = Java packages from JPackage.org for all distributions
-baseurl = http://mirrors.sunsite.dk/jpackage/1.6/generic/free
-type = rpm-md
-priority = 0
+priority = 10
 EOF
 
 %{__cat} <<EOF >newrpms.channel
@@ -179,6 +163,35 @@ type = rpm-md
 priority = 0
 EOF
 
+%{__cat} <<EOF >atrpms.channel
+### URL: http://atrpms.net/
+[atrpms]
+name = Various packages from ATrpms for $name $version (%{_arch})
+baseurl = http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing
+type = rpm-md
+priority = -10
+EOF
+
+%{__cat} <<EOF >jpackage.channel
+### URL: http://jpackage.org/
+[jpackage]
+name = Java packages from JPackage.org for $name $version (%{_arch})
+baseurl = http://mirrors.sunsite.dk/jpackage/1.6/$path-$version/free
+type = rpm-md
+priority = 0
+disabled = true
+EOF
+
+%{__cat} <<EOF >jpackage-generic.channel
+### URL: http://jpackage.org/
+[jpackage-generic]
+name = Java packages from JPackage.org for all distributions
+baseurl = http://mirrors.sunsite.dk/jpackage/1.6/generic/free
+type = rpm-md
+priority = 0
+disabled = true
+EOF
+
 %{__cat} <<EOF >biorpms.channel
 ### URL: http://apt.bea.ki.se/
 [biorpms]
@@ -186,6 +199,7 @@ name = Bioinformatic packages from BIOrpms for $name $version (%{_arch})
 baseurl = http://apt.bea.ki.se/biorpms/$path/linux/$version/%{_arch}/biorpms
 type = rpm-md
 priority = 0
+disabled = true
 EOF
 
 %{__cat} <<EOF >kde-redhat.channel
@@ -195,6 +209,7 @@ name = KDE packages from the kde-redhat project for $name $version (%{_arch})
 baseurl = http://apt.kde-redhat.org/apt/kde-redhat/$version/stable
 type = rpm-md
 priority = -5
+disabled = true
 EOF
 
 %{__cat} <<EOF >kde-redhat-all.channel
@@ -204,6 +219,7 @@ name = KDE packages from the kde-redhat project for all distributions
 baseurl = http://apt.kde-redhat.org/apt/kde-redhat/all/stable
 type = rpm-md
 priority = -5
+disabled = true
 EOF
 
 %{__cat} <<EOF >nrpms.channel
@@ -213,15 +229,7 @@ name = Various packages from Nrpms for $name $version (%{_arch})
 baseurl = http://yum.nrpms.net/$path-$version-%{_arch}/production
 type = rpm-md
 priority = -10
-EOF
-
-%{__cat} <<EOF >atrpms.channel
-### URL: http://atrpms.net/
-[atrpms]
-name = Various packages from ATrpms for $name $version (%{_arch})
-baseurl = http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing
-type = rpm-md
-priority = -10
+disabled = true
 EOF
 
 %{__cat} <<EOF >mozilla-seamonkey.channel
@@ -241,6 +249,7 @@ name = Incompatible packages from Livna.org for $name $version (%{_arch})
 baseurl = http://rpm.livna.org/$path/$version/%{_arch}/RPMS.stable
 type = rpm-md 
 priority = -100
+disabled = true
 EOF
 
 %{__cat} <<EOF >fedora.us.channel
@@ -361,6 +370,10 @@ python setup.py install \
 %{_datadir}/apps/ksmarttray/
 
 %changelog
+* Thu Dec 09 2004 Dag Wieers <dag@wieers.com> - 0.28-2
+- Disabled a few repositories to speed up Smart by default.
+- Fix for x86_64. (Gustavo Niemeyer)
+
 * Thu Dec 09 2004 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 

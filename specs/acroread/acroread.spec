@@ -9,12 +9,12 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 509
+%define real_version 5010
 
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
-Version: 5.0.9
-Release: 2
+Version: 5.0.10
+Release: 1
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
@@ -67,6 +67,7 @@ Type=Application
 Icon=acroread.png
 MimeType=application/pdf
 Categories=Application;Graphics;
+Encoding=UTF-8
 EOF
 
 %{__cat} <<EOF >WebLink
@@ -85,8 +86,8 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/acroread/
-%{__tar} -xvf COMMON.TAR -C %{buildroot}%{_libdir}/acroread/
-%{__tar} -xvf LINUXRDR.TAR -C %{buildroot}%{_libdir}/acroread/
+%{__tar} -xvf installers/COMMON.TAR -C %{buildroot}%{_libdir}/acroread/
+%{__tar} -xvf installers/LINUXRDR.TAR -C %{buildroot}%{_libdir}/acroread/
 
 %{__mv} -f %{buildroot}%{_libdir}/acroread/bin/acroread.sh %{buildroot}%{_libdir}/acroread/bin/acroread
 
@@ -108,17 +109,17 @@ export MALLOC_CHECK_|;
 
 ### Make links
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__ln_s} -f %{_libdir}/acroread/bin/acroread %{buildroot}%{_bindir}/
+%{__ln_s} -f %{_libdir}/acroread/bin/acroread %{buildroot}%{_bindir}/acroread
 
 %{__install} -d -m0755 %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/
-%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/AcroRead %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/
-%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/WebLink %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/
+%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/AcroRead %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/AcroRead
+%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/WebLink %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/WebLink
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/netscape/plugins/
-%{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/netscape/plugins/
+%{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/netscape/plugins/nppdf.so
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
-%{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/mozilla/plugins/
+%{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/mozilla/plugins/nppdf.so
 
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/acroread.png
 
@@ -140,13 +141,14 @@ export MALLOC_CHECK_|;
 
 %files
 %defattr(-, root, root, 0755)
-%doc README *.TXT 
+%doc installers/README installers/*.TXT 
 %{_bindir}/acroread
 %dir %{_libdir}/acroread/
 %{_libdir}/acroread/Reader/
 %{_libdir}/acroread/Resource/
 %{_libdir}/acroread/bin/
-%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
+%{_prefix}/X11R6/%{_lib}/X11/app-defaults/AcroRead
+%{_prefix}/X11R6/%{_lib}/X11/app-defaults/WebLink
 %{_datadir}/pixmaps/acroread.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Graphics/acroread.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-acroread.desktop}
@@ -155,10 +157,14 @@ export MALLOC_CHECK_|;
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/acroread/
 %{_libdir}/acroread/Browsers/
-%{_libdir}/mozilla/plugins/*
-%{_libdir}/netscape/plugins/*
+%{_libdir}/mozilla/plugins/nppdf.so
+%{_libdir}/netscape/plugins/nppdf.so
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 5.0.10-1
+- Feedback from Jason L Tibbitts.
+- Updated to release 5.0.10.
+
 * Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 5.0.9-2
 - Removed %%{_libdir}/mozilla/plugins/
 

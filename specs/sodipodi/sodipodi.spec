@@ -2,14 +2,12 @@
 # Authority: dag
 # Upstream: Lauris Kaplinski <lauris$kaplinski,com>
 
-##Archs: i686 i386 x86_64
-
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Vector drawing application
 Name: sodipodi
 Version: 0.34
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://sodipodi.sourceforge.net/
@@ -18,11 +16,12 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/sodipodi/sodipodi-%{version}.tar.gz
+Patch0: sodipodi-0.34-amd64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml-devel, libpng-devel, libglade-devel, gcc-c++
-%{?fc3:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel)
-%{?fc2:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel)
+%{?fc3:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
+%{?fc2:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
 %{?rh9:BuildRequires: libgnomeprint22-devel, libgnomeprintui-devel}
 %{?rh8:BuildRequires: libgnomeprint-devel >= 1.116, libgnomeprintui-devel >= 1.116}
 
@@ -33,10 +32,10 @@ with anti-aliased display, alpha transparency, and vector fonts.
 
 %prep
 %setup
+%patch0 -p1 -b .amd64
 
 %build
 %configure \
-	--disable-dependency-tracking \
 	--with-gnome-print \
 	--with-xinerama
 %{__make} %{?_smp_mflags}
@@ -46,25 +45,23 @@ with anti-aliased display, alpha transparency, and vector fonts.
 %makeinstall
 %find_lang %{name}
 
-#desktop-file-install --vendor gnome --delete-original \
-#	--add-category X-Red-Hat-Base                 \
-#	--dir %{buildroot}%{_datadir}/applications    \
-#	%{buildroot}%{_datadir}/applications/%{name}.desktop
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO samples/
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/sodipodi.1*
+%{_bindir}/sodipodi
 %{_libdir}/sodipodi/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/applications/sodipodi.desktop
+%{_datadir}/pixmaps/sodipodi.png
 %{_datadir}/sodipodi/
 
 %changelog
+* Tue Dec 21 2004 Richard Koerber <shred@despammed.com> - 0.34-1
+- Added a patch to fix a segfault on x86_64 startup.
+
 * Thu Feb 12 2004 Dag Wieers <dag@wieers.com> - 0.34-0
 - Updated to release 0.34.
 - Added missing BuildRequires for RH90. (Juha Tuomala)

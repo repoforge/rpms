@@ -4,16 +4,16 @@
 
 Summary: Check TCP connection to a given ip/port
 Name: tcping
-Version: 1.3.3
+Version: 1.3.4
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://stud.fh-heilbronn.de/~kirchner/tcping/tcping.html
+URL: http://www.linuxco.de/tcping/tcping.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://stud.fh-heilbronn.de/~kirchner/tcping/tcping-%{version}.tar.gz
+Source: http://www.linuxco.de/tcping/tcping-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -42,8 +42,11 @@ start connection establishment.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README
-%{_bindir}/*
+%{_bindir}/tcping
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 1.3.4-1
+- Updated to release 1.3.4.
+
 * Fri Apr 23 2004 Dag Wieers <dag@wieers.com> - 1.3.3-1
 - Initial package. (using DAR)

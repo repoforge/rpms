@@ -7,7 +7,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.12
+Version: 3.0.13
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -32,6 +32,7 @@ reliability in mind.
 %setup
 
 %build
+%{__libtoolize} --force --copy
 %configure \
 	--with-modules \
 	--disable-static \
@@ -53,7 +54,7 @@ reliability in mind.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc BUGS ChangeLog COPYING FAQ FEATURES INSTALL MIRRORS README* NEWS THANKS TODO
+%doc BUGS ChangeLog COPYING FAQ FEATURES INSTALL MIRRORS NEWS README* THANKS TODO
 %doc %{_mandir}/man1/lftp.1*
 %config(noreplace) %{_sysconfdir}/lftp.conf
 %{_bindir}/lftp*
@@ -61,6 +62,9 @@ reliability in mind.
 %{_libdir}/lftp/
 
 %changelog
+* Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 3.0.13-1
+- Updated to release 3.0.13.
+
 * Tue Dec 07 2004 Dag Wieers <dag@wieers.com> - 3.0.12-1
 - Updated to release 3.0.12.
 

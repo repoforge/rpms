@@ -4,7 +4,7 @@
 
 Summary: tool to prevent unauthorized usage of IPs
 Name: ip-sentinel
-Version: 0.10
+Version: 0.11
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -74,14 +74,17 @@ service ip-sentinel condrestart &>/dev/null || :
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS
-%doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/sysconfig/*
-%config %{_initrddir}/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/ip-sentinel
+%config(noreplace) %{_sysconfdir}/sysconfig/ip-sentinel
+%config %{_initrddir}/ip-sentinel
+%{_sbindir}/ip-sentinel
 %defattr(-, root, ip-sentinel, 0750)
 %{_var}/lib/ip-sentinel/
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 

@@ -16,8 +16,8 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.1.1
-### FC3 comes with 1.1
+Version: 1.1.2
+### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
 Group: Development/Tools
@@ -235,6 +235,9 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %endif
 
 %changelog
+* Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2.
+
 * Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 1.1.1-0.1
 - Updated to release 1.1.1.
 

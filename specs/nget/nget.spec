@@ -4,7 +4,7 @@
 
 Summary: Command line NNTP file grabber
 Name: nget
-Version: 0.27
+Version: 0.27.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -49,10 +49,15 @@ succesfully downloaded.
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING FAQ README TODO .ngetrc
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/nget.1*
+%doc %{_mandir}/man1/ngetlite.1*
+%{_bindir}/nget
+%{_bindir}/ngetlite
 
 %changelog
+* Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 0.27.1-1
+- Updated to release 0.27.1.
+
 * Sun Jun 27 2004 Dag Wieers <dag@wieers.com> - 0.27-1
 - Updated to release 0.27.
 

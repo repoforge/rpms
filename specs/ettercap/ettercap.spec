@@ -5,7 +5,7 @@
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/ettercap/ettercap-NG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap
+BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap >= 14:0.8.1
 BuildRequires: libnet
 
 %description
@@ -46,7 +46,7 @@ analysis.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGELOG INSTALL LICENSE README* THANKS TODO* doc/*
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man?/etter*
 %config(noreplace) %{_sysconfdir}/etter.conf
 %{_bindir}/ettercap
 %{_bindir}/etterfilter
@@ -55,6 +55,9 @@ analysis.
 %{_datadir}/ettercap/
 
 %changelog
+* Wed Dec 22 2004 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Updated to release 0.7.2.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Updated to release 0.7.1.
 
