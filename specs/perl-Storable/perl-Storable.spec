@@ -14,7 +14,6 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/%{real_name}-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 BuildRequires: perl >= 0:5.8.0
-BuildArch: noarch
 
 %description
 %{summary}.
@@ -39,6 +38,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+find %{buildroot}%{_libdir} -name "*.so" -exec chmod u+w {} \;
 
 
 %clean 
@@ -47,7 +47,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING* MANIFEST README
+%doc MANIFEST README
 %{_libdir}/perl5/vendor_perl/*/*
 # No man pages...
 #{_mandir}/man?/*

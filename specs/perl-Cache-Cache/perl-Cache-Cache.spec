@@ -6,7 +6,7 @@
 Summary: %{real_name} module for perl
 Name: perl-Cache-Cache
 Version: 1.02
-Release: 1.1
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/%{real_name}/
@@ -48,7 +48,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes COPYING* MANIFEST README doc/*
+%doc COPYING* MANIFEST README
 %{_libdir}/perl5/vendor_perl/*/*
 %{_mandir}/man?/*
 
