@@ -1,8 +1,18 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 %define desktop_vendor freshrpms
-%define prefix         %{_prefix}/games/armagetron
+%define prefix %{_prefix}/games/armagetron
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetron
@@ -17,8 +27,8 @@ Requires: SDL_image >= 1.2.0, esound
 BuildRequires: gcc-c++, libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: XFree86-devel, SDL_image-devel, SDL-devel, esound-devel
 BuildRequires: /usr/bin/find, unzip, ImageMagick
-#BuildRequires: XFree86-Mesa-libGLU
-BuildRequires: xorg-x11-Mesa-libGLU
+%{?_without_xorg:BuildRequires: XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-Mesa-libGLU}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -29,7 +39,7 @@ driving close to walls. Make your enemies hit a wall while avoiding
 the same fate.
 
 Available rpmbuild rebuild options :
---without : freedesktop
+--without : freedesktop xorg
 
 
 %prep
