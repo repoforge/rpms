@@ -1,10 +1,10 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Carlos Garcia Campos <elkalmail@yahoo.es>
 
 Summary: CPU frequency scaling monitor applet
 Name: gnome-cpufreq-applet
-Version: 0.1.2
+Version: 0.1.3
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -60,6 +60,9 @@ scrollkeeper-update -q || :
 %{_libdir}/bonobo/servers/*.server
 
 %changelog
+* Wed May 12 2004 Dag Wieers <dag@wieers.com> - 0.1.3-1
+- Updated to release 0.1.3.
+
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 0.1.2-1
 - Updated to release 0.1.2.
 
