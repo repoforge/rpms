@@ -4,11 +4,11 @@
 
 Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer
-Version: 0.7
+Version: 0.8
 Release: 1
 License: GPL
 Group: Applications/Text
-URL: http://regexxer.sf.net/
+URL: http://regexxer.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -72,6 +72,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/regexxer.png
 
 %changelog
+* Fri Jul 09 2004 Dag Wieers <dag@wieers.com> - 0.8-1
+- Updated to release 0.8.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.7-1
 - Updated to release 0.7.
 
