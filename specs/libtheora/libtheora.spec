@@ -5,7 +5,7 @@
 Summary: Theora video compression codec
 Name: libtheora
 Version: 1.0
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: BSD
 URL: http://www.theora.org/
 Source: http://www.theora.org/files/libtheora-%{version}%{?prever}.tar.bz2
@@ -35,17 +35,16 @@ applications which will use %{name}.
 
 
 %build
-%configure
+%configure \
+    --includedir="%{_includedir}/theora" \
+    --with-pic
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot} installed-docs
-%makeinstall
+%makeinstall includedir="%{buildroot}%{_includedir}/theora"
 %{__mv} %{buildroot}%{_datadir}/doc/libtheora* installed-docs
-# Fix the location of the include file
-%{__mkdir_p} %{buildroot}%{_includedir}/theora
-%{__mv} %{buildroot}%{_includedir}/theora.h %{buildroot}%{_includedir}/theora/
 
 
 %clean
@@ -61,6 +60,10 @@ applications which will use %{name}.
 
 
 %changelog
+* Tue Jul  6 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.alpha3.2
+- Added --with-pic for x86_64 build.
+- Simplified setting of the proper include dir.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.alpha3.1
 - Initial RPM release, only devel as there is only a static lib for now.
 
