@@ -6,19 +6,19 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.86
+Version: 0.87
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.85 - 14/08/2004
-Source21: http://www.mameworld.net/highscore/uhsdat085.zip
-# http://www.arcade-history.com/ 0.86 - 23/08/2004
-Source22: http://www.arcade-history.com/download/history0_86.zip
-# http://www.mameworld.net/mameinfo/ 0.86 - 23/08/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo086.zip
-# http://www.mameworld.net/catlist/ 0.86 - 23/08/2004
+# http://www.mameworld.net/highscore/ 0.87 - 25/07/2004
+Source21: http://www.mameworld.net/highscore/uhsdat087.zip
+# http://www.arcade-history.com/ 0.87a - 30/09/2004
+Source22: http://www.arcade-history.com/download/history0_87a.zip
+# http://www.mameworld.net/mameinfo/ 0.87u1 - 30/09/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo087u1.zip
+# http://www.mameworld.net/catlist/ 0.87u1 - 03/10/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -46,16 +46,14 @@ a package containing the main xmame binary though, from either the basic
 x11 version, the SDL version or the special OpenGL xgl version.
 
 Available rpmbuild rebuild options :
---without mame mess x11 xgl SDL asm68000 mips3 alsa esound arts opts quietbuild
+--without mame mess x11 xgl SDL asm68000 mips3 mmxasm
+          alsa esound arts opts quietbuild
 
 
 %package x11
 Summary: X-Mame arcade game emulator compiled for X11 DGA or XV display
 Group: Applications/Emulators
 Provides: %{name}-bin = %{version}
-Requires: zlib
-%{!?_without_alsa:Requires: alsa-lib}
-%{!?_without_esound:Requires: esound}
 
 %description x11
 This the the *nix port of the almost legendary mame. Mame is an arcade
@@ -70,9 +68,6 @@ This version has been compiled for X11 DGA and XV displays.
 Summary: X-Mame arcade game emulator compiled for SDL display
 Group: Applications/Emulators
 Provides: %{name}-bin = %{version}
-Requires: SDL, zlib
-%{!?_without_alsa:Requires: alsa-lib}
-%{!?_without_esound:Requires: esound}
 BuildRequires: SDL-devel
 
 %description SDL
@@ -88,9 +83,6 @@ This version has been compiled for SDL display.
 Summary: X-Mame arcade game emulator compiled for OpenGL display
 Group: Applications/Emulators
 Provides: %{name}-bin = %{version}
-Requires: zlib, libjpeg
-%{!?_without_alsa:Requires: alsa-lib}
-%{!?_without_esound:Requires: esound}
 BuildRequires: Mesa-devel, libjpeg-devel
 
 %description xgl
@@ -116,9 +108,6 @@ see http://www.mess.org/
 %package -n xmess-x11
 Summary: The Multi Emulator Super System compiled for X11 DGA or XV display
 Group: Applications/Emulators
-Requires: zlib
-%{!?_without_alsa:Requires: alsa-lib}
-%{!?_without_esound:Requires: esound}
 
 %description -n xmess-x11
 This is the *nix port of MESS. MESS is a free emulator which emulates a
@@ -132,9 +121,6 @@ This version has been compiled for X11 DGA or XV display.
 %package -n xmess-SDL
 Summary: The Multi Emulator Super System compiled for SDL display
 Group: Applications/Emulators
-Requires: SDL, zlib
-%{!?_without_alsa:Requires: alsa-lib}
-%{!?_without_esound:Requires: esound}
 BuildRequires: SDL-devel
 
 %description -n xmess-SDL
@@ -149,9 +135,6 @@ This version has been compiled for SDL display.
 %package -n xmess-xgl
 Summary: The Multi Emulator Super System compiled for OpenGL display
 Group: Applications/Emulators
-Requires: zlib, libjpeg
-%{!?_without_alsa:Requires: alsa-lib}
-%{!?_without_esound:Requires: esound}
 BuildRequires: Mesa-devel, libjpeg-devel
 
 %description -n xmess-xgl
@@ -185,7 +168,7 @@ export CFLAGS="%{optflags}"
 export JOY_I386=1
 %{!?_without_alsa:export SOUND_ALSA=1}
 %{!?_without_esound:export SOUND_ESOUND=1}
-%{!?_without_arts:export SOUND_ARTS_TEIRA=1}
+%{!?_without_arts:export SOUND_ARTS_SMOTEK=1; export SOUND_ARTS_TEIRA=1}
 
 # Optimization flags, CPU type and defaults for the makefile
 %ifarch %{ix86}
@@ -193,6 +176,7 @@ export JOY_I386=1
     %{!?_without_opts: export CFLAGS="%{optflags} -O3 -Wall"}
     %{!?_without_asm68000: export X86_ASM_68000=1}
     %{!?_without_mips3: export X86_MIPS3_DRC=1}
+    %{!?_without_mmxasm: export EFFECT_MMX_ASM=1}
 %endif
 
 %ifarch ppc
@@ -207,6 +191,7 @@ export JOY_I386=1
     # incompatible with i386:x86-64 output
     #{!?_without_asm68000: export X86_ASM_68000=1}
     %{!?_without_mips3: export X86_MIPS3_DRC=1}
+    %{!?_without_mmxasm: export EFFECT_MMX_ASM=1}
 %endif
 
 %ifarch sparc sparcv8 sparcv9 sparc64
@@ -224,13 +209,13 @@ done
 # Now, do all the building (this is long!)
 for target in %{targets}; do
     %{!?_without_x11: %{__make} %{?_smp_mflags} DISPLAY_METHOD=x11 X11_DGA=1 X11_XV=1 TARGET=$target}
-    %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL SOUND_SDL=1 JOY_SDL=1 TARGET=$target}
+    %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL TARGET=$target}
     %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl TARGET=$target}
 done
 
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} _doc
 
 for target in %{targets}; do
     %{__make} install-man \
@@ -250,12 +235,12 @@ done
 %{?!_without_mame: %{__install} -m 755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
 
 # We don't want all the docs
-%{__mkdir_p} doc2/{xmame/html,xmess}
+%{__mkdir_p} _doc/{xmame/html,xmess}
 pushd src/unix/doc
-    %{__cp} -a {*.html,*.css,img} ../../../doc2/xmame/html/
+    %{__cp} -a {*.html,*.css,img} ../../../_doc/xmame/html/
     %{__cp} -a changes.* dga2.txt multiplayer-readme.txt \
-        xmame-doc.txt xmamerc.dist mame/* ../../../doc2/xmame/
-    %{__cp} -a xmessrc.dist mess/* ../../../doc2/xmess/
+        xmame-doc.txt xmamerc.dist mame/* ../../../_doc/xmame/
+    %{__cp} -a xmessrc.dist mess/* ../../../_doc/xmess/
 popd
 
 
@@ -288,7 +273,7 @@ popd
 %if %{?_without_mame:0}%{!?_without_mame:1}
 %files
 %defattr(-, root, root, 0755)
-%doc README doc2/xmame/* contrib/tools/mame-cd 
+%doc README _doc/xmame/* contrib/tools/mame-cd 
 %doc catver.ini
 %{_bindir}/chdman
 %{_bindir}/romcmp
@@ -323,7 +308,7 @@ popd
 %if %{?_without_mess:0}%{!?_without_mess:1}
 %files -n xmess
 %defattr(-, root, root, 0755)
-%doc README doc2/xmess/*
+%doc README _doc/xmess/*
 %dir %attr(2775, root, games) %{_datadir}/xmess
 %dir %attr(2775, root, games) %{_datadir}/xmess/artwork
 %dir %attr(2775, root, games) %{_datadir}/xmess/bios
@@ -352,6 +337,11 @@ popd
 
 
 %changelog
+* Sun Oct  3 2004 Matthias Saou <http://freshrpms.net/> 0.87-1
+- Update to 0.87, with the usual related files too.
+- Now enable both aRts drivers are they can co-exist.
+- Remove explicit binary requires.
+
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 0.86-1
 - Update to 0.86, with the usual related files too.
 - Split off the roms to a separate source package.

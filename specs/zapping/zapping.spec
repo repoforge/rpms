@@ -6,7 +6,7 @@
 
 Summary: A TV viewer for GNOME
 Name: zapping
-Version: 0.7
+Version: 0.7.2
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -77,6 +77,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Mon Oct  4 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-1
+- Update to 0.7.2.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 0.7-1
 - Update to 0.7 final.
 
