@@ -23,22 +23,25 @@ everything started with Cironian who created the first emulator back in
 1997.
 
 %prep
-%setup
+%setup -n source_of_lonejoy/src
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+sed 's/\-pipe/-Wall -ggdb -pipe/g;' Makefile
+%{__make} LDFLAGS="-ggdb -Wall" %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+mkdir -p %{buildroot}/usr/bin
+cp lonewolf %{buildroot}/usr/bin
+mkdir -p %{buildroot}/usr/share/lonewolf
+tar -C %{buildroot}/usr/share/lonewolf -xjvf %{SOURCE1}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
+%{_bindir}/lonewolf
 
 %changelog
 * Tue Mar 30 2004 Dries Verachtert 13.0.9-1
