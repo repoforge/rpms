@@ -12,7 +12,7 @@
 Summary: Command-line access to the CPAN interface
 Name: perl-CPANPLUS
 Version: 0.053
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CPANPLUS/
@@ -32,9 +32,9 @@ this API.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} -pi -e 's|^ *\@ARGV = grep \{.*||g;' Makefile.PL
+#%{__perl} -pi -e 's|^ *\@ARGV = grep \{.*||g;' Makefile.PL
 %{__perl} -pi -e 's|use Your::Module::Here|your use statements here|g;' lib/CPANPLUS/Internals/Constants/Report.pm
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix} AUTOINSTALL=1 SETUP=0
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix} AUTOINSTALL=1 SETUP=0 JFDI=1
 %{__make} %{?_smp_mflags}
 
 %install
@@ -43,14 +43,16 @@ this API.
 %{__rm} -rf %{buildroot}%{perl_archlib} \
   %{buildroot}%{perl_vendorarch} \
   %{buildroot}%{_mandir}/man3/CPANPLUS*Win32* \
-  %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/*/*/*Win32*
+  %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/*/*/*Win32* \
+  %{buildroot}%{perl_vendorlib}/CPANPLUS/inc/ \
+  %{buildroot}%{_mandir}/man?/CPANPLUS::inc*
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc README ChangeLog
 %{_bindir}/cpan2dist
 %{_bindir}/cpanp
 %doc %{_mandir}/man3/*
@@ -59,9 +61,11 @@ this API.
 %{perl_vendorlib}/CPANPLUS/*
 
 %changelog
+* Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.053-2
+- Don't install all the included modules.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.053-1
 - Updated to release 0.053.
 
 * Mon Jan 17 2005 Dries Verachtert <dries@ulyssis.org> - 0.051-1
 - Initial package.
-
