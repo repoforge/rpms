@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 30
+Release: 31
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -52,13 +52,19 @@ Source16: http://pinkemostar.com:8008/files/cbg-quotes.tar.gz
 # fortune file. 
 Source17: http://www.pinkemostar.com:8008/files/ralph-quotes.tar.gz
 # http://eol.init1.nl/linux/index.php   (southpark quotes)
-Source18: http://eol.init1.nl/linux/SP-0.1.tar.gz
+#Source18: http://eol.init1.nl/linux/SP-0.1.tar.gz
+Source18: http://eelco.is.a.rootboy.net/fortunecookies/SP-0.2.tar.gz
 # http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 # homer simpson quotes
 Source19: http://www.cs.indiana.edu/~crcarter/homer/homer-quotes.tar.gz
 # Osho quotes
 # http://www.geocities.com/avitiw/fortune.html
 Source20: http://www.geocities.com/avitiw/fortune-osho-1.1.tar.gz
+# http://eol.init1.nl/content/category/2/36/54/
+Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.1.tar.gz
+# http://eol.init1.nl/content/category/2/36/54/
+Source22: http://eelco.is.a.rootboy.net/fortunecookies/oneliners-0.1.tar.gz
+
 
 Obsoletes: fortune-mod
 
@@ -95,6 +101,8 @@ wisdom each time they log in.
 %setup -D -T -a 18 -n fortune-mod-9708
 %setup -D -T -a 19 -n fortune-mod-9708
 %setup -D -T -a 20 -n fortune-mod-9708
+%setup -D -T -a 21 -n fortune-mod-9708
+%setup -D -T -a 22 -n fortune-mod-9708
 
 %if %{DisableOffensiveFortunes}
 %patch0 -p1 -b .disable-offensive1
@@ -147,6 +155,8 @@ util/strfile ralph
 %endif
 %{__cp} fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
 %{__cp} osho.dat osho %{buildroot}%{_datadir}/games/fortune/
+%{__cp} powerpuff-0.1/powerpuff* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} oneliners-0.1/oneliners* %{buildroot}%{_datadir}/games/fortune/
 
 %{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
@@ -423,6 +433,25 @@ Requires: fortune = %{version}-%{release}
 Fortune files with quotes from the spiritual guru Osho, found at:
 http://www.geocities.com/avitiw/fortune.html
 
+%package powerpuff
+Summary: Fortune files with quotes from the Power Puff Girls series
+Group: Amusements/Games
+Requires: fortune = %{version}-%{release}
+
+%description powerpuff
+Fortune files with quotes from the Power Puff Girls series from Cartoon
+Network, found at:
+http://eol.init1.nl/content/category/2/36/54/
+
+%package oneliners
+Summary: Fortune files with quotes with random oneliners
+Group: Amusements/Games
+Requires: fortune = %{version}-%{release}
+
+%description oneliners
+Fortune files with quotes with random oneliners, found at:
+http://eol.init1.nl/content/category/2/36/54/
+
 %package all
 Summary: Installs all fortune packages
 Group: Amusements/Games
@@ -451,6 +480,8 @@ Requires: fortune-southpark = %{version}-%{release}
 %endif
 Requires: fortune-simpsons-homer = %{version}-%{release}
 Requires: fortune-osho = %{version}-%{release}
+Requires: fortune-powerpuff = %{version}-%{release}
+Requires: fortune-oneliners = %{version}-%{release}
 
 %description all
 All fortune packages will be installed if you install this package.
@@ -588,10 +619,22 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/osho*
 
+%files oneliners
+%defattr(-, root, root, 0755)
+%{_datadir}/games/fortune/oneliners*
+
+%files powerpuff
+%defattr(-, root, root, 0755)
+%{_datadir}/games/fortune/powerpuff*
+
 %files all
 %defattr(-, root, root, 0755)
 
 %changelog
+* Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 1.0-31
+- Update of South Park quotes
+- Added oneliners & powerpuff
+
 * Mon Jun 21 2004 Dries Verachtert <dries@ulyssis.org> 1.0-30
 - Update of the kernelcookies to version 8 with 80 new 
   cookies from the 2.6.6 kernel tree.
