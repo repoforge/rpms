@@ -2,14 +2,14 @@
 
 # Authority: dries
 
-# NeedsCleanup
+# Warning: you need a lot of diskspace if you want to build this rpm!
 
 Summary: The Glasgow Haskell Compiler
 Name: ghc
 Version: 6.2
 Release: 1
 License: Other
-Group: todo
+Group: Development/Languages
 URL: http://www.haskell.org/ghc/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
@@ -20,8 +20,15 @@ Source1: http://www.haskell.org/ghc/dist/%{version}/ghc-%{version}-i386-unknown-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: readline-devel, readline, m4
 Requires: readline
+
 %description
-todo
+The Glasgow Haskell Compiler is a robust, fully-featured, optimising
+compiler for the functional programming language Haskell. GHC compiles
+Haskell to either native code or C. It implements numerous experimental
+language extensions to Haskell for example concurrency, a foreign language
+interface, several type-system extensions, exceptions, and so on. GHC comes
+with a generational garbage collector, a space and time profiler, and a
+comprehensive set of libraries. 
 
 %prep
 %{__rm} -rf "${RPM_BUILD_ROOT}"
@@ -55,8 +62,19 @@ export PATH=`pwd`/ghc-6.2/lib/i386-unknown-linux:`pwd`/ghc-6.2/bin/i386-unknown-
 %install
 %makeinstall
 
-%files
+%post
+/sbin/ldconfig 2>/dev/null
 
+%postun
+/sbin/ldconfig 2>/dev/null
+
+%files
+%defattr(-,root,root, 0755)
+%doc README
+%{_bindir}/*
+%{_includedir}/*
+%{_libdir}/*
+%{_libexecdir}/*
 
 %changelog
 * Mon Mar 1 2004 Dries Verachtert <dries@ulyssis.org>
