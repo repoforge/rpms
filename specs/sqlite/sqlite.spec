@@ -4,9 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-Summary: library that implements an embeddable SQL database engine
+Summary: Library that implements an embeddable SQL database engine
 Name: sqlite
-Version: 2.8.14
+Version: 2.8.15
 Release: 1
 License: LGPL
 Group: Applications/Databases
@@ -112,6 +112,9 @@ TARGET_EXEEXT='.so' \
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 2.8.15-1
+- Update to 2.8.15.
+
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 2.8.14-1
 - Updated to release 2.8.14.
 
