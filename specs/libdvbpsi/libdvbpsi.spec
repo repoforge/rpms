@@ -10,8 +10,9 @@ Version: 0.1.4
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-Source: http://download.videolan.org/pub/libdvbpsi/%{version}/libdvbpsi3-%{version}.tar.bz2
 URL: http://developers.videolan.org/libdvbpsi/
+
+Source: http://download.videolan.org/pub/libdvbpsi/%{version}/libdvbpsi3-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -50,24 +51,26 @@ programs with libdvbpsi support.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog README
-%{_libdir}/%{name}.so.*
+%doc AUTHORS ChangeLog COPYING README
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
-%{_libdir}/%{name}.a
-%exclude %{_libdir}/%{name}.la
-%{_libdir}/%{name}.so
+%{_includedir}/dvbpsi/
+%{_libdir}/*.a
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 %changelog
 * Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.1.4-1.fr
