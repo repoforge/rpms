@@ -16,6 +16,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.ibiblio.org/pub/Linux/X11/screensavers/xautolock-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: XFree86-devel
+
 %description
 A program that launches a given program when 
 your X session has been idle for a given time.
