@@ -14,6 +14,9 @@ URL: http://www.uox3.org/
 Source: http://www.uox3.org/files/uox3-source.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%description
+todo
+
 %prep
 %setup -c
 
