@@ -9,14 +9,13 @@ Version: 2.0.0
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Internet
-Source: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
 URL: http://www.aMule.org/
-BuildRoot: %{_tmppath}/%{name}-root
-Requires: wxGTK, curl
+Source: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /usr/sbin/alternatives
 Requires(preun): /usr/sbin/alternatives
 BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
-BuildRequires: cryptopp-devel
+BuildRequires: cryptopp-devel, libidn-devel
 # Required on Yellow Dog Linux 3.0
 BuildRequires: openssl-devel
 
@@ -61,8 +60,8 @@ same network.
 %{_bindir}/*
 %{_libdir}/xchat/plugins/xas.pl
 %{_datadir}/applications/*.desktop
+%{_datadir}/cas/
 %{_datadir}/pixmaps/*.xpm
-%{_datadir}/pixmaps/stat.png
 
 
 %changelog
