@@ -40,17 +40,19 @@ bookmarks, and queued transfers.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %{_bindir}/*
 %{_datadir}/applnk/Utilities/kasablanca.desktop
 %{_datadir}/apps/kasablanca
 %{_datadir}/doc/HTML/en/kasablanca
 %{_datadir}/icons/*/*/apps/kasablanca.png
+%{_datadir}/config.kcfg/kbconfig.kcfg
 
 %changelog
 * Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 0.4.0.1-1
