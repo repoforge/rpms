@@ -16,8 +16,8 @@
 
 Summary: Client application for the Jabber network
 Name: psi
-Version: 0.9.2
-Release: 3
+Version: 0.9.3
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
@@ -164,6 +164,9 @@ desktop-file-install \
 %lang(zh) %{_datadir}/psi/psi_zh.qm
 
 %changelog
+* Sun Jan 09 2005 Dries Verachtert <dries@ulyssis.org> 0.9.3-1
+- Updated to release 0.9.3.
+
 * Mon Jun 14 2004 Matthias Saou <http://freshrpms.net> 0.9.2-3
 - Real fix for mach builds.
 
