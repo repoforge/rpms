@@ -33,11 +33,10 @@
 %{?yd3:%define _without_theora 1}
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-#define date      20040415
-%define rcver     pre5
+%define date      20041025
+#define rcver     pre5
 
-%define xmms_plugindir %(xmms-config --input-plugin-dir)
-%define desktop_vendor freshrpms
+%define xmms_plugindir %(xmms-config --input-plugin-dir || echo %{_libdir}/xmms/Input)
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
@@ -47,7 +46,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 %if %{?date:1}0
-Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-current.tar.bz2
+Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
@@ -117,6 +116,20 @@ to use MPlayer, transcode or other similar programs.
 %patch0 -p1 -b .runtimemsg
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
+
+# Overwrite the system menu entry with ours
+%{__cat} <<EOF > etc/mplayer.desktop
+[Desktop Entry]
+Name=Movie Player
+Comment=Play multimedia files and media
+Icon=mplayer.xpm
+Exec=gmplayer %f
+Terminal=false
+MimeType=video/mpeg;video/x-msvideo;video/quicktime
+Type=Application
+Categories=Application;AudioVideo;
+Encoding=UTF-8
+EOF
 
 
 %build
@@ -191,34 +204,9 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 # The fonts are now in a separate package
 %{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
 
-# The icon used in the menu entry
+# The nicer icon used in the menu entry
 %{__install} -D -m0644 Gui/mplayer/pixmaps/MPlayer_mini.xpm \
     %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
-
-# Last, add system menu entries!
-%{__cat} <<EOF > mplayer.desktop
-[Desktop Entry]
-Name=Movie Player
-Comment=Play multimedia files and media
-Icon=mplayer.xpm
-Exec=gmplayer %f
-Terminal=false
-MimeType=video/mpeg;video/x-msvideo;video/quicktime
-Type=Application
-Categories=Application;AudioVideo;
-Encoding=UTF-8
-EOF
-
-%if %{!?_without_freedesktop:1}0
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install \
-    --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    mplayer.desktop
-%else
-%{__install} -D -m0644 mplayer.desktop \
-    %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/mplayer.desktop
-%endif
 
 ### Install libpostproc if not already installed
 if [ ! -e "%{buildroot}%{_libdir}/libpostproc.so" ]; then
@@ -227,16 +215,18 @@ fi
 
 
 %post
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
+update-desktop-database %{_datadir}/applications
 
 %postun
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
+update-desktop-database %{_datadir}/applications
 
 %post -n libpostproc
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 
 %postun -n libpostproc
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 
 
 %clean
@@ -249,21 +239,22 @@ fi
 %dir %{_sysconfdir}/mplayer/
 #config %{_sysconfdir}/mplayer/mplayer.conf
 %{_bindir}/*
-%ifarch %ix86
+%ifarch %{ix86}
 %{_libdir}/libdha.so*
 %{_libdir}/mplayer/
 %endif
-%{!?_without_freedesktop:%{_datadir}/applications/*mplayer.desktop}
-%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Multimedia/mplayer.desktop}
+%{_datadir}/applications/mplayer.desktop
 %{_datadir}/mplayer/
-%{_datadir}/pixmaps/mplayer.xpm
+%{_datadir}/pixmaps/*
 %{_mandir}/man1/*.1*
+%lang(cz) %{_mandir}/cz/man1/*.1*
 %lang(de) %{_mandir}/de/man1/*.1*
 %lang(es) %{_mandir}/es/man1/*.1*
 %lang(fr) %{_mandir}/fr/man1/*.1*
 %lang(hu) %{_mandir}/hu/man1/*.1*
 %lang(it) %{_mandir}/it/man1/*.1*
 %lang(pl) %{_mandir}/pl/man1/*.1*
+%lang(sv) %{_mandir}/sv/man1/*.1*
 
 %files -n libpostproc
 %defattr(-, root, root, 0755)
@@ -272,6 +263,13 @@ fi
 
 
 %changelog
+* Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.11.20042025
+- Update to today's CVS snapshot.
+- Simplify the desktop file install, as there is now one included.
+
+* Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.11.pre5
+- Added update-desktop-database scriplet calls.
+
 * Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.11.pre5
 - Add fixes for x86_64, it now builds and works.
 - Added external libmatroska support.
