@@ -2,10 +2,10 @@
 
 %define php_extdir %(php-config --extension-dir)
 
-Summary: RECL package for parsing and working with email messages
+Summary: PECL package for parsing and working with email messages
 Name: php-pecl-mailparse
 Version: 2.0b
-Release: 2
+Release: 3
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/mailparse
@@ -61,6 +61,11 @@ EOF
 
 
 %changelog
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 2.0b-3
+- Rebuild for Fedora Core 2.
+- No need for a strict dependency on this package, it works fine with
+  php 4.3.6 when compiled against 4.3.4.
+
 * Fri May  7 2004 Matthias Saou <http://freshrpms.net/> 2.0b-2
 - Added php.d entry to auto-load the module with recent php packages.
 - Added more macros to the spec file.

@@ -5,7 +5,7 @@
 Summary: PEAR package for generating Excel spreadsheets
 Name: php-pear-excel
 Version: 0.7
-Release: 1
+Release: 2
 License: LGPL
 Group: Development/Languages
 URL: http://pear.php.net/package/Spreadsheet_Excel_Writer/
@@ -28,14 +28,14 @@ available.
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 pear install -R %{buildroot} -n %{SOURCE1}
 # Remove .filemap and .lock, we don't want to include those
-rm -f %{buildroot}%{php_dir}/{.filemap,.lock}
+%{__rm} -f %{buildroot}%{php_dir}/{.filemap,.lock}
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files
@@ -44,6 +44,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 0.7-2
+- Rebuild for Fedora Core 2.
+
 * Thu Mar 11 2004 Matthias Saou <http://freshrpms.net/> 0.7-1
 - Initial RPM release.
 

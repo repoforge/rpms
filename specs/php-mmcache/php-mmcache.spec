@@ -3,14 +3,16 @@
 %define php_extdir %(php-config --extension-dir || echo /usr/lib/php4)
 %define php_version %(php-config --version || echo badbuild)
 
+%define module_version 2.4.6
+
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-mmcache
-Version: %{php_version}_2.4.6
+Version: %{php_version}_%{module_version}
 Release: 4
 License: GPL
 Group: Development/Languages
 URL: http://turck-mmcache.sourceforge.net/
-Source: http://dl.sf.net/turck-mmcache/turck-mmcache-%{version}.tar.bz2
+Source: http://dl.sf.net/turck-mmcache/turck-mmcache-%{module_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php = %{php_version}
 Provides: php-zend_extension
@@ -28,7 +30,7 @@ speed of your PHP code by 1-10 times.
 
 
 %prep 
-%setup -n turck-mmcache-%{version}
+%setup -n turck-mmcache-%{module_version}
 
 
 %build
@@ -81,7 +83,7 @@ EOF
 
 
 %changelog
-* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 4.3.x_2.4.6-1
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 4.x.x_2.4.6-1
 - Change the version to be phpversion_mmcacheversion since each build
   is tightly tied to a version, and to have an easy upgrade path.
 
