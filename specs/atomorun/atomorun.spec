@@ -20,7 +20,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://atomorun.whosme.de/downloads/atomorun-%{version}%{?prever:_%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, libtiff-devel, libvorbis-devel
+BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel
+BuildRequires: libtiff-devel, libvorbis-devel
 BuildRequires: libvorbis-devel
 
 %description

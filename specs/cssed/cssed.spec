@@ -14,7 +14,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/cssed/cssed-pre0.1-2.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: autoconf, make, gcc-c++, gtk2-devel, gettext, vte-devel, expat-devel
+BuildRequires: autoconf, make, gcc-c++, expat-devel
+BuildRequires: gtk2-devel, gettext, vte-devel
 Requires: gtk2, vte
 
 # Screenshot: http://cssed.sourceforge.net/images/screens/screenshor_doc_menu.png

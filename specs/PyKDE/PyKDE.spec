@@ -15,7 +15,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.river-bank.demon.co.uk/download/PyKDE2/PyKDE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: python, python-devel, sip, sip-devel, PyQt, PyQt-devel, qt, qt-devel, kdelibs-devel, gcc-c++
+BuildRequires: python, python-devel, sip, sip-devel
+BuildRequires: PyQt, PyQt-devel, qt, qt-devel
+BuildRequires: kdelibs-devel, gcc-c++
 Requires: sip, python, PyQt, PyQt-devel
 
 %description

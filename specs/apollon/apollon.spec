@@ -21,7 +21,10 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/apollon/apollon-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, gift
+BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
+BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: kdelibs-devel, gift
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs, gift
 
