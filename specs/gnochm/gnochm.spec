@@ -2,6 +2,12 @@
 # Authority: dag
 # Upstream: Ramos Rubens <rubensr$users,sourceforge,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%define _without_shared_mime 1
+%{?fc3:%define _without_shared_mime 0}
+%{?fc2:%define _without_shared_mime 0}
+
 Summary: CHM file viewer
 Name: gnochm
 Version: 0.9.2
@@ -23,7 +29,7 @@ BuildRequires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
 Requires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2
 Requires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
 Requires: gnome-python2-canvas
-#Requires: shared-mime-info
+%{!?_without_shared_mime:Requires: shared-mime-info}
 
 %description
 A CHM file viewer. Features are: full text search, bookmarks
