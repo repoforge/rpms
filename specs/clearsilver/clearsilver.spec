@@ -8,7 +8,7 @@
 
 Summary: ClearSilver HTML template system
 Name: clearsilver
-Version: 0.9.8
+Version: 0.9.13
 Release: 1
 License: Apache License style
 Group: Development/Libraries
@@ -117,7 +117,7 @@ clearsilver templating system.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/ClearSilver/
-%{_libdir}/*.a
+%{_libdir}/libneo_*.a
 
 %files -n python-clearsilver
 %defattr(-, root, root, 0755)
@@ -128,8 +128,7 @@ clearsilver templating system.
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/*.3pm*
 %{perl_vendorarch}/ClearSilver.pm
-%{perl_vendorarch}/auto/ClearSilver/ClearSilver.so
-%{perl_vendorarch}/auto/ClearSilver/ClearSilver.bs
+%{perl_vendorarch}/auto/ClearSilver/
 
 #%files -n ruby
 #%defattr(-, root, root, 0755)
@@ -140,5 +139,8 @@ clearsilver templating system.
 #{apache_libexec}/mod_ecs.so
 
 %changelog
+* Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.9.13-1
+- Updated to release 0.9.13.
+
 * Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 0.9.8-1
 - Initial package. (using DAR)

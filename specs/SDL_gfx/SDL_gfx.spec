@@ -42,7 +42,8 @@ you will need to install %{name}-devel.
 %ifnarch %{ix86}
     --disable-mmx
 %endif
-%{__make} %{?_smp_mflags}
+### Buildtools have problems even when -j1 is added
+%{__make} #%{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

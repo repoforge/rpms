@@ -38,7 +38,7 @@ be installed before installing nmap-frontend.
 
 %prep
 %setup
-%{__perl} -pi.orig -e 's|^TryExec=|Exec=|g' nmapfe.desktop
+#%{__perl} -pi.orig -e 's|^TryExec=|Exec=|g' nmapfe.desktop
 
 
 %build

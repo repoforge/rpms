@@ -15,6 +15,10 @@
 %{?rh6:%define _without_alsa 1}
 %{?yd3:%define _without_alsa 1}
 
+%ifarch x86_64
+%define _without_mmx 1
+%endif
+
 Summary: DVD player that supports DVD menus
 Name: ogle
 Version: 0.9.2
@@ -57,13 +61,17 @@ to build programs that use it (like GUIs).
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
-# Workaround the hardcoded "lib" path for dvdread (vs. lib64)... doesn't work
-#%{__perl} -pi.orig -e 's|dvd_path/lib|dvd_path/%{_lib}|g' configure*
+### Workaround the hardcoded "lib" path for dvdread (vs. lib64)... doesn't work
+%{__perl} -pi.orig -e '
+		s|/lib\b|/%{_lib}|g;
+		s|-ldvdread\b|-ldl -ldvdread|g;
+	' configure*
 
 
 %build
 %configure \
-    %{?_without_altivec:--disable-altivec}
+    %{?_without_altivec:--disable-altivec} \
+    %{?_without_mmx:--disable-mmx}
 %{__make} %{?_smp_mflags}
 
 

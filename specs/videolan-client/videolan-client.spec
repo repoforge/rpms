@@ -24,13 +24,16 @@
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_vorbis 1}
+%{?rh7:%define _without_xosd 1}
 
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_arts 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_fribidi 1}
+%{?el2:%define _without_glx 1}
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_vorbis 1}
+%{?rh7:%define _without_xosd 1}
 
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}
@@ -167,6 +170,7 @@ popd
     %{?_with_tarkin:--enable-tarkin} \
     %{!?_without_theora:--enable-theora} \
     --enable-x11 \
+    %{?_without_glx:--disable-glx} \
     --enable-xvideo \
     %{?_without_sdl:--disable-sdl} \
     --disable-qte \

@@ -10,7 +10,7 @@
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.2.0
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -241,35 +241,27 @@ touch %{buildroot}%{_localstatedir}/log/amavis.log
 
 %pre
 if ! /usr/bin/id amavis &>/dev/null; then
-	/usr/sbin/useradd -r -d "/var/amavis" -s /bin/sh -c "Amavis email scan user" -M  || \
-		%logmsg "Unexpected error adding user \"amavis\". Aborting installation."
+	/usr/sbin/useradd -r -d "/var/amavis" -s /bin/sh -c "Amavis email scan user" -M amavis || \
+		%logmsg "Unexpected error adding user \"amavis\"."
 fi
-/usr/sbin/usermod -G amavis clamav &>/dev/null || :
+
+if ! /usr/bin/id -n -G dag | grep -q clamav; then
+	/usr/sbin/usermod -G $(id -Gn clamav | tr ' ' ','),amavis clamav || \
+		%logmsg "Failed to add user \"amavis\" to group \"clamav\"."
+fi
 
 %post
 /sbin/chkconfig --add amavisd
 
-if [ -r /etc/postfix/aliases ]; then
-	if ! grep -q "^virusalert:" /etc/postfix/aliases; then
-		echo -e "virusalert:\troot" >> /etc/postfix/aliases
-		if [ -x /usr/bin/newaliases ]; then
-			/usr/bin/newaliases &>/dev/null
-		else
-			%logmsg "Cannot exec newaliases. Please run it manually."
+for file in /etc/postfix/aliases /etc/mail/aliases /etc/aliases; do
+	if [ -r "$file" ]; then
+		if ! grep -q "^virusalert:" "$file"; then
+			echo -e "virusalert:\troot" >> "$file"
+			/usr/bin/newaliases &>/dev/null || \
+				%logmsg "Cannot exec newaliases. Please run it manually."
 		fi
 	fi
-fi
-
-if [ -r /etc/mail/aliases ]; then
-	if ! grep -q "^virusalert:" /etc/mail/aliases; then
-		echo -e "virusalert:\troot" >> /etc/mail/aliases
-		if [ -x /usr/bin/newaliases ]; then
-			/usr/bin/newaliases &>/dev/null
-		else
-			%logmsg "Cannot exec newaliases. Please run it manually."
-		fi
-	fi
-fi
+done
 
 %post milter
 if [ -f /etc/mail/sendmail.mc ]; then
@@ -320,8 +312,13 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 2.2.0-3
+- Fixes to handling of aliases. (Ed Solis)
+- Now add user amavis to group clamav (if not already). (Luigi Iotti)
+
 * Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 2.2.0-2
 - Added upstream improvements. (Marius Andreiana)
+- Added cabextract as a requirement. (Luigi Iotti)
 - Reverted some of my user changes. (Luigi Iotti)
 - Fixed permissions and added configfiles to docs. (Luigi Iotti)
 
