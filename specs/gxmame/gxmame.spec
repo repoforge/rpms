@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define date 20040828
+%define date 20041005
 
 Summary: Complete GTK frontend for xmame
 Name: gxmame
@@ -10,13 +10,10 @@ Release: %{?date:0.%{date}.}1
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
-Source: http://dl.sf.net/gxmame/gxmame-%{!?date:%{version}}%{?date}.tar.gz
+Source: http://dl.sf.net/gxmame/gxmame-%{version}%{?date:cvs}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1, %{_bindir}/xml2info
-BuildRequires: gtk2-devel, zlib-devel, gettext
-%if %{?date:1}%{!?date:0}
-BuildRequires: automake, autoconf, cvs, intltool >= 0.31
-%endif
+BuildRequires: gtk2-devel, zlib-devel, gettext, intltool
 
 %description
 GXMame is a frontend for XMame using the GTK library, the goal is to provide
@@ -28,12 +25,10 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 
 %prep
-%setup -n %{name}%{!?date:-%{version}}
+%setup -n %{name}-%{version}%{?date:cvs}
 
 
 %build
-test -x configure || \
-    %{__cp} -a %{_datadir}/automake-*/mkinstalldirs . && ./autogen.sh
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -62,6 +57,10 @@ test -x configure || \
 
 
 %changelog
+* Tue Oct  5 2004 Matthias Saou <http://freshrpms.net/> 0.35-0.20041005.1
+- Update to today's CVS version, change the spec to build already "make dist"
+  passed tarballs.
+
 * Sat Aug 28 2004 Matthias Saou <http://freshrpms.net/> 0.35-0.20040828.1
 - Update to today's CVS version to work with xmame 0.86 (xil option).
 

@@ -187,9 +187,7 @@ export JOY_I386=1
 %ifarch x86_64
     export MY_CPU="amd64"
     %{!?_without_opts: export CFLAGS="%{optflags} -O3 -Wall"}
-    # Nope: warning: i386 architecture of input file `68000.o' is
-    # incompatible with i386:x86-64 output
-    #{!?_without_asm68000: export X86_ASM_68000=1}
+    %{!?_without_asm68000: export X86_ASM_68000=1}
     %{!?_without_mips3: export X86_MIPS3_DRC=1}
     %{!?_without_mmxasm: export EFFECT_MMX_ASM=1}
 %endif
@@ -341,6 +339,7 @@ popd
 - Update to 0.87, with the usual related files too.
 - Now enable both aRts drivers are they can co-exist.
 - Remove explicit binary requires.
+- Enable X86_ASM_68000, seems to compile properly now.
 
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 0.86-1
 - Update to 0.86, with the usual related files too.
