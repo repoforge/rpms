@@ -1,0 +1,17 @@
+# List of available apt repositories available from ayo.freshrpms.net.
+# This file should contain an uncommented default suitable for your system.
+#
+# See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
+#
+# $Id$
+
+# Yellow Dog Linux 3.0
+rpm http://ayo.freshrpms.net yellowdog/3.0/ppc os updates freshrpms
+#rpm http://ayo.freshrpms.net yellowdog/3.0/ppc ruffpack
+#rpm-src http://ayo.freshrpms.net yellowdog/3.0/ppc os updates freshrpms
+#rpm-src http://ayo.freshrpms.net yellowdog/3.0/ppc ruffpack
+ 
+# Yellow Dog Linux 2.3
+#rpm http://ayo.freshrpms.net yellowdog/2.3/ppc os updates freshrpms
+#rpm-src http://ayo.freshrpms.net yellowdog/2.3/ppc os updates freshrpms
+

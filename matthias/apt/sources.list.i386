@@ -1,0 +1,55 @@
+# List of available apt repositories available from ayo.freshrpms.net.
+# This file should contain an uncommented default suitable for your system.
+#
+# See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
+#
+# $Id$
+
+# Fedora Linux Development
+rpm http://ayo.freshrpms.net fedora/linux/development/i386 core
+rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
+#rpm-src http://ayo.freshrpms.net fedora/linux/development/i386 core
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
+
+# Fedora Linux 1
+#rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates freshrpms
+#rpm http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
+#rpm http://ayo.freshrpms.net fedora/linux/1/i386 extras alternatives
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 core updates freshrpms
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 extras alternatives
+
+# Red Hat Linux 9
+#rpm http://ayo.freshrpms.net redhat/9/i386 os updates freshrpms
+#rpm-src http://ayo.freshrpms.net redhat/9/i386 os updates freshrpms
+
+# Red Hat Linux 8.0
+#rpm http://ayo.freshrpms.net redhat/8.0/i386 os updates freshrpms
+#rpm-src http://ayo.freshrpms.net redhat/8.0/i386 os updates freshrpms
+
+# Red Hat Linux 7.3
+#rpm http://ayo.freshrpms.net redhat/7.3/i386 os updates freshrpms
+#rpm-src http://ayo.freshrpms.net redhat/7.3/i386 os updates freshrpms
+
+# Red Hat Linux 7.2
+#rpm http://ayo.freshrpms.net redhat/7.2/i386 os updates freshrpms
+#rpm-src http://ayo.freshrpms.net redhat/7.2/i386 os updates freshrpms
+
+# Red Hat Linux 7.1
+#rpm http://ayo.freshrpms.net redhat/7.1/i386 os updates freshrpms
+#rpm http://ayo.freshrpms.net redhat/7.1/i386 powertools dma
+#rpm-src http://ayo.freshrpms.net redhat/7.1/i386 os updates freshrpms
+#rpm-src http://ayo.freshrpms.net redhat/7.1/i386 powertools dma
+
+# Red Hat Linux 7.0
+#rpm http://ayo.freshrpms.net redhat/7.0/i386 os updates freshrpms
+#rpm http://ayo.freshrpms.net redhat/7.0/i386 powertools dma
+#rpm-src http://ayo.freshrpms.net redhat/7.0/i386 os updates freshrpms
+#rpm-src http://ayo.freshrpms.net redhat/7.0/i386 powertools dma
+
+# Red Hat Linux 6.2
+#rpm http://ayo.freshrpms.net redhat/6.2/i386 os updates freshrpms
+#rpm http://ayo.freshrpms.net redhat/6.2/i386 powertools
+#rpm-src http://ayo.freshrpms.net redhat/6.2/i386 os updates freshrpms
+#rpm-src http://ayo.freshrpms.net redhat/6.2/i386 powertools
+

@@ -1,0 +1,11 @@
+--- apt-0.5.5cnc5/apt-pkg/rpm/rpmhandler.cc.noflags	2003-04-16 10:00:25.000000000 +0300
++++ apt-0.5.5cnc5/apt-pkg/rpm/rpmhandler.cc	2003-04-16 12:03:53.000000000 +0300
+@@ -307,6 +307,8 @@
+       _error->Error(_("could not open RPM database"));
+       return;
+    }
++   rpmtsSetVSFlags(Handler, rpmVSFlags(rpmtsVSFlags(Handler) | 
++                   _RPMVSF_NODIGESTS | _RPMVSF_NOSIGNATURES));
+ #else
+    const char *RootDir = NULL;
+    if (!Dir.empty())

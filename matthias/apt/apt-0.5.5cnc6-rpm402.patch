@@ -1,0 +1,14 @@
+diff -Naupr apt-0.5.5cnc6.orig/tools/genpkglist.cc apt-0.5.5cnc6/tools/genpkglist.cc
+--- apt-0.5.5cnc6.orig/tools/genpkglist.cc	2003-06-10 16:14:47.000000000 +0200
++++ apt-0.5.5cnc6/tools/genpkglist.cc	2003-09-30 17:47:18.000000000 +0200
+@@ -216,8 +216,8 @@ bool loadUpdateInfo(char *path, map<stri
+    return true;
+ }
+ 
+-#ifdef HAVE_RPM4
+-// No prototype from rpm after 4.0.
++#ifndef HAVE_RPM4
++// No prototype from rpm after 4.0. (actually, after 4.0.2...)
+ extern "C" {
+ int headerGetRawEntry(Header h, int_32 tag, int_32 * type,
+ 		      void *p, int_32 *c);

@@ -1,0 +1,23 @@
+diff -Naupr apt-0.5.5cnc4.1_20030325a.orig/rpmpriorities apt-0.5.5cnc4.1_20030325a/rpmpriorities
+--- apt-0.5.5cnc4.1_20030325a.orig/rpmpriorities	2003-02-14 22:17:24.000000000 +0100
++++ apt-0.5.5cnc4.1_20030325a/rpmpriorities	2003-04-08 10:23:27.000000000 +0200
+@@ -2,17 +2,16 @@ Essential:
+   apt
+   basesystem
+   bash
+-  conectiva-release
+   dev
+   e2fsprogs
+   filesystem
+-  fileutils
+-  glibc-base
++  glibc
+   initscripts
+   kernel
+   modutils
+   mount
+   pam
+   passwd
++  redhat-release
+   rpm
+   setup
