@@ -1,0 +1,40 @@
+
+Bugfix for the Brush Tool (2004/03/07)
+http://kolourpaint.sf.net/
+Clarence Dang <dang@kde.org>
+
+Affects: KolourPaint 1.0.1 with Qt 3.0 or 3.1.
+         Qt 3.2 users are not affected.
+
+Fixes: The brush tool draws nothing when set to the size 1x1.
+       This is due to a bug present in Qt 3.0 and 3.1
+       (specifically, drawing 1x1 ellipses does not work).
+
+--- kolourpaint-1.0.1/kolourpaint/widgets/kptoolwidgetbrush.cpp	2004-03-07 17:14:19.000000000 +1100
++++ kolourpaint-1.0.1/kolourpaint/widgets/kptoolwidgetbrush.cpp	2004-03-07 17:14:24.000000000 +1100
+@@ -37,6 +37,11 @@
+ #include <kpdefs.h>
+ #include <kptoolwidgetbrush.h>
+ 
++#if !KP_IS_KDE_3_2
++    #include <kdebugclasses.h>
++#endif
++
++
+ /* sync: <brushes> */
+ static int brushSize [][3] =
+ {
+@@ -92,7 +97,12 @@
+             switch (shape)
+             {
+             case 0:
+-                painter.drawEllipse (rect);
++                // SYNC: Work around Qt bug: can't draw 1x1 ellipse.
++                //       Affects Qt 3.0 but not 3.2 but can't hurt to always work around.
++                if (rect.width () == 1 && rect.height () == 1)
++                    painter.drawPoint (rect.topLeft ());
++                else
++                    painter.drawEllipse (rect);
+                 break;
+             case 1:
+                 painter.drawRect (rect);
