@@ -1,18 +1,23 @@
 # $Id$
 # Authority: matthias
 
+%define desktop_vendor freshrpms
+
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
 Version: 2.2.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
-Source: http://web.wt.net/~billw/gkrellm/gkrellm-%{version}.tar.bz2
-Patch: gkrellm_i18n.patch
+Source0: http://web.wt.net/~billw/gkrellm/gkrellm-%{version}.tar.bz2
+Source1: gkrellmd.init
+Patch0: gkrellm_i18n.patch
+Patch1: gkrellm-2.1.28-config.patch
 URL: http://www.gkrellm.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2
-BuildRequires: gtk2-devel, glib-devel, gettext, pkgconfig, sed
+BuildRequires: gtk2-devel, openssl-devel, gettext, pkgconfig
+BuildRequires: ImageMagick, desktop-file-utils
 Conflicts: gkrellm-plugins < 2.0.0
 
 %description
@@ -26,7 +31,7 @@ Also includes an uptime monitor, a hostname label, and a clock/calendar.
 %package devel
 Summary: Include headers from the GNU Krell Monitor
 Group: Development/Libraries
-Requires : gkrellm = %{version}-%{release}, gtk2-devel
+Requires : gkrellm = %{version}-%{release}, gtk2-devel, openssl-devel
 
 %description devel
 Install this package if you intend to compile plugins to use with the
@@ -36,7 +41,7 @@ GKrellM monitor.
 %package daemon
 Summary: The GNU Krell Monitor Daemon
 Group: System Environment/Daemons
-Requires: glib >= 1.2
+Requires: glib2 >= 2.0
 Obsoletes: gkrellm-server <= 2.1.21
 
 %description daemon
@@ -46,11 +51,12 @@ machines you intend to monitor with gkrellm from a different location.
 
 %prep
 %setup
-%patch -p0 -b .i18n
+%patch0 -p0 -b .i18n
+%patch1 -p1 -b .config
 
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags}" glib12=1
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}" debug=1
 
 
 %install
@@ -58,14 +64,62 @@ machines you intend to monitor with gkrellm from a different location.
 %{__mkdir_p} %{buildroot}%{_sysconfdir}
 %{__mkdir_p} %{buildroot}%{_libdir}/gkrellm2/plugins
 %{__mkdir_p} %{buildroot}%{_datadir}/gkrellm2/themes
-%{__make} install INSTALLROOT=%{buildroot}%{_prefix}
-%{__cat} server/gkrellmd.conf | %{__sed} 's/#allow-host/allow-host/g' \
-    > %{buildroot}%{_sysconfdir}/gkrellmd.conf
+%{__make} install DESTDIR=%{buildroot} PREFIX=%{_prefix}
 %find_lang %{name}
+
+# Install the daemon config file
+%{__install} -D -m 755 server/gkrellmd.conf \
+    %{buildroot}%{_sysconfdir}/gkrellmd.conf
+
+# Install the icon for the menu entry
+convert gkrellm.ico gkrellm.png
+%{__install} -D -m 644 gkrellm.png.3 \
+    %{buildroot}%{_datadir}/pixmaps/gkrellm.png
+
+# Install the menu entry
+%{__cat} > %{name}.desktop << EOF
+[Desktop Entry]
+Name=GKrellM System Monitor
+Type=Application
+Comment=Monitor for CPU, memory, disks, network, mail
+Exec=gkrellm
+Icon=gkrellm.png
+Encoding=UTF-8
+EOF
+
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    --add-category "Application;System;Monitor;X-Red-Hat-Extra" \
+    %{name}.desktop
+
+# Install the init script
+%{__install} -D -m 755 %{SOURCE1} \
+    %{buildroot}/etc/rc.d/init.d/gkrellmd
 
 
 %clean
 %{__rm} -rf %{buildroot}
+
+
+%pre daemon
+# The daemon shouldn't run as nobody
+/usr/sbin/groupadd -g 101 gkrellmd 2>/dev/null || :
+/usr/sbin/useradd -u 101 -s /sbin/nologin -M -d / -c "GNU Krell daemon" -r -g gkrellmd gkrellmd 2>/dev/null || :
+
+%post daemon
+chkconfig --add gkrellmd
+
+%preun daemon
+if [ $1 -eq 0 ]; then
+    /sbin/service gkrellmd stop >/dev/null 2>&1 || :
+    /sbin/chkconfig --del gkrellmd
+fi
+
+%postun daemon
+if [ $1 -eq 0 ]; then
+    /usr/sbin/userdel gkrellmd 2>/dev/null || :
+fi
 
 
 %files -f %{name}.lang
@@ -73,7 +127,9 @@ machines you intend to monitor with gkrellm from a different location.
 %doc COPYRIGHT CREDITS Changelog* README Themes.html
 %{_bindir}/gkrellm
 %{_libdir}/gkrellm2
+%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/gkrellm2
+%{_datadir}/pixmaps/gkrellm.png
 %{_mandir}/man1/gkrellm.1*
 
 
@@ -86,11 +142,20 @@ machines you intend to monitor with gkrellm from a different location.
 %files daemon
 %defattr(-, root, root, 0755)
 %config(noreplace) %{_sysconfdir}/gkrellmd.conf
+/etc/rc.d/init.d/gkrellmd
 %{_bindir}/gkrellmd
 %{_mandir}/man1/gkrellmd.1*
 
 
 %changelog
+* Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-2
+- Change the daemon to be built with gtk2 from now on.
+- Add debug=1 to the build to get symbols into the debuginfo package.
+- Added openssl-devel to the build requirements to get POP3S and IMAPS.
+- Add the menu entry and icon in the same way as the original FC2 package.
+- Added the init script for the daemon package from the FC2 package.
+- Change the sed config changes to a patch to the config file.
+
 * Mon May 24 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-1
 - Update to 2.2.0.
 

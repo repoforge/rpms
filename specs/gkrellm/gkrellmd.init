@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# chkconfig: - 85 15
+# description: GNU Krell Monitors Server
+#
+# processname: gkrellmd
+# config: /etc/gkrellmd.conf
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+# The process must be configured first.
+[ -f /etc/gkrellmd.conf ] || exit 0
+
+RETVAL=0
+
+prog="gkrellmd"
+
+case "$1" in
+  start)
+	echo -n $"Starting $prog: "
+        daemon --user gkrellmd /usr/sbin/gkrellmd -d
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/gkrellmd
+	echo
+	;;
+  stop)
+	echo -n $"Shutting down $prog: "
+	killproc gkrellmd
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/gkrellmd
+	echo
+	;;
+  restart|reload)
+        $0 stop
+        $0 start
+	RETVAL=$?
+        ;;
+  condrestart)
+        if [ -f /var/lock/subsys/gkrellmd ]; then
+                $0 stop
+		$0 start
+        fi
+	RETVAL=$?
+        ;;
+  status)
+        status gkrellmd
+	RETVAL=$?
+        ;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+	exit 1
+esac
+
+exit $RETVAL

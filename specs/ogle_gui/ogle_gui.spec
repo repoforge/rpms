@@ -3,21 +3,22 @@
 
 #define	cvs -cvs
 
-Summary: GNOME interface for the ogle DVD player
+Summary: Graphical user interface for the ogle DVD player
 Name: ogle_gui
 Version: 0.9.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
 Source: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: ogle >= 0.9.1, gnome-libs >= 1.2.0, libglade
-BuildRequires: ogle-devel >= 0.9.1, gnome-libs-devel >= 1.2.0, libglade-devel
+Requires: ogle >= 0.9.1, gtk2, libglade2
+BuildRequires: ogle-devel >= 0.9.1, gtk2-devel, libglade2-devel, gettext
 
 %description
-This is a GNOME interface for the ogle DVD player. Install this if you want
-a graphical GUI for the ogle DVD player.
+This is a grapihcal user interface for the ogle DVD player. Install this if
+you want a system GUI for the ogle DVD player in addition to the regular DVD
+menu navigation with keyboard shortcuts.
 
 
 %prep
@@ -25,7 +26,7 @@ a graphical GUI for the ogle DVD player.
 
 
 %build
-%configure
+%configure --enable-gtk2
 %{__make} %{?_smp_mflags}
 
 
@@ -47,6 +48,9 @@ a graphical GUI for the ogle DVD player.
 
 
 %changelog
+* Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-3
+- Rebuild with --enable-gtk2.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-2
 - Rebuild for Fedora Core 2.
 

@@ -3,11 +3,11 @@
 # Upstream: <vlc-devel@videolan.org>
 
 %define desktop_vendor freshrpms
-%define ffmpeg_date    20040222
+%define ffmpeg_date    20040520
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -16,6 +16,7 @@ Source0: http://download.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}
 Source1: http://download.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, desktop-file-utils
+BuildRequires: fribidi-devel
 %{!?_without_dvd:BuildRequires: libdvdcss-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_dvdplay:BuildRequires: libdvdplay-devel}
@@ -90,6 +91,7 @@ pushd ffmpeg-%{ffmpeg_date}
         %ifarch %{ix86}
             --disable-mmx \
         %endif
+        --enable-gpl \
         --enable-pp
 #       --enable-mp3lame \
 #       --enable-faac
@@ -218,6 +220,11 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-1
+- Update to 0.7.2.
+- Added fribidi support.
+- Added --enable-gpl to ffmpeg for the postprocessing code to stay enabled.
+
 * Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-1
 - Fix the desktop entry's description, make the icon themable.
 - Add theora and faad2 support, enabled by default.

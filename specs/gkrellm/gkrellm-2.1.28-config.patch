@@ -1,0 +1,27 @@
+--- gkrellm-2.1.28/server/gkrellmd.conf.rh1	2004-03-10 14:06:21.883901449 +0100
++++ gkrellm-2.1.28/server/gkrellmd.conf	2004-03-10 14:12:20.712149159 +0100
+@@ -17,18 +17,19 @@
+ # List of hosts allowed to connect.  If no hosts are specified in a
+ # gkrellmd.conf file or on the command line, all hosts will be allowed.
+ #
+-#allow-host	localhost
+-#allow-host	127.0.0.1
++allow-host	localhost
++allow-host	127.0.0.1
++allow-host	::ffff:127.0.0.1
+ #allow-host	::1
+ #allow-host	192.168.0.*
+ 
+ # Drop privileges after startup (you must start gkrellmd as root to do it).
+ #
+-#user	nobody
+-#group	proc
++user	gkrellmd
++group	gkrellmd
+ 
+ # Run in background and detach from the controlling terminal
+-#detach
++detach
+ 
+ # Time interval between checks for various monitors.  If nfs-interval
+ # is <= 0 then gkrellmd will not read data for nfs file system types.
