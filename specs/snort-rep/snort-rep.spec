@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: David Schweikert <dws@ee.ethz.ch>
+# Upstream: David Schweikert <dws$ee,ethz,ch>
 
 Summary: Snort reporting tool
 Name: snort-rep
