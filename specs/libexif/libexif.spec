@@ -11,6 +11,7 @@ URL: http://libexif.sourceforge.net/
 Source: http://dl.sf.net/libexif/libexif-%{version}.tar.gz
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 Most digital cameras produce EXIF files, which are JPEG files with extra tags

@@ -18,7 +18,7 @@ Source3: http://dl.sf.net/pearpc/pearpc-6gib.img.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, SDL-devel
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, gcc-c++
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif

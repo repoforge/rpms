@@ -12,7 +12,7 @@ URL: http://www.theora.org/
 Source: http://www.theora.org/files/libtheora-%{version}%{?prever}.tar.bz2
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libogg-devel >= 1.1, libvorbis-devel >= 1.0.1, SDL-devel
+BuildRequires: libogg-devel >= 1.1, libvorbis-devel >= 1.0.1, SDL-devel,gcc-c++
 # Fedora Core 2's SDL-devel forgot to require alsa-lib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 

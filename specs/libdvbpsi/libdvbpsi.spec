@@ -13,6 +13,7 @@ Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvbpsi/
 Source: http://download.videolan.org/pub/libdvbpsi/%{version}/libdvbpsi3-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 The libdvbpsi is part of the VideoLAN project, a full MPEG2 client/server

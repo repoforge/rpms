@@ -10,6 +10,7 @@ Group: System Environment/Libraries
 URL: http://www.matroska.org/
 Source: http://dl.matroska.org/downloads/libebml/libebml-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 This library is used for I/O operations in the Extensible Binary Meta Language

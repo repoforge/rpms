@@ -11,7 +11,7 @@ License: GPL
 URL: http://dvd.sourceforge.net/
 Source: http://dl.sf.net/dvd/libdvdnav-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: doxygen, m4
+BuildRequires: doxygen, m4, gcc-c++
 
 %description
 The libdvdnav library provides support to applications wishing to make use
