@@ -1,0 +1,11 @@
+--- gettext-1.01/README.pix	1998-02-25 15:27:04.000000000 +0100
++++ gettext-1.01/README	2002-07-02 11:08:01.000000000 +0200
+@@ -60,7 +60,7 @@
+ 
+ #
+ use POSIX;     # for setlocale()
+-use gettext;
++use Locale::gettext;
+ #
+ # The following statement initializes the locale handling
+ # code in the C library. Normally, it causes it to read

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name gettext
@@ -16,11 +15,10 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/%{real_name}-%{version}.tar.gz
-Patch0: gettext-1.01-fix-example-in-README.patch.bz2
-Patch1: gettext-1.01-includes.patch.bz2
-Patch2: gettext-1.01-add-iconv.patch.bz2
+Patch0: gettext-1.01-fix-example-in-README.patch
+Patch1: gettext-1.01-includes.patch
+Patch2: gettext-1.01-add-iconv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503

@@ -1,0 +1,12 @@
+--- gnome-chess-0.3.2/gnome-chess.keys.orig	Sat Sep 25 03:54:34 1999
++++ gnome-chess-0.3.2/gnome-chess.keys	Wed Jun  6 17:28:13 2001
+@@ -2,4 +2,9 @@
+ 	open=gnome-chess %f
+ 	view=gnome-chess %f
+ 	edit=gnome-chess %f
++	default_action_type=application
++	short_list_application_ids_for_novice_user_level=gnome-chess
++	short_list_application_ids_for_intermediate_user_level=gnome-chess
++	short_list_application_ids_for_advanced_user_level=gnome-chess
++
+ 

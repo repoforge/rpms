@@ -1,0 +1,37 @@
+--- gnome-chess-0.3.3/src/board-window.c.orig	Wed May 30 02:43:26 2001
++++ gnome-chess-0.3.3/src/board-window.c	Thu Sep 13 12:08:29 2001
+@@ -110,6 +110,7 @@
+ 
+ 	board_window_set_program_menu (window);
+ 	board_window_set_server_menu (window);
++	gtk_notebook_set_page(GTK_NOTEBOOK(priv->view_nb),0);
+ 
+ 	gtk_signal_connect_after (GTK_OBJECT (priv->view_nb), "switch_page",
+ 				  (GtkSignalFunc) bw_switch_page_cb, window);
+@@ -168,6 +169,8 @@
+ 	priv = window->priv;
+ 	
+ 	gtk_notebook_remove_page (priv->view_nb, page_num);
++	if (g_list_length(gtk_container_children(GTK_CONTAINER(priv->view_nb))) == 0)
++		gtk_main_quit();
+ }
+ 
+ void 
+@@ -199,7 +202,7 @@
+ 	priv = window->priv;
+ 	
+ 	page_num = gtk_notebook_get_current_page (priv->view_nb);
+-	if (page_num <= 0)
++	if (page_num < 0) 
+ 		return;
+ 	
+ 	board_window_real_remove (window, page_num);
+@@ -295,6 +298,8 @@
+ 	g_free (priv);
+ 
+ 	GTK_OBJECT_CLASS (parent_class)->destroy (object);
++
++	gtk_main_quit ();
+ }
+ 
+ static void

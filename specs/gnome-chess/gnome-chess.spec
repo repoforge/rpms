@@ -20,10 +20,10 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-chess/gnome-chess-%{version}.tar.bz2
 Source1: gnome-chess.png
-Patch0: gnome-chess-mime.patch.bz2
-Patch1: gnome-chess-0.3.3-quit.patch.bz2
+Patch0: gnome-chess-mime.patch
+Patch1: gnome-chess-0.3.3-quit.patch
 ### Fix scrollkeeper file to be DTD compliant
-Patch2: gnome-chess-0.3.3-scrollkeeper.patch.bz2
+Patch2: gnome-chess-0.3.3-scrollkeeper.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex, gdk-pixbuf-devel, gnome-print-devel, libglade-devel, scrollkeeper
