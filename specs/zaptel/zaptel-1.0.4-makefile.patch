@@ -1,7 +1,7 @@
-diff -Naupr zaptel-1.0-RC1.orig/Makefile zaptel-1.0-RC1/Makefile
---- zaptel-1.0-RC1.orig/Makefile	2004-07-17 00:09:07.000000000 +0200
-+++ zaptel-1.0-RC1/Makefile	2004-07-26 18:30:29.842864224 +0200
-@@ -3,6 +3,9 @@
+diff -Naupr zaptel-1.0.4.orig/Makefile zaptel-1.0.4/Makefile
+--- zaptel-1.0.4.orig/Makefile	2005-01-17 01:57:59.000000000 +0100
++++ zaptel-1.0.4/Makefile	2005-02-02 12:46:49.046727824 +0100
+@@ -4,6 +4,9 @@
  #
  BASEADDR=0xd0000
  
@@ -11,7 +11,7 @@ diff -Naupr zaptel-1.0-RC1.orig/Makefile zaptel-1.0-RC1/Makefile
  #
  # Okay, the people at RedHat have to break everything they can possibly even attempt to.
  # So, we have to look in /usr/src/linux-2.4/include for header files given their brain dead
-@@ -12,15 +15,15 @@ BASEADDR=0xd0000
+@@ -13,15 +16,15 @@ BASEADDR=0xd0000
  # (assuming He's running Linux -- which we all know He must).
  #
  HOSTCC=gcc
@@ -26,25 +26,33 @@ diff -Naupr zaptel-1.0-RC1.orig/Makefile zaptel-1.0-RC1/Makefile
 -KFLAGS+=-I/usr/src/linux-2.4/include -O6
 -KFLAGS+=-DMODULE -D__KERNEL__ -DEXPORT_SYMTAB -I/usr/src/linux/drivers/net \
 -	-Wall -I. -Wstrict-prototypes -fomit-frame-pointer -I/usr/src/linux/drivers/net/wan -I /usr/src/linux/include -I/usr/src/linux/include/net
-+KFLAGS+=-I. -Wall -I$(KINCLUDES) -I$(KINCLUDES)/net -I$(KINCLUDES)/net/wan
 +KFLAGS+=-DMODULE -D__KERNEL__ -DEXPORT_SYMTAB
 +KFLAGS+=-Wall -Wstrict-prototypes -fomit-frame-pointer
++KFLAGS+=-I. -Wall -I$(KINCLUDES) -I$(KINCLUDES)/net -I$(KINCLUDES)/net/wan
  KFLAGS+=$(shell [ -f $(KINCLUDES)/linux/modversions.h ] && echo "-DMODVERSIONS -include $(KINCLUDES)/linux/modversions.h")
  KFLAGS+=$(shell if uname -m | grep -q ppc; then echo "-msoft-float -fsigned-char"; fi)
  #
-@@ -33,8 +36,9 @@ CFLAGS+=-DSTANDALONE_ZAPATA
- 
- INSTALL_PREFIX=
+@@ -38,8 +41,8 @@ INSTALL_PREFIX=
+ CONFIG_FILE=$(INSTALL_PREFIX)/etc/zaptel.conf
+ CFLAGS+=-DZAPTEL_CONFIG=\"$(CONFIG_FILE)\"
  
 -BUILDVER=$(shell if uname -r | grep -q ^2.6; then echo "linux26"; else echo "linux24"; fi)
--MODCONF=$(shell if [ -d $(INSTALL_PREFIX)/etc/modprobe.d ]; then echo "$(INSTALL_PREFIX)/etc/modprobe.d/zaptel"; elif [ -d $(INSTALL_PREFIX)/etc/modutils ]; then echo "$(INSTALL_PREFIX)/etc/modutils/zaptel"; elif [ -f $(INSTALL_PREFIX)/etc/modprobe.conf ]; then echo "$(INSTALL_PREFIX)/etc/modprobe.conf"; elif [ -f $(INSTALL_PREFIX)/etc/modules.conf ]; then echo "$(INSTALL_PREFIX)/etc/modules.conf"; else echo $(INSTALL_PREFIX)/etc/conf.modules ; fi)
+-MODCONF=$(shell if [ -d $(ROOT_PREFIX)/etc/modprobe.d ]; then echo "$(ROOT_PREFIX)/etc/modprobe.d/zaptel"; elif [ -d $(ROOT_PREFIX)/etc/modutils ]; then echo "$(ROOT_PREFIX)/etc/modutils/zaptel"; elif [ -f $(ROOT_PREFIX)/etc/modprobe.conf ]; then echo "$(ROOT_PREFIX)/etc/modprobe.conf"; elif [ -f $(ROOT_PREFIX)/etc/modules.conf ]; then echo "$(ROOT_PREFIX)/etc/modules.conf"; else echo $(ROOT_PREFIX)/etc/conf.modules ; fi)
 +BUILDVER=$(shell if echo $(KVERSION) | grep -q ^2.6; then echo "linux26"; else echo "linux24"; fi)
-+#MODCONF=$(shell if [ -d $(INSTALL_PREFIX)/etc/modprobe.d ]; then echo "$(INSTALL_PREFIX)/etc/modprobe.d/zaptel"; elif [ -d $(INSTALL_PREFIX)/etc/modutils ]; then echo "$(INSTALL_PREFIX)/etc/modutils/zaptel"; elif [ -f $(INSTALL_PREFIX)/etc/modprobe.conf ]; then echo "$(INSTALL_PREFIX)/etc/modprobe.conf"; else echo "$(INSTALL_PREFIX)/etc/modules.conf"; fi)
-+MODCONF=$(INSTALL_PREFIX)/etc/modules.conf.zaptel
++MODCONF=$(shell if [ -d $(ROOT_PREFIX)/etc/modprobe.d ]; then echo "$(ROOT_PREFIX)/etc/modprobe.d/zaptel"; elif [ -d $(ROOT_PREFIX)/etc/modutils ]; then echo "$(ROOT_PREFIX)/etc/modutils/zaptel"; elif [ -f $(ROOT_PREFIX)/etc/modules.conf ]; then echo "$(ROOT_PREFIX)/etc/modules.conf"; else echo $(ROOT_PREFIX)/etc/modprobe.conf ; fi)
  
  ifeq (${BUILDVER},linux24)
  #We only support DEVFS in linux 2.4 kernels, since its considered obsolete post 2.4
-@@ -228,45 +232,45 @@ ifeq ($(DYNFS),)
+@@ -67,7 +70,7 @@ BINS=ztcfg torisatool makefw ztmonitor z
+ PRIMARY=torisa
+ #PRIMARY=wcfxo
+ PWD=$(shell pwd)
+-KERNEL_SOURCE?=/lib/modules/`uname -r`/build
++KERNEL_SOURCE?=/lib/modules/$(KVERSION)/build
+ 
+ all: $(BUILDVER)
+ 
+@@ -240,43 +243,43 @@ ifeq ($(DYNFS),)
  	rm -f $(INSTALL_PREFIX)/dev/zap/252
  	rm -f $(INSTALL_PREFIX)/dev/zap/251
  	rm -f $(INSTALL_PREFIX)/dev/zap/250
@@ -74,26 +82,22 @@ diff -Naupr zaptel-1.0-RC1.orig/Makefile zaptel-1.0-RC1/Makefile
  endif
  
  install:  all devices $(LIBTONEZONE)
--	mkdir -p $(INSTALL_PREFIX)/sbin
--	install -m 755 ztcfg $(INSTALL_PREFIX)/sbin
-+	mkdir -p $(INSTALL_PREFIX)/usr/sbin
-+	install -m 755 ztcfg $(INSTALL_PREFIX)/usr/sbin
+-	install -D -m 755 ztcfg $(INSTALL_PREFIX)/sbin/ztcfg
++	install -D -m 755 ztcfg $(INSTALL_PREFIX)/usr/sbin/ztcfg
  	if [ -f sethdlc-new ]; then \
--		install -m 755 sethdlc-new $(INSTALL_PREFIX)/sbin/sethdlc; \
-+		install -m 755 sethdlc-new $(INSTALL_PREFIX)/usr/sbin/sethdlc; \
+-		install -D -m 755 sethdlc-new $(INSTALL_PREFIX)/sbin/sethdlc; \
++		install -D -m 755 sethdlc-new $(INSTALL_PREFIX)/usr/sbin/sethdlc; \
  	elif [ -f sethdlc ]; then \
--		install -m 755 sethdlc $(INSTALL_PREFIX)/sbin ; \
-+		install -m 755 sethdlc $(INSTALL_PREFIX)/usr/sbin ; \
+-		install -D -m 755 sethdlc $(INSTALL_PREFIX)/sbin/sethdlc ; \
++		install -D -m 755 sethdlc $(INSTALL_PREFIX)/usr/sbin/sethdlc ; \
  	fi
--	if [ -f zttool ]; then install -m 755 zttool $(INSTALL_PREFIX)/sbin; fi
--	mkdir -p $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc
-+	if [ -f zttool ]; then install -m 755 zttool $(INSTALL_PREFIX)/usr/sbin; fi
-+	mkdir -p $(INSTALL_PREFIX)/lib/modules/$(KVERSION)/misc
+-	if [ -f zttool ]; then install -D -m 755 zttool $(INSTALL_PREFIX)/sbin/zttool; fi
++	if [ -f zttool ]; then install -D -m 755 zttool $(INSTALL_PREFIX)/usr/sbin/zttool; fi
  
  	if [ -f zaptel.ko ]; then \
  		for x in $(MODULESKO) ztdummy.ko; do \
--			install -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc ; \
-+			install -m 644 $$x $(INSTALL_PREFIX)/lib/modules/$(KVERSION)/misc ; \
+-			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/$(KVERSION)/misc/$$x ; \
  		done; \
  		if ! [ -f wcfxsusb.ko ]; then \
 -			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.o; \
@@ -101,8 +105,8 @@ diff -Naupr zaptel-1.0-RC1.orig/Makefile zaptel-1.0-RC1/Makefile
  		fi; \
  	else \
  		for x in $(MODULESO); do \
--			install -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc ; \
-+			install -m 644 $$x $(INSTALL_PREFIX)/lib/modules/$(KVERSION)/misc ; \
+-			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/$(KVERSION)/misc/$$x ; \
  		done; \
  		if ! [ -f wcfxsusb.o ]; then \
 -			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.ko; \
@@ -110,19 +114,43 @@ diff -Naupr zaptel-1.0-RC1.orig/Makefile zaptel-1.0-RC1/Makefile
  		fi; \
  	fi
  
-@@ -278,12 +282,9 @@ install:  all devices $(LIBTONEZONE)
- 	install -m 644 torisa.h $(INSTALL_PREFIX)/usr/include/linux
- 	install -m 644 tonezone.h $(INSTALL_PREFIX)/usr/include
+@@ -287,11 +290,14 @@ install:  all devices $(LIBTONEZONE)
+ 	install -D -m 644 tonezone.h $(INSTALL_PREFIX)/usr/include/tonezone.h
  	( cd $(INSTALL_PREFIX)/usr/lib ; rm -f libtonezone.so ; ln -sf $(LIBTONEZONE) libtonezone.so )
--	/sbin/ldconfig
+ 	[ `id -u` = 0 ] && /sbin/ldconfig || :
 -	if [ -f $(MODCONF) ]; then mv -f $(MODCONF) $(MODCONF).bak ; fi
 -	cat $(MODCONF).bak | grep -v "alias char-major-250" | \
 -	grep -v "post-install torisa /sbin/ztcfg" | \
 -	grep -v "post-install wcfxsusb /sbin/ztcfg" | \
 -	grep -v "post-install wcfxs /sbin/ztcfg" > $(MODCONF) || true
-+#	/sbin/ldconfig
++#	if [ -f $(MODCONF) ]; then mv -f $(MODCONF) $(MODCONF).bak ; fi
++#	cat $(MODCONF).bak | grep -v "alias char-major-250" | \
++#
 +	mkdir -p `dirname $(MODCONF)`
 +	touch $(MODCONF)
++#	grep -v "post-install torisa /sbin/ztcfg" | \
++#	grep -v "post-install wcfxsusb /sbin/ztcfg" | \
++#	grep -v "post-install wcfxs /sbin/ztcfg" > $(MODCONF) || true
  	if ! grep "options torisa" $(MODCONF); then \
  		echo "options torisa base=$(BASEADDR)" >> $(MODCONF); \
  	fi
+@@ -303,8 +309,8 @@ install:  all devices $(LIBTONEZONE)
+ 		if ! grep "post-install $$x" $(MODCONF); then \
+ 			if ! grep "install $$x " $(MODCONF); then \
+ 				if [ "$$x" != "zaptel" ] ; then \
+-					if [ -f zaptel.ko ]; then echo "install $$x /sbin/modprobe --ignore-install $$x && /sbin/ztcfg" >> $(MODCONF); \
+-					else echo "post-install $$x /sbin/ztcfg" >> $(MODCONF); \
++					if [ -f zaptel.ko ]; then echo "install $$x /sbin/modprobe --ignore-install $$x && /usr/sbin/ztcfg" >> $(MODCONF); \
++					else echo "post-install $$x /usr/sbin/ztcfg" >> $(MODCONF); \
+ 					fi; \
+ 				fi; \
+ 			fi; \
+@@ -312,7 +318,7 @@ install:  all devices $(LIBTONEZONE)
+ 	done
+ 
+ 	if [ -d /etc/modutils ]; then \
+-		/sbin/update-modules ; \
++		[ `id -u` = 0 ] && /sbin/update-modules ; \
+ 	fi
+ 	[ `id -u` = 0 ] && /sbin/depmod -a || :
+ 	[ -f $(CONFIG_FILE) ] || install -D -m 644 zaptel.conf.sample $(CONFIG_FILE)

@@ -8,14 +8,14 @@
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
 Version: 1.0.1
-Release: %{?prever:0.%{prever}.}0
+Release: %{?prever:0.%{prever}.}1
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
-Source: ftp://ftp.asterisk.org/pub/telephony/asterisk/asterisk-sounds-%{version}%{?prever:-%{prever}}.tar.gz
+Source: ftp://ftp.asterisk.org/pub/asterisk/asterisk-sounds-%{version}%{?prever:-%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch: noarch
 Requires: asterisk
+BuildArch: noarch
 
 %description
 Asterisk is an Open Source PBX and telephony development platform that
@@ -51,10 +51,13 @@ used with Asterisk.
 %files
 %defattr(0644, root, root, 0755)
 %doc README.txt sounds-extra.txt
-%{_localstatedir}/lib/asterisk/sounds
+%{_var}/lib/asterisk/sounds
 
 
 %changelog
+* Wed Feb  2 2005 Matthias Saou <http://freshrpms.net> 1.0.1-1
+- Minor cleanups.
+
 * Mon Oct 18 2004 Matthias Saou <http://freshrpms.net> 1.0.1-0
 - Update to 1.0.1.
 

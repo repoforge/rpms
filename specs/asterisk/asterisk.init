@@ -16,9 +16,11 @@
 
 RETVAL=0
 
+prog="asterisk"
+
 start() {
 	# Start daemons.
-	echo -n $"Starting asterisk: "
+	echo -n $"Starting $prog: "
 	daemon --user asterisk /usr/sbin/safe_asterisk
 	RETVAL=$?
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/asterisk
@@ -28,7 +30,7 @@ start() {
 
 stop() {
 	# Stop daemons.
-	echo -n $"Shutting down asterisk: "
+	echo -n $"Shutting down $prog: "
 	killproc asterisk
 	RETVAL=$?
 	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/asterisk
