@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Asynchronous-capable resolver library
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.chiark.greenend.org.uk/~ian/adns/ftp/adns-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 adns is a resolver library for C (and C++) programs, and a collection
