@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
 
-Source: http://kino.schirmacher.de/filemanager/download/36/kino-%{version}.tar.gz
+Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
