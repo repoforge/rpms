@@ -24,7 +24,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(XML::Parser)
+BuildRequires: perl(XML::Parser), libsigc++2-devel, libgc-devel
+BuildRequires: gtkmm24-devel, glibmm-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -73,7 +74,7 @@ EOF
 %doc AUTHORS ChangeLog COPYING* HACKING NEWS README
 %doc %{_mandir}/man1/ink*.1*
 %{_bindir}/ink*
-#%{_libdir}/inkscape/
+%{_libdir}/inkscape
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-inkscape.desktop}
 %{?_without_freedesktop:%{_datadir}/applications/inkscape.desktop}
 %{_datadir}/inkscape/

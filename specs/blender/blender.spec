@@ -9,11 +9,11 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 2.34
+%define real_version 2.35
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.34
+Version: 2.35
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -128,6 +128,9 @@ scons
 #%{_libdir}/*.so
 
 %changelog
+* Tue Dec 14 2004 Dries Verachtert <dries@ulyssis.org> - 2.35-1
+- Updated to release 2.35.
+
 * Fri Sep 03 2004 Dries Verachtert <dries@ulyssis.org> - 2.34-1
 - Updated to release 2.34.
 
