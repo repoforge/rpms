@@ -33,6 +33,7 @@ random generated callsigns
 
 %install
 %{__rm} -rf %{buildroot}
+mkdir -p %{buildroot}/usr/bin
 %makeinstall PREFIX=%{buildroot}/usr
 
 %clean
@@ -41,6 +42,7 @@ random generated callsigns
 %files
 %defattr(-, root, root, 0755)
 %doc README.sources THANKS VERSION AUTHORS ChangeLog
+%{_bindir}/aldo
 
 %changelog
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 0.6.5-1
