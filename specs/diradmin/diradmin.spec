@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: Manuel Amador
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: User control management tool for LDAP directories
 Name: diradmin

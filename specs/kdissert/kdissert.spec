@@ -8,7 +8,7 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Mindmapping tool for creating texts
 Name: kdissert

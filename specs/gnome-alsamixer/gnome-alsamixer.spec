@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: GNOME mixer interface for the Advanced Linux Sound Architecture
 Name: gnome-alsamixer

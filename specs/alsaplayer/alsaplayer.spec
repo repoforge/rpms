@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Audio player for systems using the Advanced Linux Sound Architecture
 Name: alsaplayer

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: The Open Racing Car Simulator
 Name: torcs

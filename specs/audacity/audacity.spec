@@ -10,7 +10,7 @@
 %{?yd3:%define _without_alsa 1}
 
 #define prever         pre3
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Powerful audio editor
 Name: audacity

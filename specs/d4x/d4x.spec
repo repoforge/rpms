@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 #define pre            rc4
 %define final          final
 

@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define extrarelease   2
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Real-time visual space simulation
 Name: celestia

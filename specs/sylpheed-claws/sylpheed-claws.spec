@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 %define extraver       %{nil}
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client

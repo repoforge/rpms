@@ -12,7 +12,7 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball

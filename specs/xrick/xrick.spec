@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define real_version   021212
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
                                                                                 
 %{?dist: %{expand: %%define %dist 1}}
                                                                                 

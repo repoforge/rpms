@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
                                                                                 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 %{?dist: %{expand: %%define %dist 1}}
                                                                                 

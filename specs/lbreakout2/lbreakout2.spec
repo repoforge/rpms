@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 #define beta 8
 
 Summary: Breakout and Arkanoid style arcade game

@@ -12,7 +12,7 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 %define prefix %{_prefix}/games/armagetron
 
 Summary: Multiplayer 'Tron' 3D racing game

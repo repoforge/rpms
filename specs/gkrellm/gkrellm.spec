@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 %define wifi_version   0.9.12
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process

@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: <contact$frozen-bubble,org>
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Frozen Bubble arcade game
 Name: frozen-bubble
