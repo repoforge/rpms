@@ -1,14 +1,14 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <evms-devel@lists.sf.net>
 
 %define _sbindir /sbin
 %define _libdir /lib
 
 Summary: Enterprise Volume Management System utilities
 Name: evms
-Version: 2.2.2
-Release: 0
+Version: 2.3.2
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://evms.sf.net/
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/evms/evms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib-devel >= 1.2.0, gtk+-devel >= 1.2.0
 
@@ -34,9 +33,6 @@ with EVMS and using the tools after installation.
 %prep
 %setup
 
-### FIXME: Fixed buildsystem so it compiles (fix upstream please)
-%{__perl} -pi.orig -e 's|^(BUILD_SBIN = \$\(CC\)) |$1 -L\$(top_srcdir)/lib/dlist -ldlist |' make.rules.in
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -44,10 +40,8 @@ with EVMS and using the tools after installation.
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__make} DESTDIR="%{buildroot}" install
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.a
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -67,8 +61,12 @@ with EVMS and using the tools after installation.
 %{_libdir}/*.so*
 %{_libdir}/evms/
 %{_includedir}/evms/
+%exclude %{_libdir}/*.a
 
 %changelog
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 2.3.2-1
+- Updated to release 2.3.2.
+
 * Tue Jan 27 2004 Dag Wieers <dag@wieers.com> - 2.2.2-0
 - Updated to release 2.2.2.
 
