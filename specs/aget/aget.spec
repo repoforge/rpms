@@ -11,6 +11,9 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.enderunix.org/aget/
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 Source: http://www.enderunix.org/aget/aget-%{version}.tar.gz
 Patch: errno-include.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
