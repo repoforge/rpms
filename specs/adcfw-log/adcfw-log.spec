@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Alessandro Dotti Contra <alessandro.dotti@iperbole.bologna.it>
-# Upstream: <adcfw-log-devel@lists.sf.net>
+# Upstream: <adcfw-log-devel@lists.sourceforge.net>
 
 Summary: Tool for analyzing firewall logs
 Name: adcfw-log
@@ -9,14 +9,13 @@ Version: 0.9.1
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://adcfw-log.sf.net/
+URL: http://adcfw-log.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/adcfw-log/adcfw-log-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 1:5.6.1
 Requires: perl >= 1:5.6.1
