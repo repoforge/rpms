@@ -1,0 +1,95 @@
+# $Id$
+# Authority: dag
+# Upstream Joe Orton <joe$manyfish,co,uk>
+
+### FIXME: xsitecopy support is currently broken
+%define _without_xsitecopy 1
+
+Summary: Tool for easily maintaining remote web sites
+Name: sitecopy
+Version: 0.14.3
+Release: 1
+License: GPL
+Group: Applications/Internet
+URL: http://www.lyra.org/sitecopy/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://www.lyra.org/sitecopy/sitecopy-%{version}.tar.gz
+Patch: sitecopy-%{version}-gcc34.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{version}-root
+
+%description
+sitecopy allows you to easily maintain remote Web sites. The program
+will upload files to the server which have changed locally, and delete
+files from the server which have been removed locally, to keep the
+remote site synchronized with the local site, with a single
+command. sitecopy will also optionally try to spot files you move
+locally, and move them remotely. FTP and WebDAV servers are
+supported.
+
+%package -n xsitecopy
+Summary: GUI tool for easily maintaining remote web sites
+Group: Applications/Internet
+
+%description -n xsitecopy
+XSitecopy is a graphical frontend for sitecopy.  Currently it does not
+support "resynch" mode, but it does have the advantage of providing
+full configuration editing and creation facilities.
+
+%prep
+%setup
+%patch -p0 -b .orig
+
+%build
+mkdir sitecopy; cd sitecopy
+CFLAGS="%{optflags}" LDFLAGS="-s" ../configure \
+	--prefix="%{_prefix}"
+%{__make} %{?_smp_mflags}
+cd -
+
+%if %{!?_without_xsitecopy:1}0
+mkdir xsitecopy; cd xsitecopy
+CFLAGS="%{optflags}" LDFLAGS="-s" ../configure \
+	--prefix="%{_prefix}" \
+	--enable-gnomefe
+%{__make} %{?_smp_mflags}
+cd -
+%endif
+
+%install
+%{__rm} -rf %{buildroot}
+%{__make} install -C sitecopy \
+	DESTDIR="%{buildroot}" \
+	mandir="%{_mandir}"
+%find_lang %{name}
+%if %{!?_without_xsitecopy:1}0
+%{__make} install -C xsitecopy \
+	DESTDIR="%{buildroot}"
+%endif
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files -f %{name}.lang
+%doc BUGS COPYING ChangeLog* INSTALL NEWS README* THANKS TODO
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/sitecopy.1*
+%{_bindir}/sitecopy
+%{_datadir}/sitecopy/
+%exclude %{_prefix}/doc/sitecopy/
+
+%if %{!?_without_xsitecopy:1}0
+%files -n xsitecopy
+%defattr(-, root, root, 0755)
+%doc %{_datadir}/gnome/help/xsitecopy/
+%{_bindir}/xsitecopy
+%{_datadir}/gnome/apps/Internet/*.desktop
+%{_datadir}/pixmaps/xsitecopy/
+%{_datadir}/xsitecopy/sitecopy-dialogs.glade
+%endif
+
+%changelog
+* Thu Feb 17 2005 Dag Wieers <dag@wieers.com> - 0.14.3-1
+- Initial package. (using DAR)

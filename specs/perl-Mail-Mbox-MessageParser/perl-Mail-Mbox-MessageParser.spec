@@ -1,0 +1,58 @@
+# $Id$
+# Authority: dag
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Mail-Mbox-MessageParser
+
+Summary: Fast and simple mbox folder reader 
+Name: perl-Mail-Mbox-MessageParser
+Version: 1.2130
+Release: 1
+License: GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Mail-Mbox-MessageParser/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-Mbox-MessageParser-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl, perl(FileHandle::Unget)
+Requires: perl
+
+%description
+Mail::Mbox::MessageParser is a fast and simple mbox folder reader.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+echo -e "\n" | %{__perl} Makefile.PL \
+	PREFIX="%{buildroot}%{_prefix}" \
+	INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc README Changes
+%{_mandir}/man3/*
+%{perl_vendorlib}/Mail/
+
+%changelog
+* Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 1.2130-1
+- Initial package. (using DAR)

@@ -1,0 +1,22 @@
+--- gnome/minilist.c.orig	2005-02-17 20:44:11.933160000 +0100
++++ gnome/minilist.c	2005-02-17 20:45:00.615759120 +0100
+@@ -190,7 +190,7 @@
+ 	    the_gui->data = selected_site->ignores;
+ 	    NE_DEBUG(DEBUG_GNOME, "Removing an item from the ignores list.\n");
+ 	    break;
+-	default:
++	default:;
+ 	}
+ 	if (the_gui->data)
+ 	    the_gui->data->prev = NULL;
+--- gnome/misc.c.orig	2005-02-18 03:25:24.147627152 +0100
++++ gnome/misc.c	2005-02-18 03:25:34.885994672 +0100
+@@ -309,7 +309,7 @@
+ 	case 1:
+ 	    return;
+ 	    break;
+-	default:
++	default:;
+ 	}
+     }
+ }
