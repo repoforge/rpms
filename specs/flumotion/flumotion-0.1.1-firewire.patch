@@ -1,0 +1,30 @@
+Index: flumotion/component/producers/firewire/firewire.py
+===================================================================
+--- flumotion/component/producers/firewire/firewire.py	(revision 1054)
++++ flumotion/component/producers/firewire/firewire.py	(working copy)
+@@ -36,10 +36,14 @@
+ 
+     if 12.5 < framerate <= 25:
+         drop_factor = 1
+-    elif 6.3 < framerate <= 12.5:
++    elif 8.33 < framerate <= 12.5:
+         drop_factor = 2
+-    elif 3.2 < framerate <= 6.3:
++    elif 6.25 < framerate <= 8.33:
++        drop_factor = 3
++    elif 5.0 < framerate <= 6.25:
+         drop_factor = 4
++    elif 3.125 < framerate <= 5.0:
++        drop_factor = 5
+     else:
+         drop_factor = 8
+ 
+@@ -49,7 +53,7 @@
+         interlaced_height = 288
+         
+     template = """dv1394src ! dvdec name=dec drop-factor=%(drop_factor)d ! video/x-raw-yuv,format=(fourcc)YUY2 !
+-    videorate ! videoscale ! video/x-raw-yuv,width=%(interlaced_height)s,height=288 !
++    videorate ! videoscale ! video/x-raw-yuv,width=%(width)s,height=%(interlaced_height)s !
+     videoscale ! video/x-raw-yuv,width=%(width)s,height=%(height)s,framerate=%(framerate)f,format=(fourcc)YUY2 ! @feeder::video@
+     dec. ! audio/x-raw-int ! audiorate !
+     audioscale ! audio/x-raw-int,rate=24000 ! @feeder::audio@""" % dict(drop_factor=drop_factor,

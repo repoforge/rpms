@@ -2,12 +2,14 @@
 
 Summary: Flumotion - the Fluendo Streaming Server
 Name: flumotion
-Version: 0.1.0
-Release: 0
+Version: 0.1.1
+Release: 0.3
 Group: Applications/Internet
 License: GPL
 URL: http://www.fluendo.com/
 Source: http://www.fluendo.com/downloads/flumotion-%{version}.tar.bz2
+Patch0: flumotion-0.1.1-overlay.patch
+Patch1: flumotion-0.1.1-firewire.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): openssl
 Requires: python >= 2.3
@@ -29,6 +31,8 @@ Fluendo Streaming Server.
 
 %prep
 %setup -q
+%patch0 -p0 -b .overlay
+%patch1 -p0 -b .firewire
 
 
 %build
@@ -122,11 +126,16 @@ fi
 %{_bindir}/flumotion-tester
 %{_bindir}/flumotion-worker
 %{_libdir}/flumotion/
-%attr(0750, flumotion, flumotion) %{_datadir}/flumotion/
-%attr(0750, flumotion, flumotion) %{_var}/log/flumotion/
+%{_datadir}/flumotion/
+%dir %attr(0750, flumotion, flumotion) %{_datadir}/flumotion/.flumotion
+%dir %attr(0750, flumotion, flumotion) %{_var}/log/flumotion/
 
 
 %changelog
+* Tue Oct 26 2004 Matthias Saou <http://freshrpms.net/> 0.1.1-0
+- Update to 0.1.1.
+- Added Johan's quick overlay fix.
+
 * Thu Oct 21 2004 Matthias Saou <http://freshrpms.net/> 0.1.0-0
 - Picked up, minor changes.
 
