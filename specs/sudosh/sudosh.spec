@@ -5,7 +5,7 @@
 
 Summary: sudo shell
 Name: sudosh
-Version: 0.7.0
+Version: 1.2.2
 Release: 1
 License: Open Software License
 Group: Applications/System
@@ -49,5 +49,8 @@ actual session output.
 %{_bindir}/*
 
 %changelog
+* Mon Oct 18 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
+- Update to release 1.2.2.
+
 * Sat Oct 02 2004 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
 - Initial package.
