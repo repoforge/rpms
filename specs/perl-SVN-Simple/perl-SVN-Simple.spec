@@ -25,7 +25,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLKAO/SVN-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, subversion-perl
 
 %description
 SVN::Simple is a simple interface to
