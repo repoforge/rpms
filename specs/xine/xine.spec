@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define desktop_vendor freshrpms
 
 Summary: Free multimedia player
@@ -52,7 +55,7 @@ Available rpmbuild rebuild options :
 # Move the docs back into place
 mv %{buildroot}%{_docdir}/xine-ui xine-ui-doc
 
-%if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
+%if %{!?_without_freedesktop:1}0
 # Convert the menu entry
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
