@@ -15,7 +15,7 @@ URL: http://apollon.sourceforge.net/
 Source: http://dl.sf.net/gift/gift-openft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, gift, gcc-c++
+BuildRequires: gcc, make, gift, gcc-c++, pkgconfig
 Requires: gift
 
 %description
