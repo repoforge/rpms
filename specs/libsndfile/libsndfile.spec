@@ -2,7 +2,7 @@
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
-Version: 1.0.7
+Version: 1.0.8
 Release: 1.fr
 License: LGPL
 Group: System Environment/Libraries
@@ -18,7 +18,7 @@ through one standard library interface.
 
 
 %package devel
-Summary: Header files and development documentation for libsndfile.
+Summary: Header files and development documentation for libsndfile
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}, pkgconfig
 
@@ -34,20 +34,25 @@ documentation for libsndfile.
 %prep
 %setup -q
 
+
 %build
 %configure
 make %{?_smp_mflags}
+
 
 %install
 rm -rf %{buildroot}
 %makeinstall
 
+
 %clean
 rm -rf %{buildroot}
+
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
+
 
 %files
 %defattr(-, root, root)
@@ -55,6 +60,7 @@ rm -rf %{buildroot}
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
+
 
 %files devel
 %defattr(-, root, root)
@@ -66,7 +72,11 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*.pc
 %exclude %{_datadir}/octave
 
+
 %changelog
+* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.8-1.fr
+- Update to 1.0.8.
+
 * Wed Feb 25 2004 Matthias Saou <http://freshrpms.net/> 1.0.7-1.fr
 - Update to 1.0.7.
 - Updated the URL and Source tags.
