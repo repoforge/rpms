@@ -52,9 +52,10 @@ zet nog mogelijk is.
 %{_datadir}/pixmaps/gweled.png
 %{_datadir}/pixmaps/gweled
 %{_var}/games/gweled.easy.scores
+%{_datadir}/gweled
 
 %changelog
-* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.3-2
+* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.4.1
 - spec cleanup
 - update to 0.4
 
