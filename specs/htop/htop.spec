@@ -3,12 +3,9 @@
 # Upstream: Hisham Muhammad <lode@gobolinux.org>
 # Upstream: <htop-general@lists.sf.net>
 
-### 0.3.1 is broken
-# Tag: test
-
 Summary: Interactive process viewer
 Name: htop
-Version: 0.3.1
+Version: 0.3.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -46,6 +43,9 @@ htop is an interactive process viewer for Linux.
 %{_bindir}/*
 
 %changelog
+* Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 0.3.2-1
+- Updated to release 0.3.2.
+
 * Sat May 29 2004 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Updated to release 0.3.1.
 
