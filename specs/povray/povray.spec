@@ -1,0 +1,84 @@
+# $Id: $
+
+# Authority: dries
+# Upstream: 
+
+# The source isn't available yet :(
+# will be available in a few weeks
+
+
+Summary: Persistence of Vision Raytracer
+Name: povray
+Version: 3.6.0
+Release: 1
+License: Other
+Group: Applications/
+URL: http://www.povray.org/
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: %{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+# BuildRequires: 
+
+%description
+The Persistence of Vision Raytracer is a high-quality, totally free tool for
+creating stunning three-dimensional graphics.
+
+The license of povray is quite complicated, more information can be found
+at:
+http://www.povray.org/povlegal.html
+http://www.povray.org/distribution-license.html
+
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
+
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%find_lang %{name}
+
+%post
+/sbin/ldconfig 2>/dev/null
+
+%postun
+/sbin/ldconfig 2>/dev/null
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files -f %{name}.lang
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+%{_libdir}/*.so.*
+%{_datadir}/pixmaps/*.png
+%{_datadir}/applications/*.desktop
+
+%files devel
+%{_includedir}/*.h
+%{_libdir}/*.a
+%{_libdir}/*.so
+%exclude %{_libdir}/*.la
+
+%changelog
+* Mon Jun 14 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1
+- Initial package.
+
