@@ -4,7 +4,7 @@
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
 Version: 1.9.4b
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 Source: http://download.berlios.de/xmule/xmule-%{version}.tar.bz2
@@ -29,6 +29,7 @@ same network.
 
 
 %build
+CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -60,6 +61,9 @@ same network.
 
 
 %changelog
+* Mon Nov 22 2004 Matthias Saou <http://freshrpms.net/> 1.9.4b-2
+- Rebuild changing -O? to -O1 to fix cryptopp error with -O2.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.9.4b-1
 - Update to 1.9.4b.
 - Reflect xmule -> xMule change for the .po files.
