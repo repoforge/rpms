@@ -5,21 +5,16 @@
 
 Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
-Version: 0.9.11
+Version: 0.9.12
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://sylpheed.good-day.net/
 Source: http://sylpheed.good-day.net/sylpheed/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk+ >= 1.2.6, gdk-pixbuf >= 0.8.0
-%{!?_without_ssl:Requires: openssl >= 0.9.6}
-%{!?_without_gpgme:Requires: gpgme >= 0.3.10}
-%{!?_without_ldap:Requires: openldap}
-%{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
-BuildRequires: flex, desktop-file-utils, gcc-c++
-%{!?_without_ssl:BuildRequires: openssl-devel >= 0.9.6}
+BuildRequires: flex, gettext, desktop-file-utils, gcc-c++
+BuildRequires: openssl-devel >= 0.9.6
 %{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.3.10}
 %{!?_without_ldap:BuildRequires: openldap-devel}
 %{!?_without_compface:BuildRequires: compface-devel}
@@ -37,7 +32,7 @@ accessible with the keyboard.
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : ssl, ipv6, gpgme, ldap, compface
+--without : gpgme, ldap, compface
 
 
 %prep
@@ -50,12 +45,11 @@ if pkg-config openssl; then
     LDFLAGS="$LDFLAGS `pkg-config --libs-only-L openssl`"
 fi
 %configure \
-    --program-prefix=%{?_program_prefix:%{_program_prefix}} \
-    %{!?_without_ssl: --enable-ssl} \
-    %{!?_without_ipv6: --enable-ipv6} \
+    --program-prefix="%{?_program_prefix}" \
+    --enable-ssl \
     %{!?_without_gpgme: --enable-gpgme} \
     %{!?_without_ldap: --enable-ldap} \
-    %{!?_without_compface: --enable-compface} \
+    %{?_without_compface: --disable-compface} \
     %{?_with_pilot: --enable-jpilot}
 %{__make} %{?_smp_mflags}
 
@@ -64,31 +58,35 @@ fi
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__install} -D -m644 %{name}-64x64.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D -m 0644 %{name}-64x64.png \
+    %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category Network                                          \
-  %{name}.desktop
+desktop-file-install --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications  \
+    --add-category Application                  \
+    --add-category Network                      \
+    %{name}.desktop
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files -f  %{name}.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING README* TODO*
 %{_bindir}/%{name}
-%{_datadir}/applications/*%{name}.desktop
+%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/%{name}
 
 
 %changelog
+* Thu Jun 17 2004 Matthias Saou <http://freshrpms.net/> 0.9.12-1
+- Update to 0.9.12.
+- Make ssl and ipv6 support defaults now.
+
 * Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.9.11-1
 - Update to 0.9.11.
 
