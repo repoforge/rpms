@@ -23,6 +23,7 @@ BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel
 BuildRequires: gcc-c++, gettext, XFree86-devel, zlib-devel
 BuildRequires: qt-devel, libjpeg-devel, kdelibs-devel
 BuildRequires: ImageMagick-c++-devel
+%{?fc2:BuildRequires:libselinux-devel, libexif-devel, libexif}
 
 %description
 KXStitch allows the creation and editing of cross stitch patterns. 
