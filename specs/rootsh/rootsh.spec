@@ -4,7 +4,7 @@
 
 Summary: Shell wrapper to log activity
 Name: rootsh
-Version: 1.5
+Version: 1.5.1
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -43,12 +43,16 @@ mechanism.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS TODO
-%{_mandir}/man1/rootsh*
+%{_mandir}/man1/rootsh.1*
 %{_bindir}/rootsh
-%defattr(0700, root, root)
-%{_localstatedir}/log/rootsh
+
+%defattr(0700, root, root, 0755)
+%{_localstatedir}/log/rootsh/
 
 %changelog
+* Sat Feb 12 2005 Dag Wieers <dag@wieers.com> - 1.5.1-1
+- Updated to release 1.5.1.
+
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Updated to release 1.5.
 
