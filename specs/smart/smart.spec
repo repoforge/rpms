@@ -17,8 +17,8 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.27.1
-Release: 3
+Version: 0.28
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -28,7 +28,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
 #Source: http://smart.conectiva.com.br/files/smart-%{version}.tar.bz2
-Source1: channelsync.py
+#Source1: channelsync.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
@@ -96,6 +96,7 @@ priority = 10
 EOF
 
 %{__cat} <<EOF >os.channel
+### URL: http://fedora.redhat.com/
 [os]
 name = OS packages from Red Hat for $name $version (%{_arch}
 baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core
@@ -104,6 +105,7 @@ priority = 10
 EOF
 
 %{__cat} <<EOF >updates.channel
+### URL: http://fedora.redhat.com/
 [updates]
 name = Updated packages from Red Hat for $name $version (%{_arch})
 baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/updates
@@ -112,6 +114,7 @@ priority = 10
 EOF
 
 %{__cat} <<EOF >dag.channel
+### URL: http://dag.wieers.com/apt/
 [dag]
 name = RPMforge.net: Various packages from Dag RPM Repository for $name $version (%{_arch})
 baseurl = http://apt.sw.be/$path/$version/en/%{_arch}/dag
@@ -120,6 +123,7 @@ priority = 10
 EOF
 
 %{__cat} <<EOF >freshrpms.channel
+### URL: http://freshrpms.net/
 [freshrpms]
 name = RPMforge.net: Various packages from FreshRPMS.net for $name $version (%{_arch})
 baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/freshrpms
@@ -128,6 +132,7 @@ priority = 10
 EOF
 
 %{__cat} <<EOF >dries.channel
+### URL: http://dries.studentenweb.org/ayo/
 [dries]
 name = RPMforge.net: Various packages from Dries RPM Repository for $name $version (%{_arch})
 baseurl = http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS
@@ -136,6 +141,7 @@ priority = 10
 EOF
 
 %{__cat} <<EOF >planetccrma.channel
+### URL: http://ccrma.stanford.edu/planetccrma/software/
 [planetcrrma]
 name = RPMforge.net: Various packages from Planet CCRMA for $name $version (%{_arch})
 baseurl = http://ccrma.stanford.edu/planetccrma/apt/$path/$version/%{_arch}
@@ -146,6 +152,7 @@ disabled = true
 EOF
 
 %{__cat} <<EOF >jpackage.channel
+### URL: http://jpackage.org/
 [jpackage]
 name = Java packages from JPackage.org for $name $version (%{_arch})
 baseurl = http://mirrors.sunsite.dk/jpackage/1.6/$path-$version/free
@@ -154,6 +161,7 @@ priority = 0
 EOF
 
 %{__cat} <<EOF >jpackage-generic.channel
+### URL: http://jpackage.org/
 [jpackage-generic]
 name = Java packages from JPackage.org for all distributions
 baseurl = http://mirrors.sunsite.dk/jpackage/1.6/generic/free
@@ -162,6 +170,7 @@ priority = 0
 EOF
 
 %{__cat} <<EOF >newrpms.channel
+### URL: http://newrpms.sunsite.dk/
 [newrpms]
 name = Various packages from NewRPMS for $name $version (%{_arch})
 baseurl = http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version
@@ -170,6 +179,7 @@ priority = 0
 EOF
 
 %{__cat} <<EOF >biorpms.channel
+### URL: http://apt.bea.ki.se/
 [biorpms]
 name = Bioinformatic packages from BIOrpms for $name $version (%{_arch})
 baseurl = http://apt.bea.ki.se/biorpms/$path/linux/$version/%{_arch}/biorpms
@@ -178,6 +188,7 @@ priority = 0
 EOF
 
 %{__cat} <<EOF >kde-redhat.channel
+### URL: http://kde-redhat.sourceforge.net/
 [kde-redhat]
 name = KDE packages from the kde-redhat project for $name $version (%{_arch})
 baseurl = http://apt.kde-redhat.org/apt/kde-redhat/$version/stable
@@ -186,6 +197,7 @@ priority = -5
 EOF
 
 %{__cat} <<EOF >kde-redhat-all.channel
+### URL: http://kde-redhat.sourceforge.net/
 [kde-redhat-all]
 name = KDE packages from the kde-redhat project for all distributions
 baseurl = http://apt.kde-redhat.org/apt/kde-redhat/all/stable
@@ -194,6 +206,7 @@ priority = -5
 EOF
 
 %{__cat} <<EOF >nrpms.channel
+### URL: http://www.nrpms.net/
 [nrpms]
 name = Various packages from Nrpms for $name $version (%{_arch})
 baseurl = http://yum.nrpms.net/$path-$version-%{_arch}/production
@@ -202,6 +215,7 @@ priority = -10
 EOF
 
 %{__cat} <<EOF >atrpms.channel
+### URL: http://atrpms.net/
 [atrpms]
 name = Various packages from ATrpms for $name $version (%{_arch})
 baseurl = http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing
@@ -210,6 +224,7 @@ priority = -10
 EOF
 
 %{__cat} <<EOF >mozilla-seamonkey.channel
+### URL: http://mozilla.org/
 [mozilla-seamonkey]
 name = Mozilla packages from Mozilla SeaMonkey for $name $version (%{_arch})
 baseurl = http://ftp.mozilla.org/pub/mozilla.org/mozilla/yum/SeaMonkey/releases/current/redhat/$version
@@ -219,6 +234,7 @@ disabled = true
 EOF
 
 %{__cat} <<EOF >livna.channel
+### URL: http://rpm.livna.org/
 [livna]
 name = Incompatible packages from Livna.org for $name $version (%{_arch})
 baseurl = http://rpm.livna.org/$path/$version/%{_arch}/RPMS.stable
@@ -227,6 +243,7 @@ priority = -100
 EOF
 
 %{__cat} <<EOF >fedora.us.channel
+### URL: http://fedora.us/
 [fedora.us]
 name = Incompatible packages from Fedora.us for $name $version (%{_arch})
 baseurl = http://download.fedora.us/fedora/$path/$version/%{_arch}/RPMS.extras
@@ -289,7 +306,7 @@ python setup.py install \
 
 %{__install} -D -m0755 smart-gui.sh %{buildroot}%{_sbindir}/smart-gui
 %{__install} -D -m0644 distro.py %{buildroot}%{_libdir}/smart/distro.py
-%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
+#%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 %{__install} -D -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
 %{__install} -D -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
 %{__install} -D -m0644 smart-gui.pam %{buildroot}%{_sysconfdir}/pam.d/smart-gui
@@ -343,6 +360,9 @@ python setup.py install \
 %{_datadir}/apps/ksmarttray/
 
 %changelog
+* Thu Dec 09 2004 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Tue Dec 07 2004 Dag Wieers <dag@wieers.com> - 0.27.1-3
 - Added jpackage-generic channel. (Thomas Moschny)
 
