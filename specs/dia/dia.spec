@@ -1,12 +1,9 @@
 # $Id$
-
 # Authority: dag
-
-%define real_version 0.92.2
 
 Summary: Diagram drawing program
 Name: dia
-Version: 0.92.2
+Version: 0.93
 Release: 1
 epoch: 1
 License: GPL
@@ -16,7 +13,7 @@ URL: http://www.lysator.liu.se/~alla/dia/dia.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/dia/dia-%{real_version}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/dia/dia-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.6, gtk2-devel >= 2.0.6, libxml2-devel >= 2.3.9
@@ -33,7 +30,7 @@ save diagrams to a custom file format, can load and save in .xml
 format, and can export to PostScript(TM).
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 #{__aclocal}
@@ -70,6 +67,9 @@ format, and can export to PostScript(TM).
 %{_datadir}/pixmaps/*
 
 %changelog
+* Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.93-1.
+- Updated to release 0.93.
+
 * Sun Nov 09 2003 Dag Wieers <dag@wieers.com> - 0.92.2-1
 - Fixed the "Couldn't find standard objects..." error. (Krzysztof Leszczynski)
 
