@@ -6,7 +6,7 @@
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 0.77
+Version: 0.80
 Release: 1
 Epoch: 1
 License: GPL
@@ -14,16 +14,14 @@ Group: Applications/Internet
 URL: http://gaim.sourceforge.net/
 
 Source: http://dl.sf.net/gaim/gaim-%{version}.tar.bz2
-Patch0: gaim-0.75-desktop.patch
+#Source1: gaim-rpmforge-prefs.xml
+Patch0: gaim-0.80-desktop.patch
 Patch1: gaim-prefs.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+### soon to be replaced by upstream fix
+Patch4: gaim-0.76-xinput.patch
+Patch128: gaim-0.79-cached_buddy_icons.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: gtk2, gtkspell, libao
-Requires: mozilla-nss, mozilla-nspr
-Requires: startup-notification, audiofile
-%{?_with_tcltk:Requires: tcl, tk}
-%{?_with_arts:Requires: arts}
-%{?_with_perl:Requires: perl}
 BuildRequires: XFree86-devel
 BuildRequires: libtool, gtk2-devel, gtkspell-devel, libao-devel
 BuildRequires: mozilla-nss, mozilla-nss-devel
@@ -31,7 +29,9 @@ BuildRequires: mozilla-nspr, mozilla-nspr-devel, libstdc++-devel
 BuildRequires: startup-notification-devel, audiofile-devel
 %{?_with_tcltk:BuildRequires: tcl-devel, tk-devel}
 %{?_with_arts:BuildRequires: arts-devel}
-%{?_with_perl:BuildRequires: perl}
+%{!?_without_perl:BuildRequires: perl}
+%{?_with_tcltk:Requires: tcl, tk}
+%{?_with_perl:Requires: perl}
 
 %description
 Gaim is a multi-protocol instant messaging client compatible with AIM (Oscar
@@ -53,29 +53,41 @@ text replacement, a buddy ticker, extended message notification, iconify on
 away, and more. 
 
 Available rpmbuild rebuild options :
---with : tcltk arts perl
+--with : tcltk arts
+--without : perl
 
 
 %prep
 %setup -n %{name}-%{?date:%{date}}%{!?date:%{version}}
-%patch0 -p1 -b .desktop
+%patch0 -b .desktop
 %patch1 -p1 -b .prefs
+%patch4 -p1
 
 
 %build
 %configure \
+    --enable-nss="yes" \
     %{!?_with_tcltk:--disable-tcl --disable-tk} \
     %{!?_with_arts:--disable-artsc} \
-    %{!?_with_perl:--disable-perl}
+    %{?_without_perl:--disable-perl}
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 %{__strip} %{buildroot}%{_libdir}/{*.so*,%{name}/*.so} || :
-%{?_with_perl:%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod}
+%{!?_without_perl:%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod}
+
+#%{__install} -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/gaim/prefs.xml
+
+
+%post
+/sbin/ldconfig -n %{_libdir}/gaim
+
+%postun
+/sbin/ldconfig -n %{_libdir}/gaim
 
 
 %clean
@@ -86,22 +98,27 @@ Available rpmbuild rebuild options :
 %defattr(-, root, root, 0755)
 %doc doc/the_penguin.txt doc/CREDITS NEWS COPYING AUTHORS doc/FAQ README
 %doc ChangeLog doc/PERL-HOWTO.dox HACKING doc/gaims_funniest_home_convos.txt
-%{_bindir}/%{name}*
-%{_includedir}/%{name}-remote
-%{_libdir}/%{name}
-%{_libdir}/lib%{name}-remote.*
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
-%{_datadir}/pixmaps/%{name}
-%{_datadir}/sounds/%{name}
+#%{_sysconfdir}/gaim/
+%{_bindir}/gaim*
+%{_includedir}/gaim/
+%{_libdir}/gaim/
+%{_libdir}/libgaim-remote.*
+%{_datadir}/applications/gaim.desktop
+%{_datadir}/pixmaps/gaim.png
+%{_datadir}/pixmaps/gaim/
+%{_datadir}/sounds/gaim/
 %{_mandir}/man1/*
-%if %{?_with_perl:1}%{!?_with_perl:0}
+%{_libdir}/pkgconfig/gaim.pc
+%if %{!?_without_perl:1}0
   %{perl_vendorarch}/Gaim.pm
   %{perl_vendorarch}/auto/Gaim
   %{perl_vendorman3dir}/*
 %endif
 
 %changelog
+* Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 0.80-1
+- Update to 0.80.
+
 * Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 0.77-1
 - Update to 0.77.
 
