@@ -1,0 +1,49 @@
+--- linneighborhood-0.6.5.orig/src/smbmount.c	2002-06-09 09:58:43.000000000 +0200
++++ linneighborhood-0.6.5/src/smbmount.c	2003-10-04 18:07:37.000000000 +0200
+@@ -390,10 +390,10 @@
+          escape_str(smbuser,&strlist),escape_str(smbpasswd,&strlist));
+         break;
+        case SMBMOUNT_206:
+-        sprintf(commandstr,"%s %s %s -o username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,ip=%s,debug=0%s",
++        sprintf(commandstr,"%s %s %s -o username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,debug=0%s",
+          escape_str(pref_get_smbmount_exe(),&strlist),escape_str(servicename,&strlist),escape_str(mount_point,&strlist),
+          escape_str(smbuser,&strlist),escape_str(smbpasswd,&strlist),
+-         filemode,dirmode,uid,gid,ipaddr,opt_group);
++         filemode,dirmode,uid,gid,opt_group);
+          if ( (port >= 0) && (port < 65536) )
+          {
+           sprintf(commandstr, "%s,port=%d", commandstr, port);
+@@ -485,8 +485,8 @@
+       {
+         argv[++argnr]="-o";
+         argv[++argnr]=commandstr;
+-        sprintf(commandstr,"username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,ip=%s,debug=0",
+-           smbuser,smbpasswd,filemode,dirmode,uid,gid,ipaddr);
++        sprintf(commandstr,"username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,debug=0",
++           smbuser,smbpasswd,filemode,dirmode,uid,gid);
+         if (*group_name)
+         {
+           strcat(commandstr,",workgroup=");
+@@ -573,9 +573,9 @@
+           pref_get_smbmount_exe(),servicename,mount_point,ipaddr,opt_group,smbuser,dummysmbpasswd);
+         break;
+       case SMBMOUNT_206:
+-        sprintf(commandstr,"%s %s %s -o username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,ip=%s,debug=0%s",
++        sprintf(commandstr,"%s %s %s -o username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,debug=0%s",
+          pref_get_smbmount_exe(),servicename,mount_point,smbuser,dummysmbpasswd,
+-         filemode,dirmode,uid,gid,ipaddr,opt_group);
++         filemode,dirmode,uid,gid,opt_group);
+         if ( (port >= 0) && (port < 65536) )
+         {
+           string_ncat(commandstr, ",port=", MAXMNTCOMMANDL);
+@@ -621,8 +621,8 @@
+         sprintf(userpasswd,"-U%s%%%s",smbuser,dummysmbpasswd);
+       else
+       {
+-       sprintf(commandstr,"username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,ip=%s,debug=0",
+-          smbuser,dummysmbpasswd,filemode,dirmode,uid,gid,ipaddr);
++       sprintf(commandstr,"username=%s%%%s,fmask=%d,dmask=%d,uid=%d,gid=%d,debug=0",
++          smbuser,dummysmbpasswd,filemode,dirmode,uid,gid);
+        if (*group_name){
+          strcat(commandstr,",workgroup=");
+          strcat(commandstr,group_name);
