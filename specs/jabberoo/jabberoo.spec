@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name JabberOO
 
 Summary: Library implementing the Jabber instant messaging system
 Name: jabberoo
-Version: 1.9.3
-Release: 0
+Version: 1.9.4
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://gabber.jabberstudio.org/
@@ -18,8 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.jabberstudio.org/files/gabber/jabberoo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: libsigc++-devel
+BuildRequires: pkgconfig >= 0.9, libsigc++-devel
 
 %description
 JabberOO is a library implementing the Jabber instant messaging system.
@@ -46,14 +44,11 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -66,10 +61,14 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/jabberoo/
 
 %changelog
+* Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 1.9.4-1
+- Updated to release 1.9.4.
+
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.9.3-0
 - Initial package. (using DAR)

@@ -1,10 +1,11 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Rémi Denis-Courmont <rdenis@simphalempin.com>
+# Upstream: <tcpreen-devel@lists.sourceforge.net>
 
 Summary: TCP/IP re-engineering and monitoring program
 Name: tcpreen
-Version: 1.3.7
+Version: 1.4.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -15,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/tcpreen/tcpreen-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 A tool to monitor and analyse data transmitted between a client and a server
@@ -46,6 +46,9 @@ TCPreen supports both TCP/IPv4 and TCP/IPv6 for data transport.
 %{_bindir}/*
 
 %changelog
+* Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 1.4.0-1
+- Updated to release 1.4.0.
+
 * Wed Mar 03 2004 Dag Wieers <dag@wieers.com> - 1.3.7-1
 - Updated to release 1.3.7.
 

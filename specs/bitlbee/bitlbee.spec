@@ -5,7 +5,7 @@
 Summary: IRC to other chat networks gateway
 Name: bitlbee
 Version: 0.90
-Release: 1
+Release: 2.a
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
@@ -24,7 +24,7 @@ networks like MSN/ICQ/Jabber.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.xinet
+%{__cat} <<EOF >bitlbee.xinet
 # default: off
 # description: Bitlbee is an IRC gateway to other networks.
 
@@ -82,6 +82,9 @@ EOF
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 0.90-2.a
+- Updated to release 0.90a.
+
 * Sat May 29 2004 Dag Wieers <dag@wieers.com> - 0.90-1
 - Updated to release 0.90.
 

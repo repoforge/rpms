@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream: Jed Wing <jedwin@ugcs.caltech.edu>
 
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
-Version: 0.33
+Version: 0.35
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -32,12 +33,12 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}
-#%patch0 -p1
+%setup
+#patch0 -p1
 
 %build
+%{__libtoolize} --force --copy
 %{__make} %{?_smp_mflags} all examples \
-	CFLAGS="-DCHM_MT -DCHM_USE_PREAD -DCHM_USE_IO64 -L.libs" \
 	CC="${CC:-%{__cc}}" \
 	LD="${CC:-%{__cc}}" \
 	INSTALLPREFIX="%{_prefix}"
@@ -81,6 +82,9 @@ done
 %{_includedir}/*.h
 
 %changelog
+* Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 0.35-1
+- Updated to release 0.35.
+
 * Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.33-1
 - Updated to release 0.33.
 
