@@ -6,7 +6,7 @@
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
 Version: 0.94
-Release: 2
+Release: 3
 License: LGPL
 Group: Applications/Multimedia
 URL: http://sourceforge.net/projects/mpegplus/
@@ -30,8 +30,8 @@ ARCH="%{optflags}" make %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-# Patching the Makefile would be overkill for a single file... here we go
-# We also change the same to keep more consistent with existing plugins
+# Patching the Makefile would be overkill for a single file...
+# We also change the name to keep more consistent with existing plugins
 %{__install} -D -m 0755 %{name}-%{version}.so \
     %{buildroot}%{xmms_inputdir}/libmusepack.so
 
@@ -49,10 +49,14 @@ ARCH="%{optflags}" make %{?_smp_mflags}
 %lang(es) %doc README_mpc-plugin_spanish.txt
 %{xmms_inputdir}/libmusepack.so
 
+
 %changelog
-* Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 0.94-2.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.94-3
+- Rebuilt for Fedora Core 2.
+
+* Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 0.94-2
 - Override ARCH with %%{optflags} for ppc build.
 
-* Tue Jan 20 2004 Matthias Saou <http://freshrpms.net/> 0.94-1.fr
+* Tue Jan 20 2004 Matthias Saou <http://freshrpms.net/> 0.94-1
 - Initial rpm package.
 

@@ -2,12 +2,12 @@
 # Authority: matthias
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
-%define real_name lirc-xmms-plugin
+%define real_name       lirc-xmms-plugin
 
-Summary: plugin to use LIRC supported infrared devices in XMMS
+Summary: Plugin to use LIRC supported infrared devices in XMMS
 Name: xmms-lirc
 Version: 1.4
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.lirc.org/
@@ -47,7 +47,10 @@ LIRC (Linux Infrared Remote Control) plugin for XMMS (X Multimedia System).
 
 
 %changelog
-* Wed Jan  7 2004 Matthias Saou <http://freshrpms.net/> 1.4-2.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.4-3
+- Rebuilt for Fedora Core 2.
+
+* Wed Jan  7 2004 Matthias Saou <http://freshrpms.net/> 1.4-2
 - Rebuilt for Fedora Core 1.
 
 * Wed May 14 2003 Matthias Saou <http://freshrpms.net/>

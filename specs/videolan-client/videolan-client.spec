@@ -45,6 +45,8 @@ BuildRequires: gcc-c++, XFree86-devel, libpng-devel, desktop-file-utils
 %{?_with_mozilla:BuildRequires: mozilla-devel}
 %{!?_without_id3tag:BuildRequires: libid3tag-devel}
 %{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel >= 0.3.2}
+%{!?_without_faad:BuildRequires: faad2-devel}
+%{!?_without_theora:BuildRequires: libtheora-devel}
 Conflicts: vlc
 
 %description
@@ -56,10 +58,10 @@ Available rpmbuild rebuild options :
 --with dv mga qt kde ncurses
 --without dvd dvdread dvdplay dvbpsi v4l avi asf aac ogg rawdv mad ffmpeg xvid
           mp4 a52 vorbis mpeg2dec flac aa esd arts alsa gtk gnome wxwin xosd
-          lsp lirc pth id3tag
+          lsp lirc pth id3tag faad theora
 
 Options that would need not yet existing add-on packages :
---with faad tremor tarkin theora svgalib ggi glide wxwindows
+--with tremor tarkin svgalib ggi glide wxwindows
 
 
 %package devel
@@ -78,6 +80,7 @@ to link statically to it.
 
 %prep
 %setup -n vlc-%{version} -a 1
+
 
 %build
 # Build bundeled ffmpeg first
@@ -109,7 +112,7 @@ popd
     %{!?_without_mad:--enable-mad} \
     %{!?_without_ffmpeg:--enable-ffmpeg} \
     %{!?_without_ffmpeg:--with-ffmpeg-tree=ffmpeg-%{ffmpeg_date}} \
-    %{?_with_faad:--enable-faad} \
+    %{!?_without_faad:--enable-faad} \
     %{!?_without_xvid:--enable-xvid} \
     %{?_without_mp4:--disable-mp4} \
     %{?_without_a52:--disable-a52} \
@@ -120,7 +123,7 @@ popd
     %{?_without_vorbis:--disable-vorbis} \
     %{?_with_tremor:--enable-tremor} \
     %{?_with_tarkin:--enable-tarkin} \
-    %{?_with_theora:--enable-theora} \
+    %{!?_without_theora:--enable-theora} \
     --enable-x11 \
     --enable-xvideo \
     %{?_without_sdl:--disable-sdl} \
@@ -159,6 +162,7 @@ popd
     --enable-plugins
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
@@ -178,8 +182,9 @@ Name=VideoLAN Client
 Comment=Play DVDs, other various video formats and network streamed videos
 Icon=vlc.png
 Exec=vlc
-Terminal=0
+Terminal=false
 Type=Application
+Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
@@ -188,6 +193,7 @@ desktop-file-install --vendor %{desktop_vendor} \
   --add-category Application                    \
   --add-category AudioVideo                     \
   %{name}.desktop
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -214,6 +220,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 %changelog
 * Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-1
 - Fix the desktop entry's description, make the icon themable.
+- Add theora and faad2 support, enabled by default.
 
 * Sat May 15 2004 Dag Wieers <dag@wieers.com> - 0.7.1-0.1
 - Updated to release 0.7.1.

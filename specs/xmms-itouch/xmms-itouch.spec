@@ -7,14 +7,14 @@
 Summary: XMMS plugin to use special keyboard multimedia keys
 Name: xmms-itouch
 Version: 0.1.2
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.saunalahti.fi/~syrjala/xmms-itouch/
 Source: http://www.saunalahti.fi/~syrjala/xmms-itouch/xmms-itouch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
-BuildPrereq: xmms-devel
+BuildRequires: xmms-devel
 
 
 %description
@@ -39,7 +39,6 @@ keyboard.
 %{__make} install \
     libdir=%{buildroot}%{xmms_generaldir} \
     datadir=%{buildroot}%{xmms_datadir}
-strip %{buildroot}%{xmms_generaldir}/* || :
 
 
 %clean
@@ -55,7 +54,10 @@ strip %{buildroot}%{xmms_generaldir}/* || :
 
 
 %changelog
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.1.2-4.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.1.2-5
+- Rebuilt for Fedora Core 2.
+
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.1.2-4
 - Rebuilt for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
