@@ -6,7 +6,7 @@
 Summary: XMMS plugin to use special multimedia keys in GNOME or through acme
 Name: xmms-acme
 Version: 0.4.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.devin.com/xmms-xf86audio/
@@ -29,7 +29,7 @@ mapping and expects those media players to listen for the XF86Audio keysyms.
 
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPT="%{optflags} -fPIC"
 
 
 %install
@@ -49,6 +49,9 @@ mapping and expects those media players to listen for the XF86Audio keysyms.
 
 
 %changelog
+* Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-3
+- Fix for x86_64.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-2
 - Removed explicit acme dependency as GNOME 2.6 has the key mapping built in.
 - Removed explicit stripping, that goes into the debuginfo package.
