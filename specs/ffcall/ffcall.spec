@@ -1,16 +1,20 @@
 # $Id$
 # Authority: dries
+# Upstream: Bruno Haible <bruno@clisp.org>
 
 Summary: Foreign function call libraries
 Name: ffcall
-Version: 1.9
+Version: 1.10
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://www.gnustep.org/
+URL: http://www.haible.de/bruno/packages-ffcall.html
 
-Source: http://ftp.gnustep.org/pub/gnustep/libs/ffcall-%{version}.tar.gz
+Source: http://www.haible.de/bruno/gnu/ffcall-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 This is a collection of four libraries which can be used to build
@@ -64,6 +68,9 @@ you will need to install %{name}-devel.
 %exclude %{_datadir}/html/
 
 %changelog
+* Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.10-1
+- Updated to release 1.10.
+
 * Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 1.9-1
 - Updated to release 1.9.
 
