@@ -9,9 +9,9 @@
 #define prever RC2
 #define cvs 20041125
 
-Summary: The Asterisk PBX and telephony application and toolkit
+Summary: PBX and telephony application and toolkit
 Name: asterisk
-Version: 1.0.5
+Version: 1.0.7
 Release: %{?prever:0.%{prever}.}%{?cvs:1.%{cvs}.}1
 License: GPL
 Group: Applications/Internet
@@ -138,6 +138,12 @@ fi
 
 
 %changelog
+* Tue Apr  5 2005 Matthias Saou <http://freshrpms.net> 1.0.7-1
+- Update to 1.0.7.
+
+* Tue Mar  8 2005 Matthias Saou <http://freshrpms.net> 1.0.6-1
+- Update to 1.0.6.
+
 * Wed Feb  2 2005 Matthias Saou <http://freshrpms.net> 1.0.5-1
 - Update to 1.0.5.
 - Don't create nor include sbin/safe_asterisk.orig.

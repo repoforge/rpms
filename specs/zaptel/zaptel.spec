@@ -6,28 +6,28 @@
 
 # "uname -r" output of the kernel to build for, the running one
 # if none was specified with "--define 'kernel <uname -r>'"
-#%{!?kernel: %{expand: %%define kernel %(uname -r)}}
+%{!?kernel: %{expand: %%define kernel %(uname -r)}}
  
-#%define kversion %(echo %{kernel} | sed -e s/smp// -)
-#%define krelver  %(echo %{kversion} | tr -s '-' '_')
-#%if %(echo %{kernel} | grep -c smp)
-#        %{expand:%%define ksmp -smp}
-#%endif
+%define kversion %(echo %{kernel} | sed -e s/smp// -)
+%define krelver  %(echo %{kversion} | tr -s '-' '_')
+%if %(echo %{kernel} | grep -c smp)
+        %{expand:%%define ksmp -smp}
+%endif
 
-Summary: Zaptel telephony interface support
+Summary: Telephony interface support
 Name: zaptel
-Version: 1.0.4
-Release: %{?prever:0.%{prever}.}0
+Version: 1.0.7
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
 Source0: ftp://ftp.asterisk.org/pub/zaptel/zaptel-%{version}%{?prever:-%{prever}}.tar.gz
 Source1: zaptel-makedev.d.txt
-Patch: zaptel-1.0.4-makefile.patch
+Patch: zaptel-1.0.6-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-#Requires: kernel-module-zaptel
-#BuildRequires: newt-devel, kernel-source = %{kversion}, MAKEDEV
+BuildRequires: kernel-devel = %{kversion}
 BuildRequires: newt-devel, MAKEDEV
+Provides: %{name}-devel = %{version}-%{release}
 
 %description
 This package contains the libraries, device entries, startup scripts and tools
@@ -35,20 +35,20 @@ needed to use Digium telephony hardware. This includes the pseudo TDM
 interfaces.
 
 You will also need to install a kernel modules package matching your current
-kernel for everything to work, and edit /etc/modules.conf.
+kernel for everything to work, and edit /etc/modprobe.conf.
 
 
-#%package -n kernel%{?ksmp}-module-zaptel
-#Summary: Kernel modules for the Zaptel devices.
-#Release: %{release}_%{krelver}
-#Group: System Environment/Kernel
-#Requires: kernel%{?ksmp} = %{kversion}, /sbin/depmod
-#Provides: kernel-modules
-#%{?ksmp:Provides: kernel-module-zaptel = %{version}-%{release}_%{krelver}}
-#
-#%description -n kernel%{?ksmp}-module-zaptel
-#This package contains the zaptel kernel modules for the Linux kernel package :
-#%{kversion} (%{_target_cpu}%{?ksmp:, SMP}).
+%package -n kernel%{?ksmp}-module-zaptel
+Summary: Kernel modules required for some hardware to operate with Zaptel
+Release: %{release}_%{krelver}
+Group: System Environment/Kernel
+Requires: kernel%{?ksmp} = %{kversion}, /sbin/depmod
+Provides: kernel-modules
+%{?ksmp:Provides: kernel-module-zaptel = %{version}-%{release}_%{krelver}}
+
+%description -n kernel%{?ksmp}-module-zaptel
+This package contains the zaptel kernel modules for the Linux kernel package :
+%{kversion} (%{_target_cpu}%{?ksmp:, SMP}).
 
 
 %prep
@@ -57,24 +57,28 @@ kernel for everything to work, and edit /etc/modules.conf.
 
 
 %build
-# Only build the binaries, not the kernel modules
-%{__perl} -pi -e 's|^all.*|all: \$(BINS)|g' Makefile
 export CFLAGS="%{optflags}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+    KVERSION="%{kversion}"
 
 
 %install
 %{__rm} -rf %{buildroot}
+# Install checks the presence of this file to decide which to modify
+%{__mkdir_p} %{buildroot}%{_sysconfdir}
+touch %{buildroot}%{_sysconfdir}/modprobe.conf
+# Main install
 %{__make} install \
-    KVERSION=%{kversion} \
-    INSTALL_PREFIX=%{buildroot} \
-    ROOT_PREFIX=%{buildroot}
+    KVERSION="%{kversion}" \
+    INSTALL_PREFIX="%{buildroot}" \
+    ROOT_PREFIX="%{buildroot}"
 
 # Install and generate all the device stuff
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/makedev.d/zaptel
  
 # Create entry list
-/dev/MAKEDEV \
+[ -x /sbin/MAKEDEV ] && MAKEDEV=/sbin/MAKEDEV || MAKEDEV=/dev/MAKEDEV
+${MAKEDEV} \
     -c %{buildroot}%{_sysconfdir}/makedev.d \
     -d %{buildroot}/dev -M zaptel | sed 's|%{buildroot}||g' | \
     grep -v 'dir /dev$' > device.list
@@ -91,7 +95,14 @@ export CFLAGS="%{optflags}"
         %{buildroot}/lib/modules/%{kernel}/kernel/
 
 # Move the modules config file back in order to put it in docs instead
-%{__mv} %{buildroot}%{_sysconfdir}/{modprobe,modules}.conf . || :
+%{__mv} %{buildroot}%{_sysconfdir}/modprobe.conf . || :
+
+# Move the binaries from /sbin back to /usr/sbin
+%{__mkdir_p} %{buildroot}%{_sbindir}
+%{__mv} %{buildroot}/sbin/* %{buildroot}%{_sbindir}/
+
+# Remove the backup of the empty file we created earlier
+%{__rm} -f %{buildroot}%{_sysconfdir}/modprobe.conf.bak || :
 
 
 %clean
@@ -104,11 +115,12 @@ export CFLAGS="%{optflags}"
 %postun
 /sbin/ldconfig
 
-#%post -n kernel%{?ksmp}-module-zaptel
-#/sbin/depmod -a -F /boot/System.map-%{kernel} %{kernel} >/dev/null 2>&1 || :
-#
-#%postun -n kernel%{?ksmp}-module-zaptel
-#/sbin/depmod -a -F /boot/System.map-%{kernel} %{kernel} >/dev/null 2>&1 || :
+
+%post -n kernel%{?ksmp}-module-zaptel
+/sbin/depmod -a -F /boot/System.map-%{kernel} %{kernel} &>/dev/null || :
+
+%postun -n kernel%{?ksmp}-module-zaptel
+/sbin/depmod -a -F /boot/System.map-%{kernel} %{kernel} &>/dev/null || :
 
 
 %files -f device.list
@@ -119,18 +131,27 @@ export CFLAGS="%{optflags}"
 %config(noreplace) %{_sysconfdir}/zaptel.conf
 %{_sysconfdir}/makedev.d/zaptel
 %{_sysconfdir}/rc.d/init.d/zaptel
-%{_sbindir}/ztcfg
-%{_sbindir}/zttool
 %{_includedir}/*.h
 %{_includedir}/linux/*.h
+%{_sbindir}/ztcfg
+%{_sbindir}/zttool
 %{_libdir}/*.so*
 
-#%files -n kernel%{?ksmp}-module-zaptel
-#%defattr(-, root, root, 0755)
-#/lib/modules/%{kernel}/kernel/misc/*
+%files -n kernel%{?ksmp}-module-zaptel
+%defattr(-, root, root, 0755)
+/lib/modules/%{kernel}/kernel/misc/
 
 
 %changelog
+* Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 1.0.7-0
+- Update to 1.0.7.
+- This spec still doesn't build with mach (sub-package release tag bug).
+
+* Tue Mar  8 2005 Matthias Saou <http://freshrpms.net/> 1.0.6-0
+- Update to 1.0.6.
+- Change /dev/MAKEDEV calls to /sbin/MAKEDEV for FC3.
+- Rework and re-enable the kernel modules, only through kernel-devel, though.
+
 * Wed Feb  2 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-0
 - Update to 1.0.4.
 - Updated makefile patch.

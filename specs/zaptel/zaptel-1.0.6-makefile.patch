@@ -1,0 +1,53 @@
+diff -Naupr zaptel-1.0.6.orig/Makefile zaptel-1.0.6/Makefile
+--- zaptel-1.0.6.orig/Makefile	2005-02-07 05:20:33.000000000 +0100
++++ zaptel-1.0.6/Makefile	2005-03-10 19:23:35.631437440 +0100
+@@ -13,7 +13,8 @@ BASEADDR=0xd0000
+ # (assuming He's running Linux -- which we all know He must).
+ #
+ HOSTCC=gcc
+-KINCLUDES=$(shell if [ -d /usr/src/linux-2.4/include ]; then echo /usr/src/linux-2.4/include ; else echo /usr/src/linux/include ; fi)
++[ -z "${KVERSION}" ] && KVERSION=`uname -r`
++KINCLUDES=$(shell if [ -d /usr/src/linux-2.4/include ]; then echo /usr/src/linux-2.4/include ; else echo /lib/modules/${KVERSION}/build ; fi)
+ 
+ CFLAGS+=-I. -O4 -g -Wall -DBUILDING_TONEZONE #-DTONEZONE_DRIVER
+ CFLAGS+=$(shell if uname -m | grep -q ppc; then echo "-fsigned-char"; fi)
+@@ -38,7 +39,7 @@ INSTALL_PREFIX=
+ CONFIG_FILE=$(INSTALL_PREFIX)/etc/zaptel.conf
+ CFLAGS+=-DZAPTEL_CONFIG=\"$(CONFIG_FILE)\"
+ 
+-BUILDVER=$(shell if uname -r | grep -q ^2.6; then echo "linux26"; else echo "linux24"; fi)
++BUILDVER=$(shell if echo ${KVERSION} | grep -q ^2.6; then echo "linux26"; else echo "linux24"; fi)
+ MODCONF=$(shell if [ -d $(ROOT_PREFIX)/etc/modprobe.d ]; then echo "$(ROOT_PREFIX)/etc/modprobe.d/zaptel"; elif [ -d $(ROOT_PREFIX)/etc/modutils ]; then echo "$(ROOT_PREFIX)/etc/modutils/zaptel"; elif [ -f $(ROOT_PREFIX)/etc/modprobe.conf ]; then echo "$(ROOT_PREFIX)/etc/modprobe.conf"; elif [ -f $(ROOT_PREFIX)/etc/modules.conf ]; then echo "$(ROOT_PREFIX)/etc/modules.conf"; else echo $(ROOT_PREFIX)/etc/conf.modules ; fi)
+ 
+ ifeq (${BUILDVER},linux24)
+@@ -67,7 +68,7 @@ BINS=ztcfg torisatool makefw ztmonitor z
+ PRIMARY=torisa
+ #PRIMARY=wcfxo
+ PWD=$(shell pwd)
+-KERNEL_SOURCE?=/lib/modules/`uname -r`/build
++KERNEL_SOURCE=/lib/modules/${KVERSION}/build
+ 
+ all: $(BUILDVER)
+ 
+@@ -266,17 +266,17 @@ install:  all devices $(LIBTONEZONE)
+ 
+ 	if [ -f zaptel.ko ]; then \
+ 		for x in $(MODULESKO) ztdummy.ko; do \
+-			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/$$x ; \
+ 		done; \
+ 		if ! [ -f wcfxsusb.ko ]; then \
+-			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.o; \
++			rm -f $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/wcfxsusb.o; \
+ 		fi; \
+ 	else \
+ 		for x in $(MODULESO); do \
+-			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/$$x ; \
+ 		done; \
+ 		if ! [ -f wcfxsusb.o ]; then \
+-			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.ko; \
++			rm -f $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/wcfxsusb.ko; \
+ 		fi; \
+ 	fi
+ 
