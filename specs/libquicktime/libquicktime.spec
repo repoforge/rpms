@@ -31,7 +31,7 @@ BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel
 
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch %{ix86}
-%{!?_without_mmx:BuildArch: i586}
+    %{!?_without_mmx:BuildArch: i586}
 %endif
 
 %description
@@ -62,14 +62,12 @@ programs that need to access quicktime files using libquicktime.
 %setup -n %{name}-%{version}%{?prever}
 
 %{__perl} -pi.orig -e '
-		s|\$exec_prefix/lib|\$libdir|g;
-		s|(OPTIMIZE_CFLAGS)="-O3|$1="%{optflags}|;
-	' configure.ac
+    s|\$exec_prefix/lib|\$libdir|g;
+    s|(OPTIMIZE_CFLAGS)="-O3|$1="%{optflags}|;
+    ' configure.ac
 
 %build
 ./autogen.sh
-#%{__libtoolize} --force
-#autoreconf --force --install
 %configure \
     --enable-static \
     %{?_without_mmx:--disable-mmx}
