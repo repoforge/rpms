@@ -1,17 +1,17 @@
 # $Id$
 # Authority: matthias
-# Upstream: Peter Eisenlohr <p,eisenlohr$gmx,net>
+# Upstream: Peter Eisenlohr <peter$eisenlohr,org>
 
 %define xmms_outputdir %(xmms-config --output-plugin-dir)
 
 Summary: Crossfade output plugin for XMMS
 Name: xmms-crossfade
-Version: 0.3.4
-Release: 2
+Version: 0.3.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://www.netcologne.de/~nc-eisenlpe2/xmms-crossfade/
-Source: http://www.netcologne.de/~nc-eisenlpe2/xmms-crossfade/xmms-crossfade-%{version}.tar.gz
+URL: http://www.eisenlohr.org/xmms-crossfade/
+Source: http://www.eisenlohr.org/xmms-crossfade/xmms-crossfade-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel
@@ -48,6 +48,10 @@ between songs and a gap-killer.
 
 
 %changelog
+* Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 0.3.5-1
+- Updated to release 0.3.5.
+- Updated URL and Upstream tags.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.3.4-3
 - Rebuild for Fedora Core 2.
 - Removed explicit stripping, that's for the debuginfo package now.
