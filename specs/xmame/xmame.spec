@@ -11,20 +11,19 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.88
+Version: 0.89
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.87 - 25/07/2004
-Source21: http://www.mameworld.net/highscore/uhsdat087.zip
-# http://www.arcade-history.com/ 0.88a - 28/10/2004
-Source22: http://www.arcade-history.com/download/history0_88a.zip
-# http://www.mameworld.net/mameinfo/ 0.88 - 25/10/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo088.zip
-# http://www.mameworld.net/catlist/ 0.88 - 25/10/2004
+# http://www.mameworld.net/highscore/ 0.89 - 26/11/2004
+Source21: http://www.mameworld.net/highscore/uhsdat089.zip
+# http://www.arcade-history.com/ 0.89b - 28/11/2004
+Source22: http://www.arcade-history.com/download/history0_89b.zip
+# http://www.mameworld.net/mameinfo/ 0.89u3 - 08/12/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo089u3.zip
+# http://www.mameworld.net/catlist/ 0.89 - 25/11/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
-Patch: xmame-0.88-libgl.patch
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -70,7 +69,6 @@ see http://www.mess.org/.
 
 %prep
 %setup -n %{name}-%{version}%{?rcver:-%{rcver}}
-%patch -p1 -b .libgl
 # Cleanup CVS stuff
 find . -type d -name CVS | xargs %{__rm} -rf
 
@@ -249,6 +247,10 @@ popd
 
 
 %changelog
+* Thu Dec  9 2004 Matthias Saou <http://freshrpms.net/> 0.89-1
+- Update to 0.89 final.
+- Remove no longer needed libGL patch.
+
 * Fri Nov 12 2004 Matthias Saou <http://freshrpms.net/> 0.88-1
 - Update to 0.88 final.
 - Disable stripping to get proper debuginfo packages... nope :-/
