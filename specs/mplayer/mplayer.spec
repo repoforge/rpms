@@ -41,7 +41,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.14%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.15%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -57,7 +57,7 @@ Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
-Patch11: MPlayer-1.0pre6a-lirc.patch
+Patch11: MPlayer-1.0pre6a-udev.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
@@ -122,7 +122,7 @@ to use MPlayer, transcode or other similar programs.
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
 %patch10 -p1 -b .fribidi
-%patch11 -p1 -b .lirc
+%patch11 -p1 -b .udev
 
 # Overwrite the system menu entry with ours
 %{__cat} <<EOF > etc/mplayer.desktop
@@ -276,6 +276,10 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 
 
 %changelog
+* Thu Jan 13 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.15.pre6a
+- Change lirc patch into more generic udev one to avoid /dev/video* detection.
+- Enable v4l again (from the above patch).
+
 * Fri Jan  7 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.14.pre6a
 - Added quick patch to skip /dev/lirc* file presence check, since this doesn't
   work as expected with udev.
