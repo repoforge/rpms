@@ -55,7 +55,7 @@ hierarchy.
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1
 - update to 0.10
 
-* Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 0.9-2
+* Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 0.9-2
 - cleanup of spec file
 
 * Fri Dec 26 2003 Dries Verachtert <dries@ulyssis.org> 0.9-1
