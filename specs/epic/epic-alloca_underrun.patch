@@ -1,0 +1,46 @@
+Advisory -- Possible remote exploit from rogue server, exploit exists.
+
+Summary -- ircII clients generally trust the server not to send it garbage.
+	Validity checking on data coming from the server tends to be weak.
+	If a rogue server sends us a ctcp request from an extremely large
+	nickname (over about 512 bytes), epic may attempt to alloca() a
+	negative value, which under gcc will return a invalid pointer, the
+	contents of which will then be overwritten.
+
+Extent -- All versions of epic4, before epic4pre2.002 are not vulnerable 
+	to this attack.  All versions of epic4, since and including 
+	epic4pre2.003 are vulnerable and this patch should be applied.
+	Future versions of epic will include this patch.
+
+Cause-for-alarm -- If you connect to a rogue server which has been carefully
+	crafted to send a CTCP request from an extremely large nickname, 
+	EPIC may attempt to overwrite the stack, yeilding a remote exploit
+	for whatever user id you are running epic as.
+
+Disclaimer -- All non-trivial software has bugs, of varying degrees.  EPIC
+        is no exception.  All remote exploits are serious, but this is more
+	serious because there is an exploit for this bug floating around.
+	You should never connect to a server you do not trust.
+
+Remedy -- Apply the following patch.
+
+*** source/ctcp.c.orig	Fri May  9 17:42:20 2003
+--- source/ctcp.c	Fri May  9 17:42:37 2003
+***************
+*** 897,903 ****
+  	int	len;
+  
+  	/* Make sure that the final \001 doesnt get truncated */
+! 	len = IRCD_BUFFER_SIZE - (12 + strlen(to));
+  	putbuf2 = alloca(len);
+  
+  	if (format)
+--- 897,904 ----
+  	int	len;
+  
+  	/* Make sure that the final \001 doesnt get truncated */
+! 	if ((len = IRCD_BUFFER_SIZE - (12 + strlen(to))) < 0)
+! 		return;
+  	putbuf2 = alloca(len);
+  
+  	if (format)

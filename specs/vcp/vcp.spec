@@ -1,0 +1,49 @@
+# $Id: _template.spec 649 2004-05-15 04:42:12Z dag $
+# Authority: dag
+# Upstream: Dag Wieers <dag@wieers.com>
+
+Summary: Enhanced files copying tool
+Name: vcp
+Version: 1.7.2
+Release: 1
+License: BSD
+Group: Applications/File
+URL: http://members.optusnet.com.au/~dbbryan/vcp/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://members.optusnet.com.au/~dbbryan/vcp/vcp-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%description
+vcp copies files and directories in a curses interface, with text only
+output available. its options and output are similar to BSD's cp while
+adding some new features.
+
+%prep
+%setup
+
+%build
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags}"
+
+%install
+%{__rm} -rf %{buildroot}
+%{__install} -D -m0555 vcp %{buildroot}%{_bindir}/vcp
+%{__install} -D -m0644 vcp.conf.sample %{buildroot}%{_sysconfdir}/vcp.conf
+%{__install} -D -m0644 vcp.1 %{buildroot}%{_mandir}/man1/vcp.1
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc Changelog README vcp.conf.sample
+%config(noreplace) %{_sysconfdir}/vcp.conf
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+
+%changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Initial package. (using DAR)

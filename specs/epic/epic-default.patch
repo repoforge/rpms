@@ -1,0 +1,14 @@
+--- script/global.orig	Mon Dec  4 19:11:57 2000
++++ script/global	Mon Jun  3 23:53:37 2002
+@@ -10,4 +10,11 @@
+ load 2.8script
+ # If you want this script, load it in your .ircrc
+ #load newaway
++
++# Red Hat specific customization to enable eight-bit chars by default (#65033)
++set eight_bit ON
++set high_bit_escape 0
++
++
+ load local
++

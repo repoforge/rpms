@@ -1,0 +1,14 @@
+diff -uNr ipe-6.0pre12.orig/src/config.pro ipe-6.0pre12/src/config.pro
+--- ipe-6.0pre12.orig/src/config.pro	2003-11-17 14:43:31.000000000 -0500
++++ ipe-6.0pre12/src/config.pro	2003-11-17 20:03:57.000000000 -0500
+@@ -42,8 +42,8 @@
+ # while the documentation and fonts can be shared.
+ #
+ #IPEPREFIX  = /usr/local/ipe
+-#IPEPREFIX  = /usr
+-IPEPREFIX  = /opt/ipe-6.0
++IPEPREFIX  = /usr
++#IPEPREFIX  = /opt/ipe-6.0
+ #
+ # Where Ipe executables will be installed ('ipe', 'ipe5toxml' etc)
+ IPEBINDIR  = $${IPEPREFIX}/bin

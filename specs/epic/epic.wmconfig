@@ -1,0 +1,4 @@
+epic name "EPIC"
+epic description "Internet Relay Chat Client"
+epic group Applications/Communications
+epic exec "xterm -e epic &"
