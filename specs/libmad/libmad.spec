@@ -4,7 +4,7 @@
 Summary: MPEG audio decoding library
 Name: libmad
 Version: 0.15.1b
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.underbit.com/products/mad/
@@ -48,7 +48,7 @@ to develop programs that will use libmad for mpeg audio decoding.
     --disable-debugging
 %{__make} %{_smp_mflags}
 
-# Install an additional pkgconfig file
+# Create an additional pkgconfig file
 %{__cat} << EOF > mad.pc
 prefix=%{_prefix}
 exec_prefix=%{_prefix}

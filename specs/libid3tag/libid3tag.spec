@@ -4,7 +4,7 @@
 Summary: Library for reading and writing ID3v1 and ID3v2 tags
 Name: libid3tag
 Version: 0.15.1b
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.underbit.com/products/mad/
@@ -21,7 +21,7 @@ various versions of ID3v2.
 %package devel
 Summary: Header and library for developing programs that will use libid3tag
 Group: Development/Libraries
-Requires: %{name} = %{version}, zlib-devel
+Requires: %{name} = %{version}, pkgconfig, zlib-devel
 
 %description devel
 A library for reading and (eventually) writing ID3 tags, both ID3v1 and the
@@ -34,11 +34,13 @@ to develop programs that will use libid3tag for ID3 tar reading and writing.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{_smp_mflags}
 
-cat << EOF > id3tag.pc
+# Create an additional pkgconfig file
+%{__cat} << EOF > id3tag.pc
 prefix=%{_prefix}
 exec_prefix=%{_prefix}
 libdir=%{_libdir}
@@ -52,13 +54,16 @@ Libs: -L%{_libdir} -lid3tag -lz
 Cflags: -I%{_includedir}
 EOF
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__install} -m 644 -D id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files 
 %defattr(-, root, root, 0755)
@@ -73,11 +78,16 @@ EOF
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
 
+
 %changelog
-* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-1.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-2
+- Rebuilt for Fedora Core 2.
+- Added pkgconfig dependency to the devel package.
+
+* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-1
 - Update to 0.15.1b.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.15.0b-4.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.15.0b-4
 - Rebuild for Fedora Core 1.
 
 * Wed Sep  3 2003 Matthias Saou <http://freshrpms.net/>
