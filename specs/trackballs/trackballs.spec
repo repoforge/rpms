@@ -41,6 +41,9 @@ sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 %makeinstall
 %{__strip} %{buildroot}/%{_bindir}/trackballs
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man6/*

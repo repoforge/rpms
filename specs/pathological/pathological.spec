@@ -57,6 +57,9 @@ Exec=/usr/games/pathological
 Categories=Application;Game;ArcadeGame
 EOF
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc README TODO LICENSE

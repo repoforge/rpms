@@ -52,7 +52,7 @@ a program which uses the GNU Readline Library.
 %{__sed} -i "s/\/usr\/local\/bin\/perl/\/usr\/bin\/perl/g;" %{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
 
 %clean
-#%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

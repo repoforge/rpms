@@ -63,8 +63,9 @@ install -s -m 755 widelands.orig $RPM_BUILD_ROOT/usr/share/widelands/widelands
 install -m 755 widelands $RPM_BUILD_ROOT/usr/bin/widelands
 cp -r fonts maps pics tribes worlds $RPM_BUILD_ROOT/usr/share/widelands/
 cp widelands.desktop $RPM_BUILD_ROOT/usr/share/applications/
+
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root,0755)

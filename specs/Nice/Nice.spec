@@ -33,6 +33,9 @@ compilation (null pointers, casts).
 %install
 %{__make} PREFIX=$RPM_BUILD_ROOT/usr install
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc LICENSE NEWS

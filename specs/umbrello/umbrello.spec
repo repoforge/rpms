@@ -58,6 +58,9 @@ Categories=Application;Development;X-Red-Hat-Extra;
 EOF
 rm -f $RPM_BUILD_ROOT/usr/share/applications/kde/umbrello.desktop
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc COPYING README

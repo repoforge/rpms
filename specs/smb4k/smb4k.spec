@@ -52,6 +52,9 @@ Encoding=UTF-8
 Categories=Application;Network;X-Red-Hat-Base;
 EOF
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root, 0755)
 %{_bindir}/smb4k

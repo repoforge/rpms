@@ -40,6 +40,9 @@ cd src
 cd src
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 

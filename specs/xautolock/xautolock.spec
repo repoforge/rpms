@@ -37,6 +37,9 @@ mkdir -p $RPM_BUILD_ROOT/usr/X11R6/man/man1/
 install -v -c   xautolock $RPM_BUILD_ROOT/usr/X11R6/bin/xautolock
 install -v -c -m 0444 xautolock._man $RPM_BUILD_ROOT/usr/X11R6/man/man1/xautolock.1x
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root, 0755)
 /usr/X11R6/bin/xautolock

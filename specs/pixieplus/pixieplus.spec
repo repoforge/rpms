@@ -65,6 +65,9 @@ EOF
 %postun
 /sbin/ldconfig 2>/dev/null
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root, 0755)
 %{_bindir}/pixie

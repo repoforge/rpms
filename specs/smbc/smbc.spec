@@ -38,6 +38,9 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %makeinstall
 %find_lang %{name}
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING FAQ NEWS README doc/sample.smbcrc

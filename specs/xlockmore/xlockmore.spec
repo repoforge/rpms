@@ -42,6 +42,9 @@ options.
 %{__install} -c xmlock/xmlock %{buildroot}/%{_bindir}
 %{__install} -c -m 644 xmlock/XmLock.ad %{buildroot}/%{_libdir}/X11/app-defaults/XmLock
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc README
