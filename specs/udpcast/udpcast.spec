@@ -41,6 +41,7 @@ Allows easy installation of client machines via UDP broadcast
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc Changelog.txt cmd.html COPYING README*
 #%doc %{_mandir}/man?/*
 %{_bindir}/*
