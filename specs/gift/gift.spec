@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dries
-
-# NeedsCleanup
+# Upstream: <gift-devel@lists.sf.net>
 
 Summary: Deamon for communicating with filesharing protocols
 Name: gift
@@ -15,11 +13,21 @@ URL: http://gift.sf.net/
 Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, gcc-c++, libtool
+BuildRequires: gcc-c++
 
 %description
 giFT is a modular daemon capable of abstracting the communication between
 the end user and specific filesharing protocols (peer-to-peer or otherwise).
+
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -30,10 +38,9 @@ the end user and specific filesharing protocols (peer-to-peer or otherwise).
 
 %install
 %{__rm} -rf %{buildroot}
-make install-strip DESTDIR="%{buildroot}"
-
-#ln -s libgift.so.0.0.0 ${DESTDIR}/usr/lib/libgift.so
-#ls -l ${DESTDIR}/usr/lib/libgift.so*
+#makeinstall
+%{__make} install-strip \
+	DESTDIR="%{buildroot}"
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -42,26 +49,25 @@ make install-strip DESTDIR="%{buildroot}"
 /sbin/ldconfig 2>/dev/null
 
 %files
-%defattr(-,root,root,0755)
-%doc README AUTHORS COPYING HACKING INSTALL QUICKSTART TODO
-%{_bindir}/gift-setup
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING HACKING INSTALL QUICKSTART README TODO
+%doc %{_mandir}/man1/*
+%{_bindir}/*
 %{_bindir}/giftd
-%{_includedir}/libgift
-%{_libdir}/libgift.la
-%{_libdir}/libgift.so
-%{_libdir}/libgift.so.0
-%{_libdir}/libgift.so.0.0.0
-%{_libdir}/libgiftproto.la
-%{_libdir}/libgiftproto.so
-%{_libdir}/libgiftproto.so.0
-%{_libdir}/libgiftproto.so.0.0.0
-%{_libdir}/pkgconfig/libgift.pc
-%{_datadir}/giFT/giftd.conf.template
-%{_datadir}/giFT/mime.types
-%{_datadir}/giFT/ui/ui.conf.template
-%{_datadir}/man/man1/giftd.1.gz
+%{_libdir}/*.so.*
+%{_datadir}/giFT/
+
+%files devel
+%defattr(-, root, root, 0755)
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
+%{_includedir}/libgift/
 
 %changelog
+* Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.11.6-1
+- Cosmetic cleanup.
+
 * Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> 0.11.6-1
 - update to 0.11.6
 
