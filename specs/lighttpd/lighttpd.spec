@@ -2,8 +2,8 @@
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.3.10
-Release: 0.3
+Version: 1.3.11
+Release: 0
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
@@ -13,9 +13,8 @@ Source2: php.d-lighttpd.ini
 Source10: index.html
 Source11: lighttpd.png
 Source12: powered_by_fedora.png
-Patch0: lighttpd-1.3.10-cleanconf.patch
-Patch1: lighttpd-1.3.10-defaultconf.patch
-Patch2: lighttpd-1.3.10-init.d.patch
+Patch0: lighttpd-1.3.10-defaultconf.patch
+Patch1: lighttpd-1.3.11-empty_cgi_handler.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(pre): /usr/sbin/useradd
 Requires(post): /sbin/chkconfig
@@ -62,9 +61,8 @@ recompile PHP yourself.
 
 %prep
 %setup
-%patch0 -p1 -b .cleanconf
-%patch1 -p1 -b .defaultconf
-%patch2 -p1 -b .init.d
+%patch0 -p1 -b .defaultconf
+%patch1 -p1 -b .empty_cgi_handler
 
 
 %build
@@ -162,6 +160,11 @@ fi
 
 
 %changelog
+* Mon Feb 21 2005 Matthias Saou <http://freshrpms.net/> 1.3.11-0
+- Update to 1.3.11.
+- Remove cleanconf and init.d patches (merged upstream).
+- Add empty_cgi_handler patch.
+
 * Fri Feb 18 2005 Matthias Saou <http://freshrpms.net/> 1.3.10-0
 - Split off -fastcgi sub-package.
 - Include php.d entry to set sane FastCGI defaults.
