@@ -3,7 +3,7 @@
 
 %define real_version cvs-2003-07-01
 
-Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder
+Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
 Version: 0.4.7
 Release: 0.20030701
@@ -18,7 +18,7 @@ Source: http://dl.sf.net/ffmpeg/ffmpeg-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: imlib2-devel, libvorbis-devel, a52dec-devel, lame-devel, zlib-devel
-BuildRequires: faad2-devel, imlib2-devel
+BuildRequires: faad2-devel, imlib2-devel, SDL-devel, freetype-devel, faac-devel
 Provides: libavcodec.so
 Provides: libavcodec-CVS-2003-07-01.so
 
@@ -50,11 +50,13 @@ you will need to install %{name}-devel.
 %build
 %configure \
 	--enable-a52bin \
+	--enable-faac \
 	--enable-faad \
 	--enable-faadbin \
 	--enable-mp3lame \
 	--enable-vorbis \
 	--enable-shared \
+	--enable-pp \
 	--disable-mmx
 ### FIXME: Disable MMX to make it build. (Please fix upstream)
 %{__make} %{?_smp_mflags}
@@ -64,30 +66,35 @@ you will need to install %{name}-devel.
 %makeinstall
 %{__install} -m0644 libavcodec/libavcodec.a %{buildroot}%{_libdir}
 
-%{__install} -d -m0755 %{buildroot}%{_libdir}/libavcodec/
+%{__install} -d -m0755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/
 %{__ln_s} -f %{_libdir}/libavcodec.a %{buildroot}%{_libdir}/libavcodec/
+%{__ln_s} -f %{_libdir}/libavformat.a %{buildroot}%{_libdir}/libavformat/
 
-%{__rm} -f doc/Makefile
+### Clean up docroot
+%{__rm} -f doc/Makefile doc/*.1
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc Changelog COPYING CREDITS README VERSION doc/*
 %{_bindir}/*
 %{_libdir}/*.so
 %{_libdir}/vhook/
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/ffmpeg/
 %{_libdir}/*.a
 %{_libdir}/libavcodec/
+%{_libdir}/libavformat/
 
 %changelog
 * Thu Sep 18 2003 Dag Wieers <dag@wieers.com> - 0.4.7-0.20030701

@@ -10,24 +10,27 @@ Version: 0.4.8
 Release: 2%{?date:.%{sqdate}}
 License: GPL
 Group: System Environment/Libraries
+URL: http://ffmpeg.sf.net/
+
 %if %{?date:0}%{!?date:1}
-Source: http://dl.sf.net/ffmpeg/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}.tar.gz
 %else
 Source: http://ffmpeg.sourceforge.net/cvs/%{name}-cvs-%{date}.tar.gz
 %endif
-URL: http://ffmpeg.sourceforge.net/
-BuildRoot: %{_tmppath}/%{name}-root
-Requires: imlib2, SDL, freetype, zlib
-%{!?_without_lame:Requires: lame}
-%{!?_without_vorbis:Requires: libogg, libvorbis}
-%{!?_without_faad:Requires: faad2}
-%{!?_without_faac:Requires: faac}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
+
+Requires: imlib2, SDL, freetype, zlib
+%{!?_without_lame:Requires: lame}
+%{!?_without_vorbis:Requires: libogg, libvorbis}
+%{!?_without_faad:Requires: faad2}
+%{!?_without_faac:Requires: faac}
 Provides: libavcodec.so, libavformat.so
 
 %description
@@ -85,13 +88,13 @@ Install this package if you want to compile apps with ffmpeg support.
 %makeinstall
 
 # Make installlib is broken in 0.4.6-8, so we do it by hand
-%{__install} -m 644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/
-%{__install} -m 644 libavformat/libavformat.a %{buildroot}%{_libdir}/
+%{__install} -m0644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/
+%{__install} -m0644 libavformat/libavformat.a %{buildroot}%{_libdir}/
 
 # Create compat symlink
-mkdir %{buildroot}%{_libdir}/{libavcodec,libavformat}
-ln -s ../libavcodec.a %{buildroot}%{_libdir}/libavcodec/libavcodec.a
-ln -s ../libavformat.a %{buildroot}%{_libdir}/libavformat/libavformat.a
+%{__install} -d -m0755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/
+%{__ln_s} -f ../libavcodec.a %{buildroot}%{_libdir}/libavcodec/libavcodec.a
+%{__ln_s} -f ../libavformat.a %{buildroot}%{_libdir}/libavformat/libavformat.a
 
 # Remove from the included docs
 %{__rm} -f doc/Makefile doc/*.1
@@ -99,29 +102,27 @@ ln -s ../libavformat.a %{buildroot}%{_libdir}/libavformat/libavformat.a
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING CREDITS Changelog README doc/
+%doc Changelog COPYING CREDITS INSTALL README doc/
+%doc %{_mandir}/man1/*
 %{_bindir}/*
-%{_libdir}/libavcodec-*.so
-%{_libdir}/libavcodec.so
-%{_libdir}/libavformat-*.so
-%{_libdir}/libavformat.so
-%{_libdir}/vhook
-%{_mandir}/man1/*
+%{_libdir}/*.so
+%{_libdir}/vhook/
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/%{name}
-%{_libdir}/libavcodec
-%{_libdir}/libavcodec.a
-%{_libdir}/libavformat
-%{_libdir}/libavformat.a
+%{_includedir}/ffmpeg/
+%{_libdir}/*.a
+%{_libdir}/libavcodec/
+%{_libdir}/libavformat/
 
 
 %changelog
