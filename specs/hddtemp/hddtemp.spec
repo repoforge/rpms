@@ -1,0 +1,55 @@
+# $Id: $
+
+# Authority: dries
+
+%define real_version 0.3-beta11
+
+Summary: Display the temperature of harddisks
+Name: hddtemp
+Version: 0.3
+Release: 0.beta11
+License: GPL
+Group: Applications/System
+URL: http://coredump.free.fr/linux/hddtemp.php
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://coredump.free.fr/linux/hddtemp-%{real_version}.tar.gz
+Source1: http://coredump.free.fr/linux/hddtemp.db
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+# BuildRequires: 
+
+%description
+hddtemp is a small utility that gives you the temperature of your hard drive
+by reading S.M.A.R.T. informations (for drives that support this feature).
+Note: only recent hard drives have a temperature sensor. 
+
+%prep
+%setup -n hddtemp-%{real_version}
+
+%build
+%configure \
+	--with-db-path=%{_datadir}/hddtemp
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/hddtemp/hddtemp.db
+%find_lang %{name}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files -f %{name}.lang
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc %{_mandir}/man?/*
+%{_sbindir}/hddtemp
+%{_datadir}/hddtemp
+
+%changelog
+* Tue Jul 27 2004 Dries Verachtert <dries@ulyssis.org> - 0.3-0.beta11
+- Initial package.
