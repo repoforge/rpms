@@ -1,0 +1,25 @@
+diff -urN d4x-2.4rc3.orig/config.h.in d4x-2.5.0rc3/config.h.in
+--- d4x-2.4rc3.orig/config.h.in	2004-03-31 16:09:29.000000000 +0400
++++ d4x-2.5.0rc3/config.h.in	2004-04-06 10:15:17.000000000 +0400
+@@ -32,7 +32,7 @@
+ #undef ENABLE_NLS
+ 
+ /* Enable warnings about deprecated functions usage */
+-#undef GTK_DISABLE_DEPRECATED
++/* #undef GTK_DISABLE_DEPRECATED
+ 
+ /* Define to 1 if you have the `alarm' function. */
+ #undef HAVE_ALARM
+diff -urN d4x-2.4rc3.orig/main/face/lmenu.cc d4x-2.5.0rc3/main/face/lmenu.cc
+--- d4x-2.4rc3.orig/main/face/lmenu.cc	2003-12-24 19:24:51.000000000 +0300
++++ d4x-2.5.0rc3/main/face/lmenu.cc	2004-04-06 10:35:22.000000000 +0400
+@@ -222,7 +222,8 @@
+ 			    GTK_OBJECT(ListMenuArray[LM_EDIT_COMMON]),
+ 			    "activate");
+ */
+-	_gtk_accel_group_attach(accel_group,G_OBJECT(MainWindow));
++gtk_window_add_accel_group((GtkWindow*) MainWindow,accel_group);
++//	_gtk_accel_group_attach(accel_group,G_OBJECT(MainWindow));
+ 
+ 	gtk_widget_show_all(ListMenu);
+ };

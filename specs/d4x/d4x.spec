@@ -7,11 +7,12 @@
 Summary: Downloader for X that supports resuming and many other features
 Name: d4x
 Version: 2.5.0
-Release: %{?pre:0.%{pre}.}3
+Release: %{?pre:0.%{pre}.}4
 Group: Applications/Internet
 License: Artistic
 URL: http://www.krasu.ru/soft/chuchelo/
 Source: http://www.krasu.ru/soft/chuchelo/files/%{name}-%{version}%{?pre}.tar.gz
+Patch: http://den.tourinfo.ru/pack/d4x/Fedora2/gtk-2.4.0.patch
 Buildroot: %{_tmppath}/%{name}-root
 Requires: gtk2, libstdc++
 BuildRequires: gtk2-devel, gcc-c++, libstdc++-devel
@@ -66,6 +67,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon May 24 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc3.4
+- Added patch for gtk 2.4 compatibility from Den.
+
 * Tue Apr 20 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc3.3
 - Update to 2.5.0rc3.
 
