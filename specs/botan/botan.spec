@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://botan.randombit.net/files/Botan-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, perl
+BuildRequires: gcc-c++, perl, compat-gcc-c++
 
 %description
 Botan is a library, written in C++. It's main purpose it to provide an easy
