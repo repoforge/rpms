@@ -29,7 +29,7 @@ htop is an interactive process viewer for Linux.
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__install} -D -m0755 htop %{buildroot}%{_bindir}/htop
+%{__install} -Dp -m0755 htop %{buildroot}%{_bindir}/htop
 
 %clean
 %{__rm} -rf %{buildroot}

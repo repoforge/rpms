@@ -56,9 +56,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 meld.sh %{buildroot}%{_bindir}/meld
-%{__install} -D -m0644 glade2/pixmaps/icon.png %{buildroot}%{_datadir}/pixmaps/meld.png
-%{__install} -D -m0755 meld %{buildroot}%{_datadir}/meld/meld
+%{__install} -Dp -m0755 meld.sh %{buildroot}%{_bindir}/meld
+%{__install} -Dp -m0644 glade2/pixmaps/icon.png %{buildroot}%{_datadir}/pixmaps/meld.png
+%{__install} -Dp -m0755 meld %{buildroot}%{_datadir}/meld/meld
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/meld/glade2/pixmaps/
 %{__install} -m0644 *.py %{buildroot}%{_datadir}/meld/

@@ -31,8 +31,8 @@ Nagios services without the expense or availability of a GUI.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 nsc.pl %{buildroot}%{_sbindir}/nsc
-%{__install} -D -m0644 nsc.1 %{buildroot}%{_mandir}/man1/nsc.1
+%{__install} -Dp -m0755 nsc.pl %{buildroot}%{_sbindir}/nsc
+%{__install} -Dp -m0644 nsc.1 %{buildroot}%{_mandir}/man1/nsc.1
 
 %clean
 %{__rm} -rf %{buildroot}

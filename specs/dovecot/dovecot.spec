@@ -151,8 +151,8 @@ export LDFLAGS="-L%{_libdir}/mysql"
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0755 dovecot.sysv %{buildroot}%{_initrddir}/dovecot
-%{__install} -D -m0644 dovecot.pam %{buildroot}%{_sysconfdir}/pam.d/dovecot
+%{__install} -Dp -m0755 dovecot.sysv %{buildroot}%{_initrddir}/dovecot
+%{__install} -Dp -m0644 dovecot.pam %{buildroot}%{_sysconfdir}/pam.d/dovecot
 %{__mv} -f %{buildroot}%{_sysconfdir}/dovecot-example.conf %{buildroot}%{_sysconfdir}/dovecot.conf
 
 # generate ghost .pem file

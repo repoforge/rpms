@@ -45,7 +45,7 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0600 etc/xsupplicant.conf %{buildroot}%{_sysconfdir}/xsupplicant.conf
+%{__install} -Dp -m0600 etc/xsupplicant.conf %{buildroot}%{_sysconfdir}/xsupplicant.conf
 
 %clean
 %{__rm} -rf %{buildroot}

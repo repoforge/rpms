@@ -60,11 +60,11 @@ so it can be used on a wide variety of supported network cards.
 %{__rm} -rf %{buildroot}
 #makeinstall -C src
 
-%{__install} -D -m0755 src/iptraf %{buildroot}%{_bindir}/iptraf
-%{__install} -D -m0755 src/rvnamed %{buildroot}%{_bindir}/rvnamed
+%{__install} -Dp -m0755 src/iptraf %{buildroot}%{_bindir}/iptraf
+%{__install} -Dp -m0755 src/rvnamed %{buildroot}%{_bindir}/rvnamed
 
-%{__install} -D -m644 Documentation/iptraf.8 %{buildroot}%{_mandir}/man8/iptraf.8
-%{__install} -D -m644 Documentation/rvnamed.8 %{buildroot}%{_mandir}/man8/rvnamed.8
+%{__install} -Dp -m644 Documentation/iptraf.8 %{buildroot}%{_mandir}/man8/iptraf.8
+%{__install} -Dp -m644 Documentation/rvnamed.8 %{buildroot}%{_mandir}/man8/rvnamed.8
 
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/{lock,log,run}/iptraf/
 touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \

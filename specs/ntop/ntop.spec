@@ -206,9 +206,9 @@ EOF
 %{__make} install install-data-local \
 	DESTDIR="%{buildroot}"
 
-%{__install} -D -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
-%{__install} -D -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
-%{__install} -D -m0700 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
+%{__install} -Dp -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
+%{__install} -Dp -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
+%{__install} -Dp -m0700 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
 
 %pre
 if ! /usr/bin/id ntop &>/dev/null; then

@@ -157,16 +157,16 @@ cd -
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -m0755 snort-* %{buildroot}%{_sbindir}
 
-%{__install} -D -m0644 snort.8 %{buildroot}%{_mandir}/man8/snort.8
+%{__install} -Dp -m0644 snort.8 %{buildroot}%{_mandir}/man8/snort.8
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/snort
 %{__install} -m0644 etc/*.config etc/*.conf etc/*.map rules/*.rules %{buildroot}%{_sysconfdir}/snort/
 
-#%{__install} -D -m0755 snortd.sysv %{buildroot}%{_initrddir}/snortd
-#%{__install} -D -m0644 snort.sysconf %{buildroot}%{_sysconfdir}/sysconfig/snort
-%{__install} -D -m0755 rpm/snortd %{buildroot}%{_initrddir}/snortd
-%{__install} -D -m0644 rpm/snort.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/snort
-%{__install} -D -m0644 rpm/snort.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/snort
+#%{__install} -Dp -m0755 snortd.sysv %{buildroot}%{_initrddir}/snortd
+#%{__install} -Dp -m0644 snort.sysconf %{buildroot}%{_sysconfdir}/sysconfig/snort
+%{__install} -Dp -m0755 rpm/snortd %{buildroot}%{_initrddir}/snortd
+%{__install} -Dp -m0644 rpm/snort.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/snort
+%{__install} -Dp -m0644 rpm/snort.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/snort
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/snort/
 

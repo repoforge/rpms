@@ -26,10 +26,10 @@ interface or on all interfaces.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 nfslogsum %{buildroot}%{_sbindir}/nfslogsum
-%{__install} -D -m0755 nfswatch %{buildroot}%{_sbindir}/nfswatch
-%{__install} -D -m0644 nfslogsum.8 %{buildroot}%{_mandir}/man8/nfslogsum.8
-%{__install} -D -m0644 nfswatch.8 %{buildroot}%{_mandir}/man8/nfswatch.8
+%{__install} -Dp -m0755 nfslogsum %{buildroot}%{_sbindir}/nfslogsum
+%{__install} -Dp -m0755 nfswatch %{buildroot}%{_sbindir}/nfswatch
+%{__install} -Dp -m0644 nfslogsum.8 %{buildroot}%{_mandir}/man8/nfslogsum.8
+%{__install} -Dp -m0644 nfswatch.8 %{buildroot}%{_mandir}/man8/nfswatch.8
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -122,7 +122,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 macros.rpmforge %{buildroot}%{_sysconfdir}/rpm/macros.rpmforge
+%{__install} -Dp -m0644 macros.rpmforge %{buildroot}%{_sysconfdir}/rpm/macros.rpmforge
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -29,13 +29,13 @@ This package provides various parallel tools based on ssh and scp.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 bin/pssh %{buildroot}%{_bindir}/pssh
-%{__install} -D -m0755 bin/pscp %{buildroot}%{_bindir}/pscp
-%{__install} -D -m0755 bin/pnuke %{buildroot}%{_bindir}/pnuke
-%{__install} -D -m0755 bin/prsync %{buildroot}%{_bindir}/prsync
-%{__install} -D -m0755 bin/pslurp %{buildroot}%{_bindir}/pslurp
-%{__install} -D -m0644 lib/python2.2/psshutil.py %{buildroot}%{_libdir}/python%{python_version}/psshutil.py
-%{__install} -D -m0644 lib/python2.2/basethread.py %{buildroot}%{_libdir}/python%{python_version}/basethread.py
+%{__install} -Dp -m0755 bin/pssh %{buildroot}%{_bindir}/pssh
+%{__install} -Dp -m0755 bin/pscp %{buildroot}%{_bindir}/pscp
+%{__install} -Dp -m0755 bin/pnuke %{buildroot}%{_bindir}/pnuke
+%{__install} -Dp -m0755 bin/prsync %{buildroot}%{_bindir}/prsync
+%{__install} -Dp -m0755 bin/pslurp %{buildroot}%{_bindir}/pslurp
+%{__install} -Dp -m0644 lib/python2.2/psshutil.py %{buildroot}%{_libdir}/python%{python_version}/psshutil.py
+%{__install} -Dp -m0644 lib/python2.2/basethread.py %{buildroot}%{_libdir}/python%{python_version}/basethread.py
 
 %clean
 %{__rm} -rf %{buildroot}

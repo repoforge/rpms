@@ -55,8 +55,8 @@ Short list of features:
 %{__rm} -rf %{buildroot}
 #%{__make} install \
 #	DESTDIR="%{buildroot}"
-%{__install} -D -m0755 src/bwm-ng %{buildroot}%{_bindir}/bwm-ng
-%{__install} -D -m0644 bwm-ng.1 %{buildroot}%{_mandir}/man1/bwm-ng.1
+%{__install} -Dp -m0755 src/bwm-ng %{buildroot}%{_bindir}/bwm-ng
+%{__install} -Dp -m0644 bwm-ng.1 %{buildroot}%{_mandir}/man1/bwm-ng.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -52,8 +52,8 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 bash_completion %{buildroot}%{_sysconfdir}/bash_completion
-%{__install} -D -m0755 bash_completion.sh %{buildroot}%{_sysconfdir}/profile.d/bash_completion.sh
+%{__install} -Dp -m0755 bash_completion %{buildroot}%{_sysconfdir}/bash_completion
+%{__install} -Dp -m0755 bash_completion.sh %{buildroot}%{_sysconfdir}/profile.d/bash_completion.sh
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/bash_completion.d/
 
 %clean

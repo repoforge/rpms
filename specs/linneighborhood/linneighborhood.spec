@@ -63,12 +63,12 @@ EOF
 %makeinstall
 %find_lang %{real_name}
 
-%{__install} -D -m0644 LinNeighborhood.xpm %{buildroot}%{_datadir}/pixmaps/linneighborhood.xpm
+%{__install} -Dp -m0644 LinNeighborhood.xpm %{buildroot}%{_datadir}/pixmaps/linneighborhood.xpm
 
 %{__ln_s} -f LinNeighborhood %{buildroot}%{_bindir}/linneighborhood
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 linneighborhood.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/linneighborhood.desktop
+	%{__install} -Dp -m0644 linneighborhood.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/linneighborhood.desktop
 %else
 	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \

@@ -247,9 +247,9 @@ cd ibmasm-src
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 #%{__install} -m0755 ibmspup ibmspdown ibmspremove exe/ibmsprem exe/ibmsprem2 exe/ibmsphalt %{buildroot}%{_sbindir}
 %{__install} -m0755 ibmspup ibmspdown exe/ibmsprem exe/ibmsprem2 exe/ibmsphalt %{buildroot}%{_sbindir}
-%{__install} -D -m0755 shlib/libsysSp.so %{buildroot}%{_libdir}/libsysSp.so
-%{__install} -D -m0755 ibmasm.sysv %{buildroot}%{_initrddir}/ibmasm
-%{__install} -D -m0755 ibmspup.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/ibmspup
+%{__install} -Dp -m0755 shlib/libsysSp.so %{buildroot}%{_libdir}/libsysSp.so
+%{__install} -Dp -m0755 ibmasm.sysv %{buildroot}%{_initrddir}/ibmasm
+%{__install} -Dp -m0755 ibmspup.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/ibmspup
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_sbindir}/ibmspremove

@@ -26,8 +26,8 @@ much more general and usually faster.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 agrep %{buildroot}%{_bindir}/agrep
-%{__install} -D -m0644 agrep.1 %{buildroot}%{_mandir}/man1/agrep.1
+%{__install} -Dp -m0755 agrep %{buildroot}%{_bindir}/agrep
+%{__install} -Dp -m0644 agrep.1 %{buildroot}%{_mandir}/man1/agrep.1
 
 %clean
 %{__rm} -rf %{buildroot}

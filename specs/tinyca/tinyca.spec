@@ -58,8 +58,8 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 templates/openssl.cnf %{buildroot}%{_sysconfdir}/tinyca/openssl.cnf
-%{__install} -D -m0755 tinyca %{buildroot}%{_bindir}/tinyca
+%{__install} -Dp -m0644 templates/openssl.cnf %{buildroot}%{_sysconfdir}/tinyca/openssl.cnf
+%{__install} -Dp -m0755 tinyca %{buildroot}%{_bindir}/tinyca
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/locale/
 %{__cp} -av locale/* %{buildroot}%{_datadir}/locale/
@@ -70,7 +70,7 @@ EOF
 %find_lang %{name}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 tinyca.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/tinyca.desktop
+	%{__install} -Dp -m0644 tinyca.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/tinyca.desktop
 %else   
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -48,7 +48,7 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 pixmaps/gnono-icon.png %{buildroot}%{_datadir}/pixmaps/gnono.png
+%{__install} -Dp -m0644 pixmaps/gnono-icon.png %{buildroot}%{_datadir}/pixmaps/gnono.png
 
 %if %{?!_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

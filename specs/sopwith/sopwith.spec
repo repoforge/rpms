@@ -50,7 +50,7 @@ EOF
 %makeinstall
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 sopwith.desktop %{buildroot}%{_datadir}/gnome/apps/Games/sopwith.desktop
+        %{__install} -Dp -m0644 sopwith.desktop %{buildroot}%{_datadir}/gnome/apps/Games/sopwith.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \
@@ -59,7 +59,7 @@ EOF
                 sopwith.desktop
 %endif
 
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/sopwith.png
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/sopwith.png
 
 %clean
 %{__rm} -rf %{buildroot}

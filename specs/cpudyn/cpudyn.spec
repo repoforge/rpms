@@ -125,11 +125,11 @@ EOF
 ### FIXME: Disables make install as it starts services
 #makeinstall
 
-%{__install} -D -m0755 cpudynd %{buildroot}%{_sbindir}/cpudynd
-%{__install} -D -m0644 cpudynd.8.gz %{buildroot}%{_mandir}/man8/cpudynd.8.gz
+%{__install} -Dp -m0755 cpudynd %{buildroot}%{_sbindir}/cpudynd
+%{__install} -Dp -m0644 cpudynd.8.gz %{buildroot}%{_mandir}/man8/cpudynd.8.gz
 
-%{__install} -D -m0755 cpudynd.sysv %{buildroot}%{_initrddir}/cpudynd
-%{__install} -D -m0644 cpudynd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpudynd
+%{__install} -Dp -m0755 cpudynd.sysv %{buildroot}%{_initrddir}/cpudynd
+%{__install} -Dp -m0644 cpudynd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpudynd
 
 %post
 /sbin/chkconfig --add cpudynd

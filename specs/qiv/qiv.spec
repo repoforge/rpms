@@ -33,8 +33,8 @@ and more.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 qiv %{buildroot}%{_bindir}/qiv
-%{__install} -D -m0644 qiv.1 %{buildroot}%{_mandir}/man1/qiv.1
+%{__install} -Dp -m0755 qiv %{buildroot}%{_bindir}/qiv
+%{__install} -Dp -m0644 qiv.1 %{buildroot}%{_mandir}/man1/qiv.1
 
 %clean
 %{__rm} -rf %{buildroot}

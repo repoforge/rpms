@@ -84,12 +84,12 @@ export CFLAGS="%{optflags} -fPIC"
 	INSTALLMAN1DIR="%{buildroot}%{_mandir}/man1" \
 	INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3"
 
-%{__install} -D -m0755 spamd/redhat-rc-script.sh %{buildroot}%{_initrddir}/spamassassin
-%{__install} -D -m0644 spamd/libspamc.so %{buildroot}%{_libdir}/libspamc.so
-%{__install} -D -m0644 spamd/libspamc.h %{buildroot}%{_includedir}/libspamc.h
+%{__install} -Dp -m0755 spamd/redhat-rc-script.sh %{buildroot}%{_initrddir}/spamassassin
+%{__install} -Dp -m0644 spamd/libspamc.so %{buildroot}%{_libdir}/libspamc.so
+%{__install} -Dp -m0644 spamd/libspamc.h %{buildroot}%{_includedir}/libspamc.h
 
-%{__install} -D -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
-%{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
+%{__install} -Dp -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
 %{__install} -m0644 %{SOURCE3} %{SOURCE4} %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/
 
 ### Clean up buildroot

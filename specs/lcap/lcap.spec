@@ -40,7 +40,7 @@ sysctl file /proc/sys/kernel/cap-bound.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0644 lcap.8 %{buildroot}%{_mandir}/man8/lcap.8
+%{__install} -Dp -m0644 lcap.8 %{buildroot}%{_mandir}/man8/lcap.8
 
 %clean
 %{__rm} -rf %{buildroot}

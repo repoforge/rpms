@@ -86,8 +86,8 @@ done
 %{__install} -m0755 contrib/check* %{buildroot}%{_libdir}/nagios/plugins/contrib/
 %{__install} -m0755 check_* %{buildroot}%{_libdir}/nagios/plugins/
 
-%{__install} -D -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_vendorlib}/utils.pm
-%{__install} -D -m0644 command.cfg %{buildroot}%{_sysconfdir}/nagios/command-plugins.cfg
+%{__install} -Dp -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_vendorlib}/utils.pm
+%{__install} -Dp -m0644 command.cfg %{buildroot}%{_sysconfdir}/nagios/command-plugins.cfg
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -30,8 +30,8 @@ perform channel hopping.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 asleap %{buildroot}%{_sbindir}/asleap
-%{__install} -D -m0755 genkeys %{buildroot}%{_sbindir}/genkeys
+%{__install} -Dp -m0755 asleap %{buildroot}%{_sbindir}/asleap
+%{__install} -Dp -m0755 genkeys %{buildroot}%{_sbindir}/genkeys
 
 %{__rm} -rf scripts/CVS/
 

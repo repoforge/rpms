@@ -49,7 +49,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 sercd.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/sercd
+%{__install} -Dp -m0644 sercd.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/sercd
 
 %clean
 %{__rm} -rf %{buildroot}

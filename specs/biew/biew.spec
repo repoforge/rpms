@@ -37,8 +37,8 @@ other features, making it invaluable for examining binary code.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 biew  %{buildroot}%{_bindir}/biew
-%{__install} -D -m0644 bin_rc/biew.hlp %{buildroot}%{_datadir}/biew/biew.hlp
+%{__install} -Dp -m0755 biew  %{buildroot}%{_bindir}/biew
+%{__install} -Dp -m0644 bin_rc/biew.hlp %{buildroot}%{_datadir}/biew/biew.hlp
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/biew/{skn,xlt}/
 %{__install} -m0644 bin_rc/skn/*.skn %{buildroot}%{_datadir}/biew/skn/

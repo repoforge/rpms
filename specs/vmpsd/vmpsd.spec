@@ -119,8 +119,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 vmpsd.sysv %{buildroot}%{_initrddir}/vmpsd
-%{__install} -D -m0644 vmpsd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vmpsd
+%{__install} -Dp -m0755 vmpsd.sysv %{buildroot}%{_initrddir}/vmpsd
+%{__install} -Dp -m0644 vmpsd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vmpsd
 
 #find . -name CVS -type d -exec rm -rf {} \;
 

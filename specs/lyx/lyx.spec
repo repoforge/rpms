@@ -78,13 +78,13 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__mv} -f %{buildroot}%{_datadir}/lyx/tex %{buildroot}%{_datadir}/texmf/tex/latex/lyx
 
 ### Miscellaneous files
-%{__install} -D -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/lyx.xpm
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/lyx.png
+%{__install} -Dp -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/lyx.xpm
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/lyx.png
 %{__install} -m0644 lib/reLyX/README README.reLyX
 
 ### Install desktop file and icon
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 lyx.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
+        %{__install} -Dp -m0644 lyx.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor} \

@@ -44,7 +44,7 @@ fi
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 # Install provided init script
-%{__install} -D -m 0755 sample-scripts/openvpn.init \
+%{__install} -Dp -m 0755 sample-scripts/openvpn.init \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/openvpn
 # Install empty configuration directory
 %{__install} -d -m 0755 %{buildroot}%{_sysconfdir}/openvpn/

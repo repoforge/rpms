@@ -27,8 +27,8 @@ utilisation maximising, and process resource minimizing manner.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 strobe %{buildroot}%{_bindir}/strobe
-%{__install} -D -m0644 strobe.1 %{buildroot}%{_mandir}/man1/strobe.1
+%{__install} -Dp -m0755 strobe %{buildroot}%{_bindir}/strobe
+%{__install} -Dp -m0644 strobe.1 %{buildroot}%{_mandir}/man1/strobe.1
 	
 %clean 
 %{__rm} -rf %{buildroot}

@@ -43,7 +43,7 @@ There are two main styles of play: capture-the-flag and free-for-all.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m 644 data/bzflag-48x48.png \
+%{__install} -Dp -m 644 data/bzflag-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/bzflag.png
 
 # Desktop menu entry

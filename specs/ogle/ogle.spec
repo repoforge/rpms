@@ -80,7 +80,7 @@ to build programs that use it (like GUIs).
 # Needed for library dependencies (still current in 0.9.2)
 export LIBRARY_PATH=%{buildroot}/usr/lib/ogle
 %{__make} DESTDIR=%{buildroot} install
-%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/ogle.png
+%{__install} -Dp -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/ogle.png
 
 # Change the ALSA default to OSS if we have --without alsa
 %{?_without_alsa:%{__perl} -pi -e 's|<driver>alsa</driver>|<driver>oss</driver>|g' %{buildroot}%{_datadir}/ogle/oglerc}
@@ -104,7 +104,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     ogle.desktop
 %else
-%{__install} -D -m 0644 ogle.desktop \
+%{__install} -Dp -m 0644 ogle.desktop \
     %{buildroot}/etc/X11/applnk/Multimedia/ogle.desktop
 %endif
 

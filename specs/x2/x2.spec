@@ -33,15 +33,15 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 x %{buildroot}%{_bindir}/x
-%{__install} -D -m0755 xx %{buildroot}%{_bindir}/xx
-%{__install} -D -m0755 xutils.so %{buildroot}%{_libdir}/xutils.so
-%{__install} -D -m0644 xprofile %{buildroot}%{_datadir}/x2/xprofile
-%{__install} -D -m0644 xprofile.def %{buildroot}%{_datadir}/x2/xprofile.def
-%{__install} -D -m0644 xprofile.unx %{buildroot}%{_datadir}/x2/xprofile.unx
-%{__install} -D -m0644 xunix.hlp %{buildroot}%{_datadir}/x2/X.HLP
-%{__install} -D -m0644 XUNIX.PRO %{buildroot}%{_datadir}/x2/XUNIX.PRO
-%{__install} -D -m0755 x2.sh %{buildroot}%{_sysconfdir}/profile.d/x2.sh
+%{__install} -Dp -m0755 x %{buildroot}%{_bindir}/x
+%{__install} -Dp -m0755 xx %{buildroot}%{_bindir}/xx
+%{__install} -Dp -m0755 xutils.so %{buildroot}%{_libdir}/xutils.so
+%{__install} -Dp -m0644 xprofile %{buildroot}%{_datadir}/x2/xprofile
+%{__install} -Dp -m0644 xprofile.def %{buildroot}%{_datadir}/x2/xprofile.def
+%{__install} -Dp -m0644 xprofile.unx %{buildroot}%{_datadir}/x2/xprofile.unx
+%{__install} -Dp -m0644 xunix.hlp %{buildroot}%{_datadir}/x2/X.HLP
+%{__install} -Dp -m0644 XUNIX.PRO %{buildroot}%{_datadir}/x2/XUNIX.PRO
+%{__install} -Dp -m0755 x2.sh %{buildroot}%{_sysconfdir}/profile.d/x2.sh
 
 %post
 /sbin/ldconfig 2>/dev/null

@@ -37,8 +37,8 @@ tools to manage users, groups and passwords.
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -m0755 smbldap-* smbldap_tools.pm %{buildroot}%{_sbindir}
-%{__install} -D -m0644 smbldap.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap.conf
-%{__install} -D -m0600 smbldap_bind.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap_bind.conf
+%{__install} -Dp -m0644 smbldap.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap.conf
+%{__install} -Dp -m0600 smbldap_bind.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap_bind.conf
 
 %clean
 %{__rm} -rf %{buildroot}

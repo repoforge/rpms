@@ -57,7 +57,7 @@ EOF
         %{buildroot}%{_mandir}/man6/
 
 # Install pixmap for the menu entry
-%{__install} -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/powermanga.png
+%{__install} -Dp -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/powermanga.png
 
 # Install menu entry
 %if %{!?_without_freedesktop:1}0
@@ -67,7 +67,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-%{__install} -D -m 0644 %{name}.desktop \
+%{__install} -Dp -m 0644 %{name}.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
 %endif
 

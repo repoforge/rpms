@@ -57,7 +57,7 @@ EOF
 	PREFIX="%{buildroot}%{_prefix}" \
 	MAN_DIR="%{buildroot}%{_mandir}/man1"
 
-%{__install} -D -m0644 manedit/manedit.xpm %{buildroot}%{_datadir}/pixmaps/manedit.xpm
+%{__install} -Dp -m0644 manedit/manedit.xpm %{buildroot}%{_datadir}/pixmaps/manedit.xpm
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \

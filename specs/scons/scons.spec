@@ -34,8 +34,8 @@ SCons is an easier, more reliable and faster way to build software.
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot}
-%{__install} -D -m 0644 scons.1 %{buildroot}/%{_mandir}/man1/scons.1
-%{__install} -D -m 0644 sconsign.1 %{buildroot}/%{_mandir}/man1/sconsign.1
+%{__install} -Dp -m 0644 scons.1 %{buildroot}/%{_mandir}/man1/scons.1
+%{__install} -Dp -m 0644 sconsign.1 %{buildroot}/%{_mandir}/man1/sconsign.1
 
 
 %clean

@@ -54,11 +54,11 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 xpde.session %{buildroot}%{_sysconfdir}/X11/gdm/Sessions/xpde
-%{__install} -D -m0755 xpde.xclients %{buildroot}%{_datadir}/apps/switchdesk/Xclients.xpde
+%{__install} -Dp -m0755 xpde.session %{buildroot}%{_sysconfdir}/X11/gdm/Sessions/xpde
+%{__install} -Dp -m0755 xpde.xclients %{buildroot}%{_datadir}/apps/switchdesk/Xclients.xpde
 
-%{__install} -D -m0755 xpde.xinitrc %{buildroot}%{installdir}/.xinitrcXPDE
-%{__install} -D -m0755 xinitrcDEFAULT %{buildroot}%{installdir}/xinitrcDEFAULT
+%{__install} -Dp -m0755 xpde.xinitrc %{buildroot}%{installdir}/.xinitrcXPDE
+%{__install} -Dp -m0755 xinitrcDEFAULT %{buildroot}%{installdir}/xinitrcDEFAULT
 
 %{__install} -d -m0755 %{buildroot}%{installdir}/themes/default/
 %{__cp} -av themes/default/* %{buildroot}%{installdir}/themes/default/
@@ -66,25 +66,25 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{installdir}/defaultdesktop/
 %{__cp} -av defaultdesktop/* %{buildroot}%{installdir}/defaultdesktop/
 
-%{__install} -D -m0755 XPde %{buildroot}%{installdir}/bin/XPde
-%{__install} -D -m0755 XPwm %{buildroot}%{installdir}/bin/XPwm
-%{__install} -D -m0755 stub.sh %{buildroot}%{installdir}/bin/stub.sh
+%{__install} -Dp -m0755 XPde %{buildroot}%{installdir}/bin/XPde
+%{__install} -Dp -m0755 XPwm %{buildroot}%{installdir}/bin/XPwm
+%{__install} -Dp -m0755 stub.sh %{buildroot}%{installdir}/bin/stub.sh
 %{__install} -m0755 *.so* %{buildroot}%{installdir}/bin/
 
-%{__install} -D -m0755 calculator %{buildroot}%{installdir}/bin/apps/calculator
-%{__install} -D -m0755 fileexplorer %{buildroot}%{installdir}/bin/apps/fileexplorer
-%{__install} -D -m0755 notepad %{buildroot}%{installdir}/bin/apps/notepad
-%{__install} -D -m0755 taskmanager %{buildroot}%{installdir}/bin/apps/taskmanager
+%{__install} -Dp -m0755 calculator %{buildroot}%{installdir}/bin/apps/calculator
+%{__install} -Dp -m0755 fileexplorer %{buildroot}%{installdir}/bin/apps/fileexplorer
+%{__install} -Dp -m0755 notepad %{buildroot}%{installdir}/bin/apps/notepad
+%{__install} -Dp -m0755 taskmanager %{buildroot}%{installdir}/bin/apps/taskmanager
 
-%{__install} -D -m0755 appexec %{buildroot}%{installdir}/bin/applets/appexec
-%{__install} -D -m0755 DateTimeProps %{buildroot}%{installdir}/bin/applets/DateTimeProps
-%{__install} -D -m0755 desk %{buildroot}%{installdir}/bin/applets/desk
-%{__install} -D -m0755 keyboard %{buildroot}%{installdir}/bin/applets/keyboard
-%{__install} -D -m0755 mouse %{buildroot}%{installdir}/bin/applets/mouse
-%{__install} -D -m0755 networkproperties %{buildroot}%{installdir}/bin/applets/networkproperties
-%{__install} -D -m0755 networkstatus %{buildroot}%{installdir}/bin/applets/networkstatus
-%{__install} -D -m0755 regional %{buildroot}%{installdir}/bin/applets/regional
-%{__install} -D -m0755 xpsu %{buildroot}%{installdir}/bin/applets/xpsu
+%{__install} -Dp -m0755 appexec %{buildroot}%{installdir}/bin/applets/appexec
+%{__install} -Dp -m0755 DateTimeProps %{buildroot}%{installdir}/bin/applets/DateTimeProps
+%{__install} -Dp -m0755 desk %{buildroot}%{installdir}/bin/applets/desk
+%{__install} -Dp -m0755 keyboard %{buildroot}%{installdir}/bin/applets/keyboard
+%{__install} -Dp -m0755 mouse %{buildroot}%{installdir}/bin/applets/mouse
+%{__install} -Dp -m0755 networkproperties %{buildroot}%{installdir}/bin/applets/networkproperties
+%{__install} -Dp -m0755 networkstatus %{buildroot}%{installdir}/bin/applets/networkstatus
+%{__install} -Dp -m0755 regional %{buildroot}%{installdir}/bin/applets/regional
+%{__install} -Dp -m0755 xpsu %{buildroot}%{installdir}/bin/applets/xpsu
 
 %clean
 %{__rm} -rf %{buildroot}

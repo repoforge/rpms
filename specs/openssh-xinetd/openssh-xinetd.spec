@@ -61,7 +61,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 ssh-backup.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/ssh-backup
+%{__install} -Dp -m0644 ssh-backup.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/ssh-backup
 
 %post
 if [ $1 -ne 0 ]; then

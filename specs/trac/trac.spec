@@ -61,7 +61,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root="%{buildroot}"
 
-%{__install} -D -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
+%{__install} -Dp -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
 
 %clean
 %{__rm} -rf %{buildroot}

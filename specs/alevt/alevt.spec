@@ -52,16 +52,16 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 alevt %{buildroot}%{_bindir}/alevt
-%{__install} -D -m0755 alevt-date %{buildroot}%{_bindir}/alevt-date
-%{__install} -D -m0755 alevt-cap %{buildroot}%{_bindir}/alevt-cap
-%{__install} -D -m0644 alevt.1x %{buildroot}%{_mandir}/man1/alevt.1x
-%{__install} -D -m0644 alevt-date.1 %{buildroot}%{_mandir}/man1/alevt-date.1
-%{__install} -D -m0644 alevt-cap.1 %{buildroot}%{_mandir}/man1/alevt-cap.1
-%{__install} -D -m0644 contrib/mini-alevt.xpm %{buildroot}%{_datadir}/pixmaps/alevt.xpm
+%{__install} -Dp -m0755 alevt %{buildroot}%{_bindir}/alevt
+%{__install} -Dp -m0755 alevt-date %{buildroot}%{_bindir}/alevt-date
+%{__install} -Dp -m0755 alevt-cap %{buildroot}%{_bindir}/alevt-cap
+%{__install} -Dp -m0644 alevt.1x %{buildroot}%{_mandir}/man1/alevt.1x
+%{__install} -Dp -m0644 alevt-date.1 %{buildroot}%{_mandir}/man1/alevt-date.1
+%{__install} -Dp -m0644 alevt-cap.1 %{buildroot}%{_mandir}/man1/alevt-cap.1
+%{__install} -Dp -m0644 contrib/mini-alevt.xpm %{buildroot}%{_datadir}/pixmaps/alevt.xpm
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 alevt.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/alevt.desktop
+        %{__install} -Dp -m0644 alevt.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/alevt.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \

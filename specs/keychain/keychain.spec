@@ -31,8 +31,8 @@ local machine is rebooted.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 keychain %{buildroot}%{_bindir}/keychain
-%{__install} -D -m0644 keychain.1 %{buildroot}%{_mandir}/man1/keychain.1
+%{__install} -Dp -m0755 keychain %{buildroot}%{_bindir}/keychain
+%{__install} -Dp -m0644 keychain.1 %{buildroot}%{_mandir}/man1/keychain.1
 
 %clean
 %{__rm} -rf %{buildroot}

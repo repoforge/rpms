@@ -34,7 +34,7 @@ ${CC:-%{__cc}} %{optflags} -shared -lsqlite -L%{_libdir} -rdynamic -o sqlite.so 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 sqlite.so %{buildroot}%{_libdir}/php4/sqlite.so
+%{__install} -Dp -m0755 sqlite.so %{buildroot}%{_libdir}/php4/sqlite.so
 
 %clean
 %{__rm} -rf %{buildroot}

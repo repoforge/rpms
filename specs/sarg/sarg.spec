@@ -123,11 +123,11 @@ EOF
 	DESTDIR="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sarg/{ONE-SHOT,daily,weekly,monthly}/
-%{__install} -D -m0644 sarg-http.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/sarg.conf
-%{__install} -D -m0755 sarg.daily %{buildroot}%{_sysconfdir}/cron.daily/sarg
-%{__install} -D -m0755 sarg.weekly %{buildroot}%{_sysconfdir}/cron.weekly/sarg
-%{__install} -D -m0755 sarg.monthly %{buildroot}%{_sysconfdir}/cron.monthly/sarg
-%{__install} -D -m0644 sarg-index.html %{buildroot}%{_localstatedir}/www/sarg/index.html
+%{__install} -Dp -m0644 sarg-http.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/sarg.conf
+%{__install} -Dp -m0755 sarg.daily %{buildroot}%{_sysconfdir}/cron.daily/sarg
+%{__install} -Dp -m0755 sarg.weekly %{buildroot}%{_sysconfdir}/cron.weekly/sarg
+%{__install} -Dp -m0755 sarg.monthly %{buildroot}%{_sysconfdir}/cron.monthly/sarg
+%{__install} -Dp -m0644 sarg-index.html %{buildroot}%{_localstatedir}/www/sarg/index.html
 
 #%{__cp} -avx fonts/ %{buildroot}%{_sysconfdir}/sarg/fonts/
 #%{__cp} -avx images/ %{buildroot}%{_sysconfdir}/sarg/images/

@@ -46,7 +46,7 @@ EOF
 %makeinstall
 
 %if %{dfi}
-	%{__install} -D -m0644 gpasman.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpasman.desktop
+	%{__install} -Dp -m0644 gpasman.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpasman.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

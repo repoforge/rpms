@@ -49,9 +49,9 @@ port probes, but also the most prone to false alarms.
 mkdir -p %{buildroot}/var/portsentry
 %{__make} install
 
-%{__install} -D -m 700 %{SOURCE1} %{buildroot}/etc/init.d/portsentry
-%{__install} -D -m 600 %{SOURCE2} %{buildroot}/etc/portsentry/portsentry.modes
-%{__install} -D -m 600 %{SOURCE3} %{buildroot}/etc/cron.d/portsentry
+%{__install} -Dp -m 700 %{SOURCE1} %{buildroot}/etc/init.d/portsentry
+%{__install} -Dp -m 600 %{SOURCE2} %{buildroot}/etc/portsentry/portsentry.modes
+%{__install} -Dp -m 600 %{SOURCE3} %{buildroot}/etc/cron.d/portsentry
 
 %clean
 %{__rm} -rf %{buildroot}

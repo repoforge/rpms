@@ -37,9 +37,9 @@ LZO library for compression.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 openvpn.8 %{buildroot}%{_mandir}/man8/openvpn.8
-%{__install} -D -m0755 openvpn %{buildroot}%{_sbindir}/openvpn
-%{__install} -D -m0755 sample-scripts/openvpn.init %{buildroot}%{_initrddir}/openvpn
+%{__install} -Dp -m0755 openvpn.8 %{buildroot}%{_mandir}/man8/openvpn.8
+%{__install} -Dp -m0755 openvpn %{buildroot}%{_sbindir}/openvpn
+%{__install} -Dp -m0755 sample-scripts/openvpn.init %{buildroot}%{_initrddir}/openvpn
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/openvpn/
 

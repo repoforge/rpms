@@ -31,8 +31,8 @@ number, and the percentage of the file so far displayed.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/objs/most %{buildroot}%{_bindir}/most
-%{__install} -D -m0644 most.1 %{buildroot}%{_mandir}/man1/most.1
+%{__install} -Dp -m0755 src/objs/most %{buildroot}%{_bindir}/most
+%{__install} -Dp -m0644 most.1 %{buildroot}%{_mandir}/man1/most.1
 
 %clean
 %{__rm} -rf %{buildroot}

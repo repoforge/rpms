@@ -34,8 +34,8 @@ A gimp script to implement Red-Eye removal technique.
 
 %install
 %{__rm} -rf %{buildroot}
-%{!?_without_gimp2:%{__install} -D -m0755 %{SOURCE0} %{buildroot}%{_libdir}/gimp/2.0/scripts/red-eye.scm}
-%{?_without_gimp2:%{__install} -D -m0755 %{SOURCE0} %{buildroot}%{_libdir}/gimp/1.2/scripts/red-eye.scm}
+%{!?_without_gimp2:%{__install} -Dp -m0755 %{SOURCE0} %{buildroot}%{_libdir}/gimp/2.0/scripts/red-eye.scm}
+%{?_without_gimp2:%{__install} -Dp -m0755 %{SOURCE0} %{buildroot}%{_libdir}/gimp/1.2/scripts/red-eye.scm}
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -30,9 +30,9 @@ database or STDOUT.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 aimSniff.pl %{buildroot}%{_bindir}/aimsniff
-%{__install} -D -m0644 aimsniff.config %{buildroot}%{_sysconfdir}/aimsniff.config
-%{__install} -D -m0644 rc.aimsniff %{buildroot}%{_initrddir}/aimsniff
+%{__install} -Dp -m0755 aimSniff.pl %{buildroot}%{_bindir}/aimsniff
+%{__install} -Dp -m0644 aimsniff.config %{buildroot}%{_sysconfdir}/aimsniff.config
+%{__install} -Dp -m0644 rc.aimsniff %{buildroot}%{_initrddir}/aimsniff
 
 %clean
 %{__rm} -rf %{buildroot}

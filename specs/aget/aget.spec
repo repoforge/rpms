@@ -29,7 +29,7 @@ and can be run from the console.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 aget %{buildroot}%{_bindir}/aget
+%{__install} -Dp -m0755 aget %{buildroot}%{_bindir}/aget
 
 %clean
 %{__rm} -rf %{buildroot}

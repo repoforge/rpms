@@ -51,7 +51,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0644 rsync.xinet %{buildroot}%{_sysconfdir}/xinetd.d/rsync
+%{__install} -Dp -m0644 rsync.xinet %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 
 %clean
 %{__rm} -rf %{buildroot}

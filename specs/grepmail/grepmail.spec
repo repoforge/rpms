@@ -28,8 +28,8 @@ using a regular expression or date constraint.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 grepmail %{buildroot}%{_bindir}/grepmail
-%{__install} -D -m0644 grepmail.1 %{buildroot}%{_mandir}/man1/grepmail.1
+%{__install} -Dp -m0755 grepmail %{buildroot}%{_bindir}/grepmail
+%{__install} -Dp -m0644 grepmail.1 %{buildroot}%{_mandir}/man1/grepmail.1
 
 %clean
 %{__rm} -rf %{buildroot}

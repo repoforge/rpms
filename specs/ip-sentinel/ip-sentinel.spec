@@ -39,8 +39,8 @@ invalid MAC, rendering the IP unreachable.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m755 contrib/ip-sentinel.init %{buildroot}%{_initrddir}/ip-sentinel
-%{__install} -D -m644 contrib/ip-sentinel.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/ip-sentinel
+%{__install} -Dp -m755 contrib/ip-sentinel.init %{buildroot}%{_initrddir}/ip-sentinel
+%{__install} -Dp -m644 contrib/ip-sentinel.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/ip-sentinel
 
 %{__install} -d -m0750 %{buildroot}%{_var}/lib/ip-sentinel/
 

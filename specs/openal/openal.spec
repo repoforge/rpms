@@ -66,8 +66,8 @@ cd linux
 	DESTDIR="%{buildroot}%{_prefix}" \
 	DESTLIB="%{buildroot}%{_libdir}"
 
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/openalrc
-%{__install} -D -m0644 linux/doc/openal.info %{buildroot}%{_infodir}
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/openalrc
+%{__install} -Dp -m0644 linux/doc/openal.info %{buildroot}%{_infodir}
 
 %clean
 %{__rm} -rf %{buildroot}

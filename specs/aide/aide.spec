@@ -47,12 +47,12 @@ checker and intrusion detection program.
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	bindir="%{buildroot}%{_sbindir}"
-%{__install} -D -m0600 %{SOURCE1} %{buildroot}%{_sysconfdir}/aide.conf
+%{__install} -Dp -m0600 %{SOURCE1} %{buildroot}%{_sysconfdir}/aide.conf
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/aide/
 
 %{__install} -m0644 %{SOURCE2} README.quickstart
-%{__install} -D -m0644 doc/aide.1.ru %{buildroot}%{_mandir}/ru/man1/aide.1
-%{__install} -D -m0644 doc/aide.conf.5.ru %{buildroot}%{_mandir}/ru/man5/aide.conf.5
+%{__install} -Dp -m0644 doc/aide.1.ru %{buildroot}%{_mandir}/ru/man1/aide.1
+%{__install} -Dp -m0644 doc/aide.conf.5.ru %{buildroot}%{_mandir}/ru/man5/aide.conf.5
 
 %clean
 %{__rm} -rf %{buildroot}

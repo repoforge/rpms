@@ -52,10 +52,10 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0644 img/xscorch-icon.xpm %{buildroot}%{_datadir}/pixmaps/xscorch.xpm
+%{__install} -Dp -m0644 img/xscorch-icon.xpm %{buildroot}%{_datadir}/pixmaps/xscorch.xpm
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 xscorch.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xscorch.desktop
+	%{__install} -Dp -m0644 xscorch.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xscorch.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

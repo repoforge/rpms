@@ -27,9 +27,9 @@ adding some new features.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0555 vcp %{buildroot}%{_bindir}/vcp
-%{__install} -D -m0644 vcp.conf.sample %{buildroot}%{_sysconfdir}/vcp.conf
-%{__install} -D -m0644 vcp.1 %{buildroot}%{_mandir}/man1/vcp.1
+%{__install} -Dp -m0555 vcp %{buildroot}%{_bindir}/vcp
+%{__install} -Dp -m0644 vcp.conf.sample %{buildroot}%{_sysconfdir}/vcp.conf
+%{__install} -Dp -m0644 vcp.1 %{buildroot}%{_mandir}/man1/vcp.1
 
 %clean
 %{__rm} -rf %{buildroot}

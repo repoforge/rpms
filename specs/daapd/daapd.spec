@@ -54,8 +54,8 @@ cd ..
 cd daaplib/src
 %makeinstall
 cd ../..
-%{__install} -D daapd %{buildroot}%{_bindir}/daapd
-%{__install} -D daapd.8 %{buildroot}%{_mandir}/man8/daapd.8
+%{__install} -Dp daapd %{buildroot}%{_bindir}/daapd
+%{__install} -Dp daapd.8 %{buildroot}%{_mandir}/man8/daapd.8
 
 %post
 /sbin/ldconfig 2>/dev/null

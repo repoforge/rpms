@@ -44,8 +44,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__install} -D -m0755 doc/tpbrc %{buildroot}%{_sysconfdir}/tpbrc
-%{__install} -D -m0755 tpb.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/tpb.sh
+%{__install} -Dp -m0755 doc/tpbrc %{buildroot}%{_sysconfdir}/tpbrc
+%{__install} -Dp -m0755 tpb.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/tpb.sh
 
 %{__install} -d -m0755 %{buildroot}/dev/
 touch %{buildroot}/dev/nvram

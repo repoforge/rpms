@@ -60,7 +60,7 @@ pushd i8krellm-%{gkrellmpluginver}
     %{__cp} -a i8krellm.so %{buildroot}%{_libdir}/gkrellm2/plugins/
 popd
 
-%{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_initrddir}/i8kbuttons
+%{__install} -Dp -m 755 %{SOURCE2} %{buildroot}%{_initrddir}/i8kbuttons
 
 
 %post

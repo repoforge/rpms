@@ -67,7 +67,7 @@ dvips doc/tech.dvi -o doc/Technical_Guide.ps
 	ROOT="%{buildroot}" \
 	MAN_DIR="%{_mandir}"
 #%{__mv} -f %{buildroot}%{_sbindir} %{buildroot}%{_bindir}
-%{__install} -D -m0755 keytab-lilo %{buildroot}%{_bindir}/keytab-lilo
+%{__install} -Dp -m0755 keytab-lilo %{buildroot}%{_bindir}/keytab-lilo
 
 %post
 if [ -f /etc/lilo.conf ]; then

@@ -30,8 +30,8 @@ such as connection refused.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 autossh %{buildroot}%{_bindir}/autossh
-%{__install} -D -m0644 autossh.1 %{buildroot}%{_mandir}/man1/autossh.1
+%{__install} -Dp -m0755 autossh %{buildroot}%{_bindir}/autossh
+%{__install} -Dp -m0644 autossh.1 %{buildroot}%{_mandir}/man1/autossh.1
 
 %clean
 %{__rm} -rf %{buildroot}

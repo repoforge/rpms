@@ -30,7 +30,7 @@ The UNARJ program is used to uncompress .arj format archives.  The
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 unarj %{buildroot}%{_bindir}/unarj
+%{__install} -Dp -m0755 unarj %{buildroot}%{_bindir}/unarj
 
 %clean
 %{__rm} -rf %{buildroot}

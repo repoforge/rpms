@@ -155,9 +155,9 @@ to use MPlayer, transcode or other similar programs.
 %makeinstall
 
 ### Make installlib is broken in 0.4.6-8, so we do it by hand
-%{__install} -D -m0644 libavcodec/libavcodec.a \
+%{__install} -Dp -m0644 libavcodec/libavcodec.a \
     %{buildroot}%{_libdir}/libavcodec.a
-%{__install} -D -m0644 libavformat/libavformat.a \
+%{__install} -Dp -m0644 libavformat/libavformat.a \
     %{buildroot}%{_libdir}/libavformat.a
 
 ### Remove from the included docs

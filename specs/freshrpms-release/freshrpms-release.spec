@@ -30,7 +30,7 @@ used to sign them.
 # Install license and gpg key to be included in the docs
 %{__cp} -a %{SOURCE0} %{SOURCE1} .
 # Install yum repo file
-%{__install} -D -m 0644 %{SOURCE2} \
+%{__install} -Dp -m 0644 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/yum.repos.d/freshrpms.repo
 
 

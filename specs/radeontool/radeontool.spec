@@ -29,7 +29,7 @@ external video output. Radeontool requires lspci.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 radeontool %{buildroot}%{_bindir}/radeontool
+%{__install} -Dp -m0755 radeontool %{buildroot}%{_bindir}/radeontool
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -38,10 +38,10 @@ plug  either the  user's  tty  (remote  shell  mode) or another process
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0711 zssh %{buildroot}%{_bindir}/zssh
+%{__install} -Dpp -m0711 zssh %{buildroot}%{_bindir}/zssh
 %{__ln_s} %{_bindir}/zssh  %{buildroot}%{_bindir}/ztelnet
-%{__install} -D -m 0644 zssh.1 %{buildroot}%{_mandir}/man1/zssh.1
-%{__install} -D -m 0644 ztelnet.1 %{buildroot}%{_mandir}/man1/ztelnet.1
+%{__install} -Dpp -m0644 zssh.1 %{buildroot}%{_mandir}/man1/zssh.1
+%{__install} -Dpp -m0644 ztelnet.1 %{buildroot}%{_mandir}/man1/ztelnet.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,8 +49,10 @@ plug  either the  user's  tty  (remote  shell  mode) or another process
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALL README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/zssh.1*
+%doc %{_mandir}/man1/ztelnet.1*
+%{_bindir}/zssh
+%{_bindir}/ztelnet
 
 %changelog
 * Thu Jan 07 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-0.c

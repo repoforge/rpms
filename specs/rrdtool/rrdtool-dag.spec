@@ -85,8 +85,8 @@ cd contrib/php4
 	#	LTLIBRARY_LDFLAGS="-g"
 cd -
 
-%{__install} -D -m0755 contrib/log2rrd/log2rrd.pl %{buildroot}%{_bindir}/log2rrd.pl
-%{__install} -D -m0755 contrib/php4/modules/rrdtool.so %{buildroot}%{_libdir}/php4/rrdtool.so
+%{__install} -Dp -m0755 contrib/log2rrd/log2rrd.pl %{buildroot}%{_bindir}/log2rrd.pl
+%{__install} -Dp -m0755 contrib/php4/modules/rrdtool.so %{buildroot}%{_libdir}/php4/rrdtool.so
 
 %{__install} -d -m0755 %{buildroot}/%{perl_archlib}
 %{__mv} -f %{buildroot}%{_libdir}/perl/* %{buildroot}%{perl_archlib}

@@ -54,7 +54,7 @@ python setup.py install \
 	--sysconfdir="%{buildroot}%{_sysconfdir}"
 %find_lang %{name}
 
-%{__install} -D -m0644 data/straw.schemas %{buildroot}%{_sysconfdir}/gconf/schemas/straw.schemas
+%{__install} -Dp -m0644 data/straw.schemas %{buildroot}%{_sysconfdir}/gconf/schemas/straw.schemas
 
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \

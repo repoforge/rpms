@@ -46,7 +46,7 @@ important performance matrics for your website.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 flood %{buildroot}%{_bindir}/flood
+%{__install} -Dp -m0755 flood %{buildroot}%{_bindir}/flood
 
 %clean
 %{__rm} -rf %{buildroot}

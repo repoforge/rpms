@@ -29,7 +29,7 @@ proxy rules to pick specific packets.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 netsed %{buildroot}%{_bindir}/netsed
+%{__install} -Dp -m0755 netsed %{buildroot}%{_bindir}/netsed
 
 %clean
 %{__rm} -rf %{buildroot}

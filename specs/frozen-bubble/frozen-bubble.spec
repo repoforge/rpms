@@ -49,7 +49,7 @@ editor.
 %{__rm} -f %{buildroot}%{perl_sitearch}/{build_fbsyms,perllocal.pod}
 find %{buildroot} -name .xvpics | xargs rm -rf
 
-%{__install} -D -m644 icons/frozen-bubble-icon-48x48.png \
+%{__install} -Dp -m644 icons/frozen-bubble-icon-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/frozen-bubble.png
 
 # Install menu entry
@@ -72,7 +72,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications  \
     %{name}.desktop
 %else
-%{__install} -D -m 0644 %{name}.desktop \
+%{__install} -Dp -m 0644 %{name}.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
 %endif
 

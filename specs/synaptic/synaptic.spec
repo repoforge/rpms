@@ -75,9 +75,9 @@ EOF
 %{__ln_s} consolehelper %{buildroot}%{_bindir}/synaptic
 
 # Install the consolehelper required files
-%{__install} -D -m 0644 synaptic.apps \
+%{__install} -Dp -m 0644 synaptic.apps \
     %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
-%{__install} -D -m 0644 synaptic.pam \
+%{__install} -Dp -m 0644 synaptic.pam \
     %{buildroot}%{_sysconfdir}/pam.d/synaptic
 
 # Remove legacy menu entry

@@ -236,9 +236,9 @@ EOF
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%{__install} -D -m0755 bluetooth.sysv %{buildroot}%{_initrddir}/bluetooth
-%{__install} -D -m0644 scripts/bluetooth.default %{buildroot}%{_sysconfdir}/sysconfig/bluetooth
-%{__install} -D -m0755 cups/bluetooth %{buildroot}%{_libdir}/cups/backend/bluetooth
+%{__install} -Dp -m0755 bluetooth.sysv %{buildroot}%{_initrddir}/bluetooth
+%{__install} -Dp -m0644 scripts/bluetooth.default %{buildroot}%{_sysconfdir}/sysconfig/bluetooth
+%{__install} -Dp -m0755 cups/bluetooth %{buildroot}%{_libdir}/cups/backend/bluetooth
 
 
 %post

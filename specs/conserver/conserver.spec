@@ -36,9 +36,9 @@ bells and whistles to accentuate that basic functionality.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0644 conserver.cf/conserver.cf %{buildroot}%{_sysconfdir}/conserver.cf
-%{__install} -D -m0600 conserver.cf/conserver.passwd %{buildroot}%{_sysconfdir}/conserver.passwd
-%{__install} -D -m0755 contrib/redhat-rpm/conserver.init %{buildroot}%{_initrddir}/conserver
+%{__install} -Dp -m0644 conserver.cf/conserver.cf %{buildroot}%{_sysconfdir}/conserver.cf
+%{__install} -Dp -m0600 conserver.cf/conserver.passwd %{buildroot}%{_sysconfdir}/conserver.passwd
+%{__install} -Dp -m0755 contrib/redhat-rpm/conserver.init %{buildroot}%{_initrddir}/conserver
 
 %post
 /sbin/chkconfig --add conserver

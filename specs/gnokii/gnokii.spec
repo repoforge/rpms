@@ -80,7 +80,7 @@ EOF
 #makeinstall -C smsd
 %find_lang %{name}
 
-%{__install} -D -m0644 Docs/sample/gnokiirc %{buildroot}%{_sysconfdir}/gnokiirc
+%{__install} -Dp -m0644 Docs/sample/gnokiirc %{buildroot}%{_sysconfdir}/gnokiirc
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -m0644 Docs/man/*.1 Docs/man/*.1x %{buildroot}%{_mandir}/man1/
@@ -89,7 +89,7 @@ EOF
 %{__install} -m0644 Docs/man/*.8 %{buildroot}%{_mandir}/man8/
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 gnokii.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gnokii.desktop
+        %{__install} -Dp -m0644 gnokii.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gnokii.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor net                  \

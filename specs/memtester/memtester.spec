@@ -24,8 +24,8 @@ memtester is a userspace utility for testing the memory subsystem for faults.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 memtester %{buildroot}%{_bindir}/memtester
-%{__install} -D -m0644 memtester.8 %{buildroot}%{_mandir}/man8/memtester.8
+%{__install} -Dp -m0755 memtester %{buildroot}%{_bindir}/memtester
+%{__install} -Dp -m0644 memtester.8 %{buildroot}%{_mandir}/man8/memtester.8
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -79,9 +79,9 @@ EOF
 %{__rm} -rf %{buildroot}
 
 ### Copy with permissions.
-%{__install} -D -m0710 .fetchmailrc %{buildroot}/opt/otrs/.fetchmailrc
-%{__install} -D -m0600 .mailfilter %{buildroot}/opt/otrs/.mailfilter
-%{__install} -D -m0644 .procmailrc %{buildroot}/opt/otrs/.procmailrc
+%{__install} -Dp -m0710 .fetchmailrc %{buildroot}/opt/otrs/.fetchmailrc
+%{__install} -Dp -m0600 .mailfilter %{buildroot}/opt/otrs/.mailfilter
+%{__install} -Dp -m0644 .procmailrc %{buildroot}/opt/otrs/.procmailrc
 
 ### Copy everything.
 %{__cp} -avf Kernel/ bin/ scripts/ var/ %{buildroot}/opt/otrs/
@@ -90,10 +90,10 @@ EOF
 %{__install} -m0700 bin/DeleteSessionIDs.pl bin/UnlockTickets.pl bin/otrs.getConfig %{buildroot}/opt/otrs/bin/
 
 ### Copy extra configuration files.
-%{__install} -D -m0755 scripts/redhat-rcotrs %{buildroot}%{_initrddir}/otrs
-%{__install} -D -m0644 scripts/redhat-rcotrs-config %{buildroot}%{_sysconfdir}/sysconfig/otrs
-#%{__install} -D -m0644 scripts/apache2-httpd.include.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
-%{__install} -D -m0644 otrs.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
+%{__install} -Dp -m0755 scripts/redhat-rcotrs %{buildroot}%{_initrddir}/otrs
+%{__install} -Dp -m0644 scripts/redhat-rcotrs-config %{buildroot}%{_sysconfdir}/sysconfig/otrs
+#%{__install} -Dp -m0644 scripts/apache2-httpd.include.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
+%{__install} -Dp -m0644 otrs.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
 
 touch %{buildroot}/opt/otrs/var/log/TicketCounter.log
 

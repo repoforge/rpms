@@ -185,13 +185,13 @@ popd
 %{__make} -C xpinstall/packager \
 	MOZILLA_BIN="\$(DIST)/bin/thunderbird-bin"
 
-%{__install} -D -m0755 thunderbird.sh %{buildroot}%{_bindir}/thunderbird
-%{__install} -D -m0644 other-licenses/branding/thunderbird/mozicon50.xpm %{buildroot}%{_datadir}/pixmaps/thunderbird.xpm
+%{__install} -Dp -m0755 thunderbird.sh %{buildroot}%{_bindir}/thunderbird
+%{__install} -Dp -m0644 other-licenses/branding/thunderbird/mozicon50.xpm %{buildroot}%{_datadir}/pixmaps/thunderbird.xpm
 
 %{__tar} -xzv -C %{buildroot}%{_libdir} -f dist/thunderbird-*-linux-gnu.tar.gz
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 thunderbird.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/thunderbird.desktop
+	%{__install} -Dp -m0644 thunderbird.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/thunderbird.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -75,8 +75,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 squidguard.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard
-%{__install} -D -m0644 samples/sample.conf %{buildroot}%{_sysconfdir}/squid/squidguard.conf
+%{__install} -Dp -m0644 squidguard.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard
+%{__install} -Dp -m0644 samples/sample.conf %{buildroot}%{_sysconfdir}/squid/squidguard.conf
 %{__ln_s} -f squidGuard %{buildroot}%{_bindir}/squidguard
 
 %{__install} -d -m0755 \

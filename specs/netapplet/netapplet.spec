@@ -116,7 +116,7 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0755 netdaemon.sysv %{buildroot}%{_initrddir}/netdaemon
+%{__install} -Dp -m0755 netdaemon.sysv %{buildroot}%{_initrddir}/netdaemon
 
 %post
 /sbin/chkconfig --add netdaemon

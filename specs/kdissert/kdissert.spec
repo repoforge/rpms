@@ -59,10 +59,10 @@ source "/etc/profile.d/qt.sh"
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 src/hi128-app-kdissert.png %{buildroot}%{_datadir}/pixmaps/kdissert.png
+%{__install} -Dp -m0644 src/hi128-app-kdissert.png %{buildroot}%{_datadir}/pixmaps/kdissert.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 kdissert.desktop %{buildroot}%{_datadir}/applications/kdissert.desktop
+	%{__install} -Dp -m0644 kdissert.desktop %{buildroot}%{_datadir}/applications/kdissert.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

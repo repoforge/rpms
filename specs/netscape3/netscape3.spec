@@ -24,8 +24,8 @@ standards, Java, JavaScript and some style sheets.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m755 netscape %{buildroot}%{_libdir}/netscape-%{version}/netscape
-%{__install} -D -m755 java_301 %{buildroot}%{_libdir}/netscape-%{version}/java_301
+%{__install} -Dp -m755 netscape %{buildroot}%{_libdir}/netscape-%{version}/netscape
+%{__install} -Dp -m755 java_301 %{buildroot}%{_libdir}/netscape-%{version}/java_301
 
 %{__install} -d -m0755 %{buildroot}/%{_bindir}/
 %{__ln_s} -f %{_libdir}/netscape-%{version}/netscape %{buildroot}%{_bindir}/netscape-%{version}

@@ -76,7 +76,7 @@ EOF
 	BINDIR="%{buildroot}%{_bindir}" \
 	SBINDIR="%{buildroot}%{_sbindir}" \
 	MANDIR="%{buildroot}%{_mandir}" 
-%{__install} -D -m644 tftp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/tftp
+%{__install} -Dp -m644 tftp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/tftp
 
 %post server
 /sbin/service xinetd reload &>/dev/null || :

@@ -31,8 +31,8 @@ as a wrapper to the "tried and true" ssh suite of applications.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 scponly %{buildroot}%{_bindir}/scponly
-%{__install} -D -m0644 scponly.8 %{buildroot}%{_mandir}/man8/scponly.8
+%{__install} -Dp -m0755 scponly %{buildroot}%{_bindir}/scponly
+%{__install} -Dp -m0644 scponly.8 %{buildroot}%{_mandir}/man8/scponly.8
 
 %clean
 %{__rm} -rf %{buildroot}

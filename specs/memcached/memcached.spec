@@ -135,10 +135,10 @@ EOF
 #%{__make} install \
 #	DESTDIR="%{buildroot}"
 
-%{__install} -D -m0755 memcached %{buildroot}%{_bindir}/memcached
-%{__install} -D -m0644 doc/memcached.1 %{buildroot}%{_mandir}/man1/memcached.1
-%{__install} -D -m0755 memcached.sysv %{buildroot}%{_initrddir}/memcached
-%{__install} -D -m0644 memcached.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/memcached
+%{__install} -Dp -m0755 memcached %{buildroot}%{_bindir}/memcached
+%{__install} -Dp -m0644 doc/memcached.1 %{buildroot}%{_mandir}/man1/memcached.1
+%{__install} -Dp -m0755 memcached.sysv %{buildroot}%{_initrddir}/memcached
+%{__install} -Dp -m0644 memcached.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/memcached
 
 %post
 /sbin/chkconfig --add memcached

@@ -121,10 +121,10 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
-%{__install} -D -m0644 dnsmasq.conf.example %{buildroot}%{_sysconfdir}/dnsmasq.conf
-%{__install} -D -m0755 dnsmasq.sysv %{buildroot}%{_initrddir}/dnsmasq
-%{__install} -D -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/dnsmasq.8
+%{__install} -Dp -m0755 src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
+%{__install} -Dp -m0644 dnsmasq.conf.example %{buildroot}%{_sysconfdir}/dnsmasq.conf
+%{__install} -Dp -m0755 dnsmasq.sysv %{buildroot}%{_initrddir}/dnsmasq
+%{__install} -Dp -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/dnsmasq.8
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/misc/
 

@@ -88,8 +88,8 @@ source /etc/profile.d/qt.sh
 
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/qtparted
-%{__install} -D -m0644 qtparted.console %{buildroot}%{_sysconfdir}/security/console.apps/qtparted
-%{__install} -D -m0644 qtparted.pam %{buildroot}%{_sysconfdir}/pam.d/qtparted
+%{__install} -Dp -m0644 qtparted.console %{buildroot}%{_sysconfdir}/security/console.apps/qtparted
+%{__install} -Dp -m0644 qtparted.pam %{buildroot}%{_sysconfdir}/pam.d/qtparted
 
 %if %{!?_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

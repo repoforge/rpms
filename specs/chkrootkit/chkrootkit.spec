@@ -81,20 +81,20 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 chkrootkit.apps %{buildroot}%{_sysconfdir}/security/console.apps/chkrootkit
-%{__install} -D -m0644 chkrootkit.pam %{buildroot}%{_sysconfdir}/pam.d/chkrootkit
+%{__install} -Dp -m0644 chkrootkit.apps %{buildroot}%{_sysconfdir}/security/console.apps/chkrootkit
+%{__install} -Dp -m0644 chkrootkit.pam %{buildroot}%{_sysconfdir}/pam.d/chkrootkit
 
-%{__install} -D -m0755 xchkrootkit.sh %{buildroot}%{_bindir}/xchkrootkit
+%{__install} -Dp -m0755 xchkrootkit.sh %{buildroot}%{_bindir}/xchkrootkit
 %{__ln_s} -f %{_bindir}/xchkrootkit %{buildroot}%{_bindir}/chkrootkitX
 %{__ln_s} -f %{_bindir}/consolehelper %{buildroot}%{_bindir}/chkrootkit
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/chkrootkit-%{version}/
 %{__install} -m0755 check_wtmpx chkdirs chklastlog chkproc chkrootkit chkrootkit.sh chkutmp chkwtmp ifpromisc strings-static %{buildroot}%{_libdir}/chkrootkit-%{version}/
 
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chkrootkit.png
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chkrootkit.png
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 chkrootkit.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/chkrootkit.desktop
+        %{__install} -Dp -m0644 chkrootkit.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/chkrootkit.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

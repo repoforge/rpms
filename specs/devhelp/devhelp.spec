@@ -63,7 +63,7 @@ intltoolize
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0755 devhelp.sh %{buildroot}%{_bindir}/devhelp
+%{__install} -Dp -m0755 devhelp.sh %{buildroot}%{_bindir}/devhelp
 
 %{__ln_s} -f libdevhelp-1.so.0.0.0 %{buildroot}%{_libdir}/libdevhelp-1.so.0
 %{__ln_s} -f libdevhelp-1.so.0.0.0 %{buildroot}%{_libdir}/libdevhelp-1.so

@@ -87,8 +87,8 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %find_lang WINGs
 %{__cat} WINGs.lang WPrefs.lang >> %{real_name}.lang
 
-%{__install} -D -m0755 windowmaker.xsession "%{buildroot}%{_sysconfdir}/X11/gdm/Sessions/Window Maker"
-%{__install} -D -m0644 windowmaker.desktop %{buildroot}%{_sysconfdir}/X11/dm/Sessions/windowmaker.desktop
+%{__install} -Dp -m0755 windowmaker.xsession "%{buildroot}%{_sysconfdir}/X11/gdm/Sessions/Window Maker"
+%{__install} -Dp -m0644 windowmaker.desktop %{buildroot}%{_sysconfdir}/X11/dm/Sessions/windowmaker.desktop
 
 %clean
 %{__rm} -rf %{buildroot}

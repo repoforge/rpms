@@ -47,7 +47,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 pixmaps/cog-icon-2-48x48.png %{buildroot}%{_datadir}/pixmaps/cog.png
+%{__install} -Dp -m0644 pixmaps/cog-icon-2-48x48.png %{buildroot}%{_datadir}/pixmaps/cog.png
 
 ### Desktop entry
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

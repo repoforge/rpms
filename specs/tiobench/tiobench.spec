@@ -28,8 +28,8 @@ Portable, robust, fully-threaded I/O benchmark program
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 tiobench.pl %{buildroot}%{_bindir}/tiobench
-%{__install} -D -m0755 tiotest %{buildroot}%{_bindir}/tiotest
+%{__install} -Dp -m0755 tiobench.pl %{buildroot}%{_bindir}/tiobench
+%{__install} -Dp -m0755 tiotest %{buildroot}%{_bindir}/tiotest
 
 ### Clean up docs
 %{__rm} -rf scripts/CVS

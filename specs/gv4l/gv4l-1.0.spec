@@ -49,7 +49,7 @@ Categories=Application;AudioVideo;
 EOF
 
 %if %{!?_without_freedesktop:1}0
-        %{__install} -D -m0644 gv4l.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gv4l.desktop
+        %{__install} -Dp -m0644 gv4l.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gv4l.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -82,9 +82,9 @@ EOF
 %{__mv} -f %{buildroot}%{_bindir}/gtoaster %{buildroot}%{_bindir}/gtoaster-root
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/gtoaster
 
-%{__install} -D -m0644 gtoaster.console %{buildroot}%{_sysconfdir}/security/console.apps/gtoaster
-%{__install} -D -m0644 gtoaster.pam %{buildroot}%{_sysconfdir}/pam.d/gtoaster
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/gtoaster.png
+%{__install} -Dp -m0644 gtoaster.console %{buildroot}%{_sysconfdir}/security/console.apps/gtoaster
+%{__install} -Dp -m0644 gtoaster.pam %{buildroot}%{_sysconfdir}/pam.d/gtoaster
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/gtoaster.png
 
 %if %{!?_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -93,7 +93,7 @@ EOF
 		--dir %{buildroot}%{_datadir}/applications    \
 		gtoaster.desktop
 %else
-	%{__install} -D -m0644 gtoaster.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gtoaster.desktop
+	%{__install} -Dp -m0644 gtoaster.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gtoaster.desktop
 %endif
 
 %clean

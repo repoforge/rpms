@@ -28,7 +28,7 @@ ${CC:-%{__cc}} %{optflags} -o tphdisk %{SOURCE0}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 tphdisk %{buildroot}%{_sbindir}/tphdisk
+%{__install} -Dp -m0755 tphdisk %{buildroot}%{_sbindir}/tphdisk
 
 %clean
 %{__rm} -rf %{buildroot}

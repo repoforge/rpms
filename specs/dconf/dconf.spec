@@ -40,7 +40,7 @@ files to send out or compare with other systems.
 %makeinstall
 
 ### Install configfile for this distribution
-%{__install} -D -m0644 dconf-redhat.conf %{buildroot}%{_sysconfdir}/dconf.conf
+%{__install} -Dp -m0644 dconf-redhat.conf %{buildroot}%{_sysconfdir}/dconf.conf
 
 %clean
 %{__rm} -rf %{buildroot}

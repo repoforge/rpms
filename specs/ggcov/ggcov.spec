@@ -60,10 +60,10 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 %{buildroot}%{_datadir}/ggcov/logo.xpm %{buildroot}%{_datadir}/pixmaps/ggcov.xpm
+%{__install} -Dp -m0644 %{buildroot}%{_datadir}/ggcov/logo.xpm %{buildroot}%{_datadir}/pixmaps/ggcov.xpm
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 ggcov.desktop %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
+        %{__install} -Dp -m0644 ggcov.desktop %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
 %else
 	%{__rm} -f %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

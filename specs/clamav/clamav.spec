@@ -210,14 +210,14 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/clamd
-%{__install} -D -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
-%{__install} -D -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
-%{__install} -D -m0644 clamd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/clamd
+%{__install} -Dp -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
+%{__install} -Dp -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
+%{__install} -Dp -m0644 clamd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
 
 %if %{!?_without_milter:1}0
-%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamav-milter
-%{__install} -D -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter
+%{__install} -Dp -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamav-milter
+%{__install} -Dp -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter
 %endif
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/clamav/

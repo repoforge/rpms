@@ -31,10 +31,10 @@ automates the process of ripping, authoring, preview and burning a DVD.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 lxdvdrip %{buildroot}%{_bindir}/lxdvdrip
-%{__install} -D -m0755 mpgtx/mpgtx %{buildroot}%{_bindir}/mpgtx
-%{__install} -D -m0755 vamps/vamps %{buildroot}%{_bindir}/vamps
-%{__install} -D -m0644 doc-pak/lxdvdrip.conf.EN %{buildroot}%{_sysconfdir}/lxdvdrip.conf
+%{__install} -Dp -m0755 lxdvdrip %{buildroot}%{_bindir}/lxdvdrip
+%{__install} -Dp -m0755 mpgtx/mpgtx %{buildroot}%{_bindir}/mpgtx
+%{__install} -Dp -m0755 vamps/vamps %{buildroot}%{_bindir}/vamps
+%{__install} -Dp -m0644 doc-pak/lxdvdrip.conf.EN %{buildroot}%{_sysconfdir}/lxdvdrip.conf
 
 %clean
 %{__rm} -rf %{buildroot}

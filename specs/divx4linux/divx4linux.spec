@@ -36,7 +36,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 for file in *.so; do
-	%{__install} -D -m0755 $file %{buildroot}%{_libdir}/$file.0
+	%{__install} -Dp -m0755 $file %{buildroot}%{_libdir}/$file.0
 	%{__ln_s} -f %{_libdir}/$file.0 %{buildroot}%{_libdir}/$file
 done
 

@@ -29,12 +29,12 @@ servers such as sercd.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 cyclades-devices %{buildroot}%{_sysconfdir}/cyclades-devices
-%{__install} -D -m0755 cyclades-ser-cli %{buildroot}%{_sbindir}/cyclades-ser-cli
-%{__install} -D -m0755 cyclades-serial-client %{buildroot}%{_sbindir}/cyclades-serial-client
-%{__install} -D -m0644 man/cyclades-ser-cli.8 %{buildroot}%{_mandir}/man8/cyclades-ser-cli.8
-%{__install} -D -m0644 man/cyclades-serial-client.8 %{buildroot}%{_mandir}/man8/cyclades-serial-client.8
-%{__install} -D -m0644 man/cyclades-devices.5 %{buildroot}%{_mandir}/man5/cyclades-devices.5
+%{__install} -Dp -m0644 cyclades-devices %{buildroot}%{_sysconfdir}/cyclades-devices
+%{__install} -Dp -m0755 cyclades-ser-cli %{buildroot}%{_sbindir}/cyclades-ser-cli
+%{__install} -Dp -m0755 cyclades-serial-client %{buildroot}%{_sbindir}/cyclades-serial-client
+%{__install} -Dp -m0644 man/cyclades-ser-cli.8 %{buildroot}%{_mandir}/man8/cyclades-ser-cli.8
+%{__install} -Dp -m0644 man/cyclades-serial-client.8 %{buildroot}%{_mandir}/man8/cyclades-serial-client.8
+%{__install} -Dp -m0644 man/cyclades-devices.5 %{buildroot}%{_mandir}/man5/cyclades-devices.5
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -39,7 +39,7 @@ Tag informations are converted from unicode to your system locale.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0755 libwma.so %{buildroot}%{xmms_inputdir}/libwma.so
+%{__install} -Dp -m 0755 libwma.so %{buildroot}%{xmms_inputdir}/libwma.so
 
 
 %clean

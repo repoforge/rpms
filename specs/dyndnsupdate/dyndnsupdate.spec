@@ -29,8 +29,8 @@ processes the URLs in dyndns.hosts.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 755 dyndnsupdate %{buildroot}%{_bindir}/dyndnsupdate
-%{__install} -D -m 644 dyndns.hosts.example %{buildroot}%{_sysconfdir}/dyndns.hosts
+%{__install} -Dp -m 755 dyndnsupdate %{buildroot}%{_bindir}/dyndnsupdate
+%{__install} -Dp -m 644 dyndns.hosts.example %{buildroot}%{_sysconfdir}/dyndns.hosts
 
 %clean
 %{__rm} -rf %{buildroot}

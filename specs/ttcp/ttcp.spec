@@ -29,8 +29,8 @@ ${CC:-%{__cc}} %{optflags} -o ttcp ttcp.c
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 ttcp %{buildroot}%{_bindir}/ttcp
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/ttcp.1
+%{__install} -Dp -m0755 ttcp %{buildroot}%{_bindir}/ttcp
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/ttcp.1
 
 %clean
 %{__rm} -rf %{buildroot}

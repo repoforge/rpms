@@ -208,11 +208,11 @@ cd Xvnc
 
 %{__cp} -aR classes %{buildroot}%{_datadir}/vnc/
 
-%{__install} -D -m0755 vncserver.sysv %{buildroot}%{_initrddir}/vncserver
-%{__install} -D -m0644 vncservers.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vncservers
+%{__install} -Dp -m0755 vncserver.sysv %{buildroot}%{_initrddir}/vncserver
+%{__install} -Dp -m0644 vncservers.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vncservers
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 vncviewer.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/vncviewer.desktop
+        %{__install} -Dp -m0644 vncviewer.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/vncviewer.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \

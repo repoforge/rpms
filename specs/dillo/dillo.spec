@@ -54,13 +54,13 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/dillo.png
+%{__install} -Dp %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/dillo.png
 
 ### Remove buildroot from config files
 %{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}%{_sysconfdir}/*
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 dillo.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/dillo.desktop
+        %{__install} -Dp -m0644 dillo.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/dillo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

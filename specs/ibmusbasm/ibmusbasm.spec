@@ -124,12 +124,12 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 linux/ibmspup %{buildroot}%{_sbindir}/ibmspup
-%{__install} -D -m0755 linux/ibmspdown %{buildroot}%{_sbindir}/ibmspdown
-%{__install} -D -m0755 linux/src/ibmasm %{buildroot}%{_sbindir}/ibmasm
-%{__install} -D -m0755 linux/shlib/libsysSp.so %{buildroot}%{_libdir}/libsysSp.so
+%{__install} -Dp -m0755 linux/ibmspup %{buildroot}%{_sbindir}/ibmspup
+%{__install} -Dp -m0755 linux/ibmspdown %{buildroot}%{_sbindir}/ibmspdown
+%{__install} -Dp -m0755 linux/src/ibmasm %{buildroot}%{_sbindir}/ibmasm
+%{__install} -Dp -m0755 linux/shlib/libsysSp.so %{buildroot}%{_libdir}/libsysSp.so
 
-%{__install} -D -m0755 ibmasm.sysv %{buildroot}%{_initrddir}/ibmasm
+%{__install} -Dp -m0755 ibmasm.sysv %{buildroot}%{_initrddir}/ibmasm
 
 %post
 /sbin/ldconfig 2>/dev/null

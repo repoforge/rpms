@@ -27,7 +27,7 @@ plain-text backtrace, suitable for putting into logfiles.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 coretrace %{buildroot}%{_bindir}/coretrace
+%{__install} -Dp -m0755 coretrace %{buildroot}%{_bindir}/coretrace
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -34,7 +34,7 @@ mapping and expects those media players to listen for the XF86Audio keysyms.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0755 libxf86audio.so \
+%{__install} -Dp -m 0755 libxf86audio.so \
     %{buildroot}%{xmms_generaldir}/libxf86audio.so
 
 

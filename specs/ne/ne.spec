@@ -42,8 +42,8 @@ This package includes the documentation for package %{name}.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/ne %{buildroot}%{_bindir}/ne
-%{__install} -D -m0644 doc/ne.1 %{buildroot}%{_mandir}/man1/ne.1
+%{__install} -Dp -m0755 src/ne %{buildroot}%{_bindir}/ne
+%{__install} -Dp -m0644 doc/ne.1 %{buildroot}%{_mandir}/man1/ne.1
 
 %{__install} -d -m0755 %{buildroot}%{_infodir}
 %{__install} -m0644 doc/ne.info* %{buildroot}%{_infodir}

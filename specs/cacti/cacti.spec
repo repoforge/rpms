@@ -91,10 +91,10 @@ EOF
 %{__install} -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
 %{__cp} -avx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
-#%{__install} -D -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
-#%{__install} -D -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
-%{__install} -D -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
-%{__install} -D -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
+#%{__install} -Dp -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
+#%{__install} -Dp -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
+%{__install} -Dp -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
+%{__install} -Dp -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
 
 %pre
 useradd -d %{_localstatedir}/www/cacti cacti &>/dev/null || :

@@ -79,7 +79,7 @@ moc shalvideo/kvideodlg2.h > shalvideo/kvideodlg2.moc
 %find_lang %{name}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 shalvideo.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/shalvideo.desktop
+	%{__install} -Dp -m0644 shalvideo.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/shalvideo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor kde --delete-original \

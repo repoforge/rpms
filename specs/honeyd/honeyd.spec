@@ -31,8 +31,8 @@ host to claim multiple addresses on a LAN for network simulation.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 honeyd %{buildroot}%{_sbindir}/honeyd
-%{__install} -D -m0644 honeyd.8 %{buildroot}%{_mandir}/man8/honeyd.8
+%{__install} -Dp -m0755 honeyd %{buildroot}%{_sbindir}/honeyd
+%{__install} -Dp -m0644 honeyd.8 %{buildroot}%{_mandir}/man8/honeyd.8
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/honeyd/
 %{__install} -m0644 xprobe2.conf nmap.assoc nmap.prints config.sample %{buildroot}%{_datadir}/honeyd/

@@ -270,7 +270,7 @@ cd -
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/run/pluto/ \
 			%{buildroot}%{_sysconfdir}/ipsec.d/
 #%{__install} -m0755 freeswan.sysv %{buildroot}%{_initrddir}/freeswan
-%{__install} -D -m0644 ipsec.secrets %{buildroot}%{_sysconfdir}/ipsec.secrets
+%{__install} -Dp -m0644 ipsec.secrets %{buildroot}%{_sysconfdir}/ipsec.secrets
 
 ### Clean up buildroot
 %{__perl} -pi -e 's|/usr/local|%{_prefix}|g' %{buildroot}%{_libexecdir}/ipsec/* %{buildroot}%{_libdir}/ipsec/*

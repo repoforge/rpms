@@ -29,8 +29,8 @@ to perform this configuration step.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 lphdisk %{buildroot}%{_sbindir}/lphdisk
-%{__install} -D -m0644 lphdisk.8 %{buildroot}%{_mandir}/man8/lphdisk.8
+%{__install} -Dp -m0755 lphdisk %{buildroot}%{_sbindir}/lphdisk
+%{__install} -Dp -m0644 lphdisk.8 %{buildroot}%{_mandir}/man8/lphdisk.8
 
 %clean
 %{__rm} -rf ${buildroot}

@@ -27,8 +27,8 @@ at runtime using a simple command line syntax.
 	
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 balance %{buildroot}%{_sbindir}/balance
-%{__install} -D -m0644 balance.1 %{buildroot}%{_mandir}/man1/balance.1
+%{__install} -Dp -m0755 balance %{buildroot}%{_sbindir}/balance
+%{__install} -Dp -m0644 balance.1 %{buildroot}%{_mandir}/man1/balance.1
 
 %{__install} -d -m1777 %{buildroot}%{_localstatedir}/run/balance/
 

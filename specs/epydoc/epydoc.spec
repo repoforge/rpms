@@ -34,8 +34,8 @@ ReStructuredText, Javadoc, and plaintext.
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot}
 # Also install the man pages
-%{__install} -D man/epydoc.1    %{buildroot}%{_mandir}/man1/epydoc.1
-%{__install} -D man/epydocgui.1 %{buildroot}%{_mandir}/man1/epydocgui.1
+%{__install} -Dp man/epydoc.1    %{buildroot}%{_mandir}/man1/epydoc.1
+%{__install} -Dp man/epydocgui.1 %{buildroot}%{_mandir}/man1/epydocgui.1
 
 
 %clean

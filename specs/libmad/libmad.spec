@@ -68,7 +68,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m 0644 mad.pc %{buildroot}%{_libdir}/pkgconfig/mad.pc
+%{__install} -Dp -m 0644 mad.pc %{buildroot}%{_libdir}/pkgconfig/mad.pc
 
 
 %clean

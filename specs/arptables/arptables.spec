@@ -37,8 +37,8 @@ you should install this package.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 arptables.8 %{buildroot}%{_mandir}/man8/arptables.8
-%{__install} -D -m0755 arptables %{buildroot}%{_sbindir}/arptables
+%{__install} -Dp -m0644 arptables.8 %{buildroot}%{_mandir}/man8/arptables.8
+%{__install} -Dp -m0755 arptables %{buildroot}%{_sbindir}/arptables
 
 %clean
 %{__rm} -rf %{buildroot}

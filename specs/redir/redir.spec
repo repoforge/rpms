@@ -36,9 +36,9 @@ someone else liked it enough to fix it.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 redir.orig %{buildroot}%{_bindir}/redir
-%{__install} -D -m0755 redir %{buildroot}%{_bindir}/redir-ha
-%{__install} -D -m0644 redir.man %{buildroot}%{_mandir}/man1/redir.1
+%{__install} -Dp -m0755 redir.orig %{buildroot}%{_bindir}/redir
+%{__install} -Dp -m0755 redir %{buildroot}%{_bindir}/redir-ha
+%{__install} -Dp -m0644 redir.man %{buildroot}%{_mandir}/man1/redir.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -62,9 +62,9 @@ highly-productive, object-oriented scripting language.
 %{__rm} -rf %{buildroot} rpm-skel
 
 # Copy over files from the default skel to the rpm-skel
-%{__install} -D -m 644 skel/etc/zope.conf.in rpm-skel/etc/zope.conf.in
-%{__install} -D -m 755 skel/bin/runzope.in rpm-skel%{_bindir}/runzope.in
-%{__install} -D -m 755 skel/bin/zopectl.in rpm-skel%{_bindir}/zopectl.in
+%{__install} -Dp -m 644 skel/etc/zope.conf.in rpm-skel/etc/zope.conf.in
+%{__install} -Dp -m 755 skel/bin/runzope.in rpm-skel%{_bindir}/runzope.in
+%{__install} -Dp -m 755 skel/bin/zopectl.in rpm-skel%{_bindir}/zopectl.in
 
 # Create all required additional directories
 for dir in %{zope_home} %{software_home} %{client_home} %{log_dir} %{run_dir} \
@@ -73,8 +73,8 @@ for dir in %{zope_home} %{software_home} %{client_home} %{log_dir} %{run_dir} \
 done
 
 # Install additional files in the rpm-skel
-%{__install} -D -m 755 %{SOURCE1} rpm-skel%{_sysconfdir}/rc.d/init.d/zope.in
-%{__install} -D -m 644 %{SOURCE2} rpm-skel%{_sysconfdir}/logrotate.d/zope.in
+%{__install} -Dp -m 755 %{SOURCE1} rpm-skel%{_sysconfdir}/rc.d/init.d/zope.in
+%{__install} -Dp -m 644 %{SOURCE2} rpm-skel%{_sysconfdir}/logrotate.d/zope.in
 
 # Install the skel, translating paths, into the build root
 %{python} "utilities/copyzopeskel.py" \

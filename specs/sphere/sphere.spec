@@ -65,8 +65,8 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__install} -m0755 bin/* %{buildroot}%{_bindir}
 
-%{__install} -D -m0755 lib/libsp.a %{buildroot}%{_libdir}/sp/libsp.a
-%{__install} -D -m0755 lib/libutil.a %{buildroot}%{_libdir}/sp/libutil.a
+%{__install} -Dp -m0755 lib/libsp.a %{buildroot}%{_libdir}/sp/libsp.a
+%{__install} -Dp -m0755 lib/libutil.a %{buildroot}%{_libdir}/sp/libutil.a
 %{__ln_s} -f sp/libsp.a %{buildroot}%{_libdir}/libsp.a
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}/sp/

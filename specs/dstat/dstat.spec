@@ -55,7 +55,7 @@ interprete real-time data as easy as possible.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{?_with_python15:%{__install} -D -m0755 dstat15 %{buildroot}%{_bindir}/dstat}
+%{?_with_python15:%{__install} -Dp -m0755 dstat15 %{buildroot}%{_bindir}/dstat}
 
 %clean
 %{__rm} -rf %{buildroot}

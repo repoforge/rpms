@@ -76,8 +76,8 @@ EOF
 	DESTDIR="%{buildroot}"
 
 %{__install} -m0755 examples/hid-ups examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/
-%{__install} -D -m0644 apcupsd.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/apcupsd.conf
-%{__install} -D -m0644 apcupsd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/apcupsd
+%{__install} -Dp -m0644 apcupsd.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/apcupsd.conf
+%{__install} -Dp -m0644 apcupsd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/apcupsd
 
 %clean
 %{__rm} -rf %{buildroot}

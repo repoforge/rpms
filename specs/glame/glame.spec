@@ -67,7 +67,7 @@ desktop-file-install \
     --delete-original \
     %{buildroot}%{_datadir}/gnome/apps/Multimedia/glame.desktop
 %endif
-%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/glame.png
+%{__install} -Dp -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/glame.png
 
 
 %clean

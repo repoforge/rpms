@@ -47,8 +47,8 @@ export LDFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/upx %{buildroot}%{_bindir}/upx
-%{__install} -D -m0444 doc/upx.1 %{buildroot}%{_mandir}/man1/upx.1
+%{__install} -Dp -m0755 src/upx %{buildroot}%{_bindir}/upx
+%{__install} -Dp -m0444 doc/upx.1 %{buildroot}%{_mandir}/man1/upx.1
 
 %clean
 %{__rm} -rf %{buildroot}

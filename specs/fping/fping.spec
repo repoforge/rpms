@@ -57,7 +57,7 @@ will be considered unreachable.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m4750 fping6 %{buildroot}%{_sbindir}/fping6
+%{__install} -Dp -m4750 fping6 %{buildroot}%{_sbindir}/fping6
 %{__ln_s} -f fping.8 %{buildroot}%{_mandir}/man8/fping6.8
 
 %clean

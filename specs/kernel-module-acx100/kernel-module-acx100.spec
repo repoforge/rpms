@@ -157,7 +157,7 @@ echo -n >config.mk
 
 %install
 ### Install utilities.
-%{__install} -D -m0755 firmware/extract %{buildroot}%{_bindir}/acx100-extract
+%{__install} -Dp -m0755 firmware/extract %{buildroot}%{_bindir}/acx100-extract
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/acx100/
 
 

@@ -130,9 +130,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 smunged %{buildroot}%{_sbindir}/smunged
-%{__install} -D -m0755 smunged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/smunged
-%{__install} -D -m0755 smunged.sysv %{buildroot}%{_initrddir}/smunged
+%{__install} -Dp -m0755 smunged %{buildroot}%{_sbindir}/smunged
+%{__install} -Dp -m0755 smunged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/smunged
+%{__install} -Dp -m0755 smunged.sysv %{buildroot}%{_initrddir}/smunged
 
 %post
 /sbin/chkconfig --add smunged

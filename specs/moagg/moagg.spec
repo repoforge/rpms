@@ -77,7 +77,7 @@ EOF
 %{__rm} -Rf %{buildroot}%{_datadir}/doc/moagg
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/applnk/Games/%{name}.desktop
+        %{__install} -Dp -m0644 %{name}.desktop %{buildroot}%{_datadir}/applnk/Games/%{name}.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \

@@ -55,12 +55,12 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -D -m0755 FSlint %{buildroot}%{_bindir}/fslint
+%{__install} -Dp -m0755 FSlint %{buildroot}%{_bindir}/fslint
 %{__ln_s} -f fslint %{buildroot}%{_bindir}/FSlint
 
-%{__install} -D -m0644 fslint_icon.png %{buildroot}%{_datadir}/pixmaps/fslint.png
-%{__install} -D -m0644 fslint_icon.png %{buildroot}%{_datadir}/fslint/fslint_icon.png
-%{__install} -D -m0644 fslint.glade %{buildroot}%{_datadir}/fslint/fslint.glade
+%{__install} -Dp -m0644 fslint_icon.png %{buildroot}%{_datadir}/pixmaps/fslint.png
+%{__install} -Dp -m0644 fslint_icon.png %{buildroot}%{_datadir}/fslint/fslint_icon.png
+%{__install} -Dp -m0644 fslint.glade %{buildroot}%{_datadir}/fslint/fslint.glade
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/fslint/fslint/{fstool,rmlint}
 %{__install} -m0755 fslint/{find*,fsl*,get*,zipdir} %{buildroot}%{_datadir}/fslint/fslint/
@@ -72,7 +72,7 @@ EOF
 %find_lang %{name}
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 fslint.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/fslint.desktop
+        %{__install} -Dp -m0644 fslint.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/fslint.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

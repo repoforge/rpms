@@ -79,7 +79,7 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{name}.desktop
 
 # Install the image used in the desktop entry
-%{__install} -D -m 644 images/AudacityLogo.xpm \
+%{__install} -Dp -m 644 images/AudacityLogo.xpm \
     %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
 
 

@@ -63,7 +63,7 @@ EOF
 	resdir="%{buildroot}%{_prefix}/X11R6/%{_lib}/X11" \
 	SYS_DBDIR="%{buildroot}%{_localstatedir}/tmp/nxtvdb"
 
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/nxtvepg.png
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/nxtvepg.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor net                  \

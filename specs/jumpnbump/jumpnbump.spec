@@ -29,11 +29,11 @@ alone. It has network support.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 jumpnbump %{buildroot}%{_bindir}/jumpnbump
-%{__install} -D -m0755 jumpnbump.fbcon %{buildroot}%{_bindir}/jumpnbump.fbcon
-%{__install} -D -m0755 jumpnbump.svgalib %{buildroot}%{_bindir}/jumpnbump.svgalib
-%{__install} -D -m0644 data/jumpbump.dat %{buildroot}%{_datadir}/jumpnbump/jumpbump.dat
-%{__install} -D -m0644 jumpnbump.6 %{buildroot}%{_mandir}/man6/jumpnbump.6
+%{__install} -Dp -m0755 jumpnbump %{buildroot}%{_bindir}/jumpnbump
+%{__install} -Dp -m0755 jumpnbump.fbcon %{buildroot}%{_bindir}/jumpnbump.fbcon
+%{__install} -Dp -m0755 jumpnbump.svgalib %{buildroot}%{_bindir}/jumpnbump.svgalib
+%{__install} -Dp -m0644 data/jumpbump.dat %{buildroot}%{_datadir}/jumpnbump/jumpbump.dat
+%{__install} -Dp -m0644 jumpnbump.6 %{buildroot}%{_mandir}/man6/jumpnbump.6
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -106,19 +106,19 @@ autoconf
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 mtr %{buildroot}%{_sbindir}/mtr
+%{__install} -Dp -m0755 mtr %{buildroot}%{_sbindir}/mtr
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%{__install} -D -m0755 xmtr %{buildroot}%{_sbindir}/xmtr
-%{__install} -D -m0644 img/mtr_icon.xpm %{buildroot}%{_datadir}/pixmaps/xmtr.xpm
-%{__install} -D -m0644 xmtr.consolehelper %{buildroot}%{_sysconfdir}/security/console.apps/xmtr
-%{__install} -D -m0644 xmtr.pam %{buildroot}%{_sysconfdir}/pam.d/xmtr
+%{__install} -Dp -m0755 xmtr %{buildroot}%{_sbindir}/xmtr
+%{__install} -Dp -m0644 img/mtr_icon.xpm %{buildroot}%{_datadir}/pixmaps/xmtr.xpm
+%{__install} -Dp -m0644 xmtr.consolehelper %{buildroot}%{_sysconfdir}/security/console.apps/xmtr
+%{__install} -Dp -m0644 xmtr.pam %{buildroot}%{_sysconfdir}/pam.d/xmtr
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/xmtr
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 xmtr.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/xmtr.desktop
+	%{__install} -Dp -m0644 xmtr.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/xmtr.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

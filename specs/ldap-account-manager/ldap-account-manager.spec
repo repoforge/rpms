@@ -48,7 +48,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -D -m0644 lam.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/lam.conf
+%{__install} -Dp -m0644 lam.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/lam.conf
 %{__rm} -f lam.httpd
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/lam/

@@ -212,10 +212,10 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	pkgdocdir="./rpm/"
-%{__install} -D -m0644 distccd.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/distccd
-%{__install} -D -m0755 distccd.sysv %{buildroot}%{_initrddir}/distccd
-%{__install} -D -m0644 distccd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/distccd
-%{__install} -D -m0644 distccd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/distccd
+%{__install} -Dp -m0644 distccd.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/distccd
+%{__install} -Dp -m0755 distccd.sysv %{buildroot}%{_initrddir}/distccd
+%{__install} -Dp -m0644 distccd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/distccd
+%{__install} -Dp -m0644 distccd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/distccd
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/distcc/bin/
 for compiler in cc c++ gcc g++; do
@@ -259,7 +259,7 @@ done
 %endif
 
 %if %{!?_without_gtk2:1}0
-	%{__install} -D -m0644 gnome/distccmon-gnome-icon.png %{buildroot}%{_datadir}/pixmaps/distccmon-gnome.png
+	%{__install} -Dp -m0644 gnome/distccmon-gnome-icon.png %{buildroot}%{_datadir}/pixmaps/distccmon-gnome.png
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \

@@ -61,7 +61,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall 
 %find_lang %{name}
 
-%{__install} -D -m0644 pixmaps/mlview-app-icon.png %{buildroot}%{_datadir}/pixmaps/mlview.png
+%{__install} -Dp -m0644 pixmaps/mlview-app-icon.png %{buildroot}%{_datadir}/pixmaps/mlview.png
 
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications          \

@@ -46,7 +46,7 @@ throw in the -l switch and have it spawn lynx to view the RFC.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 rfc-rpm %{buildroot}%{_bindir}/rfc
+%{__install} -Dp -m0755 rfc-rpm %{buildroot}%{_bindir}/rfc
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/rfc/
 %{__perl} ./rfc -i
 %{__perl} ./rfc -n -i

@@ -119,8 +119,8 @@ EOF
 	BINDIR="%{buildroot}%{_bindir}" \
 	MANDIR="%{buildroot}%{_mandir}/man1/"
 
-%{__install} -D -m0755 monit.sysv %{buildroot}%{_initrddir}/monit
-%{__install} -D -m0600 monitrc %{buildroot}%{_sysconfdir}/monit.conf
+%{__install} -Dp -m0755 monit.sysv %{buildroot}%{_initrddir}/monit
+%{__install} -Dp -m0600 monitrc %{buildroot}%{_sysconfdir}/monit.conf
 
 %post
 /sbin/chkconfig --add monit

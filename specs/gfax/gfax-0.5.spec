@@ -25,9 +25,9 @@ facsimilies by printing to a fax printer.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 gfax.py %{buildroot}%{_bindir}/gfax
-%{__install} -D -m0644 gfax.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/gfax.desktop
-%{__install} -D -m0644 gfax.png %{buildroot}%{_datadir}/pixmaps/gfax.png
+%{__install} -Dp -m0755 gfax.py %{buildroot}%{_bindir}/gfax
+%{__install} -Dp -m0644 gfax.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/gfax.desktop
+%{__install} -Dp -m0644 gfax.png %{buildroot}%{_datadir}/pixmaps/gfax.png
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/gfax/
 %{__install} -m0644 *.py *.glade %{buildroot}%{_libdir}/gfax/

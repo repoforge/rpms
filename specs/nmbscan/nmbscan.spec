@@ -34,7 +34,7 @@ lists maintained by master browsers.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 nmbscan %{buildroot}%{_bindir}/nmbscan
+%{__install} -Dp -m0755 nmbscan %{buildroot}%{_bindir}/nmbscan
 
 %clean
 %{__rm} -rf %{buildroot}

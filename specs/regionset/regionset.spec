@@ -24,7 +24,7 @@ regionset is a tool to read and set the region setting on a DVD drive.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 regionset %{buildroot}%{_sbindir}/regionset
+%{__install} -Dp -m0755 regionset %{buildroot}%{_sbindir}/regionset
 
 %clean
 %{__rm} -rf %{buildroot}

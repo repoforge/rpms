@@ -58,9 +58,9 @@ against.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 lib/libxclass/libxclass.a %{buildroot}/%{_libdir}/libxclass.a
-%{__install} -D -m0755 config/xc-config %{buildroot}/%{_bindir}/xc-config
-%{__install} -D -m0644 doc/xclassrc %{buildroot}/%{_sysconfdir}/xclass/xclassrc
+%{__install} -Dp -m0644 lib/libxclass/libxclass.a %{buildroot}/%{_libdir}/libxclass.a
+%{__install} -Dp -m0755 config/xc-config %{buildroot}/%{_bindir}/xc-config
+%{__install} -Dp -m0644 doc/xclassrc %{buildroot}/%{_sysconfdir}/xclass/xclassrc
 
 %{__install} -d -m0755 %{buildroot}/%{_includedir}/xclass
 %{__install} -m0644 include/xclass/*.h %{buildroot}/%{_includedir}/xclass/

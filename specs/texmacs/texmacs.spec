@@ -65,7 +65,7 @@ drawing editor and a presentation mode.
 	includedir=%{_includedir} \
 	bindir=%{_bindir} \
 	mandir=%{_mandir}
-%{__install} -D %{buildroot}%{_datadir}/TeXmacs/misc/mime/texmacs.desktop %{buildroot}%{_datadir}/applications/texmacs.desktop
+%{__install} -Dp %{buildroot}%{_datadir}/TeXmacs/misc/mime/texmacs.desktop %{buildroot}%{_datadir}/applications/texmacs.desktop
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -60,7 +60,7 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 gliv.applications %{buildroot}%{_datadir}/application-registry/gliv.applications
+%{__install} -Dp -m0644 gliv.applications %{buildroot}%{_datadir}/application-registry/gliv.applications
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \

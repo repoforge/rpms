@@ -40,7 +40,7 @@ analyzing areas that you specify, in as much detail as you require.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 scripts/logwatch.pl %{buildroot}%{_sysconfdir}/log.d/scripts/logwatch.pl
+%{__install} -Dp -m0755 scripts/logwatch.pl %{buildroot}%{_sysconfdir}/log.d/scripts/logwatch.pl
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/log.d/scripts/services/
 %{__install} -m0755 scripts/services/* %{buildroot}%{_sysconfdir}/log.d/scripts/services/
@@ -55,9 +55,9 @@ for file in scripts/logfiles/* ; do
 	fi
 done
 
-%{__install} -D -m0644 conf/logwatch.conf %{buildroot}%{_sysconfdir}/log.d/conf/logwatch.conf
-%{__install} -D -m0644 logwatch.8 %{buildroot}%{_mandir}/man8/logwatch.8
-%{__install} -D -m0644 lib/Logwatch.pm %{buildroot}%{_sysconfdir}/log.d/lib/Logwatch.pm
+%{__install} -Dp -m0644 conf/logwatch.conf %{buildroot}%{_sysconfdir}/log.d/conf/logwatch.conf
+%{__install} -Dp -m0644 logwatch.8 %{buildroot}%{_mandir}/man8/logwatch.8
+%{__install} -Dp -m0644 lib/Logwatch.pm %{buildroot}%{_sysconfdir}/log.d/lib/Logwatch.pm
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/log.d/conf/logfiles/
 %{__install} -m0644 conf/logfiles/* %{buildroot}%{_sysconfdir}/log.d/conf/logfiles/

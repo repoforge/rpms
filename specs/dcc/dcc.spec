@@ -194,8 +194,8 @@ mv %{buildroot}%{_bindir}/dccm %{buildroot}%{_sbindir}/
 perl -p -i -e "s/BRAND=\$/BRAND=%{version}-%{release}/ ; s/DCCM_LOG_AT=\$/\$&10/ ; " \
 	%{buildroot}%{_localstatedir}/dcc/dcc_conf
 
-%{__install} -D -m0644 dcc.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/dcc.conf
-%{__install} -D -m0644 webusers.conf %{buildroot}%{_localstatedir}/dcc/userdirs/webusers
+%{__install} -Dp -m0644 dcc.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/dcc.conf
+%{__install} -Dp -m0644 webusers.conf %{buildroot}%{_localstatedir}/dcc/userdirs/webusers
 
 # prepare for docs inclusion
 cp misc/README README.misc

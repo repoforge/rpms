@@ -170,12 +170,12 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -D -m0755 java.sh %{buildroot}%{_sysconfdir}/profile.d/java.sh
-%{__install} -D -m0644 java.applications %{buildroot}%{_datadir}/application-registry/java.applications
-%{__install} -D -m0644 java.desktop %{buildroot}%{_datadir}/applications/java.desktop
-%{__install} -D -m0644 java.mime %{buildroot}%{_datadir}/mime-info/java.mime
-%{__install} -D -m0644 java.keys %{buildroot}%{_datadir}/mime-info/java.keys
-%{__install} -D -m0644 java.xml %{buildroot}%{_datadir}/mime/packages/java.xml
+%{__install} -Dp -m0755 java.sh %{buildroot}%{_sysconfdir}/profile.d/java.sh
+%{__install} -Dp -m0644 java.applications %{buildroot}%{_datadir}/application-registry/java.applications
+%{__install} -Dp -m0644 java.desktop %{buildroot}%{_datadir}/applications/java.desktop
+%{__install} -Dp -m0644 java.mime %{buildroot}%{_datadir}/mime-info/java.mime
+%{__install} -Dp -m0644 java.keys %{buildroot}%{_datadir}/mime-info/java.keys
+%{__install} -Dp -m0644 java.xml %{buildroot}%{_datadir}/mime/packages/java.xml
 
 cd j2re%{version}_%{real_release}
 
@@ -191,7 +191,7 @@ cd j2re%{version}_%{real_release}
 %{__ln_s} -f ../lib/jre/bin/java %{buildroot}%{_bindir}/
 %{__ln_s} -f ../lib/jre/javaws/javaws %{buildroot}%{_bindir}/
 
-%{__install} -D -m0644 plugin/desktop/sun_java.png %{buildroot}%{_datadir}/pixmaps/java.png
+%{__install} -Dp -m0644 plugin/desktop/sun_java.png %{buildroot}%{_datadir}/pixmaps/java.png
 
 find %{buildroot}%{_libdir}/jre/ -type f -exec %{__chmod} 0644 {} \;
 find %{buildroot}%{_libdir}/jre/bin/ -type f -exec %{__chmod} 0755 {} \;

@@ -206,9 +206,9 @@ EOF
 
 %{__install} -m0755 partimage-static %{buildroot}%{_sbindir}
 
-%{__install} -D -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
-%{__install} -D -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
-%{__install} -D -m0644 partimaged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/partimaged
+%{__install} -Dp -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
+%{__install} -Dp -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
+%{__install} -Dp -m0644 partimaged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/partimaged
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/partimaged.log

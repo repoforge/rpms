@@ -27,7 +27,7 @@ as easy-to-understand binary values.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 ipcalc %{buildroot}%{_bindir}/ipcalc
+%{__install} -Dp -m0755 ipcalc %{buildroot}%{_bindir}/ipcalc
 %{__ln_s} -f ipcalc %{buildroot}%{_bindir}/ipcalc.pl
 
 %clean

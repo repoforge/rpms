@@ -82,7 +82,7 @@ EOF
 		--dir %{buildroot}%{_datadir}/applications \
 		rxvt.desktop
 %else
-        %{__install} -D -m0644 rxvt.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/rxvt.desktop
+        %{__install} -Dp -m0644 rxvt.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/rxvt.desktop
 %endif
 
 %clean

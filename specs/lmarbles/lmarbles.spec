@@ -40,7 +40,7 @@ convert lmarbles48.gif lmarbles.png
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -D lmarbles.png %{buildroot}%{_datadir}/pixmaps/lmarbles.png
+%{__install} -Dp lmarbles.png %{buildroot}%{_datadir}/pixmaps/lmarbles.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]

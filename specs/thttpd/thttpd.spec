@@ -56,8 +56,8 @@ Available rpmbuild rebuild options :
 %{__mkdir_p} %{buildroot}%{_sbindir}
 
 # Install init script and logrotate entry
-%{__install} -D -m 755 %{SOURCE1} %{buildroot}%{_initrddir}/thttpd
-%{__install} -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/thttpd
+%{__install} -Dp -m 755 %{SOURCE1} %{buildroot}%{_initrddir}/thttpd
+%{__install} -Dp -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/thttpd
 
 # Main install
 %{__make} install BINDIR=%{buildroot}%{_sbindir} \

@@ -49,8 +49,8 @@ python %{_libdir}/python*/compileall.py src
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -D -m0644 gcipher.1 %{buildroot}%{_mandir}/man1/gcipher.1
-%{__install} -D -m0755 src/gcipher %{buildroot}%{_bindir}/gcipher
+%{__install} -Dp -m0644 gcipher.1 %{buildroot}%{_mandir}/man1/gcipher.1
+%{__install} -Dp -m0755 src/gcipher %{buildroot}%{_bindir}/gcipher
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/gcipher/lib/{cipher,ciphergui}/
 %{__install} -m0644 src/*.{py,pyc,glade,gladep} %{buildroot}%{_datadir}/gcipher/lib/

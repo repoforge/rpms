@@ -54,7 +54,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 	--dir %{buildroot}%{_datadir}/applications \
 	gribouy.desktop
 
-%{__install} -D -m0755 graphics/gribouy.png %{buildroot}%{_datadir}/pixmaps/gribouy.png
+%{__install} -Dp -m0755 graphics/gribouy.png %{buildroot}%{_datadir}/pixmaps/gribouy.png
 
 %clean
 %{__rm} -rf %{buildroot}

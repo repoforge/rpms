@@ -33,9 +33,9 @@ updates, and sending update status to syslog and through e-mail.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 ddclient %{buildroot}%{_sbindir}/ddclient
-%{__install} -D -m0755 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
-%{__install} -D -m0600 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
+%{__install} -Dp -m0755 ddclient %{buildroot}%{_sbindir}/ddclient
+%{__install} -Dp -m0755 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
+%{__install} -Dp -m0600 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
 
 %clean
 %{__rm} -rf %{buildroot}

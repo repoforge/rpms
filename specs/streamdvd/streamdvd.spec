@@ -32,8 +32,8 @@ factor and StreamDVD will write a 'ready to author' vob file to stdout.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 streamdvd %{buildroot}%{_bindir}/streamdvd
-%{__install} -D -m0755 contrib/StreamAnalyze/streamanalyze %{buildroot}%{_bindir}/streamanalyze
+%{__install} -Dp -m0755 streamdvd %{buildroot}%{_bindir}/streamdvd
+%{__install} -Dp -m0755 contrib/StreamAnalyze/streamanalyze %{buildroot}%{_bindir}/streamanalyze
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -89,7 +89,7 @@ Available rpmbuild rebuild options :
 %find_lang %{name}
 %{__strip} %{buildroot}%{_libdir}/*.so* %{buildroot}%{_libdir}/gaim/*.so || :
 
-#%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/gaim/prefs.xml
+#%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/gaim/prefs.xml
 
 %post
 /sbin/ldconfig -n %{_libdir}/gaim

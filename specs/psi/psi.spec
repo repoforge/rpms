@@ -120,11 +120,11 @@ popd
 %{__make} install INSTALL_ROOT="%{buildroot}/"
 
 # Transport Layer Security plugin
-%{__install} -D -m0755 %{tls_plugin}/libqca-tls.so \
+%{__install} -Dp -m0755 %{tls_plugin}/libqca-tls.so \
     %{buildroot}%{qtdir}/plugins/crypto/libqca-tls.so
 
 # Install the pixmap for the menu entry
-%{__install} -D -m0644 iconsets/system/default/icon_32.png \
+%{__install} -Dp -m0644 iconsets/system/default/icon_32.png \
     %{buildroot}%{_datadir}/pixmaps/psi.png
 
 ### Cleanup buildroot
@@ -138,7 +138,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     psi.desktop
 %else
-%{__install} -D -m0644 psi.desktop \
+%{__install} -Dp -m0644 psi.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Internet/psi.desktop
 %endif
  

@@ -76,21 +76,21 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/awstats.model.conf
-%{__install} -D -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/awstats.localhost.localdomain.conf
-%{__install} -D -m0755 awstats.cron %{buildroot}%{_sysconfdir}/cron.hourly/00awstats
-%{__install} -D -m0644 awstats.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/awstats.conf
-%{__install} -D -m0755 tools/logresolvemerge.pl %{buildroot}%{_bindir}/logresolvemerge.pl
-%{__install} -D -m0755 tools/awstats_buildstaticpages.pl %{buildroot}%{_bindir}/awstats_buildstaticpages.pl
-%{__install} -D -m0755 tools/awstats_exportlib.pl %{buildroot}%{_bindir}/awstats_exportlib.pl
-%{__install} -D -m0755 tools/awstats_updateall.pl %{buildroot}%{_bindir}/awstats_updateall.pl
-%{__install} -D -m0755 tools/maillogconvert.pl %{buildroot}%{_bindir}/maillogconvert.pl
-%{__install} -D -m0755 tools/urlaliasbuilder.pl %{buildroot}%{_bindir}/urlaliasbuilder.pl
+%{__install} -Dp -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/awstats.model.conf
+%{__install} -Dp -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/awstats.localhost.localdomain.conf
+%{__install} -Dp -m0755 awstats.cron %{buildroot}%{_sysconfdir}/cron.hourly/00awstats
+%{__install} -Dp -m0644 awstats.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/awstats.conf
+%{__install} -Dp -m0755 tools/logresolvemerge.pl %{buildroot}%{_bindir}/logresolvemerge.pl
+%{__install} -Dp -m0755 tools/awstats_buildstaticpages.pl %{buildroot}%{_bindir}/awstats_buildstaticpages.pl
+%{__install} -Dp -m0755 tools/awstats_exportlib.pl %{buildroot}%{_bindir}/awstats_exportlib.pl
+%{__install} -Dp -m0755 tools/awstats_updateall.pl %{buildroot}%{_bindir}/awstats_updateall.pl
+%{__install} -Dp -m0755 tools/maillogconvert.pl %{buildroot}%{_bindir}/maillogconvert.pl
+%{__install} -Dp -m0755 tools/urlaliasbuilder.pl %{buildroot}%{_bindir}/urlaliasbuilder.pl
 
-%{__install} -D -m0755 wwwroot/cgi-bin/awstats.pl %{buildroot}%{_localstatedir}/www/awstats/awstats.pl
-%{__install} -D -m0755 wwwroot/cgi-bin/awredir.pl %{buildroot}%{_localstatedir}/www/awstats/awredir.pl
-%{__install} -D -m0644 wwwroot/classes/awgraphapplet.jar %{buildroot}%{_localstatedir}/www/awstats/classes/awgraphapplet.jar
-%{__install} -D -m0644 wwwroot/js/awstats_misc_tracker.js %{buildroot}%{_localstatedir}/www/awstats/js/awstats_misc_tracker.js
+%{__install} -Dp -m0755 wwwroot/cgi-bin/awstats.pl %{buildroot}%{_localstatedir}/www/awstats/awstats.pl
+%{__install} -Dp -m0755 wwwroot/cgi-bin/awredir.pl %{buildroot}%{_localstatedir}/www/awstats/awredir.pl
+%{__install} -Dp -m0644 wwwroot/classes/awgraphapplet.jar %{buildroot}%{_localstatedir}/www/awstats/classes/awgraphapplet.jar
+%{__install} -Dp -m0644 wwwroot/js/awstats_misc_tracker.js %{buildroot}%{_localstatedir}/www/awstats/js/awstats_misc_tracker.js
 
 %{__cp} -av wwwroot/{css,icon}/ %{buildroot}%{_localstatedir}/www/awstats/
 %{__cp} -av wwwroot/cgi-bin/{lang,lib,plugins} %{buildroot}%{_localstatedir}/www/awstats/

@@ -101,11 +101,11 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 arphound %{buildroot}%{_sbindir}/arphound
-%{__install} -D -m0644 docs/arphound.8 %{buildroot}%{_mandir}/man8/arphound.8
-%{__install} -D -m0644 docs/arphound.conf.5 %{buildroot}%{_mandir}/man5/arphound.conf.5
-%{__install} -D -m0644 arphound.conf.sample %{buildroot}%{_sysconfdir}/arphound.conf
-%{__install} -D -m0755 arphound.sysv %{buildroot}%{_initrddir}/arphound
+%{__install} -Dp -m0755 arphound %{buildroot}%{_sbindir}/arphound
+%{__install} -Dp -m0644 docs/arphound.8 %{buildroot}%{_mandir}/man8/arphound.8
+%{__install} -Dp -m0644 docs/arphound.conf.5 %{buildroot}%{_mandir}/man5/arphound.conf.5
+%{__install} -Dp -m0644 arphound.conf.sample %{buildroot}%{_sysconfdir}/arphound.conf
+%{__install} -Dp -m0755 arphound.sysv %{buildroot}%{_initrddir}/arphound
 
 %post
 /sbin/chkconfig --add arphound

@@ -37,13 +37,13 @@ information in raw format for long-term analysis.
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -D -m0755 atop %{buildroot}%{_bindir}/atop
-%{__install} -D -m0644 man/atop.1 %{buildroot}%{_mandir}/man1/atop.1
+%{__install} -Dp -m0755 atop %{buildroot}%{_bindir}/atop
+%{__install} -Dp -m0644 man/atop.1 %{buildroot}%{_mandir}/man1/atop.1
 
-%{__install} -D -m0755 atop.init %{buildroot}%{_initrddir}/atop
-%{__install} -D -m0644 atop.cron %{buildroot}%{_sysconfdir}/cron.d/atop
-%{__install} -D -m0711 atop.daily %{buildroot}%{_sysconfdir}/atop/atop.daily
-%{__install} -D -m0711 atop.24hours %{buildroot}%{_sysconfdir}/atop/atop.24hours
+%{__install} -Dp -m0755 atop.init %{buildroot}%{_initrddir}/atop
+%{__install} -Dp -m0644 atop.cron %{buildroot}%{_sysconfdir}/cron.d/atop
+%{__install} -Dp -m0711 atop.daily %{buildroot}%{_sysconfdir}/atop/atop.daily
+%{__install} -Dp -m0711 atop.24hours %{buildroot}%{_sysconfdir}/atop/atop.24hours
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/atop
 

@@ -31,7 +31,7 @@ Ccal is a curses-based calendar/journal/diary & todo list program.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 %{SOURCE0} %{buildroot}%{_bindir}/ccal
+%{__install} -Dp -m0755 %{SOURCE0} %{buildroot}%{_bindir}/ccal
 
 %clean
 %{__rm} -rf %{buildroot}

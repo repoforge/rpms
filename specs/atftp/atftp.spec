@@ -76,7 +76,7 @@ EOF
 %makeinstall
 
 %{__install} -d %{buildroot}/tftpboot/
-%{__install} -D -m0644 tftp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/tftp
+%{__install} -Dp -m0644 tftp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/tftp
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -79,17 +79,17 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{__rm} -rf %{buildroot}
 #%{__make} install \
 #	DESTDIR="%{buildroot}"
-%{__install} -D -m0755 texmaker %{buildroot}%{_bindir}/texmaker
-%{__install} -D -m0644 utilities/texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
-%{__install} -D -m0644 utilities/texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
-%{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/texmaker.png
-%{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
+%{__install} -Dp -m0755 texmaker %{buildroot}%{_bindir}/texmaker
+%{__install} -Dp -m0644 utilities/texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
+%{__install} -Dp -m0644 utilities/texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
+%{__install} -Dp -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/texmaker.png
+%{__install} -Dp -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/texmaker/
 %{__install} -m0644 utilities/*.{css,gif,html,png} %{buildroot}%{_datadir}/texmaker/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
+	%{__install} -Dp -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

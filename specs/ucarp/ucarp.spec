@@ -43,11 +43,11 @@ need for any dedicated extra network link between redundant hosts.
 %find_lang %{name}
 
 # Install the init script
-%{__install} -D -m 0755 %{SOURCE1} \
+%{__install} -Dp -m 0755 %{SOURCE1} \
     %{buildroot}/etc/rc.d/init.d/carp
 
 # Install the example config file
-%{__install} -D -m 0600 %{SOURCE2} \
+%{__install} -Dp -m 0600 %{SOURCE2} \
     %{buildroot}/etc/sysconfig/carp/vip-001.conf.example
 
 # Install trivial interface up/down scripts

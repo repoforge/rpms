@@ -87,7 +87,7 @@ CFLAGS="%{optflags}" ./make_configure \
 %{__rm} -rf %{buildroot}%{_infodir}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 gcvs.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gcvs.desktop
+	%{__install} -Dp -m0644 gcvs.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gcvs.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 	desktop-file-install --vendor %{desktop_vendor}    \

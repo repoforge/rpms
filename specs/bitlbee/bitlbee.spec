@@ -63,9 +63,9 @@ EOF
 %{__rm} -rf %{buildroot}
 ### FIXME: makeinstall-phase doesn't use autotool dirs and wants to change ownerships.
 %makeinstall
-#%{__install} -D -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
-##%{__install} -D -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
-%{__install} -D -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
+#%{__install} -Dp -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
+##%{__install} -Dp -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
+%{__install} -Dp -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
 %{__install} -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/

@@ -52,7 +52,7 @@ Available rpmbuild rebuild options :
 %{__make} install PREFIX="%{_prefix}" DESTDIR="%{buildroot}"
 
 # Install menu icon
-%{__install} -D -m 0644 %{SOURCE1} \
+%{__install} -Dp -m 0644 %{SOURCE1} \
     %{buildroot}%{_datadir}/pixmaps/starfighter.png
 
 # Install menu entry
@@ -75,7 +75,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-%{__install} -D -m 0644 %{name}.desktop \
+%{__install} -Dp -m 0644 %{name}.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
 %endif
 

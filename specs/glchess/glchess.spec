@@ -47,16 +47,16 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/glchess %{buildroot}%{_bindir}/glchess
-%{__install} -D -m0644 man/glchess.6 %{buildroot}%{_mandir}/man6/glchess.6
-%{__install} -D -m0644 glchessrc %{buildroot}%{_sysconfdir}/glchessrc
-%{__install} -D -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/glchess.menu
+%{__install} -Dp -m0755 src/glchess %{buildroot}%{_bindir}/glchess
+%{__install} -Dp -m0644 man/glchess.6 %{buildroot}%{_mandir}/man6/glchess.6
+%{__install} -Dp -m0644 glchessrc %{buildroot}%{_sysconfdir}/glchessrc
+%{__install} -Dp -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/glchess.menu
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/games/glchess/textures/
 %{__install} -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
 
 %if %{dfi}
-	%{__install} -D -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop
+	%{__install} -Dp -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor "net"                \

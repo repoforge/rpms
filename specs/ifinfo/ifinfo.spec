@@ -28,8 +28,8 @@ want to know, hopefully in the format you wish to see it.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 ifinfo %{buildroot}%{_bindir}/ifinfo
-%{__install} -D -m0755 ifinfo.8 %{buildroot}%{_mandir}/man8/ifinfo.8
+%{__install} -Dp -m0755 ifinfo %{buildroot}%{_bindir}/ifinfo
+%{__install} -Dp -m0755 ifinfo.8 %{buildroot}%{_mandir}/man8/ifinfo.8
 
 %clean
 %{__rm} -rf %{buildroot}

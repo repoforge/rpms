@@ -54,7 +54,7 @@ you will need to install %{name}-devel.
 %{__make} installlib \
 	DESTDIR="%{buildroot}"
 
-%{__install} -D -m0644 docs/examples/config/gammurc %{buildroot}%{_sysconfdir}/gammurc
+%{__install} -Dp -m0644 docs/examples/config/gammurc %{buildroot}%{_sysconfdir}/gammurc
 
 %files
 %defattr(-, root, root, 0755)

@@ -141,24 +141,24 @@ EOF
 %{__rm} -rf %{buildroot}
 
 #makeinstall
-%{__install} -D -m0755 src/mservdetect %{buildroot}%{_bindir}/mservdetect
-%{__install} -D -m0755 src/masqmail %{buildroot}%{_sbindir}/masqmail
+%{__install} -Dp -m0755 src/mservdetect %{buildroot}%{_bindir}/mservdetect
+%{__install} -Dp -m0755 src/masqmail %{buildroot}%{_sbindir}/masqmail
 %{__ln_s} -f masqmail %{buildroot}%{_sbindir}/sendmail.masqmail
 %{__ln_s} -f ../sbin/masqmail %{buildroot}%{_bindir}/mailq.masqmail
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}
 %{__ln_s} -f ../sbin/masqmail %{buildroot}%{_libdir}/sendmail.masqmail
 
-%{__install} -D -m0755 masqmail.sysv %{buildroot}%{_initrddir}/masqmail
+%{__install} -Dp -m0755 masqmail.sysv %{buildroot}%{_initrddir}/masqmail
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man{5,8}/
 %{__install} -m0644 docs/man/*.5 %{buildroot}%{_mandir}/man5/
 %{__install} -m0644 docs/man/*.8 %{buildroot}%{_mandir}/man8/
 
-%{__install} -D -m0644 masqmail.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/masqmail
-%{__install} -D -m0644 examples/masqmail.conf %{buildroot}%{_sysconfdir}/masqmail/masqmail.conf
-%{__install} -D -m0644 examples/example.route %{buildroot}%{_sysconfdir}/masqmail/example.route
-%{__install} -D -m0644 examples/example.get %{buildroot}%{_sysconfdir}/masqmail/example.get
+%{__install} -Dp -m0644 masqmail.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/masqmail
+%{__install} -Dp -m0644 examples/masqmail.conf %{buildroot}%{_sysconfdir}/masqmail/masqmail.conf
+%{__install} -Dp -m0644 examples/example.route %{buildroot}%{_sysconfdir}/masqmail/example.route
+%{__install} -Dp -m0644 examples/example.get %{buildroot}%{_sysconfdir}/masqmail/example.get
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/masqmail/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/spool/masqmail/{input,popuidl}/

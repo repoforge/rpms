@@ -44,7 +44,7 @@ response.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 man/firewalk.8 %{buildroot}%{_mandir}/man8/firewalk.8
+%{__install} -Dp -m0644 man/firewalk.8 %{buildroot}%{_mandir}/man8/firewalk.8
 
 %clean
 %{__rm} -rf %{buildroot}

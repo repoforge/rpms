@@ -33,9 +33,9 @@ and will be converted to the native format internally.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 pa_unix_oss/libportaudio.so \
+%{__install} -Dp -m0755 pa_unix_oss/libportaudio.so \
     %{buildroot}%{_libdir}/libportaudio.so
-%{__install} -D -m0644 pa_common/portaudio.h \
+%{__install} -Dp -m0644 pa_common/portaudio.h \
     %{buildroot}%{_includedir}/portaudio.h
 
 %clean

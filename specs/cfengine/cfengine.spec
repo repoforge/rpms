@@ -255,9 +255,9 @@ EOF
 			%{buildroot}%{_localstatedir}/cfengine/{bin,inputs}/ \
 %makeinstall
 %makeinstall -C doc
-%{__install} -D -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
-%{__install} -D -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
-%{__install} -D -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
+%{__install} -Dp -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
+%{__install} -Dp -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
+%{__install} -Dp -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
 
 ### Clean up buildroot

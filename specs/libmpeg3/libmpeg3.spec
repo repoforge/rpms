@@ -48,7 +48,7 @@ export CFLAGS="`echo "%{optflags} -fPIC" | sed 's/-O./-O1/'`"
 %{__install} -m0644 libmpeg3.h mpeg3private.h mpeg3protos.h \
     %{buildroot}%{_includedir}
 
-%{__install} -D -m0755 */libmpeg3.a %{buildroot}%{_libdir}/libmpeg3.a
+%{__install} -Dp -m0755 */libmpeg3.a %{buildroot}%{_libdir}/libmpeg3.a
 
 %post
 /sbin/ldconfig 2>/dev/null

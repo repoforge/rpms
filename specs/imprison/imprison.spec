@@ -30,7 +30,7 @@ capabilities, userid, and groups.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/imprison %{buildroot}%{_sbindir}/imprison
+%{__install} -Dp -m0755 src/imprison %{buildroot}%{_sbindir}/imprison
 
 %clean
 %{__rm} -rf %{buildroot}

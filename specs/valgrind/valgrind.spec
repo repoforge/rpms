@@ -60,7 +60,7 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %makeinstall \
 	docdir="%{_builddir}/%{buildsubdir}/rpm-doc"
 
-%{__install} -D -m0755 nptltest %{buildroot}%{_libdir}/valgrind/nptltest
+%{__install} -Dp -m0755 nptltest %{buildroot}%{_libdir}/valgrind/nptltest
 
 echo -e "#!/bin/sh\nexec %{__find_provides} | grep -v '^libpthread.so'" >%{_builddir}/%{buildsubdir}/find-provides
 chmod +x %{_builddir}/%{buildsubdir}/find-provides

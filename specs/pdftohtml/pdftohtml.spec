@@ -28,7 +28,7 @@ into html format.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D pdftohtml %{buildroot}%{_bindir}/pdftohtml
+%{__install} -Dp pdftohtml %{buildroot}%{_bindir}/pdftohtml
 
 %clean
 %{__rm} -rf %{buildroot}

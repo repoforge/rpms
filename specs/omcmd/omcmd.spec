@@ -28,7 +28,7 @@ hosts and leases.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 omcmd %{buildroot}%{_bindir}/omcmd
+%{__install} -Dp -m0755 omcmd %{buildroot}%{_bindir}/omcmd
 
 %clean
 %{__rm} -rf %{buildroot}

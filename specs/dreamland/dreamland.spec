@@ -26,7 +26,7 @@ ${CC:-%{__cc}} %{optflags} -o dreamland %{SOURCE0}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 dreamland %{buildroot}%{_bindir}/dreamland
+%{__install} -Dp -m0755 dreamland %{buildroot}%{_bindir}/dreamland
 
 %clean
 %{__rm} -rf %{buildroot}

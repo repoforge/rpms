@@ -37,7 +37,7 @@ the XMMS interface and configuration code.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 .libs/libblursk.so %{buildroot}%{xmms_visualdir}/libblursk.so
+%{__install} -Dp -m0755 .libs/libblursk.so %{buildroot}%{xmms_visualdir}/libblursk.so
 
 
 %clean

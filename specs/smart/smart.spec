@@ -332,9 +332,9 @@ cd -
 
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/smart-gui
 
-%{__install} -D -m0644 distro.py %{buildroot}%{_prefix}/lib/smart/distro.py
-%{__install} -D -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
-#%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
+%{__install} -Dp -m0644 distro.py %{buildroot}%{_prefix}/lib/smart/distro.py
+%{__install} -Dp -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
+#%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smart/channels/
 %{__cp} -av *.channel %{buildroot}%{_sysconfdir}/smart/channels/
@@ -342,13 +342,13 @@ cd -
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/smart/
 
 %if %{!?_without_gui:1}0
-%{__install} -D -m0755 smart-gui.sh %{buildroot}%{_sbindir}/smart-gui
-%{__install} -D -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
-%{__install} -D -m0644 smart-gui.pam %{buildroot}%{_sysconfdir}/pam.d/smart-gui
-%{__install} -D -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
+%{__install} -Dp -m0755 smart-gui.sh %{buildroot}%{_sbindir}/smart-gui
+%{__install} -Dp -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
+%{__install} -Dp -m0644 smart-gui.pam %{buildroot}%{_sysconfdir}/pam.d/smart-gui
+%{__install} -Dp -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 smart-gui.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
+	%{__install} -Dp -m0644 smart-gui.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

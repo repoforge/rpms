@@ -35,7 +35,7 @@ miss many of the failures that are detected by Memtest86.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m644 memtest.bin %{buildroot}/boot/%{name}-%{version}
+%{__install} -Dp -m644 memtest.bin %{buildroot}/boot/%{name}-%{version}
 
 %clean
 %{__rm} -rf %{buildroot}

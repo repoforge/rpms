@@ -35,7 +35,7 @@ chmod u+s /usr/bin/bastet
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 bastet %{buildroot}%{_bindir}/bastet
+%{__install} -Dp -m0755 bastet %{buildroot}%{_bindir}/bastet
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/games/
 touch %{buildroot}%{_localstatedir}/games/bastet.scores
 

@@ -245,7 +245,7 @@ desktop-file-install --vendor %{desktop_vendor} \
   --add-category AudioVideo                     \
   videolan-client.desktop
 %else
-%{__install} -D -m644 videolan-client.desktop \
+%{__install} -Dp -m644 videolan-client.desktop \
     %{buildroot}%{_datadir}/gnome/apps/Multimedia/videolan-client.desktop
 %endif
 

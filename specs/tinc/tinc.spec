@@ -34,9 +34,9 @@ information to others.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/tincd %{buildroot}%{_sbindir}/tincd
-%{__install} -D -m0644 doc/tincd.8 %{buildroot}%{_mandir}/man8/tincd.8
-%{__install} -D -m0644 doc/tinc.conf.5 %{buildroot}%{_mandir}/man5/tinc.conf.5
+%{__install} -Dp -m0755 src/tincd %{buildroot}%{_sbindir}/tincd
+%{__install} -Dp -m0644 doc/tincd.8 %{buildroot}%{_mandir}/man8/tincd.8
+%{__install} -Dp -m0644 doc/tinc.conf.5 %{buildroot}%{_mandir}/man5/tinc.conf.5
 
 %clean
 %{__rm} -rf %{buildroot}

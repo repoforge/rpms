@@ -116,13 +116,13 @@ cd -
 #	PYLIBDIR="%{buildroot}%{python_sitearch}"
 %endif
 
-%{__install} -D -m0755 util/listaction %{buildroot}%{_bindir}/listaction
-%{__install} -D -m0755 util/listfdb %{buildroot}%{_bindir}/listfdb
-%{__install} -D -m0755 util/listjpeg %{buildroot}%{_bindir}/listjpeg
-%{__install} -D -m0755 util/listmp3 %{buildroot}%{_bindir}/listmp3
-%{__install} -D -m0755 util/listswf %{buildroot}%{_bindir}/listswf
-%{__install} -D -m0755 util/makefdb %{buildroot}%{_bindir}/makefdb
-%{__install} -D -m0755 util/swftophp %{buildroot}%{_bindir}/swftophp
+%{__install} -Dp -m0755 util/listaction %{buildroot}%{_bindir}/listaction
+%{__install} -Dp -m0755 util/listfdb %{buildroot}%{_bindir}/listfdb
+%{__install} -Dp -m0755 util/listjpeg %{buildroot}%{_bindir}/listjpeg
+%{__install} -Dp -m0755 util/listmp3 %{buildroot}%{_bindir}/listmp3
+%{__install} -Dp -m0755 util/listswf %{buildroot}%{_bindir}/listswf
+%{__install} -Dp -m0755 util/makefdb %{buildroot}%{_bindir}/makefdb
+%{__install} -Dp -m0755 util/swftophp %{buildroot}%{_bindir}/swftophp
 
 %{__chmod} 0755 %{buildroot}%{_libdir}/libming.so*
 

@@ -222,13 +222,13 @@ cd helper-progs
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/virusmails/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/amavis/{db,tmp,var}/
 
-%{__install} -D -m0755 amavisd %{buildroot}%{_sbindir}/amavisd
-%{__install} -D -m0755 amavisd.sysv %{buildroot}%{_initrddir}/amavisd
-%{__install} -D -m0700 amavisd.conf %{buildroot}%{_sysconfdir}/amavisd.conf
-%{__install} -D -m0644 LDAP.schema %{buildroot}%{_sysconfdir}/openldap/schema/amavisd-new.schema
-%{__install} -D -m0644 amavisd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/amavisd
-%{__install} -D -m0644 amavisd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/amavisd
-%{__install} -D -m0755 amavisd.cron %{buildroot}%{_sysconfdir}/cron.daily/amavisd
+%{__install} -Dp -m0755 amavisd %{buildroot}%{_sbindir}/amavisd
+%{__install} -Dp -m0755 amavisd.sysv %{buildroot}%{_initrddir}/amavisd
+%{__install} -Dp -m0700 amavisd.conf %{buildroot}%{_sysconfdir}/amavisd.conf
+%{__install} -Dp -m0644 LDAP.schema %{buildroot}%{_sysconfdir}/openldap/schema/amavisd-new.schema
+%{__install} -Dp -m0644 amavisd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/amavisd
+%{__install} -Dp -m0644 amavisd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/amavisd
+%{__install} -Dp -m0755 amavisd.cron %{buildroot}%{_sysconfdir}/cron.daily/amavisd
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/amavis.log

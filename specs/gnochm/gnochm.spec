@@ -48,7 +48,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %{name}
 
-#%{__install} -D -m0644 gnochm.xml %{buildroot}%{_datadir}/mime/packages/gnochm.xml
+#%{__install} -Dp -m0644 gnochm.xml %{buildroot}%{_datadir}/mime/packages/gnochm.xml
 
 %clean
 %{__rm} -rf %{buildroot}

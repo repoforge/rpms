@@ -59,10 +59,10 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 icon_48x48.png %{buildroot}%{_datadir}/pixmaps/gtklife.png
+%{__install} -Dp -m0644 icon_48x48.png %{buildroot}%{_datadir}/pixmaps/gtklife.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 gtklife.desktop %{buildroot}%{_datadir}/gnome/apps/Games/gtklife.desktop
+	%{__install} -Dp -m0644 gtklife.desktop %{buildroot}%{_datadir}/gnome/apps/Games/gtklife.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

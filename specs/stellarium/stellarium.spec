@@ -74,7 +74,7 @@ EOF
 %{__chmod} +x %{buildroot}%{_bindir}/stellarium
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 stellarium.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/stellarium.desktop
+        %{__install} -Dp -m0644 stellarium.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/stellarium.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor net                  \

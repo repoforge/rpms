@@ -61,13 +61,13 @@ scons
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 blender %{buildroot}%{_bindir}/blender
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/blender.png
+%{__install} -Dp -m0755 blender %{buildroot}%{_bindir}/blender
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/blender.png
 %{__install} -d %{buildroot}%{_libdir}/blender
 %{__install} -m0644 release/scripts/* %{buildroot}%{_libdir}/blender/
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 blender.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/blender.desktop
+        %{__install} -Dp -m0644 blender.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/blender.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -31,7 +31,7 @@ to insert a specific module nor to have special administrator rights.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 sandbox %{buildroot}%{_bindir}/sandbox
+%{__install} -Dp -m0755 sandbox %{buildroot}%{_bindir}/sandbox
 
 %clean
 %{__rm} -rf %{buildroot}

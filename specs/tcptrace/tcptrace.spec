@@ -28,10 +28,10 @@ several types of graphs.
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__install} -D -m0755 tcptrace %{buildroot}%{_bindir}/tcptrace
-%{__install} -D -m0755 versnum %{buildroot}%{_bindir}/versnum
-%{__install} -D -m0755 xpl2gpl %{buildroot}%{_bindir}/xpl2gpl
-%{__install} -D -m0644 tcptrace.man %{buildroot}%{_mandir}/man1/tcptrace.1
+%{__install} -Dp -m0755 tcptrace %{buildroot}%{_bindir}/tcptrace
+%{__install} -Dp -m0755 versnum %{buildroot}%{_bindir}/versnum
+%{__install} -Dp -m0755 xpl2gpl %{buildroot}%{_bindir}/xpl2gpl
+%{__install} -Dp -m0644 tcptrace.man %{buildroot}%{_mandir}/man1/tcptrace.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -34,9 +34,9 @@ send files between a covered channel, and many other features.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 hping2 %{buildroot}%{_sbindir}/hping2
+%{__install} -Dp -m0755 hping2 %{buildroot}%{_sbindir}/hping2
 %{__ln_s} -f hping2 %{buildroot}%{_sbindir}/hping
-%{__install} -D -m0755 docs/hping2.8 %{buildroot}%{_mandir}/man8/hping2.8
+%{__install} -Dp -m0755 docs/hping2.8 %{buildroot}%{_mandir}/man8/hping2.8
 %{__ln_s} -f hping2.8 %{buildroot}%{_mandir}/man8/hping.8
 
 %clean

@@ -49,10 +49,10 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 pixmaps/keyring.xpm %{buildroot}%{_datadir}/pixmaps/gpa.xpm
+%{__install} -Dp -m0644 pixmaps/keyring.xpm %{buildroot}%{_datadir}/pixmaps/gpa.xpm
 
 %if %{dfi}
-	%{__install} -D -m0644 gpa.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpa.desktop
+	%{__install} -Dp -m0644 gpa.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpa.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

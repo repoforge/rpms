@@ -59,7 +59,7 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 glade/drgeo.png %{buildroot}%{_datadir}/pixmaps/drgeo.png
+%{__install} -Dp -m0644 glade/drgeo.png %{buildroot}%{_datadir}/pixmaps/drgeo.png
 
 %if %{?!_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

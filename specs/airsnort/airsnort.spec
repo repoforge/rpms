@@ -54,7 +54,7 @@ EOF
 %makeinstall
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 airsnort.desktop %{buildroot}%{_datadir}/gnome/apps/Network/airsnort.desktop
+        %{__install} -Dp -m0644 airsnort.desktop %{buildroot}%{_datadir}/gnome/apps/Network/airsnort.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \

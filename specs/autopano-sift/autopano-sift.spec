@@ -40,15 +40,15 @@ available at http://hugin.sf.net/
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/libsift.dll %{buildroot}%{_libdir}/libsift.dll
-%{__install} -D -m0755 src/util/autopanog/autopanog.exe %{buildroot}%{_bindir}/autopanog.exe
-%{__install} -D -m0755 src/util/autopano.exe %{buildroot}%{_bindir}/autopano.exe
-%{__install} -D -m0755 src/util/showone.exe %{buildroot}%{_bindir}/showone.exe
-%{__install} -D -m0755 src/util/showtwo.exe %{buildroot}%{_bindir}/showtwo.exe
-%{__install} -D -m0755 src/util/generatekeys.exe %{buildroot}%{_bindir}/generatekeys.exe
-%{__install} -D -m0755 src/util/generatekeys-sd.exe %{buildroot}%{_bindir}/generatekeys-sd.exe
-%{__install} -D -m0755 src/bin/autopano-complete.sh %{buildroot}%{_bindir}/autopano-complete.sh
-%{__install} -D -m0755 src/util/monoopt.sh %{buildroot}%{_bindir}/monoopt.sh
+%{__install} -Dp -m0755 src/libsift.dll %{buildroot}%{_libdir}/libsift.dll
+%{__install} -Dp -m0755 src/util/autopanog/autopanog.exe %{buildroot}%{_bindir}/autopanog.exe
+%{__install} -Dp -m0755 src/util/autopano.exe %{buildroot}%{_bindir}/autopano.exe
+%{__install} -Dp -m0755 src/util/showone.exe %{buildroot}%{_bindir}/showone.exe
+%{__install} -Dp -m0755 src/util/showtwo.exe %{buildroot}%{_bindir}/showtwo.exe
+%{__install} -Dp -m0755 src/util/generatekeys.exe %{buildroot}%{_bindir}/generatekeys.exe
+%{__install} -Dp -m0755 src/util/generatekeys-sd.exe %{buildroot}%{_bindir}/generatekeys-sd.exe
+%{__install} -Dp -m0755 src/bin/autopano-complete.sh %{buildroot}%{_bindir}/autopano-complete.sh
+%{__install} -Dp -m0755 src/util/monoopt.sh %{buildroot}%{_bindir}/monoopt.sh
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -57,13 +57,13 @@ xmkmf -a
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m2755 xkobo %{buildroot}%{_bindir}/xkobo
-%{__install} -D -m0644 xkobo.man %{buildroot}%{_mandir}/man6/xkobo.6
+%{__install} -Dp -m2755 xkobo %{buildroot}%{_bindir}/xkobo
+%{__install} -Dp -m0644 xkobo.man %{buildroot}%{_mandir}/man6/xkobo.6
 
 %{__install} -d -m0775 %{buildroot}%{_localstatedir}/lib/games/xkobo/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 xkobo.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xkobo.desktop
+	%{__install} -Dp -m0644 xkobo.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xkobo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

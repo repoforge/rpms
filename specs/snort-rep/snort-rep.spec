@@ -26,8 +26,8 @@ from a syslog file.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 snort-rep %{buildroot}%{_bindir}/snort-rep
-%{__install} -D -m0755 snort-rep-mail %{buildroot}%{_bindir}/snort-rep-mail
+%{__install} -Dp -m0755 snort-rep %{buildroot}%{_bindir}/snort-rep
+%{__install} -Dp -m0755 snort-rep-mail %{buildroot}%{_bindir}/snort-rep-mail
 
 %clean
 %{__rm} -rf %{buildroot}

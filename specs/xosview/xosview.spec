@@ -77,12 +77,12 @@ EOF
 			%{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/
 %makeinstall \
 	PREFIX_TO_USE="%{buildroot}%{_prefix}/X11R6"
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/icons/xosview.png
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/icons/xosview.png
 
 %{__chmod} 0755 %{buildroot}%{_usr}/X11R6/bin/xosview
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 xosview.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xosview.desktop
+	%{__install} -Dp -m0644 xosview.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xosview.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -60,7 +60,7 @@ export CPPFLAGS="-I/usr/include/subversion-1"
 	DESTDIR="%{buildroot}"
 
 convert src/res/svn.ico rapidsvn.png
-%{__install} -D -m0644 rapidsvn.png.0 %{buildroot}%{_datadir}/pixmaps/rapidsvn.png
+%{__install} -Dp -m0644 rapidsvn.png.0 %{buildroot}%{_datadir}/pixmaps/rapidsvn.png
 
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

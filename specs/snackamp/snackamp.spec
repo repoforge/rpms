@@ -60,14 +60,14 @@ dos2unix *.tcl */*.tcl */*/*.tcl
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type f -exec chmod 0644 {} \;
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 #%{__install} -m0755 icons/snackAmp.ico %{buildroot}%{_datadir}/pixmaps/
-%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/snackamp.png
-%{__install} -D -m0755 snackAmp.tcl %{buildroot}%{_libdir}/tcl/snackAmp/snackAmp.tcl
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/snackamp.png
+%{__install} -Dp -m0755 snackAmp.tcl %{buildroot}%{_libdir}/tcl/snackAmp/snackAmp.tcl
 %{__install} -m0644 main.tcl snackAmphotKeys.tcl %{buildroot}%{_libdir}/tcl/snackAmp/
 %{__ln_s} -f %{_libdir}/tcl/snackAmp/snackAmp.tcl %{buildroot}%{_bindir}/snackamp
 %{__ln_s} -f %{_libdir}/tcl/snackAmp/snackAmp.tcl %{buildroot}%{_bindir}/snackAmp
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 snackamp.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/snackamp.desktop
+	%{__install} -Dp -m0644 snackamp.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/snackamp.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor net                  \

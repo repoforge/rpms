@@ -58,7 +58,7 @@ fi
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__install} -D -m 0644 %{name}-64x64.png \
+%{__install} -Dp -m 0644 %{name}-64x64.png \
     %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications

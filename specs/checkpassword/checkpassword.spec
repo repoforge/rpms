@@ -38,7 +38,7 @@ support POP toasters.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 checkpassword %{buildroot}%{_bindir}/checkpassword
+%{__install} -Dp -m0755 checkpassword %{buildroot}%{_bindir}/checkpassword
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -105,8 +105,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0600 op.conf %{buildroot}%{_sysconfdir}/op.conf
-%{__install} -D -m0644 op.pam %{buildroot}%{_sysconfdir}/pam.d/op
+%{__install} -Dp -m0600 op.conf %{buildroot}%{_sysconfdir}/op.conf
+%{__install} -Dp -m0644 op.pam %{buildroot}%{_sysconfdir}/pam.d/op
 
 %clean
 %{__rm} -rf %{buildroot}

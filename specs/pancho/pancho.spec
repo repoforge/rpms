@@ -47,7 +47,7 @@ and shared with the community via the Pancho Project website.
 
 %{__perl} -pi.orig -e 's|%{buildroot}||' blib/script/pancho
 
-%{__install} -D -m0755 blib/script/pancho %{buildroot}%{_bindir}/pancho
+%{__install} -Dp -m0755 blib/script/pancho %{buildroot}%{_bindir}/pancho
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \

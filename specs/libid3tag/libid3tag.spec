@@ -58,7 +58,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m 644 id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
+%{__install} -Dp -m 644 id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
 
 
 %clean

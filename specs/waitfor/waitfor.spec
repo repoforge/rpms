@@ -29,8 +29,8 @@ shutdown of services.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 waitfor %{buildroot}%{_bindir}/waitfor
-%{__install} -D -m0644 waitfor.1 %{buildroot}%{_mandir}/man1/waitfor.1
+%{__install} -Dp -m0755 waitfor %{buildroot}%{_bindir}/waitfor
+%{__install} -Dp -m0644 waitfor.1 %{buildroot}%{_mandir}/man1/waitfor.1
 
 %clean
 %{__rm} -rf %{buildroot}

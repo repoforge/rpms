@@ -66,7 +66,7 @@ EOF
 	datadir="%{buildroot}%{_datadir}/xawtv"
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 xawtv.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawtv.desktop
+	%{__install} -Dp -m0644 xawtv.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawtv.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

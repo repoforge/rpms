@@ -103,7 +103,7 @@ desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-%{__install} -D -m 644 %{name}.desktop \
+%{__install} -Dp -m 644 %{name}.desktop \
   %{buildroot}/etc/X11/applnk/Games/%{name}.desktop
 %endif
 

@@ -158,11 +158,11 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0711 src/nrpe %{buildroot}%{_sbindir}/nrpe
-%{__install} -D -m0711 src/check_nrpe %{buildroot}%{_libdir}/nagios/plugins/check_nrpe
-%{__install} -D -m0644 nrpe.cfg %{buildroot}%{_sysconfdir}/nagios/nrpe.cfg
-%{__install} -D -m0755 nrpe.sysv %{buildroot}%{_initrddir}/nrpe
-%{__install} -D -m0644 nrpe.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nrpe
+%{__install} -Dp -m0711 src/nrpe %{buildroot}%{_sbindir}/nrpe
+%{__install} -Dp -m0711 src/check_nrpe %{buildroot}%{_libdir}/nagios/plugins/check_nrpe
+%{__install} -Dp -m0644 nrpe.cfg %{buildroot}%{_sysconfdir}/nagios/nrpe.cfg
+%{__install} -Dp -m0755 nrpe.sysv %{buildroot}%{_initrddir}/nrpe
+%{__install} -Dp -m0644 nrpe.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nrpe
 
 %post
 /sbin/chkconfig --add nrpe

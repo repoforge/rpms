@@ -28,8 +28,8 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 jhead %{buildroot}%{_bindir}/jhead
-%{__install} -D -m0755 jhead.1.gz %{buildroot}%{_mandir}/man1/jhead.1.gz
+%{__install} -Dp -m0755 jhead %{buildroot}%{_bindir}/jhead
+%{__install} -Dp -m0755 jhead.1.gz %{buildroot}%{_mandir}/man1/jhead.1.gz
 
 
 %clean

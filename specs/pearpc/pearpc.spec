@@ -67,10 +67,10 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{name}.desktop
 
 # Icon for the desktop file
-%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/pearpc.png
+%{__install} -Dp -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/pearpc.png
 
 # Example (patched) configuration file
-%{__install} -D -m 0644 ppccfg.example %{buildroot}%{_sysconfdir}/ppc.conf
+%{__install} -Dp -m 0644 ppccfg.example %{buildroot}%{_sysconfdir}/ppc.conf
 
 # Empty compressed disk images + video driver
 %{__mkdir_p} %{buildroot}%{_datadir}/pearpc/emptyimages

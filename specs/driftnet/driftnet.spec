@@ -28,8 +28,8 @@ traffic.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 driftnet %{buildroot}%{_sbindir}/driftnet
-%{__install} -D -m0644 driftnet.1 %{buildroot}%{_mandir}/man1/driftnet.1
+%{__install} -Dp -m0755 driftnet %{buildroot}%{_sbindir}/driftnet
+%{__install} -Dp -m0644 driftnet.1 %{buildroot}%{_mandir}/man1/driftnet.1
 
 %clean
 %{__rm} -rf %{buildroot}

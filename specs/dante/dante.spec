@@ -241,13 +241,13 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 example/socks-simple.conf %{buildroot}%{_sysconfdir}/socks.conf
-%{__install} -D -m0644 example/sockd.conf %{buildroot}%{_sysconfdir}/sockd.conf
+%{__install} -Dp -m0644 example/socks-simple.conf %{buildroot}%{_sysconfdir}/socks.conf
+%{__install} -Dp -m0644 example/sockd.conf %{buildroot}%{_sysconfdir}/sockd.conf
 
-%{__install} -D -m0755 sockd.sysv %{buildroot}%{_initrddir}/sockd
-%{__install} -D -m0644 sockd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/sockd
-%{__install} -D -m0755 dsocksify.sysv %{buildroot}%{_initrddir}/dsocksify
-%{__install} -D -m0755 dsocksify %{buildroot}%{_bindir}/dsocksify
+%{__install} -Dp -m0755 sockd.sysv %{buildroot}%{_initrddir}/sockd
+%{__install} -Dp -m0644 sockd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/sockd
+%{__install} -Dp -m0755 dsocksify.sysv %{buildroot}%{_initrddir}/dsocksify
+%{__install} -Dp -m0755 dsocksify %{buildroot}%{_bindir}/dsocksify
 %{__ln_s} -f dsocksify %{buildroot}%{_bindir}/socksify
 
 ### FIXME: Set library as executable - prevent ldd from complaining

@@ -43,9 +43,9 @@ TCP/IP connections.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/rc.d/init.d/identd
-%{__install} -D -m 640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
-%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
+%{__install} -Dp -m 755 %{SOURCE1} %{buildroot}/etc/rc.d/init.d/identd
+%{__install} -Dp -m 640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
+%{__install} -Dp -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
 
 
 %clean

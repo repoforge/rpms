@@ -150,7 +150,7 @@ export CC=gcc CXX=g++
 %find_lang %{name}
 
 # Add subversion.conf configuration file into httpd/conf.d directory.
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/subversion.conf
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/subversion.conf
 
 # Remove unpackaged files
 %{__rm} -rf %{buildroot}%{_includedir}/subversion-*/*.txt \
@@ -175,8 +175,8 @@ find %{buildroot}%{_libdir}/perl5 -type f -perm 555 -print0 |
        doc/book/book/images/images doc/book/book/images/*.ppt
 
 # Install psvn for emacs and xemacs
-%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/emacs/site-lisp/psvn.el
-%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/xemacs/site-packages/lisp/psvn.el
+%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_datadir}/emacs/site-lisp/psvn.el
+%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_datadir}/xemacs/site-packages/lisp/psvn.el
 
 # Rename authz_svn INSTALL doc for docdir
 ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL

@@ -48,7 +48,7 @@ EOF
 %find_lang %{name}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 imposter.desktop %{buildroot}%{_datadir}/applications/imposter.desktop
+	%{__install} -Dp -m0644 imposter.desktop %{buildroot}%{_datadir}/applications/imposter.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --delete-original             \

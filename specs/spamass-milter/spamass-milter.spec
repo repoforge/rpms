@@ -123,8 +123,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 spamass-milter.sysv %{buildroot}%{_initrddir}/spamass-milter
-%{__install} -D -m0644 spamass-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/spamass-milter
+%{__install} -Dp -m0755 spamass-milter.sysv %{buildroot}%{_initrddir}/spamass-milter
+%{__install} -Dp -m0644 spamass-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/spamass-milter
 
 %post
 /sbin/chkconfig --add spamass-milter

@@ -44,7 +44,7 @@ Fluendo Streaming Server.
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/flumotion/workers
 
 # Install init script
-%{__install} -D -m 0755 doc/redhat/flumotion \
+%{__install} -Dp -m 0755 doc/redhat/flumotion \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/flumotion
 
 # Create a .flumotion in the new home

@@ -53,7 +53,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 perl -i -npe "s/..INSTALL_ROOT.(\.\.\/)*(\/usr\/)?/${RPM_BUILD_ROOT//\//\\/}\/usr\//g;" src/Makefile
 %makeinstall
 %{__rm} -Rf %{buildroot}%{_datadir}/doc/spit
-%{__install} -D -m0644 pixmaps/spit.svg %{buildroot}%{_datadir}/pixmaps/spit.svg
+%{__install} -Dp -m0644 pixmaps/spit.svg %{buildroot}%{_datadir}/pixmaps/spit.svg
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor kde                  \

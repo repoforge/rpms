@@ -59,7 +59,7 @@ rm -f libtool && cp -a `which libtool` . || :
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%{__install} -D -m0755 lib/mp4v2/test/mp4broadcaster %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 lib/mp4v2/test/mp4broadcaster %{buildroot}%{_bindir}
 
 %clean
 %{__rm} -rf %{buildroot}

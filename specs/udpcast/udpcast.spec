@@ -29,10 +29,10 @@ Allows easy installation of client machines via UDP broadcast
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 udp-receiver %{buildroot}%{_bindir}/udp-receiver
-%{__install} -D -m0755 udp-sender %{buildroot}%{_bindir}/udp-sender
-#%{__install} -D -m0644 udp-receiver.1 %{buildroot}%{_mandir}/man1/udp-receiver.1
-#%{__install} -D -m0644 udp-sender.1 %{buildroot}%{_mandir}/man1/udp-sender.1
+%{__install} -Dp -m0755 udp-receiver %{buildroot}%{_bindir}/udp-receiver
+%{__install} -Dp -m0755 udp-sender %{buildroot}%{_bindir}/udp-sender
+#%{__install} -Dp -m0644 udp-receiver.1 %{buildroot}%{_mandir}/man1/udp-receiver.1
+#%{__install} -Dp -m0644 udp-sender.1 %{buildroot}%{_mandir}/man1/udp-sender.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -41,8 +41,8 @@ EOF
 %makeinstall \
 	special_prefix="%{buildroot}"
 
-%{__install} -D -m0755 gnustep.sh %{buildroot}%{_sysconfdir}/profile.d/gnustep.sh
-%{__install} -D -m0755 gnustep.csh %{buildroot}%{_sysconfdir}/profile.d/gnustep.csh
+%{__install} -Dp -m0755 gnustep.sh %{buildroot}%{_sysconfdir}/profile.d/gnustep.sh
+%{__install} -Dp -m0755 gnustep.csh %{buildroot}%{_sysconfdir}/profile.d/gnustep.csh
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -55,7 +55,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 pixmaps/gtksql_gnome_icon.png %{buildroot}%{_datadir}/pixmaps/gtksql.png
+%{__install} -Dp -m0644 pixmaps/gtksql_gnome_icon.png %{buildroot}%{_datadir}/pixmaps/gtksql.png
 
 desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \

@@ -72,7 +72,7 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 
 %makeinstall
 # Install the man page, it's not automatically (2.8.16)
-%{__install} -D -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/sqlite.1
+%{__install} -Dp -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/sqlite.1
 
 %post
 /sbin/ldconfig 2>/dev/null

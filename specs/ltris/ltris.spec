@@ -39,7 +39,7 @@ convert icons/ltris48.xpm ltris.png
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -D ltris.png %{buildroot}%{_datadir}/pixmaps/ltris.png
+%{__install} -Dp ltris.png %{buildroot}%{_datadir}/pixmaps/ltris.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]

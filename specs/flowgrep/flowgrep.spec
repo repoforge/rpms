@@ -36,8 +36,8 @@ python setup.py build
 #python setup.py install \
 #	--prefix="%{_prefix}" \
 #	--root="%{buildroot}"
-%{__install} -D -m0755 flowgrep.py %{buildroot}%{_sbindir}/flowgrep
-%{__install} -D -m0644 flowgrep.8 %{buildroot}%{_mandir}/man8/flowgrep.8
+%{__install} -Dp -m0755 flowgrep.py %{buildroot}%{_sbindir}/flowgrep
+%{__install} -Dp -m0644 flowgrep.8 %{buildroot}%{_mandir}/man8/flowgrep.8
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -55,7 +55,7 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 rdiff %{buildroot}%{_bindir}/rdiff
+%{__install} -Dp -m0755 rdiff %{buildroot}%{_bindir}/rdiff
 
 %clean
 %{__rm} -rf %{buildroot}

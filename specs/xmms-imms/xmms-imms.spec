@@ -48,7 +48,7 @@ Some of the key features include:
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 libimms.so %{buildroot}%{xmms_generaldir}/libimms.so
+%{__install} -Dp -m0755 libimms.so %{buildroot}%{xmms_generaldir}/libimms.so
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -61,7 +61,7 @@ CXXFLAGS="-I%{_includedir}/ncurses -fno-exceptions -fno-rtti -fno-implicit-templ
 #%{__make} install \
 #	DESTDIR=$RPM_BUILD_ROOT
 
-%{__install} -D -m0644 doc/tvision.info %{buildroot}%{_infodir}
+%{__install} -Dp -m0644 doc/tvision.info %{buildroot}%{_infodir}
 
 # some cleaning
 %{__make} -C tutorial mostlyclean

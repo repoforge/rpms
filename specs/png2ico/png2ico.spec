@@ -27,8 +27,8 @@ Png2ico is a utility which converts PNG files to Windows icon resource files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 png2ico %{buildroot}%{_bindir}/png2ico
-%{__install} -D -m0644 doc/png2ico.1 %{buildroot}%{_mandir}/man1/png2ico.1
+%{__install} -Dp -m0755 png2ico %{buildroot}%{_bindir}/png2ico
+%{__install} -Dp -m0644 doc/png2ico.1 %{buildroot}%{_mandir}/man1/png2ico.1
 
 %clean
 %{__rm} -rf %{buildroot}

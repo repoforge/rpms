@@ -34,12 +34,12 @@ fread, fwrite, random read, pread ,mmap, aio_read, aio_write.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/current/iozone %{buildroot}%{_bindir}/iozone
-%{__install} -D -m0755 src/current/Generate_Graphs %{buildroot}%{_datadir}/iozone/Generate_Graphs
-%{__install} -D -m0755 src/current/gengnuplot.sh %{buildroot}%{_datadir}/iozone/gengnuplot.sh
-%{__install} -D -m0755 src/current/gnu3d.dem %{buildroot}%{_datadir}/iozone/gnu3d.dem
+%{__install} -Dp -m0755 src/current/iozone %{buildroot}%{_bindir}/iozone
+%{__install} -Dp -m0755 src/current/Generate_Graphs %{buildroot}%{_datadir}/iozone/Generate_Graphs
+%{__install} -Dp -m0755 src/current/gengnuplot.sh %{buildroot}%{_datadir}/iozone/gengnuplot.sh
+%{__install} -Dp -m0755 src/current/gnu3d.dem %{buildroot}%{_datadir}/iozone/gnu3d.dem
 
-%{__install} -D -m0644 docs/iozone.1 %{buildroot}%{_mandir}/man1/iozone.1
+%{__install} -Dp -m0644 docs/iozone.1 %{buildroot}%{_mandir}/man1/iozone.1
 
 %clean
 %{__rm} -rf %{buildroot}

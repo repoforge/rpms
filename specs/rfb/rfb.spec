@@ -91,8 +91,8 @@ EOF
 %{__install} -s -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 x0rfbserver.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/x0rfbserver.desktop
-	%{__install} -D -m0644 xvncconnect.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xvncconnect.desktop
+	%{__install} -Dp -m0644 x0rfbserver.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/x0rfbserver.desktop
+	%{__install} -Dp -m0644 xvncconnect.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xvncconnect.desktop
 %else
         install -d -m0755 %{buildroot}%{_datadir}/applications
         desktop-file-install --vendor "gnome"              \

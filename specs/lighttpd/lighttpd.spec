@@ -81,21 +81,21 @@ recompile PHP yourself.
     libdir="%{buildroot}%{_libdir}/lighttpd"
 
 # Install included init script and sysconfig entry
-%{__install} -D -m 0755 doc/rc.lighttpd.redhat \
+%{__install} -Dp -m 0755 doc/rc.lighttpd.redhat \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/lighttpd
-%{__install} -D -m 0644 doc/sysconfig.lighttpd \
+%{__install} -Dp -m 0644 doc/sysconfig.lighttpd \
     %{buildroot}%{_sysconfdir}/sysconfig/lighttpd
 
 # Install (*patched above*) sample config file
-%{__install} -D -m 0640 doc/lighttpd.conf \
+%{__install} -Dp -m 0640 doc/lighttpd.conf \
     %{buildroot}%{_sysconfdir}/lighttpd/lighttpd.conf
 
 # Install our own logrotate entry
-%{__install} -D -m 0644 %{SOURCE1} \
+%{__install} -Dp -m 0644 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/logrotate.d/lighttpd
 
 # Install our own php.d ini file
-%{__install} -D -m 0644 %{SOURCE2} \
+%{__install} -Dp -m 0644 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/php.d/lighttpd.ini
 
 # Install our own default web page and images

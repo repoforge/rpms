@@ -49,7 +49,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0644 pixmaps/multignometerm.png %{buildroot}%{_datadir}/pixmaps/multi-gnome-terminal.png
+%{__install} -Dp -m0644 pixmaps/multignometerm.png %{buildroot}%{_datadir}/pixmaps/multi-gnome-terminal.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome           \

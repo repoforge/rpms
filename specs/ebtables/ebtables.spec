@@ -150,10 +150,10 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 ebtables %{buildroot}%{_sbindir}/ebtables
-%{__install} -D -m0755 ebtables.sysv %{buildroot}%{_initrddir}/ebtables
-%{__install} -D -m0644 ethertypes %{buildroot}%{_sysconfdir}/ethertypes
-%{__install} -D -m0644 ebtables.8 %{buildroot}%{_mandir}/man8/ebtables.8
+%{__install} -Dp -m0755 ebtables %{buildroot}%{_sbindir}/ebtables
+%{__install} -Dp -m0755 ebtables.sysv %{buildroot}%{_initrddir}/ebtables
+%{__install} -Dp -m0644 ethertypes %{buildroot}%{_sysconfdir}/ethertypes
+%{__install} -Dp -m0644 ebtables.8 %{buildroot}%{_mandir}/man8/ebtables.8
 
 %clean
 %{__rm} -rf %{buildroot}

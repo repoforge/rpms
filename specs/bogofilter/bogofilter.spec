@@ -57,8 +57,8 @@ for dir in contrib; do
 	for file in $(find "$dir" -maxdepth 1 -type f -print); do
 		case $file in
 			*.c|*.o|*.obj|*/Makefile*) continue ;;
-			*.1) %{__install} -D -m0644 $file %{buildroot}%{_mandir}/man1/$file;;
-			*) %{__install} -D -m0644 $file %{buildroot}%{_datadir}/bogofilter/$dir/$file;;
+			*.1) %{__install} -Dp -m0644 $file %{buildroot}%{_mandir}/man1/$file;;
+			*) %{__install} -Dp -m0644 $file %{buildroot}%{_datadir}/bogofilter/$dir/$file;;
 		esac
 	done
 done

@@ -79,7 +79,7 @@ cd %{_builddir}/%{name}-%{version}/
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/squid/local/{bad,good}/ \
 			%{buildroot}%{_localstatedir}/log/squidguard/
 
-%{__install} -D -m0644 squidguard-blacklists.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard-blacklists
+%{__install} -Dp -m0644 squidguard-blacklists.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/squidguard-blacklists
 
 ### Creating uniq blacklists, default squidguard configfile and temporary configfile for generating databases
 (

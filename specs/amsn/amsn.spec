@@ -128,8 +128,8 @@ cd plugins/traydock
 	version="%{version}" \
 	libdir="%{buildroot}%{_datadir}/amsn"
 
-%{__install} -D -m0755 amsn.sh %{buildroot}%{_bindir}/amsn
-%{__install} -D -m0644 skins/default/pixmaps/messenger.png %{buildroot}%{_datadir}/pixmaps/amsn.png
+%{__install} -Dp -m0755 amsn.sh %{buildroot}%{_bindir}/amsn
+%{__install} -Dp -m0644 skins/default/pixmaps/messenger.png %{buildroot}%{_datadir}/pixmaps/amsn.png
 
 %{__install} -m0644 FAQ HELP README %{buildroot}%{_datadir}/amsn/
 
@@ -137,7 +137,7 @@ cd plugins/traydock
 %{__install} -m0755 tls%{tls_maj}/libtls%{tls_maj}.so tls%{tls_maj}/pkgIndex.tcl tls%{tls_maj}/tls.tcl %{buildroot}%{_datadir}/amsn/plugins/tls%{tls_maj}/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
+	%{__install} -Dp -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
 %else
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

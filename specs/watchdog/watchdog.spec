@@ -153,8 +153,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}
 %makeinstall
-%{__install} -D -m0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/watchdog
-%{__install} -D -m0755 %{name}.sysv %{buildroot}%{_initrddir}/watchdog
+%{__install} -Dp -m0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/watchdog
+%{__install} -Dp -m0755 %{name}.sysv %{buildroot}%{_initrddir}/watchdog
 
 %post 
 /sbin/chkconfig --add watchdog

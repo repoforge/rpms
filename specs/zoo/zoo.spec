@@ -31,10 +31,10 @@ Rahul Dhesi, and posted to the USENET newsgroup comp.sources.misc.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 fiz %{buildroot}%{_bindir}/fiz
-%{__install} -D -m0755 zoo %{buildroot}%{_bindir}/zoo
-%{__install} -D -m0644 fiz.1 %{buildroot}%{_mandir}/man1/fiz.1
-%{__install} -D -m0644 zoo.1 %{buildroot}%{_mandir}/man1/zoo.1
+%{__install} -Dp -m0755 fiz %{buildroot}%{_bindir}/fiz
+%{__install} -Dp -m0755 zoo %{buildroot}%{_bindir}/zoo
+%{__install} -Dp -m0644 fiz.1 %{buildroot}%{_mandir}/man1/fiz.1
+%{__install} -Dp -m0644 zoo.1 %{buildroot}%{_mandir}/man1/zoo.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -57,7 +57,7 @@ EOF
 %find_lang %{name}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 apolos.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/apolos.desktop
+	%{__install} -Dp -m0644 apolos.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/apolos.desktop
 %else
 	desktop-file-install --vendor %{desktop_vendor}       \
 		--delete-original                             \

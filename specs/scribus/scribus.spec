@@ -56,7 +56,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__install} -m0644 scribus/icons/scribusicon.png %{buildroot}%{_datadir}/pixmaps/scribus.png
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
+        %{__install} -Dp -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor kde                  \

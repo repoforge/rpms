@@ -24,8 +24,8 @@ Print average throughput for a tcp connection.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 tcpspray %{buildroot}%{_bindir}/tcpspray
-%{__install} -D -m0644 tcpspray.1 %{buildroot}%{_mandir}/man1/tcpspray.1
+%{__install} -Dp -m0755 tcpspray %{buildroot}%{_bindir}/tcpspray
+%{__install} -Dp -m0644 tcpspray.1 %{buildroot}%{_mandir}/man1/tcpspray.1
 
 %files
 %defattr(-, root, root, 0755}

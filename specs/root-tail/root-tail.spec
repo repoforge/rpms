@@ -31,8 +31,8 @@ xmkmf -a
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 root-tail %{buildroot}%{_bindir}/root-tail
-%{__install} -D -m0644 root-tail.man %{buildroot}%{_mandir}/man1/root-tail.1
+%{__install} -Dp -m0755 root-tail %{buildroot}%{_bindir}/root-tail
+%{__install} -Dp -m0644 root-tail.man %{buildroot}%{_mandir}/man1/root-tail.1
 
 %clean
 %{__rm} -rf %{buildroot}

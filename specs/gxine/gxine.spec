@@ -78,11 +78,11 @@ EOF
 	DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%{__install} -D -m0644 pixmaps/gxine-logo.png %{buildroot}%{_datadir}/pixmaps/gxine.png
-%{__install} -D -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
+%{__install} -Dp -m0644 pixmaps/gxine-logo.png %{buildroot}%{_datadir}/pixmaps/gxine.png
+%{__install} -Dp -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 gxine.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gxine.desktop
+	%{__install} -Dp -m0644 gxine.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gxine.desktop
 	%{__rm} -f %{buildroot}%{_datadir}/applications/gxine.desktop
 %else
 ### Desktop entry

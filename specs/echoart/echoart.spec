@@ -33,7 +33,7 @@ responses back into the network as necessary.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D echoart %{buildroot}%{_bindir}/echoart
+%{__install} -Dp echoart %{buildroot}%{_bindir}/echoart
 
 %clean
 %{__rm} -rf %{buildroot}

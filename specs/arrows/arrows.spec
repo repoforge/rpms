@@ -42,7 +42,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 arrows %{buildroot}%{_bindir}/arrows
+%{__install} -Dp -m0755 arrows %{buildroot}%{_bindir}/arrows
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor}    \

@@ -29,8 +29,8 @@ person shooter variety (Quake, Half-Life, etc)
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 qstat %{buildroot}%{_bindir}/qstat
-%{__install} -D -m0644 qstat.cfg %{buildroot}%{_sysconfdir}/qstat.cfg
+%{__install} -Dp -m0755 qstat %{buildroot}%{_bindir}/qstat
+%{__install} -Dp -m0644 qstat.cfg %{buildroot}%{_sysconfdir}/qstat.cfg
 
 %clean
 %{__rm} -rf %{buildroot}

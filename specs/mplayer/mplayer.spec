@@ -215,7 +215,7 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 %{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
 
 # The nicer icon used in the menu entry
-%{__install} -D -m0644 Gui/mplayer/pixmaps/MPlayer_mini.xpm \
+%{__install} -Dp -m0644 Gui/mplayer/pixmaps/MPlayer_mini.xpm \
     %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
 
 ### Install libpostproc if not already installed

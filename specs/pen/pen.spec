@@ -42,8 +42,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 penctl.cgi %{buildroot}%{_localstatedir}/www/pen/penctl.cgi
-%{__install} -D -m0644 pen.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/pen.conf
+%{__install} -Dp -m0755 penctl.cgi %{buildroot}%{_localstatedir}/www/pen/penctl.cgi
+%{__install} -Dp -m0644 pen.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/pen.conf
 
 %post
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then

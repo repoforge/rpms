@@ -118,19 +118,19 @@ cd -
 
 %install
 #makeinstall
-%{__install} -D -m0644 etc/pcmcia/wlan-ng %{buildroot}%{_sysconfdir}/pcmcia/wlan-ng
-%{__install} -D -m0644 etc/pcmcia/wlan-ng.conf %{buildroot}%{_sysconfdir}/pcmcia/wlan-ng.conf
-%{__install} -D -m0644 etc/wlan/wlan.conf %{buildroot}%{_sysconfdir}/wlan/wlan.conf
+%{__install} -Dp -m0644 etc/pcmcia/wlan-ng %{buildroot}%{_sysconfdir}/pcmcia/wlan-ng
+%{__install} -Dp -m0644 etc/pcmcia/wlan-ng.conf %{buildroot}%{_sysconfdir}/pcmcia/wlan-ng.conf
+%{__install} -Dp -m0644 etc/wlan/wlan.conf %{buildroot}%{_sysconfdir}/wlan/wlan.conf
 
-%{__install} -D -m0644 man/nwepgen.man %{buildroot}%{_mandir}/man1/nwepgen.1
-%{__install} -D -m0644 man/wlancfg.man %{buildroot}%{_mandir}/man1/wlancfg.1
-%{__install} -D -m0644 man/wlanctl-ng.man %{buildroot}%{_mandir}/man1/wlanctl-ng.1
-%{__install} -D -m0644 man/wland.man %{buildroot}%{_mandir}/man1/wland.1
+%{__install} -Dp -m0644 man/nwepgen.man %{buildroot}%{_mandir}/man1/nwepgen.1
+%{__install} -Dp -m0644 man/wlancfg.man %{buildroot}%{_mandir}/man1/wlancfg.1
+%{__install} -Dp -m0644 man/wlanctl-ng.man %{buildroot}%{_mandir}/man1/wlanctl-ng.1
+%{__install} -Dp -m0644 man/wland.man %{buildroot}%{_mandir}/man1/wland.1
 
-%{__install} -D -m0755 src/wlancfg/wlancfg %{buildroot}%{_bindir}/wlancfg
-%{__install} -D -m0755 src/nwepgen/nwepgen %{buildroot}%{_bindir}/nwepgen
-%{__install} -D -m0755 src/wland/wland %{buildroot}%{_bindir}/wland
-%{__install} -D -m0755 src/wlanctl/wlanctl %{buildroot}%{_bindir}/wlanctl
+%{__install} -Dp -m0755 src/wlancfg/wlancfg %{buildroot}%{_bindir}/wlancfg
+%{__install} -Dp -m0755 src/nwepgen/nwepgen %{buildroot}%{_bindir}/nwepgen
+%{__install} -Dp -m0755 src/wland/wland %{buildroot}%{_bindir}/wland
+%{__install} -Dp -m0755 src/wlanctl/wlanctl %{buildroot}%{_bindir}/wlanctl
 
 %post
 /sbin/depmod -ae %{kversion}-%{krelease} || :

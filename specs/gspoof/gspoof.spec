@@ -60,10 +60,10 @@ EOF
 
 %makeinstall
 
-%{__install} -D -m0644 pixmap/icon.png %{buildroot}%{_datadir}/pixmaps/gspoof.png
+%{__install} -Dp -m0644 pixmap/icon.png %{buildroot}%{_datadir}/pixmaps/gspoof.png
 
 %if %{dfi}
-	%{__install} -D -m0644 gspoof.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/gspoof.desktop
+	%{__install} -Dp -m0644 gspoof.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/gspoof.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -56,11 +56,11 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/vnstat/
-%{__install} -D -m0644 man/vnstat.1 %{buildroot}%{_mandir}/man1/vnstat.1
-%{__install} -D -m0755 src/vnstat %{buildroot}%{_bindir}/vnstat
-%{__install} -D -m0755 vnstat.cron %{buildroot}%{_sbindir}/vnstat.cron
-%{__install} -D -m0644 vnstat.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vnstat
-%{__install} -D -m0755 vnstat.crond %{buildroot}%{_sysconfdir}/cron.d/vnstat
+%{__install} -Dp -m0644 man/vnstat.1 %{buildroot}%{_mandir}/man1/vnstat.1
+%{__install} -Dp -m0755 src/vnstat %{buildroot}%{_bindir}/vnstat
+%{__install} -Dp -m0755 vnstat.cron %{buildroot}%{_sbindir}/vnstat.cron
+%{__install} -Dp -m0644 vnstat.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vnstat
+%{__install} -Dp -m0755 vnstat.crond %{buildroot}%{_sysconfdir}/cron.d/vnstat
 
 %clean
 %{__rm} -rf %{buildroot}

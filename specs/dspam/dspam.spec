@@ -156,21 +156,21 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 dspam.optout %{buildroot}%{_bindir}/dspam.optout
+%{__install} -Dp -m0755 dspam.optout %{buildroot}%{_bindir}/dspam.optout
 %{__mv} -f %{buildroot}%{_bindir}/dspam %{buildroot}%{_bindir}/dspam.optin
 %{__ln_s} -f dspam.optout %{buildroot}%{_bindir}/dspam
 
-%{__install} -D -m0755 addspam.sh %{buildroot}%{_bindir}/addspam
+%{__install} -Dp -m0755 addspam.sh %{buildroot}%{_bindir}/addspam
 ln -f %{buildroot}%{_bindir}/addspam %{buildroot}%{_bindir}/falsepositive
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}
 %{__install} -m0644 libdspam.h libdspam_objects.h lht.h nodetree.h %{buildroot}%{_includedir}
 
-%{__install} -D -m0755 dspam.hourly %{buildroot}%{_sysconfdir}/cron.hourly/dspam
-%{__install} -D -m0755 dspam.daily %{buildroot}%{_sysconfdir}/cron.daily/dspam
-%{__install} -D -m0755 dspam.weekly %{buildroot}%{_sysconfdir}/cron.weekly/dspam
+%{__install} -Dp -m0755 dspam.hourly %{buildroot}%{_sysconfdir}/cron.hourly/dspam
+%{__install} -Dp -m0755 dspam.daily %{buildroot}%{_sysconfdir}/cron.daily/dspam
+%{__install} -Dp -m0755 dspam.weekly %{buildroot}%{_sysconfdir}/cron.weekly/dspam
 
-%{__install} -D -m0644 dspam.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/dspam.conf
+%{__install} -Dp -m0644 dspam.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/dspam.conf
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/mail/
 %{__ln_s} -f %{_localstatedir}/lib/dspam %{buildroot}%{_sysconfdir}/mail/dspam
@@ -181,11 +181,11 @@ ln -f %{buildroot}%{_bindir}/addspam %{buildroot}%{_bindir}/falsepositive
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/dspam.log
 
-%{__install} -D -m0755 dspam.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/dspam.cgi
+%{__install} -Dp -m0755 dspam.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/dspam.cgi
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/dspam/
 %{__install} -m0755 cgi/*.css cgi/*.cgi cgi/*.gif cgi/*.html %{buildroot}%{_localstatedir}/www/dspam/
 
-%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_datadir}/sendmail-cf/mailer/dspam.m4
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_datadir}/sendmail-cf/mailer/dspam.m4
 
 %clean
 %{__rm} -rf %{buildroot}

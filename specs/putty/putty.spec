@@ -58,7 +58,7 @@ EOF
 %makeinstall -C unix -f Makefile.gtk
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 putty.desktop %{buildroot}%{_datadir}/gnome/apps/Network/putty.desktop
+	%{__install} -Dp -m0644 putty.desktop %{buildroot}%{_datadir}/gnome/apps/Network/putty.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \
@@ -68,7 +68,7 @@ EOF
 %endif
 
 convert putty.ico putty.png
-%{__install} -D -m644 putty.png.0 %{buildroot}%{_datadir}/pixmaps/putty.png
+%{__install} -Dp -m644 putty.png.0 %{buildroot}%{_datadir}/pixmaps/putty.png
 
 %clean
 %{__rm} -rf %{buildroot}

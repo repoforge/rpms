@@ -204,18 +204,18 @@ export BUILD_OFFICIAL=1
 %{__make} -C xpinstall/packager/ \
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
-%{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
-%{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/firefox.png
+%{__install} -Dp -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/firefox.png
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}
 %{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
-%{__install} -D -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/bookmarks.html
-%{__install} -D -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/US/bookmarks.html
-%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/chrome/icons/default/default.xpm
-%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/icons/default.xpm
+%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/bookmarks.html
+%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/US/bookmarks.html
+%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/chrome/icons/default/default.xpm
+%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/icons/default.xpm
 
-%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 %{__perl} -pi -e 's|\$MOZ_DIST_BIN|%{_libdir}/firefox|g;' %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
@@ -228,7 +228,7 @@ fi
 %endif
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 firefox.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/firefox.desktop
+	%{__install} -Dp -m0644 firefox.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/firefox.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net \

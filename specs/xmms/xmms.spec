@@ -183,9 +183,9 @@ mkdir -pv %{buildroot}%{_datadir}/applications
 (cd $RPM_BUILD_ROOT%{_datadir}/applications && ln -sf \
   %{_datadir}/desktop-menu-patches/redhat-audio-player.desktop)
 
-%{__install} -D -m0644 xmms/xmms_logo.xpm %{buildroot}%{_datadir}/pixmaps/xmms_logo.xpm
-%{__install} -D -m0644 xmms/xmms_mini.xpm %{buildroot}%{_datadir}/pixmaps/mini/xmms_mini.xpm
-%{__install} -D -m0644 $RPM_SOURCE_DIR/xmms.xpm %{buildroot}%{_datadir}/pixmaps/xmms.xpm
+%{__install} -Dp -m0644 xmms/xmms_logo.xpm %{buildroot}%{_datadir}/pixmaps/xmms_logo.xpm
+%{__install} -Dp -m0644 xmms/xmms_mini.xpm %{buildroot}%{_datadir}/pixmaps/mini/xmms_mini.xpm
+%{__install} -Dp -m0644 $RPM_SOURCE_DIR/xmms.xpm %{buildroot}%{_datadir}/pixmaps/xmms.xpm
 
 # unpackaged files
 rm -f %{buildroot}/%{_datadir}/xmms/*/lib*.{a,la} \

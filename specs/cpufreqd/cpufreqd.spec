@@ -121,8 +121,8 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0755 cpufreqd.sysv %{buildroot}%{_initrddir}/cpufreqd
-%{__install} -D -m0644 cpufreqd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpufreqd
+%{__install} -Dp -m0755 cpufreqd.sysv %{buildroot}%{_initrddir}/cpufreqd
+%{__install} -Dp -m0644 cpufreqd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpufreqd
 
 %clean
 %{__rm} -rf %{buildroot}

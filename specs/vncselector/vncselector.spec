@@ -40,7 +40,7 @@ server sessions. This can be useful in a thin client situation (run from
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 755 src/vncselector %{buildroot}%{_bindir}/vncselector
+%{__install} -Dp -m 755 src/vncselector %{buildroot}%{_bindir}/vncselector
 
 %clean
 %{__rm} -rf %{buildroot}

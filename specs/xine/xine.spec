@@ -85,7 +85,7 @@ EOF
 %{__make} install DESTDIR=%{buildroot}
 %find_lang xine-ui
 
-%{__install} -D -m0644 xine.applications %{buildroot}%{_datadir}/application-registry/xine.applications
+%{__install} -Dp -m0644 xine.applications %{buildroot}%{_datadir}/application-registry/xine.applications
 
 # Remove unpackaged files
 find %{buildroot} -name "xitk*" | xargs rm -rf || :
@@ -94,7 +94,7 @@ find %{buildroot} -name "xitk*" | xargs rm -rf || :
 %{__mv} %{buildroot}%{_docdir}/xine-ui xine-ui-doc
 
 %if %{?_without_freedesktop:1}0
-%{__install} -D -m644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
+%{__install} -Dp -m644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
 %else
 %{__mkdir_p} %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor} \

@@ -27,7 +27,7 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 spectool %{buildroot}%{_bindir}/spectool
+%{__install} -Dp -m0755 spectool %{buildroot}%{_bindir}/spectool
 
 %clean
 %{__rm} -rf %{buildroot}

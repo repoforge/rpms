@@ -54,10 +54,10 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 rktime %{buildroot}%{_bindir}/rktime
-%{__install} -D -m0644 rktime.conf %{buildroot}%{_sysconfdir}/rktime.conf
-%{__install} -D -m0644 rktime.1 %{buildroot}%{_mandir}/man1/rktime.1
-%{__install} -D -m0644 rktime.conf.5 %{buildroot}%{_mandir}/man5/rktime.conf.5
+%{__install} -Dp -m0755 rktime %{buildroot}%{_bindir}/rktime
+%{__install} -Dp -m0644 rktime.conf %{buildroot}%{_sysconfdir}/rktime.conf
+%{__install} -Dp -m0644 rktime.1 %{buildroot}%{_mandir}/man1/rktime.1
+%{__install} -Dp -m0644 rktime.conf.5 %{buildroot}%{_mandir}/man5/rktime.conf.5
 
 %clean
 %{__rm} -rf %{buildroot}

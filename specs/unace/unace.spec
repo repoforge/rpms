@@ -31,7 +31,7 @@ far either.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 unace %{buildroot}%{_bindir}/unace
+%{__install} -Dp -m0755 unace %{buildroot}%{_bindir}/unace
 
 %clean
 %{__rm} -rf %{buildroot}

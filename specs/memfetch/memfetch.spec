@@ -34,7 +34,7 @@ in any way you like.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 memfetch %{buildroot}%{_bindir}/memfetch
+%{__install} -Dp -m0755 memfetch %{buildroot}%{_bindir}/memfetch
 
 %clean
 %{__rm} -rf %{buildroot}

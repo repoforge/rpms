@@ -41,8 +41,8 @@ file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__install} -D docs/gentoo.1x %{buildroot}%{_mandir}/man1/gentoo.1
-%{__install} -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -Dp docs/gentoo.1x %{buildroot}%{_mandir}/man1/gentoo.1
+%{__install} -Dp -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]

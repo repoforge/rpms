@@ -49,9 +49,9 @@ Supports color MMX decoding and b/w x86 assembler decoding.
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -D cabletv %{buildroot}%{_bindir}/cabletv
-#%{__install} -D v4l-conf %{buildroot}%{_bindir}/v4l-conf
-%{__install} -D CableTV.ad %{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/CableTV
+%{__install} -Dp cabletv %{buildroot}%{_bindir}/cabletv
+#%{__install} -Dp v4l-conf %{buildroot}%{_bindir}/v4l-conf
+%{__install} -Dp CableTV.ad %{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/CableTV
 
 #%{__make} install prefix="%{buildroot}%{_prefix}"
 

@@ -142,7 +142,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 athcool.sysv %{buildroot}%{_initrddir}/athcool
+%{__install} -Dp -m0755 athcool.sysv %{buildroot}%{_initrddir}/athcool
 
 %post
 /sbin/chkconfig --add athcool

@@ -39,10 +39,10 @@ the list of trusted keys is grown gradually on as-needed basis.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/sign %{buildroot}%{_bindir}/sign
+%{__install} -Dp -m0755 src/sign %{buildroot}%{_bindir}/sign
 %{__ln_s} -f sign %{buildroot}%{_bindir}/unsign
-%{__install} -D -m0644 man/sign.1 %{buildroot}%{_mandir}/man1/sign.1
-%{__install} -D -m0644 man/sign.1 %{buildroot}%{_mandir}/man1/unsign.1
+%{__install} -Dp -m0644 man/sign.1 %{buildroot}%{_mandir}/man1/sign.1
+%{__install} -Dp -m0644 man/sign.1 %{buildroot}%{_mandir}/man1/unsign.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -70,10 +70,10 @@ popd
 # That trailing slash is mandatory because of "$(INSTALL_ROOT)usr" lines
 %{__make} install -C src INSTALL_ROOT="%{buildroot}/"
 
-%{__install} -D -m0644 src/icon.png %{buildroot}%{_datadir}/pixmaps/mixxx.png
+%{__install} -Dp -m0644 src/icon.png %{buildroot}%{_datadir}/pixmaps/mixxx.png
 
 %if %{?_without_freedesktop:1}0
-    %{__install} -D -m0644 mixxx.desktop \
+    %{__install} -Dp -m0644 mixxx.desktop \
         %{buildroot}%{_datadir}/gnome/apps/Multimedia/mixxx.desktop
 %else
     %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

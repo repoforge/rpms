@@ -29,8 +29,8 @@ practically no changes.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%{__install} -D -m0755 src/pport %{buildroot}%{_sbindir}/pport
-#%{__install} -D -m0644 man/pport.8.gz %{buildroot}%{_mandir}/man8/pport.8.gz
+#%{__install} -Dp -m0755 src/pport %{buildroot}%{_sbindir}/pport
+#%{__install} -Dp -m0644 man/pport.8.gz %{buildroot}%{_mandir}/man8/pport.8.gz
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -71,7 +71,7 @@ EOF
 %{__perl} -pi -e 's|env python2|env python|' %{buildroot}%{_bindir}/*.py
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 bittorrent.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/bittorrent.desktop
+	%{__install} -Dp -m0644 bittorrent.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/bittorrent.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \
@@ -81,7 +81,7 @@ EOF
 %endif
 
 #convert bittorrent.ico bittorrent.png
-%{__install} -D -m644 images/logo/bittorrent_96.png %{buildroot}%{_datadir}/pixmaps/bittorrent.png
+%{__install} -Dp -m644 images/logo/bittorrent_96.png %{buildroot}%{_datadir}/pixmaps/bittorrent.png
 
 %post gui
 update-desktop-database %{_datadir}/applications &>/dev/null || :

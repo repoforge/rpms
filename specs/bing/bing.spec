@@ -28,8 +28,8 @@ for different packet sizes for each end of the link.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 bing %{buildroot}%{_bindir}/bing
-%{__install} -D -m0644 bing.8 %{buildroot}%{_mandir}/man8/bing.8
+%{__install} -Dp -m0755 bing %{buildroot}%{_bindir}/bing
+%{__install} -Dp -m0644 bing.8 %{buildroot}%{_mandir}/man8/bing.8
 
 %clean
 %{__rm} -rf %{buildroot}

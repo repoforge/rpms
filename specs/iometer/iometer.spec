@@ -28,7 +28,7 @@ single and clustered systems.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 src/dynamo %{buildroot}%{_bindir}/dynamo
+%{__install} -Dp -m0755 src/dynamo %{buildroot}%{_bindir}/dynamo
 
 %clean
 %{__rm} -rf %{buildroot}

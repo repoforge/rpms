@@ -29,7 +29,7 @@ DVD-Video.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 dvdbackup %{buildroot}%{_bindir}/dvdbackup
+%{__install} -Dp -m0755 dvdbackup %{buildroot}%{_bindir}/dvdbackup
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -47,9 +47,9 @@ Available rpmbuild rebuild options :
 %{__rm} -rf %{buildroot} xrick.png
 # Uncompress the man page for now, it may get re-compressed later on
 %{__gzip} -d xrick.6.gz
-%{__install} -D -m 0755 xrick %{buildroot}%{_bindir}/xrick
-%{__install} -D -m 0644 data.zip %{buildroot}%{_datadir}/games/%{name}/data.zip
-%{__install} -D -m 0644 xrick.6 %{buildroot}%{_mandir}/man6/xrick.6
+%{__install} -Dp -m 0755 xrick %{buildroot}%{_bindir}/xrick
+%{__install} -Dp -m 0644 data.zip %{buildroot}%{_datadir}/games/%{name}/data.zip
+%{__install} -Dp -m 0644 xrick.6 %{buildroot}%{_mandir}/man6/xrick.6
 
 # Install menu entry
 %{__cat} > %{name}.desktop << EOF
@@ -71,7 +71,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-%{__install} -D -m 0644 %{name}.desktop \
+%{__install} -Dp -m 0644 %{name}.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
 %endif
 

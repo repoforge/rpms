@@ -88,7 +88,7 @@ find examples/ -name "*.pl" \
 %makeinstall
 
 # Install the php4 module
-%{__install} -D -m0755 contrib/php4/modules/rrdtool.so \
+%{__install} -Dp -m0755 contrib/php4/modules/rrdtool.so \
     %{buildroot}%{phpextdir}/rrdtool.so
 # Clean up the examples for inclusion as docs
 %{__rm} -rf contrib/php4/examples/CVS

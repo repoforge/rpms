@@ -63,10 +63,10 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/zinf.png
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/zinf.png
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 zinf.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/zinf.desktop
+        %{__install} -Dp -m0644 zinf.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/zinf.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \

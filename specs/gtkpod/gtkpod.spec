@@ -52,7 +52,7 @@ EOF
 %find_lang %{name}
 
 # Install menu icon
-%{__install} -D -m 0644 pixmaps/gtkpod-icon-48x48.png \
+%{__install} -Dp -m 0644 pixmaps/gtkpod-icon-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/gtkpod.png
 
 # Install menu entry
@@ -63,7 +63,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-%{__install} -D -m 0644 %{name}.desktop \
+%{__install} -Dp -m 0644 %{name}.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
 %endif
 

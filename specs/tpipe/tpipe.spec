@@ -26,8 +26,8 @@ input and/or standard ouput.
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__install} -D -m0755 tpipe %{buildroot}%{_bindir}/tpipe
-%{__install} -D -m0644 tpipe.1 %{buildroot}%{_mandir}/man1/tpipe.1
+%{__install} -Dp -m0755 tpipe %{buildroot}%{_bindir}/tpipe
+%{__install} -Dp -m0644 tpipe.1 %{buildroot}%{_mandir}/man1/tpipe.1
 
 %clean
 %{__rm} -rf %{buildroot}

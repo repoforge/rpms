@@ -58,11 +58,11 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 asp2php %{buildroot}%{_bindir}/asp2php
-%{__install} -D -m0755 gtkasp2php %{buildroot}%{_bindir}/gtkasp2php
+%{__install} -Dp -m0755 asp2php %{buildroot}%{_bindir}/asp2php
+%{__install} -Dp -m0755 gtkasp2php %{buildroot}%{_bindir}/gtkasp2php
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 gtkasp2php.desktop %{buildroot}%{_datadir}/gnome/apps/Development/gtkasp2php.desktop
+	%{__install} -Dp -m0644 gtkasp2php.desktop %{buildroot}%{_datadir}/gnome/apps/Development/gtkasp2php.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

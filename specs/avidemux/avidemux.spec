@@ -57,7 +57,7 @@ EOF
 %makeinstall
 
 %if %{dfi}
-	%{__install} -D -m0644 avidemux.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux.desktop
+	%{__install} -Dp -m0644 avidemux.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
         desktop-file-install --vendor %{desktop_vendor}    \

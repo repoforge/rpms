@@ -27,14 +27,14 @@ By downloading and installing this package you agree to the included LICENSE:
 
 %prep
 %setup -c
-%{__install} -D -m0644 %{SOURCE1} %{_builddir}/%{name}-%{version}/LICENSE
+%{__install} -Dp -m0644 %{SOURCE1} %{_builddir}/%{name}-%{version}/LICENSE
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 install_flash_player_7_linux/libflashplayer.so %{buildroot}%{_libdir}/mozilla/plugins/libflashplayer.so
-%{__install} -D -m0755 install_flash_player_7_linux/flashplayer.xpt %{buildroot}%{_libdir}/mozilla/plugins/flashplayer.xpt
+%{__install} -Dp -m0755 install_flash_player_7_linux/libflashplayer.so %{buildroot}%{_libdir}/mozilla/plugins/libflashplayer.so
+%{__install} -Dp -m0755 install_flash_player_7_linux/flashplayer.xpt %{buildroot}%{_libdir}/mozilla/plugins/flashplayer.xpt
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -28,9 +28,9 @@ headers you want to look for.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 foremost %{buildroot}%{_sbindir}/foremost
-%{__install} -D -m0644 foremost.conf %{buildroot}%{_sysconfdir}/foremost.conf
-%{__install} -D -m0644 foremost.1 %{buildroot}%{_mandir}/man1/foremost.1
+%{__install} -Dp -m0755 foremost %{buildroot}%{_sbindir}/foremost
+%{__install} -Dp -m0644 foremost.conf %{buildroot}%{_sysconfdir}/foremost.conf
+%{__install} -Dp -m0644 foremost.1 %{buildroot}%{_mandir}/man1/foremost.1
 
 %clean
 %{__rm} -rf %{buildroot}

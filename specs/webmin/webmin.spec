@@ -55,9 +55,9 @@ web browser.
 %{__install} -d -m0755 %{buildroot}%{_libexecdir}/webmin/
 %{__cp} -a * %{buildroot}%{_libexecdir}/webmin/
 
-%{__install} -D -m0644 webmin-daemon %{buildroot}%{_sysconfdir}/sysconfig/daemons/webmin
-%{__install} -D -m0755 webmin-init %{buildroot}%{_initrddir}/webmin
-%{__install} -D -m0644 webmin-pam %{buildroot}%{_sysconfdir}/pam.d/webmin
+%{__install} -Dp -m0644 webmin-daemon %{buildroot}%{_sysconfdir}/sysconfig/daemons/webmin
+%{__install} -Dp -m0755 webmin-init %{buildroot}%{_initrddir}/webmin
+%{__install} -Dp -m0644 webmin-pam %{buildroot}%{_sysconfdir}/pam.d/webmin
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/webmin/
 

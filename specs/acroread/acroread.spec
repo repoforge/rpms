@@ -87,11 +87,11 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 ### Strip binaries and libraries
 #%{__strip} %{buildroot}%{_libdir}/acroread/Reader/intellinux/bin/acroread %{buildroot}%{_libdir}/acroread/Reader/intellinux/lib/*.so.*
 
-%{__install} -D -m0644 %{buildroot}%{_libdir}/acroread/Resource/Icons/AdobeReader.png %{buildroot}%{_datadir}/pixmaps/AdobeReader.png
+%{__install} -Dp -m0644 %{buildroot}%{_libdir}/acroread/Resource/Icons/AdobeReader.png %{buildroot}%{_datadir}/pixmaps/AdobeReader.png
 
 %{__cp} -af %{buildroot}%{_libdir}/acroread/Resource/Support/AdobeReader_GNOME.desktop acroread.desktop
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 acroread.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/acroread.desktop
+        %{__install} -Dp -m0644 acroread.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/acroread.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \

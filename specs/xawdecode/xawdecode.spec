@@ -71,12 +71,12 @@ EOF
 %makeinstall \
 	ROOT="%{buildroot}"
 
-%{__install} -D -m0644 xawdecode.1 %{buildroot}%{_mandir}/man1/xawdecode.1
-%{__install} -D -m0644 xawdecode_cmd.1 %{buildroot}%{_mandir}/man1/xawdecode_cmd.1
-%{__install} -D -m0644 xawdecode-48.png %{buildroot}%{_datadir}/pixmaps/xawdecode.png
+%{__install} -Dp -m0644 xawdecode.1 %{buildroot}%{_mandir}/man1/xawdecode.1
+%{__install} -Dp -m0644 xawdecode_cmd.1 %{buildroot}%{_mandir}/man1/xawdecode_cmd.1
+%{__install} -Dp -m0644 xawdecode-48.png %{buildroot}%{_datadir}/pixmaps/xawdecode.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 xawdecode.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop
+	%{__install} -Dp -m0644 xawdecode.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

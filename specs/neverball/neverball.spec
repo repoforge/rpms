@@ -97,9 +97,9 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     neverputt.desktop
 %else
-%{__install} -D -m 644 neverball.desktop \
+%{__install} -Dp -m 644 neverball.desktop \
     %{buildroot}/etc/X11/applnk/Games/neverball.desktop
-%{__install} -D -m 644 neverputt.desktop \
+%{__install} -Dp -m 644 neverputt.desktop \
     %{buildroot}/etc/X11/applnk/Games/neverputt.desktop
 %endif
 

@@ -41,7 +41,7 @@ This package includes utilities for systems using ALSA.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} DESTDIR=%{buildroot} install
-%{__install} -D -m755 %{SOURCE1} %{buildroot}%{_initrddir}/alsactl
+%{__install} -Dp -m755 %{SOURCE1} %{buildroot}%{_initrddir}/alsactl
 %{__mkdir_p} %{buildroot}/etc/rc{0,6}.d
 %{__ln_s} -f ../init.d/alsactl %{buildroot}/etc/rc0.d/S01alsactl
 %{__ln_s} -f ../init.d/alsactl %{buildroot}/etc/rc6.d/S01alsactl

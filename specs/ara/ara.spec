@@ -47,12 +47,12 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 755 cli/ara %{buildroot}%{_bindir}/ara
-%{__install} -D -m 644 doc/ara.1 %{buildroot}%{_mandir}/man1/ara.1
-%{__install} -D -m 644 etc/ara.config %{buildroot}%{_sysconfdir}/ara.config
-%{__install} -D -m 755 gui/xara %{buildroot}%{_bindir}/xara
-%{__install} -D -m 644 doc/xara.1 %{buildroot}%{_mandir}/man1/xara.1
-%{__install} -D -m 644 etc/xara.config %{buildroot}%{_sysconfdir}/xara.config
+%{__install} -Dp -m 755 cli/ara %{buildroot}%{_bindir}/ara
+%{__install} -Dp -m 644 doc/ara.1 %{buildroot}%{_mandir}/man1/ara.1
+%{__install} -Dp -m 644 etc/ara.config %{buildroot}%{_sysconfdir}/ara.config
+%{__install} -Dp -m 755 gui/xara %{buildroot}%{_bindir}/xara
+%{__install} -Dp -m 644 doc/xara.1 %{buildroot}%{_mandir}/man1/xara.1
+%{__install} -Dp -m 644 etc/xara.config %{buildroot}%{_sysconfdir}/xara.config
 
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

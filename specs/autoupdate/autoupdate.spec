@@ -31,9 +31,9 @@ a customized (RedHat) distribution plus all clients up to date.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 autoupdate %{buildroot}%{_sbindir}/autoupdate
-%{__install} -D -m0644 autoupdate.8.gz %{buildroot}%{_mandir}/man8/autoupdate.8.gz
-#%{__install} -D -m0644 autoupdate.pm.3.gz %{buildroot}%{_mandir}/man3/autoupdate.pm.3.gz
+%{__install} -Dp -m0755 autoupdate %{buildroot}%{_sbindir}/autoupdate
+%{__install} -Dp -m0644 autoupdate.8.gz %{buildroot}%{_mandir}/man8/autoupdate.8.gz
+#%{__install} -Dp -m0644 autoupdate.pm.3.gz %{buildroot}%{_mandir}/man3/autoupdate.pm.3.gz
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
 %{__install} -m0644 autoupdate.pm/* %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
@@ -46,7 +46,7 @@ a customized (RedHat) distribution plus all clients up to date.
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/{log,spool/autoupdate}
 touch %{buildroot}%{_localstatedir}/log/autoupdate.log
 
-#%{__install} -D -m0644 autoupdate.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/autoupdate
+#%{__install} -Dp -m0644 autoupdate.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/autoupdate
 for file in auto{upd,ins,dld,get,mrg,prg}; do
 	%{__ln_s} -f autoupdate %{buildroot}%{_sbindir}/$file
 	%{__ln_s} -f autoupdate.8.gz %{buildroot}%{_mandir}/man8/$file.8.gz

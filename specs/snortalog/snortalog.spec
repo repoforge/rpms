@@ -63,8 +63,8 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 snortalog.pl %{buildroot}%{_bindir}/snortalog
-%{__install} -D -m0644 snortalog.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/snortalog.conf
+%{__install} -Dp -m0755 snortalog.pl %{buildroot}%{_bindir}/snortalog
+%{__install} -Dp -m0644 snortalog.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/snortalog.conf
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/snortalog/
 %{__install} -m0644 domains hw rules %{buildroot}%{_sysconfdir}/snortalog/

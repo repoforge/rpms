@@ -42,8 +42,8 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 ghasher %{buildroot}%{_bindir}/ghasher
-%{__install} -D -m0644 hash.xpm %{buildroot}%{_datadir}/pixmaps/ghasher.xpm
+%{__install} -Dp -m0755 ghasher %{buildroot}%{_bindir}/ghasher
+%{__install} -Dp -m0644 hash.xpm %{buildroot}%{_datadir}/pixmaps/ghasher.xpm
 
 desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \

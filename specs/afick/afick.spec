@@ -63,18 +63,18 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 afick.pl %{buildroot}%{_bindir}/afick.pl
-%{__install} -D -m0755 afick-tk.pl %{buildroot}%{_bindir}/afick-tk.pl
-%{__install} -D -m0755 afick.cron %{buildroot}%{_sysconfdir}/cron.daily/afick
+%{__install} -Dp -m0755 afick.pl %{buildroot}%{_bindir}/afick.pl
+%{__install} -Dp -m0755 afick-tk.pl %{buildroot}%{_bindir}/afick-tk.pl
+%{__install} -Dp -m0755 afick.cron %{buildroot}%{_sysconfdir}/cron.daily/afick
 
-%{__install} -D -m0644 afick.conf %{buildroot}%{_sysconfdir}/afick.conf
-%{__install} -D -m0644 afick.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/afick
+%{__install} -Dp -m0644 afick.conf %{buildroot}%{_sysconfdir}/afick.conf
+%{__install} -Dp -m0644 afick.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/afick
 
-%{__install} -D -m0644 afick.1 %{buildroot}%{_mandir}/man1/afick.1
-%{__install} -D -m0644 afick-tk.1 %{buildroot}%{_mandir}/man1/afick-tk.1
-%{__install} -D -m0644 afick.conf.5 %{buildroot}%{_mandir}/man1/afick.conf.5
+%{__install} -Dp -m0644 afick.1 %{buildroot}%{_mandir}/man1/afick.1
+%{__install} -Dp -m0644 afick-tk.1 %{buildroot}%{_mandir}/man1/afick-tk.1
+%{__install} -Dp -m0644 afick.conf.5 %{buildroot}%{_mandir}/man1/afick.conf.5
 
-%{__install} -D -m0644 afick.png %{buildroot}%{_datadir}/pixmaps/afick.png
+%{__install} -Dp -m0644 afick.png %{buildroot}%{_datadir}/pixmaps/afick.png
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/afick/archive/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/afick/
@@ -83,7 +83,7 @@ EOF
 %{__ln_s} -f afick-tk.pl %{buildroot}%{_bindir}/afick-tk
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 afick.desktop %{buildroot}%{_datadir}/gnome/apps/System/afick.desktop
+	%{__install} -Dp -m0644 afick.desktop %{buildroot}%{_datadir}/gnome/apps/System/afick.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \

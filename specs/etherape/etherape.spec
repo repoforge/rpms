@@ -71,8 +71,8 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %{__mv} -f %{buildroot}%{_bindir}/etherape %{buildroot}%{_sbindir}/etherape
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/etherape
 
-%{__install} -D -m0644 etherape.console %{buildroot}%{_sysconfdir}/security/console.apps/etherape
-%{__install} -D -m0644 etherape.pam %{buildroot}%{_sysconfdir}/pam.d/etherape
+%{__install} -Dp -m0644 etherape.console %{buildroot}%{_sysconfdir}/security/console.apps/etherape
+%{__install} -Dp -m0644 etherape.pam %{buildroot}%{_sysconfdir}/pam.d/etherape
 
 %if %{!?_without_freedesktop:1}0
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications

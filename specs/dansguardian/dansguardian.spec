@@ -158,8 +158,8 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/logrotate.d/
 
 %makeinstall
-%{__install} -D -m0644 dansguardian.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/dansguardian.conf
-%{__install} -D -m0755 dansguardian.init %{buildroot}%{_initrddir}/dansguardian
+%{__install} -Dp -m0644 dansguardian.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/dansguardian.conf
+%{__install} -Dp -m0755 dansguardian.init %{buildroot}%{_initrddir}/dansguardian
 
 %post
 /sbin/chkconfig --add dansguardian

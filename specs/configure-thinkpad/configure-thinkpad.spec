@@ -59,9 +59,9 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0644 pixmaps/gnome-laptop.png %{buildroot}%{_datadir}/pixmaps/configure-thinkpad.png
-%{__install} -D -m0644 configure-thinkpad.pam %{buildroot}%{_sysconfdir}/pam.d/configure-thinkpad
-%{__install} -D -m0644 configure-thinkpad.consolehelper %{buildroot}%{_sysconfdir}/security/console.apps/configure-thinkpad
+%{__install} -Dp -m0644 pixmaps/gnome-laptop.png %{buildroot}%{_datadir}/pixmaps/configure-thinkpad.png
+%{__install} -Dp -m0644 configure-thinkpad.pam %{buildroot}%{_sysconfdir}/pam.d/configure-thinkpad
+%{__install} -Dp -m0644 configure-thinkpad.consolehelper %{buildroot}%{_sysconfdir}/security/console.apps/configure-thinkpad
 
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__mv} -f %{buildroot}%{_bindir}/configure-thinkpad %{buildroot}%{_sbindir}

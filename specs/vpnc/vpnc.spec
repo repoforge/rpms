@@ -46,9 +46,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 vpnc %{buildroot}%{_sbindir}/vpnc
-%{__install} -D -m0600 vpnc.conf %{buildroot}%{_sysconfdir}/vpnc.conf
-%{__install} -D -m0644 vpnc.8 %{buildroot}%{_mandir}/man8/vpnc.8
+%{__install} -Dp -m0755 vpnc %{buildroot}%{_sbindir}/vpnc
+%{__install} -Dp -m0600 vpnc.conf %{buildroot}%{_sysconfdir}/vpnc.conf
+%{__install} -Dp -m0644 vpnc.8 %{buildroot}%{_mandir}/man8/vpnc.8
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -54,7 +54,7 @@ EOF
 			%{buildroot}%{_mandir}/man1/
 %makeinstall
 
-%{__install} -D -m0644 ftpproxy.xinet %{buildroot}%{_sysconfdir}/xinetd.d/ftpproxy
+%{__install} -Dp -m0644 ftpproxy.xinet %{buildroot}%{_sysconfdir}/xinetd.d/ftpproxy
 
 ### Prevent dependency pollution (akanga)
 %{__chmod} a-x samples/sample-ccp.rc

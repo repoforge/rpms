@@ -56,7 +56,7 @@ EOF
 %{__install} -m0644 theme/default/*.{css,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/theme/default/
 %{__install} -m0644 pics/*.{gif,png} %{buildroot}%{_localstatedir}/www/sqlitemanager/pics/
 
-%{__install} -D -m0644 sqlitemanager.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/sqlitemanager.conf
+%{__install} -Dp -m0644 sqlitemanager.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/sqlitemanager.conf
 
 %post
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then

@@ -36,7 +36,7 @@ expression entry (although it supports optional traditional buttons).
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 data/icon.xpm %{buildroot}%{_datadir}/pixmaps/qalculate.xpm
+%{__install} -Dp -m0644 data/icon.xpm %{buildroot}%{_datadir}/pixmaps/qalculate.xpm
 
 %post
 scrollkeeper-update -q

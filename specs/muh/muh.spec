@@ -39,7 +39,7 @@ If you have no idea what this is good for you probably don't need it.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 src/muh-ipv6 %{buildroot}%{_bindir}/muh-ipv6
+%{__install} -Dp -m0755 src/muh-ipv6 %{buildroot}%{_bindir}/muh-ipv6
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir

@@ -58,12 +58,12 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 xlock/xlock %{buildroot}%{_bindir}/xlock
-%{__install} -D -m0755 xmlock/xmlock %{buildroot}%{_bindir}/xmlock
-%{__install} -D -m0644 xlock/xlock.man %{buildroot}%{_mandir}/man1/xlock.1
-%{__install} -D -m0644 xlock/XLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XLock
-%{__install} -D -m0644 xmlock/XmLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XmLock
-%{__install} -D -m0644 xlock.pam %{buildroot}%{_sysconfdir}/pam.d/xlock
+%{__install} -Dp -m0755 xlock/xlock %{buildroot}%{_bindir}/xlock
+%{__install} -Dp -m0755 xmlock/xmlock %{buildroot}%{_bindir}/xmlock
+%{__install} -Dp -m0644 xlock/xlock.man %{buildroot}%{_mandir}/man1/xlock.1
+%{__install} -Dp -m0644 xlock/XLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XLock
+%{__install} -Dp -m0644 xmlock/XmLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XmLock
+%{__install} -Dp -m0644 xlock.pam %{buildroot}%{_sysconfdir}/pam.d/xlock
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install \

@@ -53,7 +53,7 @@ EOF
 %{__rm} -rf %{buildroot}/usr/share/doc/dd2/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 dd2.desktop \
+	%{__install} -Dp -m0644 dd2.desktop \
 		%{buildroot}%{_datadir}/gnome/apps/Games/dd2.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

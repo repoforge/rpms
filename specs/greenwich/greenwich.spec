@@ -38,7 +38,7 @@ It can also do lookups against IP addresses.
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	mandir="%{buildroot}%{_mandir}/man1"
-%{__install} -D -m0644 src/redhat-whois.png %{buildroot}%{_datadir}/icons/Bluecurve/greenwich.png
+%{__install} -Dp -m0644 src/redhat-whois.png %{buildroot}%{_datadir}/icons/Bluecurve/greenwich.png
 
 %clean
 %{__rm} -rf %{buildroot}

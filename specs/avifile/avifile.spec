@@ -86,7 +86,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__install} -m0644 -D bin/test.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 avifile.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avifile.desktop
+	%{__install} -Dp -m0644 avifile.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avifile.desktop
 %else
 	%{__install} -m0755 -d %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -36,8 +36,8 @@ day's snapshot for saving a disk space.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 pdumpfs %{buildroot}%{_bindir}/pdumpfs
-%{__install} -D -m0644 man/man8/pdumpfs.8 %{buildroot}%{_mandir}/man8/pdumpfs.8
+%{__install} -Dp -m0755 pdumpfs %{buildroot}%{_bindir}/pdumpfs
+%{__install} -Dp -m0644 man/man8/pdumpfs.8 %{buildroot}%{_mandir}/man8/pdumpfs.8
 
 %clean
 %{__rm} -rf %{buildroot}

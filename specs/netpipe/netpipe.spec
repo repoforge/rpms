@@ -37,9 +37,9 @@ the round trip time in half for small messages ( < 64 Bytes ).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 NPmemcpy %{buildroot}%{_bindir}/NPmemcpy
-%{__install} -D -m0755 NPtcp %{buildroot}%{_bindir}/NPtcp
-%{__install} -D -m0644 dox/netpipe.1 %{buildroot}%{_mandir}/man1/netpipe.1
+%{__install} -Dp -m0755 NPmemcpy %{buildroot}%{_bindir}/NPmemcpy
+%{__install} -Dp -m0755 NPtcp %{buildroot}%{_bindir}/NPtcp
+%{__install} -Dp -m0644 dox/netpipe.1 %{buildroot}%{_mandir}/man1/netpipe.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -157,7 +157,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 qemu.sysv %{buildroot}%{_initrddir}/qemu
+%{__install} -Dp -m0755 qemu.sysv %{buildroot}%{_initrddir}/qemu
 
 %post
 /sbin/chkconfig --add qemu

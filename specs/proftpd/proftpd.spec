@@ -75,12 +75,12 @@ fi
 %makeinstall rundir="%{buildroot}%{_localstatedir}/run/proftpd" \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
-%{__install} -D -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
-%{__install} -D -m 640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
-%{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
-%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
-%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
-%{__install} -D -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
+%{__install} -Dp -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
+%{__install} -Dp -m 640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
+%{__install} -Dp -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
+%{__install} -Dp -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
+%{__install} -Dp -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
+%{__install} -Dp -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
 %{__mkdir_p} %{buildroot}/var/ftp/uploads
 %{__mkdir_p} %{buildroot}/var/ftp/pub
 %{__mkdir_p} %{buildroot}/var/log/proftpd

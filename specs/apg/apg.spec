@@ -30,8 +30,8 @@ required type and prints them to standard output.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 apg %{buildroot}%{_bindir}/apg
-%{__install} -D -m0644 doc/man/apg.1 %{buildroot}%{_mandir}/man1/apg.1
+%{__install} -Dp -m0755 apg %{buildroot}%{_bindir}/apg
+%{__install} -Dp -m0644 doc/man/apg.1 %{buildroot}%{_mandir}/man1/apg.1
 
 
 %clean

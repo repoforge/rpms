@@ -39,7 +39,7 @@ and scripts to glue the whole thing together.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 chntpw %{buildroot}%{_bindir}/chntpw
+%{__install} -Dp -m0755 chntpw %{buildroot}%{_bindir}/chntpw
 
 %clean
 %{__rm} -rf %{buildroot}

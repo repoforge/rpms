@@ -37,7 +37,7 @@ host on the net running pftp.
 	BINDIR="%{buildroot}%{_bindir}" \
 	MANDIR="%{buildroot}%{_mandir}"
 
-%{__install} -D -m0644 pftp.conf %{buildroot}%{_sysconfdir}/pftp.conf
+%{__install} -Dp -m0644 pftp.conf %{buildroot}%{_sysconfdir}/pftp.conf
 
 %clean
 %{__rm} -rf %{buildroot}

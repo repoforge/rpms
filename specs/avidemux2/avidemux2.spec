@@ -68,7 +68,7 @@ EOF
 #%find_lang %{real_name}
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0755 avidemux2.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop
+	%{__install} -Dp -m0755 avidemux2.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

@@ -32,7 +32,7 @@ An XMMS plugin to stop playing/quit XMMS/suspend/shutdown at a given time.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 libgoodnight.so %{buildroot}%{xmms_generaldir}/libgoodnight.so
+%{__install} -Dp -m0755 libgoodnight.so %{buildroot}%{xmms_generaldir}/libgoodnight.so
 
 
 %clean

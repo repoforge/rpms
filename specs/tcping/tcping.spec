@@ -31,7 +31,7 @@ start connection establishment.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 tcping %{buildroot}%{_bindir}/tcping
+%{__install} -Dp -m0755 tcping %{buildroot}%{_bindir}/tcping
 
 %clean
 %{__rm} -rf %{buildroot}

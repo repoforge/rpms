@@ -36,7 +36,7 @@ rescuing data from media with errors, e.g. a disk with bad sectors.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 dd_rescue %{buildroot}%{_bindir}/dd_rescue
+%{__install} -Dp -m0755 dd_rescue %{buildroot}%{_bindir}/dd_rescue
 
 %clean
 %{__rm} -rf %{buildroot}

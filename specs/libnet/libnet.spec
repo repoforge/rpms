@@ -38,10 +38,10 @@ with little effort. With a bit more time, more complex programs can be written
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0755 libnet-config %{buildroot}%{_bindir}/libnet-config
+%{__install} -Dp -m0755 libnet-config %{buildroot}%{_bindir}/libnet-config
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man3/
-%{__install} -D -m0644 doc/man/man3/*.3 %{buildroot}%{_mandir}/man3/
+%{__install} -Dp -m0644 doc/man/man3/*.3 %{buildroot}%{_mandir}/man3/
 
 %clean
 %{__rm} -rf %{buildroot}

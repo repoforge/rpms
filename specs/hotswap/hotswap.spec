@@ -56,7 +56,7 @@ appropriate command line arguments.
 %find_lang khotswap
 %find_lang xhotswap
 
-%{__install} -D -m0644 doc/hotswaprc.example %{buildroot}%{_sysconfdir}/hotswaprc
+%{__install} -Dp -m0644 doc/hotswaprc.example %{buildroot}%{_sysconfdir}/hotswaprc
 
 %clean
 %{__rm} -rf %{buildroot}
