@@ -20,7 +20,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel >= 1.2.0, gtk+-devel >= 1.2.0
 
-
 %description
 Blursk is a visualization plugin for the Linux XMMS music player. It was
 inspired by the "Blur Scope" plugin, but Blursk goes far beyond that.

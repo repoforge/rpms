@@ -116,16 +116,12 @@ you will need to install %{name}-devel.
 %{__cat} <<EOF >clamav.logrotate
 %{_localstatedir}/log/clamav/clamav.log {
 	create 644 clamav clamav
-	monthly
-	compress
 }
 EOF
 
 %{__cat} <<EOF >freshclam.logrotate
 %{_localstatedir}/log/clamav/freshclam.log {
 	create 644 clamav clamav
-	monthly
-	compress
 }
 EOF
 

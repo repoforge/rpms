@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Daniel Paarmann <daniel$paarmann,net>
+# Upstream: Michael Vogt <mvo$debian,org>
 
 Summary: Graphical package management program using apt
 Name: synaptic

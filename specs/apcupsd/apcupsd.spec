@@ -3,8 +3,6 @@
 # Upstream: Kern Sibbald <kern$sibbald,com>
 # Upstream: <apcupsd-users$lists,sourceforge,net>
 
-# Distcc: 0
-
 %define _sbindir /sbin
 
 Summary: APC UPS power control daemon

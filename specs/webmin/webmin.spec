@@ -14,7 +14,7 @@ Name: webmin
 Version: 1.150
 Release: 1
 License: BSD
-Group: Applications/Emulators
+Group: System Environment/Base
 URL: http://www.webmin.com/
 
 Packager: Dag Wieers <dag@wieers.com>

@@ -10,7 +10,7 @@ Name: iozone
 Version: 3.221
 Release: 1
 License: Freeware
-Group: Applications/Engineering
+Group: Applications/System
 URL: http://www.iozone.org/ 
 
 Packager: Dag Wieers <dag@wieers.com>
