@@ -1,0 +1,20 @@
+# Virtual IP configuration file for UCARP
+# The number (from 001 to 255) in the name of the file is the identifier
+# $Id$
+
+# Set the same password on all mamchines sharing the same virtual IP
+PASSWORD="love"
+
+# You are required to have an IPADDR= line in the configuration file for
+# this interface (so no DHCP allowed)
+BIND_INTERFACE="eth0"
+
+# Do *NOT* use a main interface for the virtual IP, use an ethX:Y alias
+# with the corresponding /etc/sysconfig/network-scripts/ifcfg-ethX:Y file
+# already configured and ith ONBOOT=no
+VIP_INTERFACE="eth0:0"
+
+# If you have extra options to add, see "ucarp --help" output
+# (the lower the "-k <val>" the higher priority and "-P" to become master ASAP)
+OPTIONS="-k 128 -P"
+

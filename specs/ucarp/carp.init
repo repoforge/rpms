@@ -1,0 +1,143 @@
+#!/bin/bash
+# $Id$
+#
+# chkconfig: - 91 09
+# description: Starts and stops ucarp. \
+#	       used to provide common address redundancy.
+
+# Source function library.
+. /etc/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+get_files() {
+    FILES=`find /etc/sysconfig/carp -type f -name 'vip-*.conf' -maxdepth 1 \
+           -printf "%f\n" | LC_COLLATE="C" sort`
+}
+
+prog=$"common address redundancy protocol daemon"
+RETVAL=0
+
+start() {
+    echo -n $"Starting ${prog}: "
+
+    get_files
+
+    if [ -z "${FILES}" ]; then
+        failure $"no virtual addresses are configured in /etc/sysconfig/carp/"
+        RETVAL=1
+    else
+        for FILE in ${FILES}; do
+            # Check that the file name gives us an ID between 1 and 255
+            ID=`echo ${FILE}| sed 's/^vip-\(.*\).conf/\1/'`
+            if [ ${ID} -lt 1 -o ${ID} -gt 255 ]; then
+                initlog $INITLOG_ARGS -n carp -s "configuration file name ${FILE} gave us a bad ID of ${ID}:" -e 2
+                RETVAL=1
+                break
+            fi
+
+            # Source ucarp settings
+            . /etc/sysconfig/carp/${FILE}
+
+            # Check that we have the ifcfg-<if> file for the main interface
+            if [ -f /etc/sysconfig/network-scripts/ifcfg-${BIND_INTERFACE} ]; then
+                . /etc/sysconfig/network-scripts/ifcfg-${BIND_INTERFACE}
+            else
+                initlog $INITLOG_ARGS -n carp -s $"no ifcfg-${BIND_INTERFACE} file found for carp ${FILE} configuration:" -e 2
+                RETVAL=1
+                break
+            fi
+            # Check that the ifcfg-<if> file does have an IPADDR
+            BIND_ADDRESS=${IPADDR}
+            if [ -z "${BIND_ADDRESS}" ]; then
+                initlog $INITLOG_ARGS -n carp -s $"no IPADDR found in interface file ifcfg-${BIND_INTERFACE}:" -e 2
+                RETVAL=1
+                break
+            fi
+
+            # Check that we have the ifcfg-<if> file for the virtual interface
+            if [ -f /etc/sysconfig/network-scripts/ifcfg-${VIP_INTERFACE} ]; then
+                . /etc/sysconfig/network-scripts/ifcfg-${VIP_INTERFACE}
+            else
+                initlog $INITLOG_ARGS -n carp -s $"no ifcfg-${VIP_INTERFACE} file found for carp ${FILE} configuration:" -e 2
+                RETVAL=1
+                break
+            fi
+            # Check that the ifcfg-<if> file does have an IPADDR
+            VIP_ADDRESS=${IPADDR}
+            if [ -z "${VIP_ADDRESS}" ]; then
+                initlog $INITLOG_ARGS -n carp -s "no IPADDR found in interface file ifcfg-${VIP_INTERFACE}:" -e 2
+                RETVAL=1
+                break
+            fi
+
+            daemon /usr/sbin/ucarp -v ${ID} -p ${PASSWORD} -s ${BIND_ADDRESS} -a ${VIP_ADDRESS} -i ${VIP_INTERFACE} ${OPTIONS} -B --upscript=/etc/sysconfig/carp/vip-up --downscript=/etc/sysconfig/carp/vip-down
+            LAUNCH_RETVAL=$?
+            [ ${LAUNCH_RETVAL} -ne 0 ] && RETVAL=1
+        done
+        [ "${RETVAL}" -ne 0 ] && failure $"error in one or more of the carp configurations, see above:"
+    fi
+    echo
+    [ "$RETVAL" -eq 0 ] && touch /var/lock/subsys/carp
+}
+
+stop() {
+    echo -n $"Shutting down $prog: "
+    killproc /usr/sbin/ucarp
+    RETVAL=$?
+
+    # We put all interfaces managed by ucarp down when stopping the service
+    # to avoid conflicting "leftovers"
+
+    get_files
+
+    [ ! -z "${FILES}" ] && \
+    for FILE in ${FILES}; do
+
+        # Source ucarp settings
+        . /etc/sysconfig/carp/${FILE}
+
+        # Check that we have the ifcfg-<if> file for the virtual interface
+        if [ -f /etc/sysconfig/network-scripts/ifcfg-${VIP_INTERFACE} ]; then
+            if /sbin/ifconfig ${VIP_INTERFACE} down >/dev/null 2>&1; then
+                initlog $INITLOG_ARGS -n carp -s $"bringing down carp managed interface ${VIP_INTERFACE}:" -e 1
+            else
+                initlog $INITLOG_ARGS -n carp -s $"bringing down carp managed interface ${VIP_INTERFACE}:" -e 2
+            fi
+        fi
+    done
+    echo
+    [ "$RETVAL" -eq 0 ] && rm -f /var/lock/subsys/carp
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload)
+	stop
+	start
+	;;
+  condrestart)
+	if [ -f /var/lock/subsys/carp ]; then
+	    stop
+	    start
+	fi
+	;;
+  status)
+	status /usr/sbin/ucarp
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+	exit 1
+esac
+
+exit $RETVAL
