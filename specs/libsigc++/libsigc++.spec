@@ -6,7 +6,7 @@
 Summary: Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
-Release: 3
+Release: 4
 ### Needs epoch as el2 comes with version 1:1.0.3 ;-(
 %{?el2:Epoch: 1}
 License: LGPL
@@ -16,6 +16,7 @@ Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libsigc++-examples <= %{version}
 BuildRequires: gcc-c++, m4
+BuildRequires: libtool, autoconf, automake
 
 %description
 This library implements a full callback system for use in widget libraries,
@@ -44,6 +45,10 @@ needed for development with libsigc++.
 
 
 %build
+%{__aclocal} -I scripts
+%{__libtoolize} -c -f
+%{__autoconf}
+%{__automake} -a -c -f
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -83,6 +88,9 @@ find doc -name "Makefile*" | xargs rm -f
 
 
 %changelog
+* Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 1.2.5-4
+- Force libtoolize/autoconf/automake to build on x86_64.
+
 * Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 1.2.5-3
 - Rebuild for Fedora Core 2.
 
