@@ -1,11 +1,13 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: 
+# Upstream: Michael Buesch <mbuesch@freenet.de>
+# Screenshot: http://passwordmanager.sourceforge.net/1.png
+# ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
 
 Summary: Personal password manager
 Name: passwordmanager
-Version: 0.8
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -17,11 +19,10 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/passwordmanager/pwmanager-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel, bzip2-devel
+BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++,
+BuildRequires: gettext, XFree86-devel, zlib-devel, qt-devel, 
+BuildRequires: libjpeg-devel, kdelibs-devel, bzip2-devel
 %{?fc2:BuildRequires: libselinux-devel}
-
-# Screenshot: http://passwordmanager.sourceforge.net/1.png
-# ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
 
 %description
 PwManager saves your passwords blowfish-encrypted in one file, so you have
@@ -34,7 +35,6 @@ password to access the list.
 
 %build
 %configure
-#	--enable-keycard
 %{__make} %{?_smp_mflags}
 
 %install
@@ -62,5 +62,8 @@ password to access the list.
 %{?fc2:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
+- update to version 0.8.1
+
 * Tue Jun 1 2004 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.
