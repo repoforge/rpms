@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Bram Avontuur <bram@avontuur.org>
 
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.stack.nl/~brama/vcr/src/vcr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: avifile-devel
 Requires: avifile
@@ -45,6 +43,7 @@ when you're as far away from your home as possible...
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
