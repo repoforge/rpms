@@ -31,6 +31,7 @@ Apollon is a KDE filesharing client which uses gift.
 
 %build
 . /etc/profile.d/qt.sh
+for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done
 %configure
 %{__make} %{?_smp_mflags}
 
