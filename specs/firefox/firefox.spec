@@ -180,7 +180,7 @@ Exec=firefox
 Icon=firefox.png
 Terminal=false
 Type=Application
-StartupNotify=true
+StartupNotify=false
 MimeType=text/html;text/x-java;inode/directory;application/xhtml+xml;
 Categories=Application;Network;
 EOF
@@ -209,28 +209,27 @@ $MOZ_PROGRAM -a firefox -remote 'ping()' &>/dev/null
 RUNNING=$?
 if [ $? -eq 2 ]; then RUNNING=0; fi
 
-CMD=0
+REMOTE=0
 while [ "$1" ]; do
 	case "$1" in
 #	  -mail|-email)
-#		if [ $RUNNING -eq 0 -a $CMD -ne 1 ]; then
+#		if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
 #			MOZARGS="-remote xfeDoCommand(openInbox) $MOZARGS"
-#			CMD=1
+#			REMOTE=1
 #		fi;;
 #	  -compose|-editor)
-#		if [ $RUNNING -eq 0 -a $CMD -ne 1 ]; then
+#		if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
 #			MOZARGS="-remote xfeDoCommand(composeMessage) $MOZARGS"
-#			CMD=1
+#			REMOTE=1
 #		fi;;
 	  -register)
 		if [ -x "/usr/X11R6/bin/Xvfb" ]; then
-			export HOME="$(mktemp -d /tmp/firefox-rpm.XXXXXX)"
-			mkdir -p $HOME/.mozilla/firefox/default
-			cp -rf $MOZILLA_FIVE_HOME/defaults/profile/* $HOME/.mozilla/firefox/default
+			export HOME="$(mktemp -d /tmp/firefox-rpm.$$)"
+			mkdir -p $HOME/.mozilla/firefox/default/
+			cp -rf $MOZILLA_FIVE_HOME/defaults/profile/* $HOME/.mozilla/firefox/default/
 			echo -e "[General]\nStartWithLastProfile=1\n\n[Profile0]\nName=default\nIsRelative=1\nPath=default" >$HOME/.mozilla/firefox/profiles.ini
-			/usr/X11R6/bin/Xvfb :69 -nolisten tcp -ac -terminate &>/dev/null &
-			DISPLAY=:69 $MOZILLA_FIVE_HOME/firefox-bin -install-global-extension -install-global-theme &>/dev/null
-			jobs 1 &>/dev/null && kill -KILL %1 &>/dev/null
+			/usr/X11R6/bin/Xvfb :69 -nolisten tcp -ac -terminate &
+			DISPLAY=:69 $MOZILLA_FIVE_HOME/firefox-bin -a firefox -install-global-extension -install-global-theme
 			rm -rf $HOME
 			exit 0
 		else
@@ -238,40 +237,37 @@ while [ "$1" ]; do
 			exit 1
 		fi;;
 	  -remote)
-		if [ $CMD -ne 1 ]; then
+		if [ $REMOTE -ne 1 ]; then
 			MOZARGS="-remote $2 $MOZARGS"
-			CMD=1
+			REMOTE=1
 		fi
 		shift;;
 	  -profile|-profile-manager)
-		CMD=1
+		MOZARGS="$MOZARGS -profilemanager"
+		REMOTE=1
 		;;
 	  -*)
 		MOZARGS="$MOZARGS $1"
 		;;
 	  *)
-		if [ $CMD -ne 1 ]; then
-			if [ -e "$PWD/$1" ]; then
-				URL="file://$PWD/$1"
-			elif [ -e "$1" ]; then
-				URL="file://$1"
-			else
-				URL="$1"
-			fi
-			if [ $RUNNING -eq 0 ]; then
-				MOZARGS="-remote openURL(\"$URL\",new-window) $MOZARGS"
-			else
-				MOZARGS="-remote openURL(\"$URL\") $MOZARGS"
-			fi
-			CMD=1
+		if [ -e "$PWD/$1" ]; then
+			URL="file://$PWD/$1"
+		elif [ -e "$1" ]; then
+			URL="file://$1"
 		else
-			MOZARGS="$MOZARGS $1"
+			URL="$1"
+		fi
+		if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
+			MOZARGS="-remote openURL(\"$URL\",new-window) $MOZARGS"
+			REMOTE=1
+		else
+			MOZARGS="$MOZARGS $URL"
 		fi;;
 	esac
 	shift
 done
 
-if [ $RUNNING -eq 0 -a $CMD -ne 1 ]; then
+if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
 	exec $MOZ_PROGRAM -a firefox -remote "xfeDoCommand(openBrowser)" $MOZARGS
 else
 	exec $MOZ_PROGRAM -a firefox $MOZARGS &
@@ -328,14 +324,13 @@ fi
 
 %post
 /sbin/ldconfig 2>/dev/null
+%{_bindir}/firefox -register &>/dev/null || :
 %{_libdir}/firefox/firefox-rebuild-databases &>/dev/null || :
-%{_bindir}/firefox -register || :
+%{_bindir}/update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %postun
 /sbin/ldconfig 2>/dev/null
-if [ $1 -gt 1 ]; then
-	%{_libdir}/firefox/firefox-rebuild-databases &>/dev/null || :
-fi
+%{_bindir}/update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -360,7 +355,6 @@ fi
 - Fixed firefox -register and firefox-rebuild-databases. (Gary Peck)
 - Remove extensions-directory after uninstalling. (Gary Peck)
 - Added gnomevfs extension. (Gary Peck)
-- Clean up Xvfb afterwards.
 
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.9.2-1
 - Updated to release 0.9.2.
