@@ -12,8 +12,8 @@ Source: http://www.theora.org/files/libtheora-%{version}%{?prever}.tar.bz2
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libogg-devel >= 1.1, libvorbis-devel >= 1.0.1, SDL-devel
-# Seems like a devel package forgot to include this one (ogg? vorbis? SDL?)
-BuildRequires: alsa-lib-devel
+# Fedora Core 2's SDL-devel forgot to require alsa-lib-devel
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 Ogg Theora is a fully open, non-proprietary, patent-and-royalty-free,

@@ -6,7 +6,7 @@
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
 Version: 1.2.9
-Release: 7%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
+Release: 8%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
