@@ -70,6 +70,7 @@ code is transmitted. Only other CWirc users can receive what you send.
 %defattr(-, root, root, 0755)
 %doc COPYING README
 %{_bindir}/*
+%{_libdir}/xchat/plugins/cwirc.so
 
 %changelog
 * Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> 1.8.1-1 
