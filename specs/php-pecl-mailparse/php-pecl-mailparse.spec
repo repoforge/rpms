@@ -30,7 +30,8 @@ It can deal with rfc822 and rfc2045 (MIME) compliant messages.
 %build
 %{__mkdir_p} ext/mbstring/libmbfl/
 %{__mv} mbfl-* ext/mbstring/libmbfl/mbfl
-phpize
+# Workaround for broken phpize on 64 bits
+%{__cat} %{_bindir}/phpize | sed 's|/lib/|/%{_lib}/|g' > phpize && sh phpize
 %configure
 %{__make} %{?_smp_mflags}
 

@@ -29,7 +29,8 @@ This extension allows you to access SQLite databases from within PHP.
 
 
 %build
-phpize
+# Workaround for broken phpize on 64 bits
+%{__cat} %{_bindir}/phpize | sed 's|/lib/|/%{_lib}/|g' > phpize && sh phpize
 %configure
 %{__make} %{?_smp_mflags}
 
