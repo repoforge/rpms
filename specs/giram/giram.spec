@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: David Odin <David@dindinx.org>
 

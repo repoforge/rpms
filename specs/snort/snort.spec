@@ -87,6 +87,8 @@ Requires snort libnet rpm.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|lib lib/|%{_lib} %{_lib}/|' configure
+
 %{__cat} <<EOF >snort.sysconf
 ### Specify your network interface here
 INTERFACE="eth0"
@@ -280,19 +282,18 @@ cd -
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/snort \
-			%{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%{_localstatedir}/log/snort \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_mandir}/man8
-
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -m0755 snort-* %{buildroot}%{_sbindir}
 
-%{__install} -m0644 snort.8 %{buildroot}%{_mandir}/man8
-%{__install} -m0644 etc/*.config etc/*.conf etc/*.map rules/*.rules %{buildroot}%{_sysconfdir}/snort
-%{__install} -m0755 snortd.sysv %{buildroot}%{_initrddir}/snortd
-%{__install} -m0644 snort.sysconf %{buildroot}%{_sysconfdir}/sysconfig/snort
+%{__install} -D -m0644 snort.8 %{buildroot}%{_mandir}/man8/snort.8
+
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/snort
+%{__install} -m0644 etc/*.config etc/*.conf etc/*.map rules/*.rules %{buildroot}%{_sysconfdir}/snort/
+
+%{__install} -D -m0755 snortd.sysv %{buildroot}%{_initrddir}/snortd
+%{__install} -D -m0644 snort.sysconf %{buildroot}%{_sysconfdir}/sysconfig/snort
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/snort/
 
 %{__perl} -pi -e 's|^var RULE_PATH ../rules|var RULE_PATH %{_sysconfdir}/snort|'  %{buildroot}%{_sysconfdir}/snort/snort.conf
 

@@ -103,7 +103,7 @@ xset fp rehash || :
 %config(noreplace) %{_sysconfdir}/*.conf
 %{_bindir}/*
 %{_datadir}/xawdecode/
-%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
+%{_prefix}/X11R6/lib/X11/app-defaults/*
 %{_prefix}/X11R6/%{_lib}/X11/fonts/misc/*
 %{_datadir}/pixmaps/*.png
 %{!?_without_freedesktop:%{_datadir}/applications/net-xawdecode.desktop}

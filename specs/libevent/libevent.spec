@@ -42,7 +42,8 @@ you will need to install %{name}-devel.
 %build
 %configure \
 	--enable-shared
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags} -fPIC"
 
 ### FIXME: configure should have the ability to specify for static or shared libraries
 ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.so.0.0.7 *.o

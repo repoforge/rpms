@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Andrew Tridgell <tridge@samba.org>
 
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/tdb/tdb-%{version}.tar.gz
 Patch: tdb-1.0.6-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gdbm-devel
 
@@ -42,15 +40,13 @@ you will need to install %{name}-devel.
 %patch0 -b .gcc3
 
 %build
+%{__libtoolize} --force --copy
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 ### FIXME: tdbdump is also shipped with samba. (Please fix upstream)
 %{__rm} -f %{buildroot}%{_bindir}/tdbdump
@@ -74,9 +70,9 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man?/*
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*.h 
-#exclude %{_libdir}/*.la
 
 %changelog
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 1.0.6-3

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Name: smjpeg
@@ -13,10 +12,9 @@ URL: http://icculus.org/smjpeg/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smjpeg/%{name}-%{version}.tar.gz
+Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smjpeg/smjpeg-%{version}.tar.gz
 Patch: smjpeg-0.2.1-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: SDL-devel
 
@@ -39,15 +37,13 @@ you will need to install %{name}-devel.
 %patch0 -p0 -b .fixes
 
 %build
+%{__libtoolize} --force --copy
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,8 +64,8 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/smjpeg/
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
-#exclude %{_libdir}/*.la
 
 %changelog
 * Sun Jan 04 2004 Dag Wieers <dag@wieers.com> - 0.2.1-0

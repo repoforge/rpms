@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Linux program for uncompressing *.ace files
@@ -16,9 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.maxeline.com/winace/linunace22.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildArch: i386
-ExclusiveArch: i386
+#BuildArch: i386
+ExclusiveArch: i386 x86_64
 
 %description
 A compression tool that crunches the last free bit from your data, but takes
@@ -36,15 +34,14 @@ far either.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 unace %{buildroot}%{_bindir}
+%{__install} -D -m0755 unace %{buildroot}%{_bindir}/unace
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
+%{_bindir}/unace
 
 %changelog
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 2.20-0

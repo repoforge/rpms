@@ -1,14 +1,16 @@
 # $Id$
-
 # Authority: dag
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: GNOME Chess game
 Name: gnome-chess
 Version: 0.3.3
-Release: 0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.gnome.org/
@@ -16,16 +18,13 @@ URL: http://www.gnome.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-chess/%{name}-%{version}.tar.bz2
-Source1: %{name}-32.png
-Source2: %{name}-48.png
-Source3: %{name}-16.png
+Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-chess/gnome-chess-%{version}.tar.bz2
+Source1: gnome-chess.png
 Patch0: gnome-chess-mime.patch.bz2
 Patch1: gnome-chess-0.3.3-quit.patch.bz2
 ### Fix scrollkeeper file to be DTD compliant
 Patch2: gnome-chess-0.3.3-scrollkeeper.patch.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: flex, gdk-pixbuf-devel, gnome-print-devel, libglade-devel, scrollkeeper
 
@@ -41,11 +40,22 @@ can provide and interface to GNU Chess, Crafty, chess servers and PGN files.
 %patch1 -p1 -b .quit
 %patch2 -p1 -b .scrollkeeper
 
+%{__cat} <<EOF >gnome-chess.desktop
+[Desktop Entry]
+Name=Chess
+Comment=Play chess against any opponent
+Exec=gnome-chess
+Icon=gnome-chess.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GNOME;Application;Game;
+EOF
+
+%build
 xml-i18n-toolize
 %{__aclocal} -I macros
 %{__autoconf}
-
-%build
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -54,20 +64,15 @@ xml-i18n-toolize
 %makeinstall
 %find_lang %{name}
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/ \
-			%{buildroot}%{_datadir}/applications
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/gnome-chess.png
 
-%{__install} -m0644 %{SOURCE1} %{SOURCE2} %{SOURCE3} %{buildroot}%{_datadir}/pixmaps/
-
+%if %{!?_without_freedesktop:1}0
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
-	--add-category Application                    \
-	--add-category Games                          \
 	--dir %{buildroot}%{_datadir}/applications    \
-        %{buildroot}%{_datadir}/gnome/apps/Games/%{name}.desktop
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
+        %{buildroot}%{_datadir}/gnome/apps/Games/gnome-chess.desktop
+%endif
 
 %post
 scrollkeeper-update -q || :
@@ -83,12 +88,18 @@ scrollkeeper-update -q || :
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_datadir}/gnome/help/gnome-chess-manual/
 %{_bindir}/*
-%{_datadir}/pixmaps/*
-%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/gnome-chess.png
+%{_datadir}/pixmaps/gnome-chess./
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/gnome-chess.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-chess.desktop}
 %{_datadir}/gnome-chess/
 %{_datadir}/mime-info/*
-%{_datadir}/omf/gnome-chess/*
+%{_datadir}/omf/gnome-chess/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 0.3.3-1
+- Added improved desktop file.
+
 * Mon May 26 2003 Dag Wieers <dag@wieers.com> - 0.3.3-0
 - Initial package. (using DAR)
