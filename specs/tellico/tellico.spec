@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.periapsis.org/tellico/download/tellico-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, libgcrypt
+BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, libgcrypt-devel
 BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel, libxslt-devel
 BuildRequires: kdelibs-devel, desktop-file-utils, libxml2-devel
