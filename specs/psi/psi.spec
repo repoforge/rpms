@@ -7,7 +7,6 @@
 # NeedsCleanup
 
 Summary: Qt program for connecting to the Jabber messaging network
-Summary(nl): Qt programma om te verbinden met het Jabber messaging netwerk
 Name: psi
 Version: 0.9.1
 Release: 1
@@ -48,13 +47,12 @@ Source27: psi_it.qm
 Source28: psi_sk.qm
 Source29: psi_el.qm
 Source30: psi_ca.qm
-Source31: psi_ptbr.qm
-Source32: psi_se.qm
-Source33: psi_ru.qm
-Source34: psi_de.qm
-Source35: psi_es.qm
-Source36: psi_mk.qm
-Source37: psi_nl.qm
+Source31: psi_se.qm
+Source32: psi_ru.qm
+Source33: psi_de.qm
+Source34: psi_es.qm
+Source35: psi_mk.qm
+Source36: psi_nl.qm
 
 BuildRequires: gcc, make, gcc-c++, XFree86-devel, qt-devel, openssl, openssl-devel
 Requires: qt, openssl
@@ -62,11 +60,6 @@ Requires: qt, openssl
 %description
 Psi is a client program for the Jabber messaging network. It supports
 multiple accounts, group chat, Unicode and encryption with SSL.
-
-%description -l nl
-Psi is een client programma voor het Jabber messaging netwerk. Het
-ondersteunt meerdere accounts, chatten met een groep, Unicode en encryptie
-via SSL.
 
 %prep
 %setup
@@ -156,7 +149,6 @@ cp %{SOURCE33} ${DESTDIR}/usr/share/psi
 cp %{SOURCE34} ${DESTDIR}/usr/share/psi
 cp %{SOURCE35} ${DESTDIR}/usr/share/psi
 cp %{SOURCE36} ${DESTDIR}/usr/share/psi
-cp %{SOURCE37} ${DESTDIR}/usr/share/psi
  
 # ssl plugin
 mkdir -p ${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/
@@ -169,19 +161,6 @@ strip --strip-unneeded "${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/libqca-tls.so"
 %postun
 /sbin/ldconfig
 
-#%package iconsets
-#Summary: some additional iconsets for the jabber client Psi
-#Summary(nl): enkele extra iconsets voor de jabber client Psi
-#Group: Applications/Communications
-#Requires: psi = %{version}-%{release}
-
-#%description iconsets
-#This package contains some additional iconsets for the jabber client Psi.
-
-#%description iconsets -l nl
-#Dit package bevat enkele extra iconsets voor de jabber client Psi.
-
-
 %package languagepack
 Summary: translations of the jabber client Psi
 Summary(nl): vertalingen van de jabber client Psi
@@ -191,10 +170,6 @@ Requires: psi = %{version}-%{release}
 %description languagepack
 This package contains the necessairy files for using the jabber client Psi
 in other languages then English.
-
-%description languagepack -l nl
-Dit package bevat de nodige bestanden om de jabber client Psi te gebruiken
-in andere talen dan Engels (o.a. Nederlands)
 
 %files
 %defattr(-,root,root)
