@@ -6,7 +6,7 @@
 Summary: Media player based on xine-lib
 Name: kaffeine
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kaffeine.sourceforge.net
@@ -29,6 +29,16 @@ BuildRequires: xine-lib-devel
 Kaffeine is a simple and easy to use media player based on the xine-lib and
 full integrated in KDE3. It supports drag and drop and provides an editable
 playlist, a Konqueror plugin, a Mozilla plugin, OSD, and much more. 
+
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -59,9 +69,10 @@ source /etc/profile.d/qt.sh
 %doc %{_mandir}/man?/*
 %doc %{_mandir}/de/man?/*
 %{_bindir}/kaffeine
-%{_includedir}/kaffeine
-%{_libdir}/libkmediapart.*
-%{_libdir}/kde3/libkaffeinepart.*
+%{_libdir}/libkmediapart.so.*
+%{_libdir}/libkmediapart.la
+%{_libdir}/kde3/libkaffeinepart.so
+%{_libdir}/kde3/libkaffeinepart.la
 %{_datadir}/services/kaffeine_part.desktop
 %{_datadir}/apps/konqueror/servicemenus/kaffeine*.desktop
 %{_datadir}/apps/profiles/kaffeine.profile.xml
@@ -71,6 +82,15 @@ source /etc/profile.d/qt.sh
 %doc %{_datadir}/doc/HTML/*/kaffeine
 %{_datadir}/icons/*/*/*/*.png
 
+%files devel
+%{_includedir}/kaffeine
+%{_libdir}/libkmediapart.so
+%{_libdir}/kde3/libkaffeinepart.so
+
 %changelog
+* Sun Jan 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-2
+- Added a devel subpackage so it can update and can be updated by 
+  the kaffeine package of kde-redhat.
+
 * Mon Jan 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Initial package.
