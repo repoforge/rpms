@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Mail-Sendmail
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Simple platform independent mailer
 Name: perl-Mail-Sendmail
@@ -35,8 +39,6 @@ Perl 5 and a network connection.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Mail/Sendmail/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,7 +47,9 @@ Perl 5 and a network connection.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/Mail/Sendmail.pm
+%{perl_vendorlib}/Mail/Sendmail.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.79-1
