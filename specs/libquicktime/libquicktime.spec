@@ -13,12 +13,10 @@ Group: System Environment/Libraries
 URL: http://libquicktime.sf.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk+, libdv, libvorbis, libpng, libjpeg
-%{!?_without_firewire:Requires: libraw1394 >= 0.9, libavc1394}
-BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel
-BuildRequires: libpng-devel, libjpeg-devel
-%{!?_without_firewire:BuildRequires: libraw1394-devel >= 0.9, libavc1394-devel}
-# The configure automatically adds MMX stuff it detected
+Requires: gtk+, libdv, libvorbis, libpng, libjpeg, libraw1394 >= 0.9, libavc1394
+BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel, libpng-devel
+BuildRequires: libjpeg-devel, libraw1394-devel >= 0.9, libavc1394-devel
+# The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch i386
 %{!?_without_mmx:BuildArch: i586}
 %endif
@@ -27,14 +25,11 @@ BuildRequires: libpng-devel, libjpeg-devel
 libquicktime is a library for reading and writing quicktime files. It
 is based on the quicktime4linux library, with many extensions.
 
-Available rpmbuild rebuild options :
---without : firewire mmx
-
 
 %package devel
 Summary: Development files from the libquicktime library
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}
 
 %description devel
 libquicktime is a library for reading and writing quicktime files. It
@@ -47,19 +42,11 @@ programs that need to access quicktime files using libquicktime.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 
-### FIXME: Fix plugin compilation
-#%{__perl} -pi.orig -e 's|^(LDFLAGS) = |$1 = -L../../src/.libs |' plugins/*/Makefile
-#%{__perl} -pi.orig -e 's|^(LQT_LIBS) = |$1 = -L../../src/.libs |g' plugins/Makefile plugins/*/Makefile
-
 
 %build
 %configure \
     %{?_without_firewire:--disable-firewire}
     %{?_without_mmx:--disable-mmx}
-
-### FIXME: Disabled ffmpeg build (fails)
-%{__perl} -pi.orig -e 's|^libavcodec_subdirs = ffmpeg|libavcodec_subdirs = |' plugins/Makefile
-
 %{__make} %{?_smp_mflags}
 
 
@@ -68,15 +55,15 @@ programs that need to access quicktime files using libquicktime.
 %makeinstall
 
 
+%clean
+%{__rm} -rf %{buildroot}
+
+
 %post
 /sbin/ldconfig 2>/dev/null
 
 %postun
 /sbin/ldconfig 2>/dev/null
-
-
-%clean
-%{__rm} -rf %{buildroot}
 
 
 %files

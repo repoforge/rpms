@@ -46,5 +46,9 @@ X MultiMedia System input plugin to play speex files.
 
 
 %changelog
-* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-2
+- Rebuild for Fedora Core 2.
+
+* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-1
 - Initial rpm package.
+

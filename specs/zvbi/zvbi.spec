@@ -3,7 +3,7 @@
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.5
+Version: 0.2.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -34,21 +34,28 @@ the zvbi library.
 %prep
 %setup
 
+
 %build
 %configure --disable-gtk-doc
-%{__make}
+%{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files -f %{name}.lang
 %defattr (-, root, root)
@@ -62,8 +69,13 @@ the zvbi library.
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
+
 %changelog
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.2.5-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.2.8-1
+- Update to 0.2.8.
+- Rebuilt for Fedora Core 2.
+
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.2.5-1
 - Update to 0.2.5.
 - Rebuild for Fedora Core 1.
 

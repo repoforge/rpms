@@ -11,9 +11,11 @@ Group: Applications/Multimedia
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/gtumb/2.3/gthumb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: scrollkeeper, libexif, libgnomeui >= 2.0.0, libgnomeprintui22
+Requires: gphoto2
 BuildRequires: pkgconfig, scrollkeeper, gettext, libexif-devel
 BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
 BuildRequires: libgnomeui-devel >= 2.0.0, libgnomeprintui22-devel
+BuildRequires: gphoto2-devel
 
 %description
 Image viewer and browser for the GNOME Desktop. View single images (including
@@ -75,6 +77,7 @@ gconftool-2 --makefile-install-rule \
 %changelog
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.3.3-1
 - Update to 2.3.3.
+- Added gphoto2 support.
 
 * Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 2.2.1-1
 - Update to 2.2.1.

@@ -74,10 +74,13 @@ export CFLAGS='%{optflags} -DRELEASE'
 
 
 %changelog
-* Thu Nov 20 2003 Matthias Saou <http://freshrpms.net/> 1.0.3-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-3
+- Rebuild for Fedora Core 2.
+
+* Thu Nov 20 2003 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Update to 1.0.3.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.2-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.2-2
 - Rebuild for Fedora Core 1.
 
 * Thu Sep 25 2003 Matthias Saou <http://freshrpms.net/>
