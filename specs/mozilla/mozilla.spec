@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: fc2
+
 %{?dist: %{expand: %%define %dist 1}}
 
 ### FIXME: TODO: Build RH73 builds with gcc 3.2.3
