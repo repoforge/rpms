@@ -49,7 +49,7 @@ EOF
 #echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 #export DESTDIR=$RPM_BUILD_ROOT
 #make install-strip
-%makeinstall DESTDIR=%{buildroot}
+%makeinstall DESTDIR=$RPM_BUILD_ROOT
 mkdir -p %{buildroot}/usr/share/applications/
 cp wesnoth.desktop %{buildroot}/usr/share/applications/
 
