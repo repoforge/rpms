@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0.3, libgnomeui-devel >= 2.0.0
 BuildRequires: libgnomecanvas-devel >= 2.0.0, libgnomeprintui-devel >= 1.0
+BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel
 
 %description
 Gnometab aims to be a WYSIWYG tablature editor.  
