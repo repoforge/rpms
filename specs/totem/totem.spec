@@ -17,6 +17,7 @@ Requires: xine-lib >= 1.0.0
 BuildRequires: gcc-c++, pkgconfig, gettext, scrollkeeper
 BuildRequires: xine-lib-devel >= 1.0.0
 BuildRequires: gnome-desktop-devel >= 2.6.0, gnome-vfs2-devel, libglade2-devel
+BuildRequires: nautilus-cd-burner-devel >= 2.8.1
 BuildRequires: perl(XML::Parser)
 %{!?_without_lirc:BuildRequires: lirc}
 
@@ -26,16 +27,15 @@ simple playlist, a full-screen mode, seek and volume controls, as well as
 a pretty complete keyboard navigation.
 
 Available rpmbuild rebuild options :
---with : gstreamer
---without : lirc
+--without : lirc gstreamer
 
 
 %package gstreamer
 Summary: Movie player for GNOME 2 based on the GStreamer engine
 Group: Applications/Multimedia
 Requires: %{name} = %{version}
-Requires: gstreamer-plugins >= 0.7.4
-BuildRequires: gstreamer-plugins-devel >= 0.7.4
+Requires: gstreamer >= 0.8.6, gstreamer-plugins >= 0.8.4
+BuildRequires: gstreamer-devel >= 0.8.6, gstreamer-plugins-devel >= 0.8.4
 
 %description gstreamer
 Totem is simple movie player for the Gnome desktop. It features a simple
@@ -49,7 +49,7 @@ xine one. You can still use the xine backend by running "totem --xine".
 %package -n mozilla-totem
 Summary: Totem plugin for multimedia playback in the mozilla web browser
 Group: Applications/Multimedia
-Requires: %{name} = %{version}, mozilla
+Requires: %{name} = %{version}
 BuildRequires: mozilla-devel
 
 %description -n mozilla-totem
@@ -127,10 +127,17 @@ EOF
 
 
 %post
+scrollkeeper-update
+update-desktop-database %{_datadir}/applications
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-gconftool-2 --makefile-install-rule \
-    %{_sysconfdir}/gconf/schemas/totem.schemas \
-    %{_sysconfdir}/gconf/schemas/totem-video-thumbnail.schemas >/dev/null || :
+SCHEMAS="totem.schemas totem-video-thumbnail.schemas"
+for S in $SCHEMAS; do
+  gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/$S >/dev/null
+done
+
+%postun
+scrollkeeper-update
+update-desktop-database %{_datadir}/applications
 
 
 %clean
@@ -179,11 +186,15 @@ gconftool-2 --makefile-install-rule \
 
 
 %changelog
-* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.99.20-1
-- Updated to release 0.99.20.
+* Mon Nov  1 2004 Matthias Saou <http://freshrpms.net/> 0.99.20-0
+- Update to 0.99.20.
 
-* Wed Oct 06 2004 Dag Wieers <dag@wieers.com> - 0.99.17-1
-- Updated to release 0.99.17.
+* Thu Oct 21 2004 Matthias Saou <http://freshrpms.net/> 0.99.19-0
+- Update to 0.99.19.
+
+* Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 0.99.17-0
+- Update to 0.99.17.
+- Added scrollkeeper-update and update-desktop-database scriplet calls.
 
 * Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.99.15.1-1
 - Updated to release 0.99.15.1.

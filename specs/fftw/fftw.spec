@@ -7,8 +7,8 @@ Version: 2.1.5
 Release: 4
 License: GPL
 Group: System Environment/Libraries
-Source: http://www.fftw.org/fftw-%{version}.tar.gz
 URL: http://www.fftw.org/
+Source: http://www.fftw.org/fftw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

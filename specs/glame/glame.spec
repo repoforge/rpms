@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: GNU/Linux Audio Mechanics, the GIMP of audio processing
 Name: glame

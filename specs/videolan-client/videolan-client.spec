@@ -33,19 +33,24 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor freshrpms
-%define ffmpeg_date 20040520
-%define real_name vlc
+%define ffmpeg_date    20041001
+%define real_name      vlc
+%define prever         test2
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.7.2
-Release: 1
+Version: 0.8.0
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
-
+%if %{?prever:1}0
+Source0: http://download.videolan.org/pub/testing/vlc-%{version}-%{prever}//vlc-%{version}-%{prever}.tar.bz2
+Source1: http://download.videolan.org/pub/testing/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
+%else
 Source0: http://download.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://download.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
+%endif
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel
@@ -114,7 +119,7 @@ to link statically to it.
 
 
 %prep
-%setup -n %{real_name}-%{version} -a 1
+%setup -n %{real_name}-%{version}%{?prever:-%{prever}} -a 1
 
 
 %build
@@ -122,9 +127,6 @@ to link statically to it.
 pushd ffmpeg-%{ffmpeg_date}
     %configure \
         --disable-shared \
-        %ifarch %{ix86}
-            --disable-mmx \
-        %endif
         --enable-gpl \
         --enable-pp
 #       --enable-mp3lame \
@@ -262,6 +264,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Oct  1 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-0.test2.1
+- Update to 0.8.0-test2 and ffmpeg 20041001 snapshot.
+
 * Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-1
 - Update to 0.7.2.
 - Added fribidi support.

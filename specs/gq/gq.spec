@@ -31,7 +31,7 @@ in that directory.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 
-%{__cat} <<EOF >src/gq.desktop
+%{__cat} > src/gq.desktop << EOF
 [Desktop Entry]
 Name=GQ LDAP Client
 Comment=Manage your LDAP directories
@@ -45,8 +45,8 @@ EOF
 
 %build
 %configure \
-	--enable-cache \
-	--enable-browser-dnd
+    --enable-cache \
+    --enable-browser-dnd
 %{__make} %{?_smp_mflags}
 
 %install
@@ -55,11 +55,13 @@ EOF
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor} --delete-original \
-		--add-category X-Red-Hat-Base                             \
-		--dir %{buildroot}%{_datadir}/applications                \
-		%{buildroot}%{_datadir}/gnome/apps/Internet/gq.desktop
+  %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+  desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --delete-original \
+    --add-category X-Red-Hat-Base \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/gnome/apps/Internet/gq.desktop
 %endif
 
 

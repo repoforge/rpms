@@ -7,15 +7,15 @@
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.4.0
+Version: 0.4.1
 Release: 1
 License: GPL
 Group: System Environment/Base
-Source: http://linux.duke.edu/projects/metadata/generate/createrepo-%{version}.tar.gz
 URL: http://linux.duke.edu/projects/metadata/
+Source: http://linux.duke.edu/projects/metadata/generate/createrepo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch: noarch
 Requires: rpm-python, %{python} >= %{pyminver}, rpm >= 4.1.1, libxml2-python
+BuildArch: noarch
 
 %description
 This utility will generate a common metadata repository from a directory of
@@ -51,6 +51,9 @@ fi
 
 
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-1
+- Update to 0.4.1.
+
 * Mon Oct 18 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-1
 - Update to 0.4.0.
 

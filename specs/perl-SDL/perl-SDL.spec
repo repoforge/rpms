@@ -16,6 +16,7 @@ BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: SDL_ttf-devel, libjpeg-devel, libpng-devel, smpeg-devel
 # This is to pull in missing libs, to fix the "undefined symbol: _Znwj" problem
 %{?!dist:BuildRequires: xorg-x11-Mesa-libGLU}
+%{?fc3:BuildRequires: xorg-x11-Mesa-libGLU}
 %{?fc2:BuildRequires: xorg-x11-Mesa-libGLU}
 %{?fc1:BuildRequires: XFree86-Mesa-libGLU}
 BuildRequires: XFree86-devel

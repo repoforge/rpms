@@ -172,6 +172,7 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{?_with_dvb:--enable-dvbhead} \
     %{?_with_dvb:--with-dvbincdir=/lib/modules/`uname -r`/build/include} \
     --enable-shared-pp \
+    --disable-fastmemcpy \
     --enable-i18n \
     --language=all \
     %{!?_without_osdmenu:--enable-menu} \
@@ -216,11 +217,11 @@ fi
 
 %post
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications &>/dev/null || :
+update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 
 %postun
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications &>/dev/null || :
+update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 
 %post -n libpostproc
 /sbin/ldconfig
@@ -263,12 +264,13 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
-* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.0-0.12.20042025
-- Made the lack of update-desktop-database less dramatic.
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.12.20042025
+- Merge Dag's scriplet changes.
 
 * Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.11.20042025
 - Update to today's CVS snapshot.
 - Simplify the desktop file install, as there is now one included.
+- Add --disable-fastmemcpy to fix broken libpostproc.
 
 * Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.11.pre5
 - Added update-desktop-database scriplet calls.
