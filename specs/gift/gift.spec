@@ -7,8 +7,8 @@
 Summary: Deamon for communicating with filesharing protocols
 Summary(nl): daemon om te communiceren met filesharing protocols
 Name: gift
-Version: 0.11.5
-Release: 1.dries
+Version: 0.11.6
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://gift.sf.net/
@@ -16,16 +16,11 @@ URL: http://gift.sf.net/
 Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, gcc-c++
+BuildRequires: gcc, make, gcc-c++, libtool
 
 %description
 giFT is a modular daemon capable of abstracting the communication between
 the end user and specific filesharing protocols (peer-to-peer or otherwise).
-
-%description -l nl
-giFT is een modulaire daemon die een abstractie maakt van het protocol
-tussen de gebruiker en specifieke filesharing protocollen (peer-to-peer en
-ook andere)
 
 %prep
 %setup
@@ -36,10 +31,12 @@ ook andere)
 
 %install
 %{__rm} -rf %{buildroot}
-make install-strip \
-	DESTDIR="%{buildroot}"
+%makeinstall
+
+
+#make install-strip \ 	DESTDIR="%{buildroot}"
 #ln -s libgift.so.0.0.0 ${DESTDIR}/usr/lib/libgift.so
-ls -l ${DESTDIR}/usr/lib/libgift.so*
+#ls -l ${DESTDIR}/usr/lib/libgift.so*
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -68,5 +65,8 @@ ls -l ${DESTDIR}/usr/lib/libgift.so*
 %{_datadir}/man/man1/giftd.1.gz
 
 %changelog
-* Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.11.5-1.dries
+* Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> 0.11.6-1
+- update to 0.11.6
+
+* Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.11.5-1
 - first packaging for Fedora Core 1
