@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <dev@rarlab.com>
+# Upstream: <dev$rarlab,com>
 
 Summary: Extract, test and view RAR archives
 Name: unrar
