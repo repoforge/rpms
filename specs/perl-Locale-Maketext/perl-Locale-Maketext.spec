@@ -1,13 +1,16 @@
 # $Id$
 # Authority: dag
-# ExclusiveDist: rh7
+# ExclusiveDist: rh6 el2 rh7
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Locale-Maketext
 
 Summary: framework for localization and inheritance-based lexicons for Perl
 Name: perl-Locale-Maketext
-Version: 1.06
-Release: 0
+Version: 1.09
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext/
@@ -28,19 +31,15 @@ in this dist).
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -48,10 +47,16 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST README
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Locale/
+%{perl_vendorlib}/Locale/Maketext/
+%{perl_vendorlib}/Locale/Maketext.pm
+%{perl_vendorlib}/Locale/Maketext.pod
 
 %changelog
+* Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 1.06-1
+- Cosmetic cleanup.
+
 * Mon Jul 14 2003 Dag Wieers <dag@wieers.com> - 1.06-0
 - Updated to release 1.06.
 

@@ -9,7 +9,7 @@
 
 Summary: Module for simple terminal control 
 Name: perl-Term-ReadKey
-Version: 
+Version: 2.21
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -31,8 +31,8 @@ of the screen size, and retrieval/modification of the control characters.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -40,7 +40,7 @@ of the screen size, and retrieval/modification of the control characters.
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

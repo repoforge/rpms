@@ -5,7 +5,7 @@
 
 Summary: Graphical front-end for cdrtools
 Name: graveman
-Version: 0.3.8
+Version: 0.3.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -57,5 +57,8 @@ desktop-file-install --delete-original             \
 %{_datadir}/pixmaps/graveman48.png
 
 %changelog
+* Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 0.3.9-1
+- Updated to release 0.3.9.
+
 * Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 0.3.8-1
 - Initial package. (using DAR)

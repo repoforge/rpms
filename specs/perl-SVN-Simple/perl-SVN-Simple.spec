@@ -36,19 +36,17 @@ SVN::Simple is a simple interface to subversion's editor interface.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/SVN/
-%dir %{perl_vendorlib}/SVN/Simple/
-%{perl_vendorlib}/SVN/Simple/*.pm
+%{perl_vendorlib}/SVN/Simple/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.27-1
