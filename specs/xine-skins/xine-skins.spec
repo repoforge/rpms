@@ -1,13 +1,12 @@
 # $Id$
 # Authority: matthias
-
 # Dist: nodist
 
 %define skindir %(rpm -ql xine | grep '/skins$' || :)
 
 Summary: Collection of skins for the Xine multimedia player
 Name: xine-skins
-Version: 1.8
+Version: 1.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -33,6 +32,8 @@ Source17: http://www.xinehq.de/index.php/force-download/skins/blackslim2.tar.gz
 Source18: http://www.xinehq.de/index.php/force-download/skins/caramel.tar.gz
 Source19: http://www.xinehq.de/index.php/force-download/skins/Bambino-Blue.tar.gz
 Source20: http://www.xinehq.de/index.php/force-download/skins/Antares.tar.gz
+Source21: http://www.xinehq.de/index.php/force-download/skins/Polaris.tar.gz
+Source22: http://www.xinehq.de/index.php/force-download/skins/Bluton.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine >= 0.99.0
 BuildRequires: xine >= 0.99.0
@@ -45,7 +46,7 @@ appeareance of Xine.
 
 
 %prep
-%setup -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20
+%setup -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20 -a21 -a22
 
 
 %build
@@ -69,6 +70,9 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 
 
 %changelog
+* Thu Jan 13 2005 Matthias Saou <http://freshrpms.net/> 1.9-1
+- Added Polaris and Bluton skins.
+
 * Tue Jul  6 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
 - Added blackslim2, caramel, Bambino-Blue (no more, it's big) and Antarès.
 
