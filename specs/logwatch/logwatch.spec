@@ -2,12 +2,10 @@
 # Authority: dag
 # Upstream: Kirk Bauer <kirk@kaybee.org>
 
-# ExcludeDist: fc2
-
 Summary: Log file analysis program
 Name: logwatch
-Version: 5.1
-Release: 0.3
+Version: 5.2
+Release: 0.1
 License: MIT
 Group: Applications/System
 URL: http://www.logwatch.org/
@@ -19,7 +17,7 @@ Source: ftp://ftp.kaybee.org/pub/linux/logwatch-%{version}.tar.gz
 Patch: logwatch-4.3.2-nounicode.patch
 Patch1: logwatch-4.3.2-nosegfault.patch
 Patch3: logwatch-5.1-catchlocal.patch
-Patch9: logwatch-5.1-RejectedAtt.patch
+Patch9: logwatch-5.2-RejectedAtt.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -35,7 +33,7 @@ analyzing areas that you specify, in as much detail as you require.
 %patch -p1
 %patch1 -p1
 %patch3 -p1
-%patch9 -p1
+%patch9
 
 %build
 
@@ -90,9 +88,12 @@ done
 %doc %{_mandir}/man8/*
 %config %{_sysconfdir}/log.d/
 %config %{_sysconfdir}/cron.daily/00-logwatch
-%{_sbindir}/*
+%{_sbindir}/logwatch
 
 %changelog
+* Mon Jun 21 2004 Dag Wieers <dag@wieers.com> - 5.2-1
+- Updated to release 5.2.
+
 * Wed May 12 2004 Dag Wieers <dag@wieers.com> - 5.1-3
 - Moved the logwatch manpage to the correct location. (Matthew Lenz)
 

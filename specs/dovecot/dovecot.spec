@@ -6,7 +6,7 @@
 
 Summary: Dovecot secure IMAP server
 Name: dovecot
-Version: 0.99.10.5
+Version: 0.99.10.6
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -174,6 +174,9 @@ fi
 %exclude %{_datadir}/doc/dovecot/
 
 %changelog
+* Mon Jun 21 2004 Dag Wieers <dag@wieers.com> - 0.99.10.6-1
+- Updated to release 0.99.10.6.
+
 * Fri May 28 2004 Dag Wieers <dag@wieers.com> - 0.99.10.5-1
 - Updated to release 0.99.10.5.
 

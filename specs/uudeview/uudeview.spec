@@ -60,7 +60,10 @@ you will need to install %{name}-devel.
 
 %build
 %{__libtoolize} --force --copy
-%configure
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
+	--enable-tcl="%{_libdir}" \
+	--enable-tk="%{_libdir}"
 %{__make} %{?_smp_mflags}
 %{__make} ps -C doc
 

@@ -2,10 +2,15 @@
 # Authority: dag
 # Upstream: Anthony Tekatch <anthony@unihedron.com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 Summary: Units conversion utility
 Name: gonvert
-Version: 0.1.10
-Release: 2
+Version: 0.2.02
+Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://unihedron.com/projects/gonvert/gonvert.php
@@ -29,35 +34,22 @@ your own units.
 %prep 
 %setup
 
-### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|^(BINDIR)   =.*$|$1 = \$(bindir)|;
-		s|^(LIBDIR)   =.*$|$1 = \$(libdir)|;
-		s|^(DOCDIR)   =.*$|$1 = ./rpm-doc|;
-		s|/usr/share|\$(datadir)|;
-		s|\$\(BASEDIR\)/share|\$(datadir)|;
-	' Makefile
-
-%{__cat} <<EOF >gonvert.desktop
-[Desktop Entry]
-Name=Unit Convertor
-Comment=Convert between various units
-Icon=gonvert.png
-Exec=gonvert
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=GNOME;Application;Utility
-EOF
-
 %build 
 %{__make} %{?_smp_mflags}
 
 %install 
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall \
+	BASEDIR="%{buildroot}%{_prefix}" \
+	DOCDIR="%{buildroot}%{_docdir}"
 
-%{__install} -D -m0644 pixmaps/gonvert_icon.png %{buildroot}%{_datadir}/pixmaps/gonvert.png
+%if %{!?_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor gnome --delete-original \
+		--dir %{buildroot}%{_datadir}/applications    \
+		--add-category X-Red-Hat-Base                 \
+		%{buildroot}%{_datadir}/gnome/apps/Utilities/gonvert.desktop
+%endif
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -65,12 +57,20 @@ EOF
 %files 
 %defattr(-, root, root, 0755) 
 %doc doc/*
-%{_bindir}/*
-%{_libdir}/*
-%{_datadir}/gnome/apps/Utilities/*.desktop
-%{_datadir}/pixmaps/*.png
+%{_bindir}/gonvert
+%{_datadir}/gonvert/
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-gonvert.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/gonvert.desktop}
+%{_datadir}/pixmaps/gonvert.png
+%exclude %{_docdir}/gonvert/
 
 %changelog 
+* Tue Jun 22 2004 Dag Wieers <dag@wieers.com> - 0.2.02-1
+- Updated to release 0.2.02.
+
+* Mon Jun 21 2004 Dag Wieers <dag@wieers.com> - 0.2.01-1
+- Updated to release 0.2.01.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.1.10-2
 - Small cosmetic changes.
 
