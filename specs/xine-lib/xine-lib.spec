@@ -29,18 +29,17 @@
 %{?yd3:%define _without_theora 1}
 
 %define libname libxine1
-%define libver  1-rc7
+%define libver  1-rc8
 %define apiver  1.0.0
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.17.rc7
+Release: 0.17.rc8
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
-Patch: xine-lib-1-rc7-memleak.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
@@ -102,13 +101,14 @@ use the Xine library.
 
 %prep
 %setup -n %{name}-%{libver}
-%patch -p0 -b .memleak
 
 
 %build
+CFLAGS="%{optflags} -fPIC" \
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --enable-shared-xv \
     --with-pic \
     %{?_without_alsa:--disable-alsa} \
     %{!?_with_ext-dvdnav:--with-included-dvdnav}
@@ -154,6 +154,10 @@ use the Xine library.
 
 
 %changelog
+* Thu Dec 16 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.17.rc8
+- Update to 1.0rc8 and remove obsolete memleak patch.
+- Add --enable-shared-xv as compilation against static Xv fails on x86_64.
+
 * Fri Dec  3 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.17.rc7
 - Added xine-lib-1-rc7-memleak.patch, thanks to Bastien Nocera.
 
