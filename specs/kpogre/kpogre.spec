@@ -21,7 +21,7 @@ Source: http://osdn.dl.sourceforge.net/sourceforge/kpogre/kpogre-%{real_version}
 #Source: http://dl.sf.net/kpogre/kpogre-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel, postgresql-devel
+BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel, postgresql-devel, libpqxx, libpqxx-devel
 
 # Screenshot: http://kpogre.sourceforge.net/kpogre1.png
 # ScreenshotURL: http://kpogre.sourceforge.net/screenshots.htm
