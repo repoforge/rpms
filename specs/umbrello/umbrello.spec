@@ -1,6 +1,8 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://uml.sourceforge.net/images/thumbnails/activity-diagram.png
+# ScreenshotURL: http://uml.sourceforge.net/screen.php
 
 Summary: unified modelling language (UML) diagrams modeller
 Summary(nl): Een programma om unified modelling language (UML) schema's te maken.
@@ -20,8 +22,6 @@ BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
 BuildRequires: XFree86-devel, qt-devel, flex
 
-#(d) primscreenshot: http://uml.sourceforge.net/images/thumbnails/activity-diagram.png
-#(d) screenshotsurl: http://uml.sourceforge.net/screen.php
 
 %description
 Umbrello UML Modeller is a Unified Modelling Language diagram programme for

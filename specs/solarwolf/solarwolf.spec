@@ -1,6 +1,8 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://www.pygame.org/shredwheat/solarwolf/screen/shot4.jpg
+# ScreenshotURL: http://www.pygame.org/shredwheat/solarwolf/
 
 Summary: Python SDL game where you have to collect energy cubes
 Name: solarwolf
@@ -17,9 +19,6 @@ Source: http://www.pygame.org/shredwheat/solarwolf/%{name}-%{version}.tar.gz
 Source1: makefileandshellscript.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python, python-game
-
-#(d) primscreenshot: http://www.pygame.org/shredwheat/solarwolf/screen/shot4.jpg
-#(d) screenshotsurl: http://www.pygame.org/shredwheat/solarwolf/
 
 %description
 In SolarWolf you play a pilot collecting energy cubes from the defending

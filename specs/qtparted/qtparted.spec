@@ -1,6 +1,8 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://qtparted.sourceforge.net/images/screenshot-001-a.jpg
+# ScreenshotURL: http://qtparted.sourceforge.net/screenshots.en.html
 
 # delayed: needs some other stuff packaged first
 # NeedsCleanup
@@ -20,8 +22,6 @@ Source: http://dl.sf.net/qtparted/qtparted-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: progsreiserfs-devel
 
-#(d) primscreenshot: http://qtparted.sourceforge.net/images/screenshot-001-a.jpg
-#(d) screenshotsurl: http://qtparted.sourceforge.net/screenshots.en.html
 
 %description
 todo

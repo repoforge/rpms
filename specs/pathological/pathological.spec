@@ -1,6 +1,8 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://pathological.sourceforge.net/screenshots/theabyss-small.jpg
+# ScreenshotURL: http://pathological.sourceforge.net/screenshots.php
 
 Summary: an enriched clone of the game "Logical" by Rainbow Arts
 Name: pathological
@@ -16,9 +18,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/pathological/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python, python-game
-
-#(d) primscreenshot: http://pathological.sourceforge.net/screenshots/theabyss-small.jpg
-#(d) screenshotsurl: http://pathological.sourceforge.net/screenshots.php
 
 %description
 Pathological is an enriched clone of the game "Logical" by Rainbow Arts. To
