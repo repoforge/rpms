@@ -37,7 +37,7 @@ made in Python with Pygame.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall DESTDIR=$RPM_BUILD_ROOT
 
 %files
 %defattr(-, root, root, 0755)
