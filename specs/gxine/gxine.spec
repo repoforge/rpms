@@ -9,12 +9,12 @@
 Summary: Frontend for the xine multimedia library
 Name: gxine
 Version: 0.3.3
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 
-Source:http://dl.sf.net/xine/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/xine/gxine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0
@@ -33,6 +33,20 @@ Available rpmbuild rebuild options :
 %prep
 %setup
 
+### FIXME: Include improved desktop-file. (Please fix upstream)
+%{__cat} <<EOF >gxine.desktop
+[Desktop Entry]
+Name=GXine Movie Player
+Comment=Play movies and songs
+Icon=gxine.png
+Exec=gxine
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;AudioVideo;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -41,18 +55,17 @@ Available rpmbuild rebuild options :
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
-# We don't want those...
+%{__install} -D -m0644 pixmaps/gxine-logo.png %{buildroot}%{_datadir}/pixmaps/gxine.png
+
+### We don't want those...
 %{__rm} -f %{buildroot}%{_libdir}/gxine/{*.a,*.la}
 
 %if %{!?_without_freedesktop:1}0
-# Desktop entry
-mkdir -p %{buildroot}%{_datadir}/applications
+### Desktop entry
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category GNOME                                            \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category AudioVideo                                       \
+  --add-category X-Red-Hat-Base                                   \
   %{buildroot}%{_datadir}/gnome/apps/Multimedia/gxine.desktop
 %endif
 
@@ -69,9 +82,13 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gxine.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/gxine.desktop}
 %{_datadir}/gxine/
+%{_datadir}/pixmaps/gxine.png
 
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.3-2.fr
+* Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.3.3-3
+- Added improved desktop file.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.3-2
 - Rebuild for Fedora Core 1.
 
 * Wed Apr  9 2003 Matthias Saou <http://freshrpms.net/>
