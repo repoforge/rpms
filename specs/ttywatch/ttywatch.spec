@@ -1,11 +1,10 @@
 # $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
-
 # Authority: dag
 # Upstream: Michael K. Johnson <ttywatch@danlj.org>
 
 Summary: Log output of arbitrarily many devices
 Name: ttywatch
-Version: 0.12
+Version: 0.13
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -17,7 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.danlj.org/mkj/ttywatch/ttywatch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Prereq: /sbin/chkconfig /usr/bin/install
+BuildRequires: lockdev-devel, /usr/bin/install
+Requires: /sbin/chkconfig
 
 %description
 ttywatch was originally designed to log serial console output from
@@ -33,7 +33,8 @@ ttywatch-devel package.
 %setup
 
 %build
-%{__make} %{_smp_mflags}
+%{__make} %{_smp_mflags} \
+	OPTFLAGS="%{optflags} -I/usr/include"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,7 +46,7 @@ ttywatch-devel package.
 
 %preun
 if [ $1 -eq 0 ]; then
-	service ttywatch stop &>/dev/null || :
+	/sbin/service ttywatch stop &>/dev/null || :
 	/sbin/chkconfig --del ttywatch
 fi
 
@@ -57,6 +58,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
+%doc COPYING TODO
 %doc %{_mandir}/man?/*
 %config %{_initrddir}/*
 %config(noreplace) %{_sysconfdir}/ttywatch.conf
@@ -68,5 +70,8 @@ fi
 %dir %{_localstatedir}/log/ttywatch/
 
 %changelog
+* Sat Apr 24 2004 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 0.12-1
 - Initial package. (using DAR)

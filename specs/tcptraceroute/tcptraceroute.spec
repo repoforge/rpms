@@ -3,10 +3,12 @@
 # Upstream: Michael C. Toren <mct@toren.net>
 # Upstream: <tcptraceroute-dev@netisland.net>
 
-Summary: traceroute implementation using TCP packets
+%define real_version 1.5beta5
+
+Summary: Traceroute implementation using TCP packets
 Name: tcptraceroute
-Version: 1.4
-Release: 3
+Version: 1.5
+Release: 0.beta5
 License: GPL
 Group: Applications/Internet
 URL: http://michael.toren.net/code/tcptraceroute/
@@ -14,11 +16,10 @@ URL: http://michael.toren.net/code/tcptraceroute/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://michael.toren.net/code/tcptraceroute/tcptraceroute-%{version}.tar.gz
-Patch: tcptraceroute-1.4-gcc33.patch
+Source: http://michael.toren.net/code/tcptraceroute/tcptraceroute-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet <= 1.0.2, libpcap
+BuildRequires: libpcap, libnet
 
 %description
 tcptraceroute is a traceroute implementation using TCP packets.
@@ -39,31 +40,32 @@ UDP or ICMP ECHO packets, tcptraceroute is able to bypass the most common
 firewall filters.
 
 %prep
-%setup 
-%patch0 -b .gcc3
+%setup -n %{name}-%{real_version}
 
 %build
-%{__make} %{?rh80:CC="gcc296"} \
-	CFLAGS="%{optflags} -I%{_includedir}/pcap"
+%configure
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man8
-%{__install} -m 644 tcptraceroute.8 %{buildroot}%{_mandir}/man8
-%makeinstall \
-	DESTDIR="%{buildroot}%{_bindir}"
+%makeinstall
+
+%{__install} -D -m0644 tcptraceroute.1 %{buildroot}%{_mandir}/man8/tcptraceroute.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc changelog COPYING examples.txt tcptraceroute.8.html
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README *.txt tcptraceroute.1.html
 %doc %{_mandir}/man?/*
 %{_bindir}/*
+%exclude %{_docdir}/tcptraceroute/
 
 %changelog
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 1.5-0.beta5
+- Updated to release 1.5beta5.
+
 * Fri Nov 21 2003 Dag Wieers <dag@wieers.com> - 1.4-3
 - Patch to build with gcc-3.3.
 
