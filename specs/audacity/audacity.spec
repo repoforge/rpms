@@ -65,7 +65,8 @@ Comment=Audio editor to record, play sounds and import, export files
 Icon=%{name}.xpm
 Exec=%{name}
 Terminal=false
-Type=Application;AudioVideo;
+Type=Application
+Categories=Application;AudioVideo;
 EOF
 
 # Complete the modifications

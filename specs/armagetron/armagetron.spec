@@ -10,14 +10,15 @@
 %{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
 
 %define desktop_vendor freshrpms
 %define prefix %{_prefix}/games/armagetron
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetron
-Version: 0.2.5.2
-Release: 3
+Version: 0.2.6.0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://armagetron.sourceforge.net/
@@ -90,16 +91,15 @@ Exec=%{_bindir}/armagetron
 Icon=armagetron.png
 Terminal=false
 Type=Application
+Categories=Application;Game;
 Encoding=UTF-8
 EOF
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category Game                           \
-  %{name}.desktop
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
 %else
 %{__install} -D -m 644 %{name}.desktop \
   %{buildroot}/etc/X11/applnk/Games/%{name}.desktop
@@ -135,6 +135,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.2.6.0-1
+- Update to "unstable" 0.2.6.0.
+
 * Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 0.2.5.2-3
 - Rebuild for Fedora Core 2.
 - Split off the moviepack files into their own noarch package.

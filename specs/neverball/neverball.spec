@@ -1,6 +1,17 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+                                                                                
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 %define desktop_vendor freshrpms
 
 Summary: Test of skill, part puzzle game and part action game
@@ -12,11 +23,12 @@ Group: Amusements/Games
 URL: http://icculus.org/neverball/
 Source: http://icculus.org/neverball/neverball-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: perl, desktop-file-utils, zlib-devel
+BuildRequires: perl, zlib-devel
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_ttf-devel
-# This is required for correct linking
-#BuildRequires: XFree86-Mesa-libGLU
-BuildRequires: xorg-x11-Mesa-libGLU
+# Mesa libGLU is required for correct linking
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Tilt the floor to roll a ball through an obstacle course before time runs out.
@@ -50,14 +62,20 @@ Comment=Test of skill, part puzzle game and part action game
 Exec=%{name}
 Icon=%{_datadir}/%{name}/shot-rlk/risers.jpg
 Terminal=false
-Type=Application;Game;
+Type=Application
+Categories=Application;Game;
 Encoding=UTF-8
 EOF
 
+%if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
+%else
+%{__install} -D -m 644 %{name}.desktop \
+  %{buildroot}/etc/X11/applnk/Games/%{name}.desktop
+%endif
 
 
 %clean
@@ -68,13 +86,15 @@ desktop-file-install --vendor %{desktop_vendor} \
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README
 %{_bindir}/%{name}
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/%{name}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Games/%{name}.desktop}
 
 
 %changelog
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.3.4-1
 - Update to 1.3.4.
+- Added proper XFree/x.org and desktop-file-utils build switches.
 
 * Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-1
 - Update to 1.3.1.

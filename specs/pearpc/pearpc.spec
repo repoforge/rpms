@@ -51,7 +51,9 @@ Comment=PowerPC Architecture Emulator
 Exec=ppc %{_sysconfdir}/pearpc.conf
 Icon=pearpc.png
 Terminal=false
-Type=Application;Utility;
+Type=Application
+Categories=Application;Utility;
+Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications

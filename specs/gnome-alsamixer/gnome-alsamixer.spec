@@ -41,7 +41,9 @@ Comment=Adjust volume levels
 Exec=gnome-alsamixer
 Icon=gnome-alsamixer/gnome-alsamixer-icon.png
 Terminal=false
-Type=Application;AudioVideo;
+Type=Application
+Categories=Application;AudioVideo;
+Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications

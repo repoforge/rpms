@@ -68,15 +68,14 @@ Exec=%{name}
 Icon=%{name}.png
 Terminal=false
 Type=Application
+Categories=Application;Game;
 Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category Game                           \
-  %{name}.desktop
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
 
 
 %clean

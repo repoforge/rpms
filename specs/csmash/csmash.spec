@@ -48,7 +48,9 @@ Comment=3D tabletennis game
 Exec=csmash
 Icon=%{_datadir}/games/%{name}/images/PenAttack.jpg
 Terminal=false
-Type=Application;Game;
+Type=Application
+Categories=Application;Game;
+Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications

@@ -84,8 +84,8 @@ Comment=Monitor for CPU, memory, disks, network, mail
 Exec=gkrellm
 Icon=gkrellm.png
 Terminal=false
+Categories=Application;System;Monitor;
 Encoding=UTF-8
-Type=Application;System;Monitor;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications

@@ -49,7 +49,8 @@ Comment=Graphical file managment program in GTK+ for Linux
 Icon=%{name}.png
 Exec=gentoo
 Terminal=false
-Type=Application;Utility;
+Type=Application
+Categories=Application;Utility;
 Encoding=UTF-8
 EOF
 
