@@ -7,8 +7,8 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.0
-Release: 2
+Version: 0.4.2
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.codepoet.no/revelation/
@@ -17,6 +17,7 @@ Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.3, python-crypto >= 1.9, python-devel, pygtk2 >= 2.4
+BuildRequires: gnome-keyring-devel
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
 
@@ -28,6 +29,7 @@ a tree structure, and stores them as AES-encrypted XML files.
 %setup -n %{name}-%{version}
 
 %build
+CRACK_MKDICT="$PATH" \
 %configure \
 	--disable-desktop-update \
 	--disable-mime-update \
@@ -62,9 +64,17 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/revelation/
 %{_datadir}/icons/hicolor/*/apps/revelation.png
 %{_datadir}/icons/hicolor/48x48/mimetypes/gnome-mime-application-x-revelation.png
+%{_datadir}/icons/hicolor/scalable/filesystems/revelation-fallback-folder.svg
+%{_datadir}/icons/hicolor/scalable/filesystems/revelation-fallback-folder-open.svg
 %{_datadir}/mime/packages/revelation.xml
 
 %changelog
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
+- Updated to release 0.4.2.
+
+* Mon Mar 21 2005 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Wed Feb 09 2005 Dag Wieers <dag@wieers.com> - 0.4.0-2
 - Added missing gnome-python2-gnomevfs requirement. (Bob Dundon)
 

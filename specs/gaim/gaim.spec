@@ -1,14 +1,13 @@
 # $Id$
 # Authority: matthias
 
-### FC3 comes with the latest gaim
-##ExcludeDist: fc3
-# ExcludeDist: fc2 fc3 el4
+### FC2, FC3 and EL4 come with the latest gaim
+##ExcludeDist: fc2 fc3 el4
 
 ### rh7, rh9 and el3 wants to install perl modules outside buildroot
-%{?el3:%define _without_perl 1}
-%{?rh9:%define _without_perl 1}
-%{?rh7:%define _without_perl 1}
+#{?el3:%define _without_perl 1}
+#{?rh9:%define _without_perl 1}
+#{?rh7:%define _without_perl 1}
 %{?rh7:%define _without_startup_notification 1}
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
@@ -16,8 +15,8 @@
 
 Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.1.4
-Release: 1
+Version: 1.2.0
+Release: 0
 Epoch: 1
 License: GPL
 Group: Applications/Internet
@@ -129,6 +128,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 1.2.0-0
+- Updated to release 1.2.0, keep release 0.
+
 * Sun Mar 06 2005 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 

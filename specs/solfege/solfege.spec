@@ -1,10 +1,9 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Eartaining program for GNOME
 Name: solfege
-Version: 2.1.0
+Version: 2.2.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -12,7 +11,6 @@ URL: http://solfege.sourceforge.net/
 
 Source: http://dl.sf.net/solfege/solfege-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: swig, texinfo, python >= 2.1, pygtk2 >= 0.6.3, gcc-c++
 BuildRequires: pkgconfig
@@ -43,13 +41,16 @@ software useful.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f files.list
+%files
 
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc changelog README TODO
 %config %{_sysconfdir}/solfege1.4/
 
 %changelog
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 2.2.2-1
+- Updated to release 2.2.2.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 2.1.0-1
 - Updated to release 2.1.0.
 

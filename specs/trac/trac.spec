@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <trac$lists,edgewall,com>
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+
 Name: trac
 Summary: Integrated SCM and project management tool
 Version: 0.8.1
@@ -57,8 +59,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-python ./setup.py install \
-	--root="%{buildroot}"
+%{__python} setup.py install --root="%{buildroot}"
 
 %{__install} -D -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
 
@@ -72,7 +73,7 @@ python ./setup.py install \
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/trac.conf
 %{_bindir}/trac*
 %{_datadir}/trac/
-%{_libdir}/python*/site-packages/trac/
+%{python_sitelib}/trac/
 
 %changelog
 * Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1

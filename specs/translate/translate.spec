@@ -1,7 +1,7 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: Aids with localization of software
 Name: translate
@@ -26,11 +26,11 @@ tools to help process localizations etc.
 %setup
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install --root=%{buildroot} 
+%{__python} setup.py install --root="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,8 +38,8 @@ python setup.py install --root=%{buildroot}
 %files
 %defattr(-, root, root, 0755)
 %{_bindir}/*
-%{_libdir}/python*/site-packages/_csv.*
-%{_libdir}/python*/site-packages/translate
+%{python_sitearch}/_csv.so
+%{python_sitearch}/translate/
 
 %changelog
 * Sat May 23 2004 Dries Verachtert <dries@ulyssis.org> 0.8b1-1

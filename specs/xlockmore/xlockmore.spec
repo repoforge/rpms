@@ -4,13 +4,14 @@
 Summary: Screen lock and screen saver.
 Name: xlockmore
 Version: 5.15
-Release: 1
+Release: 2
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.tux.org/~bagleyd/xlockmore.html
 
 Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: XFree86-devel, gcc-c++, esound-devel, gtk2-devel
 BuildRequires: openmotif-devel, openmotif
 %{?fc3:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
@@ -24,7 +25,8 @@ A screen locker and screen saver.
 %setup
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
-%{__cat} <<EOF >%{name}.desktop
+
+%{__cat} <<EOF >xlockmore.desktop
 [Desktop Entry]
 Name=Xlock
 Comment=Screen Saver
@@ -37,10 +39,21 @@ StartupNotify=true
 Categories=Application;Graphics;
 EOF
 
+%{__cat} <<EOF >xlock.pam
+#%PAM-1.0
+auth		required	pam_stack.so service=system-auth
+account		required	pam_stack.so service=system-auth
+password	required	pam_stack.so service=system-auth
+session		required	pam_stack.so service=system-auth
+EOF
+
+
 %build
 %configure \
-	--with-crypt  --enable-pam --enable-syslog \
-        --disable-setuid
+	--with-crypt \
+	--enable-pam \
+        --disable-setuid \
+	--enable-syslog
 %{__make} %{?_smp_mflags}
 
 %install
@@ -50,21 +63,14 @@ EOF
 %{__install} -D -m0644 xlock/xlock.man %{buildroot}%{_mandir}/man1/xlock.1
 %{__install} -D -m0644 xlock/XLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XLock
 %{__install} -D -m0644 xmlock/XmLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XmLock
-
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/pam.d
-%{__cat} > %{buildroot}%{_sysconfdir}/pam.d/xlock << EOF
-#%PAM-1.0
-auth       required     pam_stack.so service=system-auth
-account    required     pam_stack.so service=system-auth
-password   required     pam_stack.so service=system-auth
-session    required     pam_stack.so service=system-auth
-EOF
+%{__install} -D -m0644 xlock.pam %{buildroot}%{_sysconfdir}/pam.d/xlock
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
+desktop-file-install \
+	--vendor %{desktop_vendor}                 \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	xlockmore.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -73,14 +79,17 @@ desktop-file-install --vendor rpmforge             \
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man1/xlock.1*
+%config(noreplace) %{_sysconfdir}/pam.d/xlock
 %{_bindir}/xlock
 %{_bindir}/xmlock
 %{_libdir}/X11/app-defaults/XLock
 %{_libdir}/X11/app-defaults/XmLock
-%config(noreplace) %{_sysconfdir}/pam.d/xlock
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-xlockmore.desktop
 
 %changelog
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 5.15-2
+- Fixed garbage from /etc/pam.d/xlock. (Zamil M. Cavalcanti)
+
 * Thu Feb 24 2005 Adrian Reber <adrian@lisas.de> - 5.15-1
 - update to 5.15
 - build with pam support

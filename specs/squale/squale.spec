@@ -1,6 +1,10 @@
 # $Id$
+# Authority: matthias
+
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %{?dist: %{expand: %%define %dist 1}}
+
 %{?rh7:  %define _without_python 1}
 
 Summary: Persistent SQL database connection libarary and daemon
@@ -115,9 +119,9 @@ fi
 %{_initrddir}/squale
 %{_bindir}/*
 %if %{!?_without_python:1}0
-%exclude %{_libdir}/python?.?/site-packages/squale.a
-%exclude %{_libdir}/python?.?/site-packages/squale.la
-%{_libdir}/python?.?/site-packages/squale.so
+%exclude %{python_sitearch}/squale.a
+%exclude %{python_sitearch}/squale.la
+%{python_sitearch}/squale.so
 %endif
 %{_libdir}/*.so.*
 %{_mandir}/man?/*

@@ -4,7 +4,7 @@
 
 Summary: Lotus Sametime Community Client library
 Name: meanwhile
-Version: 0.3
+Version: 0.4.0
 Release: 1
 License: LGPL
 Group: Applications/Internet
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/meanwhile.pc
 
 %changelog
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+
 * Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 

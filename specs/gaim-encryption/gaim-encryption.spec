@@ -4,7 +4,7 @@
 Summary: Openssl encryption plugin for gaim
 Name: gaim-encryption
 Version: 2.36
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/
@@ -40,6 +40,9 @@ Openssl encryption support for gaim.
 %{_libdir}/gaim/encrypt.so
 
 %changelog
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 2.36-2
+- Rebuild against gaim 1.2.0-0.
+
 * Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 2.36-1
 - Updated to release 2.36.
 

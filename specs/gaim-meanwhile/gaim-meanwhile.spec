@@ -4,8 +4,8 @@
 
 Summary: Lotus Sametime Community Client plugin for Gaim
 Name: gaim-meanwhile
-Version: 1.0.2
-Release: 2
+Version: 1.2.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://meanwhile.sourceforge.net/
@@ -41,6 +41,9 @@ Lotus Sametime Community Client plugin for Gaim
 %{_datadir}/pixmaps/gaim/
 
 %changelog
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 1.0.2-2
 - Rebuild against gaim 1.1.4-1.
 

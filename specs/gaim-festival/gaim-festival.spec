@@ -51,8 +51,8 @@ It use festival and is configurable.
 %{_libdir}/gaim/
 
 %changelog
-* Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 1.00-3
-- Rebuild against gaim 1.1.4-1.
+* Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 1.00-3
+- Rebuild against gaim 1.2.0-0.
 
 * Sat Jan 22 2005 Dag Wieers <dag@wieers.com> - 1.00-2
 - Added voice selection fix. (David L Norris)
