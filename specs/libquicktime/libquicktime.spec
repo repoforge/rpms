@@ -14,7 +14,7 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.3
-Release: %{?prever:0.%{prever}.}3
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -35,7 +35,7 @@ BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel
 
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch %{ix86}
-    %{!?_without_mmx:BuildArch: i586}
+%{!?_without_mmx:BuildArch: i586}
 %endif
 
 %description
