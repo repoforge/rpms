@@ -42,7 +42,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,7 +51,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST TODO
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/
+%{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.7.5-1

@@ -1,33 +1,33 @@
-# $Id$
+# $Id: perl-Archive-Tar.spec 120 2004-03-15 17:26:20Z dag $
 
 # Authority: dag
 
-%define rname FreezeThaw
+%define rname Mon
 
-Summary: FreezeThaw module for perl.
-Name: perl-FreezeThaw
-Version: 0.43
-Release: 0
-License: GPL or Artistic
+Summary: Mon module for perl.
+Name: perl-Mon
+Version: 0.11
+Release: 1
+License: distributable
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/FreezeThaw/
+URL: ftp://ftp.kernel.org/pub/software/admin/mon/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/%{rname}-%{version}.tar.gz
+Source: ftp://ftp.kernel.org/pub/software/admin/mon/Mon-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
-Requires: perl >= 0:5.8.0
+BuildRequires: perl >= 0:5.00503
+Requires: perl >= 0:5.00503
 
 %description
-FreezeThaw module for perl.
+Mon module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{rname}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -48,10 +48,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc CHANGES COPYING COPYRIGHT README VERSION
 %doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
-* Fri Jul 18 2003 Dag Wieers <dag@wieers.com> - 0.43-0
+* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)

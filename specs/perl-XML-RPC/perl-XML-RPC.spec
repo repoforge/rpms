@@ -41,20 +41,17 @@ sed -i "s/DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g;" Makefile
 %install
 export DESTDIR=$RPM_BUILD_ROOT
 %makeinstall
-%{__rm} -f ${RPM_BUILD_ROOT}/usr/lib/perl5/vendor_perl/5.8.1/i386-linux-thread-multi/auto/RPC/XML/.packlist
-%{__rm} -f ${RPM_BUILD_ROOT}/usr/lib/perl5/5.8.1/i386-linux-thread-multi/perllocal.pod
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README 
-%{_bindir}/make_method
-/usr/lib/perl5/vendor_perl/5.8.1/Apache/RPC/*
-/usr/lib/perl5/vendor_perl/5.8.1/RPC/XML.pm
-/usr/lib/perl5/vendor_perl/5.8.1/RPC/XML
-/usr/lib/perl5/vendor_perl/5.8.1/auto/RPC/XML
-/usr/share/man/man1/make_method.1.gz
-/usr/share/man/man3/Apache::RPC*
-/usr/share/man/man3/RPC::XML*
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+%{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
 * Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 0.53-2

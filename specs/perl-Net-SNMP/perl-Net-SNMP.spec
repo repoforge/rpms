@@ -41,8 +41,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/%{_target_cpu}-linux-thread-multi/
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/vendor_perl/*/%{_target_cpu}-linux-thread-multi/
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,7 +51,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_libdir}/perl5/
+%{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 4.1.2-1

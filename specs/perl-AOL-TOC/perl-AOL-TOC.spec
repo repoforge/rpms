@@ -1,33 +1,34 @@
-# $Id$
+# $Id: perl-Archive-Tar.spec 120 2004-03-15 17:26:20Z dag $
 
 # Authority: dag
 
-%define rname FreezeThaw
+%define rname AOL-TOC
+%define rversion 0.340
 
-Summary: FreezeThaw module for perl.
-Name: perl-FreezeThaw
-Version: 0.43
-Release: 0
-License: GPL or Artistic
+Summary: AOL-TOC module for perl.
+Name: perl-AOL-TOC
+Version: 0.34
+Release: 1
+License: distributable
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/FreezeThaw/
+URL: http://search.cpan.org/dist/AOL-TOC/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHARDING/AOL-TOC-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
-Requires: perl >= 0:5.8.0
+BuildRequires: perl >= 0:5.00503
+Requires: perl >= 0:5.00503
 
 %description
-FreezeThaw module for perl.
+Perl extension for interfacing with AOL's AIM service.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{rname}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -48,10 +49,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README
+%doc MANIFEST README
 %doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
-* Fri Jul 18 2003 Dag Wieers <dag@wieers.com> - 0.43-0
+* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 0.340-1
 - Initial package. (using DAR)

@@ -1,21 +1,21 @@
-# $Id$
+# $Id: perl-Archive-Tar.spec 120 2004-03-15 17:26:20Z dag $
 
 # Authority: dag
 
-%define rname Unix-Syslog
+%define rname Math-TrulyRandom
 
-Summary: Syslog module for perl 
-Name: perl-Unix-Syslog
-Version: 0.100
-Release: 0
+Summary: Perl interface to a truly random number generator function.
+Name: perl-Math-TrulyRandom
+Version: 1.0
+Release: 1
 License: distributable
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Unix-Syslog/
+URL: http://search.cpan.org/dist/Math-TrulyRandom/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/M/MH/MHARNISCH/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GARY/Math-TrulyRandom-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -23,10 +23,10 @@ BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
 %description
-Syslog module for perl
+Perl interface to a truly random number generator function.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{rname}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -48,13 +48,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes Artistic
+%doc MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/*
 
 %changelog
-* Mon Jul 14 2003 Dag Wieers <dag@wieers.com> - 0.100-0
-- Updated to release 0.100.
-
-* Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
+* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

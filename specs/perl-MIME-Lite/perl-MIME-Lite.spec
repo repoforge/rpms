@@ -38,14 +38,16 @@ sed -i "s/DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g;" Makefile
 %install
 export DESTDIR=$RPM_BUILD_ROOT
 %makeinstall
-%{__rm} -f ${RPM_BUILD_ROOT}/usr/lib/perl5/vendor_perl/5.8.1/i386-linux-thread-multi/auto/MIME/Lite/.packlist
-%{__rm} -f ${RPM_BUILD_ROOT}/usr/lib/perl5/5.8.1/i386-linux-thread-multi/perllocal.pod
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
 %files
-%defattr(-,root,root,0755)
-%doc README COPYING INSTALLING README.system
-/usr/lib/perl5/vendor_perl/5.8.1/MIME/Lite.pm
-/usr/share/man/man3/MIME::Lite.3pm.gz
+%defattr(-, root, root, 0755)
+%doc COPYING INSTALLING README*
+%doc %{_mandir}/man?/*
+%{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
 * Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 2.117-2
