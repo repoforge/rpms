@@ -1,13 +1,13 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor  freshrpms
+%define desktop_vendor  rpmforge
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 
 Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.51.4
-Release: 0
+Version: 0.52.0
+Release: 1
 License: Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
@@ -69,9 +69,6 @@ desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     dvdrip.desktop
 
-# Add Red Hat NPTL workaround
-#perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_ASSUME_KERNEL} = "2.4.1";\n/g' %{buildroot}%{_bindir}/dvdrip
-
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -90,6 +87,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Jan  4 2005 Matthias Saou <http://freshrpms.net/> 0.52.0-1
+- Update to 0.52.0.
+
 * Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 0.51.4-0
 - Update to 0.51.4.
 
