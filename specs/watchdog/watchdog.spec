@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Software watchdog
@@ -8,7 +7,7 @@ Version: 5.2
 Release: 7
 License: GPL
 Group: System Environment/Daemons
-URL: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/
+URL: http://oss.digirati.com.br/watchcatd/watchdog.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

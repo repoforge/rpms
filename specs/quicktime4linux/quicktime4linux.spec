@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <broadcast@earthling.net>
 
 Summary: Quicktime for Linux
 Name: quicktime4linux
-Version: 1.6.1
-Release: 0
+Version: 2.0.2
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/quicktime.php3
@@ -13,10 +13,9 @@ URL: http://heroinewarrior.com/quicktime.php3
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: quicktime-%{version}.tar.gz
+Source: http://dl.sf.net/heroines/quicktime4linux-%{version}-src.tar.bz2
 Patch: quicktime-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libmpeg3
 
@@ -30,17 +29,17 @@ reliability, and codecs, while not stressing economy. Users wishing
 for a consumer library should use OpenQuicktime or FFMPEG.
 
 %prep
-%setup -n quicktime
-%patch0 -p1
+%setup
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir} \
-		%{buildroot}%{_includedir}/quicktime
-%{__install} -m0755 i686/libquicktime.a %{buildroot}%{_libdir}
+%{__install} -D -m0755 i686/libquicktime.a %{buildroot}%{_libdir}/libquicktime.a
+
+%{__install} -d -m0755 %{buildroot}%{_includedir}/quicktime/
 %{__install} -m0644 *.h %{buildroot}%{_includedir}/quicktime/
 
 %clean
@@ -48,10 +47,13 @@ for a consumer library should use OpenQuicktime or FFMPEG.
 
 %files
 %defattr(-, root, root, 0755)
-%{_libdir}/*
+%{_libdir}/*.a
 %{_includedir}/quicktime/
 
 %changelog
+* Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 2.0.2-1
+- Updated to release 2.0.2.
+
 * Thu Apr 17 2003 Dag Wieers <dag@wieers.com> - 1.6.1-0
 - Updated to release 1.6.1.
 

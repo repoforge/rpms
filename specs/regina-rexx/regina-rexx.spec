@@ -1,7 +1,7 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Mark Hessling <M.Hessling@qut.edu.au>
+
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
@@ -10,7 +10,7 @@
 Summary: Regina Rexx interpreter
 Name: regina-rexx
 Version: 3.3
-Release: 0.rc1
+Release: 1
 License: LGPL
 Group: Development/Languages
 URL: http://regina-rexx.sf.net/
@@ -20,7 +20,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/regina-rexx/Regina-REXX-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Obsoletes: Regina-REXX
 Provides: Regina-REXX
@@ -131,18 +130,16 @@ EOF
 ### FIXME: Fix broken REXX scripts
 %{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}%{_datadir}/regina/*.rexx
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/libtest?.so
-
 %post 
 /sbin/chkconfig --add rxstack
 /sbin/ldconfig 2>/dev/null
 
 %preun 
-if [ "$1" -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	/sbin/service rxstack stop &>/dev/null || :
 	/sbin/chkconfig --del rxstack
 fi
+
 %postun 
 /sbin/service rxstack condrestart &>/dev/null || :
 /sbin/ldconfig 2>/dev/null
@@ -167,8 +164,12 @@ fi
 %{_bindir}/regina-config
 %{_libdir}/*.a
 %{_includedir}/rexxsaa.h
+%exclude %{_libdir}/libtest?.so
 
 %changelog
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 3.3-1
+- Updated to release 3.3.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 3.3-0.rc1
 - Updated to release 3.3rc1.
 
