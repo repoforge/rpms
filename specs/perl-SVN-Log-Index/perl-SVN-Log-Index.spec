@@ -49,6 +49,7 @@ searches over them.
 %doc README CHANGES TODO
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/SVN/Log/Index.pm
+%{_bindir}/*
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.30-1
