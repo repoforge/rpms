@@ -35,9 +35,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://kolourpaint.sourceforge.net/
 
-#Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
-# temp:
-Source: http://kolourpaint.sourceforge.net/kolourpaint-%{real_version}.tar.bz2
+Source: http://dl.sf.net/kolourpaint/kolourpaint-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
