@@ -2,11 +2,15 @@
 
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
-Version: 1.0.1
+Version: 1.2
 Release: 0
 License: GPL
 Group: Applications/Productivity
@@ -20,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.0, XFree86-devel, gcc-c++
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, libtiff-devel
+%{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Scribus is a GUI desktop publishing (DTP) application for GNU/Linux.
@@ -52,9 +57,8 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
 %{__install} -m0644 scribus/icons/scribusicon.png %{buildroot}%{_datadir}/pixmaps/scribus.png
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Applications/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor kde                  \
@@ -64,7 +68,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %endif
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/scribus/{libs,plugins}/*.la
+# %{__rm} -f %{buildroot}%{_libdir}/scribus/{libs,plugins}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -75,14 +79,15 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{_bindir}/*
 %{_libdir}/scribus/
 %{_includedir}/scribus/
+%{_datadir}/scribus
 %{_datadir}/pixmaps/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Applications/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/*.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Wed Sep 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.2-1
+- Updated to release 1.2.
+
 * Tue Aug 12 2003 Dag Wieers <dag@wieers.com> - 1.0.1-0
 - Updated to release 1.0.1.
 
