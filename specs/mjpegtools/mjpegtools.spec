@@ -1,28 +1,36 @@
 # $Id$
 # Authority: matthias
+# Upstream: Gernot Ziegler <gz@lysator.liu.se>
+# Upstream: <mjpeg-developer@lists.sf.net>
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
-URL: http://mjpeg.sourceforge.net/
-Source: http://dl.sf.net/mjpeg/%{name}-%{version}.tar.gz
+URL: http://mjpeg.sf.net/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL, libjpeg, libpng, gtk+
-Requires: libquicktime
-%{?_with_avifile:Requires: avifile}
-%{?_with_dv:Requires: libdv}
+
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk+-devel
 BuildRequires: libquicktime-devel
 %{?_with_avifile:BuildRequires: avifile-devel}
 %{?_with_dv:BuildRequires: libdv-devel < 0.99}
-%{!?_with_dv:BuildConflicts: libdv-devel}
+#%{!?_with_dv:BuildConflicts: libdv-devel}
 %{?_with_cmov:BuildArch: i686}
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
+
+Requires: SDL, libjpeg, libpng, gtk+
+Requires: libquicktime
+%{?_with_avifile:Requires: avifile}
+%{?_with_dv:Requires: libdv}
 
 %description
 The MJPEG-tools are a basic set of utilities for recording, editing, 
@@ -83,6 +91,8 @@ of the mjpegtools package.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING HINTS PLANS README TODO
+%doc %{_mandir}/man?/*
+%doc %{_infodir}/*.info*
 %{?_with_avifile:%{_bindir}/divxdec}
 %{_bindir}/glav
 #%{_bindir}/img2mpg
@@ -99,20 +109,20 @@ of the mjpegtools package.
 %{_bindir}/*.flt
 %{_libdir}/*.so.*
 %exclude %{_infodir}/dir
-%{_infodir}/mjpeg-howto.info*
-%{_mandir}/man1/*
-%{_mandir}/man5/*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/*-config
-%{_includedir}/*
+%{_includedir}/mjpegtools/
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%exclude %{_libdir}/*.la
 
 %changelog
+* Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 1.6.2-2
+- Rebuild against libdv 0.102.
+
 * Wed Feb 18 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-1.fr
 - Update to 1.6.2.
 
