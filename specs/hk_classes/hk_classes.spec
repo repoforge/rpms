@@ -39,7 +39,8 @@ database.
 %{__make} %{?_smp_mflags}
 
 %install
-%makeinstall
+%makeinstall DESTDIR=$RPM_BUILD_ROOT
+
 # echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 # export DESTDIR=$RPM_BUILD_ROOT
 # {__make} install-strip
