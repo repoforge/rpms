@@ -24,7 +24,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/moagg/moagg-%{version}-src.tar.bz2
 Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel 
 BuildRequires: paragui-devel, freetype-devel, gcc-c++, SDL_image-devel
 BuildRequires: desktop-file-utils, zlib-devel

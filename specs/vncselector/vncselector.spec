@@ -14,7 +14,7 @@ URL: http://www.dooglio.net/VncSelector/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
 BuildRequires: fltk-devel, gcc-c++, XFree86-devel
 Requires: fltk

@@ -15,7 +15,7 @@ Vendor:		Dries Apt/Yum Repository, http://dries.ulyssis.org/ayo/
 
 Source: http://www.pygame.org/shredwheat/solarwolf/%{name}-%{version}.tar.gz
 Source1: makefileandshellscript.tar.bz2
-BuildRoot:	%{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python, python-game
 
 #(d) primscreenshot: http://www.pygame.org/shredwheat/solarwolf/screen/shot4.jpg

@@ -14,7 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.panix.com/~gesslein/mathomatic-%{version}.tgz
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Mathomatic is a small, portable symbolic math program that can automatically

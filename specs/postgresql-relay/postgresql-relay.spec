@@ -52,8 +52,8 @@ postgresql-relay.8: postgresql-relay.pod
 	pod2man --release="March 22, 2004" --date="March 22, 2004" --center="General Commands Manual" --section=8 $? > $@
 
 install: postgresql-relay postgresql-relay.8
-	install -D -m0755 postgresql-relay $(DESTDIR)$(bindir)/postgresql-relay
-	install -D -m0644 postgresql-relay.8 $(DESTDIR)$(mandir)/man8/postgresql-relay.8
+	%{__install} -D -m0755 postgresql-relay $(DESTDIR)$(bindir)/postgresql-relay
+	%{__install} -D -m0644 postgresql-relay.8 $(DESTDIR)$(mandir)/man8/postgresql-relay.8
 
 clean:
 	rm -f postgresql-relay *.o postgresql-relay.8
