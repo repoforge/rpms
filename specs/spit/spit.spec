@@ -40,6 +40,7 @@ Icon=spit.svg
 Exec=spit
 Terminal=false
 Type=Application
+Encoding=UTF-8
 Categories=KDE;Application;Graphics;
 EOF
 
@@ -65,7 +66,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_datadir}/spit/
 
-%makeinstall
+# Makefile doesn't use the defines of makeinstall and doesn't use the
+# default DESTDIR
+%makeinstall INSTALL_ROOT=%{buildroot}
 
 %{__install} -D -m0644 pixmaps/spit.svg %{buildroot}%{_datadir}/pixmaps/spit.svg
 
