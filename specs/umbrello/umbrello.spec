@@ -66,11 +66,11 @@ rm -f $RPM_BUILD_ROOT/usr/share/applications/kde/umbrello.desktop
 %defattr(-,root,root,0755)
 %doc COPYING README
 %{_bindir}/umbrello
-/usr/share/apps/umbrello
-/usr/share/icons/*/*/apps/umbrello.png
-/usr/share/icons/*/*/mimetypes/umbrellofile.png
-/usr/share/mimelnk/application/x-umbrello.desktop
-/usr/share/applications/umbrello.desktop
+%{_datadir}/apps/umbrello
+%{_datadir}/icons/*/*/apps/umbrello.png
+%{_datadir}/icons/*/*/mimetypes/umbrellofile.png
+%{_datadir}/mimelnk/application/x-umbrello.desktop
+%{_datadir}/applications/umbrello.desktop
 
 %changelog
 * Tue Feb 24 2004 Dries Verachtert <dries@ulyssis.org> 1.2-1
