@@ -2,16 +2,15 @@
 
 Summary: The C++ interface for the GIMP ToolKit (GTK+) GUI library
 Name: gtkmm2
-Version: 2.2.9
+Version: 2.2.12
 Release: 1
 Group: System Environment/Libraries
 License: LGPL
 URL: http://www.gtkmm.org/
-Source: http://dl.sf.net/gtkmm/gtkmm-%{version}.tar.gz
+Source: http://ftp.gnome.org/pub/GNOME/sources/gtkmm/2.2/gtkmm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.2.0, libsigc++ >= 1.2.0
-BuildRequires: gcc-c++, gtk2-devel, libsigc++-devel >= 1.2.0, 
-BuildRequires: /usr/bin/sgml2html
+BuildRequires: gcc-c++, gtk2-devel >= 2.2.0, libsigc++-devel >= 1.2.0, 
 
 %description
 gtkmm (previously known as Gtk--) is the official C++ interface for the
@@ -42,29 +41,31 @@ needed for developing GTK+ (GIMP ToolKit) applications in C++.
 
 %build
 %configure --enable-static
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot} docs-to-include
 %makeinstall
 # Move the docs back into place
-mkdir docs-to-include
-mv %{buildroot}%{_docdir}/gtkmm-2.0/* docs-to-include/
-
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%{__mkdir} docs-to-include
+%{__mv} %{buildroot}%{_docdir}/gtkmm-2.0/* docs-to-include/
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
+
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
 
 
 %files
 %defattr(-, root, root)
-%doc AUTHORS COPYING ChangeLog NEWS README
+%doc AUTHORS COPYING CHANGES ChangeLog NEWS README
 %{_libdir}/*.so.*
 
 
@@ -81,10 +82,16 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Fri Mar  5 2004 Matthias Saou <http://freshrpms.net/> 2.2.9-1.fr
+* Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 2.2.12-1
+- Update to 2.2.12.
+
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 2.2.9-2
+- Rebuild for Fedora Core 2.
+
+* Fri Mar  5 2004 Matthias Saou <http://freshrpms.net/> 2.2.9-1
 - Update to 2.2.9.
 
-* Thu Nov 12 2003 Matthias Saou <http://freshrpms.net/> 2.2.8-1.fr
+* Thu Nov 12 2003 Matthias Saou <http://freshrpms.net/> 2.2.8-1
 - Update to 2.2.8.
 - Added devhelp book.
 - Rebuild for Fedora Core 1.
