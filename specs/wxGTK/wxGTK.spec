@@ -4,11 +4,11 @@
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
 Version: 2.4.2
-Release: 3.1
+Release: 4
 License: Other
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/
-Source: http://dl.sf.net/wxwindows/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/wxwindows/wxGTK-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel >= 1.2.0, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
@@ -89,17 +89,25 @@ pushd contrib/src/
     %makeinstall -C stc
 popd
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+%postun
+/sbin/ldconfig
 
-%post gl -p /sbin/ldconfig
-%postun gl -p /sbin/ldconfig
+%post gl
+/sbin/ldconfig
+%postun gl
+/sbin/ldconfig
 
-%post xrc -p /sbin/ldconfig
-%postun xrc -p /sbin/ldconfig
+%post xrc
+/sbin/ldconfig
+%postun xrc
+/sbin/ldconfig
 
-%post stc -p /sbin/ldconfig
-%postun stc -p /sbin/ldconfig
+%post stc
+/sbin/ldconfig
+%postun stc
+/sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -130,14 +138,17 @@ popd
 %{_libdir}/libwx_gtk_stc-*
 
 %changelog
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 2.4.2-3.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.4.2-4
+- Rebuilt for Fedora Core 2.
+
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 2.4.2-3
 - Revert back to gtk+, as gtk2 makes too many apps crash :-(
 
-* Wed Nov 12 2003 Matthias Saou <http://freshrpms.net/> 2.4.2-2.fr
+* Wed Nov 12 2003 Matthias Saou <http://freshrpms.net/> 2.4.2-2
 - Disable unicode as it breaks building for most applications (thanks to
   Fabrice Bellet).
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.4.2-1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.4.2-1
 - Rebuild for Fedora Core 1.
 - Update to 2.4.2.
 - Switch to gtk2 by default.
