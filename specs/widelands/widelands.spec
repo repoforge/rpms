@@ -16,7 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://dl.sf.net/widelands/widelands-%{version}-source.tar.bz2
 Source1: http://dl.sf.net/widelands/widelands-%{version}-binary.tar.bz2
-BuildRequires: SDL-devel, make, gcc-c++
+BuildRequires: SDL-devel, make, gcc-c++, SDL_image-devel
 Requires: SDL
 
 # Screenshot: http://widelands.sourceforge.net/images/screens/build-6/00.jpg
