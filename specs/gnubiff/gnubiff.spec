@@ -15,7 +15,7 @@ URL: http://gnubiff.sourceforge.net/
 Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeui-devel, gnome-panel, gcc-c++, openssl-devel, libglade-devel, gdk-pixbuf-devel, glib2-devel, libglade2-devel
+BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++, openssl-devel, libglade-devel, gdk-pixbuf-devel, glib2-devel, libglade2-devel
 
 %description
 Gnubiff is a mail notification program that checks for mail, displays
@@ -39,16 +39,15 @@ make install-strip \
 %files
 %defattr(-,root,root,0755)
 %doc README ABOUT-NLS AUTHORS ChangeLog COPYING NEWS INSTALL THANKS
-/usr/bin/gnubiff
-/usr/lib/bonobo/servers/GNOME_gnubiffApplet.server
-/usr/share/gnome-2.0/ui/GNOME_gnubiffApplet.xml
-/usr/share/gnubiff
-/usr/share/info/gnubiff.info.gz
-/usr/share/locale/*/LC_MESSAGES/gnubiff.mo
-/usr/share/man/man1/gnubiff.1.gz
-/usr/share/pixmaps/gnubiff_icon.png
-/usr/share/sounds/gnubiff/coin.wav
-/usr/share/sounds/gnubiff/mail.wav
+%{_bindir}/gnubiff
+%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server
+%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml
+%{_datadir}/gnubiff
+%{_datadir}/info/gnubiff.info.gz
+%{_datadir}/locale/*/LC_MESSAGES/gnubiff.mo
+%{_datadir}/man/man1/gnubiff.*
+%{_datadir}/pixmaps
+%{_datadir}/sounds/gnubiff
 
 %changelog
 * Thu May 20 2004 Dries Verachtert <dries@ulyssis.org> 1.2.0-1
