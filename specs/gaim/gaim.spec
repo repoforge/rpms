@@ -11,7 +11,7 @@
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 1.0.0
+Version: 1.0.2
 Release: 1
 Epoch: 1
 License: GPL
@@ -123,6 +123,12 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Sun Oct 31 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
+* Sun Oct 17 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

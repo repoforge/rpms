@@ -7,8 +7,8 @@
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
-Version: 1.3.17
-Release: 4
+Version: 1.3.18
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://galeon.sourceforge.net/
@@ -45,9 +45,8 @@ if [ -z "$MOZILLA_FIVE_HOME" ]; then
 fi
 
 LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$LD_LIBRARY_PATH"
-MOZ_PLUGIN_PATH="$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins:$LD_LIBRARY_PATH"
 
-export LD_LIBRARY_PATH MOZILLA_FIVE_HOME MOZ_PLUGIN_PATH
+export LD_LIBRARY_PATH MOZILLA_FIVE_HOME
 
 exec %{_libdir}/galeon/galeon $@
 EOF
@@ -102,6 +101,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 1.3.18-1
+- Updated to release 1.3.18.
+
 * Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 1.3.17-4
 - Build against new mozilla.
 

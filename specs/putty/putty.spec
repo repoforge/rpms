@@ -10,7 +10,7 @@
 
 Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
-Version: 0.55
+Version: 0.56
 Release: 1
 License: MIT
 Group: Applications/Internet
@@ -19,10 +19,11 @@ URL: http://www.chiark.greenend.org.uk/~sgtatham/putty/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://the.earth.li/~sgtatham/putty/latest/putty-%{version}.tar.gz
+Source: http://the.earth.li/~sgtatham/putty/latest/putty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, ImageMagick, desktop-file-utils
+BuildRequires: gtk+-devel, ImageMagick
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Putty is a SSH, Telnet & Rlogin client for Linux.
@@ -54,14 +55,14 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/ \
+			%{buildroot}%{_mandir}/man1/
 %makeinstall -C unix -f Makefile.gtk
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 putty.desktop %{buildroot}%{_datadir}/gnome/apps/Network/putty.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		putty.desktop
@@ -79,10 +80,13 @@ convert putty.ico putty.png
 %doc %{_mandir}/man1/p*.1*
 %{_bindir}/p*
 %{_datadir}/pixmaps/putty.png
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-putty.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-putty.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Network/putty.desktop}
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.56-1
+- Updated to release 0.56.
+
 * Wed Aug 04 2004 Dag Wieers <dag@wieers.com> - 0.55-1
 - Updated to release 0.55.
 

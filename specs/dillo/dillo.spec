@@ -7,9 +7,11 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Small and fast GUI web browser
 Name: dillo
-Version: 0.8.2
+Version: 0.8.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -63,7 +65,7 @@ EOF
         %{__install} -D -m0644 dillo.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/dillo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		dillo.desktop
@@ -78,11 +80,14 @@ EOF
 %config(noreplace) %{_sysconfdir}/*
 %{_bindir}/*
 %{_libdir}/dillo/
-%{_datadir}/pixmaps/*.png
-%{!?_without_freedesktop:%{_datadir}/applications/net-dillo.desktop}
+%{_datadir}/pixmaps/dillo.png
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dillo.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/dillo.desktop}
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Sat Jul 10 2004 Dag Wieers <dag@wieers.com> - 0.8.2-1
 - Updated to release 0.8.2.
 
