@@ -4,7 +4,7 @@
 
 Summary: user friendly TeX/LaTeX editor
 Name: kile
-Version: 1.6.1
+Version: 1.6.2
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -18,8 +18,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs
 
-#(d) primscreenshot: http://kile.sourceforge.net/images/screenshots/kile_screen.png
-#(d) screenshotsurl: http://kile.sourceforge.net/screenshots.php
+# Screenshot: http://kile.sourceforge.net/images/screenshots/kile_screen.png
+# ScreenshotURL: http://kile.sourceforge.net/screenshots.php
 
 %description
 Kile is a user friendly TeX/LaTeX editor. The main features are:
@@ -66,21 +66,24 @@ mv $DESTDIR/usr/share/applications/kde/kile.desktop $DESTDIR/usr/share/applicati
 %files
 %defattr(-,root,root,0755)
 %doc README
-/usr/share/doc/HTML/*/kile
-/usr/share/apps/kile
-/usr/share/apps/katepart/syntax/latex-kile.xml
-/usr/share/apps/katepart/syntax/bibtex-kile.xml
-/usr/share/icons/crystalsvg/48x48/apps/kile.png
-/usr/share/icons/crystalsvg/16x16/apps/kile.png
-/usr/share/icons/crystalsvg/22x22/apps/kile.png
-/usr/share/icons/crystalsvg/32x32/apps/kile.png
-/usr/share/applications/kile.desktop
-/usr/share/locale/*/LC_MESSAGES/kile.mo
-/usr/share/mimelnk/text/x-kilepr.desktop
-/usr/bin/kile
+%{_datadir}/doc/HTML/*/kile
+%{_datadir}/apps/kile
+%{_datadir}/apps/katepart/syntax/latex-kile.xml
+%{_datadir}/apps/katepart/syntax/bibtex-kile.xml
+%{_datadir}/icons/crystalsvg/48x48/apps/kile.png
+%{_datadir}/icons/crystalsvg/16x16/apps/kile.png
+%{_datadir}/icons/crystalsvg/22x22/apps/kile.png
+%{_datadir}/icons/crystalsvg/32x32/apps/kile.png
+%{_datadir}/applications/kile.desktop
+%{_datadir}/locale/*/LC_MESSAGES/kile.mo
+%{_datadir}/mimelnk/text/x-kilepr.desktop
+%{_bindir}/kile
 
 
 %changelog
+* Sun Apr 18 2004 Dries Verachtert <dries@ulyssis.org> 1.6.2-1
+- update to 1.6.2
+
 * Sun Jan 2 2004 Dries Verachtert <dries@ulyssis.org> 1.6.1-1
 - update to 1.6.1
 
