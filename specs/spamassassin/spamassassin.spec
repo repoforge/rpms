@@ -9,7 +9,7 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 2.64
-Release: 1
+Release: 2
 License: GPL or Artistic
 Group: System Environment/Daemons
 URL: http://spamassassin.org/
@@ -93,9 +93,9 @@ export CFLAGS="%{optflags} -fPIC"
 %{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
 %{__install} -m0644 %{SOURCE3} %{SOURCE4} %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/
 
-### Clean up buildroot (arch)
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib}
+%{__rm} -rf %{buildroot}%{perl_vendorarch}
 
 %post
 if [ $1 -eq 1 ]; then
@@ -129,15 +129,15 @@ fi
 %files 
 %defattr(-, root, root, 0755)
 %doc BUGS Changes COPYRIGHT License README TRADEMARK USAGE *.txt spamd/README.spamd
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/*.3pm*
 %config %{_initrddir}/*
 %config(noreplace) %{_sysconfdir}/mail/spamassassin/
 %config(noreplace) %{_sysconfdir}/sysconfig/*
 %{_bindir}/*
 %{_datadir}/spamassassin/
 %{_libdir}/*.so
-%{perl_vendorlib}/*
+%{perl_vendorlib}/Mail/
 %{_includedir}/*.h
 
 %files tools
@@ -145,6 +145,9 @@ fi
 %doc sql/ tools/ masses/ contrib/
 
 %changelog
+* Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 2.64-2
+- Cosmetic changes.
+
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 2.64-1
 - Updated to release 2.64.
 
