@@ -17,7 +17,7 @@ URL: http://www.libsdl.org/projects/SDL_ttf/
 Source: http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel >= 1.2.4, freetype-devel >= 2.0
+BuildRequires: SDL-devel >= 1.2.4, freetype-devel >= 2.0, zlib-devel
 
 %description
 This library allows you to use TrueType fonts to render text in SDL

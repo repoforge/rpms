@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://web2.altmuehlnet.de/fschmid/scribus-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 3.0, XFree86-devel
+BuildRequires: qt-devel >= 3.0, XFree86-devel, gcc-c++
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, libtiff-devel
 
 %description
