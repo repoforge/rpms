@@ -1,8 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Screenshot: http://desk3d.sourceforge.net/images/seq1-thumb.gif
-# ScreenshotURL: http://desk3d.sourceforge.net/screenshots.php
+# Upstream: 
 
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
@@ -20,6 +19,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, XFree86-devel
 Requires: imlib2
 
+# Screenshot: http://desk3d.sourceforge.net/images/seq1-thumb.gif
+# screenshotURL: http://desk3d.sourceforge.net/screenshots.php
+
 %description
 3D-Desktop is an OpenGL program for switching virtual desktops in a seamless
 3-dimensional manner on Linux. The current desktop is mapped into a
@@ -35,8 +37,8 @@ different visualization modes are available.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__rm} -rf %{buildroot}
+%makeinstall
 
 %files
 %defattr(-,root,root, 0755)
@@ -44,7 +46,7 @@ different visualization modes are available.
 %config(noreplace) %{_sysconfdir}/3ddesktop.conf
 %{_bindir}/3ddesk
 %{_bindir}/3ddeskd
-/usr/share/3ddesktop/digits.bmp
+%{_datadir}/3ddesktop/digits.bmp
 
 %changelog
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.2.5-2
