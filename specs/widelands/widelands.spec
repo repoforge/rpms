@@ -3,6 +3,8 @@
 # Screenshot: http://widelands.sourceforge.net/images/screens/build-6/00.jpg
 # ScreenshotURL: http://widelands.sourceforge.net/screenshots.html
 
+# ExcludeDist: el3
+
 Summary: Game like Settlers II
 Name: widelands
 Version: b9

@@ -14,6 +14,8 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
+%{?el3:_without_lesstif 1}
+
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.27beta230
@@ -27,10 +29,12 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, lesstif-devel, flex, byacc, zlib-devel
+BuildRequires: gcc-c++, flex, byacc, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel, ImageMagick, freeglut-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Xvfb}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Xvfb}
+%{?_without_lesstif:BuildRequires: openmotif-devel}
+%{!?_without_lesstif:BuildRequires: lesstif-devel}
 
 %description
 The white_dune program is a graphical VRML97 editor and animation tool.
