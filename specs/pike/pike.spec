@@ -73,6 +73,9 @@ cd build
 %{__mv} %{buildroot}/usr/doc/pike ../pikedocs
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__mv} %{buildroot}/usr/man/man1/pike.1 %{buildroot}%{_mandir}/man1/
+cd %{buildroot}
+find . -type f | xargs perl -pi -e "s|/usr/local/bin/pike|%{_bindir}/pike|g"
+
 
 %post
 /sbin/ldconfig 2>/dev/null
