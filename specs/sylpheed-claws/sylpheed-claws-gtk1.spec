@@ -2,12 +2,12 @@
 # Authority: matthias
 
 %define desktop_vendor rpmforge
-%define extraver       %{nil}
+#define extraver       
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.0.0
-Release: 1
+Version: 1.0.3
+Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
@@ -18,7 +18,7 @@ Requires: gtk+ >= 1.2.6, gdk-pixbuf >= 0.8.0
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
-BuildRequires: openssl-devel, gpgme03-devel, openldap-devel
+BuildRequires: openssl-devel, gpgme03-devel >= 0.3.10, openldap-devel
 BuildRequires: compface-devel, startup-notification-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
@@ -114,6 +114,12 @@ desktop-file-install \
 
 
 %changelog
+* Mon Mar 14 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
+- Update to 1.0.3.
+
+* Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.1-1
+- Update to 1.0.1.
+
 * Wed Jan 19 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0.0.
 

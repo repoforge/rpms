@@ -2,11 +2,11 @@
 # Authority: matthias
 
 %define desktop_vendor rpmforge
-%define extraver       cvs1.1
+%define extraver       cvs2.1
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.0.0
+Version: 1.0.3
 Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -18,8 +18,9 @@ Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
-BuildRequires: openssl-devel, gpgme03-devel, openldap-devel
+BuildRequires: openssl-devel, gpgme03-devel >= 0.3.10, openldap-devel
 BuildRequires: compface-devel, startup-notification-devel
+BuildRequires: gettext-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
@@ -114,6 +115,14 @@ desktop-file-install \
 
 
 %changelog
+* Mon Mar 14 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1.cvs2.1
+- Update to 1.0.3cvs2.1.
+- Downgrade gpgme dependency back to gpgme03.
+
+* Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.1-1.cvs20.1
+- Update to 1.0.1cvs20.1.
+- Update gpgme dependency to >= 0.4.5.
+
 * Wed Jan 19 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1.cvs1.1
 - Update to 1.0.0cvs1.1.
 
