@@ -47,6 +47,7 @@ export KDEDIR=/usr
 %{__rm} -rf %{buildroot}
 export KDEDIR=/usr
 %makeinstall
+%{__rm} -f %{buildroot}%{_datadir}/mimelnk/application/x-ace.desktop
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -65,7 +66,6 @@ export KDEDIR=/usr
 %{_datadir}/applnk/Applications/krusader.desktop
 %{_datadir}/icons/*/*/apps/krusader*.png
 %{_datadir}/apps/krusader
-%{_datadir}/mimelnk/application/x-ace.desktop
 %{_datadir}/locale/*/LC_MESSAGES/krusader.mo
 %{_datadir}/doc/HTML/en/krusader
 %{_datadir}/services/krarc.protocol
