@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Matt Foster <mattfoster@clara.co.uk>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %{?rhfc1:%define __cc gcc32}
 

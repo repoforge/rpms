@@ -1,3 +1,10 @@
+# $Id$
+# Authority: dag
+
+# Soapbox: 0
+# Distcc:0
+# BuildAsRoot: 1
+
 %define rname linux-wlan-ng
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}

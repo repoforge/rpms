@@ -1,12 +1,11 @@
 # $Id: kernel-module-airo_mpi.spec 72 2004-03-09 14:37:51Z dag $
-
 # Authority: dag
 # Upstream: <atmelwlandriver-devel>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %{?rhfc1:%define __cc gcc32}
 

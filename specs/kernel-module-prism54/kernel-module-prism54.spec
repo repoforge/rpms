@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <prism54-devel@prism54.org>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -18,7 +17,6 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define real_name prism54
-%define real_version 20040307
 %define real_release 1
 
 %define moduledir /kernel/drivers/net/wireless/prism54
@@ -26,7 +24,7 @@
 
 Summary: Linux driver for the 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets
 Name: kernel-module-prism54
-Version: 0.0.%{real_version}
+Version: 1.1
 Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
@@ -35,9 +33,8 @@ URL: http://prism54.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prism54.org/pub/linux/snapshot/tars/2004-03/prism54-cvs%{real_version}.tar.bz2
+Source: http://prism54.org/pub/linux/stable/tars/2004-03/prism54-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: kernel-source >= 2.4.22
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
@@ -79,7 +76,7 @@ They might work with newer/older kernels.
 #802.11g Prism GT / Prism Duette / Prism Indigo Chipsets firmware.
 
 %prep
-%setup -n %{real_name}-cvs%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__rm} -rf %{buildroot}
@@ -151,6 +148,9 @@ cd -
 #%{_libdir}/hotplug/firmware/*
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 0.0.20040307-1
 - Fixed the longstanding smp kernel bug. (Bert de Bruijn)
 

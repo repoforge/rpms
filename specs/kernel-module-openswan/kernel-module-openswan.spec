@@ -5,7 +5,7 @@
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %define _libmoddir /lib/modules
 
@@ -44,7 +44,7 @@ Requires: openswan-utils
 
 Provides: kernel-modules
 Provides: freeswan-modules = %{version}-%{release}, freeswan-module = %{version}-%{release}
-Obsoletes: freeswan-modules <= %{version}, freeswan-module <= %{version}
+Obsoletes: freeswan-modules <= %{version}, freeswan-module <= %{version}, openswan
 
 %description
 Linux drivers for OpenS/WAN IPsec support.
@@ -257,7 +257,10 @@ cd -
 ### Clean up buildroot
 %{__perl} -pi -e 's|/usr/local|%{_prefix}|g' %{buildroot}%{_libexecdir}/ipsec/* %{buildroot}%{_libdir}/ipsec/*
 %{__mv} -f %{buildroot}%{_docdir}/freeswan/ipsec.conf-sample %{buildroot}%{_sysconfdir}/ipsec.conf
-%{__mv} %{buildroot}%{_prefix}/share/doc/freeswan/ ./rpm-doc/
+
+### Clean up docroot
+%{__mv} -f %{buildroot}%{_prefix}/share/doc/freeswan/ rpm-doc/
+%{__rm} -f rpm-doc/*.{pdf,ps}
 
 %post
 /sbin/depmod -ae %{kversion}-%{krelease} || :

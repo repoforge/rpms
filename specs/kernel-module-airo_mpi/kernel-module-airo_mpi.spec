@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Fabrice Bellet <fabrice@bellet.info>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %{?rhfc1:%define __cc gcc32}
 
@@ -18,13 +17,13 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define real_name airo_mpi
-%define real_version 20040219
-%define real_release 2
+%define real_version 153
+%define real_release 3
 
 %define moduledir /kernel/drivers/net/wireless/airo_mpi
 %define modules airo_mpi.o
 
-Summary: Linux driver for the Cisco 350 miniPCI series
+Summary: Linux driver for Aironet 4500/4800 and Cisco 340/350. (ISA/PCI/MPI)
 Name: kernel-module-airo_mpi
 Version: 1.6
 Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}
@@ -37,7 +36,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://bellet.info/~bellet/laptop/airo_mpi-20031220.tar.gz
 #Source: http://bellet.info/laptop/airo.c-2.4.25.diff
-Source1: airo_mpi.c
+Source1: airo_mpi.153.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kernel-source
@@ -48,14 +47,14 @@ Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
-Linux driver for the Cisco 350 miniPCI series.
+Linux driver for Aironet 4500/4800 and Cisco 340/350. (ISA/PCI/MPI)
 
 These drivers are built for kernel %{kversion}-%{krelease}
 and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-airo_mpi
-Summary: Linux SMP driver for the Cisco 350 miniPCI series
+Summary: Linux SMP driver for Aironet 4500/4800 and Cisco 340/350. (ISA/PCI/MPI)
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
@@ -65,7 +64,7 @@ Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-airo_mpi
-Linux SMP driver for the Cisco 350 miniPCI series.
+Linux SMP driver for Aironet 4500/4800 and Cisco 340/350. (ISA/PCI/MPI)
 
 These drivers are build for kernel %{kversion}-%{krelease}smp
 and architecture %{_target_cpu}.
@@ -73,7 +72,7 @@ They might work with newer/older kernels.
 
 %prep
 %setup -n %{real_name}-20031220
-%{__cp} -av %{SOURCE1} .
+%{__cp} -av %{SOURCE1} airo.c
 
 ### FIXME: Fix Makefile to override KERNEL_VERSION
 %{__perl} -pi.orig -e 's|^#(KERNEL_VERSION)=.*$|$1 = %{kversion}-%{krelease}|' Makefile
@@ -139,8 +138,8 @@ cd -
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
-* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 1.6-1.20040219
-- Updated to release 20040219.
+* Thu Apr 22 2004 Dag Wieers <dag@wieers.com> - 1.6-1.20040219
+- Merged airo.c v1.5.3 and 20031220.
 
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.6-2.20031220
 - Fixed the longstanding smp kernel bug. (Bert de Bruijn)

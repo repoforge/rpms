@@ -1,12 +1,11 @@
 # $Id: kernel-module-ov511-2.26.spec 72 2004-03-09 14:37:51Z dag $
-
 # Authority: dag
 # Upstream: Mark McClelland <mark@alpha.dyndns.org>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %define _libmoddir /lib/modules
 

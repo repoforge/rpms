@@ -1,11 +1,10 @@
 # $Id: kernel-module-mpi350.spec 171 2004-03-28 01:43:07Z dag $
-
 # Authority: dag
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %define _libmoddir /lib/modules
 

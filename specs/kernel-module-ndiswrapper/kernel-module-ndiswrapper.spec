@@ -1,14 +1,14 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <ndiswrapper-general@lists.sourceforge.net>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %define _libmoddir /lib/modules
+%define _sbindir /sbin
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
@@ -16,14 +16,14 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define real_name ndiswrapper
-%define real_release 2
+%define real_release 1
 
 %define moduledir /kernel/drivers/net/ndiswrapper
 %define modules ndiswrapper.o
 
 Summary: Linux NDIS wrapper drivers
 Name: kernel-module-ndiswrapper
-Version: 0.6
+Version: 0.7
 Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
@@ -62,6 +62,9 @@ NDIS wrapper utilities.
 %prep
 %setup -n %{real_name}-%{version}
 
+### Enable DEBUG
+#%{__perl} -pi.orig -e 's|#DEBUG=1|DEBUG=1|' driver/Makefile
+
 %build
 %{__rm} -rf %{buildroot}
 echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n"
@@ -90,6 +93,8 @@ cd -
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -m0755 utils/loadndisdriver utils/ndiswrapper utils/wlan_radio_averatec_5110hx %{buildroot}%{_sbindir}
 
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/ndiswrapper/
+
 %post
 /sbin/depmod -ae %{kversion}-%{krelease} || :
 
@@ -106,9 +111,16 @@ cd -
 %files -n ndiswrapper-utils
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL README
+%config(noreplace) %{_sysconfdir}/ndiswrapper/
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 24 2004 Dag Wieers <dag@wieers.com> - 0.7-1
+- Updated to release 0.7.
+
+* Fri Apr 23 2004 Dag Wieers <dag@wieers.com> - 0.6-3
+- Moved loadndisdriver to /sbin. (Tim Verhoeven)
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.6-2
 - Added missing ndiswrapper to ndiswrapper-utils. (Mathias Schulze)
 

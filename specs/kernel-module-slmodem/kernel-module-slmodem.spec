@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 ####FIXME: Only 2.7.10 works properly, 2.7.14 (and others) are broken.
 

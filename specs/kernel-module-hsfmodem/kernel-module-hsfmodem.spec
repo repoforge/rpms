@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <modem.support@linuxant.com>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
-# BuildAsUser: 0
+# BuildAsRoot: 1
 
 %define _libmoddir /lib/modules
 
