@@ -5,13 +5,15 @@
 Summary: Automatically restart SSH sessions and tunnels
 Name: autossh
 Version: 1.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.harding.motd.ca/autossh/
 
 Source: http://www.harding.motd.ca/autossh/autossh-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Requires: openssh-clients
 
 %description
 Autossh is a program to start a copy of ssh and monitor it, restarting
@@ -24,6 +26,8 @@ such as connection refused.
 
 %prep
 %setup -n %{name}-%{version}
+
+%{__perl} -pi.orig -e 's|-Wall |%{optflags} |g' Makefile.linux
 
 %build
 %{__make} %{?_smp_mflags} -f Makefile.linux
@@ -43,6 +47,10 @@ such as connection refused.
 %{_bindir}/autossh
 
 %changelog
+* Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 1.3-2
+- Added openssh-clients dependency. (Adrian Reber)
+- Build with %%{optflags}. (Adrian Reber)
+
 * Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updated to release 1.3.
 

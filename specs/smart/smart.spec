@@ -24,14 +24,14 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.29.2
-Release: 2
+Version: 0.30
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
 
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
-Patch0: smart-0.29.2-x86_64-rpmhelper.patch
+Patch0: smart-0.30-x86_64-rpmhelper.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
@@ -402,8 +402,9 @@ cd -
 %endif
 
 %changelog
-* Mon Mar 14 2005 Dag Wieers <dag@wieers.com> - 0.29.2-3
+* Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 0.30-1
 - Removed kernel-doc from distro.py. (Ralf Ertzinger)
+- Updated to release 0.30.
 
 * Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 0.29.2-2
 - Included rpmhelper patch for x86_64 problem. (RHbz 146477)

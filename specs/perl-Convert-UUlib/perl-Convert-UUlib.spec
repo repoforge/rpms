@@ -8,8 +8,8 @@
 
 Summary: Perl interface to the uulib library
 Name: perl-Convert-UUlib
-Version: 1.03
-Release: 2
+Version: 1.051
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UUlib/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Convert/
 
 %changelog
+* Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 1.051-1
+- Updated to release 1.051.
+
 * Sun Feb 20 2005 Dag Wieers <dag@wieers.com> - 1.03-2
 - Cosmetic changes.
 

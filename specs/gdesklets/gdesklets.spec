@@ -5,7 +5,7 @@
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.33
+Version: 0.34.3
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -48,12 +48,8 @@ and maybe even available some day.
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-
-### FIXME: Fix symlinks pointing to BuildRoot. (Please fix upstream somehow)
-%{__ln_s} -f %{_datadir}/gdesklets/gdesklets %{buildroot}%{_bindir}
-%{__ln_s} -f %{_datadir}/pixmaps/gdesklets.png %{buildroot}%{_datadir}/gdesklets/data/
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -73,12 +69,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %config %{_sysconfdir}/gconf/schemas/gdesklets-display-thumbnail.schemas
 %{_bindir}/gdesklets*
 %{_datadir}/applications/gdesklets.desktop
-#%{_datadir}/application-registry/gdesklets.applications
 %{_datadir}/gdesklets/
 %{_datadir}/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gdesklets-display.png
-#%{_datadir}/mime-info/gdesklets.*
 %{_datadir}/pixmaps/gdesklets.png
-#%{_libdir}/pkgconfig/gdesklets-core.pc
 %exclude %{_datadir}/mime/XMLnamespaces
 %{_datadir}/mime/application/x-gdesklets-display.xml
 %exclude %{_datadir}/applications/mimeinfo.cache
@@ -87,6 +80,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/mime/packages/gdesklets.xml
 
 %changelog
+* Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 0.34.3-1
+- Updated to release 0.34.3.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.33-1
 - Updated to release 0.33.
 
