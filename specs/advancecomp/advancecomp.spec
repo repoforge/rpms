@@ -8,7 +8,7 @@ Version: 1.10
 Release: 1
 License: GPL
 Group: Applications/Emulators
-URL: http://advancemame.sf.net/
+URL: http://advancemame.sourceforge.net/
 Source: http://dl.sf.net/advancemame/advancecomp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel

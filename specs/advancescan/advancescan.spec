@@ -8,7 +8,7 @@ Version: 1.8
 Release: 1
 License: GPL
 Group: Applications/Emulators
-URL: http://advancemame.sf.net/
+URL: http://advancemame.sourceforge.net/
 Source: http://dl.sf.net/advancemame/advancescan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: gcc-c++, zlib-devel
