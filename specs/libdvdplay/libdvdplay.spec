@@ -71,7 +71,7 @@ programs that use libdvdplay.
 
 
 %changelog
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.0.1-4
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-4
 - Rebuild for Fedora Core 2.
 
 * Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.0.1-3
