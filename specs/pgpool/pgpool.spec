@@ -16,6 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: ftp://ftp.sra.co.jp/pub/cmd/postgres/pgpool/pgpool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRequires: flex
 
 %description
 pgpool is a single master/query based/synchronous replication
@@ -55,7 +56,9 @@ pgpool can work with PostgreSQL 7.0 to 7.4.
 
 %files
 %defattr(-,root,root, 0755)
-%doc
+%doc AUTHORS COPYING README ChangeLog NEWS TODO README.euc_jp
+%{_sysconfdir}/pgpool.conf.sample
+%{_bindir}/pgpool
 
 %changelog
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 1.0-1
