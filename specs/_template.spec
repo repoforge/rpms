@@ -4,7 +4,7 @@
 Summary: 
 Name: _template
 Version: 
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/
 URL: 
@@ -91,5 +91,5 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 #%{_libdir}/*.la
 
 %changelog
-* Son Jan 19 2003 Dag Wieers <dag@wieers.com> - 
+* Son Jan 19 2004 Dag Wieers <dag@wieers.com> - 
 - Initial package. (using DAR)
