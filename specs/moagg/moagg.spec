@@ -13,7 +13,7 @@
 
 Summary: Mother of all Gravity Games
 Name: moagg
-Version: 0.15
+Version: 0.16
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -87,6 +87,9 @@ EOF
 %{_mandir}/man6/moagg*
 
 %changelog
+* Tue Nov 23 2004 Dries Verachtert <dries@ulyssis.org> 0.16-1
+- Update to version 0.16.
+
 * Thu Nov 04 2004 Dries Verachtert <dries@ulyssis.org> 0.15-1
 - Update to version 0.15.
 
