@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Martin Dickopp <martin@zero-based.org>
+# Upstream: Martin Dickopp <martin-jpegpixi@zero-based.org>
 
 Summary: JPEG pixel interpolator.
 Name: jpegpixi
