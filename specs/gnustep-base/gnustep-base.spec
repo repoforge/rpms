@@ -9,7 +9,7 @@ Summary(nl): GNUstep base
 Name: gnustep-base
 License: GPL
 Version: 1.8.0
-Release: 4.dries
+Release: 4
 Group: Development/Libraries
 URL: http://www.gnustep.org/
 
@@ -60,15 +60,15 @@ chmod -s-t ${RPM_BUILD_ROOT}/usr/GNUstep/Tools/gdomap
 /usr/GNUstep/Library/Bundles/SSL.bundle/stamp.make
 
 %changelog
-* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0.4.dries
+* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0.4
 - added some BuildRequires
 - removed the setuid of gdomap
 
-* Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-3.dries
+* Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-3
 - cleanup of spec file
 
-* Tue Nov 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-2.dries
+* Tue Nov 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-2
 - fixed the make install
 
-* Mon Nov 10 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-1.dries
+* Mon Nov 10 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-1
 - first packaging for Fedora Core 1
