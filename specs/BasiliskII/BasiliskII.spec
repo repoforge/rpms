@@ -23,6 +23,7 @@ URL: http://gwenole.beauchesne.online.fr/basilisk2/
 Source0: http://gwenole.beauchesne.online.fr/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
 Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
 Source2: BasiliskII.png
+Patch: BasiliskII-1.0-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gtk+-devel >= 1.2, esound-devel >= 0.2.8
@@ -38,6 +39,7 @@ a Macintosh ROM image to use Basilisk II.
 
 %prep
 %setup -a 1
+%patch -p1 -b .nostrip
 
 
 %build
@@ -105,6 +107,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 - SDL still doesn't display properly.
 - Add cxmon support, can be disabled with --without mon.
 - Add readline-devel build dependency.
+- Disable binary stripping on make install to get a useful debuginfo package.
 
 * Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.20041109
 - Update to latest BasilikII JIT snapshot.

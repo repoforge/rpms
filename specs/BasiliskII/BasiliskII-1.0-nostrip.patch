@@ -1,0 +1,12 @@
+diff -Naupr BasiliskII-1.0.orig/src/Unix/Makefile.in BasiliskII-1.0/src/Unix/Makefile.in
+--- BasiliskII-1.0.orig/src/Unix/Makefile.in	2004-11-15 01:07:54.000000000 +0100
++++ BasiliskII-1.0/src/Unix/Makefile.in	2005-04-02 21:17:21.000000000 +0200
+@@ -28,7 +28,7 @@ CPUSRCS = @CPUSRCS@
+ BLESS = @BLESS@
+ EXEEXT = @EXEEXT@
+ INSTALL = @INSTALL@
+-INSTALL_PROGRAM = @INSTALL_PROGRAM@ -s
++INSTALL_PROGRAM = @INSTALL_PROGRAM@
+ INSTALL_DATA = @INSTALL_DATA@
+ 
+ ## Files

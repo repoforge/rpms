@@ -17,6 +17,7 @@ Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
 Source2: SheepShaver.png
 Patch0: SheepShaver-2.2-misc.patch
 Patch1: SheepShaver-2.2-stats.patch
+Patch2: SheepShaver-2.2-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel >= 1.2, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
@@ -39,6 +40,7 @@ G4 emulator, without MMU support, for non-PowerPC systems.
 %setup -a 1
 %patch0 -p1 -b .misc
 %patch1 -p1 -b .stats
+%patch2 -p1 -b .nostrip
 
 
 %build
@@ -100,4 +102,5 @@ desktop-file-install --vendor %{desktop_vendor} \
 - Spec file cleanup, based on the .src.rpm from the SheepShaver website.
 - Make cxmon support optionnal with --without mon.
 - Add menu entry.
+- Disable binary stripping on make install to get a useful debuginfo package.
 
