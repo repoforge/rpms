@@ -1,22 +1,21 @@
 # $Id$
 # Authority: matthias
 
-#define date           20031202
+%define date 20040828
 
 Summary: Complete GTK frontend for xmame
 Name: gxmame
-Version: 0.34b
-Release: %{?date:0.%{date}.}3
+Version: 0.35
+Release: %{?date:0.%{date}.}1
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
 Source: http://dl.sf.net/gxmame/gxmame-%{!?date:%{version}}%{?date}.tar.gz
-Patch: gxmame-xml.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1, %{_bindir}/xml2info
 BuildRequires: gtk2-devel, zlib-devel, gettext
 %if %{?date:1}%{!?date:0}
-BuildRequires: automake, autoconf, cvs
+BuildRequires: automake, autoconf, cvs, intltool >= 0.31
 %endif
 
 %description
@@ -29,12 +28,12 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 
 %prep
-%setup -n %{name}-%{!?date:%{version}}%{?date}
-%patch -p1 -b .xml
+%setup -n %{name}%{!?date:-%{version}}
 
 
 %build
-test -x configure || ./autogen.sh
+test -x configure || \
+    %{__cp} -a %{_datadir}/automake-*/mkinstalldirs . && ./autogen.sh
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -63,6 +62,9 @@ test -x configure || ./autogen.sh
 
 
 %changelog
+* Sat Aug 28 2004 Matthias Saou <http://freshrpms.net/> 0.35-0.20040828.1
+- Update to today's CVS version to work with xmame 0.86 (xil option).
+
 * Sun Jul 18 2004 Matthias Saou <http://freshrpms.net/> 0.34b-3
 - Added patch for the -li option removed, so added %{_bindir}/xml2info req.
 
