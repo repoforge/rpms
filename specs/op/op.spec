@@ -4,8 +4,8 @@
 
 Summary: Allows restricted root access for specified users
 Name: op
-Version: 1.21
-Release: 2
+Version: 1.23
+Release: 1
 License: BSD
 Group: Applications/System
 URL: http://swapoff.org/op
@@ -123,6 +123,12 @@ EOF
 %{_bindir}/op
 
 %changelog
+* Wed May 05 2004 Dag Wieers <dag@wieers.com> - 1.23-1
+- Updated to release 1.23.
+
+* Mon May 03 2004 Dag Wieers <dag@wieers.com> - 1.22-1
+- Updated to release 1.22.
+
 * Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 1.21-2
 - Added default pam configuration.
 - Improved the examples in the default config file.
