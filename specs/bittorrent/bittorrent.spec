@@ -10,7 +10,7 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 3.4.2
+Version: 3.9.0
 Release: 1
 License: MIT
 Group: Applications/Internet
@@ -19,7 +19,7 @@ URL: http://bitconjurer.org/BitTorrent/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/bittorrent/BitTorrent-%{version}.tar.gz
+Source: http://bittorrent.com/BitTorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
@@ -80,8 +80,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 		bittorrent.desktop
 %endif
 
-convert bittorrent.ico bittorrent.png
-%{__install} -D -m644 bittorrent.png %{buildroot}%{_datadir}/pixmaps/bittorrent.png
+#convert bittorrent.ico bittorrent.png
+%{__install} -D -m644 images/logo/bittorrent_96.png %{buildroot}%{_datadir}/pixmaps/bittorrent.png
 
 %post gui
 update-desktop-database %{_datadir}/applications &>/dev/null || :
@@ -94,23 +94,26 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc credits.txt LICENSE.txt README.txt
+%doc *.html *.txt
 %{_bindir}/*.py
-%exclude %{_bindir}/btcompletedirgui.py
 %exclude %{_bindir}/btdownloadgui.py
 %dir %{python_sitelib}/BitTorrent/
 %{python_sitelib}/BitTorrent/*.py
 %{python_sitelib}/BitTorrent/*.pyc
 %ghost %{python_sitelib}/BitTorrent/*.pyo
+%exclude %{_docdir}/BitTorrent-%{version}/
+%{_datadir}/pixmaps/BitTorrent-%{version}/
 
 %files gui
 %defattr(-, root, root, 0755)
-%{_bindir}/btcompletedirgui.py
 %{_bindir}/btdownloadgui.py
 %{_datadir}/pixmaps/bittorrent.png
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-bittorrent.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/bittorrent.desktop}
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 3.9.0-1
+- Updated to release 3.9.0.
+
 * Sun Nov 21 2004 Dag Wieers <dag@wieers.com> - 3.4.2-1
 - Initial package. (using DAR)

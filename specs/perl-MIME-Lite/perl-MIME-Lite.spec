@@ -1,6 +1,10 @@
 # $Id$
-
 # Authority: dries
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name MIME-Lite
 
 Summary: Simple standalone module for generating MIME messages
 Name: perl-MIME-Lite
@@ -28,21 +32,21 @@ MIME-Lite is een eenvoudige onafhankelijke module om MIME berichten te
 genereren.
 
 %prep
-%setup -n MIME-Lite-2.117
+%setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor"
-sed -i "s/DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g;" Makefile
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL \
+	PREFIX="%{buildroot}%{_prefix}" \
+	INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-export DESTDIR=$RPM_BUILD_ROOT
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,8 +54,8 @@ export DESTDIR=$RPM_BUILD_ROOT
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALLING README*
-%doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%doc %{_mandir}/man3/MIME::Lite.3pm.gz
+%{perl_vendorlib}/MIME/Lite.pm
 
 %changelog
 * Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 2.117-2

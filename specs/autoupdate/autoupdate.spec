@@ -4,7 +4,7 @@
 
 Summary: AutoUpdate, a simple perl script to keep your system up2date
 Name: autoupdate
-Version: 5.3.5
+Version: 5.3.12
 Release: 1
 License: GPL
 Group: Applications/System
@@ -70,6 +70,9 @@ done
 %{_libdir}/perl5/site_perl/autoupdate/
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 5.3.12-1
+- Updated to release 5.3.12.
+
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 5.3.5-1
 - Updated to release 5.3.5.
 

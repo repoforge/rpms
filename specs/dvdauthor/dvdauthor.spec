@@ -5,7 +5,7 @@
 Summary: Set of tools to author a DVD
 Name: dvdauthor
 Version: 0.6.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://dvdauthor.sourceforge.net/
@@ -15,6 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/dvdauthor/dvdauthor-%{version}.tar.gz
 Patch0: dvdauthor-0.6.10-gcc34.patch
+Patch1: dvdauthor-0.6.10-readxml.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.5.0, libdvdread-devel
@@ -27,7 +28,8 @@ mpeg2 stream that should play when you put it in a DVD player.
 
 %prep 
 %setup
-%patch
+%patch0
+%patch1
 
 %{__perl} -pi.orig -e 's|(-ldvdread)|$1 -ldl|g' configure
 
@@ -46,10 +48,13 @@ mpeg2 stream that should play when you put it in a DVD player.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING HISTORY README TODO menu.txt doc/*.html doc/*.sgml doc/*.dsl
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*
 %{_bindir}/*
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.6.10-2
+- Added readxml patch. (John Veysey)
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.6.10-1
 - Updated to release 0.6.10.
 

@@ -1,14 +1,37 @@
-%define arts_plugin 1
+# $Id$
+# Authority: dag
+
+%{?fc2:%define _without_mikmod 1}
+
+%{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_mikmod 1}
+
+%{?el3:%define _without_alsa 1}
+%{?el3:%define _without_mikmod 1}
+
+%{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_mikmod 1}
+
+%{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_mikmod 1}
+
+%{?el2:%define _without_alsa 1}
+%{?el2:%define _without_arts 1}
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_mikmod 1}
+
 %define artsplugin_ver 0.6.0
 
-Summary: A media player for X which resembles Winamp.
+Summary: Media player
 Name: xmms
 Version: 1.2.10
-Release: 9.1.1.fc3.fr
+Release: 9.1
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.xmms.org/
+
 Source: http://www.xmms.org/files/1.2.x/%{name}-%{version}.tar.bz2
 Source4: arts_output-%{artsplugin_ver}.tar.gz
 Source5: xmms.req
@@ -24,19 +47,22 @@ Patch6: xmms-1.2.8-alsalib.patch
 #Patch8: http://www3.big.or.jp/~sian/linux/products/xmms/xmms-1.2.5pre1j_20010601.diff.bz2
 Patch10: arts_output-0.6.0-buffer.patch
 Patch11: xmms-underquoted.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: glib2-devel, gtk+-devel, esound-devel
+BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf-2.13, libvorbis-devel
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_arts:BuildRequires: arts-devel >= 1.0.1}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_mikmod:BuildRequires: mikmod-devel}
 
 Requires: gtk+ >= 1:1.2.2, unzip
 # the desktop file and redhat-menus are redundant requires really
 Requires: /usr/share/desktop-menu-patches/redhat-audio-player.desktop
 Requires: redhat-menus >= 0.11
 
-BuildRequires: arts-devel >= 1.0.1 gtk+-devel esound-devel mikmod-devel
-BuildRequires: /usr/bin/automake-1.4 /usr/bin/autoconf-2.13 libvorbis-devel
-BuildRequires: alsa-lib-devel glib2-devel
-PreReq: desktop-file-utils >= 0.9
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Obsoletes: x11amp0.7-1-1 x11amp xmms-esd xmms-gl xmms-mikmod xmms-gnome
-Obsoletes: xmms-alsa alsa-xmms
+Obsoletes: x11amp0.7-1-1, x11amp, xmms-esd, xmms-gl, xmms-mikmod, xmms-gnome
+Obsoletes: xmms-alsa, alsa-xmms
 
 Conflicts: arts < 1.2.0-1.5
 
@@ -87,7 +113,7 @@ skins were obtained from http://www.xmms.org/skins.html .
 %patch3 -p1 -b .default-skin
 # Don't build MP3 support, support bits for MP3 placeholder
 #patch4 -p1 -b .nomp3
-%if %{arts_plugin}
+%if %{!?_without_arts:1}0
 # Link arts dynamically and detect its presence for choosing output plugin
 %patch5 -p1 -b .arts
 # bump up the default buffer size to avoid audio artifacts
@@ -103,7 +129,7 @@ skins were obtained from http://www.xmms.org/skins.html .
 %configure \
   --enable-kanji \
   --enable-texthack \
-%if %{arts_plugin}
+%if %{!?_without_arts:1}0
   --enable-arts-shared \
 %endif
   --enable-ipv6
@@ -112,7 +138,7 @@ make
 
 ln -snf ../libxmms/configfile.h xmms/configfile.h
 
-%if %{arts_plugin}
+%if %{!?_without_arts:1}0
 export XMMS_CONFIG=`pwd`/xmms-config
 cd arts_output-%{artsplugin_ver}
 CFLAGS="$RPM_OPT_FLAGS -I.." %configure 
@@ -129,10 +155,9 @@ rm -rf %{buildroot}
 mkdir %{buildroot}
 make install DESTDIR=%{buildroot}
 
-%if %{arts_plugin}
-cd arts_output-%{artsplugin_ver}
-make install DESTDIR=%{buildroot}
-cd ..
+%if %{!?_without_arts:1}0
+make install -C arts_output-%{artsplugin_ver}\
+	DESTDIR="%{buildroot}"
 %endif
 
 #install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
@@ -171,7 +196,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches
 rm -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog FAQ INSTALL NEWS TODO README 
 %{_bindir}/xmms
 %{_bindir}/wmxmms

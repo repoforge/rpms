@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name starterbar-desklet
 
 Summary: Starterbar sensor and display for gdesklets
 Name: gdesklets-starterbar
-Version: 0.22.1
-Release: 0
+Version: 0.31.2
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -15,10 +14,10 @@ URL: http://gdesklets.gnomedesktop.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pycage.de/download/gdesklets/%{real_name}-%{version}.tar.bz2
+Source: http://gdesklets.gnomedesktop.org/files/starterbar-desklet-%{version}.tar.bz2
+#Source: http://www.pycage.de/download/gdesklets/starterbar-desklet-%{version}.tar.bz2
 Source1: Makefile_install_scripts.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: gdesklets
@@ -52,8 +51,11 @@ To add the display, use :
 %doc README
 %{_bindir}/*
 %{_datadir}/gdesklets/Displays/*
-%{_datadir}/gdesklets/Sensors/*
+#%{_datadir}/gdesklets/Sensors/*
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.31.2-1
+- Updated to release 0.31.2.
+
 * Wed Dec 03 2003 Dag Wieers <dag@wieers.com> - 0.22.1-0
 - Initial package. (using DAR)

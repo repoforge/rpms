@@ -5,7 +5,7 @@
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.32
+Version: 0.33
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -52,6 +52,7 @@ and maybe even available some day.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
+%find_lang %{name}
 
 ### FIXME: Fix symlinks pointing to BuildRoot. (Please fix upstream somehow)
 %{__ln_s} -f %{_datadir}/gdesklets/gdesklets %{buildroot}%{_bindir}
@@ -68,7 +69,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man1/gdesklets.1*
@@ -89,6 +90,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/mime/packages/gdesklets.xml
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.33-1
+- Updated to release 0.33.
+
 * Sat Jan 01 2005 Dag Wieers <dag@wieers.com> - 0.32-1
 - Updated to release 0.32.
 

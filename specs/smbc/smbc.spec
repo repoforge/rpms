@@ -11,12 +11,12 @@ Version: 1.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://smbc.airm.net/en/index.php
+URL: http://smbc.airm.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://smbc.airm.net/1.0.0/smbc-%{version}.tgz
+Source: http://smbc.airm.net/%{version}/smbc-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, ncurses-devel, samba-common
@@ -46,11 +46,11 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %doc COPYING FAQ NEWS README doc/sample.smbcrc
 %{_mandir}/man?/smbc*
 %doc %{_infodir}/*.info*
-%{_bindir}/*
-%exclude %{_datadir}/smbc/FAQ
-%exclude %{_datadir}/smbc/README
-%exclude %{_datadir}/smbc/sample.smbcrc
-
+%{_bindir}/smbc
+%exclude %{_datadir}/smbc/
+#exclude %{_datadir}/smbc/FAQ
+#exclude %{_datadir}/smbc/README
+#exclude %{_datadir}/smbc/sample.smbcrc
 
 %changelog
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> 1.0.1-1

@@ -1,4 +1,8 @@
 # $Id$
+# Authority: matthias
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name libintl-perl
 
@@ -11,7 +15,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libintl-perl/
 Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUIDO/libintl-perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl
 Provides: perl-libintl-perl = %{version}-%{release}
 Provides: perl(Locale::gettext_xs)
 BuildArch: noarch
@@ -36,10 +40,10 @@ implemented for example in GNU gettext.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-# Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/lib*/perl5/*/*linux-thread-multi/
-%{__rm} -f %{buildroot}%{_prefix}/lib*/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,7 +52,7 @@ implemented for example in GNU gettext.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING* NEWS README THANKS TODO
-%{_prefix}/lib/perl5/vendor_perl/*/Locale/
+%{perl_vendorlib}/Locale/
 %{_mandir}/man?/*
 
 

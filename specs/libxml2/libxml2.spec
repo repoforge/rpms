@@ -1,14 +1,14 @@
 # $Id$
 # Authority: axel
-# ExclusiveDist: el2 rh7 rh8 rh9 el3
+# ExclusiveDist: el2 rh7 rh8 rh9 el3 fc1 fc2
 
 #%define python_version %(python2 -c 'import sys; print sys.version[:3]')
 %define python_version %(python -c 'import sys; print sys.version[:3]')
 
 Summary: Library providing XML and HTML support
 Name: libxml2
-Version: 2.5.11
-Release: 2
+Version: 2.6.16
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://xmlsoft.org/
@@ -16,7 +16,7 @@ URL: http://xmlsoft.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://xmlsoft.org/libxml2-%{version}.tar.bz2
+Source: http://xmlsoft.org/sources/libxml2-%{version}.tar.gz
 #Source: http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.5/libxml2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -116,6 +116,9 @@ at parse time or later once the document has been modified.
 %{_libdir}/python%{python_version}/site-packages/*.so
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 2.6.16-1
+- Updated to release 2.6.16.
+
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 2.5.11-1
 - Re-added the libxml2.la file
 

@@ -24,6 +24,7 @@ Source0: ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit-%{version}.tar.gz
 Source1: chkrootkit.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Requires: binutils
 
 %description
 chkrootkit is a tool to locally check for signs of a rootkit.
@@ -115,6 +116,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.44-2
+- Added binutils dependency. ()
+
 * Mon Dec 06 2004 Dag Wieers <dag@wieers.com> - 0.44-2
 - Fixed problem where options were discarded. (Steven Balthazor)
 

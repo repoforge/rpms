@@ -5,7 +5,7 @@
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
 Version: 0.6.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/
@@ -33,8 +33,9 @@ volume, mute and brightness of the LCD.
 EOF
 
 %{__perl} -pi.orig -e '
-		s|^#(OSDFONT.+)$|#$1\n$1|;
-		s|^#(OSDCOLOR)(.+)|#$1$2\n$1\tGreen|;
+		s|^#(OSDCOLOR)(.+)|#$1$2\n$1\tGREEN|;
+		s|^#(OSDFONT)(.+)$|#$1$2\n$1 -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-*-*|;
+		s|^#(OSDALIGN)(.+)|#$1$2\n$1\tCENTER|;
 	' doc/tpbrc
 
 %build
@@ -45,12 +46,13 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-#%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/tpbrc
 %{__install} -D -m0755 doc/tpbrc %{buildroot}%{_sysconfdir}/tpbrc
 %{__install} -D -m0755 tpb.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/tpb.sh
 
-%{__install} -d -m0755 %{buildroot}/dev
+%{__install} -d -m0755 %{buildroot}/dev/
 touch %{buildroot}/dev/nvram
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/udev/devices/
+touch %{buildroot}%{_sysconfdir}/udev/devices/nvram
 
 %post
 if [ -e /dev/.devfsd ]; then
@@ -61,6 +63,7 @@ else
 	if [ ! -e /dev/nvram ]; then
 		/dev/MAKEDEV nvram
 		chmod 0644 /dev/nvram
+		cp -avx /dev/nvram %{buildroot}%{_sysconfdir}/udev/devices/nvram
 	fi
 fi
 
@@ -70,13 +73,19 @@ fi
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING CREDITS README TODO doc/callback_example.sh doc/nvram.txt doc/tpbrc
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/tpb.1*
 %config(noreplace) %{_sysconfdir}/tpbrc
 %config(noreplace) %{_sysconfdir}/X11/xinit/xinitrc.d/tpb.sh
-%{_bindir}/*
+%{_bindir}/tpb
+
+%defattr(0644, root, root, 0755)
 %ghost /dev/nvram
+%ghost %{_sysconfdir}/udev/devices/nvram
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.6.3-2
+- Added udev support for FC3+. (Matthew Saltzman)
+
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.6.3-1
 - Updated to release 0.6.3.
 

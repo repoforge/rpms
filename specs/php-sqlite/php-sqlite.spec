@@ -8,7 +8,7 @@
 Summary: PHP module for using SQLite databases
 Name: php-sqlite
 Version: 1.0.2
-Release: 2
+Release: 3
 License: GPL
 Group: Development/Languages
 URL: http://pecl.php.net/package/SQLite/
@@ -48,6 +48,9 @@ ${CC:-%{__cc}} %{optflags} -shared -lsqlite -L%{_libdir} -rdynamic -o sqlite.so 
 %{_libdir}/php4/*.so
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0.2-3
+- Rebuild against new php version.
+
 * Sun May 30 2004 Dag Wieers <dag@wieers.com> - 1.0.2-2
 - Rebuild against new php versions in fc1 and fc2.
 
