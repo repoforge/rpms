@@ -48,7 +48,9 @@ with theora bitstreams.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 %patch0 -p1 -b .autotools
+%ifarch %{ix86}
 %patch1 -p1 -b .mmx
+%endif
 
 
 %build
@@ -112,6 +114,7 @@ automake
 * Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.alpha3.4
 - Include autotools and mmx patches from Thomasvs' GStreamer package.
 - Added theora-tools package to do like the main Fedora Core package.
+- Only apply mmx patch on i386, build fails on x86_64 with it.
 
 * Wed Sep 22 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.alpha3.3
 - Enable shared library.
