@@ -3,7 +3,7 @@
     missingok
     notifempty
     postrotate
-        /usr/sbin/service thttpd condrestart >/dev/null
+        /sbin/service thttpd condrestart >/dev/null
     endscript
 }
 

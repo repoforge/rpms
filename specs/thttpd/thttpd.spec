@@ -7,7 +7,7 @@
 Summary: Tiny, turbo, throttleable lightweight http server
 Name: thttpd
 Version: 2.25b
-Release: %{?prever:0.%{prever}.}2
+Release: %{?prever:0.%{prever}.}3
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.acme.com/software/thttpd/
@@ -141,6 +141,9 @@ fi
 
 
 %changelog
+* Thu Jul 10 2004 Dag Wieers <dag@wieers.com> - 2.25b-3
+- Fixed location of service in logrotate conf. (Peter Bieringer)
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 2.25b-2
 - Rebuild for Fedora Core 2.
 
