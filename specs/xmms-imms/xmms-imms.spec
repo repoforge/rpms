@@ -53,6 +53,7 @@ Some of the key features include:
 %{__install} -m0644 libimms.so %{buildroot}%{plugindir}
 
 %files
+%defattr(-, root, root, 0755)
 %doc LICENSE README 
 %{plugindir}/*
 
