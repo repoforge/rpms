@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name GD
