@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # It compiles but does not work without gpgme-devel
 BuildRequires: gpgme-devel, openssl-devel, bison
-BuildRequires: ncurses-devel, flex, gettext
+BuildRequires: ncurses-devel, flex, gettext, krb5-devel
 
 %description
 Elmo is a feature-rich console mail client for power users. It integrates
