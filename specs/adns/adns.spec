@@ -31,16 +31,19 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%configure
+
+%{__perl} -pi.orig -e 's|\$\(lib_dir\)|\$(libdir)|g' Makefile* */Makefile*
 
 %build
-%{__make} %{?_smp_mflags}
+%configure
+%{__make} %{?_smp_mflags} \
+	XCFLAGS="-fPIC -fomit-frame-pointer -DPIC"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_libdir} \
-	%{buildroot}%{_bindir} \
-	%{buildroot}%{_includedir}
+%{__install} -d -m0755 %{buildroot}%{_libdir} \
+		%{buildroot}%{_bindir} \
+		%{buildroot}%{_includedir}
 %makeinstall
 
 %post
