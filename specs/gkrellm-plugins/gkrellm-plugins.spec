@@ -4,12 +4,12 @@
 %define gkplugindir	%{_libdir}/gkrellm2/plugins
 
 %define weatherver	2.0.6
-%define xmmsver		2.1.13
+%define xmmsver		2.1.20
 %define setiver		0.7.0b
 %define dnetver		0.12.1
-%define volumever	2.1.9
+%define volumever	2.1.11
 %define mailwatchver	2.4.2
-%define snmpver		0.19
+%define snmpver		0.21
 %define radiover	2.0.4
 %define wirelessver	2.0.3
 %define aclockver	0.3.2
@@ -19,16 +19,19 @@
 %define multipingver	2.0.2
 %define whover		0.5
 %define x86ver		0.0.2
-%define ssver		2.3
+%define ssver		2.6
 %define shootver	0.4.1
-%define flynnver	0.6
+%define flynnver	0.8
 %define	ledsver		0.8.1
-%define bgchgver        0.0.5
+%define bgchgver        0.1.0
+%define trayver         1.02
+%define cpufreqver      0.5.1
+%define alltraxver      0.2
 
 Summary: Some neat plugins for GKrellM
 Name: gkrellm-plugins
-Version: 2.1.12
-Release: 4
+Version: 2.2.0
+Release: 1
 License: GPL
 Group: Applications/System
 Source0: http://kmlinux.fjfi.cvut.cz/~makovick/gkrellm/gkrellweather-%{weatherver}.tgz
@@ -37,7 +40,7 @@ Source2: http://xavier.serpaggi.free.fr/seti/seti-%{setiver}.tar.bz2
 Source3: http://download.sf.net/gkrelldnet/gkrelldnet-%{dnetver}.tar.gz
 Source4: http://gkrellm.luon.net/files/gkrellm-volume-%{volumever}.tar.gz
 Source5: http://gkrellm.luon.net/files/gkrellm-mailwatch-%{mailwatchver}.tar.gz
-Source6: http://triq.net/gkrellm/gkrellm_snmp-%{snmpver}-pre4.tar.gz
+Source6: http://triq.net/gkrellm/gkrellm_snmp-%{snmpver}.tar.gz
 Source7: http://gkrellm.luon.net/files/gkrellm-radio-%{radiover}.tar.gz
 Source8: http://gkrellm.luon.net/files/gkrellmwireless-%{wirelessver}.tar.gz
 Source9: http://www.geocities.com/m_muthukumar/gkrellaclock-%{aclockver}.tar.gz
@@ -52,9 +55,12 @@ Source17: http://web.wt.net/~billw/gkrellmss/gkrellmss-%{ssver}.tar.gz
 Source18: http://download.sf.net/gkrellshoot/gkrellshoot-%{shootver}.tar.gz
 Source19: http://horus.comlab.uni-rostock.de/flynn/gkrellflynn-%{flynnver}.tar.gz
 Source20: http://heim.ifi.uio.no/~oyvinha/gkleds/gkleds-%{ledsver}.tar.gz
-Source21: http://www.personal.uni-jena.de/%7Ep6best/comp/sources/gkrellmbgchg2-%{bgchgver}.tar.gz
+Source21: http://www.bender-suhl.de/stefan/comp/sources/gkrellmbgchg2-%{bgchgver}.tar.gz
+Source22: http://sweb.cz/tripie/gkrellm/trayicons/dist/gkrellm-trayicons-%{trayver}.tar.gz
+Source23: http://iacs.epfl.ch/~winkelma/gkrellm2-cpufreq/gkrellm2-cpufreq-%{cpufreqver}.tar.gz
+Source24: http://perso.wanadoo.fr/alltrax/alltraxclock2_%{alltraxver}-1.tar.gz
 Patch0: http://xavier.serpaggi.free.fr/seti/seti-0.7.0b-gkrellm2.diff
-URL: http://freshrpms.net/
+URL: http://web.wt.net/~billw/gkrellm/Plugins.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gkrellm-devel >= 2.1.0, gtk2-devel, perl
 
@@ -67,8 +73,11 @@ plugins for GKrellM, the GNU Krell Monitor.
 Summary: Multimedia plugins for GKrellM
 Group: Applications/System
 Requires: gkrellm >= 2.1.0, xmms, esound, fftw
-# xmms needs GTK 1
-BuildRequires: gtk+-devel, xmms-devel, esound-devel, fftw-devel
+# gkrellmms
+BuildRequires: gtk+-devel, xmms-devel
+BuildRequires: esound-devel, fftw-devel
+# gkrellmss
+BuildRequires: gettext
 
 %description media
 This package contains the following multimedia plugins for GKrellM, the GNU
@@ -98,18 +107,18 @@ Krell Monitor : ACPI monitor, mail watch, wireless network monitor, multi
 ping utility, x86 cpu speed, screenshot/lock and reminder.
 
 
-#%package snmp
-#Summary: SNMP monitoring plugin for GKrellM.
-#Group: Applications/System
-#Requires: gkrellm >= 2.1.0, net-snmp
-#BuildRequires: net-snmp-devel
-#
-#%description snmp
-#This is a snmp monitoring plugin for GKrellM, the GNU Krell Monitor.
+%package snmp
+Summary: SNMP monitoring plugin for GKrellM.
+Group: Applications/System
+Requires: gkrellm >= 2.1.0, net-snmp
+BuildRequires: net-snmp-devel
+
+%description snmp
+This is a snmp monitoring plugin for GKrellM, the GNU Krell Monitor.
 
 
 %prep
-%setup -T -a0 -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a14 -a16 -a17 -a18 -a19 -a20 -a21 -c %{name}-%{version}
+%setup -T -a0 -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a14 -a16 -a17 -a18 -a19 -a20 -a21 -a22 -a23 -a24 -c %{name}-%{version}
 # -a15
 %patch0 -p0
 perl -pi -e \
@@ -130,7 +139,7 @@ CXXFLAGS="%{optflags}" ; export CXXFLAGS
 # volume plugin contains locales, skipping them for now.
 ( cd gkrellm-volume ; make ; mv *.so ../plugins )
 ( cd gkrellm-mailwatch ; make ; mv *.so ../plugins )
-#( cd gkrellm_snmp-%{snmpver} ; make ; mv *.so ../plugins )
+# cd gkrellm_snmp-%{snmpver} ; make ; mv *.so ../plugins )
 # radio has locales as well...
 ( cd gkrellm-radio ; make ; mv *.so ../plugins )
 ( cd gkrellmwireless ; make ; mv *.so ../plugins )
@@ -145,6 +154,9 @@ CXXFLAGS="%{optflags}" ; export CXXFLAGS
 ( cd gkrellflynn-%{flynnver} ; make gkrellm2 ; mv *.so ../plugins )
 ( cd gkleds-%{ledsver} ; make ; mv *.so ../plugins )
 ( cd gkrellmbgchg2-%{bgchgver} ; make ; mv *.so ../plugins )
+( cd gkrellm-trayicons-%{trayver} ; make ; mv *.so ../plugins )
+( cd gkrellm2-cpufreq-%{cpufreqver} ; make ; mv *.so ../plugins ; cp cpufreqset cpufreqsetgovernor .. )
+( cd alltraxclock2_%{alltraxver} ; make ; mv *.so ../plugins )
 %ifarch %ix86
 ( cd gkx86info%{x86ver} ; ./build ; mv *.so ../plugins )
 %endif
@@ -152,14 +164,16 @@ CXXFLAGS="%{optflags}" ; export CXXFLAGS
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{gkplugindir}
+%{__mkdir_p} %{buildroot}%{gkplugindir}
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__mkdir_p} %{buildroot}%{_sbindir}
 %{__install} -m 755 plugins/* %{buildroot}%{gkplugindir}
-mkdir -p %{buildroot}%{_bindir}
 %{__install} -m 755 dnetw %{buildroot}%{_bindir}
 %{__install} -m 755 GrabWeather %{buildroot}%{_bindir}
 %{__install} -m 755 pinger %{buildroot}%{gkplugindir}
+%{__install} -m 755 cpufreqset cpufreqsetgovernor %{buildroot}%{_sbindir}
 # Man pages
-mkdir -p %{buildroot}%{_mandir}/man5
+%{__mkdir_p} %{buildroot}%{_mandir}/man5
 %{__install} -m 644 `find . -type f -name "*.5"` %{buildroot}%{_mandir}/man5
 
 
@@ -187,9 +201,13 @@ mkdir -p %{buildroot}%{_mandir}/man5
 %{_mandir}/man5/gkrellkam*
 %{gkplugindir}/gkrellflynn.so
 %{gkplugindir}/gkrellmbgchg.so
+%{gkplugindir}/trayicons.so
+%{gkplugindir}/alltraxclock.so
 
 %files utils
 %defattr(-, root, root, 0755)
+%{_sbindir}/cpufreqset
+%{_sbindir}/cpufreqsetgovernor
 %{gkplugindir}/mailwatch.so
 %{gkplugindir}/wireless.so
 %{gkplugindir}/reminder.so
@@ -197,6 +215,7 @@ mkdir -p %{buildroot}%{_mandir}/man5
 %{gkplugindir}/pinger
 %{gkplugindir}/gkrellshoot.so
 %{gkplugindir}/gkleds.so
+%{gkplugindir}/cpufreq.so
 %ifarch %ix86
 %{gkplugindir}/gkx86info.so
 %endif
@@ -207,14 +226,17 @@ mkdir -p %{buildroot}%{_mandir}/man5
 
 
 %changelog
-* Wed Feb  4 2004 Matthias Saou <http://freshrpms.net/> 2.1.12-4.fr
+* Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-1
+- Updated plugins and added tray icon and cpufreq plugins.
+
+* Wed Feb  4 2004 Matthias Saou <http://freshrpms.net/> 2.1.12-4
 - Updated all plugins from luon.net (xmms, volume, wireless, radio).
 - Removed obsolete gkacpi plugin, gkrellm handles temp and battery on its own.
 
-* Sun Nov 23 2003 Matthias Saou <http://freshrpms.net/> 2.1.12-3.fr
+* Sun Nov 23 2003 Matthias Saou <http://freshrpms.net/> 2.1.12-3
 - Updated gkacpi to 0.5 + patch from Ronny Buchmann.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.12-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.12-2
 - Rebuild for Fedora Core 1.
 - Updated volume plugin.
 

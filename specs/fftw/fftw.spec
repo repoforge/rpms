@@ -1,17 +1,15 @@
 # $Id$
 # Authority: matthias
 
-Summary: Fast Fourier Transform library
+Summary: Fastest Fourier Transform in the West library
 Name: fftw
 Version: 2.1.5
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
 Source: http://www.fftw.org/fftw-%{version}.tar.gz
 URL: http://www.fftw.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
 
 %description
 FFTW is a C subroutine library for computing the Discrete Fourier Transform
@@ -23,7 +21,7 @@ typically superior to that of other publicly available FFT software.
 
 
 %package devel
-Summary: Headers, libraries and docs for the FFTW library
+Summary: Headers, development libraries and documentation for the FFTW library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 
@@ -46,20 +44,20 @@ develop programs using the FFTW fast Fourier transform library.
 %build
 # Build double precision
 %configure \
-%ifarch %ix86
+%ifarch %{ix86}
     --enable-i386-hacks \
 %endif
     --enable-shared \
     --enable-threads
 %{__make} %{?_smp_mflags}
 
-# Install double precision, yes this is hack-ish
+# Install double precision, yes this is rpm build hack-ish
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 # Build single precision (prefixed)
 %configure \
-%ifarch %ix86
+%ifarch %{ix86}
     --enable-i386-hacks \
 %endif
     --enable-shared \
@@ -71,7 +69,7 @@ develop programs using the FFTW fast Fourier transform library.
 
 %install
 # Don't remove previously installed double precision
-#rm -rf %{buildroot}
+#%{__rm} -rf %{buildroot}
 
 # Install single precision
 %makeinstall
@@ -101,12 +99,15 @@ develop programs using the FFTW fast Fourier transform library.
 %doc FAQ/fftw-faq.html/ doc/
 %{_includedir}/*
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_infodir}/*.info*
-%exclude %{_libdir}/*.la
 
 
 %changelog
+* Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 2.1.5-4
+- Rebuild for Fedora Core 2.
+
 * Fri Jan 16 2004 Matthias Saou <http://freshrpms.net/> 2.1.5-3
 - Re-enable build of both single and double precision libraries.
 
