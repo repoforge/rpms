@@ -27,7 +27,7 @@ programs, between Scheme and Java programs, and between Scheme and C#
 programs.
 
 %prep
-%setup -n bigloo2.6c
+%setup -n bigloo%{version}
 
 %build
 ./configure \
