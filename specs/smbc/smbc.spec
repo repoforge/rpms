@@ -29,6 +29,7 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %setup -n smbc
 
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -36,6 +37,11 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 
 %files
 %defattr(-,root,root,0755)
+%doc FAQ NEWS COPYING README doc/sample.smbcrc
+%{_bindir}/smbc
+%{_bindir}/smbc-utf-x
+%exclude %{_datadir}/doc
+%{_datadir}/locale/pl/LC_MESSAGES/smbc.mo
 
 
 %changelog
