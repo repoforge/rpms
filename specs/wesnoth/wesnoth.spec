@@ -15,6 +15,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.wesnoth.org/files/wesnoth-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: gcc-c++, make, SDL, SDL_net, SDL_mixer, SDL-devel, SDL_image-devel, SDL_ttf-devel, SDL_net-devel, SDL_mixer-devel
 Requires: SDL, SDL_net, SDL_mixer, SDL_image, SDL_ttf, SDL_net
 
@@ -46,9 +47,7 @@ Categories=Application;Game;ArcadeGame
 EOF
 
 %install
-mkdir -p %{buildroot}
-export DESTDIR=%{buildroot}
-make install-strip
+make install-strip DESTDIR=%{buildroot}
 mkdir -p %{buildroot}/usr/share/applications/
 cp wesnoth.desktop %{buildroot}/usr/share/applications/
 
