@@ -26,7 +26,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl-IO-Pty
 
 %description
 This module contains a version of expect written in perl.
@@ -55,5 +54,8 @@ This module contains a version of expect written in perl.
 %{perl_vendorlib}/Expect.pod
 
 %changelog
+* Thu Nov 04 2004 Dries Verachtert <dries@ulyssis.org> - 1.15-2
+- Removed bad dependency (found by Martijn Lievaart, thanks!)
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Initial package.
