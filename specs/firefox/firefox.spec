@@ -226,7 +226,8 @@ while [ "$1" ]; do
 			cp -rf $MOZILLA_FIVE_HOME/defaults/profile/* $HOME/.mozilla/firefox/default
 			echo -e "[General]\nStartWithLastProfile=1\n\n[Profile0]\nName=default\nIsRelative=1\nPath=default" >$HOME/.mozilla/firefox/profiles.ini
 			/usr/X11R6/bin/Xvfb :69 -nolisten tcp -ac -terminate &>/dev/null &
-			DISPLAY=:69 firefox-bin -install-global-extension -install-global-theme &>/dev/null
+			DISPLAY=:69 $MOZILLA_FIVE_HOME/firefox-bin -install-global-extension -install-global-theme &>/dev/null
+			jobs 1 &>/dev/null && kill -KILL %1 &>/dev/null
 			rm -rf $HOME
 			exit 0
 		else
@@ -324,13 +325,13 @@ fi
 
 %post
 /sbin/ldconfig 2>/dev/null
-%{_libdir}/firefox/firefox-rebuild-databases.pl &>/dev/null || :
-/usr/bin/firefox -register || :
+%{_libdir}/firefox/firefox-rebuild-databases &>/dev/null || :
+%{_bindir}/firefox -register || :
 
 %postun
 /sbin/ldconfig 2>/dev/null
 if [ $1 -gt 1 ]; then
-	%{_libdir}/firefox/firefox-rebuild-databases.pl &>/dev/null || :
+	%{_libdir}/firefox/firefox-rebuild-databases &>/dev/null || :
 fi
 
 %preun
