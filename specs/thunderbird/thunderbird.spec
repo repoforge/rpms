@@ -11,7 +11,7 @@
 Summary: Mozilla Thunderbird mail/news client
 Name: thunderbird
 Version: 0.7.2
-Release: 1
+Release: 0
 License: MPL/GPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/thunderbird/
@@ -27,7 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel
-BuildRequires: ORBit-devel, vim-enhanced, csh, gcc-c++
+BuildRequires: ORBit-devel, vim-enhanced, csh, gcc-c++, krb5-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel, gnome-vfs2-devel}
 %{?_without_gtk2:BuildRequires: gtk+-devel}
@@ -48,23 +48,18 @@ Mozilla Thunderbird is a redesign of the Mozilla mail component.
 
 ### FIXME: Shouldn't the default thunderbird config be part of original source ?
 %{__cat} <<EOF >.mozconfig
-export MOZ_THUNDERBIRD="1"
-mk_add_options MOZ_THUNDERBIRD="1"
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-debug
-#ac_add_options --disable-freetype2
 ac_add_options --disable-installer
 ac_add_options --disable-jsd
 ac_add_options --disable-profilesharing
 ac_add_options --disable-tests
 ac_add_options --enable-crypto
-#ac_add_options --enable-extensions="cookie,gnomevfs,inspector,negotiateauth,p3p,pref,spellcheck,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"
-ac_add_options --enable-extensions
-#ac_add_options --enable-image-decoders="png,gif,jpeg,bmp"
-#ac_add_options --enable-necko-protocols="http,file,jar,viewsource,res,data"
+ac_add_options --enable-extensions="default"
 ac_add_options --enable-official-branding
-ac_add_options --enable-optimize="%{optflags}"
-#ac_add_options --enable-strip
+# We want to replace -O? with -Os to optimize compilation for size
+ac_add_options --enable-optimize="-Os %(echo "%{optflags}" | sed 's/-O.//')"
+ac_add_options --enable-single-profile
 ac_add_options --with-pthreads
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-png
@@ -126,15 +121,15 @@ while [ "$1" ]; do
 	  -register)
 		if [ -x "/usr/X11R6/bin/Xvfb" ]; then
 			export HOME="$(mktemp -d /tmp/thunderbird-rpm.$$)"
-			mkdir -p $HOME/.mozilla/thunderbird/default/
-			cp -rf $MOZILLA_FIVE_HOME/defaults/profile/* $HOME/.mozilla/thunderbird/default/
-			echo -e "[General]\nStartWithLastProfile=1\n\n[Profile0]\nName=default\nIsRelative=1\nPath=default" >$HOME/.mozilla/thunderbird/profiles.ini
+			mkdir -p $HOME/.thunderbird/default
+			cp -rf $MOZILLA_FIVE_HOME/defaults/profile/* $HOME/.thunderbird/default/
+			echo -e "[General]\nStartWithLastProfile=1\n\n[Profile0]\nName=default\nIsRelative=1\nPath=default" >$HOME/.thunderbird/profiles.ini
 			/usr/X11R6/bin/Xvfb :69 -nolisten tcp -ac -terminate &
 			DISPLAY=:69 $MOZILLA_FIVE_HOME/thunderbird -a thunderbird -install-global-extension -install-global-theme
 			rm -rf $HOME
 			exit 0
 		else
-			echo "/usr/X11R6/bin/Xvfb cannot be executed. Please run firefox once as root." >&2
+			echo "/usr/X11R6/bin/Xvfb cannot be executed. Please run thunderbird once as root." >&2
 			exit 1
 		fi;;
 	  -remote)
@@ -169,37 +164,27 @@ fi;
 EOF
 
 %build
-export MOZ_APP_NAME="thunderbird"
-export MOZ_THUNDERBIRD="1"
-export MOZILLA_OFFICIAL="1"
-export BUILD_OFFICIAL="1"
-export CFLAGS="%{optflags}"
-export CXXFLAGS="%{optflags}"
+export MOZ_THUNDERBIRD=1
 %{__make} -f client.mk depend
 %{__make} %{?_smp_mflags} -f client.mk libs
 
-export LANG="en_US"
 pushd extensions/ipc
-./makemake
-%{__make} %{?_smp_mflags}
+	./makemake
+	%{__make} %{?_smp_mflags}
 popd
-
 pushd extensions/enigmail
-./makemake
-%{__make} %{?_smp_mflags}
+	./makemake
+	%{__make} %{?_smp_mflags}
 popd
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir} \
-			%{buildroot}%{_datadir}/pixmaps/
+%{__install} -d -m0755 %{buildroot}%{_libdir}
 
 %{__make} -C xpinstall/packager \
-	MOZ_PKG_APPNAME="thunderbird" \
 	MOZILLA_BIN="\$(DIST)/bin/thunderbird-bin"
 
-%{__install} -m0755 thunderbird.sh %{buildroot}%{_bindir}/thunderbird
+%{__install} -D -m0755 thunderbird.sh %{buildroot}%{_bindir}/thunderbird
 %{__install} -D -m0644 other-licenses/branding/thunderbird/mozicon50.xpm %{buildroot}%{_datadir}/pixmaps/thunderbird.xpm
 
 %{__tar} -xzv -C %{buildroot}%{_libdir} -f dist/thunderbird-*-linux-gnu.tar.gz
@@ -216,8 +201,13 @@ popd
 
 %post
 /sbin/ldconfig 2>/dev/null
-%{_bindir}/thunderbird -register &>/dev/null 2>&1 || :
+%{_bindir}/thunderbird -register &>/dev/null || :
 %{_bindir}/update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%preun
+if [ $1 -eq 0 ]; then
+	%{__rm} -rf %{_libdir}/thunderbird/{chrome/overlayinfo,chrome/*.rdf,components,components.ini,extensions}
+fi
 
 %postun
 /sbin/ldconfig 2>/dev/null
@@ -237,7 +227,7 @@ popd
 
 %changelog
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-0
-- Update to 0.7.2.
+- Update to 0.7.2, major spec changes and updates.
 - Copy all of Dag's changes to the latest Firefox package.
 
 * Wed Jun  2 2004 Matthias Saou <http://freshrpms.net/> 0.6-1
