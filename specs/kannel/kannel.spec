@@ -8,7 +8,7 @@
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.3.2
-Release: 1
+Release: 2
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
@@ -63,18 +63,18 @@ use the kannel WAP and SMS gateway.
 %{__rm} -rf %{buildroot}
 
 
-%post
+#post
 #if [ $1 -eq 1 ]; then
 #   /sbin/chkconfig --add foobar
 #fi
                                                                                 
-%preun
+#preun
 #if [ $1 -eq 0 ]; then
 #   /sbin/service foobar stop >/dev/null 2>&1 || :
 #   /sbin/chkconfig --del foobar
 #fi
                                                                                 
-%postun
+#postun
 #if [ $1 -ge 1 ]; then
 #   /sbin/service foobar condrestart >/dev/null 2>&1 || :
 #fi
@@ -96,6 +96,9 @@ use the kannel WAP and SMS gateway.
 
 
 %changelog
+* Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-2
+- Really comment out all scriplets, they're not yet used.
+
 * Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-1
 - Don't fix the openssl detection for RHL 7.x.
 
