@@ -25,6 +25,7 @@ Source: http://dl.sf.net/afick/afick-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 afick is a portable file integrity checker
