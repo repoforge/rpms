@@ -1,0 +1,11 @@
+diff -Naupr snes9express-1.42.orig/frend.cc snes9express-1.42/frend.cc
+--- snes9express-1.42.orig/frend.cc	2004-03-01 04:22:01.000000000 +0100
++++ snes9express-1.42/frend.cc	2004-12-19 13:07:58.510777312 +0100
+@@ -18,6 +18,7 @@
+ #include "frend.h"
+ #include <unistd.h>
+ #include <sys/stat.h>
++#include <errno.h>
+ #include <cstdlib>
+ #include <climits>
+ #include <sstream>
