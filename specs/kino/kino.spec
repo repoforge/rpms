@@ -2,6 +2,10 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy@users.sf.net>
 
+%ifnarch %{ix86}
+%define _without_quicktime 1
+%endif
+
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.7.1
@@ -18,10 +22,12 @@ Source1: kino.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
-BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel, ffmpeg-devel
+BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
-BuildRequires: libxml2-devel, libquicktime-devel, libsamplerate-devel
+BuildRequires: libxml2-devel, libsamplerate-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_quicktime:BuildRequires: libquicktime-devel}
+%{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
 
 Obsoletes: kino-devel <= %{version}
 
@@ -44,21 +50,20 @@ commands for fast navigating and editing inside the movie.
 
 %{__cat} <<EOF >kino.desktop
 [Desktop Entry]
-Encoding=UTF-8
 Name=Kino Video Editor
 Comment=Edit non-linear videos in real-time
 Icon=kino.png
 Exec=kino
 Terminal=false
 Type=Application
+Encoding=UTF-8
 Categories=GNOME;Application;AudioVideo;
 EOF
 
 %build
 %configure \
-	--disable-dependency-tracking \
-	--with-quicktime \
-	--with-avcodec
+%{!?_without_quicktime:--with-quicktime} \
+%{!?_without_ffmpeg:--with-avcodec}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -66,14 +71,14 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%if %{!?_without_freedesktop:1}0
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 kino.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/kino.desktop
+%else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		kino.desktop
-%else
-	%{__install} -D -m0644 kino.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/kino.desktop
 %endif
 
 # Install the pixmap for the menu entry
@@ -94,11 +99,8 @@ EOF
 %{_datadir}/kino/
 %{_datadir}/pixmaps/kino.png
 %{_includedir}/kino/
-%if %{!?_without_freedesktop:1}0
-	%{_datadir}/applications/*.desktop
-%else
-	%{_datadir}/gnome/apps/Multimedia/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/kino.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-kino.desktop}
 
 %changelog
 * Mon Jun 14 2004 Matthias Saou <http://freshrpms.net> 0.7.1-2

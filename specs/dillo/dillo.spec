@@ -1,11 +1,15 @@
 # $Id$
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Small and fast GUI web browser
 Name: dillo
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -19,6 +23,7 @@ Source1: dillo48.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, zlib-devel, libjpeg-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Provides: webclient
 
 %description
@@ -35,6 +40,7 @@ Exec=dillo
 Icon=dillo.png
 Terminal=false
 Type=Application
+Encoding=UTF-8
 Categories=Network;Application;
 EOF
 
@@ -53,7 +59,7 @@ EOF
 ### Remove buildroot from config files
 %{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}%{_sysconfdir}/*
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 dillo.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/dillo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -73,13 +79,13 @@ EOF
 %{_bindir}/*
 %{_libdir}/dillo/
 %{_datadir}/pixmaps/*.png
-%if %{dfi}
-	%{_datadir}/gnome/apps/Internet/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/net-dillo.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/dillo.desktop}
 
 %changelog
+* Sat Jul 10 2004 Dag Wieers <dag@wieers.com> - 0.8.2-1
+- Updated to release 0.8.2.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Updated to release 0.8.1.
 

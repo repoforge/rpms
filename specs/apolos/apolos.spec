@@ -2,6 +2,12 @@
 # Authority: dag
 # Upstream: Jonathan Gonzalez V. <jonathan@blueplanet.cl>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
 Summary: Small cd player for GNOME
 Name: apolos
 Version: 0.1.7
@@ -43,8 +49,7 @@ Categories=GNOME;Application;AudioVideo;
 EOF
 
 %build
-%configure \
-	--disable-dependency-tracking
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -52,7 +57,9 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%if %{!?_without_freedesktop:1}0
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 apolos.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/apolos.desktop
+%else
 	desktop-file-install --vendor gnome --delete-original \
 		--add-category X-Red-Hat-Base                 \
 		--dir %{buildroot}%{_datadir}/applications    \
@@ -67,6 +74,8 @@ EOF
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/*
 %{_datadir}/applications/gnome-apolos.desktop
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/apolos.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-apolos.desktop}
 
 %changelog
 * Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.1.7-1
