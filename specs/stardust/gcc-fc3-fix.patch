@@ -1,0 +1,11 @@
+diff -uNr stardust-0.1.9/src/hud.c stardust-0.1.9-fix/src/hud.c
+--- stardust-0.1.9/src/hud.c	2004-02-08 13:57:01.000000000 +0100
++++ stardust-0.1.9-fix/src/hud.c	2004-11-08 22:52:44.265352000 +0100
+@@ -175,6 +175,7 @@
+     /* Do nothing */
+   default:
+     /* Do nothing */
++    break;
+   }
+   
+   switch(space_ship_vdu(player_ship)) {
