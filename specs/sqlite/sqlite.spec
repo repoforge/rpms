@@ -56,34 +56,21 @@ you will need to install %{name}-devel.
 %setup -n %{name}
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e '
-               s|\$\(exec_prefix\)/lib|\$(libdir)|g;
-               s|/usr/lib|\$(libdir)|g;
-       ' Makefile* */Makefile* */*/Makefile*
+%{__perl} -pi.orig -e 's|\$\(exec_prefix\)/lib|\$(libdir)|g' Makefile.in
 
 %build
-%ifarch x86_64
-%{__libtoolize} --force
-%{__aclocal}
-%{__autoconf}
-%endif
-CFLAGS="%{optflags} -DNDEBUG=1 -fno-strict-aliasing" \
-CXXFLAGS="%{optflags} -DNDEBUG=1 -fno-strict-aliasing" \
-TARGET_EXEEXT='.so' \
+CFLAGS="%{optflags} -DNDEBUG=1" \
+CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %configure \
-	--enable-utf8
+    --enable-utf8
 %{__make} %{?_smp_mflags}
 %{__make} doc
 
 %install
 %{__rm} -rf %{buildroot}
 
-### FIXME: Makefile doesn't create target directories (Please fix upstream)
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}
-
 %makeinstall
+# Install the man page, it's not automatically (2.8.15)
 %{__install} -D -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/sqlite.1
 
 %post
@@ -98,13 +85,13 @@ TARGET_EXEEXT='.so' \
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%{_bindir}/sqlite
 %{_libdir}/*.so.*
+%{_mandir}/man1/*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/
+%doc doc/*
 %{_includedir}/*.h
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -114,6 +101,7 @@ TARGET_EXEEXT='.so' \
 %changelog
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 2.8.15-1
 - Update to 2.8.15.
+- Minor cleanups, removed now unneeded workarounds.
 
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 2.8.14-1
 - Updated to release 2.8.14.
