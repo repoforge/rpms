@@ -51,7 +51,7 @@ This package contains all the documentation for Twisted.
 %{__mkdir_p} %{buildroot}%{_mandir}/man1
 for man in doc/man/*.1; do
     %{__install} -m 0644 ${man} %{buildroot}%{_mandir}/man1/
-    %{__rm} -f doc/man/*.1
+    %{__rm} -f ${man}
 done
 
 # set permissions on all doc files to 644

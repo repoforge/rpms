@@ -18,7 +18,7 @@ Source4: proftpd.logrotate
 Source5: welcome.msg
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig, /etc/init.d
-BuildRequires: pam-devel, perl, pkgconfig
+BuildRequires: pam-devel, perl, ncurses-devel, pkgconfig
 %{!?_without_tls:Requires: openssl}
 %{!?_without_tls:BuildRequires: openssl-devel, krb5-devel}
 %{?_with_ldap:Requires: openldap}
@@ -63,17 +63,17 @@ if OPENSSL_CFLAGS=`pkg-config --cflags openssl`; then
 fi
 
 %configure \
-    --localstatedir=/var/run \
-    --with-includes=%{_includedir}%{!?_without_tls:${OPENSSL_INC}}%{?_with_mysql::%{_includedir}/mysql} \
-    %{?_with_mysql:--with-libraries=%{_libdir}/mysql} \
-    %{?_with_postgresql:--with-libraries=%{_libdir}} \
+    --localstatedir="/var/run" \
+    --with-includes="%{_includedir}%{!?_without_tls:${OPENSSL_INC}}%{?_with_mysql::%{_includedir}/mysql}" \
+    %{?_with_mysql:--with-libraries="%{_libdir}/mysql"} \
+    %{?_with_postgresql:--with-libraries="%{_libdir}"} \
     --with-modules=mod_readme:mod_auth_pam%{?_with_ldap::mod_ldap}%{?_with_mysql::mod_sql:mod_sql_mysql}%{?_with_postgresql::mod_sql:mod_sql_postgres}%{!?_without_tls::mod_tls}
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall rundir=%{buildroot}%{_localstatedir}/run/proftpd \
+%makeinstall rundir="%{buildroot}%{_localstatedir}/run/proftpd" \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
 %{__install} -D -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
@@ -141,6 +141,9 @@ fi
 
 
 %changelog
+* Tue Jun 22 2004 Matthias Saou <http://freshrpms.net/> 1.2.9-8
+- Added ncurses-devel build requires to fix the ftptop utility.
+
 * Fri Feb 26 2004 Magnus-swe <Magnus-swe@telia.com> 1.2.9-7
 - Fixed the scoreboard and pidfile issues.
 
