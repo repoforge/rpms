@@ -15,7 +15,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.wesnoth.org/files/wesnoth-%{version}.tar.gz
-BuildRequires: gcc, make, SDL, SDL_net, SDL_mixer, SDL-devel, SDL_image-devel, SDL_ttf-devel, SDL_net-devel, SDL_mixer-devel
+BuildRequires: gcc-c++, make, SDL, SDL_net, SDL_mixer, SDL-devel, SDL_image-devel, SDL_ttf-devel, SDL_net-devel, SDL_mixer-devel
 Requires: SDL, SDL_net, SDL_mixer, SDL_image, SDL_ttf, SDL_net
 
 # Screenshot: http://www.wesnoth.org/images/sshots/wesnoth-10-175.jpg
