@@ -22,7 +22,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.bnro.de/~schmidjo/download/LinNeighborhood-%{version}.tar.gz
 Patch0: linneighborhood-0.6.5-samba3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: gtk+-devel
 
 Obsoletes: %{real_name} <= 0.6.5
 Requires: gtk+ >= 1.2.0, gettext

@@ -17,6 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://mtools.linux.lu/mtools-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: texinfo
 
 %description
 Mtools is a collection of utilities to access MS-DOS disks

@@ -16,7 +16,7 @@ Source: http://ftp.imendio.com/pub/imendio/loudmouth/src/loudmouth-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.0
-BuildRequires: gtk-doc >= 0.10
+BuildRequires: gtk-doc >= 0.10, gcc-c++
 #BuildRequires: gnutls-devel >= 1.0
 
 %description

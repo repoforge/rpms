@@ -18,6 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/ming/ming-%{real_version}.tar.bz2
 Patch: ming-listmp3.c.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: zlib-devel
 
 %description
 Ming is a c library for generating SWF ("Flash") format movies. This

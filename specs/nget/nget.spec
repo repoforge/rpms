@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/nget/nget-%{version}+uulib.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pcre-devel, popt, ncurses-devel, zlib-devel
+BuildRequires: pcre-devel, popt, ncurses-devel, zlib-devel, gcc-c++, libpcap
 
 %description
 nget is a command line nntp file grabber. It automatically pieces together

@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
+{?fc2:BuildRequires: db4-devel}
 
 %description
 Perl extension for Berkeley DB version 2, 3 or 4.

@@ -17,6 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.slctech.org/~mackay/netwatch-%{real_version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: ncurses-devel
 
 %description 
 The software enables real-time viewing of network activity.

@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://swapoff.org/files/op/op-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex
+BuildRequires: flex, pam-devel
 
 %description
 op provides a flexible means for system administrators to grant access

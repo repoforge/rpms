@@ -17,7 +17,7 @@ Source: http://dl.sf.net/multires/multires-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: libgnomeui-devel >= 2.0
+BuildRequires: libgnomeui-devel >= 2.0, gnome-panel-devel
 
 %description
 GNOME Multires is an applet for the GNOME 2 panel which allows changing

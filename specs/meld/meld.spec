@@ -17,7 +17,7 @@ Source: http://ftp.gnome.org/pub/gnome/sources/meld/0.9/meld-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pygtk2-devel >= 1.99.14, gnome-python2 >= 1.99.14
-BuildRequires: pyorbit-devel >= 1.99
+BuildRequires: pyorbit-devel >= 1.99, desktop-file-utils
 
 BuildArch: noarch
 Requires: pygtk2 >= 1.99.14, gnome-python2 >= 1.99, gnome-python2-canvas

@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/meanwhile/meanwhile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.2
+BuildRequires: glib2-devel >= 2.2, gcc-c++
 
 %description
 The heart of the Meanwhile Project is the Meanwhile library, providing the

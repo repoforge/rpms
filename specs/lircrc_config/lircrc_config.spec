@@ -15,6 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/lirc/lircrc_config-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gtk+-devel, glib2-devel, lirc
 
 %description
 A GNOME .lircrc configuration program.

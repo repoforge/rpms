@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.wh-hms.uni-ulm.de/~mfcn/shared/netspeed/netspeed_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, intltool, scrollkeeper
+BuildRequires: pkgconfig, intltool, scrollkeeper, gcc-c++
 BuildRequires: libgnomeui-devel >= 2.0, libgtop2-devel >= 2.0
 Requires(post): scrollkeeper
 

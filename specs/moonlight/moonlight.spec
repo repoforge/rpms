@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ml3d.sf.net/install/moonlight-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: freetype-devel
+BuildRequires: freetype-devel, libtiff-devel
 
 %description
 Moonlight|3D is a free software modeller and renderer for 3D scenes

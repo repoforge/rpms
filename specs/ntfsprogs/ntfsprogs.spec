@@ -21,7 +21,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/linux-ntfs/ntfsprogs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: gcc-c++
 
 %{?vfs:BuildRequires: glib2-devel, gnome-vfs2-devel}
 
