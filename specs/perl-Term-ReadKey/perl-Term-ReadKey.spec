@@ -11,7 +11,7 @@
 
 Summary: Module for simple terminal control 
 Name: perl-Term-ReadKey
-Version: 2.21
+Version: 
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ of the screen size, and retrieval/modification of the control characters.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - -1
+- Updated to release .
+
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 2.21-1
 - Initial package.

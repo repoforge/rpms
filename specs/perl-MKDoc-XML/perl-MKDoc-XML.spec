@@ -11,7 +11,7 @@
 
 Summary: MKDoc XML Toolkit
 Name: perl-MKDoc-XML
-Version: 0.72
+Version: 0.74
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -55,5 +55,8 @@ hyperlinks expressions so that MKDoc users don't have to know about a tag syntax
 %{perl_vendorlib}/MKDoc/XML/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.74-1
+- Updated to release 0.74.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.72-1
 - Initial package.

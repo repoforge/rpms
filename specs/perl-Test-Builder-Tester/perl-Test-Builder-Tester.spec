@@ -11,7 +11,7 @@
 
 Summary: Test testsuites that have been built with Test::Builder
 Name: perl-Test-Builder-Tester
-Version: 1.00
+Version: 1.01
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ Test testsuites that have been built with Test::Builder.
 %{perl_vendorlib}/Test/Builder/Tester/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1
+- Updated to release 1.01.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

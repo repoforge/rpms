@@ -10,7 +10,7 @@
 
 Summary: Crypt License module
 Name: perl-Crypt-License
-Version: 2.02
+Version: 2.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,5 +60,8 @@ Apache-AuthCookie while not in user space.
 %{perl_vendorlib}/Crypt/License/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.03-1
+- Updated to release 2.03.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.02-1
 - Initial package.

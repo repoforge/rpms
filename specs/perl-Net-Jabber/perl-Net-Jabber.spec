@@ -12,7 +12,7 @@
 
 Summary: Jabber protocol interface
 Name: perl-Net-Jabber
-Version: 1.30
+Version: 2.0
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -66,5 +66,8 @@ tester.
 %{perl_vendorlib}/Net/Jabber/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.0-1
+- Updated to release 2.0.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.30-1
 - Initial package.

@@ -12,7 +12,7 @@
 
 Summary: Populates HTML Forms with CGI data
 Name: perl-HTML-FillInForm
-Version: 1.04
+Version: 1.05
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -55,5 +55,8 @@ tags.
 %{perl_vendorlib}/HTML/FillInForm.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.05-1
+- Updated to release 1.05.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Initial package.

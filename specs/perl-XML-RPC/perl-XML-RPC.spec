@@ -7,7 +7,7 @@
 Summary: Implementation of XML-RPC in perl
 Summary(nl): Een implementatie van XML-RPC in perl.
 Name: perl-XML-RPC
-Version: 0.53
+Version: 
 Release: 2
 License: GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ export DESTDIR=$RPM_BUILD_ROOT
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - -1
+- Updated to release .
+
 * Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 0.53-2
 - cleanup of spec file
 

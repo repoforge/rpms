@@ -11,7 +11,7 @@
 
 Summary: Spiffy Application Building Framework
 Name: perl-Spoon
-Version: 0.18
+Version: 0.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,5 +60,8 @@ built on top of Spoon.
 # perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.20-1
+- Updated to release 0.20.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 0.18-1
 - Initial package.

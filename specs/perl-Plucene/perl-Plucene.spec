@@ -11,7 +11,7 @@
 
 Summary: A Perl port of the Lucene search engine
 Name: perl-Plucene
-Version: 1.19
+Version: 1.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -61,5 +61,8 @@ and search for things in them later.
 # perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Initial package.

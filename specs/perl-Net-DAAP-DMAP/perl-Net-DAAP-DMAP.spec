@@ -11,7 +11,7 @@
 
 Summary: Perl module for reading and writing DAAP structures
 Name: perl-Net-DAAP-DMAP
-Version: 1.24
+Version: 1.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ Perl module for reading and writing DAAP structures.
 %{perl_vendorlib}/Net/DAAP/DMAP.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.26-1
+- Updated to release 1.26.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.24-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Perl extension for manipulating IPv4/IPv6 addresses
 Name: perl-Net-IP
-Version: 1.20
+Version: 1.21
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ Perl extension for manipulating IPv4/IPv6 addresses.
 %{perl_vendorlib}/Net/IP.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.21-1
+- Updated to release 1.21.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Initial package.

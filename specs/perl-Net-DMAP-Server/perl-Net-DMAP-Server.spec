@@ -11,7 +11,7 @@
 
 Summary: Base class for D[A-Z]AP servers
 Name: perl-Net-DMAP-Server
-Version: 0.01
+Version: 0.03
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ A base class for D[A-Z]AP servers.
 %{perl_vendorlib}/Net/DMAP/Server.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
+- Updated to release 0.03.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

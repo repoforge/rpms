@@ -12,7 +12,7 @@
 
 Summary: Interface to the Virtual Terminal Emulation library
 Name: perl-Gnome2-Vte
-Version: 0.02
+Version: 0.04
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -58,5 +58,8 @@ for short) from Perl.
 %{perl_vendorarch}/auto/Gnome2/Vte/Vte.so
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
+- Updated to release 0.04.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

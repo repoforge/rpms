@@ -11,7 +11,7 @@
 
 Summary: Get the pathname of the current working directory
 Name: perl-Cwd
-Version: 2.20
+Version: 2.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ This small module getś the pathname of the current working directory.
 %{perl_vendorarch}/auto/Cwd/*
 
 %changelog
-* Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.20-1
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.21-1
+- Updated to release 2.21.
+
+* Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.20-1 - #%{lastrevid}
 - Initial package.

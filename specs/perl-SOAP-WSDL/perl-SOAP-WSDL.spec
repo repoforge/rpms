@@ -11,7 +11,7 @@
 
 Summary: WSDL-driven message preprocessor for SOAP::Lite
 Name: perl-SOAP-WSDL
-Version: 1.18
+Version: 1.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ A WSDL-driven message preprocessor for SOAP::Lite.
 %{perl_vendorlib}/SOAP/WSDL.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.18-1
 - Initial package.

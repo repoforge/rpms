@@ -9,7 +9,7 @@
 
 Summary: Interface to the PAM library
 Name: perl-Authen-PAM
-Version: 0.14
+Version: 0.15
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ This module provides a Perl interface to the PAM library.
 %{perl_vendorarch}/auto/Authen/PAM/PAM.so
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.15-1
+- Updated to release 0.15.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.
 

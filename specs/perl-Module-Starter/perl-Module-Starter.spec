@@ -11,7 +11,7 @@
 
 Summary: Simple starterkit for any module
 Name: perl-Module-Starter
-Version: 1.22
+Version: 1.34
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ A simple starterkit for any module.
 %{perl_vendorlib}/Module/Starter.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.34-1
+- Updated to release 1.34.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.22-1
 - Initial package.

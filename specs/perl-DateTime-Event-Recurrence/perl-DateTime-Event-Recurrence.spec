@@ -11,7 +11,7 @@
 
 Summary: DateTime::Set extension for computing basic recurrences
 Name: perl-DateTime-Event-Recurrence
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ This module aims to support basic recurrences, such as 'daily'.
 %{perl_vendorlib}/DateTime/Event/Recurrence.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.13-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.2601
+Version: 0.2607
 Release: 1
 License: Artistic or GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ pure-perl and written in a very cross-platform way.
 %{_mandir}/man?/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.2607-1
+- Updated to release 0.2607.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 0.26-2
 - Update to 0.2601.
 - Change deps to be "perl style".

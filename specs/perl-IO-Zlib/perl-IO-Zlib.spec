@@ -11,7 +11,7 @@
 
 Summary: IO:: interface to Compress::Zlib
 Name: perl-IO-Zlib
-Version: 1.01
+Version: 1.04
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -55,5 +55,8 @@ code that doesn't know which sort of file it is using.
 %{perl_vendorlib}/IO/Zlib.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.04-1
+- Updated to release 1.04.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Spiffy Perl Interface Framework For You
 Name: perl-Spiffy
-Version: 0.20
+Version: 0.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ clean, straightforward and (perhaps someday) standard way.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.21-1
+- Updated to release 0.21.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Initial package.

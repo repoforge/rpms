@@ -12,7 +12,7 @@
 
 Summary: XML Stream connection support
 Name: perl-XML-Stream
-Version: 1.21
+Version: 1.22
 Release: 1
 License: LGPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ This module contains support for XML stream connections.
 %{perl_vendorlib}/XML/Stream/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.22-1
+- Updated to release 1.22.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Initial package.

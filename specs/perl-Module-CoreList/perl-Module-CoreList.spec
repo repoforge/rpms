@@ -11,7 +11,7 @@
 
 Summary: Get the list of modules shipped with versions of perl
 Name: perl-Module-CoreList
-Version: 1.95
+Version: 1.97
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ This module gets the list of modules shipped with versions of perl.
 %{perl_vendorlib}/Module/CoreList.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.97-1
+- Updated to release 1.97.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.95-1
 - Initial package.

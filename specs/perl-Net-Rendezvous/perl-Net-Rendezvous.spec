@@ -11,7 +11,7 @@
 
 Summary: mDNS or Rendezvous support for service discovery
 Name: perl-Net-Rendezvous
-Version: 0.86
+Version: 0.90
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -55,5 +55,8 @@ Apple Computer.
 %{perl_vendorlib}/Net/Rendezvous/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.90-1
+- Updated to release 0.90.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.86-1
 - Initial package.

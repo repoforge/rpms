@@ -11,7 +11,7 @@
 
 Summary: Routines to pick apart, examine and put together DNS packets
 Name: perl-Net-DNS-ToolKit
-Version: 0.17
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ applications to interact directly with remote DNS servers.
 %{perl_vendorarch}/auto/Net/DNS/ToolKit
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.23-1
+- Updated to release 0.23.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.

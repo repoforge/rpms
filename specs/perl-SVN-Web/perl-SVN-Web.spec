@@ -11,7 +11,7 @@
 
 Summary: Subversion repository web frontend
 Name: perl-SVN-Web
-Version: 0.37
+Version: 0.38
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -24,8 +24,8 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLKAO/SVN-Web-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Template, perl-YAML, perl-XML-RSS, perl-Text-Diff
-BuildRequires: perl-Locale-Maketext-Simple, subversion-perl
+# BuildRequires: perl, perl-Template, perl-YAML, perl-XML-RSS, perl-Text-Diff
+# BuildRequires: perl-Locale-Maketext-Simple, subversion-perl
 
 %description
 SVN::Web is a subversion repository web frontend.
@@ -59,5 +59,8 @@ SVN::Web is a subversion repository web frontend.
 # perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.38-1
+- Updated to release 0.38.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.37-1
 - Initial package.

@@ -12,7 +12,7 @@
 
 Summary: Pretty print data
 Name: perl-Data-Dump
-Version: 1.03
+Version: 1.06
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ printing data.
 %{perl_vendorlib}/Data/Dump.pm
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Sat Jun 15 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Date and time object
 Name: perl-DateTime
-Version: 0.22
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -65,5 +65,8 @@ module.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.24-1
+- Updated to release 0.24.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Checks if the documentation of a module is comprehensive
 Name: perl-Pod-Coverage
-Version: 0.14
+Version: 0.17
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ Checks if the documentation of a module is comprehensive.
 %{perl_vendorarch}/auto/Pod/Coverage/*
 
 %changelog
+* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.17-1
+- Updated to release 0.17.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.
