@@ -2,8 +2,8 @@
 # Authority: matthias
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-#define date      20040415
-%define rcver     pre4
+%define date      20040415
+#define rcver     pre2
 
 %define xmms_plugindir %(xmms-config --input-plugin-dir)
 %define desktop_vendor freshrpms
@@ -20,20 +20,17 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-current.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.1.tar.bz2
+Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.2.tar.bz2
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
-Requires(post,postun): /sbin/ldconfig
 #{?_with_dvdnav:Requires: libdvdnav}
 %{?_with_samba:Requires: samba-common}
-%{!?_without_alsa:Requires: alsa-lib}
 %{!?_without_aalib:Requires: aalib}
 %{!?_without_lirc:Requires: lirc}
-%{!?_without_libdv:Requires: libdv}
 %{!?_without_arts:Requires: arts}
 %{!?_without_xvid:Requires: xvidcore}
 %{!?_without_esd:Requires: esound}
@@ -46,22 +43,22 @@ BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libogg-devel, libvorbis-devel, libmad-devel
 BuildRequires: xmms-devel, fribidi-devel
+BuildRequires: alsa-lib-devel, libdv-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #{?_with_dvdnav:BuildRequires: libdvdnav-devel}
 %{?_with_samba:BuildRequires: samba-common}
-%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_lirc:BuildRequires: lirc}
 %{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
-%{!?_without_libdv:BuildRequires: libdv-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
-%{!?_without_xvid:BuildRequires: xvidcore}
+%{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_esd:BuildRequires: esound-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_faad2:BuildRequires: faad2-devel}
 %{!?_without_lzo:BuildRequires: lzo-devel}
 %{!?_without_fame:BuildRequires: libfame-devel}
-#{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_theora:BuildRequires: libtheora-devel}
 
 %description
 MPlayer is a movie player. It plays most video formats as well as DVDs.
@@ -70,15 +67,14 @@ nice antialiased shaded subtitles and OSD.
 
 Available rpmbuild rebuild options :
 --with : samba
---without : alsa aalib lirc cdparanoia libdv arts xvid esd dvdread faad2 lzo
-            libfame osdmenu gcccheck freedesktop
+--without : aalib lirc cdparanoia arts xvid esd dvdread faad2 lzo libfame caca
+            theora osdmenu gcccheck freedesktop
 
 
 %package -n libpostproc
 Summary: Video postprocessing library from MPlayer
 Group: System Environment/Libraries
 Provides: libpostproc-devel = %{version}-%{release}
-Requires(post,postun): /sbin/ldconfig
 
 %description -n libpostproc
 MPlayer is a movie player. It plays most video formats as well as DVDs.
@@ -136,6 +132,8 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{?_without_faad2:--disable-faad} \
     %{!?_without_faad2:--enable-external-faad} \
     %{?_without_libfame:--disable-libfame} \
+    %{?_without_caca:--disable-caca} \
+    %{?_without_theora:--disable-theora} \
 %ifnarch ppc
     --enable-runtime-cpudetection \
 %endif
@@ -153,10 +151,10 @@ find . -name "CVS" | xargs %{__rm} -rf
 %{__make} install DESTDIR=%{buildroot}
 
 # The default Skin
-mkdir -p %{buildroot}%{_datadir}/mplayer/Skin
+%{__mkdir_p} %{buildroot}%{_datadir}/mplayer/Skin
 pushd %{buildroot}%{_datadir}/mplayer/Skin
-    tar -xjf %{SOURCE2}
-    mv * default
+    %{__tar} -xjf %{SOURCE2}
+    %{__mv} * default
 popd
 
 # Fix eventual skin permissions :-(
@@ -180,22 +178,24 @@ Exec=gmplayer %f
 Terminal=false
 MimeType=video/mpeg;video/x-msvideo;video/quicktime
 Type=Application
-Categories=Application;AudioVideo;X-Red-Hat-Extra;
+Categories=Application;AudioVideo;
+Encoding=UTF-8
 EOF
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install \
+    --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-%{__install} -D -m644 %{name}.desktop \
+%{__install} -D -m 644 %{name}.desktop \
     %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
 # Install libpostproc if not already installed
 test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
-    make prefix=%{buildroot}%{_prefix} -C libavcodec/libpostproc install
+    %{__make} prefix=%{buildroot}%{_prefix} -C libavcodec/libpostproc install
 
 
 %post
@@ -243,8 +243,13 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 
 
 %changelog
-* Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.10.pre4
-- Update to 1.0pre4.
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.10.20040415
+- Rebuild for Fedora Core 2.
+- Kept this CVS snapshot since pre4 seems to have more bugs (drag'n drop
+  doesn't work, full screen aspect ratio is wrong...).
+- Updated Blue skin to 1.2.
+- Added caca and theora support.
+- Un-conditionalized alsa and libdv, which are now part of Fedora Core 2.
 
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.9.20040415
 - Updated to today's CVS snapshot to fix http vulnerability.
