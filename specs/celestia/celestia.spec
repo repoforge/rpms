@@ -32,8 +32,7 @@ simple to navigate through the universe to the object you want to visit.
 %build
 %configure \
     --with-gnome \
-    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
-    --with-qt-libraries="${QTDIR}/lib"
+    --x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 
