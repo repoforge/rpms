@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: GNOME security camera
@@ -17,7 +16,6 @@ Source: http://gspy.sf.net/gspy-%{version}-src.tar.gz
 Patch0: gspy-configure.patch
 Patch1: gspy-autogen.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gettext
 
@@ -47,6 +45,7 @@ normal compression obtained via the mpeg process.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0744)
 %{_bindir}/*
 %{_datadir}/pixmaps/gv4l/gv4l.png
 
