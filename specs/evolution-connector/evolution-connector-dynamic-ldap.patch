@@ -1,0 +1,61 @@
+diff -Naru ximian-connector-1.4.7.2.orig/acinclude.m4 ximian-connector-1.4.7.2/acinclude.m4
+--- ximian-connector-1.4.7.2.orig/acinclude.m4	2004-05-11 19:49:55.000000000 +0300
++++ ximian-connector-1.4.7.2/acinclude.m4	2004-07-14 11:42:18.000000000 +0300
+@@ -51,16 +51,19 @@
+ 		AC_DEFINE(HAVE_LDAP, 1, [Define if you have OpenLDAP])
+ 
+ 		case $with_static_ldap in
+-		no|"")
++		yes)
++			with_static_ldap=yes
++			;;
++		no)
++			with_static_ldap=no
++			;;
++		*)
+ 			if test -f $with_openldap/lib/libldap.la; then
+ 				with_static_ldap=no
+ 			else
+ 				with_static_ldap=yes
+ 			fi
+ 			;;
+-		*)
+-			with_static_ldap=yes
+-			;;
+ 		esac
+ 
+ 		AC_CACHE_CHECK(if OpenLDAP is version 2.x, ac_cv_openldap_version2, [
+@@ -106,4 +109,4 @@
+ 		AC_SUBST(LDAP_LDFLAGS)
+ 	fi
+ 	AM_CONDITIONAL(ENABLE_LDAP, test $with_openldap != no)
+-])
+\ No newline at end of file
++])
+diff -Naru ximian-connector-1.4.7.2.orig/configure ximian-connector-1.4.7.2/configure
+--- ximian-connector-1.4.7.2.orig/configure	2004-05-18 18:16:47.000000000 +0300
++++ ximian-connector-1.4.7.2/configure	2004-07-14 11:43:32.000000000 +0300
+@@ -22991,16 +22991,19 @@
+ 
+ 
+ 		case $with_static_ldap in
+-		no|"")
++		yes)
++			with_static_ldap=yes
++			;;
++		no)
++			with_static_ldap=no
++			;;
++		*)
+ 			if test -f $with_openldap/lib/libldap.la; then
+ 				with_static_ldap=no
+ 			else
+ 				with_static_ldap=yes
+ 			fi
+ 			;;
+-		*)
+-			with_static_ldap=yes
+-			;;
+ 		esac
+ 
+ 		echo "$as_me:$LINENO: checking if OpenLDAP is version 2.x" >&5
