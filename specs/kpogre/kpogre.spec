@@ -1,7 +1,9 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: 
+# Upstream: Lumir Vanek <lvanek@eanet.cz>
+# Screenshot: http://kpogre.sourceforge.net/kpogre1.png
+# ScreenshotURL: http://kpogre.sourceforge.net/screenshots.htm
 
 %define real_version 0.98
 
@@ -16,15 +18,14 @@ URL: http://kpogre.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-# The file isn't yet available on all sf mirrors
-Source: http://osdn.dl.sourceforge.net/sourceforge/kpogre/kpogre-%{real_version}.tar.gz
-#Source: http://dl.sf.net/kpogre/kpogre-%{real_version}.tar.gz
+Source: http://dl.sf.net/kpogre/kpogre-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Patch: fc2-compile-fixes.patch
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel, postgresql-devel, libpqxx, libpqxx-devel
-
-# Screenshot: http://kpogre.sourceforge.net/kpogre1.png
-# ScreenshotURL: http://kpogre.sourceforge.net/screenshots.htm
+BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
+BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
+BuildRequires: postgresql-devel, libpqxx, libpqxx-devel
 
 %description
 KPoGre is a graphical client for PostgreSQL databases. All important
@@ -53,14 +54,13 @@ tables and views is easily accessible in a tree view.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
+%{_datadir}/icons/*/*/apps/kpogre.png
+%{_datadir}/apps/kpogre
+%{_datadir}/applnk/Applications/kpogre.desktop
+%{_datadir}/doc/HTML/en/kpogre
 
 %changelog
-* Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1
+* Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1
 - Initial package.
-
