@@ -4,6 +4,8 @@
 # Screenshot: http://www.kmuddy.org/shots/kmuddy1.png
 # ScreenshotURL: http://www.kmuddy.org/screenshots.php
 
+# ExcludeDist: el3
+
 Summary: MUD (multi user dungeon) client
 Name: kmuddy
 Version: 0.7

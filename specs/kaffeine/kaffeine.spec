@@ -3,6 +3,8 @@
 # Screenshot: http://kaffeine.sourceforge.net/pics/05/kaffeine05-1.png
 # ScreenshotURL: http://kaffeine.sourceforge.net/screenshots.html
 
+# ExcludeDist: el3
+
 Summary: Media player based on xine-lib
 Name: kaffeine
 Version: 0.5

@@ -4,6 +4,8 @@
 # Screenshot: http://konserve.sourceforge.net/konserve-screenshot424.png
 # ScreenshotURL: http://konserve.sourceforge.net/screens.html
 
+# ExcludeDist: el3
+
 Summary: Small backup application
 Name: konserve
 Version: 0.10.3

@@ -4,6 +4,8 @@
 # Screenshot: http://apollon.sourceforge.net/apollon1.png
 # ScreenshotURL: http://apollon.sourceforge.net/pictures.html
 
+# ExcludeDist: el3
+
 %define desktop_vendor rpmforge
 
 Summary: KDE filesharing client which uses gift
