@@ -2,6 +2,12 @@
 # Authority: dag
 # Upstream: Tomasz Maka <pasp$ll,pl>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
 Summary: Graphical address book
 Name: dlume
 Version: 0.2.4
@@ -18,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.2.0
 BuildRequires: libxml2-devel >= 2.4.0, ImageMagick
+%{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Dlume is nice, graphical address book. You can easily add, edit,
