@@ -29,7 +29,7 @@ written in Python and uses PyKDE.
 
 %install
 %{__rm} -rf %{buildroot}
-sed -i "s|/usr/local/|%{buildroot}%{_prefix}|g" install.sh
+sed -i "s|/usr/local|%{buildroot}%{_prefix}|g" install.sh
 sed -i "s|/bin/install|%{__install}|g" install.sh
 sed -i "s|/usr/local|%{_prefix}|g" kbbtray.py
 %{__mkdir_p} %{buildroot}%{_bindir}
