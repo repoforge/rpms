@@ -9,13 +9,12 @@
 
 Name: rhythmbox%{?_with_xine:-xine}
 Summary: Music Management Application 
-Version: %{majmin}.6
+Version: %{majmin}.7
 Release: 0
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{majmin}/rhythmbox-%{version}.tar.bz2
-Patch: rhythmbox-0.8.6-ipodfix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.3
 Requires: libgnomeui >= 2.0.0
@@ -45,7 +44,6 @@ through GStreamer, Internet Radio support, playlists and more.
 
 %prep
 %setup -n rhythmbox-%{version}
-%patch -p1 -b .ipodfix
 
 
 %build
@@ -100,6 +98,9 @@ done
 
 
 %changelog
+* Fri Oct  1 2004 Matthias Saou <http://freshrpms.net/> 0.8.7-0
+- Update to 0.8.7.
+
 * Sun Sep 19 2004 Matthias Saou <http://freshrpms.net/> 0.8.6-0
 - Update to 0.8.6.
 
