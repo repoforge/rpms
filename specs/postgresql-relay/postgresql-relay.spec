@@ -51,6 +51,7 @@ postgresql-relay.8: postgresql-relay.pod
 
 install: postgresql-relay postgresql-relay.8
 	install -m 755 -d ${prefix}/bin
+	install -m 755 -d ${prefix}/share/man/man8
 	install -m 755 postgresql-relay ${prefix}/bin
 	install -m 644 postgresql-relay.8 ${prefix}/share/man/man8
 
