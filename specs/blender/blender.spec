@@ -21,6 +21,8 @@ BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, glut, python-devel
 BuildRequires: XFree86-devel, openssl-devel, SDL-devel, libvorbis-devel
 BuildRequires: libogg-devel esound-devel, openal-devel, libtool, gettext
 BuildRequires: scons, gcc-c++
+%{?fc2:BuildRequires: desktop-file-utils}
+%{?fc1:BuildRequires: desktop-file-utils}
 
 %description
 Blender is the essential software solution you need for 3D, from modeling,
@@ -84,7 +86,7 @@ scons
 
 
 %if %{dfi}
-        %{__install} -D -m0644 blender.desktop %{buildroot}%{_datadir}/gnome/apps/Graphics/blender.desktop
+        %{__install} -D -m0644 blender.desktop %{buildroot}%{_datadir}/applications/blender.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
@@ -108,11 +110,7 @@ scons
 %{_bindir}/*
 #%{_libdir}/*.so.*
 %{_datadir}/pixmaps/*.png
-%if %{dfi}
-        %{_datadir}/gnome/apps/Graphics/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/applications/*.desktop
 
 #%files devel
 #%defattr(-, root, root, 0755)
