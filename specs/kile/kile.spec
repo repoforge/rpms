@@ -6,7 +6,7 @@
 
 Summary: User friendly TeX/LaTeX editor
 Name: kile
-Version: 1.6.3
+Version: 1.7
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -15,7 +15,7 @@ URL: http://kile.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/kile/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/kile/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
@@ -59,7 +59,6 @@ van alle hoofdstukken en dergelijke.
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %{__make} install DESTDIR=%{buildroot}
-%find_lang %{name}
 echo "Encoding=UTF-8" >> %{buildroot}%{_datadir}/applications/kde/kile.desktop
 sed -i "s/KDE Desktop Entry/Desktop Entry/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
 sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
@@ -68,19 +67,25 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc README
 %{_datadir}/doc/HTML/*/kile
 %{_datadir}/apps/kile
-%{_datadir}/apps/katepart/syntax/latex-kile.xml
-%{_datadir}/apps/katepart/syntax/bibtex-kile.xml
+# conflicts with kdelibs-3.2.2-8.FC2
+%exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
+%exclude %{_datadir}/apps/katepart/syntax/latex.xml
+%{_datadir}/config.kcfg/kile.kcfg
 %{_datadir}/icons/crystalsvg/*/apps/kile.png
+%{_datadir}/icons/hicolor/*/apps/kile.png
 %{_datadir}/applications/kile.desktop
-%{_datadir}/mimelnk/text/x-kilepr.desktop
 %{_bindir}/kile
 
 %changelog
+* Mon Oct 18 2004 Dries Verachtert <dries@ulyssis.org> 1.7-1
+- Update to 1.7.
+- %%find_lang removed.. it doesn't seem to work with version 1.7.
+- syntax files excluded.. conflict with kdelibs
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net> 1.6.3-1
 - Partial spec file cleanup, added %%find_lang.
 
@@ -104,4 +109,3 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 
 * Sat Nov 29 2003 Dries Verachtert <dries@ulyssis.org> 1.6-1
 - first packaging for Fedora Core 1
-
