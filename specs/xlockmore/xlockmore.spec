@@ -4,8 +4,8 @@
 
 Summary: Screen lock and screen saver.
 Name: xlockmore
-Version: 5.10
-Release: 2
+Version: 5.12
+Release: 1
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.tux.org/~bagleyd/xlockmore.html
@@ -13,7 +13,7 @@ URL: http://www.tux.org/~bagleyd/xlockmore.html
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://www.tux.org/~bagleyd/latest/%{name}-%{version}.tar.gz
+Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: make
 
@@ -50,6 +50,9 @@ options.
 %{_datadir}/man/man1/xlock.1.gz
 
 %changelog
+* Thu May 27 2004 Dries Verachtert <dries@ulyssis.org> 5.12-1
+- update to 5.12
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 5.10-2
 - cleanup of spec file
 
