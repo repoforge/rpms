@@ -1,0 +1,11 @@
+--- data/bluefish.desktop.in    2004-11-25 08:45:22.000000000 +0100
++++ data/bluefish.desktop.in_diff       2004-12-28 15:45:37.477460912 +0100
+@@ -2,7 +2,7 @@
+ Name=Bluefish Editor
+ Comment=Web Development Editor
+ Exec=bluefish -n
+-Icon=ICONDIR/bluefish-icon.png
++Icon=bluefish-icon.png
+ Terminal=false
+ Type=Application
+ Categories=Application;Development;

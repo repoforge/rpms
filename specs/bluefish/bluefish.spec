@@ -1,19 +1,19 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor rpmforge
-
 Summary: Graphical web development application for experienced users
 Name: bluefish
-Version: 0.13
+Version: 1.0
 Release: 1
 Group: Development/Tools
 License: GPL
 URL: http://bluefish.openoffice.nl/
 Source: http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/bluefish-%{version}.tar.bz2
+Patch: bluefish-1.0-desktop_icon.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: shared-mime-info >= 0.15
 BuildRequires: gtk2-devel >= 2.0.6, pcre-devel >= 3.9, gnome-vfs2-devel
-BuildRequires: aspell-devel, gettext, desktop-file-utils, perl
+BuildRequires: aspell-devel, gettext, desktop-file-utils
 
 %description
 Bluefish is a GTK+ HTML editor for the experienced web designer or
@@ -25,19 +25,16 @@ support.
 
 %prep
 %setup
+%patch -p0 -b .desktop_icon
 
 
 %build
-%configure
+%configure --disable-update-databases
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-# These directories need to be created before make install
-%{__mkdir_p} %{buildroot}%{_datadir}/{application-registry,applications}
-%{__mkdir_p} %{buildroot}%{_datadir}/{mime-info,pixmaps}
-# The actual install
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
@@ -46,18 +43,30 @@ support.
 %{__rm} -rf %{buildroot}
 
 
+%post
+update-desktop-database -q 2>/dev/null || :
+
+%postun
+update-mime-database %{_datadir}/mime >/dev/null 2>&1 || :
+update-desktop-database -q 2>/dev/null || :
+
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO
 %{_bindir}/bluefish
-%{_datadir}/bluefish
+%{_datadir}/bluefish/
 %{_datadir}/application-registry/*
 %{_datadir}/applications/*.desktop
+%{_datadir}/mime/packages/bluefish.xml
 %{_datadir}/mime-info/*
 %{_datadir}/pixmaps/*.png
 
 
 %changelog
+* Wed Jan 12 2005 Matthias Saou <http://freshrpms.net/> 1.0-1
+- Update to 1.0, thanks to Matthias Haase.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 0.13-1
 - Update to 0.13.
 - Clean up install section to use DESTDIR again.
