@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream: Edwin Groothuis <edwin@mavetju.org>
 
 Summary: Trace a chain of DNS servers to the source
 Name: dnstracer
-Version: 1.7
+Version: 1.8
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -12,10 +13,10 @@ URL: http://www.mavetju.org/unix/general.php
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.mavetju.org/download/%{name}-%{version}.tar.gz
+Source: http://www.mavetju.org/download/dnstracer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Obsoletes: dnstrace
+Obsoletes: dnstrace <= %{version}
 
 %description
 dnstrace determines where a given Domain Name Server (DNS) gets its
@@ -43,8 +44,14 @@ servers which know the data.
 %{_bindir}/*
 
 %changelog
+* Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 1.8-1
+- Updated to release 1.8.
+
+* Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
+
 * Sat Dec 28 2002 Dag Wieers <dag@wieers.com> - 1.6-0
-- Updated to 1.6 (name changed from dnstrace to dnstracer)
+- Updated to release 1.6 (name changed from dnstrace to dnstracer)
 
 * Sun Jan 20 2002 Dag Wieers <dag@wieers.com> - 1.1-0
 - Initial package.

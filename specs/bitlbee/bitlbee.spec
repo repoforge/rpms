@@ -16,6 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gnutls-devel
+
 %description
 Bitlbee is an IRC to other chat networks gateway. bitlbee can be used as
 an IRC server which forwards everything you say to people on other chat

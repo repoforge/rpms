@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Markus F.X.J. Oberhumer <markus@oberhumer.com>
 

@@ -1,7 +1,6 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
+# Upstream: Edwin Groothuis <edwin@mavetju.org>
 
 Summary: Parse tcpdump DHCP packets
 Name: dhcpdump
