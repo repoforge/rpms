@@ -33,13 +33,13 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-%define ffmpeg_date    20041101
+%define ffmpeg_date    20041113
 %define real_name      vlc
 #define prever         test2
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.8.0
+Version: 0.8.1
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -267,6 +267,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.1-1
+- Update to 0.8.1.
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-1
 - Update to 0.8.0 final and ffmpeg 20041101 snapshot.
 - Move lib/vlc/*.a files to devel package.
