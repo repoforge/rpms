@@ -1,5 +1,7 @@
 # Authority: dag
 # Distcc: 0
+# Upstream: Kern Sibbald <kern@sibbald.com>
+# Upstream: <apcupsd-users@lists.sourceforge.net>
 
 %define _sbindir /sbin
 
