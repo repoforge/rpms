@@ -7,8 +7,8 @@
 %define pgpver		0.18.0
 #%define with_gpgpine	1
 
-%define krb5inc %(krb5-config --cflags | sed -e 's|-I||')
-%define krb5lib %(krb5-config --prefix)/%{_lib}
+%define krb5inc %(/usr/kerberos/bin/krb5-config --cflags | sed -e 's|-I||')
+%define krb5lib %(/usr/kerberos/bin/krb5-config --prefix)/%{_lib}
 %{?rh62:%define krb5inc %{_usr}/kerberos/include}
 %{?rh62:%define krb5lib %{_usr}/kerberos/%{_lib}}
 
