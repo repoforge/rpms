@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name fftw
@@ -15,9 +14,8 @@ URL: http://www.fftw.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.fftw.org/%{real_name}-%{version}.tar.gz
+Source: http://www.fftw.org/fftw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 FFTW is a C subroutine library for computing the Discrete Fourier Transform
@@ -82,7 +80,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc doc/*.pdf doc/FAQ/fftw-faq.html/ doc/html/
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_includedir}/*.h
 %{_includedir}/*.f

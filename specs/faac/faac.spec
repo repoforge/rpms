@@ -7,9 +7,11 @@ Version: 1.23.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-Source0: http://dl.sf.net/faac/%{name}-%{version}.tar.gz
 URL: http://www.audiocoding.com/
+
+Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: autoconf, automake, libtool, gcc-c++
 
 %description
@@ -41,27 +43,30 @@ sh bootstrap
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install \
+	DESTDIR=%{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING ChangeLog README TODO
+%doc ChangeLog COPYING README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
+%{_includedir}/*.h
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%exclude %{_libdir}/*.la
 
 %changelog
 * Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 1.23.5-1.fr
