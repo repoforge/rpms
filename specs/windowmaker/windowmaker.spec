@@ -5,8 +5,8 @@
 
 Summary: Fast, feature rich Window manager
 Name: windowmaker
-Version: 0.80.2
-Release: 5
+Version: 0.90.0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.windowmaker.org/
@@ -20,7 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, libpng-devel, libjpeg-devel, libungif-devel 
 BuildRequires: libtiff-devel, zlib-devel, gettext
 
-Provides: WindowMaker, WindowMaker-libs, windowmanager
+Provides: WindowMaker = %{version}-%{release}
+Provides: WindowMaker-libs = %{version}-%{release}
+Provides: windowmanager
 Obsoletes: WindowMaker <= %{version}, WindowMaker-libs <= %{version}
 
 %description
@@ -34,7 +36,7 @@ most useful and universal window managers available.
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}-%{release}, pkgconfig
 
 %description devel
 This package contains the header files, static libraries and development
@@ -70,11 +72,9 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 	--enable-kde \
 	--enable-modelock \
 	--enable-openlook \
-	--enable-usermenu
-
-### FIXME: Replace fixed /usr/lib by $(libdir). (Please fix upstream)
-%{__perl} -pi.orig -e 's|/usr/lib/|\$(libdir)/|g' WPrefs.app/Makefile WPrefs.app/*/Makefile
-
+	--enable-usermenu \
+	--enable-xinerama \
+	--enable-vdesktop
 %{__make} %{?_smp_mflags}
 
 %install
@@ -111,8 +111,14 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/*
 
 %changelog
+* Sun Oct 24 2004 Chris Gordon <chris-rpm@linux-dr.net> 0.90.0-1
+- New package for version 0.90.
+- enabled xinerama support.
+- enabled virtual desktop support.
+
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.80.2-5
 - Added desktop file for GDM menu. (Chris Gordon)
 - Fix for x86_64.
