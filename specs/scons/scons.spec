@@ -3,7 +3,7 @@
 
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
-Version: 0.96
+Version: 0.96.1
 Release: 1
 License: MIT
 Group: Development/Tools
@@ -52,6 +52,9 @@ SCons is an easier, more reliable and faster way to build software.
 
 
 %changelog
+* Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 0.96.1-1
+- Update to 0.96.1.
+
 * Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 0.96-1
 - Update to version 0.96.
 
