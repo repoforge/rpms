@@ -1,11 +1,14 @@
 # $Id$
 
 # Authority: dries
+# Upstream: A. Schiffler <aschiffler$appwares,com>
+# Screenshot: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/Screenshots/SDL_gfxPrimitives.jpg
+# ScreenshotURL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
 
 Summary: Graphic Primitives, Rotozoomer, Framerate control and image filters
 Name: SDL_gfx
 Version: 2.0.12
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
@@ -16,9 +19,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++
-
-# Screenshot: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/Screenshots/SDL_gfxPrimitives.jpg
-# ScreenshotURL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
 
 %description
 The SDL_gfx library offers several components: Graphic Primitives,
@@ -72,6 +72,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 2.0.12-2
+- rebuild
+
 * Wed Sep 01 2004 Dries Verachtert <dries@ulyssis.org> 2.0.12-1
 - Update to version 2.0.12.
 
