@@ -3,7 +3,7 @@
 
 Summary: Planet image rendering into the X root window
 Name: xplanet
-Version: 1.1.0
+Version: 1.1.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -50,6 +50,9 @@ orthographic, and rectangular.
 
 
 %changelog
+* Mon Jul 26 2004 Matthias Saou <http://freshrpms.net> 1.1.1-1
+- Update to 1.1.1.
+
 * Mon Jun 21 2004 Matthias Saou <http://freshrpms.net> 1.1.0-1
 - Update to 1.1.0.
 
