@@ -1,0 +1,123 @@
+--- xmms.spec.rh	2004-05-20 14:27:09.000000000 +0200
++++ xmms.spec	2004-05-20 15:47:36.777030744 +0200
+@@ -4,12 +4,12 @@
+ Summary: A media player for X which resembles Winamp.
+ Name: xmms
+ Version: 1.2.10
+-Release: 2.p
++Release: 2.1.p
+ Epoch: 1
+ License: GPL
+ Group: Applications/Multimedia
+ URL: http://www.xmms.org/
+-Source: http://www.xmms.org/files/1.2.x/%{name}-%{version}.patched.tar.bz2
++Source: http://www.xmms.org/files/1.2.x/%{name}-%{version}.tar.bz2
+ Source4: arts_output-%{artsplugin_ver}.tar.gz
+ Source5: xmms.req
+ Source6: xmms.xpm
+@@ -34,6 +34,7 @@ BuildRequires: /usr/bin/automake-1.4 /us
+ BuildRequires: alsa-lib-devel glib2-devel
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+ Obsoletes: x11amp0.7-1-1 x11amp xmms-esd xmms-gl xmms-mikmod xmms-gnome
++Obsoletes: xmms-alsa <= 0.9.12, alsa-xmms <= 0.9.12
+ 
+ Conflicts: arts < 1.2.0-1.5
+ 
+@@ -49,12 +50,21 @@ streaming content and has a configurable
+ Summary: Static libraries and header files for Xmms plug-in development.
+ Group: Development/Libraries
+ Obsoletes: x11amp-devel
+-Requires: %{name} = %{epoch}:%{version}
++Requires: %{name} = %{epoch}:%{version}, gtk+-devel
+ 
+ %description devel
+ The static libraries and header files needed for building plug-ins for
+ the Xmms multimedia player.
+ 
++%package mp3
++Summary: XMMS plugin for mp3 playback.
++Group: Applications/Multimedia
++Requires: %{name} = %{epoch}:%{version}
++
++%description mp3
++This is the mp3 plugin for XMMS that was removed from Red Hat Linux because
++the patented mp3 format itself is theoretically GPL incompatible.
++
+ %package skins
+ Summary: Skins for the xmms multimedia player.
+ Group: Applications/Multimedia
+@@ -74,7 +84,7 @@ skins were obtained from http://www.xmms
+ # Change the default skin
+ %patch3 -p1 -b .default-skin
+ # Don't build MP3 support, support bits for MP3 placeholder
+-%patch4 -p1 -b .nomp3
++#patch4 -p1 -b .nomp3
+ %if %{arts_plugin}
+ # Link arts dynamically and detect its presence for choosing output plugin
+ %patch5 -p1 -b .arts
+@@ -107,8 +117,8 @@ make
+ cd ..
+ %endif
+ 
+-gcc -fPIC $RPM_OPT_FLAGS -shared -Wl,-soname -Wl,librh_mp3.so -o librh_mp3.so \
+-     %{SOURCE8} -I. `gtk-config --cflags gtk`
++#gcc -fPIC $RPM_OPT_FLAGS -shared -Wl,-soname -Wl,librh_mp3.so -o librh_mp3.so \
++#     %{SOURCE8} -I. `gtk-config --cflags gtk`
+ 
+ %install
+ rm -rf %{buildroot}
+@@ -122,7 +132,7 @@ make install DESTDIR=%{buildroot}
+ cd ..
+ %endif
+ 
+-install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
++#install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
+ 
+ mkdir -p %{buildroot}%{_datadir}/xmms/Skins
+ pushd %{buildroot}%{_datadir}/xmms/Skins
+@@ -162,8 +172,19 @@ rm -rf %{buildroot}
+ %dir %{_libdir}/xmms
+ %{_libdir}/xmms/Effect
+ %{_libdir}/xmms/General
+-%{_libdir}/xmms/Input
+-%{_libdir}/xmms/Output
++%dir %{_libdir}/xmms/Input
++%{_libdir}/xmms/Input/libcdaudio.so
++%{_libdir}/xmms/Input/libmikmod.so
++%{_libdir}/xmms/Input/libtonegen.so
++%{_libdir}/xmms/Input/libvorbis.so
++%{_libdir}/xmms/Input/libwav.so
++%dir %{_libdir}/xmms/Output
++%{_libdir}/xmms/Output/libALSA.so
++%{_libdir}/xmms/Output/libOSS.so
++%exclude %{_libdir}/xmms/Output/libarts.a
++%{_libdir}/xmms/Output/libarts.so
++%{_libdir}/xmms/Output/libdisk_writer.so
++%{_libdir}/xmms/Output/libesdout.so
+ %{_libdir}/xmms/Visualization
+ %{_datadir}/applications/*
+ %{_datadir}/pixmaps/xmms.xpm
+@@ -181,11 +202,23 @@ rm -rf %{buildroot}
+ %{_libdir}/lib*.a
+ %{_libdir}/lib*.so
+ 
++%files mp3
++%defattr(-,root,root)
++%dir %{_libdir}/xmms/Input
++%{_libdir}/xmms/Input/libmpg123.so
++
+ %files skins
+ %defattr(-,root,root)
+ %{_datadir}/xmms/Skins
+ 
+ %changelog
++* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1:1.2.10-2.1.p
++- Put back pristine sources.
++- Added the usual mp3 sub-package.
++- Removed nomp3 patch and commented out rh_mp3 plugin build/install.
++- Added xmms-alsa obsoletes.
++- Added gtk+-devel depndency to the -devel package.
++
+ * Thu Mar 11 2004 Bill Nottingham <notting@redhat.com> 1:1.2.10-2.p
+ - update to 1.2.10
+ - fix buildreqs (#114857)
