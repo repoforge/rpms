@@ -3,7 +3,7 @@
 
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 6.2
+Version: 6.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -111,6 +111,9 @@ EOF
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Wed Feb 09 2005 Dag Wieers <dag@wieers.com> - 6.3-1
+- Updated to release 6.3.
+
 * Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 6.2-1
 - Updated to release 6.2.
 

@@ -8,7 +8,7 @@
 Summary: Graphical password manager
 Name: revelation
 Version: 0.4.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.codepoet.no/revelation/
@@ -20,7 +20,8 @@ Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.3, python-crypto >= 1.9, python-devel, pygtk2 >= 2.4
-Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9, gnome-python2-canvas, gnome-python2-gconf
+Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
+Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
 
 %description
 Revelation is a password manager. It organizes accounts in
@@ -45,9 +46,11 @@ a tree structure, and stores them as AES-encrypted XML files.
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %postun
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,6 +68,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/mime/packages/revelation.xml
 
 %changelog
+* Wed Feb 09 2005 Dag Wieers <dag@wieers.com> - 0.4.0-2
+- Added missing gnome-python2-gnomevfs requirement. (Bob Dundon)
+
 * Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Updated to release 0.4.0
 

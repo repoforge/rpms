@@ -67,6 +67,7 @@ EOF
 %{__install} -m0644 *.py %{buildroot}%{_datadir}/meld/
 %{__install} -m0644 glade2/*.glade* %{buildroot}%{_datadir}/meld/glade2/
 %{__install} -m0644 glade2/pixmaps/* %{buildroot}%{_datadir}/meld/glade2/pixmaps/
+%{__install} -m0644 po/*.po %{buildroot}%{_datadir}/meld/po/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \

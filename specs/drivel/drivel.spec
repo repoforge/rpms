@@ -46,10 +46,12 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 s &>/dev/null
 scrollkeeper-update -q || :
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %postun
 scrollkeeper-update -q || :
 /usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q || :
 
 %clean
 %{__rm} -rf %{buildroot}

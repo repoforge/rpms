@@ -1,23 +1,21 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 0.6pre3
 
 Summary: GNOME Photo Printer
 Name: gpp
-Version: 0.6
-Release: 0.pre3
+Version: 0.6.5
+Release: 1
 License: GPL
 Group: Applications/Publishing
-URL: ?
+URL: http://www.fogman.de/gpp/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.fogman.de/gpp/%{name}-%{real_version}.tar.gz
+Source: http://www.fogman.de/gpp/gpp-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgnomeui-devel libgnomeprintui-devel libglade-devel 
 Requires: libgnomeui libgnomeprintui libglade 
@@ -37,8 +35,8 @@ or  Print , and see your pictures printed.
 
 %install
 %{__rm} -rf %{buildroot}
-#make install DESTDIR=${RPM_BUILD_ROOT}
-%makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,5 +47,8 @@ or  Print , and see your pictures printed.
 %{_datadir}/gnome-photo-printer/
 
 %changelog
+* Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 0.6.5-1
+- Updated to release 0.6.5.
+
 * Sun Jan 25 2004 Dag Wieers <dag@wieers.com> - 0.6-0.pre3
 - Initial package. (using DAR)

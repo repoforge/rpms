@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 # ExcludeDist: fc3
 ##Tag: test
@@ -7,8 +7,11 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?el3:%define _without_swig 1}
+%{?rh9:%define _without_pie 1}
 %{?rh9:%define _without_swig 1}
+%{?rh7:%define _without_pie 1}
 %{?rh7:%define _without_swig 1}
+%{?el2:%define _without_pie 1}
 %{?el2:%define _without_swig 1}
 
 # set to zero to avoid running test suite
@@ -92,7 +95,7 @@ This package includes the Perl bindings to the Subversion libraries.
 %patch1 -p1 -b .swig
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
-%patch6 -p1 -b .pie
+%{!?_without_pie:%patch6 -p1 -b .pie}
 
 %{__rm} -rf neon apr apr-util
 

@@ -39,7 +39,7 @@ rendering, and new events not originally part of the ASP API!
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+%{__perl} Makefile.PL \
         PREFIX="%{buildroot}%{_prefix}" \
         INSTALLDIRS="vendor" \
 	--ssl

@@ -9,8 +9,8 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.2.0
-Release: 3
+Version: 2.2.1
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -312,6 +312,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 2.2.1-1
+- Updated to release 2.2.1.
+
 * Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 2.2.0-3
 - Fixes to handling of aliases. (Ed Solis)
 - Now add user amavis to group clamav (if not already). (Luigi Iotti)

@@ -30,7 +30,8 @@ invoices based on that time.
 %setup
 
 %build
-%configure
+%configure \
+	--disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
@@ -41,16 +42,34 @@ invoices based on that time.
 %clean
 %{__rm} -rf %{buildroot}
 
+%post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+scrollkeeper-update -q || :
+
+%postun
+scrollkeeper-update -q || :
+
 %files -f %{name}-2.0.lang
 %defattr (-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man?/*
 %doc %{_datadir}/gnome/help/gnotime/
+%config %{_sysconfdir}/gconf/schemas/gnotime.schemas
 %{_bindir}/gnotime
+%{_datadir}/applications/gnotime.desktop
 %{_datadir}/gnotime/
 #%{_datadir}/gnome/apps/Applications/*.desktop
-%{_datadir}/applications/gnotime.desktop
-%exclude %{_datadir}/gnome/help/gtt/
+#exclude %{_datadir}/gnome/help/gtt/
+%{_datadir}/omf/gnotime/
+%{_includedir}/gnotime/
+%exclude %{_libdir}/libqof.a
+%exclude %{_libdir}/libqof.la
+%{_libdir}/libqof.so.*
+%exclude %{_libdir}/libqofsql.a
+%exclude %{_libdir}/libqofsql.la
+%{_libdir}/libqofsql.so.*
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
 * Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1

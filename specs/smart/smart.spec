@@ -73,6 +73,7 @@ KDE tray program for watching updates with Smart Package Manager.
 %setup
 
 %{__perl} -pi.orig -e 's|(get_python_lib\()\)|${1}1)|g' setup.py
+%{__perl} -pi.orig -e 's|int32_t lkey|long lkey|g' python/rpmts-py.c
 
 %{?fc3:name="Fedora Core"; version="3"; path="fedora"}
 %{?fc2:name="Fedora Core"; version="2"; path="fedora"}

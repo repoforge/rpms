@@ -4,7 +4,7 @@
 Summary: Routines to help with network packet contruction and handling
 Name: libnet
 Version: 1.1.2.1
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://www.packetfactory.net/projects/libnet/
@@ -34,6 +34,7 @@ with little effort. With a bit more time, more complex programs can be written
 %setup -n %{name}
 
 %build
+%{expand: %%define optflags %{optflags} -fPIC}
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -52,13 +53,16 @@ with little effort. With a bit more time, more complex programs can be written
 %defattr(-, root, root, 0755)
 %doc README doc/BUGS doc/CHANGELOG doc/CONTRIB doc/COPYING doc/DESIGN_NOTES
 %doc doc/MIGRATION doc/PACKET* doc/PORTED doc/RAWSOCKET* doc/TODO doc/html/
-%doc %{_mandir}/man3/*
-%{_bindir}/*
-%{_libdir}/*.a
+%doc %{_mandir}/man3/*.3*
+%{_bindir}/libnet-config
+%{_libdir}/libnet.a
 %{_includedir}/libnet.h
 %{_includedir}/libnet/
 
 %changelog
+* Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 1.1.2.1-2
+- Added -fPIC to %%optflags.
+
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 1.1.2.1-1
 - Updated to 1.1.2.1.
 

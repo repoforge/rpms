@@ -13,7 +13,7 @@
 Summary: Television application for video4linux compliant devices
 Name: xawtv
 Version: 3.94
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://bytesex.org/xawtv/
@@ -24,8 +24,10 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.bytesex.org/releases/xawtv/xawtv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, ncurses-devel, %{?rh62:, Mesa-devel}
-BuildRequires: Xaw3d-devel, libjpeg-devel, %{!?rh62:, openmotif-devel}
+BuildRequires: XFree86-devel, ncurses-devel, Xaw3d-devel, libjpeg-devel
+BuildRequires: zvbi-devel
+%{!?rh62:BuildRequires: openmotif-devel}
+%{?rh62:BuildRequires: Mesa-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #BuildRequires: libdv-devel, libquicktime-devel
 
@@ -93,6 +95,10 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 
 %changelog
+* Wed Feb 09 2005 Dag Wieers <dag@wieers.com> - 3.94-2
+- Added zvbi-devel build requirement. (Klaus-Peter Schrage)
+- Rebuild with zvbi-support.
+
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 3.94-1
 - Updated to release 3.94.
 

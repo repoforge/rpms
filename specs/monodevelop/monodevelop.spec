@@ -4,7 +4,7 @@
 Summary: Full-featured IDE for Mono and Gtk#
 Name: monodevelop
 Version: 0.5.1
-Release: 2
+Release: 3
 License: GPL
 Group: Development/Environment
 URL: http://www.monodevelop.com/
@@ -18,8 +18,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, intltool, gettext
 BuildRequires: mono-core >= 0.96, monodoc >= 0.17, gtk-sharp >= 0.98
-Requires: pkgconfig, gtksourceview, mono-core, gtk-sharp, monodoc
+Requires: pkgconfig, gtksourceview, gtk-sharp
 Requires: gecko-sharp >= 0.5, gtksourceview, gtksourceview-sharp
+Requires: mono-core, mono-data, mono-web, monodoc
 
 %description
 This is MonoDevelop which is intended to be a
@@ -60,6 +61,9 @@ mono and Gtk#. It was originally a port of SharpDevelop 0.98.
 %{_libdir}/monodevelop/
 
 %changelog
+* Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 0.5.1-3
+- Added missing mono-data and mono-web dependencies. (Ross Johnson)
+
 * Sun Jan 09 2005 Dag Wieers <dag@wieers.com> - 0.5.1-2
 - Added missing gecko-sharp and gtksourceview-sharp dependencies. (Paul Whelan)
 

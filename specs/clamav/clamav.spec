@@ -11,7 +11,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.82
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -22,6 +22,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
+Patch0: clamav-0.82-badriff.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel, zlib-devel, gmp-devel, curl-devel
@@ -91,6 +92,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p0
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 
@@ -348,6 +350,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Thu Feb 10 2005 Dag Wieers <dag@wieers.com> - 0.82-2
+- Fix for false positive on RIFF files. (Roger Jochem)
+
 * Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 0.82-1
 - Updated to release 0.82.
 

@@ -57,9 +57,9 @@ with little effort. With a bit more time, more complex programs can be written
 %files
 %defattr(-, root, root, 0755)
 %doc doc/*
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/*
+%doc %{_mandir}/man3/*.3*
+%{_bindir}/libnet-config
+%{_libdir}/libnet.a
 %{_includedir}/libnet.h
 %{_includedir}/libnet/
 #%{_libdir}/libpwrite

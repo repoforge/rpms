@@ -10,7 +10,7 @@
 
 Summary: Thorough, stand-alone memory tester
 Name: memtest86+
-Version: 1.40
+Version: 1.50
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -62,6 +62,9 @@ fi
 %{_prefix}/%{name}-%{version}
 
 %changelog
+* Thu Feb 10 2005 Dag Wieers <dag@wieers.com> - 1.50-1
+- Updated to release 1.50.
+
 * Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 1.40-1
 - Updated to release 1.40.
 
