@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: CHM file viewer
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gnochm/gnochm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2,
@@ -44,9 +42,6 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -71,6 +66,7 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/*.desktop
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/application-registry/gnochm.*
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
 * Tue Feb 24 2004 Dag Wieers <dag@wieers.com> - 0.8.0-0
