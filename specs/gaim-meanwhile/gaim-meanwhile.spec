@@ -2,11 +2,9 @@
 # Authority: dag
 # Upstream: Christopher O'Brien <siege@preoccupied.net>
 
-%define real_name meanwhile-gaim
-
 Summary: Lotus Sametime Community Client plugin for Gaim
 Name: gaim-meanwhile
-Version: 0.79
+Version: 0.80
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -15,17 +13,17 @@ URL: http://meanwhile.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/meanwhile/meanwhile-gaim-%{version}.tar.gz
+Source: http://dl.sf.net/meanwhile/gaim-meanwhile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
+BuildRequires: gaim >= %{version}, meanwhile >= 0.3
 Obsoletes: meanwhile-gaim <= %{version}
-Requires: gaim, meanwhile >= 0.3
 
 %description
 Lotus Sametime Community Client plugin for Gaim
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup
 
 %build
 %configure
@@ -41,12 +39,15 @@ Lotus Sametime Community Client plugin for Gaim
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%{_libdir}/gaim/*.so
-%exclude %{_libdir}/gaim/*.a
-%exclude %{_libdir}/gaim/*.la
+%{_libdir}/gaim/libmwgaim.so
+%exclude %{_libdir}/gaim/libmwgaim.a
+%exclude %{_libdir}/gaim/libmwgaim.la
 %{_datadir}/pixmaps/gaim/
 
 %changelog
+* Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 0.80-1
+- Updated to releas 0.80.
+
 * Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 0.79-1
 - Updated to releas 0.79.
 

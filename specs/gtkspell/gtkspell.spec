@@ -3,8 +3,8 @@
 
 Summary: Gtk2 spell checker interface library
 Name: gtkspell
-Version: 2.0.4
-Release: 0
+Version: 2.0.6
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://gtkspell.sf.net/
@@ -37,37 +37,40 @@ you will need to install %{name}-devel.
 
 %build
 %configure
-#	--disable-gtk-doc
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 touch docs/html/index.sgml
 %makeinstall
+%find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
+%post
+/sbin/ldconfig 2>/dev/null
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README
-%{_libdir}/*.so.*
+%{_libdir}/libgtkspell.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_datadir}/gtk-doc/html/gtkspell/
 %{_includedir}/gtkspell-2.0/
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*
-#exclude %{_libdir}/*.la
+%{_libdir}/libgtkspell.a
+%exclude %{_libdir}/libgtkspell.la
+%{_libdir}/libgtkspell.so
+%{_libdir}/pkgconfig/gtkspell-2.0.pc
 
 %changelog
+* Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 2.0.6-1
+- Updated to release 2.0.6.
+
 * Fri Feb 28 2003 Dag Wieers <dag@wieers.com> - 2.0.4-0
 - Initial package. (using DAR)

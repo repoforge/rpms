@@ -19,7 +19,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel >= 2.2
 
 %description
-Lotus Sametime Community Client library
+The heart of the Meanwhile Project is the Meanwhile library, providing the
+basic Lotus Sametime session functionality along with the core services;
+Presence, Messaging, Conferencing, and Storage. This extensible client
+interface allows additional services to be added to a session at runtime,
+allowing for simple integration of future service handlers such as
+whiteboard, screen-sharing, and file transfer.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -54,14 +59,14 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_libdir}/*.so.*
+%{_libdir}/libmeanwhile.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/meanwhile/
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_libdir}/libmeanwhile.a
+%exclude %{_libdir}/libmeanwhile.la
+%{_libdir}/libmeanwhile.so
 %{_libdir}/pkgconfig/meanwhile.pc
 
 %changelog

@@ -1,6 +1,10 @@
 # $Id$
 # Authority: matthias
 
+### rh9 and el3 wants to install perl modules outside buildroot
+%{?el3:%define _without_perl 1}
+%{?rh9:%define _without_perl 1}
+
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)
 

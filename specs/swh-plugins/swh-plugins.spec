@@ -4,7 +4,7 @@
 
 Summary: Steve Harris's set of audio plug-ins for LADSPA
 Name: swh-plugins
-Version: 0.4.4
+Version: 0.4.7
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -44,6 +44,9 @@ swh-plugins is a set of audio plugins for LADSPA written.
 %{_datadir}/ladspa/
 
 %changelog
+* Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 0.4.7-1
+- Updated to release 0.4.7.
+
 * Mon Jul 05 2004 Dag Wieers <dag@wieers.com> - 0.4.4-1
 - Updated to release 0.4.4.
 
