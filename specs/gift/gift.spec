@@ -14,8 +14,8 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
+BuildRequires: libtool, libtool-libs, gcc-c++
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++
 
 %description
 giFT is a modular daemon capable of abstracting the communication between
@@ -56,12 +56,12 @@ you will need to install %{name}-devel.
 %doc AUTHORS COPYING HACKING QUICKSTART README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
+%{_libdir}/*.la
 %{_datadir}/giFT/
 %{_mandir}/man1/*
 
 %files devel
 %defattr(-, root, root, 0755)
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/libgift/
