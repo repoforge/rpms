@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ross Burton <ross@burtonini.com>
 
 Summary: Clean and lean CD ripper
 Name: sound-juicer
-Version: 0.5.10.1
-Release: 0
+Version: 0.5.11
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.burtonini.com/blog/computers/sound-juicer/
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.burtonini.com/computing/sound-juicer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libmusicbrainz-devel >= 2.0.1, libgnomeui-devel >= 2.0.0
 BuildRequires: glib2-devel >= 2.0.0, gstreamer-devel >= 0.6.1
 BuildRequires: GConf2-devel >= 2.0.0
@@ -26,7 +24,7 @@ BuildRequires: scrollkeeper
 Requires(post): scrollkeeper
 
 %description
-GStreamer-based CD ripping tool. Saves audio CDs to Ogg/vorbis.
+GStreamer-based CD ripping tool. Saves audio CDs to ogg/vorbis, flac or wav.
 
 %prep
 %setup
@@ -73,6 +71,9 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/sound-juicer/
 
 %changelog
+* Mon May 03 2004 Dag Wieers <dag@wieers.com> - 0.5.11-1
+- Updated to release 0.5.11.
+
 * Fri Feb 13 2004 Dag Wieers <dag@wieers.com> - 0.5.10.1-0
 - Updated to release 0.5.10.1.
 - Updated to release 0.5.9.
