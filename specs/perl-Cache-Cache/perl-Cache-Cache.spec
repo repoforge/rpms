@@ -6,14 +6,14 @@
 Summary: %{real_name} module for perl
 Name: perl-Cache-Cache
 Version: 1.02
-Release: 1
+Release: 2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/%{real_name}/
 Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCLINTON/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
-Requires: perl-Error, perl-Storable, perl-IPC-ShareLite
+Requires: perl(Error), perl(Storable), perl(IPC::ShareLite)
 BuildRequires: perl >= 0:5.8.0
 BuildArch: noarch
 
@@ -54,6 +54,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 
 %changelog
+* Fri Apr  2 2004 Matthias Saou <http://freshrpms.net/> 1.02-2
+- Change the explicit package deps to perl package style ones to fix the
+  perl-Storable obsoletes problem.
+
 * Fri Mar 19 2004 Matthias Saou <http://freshrpms.net/> 1.02-1
 - Initial RPM release.
 

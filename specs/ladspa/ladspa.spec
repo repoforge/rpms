@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define rname ladspa_sdk
@@ -7,19 +6,14 @@
 Summary: Linux Audio Developer's Simple Plugin API
 Name: ladspa
 Version: 1.12
-Release: 0
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ladspa.org/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.ladspa.org/download/ladspa_sdk_%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-Obsoletes: ladspa-sdk
+BuildRequires: gcc-c++
+Obsoletes: ladspa-sdk <= 1.12
 
 %description
 There is a large number of synthesis packages in use or development on
@@ -57,7 +51,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
-%{__install} -d -m0755 %{buildroot}%{_libdir}/ladspa/ \
+%{__install} -d -m0755	%{buildroot}%{_libdir}/ladspa/ \
 			%{buildroot}%{_includedir}/ladspa/ \
 			%{buildroot}%{_bindir}/ladspa/
 %makeinstall -C src
@@ -88,3 +82,4 @@ you will need to install %{name}-devel.
 
 * Sun Sep 14 2003 Dag Wieers <dag@wieers.com> - 1.12-0
 - Initial package. (using DAR)
+

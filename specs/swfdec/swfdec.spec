@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Flash animations rendering library
@@ -8,17 +7,11 @@ Version: 0.2.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://swfdec.sf.net/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
+URL: http://swfdec.sourceforge.net/
 Source: http://dl.sf.net/swfdec/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
 BuildRequires: mozilla-devel, libart_lgpl-devel, gtk2-devel >= 2.1.2
-BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel
+BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
@@ -107,3 +100,4 @@ fi
 
 * Thu Aug 28 2003 Dag Wieers <dag@wieers.com> - 0.2.2-0
 - Initial package. (using DAR)
+

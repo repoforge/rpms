@@ -3,13 +3,13 @@
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
-Version: 1.0.8
+Version: 1.0.9
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-Source: http://www.mega-nerd.com/libsndfile/%{name}-%{version}.tar.gz
+Source: http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
 URL: http://www.mega-nerd.com/libsndfile/
-BuildRoot:%{_tmppath}/%{name}-%{version}-root
+BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
@@ -50,9 +50,11 @@ documentation for libsndfile.
 %{__rm} -rf %{buildroot}
 
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 
 
 %files
@@ -75,17 +77,20 @@ documentation for libsndfile.
 
 
 %changelog
-* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.8-1.fr
+* Tue Mar 30 2004 Matthias Saou <http://freshrpms.net/> 1.0.9-1
+- Update to 1.0.9.
+
+* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.8-1
 - Update to 1.0.8.
 
-* Wed Feb 25 2004 Matthias Saou <http://freshrpms.net/> 1.0.7-1.fr
+* Wed Feb 25 2004 Matthias Saou <http://freshrpms.net/> 1.0.7-1
 - Update to 1.0.7.
 - Updated the URL and Source tags.
 
-* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.6-1.fr
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.6-1
 - Update to 1.0.6.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.5-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.5-2
 - Rebuild for Fedora Core 1.
 
 * Sun May  4 2003 Matthias Saou <http://freshrpms.net/>
