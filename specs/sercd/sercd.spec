@@ -21,6 +21,26 @@ on sredird. Other similiar projects are ser2net and msredird.
 %prep
 %setup
 
+%{__cat} <<EOF >sercd.xinetd
+# default: off
+# description: RFC 2217 compliant Telnet serial port redirector
+service sredir
+{
+	disable = yes
+	type            = UNLISTED
+	flags           = REUSE
+	socket_type     = stream 
+	protocol        = tcp
+	wait            = no
+	user            = root
+	server          = %{_sbindir}/sercd
+	server_args     = 5 /dev/ttyS0 /var/lock/LCK..ttyS0
+	port            = 7000
+# Some versions of xinetd does not work with only_from=localhost
+#	only_from       = localhost
+}
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -29,6 +49,8 @@ on sredird. Other similiar projects are ser2net and msredird.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__install} -D -m0644 sercd.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/sercd
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -36,6 +58,7 @@ on sredird. Other similiar projects are ser2net and msredird.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man8/sercd.8*
+%config(noreplace) %{_sysconfdir}/xinetd.d/sercd
 %{_sbindir}/sercd
 
 %changelog

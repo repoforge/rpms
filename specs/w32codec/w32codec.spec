@@ -1,6 +1,5 @@
 # $Id$
-# Authority: axel
-# PackageDir: /forbidden
+# Authority: dag
 
 %define real_version 0.90pre7
 %define nversion 0.90
@@ -13,17 +12,25 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://divx.euro.ru/binaries-010122.zip
 
-Source0: http://ftp.lug.udel.edu/MPlayer/releases/%{name}-%{real_version}.tar.bz2
+Source0: http://ftp.lug.udel.edu/MPlayer/releases/w32codec-%{real_version}.tar.bz2
+NoSource: 0
 Source1: http://ftp.lug.udel.edu/MPlayer/releases/codecs/win32codecs.tar.bz2
+NoSource: 1
 Source2: http://ftp.lug.udel.edu/MPlayer/releases/codecs/qt6dlls.tar.bz2
+NoSource: 2
 Source3: http://ftp.lug.udel.edu/MPlayer/releases/codecs/qtextras.tar.bz2
+NoSource: 3
 Source4: http://ftp.lug.udel.edu/MPlayer/releases/codecs/rp8codecs.tar.bz2
+NoSource: 4
 Source5: http://ftp.lug.udel.edu/MPlayer/releases/codecs/rp9codecs.tar.bz2
+NoSource: 5
 Source6: http://ftp.lug.udel.edu/MPlayer/releases/codecs/xanimdlls.tar.bz2
+NoSource: 6
 Source7: http://ftp.lug.udel.edu/MPlayer/releases/codecs/mjpeg2kdlls.tar.bz2
+NoSource: 7
 Source8: http://ftp.lug.udel.edu/MPlayer/releases/codecs/dmocodecs.tar.bz2
+NoSource: 8
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 W32 Codec package for MPlayer on x86 UNIX systems.
