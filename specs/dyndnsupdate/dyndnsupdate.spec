@@ -29,23 +29,23 @@ processes the URLs in dyndns.hosts.
 %setup
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+# nothing to build...
+sed -i "s/^some/#some/g;" dyndns.hosts.example
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__install} -D -m 755 dyndnsupdate %{buildroot}%{_bindir}/dyndnsupdate
+%{__install} -D -m 644 dyndns.hosts.example %{buildroot}%{_sysconfdir}/dyndns.hosts
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
+%doc README
 %{_bindir}/dyndnsupdate
 %config(noreplace) %{_sysconfdir}/dyndns.hosts
 
 %changelog
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.
-
