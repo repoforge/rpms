@@ -60,7 +60,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_prefix}/%{name}-%{version}/
+%{_prefix}/%{name}-%{version}
 
 %changelog
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 3.1-0.a

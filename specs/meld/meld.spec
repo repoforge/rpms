@@ -4,7 +4,7 @@
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 0.9.4
+Version: 0.9.4.1
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -46,7 +46,11 @@ Icon=meld.png
 Type=Application
 Terminal=false
 StartupNotify=true
+Encoding=UTF-8
 Categories=GNOME;Application;Utility;
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=meld
+X-GNOME-Bugzilla-Component=general
 EOF
 
 %build
@@ -73,13 +77,16 @@ desktop-file-install --vendor gnome                \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING TODO.txt manual/manual.html manual/stylesheet.css
+%doc AUTHORS changelog COPYING INSTALL TODO.txt manual/manual.html manual/stylesheet.css
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/meld/
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 0.9.4.1-1
+- Updated to release 0.9.4.1.
+
 * Fri Jul 16 2004 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Updated to release 0.9.4.
 

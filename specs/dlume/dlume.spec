@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Tomasz Maka <pasp@ll.pl>
 
-%define real_version 0.2.2a
-
 Summary: Graphical address book
 Name: dlume
-Version: 0.2.2
-Release: 1.a
+Version: 0.2.4
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://clay.ll.pl/dlume.html
@@ -16,7 +13,7 @@ URL: http://clay.ll.pl/dlume.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://clay.ll.pl/download/dlume-%{real_version}.tar.gz
+Source: http://clay.ll.pl/download/dlume-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.2.0
@@ -29,9 +26,9 @@ easy to find entries. Exporting to CSV and HTML formats is also
 possible.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >dlume.desktop
 [Desktop Entry]
 Name=Dlume Address Manager
 Comment=Manage contacts and addresses
@@ -54,10 +51,10 @@ EOF
 #%find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor net                  \
+desktop-file-install --vendor gnome                \
         --add-category X-Red-Hat-Base              \
         --dir %{buildroot}%{_datadir}/applications \
-        %{name}.desktop
+        dlume.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -72,6 +69,9 @@ desktop-file-install --vendor net                  \
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 0.2.4-1
+- Updated to release 0.2.4.
+
 * Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 0.2.2-1.a
 - Updated to release 0.2.2a.
 
