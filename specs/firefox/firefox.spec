@@ -4,23 +4,18 @@
 ### Builds on RH73, but doesn't work.
 ##DistExclude: rh73
 
-# Tag: test
-
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?rh7:%define _without_autoconf213 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_gtk2 1}
-%{?el2:%define _without_autoconf213 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_gtk2 1}
-%{?rh6:%define _without_autoconf213 1}
 %{?rh6:%define _without_freedesktop 1}
 %{?rh6:%define _without_gtk2 1}
 
 Summary: Mozilla Firefox web browser
 Name: firefox
-Version: 0.9.1
+Version: 0.9.2
 Release: 1
 License: MPL/LGPL
 Group: Applications/Internet
@@ -39,11 +34,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, zlib-devel, zip, gzip, perl,
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, gcc-c++
-%{!?_without_autoconf213:BuildRequires: autoconf213}
-%{?_without_autoconf213:BuildRequires: autoconf = 2.13}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel, gnome-vfs2-devel}
 %{?_without_gtk2:BuildRequires: gtk+-devel}
+Requires(post): /usr/X11R6/bin/Xvfb
 
 Obsoletes: phoenix, MozillaFirebird, mozilla-firebird, mozilla-firefox
 Provides: webclient
@@ -197,8 +191,8 @@ EOF
 MOZILLA_FIVE_HOME="%{_libdir}/firefox"
 MOZ_PROGRAM="$MOZILLA_FIVE_HOME/firefox"
 
-LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$MOZILLA_FIVE_HOME/plugins:$LD_LIBRARY_PATH"
-MOZ_PLUGIN_PATH="$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins:$MOZ_PLUGIN_PATH"
+LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$MOZILLA_FIVE_HOME/plugins${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+MOZ_PLUGIN_PATH="$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins${MOZ_PLUGIN_PATH:+:$MOZ_PLUGIN_PATH}"
 FONTCONFIG_PATH="/etc/fonts:$MOZILLA_FIVE_HOME/res/Xft"
 export MOZILLA_FIVE_HOME LD_LIBRARY_PATH MOZ_PLUGIN_PATH FONTCONFIG_PATH
 
@@ -225,6 +219,20 @@ while [ "$1" ]; do
 #			MOZARGS="-remote xfeDoCommand(composeMessage) $MOZARGS"
 #			CMD=1
 #		fi;;
+	  -register)
+		if [ -x "/usr/X11R6/bin/Xvfb" ]; then
+			export HOME="$(mktemp -d /tmp/firefox-rpm.XXXXXX)"
+			mkdir -p $HOME/.mozilla/firefox/default
+			cp -rf $MOZILLA_FIVE_HOME/defaults/profile/* $HOME/.mozilla/firefox/default
+			echo -e "[General]\nStartWithLastProfile=1\n\n[Profile0]\nName=default\nIsRelative=1\nPath=default" >$HOME/.mozilla/firefox/profiles.ini
+			/usr/X11R6/bin/Xvfb :69 -nolisten tcp -ac -terminate &>/dev/null &
+			DISPLAY=:69 firefox-bin -install-global-extension -install-global-theme &>/dev/null
+			rm -rf $HOME
+			exit 0
+		else
+			echo "/usr/X11R6/bin/Xvfb cannot be executed. Please run firefox once as root." >&2
+			exit 1
+		fi;;
 	  -remote)
 		if [ $CMD -ne 1 ]; then
 			MOZARGS="-remote $2 $MOZARGS"
@@ -268,9 +276,6 @@ EOF
 
 %build
 export MOZ_APP_NAME="firefox"
-%{!?_without_autoconf213:autoconf-2.13}
-%{?_without_autoconf213:autoconf}
-
 export MOZ_PHOENIX="1"
 export MOZILLA_OFFICIAL="1"
 export BUILD_OFFICIAL="1"
@@ -320,10 +325,7 @@ fi
 %post
 /sbin/ldconfig 2>/dev/null
 %{_libdir}/firefox/firefox-rebuild-databases.pl &>/dev/null || :
-
-### Work around for creating extensions directory
-unset DISPLAY
-%{_libdir}/firefox/firefox --help &>/dev/null || :
+/usr/bin/firefox -register || :
 
 %postun
 /sbin/ldconfig 2>/dev/null
@@ -350,6 +352,9 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 
