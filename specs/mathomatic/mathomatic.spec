@@ -40,6 +40,7 @@ Gesslein II and has been under development since 1986.
 %doc *.txt *.htm
 %{_bindir}/*
 %{_datadir}/man/man1/mathomatic.*
+%exclude %{_usr}/doc
 
 %changelog
 * Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 11.3d-1
