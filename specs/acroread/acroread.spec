@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# Dist: nodist
+### Prevent the plugins from being stripped and disabled
+%define __spec_install_post /usr/lib/rpm/brp-compress || :
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -16,14 +17,13 @@
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
 Version: 7.0.0
-Release: 1
+Release: 2
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
 
-#Source: http://ardownload.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{real_version}.tar.gz
 Source: http://ardownload.adobe.com/pub/adobe/reader/unix/7x/7.0/enu/AdbeRdr%{real_version}_linux_enu.tar.gz
-Source1: acroread.png
+NoSource: 0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386
@@ -72,7 +72,7 @@ This package provides the Adobe Reader plugin for mozilla.
 %{__tar} -xvf AdobeReader/ILINXR.TAR -C %{buildroot}%{_libdir}/acroread/
 
 ### Silent some rpm permission warnings
-#%{__chmod} +x %{buildroot}%{_libdir}/acroread/Reader/*/lib/lib*.so* %{buildroot}%{_libdir}/acroread/Browser/*/*.so
+#%{__chmod} +x %{buildroot}%{_libdir}/acroread/Reader/*/lib/lib*.so*
 
 ### Make links
 %{__install} -d -m0755 %{buildroot}%{_bindir}
@@ -123,6 +123,9 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 %{_libdir}/netscape/plugins/nppdf.so
 
 %changelog
+* Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 7.0.0-2
+- Disabled stripping globally to make plugin working. (Jürgen Möllenhoff)
+
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 7.0.0-1
 - Updated to release 7.0.0.
 
