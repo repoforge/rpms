@@ -22,6 +22,7 @@ BuildRequires: m4, python, perl
 BuildRequires: python-devel, docbook-dtds
 BuildRequires: openjade, jadetex, XFree86-devel
 %{!?dist:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
+%{?el4:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
 %{?fc3:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
 %{?fc2:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
 %{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}

@@ -2,6 +2,8 @@
 # Authority: dag
 # Reason: This package doesn't need a lot of devel-packages.
 
+# ExcludeDist: el4
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %define real_name glade

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: el4
+
 Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb
 Version: 2.4.2

@@ -4,6 +4,8 @@
 # Upstream: <logwatch-bugs$logwatch,org>
 # Upstream: <logwatch-devel$logwatch,org>
 
+# DistExclude: el3 el4
+
 Summary: Log file analysis program
 Name: logwatch
 Version: 5.2.2

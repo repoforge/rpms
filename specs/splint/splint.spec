@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: splint$splint,org
+
+# ExcludeDist: el4
 
 Summary: Secure programming lint
 Name: splint

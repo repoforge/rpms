@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el4
+
 %define _sbindir /sbin
 %define _libdir /lib
 %define real_name wireless_tools

@@ -33,6 +33,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_gtk2:BuildRequires: gtk2-devel >= 2.0, libgnome-devel, libgnomeui-devel}
 Requires: gcc, gcc-c++
+%{?el4:Requires: compat-gcc, compat-gcc-c++, gcc4}
 %{?fc3:Requires: compat-gcc, compat-gcc-c++, gcc4}
 %{?fc2:Requires: compat-gcc, compat-gcc-c++, gcc34}
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}

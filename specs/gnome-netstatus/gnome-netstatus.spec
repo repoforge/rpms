@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Mark McLoughlin <mark$skynet,ie>
 
+# ExcludeDist: el4
+
 Summary: Network interface status applet
 Name: gnome-netstatus
 Version: 2.6.2

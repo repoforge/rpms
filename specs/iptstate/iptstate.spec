@@ -1,6 +1,8 @@
 # $Id$
 # Authority: axel
 
+# ExcludeDist: el4
+
 Summary: Display IP Tables state table information in a "top"-like interface
 Name: iptstate
 Version: 1.3

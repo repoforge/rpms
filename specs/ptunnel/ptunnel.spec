@@ -2,9 +2,11 @@
 # Authority: dries
 # Upstream: Daniel Stodle <daniels$stud,cs,uit,no>
 
+%define real_name PingTunnel
+
 Summary: Reliably tunnel TCP connections over ICMP packets
 Name: ptunnel
-Version: 0.54
+Version: 0.55
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -28,14 +30,14 @@ firewall, with the client running on the local machine from which TCP access
 is required.
 
 %prep
-%setup -n PingTunnel
+%setup -n %{real_name}
 
 %build
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR=%{buildroot}
+%makeinstall DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,6 +48,9 @@ is required.
 %{_bindir}/ptunnel
 
 %changelog
+* Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.55-1
+- Updated to release 0.55.
+
 * Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 0.54-1
 - Updated to release 0.54.
 

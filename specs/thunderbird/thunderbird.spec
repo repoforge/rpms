@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc3
+# ExcludeDist: fc3 el4
 
 %{?dist: %{expand: %%define %dist 1}}
 

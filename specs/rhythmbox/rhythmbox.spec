@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: el4
+
 %define majmin 0.8
 
 Name: rhythmbox

@@ -3,11 +3,14 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name MailTools
 
 Summary: MailTools module for perl 
 Name: perl-MailTools
-Version: 1.64
+Version: 1.66
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -16,7 +19,7 @@ URL: http://search.cpan.org/dist/MailTools/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/MailTools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: perl-Mail
@@ -34,7 +37,7 @@ MailTools module for perl
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+%{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
@@ -44,19 +47,23 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean 
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README* ChangeLog
+%doc ChangeLog README*
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/Mail/
+%{perl_vendorlib}/auto/Mail/
 
 %changelog
+* Mon Feb 21 2005 Dag Wieers <dag@wieers.coM> - 1.66-1
+- Updated to release 1.66.
+
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.64-0
 - Updated to release 1.64.
 

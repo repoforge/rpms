@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el4
+
 %{?fc2:%define _without_mikmod 1}
 
 %{?fc1:%define _without_alsa 1}

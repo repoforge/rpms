@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# ExcludeDist: el4
 
 Summary: Library for tracking application startup
 Name: startup-notification

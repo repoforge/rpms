@@ -1,23 +1,24 @@
 # $Id: perl-Archive-Tar.spec 120 2004-03-15 17:26:20Z dag $
-
 # Authority: dag
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Mon
 
 Summary: Mon module for perl
 Name: perl-Mon
 Version: 0.11
-Release: 1
+Release: 2
 License: distributable
 Group: Applications/CPAN
-URL: ftp://ftp.kernel.org/pub/software/admin/mon/
+URL: http://search.cpan.org/dist/Mon/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.kernel.org/pub/software/admin/mon/Mon-%{version}.tar.bz2
+Source: http://www.cpan.org/modules/by-module/Mon/Mon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
@@ -30,7 +31,7 @@ Mon module for perl.
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+%{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
@@ -40,8 +41,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -50,8 +51,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING COPYRIGHT README VERSION
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/Mon/
 
 %changelog
+* Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.11-2
+- Cosmetic cleanup.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)

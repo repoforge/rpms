@@ -9,8 +9,8 @@
 
 Summary: Text::Iconv perl module
 Name: perl-Text-Iconv
-Version: 1.2
-Release: 0
+Version: 1.4
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Iconv/
@@ -40,7 +40,6 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%makeinstall
 
 ### Clean up buildroot (arch)
 %{__rm} -rf %{buildroot}%{perl_archlib} \
@@ -53,9 +52,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man?/*
-%{perl_vendorarch}/*
+%{perl_vendorarch}/Text/
+%{perl_vendorarch}/auto/Text/
 
 %changelog
+* Sun Feb 20 2005 Dag Wieers <dag@wieers.com> - 1.4-1
+- Improved %%files list.
+
 * Fri May 21 2004 Dag Wieers <dag@wieers.com> - 1.2-0
 - Cosmetic cleanup.
 

@@ -1,3 +1,5 @@
+# ExcludeDist: el4
+
 %define plibdir %(pkg-config evolution-shell --variable=privlibdir 2>/dev/null)
 
 Summary: Evolution Connector for Microsoft(tm) Exchange server.

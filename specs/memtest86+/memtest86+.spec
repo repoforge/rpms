@@ -4,6 +4,7 @@
 
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
+# ExcludeDist: el4
 ##ExcludeDist: fc2
 
 %define _prefix /boot

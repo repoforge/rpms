@@ -2,6 +2,8 @@
 # Authority: matthias
 # Upstream: <libexif-devel$lists,sf,net>
 
+# ExcludeDist: el4
+
 ### Beware FC3 comes with older libexif !
 # Tag: test
 

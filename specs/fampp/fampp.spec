@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+%{?el4:%define _with_gamin 1}
+%{?fc3:%define _with_gamin 1}
+
 Summary: C++ wrapper for fam, the file alteration monitor
 Name: fampp
 Version: 3.5.2
@@ -15,8 +18,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/fampp/fampp2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, stlport-devel, pkgconfig
-%{?fc3:BuildRequires: gamin-devel}
-%{!?fc3:BuildRequires: fam-devel}
+%{?_with_gamin:BuildRequires: gamin-devel}
+%{!?_with_gamin:BuildRequires: fam-devel}
 
 %description
 Fam++ is a C++ wrapper for fam from sgi. Fam uses imon to inform it when 

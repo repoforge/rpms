@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: qt-devel >= 3.3.2, kdelibs-devel >= 3.2.0, openssl-devel >= 0.9.7
 BuildRequires: libpng-devel, libart_lgpl-devel, desktop-file-utils, gcc-c++
 BuildRequires: arts-devel, libjpeg-devel, gettext, XFree86-devel, zlib-devel
+%{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Joe Orton <joe@orton.demon.co.uk>
 
-# ExcludeDist: fc1 fc2 fc3
+# ExcludeDist: fc1 fc2 fc3 el4
 
 %{?dist: %{expand: %%define %dist 1}}
 

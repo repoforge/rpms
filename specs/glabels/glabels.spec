@@ -4,6 +4,7 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+#%{?el4:#define _without_shared_mime 1}
 #%{?fc3:#define _without_shared_mime 1}
 #%{?fc1:#define _without_shared_mime 1}
 #%{?el3:#define _without_shared_mime 1}

@@ -1,22 +1,20 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Free AC-3 stream decoder
 Name: ac3dec
 Version: 0.6.1
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://www.au.linuxvideo.org/ac3dec/
+URL: http://liba52.sourceforge.net/downloads.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gusnet.cx/aaron/codecs/tarballs/ac3dec-%{version}.tar.gz
+Source: http://liba52.sourceforge.net/files/ac3dec-%{version}.tar.gz
 Patch0: ac3dec-0.6.1-libac3-memcpy.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Free AC-3 stream decoder. See also a52dec.
@@ -39,7 +37,8 @@ Free AC-3 stream decoder. See also a52dec.
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING README TODO
-%{_bindir}/*
+%{_bindir}/ac3dec
+%{_bindir}/extract_ac3
 
 %changelog
 * Tue Feb 09 2004 Dag Wieers <dag@wieers.com> - 0.6.1-0

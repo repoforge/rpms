@@ -3,6 +3,9 @@
 # Screenshot: http://gwenview.sourceforge.net/screenshots/shots/thumbs/6.png
 # ScreenshotURL: http://gwenview.sourceforge.net/screenshots/
 
+### Temporary exclude as it loops endlessly in configure on x86_64
+# ExcludeDist: el4
+
 Summary: Image viewer for KDE
 Name: gwenview
 Version: 1.1.8
@@ -20,6 +23,7 @@ BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make, gcc-c++
 BuildRequires: XFree86-devel, qt-devel
+%{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
 

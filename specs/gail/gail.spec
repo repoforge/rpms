@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el4
+
 Summary: Accessibility implementation for GTK+ and GNOME libraries
 Name: gail
 Version: 1.3.3

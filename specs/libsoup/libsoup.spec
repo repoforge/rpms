@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc2
+# ExcludeDist: fc2 fc3 el4
 
 Summary: HTTP library implementation
 Name: libsoup

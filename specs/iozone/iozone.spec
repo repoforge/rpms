@@ -3,11 +3,11 @@
 # Upstream: <capps$iozone,org>
 # Upstream: William Norcott <William,Norcott$oracle,com>
 
-%define real_version 3_228
+%define real_version 3_233
 
 Summary: IOzone Filesystem Benchmark
 Name: iozone
-Version: 3.228
+Version: 3.233
 Release: 1
 License: Freeware
 Group: Applications/System
@@ -55,6 +55,9 @@ fread, fwrite, random read, pread ,mmap, aio_read, aio_write.
 %{_datadir}/iozone/
 
 %changelog
+* Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 3.233-1
+- Updated to release 3.233.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 3.228-1
 - Updated to release 3.228.
 

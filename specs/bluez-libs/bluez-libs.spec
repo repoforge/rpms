@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <bluez-devel$lists,sourceforge,net>
 
-##ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
+# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
 
 Summary: Bluetooth libraries
 Name: bluez-libs

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Roger Wolff <R.E.Wolff$BitWizard,nl>
 
+# ExcludeDist: el4
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}

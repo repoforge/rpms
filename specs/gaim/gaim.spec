@@ -3,6 +3,7 @@
 
 ### FC3 comes with the latest gaim
 ##ExcludeDist: fc3
+# ExcludeDist: el4
 
 ### rh9 and el3 wants to install perl modules outside buildroot
 %{?el3:%define _without_perl 1}

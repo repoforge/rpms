@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc3
+# ExcludeDist: fc3 el4
 
 ### FIXME: TODO: Build RH73 builds with gcc 3.2.3
 ### FIXME: TODO: Improve firefox start-up script for file:// URLs.

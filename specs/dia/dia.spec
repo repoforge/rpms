@@ -2,6 +2,7 @@
 # Authority: dag
 
 ##ExcludeDist: rh9 fc1 fc2
+# ExcludeDist: el4
 
 Summary: Diagram drawing program
 Name: dia

@@ -20,6 +20,7 @@ Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{!?dist:BuildRequires: compat-gcc-c++}
+%{?el4:BuildRequires: compat-gcc-c++}
 %{?fc3:BuildRequires: compat-gcc-c++}
 %{?fc2:BuildRequires: compat-gcc-c++}
 %{?fc1:BuildRequires: compat-gcc-c++}

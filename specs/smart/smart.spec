@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
-# ExclusiveDist: fc3
+# ExclusiveDist: fc3 el4
 
 %{?dist: %{expand: %%define %dist 1}}
 %{!?dist: %define fc3 1}
@@ -20,7 +20,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.28
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -317,7 +317,7 @@ popd
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/smart-gui
 
 %{__install} -D -m0755 smart-gui.sh %{buildroot}%{_sbindir}/smart-gui
-%{__install} -D -m0644 distro.py %{buildroot}%{_libdir}/smart/distro.py
+%{__install} -D -m0644 distro.py %{buildroot}%{_prefix}/lib/smart/distro.py
 #%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 %{__install} -D -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
 %{__install} -D -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
@@ -343,13 +343,12 @@ popd
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc HACKING IDEAS LICENSE README TODO
-%config %{_libdir}/smart/distro.py
-%dir %{_libdir}/smart/
+%config %{_prefix}/lib/smart/distro.py
+%dir %{_prefix}/lib/smart/
 %config(noreplace) %{_sysconfdir}/smart/channels/
 %{_bindir}/smart
-#{python_sitearch}/smart/
-%{python_sitelib}/smart/
-%exclude %{python_sitelib}/smart/interfaces/gtk/
+%{python_sitearch}/smart/
+%exclude %{python_sitearch}/smart/interfaces/gtk/
 
 %files gui
 %defattr(-, root, root, 0755)
@@ -357,9 +356,9 @@ popd
 %{_bindir}/smart-gui
 %{_sbindir}/smart-gui
 %{_sysconfdir}/security/console.apps/smart-gui
-%dir %{python_sitelib}/smart/
-%dir %{python_sitelib}/smart/interfaces/
-%{python_sitelib}/smart/interfaces/gtk/
+%dir %{python_sitearch}/smart/
+%dir %{python_sitearch}/smart/interfaces/
+%{python_sitearch}/smart/interfaces/gtk/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-smart-gui.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/smart-gui.desktop}
 %{_datadir}/pixmaps/smart.png
@@ -374,6 +373,9 @@ popd
 %{_datadir}/apps/ksmarttray/
 
 %changelog
+* Wed Feb 16 2005 Dag Wieers <dag@wieers.com> - 0.28-3
+- Correct the location for distro.py on x86_64. (Edward Rudd)
+
 * Thu Dec 09 2004 Dag Wieers <dag@wieers.com> - 0.28-2
 - Disabled a few repositories to speed up Smart by default.
 - Fix for x86_64. (Gustavo Niemeyer)

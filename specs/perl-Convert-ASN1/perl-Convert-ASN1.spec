@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el4
+
 %define real_name Convert-ASN1
 
 Summary: set of Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules

@@ -26,6 +26,7 @@ BuildRequires: gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, hk_classes
 BuildRequires: python-devel, python
+%{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 

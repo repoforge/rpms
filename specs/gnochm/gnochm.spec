@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %define _without_shmime 1
+%{?el4:%undefine _without_shmime}
 %{?fc3:%undefine _without_shmime}
 %{?fc2:%undefine _without_shmime}
 
@@ -29,7 +30,7 @@ BuildRequires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
 Requires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2
 Requires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
 Requires: gnome-python2-canvas
-%{!?_without_shared_mime:Requires: shared-mime-info}
+%{!?_without_shmime:Requires: shared-mime-info}
 
 %description
 A CHM file viewer. Features are: full text search, bookmarks

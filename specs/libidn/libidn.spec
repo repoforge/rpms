@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <bug-libidn$gnu,org>
 
+# ExcludeDist: el4
+
 Summary: Internationalized string processing library
 Name: libidn
 Version: 0.4.6

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc1 fc2
+# ExcludeDist: fc1 fc2 fc3 el4
 
 Summary: MusicBrainz client library
 Name: libmusicbrainz

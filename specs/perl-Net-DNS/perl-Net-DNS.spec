@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Chris Reinhardt <cpan$triv,org>
 
+# ExcludeDist: el4
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)

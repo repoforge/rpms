@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# DistExclude: el4
 
 %define real_name XML-LibXML-Common
 

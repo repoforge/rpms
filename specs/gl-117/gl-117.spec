@@ -23,6 +23,7 @@ Patch: gcc-fc3-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{!?dist:BuildRequires: freeglut-devel, xorg-x11-devel}
+%{?el4:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc3:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc2:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc1:BuildRequires: freeglut-devel, XFree86-devel}

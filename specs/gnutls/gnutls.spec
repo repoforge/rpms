@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: el4
+
 Summary: The GNU Transport Layer Security library
 Name: gnutls
 Version: 1.0.13

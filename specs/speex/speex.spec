@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: el4
+
 Summary: Open-source, patent-free speech codec
 Name: speex
 Version: 1.0.4

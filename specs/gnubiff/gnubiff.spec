@@ -22,6 +22,7 @@ BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++
 BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel 
 BuildRequires: glib2-devel, libglade2-devel, gamin-devel
 %{!?dist:BuildRequires: gnome-panel-devel}
+%{?el4:BuildRequires: gnome-panel-devel}
 %{?fc3:BuildRequires: gnome-panel-devel}
 %{?fc2:BuildRequires: gnome-panel-devel}
 

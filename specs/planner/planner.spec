@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el4
+
 %{?dist: %{expand: %%define %dist 1}}
  
 %{?fc1:%define _without_shared_mime 1}

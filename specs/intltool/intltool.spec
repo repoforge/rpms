@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el4
+
 Summary: Utility for internationalizing various kinds of data files
 Name: intltool
 Version: 0.28

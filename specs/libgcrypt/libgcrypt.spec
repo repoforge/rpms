@@ -2,7 +2,7 @@
 # Authority: axel
 # Upstream: <gnupg-devel$gnupg,org>
 
-# ExcludeDist: fc1 fc2 fc3
+# ExcludeDist: fc1 fc2 fc3 el4
 
 Summary: GNU cryptographic library
 Name: libgcrypt

@@ -24,7 +24,7 @@ BuildRequires: gpsim-devel, gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
-%{?fc3:BuildRequires: libselinux-devel}
+%{?el4:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: gputils, gpsim
 

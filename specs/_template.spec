@@ -47,10 +47,10 @@ EOF
 
 %build
 %{__libtoolize} --force --copy
-%{__aclocal} --force
-%{__automake} --add-missing
-%{__autoconf}
+%{__aclocal} #--force
 %{__autoheader}
+%{__automake} --add-missing -a --foreign
+%{__autoconf}
 %configure \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags}

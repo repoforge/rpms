@@ -29,6 +29,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gcc-c++, texinfo, autoconf, automake
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?el4:BuildRequires: tcl-devel}
 %{?fc3:BuildRequires: tcl-devel}
 %{?fc2:BuildRequires: tcl-devel}
 %{?fc1:BuildRequires: tcl-devel}

@@ -2,12 +2,14 @@
 # Authority: dag
 # Upstream: Jordan Ritter <jpr5$darkridge,com>
 
+# Tag: test
+
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Realtime network grep tool
 Name: ngrep
-Version: 1.42
-Release: 1
+Version: 1.43
+Release: 0
 License: GPL
 Group: Applications/Internet
 URL: http://ngrep.sourceforge.net/
@@ -34,15 +36,6 @@ more common packet sniffing tools, such as tcpdump and snoop.
 %prep
 %setup
 
-### FIXME: Let Makefile use standard autotools directories. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|^(BINDIR).+$|$1=\$(bindir)|g;
-		s|^(MANDIR).+$|$1=\$(mandir)/man8|g;
-	' Makefile.in
-
-%{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure *.c *.h}
-%{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure *.c *.h}
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -56,11 +49,14 @@ more common packet sniffing tools, such as tcpdump and snoop.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGES CREDITS INSTALL LICENSE README* TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc *.txt doc/*.txt scripts/
+%doc %{_mandir}/man8/ngrep.8*
+%{_bindir}/ngrep
 
 %changelog
+* Sun Feb 20 2005 Dag Wieers <dag@wieers.com> - 1.43-1
+- Updated to release 1.43.
+
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 1.42-1
 - Updated to release 1.42.
 

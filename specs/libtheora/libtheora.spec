@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: el4
+
 %define prever alpha3
 
 Summary: Theora video compression codec

@@ -23,6 +23,7 @@ BuildRequires: libart_lgpl-devel, arts-devel
 BuildRequires: gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel
+%{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs, qt

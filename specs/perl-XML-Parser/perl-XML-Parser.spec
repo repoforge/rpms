@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el4
+
 %define real_name XML-Parser
 
 Summary: XML-Parser Perl module

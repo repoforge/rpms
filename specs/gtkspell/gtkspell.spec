@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: el4
+
 Summary: Gtk2 spell checker interface library
 Name: gtkspell
 Version: 2.0.6

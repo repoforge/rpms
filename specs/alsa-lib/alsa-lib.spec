@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
-# ExcludeDist: fc2
+
+# ExcludeDist: fc2 el4
 
 #define prever rc2
 

@@ -17,6 +17,7 @@ Source: http://savannah.nongnu.org/download/aldo/aldo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
+%{?el4:BuildRequires: compat-gcc-c++}
 %{?fc3:BuildRequires: compat-gcc-c++}
 
 Packager: Dries Verachtert <dries@ulyssis.org>
@@ -39,6 +40,7 @@ random generated callsigns
 %{__perl} -pi.orig -e 's| -oroot | |' Makefile */Makefile
 
 %build
+%{?el4:export CXX=g++33}
 %{?fc3:export CXX=g++33}
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags}"

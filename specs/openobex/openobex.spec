@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc1 fc2 fc3
+# ExcludeDist: fc1 fc2 fc3 el4
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -20,6 +20,7 @@ Source: http://dl.sf.net/openobex/openobex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel >= 1.2.0
+%{?el4:BuildRequires: bluez-libs-devel}
 %{?fc3:BuildRequires: bluez-libs-devel}
 %{?fc2:BuildRequires: bluez-libs-devel}
 %{?fc1:BuildRequires: bluez-libs-devel}

@@ -5,7 +5,7 @@
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
 Version: 0.8.7
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://samba.idealx.org/index.en.html
@@ -29,17 +29,15 @@ tools to manage users, groups and passwords.
 
 %prep
 %setup
-#%{__tar} -xvzf mkntpwd.tar.gz
-
-#%{__perl} -pi.orig -e 's| \$\(PREFIX\)/sbin/| \$(sbindir)/|' mkntpwd/Makefile
-%{__perl} -pi.orig -e 's|/usr/local/sbin|%{_sbindir}|' smb.conf smbldap.conf
+%{__perl} -pi.orig -e '
+		s|/etc/opt/IDEALX|/etc|g;
+		s|/opt/IDEALX||g;
+	' Makefile smb.conf smbldap.conf doc/*.html smbldap_tools.pm
 
 %build
-#%{__make} %{?_smp_mflags} -C mkntpwd
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall -C mkntpwd
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -m0755 smbldap-* smbldap_tools.pm %{buildroot}%{_sbindir}
 %{__install} -D -m0644 smbldap.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap.conf
@@ -51,12 +49,15 @@ tools to manage users, groups and passwords.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog CONTRIBUTORS COPYING FILES INFRA INSTALL README TODO
-%doc configure.pl *.conf doc/html/
+%doc configure.pl *.conf doc/html/*.html
 %config(noreplace) %{_sysconfdir}/smbldap-tools/
 %{_sbindir}/*
 
 %changelog
-* Sat Jan 22 2005 Dag Wieers <dag@wieers.com> - 0.8.7-1
+* Wed Feb 16 2005 Dag Wieers <dag@wieers.com> - 0.8.7-2
+- Fixed locations, removed /opt/IDEALX. (Alain Rykaert)
+
+* Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 0.8.7-1
 - Updated to release 0.8.7.
 
 * Sat Jan 22 2005 Dag Wieers <dag@wieers.com> - 0.8.6-1

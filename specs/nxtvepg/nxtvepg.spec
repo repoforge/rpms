@@ -21,6 +21,7 @@ Source1: nxtvepg.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, tcl, tk, desktop-file-utils
+%{?el4:BuildRequires: tcl-devel, tk-devel}
 %{?fc3:BuildRequires: tcl-devel, tk-devel}
 %{?fc2:BuildRequires: tcl-devel, tk-devel}
 %{?fc1:BuildRequires: tcl-devel, tk-devel}

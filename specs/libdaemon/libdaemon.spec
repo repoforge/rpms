@@ -4,7 +4,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-# Distcc: 0
+#{?el4:%define _without_lynx 1}
+#{?el3:%define _without_lynx 1}
 
 Summary: Lightweight C library which eases the writing of UNIX daemons
 Name: libdaemon
@@ -20,7 +21,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://0pointer.de/lennart/projects/libdaemon/libdaemon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?el3:BuildRequires: lynx}
+%{!?_without_lynx:BuildRequires: lynx}
 BuildRequires: gcc-c++, doxygen
 
 %description
@@ -56,7 +57,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-%{?el3: --disable-lynx}
+%{?_without_lynx:--disable-lynx}
 %{__make} %{?_smp_mflags}
 
 %install

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Mikael Hallendal <micke$imendio,com>
 
+# ExcludeDist: el4
+
 Summary: API document browser
 Name: devhelp
 Version: 0.9.2

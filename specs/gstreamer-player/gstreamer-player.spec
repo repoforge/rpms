@@ -24,6 +24,7 @@ BuildRequires: gstreamer-devel >= 0.8.0, gstreamer-plugins-devel >= 0.8.0
 #BuildRequires: gstreamer-play, gstreamer-GConf
 BuildRequires: gettext, eel2-devel, gail-devel, zlib-devel, gcc-c++
 %{!?dist:BuildRequires: nautilus-devel}
+%{?el4:BuildRequires: nautilus-devel}
 %{?fc3:BuildRequires: nautilus-devel}
 %{?fc2:BuildRequires: nautilus-devel}
 %{?fc1:BuildRequires: nautilus-devel}

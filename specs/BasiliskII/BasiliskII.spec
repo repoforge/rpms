@@ -6,6 +6,7 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 %{!?dist:%define _with_banks 1}
+%{?el4:  %define _with_banks 1}
 %{?fc3:  %define _with_banks 1}
 
 Summary: 68k Macintosh emulator

@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 %{!?dist:BuildRequires: db4-devel}
+%{?el4:BuildRequires: db4-devel}
 %{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}
 

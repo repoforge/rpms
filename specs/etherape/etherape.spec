@@ -39,6 +39,7 @@ from a file as well as live from the network.
 
 %{__perl} -pi.orig -e 's|res_mkquery|__res_mkquery|g' configure
 
+%{?el4:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 %{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 %{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 

@@ -4,7 +4,7 @@
 
 Summary: Another cron daemon
 Name: tcron
-Version: 0.4.7
+Version: 0.4.8
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -34,7 +34,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0 -p0 -b .orig
+#patch0 -p0 -b .orig
 
 %build
 %{__make} %{?_smp_mflags} \
@@ -46,7 +46,7 @@ you will need to install %{name}-devel.
 %makeinstall \
 	DESTDIR="%{buildroot}" \
 	PREFIX="%{_prefix}" \
-	TCRONTAB_AP_LIB="%{_libdir}"
+	TCRONTAB_AP_LIB="%{buildroot}%{_libdir}"
 
 %{__install} -d -m0755 %{buildroot}%{_initrddir}
 %{__mv} -f %{buildroot}%{_sysconfdir}/init.d/tcrond %{buildroot}%{_initrddir}
@@ -65,21 +65,25 @@ you will need to install %{name}-devel.
 %doc Changelog README
 %config(noreplace) %{_sysconfdir}/tcrontab/
 %config %{_initrddir}/tcrond
-%{_sbindir}/*
-%{_bindir}/*
+%{_sbindir}/tcrond
+%{_bindir}/idle-halt
+%{_bindir}/tcrontab
 %{_libdir}/tcrontab-ap
-%{_libdir}/*.so.*
+%{_libdir}/libtcrontab-api.so.*
 %{_localstatedir}/spool/tcron/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc README.api demo/
-%{_libdir}/*.so
+%{_libdir}/libtcrontab-api.so
 ### libtcron.a contains .c files which strip does not like.
-%exclude %{_libdir}/*.a
-%{_includedir}/*.h
+%exclude %{_libdir}/libtcron.a
+%{_includedir}/tcron.h
 
 %changelog
+* Thu Feb 17 2005 Dag Wieers <dag@wieers.com> - 0.4.8-1
+- Updated to release 0.4.8.
+
 * Thu Jan 15 2004 Dag Wieers <dag@wieers.com> - 0.4.7-1
 - Updated to release 0.4.7.
 
