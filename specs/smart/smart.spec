@@ -64,94 +64,116 @@ Programa tray do KDE para verificar atualizações com o Smart Package Manager.
 
 %{__cat} <<EOF >distro.py
 sysconf.set(("channels", "rpm-db"), {
+	"name": "RPM Database on this system",
 	"type": "rpm-sys",
-	"name": "RPM Database",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "os"), {
-	"type": "rpm-md",
 	"name": "OS packages from Red Hat for $name $version",
 	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core/",
+	"type": "rpm-md",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "updates"), {
-	"type": "rpm-md",
 	"name": "Updated packages from Red Hat for $name $version",
 	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/updates/",
+	"type": "rpm-md",
 	"priority": 10,
 })
 
-sysconf.set(("channels", "mirrors"), {
-	"type": "up2date-mirrors",
-	"name": "$name $version (Mirrors Channel)",
-	"url": "http://fedora.redhat.com/download/up2date-mirrors/fedora-core-$version",
-})
-
-sysconf.set(("channels", "mirrors-updates"), {
-	"type": "up2date-mirrors",
-	"name": "$name $version Updates (Mirrors Channel)",
-	"url": "http://fedora.redhat.com/download/up2date-mirrors/updates-released-fc$version",
-})
-
 sysconf.set(("channels", "repo-dag"), {
-	"type": "rpm-md",
 	"name": "Various packages from RPMforge.net (dag) for $name $version",
 	"baseurl": "http://apt.sw.be/$path/$version/en/%{_arch}/dag",
+	"type": "rpm-md",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "repo-freshrpms"), {
-	"type": "rpm-md",
 	"name": "Various packages from RPMforge.net (freshrpms) for $name $version",
 	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/freshrpms",
+	"type": "rpm-md",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "repo-dries"), {
-	"type": "rpm-md",
 	"name": "Various packages from RPMforge.net (dries) for $name $version",
 	"baseurl": "http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS",
+	"type": "rpm-md",
 	"priority": 10,
 })
 
+sysconf.set(("channels", "repo-planetccrma"), {
+	"name": "Various packages from RPMforge.net (planetccrma) for $name $version",
+	"baseurl": "rpm http://ccrma.stanford.edu/planetccrma/apt/$path/$version/%{_arch}",
+	"components": "planetccrma planetcore",
+	"type": "apt-rpm",
+	"priority": 10,
+	"disabled": "true",
+})
+
 sysconf.set(("channels", "repo-jpackage"), {
-	"type": "rpm-md",
 	"name": "Java packages from JPackage.org for $name $version",
-	"baseurl": "http://mirrors.sunsite.dk/jpackage/1.6/fedora-3/free/",
+	"baseurl": "http://mirrors.sunsite.dk/jpackage/1.6/$path-$version/free/",
+	"type": "rpm-md",
 	"priority": 0,
-	"disabled": "true"
 })
 
 sysconf.set(("channels", "repo-newrpms"), {
-	"type": "rpm-md",
 	"name": "Various packages from NewRPMS for $name $version",
 	"baseurl": "http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version",
-	"priority": -5,
+	"type": "rpm-md",
+	"priority": 0,
+})
+
+sysconf.set(("channels", "repo-biorpms"), {
+	"name": "Bioinformatic packages from BIOrpms for $name $version",
+	"baseurl": "http://apt.bea.ki.se/biorpms/$path/linux/$version/%{_arch}/biorpms",
+	"type": "rpm-md",
+	"priority": 0,
 })
 
 sysconf.set(("channels", "repo-kde-redhat"), {
-	"type": "rpm-md",
 	"name": "KDE packages from the kde-redhat project for $name $version",
 	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/$version/stable",
+	"type": "rpm-md",
 	"priority": -5,
-	"disabled": "true"
 })
 
 sysconf.set(("channels", "repo-kde-redhat-all"), {
-	"type": "rpm-md",
 	"name": "KDE (nodist) packages from the kde-redhat project for $name $version",
 	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/all/stable",
+	"type": "rpm-md",
 	"priority": -5,
-	"disabled": "true"
+})
+
+sysconf.set(("channels", "repo-nrpms"), {
+	"name": "Various packages from Nrpms for $name $version",
+	"baseurl": "http://yum.nrpms.net/$path-$version-%{_arch}/production",
+	"type": "rpm-md",
+	"priority": -10,
 })
 
 sysconf.set(("channels", "repo-atrpms"), {
-	"type": "rpm-md",
 	"name": "Various packages from ATrpms for $name $version",
 	"baseurl": "http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing",
+	"type": "rpm-md",
 	"priority": -10,
+})
+
+sysconf.set(("channels", "repo-livna"), {
+	"name": "Incompatible packages from Livna.org for $name $version",
+	"baseurl": "http://rpm.livna.org/fedora/$version/%{_arch}/RPMS.stable",
+	"type": "rpm-md",
+	"priority": -100,
+})
+
+sysconf.set(("channels", "repo-fedora.us"), {
+	"name": "Incompatible packages from Fedora.us for $name $version",
+	"baseurl": "http://download.fedora.us/fedora/$path/$version/%{_arch}/RPMS.extras/",
+	"type": "rpm-md",
+	"priority": -100,
 	"disabled": "true",
 })
 
