@@ -12,6 +12,8 @@ URL: http://www.aMule.org/
 BuildRoot: %{_tmppath}/%{name}-root
 Requires: wxGTK, curl, /usr/sbin/alternatives
 BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
+# Required on Yellwo Dog Linux 3.0
+BuildRequires: openssl-devel
 
 %description
 aMule is an easy to use multi-platform client for ED2K Peer-to-Peer Network.

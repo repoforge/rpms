@@ -3,8 +3,8 @@
 
 Summary: Command line rom manager for MAME, MESS and Raine
 Name: advancescan
-Version: 1.7
-Release: 2
+Version: 1.8
+Release: 1
 License: GPL
 Group: Applications/Emulators
 Source: http://dl.sf.net/advancemame/%{name}-%{version}.tar.gz
@@ -26,19 +26,24 @@ AdvanceMESS and Raine. The main features are :
   future uses. This will prevent any unwanted remove operation.
 * Generate differential rom sets. 
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -46,8 +51,12 @@ AdvanceMESS and Raine. The main features are :
 %{_bindir}/*
 %{_mandir}/man1/*
 
+
 %changelog
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.7-2.fr
+* Thu Apr 22 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
+- Update to 1.8.
+
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.7-2
 - Rebuild for Fedora Core 1.
 - Added missing build dependencies.
 

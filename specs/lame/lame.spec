@@ -1,24 +1,20 @@
 # $Id$
 # Authority: matthias
 # Upstream: <mp3encoder@minnie.tuhs.org>
-
 # Distcc: 0
 
-Summary: Quality LGPL MP3 encoder
+Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.96
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
-URL: http://lame.sf.net/
-
+URL: http://lame.sourceforge.net/
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: /usr/bin/find, ncurses-devel
 %ifarch %{ix86}
 BuildRequires: nasm, gcc-c++
-#BuildRequires: gcc >= 3.2
 %endif
 Requires: ncurses >= 5.0
 Provides: mp3encoder
@@ -53,27 +49,28 @@ these libraries.
 ### You know what? This i386 stuff is as good as if it was only i686 and
 ### the MMX code is enabled at runtime if found! So this is gooooood :-)
 %ifarch i386
-	export CC_OPTS="-O3 -march=i386 -mcpu=i686 -fomit-frame-pointer -fno-strength-reduce -malign-functions=4 -funroll-loops -ffast-math"
+    export CC_OPTS="-O3 -march=i386 -mcpu=i686 -fomit-frame-pointer -fno-strength-reduce -malign-functions=4 -funroll-loops -ffast-math"
 %else
-	# Vague and ix86 inspired (but working) ppc optimizations
-	%ifarch ppc
-		export CC_OPTS="-O3 -fsigned-char -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
-	%else
-		export CC_OPTS="-O3 -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
-	%endif
+    # Vague and ix86 inspired (but working) ppc optimizations
+    %ifarch ppc
+        export CC_OPTS="-O3 -fsigned-char -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
+    %else
+        export CC_OPTS="-O3 -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
+    %endif
 %endif
 
 %configure \
-	--program-prefix=%{?_program_prefix} \
+    --program-prefix=%{?_program_prefix} \
 %ifarch %ix86
-	--enable-nasm \
+    --enable-nasm \
 %endif
-	--enable-decoder \
-	--with-vorbis \
-	--enable-analyser="no" \
-	--enable-brhist
-%{__make} %{?_smp_mflags} test \
-	CFLAGS="${CC_OPTS}"
+    --enable-decoder \
+    --with-vorbis \
+    --enable-analyser="no" \
+    --enable-brhist
+
+%{__make} %{?_smp_mflags} test CFLAGS="${CC_OPTS}"
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -82,8 +79,9 @@ these libraries.
 ### Some apps still expect to find <lame.h>
 %{__ln_s} -f lame/lame.h %{buildroot}%{_includedir}/lame.h
 
-find doc/html -name "Makefile*" | xargs rm -f
+/usr/bin/find doc/html -name "Makefile*" | xargs rm -f
 %{__rm} -rf %{buildroot}%{_docdir}/lame/
+
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -91,33 +89,35 @@ find doc/html -name "Makefile*" | xargs rm -f
 %postun
 /sbin/ldconfig 2>/dev/null
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr (-, root, root, 0755)
 %doc ChangeLog COPYING README TODO USAGE doc/html
-%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
+%{_mandir}/man?/*
 
 %files devel
 %defattr (-, root, root, 0755)
 %doc API HACKING STYLEGUIDE
+%{_includedir}/*
 %{_libdir}/*.a
-%{_libdir}/*.so
-%{_includedir}/lame/
-%{_includedir}/lame.h
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
+
 
 %changelog
 * Wed Apr 21 2004 Matthias Saou <http://freshrpms.net/> 3.96-1
-- Update to 3.96.
+- Update to 3.96 w/ spec changes from Dag.
 
-* Tue Jan 13 2004 Matthias Saou <http://freshrpms.net/> 3.95.1-1.fr
+* Tue Jan 13 2004 Matthias Saou <http://freshrpms.net/> 3.95.1-1
 - Update to 3.95.1.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 3.93.1-3.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 3.93.1-3
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>

@@ -13,6 +13,7 @@ Group: System Environment/Daemons
 URL: http://www.acme.com/software/thttpd/
 Source0: http://www.acme.com/software/thttpd/%{name}-%{version}%{?prever}.tar.gz
 Source1: thttpd.init
+Source2: thttpd.logrotate
 Source10: index.html
 Source11: thttpd_powered_3.png
 Source12: button-freshrpms.png
@@ -28,8 +29,10 @@ provided for.  Advanced features include the ability to throttle traffic.
 Available rpmbuild rebuild options :
 --with : indexes showversion expliciterrors
 
+
 %prep
 %setup -n %{name}-%{version}%{?prever}
+
 
 %build
 %configure
@@ -42,12 +45,20 @@ perl -pi -e 's/.*chgrp.*//g; s/.*chmod.*//g' extras/Makefile
 %{!?_with_expliciterrors: perl -pi -e 's/#define EXPLICIT_ERROR_PAGES/#undef EXPLICIT_ERROR_PAGES/g' config.h}
 %{__make} WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin
 
+
 %install
 %{__rm} -rf %{buildroot}
+
+# Prepare required directories
 mkdir -p %{buildroot}%{webroot}/{cgi-bin,html,logs}
 mkdir -p %{buildroot}%{_mandir}/man{1,8}
 mkdir -p %{buildroot}%{_sbindir}
-%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/thttpd
+
+# Install init script and logrotate entry
+%{__install} -D -m 755 %{SOURCE1} %{buildroot}%{_initrddir}/thttpd
+%{__install} -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/thttpd
+
+# Main install
 %{__make} install BINDIR=%{buildroot}%{_sbindir} \
     MANDIR=%{buildroot}%{_mandir} \
     WEBDIR=%{buildroot}%{webroot}/html \
@@ -63,6 +74,7 @@ mv %{buildroot}%{_mandir}/man1/htpasswd.1 \
 # Install the default index.html file
 %{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{buildroot}%{webroot}/html/
 
+# Install a default configuration file
 cat << EOF > %{buildroot}%{_sysconfdir}/thttpd.conf
 # BEWARE : No empty lines are allowed!
 # This section overrides defaults
@@ -80,6 +92,7 @@ pidfile=/var/run/thttpd.pid
 # host=0.0.0.0
 # charset=iso-8859-1
 EOF
+
 
 %pre
 /usr/sbin/groupadd -r www 2>/dev/null || :
@@ -102,13 +115,16 @@ if [ $1 -ge 1 ]; then
     /sbin/service thttpd condrestart >/dev/null 2>&1 || :
 fi
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc README TODO
-%config /etc/init.d/thttpd
+%config %{_initrddir}/thttpd
+%config(noreplace) %{_sysconfdir}/logrotate.d/thttpd
 %config(noreplace) %{_sysconfdir}/thttpd.conf
 %attr(2755, root, www) %{_sbindir}/makeweb
 %{_bindir}/htpasswd.thttpd
@@ -123,14 +139,19 @@ fi
 %attr(2775, thttpd, www) %dir %{webroot}/logs
 %{_mandir}/man*/*
 
+
 %changelog
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 2.25b-1.fr
+* Mon Apr 26 2004 Matthias Saou <http://freshrpms.net/> 2.25b-2
+- Add logrotate entry, it needs to restart thttpd completely because
+  of the permissions dropped after opening the log file :-(
+
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 2.25b-1
 - Update to 2.25b.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 2.24-1.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 2.24-1
 - Update to 2.24 final.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.23-0.beta1.3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.23-0.beta1.3
 - Rebuild for Fedora Core 1.
 - Escaped the %%install and others later in this changelog.
 

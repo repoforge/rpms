@@ -1,0 +1,9 @@
+/var/log/thttpd.log {
+    compress
+    missingok
+    notifempty
+    postrotate
+        /usr/sbin/service thttpd restart >/dev/null
+    endscript
+}
+

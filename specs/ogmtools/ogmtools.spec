@@ -3,7 +3,7 @@
 
 Summary: Tools for Ogg media streams
 Name: ogmtools
-Version: 1.2
+Version: 1.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -19,19 +19,24 @@ These tools allow information about (ogminfo) or extraction from (ogmdemux) or
 creation of (ogmmerge) OGG media streams. Note that OGM is used for "OGG media
 streams". 
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -39,14 +44,18 @@ streams".
 %{_bindir}/*
 %{_mandir}/man1/*
 
+
 %changelog
-* Fri Nov 21 2003 Matthias Saou <http://freshrpms.net/> 1.2-1.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.4-1
+- Update to 1.4.
+
+* Fri Nov 21 2003 Matthias Saou <http://freshrpms.net/> 1.2-1
 - Update to 1.2.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1-2
 - Rebuild for Fedora Core 1.
 
-* Wed Oct 29 2003 Matthias Saou <http://freshrpms.net/> 1.1-1.fr
+* Wed Oct 29 2003 Matthias Saou <http://freshrpms.net/> 1.1-1
 - Update to 1.1.
 
 * Tue May 20 2003 Matthias Saou <http://freshrpms.net/>

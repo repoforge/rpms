@@ -6,8 +6,8 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.0.46
-Release: 2
+Version: 1.0.47
+Release: 1
 License: GPL
 Group: Applications/Databases
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/%{name}-%{version}.tar.gz
@@ -140,20 +140,23 @@ mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
 
 
 %changelog
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-2.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.47-1
+- Update to 1.0.47.
+
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-2
 - Change the strict dependency on perl to fix problem with the recent
   update.
 
-* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-1.fr
+* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-1
 - Update to 1.0.46.
 - Use system libpng and zlib instead of bundled ones.
 - Added php-rrdtool sub-package for the php4 module.
 
-* Fri Dec  5 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-4.fr
+* Fri Dec  5 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-4
 - Added epoch to the perl dependency to work with rpm > 4.2.
 - Fixed the %% escaping in the perl dep.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-2.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.0.45-2
 - Rebuild for Fedora Core 1.
 
 * Sun Aug  3 2003 Matthias Saou <http://freshrpms.net/>
