@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 28
+Release: 29
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -41,8 +41,8 @@ Source11: http://www.splitbrain.org/Fortunes/fgump/fortune-fgump.tgz
 Source12: http://www.splitbrain.org/Fortunes/discworld/fortune-discworld.tgz
 # http://www.splitbrain.org/./Fortunes/xfiles/
 Source13: http://www.splitbrain.org/Fortunes/xfiles/fortune-xfiles.tgz
-# http://unattached.i-no.de/software-misc.shtml
-Source14: http://www.schwarzvogel.de/pkgs/kernelcookies.tar.gz
+# http://www.schwarzvogel.de/software-misc.shtml
+Source14: http://www.schwarzvogel.de/pkgs/kernelcookies-8.tar.gz
 # http://dune.s31.pl/
 Source15: http://dune.s31.pl/fortune-mod-dune-quotes.2.0.1.tar.gz
 # quotes of 'Comic Book Guy'
@@ -117,41 +117,40 @@ make	FORTDIR=%{buildroot}/%{_prefix}/games \
 	FORTMANDIR=%{buildroot}/%{_mandir}/man6 \
 	install
 
-cp fortune-starwars/starwars fortune-starwars/starwars.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-mod-futurama-0.2/futurama fortune-mod-futurama-0.2/futurama.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-mod-calvin-0.1.1/calvin fortune-mod-calvin-0.1.1/calvin.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-starwars/starwars fortune-starwars/starwars.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-mod-futurama-0.2/futurama fortune-mod-futurama-0.2/futurama.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-mod-calvin-0.1.1/calvin fortune-mod-calvin-0.1.1/calvin.dat %{buildroot}%{_datadir}/games/fortune/
 mv fortune-zippy-0.2/zippy fortune-zippy-0.2/zippy2
 (cd fortune-zippy-0.2; ../util/strfile zippy2)
-cp fortune-zippy-0.2/zippy2 fortune-zippy-0.2/zippy2.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-tao/tao fortune-tao/tao.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-hitchhiker/hitchhiker fortune-hitchhiker/hitchhiker.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-simpsons-chalkboard/chalkboard fortune-simpsons-chalkboard/chalkboard.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-mod-prog-style/prog-style.dat fortune-mod-prog-style/prog-style %{buildroot}%{_datadir}/games/fortune/
-cp fortune-fgump/fgump fortune-fgump/fgump.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-discworld/discworld.dat fortune-discworld/discworld %{buildroot}%{_datadir}/games/fortune/
-cp fortune-xfiles/xfiles.dat fortune-xfiles/xfiles %{buildroot}%{_datadir}/games/fortune/
-cp kernelcookies/kernelcookies kernelcookies/kernelcookies.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-mod-dune-quotes.2.0.1/chapterhouse-dune fortune-mod-dune-quotes.2.0.1/children-of-dune fortune-mod-dune-quotes.2.0.1/dune-messiah \
+%{__cp} fortune-zippy-0.2/zippy2 fortune-zippy-0.2/zippy2.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-tao/tao fortune-tao/tao.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-hitchhiker/hitchhiker fortune-hitchhiker/hitchhiker.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-simpsons-chalkboard/chalkboard fortune-simpsons-chalkboard/chalkboard.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-mod-prog-style/prog-style.dat fortune-mod-prog-style/prog-style %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-fgump/fgump fortune-fgump/fgump.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-discworld/discworld.dat fortune-discworld/discworld %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-xfiles/xfiles.dat fortune-xfiles/xfiles %{buildroot}%{_datadir}/games/fortune/
+%{__cp} kernelcookies*/kernelcookies kernelcookies*/kernelcookies.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-mod-dune-quotes.2.0.1/chapterhouse-dune fortune-mod-dune-quotes.2.0.1/children-of-dune fortune-mod-dune-quotes.2.0.1/dune-messiah \
   fortune-mod-dune-quotes.2.0.1/dune fortune-mod-dune-quotes.2.0.1/god-emperor fortune-mod-dune-quotes.2.0.1/house-atreides \
   fortune-mod-dune-quotes.2.0.1/house-harkonnen fortune-mod-dune-quotes.2.0.1/heretics-of-dune fortune-mod-dune-quotes.2.0.1/chapterhouse-dune.dat \
   fortune-mod-dune-quotes.2.0.1/children-of-dune.dat fortune-mod-dune-quotes.2.0.1/dune.dat fortune-mod-dune-quotes.2.0.1/dune-messiah.dat \
   fortune-mod-dune-quotes.2.0.1/god-emperor.dat fortune-mod-dune-quotes.2.0.1/heretics-of-dune.dat fortune-mod-dune-quotes.2.0.1/house-atreides.dat \
   fortune-mod-dune-quotes.2.0.1/house-harkonnen.dat %{buildroot}%{_datadir}/games/fortune/
-echo "before cbg"
-cp cbg cbg.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} cbg cbg.dat %{buildroot}%{_datadir}/games/fortune/
 util/strfile ralph
-cp ralph ralph.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} ralph ralph.dat %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
-# soutpark.. quite sure it's part of 'offensive'
+# southpark.. quite sure it's part of 'offensive'
 %else 
-cp SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
 %endif
-cp fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
-cp fortune-osho/osho.dat fortune-osho/osho %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} fortune-osho/osho.dat fortune-osho/osho %{buildroot}%{_datadir}/games/fortune/
 
-tar zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
+%{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
-rm %{buildroot}%{_datadir}/games/fortune/men-women*
+%{__rm} %{buildroot}%{_datadir}/games/fortune/men-women*
 %endif
 
 # Using bzcat for portability because tar keeps randomly changing the switch
@@ -159,7 +158,7 @@ rm %{buildroot}%{_datadir}/games/fortune/men-women*
 # WTF they'll change it too next.
 
 echo bla2
-bzcat %{SOURCE2} | tar xvf - -C %{buildroot}%{_datadir}/games/fortune/
+bzcat %{SOURCE2} | %{__tar} xvf - -C %{buildroot}%{_datadir}/games/fortune/
 
 %clean
 rm -rf %{buildroot}
@@ -578,6 +577,10 @@ http://www.geocities.com/avitiw/fortune.html
 
 
 %changelog
+* Mon Jun 21 2004 Dries Verachtert <dries@ulyssis.org> 1.0-30
+- Update of the kernelcookies to version 8 with 80 new 
+  cookies from the 2.6.6 kernel tree.
+
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0-29
 - added quotes found on freshmeat: quotes from the spiritual 
   guru Osho. 
