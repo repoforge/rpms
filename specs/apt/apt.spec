@@ -8,7 +8,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15cnc6
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
@@ -77,36 +77,28 @@ you will need to install %{name}-devel.
 ###	http://dag.wieers.com/apt/
 
 ### Dag Apt Repository for Red Hat Fedore Core 2
-%{!?fc2:#}rpm http://apt.sw.be fedora/2/en/i386 dag
-#rpm-src http://apt.sw.be fedora/2/en/i386 dag
+%{!?fc2:#}rpm http://apt.sw.be fedora/2/en/%{_arch} dag
 
 ### Dag Apt Repository for Red Hat Fedore Core 1
 %{!?fc1:#}rpm http://apt.sw.be fedora/1/en/i386 dag
-#rpm-src http://apt.sw.be fedora/1/en/i386 dag
 
 ### Dag Apt Repository for Red Hat Enterprise Linux 3
-%{!?el3:#}rpm http://apt.sw.be redhat/el3/en/i386 dag
-#rpm-src http://apt.sw.be redhat/el3/en/i386 dag
+%{!?el3:#}rpm http://apt.sw.be redhat/el3/en/%{_arch} dag
 
 ### Dag Apt Repository for Red Hat 9
 %{!?rh9:#}rpm http://apt.sw.be redhat/9/en/i386 dag
-#rpm-src http://apt.sw.be redhat/9/en/i386 dag
 
 ### Dag Apt Repository for Red Hat 8.0
 %{!?rh8:#}rpm http://apt.sw.be redhat/8.0/en/i386 dag
-#rpm-src http://apt.sw.be redhat/8.0/en/i386 dag
 
 ### Dag Apt Repository for Red Hat 7.3
 %{!?rh7:#}rpm http://apt.sw.be redhat/7.3/en/i386 dag
-#rpm-src http://apt.sw.be redhat/7.3/en/i386 dag
 
 ### Dag Apt Repository for Red Hat Enterprise Linux 2.1
-%{!?el2:#}rpm http://apt.sw.be redhat/as2.1/en/i386 dag
-#rpm-src http://apt.sw.be redhat/as2.1/en/i386 dag
+%{!?el2:#}rpm http://apt.sw.be redhat/as2.1/en/%{_arch} dag
 
 ### Dag Apt Repository for Red Hat 6.2
 %{!?rh6:#}rpm http://apt.sw.be redhat/6.2/en/i386 dag
-#rpm-src http://apt.sw.be redhat/6.2/en/i386 dag
 EOF
 
 %{__cat} <<EOF >os.list
@@ -116,28 +108,25 @@ EOF
 ### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
 
 ### Red Hat Fedora Core 2
-%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/i386 core updates
-#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 core updates
+%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
 
 ### Red Hat Fedora Core 1
-%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates
-#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 core updates
+%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/%{_arch} core updates
+
+### Tao Linux 1.0
+#rpm http://dist.taolinux.org tao-1.0-%{_arch} os updates
 
 ### Red Hat Linux 9
 %{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 os updates
-#rpm-src http://ayo.freshrpms.net redhat/9/i386 os updates
 
 ### Red Hat Linux 8.0
 %{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 os updates
-#rpm-src http://ayo.freshrpms.net redhat/8.0/i386 os updates
 
 ### Red Hat Linux 7.3
 %{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 os updates
-#rpm-src http://ayo.freshrpms.net redhat/7.3/i386 os updates
 
 ### Red Hat Linux 6.2
 %{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
-#rpm-src http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
 EOF
 
 %{__cat} <<EOF >freshrpms.list
@@ -148,27 +137,21 @@ EOF
 
 ### Red Hat Fedora Core 2
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/i386 freshrpms
-#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 freshrpms
 
 ### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
-#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 
 ### Red Hat Linux 9
 %{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 freshrpms
-#rpm-src http://ayo.freshrpms.net redhat/9/i386 freshrpms
 
 ### Red Hat Linux 8.0
 %{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 freshrpms
-#rpm-src http://ayo.freshrpms.net redhat/8.0/i386 freshrpms
 
 ### Red Hat Linux 7.3
 %{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 freshrpms
-#rpm-src http://ayo.freshrpms.net redhat/7.3/i386 freshrpms
 
 ### Red Hat Linux 6.2
 %{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 freshrpms
-#rpm-src http://ayo.freshrpms.net redhat/6.2/i386 freshrpms
 EOF
 
 %{__cat} <<EOF >newrpms.list
@@ -176,19 +159,15 @@ EOF
 
 ### Red Hat Fedora Core 2
 %{!?fc2:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
-#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
 
 ### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
-#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 
 ### Red Hat Linux 9
 %{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
-#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
 
 ### Red Hat Linux 8.0
 %{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
-#rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
 EOF
 
 %{__cat} <<EOF >dries.list
@@ -196,11 +175,15 @@ EOF
 
 ### Red Hat Fedora Core 2
 %{!?fc2:#}rpm http://dries.studentenweb.org apt/fedora/fc2/i386 dries
-#rpm-src http://dries.studentenweb.org apt/fedora/fc2/i386 dries
 
 ### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://dries.studentenweb.org apt/fedora/fc1/i386 dries
-#rpm-src http://dries.studentenweb.org apt/fedora/fc1/i386 dries
+
+### Red Hat Enterprise Linux 3
+%{!?el3:#}rpm http://dries.studentenweb.org apt/fedora/el3/i386 dries
+
+### Red Hat Linux 9
+%{!?rh9:#}rpm http://dries.studentenweb.org apt/fedora/rh9/i386 dries
 EOF
 
 %{__cat} <<EOF >atrpms.list
@@ -209,23 +192,18 @@ EOF
 
 ### Red Hat Fedora Core 2
 #rpm http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
-#rpm-src http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
 
 ### Red Hat Fedora Core 1
 #rpm http://apt.physik.fu-berlin.de fedora/1/en/i386 at-testing
-#rpm-src http://apt.physik.fu-berlin.de fedora/1/en/i386 at-testing
 
 ### Red Hat Linux 9
 #rpm http://apt.physik.fu-berlin.de redhat/9/en/i386 at-testing
-#rpm-src http://apt.physik.fu-berlin.de redhat/9/en/i386 at-testing
 
 ### Red Hat Linux 8.0
 #rpm http://apt.physik.fu-berlin.de redhat/8.0/en/i386 at-testing
-#rpm-src http://apt.physik.fu-berlin.de redhat/8.0/en/i386 at-testing
 
 ### Red Hat Linux 7.3
 #rpm http://apt.physik.fu-berlin.de redhat/7.3/en/i386 at-testing
-#rpm-src http://apt.physik.fu-berlin.de redhat/7.3/en/i386 at-testing
 EOF
 
 %{__cat} <<'EOF' >apt.conf
@@ -293,9 +271,6 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 
 #%{__ln_s} -f %{_libdir}libapt-pkg-libc6.3-5.so.0 %{buildroot}%{_libdir}libapt-pkg-libc6.3-5.so.%{LIBVER}
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -326,11 +301,15 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/apt-pkg/
 #exclude %{_libdir}/*.la
 
 %changelog
+* Fri Jun 04 2004 Dag Wieers <dag@wieers.com> - 0.5.15cnc6-2
+- Make apt understand about architectures.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.5.15cnc6-1
 - Updated to release 0.5.15cnc6.
 
