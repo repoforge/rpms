@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: newrpms
+
 Summary: MPEG library for SDL
 Name: smpeg
 Version: 0.4.4
@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: SDL-devel, gtk+-devel
-#BuildRequires: automake14
+BuildRequires: automake14
 BuildRequires: automake, autoconf
 
 %description

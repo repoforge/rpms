@@ -13,11 +13,10 @@ Group: Amusements/Games
 URL: http://www.frozen-bubble.org/
 Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-#AutoReq: no
 Requires: perl-SDL >= 1.19.0, SDL, SDL_mixer >= 1.2.2
 BuildRequires: perl-SDL >= 1.19.0, SDL-devel, SDL_mixer-devel >= 1.2.2
-BuildRequires: desktop-file-utils, /usr/bin/find
 BuildConflicts: gimp-perl, gsl, perl-PDL
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Full-featured, colorful animated penguin eyecandy, 100 levels of 1p game,
@@ -42,28 +41,34 @@ editor.
     INSTALLSITEARCH=%{buildroot}%{perl_sitearch} \
     INSTALLVENDORARCH=%{buildroot}%{perl_sitearch}
 %{__rm} -f %{buildroot}%{perl_sitearch}/{build_fbsyms,perllocal.pod}
-/usr/bin/find %{buildroot} -name .xvpics | xargs rm -rf
+find %{buildroot} -name .xvpics | xargs rm -rf
 
 %{__install} -D -m644 icons/frozen-bubble-icon-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/frozen-bubble.png
 
-# Create the system menu entry
+# Install menu entry
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Frozen Bubble
-Comment=Arcade game similar to Puzzle Bobble where you need to launch bubbles and group them by color
+Comment=Arcade game where you need to launch bubbles and group them by color
 Exec=frozen-bubble
 Icon=frozen-bubble.png
-Terminal=0
+Terminal=false
 Type=Application
+Categories=Application;Game;ArcadeGame;
+Encoding=UTF-8
 EOF
 
+%if %{!?_without_freedesktop:1}0
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
+desktop-file-install \
+    --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
-    --add-category Application                  \
-    --add-category Game                         \
     %{name}.desktop
+%else
+%{__install} -D -m 0644 %{name}.desktop \
+    %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
+%endif
 
 # Quick fix in order to not have rpm pick up perl(Gimp) as a dependency
 %{__chmod} -x %{buildroot}%{_prefix}/share/%{name}/gfx/shoot/create.pl
@@ -79,10 +84,14 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_prefix}/bin/*
 %{_prefix}/share/%{name}
 %{_prefix}/share/man/man6/*
-%{_datadir}/applications/*%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{perl_sitearch}/auto/*
 %{perl_sitearch}/*.pm
+%if %{!?_without_freedesktop:1}0
+%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%else
+%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
+%endif
 
 
 %changelog

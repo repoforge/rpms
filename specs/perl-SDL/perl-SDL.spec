@@ -14,10 +14,11 @@ Requires: SDL >= 1.2.3, SDL_mixer >= 1.0.5, SDL_image >= 1.0.0
 Requires: SDL_net
 Requires: libjpeg, libpng, perl
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
-BuildRequires: libjpeg-devel, libpng-devel, perl, /usr/bin/find
+BuildRequires: SDL_ttf-devel, libjpeg-devel, libpng-devel, smpeg-devel
 # This is to pull in missing libs, to fix the "undefined symbol: _Znwj" problem
-#BuildRequires: XFree86-Mesa-libGLU
-BuildRequires: xorg-x11-Mesa-libGLU
+%{?!dist:BuildRequires: xorg-x11-Mesa-libGLU}
+%{?fc2:BuildRequires: xorg-x11-Mesa-libGLU}
+%{?fc1:BuildRequires: XFree86-Mesa-libGLU}
 BuildRequires: XFree86-devel
 
 %description
@@ -56,9 +57,10 @@ find %{buildroot}%{_prefix} -type f -print | \
 
 
 %changelog
-* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.20.0-5
+* Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 1.20.0-5
 - Rebuild for Fedora Core 2.
 - Replace XFree86-Mesa-libGLU build dependency with new xorg-x11-Mesa-libGLU.
+- Added SDL_ttf and smpeg to the build requirements.
 
 * Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 1.20.0-4
 - Fix the package at last by adding XFree86-Mesa-libGLU build dep, thanks to
