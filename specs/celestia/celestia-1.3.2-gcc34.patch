@@ -1,0 +1,32 @@
+--- celestia-1.3.2/src/celutil/resmanager.h.orig	2004-11-10 22:41:15.132616864 +0100
++++ celestia-1.3.2/src/celutil/resmanager.h	2004-11-10 22:42:26.605935972 +0100
+@@ -56,6 +56,9 @@
+     typedef std::map<T, ResourceHandle> ResourceHandleMap;
+     typedef std::map<std::string, ResourceType*> NameMap;
+ 
++    typedef typename ResourceHandleMap::value_type ResourceHandleMapValue;
++    typedef typename NameMap::value_type NameMapValue;
++
+     ResourceTable resources;
+     ResourceHandleMap handles;
+     NameMap loadedResources;
+@@ -72,7 +75,7 @@
+         {
+             ResourceHandle h = handles.size();
+             resources.insert(resources.end(), info);
+-            handles.insert(ResourceHandleMap::value_type(info, h));
++            handles.insert(ResourceHandleMapValue(info, h));
+             return h;
+         }
+     }
+@@ -105,7 +108,7 @@
+                     else
+                     {
+                         resources[h].state = ResourceLoaded;
+-                        loadedResources.insert(NameMap::value_type(resources[h].resolvedName, resources[h].resource));
++                        loadedResources.insert(NameMapValue(resources[h].resolvedName, resources[h].resource));
+                     }
+                 }
+             }
+
+

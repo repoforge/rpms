@@ -1,15 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dist: %{expand: %%define %dist 1}}
-
-%{?fc1:%define _without_arts 1}
-%{?rh9:%define _without_arts 1}
-%{?rh8:%define _without_arts 1}
-%{?rh7:%define _without_arts 1}
-
-%define desktop_vendor rpmforge
-
 Summary: Real-time visual space simulation
 Name: celestia
 Version: 1.3.2
@@ -18,15 +9,10 @@ License: GPL
 Group: Amusements/Graphics
 URL: http://www.shatters.net/celestia/
 Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
+Patch: celestia-1.3.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: freeglut-devel, kdelibs-devel
-BuildRequires: libpng-devel, libjpeg-devel, fam-devel
-BuildRequires: desktop-file-utils, unzip, gcc-c++, libstdc++-devel
-
-%{!?dist:BuildRequires: libselinux-devel}
-%{?fc3:BuildRequires: libselinux-devel}
-%{?fc2:BuildRequires: libselinux-devel}
-%{!?_without_arts:BuildRequires: arts-devel}
+BuildRequires: libgnomeui-devel, gtkglext-devel, freeglut-devel
+BuildRequires: libpng-devel, libjpeg-devel
 
 %description
 Celestia is a free real-time space simulation that lets you experience our
@@ -40,11 +26,12 @@ simple to navigate through the universe to the object you want to visit.
 
 %prep
 %setup
+%patch -p1 -b .gcc34
 
 
 %build
 %configure \
-    --with-kde \
+    --with-gnome \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --with-qt-libraries="${QTDIR}/lib"
 %{__make} %{?_smp_mflags}
@@ -53,16 +40,7 @@ simple to navigate through the universe to the object you want to visit.
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-export GCONF_SCHEMA_FILE_DIR="%{buildroot}%{_sysconfdir}/gconf/schemas"
 %{__make} install DESTDIR=%{buildroot}
-%find_lang %{name}
-
-desktop-file-install \
-    --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    --add-category Graphics \
-    --delete-original \
-    %{buildroot}%{_datadir}/applnk/Edutainment/Science/celestia.desktop
 
 
 %post
@@ -79,37 +57,34 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/celestia.sche
 %{__rm} -rf %{buildroot}
 
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog NEWS README TODO
-%{_bindir}/celestia
-%{_datadir}/applications/%{desktop_vendor}-celestia.desktop
-%dir %{_datadir}/apps/celestia/
-%config %{_datadir}/apps/celestia/celestia.cfg
-%config %{_datadir}/apps/celestia/bookmarks.xml
-%doc %{_datadir}/apps/celestia/controls.txt
-%doc %{_datadir}/apps/celestia/COPYING
-%config %{_datadir}/apps/celestia/celestiaui.rc
-%{_datadir}/apps/celestia/*.cel
-%{_datadir}/apps/celestia/celestia-splash.jpg
-%{_datadir}/apps/celestia/celestia.png
-%{_datadir}/apps/celestia/data/
-%{_datadir}/apps/celestia/extras/
-%{_datadir}/apps/celestia/favicons/
-%{_datadir}/apps/celestia/fonts
-%doc %{_datadir}/apps/celestia/manual
-%{_datadir}/apps/celestia/models/
-%{_datadir}/apps/celestia/shaders/
-%{_datadir}/apps/celestia/textures/
-%config %{_datadir}/config/celestiarc
-%doc %{_defaultdocdir}/HTML/en/celestia/
-%{_datadir}/icons/hicolor/*/apps/celestia.png
-%{_datadir}/mimelnk/application/x-celestia-script.desktop
-%{_datadir}/services/celestia.protocol
+%doc AUTHORS ChangeLog COPYING NEWS README TODO controls.txt
 %{_sysconfdir}/gconf/schemas/celestia.schemas
+%{_bindir}/celestia
+%{_datadir}/applications/celestia.desktop
+%dir %{_datadir}/celestia/
+%config %{_datadir}/celestia/celestia.cfg
+%{_datadir}/celestia/celestia.png
+%doc %{_datadir}/celestia/controls.txt
+%exclude %{_datadir}/celestia/COPYING
+%{_datadir}/celestia/data/
+%{_datadir}/celestia/*.cel
+%{_datadir}/celestia/extras/
+%{_datadir}/celestia/fonts/
+%doc %{_datadir}/celestia/manual/
+%{_datadir}/celestia/models/
+%{_datadir}/celestia/shaders/
+%{_datadir}/celestia/textures/
+%{_datadir}/pixmaps/celestia.png
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-1
+- Added GCC 3.4 patch from Marius L. Jøhndal.
+- Back from the kde to the gnome version.
+- Remove translations, as they seem to be only for the kde version (?).
+
 * Fri Aug 27 2004 Dag Wieers <dag@wieers.com> -  1.3.2-1
 - Updated to release 1.3.2.
 
