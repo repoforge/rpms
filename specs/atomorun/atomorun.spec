@@ -5,6 +5,17 @@
 # i've send a description of the problem to the author but he didn't respond 
 # to the last mail
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_alsa 1}
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh8:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?el2:%define _without_alsa 1}
+%{?rh6:%define _without_alsa 1}
+%{?yd3:%define _without_alsa 1}
+
 %define prever pre2
 
 Summary: OpenGL Jump&Run game where you have to flee an exploding nuclear bomb
@@ -23,6 +34,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel
 BuildRequires: libtiff-devel, libvorbis-devel
 BuildRequires: libvorbis-devel
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 Atomorun is a OpenGL Jump&Run game where you have to flee an exploding

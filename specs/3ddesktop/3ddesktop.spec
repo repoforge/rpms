@@ -9,7 +9,7 @@
 
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
-Version: 0.2.6
+Version: 0.2.7
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -57,6 +57,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/3ddesktop/
 
 %changelog
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 0.2.7-1
+- Update to release 0.2.7.
+
 * Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> 0.2.6-1
 - update to 0.2.6
 

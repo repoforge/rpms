@@ -4,6 +4,17 @@
 # Screenshot: http://scret.sourceforge.net/shot1.png
 # ScreenshotURL: http://scret.sourceforge.net/
 
+%{?dist: %{expand: %%define %dist 1}}
+                                                                                
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: musical score reading trainer
 Name: scorereadingtrainer
 Version: 0.1.3
@@ -19,9 +30,10 @@ Source: http://dl.sf.net/scret/ScoreReadingTrainer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel, fam-devel
+BuildRequires: qt-devel, fam-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?fc2:BuildRequires:libselinux-devel}
-Requires: kdelibs
 
 %description
 Score Reading Trainer helps you improve your (musical) score reading skills
@@ -33,23 +45,23 @@ to press the matching note for it.
 %setup -n ScoreReadingTrainer-%{version}
 
 %build
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %configure
 %{?fc1:for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.."/version="3.1"/g;' $i; done}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 export DESTDIR=$RPM_BUILD_ROOT
 %{__make} install-strip
-%find_lang %{name}
+# %find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/ScoreReadingTrainer

@@ -2,6 +2,8 @@
 
 # Authority: dries
 # Upstream: 
+# Screenshot: http://www.cs.aau.dk/~olau/monster-masher/level-23.jpg
+# ScreenshotURL: http://www.cs.aau.dk/~olau/monster-masher/screenshots.html
 
 Summary: Mash the monsters with stone blocks
 Name: monstermasher
@@ -17,10 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.cs.aau.dk/~olau/monster-masher/source/monster-masher-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel, gtk+-devel
-
-# Screenshot: http://www.cs.aau.dk/~olau/monster-masher/level-23.jpg
-# ScreenshotURL: http://www.cs.aau.dk/~olau/monster-masher/screenshots.html
+BuildRequires: intltool, perl(XML::Parser), gtk2-devel, gtk+-devel 
 
 %description
 Monster Masher is an action game for the Gnome desktop environment. The

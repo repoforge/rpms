@@ -4,8 +4,8 @@
 
 Summary: A command line Jabber client written in Python
 Name: imcom
-Version: 1.32
-Release: 2
+Version: 1.33
+Release: 1
 License: Other
 Group: Applications/Internet
 URL: http://imcom.floobin.cx/
@@ -59,6 +59,9 @@ IMCom supports the following Jabber technologies:
 %{_mandir}/man1/imcom.1.gz
 
 %changelog
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 1.33-1
+- Update to release 1.33.
+
 * Mon Jan 26 2004 Dries Verachtert <dries@ulyssis.org> 1.32-2
 - cleanup of spec file
 

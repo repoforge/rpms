@@ -19,6 +19,7 @@ Source: http://www.dtek.chalmers.se/~d3august/xt/dl/xtraceroute-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bind-utils, traceroute, gettext, gtk2-devel, gtk+-devel
+BuildRequires: gdk-pixbuf-devel
 
 %description
 Xtraceroute is a graphical version of the traceroute program, which traces

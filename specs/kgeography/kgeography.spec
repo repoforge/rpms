@@ -23,8 +23,8 @@ BuildRequires: gettext, libart_lgpl-devel
 BuildRequires: libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, gcc
 BuildRequires: kdelibs-devel, make, gcc-c++
-BuildRequires:  XFree86-devel, qt-devel
-
+BuildRequires: XFree86-devel, qt-devel
+BuildRequires: desktop-file-utils
 
 %description
 KGeography is a geography learning tool. Right now it has three usage modes: 

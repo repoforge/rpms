@@ -5,11 +5,11 @@
 # Screenshot: http://kpogre.sourceforge.net/kpogre1.png
 # ScreenshotURL: http://kpogre.sourceforge.net/screenshots.htm
 
-%define real_version 0.98
+%define real_version 1.2.4
 
 Summary: PostgreSQL graphical frontend
 Name: kpogre
-Version: 0.9.8
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -20,7 +20,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/kpogre/kpogre-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch: fc2-compile-fixes.patch
+# Patch: fc2-compile-fixes.patch
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
@@ -62,5 +62,8 @@ tables and views is easily accessible in a tree view.
 %{_datadir}/doc/HTML/en/kpogre
 
 %changelog
+- Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1
+- Update to release 1.2.4.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1
 - Initial package.

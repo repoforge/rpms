@@ -35,6 +35,7 @@ Source: http://dl.sf.net/orsa/orsa-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: fftw-devel, qt-devel, readline-devel, gcc-c++
+BuildRequires: desktop-file-utils
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 

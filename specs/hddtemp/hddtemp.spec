@@ -2,12 +2,12 @@
 
 # Authority: dries
 
-%define real_version 0.3-beta11
+%define real_version 0.3-beta12
 
 Summary: Display the temperature of harddisks
 Name: hddtemp
 Version: 0.3
-Release: 0.beta11
+Release: 0.beta12
 License: GPL
 Group: Applications/System
 URL: http://coredump.free.fr/linux/hddtemp.php
@@ -15,7 +15,7 @@ URL: http://coredump.free.fr/linux/hddtemp.php
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://coredump.free.fr/linux/hddtemp-%{real_version}.tar.gz
+Source: http://www.guzu.net/linux/hddtemp-%{real_version}.tar.bz2
 Source1: http://coredump.free.fr/linux/hddtemp.db
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -51,5 +51,8 @@ Note: only recent hard drives have a temperature sensor.
 %{_datadir}/hddtemp
 
 %changelog
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.3-0.beta12
+- Update to release 0.3-beta12.
+
 * Tue Jul 27 2004 Dries Verachtert <dries@ulyssis.org> - 0.3-0.beta11
 - Initial package.

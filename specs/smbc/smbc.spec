@@ -45,7 +45,7 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %defattr(-, root, root, 0755)
 %doc COPYING FAQ NEWS README doc/sample.smbcrc
 %{_bindir}/*
-%exclude %{_datadir}/doc
+# %exclude %{_datadir}/doc
 
 %changelog
 * Sun Oct 03 2004 Dries Verachtert <dries@ulyssis.org> 1.0.0-2

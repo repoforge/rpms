@@ -63,7 +63,7 @@ source  /etc/profile.d/qt.sh
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_version}   \
+desktop-file-install --vendor %{desktop_vendor}   \
 	--dir %{buildroot}%{_datadir}/applications \
 	--add-category X-Red-Hat-Extras            \
 	apollon.desktop
