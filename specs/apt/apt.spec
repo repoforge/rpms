@@ -8,7 +8,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15cnc6
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
@@ -21,6 +21,7 @@ Patch0: apt-0.5.15cnc6-rpmpriorities.patch
 Patch1: apt-0.5.15cnc5-nodignosig.patch
 Patch2: apt-0.5.15cnc4-nopromote.patch
 #Patch3: apt-0.5.5cnc6-rpm402.patch
+Patch4: apt-0.5.15cnc6-rpmhandler.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 4.0, zlib-devel, gettext
@@ -60,6 +61,7 @@ you will need to install %{name}-devel.
 #patch1 -b .nodignosig
 #patch2 -p1 -b .nopromote
 #{?rh6:%patch3 -b .402}
+%patch4 -b .rpmhandler
 
 %{?fc2:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC2 APT-HTTP/1.3|' methods/http.cc}
 %{?fc1:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC1 APT-HTTP/1.3|' methods/http.cc}
@@ -180,10 +182,10 @@ EOF
 %{!?fc1:#}rpm http://dries.studentenweb.org apt/fedora/fc1/i386 dries
 
 ### Red Hat Enterprise Linux 3
-%{!?el3:#}rpm http://dries.studentenweb.org apt/fedora/el3/i386 dries
+#rpm http://dries.studentenweb.org apt/fedora/el3/i386 dries
 
 ### Red Hat Linux 9
-%{!?rh9:#}rpm http://dries.studentenweb.org apt/fedora/rh9/i386 dries
+#rpm http://dries.studentenweb.org apt/fedora/rh9/i386 dries
 EOF
 
 %{__cat} <<EOF >atrpms.list
@@ -307,6 +309,9 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 0.5.15cnc6-3
+- Fix for apt-bug triggered by mach.
+
 * Fri Jun 04 2004 Dag Wieers <dag@wieers.com> - 0.5.15cnc6-2
 - Make apt understand about architectures.
 

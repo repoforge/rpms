@@ -1,0 +1,22 @@
+--- apt-pkg/rpm/rpmhandler.cc.orig	2004-03-05 12:29:09.000000000 +0100
++++ apt-pkg/rpm/rpmhandler.cc	2004-07-01 13:58:36.023264872 +0200
+@@ -210,6 +210,9 @@
+    : sDirName(DirName)
+ {
+    ID = DirName;
++#if RPM_VERSION >= 0x040100
++   TS = NULL;
++#endif
+    Dir = opendir(sDirName.c_str());
+    if (Dir == NULL)
+       return;
+@@ -253,7 +256,8 @@
+    if (HeaderP != NULL)
+       headerFree(HeaderP);
+ #if RPM_VERSION >= 0x040100
+-   rpmtsFree(TS);
++   if (TS != NULL)
++      rpmtsFree(TS);
+ #endif
+    if (Dir != NULL)
+       closedir(Dir);
