@@ -16,7 +16,6 @@ Source: http://dl.sf.net/zapping/mp1e-%{version}.tar.bz2
 Patch0: mp1e-1.9.3-common.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: esound-devel, audiofile-devel
 #BuildRequires: alsa-lib-devel >= 0.9.0
 
@@ -44,7 +43,8 @@ you will need to install %{name}-devel.
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-dependency-tracking \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
+	--with-pic \
 	--enable-shared \
 	--enable-static
 %{__make} %{?_smp_mflags}
