@@ -1,0 +1,16 @@
+--- toolkit/mozapps/extensions/src/nsExtensionManager.js.in.orig	2004-08-08 03:49:04.689354992 +0200
++++ toolkit/mozapps/extensions/src/nsExtensionManager.js.in	2004-08-08 03:50:24.266257464 +0200
+@@ -1587,9 +1587,13 @@
+   
+   _checkForGlobalInstalls: function (aPath, aItemType)
+   {
++    var ioServ = Components.classes["@mozilla.org/network/io-service;1"]
++                           .getService(Components.interfaces.nsIIOService);
++    var uri = ioServ.newURI(aPath, null, null);
+     // First see if the path supplied is a file path
+     var file = Components.classes["@mozilla.org/file/local;1"]
+                          .createInstance(Components.interfaces.nsILocalFile);
++    aPath = uri.path;
+     try {
+       file.initWithPath(aPath);
+     }

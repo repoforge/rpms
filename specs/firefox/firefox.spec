@@ -183,12 +183,12 @@ export MOZ_PHOENIX=1
 %{__install} -d -m0755 %{buildroot}%{_libdir}
 %{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
-%{__install} -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/
-%{__install} -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/US/
-%{__install} -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/chrome/icons/default/default.xpm
-%{__install} -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/icons/default.xpm
+%{__install} -D -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/bookmarks.html
+%{__install} -D -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/US/bookmarks.html
+%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/chrome/icons/default/default.xpm
+%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/icons/default.xpm
 
-%{__install} -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
+%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 %{__perl} -pi -e 's|\$MOZ_DIST_BIN|%{_libdir}/firefox|g;' %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 
 %if %{?_without_gtk2:1}0
@@ -209,7 +209,7 @@ fi
 %endif
 
 ### Clean up buildroot
-find %{buildroot}%{_libdir}/firefox/chrome/ -type d -maxdepth 1 -exec %{__rmdir} --ignore-fail-on-non-empty {} \; || :
+find %{_libdir}/firefox/chrome/*/ -type d -exec %{__rmdir} -p {} \; &>/dev/null
 
 %post
 /sbin/ldconfig 2>/dev/null

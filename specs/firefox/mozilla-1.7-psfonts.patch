@@ -1,0 +1,28 @@
+--- mozilla/modules/libpref/src/init/all.js.foo	2004-06-18 13:16:32.000000000 -0400
++++ mozilla/modules/libpref/src/init/all.js	2004-06-18 13:17:28.000000000 -0400
+@@ -1776,8 +1776,10 @@
+ pref("print.postscript.nativefont.ar",             "");
+ pref("print.postscript.nativefont.el",             "");
+ pref("print.postscript.nativefont.he",             "");
+-pref("print.postscript.nativefont.ja",             "");
+-pref("print.postscript.nativefont.ko",             "");
++pref("print.postscript.nativecode.ja",             "euc-jp");
++pref("print.postscript.nativefont.ja",             "Ryumin-Light-EUC-H");
++pref("print.postscript.nativecode.ko",             "euc-kr");
++pref("print.postscript.nativefont.ko",             "Baekmuk-Gulim-KSC-EUC-H");
+ pref("print.postscript.nativefont.th",             "");
+ pref("print.postscript.nativefont.tr",             "");
+ pref("print.postscript.nativefont.x-baltic",       "");
+@@ -1786,8 +1788,10 @@
+ pref("print.postscript.nativefont.x-unicode",      "");
+ pref("print.postscript.nativefont.x-user-def",     "");
+ pref("print.postscript.nativefont.x-western",      "");
+-pref("print.postscript.nativefont.zh-CN",          "");
+-pref("print.postscript.nativefont.zh-TW",          "");
++pref("print.postscript.nativecode.zh-CN", "gb18030");
++pref("print.postscript.nativefont.zh-CN", "MSungGBK-Light-GBK2K-H");
++pref("print.postscript.nativecode.zh-TW", "big5");
++pref("print.postscript.nativefont.zh-TW", "ShanHeiSun-Light-B5-H");
+ pref("print.postscript.nativefont.zh-HK",          "");
+ 
+ # XP_UNIX
