@@ -28,7 +28,7 @@ Sulk is a board game, based on Space Hulk published by Games Workshop. It's
 made in Python with Pygame.
 
 %prep
-%setup
+%setup -n sulk-%{real_version}
 %patch -p1
 
 %build
