@@ -6,13 +6,13 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: %{?date:0.%{date}.}2b
+Release: %{?date:0.%{date}.}3b
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
 Source: http://libmpeg2.sourceforge.net/files/%{name}-%{?date:date}%{!?date:%{version}b}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: XFree86, /sbin/ldconfig
+Requires(post,postun): /sbin/ldconfig
 BuildRequires: XFree86-devel, pkgconfig, gcc-c++
 
 %description
@@ -34,20 +34,27 @@ libmpeg2.
 %prep
 %setup -n %{name}-%{version}%{?date:-cvs}
 
+
 %build
 %configure --enable-shared --disable-sdl
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -55,6 +62,7 @@ libmpeg2.
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
+
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -64,7 +72,11 @@ libmpeg2.
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 
+
 %changelog
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-3b.fr
+- Removed explicit dependency on XFree86 for the binary package.
+
 * Thu Feb  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-2b.fr
 - Update to 0.4.0b.
 

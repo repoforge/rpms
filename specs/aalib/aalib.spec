@@ -14,7 +14,6 @@ Source: http://dl.sf.net/aa-project/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post,postun): /sbin/ldconfig
 Requires(post,preun): /sbin/install-info
-Requires: XFree86, ncurses, gpm
 BuildRequires: XFree86-devel, ncurses-devel, gpm-devel
 
 %description
@@ -97,8 +96,9 @@ fi
 
 
 %changelog
-* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-4.fr
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-4.fr
 - Minor spec cleanups.
+- Removed explicit dependencies for the binay package.
 
 * Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.4rc5-4.fr
 - Rebuild for Fedora Core 1.

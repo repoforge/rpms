@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define libname libxine1
-%define libver  1-rc3a
+%define libver  1-rc3b
 %define apiver  1.0.0
 
 %define __libtoolize :
@@ -10,13 +10,13 @@
 Summary: Core library for the xine video player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.8.rc3a
+Release: 0.10.rc3b.fr
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/%{name}-%{libver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: XFree86, zlib, libvorbis, SDL, glut
+Requires: zlib, libvorbis, SDL
 Requires: libpng, libmng
 Requires: libdvdcss
 %{?_with_rte:Requires: rte}
@@ -88,6 +88,7 @@ use the Xine library.
 %prep
 %setup -n %{name}-%{libver}
 
+
 %build
 %configure \
     --with-pic \
@@ -95,12 +96,13 @@ use the Xine library.
     %{!?_with_ext-dvdnav:--with-included-dvdnav}
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{libname}
 
 # Strip all those libs!
-strip \
+%{__strip} \
     %{buildroot}%{_libdir}/*.so* \
     %{buildroot}%{_libdir}/xine/plugins/%{apiver}/*.so \
     || :
@@ -108,12 +110,17 @@ strip \
 # Remove all those unused docs
 %{__rm} -rf %{buildroot}%{_docdir}/xine || :
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{libname}.lang
 %defattr(-, root, root, 0755)
@@ -121,6 +128,7 @@ strip \
 %{_libdir}/*.so.*
 %{_libdir}/xine
 %{_datadir}/xine
+
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -133,7 +141,11 @@ strip \
 %{_datadir}/aclocal/*
 %{_mandir}/man1/*
 
+
 %changelog
+* Thu Mar 18 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.9.rc3b.fr
+- Update to 1.0rc3b.
+
 * Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.8.rc3a.fr
 - Rebuild against new libfame.
 
