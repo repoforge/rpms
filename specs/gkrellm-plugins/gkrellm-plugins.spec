@@ -92,7 +92,7 @@ Group: Applications/System
 Requires: gkrellm >= 2.1.0
 Requires: perl(LWP::UserAgent)
 # wmhdplop
-BuildRequires: imlib-devel
+BuildRequires: imlib2-devel
 
 %description misc
 This package contains the following amusements plugins for GKrellM, the GNU
@@ -199,8 +199,11 @@ export CXXFLAGS="%{optflags}"
 %files misc
 %defattr(-, root, root, 0755)
 %{gkplugindir}/seti.so
+# Code needs cleanup to compile on non x86
+%ifarch %{ix86}
 %{gkplugindir}/gkrelldnet.so
 %{_bindir}/dnetw
+%endif
 %{gkplugindir}/gkrellmoon.so
 %{gkplugindir}/gkrellaclock.so
 %{gkplugindir}/gkrellweather.so
@@ -223,7 +226,10 @@ export CXXFLAGS="%{optflags}"
 %{gkplugindir}/multiping.so
 %{gkplugindir}/pinger
 %{gkplugindir}/gkrellshoot.so
+# Code needs cleanup to compile on non x86
+%ifarch %{ix86}
 %{gkplugindir}/gkleds.so
+%endif
 %{gkplugindir}/cpufreq.so
 %ifarch %ix86
 %{gkplugindir}/gkx86info.so
@@ -235,6 +241,10 @@ export CXXFLAGS="%{optflags}"
 
 
 %changelog
+* Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 2.2.4-1
+- Fix build dep to imlib2-devel for hdplop.
+- Disable non building dnetc and leds for non-x86. Later fixing required.
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 2.2.4-1
 - Updated shoot, cpufreq and volume plugins.
 - Updated file name for gk86info2.
