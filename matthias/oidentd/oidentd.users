@@ -1,9 +1,0 @@
-# Don't forget to use the -m flag!
-192.168.1.1                    someone     UNIX
-192.168.1.2                    noone       WINDOWS
-192.168.1.1/32                 user1       UNIX
-192.168.1.0/24                 user3       UNIX
-192.168.0.0/16                 user4       UNIX
-somehost                       user5       UNIX
-10.0.0.0/8                     user6       UNIX
-192.168.1.0/255.255.255.0      user7       UNIX

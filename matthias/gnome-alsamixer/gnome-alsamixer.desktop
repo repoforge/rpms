@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=ALSA Audio Mixer
-Comment=Adjust the volume level
-Exec=gnome-alsamixer
-Icon=gnome-alsamixer/gnome-alsamixer-icon.png
-Terminal=false
-Type=Application

@@ -1,6 +1,0 @@
---- bluez-bluefw-0.9/hotplug/bluefw.old	2002-08-21 17:22:40.000000000 +0100
-+++ bluez-bluefw-0.9/hotplug/bluefw	2003-04-24 22:51:50.000000000 +0100
-@@ -1,2 +1,2 @@
- #!/bin/sh
--exec /sbin/bluefw usb $DEVICE
-+exec /usr/sbin/bluefw usb $DEVICE

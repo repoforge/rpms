@@ -1,8 +1,0 @@
-# $Id: lircd.logrotate,v 1.1 2004/02/26 17:54:30 thias Exp $
-
-/var/log/lircd {
-    missingok
-    postrotate
-        [ -e /var/lock/subsys/lircd ] && /bin/kill -HUP `/bin/cat /var/run/lircd.pid` || /bin/true
-    endscript
-}

@@ -1,3 +1,0 @@
-USER=root
-PROGRAM=/usr/bin/gtoaster-root
-SESSION=true

@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=Mozilla Mail
-Comment=Read Mail with Mozilla
-Exec=/usr/bin/mozilla -mail
-Icon=mozilla-mail-icon
-Terminal=0
-Type=Application
-Categories=X-Red-Hat-Extra;Application;Network;
