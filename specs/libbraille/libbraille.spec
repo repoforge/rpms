@@ -83,6 +83,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 %{_libdir}/libbraille/*.so
 %exclude %{_libdir}/*.la
+%exclude %{_libdir}/libbraille/*.la
 
 %changelog
 * Sat Apr 24 2004 Dries Verachtert <dries@ulyssis.org> 0.12.0-1
