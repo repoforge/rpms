@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name GD
@@ -7,7 +6,7 @@
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
 Version: 1.41
-Release: 0
+Release: 1
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD/
@@ -29,6 +28,8 @@ and emit the drawings as PNG files.
 
 %prep
 %setup -n %{real_name}-%{version}
+
+%{__perl} -pi.orig -e 's|^#!/.*bin/perl|#!%{__perl}|i;' *.pl
 
 %build
 echo "y\ny\ny\ny\n" |
@@ -63,5 +64,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Apr 14 2004 Dag Wieers <dag@wieers.com> - 1.41-1
+- Fixed /usr/local/bin/perl in qd.pl. (Tom Diehl)
+
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.41-0
 - Initial package. (using DAR)
