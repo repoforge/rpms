@@ -3,7 +3,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15cnc6
-Release: 0
+Release: 1
 Group: System Environment/Base
 License: GPL
 URL: https://moin.conectiva.com.br/AptRpm
@@ -18,6 +18,7 @@ Patch0: apt-0.5.5cnc1-freshrpms.patch
 Patch1: apt-0.5.15cnc6-rpmpriorities.patch
 Patch10: apt-0.5.15cnc5-nodigest.patch
 Patch50: apt-0.5.5cnc6-rpm402.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: rpm >= 4.0, libstdc++
 # Common to all
 BuildRequires: gcc-c++, rpm-devel >= 4.0, zlib-devel, libstdc++-devel
@@ -31,9 +32,8 @@ BuildRequires: gettext, ncurses-devel, readline-devel
 #BuildRequires: bzip2-devel, docbook-utils, beecrypt-devel, libelf-devel
 # For Red Hat Linux 8.0 & 9, Fedora Core
 BuildRequires: bzip2-devel, docbook-utils, beecrypt-devel, elfutils-devel
-# For Fedora Core Development
-#BuildRequires: libselinux-devel
-BuildRoot: %{_tmppath}/%{name}-root
+# For Fedora Core 2
+BuildRequires: libselinux-devel
 
 %description
 A port of Debian's apt tools for RPM based distributions, or at least
@@ -79,16 +79,15 @@ with APT's libapt-pkg package manipulation library, modified for RPM.
 %find_lang %{name}
 
 # The config files and empty dirs
-mkdir -p %{buildroot}%{_sysconfdir}/apt
-mkdir    %{buildroot}%{_sysconfdir}/apt/{apt.conf.d,sources.list.d}
-cp -a rpmpriorities %{buildroot}%{_sysconfdir}/apt/
-cp -a %{SOURCE1} %{SOURCE2} %{buildroot}%{_sysconfdir}/apt/
-cp -a %{SOURCE3} .
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/apt/{apt.conf.d,sources.list.d}
+%{__cp} -a rpmpriorities %{buildroot}%{_sysconfdir}/apt/
+%{__cp} -a %{SOURCE1} %{SOURCE2} %{buildroot}%{_sysconfdir}/apt/
+%{__cp} -a %{SOURCE3} .
 %ifarch %ix86
-    cp -a %{SOURCE4} %{buildroot}%{_sysconfdir}/apt/sources.list
+    %{__cp} -a %{SOURCE4} %{buildroot}%{_sysconfdir}/apt/sources.list
 %else
   %ifarch ppc
-    cp -a %{SOURCE5} %{buildroot}%{_sysconfdir}/apt/sources.list
+    %{__cp} -a %{SOURCE5} %{buildroot}%{_sysconfdir}/apt/sources.list
   %else
     echo "# No repositories for %{arch} are available, sorry." \
     > %{buildroot}%{_sysconfdir}/apt/sources.list
@@ -96,8 +95,8 @@ cp -a %{SOURCE3} .
 %endif
 
 # Empty cache and state directories
-mkdir -p %{buildroot}%{_localstatedir}/cache/apt/archives/partial
-mkdir -p %{buildroot}%{_localstatedir}/state/apt/lists/partial
+%{__mkdir_p} %{buildroot}%{_localstatedir}/cache/apt/archives/partial
+%{__mkdir_p} %{buildroot}%{_localstatedir}/state/apt/lists/partial
 
 
 %post
@@ -146,6 +145,9 @@ mkdir -p %{buildroot}%{_localstatedir}/state/apt/lists/partial
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc6-1
+- Rebuilt for Fedora Core 2.
+
 * Tue Mar 23 2004 Matthias Saou <http://freshrpms.net/> - 0.5.15cnc6-0.1
 - Update to 0.5.15cnc6.
 - Updated rpmpriorities patch.

@@ -5,17 +5,23 @@
 #
 # $Id$
 
+# Fedora Linux 2
+rpm http://ayo.freshrpms.net fedora/linux/2/i386 core updates freshrpms
+#rpm http://ayo.freshrpms.net fedora/linux/2/i386 tupdates
+#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 core updates freshrpms
+#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 tupdates
+
+# Fedora Linux 1
+#rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates freshrpms
+#rpm http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 core updates freshrpms
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
+
 # Fedora Linux Development
 #rpm http://ayo.freshrpms.net fedora/linux/development/i386 core
 #rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 #rpm-src http://ayo.freshrpms.net fedora/linux/development/i386 core
 #rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
-
-# Fedora Linux 1
-rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates freshrpms
-#rpm http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
-#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 core updates freshrpms
-#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
 
 # Red Hat Linux 9
 #rpm http://ayo.freshrpms.net redhat/9/i386 os updates freshrpms
