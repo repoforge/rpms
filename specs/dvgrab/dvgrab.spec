@@ -12,7 +12,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://kino.schirmacher.de/filemanager/download/15/%{name}-%{version}.tar.gz
-Buildroot: %{_tmppath}/root-%{name}-%{name}
+BuildRoot: %{_tmppath}/root-%{name}-%{name}
 Prefix: %{_prefix}
 
 BuildRequires: libraw1394-devel, libavc1394-devel

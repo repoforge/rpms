@@ -11,8 +11,8 @@ URL: http://www.ftpproxy.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ftpproxy.org/download/%{name}-%{version}.tgz
-Buildroot: %{_tmppath}/root-%{name}-%{version}
+Source: http://www.ftpproxy.org/download/ftpproxy-%{version}.tgz
+BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 BuildRequires: ctags
