@@ -4,7 +4,7 @@
 Summary: Graphical User Interface based on SDL
 Name: paragui
 Version: 1.0.4
-Release: 0
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.bms-austria.com/projects/paragui/
@@ -13,6 +13,7 @@ Packager: Rudolf Kastl <che666 at uni.de>
 Vendor: http://newrpms.sunsite.dk/
 
 Source: http://savannah.nongnu.org/download/paragui/paragui-%{version}.tar.gz
+Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, libpng-devel, SDL_image-devel, libtiff-devel, freetype-devel, 
@@ -71,5 +72,8 @@ applications which will use paragui, a GUI on top of SDL.
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Mon Dec 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1
+- Added a small patch so moagg builds ok.
+
 * Wed Oct 30 2002 Che
 - initial rpm release
