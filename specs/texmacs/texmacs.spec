@@ -4,6 +4,17 @@
 # Screenshot: http://www.texmacs.org/Samples/texmacs-1.png
 # ScreenshotURL: http://www.texmacs.org/tmweb/home/screenshots.en.html
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
 Version: 1.0.4.2
@@ -18,7 +29,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: tetex-latex, guile-devel
+BuildRequires: tetex-latex, guile-devel, gcc-c++
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 GNU TeXmacs is a free scientific text editor, which was both inspired by TeX
