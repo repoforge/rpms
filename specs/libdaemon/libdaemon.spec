@@ -21,7 +21,7 @@ Source: http://0pointer.de/lennart/projects/libdaemon/libdaemon-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?el3:BuildRequires: lynx}
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, doxygen
 
 %description
 libdaemon is a leightweight C library which eases the writing of UNIX daemons.
