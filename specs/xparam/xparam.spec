@@ -65,6 +65,7 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO BUGS XPARAM-VERSION doc
 %{_libdir}/*.so.*
 %{_infodir}/xparam*
+%exclude %{_infodir}/dir
 
 %files devel
 %{_includedir}/xparam/*.h
