@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: David Boucher <bouda1$wanadoo,fr>
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical Type1 font editor
 Name: gribouy
 Version: 0.0.8
@@ -50,7 +52,7 @@ EOF
 %{__rm} -rf %{buildroot}%{_datadir}/applications/*.desktop
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	gribouy.desktop

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Samuel Abels <spam$debain,org>
 
+%define desktop_vendor rpmforge
+
 %define real_version 1.2.0-1
 
 Summary: GUI for making IP address based calculations
@@ -57,7 +59,7 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	gip.desktop

@@ -7,6 +7,8 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Computer DJing system
 Name: beatforce
 Version: 0.2.0
@@ -38,7 +40,7 @@ database, a mixer with manual and auto-fade and some more features.
 ### FIXME: Make it build with vrb 0.4.0. (Fix upstream please)
 %{__perl} -pi.orig -e 's|^(\s+vrb)(\s+vrb_buf;)|$1_p$2|;' src/ringbuffer.h
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >beatforce.desktop
 [Desktop Entry]
 Name=Beat Force DJ System
 Comment=Mix beats and sounds realtime
@@ -65,7 +67,7 @@ EOF
         %{__install} -D -m0644 beatforce.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/beatforce.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		beatforce.desktop
@@ -83,8 +85,8 @@ EOF
 %{_bindir}/beatforce
 %{_libdir}/beatforce/
 %{_datadir}/beatforce/
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-beatforce.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/beatforce.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-beatforce.desktop}
 
 %changelog
 * Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.2.0-1

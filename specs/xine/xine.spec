@@ -4,7 +4,7 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
-%define desktop_vendor freshrpms
+%define desktop_vendor rpmforge
 
 Summary: Free multimedia player
 Name: xine
@@ -78,7 +78,7 @@ EOF
 %{__make} install DESTDIR=%{buildroot}
 %find_lang xine-ui
 
-%{__install} -D -m0644 xine.applications %{buildroot}%{_datadir}/applications/xine.applications
+%{__install} -D -m0644 xine.applications %{buildroot}%{_datadir}/application-registry/xine.applications
 
 # Remove unpackaged files
 find %{buildroot} -name "xitk*" | xargs rm -rf || :
@@ -101,10 +101,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %post
-update-desktop-database %{_datadir}/applications
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %postun
-update-desktop-database %{_datadir}/applications
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %files -f xine-ui.lang

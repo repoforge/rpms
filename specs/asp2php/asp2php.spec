@@ -25,6 +25,7 @@ Source: http://downloads.mikekohn.net/asp2php/asp2php-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel
+%{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 asp2php converts WWW Active Server Pages (ASP) files that run on the Microsoft

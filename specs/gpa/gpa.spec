@@ -3,6 +3,7 @@
 # Upstream: <gnupg-devel$gnupg,org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%define desktop_vendor rpmforge
 
 Summary: Graphical user interface for the GnuPG
 Name: gpa
@@ -57,7 +58,7 @@ EOF
 	%{__install} -D -m0644 gpa.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpa.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		gpa.desktop

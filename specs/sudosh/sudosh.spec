@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: Douglas Hanks
 
@@ -9,7 +8,7 @@ Version: 1.4.1
 Release: 1
 License: Open Software License
 Group: Applications/System
-URL: http://sourceforge.net/projects/sudosh
+URL: http://sourceforge.net/projects/sudosh/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -44,8 +43,8 @@ actual session output.
 
 %files
 %defattr(-, root, root, 0755)
-%doc NEWS README AUTHORS COPYING INSTALL
-%{_bindir}/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%{_bindir}/sudosh
 
 %changelog
 * Mon Nov 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
