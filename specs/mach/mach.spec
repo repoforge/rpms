@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Thomas Vander Stichele <thomas@apestaart.org>
 
 %define logmsg logger -t mach/rpm
@@ -15,7 +14,7 @@ URL: http://thomas.apestaart.org/projects/mach/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.gz
+Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -42,7 +41,6 @@ to build clean packages.
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/mach/{roots,states} \
 			%{buildroot}%{_localstatedir}/cache/mach/{archives,packages}
-#			%{buildroot}%{_localstatedir}/tmp/mach/tmp
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -81,8 +79,6 @@ fi
 %dir %{_localstatedir}/lib/mach/
 %dir %{_localstatedir}/lib/mach/states/
 %dir %{_localstatedir}/lib/mach/roots/
-#%dir %{_localstatedir}/tmp/mach
-#%dir %{_localstatedir}/tmp/mach/tmp
 %dir %{_localstatedir}/cache/mach/
 %dir %{_localstatedir}/cache/mach/packages/
 %dir %{_localstatedir}/cache/mach/archives/
