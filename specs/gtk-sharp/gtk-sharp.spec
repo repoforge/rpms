@@ -1,13 +1,6 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <gtk-sharp-list@ximian.com>
-
-### FIXME: Tries to manipulate /root/.wapi/* ??
-# Soapbox: 0
-
-### FIXME: gtk-sharp 0.12 doesn't allow -jX (parallel compilation)
-# Distcc: 0
 
 Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp
