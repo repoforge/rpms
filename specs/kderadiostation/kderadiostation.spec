@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Josef Spillner <spillner@kde.org>
+# Upstream: Josef Spillner <spillner$kde,org>
 
 # Screenshot: http://kderadiostation.coolprojects.org/shots/kderadioshot1.thumb.png
 # ScreenshotURL: http://kderadiostation.coolprojects.org/screenshots.html
