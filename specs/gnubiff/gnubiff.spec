@@ -6,16 +6,18 @@
 
 Summary: Mail notification program
 Name: gnubiff
-Version: 1.2.0
+Version: 1.4.0
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://gnubiff.sourceforge.net/
 
-Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
+Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++, openssl-devel, libglade-devel, gdk-pixbuf-devel, glib2-devel, libglade2-devel
+BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++
+BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel 
+BuildRequires: glib2-devel, libglade2-devel
 %{?fc2:BuildRequires: gnome-panel-devel}
 
 Packager: Dries Verachtert <dries@ulyssis.org>
@@ -33,14 +35,15 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %configure \
 	--with-gnome \
 	--with-password
+%{__sed} -i "s/\#include \"Mailbox.h\"/\#include \"Mailbox.h\"\n\#include \"sys\/stat.h\"/g;" src/File.h
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-make install-strip \
-	DESTDIR="%{buildroot}"
+%makeinstall
+%find_lang %{name}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,0755)
 %doc README ABOUT-NLS AUTHORS ChangeLog COPYING NEWS INSTALL THANKS
 %{_bindir}/gnubiff
@@ -48,14 +51,16 @@ make install-strip \
 %{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml
 %{_datadir}/gnubiff
 %{_datadir}/info/gnubiff.info.gz
-%{_datadir}/locale/*/LC_MESSAGES/gnubiff.mo
-%{_datadir}/man/man1/gnubiff.*
+%{_mandir}/man1/gnubiff.*
 %{_datadir}/pixmaps
 %{_datadir}/sounds/gnubiff
 
 %changelog
+* Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> 1.4.0-1
+- Update to version 1.4.0.
+
 * Thu May 20 2004 Dries Verachtert <dries@ulyssis.org> 1.2.0-1
-- update to 1.2.0
+- Update to version 1.2.0.
 
 * Thu Dec 25 2003 Dries Verachtert <dries@ulyssis.org> 1.0.8-1
 - first packaging for Fedora Core 1
