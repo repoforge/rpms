@@ -1,13 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream:
 
 %define real_name adodb
-%define real_version 421
+%define real_version 422
 
 Summary: Portable Database Library for PHP
 Name: php-adodb
-Version: 4.21
+Version: 4.22
 Release: 1
 License: BSD or LGPL
 Group: Development/Languages
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://phplens.com/lens/dl/adodb%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: php >= 4.0.5
@@ -38,21 +37,28 @@ Sybase, DB2 and generic ODBC.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/adodb/{datadict,drivers,lang}/
-%{__install} -m0644 *.php %{buildroot}%{_localstatedir}/www/adodb/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/adodb/{datadict,drivers,lang,perf,session,tests,xsl}/
+%{__install} -m0644 *.php *.dtd %{buildroot}%{_localstatedir}/www/adodb/
 %{__install} -m0644 datadict/*.php %{buildroot}%{_localstatedir}/www/adodb/datadict/
 %{__install} -m0644 drivers/*.php %{buildroot}%{_localstatedir}/www/adodb/drivers/
 %{__install} -m0644 lang/*.php %{buildroot}%{_localstatedir}/www/adodb/lang/
+%{__install} -m0644 perf/*.php %{buildroot}%{_localstatedir}/www/adodb/perf/
+%{__install} -m0644 session/*.php %{buildroot}%{_localstatedir}/www/adodb/session/
+%{__install} -m0644 tests/*.php %{buildroot}%{_localstatedir}/www/adodb/tests/
+%{__install} -m0644 xsl/*.xsl %{buildroot}%{_localstatedir}/www/adodb/xsl/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc cute_icons_for_site/ license.txt old-changelog.htm readme.* tests/ tips_portable_sql.htm tute.htm
+%doc *.txt cute_icons_for_site/ docs/*.htm tests/
 %{_localstatedir}/www/adodb/
 
 %changelog
+* Mon May 03 2004 Dag Wieers <dag@wieers.com> - 4.22-1
+- Updated to release 4.22.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 4.21-1
 - Updated to release 4.21.
 
