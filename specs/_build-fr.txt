@@ -2,10 +2,8 @@
 # * : Built earlier because of a dependency
 # x : Build fails, with (reason)
 # # : No longer relevant, usually now included at the latest version
-# o : Shared across all distributions and releases, noarch
-compface
-gpgme
-unrar
+# O : Shared across all distributions and releases, noarch
+# o : Noarch, but distribution specific
 a52dec
 aalib
 advancecomp
@@ -15,17 +13,17 @@ advancescan
 * libsndfile
 * xosd
 alsaplayer
-* cryptopp x (gcc 3.4 incompatibility)
-amule x (cryptopp)
+* cryptopp
+amule
 anjuta
 apg
 apt
 armagetron x (c++)
-armagetron-moviepack o
+armagetron-moviepack O
 * wxGTK
 audacity
 bbkeys
-blackbox x (gcc)
+blackbox
 bluefish
 boa x (doc)
 # bzflag
@@ -33,10 +31,11 @@ cabextract
 * imlib2
 * giblib
 camE
-celestia x (c++)
+* gtkglext
+celestia
 compface
 conglomerate
-createrepo o
+createrepo O
 csmash
 d4x
 diradmin
@@ -51,23 +50,31 @@ faad2
 ffmpeg
 fftw
 flumotion
+* SDL_gfx
 * SDL_ttf
 * smpeg
+* perl-Module-Build
 * perl-SDL
 frozen-bubble
 gcombust
 gentoo
 gkrellm
 gkrellm-plugins
-gkrellm-themes o
-gnome-alsamixer
+gkrellm-themes O
 gnuboy
 gpgme
 # grip
 gsm
 gstreamer-ffmpeg x (mmx)
 gstreamer-monkeysaudio
-gstreamer-plugins-extra x (TODO)
+* libdvdnav
+* libdvdread
+* libfame
+* libmusepack
+* mpeg2dec
+* liboil
+* swfdec
+gstreamer-plugins-extra
 gstreamer-python
 gtetrinet
 # gthumb
@@ -78,32 +85,29 @@ gtkpod
 gtktalog
 gtweakui
 gxmame
-hackedbox x (same as blackbox)
+hackedbox
 hardlink++
 hercules
 Hermes
 i8kutils
-ipw2100-firmware o
-ipw2200-firmware o
+ipw2100-firmware O
+ipw2200-firmware O
 jhead
 js
 kannel x (.depend failure)
 * libsamplerate
 * libquicktime
 kino
+kino-dvtitler
 ladspa
 lbreakout2
 libcaca
 libdvbpsi
 libdvdcss
-libdvdnav
-* libdvdread
 libdvdplay
 libebml
-libfame
 libmatroska
 libmpeg3
-liboil
 libshout
 libsidplay x (c++)
 # libtheora
@@ -113,17 +117,16 @@ lmarbles
 ltris
 lzo
 mach
-* scons
+* scons o
 madman x (c++)
 metakit
 * portaudio
 mixxx
-mjpegtools x (asm/mmx then compile error)
-mpeg2dec
+mjpegtools
 mpg321
 mplayer
-mplayer-fonts o
-mplayer-skins o
+mplayer-fonts O
+mplayer-skins O
 neverball
 # nmap
 ogle
@@ -131,14 +134,14 @@ ogle_gui
 ogmtools
 oidentd
 pearpc
-perl-Cache-Cache
-perl-Error
+perl-Cache-Cache o
+perl-Error o
 perl-IPC-ShareLite
 perl-Video-DVDRip
 perl-libintl
 php-mmcache
-php-pear-excel
-php-pear-ole
+php-pear-excel o
+php-pear-ole o
 php-pecl-mailparse
 php-pecl-sqlite
 plib
@@ -148,25 +151,24 @@ proftpd
 psi
 python-imaging
 python-twisted
-rar o
+rar O
 # rhythmbox
 * xine-lib
-rhythmbox-xine
-rpmlint
+rpmlint o
 rrdtool
 rte
 sqlite
+squale
 starfighter
 subtitleripper
-swfdec
 # sylpheed
 sylpheed-claws
 synaptic
 synergy
 thttpd
 torcs
-torcs-data o
-totem
+torcs-data O
+totem-xine
 transcode
 ucarp
 unrar
@@ -175,9 +177,9 @@ videolan-client
 * zziplib
 viruskiller
 xine
-xine-skins o
+xine-skins O
 xmame
-xmame-roms o
+xmame-roms O
 xmms
 xmms-acme
 xmms-crossfade
@@ -188,7 +190,7 @@ xmms-speex
 xmms-wma
 xmule
 xplanet
-xplanet-maps o
+xplanet-maps O
 xrick
 xvattr
 # yum
