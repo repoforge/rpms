@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: rh9 fc1 fc2
+##ExcludeDist: rh9 fc1 fc2
 
 Summary: Diagram drawing program
 Name: dia
-Version: 0.93
+Version: 0.94
 Release: 1
 epoch: 1
 License: GPL
@@ -35,11 +35,11 @@ format, and can export to PostScript(TM).
 %setup
 
 ### FIXME: Create proper desktop file
-%{__cat} <<EOF >dia.desktop
-[desktop]
-Name=Dia Diagrams
-Comment=Create diagrams
-EOF
+#%{__cat} <<EOF >dia.desktop
+#[desktop]
+#Name=Dia Diagrams
+#Comment=Create diagrams
+#EOF
 
 %build
 #{__aclocal}
@@ -77,6 +77,9 @@ EOF
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.94-1.
+- Updated to release 0.94.
+
 * Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.93-1.
 - Updated to release 0.93.
 

@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
-Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, ftp, ...)
+Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, rsync, http, ftp, ...)
 Name: yam
-Version: 0.5
+Version: 0.6
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -25,7 +25,8 @@ downloaded updates and extra packages from 3rd party repositories.
 
 It can download all updates and extras automatically, creates
 the repository structure and meta-data, enables HTTP access to 
-the repository and creates a directory-structure for PXE/TFTP.
+the repository and creates a directory-structure for remote
+installations using PXE/TFTP.
 
 With Yam, you can enable your laptop or a local server to provide
 updates for the whole network and provide the proper files to
@@ -34,7 +35,7 @@ allow installations via the network.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|\% VERSION|\% "%{version}"|' yam
+%{__perl} -pi.orig -e "s|^(VERSION) =|$1 = '%{version}'|" yam
 
 %build
 
@@ -57,6 +58,9 @@ allow installations via the network.
 %{_localstatedir}/www/yam/
 
 %changelog
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.6-1
+- Updated to release 0.6.
+
 * Thu Aug 19 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 

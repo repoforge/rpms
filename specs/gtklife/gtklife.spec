@@ -2,11 +2,12 @@
 # Authority: dag
 # Upstream: <tril$igs,net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 Summary: Conway's game of life.
 Name: gtklife
-Version: 2.1
+Version: 4.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -19,6 +20,7 @@ Source: http://www.igs.net/~tril/gtklife/gtklife-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2.0
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 GtkLife is a fast and user-friendly implementation of Conway's Life program.
@@ -58,7 +60,7 @@ EOF
 
 %{__install} -D -m0644 icon_48x48.png %{buildroot}%{_datadir}/pixmaps/gtklife.png
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 gtklife.desktop %{buildroot}%{_datadir}/gnome/apps/Games/gtklife.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -74,16 +76,16 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README TAGS doc/*
-%{_bindir}/*
-%if %{dfi}
-	%{_datadir}/gnome/apps/Games/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{_bindir}/gtklife
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/gtklife.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-gtklife.desktop}
 %{_datadir}/gtklife/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/gtklife.png
 
 %changelog
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 4.0-1
+- Updated to release 4.0.
+
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 2.1-1
 - Updated to release 2.1.
 

@@ -4,7 +4,7 @@
 
 Summary: Utility for accessing the output pins of a parallel port
 Name: pport
-Version: 0.6.5
+Version: 0.6.6
 Release: 1
 License: GPL
 Group: Applications/System
@@ -40,13 +40,16 @@ practically no changes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS THANKS README
-%doc %{_mandir}/man?/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS
+%doc %{_mandir}/man1/pport*
 %config(noreplace) %{_sysconfdir}/pportd.conf
-%{_bindir}/*
+%{_bindir}/pport*
 %exclude %{_prefix}/doc/pport/
 
 %changelog
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.6.6-1
+- Updated to release 0.6.6.
+
 * Fri Jul 09 2004 Dag Wieers <dag@wieers.com> - 0.6.5-1
 - Updated to release 0.6.5.
 
