@@ -11,7 +11,7 @@ Release: 6
 License: GPL
 Group: Amusements/Games
 URL: http://www.frozen-bubble.org/
-Source: http://frozenbubble.free.fr/fb/%{name}-%{version}.tar.bz2
+Source: http://zarb.org/~gc/fb/frozen-bubble-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #AutoReq: no
 Requires: perl-SDL >= 1.19.0, SDL, SDL_mixer >= 1.2.2
@@ -86,6 +86,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-6
+- Updated the source location.
+- Rebuild for Fedora Core 2.
+
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-6
 - Spec file cleanups : More macros, fixed desktop entry description.
 

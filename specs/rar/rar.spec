@@ -6,14 +6,14 @@
 # Disable stripping or the default.sfx will get trashed
 %define __strip /bin/true
 
-Summary: RAR archiver to manage RAR archive files
+Summary: RAR archiver to create and manage RAR archives
 Name: rar
 Version: 3.3.0
 Release: 1
 License: Shareware
 Group: Applications/Archiving
-Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
 URL: http://www.rarlabs.com/
+Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: i586
 
@@ -22,8 +22,10 @@ RAR is a powerful tool allowing you to manage and control archive files.
 Console RAR supports archives only in RAR format, which names usually have
 a ".rar" extension. ZIP and other formats are not supported.
 
+
 %prep
 %setup -n %{name}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -31,8 +33,10 @@ a ".rar" extension. ZIP and other formats are not supported.
 %{__install} -m 644 -D rarfiles.lst %{buildroot}%{_sysconfig}/rarfiles.lst
 %{__install} -m 755 -D default.sfx %{buildroot}%{_libdir}/default.sfx
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -40,11 +44,16 @@ a ".rar" extension. ZIP and other formats are not supported.
 %{_bindir}/rar
 %{_libdir}/default.sfx
 
+
 %changelog
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 3.3.0-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 3.3.0-2
+- Updated description.
+- Rebuild for Fedora Core 2.
+
+* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 3.3.0-1
 - Update to 3.3.0.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.2.0-3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.2.0-3
 - Rebuild for Fedora Core 1.
 
 * Mon Nov  3 2003 Matthias Saou <http://freshrpms.net/> 3.2.0-2.fr
