@@ -118,6 +118,7 @@ EOF
 %{__cat} <<EOF >.mozconfig
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-composer
+ac_add_options --disable-debug
 ac_add_options --disable-freetype2
 ac_add_options --disable-installer
 ac_add_options --disable-jsd
@@ -128,7 +129,8 @@ ac_add_options --disable-tests
 ac_add_options --enable-crypto
 ac_add_options --enable-extensions="default,-content-packs,-editor,-help,-irc,-spellcheck"
 ac_add_options --enable-official-branding
-ac_add_options --enable-optimize="%{optflags}"
+# We want to replace -O? with -Os to optimize compilation for size
+ac_add_options --enable-optimize="-Os %(echo "%{optflags}" | sed 's/-O.//')"
 ac_add_options --enable-single-profile
 ac_add_options --with-pthreads
 ac_add_options --with-system-jpeg
