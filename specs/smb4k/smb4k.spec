@@ -28,7 +28,6 @@ Smb4K is an SMB share browser for KDE. It uses the Samba software suite for
 an easy access to the SMB shares of your local network neighborhood. 
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -39,7 +38,7 @@ an easy access to the SMB shares of your local network neighborhood.
 %install
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-export DESTDIR=$RPM_BUILD_ROOT
+export DESTDIR=%{buildroot}
 make install-strip
 %find_lang %{name}
 rm -f ${DESTDIR}/usr/share/applnk/Applications/smb4k.desktop

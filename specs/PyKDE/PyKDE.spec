@@ -42,7 +42,6 @@ Development files for PyKDE.
 /sbin/ldconfig 2>/dev/null
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build

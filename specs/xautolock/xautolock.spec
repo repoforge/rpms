@@ -23,7 +23,6 @@ A program that launches a given program when
 your X session has been idle for a given time.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 xmkmf
 

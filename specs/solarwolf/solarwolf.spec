@@ -26,7 +26,6 @@ guardians. Avoid the deadly bullets, which become ever more popular as you
 race through 48 levels. Good Luck. 
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -a 1
 
 %build
@@ -34,7 +33,7 @@ make
 
 %install
 %{__rm} -rf %{buildroot}
-export DESTDIR=$RPM_BUILD_ROOT
+export DESTDIR=%{buildroot}
 make install
 
 %clean
