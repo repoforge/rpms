@@ -14,8 +14,9 @@ URL: http://criticalmass.sourceforge.net/shaaft.php
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/criticalmass/Shaaft-%{version}.tar.bz2
+Source: http://dl.sf.net/criticalmass/Shaaft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, zlib-devel, libpng-devel, XFree86-devel, gcc-c++
 
 %description
 Shaaft is an OpenGL 3D falling block game similar to Blockout. It currently
@@ -27,19 +28,18 @@ I find it is very playable. Enjoy!
 # Screenshot: http://criticalmass.sourceforge.net/images-shaaft/shaaft02.jpg
 
 %prep
-%setup
+%setup -n Shaaft-%{version}
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=Name Thingy Tool
-Comment=Do things with things
-Icon=name.png
-Exec=name
+Name=Shaaft
+Comment=OpenGL 3D falling block game
+Exec=shaaft
 Terminal=false
 Type=Application
 StartupNotify=true
 Encoding=UTF-8
-Categories=Application;Network;X-Red-Hat-Extra;
+Categories=Application;Game;X-Red-Hat-Extra;
 EOF
 
 %build
@@ -61,12 +61,11 @@ desktop-file-install --vendor net                  \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
+%doc COPYING
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
 %{_datadir}/applications/*.desktop
+%{_datadir}/Shaaft/resource.dat
 
 %changelog
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 
