@@ -1,0 +1,63 @@
+--- cdr/cdr_pgsql.c.orig	2004-01-22 18:03:11.000000000 +0100
++++ cdr/cdr_pgsql.c	2004-07-29 13:27:39.124746432 +0200
+@@ -148,7 +148,10 @@
+ 
+ static int my_unload_module(void)
+ { 
+-	PQfinish(conn);
++        if (conn)
++                PQfinish(conn);
++        conn = NULL;
++
+ 	connected = 0;
+ 	if (pghostname && hostname_alloc) {
+ 		free(pghostname);
+@@ -201,6 +204,7 @@
+ 	var = ast_variable_browse(cfg, "global");
+ 	if (!var) {
+ 		/* nothing configured */
++		ast_destroy(cfg);
+ 		return 0;
+ 	}
+ 
+@@ -212,6 +216,7 @@
+ 			strcpy(pghostname,tmp);
+ 		} else {
+ 			ast_log(LOG_ERROR,"Out of memory error.\n");
++			ast_destroy(cfg);
+ 			return -1;
+ 		}
+ 	} else {
+@@ -227,6 +232,7 @@
+ 			strcpy(pgdbname,tmp);
+ 		} else {
+ 			ast_log(LOG_ERROR,"Out of memory error.\n");
++			ast_destroy(cfg);
+ 			return -1;
+ 		}
+ 	} else {
+@@ -242,6 +248,7 @@
+ 			strcpy(pgdbuser,tmp);
+ 		} else {
+ 			ast_log(LOG_ERROR,"Out of memory error.\n");
++			ast_destroy(cfg);
+ 			return -1;
+ 		}
+ 	} else {
+@@ -257,6 +264,7 @@
+ 			strcpy(pgpassword,tmp);
+ 		} else {
+ 			ast_log(LOG_ERROR,"Out of memory error.\n");
++			ast_destroy(cfg);
+ 			return -1;
+ 		}
+ 	} else {
+@@ -272,6 +280,7 @@
+ 			strcpy(pgdbport,tmp);
+ 		} else {
+ 			ast_log(LOG_ERROR,"Out of memory error.\n");
++			ast_destroy(cfg);
+ 			return -1;
+ 		}
+ 	} else {
+

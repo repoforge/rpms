@@ -1,0 +1,18 @@
+# This file was written to create all needed additional /dev entries in order
+# to use Zaptel (Asterisk) kernel modules with Red Hat Linux.
+# It integrates cleanly into the original device creation mechanism.
+# See http://freshrpms.net/ for more information.
+# Type Perms User Group Major Minor Inc Count Base
+
+=TEL      660 root tty
+
+c $TEL                 196   0  1   1 zap/ctl
+c $TEL                 196   1  1 250 zap/%d
+c $TEL                 196 253  1   1 zap/timer
+c $TEL                 196 254  1   1 zap/channel
+c $TEL                 196 255  1   1 zap/pseudo
+
+# Alias to have all created with "zaptel"
+ 
+a zaptel zap/
+

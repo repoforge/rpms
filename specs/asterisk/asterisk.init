@@ -1,0 +1,66 @@
+#!/bin/sh
+# $Id: asterisk.init,v 1.2 2003/09/19 14:32:28 dude Exp $
+#
+# asterisk    This shell script takes care of starting and stopping Asterisk.
+#
+# chkconfig: 2345 40 60
+# description: Asterisk PBX and telephony daemon.
+# processname: asterisk
+# pidfile: /var/run/asterisk/asterisk.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+[ -x /usr/sbin/asterisk ] || exit 0
+[ -d /etc/asterisk ] || exit 0
+
+RETVAL=0
+
+start() {
+	# Start daemons.
+	echo -n $"Starting asterisk: "
+	daemon --user asterisk /usr/sbin/safe_asterisk
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/asterisk
+	echo
+	return $RETVAL
+}
+
+stop() {
+	# Stop daemons.
+	echo -n $"Shutting down asterisk: "
+	killproc asterisk
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/asterisk
+	echo
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  condrestart)
+	[ -f /var/lock/subsys/asterisk ] && restart || :
+	;;
+  status)
+	status asterisk
+	;;
+  *)
+	echo "Usage: asterisk {start|stop|restart|condrestart|status}"
+	exit 1
+esac
+
+exit $?
