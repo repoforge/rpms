@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jeremy Chartier <jeremy.chartier@free.fr>
 
@@ -7,7 +6,7 @@
 
 Summary: Snort log analyzer
 Name: snortalog
-Version: 2.2.0
+Version: 2.2.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://jeremy.chartier.free.fr/snortalog/snortalog_v%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl
 Requires: perl
@@ -44,7 +42,7 @@ logs in a simmilar way.
 		s|^(\$tmpout_file) = .+;|$1 = "%{_localstatedir}/www/snortalog/.snortalog.tmp";|;
 	' snortalog.pl
 
-%{__cat} <<EOF >snortalog.conf
+%{__cat} <<EOF >snortalog.httpd
 Alias /snortalog/ %{_localstatedir}/www/snortalog/
 
 <Directory %{_localstatedir}/www/snortalog/>
@@ -64,13 +62,13 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_sysconfdir}/snortalog/ \
-			%{buildroot}%{_localstatedir}/www/snortalog/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/
-%{__install} -m0755 snortalog.pl %{buildroot}%{_bindir}/snortalog
+%{__install} -D -m0755 snortalog.pl %{buildroot}%{_bindir}/snortalog
+%{__install} -D -m0644 snortalog.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/snortalog.conf
+
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/snortalog/
 %{__install} -m0644 domains hw rules %{buildroot}%{_sysconfdir}/snortalog/
-%{__install} -m0644 snortalog.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/snortalog/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -84,5 +82,8 @@ EOF
 %dir %{_localstatedir}/www/snortalog/
 
 %changelog
+* Wed May 05 2004 Dag Wieers <dag@wieers.com> - 2.2.1-1
+- Updated to release 2.2.1.
+
 * Fri Mar 13 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
 - Initial package. (using DAR)
