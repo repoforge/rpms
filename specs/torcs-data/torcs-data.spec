@@ -1,13 +1,12 @@
 # $Id$
 # Authority: matthias
-
 # Dist: nodist
 
 Summary: The Open Racing Car Simulator data files
 Name: torcs-data
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
-License: GPL
+License: GPL and Free Art License
 Group: Amusements/Games
 URL: http://torcs.org/
 Source0: http://dl.sf.net/torcs/TORCS-%{version}-data.tgz
@@ -15,12 +14,8 @@ Source1: http://dl.sf.net/torcs/TORCS-%{version}-data-tracks-dirt.tgz
 Source2: http://dl.sf.net/torcs/TORCS-%{version}-data-tracks-oval.tgz
 Source3: http://dl.sf.net/torcs/TORCS-%{version}-data-tracks-road.tgz
 Source4: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-extra.tgz
-Source5: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-kcendra-gt.tgz
-Source6: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-kcendra-roadsters.tgz
-Source7: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-kcendra-sport.tgz
-Source8: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-nascar.tgz
-Source9: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-Patwo-Design.tgz
-Source10: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-VM.tgz
+Source5: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-nascar.tgz
+Source90: Free-Art-License
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: torcs, %{name}-tracks = %{version}
 BuildArch: noarch
@@ -28,7 +23,7 @@ BuildArch: noarch
 %description
 TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
 programmed robots drivers racing against each others.  You can also drive
-yourself with either a wheel, keyboard or mouse. 
+yourself with either a wheel, keyboard or mouse.
 
 This package contains the data files needed to run the game.
 
@@ -88,45 +83,6 @@ yourself with either a wheel, keyboard or mouse.
 This package contains additional cars for the game.
 
 
-%package cars-kcendra-gt
-Summary: The Open Racing Car Simulator additional kcendra GT cars
-Group: Amusements/Games
-Requires: torcs
-
-%description cars-kcendra-gt
-TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
-programmed robots drivers racing against each others.  You can also drive
-yourself with either a wheel, keyboard or mouse.
-
-This package contains additional cars for the game.
-
-
-%package cars-kcendra-roadsters
-Summary: The Open Racing Car Simulator additional kcendra roadsters
-Group: Amusements/Games
-Requires: torcs
-
-%description cars-kcendra-roadsters
-TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
-programmed robots drivers racing against each others.  You can also drive
-yourself with either a wheel, keyboard or mouse.
-
-This package contains additional cars for the game.
-
-
-%package cars-kcendra-sport
-Summary: The Open Racing Car Simulator additional kcendra sport cars
-Group: Amusements/Games
-Requires: torcs
-
-%description cars-kcendra-sport
-TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
-programmed robots drivers racing against each others.  You can also drive
-yourself with either a wheel, keyboard or mouse.
-
-This package contains additional cars for the game.
-
-
 %package cars-nascar
 Summary: The Open Racing Car Simulator additional NASCAR cars
 Group: Amusements/Games
@@ -140,37 +96,11 @@ yourself with either a wheel, keyboard or mouse.
 This package contains additional cars for the game.
 
 
-%package cars-Patwo-Design
-Summary: The Open Racing Car Simulator addition Patwo Design cars
-Group: Amusements/Games
-License: Other
-Requires: torcs
-
-%description cars-Patwo-Design
-TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
-programmed robots drivers racing against each others.  You can also drive
-yourself with either a wheel, keyboard or mouse.
-
-This package contains additional Patwo Design cars (non free!!!).
-
-
-%package cars-VM
-Summary: The Open Racing Car Simulator additional VM cars
-Group: Amusements/Games
-Requires: torcs
-
-%description cars-VM
-TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
-programmed robots drivers racing against each others.  You can also drive
-yourself with either a wheel, keyboard or mouse.
-
-This package contains additional cars for the game.
-
-
 %prep
 %setup -T -c %{name}-%{version}
 # Uncompress all packages in a separate tree
-for source in %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{SOURCE9} %{SOURCE10}; do
+for source in %{SOURCE0} %{SOURCE1} %{SOURCE2} \
+              %{SOURCE3} %{SOURCE4} %{SOURCE5}; do
     package="`basename ${source} .tgz | sed 's/TORCS-%{version}-//g'`"
     mkdir -p ${package}%{_datadir}/games/torcs/
     ( cd ${package}%{_datadir}/games/torcs/
@@ -197,6 +127,8 @@ mkdir -p %{buildroot}
 for package in `cat package.list`; do
     cp -a ${package}/* %{buildroot}/
 done
+# Prepare Free-Art-License for doc inclusion
+%{__install} -m 0644 %{SOURCE90} .
 
 
 %clean
@@ -205,57 +137,54 @@ done
 
 %files -f data.files
 %defattr(-, root, root, 0755)
+%doc Free-Art-License
 
 
 %files tracks-dirt -f data-tracks-dirt.files
 %defattr(-, root, root, 0755)
+%doc Free-Art-License
 
 
 %files tracks-oval -f data-tracks-oval.files
 %defattr(-, root, root, 0755)
+%doc Free-Art-License
 
 
 %files tracks-road -f data-tracks-road.files
 %defattr(-, root, root, 0755)
+%doc Free-Art-License
 
 
 %files cars-extra -f data-cars-extra.files
 %defattr(-, root, root, 0755)
-
-
-%files cars-kcendra-gt -f data-cars-kcendra-gt.files
-%defattr(-, root, root, 0755)
-
-
-%files cars-kcendra-roadsters -f data-cars-kcendra-roadsters.files
-%defattr(-, root, root, 0755)
-
-
-%files cars-kcendra-sport -f data-cars-kcendra-sport.files
-%defattr(-, root, root, 0755)
+%doc Free-Art-License
 
 
 %files cars-nascar -f data-cars-nascar.files
 %defattr(-, root, root, 0755)
-
-
-%files cars-Patwo-Design -f data-cars-Patwo-Design.files
-%defattr(-, root, root, 0755)
-
-
-%files cars-VM -f data-cars-VM.files
-%defattr(-, root, root, 0755)
+%doc Free-Art-License
 
 
 %changelog
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1.fr
-- Update to 1.2.1
+* Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Change %%doc and %%defattr order to fix wrong ownership of doc files.
+
+* Fri Feb 11 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Change License: to "GPL and Free Art License" (#147681).
+- Include Free-Art-License and add a copy to each sub-package.
+
+* Mon Feb  7 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Update to 1.2.3.
+- Removed "non-free" cars (kcendra ones, Patwo-Design and VM).
+
+* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1
+- Update to 1.2.2
 - Added all new tracks : dirt, oval and road.
 - Added all new cars : kcendra-gt, kcendra-roadsters, kcendra-sport, nascar
   and VM.
 - Updated the %%setup and %%build sections to make them even more flexible.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.2.1-4.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.2.1-4
 - Rebuild for Fedora Core 1.
 
 * Tue May 27 2003 Matthias Saou <http://freshrpms.net/>

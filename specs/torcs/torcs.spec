@@ -5,23 +5,20 @@
 
 Summary: The Open Racing Car Simulator
 Name: torcs
-Version: 1.2.2
-Release: 4
+Version: 1.2.3
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://torcs.org/
 Source: http://dl.sf.net/torcs/TORCS-%{version}-src.tgz
 Source1: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-base.tgz
 Source2: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-berniw.tgz
-Source3: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-K1999.tgz
-Source4: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-billy.tgz
-Source5: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-bt.tgz
-Patch: torcs-1.2.2-build.patch
+Source3: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-bt.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: torcs-data
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
-BuildRequires: gcc-c++, plib16-devel, freeglut-devel
+BuildRequires: gcc-c++, plib-devel >= 1.8.3, freeglut-devel
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel
 BuildRequires: desktop-file-utils
 
@@ -45,15 +42,15 @@ This package contains the robots who can race on their own.
 
 
 %prep
-%setup -a 1 -a 2 -a 3 -a 4 -a 5
-%patch -p1 -b .build
+%setup -a 1 -a 2 -a 3
 # Put the drivers back where they belong
 %{__mv} %{name}-%{version}/src/drivers/* src/drivers/
 
 
 %build
 %configure
-%{__make} %{?_smp_mflags} RPM_OPT_FLAGS="%{optflags}"
+# Having %{?_smp_mflags} makes the build fail with 1.2.3
+%{__make}
 
 
 %install
@@ -79,7 +76,7 @@ desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
-# We need this for proper automatic stripping to take place
+# We need this for proper automatic stripping to take place (still in 1.2.3)
 find %{buildroot}%{_libdir}/%{name} -name '*.so' | xargs %{__chmod} +x
 
 
@@ -120,6 +117,12 @@ find %{buildroot}%{_libdir}/%{name} -name '*.so' | xargs %{__chmod} +x
 
 
 %changelog
+* Mon Feb  7 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Update to 1.2.3.
+- Remove billy and K1999 robot packages (no longer upstream).
+- Update plib requirement from plib16 to plib (1.8.x).
+- Remove %%{?_smp_mflags} as the build fails with -jN.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-4
 - Add +x chmod'ing to .so files in order to get them stripped properly.
 
