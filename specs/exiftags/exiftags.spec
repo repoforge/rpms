@@ -33,7 +33,12 @@ camera and digitized image.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+mkdir -p %{buildroot}/usr/bin
+mkdir -p %{buildroot}/%{_mandir}/man1
+cp exiftags exifcom %{buildroot}/usr/bin
+chmod a+x %{buildroot}/usr/bin/exif*
+cp exiftags.1 exifcom.1 %{buildroot}/%{_mandir}/man1
+chmod a+r %{buildroot}/%{_mandir}/man1/exif*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,8 +46,9 @@ camera and digitized image.
 %files
 %defattr(-,root,root, 0755)
 %doc README CHANGES
+%{_bindir}/exif*
+%{_mandir}/man1/exif*
 
 %changelog
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 0.99-1
 - initial package
-
