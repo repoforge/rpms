@@ -6,7 +6,7 @@
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
 Version: 2.0.0
-Release: %{?prever:0.%{prever}.}2
+Release: %{?prever:0.%{prever}.}3
 License: GPL
 Group: Applications/Internet
 URL: http://www.aMule.org/
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /usr/sbin/alternatives
 Requires(preun): /usr/sbin/alternatives
 BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
-BuildRequires: cryptopp-devel, gd-progs, gd-devel, libidn-devel
+BuildRequires: gd-progs, gd-devel, libidn-devel
 # Required on Yellow Dog Linux 3.0
 BuildRequires: openssl-devel
 
@@ -31,7 +31,6 @@ same network.
 
 %build
 %configure \
-    --disable-embedded_crypto \
     --enable-utf8-systray
 %{__make} %{?_smp_mflags}
 
@@ -67,6 +66,9 @@ same network.
 
 
 %changelog
+* Fri Nov 19 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc7.3
+- Disable external cryptopp usage, it's a mess :-(
+
 * Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc7.2
 - Disable embedded crypto to use external cryptopp.
 - Add gd-progs and gd-devel build dep for gdlib-config to be found.
