@@ -4,8 +4,8 @@
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.1
-Release: 2
+Version: 0.9.2
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://gnochm.sourceforge.net/
@@ -33,15 +33,15 @@ http links and internationalisation.
 %prep
 %setup
 
-%{__cat} <<EOF >gnochm.xml
-<?xml version="1.0" encoding="utf-8"?>
-<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
-	<mime-type type="application/x-chm">
-		<comment>HTML Help</comment>
-		<glob pattern="*.chm"/>
-	</mime-type>
-</mime-info>
-EOF
+#%{__cat} <<EOF >gnochm.xml
+#<?xml version="1.0" encoding="utf-8"?>
+#<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+#	<mime-type type="application/x-chm">
+#		<comment>HTML Help</comment>
+#		<glob pattern="*.chm"/>
+#	</mime-type>
+#</mime-info>
+#EOF
 
 %build
 %configure \
@@ -54,7 +54,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %{name}
 
-%{__install} -D -m0644 gnochm.xml %{buildroot}%{_datadir}/mime/packages/gnochm.xml
+#%{__install} -D -m0644 gnochm.xml %{buildroot}%{_datadir}/mime/packages/gnochm.xml
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -80,12 +80,19 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/gnochm.desktop
 %{_datadir}/gnochm/
 %{_datadir}/mime/packages/gnochm.xml
+%{?fc2:%{_datadir}/mime/application/x-chm.xml}
+%{?fc2:%exclude %{_datadir}/mime/XMLnamespaces}
+%{?fc2:%exclude %{_datadir}/mime/globs}
+%{?fc2:%exclude %{_datadir}/mime/magic}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Mon Jul 05 2004 Dag Wieers <dag@wieers.com> - 0.9.1-2
 - Added mime-type information. (Mariusz Smykula)
 

@@ -4,8 +4,8 @@
 
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
-Version: 0.6.2
-Release: 2
+Version: 0.6.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/
@@ -77,6 +77,9 @@ fi
 %ghost /dev/nvram
 
 %changelog
+* Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.6.3-1
+- Updated to release 0.6.3.
+
 * Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 0.6.2-2
 - Fixed naming of tpb xinit file to tpb.sh for FC2. (Patrick C. F. Ernzer)
 
