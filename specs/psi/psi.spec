@@ -47,7 +47,6 @@ Source27: psi_it.qm
 Source28: psi_sk.qm
 Source29: psi_el.qm
 Source30: psi_ca.qm
-Source31: psi_nl.qm
 
 BuildRequires: gcc, make, gcc-c++, XFree86-devel, qt-devel, openssl, openssl-devel
 Requires: qt, openssl
@@ -138,7 +137,6 @@ cp %{SOURCE27} ${DESTDIR}/usr/share/psi
 cp %{SOURCE28} ${DESTDIR}/usr/share/psi
 cp %{SOURCE29} ${DESTDIR}/usr/share/psi
 cp %{SOURCE30} ${DESTDIR}/usr/share/psi
-cp %{SOURCE31} ${DESTDIR}/usr/share/psi
  
 # ssl plugin
 mkdir -p ${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/
