@@ -1,4 +1,4 @@
-# $Id: straw.spec,v 1.4 2004/02/28 02:39:00 dag- Exp $
+# $Id$
 
 # Authority: dag
 # Upstream: Juri Pakaste <juri@iki.fi>

@@ -1,4 +1,4 @@
-# $Id: perl-RPM-Specfile.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile

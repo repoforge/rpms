@@ -1,4 +1,4 @@
-# $Id: poedit.spec,v 1.3 2004/03/01 09:33:38 driesve Exp $
+# $Id$
 
 # Authority: dries
 

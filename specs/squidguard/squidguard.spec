@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <squidguard@squidguard.org>
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
@@ -11,7 +12,7 @@
 Summary: Combined filter, redirector and access controller plugin for squid.
 Name: squidguard
 Version: 1.2.0
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.squidguard.org/
@@ -19,12 +20,13 @@ URL: http://www.squidguard.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.teledanmark.no/pub/www/proxy/squidGuard/%{rname}-%{version}.tar.gz
+Source: http://ftp.teledanmark.no/pub/www/proxy/squidGuard/squidGuard-%{version}.tar.gz
 Source1: guard-distrib.tar.gz
+Patch0: squidguard-1.2.0-db4.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
-BuildRequires: bison, flex, perl, lynx
+BuildRequires: bison, flex, perl
 %{?rhfc1:BuildRequires: db4-devel}
 %{?rhel3:BuildRequires: db4-devel}
 %{?rh90:BuildRequires: db4-devel}
@@ -42,11 +44,18 @@ users to a list of webservers, based on keywords.
 
 %prep
 %setup -n %{rname}-%{version}
+%{?rhfc1:%patch0}
+%{?rhel3:%patch0}
 
-%{__perl} -pi -e '
+%{__perl} -pi.orig -e '
 		s|^(dbhome) .+$|$1 \@sg_dbhome\@|;
 		s|^(logdir) .+$|$1 \@sg_logdir\@|;
 	' samples/sample.conf.in
+
+%{__perl} -pi.orig -e '
+		s|\$\(logdir\)|\$(localstatedir)/log/squidguard|;
+		s|\$\(cfgdir\)|\$(sysconfdir)/squid|;
+	' src/Makefile.in
 
 %{__cat} <<EOF >%{name}.logrotate
 %{_localstatedir}/log/squid/squidguard.log {
@@ -62,7 +71,7 @@ EOF
 	--with-sg-logdir="%{_localstatedir}/log/squidguard" \
 	--with-sg-dbhome="%{dbhomedir}"
 %{__make} %{?_smp_mflags} \
-	LIBS="-ldb"
+	LIBS="-ldb -lpthread"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -94,6 +103,9 @@ EOF
 %{_localstatedir}/log/squidguard/
 
 %changelog
+* Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 1.2.0-2
+- Added patch for db4 (RHEL3 and RHFC1). (Tom Gordon)
+
 * Sat Apr 12 2003 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Removed the default blacklists.
 

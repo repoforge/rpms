@@ -1,4 +1,4 @@
-# $Id: psi.spec,v 1.1 2004/03/01 14:42:05 driesve Exp $
+# $Id$
 
 # Authority: dries
 

@@ -1,4 +1,4 @@
-# $Id: plib.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: A set of portable libraries especially useful for games
 Name: plib

@@ -1,4 +1,4 @@
-# $Id: render.spec,v 1.2 2004/02/28 02:39:00 dag- Exp $
+# $Id$
 
 # Authority: dag
 

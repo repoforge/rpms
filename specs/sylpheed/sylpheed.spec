@@ -1,4 +1,4 @@
-# $Id: sylpheed.spec,v 1.2 2004/02/29 17:08:22 thias Exp $
+# $Id$
 
 %define desktop_vendor freshrpms
 

@@ -1,12 +1,11 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Brian Carrier <carrier@sleuthkit.org>
 
-Summary: An Open Source forensic toolkit.
+Summary: Open Source forensic toolkit.
 Name: sleuthkit
-Version: 1.65
+Version: 1.68
 Release: 1
 License: GPL/IBM
 Group: Applications/Internet
@@ -15,7 +14,7 @@ URL: http://www.sleuthkit.org/sleuthkit/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/sleuthkit/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/sleuthkit/sleuthkit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -49,7 +48,7 @@ cd src/file
 			%{buildroot}%{_mandir}/man1/
 %{__install} -m0755 bin/* %{buildroot}%{_sbindir}
 %{__install} -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
-%{__install} -m0755 src/file/file %{buildroot}%{_sbindir}
+%{__install} -m0755 src/file/src/file %{buildroot}%{_sbindir}
 %{__ln_s} -f %{_sbindir}/file %{buildroot}%{_sbindir}/file_sk
 #%{__mv} -f %{buildroot}%{_mandir}/man1/file.1 %{buildroot}%{_mandir}/man1/file_sk.1
 
@@ -64,6 +63,9 @@ cd src/file
 #%{_datadir}/sleuthkit/
 
 %changelog
+* Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 1.68-1
+- Updated to release 1.68.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 1.65-1
 - Updated to release 1.65.
 - Fixed %%{_sbindir}/file

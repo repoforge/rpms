@@ -1,4 +1,4 @@
-# $Id: scorereadingtrainer.spec,v 1.1 2004/03/03 13:54:09 driesve Exp $
+# $Id$
 
 # Authority: dries
 

@@ -1,4 +1,4 @@
-# $Id: pixieplus.spec,v 1.2 2004/02/27 17:08:22 driesve Exp $
+# $Id$
 
 # Authority: dries
 

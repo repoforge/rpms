@@ -1,13 +1,12 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: splint@splint.org
 
 Summary: Secure programming lint.
 Name: splint
 Version: 3.1.1
-Release: 0
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.splint.org/
@@ -15,7 +14,7 @@ URL: http://www.splint.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.splint.org/downloads/%{name}-%{version}.src.tgz
+Source: http://www.splint.org/downloads/splint-%{version}.src.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -34,6 +33,7 @@ checking than can be done by any standard lint.
 
 %build
 %configure \
+	--program-prefix="%{?_program_prefix}" \
 	--disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
@@ -52,6 +52,9 @@ checking than can be done by any standard lint.
 %{_datadir}/splint/
 
 %changelog
+* Mon Mar 08 2004 Dag Wieers <dag@wieers.com> - 3.1.1-1
+- Added --program-prefix to %%configure.
+
 * Tue Aug 05 2003 Dag Wieers <dag@wieers.com> - 3.1.1-0
 - Updated to release 3.1.1.
 

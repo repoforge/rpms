@@ -1,4 +1,4 @@
-# $Id: PyKDE.spec,v 1.1 2004/03/01 20:08:05 driesve Exp $
+# $Id$
 
 # Authority: dries
 

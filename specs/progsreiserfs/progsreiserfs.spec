@@ -1,4 +1,4 @@
-# $Id: progsreiserfs.spec,v 1.2 2004/03/03 20:07:49 driesve Exp $
+# $Id$
 
 # Authority: dries
 

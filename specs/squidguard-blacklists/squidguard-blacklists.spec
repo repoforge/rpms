@@ -1,13 +1,14 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Dag Wieers <dag@wieers.com>
 
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
 Summary: Regularly updated blacklists for use with squidguard.
 Name: squidguard-blacklists
-Version: 20030922
-Release: 0
+Version: 20040304
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://dag.wieers.com/home-made/squidguard/
@@ -89,6 +90,7 @@ cd %{buildroot}%{dbhomedir}/
 	echo -e "### More information about this package at:\n###\thttp://dag.wieers.com/home-made/squidguard/\n\n"
 	echo -e "### Path configuration\ndbhome %{dbhomedir}\nlogdir %{_localstatedir}/log/squidguard\n\n"
 	echo -e "### Generated blacklist definitions"
+	echo -e "dbhome %{buildroot}%{dbhomedir}\nlogdir %{buildroot}%{_localstatedir}/log/squidguard\n\n" >&3
 	for name in ads:publicite adult:porn aggressive:agressif audio-video drugs:drogue forums gambling hacking mail proxy:redirector violence warez; do
 		echo -e "### Group '${name//:*}' containing entries for '$(echo $name | tr ':' ',')'\ndest ${name//:*} {\n\tlogfile ${name//:*}.log\n"
 		echo -e "dest ${name//:*} {\n\tlogfile ${name//:*}.log\n" >&3
@@ -135,6 +137,9 @@ squidGuard -d -c temp.conf -C all
 %{_localstatedir}/log/squidguard/
 
 %changelog
+* Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 20040309-1
+- Updated to release 20040309.
+
 * Mon Sep 22 2003 Dag Wieers <dag@wieers.com> - 20030922-0
 - Updated to release 20030922.
 

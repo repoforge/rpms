@@ -1,4 +1,4 @@
-# $Id: python-mx-base.spec,v 1.2 2004/03/02 23:18:46 dag- Exp $
+# $Id$
 
 # Authority: dag
 # Tag: test

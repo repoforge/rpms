@@ -1,4 +1,4 @@
-# $Id: synaptic.spec,v 1.3 2004/02/27 12:59:54 dag- Exp $
+# $Id$
 
 Summary: Graphical package management program using apt
 Name: synaptic

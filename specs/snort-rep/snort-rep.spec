@@ -1,4 +1,4 @@
-# $Id: snort-rep.spec,v 1.1 2004/03/01 10:49:07 driesve Exp $
+# $Id$
 
 # Authority: dries
 

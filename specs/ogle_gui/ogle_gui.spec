@@ -1,4 +1,4 @@
-# $Id: ogle_gui.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 #define	cvs -cvs
 

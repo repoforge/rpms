@@ -1,4 +1,4 @@
-# $Id: rar.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 # The source contains only binaries...
 %define _use_internal_dependency_generator 0

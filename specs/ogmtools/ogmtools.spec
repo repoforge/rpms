@@ -1,4 +1,4 @@
-# $Id: ogmtools.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: Tools for Ogg media streams
 Name: ogmtools

@@ -1,4 +1,4 @@
-# $Id: perl-SDL.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: Simple DirectMedia Layer - Bindings for the perl language.
 Name: perl-SDL

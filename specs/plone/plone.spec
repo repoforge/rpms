@@ -1,4 +1,4 @@
-# $Id: plone.spec,v 1.1 2004/03/04 00:25:07 thias Exp $
+# $Id$
 
 %define real_name      CMFPlone
 %define real_version   2.0-rc6
