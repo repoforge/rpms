@@ -53,6 +53,7 @@ you will need to install %{name}-devel.
 %{_bindir}/libtar
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.a
 
