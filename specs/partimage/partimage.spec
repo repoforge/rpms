@@ -2,13 +2,12 @@
 # Authority: dag
 # Upstream: François Dupoux <fdupoux@partimage.org>
 
-# Test: test
 # Distcc: 0
 
 Summary: partition imaging utility, much like Ghost
 Name: partimage
-Version: 0.7.2
-Release: 0
+Version: 0.6.4
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.partimage.org/
@@ -16,23 +15,22 @@ URL: http://www.partimage.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/partimage/partimage-%{version}.tar.gz
+Source: http://dl.sf.net/partimage/partimage-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: parted-devel, newt-devel, libmcrypt-devel, slang-devel
-BuildRequires: zlib-devel, bzip2-devel
+BuildRequires: parted-devel, newt-devel, libmcrypt-devel
 
 %description
-partimage is a Linux/UNIX partition imaging utility: it saves all used
+Partition Image is a Linux/UNIX partition imaging utility: it saves all used
 blocks in a partition to an image file. This image file can be compressed
 using gzip or bzip2 compression to save space, and even split into multiple
 files to be copied to movable media such as Zip disks or CD-R.
 
-partimage supports the following filesystems:
+Partition Images supports the following filesystems:
 
 	ext2fs, ext3fs, fat16, fat32, hfs, hpfs, jfs, ntfs, reiserfs, ufs, xfs
 
-partimage allows you to back up a full Linux/Windows system with a single
+Partition Image allows you to back up a full Linux/Windows system with a single
 operation. When problems such as viruses, crashes, or other errors occur, you
 just have to restore, and after several minutes your system can be restored
 (boot record and all your files) and fully working.
@@ -42,7 +40,7 @@ Summary: partition imaging utility, much like Ghost
 Group: Applications/System
 
 %description static
-partimage is a Linux/UNIX partition imaging utility: it saves all used
+Partition Image is a Linux/UNIX partition imaging utility: it saves all used
 blocks in a partition to an image file. This image file can be compressed
 using gzip or bzip2 compression to save space, and even split into multiple
 files to be copied to movable media such as Zip disks or CD-R.
@@ -54,7 +52,7 @@ Summary: The server part of a partition imaging utility, much like Ghost
 Group: System Environment/Daemons
 
 %description server
-partimage is a Linux/UNIX partition imaging utility: it saves all used
+Partition Image is a Linux/UNIX partition imaging utility: it saves all used
 blocks in a partition to an image file. This image file can be compressed
 using gzip or bzip2 compression to save space, and even split into multiple
 files to be copied to movable media such as Zip disks or CD-R.
@@ -62,11 +60,13 @@ files to be copied to movable media such as Zip disks or CD-R.
 This package contains the server daemon for remote imaging.
 
 %prep
-%setup -n %{name}-cvs-%{version}
+%setup
 
 ### FIXME: Disable chowning of files
 %{__perl} -pi.orig -e 's|^\tchown partimag\.root.*$|\\|' Makefile.in
-%{__perl} -pi.orig -e 's|(LIBS =)|$1 -lmcrypt|' src/client/Makefile.in
+
+### FIXME: Fix mkinstalldirs during 'make install' in po/
+%{__perl} -pi.orig -e 's|^(mkinstalldirs) = .+$|$1 = %{__mkdir_p}|' po/Makefile.in.in
 
 %{__cat} <<EOF >partimaged.sysconfig
 ### See partimaged --help for more information on these options.
@@ -209,19 +209,17 @@ EOF
 
 %{__install} -m0755 partimage-static %{buildroot}%{_sbindir}
 
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/logrotate.d/ \
-			%{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%{_localstatedir}/partimaged/ \
-			%{buildroot}%{_localstatedir}/log/
-%{__install} -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
-%{__install} -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
-%{__install} -m0644 partimaged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/partimaged
+%{__install} -D -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
+%{__install} -D -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
+%{__install} -D -m0644 partimaged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/partimaged
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/partimaged.log
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/partimaged/
+
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_datadir}/info/
+%{__rm} -rf %{buildroot}%{_infodir}
 
 %pre server
 /usr/sbin/useradd -M -r -s "/sbin/nologin" -d "%{_localstatedir}/partimaged" partimag &>/dev/null || :
@@ -247,7 +245,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING README ROADMAP TESTS THANKS TODO
+%doc AUTHORS BOOT* BUGS ChangeLog COPYING FUTURE README SURVEY THANKS TODO
 %{_sbindir}/partimage
 
 %files server
@@ -267,8 +265,8 @@ fi
 %{_sbindir}/partimage-static
 
 %changelog
-* Thu Oct 02 2003 Dag Wieers <dag@wieers.com> - 0.7.2-0
-- Updated to release 0.7.2.
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.4-1
+- Updated to release 0.6.4.
 
 * Tue Jul 31 2003 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Added seperate server package.
