@@ -23,7 +23,7 @@
 %define shootver	0.4.1
 %define flynnver	0.8
 %define	ledsver		0.8.1
-%define bgchgver        0.1.0
+%define bgchgver        0.1.1
 %define trayver         1.02
 %define cpufreqver      0.5.1
 %define alltraxver      0.2
