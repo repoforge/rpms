@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: <smbc-list@lists.sourceforge.net>
+# Upstream: <smbc-list$lists,sourceforge,net>
 
 # Screenshot: http://www.air.rzeszow.pl/smbc/smbc/screenshots/mainpage.jpg
 # ScreenshotURL: http://www.air.rzeszow.pl/smbc/smbc/screenshots/
