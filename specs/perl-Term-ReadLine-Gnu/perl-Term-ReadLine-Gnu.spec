@@ -1,14 +1,10 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Hiroo HAYASHI <hiroo,hayashi$computer,org>
 
-
-%define real_name Term-ReadLine-Gnu
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+%define real_name Term-ReadLine-Gnu
 
 # todo mv dir, wrong name
 
@@ -26,7 +22,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl, readline-devel
 
 %description
@@ -45,17 +40,19 @@ a program which uses the GNU Readline Library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL \
+	PREFIX="%{buildroot}%{_prefix}" \
+	INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags} \
+	OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_archlib}
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
-%{__sed} -i "s|/usr/local/bin/perl|/usr/bin/perl|g;" \
-	%{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
+%{__perl} -pi -e "s|^#!/.*bin/perl|#!%{__perl}|i;" %{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
 
 %clean
 %{__rm} -rf %{buildroot}
