@@ -62,6 +62,7 @@ and info format.
 /usr/share/applications/liquidwar.desktop
 
 %files doc
+%defattr(-,root,root,0755)
 %doc README
 /usr/share/doc/liquidwar/COPYING
 /usr/share/doc/liquidwar/README
