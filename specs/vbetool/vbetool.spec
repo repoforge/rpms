@@ -2,7 +2,7 @@
 # Authority: koenraad
 # Upstream: Matthew Garrett <mjg59-yes,this,is,a,valid,email,address$srcf,ucam,org>
 
-Summary: vbetool runs real-mode video BIOS code to alter hardware state.
+Summary: Real-mode video BIOS utility to alter hardware state
 Name: vbetool
 Version: 0.2
 Release: 1
@@ -29,8 +29,7 @@ and attempts to initialize the video card from scratch.
 
 %build
 autoreconf --force
-%configure \
-	--disable-schemas-install
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,6 +46,6 @@ autoreconf --force
 %{_sbindir}/vbetool
 
 %changelog
-* Fri Mar 18 2005 Koenraad Heijlen <krpm@heijlen.be> 0.2-1 
+* Fri Mar 18 2005 Koenraad Heijlen <krpm@heijlen.be> - 0.2-1 
 - Initial package based on the debian package by Matthew Garrett.
 - Patched the Makefile.
