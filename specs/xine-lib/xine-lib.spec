@@ -104,7 +104,6 @@ use the Xine library.
 
 
 %build
-CFLAGS="%{optflags} -fPIC" \
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
