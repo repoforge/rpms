@@ -11,7 +11,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.10
-Release: 0
+Release: 0.1
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -25,6 +25,7 @@ Source4: firefox.xpm
 Patch2: firefox-0.9.3-uri.patch
 Patch3: mozilla-default-plugin-less-annoying.patch
 Patch5: mozilla-1.7-psfonts.patch
+Patch6: firefox-0.10-gcc3-alpha.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip
@@ -46,24 +47,19 @@ compliance, performance and portability.
 %patch2 -p0 -b .uri
 %patch3 -p1 -b .plugin
 %patch5 -p1 -b .psfonts
+%patch6 -p1 -b .gcc3-alpha
 
-### FIXME: Shouldn't the default firefox config be part of original source ?
-%{__cat} <<EOF >.mozconfig
+%{__cat} <<'EOF' >.mozconfig
+. $topsrcdir/browser/config/mozconfig
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
-ac_add_options --disable-composer
 ac_add_options --disable-debug
 ac_add_options --disable-installer
 ac_add_options --disable-jsd
-ac_add_options --disable-ldap
-ac_add_options --disable-mailnews
-ac_add_options --disable-profilesharing
 ac_add_options --disable-tests
-ac_add_options --enable-crypto
 ac_add_options --enable-extensions="default,-content-packs,-editor,-help,-irc,-spellcheck"
 ac_add_options --enable-official-branding
 # We want to replace -O? with -Os to optimize compilation for size
 ac_add_options --enable-optimize="-Os %(echo "%{optflags}" | sed 's/-O.//')"
-ac_add_options --enable-single-profile
 ac_add_options --with-pthreads
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-png
@@ -186,6 +182,8 @@ export MOZ_PHOENIX=1
 %{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 %{__perl} -pi -e 's|\$MOZ_DIST_BIN|%{_libdir}/firefox|g;' %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
+
 %if %{?_without_gtk2:1}0
 ### FIXME: Fixed "nsNativeComponentLoader: GetFactory(libwidget_gtk.so) Load FAILED with error: libwidget_gtk.so" by linking. (Please fix upstream)
 if [ ! -f %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so ]; then
@@ -204,7 +202,7 @@ fi
 %endif
 
 ### Clean up buildroot
-find %{buildroot}%{_libdir}/firefox/chrome/*/ -type d -exec %{__rmdir} -p {} \; &>/dev/null
+find %{buildroot}%{_libdir}/firefox/chrome/* -type d -maxdepth 1 -exec %{__rm} -rf {} \;
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -230,11 +228,18 @@ fi
 %doc LEGAL LICENSE README.txt
 %{_bindir}/firefox
 %{_libdir}/firefox/
+%dir %{_libdir}/mozilla/
+%dir %{_libdir}/mozilla/plugins/
 %{_datadir}/pixmaps/firefox.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/firefox.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Tue Sep 28 2004 Dag Wieers <dag@wieers.com> - 0.10-0.1
+- Include default mozconfig.
+- Add mozilla and mozilla plugins directory to package.
+- Clean up the leftover .jar content.
+
 * Thu Sep 16 2004 Matthias Saou <http://freshrpms.net/> 0.10-0
 - Update to 1.0 PR.
 
