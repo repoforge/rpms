@@ -4,7 +4,7 @@
 # Screenshot: http://kombat.kajaani.net/ss/07.png
 # ScreenshotURL: http://kombat.kajaani.net/screens.php
 
-Summary: 
+Summary: Multiplayer game in space
 Name: kajaani_kombat
 Version: 0.4
 Release: 1
