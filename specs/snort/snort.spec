@@ -23,13 +23,13 @@ Source: http://www.snort.org/dl/snort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet
-BuildRequires: pcre-devel, perl
-%{?rhfc1:BuildRequires: net-snmp-devel, postgresql-devel, unixODBC-devel}
-%{?rhel3:BuildRequires: net-snmp-devel, rh-postgresql-devel}
-%{?rh90:BuildRequires: net-snmp-devel, postgresql-devel, unixODBC-devel}
-%{?rh80:BuildRequires: net-snmp-devel, postgresql-devel, unixODBC-devel}
-%{?rh73:BuildRequires: ucd-snmp-devel, postgresql-devel, unixODBC-devel}
-%{?rhel21:BuildRequires: ucd-snmp-devel, postgresql-devel, unixODBC-devel}
+BuildRequires: pcre-devel, perl, postgresql-devel, unixODBC-devel
+%{?rhfc1:BuildRequires: net-snmp-devel}
+%{?rhel3:BuildRequires: net-snmp-devel}
+%{?rh90:BuildRequires: net-snmp-devel}
+%{?rh80:BuildRequires: net-snmp-devel}
+%{?rh73:BuildRequires: ucd-snmp-devel}
+%{?rhel21:BuildRequires: ucd-snmp-devel}
 
 %description
 Snort is a libpcap-based packet sniffer/logger which 
