@@ -16,7 +16,7 @@
 Summary: YellowDog Updater Modified, an rpm package management utility
 Name: yum
 Version: 2.0.7
-Release: 0%{?date:.%{date}}
+Release: 2%{?date:.%{date}}
 License: GPL
 Group: System Environment/Base
 URL: http://www.linux.duke.edu/projects/yum/
@@ -120,7 +120,10 @@ fi
 
 
 %changelog
-* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-1
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-2
+- Increased the release to take precedence over the default FC2 yum package.
+
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-0
 - Update to 2.0.7 at last.
 
 * Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 2.0.6-1.20040416

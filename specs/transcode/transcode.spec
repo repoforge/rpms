@@ -13,38 +13,31 @@ Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
 Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%{?_with_avifile6:Requires: avifile >= 0.6.0}
-%{!?_without_text:Requires: freetype >= 2.0}
+Requires: SDL, libxml2, libjpeg
+Requires: freetype >= 2.0, libogg, libvorbis, libdv
+Requires: ImageMagick >= 5.4.3, bzip2
 %{!?_without_lame:Requires: lame >= 3.89}
-%{!?_without_ogg:Requires: libogg}
-%{!?_without_vorbis:Requires: libvorbis}
 %{!?_without_dvdread:Requires: libdvdread}
 %{!?_without_xvidcore:Requires: xvidcore}
 #{!?_without_postproc:Requires: libpostproc}
 %{!?_without_quicktime:Requires: libquicktime}
-%{!?_without_dv:Requires: libdv}
 %{!?_without_lzo:Requires: lzo >= 1.08}
+%{!?_without_a52:Requires: a52dec}
 %{!?_without_libfame:Requires: libfame}
-%{!?_without_magick:Requires: ImageMagick >= 5.4.3, bzip2}
 %{!?_without_mjpeg:Requires: mjpegtools}
-Requires: SDL, libxml2, libjpeg
-%{?_with_avifile6:BuildRequires: avifile-devel >= 0.6.0}
-%{!?_without_text:BuildRequires: freetype-devel >= 2.0}
+BuildRequires: gcc-c++, glib-devel
+BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
+BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel, libdv-devel
+BuildRequires: ImageMagick-devel >= 5.4.3, bzip2-devel
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
-%{!?_without_ogg:BuildRequires: libogg-devel}
-%{!?_without_vorbis:BuildRequires: libvorbis-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_xvidcore:BuildRequires: xvidcore-devel}
 #{!?_without_postproc:BuildRequires: libpostproc}
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
-%{!?_without_dv:BuildRequires: libdv-devel}
 %{!?_without_lzo:BuildRequires: lzo-devel >= 1.08}
 %{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
 %{!?_without_libfame:BuildRequires: libfame-devel}
-%{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3, bzip2-devel}
 %{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
-BuildRequires: gcc-c++, glib-devel
-BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
@@ -60,9 +53,7 @@ video frames and loading of external filters.
 Please see the included README file for more.
 
 Available rpmbuild rebuild options :
---with : avifile6
---without : text lame ogg vorbis dvdread xvidcore postproc quicktime dv lzo
-            a52 libfame magick mjpeg
+--without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg
 
 
 %prep
@@ -71,27 +62,21 @@ Available rpmbuild rebuild options :
 
 %build
 %configure \
-    %{!?_with_avifile6:--with-avifile-mods=no} \
-    %{!?_without_lzo:--enable-text} \
-    %{?_without_lzo:--with-lzo=no} \
-    %{?_without_magick:--without-magick-mods} \
     %{?_without_lame:--without-lame} \
-    %{?_without_ogg:--without-ogg} \
-    %{?_without_vorbis:--without-vorbis} \
     %{?_without_dvdread:--without-dvdread} \
     %{?_without_xvidcore:--without-xvidcore} \
+    %{!?_without_xvidcore:--with-default-xvid=xvid4} \
     %{!?_without_quicktime:--with-qt} \
-    %{?_without_dv:--without-dv} \
+    %{?_without_lzo:--without-lzo} \
     %{?_without_a52:--without-a52} \
     %{?_without_libfame:--without-libfame}
 %{__make} %{?_smp_mflags}
 
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} rpm-doc
 %makeinstall
 %{__mv} -f %{buildroot}%{_docdir}/transcode rpm-doc
-%{__strip} %{buildroot}%{_libdir}/transcode/*.so
 
 
 %clean
@@ -110,6 +95,9 @@ Available rpmbuild rebuild options :
 %changelog
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-4
 - Rebuild for Fedora Core 2.
+- Remove explicit stripping, it goes into the debuginfo package.
+- Change some of the obvious conditional builds to be static (ogg...).
+- Make xvid4 the default instead of xvid2.
 
 * Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-3
 - Rebuild against new libdv.
