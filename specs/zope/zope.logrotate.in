@@ -1,0 +1,10 @@
+<<LOG_DIR>>/*.log {
+    missingok
+    sharedscripts
+    rotate 4
+    weekly
+    compress
+    postrotate
+        <<ZOPECTL>> logreopen
+    endscript
+}

@@ -7,11 +7,11 @@ Version: 0.31
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
 URL: http://easytag.sourceforge.net/
+Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
 BuildRequires: gtk+-devel >= 1.2.7, id3lib-devel >= 3.7.12
 BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 EasyTAG is an utility for viewing, editing and writing tags of your
@@ -59,13 +59,13 @@ tagging easier.
 - Update to unstable 0.30.1.
 - Remove desktop-file-install as it's now freedesktop style.
 
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 0.30-4d.fr
+* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 0.30-4d
 - Added patch for 0.30d.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.30-3c.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.30-3c
 - Rebuild for Fedora Core 1.
 
-* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 0.30-2c.fr
+* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 0.30-2c
 - Added patches to update to 0.30c.
 
 * Tue Sep  9 2003 Matthias Saou <http://freshrpms.net/>

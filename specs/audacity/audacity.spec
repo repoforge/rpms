@@ -47,7 +47,8 @@ and Noise Removal, and it also supports VST plug-in effects.
     --with-libsndfile=system \
     --with-portaudio=v19 \
     --without-portmixer
-%{__perl} -pi.orig -e 's|^(CFLAGS) = -g |$1 = -fPIC |' lib-src/portaudio-v19/Makefile
+%{__perl} -pi.orig -e 's|^(CFLAGS) = -g |$1 = -fPIC |' \
+    lib-src/portaudio-v19/Makefile
 %{__make} %{?_smp_mflags}
 
 
@@ -64,15 +65,13 @@ Comment=Audio editor to record, play sounds and import, export files
 Icon=%{name}.xpm
 Exec=%{name}
 Terminal=false
-Type=Application
+Type=Application;AudioVideo;
 EOF
 
 # Complete the modifications
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
-    --add-category Application                  \
-    --add-category AudioVideo                   \
     %{name}.desktop
 
 # Install the image used in the desktop entry

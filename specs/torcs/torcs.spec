@@ -17,10 +17,10 @@ Source3: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-K1999.tgz
 Source4: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-billy.tgz
 Source5: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-bt.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: torcs-data, freeglut, plib >= 1.6.0
+Requires: torcs-data
 #BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL
 BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL
-BuildRequires: gcc-c++, plib >= 1.6.0, freeglut-devel
+BuildRequires: gcc-c++, plib-devel >= 1.6.0, freeglut-devel
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel
 BuildRequires: desktop-file-utils
 

@@ -46,7 +46,7 @@ libfame library.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-# Workaround for direct <libfame/fame.h> includes.
+# Workaround for direct <libfame/fame.h> includes (include/libfame -> .)
 %{__ln_s} . %{buildroot}%{_includedir}/%{name}
 
 

@@ -10,8 +10,8 @@ Version: 1.10.6
 Release: 1
 License: GPL
 Group: Amusements/Games
-Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
 URL: http://bzflag.org/
+Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: XFree86-devel, gcc-c++, desktop-file-utils
 
@@ -47,16 +47,14 @@ Name=BZFlag
 Comment=3D multi-player tank battle game
 Exec=bzflag
 Icon=bzflag.xpm
-Terminal=0
-Type=Application
+Terminal=false
+Type=Application;Game;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category Game                           \
-  %{name}.desktop
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
 
 
 %clean

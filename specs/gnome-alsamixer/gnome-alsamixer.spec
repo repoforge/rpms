@@ -41,15 +41,13 @@ Comment=Adjust volume levels
 Exec=gnome-alsamixer
 Icon=gnome-alsamixer/gnome-alsamixer-icon.png
 Terminal=false
-Type=Application
+Type=Application;AudioVideo;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor}  \
-  --dir %{buildroot}%{_datadir}/applications     \
-  --add-category Application                     \
-  --add-category AudioVideo                      \
-%{name}.desktop
+desktop-file-install --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
 
 
 %clean

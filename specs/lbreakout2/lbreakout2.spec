@@ -13,7 +13,6 @@ Group: Amusements/Games
 URL: http://www.lgames.org/
 Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?beta:beta-%{beta}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL >= 1.1.5, SDL_mixer
 BuildRequires: SDL-devel, SDL_mixer-devel, zlib-devel, libpng-devel
 BuildRequires: ImageMagick
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}

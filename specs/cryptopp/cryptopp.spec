@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Free C++ class library of cryptographic schemes
 Name: cryptopp

@@ -1,0 +1,102 @@
+diff -Naupr Zope-2.7.0.orig/skel/bin/runzope.in Zope-2.7.0/skel/bin/runzope.in
+--- Zope-2.7.0.orig/skel/bin/runzope.in	2003-10-24 19:50:04.000000000 +0200
++++ Zope-2.7.0/skel/bin/runzope.in	2004-02-19 13:38:53.000000000 +0100
+@@ -3,7 +3,7 @@
+ PYTHON="<<PYTHON>>"
+ ZOPE_HOME="<<ZOPE_HOME>>"
+ INSTANCE_HOME="<<INSTANCE_HOME>>"
+-CONFIG_FILE="<<INSTANCE_HOME>>/etc/zope.conf"
++CONFIG_FILE="<<CONFIG_FILE>>"
+ SOFTWARE_HOME="<<SOFTWARE_HOME>>"
+ PYTHONPATH="$SOFTWARE_HOME"
+ export PYTHONPATH INSTANCE_HOME SOFTWARE_HOME
+diff -Naupr Zope-2.7.0.orig/skel/bin/zopectl.in Zope-2.7.0/skel/bin/zopectl.in
+--- Zope-2.7.0.orig/skel/bin/zopectl.in	2003-10-24 19:50:04.000000000 +0200
++++ Zope-2.7.0/skel/bin/zopectl.in	2004-02-19 13:39:07.000000000 +0100
+@@ -3,7 +3,7 @@
+ PYTHON="<<PYTHON>>"
+ ZOPE_HOME="<<ZOPE_HOME>>"
+ INSTANCE_HOME="<<INSTANCE_HOME>>"
+-CONFIG_FILE="<<INSTANCE_HOME>>/etc/zope.conf"
++CONFIG_FILE="<<CONFIG_FILE>>"
+ SOFTWARE_HOME="<<SOFTWARE_HOME>>"
+ PYTHONPATH="$SOFTWARE_HOME"
+ export PYTHONPATH INSTANCE_HOME SOFTWARE_HOME
+diff -Naupr Zope-2.7.0.orig/skel/etc/zope.conf.in Zope-2.7.0/skel/etc/zope.conf.in
+--- Zope-2.7.0.orig/skel/etc/zope.conf.in	2004-01-09 00:34:08.000000000 +0100
++++ Zope-2.7.0/skel/etc/zope.conf.in	2004-02-19 16:36:20.632247048 +0100
+@@ -40,6 +40,7 @@ instancehome $INSTANCE
+ #
+ #    clienthome /home/chrism/projects/sessions/var
+ 
++clienthome <<CLIENT_HOME>>
+ 
+ # Directive: path
+ #
+@@ -138,6 +139,7 @@ instancehome $INSTANCE
+ #
+ #    effective-user chrism
+ 
++effective-user <<ZOPE_USER>>
+ 
+ # Directive: enable-product-installation
+ #
+@@ -263,6 +265,7 @@ instancehome $INSTANCE
+ #
+ #    pid-filename /home/chrism/projects/sessions/var/Z2.pid
+ 
++pid-filename <<RUN_DIR>>/Z2.pid
+ 
+ # Directive: lock-filename
+ #
+@@ -277,6 +280,7 @@ instancehome $INSTANCE
+ #
+ #    lock-filename /home/chrism/projects/sessions/var/Z2.lock
+ 
++lock-filename <<RUN_DIR>>/Z2.lock
+ 
+ # Directive: mime-types
+ #
+@@ -290,6 +294,7 @@ instancehome $INSTANCE
+ #
+ #     mime-types  $INSTANCE/etc/mime.types
+ 
++mime-types /etc/mime.types
+ 
+ # Directive: structured-text-header-level
+ #
+@@ -656,7 +661,7 @@ instancehome $INSTANCE
+ <eventlog>
+   level all
+   <logfile>
+-    path $INSTANCE/log/event.log
++    path <<LOG_DIR>>/event.log
+     level info
+   </logfile>
+ </eventlog>
+@@ -664,7 +669,7 @@ instancehome $INSTANCE
+ <logger access>
+   level WARN
+   <logfile>
+-    path $INSTANCE/log/Z2.log
++    path <<LOG_DIR>>/Z2.log
+     format %(message)s
+   </logfile>
+ </logger>
+@@ -815,7 +820,7 @@ instancehome $INSTANCE
+ <zodb_db main>
+     # Main FileStorage database
+     <filestorage>
+-      path $INSTANCE/var/Data.fs
++      path <<CLIENT_HOME>>/Data.fs
+     </filestorage>
+     mount-point /
+ </zodb_db>
+@@ -839,6 +844,6 @@ instancehome $INSTANCE
+ #     server localhost:8100
+ #     storage 1
+ #     name zeostorage
+-#     var $INSTANCE/var
++#     var $INSTANCE/data
+ #   </zeoclient>
+ # </zodb_db>

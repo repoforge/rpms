@@ -9,8 +9,8 @@ Version: 1.0.4
 Release: 3
 License: GPL
 Group: Applications/Archiving
-Source: ftp://ftp.gnu.org/savannah/files/gtktalog/gtktalog.pkg/%{version}/gtktalog-%{version}.tar.bz2
 URL: http://www.nongnu.org/gtktalog/
+Source: ftp://ftp.gnu.org/savannah/files/gtktalog/gtktalog.pkg/%{version}/gtktalog-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gnome-libs >= 1.2, zlib, eject, bzip2, /usr/bin/file
 BuildRequires: gnome-libs-devel, gtk+-devel, desktop-file-utils, gcc-c++

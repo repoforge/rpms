@@ -34,6 +34,7 @@ These are usually run via a text console, and can be unfriendly to use.
 %{__perl} -pi.orig -e 's|^(plugindir) = .+$|$1 = \$(libdir)/anjuta|' \
     Makefile.in */Makefile.in */*/Makefile.in
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -44,11 +45,13 @@ These are usually run via a text console, and can be unfriendly to use.
 %makeinstall
 %find_lang %{name}
 
+
 %post
 scrollkeeper-update -q
 
 %postun
 scrollkeeper-update -q
+
 
 %clean
 %{__rm} -rf %{buildroot}

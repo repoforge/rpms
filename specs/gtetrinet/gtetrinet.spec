@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Ka-shu Wong <kswong@zip.com.au>
 
 Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
@@ -7,10 +8,10 @@ Version: 0.7.7
 Release: 1
 License: GPL
 Group: Amusements/Games
+URL: http://gtetrinet.sourceforge.net/
 Source0: http://ftp.gnome.org/pub/GNOME/sources/gtetrinet/0.7/gtetrinet-%{version}.tar.gz
 Source1: tetrinet.txt
 Source2: http://www.mavit.pwp.blueyonder.co.uk/mmr-sounds-1.0.tar.gz
-URL: http://gtetrinet.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnome >= 2.0.0, libgnomeui >= 2.0.0
 BuildRequires: libgnome-devel >= 2.0.0, libgnomeui-devel >= 2.0.0, GConf2-devel
@@ -27,7 +28,7 @@ is, check out tetrinet.org)
 
 
 %build
-%configure
+%configure --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 # Fix the desktop entry
 %{__perl} -pi -e 's|Exec=%{name}|Exec=%{_prefix}/games/%{name}|g' \

@@ -4,7 +4,7 @@
 Summary: Set of portable libraries especially useful for games
 Name: plib
 Version: 1.8.3
-Release: 2
+Release: 3
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/
@@ -13,6 +13,18 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, Mesa-devel, freeglut-devel, libpng-devel
 
 %description
+This is a set of OpenSource (LGPL) libraries that will permit programmers
+to write games and other realtime interactive applications that are 100%
+portable across a wide range of hardware and operating systems. Here is
+what you need - it's all free and available with LGPL'ed source code on
+the web. All of it works well together.
+
+
+%package devel
+Summary: Set of portable libraries especially useful for games
+Group: Development/Libraries
+
+%description devel
 This is a set of OpenSource (LGPL) libraries that will permit programmers
 to write games and other realtime interactive applications that are 100%
 portable across a wide range of hardware and operating systems. Here is
@@ -38,14 +50,17 @@ the web. All of it works well together.
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files devel
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NOTICE NEWS README
-%{_libdir}/libplib*
-%{_includedir}/plib
+%{_includedir}/*
+%{_libdir}/*.a
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.8.3-3
+- Only build a devel package now as all files are headers and static libs.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.8.3-2
 - Rebuild for Fedora Core 2.
 

@@ -2,12 +2,10 @@
 # Authority: matthias
 # Upstream: <libexif-devel@lists.sf.net>
 
-# ExcludeDist: fc2
-
 Name: libexif
 Summary: EXIF image tag library
-Version: 0.5.12
-Release: 2
+Version: 0.6.9
+Release: 1
 License: GPL
 URL: http://libexif.sourceforge.net/
 Source: http://dl.sf.net/libexif/libexif-%{version}.tar.gz
@@ -33,32 +31,48 @@ that you can use to develop libexif applications.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%{_libdir}/*.so*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
-%{_libdir}/pkgconfig/*.pc
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
+
 
 %changelog
-* Mon Nov  5 2003 Matthias Saou <http://freshrpms.net/> 0.5.12-2.fr
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.9-1
+- Update to 0.6.9.
+
+* Mon Nov  5 2003 Matthias Saou <http://freshrpms.net/> 0.5.12-2
 - Rebuild for Fedora Core 1.
 
 * Tue Aug  5 2003 Matthias Saou <http://freshrpms.net/>

@@ -6,16 +6,14 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 3.50
+Version: 3.55
 Release: 1
 Epoch: 2
 License: GPL
 Group: Applications/System
 URL: http://www.insecure.org/nmap/
-
 Source: http://download.insecure.org/nmap/dist/nmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gcc-c++, libpcap, pcre-devel, openssl-devel
 
 %description
@@ -30,7 +28,7 @@ predictability characteristics, reverse-identd scanning, and more.
 %package frontend
 Summary: Gtk+ frontend for nmap
 Group: Applications/System
-Requires: nmap = %{epoch}:%{version}-%{release} , gtk+
+Requires: nmap = %{epoch}:%{version}, gtk+
 BuildRequires: gtk+-devel, desktop-file-utils, openssl-devel
 
 %description frontend
@@ -82,6 +80,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 3.55-1
+- Update to 3.55.
+
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 3.50-1
 - Update to 3.50.
 - Minor spec cleanups.

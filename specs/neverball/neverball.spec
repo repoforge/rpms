@@ -5,14 +5,13 @@
 
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball
-Version: 1.3.1
+Version: 1.3.4
 Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://icculus.org/neverball/
 Source: http://icculus.org/neverball/neverball-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL, SDL_image, SDL_mixer, SDL_ttf
 BuildRequires: perl, desktop-file-utils, zlib-devel
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_ttf-devel
 # This is required for correct linking
@@ -51,16 +50,14 @@ Comment=Test of skill, part puzzle game and part action game
 Exec=%{name}
 Icon=%{_datadir}/%{name}/shot-rlk/risers.jpg
 Terminal=false
-Type=Application
+Type=Application;Game;
 Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category Game                           \
-  %{name}.desktop
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
 
 
 %clean
@@ -76,6 +73,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.3.4-1
+- Update to 1.3.4.
+
 * Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-1
 - Update to 1.3.1.
 

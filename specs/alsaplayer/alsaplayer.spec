@@ -64,13 +64,12 @@ Exec=alsaplayer
 Terminal=false
 Type=Application
 Encoding=UTF-8
+Category=Application;AudioVideo;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category AudioVideo                     \
   %{name}.desktop
 
 # Clean up for the docs

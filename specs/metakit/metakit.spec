@@ -36,15 +36,17 @@ Header files and development documentation for metakit.
 
 
 %build
-cd unix
-%configure
-%{__make} %{?_smp_mflags}
+pushd unix
+    %configure
+    %{__make} %{?_smp_mflags}
+popd
 
 
 %install
 %{__rm} -rf %{buildroot}
-cd unix
-%{__make} install DESTDIR=%{buildroot}
+pushd unix
+    %{__make} install DESTDIR=%{buildroot}
+popd
 
 
 %clean

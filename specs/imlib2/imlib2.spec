@@ -12,10 +12,8 @@ Release: %{?date:0.%{date}.}2
 License: BSD
 Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/imlib2.html
-
 Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: XFree86-devel, freetype-devel >= 1.2, zlib-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel, libtiff-devel
 
@@ -29,7 +27,7 @@ rendering and blending, dynamic binary filters, scripting, and more.
 %package devel
 Summary: Imlib2 header, static libraries and documentation
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}
 Requires: XFree86-devel, pkgconfig
 
 %description devel
@@ -42,10 +40,10 @@ Header, static libraries and documentation for Imlib2.
 
 %build
 %configure \
-%ifarch %ix86
-	--enable-mmx
+%ifarch %{ix86}
+    --enable-mmx
 %else
-	--disable-mmx
+    --disable-mmx
 %endif
 %{__make} %{?_smp_mflags}
 

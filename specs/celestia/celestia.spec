@@ -9,8 +9,8 @@ Version: 1.3.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
-Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
 URL: http://www.shatters.net/celestia/
+Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: freeglut-devel, gtkglarea, kdelibs-devel
 BuildRequires: libpng-devel, libjpeg-devel

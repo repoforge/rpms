@@ -13,7 +13,6 @@ URL: http://www.obsession.se/gentoo/
 Source0: http://dl.sf.net/gentoo/gentoo-%{version}.tar.gz
 Source1: gnome-db-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk+ >= 1.2.3, fam
 BuildRequires: gtk+-devel, fam-devel, desktop-file-utils
 
 %description
@@ -50,15 +49,13 @@ Comment=Graphical file managment program in GTK+ for Linux
 Icon=%{name}.png
 Exec=gentoo
 Terminal=false
-Type=Application
+Type=Application;Utility;
 Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications  \
-    --add-category Application                  \
-    --add-category Utility                      \
+    --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
 

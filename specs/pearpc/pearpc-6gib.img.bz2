@@ -1,0 +1,166 @@
+<HTML><HEAD>
+		<TITLE>Select a Mirror for File: /pearpc/pearpc-6gib.img.bz2</TITLE>
+		</HEAD>
+		<style type="text/css">
+   body {
+    background-image: url("http://images.sourceforge.net/prdownloads/sf-stipple.png");
+    background-color: #aaa;
+        margin: 0;
+   }
+   td { font: small sans-serif; padding-left: 0.5em; padding-right: 0.5em;}
+   .footer {text-align: center;}
+   .directory {color: #595;}
+   .sort {color: #000;}
+   .label-date {font-family: monospace; color: #555; text-align: left;}
+   .label-size {font-family: monospace; color: #555; text-align: center;}
+	.osdn-search {
+		background-color:#fff;
+		border:1px #666666 solid;
+		font-size: 10px;
+		color: #666666;
+		//margin: 0px;
+		font-family: arial,sans-serif;
+	}
+
+	input[type="text"].osdn-search {
+		padding-top: 0.1em;
+		padding-left: 0.2em;
+		padding-right: 0.2em;
+	}
+
+	.osdn-button {
+		margin-top: 1px;
+		margin-bottom: 1px;
+	}
+
+	select.osdn-search {
+		text-align: center;
+	}
+
+	.osdn-navtext {color: #666666; font-family: verdana, arial, sans-serif; font-size: 10px; text-decoration: none;}
+
+	.osdn-foottext {
+color: #EEEEEE; 
+	   font-family: verdana, arial, sans-serif; 
+	   font-size: 12px; 
+	   text-decoration: none; 
+	   text-align: center;} 
+
+
+
+/
+  </style>
+
+		<BODY bgcolor="#FFFFFF">
+		<!-- begin OSDN navbar -->
+ <table width="100%" border="0" cellpadding="2" cellspacing="0" 
+ bgcolor="#444444" style="border-top: 2px #666666 solid; border-bottom: 
+ 1px #222222 solid;">
+     <tr>
+                 <td style="border-bottom: 1px #333333 solid;"><a 
+ href="http://www.osdn.com" title="OSDN - The Open Source Development 
+ Network"><image src="http://images.sourceforge.net/images/OSDN_navbar.gif" width="72" height="11" alt="OSDN - The Open Source Development Network" border="0"></a></td>
+                 <td valign="middle" nowrap style="border-bottom: 1px #333333 solid;" 
+ width="100%">
+ 
+                 <font face="arial, sans-serif" color="#999999" size="-2">:&nbsp;<a 
+ href="http://thinkgeek.com"><font 
+ color="#cccccc">Shop&nbsp;ThinkGeek</font></a> -&nbsp;<a 
+ href="http://slashdot.org"><font color="#cccccc">Slashdot</font></a> 
+ -&nbsp;<a href="http://freshmeat.net"><font 
+ color="#cccccc">freshmeat</font></a> -&nbsp;<a 
+ href="http://newsletters.osdn.com"><font 
+ color="#cccccc">Newsletters</font></a> -&nbsp;<a 
+ href="http://ads.osdn.com/?ad_id=2435&alloc_id=5907&op=click"><font 
+ color="#cccccc">TechJobs</font></a> -&nbsp;<a 
+ href="http://ads.osdn.com/?ad_id=2560&alloc_id=6182&op=click"><font 
+ color="#cccccc">SourceForge Broadband</font></a></font></td>
+ 
+                 <td valign="middle" style="border-bottom: 1px #333333 solid;" 
+ nowrap><b><a href="http://osdn.com/osdnsearch.pl" 
+ style="text-decoration: none"><font size="-2" face="verdana" 
+ color="#cccccc">Search&nbsp;&raquo;&nbsp;&nbsp;</font></a></b></td>
+     </tr>
+ </table>
+ <!-- end OSDN navbar -->
+<!-- prdownloads supplemental -->
+<TABLE width="100%" bgcolor="#FFFFFF" cellpadding="4" cellspacing="0" align="center" border="0">
+<TR valign="middle">
+ <TD align="center" colspan=3>
+
+<iframe SRC="http://ads.osdn.com/?op=iframe&position=1&site_id=2&section=prdownloads" width="728" height="90" frameborder="no" border="0" MARGINWIDTH="0" MARGINHEIGHT="0" SCROLLING="no"></iframe> 
+
+ </TD>
+
+</TR>
+</TABLE>
+<font size=1><br></font>
+<!-- prdownloads supplemental --><TABLE align="center" width="90%" bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" border="0">
+<tr valign="middle">
+  <td align="center"><a href="http://sourceforge.net/"><img alt="SourceForge.Net" src="http://images.sourceforge.net/prdownloads/sourceforge_whitebg.gif" width="136" height="79" border="0"></a>&nbsp;</td>
+
+  <td align="center"><img alt="Download Server" src="http://images.sourceforge.net/prdownloads/sf-download_server.png" HEIGHT="72" WIDTH="172" border="0">&nbsp;</td>
+</tr>
+ <TR><TD align="center" colspan=2><TABLE width=100% border=1><TR bgcolor=#CCCCCC><TH><!--   failedmirror:  failedmirrorshort:  -->You are requesting file: /pearpc/pearpc-6gib.img.bz2<br>Please select a mirror</TH></TR></TABLE><TABLE width=100% cellpadding=1 cellspacing=1 border=0><TR><TH>Host<br></TH><TH>Location<br></TH><TH>Continent<br></TH><TH>Download<br></TH></TR>
+<TR BGCOLOR=#DDDDDD><TD align=center><A HREF=http://www.cesnet.cz><IMG ALT="cesnet logo" BORDER=0 SRC=http://images.sourceforge.net/prdownloads/cesnet_100x34.png WIDTH=100 HEIGHT=41></A></TD><TD align=center>Prague, Czech Republic</TD><TD align=center>Europe</TD><TD align=center><A HREF=/pearpc/pearpc-6gib.img.bz2?use_mirror=cesnet><IMG ALT="download"BORDER=0 SRC=http://images.sourceforge.net/prdownloads/sf-file.gif></A>5 kb</TD></TR><TR BGCOLOR=#EEEEEE><TD align=center><A HREF=http://www.heanet.ie><IMG ALT="heanet logo" BORDER=0 SRC=http://images.sourceforge.net/prdownloads/heanet_100x34.gif WIDTH=100 HEIGHT=41></A></TD><TD align=center>Dublin, Ireland</TD><TD align=center>Europe</TD><TD align=center><A HREF=/pearpc/pearpc-6gib.img.bz2?use_mirror=heanet><IMG ALT="download"BORDER=0 SRC=http://images.sourceforge.net/prdownloads/sf-file.gif></A>5 kb</TD></TR><TR BGCOLOR=#DDDDDD><TD align=center><A HREF=http://www.umn.edu><IMG ALT="umn logo" BORDER=0 SRC=http://images.sourceforge.net/prdownloads/umn_100x34.gif WIDTH=100 HEIGHT=41></A></TD><TD align=center>Minneapolis, MN</TD><TD align=center>North America</TD><TD align=center><A HREF=/pearpc/pearpc-6gib.img.bz2?use_mirror=umn><IMG ALT="download"BORDER=0 SRC=http://images.sourceforge.net/prdownloads/sf-file.gif></A>5 kb</TD></TR><TR BGCOLOR=#EEEEEE><TD align=center><A HREF=http://www.switch.ch><IMG ALT="switch logo" BORDER=0 SRC=http://images.sourceforge.net/prdownloads/switch_100x34.gif WIDTH=100 HEIGHT=41></A></TD><TD align=center>Zurich, Switzerland</TD><TD align=center>Europe</TD><TD align=center><A HREF=/pearpc/pearpc-6gib.img.bz2?use_mirror=switch><IMG ALT="download"BORDER=0 SRC=http://images.sourceforge.net/prdownloads/sf-file.gif></A>5 kb</TD></TR><TR BGCOLOR=#DDDDDD><TD align=center><A HREF=http://www.aleron.com><IMG ALT="aleron logo" BORDER=0 SRC=http://images.sourceforge.net/prdownloads/aleron_100x34.jpg WIDTH=100 HEIGHT=41></A></TD><TD align=center>Reston, VA</TD><TD align=center>North America</TD><TD align=center><A HREF=/pearpc/pearpc-6gib.img.bz2?use_mirror=aleron><IMG ALT="download"BORDER=0 SRC=http://images.sourceforge.net/prdownloads/sf-file.gif></A>5 kb</TD></TR><TR BGCOLOR=#EEEEEE><TD align=center><A HREF=http://www.ibiblio.org><IMG ALT="unc logo" BORDER=0 SRC=http://images.sourceforge.net/prdownloads/ibiblio_100x34.gif WIDTH=100 HEIGHT=41></A></TD><TD align=center>Chapel Hill, NC</TD><TD align=center>North America</TD><TD align=center><A HREF=/pearpc/pearpc-6gib.img.bz2?use_mirror=unc><IMG ALT="download"BORDER=0 SRC=http://images.sourceforge.net/prdownloads/sf-file.gif></A>5 kb</TD></TR><TR BGCOLOR=#DDDDDD><TD align=center><A HREF=http://www.easynews.com><IMG ALT="easynews logo" BORDER=0 SRC=http://images.sourceforge.net/prdownloads/easynews_100x34.jpg WIDTH=100 HEIGHT=41></A></TD><TD align=center>Phoenix, AZ</TD><TD align=center>North America</TD><TD align=center><A HREF=/pearpc/pearpc-6gib.img.bz2?use_mirror=easynews><IMG ALT="download"BORDER=0 SRC=http://images.sourceforge.net/prdownloads/sf-file.gif></A>5 kb</TD></TR><TR BGCOLOR=#EEEEEE><TD colspan=2>
+</TD><TD colspan=2><FORM METHOD=GET ACTION=/pearpc/pearpc-6gib.img.bz2><TABLE cellpadding=1 cellspacing=1 border=1 width=100% bgcolor=#FFFFFF bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>
+<TR><TH>Select Preferred Mirror</TH></TR><TR BGCOLOR=#DDDDDD><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT  TYPE=RADIO NAME=use_default VALUE=cesnet OnClick="form.submit()">cesnet (CZ)
+</TD></TR><TR BGCOLOR=#EEEEEE><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT  TYPE=RADIO NAME=use_default VALUE=heanet OnClick="form.submit()">heanet (IE)
+</TD></TR><TR BGCOLOR=#DDDDDD><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT  TYPE=RADIO NAME=use_default VALUE=umn OnClick="form.submit()">umn (US)
+</TD></TR><TR BGCOLOR=#EEEEEE><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT  TYPE=RADIO NAME=use_default VALUE=switch OnClick="form.submit()">switch (CH)
+</TD></TR><TR BGCOLOR=#DDDDDD><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT  TYPE=RADIO NAME=use_default VALUE=aleron OnClick="form.submit()">aleron (US)
+</TD></TR><TR BGCOLOR=#EEEEEE><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT  TYPE=RADIO NAME=use_default VALUE=unc OnClick="form.submit()">unc (US)
+</TD></TR><TR BGCOLOR=#DDDDDD><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT  TYPE=RADIO NAME=use_default VALUE=easynews OnClick="form.submit()">easynews (US)
+</TD></TR><TR BGCOLOR=#CCCCFF><TD align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT checked TYPE=RADIO NAME=use_default VALUE=none OnClick="form.submit()"><b>none</b> 
+</TD></TR><TR BGCOLOR=#DDDDDD><TD align=center><INPUT TYPE=submit VALUE='set default'></TD></TR>
+</table></TD></TR></TABLE></FORM><P class="footer">
+<b>May 11, 2004 09:52</b><br>
+</P></TD>
+<TD valign=top width=126 bgcolor=#AAAAAA>
+ <!-- AD POSITION 2 --> <iframe src="http://ads.osdn.com/?op=iframe&position=2&site_id=2&section=prdownloads&allpositions=1,2" height="600" width="125" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>  <!-- end ad position2 -->
+</TD>
+</TR></TABLE>
+<br>&nbsp;
+<!-- start OSDN Footer -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr bgcolor="#FFFFFF">
+<td><img src="http://images.sourceforge.net/prdownloads/blank.gif" width="1" height="1" alt=""></td>
+</tr>
+<tr align="center" valign="middle">
+<td height="50" class="osdn-foottext">&copy; Copyright 2002 - <a href="http://www.osdn.com/" class="legallink">OSDN</a> Open Source Development Network, All Rights Reserved<br>
+<a href="http://sourceforge.net/docman/display_doc.php?docid=6025&group_id=1" class="legallink">About Sourceforge.net</a>
+&nbsp;&#149;&nbsp;
+<a href="http://www.osdn.com/about.shtml"  class="legallink">About OSDN</a> 
+&nbsp;&#149;&nbsp; 
+
+<a href="http://sourceforge.net/docman/display_doc.php?docid=6049&group_id=1" class="legallink">Privacy Statement</a>
+&nbsp;&#149;&nbsp; 
+<a href="http://sourceforge.net/docman/display_doc.php?docid=6048&group_id=1" class="legallink">Terms of Use</a> &nbsp;&#149;&nbsp;
+<a href="http://www.osdn.com/advertise" class="legallink">Advertise</a> &nbsp;&#149;&nbsp;
+<a href="http://selfserve.osdn.com/introduction.html" class="legallink">Self Serve Ad System</a> &nbsp;&#149;&nbsp;
+<a href="http://sourceforge.net/docman/display_doc.php?docid=7632&group_id=1" class="legallink">Contact Us</a></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td><img src="http://images.sourceforge.net/prdownloads/blank.gif" width="1" height="1" alt=""></td>
+
+</tr>
+</table>
+
+      <!-- image audit code -->
+      <script LANGUAGE="JAVASCRIPT">
+      <!--
+      now = new Date();
+      tail = now.getTime();
+      document.write("<IMG SRC='http://images-aud.sourceforge.net/pc.gif?l,"); 
+      document.write(tail);
+      document.write("' WIDTH=1 HEIGHT=1 BORDER=0>");
+      //-->
+      </SCRIPT>
+      <noscript>
+     <img src="http://images-aud.sourceforge.net/pc.gif?l,475179"
+      WIDTH=1 HEIGHT=1 BORDER=0>
+      </noscript>
+      <!-- end audit code -->
+<!-- end OSDN Footer -->
+</BODY></HTML></HTML>

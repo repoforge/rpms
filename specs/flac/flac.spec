@@ -13,9 +13,9 @@ Group: Applications/Multimedia
 URL: http://flac.sourceforge.net/
 Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libogg
+Obsoletes: flac-libs
 BuildRequires: xmms-devel, id3lib-devel, libogg-devel, doxygen
-# Actually, xmms-devel should requires gtk+-devel itself
+# Actually, xmms-devel should be the one requiring gtk+-devel...
 BuildRequires: gtk+-devel
 %ifarch %{ix86}
 BuildRequires: nasm
@@ -107,6 +107,9 @@ find doc/ -name "Makefile*" -exec rm -f {} \;
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.1.0-5
+- Added obsoletes flac-libs from Dag's spec file.
+
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.0-4
 - Rebuild for Fedora Core 1.
 - Added gtk+-devel build dep for the xmms plugin to build.

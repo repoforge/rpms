@@ -34,13 +34,8 @@ to develop programs that will use libid3tag for ID3 tar reading and writing.
 %prep
 %setup
 
-
-%build
-%configure
-%{__make} %{_smp_mflags}
-
 # Create an additional pkgconfig file
-%{__cat} << EOF > id3tag.pc
+%{__cat} > id3tag.pc << EOF
 prefix=%{_prefix}
 exec_prefix=%{_prefix}
 libdir=%{_libdir}
@@ -55,10 +50,15 @@ Cflags: -I%{_includedir}
 EOF
 
 
+%build
+%configure
+%{__make} %{_smp_mflags}
+
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -m 644 -D id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
+%{__install} -D -m 644 id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
 
 
 %clean

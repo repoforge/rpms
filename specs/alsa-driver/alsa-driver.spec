@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# ExcludeDist: fc2
 
 # Is this a preversion?
 #define prever rc2
@@ -22,7 +23,7 @@
 
 Summary: The Advanced Linux Sound Architecture (ALSA) base files
 Name: alsa-driver
-Version: 1.0.4
+Version: 1.0.5a
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Base
@@ -158,6 +159,9 @@ test -L /dev/snd && rm -f /dev/snd 2>/dev/null 2>&1 || :
 
 
 %changelog
+* Thu Jul  8 2004 Matthias Saou <http://freshrpms.net/> 1.0.5a-1
+- Update to 1.0.5a.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.4-1
 - Update to 1.0.4.
 

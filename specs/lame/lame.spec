@@ -11,10 +11,9 @@ Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: ncurses >= 5.0
-BuildRequires: /usr/bin/find, ncurses-devel
+BuildRequires: ncurses-devel
 %ifarch %{ix86}
-BuildRequires: nasm, gcc-c++
+BuildRequires: nasm
 %endif
 Provides: mp3encoder
 
@@ -61,7 +60,7 @@ these libraries.
 
 %configure \
     --program-prefix=%{?_program_prefix} \
-%ifarch %ix86
+%ifarch %{ix86}
     --enable-nasm \
 %endif
     --enable-decoder \
@@ -79,7 +78,7 @@ these libraries.
 ### Some apps still expect to find <lame.h>
 %{__ln_s} -f lame/lame.h %{buildroot}%{_includedir}/lame.h
 
-/usr/bin/find doc/html -name "Makefile*" | xargs rm -f
+find doc/html -name "Makefile*" | xargs rm -f
 %{__rm} -rf %{buildroot}%{_docdir}/lame/
 
 

@@ -4,12 +4,11 @@
 
 Summary: Tool for handling EXIF metadata in JPEG image files
 Name: jhead
-Version: 2.1
+Version: 2.2
 Release: 1
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://www.sentex.net/~mwandel/jhead/
-
 Source: http://www.sentex.net/~mwandel/jhead/jhead-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -20,7 +19,6 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 
 %prep
 %setup
-
 %{__perl} -pi.orig -e 's|-O3 -Wall|%{optflags}|' makefile
 
 
@@ -46,7 +44,10 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 
 
 %changelog
-* Wed Apr 21 2004 Matthias Saou <http://freshrpms.net/> - 2.1-1
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 2.2-1
+- Update to 2.2.
+
+* Wed Apr 21 2004 Matthias Saou <http://freshrpms.net/> 2.1-1
 - Spec file cleanup.
 
 * Tue Jan 08 2004 Matthias Wandel <mwandel[at]sentex.net> - 2.0-0

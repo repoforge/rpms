@@ -19,7 +19,7 @@
 Summary: YellowDog Updater Modified, an rpm package management utility
 Name: yum
 Version: 2.0.7
-Release: 2%{?date:.%{date}}
+Release: 3%{?date:.%{date}}
 License: GPL
 Group: System Environment/Base
 URL: http://www.linux.duke.edu/projects/yum/
@@ -30,6 +30,7 @@ Source13: yum-rh.conf
 Source50: RPM-GPG-KEY.redhat
 Source51: RPM-GPG-KEY.yellowdog
 Source52: RPM-GPG-KEY.freshrpms
+Source53: RPM-GPG-KEY.fedora
 Requires(post): /sbin/chkconfig, /sbin/service, rpm
 Requires(preun): /sbin/chkconfig, /sbin/service
 Requires: rpm >= 4.1.1, %{python} >= %{pyminver}, rpm-python, libxml2-python
@@ -69,7 +70,7 @@ fi
 %{__make} DESTDIR=%{buildroot} install
 %find_lang %{name}
 %{__install} -m 644 %{_sourcedir}/yum-%{distro}.conf %{buildroot}/etc/yum.conf
-%{__cp} -a %{_sourcedir}/RPM-GPG-KEY* .
+%{__cp} -a %{SOURCE50} %{SOURCE51} %{SOURCE52} %{SOURCE53} .
 
 
 %clean
@@ -79,14 +80,18 @@ fi
 %post
 /sbin/chkconfig --add yum
 /sbin/service yum condrestart >/dev/null 2>&1 || :
-%ifarch ppc
+%if %{distro} == yd
 # Import Yellow Dog gpg key if needed
 rpm -q gpg-pubkey-aeb6b9c4-3cf4089e >/dev/null 2>&1 || \
     rpm --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY.yellowdog
-%else
+%elseif %{distro} == rh
 # Import Red Hat gpg key if needed
 rpm -q gpg-pubkey-db42a60e-37ea5438 >/dev/null 2>&1 || \
     rpm --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY.redhat
+%elseif %{distro} == fd
+# Import Fedora gpg key if needed
+rpm -q gpg-pubkey-4f2a6fd2-3f9d9d3b >/dev/null 2>&1 || \
+    rpm --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY.fedora
 %endif
 # Import Freshrpms.net gpg key if needed
 rpm -q gpg-pubkey-e42d547b-3960bdf1 >/dev/null 2>&1 || \
@@ -102,12 +107,15 @@ fi
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING TODO
-%ifarch ppc
+%if %{distro} == yd
 %doc RPM-GPG-KEY.yellowdog
 %pubkey RPM-GPG-KEY.yellowdog
-%else
+%elseif %{distro} == rh
 %doc RPM-GPG-KEY.redhat
 %pubkey RPM-GPG-KEY.redhat
+%elseif %{distro} == fd
+%doc RPM-GPG-KEY.fedora
+%pubkey RPM-GPG-KEY.fedora
 %endif
 %doc RPM-GPG-KEY.freshrpms
 %pubkey RPM-GPG-KEY.freshrpms
@@ -123,6 +131,10 @@ fi
 
 
 %changelog
+* Tue Jul  6 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-3
+- Fix gpgcheck in yum.conf.
+- Import the Fedora key on Fedora Core.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-2
 - Increased the release to take precedence over the default FC2 yum package.
 

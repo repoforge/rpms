@@ -9,13 +9,12 @@ Version: 2.2.1
 Release: 1
 License: GPL
 Group: Applications/System
+URL: http://www.gkrellm.net/
 Source0: http://web.wt.net/~billw/gkrellm/gkrellm-%{version}.tar.bz2
 Source1: gkrellmd.init
 Patch0: gkrellm_i18n.patch
 Patch1: gkrellm-2.1.28-config.patch
-URL: http://www.gkrellm.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk2
 BuildRequires: gtk2-devel, openssl-devel, gettext, pkgconfig
 BuildRequires: ImageMagick, desktop-file-utils
 Conflicts: gkrellm-plugins < 2.0.0
@@ -84,13 +83,14 @@ Type=Application
 Comment=Monitor for CPU, memory, disks, network, mail
 Exec=gkrellm
 Icon=gkrellm.png
+Terminal=false
 Encoding=UTF-8
+Type=Application;System;Monitor;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
-    --add-category "Application;System;Monitor;X-Red-Hat-Extra" \
     %{name}.desktop
 
 # Install the init script

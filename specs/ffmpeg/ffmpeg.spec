@@ -93,8 +93,10 @@ Install this package if you want to compile apps with ffmpeg support.
 %makeinstall
 
 ### Make installlib is broken in 0.4.6-8, so we do it by hand
-%{__install} -D -m0644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/libavcodec.a
-%{__install} -D -m0644 libavformat/libavformat.a %{buildroot}%{_libdir}/libavformat.a
+%{__install} -D -m0644 libavcodec/libavcodec.a \
+    %{buildroot}%{_libdir}/libavcodec.a
+%{__install} -D -m0644 libavformat/libavformat.a \
+    %{buildroot}%{_libdir}/libavformat.a
 
 ### Create compat symlink
 %{__install} -d -m0755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/

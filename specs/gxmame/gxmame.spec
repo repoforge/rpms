@@ -10,8 +10,8 @@ Version: 0.34b
 Release: %{?date:0.%{date}.}2
 License: GPL
 Group: Applications/Emulators
-Source: http://dl.sf.net/gxmame/gxmame-%{!?date:%{version}}%{?date}.tar.gz
 URL: http://gxmame.sourceforge.net/
+Source: http://dl.sf.net/gxmame/gxmame-%{!?date:%{version}}%{?date}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1
 BuildRequires: gtk2-devel, zlib-devel, gettext
@@ -39,13 +39,13 @@ test -x configure || ./autogen.sh
 
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} _docs
 %makeinstall
 %find_lang %{name}
 
 # Put the docs back into place
-%{__mkdir} installed-docs
-%{__mv} %{buildroot}%{_docdir}/%{name}*/* installed-docs/
+%{__mkdir} _docs
+%{__mv} %{buildroot}%{_docdir}/%{name}*/* _docs/
 
 
 %clean
@@ -54,7 +54,7 @@ test -x configure || ./autogen.sh
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc installed-docs/*
+%doc _docs/*
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/%{name}.png

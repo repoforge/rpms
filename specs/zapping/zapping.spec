@@ -2,16 +2,16 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define prever         cvs7
+#define prever         cvs7
 
 Summary: A TV viewer for GNOME
 Name: zapping
-Version: 0.7.0
+Version: 0.7
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
-Source: http://dl.sf.net/zapping/zapping-0.7%{prever}.tar.bz2
+Source: http://dl.sf.net/zapping/zapping-0.7%{?prever}.tar.bz2
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnomeui, libglade2, zvbi, arts, rte, lirc
 BuildRequires: libgnomeui-devel, libglade2-devel
@@ -32,7 +32,7 @@ features, plus extensibility through a plugin system.
 
 
 %prep
-%setup -q -n %{name}-0.7%{prever}
+%setup -q -n zapping-0.7%{?prever}
 
 
 %build
@@ -61,7 +61,7 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %files -f %{name}.lang
-%defattr (-, root, root)
+%defattr (-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README* THANKS TODO
 %config %{_sysconfdir}/pam.d/zapping_setup_fb
 %config %{_sysconfdir}/security/console.apps/zapping_setup_fb
@@ -77,17 +77,20 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
-* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> - 0.7.0-0.cvs7.1
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 0.7-1
+- Update to 0.7 final.
+
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.cvs7.1
 - Rebuild for Fedora Core 2.
 - Update to 0.7cvs7.
 - Removed explicit stripping, that's for the debuginfo now.
 - No longer require the "absolute buildroot path in symlink" fix.
 
-* Tue Jan 20 2004 Matthias Saou <http://freshrpms.net/> - 0.7.0-0.cvs6.1
+* Tue Jan 20 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.cvs6.1
 - Update to 0.7cvs6.
 - Major spec file changes to relect the GNOME1 -> GNOME2 step.
 
-* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> - 0.6.8-1
+* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.6.8-1
 - Update to 0.6.8.
 - Rebuild for Fedora Core 1 at last.
 

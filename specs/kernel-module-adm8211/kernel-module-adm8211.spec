@@ -26,7 +26,7 @@
 #define updates /updates
 
 # The snapshot date
-%define date 20040705
+%define date 20040711
 
 Summary: Driver for ADMTek 8211 network adaptors
 Name: kernel-module-adm8211

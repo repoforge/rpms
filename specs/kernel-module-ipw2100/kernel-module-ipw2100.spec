@@ -28,13 +28,14 @@
 
 Summary: Driver for Intel® PRO/Wireless 2100 network adaptors
 Name: kernel-module-ipw2100
-Version: 0.47
+Version: 0.49
 Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/
 Source: http://dl.sf.net/ipw2100/ipw2100-%{version}.tgz
-Patch: ipw2100.autotools.patch
+Source1: ieee802_11.h
+Patch: ipw2100-0.49-autotools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -73,7 +74,9 @@ network adaptors, found for instance in Centrino laptops.
 
 %prep
 %setup -q -n ipw2100-%{version}
-%patch -p2
+%patch -p1
+# Include file missing from the Fedora Core kernels (as of 2.6.6-1.435.2.3)
+%{__install} -m 0644 %{SOURCE1} ieee802_11.h
 
 
 %build
@@ -113,8 +116,9 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 
 %changelog
-* Mon Jul  5 2004 Matthias Saou <http://freshrpms.net> 0.47-1
-- Update to 0.47.
+* Tue Jul 13 2004 Matthias Saou <http://freshrpms.net> 0.49-1
+- Update to 0.49.
+- Bundle ieee802_11.h for now, ugly.
 
 * Tue Jun 22 2004 Matthias Saou <http://freshrpms.net> 0.46_3-1
 - Re-enable legacy firmware loading, since it fails a bootup otherwise.

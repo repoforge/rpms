@@ -7,10 +7,9 @@ Version: 1.2.3
 Release: 4
 License: GPL
 Group: System Environment/Libraries
-Source: http://linuxbrit.co.uk/downloads/giblib-%{version}.tar.gz
 URL: http://linuxbrit.co.uk/giblib/
+Source: http://linuxbrit.co.uk/downloads/giblib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: imlib2
 BuildRequires: imlib2-devel
 
 %description

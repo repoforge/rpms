@@ -17,7 +17,7 @@ Requires: vorbis-tools
 BuildRequires: libgnomeui-devel >= 2.2.0, vte-devel, curl-devel
 BuildRequires: id3lib-devel, gettext
 # Required on Yellow Dog Linux 3.0
-BuildRequires: ncurses-devel, openssl-devel
+%{?yd3:BuildRequires: ncurses-devel, openssl-devel}
 
 %description
 Grip is a CD player and CD ripper for GNOME. It has the ripping capabilities

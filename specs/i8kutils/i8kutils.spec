@@ -9,10 +9,10 @@ Version: 1.25
 Release: 2
 License: GPL
 Group: System Environment/Base
+URL: http://people.debian.org/~dz/i8k/
 Source0: http://people.debian.org/~dz/i8k/i8kutils_%{version}.tar.gz
 Source1: http://www.coding-zone.com/i8krellm-%{gkrellmpluginver}.tar.gz
 Source2: i8kbuttons.init
-URL: http://people.debian.org/~dz/i8k/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gkrellm >= 2.0.0
 Requires(post): /sbin/chkconfig

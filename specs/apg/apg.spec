@@ -23,7 +23,8 @@ required type and prints them to standard output.
 
 
 %build
-find . | xargs chmod u+w
+# Fix permissions (2.2.3)
+%{__chmod} -R u+w .
 %{__make} %{?_smp_mflags} standalone
 
 

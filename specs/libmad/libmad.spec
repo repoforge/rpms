@@ -41,13 +41,6 @@ to develop programs that will use libmad for mpeg audio decoding.
 %prep
 %setup
 
-
-%build
-%configure \
-    --enable-accuracy \
-    --disable-debugging
-%{__make} %{_smp_mflags}
-
 # Create an additional pkgconfig file
 %{__cat} << EOF > mad.pc
 prefix=%{_prefix}
@@ -64,10 +57,18 @@ Cflags: -I%{_includedir}
 EOF
 
 
+%build
+%configure \
+    --disable-dependency-tracking \
+    --enable-accuracy \
+    --disable-debugging
+%{__make} %{_smp_mflags}
+
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -m 644 -D mad.pc %{buildroot}%{_libdir}/pkgconfig/mad.pc
+%{__install} -D -m 0644 mad.pc %{buildroot}%{_libdir}/pkgconfig/mad.pc
 
 
 %clean

@@ -7,10 +7,9 @@ Version: 3.5.13
 Release: 1
 License: GPL
 Group: Applications/Publishing
-Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
 URL: http://djvu.sourceforge.net/
+Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-root
-Requires: qt, libjpeg, libstdc++
 BuildRequires: XFree86-devel, qt-devel, libjpeg-devel
 BuildRequires: libstdc++-devel, gcc-c++, mozilla
 
@@ -43,7 +42,8 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
-%{__ln_s} ../../netscape/plugins/nsdejavu.so %{buildroot}%{_libdir}/mozilla/plugins/
+%{__ln_s} ../../netscape/plugins/nsdejavu.so \
+    %{buildroot}%{_libdir}/mozilla/plugins/
 
 
 %clean

@@ -3,11 +3,11 @@
 
 Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb
-Version: 2.4.0
+Version: 2.4.1
 Release: 1
 License: GPL
-URL: http://gthumb.sourceforge.net/
 Group: Applications/Multimedia
+URL: http://gthumb.sourceforge.net/
 Source: http://ftp.gnome.org/pub/GNOME/sources/gthumb/2.4/gthumb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(pre): scrollkeeper
@@ -15,7 +15,7 @@ Requires(postun): scrollkeeper
 BuildRequires: libgnomeui-devel >= 2.0.0, libgnomeprintui22-devel
 BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
 BuildRequires: scrollkeeper, gettext, libexif-devel, gphoto2-devel
-# Required for intltool
+# Required for intltool...
 BuildRequires: perl(XML::Parser)
 
 %description
@@ -77,6 +77,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 2.4.1-1
+- Update to 2.4.1.
+
 * Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 2.4.0-1
 - Update to 2.4.0.
 - Remove explicit stripping, let the debuginfo package live its life.

@@ -11,6 +11,7 @@ URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, doxygen, gettext
+Obsoletes: libzvbi <= 0.2.4
 
 %description
 This library provides routines to access raw vbi sampling devices
@@ -25,6 +26,7 @@ Teletext browser. Documentation included.
 Summary: Static libraries and header files for zvbi development
 Group: Development/Libraries
 Requires: %{name} = %{version}
+Obsoletes: libzvbi-devel <= 0.2.4
 
 %description devel
 The static libraries and header files needed for building programs that use

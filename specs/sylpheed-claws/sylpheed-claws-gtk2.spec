@@ -2,16 +2,16 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define extraver       cvs17.3
+%define extraver       cvs18.2
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 0.9.11
+Version: 0.9.12
 Release: 1.gtk2%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
-Source: http://dl.sf.net/sylpheed-claws/sylpheed-claws-%{version}%{?extraver}.tar.gz
+Source: http://dl.sf.net/sylpheed-claws/sylpheed-claws-%{version}%{?extraver}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0, pkgconfig
 Requires: openssl, gpgme, openldap
@@ -115,6 +115,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Jul 13 2004 Matthias Saou <http://freshrpms.net/> 0.9.12-1.gtk2.cvs18.2
+- Update to 0.9.12cvs18.2.
+
 * Thu Jul  1 2004 Matthias Saou <http://freshrpms.net/> 0.9.11-1.gtk2.cvs17.3
 - Update to 0.9.11cvs17.3.
 

@@ -2,7 +2,6 @@
 # Authority: matthias
 # Upstream: Manuel Amador
 
-%define real_name      directory_administrator
 %define desktop_vendor freshrpms
 
 Summary: User control management tool for LDAP directories
@@ -14,7 +13,6 @@ Group: Applications/System
 URL: http://diradmin.open-it.org/
 Source: http://diradmin.open-it.org/directory_administrator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{release}-%{version}-root
-Requires: gnome-libs, openldap
 BuildRequires: gnome-libs-devel, openldap-devel, desktop-file-utils
 Obsoletes: directory_administrator <= 1.3.5
 
@@ -28,7 +26,7 @@ for single sign-on maintenance.
 
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n directory_administrator-%{version}
 
 
 %build
@@ -43,7 +41,7 @@ for single sign-on maintenance.
 
 # Replace desktop file, removing the categories
 %{__rm} -f %{buildroot}%{_datadir}/applications/*
-%{__cat} applnk/dragonfear-%{real_name}.desktop \
+%{__cat} applnk/dragonfear-directory_administrator.desktop \
   | grep -v ^Categories > %{name}.desktop
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
@@ -59,15 +57,15 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS NEWS COPYING ChangeLog TODO README doc
-%{_bindir}/%{real_name}
+%doc AUTHORS NEWS COPYING ChangeLog TODO README doc/
+%{_bindir}/directory_administrator
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/pixmaps/%{real_name}
+%{_datadir}/pixmaps/directory_administrator
 
 
 %changelog
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.5.1-3
-- Rebuild For Fedora Core 1.
+- Rebuild For Fedora Core 2.
 
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.5.1-2
 - Rebuild For Fedora Core 1.

@@ -24,7 +24,7 @@ padding facilities.
 %package devel
 Summary: Headers and libraries for developing programs that will use id3lib
 Group: Development/Libraries
-Requires: %{name} = %{version}, gcc-c++, libstdc++-devel, zlib-devel
+Requires: %{name} = %{version}, libstdc++-devel, zlib-devel
 
 %description devel
 This package contains the headers that programmers will need to develop

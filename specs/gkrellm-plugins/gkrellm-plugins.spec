@@ -34,6 +34,7 @@ Version: 2.2.0
 Release: 1
 License: GPL
 Group: Applications/System
+URL: http://web.wt.net/~billw/gkrellm/Plugins.html
 Source0: http://kmlinux.fjfi.cvut.cz/~makovick/gkrellm/gkrellweather-%{weatherver}.tgz
 Source1: http://gkrellm.luon.net/files/gkrellmms-%{xmmsver}.tar.gz
 Source2: http://xavier.serpaggi.free.fr/seti/seti-%{setiver}.tar.bz2
@@ -60,7 +61,6 @@ Source22: http://sweb.cz/tripie/gkrellm/trayicons/dist/gkrellm-trayicons-%{trayv
 Source23: http://iacs.epfl.ch/~winkelma/gkrellm2-cpufreq/gkrellm2-cpufreq-%{cpufreqver}.tar.gz
 Source24: http://perso.wanadoo.fr/alltrax/alltraxclock2_%{alltraxver}-1.tar.gz
 Patch0: http://xavier.serpaggi.free.fr/seti/seti-0.7.0b-gkrellm2.diff
-URL: http://web.wt.net/~billw/gkrellm/Plugins.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gkrellm-devel >= 2.1.0, gtk2-devel, perl
 

@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Archiving
 URL: http://www.abo.fi/~jmunsin/gcombust/
 Source: http://www.abo.fi/~jmunsin/gcombust/gcombust-%{version}.tar.gz
-Requires: gtk+ >= 1.2.0, cdrecord >= 1.10, mkisofs >= 1.10
+Requires: cdrecord >= 1.10, mkisofs >= 1.10
 Requires: cdda2wav >= 1.10, cdlabelgen >= 1.5.0
 BuildRequires: gtk+-devel, perl
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
