@@ -30,9 +30,6 @@ of documentation is available at http://fann.sourceforge.net/
 %{__make} %{?_smp_mflags}
 
 %install
-#sed -i "s/^DESTDIR =.*//" $(find . -type f | egrep "Makefile$")
-#export DESTDIR=$RPM_BUILD_ROOT
-#make install
 %makeinstall
 
 %package devel
@@ -56,15 +53,14 @@ Development headers of fann: fast artificial neural network library
 %{_libdir}/libdoublefann.so.1
 %{_libdir}/libfixedfann.so.1
 %{_libdir}/libfann.so.1
-%{_libdir}/libdoublefann.so.1.0.5
-%{_libdir}/libfann.so.1.0.5
-%{_libdir}/libfixedfann.so.1.0.5
-%{_libdir}/libfloatfann.so.1.0.5
+%{_libdir}/libdoublefann.so.1.1.0
+%{_libdir}/libfann.so.1.1.0
+%{_libdir}/libfixedfann.so.1.1.0
+%{_libdir}/libfloatfann.so.1.1.0
 
 %files devel
 %{_libdir}/libfloatfann.so
 %{_libdir}/libdoublefann.so
-%{_libdir}/libfann.so
 %{_libdir}/libfann.so
 %{_libdir}/libfann.a
 %{_libdir}/libfann.la
