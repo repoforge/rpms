@@ -5,7 +5,7 @@
 
 Summary: KIOSK administration admin tool
 Name: kiosktool
-Version: 0.4.1
+Version: 0.5
 Release: 1
 License: GPL
 Group: Applications/
@@ -58,5 +58,8 @@ or otherwise preconfigure KDE for groups of users.
 
 
 %changelog
+* Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+- Update to version 0.5.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1
 - Initial package.
