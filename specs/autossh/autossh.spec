@@ -2,17 +2,15 @@
 # Authority: dag
 # Upstream: Carson Harding <carson,harding$shaw,ca>
 
-%define real_version 1.2g
-
 Summary: Automatically restart SSH sessions and tunnels
 Name: autossh
-Version: 1.2
-Release: 2.g
+Version: 1.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.harding.motd.ca/autossh/
 
-Source: http://www.harding.motd.ca/autossh/autossh-%{real_version}.tgz
+Source: http://www.harding.motd.ca/autossh/autossh-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -25,7 +23,7 @@ off on rate of connection attempts when experiencing rapid failures
 such as connection refused.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup -n %{name}-%{version}
 
 %build
 %{__make} %{?_smp_mflags} -f Makefile.linux
@@ -45,6 +43,9 @@ such as connection refused.
 %{_bindir}/autossh
 
 %changelog
+* Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
+
 * Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 1.2-2.g
 - Fixed Group tag.
 

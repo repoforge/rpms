@@ -169,10 +169,13 @@ cd pinepgp-%{pgpver}
 %doc %{_mandir}/man1/*.1*
 %config(noreplace) %{_sysconfdir}/pine.conf*
 %{_bindir}/*
-%defattr(2755, -, mail, 0755)
+%defattr(2755, root, mail, 0755)
 %{_sbindir}/mlock
 
 %changelog
+* Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 4.62-2
+- Fixed ownership of mlock. (Soós Péter)
+
 * Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 4.62-1
 - Updated to release 4.62.
 

@@ -3,11 +3,13 @@
 # Upstream: Alexander V. Lukyanov <lav$yars,free,net>
 # Upstream: <lftp-devel$uniyar,ac,ru>
 
+# ExcludeDist: el4
+
 # Rationale: lftp 3.0+ supports sftp, http redirects and lots of important improvements
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.13
+Version: 3.1.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -29,7 +31,6 @@ reliability in mind.
 %setup
 
 %build
-%{__libtoolize} --force --copy
 %configure \
 	--with-modules \
 	--disable-static \
@@ -59,6 +60,9 @@ reliability in mind.
 %{_libdir}/lftp/
 
 %changelog
+* Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 3.1.1-1
+- Updated to release 3.1.1.
+
 * Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 3.0.13-1
 - Updated to release 3.0.13.
 

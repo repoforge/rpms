@@ -13,15 +13,13 @@
 
 Summary: Software Internet phone using SIP
 Name: linphone
-Version: 0.12.2
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://www.linphone.org/
 
 Source: http://simon.morlat.free.fr/download/%{version}/source/linphone-%{version}.tar.gz
-Patch: linphone-0.12.2-speex.patch
-Patch1: linphone-0.12.2-docs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, glib2-devel, libgnomeui-devel
@@ -47,10 +45,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p1 -b .speex
-%patch1 -p1 -b .docs
-
-%{__rm} -rf speex/ oRTP/docs/
 
 %{__perl} -pi.orig -e 's|\$\(prefix\)/lib|\$(libdir)|g' share/Makefile.in
 
@@ -69,7 +63,7 @@ desktop-file-install \
 	--vendor %{desktop_vendor}                 \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/gnome/apps/Internet/linphone.desktop
+	%{buildroot}%{_datadir}/applications/linphone.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -91,21 +85,24 @@ desktop-file-install \
 %{_libdir}/*.so.*
 %{_libexecdir}/linphone_applet
 %{_datadir}/applications/%{desktop_vendor}-linphone.desktop
+%exclude %{_datadir}/gnome/apps/Internet/linphone.desktop
 %{_datadir}/gnome-2.0/ui/GNOME_LinphoneApplet.xml
-%{_datadir}/linphonec/
 %{_datadir}/pixmaps/linphone/
 %{_datadir}/sounds/linphone/
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc %{_datadir}/gtk-doc/html/ortp/
 %{_includedir}/linphone/
 %{_includedir}/ortp/
-%{_includedir}/osipua/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/linphone.pc
 
 %changelog
+* Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Sun Mar 13 2005 Dag Wieers <dag@wieers.com> - 0.12.2-1
 - Initial package. (using DAR)

@@ -5,7 +5,7 @@
 Summary: CPU emulator
 Name: qemu
 Version: 0.6.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
@@ -161,7 +161,7 @@ EOF
 
 %post
 /sbin/chkconfig --add qemu
-/sbin/service dovecot start &>/dev/null || :
+/sbin/service qemu start &>/dev/null || :
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -183,6 +183,9 @@ fi
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 0.6.1-3
+- Removed erroneous dovecot reference. (Zoltán Vörösbaranyi)
+
 * Mon Feb 28 2005 Dag Wieers <dag@wieers.com> - 0.6.1-2
 - Added SDL-devel buildrequirement. (Matthias Saou)
 - Fix for build problem on FC2.

@@ -29,7 +29,6 @@ a tree structure, and stores them as AES-encrypted XML files.
 %setup -n %{name}-%{version}
 
 %build
-CRACK_MKDICT="$PATH" \
 %configure \
 	--disable-desktop-update \
 	--disable-mime-update \
@@ -56,7 +55,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/revelation.schemas
 %{_bindir}/revelation
 %{python_dir}/revelation/
