@@ -12,7 +12,7 @@ URL: http://www.citi.umich.edu/u/provos/arpd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.citi.umich.edu/u/provos/arpd/arpd-%{version}.tar.gz
+Source: http://www.citi.umich.edu/u/provos/honeyd/arpd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet
