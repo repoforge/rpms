@@ -5,12 +5,12 @@
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.0.0
+Version: 1.0.1
 Release: %{?prever:0.%{prever}.}1
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
-Source: http://files.xvid.org/downloads/%{name}-%{version}%{?prever:-%{prever}}.tar.bz2
+Source: http://files.xvid.org/downloads/xvidcore-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %ifarch %ix86 ia64 x86_64
 BuildRequires: nasm
@@ -87,6 +87,9 @@ popd
 
 
 %changelog
+* Tue Jun  8 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-1
+- Update to 1.0.1.
+
 * Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0.0 final.
 - Change the -static sub-package to -devel.
