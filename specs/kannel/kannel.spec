@@ -1,20 +1,15 @@
 # $Id$
 # Authority: matthias
 
-%{?dist: %{expand: %%define %dist 1}}
- 
-%{?rh7:%define _without_newsslcheck 1}
-
 Summary: WAP and SMS gateway
 Name: kannel
-Version: 1.3.2
-Release: 5
+Version: 1.4.0
+Release: 1
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
 Source: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
-Patch0: mblox_optionals_0.1.diff
-Patch1: kavkaz.diff
+Patch0: mblox_optionals_0.2.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
@@ -53,12 +48,9 @@ use the kannel WAP and SMS gateway.
 %prep
 %setup -n gateway-%{version}
 %patch0 -p1 -b .mblox
-%patch1 -p1 -b .kavkaz
 
 
 %build
-# Fix for the openssl THREADS check, which should be OPENSSL_THREADS
-%{!?_without_newsslcheck: %{__perl} -pi.orig -e 's|(defined\()THREADS\)|$1OPENSSL_THREADS)|g' configure}
 %configure \
     --enable-start-stop-daemon \
     --with-sqlite
@@ -107,6 +99,11 @@ use the kannel WAP and SMS gateway.
 
 
 %changelog
+* Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-1
+- Update to 1.4.0, new mblox patch.
+- Remove the obsolete OpenSSL workaround.
+- Leave Kavkaz patch out for now.
+
 * Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-5
 - Added Kavkaz operator patch.
 
