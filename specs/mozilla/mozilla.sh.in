@@ -41,7 +41,7 @@ ulimit -c 0
 ##
 MOZ_DIST_BIN="LIBDIR/mozilla-MOZILLA_VERSION"
 MOZ_PROGRAM="LIBDIR/mozilla-MOZILLA_VERSION/mozilla-bin"
-MOZ_CLIENT_PROGRAM="LIBDIR/mozilla-MOZILLA_VERSION/mozilla-xremote-client"
+MOZ_CLIENT_PROGRAM="LIBDIR/mozilla-MOZILLA_VERSION/mozilla-xremote-client -a mozilla"
 
 ##
 ## Set MOZILLA_FIVE_HOME
