@@ -40,7 +40,7 @@ many languages, create network applications easily, and so on...
 rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.in$")
 ./reconf || echo reconf gives a warning but lets continue anyway
 # (cd libltdl/;../reconf || echo reconf gives a warning but lets continue anyway)
-%configure 
+%configure \
 	--datadir="%{_datadir}/gambas" \
 	--enable-intl \
 	--enable-conv \
