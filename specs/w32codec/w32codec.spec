@@ -1,67 +1,49 @@
 # $Id$
 # Authority: dag
 
-%define real_version 0.90pre7
-%define nversion 0.90
+# Dist: nodist
+
+%define real_version 20050216
 
 Summary: W32 Codec package for MPlayer on x86 UNIX systems
 Name: w32codec
-Version: 0.90.7
-Release: 0
+Version: 1.0
+Release: 0.%{real_version}
 License: GPL
 Group: Applications/Multimedia
-URL: http://divx.euro.ru/binaries-010122.zip
+URL: http://mplayerhq.hu/homepage/design7/dload.html
 
-Source0: http://ftp.lug.udel.edu/MPlayer/releases/w32codec-%{real_version}.tar.bz2
+Source: ftp://ftp.mplayerhq.hu/MPlayer/releases/codecs/all-%{real_version}.tar.bz2
 NoSource: 0
-Source1: http://ftp.lug.udel.edu/MPlayer/releases/codecs/win32codecs.tar.bz2
-NoSource: 1
-Source2: http://ftp.lug.udel.edu/MPlayer/releases/codecs/qt6dlls.tar.bz2
-NoSource: 2
-Source3: http://ftp.lug.udel.edu/MPlayer/releases/codecs/qtextras.tar.bz2
-NoSource: 3
-Source4: http://ftp.lug.udel.edu/MPlayer/releases/codecs/rp8codecs.tar.bz2
-NoSource: 4
-Source5: http://ftp.lug.udel.edu/MPlayer/releases/codecs/rp9codecs.tar.bz2
-NoSource: 5
-Source6: http://ftp.lug.udel.edu/MPlayer/releases/codecs/xanimdlls.tar.bz2
-NoSource: 6
-Source7: http://ftp.lug.udel.edu/MPlayer/releases/codecs/mjpeg2kdlls.tar.bz2
-NoSource: 7
-Source8: http://ftp.lug.udel.edu/MPlayer/releases/codecs/dmocodecs.tar.bz2
-NoSource: 8
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+ExclusiveArch: i386
 
 %description
 W32 Codec package for MPlayer on x86 UNIX systems.
 
 %prep
-%setup -c
-%setup -T -D -a 1 -a 2 -a 3 -a 4 -a 5 -a 6 -a 7 -a 8
+%setup -n all-%{real_version}
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir}/win32
-%{__install} -m0644 w32codec-%{nversion}/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 win32codecs/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 qt6dlls/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 qtextras/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 rp8codecs/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 rp9codecs/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 xanimdlls/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 mjpeg2kdlls/* %{buildroot}%{_libdir}/win32/
-%{__install} -m0644 dmocodecs/* %{buildroot}%{_libdir}/win32/
+%{__install} -m0644 * %{buildroot}%{_libdir}/win32/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%doc README
 %{_libdir}/win32/
 
 %changelog
+* Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 1.0-0.20050216
+- Transformed into nosrc package.
+
 * Sat Jan 18 2003 Dag Wieers <dag@wieers.com> - 0.90.7-0
 - Updated to newer codecs.
 - Added more codecs.

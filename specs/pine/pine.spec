@@ -14,7 +14,7 @@
 
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
-Version: 4.61
+Version: 4.62
 Release: 1
 License: Freely Distributable
 Group: Applications/Internet
@@ -151,9 +151,13 @@ cd pinepgp-%{pgpver}
 
 %{__install} -D -m0755 %{SOURCE3} %{buildroot}%{_bindir}/pine-spellcheck
 %{__install} -m0755 bin/{mailutil,pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
+%{__install} -D -m0755 imap/{dmail/dmail,tmail/tmail} %{buildroot}%{_bindir}
+%{__install} -D -m2755 imap/mlock/mlock %{buildroot}%{_sbindir}/mlock
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 doc/*.1 imap/src/mailutil/mailutil.1 %{buildroot}%{_mandir}/man1/
+%{__install} -m0644 doc/*.1 imap/src/*/*.1 %{buildroot}%{_mandir}/man1/
+
+%{__mv} -f imap/docs/ imap-docs/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -161,12 +165,17 @@ cd pinepgp-%{pgpver}
 %files
 %defattr(-, root, root, 0755)
 %doc CPYRIGHT README doc/*.txt doc/pine-ports doc/tech-notes/*.html
-%doc doc/mailcap.unx imap/docs/bugs.txt
-%doc %{_mandir}/man?/*
-%config %{_sysconfdir}/pine.conf*
+%doc doc/mailcap.unx doc/mime.types imap-docs/
+%doc %{_mandir}/man1/*.1*
+%config(noreplace) %{_sysconfdir}/pine.conf*
 %{_bindir}/*
+%defattr(2755, -, mail, 0755)
+%{_sbindir}/mlock
 
 %changelog
+* Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 4.62-1
+- Updated to release 4.62.
+
 * Sat Aug 14 2004 Bert de Bruijn <bert@debruijn.be> - 4.61-1
 - Updated to release 4.61.
 

@@ -5,17 +5,18 @@
 ### FIXME: TODO: Add sysv script based on own template.
 
 Summary: Create a virtual ethernet using host-to-host tunnels
-Name: vpe
-Version: 1.6
+Name: gvpe
+Version: 1.8
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://savannah.nongnu.org/projects/vpe/
+URL: https://savannah.gnu.org/projects/gvpe/
 
-Source: http://vpe-dist.plan9.de/vpe-%{version}.tar.gz
+Source: http://ftp.gnu.org/gnu/gvpe/gvpe-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gcc-c++
+Obsoletes: vpe <= %{version}
 
 %description
 VPE creates a virtual ethernet (broadcasts supported, any protocol that works
@@ -59,15 +60,17 @@ connect them together.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README src/TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc doc/complex-example/
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*.info*
-%{_bindir}/*
-%{_sbindir}/*
-#%exclude %{_infodir}/dir
+%doc %{_infodir}/gvpe.info*
+%{_bindir}/gvpectrl
+%{_sbindir}/gvpe
 
 %changelog
+* Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 1.8-1
+- Updated to release 1.8.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 1.6-1
 - Updated to release 1.6.
 
