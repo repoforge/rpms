@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <wang@ai.mit.edu>
 
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/tpctl/configure-thinkpad-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libgnomeui-devel >= 2.0, gettext, desktop-file-utils
 Requires: tpctl, usermode >= 1.36
 
@@ -26,7 +25,7 @@ configure-thinkpad is a ThinkPad configuration utility.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >configure-thinkpad.desktop
 [Desktop Entry]
 Name=ThinkPad
 Comment=Edit your ThinkPad configuration
@@ -61,11 +60,10 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/pam.d/ \
-			%{buildroot}%{_sysconfdir}/security/console.apps/ \
-			%{buildroot}%{_sbindir}
-%{__install} -m0644 configure-thinkpad.pam %{buildroot}%{_sysconfdir}/pam.d/configure-thinkpad
-%{__install} -m0644 configure-thinkpad.consolehelper %{buildroot}%{_sysconfdir}/security/console.apps/configure-thinkpad
+%{__install} -D -m0644 configure-thinkpad.pam %{buildroot}%{_sysconfdir}/pam.d/configure-thinkpad
+%{__install} -D -m0644 configure-thinkpad.consolehelper %{buildroot}%{_sysconfdir}/security/console.apps/configure-thinkpad
+
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__mv} -f %{buildroot}%{_bindir}/configure-thinkpad %{buildroot}%{_sbindir}
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/configure-thinkpad
 
@@ -73,7 +71,7 @@ EOF
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	configure-thinkpad.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
