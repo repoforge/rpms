@@ -34,7 +34,7 @@ cp js32.a ../../../
 cd ../../../
 dos2unix Makefile.am
 aclocal
-automake --add-missing --copy
+automake --add-missing --copy || echo automake --add-missing --copy gives a warning
 autoconf
 automake || echo automake gives a warning
 export CXXFLAGS="%{optflags} -I/usr/include/mozilla-1.6/js "
