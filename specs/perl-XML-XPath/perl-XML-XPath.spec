@@ -13,8 +13,8 @@
 Summary: Parse and evaluate XPath statements
 Name: perl-XML-XPath
 Version: 1.13
-Release: 1
-License: Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XPath/
 
@@ -58,5 +58,8 @@ need to do this as they support functionality beyond XPath.
 %{perl_vendorlib}/XML/XPath/*
 
 %changelog
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-2
+- Fixed the license tag (Thanks to David Necas !)
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Initial package.

@@ -13,8 +13,8 @@
 Summary: Efficient reading and writing of complete files
 Name: perl-File-Slurp
 Version: 9999.06
-Release: 1
-License: Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Slurp/
 
@@ -55,6 +55,9 @@ in a directory.
 %{perl_vendorlib}/File/Slurp.pm
 
 %changelog
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 9999.06-2
+- Fixed the license tag (Thanks to David Necas !)
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 9999.06-1
 - Updated to release 9999.06.
 

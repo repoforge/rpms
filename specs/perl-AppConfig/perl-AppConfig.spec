@@ -11,8 +11,8 @@
 Summary: Module for reading configuration files and parsing command line args
 Name: perl-AppConfig
 Version: 1.56
-Release: 1
-License: Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AppConfig/
 
@@ -68,6 +68,8 @@ accessible through the AppConfig.pm module.
 %{perl_vendorlib}/AppConfig/*
 
 %changelog
-* Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.56
-- Initial package.
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.56-2
+- Fixed the license tag (Thanks to David Necas !)
 
+* Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.56-1
+- Initial package.

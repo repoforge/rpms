@@ -13,8 +13,8 @@
 Summary: Easy API to XML files
 Name: perl-XML-Simple
 Version: 2.13
-Release: 1
-License: Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Simple/
 
@@ -54,6 +54,9 @@ This module contains an easy API to XML files.
 %{perl_vendorlib}/XML/Simple/*
 
 %changelog
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 2.13-2
+- Fixed the license tag (Thanks to David Necas !)
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.13-1
 - Updated to release 2.13.
 

@@ -12,8 +12,8 @@
 Summary: Load, create, manipulate and save xpm image files
 Name: perl-Image-Xpm
 Version: 1.09
-Release: 1
-License: Artistic
+Release: 2
+License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Xpm/
 
@@ -52,5 +52,8 @@ With this module, you can load, create, manipulate and save xpm image files.
 %{perl_vendorlib}/Image/Xpm.pm
 
 %changelog
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-2
+- Fixed the license (Thanks to David Necas !)
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.09-1
 - Initial package.

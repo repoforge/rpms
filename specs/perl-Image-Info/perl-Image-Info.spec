@@ -12,8 +12,8 @@
 Summary: Extract meta information from image files
 Name: perl-Image-Info
 Version: 1.16
-Release: 1
-License: Artistic
+Release: 2
+License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Info/
 
@@ -55,5 +55,8 @@ various types of image files.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-2
+- Fixed the license tag (Thanks to David Necas !)
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.
