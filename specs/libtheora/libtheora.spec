@@ -12,7 +12,6 @@ URL: http://www.theora.org/
 Source: http://www.theora.org/files/libtheora-%{version}%{?prever}.tar.bz2
 Patch0: libtheora-1.0alpha3-autotools.patch
 Patch1: libtheora-1.0alpha3-mmx.patch
-Patch2: libtheora-1.0alpha3-include.patch
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libogg-devel >= 1.1, libvorbis-devel >= 1.0.1, SDL-devel, gcc-c++
@@ -50,7 +49,6 @@ with theora bitstreams.
 %setup -n %{name}-%{version}%{?prever}
 %patch0 -p1 -b .autotools
 %patch1 -p1 -b .mmx
-%patch2 -p1 -b .include
 
 
 %build
@@ -72,11 +70,12 @@ automake
     docdir=$(pwd)/_docs
 
 # Manually install tools
+%{__mkdir_p} %{buildroot}%{_bindir}
 %{__install} -m 0755 examples/.libs/dump_video \
     %{buildroot}%{_bindir}/theora_dump_video
 %{__install} -m 0755 examples/.libs/encoder_example \
     %{buildroot}%{_bindir}/theora_encode
-%{__install} -m 0755 examples/.libs/player_example
+%{__install} -m 0755 examples/.libs/player_example \
     %{buildroot}%{_bindir}/theora_player
 
 
