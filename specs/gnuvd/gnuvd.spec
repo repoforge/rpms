@@ -58,14 +58,13 @@ you will need to install %{name}-devel.
 %doc README ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS TODO README.nl
 %{_bindir}/gnuvd
 %doc %{_mandir}/man?/*
-%{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
 %{_includedir}/libgnuvd/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
-
+%exclude %{_libdir}/*.la
 
 %changelog
 * Sat May 5 2004 Dries Verachtert <dries@ulyssis.org> 1.0beta4
