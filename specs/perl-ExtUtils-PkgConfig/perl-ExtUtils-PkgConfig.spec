@@ -12,9 +12,6 @@ License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-PkgConfig/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/gtk2-perl/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

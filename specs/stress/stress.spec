@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://weather.ou.edu/~apw/projects/stress/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://weather.ou.edu/~apw/projects/stress/stress-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: ftp://jaguar.ncsl.nist.gov/pub/sphere_2.6a.README
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://jaguar.ncsl.nist.gov/pub/sphere_%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

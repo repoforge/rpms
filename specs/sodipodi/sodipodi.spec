@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://sodipodi.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/sodipodi/sodipodi-%{version}.tar.gz
 Patch0: sodipodi-0.34-amd64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

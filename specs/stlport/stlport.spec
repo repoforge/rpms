@@ -13,9 +13,6 @@ License: Freeware
 Group: System Environment/Libraries
 URL: http://www.stlport.org
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.stlport.org/beta/STLport-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

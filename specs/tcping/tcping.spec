@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.linuxco.de/tcping/tcping.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.linuxco.de/tcping/tcping-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

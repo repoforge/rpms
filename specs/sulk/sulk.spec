@@ -13,9 +13,6 @@ License: LGPL
 Group: Amusements/Games
 URL: http://sulk.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/sulk/sulk-%{real_version}.tar.gz
 Patch: makefile-and-shellscript.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

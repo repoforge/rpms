@@ -12,9 +12,6 @@ License: Artistic
 Group: Applications/Databases
 URL: http://www.pgadmin.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.postgresql.org/pub/pgadmin3/release/src/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

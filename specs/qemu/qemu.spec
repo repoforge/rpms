@@ -5,17 +5,17 @@
 Summary: CPU emulator
 Name: qemu
 Version: 0.6.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
-Patch: qemu-0.6.0-glibc-private.patch
+#Patch: qemu-0.6.0-glibc-private.patch
+Patch0: qemu-0.6.1-build.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: SDL-devel
 
 %description
 QEMU is a FAST! processor emulator using dynamic translation to achieve good
@@ -40,7 +40,9 @@ reasonnable speed while being easy to port on new host CPUs.
 #%patch0 -b .glibc
 
 %build
-%configure
+%configure \
+	--interp-prefix="%{_prefix}/qemu-%%M" \
+	
 
 %{__perl} -pi.orig -e '
 		s|\$\(datadir\)|\$(datadir)/qemu|;
@@ -68,6 +70,9 @@ reasonnable speed while being easy to port on new host CPUs.
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Mon Feb 28 2005 Dag Wieers <dag@wieers.com> - 0.6.1-2
+- Added SDL-devel buildrequirement. (Matthias Saou)
+
 * Wed Nov 17 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

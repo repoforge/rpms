@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.lyra.org/sitecopy/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.lyra.org/sitecopy/sitecopy-%{version}.tar.gz
 Patch: sitecopy-0.14.3-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{version}-root

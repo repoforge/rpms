@@ -18,9 +18,6 @@ License: MIT
 Group: Applications/Internet
 URL: http://www.chiark.greenend.org.uk/~sgtatham/putty/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://the.earth.li/~sgtatham/putty/latest/putty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: Open Software License
 Group: Applications/System
 URL: http://sourceforge.net/projects/sudosh/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 #Source: http://dl.sf.net/sudosh/sudosh-%{version}.tar.gz
 Source: http://sudosh.sourceforge.net/sudosh-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

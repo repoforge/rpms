@@ -12,9 +12,6 @@ License: BSD
 Group: Applications/Internet
 URL: http://www.cs.uit.no/~daniels/PingTunnel/index.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.cs.uit.no/~daniels/PingTunnel/PingTunnel.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

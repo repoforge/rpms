@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Base
 URL: http://samba.idealx.org/index.en.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://samba.idealx.org/dist/smbldap-tools-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

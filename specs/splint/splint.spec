@@ -12,9 +12,6 @@ License: GPL
 Group: Development/Tools
 URL: http://www.splint.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.splint.org/downloads/splint-%{version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: LGPL style
 Group: Development/Libraries
 URL: http://pygame.seul.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://pygame.seul.org/pygame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

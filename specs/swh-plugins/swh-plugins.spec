@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://www.plugin.org.uk/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://plugin.org.uk/releases/%{version}/swh-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

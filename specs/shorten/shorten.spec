@@ -9,9 +9,6 @@ License: Distributable
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shorten/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.etree.org/shnutils/shorten/source/shorten-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

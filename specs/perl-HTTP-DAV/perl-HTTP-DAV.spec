@@ -14,9 +14,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-DAV/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-DAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

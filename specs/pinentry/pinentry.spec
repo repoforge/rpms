@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/aegypten/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/aegypten/pinentry-%{version}.tar.gz
 Patch: %{name}-info.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

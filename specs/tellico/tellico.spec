@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.periapsis.org/tellico/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.periapsis.org/tellico/download/tellico-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

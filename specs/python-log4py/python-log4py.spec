@@ -14,9 +14,6 @@ License: MIT
 Group: Development/Libraries
 URL: http://www.its4you.at/english/log4py.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.its4you.at/downloads/files/log4py-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

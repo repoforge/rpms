@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://smbc.airm.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://smbc.airm.net/%{version}/smbc-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -16,9 +16,6 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/MIME/MIME-tools-%{version}.tar.gz
 Patch: http://www.roaringpenguin.com/mimedefang/mime-tools-patch.txt
 Patch1: MIME-Tools.diff

@@ -17,9 +17,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Domain-TLD/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/A/AL/ALEXP/Net-Domain-TLD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -17,9 +17,6 @@ License: MIT
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-SendEvent/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/E/EC/ECALDER/X11-SendEvent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

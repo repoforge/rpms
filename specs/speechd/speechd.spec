@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://www.speechio.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.speechio.org/dl/speechd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

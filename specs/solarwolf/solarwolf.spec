@@ -12,9 +12,6 @@ License: LGPL
 Group: Amusements/Games
 URL: http://www.pygame.org/shredwheat/solarwolf/
 
-Packager:	Dries Verachtert <dries@ulyssis.org>
-Vendor:		Dries Apt/Yum Repository, http://dries.ulyssis.org/ayo/
-
 Source: http://www.pygame.org/shredwheat/solarwolf/%{name}-%{version}.tar.gz
 Source1: makefileandshellscript.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

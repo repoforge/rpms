@@ -10,9 +10,6 @@ License: distributable
 Group: Applications/Internet
 URL: http://www.dewn.com/rfc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.dewn.com/rfc/rfc-%{version}
 Source1: http://www.dewn.com/rfc/changelog
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

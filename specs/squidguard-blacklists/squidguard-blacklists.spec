@@ -17,9 +17,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://dag.wieers.com/home-made/squidguard/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.teledanmark.no/pub/www/proxy/squidGuard/contrib/blacklists-%{version}.tar.gz
 Source1: ftp://ftp.univ-tlse1.fr/pub/reseau/cache/squidguard_contrib/blacklists.tar.gz
 Source2: http://www.ingrid.org/~harada/filtering/dmozlists/dmozlists-ages-adult-20020930.tar.gz

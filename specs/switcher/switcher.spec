@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.atoker.com/switcher/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://www.atoker.com/switcher/switcher-%{version}.tar.gz
 Source1: egg-sharp.dll
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

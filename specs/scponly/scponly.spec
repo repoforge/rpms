@@ -9,9 +9,6 @@ License: GPL
 Group: System Environments/Shell
 URL: http://sublimation.org/scponly/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://sublimation.org/scponly/scponly-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

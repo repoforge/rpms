@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Databases
 URL: http://www.edlsystems.com/shellsql/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://ftp.edlsystems.com/shellsql/shellsql-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

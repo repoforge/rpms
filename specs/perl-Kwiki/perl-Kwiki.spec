@@ -15,9 +15,6 @@ Group: Applications/CPAN
 #URL: http://search.cpan.org/dist/Kwiki/
 URL: http://www.kwiki.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/Kwiki/Kwiki-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch

@@ -11,9 +11,6 @@ License: BSD
 Group: Applications/Internet
 URL: http://www.kernel.org/pub/software/network/tftp/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.kernel.org/pub/software/network/tftp/tftp-hpa-%{version}.tar.bz2
 Patch: tftp-0.28-malta.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

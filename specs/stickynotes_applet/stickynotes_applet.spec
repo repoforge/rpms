@@ -11,9 +11,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://loban.caltech.edu/stickynotes/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://loban.caltech.edu/stickynotes/packages/stickynotes_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

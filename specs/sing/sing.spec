@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://sf.net/projects/sing/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://prdownloads.sourceforge.net/sing/SING-%{version}.tgz
 Patch: sing-1.1-libnet-gcc32.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

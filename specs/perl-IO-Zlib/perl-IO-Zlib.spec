@@ -17,9 +17,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Zlib/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/T/TO/TOMHUGHES/IO-Zlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

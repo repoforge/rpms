@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://smb4k.berlios.de/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://criticalmass.sourceforge.net/shaaft.php
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/criticalmass/Shaaft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, zlib-devel

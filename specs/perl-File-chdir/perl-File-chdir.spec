@@ -17,9 +17,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-chdir/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/File-chdir-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

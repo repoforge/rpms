@@ -10,9 +10,6 @@ License: BSD
 Group: Applications/Databases
 URL: http://www.mavetju.org/unix/general.php
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.mavetju.org/download/postgresql-relay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

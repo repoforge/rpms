@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Productivity
 URL: http://people.redhat.com/rkeech/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 ### Source is not available from homepage, only SRPM
 Source: http://people.redhat.com/rkeech/rktime-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

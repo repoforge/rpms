@@ -48,9 +48,6 @@ BuildRequires: XFree86-devel, kdelibs-devel, openssl-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: psi-iconsets < 0.9.1
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 %description
 Psi is a client program for the Jabber messaging network. It supports
 multiple accounts, group chat, Unicode and SSL encryption.

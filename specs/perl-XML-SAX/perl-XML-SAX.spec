@@ -13,9 +13,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{real_name}-%{version}.tar.gz
 Source1: ParserDetails.ini
 Patch0: perl-XML-SAX-parsers.patch

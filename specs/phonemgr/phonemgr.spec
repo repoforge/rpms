@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Communications
 URL: http://usefulinc.com/software/phonemgr/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://usefulinc.com/software/phonemgr/releases/phonemgr-%{version}.tar.gz
 Patch0: phonemgr-0.2.1-orbit2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

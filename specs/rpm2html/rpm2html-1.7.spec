@@ -13,9 +13,6 @@ Group: Applications/System
 License: MIT
 URL: http://rpmfind.net/linux/rpm2html/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://rpmfind.net/pub/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

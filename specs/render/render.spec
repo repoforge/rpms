@@ -10,9 +10,6 @@ License: Free Software
 Group: System Environment/Libraries
 URL: http://freedesktop.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://freedesktop.org/~xlibs/release/render-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

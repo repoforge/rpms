@@ -16,9 +16,6 @@ License: GPL or Artistic
 Group: System Environment/Daemons
 URL: http://spamassassin.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://old.spamassassin.org/released/Mail-SpamAssassin-%{version}.tar.bz2
 Source2: redhat_local.cf
 Source3: spamassassin-default.rc

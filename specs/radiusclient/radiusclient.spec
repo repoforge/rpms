@@ -9,9 +9,6 @@ License: Free
 Group: Applications/Internet
 URL: http://www.cityline.net/~lf/radius/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.cityline.net/pub/radiusclient/radiusclient-%{version}.tar.gz
 Patch0: radiusclient-0.3.2-ac.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

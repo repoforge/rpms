@@ -14,9 +14,6 @@ License: Artistic (perl) license
 Group: Development/Libraries
 URL: http://search.cpan.org/dist/HTML-Strip/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/HTML/HTML-Strip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

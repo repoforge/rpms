@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://dag.wieers.com/home-made/gnome-applets/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dag.wieers.com/home-made/gnome-applets/proxy-applet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

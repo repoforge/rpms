@@ -20,9 +20,6 @@ License: MPL/GPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/thunderbird/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/thunderbird-%{version}-source.tar.bz2
 Source1: http://downloads.mozdev.org/enigmail/src/ipc-1.0.7.tar.gz
 Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.85.0.tar.gz

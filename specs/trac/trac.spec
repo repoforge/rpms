@@ -10,9 +10,6 @@ License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.edgewall.com/pub/trac/trac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: BSD
 Group: Applications/System
 URL: http://rsim.cs.uiuc.edu/~sachs/tp-scroll/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://rsim.cs.uiuc.edu/~sachs/tp-scroll/%{name}-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ Release: 1
 License: El Menda
 Group: Applications/Databases
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.rediris.es/rediris/software/rrdUtils/rrdUtils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

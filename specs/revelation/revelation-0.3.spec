@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Productivity
 URL: http://oss.codepoet.no/revelation/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Text
 URL: http://www.gingerall.com/charlie/ga/xml/p_sab.xml
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://download-1.gingerall.cz/download/sablot/Sablot-%{version}.tar.gz
 Patch: sablot-lib-1.0.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

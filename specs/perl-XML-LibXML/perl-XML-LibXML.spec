@@ -16,9 +16,6 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/XML/XML-LibXML-%{version}.tar.gz
 Patch: perl-XML-LibXML-1.58-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

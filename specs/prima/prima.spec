@@ -15,9 +15,6 @@ License: BSD
 Group: System Environment/Libraries
 URL: http://www.prima.eu.org/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/K/KA/KARASIK/Prima-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gdbm-devel, db4-devel, libpng-devel

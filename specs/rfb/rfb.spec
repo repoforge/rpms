@@ -17,9 +17,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.hexonet.de/software/rfb/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://download.hexonet.com/software/rfb/%{name}-%{version}.tar.gz
 Patch: rfb-0.6.1-rpmoptflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

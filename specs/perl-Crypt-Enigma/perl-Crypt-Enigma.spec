@@ -16,9 +16,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Enigma/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Enigma-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

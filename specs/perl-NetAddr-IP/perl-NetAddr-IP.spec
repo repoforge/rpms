@@ -15,9 +15,6 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://search.cpan.org/CPAN/authors/id/L/LU/LUISMUNOZ/NetAddr-IP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

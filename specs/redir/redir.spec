@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://sammy.net/~sammy/hacks/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://sammy.net/~sammy/hacks/redir-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

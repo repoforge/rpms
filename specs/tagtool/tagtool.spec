@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://pwp.netcabo.pt/paol/tagtool/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/tagtool/tagtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

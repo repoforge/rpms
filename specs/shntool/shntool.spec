@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shntool/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.etree.org/shnutils/shntool/source/shntool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

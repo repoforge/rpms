@@ -25,9 +25,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
 #Source1: channelsync.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

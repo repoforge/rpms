@@ -22,9 +22,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://shalvideo.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/shalvideo/shalvideo-%{real_version}.tar.bz2
 # Patch: no-default-vals-in-cpp-files.patch.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

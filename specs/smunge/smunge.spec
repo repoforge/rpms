@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://www.i2pi.com/smunge/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.i2pi.com/smunge/smunge-%{version}.tar.gz
 Patch: smunge-hostent.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

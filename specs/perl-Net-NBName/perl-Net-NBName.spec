@@ -17,9 +17,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-NBName/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMACFARLA/Net-NBName-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

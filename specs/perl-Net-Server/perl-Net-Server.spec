@@ -12,9 +12,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://seamons.com/net_server/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ License: GPL
 Group: Development/Languages
 URL: http://pecl.php.net/package/SQLite/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 ### Source: http://pecl.php.net/get/SQLite
 Source: http://pecl.php.net/get/SQLite-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

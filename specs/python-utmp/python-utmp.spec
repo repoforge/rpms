@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Python
 URL: http://melkor.dnp.fmph.uniba.sk/~garabik/python-utmp/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://melkor.dnp.fmph.uniba.sk/~garabik/python-utmp/python-utmp_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

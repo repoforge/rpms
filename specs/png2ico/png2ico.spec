@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.winterdrache.de/freeware/png2ico/index.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.winterdrache.de/freeware/png2ico/data/png2ico-src-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

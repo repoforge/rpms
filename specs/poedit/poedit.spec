@@ -12,9 +12,6 @@ License: GPL
 Group: Development/Tools
 URL: http://poedit.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/poedit/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, gcc-c++, wxGTK-devel, db4-devel, gettext, zip

@@ -26,9 +26,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://startracker.free.fr/stardust/stardust_en.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://startracker.free.fr/dstardust/stardust-%{version}.tar.gz
 Patch: gcc-fc3-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

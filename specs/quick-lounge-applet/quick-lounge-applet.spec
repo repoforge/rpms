@@ -10,9 +10,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://quick-lounge.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/GNOME/sources/quick-lounge-applet/2.2/quick-lounge-applet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

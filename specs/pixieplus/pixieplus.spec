@@ -19,9 +19,6 @@ BuildRequires: kdelibs-devel, make, gcc-c++, XFree86-devel
 %{?fc3:BuildRequires:libselinux-devel, libexif-devel, libexif}
 %{?fc2:BuildRequires:libselinux-devel, libexif-devel, libexif}
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://http.us.debian.org/debian/pool/main/p/pixieplus/pixieplus_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

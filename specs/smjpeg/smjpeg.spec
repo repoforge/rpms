@@ -9,9 +9,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://icculus.org/smjpeg/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smjpeg/smjpeg-%{version}.tar.gz
 Patch: smjpeg-0.2.1-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -5,17 +5,14 @@
 
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
-Version: 1.4.1
-Release: 5
+Version: 2.0.4
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://sarg.sourceforge.net/sarg.php
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/sarg/sarg-%{version}.tar.gz
-Patch0: sarg-1.4.1-indexsort.patch
+Patch: sarg-2.0.4-segfault.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -29,16 +26,7 @@ showing users, IP Addresses, bytes, sites and times.
 
 %prep
 %setup
-%patch0 -p1
-
-### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|= \@BINDIR\@|= \$(bindir)|g;
-		s|= \@MANDIR\@|= \$(mandir)/man1|g;
-		s|= \@SYSCONFDIR\@|= \$(sysconfdir)/sarg|g;
-		s|\@BINDIR\@|%{_bindir}|g;
-		s|\@SYSCONFDIR\@|%{_sysconfdir}/sarg|g;
-	' Makefile.in
+%patch -p0
 
 %{__perl} -pi.orig -e '
 		s|^#(access_log) (.+)$|#$1 $2\n$1 %{_localstatedir}/log/squid/access.log|;
@@ -117,16 +105,22 @@ EOF
 
 %build
 %configure
+%configure \
+	--enable-bindir="%{_bindir}" \
+	--enable-sysconfdir="%{_sysconfdir}/sarg" \
+	--enable-mandir="%{_mandir}/man1" \
+	--enable-htmldir="%{_localstatedir}/www/sarg"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/sarg/ \
-			%{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%makeinstall
+#%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/sarg/
+#%{__install} -d -m0755 %{buildroot}%{_bindir}
+#%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sarg/{ONE-SHOT,daily,weekly,monthly}/
 %{__install} -D -m0644 sarg-http.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/sarg.conf
@@ -135,23 +129,30 @@ EOF
 %{__install} -D -m0755 sarg.monthly %{buildroot}%{_sysconfdir}/cron.monthly/sarg
 %{__install} -D -m0644 sarg-index.html %{buildroot}%{_localstatedir}/www/sarg/index.html
 
+#%{__cp} -avx fonts/ %{buildroot}%{_sysconfdir}/sarg/fonts/
+#%{__cp} -avx images/ %{buildroot}%{_sysconfdir}/sarg/images/
+#%{__cp} -avx languages/ %{buildroot}%{_sysconfdir}/sarg/languages
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog CONTRIBUTORS copying DONATIONS README sarg.html
-%doc %{_mandir}/man?/*
-%dir %{_sysconfdir}/sarg/
+%doc %{_mandir}/man1/sarg.1*
+%dir(noreplace) %{_sysconfdir}/sarg/
 %config(noreplace) %{_sysconfdir}/sarg/sarg.conf
 %config(noreplace) %{_sysconfdir}/sarg/exclude_codes
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/sarg.conf
 %config(noreplace) %{_sysconfdir}/cron.*/sarg
 %{_sysconfdir}/sarg/languages/
-%{_bindir}/*
+%{_bindir}/sarg
 %{_localstatedir}/www/sarg/
 
 %changelog
+* Sun Mar 06 2005 Dag Wieers <dag@wieers.com> - 2.0.4-1
+- Updated to release 2.0.4.
+
 * Wed Aug 04 2004 Dag Wieers <dag@wieers.com> - 1.4.1-5
 - Fixed ugly bug in weekly and monthly cron entries. (Viktor Zoubkov)
 

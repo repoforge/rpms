@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.klografx.net/qiv/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.klografx.net/qiv/download/qiv-%{version}-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://www.samba.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://download.samba.org/samba/ftp/%{name}-%{version}.tar.bz2
 
 # Red Hat specific replacement-files

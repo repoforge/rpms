@@ -11,9 +11,6 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/gettext/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/%{real_name}-%{version}.tar.gz
 Patch0: gettext-1.01-fix-example-in-README.patch
 Patch1: gettext-1.01-includes.patch

@@ -10,9 +10,6 @@ License: GPL
 Group: Development/System
 URL: http://cvs.gnome.org/viewcvs/sysprof/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.daimi.au.dk/~sandmann/sysprof-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pkgconfig, gtk2-devel, libglade2-devel

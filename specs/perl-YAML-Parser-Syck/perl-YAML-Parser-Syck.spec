@@ -17,9 +17,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Parser-Syck/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/YAML-Parser-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -18,9 +18,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-DumpXML/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Data-DumpXML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

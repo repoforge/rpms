@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.dest-unreach.org/socat/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.dest-unreach.org/socat/download/socat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

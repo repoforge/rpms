@@ -15,9 +15,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-IBM390/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.cpan.org/modules/by-module/Convert/Convert-IBM390-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

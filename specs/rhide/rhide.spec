@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Debuggers
 URL: http://www.rhide.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/rhide/rhide-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Editors
 URL: http://www.irule.be/bvh/c++/rosetta/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.irule.be/bvh/c++/rosetta/rosetta-0.01.tar.gz
 Patch0: rosetta-rh8.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

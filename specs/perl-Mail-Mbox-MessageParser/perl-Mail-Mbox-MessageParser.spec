@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Mbox-MessageParser/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/Mail/Mail-Mbox-MessageParser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -49,7 +46,7 @@ echo -e "\n" | %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc CHANGES LICENSE MANIFEST README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Mail/
 

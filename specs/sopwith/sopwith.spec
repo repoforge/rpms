@@ -16,9 +16,6 @@ Group: Amusements/Games
 License: GPL
 URL: http://sdl-sopwith.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/sdl-sopwith/sdl_sopwith-%{version}.tar.gz
 Source1: sopwith.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

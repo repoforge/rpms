@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/File
 URL: http://swapped.cc/sign/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://swapped.cc/sign/files/sign-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

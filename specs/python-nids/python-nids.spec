@@ -14,9 +14,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://pilcrow.madison.wi.us/pynids/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://pilcrow.madison.wi.us/pynids/pynids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Archiving
 URL: http://rdiff-backup.stanford.edu/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://rdiff-backup.stanford.edu/OLD/%{version}/rdiff-backup-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

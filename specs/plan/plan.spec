@@ -10,9 +10,6 @@ License: Freely distributable with attribution
 Group: Applications/Productivity
 URL: http://www.bitrot.de/plan.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: ftp://ftp.fu-berlin.de/pub/unix/graphics/plan/plan-%{version}.tar.gz
 Source1: netplan
 Source2: plan.wmconfig

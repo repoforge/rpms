@@ -13,9 +13,6 @@ License: GPL/LGPL/MPL
 Group: Development/Languages
 URL: http://pike.ida.liu.se/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}.tar.gz
 Source1: ftp://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}-doc.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

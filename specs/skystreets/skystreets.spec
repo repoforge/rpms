@@ -26,9 +26,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://skystreets.kaosfusion.com/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://skystreets.kaosfusion.com/skystreets-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib-devel, imlib, gcc-c++, SDL-devel, SDL_image-devel

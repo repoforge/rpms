@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://people.ee.ethz.ch/~dws/software/snort-rep/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://people.ee.ethz.ch/~dws/software/snort-rep/pub/snort-rep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

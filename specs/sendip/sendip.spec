@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.earth.li/projectpurple/progs/sendip.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.earth.li/projectpurple/files/sendip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

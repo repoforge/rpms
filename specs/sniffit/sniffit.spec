@@ -12,9 +12,6 @@ License: Freely distributable
 Group: Applications/Internet
 URL: http://reptile.rug.ac.be/~coder/sniffit/sniffit.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://reptile.rug.ac.be/~coder/sniffit/files/%{name}.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap

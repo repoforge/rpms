@@ -15,9 +15,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://snackamp.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/snackamp/snackAmp-%{version}_FDW.tar.gz
 Source1: snackamp.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

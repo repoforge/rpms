@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://savannah.nongnu.org/download/tpb/tpb-%{version}.tar.gz
 #Source1: tpbrc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

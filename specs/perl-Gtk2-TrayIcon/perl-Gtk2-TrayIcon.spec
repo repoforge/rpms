@@ -18,9 +18,6 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-TrayIcon/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Gtk2-TrayIcon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

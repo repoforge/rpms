@@ -9,9 +9,6 @@ License: BSD
 Group: Applications/Databases
 URL: http://www2b.biglobe.ne.jp/~caco/pgpool/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://ftp.sra.co.jp/pub/cmd/postgres/pgpool/pgpool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

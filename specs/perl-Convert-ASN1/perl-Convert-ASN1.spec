@@ -16,9 +16,6 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-ASN1/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.cpan.org/modules/by-module/Convert/Convert-ASN1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

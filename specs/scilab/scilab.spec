@@ -14,9 +14,6 @@ License: Other
 Group: Applications/Engineering
 URL: http://scilabsoft.inria.fr/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://ftp.inria.fr/INRIA/Scilab/distributions/scilab-%{version}.src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

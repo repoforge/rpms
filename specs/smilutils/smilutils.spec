@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://users.pandora.be/acp/kino/smilutils.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://kino.schirmacher.de/filemanager/download/14/smilutils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

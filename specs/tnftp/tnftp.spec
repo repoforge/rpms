@@ -11,9 +11,6 @@ License: BSD
 Group: Applications/Internet
 URL: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/tnftp-%{real_version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

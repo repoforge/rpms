@@ -17,9 +17,6 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Tidy/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHANCOCK/Perl-Tidy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Text
 URL: http://sarrazip.com/dev/sagasu.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

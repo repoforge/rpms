@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/System
 URL: http://rpmrebuild.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 # Source: http://dl.sf.net/rpmrebuild/rpmrebuild-%{version}-1.src.rpm
 Source: rpmrebuild.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

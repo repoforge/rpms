@@ -15,9 +15,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://www.squidguard.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.teledanmark.no/pub/www/proxy/squidGuard/squidGuard-%{version}.tar.gz
 Patch0: squidguard-1.2.0-db4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

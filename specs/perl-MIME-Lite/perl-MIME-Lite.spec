@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/CPAN
 URL: http://www.zeegee.com/code/perl/MIME-Lite/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.zeegee.com/code/perl/MIME-Lite/download/MIME-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -11,9 +11,6 @@ License: distributable
 Group: Applications/System
 URL: http://www.rndsoftware.com/products.shtml
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.rndsoftware.com/binaries/procget-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

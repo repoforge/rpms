@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://acidlab.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/acidlab/acid-%{version}.tar.gz
 Source1: acid.conf
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

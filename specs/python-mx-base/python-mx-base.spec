@@ -13,9 +13,6 @@ License: Egenix.com Public License
 Group: Development/Libraries
 URL: http://www.lemburg.com/files/python/eGenix-mx-Extensions.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.egenix.com/files/python/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/CPAN
 URL: http://gtk2-perl.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 #Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-VFS-%{version}.tar.gz
 Source: http://dl.sf.net/gtk2-perl/Gnome2-VFS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.burtonini.com/blog/computers/sound-juicer/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.burtonini.com/computing/sound-juicer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

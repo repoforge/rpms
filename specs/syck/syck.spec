@@ -11,9 +11,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://www.whytheluckystiff.net/syck/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://rubyforge.org/frs/download.php/1371/syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

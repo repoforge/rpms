@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://www.namesys.com
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: ftp://ftp.namesys.com/pub/libreiserfs/progsreiserfs-0.3.0.4.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

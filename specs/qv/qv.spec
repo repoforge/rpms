@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://hasanen.iraqilinux.com/qv/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://hasanen.iraqilinux.com/qv/files/qv-%{version}-beta-src.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

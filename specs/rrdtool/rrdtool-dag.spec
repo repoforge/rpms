@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
 Patch: php-1.0.47-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

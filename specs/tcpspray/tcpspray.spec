@@ -10,9 +10,6 @@ Release: 0.a
 License: Unknown
 Group: Applications/Internet
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.linux.org.uk/pub/linux/Networking/attic/Other/tcpspray/tcpspray.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

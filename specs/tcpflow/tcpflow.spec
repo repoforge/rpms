@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.circlemud.org/~jelson/software/tcpflow/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.circlemud.org/pub/jelson/tcpflow/tcpflow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpcap

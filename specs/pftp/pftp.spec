@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.pftp.de/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://metalab.unc.edu/pub/Linux/system/network/file-transfer/pftp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

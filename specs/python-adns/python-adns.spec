@@ -12,9 +12,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://dustman.net/andy/python/adns-python/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dustman.net/andy/python/adns-python/%{version}/adns-python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
