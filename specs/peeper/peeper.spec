@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%define desktop_vendor rpmforge
 
 Summary: Tool to magnify parts of your screen
 Name: peeper
@@ -16,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/peeper/peeper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: XFree86-devel, libgnomeui-devel, gcc-c++
 
 %description
@@ -28,12 +28,12 @@ designed to support many widget sets and graphics backends.
 %prep
 %setup
 
-cat <<EOF >gnome-%{name}.desktop
+%{__cat} <<EOF >gnome-%{name}.desktop
 [Desktop Entry]
-Name=Gv4l
-Comment=%{summary}
-Icon=gv4l/gv4l.png
-Exec=%{name}
+Name=Peeper Magnifier
+Comment=Magnify parts of your screen
+#Icon=gv4l/gv4l.png
+Exec=peeper
 Terminal=false
 Type=Application
 EOF
@@ -48,12 +48,12 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor gnome                \
-	--add-category X-Red-Hat-Base              \
-	--add-category Application                 \
-	--add-category AudioVideo                  \
-	--dir %{buildroot}%{_datadir}/applications \
-	gnome-%{name}.desktop
+desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --add-category Application                 \
+        --add-category AudioVideo                  \
+        --dir %{buildroot}%{_datadir}/applications \
+        gnome-%{name}.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
