@@ -1,13 +1,17 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <lyx-devel$lists,lyx,org>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX
 Name: lyx
-Version: 1.3.4
+Version: 1.3.5
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -20,11 +24,9 @@ Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
 Source1: lyx-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: qt-devel, gcc-c++
 Requires: qt >= 2.2.1, tetex-xdvi, tetex, tetex-latex
 Obsoletes: tetex-lyx
-
 
 %description
 LyX is a modern approach to writing documents which breaks with the
@@ -47,7 +49,7 @@ and let the computer take care of the rest.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >lyx.desktop
 [Desktop Entry]
 Name=LyX LaTeX Frontend
 Comment=Write documents in a WYSIWYM way
@@ -84,16 +86,15 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__install} -m0644 lib/reLyX/README README.reLyX
 
 ### Install desktop file and icon
-%if %{dfi}
-        %{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 lyx.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor kde        \
-                --add-category X-Red-Hat-Extra   \
+        desktop-file-install --vendor %{desktop_vendor} \
+                --add-category X-Red-Hat-Extra          \
                 --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+                lyx.desktop
 %endif
-
 
 %post
 ### Make TeX understand where LyX-specific packages are
@@ -111,15 +112,12 @@ cd %{_datadir}/lyx/
 ### Fix reLyX perl program if the prefix is non-standard
 %{__perl} -pi -e 's|/usr/share/lyx|%{_datadir}/lyx|' %{_bindir}/reLyX
 
-
 %postun
 ### Fix the TeX file hash
 texhash &>/dev/null
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -127,15 +125,15 @@ texhash &>/dev/null
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/lyx/
+%{_datadir}/pixmaps/lyx.png
 %{_datadir}/texmf/tex/latex/lyx/
-%{_datadir}/pixmaps/*.png
-%if %{dfi}
-        %{_datadir}/gnome/apps/Applications/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/lyx.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-lyx.desktop}
 
 %changelog
+* Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 1.3.5-1
+- Updated to release 1.3.5.
+
 * Thu Mar 18 2004 Bert de Bruijn <bert@debruijn.be> - 1.3.4-1
 - Added .desktop file and icon.
 

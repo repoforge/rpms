@@ -8,7 +8,7 @@ Version: 0.9.17
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.cartel-securite.fr/pbiondi/scapy.html
+URL: http://www.cartel-securite.fr/pbiondi/projects/scapy.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -4,13 +4,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define _prefix /boot
 %define real_version 3.1a
 
 Summary: Thorough, stand alone memory test
 Name: memtest86
 Version: 3.1
-Release: 0.a
+Release: 1.a
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest86.com/
@@ -41,28 +40,31 @@ miss many of the failures that are detected by Memtest86.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m644 memtest.bin %{buildroot}%{_prefix}/%{name}-%{version}/memtest.bin
+%{__install} -D -m644 memtest.bin %{buildroot}/boot/%{name}-%{real_version}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --add-kernel="%{_prefix}/%{name}-%{version}" \
-		--title "Memtest86 v%{version}"
+        /sbin/grubby --add-kernel="/boot/%{name}-%{real_version}" \
+		--title "Memtest86 v%{real_version}"
 fi
 
 %postun
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --remove-kernel="%{_prefix}/%{name}-%{version}"
+        /sbin/grubby --remove-kernel="/boot/%{name}-%{real_version}"
 fi
 
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_prefix}/%{name}-%{version}
+/boot/%{name}-%{real_version}
 
 %changelog
+* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 3.1-1.a
+- Fixed the location of the memtest kernel. (Greg Cope)
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 3.1-0.a
 - Updated to release 3.1a.
 

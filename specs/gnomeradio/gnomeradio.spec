@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
+# Upstream: Jörgen Scheibengruber <mfcn$wh-hms,uni-ulm,de>
 
-Summary: FM-Tuner program for GNOME
+Summary: Graphical FM-Tuner program
 Name: gnomeradio
 Version: 1.4
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mfcn.ilo.de/gnomeradio/
@@ -13,6 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://mfcn.ilo.de/gnomeradio/gnomeradio-%{version}.tar.gz
+Patch: gnomeradio-1.4-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, intltool, libgnomeui-devel
@@ -25,6 +27,7 @@ A FM-Tuner program for GNOME.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure \
@@ -37,7 +40,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-%{__rm} -rf %{buildroot}/%{_localstatedir}/scrollkeeper/
+%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -54,12 +57,15 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README
 %doc %{_datadir}/gnome/help/gnomeradio/
-%config %{_sysconfdir}/gconf/schemas/*
-%{_bindir}/*
+%config %{_sysconfdir}/gconf/schemas/gnomeradio.schemas
+%{_bindir}/gnomeradio
+%{_datadir}/applications/gnomeradio.desktop
 %{_datadir}/omf/gnomeradio/
-%{_datadir}/pixmaps/*
-%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/*.png
 
 %changelog
-* Fri Jan 31 2003 Dag Wieers <dag@wieers.com> 1.4-0
+* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 1.4-1                                        
+- Fixed build problem with gnome 2.6+. (Alan Cox)
+
+* Fri Jan 31 2003 Dag Wieers <dag@wieers.com> - 1.4-0
 - Initial package. (using DAR)

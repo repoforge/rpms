@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dries
+
 # Screenshot: http://uml.sourceforge.net/images/thumbnails/activity-diagram.png
 # ScreenshotURL: http://uml.sourceforge.net/screen.php
 
@@ -21,7 +21,6 @@ BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
 BuildRequires: XFree86-devel, qt-devel, flex
 
-
 %description
 Umbrello UML Modeller is a Unified Modelling Language diagram programme for
 KDE. UML allows you to create diagrams of software and other systems in a
@@ -33,7 +32,6 @@ schema's te maken. UML laat u toe om schema's te maken van software in een
 standaard formaat. 
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -42,10 +40,10 @@ standaard formaat.
 
 %install
 %{__rm} -rf %{buildroot}
-export DESTDIR=$RPM_BUILD_ROOT
-%{__make} install-strip
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications
-cat > $RPM_BUILD_ROOT/usr/share/applications/umbrello.desktop <<EOF
+%{__make} install \
+	DESTDIR="%{buildroot}"
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+%{__cat} <<EOF >%{buildroot}%{_datadir}/applications/umbrello.desktop
 [Desktop Entry]
 Type=Application
 Exec=umbrello -caption "%c" %i %m
@@ -58,7 +56,7 @@ Name=Umbrello UML Modeller
 MimeType=application/x-uml
 Categories=Application;Development;X-Red-Hat-Extra;
 EOF
-rm -f $RPM_BUILD_ROOT/usr/share/applications/kde/umbrello.desktop
+%{__rm} -f %{buildroot}%{_datadir}/applications/kde/umbrello.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,10 +66,11 @@ rm -f $RPM_BUILD_ROOT/usr/share/applications/kde/umbrello.desktop
 %doc COPYING README
 %{_bindir}/umbrello
 %{_datadir}/apps/umbrello
-%{_datadir}/icons/*/*/apps/umbrello.png
-%{_datadir}/icons/*/*/mimetypes/umbrellofile.png
+%{_datadir}/icons/*/*/apps/umbrello.*
+%{_datadir}/icons/*/*/mimetypes/umbrellofile.*
 %{_datadir}/mimelnk/application/x-umbrello.desktop
 %{_datadir}/applications/umbrello.desktop
+%{_datadir}/icons/*/*/actions/umbrello_diagram_*.png
 
 %changelog
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> 1.3.1-1

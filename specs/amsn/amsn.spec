@@ -15,11 +15,11 @@
 
 %define tls_maj 1.4
 %define tls_min 1
-%define real_version 0_93
+%define real_version 0_94
 
 Summary: Full featured MSN Messenger clone
 Name: amsn
-Version: 0.93
+Version: 0.94
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -153,8 +153,11 @@ cd plugins/traydock
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-amsn.desktop}
 
 %changelog
-* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.94-1
+* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 0.94-1
 - Updated to release 0.94.
+
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.93-1
+- Updated to release 0.93.
 
 * Mon May 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.92-1
 - update to version 0.92

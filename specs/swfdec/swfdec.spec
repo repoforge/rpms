@@ -3,7 +3,7 @@
 
 Summary: Flash animations rendering library
 Name: swfdec
-Version: 0.3.0
+Version: 0.3.1
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -75,29 +75,32 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO 
 %exclude %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
-%{_bindir}/*
-%{_libdir}/*.so.*
+%{_bindir}/swf_play
+%{_libdir}/libswfdec*.so.*
 %{_libdir}/gimp/1.3/plug-ins/swf
-%exclude %{_libdir}/gtk-2.0/*/loaders/*.a
-%exclude %{_libdir}/gtk-2.0/*/loaders/*.la
-%{_libdir}/gtk-2.0/*/loaders/*.so
+%{_libdir}/gtk-2.0/*/loaders/swf_loader.so
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/swfdec/
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
+%exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.a
+%exclude %{_libdir}/gtk-2.0/*/loaders/swf_loader.la
+%{_libdir}/libswfdec*.a
+%exclude %{_libdir}/libswfdec*.la
+%{_libdir}/libswfdec*.so
+%{_libdir}/pkgconfig/swfdec*.pc
 
 %files -n mozilla-swfdec
 %defattr(-, root, root, 0755)
-%exclude %{_libdir}/mozilla/plugins/*.a
-%exclude %{_libdir}/mozilla/plugins/*.la
-%{_libdir}/mozilla/plugins/*.so*
+%exclude %{_libdir}/mozilla/plugins/libmozswfdec.a
+%exclude %{_libdir}/mozilla/plugins/libmozswfdec.la
+%{_libdir}/mozilla/plugins/libmozswfdec.so
 
 
 %changelog
+* Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 0.3.1-1
+- Updated to release 0.3.1.
+
 * Wed Oct 20 2004 Matthias Saou <http://freshrpms.net/> 0.3.0-1
 - Update to 0.3.0.
 - Added new liboil-devel and gimp2-devel dependencies.

@@ -1,16 +1,16 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Nigel Wetters Gourlay <nigel$wetters,net>
 
-# Upstream: Nigel Wetters <nigel$wetters,net>
-# Distcc: 0
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name IP-Country
 
 Summary: Classes for fast lookup of country codes from IP addresses for Perl
 Name: perl-IP-Country
-Version: 2.17
-Release: 0
+Version: 2.18
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IP-Country/
@@ -18,10 +18,10 @@ URL: http://search.cpan.org/dist/IP-Country/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/%{real_name}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWETTERS/IP-Country-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl(Geography::Countries)
 Requires: perl >= 0:5.00503
 
@@ -44,16 +44,15 @@ to be as accurate as reverse-DNS and WHOIS lookup.
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -62,10 +61,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc CHANGES MANIFEST README
 %doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{_bindir}/ip2cc
+%{_libdir}/perl5/vendor_perl/*/IP/
 
 %changelog
+* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 2.18-1
+- Updated to release 2.18.
+
 * Fri Jan 02 2004 Dag Wieers <dag@wieers.com> - 2.17-0
 - Updated to release 2.17.
 

@@ -4,6 +4,7 @@
 
 ### FIXME: Sysv script does not have condrestart option (redo sysv script)
 ### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
+### REMINDER: Look and sync with Petr Kristof's work
 
 %{?el2:%define _without_milter 1}
 
@@ -23,7 +24,7 @@ Source1: clamav.init
 Source2: clamav-milter.init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bzip2-devel, zlib-devel, gmp-devel
+BuildRequires: bzip2-devel, zlib-devel, gmp-devel, curl-devel
 %{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
 Requires: clamav-db = %{version}-%{release}
 Obsoletes: libclamav <= %{version}-%{release}
@@ -108,17 +109,22 @@ you will need to install %{name}-devel.
 		s|^#(TCPAddr) .+$|$1 127.0.0.1|;
 		s|^#(MaxConnectionQueueLength) .+$|$1 30|;
 		s|^#(StreamSaveToDisk)|$1|;
+		s|^#(MaxThreads ) .+$|$1 50|;
 		s|^#(ReadTimeout) .+$|$1 300|;
 		s|^#(User) .+$|$1 clamav|;
 		s|^#(AllowSupplementaryGroups)|$1|;
-		s|^#(ScanMail)|$1|;
+		s|^#(DetectBrokenExecutables)|$1|;
+		s|^#(ArchiveMaxCompressionRatio) .+|$1 300|;
 		s|^#(ArchiveBlockEncrypted)|$1|;
+		s|^#(ArchiveBlockMax)|$1|;
+		s|^#(ScanMail)|$1|;
 	' etc/clamd.conf
 
 %{__perl} -pi.orig -e '
 		s|^(Example)|#$1|;
 		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
 		s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
+		s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/freshclam.pid|;
 		s|^#(DatabaseOwner) .+$|$1 clamav|;
 		s|^(Checks) .+$|$1 24|;
 		s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamd.conf|;
@@ -178,6 +184,8 @@ EOF
 	--program-prefix="%{?_program_prefix}" \
 %{?_without_milter:--enable-milter} \
 	--enable-id-check \
+	--with-libcurl \
+	--enable-dns \
 	--disable-clamav \
 	--with-user="clamav" \
 	--with-group="clamav" \
@@ -309,7 +317,7 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/freshclam
 
 %defattr(0644, clamav, clamav, 0755)
-%config(noreplace) %{_localstatedir}/clamav/
+%config(noreplace) %verify(user group mode) %{_localstatedir}/clamav/
 %{_localstatedir}/log/clamav/freshclam.log
 
 %files devel
@@ -322,6 +330,10 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 0.80-3
+- Added curl dependency. (Petr Kristof)
+- Synchronized some options from Petr. (Petr Kristof)
+
 * Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.80-2
 - Fixed another clamav.conf reference. (Michael Best)
 
