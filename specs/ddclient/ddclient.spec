@@ -4,7 +4,7 @@
 Summary: Updates dynamic DNS entries
 Name: ddclient
 Version: 3.6.5
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -34,11 +34,27 @@ updates, and sending update status to syslog and through e-mail.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0755 ddclient %{buildroot}%{_sbindir}/ddclient
-%{__install} -D -m0644 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
-%{__install} -D -m0644 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
+%{__install} -D -m0755 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
+%{__install} -D -m0600 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
 
 %clean
 %{__rm} -rf %{buildroot}
+
+%post
+if [ $1 -eq 1 ]; then
+    /sbin/chkconfig --add ddclient
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+    /sbin/service ddclient stop >/dev/null 2>&1 || :
+    /sbin/chkconfig --del ddclient
+fi
+
+%postun
+if [ $1 -ge 1 ]; then
+    /sbin/service ddclient condrestart >/dev/null 2>&1 || :
+fi
 
 %files
 %defattr(-, root, root, 0755)
@@ -49,6 +65,9 @@ updates, and sending update status to syslog and through e-mail.
 
 
 %changelog
+* Sun Mar 13 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.5-4
+- Fixed the permissions of the ddclient init script (Thanks to Stef Van Dessel)
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.5-3
 - Fixed the location of ddclient.conf (Thanks to Andi Mueller)
 
