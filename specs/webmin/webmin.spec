@@ -4,7 +4,7 @@
 
 # BuildAsRoot: 1
 
-### FIXME: The official webmin RPM package is broken. Please back up all configuration files before upgrading to my RPM package.
+### FIXME: The official webmin RPM package is broken. Please back up all configuration files before upgrading.
 
 %{?dist: %{expand: %%define %dist 1}}
 

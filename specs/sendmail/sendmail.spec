@@ -38,8 +38,6 @@ Name: sendmail
 Version: 8.12.8
 Release: 9.1
 License: BSD
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Group: System Environment/Daemons
 Provides: smtpdaemon
 Source0: ftp://ftp.cs.berkeley.edu/ucb/sendmail/sendmail.%{version}.tar.gz

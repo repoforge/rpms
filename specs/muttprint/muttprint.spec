@@ -10,8 +10,6 @@ License: GPL
 Group: Applications/Mail
 URL: http://muttprint.sourceforge.net/
 
-Packager: Bert de Bruijn <bert@debruijn.be)
-
 Source: http://dl.sf.net/muttprint/muttprint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

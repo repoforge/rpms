@@ -32,7 +32,7 @@ workstations/servers.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install INSTALL_ROOT="$RPM_BUILD_ROOT"
+%{__make} install INSTALL_ROOT="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -40,10 +40,11 @@ workstations/servers.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG LICENSE README RELEASE-NOTES TODO
-%doc docs/*.txt docs/FAQ/ docs/client/ docs/developer_docs/ docs/current-guide/
+%doc docs/FAQ docs/client/ docs/developer_docs/ docs/current-guide/ docs/*.txt
 %config(noreplace) %{_sysconfdir}/current/current.conf
 %config %{_sysconfdir}/current/
-%{_sbindir}/*
+%{_sbindir}/cadmin
+%{_sbindir}/cinstall
 %{_datadir}/current/
 
 

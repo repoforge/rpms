@@ -1,0 +1,48 @@
+# $Id$
+# Authority: dag
+
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
+%define real_name ctypes
+
+Summary: Create and manipulate C data types from Python
+Name: python-ctypes
+Version: 0.9.1
+Release: 1
+License: MIT
+Group: Development/Python
+URL: http://starship.python.net/crew/theller/ctypes/
+
+Source: http://dl.sf.net/ctypes/ctypes-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: python-devel >= 2.3
+
+%description
+python-ctypes is a python module to create and manipulate C data types in
+Python, and to call functions in dynamic link libraries/shared dlls.
+It allows wrapping these libraries in pure Python.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+python setup.py build
+
+%install
+%{__rm} -rf %{buildroot}
+python setup.py install --root="%{buildroot}"
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc NEWS.txt README* docs/*
+%{python_sitearch}/_ctypes.so
+%{python_sitearch}/_ctypes_test.so
+%{python_sitearch}/ctypes/
+
+%changelog
+* Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 0.9.1-1
+- Initial package. (using DAR)

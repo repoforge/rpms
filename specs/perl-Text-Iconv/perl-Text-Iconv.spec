@@ -15,8 +15,6 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Iconv/
 
-Packager: Bert de Bruijn <bert@debruijn.be>
-
 Source: http://www.cpan.org/modules/by-module/Text/Text-Iconv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

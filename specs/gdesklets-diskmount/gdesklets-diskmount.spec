@@ -6,8 +6,6 @@ Version: 0.3.1
 Release: 0
 License: GPL
 Group: User Interface/Desktops
-
-Packager: Andre Costa <acosta@ar.microlink.com.br>
 URL: http://gdesklets.gnomedesktop.org/
 
 Source0: %{rname}-%{version}.tar.gz

@@ -10,8 +10,6 @@ License: zlib License
 Group: System Environment/Libraries
 URL: http://www.icculus.org/physfs/
 
-Packager: Rudolf Kastl <che666 at uni.de>
-
 Source: http://www.icculus.org/physfs/downloads/physfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
