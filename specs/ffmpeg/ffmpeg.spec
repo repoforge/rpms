@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define date   2004-11-02
+%define date   2004-11-10
 #define prever pre1
 %{?date: %define sqdate %(echo %{date} | tr -d '-')}
 
@@ -99,6 +99,12 @@ to use MPlayer, transcode or other similar programs.
 
 %build
 %configure \
+%ifnarch %{ix86}
+    --disable-mmx \
+    --extra-cflags="%{optflags} -fPIC" \
+%else
+    --extra-cflags="%{optflags}" \
+%endif
     %{!?_without_lame: --enable-mp3lame} \
     %{!?_without_vorbis: --enable-vorbis} \
     %{!?_without_faad: --enable-faad} \
@@ -108,7 +114,6 @@ to use MPlayer, transcode or other similar programs.
     --enable-shared-pp \
     --enable-shared \
     --enable-gpl \
-    --extra-cflags="%{optflags}" \
     --disable-strip
 #   %{!?_without_a52: --enable-a52} \
 # Make!
@@ -172,6 +177,12 @@ to use MPlayer, transcode or other similar programs.
 
 
 %changelog
+* Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 0.4.9-0.20041110.1
+- Update to latest CVS snaphsot.
+- Explicitely disable mmx on non-x86 to fix x86_64 build.
+- Add -fPIC to --extra-cflags on non-x86 to fix x86_64 build, as it seems mmx
+  and pic are mutually exclusive (build fails with both).
+
 * Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 0.4.9-0.20041102.1
 - Update to 20040926 CVS to fix FC3 compilation problems... not!
 - Moved OPTFLAGS to --extra-cflags configure option... no better!
