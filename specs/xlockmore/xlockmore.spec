@@ -3,7 +3,7 @@
 
 Summary: Screen lock and screen saver.
 Name: xlockmore
-Version: 5.14.1
+Version: 5.15
 Release: 1
 License: BSD
 Group: Amusements/Graphics
@@ -21,18 +21,29 @@ BuildRequires: openmotif-devel, openmotif
 %{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 
 %description
-a screen locker and screen saver.
-You will need to do a chmod +s /usr/bin/xlock if you want to use all the
-options.
+A screen locker and screen saver.
 
 %prep
 %setup
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Xlock
+Comment=Screen Saver
+Encoding=UTF-8
+Icon=gnome-lockscreen.png
+Exec=xlock
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Application;Graphics;
+EOF
 
 %build
 %configure \
-	--with-crypt
+	--with-crypt  --enable-pam --enable-syslog \
+        --disable-setuid
 %{__make} %{?_smp_mflags}
 
 %install
@@ -42,6 +53,21 @@ options.
 %{__install} -D -m0644 xlock/xlock.man %{buildroot}%{_mandir}/man1/xlock.1
 %{__install} -D -m0644 xlock/XLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XLock
 %{__install} -D -m0644 xmlock/XmLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XmLock
+
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/pam.d
+%{__cat} > %{buildroot}%{_sysconfdir}/pam.d/xlock << EOF
+#%PAM-1.0
+auth       required     pam_stack.so service=system-auth
+account    required     pam_stack.so service=system-auth
+password   required     pam_stack.so service=system-auth
+session    required     pam_stack.so service=system-auth
+EOF
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor rpmforge             \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{name}.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,8 +80,15 @@ options.
 %{_bindir}/xmlock
 %{_libdir}/X11/app-defaults/XLock
 %{_libdir}/X11/app-defaults/XmLock
+%config(noreplace) %{_sysconfdir}/pam.d/xlock
+%{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Feb 24 2005 Adrian Reber <adrian@lisas.de> - 5.15-1
+- update to 5.15
+- build with pam support
+- added .desktop file
+
 * Sun Dec 12 2004 Dries Verachtert <dries@ulyssis.org> 5.14.1-1
 - Update to release 5.14.1.
 
