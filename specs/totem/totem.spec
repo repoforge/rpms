@@ -102,26 +102,27 @@ watching and resizing live video.
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %{name}
+
 %if %{!?_without_gstreamer:1}0
 # Install the GStreamer version
-%{__install} -m 755 src/%{name}-gstreamer %{buildroot}%{_bindir}/%{name}-gstreamer
+%{__install} -m0755 src/totem-gstreamer %{buildroot}%{_bindir}/totem-gstreamer
 # Rename the xine version
-%{__mv} %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-xine
+%{__mv} %{buildroot}%{_bindir}/totem %{buildroot}%{_bindir}/totem-xine
 # Make the wrapper script
-%{__cat} > %{buildroot}%{_bindir}/%{name} << 'EOF'
+%{__cat} > %{buildroot}%{_bindir}/totem << 'EOF'
 #!/bin/sh
 
-if [ -x %{_bindir}/%{name}-gstreamer -a ! "$1" = "--xine" ]; then
-    %{_bindir}/%{name}-gstreamer "$@"
-elif [ -x %{_bindir}/%{name}-xine ]; then
+if [ -x %{_bindir}/totem-gstreamer -a ! "$1" = "--xine" ]; then
+    %{_bindir}/totem-gstreamer $@
+elif [ -x %{_bindir}/totem-xine ]; then
     [ "$1" = "--xine" ] && shift
-    %{_bindir}/%{name}-xine "$@"
+    %{_bindir}/totem-xine $@
 else
-    echo "No %{name}-xine or %{name}-gstreamer found in %{_bindir}."
+    echo "No totem-xine or totem-gstreamer found in %{_bindir}." >&2
     exit 1
 fi
 EOF
-%{__chmod} 0755 %{buildroot}%{_bindir}/%{name}
+%{__chmod} 0755 %{buildroot}%{_bindir}/totem
 %endif
 
 
@@ -140,27 +141,25 @@ gconftool-2 --makefile-install-rule \
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/%{name}
-%{_bindir}/%{name}-video-thumbnailer
-%if %{!?_without_gstreamer:1}0
-%{_bindir}/%{name}-xine
-%endif
+%{_bindir}/totem
+%{_bindir}/totem-video-thumbnailer
+%{!?_without_gstreamer:%{_bindir}/totem-xine}
 %{_libdir}/bonobo/servers/*.server
-%{_libexecdir}/%{name}-properties-page
-%{_datadir}/application-registry/%{name}.applications
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/gnome/help/%{name}/
-%{_datadir}/mime-info/%{name}.keys
-%{_datadir}/omf/%{name}/
+%{_libexecdir}/totem-properties-page
+%{_datadir}/application-registry/totem.applications
+%{_datadir}/applications/totem.desktop
+%{_datadir}/gnome/help/totem/
+%{_datadir}/mime-info/totem.keys
+%{_datadir}/omf/totem/
 %{_datadir}/pixmaps/media-player-48.png
-%{_datadir}/%{name}/
-%exclude %{_datadir}/%{name}/vanity.*
-%{_mandir}/man1/%{name}.1*
+%{_datadir}/totem/
+%exclude %{_datadir}/totem/vanity.*
+%{_mandir}/man1/totem.1*
 
 %if %{!?_without_gstreamer:1}0
 %files gstreamer
 %defattr(-, root, root, 0755)
-%{_bindir}/%{name}-gstreamer
+%{_bindir}/totem-gstreamer
 %endif
 
 %files -n mozilla-totem
@@ -175,8 +174,8 @@ gconftool-2 --makefile-install-rule \
 %{_bindir}/vanity
 %{_datadir}/applications/vanity.desktop
 %{_datadir}/pixmaps/vanity.png
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/vanity.*
+%dir %{_datadir}/totem/
+%{_datadir}/totem/vanity.*
 
 
 %changelog
