@@ -15,7 +15,7 @@
 
 Summary: Steer a marble ball through a labyrinth
 Name: trackballs
-Version: 1.0.0
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -44,6 +44,7 @@ soundeffects and background music.
 # building as a user. Is group=games required?
 sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 %configure
+%{__perl} -pi -e 's|^mkinstalldirs.*|mkinstalldirs=\$\(MKINSTALLDIRS\)|g;' po/Makefile
 
 %build
 %{__make} %{?_smp_mflags}
@@ -59,9 +60,12 @@ sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 %files
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man6/*
-%{_bindir}/*
-%{_datadir}/trackballs/
+%{_bindir}/trackballs
+%{_datadir}/trackballs
 
 %changelog
+* Sat Mar 05 2005 Dries Verachtert <dries@ulyssis.org> 1.1.0-1
+- Update to release 1.1.0.
+
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 1.0.0-1
 - first packaging for Fedora Core 1
