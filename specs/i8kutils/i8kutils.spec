@@ -6,7 +6,7 @@
 Summary: Dell laptop (Inspiron 8000 and others) SMM BIOS support tools
 Name: i8kutils
 Version: 1.25
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 Source0: http://people.debian.org/~dz/i8k/i8kutils_%{version}.tar.gz
@@ -44,15 +44,15 @@ popd
 %install
 %{__rm} -rf %{buildroot}
 
-mkdir -p %{buildroot}%{_bindir}
-cp -a i8kbuttons i8kctl i8kmon i8kfan %{buildroot}%{_bindir}/
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__cp} -a i8kbuttons i8kctl i8kmon i8kfan %{buildroot}%{_bindir}/
 
-mkdir -p %{buildroot}%{_mandir}/man1
-cp -a *[a-z].1 %{buildroot}%{_mandir}/man1/
+%{__mkdir_p} %{buildroot}%{_mandir}/man1
+%{__cp} -a *[a-z].1 %{buildroot}%{_mandir}/man1/
 
-mkdir -p %{buildroot}%{_libdir}/gkrellm2/plugins/
+%{__mkdir_p} %{buildroot}%{_libdir}/gkrellm2/plugins/
 pushd i8krellm-%{gkrellmpluginver}
-    cp -a i8krellm.so %{buildroot}%{_libdir}/gkrellm2/plugins/
+    %{__cp} -a i8krellm.so %{buildroot}%{_libdir}/gkrellm2/plugins/
 popd
 
 %{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_initrddir}/i8kbuttons

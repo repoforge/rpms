@@ -6,7 +6,7 @@
 Summary: The GNOME disk catalog
 Name: gtktalog
 Version: 1.0.4
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Archiving
 Source: http://savannah.nongnu.org/download/gtktalog/gtktalog/sources/%{name}-%{version}.tar.bz2
@@ -23,25 +23,31 @@ You can give to each folder and file a category and a description. You can
 search for files in your database with filename, category, description or file
 information parameter, and find in which CD the file you are looking for is.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  %{buildroot}%{_datadir}/gnome/apps/Applications/%{name}.desktop
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/gnome/apps/Applications/%{name}.desktop
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -54,11 +60,15 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{_datadir}/pixmaps/%{name}.png
 %{_mandir}/man1/%{name}.1*
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.4-2.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.0.4-3
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.0.4-2
 - Rebuild for Fedora Core 1.
 
-* Tue Nov  4 2003 Matthias Saou <http://freshrpms.net/> 1.0.4-1.fr
+* Tue Nov  4 2003 Matthias Saou <http://freshrpms.net/> 1.0.4-1
 - Update to 1.0.4.
 
 * Sun Aug  3 2003 Matthias Saou <http://freshrpms.net/>

@@ -6,11 +6,10 @@
 Summary: GNOME mixer interface for the Advanced Linux Sound Architecture
 Name: gnome-alsamixer
 Version: 0.9.6
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
-Source0: ftp://ftp.paw.co.za/pub/PAW/sources/%{name}-%{version}.tar.gz
-Source1: %{name}.desktop
+Source: ftp://ftp.paw.co.za/pub/PAW/sources/%{name}-%{version}.tar.gz
 URL: http://www.paw.co.za/projects/gnome-alsamixer/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnomeui >= 2.0.0, alsa-lib >= 0.9.0
@@ -21,27 +20,41 @@ BuildRequires: desktop-file-utils, pkgconfig
 A sound mixer for GNOME which is written for the Advanced Linux Sound
 Architecture (ALSA) version 0.9.x.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__cat} << EOF > %{name}.desktop
+[Desktop Entry]
+Name=ALSA Audio Mixer
+Comment=Adjust volume levels
+Exec=gnome-alsamixer
+Icon=gnome-alsamixer/gnome-alsamixer-icon.png
+Terminal=false
+Type=Application
+EOF
+
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor}  \
   --dir %{buildroot}%{_datadir}/applications     \
-  --add-category X-Red-Hat-Extra                 \
   --add-category Application                     \
   --add-category AudioVideo                      \
-%{SOURCE1}
+%{name}.desktop
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -50,8 +63,13 @@ desktop-file-install --vendor %{desktop_vendor}  \
 %{_datadir}/applications/*%{name}.desktop
 %{_datadir}/pixmaps/%{name}
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-2.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.9.6-3
+- Rebuild for Fedora Core 2.
+- Put the desktop file into the spec.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.6-2
 - Rebuild for Fedora Core 1.
 - Added missing libgnomeui-devel build dependency.
 

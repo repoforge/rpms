@@ -1,10 +1,10 @@
 # $Id$
 # Authority: matthias
 
-Summary: HERMES pixel format conversion library
+Summary: Pixel format conversion library
 Name: Hermes
 Version: 1.3.3
-Release: 2
+Release: 3
 License: LGPL
 Group: System Environment/Libraries
 Source: http://clanlib.org/download/files/%{name}-%{version}.tar.bz2
@@ -40,20 +40,27 @@ needed for development with %{name}.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -68,8 +75,12 @@ needed for development with %{name}.
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.3.3-2.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.3.3-3
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.3.3-2
 - Rebuild for Fedora Core 1.
 
 * Wed Jul  9 2003 Matthias Saou <http://freshrpms.net/>

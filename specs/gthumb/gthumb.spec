@@ -3,12 +3,12 @@
 
 Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb
-Version: 2.2.1
+Version: 2.3.3
 Release: 1
 License: GPL
 URL: http://gthumb.sourceforge.net/
 Group: Applications/Multimedia
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/gtumb/2.1/gthumb-%{version}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/gtumb/2.3/gthumb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: scrollkeeper, libexif, libgnomeui >= 2.0.0, libgnomeprintui22
 BuildRequires: pkgconfig, scrollkeeper, gettext, libexif-devel
@@ -21,12 +21,15 @@ GIF animations). Supported image types are: BMP, JPEG, GIF, PNG, TIFF, ICO,
 XPM. View EXIF data attached to JPEG images. View in fullscreen mode. View
 images rotated, flipped, in black and white.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -37,6 +40,7 @@ strip %{buildroot}%{_libdir}/%{name}/{*.so,modules/*.so}
 find %{buildroot}%{_libdir} -name "*.a" -o -name "*.la" | xargs rm -f
 %find_lang %{name}
 
+
 %post
 /usr/bin/scrollkeeper-update -q || :
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
@@ -46,8 +50,10 @@ gconftool-2 --makefile-install-rule \
 %postun
 /usr/bin/scrollkeeper-update -q || :
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -65,18 +71,22 @@ gconftool-2 --makefile-install-rule \
 %{_datadir}/omf/%{name}
 %{_datadir}/pixmaps/%{name}.png
 
+
 %changelog
-* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 2.2.1-1.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.3.3-1
+- Update to 2.3.3.
+
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 2.2.1-1
 - Update to 2.2.1.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-1.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-1
 - Update to 2.2.0.
 
-* Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 2.1.9-1.fr
+* Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 2.1.9-1
 - Update to 2.1.9.
 - Remove all .a and .la files, as nothing uses them for now anyway.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.8-1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.8-1
 - Update to 2.1.8.
 - Rebuild for Fedora Core 1.
 
