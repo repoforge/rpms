@@ -34,7 +34,7 @@ server.
 %setup
 
 %build
-cat > Makefile <<EOF
+echo '
 prefix=/usr
 CC=gcc
 CFLAGS=-Wall -g
@@ -56,7 +56,8 @@ install: postgresql-relay postgresql-relay.8
 clean:
 	rm -f postgresql-relay *.o postgresql-relay.8
 
-EOF
+' > Makefile
+
 %{__make} %{?_smp_mflags}
 
 %install
