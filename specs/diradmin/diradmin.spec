@@ -6,14 +6,15 @@
 
 Summary: User control management tool for LDAP directories
 Name: diradmin
-Version: 1.5.1
-Release: 3
+Version: 1.6.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://diradmin.open-it.org/
 Source: http://diradmin.open-it.org/directory_administrator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gnome-libs-devel, openldap-devel, desktop-file-utils
+BuildRequires: openssl-devel
 Obsoletes: directory_administrator <= 1.3.5
 
 %description
@@ -26,7 +27,7 @@ for single sign-on maintenance.
 
 
 %prep
-%setup -n directory_administrator-%{version}
+%setup
 
 
 %build
@@ -64,6 +65,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Jan 11 2005 Matthias Saou <http://freshrpms.net/> 1.6.0-1
+- Update to 1.6.0.
+- Added openssl-devel build dep.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.5.1-3
 - Rebuild For Fedora Core 2.
 

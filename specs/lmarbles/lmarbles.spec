@@ -79,7 +79,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/lmarbles/
 %{_datadir}/pixmaps/lmarbles.png
 %{_mandir}/man6/lmarbles.6*
-%config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/lmarbles.prfs
+%config(noreplace) %attr(664, games, games) %{_var}/lib/games/lmarbles.prfs
 
 
 %changelog

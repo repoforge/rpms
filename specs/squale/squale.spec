@@ -5,7 +5,7 @@
 
 Summary: Persistent SQL database connection libarary and daemon
 Name: squale
-Version: 0.1.2
+Version: 0.1.3
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -23,7 +23,7 @@ Requires: glib2 >= 2.2.0
 BuildRequires: glib2-devel >= 2.2.0, libxml2-devel, pkgconfig, gettext, popt
 BuildRequires: perl(XML::Parser), gcc-c++
 %{!?_without_python:BuildRequires: Pyrex, python-devel, python}
-%{?_with_oracle:BuildRequires: libsqlora8-devel >= 2.2.0}
+%{?_with_oracle:BuildRequires: libsqlora8-devel >= 2.3.1}
 %{!?_without_mysql:BuildRequires: mysql-devel}
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
 
@@ -133,6 +133,9 @@ fi
 
 
 %changelog
+* Wed Jan 12 2005 Matthias Saou <http://freshrpms.net/> 0.1.3-1
+- Update to 0.1.3.
+
 * Tue Jan  4 2005 Matthias Saou <http://freshrpms.net/> 0.1.2-1
 - Update to 0.1.2.
 

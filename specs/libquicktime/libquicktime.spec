@@ -14,17 +14,17 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.4
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel
+BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
-%{?!dist:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?fc3:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?fc2:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?!dist:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
+%{?fc3:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
+%{?fc2:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
 %{?fc1:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?el3:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?rh9:BuildRequires: libraw1394-devel, libavc1394-devel}
@@ -32,6 +32,9 @@ BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
 # A bug, the devel libs don't require the main ones :-(
 %{?yd3:BuildRequires: libraw1394, libavc1394}
 %{?yd3:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?yd4:BuildRequires: alsa-lib-devel, libraw1394-devel, libavc1394-devel}
+# Required for the autogen.sh script to work
+BuildRequires: libtool, autoconf, automake
 
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch %{ix86}
@@ -52,7 +55,7 @@ loadable CODECs.
 %package devel
 Summary: Development files from the libquicktime library
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, pkgconfig
 
 %description devel
 libquicktime is a library for reading and writing quicktime files. It
@@ -70,8 +73,9 @@ programs that need to access quicktime files using libquicktime.
     s|(OPTIMIZE_CFLAGS)="-O3|$1="%{optflags}|;
     ' configure.ac
 
+
 %build
-#./autogen.sh
+./autogen.sh
 %configure \
     --enable-static \
     %{?_without_mmx:--disable-mmx}
@@ -80,8 +84,7 @@ programs that need to access quicktime files using libquicktime.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%makeinstall
 
 
 %clean
@@ -123,8 +126,14 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Fri Feb  4 2005 Matthias Saou <http://freshrpms.net/> 0.9.4-2
+- Added alsa-lib-devel and lame-devel build requirement.
+- Fixed missing libtool and autotools build reqs for autogen.sh to work.
+
 * Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 0.9.4-1
 - Updated to release 0.9.4.
+- Added lqtvrplay to the package.
+- Added pkgconfig entry to the devel package.
 
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Updated to release 0.9.3.
