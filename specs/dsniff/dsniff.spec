@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Dug Song <dugsong@monkey.org>
 
 %define _libdir %{_sysconfdir}
@@ -17,12 +15,10 @@ URL: http://www.monkey.org/~dugsong/dsniff/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.monkey.org/~dugsong/dsniff/%{name}-%{version}.tar.gz
-#Patch: %{name}-%{version}.patch
+Source: http://www.monkey.org/~dugsong/dsniff/dsniff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: libnet > 1.0, libnids >= 1.16, openssl-devel >= 0.9.5a
+BuildRequires: libnet > 1.0, libnet < 1.1, libnids >= 1.16, openssl-devel >= 0.9.5a
 
 %description
 dsniff is a collection of tools for network auditing and penetration testing.
@@ -30,11 +26,13 @@ dsniff is a collection of tools for network auditing and penetration testing.
 %prep
 %setup
 
-### FIXME: Make it build for RH9
+### FIXME: Make it build for RH9 and RHEL3
+%{?rhel3:%{__perl} -pi.orig -e 's|^(INCS	=) |$1 -I/usr/kerberos/include |' Makefile.in}
 %{?rh90:%{__perl} -pi.orig -e 's|^(INCS	=) |$1 -I/usr/kerberos/include |' Makefile.in}
 
-%build
 %{__perl} -pi.orig -e 's|/usr/local/lib/|%{_sysconfdir}/|' *.8 pathnames.h
+
+%build
 %configure
 %{__make} %{?_smp_mflags}
 
