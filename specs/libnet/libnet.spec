@@ -2,8 +2,8 @@
 
 # Authority: dag
 
-%define rname libnet
-%define rversion 1.0.2a
+%define real_name libnet
+%define real_version 1.0.2a
 
 Summary: Routines to help with network packet construction and handling
 #Name: libnet10
@@ -17,7 +17,7 @@ URL: http://www.packetfactory.net/projects/libnet/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.packetfactory.net/libnet/dist/%{rname}-%{rversion}.tar.gz
+Source: http://www.packetfactory.net/libnet/dist/%{real_name}-%{real_version}.tar.gz
 Patch: libnet-1.0.2a-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -38,7 +38,7 @@ with little effort. With a bit more time, more complex programs can be written
 (Traceroute and ping were easily rewritten using libnet and libpcap).
 
 %prep
-%setup -n Libnet-%{rversion}
+%setup -n Libnet-%{real_version}
 %patch0 -b .gcc33
 
 %build

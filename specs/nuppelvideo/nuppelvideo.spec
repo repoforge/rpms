@@ -4,8 +4,8 @@
 
 # Upstream: Roman Hochleitner <roman@mars.tuwien.ac.at>
 
-%define rname NuppelVideo
-%define rversion 0.52a
+%define real_name NuppelVideo
+%define real_version 0.52a
 
 Summary: NuppelVideo recording tool
 Name: nuppelvideo
@@ -18,7 +18,7 @@ URL: http://frost.htu.tuwien.ac.at/~roman/nuppelvideo/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://frost.htu.tuwien.ac.at/~roman/%{name}/%{rname}-%{rversion}.tar.gz
+Source: http://frost.htu.tuwien.ac.at/~roman/%{name}/%{real_name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 NuppelVideo recording tool.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} -pi -e 's|/usr/local/bin|%{buildroot}%{_bindir}|' Makefile

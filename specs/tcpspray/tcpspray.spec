@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 1.1a
+%define real_version 1.1a
 
 Summary: Print average throughput for a tcp connection
 Name: tcpspray
@@ -14,7 +14,7 @@ Group: Applications/Internet
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{name}.%{rversion}.tar.gz
+Source: %{name}.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

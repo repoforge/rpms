@@ -3,6 +3,7 @@
 # Authority: dries
 # Upstream: Remko Tronçon <spike@ulyssis.org>
 # Schreenshot: http://spit.sf.net/images/screenshot-kde.jpg
+
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
@@ -54,21 +55,22 @@ export CXX=g++296
 ./configure \
 	--prefix="%{_prefix}"
 %{__make} src/Makefile
+
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-### FIXME: Rewrite Makefile to add Magick++ support
 %{__perl} -pi.orig -e '
-		s|DQT_THREAD_SUPPORT|DQT_THREAD_SUPPORT -DHAVE_IMAGEMAGICK -DHAVE_IMAGEMAGICKPP|;
-		s|lpthread|lpthread -lMagick++|;
 		s|/usr/bin|\$(bindir)|;
 		s|/usr/share|\$(datadir)|;
 	' src/Makefile
+
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_datadir}/spit/
+
 %makeinstall
 
 %{__install} -D -m0644 pixmaps/spit.svg %{buildroot}%{_datadir}/pixmaps/spit.svg

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname perl-ldap
+%define real_name perl-ldap
 
 Summary: set of Perl classes implementing an LDAP client
 Name: perl-Net-LDAP
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Net-LDAP/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/G/GB/GBARR/%{rname}-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/G/GB/GBARR/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -27,7 +27,7 @@ Requires: perl(Exporter), perl(Getopt::Std), perl(MIME::Base64)
 AutoReq: no
 
 Obsoletes: perl-ldap
-Provides: %{rname}
+Provides: %{real_name}
 
 %description
 Net-LDAP is a set of Perl classes implementing an LDAP client. The aim of
@@ -35,7 +35,7 @@ the perl-ldap project is to implement a very portable LDAP client in perl
 by relying on as little compiled code as possible.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dag
 
-%define rname Archive-Zip
+%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Archive-Zip
 
 Summary: Archive-Zip module for perl
 Name: perl-Archive-Zip
@@ -18,7 +20,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cpan.org/authors/id/N/NE/NEDKONZ/Archive-Zip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl(Compress::Zlib) >= 1.08
 Requires: perl >= 0:5.00503, perl(Compress::Zlib) >= 1.08
@@ -30,14 +31,17 @@ read, and write Zip archive files.
 Zip archives can be created, or you can read from existing zip files.
 Once created, they can be written to files, streams, or strings.
 
+
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
+
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -47,18 +51,21 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i;' examples/*.pl
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
+
 
 %clean 
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc README TODO docs/* examples/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/*
+
 
 %changelog
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.09-0

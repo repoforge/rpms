@@ -2,7 +2,7 @@
 
 # Authority: atrpms
 
-%define rname Net-SNMP
+%define real_name Net-SNMP
 
 Summary: Net-SNMP Perl module
 Name: perl-Net-SNMP
@@ -28,7 +28,7 @@ The Net::SNMP module implements an object oriented interface to the
 Simple Network Management Protocol.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

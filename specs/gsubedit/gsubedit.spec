@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.4pre1
+%define real_version 0.4pre1
 
 Summary: Tool for editing and converting DivX ;-) subtitles
 Name: gsubedit
@@ -15,7 +15,7 @@ URL: http://gsubedit.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gsubedit/gsubedit-%{rversion}.tar.gz
+Source: http://dl.sf.net/gsubedit/gsubedit-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -28,7 +28,7 @@ and MicroDVD (.sub) subtitles. Framerate conversion and frame displacement
 (Increase/decrease all frames by a given offset) is also supported.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

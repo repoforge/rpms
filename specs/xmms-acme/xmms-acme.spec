@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define xmmsgeneraldir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir)
 
 Summary: useful plugin for XMMS to use special multimedia keys through acme
 Name: xmms-acme
@@ -31,8 +31,8 @@ mapping and expects those media players to listen for the XF86Audio keysyms.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0755 libxf86audio.so %{buildroot}%{xmmsgeneraldir}/libxf86audio.so
-strip %{buildroot}%{xmmsgeneraldir}/* || :
+%{__install} -D -m 0755 libxf86audio.so %{buildroot}%{xmms_generaldir}/libxf86audio.so
+strip %{buildroot}%{xmms_generaldir}/* || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -40,7 +40,7 @@ strip %{buildroot}%{xmmsgeneraldir}/* || :
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%{xmmsgeneraldir}/libxf86audio.so
+%{xmms_generaldir}/libxf86audio.so
 
 %changelog
 * Tue Feb  3 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-1.fr

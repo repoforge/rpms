@@ -7,13 +7,13 @@
 ### FIXME: TODO: Check extra patches (x86_64)
 ### FIXME: TODO: Fixed off-by-1 border for plugins.
 
-%define rversion 1.6
+%define real_version 1.6
 %define _unpackaged_files_terminate_build 0
 
 Summary: Web browser and mail reader
 Name: mozilla
 Version: 1.6
-Release: 0
+Release: 1
 Epoch: 38
 License: MPL/NPL/GPL/LGPL
 Group: Applications/Internet
@@ -22,7 +22,7 @@ URL: http://www.mozilla.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: ftp://ftp.mozilla.org/pub/mozilla/releases/%{name}%{rversion}/src/%{name}-source-%{rversion}.tar.bz2
+Source0: ftp://ftp.mozilla.org/pub/mozilla/releases/mozilla%{real_version}/src/mozilla-source-%{real_version}.tar.bz2
 Source1: mozilla.sh.in
 Source2: mozilla-icon.png
 Source4: mozilla.desktop
@@ -161,7 +161,7 @@ development or web page development.
 
 %prep
 %setup -n %{name}
-%patch1001
+%patch1001 -b .gtk2xtbin
 
 #%patch0 -p1
 #%patch0 -p1 -R
@@ -203,15 +203,15 @@ development or web page development.
 %{__install} -m0644 %{SOURCE19} profile/defaults/bookmarks.html
 
 %build
-export BUILD_OFFICIAL=1
-export MOZILLA_OFFICIAL=1
+export BUILD_OFFICIAL="1"
+export MOZILLA_OFFICIAL="1"
 export NATIVE_THEME_SUPPORT="1"
 ./configure \
 	--program-prefix="%{?_program_prefix}" \
 	--prefix="%{_prefix}" \
 	--libdir="%{_libdir}" \
 	--mandir="%{_mandir}" \
-	--with-default-mozilla-five-home="%{_libdir}/%{name}-%{rversion}" \
+	--with-default-mozilla-five-home="%{_libdir}/%{name}-%{real_version}" \
 	--enable-optimize="%{optflags}" \
 	--enable-strip-libs \
 	--enable-xinerama \
@@ -228,17 +228,20 @@ export NATIVE_THEME_SUPPORT="1"
 	--with-system-zlib \
 %{?rhfc1:--enable-default-toolkit="gtk2"} \
 %{?rhfc1:--enable-xft} \
+%{?rhfc1:--disable-freetype2} \
 %{?rhel3:--enable-default-toolkit="gtk2"} \
 %{?rhel3:--enable-xft} \
+%{?rhel3:--disable-freetype2} \
 %{?rh90:--enable-default-toolkit="gtk2"} \
 %{?rh90:--enable-xft} \
+%{?rh90:--disable-freetype2} \
 %{?rh80:--enable-default-toolkit="gtk2"} \
 %{?rh80:--enable-xft} \
+%{?rh80:--disable-freetype2} \
 %{?rh73:--disable-xft} \
 %{?rhel21:--disable-xft} \
-%{?rh62:--disable-xft} \
-	--disable-freetype2
-#{?rh73:--without-libIDL} \
+%{?rh62:--disable-xft}
+#%{?rh73:--without-libIDL} \
 
 #unset CFLAGS
 %{__make} %{?_smp_mflags} export
@@ -250,25 +253,25 @@ export BUILD_OFFICIAL="1"
 export MOZILLA_OFFICIAL="1"
 export NATIVE_THEME_SUPPORT="1"
 %makeinstall \
-	includedir="%{buildroot}%{_includedir}/%{name}-%{rversion}"
+	includedir="%{buildroot}%{_includedir}/%{name}-%{real_version}"
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir} \
 			%{buildroot}%{_datadir}/pixmaps/ \
 			%{buildroot}%{_datadir}/applications/ \
 			%{buildroot}%{_libdir}/mozilla/plugins/ \
 			%{buildroot}%{_libdir}/%{name}/ \
-			%{buildroot}%{_libdir}/%{name}-%{rversion}/chrome/lang/ \
-			%{buildroot}%{_libdir}/%{name}-%{rversion}/icons/ \
-			%{buildroot}%{_libdir}/%{name}-%{rversion}/plugins/ \
-			%{buildroot}%{_includedir}/%{name}-%{rversion}/nss/
+			%{buildroot}%{_libdir}/%{name}-%{real_version}/chrome/lang/ \
+			%{buildroot}%{_libdir}/%{name}-%{real_version}/icons/ \
+			%{buildroot}%{_libdir}/%{name}-%{real_version}/plugins/ \
+			%{buildroot}%{_includedir}/%{name}-%{real_version}/nss/
 
 ### NSPR (4) and NSS (3) are both installed into /usr/lib instead of /usr/lib/mozilla-VERSION
 for file in libnspr4.so libplc4.so libplds4.so libnss3.so libsmime3.so libsoftokn3.so libsoftokn3.chk libssl3.so; do
-        %{__mv} -vf %{buildroot}%{_libdir}/%{name}-%{rversion}/$file %{buildroot}%{_libdir}/
+        %{__mv} -vf %{buildroot}%{_libdir}/%{name}-%{real_version}/$file %{buildroot}%{_libdir}/
 done
 
 ### libnssckbi.so must be in both places
-%{__cp} -vf %{buildroot}%{_libdir}/%{name}-%{rversion}/libnssckbi.so %{buildroot}%{_libdir}/
+%{__cp} -vf %{buildroot}%{_libdir}/%{name}-%{real_version}/libnssckbi.so %{buildroot}%{_libdir}/
 
 ### Create empty listfiles
 for file in "" -chat -devel -dom-inspector -js-debugger -mail -nspr -nspr-devel -nss -nss-devel; do
@@ -286,8 +289,8 @@ function buildlibdir {
 
 function buildmozdir {
 	%{SOURCE7} \
-		--install-dir %{buildroot}%{_libdir}/%{name}-%{rversion} \
-		--install-root %{_libdir}/%{name}-%{rversion} \
+		--install-dir %{buildroot}%{_libdir}/%{name}-%{real_version} \
+		--install-root %{_libdir}/%{name}-%{real_version} \
 		--package $1 \
 		--package-file xpinstall/packager/packages-unix \
 		--output-file %{_builddir}/%{buildsubdir}/$2 $3 $4 $5 $6
@@ -298,7 +301,7 @@ buildlibdir nspr mozilla-nspr.list
 buildlibdir nss mozilla-nss.list
 
 ### manually add the libnssckbi.so file (already in packages-unix)
-#echo '%{_libdir}/%{name}-%{rversion}/libnssckbi.so' >> mozilla-nss.list
+#echo '%{_libdir}/%{name}-%{real_version}/libnssckbi.so' >> mozilla-nss.list
 buildmozdir langenus mozilla.list
 buildmozdir regus mozilla.list
 buildmozdir deflenus mozilla.list
@@ -316,103 +319,103 @@ buildmozdir inspector mozilla-dom-inspector.list
 
 ### save a copy of the default installed-chrome.txt file before we
 ### muck with it
-%{__cp} -vf %{buildroot}%{_libdir}/%{name}-%{rversion}/chrome/installed-chrome.txt %{buildroot}%{_libdir}/%{name}-%{rversion}/chrome/lang/
+%{__cp} -vf %{buildroot}%{_libdir}/%{name}-%{real_version}/chrome/installed-chrome.txt %{buildroot}%{_libdir}/%{name}-%{real_version}/chrome/lang/
 
 ### Build our initial component and chrome registry
 ### register our components
-export LD_LIBRARY_PATH="%{buildroot}%{_libdir}/%{name}-%{rversion}:%{buildroot}%{_libdir}"
-export MOZILLA_FIVE_HOME="%{buildroot}%{_libdir}/%{name}-%{rversion}"
-%{buildroot}%{_libdir}/%{name}-%{rversion}/regxpcom
+export LD_LIBRARY_PATH="%{buildroot}%{_libdir}/%{name}-%{real_version}:%{buildroot}%{_libdir}"
+export MOZILLA_FIVE_HOME="%{buildroot}%{_libdir}/%{name}-%{real_version}"
+%{buildroot}%{_libdir}/%{name}-%{real_version}/regxpcom
 
 ### set up the default skin and locale to trigger the generation of
 ### the user-locales and users-skins.rdf
-echo "skin,install,select,classic/1.0" >> %{buildroot}%{_libdir}/%{name}-%{rversion}/chrome/installed-chrome.txt
-echo "locale,install,select,en-US" >> %{buildroot}%{_libdir}/%{name}-%{rversion}/chrome/installed-chrome.txt
+echo "skin,install,select,classic/1.0" >> %{buildroot}%{_libdir}/%{name}-%{real_version}/chrome/installed-chrome.txt
+echo "locale,install,select,en-US" >> %{buildroot}%{_libdir}/%{name}-%{real_version}/chrome/installed-chrome.txt
 
 ### save the defaults in a file that will be used later to rebuild the
 ### installed-chrome.txt file
-echo "skin,install,select,classic/1.0" >> %{buildroot}%{_libdir}/%{name}-%{rversion}/chrome/lang/default.txt
-echo "locale,install,select,en-US" >> %{buildroot}%{_libdir}/%{name}-%{rversion}/chrome/lang/default.txt
+echo "skin,install,select,classic/1.0" >> %{buildroot}%{_libdir}/%{name}-%{real_version}/chrome/lang/default.txt
+echo "locale,install,select,en-US" >> %{buildroot}%{_libdir}/%{name}-%{real_version}/chrome/lang/default.txt
 
 ### set up the chrome rdf files
-%{buildroot}%{_libdir}/%{name}-%{rversion}/regchrome
+%{buildroot}%{_libdir}/%{name}-%{real_version}/regchrome
 
 ### fix permissions of the chrome directories
-find %{buildroot}%{_libdir}/%{name}-%{rversion} -type d -perm 0700 -exec chmod 755 {} \; || :
+find %{buildroot}%{_libdir}/%{name}-%{real_version} -type d -perm 0700 -exec chmod 755 {} \; || :
 
 ### cp -L (dereference all symlinks) is required for fileutils >= 2.0.27
 ### (POSIX compliance); prior versions don't understand -L, so fall back...
 
 ### copy the nss files to the right place
 find security/nss/lib/ -name '*.h' -type f \
-	-exec %{__cp} {} %{buildroot}%{_includedir}/%{name}-%{rversion}/nss/ \;
+	-exec %{__cp} {} %{buildroot}%{_includedir}/%{name}-%{real_version}/nss/ \;
 
-find %{buildroot}%{_includedir}/%{name}-%{rversion}/ -type f | \
+find %{buildroot}%{_includedir}/%{name}-%{real_version}/ -type f | \
 		sed -e "s|%{buildroot}||" | \
-		grep -v "%{_includedir}/%{name}-%{rversion}/nss" | \
-		grep -v "%{_includedir}/%{name}-%{rversion}/nspr" \
+		grep -v "%{_includedir}/%{name}-%{real_version}/nss" | \
+		grep -v "%{_includedir}/%{name}-%{real_version}/nspr" \
 	>mozilla-devel.list
 
-find %{buildroot}%{_includedir}/%{name}-%{rversion}/ -type f | \
+find %{buildroot}%{_includedir}/%{name}-%{real_version}/ -type f | \
 		sed -e "s|%{buildroot}||" | \
-		grep "%{_includedir}/%{name}-%{rversion}/nspr" \
+		grep "%{_includedir}/%{name}-%{real_version}/nspr" \
 	>mozilla-nspr-devel.list
 
-find %{buildroot}%{_includedir}/%{name}-%{rversion}/ -type f | \
+find %{buildroot}%{_includedir}/%{name}-%{real_version}/ -type f | \
 		sed -e "s|%{buildroot}||" | \
-		grep "%{_includedir}/%{name}-%{rversion}/nss" \
+		grep "%{_includedir}/%{name}-%{real_version}/nss" \
 	>mozilla-nss-devel.list
 
 ### copy our idl into place
-#mkdir -p %{buildroot}/%{prefix}/share/idl/mozilla-%{rversion}
+#mkdir -p %{buildroot}/%{prefix}/share/idl/mozilla-%{real_version}
 #(cd dist/idl ; tar chf - * | \
-#  (cd %{buildroot}/%{prefix}/share/idl/mozilla-%{rversion} ; \
+#  (cd %{buildroot}/%{prefix}/share/idl/mozilla-%{real_version} ; \
 #   tar xvf -))
 
 ### copy our devel tools
 %{__install} -m0755 dist/bin/xpcshell dist/bin/xpidl dist/bin/xpt_dump dist/bin/xpt_link \
-  %{buildroot}%{_libdir}/%{name}-%{rversion}/
+  %{buildroot}%{_libdir}/%{name}-%{real_version}/
 
 ### set up our desktop files
 %{__install} -m0644 %{SOURCE2} %{SOURCE13} %{SOURCE15} %{buildroot}%{_datadir}/pixmaps/
 %{__install} -m0644 %{SOURCE4} %{SOURCE12} %{SOURCE14} %{buildroot}%{_datadir}/applications/
 
 ### our icons are better!
-%{__install} -m0644 %{SOURCE9} %{SOURCE10} %{buildroot}%{_libdir}/%{name}-%{rversion}/icons/
+%{__install} -m0644 %{SOURCE9} %{SOURCE10} %{buildroot}%{_libdir}/%{name}-%{real_version}/icons/
 
 ### install our mozilla.sh file
-%{__cat} %{SOURCE1} | sed -e 's|MOZILLA_VERSION|%{rversion}|g' \
+%{__cat} %{SOURCE1} | sed -e 's|MOZILLA_VERSION|%{real_version}|g' \
 			-e 's|LIBDIR|%{_libdir}|g' \
 	> %{buildroot}%{_bindir}/mozilla
 chmod 755 %{buildroot}%{_bindir}/mozilla
 
 ### install our rebuild file
-%{__cat} %{SOURCE11} | sed -e 's|MOZILLA_VERSION|%{rversion}|g' \
+%{__cat} %{SOURCE11} | sed -e 's|MOZILLA_VERSION|%{real_version}|g' \
 			-e 's|LIBDIR|%{_libdir}|g' \
-	> %{buildroot}%{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
-chmod 755 %{buildroot}%{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+	> %{buildroot}%{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
+chmod 755 %{buildroot}%{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 
 ### install the gre.conf file
-echo -e "[%{rversion}]\nGRE_PATH=%{_libdir}/%{name}-%{rversion}" >%{buildroot}%{_sysconfdir}/gre.conf
+echo -e "[%{real_version}]\nGRE_PATH=%{_libdir}/%{name}-%{real_version}" >%{buildroot}%{_sysconfdir}/gre.conf
 
 ### Fix plugins
-#{__mv} -f %{buildroot}%{_libdir}/%{name}-%{rversion}/plugins/ %{_libdir}/%{name}/
-#{__ln_s} -f %{_libdir}/%{name}/plugins/ %{buildroot}%{_libdir}/%{name}-%{rversion}/plugins/
+#{__mv} -f %{buildroot}%{_libdir}/%{name}-%{real_version}/plugins/ %{_libdir}/%{name}/
+#{__ln_s} -f %{_libdir}/%{name}/plugins/ %{buildroot}%{_libdir}/%{name}-%{real_version}/plugins/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %postun
 /sbin/ldconfig &>/dev/null
 if [ $1 -eq 2 ]; then
-  if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-      %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+  if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+      %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
   fi
 fi
 
@@ -420,14 +423,14 @@ fi
 # Older packages will leave mozilla unusable after the postun script
 # script is run for the old package.  Rebuild the databases after that
 # has been run.
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %preun
 if [ $1 -eq 0 ]; then
-  %{__rm} -rf %{_libdir}/%{name}-%{rversion}/chrome/overlayinfo
-  %{__rm} -f %{_libdir}/%{name}-%{rversion}/chrome/*.rdf
+  %{__rm} -rf %{_libdir}/%{name}-%{real_version}/chrome/overlayinfo
+  %{__rm} -f %{_libdir}/%{name}-%{real_version}/chrome/*.rdf
 fi
 
 %post nspr
@@ -444,50 +447,50 @@ fi
 
 %post mail
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %postun mail
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %post chat
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %postun chat
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %post js-debugger
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %postun js-debugger
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %post dom-inspector
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %postun dom-inspector
 /sbin/ldconfig &>/dev/null
-if [ -f %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl ]; then
-    %{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+if [ -f %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl ]; then
+    %{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 fi
 
 %files -f mozilla.list
@@ -495,56 +498,56 @@ fi
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/gre.conf
 %{_bindir}/mozilla
-%{_libdir}/%{name}-%{rversion}/mozilla-rebuild-databases.pl
+%{_libdir}/%{name}-%{real_version}/mozilla-rebuild-databases.pl
 %{_datadir}/pixmaps/mozilla-icon.png
 %{_datadir}/pixmaps/mozilla-mail-icon.png
 %{_datadir}/pixmaps/mozilla-compose-icon.png
 
-%{_libdir}/%{name}-%{rversion}/libgtkembedmoz.so
+%{_libdir}/%{name}-%{real_version}/libgtkembedmoz.so
 
-%verify (not md5 mtime size) %{_libdir}/%{name}-%{rversion}/components/compreg.dat
-%verify (not md5 mtime size) %{_libdir}/%{name}-%{rversion}/components/xpti.dat
+%verify (not md5 mtime size) %{_libdir}/%{name}-%{real_version}/components/compreg.dat
+%verify (not md5 mtime size) %{_libdir}/%{name}-%{real_version}/components/xpti.dat
 
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins/
 
-%dir %{_libdir}/%{name}-%{rversion}/defaults/pref/
-%dir %{_libdir}/%{name}-%{rversion}/defaults/profile/US/
-%dir %{_libdir}/%{name}-%{rversion}/defaults/profile/
-%dir %{_libdir}/%{name}-%{rversion}/defaults/wallet/
-%dir %{_libdir}/%{name}-%{rversion}/defaults/autoconfig/
-%dir %{_libdir}/%{name}-%{rversion}/defaults/messenger/US/
-%dir %{_libdir}/%{name}-%{rversion}/defaults/messenger/
-%dir %{_libdir}/%{name}-%{rversion}/defaults/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/pref/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/profile/US/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/profile/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/wallet/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/autoconfig/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/messenger/US/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/messenger/
+%dir %{_libdir}/%{name}-%{real_version}/defaults/
 
-%dir %{_libdir}/%{name}-%{rversion}/chrome/icons/default/
-%dir %{_libdir}/%{name}-%{rversion}/chrome/icons/
-%dir %{_libdir}/%{name}-%{rversion}/chrome/lang/
-%dir %{_libdir}/%{name}-%{rversion}/chrome/overlayinfo/
-%dir %{_libdir}/%{name}-%{rversion}/chrome/
+%dir %{_libdir}/%{name}-%{real_version}/chrome/icons/default/
+%dir %{_libdir}/%{name}-%{real_version}/chrome/icons/
+%dir %{_libdir}/%{name}-%{real_version}/chrome/lang/
+%dir %{_libdir}/%{name}-%{real_version}/chrome/overlayinfo/
+%dir %{_libdir}/%{name}-%{real_version}/chrome/
 
-%dir %{_libdir}/%{name}-%{rversion}/res/builtin/
-%dir %{_libdir}/%{name}-%{rversion}/res/rdf/
-%dir %{_libdir}/%{name}-%{rversion}/res/dtd/
-%dir %{_libdir}/%{name}-%{rversion}/res/fonts/
-%dir %{_libdir}/%{name}-%{rversion}/res/
+%dir %{_libdir}/%{name}-%{real_version}/res/builtin/
+%dir %{_libdir}/%{name}-%{real_version}/res/rdf/
+%dir %{_libdir}/%{name}-%{real_version}/res/dtd/
+%dir %{_libdir}/%{name}-%{real_version}/res/fonts/
+%dir %{_libdir}/%{name}-%{real_version}/res/
 
-%dir %{_libdir}/%{name}-%{rversion}/components/
-%dir %{_libdir}/%{name}-%{rversion}/components/myspell/
-%dir %{_libdir}/%{name}-%{rversion}/icons/
-%dir %{_libdir}/%{name}-%{rversion}/searchplugins/
+%dir %{_libdir}/%{name}-%{real_version}/components/
+%dir %{_libdir}/%{name}-%{real_version}/components/myspell/
+%dir %{_libdir}/%{name}-%{real_version}/icons/
+%dir %{_libdir}/%{name}-%{real_version}/searchplugins/
 
-%dir %{_libdir}/%{name}-%{rversion}/plugins/
-%dir %{_libdir}/%{name}-%{rversion}/res/html/
-%dir %{_libdir}/%{name}-%{rversion}/res/samples/
-%dir %{_libdir}/%{name}-%{rversion}/res/entityTables/
-%dir %{_libdir}/%{name}-%{rversion}/ipc/modules/
-%dir %{_libdir}/%{name}-%{rversion}/ipc/
+%dir %{_libdir}/%{name}-%{real_version}/plugins/
+%dir %{_libdir}/%{name}-%{real_version}/res/html/
+%dir %{_libdir}/%{name}-%{real_version}/res/samples/
+%dir %{_libdir}/%{name}-%{real_version}/res/entityTables/
+%dir %{_libdir}/%{name}-%{real_version}/ipc/modules/
+%dir %{_libdir}/%{name}-%{real_version}/ipc/
 
-%{_libdir}/%{name}-%{rversion}/chrome/lang/installed-chrome.txt
-%{_libdir}/%{name}-%{rversion}/chrome/lang/default.txt
+%{_libdir}/%{name}-%{real_version}/chrome/lang/installed-chrome.txt
+%{_libdir}/%{name}-%{real_version}/chrome/lang/default.txt
 
-%dir %{_libdir}/%{name}-%{rversion}/
+%dir %{_libdir}/%{name}-%{real_version}/
 %{_datadir}/applications/mozilla.desktop
 
 %files nspr -f mozilla-nspr.list
@@ -566,11 +569,11 @@ fi
 
 %files mail -f mozilla-mail.list
 %defattr(-, root, root, 0755)
-%dir %{_libdir}/%{name}-%{rversion}/chrome/icons/default
-%dir %{_libdir}/%{name}-%{rversion}/chrome/icons
-%dir %{_libdir}/%{name}-%{rversion}/chrome
-%dir %{_libdir}/%{name}-%{rversion}/components
-%dir %{_libdir}/%{name}-%{rversion}
+%dir %{_libdir}/%{name}-%{real_version}/chrome/icons/default
+%dir %{_libdir}/%{name}-%{real_version}/chrome/icons
+%dir %{_libdir}/%{name}-%{real_version}/chrome
+%dir %{_libdir}/%{name}-%{real_version}/components
+%dir %{_libdir}/%{name}-%{real_version}
 %{_datadir}/applications/mozilla-compose.desktop
 %{_datadir}/applications/mozilla-mail.desktop
 
@@ -585,21 +588,20 @@ fi
 
 %files devel -f mozilla-devel.list
 %defattr(-, root, root, 0755)
-%{_datadir}/idl/%{name}-%{rversion}/*
+%{_datadir}/idl/%{name}-%{real_version}/*
 %{_libdir}/pkgconfig/mozilla-js.pc
 %{_libdir}/pkgconfig/mozilla-plugin.pc
 %{_libdir}/pkgconfig/mozilla-xpcom.pc
 %{_libdir}/pkgconfig/mozilla-gtkmozembed.pc
-%{_libdir}/%{name}-%{rversion}/xpcshell
-%{_libdir}/%{name}-%{rversion}/xpidl
-%{_libdir}/%{name}-%{rversion}/xpt_dump
-%{_libdir}/%{name}-%{rversion}/xpt_link
+%{_libdir}/%{name}-%{real_version}/xpcshell
+%{_libdir}/%{name}-%{real_version}/xpidl
+%{_libdir}/%{name}-%{real_version}/xpt_dump
+%{_libdir}/%{name}-%{real_version}/xpt_link
 
 %changelog
-* Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.6-1
+* Sat Apr 03 2004 Dag Wieers <dag@wieers.com> - 1.6-1
 - Fixed off-by-1 border for plugins. (Daniele Paoni)
 - Open new window by default, added --profile-manager. (Gary Peck)
-- RH73 build using gcc 3.2.3. (Edward Rudd)
 - Added x86_64 patch. (Oliver Sontag)
 
 * Sat Jan 24 2004 Dag Wieers <dag@wieers.com> - 1.6-0

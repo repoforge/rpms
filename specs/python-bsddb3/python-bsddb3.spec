@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname bsddb3
+%define real_name bsddb3
 
 Summary: Python interface for BerkeleyDB 3.1 and 3.2
 Name: python-bsddb3
@@ -38,7 +38,7 @@ shelve-like functionality is provided allowing you to store any picklable
 Python object! 
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %{__perl} -pi.orig -e '
 		s|^(\s*incdir = ).*$|\1 "%{_includedir}/db4"|;
 		s|^(\s*libdir = ).*$|\1 "%{_libdir}"|;

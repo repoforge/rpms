@@ -4,7 +4,7 @@
 # Distcc: 0
 
 %define plugindir %(xmms-config --output-plugin-dir)
-%define rname DBMix
+%define real_name DBMix
 
 Summary: Digital Audio Mixing System
 Name: dbmix
@@ -31,7 +31,7 @@ to output multiple simultaneous audio streams on a single sound device, and
 to transform/modify each stream independently.
 
 %prep 
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Fix the errno problem on RH9
 %{__perl} -pi.orig -e 's|^(\s*extern int errno;\s*)$|#include <errno.h>\n\n\1|' dbaudiolib/dbaudiolib.c dbaudiolib/DBAudio_Volume.c dbaudiolib/DBAudio_Mute.c

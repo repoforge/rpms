@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname pychm
+%define real_name pychm
 
 Summary: Python package to handle CHM files
 Name: python-chm
@@ -29,7 +29,7 @@ and some additional classes and functions. They are used to access
 MS-ITSS encoded files - Compressed Html Help files (.chm).
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" python setup.py build

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: newrpms
-%define rversion 25c
+%define real_version 25c
 
 Summary: Real-time Game Server Status for Quake servers
 Name: qstat
@@ -14,7 +14,7 @@ URL: http://www.qstat.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.qstat.org/%{name}%{rversion}.tar.gz
+Source: http://www.qstat.org/%{name}%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -24,7 +24,7 @@ from Internet game servers. Most supported games are of the first
 person shooter variety (Quake, Half-Life, etc)
 
 %prep
-%setup -n %{name}%{rversion}
+%setup -n %{name}%{real_version}
 
 %build
 %{__make} %{?_smp_mflags}

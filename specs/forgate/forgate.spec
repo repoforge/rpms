@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.9b
+%define real_version 0.9b
 
 Summary: Packet redirection tool for interception on switched networks 
 Name: forgate
@@ -15,7 +15,7 @@ URL: http://forgate.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://forgate.sf.net/forgate-%{rversion}.tgz
+Source: http://forgate.sf.net/forgate-%{real_version}.tgz
 BuildRoot: %{buildroot}/root-%{name}-%{version}
 
 
@@ -29,7 +29,7 @@ poisoning, packet capture and packet reconstruction to perform it's task. It
 should work with nearly all TCP, ICMP and UDP IPv4 traffic. 
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 #CC='gcc -I/usr/include/pcap' ./configure --prefix=/usr

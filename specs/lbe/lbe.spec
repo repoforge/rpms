@@ -4,8 +4,8 @@
 
 # Upstream: Jarek Gawor <gawojar@iit.edu>
 
-%define rname Browser
-%define rversion 281
+%define real_name Browser
+%define real_version 281
 
 Summary: Excellent LDAP browser and editor
 Name: lbe
@@ -18,7 +18,7 @@ URL: http://www-unix.mcs.anl.gov/~gawor/ldap/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www-unix.mcs.anl.gov/~gawor/ldapcommon/bin/%{rname}%{rversion}.tar.gz
+Source: http://www-unix.mcs.anl.gov/~gawor/ldapcommon/bin/%{real_name}%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

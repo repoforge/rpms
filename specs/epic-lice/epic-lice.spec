@@ -4,8 +4,8 @@
 
 # Upstream: 
 
-%define rname lice
-%define rversion 420pre7
+%define real_name lice
+%define real_version 420pre7
 
 Summary: LiCe IRC scripts for epic
 Name: epic-lice
@@ -18,7 +18,7 @@ URL: http://lice.codehack.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://lice.codehack.com/files/lice/scripts/%{rname}%{rversion}.tar.gz
+Source: http://lice.codehack.com/files/lice/scripts/%{real_name}%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

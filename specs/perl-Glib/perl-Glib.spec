@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <gtk-perl-list@gnome.org>
 
-%define rname Glib
+%define real_name Glib
 
 Summary: Perl wrappers for the GLib utility and Object libraries
 Name: perl-Glib
@@ -31,7 +31,7 @@ the foundation for many of the libraries that make up the Gnome environment,
 and are used in many unrelated projects.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname gtkhtml
+%define real_name gtkhtml
 
 Summary: The Gtk+ HTML viewing widget version 3
 Name: gtkhtml3
@@ -15,7 +15,7 @@ URL: http://www.gnome.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.acc.umu.se/pub/GNOME/sources/gtkhtml/3.0/%{rname}-%{version}.tar.bz2
+Source: http://ftp.acc.umu.se/pub/GNOME/sources/gtkhtml/3.0/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -39,7 +39,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \
@@ -49,7 +49,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}-3.1
+%find_lang %{real_name}-3.1
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la \
@@ -64,7 +64,7 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}-3.1.lang
+%files -f %{real_name}-3.1.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{_libdir}/bonobo/servers/GNOME_GtkHTML_Editor.server

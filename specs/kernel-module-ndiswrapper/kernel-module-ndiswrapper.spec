@@ -15,8 +15,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname ndiswrapper
-%define rrelease 2
+%define real_name ndiswrapper
+%define real_release 2
 
 %define moduledir /kernel/drivers/net/ndiswrapper
 %define modules ndiswrapper.o
@@ -24,7 +24,7 @@
 Summary: Linux NDIS wrapper drivers
 Name: kernel-module-ndiswrapper
 Version: 0.6
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ndiswrapper.sf.net/
@@ -49,7 +49,7 @@ They might work with newer/older kernels.
 
 %package -n ndiswrapper-utils
 Summary: NDIS wrapper utilities
-Release: %{rrelease}
+Release: %{real_release}
 License: GPL
 Group: System Environment/Base
 
@@ -60,7 +60,7 @@ Provides: ndiswrapper
 NDIS wrapper utilities.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__rm} -rf %{buildroot}

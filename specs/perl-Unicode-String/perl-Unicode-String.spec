@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Unicode-String
+%define real_name Unicode-String
 
 Summary: Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl
 Name: perl-Unicode-String
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Unicode-String/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.8.0
 Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

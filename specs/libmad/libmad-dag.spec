@@ -1,5 +1,5 @@
 # Authority: freshrpms
-%define rversion 0.15.1b
+%define real_version 0.15.1b
 
 Summary: MPEG audio decoder library
 Name: libmad
@@ -12,7 +12,7 @@ URL: http://www.underbit.com/products/mad/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.mars.org/pub/mpeg/%{name}-%{rversion}.tar.gz
+Source: ftp://ftp.mars.org/pub/mpeg/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -38,7 +38,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %{__cat} <<EOF >mad.pc
 prefix=%{_prefix}
@@ -49,7 +49,7 @@ includedir=%{_includedir}
 Name: mad
 Description: MPEG Audio Decoder
 Requires:
-Version: %{rversion}
+Version: %{real_version}
 Libs: -L%{_libdir} -lmad -lm
 Cflags: -I%{_includedir}
 EOF

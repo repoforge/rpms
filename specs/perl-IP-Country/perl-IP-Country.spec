@@ -5,7 +5,7 @@
 # Upstream: Nigel Wetters <nigel@wetters.net>
 # Distcc: 0
 
-%define rname IP-Country
+%define real_name IP-Country
 
 Summary: Classes for fast lookup of country codes from IP addresses for Perl
 Name: perl-IP-Country
@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/IP-Country/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -38,7 +38,7 @@ probably good enough for most log analysis applications, and under test has prov
 to be as accurate as reverse-DNS and WHOIS lookup.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

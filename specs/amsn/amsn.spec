@@ -7,7 +7,7 @@
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %define tls_maj 1.4
 %define tls_min 1
-%define rversion 0_90
+%define real_version 0_90
 
 Summary: Full featured MSN Messenger clone
 Name: amsn
@@ -20,7 +20,7 @@ URL: http://amsn.sf.net/
 Packager: Dries Verachtert <skotty@ulyssis.org>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/amsn/amsn-%{rversion}.tar.gz
+Source: http://dl.sf.net/amsn/amsn-%{real_version}.tar.gz
 ### FIXME: tls-plugin doesn't build because of missing tclPort.h in tcl-devel
 #Source1: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-src.tar.bz2
 Source2: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-linux-x86.tar.gz

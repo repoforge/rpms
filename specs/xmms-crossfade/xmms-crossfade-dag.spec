@@ -1,9 +1,10 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 # Upstream: Peter Eisenlohr <p.eisenlohr@gmx.net>
 
-%define plugindir %(xmms-config --output-plugin-dir)
+%define xmms_outputdir %(xmms-config --output-plugin-dir)
 
-Summary: neat crossfade output plugin for XMMS
+Summary: Crossfade output plugin for XMMS
 Name: xmms-crossfade
 Version: 0.3.4
 Release: 0
@@ -14,40 +15,44 @@ URL: http://www.mynetcologne.de/~nc-eisenlpe2/xmms-crossfade/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.mynetcologne.de/~nc-eisenlpe2/xmms-crossfade/%{name}-%{version}.tar.gz
+Source: http://www.mynetcologne.de/~nc-eisenlpe2/xmms-crossfade/xmms-crossfade-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: xmms-devel
+
 
 %description
 A neat crossfade plugin for XMMS featuring crossfading and continuous output
 between songs and a gap-killer.
 
+
 %prep
 %setup
 
+
 %build
 %configure \
-	--libdir="%{plugindir}"
+	--libdir="%{xmms_outputdir}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	libdir="%{buildroot}%{plugindir}"
+	libdir="%{buildroot}%{xmms_outputdir}"
+%{__strip} %{buildroot}/%{xmms_outputdir}/*.so
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{plugindir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog README TODO
-%{plugindir}/*.so
-#exclude %{plugindir}/*.la
+%doc AUTHORS ChangeLog COPYING README TODO
+%{xmms_outputdir}/*.so
+%exclude %{xmms_outputdir}/*.la
+
 
 %changelog
 * Thu Oct 09 2003 Dag Wieers <dag@wieers.com> - 0.3.4-0

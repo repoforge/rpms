@@ -1,5 +1,5 @@
 # Authority: freshrpms
-%define rversion cvs-2003-07-01
+%define real_version cvs-2003-07-01
 
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder
 Name: ffmpeg
@@ -12,7 +12,7 @@ URL: http://ffmpeg.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/ffmpeg/%{name}-%{rversion}.tar.gz
+Source: http://prdownloads.sourceforge.net/ffmpeg/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -44,7 +44,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \

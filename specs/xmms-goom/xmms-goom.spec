@@ -1,9 +1,8 @@
 # $Id$
-
 # Authority: dag
 
-%define plugindir %(xmms-config --visualization-plugin-dir)
-%define rname goom
+%define xmms_visualdir %(xmms-config --visualization-plugin-dir)
+%define real_name goom
 
 Summary: Neat visual plugin for XMMS
 Name: xmms-goom
@@ -22,32 +21,39 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xmms-devel, SDL-devel, gtk+-devel
 
+
 %description
 A great visual plugins for XMMS.
 
+
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %patch0
+
 
 %build
 ./configure \
 	--enable-shared \
-	--libdir="%{plugindir}"
+	--libdir="%{xmms_visualdir}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	libdir="%{buildroot}%{plugindir}"
+	libdir="%{buildroot}%{xmms_visualdir}"
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog COPYING KNOWNBUGS NEWS README
-%{plugindir}/*.so
-%exclude %{plugindir}/*.la
+%{xmms_visualdir}/*.so
+%exclude %{xmms_visualdir}/*.la
+
 
 %changelog
 * Thu Feb 20 2003 Dag Wieers <dag@wieers.com> - 1.99.4-0

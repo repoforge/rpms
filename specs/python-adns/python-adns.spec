@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname adns-python
+%define real_name adns-python
 
 Summary: Python bindings for GNU adns library
 Name: python-adns
@@ -15,7 +15,7 @@ URL: http://dustman.net/andy/python/adns-python/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dustman.net/andy/python/adns-python/%{version}/%{rname}-%{version}.tar.gz
+Source: http://dustman.net/andy/python/adns-python/%{version}/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -27,7 +27,7 @@ python-adns is a Python module that interfaces to the adns asynchronous
 resolver library.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" python setup.py build

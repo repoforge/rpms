@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname JabberOO
+%define real_name JabberOO
 
 Summary: Library implementing the Jabber instant messaging system
 Name: jabberoo

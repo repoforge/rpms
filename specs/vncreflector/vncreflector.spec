@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname vnc_reflector
+%define real_name vnc_reflector
 
 Summary: VNC server which acts as a proxy for a number of VNC clients
 Name: vncreflector
@@ -27,7 +27,7 @@ between real VNC server (a host) and a number of VNC clients. It was
 designed to work efficiently with large number of clients.
 
 %prep
-%setup -n %{rname}
+%setup -n %{real_name}
 
 %build
 %{__make} %{?_smp_mflags}

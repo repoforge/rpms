@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname IPC-Shareable
+%define real_name IPC-Shareable
 
 Summary: Share Perl variables between processes
 Name: perl-IPC-Shareable
@@ -28,7 +28,7 @@ Requires: perl >= 0:5.00503
 Share Perl variables between processes.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

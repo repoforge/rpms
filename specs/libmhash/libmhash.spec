@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname mhash
+%define real_name mhash
 
 Summary: Thread-safe hash library
 Name: libmhash
@@ -15,12 +15,12 @@ URL: http://mhash.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://mhash.sf.net/dl/%{rname}-%{version}.tar.gz
+Source: http://mhash.sf.net/dl/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-Provides: %{rname}
-Obsoletes: %{rname}
+Provides: %{real_name}
+Obsoletes: %{real_name}
 
 %description
 mhash is a thread-safe hash library, implemented in C, and provides a
@@ -35,8 +35,8 @@ Summary: Header files and libraries for developing apps which will use mhash
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
-Provides: %{rname}-devel
-Obsoletes: %{rname}-devel
+Provides: %{real_name}-devel
+Obsoletes: %{real_name}-devel
 
 %description devel
 The mhash-devel package contains the header files and libraries needed
@@ -46,7 +46,7 @@ Install the mhash-devel package if you want to develop applications that
 will use the mhash library.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \

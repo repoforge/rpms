@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Device-SerialPort
+%define real_name Device-SerialPort
 
 Summary: Device-SerialPort - Linux/POSIX emulation of Win32::SerialPort functions
 Name: perl-Device-SerialPort
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://search.cpan.org/CPAN/authors/id/C/CO/COOK/Device-SerialPort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 Obsoletes: perl-Device-SerialPort
 BuildRequires: perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
@@ -28,7 +27,7 @@ This module provides an object-based user interface essentially
 identical to the one provided by the Win32::SerialPort module.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

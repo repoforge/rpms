@@ -15,17 +15,17 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname freeswan
-%define rversion 2.05
-%define rrelease 1
+%define real_name freeswan
+%define real_version 2.05
+%define real_release 1
 
 %define moduledir /kernel/net/freeswan
 %define modules linux/net/ipsec/ipsec.o
 
 Summary: Linux drivers for FreeS/WAN IPsec support
 Name: kernel-module-freeswan
-Version: %{rversion}
-Release: %{rrelease}_%{kversion}_%{krelease}
+Version: %{real_version}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.freeswan.org/
@@ -33,8 +33,8 @@ URL: http://www.freeswan.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: ftp://ftp.xs4all.nl/pub/crypto/freeswan/freeswan-%{rversion}.tar.gz
-Source1: http://www.strongsec.com/freeswan/x509-1.5.2-freeswan-%{rversion}.tar.gz
+Source0: ftp://ftp.xs4all.nl/pub/crypto/freeswan/freeswan-%{real_version}.tar.gz
+Source1: http://www.strongsec.com/freeswan/x509-1.5.2-freeswan-%{real_version}.tar.gz
 Patch0: freeswan-2.05-mts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -57,7 +57,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-freeswan
 Summary: Linux SMP drivers for FreeS/WAN IPsec support
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
@@ -76,7 +76,7 @@ They might work with newer/older kernels.
 
 %package -n freeswan-utils
 Summary: FreeS/WAN programs and libraries
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
 Provides: freeswan = %{version}-%{release}, freeswan-programs = %{version}-%{release}
@@ -88,7 +88,7 @@ Obsoletes: freeswan-userland <= %{version}, freeswan-doc <= %{version}
 FreeS/WAN programs and libraries.
 
 %prep
-%setup -n %{rname}-%{rversion} -a 1
+%setup -n %{real_name}-%{real_version} -a 1
 %patch0
 %{__cat} x509-*/freeswan.diff | patch -p1
 
@@ -200,7 +200,7 @@ EOF
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

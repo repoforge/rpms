@@ -20,13 +20,13 @@
 %define modules drivers/slamr.o drivers/slusb.o
 #define modules slamrmo.o slfax.o slmdm.o slusb.o
 
-%define rname slmodem
-%define rrelease 0
+%define real_name slmodem
+%define real_release 0
 
 Summary: Linux Smartlink Linmodem drivers
 Name: kernel-module-slmodem
 Version: 2.9.6
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: Proprietary
 Group: System Environment/Kernel
 URL: http://linmodems.technion.ac.il/packages/smartlink/
@@ -57,11 +57,11 @@ These drivers are built for kernel %{kversion}-%{krelease}.
 They might work with newer/older kernels.
 
 #%package -n kernel-smp-module-slmodem
-#Release: %{rrelease}_%{kversion}_%{krelease}
+#Release: %{real_release}_%{kversion}_%{krelease}
 #Summary: Linux Smartlink Linmodem drivers.
 #Group: System Environment/Kernel
 #
-#Requires: kernel = %{kversion}-%{krelease}, %{rname}
+#Requires: kernel = %{kversion}-%{krelease}, %{real_name}
 #Obsoletes: kernel-smp-module-slmdm
 #Provides: kernel-modules
 #
@@ -78,17 +78,17 @@ They might work with newer/older kernels.
 
 %package -n slmodem-utils
 Summary: Linux Smartlink Linmodem utilities
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
-Obsoletes: %{rname}, slmdm, slmdm-utils
-Provides: %{rname}, slmdm, slmdm-utils
+Obsoletes: %{real_name}, slmdm, slmdm-utils
+Provides: %{real_name}, slmdm, slmdm-utils
 
 %description -n slmodem-utils
 Linux Smartlink Linmodem utilities.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Patch amrmo_init.c to make the driver load. (Fix upstream please)
 #%{__perl} -pi.orig -e 's|^(#define PCI_DEVICE_ID_ICH3\s+)0x2486$|${1}0x24C6|' amrmo_init.c

@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define rname LinNeighborhood
+%define real_name LinNeighborhood
 
 Summary: SMB network neighborhood
 Name: linneighborhood
@@ -23,7 +23,7 @@ Patch0: linneighborhood-0.6.5-samba3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-Obsoletes: %{rname} <= 0.6.5
+Obsoletes: %{real_name} <= 0.6.5
 Requires: gtk+ >= 1.2.0, gettext
 
 %description
@@ -33,11 +33,11 @@ client (http://www.samba.org) is required (for smbmount/smbumount/smbmnt),
 or Samba without smbmount/smbumount/smbmnt but with smbfs installed.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %{?rhfc1:%patch0 -p1}
 %{?rhel3:%patch0 -p1}
 
-%{__cat} <<EOF >%{rname}.desktop
+%{__cat} <<EOF >%{real_name}.desktop
 [Desktop Entry]
 Name=Linneighborhood SMB Browser
 Comment=Browse Samba and Windows shares
@@ -55,27 +55,27 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}
+%find_lang %{real_name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
 %{__install} -m0644 LinNeighborhood.xpm %{buildroot}%{_datadir}/pixmaps/
 
-%{__ln_s} -f %{rname} %{buildroot}%{_bindir}/%{name}
+%{__ln_s} -f %{real_name} %{buildroot}%{_bindir}/%{name}
 
 %if %{dfi}
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Internet/
-	%{__install} -m0644 %{rname}.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/
+	%{__install} -m0644 %{real_name}.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/
 %else
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{rname}.desktop
+		%{real_name}.desktop
 %endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog CONFIGURATION COPYING NEWS README TODO THANKS
 %{_bindir}/*

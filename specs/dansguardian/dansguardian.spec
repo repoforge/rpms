@@ -3,8 +3,8 @@
 # Authority: dag
 # Upstream: Daniel Barron <author@dansguardian.org>
 
-%define rname DansGuardian
-%define rversion 2.6.1-12
+%define real_name DansGuardian
+%define real_version 2.6.1-12
 %define sversion 2.6.1
 
 Summary: Content filtering web proxy
@@ -18,7 +18,7 @@ URL: http://www.dansguardian.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dansguardian.org/downloads/2/Stable/DansGuardian-%{rversion}.source.tar.gz
+Source: http://dansguardian.org/downloads/2/Stable/DansGuardian-%{real_version}.source.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -30,7 +30,7 @@ including URL and domain filtering, content phrase filtering, PICS filtering,
 MIME filtering, file extension filtering, POST filtering.
 
 %prep
-%setup -n %{rname}-%{sversion}
+%setup -n %{real_name}-%{sversion}
 
 ### FIXME: Add a default dansguardian.httpd for Apache. (Please fix upstream)
 %{__cat} <<EOF >dansguardian.httpd

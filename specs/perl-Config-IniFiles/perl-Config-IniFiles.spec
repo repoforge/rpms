@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-%define rname Config-IniFiles
+%define real_name Config-IniFiles
 
 Summary: Module for reading .ini-style configuration files
 Name: perl-Config-IniFiles
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://search.cpan.org/CPAN/authors/id/W/WA/WADG/Config-IniFiles-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
@@ -27,8 +25,10 @@ Requires: perl >= 0:5.00503
 %description
 Module for reading .ini-style configuration files.
 
+
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
+
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -36,22 +36,27 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
 %doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*
+
 
 %changelog
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 2.38-1

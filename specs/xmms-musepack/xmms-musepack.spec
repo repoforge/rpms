@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define xmmsinputdir %(xmms-config --input-plugin-dir)
+%define xmms_inputdir %(xmms-config --input-plugin-dir)
 
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
@@ -10,29 +10,35 @@ Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://sourceforge.net/projects/mpegplus/
-Source: http://dl.sf.net/mpegplus/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/mpegplus/xmms-musepack-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel
 
+
 %description
 X MultiMedia System input plugin to play mpegplus, aka mpc files.
+
 
 %prep
 %setup
 
+
 %build
 ARCH="%{optflags}" make %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 # Patching the Makefile would be overkill for a single file... here we go
 # We also change the same to keep more consistent with existing plugins
 %{__install} -D -m 0755 %{name}-%{version}.so \
-    %{buildroot}%{xmmsinputdir}/libmusepack.so
+    %{buildroot}%{xmms_inputdir}/libmusepack.so
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -41,7 +47,7 @@ ARCH="%{optflags}" make %{?_smp_mflags}
 %lang(de) %doc README_mpc-plugin_german.txt
 %lang(ko) %doc README_mpc-plugin_korean.txt
 %lang(es) %doc README_mpc-plugin_spanish.txt
-%{xmmsinputdir}/libmusepack.so
+%{xmms_inputdir}/libmusepack.so
 
 %changelog
 * Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 0.94-2.fr

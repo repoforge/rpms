@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname fftw
+%define real_name fftw
 
 Summary: Fast Fourier Transform library
 Name: fftw3
@@ -15,7 +15,7 @@ URL: http://www.fftw.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.fftw.org/%{rname}-%{version}.tar.gz
+Source: http://www.fftw.org/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -38,7 +38,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \

@@ -7,7 +7,7 @@
 
 ### FIXME: TODO: Add desktop file.
 
-%define rversion 040301
+%define real_version 040301
 
 Summary: PostScript font editor
 Name: pfaedit
@@ -20,7 +20,7 @@ URL: http://pfaedit.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/pfaedit/pfaedit_full-%{rversion}.tgz
+Source: http://dl.sf.net/pfaedit/pfaedit_full-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -33,7 +33,7 @@ can convert among PostScript (ASCII & binary Type 1, some Type 3s,
 some Type 0s), TrueType, OpenType (Type2) and CID-keyed fonts.
 
 %prep
-%setup -T -b0 -n %{name}-%{rversion}
+%setup -T -b0 -n %{name}-%{real_version}
 
 %build
 %configure \

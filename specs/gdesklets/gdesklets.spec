@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname gDesklets
+%define real_name gDesklets
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
@@ -32,7 +32,7 @@ news tickers... whatever you can imagine! Virtually anything is possible
 and maybe even available some day.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '

@@ -4,7 +4,7 @@
 # Authority: dag
 # Upstream: Ole Laursen <olau@hardworking.dk>
 
-%define rname hardware-monitor
+%define real_name hardware-monitor
 
 Summary: GNOME Applet for hardware monitoring
 Name: hardware-monitor-applet
@@ -33,7 +33,7 @@ tries to be user-friendly and generally nice and sensible, integrating
 pleasantly with the rest of your GNOME desktop.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -42,12 +42,12 @@ pleasantly with the rest of your GNOME desktop.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}
+%find_lang %{real_name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README src/TODO
 #%doc %{_datadir}/gnome/help/hardware-monitor/

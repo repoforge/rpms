@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname gc
+%define real_name gc
 
 Summary: Conservative garbage collector for C
 Name: libgc
@@ -16,7 +16,7 @@ URL: http://www.hpl.hp.com/personal/Hans_Boehm/gc/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.hpl.hp.com/personal/Hans_Boehm/%{rname}/gc_source/%{rname}%{version}.tar.gz
+Source: http://www.hpl.hp.com/personal/Hans_Boehm/%{real_name}/gc_source/%{real_name}%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -38,7 +38,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}%{version}
+%setup -n %{real_name}%{version}
 
 %build
 %configure \
@@ -48,11 +48,11 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}/%{rname} \
+			%{buildroot}%{_includedir}/%{real_name} \
 			%{buildroot}%{_mandir}/man1/
 %makeinstall \
 	DESTDIR="%{buildroot}"
-#%{__install} -m0644 include/*.h %{buildroot}%{_includedir}/%{rname}
+#%{__install} -m0644 include/*.h %{buildroot}%{_includedir}/%{real_name}
 %{__install} -m0655 doc/gc.man %{buildroot}%{_mandir}/man1/gc.1
 
 ### Clean up buildroot
@@ -80,7 +80,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-%{_includedir}/%{rname}/
+%{_includedir}/%{real_name}/
 #exclude %{_libdir}/*.la
 
 %changelog

@@ -64,7 +64,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 * Wed Jul  9 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 1.5.1!
-- Added %%{rname} to spec file.
+- Added %%{real_name} to spec file.
 - Added obsoletes for the old directory_administrator packages.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>

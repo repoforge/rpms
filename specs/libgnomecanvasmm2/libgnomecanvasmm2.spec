@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: freshrpms
-%define rname libgnomecanvasmm
+%define real_name libgnomecanvasmm
 
 Summary: C++ wrappers for libglade, for use with gtkmm
 Name: libgnomecanvasmm2
@@ -36,7 +36,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \

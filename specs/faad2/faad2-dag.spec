@@ -1,6 +1,6 @@
 # Authority: freshrpms
 %define plugindir %(xmms-config --input-plugin-dir)
-%define rversion 2.0_rc1
+%define real_version 2.0_rc1
 
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
@@ -13,7 +13,7 @@ URL: http://www.audiocoding.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.audiocoding.com/files/%{name}_%{rversion}.tar.gz
+Source: http://www.audiocoding.com/files/%{name}_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

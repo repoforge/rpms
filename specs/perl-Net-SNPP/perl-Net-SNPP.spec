@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Net-SNPP
+%define real_name Net-SNPP
 
 Summary: Perl Simple Network Pager Protocol Client
 Name: perl-Net-SNPP
@@ -27,7 +27,7 @@ Requires: perl >= 0:5.00503
 Simple Network Pager Protocol Client.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

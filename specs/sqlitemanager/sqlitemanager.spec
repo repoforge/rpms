@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Frédéric Henninot <fhenninot@freesurf.fr>
 
-%define rname SQLiteManager
+%define real_name SQLiteManager
 
 Summary: Multilingual web based tool to manage SQLite database
 Name: sqlitemanager
@@ -27,7 +27,7 @@ SQLiteManager is a multilingual web based tool to manage SQLite database.
 The programming language used is: PHP4, but work fine with PHP5.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Add a default sqlitemanager.conf for Apache. (Please fix upstream)
 %{__cat} <<EOF >sqlitemanager.conf

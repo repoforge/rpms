@@ -171,7 +171,7 @@ export MOZILLA_FIVE_HOME LD_LIBRARY_PATH MOZ_PLUGIN_PATH FONTCONFIG_PATH
 
 MOZARGS=""
 MOZLOCALE="$(echo $LANG | sed 's|_\([^.]*\).*|-\1|g')"
-if [ -f "%{_libdir}/firefox/chrome/$MOZLOCALE.jar" ]; then
+if [ -f "$MOZILLA_FIVE_HOME/chrome/$MOZLOCALE.jar" ]; then
 	MOZARGS="-UILocale $MOZLOCALE"
 fi
 

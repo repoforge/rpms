@@ -5,7 +5,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-%define rname Regina
+%define real_name Regina
 
 Summary: Regina Rexx interpreter
 Name: regina-rexx
@@ -41,7 +41,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %{__perl} -pi.orig -e 's|\@sharedir\@|\@datadir\@|g; \
 			s|\$\(sharedir\)|\$(datadir)/regina|g; \
 			s|\@STARTUPDIR\@|\@sysconfdir\@/rc.d/init.d|g; \

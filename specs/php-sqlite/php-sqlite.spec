@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Wez Furlong <wez@php.net>
 
-%define rname SQLite
+%define real_name SQLite
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 
 Summary: PHP module for using SQLite databases
@@ -31,7 +31,7 @@ PHP module for using SQLite databases.
 This module is built for PHP v%{pversion}.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 ${CC:-%{__cc}} %{optflags} -fpic -DNDEBUG -DCOMPILE_DL_SQLITE -I%{_includedir}/php -I%{_includedir}/php/main -I%{_includedir}/php/TSRM -I%{_includedir}/php/Zend -c -o sqlite.o sqlite.c

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname libbonobomm
+%define real_name libbonobomm
 
 Summary: C++ wrappers for libbonobo, for use with gtkmm
 Name: libbonobomm2
@@ -36,7 +36,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \

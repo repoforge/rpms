@@ -4,8 +4,8 @@
 
 # Upstream: Carlos Hasan <chasan@acm.org>
 
-%define rname seal
-%define rversion 107
+%define real_name seal
+%define real_version 107
 
 Summary: Synthetic Audio Library software development kit
 Name: libseal
@@ -18,7 +18,7 @@ URL: http://linux.tlk.fr/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://files1.sonicspot.com/sealsdk/%{rname}%{rversion}.zip
+Source: http://files1.sonicspot.com/sealsdk/%{real_name}%{real_version}.zip
 Patch: libseal-1.07-debian.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -35,7 +35,7 @@ audio library source code files (commercial license), a set of example
 source code files and HTML documentation.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %patch0 -b .debian
 
 %build

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.1h
+%define real_version 0.1h
 
 Summary: Guesses and recovers a damaged MBR (Master Boot Record)
 Name: gpart
@@ -15,7 +15,7 @@ URL: http://home.pages.de/~michab/gpart/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.stud.uni-hannover.de/user/76201/gpart/%{name}-%{rversion}.tar.gz
+Source: http://www.stud.uni-hannover.de/user/76201/gpart/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -24,7 +24,7 @@ Gpart is a small tool which tries to guess what partitions are on a PC
 type harddisk in case the primary partition table was damaged.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 ### FIXME: Fix PPC build (Please fix upstream)
 %{__perl} -pi.orig -e 's/(defined\(__alpha__\))/$1 || defined(__powerpc__)/g' src/gm_ntfs.h
@@ -35,7 +35,7 @@ type harddisk in case the primary partition table was damaged.
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS='%{optflags} -DVERSION=\"%{rversion}\"'
+	CFLAGS='%{optflags} -DVERSION=\"%{real_version}\"'
 
 %install
 %{__rm} -rf %{buildroot}

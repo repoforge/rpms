@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 1.0b1
+%define real_version 1.0b1
 
 Summary: Graphical Hotline client with almost full 1.5 compatibility
 Name: fidelio
@@ -15,7 +15,7 @@ URL: http://fidelio.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/fidelio/fidelio-%{rversion}.tar.gz
+Source: http://dl.sf.net/fidelio/fidelio-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description 
@@ -25,7 +25,7 @@ messages are supported. Banners, private chat, and the administrative
 functions are not. 
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

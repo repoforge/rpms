@@ -4,7 +4,7 @@
 # Upstream: Florian <florian.boor@unix-ag.org>
 # Distcc: 0
 
-%define rversion 0.7.1a
+%define real_version 0.7.1a
 
 Summary: Wireless LAN (WLAN) accesspoint discovery tool
 Name: prismstumbler
@@ -17,7 +17,7 @@ URL: http://prismstumbler.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/prismstumbler/prismstumbler-%{rversion}.tar.bz2
+Source: http://dl.sf.net/prismstumbler/prismstumbler-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -30,7 +30,7 @@ switching channels and monitors any frames recived on the currently
 selected channel.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e '

@@ -5,7 +5,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-%define rname WindowMaker
+%define real_name WindowMaker
 
 Summary: Fast, feature rich Window manager
 Name: windowmaker
@@ -24,8 +24,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, libpng-devel, libjpeg-devel, libungif-devel 
 BuildRequires: libtiff-devel, zlib-devel, gettext
 
-Provides: %{rname}, %{rname}-libs, windowmanager
-Obsoletes: %{rname}, %{rname}-libs
+Provides: %{real_name}, %{real_name}-libs, windowmanager
+Obsoletes: %{real_name}, %{real_name}-libs
 
 %description
 Window Maker is an X11 window manager designed to give additional
@@ -46,7 +46,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %{__cat} <<EOF >windowmaker.xsession
 #!/bin/sh
@@ -72,10 +72,10 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	NLSDIR="%{buildroot}%{_datadir}/locale"
-%find_lang %{rname}
+%find_lang %{real_name}
 %find_lang WPrefs
 %find_lang WINGs
-%{__cat} WINGs.lang WPrefs.lang >> %{rname}.lang
+%{__cat} WINGs.lang WPrefs.lang >> %{real_name}.lang
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/X11/gdm/Sessions/
 %{__install} -m0755 windowmaker.xsession "%{buildroot}%{_sysconfdir}/X11/gdm/Sessions/Window Maker"
@@ -86,7 +86,7 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGFORM BUGS ChangeLog COPYING* FAQ* NEWS README* TODO
 %doc %{_mandir}/man?/*

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Petter Nordahl-Hagen <pnordahl@eunet.no>
 
-%define rversion 040116
+%define real_version 040116
 
 Summary: Offline NT password and registry editor
 Name: chntpw
@@ -16,7 +16,7 @@ URL: http://home.eunet.no/~pnordahl/ntpasswd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://home.eunet.no/~pnordahl/ntpasswd/chntpw-source-%{rversion}.zip
+Source: http://home.eunet.no/~pnordahl/ntpasswd/chntpw-source-%{real_version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname IO-Socket-SSL
+%define real_name IO-Socket-SSL
 
 Summary: IO-Socket-SSL module for perl
 Name: perl-IO-Socket-SSL
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/IO-Socket-SSL/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{rname}-%{version}.tar.gz
+Source: %{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -27,7 +27,7 @@ Requires: perl >= 0:5.8.0
 IO-Socket-SSL module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

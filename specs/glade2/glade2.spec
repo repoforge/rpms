@@ -3,7 +3,7 @@
 # Authority: dag
 # Reason: This package doesn't need a lot of devel-packages.
 
-%define rname glade
+%define real_name glade
 
 Summary: GTK+ GUI builder
 Name: glade2
@@ -45,7 +45,7 @@ the XML interface description files output by GLADE.
 The glade2 package contains a version of Glade for GTK+ 2.0.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -54,7 +54,7 @@ The glade2 package contains a version of Glade for GTK+ 2.0.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}-2.0
+%find_lang %{real_name}-2.0
 
 %if %{?rhfc1:1}%{!?rhfc1:0}
 desktop-file-install --vendor gnome --delete-original \
@@ -75,7 +75,7 @@ scrollkeeper-update -q || :
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}-2.0.lang
+%files -f %{real_name}-2.0.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_datadir}/gnome/help/glade-2/

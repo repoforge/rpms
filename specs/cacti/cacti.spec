@@ -3,12 +3,12 @@
 # Authority: dag
 # Upstream: <cacti-user@lists.sourceforge.net>
 
-%define _localdatadir %{_var}/www/html/cacti
+%define real_version 0.8.5a
 
 Summary: Network monitoring/graphing tool
 Name: cacti
 Version: 0.8.5
-Release: 1
+Release: 1.a
 License: GPL
 Group: Applications/System
 URL: http://www.raxnet.net/products/cacti/
@@ -16,7 +16,7 @@ URL: http://www.raxnet.net/products/cacti/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.raxnet.net/downloads/cacti/cacti-%{version}.tar.gz
+Source: http://www.raxnet.net/downloads/cacti/cacti-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel
@@ -52,7 +52,7 @@ database.
 This package includes the documentation for %{name}.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/html/cacti/cmd.php &>/dev/null" >cacti.crontab
 
@@ -80,11 +80,11 @@ cd cactid
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/cacti/
-%{__install} -D -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
-%{__install} -D -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
 %{__install} -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
 %{__cp} -avx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
+%{__install} -D -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
+%{__install} -D -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
 %{__install} -D -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
 %{__install} -D -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
 
@@ -124,6 +124,9 @@ userdel cacti &>/dev/null || :
 %doc docs/
 
 %changelog
+* Fri Apr 02 2004 Dag Wieers <dag@wieers.com> - 0.8.5-1.a
+- Updated to release 0.8.5a.
+
 * Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 0.8.5-1
 - Fixed cacti.httpd. (Dean Takemori)
 

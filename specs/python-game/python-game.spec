@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname pygame
+%define real_name pygame
 
 Summary: Python module for interfacing with the SDL multimedia library
 Name: python-game
@@ -15,7 +15,7 @@ URL: http://pygame.seul.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://pygame.seul.org/%{rname}-%{version}.tar.gz
+Source: http://pygame.seul.org/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -49,7 +49,7 @@ Mark Baker.
 Install pygame-doc if you need the API documentation and example programs.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 python config.py

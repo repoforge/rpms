@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define rname FSlint
+%define real_name FSlint
 
 Summary: utility to find and clean "lint" on a filesystem
 Name: fslint
@@ -19,7 +19,7 @@ URL: http://www.pixelbeat.org/fslint/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.iol.ie/~padraiga/fslint/%{rname}-%{version}.tar.gz
+Source: http://www.iol.ie/~padraiga/fslint/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -31,7 +31,7 @@ FSlint is a utility to find and clean "lint" on a filesystem.
 It is written in Python, using pyGtk and libGlade.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %{__perl} -pi.orig -e 's|^liblocation=.*$|liblocation="%{_datadir}/fslint"|' FSlint
 

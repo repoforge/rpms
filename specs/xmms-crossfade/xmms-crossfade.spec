@@ -1,9 +1,10 @@
 # $Id$
 # Authority: matthias
+# Upstream: Peter Eisenlohr <p.eisenlohr@gmx.net>
 
-%define _xmmsoutputdir %(xmms-config --output-plugin-dir)
+%define xmms_outputdir %(xmms-config --output-plugin-dir)
 
-Summary: Neat crossfade output plugin for XMMS
+Summary: Crossfade output plugin for XMMS
 Name: xmms-crossfade
 Version: 0.3.4
 Release: 2
@@ -15,30 +16,37 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel
 
+
 %description
 A neat crossfade plugin for XMMS featuring crossfading and continuous output
 between songs and a gap-killer.
 
+
 %prep
 %setup
 
+
 %build
-%configure --libdir=%{_xmmsoutputdir}
+%configure --libdir="%{xmms_outputdir}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall libdir=%{buildroot}/%{_xmmsoutputdir}
-strip %{buildroot}/%{_xmmsoutputdir}/*.so
+%makeinstall libdir="%{buildroot}/%{xmms_outputdir}"
+strip %{buildroot}/%{xmms_outputdir}/*.so
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
-%exclude %{_xmmsoutputdir}/libcrossfade.la
-%{_xmmsoutputdir}/libcrossfade.so
+%{xmms_outputdir}/libcrossfade.so
+%exclude %{xmms_outputdir}/libcrossfade.la
+
 
 %changelog
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.3.4-2.fr

@@ -2,8 +2,8 @@
 
 # Archs: i386 i686
 
-%define rname rarlinux
-%define rversion 3.2.b3
+%define real_name rarlinux
+%define real_version 3.2.b3
 
 Summary: unRAR - extract, test and view RAR archives
 Name: unrar
@@ -15,7 +15,7 @@ Group: Applications/Archiving
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.rarlab.com/rar/%{rname}-%{rversion}.tar.gz
+Source: http://www.rarlab.com/rar/%{real_name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -25,7 +25,7 @@ and developed for extracting, testing and viewing the contents of
 archives created with the RAR archiver version 1.50 and above.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__make} %{?_smp_mflags} clean

@@ -1,7 +1,7 @@
 # Authority: atrpms
 # Upstream: Chip Turner <cturner@redhat.com>
 
-%define rname RPM-Specfile
+%define real_name RPM-Specfile
 
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
@@ -14,7 +14,7 @@ URL: http://search.cpan.org/dist/RPM-Specfile/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -28,7 +28,7 @@ tarballs into RPM modules.
 See the included script cpanflute2 for usage; documentation coming soon.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" perl Makefile.PL \

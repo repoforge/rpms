@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Unicode-Map
+%define real_name Unicode-Map
 
 Summary: Unicode-Map (Maps charsets from and to UTF16 unicode) module for perl
 Name: perl-Unicode-Map
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Unicode-Map/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWARTZ/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWARTZ/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.8.0
 Unicode-Map (Maps charsets from and to UTF16 unicode) module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

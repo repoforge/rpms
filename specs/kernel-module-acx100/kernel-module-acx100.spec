@@ -17,9 +17,9 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname acx100
-%define rversion 0.2.0pre6
-%define rrelease 1.pre6
+%define real_name acx100
+%define real_version 0.2.0pre6
+%define real_release 1.pre6
 
 %define moduledir /kernel/drivers/net/wireless/acx100
 %define modules src/acx100_pci.o
@@ -27,7 +27,7 @@
 Summary: Linux driver for the ACX100-based wireless cards
 Name: kernel-module-acx100
 Version: 0.2.0
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://acx100.sf.net/
@@ -35,7 +35,7 @@ URL: http://acx100.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/acx100/acx100-%{rversion}.tar.bz2
+Source: http://dl.sf.net/acx100/acx100-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -43,8 +43,8 @@ BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: acx100-utils
 
-Obsoletes: kernel-%{rname}
-Provides: kernel-%{rname}
+Obsoletes: kernel-%{real_name}
+Provides: kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -55,15 +55,15 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-acx100
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Summary: Linux ACX100 wireless drivers for SMP
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: acx100-utils
 
-Obsoletes: kernel-%{rname}
-Provides: kernel-%{rname}
+Obsoletes: kernel-%{real_name}
+Provides: kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-acx100
@@ -75,7 +75,7 @@ They might work with newer/older kernels.
 
 %package -n acx100-utils
 Summary: ACX100 wireless driver add-ons
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
 Obsoletes: acx100
@@ -85,7 +85,7 @@ Provides: acx100
 ACX100 wireless driver utilities.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 ### FIXME: Fix for defining own kernel version and get rid of Configure/config.mk (Please fix upstream)
 %{__ln_s} -f /bin/true Configure
@@ -93,7 +93,7 @@ echo -n >config.mk
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 export VERSION_CODE="$(grep LINUX_VERSION_CODE %{_libmoddir}/%{kversion}-%{krelease}/build/include/linux/version.h | sed -e 's|[^0-9]\+$||g')"
 

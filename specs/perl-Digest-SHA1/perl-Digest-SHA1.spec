@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Digest-SHA1
+%define real_name Digest-SHA1
 
 Summary: Digest-SHA1 Perl module
 Name: perl-Digest-SHA1
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Digest-SHA1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
@@ -36,7 +35,7 @@ A binary digest will be 20 bytes long. A hex digest will be 40
 characters long. A base64 digest will be 27 characters long.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname gst-player
+%define real_name gst-player
 
 Summary: GStreamer Streaming media framework player
 Name: gstreamer-player
@@ -15,7 +15,7 @@ URL: http://gstreamer.net/apps/gst-player/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gstreamer/%{rname}-%{version}.tar.bz2
+Source: http://dl.sf.net/gstreamer/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -56,7 +56,7 @@ This package contains a plugin for the Mozilla browser that makes it
 possible to use the gstreamer-player in Mozilla.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \
@@ -75,7 +75,7 @@ possible to use the gstreamer-player in Mozilla.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-%find_lang %{rname}
+%find_lang %{real_name}
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}{,/gst}/*.la \
@@ -88,7 +88,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %post
 /sbin/ldconfig 2>/dev/null
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{rname}.schemas &>/dev/null
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{real_name}.schemas &>/dev/null
 scrollkeeper-update -q
 
 %postun
@@ -98,7 +98,7 @@ scrollkeeper-update -q
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING
 %doc %{_mandir}/man?/*

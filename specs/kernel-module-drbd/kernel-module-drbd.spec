@@ -13,8 +13,8 @@
 %define _libmoddir /lib/modules
 %define _sbindir /sbin
 
-%define rname drbd
-%define rrelease 1
+%define real_name drbd
+%define real_release 1
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
@@ -27,7 +27,7 @@
 Summary: Distributed Redundant Block Device driver
 Name: kernel-module-drbd
 Version: 0.6.11
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.drbd.org/
@@ -44,8 +44,8 @@ BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: drbd-utils
 
-Obsoletes: kernel-%{rname}
-Provides: kernel-%{rname}
+Obsoletes: kernel-%{real_name}
+Provides: kernel-%{real_name}
 
 %description
 DRBD is a block device which is designed to build high availability clusters.
@@ -59,13 +59,13 @@ They might work with newer/older kernels.
 %package -n kernel-smp-module-drbd
 Summary: Distributed Redundant Block Device driver for SMP
 Group: System Environment/Kernel
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: drbd-utils
 
-Obsoletes: kernel-%{rname}
-Provides: kernel-%{rname}
+Obsoletes: kernel-%{real_name}
+Provides: kernel-%{real_name}
 
 %description -n kernel-smp-module-drbd
 DRBD is a block device which is designed to build high availability clusters.
@@ -78,10 +78,10 @@ They might work with newer/older kernels.
 
 %package -n drbd-utils
 Summary: Utilities for Distributed Redundant Block Device (DRBD) driver
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
-Obsoletes: %{rname}
+Obsoletes: %{real_name}
 
 %description -n drbd-utils
 DRBD is a block device which is designed to build high availability clusters.
@@ -90,7 +90,7 @@ You could see it as a network RAID 1.
 
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### Enable SIGHAND_HACK for RH kernel 2.4.20 and greater
 %{?rhfc1:%{__perl} -pi.orig -e 's|//(#define SIGHAND_HACK)|$1|' drbd_config.h}

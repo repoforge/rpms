@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.7.2a
+%define real_version 0.7.2a
 
 Summary: Graphical music notation program
 Name: denemo
@@ -15,7 +15,7 @@ URL: http://denemo.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/denemo/denemo-%{rversion}.tar.gz
+Source: http://dl.sf.net/denemo/denemo-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
  
 
@@ -26,7 +26,7 @@ gtk+. It is intended to be used in conjunction with GNU Lilypond
 computer-music-related purposes as well. 
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 20030831
+%define real_version 20030831
 
 Summary: UDP broadcast installation
 Name: udpcast
@@ -15,7 +15,7 @@ URL: http://udpcast.linux.lu/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://udpcast.linux.lu/current/%{name}-%{rversion}.tar.gz
+Source: http://udpcast.linux.lu/current/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

@@ -1,6 +1,6 @@
 # Authority: dag
 
-%define rname gtkmm
+%define real_name gtkmm
 
 Summary: C++ interface for GTK2 (a GUI library for X)
 Name: gtkmm2
@@ -13,7 +13,7 @@ URL: http://gtkmm.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/gtkmm/%{rname}-%{version}.tar.gz
+Source: ftp://ftp.sourceforge.net/pub/sourceforge/gtkmm/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -37,7 +37,7 @@ This package contains the static libraries and header files needed for
 developing gtkmm applications.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \

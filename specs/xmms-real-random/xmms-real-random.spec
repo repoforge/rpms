@@ -1,12 +1,9 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: <kingleo@gmx.at>
 
-%define plugindir %(xmms-config --general-plugin-dir)
-
-%define rname real_random
+%define xmms_generaldir %(xmms-config --general-plugin-dir)
+%define real_name real_random
 
 Summary: Plugin for XMMS providing better shuffling
 Name: xmms-real-random
@@ -24,34 +21,38 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xmms-devel
 
+
 %description
 A plugin for XMMS providing better shuffling.
 
+
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
+
 
 %build
 %configure \
         --enable-shared \
-        --libdir="%{plugindir}"
+        --libdir="%{xmms_generaldir}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	libdir="%{buildroot}%{plugindir}"
+	libdir="%{buildroot}%{xmms_generaldir}"
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{plugindir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%{plugindir}/*.so
-#exclude %{plugindir}/*.la
+%{xmms_generaldir}/*.so
+%exclude %{xmms_generaldir}/*.la
+
 
 %changelog
 * Thu Oct 09 2003 Dag Wieers <dag@wieers.com> - 0.3-0

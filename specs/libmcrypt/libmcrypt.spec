@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname mcrypt
+%define real_name mcrypt
 
 Summary: libmcrypt is a data encryption library
 Name: libmcrypt

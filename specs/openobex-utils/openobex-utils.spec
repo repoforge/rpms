@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname openobex-apps
+%define real_name openobex-apps
 
 Summary: Utilities based on Openobex
 Name: openobex-utils
@@ -28,7 +28,7 @@ Provides: openobex-apps
 Utilities based on Openobex.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure

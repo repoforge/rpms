@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Tom Wilkason <tom.wilkason@cox.net>
 
-%define rname snackAmp
+%define real_name snackAmp
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Versatile music player
@@ -33,7 +33,7 @@ feature. Currently mp3, wav, ogg vorbis,and many other sound files
 are indexed by SnackAmp depending on your preferences.
 
 %prep
-%setup -n %{rname}.vfs
+%setup -n %{real_name}.vfs
 
 %{__cat} <<EOF >snackamp.desktop
 [Desktop Entry]

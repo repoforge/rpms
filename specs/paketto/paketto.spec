@@ -4,7 +4,7 @@
 # Upstream: Dan Kaminsky <dan@doxpara.com>
 # Distcc: 0
 
-%define rversion 2.00pre3
+%define real_version 2.00pre3
 
 Summary: Unusual TCP/IP testing tools
 Name: paketto
@@ -17,7 +17,7 @@ URL: http://www.doxpara.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.doxpara.com/paketto-%{rversion}.tar.gz
+Source: http://www.doxpara.com/paketto-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, bison, flex
@@ -45,7 +45,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

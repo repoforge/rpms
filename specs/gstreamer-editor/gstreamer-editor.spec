@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname gst-editor
+%define real_name gst-editor
 
 Summary: GStreamer streaming media editor and GUI tools
 Name: gstreamer-editor
@@ -15,7 +15,7 @@ URL: http://gstreamer.net/apps/gst-editor/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gstreamer/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/gstreamer/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -43,7 +43,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 ##%{?__libtoolize:[ -f configure.in ] && %{__libtoolize} --copy --force} ; \

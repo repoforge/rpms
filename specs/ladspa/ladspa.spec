@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%define rname ladspa_sdk
+%define real_name ladspa_sdk
 
 Summary: Linux Audio Developer's Simple Plugin API
 Name: ladspa
@@ -33,7 +33,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}
+%setup -n %{real_name}
 
 ### FIXME: Correct URLs to link to local file. (Please fix upstream)
 %{__perl} -pi -e 's|HREF="ladspa.h.txt"|HREF="file:///usr/include/ladspa.h"|' doc/*.html

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 2.08
+%define real_version 2.08
 
 Summary: Simple kernel loader which boots from a FAT filesystem
 Name: syslinux
@@ -15,7 +15,7 @@ URL: http://syslinux.zytor.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/%{name}-%{rversion}.tar.bz2
+Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/%{name}-%{real_version}.tar.bz2
 #Patch: syslinux-2.04-x86_64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -31,7 +31,7 @@ optional initrd image) from a FAT filesystem. It can also be used as a
 PXE bootloader during network boots.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 #patch0 -p1 -b .x86_64
 
 %build

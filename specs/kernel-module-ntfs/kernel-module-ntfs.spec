@@ -14,8 +14,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname ntfs
-%define rrelease 1
+%define real_name ntfs
+%define real_release 1
 
 %define moduledir /kernel/fs/ntfs
 %define modules ntfs.o
@@ -23,7 +23,7 @@
 Summary: Linux driver for NTFS filesystem
 Name: kernel-module-ntfs
 Version: %{kversion}
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://linux-ntfs.sf.net/info/redhat.html
@@ -48,7 +48,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ntfs
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Summary: Linux SMP driver for NTFS filesystem
 License: GPL
 Group: System Environment/Kernel
@@ -69,7 +69,7 @@ They might work with newer/older kernels.
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

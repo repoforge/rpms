@@ -8,7 +8,7 @@
 ### FIXME: Makefile creates symlinks to outside buildroot
 # Soapbox: 0
 
-%define rname Gemu
+%define real_name Gemu
 
 Summary: GNOME EMU10K1 configuration tool
 Name: gemu
@@ -34,8 +34,8 @@ card settings, route volume mixer, source and destination mixers, and OSS
 Mixer binding.
 
 %prep
-%setup -n %{rname}-%{version} -a 1
-#%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version} -a 1
+#%setup -n %{real_name}-%{version}
 
 %build
 (cd emu10k1-v0.20a; %{__make}; %{__make} tools)

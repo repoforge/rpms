@@ -1,5 +1,8 @@
 # $Id$
 
+# Authority: matthias
+# Upstream: <madman-discuss@lists.sourceforge.net>
+
 Summary: Madman Administrates Digital Music Archives Neatly
 Name: madman
 Version: 0.91.1

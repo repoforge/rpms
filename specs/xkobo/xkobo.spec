@@ -5,7 +5,7 @@
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 %define _bindir /usr/X11R6/bin
-%define rversion 1.11+w01
+%define real_version 1.11+w01
 
 Summary: Space arcade game
 Name: xkobo
@@ -18,7 +18,7 @@ URL: http://seki.math.hokudai.ac.jp:20080/xkobo-current.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.redhead.dk/download/pub/Xkobo/xkobo-%{rversion}.tar.gz
+Source: http://www.redhead.dk/download/pub/Xkobo/xkobo-%{real_version}.tar.gz
 Patch0: xkobo-1.11+w01-imake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -29,7 +29,7 @@ you and send fighter spacecrafts to get you. You'll
 have hours and hours of fun with this game.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 %patch0 -p1
 
 %{__cat} <<EOF >%{name}.desktop

@@ -4,7 +4,7 @@
 
 # Upstream: <info@figlet.org>
 
-%define rversion 221
+%define real_version 221
 
 Summary: program for making large letters out of ordinary text
 Name: figlet
@@ -17,7 +17,7 @@ URL: http://www.figlet.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.figlet.org/pub/figlet/program/unix/%{name}%{rversion}.tar.gz
+Source: ftp://ftp.figlet.org/pub/figlet/program/unix/%{name}%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 FIGlet is a program for making large letters out of ordinary text.
 
 %prep
-%setup -n %{name}%{rversion}
+%setup -n %{name}%{real_version}
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" DEFAULTFONTDIR="%{_datadir}/figlet"

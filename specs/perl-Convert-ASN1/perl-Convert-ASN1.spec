@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Convert-ASN1
+%define real_name Convert-ASN1
 
 Summary: set of Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules
 Name: perl-Convert-ASN1
@@ -15,9 +15,8 @@ URL: http://search.cpan.org/dist/Convert-ASN1/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/G/GB/GBARR/%{rname}-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/G/GB/GBARR/Convert-ASN1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
@@ -30,7 +29,7 @@ Convert-ASN1 is a set of Perl classes implementing conversion routines for
 encoding and decoding ASN.1 data structures using BER/DER rules.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -43,8 +42,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
 
 %clean
 %{__rm} -rf %{buildroot}

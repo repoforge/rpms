@@ -15,8 +15,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname qc-usb
-%define rrelease 1
+%define real_name qc-usb
+%define real_release 1
 
 %define moduledir /kernel/drivers/usb/qc-usb
 %define modules quickcam.o
@@ -24,7 +24,7 @@
 Summary: Linux QuickCam USB Drivers
 Name: kernel-module-qc-usb
 Version: 0.5.1
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ee.oulu.fi/~tuukkat/quickcam/quickcam.html
@@ -41,8 +41,8 @@ BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: qcset
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -55,13 +55,13 @@ They might work with newer/older kernels.
 %package -n kernel-smp-module-qc-usb
 Summary: Linux QuickCam USB Drivers for SMP kernels
 Group: System Environment/Kernel
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: qcset
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-qc-usb
@@ -73,14 +73,14 @@ They might work with newer/older kernels.
 
 %package -n qcset
 Summary: Linux QuickCam USB utilities
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
 %description -n qcset
 Utility to configure the QuickCam USB settings.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__rm} -rf %{buildroot}

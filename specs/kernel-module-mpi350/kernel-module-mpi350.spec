@@ -14,8 +14,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname mpi350
-%define rrelease 2
+%define real_name mpi350
+%define real_release 2
 
 %define moduledir /kernel/drivers/net/wireless/mpi350
 %define modules mpi350.o
@@ -23,7 +23,7 @@
 Summary: Linux MPI350 (Aironet 350) mini PCI drivers
 Name: kernel-module-mpi350
 Version: 2.0
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: MPL
 Group: System Environment/Kernel
 URL: http://www.cisco.com/warp/public/102/wlan/linux.html
@@ -48,7 +48,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-mpi350
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Summary: Linux MPI350 (Aironet 350) mini PCI drivers
 License: MPL
 Group: System Environment/Kernel
@@ -67,7 +67,7 @@ They might work with newer/older kernels.
 
 %package -n aironet-utils
 Summary: Aironet Cisco utilities
-Release: %{rrelease}
+Release: %{real_release}
 License: Proprietary
 Group: System Environment/Base
 

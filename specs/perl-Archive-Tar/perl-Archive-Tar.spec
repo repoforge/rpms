@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dag
 
-%define rname Archive-Tar
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Archive-Tar
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
@@ -22,11 +24,14 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
 
+
 %description
 Module for manipulations of tar archives.
 
+
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
+
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -34,22 +39,26 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
+
 
 %clean 
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/*
+
 
 %changelog
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.08-0

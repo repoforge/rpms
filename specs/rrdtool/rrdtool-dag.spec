@@ -3,13 +3,13 @@
 # Authority: dag
 # Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
 
-%define rversion 1.0.46
+%define real_version 1.0.46
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 %define release 4
 
 Summary: RRDtool - round robin database
 Name: rrdtool
-Version: %{rversion}
+Version: %{real_version}
 Release: %{release}
 License: GPL
 Group: Applications/Databases
@@ -47,11 +47,11 @@ server load average). This package allow you to use directly this library.
 %package -n php-rrdtool
 Summary: PHP module for using RRD databases or rrdtool
 Version: %{pversion}
-Release: %{release}_%{rversion}
+Release: %{release}_%{real_version}
 Group: Development/Languages
 
 BuildRequires: php-devel
-Requires: php = %{pversion}, rrdtool = %{rversion}
+Requires: php = %{pversion}, rrdtool = %{real_version}
 
 %description -n php-rrdtool
 The php-rrdtool package contains a dynamic shared object that will add

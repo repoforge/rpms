@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname FreezeThaw
+%define real_name FreezeThaw
 
 Summary: FreezeThaw module for perl
 Name: perl-FreezeThaw
@@ -15,9 +15,8 @@ URL: http://search.cpan.org/dist/FreezeThaw/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.8.0
@@ -27,7 +26,7 @@ Requires: perl >= 0:5.8.0
 FreezeThaw module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -40,8 +39,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
 
 %clean 
 %{__rm} -rf %{buildroot}

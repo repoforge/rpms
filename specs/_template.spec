@@ -19,12 +19,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: 
 
+
 %description
+
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+
 
 %description devel
 This package contains the header files, static libraries and development
@@ -45,10 +48,12 @@ Type=Application
 Categories=Application;AudioVideo;
 EOF
 
+
 %build
 %configure \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -62,16 +67,20 @@ desktop-file-install --vendor net                  \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop
 
+
 %post
 /sbin/ldconfig 2>/dev/null
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
+
 %postun
 /sbin/ldconfig 2>/dev/null
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -82,11 +91,13 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/*.png
 %{_datadir}/applications/*.desktop
 
+
 %files devel
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
+
 
 %changelog
 * Son Jan 19 2004 Dag Wieers <dag@wieers.com> - 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.92.2
+%define real_version 0.92.2
 
 Summary: Diagram drawing program
 Name: dia
@@ -16,7 +16,7 @@ URL: http://www.lysator.liu.se/~alla/dia/dia.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/dia/dia-%{rversion}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/dia/dia-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.6, gtk2-devel >= 2.0.6, libxml2-devel >= 2.3.9
@@ -33,7 +33,7 @@ save diagrams to a custom file format, can load and save in .xml
 format, and can export to PostScript(TM).
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 #{__aclocal}

@@ -2,7 +2,7 @@
 # Authority: freshrpms
 # Distcc: 0
 
-%define rname vlc
+%define real_name vlc
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: The VideoLAN client, also a very good standalone DVD player
@@ -16,7 +16,7 @@ URL: http://www.videolan.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.videolan.org/pub/%{rname}/%{rname}-%{version}.tar.bz2
+Source: http://www.videolan.org/pub/%{real_name}/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -29,8 +29,8 @@ BuildRequires: esound-devel, arts-devel, xosd-devel, faad2-devel
 BuildRequires: openslp-devel, edb-devel
 #BuildRequires: lirc-devel, libalsa-devel
 
-Provides: %{rname}
-Obsoletes: %{rname}
+Provides: %{real_name}
+Obsoletes: %{real_name}
 
 %description
 The vlc is part of the VideoLAN project, a full MPEG2 client/server
@@ -47,7 +47,7 @@ This package contains the static libraries and header files needed for
 developing applications that use vlc.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 export QTDIR="/usr/lib/qt3"
@@ -84,7 +84,7 @@ export X_EXTRA_LIBS="-L%{buildroot}%{_libdir}"
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__strip} %{buildroot}%{_bindir}/vlc %{buildroot}%{_libdir}/vlc/*/*
-%find_lang %{rname}
+%find_lang %{real_name}
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1
 %{__install} -m0644 doc/*.1 %{buildroot}%{_mandir}/man1
@@ -115,7 +115,7 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README THANKS doc/*.txt doc/*.html
 %doc %{_mandir}/man1/vlc.*

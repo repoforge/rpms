@@ -6,14 +6,14 @@
 %define milter 1
 %{?rhel3:%undefine milter}
 
-%define rrelease p8
+%define real_release p8
 
 %define logmsg logger -t amavisd-new/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 20030616
-Release: 6.%{rrelease}
+Release: 6.%{real_release}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -21,7 +21,7 @@ URL: http://www.ijs.si/software/amavisd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}-%{rrelease}.tar.gz
+Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}-%{real_release}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: sendmail

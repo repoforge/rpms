@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <childsplay@linux.isbeter.nl>
 
-%define rversion 0.69-1
+%define real_version 0.69-1
 
 Summary: Games for children with plugins
 Name: childsplay
@@ -16,7 +16,7 @@ URL: http://childsplay.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/childsplay/%{name}-%{rversion}.tar.gz
+Source: http://dl.sf.net/childsplay/%{name}-%{real_version}.tar.gz
 Source1: http://dl.sf.net/childsplay/%{name}-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -36,7 +36,7 @@ to play.
 NOTE: This package also requires the childsplay-plugins package.
 
 %prep
-%setup -a1 -n %{name}-%{rversion}
+%setup -a1 -n %{name}-%{real_version}
 
 ### fix python compile error
 %{__perl} -pi.orig -e 's|quiet\=1||g' install.py

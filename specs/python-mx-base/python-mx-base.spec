@@ -3,7 +3,7 @@
 # Authority: dag
 # Tag: test
 
-%define rname egenix-mx-base
+%define real_name egenix-mx-base
 
 Summary: mx-base libraries for Python
 Name: python-mx-base
@@ -16,7 +16,7 @@ URL: http://www.lemburg.com/files/python/eGenix-mx-Extensions.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.egenix.com/files/python/%{rname}-%{version}.tar.gz
+Source: http://www.egenix.com/files/python/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -36,7 +36,7 @@ of the series and is needed by all other add-on
 packages of the series.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" python setup.py build

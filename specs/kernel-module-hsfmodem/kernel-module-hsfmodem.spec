@@ -15,9 +15,9 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname hsfmodem
-%define rversion 6.03.00lnxt04011900full
-%define rrelease 1.lnxt04011900full
+%define real_name hsfmodem
+%define real_version 6.03.00lnxt04011900full
+%define real_release 1.lnxt04011900full
 
 %define moduledir /kernel/drivers/char/hsfmodem
 %define modules hsfengine.o hsfmc97ali.o hsfmc97ich.o hsfmc97via.o hsfosspec.o hsfpcibasic2.o hsfserial.o hsfsoar.o
@@ -25,7 +25,7 @@
 Summary: Linux Conexant HSF Softmodem drivers
 Name: kernel-module-hsfmodem
 Version: 6.03.00
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: Copyright (c) 2003 Linuxant inc. All rights reserved.
 Group: System Environment/Kernel
 URL: http://www.linuxant.com/drivers/hsf/
@@ -33,7 +33,7 @@ URL: http://www.linuxant.com/drivers/hsf/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.linuxant.com/drivers/hsf/free/archive/hsfmodem-%{rversion}/hsfmodem-%{rversion}.tar.gz
+Source: http://www.linuxant.com/drivers/hsf/free/archive/hsfmodem-%{real_version}/hsfmodem-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -52,7 +52,7 @@ These drivers are built for kernel %{kversion}-%{krelease}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-hsfmodem
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Summary: Linux Conexant HSF Softmodem drivers for SMP
 Group: System Environment/Kernel
 
@@ -68,17 +68,17 @@ They might work with newer/older kernels.
 
 %package -n hsfmodem-utils
 Summary: Linux Conexant HSF Softmodem utilities
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Kernel
 
-Obsoletes: hsflinmodem, %{rname}
-Provides: %{rname}
+Obsoletes: hsflinmodem, %{real_name}
+Provides: %{real_name}
 
 %description -n hsfmodem-utils
 Linux Conexant HSF Softmodem utilities.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__rm} -rf %{buildroot}
@@ -98,9 +98,9 @@ cd -
 %{__make} %{?_smp_mflags} -C modules clean all modules_install \
 	KERNELSRC="%{_libmoddir}/%{kversion}-%{krelease}/build" \
 	DISTRO_CFLAGS="-D__BOOT_KERNEL_H_ -D__BOOT_KERNEL_UP=1 -D__MODULE_KERNEL_%{_target_cpu}=1" \
-	CNXT_MODS_DIR="../%{rname}-up/"
+	CNXT_MODS_DIR="../%{real_name}-up/"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{rname}-up/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -m0644 %{real_name}-up/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -116,9 +116,9 @@ cd -
 %{__make} %{?_smp_mflags} -C modules clean all modules_install \
 	KERNELSRC="%{_libmoddir}/%{kversion}-%{krelease}/build" \
 	DISTRO_CFLAGS="-D__BOOT_KERNEL_H_ -D__BOOT_KERNEL_SMP=1 -D__MODULE_KERNEL_%{_target_cpu}=1" \
-	CNXT_MODS_DIR="../%{rname}-smp/"
+	CNXT_MODS_DIR="../%{real_name}-smp/"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{rname}-smp/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -m0644 %{real_name}-smp/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 ### Make utilities.
 %{__make} %{_smp_mflags} clean all

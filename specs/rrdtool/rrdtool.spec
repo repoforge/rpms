@@ -8,7 +8,7 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.0.46
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -48,7 +48,7 @@ server load average). This package allow you to use directly this library.
 %package -n php-%{name}
 Summary: RRDtool module for PHP
 Group: Development/Languages
-Requires: %{name} = %{version}, php >= 4.3.0
+Requires: %{name} = %{version}, php >= 4.0
 
 %description -n php-%{name}
 The php-%{name} package includes a dynamic shared object (DSO) that adds

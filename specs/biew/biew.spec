@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 550
+%define real_version 550
 
 Summary: Console hex viewer/editor with disassembler
 Name: biew
@@ -15,7 +15,7 @@ URL: http://biew.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/biew/biew-%{rversion}.tar.bz2
+Source: http://dl.sf.net/biew/biew-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -29,7 +29,7 @@ coff32, PharLap, rdoff executable formats, a code guider, and lot of
 other features, making it invaluable for examining binary code.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 ### Change default prefix to %{_prefix}
 %{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|' biewlib/sysdep/generic/unix/os_dep.c

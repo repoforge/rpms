@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname ExtUtils-Depends
+%define real_name ExtUtils-Depends
 
 Summary: ExtUtils-Depends module for perl
 Name: perl-ExtUtils-Depends
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/ExtUtils-Depends-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 BuildRequires: perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
@@ -32,7 +31,7 @@ loaded with the RTLD_GLOBAL flag (usually done with a sub dl_load_flags {0x01}
 in the main .pm file) if you need to use functions defined in the module.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -45,8 +44,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
 
 %clean 
 %{__rm} -rf %{buildroot}

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 1.8beta5
+%define real_version 1.8beta5
 
 %define _libdir	/lib
 
@@ -17,7 +17,7 @@ URL: http://tsocks.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/tsocks/tsocks-%{rversion}.tar.gz
+Source: http://dl.sf.net/tsocks/tsocks-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

@@ -16,9 +16,9 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname cloop
-%define rversion 2.00-1
-%define rrelease 1
+%define real_name cloop
+%define real_version 2.00-1
+%define real_release 1
 
 %define moduledir /kernel/drivers/block
 %define modules cloop.o
@@ -26,7 +26,7 @@
 Summary: Linux driver for compressed loop devices
 Name: kernel-module-cloop
 Version: 2.00
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://developer.linuxtag.net/knoppix/sources/
@@ -34,7 +34,7 @@ URL: http://developer.linuxtag.net/knoppix/sources/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://developer.linuxtag.net/knoppix/sources/cloop_%{rversion}.tar.gz
+Source: http://developer.linuxtag.net/knoppix/sources/cloop_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -42,8 +42,8 @@ BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: cloop-utils
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -57,13 +57,13 @@ They might work with newer/older kernels.
 %package -n kernel-smp-module-cloop
 Summary: Compressed loop device driver for SMP
 Group: System Environment/Kernel
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: cloop-utils
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-cloop
@@ -76,7 +76,7 @@ They might work with newer/older kernels.
 
 %package -n cloop-utils
 Summary: Utilities for compressed loop device driver
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
 %description -n cloop-utils
@@ -84,14 +84,14 @@ cloop is a filesystem-independent, transparently decompressed,
 read-only block devices.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### Build for specific Red Hat kernel
 %{__perl} -pi.orig -e 's|^(CFLAGS:=)|$1-DREDHAT_KERNEL |' Makefile
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

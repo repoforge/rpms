@@ -10,7 +10,7 @@
 
 %define _libmoddir /lib/modules
 
-%define rname thinkpad
+%define real_name thinkpad
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
@@ -49,7 +49,7 @@ These drivers are built for kernel %{kversion}-%{krelease}.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Remove chown/chgrp from Makefile. (Please fix upstream)
 %{__perl} -pi.orig -e '

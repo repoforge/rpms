@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname nrpe
+%define real_name nrpe
 
 Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
@@ -15,7 +15,7 @@ URL: http://www.nagios.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/nagios/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/nagios/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -43,7 +43,7 @@ request to remote host, with installed NRPE, and process result of execution
 as host or service state.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %{__cat} <<EOF >nrpe.xinetd.dag
 # default: off

@@ -3,7 +3,7 @@
 # Authority: dag
 
 %define	date 20030428
-%define rversion 505
+%define real_version 505
 
 Summary: DivX for Linux codec binaries
 Name: divx4linux

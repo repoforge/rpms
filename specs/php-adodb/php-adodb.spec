@@ -2,8 +2,8 @@
 
 # Authority: dag
 
-%define rname adodb
-%define rversion 421
+%define real_name adodb
+%define real_version 421
 
 Summary: Portable Database Library for PHP
 Name: php-adodb
@@ -16,7 +16,7 @@ URL: http://php.weblogs.com/adodb/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://phplens.com/lens/dl/adodb%{rversion}.tgz
+Source: http://phplens.com/lens/dl/adodb%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -32,7 +32,7 @@ PostgreSQL, Interbase, Informix, Oracle, MS SQL 7, Foxpro, Access, ADO,
 Sybase, DB2 and generic ODBC.
 
 %prep
-%setup -n %{rname}
+%setup -n %{real_name}
 
 %build
 

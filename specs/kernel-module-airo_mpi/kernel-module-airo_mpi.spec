@@ -17,9 +17,9 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname airo_mpi
-%define rversion 20031220
-%define rrelease 2
+%define real_name airo_mpi
+%define real_version 20031220
+%define real_release 2
 
 %define moduledir /kernel/drivers/net/wireless/airo_mpi
 %define modules airo_mpi.o
@@ -27,7 +27,7 @@
 Summary: Linux driver for the Cisco 350 miniPCI series
 Name: kernel-module-airo_mpi
 Version: 1.6
-Release: %{rrelease}.%{rversion}_%{kversion}_%{krelease}
+Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://bellet.info/~bellet/laptop/
@@ -35,15 +35,15 @@ URL: http://bellet.info/~bellet/laptop/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bellet.info/~bellet/laptop/airo_mpi-%{rversion}.tar.gz
+Source: http://bellet.info/~bellet/laptop/airo_mpi-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -59,8 +59,8 @@ Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-airo_mpi
@@ -71,14 +71,14 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 ### FIXME: Fix Makefile to override KERNEL_VERSION
 %{__perl} -pi.orig -e 's|^#(KERNEL_VERSION)=.*$|$1 = %{kversion}-%{krelease}|' Makefile
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

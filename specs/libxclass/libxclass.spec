@@ -4,7 +4,7 @@
 
 # Distcc: 0
 
-%define rname xclass
+%define real_name xclass
 
 Summary: C++ X11 widget set providing win95 look and feel
 Name: libxclass
@@ -33,7 +33,7 @@ applications which make use of Xclass and a static library to compile
 against.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '

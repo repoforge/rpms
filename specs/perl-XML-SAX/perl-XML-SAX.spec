@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname XML-SAX
+%define real_name XML-SAX
 
 Summary: XML-SAX Perl module
 Name: perl-XML-SAX
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/XML-SAX/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{real_name}-%{version}.tar.gz
 Source1: ParserDetails.ini
 Patch0: perl-XML-SAX-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -34,7 +34,7 @@ Provides: perl(XML::SAX::PurePerl::UnicodeExt), perl(XML::SAX::PurePerl::XMLDecl
 XML-SAX Perl module.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %patch
 
 %build

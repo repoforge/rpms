@@ -15,8 +15,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname ov511
-%define rrelease 1
+%define real_name ov511
+%define real_release 1
 
 %define moduledir /kernel/drivers/usb/ov511
 %define modules ov511.o ovfx2.o ovcamchip.o saa7111-new.o tda7313.o tuner.o
@@ -24,7 +24,7 @@
 Summary: Linux OVCam Drivers
 Name: kernel-module-ov511
 Version: 2.27
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://alpha.dyndns.org/ov511/
@@ -68,7 +68,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %{__perl} -pi.orig -e 's|^ifeq \(.+,2\.4\)$|ifeq (0,0)|' Makefile
 
 %build

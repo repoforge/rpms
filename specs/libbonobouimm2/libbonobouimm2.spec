@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname libbonobouimm
+%define real_name libbonobouimm
 
 Summary: C++ wrappers for libbonoboui, for use with gtkmm
 Name: libbonobouimm2
@@ -35,7 +35,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \

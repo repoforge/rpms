@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname MLDBM
+%define real_name MLDBM
 
 Summary: MLDBM module for perl
 Name: perl-MLDBM
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/MLDBM/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHAMAS/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHAMAS/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -27,7 +27,7 @@ Requires: perl >= 0:5.8.0
 MLDBM module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

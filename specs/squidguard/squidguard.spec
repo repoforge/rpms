@@ -6,7 +6,7 @@
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
-%define rname squidGuard
+%define real_name squidGuard
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
 Summary: Combined filter, redirector and access controller plugin for squid
@@ -43,7 +43,7 @@ plugin for squid. squidGuard can be used to limit or block access
 users to a list of webservers, based on keywords.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %{?rhfc1:%patch0}
 %{?rhel3:%patch0}
 

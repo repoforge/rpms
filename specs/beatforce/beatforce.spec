@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Patrick Prasse <patrick.prasse@gmx.net>
 
-%define rname BeatForce
+%define real_name BeatForce
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -18,7 +18,7 @@ URL: http://developer.berlios.de/projects/beatforce/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.berlios.de/beatforce/%{rname}-%{version}.tar.bz2
+Source: http://download.berlios.de/beatforce/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -33,7 +33,7 @@ Beatforce is a computer dj-ing system with 2 players, a XML-based song
 database, a mixer with manual and auto-fade and some more features.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### FIXME: Make it build with vrb 0.4.0. (Fix upstream please)
 %{__perl} -pi.orig -e 's|^(\s+vrb)(\s+vrb_buf;)|$1_p$2|;' src/ringbuffer.h

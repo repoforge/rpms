@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 030116
+%define real_version 030116
 
 Summary: Library of Unicode annotation data
 Name: libuninameslist
@@ -15,7 +15,7 @@ URL: http://libuninameslist.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/libuninameslist/%{name}_src-%{rversion}.tgz
+Source: http://dl.sf.net/libuninameslist/%{name}_src-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

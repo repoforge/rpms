@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Jcode
+%define real_name Jcode
 
 Summary: Jcode (Japanese Charset Handler) module for perl
 Name: perl-Jcode
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Jcode/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DA/DANKOGAI/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DANKOGAI/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.8.0
 Jcode (Japanese Charset Handler) module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

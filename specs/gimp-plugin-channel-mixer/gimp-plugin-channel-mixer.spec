@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname channel_mixer
+%define real_name channel_mixer
 
 Summary: Gimp plugin that combines values of the RGB channels
 Name: gimp-plugin-channel-mixer
@@ -25,7 +25,7 @@ Requires: gimp >= 1.2
 A gimp plugin that combines values of the RGB channels.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__make} %{?_smp_mflag}

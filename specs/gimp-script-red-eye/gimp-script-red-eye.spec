@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname red-eye
+%define real_name red-eye
 
 Summary: gimp script to implement Red-Eye removal technique
 Name: gimp-script-red-eye

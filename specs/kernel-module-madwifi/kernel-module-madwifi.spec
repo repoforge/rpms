@@ -17,17 +17,17 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname madwifi
-%define rversion 20040312
-%define rrelease 0
+%define real_name madwifi
+%define real_version 20040312
+%define real_release 0
 
 %define moduledir /kernel/drivers/net/wireless/madwifi
 %define modules ath_hal/ath_hal.o wlan/wlan.o driver/ath_pci.o
 
 Summary: Linux driver for the Multiband Atheros Wifi
 Name: kernel-module-madwifi
-Version: 0.0.%{rversion}
-Release: %{rrelease}_%{kversion}_%{krelease}
+Version: 0.0.%{real_version}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.mattfoster.clara.co.uk/madwifi-faq.htm
@@ -35,7 +35,7 @@ URL: http://www.mattfoster.clara.co.uk/madwifi-faq.htm
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/madwifi/madwifi-%{rversion}.tar.bz2
+Source: http://dl.sf.net/madwifi/madwifi-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -70,21 +70,21 @@ They might work with newer/older kernels.
 
 %package -n madwifi-utils
 Summary: Madwifi utilities
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 
 %description -n madwifi-utils
 Madwifi utilities.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

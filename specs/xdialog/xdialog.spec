@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Thierry Godefroy <xdialog@free.fr>
 
-%define rname Xdialog
+%define real_name Xdialog
 
 Name: xdialog
 Summary: X11 drop in replacement for cdialog
@@ -32,7 +32,7 @@ more functionalities (help button+box, treeview, editbox, file selector,
 range box, and much more).
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -41,15 +41,15 @@ range box, and much more).
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}
+%find_lang %{real_name}
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_docdir}/%{rname}-%{version}
+%{__rm} -rf %{buildroot}%{_docdir}/%{real_name}-%{version}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README
 %doc samples/ doc/*.html doc/*.png

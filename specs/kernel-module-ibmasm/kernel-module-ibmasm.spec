@@ -18,8 +18,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname ibmasm
-%define rrelease 1
+%define real_name ibmasm
+%define real_release 1
 
 %define moduledir /kernel/drivers/char/ibmasm
 %define modules src/ibmasm.o src/ibmser.o
@@ -27,7 +27,7 @@
 Summary: IBM Advanced System Management drivers
 Name: kernel-module-ibmasm
 Version: 2.02
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.pc.ibm.com/support/
@@ -50,8 +50,8 @@ BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: ibmasm-utils
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -64,13 +64,13 @@ They might work with newer/older kernels.
 %package -n kernel-smp-module-ibmasm
 Summary: IBM Advanced System Management drivers
 Group: System Environment/Kernel
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: ibmasm-utils
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-ibmasm
@@ -82,7 +82,7 @@ They might work with newer/older kernels.
 
 %package -n ibmasm-utils
 Summary: IBM Advanced System Management software
-Release: %{rrelease}
+Release: %{real_release}
 Group: System Environment/Base
 
 Obsoletes: ibmasm-utilities

@@ -4,7 +4,7 @@
 
 # Upstream: Kåre Sjölander <kare@speech.kth.se>
 
-%define rname snack
+%define real_name snack
 
 Summary: Snack Sound Toolkit
 Name: libsnack
@@ -17,7 +17,7 @@ URL: http://www.speech.kth.se/snack/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.speech.kth.se/~kare/%{rname}%{version}.tar.gz
+Source: http://www.speech.kth.se/~kare/%{real_name}%{version}.tar.gz
 Source1: http://www.speech.kth.se/~kare/ogg.tar.gz
 Source2: http://www.speech.kth.se/~kare/sphere.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

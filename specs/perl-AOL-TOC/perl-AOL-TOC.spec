@@ -1,9 +1,11 @@
 # $Id: perl-Archive-Tar.spec 120 2004-03-15 17:26:20Z dag $
-
 # Authority: dag
 
-%define rname AOL-TOC
-%define rversion 0.340
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name AOL-TOC
+%define real_version 0.340
 
 Summary: AOL-TOC module for perl
 Name: perl-AOL-TOC
@@ -16,7 +18,7 @@ URL: http://search.cpan.org/dist/AOL-TOC/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHARDING/AOL-TOC-%{rversion}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHARDING/AOL-TOC-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -27,7 +29,7 @@ Requires: perl >= 0:5.00503
 Perl extension for interfacing with AOL's AIM service.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -40,8 +42,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -50,7 +52,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/*
 
 %changelog
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 0.340-1

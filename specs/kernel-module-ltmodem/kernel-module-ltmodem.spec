@@ -9,9 +9,9 @@
 
 %define _libmoddir /lib/modules
 
-%define rname ltmodem
-%define rversion 8.26a9
-%define rrelease 1
+%define real_name ltmodem
+%define real_version 8.26a9
+%define real_release 1
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
@@ -24,7 +24,7 @@
 Summary: Linux Linmodem drivers
 Name: kernel-module-ltmodem
 Version: 8.26
-Release: %{rrelease}.a9_%{kversion}_%{krelease}
+Release: %{real_release}.a9_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ltmodem.heby.de/
@@ -32,15 +32,15 @@ URL: http://ltmodem.heby.de/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.physcip.uni-stuttgart.de/heby/ltmodem-%{rversion}.tar.gz
+Source: http://www.physcip.uni-stuttgart.de/heby/ltmodem-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: kernel-source, pciutils
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -55,8 +55,8 @@ Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-ltmodem
@@ -66,12 +66,12 @@ These drivers are built for kernel %{kversion}-%{krelease}smp.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 %{__tar} -xvzf source.tar.gz
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\nArchitecture: %{_target_cpu}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\nArchitecture: %{_target_cpu}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

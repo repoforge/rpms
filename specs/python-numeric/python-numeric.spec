@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Numeric
+%define real_name Numeric
 
 Summary: Numerical Extension to Python
 Name: python-numeric
@@ -15,7 +15,7 @@ URL: http://www.pfdubois.com/numpy/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/numpy/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/numpy/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -25,7 +25,7 @@ Obsoletes: numpy
 Numerical Extension to Python with subpackages.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" python setup.py build

@@ -1,7 +1,8 @@
 # $Id$
 # Authority: matthias
 
-%define xmmsgeneraldir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir)
+%define real_name lirc-xmms-plugin
 
 Summary: plugin to use LIRC supported infrared devices in XMMS
 Name: xmms-lirc
@@ -15,28 +16,35 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7, lirc
 BuildRequires: xmms-devel, glib-devel >= 1.2.7, gtk+-devel >= 1.2.7, lirc
 
+
 %description
 LIRC (Linux Infrared Remote Control) plugin for XMMS (X Multimedia System).
 
+
 %prep
-%setup -n lirc-xmms-plugin-%{version}
+%setup -n %{real_name}-%{version}
+
 
 %build
 ./configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%exclude %{xmmsgeneraldir}/liblirc.la
-%{xmmsgeneraldir}/liblirc.so
+%{xmms_generaldir}/liblirc.so
+%exclude %{xmms_generaldir}/liblirc.la
+
 
 %changelog
 * Wed Jan  7 2004 Matthias Saou <http://freshrpms.net/> 1.4-2.fr

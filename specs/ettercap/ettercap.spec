@@ -4,7 +4,7 @@
 # Upstream: Marco Valleri <crwm@freemail.it>
 # Upstream: Alberto Ornaghi <alor@users.sourceforge.net>
 
-%define rversion 0.6.b
+%define real_version 0.6.b
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
@@ -17,7 +17,7 @@ URL: http://ettercap.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/ettercap/ettercap-%{rversion}.tar.gz
+Source: http://dl.sf.net/ettercap/ettercap-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -30,7 +30,7 @@ LAN.  It supports active and passive dissection of many protocols
 analysis.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname xpenguins_applet
+%define real_name xpenguins_applet
 
 Summary: Cute little penguins that walk along the top of your windows
 Name: xpenguins-applet
@@ -15,7 +15,7 @@ URL: http://xpenguins.seul.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://xpenguins.seul.org/%{rname}-%{version}.tar.gz
+Source: http://xpenguins.seul.org/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -30,7 +30,7 @@ things. XPenguins is now themeable so if you're bored of penguins, try
 something else.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure

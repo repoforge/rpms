@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname dd_rescue
+%define real_name dd_rescue
 
 Summary: Fault tolerant "dd" utility for rescueing data from bad media
 Name: ddrescue
@@ -15,7 +15,7 @@ URL: http://www.garloff.de/kurt/linux/ddrescue/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.garloff.de/kurt/linux/ddrescue/%{rname}-%{version}.tar.gz
+Source: http://www.garloff.de/kurt/linux/ddrescue/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,10 +26,10 @@ not abort on errors in the input file. This makes it suitable for
 rescuing data from media with errors, e.g. a disk with bad sectors.
 
 %prep
-%setup -n %{rname}
+%setup -n %{real_name}
 
 ### Remove binary object
-%{__rm} -f %{rname}
+%{__rm} -f %{real_name}
 
 ### Rename default README
 %{__mv} -f README.dd_rescue README

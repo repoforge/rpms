@@ -1,5 +1,5 @@
 # Authority: atrpms
-%define rname gpgme
+%define real_name gpgme
 
 Summary: GnuPG Made Easy
 Name: gpgme0311
@@ -12,7 +12,7 @@ URL: http://www.gnupg.org/gpgme.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/%{rname}-%{version}.tar.gz
+Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -23,7 +23,7 @@ Conflicts: gpgme <= 0.3.11, libgpgme <= 0.3.11
 GPGME - GnuPG Made Easy
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure

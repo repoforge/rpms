@@ -2,8 +2,8 @@
 
 # Authority: dag
 
-%define rname Convert-BER
-%define rversion 1.3101
+%define real_name Convert-BER
+%define real_version 1.3101
 
 Summary: ASN.1 Basic Encoding Rules perl module
 Name: perl-Convert-BER
@@ -16,9 +16,8 @@ URL: http://search.cpan.org/dist/Convert-BER/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-%{rversion}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
@@ -28,7 +27,7 @@ Requires: perl >= 0:5.00503
 ASN.1 Basic Encoding Rules perl module.
 
 %prep
-%setup -n %{rname}-%{rversion} 
+%setup -n %{real_name}-%{real_version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -41,8 +40,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
 
 %clean 
 %{__rm} -rf %{buildroot}

@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define rname avidemux
+%define real_name avidemux
 
 Summary: Graphical video editing tool
 Name: avidemux2
@@ -34,7 +34,7 @@ You can also process video with included filters. It requires a DivX
 compatible encoder and the Gimp Toolkit (GTK) libraries.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -58,7 +58,7 @@ EOF
 ### FIXME: Base kde_locale on $(datadir). (Please fix upstream)
 %makeinstall \
 	kde_locale="%{buildroot}%{_datadir}/locale"
-%find_lang %{rname}
+%find_lang %{real_name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor gnome                \
@@ -69,7 +69,7 @@ desktop-file-install --vendor gnome                \
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING History README TODO
 %{_bindir}/*

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: freshrpms
-%define rname libgnomemm
+%define real_name libgnomemm
 
 Summary: C++ wrappers for libgnome, for use with gtkmm
 Name: libgnomemm2
@@ -37,7 +37,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure \

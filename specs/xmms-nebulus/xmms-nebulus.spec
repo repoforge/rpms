@@ -1,10 +1,8 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Pascal Brochart <pbrochart@tuxfamily.org>
 
-%define plugindir %(xmms-config --visualization-plugin-dir)
+%define xmms_visualdir %(xmms-config --visualization-plugin-dir)
 
 Summary: OpenGL visual plugin for XMMS
 Name: xmms-nebulus
@@ -22,22 +20,26 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xmms-devel, SDL-devel, SDL_ttf-devel
 
+
 %description
 Nebulus is an OpenGL visual plugin for XMMS.
+
 
 %prep
 %setup
 
+
 %build
 %configure \
 	--enable-shared \
-	--libdir="%{plugindir}"
+	--libdir="%{xmms_visualdir}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	libdir="%{buildroot}%{plugindir}"
+	libdir="%{buildroot}%{xmms_visualdir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,8 +47,9 @@ Nebulus is an OpenGL visual plugin for XMMS.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%{plugindir}/*.so
-%exclude %{plugindir}/*.la
+%{xmms_visualdir}/*.so
+%exclude %{xmms_visualdir}/*.la
+
 
 %changelog
 * Mon Sep 15 2003 Dag Wieers <dag@wieers.com> - 0.6.0-0

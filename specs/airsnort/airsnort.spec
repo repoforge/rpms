@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define rversion 0.2.3c
+%define real_version 0.2.3c
 
 Summary: Wireless LAN (WLAN) tool which recovers encryption keys
 Name: airsnort
@@ -17,7 +17,7 @@ URL: http://airsnort.shmoo.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/airsnort/airsnort-%{rversion}.tar.gz
+Source: http://dl.sf.net/airsnort/airsnort-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -29,7 +29,7 @@ AirSnort operates by passively monitoring transmissions, computing the
 encryption key when enough packets have been gathered.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]

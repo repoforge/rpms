@@ -17,8 +17,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname atmelwlandriver
-%define rrelease 1
+%define real_name atmelwlandriver
+%define real_release 1
 
 %define moduledir /kernel/drivers/net/wireless/airo_mpi
 %define modules airo_mpi.o
@@ -26,7 +26,7 @@
 Summary: Linux driver for the Atmel Wireless devices
 Name: kernel-module-atmel-wlan
 Version: 3.2.4.4
-Release: %{rrelease}.%{rversion}_%{kversion}_%{krelease}
+Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://atmelwlandriver.sf.net/
@@ -41,8 +41,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -58,8 +58,8 @@ Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-atmel-wlan
@@ -70,14 +70,14 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 ### FIXME: Fix Makefile to override KERNEL_VERSION
 %{__perl} -pi.orig -e 's|^#(KERNEL_VERSION)=.*$|$1 = %{kversion}-%{krelease}|' Makefile
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

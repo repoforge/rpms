@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname ExtUtils-PkgConfig
+%define real_name ExtUtils-PkgConfig
 
 Summary: ExtUtils-PkgConfig module for perl
 Name: perl-ExtUtils-PkgConfig
@@ -15,9 +15,8 @@ URL: http://search.cpan.org/dist/ExtUtils-PkgConfig/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gtk2-perl/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/gtk2-perl/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.8.0
@@ -29,7 +28,7 @@ utility, for use in the Makefile.PLs used to build Perl modules which wrap
 the libraries about which pkg-config knows.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -42,8 +41,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
+                %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
 
 %clean 
 %{__rm} -rf %{buildroot}

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname acid
+%define real_name acid
 
 Summary: Analysis Console for Intrusion Databases 
 Name: php-acid
@@ -22,8 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: webserver, php, php-adodb, php-jpgraph
 
-Obsoletes: %{rname}
-Provides: %{rname}
+Obsoletes: %{real_name}
+Provides: %{real_name}
 
 %description
 The Analysis Console for Intrusion Databases (ACID) is a PHP-based analysis
@@ -32,7 +32,7 @@ various IDSes, firewalls, and network monitoring tools including: Snort
 alerts, tcpdump binary logs, ipchians, iptables, and ipfw.
 
 %prep
-%setup -n %{rname}
+%setup -n %{real_name}
 
 %build
 

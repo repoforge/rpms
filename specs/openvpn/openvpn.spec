@@ -5,7 +5,7 @@
 
 ### FIXME: Add sysv script based on own template.
 
-%define rversion 1.5.0
+%define real_version 1.5.0
 
 Summary: Secure tunneling daemon
 Name: openvpn
@@ -18,7 +18,7 @@ URL: http://openvpn.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/openvpn/openvpn-%{rversion}.tar.gz
+Source: http://dl.sf.net/openvpn/openvpn-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lzo-devel, openssl-devel
@@ -31,7 +31,7 @@ UDP or TCP port. It can use the Marcus Franz Xaver Johannes Oberhumer's
 LZO library for compression.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \

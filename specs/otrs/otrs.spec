@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <info@otrs.de>
 
-%define rversion 1.2.2-01
+%define real_version 1.2.2-01
 
 Summary: Open Ticket Request System
 Name: otrs
@@ -16,7 +16,7 @@ URL: http://otrs.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.otrs.org/pub/otrs/otrs-%{rversion}.tar.bz2
+Source: ftp://ftp.otrs.org/pub/otrs/otrs-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #Autoreqprov:  no

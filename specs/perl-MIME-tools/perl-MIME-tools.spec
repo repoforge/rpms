@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: atrpms
-%define rname MIME-tools
+%define real_name MIME-tools
 
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
@@ -14,7 +14,7 @@ URL: http://search.cpan.org/dist/MIME-tools/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/E/ER/ERYQ/%{rname}-%{version}a.tar.gz
+Source: http://www.cpan.org/authors/id/E/ER/ERYQ/%{real_name}-%{version}a.tar.gz
 Patch: http://www.roaringpenguin.com/mimedefang/mime-tools-patch.txt
 Patch1: MIME-Tools.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -34,7 +34,7 @@ subclasses for parsing fields, a parsed MIME header (Mail::Header subclass),
 parser and tool for building your own MIME parser, and utilities.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %patch -p1
 %patch1 -p1
 

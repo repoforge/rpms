@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname GD
+%define real_name GD
 
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://search.cpan.org/CPAN/authors/id/L/LD/LDS/GD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: perl >= 0:5.8.0, gd-devel, libpng-devel, zlib-devel
 BuildRequires: freetype-devel, libjpeg-devel, XFree86-devel
 Requires: perl >= 0:5.8.0
@@ -29,7 +28,7 @@ to create color drawings using a large number of graphics primitives,
 and emit the drawings as PNG files.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -17,17 +17,17 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname prism54
-%define rversion 20040307
-%define rrelease 1
+%define real_name prism54
+%define real_version 20040307
+%define real_release 1
 
 %define moduledir /kernel/drivers/net/wireless/prism54
 %define modules ksrc/prism54.o
 
 Summary: Linux driver for the 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets
 Name: kernel-module-prism54
-Version: 0.0.%{rversion}
-Release: %{rrelease}_%{kversion}_%{krelease}
+Version: 0.0.%{real_version}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://prism54.org/
@@ -35,15 +35,15 @@ URL: http://prism54.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prism54.org/pub/linux/snapshot/tars/2004-03/prism54-cvs%{rversion}.tar.bz2
+Source: http://prism54.org/pub/linux/snapshot/tars/2004-03/prism54-cvs%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: kernel-source >= 2.4.22
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -59,8 +59,8 @@ Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 
-Obsoletes: %{rname}, kernel-%{rname}
-Provides: %{rname}, kernel-%{rname}
+Obsoletes: %{real_name}, kernel-%{real_name}
+Provides: %{real_name}, kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-prism54
@@ -72,14 +72,14 @@ They might work with newer/older kernels.
 
 #%package -n prism54-firmware
 #Summary: 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets firmware.
-#Release: %{rrelease}
+#Release: %{real_release}
 #Group: System Environment/Base
 #
 #%description -n prism54-firmware
 #802.11g Prism GT / Prism Duette / Prism Indigo Chipsets firmware.
 
 %prep
-%setup -n %{rname}-cvs%{rversion}
+%setup -n %{real_name}-cvs%{real_version}
 
 %build
 %{__rm} -rf %{buildroot}

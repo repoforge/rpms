@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname XML-LibXML-Common
+%define real_name XML-LibXML-Common
 
 Summary: Routines and Constants common for XML::LibXML and XML::GDOME
 Name: perl-XML-LibXML-Common
@@ -25,7 +25,7 @@ Requires: perl
 Routines and Constants common for XML::LibXML and XML::GDOME.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -4,7 +4,7 @@
 
 # Upstream: Joshua Reich <josh@i2pi.com>
 
-%define rversion 1.3.6
+%define real_version 1.3.6
 
 Summary: Funneling POP proxy
 Name: smunge
@@ -17,7 +17,7 @@ URL: http://www.i2pi.com/smunge/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.i2pi.com/smunge/smunge-%{rversion}.tar.gz
+Source: http://www.i2pi.com/smunge/smunge-%{real_version}.tar.gz
 Patch: smunge-hostent.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

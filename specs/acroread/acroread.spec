@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define rversion 508
+%define real_version 508
 
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
@@ -17,7 +17,7 @@ URL: http://www.adobe.com/products/acrobat/readermain.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{rversion}.tar.gz
+Source: ftp://ftp.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

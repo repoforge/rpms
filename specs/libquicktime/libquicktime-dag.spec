@@ -1,5 +1,5 @@
 # Authority: freshrpms
-%define rversion 0.9.2pre1
+%define real_version 0.9.2pre1
 
 Summary: library for manipulating QuickTime files
 Name: libquicktime
@@ -12,7 +12,7 @@ URL: http://libquicktime.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{rversion}.tar.gz
+Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -39,7 +39,7 @@ Requires: %{name} = %{version}-%{release}
 Header files and development documentation for libquicktime.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \

@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Upstream: David J. Goehrig <dave@goehrig.us>
 
-%define rname SDL_perl
+%define real_name SDL_perl
 
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
@@ -14,7 +14,7 @@ URL: http://sdlperl.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://sdlperl.org/SDL_perl/%{rname}-%{version}.tar.gz
+Source: ftp://sdlperl.org/SDL_perl/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -32,7 +32,7 @@ additional SDL libraries, such as SDL_image, SDL_mixer, SDL_ttf,
 and SDL_net.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

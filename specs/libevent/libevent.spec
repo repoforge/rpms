@@ -1,10 +1,8 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Niels Provos <provos@citi.umich.edu>
 
-%define	rversion 0.7a
+%define	real_version 0.7a
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
@@ -17,7 +15,7 @@ URL: http://monkey.org/~provos/libevent/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://monkey.org/~provos/%{name}-%{rversion}.tar.gz
+Source: http://monkey.org/~provos/libevent-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -29,18 +27,22 @@ loop found in event driven network servers. An application just needs
 to call event_dispatch() and can then add or remove events dynamically
 without having to change the event loop.
 
+
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+
 
 %description devel
 This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
+
 
 %build
 %configure \
@@ -49,6 +51,7 @@ you will need to install %{name}-devel.
 
 ### FIXME: configure should have the ability to specify for static or shared libraries
 ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.so.0.0.7 *.o
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -62,24 +65,30 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %{__install} -m0755 event.h %{buildroot}%{_includedir}/libevent.h
 %{__ln_s} -f libevent.h %{buildroot}%{_includedir}/event.h
 
+
 %post
 /sbin/ldconfig 2>/dev/null
+
 
 %postun
 /sbin/ldconfig 2>/dev/null
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man?/*
 %{_libdir}/*.so.*
 
+
 %files devel
 %{_includedir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
+
 
 %changelog
 * Tue Aug 05 2003 Dag Wieers <dag@wieers.com> - 0.7-0.a

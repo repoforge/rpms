@@ -2,8 +2,8 @@
 
 # Authority: dag
 
-%define rversion 1_4_2
-%define rrelease 03
+%define real_version 1_4_2
+%define real_release 03
 
 Summary: Sun Java(tm) 2 Runtime Environment
 Name: j2re
@@ -16,7 +16,7 @@ URL: http://java.sun.com/j2se/1.4.2/download.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{name}-%{rversion}_%{rrelease}-linux-i586.bin
+Source: %{name}-%{real_version}_%{real_release}-linux-i586.bin
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -43,7 +43,7 @@ mozilla, galeon, netscape 4 and netscape 6.
 
 %prep
 %setup -c -T
-%{__rm} -rf j2re%{version}_%{rrelease}
+%{__rm} -rf j2re%{version}_%{real_release}
 expect -f- <<EOF
 	set timeout -1
 	spawn sh %{SOURCE0}
@@ -65,7 +65,7 @@ EOF
 			%{buildroot}%{_libdir}/mozilla/plugins \
 			%{buildroot}%{_libdir}/netscape/plugins
 
-cd %{name}%{version}_%{rrelease}
+cd %{name}%{version}_%{real_release}
 %{__cp} -av bin/ lib/ plugin/ %{buildroot}%{_libdir}/jre/
 %{__cp} -av man/man1/* %{buildroot}%{_mandir}/man1/
 %{__mv} -f CHANGES COPYRIGHT ControlPanel.html LICENSE README THIRDPARTYLICENSEREADME.txt Welcome.html ../

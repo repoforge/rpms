@@ -4,7 +4,7 @@
 # Upstream: George Farris <farrisg@mala.bc.ca>
 # Distcc: 0
 
-%define rversion 0.6.beta9
+%define real_version 0.6.beta9
 
 Summary: The GNOME Fax Application
 Name: gfax
@@ -17,7 +17,7 @@ URL: http://gfax.cowlug.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gfax.cowlug.org/gfax-%{rversion}.tar.gz
+Source: http://gfax.cowlug.org/gfax-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -33,7 +33,7 @@ Gfax is a popup tool for easily sending facsimilies by printing
 to a fax printer.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 ### FIXME: makeinstall without DESTDIR/autotool paths
 %{__perl} -pi.orig -e '

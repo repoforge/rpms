@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-%define rname BerkeleyDB
+%define real_name BerkeleyDB
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
@@ -26,7 +25,7 @@ Requires: perl >= 0:5.00503
 Perl extension for Berkeley DB version 2, 3 or 4.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 FLAGS="%{optflags}" %{__perl} Makefile.PL \

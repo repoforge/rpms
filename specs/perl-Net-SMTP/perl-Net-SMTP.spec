@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Net-SMTP
+%define real_name Net-SMTP
 
 Summary: Net-SMTP Perl module
 Name: perl-Net-SMTP
@@ -27,7 +27,7 @@ Requires: perl >= 0:5.00503
 Net-SMTP Perl module.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

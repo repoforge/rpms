@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 1.0
+%define real_version 1.0
 
 Summary: 68k Macintosh emulator
 Name: BasiliskII
@@ -28,7 +28,7 @@ different operating system. However, you still need a copy of MacOS and
 a Macintosh ROM image to use Basilisk II.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 cd src/Unix

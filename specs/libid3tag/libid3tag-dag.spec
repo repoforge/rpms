@@ -1,6 +1,6 @@
 # Authority: freshrpms
 
-%define rversion 0.15.1b
+%define real_version 0.15.1b
 
 Summary: Library for reading and writing ID3v1 and ID3v2 tags
 Name: libid3tag
@@ -13,7 +13,7 @@ URL: http://www.underbit.com/products/mad/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.mars.org/pub/mpeg/%{name}-%{rversion}.tar.gz
+Source: ftp://ftp.mars.org/pub/mpeg/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -35,7 +35,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %{__cat} <<EOF >id3tag.pc
 prefix=%{_prefix}
@@ -46,7 +46,7 @@ includedir=%{_includedir}
 Name: id3tag
 Description: ID3 tag reading library
 Requires:
-Version: %{rversion}
+Version: %{real_version}
 Libs: -L%{_libdir} -lid3tag -lz
 Cflags: -I%{_includedir}
 EOF

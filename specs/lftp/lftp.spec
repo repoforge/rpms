@@ -1,11 +1,13 @@
 # $Id$
 
 # Authority: atrpms
+# Upstream: Alexander V. Lukyanov <lav@yars.free.net>
+# Upstream: <lftp-devel@uniyar.ac.ru>
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 2.6.12
-Release: 0
+Version: 3.0.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
@@ -15,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel
 
@@ -40,25 +41,23 @@ reliability in mind.
 %makeinstall
 %find_lang %{name}
 
-%{__chmod} 0755 %{buildroot}%{_libdir}/lftp/*
-%{__chmod} 0755 %{buildroot}%{_libdir}/lftp/%{version}/*.so
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/lftp/%{version}/*.{a,la}
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc BUGS ChangeLog COPYING FAQ FEATURES README* NEWS THANKS TODO
+%doc BUGS ChangeLog COPYING FAQ FEATURES INSTALL MIRRORS README* NEWS THANKS TODO
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/lftp.conf
 %{_bindir}/*
 %{_datadir}/lftp/
 %{_libdir}/lftp/
+%exclude %{_libdir}/lftp/%{version}/*.la
 
 %changelog
+* Fri Apr 02 2004 Dag Wieers <dag@wieers.com> - 3.0.0-1
+- Updated to release 3.0.0.
+
 * Sat Jan 24 2004 Dag Wieers <dag@wieers.com> - 2.6.12-0
 - Updated to release 2.6.12.
 

@@ -2,7 +2,10 @@
 
 # Authority: dag
 
-%define rname Compress-Zlib
+%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Compress-Zlib
 
 Summary: Compress-Zlib module for perl 
 Name: perl-Compress-Zlib
@@ -18,7 +21,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cpan.org/authors/id/P/PM/PMQS/Compress-Zlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: perl >= 0:5.004, zlib-devel >= 1.0.2
 Requires: perl >= 0:5.004, zlib >= 1.0.2
 
@@ -26,7 +28,7 @@ Requires: perl >= 0:5.004, zlib >= 1.0.2
 Compress-Zlib module for perl
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -40,8 +42,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -50,7 +52,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*/*
+%{perl_vendorarch}/*
 
 %changelog
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.33-0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Tomasz Maka <pasp@ll.pl>
 
-%define rversion 0.2.2a
+%define real_version 0.2.2a
 
 Summary: Graphical address book
 Name: dlume
@@ -16,7 +16,7 @@ URL: http://clay.ll.pl/dlume.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://clay.ll.pl/download/dlume-%{rversion}.tar.gz
+Source: http://clay.ll.pl/download/dlume-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -30,7 +30,7 @@ easy to find entries. Exporting to CSV and HTML formats is also
 possible.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]

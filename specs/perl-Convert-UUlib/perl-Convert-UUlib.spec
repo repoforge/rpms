@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Convert-UUlib
+%define real_name Convert-UUlib
 
 Summary: Convert-UUlib module for perl
 Name: perl-Convert-UUlib
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/Convert-UUlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
 
@@ -26,7 +25,7 @@ Requires: perl >= 0:5.8.0
 Convert-UUlib module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

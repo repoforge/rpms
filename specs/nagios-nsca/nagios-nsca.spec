@@ -4,7 +4,7 @@
 
 ### FIXME: usermod -G nagios apache removes other groups.
 
-%define rname nsca
+%define real_name nsca
 
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
@@ -30,7 +30,7 @@ The purpose of this addon is to allow you to execute NetSaint/Nagios
 plugins on a remote host in as transparent a manner as possible.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %{__perl} -pi.orig -e '
 		s|^(command_file)=\@localstatedir\@/rw/nagios.cmd|$1=%{_localstatedir}/spool/nagios/nagios.cmd|;

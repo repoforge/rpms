@@ -4,8 +4,8 @@
 
 # Upstream: Tigrux <tigrux@avantel.net>
 
-%define rname festival-gaim
-%define rversion 0.68
+%define real_name festival-gaim
+%define real_version 0.68
 
 Summary: Voice plugin for gaim
 Name: gaim-festival
@@ -18,12 +18,12 @@ URL: http://primates.ximian.com/~sandino/festival/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://primates.ximian.com/~sandino/festival/SOURCES/%{rname}-%{version}.tar.gz
+Source: http://primates.ximian.com/~sandino/festival/SOURCES/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 Requires: gaim festival
-Obsoletes: %{rname}
+Obsoletes: %{real_name}
 
 %description
 This plugin speak your incoming messages from gaim.
@@ -31,7 +31,7 @@ It use festival and is configurable.
 
 %prep
 
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__make} %{?_smp_mflags} \

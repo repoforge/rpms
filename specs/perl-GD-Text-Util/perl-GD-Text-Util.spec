@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname GDTextUtil
+%define real_name GDTextUtil
 
 Summary: Text utilities for use with GD
 Name: perl-GD-Text-Util
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://search.cpan.org/CPAN/authors/id/M/MV/MVERB/GDTextUtil-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
 
@@ -26,7 +25,7 @@ Requires: perl >= 0:5.8.0
 Text utilities for use with GD.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname zvbi
+%define real_name zvbi
 
 Name: libzvbi
 Summary: Raw VBI, Teletext and Closed Caption decoding library
@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 PreReq: /sbin/install-info
-#Provides: %{rname}
-Obsoletes: %{rname}
+#Provides: %{real_name}
+Obsoletes: %{real_name}
 
 %description
 Routines to access raw VBI capture devices (currently the V4L and
@@ -38,7 +38,7 @@ Requires: %{name} = %{version}
 Static library and API documentation of the VBI routines.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -47,7 +47,7 @@ Static library and API documentation of the VBI routines.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}
+%find_lang %{real_name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -58,7 +58,7 @@ Static library and API documentation of the VBI routines.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO
 %{_libdir}/*.so.*

@@ -5,7 +5,7 @@
 ### FIXME: RPM doesn't seem to allow i386-packages with noarch-subpackages.
 # Archs: i386
 
-%define rname Mail-SpamAssassin
+%define real_name Mail-SpamAssassin
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
@@ -75,7 +75,7 @@ mail can then be optionally tagged as spam for later filtering using the
 user's own mail user-agent application.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 echo | %{__perl} Makefile.PL \

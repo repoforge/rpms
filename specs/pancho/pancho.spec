@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <pancho-discuss@lunarmedia.net>
 
-%define rname Pancho
+%define real_name Pancho
 
 Summary: Archive and manage remote nodes using SNMP and TFTP
 Name: pancho
@@ -33,7 +33,7 @@ be written by users based on a template provided with the distribution
 and shared with the community via the Pancho Project website.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL NOASK \

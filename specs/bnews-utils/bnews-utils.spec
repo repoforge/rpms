@@ -3,11 +3,11 @@
 # Authority: dag
 # Upstream: Stef Van Dessel <stef@iguana.be>
 
-%define rversion 20020930
+%define real_version 20020930
 
 Summary: Download, upload, decode and/or encode "Bommanews"-encoded files
 Name: bnews-utils
-Version: 0.0.%{rversion}
+Version: 0.0.%{real_version}
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -16,7 +16,7 @@ URL: http://www.iguana.be/~stef/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.iguana.be/~stef/bnews-utils-%{rversion}.tar.gz
+Source: http://www.iguana.be/~stef/bnews-utils-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -31,7 +31,7 @@ For more technical information about this encoding, visit the bnews site.
 (http://b-news.sf.net/)
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

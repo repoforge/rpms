@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Ian Macdonald <ian@caliban.org>
 
-%define rname bash_completion
+%define real_name bash_completion
 
 Summary: Programmable completion for Bash
 Name: bash-completion
@@ -27,7 +27,7 @@ bash-completion is a collection of shell functions that take advantage
 of the programmable completion feature of bash 2.04 and later.
 
 %prep
-%setup -n %{rname}
+%setup -n %{real_name}
 
 ### FIXME: Remove this line the next release !
 %{__perl} -pi.orig -e 's|_comp-dpkg-hold-packages|_comp_dpkg_hold_packages|g' bash_completion

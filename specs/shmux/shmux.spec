@@ -4,7 +4,7 @@
 
 # Upstream: Christophe Kalt <shmux@taranis.org>
 
-%define rversion 0.11a
+%define real_version 0.11a
 
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
@@ -17,7 +17,7 @@ URL: http://web.taranis.org/shmux/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://web.taranis.org/shmux/dist/%{name}-%{rversion}.tgz
+Source: http://web.taranis.org/shmux/dist/%{name}-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -31,7 +31,7 @@ produced by the children is received by shmux and either output in turn to
 the user, or written to files for later processing.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

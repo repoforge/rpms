@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 2.63a
+%define real_version 2.63a
 
 Summary: Uncompressor for .arj format archive files
 Name: unarj
@@ -15,7 +15,7 @@ License: distributable
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ibiblio.org/pub/Linux/utils/compress/unarj-%{rversion}.tar.gz
+Source: http://www.ibiblio.org/pub/Linux/utils/compress/unarj-%{real_version}.tar.gz
 Patch: unarj-subdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -25,7 +25,7 @@ The UNARJ program is used to uncompress .arj format archives.  The
 .arj format archive was mostly used on DOS machines.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 #%patch -p1
 
 %build

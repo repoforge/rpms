@@ -3,7 +3,7 @@
 # Authority: dag
 # Distcc: 0
 
-%define rversion 1.5-rc6
+%define real_version 1.5-rc6
 
 Summary: JavaScript interpreter
 Name: js
@@ -16,7 +16,7 @@ URL: http://www.mozilla.org/js/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.mozilla.org/pub/mozilla.org/js/js-%{rversion}.tar.gz
+Source: http://ftp.mozilla.org/pub/mozilla.org/js/js-%{real_version}.tar.gz
 Patch0: js-make.patch
 Patch1: js-shlib.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

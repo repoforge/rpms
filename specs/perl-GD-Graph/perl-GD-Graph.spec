@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname GDGraph
+%define real_name GDGraph
 
 Summary: Graph plotting module for Perl
 Name: perl-GD-Graph
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://search.cpan.org/CPAN/authors/id/M/MV/MVERB/GDGraph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
 
@@ -26,7 +25,7 @@ Requires: perl >= 0:5.8.0
 Graph plotting module for Perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

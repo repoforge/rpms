@@ -15,8 +15,8 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname saa7134
-%define rrelease 1
+%define real_name saa7134
+%define real_release 1
 
 %define moduledir /kernel/drivers/video/media/saa7134
 %define modules ir-common.o msp3400.o saa6752hs.o saa7134.o tda9887.o tuner.o tvaudio.o v4l1-compat.o v4l2-common.o video-buf.o
@@ -24,7 +24,7 @@
 Summary: Linux saa7130/7134 (TV/capture card) drivers
 Name: kernel-module-saa7134
 Version: 0.2.9
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://bytesex.org/saa7134/
@@ -48,7 +48,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-saa7134
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Summary: Linux saa7130/7134 (TV/capture card) drivers
 License: GPL
 Group: System Environment/Kernel
@@ -65,7 +65,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__rm} -rf %{buildroot}

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.3.7.beta
+%define real_version 0.3.7.beta
 
 Summary: network protocol analyzer
 Name: sniffit
@@ -15,7 +15,7 @@ URL: http://reptile.rug.ac.be/~coder/sniffit/sniffit.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://reptile.rug.ac.be/~coder/sniffit/files/%{name}.%{rversion}.tar.gz
+Source: http://reptile.rug.ac.be/~coder/sniffit/files/%{name}.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -28,7 +28,7 @@ produces analysis based on the traffic and/or translates packets into
 some level of human readable form.
 
 %prep
-%setup -n %{name}.%{rversion}
+%setup -n %{name}.%{real_version}
 
 %build
 %configure

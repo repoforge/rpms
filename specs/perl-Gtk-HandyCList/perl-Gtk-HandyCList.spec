@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Gtk-HandyCList
+%define real_name Gtk-HandyCList
 
 Summary: Gtk-HandyCList module for perl 
 Name: perl-Gtk-HandyCList
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Gtk-HandyCList/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.00503
 Gtk-HandyCList module for perl
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

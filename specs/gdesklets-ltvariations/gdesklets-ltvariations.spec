@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname LTVariations
+%define real_name LTVariations
 
 Summary: set of different sensors and displays for gdesklets
 Name: gdesklets-ltvariations
@@ -15,7 +15,7 @@ URL: http://gdesklets.gnomedesktop.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pycage.de/download/gdesklets/%{rname}-%{version}.tgz
+Source: http://www.pycage.de/download/gdesklets/%{real_name}-%{version}.tgz
 Source1: Makefile_install_scripts.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -32,7 +32,7 @@ To add the display, use :
 	gdesklets-add-GoodWeather-display
 
 %prep
-%setup -c %{rname} -a 1
+%setup -c %{real_name} -a 1
 
 %build
 %{__make} \

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Unicode-MapUTF8
+%define real_name Unicode-MapUTF8
 
 Summary: Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) module for perl
 Name: perl-Unicode-MapUTF8
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Unicode-MapUTF8/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SN/SNOWHARE/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SN/SNOWHARE/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.8.0
 Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -6,7 +6,7 @@
 # SourceDists: rh73
 
 %define aversion %(rpm -q apache-devel --qf '%{RPMTAG_VERSION}' | tail -1)
-%define rversion 1.3.26.1a
+%define real_version 1.3.26.1a
 
 Summary: Gzip compression module for apache
 Name: mod_gzip
@@ -19,7 +19,7 @@ URL: http://www.schroepl.net/projekte/mod_gzip/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/mod-gzip/%{name}-%{rversion}.tgz
+Source: http://dl.sf.net/mod-gzip/%{name}-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -44,7 +44,7 @@ of receiving it. It is a software based solution that runs perfectly in
 conjunction with any Apache Web Server on both UNIX and Win32 platforms.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %{__cat} <<'EOF' >mod_gzip.conf
 <IfModule mod_gzip.c>

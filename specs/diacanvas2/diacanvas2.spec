@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname diacanvas
+%define real_name diacanvas
 
 Summary: Full featured diagramming canvas for GNOME
 Name: diacanvas2
@@ -45,7 +45,7 @@ Static library and API documentation of DiaCanvas.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}
+%find_lang %{real_name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -56,7 +56,7 @@ Static library and API documentation of DiaCanvas.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_libdir}/*.so.*

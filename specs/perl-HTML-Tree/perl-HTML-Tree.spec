@@ -2,7 +2,7 @@
 
 # Authority: atrpms
 
-%define rname HTML-Tree
+%define real_name HTML-Tree
 
 Summary: HTML-Tree module for perl
 Name: perl-HTML-Tree
@@ -27,7 +27,7 @@ Requires: perl >= 0:5.8.0
 HTML-Tree module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <gtk-perl-list@gnome.org>
 
-%define rname Gnome2-VFS
+%define real_name Gnome2-VFS
 
 Summary: Perl interface to the 2.x series of the GNOME VFS library
 Name: perl-Gnome2-VFS
@@ -32,7 +32,7 @@ freeing you from the casting and memory management in C, yet remaining very
 close in spirit to original API.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

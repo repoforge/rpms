@@ -3,7 +3,7 @@
 # Authority: atrpms
 # PackageDir: /forbidden
 
-%define rversion 0.90pre7
+%define real_version 0.90pre7
 %define nversion 0.90
 
 Summary: W32 Codec package for MPlayer on x86 UNIX systems
@@ -17,7 +17,7 @@ URL: http://divx.euro.ru/binaries-010122.zip
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://ftp.lug.udel.edu/MPlayer/releases/%{name}-%{rversion}.tar.bz2
+Source0: http://ftp.lug.udel.edu/MPlayer/releases/%{name}-%{real_version}.tar.bz2
 Source1: http://ftp.lug.udel.edu/MPlayer/releases/codecs/win32codecs.tar.bz2
 Source2: http://ftp.lug.udel.edu/MPlayer/releases/codecs/qt6dlls.tar.bz2
 Source3: http://ftp.lug.udel.edu/MPlayer/releases/codecs/qtextras.tar.bz2

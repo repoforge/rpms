@@ -10,8 +10,8 @@
 
 %define _libmoddir /lib/modules
 
-%define rname speedtouch
-%define rrelease 1
+%define real_name speedtouch
+%define real_release 1
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
@@ -25,7 +25,7 @@
 Summary: Linux SpeedTouch USB ADSL Modem drivers
 Name: kernel-module-speedtouch
 Version: 1.7
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://linux-usb.sf.net/SpeedTouch/
@@ -40,8 +40,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 
-Obsoletes: kernel-%{rname}
-Provides: kernel-%{rname}
+Obsoletes: kernel-%{real_name}
+Provides: kernel-%{real_name}
 Provides: kernel-modules
 
 %description
@@ -55,8 +55,8 @@ Summary: Linux SpeedTouch USB ADSL Modem drivers for SMP
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
-Obsoletes: kernel-%{rname}
-Provides: kernel-%{rname}
+Obsoletes: kernel-%{real_name}
+Provides: kernel-%{real_name}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-speedtouch
@@ -67,7 +67,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__rm} -rf %{buildroot}

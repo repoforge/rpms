@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname WifiScanner
+%define real_name WifiScanner
 
 Summary: Discover wireless clients and access points
 Name: wifiscanner
@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 WifiScanner is a tool to discover wireless clients and access points.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 cat <<EOF >gnome-%{name}.desktop
 [Desktop Entry]

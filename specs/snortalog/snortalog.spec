@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jeremy Chartier <jeremy.chartier@free.fr>
 
-%define rversion v2.2
+%define real_version v2.2
 
 Summary: Snort log analyzer
 Name: snortalog
@@ -33,7 +33,7 @@ Also, it is able to summarize Fw-1 (NG and 4.1), Netfilter and IPFilter
 logs in a simmilar way.
 
 %prep
-%setup -n %{name}_%{rversion}
+%setup -n %{name}_%{real_version}
 
 %{__perl} -pi.orig -e '
 		s|^#(\$domains_file) = .+;|$1 = "%{_sysconfdir}/snortalog/domains";|;

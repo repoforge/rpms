@@ -4,7 +4,7 @@
 # Upstream: Chris Brady <bugs@memtest86.com>
 
 %define _prefix /boot
-%define rversion 3.1a
+%define real_version 3.1a
 
 Summary: Thorough, stand alone memory test
 Name: memtest86
@@ -17,7 +17,7 @@ URL: http://www.memtest86.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.memtest86.com/memtest86-%{rversion}.tar.gz
+Source: http://www.memtest86.com/memtest86-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -33,7 +33,7 @@ errors.  The BIOS based memory test is just a quick check that will often
 miss many of the failures that are detected by Memtest86.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 #%{?rh80:CC="gcc296"} %{?rh90:CC="gcc296"} %{?rhel3:CC="gcc296"} %{?rhfc1:CC="gcc296"}

@@ -4,7 +4,7 @@
 
 %define _sbindir /sbin
 %define _libdir /lib
-%define rname wireless_tools
+%define real_name wireless_tools
 
 Summary: Wireless ethernet configuration tools
 Name: wireless-tools
@@ -29,7 +29,7 @@ allowing you to set Wireless LAN specific parameters and get the
 specific stats for wireless networking equipment. 
 
 %prep
-%setup -n %{rname}.%{version}
+%setup -n %{real_name}.%{version}
 %patch0
 
 %build

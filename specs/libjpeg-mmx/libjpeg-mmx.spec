@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname jpeg-mmx
+%define real_name jpeg-mmx
 
 Summary: Tools for the movtar MJPEG video format
 Name: libjpeg-mmx
@@ -27,7 +27,7 @@ needed to compile applications that use part of the libraries
 of the libjpeg-mmx package.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure

@@ -14,9 +14,9 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname ips
-%define rversion 611
-%define rrelease 1
+%define real_name ips
+%define real_version 611
+%define real_release 1
 
 %define moduledir /kernel/drivers/misc/ips
 %define modules ips.o
@@ -24,7 +24,7 @@
 Summary: Linux IBM PCI ServeRAID drivers
 Name: kernel-module-ips
 Version: 6.11
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www-3.ibm.com/pc/support/site.wss/MIGR-39729.html
@@ -32,7 +32,7 @@ URL: http://www-3.ibm.com/pc/support/site.wss/MIGR-39729.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ips-%{rversion}.tgz
+Source: ips-%{real_version}.tgz
 Source1: ips-Makefile
 Source2: ips-kernel-ver.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -50,7 +50,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ips
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Summary: Linux IBM PCI ServeRAID drivers for SMP
 License: GPL
 Group: System Environment/Kernel
@@ -67,13 +67,13 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -c -n %{rname}-%{rversion}
+%setup -c -n %{real_name}-%{real_version}
 %{__install} -m0644 %{SOURCE1} Makefile
 %{__install} -m0644 %{SOURCE2} kernel-ver.c
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{rversion}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}

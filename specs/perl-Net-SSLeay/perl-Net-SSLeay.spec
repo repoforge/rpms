@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Net_SSLeay.pm
+%define real_name Net_SSLeay.pm
 
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Net-SSLeay.pm/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{rname}-%{version}.tar.gz
+Source: %{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.00503
 Net-SSLeay module for perl.
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %{__perl} -pi -e 's|^\s*#!/.*bin/perl|#!%{__perl}|;' SSLeay.pm examples/*.pl
 

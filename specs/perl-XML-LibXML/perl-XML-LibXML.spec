@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname XML-LibXML
+%define real_name XML-LibXML
 
 Summary: XML-LibXML Perl module
 Name: perl-XML-LibXML
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/XML-LibXML/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{rname}-%{version}.tar.gz
+Source: %{real_name}-%{version}.tar.gz
 Patch: perl-XML-LibXML-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -30,7 +30,7 @@ Requires: perl >= 0:5.8.0
 XML-LibXML Perl module.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 %patch
 
 %build

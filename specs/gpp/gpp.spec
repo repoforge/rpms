@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.6pre3
+%define real_version 0.6pre3
 
 Summary: GNOME Photo Printer
 Name: gpp
@@ -15,7 +15,7 @@ URL: ?
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.fogman.de/gpp/%{name}-%{rversion}.tar.gz
+Source: http://www.fogman.de/gpp/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -29,7 +29,7 @@ and drop it.  Make some selections like Photo or Paper size, hit Preview
 or  Print , and see your pictures printed.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 %build
 %configure

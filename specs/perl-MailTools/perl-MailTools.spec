@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname MailTools
+%define real_name MailTools
 
 Summary: MailTools module for perl 
 Name: perl-MailTools
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/MailTools/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/G/GB/GBARR/%{rname}-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/G/GB/GBARR/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -29,7 +29,7 @@ Requires: perl >= 0:5.00503 %{?rh73:, perl-libnet >= 1.05}
 MailTools module for perl
 
 %prep
-%setup -n %{rname}-%{version} 
+%setup -n %{real_name}-%{version} 
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

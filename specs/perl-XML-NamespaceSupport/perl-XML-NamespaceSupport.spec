@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname XML-NamespaceSupport
+%define real_name XML-NamespaceSupport
 
 Summary: XML-NamespaceSupport Perl module
 Name: perl-XML-NamespaceSupport
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/XML-NamespaceSupport/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{rname}-%{version}.tar.gz
+Source: %{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ BuildRequires: perl
 XML-NamespaceSupport Perl module.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

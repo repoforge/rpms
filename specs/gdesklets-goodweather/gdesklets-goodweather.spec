@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname GoodWeather
+%define real_name GoodWeather
 
 Summary: GoodWeather sensor and display for gdesklets
 Name: gdesklets-goodweather
@@ -15,7 +15,7 @@ URL: http://gdesklets.gnomedesktop.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pycage.de/download/gdesklets/%{rname}-%{version}.tar.bz2
+Source: http://www.pycage.de/download/gdesklets/%{real_name}-%{version}.tar.bz2
 Source1: Makefile_install_scripts.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -35,7 +35,7 @@ To add the display, use :
 	gdesklets-add-GoodWeather-display
 
 %prep
-%setup -n %{rname} -a 1
+%setup -n %{real_name} -a 1
 
 %build
 %{__make} \

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: freshrpms
-%define rname rte
+%define real_name rte
 
 Summary: Real Time software audio/video Encoder library
 Name: librte
@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?rh62:BuildRequires: doxygen}
 
-#Provides: %{rname}
-Obsoletes: %{rname}
+#Provides: %{real_name}
+Obsoletes: %{real_name}
 
 %description
 The RTE library is a frontend or wrapper of other libraries or programs
@@ -39,7 +39,7 @@ Requires: %{name} = %{version}
 Static library and API documentation of the Real Time Encoder.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -48,7 +48,7 @@ Static library and API documentation of the Real Time Encoder.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{rname}
+%find_lang %{real_name}
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la
@@ -59,7 +59,7 @@ Static library and API documentation of the Real Time Encoder.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{rname}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO
 %{_libdir}/*.so.*

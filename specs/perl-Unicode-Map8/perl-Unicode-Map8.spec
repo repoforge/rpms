@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname Unicode-Map8
+%define real_name Unicode-Map8
 
 Summary: Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl
 Name: perl-Unicode-Map8
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/Unicode-Map8/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -26,7 +26,7 @@ Requires: perl >= 0:5.8.0
 Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \

@@ -14,9 +14,9 @@
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
-%define rname linux-wlan-ng
-%define rversion 0.2.1-pre20
-%define rrelease 0.pre20
+%define real_name linux-wlan-ng
+%define real_version 0.2.1-pre20
+%define real_release 0.pre20
 
 %define moduledir /kernel/drivers/net/wireless/prism2
 %define modules prism2_cs.o prism2_pci.o prism2_plx.o prism2_usb.o
@@ -24,7 +24,7 @@
 Summary: Linux Prism II Wireless 802.11b drivers
 Name: kernel-module-prism2
 Version: 0.2.1
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 License: Dual MPL/GPL
 Group: System Environment/Kernel
 URL: http://www.linux-wlan.com/
@@ -32,7 +32,7 @@ URL: http://www.linux-wlan.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/linux-wlan-ng-%{rversion}.tar.bz2
+Source: ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/linux-wlan-ng-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
@@ -48,7 +48,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-prism2
-Release: %{rrelease}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}
 Summary: Linux Prism II Wireless 802.11b drivers
 License: Dual MPL/GPL
 Group: System Environment/Kernel
@@ -67,7 +67,7 @@ They might work with newer/older kernels.
 
 %package -n prism2-utils
 Summary: Prism II Wireless 802.11b utilities
-Release: %{rrelease}
+Release: %{real_release}
 License: Dual MPL/GPL
 Group: System Environment/Base
 Provides: wlan-ng-utils
@@ -76,7 +76,7 @@ Provides: wlan-ng-utils
 Prism II Wireless 802.11b utilities.
 
 %prep
-%setup -n %{rname}-%{rversion}
+%setup -n %{real_name}-%{real_version}
 
 %{__perl} -pi.orig -e '
 		s|^(PRISM2_.+)=.+$|$1=y|;

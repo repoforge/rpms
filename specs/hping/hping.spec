@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 2.0.0-rc2
+%define real_version 2.0.0-rc2
 
 Summary: Command-line oriented TCP/IP packet assembler/analyzer
 Name: hping
@@ -15,7 +15,7 @@ URL: http://www.hping.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.hping.org/hping%{rversion}.tar.gz
+Source: http://www.hping.org/hping%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

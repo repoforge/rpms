@@ -1,20 +1,21 @@
 # $Id$
 # Authority: matthias
 
-%define xmmsgeneraldir %(xmms-config --general-plugin-dir)
-%define xmmsdatadir    %(xmms-config --data-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir)
+%define xmms_datadir    %(xmms-config --data-dir)
 
-Summary: useful plugin for XMMS to use special keyboard multimedia keys
+Summary: XMMS plugin to use special keyboard multimedia keys
 Name: xmms-itouch
 Version: 0.1.2
 Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.saunalahti.fi/~syrjala/xmms-itouch/
-Source: http://www.saunalahti.fi/~syrjala/xmms-itouch/%{name}-%{version}.tar.bz2
+Source: http://www.saunalahti.fi/~syrjala/xmms-itouch/xmms-itouch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildPrereq: xmms-devel
+
 
 %description
 With this XMMS plugin you can take advantage of the multimedia (playback and
@@ -23,29 +24,35 @@ used you can use the keys regardless of the current input focus. The plugin
 won't work if some other application (eg. xscreensaver) has grabbed the
 keyboard.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install \
-    libdir=%{buildroot}%{xmmsgeneraldir} \
-    datadir=%{buildroot}%{xmmsdatadir}
-strip %{buildroot}%{xmmsgeneraldir}/* || :
+    libdir=%{buildroot}%{xmms_generaldir} \
+    datadir=%{buildroot}%{xmms_datadir}
+strip %{buildroot}%{xmms_generaldir}/* || :
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
-%exclude %{xmmsgeneraldir}/libitouch.la
-%{xmmsgeneraldir}/libitouch.so
-%config %{xmmsdatadir}/xmms-itouch.config
+%config %{xmms_datadir}/xmms-itouch.config
+%{xmms_generaldir}/libitouch.so
+%exclude %{xmms_generaldir}/libitouch.la
+
 
 %changelog
 * Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.1.2-4.fr

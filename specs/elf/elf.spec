@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rversion 0.5.4p1
+%define real_version 0.5.4p1
 
 Summary: Simple ELF header analyzer
 Name: elf
@@ -15,7 +15,7 @@ URL: http://www.kerneled.com/projects/elf/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.kerneled.com/projects/elf/elf-%{rversion}.tar.bz2
+Source: http://www.kerneled.com/projects/elf/elf-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: 
@@ -26,7 +26,7 @@ various information from a binary's ELF header. An intuitive interactive
 and command-line mode is available. 
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '

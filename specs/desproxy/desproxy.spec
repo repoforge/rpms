@@ -4,7 +4,7 @@
 
 # Upstream: Miguelanxo Otero Salgueiro <miguelanxotero@hotmail.com>
 
-%define rversion 0.1.0-pre2
+%define real_version 0.1.0-pre2
 
 Summary: TCP tunnel for HTTP proxies
 Name: desproxy
@@ -17,7 +17,7 @@ URL: http://desproxy.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/desproxy/%{name}-%{rversion}.tar.gz
+Source: http://dl.sf.net/desproxy/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -40,7 +40,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{rversion}
+%setup -n %{name}-%{real_version}
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e 's|^localedir = \@prefix\@/share/locale$|datadir = \@datadir\@\nlocaledir = \$(datadir)/locale|' Makefile.in

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-%define rname jpgraph
+%define real_name jpgraph
 
 Summary: OO Graph Library for PHP
 Name: php-jpgraph
@@ -48,7 +48,7 @@ complex professional graphs which requires a very fine grain control.
 This package includes the documentation for %{name}.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 ### Change the default TTF_DIR to Red Hat's TTF_DIR.
 %{__perl} -pi.orig -e 's|/usr/X11R6/lib/X11/fonts/truetype/|/usr/X11R6/lib/X11/fonts/TTF/|' src/jpgraph.php
@@ -57,8 +57,8 @@ This package includes the documentation for %{name}.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/%{rname}-%{version}
-%{__install} -m0644 src/jpgraph*.php src/*.inc src/*.dat %{buildroot}%{_localstatedir}/www/%{rname}-%{version}/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/%{real_name}-%{version}
+%{__install} -m0644 src/jpgraph*.php src/*.inc src/*.dat %{buildroot}%{_localstatedir}/www/%{real_name}-%{version}/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -66,7 +66,7 @@ This package includes the documentation for %{name}.
 %files
 %defattr(-, root, root, 0755)
 %doc QPL.txt README src/Changelog
-%{_localstatedir}/www/%{rname}-%{version}/
+%{_localstatedir}/www/%{real_name}-%{version}/
 
 %files docs
 %defattr(-, root, root, 0755)

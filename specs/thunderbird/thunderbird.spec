@@ -19,7 +19,9 @@ Source: http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/t
 Source1: http://downloads.mozdev.org/enigmail/src/ipc-1.0.5.tar.gz
 Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.83.3.tar.gz
 Source3: thunderbird-icon.png
-Patch0: mozilla-1.4-x86_64.patch
+Patch1: mozilla-1.4-x86_64.patch
+Patch2: mozilla-xremote.patch
+Patch1001: mozilla-1.6-gtk2xtbin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -41,7 +43,9 @@ Mozilla Thunderbird is a redesign of the Mozilla mail component.
 
 %prep
 %setup -n mozilla
-%patch0 -p1 -b .x86_64
+%patch1001
+%patch1 -p1 -b .x86_64
+%patch2 -p0 -b .xremote
 %setup -T -D -a1 -n mozilla/extensions
 %setup -T -D -a2 -n mozilla/extensions
 %setup -T -D -n mozilla
@@ -99,10 +103,60 @@ EOF
 
 %{__cat} <<'EOF' >%{name}.sh
 #!/bin/sh
-export MRE_HOME="%{_libdir}/thunderbird/"
-export MOZILLA_FIVE_HOME="%{_libdir}/thunderbird/"
-export LD_LIBRARY_PATH="${MRE_HOME}:${MRE_HOME}/plugins:$LD_LIBRARY_PATH"
-exec %{_libdir}/thunderbird/thunderbird-bin $@
+
+### Written by Dag Wieers <dag@wieers.com>
+### Please send suggestions and fixes to me.
+
+ulimit -c 0
+
+MOZ_PROGRAM="%{_libdir}/thunderbird/thunderbird-bin"
+
+MOZILLA_FIVE_HOME="%{_libdir}/thunderbird"
+LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$MOZILLA_FIVE_HOME/plugins:$LD_LIBRARY_PATH"
+export MOZILLA_FIVE_HOME LD_LIBRARY_PATH
+
+MOZARGS=""
+MOZLOCALE="$(echo $LANG | sed 's|_\([^.]*\).*|-\1|g')"
+if [ -f "$MOZILLA_FIVE_HOME/chrome/$MOZLOCALE.jar" ]; then
+	MOZARGS="-UILocale $MOZLOCALE"
+fi
+
+$MOZ_PROGRAM -remote 'ping()' &>/dev/null
+RUNNING=$?
+
+case "$1" in
+  -mail|-email)
+	if [ $RUNNING -eq 0 ]; then
+		exec $MOZ_PROGRAM -remote "mailto($2)" $MOZARGS ${2+"$@"}
+	else
+		exec $MOZ_PROGRAM -compose "to=$2" $MOZARGS ${2+"$@"}
+	fi;;
+  -compose|-editor)
+	if [ $RUNNING -eq 0 ]; then
+		ADDRESS="$(echo $2 | sed 's|.*to=||;s|,.*||')"
+		exec $MOZ_PROGRAM -remote "mailto($ADDRESS)" $MOZARGS ${2+"$@"}
+	else
+		exec $MOZ_PROGRAM -compose $MOZARGS ${1+"$@"}
+	fi;;
+  -remote)
+	exec $MOZ_PROGRAM -remote "$2" $MOZARGS ${2+"$@"};;
+  -profile|-profile-manager)
+	exec $MOZ_PROGRAM $MOZARGS $@ &;;
+  -*);;
+  '');;
+  *)
+	if [ $RUNNING -eq 0 ]; then
+		$MOZ_PROGRAM -remote "xfeDoCommand(openInbox)" $MOZARGS ${1+"$@"} && exit 0
+	else
+		$MOZ_PROGRAM $MOZARGS ${1+"$@"} && exit 0
+	fi;;
+esac
+
+if [ $RUNNING -eq 0 ]; then
+	exec $MOZ_PROGRAM -remote "xfeDoCommand (openInbox)" $MOZARGS $@
+else
+	exec $MOZ_PROGRAM $MOZARGS $@ &
+fi;
 EOF
 
 %build
@@ -111,7 +165,6 @@ export CFLAGS="%{optflags}"
 export CXXFLAGS="%{optflags}"
 %{__make} -f client.mk export
 %{__make} %{?_smp_mflags} -f client.mk libs
-#	MAKE="make %{?_smp_mflags}"
 
 export LANG="en_US"
 cd extensions/ipc
