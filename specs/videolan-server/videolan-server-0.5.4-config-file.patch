@@ -1,0 +1,13 @@
+--- vls.cfg.orig        2003-12-10 00:53:32.000000000 +0100
++++ vls.cfg     2003-12-10 09:41:23.000000000 +0100
+@@ -26,8 +26,8 @@
+ # --- Format: 
+ # username      = "encryptedpassword:group"
+ # --- Example:
+-  monitor       = "3BcKWoiQn0vi6:monitor"       # password is 'monitor'
+-  bozo          = "JKg2TpPerilnw:master"        # password is 'bozo'
++#  monitor       = "3BcKWoiQn0vi6:monitor"       # password is 'monitor'
++#  bozo          = "JKg2TpPerilnw:master"        # password is 'bozo'
+ END
+ 
+ # Telnet Administration
