@@ -6,8 +6,8 @@
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 0.75
-Release: 2
+Version: 0.76
+Release: 1
 Epoch: 1
 License: GPL
 Group: Applications/Internet
@@ -15,7 +15,6 @@ URL: http://gaim.sourceforge.net/
 Source: http://dl.sf.net/gaim/%{name}-%{version}.tar.bz2
 Patch0: gaim-0.75-desktop.patch
 Patch1: gaim-prefs.patch
-Patch2: http://gaim.sourceforge.net/gaim-0.75.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Requires: gtk2, gtkspell, libao
 Requires: mozilla-nss, mozilla-nspr
@@ -58,7 +57,6 @@ Available rpmbuild rebuild options :
 %setup -n %{name}-%{?date:%{date}}%{!?date:%{version}}
 %patch0 -p1 -b .desktop
 %patch1 -p1 -b .prefs
-%patch2 -p0 -b .security
 
 %build
 %configure \
@@ -97,29 +95,30 @@ strip %{buildroot}%{_libdir}/{*.so*,%{name}/*.so} || :
 %endif
 
 %changelog
-* Mon Feb  2 2004 Matthias Saou <http://freshrpms.net/> 0.75-2.fr
+* Fri Apr  2 2004 Matthias Saou <http://freshrpms.net/> 0.76-1
+* Mon Feb  2 2004 Matthias Saou <http://freshrpms.net/> 0.75-2
 - Include latest security patch to fix potential vulnerabilities.
 
-* Sun Jan 11 2004 Matthias Saou <http://freshrpms.net/> 0.75-1.fr
+* Sun Jan 11 2004 Matthias Saou <http://freshrpms.net/> 0.75-1
 - Update to 0.75.
 - Updated the desktop patch.
 
-* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.74-3.fr
+* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.74-3
 - Rebuild now that mach seems to get proper configure paths for X stuff.
 
-* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.74-2.fr
+* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.74-2
 - Included changes for the optional perl build from Gary Peck.
 
-* Wed Nov 26 2003 Matthias Saou <http://freshrpms.net/> 0.74-1.fr
+* Wed Nov 26 2003 Matthias Saou <http://freshrpms.net/> 0.74-1
 - Update to 0.74.
 
-* Mon Nov 24 2003 Matthias Saou <http://freshrpms.net/> 0.73-1.fr
+* Mon Nov 24 2003 Matthias Saou <http://freshrpms.net/> 0.73-1
 - Update to 0.73.
 
-* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 0.72-1.fr
+* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 0.72-1
 - Added missing build deps : startup-notification, audiofile, XFree86-devel.
 
-* Mon Nov  3 2003 Matthias Saou <http://freshrpms.net/> 0.72-1.fr
+* Mon Nov  3 2003 Matthias Saou <http://freshrpms.net/> 0.72-1
 - Update to 0.72.
 - Updated the desktop patch.
 
