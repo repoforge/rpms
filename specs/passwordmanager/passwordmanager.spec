@@ -24,6 +24,16 @@
 %{?rh6:%define _without_selinux 1}
 %{?yd3:%define _without_selinux 1}
 
+%{?fc1:%define _without_kwallet 1}
+%{?el3:%define _without_kwallet 1}
+%{?rh9:%define _without_kwallet 1}
+%{?rh8:%define _without_kwallet 1}
+%{?rh7:%define _without_kwallet 1}
+%{?el2:%define _without_kwallet 1}
+%{?rh6:%define _without_kwallet 1}
+%{?yd3:%define _without_kwallet 1}
+
+
 %define real_version 1.0
 %define short_name pwmanager
 
@@ -82,11 +92,11 @@ source %{_sysconfdir}/profile.d/qt.sh
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
-%{?fc2:%{_datadir}/services/kded/pwmanager_kwalletemu.desktop}
+%{!?_without_kwallet:%{_datadir}/services/kded/pwmanager_kwalletemu.desktop}
 %{_datadir}/applnk/Applications/pwmanager.desktop
 %{_datadir}/icons/*/*/apps/pw*.png
 %{_datadir}/apps/pwmanager
-%{?fc2:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
+%{!?_without_kwallet:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
 * Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1

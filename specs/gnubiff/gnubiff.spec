@@ -48,8 +48,8 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %defattr(-, root, root, 0755)
 %doc README ABOUT-NLS AUTHORS ChangeLog COPYING NEWS INSTALL THANKS
 %{_bindir}/gnubiff
-%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server
-%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml
+%{?fc2:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
+%{?fc2:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{_datadir}/gnubiff
 %{_datadir}/info/gnubiff.info.gz
 %{_mandir}/man1/gnubiff.*
