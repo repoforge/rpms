@@ -1,14 +1,16 @@
 # $Id$
 # Authority: dries
-
 # Screenshot: http://gambas.sourceforge.net/2003-06-25.png
 # ScreenshotURL: http://gambas.sourceforge.net/screenshots.html
 
-%define real_version 0.94
+# It compiles, but it does not work on my machine
+# Tag: test
+
+%define real_version 1.0
 
 Summary: IDE based on a basic interpreter with object extensions
 Name: gambas
-Version: 0.94
+Version: 1.0
 Release: 0
 License: GPL
 Group: Development/Tools
@@ -20,12 +22,12 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://gambas.sourceforge.net/gambas-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# Patch0: makefiles-destdir.patch.bz2
 Patch0: dont-make-links.patch
+Patch1: automake.patch
 BuildRequires: kdelibs-devel, libjpeg-devel, automake, autoconf
 BuildRequires: gcc, make, qt-devel, SDL-devel, mysql-devel
 BuildRequires: postgresql-devel, XFree86-devel, zlib-devel
-BuildRequires: glibc-headers, sqlite-devel, gcc-c++
+BuildRequires: glibc-headers, sqlite-devel, gcc-c++, automake15
 
 %description
 Gambas is a free development environment based on a Basic interpreter
@@ -36,14 +38,15 @@ many languages, create network applications easily, and so on...
 
 %prep
 %setup -n gambas-%{real_version}
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
-# Wouldn't smething like this be better?
-# find . -type f -name "Makefile" -o -name "Makefile.in" -exec rm -f {} \;
-rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.in$")
-./reconf || echo reconf gives a warning but lets continue anyway
-# (cd libltdl/;../reconf || echo reconf gives a warning but lets continue anyway)
+%{__libtoolize} --force --copy
+%{__aclocal} --force
+%{__automake} --add-missing
+%{__autoconf}
+%{__autoheader}
 %configure \
 	--datadir="%{_datadir}/gambas" \
 	--enable-intl \
@@ -96,14 +99,9 @@ The gambas-examples package contains some examples for gambas.
 %doc README AUTHORS COPYING INSTALL NEWS README README.REDHAT TODO
 %{_libdir}/gambas
 # %{_libdir}/info
-%{_bindir}/gambas
-%{_bindir}/gbc
-%{_bindir}/gba
-%{_bindir}/gbi
-%{_bindir}/gbx
-%{_bindir}/gambas-database-manager
-%{_bindir}/Util
-%{_includedir}/gambas.h
+%{_bindir}/*
+# strange.. 
+# %{_includedir}/gambas.h
 %exclude %{_libdir}/gambas/lib.*.la
 
 %files help
@@ -117,6 +115,12 @@ The gambas-examples package contains some examples for gambas.
 %{_datadir}/gambas/examples
 
 %changelog
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> 1.0-0
+- Updated to release 1.0.
+
+* Tue Sep 14 2004 Dries Verachtert <dries@ulyssis.org> 0.99-0
+- Update to version 0.99.
+
 * Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> 0.94-0
 - Update to version 0.94.
 

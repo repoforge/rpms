@@ -1,54 +1,58 @@
---- gambas-0.94/Makefile.am.orig	2004-06-25 16:42:41.504044056 +0200
-+++ gambas-0.94/Makefile.am	2004-06-25 16:43:56.250680840 +0200
-@@ -4,33 +4,33 @@
+diff -uNr gambas-1.0-orig/Makefile.am gambas-1.0/Makefile.am
+--- gambas-1.0-orig/Makefile.am	2004-11-28 20:38:28.000000000 +0100
++++ gambas-1.0/Makefile.am	2005-01-01 19:43:20.701824736 +0100
+@@ -14,34 +14,34 @@
+ 	 ROOT=$DESTDIR; \
+         fi
  
- install-exec-local:
- 	@echo
--	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
+-	@if test "$(DESTDIR)$(bindir)" != "$(ROOT)/usr/bin" && test "$(DESTDIR)$(bindir)" != "$(ROOT)/usr/bin/"; then \
 -	 echo "Making symbolic links in /usr/bin..."; \
--	 rm -f /usr/bin/gbx; \
--	 ln -s $(bindir)/gbx /usr/bin/gbx; \
--	 rm -f /usr/bin/gbc; \
--	 ln -s $(bindir)/gbc /usr/bin/gbc; \
--	 rm -f /usr/bin/gba; \
--	 ln -s $(bindir)/gba /usr/bin/gba; \
--	 rm -f /usr/bin/gbi; \
--	 ln -s $(bindir)/gbi /usr/bin/gbi; \
+-	 rm -f $(ROOT)/usr/bin/gbx; \
+-	 ln -s $(DESTDIR)$(bindir)/gbx $(ROOT)/usr/bin/gbx; \
+-	 rm -f $(ROOT)/usr/bin/gbc; \
+-	 ln -s $(DESTDIR)$(bindir)/gbc $(ROOT)/usr/bin/gbc; \
+-	 rm -f $(ROOT)/usr/bin/gba; \
+-	 ln -s $(DESTDIR)$(bindir)/gba $(ROOT)/usr/bin/gba; \
+-	 rm -f $(ROOT)/usr/bin/gbi; \
+-	 ln -s $(DESTDIR)$(bindir)/gbi $(ROOT)/usr/bin/gbi; \
 -	fi
-+#	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
++#	@if test "$(DESTDIR)$(bindir)" != "$(ROOT)/usr/bin" && test "$(DESTDIR)$(bindir)" != "$(ROOT)/usr/bin/"; then \
 +#	 echo "Making symbolic links in /usr/bin..."; \
-+#	 rm -f /usr/bin/gbx; \
-+#	 ln -s $(bindir)/gbx /usr/bin/gbx; \
-+#	 rm -f /usr/bin/gbc; \
-+#	 ln -s $(bindir)/gbc /usr/bin/gbc; \
-+#	 rm -f /usr/bin/gba; \
-+#	 ln -s $(bindir)/gba /usr/bin/gba; \
-+#	 rm -f /usr/bin/gbi; \
-+#	 ln -s $(bindir)/gbi /usr/bin/gbi; \
++#	 rm -f $(ROOT)/usr/bin/gbx; \
++#	 ln -s $(DESTDIR)$(bindir)/gbx $(ROOT)/usr/bin/gbx; \
++#	 rm -f $(ROOT)/usr/bin/gbc; \
++#	 ln -s $(DESTDIR)$(bindir)/gbc $(ROOT)/usr/bin/gbc; \
++#	 rm -f $(ROOT)/usr/bin/gba; \
++#	 ln -s $(DESTDIR)$(bindir)/gba $(ROOT)/usr/bin/gba; \
++#	 rm -f $(ROOT)/usr/bin/gbi; \
++#	 ln -s $(DESTDIR)$(bindir)/gbi $(ROOT)/usr/bin/gbi; \
 +#	fi
  
  	@echo
- 	@echo "Creating the library info files..."
--	@$(INSTALL) -d $(pkgdatadir)/info
--	@$(bindir)/gbi -a
--	@rm -f $(pkglibdir)/lib.gb.la
--	@rm -f $(pkglibdir)/lib.gb.so*
-+#	@$(INSTALL) -d $(pkgdatadir)/info
-+#	@$(bindir)/gbi -a
-+#	@rm -f $(pkglibdir)/lib.gb.la
-+#	@rm -f $(pkglibdir)/lib.gb.so*
+-	@echo "Creating the library info files..."
+-	@rm -rf $(DESTDIR)$(pkgdatadir)/info
+-	@$(INSTALL) -d $(DESTDIR)$(pkgdatadir)/info
+-	@$(DESTDIR)$(bindir)/gbi -a -r $(prefix)
+-	@rm -f $(DESTDIR)$(pkglibdir)/lib.gb.la
+-	@rm -f $(DESTDIR)$(pkglibdir)/lib.gb.so*
++#	@echo "Creating the library info files..."
++#	@rm -rf $(DESTDIR)$(pkgdatadir)/info
++#	@$(INSTALL) -d $(DESTDIR)$(pkgdatadir)/info
++#	@$(DESTDIR)$(bindir)/gbi -a -r $(prefix)
++#	@rm -f $(DESTDIR)$(pkglibdir)/lib.gb.la
++#	@rm -f $(DESTDIR)$(pkglibdir)/lib.gb.so*
  
  	@echo
  	@echo "Installing the development environment..."
  	@(cd $(srcdir)/app; d=`pwd`; for p in *; do echo "Compiling $$p..."; cd $$d/$$p; \
- 	  gbc -ag; gba; rm -rf .gambas; $(INSTALL) $$p $(bindir); done)
--	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
--	 rm -f /usr/bin/gambas; \
--	 ln -s $(bindir)/gambas /usr/bin/gambas; \
+ 	  $(DESTDIR)$(bindir)/gbc -ag; $(DESTDIR)$(bindir)/gba; rm -rf .gambas; $(INSTALL) $$p $(DESTDIR)$(bindir); done)
+-	@if test "$(bindir)" != "$(ROOT)/usr/bin" && test "$(bindir)" != "$(ROOT)/usr/bin/"; then \
+-	 rm -f $(ROOT)/usr/bin/gambas; \
+-	 ln -s $(DESTDIR)$(bindir)/gambas $(ROOT)/usr/bin/gambas; \
 -        fi
-+#	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
-+#	 rm -f /usr/bin/gambas; \
-+#	 ln -s $(bindir)/gambas /usr/bin/gambas; \
++#	@if test "$(bindir)" != "$(ROOT)/usr/bin" && test "$(bindir)" != "$(ROOT)/usr/bin/"; then \
++#	 rm -f $(ROOT)/usr/bin/gambas; \
++#	 ln -s $(DESTDIR)$(bindir)/gambas $(ROOT)/usr/bin/gambas; \
 +#        fi
  
  	@echo

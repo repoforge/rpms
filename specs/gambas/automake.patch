@@ -1,0 +1,9 @@
+diff -uNr gambas-1.0-orig/src/exec/Makefile.am gambas-1.0/src/exec/Makefile.am
+--- gambas-1.0-orig/src/exec/Makefile.am	2004-11-25 14:47:34.000000000 +0100
++++ gambas-1.0/src/exec/Makefile.am	2005-01-01 20:43:55.070316744 +0100
+@@ -114,3 +114,5 @@
+  gbx_c_string.h gbx_c_string.c \
+  gbx_c_settings.h gbx_c_settings.c \
+  gbx_class_info.c
++
++gbx_CFLAGS = $(AM_CFLAGS)
