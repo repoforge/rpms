@@ -12,16 +12,16 @@
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.92
-Release: %{?rcver:0.%{rcver}.}0
+Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 0.91 - 31/01/2005
 Source21: http://www.mameworld.net/highscore/uhsdat091.zip
-# http://www.arcade-history.com/ 0.91 - 29/01/2005
-Source22: http://www.arcade-history.com/download/history0_91.zip
-# http://www.mameworld.net/mameinfo/ 0.91 - 30/01/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo091.zip
+# http://www.arcade-history.com/ 0.92 - 13/02/2005
+Source22: http://www.arcade-history.com/download/history0_92.zip
+# http://www.mameworld.net/mameinfo/ 0.92u1 - 23/02/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo092u1a.zip
 # http://www.mameworld.net/catlist/ 0.92 - 14/02/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
@@ -89,16 +89,14 @@ done
 %{__perl} -pi -e 's/^MY_CPU/# MY_CPU/g' Makefile
 
 # Replace lib with lib64 when required
-%{__perl} -pi -e 's|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g' Makefile
-
-# Use system expat library
-%{__perl} -pi -e 's/^BUILD_EXPAT/# BUILD_EXPAT/g' Makefile
+%{__perl} -pi -e 's|/usr/X11R6/lib$|/usr/X11R6/%{_lib}|g' Makefile
 
 # Use glibc libm
 %{__perl} -pi -e 's/^SEPARATE_LIBM/# SEPARATE_LIBM/g' Makefile
 
 # Disable stripping on install, to get proper debuginfo
-%{__perl} -pi -e 's/ -s / /g' Makefile
+%{__perl} -pi -e 's/ -s /    /g' Makefile
+%{__perl} -pi -e 's/^ASM_STRIP/ASM_STRIP = true/g' Makefile
 
 # Make the package build verbose by default (to see opts etc.)
 %{?_without_quietbuild: %{__perl} -pi -e 's/^QUIET/# QUIET/g' src/unix/unix.mak}
@@ -247,6 +245,11 @@ popd
 
 
 %changelog
+* Thu Feb 24 2005 Matthias Saou <http://freshrpms.net/> 0.92-1
+- Update to 0.92.
+- Remove EXPAT Makefile change, the default is to use external lib now.
+- Change ASM_STRIP to true, further attempt to get a real debuginfo package.
+
 * Wed Jan 19 2005 Matthias Saou <http://freshrpms.net/> 0.90-1
 - Update to 0.90.
 
