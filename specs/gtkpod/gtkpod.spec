@@ -5,7 +5,7 @@
 
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
-Version: 0.88
+Version: 0.88.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -52,7 +52,7 @@ EOF
 %find_lang %{name}
 
 # Install menu icon
-%{__install} -Dp -m 0644 pixmaps/gtkpod-icon-48x48.png \
+%{__install} -D -p -m 0644 pixmaps/gtkpod-icon-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/gtkpod.png
 
 # Install menu entry
@@ -63,7 +63,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-%{__install} -Dp -m 0644 %{name}.desktop \
+%{__install} -D -p -m 0644 %{name}.desktop \
     %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
@@ -86,6 +86,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri Apr  1 2005 Matthias Saou <http://freshrpms.net> 0.88.2-1
+- Update to 0.88.2.
+
 * Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 0.88-1
 - Updated to release 0.88.0.
 
