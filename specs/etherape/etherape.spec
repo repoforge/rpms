@@ -31,9 +31,11 @@ from a file as well as live from the network.
 %prep
 %setup
 
+#%{__perl} -pi.orig -e 's|(\${exec_prefix})/lib|$1/%{_lib}|g' configure
 %{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 
 %build
+export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %configure \
 	--disable-dependency-tracking
 %{__make} %{?_smp_mflags}

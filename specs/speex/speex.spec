@@ -38,7 +38,10 @@ Speex development files.
 
 %build
 export CFLAGS='%{optflags} -DRELEASE'
-%configure --enable-shared --enable-static
+%configure \
+	--enable-shared \
+	--enable-static \
+	--with-ogg-libraries="%{_libdir}"
 %{__make} %{?_smp_mflags}
 
 

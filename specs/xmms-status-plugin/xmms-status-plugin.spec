@@ -37,7 +37,8 @@ A status docklet for XMMS, docks into the GNOME Status dock.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	XMMS_DATA_DIR="%{buildroot}%{_datadir}/xmms"
+	XMMS_DATA_DIR="%{buildroot}%{_datadir}/xmms" \
+	libdir="%{buildroot}%{xmms_generaldir}"
 %find_lang %{name}
 %{__strip} %{buildroot}%{xmms_generaldir}/*.so
 

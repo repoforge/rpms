@@ -6,7 +6,7 @@
 Summary: Fast, feature rich Window manager
 Name: windowmaker
 Version: 0.80.2
-Release: 4
+Release: 5
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.windowmaker.org/
@@ -49,9 +49,21 @@ you will need to install %{name}-devel.
 exec /etc/X11/xdm/Xsession wmaker
 EOF
 
+%{__cat} <<EOF >windowmaker.desktop
+[Desktop Entry]
+Encoding=UTF-8
+Name=Window Maker
+Comment=Start Window Maker
+Exec=wmaker
+# no icon yet, only the top three are currently used
+Icon=
+Type=Application
+EOF
+
 %build
 export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
 	--with-appspath="%{_libdir}/GNUstep" \
 	--with-nlsdir="%{_datadir}/locale" \
 	--enable-gnome \
@@ -59,10 +71,11 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 	--enable-modelock \
 	--enable-openlook \
 	--enable-usermenu
-%{__make} %{?_smp_mflags}
 
 ### FIXME: Replace fixed /usr/lib by $(libdir). (Please fix upstream)
 %{__perl} -pi.orig -e 's|/usr/lib/|\$(libdir)/|g' WPrefs.app/Makefile WPrefs.app/*/Makefile
+
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -74,6 +87,7 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %{__cat} WINGs.lang WPrefs.lang >> %{real_name}.lang
 
 %{__install} -D -m0755 windowmaker.xsession "%{buildroot}%{_sysconfdir}/X11/gdm/Sessions/Window Maker"
+%{__install} -D -m0644 windowmaker.desktop %{buildroot}%{_sysconfdir}/X11/dm/Sessions/windowmaker.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,6 +97,7 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %doc AUTHORS BUGFORM BUGS ChangeLog COPYING* FAQ* NEWS README* TODO
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/X11/gdm/Sessions/*
+%config %{_sysconfdir}/X11/dm/Sessions/windowmaker.desktop
 %config %{_sysconfdir}/WindowMaker/
 %{_bindir}/*
 %{_libdir}/*.so.*
@@ -98,6 +113,10 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %{_libdir}/*.so
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.80.2-5
+- Added desktop file for GDM menu. (Chris Gordon)
+- Fix for x86_64.
+
 * Wed Sep 24 2003 Dag Wieers <dag@wieers.com> - 0.80.2-4
 - Fixed the location of WPrefs from /etc/WindowMaker/WMState. (Hasan)
 

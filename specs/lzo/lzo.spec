@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Archs: i386 i686 ppc x86_64
+# Upstream:  Markus F.X.J. Oberhumer <markus@oberhumer.com>
 
 Summary: Portable lossless data compression library
 Name: lzo
@@ -51,9 +51,6 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -72,8 +69,8 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
-#exclude %{_libdir}/*.la
 
 %changelog
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.08-3

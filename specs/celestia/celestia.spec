@@ -34,7 +34,8 @@ simple to navigate through the universe to the object you want to visit.
 
 
 %build
-%configure  --disable-debug --with-gtk
+%configure  --disable-debug --with-gtk \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 

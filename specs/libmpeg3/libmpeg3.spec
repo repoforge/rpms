@@ -2,10 +2,14 @@
 # Authority: dag
 # Upstream: <broadcast@earthling.net>
 
+%ifarch x86_64
+        %define _without_nasm 1
+%endif
+
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.5.4
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
@@ -16,7 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/heroines/libmpeg3-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: nasm
+%{!?_without_nasm:BuildRequires: nasm}
 
 %description
 LibMPEG3 decodes the many many derivatives of MPEG standards into
@@ -36,11 +40,17 @@ libmpeg3 currently decodes:
 %{__perl} -pi.orig -e '
 		s| /usr/bin$| \$(DESTDIR)\$(bindir)|;
 %ifarch %{ix86}
-		s|^(USE_MMX) = 0|$1 = 1|;|';
+		s|^(USE_MMX) = 0|$1 = 1|;
 %endif
 	' Makefile
 
 %build
+%ifarch x86_64
+export CFLAGS="%{optflags} -fPIC"
+%endif
+%ifarch %{ix86}
+export CFLAGS="%{optflags}"
+%endif
 %{__make} %{?_smp_mflags}
 
 %install
@@ -70,6 +80,9 @@ libmpeg3 currently decodes:
 %{_includedir}/*.h
 
 %changelog
+* Sat Jun 26 2004 Dag Wieers <dag@wieers.com> - 1.5.4-2
+- Fixes for x86_64.
+
 * Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 1.5.4-1
 - Updated to release 1.5.4.
 

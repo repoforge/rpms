@@ -40,6 +40,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+export CFLAGS="%{optflags} -fPIC"
 %configure
 %{__make} %{?_smp_mflags}
 
