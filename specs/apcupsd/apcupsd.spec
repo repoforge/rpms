@@ -73,11 +73,7 @@ EOF
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/apcupsd/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/
-#%{__install} -m0755 platforms/apccontrol %{buildroot}%{_sysconfdir}/apcupsd/
-#%{__install} -m0644 platforms/etc/apcupsd.conf %{buildroot}%{_sysconfdir}/apcupsd/
-#%{__install} -m0755 platforms/redhat/apcupsd %{buildroot}%{_initrddir}
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/
 %{__install} -m0755 examples/hid-ups examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/
 %{__install} -m0644 apcupsd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
 
@@ -96,7 +92,6 @@ if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
 #               /sbin/service httpd restart
         fi
 fi
-
 
 %preun
 if [ $1 -eq 0 ]; then 
