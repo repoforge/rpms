@@ -11,7 +11,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.9.2
-Release: 3
+Release: 4
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -25,8 +25,8 @@ Patch1: firefox-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip
-BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
-BuildRequires: ORBit-devel, gcc-c++
+BuildRequires: libpng-devel, libjpeg-devel
+BuildRequires: ORBit-devel, gcc-c++, krb5-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel, gnome-vfs2-devel}
 %{?_without_gtk2:BuildRequires: gtk+-devel}
@@ -42,8 +42,6 @@ compliance, performance and portability.
 %prep
 %setup -n mozilla
 %patch1 -p1
-
-#%{__cp} -av other-licenses/branding/firefox/mozicon50.xpm browser/app/default.xpm
 
 %{__cat} <<EOF >bookmarks.html
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
@@ -118,16 +116,9 @@ EOF
 
 ### FIXME: Shouldn't the default firefox config be part of original source ?
 %{__cat} <<EOF >.mozconfig
-export MOZ_PHOENIX="1"
-mk_add_options MOZ_PHOENIX="1"
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-composer
-ac_add_options --disable-debug
-ac_add_options --disable-debug-modules
-ac_add_options --disable-dtd-debug
 ac_add_options --disable-freetype2
-ac_add_options --disable-freetypetest
-ac_add_options --disable-gtktest
 ac_add_options --disable-installer
 ac_add_options --disable-jsd
 ac_add_options --disable-ldap
@@ -135,27 +126,18 @@ ac_add_options --disable-mailnews
 ac_add_options --disable-profilesharing
 ac_add_options --disable-tests
 ac_add_options --enable-crypto
-#ac_add_options --enable-extensions="default,-irc,-venkman"
-ac_add_options --enable-extensions="cookie,gnomevfs,inspector,negotiateauth,p3p,pref,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"
-ac_add_options --enable-mathml
+ac_add_options --enable-extensions="default,-content-packs,-editor,-help,-irc,-spellcheck"
 ac_add_options --enable-official-branding
 ac_add_options --enable-optimize="%{optflags}"
-ac_add_options --enable-plaintext-editor-only
-ac_add_options --enable-reorder
 ac_add_options --enable-single-profile
-ac_add_options --enable-strip
-ac_add_options --enable-strip-libs
-ac_add_options --enable-xprint
 ac_add_options --with-pthreads
 ac_add_options --with-system-jpeg
-ac_add_options --with-system-mng
 ac_add_options --with-system-png
 ac_add_options --with-system-zlib
-ac_add_options --without-system-nspr
-%{?_without_gtk2:ac_add_options --disable-xft}
 %{?_without_gtk2:ac_add_options --enable-default-toolkit="gtk"}
-%{!?_without_gtk2:ac_add_options --enable-xft}
+%{?_without_gtk2:ac_add_options --disable-freetype2}
 %{!?_without_gtk2:ac_add_options --enable-default-toolkit="gtk2"}
+%{!?_without_gtk2:ac_add_options --enable-xft}
 %{!?_without_gtk2:ac_add_options --enable-xinerama}
 EOF
 
@@ -262,13 +244,7 @@ fi;
 EOF
 
 %build
-export MOZ_APP_NAME="firefox"
-export MOZ_PHOENIX="1"
-export MOZILLA_OFFICIAL="1"
-export BUILD_OFFICIAL="1"
-export CFLAGS="%{optflags}"
-export CXXFLAGS="%{optflags}"
-export RPM_OPT_FLAGS="$(echo %{optflags} | sed -e 's|-O2|-Os|')"
+export MOZ_PHOENIX=1
 %{__make} -f client.mk depend
 %{__make} %{?_smp_mflags} -f client.mk build
 
@@ -277,7 +253,6 @@ export RPM_OPT_FLAGS="$(echo %{optflags} | sed -e 's|-O2|-Os|')"
 %{__install} -d -m0755 %{buildroot}%{_libdir}
 
 %{__make} -C xpinstall/packager/ \
-	MOZ_PKG_APPNAME="firefox" \
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
 %{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
@@ -306,24 +281,20 @@ fi
 		firefox.desktop
 %endif
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/firefox/mozilla-config
-
 %post
 /sbin/ldconfig 2>/dev/null
 %{_bindir}/firefox -register &>/dev/null || :
 %{_libdir}/firefox/firefox-rebuild-databases &>/dev/null || :
 %{_bindir}/update-desktop-database %{_datadir}/applications &>/dev/null || :
 
+%preun
+if [ $1 -eq 0 ]; then
+	%{__rm} -rf %{_libdir}/firefox/{chrome/overlayinfo,chrome/*.rdf,components,extensions}
+fi
+
 %postun
 /sbin/ldconfig 2>/dev/null
 %{_bindir}/update-desktop-database %{_datadir}/applications &>/dev/null || :
-
-%preun
-if [ $1 -eq 0 ]; then
-	%{__rm} -rf %{_libdir}/firefox/{chrome/overlayinfo,components,extensions}/
-	%{__rm} -f %{_libdir}/firefox/chrome/*.rdf
-fi
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -338,6 +309,13 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-4
+- Fixed register by calling firefox instead of firefox-bin.
+- Added krb5/gssapi support.
+- Removed unneeded configure options (unexisting or defaults).
+- Removed unneeded exports and defines.
+- Other minor cleanups.
+
 * Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.9.2-3
 - Sanitized firefox startup script.
 - Don't kill Xvfb and allow -register to dump error info.
