@@ -10,6 +10,7 @@ Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
 Source: http://dl.sf.net/fame/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libtool
 
 %description
 A library for fast (real-time) MPEG video encoding, written in C and assembly.
@@ -46,7 +47,7 @@ libfame library.
 %makeinstall
 
 # Workaround for direct <libfame/fame.h> includes.
-ln -s . %{buildroot}%{_includedir}/%{name}
+%{__ln_s} . %{buildroot}%{_includedir}/%{name}
 
 
 %clean
