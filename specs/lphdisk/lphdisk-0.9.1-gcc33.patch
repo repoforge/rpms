@@ -1,0 +1,41 @@
+--- lphdisk.c.orig	2002-02-12 06:04:27.000000000 -0500
++++ lphdisk.c	2004-01-02 17:54:11.000000000 -0500
+@@ -718,22 +718,22 @@
+   {"force",     0, 0, 'f'},
+ {0,0,0,0}};
+ 
+-const char usage_string[] = "\
+-Usage: %1$s [options] [device]
+-Prepare a hibernation partition for APM suspend-to-disk.
+-
+-options:
+-  -h, --help       Display brief usage and option information (this screen)
+-  -p, --probeonly  Only calculate and display required size, do not format
+-  -q, --quiet      Turn off informational messages, useful for scripts
+-  -d, --debug      Turn on (verbose) debugging messages
+-  -n, --nowrite    Do not actually write to the disk
+-  -f, --force      **DANGEROUS**  Format without regard to potential problems
+-
+-'device' should be a raw disk device (not a partition).  The default device
+-is /dev/hda.
+-
+-(%2$s)\n\n";
++const char usage_string[] = ""
++"Usage: %1$s [options] [device]"
++"Prepare a hibernation partition for APM suspend-to-disk."
++""
++"options:"
++"  -h, --help       Display brief usage and option information (this screen)"
++"  -p, --probeonly  Only calculate and display required size, do not format"
++"  -q, --quiet      Turn off informational messages, useful for scripts"
++"  -d, --debug      Turn on (verbose) debugging messages"
++"  -n, --nowrite    Do not actually write to the disk"
++"  -f, --force      **DANGEROUS**  Format without regard to potential problems"
++""
++"'device' should be a raw disk device (not a partition).  The default device"
++"is /dev/hda."
++""
++"(%2$s)\n\n";
+ 
+ void print_usage (void) {
+   char *progname = rindex(argv0, '/');

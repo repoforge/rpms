@@ -1,0 +1,371 @@
+--- src/Makefile.orig	2003-03-19 22:22:33.000000000 +0100
++++ src/Makefile	2003-05-06 21:36:38.000000000 +0200
+@@ -8,25 +8,25 @@
+ # after "=", this is parsed and rewritten by the configure script.
+ #
+ #				# user-callable executable (plan)
+-DIR=/usr/local/bin
++DIR=$(bindir)
+ #				# auxiliary programs (pland, notifier, PS)
+-LIB=/usr/local/lib
++LIB=$(libdir)/plan
+ #				# help file (plan.help)
+-SBIN=/usr/local/lib
++SBIN=$(libdir)/plan
+ #				# system programs (netplan)
+-HELP=/usr/local/lib
++HELP=$(libdir)/plan
+ #				# netplan expects netplan.dir/ here
+-NETPLANDIR=/usr/local/lib
++NETPLANDIR=$(sysconfdir)/plan
+ #				# unformatted nroff manpage (plan.[14])
+-MAN=/usr/local/man
++MAN=$(mandir)/man
+ #				# formatted manpage (plan.[14])
+-CATMAN=/usr/catman/local/cat
++CATMAN=$(localstatedir)/catman/cat
+ #				# subdirectory in home dir, or empty
+-PLANRULE=
++PLANRULE=-DPLANHOME=\"".plan"\"
+ #				# lockfile for plan, %d is uid
+-PLANLOCK="/tmp/.plan%d"
++PLANLOCK="~/.plan/lock.plan"
+ #				# lockfile for pland, %d is uid
+-PLANDLOCK="/tmp/.pland%d"
++PLANDLOCK="~/.plan/lock.pland"
+ #				# extra cc options, e.g. "-I/var/include"
+ INCDIR=
+ #				# standard Unix lexer
+@@ -34,14 +34,14 @@
+ #				# standard Unix compiler generator
+ YACC=yacc
+ #				# numerical user ID of <nobody> account
+-NOB_UID=60001
++NOB_UID=99
+ #				# default numerical group ID of <nobody>
+-NOB_GID=60001
++NOB_GID=99
+ # 				# used by plan to pre-process holiday files,
+ #				# plan will check if this file really exists
+ CPP_PATH='/lib/cpp -P -I$(HELP)'
+ #				# by default, fork on startup? TRUE or FALSE
+-DOFORK=TRUE
++DOFORK=FALSE
+ #				# switching to ISO8859-1
+ ESCTOISOLATIN=\"\\033\(B\"
+ #				# switching to JIS X0201-1976 roman
+@@ -51,12 +51,12 @@
+ JAPANDEFS='-DJAPAN -DESCTOASCII=$(ESCTOJISLATIN) -DLENTOASCII=3 -DLOCALE_SJIS=ja_JP.SJIS -DLOCALE_EUC=ja_JP.EUC'
+ JAPAN=
+ #				# default holiday locale
+-HOLIDAY=german
++HOLIDAY=us
+ #				# do NOT define -O2 on DEC OSF/1 machines!
+ #				# use -O instead of -O2 on HP to avoid warning
+-DEBUG=-O
++DEBUG=$(CFLAGS)
+ #				# what to do without make arguments
+-DEFTARGET=help
++DEFTARGET=linux
+ #------------------------- end of configuration section ----------------------
+ 
+ OPT=$(DEBUG) $(PLANRULE) -DPLANLOCK=\"$(PLANLOCK)\" -DPLANDLOCK=\"$(PLANDLOCK)\"
+@@ -523,7 +523,7 @@
+ 
+ netplan: $(S_OBJ) $(MAKEFILE)
+ 	$(CCLINE) -o netplan $(S_OBJ) \
+-		-L/usr/local/lib $(L2F)
++		-L$(libdir) $(L2F)
+ 
+ .c.o:
+ 	$(CCLINE) -c $<
+@@ -585,15 +585,11 @@
+ 	-(test x'$(JAPAN)' != x && chmod 644 $(DESTDIR)$(LIB)/plan_calSJ.ps) || exit 0
+ 	mkdir -p $(DESTDIR)$(NETPLANDIR)/netplan.dir
+ 	-chmod 700 $(DESTDIR)$(NETPLANDIR)/netplan.dir || exit 0
+-	-(test x'$(CATMAN)' != xNONE -a -x "`which nroff`" && nroff -man ../misc/plan.1 >../misc/plan.1cat) || exit 0
+-	-(test x'$(CATMAN)' != xNONE -a -x "`which nroff`" && nroff -man ../misc/plan.4 >../misc/plan.4cat) || exit 0
+-	-(test x'$(CATMAN)' != xNONE -a -x "`which nroff`" && nroff -man ../misc/netplan.1 >../misc/netplan.1cat) || exit 0
+-	-(test x'$(MAN)'    != xNONE -a -d $(DESTDIR)$(MAN)1 && cp ../misc/plan.1 $(DESTDIR)$(MAN)1/plan) || exit 0
+-	-(test x'$(MAN)'    != xNONE -a -d $(DESTDIR)$(MAN)4 && cp ../misc/plan.4 $(DESTDIR)$(MAN)4/plan) || exit 0
+-	-(test x'$(MAN)'    != xNONE -a -d $(DESTDIR)$(MAN)1 && cp ../misc/netplan.1 $(DESTDIR)$(MAN)1/netplan) || exit 0
+-	-(test x'$(CATMAN)' != xNONE -a -d $(DESTDIR)$(CATMAN)1 && cp ../misc/plan.1cat $(DESTDIR)$(CATMAN)1/plan) || exit 0
+-	-(test x'$(CATMAN)' != xNONE -a -d $(DESTDIR)$(CATMAN)4 && cp ../misc/plan.4cat $(DESTDIR)$(CATMAN)4/plan) || exit 0
+-	-(test x'$(CATMAN)' != xNONE -a -d $(DESTDIR)$(CATMAN)1 && cp ../misc/netplan.1cat $(DESTDIR)$(CATMAN)1/netplan) || exit 0
++	mkdir -p $(DESTDIR)$(MAN)1 $(DESTDIR)$(MAN)4
++	-chmod 755 $(DESTDIR)$(MAN)1 $(DESTDIR)$(MAN)4
++	-(test x'$(MAN)'    != xNONE -a -d $(DESTDIR)$(MAN)1 && cp ../misc/plan.1 $(DESTDIR)$(MAN)1) || exit 0
++	-(test x'$(MAN)'    != xNONE -a -d $(DESTDIR)$(MAN)4 && cp ../misc/plan.4 $(DESTDIR)$(MAN)4) || exit 0
++	-(test x'$(MAN)'    != xNONE -a -d $(DESTDIR)$(MAN)1 && cp ../misc/netplan.1 $(DESTDIR)$(MAN)1) || exit 0
+ 	-(test -f ${HOME}/.holiday || cp ../holiday/holiday_$(HOLIDAY) ${HOME}/.holiday) || exit 0
+ 	-(test `uname` = IRIX -o `uname` = IRIX64 && mkdir $$HOME/.icons) || exit 0
+ 	-(test `uname` = IRIX -o `uname` = IRIX64 && cp ../misc/Plan.icon $$HOME/.icons/Plan.icon) || exit 0
+--- src/config.h.orig	Thu Jun  1 13:04:51 2000
++++ src/config.h	Thu Dec  7 21:17:20 2000
+@@ -18,10 +18,10 @@
+  */
+ 
+ #ifndef PLANLOCK			 /* defaults for cc -D options */
+-#define PLANLOCK	/tmp/.plan%d
++#define PLANLOCK	"~/.plan/lock.plan"	
+ #endif
+ #ifndef PLANDLOCK			 /* defaults for cc -D options */
+-#define PLANDLOCK	/tmp/.pland%d
++#define PLANDLOCK	 "~/.plan/lock.pland"
+ #endif
+ #ifndef DOFORK				 /* is -f or -F default? */
+ #define DOFORK		TRUE
+@@ -32,20 +32,19 @@
+ #define DB_PRIV_PATH	"~/" PLANHOME "/dayplan.priv"
+ #define HOLIDAY_PATH	"~/" PLANHOME "/holiday"
+ #else
+-#define DB_PUB_PATH	"~/.dayplan"	 /* public appts & config */
+-#define DB_PRIV_PATH	"~/.dayplan.priv"/* private appointments */
+-#define HOLIDAY_PATH	"~/.holiday"	 /* holiday database */
++#define DB_PUB_PATH	"~/.plan/dayplan"	 /* public appts & config */
++#define DB_PRIV_PATH	"~/.plan/dayplan.priv"/* private appointments */
++#define HOLIDAY_PATH	"~/.plan/holiday"	 /* holiday database */
+ #endif
+ #define HOLIDAY_NAME	"holiday"	 /* global holiday dbase (LIB)*/
+ #define HELP_FN		"plan.help"	 /* help text file */
+ #define DAEMON_FN	"pland"		 /* daemon program */
+ #define ALARM_FN	"notifier"	 /* program that shows alarm popup */
+ #define PS_SPOOLER	"lp"
+-#define DEFAULTPATH	"/usr/local/lib:/usr/local/bin:/bin:/usr/bin:/usr/sbin:/usr/ucb:/usr/bsd:/usr/bin/X11:/usr/freeware/bin:/usr/freeware/lib:.:../misc"
++#define DEFAULTPATH	"$(libdir)/plan:/usr/local/lib:/usr/local/bin:/bin:/usr/bin:/usr/sbin:/usr/ucb:/usr/bsd:/usr/bin/X11:/usr/freeware/bin:/usr/freeware/lib:.:../misc"
+ 
+ 
+ #if defined(XlibSpecificationRelease) && defined(sgi) || defined(linux)
+-#include <X11/Xmu/Editres.h>
+ #define EDITRES
+ #endif
+ #ifndef _XEditResCheckMessages
+--- language/plan.help.orig	Tue May  2 20:09:29 2000
++++ language/plan.help	Thu Dec  7 21:17:20 2000
+@@ -130,7 +130,7 @@
+ 
+ 	*  If starting plan prints cpp errors to stderr (or pops up an error
+ 	    dialog on SGIs if desktop error reporting is turned on), change
+-	    all '#' characters in your ~/.holiday to ':'. The comment
++	    all '#' characters in your ~/.plan/holiday to ':'. The comment
+ 	    introducer was changed in version 1.3 to allow #include statements.
+ 
+ 	*  If the main menu shows an incorrect time above the month calendar,
+@@ -191,13 +191,14 @@
+ 	Plan should be installed in the directory given as DIR in the Makefile,
+ 	by default /usr/local/bin, and the others in the directory given as
+ 	LIB, also /usr/local/bin by default. The distribution also contains
+-	.holiday files for various countries.
++	holiday files for various countries.
+ 
+ 	"plan" is the main interactive calendar program that you are using at
+ 	the moment. It is used to view calendars and to enter appointments
+ 	at specified dates and times, with various optional parameters. It
+ 	depends on the plan.help file, and writes all configuration parameters
+-	and appointments to two files ".dayplan" and ".dayplan.priv" in the
++	and appointments to two files "~/.plan/dayplan" and "~/.plan/dayplan.priv" 
++	in the
+ 	user's home directory. It signals the daemon (SIGHUP) when that file
+ 	changes, to force the daemon to re-read it.
+ 
+@@ -230,17 +231,17 @@
+ 	default to make 4Dwm use the full-color picture. It may be necessary
+ 	to restart 4Dwm to register the icon.
+ 
+-	In the user's home directory, there are three files. ".dayplan" contains
++	In the user's home directory, there are three files. "~/.plan/dayplan" contains
+ 	the public appointments (the ones without the padlock icon in the
+ 	appointment list menu, which can be displayed in other users' week
+ 	views). ".dayplan.priv" contains the private appointments (the ones
+-	with a padlock, which cannot be accessed by other users). ".holiday"
++	with a padlock, which cannot be accessed by other users). "~/.plan/holiday"
+ 	contains a description of public holidays and vacations as specified
+ 	with the Define Holidays popup in the Config pulldown. For a description
+ 	of the .dayplan* format, see the plan(4) manpage.
+ 
+ 	If the LIB directory (specified in the Makefile) contains a file
+-	"holiday", it is read after ".holiday" to add system-wide holidays to
++	"holiday", it is read after "~/.plan/holiday" to add system-wide holidays to
+ 	the user's holiday list.
+ 
+ 	Both plan and pland use the environment variables $PATH, $PLAN_PATH, a
+@@ -322,7 +323,8 @@
+ 	   LOGNAME provides your user name for the default mailer command.
+ 	   USER provides your user name if LOGNAME is undefined.
+ 	   user provides your user name if LOGNAME and USER are both undefined.
+-	   HOME is your home directory, for locating .dayplan* and .holiday.
++	   HOME is your home directory, for locating ~/.plan/dayplan* and
++	   ~/.plan/holiday.
+ 	   PLAN_PATH and PATH are colon-separated search paths for finding
+ 	      programs. First, BIN and LIB from the Makefile are searched, then
+ 	      PLAN_PATH, then PATH, and finally a built-in default search path.
+@@ -1905,7 +1907,7 @@
+ 	Files can either be specified by path or by netplan server host:
+ 	
+ 	- If the "Server" mode button is off, the file is read directly from
+-	   the given path. If the path is a directory, plan appends ".dayplan";
++	   the given path. If the path is a directory, plan appends "~/.plan/dayplan";
+ 	   this is useful for reading other users' default files in their home
+ 	   directories.
+ 
+@@ -2014,7 +2016,7 @@
+ 	Files can either be specified by path or by netplan server host:
+ 	
+ 	- If the "Server" mode button is off, the file is read directly from
+-	   the given path. If the path is a directory, plan appends ".dayplan";
++	   the given path. If the path is a directory, plan appends "~/.plan/dayplan";
+ 	   this is useful for reading other users' default files in their home
+ 	   directories.
+ 
+--- holiday/holiday_australia.orig	Mon Apr 17 23:46:02 1995
++++ holiday/holiday_australia	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Australian holiday file. Copy to ~/.holiday
++: Australian holiday file. Copy to ~/.plan/holiday
+ :
+ : Author: Peter Turnbull (peter@cbr.atr.com.au)
+ :
+--- holiday/holiday_belgium.orig	Tue Mar 25 21:49:23 1997
++++ holiday/holiday_belgium	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Belgian holiday file. Copy to ~/.holiday
++: Belgian holiday file. Copy to ~/.plan/holiday 
+ :
+ : Author: Guido van Rossum, CWI, Amsterdam <Guido.van.Rossum@cwi.nl>
+ : Adapted from Dutch holiday by Danny Backx <u27113@kb.be>
+--- holiday/holiday_canada.orig	Mon Apr 17 23:46:02 1995
++++ holiday/holiday_canada	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Canadian holiday file. Copy to ~/.holiday
++: Canadian holiday file. Copy to ~/.plan/holiday
+ :
+ : Author: Peter Littlefield <plittle@sofkin.ca>
+ :
+--- holiday/holiday_denmark.orig	Fri Feb 20 22:18:23 1998
++++ holiday/holiday_denmark	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Danish holiday file. Copy to ~/.holiday for private changes or tip
++: Danish holiday file. Copy to ~/.plan/holiday for private changes or tip
+ : aneks@kom.auc.dk if things are missing.
+ : (colors edited by thomas@bitrot.in-berlin.de)
+ :
+--- holiday/holiday_dutch.orig	Mon Apr 17 23:46:02 1995
++++ holiday/holiday_dutch	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Dutch holiday file. Copy to ~/.holiday
++: Dutch holiday file. Copy to ~/.plan/holiday
+ :
+ : NOTE: Goede Vrijdag and Bevrijdingsdag are not holidays for
+ : everybody, therefore I don't put them in the "weekend" color.
+--- holiday/holiday_finnish.orig	Sun Nov 10 22:07:49 1996
++++ holiday/holiday_finnish	Thu Dec  7 21:17:20 2000
+@@ -1,4 +1,4 @@
+-: Finnish holiday file. Copy to ~/.holiday
++: Finnish holiday file. Copy to ~/.plan/holiday
+ :
+ : Author: Steven Wahlberg <stegu@iki.fi>
+ 
+--- holiday/holiday_french.orig	Mon Jul  5 19:51:23 1999
++++ holiday/holiday_french	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: French holiday file. Copy to ~/.holiday
++: French holiday file. Copy to ~/.plan/holiday
+ :
+ : - en vert les saisons
+ : - en bleu (texte) et rouge (jour) les jours feriés
+--- holiday/holiday_frswiss.orig	Mon Apr 17 23:46:02 1995
++++ holiday/holiday_frswiss	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Swiss holiday file. Copy to ~/.holiday
++: Swiss holiday file. Copy to ~/.plan/holiday
+ : Use this as a starting point, some holidays are missing, and some listed
+ : here are largely irrelevant.
+ :
+--- holiday/holiday_german.orig	Mon Aug 24 20:53:20 1998
++++ holiday/holiday_german	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: German holiday file. Copy to ~/.holiday
++: German holiday file. Copy to ~/.plan/holiday
+ : Bavarians please add the weekend keyword everywhere, and sprinkle
+ : generously with more obscure catholic holidays.
+ :
+--- holiday/holiday_greek.orig	Thu Sep 23 20:28:46 1999
++++ holiday/holiday_greek	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ ;
+-; Greek holiday file. Copy to ~/.holiday
++; Greek holiday file. Copy to ~/.plan/holiday
+ ;
+ small "New Year" weekend on january 1
+ small "Epiphany" weekend on january 6
+--- holiday/holiday_japan.orig	Wed Apr 10 07:43:11 1996
++++ holiday/holiday_japan	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Japanese holiday file. Copy to ~/.holiday
++: Japanese holiday file. Copy to ~/.plan/holiday
+ : compiler: Ogura Yoshito <ogura@ndc.ngsk.sony.co.jp>
+ :
+ small "New Year's Day" weekend on 1/1
+--- holiday/holiday_norway.orig	Mon Apr 21 21:15:53 1997
++++ holiday/holiday_norway	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Norwegian holiday file. Copy to ~/.holiday for private changes or tip
++: Norwegian holiday file. Copy to ~/.plan/holiday for private changes or tip
+ : geiri@stud.cs.uit.no if things are missing.
+ :
+ weekend "1. Nyttårsdag" weekend on 1.1
+--- holiday/holiday_quebec.orig	Mon Apr 17 23:46:02 1995
++++ holiday/holiday_quebec	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Quebec holiday file. Copy to ~/.holiday
++: Quebec holiday file. Copy to ~/.plan/holiday
+ :
+ : Author: Gildas Perrot <perrot@grbb.polymtl.ca>
+ :
+--- holiday/holiday_spain.orig	Mon Mar 25 23:00:32 1996
++++ holiday/holiday_spain	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Fichero holiday_spain. Cópialo a  ~/.holiday
++: Fichero holiday_spain. Cópialo a  ~/.plan/holiday
+ : Modifica este fichero borrando y añadiendo lo que te parezca.
+ :
+ : Fiestas 
+--- holiday/holiday_swedish.orig	Mon Apr 17 23:46:03 1995
++++ holiday/holiday_swedish	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: Swedish holiday file. Copy to ~/.holiday for private changes or tip
++: Swedish holiday file. Copy to ~/.plan/holiday for private changes or tip
+ : wedberg@mednet.gu.se if things are missing.
+ :
+ weekend "Nyårsdagen" weekend on 1.1
+--- holiday/holiday_uk.orig	Mon Apr 17 23:46:03 1995
++++ holiday/holiday_uk	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: UK holiday file. Copy to ~/.holiday
++: UK holiday file. Copy to ~/.plan/holiday
+ :
+ : Author: Peter Lord <plord@uel.co.uk>
+ :
+--- holiday/holiday_us.orig	Mon Apr 17 23:46:03 1995
++++ holiday/holiday_us	Thu Dec  7 21:17:20 2000
+@@ -1,5 +1,5 @@
+ :
+-: US holiday file. Copy to ~/.holiday
++: US holiday file. Copy to ~/.plan/holiday
+ : Use this as a starting point, some holidays are missing, and some listed
+ : here are largely irrelevant.
+ :

@@ -1,0 +1,13 @@
+--- gpm-1.20.1/src/gpm.c.orig	2003-06-24 03:58:06.000000000 -0400
++++ gpm-1.20.1/src/gpm.c	2003-06-24 03:58:41.000000000 -0400
+@@ -974,8 +974,8 @@
+       gpm_report(GPM_PR_OOPS,GPM_MESS_BIND_PROB,ctladdr.sun_path);
+    maxfd=max(maxfd,ctlfd);
+ 
+-   /* needs to be 0777, so all users can _try_ to access gpm */
+-   chmod(GPM_NODE_CTL,0777);
++   /* only allow console to access */
++   chmod(GPM_NODE_CTL,0700);
+ 
+    get_console_size(&event); /* get screen dimensions */
+ 

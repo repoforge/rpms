@@ -1,0 +1,14 @@
+--- sendmail-8.12.8/sendmail/parseaddr.c.orig	2003-09-17 23:17:25.000000000 +0200
++++ sendmail-8.12.8/sendmail/parseaddr.c	2003-09-17 23:18:06.000000000 +0200
+@@ -700,7 +700,11 @@
+ 						addr[MAXNAME] = '\0';
+ 	returnnull:
+ 					if (delimptr != NULL)
++					{
++						if (p > addr)
++							--p;
+ 						*delimptr = p;
++					}
+ 					CurEnv->e_to = saveto;
+ 					return NULL;
+ 				}

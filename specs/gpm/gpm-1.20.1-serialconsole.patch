@@ -1,0 +1,29 @@
+--- gpm-1.20.1/src/gpm.c.orig	2003-06-24 04:09:26.000000000 -0400
++++ gpm-1.20.1/src/gpm.c	2003-06-24 04:09:30.000000000 -0400
+@@ -151,8 +151,24 @@
+ static inline int open_console(const int mode)
+ {
+    int fd;
+-
+-   if ((fd=open(option.consolename, mode)) < 0)
++   struct stat sb;
++   int maj, twelve=12;
++   struct serial_struct si;
++ 
++   fd = open(option.consolename, mode);
++   if (fd != -1) {
++       fstat(fd, &sb);
++       maj = major(sb.st_rdev);
++       if (maj != 4 && (maj < 136 || maj > 143)) {
++          if (ioctl (fd, TIOCLINUX, &twelve) < 0) {
++              if (ioctl (fd, TIOCGSERIAL, &si) >= 0) {
++                  if (si.line > 0)
++                      gpm_report(GPM_PR_OOPS,GPM_MESS_OPEN_CON);
++              }
++          }
++       }
++       return fd;
++   } else
+       gpm_report(GPM_PR_OOPS,GPM_MESS_OPEN_CON);
+    return fd;
+ }

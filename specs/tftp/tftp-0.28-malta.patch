@@ -1,0 +1,23 @@
+--- tftp-hpa-0.28/tftpd/tftpd.c.malta	Tue Nov 20 11:45:12 2001
++++ tftp-hpa-0.28/tftpd/tftpd.c	Wed Jun 19 09:36:59 2002
+@@ -1043,6 +1043,7 @@ tftp_sendfile(struct formats *pf, struct
+     timeout = 0;
+     (void) sigsetjmp(timeoutbuf,1);
+     
++send_data:
+     if (send(peer, dp, size + 4, 0) != size + 4) {
+       syslog(LOG_ERR, "tftpd: write: %m");
+       goto abort;
+@@ -1074,6 +1075,12 @@ tftp_sendfile(struct formats *pf, struct
+ 	 * packet in response to an invalid ACK.  Doing so
+ 	 * would cause the Sorcerer's Apprentice bug.
+ 	 */
++
++	/* WE HAVE TO DO THIS. OTHERWISE, IT WON'T WORK WITH THE TFTP
++	   CLIENT ON THE MIPS MALTA BOARD.  H.J.  */
++	if (ap->th_block == (block -1)) {
++		goto send_data;
++	}
+       }
+       
+     }

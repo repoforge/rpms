@@ -1,0 +1,16 @@
+/var/log/xferlog {
+    compress
+    missingok
+    postrotate
+        test -f /var/lock/subsys/proftpd && /usr/bin/killall -HUP proftpd
+    endscript
+}
+
+/var/log/proftpd/*.log {
+    compress
+    missingok
+    postrotate
+        test -f /var/lock/subsys/proftpd && /usr/bin/killall -HUP proftpd
+    endscript
+}
+

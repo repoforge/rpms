@@ -1,0 +1,11 @@
+--- Makefile	2003-12-18 23:22:06.000000000 +0300
++++ /mnt/ftpd/den/Makefile	2003-12-16 19:53:06.000000000 +0300
+@@ -92,7 +92,7 @@
+ INSTALLROOT ?= $(DESTDIR)$(PREFIX)
+ 
+ ifeq ($(INSTALLROOT),)
++	INSTALLROOT = /usr
+-	INSTALLROOT = /usr/local
+ endif
+ 
+ INSTALLDIR = $(INSTALLROOT)/bin

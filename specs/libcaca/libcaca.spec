@@ -1,0 +1,125 @@
+# $Id: libcaca.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+
+Summary: The library for Colour AsCii Art, text mode graphics
+Name: libcaca
+Version: 0.9
+Release: 1.fr
+URL: http://sam.zoy.org/projects/libcaca/
+Source: http://sam.zoy.org/projects/libcaca/%{name}-%{version}.tar.bz2
+License: LGPL
+Group: System Environment/Libraries
+Buildrequires: XFree86-devel, ncurses-devel >= 5, slang-devel, imlib2-devel
+Buildrequires: zlib-devel, doxygen, tetex-latex, tetex-dvips
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%description
+libcaca is the Colour AsCii Art library. It provides high level functions
+for colour text drawing, simple primitives for line, polygon and ellipse
+drawing, as well as powerful image to text conversion routines.
+
+
+%package devel
+Summary: Development files for libcaca, the library for Colour AsCii Art
+Group: Development/Libraries
+Requires: XFree86-devel, ncurses-devel >= 5, slang-devel
+
+%description devel
+libcaca is the Colour AsCii Art library. It provides high level functions
+for colour text drawing, simple primitives for line, polygon and ellipse
+drawing, as well as powerful image to text conversion routines.
+
+This package contains the header files and static libraries needed to
+compile applications or shared objects that use libcaca.
+
+
+%package -n caca-utils
+Summary: Text mode graphics utilities
+Group: Applications/Graphics
+
+%description -n caca-utils
+This package contains utilities and demonstration programs for libcaca, the
+Colour AsCii Art library.
+
+cacaview is a simple image viewer for the terminal. It opens most image
+formats such as JPEG, PNG, GIF etc. and renders them on the terminal using
+ASCII art. The user can zoom and scroll the image, set the dithering method
+or enable anti-aliasing.
+
+cacaball is a tiny graphic program that renders animated ASCII metaballs on
+the screen, cacafire is a port of AALib's aafire and displays burning ASCII
+art flames, and cacademo is a simple application that shows the libcaca
+rendering features such as line and ellipses drawing, triangle filling and
+sprite blitting.
+
+
+%prep
+%setup -q
+
+%build
+%configure \
+    --enable-slang \
+    --enable-ncurses \
+    --enable-x11 \
+    --enable-imlib2
+make 
+
+%install
+rm -rf %{buildroot}
+%makeinstall
+# We want to include the docs ourselves from the source directory
+mv %{buildroot}%{_docdir}/%{name}-dev %{name}-devel-docs
+
+%clean
+rm -rf %{buildroot}
+
+%files devel
+%defattr(-, root, root, 0755)
+%doc COPYING %{name}-devel-docs/*
+%{_libdir}/*
+%{_bindir}/caca-config
+%{_includedir}/*
+%{_mandir}/man1/caca-config.1*
+%{_mandir}/man3/*
+
+%files -n caca-utils
+%defattr(-, root, root, 0755)
+%doc AUTHORS BUGS COPYING NEWS NOTES README THANKS TODO
+%{_bindir}/cacaball
+%{_bindir}/cacademo
+%{_bindir}/cacafire
+%{_bindir}/cacamoir
+%{_bindir}/cacaplas
+%{_bindir}/cacaview
+%{_datadir}/libcaca/*
+%{_mandir}/man1/cacaball.1*
+%{_mandir}/man1/cacademo.1*
+%{_mandir}/man1/cacafire.1*
+%{_mandir}/man1/cacaview.1*
+
+%changelog
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.9-2.fr
+- Fix License tag from GPL to LGPL.
+
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9-1.fr
+- Update to 0.9.
+- Added cacamoir and cacaplas.
+
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.7-1.fr
+- Spec file cleanup for Fedora Core 1.
+
+* Sat Jan 7 2004 Sam Hocevar (RPM packages) <sam+rpm@zoy.org> 0.7-1
+- new release
+
+* Sat Jan 4 2004 Sam Hocevar (RPM packages) <sam+rpm@zoy.org> 0.6-2
+- install documentation into {doc}/package-version instead of {doc}/package
+- added tetex-dvips to the build dependencies
+
+* Sat Jan 3 2004 Sam Hocevar (RPM packages) <sam+rpm@zoy.org> 0.6-1
+- new release
+- more detailed descriptions
+- split the RPM into libcaca-devel and caca-utils
+- packages are rpmlint clean
+
+* Mon Dec 29 2003 Richard Zidlicky <rz@linux-m68k.org> 0.5-1
+- created specfile
+

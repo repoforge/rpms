@@ -1,0 +1,12 @@
+--- Makefile.in.orig	Mon Jan  8 12:17:00 2001
++++ Makefile.in	Mon Jan  8 12:17:59 2001
+@@ -37,8 +37,7 @@
+ X11INC	= @X_CFLAGS@
+ X11LIB	= @X_LIBS@ @X_PRE_LIBS@ -lXmu -lX11 @X_EXTRA_LIBS@
+ 
+-INCS	= -I. $(NIDSINC) $(PCAPINC) $(LNETINC) $(DBINC) $(SSLINC) $(X11INC) \
+-	  -I$(srcdir)/missing
++INCS	= -I. -I$(srcdir)/missing $(NIDSINC) $(PCAPINC) $(LNETINC) $(DBINC) $(SSLINC) $(X11INC) 
+ LIBS	= @LIBS@ -L$(srcdir) -lmissing
+ 
+ INSTALL	= @INSTALL@

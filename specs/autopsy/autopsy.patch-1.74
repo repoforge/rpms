@@ -1,0 +1,42 @@
+diff -urN autopsy-1.70-diff/conf.pl autopsy-1.70/conf.pl
+--- autopsy-1.70-diff/conf.pl	1970-01-01 01:00:00.000000000 +0100
++++ autopsy-1.70/conf.pl	2003-01-30 09:56:33.000000000 +0100
+@@ -0,0 +1,38 @@
++# Autopsy configuration settings
++
++# when set to 1, the server will stop after it receives no
++# connections for STIMEOUT seconds. 
++$USE_STIMEOUT = 0;
++$STIMEOUT = 3600;
++
++# number of seconds that child waits for input from client
++$CTIMEOUT = 15;
++
++# Set to 1 for cookie authentication
++$USE_COOKIE = 1;
++# set to 1 to save the cookie value in a file (for scripting)
++$SAVE_COOKIE = 1;
++
++# set to 1 to log errors and audit trail, 0 for none
++$USE_LOG = 1;
++# set to 1 to allow investigators to make notes, 0 to not
++$USE_NOTES = 1;
++
++$INSTALLDIR = '/usr/sbin/';
++
++# Default directory names
++$IMGDIR = 'images';
++$DATADIR ='output';
++$LOGDIR = 'logs';
++$REPDIR = 'reports';
++
++
++# System Utilities
++$STRINGS_EXE = '/usr/bin/strings';
++$GREP_EXE = '/bin/grep';
++
++
++# Directories
++$TASKDIR = '/usr/sbin/';
++$NSRLDB = '';
++$LOCKDIR = '/var/morgue';

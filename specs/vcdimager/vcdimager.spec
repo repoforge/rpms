@@ -1,0 +1,93 @@
+# $Id: vcdimager.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+
+Summary: VideoCD (pre-)mastering and ripping tool
+Name: vcdimager
+Version: 0.7.20
+Release: 1.fr
+License: GPL
+Group: Applications/Multimedia
+URL: http://www.vcdimager.org/
+Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7_UNSTABLE/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: libxml2, zlib, libcdio
+BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, libcdio-devel >= 0.65, popt
+
+%description 
+VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
+files which can be burned with cdrdao or any other program capable of
+burning BIN/CUE files.
+
+VCDRip, which comes with VCDImager, does the reverse operation. That
+is, ripping mpeg streams from images (and already burned VideoCDs)
+and showing some information about the VideoCD.
+
+%prep
+%setup -q
+
+%build
+%configure
+make %{?_smp_mflags}
+
+%install
+rm -rf %{buildroot}
+make DESTDIR=%{buildroot} install
+
+# Sometimes this file gets created... but we don't want it!
+rm -f %{buildroot}%{_infodir}/dir
+
+%clean
+rm -rf %{buildroot}
+
+%files
+%defattr(-, root, root)
+%doc AUTHORS BUGS FAQ TODO COPYING ChangeLog INSTALL NEWS README THANKS
+%{_bindir}/*
+%{_infodir}/*
+%{_mandir}/man1/*
+
+%changelog
+* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.20-1.fr
+- Update to 0.7.20.
+- Added libcdio requirement.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.7.14-2.fr
+- Rebuild for Fedora Core 1.
+
+* Fri May  2 2003 Matthias Saou <http://freshrpms.net/>
+- Update to 0.7.14.
+- Remove infodir/dir, thanks to Florin Andrei.
+- Updated URL/Source.
+
+* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
+- Rebuilt for Red Hat Linux 9.
+
+* Fri Feb 28 2003 Matthias Saou <http://freshrpms.net/>
+- Update to 0.7.13.
+- Removed the now unnecessary libxml fix.
+
+* Tue Jan 14 2003 Matthias Saou <http://freshrpms.net/>
+- Fix xmlversion.h include path in configure since xml is disabled otherwise,
+  thanks to Rudolf Kastl for spotting the problem.
+
+* Fri Jan  3 2003 Matthias Saou <http://freshrpms.net/>
+- Let's try the 1 year old 0.7 development branch!
+
+* Mon Dec  9 2002 Matthias Saou <http://freshrpms.net/>
+- Spec file cleanup.
+
+* Sat Jan 20 2001 Herbert Valerio Riedel <hvr@gnu.org>
+- added THANKS file as doc
+
+* Thu Jan  4 2001 Herbert Valerio Riedel <hvr@gnu.org>
+- fixed removal of info pages on updating packages
+
+* Sat Dec 23 2000 Herbert Valerio Riedel <hvr@gnu.org>
+- added vcdrip
+- removed glib dependancy
+
+* Sat Aug 26 2000 Herbert Valerio Riedel <hvr@gnu.org>
+- spec file improvements
+
+* Mon Aug 14 2000 Herbert Valerio Riedel <hvr@gnu.org>
+- first spec file
+

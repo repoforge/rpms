@@ -1,0 +1,72 @@
+--- bluez-utils-2.3/hcid/hcid.conf~	2002-07-18 19:12:46.000000000 +0100
++++ bluez-utils-2.3/hcid/hcid.conf	2003-09-05 09:13:03.000000000 +0100
+@@ -23,7 +23,11 @@
+ 	pairing multi;
+ 
+ 	# PIN helper
+-	pin_helper /bin/bluepin;
++	pin_helper /usr/bin/bluepin;
++	#dbus_pin_helper;
++
++	# A dbus PIN daemon can be found at
++	# ftp://ftp.handhelds.org/pub/projects/gpe/source/bluez-pin-0.20.tar.gz
+ }
+ 
+ # Default settings for HCI devices
+@@ -31,10 +35,10 @@
+ 	# Local device name
+ 	#   %d - device id
+ 	#   %h - host name
+-	name "BlueZ (%d)";
++	name "%h-%d";
+ 
+ 	# Local device class
+-	class 0x100;
++	class 0x120104;
+ 
+ 	# Default packet type
+ 	#pkt_type DH1,DM1,HV1;
+@@ -64,6 +68,6 @@
+ 	lp hold,sniff,park;
+ 
+ 	# Authentication and Encryption
+-	#auth enable;
+-	#encrypt enable;
++	auth enable;
++	encrypt enable;
+ }
+--- bluez-utils-2.3/rfcomm/rfcomm.conf~	2002-10-07 06:58:18.000000000 +0100
++++ bluez-utils-2.3/rfcomm/rfcomm.conf	2003-09-05 09:13:27.000000000 +0100
+@@ -4,16 +4,19 @@
+ # $Id: bluez-utils-2.3-conf.patch,v 1.1 2004/02/24 23:49:10 dag- Exp $
+ #
+ 
+-rfcomm0 {
+-	# Automatically bind the device at startup
+-	bind no;
+-
+-	# Bluetooth address of the device
+-	device 11:22:33:44:55:66;
+-
+-	# RFCOMM channel for the connection
+-	channel	1;
+-
+-	# Description of the connection
+-	comment "Example Bluetooth device";
+-}
++#
++# Example:
++#
++#rfcomm0 {
++#	# Automatically bind the device at startup
++#	bind no;
++#
++#	# Bluetooth address of the device
++#	device 11:22:33:44:55:66;
++#
++#	# RFCOMM channel for the connection
++#	channel	1;
++#
++#	# Description of the connection
++#	comment "Example Bluetooth device";
++#}

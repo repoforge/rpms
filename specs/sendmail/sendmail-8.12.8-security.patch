@@ -1,0 +1,70 @@
+*** s/sendmail/parseaddr.c
+--- s/sendmail/parseaddr.c
+***************
+*** 608,614 ****
+  };
+  
+  
+! #define NOCHAR		-1	/* signal nothing in lookahead token */
+  
+  char **
+  prescan(addr, delim, pvpbuf, pvpbsize, delimptr, toktab)
+--- 608,614 ----
+  };
+  
+  
+! #define NOCHAR		(-1)	/* signal nothing in lookahead token */
+  
+  char **
+  prescan(addr, delim, pvpbuf, pvpbsize, delimptr, toktab)
+***************
+*** 694,699 ****
+--- 694,700 ----
+  				/* see if there is room */
+  				if (q >= &pvpbuf[pvpbsize - 5])
+  				{
++ 	addrtoolong:
+  					usrerr("553 5.1.1 Address too long");
+  					if (strlen(addr) > MAXNAME)
+  						addr[MAXNAME] = '\0';
+***************
+*** 709,715 ****
+  			}
+  
+  			/* read a new input character */
+! 			c = *p++;
+  			if (c == '\0')
+  			{
+  				/* diagnose and patch up bad syntax */
+--- 710,716 ----
+  			}
+  
+  			/* read a new input character */
+! 			c = (*p++) & 0x00ff;
+  			if (c == '\0')
+  			{
+  				/* diagnose and patch up bad syntax */
+***************
+*** 764,769 ****
+--- 765,773 ----
+  				}
+  				else if (c != '!' || state == QST)
+  				{
++ 					/* see if there is room */
++ 					if (q >= &pvpbuf[pvpbsize - 5])
++ 						goto addrtoolong;
+  					*q++ = '\\';
+  					continue;
+  				}
+***************
+*** 849,854 ****
+--- 853,861 ----
+  		/* new token */
+  		if (tok != q)
+  		{
++ 			/* see if there is room */
++ 			if (q >= &pvpbuf[pvpbsize - 5])
++ 				goto addrtoolong;
+  			*q++ = '\0';
+  			if (tTd(22, 36))
+  			{

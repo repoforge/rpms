@@ -1,0 +1,9 @@
+# This is the modes file for Portsentry. Uncomment the modes you want
+# to run portsentry to run in. For information about each mode, please
+# see the Portsentry documentation.
+#tcp
+#udp
+#stcp
+#sudp
+atcp
+audp 

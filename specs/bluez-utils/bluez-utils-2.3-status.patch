@@ -1,0 +1,16 @@
+--- bluez-utils-2.3/scripts/bluetooth.rc.rh.stat	2003-10-22 16:55:02.000000000 +0200
++++ bluez-utils-2.3/scripts/bluetooth.rc.rh	2003-10-22 17:07:12.000000000 +0200
+@@ -82,8 +82,12 @@
+   condrestart)
+ 	[ -e /var/lock/subsys/bluetooth ] && (stop; start)
+ 	;;
++  status)
++        status hcid
++        status sdpd
++        ;;
+   *)
+-        echo $"Usage: $0 {start|stop|restart|reload|condrestart}"
++        echo $"Usage: $0 {start|stop|status|restart|reload|condrestart}"
+         exit 1
+ esac
+ 

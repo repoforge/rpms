@@ -1,0 +1,26 @@
+TTCP is a benchmarking tool for determining TCP and UDP performance 
+between 2 systems.
+
+The program was created at the US Army Ballistics Research Lab (BRL)
+and is in the public domain. Feel free to distribute this program
+but please do leave the credit notices in the source and man page intact.
+
+Contents of this directory:
+
+ttcp.c		Source that runs on IRIX 3.3.x and 4.0.x systems
+		and BSD-based systems.  This version also uses getopt(3) 
+		and has 2 new options: -f and -T.
+
+ttcp.c-brl	Original source from BRL.
+
+ttcp.1		Manual page (describes ttcp.c options, which are a 
+		superset of the other version).
+
+
+How to get TCP performance numbers:
+
+	receiver				sender
+
+host1%  ttcp -r -s			host2% ttcp -t -s host1
+
+-n and -l options change the number and size of the buffers.

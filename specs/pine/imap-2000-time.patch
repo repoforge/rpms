@@ -1,0 +1,56 @@
+--- pine4.33/imap/src/osdep/unix/os_lnx.c.time	Wed Feb 14 12:25:06 2001
++++ pine4.33/imap/src/osdep/unix/os_lnx.c	Wed Feb 14 12:25:16 2001
+@@ -23,6 +23,7 @@
+ #include "osdep.h"
+ #include <stdio.h>
+ #include <sys/time.h>
++#include <time.h>
+ #include <sys/stat.h>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+--- pine4.33/imap/src/osdep/unix/news.c.time	Thu Jan 18 21:28:33 2001
++++ pine4.33/imap/src/osdep/unix/news.c	Wed Feb 14 12:24:34 2001
+@@ -21,7 +21,7 @@
+ #include <stdio.h>
+ #include <ctype.h>
+ #include <errno.h>
+-extern int errno;		/* just in case */
++#include <time.h>
+ #include "mail.h"
+ #include "osdep.h"
+ #include <sys/stat.h>
+--- pine4.33/imap/src/osdep/unix/phile.c.time	Thu Jan 18 21:31:20 2001
++++ pine4.33/imap/src/osdep/unix/phile.c	Wed Feb 14 12:24:34 2001
+@@ -21,8 +21,8 @@
+ #include <stdio.h>
+ #include <ctype.h>
+ #include <errno.h>
+-extern int errno;		/* just in case */
+ #include <signal.h>
++#include <time.h>
+ #include "mail.h"
+ #include "osdep.h"
+ #include <pwd.h>
+--- pine4.33/imap/src/osdep/unix/mh.c.time	Thu Jan 18 21:27:37 2001
++++ pine4.33/imap/src/osdep/unix/mh.c	Wed Feb 14 12:24:34 2001
+@@ -21,7 +21,8 @@
+ #include <stdio.h>
+ #include <ctype.h>
+ #include <errno.h>
+-extern int errno;		/* just in case */
++#include <time.h>
++
+ #include "mail.h"
+ #include "osdep.h"
+ #include <pwd.h>
+--- pine4.33/imap/src/osdep/unix/mx.c.time	Thu Jan 18 21:28:09 2001
++++ pine4.33/imap/src/osdep/unix/mx.c	Wed Feb 14 12:24:34 2001
+@@ -21,7 +21,7 @@
+ #include <stdio.h>
+ #include <ctype.h>
+ #include <errno.h>
+-extern int errno;		/* just in case */
++#include <time.h>
+ #include "mail.h"
+ #include "osdep.h"
+ #include <pwd.h>

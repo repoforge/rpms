@@ -1,0 +1,35 @@
+--- testsuite/roundtrip.c.orig	Sat Oct 26 16:36:48 2002
++++ testsuite/roundtrip.c	Sat Oct 26 16:36:55 2002
+@@ -33,7 +33,7 @@
+ {
+   int c;
+   unicode_iconv_t i;
+-  int from_size, to_size;
++  size_t from_size, to_size;
+   char *from, *to;
+ 
+   for (c=0;c<256;c++)
+--- testsuite/tinyiconv.c.orig	Sat Oct 26 16:12:07 2002
++++ testsuite/tinyiconv.c	Sat Oct 26 16:12:45 2002
+@@ -33,7 +33,7 @@
+   unsigned char result[1000];
+   unsigned char rresult[1000];
+   unicode_iconv_t ic, ric;
+-  int from_size, to_size;
++  size_t from_size, to_size;
+   unsigned char *from, *to;
+   unsigned char *p;
+   int lineno;
+--- testsuite/utf8.c.orig	Sat Oct 26 16:13:14 2002
++++ testsuite/utf8.c	Sat Oct 26 16:13:24 2002
+@@ -30,8 +30,8 @@
+ {
+   unsigned char from[16];
+   char to[16];
+-  int from_size = 4;
+-  int to_size = 16;
++  size_t from_size = 4;
++  size_t to_size = 16;
+   const char *from_ptr = from;
+   char *to_ptr = to;
+   unicode_char_t result;

@@ -1,0 +1,13 @@
+--- sendmail-8.11.6/redhat.config.m4.redhat	Thu Aug 23 13:44:00 2001
++++ sendmail-8.11.6/redhat.config.m4	Thu Aug 23 13:44:00 2001
+@@ -0,0 +1,10 @@
++define(`confMAPDEF', `-DNEWDB -DNIS -DMAP_REGEX -DLDAPMAP')
++define(`confENVDEF', `$(RPM_OPT_FLAGS) -Wall -DXDEBUG=0 -DTCPWRAPPERS -DSASL -DNETINET6 -DUSE_VENDOR_CF_PATH=1 -D_FFR_WORKAROUND_BROKEN_NAMESERVERS')
++define(`confLIBS', `-lnsl -lwrap -lldap -llber -lsasl -lcrypt -lgdbm')
++define(`confLDOPTS', `-s')
++define(`confMANOWN', `root')
++define(`confMANGRP', `root')
++define(`confMANMODE', `644')
++define(`confMAN1SRC', `1')
++define(`confMAN5SRC', `5')
++define(`confMAN8SRC', `8')

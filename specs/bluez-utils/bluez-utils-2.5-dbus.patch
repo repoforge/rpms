@@ -1,0 +1,384 @@
+diff -uNr bluez-utils-2.3/configure.in bluez-utils-2.3-dbus/configure.in
+--- bluez-utils-2.3/configure.in	2003-03-20 06:28:26.000000000 +0000
++++ bluez-utils-2.3-dbus/configure.in	2003-09-05 08:54:57.000000000 +0100
+@@ -44,6 +44,12 @@
+ 	BLUEZ_INCDIR='../libs/include /usr/include'
+ )
+ 
++AC_ARG_ENABLE(dbus,
++	--enable-dbus		  use D-BUS,
++	BLUEZ_DBUS="$enableval",
++	BLUEZ_DBUS="no"
++)
++
+ AC_SEARCH_HEADERS(bluetooth/bluetooth.h, $BLUEZ_INCDIR,,
+ 	AC_MSG_ERROR(Bluetooth headers not found.
+ 		Please compile and install bluez-libs package.)
+@@ -71,4 +77,13 @@
+            AC_TEST_DIR(/etc/pcmcia, PCMCIA=pcmcia, PCMCIA=)
+     fi ])
+ 
++if test x"$BLUEZ_DBUS" == "xyes"; then
++  PKG_CHECK_MODULES(DBUS, dbus-1, have_dbus=yes, have_dbus=no)
++
++  CFLAGS="$CFLAGS $DBUS_CFLAGS -DDBUS_API_SUBJECT_TO_CHANGE -DENABLE_DBUS"
++  LIBS="$LIBS $DBUS_LIBS"
++fi
++
++AM_CONDITIONAL(ENABLE_DBUS, test x$BLUEZ_DBUS = xyes)
++
+ AC_OUTPUT(Makefile hcid/Makefile tools/Makefile rfcomm/Makefile test/Makefile scripts/Makefile pcmcia/Makefile)
+diff -uNr bluez-utils-2.3/hcid/dbus.c bluez-utils-2.3-dbus/hcid/dbus.c
+--- bluez-utils-2.3/hcid/dbus.c	1970-01-01 01:00:00.000000000 +0100
++++ bluez-utils-2.3-dbus/hcid/dbus.c	2003-09-05 08:54:57.000000000 +0100
+@@ -0,0 +1,211 @@
++#include <stdio.h>
++#include <sys/socket.h>
++#include <sys/syslog.h>
++
++#include <bluetooth/bluetooth.h>
++#include <bluetooth/hci.h>
++#include <bluetooth/hci_lib.h>
++
++#include <dbus/dbus.h>
++
++#include "hcid.h"
++#include "glib-ectomy.h"
++
++static DBusConnection *connection;
++
++#define TIMEOUT (30*1000)		// 30 seconds
++
++#define REQUEST_NAME "org.handhelds.gpe.bluez.pin-request"
++
++struct pin_request
++{
++  int dev;
++  bdaddr_t bda;
++};
++
++static DBusHandlerResult
++reply_handler_function (DBusMessageHandler *handler,
++			DBusConnection     *connection,
++			DBusMessage        *message,
++			void               *user_data)
++{
++  struct pin_request *req = (struct pin_request *)user_data;
++  pin_code_reply_cp pr;
++  DBusMessageIter iter;
++  int type;
++  size_t len;
++  char *pin;
++
++  if (dbus_message_get_is_error (message))
++    goto error;
++
++  dbus_message_iter_init (message, &iter);
++
++  type = dbus_message_iter_get_arg_type (&iter);
++  if (type != DBUS_TYPE_STRING)
++    goto error;
++
++  pin = dbus_message_iter_get_string (&iter);
++  len = strlen (pin);
++
++  memset (&pr, 0, sizeof(pr));
++  bacpy (&pr.bdaddr, &req->bda);
++  memcpy (pr.pin_code, pin, len);
++  pr.pin_len = len;
++  hci_send_cmd(req->dev, OGF_LINK_CTL, OCF_PIN_CODE_REPLY,
++	       PIN_CODE_REPLY_CP_SIZE, &pr);
++
++  return DBUS_HANDLER_RESULT_REMOVE_MESSAGE;
++
++ error:
++  hci_send_cmd(req->dev, OGF_LINK_CTL, OCF_PIN_CODE_NEG_REPLY, 6, &req->bda);
++  return DBUS_HANDLER_RESULT_REMOVE_MESSAGE;
++}
++
++static void
++free_pin_req (void *req)
++{
++  free (req);
++}
++     
++void
++hcid_dbus_request_pin (int dev, struct hci_conn_info *ci)
++{
++  DBusMessage *message;
++  DBusMessageIter iter;
++  DBusMessageHandler *reply_handler;
++  struct pin_request *req;
++  bdaddr_t ba;
++  int i;
++
++  message = dbus_message_new (REQUEST_NAME, DBUS_SERVICE_BROADCAST);
++  if (message == NULL)
++    {
++      syslog (LOG_ERR, "Couldn't allocate D-BUS message");
++      goto failed;
++    }
++
++  req = malloc (sizeof (*req));
++  req->dev = dev;
++  bacpy (&req->bda, &ci->bdaddr);
++
++  reply_handler = dbus_message_handler_new (reply_handler_function, req, free_pin_req);
++
++  dbus_message_append_iter_init (message, &iter);
++
++  dbus_message_iter_append_boolean (&iter, ci->out);
++  for (i = 0; i < 6; i++)
++    {
++      unsigned char *d = (unsigned char *)&ci->bdaddr;
++      dbus_message_iter_append_byte (&iter, d[i]);
++    }
++
++  baswap (&ba, &ci->bdaddr);
++
++  if (dbus_connection_send_with_reply (connection, message, reply_handler, TIMEOUT) == FALSE)
++    {
++      syslog (LOG_ERR, "D-BUS send failed");
++      goto failed;
++    }
++
++  dbus_connection_flush (connection);
++
++  return;
++
++ failed:
++  hci_send_cmd(dev, OGF_LINK_CTL, OCF_PIN_CODE_NEG_REPLY, 6, &ci->bdaddr);
++}
++
++gboolean
++watch_func (GIOChannel *chan, GIOCondition cond, gpointer data)
++{
++  int flags = 0;
++  DBusWatch *watch = (DBusWatch *)data;
++
++  if (cond & G_IO_IN) flags |= DBUS_WATCH_READABLE;
++  if (cond & G_IO_OUT) flags |= DBUS_WATCH_WRITABLE;
++  if (cond & G_IO_HUP) flags |= DBUS_WATCH_HANGUP;
++  if (cond & G_IO_ERR) flags |= DBUS_WATCH_ERROR;
++
++  dbus_watch_handle (watch, flags);
++  
++  dbus_connection_ref (connection);
++  
++  /* Dispatch messages */
++  while (dbus_connection_dispatch (connection) == DBUS_DISPATCH_DATA_REMAINS)
++    ;
++
++  dbus_connection_unref (connection);
++
++  return TRUE;
++}
++
++dbus_bool_t
++add_watch (DBusWatch *watch, void *data)
++{
++  GIOCondition cond = G_IO_HUP | G_IO_ERR;
++  int fd;
++  GIOChannel *io;
++  int flags;
++  guint id;
++
++  if (!dbus_watch_get_enabled (watch))
++    return TRUE;
++
++  fd = dbus_watch_get_fd (watch);
++  io = g_io_channel_unix_new (fd);
++  flags = dbus_watch_get_flags (watch);
++  
++  if (flags & DBUS_WATCH_READABLE) cond |= G_IO_IN;
++  if (flags & DBUS_WATCH_WRITABLE) cond |= G_IO_OUT;
++  
++  id = g_io_add_watch (io, cond, watch_func, watch);
++
++  dbus_watch_set_data (watch, (void *)id, NULL);
++
++  return TRUE;
++}
++
++static void
++remove_watch (DBusWatch *watch, void *data)
++{
++  guint id = (guint)dbus_watch_get_data (watch);
++
++  dbus_watch_set_data (watch, NULL, NULL);
++
++  if (id)
++    g_io_remove_watch (id);
++}
++
++static void
++watch_toggled (DBusWatch *watch, void *data)
++{
++  /* Because we just exit on OOM, enable/disable is
++   * no different from add/remove
++   */
++  if (dbus_watch_get_enabled (watch))
++    add_watch (watch, data);
++  else
++    remove_watch (watch, data);
++}
++
++gboolean
++hcid_dbus_init (void)
++{
++  DBusError error;
++
++  dbus_error_init (&error);
++  connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
++  if (connection == NULL)
++    {
++      fprintf (stderr, "Failed to open connection to system message bus: %s\n",
++               error.message);
++      dbus_error_free (&error);
++      return FALSE;
++    }
++
++  dbus_connection_set_watch_functions (connection, add_watch, remove_watch,
++				       watch_toggled, NULL, NULL);
++
++  return TRUE;
++}
+diff -uNr bluez-utils-2.3/hcid/glib-ectomy.c bluez-utils-2.3-dbus/hcid/glib-ectomy.c
+--- bluez-utils-2.3/hcid/glib-ectomy.c	2003-03-20 06:29:20.000000000 +0000
++++ bluez-utils-2.3-dbus/hcid/glib-ectomy.c	2003-09-05 08:54:57.000000000 +0100
+@@ -84,6 +84,21 @@
+ 
+ static struct watch watch_head = { .id = 0, .next = 0 };
+ 
++void  g_io_remove_watch (guint id)
++{
++  struct watch *w, *p;
++
++  for (p = &watch_head, w = watch_head.next; w; w = w->next)
++    {
++      if (w->id == id)
++	{
++	  p->next = w->next;
++	  free (w);
++	  return;
++	}
++    }
++}
++
+ guint     g_io_add_watch        (GIOChannel      *channel,
+ 				 GIOCondition     condition,
+ 				 GIOFunc          func,
+diff -uNr bluez-utils-2.3/hcid/glib-ectomy.h bluez-utils-2.3-dbus/hcid/glib-ectomy.h
+--- bluez-utils-2.3/hcid/glib-ectomy.h	2003-03-07 23:13:27.000000000 +0000
++++ bluez-utils-2.3-dbus/hcid/glib-ectomy.h	2003-09-05 08:54:57.000000000 +0100
+@@ -87,6 +87,8 @@
+ 				 GIOCondition     condition,
+ 				 GIOFunc          func,
+ 				 gpointer         user_data);
++void  g_io_remove_watch (guint id);
++
+ 
+ 
+ GMainLoop *g_main_loop_new        (GMainContext *context,
+diff -uNr bluez-utils-2.3/hcid/hcid.conf bluez-utils-2.3-dbus/hcid/hcid.conf
+--- bluez-utils-2.3/hcid/hcid.h	2003-03-20 05:58:11.000000000 +0000
++++ bluez-utils-2.3-dbus/hcid/hcid.h	2003-09-05 08:54:57.000000000 +0100
+@@ -67,6 +67,7 @@
+ 	int     pin_len;
+ 	char   *pin_helper;
+ 	char   *pin_file;
++        int     dbus_pin_helper;
+ 
+ 	char   *key_file;
+ 
+@@ -91,3 +92,8 @@
+ void start_security_manager(int hdev);
+ void stop_security_manager(int hdev);
+ void toggle_pairing(int enable);
++#ifdef ENABLE_DBUS
++struct hci_conn_info;
++void hcid_dbus_request_pin(int dev, struct hci_conn_info *ci);
++gboolean hcid_dbus_init(void);
++#endif
+diff -uNr bluez-utils-2.3/hcid/kword.c bluez-utils-2.3-dbus/hcid/kword.c
+--- bluez-utils-2.3/hcid/kword.c	2002-07-18 19:12:46.000000000 +0100
++++ bluez-utils-2.3-dbus/hcid/kword.c	2003-09-05 08:54:57.000000000 +0100
+@@ -48,6 +48,7 @@
+    { "auth",	 K_AUTH		},
+    { "encrypt",  K_ENCRYPT	},
+    { "pin_helper",  K_PINHELP	},
++   { "dbus_pin_helper",  K_DBUSPINHELP	},
+ 
+    { "yes",      K_YES		},
+    { "no",       K_NO		},
+diff -uNr bluez-utils-2.3/hcid/main.c bluez-utils-2.3-dbus/hcid/main.c
+--- bluez-utils-2.3/hcid/main.c	2003-03-20 05:58:11.000000000 +0000
++++ bluez-utils-2.3-dbus/hcid/main.c	2003-09-05 08:54:57.000000000 +0100
+@@ -451,6 +451,18 @@
+ 	if (read_config(hcid.config_file) < 0)
+ 		syslog(LOG_ERR, "Config load failed");
+ 
++#ifdef ENABLE_DBUS
++	if (hcid_dbus_init () == FALSE && hcid.dbus_pin_helper) {
++		syslog (LOG_ERR, "Unable to get on D-BUS");
++		exit (1);
++	}
++#else
++	if (hcid.dbus_pin_helper) {
++		syslog (LOG_ERR, "D-BUS not configured in this build of hcid");
++		exit (1);
++	}
++#endif
++
+ 	init_security_data();
+ 
+ 	/* Create event loop */
+diff -uNr bluez-utils-2.3/hcid/Makefile.am bluez-utils-2.3-dbus/hcid/Makefile.am
+--- bluez-utils-2.3/hcid/Makefile.am	2003-03-20 05:58:11.000000000 +0000
++++ bluez-utils-2.3-dbus/hcid/Makefile.am	2003-09-05 08:54:57.000000000 +0100
+@@ -4,7 +4,13 @@
+ 
+ sbin_PROGRAMS = hcid
+ 
+-hcid_SOURCES = main.c security.c hcid.h lib.c lib.h parser.h parser.y lexer.l kword.h kword.c glib-ectomy.h glib-ectomy.c
++if ENABLE_DBUS
++dbus_hcid_sources = dbus.c
++else
++dbus_hcid_sources =
++endif
++
++hcid_SOURCES = main.c security.c hcid.h lib.c lib.h parser.h parser.y lexer.l kword.h kword.c glib-ectomy.h glib-ectomy.c $(dbus_hcid_sources)
+ hcid_CONFIG  = hcid.conf
+ 
+ YFLAGS   = -d
+diff -uNr bluez-utils-2.3/hcid/parser.y bluez-utils-2.3-dbus/hcid/parser.y
+--- bluez-utils-2.3/hcid/parser.y	2002-08-20 19:42:12.000000000 +0100
++++ bluez-utils-2.3-dbus/hcid/parser.y	2003-09-05 08:54:57.000000000 +0100
+@@ -58,7 +58,7 @@
+ %token K_OPTIONS K_DEVICE
+ %token K_AUTOINIT K_SECURITY K_PAIRING
+ %token K_PTYPE K_NAME K_CLASS K_LM K_LP K_AUTH K_ENCRYPT K_ISCAN K_PSCAN
+-%token K_PINHELP
++%token K_PINHELP K_DBUSPINHELP
+ %token K_YES K_NO
+ 
+ %token <str> WORD PATH STRING LIST
+@@ -98,11 +98,18 @@
+ 			}
+ 
+   | K_PINHELP  PATH	{
++				hcid.dbus_pin_helper = 0;
+ 				if (hcid.pin_helper)
+ 					free(hcid.pin_helper);
+ 				hcid.pin_helper = strdup($2);
+ 			}
+ 
++  | K_DBUSPINHELP       {
++				if (hcid.pin_helper)
++					free(hcid.pin_helper);
++				hcid.dbus_pin_helper = 1;
++			}
++
+   | WORD		{
+ 				cfg_error("Unknown option '%s'", $1);
+ 			}

@@ -1,0 +1,11 @@
+--- contrib/php4/php_rrdtool.h.orig	Sat Jan 12 01:39:07 2002
++++ contrib/php4/php_rrdtool.h	Sat Jan 12 01:40:10 2002
+@@ -12,6 +12,8 @@
+ #ifndef _PHP4_RRDTOOL_H
+ #define _PHP4_RRDTOOL_H
+ 
++#include "php_config.h"
++
+ #if COMPILE_DL
+ #undef HAVE_RRDTOOL
+ #define HAVE_RRDTOOL 1

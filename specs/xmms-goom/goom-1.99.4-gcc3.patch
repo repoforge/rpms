@@ -1,0 +1,129 @@
+--- src/zoom_filter_mmx.c.orig	2003-11-23 16:14:30.000000000 +0100
++++ src/zoom_filter_mmx.c	2003-11-23 16:20:50.000000000 +0100
+@@ -50,66 +50,66 @@
+ 		coeffs = precalCoef [px & PERTEMASK][py & PERTEMASK];
+ 	  }
+ 
+-	  __asm__ __volatile__ ("
+-               movd %%eax,%%mm6
+-			   ;// recuperation des deux premiers pixels dans mm0 et mm1
+-	   	       movq (%%edx,%%ebx,4), %%mm0		/* b1-v1-r1-a1-b2-v2-r2-a2 */
+-			   movq %%mm0, %%mm1				/* b1-v1-r1-a1-b2-v2-r2-a2 */
+-			   
+-			   ;// depackage du premier pixel
+-			   punpcklbw %%mm7, %%mm0	/* 00-b2-00-v2-00-r2-00-a2 */
+-			   
+-			   movq %%mm6, %%mm5			/* ??-??-??-??-c4-c3-c2-c1 */
+-			   ;// depackage du 2ieme pixel
+-			   punpckhbw %%mm7, %%mm1	/* 00-b1-00-v1-00-r1-00-a1 */
+-							   
+-			   ;// extraction des coefficients...
+-			   punpcklbw %%mm5, %%mm6	/* c4-c4-c3-c3-c2-c2-c1-c1 */
+-			   movq %%mm6, %%mm4			/* c4-c4-c3-c3-c2-c2-c1-c1 */
+-			   movq %%mm6, %%mm5			/* c4-c4-c3-c3-c2-c2-c1-c1 */
+-											   
+-			   punpcklbw %%mm5, %%mm6	/* c2-c2-c2-c2-c1-c1-c1-c1 */
+-			   punpckhbw %%mm5, %%mm4	/* c4-c4-c4-c4-c3-c3-c3-c3 */
+-
+-			   movq %%mm6, %%mm3			/* c2-c2-c2-c2-c1-c1-c1-c1 */
+-			   punpcklbw %%mm7, %%mm6	/* 00-c1-00-c1-00-c1-00-c1 */
+-			   punpckhbw %%mm7, %%mm3	/* 00-c2-00-c2-00-c2-00-c2 */
+-	
+-			   ;// multiplication des pixels par les coefficients
+-			   pmullw %%mm6, %%mm0		/* c1*b2-c1*v2-c1*r2-c1*a2 */
+-			   pmullw %%mm3, %%mm1		/* c2*b1-c2*v1-c2*r1-c2*a1 */
+-			   paddw %%mm1, %%mm0
+-			   
+-			   ;// ...extraction des 2 derniers coefficients
+-			   movq %%mm4, %%mm5			/* c4-c4-c4-c4-c3-c3-c3-c3 */
+-			   punpcklbw %%mm7, %%mm4	/* 00-c3-00-c3-00-c3-00-c3 */
+-			   punpckhbw %%mm7, %%mm5	/* 00-c4-00-c4-00-c4-00-c4 */
+-
+-			   /* ajouter la longueur de ligne a esi */
+-			   addl 8(%%ebp),%%ebx
+-	   
+-			   ;// recuperation des 2 derniers pixels
+-			   movq (%%edx,%%ebx,4), %%mm1
+-			   movq %%mm1, %%mm2
+-			
+-			   ;// depackage des pixels
+-			   punpcklbw %%mm7, %%mm1
+-			   punpckhbw %%mm7, %%mm2
+-			
+-			   ;// multiplication pas les coeffs
+-			   pmullw %%mm4, %%mm1
+-			   pmullw %%mm5, %%mm2
+-			   
+-			   ;// ajout des valeurs obtenues à la valeur finale
+-			   paddw %%mm1, %%mm0
+-			   paddw %%mm2, %%mm0
+-			   
+-			   ;// division par 256 = 16+16+16+16, puis repackage du pixel final
+-			   psrlw $8, %%mm0
+-			   packuswb %%mm7, %%mm0
+-
+-               movd %%mm0,%%eax
+-			   "
++	  __asm__ __volatile__ (" \n" \
+++"               movd %%eax,%%mm6\n" \
+++"			   ;\n" // recuperation des deux premiers pixels dans mm0 et mm1
+++"	   	       movq (%%edx,%%ebx,4), %%mm0\n" 		/* b1-v1-r1-a1-b2-v2-r2-a2 */
+++"			   movq %%mm0, %%mm1\n" 				/* b1-v1-r1-a1-b2-v2-r2-a2 */
+++"			   \n" \
+++"			   ;\n" // depackage du premier pixel
+++"			   punpcklbw %%mm7, %%mm0\n" 	/* 00-b2-00-v2-00-r2-00-a2 */
+++"			   \n" \
+++"			   movq %%mm6, %%mm5\n" 			/* ??-??-??-??-c4-c3-c2-c1 */
+++"			   ;\n" // depackage du 2ieme pixel
+++"			   punpckhbw %%mm7, %%mm1\n" 	/* 00-b1-00-v1-00-r1-00-a1 */
+++"							   \n" \
+++"			   ;\n" // extraction des coefficients...
+++"			   punpcklbw %%mm5, %%mm6\n" 	/* c4-c4-c3-c3-c2-c2-c1-c1 */
+++"			   movq %%mm6, %%mm4\n" 			/* c4-c4-c3-c3-c2-c2-c1-c1 */
+++"			   movq %%mm6, %%mm5\n" 			/* c4-c4-c3-c3-c2-c2-c1-c1 */
+++"											   \n" \
+++"			   punpcklbw %%mm5, %%mm6\n" 	/* c2-c2-c2-c2-c1-c1-c1-c1 */
+++"			   punpckhbw %%mm5, %%mm4\n" 	/* c4-c4-c4-c4-c3-c3-c3-c3 */
+++"\n" \
+++"			   movq %%mm6, %%mm3\n" 			/* c2-c2-c2-c2-c1-c1-c1-c1 */
+++"			   punpcklbw %%mm7, %%mm6\n" 	/* 00-c1-00-c1-00-c1-00-c1 */
+++"			   punpckhbw %%mm7, %%mm3\n" 	/* 00-c2-00-c2-00-c2-00-c2 */
+++"	\n" \
+++"			   ;\n" // multiplication des pixels par les coefficients
+++"			   pmullw %%mm6, %%mm0\n" 		/* c1*b2-c1*v2-c1*r2-c1*a2 */
+++"			   pmullw %%mm3, %%mm1\n" 		/* c2*b1-c2*v1-c2*r1-c2*a1 */
+++"			   paddw %%mm1, %%mm0\n" \
+++"			   \n" \
+++"			   ;\n" // ...extraction des 2 derniers coefficients
+++"			   movq %%mm4, %%mm5\n" 			/* c4-c4-c4-c4-c3-c3-c3-c3 */
+++"			   punpcklbw %%mm7, %%mm4\n" 	/* 00-c3-00-c3-00-c3-00-c3 */
+++"			   punpckhbw %%mm7, %%mm5\n" 	/* 00-c4-00-c4-00-c4-00-c4 */
+++"\n" \
+++"\n" 			   /* ajouter la longueur de ligne a esi */
+++"			   addl 8(%%ebp),%%ebx\n" \
+++"	   \n" \
+++"			   ;\n" // recuperation des 2 derniers pixels
+++"			   movq (%%edx,%%ebx,4), %%mm1\n" \
+++"			   movq %%mm1, %%mm2\n" \
+++"			\n" \
+++"			   ;\n" // depackage des pixels
+++"			   punpcklbw %%mm7, %%mm1\n" \
+++"			   punpckhbw %%mm7, %%mm2\n" \
+++"			\n" \
+++"			   ;\n" // multiplication pas les coeffs
+++"			   pmullw %%mm4, %%mm1\n" \
+++"			   pmullw %%mm5, %%mm2\n" \
+++"			   \n" \
+++"			   ;\n" // ajout des valeurs obtenues à la valeur finale
+++"			   paddw %%mm1, %%mm0\n" \
+++"			   paddw %%mm2, %%mm0\n" \
+++"			   \n" \
+++"			   ;\n" // division par 256 = 16+16+16+16, puis repackage du pixel final
+++"			   psrlw $8, %%mm0\n" \
+++"			   packuswb %%mm7, %%mm0\n" \
+++"\n" \
+++"               movd %%mm0,%%eax\n" \
+++"			   \n"
+ 							:"=eax"(expix2[loop])
+ 							:"ebx"(pos),"eax"(coeffs),"edx"(expix1)
+ 							

@@ -1,0 +1,15 @@
+--- configure.in.orig	2004-02-04 07:19:14.000000000 +0100
++++ configure.in	2004-02-04 07:19:53.000000000 +0100
+@@ -34,10 +34,10 @@
+ 
+ dnl Add the languages which your application supports here.
+ 
+-AM_PATH_ORBIT2([], [], [ORBit-2.0 required])
++dnl AM_PATH_ORBIT2([], [], [ORBit-2.0 required])
+ AM_GCONF_SOURCE_2
+ 
+-PKG_CHECK_MODULES(PHONEMGR, sigc++-1.2 libgnomeuimm-2.0 gconfmm-2.0 
++PKG_CHECK_MODULES(PHONEMGR, ORBit-2.0 >= 2.3.0 sigc++-1.2 libgnomeuimm-2.0 gconfmm-2.0 
+ 	gtkmm-2.0 glibmm-2.0 glibmm-2.0 glib-2.0 libgnomeui-2.0 >= 1.110.0
+ 	libpanelapplet-2.0 libgnome-2.0 gdk-pixbuf-2.0 gconf-2.0
+ 	libbonobo-2.0 bonobo-activation-2.0

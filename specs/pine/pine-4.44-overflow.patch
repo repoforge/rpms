@@ -1,0 +1,12 @@
+--- pine4.44/imap/src/c-client/rfc822.c.bug	Wed Apr 17 19:13:22 2002
++++ pine4.44/imap/src/c-client/rfc822.c	Wed Apr 17 19:20:06 2002
+@@ -610,6 +610,9 @@
+ 	if (CHR (bs) == '\012'){/* following LF? */
+ 	  c = SNX (bs); i--;	/* yes, slurp it */
+ 	}
++	if(!i)			/* Make sure we don't get an overflow for */
++	  break;		/* messages ending on \015 (or the following */
++       				/* i-- will cause i to be MAXINT. Not good.) */
+       case '\012':		/* at start of a line, start with -- ? */
+ 	if (i-- && ((c = SNX (bs)) == '-') && i-- && ((c = SNX (bs)) == '-')) {
+ 				/* see if cookie matches */

@@ -1,0 +1,22 @@
+Important information to config file handling:
+==============================================
+
+The latest version of the sendmail package for Red Hat Linux now uses the new
+and recommended way of separating sendmail into two applications, one for
+email delivery, the other for email reception. The former doesn't need to run
+as root and uses a separate configuration file, called /etc/mail/submit.cf. The
+later only provides email reception functionalty and, as before, uses
+/etc/mail/sendmail.cf as it's configuration file.
+
+The resons for spliting sendmail into two separate applications and how to use 
+it is described in more detail in /usr/share/doc/sendmail/SECURITY.
+
+
+!Note!
+======
+
+New in the latest package now is also that the configuration files will be
+automatically updated after a restart if the corresponding mc files in
+/etc/mail have been modified so changes done to the sendmail.cf and submit.cf
+file will be lost if not done in the respective sendmail.mc and submit.mc
+files, too.

@@ -1,0 +1,12 @@
+diff -urN gaim-0.60cvs-orig/src/gaimrc.c gaim-0.60cvs/src/gaimrc.c
+--- gaim-0.60cvs-orig/src/gaimrc.c	2002-12-24 14:51:00.000000000 -1000
++++ gaim-0.60cvs/src/gaimrc.c	2002-12-27 01:17:46.000000000 -1000
+@@ -1247,7 +1247,7 @@
+ 	report_idle = IDLE_GAIM;
+ #endif
+ 	web_browser = BROWSER_NETSCAPE;
+-	g_snprintf(web_command, sizeof(web_command), "xterm -e lynx %%s");
++	g_snprintf(web_command, sizeof(web_command), "htmlview %%s");
+ 
+ 	auto_away = 10;
+ 	a = g_new0(struct away_message, 1);

@@ -1,0 +1,50 @@
+# Authority: dag
+
+# Upstream: Marcus Schneider <marcus.schneider@gmx.net>
+
+Summary: A realtime Video4Linux recording software.
+Name: v4lgrab
+Version: 0.2.2
+Release: 0
+Group: Applications/Multimedia
+License: GPL
+URL: http://v4lgrab.sourceforge.net/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Prefix: %{_prefix}
+
+BuildRequires: libjpeg-devel, libtool, kdelibs-devel, arts-devel
+BuildRequires: avifile-devel, SDL-devel
+
+%description
+This project is a realtime Video4Linux recording software. It makes it
+possible to record AVI DivX files in realtime from any Video4Linux device.
+
+%prep
+%setup
+
+%build
+%configure --with-xinerama
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog NEWS README THANKS VERSION docs/*.doxygen
+%config %{_sysconfdir}/v4lgrab/
+%{_bindir}/*
+%{_libdir}/*
+
+%changelog
+* Sat Feb 01 2003 Dag Wieers <dag@wieers.com> - 0.2.2
+- Initial package. (using DAR)

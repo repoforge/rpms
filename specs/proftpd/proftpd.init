@@ -1,0 +1,82 @@
+#!/bin/sh
+# $Id: proftpd.init,v 1.1 2004/02/26 17:54:30 thias Exp $
+#
+# proftpd	This shell script takes care of starting and stopping
+#		proftpd.
+#
+# chkconfig: - 80 30
+# description: ProFTPD is an enhanced FTP server with a focus towards \
+#              simplicity, security, and ease of configuration. \
+#              It features a very Apache-like configuration syntax, \
+#              and a highly customizable server infrastructure, \
+#              including support for multiple 'virtual' FTP servers, \
+#              anonymous FTP, and permission-based directory visibility.
+# processname: proftpd
+# config: /etc/proftp.conf
+# pidfile: /var/run/proftpd.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+[ -x /usr/sbin/proftpd ] || exit 0
+
+RETVAL=0
+
+prog="proftpd"
+
+start() {
+	echo -n $"Starting $prog: "
+	daemon proftpd
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/proftpd
+}
+
+stop() {
+	echo -n $"Shutting down $prog: "
+	killproc proftpd
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/proftpd
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	status proftpd
+	RETVAL=$?
+	;;
+  restart)
+	stop
+	start
+	;;
+  condrestart)
+	if [ -f /var/lock/subsys/proftpd ]; then
+	  stop
+	  start
+	fi
+	;;
+  reload)
+	echo -n $"Re-reading $prog configuration: "
+	killproc proftpd -HUP
+	RETVAL=$?
+	echo
+	;;
+  *)
+	echo "Usage: $prog {start|stop|restart|reload|condrestart|status}"
+	exit 1
+esac
+
+exit $RETVAL

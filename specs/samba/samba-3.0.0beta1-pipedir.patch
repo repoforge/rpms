@@ -1,0 +1,11 @@
+--- samba-3.0.0beta1/source/nsswitch/winbindd_nss.h.pipedir	2003-06-07 13:57:35.000000000 -0400
++++ samba-3.0.0beta1/source/nsswitch/winbindd_nss.h	2003-06-30 21:34:46.000000000 -0400
+@@ -29,7 +29,7 @@
+ #define _WINBINDD_NTDOM_H
+ 
+ #define WINBINDD_SOCKET_NAME "pipe"            /* Name of PF_UNIX socket */
+-#define WINBINDD_SOCKET_DIR  "/tmp/.winbindd"  /* Name of PF_UNIX dir */
++#define WINBINDD_SOCKET_DIR  "/var/run/winbindd"  /* Name of PF_UNIX dir */
+ #define WINBINDD_PRIV_SOCKET_SUBDIR "winbindd_privileged" /* name of subdirectory of lp_lockdir() to hold the 'privileged' pipe */
+ #define WINBINDD_DOMAIN_ENV  "WINBINDD_DOMAIN" /* Environment variables */
+ #define WINBINDD_DONT_ENV    "_NO_WINBINDD"

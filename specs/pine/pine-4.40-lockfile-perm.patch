@@ -1,0 +1,22 @@
+--- imap/src/osdep/unix/env_unix.h.lock_protection_fix	Thu Oct  4 05:26:33 2001
++++ imap/src/osdep/unix/env_unix.h	Thu Oct  4 05:30:33 2001
+@@ -46,12 +46,15 @@
+ 
+ 
+ /*
+- * Attention: all sorcerer's apprentices who think that 0666 is a mistake.
+- * You are wrong.  Read the FAQ.  Do not meddle in the affairs of wizards,
+- * for they are subtle and quick to anger.
++ * Attention: all people who do not care about OS security, and think that
++ * mode 0666 is a correct.  You are wrong.  In modern multiuser systems,
++ * both remote and local security is critically important.  Allowing 0666
++ * lockfiles, allows all sorts of security problems to occur.  Feel free to
++ * meddle with it however, if you do not care about local security.
+  */
+ 
+-#define MANDATORYLOCKPROT 0666	/* don't change this */
++/* Change this only if you do not want a secure multiuser system */
++#define MANDATORYLOCKPROT 0600	
+ 
+ /* Function prototypes */
+ 

@@ -1,0 +1,34 @@
+--- fping-2.4b2/configure.in~	Tue Jan  8 22:58:53 2002
++++ fping-2.4b2/configure.in	Tue Jan  8 22:58:53 2002
+@@ -1,11 +1,7 @@
+ dnl Process this file with autoconf to produce a configure script.
+ AC_INIT(fping.c)
+-AC_CONFIG_HEADER(config.h)
+-VERSION=2.4b1
+-PACKAGE=fping
+-AC_SUBST(PACKAGE)
+-AC_SUBST(VERSION)
+-AC_DEFINE_UNQUOTED(VERSION,"$VERSION")
++AM_INIT_AUTOMAKE(fping,fping)
++AM_CONFIG_HEADER(config.h)
+ 
+ dnl Checks for programs.
+ 
+@@ -16,10 +12,7 @@
+ 
+ dnl Checks for libraries.
+ 
+-AC_CHECK_FUNC(gethostbyname)
+-if test $ac_cv_func_gethostbyname = no; then
+-    AC_CHECK_LIB(nsl, gethostbyname)
+-fi
++AC_CHECK_FUNC(gethostbyname, [] AC_CHECK_LIB(nsl, gethostbyname))
+ AC_CHECK_FUNC(connect)
+ if test $ac_cv_func_connect = no; then
+     AC_CHECK_LIB(socket, connect)
+@@ -28,4 +21,4 @@
+ dnl Checks for header files.
+ AC_CHECK_HEADERS(unistd.h sys/file.h stdlib.h sys/select.h)
+ 
+-AC_OUTPUT(Makefile)
++AC_OUTPUT([Makefile])

@@ -1,0 +1,107 @@
+#!/bin/bash
+#
+# named           This shell script takes care of starting and stopping
+#                 named (BIND DNS server).
+#
+# chkconfig: - 55 45
+# description: named (BIND) is a Domain Name Server (DNS) \
+# that is used to resolve host names to IP addresses.
+# probe: true
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+[ -f /etc/sysconfig/named ] && . /etc/sysconfig/named
+
+[ -f /usr/sbin/named ] || exit 0
+
+[ -f /etc/named.conf ] || exit 0
+
+RETVAL=0
+prog="named"
+
+start() {
+        # Start daemons.
+        echo -n $"Starting $prog: "
+	if [ -n "${ROOTDIR}" -a "x${ROOTDIR}" != "x/" ]; then
+		OPTIONS="${OPTIONS} -t ${ROOTDIR}"
+	fi
+        daemon named -u named ${OPTIONS}
+	RETVAL=$?
+ 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/named
+	echo
+	return $RETVAL
+}
+stop() {
+        # Stop daemons.
+        echo -n $"Stopping $prog: "
+        killproc named
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/named
+        echo
+	return $RETVAL
+}
+rhstatus() {
+# FIXME: use this once it's implemented
+#	/usr/sbin/rndc status
+#	return $?
+	PIDS=`/sbin/pidof named`
+	if [ -z "$PIDS" ]; then
+		echo $"$prog not running."
+		return 1
+	else
+		echo $"$prog is running, PIDs: $PIDS."
+		return 0
+	fi
+}	
+restart() {
+	stop
+	start
+}	
+reload() {
+	/usr/sbin/rndc reload >/dev/null 2>&1 || /usr/bin/killall -HUP named
+	return $?
+}
+probe() {
+	# named knows how to reload intelligently; we don't want linuxconf
+	# to offer to restart every time
+	/usr/sbin/rndc reload >/dev/null 2>&1 || echo start
+	return $?
+}  
+
+# See how we were called.
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	status)
+		rhstatus
+		;;
+	restart)
+		restart
+		;;
+	condrestart)
+		[ -f /var/lock/subsys/named ] && restart
+		;;
+	reload)
+		reload
+		;;
+	probe)
+		probe
+		;;
+	*)
+        	echo $"Usage: $0 {start|stop|status|restart|condrestart|reload|probe}"
+		exit 1
+esac
+
+exit $?
+

@@ -1,0 +1,52 @@
+--- chmlib-0.31/chm_lib.c.orig	2003-11-19 08:55:04.000000000 +0000
++++ chmlib-0.31/chm_lib.c	2003-11-19 09:17:01.000000000 +0000
+@@ -142,14 +142,15 @@
+ /* I386, 32-bit, non-Windows */
+ /* Sparc        */
+ /* MIPS         */
+-#elif __i386__ || __sun || __sgi
++#elif __i386__ || __sun || __sgi || __linux__
++#include <stdint.h>
+ typedef unsigned char           UChar;
+-typedef short                   Int16;
+-typedef unsigned short          UInt16;
+-typedef long                    Int32;
+-typedef unsigned long           UInt32;
+-typedef long long               Int64;
+-typedef unsigned long long      UInt64;
++typedef int16_t                 Int16;
++typedef uint16_t                UInt16;
++typedef int32_t                 Int32;
++typedef uint32_t                UInt32;
++typedef int64_t                 Int64;
++typedef uint64_t                UInt64;
+ #else
+ 
+ /* yielding an error is preferable to yielding incorrect behavior */
+@@ -1089,7 +1090,7 @@
+      *      that is provided for us.
+      */
+     struct chmPmglHeader header;
+-    UInt32 hremain;
++    unsigned long hremain;
+     UChar *end;
+     UChar *cur;
+     UChar *temp;
+@@ -1136,7 +1137,7 @@
+      *      that is provided for us
+      */
+     struct chmPmgiHeader header;
+-    UInt32 hremain;
++    unsigned long hremain;
+     int page=-1;
+     UChar *end;
+     UChar *cur;
+@@ -1244,7 +1245,7 @@
+                              Int64 *len)
+ {
+     UChar buffer[8], *dummy;
+-    UInt32 remain;
++    unsigned long remain;
+ 
+     /* for all but the last block, use the reset table */
+     if (block < h->reset_table.block_count-1)

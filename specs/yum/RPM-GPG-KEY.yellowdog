@@ -1,0 +1,30 @@
+The following public key can be used to verify RPM packages built and
+signed by Terra Soft Solutions, Inc. using `rpm -K' using the GNU GPG package.
+Questions about this key should be sent to security@terrasoftsolutions.com.
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.0.6 (GNU/Linux)
+Comment: For info see http://www.gnupg.org
+
+mQGiBDz0CJ4RBACk4XtupDEtzw0WUqg+YE8PI25S9o+i/eMuE4zexmqmayGbp6cE
+LE4o9MS6qqM+s/z477QfhwT3ZptDmTr7DRNuHxG3ChK5YGZ88KTn4o9eBG1aom8q
++gwpveu7u8uOVy0gpJaL8uPHHL1Ir501RRpqrgDMH2tiO1gPTL3fnrymcwCgo18y
+nl478kL9NDzfBWQnCydEWPsD/jRTiuz7ufiveXYlQKPFhDo538EE+QoGMy5OYcQM
+HtyoYBRKNWzr9nVlVxUT2GhswaSrBofIesA7raXPOrdLPKRa9yJu+nXKP5vIpZ5F
+5+onc9K4hTBq4aljo72wnTLw4SuEo6srQyx6i1aFtUtXkg0WUQmLzz0zq7433J39
+GMdFBACCCJwYdYJJppC63n0gxHo8XfnQNiUYpuZLYjJfuu7HByoruNzDJRmMrGlK
+ahHhOhhc0123bY+ATCqR/lKydEVB9trovExSbRXhgNsRYqEOQF57VDrhqPHvW2ns
+0Lky13Go7i3Np4Wa/DoT1AKG0fWoBAwq+1QNiYLq7OqlHHBY4bQ8VGVycmEgU29m
+dCBTb2x1dGlvbnMsIEluYy4gPHNlY3VyaXR5QHRlcnJhc29mdHNvbHV0aW9ucy5j
+b20+iFcEExECABcFAjz0CJ4FCwcKAwQDFQMCAxYCAQIXgAAKCRAUDFNIrra5xEUI
+AJ4olgjM0gU3BOL3V+gK3ONO6mEfQwCgn/RWDvyUX7vLBErVIVc3ih+KAYS5AQ0E
+PPQIoBAEAL5cFCGoBTFdfzJ3T0dnJJ7AXbqAhSPCHPSE08eUqL0TjjH2EQm4c9h3
+LnZoGPIcnJlk2aoIGU5hluNVTQjDvTpgnikV8ZvIV/HXZHk632Blf5pC9NrRX9bu
++gFtHVW+orXi9uTJkEPB9ha+2c1xosu6izV/Q6b4UX4GxKrBc98DAAMFA/kBrmML
+7SZrWT4wbtz/CeHkMcAk5jRA4APoeELFOyOhfLppAMWtrDZs6q65TCrkGIs728nw
+hnTy5h4wseS20DXTI1PmUFYPac5vEifjtsZl4RYyHoqO8N4eEDBGHgRiw7Eot5BA
+TA3GEjQc10ewFGOTcfM7sLpuJpk3aZ5xCBM0TYhGBBgRAgAGBQI89AigAAoJEBQM
+U0iutrnE+B0AnitcXMqqsxrUL4F7aQTwHbiGRa+YAJ9YIs91cJBNqSfnMvgXG58n
+vFkMlw==
+=XyK/
+-----END PGP PUBLIC KEY BLOCK-----

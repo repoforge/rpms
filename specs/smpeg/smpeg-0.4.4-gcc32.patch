@@ -1,0 +1,26 @@
+Index: Makefile.am
+===================================================================
+RCS file: /cvs/cvsroot/smpeg/Makefile.am,v
+retrieving revision 1.15
+retrieving revision 1.16
+diff -u -u -r1.15 -r1.16
+--- Makefile.am	2001/04/04 20:28:14	1.15
++++ Makefile.am	2002/09/26 05:24:04	1.16
+@@ -4,6 +4,8 @@
+ # These are the subdirectories that are always built
+ SUBDIRS = audio video
+ 
++CXXLD = cc
++
+ bin_SCRIPTS = smpeg-config
+ 
+ # The smpeg library target
+@@ -34,7 +36,7 @@
+ 
+ libsmpeg_la_LDFLAGS = 		\
+         -release $(LT_RELEASE)	\
+-	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
++	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) -lstdc++
+ 
+ libsmpeg_la_LIBADD =		\
+ 	audio/libaudio.la	\

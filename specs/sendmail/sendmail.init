@@ -1,0 +1,118 @@
+#!/bin/bash
+#
+# sendmail      This shell script takes care of starting and stopping
+#               sendmail.
+#
+# chkconfig: 2345 80 30
+# description: Sendmail is a Mail Transport Agent, which is the program \
+#              that moves mail from one machine to another.
+# processname: sendmail
+# config: /etc/mail/sendmail.cf
+# pidfile: /var/run/sendmail.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Source sendmail configureation.
+if [ -f /etc/sysconfig/sendmail ] ; then
+	. /etc/sysconfig/sendmail
+else
+	DAEMON=no
+	QUEUE=1h
+fi
+[ -z "$SMQUEUE" ] && SMQUEUE="$QUEUE"
+[ -z "$SMQUEUE" ] && SMQUEUE=1h
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+[ -f /usr/sbin/sendmail ] || exit 0
+
+RETVAL=0
+prog="sendmail"
+
+start() {
+	# Start daemons.
+
+	echo -n $"Starting $prog: "
+	/usr/bin/newaliases > /dev/null 2>&1
+	if test -x /usr/bin/make -a -f /etc/mail/Makefile ; then
+	  make all -C /etc/mail -s
+	else
+	  for i in virtusertable access domaintable mailertable ; do
+	    if [ -f /etc/mail/$i ] ; then
+		makemap hash /etc/mail/$i < /etc/mail/$i
+	    fi
+	  done
+	fi
+	daemon /usr/sbin/sendmail $([ "x$DAEMON" = xyes ] && echo -bd) \
+				$([ -n "$QUEUE" ] && echo -q$QUEUE)
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/sendmail
+
+	if ! test -f /var/run/sm-client.pid ; then
+	echo -n $"Starting sm-client: "
+	touch /var/run/sm-client.pid
+	chown smmsp:smmsp /var/run/sm-client.pid
+	daemon --check sm-client /usr/sbin/sendmail -L sm-msp-queue -Ac \
+				-q$SMQUEUE
+	RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/sm-client
+        fi
+
+	return $RETVAL
+}
+
+stop() {
+	# Stop daemons.
+	echo -n $"Shutting down $prog: "
+	killproc sendmail
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/sendmail
+	if test -f /var/run/sm-client.pid ; then
+		echo -n $"Shutting down sm-client: "
+		killproc sm-client
+		RETVAL=$?
+		echo
+		[ $RETVAL -eq 0 ] && rm -f /var/run/sm-client.pid
+		[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/sm-client
+	fi
+	return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload)
+	stop
+	start
+	RETVAL=$?
+	;;
+  condrestart)
+	if [ -f /var/lock/subsys/sendmail ]; then
+	    stop
+	    start
+	    RETVAL=$?
+	fi
+	;;
+  status)
+	status sendmail
+	RETVAL=$?
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+	exit 1
+esac
+
+exit $RETVAL

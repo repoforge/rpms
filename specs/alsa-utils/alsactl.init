@@ -1,0 +1,43 @@
+#!/bin/bash
+# $Id: alsactl.init,v 1.1 2004/02/26 10:51:55 thias Exp $
+#
+# This script cannot support chkconfig as it only "starts" upon reboot
+# and shutdown, and never "stops".
+#
+# It will save the ALSA settings, to restore them you will need to add
+# the following to your /etc/modules.conf file :
+#
+# post-install snd-card-0 /usr/sbin/alsactl restore >/dev/null 2>&1 || :
+# pre-remove snd-card-0 /usr/sbin/alsactl store >/dev/null 2>&1 || :
+#
+# The second line does the same as this script, for when the module is
+# removed.
+#
+
+PATH=/sbin:/bin:/usr/bin:/usr/sbin
+
+# Source function library.
+. /etc/init.d/functions
+
+# Only useful if we actually have ALSA enabled
+[ -d /proc/asound ] || exit 1
+
+RETVAL=0
+
+start(){
+    echo -n $"Saving ALSA mixer settings"
+    /usr/sbin/alsactl store >/dev/null 2>&1 && echo_success || echo_failure
+    echo
+}
+
+# See how we were called.
+case "$1" in
+    start|store)
+	start
+	;;
+    *)
+	echo $"Usage: $0 {start|store}"
+	RETVAL=1
+esac
+
+exit $RETVAL

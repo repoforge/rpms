@@ -1,0 +1,24 @@
+--- dhcp-3.0pl1/common/packet.c.sopwith	2002-07-12 16:41:48.000000000 -0400
++++ dhcp-3.0pl1/common/packet.c	2002-07-12 17:45:52.000000000 -0400
+@@ -227,8 +227,8 @@
+ 	unsigned char *data;
+ 	unsigned buflen;
+ {
+-  struct ip *ip;
+-  struct udphdr *udp;
++  struct ip ipdat, *ip = &ipdat;
++  struct udphdr udpdat, *udp = &udpdat;
+   u_int32_t ip_len = (buf [bufix] & 0xf) << 2;
+   u_int32_t sum, usum;
+   static int ip_packets_seen;
+@@ -241,8 +241,8 @@
+   unsigned ulen;
+   int ignore = 0;
+ 
+-  ip = (struct ip *)(buf + bufix);
+-  udp = (struct udphdr *)(buf + bufix + ip_len);
++  memcpy(ip, (struct ip *)(buf + bufix), sizeof(ipdat));
++  memcpy(udp, (struct udphdr *)(buf + bufix + ip_len), sizeof(udpdat));
+ 
+ #ifdef USERLAND_FILTER
+   /* Is it a UDP packet? */

@@ -1,0 +1,29 @@
+diff -uNr solarwolf-1.3-orig/Makefile solarwolf-1.3/Makefile
+--- solarwolf-1.3-orig/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ solarwolf-1.3/Makefile	2003-12-24 14:30:22.000000000 +0100
+@@ -0,0 +1,17 @@
++
++DATADIR = $(DESTDIR)/usr/share/games/solarwolf
++
++all:
++	echo nothing to compile
++
++install: all
++	mkdir -p $(DATADIR)
++	cp solarwolf.py $(DATADIR)/
++	cp -r code data  $(DATADIR)/
++
++	mkdir -p $(DESTDIR)/usr/games
++	cp solarwolf $(DESTDIR)/usr/games/
++
++uninstall:
++	rm -rf $(DATADIR)
++	rm -f $(DESTDIR)/usr/games/solarwolf
+diff -uNr solarwolf-1.3-orig/solarwolf solarwolf-1.3/solarwolf
+--- solarwolf-1.3-orig/solarwolf	1970-01-01 01:00:00.000000000 +0100
++++ solarwolf-1.3/solarwolf	2003-12-24 14:31:27.000000000 +0100
+@@ -0,0 +1,4 @@
++#!/bin/bash
++
++cd /usr/share/games/solarwolf
++exec ./solarwolf.py
