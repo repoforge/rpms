@@ -24,9 +24,6 @@ License: GPL
 Group: Development/Tools
 URL: http://uml.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/uml/umbrello-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel

@@ -11,9 +11,6 @@ Group: Applications/Archiving
 License: distributable
 
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.ibiblio.org/pub/Linux/utils/compress/unarj-%{real_version}.tar.gz
 Patch: unarj-subdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

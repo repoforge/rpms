@@ -2,18 +2,15 @@
 # Authority: dag
 # Upstream: <udpcast$udpcast,linux,lu>
 
-%define real_version 20050226
+%define real_version 20050307
 
 Summary: UDP broadcast installation
 Name: udpcast
-Version: 0.0.20050226
+Version: 0.0.20050307
 Release: 1
 License: GPL or BSD
 Group: Applications/System
 URL: http://udpcast.linux.lu/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://udpcast.linux.lu/current/udpcast-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -49,6 +46,9 @@ Allows easy installation of client machines via UDP broadcast
 %{_bindir}/udp-sender
 
 %changelog
+* Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 0.0.20050307-1
+- Updated to release 20050307.
+
 * Sun Feb 27 2005 Dag Wieers <dag@wieers.com> - 0.0.20050226-1
 - Updated to release 20050226.
 

@@ -18,9 +18,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://bytesex.org/xawtv/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.bytesex.org/releases/xawtv/xawtv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

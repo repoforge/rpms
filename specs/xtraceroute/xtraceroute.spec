@@ -24,9 +24,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.dtek.chalmers.se/~d3august/xt/index.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.dtek.chalmers.se/~d3august/xt/dl/xtraceroute-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

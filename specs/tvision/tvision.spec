@@ -10,9 +10,6 @@ License: BSD-like
 Group: Libraries
 URL: http://tvision.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.sigala.it/sergio/tvision/mysource/tvision-%{version}.tar.gz
 #Patch0: tvision-info.patch
 #Patch1: tvision-am_fixes.patch

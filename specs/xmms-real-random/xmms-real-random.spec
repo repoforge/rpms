@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://home.pages.at/kingleo/index.php?show=/development/stuff
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://home.pages.at/kingleo/development/stuff/real_random-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

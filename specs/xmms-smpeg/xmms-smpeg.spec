@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.xmms.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://ftp.lokigames.com/pub/open-source/smpeg/smpeg-xmms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

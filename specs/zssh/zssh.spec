@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://zssh.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/zssh/zssh-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

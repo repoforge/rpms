@@ -11,9 +11,6 @@ Group: Applications/Multimedia
 License: GPL
 URL: http://v4lgrab.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/v4lgrab/v4lgrab-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

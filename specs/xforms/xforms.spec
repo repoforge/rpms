@@ -21,9 +21,6 @@ License: GPL
 Group: Development/Libraries
 URL: http://world.std.com/~xforms/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://savannah.nongnu.org/download/xforms/xforms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

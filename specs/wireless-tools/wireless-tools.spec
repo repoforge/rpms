@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
+# ExclusiveDist: el2 rh7 rh8 rh9 el3
 
 %define _sbindir /sbin
 %define _libdir /lib
@@ -15,11 +15,8 @@ License: GPL
 Group: System Environment/Base
 URL: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://pcmcia-cs.sf.net/ftp/contrib/wireless_tools.%{version}.tar.gz
-Patch0: wireless-tools-26-makefile.patch
+#Patch0: wireless-tools-26-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -31,7 +28,7 @@ specific stats for wireless networking equipment.
 
 %prep
 %setup -n %{real_name}.%{version}
-%patch0
+#patch0
 
 %build
 %{__make} clean

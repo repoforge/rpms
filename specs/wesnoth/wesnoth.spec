@@ -14,9 +14,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.wesnoth.org/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.wesnoth.org/files/wesnoth-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, make, SDL, SDL_net, SDL_mixer, SDL-devel

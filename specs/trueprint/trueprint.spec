@@ -9,9 +9,6 @@ License: GPL
 Group: Applications/Text
 URL: http://www.gnu.org/software/trueprint/trueprint.html
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://ftp.gnu.org/gnu/trueprint/trueprint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://it-div-cs.web.cern.ch/it-div-cs/public/projects/atm/ttcp.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://it-div-cs.web.cern.ch/it-div-cs/public/projects/atm/ttcp.c
 Source1: ftp://ftp.sgi.com/sgi/src/ttcp/ttcp.1
 Source2: ftp://ftp.sgi.com/sgi/src/ttcp/README

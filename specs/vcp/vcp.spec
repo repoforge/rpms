@@ -10,9 +10,6 @@ License: BSD
 Group: Applications/File
 URL: http://members.optusnet.com.au/~dbbryan/vcp/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://members.optusnet.com.au/~dbbryan/vcp/vcp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

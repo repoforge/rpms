@@ -11,9 +11,6 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://oss.digirati.com.br/watchcatd/watchdog.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/watchdog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

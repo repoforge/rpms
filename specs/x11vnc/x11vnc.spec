@@ -10,9 +10,6 @@ License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source:	http://dl.sf.net/libvncserver/x11vnc-%{version}.tar.gz
 # Source0-md5: b03ba2f34355a4e3c2e0420af2065703
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

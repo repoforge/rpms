@@ -11,9 +11,6 @@ License: Distributable
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/xmms-shn/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.etree.org/shnutils/xmms-shn/source/xmms-shn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -10,9 +10,6 @@ Release: 1
 License: Distributable
 Group: Applications/Archiving
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: ftp://sunsite.unc.edu/pub/Linux/utils/compress/zoo-%{version}.tar.gz
 Patch0: http://ftp.debian.org/debian/pool/non-free/z/zoo/zoo_2.10-9.diff.gz
 Patch1: zoo-2.10-tempfile.patch

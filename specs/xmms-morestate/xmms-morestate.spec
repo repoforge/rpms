@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://xmms-morestate.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/xmms-morestate/xmms-morestate-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

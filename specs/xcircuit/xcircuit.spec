@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Engineering
 URL: http://xcircuit.ece.jhu.edu/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://xcircuit.ece.jhu.edu/archive/xcircuit-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -17,9 +17,6 @@ License: GPL
 Group: Development/Debuggers
 URL: http://valgrind.kde.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://developer.kde.org/~sewardj/valgrind-%{version}.tar.bz2
 Source1: valgrind-nptltest.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -13,9 +13,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.newbreedsoftware.com/tuxpaint/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source0: http://dl.sf.net/tuxpaint/tuxpaint-%{version}.tar.gz
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel

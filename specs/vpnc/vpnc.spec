@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.unix-ag.uni-kl.de/~massar/vpnc/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.unix-ag.uni-kl.de/~massar/vpnc/vpnc-%{version}.tar.gz
 Patch0: vpnc-0.3.2-pie.patch
 Patch1: vpnc-0.3.2-64bit.patch

@@ -26,13 +26,15 @@ between network research and real world.
 
 
 %build
-%configure --datadir=%{_datadir}/xorp
+%configure \
+	--datadir="%{_datadir}/xorp"
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall datadir=%{buildroot}%{_datadir}/xorp
+%makeinstall \
+	datadir="%{buildroot}%{_datadir}/xorp"
 
 
 %clean

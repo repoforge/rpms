@@ -10,9 +10,6 @@ Group: Applications/Multimedia
 License: GPL
 URL: http://www.stack.nl/~brama/vcr/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.stack.nl/~brama/vcr/src/vcr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

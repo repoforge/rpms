@@ -13,9 +13,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://widelands.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://dl.sf.net/widelands/widelands-%{version}-source.tar.bz2
 Source1: http://dl.sf.net/widelands/widelands-%{version}-linux.tar.bz2

@@ -9,9 +9,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.ximian.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://vortex.floppyhat.net/ximian-artwork-%{version}.tar.gz
 Patch: ximian-artwork-de.po.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root

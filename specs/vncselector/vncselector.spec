@@ -14,9 +14,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.dooglio.net/VncSelector/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
 # Source: http://dl.sf.net/vncselector/VncSelector_1.6.tar.gz

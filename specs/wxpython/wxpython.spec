@@ -12,9 +12,6 @@ License: GPL
 Group: Development/Tools
 URL: http://www.wxpython.org/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/wxpython/wxPythonSrc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: wxGTK-devel, python, python-devel, gcc-c++

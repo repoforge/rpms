@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: bug-unrtf$gnu,org
 
@@ -10,9 +9,6 @@ Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://www.gnu.org/software/unrtf/unrtf.html
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.gnu.org/software/unrtf/unrtf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -26,8 +22,9 @@ files), paragraph alignment, and more.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/usr/local/bin|%{buildroot}%{_bindir}|g;' Makefile
+
 %build
-%{__perl} -pi -e 's|/usr/local/bin|%{buildroot}%{_bindir}|g;' Makefile
 %{__make} %{?_smp_mflags}
 
 %install
@@ -41,7 +38,7 @@ files), paragraph alignment, and more.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO
-%{_bindir}/*
+%{_bindir}/unrtf
 
 %changelog
 * Wed Jan 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.19.3

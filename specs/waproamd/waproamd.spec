@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://0pointer.de/lennart/projects/waproamd/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://0pointer.de/lennart/projects/waproamd/waproamd-%{version}.tar.gz
 Patch: waproamd-0.6-chkconfig.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

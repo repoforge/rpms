@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.ibiblio.org/pub/Linux/X11/screensavers/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://www.ibiblio.org/pub/Linux/X11/screensavers/xautolock-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

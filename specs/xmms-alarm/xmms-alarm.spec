@@ -14,9 +14,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.snika.uklinux.net/?p=xmms-alarm
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.snika.uklinux.net/xmms-alarm/xmms-alarm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

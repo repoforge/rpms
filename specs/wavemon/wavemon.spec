@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.janmorgenstern.de/projects-software.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.janmorgenstern.de/wavemon-%{real_version}.tar.gz
 #Source: http://www.wavemage.com/wavemon-%{real_version}.tar.bz2
 Patch0: wavemon.c.diff

@@ -13,9 +13,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://divx.euro.ru/binaries-010122.zip
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source0: http://ftp.lug.udel.edu/MPlayer/releases/%{name}-%{real_version}.tar.bz2
 Source1: http://ftp.lug.udel.edu/MPlayer/releases/codecs/win32codecs.tar.bz2
 Source2: http://ftp.lug.udel.edu/MPlayer/releases/codecs/qt6dlls.tar.bz2

@@ -9,9 +9,6 @@ License: GPL+Other
 Group: System Environment/Libraries
 URL: http://xparam.sourceforge.net/
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source: http://dl.sf.net/xparam/xparam-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/System
 URL: http://archive.progeny.com/GNOME/sources/zenity/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.gnome.org/pub/GNOME/sources/zenity/%{version}/zenity-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

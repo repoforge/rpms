@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/System
 URL: http://wizard.ae.krakow.pl/~mike/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://wizard.ae.krakow.pl/~mike/download/whowatch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

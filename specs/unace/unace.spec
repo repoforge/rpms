@@ -9,9 +9,6 @@ License: Shareware
 Group: Applications/Archiving
 URL: http://www.winace.com/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.shedz.com/winace/linunace22.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

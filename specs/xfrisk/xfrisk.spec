@@ -13,9 +13,6 @@ License: GPL
 Group: Amusements/Games
 URL: http://tuxick.net/xfrisk/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://tuxick.net/xfrisk/files/XFrisk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -17,9 +17,6 @@ License: GPL/BSD
 Group: Applications/System
 Url: http://xosview.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/xosview/xosview-%{version}.tar.gz
 Source1: xosview.png
 Patch0: xosview-non-i386.patch

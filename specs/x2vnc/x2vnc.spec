@@ -22,9 +22,6 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://fredrik.hubbe.net/x2vnc.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://fredrik.hubbe.net/x2vnc/x2vnc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?_without_xorg:BuildRequires: XFree86-devel}

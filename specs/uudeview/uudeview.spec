@@ -12,9 +12,6 @@ License: GPL
 Group: Applications/File
 URL: http://www.fpx.de/fp/Software/UUDeview/
 
-Packager: Bert de Bruijn <bert@debruijn.be>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.fpx.de/fp/Software/UUDeview/download/uudeview-%{version}.tar.gz
 Patch: uudeview-shared.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

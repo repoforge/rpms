@@ -11,9 +11,6 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.beastwithin.org/users/wwwwolf/code/xmms/infopipe.html
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.beastwithin.org/users/wwwwolf/code/xmms/xmms-infopipe-1.3.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
