@@ -9,7 +9,7 @@ Name: autossh
 Version: 1.2
 Release: 2.g
 License: GPL
-Group: Applications/Networking
+Group: Applications/Internet
 URL: http://www.harding.motd.ca/autossh/
 
 Packager: Dag Wieers <dag@wieers.com>
