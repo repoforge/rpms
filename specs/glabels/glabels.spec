@@ -4,7 +4,7 @@
 
 Summary: GUI program to create labels and business cards
 Name: glabels
-Version: 2.0.0
+Version: 2.0.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -41,16 +41,18 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%{__cat} <<EOF >data/%{name}.desktop.in
+%{__cat} <<EOF >data/desktop/glabels.desktop.in
 [Desktop Entry]
 Name=Glabels Label Designer
 Comment=Create labels, business cards and media covers
 Icon=glabels.png
-Exec=glabels
+Exec=glabels %F
 Terminal=false
 Type=Application
 Categories=GNOME;Application;Office;
+MimeType=application/x-glabels;
 StartupNotify=true
+Encoding=UTF-8
 EOF
 
 %build
@@ -65,7 +67,7 @@ EOF
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/applications/%{name}.desktop
+	%{buildroot}%{_datadir}/applications/glabels.desktop
 
 %post
 scrollkeeper-update -q || :
@@ -102,10 +104,13 @@ scrollkeeper-update -q || :
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libglabels/
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
+%{_libdir}/libglabels.a
+%exclude %{_libdir}/libglabels.la
 
 %changelog
+* Sun Aug 15 2004 Dag Wieers <dag@wieers.com> - 2.0.1-1
+- Updated to release 2.0.1.
+
 * Mon Aug 09 2004 Dag Wieers <dag@wieers.com> - 2.0.0-1
 - Updated to release 2.0.0.
 
