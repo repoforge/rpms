@@ -13,7 +13,8 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
 %if %{?date:1}0
-Source: http://www.audiocoding.com/snapshot/faad2-%{date}.tar.bz2
+#Source: http://www.audiocoding.com/snapshot/faad2-%{date}.tar.bz2
+Source: http://download.videolan.org/pub/videolan/vlc/0.8.1/contrib/faad2-%{date}.tar.bz2
 %else
 Source: http://dl.sf.net/faac/%{name}-%{version}%{?prever:-%{prever}}.tar.gz
 %endif
@@ -70,7 +71,7 @@ This package contains development files and documentation for libfaad.
     --with-mpeg4ip
 #   --with-drm \
 #   --with-mp4v2
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC"
 
 
 %install
