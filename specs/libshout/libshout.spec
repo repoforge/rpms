@@ -10,7 +10,7 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.icecast.org/
-Source: http://www.icecast.org/files/libshout/libshout-%{version}.tar.gz
+Source: http://svn.xiph.org/releases/libshout/libshout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libvorbis-devel, pkgconfig
 
