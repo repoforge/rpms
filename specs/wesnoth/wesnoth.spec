@@ -65,7 +65,7 @@ cp wesnoth.desktop %{buildroot}/usr/share/applications/
 %changelog
 * Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> 0.7.6-1
 - update
-* Fri Dec 2 2004 Dries Verachtert <dries@ulyssis.org> 0.6.1-2
+* Fri Dec 2 2003 Dries Verachtert <dries@ulyssis.org> 0.6.1-2
 - added a desktop file
 * Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 0.6.1-1
 - update from 0.6 to 0.6.1
