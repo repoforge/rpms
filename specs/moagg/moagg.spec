@@ -23,13 +23,14 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/moagg/moagg-%{version}-src.tar.bz2
-Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
+#Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel 
 BuildRequires: paragui-devel, freetype-devel, gcc-c++, SDL_image-devel
 BuildRequires: desktop-file-utils, zlib-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: SDL, SDL_gfx, SDL_mixer, paragui, freetype, SDL_image, zlib
+Requires: moagg-data
 
 %description
 Moagg combines several game types of other genres like races, search and
@@ -40,7 +41,8 @@ laser ports, magnets, black holes, cannons, rockets and grinders you have to
 master.
 
 %prep
-%setup -D -b 1
+%setup
+# -D -b 1
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -61,7 +63,20 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} \
+	prefix=%{buildroot}%{_prefix} \
+	exec_prefix=%{buildroot}%{_prefix} \
+	bindir=%{buildroot}%{_bindir} \
+	sbindir=%{buildroot}%{_sbindir} \
+	sysconfdir=%{buildroot}%{_sysconfdir} \
+	datadir=%{buildroot}%{_datadir} \
+	includedir=%{buildroot}%{_includedir} \
+	libdir=%{buildroot}%{_libdir} \
+	libexecdir=%{buildroot}%{_libexecdir} \
+	localstatedir=%{buildroot}%{_localstatedir} \
+	sharedstatedir=%{buildroot}%{_sharedstatedir} \
+	mandir=%{buildroot}%{_mandir} \
+	infodir=%{buildroot}%{_infodir} install-bin install-doc install-man
 %{__rm} -Rf %{buildroot}%{_datadir}/doc/moagg
 
 %if %{?_without_freedesktop:1}0
@@ -81,12 +96,14 @@ EOF
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO doc moagg.dxy 
 %{_bindir}/moagg
-%{_datadir}/moagg
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 %{?_without_freedesktop:%{_datadir}/applnk/Games/*.desktop}
 %{_mandir}/man6/moagg*
 
 %changelog
+* Mon Dec 20 2004 Dries Verachtert <dries@ulyssis.org> 0.16-2
+- Moved the data to a separate package.
+
 * Tue Nov 23 2004 Dries Verachtert <dries@ulyssis.org> 0.16-1
 - Update to version 0.16.
 

@@ -12,6 +12,7 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
 Source: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
+Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl
 
@@ -36,6 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure \

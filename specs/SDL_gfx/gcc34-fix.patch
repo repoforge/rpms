@@ -1,0 +1,24 @@
+diff -uNr SDL_gfx-2.0.12-orig/SDL_framerate.h SDL_gfx-2.0.12/SDL_framerate.h
+--- SDL_gfx-2.0.12-orig/SDL_framerate.h	2004-06-01 18:20:57.000000000 +0200
++++ SDL_gfx-2.0.12/SDL_framerate.h	2004-12-20 22:57:05.770602000 +0100
+@@ -59,7 +59,7 @@
+ 
+ /* Ends C function definitions when using C++ */
+ #ifdef __cplusplus
+-};
++}
+ #endif
+ 
+ #endif				/* _SDL_framerate_h */
+diff -uNr SDL_gfx-2.0.12-orig/SDL_rotozoom.h SDL_gfx-2.0.12/SDL_rotozoom.h
+--- SDL_gfx-2.0.12-orig/SDL_rotozoom.h	2004-06-01 18:20:57.000000000 +0200
++++ SDL_gfx-2.0.12/SDL_rotozoom.h	2004-12-20 23:04:45.825663000 +0100
+@@ -93,7 +93,7 @@
+ 
+ /* Ends C function definitions when using C++ */
+ #ifdef __cplusplus
+-};
++}
+ #endif
+ 
+ #endif				/* _SDL_rotozoom_h */
