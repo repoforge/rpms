@@ -44,11 +44,12 @@ to press the matching note for it.
 echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 export DESTDIR=$RPM_BUILD_ROOT
 %{__make} install-strip
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,0755)
 %doc README
 %{_bindir}/ScoreReadingTrainer
@@ -57,7 +58,6 @@ export DESTDIR=$RPM_BUILD_ROOT
 %{_datadir}/apps/ScoreReadingTrainer
 %{_datadir}/doc/HTML/en/ScoreReadingTrainer
 %{_datadir}/icons/*/*/apps/ScoreReadingTrainer.png
-%{_datadir}/locale/*/LC_MESSAGES/ScoreReadingTrainer.mo
 
 
 %changelog

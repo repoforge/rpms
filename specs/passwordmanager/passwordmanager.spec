@@ -43,6 +43,7 @@ password to access the list.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -53,11 +54,10 @@ password to access the list.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/*
-%{_datadir}/locale/*/LC_MESSAGES/pwmanager.mo
 %{?fc2:%{_datadir}/services/kded/pwmanager_kwalletemu.desktop}
 %{_datadir}/applnk/Applications/pwmanager.desktop
 %{_datadir}/icons/*/*/apps/pw*.png

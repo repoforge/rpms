@@ -48,6 +48,7 @@ export KDEDIR=/usr
 export KDEDIR=/usr
 %makeinstall
 %{__rm} -f %{buildroot}%{_datadir}/mimelnk/application/x-ace.desktop
+%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -58,7 +59,7 @@ export KDEDIR=/usr
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %doc %{_mandir}/man?/*
@@ -66,7 +67,6 @@ export KDEDIR=/usr
 %{_datadir}/applnk/Applications/krusader.desktop
 %{_datadir}/icons/*/*/apps/krusader*.png
 %{_datadir}/apps/krusader
-%{_datadir}/locale/*/LC_MESSAGES/krusader.mo
 %{_datadir}/doc/HTML/en/krusader
 %{_datadir}/services/krarc.protocol
 %{_libdir}/kde3/kio_krarc.*

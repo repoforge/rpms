@@ -38,13 +38,14 @@ SouthPole.
 %install
 . /etc/profile.d/qt.sh
 %makeinstall
+%find_lang %{name}
 mkdir -p %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
 mv %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root, 0755)
 %{_bindir}/tuxsaver.kss
 %{_datadir}/apps/kscreensaver/ScreenSavers/tuxsaver.desktop
@@ -53,7 +54,6 @@ mv %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroo
 %{_datadir}/apps/tuxsaver/sounds
 %{_datadir}/apps/tuxsaver/stories
 %{_datadir}/doc/HTML/en/tuxsaver
-%{_datadir}/locale/*/LC_MESSAGES/tuxsaver.mo
 
 %changelog
 * Wed Apr 14 2004 Dries Verachtert <dries@ulyssis.org> 1.0-2

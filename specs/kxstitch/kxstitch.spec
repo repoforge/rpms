@@ -56,7 +56,6 @@ KXStitch allows the creation and editing of cross stitch patterns.
 %{_datadir}/apps/kxstitch
 %{_datadir}/applnk/Graphics/kxstitch.desktop
 %{_datadir}/icons/*/*/apps/kxstitch.png
-%{_datadir}/locale/*/LC_MESSAGES/kxstitch.mo
 %{_datadir}/doc/HTML/en/kxstitch
 
 %changelog

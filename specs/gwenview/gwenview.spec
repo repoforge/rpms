@@ -36,11 +36,12 @@ source /etc/profile.d/qt.sh
 %{__rm} -rf %{buildroot}
 source /etc/profile.d/qt.sh
 %{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING CREDITS NEWS TODO
 %{_bindir}/gwenview
@@ -53,7 +54,6 @@ source /etc/profile.d/qt.sh
 %{_datadir}/icons/*/*/apps/gwenview.png
 %{_datadir}/icons/*/*/apps/imagegallery.png
 %{_datadir}/services/gv*.desktop
-# %{_datadir}/locale/*/LC_MESSAGES/gwenview.mo
 %{_datadir}/man/man1/gwenview*
 
 %changelog
