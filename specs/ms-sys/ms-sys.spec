@@ -4,7 +4,7 @@
 
 Summary: Create DOS/MS-compatible boot records
 Name: ms-sys
-Version: 1.0.2
+Version: 2.0.0
 Release: 1
 License: GPL
 Group: Applications/System
@@ -37,8 +37,8 @@ written.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir} \
-		%{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_bindir} \
+			%{buildroot}%{_mandir}/man1/
 %makeinstall \
 	PREFIX="%{buildroot}%{_prefix}" \
 	MANDIR="%{buildroot}%{_mandir}"
@@ -54,5 +54,8 @@ written.
 %{_bindir}/*
 
 %changelog
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 2.0.0-1
+- Updated to release 2.0.0.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Initial package. (using DAR)
