@@ -24,7 +24,9 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/PPI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-ExtUtils-AutoInstall
+BuildRequires: perl, perl-ExtUtils-AutoInstall, perl-File-Slurp
+BuildRequires: perl-List-MoreUtils, perl-Clone, perl-Class-Autouse
+BuildRequires: perl-Test-ClassAPI
 
 %description
 This is an in-development package for parsing, manipulating and saving
