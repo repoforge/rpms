@@ -11,7 +11,7 @@ Release: 1
 License: Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
-Source: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-%{version}.tar.gz
+Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 AutoReq: no
 Requires: transcode >= 0.6.13
