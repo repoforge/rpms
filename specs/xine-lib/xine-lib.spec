@@ -3,15 +3,13 @@
 # Upstream: <xine-user@lists.sf.net>
 
 %define libname libxine1
-%define libver  1-rc4
+%define libver  1-rc4a
 %define apiver  1.0.0
 
-%define __libtoolize :
-
-Summary: Core library for the xine video player
+Summary: Core library of the xine video player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.12.rc4
+Release: 0.13.rc4a
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -34,7 +32,7 @@ Requires: libdvdcss
 %{!?_without_xvid:Requires: xvidcore}
 %{!?_without_speex:Requires: speex}
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
-BuildRequires: libvorbis-devel, SDL-devel, glut-devel
+BuildRequires: libvorbis-devel, SDL-devel, freeglut-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{?_with_rte:BuildRequires: rte-devel}
@@ -50,6 +48,8 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{!?_without_gnomevfs2:BuildRequires: gnome-vfs2-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_speex:BuildRequires: speex-devel}
+%{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_theora:BuildRequires: libtheora-devel}
 Obsoletes: xine-libs <= 1.0.0
 Obsoletes: libxine <= %{version}
 
@@ -64,7 +64,7 @@ This package contains the backend files for the Xine multimedia player.
 
 Available rpmbuild rebuild options :
 --with : rte ext-dvdnav
---without : alsa aalib libfame flac esound arts gnomevfs2 xvid speex
+--without : alsa aalib libfame flac esound arts gnomevfs2 xvid speex caca
 (only alsa can be really disabled, others only remove explicit package
  dependency which won't make much difference if devel files are found)
 
@@ -101,13 +101,6 @@ use the Xine library.
 %install
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{libname}
-
-# Strip all those libs!
-%{__strip} \
-    %{buildroot}%{_libdir}/*.so* \
-    %{buildroot}%{_libdir}/xine/plugins/%{apiver}/*.so \
-    || :
-
 # Remove all those unused docs
 %{__rm} -rf %{buildroot}%{_docdir}/xine || :
 
@@ -145,6 +138,11 @@ use the Xine library.
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.13.rc4a
+- Update to 1.0rc4a.
+- Remove the plugin stripping since now all goes into the debuginfo package.
+- Added libtheora support by default.
+
 * Tue May  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.12.rc4
 - Update to 1.0rc4.
 
