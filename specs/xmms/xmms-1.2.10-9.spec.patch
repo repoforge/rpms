@@ -1,5 +1,5 @@
 --- xmms.spec.orig	2004-10-13 21:12:42.000000000 +0200
-+++ xmms.spec	2004-11-04 00:31:03.769122304 +0100
++++ xmms.spec	2004-11-04 01:23:25.634486168 +0100
 @@ -4,12 +4,12 @@
  Summary: A media player for X which resembles Winamp.
  Name: xmms
@@ -15,7 +15,15 @@
  Source4: arts_output-%{artsplugin_ver}.tar.gz
  Source5: xmms.req
  Source6: xmms.xpm
-@@ -36,6 +36,7 @@ BuildRequires: alsa-lib-devel glib2-deve
+@@ -30,12 +30,13 @@ Requires: gtk+ >= 1:1.2.2, unzip
+ Requires: /usr/share/desktop-menu-patches/redhat-audio-player.desktop
+ Requires: redhat-menus >= 0.11
+ 
+-BuildRequires: arts-devel >= 1.0.1 gtk+-devel esound-devel mikmod
+-BuildRequires: /usr/bin/automake-1.4 /usr/bin/autoconf-2.13 libvorbis-devel
++BuildRequires: arts-devel >= 1.0.1 gtk+-devel esound-devel mikmod-devel
++BuildRequires: autoconf213 automake14 libvorbis-devel
+ BuildRequires: alsa-lib-devel glib2-devel
  PreReq: desktop-file-utils >= 0.9
  BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
  Obsoletes: x11amp0.7-1-1 x11amp xmms-esd xmms-gl xmms-mikmod xmms-gnome
