@@ -5,7 +5,7 @@
 
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
-Version: 1.2.8
+Version: 1.3.13
 Release: 1
 License: Other
 Group: System Environment/Libraries
@@ -41,7 +41,8 @@ you will need to install %{name}-devel.
 
 %build
 ./configure.pl --prefix=%{buildroot}/usr gcc-linux-ia32
-sed -i "s/^CXX.*/CXX = g++296/g;" Makefile
+# the following is only needed for Botan 1.2.x
+# sed -i "s/^CXX.*/CXX = g++296/g;" Makefile
 %{__make} %{?_smp_mflags}
 
 %install
@@ -70,5 +71,8 @@ mv %{buildroot}%{_datadir}/doc/Botan-%{version} botandocs
 %{_libdir}/*.so
 
 %changelog
+* Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.13-1
+- Update to 1.3.13
+
 * Fri May 28 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1
 - Initial package.
