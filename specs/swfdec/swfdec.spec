@@ -8,6 +8,11 @@
 %{?fc3:   %define gimp_plugin 1}
 %{?fc2:   %define gimp_plugin 1}
 %{?yd4:   %define gimp_plugin 1}
+%{?fc1:%define _without_gstreamer 1}
+%{?el3:%define _without_gstreamer 1}
+%{?rh9:%define _without_gstreamer 1}
+%{?rh7:%define _without_gstreamer 1}
+%{?el2:%define _without_gstreamer 1}
 
 Summary: Flash animations rendering library
 Name: swfdec
@@ -20,12 +25,13 @@ Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: mozilla-devel, libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
-BuildRequires: liboil-devel, gstreamer-plugins-devel, GConf2-devel
+BuildRequires: liboil-devel, GConf2-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
+%{!?_without_gstreamer:BuildRequires: gstreamer-plugins-devel}
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
-handles mostFlash 3 animations and some Flash 4. No interactivity is
+handles most Flash 3 animations and some Flash 4. No interactivity is
 supported yet.
 
 
@@ -60,7 +66,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 
 %clean

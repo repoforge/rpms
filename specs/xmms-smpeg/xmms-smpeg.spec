@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
 
-%define real_name smpeg-xmms
 %define xmms_inputdir %(xmms-config --input-plugin-dir)
+
+%define real_name smpeg-xmms
 
 Summary: XMMS SMPEG Plugin
 Name: xmms-smpeg
@@ -28,6 +29,7 @@ An MPEG plugin for XMMS using SDL/smpeg as backend.
 
 %build
 %configure \
+	--enable-shared \
 	--libdir="%{xmms_inputdir}"
 %{__make} %{?_smp_mflags}
 

@@ -46,7 +46,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.1
-Release: %{?prever:0.%{prever}.}2
+Release: %{?prever:0.%{prever}.}3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -94,6 +94,7 @@ BuildRequires: gcc-c++, XFree86-devel, libpng-devel
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_mkv:BuildRequires: libebml-devel, libmatroska-devel}
+%{!?_without_modplug:BuildRequires: libmodplug-devel}
 Conflicts: vlc
 
 %description
@@ -172,6 +173,7 @@ popd
     %{?_with_tarkin:--enable-tarkin} \
     %{!?_without_theora:--enable-theora} \
     %{!?_without_mkv:--enable-mkv} \
+    %{?_without_modplug:--disable-mod} \
     --enable-x11 \
     %{?_without_glx:--disable-glx} \
     --enable-xvideo \
@@ -215,7 +217,7 @@ popd
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-find  %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
+find %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
 %find_lang vlc
 # Include the docs below, our way
 %{__rm} -rf installed-docs
@@ -234,6 +236,7 @@ Exec=vlc
 Terminal=false
 Type=Application
 Encoding=UTF-8
+MimeType=video/mpeg;video/msvideo;video/quicktime;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;application/x-ogg;application/ogg;audio/x-mp3;audio/x-mpeg;video/x-mpeg;video/x-fli;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-ms-asx;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;application/x-flac;audio/x-flac;application/x-shockwave-flash;audio/mpeg;audio/x-ms-asf;audio/x-m4a;audio/x-ms-wax;video/dv;video/x-anim;video/x-flc;misc/ultravox;application/x-matroska;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo
 EOF
 
 %if %{!?_without_freedesktop:1}0
@@ -278,6 +281,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed Apr 06 2005 Dag Wieers <dag@wieers.com> - 0.8.1-3
+- Added libmodplug support, enabled by default.
+
 * Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 0.8.1-2
 - Update ffmpeg to 20050209.
 - Added libmatroska (mkv) support, enabled by default.
