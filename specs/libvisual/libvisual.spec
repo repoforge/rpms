@@ -80,6 +80,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_libdir}/pkgconfig/libvisual.pc
 %{_includedir}/libvisual
 %{_libdir}/*.so
