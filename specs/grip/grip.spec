@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Mike Oliphant <grip@nostatic.org>
+# Upstream: Mike Oliphant <grip$nostatic,org>
 
 Summary: Graphical CD player, CD ripper and encoder frontend
 Name: grip
