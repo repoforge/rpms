@@ -185,10 +185,10 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
     %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
 
 # Last, add system menu entries!
-%{__cat} > %{name}.desktop << EOF
+%{__cat} <<EOF > mplayer.desktop
 [Desktop Entry]
 Name=Movie Player
-Comment=Play DivX ;-), MPEG, DVDs and more
+Comment=Play multimedia files and media
 Icon=mplayer.xpm
 Exec=gmplayer %f
 Terminal=false
@@ -198,7 +198,7 @@ Categories=Application;AudioVideo;
 Encoding=UTF-8
 EOF
 
-%if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
+%if %{!?_without_freedesktop:1}0
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
     --vendor %{desktop_vendor} \
@@ -233,7 +233,7 @@ fi
 
 
 %files
-%defattr(-, root, root, 755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog DOCS/ README etc/*.conf
 %dir %{_sysconfdir}/mplayer/
 #config %{_sysconfdir}/mplayer/mplayer.conf
@@ -255,7 +255,7 @@ fi
 %lang(pl) %{_mandir}/pl/man1/*.1*
 
 %files -n libpostproc
-%defattr(-, root, root, 755)
+%defattr(-, root, root, 0755)
 %{_includedir}/postproc/
 %{_libdir}/libpostproc.so*
 
