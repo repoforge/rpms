@@ -1,12 +1,10 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Adam Kopacz <adam.k@klografx.de>
 
 Summary: Quick Image Viewer
 Name: qiv
-Version: 1.9
+Version: 2.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -15,9 +13,8 @@ URL: http://www.klografx.net/qiv/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.klografx.net/qiv/download/%{name}-%{version}-src.tgz
+Source: http://www.klografx.net/qiv/download/qiv-%{version}-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: imlib-devel, gtk+-devel
 
@@ -39,10 +36,8 @@ and more.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1
-%{__install} -m0755 qiv %{buildroot}%{_bindir}
-%{__install} -m0644 qiv.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 qiv %{buildroot}%{_bindir}/qiv
+%{__install} -D -m0644 qiv.1 %{buildroot}%{_mandir}/man1/qiv.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,6 +49,9 @@ and more.
 %{_bindir}/*
      
 %changelog
+* Sat May 22 2004 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Sun Dec 14 2003 Dag Wieers <dag@wieers.com> - 1.9-1
 - Updated to release 1.9.
 

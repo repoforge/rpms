@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
 %define pyver %(python2 -c 'import sys; print sys.version[:3]')
 
 Summary: Python's own image processing library
@@ -18,7 +19,6 @@ Source: http://www.pythonware.com/downloads/Imaging-%{version}.tar.gz
 Source1: Imaging-doc.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildPreReq: libjpeg-devel >= 6b, zlib-devel >= 1.1.2, libpng-devel >= 1.0.1, tk
 Requires: python >= %{pyver}, libjpeg >= 6b, zlib >= 1.1.2, libpng >= 1.0.1
 Obsoletes: PIL <= %{version}
@@ -33,7 +33,10 @@ internal representation, and powerful image processing capabilities.
 
 %prep
 %setup -n Imaging-%{version} -a1
-find -type f | xargs fgrep -l /usr/local | xargs -r perl -pi.orig -e 's|/usr/local|%{_prefix}|g'
+%{__perl} -pi.orig -e 's|/usr/local|%{_prefix}|g' *.in Makefile libImaging/configure libImaging/Makefile.in Scripts/*.py
+
+%{?fc2:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' _imagingft.c}
+%{?fc2:%{__perl} -pi.orig -e 's|\@DEFS\@|-DHAVE_CONFIG_H|; s|tcl8.3|tcl8.4|; s|tk8.3|tk8.4|;' Makefile* Setup*}
 
 %build
 cd libImaging
@@ -42,10 +45,10 @@ cd libImaging
 	OPT="%{optflags}"
 cd -
 
-python2 setup.py build_ext -i
-#%{__make} -f Makefile.pre.in boot
-#%{__make} \
-#	OPT="%{optflags}"
+#python2 setup.py build_ext -i
+%{__make} -f Makefile.pre.in boot
+%{__make} \
+	OPT="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -53,6 +56,8 @@ python2 setup.py build_ext -i
 %{__install} -D -m0755 _imaging.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/_imaging.so
 %{__install} -D -m0755 _imagingtk.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/_imagingtk.so
 %{__cp} -av  PIL/* %{buildroot}%{_libdir}/python%{pyver}/site-packages/
+
+%{__install} -d -m0755 %{buildroot}%{_includedir}/python%{pyver}/
 %{__cp} -av  libImaging/*.h %{buildroot}%{_includedir}/python%{pyver}/
 
 %clean

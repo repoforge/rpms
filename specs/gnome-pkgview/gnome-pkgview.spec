@@ -4,8 +4,8 @@
 
 Summary: Tool for determining versions of installed GNOME packages
 Name: gnome-pkgview
-Version: 1.0.5
-Release: 0
+Version: 1.0.6
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.greatnorthern.demon.co.uk/gnome-pkgview.html
@@ -13,7 +13,7 @@ URL: http://www.greatnorthern.demon.co.uk/gnome-pkgview.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.gtnorthern.demon.co.uk/packages/pkgview/gnome-pkgview-%{version}.tar.gz
+Source: http://www.greatnorthern.demon.co.uk/packages/gnome-pkgview/gnome-pkgview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2 >= 2.0.0, libxml2 >= 2.0.0, libgnomeui >= 2.0
@@ -29,19 +29,13 @@ overall desktop version from the gnome-version.xml file.
 %configure \
 	--disable-dependency-tracking \
 	--disable-schemas-install
-%{__cat} <<EOF >%{_builddir}/%{buildsubdir}/po/Makefile
-all:
-	echo "Nothing to do."
-install:
-	echo "Nothing to do."
-EOF
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-#find_lang %{name}
+%find_lang %{name}
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -54,15 +48,18 @@ scrollkeeper-update -q
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%config %{_sysconfdir}/gconf/schemas/*.schema
+%config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_datadir}/pixmaps/gnome-pkgview/
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat May 22 2004 Dag Wieers <dag@wieers.com> - 1.0.6-1
+- Updated to release 1.0.6.
+
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 1.0.5-0
 - Updated to release 1.0.5.
 

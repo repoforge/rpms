@@ -1,22 +1,22 @@
 # $Id$
 # Authority: dag
+# Upstream: <biew-general@lists.sf.net>
 
-%define real_version 550
+%define real_version 561
 
 Summary: Console hex viewer/editor with disassembler
 Name: biew
-Version: 5.5.0
-Release: 0
-Group: Development/Debuggers
+Version: 5.6.1
+Release: 1
 License: GPL
+Group: Development/Debuggers
 URL: http://biew.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/biew/biew-%{real_version}.tar.bz2
+Source: http://dl.sf.net/biew/biew%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 BIEW (Binary vIEW) is a free, portable, advanced file viewer with
@@ -38,11 +38,10 @@ other features, making it invaluable for examining binary code.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/biew/xlt/ \
-			%{buildroot}%{_datadir}/biew/skn/
-%{__install} -m0755 biew  %{buildroot}%{_bindir}
-%{__install} -m0644 bin_rc/biew.hlp %{buildroot}%{_datadir}/biew/
+%{__install} -D -m0755 biew  %{buildroot}%{_bindir}/biew
+%{__install} -D -m0644 bin_rc/biew.hlp %{buildroot}%{_datadir}/biew/biew.hlp
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/biew/{skn,xlt}/
 %{__install} -m0644 bin_rc/skn/*.skn %{buildroot}%{_datadir}/biew/skn/
 %{__cp} -auvx bin_rc/xlt/* %{buildroot}%{_datadir}/biew/xlt/
 
@@ -56,6 +55,9 @@ other features, making it invaluable for examining binary code.
 %{_datadir}/biew/
 
 %changelog
+* Sat May 22 2004 Dag Wieers <dag@wieers.com> - 5.6.1-1
+- Updated to release 5.6.1.
+
 * Tue Jan 06 2004 Dag Wieers <dag@wieers.com> - 5.5.0-0
 - Updated to release 5.5.0.
 

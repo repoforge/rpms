@@ -1,21 +1,19 @@
 # $Id$
-
 # Authority: dag
 
 Summary: versatile online dictionary
 Name: stardict
-Version: 2.4.2
-Release: 0
+Version: 2.4.3
+Release: 1
 License: GPL
 Group: Applications/System
-URL: http://stardict.cosoft.org.cn/
+URL: http://stardict.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source:	http://reciteword.cosoft.org.cn/yaoguang/downloadit.php?downloadFile=myapps/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/stardict/stardict-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgnomeui-devel >= 2.2.0
 BuildRequires: scrollkeeper
@@ -67,8 +65,12 @@ scrollkeeper-update -q || :
 %{_datadir}/idl/*.idl
 %{_datadir}/pixmaps/*
 %{_datadir}/omf/stardict/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat May 22 2004 Dag Wieers <dag@wieers.com> - 2.4.3-1
+- Updated to release 2.4.3.
+
 * Mon Nov 17 2003 Dag Wieers <dag@wieers.com> - 2.4.2-0
 - Updated to release 2.4.2.
 

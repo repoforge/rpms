@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: Christian Glodt <chris@mind.lu>
 
-# Distcc: 0
-
 Summary: Mozilla plugin for using bonobo components
 Name: mozilla-bonobo
 Version: 0.4.1
@@ -42,9 +40,6 @@ possible to use bonobo components.
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/doc/
-
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
@@ -62,6 +57,7 @@ scrollkeeper-update -q
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_libdir}/mozilla/plugins/*.so
+%exclude %{_prefix}/doc/
 
 %changelog
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.4.1-1

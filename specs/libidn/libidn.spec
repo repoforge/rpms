@@ -4,8 +4,8 @@
 
 Summary: Internationalized string processing library
 Name: libidn
-Version: 0.3.6
-Release: 2
+Version: 0.4.5
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://josefsson.org/libidn/releases/
@@ -13,7 +13,8 @@ URL: http://josefsson.org/libidn/releases/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://josefsson.org/libidn/releases/libidn-%{version}.tar.gz
+Source: ftp://alpha.gnu.org/pub/gnu/libidn/libidn-%{version}.tar.gz
+#Source: http://josefsson.org/libidn/releases/libidn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: texinfo
@@ -45,6 +46,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %{__make} -C examples distclean
 
@@ -52,26 +54,27 @@ you will need to install %{name}-devel.
 %{__find} doc/ -name "Makefile*" | xargs rm -f
 
 ### Clean up buildroot
-#%{__rm} -f %{buildroot}%{_datadir}/info/dir
+%{__rm} -f %{buildroot}%{_datadir}/info/dir
 
 %post
-/sbin/install-info %{_infodir}/libidn*.info.gz %{_infodir}/dir
 /sbin/ldconfig 2>/dev/null
-
-%preun
-/sbin/install-info --delete %{_infodir}/libidn*.info.gz %{_infodir}/dir
 
 %postun
 /sbin/ldconfig 2>/dev/null
 
+%post devel
+/sbin/install-info %{_infodir}/libidn*.info.gz %{_infodir}/dir
+
+%preun devel
+/sbin/install-info --delete %{_infodir}/libidn*.info.gz %{_infodir}/dir
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* FAQ INSTALL NEWS README* THANKS TODO doc/libidn.html contrib
 %doc %{_mandir}/man1/*
-%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_datadir}/emacs/site-lisp/*.el
 %{_libdir}/*.so.*
@@ -80,6 +83,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc examples/ doc/specifications/ TODO doc/*.pdf libc/example.c doc/reference
 %doc %{_mandir}/man3/*
+%doc %{_infodir}/*.info*
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
@@ -87,6 +91,12 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sat May 22 2004 Dag Wieers <dag@wieers.com> - 0.4.5-1
+- Updated to release 0.4.5.
+
+* Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.4.2-1
+- Updated to release 0.4.2.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.3.6-2
 - Cosmetic rebuild for Group-tag.
 

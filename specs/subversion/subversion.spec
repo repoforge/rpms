@@ -2,30 +2,32 @@
 # Authority: matthias
 
 # Tag: test
-# Distcc: 0
 
-# If you don't have 360+ MB of free disk space or don't want to run checks then
-# set make_check to 0.
+# set to zero to avoid running test suite
 %define make_check 0
 
-Summary: Concurrent Versioning system similar to, but better than, CVS
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+
+Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.0.2
+Version: 1.0.4
 Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
 
-Source0: http://subversion.tigris.org/tarballs/subversion-%{version}.tar.gz
+Source0: http://subversion.tigris.org/tarballs/subversion-%{version}.tar.bz2
 Source1: subversion.conf
 Source3: filter-requires.sh
 Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
+Patch5: subversion-r8822.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildPreReq: autoconf, libtool, python, python-devel
-BuildPreReq: db4-devel >= 4.1.25, swig >= 1.3.15, docbook-style-xsl
+BuildPreReq: autoconf, libtool, python, python-devel, texinfo
+#BuildPreReq: db4-devel >= 4.1.25, swig >= 1.3.15, docbook-style-xsl
+BuildPreReq: db4-devel >= 4.1.25, swig, docbook-style-xsl
 BuildPreReq: apr-devel, apr-util-devel, neon-devel >= 0:0.24.0-1
 
 %define __perl_requires %{SOURCE3}
@@ -55,18 +57,30 @@ package.
 %package -n mod_dav_svn
 Group: System Environment/Daemons
 Summary: Apache server module for Subversion server.
+Requires: httpd-mmn = %(cat %{_includedir}/httpd/.mmn || echo missing)
 Requires: subversion = %{version}-%{release}
-BuildPreReq: httpd-devel >= 2.0.45
+BuildRequires: httpd-devel >= 2.0.45
 
 %description -n mod_dav_svn
 The mod_dav_svn package allows access to a Subversion repository
 using HTTP, via the Apache httpd server.
+
+%package perl
+Group: Development/Libraries
+Summary: Perl bindings to the Subversion libraries
+BuildRequires: perl >= 2:5.8.0
+Requires: %(eval `perl -V:version`; echo "perl(:MODULE_COMPAT_$version)")
+Requires: subversion = %{version}-%{release}
+
+%description perl
+This package includes the Perl bindings to the Subversion libraries.
 
 %prep
 %setup -q
 %patch1 -p1 -b .swig
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
+%patch5 -p1 -b .r8822
 
 rm -rf neon apr apr-util db4
 
@@ -83,33 +97,53 @@ export CC=gcc CXX=g++
 %configure --with-apr=%{_prefix} --with-apr-util=%{_prefix} \
 	--with-swig --with-neon=%{_prefix} \
         --with-apxs=%{_sbindir}/apxs --disable-mod-activation
-make %{?_smp_mflags} all swig-py %{swigdirs}
+make %{?_smp_mflags} all swig-py %{swigdirs} swig-pl-lib
+
+# build the perl modules
+pushd subversion/bindings/swig/perl
+CFLAGS="$RPM_OPT_FLAGS" %{__perl} Makefile.PL INSTALLDIRS=vendor
+make %{?_smp_mflags}
+popd
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
-make install install-swig-py DESTDIR=$RPM_BUILD_ROOT %{swigdirs}
+make install install-swig-py install-swig-pl-lib \
+        DESTDIR=$RPM_BUILD_ROOT %{swigdirs}
+
+make pure_install -C subversion/bindings/swig/perl \
+        PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
 
 # Add subversion.conf configuration file into httpd/conf.d directory.
 install -m 755 -d ${RPM_BUILD_ROOT}%{_sysconfdir}/httpd/conf.d
 install -m 644 $RPM_SOURCE_DIR/subversion.conf ${RPM_BUILD_ROOT}%{_sysconfdir}/httpd/conf.d
 
-# Make cvs2svn more accessible.
-#install -m 755 -d ${RPM_BUILD_ROOT}%{pydir}/rcsparse
-#install -m 644 tools/cvs2svn/rcsparse/*.py ${RPM_BUILD_ROOT}%{pydir}/rcsparse
-#install -m 755 tools/cvs2svn/cvs2svn.py ${RPM_BUILD_ROOT}%{_bindir}/cvs2svn
-#install -m 644 tools/cvs2svn/cvs2svn.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
-
 # Remove unpackaged files
 rm -rf ${RPM_BUILD_ROOT}%{_includedir}/subversion-*/*.txt \
        ${RPM_BUILD_ROOT}%{pydir}/*/*.{a,la}
 
+# remove stuff produced with Perl modules
+find $RPM_BUILD_ROOT -type f \
+    -a \( -name .packlist -o \( -name '*.bs' -a -empty \) \) \
+    -print0 | xargs -0 rm -f
+
+# make Perl modules writable so they get stripped
+find $RPM_BUILD_ROOT%{_libdir}/perl5 -type f -perm 555 -print0 |
+        xargs -0 chmod 755
+
+# unnecessary libraries for swig bindings
+rm -f ${RPM_BUILD_ROOT}%{_libdir}/libsvn_swig_*.{so,la,a}
+
 # Trim what goes in docdir
-rm -rf tools/cvs2svn tools/*/*.in tools/test-scripts \
+rm -rf tools/*/*.in tools/test-scripts \
        doc/book/book/images/images doc/book/book/images/*.ppt
+
+# Rename authz_svn INSTALL doc for docdir
+ln subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 
 %if %{make_check}
 %check
 make check CLEANUP=yes
+make -C subversion/bindings/swig/perl test
 %endif
 
 %clean
@@ -119,17 +153,22 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %postun -p /sbin/ldconfig
 
+%post perl -p /sbin/ldconfig
+
+%postun perl -p /sbin/ldconfig
+
 %files
 %defattr(-,root,root)
 %doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
-%doc tools subversion/LICENSE
+%doc tools subversion/LICENSE mod_authz_svn-INSTALL
 %doc doc/book/book/book.html doc/book/book/images
 %{_bindir}/*
 %{_libdir}/libsvn_*.so.*
 %{_mandir}/man*/*
 %{pydir}/svn
 %{pydir}/libsvn
-#%{pydir}/rcsparse
+%exclude %{_libdir}/libsvn_swig_perl*
+%exclude %{_mandir}/man*/*::*
 
 %files devel
 %defattr(-,root,root)
@@ -137,6 +176,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/libsvn*.a
 %{_libdir}/libsvn*.la
 %{_libdir}/libsvn*.so
+%exclude %{_libdir}/libsvn_swig_perl*
 
 %files -n mod_dav_svn
 %defattr(-,root,root)
@@ -144,9 +184,44 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/httpd/modules/mod_dav_svn.so
 %{_libdir}/httpd/modules/mod_authz_svn.so
 
+%files perl
+%defattr(-,root,root,-)
+%{perl_vendorarch}/auto/SVN
+%{perl_vendorarch}/SVN
+%{_libdir}/libsvn_swig_perl*
+%{_mandir}/man*/*::*
+
 %changelog
-* Sat May 01 2004 Joe Orton <jorton@redhat.com> 1.0.2-1
-- Updated to release 1.0.2.
+* Sat May 22 2004 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
+* Wed May 19 2004 Joe Orton <jorton@redhat.com> 1.0.3-1
+- update to 1.0.3
+
+* Sun May 16 2004 Joe Orton <jorton@redhat.com> 1.0.2-3
+- add ldconfig invocations for -perl post/postun (Ville Skyttä)
+
+* Tue May  4 2004 Joe Orton <jorton@redhat.com> 1.0.2-2
+- add perl MODULE_COMPAT requirement for -perl subpackage
+- move perl man pages into -perl subpackage
+- clean up -perl installation and dependencies (Ville Skyttä, #123045)
+
+* Mon Apr 19 2004 Joe Orton <jorton@redhat.com> 1.0.2-1
+- update to 1.0.2
+
+* Fri Mar 12 2004 Joe Orton <jorton@redhat.com> 1.0.1-1
+- update to 1.0.1; cvs2svn no longer included
+
+* Fri Mar 12 2004 Joe Orton <jorton@redhat.com> 1.0.0-3
+- add -perl subpackage for Perl bindings (steve@silug.org)
+- include mod_authz_svn INSTALL file
+
+* Tue Mar 02 2004 Elliot Lee <sopwith@redhat.com> 1.0.0-2.1
+- rebuilt
+
+* Wed Feb 25 2004 Joe Orton <jorton@redhat.com> 1.0.0-2
+- add fix for lack of apr_dir_read ordering guarantee (Philip Martin)
+- enable compression in ra_dav by default (Tobias Ringström)
 
 * Mon Feb 23 2004 Joe Orton <jorton@redhat.com> 1.0.0-1
 - update to one-dot-oh

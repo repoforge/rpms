@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Mark McLoughlin <mark@skynet.ie>
 
 Summary: Network interface status applet
 Name: gnome-netstatus
-Version: 0.16
-Release: 0
+Version: 2.6.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/
@@ -14,9 +13,10 @@ URL: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/%{version}/gnome-netstatus-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/2.6/gnome-netstatus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gtk2-devel >= 2.4, libgnomeui-devel >= 2.6, libglade2-devel >= 2.0, gnome-panel-devel >= 2.6
 
 %description
 gnome-netstatus is a network interface status applet.
@@ -35,6 +35,12 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
+for lang in C de es fr it ja ko sv zh_CN zh_HK zh_TW; do
+	for file in %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/*.png; do
+		%{__ln_s} -f $(echo $file | sed -e 's|%{buildroot}||') %{buildroot}%{_datadir}/gnome/help/gnome-netstatus/$lang/figures/
+	done
+done
+
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
@@ -49,15 +55,21 @@ scrollkeeper-update -q
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc %{_datadir}/gnome/help/gnome-netstatus/
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_libdir}/bonobo/servers/*.server
 %{_libexecdir}/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/gnome-netstatus/
-%{_datadir}/icons/gnome-netstatus/
+%{_datadir}/icons/hicolor/48x48/apps/*.png
 %{_datadir}/pixmaps/*
+%{_datadir}/omf/gnome-netstatus/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Fri May 21 2004 Dag Wieers <dag@wieers.com> -  2.6.1-1
+- Updated to release 2.6.1.
+
 * Tue Feb 17 2004 Dag Wieers <dag@wieers.com> -  0.16-0
 - Updated to release 0.16.
 

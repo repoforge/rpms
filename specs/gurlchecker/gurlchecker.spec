@@ -4,7 +4,7 @@
 
 Summary: Graphical link validity checker
 Name: gurlchecker
-Version: 0.7.11
+Version: 0.7.12
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -64,6 +64,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat May 22 2004 Dag Wieers <dag@wieers.com> - 0.7.12-1
+- Updated to release 0.7.12.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.7.11-1
 - Updated to release 0.7.11.
 
