@@ -24,7 +24,7 @@ Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-AutoInstall-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-CPANPLUS
+BuildRequires: perl, perl-CPANPLUS, perl-Sort-Versions
 
 %description
 ExtUtils::AutoInstall is a module to let Makefile.PL automatically 
