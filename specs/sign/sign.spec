@@ -4,7 +4,7 @@
 
 Summary: File signing and signature verification utility
 Name: sign
-Version: 1.0.5
+Version: 1.0.7
 Release: 1
 License: GPL
 Group: Applications/File
@@ -53,10 +53,13 @@ the list of trusted keys is grown gradually on as-needed basis.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*.1*
 %{_bindir}/*
 
 %changelog
+* Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 1.0.7-1
+- Updated to release 1.0.7.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.5-1
 - Updated to release 1.0.5.
 
