@@ -9,15 +9,17 @@ Release: 1
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
+URL: http://www.nostatic.org/grip/
+
 Source: http://dl.sf.net/grip/grip-%{version}.tar.gz
 Patch: grip-3.1.7-default.patch
-URL: http://www.nostatic.org/grip/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: vorbis-tools
+
 BuildRequires: libgnomeui-devel >= 2.2.0, vte-devel, curl-devel
 BuildRequires: id3lib-devel, gettext
 # Required on Yellow Dog Linux 3.0
 BuildRequires: ncurses-devel, openssl-devel
+Requires: vorbis-tools
 
 %description
 Grip is a CD player and CD ripper for GNOME. It has the ripping capabilities
