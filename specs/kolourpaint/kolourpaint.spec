@@ -10,9 +10,9 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://kolourpaint.sourceforge.net/
 
-
-Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
-# Patch: brush_1x1_kolourpaint-1.0.1.diff
+# dunno why but downloading at dl.sf.net does not work
+# Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
+Source: http://heanet.dl.sourceforge.net/sourceforge/kolourpaint/kolourpaint-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
