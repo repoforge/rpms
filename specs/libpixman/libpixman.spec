@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Merge of libpixregion and libic
 Name: libpixman
-Version: 0.1.0
-Release: 0
+Version: 0.1.1
+Release: 1
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.cairographics.org/
@@ -44,9 +43,6 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -59,16 +55,19 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README
-%{_libdir}/*.so.*
+%{_libdir}/libpixman.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%{_libdir}/*.so
-%{_libdir}/*.a
-%{_libdir}/pkgconfig/*.pc
-#%{_libdir}/*.la
+%{_includedir}/pixman.h
+%{_libdir}/libpixman.a
+%exclude %{_libdir}/libpixman.la
+%{_libdir}/libpixman.so
+%{_libdir}/pkgconfig/libpixman.pc
 
 %changelog
+* Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 0.1.1-1
+- Updated to release 0.1.1.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.1.0-0
 - Initial package. (using DAR)

@@ -4,11 +4,11 @@
 
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
-Version: 0.2
+Version: 0.3
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://tpctl.sf.net/configure-thinkpad.html
+URL: http://tpctl.sourceforge.net/configure-thinkpad.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -91,6 +91,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/pixmaps/configure-thinkpad/
 
 %changelog
+* Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 0.3-1
+- Updated to release 0.3.
+
 * Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.2-1
 - Added improved desktop file.
 - Updated to release 0.2.

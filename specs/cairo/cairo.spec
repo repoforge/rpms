@@ -1,23 +1,24 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <cairo$cairographics,org>
 
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
-Version: 0.1.18
-Release: 0
+Version: 0.1.23
+Release: 1
 License: MIT
 Group: System Environment/Libraries
-URL: http://www.cairographics.org/
+URL: http://cairo.freedesktop.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cairographics.org/snapshots/cairo-%{version}.tar.gz
+Source: http://cairo.freedesktop.org/snapshots/cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: pkgconfig, freetype-devel, fontconfig-devel, libpixman-devel, XFree86-devel
+BuildRequires: libpixman-devel, glitz-devel
+#BuildRequires: libxcb-devel
 
 %description
 Cairo provides anti-aliased vector-based rendering for X. Paths consist
@@ -41,15 +42,14 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+### Disable glitz
+%configure \
+	--disable-gl
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -63,16 +63,19 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_libdir}/*.so.*
+%{_libdir}/libcairo.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
-%{_libdir}/*.so
-%{_libdir}/*.a
-%{_libdir}/pkgconfig/*.pc
-#%{_libdir}/*.la
+%{_libdir}/libcairo.a
+%exclude %{_libdir}/libcairo.la
+%{_libdir}/libcairo.so
+%{_libdir}/pkgconfig/cairo.pc
 
 %changelog
+* Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.1.23-1
+- Updated to release 0.1.23.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.1.18-0
 - Initial package. (using DAR)

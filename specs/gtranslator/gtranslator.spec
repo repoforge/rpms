@@ -4,7 +4,7 @@
 
 Summary: Gettext po file editor
 Name: gtranslator
-Version: 1.0.2
+Version: 1.1.5
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -73,6 +73,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Jul 25 2004 Dag Wieers <dag@wieers.com> - 1.1.5-1
+- Updated to release 1.1.5.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 
