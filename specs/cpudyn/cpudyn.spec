@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ricardo Galli <gallir@uib.es>
 
 Summary: Control the speed and power consumption of your computer
 Name: cpudyn
-Version: 0.99.0
-Release: 0
+Version: 1.0
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://mnm.uib.es/~gallir/cpudyn/
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://mnm.uib.es/~gallir/cpudyn/download/cpudyn-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 cpudyn controls the speed in Intel SpeedStep, Pentium 4 Mobile and
@@ -38,7 +36,9 @@ Pentium 4 Mobile Laptop (Dell Inspiron), Apple iBook, IBM Thinkpad.
 	' Makefile
 
 %{__cat} <<EOF >cpudynd.sysconfig
-#OPTIONS="-i 1 -p 0.5 0.90 -t 60 -h /dev/hda"
+### See manual cpudynd(8) for more information about the different options
+
+#OPTIONS="-i 1 -p 0.5 0.90 -t 120 -h /dev/hda"
 EOF
 
 %{__cat} <<'EOF' >cpudynd.sysv
@@ -125,18 +125,14 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 
-### FIXME: Create directories as Makefile doesn't take care of this
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man8/
 ### FIXME: Disables make install as it starts services
 #makeinstall
-%{__install} -m0755 cpudynd %{buildroot}%{_sbindir}
-%{__install} -m0644 cpudynd.8.gz %{buildroot}%{_mandir}/man8/
 
-%{__install} -m0755 cpudynd.sysv %{buildroot}%{_initrddir}/cpudynd
-%{__install} -m0644 cpudynd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpudynd
+%{__install} -D -m0755 cpudynd %{buildroot}%{_sbindir}/cpudynd
+%{__install} -D -m0644 cpudynd.8.gz %{buildroot}%{_mandir}/man8/cpudynd.8.gz
+
+%{__install} -D -m0755 cpudynd.sysv %{buildroot}%{_initrddir}/cpudynd
+%{__install} -D -m0644 cpudynd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpudynd
 
 %post
 /sbin/chkconfig --add cpudynd
@@ -162,6 +158,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Mon May 31 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.99.0-0
 - Updated to release 0.99.0.
 
