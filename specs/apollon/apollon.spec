@@ -43,7 +43,7 @@ for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3
 export DESTDIR=%{buildroot}
 #make install-strip
 %makeinstall
-rm ${DESTDIR}/usr/share/applnk/Applications/Apollon.desktop
+# rm ${DESTDIR}/usr/share/applnk/Applications/Apollon.desktop
 mkdir -p ${DESTDIR}/usr/share/applications/
 cat > ${DESTDIR}/usr/share/applications/Apollon.desktop <<EOF
 [Desktop Entry]
