@@ -25,7 +25,7 @@ BuildRequires: readline-devel
 %{?fc1:BuildRequires: tcllib}
 %{?rh9:BuildRequires: tcllib}
 %{?rh8:BuildRequires: tcllib}
-%{?rh7:BuildRequires: tcllib}
+%{?rh7:BuildRequires: tcllib, tcl}
 %{?el2:BuildRequires: tcllib}
 %{?rh6:BuildRequires: tcllib}
 
