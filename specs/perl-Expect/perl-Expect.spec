@@ -13,7 +13,7 @@
 Summary: Expect for perl
 Name: perl-Expect
 Version: 1.15
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Expect/
