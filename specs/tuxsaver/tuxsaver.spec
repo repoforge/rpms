@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dries
+# Upstream: koen muylkens <koen.muylkens@esat.kuleuven.ac.be>
 
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
@@ -18,8 +19,8 @@ BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs
 
-#(d) primscreenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg 
-#(d) screenshotsurl: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
+# Screenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg 
+# ScreenshotURL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
 
 %description
 A screensaver for KDE which shows the adventures of Tux, living at the
