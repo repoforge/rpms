@@ -6,7 +6,7 @@
 Summary: Portable lossless data compression library
 Name: lzo
 Version: 1.08
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
@@ -74,6 +74,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.08-3
+- Increased release to keep upgrade path.
+
 * Fri Dec 27 2002 Dag Wieers <dag@wieers.com> - 1.08-0
 - Updated to 1.08
 
