@@ -55,6 +55,17 @@ cp uox3 %{buildroot}/usr/bin
 cd %{buildroot}/usr/share
 unzip %{SOURCE2}
 mv UOX3 uox3
+dos2unix uox3/dfndata/*/*.dfn \
+	uox3/dfndata/*/*/*.dfn \
+	uox3/dfndata/*/*/*/*.dfn \
+	uox3/dfndata/*/*/*/*/*.dfn \
+	uox3/dfndata/html/*.htf \
+	uox3/uox.ini \
+	uox3/js/*/*/*.js \
+	uox3/accounts/accounts.adm \
+	uox3/accounts/*/*.uad \
+	uox3/js/*.scp \
+	uox3/shared/*.wsc
 cat  > %{buildroot}/usr/bin/uox3-wrapper <<EOF
 cd /usr/share/uox3
 uox3
