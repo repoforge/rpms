@@ -6,7 +6,7 @@
 
 Summary: Action flight simulator
 Name: gl-117
-Version: 1.1
+Version: 1.2
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -44,5 +44,8 @@ make install-strip \
 %{_datadir}/gl-117
 
 %changelog
+* Thu May 20 2004 Dries Verachtert <dries@ulyssis.org> 1.2-1
+- update to 1.2
+
 * Fri Dec 26 2003 Dries Verachtert <dries@ulyssis.org> 1.1-1
 - first packaging for Fedora Core 1
