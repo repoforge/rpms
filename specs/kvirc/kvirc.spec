@@ -16,7 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: ftp://ftp.kvirc.net/pub/kvirc/snapshots/source/kvirc-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
-BuildRequires: libvorbis-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, audiofile-devel
+BuildRequires: openssl-devel, libvorbis-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, audiofile-devel
 
 # Screenshot: http://www.kvirc.net/img/trex_shot1.jpg
 # ScreenshotURL: http://www.kvirc.net/?id=screen
