@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: dries
+
+# Screenshot: http://wildspark.com/dxfscope/screenshot-city-thumb.png
+# ScreenshotURL: http://wildspark.com/dxfscope/
 
 Summary: viewer for DXF drawings
 Name: dxfscope
@@ -13,43 +15,43 @@ URL: http://wildspark.com/dxfscope/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://wildspark.com/dxfscope/%{name}-current.tar.gz
+Source: http://wildspark.com/dxfscope/dxfscope-current.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, XFree86-devel
-%{?fc1:Requires: XFree86}
-%{?fc2:Requires: xorg-x11}
 
-# Screenshot: http://wildspark.com/dxfscope/screenshot-city-thumb.png
-# ScreenshotURL: http://wildspark.com/dxfscope/
+BuildRequires: XFree86-devel
 
 %description
 DXFscope is a viewer for DXF drawings. It supports the most commonly used
 entities of the DXF specification.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
-sed -i "s/\/local//" Makefile
-sed -i "s/\/dxfscope\/share/\/share\/dxfscope/" Makefile
-%{__make} %{?_smp_mflags}
+%{__perl} -pi.orig -e '
+		s|^(BINDIR)=.+$|$1=\$(bindir)|;
+		s|^(SHAREDIR)=.+$|$1=\$(datadir)/dxfscope|;
+		s|-L/usr/X11R6/lib|-L%{_prefix}/X11R6/%{_lib}|;
+		s| -oroot | |;
+	' Makefile
+%{__make} %{?_smp_mflags} \
+	datadir="%{_datadir}"
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-install -s -D -oroot -m0755 dxfscope $RPM_BUILD_ROOT/usr/bin/dxfscope
-install -D -oroot -m0644 help.dxf $RPM_BUILD_ROOT/usr/share/dxfscope/help.dxf
-install -D -oroot -m0644 romans2.cxf $RPM_BUILD_ROOT/usr/share/dxfscope/romans2.cxf
+%{__rm} -rf %{buildroot}
+%makeinstall
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README COPYING HACKING TODO
 %{_bindir}/dxfscope
-%{_datadir}/dxfscope/help.dxf
-%{_datadir}/dxfscope/romans2.cxf
+%{_datadir}/dxfscope/
 
 %changelog
+* Fri Jun 25 2004 Dag Wieers <dag@wieers.com> - 0.2-3
+- Cosmetic cleanup.
+- Fixes for x86_64.
+
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.2-3
 - install require fix for fedora core 2
   Thanks to Jochen Schlick for reporting the bug!
