@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Authen-Smb
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Authenticate against an SMB server
 Name: perl-Authen-Smb
@@ -42,10 +46,10 @@ Authen::Smb allows you to authenticate users against an NT server.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Authen/Smb.pm
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Authen/Smb
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{perl_vendorarch}/Authen/Smb.pm
+%{perl_vendorarch}/auto/Authen/Smb
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.91-1

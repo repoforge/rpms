@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Authen-PAM
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Interface to the PAM library
 Name: perl-Authen-PAM
@@ -42,12 +46,12 @@ This module provides a Perl interface to the PAM library.
 %defattr(-, root, root, 0755)
 %doc README Changes FAQ.pod
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Authen/FAQ.pod
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Authen/PAM.pm
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Authen/PAM/PAM.bs
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Authen/PAM/PAM.so
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{perl_vendorarch}/Authen/FAQ.pod
+%{perl_vendorarch}/Authen/PAM.pm
+%{perl_vendorarch}/auto/Authen/PAM/PAM.bs
+%{perl_vendorarch}/auto/Authen/PAM/PAM.so
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.14-1

@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Authen-SASL
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Interface to SASL
 Name: perl-Authen-SASL
@@ -42,11 +46,11 @@ This module permits authentication with SASL.
 %defattr(-, root, root, 0755)
 %doc api.txt example_pl Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/Authen/SASL.pm
-%{_libdir}/perl5/vendor_perl/*/Authen/SASL.pod
-%{_libdir}/perl5/vendor_perl/*/Authen/SASL/*
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{perl_vendorlib}/Authen/SASL.pm
+%{perl_vendorlib}/Authen/SASL.pod
+%{perl_vendorlib}/Authen/SASL/*
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.08-1
