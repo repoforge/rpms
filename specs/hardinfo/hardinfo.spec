@@ -14,6 +14,7 @@ Group: Applications/System
 URL: http://alpha.linuxmag.com.br/~leandro/hardinfo/
 
 Source: http://alpha.linuxmag.com.br/~leandro/hardinfo/%{name}-%{version}.tar.bz2
+Patch: hardinfo-0.3.6-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0
@@ -26,6 +27,7 @@ USB, IDE, SCSI, Serial and parallel port devices.
 
 %prep
 %setup
+%patch -p0 -b .gcc34
 
 ### FIXME: Use standard autotool paths.
 %{__perl} -pi.orig -e '

@@ -8,7 +8,7 @@
 Summary: Voice plugin for gaim
 Name: gaim-festival
 Version: 1.00
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://festival-gaim.sourceforge.net/
@@ -42,12 +42,6 @@ It use festival and is configurable.
 %makeinstall \
 	PLUGIN_GAIM_PATH="%{buildroot}%{_libdir}/gaim"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -57,6 +51,9 @@ It use festival and is configurable.
 %{_libdir}/gaim/
 
 %changelog
+* Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 1.00-3
+- Rebuild against gaim 1.1.4-1.
+
 * Sat Jan 22 2005 Dag Wieers <dag@wieers.com> - 1.00-2
 - Added voice selection fix. (David L Norris)
 

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-Summary: Show or set the region of a DVD player
+Summary: Read or set the region setting on a DVD drive
 Name: regionset
 Version: 0.1
 Release: 1
@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Requires:
 
 %description
-regionset is a tool to show or configure the region of a DVD player.
+regionset is a tool to read and set the region setting on a DVD drive.
 
 %prep
 %setup
