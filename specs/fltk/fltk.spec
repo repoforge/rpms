@@ -6,7 +6,7 @@
 
 Summary: Cross-platform C++ GUI toolkit
 Name: fltk
-Version: 1.1.5
+Version: 1.1.6
 Release: 1
 License: FLTK
 Group: System Environment/Libraries
@@ -80,6 +80,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> 1.1.6-1
+- Update to release 1.1.6.
+
 * Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 1.1.5-1
 - Update to release 1.1.5.
 

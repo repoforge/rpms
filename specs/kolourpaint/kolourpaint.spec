@@ -25,11 +25,11 @@
 %{?rh6:%define _without_selinux 1}
 %{?yd3:%define _without_selinux 1}
 
-%define real_version 1.2_kde3
+%define real_version 1.2.2_kde3
 
 Summary: Free easy-to-use paint program
 Name: kolourpaint
-Version: 1.2
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -86,6 +86,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/doc/HTML/en/kolourpaint
 
 %changelog
+* Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> 1.2.2-1
+- Update to version 1.2.2.
+
 * Tue Aug 17 2004 Dries Verachtert <dries@ulyssis.org> 1.2-1
 - Update to version 1.2.
 

@@ -4,7 +4,7 @@
 
 Summary: Shell wrapper to log activity
 Name: rootsh
-Version: 1.4.1
+Version: 1.5
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -49,8 +49,11 @@ mechanism.
 %{_localstatedir}/log/rootsh
 
 %changelog
+* Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Thu Dec 09 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
-- Update to release 1.4.1.
+- Updated to release 1.4.1.
 
 * Fri Sep 14 2004 Dag Wieers <dag@wieers.com> - 0.2-1
 - Initial package. (using DAR)
