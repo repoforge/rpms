@@ -1,14 +1,13 @@
-# $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Daniel Barron <author$dansguardian,org>
 
 %define real_name DansGuardian
-%define real_version 2.6.1-13
-%define sversion 2.6.1
+%define real_version 2.8.0-0
 
 Summary: Content filtering web proxy
 Name: dansguardian
-Version: 2.6.1.13
+Version: 2.8.0
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -29,12 +28,12 @@ including URL and domain filtering, content phrase filtering, PICS filtering,
 MIME filtering, file extension filtering, POST filtering.
 
 %prep
-%setup -n %{real_name}-%{sversion}
+%setup -n %{real_name}-%{real_version}
 
 
 ### FIXME: Add a default dansguardian.httpd for Apache. (Please fix upstream)
 %{__cat} <<EOF >dansguardian.httpd
-### You may need to include conf.d/php.conf to make it work.
+### You may need to include conf.d/dansguardian.conf to make it work.
 ScriptAlias /dansguardian/ %{_localstatedir}/www/dansguardian/
 
 <Directory %{_localstatedir}/www/dansguardian/>
@@ -136,12 +135,16 @@ EOF
 %build
 ### FIXME: Makefiles don't follow proper autotools directory standard. (Please fix upstream)
 ./configure \
-	--prefix="" \
-	--sysconfdir="%{_sysconfdir}/dansguardian/" \
-	--mandir="%{_mandir}/" \
-	--logrotatedir="%{_sysconfdir}/logrotate.d/" \
+	--bindir="%{_sbindir}/" \
 	--cgidir="%{_localstatedir}/www/dansguardian/" \
-	--installprefix="%{buildroot}"
+	--installprefix="%{buildroot}" \
+	--logdir="%{_localstatedir}/log/dansguardian/" \
+	--logrotatedir="%{_sysconfdir}/logrotate.d/" \
+	--mandir="%{_mandir}/" \
+	--sysconfdir="%{_sysconfdir}/dansguardian/" \
+	--sysvdir="%{_initrddir}/" \
+	--runas_usr="nobody" \
+	--runas_grp="nobody" \
 
 %{__perl} -pi.orig -e '
 		s|^(CHKCONFIG) =.*$|$1 = :|;
@@ -180,13 +183,17 @@ fi
 %defattr(-, root, root, 0755)
 %doc INSTALL LICENSE README
 %doc %{_mandir}/man?/*
+%dir %{_sysconfdir}/dansguardian/
 %config(noreplace) %{_sysconfdir}/dansguardian/dansguardian.conf
-%config(noreplace) %{_sysconfdir}/dansguardian/template.html
+%config(noreplace) %{_sysconfdir}/dansguardian/dansguardianf1.conf
+#%config(noreplace) %{_sysconfdir}/dansguardian/template.html
 %config %{_sysconfdir}/dansguardian/*list
-%config %{_sysconfdir}/dansguardian/*lists
-%config %{_sysconfdir}/dansguardian/messages
-%config %{_sysconfdir}/dansguardian/pics
-%config %{_sysconfdir}/dansguardian/logrotation
+%config %{_sysconfdir}/dansguardian/phraselists/
+#%config %{_sysconfdir}/dansguardian/messages
+%config %{_sysconfdir}/dansguardian/languages/
+%config %{_sysconfdir}/dansguardian/logrotation/
+%config %{_sysconfdir}/dansguardian/pics/
+%config %{_sysconfdir}/dansguardian/transparent1x1.gif
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/*
 %config %{_initrddir}/*
 %config %{_sysconfdir}/logrotate.d/*
@@ -197,6 +204,9 @@ fi
 %{_localstatedir}/log/dansguardian/
 
 %changelog
+* Wed Jul 21 2004 Dag Wieers <dag@wieers.com> - 2.8.0-1
+- Updated to release 2.8.0-0.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 2.6.1.13-1
 - Updated to release 2.6.1-13.
 
