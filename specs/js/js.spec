@@ -1,14 +1,13 @@
 # $Id$
-
 # Authority: dag
 # Distcc: 0
 
-%define real_version 1.5-rc6
+%define real_version 1.5-rc6a
 
 Summary: JavaScript interpreter
 Name: js
 Version: 1.5
-Release: 0.rc6
+Release: 0.rc6a
 License: MPL
 Group: Development/Languages
 URL: http://www.mozilla.org/js/
@@ -83,5 +82,9 @@ BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
 %{_includedir}/js/
 
 %changelog
+* Tue Jun 15 2004 Matthias Saou <http://freshrpms.net> 1.5-0.rc6a
+- Update to 1.5rc6a.
+
 * Tue Mar 02 2004 Dag Wieers <dag@wieers.com> - 1.5-0.rc6
 - Initial package. (using DAR)
+
