@@ -6,7 +6,7 @@
 
 Summary: far from finished attempt of a buildserver in python
 Name: pydar
-Version: 0.003
+Version: 0.004
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -79,6 +79,9 @@ Not finished, not to be released!
 %{_datadir}/pydar/dbinit.sql
 
 %changelog
+* Tue May 9 2004 Dries Verachtert <dries@ulyssis.org> 0.004-1
+- this version actually works with different buildmachines
+
 * Tue Apr 28 2004 Dries Verachtert <dries@ulyssis.org> 0.002-1
 - update
 
