@@ -71,10 +71,7 @@ mv $DESTDIR/usr/share/applications/kde/kile.desktop $DESTDIR/usr/share/applicati
 %{_datadir}/apps/kile
 %{_datadir}/apps/katepart/syntax/latex-kile.xml
 %{_datadir}/apps/katepart/syntax/bibtex-kile.xml
-%{_datadir}/icons/crystalsvg/48x48/apps/kile.png
-%{_datadir}/icons/crystalsvg/16x16/apps/kile.png
-%{_datadir}/icons/crystalsvg/22x22/apps/kile.png
-%{_datadir}/icons/crystalsvg/32x32/apps/kile.png
+%{_datadir}/icons/crystalsvg/*/apps/kile.png
 %{_datadir}/applications/kile.desktop
 %{_datadir}/locale/*/LC_MESSAGES/kile.mo
 %{_datadir}/mimelnk/text/x-kilepr.desktop
@@ -82,6 +79,9 @@ mv $DESTDIR/usr/share/applications/kde/kile.desktop $DESTDIR/usr/share/applicati
 
 
 %changelog
+* Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> 1.6.3-1
+- update to 1.6.3
+
 * Sun Apr 18 2004 Dries Verachtert <dries@ulyssis.org> 1.6.2-1
 - update to 1.6.2
 
