@@ -1,0 +1,70 @@
+diff -urN pdflib-4.0.0.org/configure.in pdflib-4.0.0/configure.in
+--- pdflib-4.0.0.org/configure.in	Sat May 12 11:19:53 2001
++++ pdflib-4.0.0/configure.in	Sat May 12 11:20:48 2001
+@@ -583,12 +583,11 @@
+ [  --with-tifflib          use installed tifflib instead of internal (not rec.)],
+ [
+     AC_CHECK_LIB(tiff, TIFFOpen, [EXTERNALLIBS="$EXTERNALLIBS -ltiff"],
+-	AC_MSG_ERROR([No usable tifflib library found.]))
++	AC_MSG_ERROR([No usable tifflib library found.]),[$EXTERNALLIBS])
+ 
+     AC_CHECK_HEADER(tiff.h, , 
+ 	AC_MSG_ERROR([No usable tifflib include file found.]))
+ 
+-    AC_MSG_RESULT([         Note: user-supplied tifflib - language bindings disabled])
+     WITH_INTERNALTIFFLIB="no"
+ ],[
+     AC_C_BIGENDIAN()
+@@ -619,7 +618,6 @@
+     AC_CHECK_HEADER(zlib.h, , 
+ 	AC_MSG_ERROR([No usable zlib include file found.]))
+ 
+-    AC_MSG_RESULT([         Note: user-supplied zlib - language bindings disabled])
+     WITH_INTERNALZLIB="no"
+ ],[
+     ZLIBINC="-I../flate"
+@@ -654,7 +652,6 @@
+     AC_CHECK_HEADER(png.h, , 
+ 	AC_MSG_ERROR([No usable pnglib include file found.]))
+ 
+-    AC_MSG_RESULT([         Note: user-supplied pnglib - language bindings disabled])
+     WITH_INTERNALPNGLIB="no"
+ ],[
+     if test "$WITH_INTERNALZLIB" = "no"; then
+@@ -721,17 +718,6 @@
+     fi
+ fi
+ 
+-# If at least one library has been substituted we disable most
+-# language bindings.
+-
+-if test "$EXTERNALLIBS" != "$MATHLIB"; then
+-    WITH_JAVA=no
+-    WITH_PERL=no
+-    WITH_PYTHON=no
+-    WITH_TCL=no
+-    WITH_PHP=no
+-fi
+-
+ # --------------------------------------------------------------------
+ # 	PDFlib C++ language binding
+ # --------------------------------------------------------------------
+@@ -899,7 +899,6 @@
+ fi
+ 
+ DEFINES="$CFLAGS $DEFINES $INCLUDES $PLATFORM"
+-EXTERNALLIBS="$LDFLAGS $EXTERNALLIBS"
+ 
+ AC_SUBST(BINDINGS)
+ AC_SUBST(WITH_PDI)
+@@ -881,8 +867,8 @@
+ 
+ fi
+ 
+-PDFLIBCONVENIENT="\$(top_builddir)/pdflib/libpdf_.la $INTERNALLIBS $EXTERNALLIBS"
+-PDFLIBLINKSELF="$RPATH $PDFLIBCONVENIENT"
++PDFLIBCONVENIENT="\$(top_builddir)/pdflib/libpdf.la $INTERNALLIBS $EXTERNALLIBS"
++PDFLIBLINKSELF="$RPATH \$(top_builddir)/pdflib/libpdf_.la $EXTERNALLIBS"
+ PDFLIBLINK="\$(top_builddir)/pdflib/libpdf.la $EXTERNALLIBS"
+ 
+ AC_SUBST(EXTERNALLIBS)
