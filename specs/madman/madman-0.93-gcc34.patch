@@ -1,0 +1,27 @@
+--- madman-0.93.0.orig/utility/refcnt_ptr.h	2004-05-20 16:03:13.000000000 +0200
++++ madman-0.93.0/utility/refcnt_ptr.h	2004-07-20 23:29:09.591430867 +0200
+@@ -109,7 +109,7 @@
+     refcnt_ptr(const refcnt_ptr<T2>& rhs) throw()
+ 	{
+ 	object = rhs.object;
+-	refcnt = rhs.refCnt;
++	this->refcnt = rhs.refCnt;
+ 	increaseCount();
+ 	}
+
+--- madman-0.93.orig/ui/auto_tag.cpp	2004-05-20 16:03:13.000000000 +0200
++++ madman-0.93/ui/auto_tag.cpp	2004-11-15 19:33:57.996488000 +0100
+@@ -654,4 +654,3 @@ void showAutoTagger(QWidget *parent, con
+ 
+ 
+ 
+-#include "moc_auto_tag.cc"
+
+--- madman-0.93.orig/ui/prefs_dialog.cpp	2004-05-20 16:03:14.000000000 +0200
++++ madman-0.93/ui/prefs_dialog.cpp	2004-11-15 19:24:49.000000000 +0100
+@@ -498,4 +498,3 @@ pair<bool,bool> editPreferences(tMainWin
+     return make_pair(false, false);
+ }
+ 
+-#include "moc_prefs_dialog.cc"
+
