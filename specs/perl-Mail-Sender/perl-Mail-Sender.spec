@@ -38,6 +38,7 @@ echo "N" | %{__make} %{?_smp_mflags}
 %makeinstall
 %{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Mail/Sender/.packlist
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/Mail/Sender/CType/Win32.pm
 
 %clean
 %{__rm} -rf %{buildroot}
