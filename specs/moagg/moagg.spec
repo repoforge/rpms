@@ -5,7 +5,7 @@
 
 Summary: Mother of all Gravity Games
 Name: moagg
-Version: 0.8
+Version: 0.10
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -70,7 +70,11 @@ desktop-file-install --vendor net                  \
 %{_bindir}/moagg
 %{_datadir}/games/moagg
 %{_datadir}/applications/*.desktop
+%{_mandir}/man6/moagg*
 
 %changelog
+* Fri Jun 4 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1
+- update to 0.10
+
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 0.8-1
 - Initial package
