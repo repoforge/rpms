@@ -6,7 +6,7 @@
 Summary: CSS stylesheets editor
 Name: cssed
 Version: 0.3.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://cssed.sourceforge.net/
@@ -14,7 +14,7 @@ URL: http://cssed.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/cssed/cssed-pre0.1-2.tar.gz
+Source: http://dl.sf.net/cssed/cssed-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, make, gcc-c++, expat-devel
 BuildRequires: gtk2-devel, gettext, vte-devel
@@ -58,6 +58,9 @@ EOF
 %{_datadir}/cssed
 
 %changelog
+* Wed Nov 17 2004 Dries Verachtert <dries@ulyssis.org> 0.3.0-2
+- Fix of the source url (Thanks to Marek Matulka!)
+
 * Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 0.3.0-1
 - Update to release 0.3.0.
 
