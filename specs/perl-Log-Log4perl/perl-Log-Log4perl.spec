@@ -83,6 +83,7 @@ perl-Log-Log4perl.
 %{perl_vendorlib}/Log/Log4perl/Appender/TestArrayBuffer.pm
 %{perl_vendorlib}/Log/Log4perl/Appender/TestBuffer.pm
 %{perl_vendorlib}/Log/Log4perl/Appender/TestFileCreeper.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/ScreenColoredLevels.pm
 %{perl_vendorlib}/Log/Log4perl/Config.pm
 %{perl_vendorlib}/Log/Log4perl/Config
 %{perl_vendorlib}/Log/Log4perl/DateFormat.pm
@@ -109,6 +110,7 @@ perl-Log-Log4perl.
 %{_mandir}/man3/Log::Log4perl::Appender::TestArrayBuffer.3pm.gz
 %{_mandir}/man3/Log::Log4perl::Appender::TestBuffer.3pm.gz
 %{_mandir}/man3/Log::Log4perl::Appender::TestFileCreeper.3pm.gz
+%{_mandir}/man3/Log::Log4perl::Appender::ScreenColoredLevels.3pm.gz
 %{_mandir}/man3/Log::Log4perl::Config*
 %{_mandir}/man3/Log::Log4perl::DateFormat.3pm.gz
 %{_mandir}/man3/Log::Log4perl::FAQ.3pm.gz
