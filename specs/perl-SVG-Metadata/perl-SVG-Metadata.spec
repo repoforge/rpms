@@ -24,6 +24,7 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRYCE/SVG-Metadata-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+Provides: perl(SVG::Metadata)
 
 %description
 See `man SVG::Metadata` after installation for more details about this
@@ -58,5 +59,8 @@ metadata into a separate directory structure for packaging.  See
 %doc %{_mandir}/man1/*
 
 %changelog
+* Thu Dec 09 2004 Dries Verachtert <dries@ulyssis.org> - 0.11-2
+- Fix: added provides.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.
