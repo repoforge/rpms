@@ -47,6 +47,7 @@ Router statistics and summary charts are available.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc BUGS CHANGES COPYING README* TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
