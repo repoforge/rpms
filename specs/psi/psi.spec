@@ -10,7 +10,7 @@
 Summary: Client application for the Jabber network
 Name: psi
 Version: 0.9.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
@@ -60,14 +60,11 @@ in other languages than English.
 %build
 # It's not an autoconf generated script...
 # The PWD thing is an ugly hack since relative paths mess everything up...
-#./configure \
-#    --prefix="${PWD}/src%{_prefix}" \
-#    --bindir="${PWD}/src%{_bindir}" \
-#    --libdir="${PWD}/src%{_datadir}/%{name}"
-./configure --prefix=/usr \
-	--bindir=/usr/bin \
-	--libdir=/usr/share/psi
-%{__perl} -pi.orig -e "s|${PWD}||g" Makefile
+./configure \
+    --prefix="${PWD}/src%{_prefix}" \
+    --bindir="${PWD}/src%{_bindir}" \
+    --libdir="${PWD}/src%{_datadir}/%{name}"
+%{__perl} -pi.orig -e "s|${PWD}/src||g" Makefile src/config.h
 %{__make} %{?_smp_mflags}
 
 # Transport Layer Security plugin
@@ -118,7 +115,6 @@ desktop-file-install \
 %endif
  
 # Install the languagepack files
-%{__install} -m0755 -d %{buildroot}%{_datadir}/psi
 %{__install} -m 0644 \
     %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \
     %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} \
@@ -129,6 +125,7 @@ desktop-file-install \
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
@@ -136,8 +133,6 @@ desktop-file-install \
 %exclude %{_datadir}/psi/COPYING
 %exclude %{_datadir}/psi/README
 %exclude %{_datadir}/psi/*.qm
-%exclude %{_datadir}/applnk/Internet/psi.desktop
-%{_datadir}/icons/*/*/apps/psi.png
 %{_datadir}/psi
 %{qtdir}/plugins/crypto/libqca-tls.so
 %{_datadir}/pixmaps/psi.png
@@ -161,6 +156,9 @@ desktop-file-install \
 
 
 %changelog
+* Mon Jun 14 2004 Matthias Saou <http://freshrpms.net> 0.9.2-3
+- Real fix for mach builds.
+
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> 0.9.2-2
 - fix so iconsets and language files work again
 
