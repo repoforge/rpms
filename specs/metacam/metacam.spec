@@ -5,7 +5,7 @@
 # Upstream: Daniel Stephens <daniel$cheeseplant,org>
 
 Name: metacam
-Version: 1.1
+Version: 1.2
 Release: 0
 Summary: Utility to read Exif data from digital camera files
 Group: Applications/Multimedia
@@ -48,5 +48,8 @@ from a Nikon D1, but it supports other cameras too.
 %{_bindir}/*
 
 %changelog
-* Sat Feb 01 2003 Bert de Bruijn <bert@debruijn.be>
+* Tue Jan 04 2005 Bert de Bruijn <bert@debruijn.be> 1.2-0
+- Update
+
+* Sat Feb 01 2003 Bert de Bruijn <bert@debruijn.be> 1.1-0
 - Initial package, manpage from Conectiva.
