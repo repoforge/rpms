@@ -20,7 +20,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHILLI/Log-Log4perl-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-Requires: perl-IPC-Shareable
+Requires: perl-IPC-Shareable, perl-Log-Dispatch, perl-Log-Dispatch-FileRotate, rrdtool
 
 %description
 Log::Log4perl is a Perl port of the widely popular log4j logging package. It
