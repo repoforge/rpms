@@ -20,7 +20,7 @@
 
 Summary: Mozilla Firefox web browser
 Name: firefox
-Version: 0.9
+Version: 0.9.1
 Release: 1
 License: MPL/LGPL
 Group: Applications/Internet
@@ -29,24 +29,24 @@ URL: http://www.mozilla.org/projects/firefox/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-source-%{version}.tar.bz2
-Patch2: mozilla-1.4-x86_64.patch
-Patch3: mozilla-xremote.patch
-Patch4: mozilla-xremote-0.5.patch
-Patch5: mozilla-xremote-stfu.patch
-Patch1001: firefox-0.8-gtk2xtbin.patch
+Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-%{version}-source.tar.bz2
+Source1: firefox-rebuild-databases.pl.in
+Source2: firefox.png
+Source3: firefox.xpm
+Patch1: firefox-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, zlib-devel, zip, perl,
+BuildRequires: XFree86-devel, zlib-devel, zip, gzip, perl,
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, gcc-c++
 %{!?_without_autoconf213:BuildRequires: autoconf213}
 %{?_without_autoconf213:BuildRequires: autoconf = 2.13}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel}
+%{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel, gnome-vfs2-devel}
 %{?_without_gtk2:BuildRequires: gtk+-devel}
 
 Obsoletes: phoenix, MozillaFirebird, mozilla-firebird, mozilla-firefox
+Provides: webclient
 
 %description
 Mozilla Firefox is an open-source web browser, designed for standards
@@ -54,13 +54,9 @@ compliance, performance and portability.
 
 %prep
 %setup -n mozilla
-%ifarch x86_64
-%patch2 -p1
-%endif
-%patch3 -p0
-%patch4 -p0
-%patch5 -p0
-%patch1001
+%patch1 -p1
+
+%{__cp} -av %{SOURCE3} browser/app/default.xpm
 
 %{__cat} <<EOF >bookmarks.html
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
@@ -71,22 +67,21 @@ compliance, performance and portability.
 <DL><p>
     <DT><H3 PERSONAL_TOOLBAR_FOLDER="true" ID="NC:PersonalToolbarFolder">Personal Toolbar Folder</H3>
     <DL><p>
-        <DT><A HREF="http://dag.wieers.com/apt/">Dag Apt Repository</A>
+        <DT><A HREF="http://dag.wieers.com/apt/">Dag RPM Repository</A>
         <DT><A HREF="http://www.google.com/">Google</A>
-        <DT><A HREF="http://www.mozilla.org/projects/firefox/">Firefox Project</A>
         <DT><A HREF="http://www.redhat.com/">Red Hat</A>
     </DL><p>
     <HR>
-    <DT><H3 ID="NC:BookmarksRoot#$40f75202">RPMS</H3>
+    <DT><H3>RPMS</H3>
     <DL><p>
 	<DT><A HREF="http://atrpms.physik.fu-berlin.de/">ATrpms</A>
-        <DT><A HREF="http://dag.wieers.com/apt/">Dag Apt Repository</A>
+        <DT><A HREF="http://dag.wieers.com/apt/">Dag RPM Repository</A>
         <DT><A HREF="http://freshrpms.net/">FreshRPMS</A>
 	<DT><A HREF="http://newrpms.sunsite.dk/">NewRPMS</A>
         <DT><A HREF="http://rpm.pbone.net/">RPM PBone search</A>
 	<DT><A HREF="http://www.rpmseek.com/">RPMSeek search</A>
     </DL><p>
-    <DT><H3 ID="NC:BookmarksRoot#$40f75201">News</H3>
+    <DT><H3>News</H3>
     <DL><p>
         <DT><A HREF="http://freshmeat.net/">Freshmeat.net</A>
         <DT><A HREF="http://news.google.com/">Google news</A>
@@ -95,13 +90,35 @@ compliance, performance and portability.
         <DT><A HREF="http://slashdot.org/">Slashdot: News for nerds, stuff that matters</A>
         <DT><A HREF="http://www.theregister.co.uk/">The Register</A>
     </DL><p>
-    <DT><H3 ID="NC:BookmarksRoot#$16f2309b">Mozilla Project</H3>
+    <DT><H3>Mozilla Project</H3>
     <DL><p>
         <DT><A HREF="http://www.mozilla.org/">The Mozilla Organization</A>
         <DT><A HREF="http://www.mozilla.org/get-involved.html">Getting Involved</A>
         <DT><A HREF="http://www.mozilla.org/feedback.html">Feedback</A>
         <DT><A HREF="http://www.mozilla.org/docs/">Documentation</A>
         <DT><A HREF="http://www.mozillazine.org/">MozillaZine</A>
+    </DL><p>
+    <DT><H3>Firefox Web Browser</H3>
+    <DL><p>
+	<DT><A HREF="http://texturizer.net/firefox/">Firefox Help</A>
+	<DT><A HREF="http://www.mozillazine.org/forums/?c=4">Firefox Forum</A>
+	<DT><A HREF="http://plugindoc.mozdev.org/faqs/">Firefox Plugin FAQ</A>
+	<DT><A HREF="http://www.mozilla.org/projects/firefox/">Firefox Website</A>
+	<DT><a HREF="http://texturizer.net/firefox/extensions.html">Firefox Extensions</A>
+	<DT><a HREF="http://texturizer.net/firefox/themes.html">Firefox Themes</A>
+    </DL><p>
+    <HR>
+    <DT><H3>Quick Searches</H3>
+    <DL><p>
+        <DT><A HREF="http://devedge.netscape.com/viewsource/2002/bookmarks/">Using Mozilla Firefox Quick Searches</A>
+        <DT><A HREF="http://www.google.com/search?q=%s" SHORTCUTURL="google">Google Quicksearch</A>
+        <DT><A HREF="http://www.google.com/search?q=%s&btnI=I'm+Feeling+Lucky" SHORTCUTURL="goto">I'm Feeling Lucky Quicksearch</A>
+        <DT><A HREF="http://dictionary.reference.com/search?q=%s" SHORTCUTURL="dict">Dictionary.com Quicksearch</A>
+        <DT><A HREF="http://www.webster.com/cgi-bin/dictionary?va=%s" SHORTCUTURL="webster">Dictionary Quicksearch</A>
+        <DT><A HREF="http://www.google.com/search?&q=stocks:%s" SHORTCUTURL="quot">Stock Symbol Quicksearch</A>
+	<DT><A HREF="http://freshmeat.net/search?q=%s" SHORTCUTURL="freshmeat">Freshmeat Quicksearch</A>
+	<DT><A HREF="http://us.imdb.com/Find?select=All&for=%s" SHORTCUTURL="movie">Movies Quicksearch</A>
+	<DT><A HREF="http://be2.php.net/manual-lookup.php?pattern=%s" SHORTCUTURL="php">PHP Documentation Quicksearch</A>
     </DL><p>
     <HR>
 </DL><p>
@@ -115,7 +132,7 @@ mk_add_options MOZ_PHOENIX="1"
 mk_add_options PATH="$PATH"
 ac_add_options --host="%{_host}"
 ac_add_options --build="%{_build}"
-ac_add_options --target="%{_target_platform}"
+ac_add_options --target="%{_arch}"
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-composer
 ac_add_options --disable-debug
@@ -131,9 +148,10 @@ ac_add_options --disable-mailnews
 ac_add_options --disable-tests
 ac_add_options --disable-xprint
 ac_add_options --enable-crypto
-ac_add_options --enable-extensions="default,-irc,-venkman"
-#ac_add_options --enable-extansions="cookie,p3p,pref,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"
+#ac_add_options --enable-extensions="default,-irc,-venkman"
+ac_add_options --enable-extensions="cookie,inspector,negotiateauth,p3p,pref,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"
 ac_add_options --enable-mathml
+ac_add_options --enable-official-branding
 ac_add_options --enable-optimize="%{optflags}"
 ac_add_options --enable-plaintext-editor-only
 ac_add_options --enable-reorder
@@ -177,7 +195,7 @@ MOZILLA_FIVE_HOME="%{_libdir}/firefox"
 MOZ_PROGRAM="$MOZILLA_FIVE_HOME/firefox"
 
 LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$MOZILLA_FIVE_HOME/plugins:$LD_LIBRARY_PATH"
-MOZ_PLUGIN_PATH="$HOME/.mozilla/plugins:$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins"
+MOZ_PLUGIN_PATH="$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins:$MOZ_PLUGIN_PATH"
 FONTCONFIG_PATH="/etc/fonts:$MOZILLA_FIVE_HOME/res/Xft"
 export MOZILLA_FIVE_HOME LD_LIBRARY_PATH MOZ_PLUGIN_PATH FONTCONFIG_PATH
 
@@ -187,7 +205,7 @@ if [ -f "$MOZILLA_FIVE_HOME/chrome/$MOZLOCALE.jar" ]; then
 	MOZARGS="-UILocale $MOZLOCALE"
 fi
 
-$MOZ_PROGRAM -remote 'ping()' &>/dev/null
+$MOZ_PROGRAM -a firefox -remote 'ping()' &>/dev/null
 RUNNING=$?
 if [ $? -eq 2 ]; then RUNNING=0; fi
 
@@ -239,9 +257,9 @@ while [ "$1" ]; do
 done
 
 if [ $RUNNING -eq 0 -a $CMD -ne 1 ]; then
-	exec $MOZ_PROGRAM -remote "xfeDoCommand(openBrowser)" $MOZARGS
+	exec $MOZ_PROGRAM -a firefox -remote "xfeDoCommand(openBrowser)" $MOZARGS
 else
-	exec $MOZ_PROGRAM $MOZARGS &
+	exec $MOZ_PROGRAM -a firefox $MOZARGS &
 fi;
 EOF
 
@@ -251,9 +269,12 @@ export MOZ_APP_NAME="firefox"
 %{?_without_autoconf213:autoconf}
 
 export MOZ_PHOENIX="1"
+export MOZILLA_OFFICIAL="1"
+export BUILD_OFFICIAL="1"
 export CFLAGS="%{optflags}"
 export CXXFLAGS="%{optflags}"
-%{__make} -f client.mk depend
+export RPM_OPT_FLAGS="$(echo %{optflags} | sed -e 's|-O2|-Os|')"
+#%{__make} -f client.mk depend
 %{__make} %{?_smp_mflags} -f client.mk build
 
 %install
@@ -265,15 +286,15 @@ export CXXFLAGS="%{optflags}"
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
 %{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
-%{__install} -D -m0644 browser/base/skin/Throbber.png %{buildroot}%{_datadir}/pixmaps/firefox.png
+%{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/firefox.png
 
 %{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/US/
 
-%{__perl} -pi.orig -e 's|mozilla-MOZILLA_VERSION|firefox|g; s|LIBDIR|%{_libdir}|g;' build/package/rpm/SOURCES/mozilla-rebuild-databases.pl.in
-%{__install} -D -m0755 build/package/rpm/SOURCES/mozilla-rebuild-databases.pl.in %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
+%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
+%{__perl} -pi -e 's|\$MOZ_DIST_BIN|%{_libdir}/firefox|g;' %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 
 ### FIXME: Fixed "nsNativeComponentLoader: GetFactory(libwidget_gtk.so) Load FAILED with error: libwidget_gtk.so" by linking. (Please fix upstream)
 if [ ! -f %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so ]; then
@@ -294,6 +315,10 @@ fi
 /sbin/ldconfig 2>/dev/null
 %{_libdir}/firefox/firefox-rebuild-databases.pl &>/dev/null || :
 
+### Work around for creating extensions directory
+unset DISPLAY
+%{_libdir}/firefox-%{version}/firefox --help &>/dev/null || :
+
 %postun
 /sbin/ldconfig 2>/dev/null
 if [ $1 -gt 1 ]; then
@@ -311,7 +336,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc LEGAL LICENSE
+%doc LEGAL LICENSE README.txt
 %{_bindir}/firefox
 %{_libdir}/firefox/
 %{_datadir}/pixmaps/firefox.png
@@ -319,6 +344,9 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.9-1
 - Updated to release 0.9.
 
