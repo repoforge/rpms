@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.gnome.org/pub/GNOME/sources/gpdf/%{version}/gpdf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libbonobo-devel >= 2.2.1
+BuildRequires: libbonobo-devel >= 2.2.1, gcc-c++
 BuildRequires: libgnomeui-devel >= 2.0, libbonoboui-devel >= 2.0, gnome-vfs2-devel >= 2.0
 BuildRequires: libgnomeprint22-devel >= 2.2, libgnomeprintui22-devel >= 2.2, libglade2-devel >= 2.0
 
