@@ -1,28 +1,29 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Pascal Brachet <pbrachet@xm1math.net>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation) (Please fix upstream)
-# Distcc: 0
+%{?dist: %{expand: %%define %dist 1}}
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: LaTeX editor
 Name: texmaker
-Version: 1.0.1
-Release: 0
+Version: 1.1
+Release: 1
 License: GPL
 Group: Applications/Publishing
-URL: http://perso.club-internet.fr/pascal.brachet/texmaker/
+URL: http://www.xm1math.net/texmaker/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://perso.club-internet.fr/pascal.brachet/texmaker/%{name}_%{version}.tar.bz2
+Source: http://www.xm1math.net/texmaker/texmaker_%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: qt-devel >= 3.0, kdelibs-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Texmaker is a program, that integrates many tools needed 
@@ -53,36 +54,45 @@ It have thoses features:
 %prep
 %setup -n %{name}_%{version}
 
+%{__perl} -pi.orig -e 's|PREFIX"|"%{_prefix}|' *.cpp
+
+%{__cat} <<EOF >texmaker.desktop
+[Desktop Entry]
+Name=Texmaker TeX Editor
+Comment=Create and edit LaTeX documents
+Exec=texmaker
+MimeType=text/x-tex
+Icon=texmaker.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Office;WordProcessor;
+EOF
+
 %build
-#export LD_LIBRARY_PATH="/usr/lix/qt3/lib:$LD_LIBRARY_PATH"
-#export PATH="/usr/lib/qt3/bin:$PATH"
 source "%{_sysconfdir}/profile.d/qt.sh"
-$QTDIR/bin/qmake -makefile -unix "LIBS +=-lm $QTDIR/lib/libqt-mt.so.3" texmaker.pro
+#$QTDIR/bin/qmake -makefile -unix "LIBS +=-lm $QTDIR/lib/libqt-mt.so.3" texmaker.pro
+$QTDIR/bin/qmake -makefile -unix texmaker.pro
 
 %{__make} %{?_smp_flags} \
-	CFLAGS="%{optflags}" \
 	CXXFLAGS="%{optflags}"
-
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/applications/ \
-			%{buildroot}%{_datadir}/icons/hicolor/{16x16,32x32,48x48}/apps/ \
-			%{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0755 texmaker %{buildroot}%{_bindir}
-%{__install} -m0644 texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
-%{__install} -m0644 texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
-%{__install} -m0644 texmaker48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/texmaker.png
-%{__install} -m0644 texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
+%{__install} -D -m0755 texmaker %{buildroot}%{_bindir}/texmaker
+%{__install} -D -m0644 utilities/texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
+%{__install} -D -m0644 utilities/texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
+%{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/texmaker.png
+%{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
 
-%if %{dfi}
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/applications/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
 %else
-	desktop-file-install --vendor net                  \
-	        --add-category X-Red-Hat-Base              \
-	        --dir %{buildroot}%{_datadir}/applications \
-	        %{name}.desktop
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor kde                  \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		texmaker.desktop
 %endif
 
 %clean
@@ -90,12 +100,17 @@ $QTDIR/bin/qmake -makefile -unix "LIBS +=-lm $QTDIR/lib/libqt-mt.so.3" texmaker.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING latexhelp.html usermanual.html
+%doc INSTALL utilities/AUTHORS utilities/COPYING
+%doc utilities/*.css utilities/*.gif utilities/*.html utilities/*.png
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{?_without_freedesktop:%{_datadir}/applications/texmaker.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/kde-texmaker.desktop}
 %{_datadir}/icons/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Jul 11 2004 Dag Wieers <dag@weers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Sat Sep 20 2003 Dag Wieers <dag@weers.com> - 1.0.1-0
 - Initial package. (using DAR)
