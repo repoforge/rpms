@@ -12,7 +12,7 @@
 Summary: Simply deploy SOAP clients and servers
 Name: perl-SOAP-Clean
 Version: 0.02
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Clean/
@@ -25,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+Provides: perl(SOAP::Clean::Processes)
 
 %description
 SOAP::Clean is a set of modules for quickly and simply deploying SOAP
@@ -73,5 +74,8 @@ recommend SOAP::Lite.
 %{perl_vendorlib}/SOAP/Clean/*
 
 %changelog
+* Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-2
+- Fix requires/provides.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.
