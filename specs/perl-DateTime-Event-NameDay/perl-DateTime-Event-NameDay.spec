@@ -28,7 +28,8 @@ This module handles generating name days from dates and vice versa.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+# does not work with PREFIX, needs destdir
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
 %{__make} %{?_smp_mflags}
 
 %install
