@@ -3,17 +3,17 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc7:%define _without_gcc3 1}
+%{?rh7:%define _without_gcc3 1}
 %{?el2:%define _without_gcc3 1}
 %{?rh6:%define _without_gcc3 1}
 
 %define real_version 1_4_2
-%define real_release 04
+%define real_release 06
 
 Summary: Sun Java(tm) 2 Runtime Environment
 Name: j2re
 Version: 1.4.2
-Release: 10
+Release: 11
 Group: Development/Languages
 License: Redistributable, BCLA
 URL: http://java.sun.com/j2se/1.4.2/download.html
@@ -184,23 +184,25 @@ cd j2re%{version}_%{real_release}
 %{__mv} -f CHANGES COPYRIGHT ControlPanel.html LICENSE README THIRDPARTYLICENSEREADME.txt Welcome.html ../
 
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__ln_s} -f ../lib/jre/bin/java %{buildroot}%{_bindir}/java
-%{__ln_s} -f ../lib/jre/javaws/javaws %{buildroot}%{_bindir}/javaws
+%{__ln_s} -f ../lib/jre/bin/java %{buildroot}%{_bindir}/
+%{__ln_s} -f ../lib/jre/javaws/javaws %{buildroot}%{_bindir}/
 
 %{__install} -D -m0644 plugin/desktop/sun_java.png %{buildroot}%{_datadir}/pixmaps/java.png
 
 find %{buildroot}%{_libdir}/jre/ -type f -exec %{__chmod} 0644 {} \;
 find %{buildroot}%{_libdir}/jre/bin/ -type f -exec %{__chmod} 0755 {} \;
+find %{buildroot}%{_libdir}/jre/ -type f -name "*.so" -exec %{__chmod} 0755 {} \;
+
 #find . -type f -exec %{__chmod} 0644 {} \;
 
 %{__chmod} 0644 %{buildroot}%{_mandir}/man?/*
 %{__chmod} 0755 %{buildroot}%{_libdir}/jre/javaws/javaws{,bin}
 
-%{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins
+%{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
 %{!?_without_gcc3:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
 %{?_without_gcc3:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
 
-%{__install} -d -m0755 %{buildroot}%{_libdir}/netscape/plugins
+%{__install} -d -m0755 %{buildroot}%{_libdir}/netscape/plugins/
 %{__ln_s} -f %{_libdir}/jre/plugin/i386/ns4/libjavaplugin.so %{buildroot}%{_libdir}/netscape/plugins/
 
 ### Clean up buildroot
@@ -220,13 +222,14 @@ find %{buildroot}%{_libdir}/jre/bin/ -type f -exec %{__chmod} 0755 {} \;
 %doc CHANGES COPYRIGHT ControlPanel.html LICENSE README THIRDPARTYLICENSEREADME.txt Welcome.html 
 %doc %{_mandir}/man?/*
 %dir %{_libdir}/jre/
-%config %{_sysconfdir}/profile.d/*.sh
-%{_bindir}/*
-%{_datadir}/application-registry/*.applications
-%{_datadir}/applications/*.desktop
-%{_datadir}/mime-info/*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/mime/packages/*.xml
+%config %{_sysconfdir}/profile.d/java.sh
+%{_bindir}/java
+%{_bindir}/javaws
+%{_datadir}/application-registry/java.applications
+%{_datadir}/applications/java.desktop
+%{_datadir}/mime-info/java.*
+%{_datadir}/pixmaps/java.png
+%{_datadir}/mime/packages/java.xml
 %{_libdir}/jre/bin/
 %{_libdir}/jre/lib/
 %{_libdir}/jre/javaws/
@@ -234,10 +237,14 @@ find %{buildroot}%{_libdir}/jre/bin/ -type f -exec %{__chmod} 0755 {} \;
 %files -n mozilla-j2re
 %defattr(-, root, root, 0755)
 %{_libdir}/jre/plugin/
-%{_libdir}/mozilla/plugins/*
-%{_libdir}/netscape/plugins/*
+%{_libdir}/mozilla/plugins/libjavaplugin_oji.so
+%{_libdir}/netscape/plugins/libjavaplugin.so
 
 %changelog
+* Thu Nov 25 2004 Dag Wieers <dag@wieers.com> - 1.4.2-11
+- Updated to release 1_4_2_06.
+- Made plugins executable. (Nils Toedtmann)
+
 * Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 1.4.2-10
 - Removed %%{_libdir}/mozilla/plugins/
 

@@ -68,12 +68,18 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %post
 /sbin/ldconfig 2>/dev/null
+/usr/bin/update-gdk-pixbuf-loaders . || :
+
+### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
     %{_bindir}/gdk-pixbuf-query-loaders > \
         %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders || :
 
 %postun
 /sbin/ldconfig 2>/dev/null
+/usr/bin/update-gdk-pixbuf-loaders . || :
+
+### Backward compatibility for gtk < 2.4.13-9
 [ -x %{_bindir}/gdk-pixbuf-query-loaders ] && \
     %{_bindir}/gdk-pixbuf-query-loaders > \
         %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders || :
@@ -106,7 +112,10 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
-* Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.3.2-2
+* Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 0.3.2-3
+- Added update-gdk-pixbuf-loaders to scriptlets.
+
+* Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 0.3.2-2
 - Make scriplets never return a failure.
 
 * Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.3.2-1

@@ -84,6 +84,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_libdir}/pkgconfig/gdesklets-core.pc
 %exclude %{_datadir}/mime/XMLnamespaces
 %{_datadir}/mime/application/x-gdesklets-display.xml
+%exclude %{_datadir}/applications/mimeinfo.cache
 %exclude %{_datadir}/mime/globs
 %exclude %{_datadir}/mime/magic
 %{_datadir}/mime/packages/gdesklets.xml

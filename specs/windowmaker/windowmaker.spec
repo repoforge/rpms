@@ -5,7 +5,7 @@
 
 Summary: Fast, feature rich Window manager
 Name: windowmaker
-Version: 0.90.0
+Version: 0.91.0
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -80,7 +80,10 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	NLSDIR="%{buildroot}%{_datadir}/locale"
+	NLSDIR="%{buildroot}%{_datadir}/locale" \
+	wprefsdir="%{buildroot}%{_libdir}/GNUstep/WPrefs.app" \
+	wpexecbindir="%{buildroot}%{_libdir}/GNUstep/WPrefs.app" \
+	wpdatadir="%{buildroot}%{_libdir}/GNUstep/WPrefs.app"
 %find_lang %{real_name}
 %find_lang WPrefs
 %find_lang WINGs
@@ -95,12 +98,12 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGFORM BUGS ChangeLog COPYING* FAQ* NEWS README* TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*.1*
 %config %{_sysconfdir}/X11/gdm/Sessions/*
 %config %{_sysconfdir}/X11/dm/Sessions/windowmaker.desktop
 %config %{_sysconfdir}/WindowMaker/
 %{_bindir}/*
-%{_libdir}/*.so.*
+%{_libdir}/libwraster.so.*
 %{_libdir}/GNUstep/
 %{_datadir}/WindowMaker/
 %{_datadir}/WINGs/
@@ -108,16 +111,20 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*
+%{_libdir}/libwraster.a
+%exclude %{_libdir}/libwraster.la
+%{_libdir}/libwraster.so
+%{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Sun Oct 24 2004 Chris Gordon <chris-rpm@linux-dr.net> 0.90.0-1
-- New package for version 0.90.
-- enabled xinerama support.
-- enabled virtual desktop support.
+* Thu Nov 25 2004 Juergen Moellenhoff <jm@tp1.rub.de> - 0.91.0-1
+- New package for version 0.91.0.
+- Changed wprefsdir, wpexecbindir and wpdatadir to the correct install path.
+
+* Sun Oct 24 2004 Chris Gordon <chris-rpm@linux-dr.net> - 0.90.0-1
+- New package for version 0.90.0.
+- Enabled xinerama support.
+- Enabled virtual desktop support.
 
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.80.2-5
 - Added desktop file for GDM menu. (Chris Gordon)

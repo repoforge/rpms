@@ -4,17 +4,6 @@
 
 # Distcc: 0
 
-%{?dist: %{expand: %%define %dist 1}}
-
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
 %define logmsg logger -t %{name}/rpm
 
 Summary: IA-32 (x86) PC emulator
@@ -23,17 +12,15 @@ Version: 2.1.1
 Release: 1
 License: LGPL
 Group: Applications/Emulators
-URL: http://bochs.sourceforge.net/
+URL: http://bochs.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/bochs/bochs-%{version}.tar.gz
 #Source1: http://bochs.sf.net/guestos/dlxlinux4.tar.gz
+Patch: bochs-2.1.1-gcc342.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Bochs is a portable x86 PC emulation software package that emulates enough of
@@ -43,6 +30,7 @@ and other OS's, all on your workstation.
 %prep
 %setup
 #setup -a 1
+%patch -b .gcc243
 
 %build
 %configure \
@@ -71,7 +59,7 @@ and other OS's, all on your workstation.
 			%{buildroot}%{_mandir} \
 			%{buildroot}%{_datadir}/bochs/dlxlinux/
 %makeinstall \
-	docdir="rpm-doc"
+	docdir="doc-rpm"
 #makeinstall install_dlx
 #%{__install} -m0644 dlxlinux/* %{buildroot}%{_datadir}/bochs/dlxlinux/
 
@@ -85,7 +73,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README-* TESTFORM.txt rpm-doc/* docs-html/*
+%doc README-* TESTFORM.txt doc-rpm/* docs-html/*
 #doc dlxlinux/*.txt
 %doc %{_mandir}/man?/*
 %{_bindir}/*
@@ -93,6 +81,9 @@ fi
 %{_datadir}/bochs/
 
 %changelog
+* Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
+- Added patch for fc3/i386. (Nigel Smith)
+
 * Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
 - Updated to release 2.1.1.
 
