@@ -20,7 +20,7 @@ Source: http://dl.sf.net/nxtvepg/nxtvepg-%{version}.tar.gz
 Source1: nxtvepg.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, tcl, tk
+BuildRequires: XFree86-devel, tcl, tk, desktop-file-utils
 %{?fc2:BuildRequires: tcl-devel, tk-devel}
 %{?fc1:BuildRequires: tcl-devel, tk-devel}
 %{?el3:BuildRequires: tcl-devel, tk-devel}
