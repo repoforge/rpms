@@ -1,16 +1,18 @@
 # $Id$
 # Authority: matthias
 
+%{!?builduser:  %define builduser  machbuild}
+%{!?buildgroup: %define buildgroup machbuild}
 
-Summary: Make a chroot.
+Summary: Make a chroot
 Name: mach
-Version: 0.4.3.1
-Release: 2
+Version: 0.4.5
+Release: 1
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
-Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.bz2
-Buildroot: %{_tmppath}/%{name}-%{version}-root
+Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.gz
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: rpm-python, apt, sed, cpio
 BuildRequires:	python >= 2.0.0
 
@@ -22,24 +24,31 @@ environments based on the original packages for that distribution.
 The clean root can be used to run jail roots, to create image files, or
 to build clean packages.
 
+
 %prep
 %setup
 
+
 %build
-%configure
+%configure \
+    --enable-builduser=%{builduser} \
+    --enable-buildgroup=%{buildgroup}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m 775 %{buildroot}%{_localstatedir}/lib/mach
-%{__install} -d -m 775 %{buildroot}%{_localstatedir}/lib/mach/states
-%{__install} -d -m 775 %{buildroot}%{_localstatedir}/lib/mach/roots
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/states
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/roots
 %{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/packages
 %{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/archives
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %pre
 # create user and group mach
@@ -51,7 +60,8 @@ if [ $1 -eq 0 ]; then
     # Last removal
     # Be a good boy and clean out the dirs we filled with junk
     rm -rf %{_localstatedir}/lib/mach/states/*
-    rm -rf %{_localstatedir}/lib/mach/roots/*
+    umount %{_localstatedir}/lib/mach/roots/*/proc >/dev/null 2>&1 || :
+    rm -rf %{_localstatedir}/lib/mach/roots/* >/dev/null 2>&1 || :
     rm -rf %{_localstatedir}/cache/mach/* >/dev/null 2>&1 || :
     rmdir %{_localstatedir}/lib/mach/states >/dev/null 2>&1 || :
     rmdir %{_localstatedir}/lib/mach/roots >/dev/null 2>&1 || :
@@ -66,12 +76,14 @@ if [ $1 -eq 0 ]; then
     groupdel mach >/dev/null 2>&1 || :
 fi
 
+
 %files
 %defattr(-, root, root, -)
 %doc ChangeLog COPYING README AUTHORS BUGS TODO FORGETMENOT RELEASE
 %dir %{_sysconfdir}/mach
 %config %{_sysconfdir}/mach/conf
-%config %{_sysconfdir}/mach/dist
+%config %{_sysconfdir}/mach/location
+%config %{_sysconfdir}/mach/dist.d
 %{_bindir}/mach
 %attr(04750, root, mach) %{_sbindir}/mach-helper
 %attr(-, mach, mach) %dir %{_localstatedir}/lib/mach
@@ -80,7 +92,11 @@ fi
 %attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/packages
 %attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/archives
 
+
 %changelog
+* Fri Mar 19 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-1
+- Update to 0.4.5
+
 * Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> - 0.4.3.1-1.fr
 - Update to 0.4.3.1.
 
