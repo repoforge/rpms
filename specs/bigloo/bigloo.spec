@@ -5,8 +5,8 @@
 Summary: Compiler for the Scheme programming language
 Name: bigloo
 Version: 2.6d
-Release: 1
-License: todo
+Release: 2
+License: LGPL/GPL
 Group: Development/Languages
 URL: http://www-sop.inria.fr/mimosa/fp/Bigloo/
 
@@ -26,6 +26,10 @@ binary executables. Bigloo enables full connections between Scheme and C
 programs, between Scheme and Java programs, and between Scheme and C#
 programs.
 
+The Bigloo run-time system and the libraries are distributed under the terms
+of the GNU Library General Public License. The compiler and the tools are 
+distributed under the terms of the Gnu Public License.
+
 %prep
 %setup -n bigloo%{version}
 
@@ -44,6 +48,7 @@ programs.
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
 mv %{buildroot}/usr/doc/bigloo-2.6d bigloo-docs
+mv %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigoo
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,5 +63,9 @@ mv %{buildroot}/usr/doc/bigloo-2.6d bigloo-docs
 %{_datadir}/man/bigloo.1*
 
 %changelog
-* Sat Mar 20 2004 Dries Verachtert <dries@ulyssis.org> 2.6c-1
+* Wed Jun 2 2004 Dries Verachtert <dries@ulyssis.org> 2.6d-2
+- renamed the file /usr/bin/afile to afile-bigloo to avoid a 
+  conflict with afile from the package netatalk
+
+* Sat Mar 20 2004 Dries Verachtert <dries@ulyssis.org> 2.6d-1
 - Initial package
