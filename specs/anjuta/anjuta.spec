@@ -5,7 +5,7 @@
 Summary: Versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
 Version: 1.2.2
-Release: 3
+Release: 4
 License: GPL
 Group: Development/Tools
 URL: http://anjuta.sourceforge.net/
@@ -13,10 +13,16 @@ Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
 Requires: libgnomeprintui22 >= 2.0.1
+%{!?dist:Requires: gettext-devel}
+%{?fc3:Requires: gettext-devel}
+Requires: gettext
 BuildRequires: libgnome-devel >= 2.0.2, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.0.2, libgnomeprintui22-devel >= 2.0.1
-BuildRequires: vte-devel, pcre-devel, libxml2-devel, gettext, gcc-c++
+BuildRequires: vte-devel, pcre-devel, libxml2-devel, gcc-c++
 BuildRequires: scrollkeeper, ncurses-devel
+%{!?dist:BuildRequires: gettext-devel}
+%{?fc3:BuildRequires: gettext-devel}
+BuildRequires: gettext
 
 %description
 Anjuta is a versatile Integrated Development Environment (IDE) for C and C++ 
@@ -78,6 +84,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Thu Feb  3 2005 Matthias Saou <http://freshrpms.net/> 1.2.2-4
+- Added gettext-devel dep on FC3 to get gettext stuff included in new projects
+  properly (thanks to Paul Frields).
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.2.2-3
 - Made the lack of update-desktop-database less dramatic.
 
