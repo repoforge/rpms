@@ -40,13 +40,15 @@ for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %makeinstall
+mv %{buildroot}/usr/share/applnk/Editors/ksubtile.desktop %{buildroot}/usr/share/applications/ksubtile.desktop
+echo "Categories=Application;AudioVideo;X-Red-Hat-Extra;" >> %{buildroot}/usr/share/applications/ksubtile.desktop
 
 %files
 %defattr(-,root,root,0755)
 %doc README AUTHORS COPYING TODO
 %{_bindir}/ksubtile
 %{_bindir}/ksubtile_client
-%{_datadir}/applnk/Editors/ksubtile.desktop
+%{_datadir}/applications/ksubtile.desktop
 %{_datadir}/apps/ksubtile/ksubtileui.rc
 %{_datadir}/doc/HTML/en/ksubtile
 %{_datadir}/icons/*/*/apps/ksubtile.png
