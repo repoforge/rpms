@@ -9,7 +9,7 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 2.1.2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdl.perl.org/
@@ -70,6 +70,9 @@ The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 
 %changelog
+* Wed Jan  5 2005 Matthias Saou <http://freshrpms.net/> 2.1.2-2
+- Rebuild against SDL_gfx 2.0.13.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 2.1.2-1
 - Update to 2.1.2.
 - Add provides of "SDL_perl" and "SDL_Perl".
