@@ -4,15 +4,14 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 1.20.0
-Release: 5
+Release: 6
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdlperl.org/
 Source: ftp://sdlperl.org/SDL_perl/SDL_perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL >= 1.2.3, SDL_mixer >= 1.0.5, SDL_image >= 1.0.0
-Requires: SDL_net
-Requires: libjpeg, libpng, perl
+Requires: SDL >= 1.2.3, SDL_mixer >= 1.0.5, SDL_image >= 1.0.0, SDL_net
+Requires: SDL_ttf, libjpeg, libpng, smpeg, perl
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: SDL_ttf-devel, libjpeg-devel, libpng-devel, smpeg-devel
 # This is to pull in missing libs, to fix the "undefined symbol: _Znwj" problem
@@ -30,14 +29,14 @@ The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 
 %build
-CFLAGS="%{optflags}" perl Makefile.PL PREFIX=%{buildroot}%{_prefix}
+CFLAGS="%{optflags}" perl Makefile.PL PREFIX="%{buildroot}%{_prefix}"
 %{__make} OPTIMIZE="%{optflags}"
 
 
 %install
 %{__rm} -rf %{buildroot}
 eval `perl '-V:installarchlib'`
-%{__mkdir_p} %{buildroot}$installarchlib
+%{__mkdir_p} %{buildroot}${installarchlib}
 %makeinstall
 %{__rm} -f `/usr/bin/find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
 
@@ -57,6 +56,9 @@ find %{buildroot}%{_prefix} -type f -print | \
 
 
 %changelog
+* Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 1.20.0-6
+- Bump release number to fix smpeg dependency caused by old headers.
+
 * Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 1.20.0-5
 - Rebuild for Fedora Core 2.
 - Replace XFree86-Mesa-libGLU build dependency with new xorg-x11-Mesa-libGLU.
