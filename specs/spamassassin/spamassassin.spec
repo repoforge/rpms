@@ -128,6 +128,9 @@ export CFLAGS="%{optflags} -fPIC"
 %{__install} -Dp -m0644 spamassassin-spamc.rc %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-spamc.rc
 %{__install} -Dp -m0644 spamassassin-helper.sh %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-helper.sh
 
+### Disable find-requires for documentation
+find contrib/ masses/ sql/ tools/ -type f -exec %{__chmod} -x {} \;
+
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}
 %{__rm} -rf %{buildroot}%{perl_vendorarch}
@@ -178,7 +181,7 @@ fi
 
 %files tools
 %defattr(0644, root, root, 0755)
-%doc sql/ tools/ masses/ contrib/
+%doc contrib/ masses/ sql/ tools/
 
 %changelog
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 3.0.2-2

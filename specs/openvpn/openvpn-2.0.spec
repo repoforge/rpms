@@ -9,7 +9,7 @@
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
 Version: 2.0
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.net/
@@ -62,6 +62,9 @@ for pi in auth-pam down-root; do
 done
 %{__mv} -f plugin/README plugin/README.plugins
 
+### Disable find-requires for documentation
+find contrib/ easy-rsa/ sample-*/ -type f -exec %{__chmod} -x {} \;
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,8 +86,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT.GPL INSTALL NEWS PORTS README
-%doc contrib/ easy-rsa/ management/ sample-config-files/ sample-keys/
-%doc sample-scripts/ plugin/README.*
+%doc contrib/ easy-rsa/ management/ sample-*/ plugin/README.*
 %doc %{_mandir}/man8/openvpn.8*
 %dir %{_sysconfdir}/openvpn/
 %config %{_initrddir}/openvpn
@@ -93,7 +95,10 @@ fi
 
 
 %changelog
-* Fri Apr 01 2005 Dag Wieers <dag@wieers.com> - 2.0-0.rc19
+* Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 2.0-0.rc19.2
+- Disabled find-requires for %%doc.
+
+* Fri Apr 01 2005 Dag Wieers <dag@wieers.com> - 2.0-0.rc19.1
 - Updated to release 2.0_rc19.
 
 * Wed Oct  6 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.beta11.1
