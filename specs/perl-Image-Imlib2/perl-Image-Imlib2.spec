@@ -38,10 +38,6 @@ output the images in a range of formats.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
-
 %clean
 %{__rm} -rf %{buildroot}
 
