@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gustavo Niemeyer <niemeyer@conectiva.com>
+# Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
 # ExclusiveDist: fc3
 
@@ -12,9 +12,9 @@
 
 %define desktop_vendor rpmforge
 
-### FIXME: Can't use python_dir because smart install does not seem to obey/follow it fallback to python_version.
-%define python_dir %(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
-%define python_version %(python2 -c 'import sys; print sys.version[:3]')
+### FIXME: Can't use python_dir because smart install does not seem to obey/follow it, fallback to python_version.
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_version %(%{__python} -c 'import sys; print sys.version[:3]')
 
 Summary: Next generation package handling tool
 Name: smart
@@ -37,7 +37,7 @@ BuildRequires: gcc-c++, kdelibs-devel
 # *** KDE requires autoconf 2.52, 2.53 or 2.54
 # *** KDE requires automake 1.6.1 or newer
 BuildRequires: autoconf, automake
-Requires: python
+Requires: python-abi = %{python_version}
 
 %description
 Smart Package Manager is a next generation package handling tool.
@@ -45,7 +45,7 @@ Smart Package Manager is a next generation package handling tool.
 %package gui
 Summary: Graphical interface to smart
 Group: Applications/System
-Requires: smart = %{version}-%{release}
+Requires: smart = %{version}
 Requires: pygtk2 >= 2.3.94
 
 %description gui
@@ -54,7 +54,7 @@ A graphical interface to smart.
 %package update
 Summary: Allows execution of 'smart update' by normal users (suid)
 Group: Applications/System
-Requires: smart = %{version}-%{release}
+Requires: smart = %{version}
 
 %description update
 Allows execution of 'smart update' by normal users through a
@@ -63,7 +63,7 @@ special suid command.
 %package -n ksmarttray
 Summary: KDE tray program for watching updates with Smart Package Manager
 Group: Applications/System
-Requires: smart-update = %{version}-%{release}
+Requires: smart-update = %{version}
 
 %description -n ksmarttray
 KDE tray program for watching updates with Smart Package Manager.
@@ -292,7 +292,7 @@ account    required	/lib/security/pam_permit.so
 EOF
 
 %build
-env CFLAGS="%{optflags}" python setup.py build
+env CFLAGS="%{optflags}" %{__python} setup.py build
 
 pushd contrib/ksmarttray
 %{__make} -f admin/Makefile.common
@@ -304,7 +304,7 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
+%{__python} setup.py install \
 	--root="%{buildroot}"
 
 %{__make} install -C "contrib/ksmarttray" \
@@ -345,7 +345,7 @@ python setup.py install \
 %dir %{_libdir}/smart/
 %config(noreplace) %{_sysconfdir}/smart/channels/
 %{_bindir}/smart
-#{python_dir}/smart/
+#{python_sitearch}/smart/
 %{_libdir}/python%{python_version}/site-packages/smart/
 %exclude %{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
 
