@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/System
 URL: http://diradmin.open-it.org/
 Source: http://diradmin.open-it.org/directory_administrator-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{release}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gnome-libs-devel, openldap-devel, desktop-file-utils
 Obsoletes: directory_administrator <= 1.3.5
 

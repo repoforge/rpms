@@ -8,7 +8,7 @@ Version: 0.1
 Release: 2
 License: distributable
 Source: http://movementarian.org/latex-xft-fonts-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Group: User Interface/X
 Summary: xft-compatible versions of some LaTeX fonts

@@ -14,7 +14,7 @@ Source: gst-plugins-%{version}.tar.bz2
 #Source3: removed-sources.txt
 Source4: http://clanlib.org/download/files/Hermes-%{hermes_version}.tar.bz2
 #Source5: gst-fionread.m4
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Patch1: gstreamer-plugins-0.7.5-alsa.patch
 Patch2: gstreamer-plugins-0.8.4-vorbis-seek-workaround.patch

@@ -13,7 +13,7 @@ Group: Applications/Multimedia
 License: LGPL
 URL: http://gstreamer.net/
 Source: http://gstreamer.net/releases/%{version}/src/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # There was problems generating pdf and postscript:
 Patch1: gstreamer-0.7.5-nops.patch
 

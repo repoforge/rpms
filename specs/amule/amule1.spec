@@ -11,7 +11,7 @@ License: GPL
 Group: Applications/Internet
 Source: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
 URL: http://www.aMule.org/
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK, curl
 Requires(post): /usr/sbin/alternatives
 Requires(preun): /usr/sbin/alternatives

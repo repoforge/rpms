@@ -12,7 +12,7 @@ License: GPL
 Group: Amusements/Games
 URL: http://bzflag.org/
 Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gcc-c++, desktop-file-utils
 
 %description

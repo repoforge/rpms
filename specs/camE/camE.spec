@@ -9,7 +9,7 @@ License: GPL
 Group: System Environment/Daemons
 Source: http://linuxbrit.co.uk/downloads/camE-%{version}.tar.gz
 URL: http://linuxbrit.co.uk/camE/
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: giblib >= 1.2.3, imlib2, curl, zlib
 BuildRequires: XFree86-devel, giblib-devel >= 1.2.3, imlib2-devel, curl-devel
 BuildRequires: zlib-devel

@@ -11,7 +11,7 @@ Packager: Andre Costa <acosta@ar.microlink.com.br>
 URL: http://gdesklets.gnomedesktop.org/
 
 Source0: %{rname}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: gdesklets, gnome-python2-gnomevfs

@@ -13,7 +13,7 @@ Group: Applications/Multimedia
 Source0: ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}%{?prever}.tar.bz2
 Source1: alsactl.init
 URL: http://www.alsa-project.org/
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: alsa-lib >= 1.0.0, alsa-driver >= 1.0.0
 BuildRequires: alsa-lib-devel >= 1.0.0, ncurses-devel
 

@@ -31,7 +31,7 @@ Source0: ftp://ftp.alsa-project.org/pub/driver/%{name}-%{version}%{?prever}.tar.
 Source1: alsa-makedev.d.txt
 Patch0: alsa-driver-depmod.patch
 URL: http://www.alsa-project.org/
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kernel-source = %{kversion}, MAKEDEV
 
 %description

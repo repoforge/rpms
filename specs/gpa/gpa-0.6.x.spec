@@ -13,8 +13,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpa/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-root
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0.6, gpgme-devel >= 0.4.0
 Requires: gnupg, gtk2 >= 2.0.6, gpgme >= 0.4.0

@@ -14,7 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dentrassi.de/download/gregexp/0.3/gregexp-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: intltool, pcre-devel, gtk2-devel >= 2.0.0, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel, desktop-file-utils
