@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dag
-# Soapbox: 0
+# Upstream: Guillaume Chazarain <guichaz@yahoo.fr>
 
 Summary: Image viewing utility
 Name: gliv
-Version: 1.8.1
-Release: 0
+Version: 1.8.3
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://guichaz.free.fr/gliv/
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://guichaz.free.fr/gliv/gliv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: bison, gtk2-devel >= 2.2.0, gtkglext-devel >= 0.7.0
 
 %description
@@ -26,7 +25,7 @@ panning and zooming if you have an OpenGL accelerated graphics board.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >gliv.desktop
 [Desktop Entry]
 Name=Gliv Image Viewer
 Comment=View images fast and smoothly
@@ -38,7 +37,8 @@ Categories=GNOME;Application;Graphics;
 EOF
 
 %build
-%configure
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -50,8 +50,7 @@ EOF
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
-
+	gliv.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,10 +60,13 @@ desktop-file-install --vendor gnome                \
 %doc COPYING NEWS README THANKS
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/gnome-gliv.desktop
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 1.8.3-1
+- Updated to release 1.8.3.
+
 * Sat Feb 07 2004 Dag Wieers <dag@wieers.com> - 1.8.1-0
 - Updated to release 1.8.1.
 
