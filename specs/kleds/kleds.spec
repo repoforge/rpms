@@ -44,8 +44,8 @@ indicator LED's (NumLock, ScrollLock and CapsLock).
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%doc AUTHORS COPYING NEWS README TODO
 %defattr(-, root, root, 0755)
+%doc AUTHORS COPYING NEWS README TODO
 %{_bindir}/kleds
 %{_bindir}/kledsd
 

@@ -149,6 +149,7 @@ desktop-file-install \
 %{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/psi.desktop}
 
 %files languagepack
+%defattr(-, root, root, 0755)
 %lang(ca) %{_datadir}/psi/psi_ca.qm
 %lang(cs) %{_datadir}/psi/psi_cs.qm
 %lang(de) %{_datadir}/psi/psi_de.qm

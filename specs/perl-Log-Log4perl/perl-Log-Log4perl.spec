@@ -121,6 +121,7 @@ perl-Log-Log4perl.
 %{_mandir}/man3/Log::Log4perl::Util.3pm.gz
 
 %files RRDs
+%defattr(-, root, root, 0755)
 %{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 %doc %{_mandir}/man3/Log::Log4perl::Appender::RRDs.3pm*
 
