@@ -23,6 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/R/RI/RICKM/DateTime-Event-Easter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 
 %description
@@ -40,12 +41,14 @@ Easter Sunday) by passing 49.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,8 +58,6 @@ Easter Sunday) by passing 49.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DateTime/Event/Easter.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.04-1

@@ -23,6 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHILLI/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl, perl-Time-HiRes
 Requires: perl-IPC-Shareable, perl-Log-Dispatch, perl-Log-Dispatch-FileRotate, perl-Time-HiRes
 
@@ -57,11 +58,13 @@ perl-Log-Log4perl.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,8 +72,6 @@ perl-Log-Log4perl.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README Changes
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 %{perl_vendorlib}/Log/Log4perl.pm
 %{perl_vendorlib}/Log/Log4perl/Appender.pm
 %{perl_vendorlib}/Log/Log4perl/Appender/DBI.pm

@@ -23,6 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/XML-RSS-TimingBotDBI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 
 %description
@@ -47,12 +48,14 @@ object, to request RSS feeds.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,8 +66,6 @@ object, to request RSS feeds.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/XML/RSS/TimingBotDBI.pm
 %{perl_vendorlib}/XML/RSS/*.pl
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.01-1

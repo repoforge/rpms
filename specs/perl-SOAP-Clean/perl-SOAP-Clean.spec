@@ -23,6 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/S/ST/STODGHIL/SOAP-Clean-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 
 %description
@@ -50,12 +51,15 @@ recommend SOAP::Lite.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorlib}/SOAP/ChangeLog
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,9 +71,6 @@ recommend SOAP::Lite.
 %{_bindir}/*
 %{perl_vendorlib}/SOAP/Clean.pm
 %{perl_vendorlib}/SOAP/Clean/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorlib}/SOAP/ChangeLog
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Gisle Aas <gisle$ActiveState,com>
 
 %define real_name Array-RefElem
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -33,12 +33,14 @@ you store reference to things in arrays and hashes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Array/RefElem/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,9 +51,8 @@ you store reference to things in arrays and hashes.
 %{_mandir}/man3/*
 %{perl_vendorarch}/Array/RefElem.pm
 %{perl_vendorarch}/auto/Array/RefElem/RefElem.*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/Array/RefElem/.packlist
 
 %changelog
 * Sat Jun 15 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.
+

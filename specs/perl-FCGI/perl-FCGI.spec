@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Sven Verdoolaege <skimo$kotnet,org>
+
 
 %define real_name FCGI
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -34,12 +35,14 @@ not require you to recompile perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/FCGI/.packlist
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,10 +52,8 @@ not require you to recompile perl.
 %doc README ChangeLog LICENSE.TERMS
 %{_mandir}/man3/*
 %{perl_vendorarch}/FCGI.pm
-%exclude %{perl_vendorarch}/auto/FCGI/.packlist
 %{perl_vendorarch}/auto/FCGI/FCGI.bs
 %{perl_vendorarch}/auto/FCGI/FCGI.so
-%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.67-1

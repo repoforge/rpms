@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Patrick Michael Kane <modus-cpan$pr,es,to>
 
 %define real_name Authen-Smb
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -32,12 +32,14 @@ Authen::Smb allows you to authenticate users against an NT server.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,9 +50,8 @@ Authen::Smb allows you to authenticate users against an NT server.
 %{_mandir}/man3/*
 %{perl_vendorarch}/Authen/Smb.pm
 %{perl_vendorarch}/auto/Authen/Smb
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.91-1
 - Initial package.
+

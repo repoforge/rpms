@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Ian Robertson <iroberts+perl$red-bean,com>
+
 
 %define real_name Crypt-OpenSSL-RSA
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -23,7 +24,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-RSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, openssl-devel
+BuildRequires: perl, openssl-devel, krb5-devel
 Requires: openssl
 
 %description
@@ -35,12 +36,14 @@ in the OpenSSL library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/.packlist
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,9 +53,7 @@ in the OpenSSL library.
 %doc README Changes
 %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/OpenSSL/RSA.pm
-%exclude %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/.packlist
 %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/*
-%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.21-1

@@ -32,12 +32,14 @@ Perl Wrapper for the YAML Parser Extension: libsyck.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,15 +48,8 @@ Perl Wrapper for the YAML Parser Extension: libsyck.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
-%{perl_vendorlib}/YAML/Parser/Syck.pm
-%{perl_vendorlib}/YAML/Parser/Syck/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
+%{perl_vendorarch}/YAML/Parser/Syck.pm
+%{perl_vendorarch}/auto/YAML/Parser/Syck
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1

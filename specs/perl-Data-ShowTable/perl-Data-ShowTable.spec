@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Alan K, Stebbens <aks$software,com>
+
 
 %define real_name Data-ShowTable
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -23,6 +24,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/A/AK/AKSTE/Data-ShowTable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 
 %description
@@ -35,12 +37,14 @@ HTML-formatting (for World-Wide-Web output).
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__sed} -i "s/\/usr\/bin\/perl5/\/usr\/bin\/perl/g;" %{buildroot}%{_bindir}/showtable
 
 %clean
@@ -52,8 +56,6 @@ HTML-formatting (for World-Wide-Web output).
 %{_bindir}/showtable
 %{_mandir}/man?/*
 %{perl_vendorlib}/Data/ShowTable.pm
-%{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 3.3-1

@@ -23,6 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/R/RB/RBS/IPC-Run-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 
 %description
@@ -32,12 +33,15 @@ This module provides various IPC functionalities.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -f %{buildroot}%{perl_vendorlib}/IPC/Run/Win32*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,9 +52,6 @@ This module provides various IPC functionalities.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/IPC/Run.pm
 %{perl_vendorlib}/IPC/Run/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
-%exclude %{perl_vendorlib}/IPC/Run/Win32*
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.78-1

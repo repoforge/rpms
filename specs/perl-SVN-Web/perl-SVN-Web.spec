@@ -23,6 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLKAO/SVN-Web-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl, perl-Template, perl-YAML, perl-XML-RSS, perl-Text-Diff
 BuildRequires: perl-Locale-Maketext-Simple, subversion-perl
 
@@ -33,12 +34,14 @@ SVN::Web is a subversion repository web frontend.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,8 +52,6 @@ SVN::Web is a subversion repository web frontend.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/SVN/Web.pm
 %{perl_vendorlib}/SVN/Web/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 # perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
 # perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi

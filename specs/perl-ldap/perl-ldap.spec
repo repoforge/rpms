@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Graham Barr <gbarr$pobox,com>
+
 
 %define real_name perl-ldap
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -23,6 +24,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 Requires: perl-Convert-ASN1, perl-XML-SAX-Base
 
@@ -33,12 +35,15 @@ This package contains a perl module with an interface to LDAP.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/perl-ldap/.packlist
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,8 +55,6 @@ This package contains a perl module with an interface to LDAP.
 %{perl_vendorlib}/Bundle/Net/LDAP.pm
 %{perl_vendorlib}/LWP/Protocol/ldap.pm
 %{perl_vendorlib}/Net/LDAP*
-%exclude %{perl_vendorarch}/auto/perl-ldap/.packlist
-%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.31-1

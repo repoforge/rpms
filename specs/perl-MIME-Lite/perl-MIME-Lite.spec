@@ -15,6 +15,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.zeegee.com/code/perl/MIME-Lite/download/MIME-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
 BuildRequires: perl
 Requires: perl
 
@@ -26,13 +28,12 @@ MIME-Lite is een eenvoudige onafhankelijke module om MIME berichten te
 genereren.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -n MIME-Lite-2.117
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor"
 sed -i "s/DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g;" Makefile
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}

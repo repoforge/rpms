@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: T,J, Mather <tjmather$maxmind,com>
+
 
 %define real_name Crypt-OpenSSL-DSA
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -23,7 +24,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/T/TJ/TJMATHER/Crypt-OpenSSL-DSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, openssl-devel
+BuildRequires: perl, openssl-devel, krb5-devel
 
 %description
 Crypt::OpenSSL::DSA implements the DSA (Digital Signature Algorithm) 
@@ -36,12 +37,15 @@ OpenSSL crypto library, located at http://www.openssl.org.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/.packlist
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,10 +56,8 @@ OpenSSL crypto library, located at http://www.openssl.org.
 %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/OpenSSL/DSA.pm
 %{perl_vendorarch}/Crypt/OpenSSL/DSA/Signature.pod
-%exclude %{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/.packlist
 %{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.bs
 %{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.so
-%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.11-1

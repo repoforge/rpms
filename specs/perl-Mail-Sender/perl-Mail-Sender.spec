@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Jan Krynicky (=Jan Krynicky) <Jenda$Krynicky,cz>
+
 
 %define real_name Mail-Sender
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -23,6 +24,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/J/JE/JENDA/Mail-Sender-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 Requires: perl
 
@@ -34,15 +36,15 @@ server.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-echo "N" | %{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "N" | %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Mail/Sender/.packlist
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/Mail/Sender/CType/Win32.pm
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%{__rm} -f %{buildroot}%{perl_vendorlib}/Mail/Sender/CType/Win32.pm
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,9 +55,6 @@ echo "N" | %{__make} %{?_smp_mflags}
 %{_mandir}/man3/*
 %{perl_vendorlib}/Mail/Sender.pm
 %{perl_vendorlib}/Mail/Sender
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
-%exclude %{perl_vendorlib}/Mail/Sender/CType/Win32.pm
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1

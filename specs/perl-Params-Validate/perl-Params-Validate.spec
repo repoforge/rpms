@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Dave Rolsky <autarch$urth,org>
+
 
 %define real_name Params-Validate
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -43,12 +44,14 @@ implementation that it can fall back on.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Params/Validate/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,8 +63,6 @@ implementation that it can fall back on.
 %{perl_vendorarch}/Attribute/Params/Validate.pm
 %{perl_vendorarch}/Params/Validate*
 %{perl_vendorarch}/auto/Params/Validate/Validate.*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/Params/Validate/.packlist
 
 %changelog
 * Sun Jun 6 2004 Dries Verachtert <dries@ulyssis.org> - 0.74-1

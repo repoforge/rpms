@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Hiroo HAYASHI <hiroo,hayashi$computer,org>
+
 
 %define real_name Term-ReadLine-Gnu
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -25,6 +26,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl, readline-devel
 
 %description
@@ -43,12 +45,15 @@ a program which uses the GNU Readline Library.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
+
 %{__sed} -i "s|/usr/local/bin/perl|/usr/bin/perl|g;" \
 	%{buildroot}%{perl_vendorarch}/Term/ReadLine/Gnu/*.pm
 
@@ -59,10 +64,8 @@ a program which uses the GNU Readline Library.
 %defattr(-, root, root, 0755)
 %doc README
 %{_mandir}/man3/*
-%exclude %{perl_archlib}/perllocal.pod
 %{perl_vendorarch}/Term/ReadLine/Gnu*
 %{perl_vendorarch}/auto/Term/ReadLine/Gnu/*
-%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.14-1

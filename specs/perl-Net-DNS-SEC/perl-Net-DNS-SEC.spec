@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Olaf Kolkman <net-dns-sec$ripe,net>
+
 
 %define real_name Net-DNS-SEC
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -23,6 +24,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/O/OL/OLAF/Net-DNS-SEC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 
 %description
@@ -34,12 +36,14 @@ document set.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/Net/DNS/SEC/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,8 +53,6 @@ document set.
 %doc README Changes
 %{_mandir}/man3/*
 %{perl_vendorlib}/Net/DNS
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/Net/DNS/SEC/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.12-1

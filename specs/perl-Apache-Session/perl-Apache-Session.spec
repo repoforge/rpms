@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dries
+# Upstream: Jeffrey Baker <jwbaker$acm,org>
 
 %define real_name Apache-Session
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -21,6 +22,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/J/JB/JBAKER/Apache-Session-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 Requires: perl-DBI
 
@@ -34,14 +36,14 @@ interacts with a tied hash.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} -I %{perl_vendorlib} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	DESTDIR="%{buildroot}"
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,9 +54,8 @@ interacts with a tied hash.
 %{_mandir}/man3/*
 %{perl_vendorlib}/Apache/Session.pm
 %{perl_vendorlib}/Apache/Session/*
-%exclude %{perl_archlib}
-%exclude %{perl_vendorarch}
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.
+

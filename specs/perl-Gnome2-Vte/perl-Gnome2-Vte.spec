@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Ross McFarland <rmcfarla$neces,com>
+
 
 %define real_name Gnome2-Vte
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -25,6 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig
 BuildRequires: perl-Glib, perl-Gtk2, pkgconfig, gtk2-devel, vte-devel
+BuildRequires: zlib-devel
 
 %description
 This module allows you to use the Virtual Terminal Emulation library (libvte
@@ -34,12 +36,14 @@ for short) from Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,12 +52,10 @@ for short) from Perl.
 %defattr(-, root, root, 0755)
 %doc README LICENSE ChangeLog
 %{_mandir}/man3/*
-%exclude %{perl_archlib}/perllocal.pod
 %{perl_vendorarch}/Gnome2/Vte.pm
 %{perl_vendorarch}/Gnome2/Vte
 %{perl_vendorarch}/auto/Gnome2/Vte/Vte.bs
 %{perl_vendorarch}/auto/Gnome2/Vte/Vte.so
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1

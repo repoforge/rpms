@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-Bignum-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, openssl-devel
+BuildRequires: perl, openssl-devel, krb5-devel
 
 %description
 Crypt::OpenSSL::Bignum is an XS perl module designed to provide basic
@@ -38,12 +38,14 @@ requires that the OpenSSL libraries and header files be installed.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
-%{__make} %{?_smp_mflags}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,8 +57,6 @@ requires that the OpenSSL libraries and header files be installed.
 %{perl_vendorarch}/Crypt/OpenSSL/Bignum.pm
 %{perl_vendorarch}/Crypt/OpenSSL/Bignum
 %{perl_vendorarch}/auto/Crypt/OpenSSL/Bignum
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
