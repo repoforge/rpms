@@ -8,14 +8,13 @@
 Summary: Embeddable database
 Name: metakit
 Version: 2.4.9.3
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.equi4.com/metakit/
-
 Source: http://www.equi4.com/pub/mk/metakit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: tcl, python
 BuildRequires: gcc-c++, tcl-devel, python-devel
 
 %description
@@ -87,6 +86,10 @@ popd
 
 
 %changelog
+* Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 2.4.9.3-3
+- Add explicit dependency on tcl, as the bindings are in a directory created by
+  this package, whereas the tcl package creates symlinks instead (clash).
+
 * Mon Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.4.9.3-2
 - Added tcl and python libraries.
 
