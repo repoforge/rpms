@@ -31,6 +31,7 @@ MIME filtering, file extension filtering, POST filtering.
 %prep
 %setup -n %{real_name}-%{sversion}
 
+
 ### FIXME: Add a default dansguardian.httpd for Apache. (Please fix upstream)
 %{__cat} <<EOF >dansguardian.httpd
 ### You may need to include conf.d/php.conf to make it work.
@@ -145,6 +146,7 @@ EOF
 %{__perl} -pi.orig -e '
 		s|^(CHKCONFIG) =.*$|$1 = :|;
                 s|^\tchown|#\tchown|;
+		s|/usr/lib|%{_libdir}|g;
         ' Makefile
 
 %{__make} %{?_smp_mflags}

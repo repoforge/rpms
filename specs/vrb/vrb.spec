@@ -39,13 +39,15 @@ you will need to install %{name}-devel.
 
 %build
 ./Configure \
-	--prefix="%{buildroot}%{_prefix}"
+	--prefix="%{buildroot}%{_prefix}" \
+	--prefixlib="%{buildroot}%{_libdir}"
 %{__perl} -pi.orig -e 's|-Wl,-S,-soname,libvrb.so([^ ]*) |-Wl,-S,-soname,libvrb.so.0 |' Makefile
 %{__make} %{?_smp_mflags} \
-	COPTS="%{optflags}"
+	COPTS="%{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_libdir}
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man3/ \

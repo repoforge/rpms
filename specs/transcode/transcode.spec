@@ -88,6 +88,7 @@ Available rpmbuild rebuild options :
 
 %build
 %configure \
+    --program-prefix="%{?_program_prefix}"
     %{?_without_lame:--without-lame} \
     %{?_without_dvdread:--without-dvdread} \
     %{?_without_xvidcore:--without-xvidcore} \

@@ -37,7 +37,8 @@ and scripts to glue the whole thing together.
 %setup -c
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	OSSLLIB="%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}

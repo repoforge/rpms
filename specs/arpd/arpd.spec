@@ -26,6 +26,8 @@ but only after determining if another host already claims it.
 %prep
 %setup -n %{name}
 
+%{__perl} -pi.orig -e 's|/lib/|/%{_lib}/|g' configure
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
