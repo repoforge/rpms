@@ -459,7 +459,7 @@ Summary: Fortune files with quotes about macintoshes
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
-%description oneliners
+%description macintosh
 Fortune files with quotes about macintoshes, found at:
 http://www.diablonet.net/~mercadal/projects/fortune/
 

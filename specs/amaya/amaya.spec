@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake, libpng-devel, libjpeg-devel
 BuildRequires: desktop-file-utils, gcc-c++, ncurses-devel, flex
-BuildRequires: zlib-devel, gtk+-devel, imlib-devel
+BuildRequires: zlib-devel, gtk+-devel, imlib-devel, w3c-libwww-devel
 
 %description
 Amaya is a Web editor, i.e. a tool used to create and update documents

@@ -17,6 +17,7 @@ Source: ftp://ftp.edlsystems.com/shellsql/shellsql-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: postgresql-devel, mysql-devel, unixODBC-devel, zlib-devel
+BuildRequires: openssl-devel
 
 %description
 ShellSQL is a suite of programs designed to enable LINUX/UNIX shell scripts

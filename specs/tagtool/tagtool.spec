@@ -18,7 +18,7 @@ Source: http://dl.sf.net/tagtool/tagtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel, libglade2-devel
-BuildRequires: id3lib-devel, libogg-devel, libvorbis-devel
+BuildRequires: id3lib-devel, libogg-devel, libvorbis-devel, perl-XML-Parser
 
 %description
 Audio Tag Tool is a program to manage the information fields in MP3 and Ogg

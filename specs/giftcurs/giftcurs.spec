@@ -17,7 +17,7 @@ URL: http://www.nongnu.org/giftcurs/
 Source: http://savannah.nongnu.org/download/giftcurs/giFTcurs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gift-devel
+BuildRequires: gift-devel, ncurses-devel
 
 %description
 giFTcurs is a cursed frontend to the giFT daemon and has been described as
