@@ -3,12 +3,12 @@
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
-Version: 1.8.2d
+Version: 1.8.4
 Release: 1
 License: GPL
 Group: Applications/Internet
 Source: http://dl.sf.net/xmule/%{name}-%{version}.tar.bz2
-Patch: xmule-1.8.2d-install.patch
+Patch: xmule-1.8.4-install.patch
 URL: http://www.xmule.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK, /usr/sbin/alternatives
@@ -58,6 +58,12 @@ same network.
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.8.4-1
+- Update to 1.8.4, updated install patch.
+
+* Sat Jul 10 2004 Matthias Saou <http://freshrpms.net/> 1.8.3-1
+- Update to 1.8.3, fails to compile.
+
 * Tue Jun 22 2004 Matthias Saou <http://freshrpms.net/> 1.8.2d-1
 - Update to 1.8.2d.
 - Makefile now works with %%makeinstall, but still needs a patch.

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define prever rc4
+%define prever rc4a
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
@@ -67,6 +67,9 @@ same network.
 
 
 %changelog
+* Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc4a.1
+- Update to 2.0.0rc4a.
+
 * Tue Jul 13 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc4.1
 - Update to 2.0.0rc4.
 - Add workaround for installed docs.
