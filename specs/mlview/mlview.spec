@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Dodji Seketeli <dodji@gnome.org>
 
@@ -67,9 +66,6 @@ desktop-file-install --vendor gnome --delete-original \
   --add-category X-Red-Hat-Extra                      \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
@@ -91,12 +87,11 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
 %{_libdir}/*.so
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
-- Added missing BuildRequires. (Dries Verachtert)
-
 * Wed Dec 10 2003 Dag Wieers <dag@wieers.com> - 0.6.2-0
+- Added missing BuildRequires. (Dries Verachtert)
 - Updated to release 0.6.2.
 
 * Fri Nov 21 2003 Dag Wieers <dag@wieers.com> - 0.6.1-0

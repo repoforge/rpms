@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Juri Pakaste <juri@iki.fi>
 
@@ -8,7 +7,7 @@
 
 Summary: desktop news aggregator for GNOME
 Name: straw
-Version: 0.22.1
+Version: 0.23
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -17,11 +16,10 @@ URL: http://www.nongnu.org/straw/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/straw/straw.pkg/%{version}/straw-%{version}.tar.bz2
+Source: http://savannah.nongnu.org/download/straw/straw-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.0
+BuildRequires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.4
 BuildRequires: python-adns, python-bsddb3, libxml2-python >= 1.99.13
 BuildRequires: pyorbit, pygtk2 >= 1.99.13, pygtk2-libglade
 BuildRequires: gnome-python2-gtkhtml2, gnome-python2-gconf, gnome-python2-gnomevfs
@@ -72,6 +70,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 0.22.1-1
 - RH9 and RHFC1 ship with mx, change dependency. (Gary Peck)
 

@@ -1,15 +1,15 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Snax <snax@shmoo.com>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define real_version 0.2.3c
+%define real_version 0.2.4a
 
 Summary: Wireless LAN (WLAN) tool which recovers encryption keys
 Name: airsnort
-Version: 0.2.3
-Release: 0.c
+Version: 0.2.4
+Release: 0.a
 License: GPL
 Group: System Environment/Base
 URL: http://airsnort.shmoo.com/
@@ -79,6 +79,9 @@ EOF
 %endif
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.2.4-0.a
+- Updated to release 0.2.4a.
+
 * Sat Jan 03 2004 Dag Wieers <dag@wieers.com> - 0.2.3-0.c
 - Added desktop-file.
 - Updated to release 0.2.3c.

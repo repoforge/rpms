@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Dan Dennedy
+# Upstream: Dan Dennedy <ddennedy@users.sf.net>
 
 Summary: DV grabber through the FireWire interface
 Name: dvgrab
 Version: 1.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -47,6 +46,9 @@ generation.
 %{_bindir}/*
 
 %changelog
+* Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 1.5-2
+- Rebuild against libdv 0.102.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 

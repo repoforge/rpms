@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Network traffic recorder
 Name: tcpflow
-Version: 0.20
-Release: 0
+Version: 0.21
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.circlemud.org/~jelson/software/tcpflow/
@@ -13,9 +12,8 @@ URL: http://www.circlemud.org/~jelson/software/tcpflow/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.circlemud.org/pub/jelson/tcpflow/%{name}-%{version}.tar.gz
+Source: http://www.circlemud.org/pub/jelson/tcpflow/tcpflow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 tcpflow is a program that captures data transmitted as part of TCP
@@ -47,5 +45,8 @@ separate file for later analysis.
 %{_bindir}/*
 
 %changelog
+* Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 0.21-1
+- updated to release 0.21.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 0.20-0
 - Initial package. (using DAR)

@@ -4,7 +4,7 @@
 
 Summary: Convert dynamicly-linked ELF binaries into to "pseudo-static" binaries
 Name: statifier
-Version: 1.1.0
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -55,6 +55,12 @@ to drag all it's libraries.
 %{_libdir}/statifier/
 
 %changelog
+* Tue Apr 20 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
+* Tue Apr 13 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 1.1.0-1
 - Updated to release 1.1.0.
 

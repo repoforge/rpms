@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Linas Vepstas <linas@linas.org>
 
-Summary: GNOME Time Tracker
+Summary: Graphical Time Tracker
 Name: gnotime
-Version: 2.1.7
-Release: 0
+Version: 2.2.0
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://gttr.sf.net/
@@ -17,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/gttr/gnotime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0.3, guile-devel
+BuildRequires: gtkhtml3-devel >= 3.1.0
 
 %description
 The GNOME Time Tracker is a desktop utility for tracking the amount
@@ -36,7 +35,6 @@ invoices based on that time.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}-2.0
-%{__rm} -rf %{buildroot}%{_datadir}/gnome/help/gtt
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,13 +42,23 @@ invoices based on that time.
 %files -f %{name}-2.0.lang
 %defattr (-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man?/*
 %doc %{_datadir}/gnome/help/gnotime/
 %{_bindir}/*
 %{_datadir}/gnotime/
 %{_datadir}/gnome/apps/Applications/*.desktop
+%exclude %{_datadir}/gnome/help/gtt/
 
 %changelog
+* Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Updated to release 2.2.0.
+
+* Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 2.1.9-1
+- Updated to release 2.1.9.
+
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 2.1.8-1
+- Updated to release 2.1.8.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 2.1.7-0
 - Updated to release 2.1.7.
 
