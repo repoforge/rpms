@@ -29,7 +29,6 @@ server sessions. This can be useful in a thin client situation (run from
 %setup -n VncSelector_%{version}
 
 %build
-%configure
 %{__make} %{?_smp_mflags}
 
 %install
