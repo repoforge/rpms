@@ -26,7 +26,7 @@
 #define updates /updates
 
 # The snapshot date
-%define date 20040711
+%define date 20040821
 
 Summary: Driver for ADMTek 8211 network adaptors
 Name: kernel-module-adm8211
@@ -36,7 +36,7 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://aluminum.sourmilk.net/adm8211/
 Source: http://aluminum.sourmilk.net/adm8211/adm8211-%{date}.tar.bz2
-Patch: adm8211-autotools.patch
+Patch: adm8211-20040821-autotools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -108,6 +108,9 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 
 %changelog
+* Tue Aug 24 2004 Matthias Saou <http://freshrpms.net> 0.0-0.20040821
+- Update to 20040821, updated the autotools patch.
+
 * Mon Jul  5 2004 Matthias Saou <http://freshrpms.net> 0.0-0.20040705
 - Initial RPM release with autotools patch based on Thomasvs' work.
 

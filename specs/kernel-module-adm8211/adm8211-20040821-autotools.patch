@@ -1,6 +1,6 @@
-diff -Naupr adm8211.orig/autogen.sh adm8211-test2/autogen.sh
---- adm8211.orig/autogen.sh	1970-01-01 01:00:00.000000000 +0100
-+++ adm8211-test2/autogen.sh	2004-07-02 19:03:26.185978000 +0200
+diff -Naupr adm8211/autogen.sh adm8211-autotools/autogen.sh
+--- adm8211/autogen.sh	1970-01-01 01:00:00.000000000 +0100
++++ adm8211-autotools/autogen.sh	2004-08-24 18:36:51.000000000 +0200
 @@ -0,0 +1,6 @@
 +#!/bin/bash
 +set -x
@@ -8,9 +8,9 @@ diff -Naupr adm8211.orig/autogen.sh adm8211-test2/autogen.sh
 +autoconf || exit 1
 +automake -a --foreign || exit 1
 +./configure $@
-diff -Naupr adm8211.orig/configure.ac adm8211-test2/configure.ac
---- adm8211.orig/configure.ac	1970-01-01 01:00:00.000000000 +0100
-+++ adm8211-test2/configure.ac	2004-07-02 19:07:08.712149000 +0200
+diff -Naupr adm8211/configure.ac adm8211-autotools/configure.ac
+--- adm8211/configure.ac	1970-01-01 01:00:00.000000000 +0100
++++ adm8211-autotools/configure.ac	2004-08-24 18:36:51.000000000 +0200
 @@ -0,0 +1,36 @@
 +AC_INIT(adm8211_hw.c)
 +
@@ -48,11 +48,11 @@ diff -Naupr adm8211.orig/configure.ac adm8211-test2/configure.ac
 +AM_CONDITIONAL(SYMVERS_MODE, [test "$SYMVERS_MODE" = "symvers"])
 +
 +AC_OUTPUT(Makefile)
-diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
---- adm8211.orig/m4/as-linux.m4	1970-01-01 01:00:00.000000000 +0100
-+++ adm8211-test2/m4/as-linux.m4	2004-07-02 19:03:26.211974000 +0200
-@@ -0,0 +1,704 @@
-+dnl as-linux.m4 0.2.1
+diff -Naupr adm8211/m4/as-linux.m4 adm8211-autotools/m4/as-linux.m4
+--- adm8211/m4/as-linux.m4	1970-01-01 01:00:00.000000000 +0100
++++ adm8211-autotools/m4/as-linux.m4	2004-08-24 19:33:18.217554000 +0200
+@@ -0,0 +1,775 @@
++dnl as-linux.m4 0.2.4
 +
 +dnl autostars m4 macro for detecting a Linux source tree (or
 +dnl equivalent) for compiling modules.
@@ -61,7 +61,7 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +dnl Frank Mori Hess <fmhess@users.sourceforge.net>
 +dnl Thomas Vander Stichele <thomas@apestaart.org>
 +
-+dnl $Id: as-linux.m4,v 1.18 2004/06/03 16:35:58 thomasvs Exp $
++dnl $Id: as-linux.m4,v 1.21 2004/08/24 15:52:07 thomasvs Exp $
 +
 +dnl AS_LINUX()
 +dnl
@@ -74,6 +74,8 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +dnl --with-extraversion    to specify an EXTRAVERSION override
 +dnl --with-modulesdir      to specify the base install location of modules
 +dnl --with-modulesdeveldir to specify the base install location of build stuff
++dnl --without-modules      to specify not to build the modules
++dnl --without-userspace    to specify not to build userspace stuff
 +
 +dnl this macro defines:
 +dnl LINUX_DIR
@@ -119,6 +121,13 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +dnl checks the version, and figures out all flags to use to make modules.
 +AC_DEFUN([AS_LINUX],
 +[
++	dnl check whether or not to build modules
++	AS_LINUX_CHECK_BUILD_MODULES()
++	dnl check whether or not to build userspace
++	AS_LINUX_CHECK_BUILD_USERSPACE()
++
++	if test "x$BUILD_MODULES" != "xno"
++        then
 +	dnl check if user supplied a uname -r, and if not use the running one
 +	AS_LINUX_KERNEL_RELEASE()
 +	dnl check if user supplied a uname -m, and if not use the running one
@@ -159,6 +168,7 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +			AC_MSG_ERROR([Unknown Linux major.minor $LINUX_VERSION_MAJOR.$LINUX_VERSION_MINOR])
 +			;;
 +	esac
++        fi
 +])
 +
 +
@@ -172,23 +182,30 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +		[LINUX_DIR="${withval}"],
 +		[LINUX_DIR=default])
 +
++	dnl if specified, use the specified one
 +	if test "${LINUX_DIR}" != "default" ; then
 +		AS_TRY_LINUX_DIR([${LINUX_DIR}], , AC_MSG_ERROR([Linux dir not found]) )
 +	fi
 +
++	dnl if not specified, first try with previously set LINUX_KERNEL_RELEASE
 +	if test "${LINUX_DIR}" = "default" ; then
-+		dir="/lib/modules/`uname -r`/build";
++		dir="/lib/modules/$LINUX_KERNEL_RELEASE/build";
 +		AS_TRY_LINUX_DIR([${dir}], [LINUX_DIR=${dir}], )
 +	fi
++
++	dnl next try using the kernel source dir
 +	if test "${LINUX_DIR}" = "default" ; then
-+		dir="../linux";
++		dir="/usr/src/linux-$LINUX_KERNEL_RELEASE";
 +		AS_TRY_LINUX_DIR([${dir}], [LINUX_DIR=${dir}], )
 +	fi
++
++	dnl then try a common default of /usr/src/linux
 +	if test "${LINUX_DIR}" = "default" ; then
 +		dir="/usr/src/linux";
 +		AS_TRY_LINUX_DIR([${dir}], [LINUX_DIR=${dir}], )
 +	fi
 +
++	dnl if still nothing found, fail
 +	if test "${LINUX_DIR}" = "default" ; then
 +		AC_MSG_ERROR([Linux source directory not found])
 +	fi
@@ -517,6 +534,47 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +	AC_MSG_NOTICE([Putting kernel module development files under ${MODULESDEVELDIR}])
 +])
 +
++dnl add an argument to build without modules
++dnl sets variable BUILD_MODULES
++AC_DEFUN([AS_LINUX_CHECK_BUILD_MODULES],
++[
++	AC_ARG_WITH([modules],
++		[AC_HELP_STRING([--without-modules],
++			[do not build kernel modules])],
++		[BUILD_MODULES="${withval}"],
++		[BUILD_MODULES="yes"])
++
++	AC_MSG_CHECKING([whether to build kernel modules])
++	if test "x$BUILD_MODULES" = "xno"
++	then
++		AC_MSG_RESULT([no])
++	else
++		AC_MSG_RESULT([yes])
++	fi
++	dnl make it available as a conditional to Makefiles
++	AM_CONDITIONAL(BUILD_MODULES, test "x$BUILD_MODULES" != "xno")
++])
++
++dnl add an argument to build without userspace
++AC_DEFUN([AS_LINUX_CHECK_BUILD_USERSPACE],
++[
++	AC_ARG_WITH([userspace],
++		[AC_HELP_STRING([--without-userspace],
++			[do not build userspace stuff])],
++		[BUILD_USERSPACE="${withval}"],
++		[BUILD_USERSPACE="yes"])
++
++	AC_MSG_CHECKING([whether to build userspace stuff])
++	if test "x$BUILD_USERSPACE" = "xno"
++	then
++		AC_MSG_RESULT([no])
++	else
++		AC_MSG_RESULT([yes])
++	fi
++	dnl make it available as a conditional to Makefiles
++	AM_CONDITIONAL(BUILD_USERSPACE, test "x$BUILD_USERSPACE" != "xno")
++])
++
 +AC_DEFUN([AS_LINUX_2_6],
 +[
 +	AC_MSG_CHECKING(for Linux CFLAGS)
@@ -565,8 +623,6 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +	LINUX_MODULE_EXT=".ko"
 +
 +	LINUX_CFLAGS="$LINUX_CFLAGS $LINUX_CFLAGS_MODULE"
-+	LINUX_MODPOST="$LINUX_DIR/scripts/modpost"
-+
 +	AC_SUBST(LINUX_ARCH)
 +	AC_SUBST(LINUX_AFLAGS)
 +	AC_SUBST(LINUX_LDFLAGS)
@@ -578,9 +634,24 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +	AC_SUBST(LINUX_LD)
 +	AC_SUBST(LINUX_AS)
 +	AC_SUBST(LINUX_MODULE_EXT)
-+	AC_SUBST(LINUX_MODPOST)
-+
 +	AC_MSG_RESULT([$LINUX_CFLAGS])
++
++	dnl find a usable modpost script
++	AC_MSG_CHECKING([usable modpost])
++	for CAND in $LINUX_DIR/scripts/modpost $LINUX_DIR/scripts/mod/modpost
++	do
++		if test -f "$CAND"
++		then
++			LINUX_MODPOST=$CAND
++		fi
++	done
++	AC_SUBST(LINUX_MODPOST)
++	if test -z "$LINUX_MODPOST"
++	then
++		AC_MSG_WARN([No usable modpost script found])
++	else
++		AC_MSG_RESULT([$LINUX_MODPOST])
++	fi
 +])
 +
 +dnl checks kernel's Makefile for make variables for Linux 2.4
@@ -756,9 +827,9 @@ diff -Naupr adm8211.orig/m4/as-linux.m4 adm8211-test2/m4/as-linux.m4
 +	dnl restore CFLAGS
 +        CFLAGS="$ac_save_CFLAGS"
 +])
-diff -Naupr adm8211.orig/m4/as-modtool.m4 adm8211-test2/m4/as-modtool.m4
---- adm8211.orig/m4/as-modtool.m4	1970-01-01 01:00:00.000000000 +0100
-+++ adm8211-test2/m4/as-modtool.m4	2004-07-02 19:03:26.213974000 +0200
+diff -Naupr adm8211/m4/as-modtool.m4 adm8211-autotools/m4/as-modtool.m4
+--- adm8211/m4/as-modtool.m4	1970-01-01 01:00:00.000000000 +0100
++++ adm8211-autotools/m4/as-modtool.m4	2004-08-24 19:33:18.229552000 +0200
 @@ -0,0 +1,147 @@
 +dnl as-modtool.m4 0.0.1
 +dnl autostars m4 macro for building modtool, a linker for Linux kernel
@@ -907,15 +978,20 @@ diff -Naupr adm8211.orig/m4/as-modtool.m4 adm8211-test2/m4/as-modtool.m4
 +])
 +
 +
-diff -Naupr adm8211.orig/Makefile adm8211-test2/Makefile
---- adm8211.orig/Makefile	2004-06-19 07:18:03.000000000 +0200
-+++ adm8211-test2/Makefile	1970-01-01 01:00:00.000000000 +0100
-@@ -1,46 +0,0 @@
+diff -Naupr adm8211/Makefile adm8211-autotools/Makefile
+--- adm8211/Makefile	2004-08-16 19:32:28.000000000 +0200
++++ adm8211-autotools/Makefile	1970-01-01 01:00:00.000000000 +0100
+@@ -1,51 +0,0 @@
 -# Makefile for Linux 2.6.x and 2.4.x kbuild
 -
 -ifneq ($(KERNELRELEASE),)
--obj-m		:= adm8211.o
--adm8211-objs	:= adm8211_hw.o adm8211_ioctl.o ieee80211.o wep.o
+-
+-ifeq ($(CONFIG_ADM8211),)
+-	CONFIG_ADM8211=m
+-endif
+-
+-adm8211-objs		:= adm8211_hw.o adm8211_ioctl.o ieee80211.o wep.o
+-obj-$(CONFIG_ADM8211)	+= adm8211.o
 -
 -ifeq ($(PATCHLEVEL), 4)
 -adm8211.o: $(adm8211-objs)
@@ -957,12 +1033,13 @@ diff -Naupr adm8211.orig/Makefile adm8211-test2/Makefile
 -	$(MAKE) $(KBUILD_PARAMS) clean
 -
 -endif
-diff -Naupr adm8211.orig/Makefile-2.4 adm8211-test2/Makefile-2.4
---- adm8211.orig/Makefile-2.4	2004-06-23 16:28:48.000000000 +0200
-+++ adm8211-test2/Makefile-2.4	1970-01-01 01:00:00.000000000 +0100
-@@ -1,14 +0,0 @@
+diff -Naupr adm8211/Makefile-2.4 adm8211-autotools/Makefile-2.4
+--- adm8211/Makefile-2.4	2004-08-10 19:09:58.000000000 +0200
++++ adm8211-autotools/Makefile-2.4	1970-01-01 01:00:00.000000000 +0100
+@@ -1,15 +0,0 @@
 -CC = gcc
--CFLAGS = -D__KERNEL__ -DMODULE -Wall -Wstrict-prototypes -O2 -I/usr/src/linux/include -fomit-frame-pointer -fno-strict-aliasing -Wno-trigraphs -fno-common -pipe -mpreferred-stack-boundary=2 -march=i386
+-KDIR  := /usr/src/linux
+-CFLAGS = -D__KERNEL__ -DMODULE -Wall -Wstrict-prototypes -O2 -I$(KDIR)/include -fomit-frame-pointer -fno-strict-aliasing -Wno-trigraphs -fno-common -pipe -mpreferred-stack-boundary=2 -march=i386
 -
 -all: adm8211.o
 -
@@ -975,9 +1052,9 @@ diff -Naupr adm8211.orig/Makefile-2.4 adm8211-test2/Makefile-2.4
 -clean:
 -	rm -f adm8211.o adm8211_hw.o adm8211_ioctl.o ieee80211.o wep.o
 -
-diff -Naupr adm8211.orig/Makefile.am adm8211-test2/Makefile.am
---- adm8211.orig/Makefile.am	1970-01-01 01:00:00.000000000 +0100
-+++ adm8211-test2/Makefile.am	2004-07-02 19:26:54.879824776 +0200
+diff -Naupr adm8211/Makefile.am adm8211-autotools/Makefile.am
+--- adm8211/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ adm8211-autotools/Makefile.am	2004-08-24 18:37:03.000000000 +0200
 @@ -0,0 +1,34 @@
 +moduledir = $(modulesdir)/kernel/drivers/net/wireless
 +module_PROGRAMS = adm8211.ko
