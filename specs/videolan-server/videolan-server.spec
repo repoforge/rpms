@@ -6,7 +6,7 @@
 
 Summary: MPEG, DVD, and DVB server for Unix/Linux
 Name: videolan-server
-Version: 0.5.4
+Version: 0.5.6
 Release: 1
 License: GPL
 Group: System Environment/Daemons
