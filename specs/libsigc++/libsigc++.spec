@@ -13,6 +13,7 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://libsigc.sourceforge.net/
 Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
+Patch: libsigc++-1.2.5-pc-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libsigc++-examples <= %{version}
 BuildRequires: gcc-c++, m4
@@ -42,6 +43,7 @@ needed for development with libsigc++.
 
 %prep
 %setup
+%patch -p1 -b .pc
 
 
 %build
@@ -90,6 +92,8 @@ find doc -name "Makefile*" | xargs rm -f
 %changelog
 * Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 1.2.5-4
 - Force libtoolize/autoconf/automake to build on x86_64.
+- Add libsigc++-1.2.5-pc-cflags.patch patch from Fedora Extras to fix lib vs.
+  lib64 issue from .pc file.
 
 * Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 1.2.5-3
 - Rebuild for Fedora Core 2.
