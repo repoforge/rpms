@@ -1,17 +1,16 @@
 # $Id$
-
 # Authority: dag
 
-### FIXME: RPM doesn't seem to allow i386-packages with noarch-subpackages.
-# Archs: i386
+%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Mail-SpamAssassin
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 2.63
-Release: 0
-License: Artistic
+Release: 1
+License: GPL or Artistic
 Group: System Environment/Daemons
 URL: http://spamassassin.org/
 
@@ -25,13 +24,16 @@ Source4: spamassassin-spamc.rc
 Source5: spamassassin.sysconfig
 Source10: spamassassin-helper.sh
 Source99: filter-requires-spamassassin.sh
-Patch0: spamassassin-2.60-servicename.patch
+Patch3: spamassassin-2.63-krb5-backcompat.patch
+Patch4: spamassassin-2.63-init.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Prefix: %{_prefix}
 
-BuildArch: %{_arch}
-Prereq: /sbin/chkconfig, /sbin/service
-BuildRequires: perl(HTML::Parser)
-Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
+BuildRequires: perl(HTML::Parser), perl-Net-DNS, perl-Time-HiRes, openssl-devel
+Requires: procmail, perl-Net-DNS, perl(Time::HiRes)
+Requires: /sbin/chkconfig, /sbin/service
+#Requires: perl(Mail::SpamAssassin) = %{version}-%{release}
+Obsoletes: perl-Mail-SpamAssassin
 
 %description
 SpamAssassin provides you with a way to reduce if not completely eliminate
@@ -54,36 +56,26 @@ To filter spam for all users, add that line to /etc/procmailrc
 Summary: Miscellaneous tools and documentation for SpamAssassin
 Group: System Environment/Daemons
 Requires: perl(Mail::SpamAssassin) = %{version}
-BuildArch: %{_arch}
 
 %description tools
 Miscellaneous tools and documentation from various authors, distributed
 with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
 
-%package -n perl-Mail-SpamAssassin
-Summary: Mail::SpamAssassin -- SpamAssassin e-mail filter Perl modules
-Requires: perl >= 5.004, perl(Pod::Usage), perl(HTML::Parser)
-Group: Applications/CPAN
-BuildArch: noarch
-
-%description -n perl-Mail-SpamAssassin
-Mail::SpamAssassin is a module to identify spam using text analysis and
-several internet-based realtime blacklists. Using its rule base, it uses a
-wide range of heuristic tests on mail headers and body text to identify
-``spam'', also known as unsolicited commercial email. Once identified, the
-mail can then be optionally tagged as spam for later filtering using the
-user's own mail user-agent application.
-
 %prep
 %setup -n %{real_name}-%{version}
+%patch3 -p1
+%patch4 -p0
 
 %build
-echo | %{__perl} Makefile.PL \
+echo | CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 		PREFIX="%{_prefix}" \
 		SYSCONFDIR="%{_sysconfdir}" \
-		DESTDIR="%{buildroot}"
-%{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} spamd/libspamc.so
+		DESTDIR="%{buildroot}" \
+		INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags} \
+	OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags} spamd/libspamc.so \
+	OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -91,21 +83,17 @@ echo | %{__perl} Makefile.PL \
 	INSTALLMAN1DIR="%{buildroot}%{_mandir}/man1" \
 	INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3"
 
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_includedir} \
-			%{buildroot}%{_sysconfdir}/mail/spamassassin \
-			%{buildroot}%{_sysconfdir}/sysconfig/
-%{__install} -m0755 spamd/redhat-rc-script.sh %{buildroot}%{_initrddir}/spamassassin
-%{__install} -m0644 spamd/libspamc.so %{buildroot}%{_libdir}
-%{__install} -m0644 spamd/libspamc.h %{buildroot}%{_includedir}
+%{__install} -D -m0755 spamd/redhat-rc-script.sh %{buildroot}%{_initrddir}/spamassassin
+%{__install} -D -m0644 spamd/libspamc.so %{buildroot}%{_libdir}/libspamc.so
+%{__install} -D -m0644 spamd/libspamc.h %{buildroot}%{_includedir}/libspamc.h
 
-%{__install} -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
-%{__install} -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
+%{__install} -D -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
+%{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
 %{__install} -m0644 %{SOURCE3} %{SOURCE4} %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%{__rm} -rf %{buildroot}%{perl_sitearch}/
+### Clean up buildroot (arch)
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %post
 if [ $1 -eq 1 ]; then
@@ -138,27 +126,26 @@ fi
 
 %files 
 %defattr(-, root, root, 0755)
-%doc BUGS Changes COPYRIGHT README TRADEMARK USAGE *.txt spamd/README.spamd
+%doc BUGS Changes COPYRIGHT License README TRADEMARK USAGE *.txt spamd/README.spamd
 %doc %{_mandir}/man1/*
+%doc %{_mandir}/man3/*
 %config %{_initrddir}/*
+%config(noreplace) %{_sysconfdir}/mail/spamassassin/
+%config(noreplace) %{_sysconfdir}/sysconfig/*
 %{_bindir}/*
+%{_datadir}/spamassassin/
 %{_libdir}/*.so
+%{perl_vendorlib}/*
 %{_includedir}/*.h
 
 %files tools
 %defattr(0644, root, root, 0755)
-%doc sql tools masses contrib
-
-%files -n perl-Mail-SpamAssassin
-%defattr(-, root, root, 0755)
-%doc MANIFEST
-%doc %{_mandir}/man3/*
-%config(noreplace) %{_sysconfdir}/mail/spamassassin/
-%config(noreplace) %{_sysconfdir}/sysconfig/*
-%{_libdir}/perl5/
-%{_datadir}/spamassassin/
+%doc sql/ tools/ masses/ contrib/
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 2.63-1
+- Merge spamassassin and perl-Mail-SpamAssassin.
+
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 2.63-0
 - Updated to release 2.63.
 
