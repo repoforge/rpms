@@ -41,11 +41,13 @@ you will need to install %{name}-devel.
 
 %build
 ./configure.pl --prefix=%{buildroot}/usr gcc-linux-ia32
+sed -i "s/^CXX.*/CXX = g++296/g;" Makefile
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+mv %{buildroot}%{_datadir}/doc/Botan-%{version} botandocs
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -58,16 +60,14 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc botandocs/*
 %{_bindir}/*
-%{_libdir}/*.so.*
+%{_libdir}/libbotan-*.so
 
 %files devel
-%{_includedir}/*.h
+%{_includedir}/botan
 %{_libdir}/*.a
 %{_libdir}/*.so
-%exclude %{_libdir}/*.la
 
 %changelog
 * Fri May 28 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1
