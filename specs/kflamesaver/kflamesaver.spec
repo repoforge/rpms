@@ -14,6 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: %{name}-%{version}.tar.gz
+Patch: gcc34-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel, kdelibs-devel
@@ -27,6 +28,7 @@ A screensaver for KDE with flame effects like in Twin Peaks.
 
 %prep
 %setup
+%patch -p1
 
 %build
 . /etc/profile.d/qt.sh

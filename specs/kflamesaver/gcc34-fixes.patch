@@ -1,0 +1,11 @@
+diff -uNr kflamesaver-0.1-orig/kflamesaver/kflameconfig.h kflamesaver-0.1/kflamesaver/kflameconfig.h
+--- kflamesaver-0.1-orig/kflamesaver/kflameconfig.h	2002-12-20 13:34:51.000000000 +0100
++++ kflamesaver-0.1/kflamesaver/kflameconfig.h	2004-12-22 00:23:19.919733056 +0100
+@@ -62,6 +62,6 @@
+         const QFont defaultTextFont( "Courier New", 20 );
+ 
+         #define defaultPic (KGlobal::dirs()->findResource("data", "kflamesaver/laura_and_coop.png"))
+-};
++}
+ 
+ #endif
