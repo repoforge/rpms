@@ -20,7 +20,7 @@ Patch0: viruskiller-0.9-makefile.patch
 Patch1: viruskiller-0.9-zzip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_ttf-devel
-BuildRequires: libpng-devel, zziplib-devel
+BuildRequires: zziplib-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

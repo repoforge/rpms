@@ -21,7 +21,7 @@ diff -Naupr viruskiller-0.9.orig/makefile viruskiller-0.9/makefile
 +ICONDIR = $(PREFIX)/share/pixmaps/
 +GNOME = $(PREFIX)/share/applications/
 +
-+CFLAGS += $(OPTFLAGS) `sdl-config --cflags` `png-config --cflags zziplib` -DVERSION=$(VERSION) -DRELEASE=$(RELEASE) -DUSEPAK=$(USEPAK)
++CFLAGS += $(OPTFLAGS) `sdl-config --cflags` `pkg-config --cflags zziplib` -DVERSION=$(VERSION) -DRELEASE=$(RELEASE) -DUSEPAK=$(USEPAK)
 +CFLAGS += -DPAKNAME=\"$(PAKNAME)\" -DPAKLOCATION=\"$(DATADIR)\" -DUNIX -DTEMPDIR=\"/tmp/\" -DGAMEPLAYMANUAL=\"$(DATADIR)manual.html\" -Wall
 +LIBS = `sdl-config --libs` `pkg-config --libs zziplib` -lSDL_mixer -lSDL_image -lSDL_ttf
  
