@@ -5,7 +5,7 @@
 # Screenshot: http://hte.sourceforge.net/screenshots/screenshot5.gif
 # ScreenshotURL: http://hte.sourceforge.net/screenshots.htm
 
-Summary: File editor, viewer and analyzer for text, binary and especially executables
+Summary: File editor, viewer and analyzer for text, binary and executables
 Name: ht
 Version: 0.7.5
 Release: 2

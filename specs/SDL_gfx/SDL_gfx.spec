@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Graphic Primitives, Rotozoomer, Framerate control, and MMX image filters
+Summary: Graphic Primitives, Rotozoomer, Framerate control and image filters
 Name: SDL_gfx
 Version: 2.0.10 
 Release: 1

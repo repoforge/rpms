@@ -3,7 +3,7 @@
 # Authority: dries
 # Upstream: 
 
-Summary: Aids with localization of software and conversion between different translation formats
+Summary: Aids with localization of software
 Name: translate
 Version: 0.8b1
 Release: 1

@@ -5,7 +5,6 @@
 # ScreenshotURL: http://uml.sourceforge.net/screen.php
 
 Summary: unified modelling language (UML) diagrams modeller
-Summary(nl): Een programma om unified modelling language (UML) schema's te maken.
 Name: umbrello
 Version: 1.2
 Release: 1

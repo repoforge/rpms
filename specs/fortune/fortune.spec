@@ -165,7 +165,6 @@ bzcat %{SOURCE2} | %{__tar} xvf - -C %{buildroot}%{_datadir}/games/fortune/
 
 %package bofh-excuses
 Summary: Fortune files with BOFH excuses
-Summary(nl): Fortune bestanden met BOFH excuses
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -177,7 +176,6 @@ Een aantal fortune BOFH excuses (BOFH = Bastard Operator From Hell)
 
 %package kernelnewbies
 Summary: Fortune files with kernelnewbies quotes
-Summary(nl): Fortune bestanden met kernelnewbies quotes
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -189,7 +187,6 @@ Een aantal fortune kernelnewbies quotes
 
 %package starwars
 Summary: Fortune files with Starwars quotes
-Summary(nl): Fortune bestanden met Starwars quotes
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -203,7 +200,6 @@ http://www.splitbrain.org/./Fortunes/starwars/
 
 %package futurama
 Summary: Fortune files with Futurama quotes
-Summary(nl): Fortune bestanden met Futurama quotes
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -217,7 +213,6 @@ http://www.netmeister.org/misc.html
 
 %package calvin
 Summary: Fortune files with Calvin and Hobbes quotes
-Summary(nl): Fortune bestanden met Calvin en Hobbes quotes
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -231,7 +226,6 @@ http://www.netmeister.org/misc.html
 
 %package zippy2
 Summary: Fortune files with Zippy the Pinhead quotes
-Summary(nl): Fortune bestanden met Zippy the Pinhead quotes
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -245,7 +239,6 @@ http://www.aboleo.net/software/misc/
 
 %package tao
 Summary: Fortune files with Tao Te Ching quotes
-Summary(nl): Fortune bestanden met Tao Te Ching quotes
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -259,7 +252,6 @@ http://www.aboleo.net/software/misc/
 
 %package hitchhiker
 Summary: Fortune files with quotes from Hitchhikers Guide to the Galaxy
-Summary(nl): Fortune bestanden met quotes van Hitchhikers Guide to the Galaxy
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -273,7 +265,6 @@ http://www.splitbrain.org/./Fortunes/hitchhiker/
 
 %package simpsons-chalkboard
 Summary: Fortune files with quotes from Bart Simpson's chalkboard-writings
-Summary(nl): Fortune bestanden met quotes van Bart Simpson's chalkboard-writings
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -286,8 +277,7 @@ Enkele fortune quotes van Bart Simpson's chalkboard-writings, gedownload van
 http://www.splitbrain.org/./Fortunes/simpsons/
 
 %package prog-style
-Summary: Fortune files with the 69 tips from the "Elements of Programming Style" by Kernighan and Plaugher
-Summary(nl): Fortune bestanden met de 69 tips van "Elements of Programming Style" by Kernighan and Plaugher.
+Summary: Fortune files with the 69 tips from the "Elements of Programming Style"
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -303,7 +293,6 @@ http://freshmeat.net/redir/fortune-mod-prog-style/19342/url_tgz/fortune-mod-prog
 
 %package fgump
 Summary: Fortune files with quotes from the movie Forrest Gump
-Summary(nl): Fortune bestanden met quotes van de film Forrest Gump
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -317,7 +306,6 @@ http://www.splitbrain.org/./Fortunes/fgump/
 
 %package discworld
 Summary: Fortune files with quotes from Discworld
-Summary(nl): Fortune bestanden met quotes van Discworld
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -333,7 +321,6 @@ http://www.splitbrain.org/./Fortunes/discworld/
 
 %package xfiles
 Summary: Fortune files with quotes from The X-Files
-Summary(nl): Fortune bestanden met quotes van The X-Files
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -347,7 +334,6 @@ http://www.splitbrain.org/./Fortunes/xfiles/
 
 %package kernelcookies
 Summary: Fortune files with quotes from kernelcookies
-Summary(nl): Fortune bestanden met quotes van kernelcookies
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -361,7 +347,6 @@ http://unattached.i-no.de/software-misc.shtml
 
 %package dune
 Summary: Fortune files with quotes from Dune
-Summary(nl): Fortune bestanden met quotes van Dune
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -375,7 +360,6 @@ http://dune.s31.pl/
 
 %package cbg
 Summary: Fortune files with quotes from Comic Book Guy
-Summary(nl): Fortune bestanden met quotes van Comic Book Guy
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -389,7 +373,6 @@ http://freshmeat.net/redir/cbg-quotes/16138/url_tgz/cbg-quotes.tar.gz
 
 %package simpsons-ralph
 Summary: Fortune files with quotes from Comic Book Guy
-Summary(nl): Fortune bestanden met quotes van Comic Book Guy
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -406,7 +389,6 @@ http://freshmeat.net/redir/ralph-quotes/16139/url_tgz/ralph-quotes.tar.gz
 %else
 %package southpark
 Summary: Fortune files with (offensive) quotes from Southpark
-Summary(nl): Fortune bestanden met (aanstootgevende) quotes van Southpark
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 
@@ -421,7 +403,6 @@ http://eol.init1.nl/linux/index.php
 
 %package simpsons-homer
 Summary: Fortune files with quotes from Homer Simpson
-Summary(nl): Fortune bestanden met quotes van Homer Simpson
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}
 

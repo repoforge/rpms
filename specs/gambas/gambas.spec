@@ -6,7 +6,7 @@
 
 %define real_version 0.94
 
-Summary: Development environment based on a basic interpreter with object extensions
+Summary: IDE based on a basic interpreter with object extensions
 Name: gambas
 Version: 0.94
 Release: 0
@@ -57,6 +57,7 @@ rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.
 	--enable-sqlite \
 	--enable-sdl \
 	--enable-vb
+export PATH=%{buildroot}/usr/bin:$PATH
 %{__make} %{?_smp_mflags}
 
 %install
