@@ -6,7 +6,7 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 3.55
+Version: 3.70
 Release: 1
 Epoch: 2
 License: GPL
@@ -41,7 +41,8 @@ be installed before installing nmap-frontend.
 
 
 %build
-%configure
+%configure \
+    --enable-ipv6
 %{__make} %{?_smp_mflags}
 
 
@@ -80,6 +81,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Wed Sep  1 2004 Matthias Saou <http://freshrpms.net/> 3.70-1
+- Update to 3.70.
+- Enable IPv6.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 3.55-1
 - Update to 3.55.
 
