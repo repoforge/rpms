@@ -1,0 +1,9 @@
+--- gaim.desktop.orig	2004-07-19 07:43:04.209833816 +0200
++++ gaim.desktop	2004-07-19 07:44:17.731656800 +0200
+@@ -27,5 +27,5 @@
+ Icon=gaim.png
+ Terminal=false
+ Type=Application
+-Categories=Application;Network;
++Categories=Application;Network;X-Red-Hat-Base;
+ StartupNotify=true
