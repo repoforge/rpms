@@ -24,6 +24,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-TimeZone-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+Provides: perl(DateTime::TimeZoneCatalog)
 
 %description
 The DateTime::TimeZone modules provide a Perl interface to the Olson

@@ -24,6 +24,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+Provides: perl(DateTimePPExtra)
 
 %description
 The DateTime.pm module aims to provide a complete, correct, and easy
@@ -55,7 +56,9 @@ module.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
-%{perl_vendorarch}/DateTime*.pm
+%{perl_vendorarch}/DateTime.pm
+%{perl_vendorarch}/DateTimePP.pm
+%{perl_vendorarch}/DateTimePPExtra.pm
 %{perl_vendorarch}/DateTime
 %{perl_vendorarch}/auto/DateTime/DateTime.*
 %exclude %{perl_archlib}/perllocal.pod
