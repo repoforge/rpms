@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake, autoconf, glib2-devel >= 2.4, gtk2-devel, libglade2-devel
 BuildRequires: id3lib-devel, libogg-devel, libvorbis-devel, perl-XML-Parser
-BuildRequires: gettext
+BuildRequires: gettext, desktop-file-utils
 
 %description
 Audio Tag Tool is a program to manage the information fields in MP3 and Ogg
