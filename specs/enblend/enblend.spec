@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www-cad.eecs.berkeley.edu/~mihal/enblend/enblend-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtiff-devel
+BuildRequires: libtiff-devel, gcc-c++
 
 %description
 Enblend is a tool for compositing images. Given a set of images that overlap
