@@ -27,11 +27,8 @@ Compress-Zlib module for perl
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}

@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Jochen Wiedmann <jwied$cpan,org>
 
-%define real_name Text-CSV_XS
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Text-CSV_XS
 
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
@@ -29,14 +29,16 @@ fields into a CSV string and parse a CSV string into fields.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS="vendor" \
-	PREFIX=%{buildroot}%{_prefix}
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,9 +47,10 @@ fields into a CSV string and parse a CSV string into fields.
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorarch}/Text/
 %{perl_vendorarch}/Text/CSV_XS.pm
-%{perl_vendorarch}/auto/Text/CSV_XS
-%exclude %{perl_archlib}/perllocal.pod
+%dir %{perl_vendorarch}/auto/Text/
+%{perl_vendorarch}/auto/Text/CSV_XS/
 
 %changelog
 * Tue Mar  1 2005 Dries Verachtert <dries@ulyssis.org> - 0.23-1

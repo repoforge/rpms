@@ -27,8 +27,8 @@ This package allows you to create generic methods for OO Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -36,7 +36,7 @@ This package allows you to create generic methods for OO Perl.
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

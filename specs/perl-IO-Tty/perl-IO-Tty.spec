@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Roland Giersig <RGiersig$cpan,org>
 
-
-%define real_name IO-Tty
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name IO-Tty
 
 Summary: Interface to pseudo Tty
 Name: perl-IO-Tty
@@ -30,14 +27,16 @@ IO::Tty and IO::Pty provide an interface to pseudo ttys.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,10 +45,12 @@ IO::Tty and IO::Pty provide an interface to pseudo ttys.
 %defattr(-, root, root, 0755)
 %doc README 
 %{_mandir}/man3/*
-%{perl_vendorlib}/*/IO/Tty.pm
-%{perl_vendorlib}/*/IO/Tty/*
-%{perl_vendorlib}/*/IO/Pty.pm
-%{perl_vendorlib}/*/auto/IO/Tty/*
+%dir %{perl_vendorarch}/IO/
+%{perl_vendorarch}/IO/Pty.pm
+%{perl_vendorarch}/IO/Tty.pm
+%{perl_vendorarch}/IO/Tty/
+%dir %{perl_vendorarch}/auto/IO/
+%{perl_vendorarch}/auto/IO/Tty/
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.02-1
