@@ -41,8 +41,6 @@ BuildRequires: libquicktime-devel, libdv-devel
 # as we build on i686, this will be an i686 only package
 %{!?_without_mmx:BuildArch: i686}
 BuildRequires: nasm
-%else
-BuildRequires: autoconf, automake, libtool
 %endif
 
 
@@ -75,15 +73,15 @@ of the mjpegtools package.
 %build
 %ifarch %{ix86}
 pushd jpeg-mmx-%{jpegmmx_version}
-    ./configure && %{__make} %{?_smp_mflags}
+    ./configure && %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 popd
-%else
-autoreconf
 %endif
 
+# This -fPIC is required (1.6.2) to build on x86_64
 # ### FIXME Stripping of libmjpegutils.a fails (hence --disable-static)
+CFLAGS="%{optflags} -fPIC" \
 %configure \
-    --enable-static \
+    --disable-static \
     --enable-shared \
 %ifarch %{ix86}
     %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"} \
@@ -101,10 +99,6 @@ autoreconf
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-# Let's remove the static libs for now, as their stripping makes the build fail
-# No, give them back as mjpegutils is only built as static and required
-#rm -f %{buildroot}%{_libdir}/*.a
 
 
 %clean
@@ -159,6 +153,8 @@ autoreconf
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-4
 - Add gcc34 patch from bugs.gentoo.org #48890.
 - Add gcc34 patch to jpeg-mmx from linuxfromscratch commit 629.
+- (Re?)-add -fPIC to build on x86_64.
+- Seems like static lib stripping works again on x86, but not x86_64.
 
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-3
 - Added install-info calls... not, "no info dir entry" :-(
