@@ -45,7 +45,7 @@ highly-productive, object-oriented scripting language.
 
 
 %prep
-%setup -q -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}-0
 %patch -p1 -b .config
 
 

@@ -7,7 +7,7 @@
 
 Summary: Powerful image loading and rendering library
 Name: imlib2
-Version: 1.1.0
+Version: 1.1.2
 Release: %{?date:0.%{date}.}2
 License: BSD
 Group: System Environment/Libraries
@@ -58,37 +58,43 @@ Header, static libraries and documentation for Imlib2.
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS README COPYING ChangeLog doc/
-%{_libdir}/*.so.*
-%dir %{_libdir}/loaders/
-%dir %{_libdir}/loaders/filter/
-%dir %{_libdir}/loaders/image/
-%{_libdir}/loaders/filter/*.so
-%{_libdir}/loaders/image/*.so
+%doc AUTHORS ChangeLog COPYING README doc/
+%{_bindir}/*test
+%{_bindir}/color_spaces
+%{_bindir}/imconvert
+%{_bindir}/imlib2*
+%{_libdir}/libImlib2.so.*
+%dir %{_libdir}/imlib2_loaders/
+%dir %{_libdir}/imlib2_loaders/filter/
+%dir %{_libdir}/imlib2_loaders/image/
+%{_libdir}/imlib2_loaders/filter/*.so
+%{_libdir}/imlib2_loaders/image/*.so
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/*
-%{_includedir}/*
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%exclude %{_libdir}/loaders/filter/*.a
-%exclude %{_libdir}/loaders/filter/*.la
-%exclude %{_libdir}/loaders/image/*.a
-%exclude %{_libdir}/loaders/image/*.la
+%{_bindir}/imlib2-config
+%{_includedir}/Imlib2.h
+%{_libdir}/libImlib2.a
+%exclude %{_libdir}/libImlib2.la
+%{_libdir}/libImlib2.so
+%exclude %{_libdir}/imlib2_loaders/filter/*.a
+%exclude %{_libdir}/imlib2_loaders/filter/*.la
+%exclude %{_libdir}/imlib2_loaders/image/*.a
+%exclude %{_libdir}/imlib2_loaders/image/*.la
 %{_libdir}/pkgconfig/*.pc
 
-
 %changelog
+* Sat Sep 25 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2. (Antti Markus)
+
 * Sat May 29 2004 Dag Wieers <dag@wieers.com> - 1.1.0-3
 - Merged my imlib2 package.
 - Disable mmx on non-ix86 architectures.
