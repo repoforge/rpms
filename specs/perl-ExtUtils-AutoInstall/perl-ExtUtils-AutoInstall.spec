@@ -3,6 +3,8 @@
 # Authority: dries
 # Upstream: <autrijus$autrijus,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_name ExtUtils-AutoInstall
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -25,6 +27,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+%{?fc2:BuildRequires: perl-CPANPLUS}
+%{?fc1:BuildRequires: perl-CPANPLUS}
+%{?el3:BuildRequires: perl-CPANPLUS}
 
 %description
 ExtUtils::AutoInstall is a module to let Makefile.PL automatically 
