@@ -19,7 +19,7 @@ BuildRequires: libgnomeui-devel >= 2.2.0
 BuildRequires: libgnomeprintui22-devel >= 2.2.0
 BuildRequires: gtkhtml2-devel >= 2.2.0
 BuildRequires: gtksourceview-devel >= 0.3.0
-BuildRequires: libcroco-devel >= 0.4.0
+BuildRequires: libcroco-devel >= 0.5.0
 
 %description
 SCREEM (Site CReating and Editing EnvironMent) is an integrated development

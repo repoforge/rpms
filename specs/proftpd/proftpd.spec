@@ -1,38 +1,34 @@
 # $Id$
 # Authority: matthias
 # Upstream: <proftp-devel@lists.sf.net>
-
 # Distcc: 0
 
-Summary: flexible, stable and highly-configurable FTP Server
+Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
 Version: 1.2.9
-Release: 6%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
+Release: 7%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
-
-Source: ftp://ftp.proftpd.org/distrib/source/proftpd-%{version}.tar.bz2
+Source0: ftp://ftp.proftpd.org/distrib/source/proftpd-%{version}.tar.bz2
 Source1: proftpd.conf
 Source2: proftpd.init
 Source3: proftpd-xinetd
 Source4: proftpd.logrotate
 Source5: welcome.msg
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig, /etc/init.d
 BuildRequires: pam-devel, perl, pkgconfig
+%{!?_without_tls:Requires: openssl}
 %{!?_without_tls:BuildRequires: openssl-devel, krb5-devel}
+%{?_with_ldap:Requires: openldap}
 %{?_with_ldap:BuildRequires: openldap-devel}
+%{?_with_mysql:Requires: mysql}
 %{?_with_mysql:BuildRequires: mysql-devel, zlib-devel}
+%{?_with_postgresql:Requires: postgresql-libs}
 %{?_with_postgresql:BuildRequires: postgresql-devel}
 Provides: ftpserver
 Conflicts: wu-ftpd, anonftp, vsftpd
-
-Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig, /etc/init.d
-%{!?_without_tls:Requires: openssl}
-%{?_with_ldap:Requires: openldap}
-%{?_with_mysql:Requires: mysql}
-%{?_with_postgresql:Requires: postgresql-libs}
 
 %description
 ProFTPD is an enhanced FTP server with a focus toward simplicity, security,
@@ -48,12 +44,14 @@ Available rpmbuild rebuild options :
 --without : tls
 --with : ldap mysql postgresql
 
+
 %prep
 %setup
 
+
 %build
 # Workaround for the PostgreSQL include file
-%{__perl} -pi.orig -e 's|pgsql/libpq-fe.h|libpq-fe.h|g' contrib/mod_sql_postgres.c
+%{__perl} -pi -e 's|pgsql/libpq-fe.h|libpq-fe.h|g' contrib/mod_sql_postgres.c
 
 # TLS includes
 OPENSSL_INC=""
@@ -65,28 +63,34 @@ if OPENSSL_CFLAGS=`pkg-config --cflags openssl`; then
 fi
 
 %configure \
-    --localstatedir=/var/run/%{name} \
+    --localstatedir=/var/run \
     --with-includes=%{_includedir}%{!?_without_tls:${OPENSSL_INC}}%{?_with_mysql::%{_includedir}/mysql} \
     %{?_with_mysql:--with-libraries=%{_libdir}/mysql} \
     %{?_with_postgresql:--with-libraries=%{_libdir}} \
     --with-modules=mod_readme:mod_auth_pam%{?_with_ldap::mod_ldap}%{?_with_mysql::mod_sql:mod_sql_mysql}%{?_with_postgresql::mod_sql:mod_sql_postgres}%{!?_without_tls::mod_tls}
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall rundir=%{buildroot}%{_localstatedir}/run/proftpd \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
-%{__install} -D -m0644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
-%{__install} -D -m0640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
-%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
-%{__install} -D -m0640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
-%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
-%{__install} -D -m0644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
-mkdir -p %{buildroot}/var/ftp/uploads
-mkdir -p %{buildroot}/var/ftp/pub
-mkdir -p %{buildroot}/var/log/proftpd
+%{__install} -D -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
+%{__install} -D -m 640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
+%{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
+%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
+%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
+%{__install} -D -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
+%{__mkdir_p} %{buildroot}/var/ftp/uploads
+%{__mkdir_p} %{buildroot}/var/ftp/pub
+%{__mkdir_p} %{buildroot}/var/log/proftpd
 touch %{buildroot}%{_sysconfdir}/ftpusers
+
+
+%clean
+%{__rm} -rf %{buildroot}
+
 
 %post
 if [ $1 = 1 ]; then
@@ -114,12 +118,11 @@ if [ $1 -ge 1 ]; then
     /sbin/service proftpd condrestart >/dev/null 2>&1
 fi
 
-%clean
-%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING CREDITS ChangeLog NEWS README* doc/* sample-configurations/
+%doc COPYING CREDITS ChangeLog NEWS README README.LDAP README.mod_sql
+%doc README.modules README.PAM doc/* sample-configurations
 %dir %{_localstatedir}/run/proftpd
 %config(noreplace) %{_sysconfdir}/proftpd.conf
 %config(noreplace) %{_sysconfdir}/xinetd.d/xproftpd
@@ -130,34 +133,34 @@ fi
 %{_mandir}/*/*
 %{_bindir}/*
 %{_sbindir}/*
-%dir /var/ftp/
-%dir /var/ftp/pub/
+%dir /var/ftp
+%attr(331, ftp, ftp) %dir /var/ftp/uploads
+%dir /var/ftp/pub
 %config(noreplace) /var/ftp/welcome.msg
+%attr(750, root, root) %dir /var/log/proftpd
 
-%defattr(0750, root, root, 0755)
-%dir /var/log/proftpd/
-
-%defattr(0331, ftp, ftp, 0755)
-%dir /var/ftp/uploads/
 
 %changelog
-* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.2.9-6.fr
+* Fri Feb 26 2004 Magnus-swe <Magnus-swe@telia.com> 1.2.9-7
+- Fixed the scoreboard and pidfile issues.
+
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.2.9-6
 - Pass /var/run/proftpd as localstatedir to configure to fix pid and
   scoreboard file problems.
 
-* Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-4.fr
+* Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-4
 - Fixed the MySQL include path, thanks to Jim Richardson.
 - Renamed the postgres conditional build to postgresql.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-3.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-3
 - Renamed the xinetd service to xproftpd to avoid conflict.
 - Only HUP the standalone proftpd through logrotate if it's running.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-2
 - Rebuild for Fedora Core 1.
 - Modified the init script to make it i18n aware.
 
-* Fri Oct 31 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-1.fr
+* Fri Oct 31 2003 Matthias Saou <http://freshrpms.net/> 1.2.9-1
 - Update to 1.2.9.
 
 * Wed Sep 24 2003 Matthias Saou <http://freshrpms.net/>
