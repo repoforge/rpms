@@ -31,7 +31,7 @@ Requires: gcc, gcc-c++
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
 %{?rh9:Requires: compat-gcc, compat-gcc-c++}
 %{?rh8:Requires: compat-gcc, compat-gcc-c++}
-BuildRequires: libgnome-devel
+BuildRequires: libgnome-devel, libgnomeui-devel
 
 %description
 distcc is a distributed compilation front-end.  It sends command lines

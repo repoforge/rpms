@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, vte-devel, libgnomeui-devel >= 2.0, gcc-c++
 BuildRequires: gtksourceview-devel >= 0.3, libglade2-devel >= 1.99
+BuildRequires: readline-devel, ncurses-devel
 
 %description
 Genius is an advanced calculator and a mathematical programming language.

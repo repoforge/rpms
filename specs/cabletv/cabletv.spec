@@ -30,8 +30,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm
 #BuildRequires: liblirc-devel 
 Requires: xawtv
-%{?_without_xorg:BuildRequires: XFree86-Mesa-libGLU}
-%{!?_without_xorg:BuildRequires: xorg-x11-Mesa-libGLU}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/ettercap/ettercap-NG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++
+BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap
 
 %description
 Ettercap is a multipurpose sniffer/interceptor/logger for switched

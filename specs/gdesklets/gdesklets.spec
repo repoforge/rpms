@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgtop2-devel >= 2.0.0, python-devel >= 2.0.0, gcc-c++
 BuildRequires: gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
+BuildRequires: perl(XML::Parser)
 Requires: python >= 2.2, gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
 
 %description
