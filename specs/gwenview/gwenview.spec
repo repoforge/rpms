@@ -47,8 +47,8 @@ make install \
 %{_datadir}/apps/gwenview
 %{_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
 %{_datadir}/icons/*/*/apps/gwenview.png
-%{_datadir}/locale/*/LC_MESSAGES/gwenview.mo
-%{_datadir}/man/man1/gwenview.1.gz
+# %{_datadir}/locale/*/LC_MESSAGES/gwenview.mo
+%{_datadir}/man/man1/gwenview*
 
 
 %changelog
