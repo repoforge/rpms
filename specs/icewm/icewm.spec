@@ -1,5 +1,8 @@
 # $Id$
 # Authority: dag
+# Upstream: <icewm-devel$lists,sourceforge,net>
+
+### FIXME: Building icewm adds build env. stuff inside /usr/share/icewm/menu (Jonathan Underwood)
 
 %{?dist: %{expand: %%define %dist 1}}
 
