@@ -3,7 +3,7 @@
 
 Summary: Compiler for the Scheme programming language
 Name: bigloo
-Version: 2.6d
+Version: 2.6e
 Release: 2
 License: LGPL/GPL
 Group: Development/Languages
@@ -58,6 +58,9 @@ programs.
 %{_datadir}/man/bigloo.1*
 
 %changelog
+* Mon Nov 01 2004 Dries Verachtert <dries@ulyssis.org> 2.6e-1
+- Update to release 2.6e.
+
 * Wed Jun 2 2004 Dries Verachtert <dries@ulyssis.org> 2.6d-2
 - renamed the file /usr/bin/afile to afile-bigloo to avoid a 
   conflict with afile from the package netatalk
