@@ -4,22 +4,21 @@
 #define prever         pre3
 %define desktop_vendor freshrpms
 
-Summary: powerful audio editor
+Summary: Powerful audio editor
 Name: audacity
 Version: 1.2.1
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sf.net/
-
 Source: http://dl.sf.net/audacity/audacity-src-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: wxGTK >= 2.4.0, libogg, libvorbis
+Requires: libmad, flac, libsndfile
 BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
 BuildRequires: wxGTK-devel >= 2.4.0, libogg-devel, libvorbis-devel
 BuildRequires: libmad-devel, flac-devel, libsndfile-devel, alsa-lib-devel
-Requires: wxGTK >= 2.4.0, libogg, libvorbis
-Requires: libmad, flac, libsndfile
+BuildRequires: autoconf
 
 %description
 Audacity is a free audio editor. You can record sounds, play sounds, import
@@ -30,15 +29,20 @@ editor, a customizable spectrogram mode and a frequency analysis window for
 audio analysis applications. Built-in effects include Bass Boost, Wahwah,
 and Noise Removal, and it also supports VST plug-in effects. 
 
+
 %prep
 %setup -n %{name}-src-%{version}%{?prever:-%{prever}}
 
+
 %build
+# This is required or the configure in that directory will fail (1.2.1)
+(cd lib-src/portaudio-v19/ && autoconf)
 %configure \
     --with-libsndfile=system \
     --with-portaudio=v19 \
     --without-portmixer
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -46,21 +50,20 @@ and Noise Removal, and it also supports VST plug-in effects.
 %find_lang %{name}
 
 # Create a desktop entry
-cat << EOF > %{name}.desktop
+%{__cat} << EOF > %{name}.desktop
 [Desktop Entry]
 Name=Audacity Audio Editor
 Comment=Audio editor to record, play sounds and import, export files
 Icon=%{name}.xpm
-Exec=%{_bindir}/%{name}
+Exec=%{name}
 Terminal=false
 Type=Application
 EOF
 
 # Complete the modifications
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
-    --add-category X-Red-Hat-Extra              \
     --add-category Application                  \
     --add-category AudioVideo                   \
     %{name}.desktop
@@ -69,8 +72,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__install} -D -m 644 images/AudacityLogo.xpm \
     %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -83,20 +88,21 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/%{name}.xpm
 %{_mandir}/man1/*
 
-%changelog
-* Tue Jun 01 2004 Dag Wieers <dag@wieers.com> - 1.2.1-1
-- Updated to release 1.2.1.
 
-* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2.fr
+%changelog
+* Tue Jun 01 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-1
+- Got 1.2.1 to build at last by running autoconf in the portaudio-v19 dir.
+
+* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2
 - Recompile with ALSA support (should be near stable now).
 
-* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-1.fr
+* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-1
 - Update to 1.2.0 final.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.2.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.2
 - Rebuild against gtk+ wxGTK to fix crashes with the gtk2 version.
 
-* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.1.fr
+* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.1
 - Update to 1.2.0pre3.
 - Added find_lang macro.
 - Updated the menu entry.
