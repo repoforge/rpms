@@ -5,9 +5,9 @@
 
 Summary: Ultima online server
 Name: uox
-Version: 0.97.6.9r
+Version: 0.97.06.9r
 %define mozilla_version 1.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.uox3.org/
@@ -66,11 +66,26 @@ dos2unix uox3/dfndata/*/*.dfn \
 	uox3/accounts/*/*.uad \
 	uox3/js/*.scp \
 	uox3/shared/*.wsc
+sed -i 's/DIRECTORY=\.\//DIRECTORY=\/usr\/share\/uox3\//g;' %{buildroot}/usr/share/uox3/uox.ini
 cat  > %{buildroot}/usr/bin/uox3-wrapper <<EOF
+echo All the datafiles are owned by user uox3
+echo and can be found in /usr/share/uox3
+echo You need to copy the *.mul and *.idx files  
+echo from UO to /usr/share/uox3/muldata/
+echo The configfile is /usr/share/uox3/uox.ini
+echo Do not forget to change the password of 
+echo you admin character.
 cd /usr/share/uox3
-uox3
+su -c "uox3" - uox
 EOF
 chmod +x %{buildroot}/usr/bin/uox3-wrapper
+mkdir -p %{buildroot}/usr/share/uox3/muldata
+
+%pre
+useradd -d %{_datadir}/uox3 -c "UOX Ultima Online Server" uox &>/dev/null || :
+
+%postun
+userdel uox &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -80,20 +95,22 @@ chmod +x %{buildroot}/usr/bin/uox3-wrapper
 %doc AUTHORS Changelog.txt COPYING INSTALL NEWS README README.Linux readme.txt
 %{_bindir}/uox3
 %{_bindir}/uox3-wrapper
-%config %{_datadir}/uox3/accounts/accounts.adm
-%config %{_datadir}/uox3/accounts/*/*.uad
-%config %{_datadir}/uox3/banlist.ini
-%config %{_datadir}/uox3/dfndata/*/*.dfn
-%config %{_datadir}/uox3/dfndata/*/*/*.dfn
-%config %{_datadir}/uox3/dfndata/*/*/*/*.dfn
-%config %{_datadir}/uox3/dfndata/*/*/*/*/*.dfn
-%config %{_datadir}/uox3/dfndata/items/gear/weapons/NOTE*
-%config %{_datadir}/uox3/js/*.scp
-%config %{_datadir}/uox3/js/*/*/*.js
-%config %{_datadir}/uox3/shared/*.wsc
-%config %{_datadir}/uox3/uox.ini
-%config %{_datadir}/uox3/dfndata/html/*.htf
+%defattr(-, uox, uox, 0755 )
+%config(noreplace) %{_datadir}/uox3/accounts/accounts.adm
+%config(noreplace) %{_datadir}/uox3/accounts/*/*.uad
+%config(noreplace) %{_datadir}/uox3/banlist.ini
+%config(noreplace) %{_datadir}/uox3/dfndata/*/*.dfn
+%config(noreplace) %{_datadir}/uox3/dfndata/*/*/*.dfn
+%config(noreplace) %{_datadir}/uox3/dfndata/*/*/*/*.dfn
+%config(noreplace) %{_datadir}/uox3/dfndata/*/*/*/*/*.dfn
+%config(noreplace) %{_datadir}/uox3/dfndata/items/gear/weapons/NOTE*
+%config(noreplace) %{_datadir}/uox3/js/*.scp
+%config(noreplace) %{_datadir}/uox3/js/*/*/*.js
+%config(noreplace) %{_datadir}/uox3/shared/*.wsc
+%config(noreplace) %{_datadir}/uox3/uox.ini
+%config(noreplace) %{_datadir}/uox3/dfndata/html/*.htf
 
+%{_datadir}/uox3/muldata
 %{_datadir}/uox3/dfndata/dfnupdates.txt
 %{_datadir}/uox3/dfndata/items/item-updates.txt
 %{_datadir}/uox3/logs/readme.txt
@@ -108,5 +125,8 @@ chmod +x %{buildroot}/usr/bin/uox3-wrapper
 %{_datadir}/uox3/js32.dll
 
 %changelog
+* Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> 0.97.6.9r-2
+- use a seperate user
+
 * Fri Apr 30 2004 Dries Verachtert <dries@ulyssis.org> 0.97.6.9r-1
 - initial package
