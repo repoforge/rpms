@@ -4,7 +4,7 @@
 Summary: Graphical user interface for the yum package manager
 Name: yumi
 Version: 2.0.7
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://www.cobind.com/yumgui.html
@@ -12,9 +12,8 @@ URL: http://www.cobind.com/yumgui.html
 Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-Requires: yum >= 2.0.7, pygtk2 >= 2.0
-BuildRequires: python, gettext
-Requires: usermode
+Requires: yum >= 2.0.7, pygtk2 >= 1.99, usermode
+BuildRequires: python, gettext, pygtk2 >= 1.99
 
 %description
 Graphical user interface for the yum package manager.
@@ -61,6 +60,10 @@ Graphical user interface for the yum package manager.
 
 
 %changelog
+* Fri Aug 06 2004 Dag Wieers <dag@wieers.com> - 2.0.7-2
+- Added missing usermode requirement.
+- Added BuildRequirement for pygtk2, to prevent building. (R. A. Rivas Diaz)
+
 * Tue Jun 15 2004 Matthias Saou <http://freshrpms.net> 2.0.7-1
 - Spec file cleanup and fixes.
 
