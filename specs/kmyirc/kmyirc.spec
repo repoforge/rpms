@@ -17,7 +17,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/kmyirc/kmyirc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libart_lgpl-devel, gettext, arts-devel, libjpeg-devel, libpng-devel, XFree86-devel, gcc, gcc-c++, make, kdelibs-devel, qt-devel, zlib-devel, XFree86-devel
+BuildRequires: libart_lgpl-devel, gettext, arts-devel, libjpeg-devel
+BuildRequires: libpng-devel, XFree86-devel, gcc, gcc-c++, make
+BuildRequires: kdelibs-devel, qt-devel, zlib-devel, XFree86-devel
 %{?fc2:BuildRequires:libselinux-devel}
 
 %description

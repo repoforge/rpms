@@ -17,7 +17,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://www.hansmatzen.de/software/kleds/kleds-%{version}.tar.bz2
-BuildRequires: gcc, gcc-c++, qt-devel, kdelibs-devel, XFree86-devel, zlib-devel, libart_lgpl-devel, make, arts-devel, gettext, libpng-devel, libjpeg-devel
+BuildRequires: gcc, gcc-c++, qt-devel, kdelibs-devel, XFree86-devel
+BuildRequires: zlib-devel, libart_lgpl-devel, make, arts-devel, gettext
+BuildRequires: libpng-devel, libjpeg-devel
 
 %description
 KLeds is a little program for the KDE Desktop Environment. It shows 
