@@ -2,12 +2,16 @@
 # Authority: dag
 # Upstream: <sm@sm-zone.net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define real_name TinyCA
 
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca
-Version: 0.6.1
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -63,7 +67,7 @@ EOF
 
 %find_lang %{name}
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 tinyca.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/tinyca.desktop
 %else   
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -82,13 +86,13 @@ EOF
 %config %{_sysconfdir}/tinyca/
 %{_bindir}/*
 %{_datadir}/tinyca/
-%if %{dfi}
-        %{_datadir}/gnome/apps/Utilities/*.desktop
-%else   
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/tinyca.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-tinyca.desktop}
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Sun May 23 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

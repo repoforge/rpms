@@ -10,7 +10,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.0.4
+Version: 1.0.5
 Release: 1
 License: BSD
 Group: Development/Tools
@@ -22,7 +22,9 @@ Source3: filter-requires.sh
 Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
+Patch4: subversion-1.0.2-blame.patch
 Patch5: subversion-r8822.patch
+Patch6: subversion-1.0.3-pie.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildPreReq: autoconf, libtool, python, python-devel, texinfo
@@ -80,7 +82,9 @@ This package includes the Perl bindings to the Subversion libraries.
 %patch1 -p1 -b .swig
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
+%patch4 -p1 -b .blame
 %patch5 -p1 -b .r8822
+%patch6 -p1 -b .pie
 
 rm -rf neon apr apr-util db4
 
@@ -192,8 +196,15 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_mandir}/man*/*::*
 
 %changelog
+* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
+
+* Fri May 21 2004 Joe Orton <jorton@redhat.com> 1.0.3-2
+- build /usr/bin/* as PIEs
+- add fix for libsvn_client symbol namespace violation (r9608)
 
 * Wed May 19 2004 Joe Orton <jorton@redhat.com> 1.0.3-1
 - update to 1.0.3

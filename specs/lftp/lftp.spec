@@ -3,9 +3,11 @@
 # Upstream: Alexander V. Lukyanov <lav@yars.free.net>
 # Upstream: <lftp-devel@uniyar.ac.ru>
 
+# Rationale: lftp 3.0+ supports sftp, http redirects and lots of important improvements
+
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.5
+Version: 3.0.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -58,6 +60,9 @@ reliability in mind.
 %{_libdir}/lftp/
 
 %changelog
+* Sat Jun 12 2004 Dag Wieers <dag@wieers.com> - 3.0.6-1
+- Updated to release 3.0.6.
+
 * Mon May 31 2004 Dag Wieers <dag@wieers.com> - 3.0.5-1
 - Updated to release 3.0.5.
 
