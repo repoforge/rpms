@@ -25,6 +25,8 @@ which in turn was derived from UOX3 V69.xx, which in turn ....Well,
 everything started with Cironian who created the first emulator back in
 1997.
 
+The server should be run as user 'lonewolf'.
+
 %prep
 %setup -n source_of_lonejoy/src
 
@@ -46,9 +48,29 @@ tar -C %{buildroot}/usr/share/lonewolf -xjvf %{SOURCE1}
 %clean
 %{__rm} -rf %{buildroot}
 
+%pre
+useradd -d %{_datadir}/lonewolf/lwscripts -c "Lonewolf Ultima Online Server" lonewolf &>/dev/null || :
+
+%postun
+userdel lonewolf &>/dev/null || :
+
 %files
 %defattr(-, root, root, 0755)
 %{_bindir}/lonewolf
+%exclude %{_datadir}/lonewolf/lwscripts/CVS
+%exclude %{_datadir}/lonewolf/lwscripts/rewrite/CVS
+
+%{_datadir}/lonewolf/lwscripts/ReadMe.txt
+%{_datadir}/lonewolf/lwscripts/Script_Updates.txt
+%{_datadir}/lonewolf/lwscripts/dummy.txt
+%{_datadir}/lonewolf/lwscripts/install.html
+
+%defattr(-, lonewolf, lonewolf, 0755)
+%config(noreplace)  %{_datadir}/lonewolf/lwscripts/*.scp
+%config(noreplace)  %{_datadir}/lonewolf/lwscripts/inscribe.gmp
+%config(noreplace)  %{_datadir}/lonewolf/lwscripts/rewrite/*.scp
+%config(noreplace)  %{_datadir}/lonewolf/lwscripts/sample-accounts.adm
+
 
 %changelog
 * Tue Mar 30 2004 Dries Verachtert 13.0.9-1
