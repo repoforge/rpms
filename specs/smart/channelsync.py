@@ -34,10 +34,8 @@ def syncChannels(channelsdir=CHANNELSDIR, force=None):
 
         seenalias = {}
 
-#       for entry in os.listdir(channelsdir):
-        for entry in glob.glob(channelsdir + '/*.channel'):
+        for filepath in glob.glob(channelsdir + '/*.channel'):
 
-            filepath = os.path.join(channelsdir, entry)
             if not os.path.isfile(filepath):
                 continue
 
