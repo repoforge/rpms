@@ -4,7 +4,7 @@
 
 Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
-Version: 2.0
+Version: 2.2
 Release: 1
 License: Distributable
 Group: System Environment/Kernel
@@ -56,6 +56,9 @@ done
 
 
 %changelog
+* Wed Feb  9 2005 Matthias Saou <http://freshrpms.net> 2.2-1
+- Update to 2.2, required by latest FC kernels.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net> 2.0-1
 - Update to 2.0.
 - Now put the files in /lib/firmware and symlinks in other dirs.
