@@ -16,7 +16,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: ftp://sunsite.unc.edu/pub/Linux/games/amusements/fortune/fortune-mod-9708.tar.gz
-Source1: kernelnewbies-fortunes.tar.gz
+Source1: http://www.kernelnewbies.org/kernelnewbies-fortunes.tar.gz
 Source2: bofh-excuses.tar.bz2
 # http://www.splitbrain.org/./Fortunes/starwars/
 Source3: http://www.splitbrain.org/Fortunes/starwars/fortune-starwars.tgz
