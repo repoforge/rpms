@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 
 Summary: Shows the status of the keyboard indicator LED's in the KDE Panel
@@ -7,7 +6,7 @@ Name: kleds
 Version: 0.8.0
 Release: 2
 License: GPL
-Group: X11/Utilities
+Group: User Interface/Desktops
 URL: http://www.hansmatzen.de/english/kleds.html
 
 Packager: Dries Verachtert <dries@ulyssis.org>

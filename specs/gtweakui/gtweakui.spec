@@ -6,8 +6,8 @@ Summary: Extra configuration dialogus for GNOME
 Name: gtweakui
 Version: 0.0.6
 Release: 2
-Group: User Interface/Desktop
 License: GPL
+Group: User Interface/Desktops
 URL: http://gtweakui.sourceforge.net/
 Source: http://dl.sf.net/gtweakui/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

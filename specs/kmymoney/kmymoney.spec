@@ -1,7 +1,5 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
 
 %define real_name kmymoney2
 
@@ -10,7 +8,7 @@ Name: kmymoney
 Version: 0.6
 Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/Productivity
 URL: http://kmymoney2.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>

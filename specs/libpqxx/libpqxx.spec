@@ -1,14 +1,12 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
 
 Summary: C++ client API for PostgreSQL
 Name: libpqxx
 Version: 2.2.3
 Release: 1
 License: BSD
-Group: Applications/
+Group: System Environment/Libraries
 URL: http://pqxx.tk/
 
 Packager: Dries Verachtert <dries@ulyssis.org>

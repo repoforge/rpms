@@ -1,23 +1,22 @@
 # $Id: muttprint.spec 171 2004-04-05 04:43:07Z bert $
-#
 # Authority: bert
-#
 # Upstream: <Bernhard.Walle@gmx.de>
-#
 
+Summary: pretty printing of mails with Mutt
 Name: muttprint
 Version: 0.72
 Release: 1	
 License: GPL
 Group: Applications/Mail
-Source: muttprint-%{version}.tar.gz
-BuildArch: noarch
 URL: http://muttprint.sourceforge.net/
+
 Packager: Bert de Bruijn <bert@debruijn.be)
-Requires: tetex >= 1.0 psutils perl
+
+Source: muttprint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Prefix: %{_prefix}
-Summary: pretty printing of mails with Mutt
+
+BuildArch: noarch
+Requires: tetex >= 1.0, psutils, perl
 
 %description
 Muttprint is a utility that formats the printing of Mutt and other mail clients
@@ -26,15 +25,14 @@ can print a little penguin on the first page and a headline on every page.
 Furthermore, it only prints the most important headers, but not the whole
 plethora of them.
 
-%build
-make
-
 %prep
 %setup
 
-%install
+%build
+%{__make} %{?_smp_mflags}
 
-rm -rf $RPM_BUILD_ROOT
+%install
+%{__rm} -rf %{buildroot}
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/%{name}/translations
 mkdir -p $RPM_BUILD_ROOT/%{_mandir}/man1

@@ -7,7 +7,7 @@ Name: dhcpdump
 Version: 1.6
 Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/Internet
 URL: http://sf.net/projects/mavetju/
 
 Packager: Dries Verachtert <dries@ulyssis.org>

@@ -1,14 +1,12 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
 
 Summary: Convert C++ code to latex 
 Name: cpp2latex
 Version: 2.3
 Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/Publishing
 URL: http://www.arnoldarts.de/cpp2latex.html
 
 Packager: Dries Verachtert <dries@ulyssis.org>

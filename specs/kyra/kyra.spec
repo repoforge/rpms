@@ -1,7 +1,5 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
 
 %define real_version 2_0_7
 
@@ -10,7 +8,7 @@ Name: kyra
 Version: 2.0.7
 Release: 2
 License: GPL
-Group: Development/LibrariesDevelopment/Libraries
+Group: Development/Libraries
 URL: http://grinninglizard.com/kyra/
 
 Packager: Dries Verachtert <dries@ulyssis.org>

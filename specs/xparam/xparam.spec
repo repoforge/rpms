@@ -6,7 +6,7 @@ Name: xparam
 Version: 1.22
 Release: 1
 License: GPL+Other
-Group: Applications/
+Group: System Environment/Libraries
 URL: http://xparam.sf.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>

@@ -23,9 +23,9 @@ ParaGUI is a cross-platform high-level application framework and GUI
 (graphical user interface) library. ParaGUI's cross-platform nature is
 completely based on the Simple DirectMedia Layer (SDL).
 
-%package -n %{name}-devel
+%package devel
 Summary: Headers for developing programs that will use paragui
-Group: Development/C
+Group: Development/Libraries
 Requires: %{name} = %{version} expat-devel
 Provides: %{name}-devel = %{version}-%{release}
 

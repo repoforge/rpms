@@ -1,14 +1,14 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
+
+# Screenshot: http://criticalmass.sourceforge.net/images-shaaft/shaaft02.jpg
 
 Summary: OpenGL 3D falling block game
 Name: shaaft
 Version: 0.5.0
 Release: 1
 License: GPL
-Group: Applications/
+Group: Amusements/Games
 URL: http://criticalmass.sourceforge.net/shaaft.php
 
 Packager: Dries Verachtert <dries@ulyssis.org>
@@ -24,8 +24,6 @@ runs on Linux and Windows. There is still a lot missing. No menu system,
 forgets highscore, some of the sound effects need work (Clearing a single
 plane sounds like a f*rt. Try clearing >1 plane, though...), etc. That said,
 I find it is very playable. Enjoy! 
-
-# Screenshot: http://criticalmass.sourceforge.net/images-shaaft/shaaft02.jpg
 
 %prep
 %setup -n Shaaft-%{version}
