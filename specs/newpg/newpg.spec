@@ -57,7 +57,7 @@ fi
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING ChangeLog NEWS README THANKS TODO VERSION
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_libdir}/newpg/
 
