@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.kyb.uni-stuttgart.de/boris/sw/fwlogwatch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, zlib-devel
+BuildRequires: flex, zlib-devel, gettext
 
 %description
 fwlogwatch produces Linux ipchains, Linux netfilter/iptables,
