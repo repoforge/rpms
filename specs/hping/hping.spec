@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 
-%define real_version 2.0.0-rc2
+%define real_version 2.0.0-rc3
 
 Summary: Command-line oriented TCP/IP packet assembler/analyzer
 Name: hping
 Version: 2.0.0
-Release: 0.rc2
+Release: 0.rc3
 License: GPL
 Group: Applications/Internet
 URL: http://www.hping.org/
@@ -26,7 +25,7 @@ ICMP and RAW-IP protocols, has a traceroute mode, the ability to
 send files between a covered channel, and many other features.
 
 %prep
-%setup -n %{name}2-rc2
+%setup -n %{name}2-rc3
 
 %build
 %configure
@@ -34,11 +33,10 @@ send files between a covered channel, and many other features.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man8
-%{__install} -m0755 hping2 %{buildroot}%{_sbindir}
+%{__install} -D -m0755 hping2 %{buildroot}%{_sbindir}/hping2
 %{__ln_s} -f hping2 %{buildroot}%{_sbindir}/hping
-%{__install} -m0755 docs/hping2.8 %{buildroot}%{_mandir}/man8
+%{__install} -D -m0755 docs/hping2.8 %{buildroot}%{_mandir}/man8/hping2.8
+%{__ln_s} -f hping2.8 %{buildroot}%{_mandir}/man8/hping.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,6 +48,9 @@ send files between a covered channel, and many other features.
 %{_sbindir}/*
 
 %changelog
+* Mon May 03 2004 Dag Wieers <dag@wieers.com> - 2.0.0-0.rc3
+- Updated to release 2.0.0-rc3.
+
 * Mon Oct 20 2003 Dag Wieers <dag@wieers.com> - 2.0.0-0.rc2
 - Updated to release 2.0.0-rc2.
 
