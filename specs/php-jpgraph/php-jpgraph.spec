@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://jpgraph.techuk.com/jpgraph/downloads/jpgraph-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildArch: noarch
 Requires: webserver, php

@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 ### FIXME: Source URL isn't clear about the filename, fails for wget and rpm. (Please fix upstream)
 #Source: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/download.php?file=libds-%{version}.tar.bz2
 Source: libds-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Shared Library for Data Structures.

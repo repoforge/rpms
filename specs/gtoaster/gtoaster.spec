@@ -18,8 +18,8 @@ Source1: gtoaster.desktop
 Source2: gtoaster.console
 Source3: gtoaster.pam
 Source4: gtoaster.png
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: audiofile-devel gnome-libs-devel ORBit-devel
 Requires: cdrecord cdrdao mkisofs cdda2wav sox mpg321

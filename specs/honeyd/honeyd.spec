@@ -18,8 +18,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Honeyd is a small daemon that creates virtual hosts on a network.

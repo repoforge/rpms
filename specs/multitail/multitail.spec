@@ -15,7 +15,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.vanheusden.com/multitail/%{name}-%{version}.tgz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, ncurses-devel
 Requires: ncurses
 

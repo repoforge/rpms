@@ -15,7 +15,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/lincity/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Requires:  
 BuildRequires: gcc make
 

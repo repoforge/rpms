@@ -14,7 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://kombat.kajaani.net/dl/kajaani_kombat_v%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL
 
 # Screenshot: http://kombat.kajaani.net/ss/07.png

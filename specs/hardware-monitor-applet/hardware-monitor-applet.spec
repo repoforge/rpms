@@ -18,8 +18,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.cs.auc.dk/~olau/hardware-monitor/source/hardware-monitor-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtkmm2 >= 2.0.0, libgnomemm2 >= 1.3.9, libgnomeuimm2 >= 1.3.11
 BuildRequires: libglademm2 >= 2.0.0, libgnomecanvasmm2 >= 2.0.0, gconfmm2 >= 2.0.1

@@ -13,8 +13,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://prdownloads.sourceforge.net/gaim/%{name}-%{version}.tar.bz2
 Patch0: gaim-prefs.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtk2 >= 2.0, gtkspell-devel, libao-devel
 BuildRequires: mozilla-nss, mozilla-nss-devel

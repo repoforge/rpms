@@ -19,8 +19,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://fixounet.free.fr/avidemux/avidemux-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.0.0
 BuildRequires: nasm >= 0.98.32

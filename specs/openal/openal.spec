@@ -20,8 +20,8 @@ Source9999: openal-20030131-32.spec.bak
 Patch0: openal-conf.patch
 Patch1: openal-etc_openalrc.patch
 Patch2: openal-incl.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: SDL-devel, arts-devel, esound-devel, libogg-devel, libvorbis-devel
 BuildRequires: texinfo

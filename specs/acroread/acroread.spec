@@ -18,8 +18,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{rversion}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ExclusiveArch: i386
 BuildRequires: perl

@@ -13,8 +13,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://savannah.nongnu.org/download/synaptic/synaptic.pkg/%{version}/%{name}-%{version}.tar.gz
 #Patch0: synaptic-0.36.1-sectver.patch
 #Patch1: synaptic-0.36.1-candver.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0, gtk2-devel, libglade2-devel
 BuildRequires: libstdc++-devel

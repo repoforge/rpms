@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.gz
 Patch0: http://ftp.debian.org/debian/pool/non-free/z/zoo/zoo_2.10-9.diff.gz
 Patch1: zoo-2.10-tempfile.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 zoo is a file archiving utility for maintaining collections of files. 

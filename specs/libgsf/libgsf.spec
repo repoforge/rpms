@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.acc.umu.se/pub/GNOME/sources/%{name}/1.6/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gnome-vfs2-devel >= 2.0.0, libbonobo-devel >= 2.0.0
 BuildRequires: gtk-doc >= 0.9 %{?rh80:, orbit-python-devel} %{?rh90:, pyorbit-devel}

@@ -20,8 +20,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.kill-9.org/mbrowse/mbrowse-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtk+-devel >= 1.2
 %{?rhfc1:BuildRequires: net-snmp-devel >= 4.2}

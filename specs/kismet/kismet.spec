@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://www.kismetwireless.net/code/kismet-%{version}.tar.gz
 Source1: http://www.kismetwireless.net/code/configure
 Patch0: http://www.kismetwireless.net/code/kismet-feb.04.01.diff.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: ImageMagick-devel, ncurses-devel
 

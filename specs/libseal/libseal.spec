@@ -20,8 +20,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://files1.sonicspot.com/sealsdk/%{rname}%{rversion}.zip
 Patch: libseal-1.07-debian.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: unzip
 

@@ -35,8 +35,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ips-%{rversion}.tgz
 Source1: ips-Makefile
 Source2: ips-kernel-ver.c
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 

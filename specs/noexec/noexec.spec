@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/noexec/noexec-%{version}.tar.gz
 BuildRoot: %{_builddir}/root-%{name}-%{version}
-Prefix: %{_prefix}
+
 
 %description
 You want to run a process which will be unable to create a child

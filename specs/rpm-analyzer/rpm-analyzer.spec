@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.maisondubonheur.com/rpm-analyzer/dl/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildArch: noarch
 BuildRequires: pygtk2, python2, rpm-python, rhpl, libxml2-python

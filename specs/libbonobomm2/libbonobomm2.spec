@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gtkmm/libbonobomm-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtkmm2-devel >= 2.0, libbonobo-devel >= 2.0, ORBit2-devel >= 2.0
 BuildRequires: orbitcpp >= 1.3

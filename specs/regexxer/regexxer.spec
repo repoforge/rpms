@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.com/regexxer/regexxer-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: glib2-devel >= 2.0.7, gtk2-devel >= 2.0
 BuildRequires: libsigc++-devel >= 1.2, gtkmm2-devel >= 2.0

@@ -13,8 +13,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{rversion}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: autoconf, automake, libpng-devel >= 1.0.8, libjpeg-devel
 BuildRequires: libdv-devel, libogg-devel, libvorbis-devel

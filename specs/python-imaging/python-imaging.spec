@@ -23,8 +23,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.pythonware.com/downloads/Imaging-%{version}.tar.gz
 Source1: Imaging-doc.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildPreReq: libjpeg-devel >= 6b, zlib-devel >= 1.1.2, libpng-devel >= 1.0.1, tk
 Requires: python >= %{pyver}, libjpeg >= 6b, zlib >= 1.1.2, libpng >= 1.0.1

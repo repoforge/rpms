@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://dl.sf.net/zinf/zinf-%{version}.tar.gz
 Source1: zinf-2.2.3-zinf.png
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: nasm, gtk2-devel, gdk-pixbuf-devel, ORBit-devel, libstdc++-devel, gdbm-devel
 BuildRequires: zlib-devel, ncurses-devel, libogg-devel, libvorbis-devel, libmusicbrainz-devel

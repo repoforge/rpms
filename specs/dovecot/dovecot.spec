@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dovecot.procontrol.fi/dovecot-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Prereq: /usr/sbin/useradd, /usr/sbin/usermod
 BuildRequires: openssl-devel

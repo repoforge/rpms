@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://ftp.ibp.fr/pub/networking/bing-%{version}.tar.gz
 Patch0: bing.diff
 Patch1: bing.rh6.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 bing computes point-to-point throughput using two sizes of ICMP ECHO_REQUEST

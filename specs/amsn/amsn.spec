@@ -26,8 +26,8 @@ Source: http://dl.sf.net/amsn/amsn-%{rversion}.tar.gz
 Source2: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-linux-x86.tar.gz
 Patch: amsn-0.83-makefile.patch
 Patch1: amsn-0.83-login.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ExclusiveArch: i386
 %{?rhfc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}

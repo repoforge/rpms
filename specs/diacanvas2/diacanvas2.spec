@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/diacanvas/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: glib2-devel >= 2.0, libart_lgpl-devel >= 2.0, pango-devel >= 1.2
 BuildRequires: libgnomecanvas-devel >= 2.0, libgnomeprintui-devel >= 1.116

@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.i2pi.com/smunge/%{name}-%{rversion}.tar.gz
 Patch: smunge-hostent.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: openldap-devel
 

@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.cpan.org/authors/id/N/NE/NEDKONZ/Archive-Zip-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl(Compress::Zlib) >= 1.08

@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.monkey.org/~dugsong/dsniff/%{name}-%{version}.tar.gz
 #Patch: %{name}-%{version}.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libnet > 1.0, libnids >= 1.16, openssl-devel >= 0.9.5a
 

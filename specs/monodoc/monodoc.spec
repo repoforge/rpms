@@ -14,8 +14,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.go-mono.org/archive/monodoc-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: mono-devel, gtk-sharp
 Requires: mono >= 0.30, gtkhtml3 >= 3.0, libglade2-devel, gtk2-devel, 

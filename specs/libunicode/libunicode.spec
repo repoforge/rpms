@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.pango.org/download/%{name}-%{version}.tar.gz
 Patch0: libunicode-0.4-64bit.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf, libtool
 

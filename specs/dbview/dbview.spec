@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/%{name}-%{version}.tar.gz
 Patch: dbview-patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Dbview is a little tool that will display dBase III and IV files.

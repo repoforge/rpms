@@ -5,9 +5,9 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: The Mono CIL runtime, suitable for running .NET code.
+Summary: Mono CIL runtime, suitable for running .NET code.
 Name: mono
-Version: 0.30.2
+Version: 0.31
 Release: 0
 License: LGPL
 Group: System Environment/Base
@@ -18,8 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://www.go-mono.com/archive/mono-%{version}.tar.gz
 #Source1: http://www.go-mono.com/archive/mcs-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: bison, glib2-devel, libxml2-devel, libxslt-devel
 BuildRequires: pkgconfig, icu, libicu-devel
@@ -163,7 +163,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING.LIB NEWS README doc/
+%doc AUTHORS ChangeLog COPYING.LIB NEWS README web/
 %doc %{_mandir}/man1/mcs.*
 %doc %{_mandir}/man1/mono.*
 %doc %{_mandir}/man1/mint.*
@@ -182,28 +182,42 @@ fi
 %doc docs/
 %doc %{_mandir}/man5/*
 %doc %{_mandir}/man1/cert2spc.*
+%doc %{_mandir}/man1/certmgr.*
+%doc %{_mandir}/man1/chktrust.*
 %doc %{_mandir}/man1/cilc.*
 %doc %{_mandir}/man1/disco.*
 %doc %{_mandir}/man1/genxs.*
 %doc %{_mandir}/man1/ilasm.*
+%doc %{_mandir}/man1/makecert.*
 %doc %{_mandir}/man1/monodis.*
 %doc %{_mandir}/man1/monoburg.*
+%doc %{_mandir}/man1/monop.*
 %doc %{_mandir}/man1/monostyle.*
+%doc %{_mandir}/man1/secutil.*
+%doc %{_mandir}/man1/setreg.*
+%doc %{_mandir}/man1/signcode.*
+%doc %{_mandir}/man1/sn.*
 %doc %{_mandir}/man1/soapsuds.*
 %doc %{_mandir}/man1/sqlsharp.*
 %doc %{_mandir}/man1/wsdl.*
 %{_bindir}/al*
+%{_bindir}/cert2spc*
+%{_bindir}/certmgr*
 %{_bindir}/chktrust*
 %{_bindir}/cilc*
 %{_bindir}/disco*
 %{_bindir}/genxs*
 %{_bindir}/ilasm*
+%{_bindir}/MakeCert*
+%{_bindir}/makecert*
 %{_bindir}/monodis
 %{_bindir}/monograph
 %{_bindir}/monoresgen*
 %{_bindir}/monosn
 %{_bindir}/pedump
+%{_bindir}/resgen*
 %{_bindir}/secutil*
+%{_bindir}/setreg*
 %{_bindir}/signcode*
 %{_bindir}/sn
 %{_bindir}/soapsuds*
@@ -218,6 +232,9 @@ fi
 #exclude %{_libdir}/*.la
 
 %changelog
+* Fri Mar 19 2004 Dag Wieers <dag@wieers.com> - 0.31-0
+- Updated to release 0.31.
+
 * Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 0.30.2-0
 - Updated to release 0.30.2.
 

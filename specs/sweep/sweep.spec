@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/sweep/sweep-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: tdb-devel >= 1.0.6, libsndfile-devel >= 1.0.1, libmad-devel
 BuildRequires: gtk+-devel >= 1.2.0, libvorbis-devel, speex-devel

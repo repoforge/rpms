@@ -14,9 +14,9 @@ URL: http://www.mat.univie.ac.at/~gerald/ftp/autoupdate/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: ftp://ftp.mat.univie.ac.at/pub/teschl/autoupdate/autoupdate-%{version}-1.tar.gz
-Prefix: %{_prefix}
+
 
 BuildArch: noarch
 Requires: perl >= 0:5.00503, rpm, sh-utils, perl(Net::FTP), perl(DB_File)

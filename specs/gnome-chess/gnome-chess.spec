@@ -24,8 +24,8 @@ Patch0: gnome-chess-mime.patch.bz2
 Patch1: gnome-chess-0.3.3-quit.patch.bz2
 ### Fix scrollkeeper file to be DTD compliant
 Patch2: gnome-chess-0.3.3-scrollkeeper.patch.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: flex, gdk-pixbuf-devel, gnome-print-devel, libglade-devel, scrollkeeper
 

@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://web2.altmuehlnet.de/fschmid/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: qt-devel >= 3.0, XFree86-devel
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, libtiff-devel

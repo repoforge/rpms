@@ -18,8 +18,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.luminal.org/files/imms/%{rname}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: XFree86-devel, glib-devel, gtk+-devel, id3lib-devel
 BuildRequires: libogg-devel, pcre-devel, libstdc++-devel,

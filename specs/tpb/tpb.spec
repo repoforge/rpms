@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://savannah.nongnu.org/download/tpb/%{name}-%{version}.tar.gz
 #Source1: tpbrc
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gettext, XFree86-devel, xosd-devel >= 2.0
 

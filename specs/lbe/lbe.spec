@@ -19,8 +19,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www-unix.mcs.anl.gov/~gawor/ldapcommon/bin/%{rname}%{rversion}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Requires: j2re >= 1.2.2
 

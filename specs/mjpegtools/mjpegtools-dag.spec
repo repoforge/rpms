@@ -12,8 +12,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://prdownloads.sourceforge.net/mjpeg/mjpegtools-%{version}.tar.gz
 Source1: http://prdownloads.sourceforge.net/mjpeg/quicktime4linux-1.4-patched-2.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: SDL-devel, libjpeg-devel, libpng-devel, gtk+-devel, libdv-devel
 BuildRequires: avifile-devel, libmovtar-devel

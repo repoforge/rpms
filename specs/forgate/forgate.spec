@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://forgate.sf.net/forgate-%{rversion}.tgz
 BuildRoot: %{buildroot}/root-%{name}-%{version}
-Prefix: %{_prefix}
+
 
 BuildRequires: libnet >= 1.1
 Requires: libnet >= 1.1

@@ -20,8 +20,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/%{name}-%{version}.tar.gz
 Patch: php-rrdtool-config.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: php-devel, tcl-devel, perl
 

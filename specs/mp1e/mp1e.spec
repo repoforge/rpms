@@ -14,8 +14,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/zapping/mp1e-%{version}.tar.bz2
 Patch0: mp1e-1.9.3-common.patch
-Buildroot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: esound-devel, audiofile-devel
 #BuildRequires: alsa-lib-devel >= 0.9.0

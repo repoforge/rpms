@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.cs.tu-berlin.de/pub/local/kbs/tubmik/gsm/%{name}-%{version}.tar.gz
 Patch: gsm-makefile-dag.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Contains runtime shared libraries for libgsm, an implementation of

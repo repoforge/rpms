@@ -14,7 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://gambas.sourceforge.net/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Patch0: makefiles-destdir.patch.bz2
 Patch0: dont-make-links.patch.bz2
 BuildRequires: automake, autoconf, gcc, make, qt-devel, mysql-devel, postgresql-devel

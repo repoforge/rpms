@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: gtk-perl-list@gnome.org
+# Upstream: <gtk-perl-list@gnome.org>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
@@ -10,7 +10,7 @@
 
 Summary: Perl interface to the 2.x series of the Gimp Toolkit library.
 Name: perl-Gtk2
-Version: 1.023
+Version: 1.040
 Release: 0
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -20,8 +20,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gtk2-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: perl >= 0:5.8.0, perl(Glib) >= 1.0.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig)
 BuildRequires: gtk2-devel >= 2.0.0
@@ -56,11 +56,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog Changes LICENSE MANIFEST README TODO examples/ gtk-demo/
+%doc AUTHORS ChangeLog LICENSE MANIFEST NEWS README TODO examples/ gtk-demo/
 %doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 1.040-0
+- Updated to release 1.040.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.023-0
 - Updated to release 1.023.
 

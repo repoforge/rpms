@@ -20,8 +20,8 @@ Source1: http://downloads.mozdev.org/enigmail/src/ipc-1.0.5.tar.gz
 Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.83.3.tar.gz
 Source3: thunderbird-icon.png
 Patch0: mozilla-1.4-x86_64.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel

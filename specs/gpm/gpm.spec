@@ -27,8 +27,8 @@ Patch10: gpm-1.20.1-norepeater.patch
 Patch11: gpm-1.20.1-weak-wgetch.patch
 Patch12: gpm-1.20.1-math.patch
 Patch13: gpm-1.20.1-nodebug.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildPrereq: sed gawk texinfo
 Prereq: /sbin/chkconfig /sbin/ldconfig /sbin/install-info

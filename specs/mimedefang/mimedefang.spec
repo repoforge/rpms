@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.roaringpenguin.com/mimedefang/mimedefang-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: sendmail-devel > 8.12.0, perl-Mail-SpamAssassin
 BuildRequires: perl-Digest-SHA1, perl-MIME-tools, perl-IO-stringy, perl-MailTools

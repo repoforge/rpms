@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://ipsc.sf.net/dist/ipsc/ipsc-%{version}-src.tar.gz
 Source1: http://ipsc.sf.net/dist/prips/prips-0.9.4-src.tar.gz
 Patch0: ipsc-0.4.3-gcc33.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 The IP Subnet Calculator is a tool that allows network administrators 

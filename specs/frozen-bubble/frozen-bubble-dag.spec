@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://frozenbubble.free.fr/fb/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: perl-SDL, SDL-devel, SDL_mixer-devel >= 1.2.2
 Requires: perl(SDL), SDL >= 1.2, SDL_mixer >= 1.2.2

@@ -14,8 +14,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/jamboree/%{version}/jamboree-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtk2-devel >= 2.2.0, libgnomeui-devel >= 2.0.0, libglade2-devel >= 2.0.0
 BuildRequires: gstreamer-devel >= 0.6.2, libogg-devel >= 1.0, libvorbis-devel >= 1.0

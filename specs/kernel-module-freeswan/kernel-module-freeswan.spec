@@ -36,8 +36,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: ftp://ftp.xs4all.nl/pub/crypto/freeswan/freeswan-%{rversion}.tar.gz
 Source1: http://www.strongsec.com/freeswan/x509-1.5.2-freeswan-%{rversion}.tar.gz
 Patch0: freeswan-2.05-mts.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libpcap, gmp-devel
 

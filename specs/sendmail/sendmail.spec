@@ -63,8 +63,8 @@ Patch12: sendmail-8.12.9-sec.patch
 Patch13: sendmail-8.12.9-security.patch
 Patch14: sendmail-8.12.9-security2.patch
 
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gdbm-devel
 %if %{errata} > 62
 # RHL7.0 only had cyrus-sasl, but an errata also provides cyrus-sasl-devel

@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://muine.gooeylinux.org/muine-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: glib2-devel, mono-devel, gtk-sharp-devel >= 0.17, gstreamer-devel
 BuildRequires: gstreamer-plugins-devel, libvorbis-devel, libid3tag-devel, flac-devel

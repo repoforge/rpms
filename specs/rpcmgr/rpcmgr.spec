@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://perso.club-internet.fr/farzeno/dvds/rpcmgr11.c
 Patch: http://perso.club-internet.fr/farzeno/dvds/rpcmgr12.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 #BuildRequires: 
 

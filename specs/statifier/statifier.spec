@@ -5,7 +5,7 @@
 
 Summary: Convert dynamicly-linked ELF binaries into to "pseudo-static" binaries.
 Name: statifier
-Version: 1.0.0
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/statifier/statifier-%{version}.tar.gz
 BuildRoot: %{_builddir}/root-%{name}-%{version}
-Prefix: %{_prefix}
+
 
 ExclusiveArch: i386
 Requires: binutils, gawk, gdb >= 5.2, sed
@@ -57,5 +57,8 @@ to drag all it's libraries.
 %{_libdir}/statifier/
 
 %changelog
+* Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Initial package. (using DAR)

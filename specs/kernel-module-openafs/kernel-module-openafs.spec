@@ -42,8 +42,8 @@ Source0: http://www.openafs.org/dl/openafs/%{version}/openafs-%{version}-src.tar
 Source5: openafs-CellServDB
 Source6: openafs-afsmodname
 Patch0: openafs-1.2.9-rc.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 #BuildRequires: kernel-source %{!?rh62:, pam-devel}
 Requires: kernel-module-openafs = %{version}

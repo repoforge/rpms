@@ -17,8 +17,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.imendio.com/pub/imendio/gossip/src/gossip-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtk2-devel >= 2.0.4, libxslt-devel, libglade2-devel >= 2.0.0
 BuildRequires: loudmouth

@@ -1,10 +1,11 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <monitgroup@tildeslash.com>
 
 Summary: Process monitor and restart utility.
 Name: monit
-Version: 4.1.1
+Version: 4.2.0
 Release: 0
 License: GPL
 Group: Applications/Internet
@@ -13,9 +14,8 @@ URL: http://www.tildeslash.com/monit/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.tildeslash.com/monit/dist/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+Source: http://www.tildeslash.com/monit/dist/monit-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Monit is an utility for monitoring daemons or similar programs running on
@@ -121,9 +121,8 @@ EOF
 	BINDIR="%{buildroot}%{_bindir}" \
 	MANDIR="%{buildroot}%{_mandir}/man1/"
 
-%{__install} -d -m0755 %{buildroot}%{_initrddir}
-%{__install} -m0755 monit.sysv %{buildroot}%{_initrddir}/monit
-%{__install} -m0600 monitrc %{buildroot}%{_sysconfdir}/monit.conf
+%{__install} -D -m0755 monit.sysv %{buildroot}%{_initrddir}/monit
+%{__install} -D -m0600 monitrc %{buildroot}%{_sysconfdir}/monit.conf
 
 %post
 /sbin/chkconfig --add monit
@@ -149,6 +148,9 @@ fi
 %{_bindir}/*
 
 %changelog
+* Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 4.2.0-0
+- Updated to release 4.2.0.
+
 * Sun Nov 23 2003 Dag Wieers <dag@wieers.com> - 4.1.1-0
 - Updated to release 4.1.1.
 

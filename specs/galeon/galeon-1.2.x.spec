@@ -14,8 +14,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/galeon/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: mozilla-devel >= 1.3, gtk+-devel >= 1.2.9, libxml-devel >= 1.8.14
 BuildRequires: gnome-libs-devel >= 1.2.11, libglade-devel >= 0.13, glib-devel, 

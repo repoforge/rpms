@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-Prefix: %{_prefix}/games/armagetron
+/games/armagetron
 
 Summary: A multiplayer OpenGL 'Tron' racing game clone.
 Name: armagetron

@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://download.hexonet.com/software/rfb/%{name}-%{version}.tar.gz
 Patch: rfb-0.6.1-rpmoptflags.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %{?rhfc1:BuildRequires: compat-gcc-c++}
 %{?rhel3:BuildRequires: compat-gcc-c++}

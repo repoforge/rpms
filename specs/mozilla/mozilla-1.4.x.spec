@@ -54,8 +54,8 @@ Patch28: mozilla-1.4.1-ppc64.patch
 Patch29: mozilla-1.4-prdtoa.patch
 Patch30: mozilla-1.4.1-js-thaw.patch
 Patch31: mozilla-1.4.1-gtk2-clipboard.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ### Removed compat-gcc-c++, compat-libstdc++-devel, compat-gcc
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, zip, perl, autoconf

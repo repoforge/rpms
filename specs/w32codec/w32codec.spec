@@ -26,8 +26,8 @@ Source5: http://ftp.lug.udel.edu/MPlayer/releases/codecs/rp9codecs.tar.bz2
 Source6: http://ftp.lug.udel.edu/MPlayer/releases/codecs/xanimdlls.tar.bz2
 Source7: http://ftp.lug.udel.edu/MPlayer/releases/codecs/mjpeg2kdlls.tar.bz2
 Source8: http://ftp.lug.udel.edu/MPlayer/releases/codecs/dmocodecs.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 W32 Codec package for MPlayer on x86 UNIX systems.

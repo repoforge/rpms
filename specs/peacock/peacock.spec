@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/peacock/peacock-%{version}.tar.gz
 #Patch: peacock-1.9.1-rh.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libgnomeui-devel >= 2.0.0
 BuildRequires: libbonoboui-devel >= 2.0.0

@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://michael.toren.net/code/%{name}/%{name}-%{version}.tar.gz
 Patch: tcptraceroute-1.4-gcc33.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libnet <= 1.0.2, libpcap
 

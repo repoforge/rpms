@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.procyon.com/~pda/lphdisk/%{name}-%{version}.tar.gz
 Patch: lphdisk-0.9.1-gcc33.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 lphdisk is a linux reimplementation of the PHDISK.EXE (DOS) utility provided

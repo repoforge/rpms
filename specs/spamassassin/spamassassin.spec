@@ -26,8 +26,8 @@ Source5: spamassassin.sysconfig
 Source10: spamassassin-helper.sh
 Source99: filter-requires-spamassassin.sh
 Patch0: spamassassin-2.60-servicename.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildArch: %{_arch}
 Prereq: /sbin/chkconfig, /sbin/service

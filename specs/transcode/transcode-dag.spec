@@ -14,8 +14,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://zebra.fh-weingarten.de/~transcode/pre/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: avifile-devel >= 0.6.0, ImageMagick-devel >= 5.4.3, lame-devel >= 3.89
 BuildRequires: libogg-devel, libvorbis-devel, libdvdread-devel, libdv-devel

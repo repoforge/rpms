@@ -18,8 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
 Source1: lyx-icon.png
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: qt-devel 
 Requires: qt >= 2.2.1, tetex-xdvi, tetex, tetex-latex

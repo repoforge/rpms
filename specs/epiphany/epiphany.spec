@@ -17,8 +17,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/epiphany/1.2/epiphany-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: mozilla-devel = %{mversion}, gtk2-devel, libbonoboui-devel >= 2.1.1
 BuildRequires: scrollkeeper, nautilus

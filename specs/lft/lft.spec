@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://mainnerve.com/lft/%{name}-%{version}.tar.gz
 #Patch: %{name}-install.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libpcap
 Obsoletes: fft

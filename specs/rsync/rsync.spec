@@ -20,8 +20,8 @@ Source:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
 Patch0: rsync-2.5.4-maxdel.patch
 Patch1: rsync-2.4.6-segv.patch
 Patch2: rsync-2.5.6-moresignage.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Rsync uses a reliable algorithm to bring remote and host files into

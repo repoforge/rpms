@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/denemo/denemo-%{rversion}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix} 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+ 
 
 %description
 Denemo is a graphical music notation program written in C with

@@ -18,8 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ios.free.fr/goom/devel/goom-%{version}-src.tgz
 Patch: goom-1.99.4-gcc3.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: xmms-devel, SDL-devel, gtk+-devel
 

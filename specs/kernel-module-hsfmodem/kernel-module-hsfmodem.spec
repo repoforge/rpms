@@ -34,8 +34,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.linuxant.com/drivers/hsf/free/archive/hsfmodem-%{rversion}/hsfmodem-%{rversion}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ExclusiveArch: athlon i686 i586 i386
 BuildRequires: kernel-source, pciutils

@@ -18,8 +18,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/%{version}/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: pkgconfig >= 0.8, glib2-devel >= 2.0, ncurses-devel
 BuildRequires: libxml2-devel, libxslt-devel >= 1.0.9

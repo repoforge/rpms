@@ -20,8 +20,8 @@ Patch1: gst-plugins-0.4.2-pthread-includes.patch
 #Patch2: gstreamer-plugins-0.5.0-libdirfix.patch
 #Patch3: gstreamer-plugins-0.6.0-fPIC.patch
 #Patch4: gstreamer-plugins-0.6.0-noffmpeg.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: glib2-devel >= 2.0.0
 BuildRequires: gstreamer-devel = %{version}, libjpeg-devel, SDL-devel >= 1.2.0

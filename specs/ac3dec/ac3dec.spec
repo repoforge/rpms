@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://gusnet.cx/aaron/codecs/tarballs/ac3dec-%{version}.tar.gz
 Patch0: ac3dec-0.6.1-libac3-memcpy.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Free AC-3 stream decoder. See also a52dec.

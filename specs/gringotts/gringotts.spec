@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://devel.pluto.linux.it/projects/Gringotts/current/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildPrereq: gtk2-devel, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig
 #Requires: gtk2, bash, popt, textutils, libgringotts >= 1.1.1

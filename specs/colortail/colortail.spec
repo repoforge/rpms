@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.student.hk-r.se/~pt98jan/%{name}-%{version}.tar.gz
 Patch: colortail-0.3.0-gcc3.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Colortail is a log colorizer that makes log checking easier. It works

@@ -20,8 +20,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.speech.kth.se/~kare/%{rname}%{version}.tar.gz
 Source1: http://www.speech.kth.se/~kare/ogg.tar.gz
 Source2: http://www.speech.kth.se/~kare/sphere.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: tcl-devel
 Obsoletes: snack-ogg, snack-sphere

@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/bochs/bochs-%{version}.tar.gz
 #Source1: http://bochs.sourceforge.net/guestos/dlxlinux4.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Bochs is a portable x86 PC emulation software package that emulates enough of

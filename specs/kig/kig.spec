@@ -14,7 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: ftp://ftp.kde.org/pub/kde/stable/apps/KDE3.x/math/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires:	libjpeg-devel, libpng-devel, arts-devel, kdelibs-devel gcc, make, gcc-c++, XFree86-devel, zlib-devel, qt-devel
 Requires: kdelibs
 #todo: needed for python scripting

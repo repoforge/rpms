@@ -18,8 +18,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.ofset.org/%{name}/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: flex, bison, gmp-devel >= 2.0.2, glib-devel, gtk+-devel
 BuildRequires: guile-devel, gnome-libs-devel, gob >= 1.0.10, libxml-devel

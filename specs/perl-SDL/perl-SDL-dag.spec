@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://sdlperl.org/SDL_perl/%{rname}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel, SDL_ttf-devel
 BuildRequires: perl, libjpeg-devel, libpng-devel, smpeg-devel

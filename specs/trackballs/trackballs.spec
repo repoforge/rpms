@@ -14,7 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://heanet.dl.sourceforge.net/sourceforge/trackballs/trackballs-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: guile, guile-devel, SDL
 
 #(d) primscreenshot: http://trackballs.sourceforge.net/pic1.jpg

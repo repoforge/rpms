@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.digital.com/pub/Digital/SRC/x2x/x2x-1.27.tar.gz
 Patch: http://ftp.debian.org/debian/pool/main/x/x2x/x2x_1.27-8.diff.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: XFree86-devel
 

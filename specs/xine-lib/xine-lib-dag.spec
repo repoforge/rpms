@@ -19,8 +19,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://prdownloads.sourceforge.net/xine/%{name}-%{libver}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Requires: zlib, libvorbis, SDL, glut, libmng
 %{?_with_rte:Requires: rte}

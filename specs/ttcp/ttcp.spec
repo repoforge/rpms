@@ -18,8 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://it-div-cs.web.cern.ch/it-div-cs/public/projects/atm/ttcp.c
 Source1: ftp://ftp.sgi.com/sgi/src/ttcp/ttcp.1
 Source2: ftp://ftp.sgi.com/sgi/src/ttcp/README
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 The TTCP program is used to do memory to memory performance measurements

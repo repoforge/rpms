@@ -13,8 +13,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://bluefish.openoffice.nl/download/%{name}-%{version}.tar.bz2
 Patch: bluefish-0.9-makefile.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtk2-devel >= 2.0.6, pcre-devel >= 3.9
 

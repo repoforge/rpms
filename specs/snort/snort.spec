@@ -22,8 +22,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.snort.org/releases/snort-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet = 1.0.2
 BuildRequires: pcre-devel, perl

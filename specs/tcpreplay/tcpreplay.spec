@@ -1,13 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <tcpreplay-users@lists.sourceforge.net>
 
-##Distcc: 0
-
-Summary: A tool to replay captured network traffic.
+Summary: Replay captured network traffic.
 Name: tcpreplay
-Version: 2.0.1
-Release: 0
+Version: 2.0.3
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://tcpreplay.sf.net/
@@ -16,10 +15,9 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: libnet >= 1.1.0
+BuildRequires: libnet >= 1.1.0
 
 %description
 Tcpreplay is a tool to replay captured network traffic.  Currently, tcpreplay
@@ -55,6 +53,9 @@ capture files.
 %{_sbindir}/*
 
 %changelog
+* Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 2.0.3-1
+- Updated to release 2.0.3.
+
 * Sat Feb 07 2004 Dag Wieers <dag@wieers.com> - 2.0.1-0
 - Updated to release 2.0.1.
 

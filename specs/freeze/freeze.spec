@@ -13,8 +13,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.std.com/src/util/freeze%{version}/freeze-%{version}.tar.gz
 Patch: freeze-2.5.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Freeze is an old file compressor and decompressor that is not in

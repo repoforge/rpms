@@ -23,8 +23,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://dl.sf.net/gemu/%{name}-%{version}.tar.gz
 Source1: http://dl.sf.net/emu10k1/emu10k1-v0.20a.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 The purpose of Gemu is to control sound cards based on the EMU10K1

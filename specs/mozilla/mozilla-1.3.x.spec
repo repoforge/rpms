@@ -44,8 +44,8 @@ Patch13: mozilla-nspr-packages.patch
 Patch14: mozilla-default-plugin-less-annoying.patch
 Patch17: mozilla-buildid-title.patch
 Patch22: mozilla-1.4-x86_64.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ### Removed compat-gcc-c++, compat-libstdc++-devel, compat-gcc
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, zip, perl, autoconf

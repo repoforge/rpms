@@ -17,8 +17,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://savannah.nongnu.org/download/moz-bonobo/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: mozilla-devel >= 1.0, mozilla-nspr-devel >= 1.0
 BuildRequires: gtk2-devel >= 2.0, glib2-devel >= 2.0, pango-devel >= 1.0.0

@@ -25,8 +25,8 @@ Patch: bind-9.1.0b1-reverse.patch
 Patch1: bind-9.1.0b1-varrun.patch
 Patch3: bind-9.1.3rc2-key.patch
 Patch4: bind-9.1.3-ttl.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildPrereq: tar >= 1.13.18
 Requires(pre,preun): shadow-utils

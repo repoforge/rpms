@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.cheeseplant.org/pub/%{name}-%{version}.tar.gz
 Source1: %{name}.1
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description 
 Metacam is an utility to read and decode metadata from digital camera

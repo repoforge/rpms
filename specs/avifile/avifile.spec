@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/avifile/avifile-0.7-%{version}.tar.gz
 #Source: http://dl.sf.net/avifile/avifile-%{version}-%{date}.tgz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libstdc++-devel
 BuildRequires: qt-devel >= 2.1.0, SDL-devel >= 1.1.3, esound-devel

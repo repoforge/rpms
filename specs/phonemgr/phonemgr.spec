@@ -18,8 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://usefulinc.com/software/phonemgr/releases/phonemgr-%{version}.tar.gz
 Patch0: phonemgr-0.2.1-orbit2.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libgnomemm2-devel, libgnomeuimm2-devel, ORBit2-devel
 BuildRequires: gsmlib-devel, gnome-bluetooth

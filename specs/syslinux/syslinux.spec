@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/%{name}-%{rversion}.tar.bz2
 #Patch: syslinux-2.04-x86_64.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 #Autoreq: 0
 ExclusiveArch: i386 x86_64

@@ -23,8 +23,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.teledanmark.no/pub/www/proxy/squidGuard/squidGuard-%{version}.tar.gz
 Source1: guard-distrib.tar.gz
 Patch0: squidguard-1.2.0-db4.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: bison, flex, perl
 %{?rhfc1:BuildRequires: db4-devel}

@@ -20,8 +20,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.redhead.dk/download/pub/Xkobo/%{name}-%{rversion}.tar.gz
 Patch0: %{name}-%{rversion}-imake.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Xkobo is a arcade video game for X11. The goal is to

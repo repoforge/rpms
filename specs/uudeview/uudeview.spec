@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.fpx.de/fp/Software/UUDeview/download/%{name}-%{version}.tar.gz
 Patch: %{name}-shared.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: autoconf, libtool
 BuildRequires: tetex-dvips, tetex-latex, transfig

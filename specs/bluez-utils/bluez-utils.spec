@@ -27,8 +27,8 @@ Patch7: bluez-utils-2.3-tmpfile.patch
 Patch8: bluez-utils-2.5-dbus.patch
 Patch10: bluez-utils-2.3-conf.patch
 Patch11: bluez-utils-2.3-status.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ExcludeArch: s390 s390x
 BuildRequires: bluez-libs-devel >= 2.0

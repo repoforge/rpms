@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cpan.org/authors/id/E/ER/ERYQ/%{rname}-%{version}a.tar.gz
 Patch: http://www.roaringpenguin.com/mimedefang/mime-tools-patch.txt
 Patch1: MIME-Tools.diff
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildArch: noarch
 BuildRequires: perl(IO::Stringy) >= 1.211, perl-MailTools

@@ -20,8 +20,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.lokigames.com/pub/open-source/smpeg/%{rname}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: xmms-devel, gtk+-devel >= 1.2.7, SDL-devel >= 1.1.5, smpeg-devel >= 0.4.1
 

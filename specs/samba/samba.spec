@@ -44,8 +44,8 @@ Patch16: samba-2.2.2-smbadduser.patch
 Patch17: samba-2.2.8-smb.conf.patch
 Patch20: samba-3.0.0beta1-pipedir.patch
 Patch24: samba-3.0.0-logfiles.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Requires: pam >= 0.64, samba-common = %{version}-%{release}
 Requires: logrotate >= 3.4, initscripts >= 5.54-1 

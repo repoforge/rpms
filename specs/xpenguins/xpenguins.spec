@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://xpenguins.seul.org/%{name}-%{version}.tar.gz
 Source1: http://xpenguins.seul.org/%{name}_themes-1.0.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 XPenguins animates a friendly family of penguins in your root window.

@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.mozilla.org/pub/mozilla.org/js/js-%{rversion}.tar.gz
 Patch0: js-make.patch
 Patch1: js-shlib.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 JavaScript is the Netscape-developed object scripting languages.

@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://bluez.sf.net/download/bluez-bluefw-%{version}.tar.gz
 Source1: pcmcia-includes.tar.gz
 Patch0: bluez-bluefw-0.9-path.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ExcludeArch: s390 s390x
 BuildRequires: glibc-devel >= 2.2.4

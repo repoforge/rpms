@@ -20,8 +20,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/vnc-tight/tightvnc-%{version}_unixsrc.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildPrereq: /usr/bin/perl, tcp_wrappers
 BuildRequires: zlib-devel, libjpeg-devel

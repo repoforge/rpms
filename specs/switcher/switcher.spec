@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://www.atoker.com/switcher/switcher-%{version}.tar.gz
 Source1: egg-sharp.dll
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: mono, gtk-sharp
 ### Prevent building on systems with older XFree86 without Xrandr

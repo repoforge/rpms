@@ -31,8 +31,8 @@ URL: http://linux-ntfs.sf.net/info/redhat.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 

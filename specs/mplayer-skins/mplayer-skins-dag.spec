@@ -38,8 +38,8 @@ Source24: http://mplayerhq.hu/MPlayer/Skin/softgrip-1.0.tar.bz2
 Source25: http://mplayerhq.hu/MPlayer/Skin/trium-1.0.tar.bz2
 Source26: http://mplayerhq.hu/MPlayer/Skin/xanim-1.5.tar.bz2
 Source27: http://mplayerhq.hu/MPlayer/Skin/xine-lcd-1.0.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildArch: noarch
 Requires: mplayer >= 0.90

@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smpeg/%{name}-%{version}.tar.gz
 Patch0: smpeg-0.4.4-gcc32.patch
 Patch1: smpeg-0.4.4-fixes.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: SDL-devel, gtk+-devel
 #BuildRequires: automake14

@@ -9,7 +9,7 @@ Group: System Environment/Daemons
 License: GPL
 URL: http://www.hadess.net/misc-code.php3
 Source: http://www.hadess.net/files/software/%{name}/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel >= 2.0.0, libglade2-devel >= 2.0.0
 BuildRequires: libwnck-devel, startup-notification-devel, gettext
 

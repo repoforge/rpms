@@ -13,8 +13,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://prdownloads.sourceforge.net/ffmpeg/%{name}-%{rversion}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: imlib2-devel, libvorbis-devel, a52dec-devel, lame-devel, zlib-devel
 BuildRequires: faad2-devel, imlib2-devel

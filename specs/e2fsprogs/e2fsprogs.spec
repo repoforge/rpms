@@ -23,8 +23,8 @@ Patch2: e2fsprogs-1.27-nostrip.patch
 Patch4: e2fsprogs-1.32-mainframe.patch
 Patch5: e2fsprogs-1.32-s390.patch
 Patch6: e2fsprogs-1.32-nosync.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Prereq: /sbin/ldconfig
 

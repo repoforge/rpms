@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.acc.umu.se/pub/GNOME/sources/gtkhtml/3.0/%{rname}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libgal >= 2.2
 #Requires: gtk2 >= 2.2.2, libxml2 >= 2.5.7, gnome-vfs2 >= 2.3.5, gail >= 1.3.3

@@ -19,8 +19,8 @@ Source: http://www.fping.com/download/%{name}-%{rversion}.tar.gz
 Patch0: fping-ac_fixes.patch
 Patch1: fping-ipv6.patch
 Patch2: fping-ipv6-ac.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: autoconf, automake
 

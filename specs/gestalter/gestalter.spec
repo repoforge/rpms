@@ -14,8 +14,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.linotux.ch/gestalter/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtk+-devel >= 1.2.0, gnome-libs >= 1.4.0, gnomemm >= 1.2.1
 #BuildRequires: glib-devel >= 1.2.0 %{?rh73:, gtkmm-devel >= 1.2.0, gnomemm-devel >= 1.2.1} %{?rh80:, gtkmm2-devel >= 2.0.0, gnomemm-devel >= 2.0.0}

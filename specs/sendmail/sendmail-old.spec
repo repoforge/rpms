@@ -54,9 +54,9 @@ Patch5: sendmail-8.12.2-movefiles.patch
 Patch7: sendmail-8.12.5-pid.patch
 Patch9: sendmail-8.12.7-hesiod.patch
 Patch10: sendmail-8.12.7-manpage.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gdbm-devel
-Prefix: %{_prefix}
+
 %if %{errata} > 62
 %if %{errata} <= 70
 BuildRequires: cyrus-sasl

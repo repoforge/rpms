@@ -17,8 +17,8 @@ Source0: ftp://ftp.fu-berlin.de/pub/unix/graphics/plan/%{name}-%{version}.tar.gz
 Source1: netplan
 Source2: plan.wmconfig
 Patch0: plan-%{version}-configure.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: openmotif-devel, byacc
 Requires: openmotif

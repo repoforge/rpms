@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://linux-ha.org/download/%{name}-%{version}.tar.gz
 Patch0: ldirectord.passwd.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: glib-devel, lynx, perl, iputils, /usr/bin/ssh, openssl-devel, libnet
 Requires: sysklogd

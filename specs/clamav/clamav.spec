@@ -18,8 +18,8 @@ Source1: http://dl.sf.net/clamav/clamav-%{version}.tar.gz.sig
 Source2: clamav.init
 Source3: clamav-milter.init
 Patch0: clamav-0.67-config.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: bzip2-devel, zlib-devel
 %{?milter:BuildRequires: sendmail-devel >= 8.12}

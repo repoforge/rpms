@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source:	http://www.sqlite.org/sqlite-%{version}.tar.gz
 Patch0: sqlite-2.8.12-encode.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: readline-devel
 %{?rhfc1:BuildRequires: tcllib}

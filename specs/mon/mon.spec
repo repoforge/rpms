@@ -19,8 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: ftp://ftp.kernel.org/pub/software/admin/mon/mon-%{version}.tar.bz2
 Source1: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/cgi-bin/mon.cgi/mon.cgi-%{moncgi_version}.tar.bz2
 Source2: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/all-alerts.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Mon is a general-purpose resource monitoring system.  It can be used

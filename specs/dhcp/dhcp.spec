@@ -32,8 +32,8 @@ Patch105: dhcp-3.0pl1-ntp.patch
 Patch106: dhcp-3.0pl1-minires.patch
 Patch107: dhcp-3.0pl1-hops.patch
 Patch108: dhcp-3.0pl1-ntpscript.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Prereq: /sbin/chkconfig
 Requires: kernel >= 2.2.18

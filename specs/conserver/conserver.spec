@@ -8,8 +8,8 @@
 
 Summary: Serial console server daemon/client.
 Name: conserver
-Version: 8.1.2
-Release: 0
+Version: 8.1.3
+Release: 1
 License: BSD style
 Group: System Environment/Daemons
 URL: http://www.conserver.com/
@@ -18,8 +18,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.conserver.com/conserver-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Conserver is an application that allows multiple users to watch a
@@ -30,22 +29,20 @@ bells and whistles to accentuate that basic functionality.
 %prep
 %setup
 
-%build
 ### FIXME: We don't want to install the solaris conserver.rc file.
 %{__perl} -pi.orig -e 's|^.*conserver\.rc.*$||' conserver/Makefile.in
+
+%build
 %configure \
 	--with-master="console"
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_initrddir}
-%{__install} -m0644 conserver.cf/conserver.cf %{buildroot}%{_sysconfdir}
-%{__install} -m0600 conserver.cf/conserver.passwd %{buildroot}%{_sysconfdir}
-%{__install} -m0755 contrib/redhat-rpm/conserver.init %{buildroot}%{_initrddir}/conserver
+%{__install} -D -m0644 conserver.cf/conserver.cf %{buildroot}%{_sysconfdir}/conserver.cf
+%{__install} -D -m0600 conserver.cf/conserver.passwd %{buildroot}%{_sysconfdir}/conserver.passwd
+%{__install} -D -m0755 contrib/redhat-rpm/conserver.init %{buildroot}%{_initrddir}/conserver
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_datadir}/examples/
@@ -78,6 +75,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 8.1.3-1
+- Updated to release 8.1.3.
+
 * Sat Mar 13 2004 Dag Wieers <dag@wieers.com> - 8.1.2-0
 - Updated to release 8.1.2.
 

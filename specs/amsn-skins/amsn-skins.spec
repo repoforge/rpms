@@ -22,8 +22,8 @@ Source3: http://dl.sf.net/amsn/MSN.zip
 Source4: http://dl.sf.net/amsn/Tux.zip
 Source5: http://dl.sf.net/amsn/Fluox.zip
 Source6: http://dl.sf.net/amsn/aMac.zip
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 Requires: amsn >= 0.90
 

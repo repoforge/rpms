@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/arc521e.pl8.tar.Z
 Patch: arc-5.21e-timeh.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 Arc file archiver and compressor. Long since superseded by zip/unzip

@@ -15,8 +15,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.burtonini.com/computing/sound-juicer-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: libmusicbrainz-devel >= 2.0.1, libgnomeui-devel >= 2.0.0
 BuildRequires: glib2-devel >= 2.0.0, gstreamer-devel >= 0.6.1

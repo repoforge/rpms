@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.dillo.org/download/dillo-%{version}.tar.bz2
 Source1: dillo48.png
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: gtk+-devel, zlib-devel, libjpeg-devel
 Provides: webclient

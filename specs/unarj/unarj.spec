@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.ibiblio.org/pub/Linux/utils/compress/unarj-%{rversion}.tar.gz
 Patch: unarj-subdir.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 %description
 The UNARJ program is used to uncompress .arj format archives.  The

@@ -19,8 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PV/PVANDRY/%{rname}-%{version}.
 Patch0: gettext-1.01-fix-example-in-README.patch.bz2
 Patch1: gettext-1.01-includes.patch.bz2
 Patch2: gettext-1.01-add-iconv.patch.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503

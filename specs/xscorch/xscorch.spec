@@ -5,10 +5,10 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A clone of the classic DOS game, "Scorched Earth".
+Summary: Clone of the classic DOS game, "Scorched Earth".
 Name: xscorch
-Version: 0.1.15
-Release: 0
+Version: 0.2.0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://chaos2.org/xscorch/
@@ -16,9 +16,8 @@ URL: http://chaos2.org/xscorch/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://chaos2.org/%{name}/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+Source: http://chaos2.org/xscorch/xscorch-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2
 
@@ -32,6 +31,17 @@ destroy yours.
 %prep
 %setup
 
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Scorched Earth
+Comment=%{summary}
+Icon=xscorch.xpm
+Exec=xscorch
+Terminal=false
+Type=Application
+Categories=Application;Game;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -39,39 +49,24 @@ destroy yours.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 img/xscorch-icon.xpm %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
-
-cat <<EOF >gnome-%{name}.desktop
-[Desktop Entry]
-Name=Scorched Earth
-Comment=%{summary}
-Icon=xscorch.xpm
-Exec=%{_bindir}/%{name}
-Terminal=false
-Type=Application
-EOF
+%{__install} -D -m0644 img/xscorch-icon.xpm %{buildroot}%{_datadir}/pixmaps/xscorch.xpm
 
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Games/
-	%{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Games/
+	%{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Games/%{name}.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor gnome                \
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category Game                        \
 		--dir %{buildroot}%{_datadir}/applications \
-		gnome-%{name}.desktop
+		%{name}.desktop
 %endif
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man6/*
+%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/xscorch/
 %{_datadir}/pixmaps/*
@@ -82,8 +77,11 @@ EOF
 %endif
 
 %changelog
-* Wed Feb 12 2003 Dag Wieers <dag@wieers.com> - 1.91-1
+* Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 0.2.0-1
+- Updated to release 0.2.0.
+
+* Wed Feb 12 2003 Dag Wieers <dag@wieers.com> - 0.1.15-1
 - Added .desktop file.
 
-* Sun Jan 19 2003 Dag Wieers <dag@wieers.com> - 1.91-0
+* Sun Jan 19 2003 Dag Wieers <dag@wieers.com> - 0.1.15-0
 - Initial package. (using DAR)

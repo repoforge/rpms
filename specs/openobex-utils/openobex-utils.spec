@@ -17,8 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://dl.sf.net/openobex/openobex-apps-%{version}.tar.gz
 Source1: http://www.frasunek.com/sources/unix/obexserver.c
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: openobex-devel
 Obsoletes: openobex-apps <= %{release}

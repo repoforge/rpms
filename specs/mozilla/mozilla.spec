@@ -52,8 +52,8 @@ Patch29: mozilla-1.4-prdtoa.patch
 
 Patch1001: mozilla-1.6-gtk2xtbin.patch
 
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 ### Removed compat-gcc-c++, compat-libstdc++-devel, compat-gcc
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, zip, perl, autoconf

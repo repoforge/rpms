@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.gnome.org/pub/gnome/sources/libsoup/1.99/%{name}-%{version}.tar.bz2
 Patch: libsoup-1.99.26-fix.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: glib2-devel, openssl-devel, gnutls-devel >= 0.8.10, libgcrypt-devel >= 1.1.12
 Obsoletes: soup <= %{version}

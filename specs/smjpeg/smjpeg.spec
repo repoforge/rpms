@@ -15,8 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smjpeg/%{name}-%{version}.tar.gz
 Patch: smjpeg-0.2.1-fixes.patch
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: SDL-devel
 

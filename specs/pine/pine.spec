@@ -54,7 +54,7 @@ Patch34: pine-4.33-sendmail-options.patch
 Patch36: pine-4.44-overflow.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-Prefix: %{_prefix}
+
 
 BuildRequires: perl, ncurses-devel
 BuildRequires: openssl-devel, openldap-devel, krb5-devel

@@ -29,8 +29,8 @@ Source2: keytab-lilo.c
 #Patch10: lilo-21.4.4-2DAC960.patch
 #Patch100: lilo-21.4.4-lvm.patch
 
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: tetex-latex, fileutils, tetex-dvips
 %{!?rhfc1:BuildRequires: dev86}

@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://apt.leapster.org/src/remedial/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: avifile-devel >= 0.7.7, expat-devel
 BuildRequires: qt-devel >= 2.1.0, libvorbis-devel, libao-devel, libmad-devel

@@ -16,8 +16,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.imendio.com/projects/drwright/download/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: pango-devel >= 1.0.99, gtk2-devel >= 2.0.4, GConf2-devel >= 1.2.0
 BuildRequires: libglade2-devel >= 2.0.0, fontconfig

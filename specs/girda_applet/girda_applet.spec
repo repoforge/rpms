@@ -14,8 +14,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/girda/girda-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: glib-devel, gtk+-devel >= 1.2.9, gnome-libs-devel >= 1.2.11, ORBit-devel >= 0.5.7
 BuildRequires: gdk-pixbuf-devel >= 0.11, libglade-devel >= 0.14

@@ -40,8 +40,8 @@ Source26: nethelp-ko.tar.bz2
 # Japanese fix
 Source30: ns-bogus-locale.tgz
 Source31: font.properties.ja
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 
 BuildRequires: bzip2
 
