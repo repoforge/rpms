@@ -51,13 +51,10 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
+desktop-file-install --vendor gnome --delete-original \
+	--add-category X-Red-Hat-Base                 \
+	--dir %{buildroot}%{_datadir}/applications    \
 	regexxer.desktop
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_datadir}/applications/regexxer.desktop
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -68,11 +65,11 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*.png
+%{_bindir}/regexxer
+%{_datadir}/applications/gnome-regexxer.desktop
+%{_datadir}/pixmaps/regexxer.png
 
 %changelog
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.7-1
