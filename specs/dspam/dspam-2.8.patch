@@ -1,0 +1,1567 @@
+Index: dspam/addspam.sh
+diff -c /dev/null dspam/addspam.sh:1.2.4.1
+*** /dev/null	Thu Dec  4 14:04:48 2003
+--- dspam/addspam.sh	Sat Nov 15 20:40:53 2003
+***************
+*** 0 ****
+--- 1,26 ----
++ #!/bin/sh
++ 
++ die() {
++   echo `date '+%b%d %H:%M:%S'` "$*" >&2
++   exit 1
++ }
++ 
++ log() {
++   echo `date '+%b%d %H:%M:%S'` "$*" >&2
++ }
++ 
++ action="--`basename $0 .sh`"
++ log dspam -d $user $action
++ 
++ exec >>/var/log/dspam.log 2>&1
++ 
++ read from || die "No input"
++ set - $from
++ envfrom="$2"
++ IFS="@"
++ set - $envfrom
++ user="$1"
++ domain="$2"
++ [ "$domain" = "yourcompany.com" ] || die "Invalid source domain: $domain"
++ log dspam -d $user $action
++ /usr/local/bin/dspam -d $user $action || die "DSPAM error"
+Index: dspam/dspam.html
+diff -c /dev/null dspam/dspam.html:1.1.2.3
+*** /dev/null	Thu Dec  4 14:04:49 2003
+--- dspam/dspam.html	Thu Dec  4 12:42:40 2003
+***************
+*** 0 ****
+--- 1,406 ----
++ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
++ <html>
++ <head>
++ <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
++ <title>Dspam RPM and libdspam</title>
++ </head><body>
++ 
++ <P ALIGN="CENTER"><A HREF="http://www.anybrowser.org/campaign/">
++ <IMG SRC="/art/brain1.gif"
++ ALT="Viewable With Any Browser" BORDER="0"></A>
++ 
++ <img src="/art/banner_4.gif"
++ 	width="468" height="60" border="0" usemap="#banner_4" alt="Your vote?">
++ <map name="banner_4">
++   <area shape="rect" coords="330,25,426,59"
++   	href="http://www.sepschool.org/survey/" alt="Vote NO">
++   <area shape="rect" coords="234,28,304,57"
++   	href="http://sepschool.org/" alt="Vote YES">
++ </map>
++ 
++ </P>
++ 		<h1 align=center>libdspam</h1>
++ <h3 align=center>Bayesian Message Filtering <br>
++ 			or<br>
++ 		    RPMs for DSPAM<br>
++ 		        with<br>
++ 		  support for libdspam</h3>
++ <h4 align=center>
++   by <a href="mailto:%73%74%75%61%72%74%40%62%6D%73%69%2E%63%6F%6D">
++   Stuart D. Gathman</a><br>
++ This web page is written by Stuart D. Gathman<br>and<br>sponsored by
++ <a href="http://www.bmsi.com">Business Management Systems, Inc.</a> <br>
++ Last updated Nov 22, 2003</h4>
++ 
++ <a href="#download">Downloads</a>,<a href="#bugs">Bugs</a>
++ 
++ <p>
++ This project maintains RPM packages for the
++ excellent 
++ <a href="http://www.nuclearelephant.com/projects/dspam/">DSPAM</a> project
++ provided by
++ <a href="mailto:j%6F%6E%61%74h%61%6E%40%6E%65%74work%64w%65%65%62%73%2E%63%6F%6D">Jonathan A. Zdziarski</a>, and attempts to support the libdspam
++ API.  It has been split off from a 
++ <a href="/python/dspam.html">project to wrap libdspam for Python</a>.
++ Neither BMS or Stuart Gathman are affiliated with Jonathan Zdziarski 
++ or <a href="http://networkdweebs.com/">Network Dweebs</a>, except as
++ enthusiastic users of their free product.  Dspam was chosen because
++ it provides a library with a C API in addition to a complete LDA based
++ spam filtering application.  Python applications use the C API through
++ an extension module.
++ <p>
++ What is DSPAM?  Here is an excerpt from
++ the DSPAM project README:
++ 
++ <blockquote>
++ <a href="http://www.nuclearelephant.com/projects/dspam/">DSPAM</a> is an
++ open-source, freely available anti-spam solution designed to combat
++ unsolicited commercial email using Baye's theorem of combined probabilities.
++ The result is an administratively maintenance free system capable of learning 
++ each user's email behaviors with very few false positives.
++ <p>
++ DSPAM can be implemented in one of two ways:
++ <ol>
++ <li> The DSPAM mailer-agent provides server-side spam filtering, quarantine
++ box, and a mechanism for forwarding spams into the system to be automatically
++ analyzed.
++ <li>Developers may link their projects to the dspam core engine (libdspam) in
++ accordance with the GPL license agreement.  This enables developers to
++ incorporate libdspam as a "drop-in" for instant spam filtering within their
++ applications - such as mail clients, other anti-spam tools, and so on.
++ </ol>
++ Many of the ideas incorporated into this agent were contributed by Paul
++ Graham's excellent 
++ <a href="http://paulgraham.com/spam.html">
++ white paper on combatting SPAM</a>.
++ Many new approaches have also been implemented by DSPAM.
++ </blockquote>
++ <p>
++ 
++ <h2> Dspam RPM </h2>
++ 
++ To make using dspam as convenient as possible, I provide
++ an RPM for dspam, which uses the source code from Network Dweebs largely
++ unchanged. RPM by its nature uses pristine sources from the vendor,
++ and applies patches for any necessary local changes.
++ In dspam-2.6, I added an entry point for tokenizing
++ a message.  The patches included in the RPM have this change (not
++ yet added to 2.8) and
++ some bug fixes not yet fixed in the official source.  In addition,
++ there are some C unit tests to make sure bugs stay fixed.
++ The C unit tests use the 
++ <a href="http://check.sourceforge.net">check project</a>.  The RPM build
++ procedure does not attempt to build or run the unit tests, so the check
++ framework is not needed to build the RPM.  If you wish to verify
++ dspam, you need to install the source RPM and build from the spec
++ file.  Then go to the build directory and run <code>make -f maketest</code>.
++ 
++ <h3> Configuring DSPAM after installing the RPM </h3>
++ 
++ The RPM automatically installs cron entries for dspam_purge and dspam_clean
++ in the <code>/etc/cron.weekly</code> and <code>/etc/cron.daily</code>
++ directories.  There are two versions of dspam installed.  The name
++ <code>dspam</code> is symlinked to <code>dspam.optout</code> by default.  
++ Dspam processing is disabled for user 'bob' when there is a file
++ name <code>bob.nodspam</code> in <code>/var/lib/dspam</code>.  
++ If <code>dspam</code> is
++ symlinked to <code>dspam.optin</code> instead, then dspam always
++ delivers mail without despamming unless the name <code>bob.dspam</code> exists.
++ 
++ <h4> Activating DSPAM to work with sendmail </h4>
++ 
++ The RPM installs a 'dspam' local mailer macro for sendmail-cf.  To activate
++ dspam for the version of sendmail included with RedHat, simply replace
++ <code>MAILER(local)</code>
++ with <code>MAILER(dspam)</code> in <code>/etc/mail/sendmail.mc</code>, then
++ regenerate <code>sendmail.cf</code> (instructions are in the comments at the
++ top of <code>sendmail.mc</code>).
++ <p>
++ Dspam users report missed spams and false positives to a mail alias.
++ For sendmail, aliases are typically in <code>/etc/aliases</code> or
++ <code>/etc/mail/aliases</code>.  The RPM installs two scripts
++ which can be used for generic aliases.  Add two lines like the
++ following to sendmail aliases and run <code>newaliases</code>:
++ <pre>
++ spam: "|/usr/local/bin/addspam"
++ ham: "|/usr/local/bin/falsepositive"
++ </pre>
++ 
++ <h4> Using DSPAM with procmail </h4>
++ 
++ Dspam can be used as a filter by passing it the '--stdout' option.
++ This can be used in <code>.procmailrc</code> as an alternate form
++ of "optin".
++ 
++ <h4> Activating the DSPAM CGI script </h4>
++ 
++ The RPM installs the CGI interface in the <code>/var/www/cgi-bin/dspam</code>
++ directory.  A wrapper script is installed as
++ <code>/var/www/cgi-bin/dspam.cgi</code>.  The wrapper script runs the
++ DSPAM CGI interface as the <code>dspam</code> user - which is also a member
++ of the <code>mail</code> group.
++ <p>
++ To enable the CGI interface, you need to add an authorization entry
++ to <code>/etc/httpd/conf/httpd.conf</code>.  For example,
++ <pre>
++     ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
++ 
++     #
++     # "/var/www/cgi-bin" should be changed to whatever your ScriptAliased
++     # CGI directory exists, if you have that configured.
++     #
++     &lt;Directory "/var/www/cgi-bin"&gt;
++ 	AuthName Dspam
++ 	AuthType Basic
++ 	AuthUserFile /etc/httpd/conf/passwd
++ 	AuthGroupFile /etc/httpd/conf/group
++ 	Require group dspam
++         AllowOverride None
++         Options None FollowSymLinks
++         Order allow,deny
++         Allow from all
++     &lt;/Directory&gt;
++ </pre>
++ 
++ If you wish to use the alternate Python based CGI script from
++ pydspam, edit the wrapper script to run <code>dspamcgi.py</code>.
++ 
++ <h3> DSPAM RPM support for Python </h3>
++ 
++ The dspam-python sub-package has been moved to its own 
++ <a href="/python/dspam.html">pydspam</a> RPM.
++ 
++ <h2> <a name=bugs>Bugs</a> </h2>
++ 
++ Jonathan is focused on the dspam LDA application, and so is unwilling
++ to consider bug reports against libdspam unless they affect the operation
++ of the LDA application, or he is in a really good mood.  If you only use
++ the dspam LDA, then report bugs to Jonathan.  However, if you use
++ the libdspam library, you should send test cases to me also so that
++ I can add them to the unit tests for libdspam, and include a fix
++ in the RPMs.
++ 
++ <h3> Bugs in libdspam for dspam-2.6.5.2 </h3>
++ 
++ All known bugs are fixed in the RPM, except for the media skip bug.
++ This bug causes dspam-2.6 to attempt to tokenize large binary 
++ attachments (despite code purporting to prevent this).  As a result,
++ dspam spends an inordinate amount of time processing 100s of thousands
++ of tokens, and mail grinds to a halt.  This makes dspam-2.6.5.2 unusable
++ unless binary attachments are blocked by other means.  
++ 
++ <h3> Current bugs in libdspam for dspam-2.8.beta.2 </h3>
++ 
++ The media skip bug is fixed in dspam-2.8, but it is still too buggy
++ to use in applications other than the supplied LDA (the multiple contexts bug
++ is a showstopper for my milter application using dspam).  The current
++ list of known bugs in dspam-2.8 and their status is as follows:
++ 
++ <table>
++ <tr>
++ <th align=left> Description </th> <th align=left> Testcase? </th>
++ <th align=left> Status </th>
++ <tr>
++ <td> Memory Leak when dspam_init fails </td> <td>N</td>
++ <td> Fixed in 2.8.beta.2-1 and 2.8.rc.1 </td>
++ <tr>
++ <td> CLASSIFY modifies memory totals </td> <td>Y</td>
++ <td> Fixed in 2.8.rc.1 </td>
++ <tr>
++ <td> CLASSIFY returns garbage for signature </td> <td>Y</td>
++ <td> Fixed in 2.8.beta.2-1 and 2.8.rc.1 </td>
++ <tr>
++ <td> signature not initialized in dspam_init </td> <td>N</td>
++ <td> Fixed in 2.8.rc.1-1 </td>
++ <tr>
++ <td> Opening multiple contexts for the same user core dumps in dspam_destroy()
++ </td> <td>Y</td> <td> Unresolved. Workaround: preliminary debugging shows
++ that the problem is in libdb3_drv.  Try another database driver. </td>
++ <tr>
++ <td> Attempting CLASSIFY for first time user corrupts memory. </td> <td>N</td>
++ <td> Workaround: call dspam_init,dspam_destroy with PROCESS to create
++      user before using CLASSIFY. </td>
++ <tr>
++ <td> No quarantine_lock in libdspam </td> <td>N</td>
++ <td> Workaround: copy function from dspam.c into application.  Since libdspam
++      doesn't do anything with implementing quarantine, it probably shouldn't
++      have this function. </td>
++ <tr>
++ <td> _ds_tokenize() not implemented </td> <td>Y</td>
++ <td> Will reimplement </td>
++ <tr>
++ <td> FEATURE: USERDIR hook for testing </td> <td>Y</td> 
++ <td> Added _ds_setuserdir() to simplify testing </td>
++ </table>
++ 
++ <h2> Ideas </h2>
++ 
++ <h3> Learning Decay </h3>
++ 
++ Here I address a problem encountered with the Dspam approach.
++ There needs to be some sort of decay of learned messages.  Otherwise,
++ adaptation gets less and less with each message until we're effectively not
++ learning any more.  One approach would be to periodically divide all hit counts
++ by 2.  For instance, when total messages (Spam + Innocent) reaches 4000 (or
++ some other number substantially bigger than 1000), then divide all hits and
++ totals in the dictionary by 2.  This will give the next 2000 messages double
++ the weight of the previous 4000.  And messages 6001-8000 will have four times
++ the weight of 1-4000, and twice the weight of 4001-6000.
++ <p>
++ Dspam_purge would be a good place to implement the decay algorithm.
++ We might then want to add a new totals record, e.g. '_GTOT'.  This
++ would keep the real (not scaled) totals that humans are interested in.
++ 
++ <h3> Database Scrubbing </h3>
++ 
++   I have had dspam_purge in an infinite loop because of loops (corruption)
++   in the dictionary.  I created a python version of dspam_purge that checks for
++   encountering the same record again.  This effectively cleaned the
++   dictionary.  Both purge and clean need to check for encountering
++   the same record again while reading the old database.  This is easily 
++   done by checking for dups while writing the new database.  Dspam already
++   rebuilds each dictionary and signature database by copying all records
++   to a new file during each dspam_purge and dspam_clean cycle.
++ 
++ <h3>Extended Signature State</h3>
++ 
++   A user can get confused when changing their mind about whether a
++   message is spam.  It is hard to remember whether you've already
++   done an ADDSPAM or FALSEPOSITIVE and which one you did last.
++   In my python milter based on libdspam, I plan to add a flag to the
++   signature database to record the last
++   action for a signature.  The states will be NEW,SPAM,INNOCENT
++   The milter would set the state to SPAM or INNOCENT.  Then
++   doing the equivalent of "dspam -d user --addspam" would do nothing if the
++   message was already in the spam state, and the equivalent of
++   "--falsepositive" would do nothing if the message was already in the INNOCENT
++   state.  It would be nice for the user to query the current state given a
++   signature id.
++ <p>
++   I am considering having a NEW state for signatures that have not
++   yet been added to the statistics either way.  This would be useful
++   for users that are not diligent in classifying all email.
++ 
++ <h3> Mozilla/Netscape Bundles Forwards </h3>
++ 
++   It is natural for users to select all their spam, then forward it
++   to the spam alias.  Unfortunately, Mozilla combines all the messages
++   into a single message for forwarding.  The dspam MDA finds only the first
++   signature tag in the combined message.
++ <p>
++   My suggestion is that the Dspam MDA should look for multiple DSPAM tags in 
++   the email.  Or perhaps, recursively scan rfc822 attachments.
++ <p>
++   In the meantime, users should use pine, or forward each spam individually
++   to the spam alias.
++ 
++ <h2> <a name="download">Downloads</a> </h2>
++ 
++ Pick one of the following.  The binary RPM is the easiest, and will run
++ on Red Hat 7.2 or 7.3 (and probably later versions).  The source RPM
++ contains all the required source and patches, and can be recompiled to match
++ your distribution.  And finally, you can grab the original sources and my
++ patches and do it yourself.
++ <p>
++ Release 2.8.beta.2-1 is the first release of 2.8 that passes unit testing
++ (except for the bugs listed above, but they should not affect the dspam LDA).
++ <p>
++ Release 2.6.5.2-4 includes pydspam-1.1.4, and increments the missed count
++ when adding a spam corpus via signature.  Has the media skip bug, which
++ may be a showstopper.
++ 
++ <h3> Binary RPMs </h3>
++ 
++   <h4> RedHat 7.2 </h4>
++ <menu>
++ <li><a href="/linux/rh72/dspam-2.8.rc.1-1.i386.rpm">dspam-2.8.rc.1-1.i386.rpm</a>
++   RedHat 7.2 binary RPM
++ <li><a href="/linux/rh72/dspam-devel-2.8.rc.1-1.i386.rpm">dspam-devel-2.8.rc.1-1.i386.rpm</a>
++   Development headers and static library
++ <li><a href="/linux/rh72/dspam-2.8.beta.2-1.i386.rpm">dspam-2.8.beta.2-1.i386.rpm</a>
++   RedHat 7.2 binary RPM
++ <li><a href="/linux/rh72/dspam-devel-2.8.beta.2-1.i386.rpm">dspam-devel-2.8.beta.2-1.i386.rpm</a>
++   Development headers and static library
++ <li><a href="/linux/rh72/dspam-2.6.5.2-4.i386.rpm">dspam-2.6.5.2-4.i386.rpm</a>
++   RedHat 7.2 binary RPM
++ <li><a href="/linux/rh72/dspam-devel-2.6.5.2-4.i386.rpm">dspam-devel-2.6.5.2-4.i386.rpm</a>
++   Development headers and static library
++ <li><a href="/linux/rh72/dspam-python-2.6.5.2-4.i386.rpm">dspam-python-2.6.5.2-4.i386.rpm</a>
++   Python module and utilities for pydspam-1.1.4
++ </menu>
++ 
++   <h4> RedHat 7.3 </h4>
++ <menu>
++ <li><a href="/linux/rh73/dspam-2.8.beta.2-1.i386.rpm">dspam-2.8.beta.2-1.i386.rpm</a>
++   RedHat 7.3 binary RPM
++ <li><a href="/linux/rh73/dspam-devel-2.8.beta.2-1.i386.rpm">dspam-devel-2.8.beta.2-1.i386.rpm</a>
++   Development headers and static library
++ <li><a href="/linux/rh73/dspam-2.6.5.2-2.i386.rpm">dspam-2.6.5.2-2.i386.rpm</a>
++   RedHat 7.3 binary RPM
++ <li><a href="/linux/rh73/dspam-devel-2.6.5.2-2.i386.rpm">dspam-devel-2.6.5.2-2.i386.rpm</a>
++   Development headers and static library
++ <li><a href="/linux/rh73/dspam-python-2.6.5.2-2.i386.rpm">dspam-python-2.6.5.2-2.i386.rpm</a>
++   Python module and utilities
++ </menu>
++ 
++   <h4> AIX 4.x </h4>
++ <menu>
++ <li> <a href="/aix/dspam-2.6.5.2-2.ppc.rpm">dspam-2.6.5.2-2.ppc.rpm</a>
++   AIX 4.x binary RPM
++ <li><a href="/aix/dspam-devel-2.6.5.2-2.ppc.rpm">dspam-devel-2.6.5.2-2.ppc.rpm</a>
++   Development headers and static library
++ <li><a href="/aix/dspam-python-2.6.5.2-2.ppc.rpm">dspam-python-2.6.5.2-2.ppc.rpm</a>
++   Python module and utilities
++ </menu>
++ 
++ <h3> <a name="SRPM">Source RPMs</a> </h3>
++ Source RPMs contain the sources, patches, and spec file to build
++ a release of dspam from source.  They can be recompiled to match your
++ distribution.  To disable building the <a href="#python">python package</a>,
++ install the source RPM and edit the spec file.
++ <menu>
++ <li> <a href="/linux/rh73/dspam-2.8.rc.1-1.src.rpm">dspam-2.8.rc.1-1.src.rpm</a>
++   Source RPM (tested on RedHat 7.x)
++ <li> <a href="/linux/rh73/dspam-2.8.beta.2-1.src.rpm">dspam-2.8.beta.2-1.src.rpm</a>
++   Source RPM (tested on RedHat 7.x)
++ <li> <a href="/linux/rh73/dspam-2.6.5.2-4.src.rpm">dspam-2.6.5.2-4.src.rpm</a>
++   Source RPM (tested on RedHat 7.x and AIX 4.1.5) with pydspam-1.1.4
++ </menu>
++ 
++ <h3> <a name="patches">Patches</a> </h3>
++ <menu>
++ <li> <a href="dspam-2.8.rc.1.patch">
++   Patches against the original dspam-2.8.rc.1 source.</a>
++ <li> <a href="dspam-2.8.beta.2.patch">
++   Patches against the original dspam-2.8.beta.2 source, including
++   a CVS snapshot from the DSPAM page to fix some CLASSIFY bugs.</a>
++ <li> <a href="dspam-2.6.5.2.patch">
++   Patches against the original dspam-2.6.5.2 source</a>
++ <li> <a href="dspam-db3-2.6.5.patch"> Patches to configure to compile with
++ any version of db >= 3 beginning with dspam-2.6.5 </a>
++   This is in the Source RPM, but those downloading the raw source might
++   need it also.
++ </menu>
++ 
++ <h3> Check RPMs </h3>
++ 
++ The <a href="http://check.sourceforge.net">check project</a> provides 
++ a simple unit testing framework for C programs.  You need this to build
++ the DSPAM unit tests provided with the patches.
++ 
++ <menu>
++ <li> <a href="/linux/rh72/check-0.8.4-1.i386.rpm">check-0.8.4 RedHat 7.x RPM</a>
++ <li> <a href="/aix/check-0.8.4-2.ppc.rpm">check-0.8.4 AIX 4.x RPM</a>
++ <li> <a href="/aix/check-0.8.4-2.src.rpm">check-0.8.4 source RPM</a>
++ </menu>
++ 
++ <hr>
++ <p>
++ <a href="http://validator.w3.org/check/referer">
++ <img border=0 src="/vh32.png" alt=" [ Valid HTML 3.2! ] " height=31 width=88></a>
++ <a href="http://www.redhat.com">
++ <img src="/art/powered_by.gif" width="88" height="31" alt=" [ Powered By Red Hat Linux ] " border="0"></a>
++ </p>
++ <a href="mailto:honeybear@editorialunilit.com">Send Spam</a>
++ 
++ </body></html>
+Index: dspam/dspam.spec
+diff -c /dev/null dspam/dspam.spec:1.49.4.5
+*** /dev/null	Thu Dec  4 14:04:49 2003
+--- dspam/dspam.spec	Thu Dec  4 14:04:35 2003
+***************
+*** 0 ****
+--- 1,305 ----
++ %ifos Linux
++ %define sendmailcf /usr/share/sendmail-cf
++ %define cgibin /var/www/cgi-bin
++ %define htmldir /var/www/html
++ %else
++ %define sendmailcf /usr/lib/sendmail-cf
++ %define cgibin /usr/local/www/cgi-bin
++ %define htmldir /Public
++ %endif
++ 
++ Summary: A library and Mail Delivery Agent for Bayesian spam filtering
++ Name: dspam
++ Version: 2.8
++ Release: 1
++ Copyright: GPL
++ URL: http://www.networkdweebs.com/software/dspam/
++ Group: System Environment/Daemons
++ Source: http://bmsi.com/linux/dspam-%{version}.tar.gz
++ Source1: dspam.m4
++ Patch: dspam-2.8.patch
++ Buildroot: /var/tmp/dspam-root
++ %ifos Linux
++ BuildRequires: db3-devel patch
++ Requires: /usr/sbin/useradd
++ %else
++ %ifos aix4.1
++ BuildRequires: db3-devel patch
++ %else
++ BuildRequires: db4-devel patch
++ %endif
++ %endif
++ 
++ %package devel
++ Summary: Developers library for custom access to dspam
++ Group: Development/Libraries
++ 
++ %description
++ DSPAM (as in De-Spam) is an open-source project to create a new kind of
++ anti-spam mechanism, and is currently effective as both a server-side agent
++ for UNIX email servers and a developer's library for mail clients, other
++ anti-spam tools, and similar projects requiring drop-in spam filtering.
++ 
++ The DSPAM agent masquerades as the email server's local delivery agent and
++ filters/learns spams using an advanced Bayesian statistical approach (based on
++ Baye's theorem of combined probabilities) which provides an administratively
++ maintenance-free, easy-learning Anti-Spam service custom tailored to each
++ individual user's behavior. Advanced because on top of standard Bayesian
++ filtering is also incorporated the use of Chained Tokens, de-obfuscation, and
++ other enhancements. DSPAM works great with Sendmail and Exim, and should work
++ well with any other MTA that supports an external local delivery agent
++ (postfix, qmail, etc.)
++ 
++ %description devel
++ DSPAM has had its core engine moved into a separate library, libdspam.
++ This library can be used by developers to provide 'drop-in' spam filtering for
++ their mail client applications, other anti-spam tools, or similar projects. 
++ 
++ %prep
++ %setup -q
++ %patch -p1
++ #%patch1 -p1
++ 
++ %build
++ %ifos aix4.1
++ export CC="gcc -mthreads"
++ LDFLAGS="-Wl,-blibpath:/lib:/usr/local/lib"
++ %else
++ LDFLAGS=-s
++ %endif
++ CFLAGS="$RPM_OPT_FLAGS"
++ export CFLAGS LDFLAGS
++ ./configure	--with-userdir=/var/lib/dspam	\
++ 		--with-userdir-owner=none	\
++ 		--with-userdir-group=none	\
++ 		--with-dspam-owner=none	\
++ 		--with-dspam-group=none	\
++ %ifos aix4.1
++ 		--with-local-delivery-agent=/bin/bellmail \
++ %endif
++ 		--with-storage-driver=libdb3_drv \
++ 		--disable-dependency-tracking
++ 
++ make
++ mv dspam dspam.optout
++ rm dspam.o
++ make dspam CPPFLAGS=-DOPT_IN
++ ln dspam dspam.optin
++ 
++ %install
++ rm -rf $RPM_BUILD_ROOT
++ make install DESTDIR=$RPM_BUILD_ROOT
++ 
++ # include both optin and optout version of dspam
++ cp dspam.optout $RPM_BUILD_ROOT/usr/local/bin
++ cd $RPM_BUILD_ROOT/usr/local/bin
++ mv dspam dspam.optin
++ ln -s dspam.optout dspam
++ cd -
++ 
++ # allow others to query stats
++ chmod g+s $RPM_BUILD_ROOT/usr/local/bin/dspam_stats
++ 
++ # manually copy include files needed for devel package
++ INCDIR="$RPM_BUILD_ROOT/usr/local/include"
++ mkdir -p $INCDIR
++ cp -p libdspam.h libdspam_objects.h lht.h nodetree.h $INCDIR
++ 
++ # provide maintenance scripts
++ ETCDIR="$RPM_BUILD_ROOT/etc"
++ mkdir -p $ETCDIR/cron.hourly
++ mkdir -p $ETCDIR/cron.daily
++ mkdir -p $ETCDIR/cron.weekly
++ cat >$ETCDIR/cron.daily/dspam <<'EOF'
++ #!/bin/sh
++ /usr/local/bin/dspam_clean
++ EOF
++ chmod a+x $ETCDIR/cron.daily/dspam
++ cat >$ETCDIR/cron.weekly/dspam <<'EOF'
++ #!/bin/sh
++ /usr/local/bin/dspam_purge
++ EOF
++ chmod a+x $ETCDIR/cron.weekly/dspam
++ cat >$ETCDIR/cron.hourly/dspam <<'EOF'
++ #!/bin/sh
++ cd /var/lib/dspam
++ exec >>reprocess.log 2>&1
++ /usr/local/bin/pydspam_process *.spam *.fp
++ EOF
++ chmod a+x $ETCDIR/cron.hourly/dspam
++ 
++ # install script for optional smart spam alias
++ cp -p addspam.sh $RPM_BUILD_ROOT/usr/local/bin/addspam
++ cd $RPM_BUILD_ROOT/usr/local/bin
++   ln addspam falsepositive
++ cd -
++ mkdir -p $RPM_BUILD_ROOT/var/log
++ touch $RPM_BUILD_ROOT/var/log/dspam.log
++ 
++ # allow dspam in /etc/smrsh
++ mkdir -p $ETCDIR/smrsh
++ ln -sf /usr/local/bin/dspam $ETCDIR/smrsh
++ ln -sf /usr/local/bin/addspam $ETCDIR/smrsh
++ ln -sf /usr/local/bin/falsepositive $ETCDIR/smrsh
++ 
++ # install sendmail mailer
++ mkdir -p $RPM_BUILD_ROOT%{sendmailcf}/mailer
++ cp -p %{SOURCE1} $RPM_BUILD_ROOT%{sendmailcf}/mailer
++ 
++ # install CGI script
++ CGIDIR="$RPM_BUILD_ROOT%{cgibin}"
++ HTMLDIR="$RPM_BUILD_ROOT%{htmldir}"
++ mkdir -p $HTMLDIR/dspam
++ mkdir -p $CGIDIR
++ mkdir -p $RPM_BUILD_ROOT/etc/mail
++ ln -sf /var/lib/dspam $RPM_BUILD_ROOT/etc/mail/dspam
++ cp -p cgi/* $HTMLDIR/dspam
++ %ifos aix4.1
++ # No suexec on our AIX installs
++ cat >$CGIDIR/dspam.cgi <<'EOF'
++ #!/bin/sh
++ cd %{htmldir}/dspam
++ exec /usr/local/bin/perl dspam.cgi
++ EOF
++ %else
++ # Use suexec to run CGI
++ cat >$CGIDIR/dspam.cgi <<'EOF'
++ #!/bin/sh
++ cd %{htmldir}/dspam
++ exec /usr/sbin/suexec dspam dspam dspam.cgi
++ EOF
++ %endif
++ chmod 0755 $HTMLDIR/dspam $HTMLDIR/dspam/dspam.cgi
++ 
++ %clean
++ rm -rf $RPM_BUILD_ROOT
++ 
++ %ifos linux
++ %pre
++ /usr/sbin/useradd -G mail -d /var/lib/dspam -c "Dspam agent" -s /dev/null \
++ 	dspam >/dev/null 2>&1 || :
++ 
++ %post
++ if grep '^/usr/local/lib$' /etc/ld.so.conf >/dev/null; then
++   :
++ else
++   echo "/usr/local/lib" >>/etc/ld.so.conf
++ fi
++ /sbin/ldconfig
++ %endif
++ %ifos aix4.1
++ %pre
++ mkuser -a pgrp=mail home=/var/lib/dspam \
++ 	gecos="DSpam mail filter" dspam 2>/dev/null || :
++ %endif
++ 
++ %files
++ %defattr(-,root,root)
++ %doc README CHANGE dspam-button.gif
++ %ifnos aix4.1
++ /usr/local/lib/libdspam.so.4.0.0
++ /usr/local/lib/libdspam.so.4
++ %endif
++ %attr(02511,root,mail)/usr/local/bin/dspam.optin
++ %attr(02511,root,mail)/usr/local/bin/dspam.optout
++ %attr(-,root,mail)/usr/local/bin/dspam
++ %attr(-,root,mail)/usr/local/bin/dspam_dump
++ %attr(-,root,mail)/usr/local/bin/dspam_stats
++ %attr(-,root,mail)/usr/local/bin/dspam_ngstats
++ /usr/local/bin/dspam_crc
++ /usr/local/bin/dspam_clean
++ /usr/local/bin/dspam_merge
++ /usr/local/bin/dspam_2mysql
++ /usr/local/bin/libdb3_purge
++ /usr/local/bin/dspam_purge.libdb3
++ /usr/local/bin/dspam_purge
++ /usr/local/bin/dspam_corpus
++ /usr/local/bin/dspam_genaliases
++ %attr(0775,root,mail) /var/lib/dspam
++ /etc/cron.daily/dspam
++ /etc/cron.weekly/dspam
++ /etc/smrsh/dspam
++ /etc/smrsh/addspam
++ /etc/smrsh/falsepositive
++ %{sendmailcf}/mailer/*
++ %attr(-,dspam,dspam)%{htmldir}/dspam
++ %attr(0755,root,root)%{cgibin}/dspam.cgi
++ /etc/mail/dspam
++ %config %attr(0755,root,mail)/usr/local/bin/addspam
++ %config %attr(0755,root,mail)/usr/local/bin/falsepositive
++ %attr(0664,root,mail)/var/log/dspam.log
++ 
++ %files devel
++ %defattr(-,root,root)
++ %ifnos aix4.1
++ /usr/local/lib/libdspam.so
++ %endif
++ /usr/local/lib/libdspam.la
++ /usr/local/lib/libdspam.a
++ /usr/local/include/*
++ 
++ %changelog
++ * Thu Dec 04 2003 Stuart Gathman <stuart@bmsi.com> 2.8-1
++ - Merge 2.8 vendor release
++ * Sat Nov 22 2003 Stuart Gathman <stuart@bmsi.com> 2.8.rc.1-1
++ - Merge 2.8.rc.1 vendor release
++ * Sat Nov 15 2003 Stuart Gathman <stuart@bmsi.com> 2.8.beta.2-1
++ - Support 2.8
++ - update to CVS to add signature output for CLASSIFY
++ - fix garbage signature output for CLASSIFY
++ - fix memory leak when dspam_init fails
++ - remove python subpackage, moved to pydspam RPM
++ * Tue Oct 21 2003 Stuart Gathman <stuart@bmsi.com> 2.6.5.2-4
++ - pydspam-1.1.4
++ - run pydspam_process on the hour
++ - Count signature spam corpus as miss
++ - Remove "Delete All" from CGI and default messages to checked.
++ * Wed Sep 10 2003 Stuart Gathman <stuart@bmsi.com>
++ - Fix memory leaks
++ - Increase lock timeout
++ - Make dspam sgid and a+x so that generic addspam works
++ - Install optin and optout versions.
++ * Sat Sep 06 2003 Stuart Gathman <stuart@bmsi.com>
++ - Merge dspam-2.6.5.2
++ - Move cgi to /var/www/html/dspam.  logo and css weren't getting
++ - found under cgi-bin.
++ * Fri Sep 05 2003 Stuart Gathman <stuart@bmsi.com>
++ - Modify tbt.c to use parent pointer and eliminate recursion which
++ - was overflowing thread stack on AIX
++ * Tue Sep 02 2003 Stuart Gathman <stuart@bmsi.com>
++ - Merge changes for release 2.6.5
++ - use pydspam 1.1.1
++ * Wed Aug 27 2003 Stuart Gathman <stuart@bmsi.com>
++ - Tweak for AIX
++ * Thu Aug 18 2003 Stuart Gathman <stuart@bmsi.com>
++ - Merge changes for 2.6.4.01
++ - empty input patch
++ - Include smart spam alias
++ * Thu Aug 14 2003 Stuart Gathman <stuart@bmsi.com>
++ - Merge changes for 2.6.4
++ * Mon Aug 04 2003 Stuart Gathman <stuart@bmsi.com>
++ - Install CGI script to run as dspam user
++ * Thu Jul 31 2003 Stuart Gathman <stuart@bmsi.com>
++ - Make building python package optional
++ - OK, OK, so maybe it should be a separate RPM
++ * Wed Jul 30 2003 Stuart Gathman <stuart@bmsi.com>
++ - Fix dspam_stats bug for release 2
++ * Wed Jul 30 2003 Stuart Gathman <stuart@bmsi.com>
++ - Move python source to pydspam project
++ - merge dspam-2.6.2.02 from networkdweebs
++ * Fri Jul 11 2003 Stuart Gathman <stuart@bmsi.com>
++ - Move python support to sub package
++ - fix CORPUS bug
++ * Thu Jul 10 2003 Stuart Gathman <stuart@bmsi.com>
++ - Bug fixes, python support.
++ * Thu Jul 03 2003 Stuart Gathman <stuart@bmsi.com>
++ - Merge with 2.6.2 stable
++ * Wed Jul 02 2003 Stuart Gathman <stuart@bmsi.com>
++ - Fix bugs in DSF_CLASSIFY
++ * Mon Jun 30 2003 Stuart Gathman <stuart@bmsi.com>
++ - Fix bugs in dspam.c and libdspam.c
++ * Thu Jun 26 2003 Stuart Gathman <stuart@bmsi.com>
++ - Add dspam to /etc/smrsh
++ - Add dspam mailer to sendmail-cf
++ * Wed Jun 25 2003 Stuart Gathman <stuart@bmsi.com>
++ - Linux RPM 
+Index: dspam/libdspam.c
+diff -c dspam/libdspam.c:1.1.1.14 dspam/libdspam.c:1.1.1.13.2.4
+*** dspam/libdspam.c:1.1.1.14	Sat Nov 22 13:41:16 2003
+--- dspam/libdspam.c	Sat Nov 22 14:02:23 2003
+***************
+*** 90,95 ****
+--- 90,96 ----
+    CTX->mode = mode;
+    CTX->flags = flags;
+    CTX->message = NULL;
++   CTX->signature = NULL;
+    CTX->confidence = 0;
+  
+    if (!_ds_init_storage (CTX))
+***************
+*** 1226,1231 ****
+--- 1227,1233 ----
+      {
+        struct _ds_signature_token t;
+  
++       memset(&t,0,sizeof t);	/* clear unused bytes */
+        t.token = crc;
+        t.frequency = lht_getfrequency (freq, t.token);
+        memcpy ((char *) CTX->signature->data +
+Index: dspam/maketest
+diff -c /dev/null dspam/maketest:1.3.2.1
+*** /dev/null	Thu Dec  4 14:04:49 2003
+--- dspam/maketest	Sat Nov 15 18:40:36 2003
+***************
+*** 0 ****
+--- 1,14 ----
++ LIBDSPAM = .libs/libdspam.a
++ 
++ run: testlibdspam
++ 	./testlibdspam
++ 
++ testutil.o: util.c
++ 	gcc -c -g -o testutil.o -I. -DHAVE_CONFIG_H -DUSERDIR=\"/tmp\" util.c
++ 
++ testerror.o: error.c
++ 	gcc -c -g -o testerror.o -I. -DHAVE_CONFIG_H -DUSERDIR=\"/tmp\" error.c
++ 
++ testlibdspam:	testlibdspam.c testutil.o testerror.o $(LIBDSPAM)
++ 	gcc -g -o testlibdspam testlibdspam.c	\
++ 	testutil.o testerror.o $(LIBDSPAM) -ldb -lcheck -lm
+Index: dspam/testlibdspam.c
+diff -c /dev/null dspam/testlibdspam.c:1.24.2.4
+*** /dev/null	Thu Dec  4 14:04:49 2003
+--- dspam/testlibdspam.c	Thu Dec  4 12:42:19 2003
+***************
+*** 0 ****
+--- 1,629 ----
++ #include <stdlib.h>
++ #include "libdspam.h"
++ #include "libdspam_objects.h"
++ #include "tbt.h"
++ #include <check.h>
++ 
++ #ifdef _AIX
++ #undef RAND_MAX		/* AIX defines incorrect value for RAND_MAX */
++ #define RAND_MAX 2147483647
++ #endif
++ 
++ #define DSPAM_API 28
++ 
++ #if DSPAM_API < 28  /* 2.6 API */
++ const char *fname = "/tmp/test.dict";
++ 
++ static int compare_sig(
++     struct _ds_spam_signature *a,
++     struct _ds_spam_signature *b) {
++   return (a->length == b->length) ? memcmp(a->data,b->data,a->length) : 1;
++ }
++ 
++ #else /* 2.8 API */
++ #define fname "testuser",0
++ #define spam_misses  spam_misclassified
++ #define false_positives  innocent_misclassified
++ extern void dspam_init_driver();
++ extern void dspam_shutdown_driver();
++ 
++ static void resetuser(const char *user,const char *group) {
++   char cmd[80];
++   DSPAM_CTX *ctx;
++   sprintf(cmd,"rm -rf /tmp/%s",user);
++   system(cmd);
++   _ds_setuserdir("/tmp");
++   ctx = dspam_init(user,group,DSM_PROCESS,DSF_CHAINED);
++   dspam_destroy(ctx);
++ }
++ 
++ static int compare_sig(
++     struct _ds_spam_signature *a,
++     struct _ds_spam_signature *b) {
++   struct _ds_signature_token *p = a->data, *q = b->data;
++   int plen = a->length / sizeof *p;
++   int qlen = b->length / sizeof *q;
++   int i;
++   if (plen != qlen) return 1;
++   for (i = 0; i < plen; ++i) {
++     if (p[i].token != q[i].token || p[i].frequency != q[i].frequency)
++       return 1;
++   }
++   return 0;
++ }
++ #endif
++ 
++ static const char msg1[] = "\
++ From user@domain.com\n\
++ Subject: Test message\n\
++ To: testsys\n\
++ \n\
++ Testing 1 2 3\n\
++ ";
++ 
++ static const char spam1[] = "\
++ From jerk@parasite.slime\n\
++ Subject: RE: Info you requested\n\
++ To: victim@lamb.com\n\
++ \n\
++ Limited time offer!\n\
++ Click here to unsubscribe\n\
++ ";
++ 
++ static int
++ _dspam_process(DSPAM_CTX *ctx,const char *msg, int r,
++     const char *file,int line) {
++   int rc;
++   _fail_unless(ctx != 0,file,line,"init context failed");
++   if (!ctx) return -1;
++   rc = dspam_process(ctx,msg);
++   if (ctx->message) {
++     _ds_destroy_message(ctx->message);
++     ctx->message = 0;
++   }
++   if (rc != r) {
++     char buf[80];
++     sprintf(buf,"dspam_process returned %d, expected %d",rc,r);
++     _fail_unless(rc == r,file,line,buf);
++   }
++   return rc;
++ }
++ 
++ #define dspam_process(ctx,msg) _dspam_process(ctx,msg,0,__FILE__,__LINE__)
++ #define dspam_process_rc(ctx,msg,rc) \
++ 	_dspam_process(ctx,msg,rc,__FILE__,__LINE__)
++ 
++ /* Check intended usage of CORPUS option. */
++ START_TEST(test_corpus) {
++   DSPAM_CTX *ctx;
++   resetuser(fname);
++   ctx = dspam_init(fname,DSM_PROCESS,DSF_CHAINED|DSF_CORPUS);
++   dspam_process(ctx,msg1);
++   fail_unless(ctx->result == DSR_ISINNOCENT,"result not INNOCENT");
++   fail_unless(ctx->totals.total_spam == 0,"total spam not 0");
++   fail_unless(ctx->totals.total_innocent == 1,"total innocent not 1");
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_ADDSPAM,DSF_CHAINED|DSF_CORPUS);
++   dspam_process(ctx,spam1);
++   fail_unless(ctx->result == DSR_ISSPAM,"result not SPAM");
++   fail_unless(ctx->totals.total_spam == 1,"total spam not 1");
++   fail_unless(ctx->totals.total_innocent == 1,"total innocent not 1");
++ #if DSPAM_API == 28
++   fail_unless(ctx->totals.spam_corpusfed == 1,"total corpus spam not 1");
++ #else
++   /* beginning with 2.6.4, DSF_ADDSPAM+DSF_CORPUS counts as a miss */
++   fail_unless(ctx->totals.spam_misses == 1,"total misses not 1");
++ #endif
++   fail_unless(ctx->totals.false_positives == 0,"total fp not 0");
++   /* ramp spam stats until spam1 is recognized as such */
++   { int i;
++     for (i = 0; i < 20; ++i)
++       dspam_process(ctx,spam1); 
++     dspam_destroy(ctx);
++     ctx = dspam_init(fname,DSM_PROCESS,DSF_CHAINED|DSF_CORPUS);
++     for (i = 0; i < 20; ++i)
++       dspam_process(ctx,msg1); 
++   }
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_CLASSIFY,DSF_CHAINED);
++   dspam_process(ctx,spam1); 
++   fail_unless(ctx->result == DSR_ISSPAM,"result not SPAM");
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_PROCESS,DSF_CHAINED|DSF_CORPUS);
++   dspam_process(ctx,spam1);
++   fail_unless(ctx->result == DSR_ISINNOCENT,"result not INNOCENT");
++   dspam_destroy(ctx);
++ } END_TEST
++ 
++ static const char nasty1[] = "\
++ From jerk@parasite.slime\n\
++ Subject: RE: Info you requested\n\
++ To: victim@lamb.com\n\
++ This-Is-A-Really-Big-Header-That-Is-Designed-To-See-Whether-The-Fixed-Size\
++ -Heading-Buffer-Causes-Any-Problems-With-Overflow-And-Possibly-Executing\
++ -Arbitrary-Code: You Lose Sucker\n\
++ \n\
++ Bwa! Ha! Ha! Ha!  Thisisareallylongtokenthatislongerthan25chars.\n\
++ Click here to unsubscribe\n\
++ ";
++ static const char nasty2[] = "\
++ From: \"Farica Anderson\" <faricaanderson_aw@mantraonline.com>\n\
++ To: victim@lamb.com\n\
++ Subject: Download this!\n\
++ Date: Wed, 09 Jul 2003 15:57:36 +0000\n\
++ MIME-Version: 1.0\n\
++ Content-Type: text/html\n\
++ Content-Transfer-Encoding: 8bit\n\
++ \n\
++ <!DSPAM:3f0c7412160555825019633>\n\
++ ";
++ 
++ /** Check possible overflow situations.  Mostly, dspam checks for and ignores
++  * extra chars on long headings and tokens, but we check to make sure the
++  * checking still works. */
++ START_TEST(test_overflow) {
++   DSPAM_CTX *ctx;
++   resetuser(fname);
++   ctx = dspam_init(fname,DSM_PROCESS,DSF_CHAINED|DSF_CORPUS);
++   dspam_process(ctx,nasty1);
++   dspam_destroy(ctx);
++   /* This little bugger crashes 2.6.2. */
++   ctx = dspam_init(fname,DSM_ADDSPAM,DSF_CHAINED|DSF_IGNOREHEADER);
++   dspam_process_rc(ctx,nasty2,-2);	/* -2 returned when no tokens found */
++   dspam_destroy(ctx);
++ } END_TEST
++ 
++ /* Check that CLASSIFY returns something consistent for signature.
++  * Also checks that multiple contexts can be active for the same user. */
++ START_TEST(test_classify_sig) {
++   struct _ds_spam_signature sig1,sig2;	/* signature objects */
++   DSPAM_CTX *ctx1,*ctx2;
++   resetuser(fname);
++   ctx1 = dspam_init(fname,DSM_CLASSIFY, DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx1,msg1);
++   sig1 = *ctx1->signature; ctx1->signature->data = NULL;
++   dspam_destroy(ctx1); /* destroy ctx1 here to test just CLASSIFY */
++   ctx2 = dspam_init(fname,DSM_CLASSIFY, DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx2,msg1);
++   sig2 = *ctx2->signature; ctx2->signature->data = NULL;
++   //dspam_destroy(ctx1); /* destroy ctx1 here to test multiple contexts */
++   dspam_destroy(ctx2);
++   fail_unless(compare_sig(&sig2,&sig1) == 0,
++       "CLASSIFY signature return is garbage");
++ } END_TEST
++ 
++ /* Check intended usage of CLASSIFY option.  No updates should take
++  * place.  Should be able to add signature result later with CORPUS option. */
++ START_TEST(test_classify) {
++   struct _ds_spam_totals tot;
++   struct _ds_spam_signature sig1,sig2;	/* signature objects */
++   DSPAM_CTX *ctx;
++   resetuser(fname);
++   ctx = dspam_init(fname,DSM_CLASSIFY, DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx,msg1);
++   fail_unless(ctx->result == DSR_ISINNOCENT,"result not INNOCENT");
++   fail_unless(ctx->result > 0,"dspam result not positive");
++   tot = ctx->totals;
++   sig1 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_CLASSIFY, DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx,spam1);
++   /* check that on_disk totals didn't change with classify */
++   fail_unless(ctx->totals.total_innocent == tot.total_innocent,
++       "disk totals changed with CLASSIFY");
++   /* check that in memory totals didn't change with classify */
++   fail_unless(tot.total_innocent == 0,"memory stats changed with CLASSIFY");
++   sig2 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   /* test updating with signature after CLASSIFY */
++   ctx = dspam_init(fname,DSM_ADDSPAM,DSF_CHAINED|DSF_SIGNATURE|DSF_CORPUS);
++   ctx->signature = &sig2;
++   dspam_process(ctx,NULL);
++   free(sig2.data);
++   fail_unless(ctx->totals.total_spam == 1,"total spams not 1");
++   fail_unless(ctx->totals.total_innocent == 0,"total innocent not 0");
++   fail_unless(ctx->totals.spam_misclassified == 0,"total misses not 0");
++   fail_unless(ctx->totals.innocent_misclassified == 0,"total fp not 0");
++   fail_unless(ctx->totals.spam_corpusfed == 1,"total spam corpus not 1");
++   fail_unless(ctx->totals.innocent_corpusfed == 0,"total innoc corpus not 0");
++   dspam_destroy(ctx);
++ #if DSPAM_API == 28
++   ctx = dspam_init(fname,
++       DSM_PROCESS,DSF_CHAINED|DSF_SIGNATURE|DSF_CORPUS);
++ #else
++   /* not really a false positive with CORPUS flag, but... */
++   ctx = dspam_init(fname,
++       DSM_FALSEPOSITIVE,DSF_CHAINED|DSF_SIGNATURE|DSF_CORPUS);
++ #endif
++   ctx->signature = &sig1;
++   dspam_process(ctx,NULL);
++   free(sig1.data);
++   fail_unless(ctx->totals.total_spam == 1,0);
++   fail_unless(ctx->totals.total_innocent == 1,0);
++   fail_unless(ctx->totals.spam_misclassified == 0,0);
++   fail_unless(ctx->totals.innocent_misclassified == 0,0);
++   fail_unless(ctx->totals.spam_corpusfed == 1,0);
++   fail_unless(ctx->totals.innocent_corpusfed == 1,0);
++   dspam_destroy(ctx);
++ } END_TEST
++ 
++ START_TEST(test_reverse) {
++   DSPAM_CTX *ctx;
++   struct _ds_spam_signature sig1,sig2;	/* signature objects */
++   resetuser(fname);
++   ctx = dspam_init(fname,DSM_PROCESS,DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx,msg1);
++   sig1 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_PROCESS,DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx,spam1);
++   sig2 = *ctx->signature; ctx->signature->data = NULL;
++   fail_unless(ctx->totals.total_spam == 0,0);
++   fail_unless(ctx->totals.total_innocent == 2,0);
++   fail_unless(ctx->totals.spam_misses == 0,0);
++   fail_unless(ctx->totals.false_positives == 0,0);
++   dspam_destroy(ctx);
++   /* change our mind about spam1 */
++   ctx = dspam_init(fname,DSM_ADDSPAM,DSF_CHAINED|DSF_SIGNATURE);
++   ctx->signature = &sig2;
++   dspam_process(ctx,0);
++   fail_unless(ctx->totals.total_spam == 1,0);
++   fail_unless(ctx->totals.total_innocent == 1,0);
++   fail_unless(ctx->totals.spam_misses == 1,0);
++   fail_unless(ctx->totals.false_positives == 0,0);
++   dspam_destroy(ctx);
++   /* change our mind again */
++   ctx = dspam_init(fname,DSM_FALSEPOSITIVE,DSF_CHAINED);
++   dspam_process(ctx,spam1);
++   fail_unless(ctx->totals.total_spam == 0,0);
++   fail_unless(ctx->totals.total_innocent == 2,0);
++   fail_unless(ctx->totals.spam_misses == 1,0);
++   fail_unless(ctx->totals.false_positives == 1,0);
++   dspam_destroy(ctx);
++   /* and change our mind about msg1 */
++   ctx = dspam_init(fname,DSM_ADDSPAM,DSF_CHAINED);
++   dspam_process(ctx,msg1);
++   fail_unless(ctx->totals.total_spam == 1,0);
++   fail_unless(ctx->totals.total_innocent == 1,0);
++   fail_unless(ctx->totals.spam_misses == 2,0);
++   fail_unless(ctx->totals.false_positives == 1,0);
++   dspam_destroy(ctx);
++   /* test adding a signature as a corpus */
++   ctx = dspam_init(fname,DSM_ADDSPAM,DSF_CHAINED|DSF_SIGNATURE|DSF_CORPUS);
++   ctx->signature = &sig1;
++   dspam_process(ctx,0);
++   fail_unless(ctx->totals.total_spam == 2,0);
++   fail_unless(ctx->totals.total_innocent == 1,0);
++   fail_unless(ctx->totals.spam_misses == 2,0);
++   fail_unless(ctx->totals.false_positives == 1,0);
++   fail_unless(ctx->totals.spam_corpusfed == 1,0);
++   fail_unless(ctx->totals.innocent_corpusfed == 0,0);
++   dspam_destroy(ctx);
++ 
++   free(sig1.data);
++   free(sig2.data);
++ } END_TEST
++ 
++ /* Check that quoted printable encoded attachments are tokenized 
++  * the same as unencoded. */
++ static const char msg_7bit[] = "\
++ From user@domain.com\n\
++ Subject: Test message\n\
++ To: testsys\n\
++ Content-Type: text/plain; charset=\"us-ascii\"\n\
++ Content-Transfer-Encoding: 7bit\n\
++ \n\
++ Testing 1 2 3\n\
++ ";
++ 
++ static const char msg_quopri[] = "\
++ From user@domain.com\n\
++ Subject: Test message\n\
++ To: testsys\n\
++ Content-Type: text/plain; charset=\"us-ascii\"\n\
++ Content-Transfer-Encoding: quoted-printable\n\
++ \n\
++ T=65st=\n\
++ ing 1 2 3\n\
++ ";
++ 
++ static const char msg_base64[] = "\
++ From user@domain.com\n\
++ Subject: Test message\n\
++ To: testsys\n\
++ Content-Type: text/plain; charset=\"us-ascii\"\n\
++ Content-Transfer-Encoding: base64\n\
++ \n\
++ VGVzdGluZyAxIDIgMwo=
++ ";
++ 
++ START_TEST(test_encoding) {
++   DSPAM_CTX *ctx;
++   struct _ds_spam_signature sig1,sig2,sig3;	/* signature objects */
++   resetuser(fname);
++   ctx = dspam_init(fname,DSM_CLASSIFY,
++       DSF_CHAINED|DSF_SIGNATURE|DSF_IGNOREHEADER);
++   dspam_process(ctx,msg_7bit);
++   sig1 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_CLASSIFY,
++       DSF_CHAINED|DSF_SIGNATURE|DSF_IGNOREHEADER);
++   dspam_process(ctx,msg_quopri);
++   sig2 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_CLASSIFY,
++       DSF_CHAINED|DSF_SIGNATURE|DSF_IGNOREHEADER);
++   dspam_process(ctx,msg_base64);
++   sig3 = *ctx->signature; ctx->signature->data = NULL;
++   fail_unless(compare_sig(&sig3,&sig1) == 0, "base64 decode failed");
++   fail_unless(compare_sig(&sig2,&sig1) == 0, "quopri decode failed");
++   free(sig1.data);
++   free(sig2.data);
++   free(sig3.data);
++   dspam_destroy(ctx);
++ } END_TEST
++ 
++ /* Check that we do not try to tokenize media attachments. */
++ 
++ static const char msg_media1[] = "\
++ Subject: Shipments 1099 and 1103 Benderson \n\
++ To: Pina.Coloda@dada.com\n\
++ X-Mailer: Lotus Notes Release 5.0.9a  January 7, 2002\n\
++ From: Borealis.Hernandez@dada.com\n\
++ Date: Sat, 8 Nov 2003 12:33:44 -0300\n\
++ 	2003) at 11/08/2003 10:51:13 AM\n\
++ MIME-Version: 1.0\n\
++ Content-type: multipart/mixed; \n\
++ 	Boundary=\"0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80\"\n\
++ Content-Disposition: inline\n\
++ \n\
++ --0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80\n\
++ Content-type: text/plain; charset=us-ascii\n\
++ \n\
++ I'm sending the following invoices\n\
++ \n\
++ \n\
++ --0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80\n\
++ Content-type: application/pdf; \n\
++ 	name=\"Shipments 1099 to 1103 Benderson.pdf\"\n\
++ Content-Disposition: attachment;\n\
++ 	filename=\"Shipments 1099 to 1103 Benderson.pdf\"\n\
++ Content-transfer-encoding: base64\n\
++ \n\
++ JVBERi0xLjQNJeLjz9MNCjEgMCBvYmoNPDwgDS9UeXBlIC9DYXRhbG9nIA0vUGFnZXMgMiAwIFIg\n\
++ OTk1YTY5MWExPl0NPj4Nc3RhcnR4cmVmDTI0MDk5ODQNJSVFT0YN\n\
++ \n\
++ --0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80--\n\
++ \n\
++ ";
++ 
++ static const char msg_media2[] = "\
++ Subject: Shipments 1099 and 1103 Benderson \n\
++ To: Pina.Coloda@dada.com\n\
++ X-Mailer: Lotus Notes Release 5.0.9a  January 7, 2002\n\
++ From: Borealis.Hernandez@dada.com\n\
++ Date: Sat, 8 Nov 2003 12:33:44 -0300\n\
++ 	2003) at 11/08/2003 10:51:13 AM\n\
++ MIME-Version: 1.0\n\
++ Content-type: multipart/mixed; \n\
++ 	Boundary=\"0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80\"\n\
++ Content-Disposition: inline\n\
++ \n\
++ --0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80\n\
++ Content-type: text/plain; charset=us-ascii\n\
++ \n\
++ I'm sending the following invoices\n\
++ \n\
++ \n\
++ --0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80\n\
++ Content-type: application/pdf; \n\
++ 	name=\"Shipments 1099 to 1103 Benderson.pdf\"\n\
++ Content-Disposition: attachment;\n\
++ 	filename=\"Shipments 1099 to 1103 Benderson.pdf\"\n\
++ Content-transfer-encoding: base64\n\
++ \n\
++ JVBERi0xLjQNJeLjz9MNCjEgMCBvYmfjagofyasdfXBlIC9DYXRhbG9nIA0vUGFnZXMgMiAwIFIg\n\
++ kfhgkFJKGOFLG75484950439FHDLKFLKFkglkglkasdfg789g9fhbG9nIA0vUGFnZXMgMiAwIFIg\n\
++ OTk1YTY5MWExPl0NPj4Nc3RhcnR4cmVmDTI0MDk5ODQNJSVFT0YN\n\
++ \n\
++ --0__=8CBBE74BDFC6CB808f9e8a93df938690918c8CBBE74BDFC6CB80--\n\
++ \n\
++ ";
++ 
++ START_TEST(test_mediaskip) {
++   DSPAM_CTX *ctx;
++   struct _ds_spam_signature sig1,sig2;	/* signature objects */
++   resetuser(fname);
++   ctx = dspam_init(fname,DSM_CLASSIFY,
++       DSF_CHAINED|DSF_SIGNATURE|DSF_IGNOREHEADER);
++   dspam_process(ctx,msg_media1);
++   sig1 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_CLASSIFY,
++       DSF_CHAINED|DSF_SIGNATURE|DSF_IGNOREHEADER);
++   fail_unless(ctx != 0,0);
++   dspam_process(ctx,msg_media2);
++   sig2 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   /* The two media msgs differ only in the media attachment, so
++    * the signatures should be identical. */
++   fail_unless(compare_sig(&sig2,&sig1)==0,"media skip failed");
++   free(sig1.data);
++   free(sig2.data);
++ } END_TEST
++ 
++ /* Check that HTML comments do not split tokens. */
++ 
++ static const char msg_html1[] = "\
++ From user@domain.com\n\
++ Subject: Test message\n\
++ To: testsys\n\
++ Content-Type: text/html; charset=\"us-ascii\"\n\
++ Content-Transfer-Encoding: 7bit\n\
++ \n\
++ <html><head></head><body>\n\
++ Buy our pre<!-- innocent tokens -->scrip<!-- multi \n\
++ line comment -->tion Via<!abject>gra!\n\
++ </body></html>\n\
++ ";
++ 
++ static const char msg_html2[] = "\
++ From user@domain.com\n\
++ Subject: Test message\n\
++ To: testsys\n\
++ Content-Type: text/html; charset=\"us-ascii\"\n\
++ Content-Transfer-Encoding: 7bit\n\
++ \n\
++ <html><head></head><body>\n\
++ Buy our prescription Viagra!\n\
++ </body></html>\n\
++ ";
++ 
++ START_TEST(test_html) {
++   DSPAM_CTX *ctx;
++   struct _ds_spam_signature sig1,sig2;	/* signature objects */
++   resetuser(fname);
++   ctx = dspam_init(fname,DSM_CLASSIFY,DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx,msg_html1);
++   sig1 = *ctx->signature; ctx->signature->data = NULL;
++   dspam_destroy(ctx);
++   ctx = dspam_init(fname,DSM_CLASSIFY,DSF_CHAINED|DSF_SIGNATURE);
++   dspam_process(ctx,msg_html2);
++   sig2 = *ctx->signature; ctx->signature->data = NULL;
++   fail_unless(sig1.length == sig2.length
++       && memcmp(sig2.data,sig1.data,sig1.length) == 0,
++       "HTML comment stripping failed");
++   free(sig1.data);
++   free(sig2.data);
++   dspam_destroy(ctx);
++ } END_TEST
++ 
++ static double eps = 0.0000001;
++ 
++ static void verify_tbt(struct tbt *tbt,int items) {
++   double delta = 1.0;
++   int cnt = 0;
++   struct tbt_node *node = tbt_first(tbt);
++   fail_unless(tbt->items == items,"tbt_add lost items");
++   while (node) {
++     //fprintf(stderr,"delta = %g\n",delta);
++     fail_unless(node->delta < delta + eps,"deltas not in descending order");
++     delta = node->delta;
++     ++cnt;
++     node = tbt_next(node);
++   }
++   fail_unless(cnt == items,"tbt sort lost items");
++ }
++ 
++ /* test token delta sorting */
++ START_TEST(test_tbt) {
++   struct tbt *tbt = tbt_create();
++   unsigned long long crc = 0;
++   char buf[80];
++   int i;
++   srandom(5551212L);
++   for (i = 0; i < 5000; ++i) {
++     double prob = (double)random() / (double)RAND_MAX;
++     fail_unless(prob <= 1.0 && prob >= 0.0,"problem with random() or RAND_MAX");
++     tbt_add(tbt,prob,++crc,1);
++   }
++   verify_tbt(tbt,5000);
++   i = tbt_destroy(tbt);
++   sprintf(buf,"tbt_destroy returned %d",i);
++   fail_unless(i == 0,buf);
++ 
++   tbt = tbt_create();
++   /* worst case is that all tokens have equal delta. */
++   for (i = 0; i < 2000; ++i) tbt_add(tbt,0.7,++crc,1);
++   for (i = 0; i < 2000; ++i) tbt_add(tbt,0.3,++crc,1);
++   verify_tbt(tbt,4000);
++   i = tbt_destroy(tbt);
++   sprintf(buf,"tbt_destroy returned %d",i);
++   fail_unless(i == 0,buf);
++ } END_TEST
++ 
++ #ifdef TEST_TOKENIZE
++ 
++ static struct lht *
++ tokenize(int chained,const char *msg) {
++   char *edup = strdup(msg);
++   char *p;
++   struct lht *freq;
++   if (edup == 0) return 0;
++   p = strstr(edup,"\n\n");
++   if (p) {
++     *p++ = 0;
++     freq = _ds_tokenize(chained,edup,p);
++   }
++   else
++     freq = _ds_tokenize(chained," ",edup);
++   free(edup);
++   return freq;
++ }
++ 
++ /* tokenize a simple message */
++ START_TEST(test_tokenize) {
++   struct lht *freq;
++   struct lht_node *node_lht;
++   struct lht_c c_lht;
++   int tokens = 0;
++ 
++   freq = tokenize(1,nasty1);
++   fail_unless(freq != 0,"out of memory");
++   node_lht = c_lht_first(freq, &c_lht);
++   while (node_lht != NULL) {
++     char buf[256];
++     sprintf(buf,"%s: %d\n",node_lht->token_name,node_lht->frequency);
++     if (strcmp("Ha",node_lht->token_name) == 0)
++       fail_unless(node_lht->frequency == 3,buf);
++     else if (strcmp("Ha+Ha",node_lht->token_name) == 0)
++       fail_unless(node_lht->frequency == 2,buf);
++     else
++       fail_unless(node_lht->frequency == 1,buf);
++     tokens += node_lht->frequency;
++     node_lht = c_lht_next(freq, &c_lht);
++   }
++   fail_unless(tokens == 32,"token count not 32");
++   lht_destroy(freq);
++   fflush(stdout);
++ } END_TEST
++ #endif
++ 
++ /* Collect all the tests.  This will make more sense when tests are
++  * in multiple source files. */
++ Suite *dspam_suite (void) { 
++   Suite *s = suite_create ("DSPAM"); 
++   TCase *tc_process = tcase_create ("PROCESS");
++ 
++   suite_add_tcase (s, tc_process);
++   tcase_add_test (tc_process, test_classify_sig);
++   tcase_add_test (tc_process, test_corpus);
++   tcase_add_test (tc_process, test_classify);
++   tcase_add_test (tc_process, test_overflow);
++ #ifdef TEST_TOKENIZE
++   tcase_add_test (tc_process, test_tokenize);
++ #endif
++   tcase_add_test (tc_process, test_reverse);
++   tcase_add_test (tc_process, test_encoding);
++   tcase_add_test (tc_process, test_mediaskip);
++   tcase_add_test (tc_process, test_html);
++   tcase_add_test (tc_process, test_tbt);
++ #if 0 && DSPAM_API == 28
++   tcase_add_checked_fixture (tc_process,
++ 	dspam_init_driver,dspam_shutdown_driver);
++ #endif
++   return s; 
++ }
++  
++ int main (void) { 
++   int nf; 
++   Suite *s = dspam_suite (); 
++   SRunner *sr = srunner_create (s); 
++   dspam_init_driver();
++   srunner_run_all (sr, CK_NORMAL); 
++   dspam_shutdown_driver();
++   nf = srunner_ntests_failed (sr); 
++   srunner_free (sr); 
++   suite_free (s); 
++   return (nf == 0) ? EXIT_SUCCESS : EXIT_FAILURE; 
++ }
+Index: dspam/util.c
+diff -c dspam/util.c:1.1.1.6 dspam/util.c:1.1.1.5.2.2
+*** dspam/util.c:1.1.1.6	Sat Nov 22 13:41:16 2003
+--- dspam/util.c	Sat Nov 22 14:08:05 2003
+***************
+*** 190,195 ****
+--- 190,201 ----
+  }
+  #endif
+  
++ static const char *userdir = USERDIR;
++ void
++ _ds_setuserdir(const char *path) {
++   userdir = path ? path : USERDIR;
++ }
++ 
+  const char *
+  _ds_userdir_path (const char *filename, const char *extension)
+  {
+***************
+*** 205,211 ****
+    /* Locks use USERDIR */
+    if (extension != NULL && !strcmp (extension, "lock"))
+    {
+!     snprintf (path, sizeof (path), "%s/%s/%s.%s", USERDIR, filename, filename,
+                extension);
+      return path;
+    }
+--- 211,217 ----
+    /* Locks use USERDIR */
+    if (extension != NULL && !strcmp (extension, "lock"))
+    {
+!     snprintf (path, sizeof (path), "%s/%s/%s.%s", userdir, filename, filename,
+                extension);
+      return path;
+    }
+***************
+*** 235,250 ****
+      if (extension == NULL)
+      {
+        snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%c/%s",
+!                 USERDIR, filename[0], filename[1], filename);
+      }
+      else
+      {
+        if (extension[0] == 0)
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%c/%s/%s",
+!                   USERDIR, filename[0], filename[1], filename, filename);
+        else
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%c/%s/%s.%s",
+!                   USERDIR, filename[0], filename[1], filename, filename,
+                    extension);
+      }
+    }
+--- 241,256 ----
+      if (extension == NULL)
+      {
+        snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%c/%s",
+!                 userdir, filename[0], filename[1], filename);
+      }
+      else
+      {
+        if (extension[0] == 0)
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%c/%s/%s",
+!                   userdir, filename[0], filename[1], filename, filename);
+        else
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%c/%s/%s.%s",
+!                   userdir, filename[0], filename[1], filename, filename,
+                    extension);
+      }
+    }
+***************
+*** 253,279 ****
+      if (extension == NULL)
+      {
+        snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%s",
+!                 USERDIR, filename[0], filename);
+      }
+      else
+      {
+        if (extension[0] == 0)
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%s/%s",
+!                   USERDIR, filename[0], filename, filename);
+        else
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%s/%s.%s",
+!                   USERDIR, filename[0], filename, filename, extension);
+      }
+    }
+  #else
+    if (extension == NULL)
+    {
+!     snprintf (path, MAX_FILENAME_LENGTH, "%s/%s", USERDIR, filename);
+    }
+    else
+    {
+      snprintf (path, MAX_FILENAME_LENGTH, "%s/%s/%s.%s",
+!               USERDIR, filename, filename, extension);
+    }
+  #endif
+  
+--- 259,285 ----
+      if (extension == NULL)
+      {
+        snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%s",
+!                 userdir, filename[0], filename);
+      }
+      else
+      {
+        if (extension[0] == 0)
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%s/%s",
+!                   userdir, filename[0], filename, filename);
+        else
+          snprintf (path, MAX_FILENAME_LENGTH, "%s/%c/%s/%s.%s",
+!                   userdir, filename[0], filename, filename, extension);
+      }
+    }
+  #else
+    if (extension == NULL)
+    {
+!     snprintf (path, MAX_FILENAME_LENGTH, "%s/%s", userdir, filename);
+    }
+    else
+    {
+      snprintf (path, MAX_FILENAME_LENGTH, "%s/%s/%s.%s",
+!               userdir, filename, filename, extension);
+    }
+  #endif
+  

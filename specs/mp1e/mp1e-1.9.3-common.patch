@@ -1,0 +1,72 @@
+diff -Nur configure.in.orig configure.in
+--- configure.in.orig	2003-01-03 06:33:27.000000000 +0100
++++ configure.in	2003-11-10 23:18:06.247765000 +0100
+@@ -136,10 +136,12 @@
+ dnl ALSA support (libasound)
+ dnl
+ have_libasound=no
++save_LIBS="$LIBS"
+ AM_PATH_ALSA([0.9.0], [have_libasound=yes], [true])
+ if test "x$have_libasound" = "xyes"; then
+   AC_DEFINE(HAVE_ALSA, 1, [Define if you have ALSA 0.9.x.])
+ fi
++LIBS="$save_LIBS"
+ 
+ dnl
+ dnl EsounD support
+@@ -164,9 +166,10 @@
+ dnl for audio compression from WAV etc
+ dnl
+ have_audiofile=yes
++AUDIOFILE_LIB=
+ AC_CHECK_HEADER(audiofile.h,
+-  AC_CHECK_LIB(audiofile, afSetVirtualSampleFormat,,
+-    have_audiofile=no), have_audiofile=no)
++  [AC_CHECK_LIB(audiofile, afSetVirtualSampleFormat,[AUDIOFILE_LIB="-laudiofile"],
++    have_audiofile=no)], have_audiofile=no)
+ 
+ dnl
+ dnl V4l/2 always compiled in
+diff -Nur Makefile.am.orig Makefile.am
+--- Makefile.am.orig	2002-12-14 01:43:43.000000000 +0100
++++ Makefile.am	2003-11-10 23:16:18.116203496 +0100
+@@ -29,14 +29,22 @@
+ dist-hook:
+ 
+ bin_PROGRAMS = mp1e
++lib_LTLIBRARIES = libmp1e_common.la
+ 
+-mp1e_SOURCES = main.c options.c global_data.c options.h
++libmp1e_common_la_SOURCES =
++libmp1e_common_la_LIBADD = \
++	systems/libsystems.la \
++	audio/libaudio.la \
++	video/libvideo.la \
++	common/libcommon.la -lm
++
++mp1e_SOURCES = main.c options.c global_data.c options.h video/filter.c
+ 
+ mp1e_LDADD = \
+-	systems/libsystems.la \
+-	audio/libaudio.la vbi/libvbi.la \
+-	devices/libdevices.la video/libvideo.la common/libcommon.la \
+-	test/libtest.la $(X_LIBS) -lm $(PTHREAD_LIB) $(ESD_LIBS)
++	libmp1e_common.la \
++	vbi/libvbi.la \
++	devices/libdevices.la \
++	test/libtest.la $(X_LIBS) -lm $(PTHREAD_LIB) $(ESD_LIBS) $(ALSA_LIBS)
+ 
+ man_MANS = mp1e.1
+ 
+diff -Nur video/Makefile.am.orig video/Makefile.am
+--- video/Makefile.am.orig	2002-10-03 00:10:18.000000000 +0200
++++ video/Makefile.am	2003-11-10 23:13:02.947873592 +0100
+@@ -18,7 +18,7 @@
+ 
+ libvideo_la_SOURCES = \
+ 	dct.c dct_mmx.s dct.h dct_ieee.h dct_ref.c \
+-	filter.c filter_mmx.s \
++	filter_mmx.s \
+ 	mblock.c mblock.h ratectl.h \
+ 	mpeg1.c mpeg2.c mpeg.h video.h libvideo.h \
+ 	tables.c vlc.c vlc_mmx.s vlc.h vlc_tables.h \
