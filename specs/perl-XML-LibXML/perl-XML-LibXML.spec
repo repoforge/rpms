@@ -6,7 +6,7 @@
 
 Summary: XML-LibXML Perl module
 Name: perl-XML-LibXML
-Version: 1.56
+Version: 1.58
 Release: 0
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/XML-LibXML/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{real_name}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHISH/%{real_name}-%{version}.tar.gz
 Patch: perl-XML-LibXML-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -57,6 +57,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.58-0
+- Updated to release 1.58.
+
 * Thu Nov 20 2003 Dag Wieers <dag@wieers.com> - 1.56-0
 - Updated to release 1.56.
 
