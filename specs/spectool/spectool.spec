@@ -6,7 +6,7 @@
 Summary: Tool to display expanded Source/Patch macros from a SPEC file.
 Name: spectool
 Version: 1.0.2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://people.redhat.com/nphilipp/spectool/
@@ -28,6 +28,9 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %prep
 %setup
 
+### FIXME: Don't do a dependency check. (Please fix upstream)
+%{__perl} -pi.orig -e 's|(rpmbuild -bp \$filename)|$1 --nodeps|' spectool
+
 %build
 
 %install
@@ -44,6 +47,10 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %{_bindir}/*
 
 %changelog
+* Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 1.0.2-2
+- Changed BuildArch to noarch. (Bert de Bruijn)
+- Added fix to make spectool work better. (Bert de Bruijn)
+
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 

@@ -2,12 +2,11 @@
 
 # Authority: dag
 # Upstream: Simon Kelley <simon@thekelleys.org.uk>
-# Tag: test
 
 Summary: Lightweight caching nameserver.
 Name: dnsmasq
 Version: 2.4
-Release: 0.pre
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.thekelleys.org.uk/dnsmasq/
@@ -157,8 +156,10 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
-* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.4-0.pre
-- Updated to release 2.4pre.
+* Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 2.4-1
+- Updated to release 2.4.
+
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.3-0
 - Updated to release 2.3.
 
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 2.2-0

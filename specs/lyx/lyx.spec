@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <lyx-devel@lists.lyx.org>
 
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX.
 Name: lyx
@@ -13,7 +14,7 @@ URL: http://www.lyx.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.lyx.org/pub/lyx/stable/%{name}-%{version}.tar.bz2
+Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -61,7 +62,7 @@ and let the computer take care of the rest.
 %find_lang %{name}
 
 ### Set up the lyx-specific class files where TeX can see them
-%{__install} -d -m0755 %{buildroot}%{_datadir}/texmf/tex/latex
+%{__install} -d -m0755 %{buildroot}%{_datadir}/texmf/tex/latex/
 %{__mv} -f %{buildroot}%{_datadir}/lyx/tex %{buildroot}/%{_datadir}/texmf/tex/latex/lyx
 
 ### Miscellaneous files

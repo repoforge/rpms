@@ -26,8 +26,7 @@ bases (DEC/HEX/OCT/BIN) and angle units (DEG/RAD/GRAD) and features
 a wide range of mathematical (basic arithmetic operations,
 trigonometric functions, etc) and other useful functions (memory, etc)
 at the moment. galculator can be used in algebraic mode as well as in
-Reverse Polish Notation. See below for a detailed list of supported
-functions.
+Reverse Polish Notation.
 
 %prep
 %setup

@@ -1,19 +1,20 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <xfrisk-devel@tuxick.net>
 
-Summary: xfrisk, a multi-user network version of the classic "Risk".
+Summary: Multi-user network version of the classic "Risk".
 Name: xfrisk
 Version: 1.2
 Release: 0
-Group: Amusements/Games
 License: GPL
-URL: http://www.iki.fi/morphy/xfrisk/
+Group: Amusements/Games
+URL: http://tuxick.net/xfrisk/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://morphy.iki.fi/%{name}/files/%{name}-%{version}.tar.gz
+Source: http://tuxick.net/xfrisk/files/XFrisk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -35,7 +36,9 @@ system for graphics and runs on most UNIX and UNIX-like platforms.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall BINDIR="%{buildroot}%{_bindir}" LIBDIR="%{buildroot}%{_libdir}/xfrisk"
+%makeinstall \
+	BINDIR="%{buildroot}%{_bindir}" \
+	LIBDIR="%{buildroot}%{_libdir}/xfrisk"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,5 +50,7 @@ system for graphics and runs on most UNIX and UNIX-like platforms.
 %{_libdir}/xfrisk/
 
 %changelog
+#- Updated URL and Source-tag. (Anthony Joseph Seward)
+
 * Sat Feb 15 2003 Dag Wieers <dag@wieers.com> - 1.2-0
 - Initial package. (using DAR)

@@ -1,10 +1,14 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <cpufreqd-user@lists.sourceforge.net>
+
+### FIXME: Makefiles don't allow -jX (parallel compilation)
+# Distcc: 0
 
 Summary: CPU frequency scaling daemon.
 Name: cpufreqd
-Version: 1.1.1
+Version: 1.1.2
 Release: 0
 License: GPL
 Group: System Environment/Kernel
@@ -25,6 +29,9 @@ a set of rules specified in the config file (see cpufreqd.conf (5)).
 
 %prep
 %setup
+
+### FIXME: Get rid of ownership changes. (Please fix upstream)
+%{__perl} -pi.orig -e 's|-o root -g root||' Makefile.in
 
 ### Put default to apm instead of acpi
 %{__perl} -pi.orig -e 's|^(pm_type=.*)$|#$1\npm_type=apm|' cpufreqd.conf
@@ -142,7 +149,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO examples/
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/cpufreqd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/*
@@ -151,6 +158,9 @@ fi
 %{_libdir}/*
 
 %changelog
+* Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 1.1.2-0
+- Updated to release 1.1.2.
+
 * Mon Feb 09 2004 Dag Wieers <dag@wieers.com> - 1.1.1-0
 - Updated to release 1.1.1.
 
