@@ -11,6 +11,7 @@
 # set to zero to avoid running test suite
 %define make_check 0
 
+%define python_dir %(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 Summary: Modern Version Control System designed to replace CVS
@@ -42,8 +43,7 @@ BuildRequires: neon-devel >= 0.24.7-1
 %define __perl_requires %{SOURCE3}
 
 # Put Python bindings in site-packages
-%define pydir %(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
-%define swigdirs swig_pydir=%{pydir}/libsvn swig_pydir_extra=%{pydir}/svn
+%define swigdirs swig_pydir=%{python_dir}/libsvn swig_pydir_extra=%{python_dir}/svn
 
 %description
 Subversion is a concurrent version control system which enables one
@@ -148,7 +148,7 @@ export CC=gcc CXX=g++
 
 # Remove unpackaged files
 %{__rm} -rf %{buildroot}%{_includedir}/subversion-*/*.txt \
-       %{buildroot}%{pydir}/*/*.{a,la}
+       %{buildroot}%{python_dir}/*/*.{a,la}
 
 %if %{!?_without_swig:1}0
 # remove stuff produced with Perl modules
@@ -208,8 +208,8 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %{_datadir}/xemacs/site-packages/lisp/
 %{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
 %{!?_without_swig:%exclude %{_mandir}/man*/*::*}
-%{!?_without_swig:%{pydir}/svn}
-%{!?_without_swig:%{pydir}/libsvn}
+%{!?_without_swig:%{python_dir}/svn}
+%{!?_without_swig:%{python_dir}/libsvn}
 
 %files devel
 %defattr(-, root, root, 0755)
