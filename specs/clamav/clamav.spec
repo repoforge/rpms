@@ -2,19 +2,20 @@
 # Authority: newrpms
 # Upstream: <clamav-devel@lists.sourceforge.net>
 
+%define rversion 0.67-1
 %define milter 1
 %{?rhel3:%undefine milter}
 
 Summary: Anti-virus utility for Unix.
 Name: clamav
-Version: 0.67
+Version: 0.67.1
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://clamav.sf.net/
 
-Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
-Source1: http://dl.sf.net/clamav/clamav-%{version}.tar.gz.sig
+Source0: http://dl.sf.net/clamav/clamav-%{rversion}.tar.gz
+Source1: http://dl.sf.net/clamav/clamav-%{rversion}.tar.gz.sig
 Source2: clamav.init
 Source3: clamav-milter.init
 Patch0: clamav-0.67-config.patch
@@ -70,7 +71,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n %{name}-%{rversion}
 %patch0
 
 %{__cat} <<EOF >clamav.logrotate
@@ -207,8 +208,8 @@ fi
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root, root, 0755)
-%doc AUTHORS BUGS ChangeLog FAQ NEWS README TODO test
+%defattr(-, root, root, 0755)
+%doc AUTHORS BUGS ChangeLog FAQ INSTALL NEWS README TODO test/
 %doc docs/DMS/Debian_Mail_server.html docs/clamdoc.*
 %doc docs/html/ docs/clamd_supervised/
 %doc docs/French/ docs/Japanese/ docs/Polish/ docs/Portugese/
@@ -224,6 +225,7 @@ fi
 
 %files -n clamd
 %defattr(-, root, root, 0755)
+%doc contrib/clamdwatch/ contrib/trashscan/
 %doc %{_mandir}/man1/clamdscan.1*
 %doc %{_mandir}/man5/clamav.conf.5*
 %doc %{_mandir}/man8/clamd.8*
@@ -265,6 +267,10 @@ fi
 #%exclude %{_libdir}/*.la
 
 %changelog
+* Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 0.67.1-1
+- Updated to release 0.67-1.
+- Added clamdwatch and trashcan to clamd.
+
 * Mon Mar 08 2004 Dag Wieers <dag@wieers.com> - 0.67-1
 - Personalized SPEC file.
 

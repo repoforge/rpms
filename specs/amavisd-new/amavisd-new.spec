@@ -1,4 +1,5 @@
 # $Id$
+
 # Authority: dag
 # Upstream: <amavis-user@lists.sourceforge.net>
 
@@ -12,7 +13,7 @@
 Summary: Mail virus-scanner.
 Name: amavisd-new
 Version: 20030616
-Release: 4.%{rrelease}
+Release: 5.%{rrelease}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -201,7 +202,7 @@ fi
 %if %{?milter:1}%{!?milter:0}
 if [ -f /etc/mail/sendmail.mc ]; then
 	if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
-		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/spool/amavis/amavisd.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
+		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/spool/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
 	fi
 fi
 %endif
@@ -230,7 +231,10 @@ fi
 %dir %{_localstatedir}/spool/amavis/virusmails/
 
 %changelog
-* Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 20030616-1.p8
+* Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 20030616-5.p8
+- Fixed amavis-milter.sock example in sendmail.mc (Ivo Clarysse)
+
+* Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 20030616-4.p8
 - Updated to release 20030616-p8.
 - Make milter-support optional (for RHEL3).
 - Added lzop requirement.

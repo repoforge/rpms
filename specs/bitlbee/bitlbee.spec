@@ -3,25 +3,25 @@
 # Authority: dag
 # Upstream: Wilmer van der Gaast <lintux@lintux.cx>
 
-Summary: An IRC to other chat networks gateway.
+Summary: IRC to other chat networks gateway.
 Name: bitlbee
-Version: 0.84
-Release: 0
+Version: 0.85
+Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://www.lintux.cx/bitlbee.html
+URL: http://www.bitlbee.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.lintux.cx/downloads/bitlbee-%{version}.tar.gz
+Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 %description
-An IRC to other chat networks gateway. This program can be used
-as an IRC server which forwards everything you say to people on
-other chat networks like MSN/ICQ/Jabber.
+Bitlbee is an IRC to other chat networks gateway. bitlbee can be used as
+an IRC server which forwards everything you say to people on other chat
+networks like MSN/ICQ/Jabber.
 
 %prep
 %setup
@@ -82,6 +82,9 @@ EOF
 %attr(0700, daemon, root) %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Sun Mar 14 2004 Dag Wieers <dag@wieers.com> - 0.85-1
+- Updated to release 0.85.
+
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.84-0
 - Updated to release 0.84.
 

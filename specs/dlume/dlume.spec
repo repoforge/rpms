@@ -1,11 +1,14 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Tomasz Maka <pasp@ll.pl>
+
+%define rversion 0.2.2a
 
 Summary: Graphical address book.
 Name: dlume
-Version: 0.2.0
-Release: 1
+Version: 0.2.2
+Release: 1.a
 License: GPL
 Group: Applications/Productivity
 URL: http://clay.ll.pl/dlume.html
@@ -13,7 +16,7 @@ URL: http://clay.ll.pl/dlume.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://clay.ll.pl/download/dlume-%{version}.tar.gz
+Source: http://clay.ll.pl/download/dlume-%{rversion}.tar.gz
 Buildroot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -27,7 +30,7 @@ easy to find entries. Exporting to CSV and HTML formats is also
 possible.
 
 %prep
-%setup
+%setup -n %{name}-%{rversion}
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -69,5 +72,8 @@ desktop-file-install --vendor net                  \
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 0.2.2-1.a
+- Updated to release 0.2.2a.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 0.2.0-1
 - Initial package. (using DAR)

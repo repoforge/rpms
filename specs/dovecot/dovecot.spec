@@ -149,7 +149,7 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{__rm} -rf %{buildroot}%{_datadir}/doc/dovecot/
 
 %pre
-/usr/sbin/useradd -M -s /sbin/nologin -r dovecot &>/dev/null || :
+/usr/sbin/useradd -M -d "%{_libexecdir}/dovecot/" -c "Dovecot daemon" -r dovecot &>/dev/null || :
 /usr/sbin/usermod -s /sbin/nologin dovecot &>/dev/null || :
 
 %post

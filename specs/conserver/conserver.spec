@@ -1,12 +1,14 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <users@conserver.com>
+# Upstream: Bryan Stansell <bryan@conserver.com>
 
 ### FIXME: Add sysv script using sysconfig file.
 
 Summary: Serial console server daemon/client.
 Name: conserver
-Version: 8.0.9
+Version: 8.1.2
 Release: 0
 License: BSD style
 Group: System Environment/Daemons
@@ -15,7 +17,7 @@ URL: http://www.conserver.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.conserver.com/%{name}-%{version}.tar.gz
+Source: http://www.conserver.com/conserver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -76,6 +78,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Sat Mar 13 2004 Dag Wieers <dag@wieers.com> - 8.1.2-0
+- Updated to release 8.1.2.
+
 * Fri Dec 12 2003 Dag Wieers <dag@wieers.com> - 8.0.9-0
 - Updated to release 8.0.9.
 

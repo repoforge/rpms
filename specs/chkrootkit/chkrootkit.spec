@@ -7,7 +7,7 @@
 Summary: Check locally for signs of a rootkit.
 Name: chkrootkit
 Version: 0.43
-Release: 1
+Release: 2
 License: COPYRIGHTED
 Group: Applications/System
 URL: http://www.chkrootkit.org/
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit-%{version}.tar.gz
 Source1: chkrootkit.png
-#Source2: chkrootkit.sh
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -29,7 +28,7 @@ chkrootkit is a tool to locally check for signs of a rootkit.
 
 %{__cat} <<EOF >chkrootkit.apps
 USER=root
-PROGRAM=%{_libdir}/chkrootkit-%{version}/chkrootkit
+PROGRAM=%{_libdir}/chkrootkit-%{version}/chkrootkit.sh
 SESSION=true
 EOF
 
@@ -42,6 +41,12 @@ session	   required	pam_permit.so
 session    optional	pam_xauth.so
 session    optional     pam_timestamp.so
 account    required	pam_permit.so
+EOF
+
+%{__cat} <<EOF >chkrootkit.sh
+#!/bin/sh
+cd %{_libdir}/chkrootkit-%{version}
+exec %{_libdir}/chkrootkit-%{version}/chkrootkit
 EOF
 
 %{__cat} <<EOF >xchkrootkit.sh
@@ -64,9 +69,10 @@ Categories=Application;System;
 EOF
 
 %build
+%{__make} sense
+
 %install
 %{__rm} -rf %{buildroot}
-%{__make} sense
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_libdir}/chkrootkit-%{version}/ \
 			%{buildroot}%{_sysconfdir}/security/console.apps/ \
@@ -80,10 +86,9 @@ EOF
 %{__ln_s} -f %{_bindir}/xchkrootkit %{buildroot}%{_bindir}/chkrootkitX
 %{__ln_s} -f %{_bindir}/consolehelper %{buildroot}%{_bindir}/chkrootkit
 
-%{__cp} -avx * %{buildroot}%{_libdir}/chkrootkit-%{version}/
+%{__install} -m0755 check_wtmpx chkdirs chklastlog chkproc chkrootkit chkrootkit.sh chkwtmp ifpromisc strings-static %{buildroot}%{_libdir}/chkrootkit-%{version}/
 
 %{__install} -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chkrootkit.png
-#%{__install} -m0755 %{SOURCE2} %{buildroot}%{_libdir}/chkrootkit-%{version}/chkrootkit
 
 %if %{dfi}
         %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Utilities/
@@ -95,14 +100,6 @@ EOF
 		--dir %{buildroot}%{_datadir}/applications \
 		chkrootkit.desktop
 %endif
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/chkrootkit-%{version}/*.c \
-		%{buildroot}%{_libdir}/chkrootkit-%{version}/*.* \
-		%{buildroot}%{_libdir}/chkrootkit-%{version}/Makefile \
-		%{buildroot}%{_libdir}/chkrootkit-%{version}/ACKNOWLEDGMENTS \
-		%{buildroot}%{_libdir}/chkrootkit-%{version}/COPYRIGHT \
-		%{buildroot}%{_libdir}/chkrootkit-%{version}/README*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -122,6 +119,9 @@ EOF
 %endif
 
 %changelog
+* Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 0.43-2
+- Change to chkrootkit-path on execution. (gh)
+
 * Tue Mar 02 2004 Dag Wieers <dag@wieers.com> - 0.43-1
 - Fixed to the normal chkrootkit script. (Clifford Snow)
 

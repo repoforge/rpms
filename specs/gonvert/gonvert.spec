@@ -5,7 +5,7 @@
 
 Summary: Units conversion utility.
 Name: gonvert
-Version: 0.1.7
+Version: 0.1.10
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -14,7 +14,7 @@ URL: http://unihedron.com/projects/gonvert/gonvert.php
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source : http://unihedron.com/projects/gonvert/gonvert-%{version}.tar.gz
+Source: http://www.unihedron.com/projects/gonvert/downloads/gonvert-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -65,6 +65,9 @@ EOF
 %{_datadir}/pixmaps/*
 
 %changelog 
+* Sat Mar 13 2004 Dag Wieers <dag@wieers.com> - 0.1.10-1
+- Updated to release 0.1.10.
+
 * Tue Feb 03 2004 Dag Wieers <dag@wieers.com> - 0.1.7-1
 - Swapped pygtk requirement by pygtk2. (Paolo Dona)
 

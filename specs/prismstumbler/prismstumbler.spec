@@ -1,13 +1,16 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Jafer <jan.b.fernquist@telia.com>
 # Upstream: Florian <florian.boor@unix-ag.org>
+# Upstream: Jafer <jan.b.fernquist@telia.com>
+# Distcc: 0
 
-Summary: Wireless LAN (WLAN) discovery tool which scans for beaconframes from accesspoints.
+%define rversion 0.7.1a
+
+Summary: Wireless LAN (WLAN) accesspoint discovery tool.
 Name: prismstumbler
 Version: 0.7.1
-Release: 1
+Release: 1.a
 License: GPL
 Group: Applications/Internet
 URL: http://prismstumbler.sf.net/
@@ -15,7 +18,7 @@ URL: http://prismstumbler.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/prismstumbler/prismstumbler-%{version}.tar.bz2
+Source: http://dl.sf.net/prismstumbler/prismstumbler-%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -28,59 +31,60 @@ switching channels and monitors any frames recived on the currently
 selected channel.
 
 %prep
-%setup
+%setup -n %{name}-%{rversion}
 
-%{__cat} <<EOF >%{name}.desktop
+### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
+%{__perl} -pi.orig -e '
+		s|\$\(PREFIX\)|\$(prefix)|g;
+		s|/etc|\$(sysconfdir)|g;
+		s|\$\(prefix\)/bin|\$(bindir)|g;
+		s|\$\(prefix\)/share|\$(datadir)|g;
+	' src/Makefile.in
+
+### Cleaned up desktop file
+%{__cat} <<EOF >src/familiar/prismstumbler.desktop
 [Desktop Entry]
-Name=Gv4l
-Comment=%{summary}
-Icon=gv4l/gv4l.png
-Exec=%{name}
+Name=Prismstumbler WLAN Scanner
+Comment=Discover wireless access points in your vicinity
+Exec=pst
 Terminal=false
 Type=Application
-Categories=Application;AudioVideo;
+Icon=prism-icon4.png
+Categories=GNOME;Application;Network;
+StartupNotify=false
+SingleInstance=true
 EOF
 
 %build
-%configure \
-	--disable-schemas-install
+./autogen.sh
+%configure
+cd src/gpsd/
+%configure
+cd -
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-%find_lang %{name}
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor net                  \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/*.la
-
-%post
-/sbin/ldconfig 2>/dev/null
-export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%{__rm} -rf %{buildroot}%{_prefix}/doc/
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS ChangeLog COPYING doc/INSTALL NEWS README doc/TODO doc/help.txt doc/README*
+%config %{_sysconfdir}/*
 %{_bindir}/*
-%{_libdir}/*.so.*
 %{_datadir}/pixmaps/*.png
 %{_datadir}/applications/*.desktop
+%{_docdir}/prismstumbler/help.txt
 
 %changelog
+* Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1.a
+- Updated to release 0.7.1a.
+
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Initial package. (using DAR)

@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <vnc-tight-list@lists.sourceforge.net>
 
 ### Problem with distcc ?
 # Distcc: 0
@@ -10,7 +11,7 @@
 Summary: A remote administration system.
 Name: tightvnc
 Version: 1.2.9
-Release: 0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
@@ -18,13 +19,14 @@ URL: http://www.tightvnc.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/vnc-tight/%{name}-%{version}_unixsrc.tar.bz2
+Source: http://dl.sf.net/vnc-tight/tightvnc-%{version}_unixsrc.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
-Obsoletes: vnc
 BuildPrereq: /usr/bin/perl, tcp_wrappers
 BuildRequires: zlib-devel, libjpeg-devel
+#Obsoletes: vnc
+Conflicts: vnc
 
 %description
 Virtual Network Computing (VNC) is a remote display system which
@@ -37,9 +39,11 @@ to connect to other desktops running a VNC or a TightVNC server.
 %package server
 Summary: TightVNC server
 Group: User Interface/X
-Obsoletes: vnc-server
+
 Requires: XFree86, bash >= 2.0
 Prereq: /sbin/chkconfig, /sbin/service
+#Obsoletes: vnc-server
+Conflicts: vnc-server
 
 %description server
 The VNC system allows you to access the same desktop from a wide
@@ -253,6 +257,9 @@ fi
 %{_datadir}/vnc/
 
 %changelog
+* Wed Mar 10 2004 Dag Wieers <dag@wieers.com> - 1.2.9-1
+- Don't obsolete vnc, just conflict. (Reuben Thomas)
+
 * Sat Aug 02 2003 Dag Wieers <dag@wieers.com> - 1.2.9-0
 - Updated to release 1.2.9.
 

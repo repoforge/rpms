@@ -3,8 +3,8 @@
 
 Summary: All-purpose iptables firewall generator.
 Name: dwall
-Version: 0.5.0
-Release: 0
+Version: 0.5.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/home-made/dwall/
@@ -153,7 +153,7 @@ EOF
 %post
 /sbin/chkconfig --add dwall
 if ! grep -q "%{_localstatedir}/log/dwall" /etc/syslog.conf; then
-	echo -e "kern.debug\t\t\t\t\t\t\t%{_localstatedir}/log/dwall" >>%{_sysconfdir}/syslog.conf
+	echo -e "#kern.debug\t\t\t\t\t\t\t%{_localstatedir}/log/dwall" >>%{_sysconfdir}/syslog.conf
 fi
 
 %preun
@@ -166,14 +166,22 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog EXAMPLE README TODO
-%config %{_sysconfdir}/dwall/
+%doc AUTHORS ChangeLog EXAMPLE README TODO chains-example/
+%config(noreplace) %{_sysconfdir}/dwall/*.conf
+%config(noreplace) %{_sysconfdir}/dwall/scripts/
+%config %{_sysconfdir}/dwall/services/
 %config %{_sysconfdir}/logrotate.d/*
 %config %{_initrddir}/*
+%dir %{_sysconfdir}/dwall/
+%dir %{_sysconfdir}/dwall/backup/
+%dir %{_sysconfdir}/dwall/tmp/
 %{_bindir}/*
 %{_libdir}/dwall/
 
 %changelog
+* Sun Mar 14 2004 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Updated to release 0.5.1.
+
 * Wed Mar 10 2004 Dag Wieers <dag@wieers.com> - 0.5.0-0
 - Updated to release 0.5.0.
 

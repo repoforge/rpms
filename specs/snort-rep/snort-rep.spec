@@ -2,8 +2,7 @@
 
 # Authority: dries
 
-Summary: A snort reporting tool.
-Summary(nl): Een programma dat rapporten maakt van snort logs.
+Summary: Snort reporting tool.
 Name: snort-rep
 Version: 1.10
 Release: 2
@@ -14,35 +13,30 @@ URL: http://people.ee.ethz.ch/~dws/software/snort-rep/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://people.ee.ethz.ch/~dws/software/snort-rep/pub/%{name}-%{version}.tar.gz
+Source: http://people.ee.ethz.ch/~dws/software/snort-rep/pub/snort-rep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Prefix: %{_prefix}
+
 Requires: perl, perl-MIME-Lite
 
 %description
 Snort-rep is a snort reporting tool that can produce text or HTML output
 from a syslog file.
 
-%description -l nl
-Snort-rep is een programma on snort rapporten te maken in tekst of HTML aan
-de hand van een syslog bestand.
-
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
-echo nothing to do
 
 %install
-export DESTDIR=$RPM_BUILD_ROOT
-mkdir -p ${DESTDIR}/usr/bin
-cp snort-rep-mail snort-rep ${DESTDIR}/usr/bin
+%{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -m0755 snort-rep snort-rep-mail %{buildroot}%{_bindir}
 
 %files
-%defattr(-,root,root,0755)
-%doc README
-%{_bindir}/snort-rep
-%{_bindir}/snort-rep-mail
+%defattr(-, root, root, 0755)
+%doc CHANGES COPYING README
+%{_bindir}/*
 
 %changelog
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 1.10-2
