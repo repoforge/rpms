@@ -43,12 +43,11 @@ you will need to install %{name}-devel.
 %setup -n STLport-%{real_version}
 
 %build
-#%{__make} %{?_smp_mflags} -C src -f gcc-linux.mak
 %{__make} %{?_smp_mflags} -C src -f gcc.mak
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall -C src -f gcc.mak INSTALLDIR=%{buildroot}/usr
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -61,18 +60,19 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc INSTALL README
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
+%{_includedir}/stlport
 %{_libdir}/*.a
 %{_libdir}/*.so
-%exclude %{_libdir}/*.la
 
 %changelog
+* Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> 5.0-0125-1
+- Update to 5.0-0125
+- Some fixes
+
 * Fri May 21 2004 Dries Verachtert <dries@ulyssis.org> 4.6.2-1
 - Initial package.
