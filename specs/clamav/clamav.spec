@@ -299,6 +299,7 @@ fi
 %defattr(0644, clamav, clamav, 0755)
 %{_localstatedir}/run/clamav/
 %{_localstatedir}/clamav/
+%dir %{_localstatedir}/log/clamav/
 %{_localstatedir}/log/clamav/clamav.log
 
 %if %{!?_without_milter:1}0
@@ -318,6 +319,7 @@ fi
 
 %defattr(0644, clamav, clamav, 0755)
 %config(noreplace) %verify(user group mode) %{_localstatedir}/clamav/
+%dir %{_localstatedir}/log/clamav/
 %{_localstatedir}/log/clamav/freshclam.log
 
 %files devel
@@ -330,6 +332,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Sun Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.80-4..
+- Added %dir /var/clamav/log. (Adam Bowns)
+
 * Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 0.80-3
 - Added curl dependency. (Petr Kristof)
 - Synchronized some options from Petr. (Petr Kristof)
