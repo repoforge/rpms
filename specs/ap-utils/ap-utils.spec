@@ -4,8 +4,8 @@
 
 Summary: Configure and monitor Wireless Access Points
 Name: ap-utils
-Version: 1.4
-Release: 0
+Version: 1.4.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ap-utils.polesye.net/
@@ -46,5 +46,8 @@ to configure and monitor Wireless Access Points using SNMP.
 %{_sbindir}/*
 
 %changelog
+* Sun May 30 2004 Dag Wieers <dag@wieers.com> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Mon Feb 23 2004 Dag Wieers <dag@wieers.com> - 1.4-0
 - Initial package. (using DAR)
