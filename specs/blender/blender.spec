@@ -8,7 +8,7 @@
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
 Version: 2.33
-Release: 0.a
+Release: 1.a
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, glut, python-devel
 BuildRequires: XFree86-devel, openssl-devel, SDL-devel, libvorbis-devel
 BuildRequires: libogg-devel esound-devel, openal-devel, libtool, gettext
+BuildRequires: scons
 
 %description
 Blender is the essential software solution you need for 3D, from modeling,
@@ -30,15 +31,15 @@ Professionals and novices can easily and inexpensively publish stand-alone,
 secure, multi-platform content to the web, CD-ROMs, and other media, whether
 they are users of Windows, Linux, Irix, Sun Solaris, FreeBSD or OSX.
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+#%package devel
+#Summary: Header files, libraries and development documentation for %{name}
+#Group: Development/Libraries
+#Requires: %{name} = %{version}-%{release}
 
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
+#%description devel
+#This package contains the header files, static libraries and development
+#documentation for %{name}. If you like to develop programs using %{name},
+#you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}-%{real_version}
@@ -52,29 +53,33 @@ Icon=blender.png
 Terminal=false
 Type=Application
 Categories=Application;Graphics;
+Encoding=UTF-8
 EOF
 
 %build
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake} \
-	--gnu \
-	--add-missing \
-	--foreign
-%configure
-	--disable-dependency-tracking \
-	--disable-shared \
-	--disable-openal \
-	--disable-rpath
-#	--enable-quicktime \
-#	--enable-fmod
-%{__make} %{?_smp_mflags}
+# blender now works with a new build system, named Scons
+sed -i "s/use_openal =.*/use_openal = 'true'/g;" SConstruct
+scons
+
+# {__aclocal}
+# {__autoconf}
+# {__autoheader}
+# {__automake} \
+#	--gnu \
+#	--add-missing \
+#	--foreign
+#configure
+#	--disable-dependency-tracking \
+#	--disable-shared \
+#	--disable-openal \
+#	--disable-rpath
+##	--enable-quicktime \
+##	--enable-fmod
+#{__make} {?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__install} -D -m0755 blender %{buildroot}/%{_bindir}/blender
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/blender.png
 
 
@@ -117,6 +122,9 @@ EOF
 #%{_libdir}/*.so
 
 %changelog
+* Tue May 25 2004 Dries Verachtert <dries@ulyssis.org> - 2.33-1.a
+- use Scons for building
+
 * Sat May 15 2004 Dag Wieers <dag@wieers.com> - 2.33-0.a
 - Updated to release 2.30.
 
