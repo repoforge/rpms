@@ -53,6 +53,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 %prep
 %setup
+%patch -b .phpfix
 
 
 %build
@@ -152,6 +153,9 @@ find examples contrib -type f -exec chmod 644 {} \;
 
 
 %changelog
+* Fri Jul  2 2004 Matthias Saou <http://freshrpms.net/> 1.0.48-3
+- Actually apply the patch for fixing the php module, doh!
+
 * Thu May 27 2004 Matthias Saou <http://freshrpms.net/> 1.0.48-2
 - Added php.d config entry to load the module once installed.
 
