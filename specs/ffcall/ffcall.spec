@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dries
 
-%define real_version	1.8d
+%define real_version 1.8d
 
-Summary: foreign function call libraries
+Summary: Foreign function call libraries
 Name: ffcall
 Version: 1.8
-Release: 4.d
+Release: 5.d
 License: GPL
 Group: Development/Libraries
 URL: ftp://ftp.gnustep.org/
 
-Source: ftp://ftp.gnustep.org/pub/gnustep/libs/ffcall-1.8d.tar.gz
+Source: ftp://ftp.gnustep.org/pub/gnustep/libs/ffcall-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -47,33 +47,28 @@ you will need to install %{name}-devel.
 %{__install} -d -m0755 %{buildroot}%{_docdir}/ffcal-%{real_version}
 %makeinstall
 
-rm -Rf $RPM_BUILD_ROOT/usr/share/html
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
-%doc avcall/avcall.html
-%doc callback/callback.html
-%doc callback/trampoline_r/trampoline_r.html
-%doc trampoline/trampoline.html
-%doc vacall/vacall.html
+%defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README NEWS
 %{_libdir}/*.so.*
-%{_datadir}/man/man3/avcall.3.gz
-%{_datadir}/man/man3/callback.3.gz
-%{_datadir}/man/man3/trampoline.3.gz
-%{_datadir}/man/man3/trampoline_r.3.gz
-%{_datadir}/man/man3/vacall.3.gz
 
 %files devel
+%defattr(-, root, root, 0755)
+%doc */*.html
+%doc %{_mandir}/man3/*
 %{_includedir}/*.h
 %{_libdir}/*.a
-%{_libdir}/*.so
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%exclude %{_datadir}/html/
 
 %changelog
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.8-5.d
+- Cosmetic cleanup.
+
 * Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-4.dries
 - added some BuildRequires
 
