@@ -52,7 +52,7 @@ course have to install the main GKrellM package to use them.
 
 
 %changelog
-* Wed Jan  7 3004 Matthias Saou <http://freshrpms.net/> 2.1.8-3
+* Wed Jan  7 2004 Matthias Saou <http://freshrpms.net/> 2.1.8-3
 - Fix permissions for the installed files, thanks to Brett Pemberton.
 
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.8-2
