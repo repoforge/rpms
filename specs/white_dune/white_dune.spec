@@ -14,7 +14,7 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
-%{?el3:_without_lesstif 1}
+%{?el3:%define _without_lesstif 1}
 
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
