@@ -1,12 +1,12 @@
 # $Id$
 
-Summary: A free library for decoding ATSC A/52 (aka AC-3) streams
+Summary: Library for decoding ATSC A/52 (aka AC-3) audio streams
 Name: a52dec
 Version: 0.7.4
-Release: 5.fr
+Release: 6
 License: GPL
 Group: Applications/Multimedia
-URL: http://liba52.sf.net/
+URL: http://liba52.sourceforge.net/
 Source: http://liba52.sf.net/files/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -18,7 +18,7 @@ also known as AC-3.
 
 
 %package devel
-Summary: Header files and static libraries for liba52
+Summary: Development header files and static library for liba52
 Group: Development/Libraries
 Requires: %{name} = %{version}
 
@@ -33,29 +33,34 @@ to build programs that use it.
 
 
 %prep
-%setup -q
+%setup
+
 
 %build
 %configure --enable-shared
 make %{?_smp_mflags}
 
+
 %install
 rm -rf %{buildroot}
 %makeinstall
 
+
 %clean
 rm -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
 
 %files
 %defattr(-, root, root)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO doc/liba52.txt
+%doc AUTHORS ChangeLog COPYING HISTORY NEWS README TODO doc/liba52.txt
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
+
 
 %files devel
 %defattr(-, root, root)
@@ -64,7 +69,11 @@ rm -rf %{buildroot}
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
+
 %changelog
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 0.7.4-6
+- Rebuilt.
+
 * Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 0.7.4-5.fr
 - Added the building of the shared library.
 

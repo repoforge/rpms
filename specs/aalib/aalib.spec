@@ -1,17 +1,18 @@
 # $Id$
 
-%define real_version 1.4.0
+%define real_version 1.4rc5
 
-Summary: An ASCII art library.
+Summary: An ASCII art library
 Name: aalib
-Version: 1.4rc5
+Version: 1.4.0
 Release: 4.fr
 Group: System Environment/Libraries
 License: LGPL
-URL: http://aa-project.sf.net/aalib/
-Source: http://dl.sf.net/aa-project/%{name}-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-root
-Prereq: /sbin/ldconfig /sbin/install-info
+URL: http://aa-project.sourceforge.net/aalib/
+Source: http://dl.sf.net/aa-project/%{name}-%{real_version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires(post,postun): /sbin/ldconfig
+Requires(post,preun): /sbin/install-info
 Requires: XFree86, ncurses, gpm
 BuildRequires: XFree86-devel, ncurses-devel, gpm-devel
 
@@ -25,7 +26,7 @@ you'll also need to install the aalib-devel package.
 
 
 %package devel
-Summary: The static libraries and header files for AA-lib.
+Summary: Header files and static library for the ASCII art library
 Group: Development/Libraries
 Requires: %{name} = %{version}, ncurses-devel, gpm-devel
 
@@ -36,16 +37,22 @@ using AA-lib, you'll need to install aalib-devel.
 
 
 %prep
-%setup -q -n %{name}-%{real_version}
+%setup
+
 
 %build
-%configure --with-x --with-curses-driver=yes --with-ncurses
+%configure \
+    --with-x \
+    --with-ncurses \
+    --with-curses-driver=yes
 make %{?_smp_mflags}
+
 
 %install
 rm -rf %{buildroot}
 %makeinstall 
 rm -f %{buildroot}%{_infodir}/dir || :
+
 
 %post
 if [ -e %{_infodir}/libaa.info.gz ]; then
@@ -60,8 +67,10 @@ fi
 
 %postun -p /sbin/ldconfig
 
+
 %clean
 rm -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root)
@@ -74,6 +83,7 @@ rm -rf %{buildroot}
 %{_infodir}/*.info*
 %{_mandir}/man1/*
 
+
 %files devel
 %defattr(-, root, root)
 %{_bindir}/aalib-config
@@ -84,27 +94,31 @@ rm -rf %{buildroot}
 %{_datadir}/aclocal/*.m4
 %{_mandir}/man3/*
 
+
 %changelog
+* Mon Mar 15 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-4.fr
+- Minor spec cleanups.
+
 * Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.4rc5-4.fr
 - Rebuild for Fedora Core 1.
 
-* Tue Oct 21 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Tue Oct 21 2003 Matthias Saou <http://freshrpms.net/>
 - Added missing ncurses-devel dep to the devel package.
 
-* Mon Mar 31 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 9.
 - Exclude .la file.
 
-* Wed Oct 23 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Oct 23 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 1.4rc5, doh!
 
-* Thu Sep 26 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Thu Sep 26 2002 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 8.0.
 
-* Mon Aug 19 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Aug 19 2002 Matthias Saou <http://freshrpms.net/>
 - Dependency fixes.
 
-* Mon Jun 17 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Jun 17 2002 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup and update to 1.4rc4.
 
 * Mon Aug 7 2000 Tim Powers <timp@redhat.com>
