@@ -1,0 +1,7 @@
+# $Id$
+[freshrpms]
+name=Fedora Core $releasever - $basearch - Freshrpms
+#baseurl=http://ayo.freshrpms.net/fedora/linux/$releasever/$basearch/freshrpms/
+mirrorlist=http://ayo.freshrpms.net/fedora/linux/$releasever/mirrors-freshrpms
+enabled=1
+gpgcheck=1
