@@ -3,8 +3,8 @@
 
 Summary: FTP proxy server
 Name: ftpproxy
-Version: 1.2.2
-Release: 0
+Version: 1.2.3
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ftpproxy.org/
@@ -29,7 +29,7 @@ FTP proxy server.
 		s|/usr/local/man|\$(mandir)|g;
 	' Makefile
 
-%{__cat} <<EOF >%{name}.xinet
+%{__cat} <<EOF >ftpproxy.xinet
 # default: off
 # description: ftpproxy is an FTP proxy server.
 
@@ -54,11 +54,10 @@ EOF
 %{__rm} -rf %{buildroot}
 ### FIXME: Create directories. (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_sysconfdir}/xinetd.d/
+			%{buildroot}%{_mandir}/man1/
 %makeinstall
 
-%{__install} -m0644 ftpproxy.xinet %{buildroot}%{_sysconfdir}/xinetd.d/
+%{__install} -D -m0644 ftpproxy.xinet %{buildroot}%{_sysconfdir}/xinetd.d/ftpproxy
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -71,5 +70,8 @@ EOF
 %{_sbindir}/*
 
 %changelog
+* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 1.2.2-0
 - Initial package. (using DAR)
