@@ -1,0 +1,51 @@
+--- src/main.c~	2003-11-05 17:06:50.000000000 -0200
++++ src/main.c	2005-01-28 11:06:26.000000000 -0200
+@@ -45,7 +45,7 @@
+ char *program_name;
+ DVDNav_t *nav = NULL;
+ char *dvd_path;
+-int msgqid;
++char *msgq_str;
+ int dvdpipe[2];
+ 
+ int bookmarks_autosave = 0;
+@@ -248,7 +248,7 @@
+     exit(1);
+   }
+ 
+-  msgqid = atoi(argv[2]);
++  msgq_str = argv[2];
+ 
+   init_interpret_config(program_name,
+ 			add_keybinding,
+@@ -270,8 +270,8 @@
+   // Initialize glade, and read in the glade file
+   my_glade_setup();
+ 
+-  if(msgqid !=-1) { // ignore sending data.
+-    res = DVDOpenNav(&nav, msgqid);
++  if(msgq_str) { // ignore sending data.
++    res = DVDOpenNav(&nav, msgq_str);
+     if(res != DVD_E_Ok ) {
+       DVDPerror("DVDOpen", res);
+       exit(1);
+--- src/sniffer.c~	2003-11-05 17:06:51.000000000 -0200
++++ src/xsniffer.c	2005-01-28 11:07:16.000000000 -0200
+@@ -42,7 +42,7 @@
+ #include "bindings.h"
+ #include "actions.h"
+ 
+-extern int msgqid;
++extern char * msgq_str;
+ 
+ 
+ static DVDNav_t *nav2;
+@@ -51,7 +51,7 @@
+ 
+ void xsniff_init() {
+   DVDResult_t res;
+-  res = DVDOpenNav(&nav2, msgqid);
++  res = DVDOpenNav(&nav2, msgq_str);
+   if(res != DVD_E_Ok ) {
+     DVDPerror("xsniffer: xsniff_init() DVDOpen", res);
+     exit(1);

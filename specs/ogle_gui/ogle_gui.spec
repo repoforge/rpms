@@ -6,11 +6,12 @@
 Summary: Graphical user interface for the ogle DVD player
 Name: ogle_gui
 Version: 0.9.2
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
-Source: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
+Source: http://www.dtek.chalmers.se/groups/dvd/dist/ogle_gui-%{version}%{?cvs}.tar.gz
+Patch0: ogle_gui-0.9.2-dvdnav.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: ogle >= 0.9.2
 BuildRequires: ogle-devel >= 0.9.2, gtk2-devel, libglade2-devel, gettext
@@ -23,6 +24,7 @@ menu navigation with keyboard shortcuts.
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
+%patch0
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
 
@@ -50,6 +52,9 @@ menu navigation with keyboard shortcuts.
 
 
 %changelog
+* Fri Jan 28 2005 Dag Wieers <dag@wieers.com> - 0.9.2-4
+- Fix a compatibility issue with latest ogle. (Alexandre Oliva)
+
 * Tue Jun  1 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-3
 - Rebuild with --enable-gtk2.
 
