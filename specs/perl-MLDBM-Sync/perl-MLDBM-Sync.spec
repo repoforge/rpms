@@ -1,13 +1,10 @@
 # $Id: $
-
 # Authority: dries
-# Upstream:
 
-%define real_name MLDBM-Sync
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name MLDBM-Sync
 
 Summary: Safe concurrent access to MLDBM databases
 Name: perl-MLDBM-Sync
@@ -23,7 +20,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHAMAS/MLDBM-Sync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildArch: noarch
+BuildRequires: perl, perl(MLDBM)
 Requires: perl-MLDBM
 
 %description
@@ -37,25 +35,31 @@ writes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	PREFIX="%{buildroot}%{_prefix}" \
+	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
-%{_mandir}/man3/*
-%{perl_vendorlib}/MLDBM/Sync.pm
-%{perl_vendorlib}/MLDBM/Sync/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%doc CHANGES README
+%doc %{_mandir}/man?/*
+%{perl_vendorlib}/*
 
 %changelog
+* Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 0.30-1
+- Cosmetic changes.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Initial package.
