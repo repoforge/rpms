@@ -1,13 +1,15 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <inkscape-devel@lists.sf.net>
+
+# Distcc: 0
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.37
-Release: 0
+Version: 0.38.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sf.net/
@@ -71,6 +73,9 @@ EOF
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Tue Apr 13 2004 Dag Wieers <dag@wieers.com> - 0.38.1-1
+- Updated to release 0.38.1.
+
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.37-0
 - Updated to release 0.37.
 
