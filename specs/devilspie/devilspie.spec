@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: gob2 >= 2.0.4, libwnck-devel, libglade-devel, gtk2-devel
+BuildRequires: libglade2-devel
 
 %description
 A window-matching utility, inspired by Sawfish's "Matched Windows" option and
