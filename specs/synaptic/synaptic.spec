@@ -1,20 +1,24 @@
 # $Id$
 # Authority: matthias
+# Upstream: Daniel Paarmann <daniel@paarmann.net>
 
 Summary: Graphical package management program using apt
 Name: synaptic
-Version: 0.47
-Release: 1.1
+Version: 0.48.2
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
+
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
-Requires(pre,postun): scrollkeeper
+
 BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0, gtk2-devel, libglade2-devel >= 2.0
 BuildRequires: gcc-c++, libstdc++-devel, docbook-utils, gettext
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, xmlto
+
+Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
+Requires(pre,postun): scrollkeeper
 
 %description
 Synaptic (previously known as raptor) is a graphical package management
