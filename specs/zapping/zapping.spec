@@ -11,10 +11,10 @@ Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
-Source: http://dl.sf.net/zapping/zapping-0.7%{?prever}.tar.bz2
+Source: http://dl.sf.net/zapping/zapping-%{version}%{?prever}.tar.bz2
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnomeui, libglade2, zvbi, arts, rte, lirc
-BuildRequires: libgnomeui-devel, libglade2-devel
+BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
 BuildRequires: zvbi-devel, arts-devel, rte-devel >= 0.5, lirc
 BuildRequires: python-devel, desktop-file-utils
@@ -32,16 +32,22 @@ features, plus extensibility through a plugin system.
 
 
 %prep
-%setup -q -n zapping-0.7%{?prever}
+%setup -n %{name}-%{version}%{?prever}
 
 
 %build
-%configure
+%configure \
+	--disable-schemas-install
+
+%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' configure Makefile* */Makefile* */*/Makefile*
+
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
+%{__make} install \
+	DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 # Fix buggy symlinks (point into the %{buildroot})
