@@ -4,8 +4,8 @@
 
 Summary: Graphical database query tool for MySQL and PostgreSQL
 Name: gtksql
-Version: 0.4.1
-Release: 0
+Version: 0.4.2
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://gtksql.sf.net/
@@ -16,11 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/gtksql/gtksql-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mysql-devel, lua-devel
-%{?rhfc1:BuildRequires: postgresql-devel}
-%{?rhel3:BuildRequires: rh-postgresql-devel}
-%{?rh90:BuildRequires: postgresql-devel}
-%{?rh80:BuildRequires: postgresql-devel}
+BuildRequires: mysql-devel, lua-devel, postgresql-devel
 
 %description
 GtkSQL is a graphical database query tool for the PostgreSQL and MySQL
@@ -81,6 +77,9 @@ desktop-file-install --vendor gnome                \
 %exclude %{_prefix}/doc/
 
 %changelog
+* Thu May 13 2004 Dag Wieers <dag@wieers.com> - 0.4.2-1
+- Updated to release 0.4.2.
+
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 0.4.1-1
 - Updated to release 0.4.1.
 
