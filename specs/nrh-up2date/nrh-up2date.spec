@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: perl, perl-Frontier-RPC, perl-XML-Parser, perl-BerkeleyDB, python, python-bsddb3
+%{!?dist:Requires: httpd, rpm, rpm-python, db4}
+%{?fc2:Requires: httpd, rpm, rpm-python, db4}
 %{?fc1:Requires: httpd, rpm, rpm-python, db4}
 %{?el3:Requires: httpd, rpm, rpm-python, db4}
 %{?rh9:Requires: httpd, librpm404, rpm404-python, db4}
@@ -52,14 +54,14 @@ updates, waisting your bandwidth.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	DOCS_DIR="./doc-rpm"
+	DOCS_DIR="./rpm-doc"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc-rpm/*
+%doc rpm-doc/*
 %config(noreplace) %{_sysconfdir}/nrh-up2date/
 %{_sbindir}/*
 %{_datadir}/nrh-up2date/

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: set of programs for dealing with numbers
@@ -36,12 +35,12 @@ and aim to help complete the Unix shell vocabulary.
 %install
 %makeinstall \
 	BINDIR="%{buildroot}%{_bindir}" \
-	DOCDIR="doc-rpm" \
+	DOCDIR="rpm-doc" \
 	MANDIR="%{buildroot}%{_mandir}/man1"
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc-rpm/* tests/
+%doc rpm-doc/* tests/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 

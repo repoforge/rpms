@@ -40,7 +40,7 @@ classes for running what is commonly known as ASP.NET.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	docdir="../doc-rpm"
+	docdir="../rpm-doc"
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_includedir}/X11/
@@ -50,7 +50,7 @@ classes for running what is commonly known as ASP.NET.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README doc-rpm/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README rpm-doc/*
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.dll

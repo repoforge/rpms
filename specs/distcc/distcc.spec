@@ -5,10 +5,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define gui 1
-%{?rh7:%undefine gui}
-%{?el2:%undefine gui}
-%{?rh6:%undefine gui}
+%{?rh7:%define _without_gtk2 1}
+%{?el2:%define _without_gtk2 1}
+%{?rh6:%define _without_gtk2 1}
 
 %define gccversion %(rpm -q gcc --qf '%{RPMTAG_VERSION}' | tail -1)
 
@@ -26,7 +25,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://samba.org/ftp/distcc/distcc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{?gui:BuildRequires: gtk2-devel >= 2.0}
+%{!?_without_gtk2:BuildRequires: gtk2-devel >= 2.0}
 Requires: gcc, gcc-c++
 %{?fc2:Requires: compat-gcc, compat-gcc-c++, gcc34}
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
@@ -199,8 +198,8 @@ EOF
 
 %build
 %configure \
-	--with-docdir="./doc-rpm" \
-%{?gui:	--with-gnome}
+	--with-docdir="./rpm-doc" \
+%{!?_without_gtk2:--with-gnome}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -245,7 +244,7 @@ for compiler in gcc34 g++34; do
 done
 %endif
 
-%if %{?gui:1}%{!?gui:0}
+%if %{!?_without_gtk2:1}0
 	%{__install} -D -m0644 gnome/distccmon-gnome-icon.png %{buildroot}%{_datadir}/pixmaps/distccmon-gnome.png
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
@@ -290,7 +289,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc-rpm/*
+%doc rpm-doc/*
 %doc %{_mandir}/man1/distcc.*
 %doc %{_mandir}/man1/distccmon-text.*
 %{_bindir}/distcc
@@ -306,7 +305,7 @@ fi
 %config %{_initrddir}/*
 %{_bindir}/distccd
 
-%if %{?gui:1}0
+%if %{!?_without_gtk2:1}0
 %files gui
 %defattr(-, root, root, 0755)
 %{_bindir}/distccmon-gnome

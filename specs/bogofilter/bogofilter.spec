@@ -46,9 +46,9 @@ by sites that process a lot of mail.
 
 %{__install} -m0644 %{buildroot}%{_sysconfdir}/bogofilter.cf.example %{buildroot}%{_sysconfdir}/bogofilter.cf
 
-%{__install} -d -m0755 doc-rpm/xml/ doc-rpm/html/
-%{__install} -m644 doc/*.xml doc-rpm/xml/
-%{__install} -m644 doc/*.html doc-rpm/html/
+%{__install} -d -m0755 rpm-doc/xml/ rpm-doc/html/
+%{__install} -m644 doc/*.xml rpm-doc/xml/
+%{__install} -m644 doc/*.html rpm-doc/html/
 
 for dir in contrib; do
 	files="$(find "$dir" -maxdepth 1 -type f -print)"
@@ -75,7 +75,7 @@ done
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGES* COPYING METHODS NEWS README* RELEASE.NOTES* TODO
 %doc doc/bogofilter-tuning.HOWTO doc/bogofilter-SA-2002-01 doc/integrating* doc/programmer
-%doc doc-rpm/html/ doc-rpm/xml/
+%doc rpm-doc/html/ rpm-doc/xml/
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/bogofilter.cf
 %config %{_sysconfdir}/bogofilter.cf.example

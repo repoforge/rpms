@@ -57,7 +57,7 @@ and other OS's, all on your workstation.
 			%{buildroot}%{_mandir} \
 			%{buildroot}%{_datadir}/bochs/dlxlinux/
 %makeinstall \
-	docdir="doc-rpm"
+	docdir="rpm-doc"
 #makeinstall install_dlx
 #%{__install} -m0644 dlxlinux/* %{buildroot}%{_datadir}/bochs/dlxlinux/
 
@@ -71,7 +71,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README-* TESTFORM.txt doc-rpm/* docs-html/*
+%doc README-* TESTFORM.txt rpm-doc/* docs-html/*
 #doc dlxlinux/*.txt
 %doc %{_mandir}/man?/*
 %{_bindir}/*

@@ -40,7 +40,7 @@ the administration.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	docdir="../doc-rpm"
+	docdir="../rpm-doc"
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/*.a \
@@ -51,7 +51,7 @@ the administration.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO doc-rpm/*
+%doc AUTHORS ChangeLog COPYING NEWS README TODO rpm-doc/*
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*
 %{_sbindir}/*
