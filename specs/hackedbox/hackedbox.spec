@@ -4,12 +4,13 @@
 Summary: The bastard son of Blackbox, a small and fast Window Manager
 Name: hackedbox
 Version: 0.8.4
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/Desktops
 URL: http://scrudgeware.org/projects/Hackedbox
 Source: http://scrudgeware.org/downloads/hackedbox/hackedbox-%{version}.tar.gz
 Source1: hackedbox.desktop
+Patch: blackbox-0.65.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, libstdc++-devel, gcc-c++, perl
 
@@ -22,6 +23,7 @@ add any functionality, only bugfixes and speed enhancements whenever possible.
 
 %prep
 %setup
+%patch -p1 -b .gcc34
 
 
 %build
@@ -72,6 +74,9 @@ EOF
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 0.8.4-2
+- Added gcc 3.4 patch from Arch Linux (the same as Linux From Scratch).
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.4-1
 - Update to 0.8.4.
 - Remove the NLS workaround, no longer required.

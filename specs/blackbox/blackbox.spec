@@ -4,13 +4,14 @@
 Summary: Very small and fast Window Manager
 Name: blackbox
 Version: 0.65.0
-Release: 8
+Release: 9
 License: GPL
 Group: User Interface/Desktops
 URL: http://blackboxwm.sourceforge.net/
 Source0: http://dl.sf.net/blackboxwm/blackbox-%{version}.tar.gz
 Source1: blackbox.desktop
-Patch: blackbox-0.65.0-assert.patch.txt
+Patch0: blackbox-0.65.0-assert.patch
+Patch1: blackbox-0.65.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gcc-c++
 
@@ -25,7 +26,8 @@ small in size, blackbox preserves memory and CPU.
 
 %prep
 %setup
-%patch -p0
+%patch0 -p0 -b .assert
+%patch1 -p1 -b .gcc34
 
 
 %build
@@ -66,6 +68,9 @@ EOF
 
 
 %changelog
+* Mon Nov 15 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-9
+- Added gcc 3.4 patch from Arch Linux.
+
 * Thu May  6 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-8
 - Removed switchdesk file, it doesn't work because of hardcoded stuff.
 
