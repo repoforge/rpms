@@ -3,7 +3,6 @@
 # Upstream: Martin Pool <mbp@sourcefrog.net>
 
 %define gui 1
-%{?rh80:%undefine gui}
 %{?rh73:%undefine gui}
 %{?rhel21:%undefine gui}
 %{?rh62:%undefine gui}
@@ -13,7 +12,7 @@
 Summary: Distributed C/C++ compilation client program
 Name: distcc
 Version: 2.13
-Release: 1
+Release: 3
 License: GPL
 Group: Development/Tools
 URL: http://distcc.samba.org/
@@ -22,6 +21,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://samba.org/ftp/distcc/distcc-%{version}.tar.bz2
+Patch: distcc-2.12.2-gtk.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?gui:BuildRequires: gtk2-devel >= 2.0}
@@ -56,13 +56,14 @@ in order to use distcc.
 
 %prep
 %setup
+%patch0
 
 %{__cat} <<EOF >distccmon-gnome.desktop
 [Desktop Entry]
 Name=Distcc Monitor
 Comment=View progress of your distributed compile tasks
 Exec=distccmon-gnome
-Icon=distccmon-gnome-icon.png
+Icon=distccmon-gnome.png
 Terminal=false
 Type=Application
 Categories=GNOME;Application;Development;
@@ -119,7 +120,7 @@ desc="Distributed Compiler daemon"
 
 start() {
 	echo -n $"Starting $desc ($prog): "
-	PATH="$DISTCCPATH" daemon --daemon --user $USER $prog --log-file="%{_localstatedir}/log/distccd.log" $OPTIONS
+	PATH="$DISTCCPATH" daemon --user "$USER" $prog --daemon --log-file="%{_localstatedir}/log/distccd.log" $OPTIONS
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -204,16 +205,12 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	pkgdocdir="./rpm/"
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/xinetd.d/ \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_libdir}/distcc/bin/ \
-			%{buildroot}%{_sysconfdir}/logrotate.d/ \
-			%{buildroot}%{_sysconfdir}/sysconfig/
-%{__install} -m0644 distccd.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/distccd
-%{__install} -m0755 distccd.sysv %{buildroot}%{_initrddir}/distccd
-%{__install} -m0644 distccd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/distccd
-%{__install} -m0644 distccd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/distccd
+%{__install} -D -m0644 distccd.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/distccd
+%{__install} -D -m0755 distccd.sysv %{buildroot}%{_initrddir}/distccd
+%{__install} -D -m0644 distccd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/distccd
+%{__install} -D -m0644 distccd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/distccd
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}/distcc/bin/
 for compiler in cc c++ gcc g++; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/i386-redhat-linux-$compiler-%{gccversion}
@@ -239,9 +236,8 @@ done
 %endif
 
 %if %{?gui:1}%{!?gui:0}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/ \
-				%{buildroot}%{_datadir}/pixmaps/
-	%{__install} -m0644 gnome/distccmon-gnome-icon.png %{buildroot}%{_datadir}/pixmaps/
+	%{__install} -D -m0644 gnome/distccmon-gnome-icon.png %{buildroot}%{_datadir}/pixmaps/distccmon-gnome.png
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
@@ -310,6 +306,12 @@ fi
 %endif
 
 %changelog
+* Tue Apr 20 2004 Dag Wieers <dag@wieers.com> - 2.13-3
+- Fixed a bug in the sysv script introduced in 2.13-1. (Martijn Lievaart)
+
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 2.13-2
+- Added patch to build gui for RH80. (Martin Pool)
+
 * Tue Mar 02 2004 Dag Wieers <dag@wieers.com> - 2.13-1
 - Updated to release 2.13.
 
