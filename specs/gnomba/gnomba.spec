@@ -20,6 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gnomba/gnomba-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gtk+-devel
 
 %description
 gnomba is a GUI network browser using the smb protocol.  It allows users
