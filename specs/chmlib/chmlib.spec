@@ -1,12 +1,10 @@
 # $Id$
-
 # Authority: dag
-# Distcc: 0
 
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
-Version: 0.31
-Release: 0
+Version: 0.33
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://66.93.236.84/~jedwin/projects/chmlib/
@@ -17,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://66.93.236.84/~jedwin/projects/chmlib/chmlib-%{version}.tgz
 Patch0: chmlib-0.31-morearchs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libtool
 
@@ -35,8 +32,8 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
-%patch0 -p1
+%setup -n %{name}
+#%patch0 -p1
 
 %build
 %{__make} %{?_smp_mflags} all examples \
@@ -84,5 +81,8 @@ done
 %{_includedir}/*.h
 
 %changelog
+* Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.33-1
+- Updated to release 0.33.
+
 * Mon Feb 09 2004 Dag Wieers <dag@wieers.com> - 0.31-0
 - Initial package. (using DAR)
