@@ -32,6 +32,10 @@
 %{?yd3:%define _without_fribidi 1}
 %{?yd3:%define _without_theora 1}
 
+%ifarch x86_64
+%define _without_lirc 1
+%endif
+
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
 %define date      20041025
 #define rcver     pre5

@@ -2,14 +2,12 @@
 # Authority: dag
 # Upstream: Martin Pool <mbp$sourcefrog,net>
 
-# Rationale: rsync 2.6.2 uses less resources and has lots of improvements
-
-%define real_version 2.6.3pre2
+# Rationale: rsync 2.6.3 uses less resources and has lots of improvements
 
 Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 2.6.3
-Release: 0.pre2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
@@ -17,9 +15,8 @@ URL: http://rsync.samba.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://rsync.samba.org/ftp/rsync/preview/rsync-%{real_version}.tar.gz
-#Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
-Patch1: rsync-2.6.2-lastdir-corruption.patch
+#Source: http://rsync.samba.org/ftp/rsync/preview/rsync-%{real_version}.tar.gz
+Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -32,8 +29,7 @@ report which describes the rsync algorithm is included in this
 package.
 
 %prep
-%setup -n %{name}-%{real_version}
-#%patch1 -p1 -b .lastdir-corruption
+%setup
 
 %{__cat} <<EOF >rsync.xinet
 # default: off
@@ -72,6 +68,9 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 2.6.3-1
+- Updated to release 2.6.3.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.6.3-0.pre2
 - Updated to release 2.6.3pre2.
 

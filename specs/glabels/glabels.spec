@@ -67,7 +67,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall \
+	UPDATE_DESKTOP_DATABASE="echo" \
+	UPDATE_MIME_DATABASE="echo"
 %find_lang %{name}
 
 desktop-file-install --vendor gnome --delete-original \

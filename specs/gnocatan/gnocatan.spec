@@ -12,7 +12,7 @@
 
 Summary: Addictive game based on "The Settlers of Catan"
 Name: gnocatan
-Version: 0.8.1.30
+Version: 0.8.1.43
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -112,6 +112,9 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/%{desktop_vendor}-gnocatan-server.desktop
 
 %changelog
+* Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 0.8.1.43-1
+- Updated to release 0.8.1.43.
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.8.1.30-1
 - Updated to release 0.8.1.30.
 

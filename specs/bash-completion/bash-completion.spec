@@ -6,7 +6,7 @@
 
 Summary: Programmable completion for Bash
 Name: bash-completion
-Version: 20040711
+Version: 20041017
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -41,7 +41,7 @@ if [ -z "$BASH_VERSION" ]; then
 fi
 
 ### Check for correct version of Bash
-if [ "${BASH_VERSINFO[0]}" -ne 2 -o "${BASH_VERSINFO[1]}" \< 05 ]; then
+if [ \( "${BASH_VERSINFO[0]}" -eq 2 -a "${BASH_VERSINFO[1]}" -lt 05 \) -o "${BASH_VERSINFO[0]}" -lt 2 ]; then
 	return
 fi
 
@@ -70,6 +70,12 @@ EOF
 %config %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 20041017-2
+- Correct version check for Bash 3. (Matteo Corti)
+
+* Sun Nov 21 2004 Dag Wieers <dag@wieers.com> - 20041017-1
+- Updated to release 20041017.
+
 * Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 20040711-1
 - Updated to release 20040711.
 

@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
+# Upstream: <aide-devel@lists.sourceforge.net>
 
 Summary: Advanced intrusion detection environment
 Name: aide
 Version: 0.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.cs.tut.fi/~rammer/aide.html
@@ -17,6 +18,7 @@ Source1: aide.conf
 Source2: README.quickstart
 Patch1: aide-useless-includes.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Buildrequires: flex, bison, m4
 Buildrequires: mhash-devel, zlib-devel
 
@@ -74,5 +76,29 @@ checker and intrusion detection program.
 %{_localstatedir}/lib/aide/
 
 %changelog
-* Thu Oct 07 2004 Dag Wieers <dag@wieers.com> - 0.10-1
-- Initial package. (using DAR)
+* Tue Nov 23 2004 Dag Wieers <dag@wieers.com> - 0.10-2
+- Cosmetic changes and re-added %%changelog.
+
+* Fri Nov 28 2003 Michael Schwendt <mschwendt[AT]users.sf.net> - 0:0.10-0.fdr.1
+- Update to 0.10 release.
+- memleaks patch merged upstream.
+- rootpath patch merged upstream.
+- fstat patch not needed anymore.
+- Updated URL.
+
+* Thu Nov 13 2003 Michael Schwendt <mschwendt[AT]users.sf.net> - 0:0.10-0.fdr.0.2.cvs20031104
+- Added buildreq m4 to work around incomplete deps of bison package.
+
+* Tue Nov 04 2003 Michael Schwendt <mschwendt[AT]users.sf.net> - 0:0.10-0.fdr.0.1.cvs20031104
+- Only tar.gz available upstream.
+- byacc not needed when bison -y is available.
+- Installed Russian manual pages.
+- Updated with changes from CVS (2003-11-04).
+- getopt patch merged upstream.
+- bison-1.35 patch incorporated upstream.
+
+* Tue Sep 09 2003 Michael Schwendt <mschwendt[AT]users.sf.net> - 0:0.9-0.fdr.0.2.20030902
+- Added fixes for further memleaks.
+
+* Sun Sep 07 2003 Michael Schwendt <mschwendt[AT]users.sf.net> - 0:0.9-0.fdr.0.1.20030902
+- Initial package version.

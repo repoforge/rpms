@@ -4,7 +4,7 @@
 
 Summary: Collect a system's hardware and software configuration
 Name: dconf
-Version: 0.3
+Version: 0.4
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -48,10 +48,13 @@ files to send out or compare with other systems.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO *.conf
-%config(noreplace) %{_sysconfdir}/dconf.conf
+%config %{_sysconfdir}/dconf.conf
 %config(noreplace) %{_sysconfdir}/dconf-custom.conf
 %{_bindir}/dconf
 
 %changelog
+* Sun Nov 21 2004 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+
 * Sun Oct 24 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.

@@ -4,7 +4,7 @@
 
 Summary: Versatile desktop calculator
 Name: qalculate
-Version: 0.7.0
+Version: 0.7.1
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -14,7 +14,6 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/qalculate/qalculate-%{version}.tar.gz
-Patch: qalculate_missing_includes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, libglade2-devel, pkgconfig, cln-devel
@@ -30,7 +29,6 @@ expression entry (although it supports optional traditional buttons).
 
 %prep
 %setup
-#patch0 -p 1
 
 %build
 %configure
@@ -71,6 +69,9 @@ scrollkeeper-update -q
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Mon Nov 22 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Sat Nov 13 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 
