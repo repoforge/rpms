@@ -25,8 +25,8 @@
 
 Summary: Objective Caml
 Name: ocaml
-Version: 3.08.2
-Release: 2
+Version: 3.08.3
+Release: 1
 License: QPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
@@ -139,6 +139,9 @@ cp %{SOURCE2} refman.ps.gz
 %{_infodir}/*
 
 %changelog
+* Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 3.08.3-1
+- Update to release 3.08.3.
+
 * Thu Mar 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.08.2-2
 - Added the documentation, thanks to David Aspinall for informing me 
   about the missing documentation.

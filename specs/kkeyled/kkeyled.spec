@@ -6,7 +6,7 @@
 
 Summary: Displays the LED states of the keyboard
 Name: kkeyled
-Version: 0.8.10
+Version: 0.8.11
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -62,5 +62,8 @@ desktop-file-install --vendor rpmforge             \
 %{_bindir}/kkeyled
 
 %changelog
+* Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.11-1
+- Update to release 0.8.11.
+
 * Sat Mar 12 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1
 - Initial package.

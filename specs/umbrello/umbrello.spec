@@ -18,7 +18,7 @@
 
 Summary: unified modelling language (UML) diagrams modeller
 Name: umbrello
-Version: 1.3.1
+Version: 1.4
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -86,6 +86,9 @@ EOF
 %{_datadir}/icons/*/*/actions/umbrello_diagram_*.png
 
 %changelog
+* Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> 1.4-1
+- Updated to release 1.4.
+
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> 1.3.1-1
 - Updated to release 1.3.1.
 
