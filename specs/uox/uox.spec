@@ -25,12 +25,19 @@ todo
 
 %build
 tar xjvf %{SOURCE1} mozilla/js
-dos2unix autogen.sh
-bash autogen.sh || echo autogen.sh problem
-dos2unix configure
-chmod +x configure
+cd ./mozilla/js/src/fdlibm;
+gcc -c -DXP_UNIX *.c
+cd ..
+gcc -o jscpucfg jscpucfg.c ; ./jscpucfg >  jsautocfg.h
+gcc -c -DXP_UNIX *.c ; ar -r js32.a *.o fdlibm/*.o
+cp js32.a ../../../
+cd ../../../
+dos2unix Makefile.am
+aclocal
+automake --add-missing --copy
+autoconf
+automake || echo automake gives a warning
 export CXXFLAGS="%{optflags} -I/usr/include/mozilla-1.6/js "
-echo CXX flags: $CXXFLAGS
 %configure --enable-debug
 dos2unix Makefile
 dos2unix depcomp
