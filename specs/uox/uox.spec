@@ -61,7 +61,7 @@ mv UOX3 uox3
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS Changelog.txt COPYING INSTALLINSTALL NEWS README README.Linux readme.txt
+%doc AUTHORS Changelog.txt COPYING INSTALL NEWS README README.Linux readme.txt
 %{_bindir}/uox3
 
 %changelog
