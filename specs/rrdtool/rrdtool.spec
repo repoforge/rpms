@@ -8,12 +8,12 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.0.48
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
-Patch: php-rrdtool-config.patch
+Patch: rrdtool-1.0.48-php_config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 Requires: libpng, zlib
@@ -55,13 +55,16 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %setup
 %patch -b .phpfix
 
+### FIXME: Fixes to /usr/lib(64) for x86_64
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure contrib/php4/configure Makefile.in
 
 %build
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-shared \
     --enable-local-libpng \
-    --enable-local-zlib
+    --enable-local-zlib \
+    --with-pic
 %{__make} %{?_smp_mflags}
 
 # Build the php4 module, the tmp install is required
@@ -76,17 +79,17 @@ popd
 
 # Fix @perl@ and @PERL@
 find examples/ -type f \
-    -exec /usr/bin/perl -pi -e 's|^#! \@perl\@|#!/usr/bin/perl|gi' \{\} \;
+    -exec %{__perl} -pi -e 's|^#! \@perl\@|#!%{__perl}|gi' {} \;
 find examples/ -name "*.pl" \
-    -exec perl -pi -e 's|\015||gi' \{\} \;
+    -exec %{__perl} -pi -e 's|\015||gi' {} \;
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%makeinstall
 
 # Install the php4 module
-%{__install} -m 755 -D contrib/php4/modules/rrdtool.so \
+%{__install} -D -m0755 contrib/php4/modules/rrdtool.so \
     %{buildroot}%{phpextdir}/rrdtool.so
 # Clean up the examples for inclusion as docs
 %{__rm} -rf contrib/php4/examples/CVS
@@ -109,14 +112,14 @@ EOF
 %{__rm} -f examples/Makefile*
 %{__rm} -f contrib/Makefile*
 # This is so rpm doesn't pick up perl module dependencies automatically
-find examples contrib -type f -exec chmod 644 {} \;
+find examples/ contrib/ -type f -exec chmod 0644 {} \;
 
 # Put man pages back into place...
 %{__mkdir_p} %{buildroot}%{_mandir}/
 %{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
 
 # Clean up the buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}
+%{__rm} -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}/
 
 
 %clean
@@ -153,6 +156,9 @@ find examples contrib -type f -exec chmod 644 {} \;
 
 
 %changelog
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 1.0.48-3
+- Fixes for x86_64. (Garrick Staples)
+
 * Fri Jul  2 2004 Matthias Saou <http://freshrpms.net/> 1.0.48-3
 - Actually apply the patch for fixing the php module, doh!
 
