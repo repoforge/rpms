@@ -29,7 +29,7 @@ resolver library.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" python setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
