@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Web/
 
-Source: http://www.cpan.org/modules/by-module/SVN/SVN-Web-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/OurNet/CLKAO/SVN-Web-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
