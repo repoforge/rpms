@@ -48,7 +48,7 @@ distributed under the terms of the Gnu Public License.
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
 mv %{buildroot}/usr/doc/bigloo-2.6d bigloo-docs
-mv %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigoo
+mv %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigloo
 
 %clean
 %{__rm} -rf %{buildroot}
