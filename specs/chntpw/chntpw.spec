@@ -10,7 +10,7 @@ Name: chntpw
 Version: 0.0.20040116
 Release: 1
 License: GPL
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://home.eunet.no/~pnordahl/ntpasswd/
 
 Packager: Dag Wieers <dag@wieers.com>

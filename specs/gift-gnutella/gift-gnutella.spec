@@ -4,27 +4,20 @@
 
 # NeedsCleanup
 
-%define	_name		gift-gnutella
-%define	_version	0.0.8
-%define _release	1.dries
-
-Summary: gift gnutella plugin
+Summary: Gift gnutella plugin
 Summary(nl): gnutella plugin voor gift
-
-BuildRoot:	%{_tmppath}/build-%{_name}-%{_version}
-Name:		%{_name}
-Version:	%{_version}
-Release:	%{_release}
-License:	GPL
-Group:		Development/Libraries
+Name: gift-gnutella
+Version: 0.0.8
+Release: 1.dries
+License: GPL
+Group: Development/Libraries
 URL: http://apollon.sourceforge.net/
+
 Source: http://dl.sf.net/gift/gift-gnutella-0.0.8.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc, make, gift
 Requires: gift
-
-#(d) primscreenshot: 
-#(d) screenshotsurl: 
-#(d) comment:
 
 %description
 Gnutella plugin for gift
@@ -33,17 +26,16 @@ Gnutella plugin for gift
 Gnutella plugin voor gift
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
 %configure
-make
+%{__make} %{_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-make install-strip
+%{__rm} -rf %{buildroot}
+make install-strip \
+	DESTDIR="%{buildroot}"
 
 %files
 %defattr(-,root,root)
@@ -58,4 +50,3 @@ make install-strip
 %changelog
 * Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.2.1.2-1.dries
 - first packaging for Fedora Core 1
-

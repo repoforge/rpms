@@ -7,7 +7,7 @@ Name: pixieplus
 Version: 0.5.4
 Release: 1
 License: GPL (to be checked, site down)
-Group: Applications/Graphics
+Group: Amusements/Graphics
 URL: http://www.mosfet.org
 
 # problem: site seems to be down, mosfet.org doesn't exist anymore
@@ -23,7 +23,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 An image and photo viewer, browser, manager and simple editor.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -32,9 +31,10 @@ An image and photo viewer, browser, manager and simple editor.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-export DESTDIR=$RPM_BUILD_ROOT
-%{__make} install-strip
+%{__make} install-strip \
+	DESTDIR="%{buildroot}"
 rm -f $RPM_BUILD_ROOT/usr/share/mimelnk/image/x-pcx.desktop
 rm -f $RPM_BUILD_ROOT/usr/share/applnk/Graphics/pixie-mini.desktop
 rm -f $RPM_BUILD_ROOT/usr/share/applnk/Graphics/pixie.desktop
@@ -97,7 +97,6 @@ EOF
 /usr/share/mimelnk/image/x-tga.desktop
 /usr/share/mimelnk/image/x-xwd.desktop
 /usr/share/applications/pixieplus.desktop
-
 
 %changelog
 * Mon Feb 2 2004 Dries Verachtert <dries@ulyssis.org> 0.5.4-1

@@ -1,24 +1,24 @@
 # $Id$
+
 # Authority: dries
+# Screenshot: http://gwenview.sourceforge.net/screenshots/shots/thumbs/6.png
+# ScreenshotURL: http://gwenview.sourceforge.net/screenshots/
 
 Summary: Image viewer for KDE
 Name: gwenview
 Version: 1.0.1
 Release: 1
 License: GPL
-Group: Graphics/Viewers
+Group: Amusements/Graphics
 URL: http://gwenview.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/gwenview/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/gwenview/gwenview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs
-
-#(d) primscreenshot: http://gwenview.sourceforge.net/screenshots/shots/thumbs/6.png
-#(d) screenshotsurl: http://gwenview.sourceforge.net/screenshots/
 
 %description
 Gwenview can load and save all image formats supported by KDE and 
@@ -31,19 +31,18 @@ en bewaren. Ook kan het GIMP bestanden (*.xcf) openen. Het kan ook meta
 informatie tonen en zoomen.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
 . /etc/profile.d/qt.sh
 %configure
-make
+%{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-make install
+make install \
+	DESTDIR="%{buildroot}"
 
 %files
 %defattr(-,root,root, 0755)

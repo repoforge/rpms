@@ -4,27 +4,20 @@
 
 # NeedsCleanup
 
-%define	_name		gift-openft
-%define	_version	0.2.1.2
-%define _release	1.dries
-
-Summary: gift openft plugin
+Summary: Gift openft plugin
 Summary(nl): openft plugin voor gift
-
-BuildRoot:	%{_tmppath}/build-%{_name}-%{_version}
-Name:		%{_name}
-Version:	%{_version}
-Release:	%{_release}
-License:	GPL
-Group:		Development/Libraries
+Name: gift-openft
+Version: 0.2.1.2
+Release: 1.dries
+License: GPL
+Group: Development/Libraries
 URL: http://apollon.sourceforge.net/
-Source: http://dl.sf.net/gift/gift-openft-0.2.1.2.tar.bz2
+
+Source: http://dl.sf.net/gift/gift-openft-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc, make, gift
 Requires: gift
-
-#(d) primscreenshot: 
-#(d) screenshotsurl: 
-#(d) comment:
 
 %description
 Openft plugin for gift
@@ -33,17 +26,16 @@ Openft plugin for gift
 Openft plugin voor gift
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
 %configure
-make
+%{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-make install-strip
+%{__rm} -rf %{buildroot}
+make install-strip \
+	DESTDIR="%{buildroot}"
 
 %files
 %defattr(-,root,root)

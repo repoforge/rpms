@@ -7,7 +7,7 @@ Name: fpm
 Version: 0.59
 Release: 0
 License: GPL
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://fpm.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -42,7 +42,8 @@ passwords you use on the web.  Features include:
 %setup
 
 %build
-./autogen.sh --prefix="%{_prefix}"
+./autogen.sh \
+	--prefix="%{_prefix}"
 %configure
 %{__make} %{?_smp_mflags}
 

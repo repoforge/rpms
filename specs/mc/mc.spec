@@ -3,7 +3,7 @@ Name:		mc
 Version:	4.5.55
 Release: 	13.legacy
 License:	GPL
-Group:		System Environment/Shells
+Group: System Environment/Shells
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/mc/mc-%{version}.tar.gz
 Source1:	redhat.links
 Source10:	mc-ja.po

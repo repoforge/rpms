@@ -1,27 +1,23 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://sebdelestaing.free.fr/gweled/Images/gweled_screenshot.png
 
 # NeedsCleanup
 
-%define _name		gweled
-%define _version	0.3
-%define _release	1.dries
-
 Summary: gnome clone of 'bjeweled' or 'diamond mine'
 Summary(nl): gnome kloon van 'bjeweled' of 'diamond mine'
-
-BuildRoot:	%{_tmppath}/build-%{_name}-%{_version}
-Name:		%{_name}
-Version:	%{_version}
-Release:	%{_release}
-License:	GPL
-Group:		Applications/Games
+Name: gweled
+Version: 0.3
+Release: 1.dries
+License: GPL
+Group: Amusements/Games
 URL: http://sebdelestaing.free.fr/gweled/
-Source: http://sebdelestaing.free.fr/gweled/Release/gweled-0.3.tar.gz
-BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel
 
-#(d) primscreenshot: http://sebdelestaing.free.fr/gweled/Images/gweled_screenshot.png
+Source: http://sebdelestaing.free.fr/gweled/Release/gweled-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel
 
 %description
 Gweled is a Gnome version of a popular PalmOS/Windows/Java game called
@@ -37,20 +33,18 @@ elkaar liggende juwelen te wisselen. Het spel eindigt wanneer geen enkele
 zet nog mogelijk is.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
 %configure
-make
+%{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 export DESTDIR=$RPM_BUILD_ROOT
 make install
 %{__rm} -f ${RPM_BUILD_ROOT}/usr/share/pixmaps/gweled/tile_even.svg~
 %{__rm} -f ${RPM_BUILD_ROOT}/usr/share/pixmaps/gweled/tile_odd.svg~
-
 
 %files
 %defattr(-,root,root)
@@ -60,8 +54,6 @@ make install
 /usr/share/pixmaps/gweled.png
 /usr/share/pixmaps/gweled
 /var/games/gweled.easy.scores
-
-
 
 %changelog
 * Mon Dec 1 2003 Dries Verachtert <dries@ulyssis.org> 0.3-1.dries

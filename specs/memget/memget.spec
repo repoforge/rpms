@@ -8,7 +8,7 @@ Name: memget
 Version: 0.1.0
 Release: 1
 License: distributable
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://www.rndsoftware.com/products.shtml
 
 Packager: Dag Wieers <dag@wieers.com>

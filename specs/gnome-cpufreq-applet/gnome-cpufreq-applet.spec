@@ -7,7 +7,7 @@ Name: gnome-cpufreq-applet
 Version: 0.1.1
 Release: 0
 License: GPL
-Group: User Interface/Desktops 
+Group: User Interface/Desktops
 URL: http://linups.org/~kal/gnome-cpufreq-applet/
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://linups.org/~kal/gnome-cpufreq-applet/gnome-cpufreq-applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 GNOME CPUFreq Applet is a CPU Frequency Scaling Monitor for GNOME Panel.

@@ -1,24 +1,23 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://home.t-online.de/home/Primetime./gl-117/sshot2_092_700.jpg
+# ScreenshotURL: http://home.t-online.de/home/Primetime./gl-117/gallery.htm
 
 # NeedsCleanup
 
-%define _name		gl-117
-%define _version	1.1
-%define _release	1.dries
-
-Summary: an action flight simulator
+Summary: Action flight simulator
 Summary(nl): een actie flight simulator
-
-BuildRoot:	%{_tmppath}/build-%{_name}-%{_version}
-Name:		%{_name}
-Version:	%{_version}
-Release:	%{_release}
-License:	GPL
-Group:		Amusements/Games
+Name: gl-117
+Version: 1.1
+Release: 1.dries
+License: GPL
+Group: Amusements/Games
 URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
-Source: http://dl.sf.net/gl-117/gl-117-1.1-src.tar.gz
+
+Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc, make, glut-devel, glut
 Requires: glut
 
@@ -34,22 +33,18 @@ aan verschillende uitdagende missies in verschillende landschappen. Vijf
 voorgedefinieerde niveaus van video kwaliteit laten u toe om het spel
 perfect aan te passen aan de performantie van uw systeem.
 
-#(d) primscreenshot: http://home.t-online.de/home/Primetime./gl-117/sshot2_092_700.jpg
-#(d) screenshotsurl: http://home.t-online.de/home/Primetime./gl-117/gallery.htm
-
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -n gl-117-1.1-src
 
 %build
 export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
 %configure
-make
+%{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-make install-strip
+%{__rm} -rf %{buildroot}
+make install-strip \
+	DESTDIR="%{buildroot}"
 
 %files
 %defattr(-,root,root)

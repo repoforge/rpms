@@ -7,7 +7,7 @@ Name: freeze
 Version: 2.5
 Release: 1
 License: distributable
-Group: Utilities/Archiving
+Group: Applications/Archiving
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

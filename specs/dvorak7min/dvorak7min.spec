@@ -7,14 +7,15 @@ Name: dvorak7min
 Version: 1.6.1
 Release: 2
 License: GPL
-Group: Applications/Educational
+Group: Applications/System
 URL: http://www.linalco.com/comunidad.html
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://www.linalco.com/ragnar/%{name}-%{version}.tar.gz
+Source: http://www.linalco.com/ragnar/dvorak7min-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: ncurses-devel
 
 %description
@@ -24,7 +25,6 @@ second display. It's called 7min because it originally was a personal hack
 written in 7 min.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -33,6 +33,7 @@ rm -f dvorak7min *.o
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 sed -i "s/^INSTALL =.*/INSTALL = ${RPM_BUILD_ROOT//\//\\/}\/usr\/bin/g;" Makefile
 strip dvorak7min
 %{__make} install

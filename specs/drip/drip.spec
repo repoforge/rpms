@@ -33,7 +33,7 @@ Drip is not yet finished, it has bugs and not all of the features are
 implemented. Basic dvd to divx ripping seems to work.
 
 %package libifo
-Group: Libraries/Multimedia
+Group: System Environment/Libraries
 Summary: LibIFO and a set of tools to handle DVD's
 
 %description libifo

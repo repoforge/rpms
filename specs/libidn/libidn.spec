@@ -8,7 +8,7 @@ Name: libidn
 Version: 0.4.2
 Release: 1
 License: LGPL
-Group: System/Libraries
+Group: System Environment/Libraries
 URL: http://josefsson.org/libidn/releases/
 
 Packager: Dag Wieers <dag@wieers.com>

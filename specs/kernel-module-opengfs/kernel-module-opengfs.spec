@@ -23,7 +23,7 @@ Name: opengfs
 Version: 0.2.1
 Release: 0
 License: GPL
-Group: System Environment/Utilities
+Group: System Environment/Base
 URL: http://opengfs.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>

@@ -1,25 +1,24 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://psi.affinix.com/gfx/screenshots/iceram-roster.png
+# ScreenshotURL: http://psi.affinix.com/?page=screenshots
 
 # NeedsCleanup
 
-%define	_name		psi
-%define	_version	0.9.1
-%define _release	1.dries
-
 Summary: Qt program for connecting to the Jabber messaging network
 Summary(nl): Qt programma om te verbinden met het Jabber messaging netwerk
-
-BuildRoot:	%{_tmppath}/build-%{_name}-%{_version}
-Name:		%{_name}
-Version:	%{_version}
-Release:	%{_release}
-License:	GPL
-Group:		Applications/Communications
+Name: psi
+Version: 0.9.1
+Release: 1.dries
+License: GPL
+Group: Applications/Communications
 URL: http://psi.affinix.com/
-Source: http://dl.sf.net/psi/psi-0.9.1.tar.bz2
+
+Source: http://dl.sf.net/psi/psi-%{version}.tar.bz2
 Source50: http://psi.affinix.com/beta/qca-tls-1.0.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Obsoletes: psi-iconsets
 
 #Source1: aqualight.zip
@@ -57,13 +56,8 @@ Source35: psi_es.qm
 Source36: psi_mk.qm
 Source37: psi_nl.qm
 
-
 BuildRequires: gcc, make, gcc-c++, XFree86-devel, qt-devel, openssl, openssl-devel
 Requires: qt, openssl
-
-#(d) primscreenshot: http://psi.affinix.com/gfx/screenshots/iceram-roster.png
-#(d) screenshotsurl: http://psi.affinix.com/?page=screenshots
-#(d) comment: 
 
 %description
 Psi is a client program for the Jabber messaging network. It supports
@@ -75,7 +69,6 @@ ondersteunt meerdere accounts, chatten met een groep, Unicode en encryptie
 via SSL.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -120,6 +113,7 @@ tar -xjvf %{SOURCE50}
 (cd qca-tls-1.0; ./configure; make)
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 export DESTDIR=$RPM_BUILD_ROOT
@@ -174,9 +168,6 @@ strip --strip-unneeded "${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/libqca-tls.so"
 
 %postun
 /sbin/ldconfig
-
-
-
 
 #%package iconsets
 #Summary: some additional iconsets for the jabber client Psi

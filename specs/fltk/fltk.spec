@@ -1,28 +1,24 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://www.fltk.org/images/fluid.gif
 
 # NeedsCleanup
 
-%define _name		fltk
-%define _version	1.1.4
-%define _release	1.dries
-
 Summary: a cross-platform C++ GUI toolkit
 Summary(nl): een cross-platform C++ GUI toolkit
-
-BuildRoot:	%{_tmppath}/build-%{_name}-%{_version}
-Name:		%{_name}
-Version:	%{_version}
-Release:	%{_release}
-License:	FLTK
-Group:		System Environment/Libraries
+Name: fltk
+Version: 1.1.4
+Release: 1.dries
+License: FLTK
+Group: System Environment/Libraries
 URL: http://www.fltk.org/
-Source: http://dl.sf.net/fltk/fltk-1.1.4-source.tar.bz2
+
+Source: http://dl.sf.net/fltk/fltk-%{version}-source.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc, gcc-c++, libjpeg-devel, zlib-devel, libpng-devel, XFree86-devel
 Requires: libjpeg, zlib, libpng
-
-#(d) primscreenshot: http://www.fltk.org/images/fluid.gif
 
 %description
 FLTK (pronounced "fulltick") is a cross-platform C++ GUI toolkit for
@@ -37,15 +33,15 @@ GUI functionaliteit zonder en ondersteunt 3D graphics via OpenGL en de
 ingebouwde GLUT emulatie.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
-%configure --enable-shared=yes
-make
+%configure \
+	--enable-shared="yes"
+%{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 export DESTDIR=$RPM_BUILD_ROOT
 # doesn't use something like DESTDIR :(
 mkdir -p $RPM_BUILD_ROOT/usr/bin
@@ -76,4 +72,3 @@ mv $RPM_BUILD_ROOT/usr/share/doc .
 %changelog
 * Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 1.1.4-1.dries
 - first packaging for Fedora Core 1
-

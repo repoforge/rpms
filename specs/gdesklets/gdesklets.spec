@@ -6,7 +6,7 @@
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.26
+Version: 0.26.1
 Release: 0
 License: GPL
 Group: User Interface/Desktops
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.pycage.de/download/gdesklets/gDesklets-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgtop2-devel >= 2.0.0, python-devel >= 2.0.0
 BuildRequires: gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0

@@ -1,7 +1,6 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Dug Song <dugsong@monkey.org>
 
 Summary: Intercepts, modifies, and rewrites egress traffic
@@ -9,13 +8,13 @@ Name: fragroute
 Version: 1.2
 Release: 0
 License: BSD
-Group: Networking/Utilities
+Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragroute/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.monkey.org/~dugsong/fragroute/%{name}-%{version}.tar.gz
+Source: http://www.monkey.org/~dugsong/fragroute/fragroute-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -29,6 +28,8 @@ Eluding Network Intrusion Detection" paper of January 1998.
 
 %prep
 %setup
+
+%build
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -45,7 +46,6 @@ Eluding Network Intrusion Detection" paper of January 1998.
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*.conf
 %{_sbindir}/*
-
 
 %changelog
 * Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 1.2-0

@@ -7,7 +7,7 @@ Name: paketto
 Version: 1.10
 Release: 0
 License: GPL
-Group: Applications/Network
+Group: Applications/Internet
 URL: http://www.doxpara.com/
 
 Packager: Dag Wieers <dag@wieers.com>

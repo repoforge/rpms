@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Chris Ladd <caladd@particlestorm.net>
 
@@ -6,7 +8,7 @@ Name: gnome-password-generator
 Version: 1.0
 Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/System
 URL: http://gnome-password.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -14,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gnome-password/gnome-password-generator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: python >= 2.0, pygtk2-devel, gnome-python2

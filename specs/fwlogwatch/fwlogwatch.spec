@@ -8,7 +8,7 @@ Name: fwlogwatch
 Version: 0.9.3
 Release: 1
 License: GPL
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://cert.uni-stuttgart.de/projects/fwlogwatch/
 
 Packager: Dag Wieers <dag@wieers.com>

@@ -4,27 +4,19 @@
 
 # NeedsCleanup
 
-%define	_name		gift
-%define	_version	0.11.5
-%define _release	1.dries
-
-Summary: deamon for communicating with filesharing protocols
+Summary: Deamon for communicating with filesharing protocols
 Summary(nl): daemon om te communiceren met filesharing protocols
+Name: gift
+Version: 0.11.5
+Release: 1.dries
+License: GPL
+Group: Development/Libraries
+URL: http://gift.sf.net/
 
-BuildRoot:	%{_tmppath}/build-%{_name}-%{_version}
-Name:		%{_name}
-Version:	%{_version}
-Release:	%{_release}
-License:	GPL
-Group:		Development/Libraries
-URL: http://gift.sourceforge.net/
-Source: http://dl.sf.net/gift/gift-0.11.5.tar.bz2 
+Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc, make
-#Requires: 
-
-#(d) primscreenshot: 
-#(d) screenshotsurl: 
-#(d) comment:
 
 %description
 giFT is a modular daemon capable of abstracting the communication between
@@ -36,17 +28,16 @@ tussen de gebruiker en specifieke filesharing protocollen (peer-to-peer en
 ook andere)
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
 %configure
-make
+%{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-make install-strip
+%{__rm} -rf %{buildroot}
+make install-strip \
+	DESTDIR="%{buildroot}"
 #ln -s libgift.so.0.0.0 ${DESTDIR}/usr/lib/libgift.so
 ls -l ${DESTDIR}/usr/lib/libgift.so*
 
@@ -79,4 +70,3 @@ ls -l ${DESTDIR}/usr/lib/libgift.so*
 %changelog
 * Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.11.5-1.dries
 - first packaging for Fedora Core 1
-

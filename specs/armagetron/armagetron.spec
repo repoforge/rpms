@@ -9,7 +9,7 @@ Name: armagetron
 Version: 0.2.5.2
 Release: 2
 License: GPL
-Group: Amusements/Games  
+Group: Amusements/Games
 Source0: http://dl.sf.net/armagetron/armagetron-%{version}.tar.bz2
 Source1: http://armagetron.sourceforge.net/addons/moviepack.zip
 Source2: http://armagetron.sourceforge.net/addons/moviesounds_mq.zip

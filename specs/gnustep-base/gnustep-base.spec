@@ -4,23 +4,18 @@
 
 # NeedsCleanup
 
-%define	_name		gnustep-base
-%define	_version	1.8.0
-%define _release	4.dries
-
-
 Summary: GNUstep base
 Summary(nl): GNUstep base
+Name: gnustep-base
+License: GPL
+Version: 1.8.0
+Release: 4.dries
+Group: Development/Libraries
+URL: http://www.gnustep.org/
 
-BuildRoot:	%{_tmppath}/%{name}-root
-Name:		%{_name}
-License: 	GPL
-Version:	%{_version}
-Release:	%{_release}
-Group: 		Development/Libraries
+Source0: ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-base-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-URL: http://www.gnustep.org
-Source0: ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-base-1.8.0.tar.gz
 BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh, diffutils, openssl-devel, gcc-objc, ffcall-devel, gnustep-make, gcc
 Requires: ffcall
 
@@ -31,22 +26,25 @@ todo
 todo
 
 %prep
-rm -rf $RPM_BUILD_ROOT
 %setup
+
 %build
 rm -f config.cache
 . /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
 ./configure
-make
+%{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
 mkdir -p ${RPM_BUILD_ROOT}
-make install INSTALL_ROOT_DIR=${RPM_BUILD_ROOT} GNUSTEP_INSTALLATION_DIR=${RPM_BUILD_ROOT}/usr/GNUstep/
+make install \
+	INSTALL_ROOT_DIR="%{buildroot}" \
+	GNUSTEP_INSTALLATION_DIR="%{buildroot}/usr/GNUstep/"
 chmod -s-t ${RPM_BUILD_ROOT}/usr/GNUstep/Tools/gdomap
 
 %clean
-# rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root,0755)

@@ -6,7 +6,7 @@ Name: libcaca
 Version: 0.9
 Release: 1
 URL: http://sam.zoy.org/projects/libcaca/
-Source: http://sam.zoy.org/projects/libcaca/%{name}-%{version}.tar.bz2
+Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
 License: LGPL
 Group: System Environment/Libraries
 Buildrequires: XFree86-devel, ncurses-devel >= 5, slang-devel, imlib2-devel
@@ -35,7 +35,7 @@ compile applications or shared objects that use libcaca.
 
 %package -n caca-utils
 Summary: Text mode graphics utilities
-Group: Applications/Graphics
+Group: Amusements/Graphics
 
 %description -n caca-utils
 This package contains utilities and demonstration programs for libcaca, the

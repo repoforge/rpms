@@ -2,9 +2,11 @@
 
 # Authority: dag
 
+%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.14.2
+Version: 0.14.2.91
 Release: 1
 Epoch: 1
 License: GPL
@@ -14,7 +16,7 @@ URL: http://pan.rebelbase.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://pan.rebelbase.com/download/releases/%{version}/SOURCE/%{name}-%{version}.tar.bz2
+Source: http://pan.rebelbase.com/download/releases/%{version}/SOURCE/pan-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -43,22 +45,28 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 %makeinstall
 %find_lang %{name}
 
+%if %{dfi}
+%else
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/applications/*.desktop
+	%{buildroot}%{_datadir}/gnome/apps/Internet/*.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS README ANNOUNCE.html
+%doc ANNOUNCE.html AUTHORS ChangeLog COPYING CREDITS INSTALL NEWS README TODO
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*
 
 %changelog
+* Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.14.2.91-1
+- Updated to release 0.14.2.91.
+
 * Mon Sep 08 2003 Dag Wieers <dag@wieers.com> - 0.14.2-1
 - Build against gnet2-devel.
 
