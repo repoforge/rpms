@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Prereq: /usr/sbin/useradd, /usr/sbin/usermod
 BuildRequires: openssl-devel, cyrus-sasl-devel, pam-devel
 BuildRequires: openldap-devel, postgresql-devel, mysql-devel
+BuildRequires: gcc-c++
 
 %description
 Dovecot is an IMAP and POP3 server for Linux/UNIX-like systems,
