@@ -8,7 +8,7 @@ Name: mathomatic
 Version: 11.0e
 Release: 1
 License: LGPL
-Group: System Environment/Libraries
+Group: Applications/Engineering
 URL: http://www.lightlink.com/computer/math/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
@@ -31,13 +31,16 @@ Gesslein II and has been under development since 1986.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__install} -D -m 755 am %{buildroot}%{_bindir}/am
+%{__install} -D -m 644 am.1 %{buildroot}%{_datadir}/man/man1/am.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%{_bindir}/*
+%{_datadir}/man/man1/am.*
 
 %changelog
 * Tue Apr 27 2004 Dries Verachtert <dries@ulyssis.org> 11.0e-1
