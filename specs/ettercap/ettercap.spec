@@ -31,7 +31,8 @@ analysis.
 
 %build
 %configure \
-	--enable-devel
+	--enable-devel \
+	--enable-plugins
 %{__make} %{?_smp_mflags}
 #CFLAG="%{optflags} -I/usr/kerberos/include"
 
