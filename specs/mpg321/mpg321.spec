@@ -26,7 +26,7 @@ mpg123.
 
 %build
 %configure --with-default-audio=esd
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
