@@ -5,7 +5,7 @@
 
 Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
-Version: 0.9.99
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, gettext, desktop-file-utils, gcc-c++
 BuildRequires: openssl-devel >= 0.9.6
-%{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.3.10}
+%{!?_without_gpgme:BuildRequires: gpgme03-devel >= 0.3.10}
 %{!?_without_ldap:BuildRequires: openldap-devel}
 %{!?_without_compface:BuildRequires: compface-devel}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
@@ -83,6 +83,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1
+- Update to 1.0.0 final!
+- Update gpgme dependency to gpgme03.
+
 * Wed Oct 13 2004 Matthias Saou <http://freshrpms.net/> 0.9.99-1
 - Update to 0.9.99.
 

@@ -6,15 +6,11 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
-%ifarch x86_64
-%define _without_lirc 1
-%endif
-
 %define desktop_vendor rpmforge
 
 Summary: Free multimedia player
 Name: xine
-Version: 0.99.2
+Version: 0.99.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -23,10 +19,12 @@ Source: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
-BuildRequires: curl-devel, libtermcap-devel, pkgconfig, /usr/bin/find
+BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
+BuildRequires: pkgconfig, /usr/bin/find
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aalib:BuildRequires: aalib-devel}
-%{!?_without_lirc:BuildRequires: lirc}
+%{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_lirc:BuildRequires: lirc-devel}
 
 %description
 Xine is a free multimedia player. It plays back CDs, DVDs, and VCDs. It also
@@ -38,7 +36,7 @@ formats, too.
 This package contains the GUI of the Xine multimedia player.
 
 Available rpmbuild rebuild options :
---without : aalib lirc freedesktop
+--without : aalib caca lirc freedesktop
 
 
 %prep
@@ -131,6 +129,13 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-1
+- Update to 0.99.3.
+- Re-enable lirc on x86_64, don't even know why it was disabled.
+- Added readline dep for the network interface.
+- Added new caca support.
+- Added libidn-devel build dep to fix libcurl support.
+
 * Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 0.99.2-1
 - Added update-desktop-database scriplet calls.
 

@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor rpmforge
-%define extraver       cvs9.1
+%define extraver       cvs25.3
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
@@ -13,14 +13,13 @@ Group: Applications/Internet
 URL: http://claws.sylpheed.org/
 Source: http://dl.sf.net/sylpheed-claws/sylpheed-claws-%{version}%{?extraver}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0, pkgconfig
-Requires: openssl, gpgme, openldap
+Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0
 %{!?_without_aspell:Requires: aspell >= 0.50}
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
-BuildRequires: openssl-devel, gpgme-devel, openldap-devel
-BuildRequires: compface-devel
+BuildRequires: openssl-devel, gpgme03-devel, openldap-devel
+BuildRequires: compface-devel, startup-notification-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
@@ -58,12 +57,12 @@ fi
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-openssl \
+    --enable-ldap \
     %{!?_without_aspell: --enable-aspell} \
     %{?_with_pilot: --enable-jpilot} \
-    --enable-gpgme \
-    --enable-spamassassin-plugin
-    # Disable for now :-(
-    #--enable-ldap \
+    --enable-spamassassin-plugin \
+    --disable-mathml-viewer-plugin \
+    --disable-clamav-plugin
 %{__make} %{?_smp_mflags}
 
 # Fix this path for the make install stage
@@ -115,6 +114,11 @@ desktop-file-install \
 
 
 %changelog
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 0.9.13-1.gtk2.cvs25.3
+- Update to 0.9.13cvs25.3.
+- Added startup-notification-devel build requirement.
+- Re-enable LDAP, it compiles again.
+
 * Thu Dec  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.13-1.gtk2.cvs9.1
 - Update to 0.9.13cvs9.1.
 

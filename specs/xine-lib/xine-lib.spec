@@ -29,13 +29,13 @@
 %{?yd3:%define _without_theora 1}
 
 %define libname libxine1
-%define libver  1-rc8
+%define libver  1.0
 %define apiver  1.0.0
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.17.rc8
+Release: 0.18
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -58,6 +58,7 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{!?_without_speex:BuildRequires: speex-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
+%{!?_without_xvmc:BuildRequires: libXvMCW-devel}
 %{!?dist:BuildRequires: freeglut-devel}
 %{?fc3:BuildRequires: freeglut-devel}
 %{?fc2:BuildRequires: freeglut-devel}
@@ -77,7 +78,7 @@ This package contains the backend files for the Xine multimedia player.
 
 Available rpmbuild rebuild options :
 --with : rte ext-dvdnav
---without : alsa aalib libfame flac esound arts gnomevfs2 speex caca
+--without : alsa aalib libfame flac esound arts gnomevfs2 speex caca xvmc
 (only alsa can be really disabled, others only remove explicit package
  dependency which won't make much difference if devel files are found)
 
@@ -153,6 +154,10 @@ use the Xine library.
 
 
 %changelog
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-0.18
+- Update to 1.0 final! (had to keep 1.0.0 as the version, though)
+- Added libXvMCW support (for the VIA Unichrome, mostly).
+
 * Thu Dec 16 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.17.rc8
 - Update to 1.0rc8 and remove obsolete memleak patch.
 - Add --enable-shared-xv as compilation against static Xv fails on x86_64.

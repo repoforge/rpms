@@ -3,18 +3,19 @@
 # Upstream: <gnupg-devel$gnupg,org>
 
 Summary: GnuPG Made Easy
-Name: gpgme
-Version: 0.4.7
+Name: gpgme03
+Version: 0.3.16
 Release: 1
 License: GPL
 Group: Applications/System
-Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/gpgme-%{version}.tar.gz
-URL: http://www.gnupg.org/gpgme.html
+Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}.tar.gz
+Patch: gpgme-0.3.15-m4warn.patch
+URL: http://www.gnupg.org/related_software/gpgme/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
-Provides: libgpgme = %{version}-%{release}
-Requires: gnupg >= 1.2.0, libgpg-error >= 0.5
-BuildRequires: gnupg >= 1.2.0, libgpg-error-devel >= 0.5, info, gcc-c++
+Provides: lib%{name} = %{version}-%{release}
+Requires: gnupg >= 1.2.0
+BuildRequires: gnupg >= 1.2.0, info
 
 %description
 GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG easier
@@ -29,8 +30,7 @@ Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires(post): info
 Requires(preun): info
-Requires: libgpg-error-devel >= 0.5
-Provides: libgpgme-devel = %{version}-%{release}
+Provides: lib%{name}-devel = %{version}-%{release}
 
 %description devel
 GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG easier
@@ -42,7 +42,8 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 
 %prep
-%setup
+%setup -n gpgme-%{version}
+%patch -p1 -b .m4warn
 
 
 %build
@@ -60,13 +61,19 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 %{__rm} -rf %{buildroot}
 
 
-%post devel
-/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
+%post
+/sbin/ldconfig
 
+%postun
+/sbin/ldconfig
+
+
+%post devel
+/sbin/install-info %{_infodir}/gpgme.info.gz %{_infodir}/dir
 
 %preun devel
 if [ $1 -eq 0 ]; then
-    /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
+    /sbin/install-info --delete %{_infodir}/gpgme.info.gz %{_infodir}/dir
 fi
 
 
@@ -77,17 +84,25 @@ fi
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/%{name}-config
+%{_bindir}/gpgme-config
 %{_includedir}/*
-%{_libdir}/*.so
-%{_datadir}/aclocal/%{name}.m4
-%{_infodir}/%{name}.info*
+%{_libdir}/*.a
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%{_datadir}/aclocal/gpgme.m4
+%{_infodir}/gpgme.info*
 
 
 %changelog
-* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.4.7-1
-- Update to 0.4.7, as libgpg-error is in Fedora Core 2 at last.
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 0.3.16-1
+- Update to 0.3.16.
+- Rename to gpgme03 to keep consistent with Extras.
+
+* Thu Oct 28 2004 Matthias Saou <http://freshrpms.net/> 0.3.15-6
+- Add quick patch to fix m4 "warning: underquoted definition" message.
+
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.3.15-5
+- Added missing /sbin/ldconfig calls.
 
 * Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4
 - Exclude the dir info file.

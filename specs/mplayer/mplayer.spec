@@ -58,6 +58,7 @@ Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.4.tar.bz2
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
+Patch10: MPlayer-1.0pre6a-fribidi.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
@@ -93,7 +94,7 @@ nice antialiased shaded subtitles and OSD.
 Available rpmbuild rebuild options :
 --with : samba dvb
 --without : aalib lirc cdparanoia arts xvid esd dvdread faad2 lzo libfame caca
-            theora osdmenu gcccheck freedesktop
+            theora osdmenu gcccheck freedesktop fribidi
 
 
 %package -n libpostproc
@@ -120,6 +121,7 @@ to use MPlayer, transcode or other similar programs.
 %patch0 -p1 -b .runtimemsg
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
+%patch10 -p0 -b .fribidi
 
 # Overwrite the system menu entry with ours
 %{__cat} <<EOF > etc/mplayer.desktop
@@ -180,7 +182,8 @@ find . -name "CVS" | xargs %{__rm} -rf
     --enable-i18n \
     --language=all \
     %{!?_without_osdmenu:--enable-menu} \
-    %{?_with_samba:--enable-smb}
+    %{?_with_samba:--enable-smb} \
+    %{!?_without_fribidi:--enable-fribidi}
 
     # "dvdnav disabled, it does not work" (1.0pre5, still the same)
     #{!?_without_dvdnav:--enable-dvdnav} \
@@ -274,6 +277,7 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.13.pre6a
 - Update to 1.0pre6a.
 - Remove cz man pages, add cs ones.
+- Fix fribidi support and include patch from Nir Misgav.
 
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.12.20042025
 - Merge Dag's scriplet changes.

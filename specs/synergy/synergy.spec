@@ -3,8 +3,8 @@
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.0.14
-Release: 2
+Version: 1.2.0
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/
@@ -40,12 +40,16 @@ own display.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS COPYING ChangeLog FAQ HISTORY NEWS README TODO
+%doc AUTHORS ChangeLog COPYING NEWS README doc/PORTING
+%doc doc/*.html doc/*.css 
 %doc examples/synergy.conf
 %{_bindir}/*
 
 
 %changelog
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.2.0-1
+- Update to 1.2.0.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.14-2
 - Rebuilt for Fedora Core 2.
 

@@ -6,21 +6,20 @@
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 0.9.12b
+Version: 0.9.13
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
 Source: http://dl.sf.net/sylpheed-claws/sylpheed-claws-%{version}%{?extraver}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk+ >= 1.2.6, gdk-pixbuf >= 0.8.0, pkgconfig
-Requires: openssl, gpgme, openldap
+Requires: gtk+ >= 1.2.6, gdk-pixbuf >= 0.8.0
 %{!?_without_aspell:Requires: aspell >= 0.50}
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
-BuildRequires: openssl-devel, gpgme-devel, openldap-devel
-BuildRequires: compface-devel
+BuildRequires: openssl-devel, gpgme03-devel, openldap-devel
+BuildRequires: compface-devel, startup-notification-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
@@ -61,8 +60,9 @@ fi
     --enable-ldap \
     %{!?_without_aspell: --enable-aspell} \
     %{?_with_pilot: --enable-jpilot} \
-    --enable-gpgme \
-    --enable-spamassassin-plugin
+    --enable-spamassassin-plugin \
+    --disable-mathml-viewer-plugin \
+    --disable-clamav-plugin
 %{__make} %{?_smp_mflags}
 
 # Fix this path for the make install stage
@@ -114,6 +114,9 @@ desktop-file-install \
 
 
 %changelog
+* Thu Dec  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.13-1
+- Update to 0.9.13.
+
 * Mon Sep 27 2004 Matthias Saou <http://freshrpms.net/> 0.9.12b-1
 - Update to 0.9.12b.
 - Re-enable LDAP support.

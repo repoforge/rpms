@@ -1,12 +1,12 @@
 # $Id$
 # Authority: matthias
 
-%define prever rc7
+%define prever rc8
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
 Version: 2.0.0
-Release: %{?prever:0.%{prever}.}3
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Internet
 URL: http://www.aMule.org/
@@ -18,6 +18,8 @@ BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
 BuildRequires: gd-progs, gd-devel, libidn-devel
 # Required on Yellow Dog Linux 3.0
 BuildRequires: openssl-devel
+# Required for a configure check (curl)
+BuildRequires: bc
 
 %description
 aMule is an easy to use multi-platform client for ED2K Peer-to-Peer Network.
@@ -66,6 +68,9 @@ same network.
 
 
 %changelog
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc8.1
+- Update to 2.0.0rc8.
+
 * Fri Nov 19 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc7.3
 - Disable external cryptopp usage, it's a mess :-(
 

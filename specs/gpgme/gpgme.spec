@@ -4,18 +4,17 @@
 
 Summary: GnuPG Made Easy
 Name: gpgme
-Version: 0.3.15
-Release: 6
+Version: 1.0.2
+Release: 1
 License: GPL
 Group: Applications/System
-Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/gpgme-%{version}.tar.gz
-Patch: gpgme-0.3.15-m4warn.patch
-URL: http://www.gnupg.org/gpgme.html
+Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}.tar.gz
+URL: http://www.gnupg.org/related_software/gpgme/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
-Provides: libgpgme = %{version}-%{release}
-Requires: gnupg >= 1.2.0
-BuildRequires: gnupg >= 1.2.0, info
+Provides: lib%{name} = %{version}-%{release}
+Requires: gnupg >= 1.2.2, libgpg-error >= 0.5
+BuildRequires: gnupg >= 1.2.2, libgpg-error-devel >= 0.5, info, gcc-c++
 
 %description
 GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG easier
@@ -30,7 +29,8 @@ Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires(post): info
 Requires(preun): info
-Provides: libgpgme-devel = %{version}-%{release}
+Requires: libgpg-error-devel >= 0.5
+Provides: lib%{name}-devel = %{version}-%{release}
 
 %description devel
 GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG easier
@@ -42,12 +42,11 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 
 %prep
-%setup
-%patch -p1 -b .m4warn
+%setup -n gpgme-%{version}
 
 
 %build
-%configure
+%configure --enable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -87,18 +86,19 @@ fi
 %{_bindir}/gpgme-config
 %{_includedir}/*
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_datadir}/aclocal/gpgme.m4
 %{_infodir}/gpgme.info*
-%exclude %{_libdir}/*.la
 
 
 %changelog
-* Thu Oct 28 2004 Matthias Saou <http://freshrpms.net/> 0.3.15-6
-- Add quick patch to fix m4 "warning: underquoted definition" message.
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-1
+- Update to 1.0.2.
+- Re-enable static libs by explicitely requesting them to configure.
 
-* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.3.15-5
-- Added missing /sbin/ldconfig calls.
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.4.7-1
+- Update to 0.4.7, as libgpg-error is in Fedora Core 2 at last.
 
 * Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4
 - Exclude the dir info file.

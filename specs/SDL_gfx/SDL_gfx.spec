@@ -10,7 +10,7 @@ Version: 2.0.13
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
+URL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/
 Source: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl
