@@ -24,7 +24,7 @@ Source1: firefox-rebuild-databases.pl.in
 Patch1: firefox-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, zlib-devel, zip
+BuildRequires: XFree86-devel, zlib-devel, zip, gzip, perl
 BuildRequires: libpng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, gcc-c++, krb5-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -168,7 +168,7 @@ MOZ_PROGRAM="$MOZILLA_FIVE_HOME/firefox"
 LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$MOZILLA_FIVE_HOME/plugins${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 MOZ_PLUGIN_PATH="$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins${MOZ_PLUGIN_PATH:+:$MOZ_PLUGIN_PATH}"
 FONTCONFIG_PATH="/etc/fonts:$MOZILLA_FIVE_HOME/res/Xft"
-export MOZILLA_FIVE_HOME LD_LIBRARY_PATH MOZ_PLUGIN_PATH FONTCONFIG_PATH
+export FONTCONFIG_PATH LD_LIBRARY_PATH MOZ_PLUGIN_PATH MOZILLA_FIVE_HOME
 
 MOZARGS=""
 MOZLOCALE="$(echo $LANG | sed 's|_\([^.]*\).*|-\1|g')"
