@@ -55,6 +55,11 @@ cp uox3 %{buildroot}/usr/bin
 cd %{buildroot}/usr/share
 unzip %{SOURCE2}
 mv UOX3 uox3
+cat  > %{buildroot}/usr/bin/uox3-wrapper <<EOF
+cd /usr/share/uox3
+uox3
+EOF
+chmod +x %{buildroot}/usr/bin/uox3-wrapper
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,6 +68,29 @@ mv UOX3 uox3
 %defattr(-, root, root, 0755)
 %doc AUTHORS Changelog.txt COPYING INSTALL NEWS README README.Linux readme.txt
 %{_bindir}/uox3
+%{_bindir}/uox3-wrapper
+%config %{_datadir}/uox3/accounts/accounts.adm
+%config %{_datadir}/uox3/accounts/*/*.uad
+%config %{_datadir}/uox3/banlist.ini
+%config %{_datadir}/uox3/dfndata/*/*.dfn
+%config %{_datadir}/uox3/dfndata/*/*/*/*.dfn
+%config %{_datadir}/uox3/dfndata/*/*/*/*/*.dfn
+%config %{_datadir}/uox3/dfndata/items/gear/weapons/NOTE*
+%config %{_datadir}/uox3/js/*.scp
+%config %{_datadir}/uox3/js/*/*/*.js
+%config %{_datadir}/uox3/shared/*.wsc
+%config %{_datadir}/uox3/uox.ini
+
+%{_datadir}/uox3/logs/readme.txt
+%{_datadir}/uox3/msgboards/readme.txt
+%{_datadir}/uox3/shared/Readme.txt
+%{_datadir}/uox3/archives/readme.txt
+%{_datadir}/uox3/books/readme.txt
+%{_datadir}/uox3/dictionaries/dictionary.*
+%{_datadir}/uox3/docs
+%{_datadir}/uox3/help
+%{_datadir}/uox3/html/readme.txt
+%{_datadir}/uox3/js32.dll
 
 %changelog
 * Fri Apr 30 2004 Dries Verachtert <dries@ulyssis.org> 0.97.6.9r-1
