@@ -108,7 +108,7 @@ use the Xine library.
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
-    --enable-shared-xv \
+    --disable-static-xv \
     --with-pic \
     %{?_without_alsa:--disable-alsa} \
     %{!?_with_ext-dvdnav:--with-included-dvdnav}
@@ -154,9 +154,10 @@ use the Xine library.
 
 
 %changelog
-* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-0.18
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0 final! (had to keep 1.0.0 as the version, though)
 - Added libXvMCW support (for the VIA Unichrome, mostly).
+- Change --enable-shared-xv to --disable-static-xv to keep x86_64 working.
 
 * Thu Dec 16 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.17.rc8
 - Update to 1.0rc8 and remove obsolete memleak patch.
