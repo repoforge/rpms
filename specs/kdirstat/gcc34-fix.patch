@@ -1,0 +1,12 @@
+diff -uNr kdirstat-2.4.0-orig/kdirstat/kdirstatapp.h kdirstat-2.4.0/kdirstat/kdirstatapp.h
+--- kdirstat-2.4.0-orig/kdirstat/kdirstatapp.h	2003-08-26 22:47:47.000000000 +0200
++++ kdirstat-2.4.0/kdirstat/kdirstatapp.h	2004-11-28 20:45:10.463570304 +0100
+@@ -46,7 +46,7 @@
+     class KSettingsDialog;
+     class KTreemapView;
+     class KTreemapTile;
+-};
++}
+ 
+ using namespace KDirStat;
+ 

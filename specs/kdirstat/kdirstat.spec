@@ -16,6 +16,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://kdirstat.sourceforge.net/download/kdirstat-%{version}.tar.bz2
+Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, libpng-devel
 BuildRequires: libart_lgpl-devel, arts-devel
@@ -40,6 +41,7 @@ programma bevat ook een aantal hulpmiddelen om terug vrije ruimte te winnen.
 %prep
 %{__rm} -rf %{buildroot}
 %setup
+%patch -p1
 
 %build
 . /etc/profile.d/qt.sh

@@ -5,11 +5,11 @@
 # Screenshot: http://kpogre.sourceforge.net/kpogre1.png
 # ScreenshotURL: http://kpogre.sourceforge.net/screenshots.htm
 
-%define real_version 1.2.4
+%define real_version 1.2.6
 
 Summary: PostgreSQL graphical frontend
 Name: kpogre
-Version: 1.2.4
+Version: 1.2.6
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -36,11 +36,13 @@ tables and views is easily accessible in a tree view.
 %setup -n kpogre-%{real_version}
 
 %build
+source /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source /etc/profile.d/qt.sh
 %makeinstall
 
 %post
@@ -62,6 +64,9 @@ tables and views is easily accessible in a tree view.
 %{_datadir}/doc/HTML/en/kpogre
 
 %changelog
+* Sun Nov 28 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.6-1
+- Update to release 1.2.6.
+
 * Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1
 - Update to release 1.2.4.
 
