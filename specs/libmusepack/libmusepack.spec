@@ -3,14 +3,12 @@
 
 Summary: Musepack audio decoding library
 Name: libmusepack
-Version: 1.0.2
+Version: 1.1
 Release: 1
-License: LGPL
+License: BSD
 Group: System Environment/Libraries
 URL: http://www.musepack.net/
-Source0: http://www.saunalahti.fi/grimmel/musepack.net/source/libmusepack-%{version}.zip
-Source1: LGPL.txt
-Patch: libmusepack-1.0.2-makefile.patch
+Source: http://www.saunalahti.fi/grimmel/musepack.net-files/source/libmusepack-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -40,24 +38,17 @@ heavily optimized and patentless code.
 
 
 %prep
-%setup -c %{name}-%{version}
-%patch -p0 -b .makefile
+%setup
 
 
 %build
-# No autotools...
-%{__make} %{?_smp_mflags} \
-    libdir="%{_libdir}" \
-    includedir="%{_includedir}" \
-    CPPFLAGS="%{optflags}"
+%configure
+%{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} %{?_smp_mflags} install \
-    libdir="%{_libdir}" \
-    includedir="%{_includedir}" \
-    DESTDIR="%{buildroot}"
+%makeinstall
 
 
 %clean
@@ -73,15 +64,25 @@ heavily optimized and patentless code.
 
 %files
 %defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING README
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc docs/html/*
 %{_includedir}/musepack/
+%{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 
 %changelog
+* Wed Feb 23 2005 Matthias Saou <http://freshrpms.net/> 1.1-1
+- Update to 1.1.
+- Switch build to use autotools as it's now possible.
+- Remove no longer needed Makefile patch.
+- Change License to BSD, as the new included COPYING is definitely BSD.
+
 * Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Initial RPM release.
 - Include the mandatory copy of the LGPL (there is none in the sources...).

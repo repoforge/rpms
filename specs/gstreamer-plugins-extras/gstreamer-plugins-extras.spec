@@ -4,12 +4,16 @@
 %define		gstreamer	gstreamer
 %define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
 
+# gst plugins we want (this is passed to configure with spaces converted to commas, don't mangle them)
 %define		gstplugs	mpeg1sys mpeg1videoparse mpeg2sub mpegaudio mpegaudioparse mpegstream
-%define		extplugs	a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec musepack swfdec
+# external plugin directories that we want built
+%define		extplug_dirs	a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec
+# corresponding external plugin names
+%define		extplug_names	a52dec dvdnavsrc dvdreadsrc faad gsmenc gsmdec lame libfame mad mpeg2dec
 
 Name:		%{gstreamer}-plugins-extra
 Version:	0.8.6
-Release:	1
+Release:	2
 Summary:	GStreamer extra streaming media framework plugins
 
 Group:		Applications/Multimedia
@@ -48,7 +52,7 @@ BuildRequires:	gsm-devel >= 1.0.10
 BuildRequires:	lame-devel >= 3.89
 BuildRequires:	libid3tag-devel >= 0.15.0
 BuildRequires:	libmad-devel >= 0.15.0
-BuildRequires:	libmusepack-devel
+#BuildRequires:	libmusepack-devel
 
 Requires:	%{gstreamer}-plugins >= %{gstp_minver}
 Requires(pre):	%{_bindir}/gst-register-%{majorminor}
@@ -58,7 +62,7 @@ Provides:	%{gstreamer}-faad = %{version}-%{release}
 Provides:	%{gstreamer}-gsm = %{version}-%{release}
 Provides:	%{gstreamer}-lame = %{version}-%{release}
 Provides:	%{gstreamer}-mad = %{version}-%{release}
-Provides:	%{gstreamer}-musepack = %{version}-%{release}
+#Provides:	%{gstreamer}-musepack = %{version}-%{release}
 
 %description audio
 This package contains extra audio plugins for GStreamer, including
@@ -66,7 +70,6 @@ This package contains extra audio plugins for GStreamer, including
 - faad2 decoding
 - mad mp3 decoding
 - lame mp3 encoding
-- musepack mp3 decoding
 
 %post audio
 %{register}
@@ -79,7 +82,7 @@ This package contains extra audio plugins for GStreamer, including
 %{_libdir}/gstreamer-%{majorminor}/libgstgsm.so
 %{_libdir}/gstreamer-%{majorminor}/libgstlame.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmad.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
+#{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
 
 %package dvd
 Summary:	DVD plugins for GStreamer
@@ -122,7 +125,7 @@ Group:		Applications/Multimedia
 
 BuildRequires:	libfame-devel >= 0.9.1
 BuildRequires:	mpeg2dec-devel >= 0.4.0
-BuildRequires:	swfdec-devel >= 0.3.1
+#BuildRequires:	swfdec-devel >= 0.3.1
 
 Requires:	%{gstreamer}-plugins >= %{gstp_minver}
 Requires:	%{gstreamer}-plugins-extra-audio >= %{gstp_minver}
@@ -131,13 +134,12 @@ Requires(post):	%{_bindir}/gst-register-%{majorminor}
 
 Provides:	%{gstreamer}-libfame = %{version}-%{release}
 Provides:	%{gstreamer}-mpeg2dec = %{version}-%{release}
-Provides:	%{gstreamer}-swfdec = %{version}-%{release}
+#Provides:	%{gstreamer}-swfdec = %{version}-%{release}
 
 %description video
 This package contains extra video plugins for GStreamer, including
 - libfame MPEG video encoding
 - mpeg2dec MPEG-2 decoding
-- swfdec Flash decoding
 
 %post video
 %{register}
@@ -154,7 +156,7 @@ This package contains extra video plugins for GStreamer, including
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegaudio.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegaudioparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegstream.so
-%{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
+#{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
 
 %prep
 %setup -n gst-plugins-%{version}
@@ -165,17 +167,18 @@ This package contains extra video plugins for GStreamer, including
 %configure \
   --with-package-name='Fedora freshrpms rpm' \
   --with-package-origin='http://freshrpms.net/' \
-  --with-plugins=\
-mpeg1sys,mpeg1videoparse,mpeg2sub,mpegaudio,mpegaudioparse,mpegstream \
+  --with-plugins=$(echo %{gstplugs} | sed 's/ /,/g') \
   --enable-debug \
   --enable-DEBUG \
   --disable-tests \
   --disable-examples
 
-# Die if some of the plugins we want aren't configured properly
+# Die if any of the external plugins we want aren't configured properly
+# This will fail silently if the configure script stops printing the
+# "These plugins will not be built: blah blah blah" messages.
 grep -oP "(?<=will not be built: )[[:alpha:] ]+" config.log | sort > notbuilt
-BADPLUGS=$(echo %{gstplugs} %{extplugs} | xargs -n1 echo | sort | join - notbuilt)
-if [ $BADPLUGS != "" ]; then
+BADPLUGS=$(echo %{extplug_names} | xargs -n1 echo | sort | join - notbuilt)
+if [ "$BADPLUGS" != "" ]; then
 	echo "Plugins not configured: $BADPLUGS"
 	exit 1;
 fi
@@ -197,7 +200,7 @@ done
 cd ..
 
 cd ext
-for p in %{extplugs}
+for p in %{extplug_dirs}
 do
   cd $p
   %makeinstall
@@ -212,6 +215,12 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Feb 23 2005 Matthias Saou <http://freshrpms.net/> 0.8.6-2
+- Further fixes by Nicholas Miell merged at last.
+- Disable swfdec for now, it's more hassles than it is useful.
+- Disable musepack, as the plugin doesn't work with 1.1 (only 1.0).
+- Rebuild against new libmusepack library.
+
 * Wed Feb  2 2005 Matthias Saou <http://freshrpms.net/> 0.8.6-1
 - Include all changes by Nicholas Miell :
 - Fix for faad2 detection (new and old).
