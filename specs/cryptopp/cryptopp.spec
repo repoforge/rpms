@@ -6,7 +6,7 @@
 Summary: Free C++ class library of cryptographic schemes
 Name: cryptopp
 Version: 5.2.1
-Release: 1
+Release: 2
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://www.cryptopp.com/
@@ -62,7 +62,8 @@ This package contains programs for manipulating Crypto++ routines.
 %configure
 # For 5.1 at least :
 # Don't optimize with -O2, it BREAKS the lib: running 'cryptest v' fails
-%{__make} %{?_smp_mflags} CXXFLAGS="-DNDEBUG"
+%{__make} %{?_smp_mflags} \
+    CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'` -DNDEBUG"
 
 
 %install
@@ -100,6 +101,9 @@ This package contains programs for manipulating Crypto++ routines.
 
 
 %changelog
+* Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 5.2.1-2
+- Use optflags, but replace -O? with -O1, since it breaks otherwise.
+
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 5.2.1-1
 - Update to 5.2.1, with newer patch from Mandrake Cooker.
 

@@ -15,7 +15,7 @@
 Summary: Powerful audio editor
 Name: audacity
 Version: 1.2.3
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/
@@ -48,7 +48,7 @@ and Noise Removal, and it also supports VST plug-in effects.
 (cd lib-src/portaudio-v19/ && autoconf)
 %configure \
     --with-libsndfile="system" \
-    --with-portaudio="v19" \
+    --with-portaudio="v18" \
     --without-portmixer
 %{__perl} -pi.orig -e 's|^(CFLAGS) = -g |$1 = -fPIC |' \
     lib-src/portaudio-v19/Makefile
@@ -100,6 +100,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 1.2.3-2
+- Move back from postaudio v19 to v18 for now, as v19 has too many issues :-(
+  (leave no longer relevant deps as-is, for later switching back to v19).
+
 * Sat Nov 20 2004 Matthias Saou <http://freshrpms.net/> 1.2.3-1
 - Update to 1.2.3.
 - Added libid3tag and libsamplerate support.
