@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <gqclient-discuss@lists.sf.net>
 
 %define desktop_vendor freshrpms
 
@@ -7,14 +8,16 @@ Summary: graphical LDAP directory browser and editor
 Name: gq
 Version: 0.6.0
 Release: 3
-Source: http://biot.com/gq/download/gq-%{version}.tar.gz
-URL: http://biot.com/gq/
-Group: Applications/Internet
 License: GPL
+Group: Applications/Internet
+URL: http://biot.com/gq/
+
+Source: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk+, openldap, krb5-libs, openssl
+
 BuildRequires: gtk+-devel, openldap-devel, krb5-devel, openssl-devel
 BuildRequires: desktop-file-utils
+Requires: gtk+, openldap, krb5-libs, openssl
 
 %description
 GQ is a graphical browser for LDAP directories and schemas.  Using GQ,
