@@ -1,11 +1,9 @@
 # $Id: $
-
 # Authority: dries
-# Upstream:
 
 Summary: Single master,query based,synchronous replication server
 Name: pgpool
-Version: 1.0
+Version: 1.1
 Release: 1
 License: BSD
 Group: Applications/Databases
@@ -15,7 +13,8 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: ftp://ftp.sra.co.jp/pub/cmd/postgres/pgpool/pgpool-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: flex
 
 %description
@@ -51,15 +50,22 @@ pgpool can work with PostgreSQL 7.0 to 7.4.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Clean up buildroot
+%{__mv} -f %{buildroot}%{_sysconfdir}/pgpool.conf.sample %{buildroot}%{_sysconfdir}/pgpool.conf
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README ChangeLog NEWS TODO README.euc_jp
-%{_sysconfdir}/pgpool.conf.sample
+%config(noreplace) %{_sysconfdir}/pgpool.conf
 %{_bindir}/pgpool
 
 %changelog
+* Sun May 02 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Cosmetic changes.
+- Updated to release 1.1.
+
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 1.0-1
 - Initial package

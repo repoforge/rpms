@@ -1,6 +1,9 @@
 # $Id$
-
 # Authority: dries
+# Upstream: Dmitry Rozmanov <dima@xenon.spb.ru>
+
+%define real_name aps
+%define real_release 098
 
 Summary: NTLM authorization proxy server
 Name: apserver
@@ -13,8 +16,9 @@ URL: http://apserver.sf.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://apserver.sf.net/aps098.tar.gz
-BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
+Source: http://apserver.sf.net/aps%{real_release}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: dos2unix
 Requires: python
 
@@ -25,36 +29,40 @@ protocol.It can change arbitrary values in your client's request header so
 that those requests will look like they were created by MS IE.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
-%setup -n aps098
+%setup -n %{real_name}%{real_release}
 
 %build
 dos2unix server.cfg
-cat > apserver <<EOF
+%{__cat} <<EOF  >apserver.sh
 #!/bin/bash
-cd /usr/share/apserver
-python main.py -c /etc/apserver.cfg
+cd %{_datadir}/apserver
+exec python main.py -c %{_sysconfdir}/apserver.cfg
 EOF
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-mkdir -p ${DESTDIR}/usr/bin/
-mkdir -p ${DESTDIR}/usr/share/apserver/
-mkdir -p ${DESTDIR}/etc/
-cp apserver ${DESTDIR}/usr/bin/
-chmod +x ${DESTDIR}/usr/bin/apserver
-cp server.cfg ${DESTDIR}/etc/apserver.cfg
-cp -R main.py lib ${DESTDIR}/usr/share/apserver/
+%{__rm} -rf %{buildroot}
+%{__install} -D -m0755 apserver.sh %{buildroot}%{_bindir}/apserver
+%{__install} -D -m0644 server.cfg %{buildroot}%{_sysconfdir}/apserver.cfg
+
+%{__install} -D -m0644 main.py %{buildroot}%{_datadir}/apserver/main.py
+%{__cp} -av lib/ %{buildroot}%{_datadir}/apserver/
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
-%doc research.txt readme.txt Install.txt COPYING doc
-%{_sysconfdir}/apserver.cfg
+%defattr(-, root, root, 0755)
+%doc COPYING Install.txt readme.txt research.txt doc/
+%config(noreplace) %{_sysconfdir}/apserver.cfg
 %{_bindir}/apserver
-/usr/share/apserver
+%{_datadir}/apserver/
 
 %changelog
+* Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.9.8-3
+- Cosmetic cleanup.
+- Use exec in startup script.
+- Tag config-file and add noreplace.
+
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.9.8-2
 - spec file cleanup
 

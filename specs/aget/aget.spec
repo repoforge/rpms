@@ -1,7 +1,7 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+# Upstream: Murat Balaban <murat@enderunix.org>
+# Screenshot: http://www.enderunix.org/aget/aget-shot.jpg
 
 Summary: Console download accelerator
 Name: aget
@@ -10,11 +10,10 @@ Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://www.enderunix.org/aget/
-Source: http://www.enderunix.org/aget/%{name}-%{version}.tar.gz
+
+Source: http://www.enderunix.org/aget/aget-%{version}.tar.gz
 Patch: errno-include.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-# Screenshot: http://www.enderunix.org/aget/aget-shot.jpg
 
 %description
 Aget is a multi-threaded download accelerator. It supports HTTP downloads
@@ -29,7 +28,7 @@ and can be run from the console.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m 0755 -D aget %{buildroot}%{_bindir}/aget
+%{__install} -D -m0755 aget %{buildroot}%{_bindir}/aget
 
 %clean
 %{__rm} -rf %{buildroot}

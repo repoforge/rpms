@@ -1,7 +1,6 @@
-# $Id $
-
+# $Id$
 # Authority: dries
-# Upstream: Eric Johnston
+# Upstream: Eric Johnston <emj@postal.net>
 
 Summary: Shows Exif (Exchangeable Image File) image metadata
 Name: exiftags
@@ -15,7 +14,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://johnst.org/sw/exiftags/exiftags-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The exiftags utility parses a specified JPEG file or, by
@@ -29,26 +28,28 @@ camera and digitized image.
 %setup
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}/usr/bin
-mkdir -p %{buildroot}/%{_mandir}/man1
-cp exiftags exifcom %{buildroot}/usr/bin
-chmod a+x %{buildroot}/usr/bin/exif*
-cp exiftags.1 exifcom.1 %{buildroot}/%{_mandir}/man1
-chmod a+r %{buildroot}/%{_mandir}/man1/exif*
+%{__install} -D -m0755 exifcom %{buildroot}%{_bindir}/exifcom
+%{__install} -D -m0755 exiftags %{buildroot}%{_bindir}/exiftags
+%{__install} -D -m0644 exifcom.1 %{buildroot}%{_mandir}/man1/exifcom.1
+%{__install} -D -m0644 exiftags.1 %{buildroot}%{_mandir}/man1/exiftags.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
-%doc README CHANGES
+%defattr(-, root, root, 0755)
+%doc CHANGES README
+%doc %{_mandir}/man?/*
 %{_bindir}/exif*
-%{_mandir}/man1/exif*
 
 %changelog
+* Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.99-2
+- Cosmetic changes.
+
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 0.99-1
 - initial package

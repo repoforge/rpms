@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dries
+# Upstream: David Schweikert <dws@ee.ethz.ch>
 
 Summary: Snort reporting tool
 Name: snort-rep
@@ -16,7 +16,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://people.ee.ethz.ch/~dws/software/snort-rep/pub/snort-rep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 Requires: perl, perl-MIME-Lite
 
 %description
@@ -30,8 +29,8 @@ from a syslog file.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 snort-rep snort-rep-mail %{buildroot}%{_bindir}
+%{__install} -D -m0755 snort-rep %{buildroot}%{_bindir}/snort-rep
+%{__install} -D -m0755 snort-rep-mail %{buildroot}%{_bindir}/snort-rep-mail
 
 %files
 %defattr(-, root, root, 0755)
