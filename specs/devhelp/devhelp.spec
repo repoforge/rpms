@@ -17,7 +17,7 @@ Source: http://ftp.gnome.org/pub/GNOME/sources/devhelp/0.9/devhelp-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.3.1, libgnomeui-devel >= 2.2, gnome-vfs2-devel >= 2.2
-BuildRequires: gtkhtml2-devel >= 2.0.0, intltool
+BuildRequires: gtkhtml2-devel >= 2.0.0, intltool, gcc-c++
 
 %description
 devhelp is an API document browser for GNOME.
