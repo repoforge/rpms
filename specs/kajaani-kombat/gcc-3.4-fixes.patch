@@ -1,0 +1,42 @@
+Binary files kajaani-kombat-0.5/kajaani-kombat and kajaani-kombat-0.5-fixed/kajaani-kombat differ
+diff -uNr kajaani-kombat-0.5/particle_efects.cpp kajaani-kombat-0.5-fixed/particle_efects.cpp
+--- kajaani-kombat-0.5/particle_efects.cpp	2004-06-22 17:11:21.000000000 +0200
++++ kajaani-kombat-0.5-fixed/particle_efects.cpp	2005-01-04 12:08:24.455253264 +0100
+@@ -290,7 +290,12 @@
+   : game_obj (_center, OWNER_NOONE)
+ {
+   num_particles = _num_particles;
+-  ptc = new particle[num_particles](_center);
++  ptc = new particle[num_particles];
++  for (int j=0;j<num_particles;j++) {
++    particle *tmp = new particle(_center);
++    ptc[j] = *tmp;
++  }
++  //ptc = new particle[num_particles](_center);
+ }
+ 
+ particle_efect::~particle_efect()
+diff -uNr kajaani-kombat-0.5/player.cpp kajaani-kombat-0.5-fixed/player.cpp
+--- kajaani-kombat-0.5/player.cpp	2004-07-02 15:59:38.000000000 +0200
++++ kajaani-kombat-0.5-fixed/player.cpp	2005-01-04 11:43:04.865266056 +0100
+@@ -16,7 +16,7 @@
+   wins++;
+ }
+ 
+-player::player  (player &p)
++player::player  (const player &p)
+ {
+   conns = p.conns;
+   name = p.name;
+diff -uNr kajaani-kombat-0.5/player.h kajaani-kombat-0.5-fixed/player.h
+--- kajaani-kombat-0.5/player.h	2004-07-02 15:51:14.000000000 +0200
++++ kajaani-kombat-0.5-fixed/player.h	2005-01-04 11:43:05.103229880 +0100
+@@ -32,7 +32,7 @@
+ {
+ public:
+   player(connects *conn, const string& _name);
+-  player (player &p);
++  player (const player&);
+   player();
+ 
+   bool is_connected() const;

@@ -3,7 +3,7 @@
 
 Summary: C++ wrapper for fam, the file alteration monitor
 Name: fampp
-Version: 3.5.1
+Version: 3.5.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -12,9 +12,9 @@ URL: http://fampp.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/fampp/fampp2-3.5.1.tar.bz2
+Source: http://dl.sf.net/fampp/fampp2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, stlport-devel
+BuildRequires: gcc-c++, stlport-devel, pkgconfig, gamin-devel
 
 %description
 Fam++ is a C++ wrapper for fam from sgi. Fam uses imon to inform it when 
@@ -64,6 +64,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> 3.5.2-1
+- Update to release 3.5.2.
+
 * Tue Apr 27 2004 Dries Verachtert <dries@ulyssis.org> 3.5.1-1
 - Initial package
 

@@ -7,7 +7,7 @@
 
 Summary: Geography learning tool
 Name: kgeography
-Version: 0.1
+Version: 0.3
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -24,7 +24,7 @@ BuildRequires: libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, gcc
 BuildRequires: kdelibs-devel, make, gcc-c++
 BuildRequires: XFree86-devel, qt-devel
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, gcc-g77, flex
 
 %description
 KGeography is a geography learning tool. Right now it has three usage modes: 
@@ -59,5 +59,8 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config.kcfg/kgeography.kcfg
 
 %changelog
+* Sun Dec 26 2004 Dries Verachtert <dries@ulyssis.org> - 0.3-1
+- Updated to release 0.3.
+
 * Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1 
 - Initial package.

@@ -18,7 +18,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://ara.alioth.debian.org/incoming/ara_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: lablgtk, ocaml
+BuildRequires: lablgtk, ocaml, gtk2-devel
 
 %description
 Ara is a command-line utility for querying the Debian package database. It
