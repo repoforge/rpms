@@ -23,8 +23,15 @@ RPM macros used by the RPMForge project.
 %prep
 
 %{__cat} <<EOF >macros.rpmforge
+### RPM macros for RPMForge project (http://rpmforge.net/)
+###
+### Add to /etc/rpmrc: "macrofiles: /etc/rpm/macros.rpmforge"
+
+%%packager RPMForge authority <%%{name}@package.rpmforge.net>
+%%vendor RPMForge project (http://rpmforge.net/)
+
+
 %if %{?dist:1}0
-### Current distribution
 %%dist %dist
 %%%dist 1
 %else
@@ -35,16 +42,19 @@ RPM macros used by the RPMForge project.
 
 %if "%dist" == "fc2"
 ### Fedora Core 2
+%%distribution RPMForge repository for Fedora Core 2
 %%errata 120
 %endif
 %if "%dist" == "fc1"
 ### Fedora Core 1
+%%distribution RPMForge repository for Fedora Core 1
 %%errata 110
 %%_without_alsa 1
 %%_without_theora 1
 %endif
 %if "%dist" == "el3"
 ### Red Hat Enterprise Linux 3
+%%distribution RPMForge repository for Red Hat Enterprise Linux 3
 %%errata 91
 %%_without_alsa 1
 %%_without_fribidi 1
@@ -52,6 +62,7 @@ RPM macros used by the RPMForge project.
 %endif
 %if "%dist" == "rh9"
 ### Red Hat Linux 9
+%%distribution RPMForge repository for Red Hat Linux 9
 %%errata 90
 %%_without_alsa 1
 %%_without_fribidi 1
@@ -59,6 +70,7 @@ RPM macros used by the RPMForge project.
 %endif
 %if "%dist" == "rh8"
 ### Red Hat Linux 8.0
+%%distribution RPMForge repository for Red Hat Linux 8.0
 %%errata 80
 %%_without_alsa 1
 %%_without_fribidi 1
@@ -66,6 +78,7 @@ RPM macros used by the RPMForge project.
 %endif
 %if "%dist" == "rh7"
 ### Red Hat Linux 7.3
+%%distribution RPMForge repository for Red Hat Linux 7.X
 %%errata 73
 %%_without_alsa 1
 %%_without_freedesktop 1
@@ -75,6 +88,7 @@ RPM macros used by the RPMForge project.
 %endif
 %if "%dist" == "el2"
 ### Red hat Enterprise Linux 2.1
+%%distribution RPMForge repository for Red Hat Enterprise Linux 2.1
 %%errata 72
 %%_without_alsa 1
 %%_without_freedesktop 1
@@ -84,6 +98,7 @@ RPM macros used by the RPMForge project.
 %endif
 %if "%dist" == "rh6"
 ### Red Hat Linux 6.2
+%%distribution RPMForge repository for Red Hat Linux 6.2
 %%errata 62
 %%_without_alsa 1
 %%_without_freedesktop 1
