@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name gDesklets
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.26.1
-Release: 0
+Version: 0.26.2
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/
@@ -79,6 +78,12 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.26.2-1
+- Updated to release 0.26.2.
+
+* Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.26.1-0
+- Updated to release 0.26.1.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.26-0
 - Updated to release 0.26.
 
