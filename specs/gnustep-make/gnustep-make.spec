@@ -1,80 +1,72 @@
 # $Id$
-
 # Authority: dries
 
-# NeedsCleanup
-
-%define	_name		gnustep-make
-%define	_version	1.8.0
-%define _release	4.dries
-
 Summary: GNUstep make
-Summary(nl): GNUstep make
-
-BuildRoot:	%{_tmppath}/%{name}-root
-Name:		%{_name}
-License:	GPL
-Version:	%{_version}
-Release:	%{_release}
+Name: gnustep-make
+Version: 1.9.1
+Release: 1
+License: GPL
 Group: Development/Libraries
-BuildRequires: gcc, make
 URL: http://www.gnustep.org
-Source0: ftp://ftp.gnustep.org/pub/gnustep/core/gnustep-make-1.8.0.tar.gz
+
+Source: http://ftp.gnustep.org/pub/gnustep/core/gnustep-make-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-GNUstep make
-
-%description -l nl
-GNUstep make
+This package contains the basic scripts, makefiles and directory layout
+needed to run and compile any GNUstep software.
 
 %prep
-rm -rf $RPM_BUILD_ROOT
 %setup
-%build
-rm -f config.cache
-./configure --enable-import
 
-sed -i "s/special_prefix =.*/special_prefix= ${RPM_BUILD_ROOT//\//\\/}/g;" GNUmakefile
-make
+%{__cat} <<EOF >gnustep.sh
+#!/bin/bash
+source "%{_prefix}/GNUstep/System/Library/Makefiles/GNUstep.sh"
+EOF
+
+%{__cat} <<EOF >gnustep.csh
+#!/bin/csh
+source "%{_prefix}/GNUstep/System/Library/Makefiles/GNUstep.csh"
+EOF
+
+
+%build
+%configure \
+	--prefix="%{_prefix}/GNUstep" \
+	--enable-import
+%{__make} %{?_smp_mflags}
 
 %install
-%makeinstall
+%{__rm} -rf %{buildroot}
+%makeinstall \
+	special_prefix="%{buildroot}"
+
+%{__install} -D -m0755 gnustep.sh %{buildroot}%{_sysconfdir}/profile.d/gnustep.sh
+%{__install} -D -m0755 gnustep.csh %{buildroot}%{_sysconfdir}/profile.d/gnustep.csh
 
 %clean
-# rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
-%doc README NEWS ANNOUNCE COPYING FAQ GNUstep-HOWTO
-/usr/GNUstep/System/Library/Makefiles/config.guess
-/usr/GNUstep/System/Library/Makefiles/config.sub
-/usr/GNUstep/System/Library/Makefiles/install-sh
-/usr/GNUstep/System/Library/Makefiles/mkinstalldirs
-/usr/GNUstep/System/Library/Makefiles/user_home
-/usr/GNUstep/System/Library/Makefiles/which_lib
-/usr/GNUstep/System/Library/Makefiles/*.template
-/usr/GNUstep/System/Library/Makefiles/*.make
-/usr/GNUstep/System/Library/Makefiles/*.sh
-/usr/GNUstep/System/Library/Makefiles/*.csh
-/usr/GNUstep/System/Library/Makefiles/Master/*.make
-/usr/GNUstep/System/Library/Makefiles/Instance/*.make
-/usr/GNUstep/System/Library/Makefiles/Instance/Shared/*.make
-/usr/GNUstep/System/Library/Makefiles/Instance/Documentation/*.make
-/usr/GNUstep/System/Tools/debugapp
-/usr/GNUstep/System/Tools/openapp
-/usr/GNUstep/System/Tools/opentool
-/usr/GNUstep/System/share/config.site
+%defattr(-, root, root, 0755)
+%doc ANNOUNCE COPYING FAQ GNUstep-HOWTO NEWS README
+%config %{_sysconfdir}/profile.d/*
+%{_prefix}/GNUstep/
 
 %changelog
-* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-4.dries
+* Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 1.9.1-1
+- Updated to release 1.9.1.
+- Cosmetic cleanup.
+
+* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-4
 - added some BuildRequires
 
-* Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-3.dries
+* Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-3
 - specfile cleanup
 
-* Mon Nov 10 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-2.dries
+* Mon Nov 10 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-2
 - further packaging
 - --enable-import added
 
-* Sun Nov 9 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-1.dries
+* Sun Nov 9 2003 Dries Verachtert <dries@ulyssis.org> 1.8.0-1
 - first packaging for Fedora Core 1
