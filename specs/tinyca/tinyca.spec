@@ -8,6 +8,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca
 Version: 0.6.6
@@ -74,7 +76,7 @@ EOF
 	%{__install} -D -m0644 tinyca.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/tinyca.desktop
 %else   
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		tinyca.desktop
@@ -90,7 +92,7 @@ EOF
 %{_bindir}/tinyca
 %{_datadir}/tinyca/
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/tinyca.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-tinyca.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-tinyca.desktop}
 
 %changelog
 * Sat Aug 14 2004 Dag Wieers <dag@wieers.com> - 0.6.6-1

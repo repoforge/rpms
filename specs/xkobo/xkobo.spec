@@ -7,6 +7,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 %define real_version 1.11+w01
 
 Summary: Space arcade game
@@ -59,13 +61,14 @@ xmkmf -a
 %{__rm} -rf %{buildroot}
 %{__install} -D -m2755 xkobo %{buildroot}%{_bindir}/xkobo
 %{__install} -D -m0644 xkobo.man %{buildroot}%{_mandir}/man6/xkobo.6
+
 %{__install} -d -m0775 %{buildroot}%{_localstatedir}/lib/games/xkobo/
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 xkobo.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xkobo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		xkobo.desktop
@@ -77,8 +80,8 @@ xmkmf -a
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man6/xkobo.6*
+%{_bindir}/xkobo
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Games/xkobo.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/net-xkobo.desktop}
 

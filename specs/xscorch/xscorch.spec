@@ -2,7 +2,11 @@
 # Authority: rudolf
 # Upstream: Justin David Smith <justins$chaos2,org>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Clone of the classic DOS game, "Scorched Earth"
 Name: xscorch
@@ -10,15 +14,16 @@ Version: 0.2.0
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://chaos2.org/xscorch/
+URL: http://xscorch.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://chaos2.org/xscorch/xscorch-%{version}.tar.gz
+Source: http://xscorch.org/releases/xscorch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2
+%{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Xscorch is a clone of the classic DOS game, "Scorched Earth". The basic
@@ -30,7 +35,7 @@ destroy yours.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >xscorch.desktop
 [Desktop Entry]
 Name=Scorched Earth
 Comment=Destroy the enemy tanks before they destroy you
@@ -50,14 +55,14 @@ EOF
 %makeinstall
 %{__install} -D -m0644 img/xscorch-icon.xpm %{buildroot}%{_datadir}/pixmaps/xscorch.xpm
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 xscorch.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xscorch.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		xscorch.desktop
 %endif
 
 %clean
@@ -65,15 +70,12 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man6/xscorch.6*
+%{_bindir}/xscorch*
 %{_datadir}/xscorch/
-%{_datadir}/pixmaps/*.xpm
-%if %{dfi}
-        %{_datadir}/gnome/apps/Games/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/pixmaps/xscorch.xpm
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/xscorch.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xscorch.desktop}
 
 %changelog
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 0.2.0-1

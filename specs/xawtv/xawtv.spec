@@ -8,6 +8,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Television application for video4linux compliant devices
 Name: xawtv
 Version: 3.94
@@ -68,9 +70,9 @@ EOF
 	%{__install} -D -m0644 xawtv.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawtv.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net			\
-		--add-category X-Red-Hat-Base			\
-		--dir %{buildroot}%{_datadir}/applications	\
+	desktop-file-install --vendor %{desktop_vendor}    \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
 		xawtv.desktop
 %endif
 
@@ -87,7 +89,7 @@ EOF
 %{_datadir}/xawtv/
 %{_prefix}/X11R6/lib/X11/app-defaults/*
 %{!?rh62:%{_prefix}/X11R6/lib/X11/*/app-defaults/*}
-%{!?_without_freedesktop:%{_datadir}/applications/net-xawtv.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/xawtv.desktop}
 
 %changelog

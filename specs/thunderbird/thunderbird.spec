@@ -8,6 +8,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_gtk2 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Mozilla Thunderbird mail/news client
 Name: thunderbird
 Version: 0.7.2
@@ -193,7 +195,7 @@ popd
 	%{__install} -D -m0644 thunderbird.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/thunderbird.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		thunderbird.desktop
@@ -223,7 +225,7 @@ fi
 %{_libdir}/thunderbird/
 %{_datadir}/pixmaps/thunderbird.xpm
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/thunderbird.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/net-thunderbird.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-thunderbird.desktop}
 
 %changelog
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-0

@@ -11,7 +11,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.150
+Version: 1.160
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -26,7 +26,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 AutoReq: 0
 BuildRequires: perl, perl-Net-SSLeay, perl(CGI), perl(Mon::Client)
+BuildRequires: perl(Compress::Zlib)
 Requires: perl, perl(Net::SSLeay), perl(CGI), perl(Mon::Client)
+Requires: perl(Compress::Zlib)
 
 %description
 A web-based administration interface for Unix systems. Using Webmin you can
@@ -78,20 +80,20 @@ export real_os_type="Redhat Linux"
 export config_dir="%{buildroot}%{_sysconfdir}/webmin"
 export var_dir="%{_localstatedir}/webmin"
 export perl="%{__perl}"
-export autoos=3
+export autoos="3"
 export port="10000"
 export login="root"
 export crypt="x"
 export host="localhost"
-export ssl=1
-export atboot=1
-export nochown=1
-export autothird=1
-export noperlpath=1
-export nouninstall=1
-export nostart=1
+export ssl="1"
+export atboot="1"
+export nochown="1"
+export autothird="1"
+export noperlpath="1"
+export nouninstall="1"
+export nostart="1"
 #export password="webmin-admin"
-export makeboot=0
+export makeboot="0"
 %{buildroot}%{_libexecdir}/webmin/setup.sh
 
 ### Clean up buildroot
@@ -128,6 +130,9 @@ fi
 /sbin/service webmin condrestart &>/dev/null || :
 
 %changelog
+* Sat Oct 09 2004 Dag Wieers <dag@wieers.com> - 1.160-1
+- Updated to release 1.160.
+
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.150-1
 - Updated to release 1.150.
 

@@ -7,13 +7,15 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Video4Linux stream capture viewer
 Name: xawdecode
-Version: 1.9.2
+Version: 1.9.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://xawdecode.sf.net/
+URL: http://xawdecode.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -80,7 +82,7 @@ EOF
 	%{__install} -D -m0644 xawdecode.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		xawdecode.desktop
@@ -106,7 +108,7 @@ xset fp rehash || :
 %{_prefix}/X11R6/lib/X11/app-defaults/*
 %{_prefix}/X11R6/%{_lib}/X11/fonts/misc/*
 %{_datadir}/pixmaps/*.png
-%{!?_without_freedesktop:%{_datadir}/applications/net-xawdecode.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawdecode.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop}
 
 %files devel
@@ -114,6 +116,9 @@ xset fp rehash || :
 %{_includedir}/xawdecode/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.9.3-1
+- Updated to release 1.9.3.
+
 * Mon Jun 21 2004 Dag Wieers <dag@wieers.com> - 1.9.2-1
 - Updated to release 1.9.2.
 

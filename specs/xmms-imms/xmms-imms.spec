@@ -2,14 +2,14 @@
 # Authority: dag
 # Upstream: Michael Grigoriev <mag$luminal,org>
 
-%define plugindir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir)
 
-%define rname imms
+%define real_name imms
 
 Summary: Intelligent Multimedia Management System plugin for XMMS.
 Name: xmms-imms
 Version: 1.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.luminal.org/phpwiki/index.php/IMMS
@@ -39,7 +39,7 @@ Some of the key features include:
   different versions of the same song and not play them in quick succession.
 
 %prep
-%setup -n %{rname}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__aclocal}
@@ -50,7 +50,7 @@ Some of the key features include:
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0644 libimms.so %{buildroot}%{plugindir}/libimms.so
+%{__install} -D -m0755 libimms.so %{buildroot}%{xmms_generaldir}/libimms.so
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,9 +58,12 @@ Some of the key features include:
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README 
-%{plugindir}/*
+%{xmms_generaldir}/libimms.so
 
 %changelog
+* Thu Oct 07 2004 Dag Wieers <dag@wieers.com> - 1.1-2
+- Fix permissions of library to include missing dependencies. (Mike Traum)
+
 * Fri Apr 16 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 

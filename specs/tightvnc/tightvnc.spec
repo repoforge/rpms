@@ -3,7 +3,9 @@
 # Upstream: <vnc-tight-list$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
@@ -14,6 +16,7 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
+%define desktop_vendor rpmforge
 
 Summary: Graphical remote administration system
 Name: tightvnc
@@ -217,11 +220,11 @@ cd Xvnc
 %{__install} -D -m0755 vncserver.sysv %{buildroot}%{_initrddir}/vncserver
 %{__install} -D -m0644 vncservers.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vncservers
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 vncviewer.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/vncviewer.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor gnome                \
+        desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 vncviewer.desktop
@@ -247,11 +250,8 @@ fi
 %doc ChangeLog LICENCE.TXT README WhatsNew Xvnc/bug-report Xvnc/RELNOTES*
 %doc %{_mandir}/man1/vncviewer.*
 %{_bindir}/vncviewer
-%if %{dfi}
-        %{_datadir}/gnome/apps/Internet/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/vncviewer.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-vncviewer.desktop}
 
 %files server
 %defattr(-, root, root, 0755)

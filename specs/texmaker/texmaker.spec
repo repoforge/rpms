@@ -8,6 +8,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: LaTeX editor
 Name: texmaker
 Version: 1.11
@@ -89,7 +91,7 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 	%{__install} -D -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor kde                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		texmaker.desktop
@@ -104,7 +106,7 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %doc utilities/*.css utilities/*.gif utilities/*.html utilities/*.png
 %{_bindir}/texmaker
 %{?_without_freedesktop:%{_datadir}/applications/texmaker.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/kde-texmaker.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-texmaker.desktop}
 %{_datadir}/icons/hicolor/*/apps/texmaker.png
 %{_datadir}/pixmaps/texmaker.png
 

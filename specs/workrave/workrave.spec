@@ -2,13 +2,15 @@
 # Authority: dag
 # Upstream: Rob Caelers <robc$krandor,org>
 
+%define desktop_vendor rpmforge
+
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
 Version: 1.6.1
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://workrave.sf.net/
+URL: http://workrave.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -27,7 +29,7 @@ take micro-pauses, rest breaks and restricts you to your daily limit.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >workrave.desktop
 [Desktop Entry]
 Name=Workrave RSI Prevention
 Comment=Recover or prevent Repetitive Strain Injury.
@@ -48,10 +50,10 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	workrave.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,7 +65,7 @@ desktop-file-install --vendor gnome                \
 %{_bindir}/*
 %{_libexecdir}/*
 %{_libdir}/bonobo/servers/*.server
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-workrave.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/pixmaps/workrave/
 %{_datadir}/sounds/workrave/

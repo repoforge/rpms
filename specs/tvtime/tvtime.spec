@@ -8,13 +8,15 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: High quality TV viewer
 Name: tvtime
 Version: 0.9.13
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://tvtime.sf.net/
+URL: http://tvtime.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -48,7 +50,8 @@ videophiles.
 %find_lang %{name}
 
 %if %{!?_without_freedesktop:1}0
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
+		--delete-original                          \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		%{buildroot}%{_datadir}/applications/net-tvtime.desktop
@@ -66,7 +69,7 @@ videophiles.
 %{_bindir}/tvtime-command
 %{_bindir}/tvtime-configure
 %{_bindir}/tvtime-scanner
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-tvtime.desktop
 %{_datadir}/icons/hicolor/*/apps/tvtime.png
 %{_datadir}/pixmaps/*
 %{_datadir}/tvtime/
