@@ -1,11 +1,13 @@
 # $Id$
 
 # Authority: dries
+# Upstream: 
 
-Summary: a KDE filesharing client which uses gift
+Summary: KDE filesharing client which uses gift
 Name: apollon
-Version: 0.9.2
-Release: 3
+Version: 0.9.3.2
+%define real_version 0.9.3-2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://apollon.sf.net/
@@ -13,20 +15,18 @@ URL: http://apollon.sf.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/apollon/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/apollon/%{name}-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, gift
 Requires: kdelibs, gift
 
-#(d) primscreenshot: http://apollon.sourceforge.net/apollon1.png
-#(d) screenshotsurl: http://apollon.sourceforge.net/pictures.html
-#(d) comment: nog geen opennap plugin
+# Screenshot: http://apollon.sourceforge.net/apollon1.png
+# ScreenshotURL: http://apollon.sourceforge.net/pictures.html
 
 %description
-A KDE filesharing client which uses gift.
+Apollon is a KDE filesharing client which uses gift.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -35,9 +35,11 @@ A KDE filesharing client which uses gift.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-export DESTDIR=$RPM_BUILD_ROOT
-make install-strip
+export DESTDIR=%{buildroot}
+#make install-strip
+%makeinstall
 rm ${DESTDIR}/usr/share/applnk/Applications/Apollon.desktop
 mkdir -p ${DESTDIR}/usr/share/applications/
 cat > ${DESTDIR}/usr/share/applications/Apollon.desktop <<EOF
@@ -53,43 +55,46 @@ Categories=Application;Network;X-Red-Hat-Extra;
 EOF
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root, 0755)
 %doc README
 %{_bindir}/apollon
-/usr/lib/libapollon.la
-/usr/lib/libapollon.so.0
-/usr/lib/libapollon.so
-/usr/lib/libapollon.so.0.0.1
-/usr/share/applications/Apollon.desktop
-/usr/share/apps/apollon/gift/OpenFT.conf.template
-/usr/share/apps/apollon/gift/giftd.conf.template
-/usr/share/apps/apollon/gift/nodes
-/usr/share/apps/apollon/gift/ui.conf.template
-/usr/share/doc/HTML/en/apollon/*
-/usr/share/icons/crystalsvg/*/filesystems/folder_apollon.png
-/usr/share/icons/hicolor/16x16/actions/gnutelladown.png
-/usr/share/icons/hicolor/16x16/actions/gnutellaup.png
-/usr/share/icons/hicolor/16x16/actions/kazaadown.png
-/usr/share/icons/hicolor/16x16/actions/kazaaup.png
-/usr/share/icons/hicolor/16x16/actions/napsterdown.png
-/usr/share/icons/hicolor/16x16/actions/napsterup.png
-/usr/share/icons/hicolor/16x16/actions/openftdown.png
-/usr/share/icons/hicolor/16x16/actions/openftup.png
-/usr/share/icons/hicolor/16x16/actions/soulseekdown.png
-/usr/share/icons/hicolor/16x16/actions/soulseekup.png
-/usr/share/icons/hicolor/*/apps/apollon.png
-/usr/share/icons/hicolor/*/apps/gnutella.png
-/usr/share/icons/hicolor/*/apps/kazaa.png
-/usr/share/icons/hicolor/*/apps/napster.png
-/usr/share/icons/hicolor/*/apps/openft.png
-/usr/share/icons/hicolor/*/apps/soulseek.png
-/usr/share/locale/*/LC_MESSAGES/apollon.mo
+%{_libdir}/libapollon.la
+%{_libdir}/libapollon.so.0
+%{_libdir}/libapollon.so
+%{_libdir}/libapollon.so.0.0.1
+%{_datadir}/applications/Apollon.desktop
+%{_datadir}/apps/apollon/gift/OpenFT.conf.template
+%{_datadir}/apps/apollon/gift/giftd.conf.template
+%{_datadir}/apps/apollon/gift/nodes
+%{_datadir}/apps/apollon/gift/ui.conf.template
+%{_datadir}/doc/HTML/en/apollon/*
+%{_datadir}/icons/crystalsvg/*/filesystems/folder_apollon.png
+%{_datadir}/icons/hicolor/16x16/actions/gnutelladown.png
+%{_datadir}/icons/hicolor/16x16/actions/gnutellaup.png
+%{_datadir}/icons/hicolor/16x16/actions/kazaadown.png
+%{_datadir}/icons/hicolor/16x16/actions/kazaaup.png
+%{_datadir}/icons/hicolor/16x16/actions/napsterdown.png
+%{_datadir}/icons/hicolor/16x16/actions/napsterup.png
+%{_datadir}/icons/hicolor/16x16/actions/openftdown.png
+%{_datadir}/icons/hicolor/16x16/actions/openftup.png
+%{_datadir}/icons/hicolor/16x16/actions/soulseekdown.png
+%{_datadir}/icons/hicolor/16x16/actions/soulseekup.png
+%{_datadir}/icons/hicolor/*/apps/apollon.png
+%{_datadir}/icons/hicolor/*/apps/gnutella.png
+%{_datadir}/icons/hicolor/*/apps/kazaa.png
+%{_datadir}/icons/hicolor/*/apps/napster.png
+%{_datadir}/icons/hicolor/*/apps/openft.png
+%{_datadir}/icons/hicolor/*/apps/soulseek.png
+%{_datadir}/locale/*/LC_MESSAGES/apollon.mo
 
 %changelog
 * Thu Feb 25 2004 Dries Verachtert <dries@ulyssis.org> 0.9.2-3
