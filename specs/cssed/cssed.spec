@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/cssed/cssed-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, make, gcc-c++, expat-devel
-BuildRequires: gtk2-devel, gettext, vte-devel
+BuildRequires: gtk2-devel, gettext, vte-devel, pkgconfig
 Requires: gtk2, vte
 
 
@@ -25,7 +25,7 @@ Requires: gtk2, vte
 Cssed is a GTK2 application for creating and maintaining CSS style sheets.
 
 %prep
-%setup -n cssed-pre0.1
+%setup
 
 %build
 autoconf
@@ -46,16 +46,19 @@ Type=Application
 Encoding=UTF-8
 Categories=Application;Network;X-Red-Hat-Base;
 EOF
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/cssed
 %{_datadir}/applications/cssed.desktop
 %{_datadir}/cssed
+%{_libdir}/pkgconfig/cssed.pc
+%{_mandir}/man1/cssed*
 
 %changelog
 * Wed Nov 17 2004 Dries Verachtert <dries@ulyssis.org> 0.3.0-2
