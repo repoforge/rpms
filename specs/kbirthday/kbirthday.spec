@@ -5,6 +5,37 @@
 # Screenshot: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday-0.5-2.png
 # ScreenshotURL: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday.html
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
+%{?fc2:%define _without_qt_config 1}
+%{?fc1:%define _without_qt_config 1}
+%{?el3:%define _without_qt_config 1}
+%{?rh9:%define _without_qt_config 1}
+%{?rh8:%define _without_qt_config 1}
+%{?rh7:%define _without_qt_config 1}
+%{?el2:%define _without_qt_config 1}
+%{?rh6:%define _without_qt_config 1}
+%{?yd3:%define _without_qt_config 1}
+
+
 Summary: Kicker-applet which reminds you of birthdays
 Name: kbirthday
 Version: 0.7.3
@@ -20,10 +51,13 @@ Source: http://www.gfai.de/~jaham/download/kbirthday-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: arts-devel, gcc-c++, gettext 
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
-%{?fc2:BuildRequires: libselinux-devel}
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{!?_without_qt_config:BuildRequires: qt-config}
 
 %description
 Kbirthday is a kicker-applet that reminds you of birthdays and anniversaries
