@@ -1,15 +1,13 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Kåre Sjölander <kare@speech.kth.se>
 
 %define real_name snack
 
 Summary: Snack Sound Toolkit
 Name: libsnack
-Version: 2.2.2
-Release: 2
+Version: 2.2.7
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://www.speech.kth.se/snack/
@@ -17,13 +15,10 @@ URL: http://www.speech.kth.se/snack/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.speech.kth.se/~kare/%{real_name}%{version}.tar.gz
-Source1: http://www.speech.kth.se/~kare/ogg.tar.gz
-Source2: http://www.speech.kth.se/~kare/sphere.tar.gz
+Source: http://www.speech.kth.se/~kare/snack%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: tcl-devel
+BuildRequires: tcl-devel, sphere-devel
 Obsoletes: snack-ogg, snack-sphere
 Provides: libsnack-ogg, libsnack-sphere
 
@@ -41,38 +36,43 @@ applied to other one-dimensional signals.
 This packages includes Ogg and NIST/Sphere libraries.
 
 %prep
-%setup -c -b0 -T -D -c -b1 -T -D -c -b2
+%setup -n %{real_name}%{version}
 
+#%{__perl} -pi.orig -e 's|(\@SHLIB_LD\@)|$1 -fPIC|' unix/Makefile.in
 %{__perl} -pi.orig -e 's|playgrain = 100;|playgrain = 1;|' generic/jkSoundEngine.c
 
 %build
-cd snack%{version}/unix
-%configure
-%{__make} %{?_smp_mflags}
+cd unix
+%configure \
+	--with-tcl="%{_libdir}" \
+	--with-tk="%{_libdir}" \
+	--with-nist-include="%{_includedir}/sp" \
+	--with-nist-lib="%{_libdir}/sp" \
+	--with-ogg-include="%{_includedir}/ogg" \
+	--with-ogg-lib="%{_libdir}"
+%{__make} %{?_smp_mflags} clean all
 
 %install
 %{__rm} -rf %{buildroot}
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/snack%{version}/
-%makeinstall -C "snack%{version}/unix" \
+%makeinstall -C unix \
 	VERSION="%{version}" \
 	SNACK_INSTALL_PATH="%{buildroot}%{_libdir}"
-
-%{__install} _ogg/libsnackogg.so %{buildroot}%{_libdir}/snack%{version}/
-%{__install} _sphere/libsnacksphere.so %{buildroot}%{_libdir}/snack%{version}/
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/%{name}stub%{version}.a
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc snack%{version}/README snack%{version}/changes snack%{version}/doc/*
+%doc changes README doc/*
 %{_libdir}/snack%{version}/
 
 %changelog
+* Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.2.7-1
+- Updated to release 2.2.7.
+- Build libsnackogg and libsnacksphere ourselves.
+
 * Mon Jun 30 2003 Dag Wieers <dag@wieers.com> - 2.2.2-1
 - Fixed the hardcoded playgrain timing issues. (Tom Wilkason)
 
