@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/DateTime-Event-SolarTerm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 DateTime Extension to Calculate Solar Terms.
