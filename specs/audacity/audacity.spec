@@ -25,6 +25,7 @@ Requires: wxGTK >= 2.4.0
 BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
 BuildRequires: wxGTK-devel >= 2.4.0, libogg-devel, libvorbis-devel
 BuildRequires: libmad-devel, flac-devel, libsndfile-devel
+BuildRequires: libsamplerate-devel, libid3tag-devel
 BuildRequires: autoconf
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
@@ -99,8 +100,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
-* Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
-- Updated to release 1.2.3.
+* Sat Nov 20 2004 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Update to 1.2.3.
+- Added libid3tag and libsamplerate support.
 
 * Thu Aug 26 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1
 - Update to 1.2.2.
