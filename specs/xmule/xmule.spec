@@ -3,7 +3,7 @@
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
-Version: 1.8.2b
+Version: 1.8.2c
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -58,6 +58,9 @@ same network.
 
 
 %changelog
+* Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 1.8.2c-1
+- Update to 1.8.2c.
+
 * Thu May 13 2004 Matthias Saou <http://freshrpms.net/> 1.8.2b-1
 - Update to 1.8.2b.
 - Added gettext build dependency otherwise the po stuff fails.

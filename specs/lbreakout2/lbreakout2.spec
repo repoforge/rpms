@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define beta 6
+%define beta 8
 
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
@@ -10,17 +10,21 @@ Version: 2.5
 Release: %{?beta:0.beta%{beta}.}1
 License: GPL
 Group: Amusements/Games
-Source: http://dl.sf.net/lgames/%{name}-%{version}%{?beta:beta-%{beta}}.tar.gz
 URL: http://www.lgames.org/
+Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?beta:beta-%{beta}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.1.5, SDL_mixer
-Requires: zlib, libpng
-BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils
-BuildRequires: zlib-devel, libpng-devel
+BuildRequires: SDL-devel, SDL_mixer-devel, zlib-devel, libpng-devel
 BuildRequires: ImageMagick
+#{__mkdir_p} %{buildroot}%{_localstatedir}/lib/games
 
 %description
-A breakout-style arcade game for Linux that uses the SDL
+The successor to LBreakout offers you a new challenge in more than 50 levels
+with loads of new bonuses (goldshower, joker, explosive balls, bonus magnet
+...), maluses (chaos, darkness, weak balls, malus magnet ...) and special
+bricks (growing bricks, explosive bricks, regenerative bricks ...). If you
+are still hungry for more after that you can create your own levelsets with
+the integrated level editor.
 
 
 %prep
@@ -29,24 +33,22 @@ A breakout-style arcade game for Linux that uses the SDL
 
 %build
 %configure \
-    --with-highscore-path=%{_localstatedir}/lib/games \
-    --with-doc-path=%{_docdir}
+    --datadir="%{_datadir}/games" \
+    --localstatedir="%{_localstatedir}/lib/games" \
+    --with-docdir="/tmp"
 %{__make} %{?_smp_mflags}
 
 
 %install
-%{__rm} -rf %{buildroot}
-%{__mkdir_p} %{buildroot}%{_localstatedir}/lib/games
+%{__rm} -rf %{buildroot} _docs
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -m 644 -D lbreakout48.gif %{buildroot}%{_datadir}/pixmaps/lbreakout.gif
 
-# Put the doc back into place
-%{__mv} %{buildroot}%{_docdir}/%{name} doc
+# Put the docs back into place
+%{__mv} %{buildroot}/tmp _docs
 
-# Change that gif to a nice png
-convert %{buildroot}%{_datadir}/pixmaps/lbreakout.gif \
-        %{buildroot}%{_datadir}/pixmaps/lbreakout.png && \
-        %{__rm} -f  %{buildroot}%{_datadir}/pixmaps/lbreakout.gif
+# Install desktop entry icon, and change that gif to a nice png
+%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
+convert lbreakout48.gif %{buildroot}%{_datadir}/pixmaps/lbreakout.png
 
 # Create the system menu entry
 %{__cat} > %{name}.desktop << EOF
@@ -57,15 +59,20 @@ Exec=%{name}
 Icon=lbreakout.png
 Terminal=false
 Type=Application
+Categories=Application;Game;
 Encoding=UTF-8
 EOF
 
+%if %{!?_without_freedesktop:1}0
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category Game                           \
-  %{name}.desktop
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
+%else
+%{__install} -D -m 0644 %{name}.desktop \
+    %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
+%endif
 
 
 %clean
@@ -74,15 +81,23 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog README TODO doc/
-%attr(2551, root, games) %{_bindir}/%{name}*
-%{_datadir}/applications/*%{name}.desktop
-%{_datadir}/games/%{name}
+%doc AUTHORS COPYING ChangeLog README TODO _docs/lbreakout2/
+%attr(2551, root, games) %{_bindir}/lbreakout2
+%{_bindir}/lbreakout2server
+%{_datadir}/games/lbreakout2
 %{_datadir}/pixmaps/lbreakout.png
 %config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/%{name}.hscr
+%if %{!?_without_freedesktop:1}0
+%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%else
+%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
+%endif
 
 
 %changelog
+* Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 2.5-0.beta8.1
+- Update to 2.5beta-8.
+
 * Mon Jun 14 2004 Matthias Saou <http://freshrpms.net/> 2.5-0.beta6.1
 - Update to 2.5beta-6.
 
