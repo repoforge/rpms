@@ -7,7 +7,7 @@
 
 Summary: Serial console server daemon/client
 Name: conserver
-Version: 8.1.5
+Version: 8.1.7
 Release: 1
 License: BSD style
 Group: System Environment/Daemons
@@ -72,6 +72,12 @@ fi
 %exclude %{_datadir}/examples/
 
 %changelog
+* Sat May 29 2004 Dag Wieers <dag@wieers.com> - 8.1.7-1
+- Updated to release 8.1.7.
+
+* Thu May 27 2004 Dag Wieers <dag@wieers.com> - 8.1.6-1
+- Updated to release 8.1.6.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 8.1.5-1
 - Updated to release 8.1.5.
 
