@@ -1,4 +1,4 @@
-# $Id$
+#D $Id$
 
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice.bellard@free.fr>
@@ -6,7 +6,7 @@
 
 Summary: Advanced television viewing and recording program
 Name: fftv
-Version: 0.7.4
+Version: 0.7.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -28,7 +28,7 @@ fftv is an advanced TV viewing and recording program.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >fftv.desktop
 [Desktop Entry]
 Name=FFTV Television Viewer
 Comment=Watch television on your computer
@@ -62,10 +62,10 @@ EOF
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	fftv.desktop
 
 ### FIXME: Clean up buildroot to make it co-exist with ffmpeg/ffmpeg-devel (Fix upstream please)
-%{__rm} -f %{buildroot}%{_libdir}/vhook/{drawtext,fish,null}.so
+%{__rm} -f %{buildroot}%{_libdir}/vhook/{drawtext,fish,imlib2,null}.so
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,6 +83,9 @@ desktop-file-install --vendor gnome                \
 #%{_includedir}/ffmpeg/
 
 %changelog
+* Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 0.7.5-1
+- Updated to release 0.7.5.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.7.4-1
 - Updated to release 0.7.4.
 
