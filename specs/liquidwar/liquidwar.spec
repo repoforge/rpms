@@ -5,7 +5,7 @@
 Summary: unique multiplayer wargame with liquid armies
 Name: liquidwar
 Version: 5.6.2
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://www.ufoot.org/liquidwar/
@@ -54,34 +54,37 @@ and info format.
 
 %files
 %defattr(-,root,root,0755)
-/usr/share/games/liquidwar
-/usr/share/pixmaps/liquidwar.xpm
+%{_datadir}/games/liquidwar
+%{_datadir}/pixmaps/liquidwar.xpm
 /usr/games/liquidwar
 /usr/games/liquidwar-mapgen
 /usr/games/liquidwar-server
-/usr/share/applications/liquidwar.desktop
+%{_datadir}/applications/liquidwar.desktop
 
 %files doc
 %defattr(-,root,root,0755)
 %doc README
-/usr/share/doc/liquidwar/COPYING
-/usr/share/doc/liquidwar/README
-/usr/share/doc/liquidwar/README.de
-/usr/share/doc/liquidwar/README.fr
-/usr/share/doc/liquidwar/README.dk
-/usr/share/doc/liquidwar/html/*
-/usr/share/doc/liquidwar/pdf/*
-/usr/share/doc/liquidwar/ps/*
-/usr/share/doc/liquidwar/txt/*
-/usr/share/info/liquidwar.info-1.gz
-/usr/share/info/liquidwar.info-2.gz
-/usr/share/info/liquidwar.info-3.gz
-/usr/share/info/liquidwar.info.gz
-/usr/share/man/man6/liquidwar-mapgen.6.gz
-/usr/share/man/man6/liquidwar-server.6.gz
-/usr/share/man/man6/liquidwar.6.gz
+%{_datadir}/doc/liquidwar/COPYING
+%{_datadir}/doc/liquidwar/README
+%{_datadir}/doc/liquidwar/README.de
+%{_datadir}/doc/liquidwar/README.fr
+%{_datadir}/doc/liquidwar/README.dk
+%{_datadir}/doc/liquidwar/html/*
+%{_datadir}/doc/liquidwar/pdf/*
+%{_datadir}/doc/liquidwar/ps/*
+%{_datadir}/doc/liquidwar/txt/*
+%{_datadir}/info/liquidwar.info-1.gz
+%{_datadir}/info/liquidwar.info-2.gz
+%{_datadir}/info/liquidwar.info-3.gz
+%{_datadir}/info/liquidwar.info.gz
+%{_datadir}/man/man6/liquidwar-mapgen.6.gz
+%{_datadir}/man/man6/liquidwar-server.6.gz
+%{_datadir}/man/man6/liquidwar.6.gz
 
 %changelog
+* Sun May 23 2004 Dries Verachtert <dries@ulyssis.org> 5.6.2-2
+- fixed the ownership of the files in the doc package
+
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 5.6.2-1
 - update to 5.6.2
 
