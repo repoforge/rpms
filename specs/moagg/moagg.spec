@@ -18,6 +18,7 @@ Source: http://dl.sf.net/moagg/moagg-%{version}-src.tar.bz2
 Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel, paragui-devel, freetype-devel, gcc-c++, SDL_image-devel, zlib-devel
+BuildRequires: desktop-file-utils
 Requires: SDL, SDL_gfx, SDL_mixer, paragui, freetype, SDL_image, zlib
 
 # Screenshot: http://moagg.sourceforge.net/screenshots/blackhole.png
