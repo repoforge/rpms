@@ -21,7 +21,15 @@ Source: ftp://pike.ida.liu.se/pub/pike/latest-stable/%{real_name}-%{real_version
 Source1: ftp://pike.ida.liu.se/pub/pike/latest-stable/%{real_name}-%{real_version}-doc.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: nettle-devel, gmp-devel
+BuildRequires: nettle-devel, gmp-devel, autoconf, XFree86-devel
+BuildRequires: gdbm-devel, gettext, zlib-devel, nasm, fftw-devel
+BuildRequires: mysql-devel, unixODBC-devel, perl, postgresql-devel
+BuildRequires: sane-backends-devel, openssl-devel, ffmpeg-devel
+BuildRequires: freetype-devel, libjpeg-devel, libtiff-devel
+BuildRequires: pcre-devel, bzip2-devel, freeglut-devel, gtk2-devel
+BuildRequires: SDL-devel, pkgconfig, gtkglarea2-devel
+%{?fc2:BuildRequires:xorg-x11-Mesa-libGLU,xorg-x11-Mesa-libGL}
+%{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 
 %description
 Pike is a general purpose programming language, which means that you can put
@@ -62,6 +70,7 @@ cd build
 %{__mv} %{buildroot}/usr/pike.syms %{buildroot}%{_bindir}
 %{__mv} %{buildroot}/usr/rsif %{buildroot}%{_bindir}
 %{__mv} %{buildroot}/usr/doc/pike ../pikedocs
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__mv} %{buildroot}/usr/man/man1/pike.1 %{buildroot}%{_mandir}/man1/
 %find_lang %{name}
 
