@@ -6,7 +6,7 @@
 
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
-Version: 0.99.11
+Version: 0.99.12
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -51,6 +51,33 @@ xine one. You can still use the xine backend by running "totem --xine".
 %endif
 
 
+%package -n mozilla-totem
+Summary: Totem plugin for multimedia playback in the mozilla web browser
+Group: Applications/Multimedia
+Requires: %{name} = %{version}, mozilla
+BuildRequires: mozilla-devel
+
+%description -n mozilla-totem
+Totem is simple movie player for the Gnome desktop. It features a simple
+playlist, a full-screen mode, seek and volume controls, as well as a pretty
+complete keyboard navigation.
+
+This package contains a plugin which embeds Totem inside the mozilla web
+browser for multimedia playback.
+
+
+%package -n vanity
+Summary: Simple webcam application
+Group: Applications/Multimedia
+Requires: gnome-desktop >= 2.6.0
+Requires: xine-lib >= 1.0.0
+
+%description -n vanity
+Vanity is a webcam application that is supposed to provide the same kind of
+service the programs originally shipped with the webcam do. It features
+watching and resizing live video.
+
+
 %prep
 %setup
 
@@ -62,11 +89,13 @@ xine one. You can still use the xine backend by running "totem --xine".
     %{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
 # Move the binary out of the way and cleanup for the xine build
-mv src/%{name} src/%{name}-gstreamer
+%{__mv} src/%{name} src/%{name}-gstreamer
 %{__make} clean
 %endif
 
 %configure \
+    --enable-vanity \
+    --enable-mozilla \
     %{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
 
@@ -95,7 +124,7 @@ else
     exit 1
 fi
 EOF
-chmod 755 %{buildroot}%{_bindir}/%{name}
+%{__chmod} 0755 %{buildroot}%{_bindir}/%{name}
 %endif
 
 
@@ -116,7 +145,6 @@ gconftool-2 --makefile-install-rule \
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/%{name}
 %{_bindir}/%{name}-video-thumbnailer
-%{_bindir}/vanity
 %if %{gstreamer}
 %{_bindir}/%{name}-xine
 %endif
@@ -124,12 +152,12 @@ gconftool-2 --makefile-install-rule \
 %{_libexecdir}/%{name}-properties-page
 %{_datadir}/application-registry/%{name}.applications
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/applications/vanity.desktop
-%{_datadir}/gnome/help/%{name}
+%{_datadir}/gnome/help/%{name}/
 %{_datadir}/mime-info/%{name}.keys
-%{_datadir}/omf/%{name}
-%{_datadir}/pixmaps/*
-%{_datadir}/%{name}
+%{_datadir}/omf/%{name}/
+%{_datadir}/pixmaps/media-player-48.png
+%{_datadir}/%{name}/
+%exclude %{_datadir}/%{name}/vanity.*
 %{_mandir}/man1/%{name}.1*
 
 %if %{gstreamer}
@@ -138,8 +166,28 @@ gconftool-2 --makefile-install-rule \
 %{_bindir}/%{name}-gstreamer
 %endif
 
+%files -n mozilla-totem
+%defattr(-, root, root, 0755)
+%exclude %{_libdir}/mozilla/plugins/libtotem_mozilla.a
+%exclude %{_libdir}/mozilla/plugins/libtotem_mozilla.la
+%{_libdir}/mozilla/plugins/libtotem_mozilla.so
+%{_libexecdir}/totem-mozilla-viewer
+
+%files -n vanity
+%defattr(-, root, root, 0755)
+%{_bindir}/vanity
+%{_datadir}/applications/vanity.desktop
+%{_datadir}/pixmaps/vanity.png
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/vanity.*
+
 
 %changelog
+* Tue Jun  8 2004 Matthias Saou <http://freshrpms.net/> 0.99.12-1
+- Update to 0.99.12.
+- Split off vanity at last.
+- Enable mozilla plugin build and add mozilla-totem sub-package.
+
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 0.99.11-1
 - Update to 0.99.11.
 
