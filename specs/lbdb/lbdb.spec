@@ -43,6 +43,7 @@ reader.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc COPYING INSTALL README TODO
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*
