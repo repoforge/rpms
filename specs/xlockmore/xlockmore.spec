@@ -15,7 +15,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
-BuildRequires: make
+BuildRequires: XFree86-devel, gcc-c++, esound-devel, gtk2-devel
+%{?fc2:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
+%{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 
 %description
 a screen locker and screen saver.
