@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
-%define phpextdir %(php-config --extension-dir)
+%define phpextdir %(php-config --extension-dir || echo %{_libdir}/php4)
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
@@ -11,15 +11,12 @@ Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
-
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
 Patch: rrdtool-1.0.48-php_config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
 BuildRequires: libpng-devel, zlib-devel
-Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
-Requires: libpng, zlib
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and 
@@ -57,7 +54,8 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %patch -b .phpfix
 
 ### FIXME: Fixes to /usr/lib(64) for x86_64
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure contrib/php4/configure Makefile.in
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' \
+    configure contrib/php4/configure Makefile.in
 
 %build
 %configure \

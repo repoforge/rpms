@@ -2,23 +2,21 @@
 # Authority: dag
 # Upstream: Jay Maynard <jmaynard$conmicro,cx>
 # Upstream: <hercules-390$yahoogroups,com>
-
 # Distcc: 0
+
+%define date 20041025
 
 Summary: Hercules S/370, ESA/390, and z/Architecture emulator
 Name: hercules
-Version: 3.01
-Release: 1
+Version: 3.02
+Release: %{?date:0.%{date}.}1
 License: QPL
 Group: Applications/Emulators
 URL: http://www.conmicro.cx/hercules/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
-Source: http://www.conmicro.cx/hercules/hercules-%{version}.tar.gz
+Source: http://www.conmicro.cx/hercules/hercules-%{version}%{?date:-cvs}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bison, zlib-devel, bzip2-devel, libgcrypt, gcc-c++
+Obsoletes: hercules-docs <= 3.01
 
 %description
 Hercules is an emulator for the IBM System/370, ESA/390, and z/Architecture
@@ -28,41 +26,29 @@ needed is emulated. Hercules can emulate FBA and CKD DASD, tape, printer,
 card reader, card punch, channel-to-channel adapter, LCS Ethernet, and
 printer-keyboard, 3270 terminal, and 3287 printer devices.
 
-%package docs
-Summary: Documentation for the Hercules emulator
-Group: Documentation
-
-%description docs
-Hercules is an emulator for the IBM System/370, ESA/390, and z/Architecture
-series of mainframe computers. It is capable of running any IBM operating
-system and applications that a real system will run, as long as the hardwre
-needed is emulated. Hercules can emulate FBA and CKD DASD, tape, printer,
-card reader, card punch, channel-to-channel adapter, LCS Ethernet, and
-printer-keyboard, 3270 terminal, and 3287 printer devices.
-
-This package contains documentation for Hercules.
-
 %prep
-%setup
+%setup -n %{name}-%{version}%{?date:-cvs}
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e 's|^(modexecdir) =.*$|$1 = \$(libdir)/hercules|' Makefile.in crypto/Makefile.in
+%{__perl} -pi.orig -e 's|^(modexecdir) =.*$|$1 = \$(libdir)/hercules|' \
+	Makefile.in crypto/Makefile.in
 
-%{__cat} <<EOF >hercules-rh.cnf
-# Sample configuration file to run Red Hat Enterprise Linux S/390 with the
+%{__mv} hercules.cnf hercules.cnf.sample
+%{__cat} <<EOF >hercules.cnf
+# Sample configuration file to run Red Hat Linux or Fedora Core S/390 with the
 # the Hercules ESA/390 emulator
 #
 CPUSERIAL 002623        # CPU serial number
 CPUMODEL  3090          # CPU model number: 3090, 7490, 2064
 MAINSIZE  256           # Main storage size in megabytes
-NUMCPU    2             # Number of CPUs
+NUMCPU    1             # Number of CPUs
 CNSLPORT  3270          # TCP port number to which consoles connect
 #HTTPPORT 8081          # enable a HTTP server on this port
 OSTAILOR  LINUX         # OS tailoring
 LOADPARM  0120....      # IPL parameter
 IODELAY   0             # modern kernels do not need a delay
 ARCHMODE  ESA/390       # Architecture mode S/370, ESA/390 or ESAME
-TZOFFSET  +0100		# Central Europe
+TZOFFSET  +0100         # Central Europe
 MODPATH   %{_libdir}/hercules
 
 # .-----------------------Device number
@@ -150,10 +136,7 @@ hercules
 EOF
 
 %{__cat} <<EOF >hercules.prm
-ro DASD=120 CHANDEV=ctc0,0x600,0x601 HOSTNAME=localhost
-NETTYPE=ctc IPADDR=192.168.200.3 GATEWAY=192.168.200.4 MTU=1500
-DNS=192.168.200.4 SEARCHDNS=ns1:ns2
-NETWORK=172.16.2.2
+root=/dev/ram0 ro ip=off ramdisk_size=40000
 EOF
 
 %{__cat} <<EOF >hercules.tdf
@@ -177,7 +160,7 @@ EOF
 %find_lang %{name}
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/hercules/
 %{__install} -m0755 hercules.init %{buildroot}%{_sysconfdir}/hercules/
-%{__install} -m0644 hercules-rh.cnf hercules.{ins,prm,tdf} \
+%{__install} -m0644 hercules.cnf hercules.{ins,prm,tdf} \
     %{buildroot}%{_sysconfdir}/hercules/
 
 %clean
@@ -185,7 +168,7 @@ EOF
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc CHANGES README* RELEASE* hercules.cnf util/
+%doc CHANGES README* RELEASE* hercules.cnf.sample html/ util/
 %dir %{_sysconfdir}/hercules/
 %config(noreplace) %{_sysconfdir}/hercules/*
 %{_bindir}/*
@@ -195,11 +178,14 @@ EOF
 %exclude %{_libdir}/*.la
 %{_mandir}/man?/*
 
-%files docs
-%defattr(-, root, root, 0755)
-%doc html/*
-
 %changelog
+* Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 3.02-0.20041025.1
+- Update to today's CVS snapshot.
+
+* Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 3.01-2.20040729
+- Update to CVS version.
+- Merge the docs back into the main package.
+
 * Sat Jul 17 2004 Matthias Saou <http://freshrpms.net/> 3.01-2
 - Updated config's ctc entry to the new syntax.
 

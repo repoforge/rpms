@@ -100,6 +100,13 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__rm} -rf %{buildroot}
 
 
+%post
+update-desktop-database %{_datadir}/applications
+
+%postun
+update-desktop-database %{_datadir}/applications
+
+
 %files -f xine-ui.lang
 %defattr(-, root, root, 0755)
 %doc xine-ui-doc/*
@@ -118,6 +125,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 0.99.2-1
+- Added update-desktop-database scriplet calls.
+
 * Sun Aug 01 2004 Dag Wieers <dag@wieers.com> - 0.99.2-1
 - Added xine.applications to application-registry.
 

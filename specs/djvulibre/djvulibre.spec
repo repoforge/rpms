@@ -4,7 +4,7 @@
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
 Version: 3.5.14
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://djvu.sourceforge.net/
@@ -52,9 +52,11 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 
 %post
 /sbin/ldconfig
+update-desktop-database /usr/share/applications || :
 
 %postun
 /sbin/ldconfig
+update-desktop-database /usr/share/applications || :
 
 
 %files
@@ -76,6 +78,9 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 
 
 %changelog
+* Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 3.5.14-2
+- Added update-desktop-database scriplet calls.
+
 * Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 3.5.14-1
 - Update to 3.5.14.
 - Added newly introduced files to the package.

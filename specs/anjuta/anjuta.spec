@@ -5,7 +5,7 @@
 Summary: Versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
 Version: 1.2.2
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://anjuta.sourceforge.net/
@@ -47,10 +47,12 @@ These are usually run via a text console, and can be unfriendly to use.
 
 
 %post
-scrollkeeper-update -q
+scrollkeeper-update
+update-desktop-database %{_datadir}/applications
 
 %postun
-scrollkeeper-update -q
+scrollkeeper-update
+update-desktop-database %{_datadir}/applications
 
 
 %clean
@@ -76,6 +78,9 @@ scrollkeeper-update -q
 
 
 %changelog
+* Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-2
+- Added update-desktop-database scriplet calls.
+
 * Sun Jun 13 2004 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Fixes for x86_64.
 - Added scrollkeeper to %%post and %%postun.
