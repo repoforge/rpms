@@ -2,16 +2,17 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define pre            rc4
+#define pre            rc4
+%define final          final
 
 Summary: Downloader for X that supports resuming and many other features
 Name: d4x
 Version: 2.5.0
-Release: %{?pre:0.%{pre}.}4
+Release: %{?pre:0.%{pre}.}1
 Group: Applications/Internet
 License: Artistic
 URL: http://www.krasu.ru/soft/chuchelo/
-Source: http://www.krasu.ru/soft/chuchelo/files/%{name}-%{version}%{?pre}.tar.gz
+Source: http://www.krasu.ru/soft/chuchelo/files/d4x-%{version}%{?pre}%{?final}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, glib2-devel >= 2.4.0, gcc-c++, libstdc++-devel
 BuildRequires: libao-devel, esound-devel, desktop-file-utils
@@ -26,7 +27,7 @@ and many others!
 
 
 %prep
-%setup -n %{name}-%{version}%{?pre}
+%setup -n %{name}-%{version}%{?pre}%{?final}
 
 
 %build
@@ -65,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Aug  9 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-1
+- Update to 2.5.0final.
+
 * Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc4.4
 - Update to 2.5.0rc4.
 

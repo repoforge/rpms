@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define beta 8
+#define beta 8
 
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
@@ -54,7 +54,7 @@ convert lbreakout48.gif %{buildroot}%{_datadir}/pixmaps/lbreakout.png
 [Desktop Entry]
 Name=Linux Breakout 2
 Comment=Breakout and Arkanoid style arcade game
-Exec=%{name}
+Exec=lbreakout2
 Icon=lbreakout.png
 Terminal=false
 Type=Application
@@ -85,7 +85,7 @@ desktop-file-install \
 %{_bindir}/lbreakout2server
 %{_datadir}/games/lbreakout2
 %{_datadir}/pixmaps/lbreakout.png
-%config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/%{name}.hscr
+%config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/lbreakout2.hscr
 %if %{!?_without_freedesktop:1}0
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %else
@@ -94,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Mon Aug  9 2004 Matthias Saou <http://freshrpms.net/> 2.5-1
+- Update to 2.5 final.
+
 * Mon Jun 21 2004 Matthias Saou <http://freshrpms.net/> 2.5-0.beta8.1
 - Update to 2.5beta-8.
 
