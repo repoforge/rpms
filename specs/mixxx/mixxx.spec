@@ -10,7 +10,7 @@
 
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
-Version: 1.3
+Version: 1.3.1
 Release: 0
 License: GPL
 Group: Applications/Multimedia
@@ -62,6 +62,8 @@ pushd src
     # Alsa doesn't seem to get enabled for now (unimplemented?)
     ./configure --prefix="${PWD}%{_prefix}" --enable-features="Alsa"
     %{__perl} -pi.orig -e "s|${PWD}||g" Makefile
+    # Ugly workaround to not have the docs installed
+    %{__perl} -pi.orig -e 's|install_readme install_licence install_copying install_manual ||g' Makefile
     %{__make} %{?_smp_mflags}
 popd
 
@@ -95,6 +97,9 @@ popd
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/mixxx.desktop}
 
 %changelog
+* Fri Jun 11 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-0
+- Update to 1.3.1.
+
 * Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 1.3-0
 - Update to 1.3.
 - Added missing build requirements.
