@@ -2,9 +2,9 @@
 
 # Authority: dries
 
-Summary: a fast artificial neural network library
+Summary: Fast artificial neural network library
 Name: fann
-Version: 1.0.5
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -30,9 +30,10 @@ of documentation is available at http://fann.sourceforge.net/
 %{__make} %{?_smp_mflags}
 
 %install
-sed -i "s/^DESTDIR =.*//" $(find . -type f | egrep "Makefile$")
-export DESTDIR=$RPM_BUILD_ROOT
-make install
+#sed -i "s/^DESTDIR =.*//" $(find . -type f | egrep "Makefile$")
+#export DESTDIR=$RPM_BUILD_ROOT
+#make install
+%makeinstall
 
 %package devel
 Summary: fann devel
@@ -51,38 +52,41 @@ Development headers of fann: fast artificial neural network library
 %files
 %defattr(-,root,root,0755)
 %doc README AUTHORS COPYING INSTALL NEWS README TODO
-/usr/lib/libfloatfann.so.1
-/usr/lib/libdoublefann.so.1
-/usr/lib/libfixedfann.so.1
-/usr/lib/libfann.so.1
-/usr/lib/libdoublefann.so.1.0.5
-/usr/lib/libfann.so.1.0.5
-/usr/lib/libfixedfann.so.1.0.5
-/usr/lib/libfloatfann.so.1.0.5
+%{_libdir}/libfloatfann.so.1
+%{_libdir}/libdoublefann.so.1
+%{_libdir}/libfixedfann.so.1
+%{_libdir}/libfann.so.1
+%{_libdir}/libdoublefann.so.1.0.5
+%{_libdir}/libfann.so.1.0.5
+%{_libdir}/libfixedfann.so.1.0.5
+%{_libdir}/libfloatfann.so.1.0.5
 
 %files devel
-/usr/lib/libfloatfann.so
-/usr/lib/libdoublefann.so
-/usr/lib/libfann.so
-/usr/lib/libfann.so
-/usr/lib/libfann.a
-/usr/lib/libfann.la
-/usr/include/compat_time.h
-/usr/include/doublefann.h
-/usr/include/fann.h
-/usr/include/fann_data.h
-/usr/include/fann_internal.h
-/usr/include/fixedfann.h
-/usr/include/floatfann.h
-/usr/lib/libdoublefann.a
-/usr/lib/libdoublefann.la
-/usr/lib/libfixedfann.a
-/usr/lib/libfixedfann.la
-/usr/lib/libfloatfann.a
-/usr/lib/libfloatfann.la
+%{_libdir}/libfloatfann.so
+%{_libdir}/libdoublefann.so
+%{_libdir}/libfann.so
+%{_libdir}/libfann.so
+%{_libdir}/libfann.a
+%{_libdir}/libfann.la
+%{_includedir}/compat_time.h
+%{_includedir}/doublefann.h
+%{_includedir}/fann.h
+%{_includedir}/fann_data.h
+%{_includedir}/fann_internal.h
+%{_includedir}/fixedfann.h
+%{_includedir}/floatfann.h
+%{_libdir}/libdoublefann.a
+%{_libdir}/libdoublefann.la
+%{_libdir}/libfixedfann.a
+%{_libdir}/libfixedfann.la
+%{_libdir}/libfloatfann.a
+%{_libdir}/libfloatfann.la
 
 
 %changelog
+* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 1.1.0-1
+- update to 1.1.0
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 1.0.5-1
 - cleanup of spec file
 - update from 1.0.4 to 1.0.5
