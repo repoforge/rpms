@@ -164,8 +164,8 @@ use the Xine library.
 %changelog
 * Fri Sep 17 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.14.rc6a
 - Update to 1.0rc6a.
-- Removed wrong !x86 = 64bit assumptions and build changes which seem properly
-  autodetected now anyway.
+- Removed wrong "not x86 = 64bit" assumptions and build changes which seem
+  properly autodetected now anyway.
 
 * Wed Jun 30 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.14.rc5
 - Update to 1.0rc5.
