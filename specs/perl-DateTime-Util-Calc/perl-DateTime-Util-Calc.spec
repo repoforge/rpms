@@ -6,8 +6,6 @@
 %define real_name DateTime-Util-Calc
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: DateTime calculation utilities 
 Name: perl-DateTime-Util-Calc
@@ -23,6 +21,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/DateTime-Util-Calc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl, perl-Module-Build, perl-Math-BigInt-GMP
 BuildRequires: perl(Math::Round), perl(DateTime)
 
@@ -33,19 +32,20 @@ A perl module with additional DateTime calculation utilities.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES
+%doc CHANGES LICENSE
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DateTime/Util/Calc.pm
 

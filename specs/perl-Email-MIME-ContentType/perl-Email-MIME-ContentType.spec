@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Email-MIME-ContentType/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/Email-MIME-ContentType-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWEST/Email-MIME-ContentType-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
