@@ -6,7 +6,7 @@
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
 Version: 0.2.5
-Release: 2
+Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://desk3d.sf.net/
@@ -16,7 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/desk3d/3ddesktop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: imlib2-devel, XFree86-devel, gcc-c++, zlib-devel
+BuildRequires: imlib2-devel, XFree86-devel, gcc-c++, zlib-devel, qt-devel
 Requires: imlib2
 
 # Screenshot: http://desk3d.sourceforge.net/images/seq1-thumb.gif
@@ -33,6 +33,7 @@ different visualization modes are available.
 
 %build
 %{__rm} -rf %{buildroot}
+. /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -49,6 +50,9 @@ different visualization modes are available.
 %{_datadir}/3ddesktop/digits.bmp
 
 %changelog
+* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.2.5-3
+- buildreqs update
+
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.2.5-2
 - update of spec file
 
