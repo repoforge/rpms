@@ -21,11 +21,12 @@ BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip
 todo
 
 %prep
-%setup -c -a 1 
+%setup -c
 
 %build
+tar zxvf %{SOURCE1} mozilla/js
 dos2unix autogen.sh
-bash autogen.sh
+bash autogen.sh || echo autogen.sh problem
 %configure --enable-debug
 %{__make} %{?_smp_mflags}
 
