@@ -73,33 +73,23 @@ you will need to install %{name}-devel.
 %{?rh6:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 6.2 APT-HTTP/1.3|' methods/http.cc}
 
 %{__cat} <<EOF >dag.list
-### Dag Apt Repository
+### Dag RPM Repository
 ### """"""""""""""""""
 ### More information of this repository at:
 ###	http://dag.wieers.com/apt/
 
-### Dag Apt Repository for Red Hat Fedore Core 2
+### Dag RPM Repository for Red Hat Fedore Core
 %{!?fc2:#}rpm http://apt.sw.be fedora/2/en/%{_arch} dag
-
-### Dag Apt Repository for Red Hat Fedore Core 1
 %{!?fc1:#}rpm http://apt.sw.be fedora/1/en/i386 dag
 
-### Dag Apt Repository for Red Hat Enterprise Linux 3
+### Dag RPM Repository for Red Hat Enterprise Linux
 %{!?el3:#}rpm http://apt.sw.be redhat/el3/en/%{_arch} dag
+%{!?el2:#}rpm http://apt.sw.be redhat/el2.1/en/%{_arch} dag
 
-### Dag Apt Repository for Red Hat 9
+### Dag RPM Repository for Red Hat
 %{!?rh9:#}rpm http://apt.sw.be redhat/9/en/i386 dag
-
-### Dag Apt Repository for Red Hat 8.0
 %{!?rh8:#}rpm http://apt.sw.be redhat/8.0/en/i386 dag
-
-### Dag Apt Repository for Red Hat 7.3
 %{!?rh7:#}rpm http://apt.sw.be redhat/7.3/en/i386 dag
-
-### Dag Apt Repository for Red Hat Enterprise Linux 2.1
-%{!?el2:#}rpm http://apt.sw.be redhat/as2.1/en/%{_arch} dag
-
-### Dag Apt Repository for Red Hat 6.2
 %{!?rh6:#}rpm http://apt.sw.be redhat/6.2/en/i386 dag
 EOF
 
@@ -109,25 +99,17 @@ EOF
 ###
 ### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
 
-### Red Hat Fedora Core 2
+### Red Hat Fedora Core
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
-
-### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/%{_arch} core updates
 
 ### Tao Linux 1.0
 #rpm http://dist.taolinux.org tao-1.0-%{_arch} os updates
 
-### Red Hat Linux 9
+### Red Hat Linux
 %{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 os updates
-
-### Red Hat Linux 8.0
 %{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 os updates
-
-### Red Hat Linux 7.3
 %{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 os updates
-
-### Red Hat Linux 6.2
 %{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
 EOF
 
@@ -137,74 +119,48 @@ EOF
 ###
 ### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
 
-### Red Hat Fedora Core 2
+### Red Hat Fedora Core
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/i386 freshrpms
-
-### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 
-### Red Hat Linux 9
+### Red Hat Linux
 %{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 freshrpms
-
-### Red Hat Linux 8.0
 %{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 freshrpms
-
-### Red Hat Linux 7.3
 %{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 freshrpms
-
-### Red Hat Linux 6.2
 %{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 freshrpms
 EOF
 
 %{__cat} <<EOF >newrpms.list
 ### See http://newrpms.sunsite.dk/ for more information.
 
-### Red Hat Fedora Core 2
+### Red Hat Fedora Core
 %{!?fc2:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
-
-### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 
-### Red Hat Linux 9
+### Red Hat Linux
 %{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
-
-### Red Hat Linux 8.0
 %{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
 EOF
 
 %{__cat} <<EOF >dries.list
 ### See http://dries.studentenweb.org/apt/ for more information.
 
-### Red Hat Fedora Core 2
+### Red Hat Fedora Core
 %{!?fc2:#}rpm http://dries.studentenweb.org apt/fedora/fc2/i386 dries
-
-### Red Hat Fedora Core 1
 %{!?fc1:#}rpm http://dries.studentenweb.org apt/fedora/fc1/i386 dries
-
-### Red Hat Enterprise Linux 3
-#rpm http://dries.studentenweb.org apt/fedora/el3/i386 dries
-
-### Red Hat Linux 9
-#rpm http://dries.studentenweb.org apt/fedora/rh9/i386 dries
 EOF
 
 %{__cat} <<EOF >atrpms.list
 ### See http://atrpms.physik.fu-berlin.de/ for more information.
 ### Possible sections: at-stable, at-good, at-testing, at-bleeding
 
-### Red Hat Fedora Core 2
+### Red Hat Fedora Core
 #rpm http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
-
-### Red Hat Fedora Core 1
 #rpm http://apt.physik.fu-berlin.de fedora/1/en/i386 at-testing
 
-### Red Hat Linux 9
+### Red Hat Linux
 #rpm http://apt.physik.fu-berlin.de redhat/9/en/i386 at-testing
-
-### Red Hat Linux 8.0
 #rpm http://apt.physik.fu-berlin.de redhat/8.0/en/i386 at-testing
-
-### Red Hat Linux 7.3
 #rpm http://apt.physik.fu-berlin.de redhat/7.3/en/i386 at-testing
 EOF
 
