@@ -1,0 +1,50 @@
+Commiter   : jnelson
+CVSROOT    : /home/cvs/repository
+Module     : epic4
+Commit time: 2004-05-28 15:32:43 UTC
+
+Modified files:
+     source/irc.c source/window.c
+
+Log message:
+
+Bug fix as a personal favor.
+
+---------------------- diff included ----------------------
+Index: epic4/source/irc.c
+diff -u epic4/source/irc.c:1.707 epic4/source/irc.c:1.708
+--- epic4/source/irc.c:1.707	Wed Mar 24 22:26:59 2004
++++ epic4/source/irc.c	Fri May 28 10:32:33 2004
+@@ -52,7 +52,7 @@
+ /*
+  * In theory, this number is incremented for every commit.
+  */
+-const unsigned long	commit_id = 710;
++const unsigned long	commit_id = 711;
+ 
+ /*
+  * As a way to poke fun at the current rage of naming releases after
+Index: epic4/source/window.c
+diff -u epic4/source/window.c:1.94 epic4/source/window.c:1.95
+--- epic4/source/window.c:1.94	Mon Feb 16 15:46:27 2004
++++ epic4/source/window.c	Fri May 28 10:32:33 2004
+@@ -1,4 +1,4 @@
+-/* $EPIC: window.c,v 1.94 2004/02/16 21:46:27 jnelson Exp $ */
++/* $EPIC: window.c,v 1.95 2004/05/28 15:32:33 jnelson Exp $ */
+ /*
+  * window.c: Handles the organzation of the logical viewports (``windows'')
+  * for irc.  This includes keeping track of what windows are open, where they
+@@ -5278,10 +5278,10 @@
+ /* toggle_stop_screen: the BIND function TOGGLE_STOP_SCREEN */
+ void 	toggle_stop_screen (char unused, char *not_used)
+ {
+-	char toggle[7];
++	char toggle[7], *p = toggle;
+ 
+ 	strlcpy(toggle, "TOGGLE", sizeof toggle);
+-	window_hold_mode(current_window, (char **)&toggle);
++	window_hold_mode(current_window, (char **)&p);
+ 	update_all_windows();
+ }
+ 
+----------------------- End of diff -----------------------

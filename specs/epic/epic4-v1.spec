@@ -1,11 +1,13 @@
 # $Id: epic.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: <list@epicsol.org>
+# Upstream: <list$epicsol,org>
+
+# ExclusiveDist: el2 el3
 
 Summary: IrcII chat client
 Name: epic
-Version: 2.0
-Release: 1
+Version: 1.0.1
+Release: 16
 Epoch: 4
 License: Distributable
 Group: Applications/Communications
@@ -23,8 +25,9 @@ Source5: http://splitfire.sourceforge.net/schemes/sf-bitchx-scheme.irc.gz
 Source6: http://splitfire.sourceforge.net/schemes/sf-eggsandham-scheme.irc.gz
 Source7: http://splitfire.sourceforge.net/schemes/sf-light-scheme.irc.gz
 Source8: http://splitfire.sourceforge.net/schemes/sf-perry-scheme.irc.gz
-Patch0: toggle-stop-screen-patch
-Patch1: epic-default.patch
+Patch0: epic-default.patch
+Patch1: epic4-1.0.1-gcc33.patch
+Patch2: epic-alloca_underrun.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -34,8 +37,9 @@ you to chat with other people.
 
 %prep 
 %setup -n epic4-%{version} -a 1
-%patch -p1 -b .stop
-%patch1 -p0 -b .default
+%patch -p0 -b .default
+%patch1 -p1 -b .gcc33
+%patch2 -p0 -b .alloca
 
 ### Clean up CVS dirs
 find . -type d -name CVS -exec %{__rm} -rf {} \; || :
@@ -58,7 +62,7 @@ for file in %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8}; do
 	sNAME="${file//%.gz/}"
 	bNAME="$(basename $sNAME)"
 	zcat $file | sed -e 's|^\(\^set HELP_PATH.*\)|#\1|' >$bNAME;
-	%{__install} -m 0644 $bNAME %{buildroot}%{_datadir}/epic/script/
+	%{__install} $bNAME %{buildroot}%{_datadir}/epic/script/
 done;
 
 %{__install} %{SOURCE3} %{buildroot}%{_datadir}/epic/
@@ -78,12 +82,9 @@ find %{buildroot} -type f -name Makefile -exec %{__rm} -f {} \; || :
 %{_bindir}/*
 %{_datadir}/epic/help/
 %{_datadir}/epic/script/
-%exclude %{_libexecdir}/wserv4
+%exclude %{_libexecdir}/wserv
 
 %changelog
-* Thu Jul 15 2004 Bert de Bruijn <bert@debruijn.be> - 4:2.0-1
-- update to 2.0.
-
 * Sat Apr 17 2004 Dag Wieers <dag@wieers.com> - 4:1.0.1-16
 - Clean up SPEC file.
 
