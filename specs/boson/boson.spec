@@ -18,7 +18,7 @@ Source: http://dl.sf.net/boson/boson-all-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel, gcc-c++, XFree86-devel, zlib-devel, qt-devel, kdelibs-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, lib3ds
-%{?fc2:BuildRequires: xorg-x11-Mesa-libGLU}
+%{?fc2:BuildRequires: xorg-x11-Mesa-libGLU, libselinux-devel}
 
 %description
 Boson is an OpenGL real-time strategy game, with the feeling of
