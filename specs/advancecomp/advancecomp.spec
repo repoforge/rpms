@@ -4,7 +4,7 @@
 
 Summary: Recompression utilities for .PNG, .MNG and .ZIP files
 Name: advancecomp
-Version: 1.10
+Version: 1.11
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -46,6 +46,9 @@ The main features are :
 
 
 %changelog
+* Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 1.11-1
+- Update to 1.11.
+
 * Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 1.10-1
 - Update to 1.10.
 
