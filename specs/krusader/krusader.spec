@@ -19,6 +19,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
 
+# Screenshot: http://krusader.sourceforge.net/img/scr01.png
+# ScreenshotURL: http://krusader.sourceforge.net/scr.php
+
 %description
 Krusader is an advanced twin-panel (commander-style) file-manager for KDE
 3.x (similar to Midnight or Total Commander) but with many extras. It
