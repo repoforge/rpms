@@ -45,5 +45,5 @@ make install-strip DESTDIR="%{buildroot}"
 %{_datadir}/giFT/Gnutella/hostiles.txt
 
 %changelog
-* Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.2.1.2-1.dries
+* Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.2.1.2-1
 - first packaging for Fedora Core 1

@@ -74,8 +74,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/widelands.desktop
 
 %changelog
-* Fri Jan 02 2004 Dries Verachtert <dries@ulyssis.org> b6-2.dries
+* Fri Jan 02 2004 Dries Verachtert <dries@ulyssis.org> b6-2
 - added a desktop icon
 
-* Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> b6-1.dries
+* Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> b6-1
 - first packaging for Fedora Core 1

@@ -76,5 +76,5 @@ you will need to install %{name}-devel.
 * Thu May 20 2004 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Cosmetic cleanup.
 
-* Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 1.1.4-1.dries
+* Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 1.1.4-1
 - first packaging for Fedora Core 1

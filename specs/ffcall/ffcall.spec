@@ -77,16 +77,16 @@ you will need to install %{name}-devel.
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.8-5.d
 - Cosmetic cleanup.
 
-* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-4.dries
+* Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-4
 - added some BuildRequires
 
-* Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-3.dries
+* Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-3
 - further spec file cleanup
 
-* Tue Nov 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-2.dries
+* Tue Nov 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-2
 - added the html files
 - cleanup
 - fix the 'Requires:'
 
-* Mon Nov 10 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-1.dries
+* Mon Nov 10 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-1
 - first packaging for Fedora Core 1
