@@ -21,7 +21,7 @@ BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, XFree86-devel, qt-devel, SDL-devel, SDL_ttf-devel
 BuildRequires: SDL_image-devel, SDL_mixer-devel
 
-# Sreenshot: http://www.newbreedsoftware.com/tuxpaint/screenshots/example_simple-t.png
+# Screenshot: http://www.newbreedsoftware.com/tuxpaint/screenshots/example_simple-t.png
 # ScreenshotURL: http://www.newbreedsoftware.com/tuxpaint/screenshots/
 
 %description
