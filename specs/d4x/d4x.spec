@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define pre            rc2
+%define pre            rc3
 
 Summary: Downloader for X that supports resuming and many other features
 Name: d4x
@@ -25,12 +25,15 @@ with wildcard and filter support, HTML links change for offline browsing,
 proxy support, bandwidth limitation, scheduling, mass download, ftp search,
 and many others!
 
+
 %prep
 %setup -n %{name}-%{version}%{?pre}
+
 
 %build
 %configure --enable-release
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -47,8 +50,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   --add-category Network                        \
   share/nt.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -61,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_mandir}/man1/nt.1*
 
 %changelog
+* Tue Apr 20 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc3.3.fr
+- Update to 2.5.0rc3.
+
 * Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc2.3.fr
 - Update to 2.5.0rc2.
 
