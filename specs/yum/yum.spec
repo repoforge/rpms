@@ -1,13 +1,18 @@
 # $Id$
 # Authority: matthias
-
 ### Skip this package for dag's repo
 # Tag: test
 
-# Which distro to make the default configuration for, defaults to 'rh'
-%{?_with_yellowdog: %{expand: %%define distro yd}}
-%{?_with_redhat: %{expand: %%define distro rh}}
-%{!?distro: %{expand: %%define distro fd}}
+%{?dist: %{expand: %%define %dist 1}}
+
+# Which distro to make the default configuration for
+%{?!dist:%{expand: %%define distro fd}}
+%{?fc2:%{expand: %%define distro fd}}
+%{?fc1:%{expand: %%define distro fd}}
+%{?rh9:%{expand: %%define distro rh}}
+%{?rh8:%{expand: %%define distro rh}}
+%{?rh7:%{expand: %%define distro rh}}
+%{?yd3:%{expand: %%define distro yd}}
 
 # Defined as YYYYMMDD if this is a snapshot build
 #define date 20040416
@@ -96,29 +101,35 @@ rpm -q gpg-pubkey-4f2a6fd2-3f9d9d3b >/dev/null 2>&1 || \
 # Import Freshrpms.net gpg key if needed
 rpm -q gpg-pubkey-e42d547b-3960bdf1 >/dev/null 2>&1 || \
     rpm --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY-freshrpms
+# We don't want a possible error to leave the previous package installed
+exit 0
 
 %preun
 if [ $1 -eq 0 ]; then
-        /sbin/chkconfig --del yum
-        /sbin/service yum stop >/dev/null 2>&1 || :
+    /sbin/chkconfig --del yum
+    /sbin/service yum stop >/dev/null 2>&1 || :
 fi
 
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING TODO
+%doc RPM-GPG-KEY-freshrpms
 %if %{distro} == yd
 %doc RPM-GPG-KEY-yellowdog
-%pubkey RPM-GPG-KEY-yellowdog
+#%pubkey RPM-GPG-KEY-yellowdog
+#%pubkey RPM-GPG-KEY-freshrpms
 %elseif %{distro} == rh
 %doc RPM-GPG-KEY-redhat
-%pubkey RPM-GPG-KEY-redhat
+%{?rh9%pubkey RPM-GPG-KEY-freshrpms}
+%{?rh9:%pubkey RPM-GPG-KEY-redhat}
 %elseif %{distro} == fd
 %doc RPM-GPG-KEY-fedora
-%pubkey RPM-GPG-KEY-fedora
+%{?fc2:%pubkey RPM-GPG-KEY-freshrpms}
+%{?fc1:%pubkey RPM-GPG-KEY-freshrpms}
+%{?fc2:%pubkey RPM-GPG-KEY-fedora}
+%{?fc1:%pubkey RPM-GPG-KEY-fedora}
 %endif
-%doc RPM-GPG-KEY-freshrpms
-%pubkey RPM-GPG-KEY-freshrpms
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %config %{_sysconfdir}/cron.daily/%{name}.cron
 %config %{_sysconfdir}/init.d/%{name}
