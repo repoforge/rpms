@@ -6,8 +6,8 @@
 Summary: Library of generic C modules
 Name: libmba
 Version: 0.8.9
-Release: 1
-License: GPL
+Release: 2
+License: MIT
 Group: System Environment/Libraries
 URL: http://www.ioplex.com/~miallen/libmba/
 
@@ -70,6 +70,10 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Wed Jun 2 2004 Dries Verachtert <dries@ulyssis.org> 0.8.9-2
+- fixed the License tag (libmba uses the MIT license)
+  Thanks Michael B Allen for reporting the problem!
+
 * Sat May 23 2004 Dries Verachtert <dries@ulyssis.org> 0.8.9-1
 - Initial package.
 
