@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dries
+
 # Screenshot: http://pathological.sourceforge.net/screenshots/theabyss-small.jpg
 # ScreenshotURL: http://pathological.sourceforge.net/screenshots.php
 
@@ -15,7 +15,7 @@ URL: http://pathological.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/pathological/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/pathological/pathological-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python, python-game
 
@@ -34,19 +34,19 @@ filters enzovoort maken het spel interessant en uitdagend. Nieuwe levels
 kunnen gemaakt worden met een gewone teksteditor.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
+%{__rm} -rf %{buildroot}
 %setup
 
 %build
 %{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 mkdir -p $RPM_BUILD_ROOT/usr/bin
 sed -i "s/^DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}/g;" Makefile
 make install
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications
-cat > $RPM_BUILD_ROOT/usr/share/applications/pathological.desktop <<EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat <<EOF >%{buildroot}%{_datadir}/applications/pathological.desktop
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -60,15 +60,15 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README TODO LICENSE
 %{_usr}/X11R6/include/X11/pixmaps/pathological.xpm
 %{_usr}/games/pathological
-%{_libdir}/pathological
-%{_datadir}/doc/pathological
-%{_usr}/share/games/pathological
+%{_libdir}/pathological/
+%{_docdir}/pathological/
+%{_datadir}/games/pathological
 %{_mandir}/man6/pathological.6.gz
-%{_var}/games/pathological_scores
+%{_localstatedir}/games/pathological_scores
 %{_datadir}/applications/pathological.desktop
 
 %changelog
