@@ -4,7 +4,7 @@
 
 Summary: Screen lock and screen saver.
 Name: xlockmore
-Version: 5.13
+Version: 5.14.1
 Release: 1
 License: BSD
 Group: Amusements/Graphics
@@ -57,6 +57,9 @@ options.
 %{_datadir}/man/man1/xlock.1.gz
 
 %changelog
+* Sun Dec 12 2004 Dries Verachtert <dries@ulyssis.org> 5.14.1-1
+- Update to release 5.14.1.
+
 * Thu Oct 28 2004 Dries Verachtert <dries@ulyssis.org> 5.13-1
 - update to release 5.13
 

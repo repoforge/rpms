@@ -5,7 +5,7 @@
 
 Summary: Perl script which generates statistics from IRC logfiles
 Name: pisg
-Version: 0.61
+Version: 0.62
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -53,5 +53,8 @@ echo '%{_datadir}/pisg/pisg $@' > %{buildroot}%{_bindir}/pisg
 %{_datadir}/pisg
 
 %changelog
+* Sun Dec 12 2004 Dries Verachtert <dries@ulyssis.org> - 0.62-1
+- Update to release 0.62.
+
 * Sun Oct 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.61-1
 - Initial package.
