@@ -24,7 +24,6 @@ tuples, optional parameters. Nice also detects more errors during
 compilation (null pointers, casts).
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -n nice-0.9.6.orig
 
 %build
@@ -32,7 +31,7 @@ compilation (null pointers, casts).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} PREFIX=$RPM_BUILD_ROOT/usr install
+%{__make} PREFIX=%{buildroot}/usr install
 
 %clean
 %{__rm} -rf %{buildroot}

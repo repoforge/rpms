@@ -21,7 +21,6 @@ Fann is a fast artificial neural network library. More information and a lot
 of documentation is available at http://fann.sourceforge.net/ 
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
