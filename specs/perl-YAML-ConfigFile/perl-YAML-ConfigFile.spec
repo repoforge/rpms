@@ -33,6 +33,7 @@ With this module, you can read configuration files in YAML format.
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} -pi -e 's|require v5.6.0.||g;' lib/YAML/ConfigFile.pm
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
