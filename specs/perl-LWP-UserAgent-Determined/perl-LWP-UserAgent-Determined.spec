@@ -1,0 +1,64 @@
+# $Id$
+
+# Authority: dries
+# Upstream: Sean M. Burke <sburke$cpan,org>
+
+%define real_name LWP-UserAgent-Determined
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+Summary: Virtual browser that retries errors
+Name: perl-LWP-UserAgent-Determined
+Version: 1.03
+Release: 1
+License: Artistic
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/LWP-UserAgent-Determined/
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/LWP-UserAgent-Determined-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+This class works just like LWP::UserAgent (and is based on it, by
+being a subclass of it), except that when you use it to get a web page
+but run into a possibly-temporary error (like a DNS lookup timeout),
+it'll wait a few seconds and retry a few times.
+
+It also adds some methods for controlling exactly what errors are
+considered retry-worthy and how many times to wait and for how many
+seconds, but normally you needn't bother about these, as the default
+settings are relatively sane.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc README ChangeLog
+%doc %{_mandir}/man3/*
+%{perl_vendorlib}/LWP/UserAgent/Determined.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
+
+%changelog
+* Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
+- Initial package.

@@ -12,7 +12,7 @@
 Summary: Perl interface to MD5, RC4, encrypt/decrypt
 Name: perl-Crypt-CapnMidNite
 Version: 1.00
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CapnMidNite/
@@ -37,9 +37,14 @@ methods or... in the old days, the Captain Midnight Decoder Ring.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
 %{__make} %{?_smp_mflags}
+%{__mv} Makefile Makefile.CapnMidNite
+%{__perl} -pi -e 's|= \(1\)|= \(0\)|g;' Makefile.PL
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+%makeinstall -f Makefile.CapnMidNite
 %makeinstall
 
 %clean
@@ -50,10 +55,15 @@ methods or... in the old days, the Captain Midnight Decoder Ring.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/CapnMidNite.pm
+%{perl_vendorarch}/Crypt/C_LockTite.pm
 %{perl_vendorarch}/auto/Crypt/CapnMidNite
+%{perl_vendorarch}/auto/Crypt/C_LockTite
 %exclude %{perl_archlib}/perllocal.pod
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Sat Dec 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-2
+- Figured out how to build the Crypt::C_LockTite module
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.
