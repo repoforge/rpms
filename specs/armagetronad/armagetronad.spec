@@ -13,16 +13,16 @@
 %{?yd3:%define _without_xorg 1}
 
 %define desktop_vendor rpmforge
-%define prefix %{_prefix}/games/armagetron
+%define prefix %{_prefix}/games/armagetronad
 
 Summary: Multiplayer 'Tron' 3D racing game
-Name: armagetron
-Version: 0.2.6.0
+Name: armagetronad
+Version: 0.2.7.1
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://armagetron.sourceforge.net/
-Source: http://dl.sf.net/armagetron/armagetron-%{version}.tar.bz2
+URL: http://armagetronad.sourceforge.net/
+Source: http://dl.sf.net/armagetronad/armagetronad-%{version}.tar.bz2
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL_image >= 1.2.0, esound
 BuildRequires: gcc-c++, libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
@@ -31,6 +31,8 @@ BuildRequires: /usr/bin/find, unzip, ImageMagick
 %{?_without_xorg:BuildRequires: XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-Mesa-libGLU}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Obsoletes: armagetron <= 0.2.6.1
+Provides: armagetron = %{version}-%{release}
 
 %description
 There is not much to be said about the game: you ride a lightcycle,
@@ -53,41 +55,41 @@ Available rpmbuild rebuild options :
 
 
 %install
-%{__rm} -rf %{buildroot} installed-docs
+%{__rm} -rf %{buildroot} _docs
 %makeinstall
 
 # Put the docs where we include them with %%doc
-%{__mv} %{buildroot}%{prefix}/doc installed-docs
+%{__mv} %{buildroot}%{prefix}/doc _docs
 
 # Yeah, add an icon for the menu entry!
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
 convert tron.ico %{buildroot}%{_datadir}/pixmaps/armagetron.png
 
-# The wrapper script (overwrite the default)
-%{__cat} > %{buildroot}%{_bindir}/armagetron << 'EOF'
-#!/bin/sh -e
-
-INSTALL=%{prefix}
-VARDIR=$HOME/.armagetron/var
-
-if test ! -d $VARDIR ; then
-    mkdir -p $VARDIR
-        
-    # Migrate old configuration
-    files=$( find $HOME/.armagetron -type f -maxdepth 1 )
- 
-    test "$files" != "" && echo "Porting old configuration..." && mv $files $VARDIR
-fi
-
-$INSTALL/bin/armagetron --datadir $INSTALL --configdir %{_sysconfdir}/armagetron --userconfigdir $HOME/.armagetron --vardir $VARDIR "$@"
-
-EOF
+## The wrapper script (overwrite the default)
+#%{__cat} > %{buildroot}%{_bindir}/armagetron << 'EOF'
+##!/bin/sh -e
+#
+#INSTALL=%{prefix}
+#VARDIR=$HOME/.armagetron/var
+#
+#if test ! -d $VARDIR ; then
+#    mkdir -p $VARDIR
+#        
+#    # Migrate old configuration
+#    files=$( find $HOME/.armagetron -type f -maxdepth 1 )
+# 
+#    test "$files" != "" && echo "Porting old configuration..." && mv $files $VARDIR
+#fi
+#
+#$INSTALL/bin/armagetron --datadir $INSTALL --configdir %{_sysconfdir}/armagetron --userconfigdir $HOME/.armagetron --vardir $VARDIR "$@"
+#
+#EOF
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
-Name=Armagetron
+Name=Armagetron Advanced
 Comment=Multiplayer 'Tron' 3D racing game
-Exec=%{_bindir}/armagetron
+Exec=%{_bindir}/armagetronad
 Icon=armagetron.png
 Terminal=false
 Type=Application
@@ -112,29 +114,34 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files
 %defattr(-, root, root, 0755)
-%doc installed-docs/*
-%dir %{_sysconfdir}/armagetron
-%config(noreplace) %{_sysconfdir}/armagetron/*
-%exclude %{_sysconfdir}/armagetron/.orig
-%{_bindir}/armagetron
-%{_bindir}/armagetron-stat
+%doc _docs/*
+%dir %{_sysconfdir}/armagetronad/
+%config(noreplace) %{_sysconfdir}/armagetronad/*
+%{_sysconfdir}/armagetronad/.orig/
+%{_bindir}/armagetronad
+%{_bindir}/armagetronad-stat
 %dir %{prefix}
 %exclude %{prefix}/COPYING.txt
-%{prefix}/arenas
-%{prefix}/bin
+%{prefix}/arenas/
+%{prefix}/bin/
 %exclude %{prefix}/bin/uninstall
-%{prefix}/language
-%exclude %{prefix}/log
-%{prefix}/models
-%{prefix}/music
-%{prefix}/sound
-%{prefix}/textures
+%{prefix}/language/
+%exclude %{prefix}/log/
+%{prefix}/models/
+%{prefix}/music/
+%{prefix}/sound/
+%{prefix}/textures/
 %{_datadir}/pixmaps/armagetron.png
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
 %{?_without_freedesktop:/etc/X11/applnk/Games/%{name}.desktop}
 
 
 %changelog
+* Thu Mar 10 2005 Matthias Saou <http://freshrpms.net/> 0.2.7.1-1
+- Update to armagetron advanced 0.2.7.1.
+- Obsolete armagetron <= 0.2.6.1.
+- No longer overwrite the default wrapper script.
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.2.6.0-1
 - Update to "unstable" 0.2.6.0.
 
