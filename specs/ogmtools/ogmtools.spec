@@ -4,7 +4,7 @@
 
 Summary: Tools for Ogg media streams
 Name: ogmtools
-Version: 1.4
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -46,6 +46,9 @@ streams".
 
 
 %changelog
+* Fri Aug  6 2004 Matthias Saou <http://freshrpms.net/> 1.4.1-1
+- Update to 1.4.1.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.4-1
 - Update to 1.4.
 
