@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define perl_archsitelib %(eval "`%{__perl} -V:installsitearch`"; echo $installsitearch)
 %define _use_internal_dependency_generator 0
 

@@ -23,6 +23,7 @@ BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, libgcrypt-devel
 BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel, libxslt-devel
 BuildRequires: kdelibs-devel, desktop-file-utils, libxml2-devel
+%{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 
 %description

@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, libpng-devel, zlib-devel, python >= 2.2
 BuildRequires: gcc-c++
+%{?fc3:BuildRequires: xorg-x11-Mesa-libGL}
 %{?fc2:BuildRequires: xorg-x11-Mesa-libGL}
 %{?fc1:BuildRequires: XFree86-Mesa-libGL}
 %{?el3:BuildRequires: XFree86-Mesa-libGL}

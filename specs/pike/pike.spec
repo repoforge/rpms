@@ -16,8 +16,8 @@ URL: http://pike.ida.liu.se/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: ftp://pike.ida.liu.se/pub/pike/latest-stable/%{real_name}-%{real_version}.tar.gz
-Source1: ftp://pike.ida.liu.se/pub/pike/latest-stable/%{real_name}-%{real_version}-doc.tar.gz
+Source: ftp://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}.tar.gz
+Source1: ftp://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}-doc.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: nettle-devel, gmp-devel, autoconf, XFree86-devel
@@ -28,6 +28,7 @@ BuildRequires: freetype-devel, libjpeg-devel, libtiff-devel
 BuildRequires: pcre-devel, bzip2-devel, freeglut-devel, gtk2-devel
 BuildRequires: SDL-devel, pkgconfig, gtkglarea2-devel
 BuildRequires: gtkglarea, gtk+, gtk+-devel, SDL_mixer-devel
+%{?fc3:BuildRequires:xorg-x11-Mesa-libGLU,xorg-x11-Mesa-libGL}
 %{?fc2:BuildRequires:xorg-x11-Mesa-libGLU,xorg-x11-Mesa-libGL}
 %{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 

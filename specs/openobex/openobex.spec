@@ -20,6 +20,7 @@ Source: http://dl.sf.net/openobex/openobex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel >= 1.2.0
+%{?fc3:BuildRequires: bluez-libs-devel}
 %{?fc2:BuildRequires: bluez-libs-devel}
 %{?fc1:BuildRequires: bluez-libs-devel}
 %{?rh9:BuildRequires: bluez-libs-devel}

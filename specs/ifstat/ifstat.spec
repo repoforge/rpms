@@ -4,10 +4,14 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh7:%define _without_net_snmp 1}
+%{?el2:%define _without_net_snmp 1}
+%{?rh6:%define _without_net_snmp 1}
+
 Summary: Interface statistics
 Name: ifstat
-Version: 1.0
-Release: 0
+Version: 1.1
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://gael.roualland.free.fr/ifstat/
@@ -18,14 +22,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://gael.roualland.free.fr/ifstat/ifstat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{?fc2:BuildRequires: net-snmp-devel}
-%{?fc1:BuildRequires: net-snmp-devel}
-%{?el3:BuildRequires: net-snmp-devel}
-%{?rh9:BuildRequires: net-snmp-devel}
-%{?rh8:BuildRequires: net-snmp-devel}
-%{?rh7:BuildRequires: ucd-snmp-devel}
-%{?el2:BuildRequires: ucd-snmp-devel}
-%{?rh6:BuildRequires: ucd-snmp-devel}
+%{!?_without_net_snmp:BuildRequires: net-snmp-devel}
+%{?_without_net_snmp:BuildRequires: ucd-snmp-devel}
 
 %description
 ifstat(1) is a little tool to report interface activity like vmstat/iostat do.
@@ -51,9 +49,12 @@ need to have snmpd running for this though).
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING HISTORY README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/ifstat.1*
+%{_bindir}/ifstat
 
 %changelog
+* Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Mon Oct 06 2003 Dag Wieers <dag@wieers.com> - 1.0-0
 - Initial package. (using DAR)

@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: flex, bison, cyrus-sasl-devel, openssl-devel, lzo-devel
+%{?fc3:BuildRequires: glibc-kernheaders}
 %{?fc2:BuildRequires: glibc-kernheaders}
 %{?fc1:BuildRequires: glibc-kernheaders}
 %{?el3:BuildRequires: glibc-kernheaders}

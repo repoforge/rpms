@@ -16,6 +16,7 @@ BuildRequires: libungif-devel, libtiff-devel, qt-devel,
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, 
 BuildRequires: libpng-devel, arts-devel, zlib-devel, 
 BuildRequires: kdelibs-devel, make, gcc-c++, XFree86-devel
+%{?fc3:BuildRequires:libselinux-devel, libexif-devel, libexif}
 %{?fc2:BuildRequires:libselinux-devel, libexif-devel, libexif}
 
 Packager: Dries Verachtert <dries@ulyssis.org>

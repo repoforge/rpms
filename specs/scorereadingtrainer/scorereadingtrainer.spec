@@ -35,6 +35,7 @@ BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
 BuildRequires: qt-devel, fam-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
 
 %description

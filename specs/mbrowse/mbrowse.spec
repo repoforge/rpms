@@ -8,8 +8,11 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_net_snmp 1}
 %{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_net_snmp 1}
 %{?rh6:%define _without_freedesktop 1}
+%{?rh6:%define _without_net_snmp 1}
 
 %define desktop_vendor rpmforge
 
@@ -28,15 +31,8 @@ Source: http://www.kill-9.org/mbrowse/mbrowse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2
-%{!?dist:BuildRequires: net-snmp-devel >= 4.2}
-%{?fc2:BuildRequires: net-snmp-devel >= 4.2}
-%{?fc1:BuildRequires: net-snmp-devel >= 4.2}
-%{?el3:BuildRequires: net-snmp-devel >= 4.2}
-%{?rh9:BuildRequires: net-snmp-devel >= 4.2}
-%{?rh8:BuildRequires: net-snmp-devel >= 4.2}
-%{?rh7:BuildRequires: ucd-snmp-devel}
-%{?el2:BuildRequires: ucd-snmp-devel}
-%{?rh6:BuildRequires: ucd-snmp-devel}
+%{!?_without_net_snmp:BuildRequires: net-snmp-devel >= 4.2}
+%{?_without_net_snmp:BuildRequires: ucd-snmp-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

@@ -23,6 +23,8 @@ BuildRequires: gtk2-devel >= 2.2, glib2-devel, libgnomeui-devel, libglade2-devel
 BuildRequires: gstreamer-devel >= 0.8.0, gstreamer-plugins-devel >= 0.8.0
 #BuildRequires: gstreamer-play, gstreamer-GConf
 BuildRequires: gettext, eel2-devel, gail-devel, zlib-devel, gcc-c++
+%{!?dist:BuildRequires: nautilus-devel}
+%{?fc3:BuildRequires: nautilus-devel}
 %{?fc2:BuildRequires: nautilus-devel}
 %{?fc1:BuildRequires: nautilus-devel}
 %{?el3:BuildRequires: nautilus-devel}

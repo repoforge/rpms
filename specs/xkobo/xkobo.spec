@@ -27,6 +27,7 @@ Patch0: xkobo-1.11+w01-imake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{!?dist:BuildRequires: xorg-x11-devel}
+%{?fc3:BuildRequires: xorg-x11-devel}
 %{?fc2:BuildRequires: xorg-x11-devel}
 %{?fc1:BuildRequires: XFree86-devel}
 %{?rh9:BuildRequires: XFree86-devel}

@@ -19,6 +19,7 @@ Source: http://weather.ou.edu/~apw/projects/stress/stress-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?dist:BuildRequires: glibc-headers}
+%{?fc3:BuildRequires: glibc-headers}
 %{?fc2:BuildRequires: glibc-headers}
 %{?fc1:BuildRequires: glibc-headers}
 %{?el3:BuildRequires: glibc-headers}

@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: XFree86-devel, zlib-devel
 BuildRequires: arts-devel, qt-devel, kdelibs-devel
+%{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 
 %description

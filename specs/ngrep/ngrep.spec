@@ -40,6 +40,7 @@ more common packet sniffing tools, such as tcpdump and snoop.
 		s|^(MANDIR).+$|$1=\$(mandir)/man8|g;
 	' Makefile.in
 
+%{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure *.c *.h}
 %{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure *.c *.h}
 
 %build

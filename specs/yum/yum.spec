@@ -7,6 +7,7 @@
 
 # Which distro to make the default configuration for
 %{?!dist:%{expand: %%define distro fd}}
+%{?fc3:%{expand: %%define distro fd}}
 %{?fc2:%{expand: %%define distro fd}}
 %{?fc1:%{expand: %%define distro fd}}
 %{?rh9:%{expand: %%define distro rh}}

@@ -4,7 +4,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define _bindir /usr/X11R6/bin
 
 Summary: heXoNet RFB (remote control for the X Window System)
@@ -23,6 +25,8 @@ Patch: rfb-0.6.1-rpmoptflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxclass
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?fc3:BuildRequires: compat-gcc-c++}
 %{?fc2:BuildRequires: compat-gcc-c++}
 %{?fc1:BuildRequires: compat-gcc-c++}
 %{?el3:BuildRequires: compat-gcc-c++}
@@ -67,6 +71,7 @@ EOF
 
 %build
 ### FIXME: Workaround for RH80 and RH9
+%{?fc3:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
 %{?fc2:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
 %{?fc1:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
 %{?el3:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
@@ -88,9 +93,9 @@ EOF
 %{__install} -s -m0755 xrfbviewer/{xrfbviewer,xplayfbs} %{buildroot}%{_bindir}
 %{__install} -s -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}
 
-%if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Utilities/
-	%{__install} -m0644 x0rfbserver.desktop xvncconnect.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 x0rfbserver.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/x0rfbserver.desktop
+	%{__install} -D -m0644 xvncconnect.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xvncconnect.desktop
 %else
         install -d -m0755 %{buildroot}%{_datadir}/applications
         desktop-file-install --vendor "gnome"              \
@@ -107,11 +112,8 @@ EOF
 %doc COPYING INSTALL README rfm_fbs.1.0.html
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%if %{dfi}
-	%{_datadir}/gnome/apps/Utilities/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/*.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
 * Mon Jan 19 2004 Dag Wieers <dag@wieers.com> - 0.6.1-4

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define real_name BerkeleyDB
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
@@ -20,6 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503
+%{!?dist:BuildRequires: db4-devel}
+%{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}
 
 %description

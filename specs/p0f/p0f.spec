@@ -32,6 +32,7 @@ this host.
 %prep
 %setup -n %{name}
 
+%{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' *.c *.h}
 %{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' *.c *.h}
 
 %{__cat} <<EOF >p0f.sysconfig

@@ -25,6 +25,7 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 %setup -n %{name}
 
 ### Make subtitleripper work with newer netpbm
+%{?fc3:%{__perl} -pi.orig -e 's|^(LIBS)\s+\+=\s+-lppm$|$1 += -lnetpbm|' Makefile}
 %{?fc2:%{__perl} -pi.orig -e 's|^(LIBS)\s+\+=\s+-lppm$|$1 += -lnetpbm|' Makefile}
 
 %build

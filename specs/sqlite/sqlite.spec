@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, readline-devel
 %{!?dist:BuildRequires: tcl-devel}
+%{?fc3:BuildRequires: tcl-devel}
 %{?fc2:BuildRequires: tcl-devel}
 %{?fc1:BuildRequires: tcllib}
 %{?rh9:BuildRequires: tcllib}

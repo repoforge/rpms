@@ -20,6 +20,8 @@ Source: http://www.micq.org/source/micq-%{version}.tgz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, tcl
+%{!?dist:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
+%{?fc3:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
 %{?fc2:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
 %{?fc1:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
 #%{?el3:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}

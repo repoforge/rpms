@@ -59,6 +59,7 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?dist:BuildRequires: freeglut-devel}
+%{?fc3:BuildRequires: freeglut-devel}
 %{?fc2:BuildRequires: freeglut-devel}
 %{?fc1:BuildRequires: freeglut-devel}
 %{?rh9:BuildRequires: glut-devel}

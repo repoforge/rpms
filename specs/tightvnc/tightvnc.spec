@@ -51,14 +51,8 @@ to connect to other desktops running a VNC or a TightVNC server.
 Summary: TightVNC server
 Group: User Interface/X
 
-%{?fc2:Requires: xorg-x11}
-%{?fc1:Requires: XFree86}
-%{?el3:Requires: XFree86}
-%{?rh9:Requires: XFree86}
-%{?rh8:Requires: XFree86}
-%{?rh7:Requires: XFree86}
-%{?el2:Requires: XFree86}
-%{?rh6:Requires: XFree86}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: bash >= 2.0
 Prereq: /sbin/chkconfig, /sbin/service
 #Obsoletes: vnc-server

@@ -20,6 +20,7 @@ Source: http://dl.sf.net/konserve/konserve-%{version}.tar.bz2
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
 BuildRequires: XFree86-devel, qt-devel
+%{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs
 

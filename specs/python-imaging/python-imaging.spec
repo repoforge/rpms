@@ -4,9 +4,9 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist: %define ft2build 1}
-%{?fc3:   %define ft2build 1}
-%{?fc2:   %define ft2build 1}
-%{?yd4:   %define ft2build 1}
+%{?fc3: %define ft2build 1}
+%{?fc2: %define ft2build 1}
+%{?yd4: %define ft2build 1}
 
 %define pyver %(%{__python} -c 'import sys; print sys.version[:3]' || echo 2.0)
 

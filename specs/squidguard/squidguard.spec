@@ -28,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: bison, flex, perl
+%{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}
 %{?fc1:BuildRequires: db4-devel}
 %{?el3:BuildRequires: db4-devel}

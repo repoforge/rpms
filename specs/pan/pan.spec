@@ -2,7 +2,10 @@
 # Authority: dag
 # Upstream: <pan-devel$nongnu,org>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 Summary: The Pan Newsreader
 Name: pan
@@ -21,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
 BuildRequires: gnet2-devel, gtkspell >= 2.0.2, pcre-devel >= 4.0, gettext
-%{?fc2:BuildRequires: desktop-file-utils}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 
 %description
@@ -46,13 +49,13 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 %makeinstall
 %find_lang %{name}
 
-%if %{dfi}
-%else
-desktop-file-install --vendor gnome --delete-original \
-	--add-category Application                    \
-	--add-category Network                        \
-	--add-category X-Red-Hat-Base                 \
-	--dir %{buildroot}%{_datadir}/applications    \
+%if %{!?_without_freedesktop:1}0
+desktop-file-install --vendor %{desktop_vendor}    \
+	--delete-original                          \
+	--add-category Application                 \
+	--add-category Network                     \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
 	%{buildroot}%{_datadir}/gnome/apps/Internet/*.desktop
 %endif
 

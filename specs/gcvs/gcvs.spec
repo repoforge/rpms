@@ -4,10 +4,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 ### FIXME: Modified to co-exist with cvs. (Please fix upstream)
 # Tag: test
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %define desktop_vendor rpmforge
 
 Summary: GUI interface for CVS
@@ -26,6 +28,8 @@ Patch: gcvs-1.0-fc2-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gcc-c++, texinfo, autoconf, automake
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?fc3:BuildRequires: tcl-devel}
 %{?fc2:BuildRequires: tcl-devel}
 %{?fc1:BuildRequires: tcl-devel}
 %{?el3:BuildRequires: tcl-devel}
@@ -81,9 +85,8 @@ CFLAGS="%{optflags}" ./make_configure \
 ### Clean up buildroot (get rid of conflicting files with cvs package)
 %{__rm} -rf %{buildroot}%{_infodir}
 
-%if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Utilities/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 gcvs.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gcvs.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 	desktop-file-install --vendor %{desktop_vendor}    \
@@ -91,7 +94,7 @@ CFLAGS="%{optflags}" ./make_configure \
 		--add-category Application                 \
 		--add-category Utility                     \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		gcvs.desktop
 %endif
 
 %post
@@ -116,11 +119,8 @@ CFLAGS="%{optflags}" ./make_configure \
 %{_libdir}/cvs/
 %{_mandir}/man?/*
 %{_datadir}/gcvs/
-%if %{dfi}
-        %{_datadir}/gnome/apps/Utilities/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/gcvs.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gcvs.desktop}
 
 %changelog
 * Fri May 28 2004 Dag Wieers <dag@wieers.com> - 1.0-1

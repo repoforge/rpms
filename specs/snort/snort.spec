@@ -6,6 +6,10 @@
 
 #{?el3:#define _without_odbc 1}
 
+%{?rh7:%define _without_net_snmp 1}
+%{?el2:%define _without_net_snmp 1}
+%{?rh6:%define _without_net_snmp 1}
+
 Summary: Open Source network intrusion detection system
 Name: snort
 Version: 2.2.0
@@ -22,14 +26,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 0.4, openssl-devel, libnet
 BuildRequires: pcre-devel, perl
-%{!?dist:BuildRequires: net-snmp-devel}
-%{?fc2:BuildRequires: net-snmp-devel}
-%{?fc1:BuildRequires: net-snmp-devel}
-%{?el3:BuildRequires: net-snmp-devel}
-%{?rh9:BuildRequires: net-snmp-devel}
-%{?rh8:BuildRequires: net-snmp-devel}
-%{?rh7:BuildRequires: ucd-snmp-devel}
-%{?el2:BuildRequires: ucd-snmp-devel}
+%{!?_without_net_snmp:BuildRequires: net-snmp-devel}
+%{?_without_net_snmp:BuildRequires: ucd-snmp-devel}
 %{!?_without_odbc:BuildRequires: unixODBC-devel}
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
 %{!?_without_mysql:BuildRequires: mysql-devel}
