@@ -48,6 +48,7 @@ them into a fragmented data stream to forward to the victim.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc CHANGES CREDITS LICENSE README TODO VERSION
 %doc %{_mandir}/man?/*
 %{_sbindir}/*
