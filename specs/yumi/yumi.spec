@@ -14,6 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: yum >= 2.0.7, pygtk2 >= 2.0
 BuildRequires: python, gettext
+Requires: usermode
 
 %description
 Graphical user interface for the yum package manager.
