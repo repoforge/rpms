@@ -63,6 +63,11 @@ Install this package if you want to compile apps with ffmpeg support.
 %prep
 %setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}}
 
+### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
+%{__perl} -pi.orig -e '
+		s|\$\(prefix\)/lib|\$(libdir)|;
+		s|\$\(prefix\)/include|\$(includedir)|;
+	' Makefile */Makefile
 
 %build
 %configure \
@@ -79,23 +84,25 @@ Install this package if you want to compile apps with ffmpeg support.
     %{!?_without_faad: --enable-faad} \
     %{!?_without_faac: --enable-faac} \
     %{!?_without_a52dec: --enable-a52}
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	OPTFLAGS="-fPIC %{optflags}" \
+	SHFLAGS="-shared -Wl,-soname -Wl,\$@"
 
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-# Make installlib is broken in 0.4.6-8, so we do it by hand
-%{__install} -m 644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/
-%{__install} -m 644 libavformat/libavformat.a %{buildroot}%{_libdir}/
+### Make installlib is broken in 0.4.6-8, so we do it by hand
+%{__install} -D -m0644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/libavcodec.a
+%{__install} -D -m0644 libavformat/libavformat.a %{buildroot}%{_libdir}/libavformat.a
 
-# Create compat symlink
-%{__install} -d -m 755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/
+### Create compat symlink
+%{__install} -d -m0755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/
 %{__ln_s} -f ../libavcodec.a %{buildroot}%{_libdir}/libavcodec/libavcodec.a
 %{__ln_s} -f ../libavformat.a %{buildroot}%{_libdir}/libavformat/libavformat.a
 
-# Remove from the included docs
+### Remove from the included docs
 %{__rm} -f doc/Makefile doc/*.1
 
 
@@ -127,6 +134,9 @@ Install this package if you want to compile apps with ffmpeg support.
 
 
 %changelog
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.4.8-3
+- Fixes for building for x86_64 architecture.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.4.8-3
 - Rebuilt for Fedora Core 2.
 
