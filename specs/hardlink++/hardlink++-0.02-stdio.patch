@@ -1,0 +1,11 @@
+diff -Naupr hardlink++-0.02.orig/hardlink.h hardlink++-0.02/hardlink.h
+--- hardlink++-0.02.orig/hardlink.h	2003-08-15 02:24:59.000000000 +0200
++++ hardlink++-0.02/hardlink.h	2004-01-09 18:20:42.000000000 +0100
+@@ -38,6 +38,7 @@ using namespace std;
+ #include <iterator>
+ 
+ // C includes
++#include <stdio.h>
+ #include <unistd.h>
+ #include <dirent.h>
+ #include <sys/stat.h>
