@@ -4,8 +4,8 @@
 
 Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer
-Version: 0.6
-Release: 0
+Version: 0.7
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://regexxer.sf.net/
@@ -13,12 +13,12 @@ URL: http://regexxer.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.com/regexxer/regexxer-%{version}.tar.bz2
+Source: http://dl.sf.net/regexxer/regexxer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.7, gtk2-devel >= 2.0
 BuildRequires: libsigc++-devel >= 1.2, gtkmm2-devel >= 2.0
-BuildRequires: pcre >= 3.4
+BuildRequires: pcre >= 3.9
 
 %description
 regexxer is a nifty GUI search/replace tool featuring Perl-style
@@ -27,25 +27,57 @@ regular expressions.
 %prep
 %setup
 
+%{__cat} <<EOF >regexxer.desktop
+[Desktop Entry]
+Name=Regular Expression Tool
+Comment=Perform search and replace operations
+Exec=regexxer
+Icon=regexxer.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;Application;Development;
+EOF
+
 %build
-%configure
+%configure \
+	--disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
+%find_lang %{name}
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor gnome                \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	regexxer.desktop
+
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_datadir}/applications/regexxer.desktop
+
+%post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
+%config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.7-1
+- Updated to release 0.7.
+
 * Sun Dec 07 2003 Dag Wieers <dag@wieers.com> - 0.6-0
 - Updated to release 0.6.
 
