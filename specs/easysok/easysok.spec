@@ -18,7 +18,7 @@ Patch: assert-include.patch
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel
+BuildRequires: XFree86-devel, qt-devel, fam-devel
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs
 
