@@ -4,7 +4,8 @@
 
 Summary: Small backup application
 Name: konserve
-Version: 0.10.3
+%{?fc2:Version: 0.10.3}
+%{?fc1:Version: 0.9}
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -16,6 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Source: http://dl.sf.net/konserve/konserve-%{version}.tar.bz2
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
+%{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs
 
 # Screenshot: http://konserve.sourceforge.net/konserve-screenshot424.png
@@ -60,7 +62,7 @@ A wizard helps you with the first steps in using Konserve.
 
 %changelog
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> 0.10.3
-- update to 0.10.3
+- update to 0.10.3 for fc2
 
 * Fri Dec 26 2003 Dries Verachtert <dries@ulyssis.org> 0.9-1
 - first packaging for Fedora Core 1
