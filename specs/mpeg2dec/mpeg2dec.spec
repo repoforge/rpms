@@ -2,18 +2,21 @@
 # Authority: matthias
 # Upstream: <libmpeg2-devel$lists,sf,net>
 
-%define date 20040610
+#define date 20040610
 
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
-Version: 0.4.1
-Release: %{?date:0.%{date}.}2
+Version: 0.4.0
+Release: %{?date:0.%{date}.}5b
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
-Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}.tar.gz
+Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}b.tar.gz
+Patch: mpeg2dec-0.4.0b-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, SDL-devel, pkgconfig, gcc-c++
+# Required for ./bootstrap
+BuildRequires: autoconf, automake, libtool
 
 %description
 A free library for decoding MPEG-2 and MPEG-1 video streams.
@@ -33,6 +36,8 @@ libmpeg2.
 
 %prep
 %setup -n %{name}-%{version}%{?date:-cvs}
+%patch -p0 -b .pic
+./bootstrap
 
 
 %build
@@ -80,6 +85,10 @@ CFLAGS="%{optflags}" \
 
 
 %changelog
+* Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-5b
+- Add patch from rpm.livna.org to remove -prefer-non-pic.
+- Downgrade to 0.4.0b to fix permanent segfaults...
+
 * Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-0.20040610.2
 - Use --disable-accel-detect for non-x86 to fix asm build failure on x86_64.
 
