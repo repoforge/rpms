@@ -39,14 +39,14 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-%define ffmpeg_date    20041113
+%define ffmpeg_date    20050209
 %define real_name      vlc
 #define prever         test2
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.1
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -93,6 +93,7 @@ BuildRequires: gcc-c++, XFree86-devel, libpng-devel
 %{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel >= 0.3.2}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
+%{!?_without_mkv:BuildRequires: libebml-devel, libmatroska-devel}
 Conflicts: vlc
 
 %description
@@ -104,7 +105,7 @@ Available rpmbuild rebuild options :
 --with dv mga qt kde ncurses
 --without dvd dvdread dvdplay dvbpsi v4l avi asf aac ogg rawdv mad ffmpeg xvid
           mp4 a52 vorbis mpeg2dec flac aa esd arts alsa gtk gnome wxwin xosd
-          lsp lirc pth id3tag faad theora
+          lsp lirc pth id3tag faad theora mkv
 
 Options that would need not yet existing add-on packages :
 --with tremor tarkin svgalib ggi glide wxwindows
@@ -170,6 +171,7 @@ popd
     %{?_with_tremor:--enable-tremor} \
     %{?_with_tarkin:--enable-tarkin} \
     %{!?_without_theora:--enable-theora} \
+    %{!?_without_mkv:--enable-mkv} \
     --enable-x11 \
     %{?_without_glx:--disable-glx} \
     --enable-xvideo \
@@ -276,6 +278,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 0.8.1-2
+- Update ffmpeg to 20050209.
+- Added libmatroska (mkv) support, enabled by default.
+
 * Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.1-1
 - Update to 0.8.1.
 
