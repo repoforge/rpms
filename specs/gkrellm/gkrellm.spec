@@ -6,7 +6,7 @@
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
 Version: 2.2.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.gkrellm.net/
@@ -153,6 +153,9 @@ fi
 
 
 %changelog
+* Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 2.2.2-2
+- Fix the gkrellmd location in the init script, thanks to Sammy Atmadja.
+
 * Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 2.2.2-1
 - Update to 2.2.2.
 - Add fixes for x86_64.

@@ -22,7 +22,7 @@ prog="gkrellmd"
 case "$1" in
   start)
 	echo -n $"Starting $prog: "
-        daemon --user gkrellmd /usr/sbin/gkrellmd -d
+        daemon --user gkrellmd /usr/bin/gkrellmd -d
 	RETVAL=$?
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/gkrellmd
 	echo
