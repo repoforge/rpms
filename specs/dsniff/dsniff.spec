@@ -8,8 +8,8 @@
 
 Summary: Tools for network auditing and penetration testing
 Name: dsniff
-Version: 2.3
-Release: 0
+Version: 2.4
+Release: 0.b1
 License: GPL
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/dsniff/
@@ -17,7 +17,7 @@ URL: http://www.monkey.org/~dugsong/dsniff/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.monkey.org/~dugsong/dsniff/dsniff-%{version}.tar.gz
+Source: http://www.monkey.org/~dugsong/dsniff/dsniff-%{version}b1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet > 1.0, libnet < 1.1, libnids >= 1.16, openssl-devel >= 0.9.5a
@@ -50,10 +50,13 @@ dsniff is a collection of tools for network auditing and penetration testing.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES LICENSE README TODO 
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man8/*.8*
 %config(noreplace) %{_sysconfdir}/*
 %{_sbindir}/*
 
 %changelog
+* Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 2.4-0.b1
+- Updated to release 2.4b1.
+
 * Mon Sep 15 2003 Dag Wieers <dag@wieers.com> - 2.3-0
 - Initial package. (using DAR)

@@ -46,6 +46,9 @@ you will need to install %{name}-devel.
 %prep
 %setup -n %{real_name}-%{version}
 
+### FIXME: Replace fixed /usr/lib by $(libdir). (Please fix upstream)                                          
+%{__perl} -pi.orig -e 's|/usr/lib\b|\$(libdir)|g' WPrefs.app/Makefile.in
+
 %{__cat} <<EOF >windowmaker.xsession
 #!/bin/sh
 exec /etc/X11/xdm/Xsession wmaker
@@ -75,15 +78,13 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 	--enable-usermenu \
 	--enable-xinerama \
 	--enable-vdesktop
-%{__make} %{?_smp_mflags}
+### Does not build with -j X and X > 1
+%{__make} #%{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	NLSDIR="%{buildroot}%{_datadir}/locale" \
-	wprefsdir="%{buildroot}%{_libdir}/GNUstep/WPrefs.app" \
-	wpexecbindir="%{buildroot}%{_libdir}/GNUstep/WPrefs.app" \
-	wpdatadir="%{buildroot}%{_libdir}/GNUstep/WPrefs.app"
+	NLSDIR="%{buildroot}%{_datadir}/locale"
 %find_lang %{real_name}
 %find_lang WPrefs
 %find_lang WINGs
@@ -111,7 +112,7 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
-%{_libdir}/libwraster.a
+%{_libdir}/lib*.a
 %exclude %{_libdir}/libwraster.la
 %{_libdir}/libwraster.so
 %{_libdir}/pkgconfig/*.pc
@@ -119,7 +120,8 @@ export LINGUAS="$(cd po; echo *.po | sed -e 's|zh_TW.Big5.po||g; s|.po||g')"
 %changelog
 * Thu Nov 25 2004 Juergen Moellenhoff <jm@tp1.rub.de> - 0.91.0-1
 - New package for version 0.91.0.
-- Changed wprefsdir, wpexecbindir and wpdatadir to the correct install path.
+- Fixed $(libdir) for correct wprefspath. (Vamsi K Kambhampati)
+- Remove %%{?_smp_mflags} for %%{__make}. (Vamsi K Kambhampati)
 
 * Sun Oct 24 2004 Chris Gordon <chris-rpm@linux-dr.net> - 0.90.0-1
 - New package for version 0.90.0.

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: fc3
+
 Summary: Graphical user interface for the yum package manager
 Name: yumi
 Version: 2.0.7

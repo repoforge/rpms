@@ -1,4 +1,4 @@
-# $Id.
+# $Id$
 
 Summary: Musepack audio decoding library
 Name: libmusepack
@@ -7,7 +7,7 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.musepack.net/
-Source0: http://www.saunalahti.fi/grimmel/mpc/source/libmusepack-%{version}.zip
+Source0: http://www.saunalahti.fi/grimmel/musepack.net/source/libmusepack-%{version}.zip
 Source1: LGPL.txt
 Patch: libmusepack-1.0.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

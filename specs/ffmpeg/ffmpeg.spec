@@ -1,6 +1,13 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh9:%define _without_fast_memcpy 1}
+%{?rh8:%define _without_fast_memcpy 1}
+%{?rh7:%define _without_fast_memcpy 1}
+%{?el2:%define _without_fast_memcpy 1}
+
 %define date   2004-11-10
 #define prever pre1
 %{?date: %define sqdate %(echo %{date} | tr -d '-')}
@@ -123,7 +130,8 @@ to use MPlayer, transcode or other similar programs.
 #   %{!?_without_a52: --enable-a52} \
 # Make!
 %{__make} %{?_smp_mflags} -C libavcodec/libpostproc
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+%{?_without_fast_memcpy:OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"}
 %{__make} documentation
 # Leftover, for reference :
 # OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"

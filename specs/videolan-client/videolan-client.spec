@@ -23,11 +23,14 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_theora 1}
+%{?rh7:%define _without_vorbis 1}
 
 %{?el2:%define _without_alsa 1}
+%{?el2:%define _without_arts 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_theora 1}
+%{?el2:%define _without_vorbis 1}
 
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}

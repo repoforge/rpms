@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
@@ -9,7 +8,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 1.2
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -107,6 +106,7 @@ you will need to install %{name}-devel.
 #%{__install} -m0644 common/common.h common/config.h common/locations.h ./cgi/cgiutils.h cgi/popen.h %{buildroot}%{_includedir}/nagios/
 
 ### FIXME: Add default .htpasswd file in /etc/nagios/ (in nagios.conf) (Please fix upstream)
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|' contrib/htaccess.sample
 %{__install} -m0644 contrib/htaccess.sample %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
 
 %makeinstall -C contrib INSTALL="%{__install}" INSTALL_OPTS="" CGIDIR="%{buildroot}%{_libdir}/nagios/cgi"
@@ -183,6 +183,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 1.2-1
+* Fixed %%{_libdir} in httpd nagios.conf. (Thomas Zehetbauer)
+
 * Wed Feb 11 2004 Dag Wieers <dag@wieers.com> - 1.2-0
 - Added embedded perl patch for perl > 5.8. (Stanley Hopcroft)
 - Updated to release 1.2.

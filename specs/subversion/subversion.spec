@@ -3,6 +3,11 @@
 
 # Tag: test
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el3:%define _without_perl 1}
+%{?el3:%define _without_python 1}
+
 # set to zero to avoid running test suite
 %define make_check 0
 
@@ -11,7 +16,7 @@
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.0.9
-Release: 1
+Release: 2
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -27,10 +32,11 @@ Patch5: subversion-r8822.patch
 Patch6: subversion-1.0.3-pie.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildPreReq: autoconf, libtool, python, python-devel, texinfo
-#BuildPreReq: db4-devel >= 4.1.25, swig >= 1.3.15, docbook-style-xsl
-BuildPreReq: db4-devel >= 4.1.25, swig, docbook-style-xsl
-BuildPreReq: apr-devel, apr-util-devel, neon-devel >= 0:0.24.6-1
+BuildRequires: autoconf, libtool, python, python-devel, texinfo
+BuildRequires: db4-devel >= 4.1.25, expat-devel, docbook-style-xsl
+BuildRequires: apr-devel >= 0.9.3-2, apr-util-devel >= 0.9.3-2, openssl-devel
+%{!?_without_python:BuildRequires: swig}
+%{!?_without_perl:BuildRequires: neon-devel >= 0.24.6-1}
 
 %define __perl_requires %{SOURCE3}
 
@@ -92,66 +98,91 @@ rm -rf neon apr apr-util db4
 ./autogen.sh
 
 # requirement for apr 0.9.5 seems to be bogus
-perl -pi -e 's/\.\[5-9\]/\.\[4-9\]/' configure
+%{__perl} -pi.orig -e 's/\.\[5-9\]/\.\[4-9\]/' configure
 
 # fix shebang lines, #111498
-perl -pi -e 's|/usr/bin/env perl -w|/usr/bin/perl -w|' tools/hook-scripts/*.pl.in
+%{__perl} -pi -e 's|/usr/bin/env perl -w|/usr/bin/perl -w|' tools/hook-scripts/*.pl.in
 
 export CC=gcc CXX=g++
-%configure --with-apr=%{_prefix} --with-apr-util=%{_prefix} \
-	--with-swig --with-neon=%{_prefix} \
-        --with-apxs=%{_sbindir}/apxs --disable-mod-activation
-make %{?_smp_mflags} all swig-py %{swigdirs} swig-pl-lib
+%configure \
+	--with-apr="%{_prefix}" \
+	--with-apr-util="%{_prefix}" \
+        --with-apxs="%{_sbindir}/apxs" \
+	--disable-mod-activation \
+%{!?_without_perl:--with-neon=%{_prefix} --with-swig} \
+%{!?_without_python:--with-swig} \
+	--with-expat \
+	--with-ssl
+%{__make} %{?_smp_mflags} all
+
+%if %{!?_without_python:1}0
+%{__make} %{?_smp_mflags} swig-py %{swigdirs}}
+%endif
+
+%if %{!?_without_perl:1}0
+%{__make} %{?_smp_mflags} swig-pl-lib %{swigdirs}}
 
 # build the perl modules
 pushd subversion/bindings/swig/perl
-CFLAGS="$RPM_OPT_FLAGS" %{__perl} Makefile.PL INSTALLDIRS=vendor
-make %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags}
 popd
+%endif
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
-make install install-swig-py install-swig-pl-lib \
-        DESTDIR=$RPM_BUILD_ROOT %{swigdirs}
+%{__rm} -rf %{buildroot}
+%{__make} install \
+	DESTDIR="%{buildroot}"
 
-make pure_install -C subversion/bindings/swig/perl \
-        PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
+%if %{!?_without_python:1}0
+%{__make} install-swig-py %{swigdirs} \
+        DESTDIR="%{buildroot}"
+%endif
+
+%if %{!?_without_perl:1}0
+%{__make} install-swig-pl-lib %{swigdirs} \
+        DESTDIR="%{buildroot}"
+
+%{__make} pure_install -C subversion/bindings/swig/perl \
+        PERL_INSTALL_ROOT="%{buildroot}"
+%endif
 
 # Add subversion.conf configuration file into httpd/conf.d directory.
-install -m 755 -d ${RPM_BUILD_ROOT}%{_sysconfdir}/httpd/conf.d
-install -m 644 $RPM_SOURCE_DIR/subversion.conf ${RPM_BUILD_ROOT}%{_sysconfdir}/httpd/conf.d
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/subversion.conf
 
 # Remove unpackaged files
-rm -rf ${RPM_BUILD_ROOT}%{_includedir}/subversion-*/*.txt \
-       ${RPM_BUILD_ROOT}%{pydir}/*/*.{a,la}
+%{__rm} -rf %{buildroot}%{_includedir}/subversion-*/*.txt \
+       %{buildroot}%{pydir}/*/*.{a,la}
 
+%if %{!?_without_perl:1}0
 # remove stuff produced with Perl modules
-find $RPM_BUILD_ROOT -type f \
+find %{buildroot} -type f \
     -a \( -name .packlist -o \( -name '*.bs' -a -empty \) \) \
     -print0 | xargs -0 rm -f
 
 # make Perl modules writable so they get stripped
-find $RPM_BUILD_ROOT%{_libdir}/perl5 -type f -perm 555 -print0 |
+find %{buildroot}%{_libdir}/perl5 -type f -perm 555 -print0 |
         xargs -0 chmod 755
+%endif
 
 # unnecessary libraries for swig bindings
-rm -f ${RPM_BUILD_ROOT}%{_libdir}/libsvn_swig_*.{so,la,a}
+%{__rm} -f %{buildroot}%{_libdir}/libsvn_swig_*.{so,la,a}
 
 # Trim what goes in docdir
-rm -rf tools/*/*.in tools/test-scripts \
+%{__rm} -rf tools/*/*.in tools/test-scripts \
        doc/book/book/images/images doc/book/book/images/*.ppt
 
 # Rename authz_svn INSTALL doc for docdir
-ln subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
+ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 
 %if %{make_check}
 %check
-make check CLEANUP=yes
-make -C subversion/bindings/swig/perl test
+%{__make} check CLEANUP=yes
+%{__make} -C subversion/bindings/swig/perl test
 %endif
 
 %clean
-rm -rf ${RPM_BUILD_ROOT}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
@@ -162,40 +193,49 @@ rm -rf ${RPM_BUILD_ROOT}
 %postun perl -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
 %doc tools subversion/LICENSE mod_authz_svn-INSTALL
 %doc doc/book/book/book.html doc/book/book/images
 %{_bindir}/*
 %{_libdir}/libsvn_*.so.*
 %{_mandir}/man*/*
-%{pydir}/svn
-%{pydir}/libsvn
-%exclude %{_libdir}/libsvn_swig_perl*
-%exclude %{_mandir}/man*/*::*
+#%exclude %{_bindir}/neon-config
+#%exclude %{_mandir}/man3/*
+%{!?_without_perl:%exclude %{_libdir}/libsvn_swig_perl*}
+%{!?_without_perl:%exclude %{_mandir}/man*/*::*}
+%{!?_without_python:%{pydir}/svn}
+%{!?_without_python:%{pydir}/libsvn}
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
+#%{_bindir}/neon-config
 %{_includedir}/subversion-1
 %{_libdir}/libsvn*.a
 %{_libdir}/libsvn*.la
 %{_libdir}/libsvn*.so
-%exclude %{_libdir}/libsvn_swig_perl*
+#%{_mandir}/man3/*
+%{!?_without_perl:%exclude %{_libdir}/libsvn_swig_perl*}
 
 %files -n mod_dav_svn
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/subversion.conf
 %{_libdir}/httpd/modules/mod_dav_svn.so
 %{_libdir}/httpd/modules/mod_authz_svn.so
 
+%if %{!?_without_perl:1}0
 %files perl
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %{perl_vendorarch}/auto/SVN
 %{perl_vendorarch}/SVN
 %{_libdir}/libsvn_swig_perl*
 %{_mandir}/man*/*::*
+%endif
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.0.9-2
+- Backported changes from Red Hat's EL3 packages. (Joe Orton)
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.0.9-1
 - Updated to release 1.0.9.
 

@@ -34,10 +34,6 @@ fi
 # Check that smb.conf exists.
 [ -f /etc/samba/smb.conf ] || exit 0
 
-# Check that we can write to it... so non-root users stop here
-[ -w /etc/samba/smb.conf ] || exit 0
-
-
 RETVAL=0
 
 
@@ -89,6 +85,18 @@ rhstatus() {
 	status smbd
 	status nmbd
 }	
+
+
+# Allow status as non-root.
+if [ "$1" = status ]; then
+       rhstatus
+       exit $?
+fi
+
+# Check that we can write to it... so non-root users stop here
+[ -w /etc/samba/smb.conf ] || exit 0
+
+
 
 case "$1" in
   start)

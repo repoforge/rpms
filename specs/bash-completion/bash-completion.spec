@@ -7,7 +7,7 @@
 Summary: Programmable completion for Bash
 Name: bash-completion
 Version: 20041017
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Shells
 URL: http://www.caliban.org/bash/
