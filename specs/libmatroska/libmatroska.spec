@@ -7,7 +7,7 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.matroska.org/
-Source: http://dl.matroska.org/downloads/libmatroska/libmatroska-%{version}.tar.gz
+Source: http://www.bunkus.org/videotools/mkvtoolnix/sources/libmatroska-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libebml-devel >= 0.7.0
 
