@@ -11,7 +11,7 @@
 
 Summary: Validate XML against a subset of W3C XML Schemas
 Name: perl-XML-Validator-Schema
-Version: 1.06
+Version: 1.08
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ the SCHEMA SUPPORT section in the module documention.
 %{perl_vendorlib}/XML/Validator/Schema/*
 
 %changelog
+* Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> - 1.08-1
+- Updated to release 1.08.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Initial package.
