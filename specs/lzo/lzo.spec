@@ -5,16 +5,14 @@
 Summary: Portable lossless data compression library
 Name: lzo
 Version: 1.08
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
+Patch: lzo-1.08-asm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: zlib-devel
-%ifarch %{ix86} x86_64
-BuildRequires: nasm
-%endif
+BuildRequires: zlib-devel, autoconf
 Requires: zlib >= 1.0.0
 
 %description 
@@ -36,6 +34,8 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch -p0 -b .asm
+%{__autoconf}
 
 %build
 %configure \
@@ -68,6 +68,11 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Tue Feb  1 2005 Matthias Saou <http://freshrpms.net/> 1.08-4
+- Add lzo-1.08-asm.patch to fix asm detection on i386.
+- Remove unneeded nasm build dep as build uses only gcc for asm... not sure
+  why the configure nasm check is still there, though.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.08-3
 - Increased release to keep upgrade path.
 
