@@ -29,13 +29,13 @@
 %{?yd3:%define _without_theora 1}
 
 %define libname libxine1
-%define libver  1-rc6a
+%define libver  1-rc7
 %define apiver  1.0.0
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.15.rc6a
+Release: 0.16.rc7
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -152,6 +152,9 @@ use the Xine library.
 
 
 %changelog
+* Wed Dec  1 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.16.rc7
+- Update to 1.0rc7.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.15.rc6a
 - Removed most explicit deps, only libdvdcss is really needed.
 
