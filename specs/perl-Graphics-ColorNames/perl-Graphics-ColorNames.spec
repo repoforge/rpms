@@ -55,6 +55,7 @@ specifying a color by name rather than RGB value.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Graphics/ColorNames.pm
 %{perl_vendorlib}/Graphics/ColorNames/*
+%{perl_vendorlib}/Graphics/ColourNames.pm
 
 %changelog
 * Sat Oct 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.05
