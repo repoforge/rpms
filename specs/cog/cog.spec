@@ -1,13 +1,11 @@
 # $Id$
 # Authority: dag
-# Upstream: <maxximum@krakoa.dk>
-
-%define _localstatedir %{_var}/lib
+# Upstream: <maxx@daimi.au.dk>
 
 Summary: Advanced GNOME configuration editor
 Name: cog
 Version: 0.7.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.krakoa.dk/linux-software.html#COG
@@ -20,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0.3, glib2-devel >= 2.0.1, GConf2-devel >= 1.1.11
 BuildRequires: libxml2-devel >= 2.4.21
+BuildRequires: desktop-file-utils
 
 %description
 COG is a GNOME configurator program. A program for editing advanced
@@ -27,6 +26,20 @@ GNOME settings in an easy way.
 
 %prep
 %setup
+
+### FIXME: Include improved desktop-file. (Please fix upstream)
+%{__cat} <<EOF >cog.desktop
+[Desktop Entry]
+Name=GNOME Configurator
+Comment=Edit advanced GNOME settings
+Icon=cog.png
+Exec=cog
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;System;
+EOF
 
 %build
 %configure
@@ -36,6 +49,15 @@ GNOME settings in an easy way.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__install} -D -m0644 pixmaps/cog-icon-2-48x48.png %{buildroot}%{_datadir}/pixmaps/cog.png
+
+### Desktop entry
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor gnome --delete-original \
+	--dir %{buildroot}%{_datadir}/applications    \
+	--add-category X-Red-Hat-Base                 \
+	%{buildroot}%{_datadir}/applications/cog.desktop
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -43,10 +65,14 @@ GNOME settings in an easy way.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
 %{_datadir}/cog/
+%{_datadir}/pixmaps/cog.png
+%{_datadir}/applications/gnome-cog.desktop
 
 %changelog
+* Wed Jun 09 2004 Dag Wieers <dag@wieers.com> - 0.7.1-2
+- Added improved desktop file.
+
 * Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Updated to release 0.7.1.
 
