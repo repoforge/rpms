@@ -5,6 +5,7 @@
 # ExclusiveDist: fc3
 
 %{?dist: %{expand: %%define %dist 1}}
+%{!?dist: %define fc3 1}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
@@ -32,7 +33,10 @@ Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
-BuildRequires: kdelibs-devel, qt-devel
+BuildRequires: gcc-c++, kdelibs-devel
+# *** KDE requires autoconf 2.52, 2.53 or 2.54
+# *** KDE requires automake 1.6.1 or newer
+BuildRequires: autoconf, automake
 Requires: python
 
 %description
@@ -63,9 +67,6 @@ Requires: smart-update = %{version}-%{release}
 
 %description -n ksmarttray
 KDE tray program for watching updates with Smart Package Manager.
-
-%description -n ksmarttray
-Programa tray do KDE para verificar atualizações com o Smart Package Manager.
 
 %prep
 %setup
@@ -335,7 +336,7 @@ python setup.py install \
 %dir %{_libdir}/smart/
 %config(noreplace) %{_sysconfdir}/smart/channels/
 %{_bindir}/smart
-%{python_dir}/smart/
+#{python_dir}/smart/
 %{_libdir}/python%{python_version}/site-packages/smart/
 %exclude %{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
 
