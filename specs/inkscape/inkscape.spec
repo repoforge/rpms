@@ -25,7 +25,7 @@ Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(XML::Parser), libsigc++2-devel, libgc-devel
-BuildRequires: gtkmm24-devel, glibmm-devel
+BuildRequires: gtkmm24-devel, glibmm-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

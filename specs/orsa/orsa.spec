@@ -61,11 +61,13 @@ Categories=Application;Graphics;X-Red-Hat-Extra;
 EOF
 
 %build
+source /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source /etc/profile.d/qt.sh
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
