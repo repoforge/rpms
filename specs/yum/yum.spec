@@ -7,7 +7,7 @@
 %{!?distro: %{expand: %%define distro fd}}
 
 # Defined as YYYYMMDD if this is a snapshot build
-%define date 20040303
+%define date 20040416
 
 # Python name and version, use "--define 'python python2'"
 %{!?python: %{expand: %%define python python}}
@@ -15,8 +15,8 @@
 
 Summary: YellowDog Updater Modified, an rpm package management utility
 Name: yum
-Version: 2.0.5
-Release: 1%{?date:.%{date}}.%{distro}
+Version: 2.0.6
+Release: 1%{?date:.%{date}}
 License: GPL
 Group: System Environment/Base
 URL: http://www.linux.duke.edu/projects/yum/
@@ -27,8 +27,8 @@ Source13: yum-rh.conf
 Source50: RPM-GPG-KEY.redhat
 Source51: RPM-GPG-KEY.yellowdog
 Source52: RPM-GPG-KEY.freshrpms
-Requires(pre): /sbin/chkconfig, /sbin/service
-Requires(post): /sbin/chkconfig, /sbin/service
+Requires(post): /sbin/chkconfig, /sbin/service, rpm
+Requires(preun): /sbin/chkconfig, /sbin/service
 Requires: rpm >= 4.1.1, %{python} >= %{pyminver}, rpm-python, libxml2-python
 Requires: gnupg
 BuildRequires: rpm-python, %{python} >= %{pyminver}, gettext
@@ -43,30 +43,35 @@ automatically prompting the user as necessary.
 Available rpmbuild rebuild options :
 --with : fedora (default) yellowdog redhat
 
+
 %prep
 %setup -n %{name}%{!?date:-%{version}}
+
 
 %build
 # Replace interpreter's name if it's not "python"
 if [ "%{python}" != "python" ]; then
     find . -type f | \
-        xargs perl -pi -e 's|/usr/bin/python|/usr/bin/%{python}|g'
+        xargs %{__perl} -pi -e 's|/usr/bin/python|/usr/bin/%{python}|g'
     export PYTHON="%{python}"
 fi
 # Change the defaut debug level of the cron entry
-perl -pi -e 's|-d 0|-d 1|g' etc/yum.cron
+%{__perl} -pi -e 's|-d 0|-d 1|g' etc/yum.cron
 %configure 
 %{__make}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} DESTDIR=%{buildroot} install
 %find_lang %{name}
 %{__install} -m 644 %{_sourcedir}/yum-%{distro}.conf %{buildroot}/etc/yum.conf
-cp -a %{_sourcedir}/RPM-GPG-KEY* .
+%{__cp} -a %{_sourcedir}/RPM-GPG-KEY* .
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %post
 /sbin/chkconfig --add yum
@@ -90,6 +95,7 @@ if [ $1 -eq 0 ]; then
         /sbin/service yum stop >/dev/null 2>&1 || :
 fi
 
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING TODO
@@ -112,26 +118,33 @@ fi
 %{_mandir}/man?/*
 %{_localstatedir}/cache/%{name}
 
+
 %changelog
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 2.0.5-1.20040303.fr
+* Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 2.0.6-1.20040416
+- Update to 20040416 snapshot.
+
+* Fri Apr  2 2004 Matthias Saou <http://freshrpms.net/> 2.0.6-1
+- Update to 2.0.6.
+
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 2.0.5-1.20040303
 - Update to today's snapshot.
 
-* Mon Feb 23 2004 Matthias Saou <http://freshrpms.net/> 2.0.5-1.20040229.fr
+* Mon Feb 23 2004 Matthias Saou <http://freshrpms.net/> 2.0.5-1.20040229
 - Update to today's snapshot.
 
-* Sun Feb  1 2004 Matthias Saou <http://freshrpms.net/> 2.0.5-1.fr
+* Sun Feb  1 2004 Matthias Saou <http://freshrpms.net/> 2.0.5-1
 - Update to 2.0.5.
 
-* Wed Jan  7 2004 Matthias Saou <http://freshrpms.net/> 2.0.4-3.20040103.fr
+* Wed Jan  7 2004 Matthias Saou <http://freshrpms.net/> 2.0.4-3.20040103
 - Update to the latest daily.
 - Removed the rawhide configuration.
 - Made fd the default instead of rh.
 - Build as noarch as python files are .py instead of .pyc previously.
 
-* Thu Dec 11 2003 Matthias Saou <http://freshrpms.net/> 2.0.4-2.20031205.fr
+* Thu Dec 11 2003 Matthias Saou <http://freshrpms.net/> 2.0.4-2.20031205
 - Update to the latest daily.
 
-* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 2.0.4-2.fr
+* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 2.0.4-2
 - Added Fedora Linux support.
 - Added gettext build dep.
 
