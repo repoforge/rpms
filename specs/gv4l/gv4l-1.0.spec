@@ -1,10 +1,14 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: <warder$warder,ath,cx>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: GNOME frontend for the v4l (Video For Linux) functions of transcode
 Name: gv4l
@@ -19,7 +23,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://warderx.ath.cx:81/projects/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: transcode
 
@@ -37,27 +40,25 @@ Gv4l is a gui frontend for the v4l (Video For Linux) functions of transcode.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-cat <<EOF >gnome-%{name}.desktop
+%{__cat} <<EOF >gv4l.desktop
 [Desktop Entry]
 Name=Gv4l
-Comment=%{summary}
+Comment=Edit video formats
 Icon=gv4l/gv4l.png
-Exec=%{_bindir}/%{name}
+Exec=gv4l
 Terminal=false
 Type=Application
+Categories=Application;AudioVideo;
 EOF
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-        %{__install} -m0644 -%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+%if %{!?_without_freedesktop:1}0
+        %{__install} -D -m0644 gv4l.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gv4l.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor gnome                \
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category AudioVideo                  \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		gv4l.desktop
 %endif
 
 %clean
@@ -65,13 +66,10 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
+%{_bindir}/gv4l*
 %{_datadir}/pixmaps/gv4l/gv4l.png
-%if %{dfi}
-	%{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/gv4l.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gv4l.desktop}
 
 %changelog
 * Thu Apr 17 2003 Dag Wieers <dag@wieers.com> - 1.0.0-0

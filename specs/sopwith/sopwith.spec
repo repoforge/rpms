@@ -2,9 +2,11 @@
 # Authority: dag
 # Upstream: Simon Howard <fraggle$alkali,org>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 %define real_version sdl_sopwith
+%define desktop_vendor rpmforge
 
 Summary: Classic sopwith game
 Name: sopwith
@@ -21,6 +23,7 @@ Source: http://dl.sf.net/sdl-sopwith/sdl_sopwith-%{version}.tar.gz
 Source1: sopwith.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 BuildRequires: gtk2-devel, SDL-devel
 
 %description
@@ -49,11 +52,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 sopwith.desktop %{buildroot}%{_datadir}/gnome/apps/Games/sopwith.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor gnome                \
+        desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 sopwith.desktop
@@ -71,11 +74,8 @@ EOF
 %{_bindir}/*
 %{_bindir}/gtksopwith
 %{_datadir}/pixmaps/*.png
-%if %{dfi}
-	%{_datadir}/gnome/apps/Games/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-sopwith.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/sopwith.desktop}
 %exclude %{_docdir}/sopwith/
 
 %changelog

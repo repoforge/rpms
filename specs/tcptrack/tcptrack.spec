@@ -4,7 +4,7 @@
 
 Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack
-Version: 1.1.2
+Version: 1.1.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -43,10 +43,13 @@ bandwidth usage.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/tcptrack.1*
+%{_bindir}/tcptrack
 
 %changelog
+* Mon Oct 11 2004 Dag Wieers <dag@wieers.com> - 1.1.4-1
+- Updated to release 1.1.4.
+
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Updated to release 1.1.2.
 

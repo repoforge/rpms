@@ -52,7 +52,7 @@ EOF
 #%{__install} -m0644 gui/gurlchecker_logo.xpm %{buildroot}%{_datadir}/pixmaps/gurlchecker.xpm
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop

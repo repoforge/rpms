@@ -8,6 +8,7 @@
 # Tag: test
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%define desktop_vendor rpmforge
 
 Summary: GUI interface for CVS
 Name: gcvs
@@ -85,7 +86,7 @@ CFLAGS="%{optflags}" ./make_configure \
 	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--add-category Application                 \
 		--add-category Utility                     \

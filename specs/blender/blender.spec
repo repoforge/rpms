@@ -1,7 +1,13 @@
 # $Id$
 # Authority: dries
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 %define real_version 2.34
 
@@ -21,8 +27,7 @@ BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, glut, python-devel
 BuildRequires: XFree86-devel, openssl-devel, SDL-devel, libvorbis-devel
 BuildRequires: libogg-devel esound-devel, openal-devel, libtool, gettext
 BuildRequires: scons, gcc-c++
-%{?fc2:BuildRequires: desktop-file-utils}
-%{?fc1:BuildRequires: desktop-file-utils}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -84,18 +89,17 @@ scons
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 blender %{buildroot}/%{_bindir}/blender
+%{__install} -D -m0755 blender %{buildroot}%{_bindir}/blender
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/blender.png
 
-
-%if %{dfi}
-        %{__install} -D -m0644 blender.desktop %{buildroot}%{_datadir}/applications/blender.desktop
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 blender.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/blender.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		blender.desktop
 %endif
 
 %post
@@ -110,10 +114,11 @@ scons
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README doc/*
-%{_bindir}/*
+%{_bindir}/blender
 #%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/blender.png
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/blender.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 #%files devel
 #%defattr(-, root, root, 0755)

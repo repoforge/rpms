@@ -8,6 +8,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical address book
 Name: dlume
 Version: 0.2.4
@@ -58,7 +60,7 @@ EOF
 #%find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
         --add-category X-Red-Hat-Base              \
         --dir %{buildroot}%{_datadir}/applications \
         dlume.desktop

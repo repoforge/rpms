@@ -1,10 +1,9 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Leandro Pereira <leandro$linuxmag,com,br>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%define desktop_vendor rpmforge
 
 Summary: Displays information about your hardware and operating system
 Name: hardinfo
@@ -19,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://alpha.linuxmag.com.br/~leandro/hardinfo/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel >= 2.0
 Requires: pciutils
@@ -66,7 +64,7 @@ EOF
         %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/System/
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		%{name}.desktop

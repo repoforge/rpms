@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Todor T. Zviskov <warder$warder,ath,cx>
 
+%define desktop_vendor rpmforge
+
 Summary: Video-For-Linux frontend of transcode
 Name: gv4l
 Version: 2.2.3
@@ -47,7 +49,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop

@@ -6,6 +6,8 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Access data stored in Microsoft Access databases
 Name: mdbtools
 Version: 0.5
@@ -73,7 +75,7 @@ EOF
         %{__install} -D -m0644 gmdb2.desktop %{buildroot}%{_datadir}/gnome/apps/Development/gmdb2.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		gmdb2.desktop

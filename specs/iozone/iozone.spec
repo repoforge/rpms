@@ -3,11 +3,11 @@
 # Upstream: <capps$iozone,org>
 # Upstream: William Norcott <William,Norcott$oracle,com>
 
-%define real_version 3_221
+%define real_version 3_226
 
 Summary: IOzone Filesystem Benchmark
 Name: iozone
-Version: 3.221
+Version: 3.226
 Release: 1
 License: Freeware
 Group: Applications/System
@@ -50,11 +50,14 @@ fread, fwrite, random read, pread ,mmap, aio_read, aio_write.
 %files
 %defattr(-, root, root, 0755)
 %doc docs/IOzone_msword_98.pdf docs/Iozone_ps.gz src/current/Gnuplot.txt
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/iozone.1*
 %{_bindir}/iozone
 %{_datadir}/iozone/
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 3.226-1
+- Updated to release 3.226.
+
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 3.221-1
 - Updated to release 3.221.
 

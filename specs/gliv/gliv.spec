@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Guillaume Chazarain <guichaz$yahoo,fr>
 
+%define desktop_vendor rpmforge
+
 Summary: Image viewing utility
 Name: gliv
 Version: 1.8.4
@@ -64,7 +66,7 @@ EOF
 %{__install} -D -m0644 gliv.applications %{buildroot}%{_datadir}/application-registry/gliv.applications
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	gliv.desktop

@@ -2,9 +2,11 @@
 # Authority: dag
 # Upstream: Dodji Seketeli <dodji$gnome,org>
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical XML Editor
 Name: mlview
-Version: 0.6.3
+Version: 0.7.0
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -14,7 +16,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 #Source: http://savannah.gnu.org/download/mlview/tarballs/mlview-%{version}.tar.bz2
-Source: http://ftp.gnome.org/pub/GNOME/sources/mlview/0.6/mlview-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/mlview/0.7/mlview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.4.30, libgnomeui-devel >= 2.0.3, libglade-devel >= 0.17
@@ -64,7 +66,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 
 %{__install} -D -m0644 pixmaps/mlview-app-icon.png %{buildroot}%{_datadir}/pixmaps/mlview.png
 
-desktop-file-install --vendor gnome --delete-original \
+desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications          \
   --add-category X-Red-Hat-Extra                      \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
@@ -79,20 +81,23 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BRANCHES ChangeLog COPYING COPYRIGHT NEWS README
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
-%{_libdir}/*.so.*
+%config %{_sysconfdir}/gconf/schemas/mlview.schemas
+%{_bindir}/mlv
+%{_libdir}/libmlview.so.*
+%{_datadir}/applications/%{desktop_vendor}-mlview.desktop
 %{_datadir}/mlview/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/mlview.png
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/*.a
-%{_libdir}/*.so
-%exclude %{_libdir}/*.la
+%{_libdir}/libmlview.a
+%{_libdir}/libmlview.so
+%exclude %{_libdir}/libmlview.la
 
 %changelog
+* Sun Oct 03 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.6.3-1
 - Updated to release 0.6.3.
 

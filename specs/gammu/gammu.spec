@@ -2,9 +2,11 @@
 # Authority: dag
 # Upstream: Marcin Wiacek <marcin$mwiacek,com>
 
+%define desktop_vendor rpmforge
+
 Summary: Mobile phone tools
 Name: gammu
-Version: 0.96.0
+Version: 0.98.0
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -85,6 +87,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.98.0-1
+- Updated to release 0.98.0.
+
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.96.0-1
 - Updated to release 0.96.0.
 

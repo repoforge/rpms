@@ -35,7 +35,7 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.14.rc6a
+Release: 0.15.rc6a
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -162,6 +162,9 @@ use the Xine library.
 
 
 %changelog
+* Tue Oct 12 2004 Dag Wieers <dag@wieers.com> - 1.0.0-0.15.rc6a
+- Build against newer flac-1.1.1.
+
 * Fri Sep 17 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.14.rc6a
 - Update to 1.0rc6a.
 - Removed wrong "not x86 = 64bit" assumptions and build changes which seem

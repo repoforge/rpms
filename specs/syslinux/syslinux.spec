@@ -4,12 +4,12 @@
 
 # Rationale: If you need syslinux, you'd appreciate the latest, trust me.
 
-# BuildAsRoot: 1
+##BuildAsRoot: 1
 
-Summary: Simple kernel loader which boots from a FAT filesystem
+Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
 Version: 2.11
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -26,9 +26,10 @@ BuildRequires: nasm, perl, netpbm-progs
 Requires: mtools
 
 %description
-Syslinux is a simple kernel loader. It normally loads the kernel (and an 
+Syslinux is a simple kernel loader. It normally loads the kernel (and an
 optional initrd image) from a FAT filesystem. It can also be used as a
-PXE bootloader during network boots.
+PXE bootloader during network boots (PXELINUX), or for booting from
+ISO 9660 CD-ROMs (ISOLINUX).
 
 %prep
 %setup
@@ -36,6 +37,7 @@ PXE bootloader during network boots.
 %build
 %{__make} clean
 %{__make} %{?_smp_mflags} installer
+%{__make} -C sample tidy
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,23 +45,33 @@ PXE bootloader during network boots.
 			%{buildroot}%{_libdir}/syslinux/ \
 			%{buildroot}%{_includedir}
 %makeinstall install-lib \
-	BINDIR="%{buildroot}%{_bindir}" \
-	LIBDIR="%{buildroot}%{_libdir}" \
-	INCDIR="%{buildroot}%{_includedir}"
+	INSTALLROOT="%{buildroot}" \
+	BINDIR="%{_bindir}" \
+	LIBDIR="%{_libdir}" \
+	INCDIR="%{_includedir}"
 %{__install} -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_libdir}/syslinux/
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%post
+/sbin/ldconfig 2>/dev/null
+
+%postun
+/sbin/ldconfig 2>/dev/null
+
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README TODO *.doc memdisk/memdisk.doc sample/sample.*
+%doc BUGS COPYING NEWS README TODO *.doc memdisk/memdisk.doc sample/
 %{_bindir}/*
 %{_libdir}/syslinux/
-%exclude %{_libdir}/libsyslinux*
-%exclude %{_includedir}/syslinux.h
+%{_libdir}/libsyslinux*
+%{_includedir}/syslinux.h
 
 %changelog
+* Mon Oct 11 2004 Dag Wieers <dag@wieers.com> - 2.11-2
+- Re-added libsyslinux.
+
 * Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 2.11-1
 - Updated to release 2.11.
 

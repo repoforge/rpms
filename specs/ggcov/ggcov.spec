@@ -2,7 +2,13 @@
 # Authority: dag
 # Upstream: Greg Banks <gnb$alphalink,com,au>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: Graphical front-end for gcov
 Name: ggcov
@@ -59,12 +65,12 @@ EOF
 
 %{__install} -D -m0644 %{buildroot}%{_datadir}/ggcov/logo.xpm %{buildroot}%{_datadir}/pixmaps/ggcov.xpm
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 ggcov.desktop %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
 %else
 	%{__rm} -f %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		ggcov.desktop
@@ -76,15 +82,12 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc %{_mandir}/man1/ggcov.1
+%{_bindir}/ggcov
 %{_datadir}/ggcov/
-%{_datadir}/pixmaps/*.xpm
-%if %{dfi}
-        %{_datadir}/gnome/apps/Development/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/pixmaps/ggcov.xpm
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Development/ggcov.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-ggcov.desktop}
 
 %changelog
 * Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 0.2.2-1

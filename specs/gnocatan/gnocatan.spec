@@ -2,11 +2,17 @@
 # Authority: dag
 # Upstream: <gnocatan-develop$sf,net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: Addictive game based on "The Settlers of Catan"
 Name: gnocatan
-Version: 0.8.1.16
+Version: 0.8.1.30
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -54,8 +60,9 @@ GUI frontend.
 %makeinstall
 %find_lang %{name}
 
-%if !%{dfi}
-	desktop-file-install --vendor gnome --delete-original \
+%if %{!?_without_freedesktop:1}0
+	desktop-file-install \
+		--vendor %{desktop_vendor} --delete-original  \
 		--add-category X-Red-Hat-Base                 \
 		--add-category GNOME                          \
 		--add-category Application                    \
@@ -88,7 +95,7 @@ scrollkeeper-update -q || :
 %dir %{_datadir}/games/gnocatan/
 %{_datadir}/games/gnocatan/computer_names
 %{_datadir}/games/gnocatan/themes/
-%{_datadir}/applications/gnome-gnocatan.desktop
+%{_datadir}/applications/%{desktop_vendor}-gnocatan.desktop
 %{_datadir}/omf/gnocatan/
 %{_datadir}/pixmaps/*
 
@@ -102,9 +109,12 @@ scrollkeeper-update -q || :
 %{_bindir}/gnocatan-server-gtk
 %dir %{_datadir}/games/gnocatan/
 %{_datadir}/games/gnocatan/*.game
-%{_datadir}/applications/gnome-gnocatan-server.desktop
+%{_datadir}/applications/%{desktop_vendor}-gnocatan-server.desktop
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.8.1.30-1
+- Updated to release 0.8.1.30.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.8.1.16-1
 - Updated to release 0.8.1.16.
 

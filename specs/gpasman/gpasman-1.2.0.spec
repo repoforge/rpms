@@ -52,7 +52,7 @@ EOF
 	%{__install} -D -m0644 gpasman.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpasman.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		gnome-%{name}.desktop

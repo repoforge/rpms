@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <clamav-devel$lists,sf,net>
 
-### FIXME: Sysv script does not have condrestart option
+### FIXME: Sysv script does not have condrestart option (redo sysv script)
 
 %{?el2:%define _without_milter 1}
 
@@ -115,6 +115,7 @@ you will need to install %{name}-devel.
 	' etc/clamd.conf
 
 %{__perl} -pi.orig -e '
+		s|^(Example)|#$1|;
 		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
 		s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
 		s|^#(DatabaseOwner) .+$|$1 clamav|;
@@ -174,7 +175,7 @@ EOF
 %build
 %configure  \
 	--program-prefix="%{?_program_prefix}" \
-	--enable-milter \
+%{?_without_milter:--enable-milter} \
 	--enable-id-check \
 	--disable-clamav \
 	--with-user="clamav" \
@@ -272,7 +273,7 @@ fi
 %{_bindir}/clamscan
 %{_bindir}/freshclam
 %{_bindir}/sigtool
-%{_libdir}/*.so.*
+%{_libdir}/libclamav.so.*
 
 %files -n clamd
 %defattr(-, root, root, 0755)
@@ -313,10 +314,10 @@ fi
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/clamav-config
-%{_includedir}/*
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_includedir}/clamav.h
+%{_libdir}/libclamav.a
+%exclude %{_libdir}/libclamav.la
+%{_libdir}/libclamav.so
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog

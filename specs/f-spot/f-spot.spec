@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <f-spot-list$gnome,org>
 
+%define desktop_vendor rpmforge
+
 Summary: Personal photo management application
 Name: f-spot
 Version: 0.0.1
@@ -50,7 +52,7 @@ EOF
 %{__install} -D -m0644 icons/f-spot-camera.png %{buildroot}%{_datadir}/pixmaps/f-spot.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
         --add-category X-Red-Hat-Base              \
         --dir %{buildroot}%{_datadir}/applications \
         %{name}.desktop

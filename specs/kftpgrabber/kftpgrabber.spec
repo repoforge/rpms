@@ -1,10 +1,12 @@
 # $Id$
 # Authority: dag
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical FTP client for the K Desktop Environment.
 Name: kftpgrabber
 Version: 0.5.0
-Release: 1.beta1
+Release: 2.beta1
 License: GPL
 Group: Applications/Internet
 URL: http://kftpgrabber.sourceforge.net/
@@ -40,7 +42,7 @@ system and also has a built in support for Zeroconf site discovery.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 755)
-%doc %{_datadir}/doc/HTML/en/kftpgrabber/
+%doc %{_docdir}/HTML/en/kftpgrabber/
 %{_bindir}/kftpgrabber
 %{_datadir}/applications/kde/kftpgrabber.desktop
 %{_datadir}/apps/kftpgrabber/
@@ -48,12 +50,13 @@ system and also has a built in support for Zeroconf site discovery.
 %{_datadir}/services/kftpimportplugin_gftp.desktop
 %{_datadir}/servicetypes/kftpbookmarkimportplugin.desktop
 %{_includedir}/kftpgrabber/
-%exclude %{_libdir}/libkftpinterfaces.la
-%{_libdir}/libkftpinterfaces.so.0
-%{_libdir}/libkftpinterfaces.so.0.0.0
-%exclude %{_libdir}/kde3/kftpimportplugin_gftp.la
+### .la files are needed by kftpgrabber
+%{_libdir}/libkftpinterfaces.la
+%{_libdir}/libkftpinterfaces.so.*
+%{_libdir}/kde3/kftpimportplugin_gftp.la
 %{_libdir}/kde3/kftpimportplugin_gftp.so
 
 %changelog
-* Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1.beta1
+* Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.5.0-2.beta1
+- Included .la files. (Dries Verachtert)
 - Added contributed SPEC files. (Kevin Smith)

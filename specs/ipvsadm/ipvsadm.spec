@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define _sbindir /sbin
@@ -15,9 +14,8 @@ URL: http://www.LinuxVirtualServer.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.LinuxVirtualServer.org/software/%{name}-%{version}.tar.gz
+Source: http://www.LinuxVirtualServer.org/software/ipvsadm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Conflicts: piranha <= 0.4.14
 

@@ -34,7 +34,6 @@ LZO library for compression.
 
 %build
 %configure \
-	--enable-dependency-tracking \
 	--enable-pthread \
 	--enable-iproute2
 %{__make} %{?_smp_mflags}

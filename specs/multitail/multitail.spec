@@ -3,9 +3,11 @@
 # Upstream: Folkert Vanheusden <folkert$vanheusden,com>
 # Screenshot: http://www.vanheusden.com/multitail/multitail.png
 
+%define desktop_vendor rpmforge
+
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 3.4.0
+Version: 3.4.1
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -50,11 +52,14 @@ given regular expressions and deleting and adding windows.
 %files
 %defattr(-, root, root, 0755)
 %doc readme.txt
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/multitail.1*
 %config(noreplace) %{_sysconfdir}/multitail.conf
 %{_bindir}/multitail
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 3.4.1-1
+- Updated to release 3.4.1.
+
 * Mon Oct 18 2004 Dries Verachtert <dries@ulyssis.org> - 3.4.0-1
 - Updated to release 3.4.0.
 

@@ -9,6 +9,8 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 %define real_name FSlint
 
 Summary: Utility to find and clean "lint" on a filesystem
@@ -76,7 +78,7 @@ EOF
         %{__install} -D -m0644 fslint.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/fslint.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
                 fslint.desktop
@@ -91,8 +93,8 @@ EOF
 %{_bindir}/*
 %{_datadir}/fslint/
 %{_datadir}/pixmaps/*.png
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-fslint.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/fslint.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-fslint.desktop}
 
 %changelog
 * Thu Jun 17 2004 Dag Wieers <dag@wieers.com> - 2.08-1

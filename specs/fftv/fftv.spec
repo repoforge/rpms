@@ -3,6 +3,8 @@
 # Upstream: Fabrice Bellard <fabrice,bellard$free,fr>
 # Upstream: <fftv-devel$lists,sf,net>
 
+%define desktop_vendor rpmforge
+
 Summary: Advanced television viewing and recording program
 Name: fftv
 Version: 0.7.9
@@ -60,7 +62,7 @@ EOF
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	fftv.desktop

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Darryl Luff <djluff$users,sf,net>
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical database query tool for MySQL and PostgreSQL
 Name: gtksql
 Version: 0.4.2
@@ -58,7 +60,7 @@ EOF
 
 %{__install} -D -m0644 pixmaps/gtksql_gnome_icon.png %{buildroot}%{_datadir}/pixmaps/gtksql.png
 
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	gtksql.desktop

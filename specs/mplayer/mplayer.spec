@@ -41,7 +41,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.11%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.12%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -216,11 +216,11 @@ fi
 
 %post
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %postun
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %post -n libpostproc
 /sbin/ldconfig
@@ -263,6 +263,9 @@ update-desktop-database %{_datadir}/applications
 
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.0-0.12.20042025
+- Made the lack of update-desktop-database less dramatic.
+
 * Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.11.20042025
 - Update to today's CVS snapshot.
 - Simplify the desktop file install, as there is now one included.

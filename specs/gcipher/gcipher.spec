@@ -65,7 +65,7 @@ python %{_libdir}/python*/compileall.py src
 %{__install} -m0644 plugins/ciphergui/*.py %{buildroot}%{_datadir}/gcipher/plugins/ciphergui/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	gcipher.desktop

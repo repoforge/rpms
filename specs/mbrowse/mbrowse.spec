@@ -11,6 +11,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: GUI SNMP MIB browser
 Name: mbrowse
 Version: 0.3.1
@@ -68,7 +70,7 @@ EOF
 	%{__install} -D -m0644 mbrowse.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/mbrowse.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		mbrowse.desktop

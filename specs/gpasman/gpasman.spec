@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: T. Bugra Uytun <t,bugra$uytun,com>
 
+%define desktop_vendor rpmforge
+
 Summary: Personal password manager
 Name: gpasman
 Version: 1.9.3

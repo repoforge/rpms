@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Emmanuel Saracco <esaracco$noos,fr>
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical link validity checker
 Name: gurlchecker
 Version: 0.7.15
@@ -47,7 +49,7 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	gurlchecker.desktop

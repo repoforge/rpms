@@ -1,13 +1,18 @@
 # $Id$
-
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
-Version: 0.43
-Release: 2
+Version: 0.44
+Release: 1
 License: COPYRIGHTED
 Group: Applications/System
 URL: http://www.chkrootkit.org/
@@ -73,29 +78,23 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir}/chkrootkit-%{version}/ \
-			%{buildroot}%{_sysconfdir}/security/console.apps/ \
-			%{buildroot}%{_sysconfdir}/pam.d/ \
-			%{buildroot}%{_datadir}/pixmaps/
+%{__install} -D -m0644 chkrootkit.apps %{buildroot}%{_sysconfdir}/security/console.apps/chkrootkit
+%{__install} -D -m0644 chkrootkit.pam %{buildroot}%{_sysconfdir}/pam.d/chkrootkit
 
-%{__install} -m0644 chkrootkit.apps %{buildroot}%{_sysconfdir}/security/console.apps/chkrootkit
-%{__install} -m0644 chkrootkit.pam %{buildroot}%{_sysconfdir}/pam.d/chkrootkit
-
-%{__install} -m0755 xchkrootkit.sh %{buildroot}%{_bindir}/xchkrootkit
+%{__install} -D -m0755 xchkrootkit.sh %{buildroot}%{_bindir}/xchkrootkit
 %{__ln_s} -f %{_bindir}/xchkrootkit %{buildroot}%{_bindir}/chkrootkitX
 %{__ln_s} -f %{_bindir}/consolehelper %{buildroot}%{_bindir}/chkrootkit
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}/chkrootkit-%{version}/
 %{__install} -m0755 check_wtmpx chkdirs chklastlog chkproc chkrootkit chkrootkit.sh chkwtmp ifpromisc strings-static %{buildroot}%{_libdir}/chkrootkit-%{version}/
 
-%{__install} -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chkrootkit.png
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chkrootkit.png
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Utilities/
-        %{__install} -m0644 chkrootkit.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 chkrootkit.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/chkrootkit.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		chkrootkit.desktop
@@ -107,18 +106,18 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc ACKNOWLEDGMENTS COPYRIGHT README*
-%config %{_sysconfdir}/pam.d/*
-%config %{_sysconfdir}/security/console.apps/*
+%config %{_sysconfdir}/pam.d/chkrootkit
+%config %{_sysconfdir}/security/console.apps/chkrootkit
 %{_bindir}/*
 %{_libdir}/chkrootkit-%{version}/
-%{_datadir}/pixmaps/*.png
-%if %{dfi}
-        %{_datadir}/gnome/apps/Utilities/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/pixmaps/chkrootkit.png
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/chkrootkit.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
+* Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.44-1
+- Updated to release 0.44.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 0.43-2
 - Change to chkrootkit-path on execution. (gh)
 

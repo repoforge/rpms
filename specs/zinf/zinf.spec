@@ -7,6 +7,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Zinf Audio Player
 Name: zinf
 Version: 2.2.5

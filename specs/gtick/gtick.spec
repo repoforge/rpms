@@ -3,6 +3,8 @@
 # Upstream: Roland Stigge <stigge$antcom,de>
 # Upstream: <gtick-devel$nongnu,org>
 
+%define desktop_vendor rpmforge
+
 Summary: Metronome application
 Name: gtick
 Version: 0.3.2
@@ -51,7 +53,7 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop

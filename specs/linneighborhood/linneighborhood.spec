@@ -4,14 +4,23 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh9:%define _without_samba3 1}
+%{?rh8:%define _without_samba3 1}
+%{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_samba3 1}
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_samba3 1}
+%{?rh6:%define _without_freedesktop 1}
+%{?rh6:%define _without_samba3 1}
+
+%define desktop_vendor rpmforge
 
 %define real_name LinNeighborhood
 
 Summary: SMB network neighborhood
 Name: linneighborhood
 Version: 0.6.5
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Communications
 URL: http://www.bnro.de/~schmidjo/
@@ -35,14 +44,13 @@ or Samba without smbmount/smbumount/smbmnt but with smbfs installed.
 
 %prep
 %setup -n %{real_name}-%{version}
-%{?fc1:%patch0 -p1}
-%{?el3:%patch0 -p1}
+%{!?_without_samba3:%patch0 -p1}
 
-%{__cat} <<EOF >%{real_name}.desktop
+%{__cat} <<EOF >linneighborhood.desktop
 [Desktop Entry]
 Name=Linneighborhood SMB Browser
 Comment=Browse Samba and Windows shares
-Icon=LinNeighborhood.xpm
+Icon=linneighborhood.xpm
 Exec=linneighborhood
 Terminal=false
 Type=Application
@@ -58,19 +66,17 @@ EOF
 %makeinstall
 %find_lang %{real_name}
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 LinNeighborhood.xpm %{buildroot}%{_datadir}/pixmaps/
+%{__install} -D -m0644 LinNeighborhood.xpm %{buildroot}%{_datadir}/pixmaps/linneighborhood.xpm
 
-%{__ln_s} -f %{real_name} %{buildroot}%{_bindir}/%{name}
+%{__ln_s} -f LinNeighborhood %{buildroot}%{_bindir}/linneighborhood
 
-%if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Internet/
-	%{__install} -m0644 %{real_name}.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 linneighborhood.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/linneighborhood.desktop
 %else
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{real_name}.desktop
+		linneighborhood.desktop
 %endif
 
 %clean
@@ -79,16 +85,17 @@ EOF
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog CONFIGURATION COPYING NEWS README TODO THANKS
-%{_bindir}/*
-%{_datadir}/icons/*
-%{_datadir}/pixmaps/*
-%if %{dfi}
-	%{_datadir}/gnome/apps/Internet/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_bindir}/linneighborhood
+%{_bindir}/LinNeighborhood
+%{_datadir}/icons/LinNeighborhood.xpm
+%{_datadir}/pixmaps/linneighborhood.xpm
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/linneighborhood.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-linneighborhood.desktop}
 
 %changelog
+* Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.6.5-3
+- Rebuild with cosmetic changes.
+
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.6.5-2
 - Patch for samba3 from Debian. (Ng Sheaufeng)
 

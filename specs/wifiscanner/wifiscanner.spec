@@ -2,6 +2,7 @@
 # Authority: dag
 
 %define real_name WifiScanner
+%define desktop_vendor rpmforge
 
 Summary: Discover wireless clients and access points
 Name: wifiscanner
@@ -37,7 +38,7 @@ WifiScanner is a tool to discover wireless clients and access points.
 %find_lang %{name}
 
 #%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-#desktop-file-install --vendor gnome                \
+#desktop-file-install --vendor %{desktop_vendor}    \
 #	--add-category X-Red-Hat-Base              \
 #	--add-category Application                 \
 #	--add-category AudioVideo                  \

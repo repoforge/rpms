@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Stephen Kennedy <steve9000$users,sf,net>
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical visual diff and merge tool
 Name: meld
 Version: 0.9.4.1
@@ -67,7 +69,7 @@ EOF
 %{__install} -m0644 glade2/pixmaps/* %{buildroot}%{_datadir}/meld/glade2/pixmaps/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	meld.desktop

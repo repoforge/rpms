@@ -3,12 +3,11 @@
 # Upstream: <cacti-user$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
-%define real_version 0.8.5a
 
 Summary: Network monitoring/graphing tool
 Name: cacti
-Version: 0.8.5
-Release: 2.a
+Version: 0.8.6
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.raxnet.net/products/cacti/
@@ -16,7 +15,7 @@ URL: http://www.raxnet.net/products/cacti/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.raxnet.net/downloads/cacti/cacti-%{real_version}.tar.gz
+Source: http://www.raxnet.net/downloads/cacti/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, net-snmp-utils, openssl-devel
@@ -54,7 +53,7 @@ database.
 This package includes the documentation for %{name}.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %{__perl} -pi.orig -e 's|/lib([ /])|/%{_lib}$1|g' cactid/configure
 
@@ -128,6 +127,9 @@ userdel cacti &>/dev/null || :
 %doc docs/
 
 %changelog
+* Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 0.8.6-1
+- Updated to release 0.8.6.
+
 * Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 0.8.5-2.a
 - Fixed correct location in cron script. (Alex Vitola)
 

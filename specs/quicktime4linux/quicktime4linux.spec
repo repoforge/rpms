@@ -4,7 +4,7 @@
 
 Summary: Quicktime for Linux
 Name: quicktime4linux
-Version: 2.0.3
+Version: 2.0.4
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -51,6 +51,9 @@ for a consumer library should use OpenQuicktime or FFMPEG.
 %{_includedir}/quicktime/
 
 %changelog
+* Fri Aug 13 2004 Dag Wieers <dag@wieers.com> - 2.0.4-1
+- Updated to release 2.0.4.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 2.0.3-1
 - Updated to release 2.0.3.
 

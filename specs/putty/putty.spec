@@ -8,6 +8,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
 Version: 0.56

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Alp Toker <alp$atoker,com>
+
+%define desktop_vendor rpmforge
 
 Summary: Tray applet for dynamically changing the XFree86 display mode
 Name: switcher
@@ -17,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://www.atoker.com/switcher/switcher-%{version}.tar.gz
 Source1: egg-sharp.dll
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: mono, gtk-sharp
 ### Prevent building on systems with older XFree86 without Xrandr
@@ -74,7 +74,7 @@ EOF
 %{__install} -m0755 switcher.exe %{buildroot}%{_bindir}
 %{__install} -m0755 switcher.sh %{buildroot}%{_bindir}/switcher
 
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--add-category Application                 \
 	--add-category System                      \

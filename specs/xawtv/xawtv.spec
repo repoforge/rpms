@@ -89,8 +89,8 @@ EOF
 %{_datadir}/xawtv/
 %{_prefix}/X11R6/lib/X11/app-defaults/*
 %{!?rh62:%{_prefix}/X11R6/lib/X11/*/app-defaults/*}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/xawtv.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xawtv.desktop}
 
 %changelog
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 3.94-1

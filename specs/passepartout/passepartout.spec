@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Fredrik Arnerup <e97_far$e,kth,se>
 
+%define desktop_vendor rpmforge
+
 Summary: Open Source desktop publishing application
 Name: passepartout
 Version: 0.5
@@ -53,7 +55,7 @@ EOF
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	passepartout.desktop

@@ -5,7 +5,7 @@
 Summary: Versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
 Version: 1.2.2
-Release: 2
+Release: 3
 License: GPL
 Group: Development/Tools
 URL: http://anjuta.sourceforge.net/
@@ -48,11 +48,11 @@ These are usually run via a text console, and can be unfriendly to use.
 
 %post
 scrollkeeper-update
-update-desktop-database %{_datadir}/applications
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %postun
 scrollkeeper-update
-update-desktop-database %{_datadir}/applications
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %clean
@@ -78,6 +78,9 @@ update-desktop-database %{_datadir}/applications
 
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.2.2-3
+- Made the lack of update-desktop-database less dramatic.
+
 * Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-2
 - Added update-desktop-database scriplet calls.
 

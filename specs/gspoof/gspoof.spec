@@ -3,6 +3,7 @@
 # Upstream: Embyte <embyte$madlab,it>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%define desktop_vendor rpmforge
 
 Summary: Network tool to build and send TCP/IP packets
 Name: gspoof
@@ -68,7 +69,7 @@ EOF
 	%{__install} -D -m0644 gspoof.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/gspoof.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		gspoof.desktop
