@@ -3,18 +3,20 @@
 
 %{!?builduser:  %define builduser  machbuild}
 %{!?buildgroup: %define buildgroup machbuild}
+# Override with --define 'python python2'
+%{!?python:     %define python     python}
 
 Summary: Make a chroot
 Name: mach
 Version: 0.4.5
-Release: 1
+Release: 2
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
-Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.gz
+Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.bz2
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: rpm-python, apt, sed, cpio
-BuildRequires:	python >= 2.0.0
+BuildRequires:	%{python} >= 2.0.0
 
 %description
 mach makes a chroot.
@@ -94,13 +96,16 @@ fi
 
 
 %changelog
+* Thu May  6 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-2
+- Added %%{python} macro to allow python2 dependency.
+
 * Fri Mar 19 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-1
 - Update to 0.4.5
 
-* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> - 0.4.3.1-1.fr
+* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> - 0.4.3.1-1
 - Update to 0.4.3.1.
 
-* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net> - 0.4.3-1.fr
+* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net> - 0.4.3-1
 - Cosmetic spec file changes.
 - Update to 0.4.3.
 
