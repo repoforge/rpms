@@ -77,7 +77,7 @@ export PATH=`pwd`/ghc-6.2/lib/i386-unknown-linux:`pwd`/ghc-6.2/bin/i386-unknown-
 /sbin/ldconfig 2>/dev/null
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc README docs
 %{_bindir}/*
 %{_includedir}/*
