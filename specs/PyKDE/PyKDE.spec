@@ -4,8 +4,8 @@
 
 Summary: Python bindings for the KDE desktop environment
 Name: PyKDE
-Version: 3.8.0
-Release: 4
+Version: 3.11alpha5
+Release: 1
 License: MIT
 Group: Development/Languages
 URL: http://www.riverbankcomputing.co.uk/pykde/
@@ -230,6 +230,9 @@ strip $(find ${DESTDIR} -type f | grep '.so')
 %{_libdir}/libsip.so.10.1.1
 
 %changelog
+* Fri Apr 23 2004 Dries Verachtert <dries@ulyssis.org> 3.11alpha5-1
+- update to newer version: 3.11alpha5
+
 * Thu Apr 22 2004 Dries Verachtert <dries@ulyssis.org> 3.8.0-4
 - rebuild
 
