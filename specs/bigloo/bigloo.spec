@@ -42,7 +42,7 @@ programs.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall DESTDIR=%{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}
