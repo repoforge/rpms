@@ -18,7 +18,7 @@ Source: http://dl.sf.net/amyedit/amyedit-%{version}.tar.bz2
 Patch: makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtkmm24-devel, gcc-c++
+BuildRequires: gtkmm24-devel, gcc-c++, pkgconfig
 
 %description
 AmyEdit is a gtkmm LaTeX Editor designed to allow easier creation of LaTeX

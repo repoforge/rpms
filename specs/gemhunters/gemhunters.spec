@@ -21,8 +21,8 @@ Source: http://dl.sf.net/gemhun/GemHunters-src-%{real_version}.tar.gz
 # Source1: http://dl.sf.net/gemhun/GemHunters-data-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, kyra-devel, SDL_image-devel
-BuildRequires: SDL_mixer-devel, SDL_net-devel, automake14
+BuildRequires: SDL-devel, kyra-devel, SDL_image-devel, gcc-c++, bison
+BuildRequires: SDL_mixer-devel, SDL_net-devel, automake14, gettext
 
 %description
 Gemhun is all about grouping gems/stones of a chosen amount together which
