@@ -73,10 +73,7 @@ and info format.
 %{_datadir}/doc/liquidwar/pdf/*
 %{_datadir}/doc/liquidwar/ps/*
 %{_datadir}/doc/liquidwar/txt/*
-%{_datadir}/info/liquidwar.info-1.gz
-%{_datadir}/info/liquidwar.info-2.gz
-%{_datadir}/info/liquidwar.info-3.gz
-%{_datadir}/info/liquidwar.info.gz
+%{_datadir}/info/liquidwar.*
 %{_datadir}/man/man6/liquidwar-mapgen.6.gz
 %{_datadir}/man/man6/liquidwar-server.6.gz
 %{_datadir}/man/man6/liquidwar.6.gz
