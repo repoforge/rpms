@@ -4,8 +4,8 @@
 
 Summary: API document browser
 Name: devhelp
-Version: 0.9.1
-Release: 3
+Version: 0.9.2
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.imendio.com/projects/devhelp/
@@ -42,6 +42,7 @@ Library of Devhelp for embedding into other applications.
 [ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.6"
 [ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7"
 [ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7.2"
+[ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7.3"
 [ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.8"
 [ -f "$MOZILLA_FIVE_HOME/libgtkembedmoz.so" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla"
 
@@ -91,6 +92,9 @@ intltoolize
 %{_libdir}/pkgconfig/libdevhelp-1.0.pc
 
 %changelog
+* Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.9.1-3
 - Fix for newly release mozilla 1.7.
 

@@ -4,8 +4,8 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 0.90
-Release: 2.a
+Version: 0.91
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
@@ -25,6 +25,13 @@ networks like MSN/ICQ/Jabber.
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e '
+		s|\$\(BINDIR\)|\$(sbindir)|g;
+		s|\$\(DATADIR\)|\$(datadir)/bitlbee|g;
+		s|\$\(ETCDIR\)|\$(sysconfdir)/bitlbee|g;
+		s|\$\(MANDIR\)|\$(mandir)|g;
+	' Makefile */Makefile
 
 %{__cat} <<EOF >bitlbee.xinet
 # default: off
@@ -58,9 +65,9 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 ### FIXME: makeinstall-phase doesn't use autotool dirs and wants to change ownerships.
-#makeinstall
-%{__install} -D -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
-%{__install} -D -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
+%makeinstall
+#%{__install} -D -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
+##%{__install} -D -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
 %{__install} -D -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
@@ -73,17 +80,21 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING bitlbee.conf help.txt motd.txt doc/AUTHORS doc/CHANGES doc/CREDITS
+%doc COPYING bitlbee.conf motd.txt doc/AUTHORS doc/CHANGES doc/CREDITS
 %doc doc/FAQ doc/INSTALL doc/README doc/TODO doc/*.xml utils/
-%doc %{_mandir}/man?/*
-%config %{_sysconfdir}/xinetd.d/*
-%{_sbindir}/*
+%doc %{_mandir}/man5/bitlbee.conf.5*
+%doc %{_mandir}/man8/bitlbee.8*
+%config %{_sysconfdir}/xinetd.d/bitlbee
+%{_sbindir}/bitlbee
 %{_datadir}/bitlbee/
 
 %defattr(-, daemon, root, 0700)
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Mon Sep 28 2004 Dag Wieers <dag@wieers.com> - 0.91-1
+- Updated to release 0.91.
+
 * Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 0.90-2.a
 - Updated to release 0.90a.
 

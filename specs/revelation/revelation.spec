@@ -5,7 +5,7 @@
 
 Summary: Password manager
 Name: revelation
-Version: 0.3.3
+Version: 0.3.4
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -54,6 +54,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/revelation/
 
 %changelog
+* Tue Sep 28 2004 Dag Wieers <dag@wieers.com> - 0.3.4-1
+- Updated to release 0.3.4.
+
 * Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.3.3-1
 - Updated to release 0.3.3.
 

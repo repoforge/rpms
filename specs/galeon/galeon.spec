@@ -8,7 +8,7 @@
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
 Version: 1.3.17
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://galeon.sourceforge.net/
@@ -55,7 +55,8 @@ EOF
 %build
 %configure \
 	--disable-werror \
-	--disable-schemas-install
+	--disable-schemas-install \
+	--with-mozilla-snapshot="1.7.2"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -97,6 +98,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 1.3.17-4
+- Build against new mozilla.
+
 * Thu Aug 12 2004 Dag Wieers <dag@wieers.com> - 1.3.17-3
 - Another correction *sigh*. (Jorge Bartos)
 

@@ -10,7 +10,7 @@
 
 Summary: High quality TV viewer
 Name: tvtime
-Version: 0.9.12
+Version: 0.9.13
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -59,6 +59,7 @@ videophiles.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README* data/COPYING* docs/html/
 %doc %{_mandir}/man?/*
+%doc %{_mandir}/de/man?/*
 %config(noreplace) %{_sysconfdir}/tvtime/
 %{_bindir}/tvtime-command
 %{_bindir}/tvtime-configure
@@ -67,10 +68,14 @@ videophiles.
 %{_datadir}/icons/hicolor/*/apps/tvtime.png
 %{_datadir}/pixmaps/*
 %{_datadir}/tvtime/
+
 %defattr(4775, root, root, 0755)
 %{_bindir}/tvtime
 
 %changelog
+* Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 0.9.13-1
+- Updated to release 0.9.13.
+
 * Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 0.9.12-1
 - Cosmetic changes.
 
