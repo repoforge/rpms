@@ -5,7 +5,7 @@
 Summary: viewer for DXF drawings
 Name: dxfscope
 Version: 0.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://wildspark.com/dxfscope/
@@ -16,18 +16,15 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://wildspark.com/dxfscope/%{name}-current.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, XFree86-devel
-Requires: XFree86
+%{?fc1:Requires: XFree86}
+%{?fc2:Requires: xorg-x11}
 
-#(d) primscreenshot: http://wildspark.com/dxfscope/screenshot-city-thumb.png
-#(d) screenshotsurl: http://wildspark.com/dxfscope/
+# Screenshot: http://wildspark.com/dxfscope/screenshot-city-thumb.png
+# ScreenshotURL: http://wildspark.com/dxfscope/
 
 %description
 DXFscope is a viewer for DXF drawings. It supports the most commonly used
 entities of the DXF specification.
-
-%description -l nl
-DXFscope is een viewer voor DXF tekeningen. Het ondersteunt de meest
-gebruikte onderdelen van de DXF specificatie.
 
 %prep
 %{__rm} -rf "${RPM_BUILD_ROOT}"
@@ -49,10 +46,14 @@ install -D -oroot -m0644 romans2.cxf $RPM_BUILD_ROOT/usr/share/dxfscope/romans2.
 %defattr(-,root,root,0755)
 %doc README COPYING HACKING TODO
 %{_bindir}/dxfscope
-/usr/share/dxfscope/help.dxf
-/usr/share/dxfscope/romans2.cxf
+%{_datadir}/dxfscope/help.dxf
+%{_datadir}/dxfscope/romans2.cxf
 
 %changelog
+* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.2-3
+- install require fix for fedora core 2
+  Thanks to Jochen Schlick for reporting the bug!
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 0.2-2
 - cleanup of spec file
 
