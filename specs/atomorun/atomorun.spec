@@ -1,4 +1,4 @@
-# $Id: atomorun.spec,v 1.1 2004/02/27 17:12:45 driesve Exp $
+# $Id$
 
 # Authority: dries
 

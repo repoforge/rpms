@@ -1,4 +1,4 @@
-# $Id: audacity.spec,v 1.2 2004/03/02 09:21:41 thias Exp $
+# $Id$
 
 #define prever         pre3
 %define desktop_vendor freshrpms

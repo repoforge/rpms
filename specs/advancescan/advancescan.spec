@@ -1,4 +1,4 @@
-# $Id: advancescan.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 Summary: Command line rom manager for MAME, MESS and Raine.
 Name: advancescan

@@ -1,16 +1,21 @@
-# $Id$
+# Authority: freshrpms
 
-Summary: Multimedia keyboard button tool for GNOME.
+Summary: Versatile Keyboard daemon.
 Name: acme
-Version: 2.4.2
-Release: 2.fr
+Version: 2.0.2
+Release: 0
 Group: System Environment/Daemons
 License: GPL
 URL: http://www.hadess.net/misc-code.php3
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
 Source: http://www.hadess.net/files/software/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
-BuildRequires: libgnomeui-devel >= 2.0.0, libglade2-devel >= 2.0.0
-BuildRequires: libwnck-devel, startup-notification-devel, gettext
+Prefix: %{_prefix}
+
+BuildRequires: libgnomeui-devel >= 2.0.0, libglade2-devel >= 2.0.0, libwnck-devel, gob2
 
 %description
 ACME is a small GNOME tool to make use of the multimedia buttons present on
@@ -18,20 +23,20 @@ most laptops and internet keyboards: Volume, Brightness, Power, Eject, My Home,
 Search, E-Mail, Sleep, Screensaver, Finance and Help buttons.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --disable-schemas-install
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -39,6 +44,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 scrollkeeper-update -q
 
 %postun
+/sbin/ldconfig
 scrollkeeper-update -q
 
 %files -f %{name}.lang
@@ -50,13 +56,5 @@ scrollkeeper-update -q
 %{_datadir}/control-center-2.0/capplets/*
 
 %changelog
-* Thu Feb 12 2004 Matthias Saou <http://freshrpms.net/> 2.4.2-2.fr
-- Removed gob2 build dep, it was unneeded AFAICT and didn't exist on YDL.
-
-* Wed Feb  4 2004 Matthias Saou <http://freshrpms.net/> 2.4.2-1.fr
-- Update to 2.4.2.
-- Remove ldconfig from postun.
-
 * Wed Apr 02 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)
-

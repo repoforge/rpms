@@ -1,4 +1,4 @@
-# $Id: advancecomp.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 Summary: Recompression utilities for .PNG, .MNG and .ZIP files.
 Name: advancecomp

@@ -1,4 +1,4 @@
-# $Id: a52dec.spec,v 1.2 2004/02/26 18:10:58 thias Exp $
+# $Id$
 
 Summary: A free library for decoding ATSC A/52 (aka AC-3) streams
 Name: a52dec

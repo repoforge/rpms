@@ -1,4 +1,4 @@
-# $Id: alsa-utils.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 #define prever rc2
 

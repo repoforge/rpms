@@ -1,8 +1,11 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <amavis-user@lists.sourceforge.net>
 
-%define rrelease p7
+%define milter 1
+%{?rhel3:%undefine milter}
+
+%define rrelease p8
 
 %define logmsg logger -t amavisd-new/rpm
 
@@ -21,17 +24,17 @@ Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}-%{rrelease}.ta
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
-BuildRequires: sendmail >= 8.12
-#BuildRequires: sendmail-devel >= 8.12
+BuildRequires: sendmail
+#BuildRequires: postfix
+%{?milter:BuildRequires: sendmail-devel >= 8.12}
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
-Requires: bzip2, file, lha, ncompress, unarj
+Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
 Requires: perl(Archive::Tar), perl(Archive::Zip), perl(Compress::Zlib)
 Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
 Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
 Requires: perl(Time::HiRes), perl(Digest::MD5), perl(Digest::SHA1)
 Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
-Requires: perl-MailTools
-Requires: perl(Net::Server) >= 0.86
+Requires: perl-MailTools, perl(Net::Server) >= 0.86
 Obsoletes: amavisd
 
 %description
@@ -130,18 +133,21 @@ exit $RETVAL
 EOF
 
 %build
+%if %{?milter:1}%{!?milter:0}
 cd helper-progs
 %configure \
 	--with-user="amavis" \
 	--with-sockname="%{_localstatedir}/spool/amavis/amavisd.sock" \
 	--with-runtime-dir="%{_localstatedir}/spool/amavis" \
+	--enable-postfix \
 	--enable-all
 %{__make} %{?_smp_mflags}
+%endif
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
-%makeinstall -C helper-progs
+%{?milter:%makeinstall -C helper-progs}
 
 %{__perl} -pi.orig -e '
 		s|= '\''vscan'\''|= "amavis"|;
@@ -192,11 +198,13 @@ if [ -r /etc/mail/aliases ]; then
 	fi
 fi
 
+%if %{?milter:1}%{!?milter:0}
 if [ -f /etc/mail/sendmail.mc ]; then
 	if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
 		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/spool/amavis/amavisd.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
 	fi
 fi
+%endif
 
 %preun
 if [ $1 -eq 0 ] ; then
@@ -222,7 +230,11 @@ fi
 %dir %{_localstatedir}/spool/amavis/virusmails/
 
 %changelog
-#- Added perl-Net-Server >= 0.86 as a static requirement. (Alfredo Milani-Comparetti)
+* Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 20030616-1.p8
+- Updated to release 20030616-p8.
+- Make milter-support optional (for RHEL3).
+- Added lzop requirement.
+- Added perl-Net-Server >= 0.86 as a static requirement. (Alfredo Milani-Comparetti)
 
 * Mon Jan 05 2004 Dag Wieers <dag@wieers.com> - 20030616-3.p7
 - Updated to release 20030616-p7

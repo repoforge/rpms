@@ -1,4 +1,4 @@
-# $Id: alsa-driver.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 # Is this a preversion?
 #define prever rc2

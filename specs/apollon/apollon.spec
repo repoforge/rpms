@@ -1,4 +1,4 @@
-# $Id: apollon.spec,v 1.3 2004/02/27 17:08:23 driesve Exp $
+# $Id$
 
 # Authority: dries
 

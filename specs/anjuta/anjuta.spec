@@ -1,4 +1,4 @@
-# $Id: anjuta.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 Summary: A versatile Integrated Development Environment (IDE) for C and C++.
 Name: anjuta

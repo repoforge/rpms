@@ -1,4 +1,4 @@
-# $Id: aalib.spec,v 1.1 2004/02/24 16:18:09 thias Exp $
+# $Id$
 
 %define real_version 1.4.0
 
