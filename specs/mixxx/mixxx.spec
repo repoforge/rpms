@@ -10,7 +10,7 @@
 
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
-Version: 1.3.1
+Version: 1.3.2
 Release: 0
 License: GPL
 Group: Applications/Multimedia
@@ -97,6 +97,9 @@ popd
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/mixxx.desktop}
 
 %changelog
+* Mon Jun 14 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-0
+- Update to 1.3.2.
+
 * Fri Jun 11 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-0
 - Update to 1.3.1.
 
