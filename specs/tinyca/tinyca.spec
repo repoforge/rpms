@@ -3,12 +3,11 @@
 # Upstream: <sm@sm-zone.net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
-
 %define real_name TinyCA
 
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -90,6 +89,9 @@ EOF
 %endif
 
 %changelog
+* Sun May 23 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Wed May 12 2004 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Updated to release 0.6.0.
 
