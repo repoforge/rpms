@@ -8,7 +8,7 @@
 Summary: Real Time software audio/video Encoder library
 Name: librte
 Version: 0.5.1
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://zapping.sf.net/
@@ -21,8 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?rh6:BuildRequires: doxygen}
 
-#Provides: %{real_name}
-Obsoletes: %{real_name}
+Obsoletes: rte < %{version}
 
 %description
 The RTE library is a frontend or wrapper of other libraries or programs
@@ -32,12 +31,14 @@ codecs and the Zapping TV viewer: http://zapping.sf.net,
 precisely its recording plugin.
 
 %package devel
-Summary: Static library and API documentation of the Real Time Encoder
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description devel
-Static library and API documentation of the Real Time Encoder.
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -51,11 +52,11 @@ Static library and API documentation of the Real Time Encoder.
 %makeinstall
 %find_lang %{real_name}
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
+%post
+/sbin/ldconfig
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -71,11 +72,14 @@ Static library and API documentation of the Real Time Encoder.
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
+* Sun May 23 2004 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Latest release, not obsoleting rte.
+
 * Fri Feb 28 2003 Dag Wieers <dag@wieers.com> - 0.5.1-0
-- Updated to 0.5.1.
+- Updated to release 0.5.1.
 
 * Thu Feb 20 2003 Dag Wieers <dag@wieers.com> - 0.5-0
 - Initial package. (using DAR)
