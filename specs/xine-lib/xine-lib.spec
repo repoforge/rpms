@@ -35,7 +35,7 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.18
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
