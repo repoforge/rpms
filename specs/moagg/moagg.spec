@@ -32,7 +32,19 @@ laser ports, magnets, black holes, cannons, rockets and grinders you have to
 master.
 
 %prep
-%setup -D -a 1
+%setup -D -b 1
+
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Moagg
+Comment=Mother of all gravity games
+Exec=moagg
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=Application;Game;X-Red-Hat-Extra;
+EOF
 
 %build
 %configure \
@@ -42,9 +54,21 @@ master.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -Rf %{buildroot}%{_datadir}/doc/moagg
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor net                  \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{name}.desktop
+
 
 %files
 %defattr(-,root,root, 0755)
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO doc moagg.dxy 
+%{_bindir}/moagg
+%{_datadir}/games/moagg
+%{_datadir}/applications/*.desktop
 
 %changelog
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 0.8-1
