@@ -14,7 +14,7 @@ URL: http://www.dooglio.net/VncSelector/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
-BuildRequires: gcc, fltk
+BuildRequires: fltk-devel
 Requires: fltk
 
 # Screenshot: http://www.dooglio.net/VncSelector/screenshot.png
