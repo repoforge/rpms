@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# ExcludeDist: fc2
+# ExclusiveDist: el2 rh7 rh9 el3 fc1
 
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile

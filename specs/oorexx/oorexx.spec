@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: <oorexx-devel$lists,sourceforge,net>
 
 %define real_name ooRexx
 

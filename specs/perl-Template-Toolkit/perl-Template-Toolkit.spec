@@ -35,22 +35,20 @@ LaTeX, and so on.
 %build
 %{__perl} Makefile.PL TT_DBI=n TT_XS_ENABLE=y TT_ACCEPT=y INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} \
-	TT_PREFIX=/usr/share/tt2
+	TT_PREFIX="%{_datadir}/tt2"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	DESTDIR=%{buildroot} \
-	TT_PREFIX=%{buildroot}/usr/share/tt2
-#	PREFIX=%{buildroot}/usr \
+	PREFIX="%{buildroot}%{_prefix}" \
+	TT_PREFIX="%{buildroot}%{_datadir}/tt2"
 #	PERLPREFIX=%{buildroot}/usr \
 #	SITEPREFIX=%{buildroot}/usr \
 #	VENDORPREFIX=%{buildroot}/usr \
 
-
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -6,7 +6,7 @@
 
 Summary: Content filtering web proxy
 Name: dansguardian
-Version: 2.8.0.2
+Version: 2.8.0.4
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -26,7 +26,6 @@ MIME filtering, file extension filtering, POST filtering.
 
 %prep
 %setup
-
 
 ### FIXME: Add a default dansguardian.httpd for Apache. (Please fix upstream)
 %{__cat} <<EOF >dansguardian.httpd
@@ -201,6 +200,9 @@ fi
 %{_localstatedir}/log/dansguardian/
 
 %changelog
+* Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 2.8.0.4-1
+- Updated to release 2.8.0.4.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 2.8.0.2-1
 - Updated to release 2.8.0.2.
 

@@ -3,6 +3,10 @@
 
 # ExcludeDist: fc3 el4
 
+%{?rh8:%define _with_perl_5_6 1}
+%{?rh7:%define _with_perl_5_6 1}
+%{?el2:%define _with_perl_5_6 1}
+
 %define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -11,17 +15,12 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 3.0.2
-Release: 1
+Release: 2
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
 
 Source: http://www.apache.org/dist/spamassassin/Mail-SpamAssassin-%{version}.tar.bz2
-Source2: redhat_local.cf
-Source3: spamassassin-default.rc
-Source4: spamassassin-spamc.rc
-Source5: spamassassin.sysconfig
-Source10: spamassassin-helper.sh
 Source99: filter-requires-spamassassin.sh
 Patch3: spamassassin-3.0.2-krb5-backcompat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -65,11 +64,44 @@ with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
 %setup -n %{real_name}-%{version}
 %patch3 -p0
 
+%{__cat} <<EOF >local.cf		### SOURCE2
+# These values can be overridden by editing ~/.spamassassin/user_prefs.cf 
+# (see spamassassin(1) for details)
+
+# These should be safe assumptions and allow for simple visual sifting
+# without risking lost emails.
+
+required_hits 5
+report_safe 0
+rewrite_header Subject [SPAM]
+EOF
+
+%{__cat} <<EOF >spamassassin-default.rc	### SOURCE3
+### send mail through spamassassin
+:0fw
+| /usr/bin/spamassassin
+EOF
+
+%{__cat} <<EOF >spamassassin-spamc.rc	### SOURCE4
+# send mail through spamassassin
+:0fw
+| /usr/bin/spamc
+EOF
+
+%{__cat} <<EOF >spamassassin.sysconfig		### SOURCE5
+# Options to spamd
+SPAMDOPTIONS="-d -c -m5 -H"
+EOF
+
+%{__cat} <<EOF >spamassassin-helper.sh		### SOURCE10
+#!/bin/sh
+/usr/bin/spamassassin -e
+EOF
+
 %build
 export CFLAGS="%{optflags} -fPIC"
-
 %{__perl} Makefile.PL \
-		PREFIX="%{buildroot}%{_prefix}" \
+%{!?_with_perl_5_6:DESTDIR="%{buildroot}"} \
 		SYSCONFDIR="%{_sysconfdir}" \
 		INSTALLDIRS="vendor" \
 		ENABLE_SSL="yes" </dev/null
@@ -81,6 +113,7 @@ export CFLAGS="%{optflags} -fPIC"
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
+	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLMAN1DIR="%{buildroot}%{_mandir}/man1" \
 	INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3" \
 	LOCAL_RULES_DIR="%{buildroot}%{_sysconfdir}/mail/spamassassin"
@@ -89,11 +122,11 @@ export CFLAGS="%{optflags} -fPIC"
 %{__install} -Dp -m0644 spamc/libspamc.so %{buildroot}%{_libdir}/libspamc.so
 %{__install} -Dp -m0644 spamc/libspamc.h %{buildroot}%{_includedir}/libspamc.h
 
-%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
-%{__install} -Dp -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
-%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-default.rc
-%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-spamc.rc
-%{__install} -Dp -m0644 %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-helper.sh
+%{__install} -Dp -m0644 local.cf %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
+%{__install} -Dp -m0644 spamassassin.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
+%{__install} -Dp -m0644 spamassassin-default.rc %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-default.rc
+%{__install} -Dp -m0644 spamassassin-spamc.rc %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-spamc.rc
+%{__install} -Dp -m0644 spamassassin-helper.sh %{buildroot}%{_sysconfdir}/mail/spamassassin/spamassassin-helper.sh
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}
@@ -148,6 +181,10 @@ fi
 %doc sql/ tools/ masses/ contrib/
 
 %changelog
+* Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 3.0.2-2
+- Removed accidental %%{buildroot} from scripts. (Robert Evans)
+- Reinserted perl(Mail::SpamAssassin) provides. (Josh Kelley)
+
 * Fri Mar 25 2005 Dag Wieers <dag@wieers.com> - 3.0.2-1
 - Updated to release 3.0.2.
 
