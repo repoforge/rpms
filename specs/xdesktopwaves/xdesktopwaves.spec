@@ -11,7 +11,6 @@ URL: http://xdesktopwaves.sourceforge.net/
 Source: http://dl.sf.net/xdesktopwaves/xdesktopwaves-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel
-ExclusiveArch: i386
 
 %description
 xdesktopwaves is a cellular automata setting the background of your X Windows
