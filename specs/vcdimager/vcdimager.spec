@@ -3,14 +3,14 @@
 
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
-Version: 0.7.20
+Version: 0.7.14
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
 Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7_UNSTABLE/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, popt
+BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt
 
 %description 
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
@@ -51,9 +51,9 @@ and showing some information about the VideoCD.
 
 
 %changelog
-* Sat Feb 21 2004 Matthias Saou <http://freshrpms.net/> 0.7.20-1
-- Update to 0.7.20.
-- Added libcdio requirement.
+* Mon May 24 2004 Matthias Saou <http://freshrpms.net/> 0.7.14-3
+- Tried and update to 0.7.20, but the looping libcd* deps are a problem.
+- Rebuild for Fedora Core 2.
 
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.7.14-2
 - Rebuild for Fedora Core 1.
