@@ -4,7 +4,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.7
+Version: 0.7.1
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -75,6 +75,9 @@ python ./setup.py install \
 %{_libdir}/python*/site-packages/trac/
 
 %changelog
+* Fri Jun 04 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Sun May 30 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 
