@@ -6,7 +6,7 @@
 
 Summary: far from finished attempt of a buildserver in python
 Name: pydar
-Version: 0.001
+Version: 0.002
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -19,10 +19,27 @@ Source: pydar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: mach
 Requires: mach, coreutils
-Requires: mach = 0.4.3
 
 %description
 Not finished, not to be released!
+
+%package server
+Summary: server part
+Group: Development/Tools
+Requires: mach = 0.4.3
+Requires: %{name} = %{version}-%{release}
+
+%package client
+Summary: client part
+Group: Development/Tools
+Requires: %{name} = %{version}-%{release}
+
+%description server
+Not finished, not to be released!
+
+%description client
+Not finished, not to be released!
+
 
 %prep
 %setup -n pydar
@@ -41,13 +58,25 @@ Not finished, not to be released!
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_sysconfdir}/rc.d/init.d/pydar-buildserver-master
-%{_sysconfdir}/rc.d/init.d/pydar-buildserver-slave
-%{_bindir}/dar-remote
-%{_bindir}/dar-speccheck
-%{_datadir}/pydar/*.py
 %{_datadir}/pydar/pydar/*.py
 
+%files server
+%defattr(-, root, root, 0755)
+%{_sysconfdir}/rc.d/init.d/pydar-buildserver-master
+%{_sysconfdir}/rc.d/init.d/pydar-buildserver-slave
+%{_datadir}/pydar/pydar-buildserver-master.py
+%{_datadir}/pydar/pydar-buildserver-slave.py
+
+%files client
+%defattr(-, root, root, 0755)
+%{_bindir}/dar-remote
+%{_bindir}/dar-speccheck
+%{_datadir}/pydar/pydar-remote.py
+%{_datadir}/pydar/pydar-speccheck.py
+
 %changelog
+* Tue Apr 28 2004 Dries Verachtert <dries@ulyssis.org> 0.002-1
+- update
+
 * Sat Mar 20 2004 Dries Verachtert <dries@ulyssis.org> 0.001-1
 - Initial package
