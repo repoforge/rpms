@@ -1,11 +1,10 @@
 # $Id$
 # Authority: matthias
 # Upstream: <proftp-devel$lists,sf,net>
-# Distcc: 0
 
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
-Version: 1.2.9
+Version: 1.2.10
 Release: 8%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
 License: GPL
 Group: System Environment/Daemons
@@ -121,8 +120,8 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING CREDITS ChangeLog NEWS README README.LDAP README.mod_sql
-%doc README.modules README.PAM doc/* sample-configurations
+%doc COPYING CREDITS ChangeLog NEWS README*
+%doc doc/* sample-configurations/
 %dir %{_localstatedir}/run/proftpd
 %config(noreplace) %{_sysconfdir}/proftpd.conf
 %config(noreplace) %{_sysconfdir}/xinetd.d/xproftpd
@@ -141,6 +140,9 @@ fi
 
 
 %changelog
+* Wed Sep 22 2004 Matthias Saou <http://freshrpms.net/> 1.2.10-1
+- Updated to release 1.2.10.
+
 * Tue Jun 22 2004 Matthias Saou <http://freshrpms.net/> 1.2.9-8
 - Added ncurses-devel build requires to fix the ftptop utility.
 

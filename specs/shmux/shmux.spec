@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: Christophe Kalt <shmux$taranis,org>
 
-%define real_version 1.0b4
+%define real_version 1.0b5
 
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
 Version: 1.0
-Release: 0.b4
+Release: 0.b5
 License: Proprietary License with Source
 Group: System Environment/Shells
 URL: http://web.taranis.org/shmux/
@@ -52,6 +52,9 @@ the user, or written to files for later processing.
 %{_datadir}/shmux/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.0-0.b5
+- Updated to release 1.0b5.
+
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 1.0-0.b4
 - Updated to release 1.0b4.
 

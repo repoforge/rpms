@@ -6,8 +6,8 @@
 
 Summary: Check HTML documents for broken links
 Name: linkchecker
-Version: 1.12.0
-Release: 0
+Version: 1.13.5
+Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://linkchecker.sf.net/
@@ -46,5 +46,8 @@ python setup.py install \
 %doc lconline/ test/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.13.5-1
+- Updated to release 1.13.5.
+
 * Sun Feb 29 2004 Dag Wieers <dag@wieers.com> - 1.12.1-0
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 
 Summary: Conway's game of life.
 Name: gtklife
-Version: 4.0
+Version: 4.1
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -75,7 +75,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING README TAGS doc/*
+%doc COPYING NEWS README doc/*
 %{_bindir}/gtklife
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Games/gtklife.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-gtklife.desktop}
@@ -83,6 +83,9 @@ EOF
 %{_datadir}/pixmaps/gtklife.png
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 4.1-1
+- Updated to release 4.1.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 4.0-1
 - Updated to release 4.0.
 

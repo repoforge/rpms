@@ -5,7 +5,7 @@
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
-Version: 0.7.0
+Version: 0.7.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -55,6 +55,9 @@ analysis.
 %{_datadir}/ettercap/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Tue Jul 06 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 

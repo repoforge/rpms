@@ -3,11 +3,11 @@
 
 Summary: Provides a simple, uniform password-checking interface using PAM
 Name: checkpassword-pam
-Version: 0.98
-Release: 0
+Version: 0.99
+Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://checkpasswd-pam.sf.net/
+URL: http://checkpasswd-pam.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -47,10 +47,13 @@ support POP toasters.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING interface.html README NEWS
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man8/checkpassword-pam.8*
+%{_bindir}/checkpassword-pam
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.99-1
+- Updated to release 0.99.
+
 * Wed Oct 01 2003 Dag Wieers <dag@wieers.com> - 0.98-0
 - Updated to release 0.98.
 

@@ -7,7 +7,7 @@
 
 Summary: Voice plugin for gaim
 Name: gaim-festival
-Version: 0.78
+Version: 1.00
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -57,6 +57,9 @@ It use festival and is configurable.
 %{_libdir}/gaim/*
 
 %changelog
+* Thu Sep 23 2004 Dag Wieers <dag@wieers.com> - 1.00-1
+- Updated to release 1.00.
+
 * Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 0.78-1
 - Updated to release 0.78.
 

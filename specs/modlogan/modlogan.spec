@@ -4,7 +4,7 @@
 
 Summary: Modular Log Analyzer
 Name: modlogan
-Version: 0.8.11
+Version: 0.8.13
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -52,12 +52,17 @@ done
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING Doxyfile NEWS README TODO doc/license.GD doc/*txt doc/*ihtml
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/modlogan.1*
 %config %{_sysconfdir}/modlogan/
-%{_bindir}/*
-%{_libdir}/*
+%{_bindir}/modlogan
+%exclude %{_libdir}/*.a
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.8.13-1
+- Updated to release 0.8.13.
+
 * Sat May 01 2004 Dag Wieers <dag@wieers.com> - 0.8.11-1
 - Updated to release 0.8.11.
 

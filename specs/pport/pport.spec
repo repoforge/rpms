@@ -4,7 +4,7 @@
 
 Summary: Utility for accessing the output pins of a parallel port
 Name: pport
-Version: 0.6.6
+Version: 0.6.7
 Release: 1
 License: GPL
 Group: Applications/System
@@ -13,7 +13,7 @@ URL: http://sourceforge.net/projects/pport/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/pport/pport-%{version}.tar.bz2
+Source: http://dl.sf.net/pport/pport-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -42,11 +42,14 @@ practically no changes.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS
 %doc %{_mandir}/man1/pport*
-%config(noreplace) %{_sysconfdir}/pportd.conf
+#%config(noreplace) %{_sysconfdir}/pportd.conf
 %{_bindir}/pport*
-%exclude %{_prefix}/doc/pport/
+#%exclude %{_prefix}/doc/pport/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.6.7-1
+- Updated to release 0.6.7.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.6.6-1
 - Updated to release 0.6.6.
 

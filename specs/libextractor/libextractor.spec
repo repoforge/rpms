@@ -3,7 +3,7 @@
 
 Summary: Meta-data extraction library 
 Name: libextractor
-Version: 0.3.3
+Version: 0.3.6
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -49,6 +49,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -59,16 +60,16 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/extract.1*
 %{_bindir}/extract
 %{_libdir}/libextractor.so.*
-%{_libdir}/libextractor_*.so
+%{_libdir}/libextractor_*.so*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/libextractor.3*
 %{_includedir}/extractor.h
 %{_libdir}/libextractor.a
 %exclude %{_libdir}/libextractor.la
@@ -77,5 +78,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libextractor_*.la
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.3.6-1
+- Updated to release 0.3.6.
+
 * Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.3.3-1
 - Initial package. (using DAR)

@@ -4,13 +4,14 @@
 ### rh9 and el3 wants to install perl modules outside buildroot
 #%{?el3:%define _without_perl 1}
 #%{?rh9:%define _without_perl 1}
+%define _without_perl 1
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 0.82.1
+Version: 1.0.0
 Release: 1
 Epoch: 1
 License: GPL
@@ -122,20 +123,23 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.82.1-1
-- Updated to 0.82.1.
+- Updated to release 0.82.1.
 
 * Fri Aug 27 2004 Dag Wieers <dag@wieers.com> - 0.82-1
-- Updated to 0.82.
+- Updated to release 0.82.
 
 * Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 0.81-1
-- Updated to 0.81.
+- Updated to release 0.81.
 
 * Sun Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.80-2
 - Removed .la files.
 
 * Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 0.80-1
-- Update to 0.80.
+- Updated to release 0.80.
 
 * Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 0.77-1
 - Update to 0.77.

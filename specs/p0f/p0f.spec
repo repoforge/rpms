@@ -7,7 +7,7 @@
 
 Summary: Passive OS fingerprinting tool
 Name: p0f
-Version: 2.0.4
+Version: 2.0.5
 Release: 1
 License: LGPL
 Group: Applications/Internet
@@ -184,6 +184,9 @@ fi
 %{_localstatedir}/arpwatch/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.0.5-1
+- Updated to release 2.0.5.
+
 * Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 2.0.4-1
 - Updated to release 2.0.4.
 - Added /var/arpwatch to package. (Juha Sahakangas)

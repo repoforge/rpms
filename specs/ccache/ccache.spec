@@ -4,8 +4,8 @@
 
 Summary: Compiler cache
 Name: ccache
-Version: 2.3
-Release: 0
+Version: 2.4
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://ccache.samba.org/
@@ -68,6 +68,9 @@ done
 %{_libdir}/ccache/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.4-1
+- Updated to release 2.4.
+
 * Sun Sep 28 2003 Dag Wieers <dag@wieers.com> - 2.3-0
 - Updated to release 2.3.
 

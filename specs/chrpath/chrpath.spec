@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Change the dynamic library load path (rpath) of binaries
 Name: chrpath
-Version: 0.11
-Release: 0
+Version: 0.13
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: ftp://ftp.hungry.com/pub/hungry/chrpath/
@@ -13,9 +12,8 @@ URL: ftp://ftp.hungry.com/pub/hungry/chrpath/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.hungry.com/pub/hungry/chrpath/%{name}-%{version}.tar.gz
+Source: ftp://ftp.hungry.com/pub/hungry/chrpath/chrpath-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Chrpath allows you to modify the dynamic library load path (rpath) of
@@ -34,19 +32,20 @@ missing.
 %{__rm} -rf %{buildroot}
 %makeinstall 
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/doc/
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files 
 %defattr (-, root, root,0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/chrpath.1*
+%{_bindir}/chrpath
+%exclude %{_prefix}/doc/
 
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.13-1
+- Updated to release 0.13.
+
 * Tue Sep 16 2003 Dag Wieers <dag@wieers.com> - 0.11-0
 - Updated to release 0.11.
 

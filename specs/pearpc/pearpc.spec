@@ -5,7 +5,7 @@
 
 Summary: PowerPC Architecture Emulator
 Name: pearpc
-Version: 0.3.0
+Version: 0.3.1
 Release: 1
 Group: Applications/Emulators
 License: GPL
@@ -101,6 +101,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed Sep 22 2004 Matthias Saou <http://freshrpms.net/> 0.3.1-1
+- Update to 0.3.1.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.3.0-1
 - Added fixes for x86_64.
 

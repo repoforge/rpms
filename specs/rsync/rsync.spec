@@ -4,12 +4,12 @@
 
 # Rationale: rsync 2.6.2 uses less resources and has lots of improvements
 
-%define real_version 2.6.3pre1
+%define real_version 2.6.3pre2
 
 Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 2.6.3
-Release: 0.pre1
+Release: 0.pre2
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
@@ -31,7 +31,6 @@ just as a more capable replacement for the rcp command. A technical
 report which describes the rsync algorithm is included in this
 package.
 
-
 %prep
 %setup -n %{name}-%{real_version}
 #%patch1 -p1 -b .lastdir-corruption
@@ -52,21 +51,17 @@ service rsync
 }
 EOF
 
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__install} -D -m0644 rsync.xinet %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -76,8 +71,10 @@ EOF
 %config(noreplace) %{_sysconfdir}/xinetd.d/rsync
 %{_bindir}/rsync
 
-
 %changelog
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.6.3-0.pre2
+- Updated to release 2.6.3pre2.
+
 * Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 2.6.3-0.pre1
 - Updated to release 2.6.3pre1.
 

@@ -10,7 +10,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.0.5
+Version: 1.0.8
 Release: 1
 License: BSD
 Group: Development/Tools
@@ -196,6 +196,12 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_mandir}/man*/*::*
 
 %changelog
+* Thu Sep 23 2004 Dag Wieers <dag@wieers.com> - 1.0.8-1
+- Updated to release 1.0.8.
+
+* Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.0.7-1
+- Updated to release 1.0.7.
+
 * Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 
