@@ -1,24 +1,21 @@
 # $Id$
 # Authority: dag
 # Upstream: Marco Valleri <crwm@freemail.it>
-# Upstream: Alberto Ornaghi <alor@users.sf.net>
-
-%define real_version 0.6.b
+# Upstream: Alberto Ornaghi <alor@users.sourceforge.net>
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
-Version: 0.6.9
-Release: 0.b
+Version: 0.7.0
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://ettercap.sf.net/
+URL: http://ettercap.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/ettercap/ettercap-%{real_version}.tar.gz
+Source: http://dl.sf.net/ettercap/ettercap-NG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: openssl-devel, ncurses-devel, gtk2-devel
 
@@ -29,33 +26,36 @@ LAN.  It supports active and passive dissection of many protocols
 analysis.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup -n %{name}-NG-%{version}
 
 %build
 %configure \
 	--enable-devel
-%{__make} %{?_smp_mflags} CFLAG="%{optflags} -I/usr/kerberos/include"
+%{__make} %{?_smp_mflags}
+#CFLAG="%{optflags} -I/usr/kerberos/include"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} complete_install DESTDIR="%{buildroot}"
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_datadir}/doc/ettercap/
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
-%doc AUTHORS CHANGELOG COPYING HISTORY KNOWN-BUGS PORTINGS README* THANKS
-%doc TODO* docs/development/*.txt plugins/*/*.HOWTO
+%defattr(-, root, root, 0755)
+%doc AUTHORS CHANGELOG INSTALL LICENSE README* THANKS TODO* doc/*
 %doc %{_mandir}/man?/*
-%{_sbindir}/*
+%config(noreplace) %{_sysconfdir}/etter.conf
+%{_bindir}/ettercap
+%{_bindir}/etterfilter
+%{_bindir}/etterlog
 %{_libdir}/ettercap/
 %{_datadir}/ettercap/
 
 %changelog
+* Tue Jul 06 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.9-0.b
 - Updated to release 0.6.b.
 
