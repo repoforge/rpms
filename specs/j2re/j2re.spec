@@ -86,6 +86,7 @@ Exec=%{_libdir}/jre/bin/ControlPanel
 Terminal=false
 Type=Application
 StartupNotify=false
+MimeType=application/x-java-archive;application/x-jar;
 Categories=Application;Settings;X-Red-Hat-Base;
 EOF
 
