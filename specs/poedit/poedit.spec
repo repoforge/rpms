@@ -36,8 +36,8 @@ with wxWindows.
 %{__rm} -rf %{buildroot}
 %{__make} install-strip DESTDIR=%{buildroot}
 %find_lang %{name}
-mkdir -p %{buildroot}%{datadir}/applications
-cat > %{buildroot}%{datadir}/applications/poedit.desktop <<EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/poedit.desktop <<EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
