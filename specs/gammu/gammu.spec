@@ -1,11 +1,10 @@
 # $Id$
-
-
 # Authority: dag
+# Upstream: Marcin Wiacek <marcin@mwiacek.com>
 
 Summary: Mobile phone tools
 Name: gammu
-Version: 0.94.0
+Version: 0.95.0
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.mwiacek.com/zips/gsm/gammu/older/gammu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: bluez-libs-devel
 
@@ -57,11 +55,7 @@ you will need to install %{name}-devel.
 %{__make} installlib \
 	DESTDIR="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}
-%{__install} -m0644 docs/examples/config/gammurc %{buildroot}%{_sysconfdir}
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_docdir}
+%{__install} -D -m0644 docs/examples/config/gammurc %{buildroot}%{_sysconfdir}/gammurc
 
 %files
 %defattr(-, root, root, 0755)
@@ -79,17 +73,21 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 %{_includedir}/gammu/
 %{_libdir}/pkgconfig/*.pc
+%exclude %{_docdir}
 
 %post
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.95.0-1
+- Updated to release 0.95.0.
+
 * Fri Mar 05 2004 Dag Wieers <dag@wieers.com> - 0.94.0-1
 - Updated to release 0.94.0.
 
