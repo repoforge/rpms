@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: versatile Integrated Development Environment (IDE) for C and C++
+Summary: Versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
 Version: 1.2.2
 Release: 1
@@ -9,7 +9,7 @@ License: GPL
 Group: Development/Tools
 Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
 URL: http://anjuta.sourceforge.net/
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
 Requires: libgnomeprintui22 >= 2.0.1
 Requires: vte, pcre, libxml2

@@ -36,10 +36,10 @@ support.
 %install
 %{__rm} -rf %{buildroot}
 # These directories need to be created before make install
-mkdir -p %{buildroot}%{_datadir}/{application-registry,applications}
-mkdir -p %{buildroot}%{_datadir}/{mime-info,pixmaps}
+%{__mkdir_p} %{buildroot}%{_datadir}/{application-registry,applications}
+%{__mkdir_p} %{buildroot}%{_datadir}/{mime-info,pixmaps}
 # The actual install
-make install DESTDIR=%{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
 

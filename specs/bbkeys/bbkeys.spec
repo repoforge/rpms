@@ -8,10 +8,8 @@ Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://bbkeys.sf.net/
-
 Source: http://dl.sf.net/bbkeys/bbkeys-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: XFree86-devel, gcc-c++
 
 %description
@@ -21,32 +19,42 @@ created by John Kennis and re-uses some of the blackbox window manager classes
 as well.  bbkeys is easily configurable via directly hand-editting the user's
 ~/.bbkeysrc file, or by using the GUI total blackbox configurator, bbconf.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
+# Clean this up, we don't want to package it
+%{__rm} -rf %{buildroot}%{_prefix}/doc
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files 
 %defattr(-, root, root, 0755) 
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO
-%exclude %{_prefix}/doc
 %{_bindir}/*
 %dir %{_datadir}/bbtools
 %config %{_datadir}/bbtools/*
 %{_mandir}/man?/*
+
  
 %changelog 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.8.6-3.fr
-- Rebuild for Fedora Core.
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.8.6-4
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.8.6-3
+- Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 9.

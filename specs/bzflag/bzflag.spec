@@ -2,12 +2,12 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define date           20040125
+%define date           20040515
 
 Summary: 3D multi-player tank battle game
 Name: bzflag
-Version: 1.10.4
-Release: 2
+Version: 1.10.6
+Release: 1
 License: GPL
 Group: Amusements/Games
 Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
@@ -44,17 +44,16 @@ There are two main styles of play: capture-the-flag and free-for-all.
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=BZFlag
-Comment=%{summary}
-Exec=%{name}
+Comment=3D multi-player tank battle game
+Exec=bzflag
 Icon=bzflag.xpm
 Terminal=0
 Type=Application
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Extra                \
   --add-category Application                    \
   --add-category Game                           \
   %{name}.desktop
@@ -78,6 +77,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.10.6-1
+- Update to 1.10.6.
+- First rebuild for Fedora Core 2.
+
 * Thu Mar 25 2004 Matthias Saou <http://freshrpms.net/> 1.10.4-2
 - Removed explicit XFree86 dependency.
 

@@ -5,11 +5,10 @@
 Summary: Automated Password Generator for random password generation
 Name: apg
 Version: 2.2.3
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Base
 URL: http://www.adel.nursat.kz/apg/
-
 Source: http://www.adel.nursat.kz/apg/download/apg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -18,20 +17,25 @@ APG (Automated Password Generator) is the tool set for random password
 generation. This standalone version generates some random words of
 required type and prints them to standard output.
 
+
 %prep
 %setup
+
 
 %build
 find . | xargs chmod u+w
 %{__make} %{?_smp_mflags} standalone
+
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0755 apg %{buildroot}%{_bindir}/apg
 %{__install} -D -m0644 doc/man/apg.1 %{buildroot}%{_mandir}/man1/apg.1
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -39,8 +43,12 @@ find . | xargs chmod u+w
 %{_bindir}/apg
 %{_mandir}/man?/*
 
+
 %changelog
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 2.2.3-2.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.2.3-3
+- Rebuild for Fedora Core 2.
+
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 2.2.3-2
 - Rebuild for Fedora Core 1.
 
 * Sat Oct  4 2003 Matthias Saou <http://freshrpms.net/>
