@@ -15,7 +15,7 @@ License: GPL
 Group: Amusements/Games
 URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
 
-Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.gz
+Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, SDL_mixer-devel
