@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Mï¿½s Rullgï¿½d <mru$kth,se>
+# Upstream: Måns Rullgård <mru$kth,se>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
