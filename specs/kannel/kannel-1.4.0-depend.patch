@@ -1,0 +1,16 @@
+#
+# improve resistence against broken gcc -MM behaviour
+# (observed with gcc 3.4.1)
+# 2005-01-12 stefan.radman@ctbto.org
+#
+--- Makefile.in.orig	2004-08-24 21:50:09.000000000 +0000
++++ Makefile.in	2005-01-13 16:23:56.123117718 +0000
+@@ -311,7 +311,7 @@
+ 
+ depend .depend: wmlscript/wsgram.h gw-config.h
+ 	for dir in $(srcdirs); do \
+-		$(MKDEPEND) $$dir/*.c | sed "s:^[^ ]:$$dir/&:"; done > .depend
++		$(MKDEPEND) $$dir/*.c | sed -e "s:^  *:\t:" -e "s:^[^\t#]:$$dir/&:" -e "s:^#.*::"; done > .depend
+ include .depend
+ 
+ libgw.a: $(gwobjs)

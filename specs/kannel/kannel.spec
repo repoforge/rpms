@@ -4,12 +4,12 @@
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.4.0
-Release: 1
+Release: 3
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
 Source: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
-Patch0: mblox_optionals_0.2.diff
+Patch: kannel-1.4.0-depend.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
@@ -47,7 +47,7 @@ use the kannel WAP and SMS gateway.
 
 %prep
 %setup -n gateway-%{version}
-%patch0 -p1 -b .mblox
+%patch -p0 -b .depend
 
 
 %build
@@ -99,20 +99,16 @@ use the kannel WAP and SMS gateway.
 
 
 %changelog
-* Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-1
-- Update to 1.4.0, new mblox patch.
-- Remove the obsolete OpenSSL workaround.
-- Leave Kavkaz patch out for now.
+* Mon Jan 17 2005 Matthias Saou <http://freshrpms.net/> 1.4.0-3
+- Added Stefan Radman's patch for kannel bug #173 to fix .depend problem.
 
-* Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-5
-- Added Kavkaz operator patch.
+* Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-1
+- Update to 1.4.0.
+- Remove the obsolete OpenSSL workaround.
 
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-4
 - Added pcre support, doc building (almost) and sqlite backend...
   it still fails with a corrupt first line of .depend on FC3, though.
-
-* Mon Sep 20 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-3
-- Added mblox_optionals_0.1.diff patch.
 
 * Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-2
 - Really comment out all scriplets, they're not yet used.
