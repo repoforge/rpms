@@ -1,7 +1,14 @@
 # $Id$
 # Authority: dries
+
 # Screenshot: http://psi.affinix.com/gfx/screenshots/iceram-roster.png
 # ScreenshotURL: http://psi.affinix.com/?page=screenshots
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
 %define tls_plugin     qca-tls-1.0
@@ -14,6 +21,10 @@ Release: 3
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 Source0: http://dl.sf.net/psi/psi-%{version}.tar.bz2
 Source1: http://psi.affinix.com/beta/%{tls_plugin}.tar.bz2
 Source20: psi_ca.qm
@@ -30,14 +41,10 @@ Source30: psi_se.qm
 Source31: psi_sk.qm
 Source32: psi_zh.qm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: XFree86-devel, kdelibs-devel, openssl-devel, gcc-c++
-%{?fc2:BuildRequires: desktop-file-utils}
-%{?fc1:BuildRequires: desktop-file-utils}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: psi-iconsets < 0.9.1
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 Psi is a client program for the Jabber messaging network. It supports
@@ -56,6 +63,19 @@ in other languages than English.
 
 %prep
 %setup -a 1
+
+%{__cat} <<EOF >psi.desktop
+[Desktop Entry]
+Name=Psi Jabber Client
+Comment=Connect and chat on the Jabber network
+Icon=psi.png
+Exec=psi -caption "%%c" %%i %%m
+Terminal=false
+Type=Application
+Encoding=UTF-8
+StartupNotify=true
+Categories=Application;Network;
+EOF
 
 %build
 # It's not an autoconf generated script...
@@ -82,45 +102,34 @@ popd
 %{__make} install INSTALL_ROOT="%{buildroot}/"
 
 # Transport Layer Security plugin
-%{__install} -D -m 0755 %{tls_plugin}/libqca-tls.so \
+%{__install} -D -m0755 %{tls_plugin}/libqca-tls.so \
     %{buildroot}%{qtdir}/plugins/crypto/libqca-tls.so
 
 # Install the pixmap for the menu entry
-%{__install} -D -m 0644 iconsets/system/default/icon_32.png \
+%{__install} -D -m0644 iconsets/system/default/icon_32.png \
     %{buildroot}%{_datadir}/pixmaps/psi.png
 
-# Install an enhanced menu entry (supplied psi.desktop is sparse)
-%{__cat} > %{name}.desktop << EOF
-[Desktop Entry]
-Name=Psi Jabber Client
-Comment=Connect and chat on the Jabber network
-Icon=psi.png
-Exec=psi -caption "%%c" %%i %%m
-Terminal=false
-Type=Application
-Encoding=UTF-8
-Categories=Application;Network;
-StartupNotify=true
-EOF
+### Cleanup buildroot
+%{__rm} -f %{buildroot}%{_datadir}/applnk/Internet/psi.desktop \
+		%{buildroot}%{_datadir}/icons/hicolor/*/apps/psi.png
 
 %if %{!?_without_freedesktop:1}0
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
     --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
+    psi.desktop
 %else
-%{__install} -D -m 0644 %{name}.desktop \
-    %{buildroot}%{_sysconfdir}/X11/applnk/Internet/%{name}.desktop
+%{__install} -D -m0644 psi.desktop \
+    %{buildroot}%{_sysconfdir}/X11/applnk/Internet/psi.desktop
 %endif
  
 # Install the languagepack files
-%{__install} -m 0644 \
+%{__install} -m0644 \
     %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \
     %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} \
     %{SOURCE30} %{SOURCE31} %{SOURCE32} \
     %{buildroot}%{_datadir}/psi
-
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -133,29 +142,26 @@ desktop-file-install \
 %exclude %{_datadir}/psi/COPYING
 %exclude %{_datadir}/psi/README
 %exclude %{_datadir}/psi/*.qm
-%{_datadir}/psi
+%{_datadir}/psi/
 %{qtdir}/plugins/crypto/libqca-tls.so
-%{_datadir}/applnk/Internet/psi.desktop
-%{_datadir}/icons/hicolor/*/apps/psi.png
 %{_datadir}/pixmaps/psi.png
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
-%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/%{name}.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-psi.desktop}
+%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/psi.desktop}
 
 %files languagepack
-%lang(ca) %{_datadir}/%{name}/psi_ca.qm
-%lang(cs) %{_datadir}/%{name}/psi_cs.qm
-%lang(de) %{_datadir}/%{name}/psi_de.qm
-%lang(el) %{_datadir}/%{name}/psi_el.qm
-%lang(es) %{_datadir}/%{name}/psi_es.qm
-%lang(fr) %{_datadir}/%{name}/psi_fr.qm
-%lang(it) %{_datadir}/%{name}/psi_it.qm
-%lang(mk) %{_datadir}/%{name}/psi_mk.qm
-%lang(nl) %{_datadir}/%{name}/psi_nl.qm
-%lang(pl) %{_datadir}/%{name}/psi_pl.qm
-%lang(se) %{_datadir}/%{name}/psi_se.qm
-%lang(sk) %{_datadir}/%{name}/psi_sk.qm
-%lang(zh) %{_datadir}/%{name}/psi_zh.qm
-
+%lang(ca) %{_datadir}/psi/psi_ca.qm
+%lang(cs) %{_datadir}/psi/psi_cs.qm
+%lang(de) %{_datadir}/psi/psi_de.qm
+%lang(el) %{_datadir}/psi/psi_el.qm
+%lang(es) %{_datadir}/psi/psi_es.qm
+%lang(fr) %{_datadir}/psi/psi_fr.qm
+%lang(it) %{_datadir}/psi/psi_it.qm
+%lang(mk) %{_datadir}/psi/psi_mk.qm
+%lang(nl) %{_datadir}/psi/psi_nl.qm
+%lang(pl) %{_datadir}/psi/psi_pl.qm
+%lang(se) %{_datadir}/psi/psi_se.qm
+%lang(sk) %{_datadir}/psi/psi_sk.qm
+%lang(zh) %{_datadir}/psi/psi_zh.qm
 
 %changelog
 * Mon Jun 14 2004 Matthias Saou <http://freshrpms.net> 0.9.2-3
