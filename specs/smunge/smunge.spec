@@ -1,15 +1,11 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Joshua Reich <josh@i2pi.com>
-
-%define real_version 1.3.7
 
 Summary: Funneling POP proxy
 Name: smunge
 Version: 1.3.7
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.i2pi.com/smunge/
@@ -17,7 +13,7 @@ URL: http://www.i2pi.com/smunge/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.i2pi.com/smunge/smunge-%{real_version}.tar.gz
+Source: http://www.i2pi.com/smunge/smunge-%{version}.tar.gz
 Patch: smunge-hostent.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -65,13 +61,15 @@ EOF
 
 source %{_initrddir}/functions
 
+[ -x %{_sbindir}/smunged ] || exit 1
+
 ### Default variables
 OPTIONS=""
 SERVERS=""
+SYSCONFIG="%{_sysconfdir}/sysconfig/smunged"
 
-[ -x %{_sbindir}/smunged ] || exit 1
-[ -r %{_sysconfdir}/sysconfig/smunged ] || exit 1
-source %{_sysconfdir}/sysconfig/smunged
+### Read configuration
+[ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
 
 RETVAL=0
 prog="smunged"
@@ -127,7 +125,7 @@ exit $RETVAL
 EOF
 
 %build
-# we don't require libdrac for now
+#### we don't require libdrac for now
 #%{__make} CFLAGS="%{optflags} -DLINUX -DUSE_DRAC -DUSE_LDAP" LDFLAGS="-ldrac -llber -lldap"
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags} -DLINUX -DUSE_LDAP" \
@@ -135,13 +133,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-		%{buildroot}%{_sysconfdir}/sysconfig \
-		%{buildroot}%{_initrddir}
-%{__install} -m0755 smunged %{buildroot}%{_sbindir}
-%{__install} -m0755 smunged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/smunged
-%{__install} -m0755 smunged.sysv %{buildroot}%{_initrddir}/smunged
+%{__install} -D -m0755 smunged %{buildroot}%{_sbindir}/smunged
+%{__install} -D -m0755 smunged.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/smunged
+%{__install} -D -m0755 smunged.sysv %{buildroot}%{_initrddir}/smunged
 
 %post
 /sbin/chkconfig --add smunged
@@ -166,7 +160,7 @@ fi
 %{_sbindir}/*
 
 %changelog
-* Wed Apr 21 2004 Bert de Bruijn <bert@debruijn.be> - 1.3.7-0
+* Wed Apr 21 2004 Bert de Bruijn <bert@debruijn.be> - 1.3.7-1
 - Updated to release 1.3.7.
 
 * Mon Dec 01 2003 Dag Wieers <dag@wieers.com> - 1.3.6.0-0
