@@ -1,0 +1,11 @@
+--- lbdb.rc.in.orig	Tue Apr 23 17:47:41 2002
++++ lbdb.rc.in	Tue Apr 23 17:49:04 2002
+@@ -37,7 +37,7 @@
+ # - m_ldap       query an LDAP server 
+ # - m_wanderlust search your wanderlust ~/.addresses file.
+ 
+-METHODS="m_inmail m_passwd m_finger"
++METHODS="m_inmail m_finger m_getent"
+ 
+ 
+ #

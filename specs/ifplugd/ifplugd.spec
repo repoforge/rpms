@@ -1,0 +1,76 @@
+# $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
+# Authority: dag
+# Upstream: Lennart Poettering <mzvscyhtq@0pointer.de>
+# Upstream: <ifplugd-discuss@mail.0pointer.de>
+
+%define _sbindir /sbin
+
+Summary: Activates network interfaces on cable plug
+Name: ifplugd
+Version: 0.24
+Release: 1
+License: GPL
+Group: System Environment/Base
+URL: http://0pointer.de/lennart/projects/ifplugd/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://0pointer.de/lennart/projects/ifplugd/ifplugd-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: libdaemon-devel, pkgconfig >= 0.9.0, lynx
+
+%description
+ifplugd is a lightweight Linux daemon which configures the network
+automatically when a cable is plugged in and deconfigures it when
+the cable is pulled. It is primarily intended for usage with laptops.
+
+It relies on the distribution's native network configuration subsystem,
+and is thus not very intrusive.
+
+%prep
+%setup
+
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
+%{__perl} -pi.orig -e 's|\${DESTDIR}\${sysinitdir}|\$(DESTDIR)\$(sysconfdir)/rc.d/init.d|' conf/Makefile.in
+
+%{__perl} -pi.orig -e 's|^(INTERFACES)=.*$|$1="auto"|' conf/ifplugd.conf
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%post
+/sbin/chkconfig --add ifplugd
+
+%preun
+if [ $1 -eq 0 ]; then
+        /sbin/service ifplugd stop &>/dev/null || :
+        /sbin/chkconfig --del ifplugd
+fi
+
+%postun
+/sbin/service ifplugd condrestart &>/dev/null || :
+
+%files
+%defattr(-, root, root, 0755)
+%doc LICENSE README doc/NEWS doc/README.html doc/SUPPORTED_DRIVERS
+%doc %{_mandir}/man?/*
+%config(noreplace) %{_sysconfdir}/ifplugd/
+%config %{_initrddir}/*
+%{_sbindir}
+
+%changelog
+* Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
+
+* Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 0.23-1
+- Initial package. (using DAR)

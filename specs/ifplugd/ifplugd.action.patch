@@ -1,0 +1,50 @@
+--- conf/ifplugd.action.orig	2004-02-08 21:17:59.000000000 +0100
++++ conf/ifplugd.action	2004-03-31 14:40:31.000000000 +0200
+@@ -17,6 +17,28 @@
+ # along with ifplugd; if not, write to the Free Software Foundation,
+ # Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+ 
++# This function will switch between interfaces in case one of them went down.
++# The function gets one argument, which represnets the current handled inteface
++switchInterface()
++{
++	# Get all interfaces
++	INTERFACES="`cat /proc/net/dev | awk '{ print $1 }' | egrep '^(eth|wlan)' | cut -d: -f1`"
++	# Switch major interface to another active interface
++	for INTERFACE in `echo $INTERFACES`; do
++		# Continue if it's the same inteface
++		[ "$1" = "$INTERFACE" ] && continue
++		# Interface has an address - switch to it
++		if [ "`/sbin/ifconfig $INTERFACE | grep \"inet addr\"`" ]; then
++			echo "Interface $INTERFACE is active"
++			echo "Switching to interface $INTERFACE"
++			/sbin/ifdown $INTERFACE
++			/sbin/ifup $INTERFACE
++			return 0
++		fi
++	done
++	# No interface will change the previous one
++}
++
+ set -e
+ 
+ if [ -z "$1" ] || [ -z "$2" ] ; then
+@@ -25,6 +47,16 @@
+ fi
+ 
+ [ "$2" = "up" ] && exec /sbin/ifup $1
+-[ "$2" = "down" ] && exec /sbin/ifdown $1
++[ "$2" = "down" ] && /sbin/ifdown $1
++
++# Get current default (the current route interface)
++CURRENT_ACTIVE_INTERFACE="`/sbin/route | grep default | tr -s ' ' | cut -d ' ' -f8`"
++[ ! "$CURRENT_ACTIVE_INTERFACE" ] && CURRENT_ACTIVE_INTERFACE=$1
++
++echo "Interface $1 is going down"
++echo "Current default is $CURRENT_ACTIVE_INTERFACE"
++
++# Try to switch interface in case the default went down
++[ "$1" = "$CURRENT_ACTIVE_INTERFACE" ] && switchInterface "$1"
+ 
+-exit 1
++exit 0

@@ -1,0 +1,11 @@
+--- src/engine/Makefile.in.orig	Thu Feb 22 23:09:37 2001
++++ src/engine/Makefile.in	Thu Feb 22 23:10:30 2001
+@@ -193,6 +193,6 @@
+ 
+ CPPFLAGS = @CPPFLAGS@
+ LDFLAGS = @LDFLAGS@
+-LIBS = @LIBS@
++LIBS = @LIBS@ $(EXPATH) -lstdc++
+ depcomp = $(SHELL) $(top_srcdir)/autocfg/depcomp
+ am__depfiles_maybe = depfiles
+
