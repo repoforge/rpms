@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer@conectiva.com>
 
+# ExclusiveDist: fc3
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
@@ -16,7 +18,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.27.1
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -79,6 +81,11 @@ for type in ["", "doc", "smp" ]:
 	else:
 		kernel = "kernel"
 	pkgconf.setFlag("multi-version", kernel)
+EOF
+
+%{__cat} <<EOF >smart-gui.sh
+#!/bin/sh
+exec %{_bindir}/smart --gui $@
 EOF
 
 %{__cat} <<EOF >rpm-db.channel
@@ -146,6 +153,14 @@ type = rpm-md
 priority = 0
 EOF
 
+%{__cat} <<EOF >jpackage-generic.channel
+[jpackage-generic]
+name = Java packages from JPackage.org for all distributions
+baseurl = http://mirrors.sunsite.dk/jpackage/1.6/generic/free
+type = rpm-md
+priority = 0
+EOF
+
 %{__cat} <<EOF >newrpms.channel
 [newrpms]
 name = Various packages from NewRPMS for $name $version (%{_arch})
@@ -172,7 +187,7 @@ EOF
 
 %{__cat} <<EOF >kde-redhat-all.channel
 [kde-redhat-all]
-name = KDE (nodist) packages from the kde-redhat project for $name $version
+name = KDE packages from the kde-redhat project for all distributions
 baseurl = http://apt.kde-redhat.org/apt/kde-redhat/all/stable
 type = rpm-md
 priority = -5
@@ -220,25 +235,25 @@ priority = -100
 disabled = true
 EOF
 
-%{__cat} <<EOF >smart.console
+%{__cat} <<EOF >smart-gui.console
 USER=root
-PROGRAM=%{_sbindir}/smart
+PROGRAM=%{_sbindir}/smart-gui
 SESSION=true
 EOF
 
-%{__cat} <<EOF >smart.desktop
+%{__cat} <<EOF >smart-gui.desktop
 [Desktop Entry]
 Name=Smart Package Manager
 Comment=Install packages from various sources
 Icon=smart.png
-Exec=smart --gui
+Exec=smart-gui
 Type=Application
 Terminal=false
 StartupNotify=true
 Categories=GNOME;Application;SystemSetup;
 EOF
 
-%{__cat} <<EOF >smart.pam
+%{__cat} <<EOF >smart-gui.pam
 #%PAM-1.0
 auth       sufficient	/lib/security/pam_rootok.so
 auth       sufficient	/lib/security/pam_timestamp.so
@@ -270,26 +285,26 @@ python setup.py install \
 
 %find_lang %{name}
 
-%{__install} -D -m0755 %{buildroot}%{_bindir}/smart %{buildroot}%{_sbindir}/smart
-%{__ln_s} -f consolehelper %{buildroot}%{_bindir}/smart
+%{__ln_s} -f consolehelper %{buildroot}%{_bindir}/smart-gui
 
+%{__install} -D -m0755 smart-gui.sh %{buildroot}%{_sbindir}/smart-gui
 %{__install} -D -m0644 distro.py %{buildroot}%{_libdir}/smart/distro.py
 %{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 %{__install} -D -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
-%{__install} -D -m0644 smart.console %{buildroot}%{_sysconfdir}/security/console.apps/smart
-%{__install} -D -m0644 smart.pam %{buildroot}%{_sysconfdir}/pam.d/smart
+%{__install} -D -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
+%{__install} -D -m0644 smart-gui.pam %{buildroot}%{_sysconfdir}/pam.d/smart-gui
 %{__install} -D -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smart/channels/
 %{__cp} -av *.channel %{buildroot}%{_sysconfdir}/smart/channels/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 smart.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
+	%{__install} -D -m0644 smart-gui.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \
 		--dir %{buildroot}%{_datadir}/applications \
 		--add-category X-Red-Hat-Base              \
-		smart.desktop
+		smart-gui.desktop
 %endif
 
 
@@ -302,20 +317,20 @@ python setup.py install \
 %config %{_libdir}/smart/distro.py
 %dir %{_libdir}/smart/
 %config(noreplace) %{_sysconfdir}/smart/channels/
-%{_sysconfdir}/security/console.apps/smart
-%{_sysconfdir}/pam.d/smart
 %{_bindir}/smart
-%{_sbindir}/smart
 %{python_dir}/smart/
 %{_libdir}/python%{python_version}/site-packages/smart/
 %exclude %{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
-%{_libdir}/python%{python_version}/site-packages/smart/interfaces/images/
 
 %files gui
 %defattr(-, root, root, 0755)
+%{_sysconfdir}/pam.d/smart-gui
+%{_bindir}/smart-gui
+%{_sbindir}/smart-gui
+%{_sysconfdir}/security/console.apps/smart-gui
 %{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-smart.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/System/smart.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-smart-gui.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/System/smart-gui.desktop}
 %{_datadir}/pixmaps/smart.png
 
 %files update
@@ -328,5 +343,11 @@ python setup.py install \
 %{_datadir}/apps/ksmarttray/
 
 %changelog
+* Tue Dec 07 2004 Dag Wieers <dag@wieers.com> - 0.27.1-3
+- Added jpackage-generic channel. (Thomas Moschny)
+
+* Sun Dec 05 2004 Dag Wieers <dag@wieers.com> - 0.27.1-2
+- Added smart-gui console-helper so users can start smart.
+
 * Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 0.27.1-1
 - Initial package. (using DAR)

@@ -4,7 +4,7 @@
 
 Summary: Organize your preferred applications on the GNOME Panel
 Name: quick-lounge-applet
-Version: 2.1.2
+Version: 2.2.0
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -13,7 +13,7 @@ URL: http://quick-lounge.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/quick-lounge-applet/2.1/quick-lounge-applet-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/quick-lounge-applet/2.2/quick-lounge-applet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.1.0, gtk2-devel >= 2.1.1, libgnome-devel >= 2.1.1
@@ -68,6 +68,9 @@ scrollkeeper-update -q
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Mon Dec 06 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Updated to release 2.2.0.
+
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 2.1.2-1
 - Updated to release 2.1.2.
 

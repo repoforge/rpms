@@ -14,6 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/dvdauthor/dvdauthor-%{version}.tar.gz
+Patch0: dvdauthor-0.6.10-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.5.0, libdvdread-devel
@@ -26,6 +27,9 @@ mpeg2 stream that should play when you put it in a DVD player.
 
 %prep 
 %setup
+%patch
+
+%{__perl} -pi.orig -e 's|(-ldvdread)|$1 -ldl|g' configure
 
 %build
 %configure

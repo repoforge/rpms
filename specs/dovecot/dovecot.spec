@@ -3,11 +3,13 @@
 # Upstream: Timo Sirainen <tss$iki,fi>
 # Upstream: <dovecot$dovecot,org>
 
+# ExcludeDist: fc3
+
 %define logmsg logger -t %{name}/rpm
 
 Summary: Dovecot secure IMAP server
 Name: dovecot
-Version: 0.99.11
+Version: 0.99.12
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -223,6 +225,9 @@ fi
 %{_localstatedir}/run/dovecot-login/
 
 %changelog
+* Sun Dec 05 2004 Dag Wieers <dag@wieers.com> - 0.99.12-1
+- Updated to release 0.99.12.
+
 * Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 0.99.11-1
 - Updated to release 0.99.11.
 

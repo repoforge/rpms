@@ -5,7 +5,7 @@
 
 Summary: OO Graph Library for PHP
 Name: php-jpgraph
-Version: 1.14
+Version: 1.16
 Release: 1
 License: QPL
 Group: Development/Languages
@@ -14,9 +14,8 @@ URL: http://www.aditus.nu/jpgraph/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://jpgraph.techuk.com/jpgraph/downloads/jpgraph-%{version}.tar.gz
+Source: http://www.aditus.nu/jpgraph/downloads/jpgraph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 Requires: webserver, php

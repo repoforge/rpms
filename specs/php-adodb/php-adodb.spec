@@ -10,12 +10,13 @@ Version: 4.52
 Release: 1
 License: BSD or LGPL
 Group: Development/Languages
-URL: http://php.weblogs.com/adodb/
+URL: http://adodb.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://phplens.com/lens/dl/adodb%{real_version}.tgz
+Source: http://dl.sourceforge.net/adodb/adodb%{real_version}.tgz
+#Source: http://phplens.com/lens/dl/adodb%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://cr.yp.to/checkpwd/checkpassword-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 checkpassword provides a simple, uniform password-checking interface
 to all root applications. It is suitable for use by applications such
@@ -35,10 +34,7 @@ support POP toasters.
 %setup
 
 ### FIXME: Fix the errno problem on RH9, RHEL3 and RHFC1
-%{?fc2: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
-%{?fc1: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
-%{?el3: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
-%{?rh9: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
+%{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c
 
 %build
 %{__make} %{?_smp_mflags}

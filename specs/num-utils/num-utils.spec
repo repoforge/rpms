@@ -5,7 +5,7 @@
 Summary: Programs for dealing with numbers
 Name: num-utils
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://suso.suso.org/programs/num-utils/
@@ -29,6 +29,8 @@ and aim to help complete the Unix shell vocabulary.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|use the|utilise the|g' *
+
 %build
 %{__make} %{?_smp_mflags}
 
@@ -49,6 +51,9 @@ and aim to help complete the Unix shell vocabulary.
 %{_bindir}/*
 
 %changelog
+* Sun Dec 05 2004 Dag Wieers <dag@wieers.com> - 0.5-2
+- Workaround the idiotic perl-find-requires.
+
 * Fri Nov 19 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 

@@ -6,7 +6,7 @@
 Summary: Reports XMMS status via named pipe
 Name: xmms-infopipe
 Version: 1.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beastwithin.org/users/wwwwolf/code/xmms/infopipe.html
@@ -40,6 +40,8 @@ personal web page, or a web cam page.
 
 %{__mv} -f %{buildroot}%{xmms_generaldir}/libinfopipe-?.?.so.?.?.? %{buildroot}%{xmms_generaldir}/libinfopipe.so
 
+chmod 0644 applications/*
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -52,5 +54,8 @@ personal web page, or a web cam page.
 %exclude %{xmms_generaldir}/libinfopipe-?.?.so.*
 
 %changelog
-* Sat Aug 14 2004 Dag Wieers <dag@wieers.com> - 1.3
+* Mon Dec 06 2004 Dag Wieers <dag@wieers.com> - 1.3-2
+- Exclude docs from find-requires.
+
+* Sat Aug 14 2004 Dag Wieers <dag@wieers.com> - 1.3-1
 - Initial package. (using DAR)

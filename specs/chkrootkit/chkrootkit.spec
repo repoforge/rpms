@@ -12,7 +12,7 @@
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
 Version: 0.44
-Release: 1
+Release: 2
 License: COPYRIGHTED
 Group: Applications/System
 URL: http://www.chkrootkit.org/
@@ -48,10 +48,10 @@ session    optional     pam_timestamp.so
 account    required	pam_permit.so
 EOF
 
-%{__cat} <<EOF >chkrootkit.sh
+%{__cat} <<'EOF' >chkrootkit.sh
 #!/bin/sh
 cd %{_libdir}/chkrootkit-%{version}
-exec %{_libdir}/chkrootkit-%{version}/chkrootkit
+exec %{_libdir}/chkrootkit-%{version}/chkrootkit $@
 EOF
 
 %{__cat} <<EOF >xchkrootkit.sh
@@ -115,6 +115,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
+* Mon Dec 06 2004 Dag Wieers <dag@wieers.com> - 0.44-2
+- Fixed problem where options were discarded. (Steven Balthazor)
+
 * Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.44-1
 - Updated to release 0.44.
 

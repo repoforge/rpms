@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# ExcludeDist: fc3
 
 Summary: Simple sticky notes applet for the GNOME desktop
 Name: stickynotes_applet
@@ -13,9 +14,8 @@ URL: http://loban.caltech.edu/stickynotes/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://loban.caltech.edu/stickynotes/packages/%{name}-%{version}.tar.gz
+Source: http://loban.caltech.edu/stickynotes/packages/stickynotes_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: scrollkeeper, pkgconfig, libgnome-devel, libgnomecanvas-devel, atk-devel
 BuildRequires: libbonoboui-devel, pango-devel, gnome-panel, libgnomeui-devel

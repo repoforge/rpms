@@ -2,11 +2,15 @@
 # Authority: dag
 # Upstream: Jeremy Chartier <jeremy,chartier$free,fr>
 
-%define real_version v2.2
+# Tag: test
+
+### FIXME: Disabled snortalog as it does not provide an install script and it is too hard to setup properly.
+
+%define real_version v2.3
 
 Summary: Snort log analyzer
 Name: snortalog
-Version: 2.2.1
+Version: 2.3.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -78,10 +82,13 @@ EOF
 %doc CHANGES README *.pdf
 %config %{_sysconfdir}/snortalog/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/*.conf
-%{_bindir}/*
+%{_bindir}/snortalog
 %dir %{_localstatedir}/www/snortalog/
 
 %changelog
+* Sun Dec 05 2004 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Wed May 05 2004 Dag Wieers <dag@wieers.com> - 2.2.1-1
 - Updated to release 2.2.1.
 

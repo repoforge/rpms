@@ -7,7 +7,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.11
+Version: 3.0.12
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -61,6 +61,9 @@ reliability in mind.
 %{_libdir}/lftp/
 
 %changelog
+* Tue Dec 07 2004 Dag Wieers <dag@wieers.com> - 3.0.12-1
+- Updated to release 3.0.12.
+
 * Thu Nov 04 2004 Dag Wieers <dag@wieers.com> - 3.0.11-1
 - Updated to release 3.0.11.
 

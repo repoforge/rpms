@@ -3,7 +3,7 @@
 
 Summary: Set the background of your X Windows desktop under water
 Name: xdesktopwaves
-Version: 1.1
+Version: 1.2
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -46,6 +46,9 @@ stirring up the water.
 
 
 %changelog
+* Tue Dec 07 2004 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Wed Dec  1 2004 Matthias Saou <http://freshrpms.net/> 1.1-1
 - Remove i386 exclusivearch.
 - Add LFLAGS override to fix linking on 64bit archs.
