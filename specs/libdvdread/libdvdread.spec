@@ -7,13 +7,15 @@
 Summary: Library for reading DVD video disks
 Name: libdvdread
 Version: 0.9.4
-Release: 5%{?cvs:cvs}
+Release: 6%{?cvs:cvs}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dtek.chalmers.se/groups/dvd/
 Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}%{?cvs}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss >= 1.2.5
+# The old libtool included b0rkes the build on an x86_64 FC3 mach root
+BuildRequires: libtool, autoconf, automake, gcc-c++
 
 %description
 libdvdread provides a simple foundation for reading DVD video disks.
@@ -39,6 +41,10 @@ programs that use this library.
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
+%{__libtoolize} --force --copy
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 
 
 %build
@@ -76,6 +82,9 @@ programs that use this library.
 
 
 %changelog
+* Fri Feb  4 2005 Matthias Saou <http://freshrpms.net/> 0.9.4-6
+- Force libtoolize/auto* to fix x86_64 build, thanks to Nicholas Miell.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.4-5
 - Rebuild for Fedora Core 2.
 
