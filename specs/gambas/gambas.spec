@@ -33,7 +33,7 @@ databases, pilot KDE applications with DCOP, translate your program into
 many languages, create network applications easily, and so on...
 
 %prep
-%setup
+%setup -n gambas-%{real_version}
 %patch -p1
 
 %build
