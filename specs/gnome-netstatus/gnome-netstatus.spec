@@ -16,7 +16,9 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/2.6/gnome-netstatus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.4, libgnomeui-devel >= 2.6, libglade2-devel >= 2.0, gnome-panel-devel >= 2.6
+BuildRequires: gtk2-devel >= 2.4, libgnomeui-devel >= 2.6
+BuildRequires: libglade2-devel >= 2.0
+BuildRequires: gnome-panel-devel >= 2.6, gcc-c++
 
 %description
 gnome-netstatus is a network interface status applet.
