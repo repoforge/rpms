@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 ### FIXME: Modified to co-exist with cvs. (Please fix upstream)
+# Tag: test
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -20,6 +21,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/cvsgui/gcvs-%{version}.tar.bz2
+Patch: gcvs-1.0-fc2-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel
@@ -38,6 +40,7 @@ which provides several graphical clients on Mac and Windows as well.
 
 %prep
 %setup
+%patch0
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -53,7 +56,7 @@ EOF
 %{__mv} -f cvsunix/man/cvs.1 cvsunix/man/cvs-gcvs.1
 %{__mv} -f cvsunix/man/cvs.5 cvsunix/man/cvs-gcvs.5
 %{__mv} -f cvsunix/man/cvsbug.8 cvsunix/man/cvsbug-gcvs.8
-for i in $(seq 1 9); do
+for i in $(seq 1 3); do
 	%{__mv} -f cvsunix/doc/cvs.info-$i cvsunix/doc/cvs-gcvs.info-$i
 	%{__mv} -f cvsunix/doc/cvsclient.info-$i cvsunix/doc/cvsclient-gcvs.info-$i
 done
@@ -119,5 +122,8 @@ CFLAGS="%{optflags}" ./make_configure \
 %endif
 
 %changelog
+* Fri May 28 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+- Fixed buildproblem on fc2. (Laurie Reeves)
+
 * Sun Apr 20 2003 Dag Wieers <dag@wieers.com> - 1.0-0
 - Initial package. (using DAR)
