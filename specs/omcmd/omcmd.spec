@@ -1,9 +1,8 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: "David L. Parsley" <parsley$linuxjedi,org>
 
-Summary: DHCP query tool
+Summary: Dhcp/omapi tool for operating on a running dhcp server
 Name: omcmd
 Version: 0.4.3
 Release: 1
@@ -20,10 +19,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dhcp-devel
 
 %description
-'omcmd' is a tool for operating on a running ISC dhcp server using the
-OMAPI protocol.  Functionally, it's not quite as powerful as 'omshell',
-but it's easier to use in many respects (human-readable time values, for
-instance), and it's designed to be easier to script.
+omcmd is a CLI utility for querying and updating omapi objects in a running
+ISC dhcp server. It can be used to dynamically create/modify/remove/lookup
+hosts and leases.
 
 %prep
 %setup
@@ -44,5 +42,8 @@ instance), and it's designed to be easier to script.
 %{_bindir}/*
 
 %changelog
+* Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 0.4.3-1
+- Added summary/description from David's package. (David L. Parsley)
+
 * Fri Aug 06 2004 Dries Verachtert <dries@ulyssis.org> - 0.4.3-1
 - Initial package.
