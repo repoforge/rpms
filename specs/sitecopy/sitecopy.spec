@@ -8,7 +8,7 @@
 Summary: Tool for easily maintaining remote web sites
 Name: sitecopy
 Version: 0.15.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.lyra.org/sitecopy/
@@ -70,8 +70,8 @@ cd -
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%doc BUGS COPYING ChangeLog* INSTALL NEWS README* THANKS TODO
 %defattr(-, root, root, 0755)
+%doc BUGS COPYING ChangeLog* INSTALL NEWS README* THANKS TODO
 %doc %{_mandir}/man1/sitecopy.1*
 %doc %{_mandir}/fr/man1/sitecopy.1*
 %{_bindir}/sitecopy
@@ -89,6 +89,9 @@ cd -
 %endif
 
 %changelog
+* Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.15.0-2
+- Fixed ownership of the docs. (Oron Peled)
+
 * Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 0.15.0-1
 - Updated to release 0.15.0.
 

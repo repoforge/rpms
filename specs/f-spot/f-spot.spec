@@ -6,7 +6,7 @@
 
 Summary: Personal photo management application
 Name: f-spot
-Version: 0.0.11
+Version: 0.0.12
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -65,6 +65,9 @@ EOF
 %exclude %{_libdir}/f-spot/*.la
 
 %changelog
+* Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.0.12-1
+- Updated to release 0.0.12.
+
 * Mon Mar 14 2005 Dag Wieers <dag@wieers.com> - 0.0.11-1
 - Updated to release 0.0.11.
 

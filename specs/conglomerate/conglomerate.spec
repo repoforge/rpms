@@ -4,7 +4,7 @@
 
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
-Version: 0.7.16
+Version: 0.9.0
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -18,8 +18,7 @@ BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 BuildRequires: libgnomeprintui22-devel, gtksourceview-devel, gtk-doc
 BuildRequires: scrollkeeper
 
-Requires(post): scrollkeeper
-Requires(postun): scrollkeeper
+Requires: scrollkeeper
 
 %description
 Conglomerate is a project to create a complete structured information
@@ -74,6 +73,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/ 
 
 %changelog
+* Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.9.0-1
+- Updated to release 0.9.0.
+
 * Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 0.7.16-1
 - Updated to release 0.7.16.
 

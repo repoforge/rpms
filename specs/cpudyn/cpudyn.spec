@@ -4,7 +4,7 @@
 
 Summary: Control the speed and power consumption of your computer
 Name: cpudyn
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -155,6 +155,9 @@ fi
 %{_sbindir}/*
 
 %changelog
+* Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Mon May 31 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

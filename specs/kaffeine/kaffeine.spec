@@ -1,14 +1,15 @@
 # $Id$
 # Authority: dries
+
 # Screenshot: http://kaffeine.sourceforge.net/pics/05/kaffeine05-1.png
 # ScreenshotURL: http://kaffeine.sourceforge.net/screenshots.html
 
-# ExcludeDist: el3 fc1
+##ExcludeDist: el3 fc1
 
 Summary: Media player based on xine-lib
 Name: kaffeine
-Version: 0.5
-Release: 2
+Version: 0.6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kaffeine.sourceforge.net
@@ -88,6 +89,9 @@ source /etc/profile.d/qt.sh
 %{_libdir}/kde3/libkaffeinepart.so
 
 %changelog
+* Sun Mar 20 2005 Dries Verachtert <dries@ulyssis.org> - 0.6-1
+- Updated to release 0.6.
+
 * Sun Jan 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-2
 - Added a devel subpackage so it can update and can be updated by 
   the kaffeine package of kde-redhat.
