@@ -34,7 +34,6 @@ rm -f dvorak7min *.o
 
 %install
 %{__rm} -rf %{buildroot}
-# sed -i "s/^INSTALL =.*/INSTALL = ${RPM_BUILD_ROOT//\//\\/}\/usr\/bin/g;" Makefile
 strip dvorak7min
 %{__make} install INSTALL=%{buildroot}/usr/bin
 
