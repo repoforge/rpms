@@ -23,7 +23,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/F/FA/FABPOT/Lingua-Stem-Snowball-chmod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl
 
 %description
