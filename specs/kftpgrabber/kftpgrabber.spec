@@ -6,7 +6,7 @@
 Summary: Graphical FTP client for the K Desktop Environment.
 Name: kftpgrabber
 Version: 0.5.0
-Release: 2.beta1
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://kftpgrabber.sourceforge.net/
@@ -14,7 +14,7 @@ URL: http://kftpgrabber.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://kftpgrabber.sf.net/releases/kftpgrabber-%{version}-beta1.tar.bz2
+Source: http://kftpgrabber.sf.net/releases/kftpgrabber-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.3.2, kdelibs-devel >= 3.2.0, openssl-devel >= 0.9.7
@@ -30,7 +30,7 @@ for all file transfer operations, it supports encrypted connections
 system and also has a built in support for Zeroconf site discovery.
 
 %prep
-%setup -n %{name}-%{version}-beta1
+%setup -n %{name}-%{version}
 
 %build
 %configure
@@ -61,6 +61,9 @@ system and also has a built in support for Zeroconf site discovery.
 %{_libdir}/kde3/kftpimportplugin_gftp.so
 
 %changelog
+* Fri Nov 26 2004 Dries Verachtert <dries@ulyssis.org - 0.5.0-3
+- Update to release 0.5.0.
+
 * Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.5.0-2.beta1
 - Included .la files. (Dries Verachtert)
 - Added contributed SPEC files. (Kevin Smith)

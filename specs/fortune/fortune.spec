@@ -156,7 +156,7 @@ util/strfile ralph
 %endif
 %{__cp} fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
 %{__cp} osho.dat osho %{buildroot}%{_datadir}/games/fortune/
-%{__cp} powerpuff-0.2/powerpuff* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} powerpuff-*/powerpuff* %{buildroot}%{_datadir}/games/fortune/
 %{__cp} oneliners-0.1/oneliners* %{buildroot}%{_datadir}/games/fortune/
 
 %{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
