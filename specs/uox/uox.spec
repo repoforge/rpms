@@ -39,6 +39,7 @@ automake --add-missing --copy || echo automake --add-missing --copy gives a warn
 autoconf
 automake || echo automake gives a warning
 # export CXXFLAGS="%{optflags} -I/usr/include/mozilla-1.6/js "
+chmod +x configure
 %configure --enable-debug
 dos2unix Makefile
 dos2unix depcomp
