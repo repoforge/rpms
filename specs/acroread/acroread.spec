@@ -20,7 +20,7 @@ URL: http://www.adobe.com/products/acrobat/readermain.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{real_version}.tar.gz
+Source: http://ardownload.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{real_version}.tar.gz
 Source1: acroread.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

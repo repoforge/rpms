@@ -1,8 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Dists: rh7
-# SourceDists: rh7
+# ExclusiveDist: rh7
 
 %{?dist: %{expand %%define: %dist 1}}
 

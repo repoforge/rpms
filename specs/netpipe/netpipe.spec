@@ -1,4 +1,4 @@
-# $Id: _template.spec 1587 2004-07-18 22:05:05Z dag $
+# $Id$
 # Authority: dag
 # Upstream: <netpipe$scl,ameslab,gov>
 # Upstream: Dave Turner <turner$ameslab,gov>

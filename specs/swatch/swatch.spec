@@ -1,4 +1,4 @@
-# $Id: _template.spec 1587 2004-07-18 22:05:05Z dag $
+# $Id$
 # Authority: dag
 
 %define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)

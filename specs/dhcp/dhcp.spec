@@ -2,7 +2,6 @@
 # Authority: dag
 
 # ExclusiveDist: rh6 el2 rh7
-# Dists: rh6 el2 rh7
 
 BuildRequires: dhcp < 3.0pl1
 

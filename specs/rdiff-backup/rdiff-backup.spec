@@ -1,4 +1,4 @@
-# $Id: _template.spec 1587 2004-07-18 22:05:05Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Ben Escoto <bescoto$stanford,edu>
 # Upstream: <rdiff-backup-users$nongnu,org>

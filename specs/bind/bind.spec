@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Dists: rh62
+# ExclusiveDist: rh6
 BuildRequires: bind < 9.1.3
 
 Summary: DNS (Domain Name System) server

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Dists: rh7
+# ExclusiveDist: rh7
 
 Summary: FM-Tuner program for GNOME
 Name: gnomeradio
