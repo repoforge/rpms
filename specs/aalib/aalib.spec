@@ -76,24 +76,24 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE AUTHORS COPYING ChangeLog NEWS
+%doc %{_infodir}/*.info*
+%doc %{_mandir}/man1/*
 %{_bindir}/aafire
 %{_bindir}/aainfo
 %{_bindir}/aasavefont
 %{_bindir}/aatest
 %{_libdir}/*.so.*
-%{_infodir}/*.info*
-%{_mandir}/man1/*
 
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/*
 %{_bindir}/aalib-config
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*.h
 %{_datadir}/aclocal/*.m4
-%{_mandir}/man3/*
+%exclude %{_libdir}/*.la
 
 
 %changelog
