@@ -16,7 +16,7 @@ Source: http://camorama.fixedgear.org/downloads/camorama-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gdk-pixbuf-devel, libgnomeui-devel >= 2.0, gtk+-devel >= 1.2
-BuildRequires: GConf, libglade-devel
+BuildRequires: GConf, libglade-devel, libpng-devel
 
 %description
 Camorama is a GNOME 2 Webcam application featuring various image filters.
