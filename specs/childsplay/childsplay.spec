@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildArch: noarch
-BuildRequires: python-devel
+BuildRequires: python-devel, python
 Requires: python-game, libogg
 Requires: SDL >= 1.2, SDL_image >= 1.2, SDL_mixer >= 1.2
 #Requires: SDL_ttf >= 1.2
