@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream: Christian Grothoff <libextractor$cs,purdue,edu>
 
 Summary: Meta-data extraction library 
 Name: libextractor
-Version: 0.3.11
+Version: 0.4.0
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -67,6 +68,8 @@ you will need to install %{name}-devel.
 %{_bindir}/extract
 %{_libdir}/libextractor.so.*
 %{_libdir}/libextractor/
+%exclude %{_libdir}/libextractor/libextractor_*.a
+%exclude %{_libdir}/libextractor/libextractor_*.la
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -75,10 +78,11 @@ you will need to install %{name}-devel.
 %{_libdir}/libextractor.a
 %exclude %{_libdir}/libextractor.la
 %{_libdir}/libextractor.so
-%exclude %{_libdir}/libextractor/libextractor_*.a
-%exclude %{_libdir}/libextractor/libextractor_*.la
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+
 * Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 0.3.11-1
 - Updated to release 0.3.11.
 

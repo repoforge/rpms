@@ -8,7 +8,7 @@
 
 Summary: Clean and lean CD ripper
 Name: sound-juicer
-Version: 0.5.14
+Version: 0.5.15
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -36,7 +36,6 @@ GStreamer-based CD ripping tool. Saves audio CDs to ogg/vorbis, flac or wav.
 
 %build
 %configure \
-	--disable-dependency-tracking \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags}
 
@@ -66,15 +65,18 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README NEWS
 %doc %{_datadir}/gnome/help/sound-juicer/
-%{_bindir}/*
-%{_sysconfdir}/gconf/schemas/*.schemas
+%{_bindir}/sound-juicer
+%{_sysconfdir}/gconf/schemas/sound-juicer.schemas
 %{_datadir}/sound-juicer/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/applications/gnome-sound-juicer.desktop
+%{_datadir}/pixmaps/sound-juicer.png
 %{_datadir}/omf/sound-juicer/
 %exclude %{_localstatedir}/scrollkeeper
 
 %changelog
+* Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.5.15-1
+- Updated to release 0.5.15.
+
 * Mon May 03 2004 Dag Wieers <dag@wieers.com> - 0.5.11-1
 - Updated to release 0.5.11.
 

@@ -6,8 +6,8 @@
 
 Summary: Programmable completion for Bash
 Name: bash-completion
-Version: 20041017
-Release: 3
+Version: 20050103
+Release: 1
 License: GPL
 Group: System Environment/Shells
 URL: http://www.caliban.org/bash/
@@ -70,6 +70,9 @@ EOF
 %config %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 20050103-1
+- Updated to release 20050103.
+
 * Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 20041017-3
 - Reverted wrong change to Bash version check. (Juergen Moellenhoff)
 

@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream: Christian Grothoff <christian@grothoff.org>
 
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
-Version: 0.5.0
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: Applications/File
@@ -53,7 +54,9 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/doodle.1*
+%doc %{_mandir}/man1/doodled.1*
 %{_bindir}/doodle
+%{_bindir}/doodled
 %{_libdir}/libdoodle.so.*
 
 %files devel
@@ -64,6 +67,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Updated to release 0.5.0.
 

@@ -10,16 +10,20 @@
 %{?el3:%define _without_mikmod 1}
 
 %{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_arts 1}
 %{?rh9:%define _without_mikmod 1}
 
 %{?rh7:%define _without_alsa 1}
+%{?rh7:%define _without_arts 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_mikmod 1}
+%{?rh7:%define _without_vorbis 1}
 
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_arts 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_mikmod 1}
+%{?el2:%define _without_vorbis 1}
 
 %define artsplugin_ver 0.6.0
 
@@ -50,11 +54,12 @@ Patch11: xmms-underquoted.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, gtk+-devel, esound-devel
-BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf-2.13, libvorbis-devel
+BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf-2.13
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_arts:BuildRequires: arts-devel >= 1.0.1}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_mikmod:BuildRequires: mikmod-devel}
+%{?!_without_vorbis:BuildRequires: libvorbis-devel}
 
 Requires: gtk+ >= 1:1.2.2, unzip
 # the desktop file and redhat-menus are redundant requires really
@@ -64,7 +69,7 @@ Requires: redhat-menus >= 0.11
 Obsoletes: x11amp0.7-1-1, x11amp, xmms-esd, xmms-gl, xmms-mikmod, xmms-gnome
 Obsoletes: xmms-alsa, alsa-xmms
 
-Conflicts: arts < 1.2.0-1.5
+%{!?_without_arts:Conflicts: arts < 1.2.0-1.5}
 
 %define _use_internal_dependency_generator 0
 %define __find_requires %{SOURCE5}
@@ -207,11 +212,11 @@ rm -rf %{buildroot}
 %{_libdir}/xmms/Input/libcdaudio.so
 %{_libdir}/xmms/Input/libmikmod.so
 %{_libdir}/xmms/Input/libtonegen.so
-%{_libdir}/xmms/Input/libvorbis.so
+%{!?_without_vorbis:%{_libdir}/xmms/Input/libvorbis.so}
 %{_libdir}/xmms/Input/libwav.so
 %{_libdir}/xmms/Output/
 %{_libdir}/xmms/Visualization/
-%{_datadir}/applications/*
+%{_datadir}/applications/redhat-audio-player.desktop
 %{_datadir}/pixmaps/xmms.xpm
 %{_datadir}/pixmaps/xmms_logo.xpm
 %{_datadir}/pixmaps/mini/xmms_mini.xpm
@@ -237,6 +242,9 @@ rm -rf %{buildroot}
 %{_datadir}/xmms/Skins/
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
+- Added _without_arts macros. (Tres Seaver)
+
 * Mon Jan 03 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
 - Fix a problem with update-desktop-database on older dists. (Erik Kjær Pedersen)
 

@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 
 Summary: Updates dynamic DNS entries
@@ -10,13 +9,13 @@ License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
 
-BuildArch: noarch
-
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/ddclient/ddclient-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
 
 %description
 Ddclient is a Perl client used to update dynamic DNS entries for accounts on
@@ -37,9 +36,9 @@ updates, and sending update status to syslog and through e-mail.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
-%{__install} -D sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
-%{__install} -D ddclient %{buildroot}%{_sbindir}/ddclient
+%{__install} -D -m0755 ddclient %{buildroot}%{_sbindir}/ddclient
+%{__install} -D -m0644 sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
+%{__install} -D -m0644 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
 
 %clean
 %{__rm} -rf %{buildroot}

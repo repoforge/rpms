@@ -4,7 +4,7 @@
 
 Summary: Shared Library for Data Structures
 Name: libds
-Version: 1.5.3
+Version: 1.5.4
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libds.la
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 1.5.4-1
+- Updated to release 1.5.4.
+
 * Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 1.5.3-1
 - Updated to release 1.5.3.
 
