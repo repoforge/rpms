@@ -3,7 +3,7 @@
 
 Summary: Set the background of your X Windows desktop under water
 Name: xdesktopwaves
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -47,6 +47,9 @@ stirring up the water.
 
 
 %changelog
+* Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Fri Nov 19 2004 Matthias Saou <http://freshrpms.net/> 1.0-1
 - Initial RPM release.
 

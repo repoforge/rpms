@@ -19,7 +19,7 @@
 
 Summary: Distributed C/C++ compilation client program
 Name: distcc
-Version: 2.18.2
+Version: 2.18.3
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -253,6 +253,13 @@ for compiler in gcc34 g++34; do
 done
 %endif
 
+%{?fc2:%define has_gcc4 1}
+%if %{?has_gcc4:1}0
+for compiler in gcc4 g++4; do
+	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler
+done
+%endif
+
 %if %{!?_without_gtk2:1}0
 	%{__install} -D -m0644 gnome/distccmon-gnome-icon.png %{buildroot}%{_datadir}/pixmaps/distccmon-gnome.png
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -324,6 +331,9 @@ fi
 %endif
 
 %changelog
+* Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 2.18.3-1
+- Updated to release 2.18.3.
+
 * Fri Nov 12 2004 Dag Wieers <dag@wieers.com> - 2.18.2-1
 - Updated to release 2.18.2.
 
