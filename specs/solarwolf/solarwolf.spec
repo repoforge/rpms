@@ -40,11 +40,11 @@ make install
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc readme.txt lgpl.txt
-/usr/share/games/solarwolf
-/usr/games/solarwolf
-/usr/share/applications/solarwolf.desktop
+%{_datadir}/games/solarwolf
+%{_usr}/games/solarwolf
+%{_datadir}/applications/solarwolf.desktop
 
 %changelog
 * Sun Jan 25 2004 Dries Verachtert <dries@ulyssis.org> 1.4-2

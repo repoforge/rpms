@@ -55,9 +55,9 @@ EOF
 %defattr(-,root,root,0755)
 %doc README
 %{_bindir}/poedit
-/usr/share/man/man1/poedit.1.gz
-/usr/share/poedit
-/usr/share/applications/poedit.desktop
+%{_mandir}/man1/poedit.1.gz
+%{_datadir}/poedit
+%{_datadir}/applications/poedit.desktop
 
 %changelog
 * Sun Feb 29 2004 Dries Verachtert <dries@ulyssis.org> 1.2.5-1

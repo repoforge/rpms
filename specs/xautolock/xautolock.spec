@@ -42,8 +42,8 @@ mkdir -p $RPM_BUILD_ROOT/usr/X11R6/man/man1/
 
 %files
 %defattr(-,root,root, 0755)
-/usr/X11R6/bin/xautolock
-/usr/X11R6/man/man1/xautolock.1x.gz
+%{_usr}/X11R6/bin/xautolock
+%{_usr}/X11R6/man/man1/xautolock.1x.gz
 
 %changelog
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 2.1-2

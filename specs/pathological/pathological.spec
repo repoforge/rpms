@@ -62,14 +62,14 @@ EOF
 %files
 %defattr(-,root,root,0755)
 %doc README TODO LICENSE
-/usr/X11R6/include/X11/pixmaps/pathological.xpm
-/usr/games/pathological
-/usr/lib/pathological/bin/write-highscores
-/usr/share/doc/pathological/html
-/usr/share/games/pathological
-/usr/share/man/man6/pathological.6.gz
-/var/games/pathological_scores
-/usr/share/applications/pathological.desktop
+%{_usr}/X11R6/include/X11/pixmaps/pathological.xpm
+%{_usr}/games/pathological
+%{_libdir}/pathological
+%{_datadir}/doc/pathological
+%{_usr}/share/games/pathological
+%{_mandir}/man6/pathological.6.gz
+%{_var}/games/pathological_scores
+%{_datadir}/applications/pathological.desktop
 
 %changelog
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 1.1.3-4

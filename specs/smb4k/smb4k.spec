@@ -61,10 +61,10 @@ EOF
 %files -f %{name}.lang
 %defattr(-,root,root, 0755)
 %{_bindir}/smb4k
-/usr/share/applications/smb4k.desktop
-/usr/share/apps/smb4k/smb4kui.rc
-/usr/share/doc/HTML/en/smb4k
-/usr/share/icons/crystalsvg/*/apps/smb4k.png
+%{_datadir}/applications/smb4k.desktop
+%{_datadir}/apps/smb4k
+%{_datadir}/doc/HTML/en/smb4k
+%{_datadir}/icons/crystalsvg/*/apps/smb4k.png
 
 %changelog
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.3.1-1

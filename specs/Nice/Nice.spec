@@ -41,12 +41,12 @@ compilation (null pointers, casts).
 %doc LICENSE NEWS
 %{_bindir}/nicec
 %{_bindir}/niceunit
-/usr/share/java/nice.jar
+%{_datadir}/java/nice.jar
 %{_mandir}/man1/nicec.1.gz
 %{_mandir}/man1/niceunit.1.gz
-/usr/share/emacs/site-lisp/nice/nice-mode.el
-/usr/share/emacs/site-lisp/nice/nice-startup.el
-/usr/share/doc/nice/nicec.html
+%{_datadir}/emacs/site-lisp/nice/nice-mode.el
+%{_datadir}/emacs/site-lisp/nice/nice-startup.el
+%{_datadir}/doc/nice/nicec.html
 
 %changelog
 * Wed Feb 25 2004 Dries Verachtert <dries@ulyssis.org> 0.9.6-1
