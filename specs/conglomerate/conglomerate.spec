@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/conglomerate/conglomerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, libxml2-devel >= 2.0
+BuildRequires: gettext, libxml2-devel >= 2.0, gcc-c++
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 BuildRequires: libgnomeprintui22-devel, gtksourceview-devel, gtk-doc
 BuildRequires: scrollkeeper
