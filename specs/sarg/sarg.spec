@@ -6,7 +6,7 @@
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
 Version: 1.4.1
-Release: 4
+Release: 5
 License: GPL
 Group: System Environment/Daemons
 URL: http://sarg.sf.net/sarg.php
@@ -59,14 +59,14 @@ EOF
 #!/bin/bash
 exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/weekly \
-	-d "$(date --date "1 day ago" +%d/%m/%Y)-$(date --date "1 week ago" +%d/%m/%Y)"
+	-d "$(date --date "1 week ago" +%d/%m/%Y)-$(date --date "1 day ago" +%d/%m/%Y)"
 EOF
 
 %{__cat} <<'EOF' >sarg.monthly
 #!/bin/bash
 exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/monthly \
-	-d "$(date --date "1 day ago" +%d/%m/%Y)-$(date --date "1 month ago" +%d/%m/%Y)"
+	-d "$(date --date "1 month ago" +%d/%m/%Y)-$(date --date "1 day ago" +%d/%m/%Y)"
 EOF
 
 %{__cat} <<EOF >sarg-index.html
@@ -152,6 +152,9 @@ EOF
 %{_localstatedir}/www/sarg/
 
 %changelog
+* Wed Aug 04 2004 Dag Wieers <dag@wieers.com> - 1.4.1-5
+- Fixed ugly bug in weekly and monthly cron entries. (Viktor Zoubkov)
+
 * Wed Jun 30 2004 Dag Wieers <dag@wieers.com> - 1.4.1-4
 - Fixed default mail_utility. (John Florian)
 
