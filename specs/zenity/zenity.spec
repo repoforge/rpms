@@ -66,6 +66,7 @@ scrollkeeper-update -q || :
 %{_bindir}/*
 %{_datadir}/omf/zenity/
 %{_datadir}/zenity/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
 * Mon Nov 17 2003 Dag Wieers <dag@wieers.com> - 1.7-0
