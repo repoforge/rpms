@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+# DistExclude: fc1 fc2
 
 Summary: Library for writing pagers and taskslists
 Name: libwnck
@@ -61,7 +62,7 @@ developing applications using libwnck.
 %files devel
 %defattr(-, root, root, 0755)
 %doc ABOUT-NLS
-%{_includedir}/*.h
+%{_includedir}/libwnck-1.0/
 %{_libdir}/pkgconfig/*
 %{_libdir}/*.a
 %{_libdir}/*.so
