@@ -44,14 +44,18 @@ packages provides the plugin to access the Gnutella network.
 %files
 %defattr(-, root, root, 0755)
 %doc README AUTHORS ChangeLog COPYING NEWS TODO
-%{_libdir}/giFT/libGnutella.*
+### .la file is needed for gift at runtime !
+%{_libdir}/giFT/libGnutella.la
+%{_libdir}/giFT/libGnutella.so
 %config(noreplace) %{_datadir}/giFT/Gnutella/Gnutella.conf
 %config            %{_datadir}/giFT/Gnutella/Gnutella.conf.template
 %{_datadir}/giFT/Gnutella/gwebcaches
 %{_datadir}/giFT/Gnutella/hostiles.txt
 
-
 %changelog
+* Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.0.9.2-1
+- Include .la file because gift requires it. (Willy De la Court)
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.0.9.2-1
 - Update to 0.0.9.2.
 - Spec file cleanup.

@@ -4,7 +4,7 @@
 Summary: Gift plugin to access the openft network
 Name: gift-openft
 Version: 0.2.1.2
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://www.giftproject.org/
@@ -47,10 +47,14 @@ packages provides the plugin to access the openft network.
 %dir %{_libdir}/giFT/
 %dir %{_datadir}/giFT/
 %config (noreplace) %{_datadir}/giFT/OpenFT/
-%exclude %{_libdir}/giFT/libOpenFT.la
+### .la file is needed for gift at runtime !
+%{_libdir}/giFT/libOpenFT.la
 %{_libdir}/giFT/libOpenFT.so
 
 %changelog
+* Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.2.1.2-2
+- Include .la file because gift requires it. (Willy De la Court)
+
 * Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.2.1.2-1
 - first packaging for Fedora Core 1
 
