@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Derry Bryson <xbase@techass.com>
+# Upstream: <xdb-devel@lists.sf.net>
 
 Summary: Xbase dBase database file library
 Name: xbase
@@ -33,6 +34,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+%{__libtoolize} --force
 %configure \
 	--enable-static
 %{__make} %{?_smp_mflags}
@@ -40,9 +42,6 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -54,6 +53,7 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/checkndx
 %{_bindir}/copydbf
@@ -69,9 +69,11 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %doc docs/html/ docs/latex/
 %{_bindir}/xbase-config
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/xbase/
 #%{_includedir}/xdb/
