@@ -27,7 +27,6 @@ A screensaver for KDE which shows the adventures of Tux, living at the
 SouthPole.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -37,10 +36,12 @@ SouthPole.
 
 %install
 . /etc/profile.d/qt.sh
-export DESTDIR=$RPM_BUILD_ROOT
-%{__make} install-strip
-mkdir -p ${DESTDIR}/usr/share/apps/kscreensaver/ScreenSavers/
-mv ${DESTDIR}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop ${DESTDIR}/usr/share/apps/kscreensaver/ScreenSavers/
+%makeinstall
+mkdir -p %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
+mv %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root, 0755)
