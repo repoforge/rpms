@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %define desktop_vendor rpmforge
 %define date           20050117
 
@@ -15,8 +17,9 @@ Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gcc-c++, desktop-file-utils
 BuildRequires: ncurses-devel, curl-devel, SDL-devel
-# This one should probably required by one of the above instead
-BuildRequires: libidn-devel
+# This one should have been required by curl-devel
+%{!?dist:BuildRequires: libidn-devel}
+%{?fc3:BuildRequires: libidn-devel}
 
 %description
 BZFlag is a 3D multi-player tank battle game  that  allows users to play
