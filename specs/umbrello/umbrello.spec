@@ -1,8 +1,18 @@
 # $Id$
 # Authority: dries
-
 # Screenshot: http://uml.sourceforge.net/images/thumbnails/activity-diagram.png
 # ScreenshotURL: http://uml.sourceforge.net/screen.php
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
 
 Summary: unified modelling language (UML) diagrams modeller
 Name: umbrello
@@ -19,7 +29,9 @@ Source: http://dl.sf.net/uml/umbrello-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel, flex
+BuildRequires: qt-devel, flex
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Umbrello UML Modeller is a Unified Modelling Language diagram programme for
@@ -35,11 +47,13 @@ standaard formaat.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %{__make} install \
 	DESTDIR="%{buildroot}"
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
