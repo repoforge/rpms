@@ -1,0 +1,131 @@
+--- fping-2.4b2/fping.c.org	2005-02-15 18:10:37.000000000 +0900
++++ fping-2.4b2/fping.c	2005-02-15 18:12:41.000000000 +0900
+@@ -1049,6 +1049,7 @@
+ 				cursor->host, cursor->waiting, cursor->running, cursor->num_sent, 
+ 				cursor->num_recv, cursor->timeout, num_jobs, lt, ht );
+ 
++			fflush(stdout);
+ 		}/* IF */
+ #endif /* DEBUG || _DEBUG */
+ 
+@@ -1082,7 +1083,10 @@
+ 		{
+ #if defined( DEBUG ) || defined( _DEBUG )
+ 			if( trace_flag ) 
++			{
+ 				printf( "main loop: timeout for %s\n", cursor->host );
++				fflush(stdout);
++			}
+ #endif /* DEBUG || _DEBUG */
+ 
+ 			num_timeout++;
+@@ -1100,7 +1104,10 @@
+ 
+ #if defined( DEBUG ) || defined( _DEBUG )
+ 		if( trace_flag )
++		{
+ 			printf( "main loop: didn't send to %s\n", cursor->host );
++			fflush(stdout);
++		}
+ #endif /* DEBUG || _DEBUG */
+     
+ 		/* never remove if looping */
+@@ -1134,7 +1141,10 @@
+ 			{
+ #if defined( DEBUG ) || defined( _DEBUG )
+ 				if( trace_flag ) 
++				{
+ 					printf( "main loop: timeout for %s\n", cursor->host );
++					fflush(stdout);
++				}
+ #endif /* DEBUG || _DEBUG */
+ 
+ 				num_timeout++;
+@@ -1197,7 +1207,7 @@
+ 					printf( " is unreachable" );
+ 				
+ 				printf( "\n" );
+-			
++				fflush(stdout);
+ 			}/* IF */
+ 		}/* IF */
+ 	}/* FOR */
+@@ -1529,7 +1539,10 @@
+ #endif
+ #if defined(DEBUG) || defined(_DEBUG)
+ 	if( trace_flag )
++	{
+ 		printf( "sending [%d] to %s\n", h->num_sent, h->host );
++		fflush(stdout);
++	}
+ #endif /* DEBUG || _DEBUG */
+ 
+ 	n = sendto( s, buffer, ping_pkt_size, 0,
+@@ -1544,7 +1557,7 @@
+ 				printf( " error while sending ping: %s\n", strerror( errno ) );
+ 			
+ 			printf( "\n" );
+-
++			fflush(stdout);
+ 		}/* IF */
+ 		
+ 		num_unreachable++;
+@@ -1648,6 +1661,7 @@
+ 			inet_ntop(response_addr.sin6_family, &response_addr.sin6_addr, buf, INET6_ADDRSTRLEN);
+ 			printf( "received packet too short for ICMP (%d bytes from %s)\n", result, buf);
+ #endif
++			fflush(stdout);
+ 		}
+ 		return( 1 ); /* too short */ 
+ 	}/* IF */
+@@ -1705,7 +1719,10 @@
+ 
+ #if defined( DEBUG ) || defined( _DEBUG )
+ 	if( trace_flag ) 
++	{
+ 		printf( "received [%d] from %s\n", this_count, h->host );
++		fflush(stdout);
++	}
+ #endif /* DEBUG || _DEBUG */
+ 
+ 	this_reply = timeval_diff( &current_time, &sent_time );
+@@ -1780,11 +1797,11 @@
+ 			{
+ 				char buf[INET6_ADDRSTRLEN];
+ 				inet_ntop(response_addr.sin6_family, &response_addr.sin6_addr, buf, INET6_ADDRSTRLEN);
+-				fprintf( stderr, " [<- %s]", buf);
++				printf( " [<- %s]", buf);
+ 			}
+ #endif
+ 			printf( "\n" );
+-		
++			fflush(stdout);
+ 		}/* IF */
+ 	}/* IF */
+ 
+@@ -1815,12 +1832,12 @@
+ 		{
+ 			char buf[INET6_ADDRSTRLEN];
+ 			inet_ntop(response_addr.sin6_family, &response_addr.sin6_addr, buf, INET6_ADDRSTRLEN);
+-			fprintf( stderr, " [<- %s]", buf);
++			printf( " [<- %s]", buf);
+ 		}
+ #endif
+ 		
+ 		printf( "\n" );
+-	
++		fflush(stdout);
+ 	}/* IF */
+ 	
+ 	return num_jobs;
+@@ -2352,7 +2369,10 @@
+ {
+ #if defined( DEBUG ) || defined( _DEBUG )
+ 	if( trace_flag )
++	{
+ 		printf( "removing job for %s\n", h->host );
++		fflush(stdout);
++	}
+ #endif /* DEBUG || _DEBUG */
+ 
+ 	h->running = 0;
