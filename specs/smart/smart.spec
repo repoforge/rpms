@@ -64,44 +64,38 @@ Programa tray do KDE para verificar atualizações com o Smart Package Manager.
 
 %{__cat} <<EOF >distro.py
 sysconf.set(("channels", "rpm-db"), {
-	"alias": "rpm-db",
 	"type": "rpm-sys",
 	"name": "RPM Database",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "os"), {
-	"alias": "%{dist}-os",
 	"type": "rpm-md",
-	"name": "$name $version",
+	"name": "OS packages from Red Hat for $name $version",
 	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core/",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "updates"), {
-	"alias": "%{dist}-updates",
 	"type": "rpm-md",
-	"name": "$name $version Updates",
+	"name": "Updated packages from Red Hat for $name $version",
 	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/updates/",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "mirrors"), {
-	"alias": "%{dist}-mirrors",
 	"type": "up2date-mirrors",
 	"name": "$name $version (Mirrors Channel)",
 	"url": "http://fedora.redhat.com/download/up2date-mirrors/fedora-core-$version",
 })
 
 sysconf.set(("channels", "mirrors-updates"), {
-	"alias": "%{dist}-mirrors-updates",
 	"type": "up2date-mirrors",
 	"name": "$name $version Updates (Mirrors Channel)",
 	"url": "http://fedora.redhat.com/download/up2date-mirrors/updates-released-fc$version",
 })
 
 sysconf.set(("channels", "repo-dag"), {
-	"alias": "repo-%{dist}-dag",
 	"type": "rpm-md",
 	"name": "Various packages from RPMforge.net (dag) for $name $version",
 	"baseurl": "http://apt.sw.be/$path/$version/en/%{_arch}/dag",
@@ -109,15 +103,13 @@ sysconf.set(("channels", "repo-dag"), {
 })
 
 sysconf.set(("channels", "repo-freshrpms"), {
-	"alias": "repo-%{dist}-freshrpms",
 	"type": "rpm-md",
-	"name": "Varios packages from RPMforge.net (freshrpms) for $name $version",
+	"name": "Various packages from RPMforge.net (freshrpms) for $name $version",
 	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/freshrpms",
 	"priority": 10,
 })
 
 sysconf.set(("channels", "repo-dries"), {
-	"alias": "repo-%{dist}-dries",
 	"type": "rpm-md",
 	"name": "Various packages from RPMforge.net (dries) for $name $version",
 	"baseurl": "http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS",
@@ -125,7 +117,6 @@ sysconf.set(("channels", "repo-dries"), {
 })
 
 sysconf.set(("channels", "repo-jpackage"), {
-	"alias": "repo-%{dist}-jpackage",
 	"type": "rpm-md",
 	"name": "Java packages from JPackage.org for $name $version",
 	"baseurl": "http://mirrors.sunsite.dk/jpackage/1.6/fedora-3/free/",
@@ -134,7 +125,6 @@ sysconf.set(("channels", "repo-jpackage"), {
 })
 
 sysconf.set(("channels", "repo-newrpms"), {
-	"alias": "repo-%{dist}-newrpms",
 	"type": "rpm-md",
 	"name": "Various packages from NewRPMS for $name $version",
 	"baseurl": "http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version",
@@ -142,7 +132,6 @@ sysconf.set(("channels", "repo-newrpms"), {
 })
 
 sysconf.set(("channels", "repo-kde-redhat"), {
-	"alias": "repo-%{dist}-kde-redhat",
 	"type": "rpm-md",
 	"name": "KDE packages from the kde-redhat project for $name $version",
 	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/$version/stable",
@@ -151,7 +140,6 @@ sysconf.set(("channels", "repo-kde-redhat"), {
 })
 
 sysconf.set(("channels", "repo-kde-redhat-all"), {
-	"alias": "repo-%{dist}-kde-redhat-all",
 	"type": "rpm-md",
 	"name": "KDE (nodist) packages from the kde-redhat project for $name $version",
 	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/all/stable",
@@ -160,7 +148,6 @@ sysconf.set(("channels", "repo-kde-redhat-all"), {
 })
 
 sysconf.set(("channels", "repo-atrpms"), {
-	"alias": "repo-%{dist}-atrpms",
 	"type": "rpm-md",
 	"name": "Various packages from ATrpms for $name $version",
 	"baseurl": "http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing",
