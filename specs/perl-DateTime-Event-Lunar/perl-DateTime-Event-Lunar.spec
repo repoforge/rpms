@@ -33,19 +33,23 @@ Perl DateTime Extension For Computing Lunar Events.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX=%{buildroot}%{_prefix}
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+	%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES TODO LICENSE
+%doc CHANGES LICENSE
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DateTime/Event/Lunar.pm
 
