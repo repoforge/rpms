@@ -15,6 +15,8 @@ URL: http://gnubiff.sourceforge.net/
 Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 Gnubiff is a mail notification program that checks for mail, displays
 headers when new mail has arrived and allows to read the first lines of new
