@@ -46,9 +46,10 @@ invoices based on that time.
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man?/*
 %doc %{_datadir}/gnome/help/gnotime/
-%{_bindir}/*
+%{_bindir}/gnotime
 %{_datadir}/gnotime/
-%{_datadir}/gnome/apps/Applications/*.desktop
+#%{_datadir}/gnome/apps/Applications/*.desktop
+%{_datadir}/applications/gnotime.desktop
 %exclude %{_datadir}/gnome/help/gtt/
 
 %changelog

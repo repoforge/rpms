@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 1.1a
@@ -14,9 +13,8 @@ Group: Applications/Internet
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{name}.%{real_version}.tar.gz
+Source: http://ftp.linux.org.uk/pub/linux/Networking/attic/Other/tcpspray/tcpspray.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Print average throughput for a tcp connection.
@@ -29,15 +27,13 @@ Print average throughput for a tcp connection.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 tcpspray %{buildroot}%{_bindir}
-%{__install} -m0644 tcpspray.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 tcpspray %{buildroot}%{_bindir}/tcpspray
+%{__install} -D -m0644 tcpspray.1 %{buildroot}%{_mandir}/man1/tcpspray.1
 
 %files
 %defattr(-, root, root, 0755}
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/tcpspray.1*
+%{_bindir}/tcpspray
 
 %clean
 %{__rm} -rf %{buildroot}

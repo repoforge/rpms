@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define rname Gabber
+%define real_name Gabber
 
 Summary: Client for the Jabber instant messaging system
 Name: gabber

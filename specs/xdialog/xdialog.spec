@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Thierry Godefroy <xdialog$free,fr>
 
@@ -53,8 +52,8 @@ range box, and much more).
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README
 %doc samples/ doc/*.html doc/*.png
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc %{_mandir}/man1/Xdialog.1*
+%{_bindir}/Xdialog
 
 %changelog
 * Tue Apr 29 2003 Dag Wieers <dag@wieers.com> - 2.1.1-0

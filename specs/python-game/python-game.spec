@@ -14,7 +14,7 @@ URL: http://pygame.seul.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://pygame.seul.org/pygame-%{version}.tar.bz2
+Source: http://pygame.seul.org/pygame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-numeric, smpeg-devel,

@@ -84,7 +84,7 @@ xmkmf -a
 %doc %{_mandir}/man6/xkobo.6*
 %{_bindir}/xkobo
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Games/xkobo.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/net-xkobo.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xkobo.desktop}
 
 %defattr(-, root, games, 0775)
 %{_localstatedir}/lib/games/xkobo/

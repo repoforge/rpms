@@ -4,6 +4,8 @@
 
 # BuildAsRoot: 1
 
+### FIXME: The official webmin RPM package is broken. Please back up all configuration files before upgrading to my RPM package.
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %define logmsg logger -t %{name}/rpm
@@ -11,7 +13,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.160
+Version: 1.170
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -145,8 +147,8 @@ fi
 %{_libexecdir}/webmin
 
 %changelog
-* Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - ?
-- Updated to release ?
+* Sun Nov 21 2004 Dag Wieers <dag@wieers.com> - 1.170-1
+- Updated to release 1.170.
 - Added -set_serial to openssl. (Donavan Nelson)
 
 * Sat Oct 09 2004 Dag Wieers <dag@wieers.com> - 1.160-1

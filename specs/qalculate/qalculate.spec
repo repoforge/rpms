@@ -18,7 +18,7 @@ Patch: qalculate_missing_includes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, libglade2-devel, pkgconfig, cln-devel
-BuildRequires: ImageMagick, gettext
+BuildRequires: ImageMagick, gettext, glib2-devel >= 2.4
 Requires: gnuplot, wget
 
 %description
@@ -56,13 +56,18 @@ scrollkeeper-update -q
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %doc %{_datadir}/gnome/help/qalculate/
-%{_bindir}/qalculate
+%{_bindir}/qalc
+%{_bindir}/qalculate-gtk
 %{_datadir}/applications/qalculate.desktop
 %{_datadir}/applnk/Utilities/qalculate.desktop
 %{_datadir}/pixmaps/qalculate.xpm
 %{_datadir}/qalculate/
-%{_datadir}/qalculate/
 %{_datadir}/omf/qalculate/
+%{_includedir}/libqalculate/
+%{_libdir}/libqalculate.a
+%exclude %{_libdir}/libqalculate.la
+%{_libdir}/libqalculate.so*
+%{_libdir}/pkgconfig/libqalculate.pc
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
