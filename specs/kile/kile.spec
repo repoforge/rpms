@@ -6,7 +6,7 @@
 
 Summary: User friendly TeX/LaTeX editor
 Name: kile
-Version: 1.7
+Version: 1.7.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -74,13 +74,20 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 # conflicts with kdelibs-3.2.2-8.FC2
 %exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
 %exclude %{_datadir}/apps/katepart/syntax/latex.xml
+%{_datadir}/apps/kconf_update/kile.upd
+%{_datadir}/apps/kconf_update/kile1.6_upd.pl
 %{_datadir}/config.kcfg/kile.kcfg
 %{_datadir}/icons/crystalsvg/*/apps/kile.png
 %{_datadir}/icons/hicolor/*/apps/kile.png
 %{_datadir}/applications/kile.desktop
+%{_datadir}/mimelnk/text/x-kilepr.desktop
 %{_bindir}/kile
 
+
 %changelog
+* Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 1.7.1-1
+- Update to release 1.7.1.
+
 * Mon Oct 18 2004 Dries Verachtert <dries@ulyssis.org> 1.7-1
 - Update to 1.7.
 - %%find_lang removed.. it doesn't seem to work with version 1.7.

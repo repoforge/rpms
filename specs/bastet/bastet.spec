@@ -4,7 +4,7 @@
 
 Summary: Very nasty tetris game
 Name: bastet
-Version: 0.37
+Version: 0.41
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -47,13 +47,16 @@ touch %{buildroot}%{_localstatedir}/games/bastet.scores
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING HISTORY README* TODO
+%doc AUTHORS COPYING README* TODO BUGS NEWS
 %{_bindir}/bastet
 
 %defattr(-, games, root, 0755)
 %{_localstatedir}/games/bastet.scores
 
 %changelog
+* Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.41-1
+- Update to release 0.41.
+
 * Sat May 15 2004 Dag Wieers <dag@wieers.com> - 0.37-1
 - Cosmetic cleanup.
 
