@@ -4,7 +4,7 @@
 
 Summary: Utility for accessing the output pins of a parallel port
 Name: pport
-Version: 0.6.2
+Version: 0.6.3
 Release: 1
 License: GPL
 Group: Applications/System
@@ -44,6 +44,9 @@ practically no changes.
 %exclude %{_prefix}/doc/pport/
 
 %changelog
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 0.6.3-1
+- Updated to release 0.6.3.
+
 * Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Updated to release 0.6.2.
 
