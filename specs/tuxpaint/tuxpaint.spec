@@ -16,8 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Source0: http://dl.sf.net/tuxpaint/tuxpaint-%{version}.tar.gz
 Source1: http://dl.sf.net/tuxpaint/tuxpaint-stamps-2003.12.23.tar.gz
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel,
-qt-devel, SDL-devel, SDL_ttf-devel, SDL_image-devel, SDL_mixer-devel
+BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, SDL-devel, SDL_ttf-devel, SDL_image-devel, SDL_mixer-devel
 
 # Sreenshot: http://www.newbreedsoftware.com/tuxpaint/screenshots/example_simple-t.png
 # ScreenshotURL: http://www.newbreedsoftware.com/tuxpaint/screenshots/
