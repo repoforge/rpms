@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dries
+# Upstream: 
 
 Summary: Console download accelerator
 Name: aget
@@ -13,7 +14,7 @@ Source: http://www.enderunix.org/aget/%{name}-%{version}.tar.gz
 Patch: errno-include.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#(d) primscreenshot: http://www.enderunix.org/aget/aget-shot.jpg
+# Screenshot: http://www.enderunix.org/aget/aget-shot.jpg
 
 %description
 Aget is a multi-threaded download accelerator. It supports HTTP downloads
@@ -27,11 +28,11 @@ and can be run from the console.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf ${RPM_BUILD_ROOT}
-%{__install} -m 0755 -D aget ${RPM_BUILD_ROOT}%{_bindir}/aget
+%{__rm} -rf %{buildroot}
+%{__install} -m 0755 -D aget %{buildroot}%{_bindir}/aget
 
 %clean
-%{__rm} -rf ${RPM_BUILD_ROOT}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
@@ -51,4 +52,3 @@ and can be run from the console.
 
 * Fri Dec 12 2003 Dries Verachtert <dries@ulyssis.org> 0.4-1
 - first packaging for Fedora Core 1
-
