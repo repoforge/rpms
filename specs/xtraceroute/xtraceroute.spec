@@ -6,6 +6,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+# ExcludeDist: fc1
+
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
 %{?rh9:%define _without_xorg 1}
