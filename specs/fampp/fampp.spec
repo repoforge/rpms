@@ -33,7 +33,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n fampp2-%{version}
 
 %build
 %configure
