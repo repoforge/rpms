@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Mail-Sender
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Module for sending mails with attachments
 Name: perl-Mail-Sender
@@ -47,8 +51,11 @@ echo "N" | %{__make} %{?_smp_mflags}
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/Mail/Sender.pm
-%{_libdir}/perl5/vendor_perl/*/Mail/Sender
+%{perl_vendorlib}/Mail/Sender.pm
+%{perl_vendorlib}/Mail/Sender
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%exclude %{perl_vendorlib}/Mail/Sender/CType/Win32.pm
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1
