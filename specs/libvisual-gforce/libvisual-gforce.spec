@@ -56,6 +56,7 @@ SDL, as a surface on an OpenGL object, etc.
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d %{buildroot}%{_datadir}/libvisual-gforce
 %makeinstall
 
 %post
