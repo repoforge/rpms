@@ -68,6 +68,7 @@ sed -i "s/<UI version=\"3.2\" /<UI version=\"3.3\"/g;" $(find . | egrep "\.ui$")
 %{__rm} -rf %{buildroot}
 source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
+%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -78,16 +79,15 @@ source %{_sysconfdir}/profile.d/qt.sh
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
 %{_libdir}/*.so*
-%{_libdir}/libkxmleditorpart.*
+%{_libdir}/libkxmleditorpart.la
 %{_datadir}/applnk/Applications/kxmleditor.desktop
 %{_datadir}/apps/kxmleditor/icons/*/*/actions/*.png
-%{_datadir}/apps/kxmleditor/kxmleditorpartBrowseUI.rc
-%{_datadir}/apps/kxmleditor/kxmleditor*.rc
+%{_datadir}/apps/kxmleditor/*.rc
 %{_datadir}/apps/kxmleditor/pics/*.png
 %{_datadir}/doc/HTML/en/kxmleditor
 %{_datadir}/icons/*/*/apps/kxmleditor.png
