@@ -4,16 +4,16 @@
 
 Summary: Meta-data extraction library 
 Name: libextractor
-Version: 0.4.1
+Version: 0.4.2
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://www.ovmj.org/libextractor/
+URL: http://gnunet.org/libextractor/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ovmj.org/libextractor/download/libextractor-%{version}.tar.gz
+Source: http://gnunet.org/libextractor/download/libextractor-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libvorbis-devel, libogg-devel, zlib-devel, gcc-c++
@@ -80,6 +80,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libextractor.so
 
 %changelog
+* Fri Feb 25 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
+- Updated to release 0.4.2.
+
 * Fri Jan 28 2005 Dag Wieers <dag@wieers.com> - 0.4.1-1
 - Updated to release 0.4.1.
 

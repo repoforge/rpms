@@ -4,7 +4,7 @@
 
 Summary: Dock any application into the system tray
 Name: alltray
-Version: 0.35
+Version: 0.40
 Release: 1
 License: GPL
 Group: System Environment/Desktops
@@ -45,6 +45,9 @@ minimize to system tray.
 %{_bindir}/alltray
 
 %changelog
+* Fri Feb 25 2005 Dag Wieers <dag@wieers.com> - 0.40-1
+- Updated to release 0.40.
+
 * Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 0.35-1
 - Updated to release 0.35.
 

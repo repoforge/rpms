@@ -3,12 +3,12 @@
 # Upstream: Michael C. Toren <mct$toren,net>
 # Upstream: <tcptraceroute-dev$netisland,net>
 
-%define real_version 1.5beta5
+%define real_version 1.5beta6
 
 Summary: Traceroute implementation using TCP packets
 Name: tcptraceroute
 Version: 1.5
-Release: 0.beta5
+Release: 0.beta6
 License: GPL
 Group: Applications/Internet
 URL: http://michael.toren.net/code/tcptraceroute/
@@ -43,14 +43,13 @@ firewall filters.
 %setup -n %{name}-%{real_version}
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-%{__install} -D -m0644 tcptraceroute.1 %{buildroot}%{_mandir}/man8/tcptraceroute.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,11 +57,14 @@ firewall filters.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README *.txt tcptraceroute.1.html
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/tcptraceroute.1*
+%{_bindir}/tcptraceroute
 %exclude %{_docdir}/tcptraceroute/
 
 %changelog
+* Wed Feb 23 2005 Dag Wieers <dag@wieers.com> - 1.5-0.beta6
+- Updated to release 1.5beta6.
+
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 1.5-0.beta5
 - Updated to release 1.5beta5.
 

@@ -2,14 +2,12 @@
 # Authority: dag
 # Upstream: Jordan Ritter <jpr5$darkridge,com>
 
-# Tag: test
-
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Realtime network grep tool
 Name: ngrep
 Version: 1.43
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ngrep.sourceforge.net/
@@ -54,7 +52,7 @@ more common packet sniffing tools, such as tcpdump and snoop.
 %{_bindir}/ngrep
 
 %changelog
-* Sun Feb 20 2005 Dag Wieers <dag@wieers.com> - 1.43-1
+* Wed Feb 23 2005 Dag Wieers <dag@wieers.com> - 1.43-1
 - Updated to release 1.43.
 
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 1.42-1

@@ -11,9 +11,9 @@
 
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
-Version: 0.44
-Release: 2
-License: COPYRIGHTED
+Version: 0.45
+Release: 1
+License: BSD-like
 Group: Applications/System
 URL: http://www.chkrootkit.org/
 
@@ -109,13 +109,18 @@ EOF
 %doc ACKNOWLEDGMENTS COPYRIGHT README*
 %config %{_sysconfdir}/pam.d/chkrootkit
 %config %{_sysconfdir}/security/console.apps/chkrootkit
-%{_bindir}/*
+%{_bindir}/chkrootkit
+%{_bindir}/chkrootkitX
+%{_bindir}/xchkrootkit
 %{_libdir}/chkrootkit-%{version}/
 %{_datadir}/pixmaps/chkrootkit.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/chkrootkit.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
+* Fri Feb 25 2005 Dag Wieers <dag@wieers.com> - 0.45-1
+- Updated to release 0.45.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.44-2
 - Added binutils dependency. (Sutha Kathir)
 

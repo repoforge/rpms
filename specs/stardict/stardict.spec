@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dag
 
-Summary: versatile online dictionary
+Summary: Versatile online dictionary
 Name: stardict
-Version: 2.4.3
+Version: 2.4.4
 Release: 1
 License: GPL
 Group: Applications/System
@@ -68,6 +68,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Feb 26 2005 Dag Wieers <dag@wieers.com> - 2.4.4-1
+- Updated to release 2.4.4.
+
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 2.4.3-1
 - Updated to release 2.4.3.
 

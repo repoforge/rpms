@@ -3,7 +3,7 @@
 
 ### FC3 comes with the latest gaim
 ##ExcludeDist: fc3
-# ExcludeDist: el4
+# ExcludeDist: fc2 fc3 el4
 
 ### rh9 and el3 wants to install perl modules outside buildroot
 %{?el3:%define _without_perl 1}
@@ -14,7 +14,7 @@
 
 Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.1.2
+Version: 1.1.3
 Release: 1
 Epoch: 1
 License: GPL
@@ -125,6 +125,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Sat Feb 26 2005 Dag Wieers <dag@wieers.com> - 1.1.3-1
+- Updated to release 1.1.3.
+
 * Fri Jan 21 2005 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Updated to release 1.1.2.
 
