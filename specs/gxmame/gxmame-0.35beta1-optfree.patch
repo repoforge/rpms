@@ -1,0 +1,12 @@
+diff -Naupr gxmame-0.35beta1.orig/src/properties.c gxmame-0.35beta1/src/properties.c
+--- gxmame-0.35beta1.orig/src/properties.c	2005-01-30 05:35:52.000000000 +0100
++++ gxmame-0.35beta1/src/properties.c	2005-03-16 12:38:35.456531768 +0100
+@@ -342,7 +342,7 @@ on_properties_ok_button_clicked (GtkButt
+ 	save_properties_options(rom, opts);
+ 	save_options(rom, opts);
+ 
+-	game_options_free(opts);
++	// game_options_free(opts);
+ 
+ 	exit_properties_window(GTK_WIDGET(user_data), NULL);
+ }
