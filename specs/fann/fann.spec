@@ -60,8 +60,11 @@ Development headers of fann: fast artificial neural network library
 %{_libdir}/libfann.so.1.1.0
 %{_libdir}/libfixedfann.so.1.1.0
 %{_libdir}/libfloatfann.so.1.1.0
+%{_libdir}/pkgconfig/fann.pc
+
 
 %files devel
+%defattr(-,root,root,0755)
 %{_libdir}/libfloatfann.so
 %{_libdir}/libdoublefann.so
 %{_libdir}/libfann.so
@@ -80,7 +83,8 @@ Development headers of fann: fast artificial neural network library
 %{_libdir}/libfixedfann.la
 %{_libdir}/libfloatfann.a
 %{_libdir}/libfloatfann.la
-
+%{_includedir}/fann_activation.h
+%{_includedir}/fann_errno.h
 
 %changelog
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 1.1.0-1
