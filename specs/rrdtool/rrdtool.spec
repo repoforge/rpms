@@ -8,7 +8,7 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.0.48
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -89,6 +89,12 @@ find examples/ -name "*.pl" \
     %{buildroot}%{phpextdir}/rrdtool.so
 # Clean up the examples for inclusion as docs
 %{__rm} -rf contrib/php4/examples/CVS
+# Put the php config bit into place
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/php.d
+%{__cat} > %{buildroot}%{_sysconfdir}/php.d/rrdtool.ini << EOF
+; Enable rrdtool extension module
+extension=rrdtool.so
+EOF
 
 # Put perl files back where they belong
 %{__mkdir_p} %{buildroot}%{perl_sitearch}/
@@ -141,10 +147,14 @@ find examples contrib -type f -exec chmod 644 {} \;
 %files -n php-rrdtool
 %defattr(-, root, root)
 %doc contrib/php4/examples contrib/php4/README
+%config(noreplace) %{_sysconfdir}/php.d/rrdtool.ini
 %{phpextdir}/rrdtool.so
 
 
 %changelog
+* Thu May 27 2004 Matthias Saou <http://freshrpms.net/> 1.0.48-2
+- Added php.d config entry to load the module once installed.
+
 * Thu May 13 2004 Dag Wieers <dag@wieers.com> - 1.0.48-1
 - Updated to release 1.0.48.
 
