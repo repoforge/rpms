@@ -2,7 +2,7 @@
 #
 # Startup script for the Clam AntiVirus Daemon
 #
-# chkconfig: 2345 80 30
+# chkconfig: 2345 61 39
 # description: Clam AntiVirus Daemon is a TCP/IP or socket protocol \
 #              server.
 # processname: clamd

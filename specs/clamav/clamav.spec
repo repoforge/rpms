@@ -5,7 +5,7 @@
 Summary: Anti-virus utility for Unix
 Name: clamav
 Version: 0.70
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -20,8 +20,7 @@ Source3: clamav-milter.init
 Patch0: clamav-0.67-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: bzip2-devel, zlib-devel
+BuildRequires: bzip2-devel, zlib-devel, gmp-devel
 BuildRequires: sendmail-devel >= 8.12
 Requires: clamav-db = %{version}-%{release}
 Obsoletes: libclamav = 0.54
@@ -78,7 +77,38 @@ you will need to install %{name}-devel.
 		s|\@DBINST\@|\$(localstatedir)/clamav|g;
 		s|\@CFGDIR\@|\$(sysconfdir)|g;
 		s|\@CFGINST\@|\$(sysconfdir)|g;
+		s|^\@INSTALL_CLAMAV_CONF_TRUE\@|\t|g;
 	' database/Makefile.in etc/Makefile.in
+
+%{__perl} -pi.orig -e '
+		s|^(Example)|#$1|;
+		s|^#(LogFile) .+$|$1 %{_localstatedir}/log/clamav/clamd.log|;
+		s|^#(LogFileMaxSize) .*|$1 0|;
+		s|^#(LogTime)|$1|;
+		s|^#(LogSyslog)|$1|;
+		s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/clamd.pid|;
+		s|^#(TemporaryDirectory) .+$|$1 %{_localstatedir}/tmp|;
+		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
+		s|^(LocalSocket) .+$|#$1 %{_localstatedir}/run/clamav/clamd.sock|;
+		s|^#(FixStaleSocket)|$1|;
+		s|^#(TCPSocket) .+$|$1 3310|;
+		s|^#(TCPAddr) .+$|$1 127.0.0.1|;
+		s|^#(MaxConnectionQueueLength) .+$|$1 30|;
+		s|^#(StreamSaveToDisk)|$1|;
+		s|^#(ReadTimeout) .+$|$1 300|;
+		s|^#(User) .+$|$1 clamav|;
+		s|^#(AllowSupplementaryGroups)|$1|;
+		s|^#(ScanMail)|$1|;
+		s|^#(ArchiveBlockEncrypted)|$1|;
+	' etc/clamav.conf
+
+%{__perl} -pi.orig -e '
+		s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
+		s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
+		s|^#(DatabaseOwner) .+$|$1 clamav|;
+		s|^(Checks) .+$|$1 24|;
+		s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamav.conf|;
+	' etc/freshclam.conf
 
 %{__cat} <<EOF >clamav.logrotate
 %{_localstatedir}/log/clamav/clamav.log {
@@ -124,7 +154,11 @@ EOF
 
 CLAMAV_FLAGS="
 	--config-file=%{_sysconfdir}/clamav.conf
-	--max-children=2
+	--max-children=10
+	--force-scan
+	--quiet
+	--dont-log-clean
+	--noreject
 	-obl local:%{_localstatedir}/clamav/clmilter.socket
 "
 EOF
@@ -133,6 +167,7 @@ EOF
 %configure  \
 	--program-prefix="%{?_program_prefix}" \
 	--enable-milter \
+	--enable-id-check \
 	--disable-clamav \
 	--with-user="clamav" \
 	--with-group="clamav" \
@@ -155,8 +190,6 @@ touch %{buildroot}/var/log/clamav/freshclam.log
 touch %{buildroot}/var/log/clamav/clamav.log
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/clamav/
-
-### Clean up buildroot
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -201,11 +234,11 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog FAQ INSTALL NEWS README TODO test/
+%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README TODO test/
 %doc docs/DMS/Debian_Mail_server.html docs/clamdoc.*
 %doc docs/html/ docs/clamd_supervised/
 %doc docs/French/ docs/Japanese/ docs/Polish/ docs/Portugese/
-%doc docs/Spanish/ docs/Turkish/
+%doc docs/Spanish/ docs/Turkish/ etc/freshclam.conf
 %doc %{_mandir}/man1/sigtool.1*
 %doc %{_mandir}/man1/clamscan.1*
 %doc %{_mandir}/man1/freshclam.1*
@@ -217,7 +250,7 @@ fi
 
 %files -n clamd
 %defattr(-, root, root, 0755)
-%doc contrib/clamdwatch/ contrib/trashscan/
+%doc contrib/clamdwatch/ contrib/trashscan/ etc/clamav.conf
 %doc %{_mandir}/man1/clamdscan.1*
 %doc %{_mandir}/man5/clamav.conf.5*
 %doc %{_mandir}/man8/clamd.8*
@@ -257,6 +290,12 @@ fi
 %exclude %{_libdir}/*.la
 
 %changelog
+- Fixed the installation check for conf files. (Richard Soderberg)
+
+* Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.70-2
+- Changed the init-order of the sysv scripts. (Will McCutcheon)
+- Changes to the default configuration files.
+
 * Sat Mar 17 2004 Dag Wieers <dag@wieers.com> - 0.70-1
 - Updated to release 0.70.
 

@@ -2,7 +2,7 @@
 #
 # Startup script for the Clamav Milter Daemon
 #
-# chkconfig: 2345 80 30
+# chkconfig: 2345 77 23
 # description: clamav-milter is a daemon which hooks into sendmail \
 #              and routes email messages to clamav.
 # processname: clamav-milter
