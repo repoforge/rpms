@@ -1,21 +1,23 @@
 # $Id$
 # Authority: matthias
 
+%define desktop_vendor rpmforge
+
 Summary: GNU/Linux Audio Mechanics, the GIMP of audio processing
 Name: glame
-Version: 1.0.3
+Version: 2.0.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-Source: http://dl.sf.net/glame/glame-%{version}.tar.gz
+Source0: http://dl.sf.net/glame/glame-%{version}.tar.gz
+Source1: glame.png
 URL: http://glame.sourceforge.net/ 
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): info
 Requires(preun): info
-BuildRequires: gtk+-devel, gnome-libs-devel, libxml-devel, ORBit-devel
-BuildRequires: guile-devel, libglade-devel, fftw-devel
+BuildRequires: libgnomeui-devel, guile-devel, fftw-devel
 BuildRequires: audiofile-devel, esound-devel, alsa-lib-devel
-BuildRequires: libmad-devel, libvorbis-devel, ladspa-devel
+BuildRequires: lame-devel, libmad-devel, libvorbis-devel, ladspa-devel
 
 %description
 GLAME is meant to be the GIMP of audio processing. It is designed to be
@@ -54,6 +56,18 @@ libraries.
 %makeinstall
 %find_lang %{name}
 
+# Modify desktop file if needed and install pixmap
+%if 0%{!?_without_freedesktop:1}
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    --add-category "AudioVideo" \
+    --delete-original \
+    %{buildroot}%{_datadir}/gnome/apps/Multimedia/glame.desktop
+%endif
+%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/glame.png
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,11 +75,15 @@ libraries.
 
 %post
 /sbin/install-info %{_infodir}/glame.info.gz %{_infodir}/dir
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %preun
 if [ $1 -eq 0 ]; then
     /sbin/install-info --delete %{_infodir}/glame.info.gz %{_infodir}/dir
 fi
+
+%postun
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %post devel
 /sbin/install-info %{_infodir}/glame-dev.info.gz %{_infodir}/dir
@@ -83,8 +101,13 @@ fi
 %dir %{_libdir}/glame/
 %{_libdir}/glame/*.so*
 %{_datadir}/glame/
-%{_datadir}/gnome/apps/Multimedia/glame.desktop
+%{_datadir}/pixmaps/glame.png
 %{_infodir}/glame.info*
+%if 0%{!?_without_freedesktop:1}
+%{_datadir}/applications/%{desktop_vendor}-glame.desktop
+%else
+%{_datadir}/gnome/apps/Multimedia/glame.desktop
+%endif
 
 %files devel
 %defattr(-, root, root)
@@ -95,6 +118,11 @@ fi
 
 
 %changelog
+* Tue Jan 11 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-1
+- Update to 2.0.0.
+- Added lame support. Interestingly, build fails when it's not enabled.
+- Now convert the desktop file by default.
+
 * Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Update to 1.0.3.
 - Added install-info calls.
