@@ -5,7 +5,7 @@
 Summary: Updates dynamic DNS entries
 Name: ddclient
 Version: 3.6.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -37,7 +37,9 @@ updates, and sending update status to syslog and through e-mail.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D ddclient %{buildroot}%{_bindir}/ddclient
+%{__install} -D sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
+%{__install} -D sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient.conf
+%{__install} -D ddclient %{buildroot}%{_sbindir}/ddclient
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,8 +47,14 @@ updates, and sending update status to syslog and through e-mail.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYRIGHT COPYING README README.cisco sample-*
-%{_bindir}/ddclient
+%{_sbindir}/ddclient
+%config(noreplace) %{_sysconfdir}/ddclient.conf
+%{_sysconfdir}/rc.d/init.d/ddclient
+
 
 %changelog
-* Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4
+* Sun Dec 05 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4-2
+- Install additional files.
+
+* Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4-1
 - Initial package.
