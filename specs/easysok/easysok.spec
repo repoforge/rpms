@@ -18,8 +18,8 @@ Patch: assert-include.patch.bz2
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs
 
-#(d) primscreenshot: http://easysok.sourceforge.net/snapshot1.png
-#(d) screenshotsurl: http://easysok.sourceforge.net/screenshots.html
+# Screenshot: http://easysok.sourceforge.net/snapshot1.png
+# ScreenshotURL: http://easysok.sourceforge.net/screenshots.html
 
 %description
 Easysok is a sokoban game for KDE3. In sokoban you are a warehouse keeper
@@ -36,7 +36,7 @@ uitgevonden door in 1982 door Hiroyuki Imabayashi in het Japans bedrijf
 Thinking Rabbit, Inc.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
+%{__rm} -rf %{buildroot}
 %setup
 %patch -p 1
 
@@ -51,20 +51,19 @@ export DESTDIR=$RPM_BUILD_ROOT
 make install
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc README AUTHORS THANKS TODO VERSION
-/usr/bin/easysok
-/usr/lib/easysok.la
-/usr/lib/easysok.so
-/usr/share/applnk/Games/TacticStrategy/easysok.desktop
-/usr/share/apps/easysok
-/usr/share/doc/HTML/en/easysok
-/usr/share/icons/*/*/apps/easysok.png
-/usr/share/locale/de/LC_MESSAGES/easysok.mo
-/usr/share/wallpapers/GreenBallThemeBackground.jpg
-/usr/share/wallpapers/KSokobanThemeBackground.jpg
-/usr/share/wallpapers/SpaceThemeBackground.png
-/usr/share/wallpapers/WarehouseKeeperThemeBackground.jpg
+%{_bindir}/easysok
+%{_libdir}/easysok.*
+%{_datadir}/applnk/Games/TacticStrategy/easysok.desktop
+%{_datadir}/apps/easysok
+%{_datadir}/doc/HTML/en/easysok
+%{_datadir}/icons/*/*/apps/easysok.png
+%{_datadir}/locale/de/LC_MESSAGES/easysok.mo
+%{_datadir}/wallpapers/GreenBallThemeBackground.jpg
+%{_datadir}/wallpapers/KSokobanThemeBackground.jpg
+%{_datadir}/wallpapers/SpaceThemeBackground.png
+%{_datadir}/wallpapers/WarehouseKeeperThemeBackground.jpg
 
 
 %changelog
