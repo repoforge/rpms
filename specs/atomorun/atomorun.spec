@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://atomorun.whosme.de/downloads/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
-BuildRequires: gcc, SDL-devel, SDL-devel, SDL_mixer-devel, SDL_image-devel, sed, libtiff, libtiff-devel
+BuildRequires: gcc, SDL-devel, SDL-devel, SDL_mixer-devel, SDL_image, SDL_image-devel, sed, libtiff, libtiff-devel
 Requires: SDL, SDL_mixer, SDL_image
 
 %description
