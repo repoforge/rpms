@@ -3,7 +3,7 @@
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.2.2
+Version: 0.3.0
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -75,6 +75,9 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 
 %changelog
+* Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 0.3.0-1
+- Update to 0.3.0.
+
 * Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.2.2-1
 - Update to 0.2.2.
 
