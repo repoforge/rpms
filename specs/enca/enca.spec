@@ -15,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://kf.fyz.fce.vutbr.cz/~yeti/Ftp/enca/enca-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: recode, recode-devel
+BuildRequires: recode, recode-devel, gcc-c++
 Requires: recode
 
 %description
