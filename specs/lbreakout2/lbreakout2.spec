@@ -6,7 +6,7 @@
 
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
-Version: 2.5
+Version: 2.5.1
 Release: %{?beta:0.beta%{beta}.}1
 License: GPL
 Group: Amusements/Games
@@ -94,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Sun Sep 26 2004 Matthias Saou <http://freshrpms.net/> 2.5.1-1
+- Update to 2.5.1.
+
 * Mon Aug  9 2004 Matthias Saou <http://freshrpms.net/> 2.5-1
 - Update to 2.5 final.
 
