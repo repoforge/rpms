@@ -3,7 +3,7 @@
 
 #define prever rc2
 
-Summary: The Advanced Linux Sound Architecture (ALSA) utilities.
+Summary: The Advanced Linux Sound Architecture (ALSA) utilities
 Name: alsa-utils
 Version: 1.0.2
 Release: %{?prever:0.%{prever}.}1

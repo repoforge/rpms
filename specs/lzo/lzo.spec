@@ -4,7 +4,7 @@
 
 # Archs: i386 i686
 
-Summary: A portable lossless data compression library.
+Summary: portable lossless data compression library
 Name: lzo
 Version: 1.08
 Release: 2
@@ -15,9 +15,8 @@ URL: http://www.oberhumer.com/opensource/lzo/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.oberhumer.com/opensource/%{name}/download/%{name}-%{version}.tar.gz
+Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: zlib-devel
 %ifarch %ix86
@@ -33,7 +32,7 @@ compression levels achieving a quite competitive compression ratio
 while still decompressing at this very high speed. 
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

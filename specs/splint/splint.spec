@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: splint@splint.org
 
-Summary: Secure programming lint.
+Summary: Secure programming lint
 Name: splint
 Version: 3.1.1
 Release: 1

@@ -4,7 +4,7 @@
 
 %define rname GDGraph
 
-Summary: Graph plotting module for Perl.
+Summary: Graph plotting module for Perl
 Name: perl-GD-Graph
 Version: 1.43
 Release: 0

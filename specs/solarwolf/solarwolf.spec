@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Python SDL game where you have to collect energy cubes.
+Summary: Python SDL game where you have to collect energy cubes
 Name: solarwolf
 Version: 1.4
 Release: 2

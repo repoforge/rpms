@@ -5,7 +5,7 @@
 
 %define rname Pancho
 
-Summary: Archive and manage remote nodes using SNMP and TFTP.
+Summary: Archive and manage remote nodes using SNMP and TFTP
 Name: pancho
 Version: 9.3.1
 Release: 1
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.panchoproject.org/archives/pancho/pancho-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl-Net-SNMP, perl-Config-IniFiles, perl-Parallel-ForkManager

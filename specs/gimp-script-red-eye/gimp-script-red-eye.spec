@@ -4,7 +4,7 @@
 
 %define rname red-eye
 
-Summary: A gimp script to implement Red-Eye removal technique.
+Summary: gimp script to implement Red-Eye removal technique
 Name: gimp-script-red-eye
 Version: 0.95
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A TV record sheduling program.
+Summary: TV record sheduling program
 Name: shalvideo
 Version: 1.1.1
 Release: 1

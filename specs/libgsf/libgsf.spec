@@ -4,7 +4,7 @@
 
 # Dists: rh80
 
-Summary: The GNOME Structure file library.
+Summary: The GNOME Structure file library
 Name: libgsf
 Version: 1.6.0
 Release: 0
@@ -28,7 +28,7 @@ and generalization of libole2.  It can read & write MS OLE2 file, and
 Zip files. 
 
 %package devel
-Summary: Development files for the GNOME Structured File format.
+Summary: Development files for the GNOME Structured File format
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

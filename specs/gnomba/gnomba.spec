@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: GNOME Samba Browser.
+Summary: GNOME Samba Browser
 Name: gnomba
 Version: 0.6.2
 Release: 1

@@ -4,7 +4,7 @@
 
 %define rname channel_mixer
 
-Summary: A gimp plugin that combines values of the RGB channels.
+Summary: Gimp plugin that combines values of the RGB channels
 Name: gimp-plugin-channel-mixer
 Version: 1.1
 Release: 0
@@ -15,9 +15,8 @@ URL: http://registry.gimp.org/plugin?id=1918
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://registry.gimp.org/file/%{rname}-%{version}.tar.gz
+Source: http://registry.gimp.org/file/channel_mixer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gimp-devel >= 1.2
 Requires: gimp >= 1.2

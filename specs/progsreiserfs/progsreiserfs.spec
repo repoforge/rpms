@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Programs and libs needed for manipulating reiserfs partitions.
+Summary: Programs and libs needed for manipulating reiserfs partitions
 Name: progsreiserfs
 Version: 0.3.0.4
 Release: 1
@@ -35,7 +35,7 @@ export LDFLAGS=-L`pwd`/libdal/.libs
 %makeinstall
 
 %package devel
-Summary: Progsreiserfs development files.
+Summary: Progsreiserfs development files
 Group: Development/Libraries
 Requires: progsreiserfs = %{version}-%{release}
 
@@ -43,7 +43,7 @@ Requires: progsreiserfs = %{version}-%{release}
 Development files of progsreiserfs.
 
 %package conflict
-Summary: The files conflicting with the package reiserfs-utils.
+Summary: The files conflicting with the package reiserfs-utils
 Group: Applications/System
 Requires: progsreiserfs = %{version}-%{release}
 

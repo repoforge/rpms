@@ -4,7 +4,7 @@
 
 %define rname ExtUtils-Depends
 
-Summary: ExtUtils-Depends module for perl.
+Summary: ExtUtils-Depends module for perl
 Name: perl-ExtUtils-Depends
 Version: 0.202
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <libxmlplusplus-general@lists.sourceforge.net>
 
-Summary: C++ interface for working with XML files.
+Summary: C++ interface for working with XML files
 Name: libxml++
 Version: 0.26.0
 Release: 0
@@ -26,7 +26,7 @@ libxml++ is a C++ interface for working with XML files, using libxml
 but complete API.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

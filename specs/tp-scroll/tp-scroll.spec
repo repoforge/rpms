@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Daniel Grobe Sachs <sachs@uiuc.edu>
 
-Summary: IBM Trackpoint scroll-wheel emulation.
+Summary: IBM Trackpoint scroll-wheel emulation
 Name: tp-scroll
 Version: 1.0
 Release: 1

@@ -6,7 +6,7 @@
 
 %define _prefix /boot
 
-Summary: Thorough, stand-alone memory tester.
+Summary: Thorough, stand-alone memory tester
 Name: memtest86+
 Version: 1.11
 Release: 1

@@ -8,7 +8,7 @@
 ### FIXME: gtk-sharp 0.12 doesn't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: .Net language bindings for Gtk+ and GNOME.
+Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp
 Version: 0.17
 Release: 0
@@ -36,7 +36,7 @@ which bind to GObject based libraries.  The Gtk+-2.0 libraries are
 included along with several GNOME platform libraries.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

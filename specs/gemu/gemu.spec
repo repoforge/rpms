@@ -10,7 +10,7 @@
 
 %define rname Gemu
 
-Summary: GNOME EMU10K1 configuration tool.
+Summary: GNOME EMU10K1 configuration tool
 Name: gemu
 Version: 0.8
 Release: 0

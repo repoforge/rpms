@@ -5,7 +5,7 @@
 
 %define rname SQLiteManager
 
-Summary: Multilingual web based tool to manage SQLite database.
+Summary: Multilingual web based tool to manage SQLite database
 Name: sqlitemanager
 Version: 0.9.4
 Release: 1

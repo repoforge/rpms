@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A merge of libpixregion and libic.
+Summary: Merge of libpixregion and libic
 Name: libpixman
 Version: 0.1.0
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cairographics.org/snapshots/libpixman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: pkgconfig
 Obsoletes: slim, libic, libpixregion
 
@@ -24,7 +23,7 @@ Obsoletes: slim, libic, libpixregion
 libpixman is a merge of libpixregion and libic.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: libpixman-devel, XFree86-devel

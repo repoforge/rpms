@@ -4,7 +4,7 @@
 
 %define _bindir %{_prefix}/X11R6/bin
 
-Summary: Neat little maze game.
+Summary: Neat little maze game
 Name: arrows
 Version: 0.6
 Release: 1

@@ -4,7 +4,7 @@
 # Distcc: 0
 # Upstream: Frank Pilhofer <fp@fpx.de>
 
-Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex.
+Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview
 Version: 0.5.20
 Release: 0
@@ -44,7 +44,7 @@ Obsoletes: uudeview-x11
 xdeview - uudeview with a GUI.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

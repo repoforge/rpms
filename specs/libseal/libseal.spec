@@ -7,7 +7,7 @@
 %define rname seal
 %define rversion 107
 
-Summary: Synthetic Audio Library software development kit.
+Summary: Synthetic Audio Library software development kit
 Name: libseal
 Version: 1.07
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname WifiScanner
 
-Summary: Discover wireless clients and access points.
+Summary: Discover wireless clients and access points
 Name: wifiscanner
 Version: 0.9.3
 Release: 1

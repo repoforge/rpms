@@ -1,7 +1,7 @@
 # Authority: atrpms
 # Upstream: Marc Heuse <marc@suse.de>
 
-Summary: Confine services in a limited environment.
+Summary: Confine services in a limited environment
 Name: compartment
 Version: 1.1
 Release: 0

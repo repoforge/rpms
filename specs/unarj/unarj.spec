@@ -4,7 +4,7 @@
 
 %define rversion 2.63a
 
-Summary: Uncompressor for .arj format archive files.
+Summary: Uncompressor for .arj format archive files
 Name: unarj
 Version: 2.63
 Release: 0.a

@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Dodji Seketeli <dodji@gnome.org>
 
-Summary: An XML Editor for GNOME.
+Summary: Graphical XML Editor
 Name: mlview
 Version: 0.6.2
 Release: 0
@@ -15,9 +14,8 @@ URL: http://www.mlview.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.gnu.org/download/mlview/tarballs/%{name}-%{version}.tar.bz2
+Source: http://savannah.gnu.org/download/mlview/tarballs/mlview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libxml2-devel >= 2.4.30, libgnomeui-devel >= 2.0.3, libglade-devel >= 0.17
 BuildRequires: eel2-devel, gettext, desktop-file-utils
@@ -28,7 +26,7 @@ It include support to view, edit, validate and save xml document by graphical
 manipulation the xml Document Object Model.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A KDE front-end to ssh.
+Summary: KDE front-end to ssh
 Name: kssh
 Version: 0.7
 Release: 1

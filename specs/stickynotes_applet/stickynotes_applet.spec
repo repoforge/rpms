@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Simple sticky notes applet for the GNOME desktop.
+Summary: Simple sticky notes applet for the GNOME desktop
 Name: stickynotes_applet
 Version: 1.2.3
 Release: 0

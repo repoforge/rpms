@@ -4,7 +4,7 @@
 
 # Far from finished, not to be released :)
 
-Summary: A far from finished attempt of a buildserver in python
+Summary: far from finished attempt of a buildserver in python
 Name: pydar
 Version: 0.001
 Release: 1

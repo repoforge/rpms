@@ -4,7 +4,7 @@
 
 %define rname Archive-Tar
 
-Summary: Archive-Tar module for perl.
+Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
 Version: 1.08
 Release: 0
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/Archive-Tar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503

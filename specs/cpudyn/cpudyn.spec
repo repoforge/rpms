@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Ricardo Galli <gallir@uib.es>
 
-Summary: A tool to control the speed and power consumption of your computer.
+Summary: Control the speed and power consumption of your computer
 Name: cpudyn
 Version: 0.99.0
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: GNOME tool to find strings in multiple files.
+Summary: GNOME tool to find strings in multiple files
 Name: sagasu
 Version: 1.0.6
 Release: 0

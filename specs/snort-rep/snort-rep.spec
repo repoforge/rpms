@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Snort reporting tool.
+Summary: Snort reporting tool
 Name: snort-rep
 Version: 1.10
 Release: 2

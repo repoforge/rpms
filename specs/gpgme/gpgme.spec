@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: GnuPG Made Easy.
+Summary: GnuPG Made Easy
 Name: gpgme
 Version: 0.3.15
 Release: 4
@@ -23,7 +23,7 @@ uses GnuPG as its backend but the API isn't restricted to this engine
 
 
 %package devel
-Summary: Static libraries and header files from GPGME, GnuPG Made Easy.
+Summary: Static libraries and header files from GPGME, GnuPG Made Easy
 Group: Development/Libraries
 Requires: %{name} = %{version}
 Provides: libgpgme-devel = %{version}-%{release}

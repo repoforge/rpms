@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Ali Akcaagac <aliakc@web.de>
 
-Summary: Light-weight GNOME web browser.
+Summary: Light-weight GNOME web browser
 Name: atlantis
 Version: 0.1.2
 Release: 0

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Some themes for the GNU Krell Monitor.
+Summary: Some themes for the GNU Krell Monitor
 Name: gkrellm-themes
 Version: 2.1.8
 Release: 3

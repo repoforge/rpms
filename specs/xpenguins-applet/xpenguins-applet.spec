@@ -4,7 +4,7 @@
 
 %define rname xpenguins_applet
 
-Summary: Cute little penguins that walk along the top of your windows.
+Summary: Cute little penguins that walk along the top of your windows
 Name: xpenguins-applet
 Version: 1.0
 Release: 0

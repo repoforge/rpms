@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: GNOME IRDA applet.
+Summary: GNOME IRDA applet
 Name: girda_applet
 Version: 2.0.3
 Release: 1

@@ -5,7 +5,7 @@
 
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
-Summary: Regularly updated blacklists for use with squidguard.
+Summary: Regularly updated blacklists for use with squidguard
 Name: squidguard-blacklists
 Version: 20040318
 Release: 1

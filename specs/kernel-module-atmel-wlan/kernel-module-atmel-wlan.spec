@@ -23,7 +23,7 @@
 %define moduledir /kernel/drivers/net/wireless/airo_mpi
 %define modules airo_mpi.o
 
-Summary: Linux driver for the Atmel Wireless devices.
+Summary: Linux driver for the Atmel Wireless devices
 Name: kernel-module-atmel-wlan
 Version: 3.2.4.4
 Release: %{rrelease}.%{rversion}_%{kversion}_%{krelease}
@@ -53,7 +53,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-atmel-wlan
-Summary: Linux SMP driver for the Cisco 350 miniPCI series.
+Summary: Linux SMP driver for the Cisco 350 miniPCI series
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp

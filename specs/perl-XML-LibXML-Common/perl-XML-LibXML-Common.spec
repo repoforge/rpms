@@ -4,7 +4,7 @@
 
 %define rname XML-LibXML-Common
 
-Summary: Routines and Constants common for XML::LibXML and XML::GDOME.
+Summary: Routines and Constants common for XML::LibXML and XML::GDOME
 Name: perl-XML-LibXML-Common
 Version: 0.13
 Release: 2

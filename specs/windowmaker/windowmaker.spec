@@ -7,7 +7,7 @@
 
 %define rname WindowMaker
 
-Summary: A fast, feature rich Window manager.
+Summary: Fast, feature rich Window manager
 Name: windowmaker
 Version: 0.80.2
 Release: 4
@@ -18,9 +18,8 @@ URL: http://www.windowmaker.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://windowmaker.org/pub/source/release/%{rname}-%{version}.tar.bz2
+Source: ftp://windowmaker.org/pub/source/release/WindowMaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel, libpng-devel, libjpeg-devel, libungif-devel 
 BuildRequires: libtiff-devel, zlib-devel, gettext
@@ -37,7 +36,7 @@ addition, Window Maker works with GNOME and KDE, making it one of the
 most useful and universal window managers available.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

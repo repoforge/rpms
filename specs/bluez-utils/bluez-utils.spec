@@ -8,7 +8,7 @@
 %define _bindir /bin
 %define _sbindir /sbin
 
-Summary: Bluetooth utilities.
+Summary: Bluetooth utilities
 Name: bluez-utils
 Version: 2.4
 Release: 1

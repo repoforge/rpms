@@ -2,7 +2,7 @@
 # Upstream: David A Knight <david@ritter.demon.co.uk>
 # Tag: test
 
-Summary: Web Site CReating and Editing EnvironMent.
+Summary: Web Site CReating and Editing EnvironMent
 Name: screem
 Version: 0.8.1
 Release: 0

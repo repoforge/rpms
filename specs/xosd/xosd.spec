@@ -34,7 +34,7 @@ display.
 
 
 %package -n xmms-xosd
-Summary: An XMMS plugin for on-screen display that uses the XOSD library
+Summary: XMMS plugin for on-screen display that uses the XOSD library
 Group: Applications/Multimedia
 Requires: %{name} = %{version}, xmms, gtk+, gdk-pixbuf
 Obsoletes: xosd-xmms <= 2.2.1

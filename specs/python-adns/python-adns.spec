@@ -4,7 +4,7 @@
 
 %define rname adns-python
 
-Summary: Python bindings for GNU adns library.
+Summary: Python bindings for GNU adns library
 Name: python-adns
 Version: 1.0.0
 Release: 0

@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: 3D modeling, animation, rendering and post-production.
+Summary: 3D modeling, animation, rendering and post-production
 Name: blender
 Version: 2.32
 Release: 0
@@ -36,7 +36,7 @@ secure, multi-platform content to the web, CD-ROMs, and other media, whether
 they are users of Windows, Linux, Irix, Sun Solaris, FreeBSD or OSX.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

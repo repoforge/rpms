@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Small and fast GUI web browser.
+Summary: Small and fast GUI web browser
 Name: dillo
 Version: 0.8.0
 Release: 1

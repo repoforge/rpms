@@ -4,7 +4,7 @@
 
 %define rname Convert-TNEF
 
-Summary: Convert-TNEF module for perl.
+Summary: Convert-TNEF module for perl
 Name: perl-Convert-TNEF
 Version: 0.17
 Release: 2

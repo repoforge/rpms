@@ -6,7 +6,7 @@
 # Disable stripping or the default.sfx will get trashed
 %define __strip /bin/true
 
-Summary: RAR archiver to manage RAR archive files.
+Summary: RAR archiver to manage RAR archive files
 Name: rar
 Version: 3.3.0
 Release: 1

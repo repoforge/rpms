@@ -4,7 +4,7 @@
 
 %define rname IPC-Shareable
 
-Summary: Share Perl variables between processes.
+Summary: Share Perl variables between processes
 Name: perl-IPC-Shareable
 Version: 0.60
 Release: 1

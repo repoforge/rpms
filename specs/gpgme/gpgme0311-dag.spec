@@ -1,7 +1,7 @@
 # Authority: atrpms
 %define rname gpgme
 
-Summary: GnuPG Made Easy.
+Summary: GnuPG Made Easy
 Name: gpgme0311
 Version: 0.3.11
 Release: 0

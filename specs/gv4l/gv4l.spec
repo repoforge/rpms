@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Todor T. Zviskov <warder@warder.ath.cx>
 
-Summary: Video-For-Linux frontend of transcode.
+Summary: Video-For-Linux frontend of transcode
 Name: gv4l
 Version: 2.2.3
 Release: 1

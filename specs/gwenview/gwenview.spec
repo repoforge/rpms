@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dries
 
-Summary: Image viewer for KDE.
+Summary: Image viewer for KDE
 Name: gwenview
 Version: 1.0.1
 Release: 1

@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A software library for manipulating ID3v1 and ID3v2 tags.
+Summary: software library for manipulating ID3v1 and ID3v2 tags
 Name: id3lib
 Version: 3.8.3
 Release: 0
@@ -23,7 +23,7 @@ Features include identification of valid tags, automatic size conversions,
 padding facilities.
 
 %package devel
-Summary: Headers and libraries for developing programs that will use id3lib.
+Summary: Headers and libraries for developing programs that will use id3lib
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 
 # Upstream: Thomas Sutton <thsutton@utas.edu.au>
 
-Summary: Finds acronyms and filename suffixes information.
+Summary: Finds acronyms and filename suffixes information
 Name: wtf
 Version: 0.0.4
 Release: 1

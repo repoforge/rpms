@@ -3,7 +3,7 @@
 
 %define plugindir %(xmms-config --output-plugin-dir)
 
-Summary: A neat crossfade output plugin for XMMS.
+Summary: neat crossfade output plugin for XMMS
 Name: xmms-crossfade
 Version: 0.3.4
 Release: 0

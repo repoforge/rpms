@@ -6,7 +6,7 @@
 %define rversion 0.90pre7
 %define nversion 0.90
 
-Summary: W32 Codec package for MPlayer on x86 UNIX systems.
+Summary: W32 Codec package for MPlayer on x86 UNIX systems
 Name: w32codec
 Version: 0.90.7
 Release: 0

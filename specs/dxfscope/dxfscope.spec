@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A viewer for DXF drawings.
+Summary: viewer for DXF drawings
 Name: dxfscope
 Version: 0.2
 Release: 2

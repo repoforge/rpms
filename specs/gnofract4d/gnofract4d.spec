@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Edwin Young <edwin@sourceforge.net>
 
-Summary: GNOME-based program to generate and view fractals.
+Summary: GNOME-based program to generate and view fractals
 Name: gnofract4d
 Version: 1.9
 Release: 0

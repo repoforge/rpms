@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: An implementation of the RFC1413 identification server.
+Summary: Implementation of the RFC1413 identification server
 Name: oidentd
 Version: 2.0.7
 Release: 2

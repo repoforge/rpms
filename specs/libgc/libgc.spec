@@ -4,7 +4,7 @@
 
 %define rname gc
 
-Summary: Conservative garbage collector for C.
+Summary: Conservative garbage collector for C
 Name: libgc
 Version: 6.2
 Release: 0
@@ -27,7 +27,7 @@ Boehm's GC is a garbage collecting storage allocator that is
 intended to be used as a plug-in replacement for C's malloc.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{epoch}:%{version}-%{release}
 Obsoletes: libgc6-devel, gc-devel

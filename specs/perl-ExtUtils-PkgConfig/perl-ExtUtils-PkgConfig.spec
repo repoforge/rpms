@@ -4,7 +4,7 @@
 
 %define rname ExtUtils-PkgConfig
 
-Summary: ExtUtils-PkgConfig module for perl.
+Summary: ExtUtils-PkgConfig module for perl
 Name: perl-ExtUtils-PkgConfig
 Version: 1.03
 Release: 0

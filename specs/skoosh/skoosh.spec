@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Timothy Musson <trmusson@ihug.co.nz>
 
-Summary: A simple, friendly, sliding tile puzzle.
+Summary: Simple, friendly, sliding tile puzzle
 Name: skoosh
 Version: 2.0.8
 Release: 1
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://homepages.ihug.co.nz/~trmusson/stuff/skoosh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gettext, libgnomeui-devel >= 2.0
 BuildRequires: scrollkeeper

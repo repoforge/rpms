@@ -1,7 +1,7 @@
 # Authority: dag
 # Upstream: Martin Dickopp <martin@zero-based.org>
 
-Summary: JPEG pixel interpolator.
+Summary: JPEG pixel interpolator
 Name: jpegpixi
 Version: 0.14
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname MLDBM
 
-Summary: MLDBM module for perl.
+Summary: MLDBM module for perl
 Name: perl-MLDBM
 Version: 2.01
 Release: 1

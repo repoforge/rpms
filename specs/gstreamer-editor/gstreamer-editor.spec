@@ -4,7 +4,7 @@
 
 %define rname gst-editor
 
-Summary: GStreamer streaming media editor and GUI tools.
+Summary: GStreamer streaming media editor and GUI tools
 Name: gstreamer-editor
 Version: 0.5.0
 Release: 0
@@ -33,7 +33,7 @@ turn on logging domains.
 gst-inspect-gui is a graphical element browser.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: newrpms
-Summary: A modular text-mode IRC client.
+
+Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.9
 Release: 0
@@ -12,9 +13,8 @@ URL: http://irssi.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://irssi.org/files/%{name}-%{version}.tar.bz2
+Source: http://irssi.org/files/irssi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib2-devel, ncurses-devel, libgc-devel
 

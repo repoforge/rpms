@@ -1,7 +1,7 @@
 # Authority: freshrpms
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A GTK2 front-end for xine-lib.
+Summary: GTK2 front-end for xine-lib
 Name: totem
 Version: 0.99.3
 Release: 0

@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A personal password manager for GNOME
+Summary: personal password manager for GNOME
 Name: gpasman
 Version: 1.2.0
 Release: 0

@@ -5,7 +5,7 @@
 %define	date 20030428
 %define rversion 505
 
-Summary: DivX for Linux codec binaries.
+Summary: DivX for Linux codec binaries
 Name: divx4linux
 Version: 5.0.5
 Release: 0
@@ -26,7 +26,7 @@ ExclusiveArch: i386
 This archive includes the binary release of DivX Codec 5.0.5 for x86 Linux.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

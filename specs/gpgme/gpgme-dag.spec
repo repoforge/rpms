@@ -1,5 +1,5 @@
 # Authority: atrpms
-Summary: GnuPG Made Easy.
+Summary: GnuPG Made Easy
 Name: gpgme
 Version: 0.4.0
 Release: 0
@@ -24,7 +24,7 @@ encryption, decryption, signing, signature verification and key
 management.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

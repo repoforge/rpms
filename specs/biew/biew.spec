@@ -4,7 +4,7 @@
 
 %define rversion 550
 
-Summary: Console hex viewer/editor with disassembler.
+Summary: Console hex viewer/editor with disassembler
 Name: biew
 Version: 5.5.0
 Release: 0

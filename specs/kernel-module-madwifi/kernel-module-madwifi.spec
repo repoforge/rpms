@@ -24,7 +24,7 @@
 %define moduledir /kernel/drivers/net/wireless/madwifi
 %define modules ath_hal/ath_hal.o wlan/wlan.o driver/ath_pci.o
 
-Summary: Linux driver for the Multiband Atheros Wifi.
+Summary: Linux driver for the Multiband Atheros Wifi
 Name: kernel-module-madwifi
 Version: 0.0.%{rversion}
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -53,7 +53,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-madwifi
-Summary: Linux SMP driver for the Multiband Atheros Wifi.
+Summary: Linux SMP driver for the Multiband Atheros Wifi
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
@@ -69,7 +69,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n madwifi-utils
-Summary: Madwifi utilities.
+Summary: Madwifi utilities
 Release: %{rrelease}
 Group: System Environment/Base
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Recover files based on their headers and footers.
+Summary: Recover files based on their headers and footers
 Name: foremost
 Version: 0.69
 Release: 0

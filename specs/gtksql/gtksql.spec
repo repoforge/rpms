@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Graphical database query tool for MySQL and PostgreSQL.
+Summary: Graphical database query tool for MySQL and PostgreSQL
 Name: gtksql
 Version: 0.4
 Release: 0

@@ -1,11 +1,10 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Ross Burton <ross@burtonini.com>
 
+Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
-Summary: A window matching tool inspired by the Matched Window options in Sawfish
 Version: 0.3.1
 Release: 0
 License: GPL
@@ -15,7 +14,7 @@ URL: http://www.burtonini.com/blog/computers/devilspie/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.burtonini.com/computing/%{name}-%{version}.tar.gz
+Source: http://www.burtonini.com/computing/devilspie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

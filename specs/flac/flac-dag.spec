@@ -1,7 +1,7 @@
 # Authority: freshrpms
 %define	plugindir %(xmms-config --input-plugin-dir)
 
-Summary: Free lossless audio codec.
+Summary: Free lossless audio codec
 Name: flac
 Version: 1.1.0
 Release: 3
@@ -32,7 +32,7 @@ and Winamp, licensed under the GPL; and 5) documentation, licensed
 under the GNU Free Documentation License.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -42,7 +42,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package -n xmms-flac
-Summary: X MultiMedia System plugin to play FLAC files.
+Summary: X MultiMedia System plugin to play FLAC files
 Group: Applications/Multimedia
 Requires: xmms, id3lib, %{name} = %{version}-%{release}
 Obsoletes: flac-xmms

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Utility for internationalizing various kinds of data files.
+Summary: Utility for internationalizing various kinds of data files
 Name: intltool
 Version: 0.28
 Release: 0

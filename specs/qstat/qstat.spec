@@ -3,7 +3,7 @@
 # Authority: newrpms
 %define rversion 25c
 
-Summary: Real-time Game Server Status for Quake servers.
+Summary: Real-time Game Server Status for Quake servers
 Name: qstat
 Version: 2.5
 Release: 0.c

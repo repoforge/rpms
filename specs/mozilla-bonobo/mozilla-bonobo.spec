@@ -5,7 +5,7 @@
 # Upstream: Christian Glodt <chris@mind.lu>
 # Distcc: 0
 
-Summary: Mozilla plugin for using bonobo components.
+Summary: Mozilla plugin for using bonobo components
 Name: mozilla-bonobo
 Version: 0.4.0
 Release: 0

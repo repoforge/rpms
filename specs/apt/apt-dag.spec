@@ -3,7 +3,7 @@
 
 %define LIBVER 3.3
 
-Summary: Debian's Advanced Packaging Tool with RPM support.
+Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15cnc5
 Release: 1
@@ -43,7 +43,7 @@ APT features complete installation ordering, multiple source capability and
 several other unique features.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -1,7 +1,7 @@
 # Authority: freshrpms
 %define rversion 0.9.2pre1
 
-Summary: A library for manipulating QuickTime files
+Summary: library for manipulating QuickTime files
 Name: libquicktime
 Version: 0.9.1.91
 Release: 0

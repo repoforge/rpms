@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Henrik Carlqvist <henca@users.sourceforge.net>
 
-Summary: Create DOS/MS-compatible boot records.
+Summary: Create DOS/MS-compatible boot records
 Name: ms-sys
 Version: 1.0.2
 Release: 1

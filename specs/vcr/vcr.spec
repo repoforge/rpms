@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Bram Avontuur <bram@avontuur.org>
 
-Summary: Record a program using a video grabber card.
+Summary: Record a program using a video grabber card
 Name: vcr
 Version: 1.10
 Release: 0

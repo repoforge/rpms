@@ -4,13 +4,13 @@
 # Define when building a CVS shapshot
 #define	cvs	-cvs
 
-Summary: A simple foundation for reading DVD video disks.
+Summary: Library for reading DVD video disks
 Name: libdvdread
 Version: 0.9.4
 Release: 4%{?cvs:cvs}
 License: GPL
 Group: System Environment/Libraries
-Source: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
+Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}%{?cvs}.tar.gz
 URL: http://www.dtek.chalmers.se/groups/dvd/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss >= 1.2.5
@@ -23,7 +23,7 @@ and descrambling.
 
 
 %package devel
-Summary: Development files from the libdvdread library.
+Summary: Development files from the libdvdread library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

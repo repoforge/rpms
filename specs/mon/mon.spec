@@ -5,7 +5,7 @@
 
 %define moncgi_version 1.52
 
-Summary: General-purpose resource monitoring system.
+Summary: General-purpose resource monitoring system
 Name: mon
 Version: 0.99.2
 Release: 1

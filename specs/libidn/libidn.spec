@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <bug-libidn@gnu.org>
 
-Summary: Internationalized string processing library.
+Summary: Internationalized string processing library
 Name: libidn
 Version: 0.4.2
 Release: 1
@@ -27,7 +27,7 @@ Names (IDN) working group, used for internationalized domain
 names.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

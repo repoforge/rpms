@@ -4,7 +4,7 @@
 
 %define rname gDesklets
 
-Summary: Advanced architecture for desktop applets.
+Summary: Advanced architecture for desktop applets
 Name: gdesklets
 Version: 0.26
 Release: 0

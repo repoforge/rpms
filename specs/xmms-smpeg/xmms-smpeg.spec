@@ -8,7 +8,7 @@
 %define	rname smpeg-xmms
 %define plugindir %(xmms-config --input-plugin-dir)
 
-Summary: XMMS SMPEG Plugin.
+Summary: XMMS SMPEG Plugin
 Name: xmms-smpeg
 Version: 0.3.5
 Release: 0

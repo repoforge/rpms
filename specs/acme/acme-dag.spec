@@ -1,6 +1,6 @@
 # Authority: freshrpms
 
-Summary: Versatile Keyboard daemon.
+Summary: Versatile Keyboard daemon
 Name: acme
 Version: 2.0.2
 Release: 0

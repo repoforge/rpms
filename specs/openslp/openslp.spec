@@ -31,7 +31,7 @@ by RFC 2608 and RFC 2614.  This package includes the daemon, libraries, header
 files and documentation.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

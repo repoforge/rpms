@@ -4,7 +4,7 @@
 
 # Upstream: Dug Song <dugsong@monkey.org>
 
-Summary: Intercepts, modifies, and rewrites egress traffic.
+Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute
 Version: 1.2
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Free AC-3 stream decoder.
+Summary: Free AC-3 stream decoder
 Name: ac3dec
 Version: 0.6.1
 Release: 0

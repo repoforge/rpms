@@ -3,7 +3,7 @@
 
 #define prever rc2
 
-Summary: The Advanced Linux Sound Architecture (ALSA) library.
+Summary: The Advanced Linux Sound Architecture (ALSA) library
 Name: alsa-lib
 Version: 1.0.2
 Release: %{?prever:0.%{prever}.}2
@@ -28,7 +28,7 @@ This package includes the ALSA runtime libraries.
 
 
 %package devel
-Summary: Static libraries and header files from the ALSA library.
+Summary: Static libraries and header files from the ALSA library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires: alsa-driver >= %{version}, pkgconfig

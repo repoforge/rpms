@@ -4,7 +4,7 @@
 
 ### FIXME: Add sysv script and default configuration.
 
-Summary: A virtual private network daemon.
+Summary: virtual private network daemon
 Name: tinc
 Version: 1.0.2
 Release: 0

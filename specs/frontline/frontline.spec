@@ -5,7 +5,7 @@
 ### FIXME: frontline triggers a strange bug in Distcc 2.2 (RH9 maybe others)
 # Distcc: 0
 
-Summary: GUI frontend program and library for autotrace.
+Summary: GUI frontend program and library for autotrace
 Name: frontline
 Version: 0.5.4
 Release: 2

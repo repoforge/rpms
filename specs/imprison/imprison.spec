@@ -6,7 +6,7 @@
 # Soapbox: 1
 # Imprison: 1
 
-Summary: Imprisons processes to a jail.
+Summary: Imprisons processes to a jail
 Name: imprison
 Version: 0.2
 Release: 0

@@ -1,13 +1,13 @@
 # $Id$
 # Authority: matthias
 
-Summary: A portable abstraction library for DVD decryption.
+Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss
 Version: 1.2.8
 Release: 3
 License: GPL
 Group: System Environment/Libraries
-Source: http://download.videolan.org/pub/%{name}/%{version}/%{name}-%{version}.tar.bz2
+Source: http://download.videolan.org/pub/libdvdcss/%{version}/libdvdcss-%{version}.tar.bz2
 URL: http://developers.videolan.org/libdvdcss/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -19,7 +19,7 @@ VideoLAN client and the Xine navigation plugin.
 
 
 %package devel
-Summary: Development files from the libdvdcss DVD decryption library.
+Summary: Development files from the libdvdcss DVD decryption library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Nils Philippsen <nphilipp@redhat.com>
 
-Summary: Display expanded Source/Patch macros from SPEC files.
+Summary: Display expanded Source/Patch macros from SPEC files
 Name: spectool
 Version: 1.0.3
 Release: 1

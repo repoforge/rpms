@@ -12,7 +12,7 @@ Release: 1
 Group: Development/Tools
 License: GPL
 URL: http://valgrind.kde.org/
-Source: http://developer.kde.org/~sewardj/%{name}-%{version}.tar.bz2
+Source: http://developer.kde.org/~sewardj/valgrind-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel
 

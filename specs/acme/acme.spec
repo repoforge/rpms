@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Multimedia keyboard button tool for GNOME.
+Summary: Multimedia keyboard button tool for GNOME
 Name: acme
 Version: 2.4.2
 Release: 2

@@ -33,7 +33,7 @@ To make use of all the features of this program, you need to have a Linux
 kernel which supports the /proc/bus/pci interface.
 
 %package gui
-Summary: Powertweak GTK userinterface.
+Summary: Powertweak GTK userinterface
 Group: Applications/System
 Requires: %{name} = %{version}-%{release}
 

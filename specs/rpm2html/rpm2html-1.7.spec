@@ -5,7 +5,7 @@
 # Dists: rh73
 # SourceDists: rh73
 
-Summary: Translates an RPM database and dependency information into HTML.
+Summary: Translates an RPM database and dependency information into HTML
 Name: rpm2html
 Version: 1.7
 Release: 0

@@ -9,7 +9,7 @@
 
 %define rversion 040301
 
-Summary: A PostScript font editor.
+Summary: PostScript font editor
 Name: pfaedit
 Version: 0.0.20040301
 Release: 0

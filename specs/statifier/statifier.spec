@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Valery Reznic <valery_reznic@users.sourceforge.net>
 
-Summary: Convert dynamicly-linked ELF binaries into to "pseudo-static" binaries.
+Summary: Convert dynamicly-linked ELF binaries into to "pseudo-static" binaries
 Name: statifier
 Version: 1.1.0
 Release: 1

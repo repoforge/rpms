@@ -2,9 +2,7 @@
 
 # Authority: dag
 
-# Dists: rhfc1
-
-Summary: A unicode manipulation library.
+Summary: Unicode manipulation library
 Name: libunicode
 Version: 0.4
 Release: 12.0
@@ -14,10 +12,9 @@ Group: System Environment/Libraries
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pango.org/download/%{name}-%{version}.tar.gz
+Source: http://www.pango.org/download/libunicode-%{version}.tar.gz
 Patch0: libunicode-0.4-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf, libtool
 
@@ -25,7 +22,7 @@ BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf, libtool
 A library to handle unicode strings
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

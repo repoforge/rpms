@@ -4,7 +4,7 @@
 
 %define rname pygame
 
-Summary: Python module for interfacing with the SDL multimedia library.
+Summary: Python module for interfacing with the SDL multimedia library
 Name: python-game
 Version: 1.6
 Release: 0

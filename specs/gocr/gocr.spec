@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: An Optical Character Recognition (OCR) program.
+Summary: Optical Character Recognition (OCR) program
 Name: gocr
 Version: 0.37
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/jocr/gocr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%{release}
 
-
 BuildRequires: gtk+-devel >= 1.2.8, netpbm-devel
 
 %description
@@ -25,7 +24,7 @@ GNU General Public License. It reads images in many formats (pnm, pbm,
 pgm, ppm, some pcx and tga image files) and outputs a text file.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -35,7 +34,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package gtk
-Summary: A GTK frontend for gocr.
+Summary: GTK frontend for gocr
 Group: Applications/Multimedia
 Requires: %{name} = %{version}-%{release}
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: An interactive tool to help translate documents in the DocBook format
+Summary: Interactive tool to help translate documents in the DocBook format
 Name: rosetta
 Version: 0.01
 Release: 2
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.irule.be/bvh/c++/rosetta/rosetta-0.01.tar.gz
 Patch0: rosetta-rh8.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: qt-devel
 

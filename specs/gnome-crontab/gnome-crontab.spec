@@ -4,7 +4,7 @@
 
 # Upstream: Gavin Brown <jodrell@spod.uk.net>
 
-Summary: A graphical interface to the crontab program.
+Summary: graphical interface to the crontab program
 Name: gnome-crontab
 Version: 0.0.5
 Release: 0

@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Television application for video4linux compliant devices.
+Summary: Television application for video4linux compliant devices
 Name: xawtv
 Version: 3.91
 Release: 0

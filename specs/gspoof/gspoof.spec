@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Embyte <embyte@madlab.it>
 
-Summary: Network tool to build and send TCP/IP packets.
+Summary: Network tool to build and send TCP/IP packets
 Name: gspoof
 Version: 3.2
 Release: 0

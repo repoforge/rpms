@@ -3,14 +3,14 @@
 
 %define _xmmsoutputdir %(xmms-config --output-plugin-dir)
 
-Summary: A neat crossfade output plugin for XMMS
+Summary: Neat crossfade output plugin for XMMS
 Name: xmms-crossfade
 Version: 0.3.4
 Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.netcologne.de/~nc-eisenlpe2/xmms-crossfade/
-Source: http://www.netcologne.de/~nc-eisenlpe2/%{name}/%{name}-%{version}.tar.gz
+Source: http://www.netcologne.de/~nc-eisenlpe2/xmms-crossfade/xmms-crossfade-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel

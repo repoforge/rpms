@@ -3,7 +3,7 @@
 
 %define rname SDL_perl
 
-Summary: Simple DirectMedia Layer - Bindings for the perl language.
+Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 1.20.0
 Release: 3

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Secure file deletion utility.
+Summary: Secure file deletion utility
 Name: wipe
 Version: 2.2.0
 Release: 0

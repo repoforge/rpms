@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: GNOME gnupg interface.
+Summary: GNOME gnupg interface
 Name: seahorse
 Version: 0.7.3
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname mcrypt
 
-Summary: libmcrypt is a data encryption library.
+Summary: libmcrypt is a data encryption library
 Name: libmcrypt
 Version: 2.5.7
 Release: 1
@@ -30,7 +30,7 @@ SERPENT, RIJNDAEL, 3DES, GOST, SAFER+, CAST-256, RC2, XTEA, 3WAY,
 TWOFISH, BLOWFISH, ARCFOUR, WAKE and more.
 
 %package devel
-Summary: Development files of the libmcrypt data encryption library.
+Summary: Development files of the libmcrypt data encryption library
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

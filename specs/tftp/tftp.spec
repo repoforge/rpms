@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The client for the Trivial File Transfer Protocol (TFTP).
+Summary: The client for the Trivial File Transfer Protocol (TFTP)
 Name: tftp
 Version: 0.34
 Release: 0
@@ -29,7 +29,7 @@ and should not be enabled unless it is expressly needed.
 
 %package server
 Group: System Environment/Daemons
-Summary: The server for the Trivial File Transfer Protocol (TFTP).
+Summary: The server for the Trivial File Transfer Protocol (TFTP)
 Requires: xinetd
 
 %description server

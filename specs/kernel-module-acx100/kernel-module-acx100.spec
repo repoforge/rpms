@@ -24,7 +24,7 @@
 %define moduledir /kernel/drivers/net/wireless/acx100
 %define modules src/acx100_pci.o
 
-Summary: Linux driver for the ACX100-based wireless cards.
+Summary: Linux driver for the ACX100-based wireless cards
 Name: kernel-module-acx100
 Version: 0.2.0
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -56,7 +56,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-acx100
 Release: %{rrelease}_%{kversion}_%{krelease}
-Summary: Linux ACX100 wireless drivers for SMP.
+Summary: Linux ACX100 wireless drivers for SMP
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
@@ -74,7 +74,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n acx100-utils
-Summary: ACX100 wireless driver add-ons.
+Summary: ACX100 wireless driver add-ons
 Release: %{rrelease}
 Group: System Environment/Base
 

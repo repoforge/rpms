@@ -6,7 +6,7 @@
 %define rname SQLite
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 
-Summary: PHP module for using SQLite databases.
+Summary: PHP module for using SQLite databases
 Name: php-sqlite
 Version: 1.0.2
 Release: 1

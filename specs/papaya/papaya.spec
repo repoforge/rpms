@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: MUD client with plugins.
+Summary: MUD client with plugins
 Name: papaya
 Version: 0.96
 Release: 0
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Papaya is a fully featured GTK/Gnome MUD client for UNIX, Windows and MacOS X.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Flash animations rendering library.
+Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.2.0
 Release: 0
@@ -26,7 +26,7 @@ handles mostFlash 3 animations and some Flash 4. No interactivity is
 supported yet.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -36,7 +36,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package -n mozilla-swfdec
-Summary: Mozilla plugin for Flash rendering.
+Summary: Mozilla plugin for Flash rendering
 Group: Applications/Internet
 Requires: mozilla
 

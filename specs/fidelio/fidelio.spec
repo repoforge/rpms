@@ -4,7 +4,7 @@
 
 %define rversion 1.0b1
 
-Summary: A Linux Hotline Client with almost full 1.5 compatibility.
+Summary: Graphical Hotline client with almost full 1.5 compatibility
 Name: fidelio
 Version: 1.0
 Release: 0.b1
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/fidelio/fidelio-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description 
 Fidelio is a Hotline compatible client that supports most of the features of

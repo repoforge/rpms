@@ -4,7 +4,7 @@
 
 %define rname XML-SAX-Base
 
-Summary: XML-SAX-Base Perl module.
+Summary: XML-SAX-Base Perl module
 Name: perl-XML-SAX-Base
 Version: 1.04
 Release: 0

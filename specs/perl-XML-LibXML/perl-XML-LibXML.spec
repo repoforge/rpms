@@ -4,7 +4,7 @@
 
 %define rname XML-LibXML
 
-Summary: XML-LibXML Perl module.
+Summary: XML-LibXML Perl module
 Name: perl-XML-LibXML
 Version: 1.56
 Release: 0

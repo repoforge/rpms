@@ -4,7 +4,7 @@
 
 # Upstream: Richard Hult <rhult@codefactory.se>
 
-Summary: A program that reminds you to take wrist breaks
+Summary: program that reminds you to take wrist breaks
 Name: drwright
 Version: 0.17
 Release: 0

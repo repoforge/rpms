@@ -1,4 +1,4 @@
-Summary:	A user-friendly file manager and visual shell.
+Summary:	A user-friendly file manager and visual shell
 Name:		mc
 Version:	4.5.55
 Release: 	13.legacy
@@ -65,7 +65,7 @@ poke into RPMs for specific files.
 %ifarch nonexistent_arch ## no mcserv/gmc
 
 %package -n gmc
-Summary: The GNOME version of the Midnight Commander file manager.
+Summary: The GNOME version of the Midnight Commander file manager
 Requires: mc >= %{version} redhat-logos
 Group: User Interface/Desktops
 %description -n gmc
@@ -75,7 +75,7 @@ desktop front-end. GMC can FTP, view TAR and compressed files and look
 into RPMs for specific files.
 
 %package -n mcserv
-Summary: Server for the Midnight Commander network file management system.
+Summary: Server for the Midnight Commander network file management system
 Group: System Environment/Daemons
 Requires: portmap
 Prereq: /sbin/chkconfig

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jean-Pierre Lefebvre <helix@step.polymtl.ca>
 
-Summary: Advanced Trivial File Transfer Protocol (TFTP) client.
+Summary: Advanced Trivial File Transfer Protocol (TFTP) client
 Name: atftp
 Version: 0.7
 Release: 2
@@ -30,7 +30,7 @@ interface using libreadline. The current server implementation
 lacks IPv6 support.
 
 %package server
-Summary: Advanced Trivial File Transfer Protocol (TFTP) server.
+Summary: Advanced Trivial File Transfer Protocol (TFTP) server
 Group: System Environment/Daemons
 
 Conflicts: tftp-server

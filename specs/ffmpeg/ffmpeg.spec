@@ -44,7 +44,7 @@ Available rpmbuild rebuild options :
 
 
 %package devel
-Summary: Header files and static library for the ffmpeg codec library.
+Summary: Header files and static library for the ffmpeg codec library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Simple non-linear video editor.
+Summary: Simple non-linear video editor
 Name: kino
 Version: 0.7.0
 Release: 1

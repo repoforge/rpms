@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Thomas Vander Stichele <thomas@apestaart.org>
 
-Summary: Automatically detect and configure network settings.
+Summary: Automatically detect and configure network settings
 Name: columbus
 Version: 0.1.1
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Conglomerate Developers <conglomerate-devel@lists.copyleft.no>
 
-Summary: Information authoring, management, and transformation system.
+Summary: Information authoring, management, and transformation system
 Name: conglomerate
 Version: 0.7.12
 Release: 0

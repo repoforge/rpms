@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Chris Lightfoot <chris@ex-parrot.com>
 
-Summary: Sniffs the network for images and movies and displays them.
+Summary: Sniffs the network for images and movies and displays them
 Name: driftnet
 Version: 0.1.6
 Release: 1

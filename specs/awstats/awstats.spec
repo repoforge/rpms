@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Free, powerful and fullfeatured server logfile analyzer.
+Summary: Free, powerful and fullfeatured server logfile analyzer
 Name: awstats
 Version: 5.9
 Release: 1

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Andrew Tridgell <tridge@samba.org>
 
-Summary: A Trivial Database.
+Summary: Trivial Database
 Name: tdb
 Version: 1.0.6
 Release: 3
@@ -28,7 +28,7 @@ and uses locking internally to keep writers from trampling on
 each other. TDB is also extremely small.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

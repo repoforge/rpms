@@ -5,7 +5,7 @@
 
 %define rname Glib
 
-Summary: Perl wrappers for the GLib utility and Object libraries.
+Summary: Perl wrappers for the GLib utility and Object libraries
 Name: perl-Glib
 Version: 1.040
 Release: 1

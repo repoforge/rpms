@@ -9,7 +9,7 @@
 
 %define rname FSlint
 
-Summary: A utility to find and clean "lint" on a filesystem.
+Summary: utility to find and clean "lint" on a filesystem
 Name: fslint
 Version: 2.04
 Release: 0

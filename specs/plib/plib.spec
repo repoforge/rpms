@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A set of portable libraries especially useful for games
+Summary: set of portable libraries especially useful for games
 Name: plib
 Version: 1.6.0
 Release: 3

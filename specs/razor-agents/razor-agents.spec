@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Use the Razor catalog server to filter spam messages.
+Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
 Version: 1.20
 Release: 1

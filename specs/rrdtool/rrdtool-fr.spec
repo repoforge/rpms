@@ -29,7 +29,7 @@ put a friendly user interface on it.
 
 
 %package devel
-Summary: RRDtool static libraries and header files.
+Summary: RRDtool static libraries and header files
 Group: Development/Libraries
 Requires: %{name} = %{version}
 
@@ -40,7 +40,7 @@ server load average). This package allow you to use directly this library.
 
 
 %package -n php-%{name}
-Summary: RRDtool module for PHP.
+Summary: RRDtool module for PHP
 Group: Development/Languages
 Requires: %{name} = %{version}, php >= 4.3.0
 

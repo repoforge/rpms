@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Upstream: <libmpeg2-devel@lists.sourceforge.net>
 
-Summary: MPEG-2 and MPEG-1 decoding library and test program.
+Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
 Release: 0
@@ -22,7 +22,7 @@ BuildRequires: XFree86-devel, pkgconfig, SDL-devel
 A free library for decoding MPEG-2 and MPEG-1 video streams.
 
 %package devel
-Summary: Development files for mpeg2dec's libmpeg2.
+Summary: Development files for mpeg2dec's libmpeg2
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

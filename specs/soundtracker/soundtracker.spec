@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Sound module player and composer.
+Summary: Sound module player and composer
 Name: soundtracker
 Version: 0.6.7
 Release: 0

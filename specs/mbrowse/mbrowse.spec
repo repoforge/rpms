@@ -8,7 +8,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: GUI SNMP MIB browser.
+Summary: GUI SNMP MIB browser
 Name: mbrowse
 Version: 0.3.1
 Release: 0

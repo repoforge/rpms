@@ -4,7 +4,7 @@
 
 %define rname Unicode-MapUTF8
 
-Summary: Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) module for perl.
+Summary: Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) module for perl
 Name: perl-Unicode-MapUTF8
 Version: 1.09
 Release: 0

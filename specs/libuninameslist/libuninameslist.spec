@@ -4,7 +4,7 @@
 
 %define rversion 030116
 
-Summary: Library of Unicode annotation data.
+Summary: Library of Unicode annotation data
 Name: libuninameslist
 Version: 0.20030713
 Release: 0
@@ -26,7 +26,7 @@ This library contains a compiled version of this file so that
 programs can access these data easily.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

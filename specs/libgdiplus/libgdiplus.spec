@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Open Source implementation of the GDI+ API.
+Summary: Open Source implementation of the GDI+ API
 Name: libgdiplus
 Version: 0.2
 Release: 0
@@ -25,7 +25,7 @@ libgdiplus is an Open Source implementation of the GDI+ API, it is part
 of the Mono Project
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

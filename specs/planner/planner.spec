@@ -5,7 +5,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: Graphical project management tool.
+Summary: Graphical project management tool
 Name: planner
 Version: 0.11
 Release: 0

@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A color VT102 terminal emulator for the X Window System.
+Summary: color VT102 terminal emulator for the X Window System
 Name: rxvt
 Version: 2.7.10
 Release: 0
@@ -33,7 +33,7 @@ uses. This is a significant advantage on a machine which is serving a
 large number of X sessions.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{epoch}:%{version}-%{release}
 

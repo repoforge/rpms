@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Music player.
+Summary: Music player
 Name: jamboree
 Version: 0.4
 Release: 0

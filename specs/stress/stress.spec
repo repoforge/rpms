@@ -4,7 +4,7 @@
 
 # Upstream: Amos Waterland <apw@us.ibm.com>
 
-Summary: A tool to impose stress on a POSIX-compliant operating system.
+Summary: tool to impose stress on a POSIX-compliant operating system
 Name: stress
 Version: 0.18.1
 Release: 0

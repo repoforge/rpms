@@ -3,7 +3,7 @@
 
 #define prever pre1
 
-Summary: A library for reading and writing quicktime files
+Summary: library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.2
 Release: %{?prever:0.%{prever}.}1

@@ -21,7 +21,7 @@
 %define moduledir /kernel/drivers/misc/ips
 %define modules ips.o
 
-Summary: Linux IBM PCI ServeRAID drivers.
+Summary: Linux IBM PCI ServeRAID drivers
 Name: kernel-module-ips
 Version: 6.11
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -51,7 +51,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ips
 Release: %{rrelease}_%{kversion}_%{krelease}
-Summary: Linux IBM PCI ServeRAID drivers for SMP.
+Summary: Linux IBM PCI ServeRAID drivers for SMP
 License: GPL
 Group: System Environment/Kernel
 

@@ -5,7 +5,7 @@
 
 %define rname Gnome2-VFS
 
-Summary: Perl interface to the 2.x series of the GNOME VFS library.
+Summary: Perl interface to the 2.x series of the GNOME VFS library
 Name: perl-Gnome2-VFS
 Version: 0.10
 Release: 1

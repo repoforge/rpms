@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Anthony Tekatch <anthony@unihedron.com>
 
-Summary: Units conversion utility.
+Summary: Units conversion utility
 Name: gonvert
 Version: 0.1.10
 Release: 1

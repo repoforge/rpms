@@ -10,7 +10,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Mozilla Firefox web browser.
+Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.8
 Release: 1

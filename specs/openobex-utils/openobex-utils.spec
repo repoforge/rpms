@@ -4,7 +4,7 @@
 
 %define rname openobex-apps
 
-Summary: Utilities based on Openobex.
+Summary: Utilities based on Openobex
 Name: openobex-utils
 Version: 1.0.0
 Release: 0

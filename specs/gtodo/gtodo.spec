@@ -1,7 +1,7 @@
 # Authority: dag
 # Upstream: <gtodo-list@lists.sourceforge.net>
 
-Summary: Graphical todo list tool.
+Summary: Graphical todo list tool
 Name: gtodo
 Version: 0.14
 Release: 1

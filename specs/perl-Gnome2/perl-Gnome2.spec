@@ -5,7 +5,7 @@
 
 %define rname Gnome2
 
-Summary: Perl interface to the 2.x series of the GNOME libraries.
+Summary: Perl interface to the 2.x series of the GNOME libraries
 Name: perl-Gnome2
 Version: 0.90
 Release: 1

@@ -4,7 +4,7 @@
 
 %define _sbindir /sbin
 
-Summary: Utility to administer the Linux Virtual Server.
+Summary: Utility to administer the Linux Virtual Server
 Name: ipvsadm
 Version: 1.21
 Release: 0

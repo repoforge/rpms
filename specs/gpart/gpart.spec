@@ -4,7 +4,7 @@
 
 %define rversion 0.1h
 
-Summary: Guesses and recovers a damaged MBR (Master Boot Record).
+Summary: Guesses and recovers a damaged MBR (Master Boot Record)
 Name: gpart
 Version: 0.1
 Release: 0.h

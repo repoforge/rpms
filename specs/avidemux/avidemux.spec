@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A graphical multiplex/demultiplex tool using GTK.
+Summary: Graphical multiplex/demultiplex tool using GTK
 Name: avidemux
 Version: 0.9
 Release: 1

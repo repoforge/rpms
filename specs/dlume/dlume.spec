@@ -5,7 +5,7 @@
 
 %define rversion 0.2.2a
 
-Summary: Graphical address book.
+Summary: Graphical address book
 Name: dlume
 Version: 0.2.2
 Release: 1.a

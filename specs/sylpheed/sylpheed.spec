@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A full-featured GTK+ based fast e-mail client
+Summary: full-featured GTK+ based fast e-mail client
 Name: sylpheed
 Version: 0.9.10
 Release: 1

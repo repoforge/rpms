@@ -7,7 +7,7 @@
 
 %define logmsg logger -t nagios/rpm
 
-Summary: Open Source host, service and network monitoring program.
+Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 1.1
 Release: 6
@@ -40,7 +40,7 @@ which return the status of the checks to Nagios. The plugins are
 located in the nagios-plugins package.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

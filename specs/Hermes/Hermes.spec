@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: HERMES pixel format conversion library.
+Summary: HERMES pixel format conversion library
 Name: Hermes
 Version: 1.3.3
 Release: 2
@@ -28,7 +28,7 @@ support.
 
 
 %package devel
-Summary: Development tools for %{name}.
+Summary: Development tools for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

@@ -1,23 +1,21 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Krischan Jodies <krischan@jodies.cx>
 
-Summary: An IP subnet calculator.
+Summary: IP subnet calculator
 Name: ipcalc
 Version: 0.35
 Release: 1
-Group: Applications/System
 License: GPL
+Group: Applications/System
 URL: http://jodies.de/ipcalc/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://jodies.de/ipcalc-archive/%{name}-%{version}.tar.gz
+Source: http://jodies.de/ipcalc-archive/ipcalc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 ipcalc takes an IP address and netmask and calculates the resulting

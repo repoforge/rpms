@@ -18,7 +18,7 @@
 %define moduledir /fs/opengfs
 %define modules ogfs.o memexp.o
 
-Summary: OpenGFS clustered filesystem.
+Summary: OpenGFS clustered filesystem
 Name: opengfs
 Version: 0.2.1
 Release: 0
@@ -39,7 +39,7 @@ BuildRequires: kernel-source
 Utilities for managing OpenGFS filesystems and daemons for running them.
 
 %package -n kernel-module-opengfs
-Summary: Linux OpenGFS clustered filesystem drivers.
+Summary: Linux OpenGFS clustered filesystem drivers
 Group: System Environment/Kernel
 
 Requires: kernel = %{kversion}-%{krelease}
@@ -54,7 +54,7 @@ These drivers are built for kernel %{kversion}-%{krelease}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-opengfs
-Summary: Linux OpenGFS clustered filesystem drivers.
+Summary: Linux OpenGFS clustered filesystem drivers
 Group: System Environment/Kernel
 
 Requires: kernel = %{kversion}-%{krelease}

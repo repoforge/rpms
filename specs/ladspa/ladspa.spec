@@ -4,7 +4,7 @@
 
 %define rname ladspa_sdk
 
-Summary: Linux Audio Developer's Simple Plugin API.
+Summary: Linux Audio Developer's Simple Plugin API
 Name: ladspa
 Version: 1.12
 Release: 0
@@ -29,7 +29,7 @@ simple `plugin' audio processors in C/C++ and link them dynamically
 against a range of host applications.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -1,13 +1,13 @@
 # $Id$
 # Authority: matthias
 
-Summary: A simple library designed for DVD navigation.
+Summary: Library designed for DVD navigation
 Name: libdvdplay
 Version: 1.0.1
 Release: 3
 License: GPL
 Group: System Environment/Libraries
-Source: http://download.videolan.org/pub/%{name}/%{version}/%{name}-%{version}.tar.bz2
+Source: http://download.videolan.org/pub/libdvdplay/%{version}/libdvdplay-%{version}.tar.bz2
 URL: http://developers.videolan.org/libdvdplay/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdread >= 0.9.4
@@ -19,7 +19,7 @@ optionally libdvdcss.
 
 
 %package devel
-Summary: Development files from the libdvdplay DVD navigation library.
+Summary: Development files from the libdvdplay DVD navigation library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

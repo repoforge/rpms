@@ -7,7 +7,7 @@
 %define rname Browser
 %define rversion 281
 
-Summary: Excellent LDAP browser and editor.
+Summary: Excellent LDAP browser and editor
 Name: lbe
 Version: 2.8.1
 Release: 1

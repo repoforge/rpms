@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Upstream: Jonas Munsin <jmunsin@iki.fi>
 
-Summary: A useful GTK+ front-end for mkisofs and cdrecord.
+Summary: useful GTK+ front-end for mkisofs and cdrecord
 Name: gcombust
 Version: 0.1.55
 Release: 0

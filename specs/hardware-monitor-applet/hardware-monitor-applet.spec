@@ -6,7 +6,7 @@
 
 %define rname hardware-monitor
 
-Summary: GNOME Applet for hardware monitoring.
+Summary: GNOME Applet for hardware monitoring
 Name: hardware-monitor-applet
 Version: 1.0
 Release: 1

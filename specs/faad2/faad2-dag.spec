@@ -2,7 +2,7 @@
 %define plugindir %(xmms-config --input-plugin-dir)
 %define rversion 2.0_rc1
 
-Summary: Library and frontend for decoding MPEG2/4 AAC.
+Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
 Release: 0.rc1
@@ -25,7 +25,7 @@ FAAD 2 is a LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC decoder, completely
 written from scratch. FAAD 2 is licensed under the GPL.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -35,7 +35,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package -n xmms-aac
-Summary: X MultiMedia System input plugin to play AAC files.
+Summary: X MultiMedia System input plugin to play AAC files
 Group: Applications/Multimedia
 Requires: %{name} = %{version}-%{release}, xmms, id3lib
 

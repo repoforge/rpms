@@ -4,7 +4,7 @@
 
 %define rname Convert-ASN1
 
-Summary: A set of Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules.
+Summary: set of Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules
 Name: perl-Convert-ASN1
 Version: 0.18
 Release: 0

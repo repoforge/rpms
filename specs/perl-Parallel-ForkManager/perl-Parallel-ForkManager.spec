@@ -4,7 +4,7 @@
 
 %define rname Parallel-ForkManager
 
-Summary: Simple parallel processing fork manager.
+Summary: Simple parallel processing fork manager
 Name: perl-Parallel-ForkManager
 Version: 0.7.5
 Release: 1

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <socat@dest-unreach.org>
 
-Summary: Relay for bidirectional data transfer between 2 channels.
+Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
 Version: 1.3.2.2
 Release: 1

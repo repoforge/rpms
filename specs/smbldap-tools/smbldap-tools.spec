@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jerome Tournier <jerome.tournier@idealx.com>
 
-Summary: User and group administration tools for Samba-OpenLDAP.
+Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
 Version: 0.8.4
 Release: 1

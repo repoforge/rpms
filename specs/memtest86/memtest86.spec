@@ -6,7 +6,7 @@
 %define _prefix /boot
 %define rversion 3.1a
 
-Summary: Thorough, stand alone memory test.
+Summary: Thorough, stand alone memory test
 Name: memtest86
 Version: 3.1
 Release: 0.a

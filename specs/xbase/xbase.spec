@@ -4,7 +4,7 @@
 
 # Upstream: Derry Bryson <xbase@techass.com>
 
-Summary: Xbase dBase database file library.
+Summary: Xbase dBase database file library
 Name: xbase
 Version: 2.0.0
 Release: 0
@@ -23,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Library for accessing dBase .dbf, .ndx, .dbt, and Clipper .ntx files.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 # Upstream: Dug Song <dugsong@monkey.org>
 # Upstream: <libdnet-devel@lists.sourceforge.net>
 
-Summary: Simple portable interface to lowlevel networking routines.
+Summary: Simple portable interface to lowlevel networking routines
 Name: libdnet
 Version: 1.7
 Release: 0

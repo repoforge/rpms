@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A charset and encoding analyser.
+Summary: charset and encoding analyser
 Name: enca
 Version: 1.3
 Release: 2

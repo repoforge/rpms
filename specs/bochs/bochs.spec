@@ -4,7 +4,7 @@
 
 %define logmsg logger -t bochs/rpm
 
-Summary: Bochs project x86 PC emulator.
+Summary: Bochs project x86 PC emulator
 Name: bochs
 Version: 2.1
 Release: 0

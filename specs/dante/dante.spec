@@ -7,7 +7,7 @@
 
 %define _libdir /lib
 
-Summary: Free Socks v4/v5 client implementation.
+Summary: Free Socks v4/v5 client implementation
 Name: dante
 Version: 1.1.14
 Release: 2
@@ -36,7 +36,7 @@ This package contains the dynamic libraries required to "socksify"
 existing applications to become socks clients.
 
 %package server
-Summary: A free Socks v4/v5 server implementation
+Summary: free Socks v4/v5 server implementation
 Group: System Environment/Daemons
 Requires: %{name} = %{version}-%{release}
 
@@ -46,7 +46,7 @@ The sockd is the server part of the Dante socks proxy package and
 allows socks clients to connect through it to the network.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

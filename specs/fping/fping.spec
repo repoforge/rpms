@@ -4,7 +4,7 @@
 
 %define rversion 2.4b2
 
-Summary:  A utility to ping multiple hosts at once.
+Summary: Utility to ping multiple hosts at once
 Name: fping
 Version: 2.4
 Release: 0.b2
@@ -15,12 +15,11 @@ URL: http://www.fping.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.fping.com/download/%{name}-%{rversion}.tar.gz
+Source: http://www.fping.com/download/fping-%{rversion}.tar.gz
 Patch0: fping-ac_fixes.patch
 Patch1: fping-ipv6.patch
 Patch2: fping-ipv6-ac.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: autoconf, automake
 

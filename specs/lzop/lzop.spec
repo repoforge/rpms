@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Markus F.X.J. Oberhumer <markus@oberhumer.com>
 
-Summary: Real-time file compressor.
+Summary: Real-time file compressor
 Name: lzop
 Version: 1.01
 Release: 1
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.lzop.org/download/lzop-%{version}.tar.gz
 Patch0: lzop-1.01-gcc29.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: lzo-devel
 

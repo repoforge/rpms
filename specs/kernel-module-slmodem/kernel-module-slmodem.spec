@@ -23,7 +23,7 @@
 %define rname slmodem
 %define rrelease 0
 
-Summary: Linux Smartlink Linmodem drivers.
+Summary: Linux Smartlink Linmodem drivers
 Name: kernel-module-slmodem
 Version: 2.9.6
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -77,7 +77,7 @@ They might work with newer/older kernels.
 #They might work with newer/older kernels.
 
 %package -n slmodem-utils
-Summary: Linux Smartlink Linmodem utilities.
+Summary: Linux Smartlink Linmodem utilities
 Release: %{rrelease}
 Group: System Environment/Base
 

@@ -4,7 +4,7 @@
 
 %define rversion 0.9b
 
-Summary: Packet redirection tool for interception on switched networks .
+Summary: Packet redirection tool for interception on switched networks 
 Name: forgate
 Version: 0.9
 Release: 0.b

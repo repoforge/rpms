@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Mikael Hallendal <micke@imendio.com>
 
-Summary: API document browser.
+Summary: API document browser
 Name: devhelp
 Version: 0.9
 Release: 0

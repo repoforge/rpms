@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A Nintendo GameBoy Color emulator.
+Summary: Nintendo GameBoy Color emulator
 Name: gnuboy
 Version: 1.0.3
 Release: 4

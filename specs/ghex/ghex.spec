@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: GNOME binary editor.
+Summary: GNOME binary editor
 Name: ghex
 Version: 2.2.1
 Release: 0

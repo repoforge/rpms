@@ -4,7 +4,7 @@
 %define desktop_vendor freshrpms
 %define date           20040125
 
-Summary: A 3D multi-player tank battle game
+Summary: 3D multi-player tank battle game
 Name: bzflag
 Version: 1.10.4
 Release: 2

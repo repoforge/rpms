@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The Ultimate Packer for eXecutables.
+Summary: The Ultimate Packer for eXecutables
 Name: upx
 Version: 1.24
 Release: 0

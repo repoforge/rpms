@@ -4,7 +4,7 @@
 
 %define DisableOffensiveFortunes 1
 
-Summary: A program which will display a fortune.
+Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
 Release: 27
@@ -289,7 +289,7 @@ Enkele fortune quotes van Bart Simpson's chalkboard-writings, gedownload van
 http://www.splitbrain.org/./Fortunes/simpsons/
 
 %package prog-style
-Summary: Fortune files with the 69 tips from the "Elements of Programming Style" by Kernighan and Plaugher.
+Summary: Fortune files with the 69 tips from the "Elements of Programming Style" by Kernighan and Plaugher
 Summary(nl): Fortune bestanden met de 69 tips van "Elements of Programming Style" by Kernighan and Plaugher.
 Group: Amusements/Games
 Requires: fortune = %{version}-%{release}

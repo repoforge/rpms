@@ -3,7 +3,7 @@
 # Authority: dag
 # Distcc: 0
 
-Summary: Library for dealing with Microsoft ITSS/CHM format files.
+Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
 Version: 0.31
 Release: 0
@@ -25,7 +25,7 @@ BuildRequires: libtool
 chmlib is a library for dealing with Microsoft ITSS/CHM format files.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

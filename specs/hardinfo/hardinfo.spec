@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Displays information about your hardware and operating system.
+Summary: Displays information about your hardware and operating system
 Name: hardinfo
 Version: 0.3.6
 Release: 0

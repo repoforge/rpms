@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Change the dynamic library load path (rpath) of binaries.
+Summary: Change the dynamic library load path (rpath) of binaries
 Name: chrpath
 Version: 0.11
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname BerkeleyDB
 
-Summary: Perl extension for Berkeley DB version 2, 3 or 4.
+Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
 Version: 0.25
 Release: 1

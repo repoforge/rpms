@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Kevin Vigor <kevin@vigor.nu>
 
-Summary: A differential X protocol compressor.
+Summary: Differential X protocol compressor
 Name: dxpc
 Version: 3.8.2
 Release: 0
@@ -15,9 +14,8 @@ URL: http://www.vigor.nu/dxpc/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.vigor.nu/dxpc/%{version}/%{name}-%{version}.tar.gz
+Source: http://www.vigor.nu/dxpc/%{version}/dxpc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: lzo-devel
 

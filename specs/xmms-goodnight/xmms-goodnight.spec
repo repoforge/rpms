@@ -4,7 +4,7 @@
 
 %define plugindir %(xmms-config --general-plugin-dir)
 
-Summary: An XMMS plugin to stop playing/quit XMMS/suspend/shutdown at a given time.
+Summary: XMMS plugin to stop playing/quit XMMS/suspend/shutdown at a given time
 Name: xmms-goodnight
 Version: 0.3.2
 Release: 0
@@ -15,9 +15,8 @@ URL: http://fiktiv.szgtikol.kando.hu/~folti/src/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://fiktiv.szgtikol.kando.hu/~folti/src/%{name}-%{version}.tar.gz
+Source: http://fiktiv.szgtikol.kando.hu/~folti/src/xmms-goodnight-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: xmms-devel
 

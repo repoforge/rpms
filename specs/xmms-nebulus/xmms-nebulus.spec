@@ -6,7 +6,7 @@
 
 %define plugindir %(xmms-config --visualization-plugin-dir)
 
-Summary: An OpenGL visual plugin for XMMS.
+Summary: OpenGL visual plugin for XMMS
 Name: xmms-nebulus
 Version: 0.6.0
 Release: 0
@@ -17,9 +17,8 @@ URL: http://nebulus.tuxfamily.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://nebulus.tuxfamily.org/%{name}-%{version}.tar.bz2
+Source: http://nebulus.tuxfamily.org/xmms-nebulus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: xmms-devel, SDL-devel, SDL_ttf-devel
 

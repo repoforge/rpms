@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Genealogical Research and Analysis Management Programming System.
+Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
 Version: 0.8.1
 Release: 0

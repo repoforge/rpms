@@ -4,7 +4,7 @@
 # Upstream: Alessandro Dotti Contra <alessandro.dotti@iperbole.bologna.it>
 # Upstream: <adcfw-log-devel@lists.sourceforge.net>
 
-Summary: Tool for analyzing firewall logs.
+Summary: Tool for analyzing firewall logs
 Name: adcfw-log
 Version: 0.9.1
 Release: 1

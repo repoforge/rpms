@@ -21,7 +21,7 @@
 %define moduledir /kernel/drivers/usb/ov511
 %define modules ov511.o ovfx2.o ovcamchip.o saa7111-new.o tda7313.o tuner.o
 
-Summary: Linux OVCam Drivers.
+Summary: Linux OVCam Drivers
 Name: kernel-module-ov511
 Version: 2.27
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -51,7 +51,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ov511
-Summary: Linux OVCam Drivers.
+Summary: Linux OVCam Drivers
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp

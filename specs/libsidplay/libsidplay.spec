@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A Commodore 64 music player and SID chip emulator library.
+Summary: Commodore 64 music player and SID chip emulator library
 Name: libsidplay
 Version: 1.36.57
 Release: 0
@@ -13,9 +13,8 @@ URL: http://www.geocities.com/SiliconValley/Lakes/5147/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.geocities.com/SiliconValley/Lakes/5147/sidplay/packages/%{name}-%{version}.tgz
+Source: http://www.geocities.com/SiliconValley/Lakes/5147/sidplay/packages/libsidplay-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 This library provides the Sound Interface Device (SID) chip emulator
@@ -23,7 +22,7 @@ engine that is used by music player programs like SIDPLAY. With it
 you can play musics from Commodore 64 (or compatible) programs.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

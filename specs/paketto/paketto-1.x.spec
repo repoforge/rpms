@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Unusual TCP/IP testing tools.
+Summary: Unusual TCP/IP testing tools
 Name: paketto
 Version: 1.10
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Daniel Elstner <daniel.elstner@gmx.net>
 
-Summary: A GUI search/replace tool featuring Perl-style regular expressions.
+Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer
 Version: 0.6
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.com/regexxer/regexxer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib2-devel >= 2.0.7, gtk2-devel >= 2.0
 BuildRequires: libsigc++-devel >= 1.2, gtkmm2-devel >= 2.0

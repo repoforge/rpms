@@ -4,7 +4,7 @@
 %define real_name      directory_administrator
 %define desktop_vendor freshrpms
 
-Summary: User control management tool for LDAP directories.
+Summary: User control management tool for LDAP directories
 Name: diradmin
 Version: 1.5.1
 Release: 3

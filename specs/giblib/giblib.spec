@@ -23,7 +23,7 @@ and more importantly, wraps imlib2's context API.
 
 
 %package devel
-Summary: Static libs and header files for giblib.
+Summary: Static libs and header files for giblib
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Simon Floery <simon.floery@gmx.at>
 
-Summary: Graphical scientific calculator.
+Summary: Graphical scientific calculator
 Name: galculator
 Version: 1.2.1
 Release: 1

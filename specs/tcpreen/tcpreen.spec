@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: TCP/IP re-engineering and monitoring program.
+Summary: TCP/IP re-engineering and monitoring program
 Name: tcpreen
 Version: 1.3.7
 Release: 1

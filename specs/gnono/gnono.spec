@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A GNOME UNO card game.
+Summary: UNO card game
 Name: gnono
 Version: 0.0.3
 Release: 0
@@ -13,9 +13,8 @@ URL: http://www.paw.co.za/projects/gnono/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.paw.co.za/pub/PAW/sources/%{name}-%{version}.tar.gz
+Source: ftp://ftp.paw.co.za/pub/PAW/sources/gnono-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 An interesting card game for GNOME

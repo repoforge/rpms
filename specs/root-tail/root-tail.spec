@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Displays a given file anywhere on your X root window.
+Summary: Displays a given file anywhere on your X root window
 Name: root-tail
 Version: 0.9
 Release: 0

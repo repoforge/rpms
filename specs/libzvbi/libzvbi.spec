@@ -30,7 +30,7 @@ bit slicer, decoders for various data services and basic search,
 render and export functions for Closed Caption and Teletext pages.
 
 %package devel
-Summary: Static library and API documentation of the VBI routines.
+Summary: Static library and API documentation of the VBI routines
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

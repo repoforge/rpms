@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Dan Dennedy
 
-Summary: DV grabber through the FireWire interface.
+Summary: DV grabber through the FireWire interface
 Name: dvgrab
 Version: 1.5
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Asynchronous-capable resolver library.
+Summary: Asynchronous-capable resolver library
 Name: adns
 Version: 1.0
 Release: 1
@@ -22,7 +22,7 @@ adns is a resolver library for C (and C++) programs, and a collection
 of useful DNS resolver utilities.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Steve Benson <steve@rhythm.cx>
 
-Summary: Packet sniffer which displays TCP information like the 'top' command.
+Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack
 Version: 1.0.2
 Release: 1

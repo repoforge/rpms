@@ -6,7 +6,7 @@
 
 %define _libdir	/lib
 
-Summary: A library to allow transparent SOCKS proxying.
+Summary: library to allow transparent SOCKS proxying
 Name: tsocks
 Version: 1.8
 Release: 6.beta5

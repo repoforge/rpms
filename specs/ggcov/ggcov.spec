@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: GTK+ front-end for gcov.
+Summary: GTK+ front-end for gcov
 Name: ggcov
 Version: 0.1.4
 Release: 0

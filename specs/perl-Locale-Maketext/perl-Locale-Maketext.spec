@@ -6,7 +6,7 @@
 
 %define rname Locale-Maketext
 
-Summary: A framework for localization and inheritance-based lexicons for Perl.
+Summary: framework for localization and inheritance-based lexicons for Perl
 Name: perl-Locale-Maketext
 Version: 1.06
 Release: 0

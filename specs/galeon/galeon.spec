@@ -4,7 +4,7 @@
 
 %define mversion 38:1.6
 
-Summary: GNOME browser based on Gecko (Mozilla rendering engine).
+Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
 Version: 1.3.14
 Release: 0.a

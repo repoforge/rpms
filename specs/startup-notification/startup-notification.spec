@@ -24,7 +24,7 @@ environment can track the launch of an application and provide
 feedback such as a busy cursor, among other features.
 
 %package devel
-Summary: Libraries and include files for %{name}.
+Summary: Libraries and include files for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

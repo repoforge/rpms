@@ -4,7 +4,7 @@
 
 %define rname Math-TrulyRandom
 
-Summary: Perl interface to a truly random number generator function.
+Summary: Perl interface to a truly random number generator function
 Name: perl-Math-TrulyRandom
 Version: 1.0
 Release: 1

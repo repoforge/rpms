@@ -22,7 +22,7 @@
 %define moduledir /kernel/drivers/char/hsfmodem
 %define modules hsfengine.o hsfmc97ali.o hsfmc97ich.o hsfmc97via.o hsfosspec.o hsfpcibasic2.o hsfserial.o hsfsoar.o
 
-Summary: Linux Conexant HSF Softmodem drivers.
+Summary: Linux Conexant HSF Softmodem drivers
 Name: kernel-module-hsfmodem
 Version: 6.03.00
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -53,7 +53,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-hsfmodem
 Release: %{rrelease}_%{kversion}_%{krelease}
-Summary: Linux Conexant HSF Softmodem drivers for SMP.
+Summary: Linux Conexant HSF Softmodem drivers for SMP
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
@@ -67,7 +67,7 @@ These drivers are built for kernel %{kversion}-%{krelease}smp.
 They might work with newer/older kernels.
 
 %package -n hsfmodem-utils
-Summary: Linux Conexant HSF Softmodem utilities.
+Summary: Linux Conexant HSF Softmodem utilities
 Release: %{rrelease}
 Group: System Environment/Kernel
 

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: The GNU Krell Monitor, stacked system monitors in one process.
+Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
 Version: 2.1.26
 Release: 1
@@ -24,7 +24,7 @@ Also includes an uptime monitor, a hostname label, and a clock/calendar.
 
 
 %package devel
-Summary: Include headers from the GNU Krell Monitor.
+Summary: Include headers from the GNU Krell Monitor
 Group: Development/Libraries
 Requires : gkrellm = %{version}-%{release}, gtk2-devel
 
@@ -34,7 +34,7 @@ GKrellM monitor.
 
 
 %package daemon
-Summary: The GNU Krell Monitor Daemon.
+Summary: The GNU Krell Monitor Daemon
 Group: System Environment/Daemons
 Requires: glib >= 1.2
 Obsoletes: gkrellm-server <= 2.1.21

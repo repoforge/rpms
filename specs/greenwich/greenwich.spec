@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Gavin Brown <jodrell@spod.uk.net>
 
-Summary: A graphical whois client for GNOME.
+Summary: Graphical whois client
 Name: greenwich
 Version: 0.6.2
 Release: 0
@@ -15,9 +14,8 @@ URL: http://jodrell.net/projects/greenwich/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://jodrell.net/download.html?file=/files/%{name}-%{version}.tar.gz
+Source: http://jodrell.net/download.html?file=/files/greenwich-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503

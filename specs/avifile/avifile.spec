@@ -6,7 +6,7 @@
 %define	date 20030710
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Library used to play AVI streams.
+Summary: Library used to play AVI streams
 Name: avifile
 Version: 0.7.38
 Release: 1
@@ -38,7 +38,7 @@ To use this program, you will need to get the Win32 binaries from
 %{url} and put uncompress them under /usr/lib/win32.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

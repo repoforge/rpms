@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: LibMPEG3 decodes the many many derivatives of MPEG standards.
+Summary: LibMPEG3 decodes the many many derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.5.2
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname JabberOO
 
-Summary: Library implementing the Jabber instant messaging system.
+Summary: Library implementing the Jabber instant messaging system
 Name: jabberoo
 Version: 1.9.3
 Release: 0
@@ -25,7 +25,7 @@ BuildRequires: libsigc++-devel
 JabberOO is a library implementing the Jabber instant messaging system.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

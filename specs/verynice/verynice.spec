@@ -4,7 +4,7 @@
 
 # Upstream: Steve Holland <sdh4@cornell.edu>
 
-Summary: Dynamic process renicer and killer.
+Summary: Dynamic process renicer and killer
 Name: verynice
 Version: 1.1
 Release: 0

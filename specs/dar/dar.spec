@@ -2,7 +2,7 @@
 
 # Upstream: Dag Wieers <dag@wieers.com>
 
-Summary: Dag Apt Repository builder.
+Summary: Dag Apt Repository builder
 Name: dar
 Version: 0.6.0
 Release: 0

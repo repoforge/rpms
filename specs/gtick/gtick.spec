@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Metronome application.
+Summary: Metronome application
 Name: gtick
 Version: 0.3.0
 Release: 0

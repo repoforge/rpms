@@ -4,7 +4,7 @@
 
 %define rname Unicode-String
 
-Summary: Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl.
+Summary: Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl
 Name: perl-Unicode-String
 Version: 2.07
 Release: 0

@@ -5,7 +5,7 @@
 
 %define plugindir %(xmms-config --general-plugin-dir)
 
-Summary: Restores ESD volume, song time, and playing/paused status.
+Summary: Restores ESD volume, song time, and playing/paused status
 Name: xmms-morestate
 Version: 1.1
 Release: 0

@@ -4,7 +4,7 @@
 # Upstream: <dspam-users@nuclearelephant.com>
 # Upstream: Jonathan A. Zdziarski <jonathan@nuclearelephant.com>
 
-Summary: Library and Mail Delivery Agent for Bayesian spam filtering.
+Summary: Library and Mail Delivery Agent for Bayesian spam filtering
 Name: dspam
 Version: 2.10.1
 Release: 1
@@ -46,7 +46,7 @@ well with any other MTA that supports an external local delivery agent
 (postfix, qmail, etc.)
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A test of skill, part puzzle game and part action game
+Summary: test of skill, part puzzle game and part action game
 Name: neverball
 Version: 1.1.0
 Release: 1

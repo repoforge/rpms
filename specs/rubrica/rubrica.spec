@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Nicola Fragale <nicolafragale@libero.it>
 
-Summary: Address book application.
+Summary: Address book application
 Name: rubrica
 Version: 1.0.10
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://digilander.libero.it/nfragale/download/rubrica/rubrica-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgnomeui-devel >= 2.0, libxslt-devel >= 1.0, libmcrypt-devel
 

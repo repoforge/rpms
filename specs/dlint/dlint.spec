@@ -4,7 +4,7 @@
 
 # Upstream: Paul A. Balyoz <pab@domtools.com>
 
-Summary: A DNS error checking utility.
+Summary: DNS error checking utility
 Name: dlint
 Version: 1.4.0
 Release: 0

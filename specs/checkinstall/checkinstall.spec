@@ -3,7 +3,7 @@
 # Authority: dag
 # Soapbox: 0
 
-Summary: CheckInstall installations tracker.
+Summary: CheckInstall installations tracker
 Name: checkinstall
 Version: 1.5.3
 Release: 3

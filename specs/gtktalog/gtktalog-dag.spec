@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: The GNOME disk catalog.
+Summary: The GNOME disk catalog
 Name: gtktalog
 Version: 1.0.1
 Release: 0

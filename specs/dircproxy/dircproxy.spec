@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: IRC proxy server.
+Summary: IRC proxy server
 Name: dircproxy
 Version: 1.0.5
 Release: 0

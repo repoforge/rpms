@@ -1,13 +1,12 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Thierry Godefroy <xdialog@free.fr>
 
 %define rname Xdialog
 
 Name: xdialog
-Summary: A X11 drop in replacement for cdialog.
+Summary: X11 drop in replacement for cdialog
 Version: 2.1.1
 Release: 1
 License: GPL
@@ -17,9 +16,8 @@ URL: http://xdialog.dyns.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://thgodef.nerim.net/xdialog/%{rname}-%{version}.tar.bz2
+Source: http://thgodef.nerim.net/xdialog/Xdialog-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel >= 1.2.0
 

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Mike Newman <mike@gtnorthern.demon.co.uk>
 
-Summary: A tool for determining versions of installed GNOME packages.
+Summary: Tool for determining versions of installed GNOME packages
 Name: gnome-pkgview
 Version: 1.0.5
 Release: 0
@@ -14,9 +14,8 @@ URL: http://www.greatnorthern.demon.co.uk/gnome-pkgview.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.gtnorthern,demon.co.uk/packages/pkgview/%{name}-%{version}.tar.gz
+Source: http://www.gtnorthern,demon.co.uk/packages/pkgview/gnome-pkgview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2 >= 2.0.0, libxml2 >= 2.0.0, libgnomeui >= 2.0
 

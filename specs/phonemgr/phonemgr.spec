@@ -5,7 +5,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: A phone manager.
+Summary: Phone manager
 Name: phonemgr
 Version: 0.2.1
 Release: 0
@@ -19,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://usefulinc.com/software/phonemgr/releases/phonemgr-%{version}.tar.gz
 Patch0: phonemgr-0.2.1-orbit2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgnomemm2-devel, libgnomeuimm2-devel, ORBit2-devel
 BuildRequires: gsmlib-devel, gnome-bluetooth

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A city simulation game.
+Summary: city simulation game
 Summary(nl): Een stadsimulatie spel.
 Name: lincity
 Version: 1.12.0

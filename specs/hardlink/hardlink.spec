@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary:  A utility to hardlink duplicate files in a directory tree.
+Summary: Tool to hardlink duplicate files in a directory tree
 Name: hardlink
 Version: 1.2
 Release: 1
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.redhat.com/pub/redhat/mirror-tools/hardlink.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 A utility to hardlink duplicate files in a directory tree.

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A GNOME PDF viewer.
+Summary: Grpahical PDF viewer
 Name: gpdf
 Version: 0.103
 Release: 0
@@ -13,9 +13,8 @@ URL: http://www.inf.tu-dresden.de/~mk793652/gpdf/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/gpdf/%{version}/%{name}-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/gpdf/%{version}/gpdf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libbonobo-devel >= 2.2.1
 BuildRequires: libgnomeui-devel >= 2.0, libbonoboui-devel >= 2.0, gnome-vfs2-devel >= 2.0

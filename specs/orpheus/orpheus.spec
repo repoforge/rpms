@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A text-mode player for CDs and MP3 files.
+Summary: Text-mode player for CDs and MP3 files
 Name: orpheus
 Version: 1.2
 Release: 0
@@ -13,9 +13,8 @@ URL: http://konst.org.ua/orpheus/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://thekonst.net/download/%{name}-%{version}.tar.bz2
+Source: http://thekonst.net/download/orpheus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Orpheus is a text-mode player for CDs and files of MP3 format. It can

@@ -20,7 +20,7 @@
 %define moduledir /kernel/fs/ntfs
 %define modules ntfs.o
 
-Summary: Linux driver for NTFS filesystem.
+Summary: Linux driver for NTFS filesystem
 Name: kernel-module-ntfs
 Version: %{kversion}
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -49,7 +49,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ntfs
 Release: %{rrelease}_%{kversion}_%{krelease}
-Summary: Linux SMP driver for NTFS filesystem.
+Summary: Linux SMP driver for NTFS filesystem
 License: GPL
 Group: System Environment/Kernel
 

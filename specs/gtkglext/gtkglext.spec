@@ -3,7 +3,7 @@
 # Authority: newrpms
 # Upstream: <gtkglext-list@gnome.org>
 
-Summary: OpenGL Extension to GTK.
+Summary: OpenGL Extension to GTK
 Name: gtkglext
 Version: 1.0.6
 Release: 1
@@ -24,7 +24,7 @@ which support OpenGL rendering in GTK, and GtkWidget API add-ons to
 make GTK+ widgets OpenGL-capable.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}, XFree86-devel, gtk+-devel
 

@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: <graeme@rillion.net>
 
-Summary: An interactive program which monitors squid logs and displays them in a nice fashion.
+Summary: Interactive program which monitors squid logs and displays them in a nice fashion
 Name: squidview
 Version: 0.63
 Release: 0
@@ -15,9 +14,8 @@ URL: http://www.rillion.net/squidview/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.rillion.net/squidview/%{name}-%{version}.tar.gz
+Source: http://www.rillion.net/squidview/squidview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: ncurses-devel
 

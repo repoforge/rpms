@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A Linux video stream processing utility
+Summary: Linux video stream processing utility
 Name: transcode
 Version: 0.6.12
 Release: 1

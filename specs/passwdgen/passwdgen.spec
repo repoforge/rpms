@@ -5,7 +5,7 @@
 # Distcc: 0
 # Soapbox: 0
 
-Summary: Random Password Generator.
+Summary: Random Password Generator
 Name: passwdgen
 Version: 2.2
 Release: 1

@@ -4,7 +4,7 @@
 
 %define rname GoodWeather
 
-Summary: GoodWeather sensor and display for gdesklets.
+Summary: GoodWeather sensor and display for gdesklets
 Name: gdesklets-goodweather
 Version: 0.3
 Release: 0

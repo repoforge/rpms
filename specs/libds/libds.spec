@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Malcolm Smith <malxau@users.sourceforge.net>
 
-Summary: Shared Library for Data Structures.
+Summary: Shared Library for Data Structures
 Name: libds
 Version: 1.5.1
 Release: 1
@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Shared Library for Data Structures.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

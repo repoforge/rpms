@@ -4,7 +4,7 @@
 
 # Todo: replace .desktop file by a freedesktop compliant one
 
-Summary: A musical score reading trainer.
+Summary: musical score reading trainer
 Name: scorereadingtrainer
 Version: 0.1.2
 Release: 1

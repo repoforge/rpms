@@ -3,13 +3,13 @@
 
 %define xmmsinputdir %(xmms-config --input-plugin-dir)
 
-Summary: An encoder/decoder for the Free Lossless Audio Codec
+Summary: Encoder/decoder for the Free Lossless Audio Codec
 Name: flac
 Version: 1.1.0
 Release: 4
 License: GPL
 Group: Applications/Multimedia
-Source: http://dl.sf.net/flac/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 URL: http://flac.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libogg

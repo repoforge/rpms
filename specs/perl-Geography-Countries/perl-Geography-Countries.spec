@@ -6,7 +6,7 @@
 
 %define rname Geography-Countries
 
-Summary: Classes for 2-letter, 3-letter, and numerical codes for countries.
+Summary: Classes for 2-letter, 3-letter, and numerical codes for countries
 Name: perl-Geography-Countries
 Version: 1.4
 Release: 1

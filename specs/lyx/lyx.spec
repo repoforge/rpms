@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX.
+Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX
 Name: lyx
 Version: 1.3.4
 Release: 1
@@ -49,8 +49,8 @@ and let the computer take care of the rest.
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=LyX LaTeX frontend
-Comment=Write documents in a WYSIWYM way
+Name=LyX LaTeX Editor
+Comment=Edit your LaTeX documents in a WYSIWYM fashion
 Exec=lyx
 Icon=lyx-icon.png
 Type=Application

@@ -4,7 +4,7 @@
 
 %define _includedir %{_prefix}/include/freetds
  
-Summary: Implementation of the Sybase/Microsoft TDS (Tabular DataStream) protocol.
+Summary: Implementation of the Sybase/Microsoft TDS (Tabular DataStream) protocol
 Name: freetds
 Version: 0.62.1
 Release: 0
@@ -29,7 +29,7 @@ client to database server communications. FreeTDS includes call
 level interfaces for DB-Lib, CT-Lib, and ODBC.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

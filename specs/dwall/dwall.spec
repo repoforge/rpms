@@ -1,7 +1,7 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
-Summary: All-purpose iptables firewall generator.
+Summary: All-purpose iptables firewall generator
 Name: dwall
 Version: 0.5.3
 Release: 1

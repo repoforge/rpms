@@ -4,7 +4,7 @@
 
 %define rname libbonobomm
 
-Summary: C++ wrappers for libbonobo, for use with gtkmm.
+Summary: C++ wrappers for libbonobo, for use with gtkmm
 Name: libbonobomm2
 Version: 1.3.8
 Release: 0
@@ -26,7 +26,7 @@ BuildRequires: orbitcpp >= 1.3
 libgnomemm provides C++ wrappers for libbonobo, for use with gtkmm.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 
 # Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
 
-Summary: A database administration tool.
+Summary: database administration tool
 Name: mergeant
 Version: 0.12.1
 Release: 0

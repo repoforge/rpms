@@ -6,7 +6,7 @@
 
 %define _localstatedir %{_var}/lib
 
-Summary: Advanced GNOME configuration editor.
+Summary: Advanced GNOME configuration editor
 Name: cog
 Version: 0.6.1
 Release: 0

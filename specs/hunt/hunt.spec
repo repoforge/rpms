@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A TCP hijacking tool.
+Summary: TCP hijacking tool
 Name: hunt
 Version: 1.5
 Release: 0

@@ -4,7 +4,7 @@
 # Upstream: Pedro L. Orso <orso@onda.com.br>
 # Upstream: <orso@yahoogroups.com>
 
-Summary: Squid usage report generator per user/ip/name.
+Summary: Squid usage report generator per user/ip/name
 Name: sarg
 Version: 1.4.1
 Release: 1

@@ -8,7 +8,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: GUI interface for CVS.
+Summary: GUI interface for CVS
 Name: gcvs
 Version: 1.0
 Release: 1

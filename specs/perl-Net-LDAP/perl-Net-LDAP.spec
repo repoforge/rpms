@@ -4,7 +4,7 @@
 
 %define rname perl-ldap
 
-Summary: A set of Perl classes implementing an LDAP client.
+Summary: set of Perl classes implementing an LDAP client
 Name: perl-Net-LDAP
 Version: 0.2701
 Release: 1

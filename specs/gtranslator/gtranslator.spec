@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A GNOME po file editor with many bells and whistles.
+Summary: GNOME po file editor with many bells and whistles
 Name: gtranslator
 Version: 1.0
 Release: 1

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: David Helder <dhelder@umich.edu>
 
-Summary: Simple network library.
+Summary: Simple network library
 Name: gnet2
 Version: 2.0.5
 Release: 1
@@ -40,7 +40,7 @@ Features include :
   SOCKS support
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -3,7 +3,7 @@
 
 %define real_version 1.4rc5
 
-Summary: An ASCII art library
+Summary: ASCII art library
 Name: aalib
 Version: 1.4.0
 Release: 5

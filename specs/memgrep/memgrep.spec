@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Search/replace/dump memory from running processes and core files.
+Summary: Search/replace/dump memory from running processes and core files
 Name: memgrep
 Version: 0.8.0
 Release: 0

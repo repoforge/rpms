@@ -7,7 +7,7 @@
 
 %define rversion 1.5.0
 
-Summary: A secure tunneling daemon.
+Summary: Secure tunneling daemon
 Name: openvpn
 Version: 1.5.0
 Release: 0
@@ -20,7 +20,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/openvpn/openvpn-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: lzo-devel, openssl-devel
 

@@ -6,7 +6,7 @@
 
 %define rname xclass
 
-Summary: C++ X11 widget set providing win95 look and feel.
+Summary: C++ X11 widget set providing win95 look and feel
 Name: libxclass
 Version: 0.8.2
 Release: 0

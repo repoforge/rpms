@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: 
 
-Summary: Measures bandwidth between two point-to-point connections.
+Summary: Measures bandwidth between two point-to-point connections
 Name: bing
 Version: 1.0.4
 Release: 1

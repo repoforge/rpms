@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A portable abstraction library for DVD menus support
+Summary: portable abstraction library for DVD menus support
 Name: libdvdplay
 Version: 1.0.1
 Release: 0

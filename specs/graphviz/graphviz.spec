@@ -37,7 +37,7 @@ The %{name}-tcl package contains the various tcl packages (extensions)
 for version %{version} of the %{name} tools.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

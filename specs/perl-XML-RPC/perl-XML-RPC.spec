@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: An implementation of XML-RPC in perl.
+Summary: Implementation of XML-RPC in perl
 Summary(nl): Een implementatie van XML-RPC in perl.
 Name: perl-XML-RPC
 Version: 0.53

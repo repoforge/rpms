@@ -4,7 +4,7 @@
 %define desktop_vendor freshrpms
 #define date           20031202
 
-Summary: A complete GTK+ frontend for xmame
+Summary: complete GTK+ frontend for xmame
 Name: gxmame
 Version: 0.34b
 Release: %{?date:0.%{date}.}1

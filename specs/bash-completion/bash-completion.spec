@@ -5,7 +5,7 @@
 
 %define rname bash_completion
 
-Summary: Programmable completion for Bash.
+Summary: Programmable completion for Bash
 Name: bash-completion
 Version: 20040214
 Release: 1

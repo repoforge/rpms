@@ -19,7 +19,7 @@ multichannel and gapless encoding.
 
 
 %package devel
-Summary: Development libraries of the FAAC AAC encoder.
+Summary: Development libraries of the FAAC AAC encoder
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

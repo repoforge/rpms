@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Red Hat Fedora compilers for distccd.
+Summary: Red Hat Fedora compilers for distccd
 Name: distcc-compilers-fedora
 Version: 0.7.2
 Release: 0

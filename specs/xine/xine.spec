@@ -5,7 +5,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A free multimedia player
+Summary: free multimedia player
 Name: xine
 Version: 0.9.23
 Release: 1

@@ -6,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A WYSIWIG guitar tablature editor.
+Summary: WYSIWIG guitar tablature editor
 Name: gnometab
 Version: 0.7.4
 Release: 0

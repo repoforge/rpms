@@ -4,7 +4,7 @@
 # Screenshot: http://amsn.sourceforge.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sourceforge.net/modules.php?name=Skins
 
-Summary: Collection of skins for aMSN.
+Summary: Collection of skins for aMSN
 Name: amsn-skins
 Version: 0.90
 Release: 0

@@ -3,7 +3,7 @@
 
 %define rname RPM-Specfile
 
-Summary: Perl module for creating rpm packages of other perl modules.
+Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
 Version: 1.12
 Release: 1

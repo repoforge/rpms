@@ -2,7 +2,7 @@
 
 # Authority: atrpms
 
-Summary: Sophisticated file transfer program.
+Summary: Sophisticated file transfer program
 Name: lftp
 Version: 2.6.12
 Release: 0

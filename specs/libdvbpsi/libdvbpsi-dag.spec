@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A library for decoding and generating MPEG 2 and DVB PSI sections.
+Summary: library for decoding and generating MPEG 2 and DVB PSI sections
 Name: libdvbpsi
 Version: 0.1.2
 Release: 0
@@ -21,7 +21,7 @@ decoding and generating. The important features are:
  * PMT decoder and generator.
 
 %package devel
-Summary: Development tools for programs which will use the libdvbpsi library.
+Summary: Development tools for programs which will use the libdvbpsi library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

@@ -5,7 +5,7 @@
 %define _sbindir /sbin
 %define _libdir /lib
 
-Summary: Device mapper library.
+Summary: Device mapper library
 Name: device-mapper
 Version: 1.00.07
 Release: 0

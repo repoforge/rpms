@@ -6,7 +6,7 @@
 # i've send a description of the problem to the author but he didn't respond 
 # to the last mail
 
-Summary: OpenGL Jump&Run game where you have to flee an exploding nuclear bomb.
+Summary: OpenGL Jump&Run game where you have to flee an exploding nuclear bomb
 Name: atomorun
 Version: 1.1_pre2
 Release: 2

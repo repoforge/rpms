@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Command line rom manager for MAME, MESS and Raine.
+Summary: Command line rom manager for MAME, MESS and Raine
 Name: advancescan
 Version: 1.7
 Release: 2

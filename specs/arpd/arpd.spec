@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: ARP reply daemon.
+Summary: ARP reply daemon
 Name: arpd
 Version: 0.2
 Release: 0

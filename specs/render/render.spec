@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: X Render Extension.
+Summary: X Render Extension
 Name: render
 Version: 0.8
 Release: 0

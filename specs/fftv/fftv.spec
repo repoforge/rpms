@@ -4,7 +4,7 @@
 # Upstream: Fabrice Bellard <fabrice.bellard@free.fr>
 # Upstream: <fftv-devel@lists.sourceforge.net>
 
-Summary: Advanced television viewing and recording program.
+Summary: Advanced television viewing and recording program
 Name: fftv
 Version: 0.7.4
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A free vector drawing application.
+Summary: free vector drawing application
 Name: gestalter
 Version: 0.6.7
 Release: 0

@@ -1,7 +1,7 @@
 # Authority: freshrpms
 %define rversion 0.15.1b
 
-Summary: MPEG audio decoder library.
+Summary: MPEG audio decoder library
 Name: libmad
 Version: 0.15.1
 Release: 0.b
@@ -28,7 +28,7 @@ MAD does not yet support MPEG-2 multichannel audio (although it should be
 backward compatible with such streams) nor does it currently support AAC.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

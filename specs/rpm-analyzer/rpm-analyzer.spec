@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: <ra@maisondubonheur.com>
 
-Summary: A graphical interface for RPM analyze.
+Summary: Graphical interface for RPM analyze
 Name: rpm-analyzer
 Version: 1.0
 Release: 0.r10
@@ -15,9 +14,8 @@ URL: http://www.maisondubonheur.com/rpm-analyzer/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.maisondubonheur.com/rpm-analyzer/dl/%{name}-%{version}.tar.bz2
+Source: http://www.maisondubonheur.com/rpm-analyzer/dl/rpm-analyzer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: pygtk2, python2, rpm-python, rhpl, libxml2-python

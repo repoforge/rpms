@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <info@rndsoftware.com>
 
-Summary: Save proc filesystem content for forensic analysis.
+Summary: Save proc filesystem content for forensic analysis
 Name: procget
 Version: 0.1.0
 Release: 1

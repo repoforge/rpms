@@ -10,7 +10,7 @@
 %define rversion 1.6
 %define _unpackaged_files_terminate_build 0
 
-Summary: Web browser and mail reader.
+Summary: Web browser and mail reader
 Name: mozilla
 Version: 1.6
 Release: 0
@@ -150,7 +150,7 @@ Prereq: fileutils, mozilla = %{epoch}:%{version}-%{release}
 JavaScript debugger for use with Mozilla.
 
 %package dom-inspector
-Summary: A tool for inspecting the DOM of pages in Mozilla.
+Summary: tool for inspecting the DOM of pages in Mozilla
 Group: Applications/Internet
 Prereq: fileutils, mozilla = %{epoch}:%{version}-%{release}
 

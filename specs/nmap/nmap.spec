@@ -25,7 +25,7 @@ predictability characteristics, reverse-identd scanning, and more.
 
 
 %package frontend
-Summary: Gtk+ frontend for nmap.
+Summary: Gtk+ frontend for nmap
 Group: Applications/System
 Requires: nmap = %{epoch}:%{version}-%{release} , gtk+
 BuildRequires: gtk+-devel, desktop-file-utils, openssl-devel

@@ -4,7 +4,7 @@
 
 # Upstream: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
 
-Summary: A tool to prevent unauthorized usage of IPs.
+Summary: tool to prevent unauthorized usage of IPs
 Name: ip-sentinel
 Version: 0.9
 Release: 0

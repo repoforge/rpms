@@ -4,7 +4,7 @@
 
 %define rname LTVariations
 
-Summary: A set of different sensors and displays for gdesklets.
+Summary: set of different sensors and displays for gdesklets
 Name: gdesklets-ltvariations
 Version: 0.21
 Release: 0

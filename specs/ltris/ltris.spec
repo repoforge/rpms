@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A tetris clone for Linux that uses the SDL
+Summary: tetris clone for Linux that uses the SDL
 Name: ltris
 Version: 1.0.5
 Release: 2

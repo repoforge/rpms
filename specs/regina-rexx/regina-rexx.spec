@@ -7,7 +7,7 @@
 
 %define rname Regina
 
-Summary: Regina Rexx interpreter.
+Summary: Regina Rexx interpreter
 Name: regina-rexx
 Version: 3.3
 Release: 0.rc1
@@ -31,7 +31,7 @@ ANSI Standard for Rexx (1996). It is also available on several other
 operating systems. 
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

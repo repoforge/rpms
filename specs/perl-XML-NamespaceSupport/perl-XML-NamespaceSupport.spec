@@ -4,7 +4,7 @@
 
 %define rname XML-NamespaceSupport
 
-Summary: XML-NamespaceSupport Perl module.
+Summary: XML-NamespaceSupport Perl module
 Name: perl-XML-NamespaceSupport
 Version: 1.08
 Release: 1

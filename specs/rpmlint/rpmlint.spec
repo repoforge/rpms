@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: RPM correctness checker.
+Summary: RPM correctness checker
 Name: rpmlint
 Version: 0.52
 Release: 0

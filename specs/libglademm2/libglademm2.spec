@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: The C++ interface for the libglade user interface library.
+Summary: The C++ interface for the libglade user interface library
 Name: libglademm2
 Version: 2.0.1
 Release: 2
@@ -18,7 +18,7 @@ The C++ interface for the libglade user interface library.
 
 
 %package devel
-Summary: Development libraries and headers for libglademm2.
+Summary: Development libraries and headers for libglademm2
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: libglade2-devel >= 1.99.11, gtkmm2-devel >= 2.0.2

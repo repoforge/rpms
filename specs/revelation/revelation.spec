@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Password manager.
+Summary: Password manager
 Name: revelation
 Version: 0.2.1
 Release: 0

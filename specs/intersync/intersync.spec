@@ -25,7 +25,7 @@ InterSync is a C based InterMezzo client, intended to
 operate with an http server (e.g. TUX or Apache) as a server. 
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

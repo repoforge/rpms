@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A simple commandline network inquiry/formatting tool.
+Summary: Commandline network inquiry/formatting tool
 Name: ifinfo
 Version: 0.85
 Release: 0
@@ -13,9 +13,8 @@ URL: http://scalableinformatics.com/ifinfo.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://scalableinformatics.com/downloads/ifinfo/%{name}-%{version}.tar.gz
+Source: http://scalableinformatics.com/downloads/ifinfo/ifinfo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl
 

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Recompression utilities for .PNG, .MNG and .ZIP files.
+Summary: Recompression utilities for .PNG, .MNG and .ZIP files
 Name: advancecomp
 Version: 1.7
 Release: 2

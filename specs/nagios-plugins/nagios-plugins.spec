@@ -11,7 +11,7 @@
 %define _libexecdir %{_libdir}/nagios/plugins
 %define extraplugins check_cluster check_dhcp
 
-Summary: Host/service/network monitoring program plugins for Nagios.
+Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
 Version: 1.3.1
 Release: 7

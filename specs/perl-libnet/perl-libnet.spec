@@ -1,6 +1,6 @@
 # $Id$
 
-Summary: libnet module for perl.
+Summary: libnet module for perl
 Name: perl-libnet
 Version: 1.17
 Epoch: 2

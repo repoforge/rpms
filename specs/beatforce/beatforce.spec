@@ -7,7 +7,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A computer DJing system.
+Summary: computer DJing system
 Name: beatforce
 Version: 0.1.5
 Release: 0

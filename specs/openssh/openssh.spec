@@ -74,7 +74,7 @@
 %define kerberos5 0
 %endif
 
-Summary: The OpenSSH implementation of SSH protocol versions 1 and 2.
+Summary: The OpenSSH implementation of SSH protocol versions 1 and 2
 Name: openssh
 Version: 3.5p1
 %define rel 11
@@ -137,13 +137,13 @@ BuildPreReq: krb5-devel
 %endif
 
 %package clients
-Summary: OpenSSH clients.
+Summary: OpenSSH clients
 Requires: openssh = %{version}-%{release}
 Group: Applications/Internet
 Obsoletes: ssh-clients
 
 %package server
-Summary: The OpenSSH server daemon.
+Summary: The OpenSSH server daemon
 Group: System Environment/Daemons
 Obsoletes: ssh-server
 PreReq: openssh = %{version}-%{release}, chkconfig >= 0.9, /usr/sbin/useradd
@@ -152,13 +152,13 @@ Requires: /etc/pam.d/system-auth
 %endif
 
 %package askpass
-Summary: A passphrase dialog for OpenSSH and X.
+Summary: passphrase dialog for OpenSSH and X
 Group: Applications/Internet
 Requires: openssh = %{version}-%{release}
 Obsoletes: ssh-extras
 
 %package askpass-gnome
-Summary: A passphrase dialog for OpenSSH, X, and GNOME.
+Summary: passphrase dialog for OpenSSH, X, and GNOME
 Group: Applications/Internet
 Requires: openssh = %{version}-%{release}
 Obsoletes: ssh-extras

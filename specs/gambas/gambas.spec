@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Free development environment based on a basic interpreter with object extensions.
+Summary: Free development environment based on a basic interpreter with object extensions
 Name: gambas
 Version: 0.90
 Release: 1
@@ -63,7 +63,7 @@ export PATH=$RPM_BUILD_ROOT/usr/bin:$PATH
 
 
 %package help
-Summary: The help files for gambas.
+Summary: The help files for gambas
 Group: Development/Libraries
 Requires: %{name} = %{version}
 
@@ -71,7 +71,7 @@ Requires: %{name} = %{version}
 The gambas-help package contains all the help files for gambas.
 
 %package examples
-Summary: The examples for gambas.
+Summary: The examples for gambas
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

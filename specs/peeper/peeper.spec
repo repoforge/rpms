@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Tool to magnify parts of your screen.
+Summary: Tool to magnify parts of your screen
 Name: peeper
 Version: 0.3
 Release: 0

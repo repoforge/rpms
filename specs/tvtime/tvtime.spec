@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A high quality TV viewer.
+Summary: high quality TV viewer
 Name: tvtime
 Version: 0.9.12
 Release: 0

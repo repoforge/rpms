@@ -4,7 +4,7 @@
 
 # Upstream: Fredrik Hubinette <hubbe@hubbe.net>
 
-Summary: Bond an X display and a VNC session together.
+Summary: Bond an X display and a VNC session together
 Name: x2vnc
 Version: 1.6
 Release: 0

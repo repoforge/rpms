@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Emil Mikulic <www-28ab@dmr.ath.cx>
 
-Summary: Network traffic analyzer.
+Summary: Network traffic analyzer
 Name: darkstat
 Version: 2.6
 Release: 1

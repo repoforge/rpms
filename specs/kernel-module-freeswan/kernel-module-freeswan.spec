@@ -22,7 +22,7 @@
 %define moduledir /kernel/net/freeswan
 %define modules linux/net/ipsec/ipsec.o
 
-Summary: Linux drivers for FreeS/WAN IPsec support.
+Summary: Linux drivers for FreeS/WAN IPsec support
 Name: kernel-module-freeswan
 Version: %{rversion}
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -56,7 +56,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-freeswan
-Summary: Linux SMP drivers for FreeS/WAN IPsec support.
+Summary: Linux SMP drivers for FreeS/WAN IPsec support
 Release: %{rrelease}_%{kversion}_%{krelease}
 Group: System Environment/Kernel
 
@@ -75,7 +75,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n freeswan-utils
-Summary: FreeS/WAN programs and libraries.
+Summary: FreeS/WAN programs and libraries
 Release: %{rrelease}
 Group: System Environment/Base
 

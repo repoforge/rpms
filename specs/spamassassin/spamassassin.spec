@@ -7,7 +7,7 @@
 
 %define rname Mail-SpamAssassin
 
-Summary: A spam filter for email which can be invoked from mail delivery agents.
+Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 2.63
 Release: 0
@@ -18,7 +18,7 @@ URL: http://spamassassin.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://spamassassin.org/released/%{rname}-%{version}.tar.bz2
+Source: http://spamassassin.org/released/Mail-SpamAssassin-%{version}.tar.bz2
 Source2: redhat_local.cf
 Source3: spamassassin-default.rc
 Source4: spamassassin-spamc.rc
@@ -27,7 +27,6 @@ Source10: spamassassin-helper.sh
 Source99: filter-requires-spamassassin.sh
 Patch0: spamassassin-2.60-servicename.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: %{_arch}
 Prereq: /sbin/chkconfig, /sbin/service

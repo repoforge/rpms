@@ -4,7 +4,7 @@
 
 %define rname Digest-SHA1
 
-Summary: Digest-SHA1 Perl module.
+Summary: Digest-SHA1 Perl module
 Name: perl-Digest-SHA1
 Version: 2.07
 Release: 1

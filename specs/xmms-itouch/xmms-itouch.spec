@@ -4,7 +4,7 @@
 %define xmmsgeneraldir %(xmms-config --general-plugin-dir)
 %define xmmsdatadir    %(xmms-config --data-dir)
 
-Summary: A useful plugin for XMMS to use special keyboard multimedia keys
+Summary: useful plugin for XMMS to use special keyboard multimedia keys
 Name: xmms-itouch
 Version: 0.1.2
 Release: 4

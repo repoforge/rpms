@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: GNOME sample editor.
+Summary: GNOME sample editor
 Name: marlin
 Version: 0.1
 Release: 0

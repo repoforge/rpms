@@ -3,7 +3,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A GNOME CD player, CD ripper and MP3 encoder frontend.
+Summary: GNOME CD player, CD ripper and MP3 encoder frontend
 Name: grip
 Version: 3.0.7
 Release: 0

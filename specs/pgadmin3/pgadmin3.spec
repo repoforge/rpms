@@ -4,7 +4,7 @@
 
 # Upstream: Jean-Michel POURE <jm@poure.com>
 
-Summary: Graphical client for PostgreSQL.
+Summary: Graphical client for PostgreSQL
 Name: pgadmin3
 Version: 0.9.2
 Release: 0

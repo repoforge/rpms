@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jörgen Scheibengruber <mfcn@gmx.de>
 
-Summary: GNOME applet that shows traffic on a network device.
+Summary: GNOME applet that shows traffic on a network device
 Name: netspeed_applet
 Version: 0.9.2
 Release: 0

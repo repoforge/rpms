@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A GTK based frontend for the xine multimedia library
+Summary: GTK based frontend for the xine multimedia library
 Name: gxine
 Version: 0.3.3
 Release: 2

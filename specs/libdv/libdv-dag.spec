@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A software codec for DV video, used by most digital camcorders.
+Summary: software codec for DV video, used by most digital camcorders
 Name: libdv
 Version: 0.99
 Release: 1
@@ -23,7 +23,7 @@ IEEE 1394 (a.k.a. FireWire or i.Link) interface. Libdv was developed
 according to the official standards for DV video: IEC 61834 and SMPTE 314M. 
 
 %package devel
-Summary: Development file for programs which use the libdv library.
+Summary: Development file for programs which use the libdv library
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

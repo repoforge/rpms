@@ -4,7 +4,7 @@
 
 %define rname gst-player
 
-Summary: GStreamer Streaming media framework player.
+Summary: GStreamer Streaming media framework player
 Name: gstreamer-player
 Version: 0.6.0
 Release: 0
@@ -29,7 +29,7 @@ This package contains the GStreamer media player and libgstplay, a simple
 GStreamer playback wrapper library.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -39,7 +39,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package -n nautilus-gstreamer
-Summary: GStreamer nautilus view.
+Summary: GStreamer nautilus view
 Group: System Environment/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -47,7 +47,7 @@ Requires: %{name} = %{version}-%{release}
 GStreamer nautilus view for media files.
 
 %package -n mozilla-gstreamer
-Summary: GStreamer plugin for Mozilla.
+Summary: GStreamer plugin for Mozilla
 Group: Applications/Internet
 Requires: %{name} = %{version}-%{release}
 

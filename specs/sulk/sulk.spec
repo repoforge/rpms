@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Sulk, the hackable Space Hulk.
+Summary: Sulk, the hackable Space Hulk
 Name: sulk
 Version: 0.29
 Release: 1

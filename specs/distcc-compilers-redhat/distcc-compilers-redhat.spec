@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Red Hat compilers for distccd.
+Summary: Red Hat compilers for distccd
 Name: distcc-compilers-redhat
 Version: 0.7.2
 Release: 2

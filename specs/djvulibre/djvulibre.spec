@@ -3,7 +3,7 @@
 
 %define mozver 1.4.1
 
-Summary: DjVu viewers, encoders and utilities.
+Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
 Version: 3.5.12
 Release: 3

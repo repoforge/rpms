@@ -5,7 +5,7 @@
 Name: smjpeg
 Version: 0.2.1
 Release: 0
-Summary: SMJPEG library for SDL.
+Summary: SMJPEG library for SDL
 License: LGPL
 Group: System Environment/Libraries
 URL: http://icculus.org/smjpeg/
@@ -25,7 +25,7 @@ SMJPEG is a custom Motion JPEG format used by Loki Entertainment
 Software in the games that they port.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

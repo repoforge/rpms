@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A simple encryption tool.
+Summary: Simple encryption tool
 Name: gcipher
 Version: 1.0
 Release: 1
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gcipher/gcipher-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: python >= 2.2
 Requires: python >= 2.2

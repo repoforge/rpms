@@ -11,7 +11,7 @@
 
 %define gccversion %(rpm -q gcc --qf '%{RPMTAG_VERSION}' | tail -1)
 
-Summary: A distributed C/C++ compilation client program.
+Summary: distributed C/C++ compilation client program
 Name: distcc
 Version: 2.13
 Release: 1
@@ -39,7 +39,7 @@ object file and compiler output back. It gives significant speed ups
 with make -jN.
 
 %package server
-Summary: A distributed C/C++ compilation daemon.
+Summary: distributed C/C++ compilation daemon
 Group: Development/Tools
 
 %description server
@@ -47,7 +47,7 @@ This package provides the server-side software for distcc. It must be
 installed on all the hosts which are to participate in your distcc cluster.
 
 %package gui
-Summary: A distributed C/C++ compilation GUI frontend.
+Summary: distributed C/C++ compilation GUI frontend
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
 Obsoletes: distcc-gnome

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: CHM file viewer.
+Summary: CHM file viewer
 Name: gnochm
 Version: 0.8.0
 Release: 0

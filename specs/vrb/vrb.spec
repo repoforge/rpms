@@ -5,7 +5,7 @@
 # Upstream: Phil Howard
 # Distcc: 0
 
-Summary: The virtual ring buffer library.
+Summary: The virtual ring buffer library
 Name: vrb
 Version: 0.4.0
 Release: 0
@@ -27,7 +27,7 @@ the caller to have direct access to buffer space and buffer data as a
 linear contiguous block.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

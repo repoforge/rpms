@@ -4,7 +4,7 @@
 
 %define rversion 0.7.2a
 
-Summary: Graphical music notation program.
+Summary: Graphical music notation program
 Name: denemo
 Version: 0.7.2
 Release: 0.a

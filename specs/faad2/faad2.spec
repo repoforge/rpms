@@ -24,7 +24,7 @@ written from scratch.
 
 
 %package -n xmms-aac
-Summary: X MultiMedia System input plugin to play AAC files.
+Summary: X MultiMedia System input plugin to play AAC files
 Group: Applications/Multimedia
 Requires: %{name} = %{version}-%{release}, xmms, id3lib
 Provides: xmms-%{name} = %{version}-%{release}
@@ -36,7 +36,7 @@ AAC files are MPEG2 or MPEG4 files that can be found in MPEG4 audio files
 
 
 %package devel
-Summary: Development libraries of the FAAD 2 AAC decoder.
+Summary: Development libraries of the FAAD 2 AAC decoder
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -5,7 +5,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: Mono CIL runtime, suitable for running .NET code.
+Summary: Mono CIL runtime, suitable for running .NET code
 Name: mono
 Version: 0.31
 Release: 0
@@ -33,7 +33,7 @@ class loader, the garbage collector, threading system and
 metadata access libraries.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

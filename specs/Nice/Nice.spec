@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: An advanced object-oriented programming language.
+Summary: Advanced object-oriented programming language
 Name: Nice
 Version: 0.9.6
 Release: 1

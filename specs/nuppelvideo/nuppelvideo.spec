@@ -7,7 +7,7 @@
 %define rname NuppelVideo
 %define rversion 0.52a
 
-Summary: NuppelVideo recording tool.
+Summary: NuppelVideo recording tool
 Name: nuppelvideo
 Version: 0.51.81
 Release: 0

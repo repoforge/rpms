@@ -4,7 +4,7 @@
 
 %define rname Convert-UUlib
 
-Summary: Convert-UUlib module for perl.
+Summary: Convert-UUlib module for perl
 Name: perl-Convert-UUlib
 Version: 1.01
 Release: 0

@@ -4,7 +4,7 @@
 
 # Upstream: Dag Wieers <dag@wieers.com>
 
-Summary: OpenSSH backup xinetd entry.
+Summary: OpenSSH backup xinetd entry
 Name: openssh-xinetd
 Version: 0.1
 Release: 0

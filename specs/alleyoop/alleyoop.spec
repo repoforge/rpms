@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jeffrey Stedfast <fejj@ximian.com>
 
-Summary: Graphical front-end to the Valgrind memory checker for x86.
+Summary: Graphical front-end to the Valgrind memory checker for x86
 Name: alleyoop
 Version: 0.8.0
 Release: 0

@@ -24,7 +24,7 @@
 %define moduledir /kernel/drivers/net/wireless/prism54
 %define modules ksrc/prism54.o
 
-Summary: Linux driver for the 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets.
+Summary: Linux driver for the 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets
 Name: kernel-module-prism54
 Version: 0.0.%{rversion}
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -54,7 +54,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-prism54
-Summary: Linux SMP driver for the 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets.
+Summary: Linux SMP driver for the 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp

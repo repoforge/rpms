@@ -6,7 +6,7 @@
 
 ### FIXME: Add sysv script using sysconfig file.
 
-Summary: Serial console server daemon/client.
+Summary: Serial console server daemon/client
 Name: conserver
 Version: 8.1.3
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A Graphical Tool for Managing a Certification Authority.
+Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca
 Version: 0.5.4
 Release: 0

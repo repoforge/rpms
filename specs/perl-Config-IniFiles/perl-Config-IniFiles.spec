@@ -4,7 +4,7 @@
 
 %define rname Config-IniFiles
 
-Summary: Module for reading .ini-style configuration files.
+Summary: Module for reading .ini-style configuration files
 Name: perl-Config-IniFiles
 Version: 2.38
 Release: 1

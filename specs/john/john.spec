@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: John the Ripper password cracker.
+Summary: John the Ripper password cracker
 Name: john
 Version: 1.6
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname Unicode-Map8
 
-Summary: Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl.
+Summary: Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl
 Name: perl-Unicode-Map8
 Version: 0.12
 Release: 0

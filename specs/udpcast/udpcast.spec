@@ -4,7 +4,7 @@
 
 %define rversion 20030831
 
-Summary: UDP broadcast installation.
+Summary: UDP broadcast installation
 Name: udpcast
 Version: 0.0.20030831
 Release: 0

@@ -6,7 +6,7 @@
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
-Summary: System administration tool for networks.
+Summary: System administration tool for networks
 Name: cfengine
 Version: 2.1.1
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The Pan Newsreader.
+Summary: The Pan Newsreader
 Name: pan
 Version: 0.14.2
 Release: 1

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Marcus Schneider <marcus.schneider@gmx.net>
 
-Summary: A realtime Video4Linux recording software.
+Summary: Realtime Video4Linux recording software
 Name: v4lgrab
 Version: 0.2.2
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/v4lgrab/v4lgrab-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libjpeg-devel, libtool, kdelibs-devel, arts-devel
 BuildRequires: avifile-devel, SDL-devel

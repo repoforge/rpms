@@ -4,7 +4,7 @@
 #define prever         pre3
 %define desktop_vendor freshrpms
 
-Summary: A powerful audio editor
+Summary: powerful audio editor
 Name: audacity
 Version: 1.2.0
 Release: %{?prever:0.%{prever}.}2

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Junichi Uekawa <dancer@netfort.gr.jp>
 
-Summary: A distributed shell. Allows running of a single command on multiple hosts.
+Summary: distributed shell. Allows running of a single command on multiple hosts
 Name: dsh
 Version: 0.23.7
 Release: 0

@@ -6,7 +6,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: A desktop news aggregator for GNOME.
+Summary: desktop news aggregator for GNOME
 Name: straw
 Version: 0.22.1
 Release: 1

@@ -7,7 +7,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Video4Linux stream capture viewer.
+Summary: Video4Linux stream capture viewer
 Name: xawdecode
 Version: 1.9.0
 Release: 0
@@ -30,7 +30,7 @@ xawdecode allows you to watch TV, record AVI and DIVX files.
 It interacts with AleVT for Teletext and Nxtvepg for NextView signal.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: IBM ThinkPad configuration tools.
+Summary: IBM ThinkPad configuration tools
 Name: tpctl
 Version: 4.10
 Release: 0

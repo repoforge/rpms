@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: View one or multiple files like tail but with multiple windows.
+Summary: View one or multiple files like tail but with multiple windows
 Summary(nl): Bekijk 1 of meerdere bestanden zoals met tail maar met meerdere vensters.
 Name: multitail
 Version: 3.0.3

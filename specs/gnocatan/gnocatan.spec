@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: An addictive game based on "The Settlers of Catan".
+Summary: Addictive game based on "The Settlers of Catan"
 Name: gnocatan
 Version: 0.8.1.16
 Release: 1
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gnocatan/gnocatan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libxml2-devel, gtk2-devel, libgnome-devel, glib2-devel
 BuildRequires: scrollkeeper
@@ -33,7 +32,7 @@ as is possible.
 This package contains the game itself and an AI player.
 
 %package server
-Summary: Gnocatan gaming server.
+Summary: Gnocatan gaming server
 Group: Amusements/Games
 
 %description server

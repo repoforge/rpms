@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: Powerful image loading and rendering library.
+Summary: Powerful image loading and rendering library
 Name: imlib2
 Version: 1.0.6
 Release: 1
@@ -24,7 +24,7 @@ standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
 %package devel
-Summary: Imlib2 headers, static libraries and documentation.
+Summary: Imlib2 headers, static libraries and documentation
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A multiprotocol instant messaging client.
+Summary: multiprotocol instant messaging client
 Name: gaim
 Version: 0.69
 Release: 0

@@ -1,12 +1,11 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: David Odin <David@dindinx.org>
 
 %define major 0.3
 
-Summary: A POV-Ray oriented modeller.
+Summary: POV-Ray oriented modeller
 Name: giram
 Version: 0.3.5
 Release: 0
@@ -17,9 +16,8 @@ URL: http://www.giram.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.giram.org/downloads/%{name}-%{version}.tar.gz
+Source: http://www.giram.org/downloads/giram-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel >= 2.0, glib2-devel >= 2.0
 

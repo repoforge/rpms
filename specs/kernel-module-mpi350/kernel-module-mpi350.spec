@@ -20,7 +20,7 @@
 %define moduledir /kernel/drivers/net/wireless/mpi350
 %define modules mpi350.o
 
-Summary: Linux MPI350 (Aironet 350) mini PCI drivers.
+Summary: Linux MPI350 (Aironet 350) mini PCI drivers
 Name: kernel-module-mpi350
 Version: 2.0
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -49,7 +49,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-mpi350
 Release: %{rrelease}_%{kversion}_%{krelease}
-Summary: Linux MPI350 (Aironet 350) mini PCI drivers.
+Summary: Linux MPI350 (Aironet 350) mini PCI drivers
 License: MPL
 Group: System Environment/Kernel
 
@@ -66,7 +66,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n aironet-utils
-Summary: Aironet Cisco utilities.
+Summary: Aironet Cisco utilities
 Release: %{rrelease}
 License: Proprietary
 Group: System Environment/Base

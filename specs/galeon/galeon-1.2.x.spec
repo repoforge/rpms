@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: GNOME browser based on Gecko (Mozilla rendering engine).
+Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
 Version: 1.2.11
 Release: 0

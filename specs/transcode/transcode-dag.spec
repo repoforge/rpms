@@ -2,7 +2,7 @@
 # Upstream: Thomas Östreich <ostreich@theorie.physik.uni-goettingen.de>
 # Upstream: Tilmann Bitterberg <transcode@tibit.org>
 
-Summary: A Linux video stream processing utility.
+Summary: Linux video stream processing utility
 Name: transcode
 Version: 0.6.11
 Release: 0

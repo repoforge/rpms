@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Ulric Eriksson <ulric@siag.nu>
 
-Summary: A load balancer for "simple" tcp based protocols.
+Summary: Load balancer for "simple" tcp based protocols
 Name: pen
 Version: 0.12.1
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://siag.nu/pub/pen/pen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Pen is a load balancer for "simple" tcp based protocols such as http or smtp.

@@ -3,7 +3,7 @@
 # Authority: dag
 # Distcc: 0
 
-Summary: A tool to replay captured network traffic.
+Summary: tool to replay captured network traffic
 Name: tcpreplay
 Version: 1.3.3
 Release: 0

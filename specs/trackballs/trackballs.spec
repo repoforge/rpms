@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Steer a marble ball through a labyrinth.
+Summary: Steer a marble ball through a labyrinth
 Name: trackballs
 Version: 1.0.0
 Release: 1

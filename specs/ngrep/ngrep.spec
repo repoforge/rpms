@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jordan Ritter <jpr5@darkridge.com>
 
-Summary: Network grep tool.
+Summary: Network grep tool
 Name: ngrep
 Version: 1.41
 Release: 0

@@ -1,6 +1,6 @@
 # Authority: freshrpms
 
-Summary: Free reimplementation of the OpenDivX video codec.
+Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 0.9.2
 Release: 3
@@ -27,7 +27,7 @@ Free reimplementation of the OpenDivX video codec. You can play OpenDivX
 and DivX4 videos with it, as well as encode compatible files.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

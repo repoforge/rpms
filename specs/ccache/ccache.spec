@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Andrew Tridgell <tridge@samba.org>
 
-Summary: Compiler cache.
+Summary: Compiler cache
 Name: ccache
 Version: 2.3
 Release: 0

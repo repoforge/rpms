@@ -4,7 +4,7 @@
 
 # Archs: i386 i686
 
-Summary: A portable lossless data compression library written in ANSI C
+Summary: portable lossless data compression library written in ANSI C
 Name: lzo
 Version: 1.04
 Release: 2

@@ -4,7 +4,7 @@
 
 # Upstream: Pierre Sarrazin <sarrazip@sympatico.ca>
 
-Summary: GNOME tool to find strings in a set of files.
+Summary: GNOME tool to find strings in a set of files
 Name: sagasu
 Version: 2.0.5
 Release: 0

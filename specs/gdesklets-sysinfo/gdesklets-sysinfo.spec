@@ -4,7 +4,7 @@
 
 %define rname SysInfo
 
-Summary: SysInfo sensor and display for gdesklets.
+Summary: SysInfo sensor and display for gdesklets
 Name: gdesklets-sysinfo
 Version: 0.21.2
 Release: 0

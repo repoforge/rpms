@@ -4,7 +4,7 @@
 
 %define rname Unicode-Map
 
-Summary: Unicode-Map (Maps charsets from and to UTF16 unicode) module for perl.
+Summary: Unicode-Map (Maps charsets from and to UTF16 unicode) module for perl
 Name: perl-Unicode-Map
 Version: 0.112
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Markus Braun <markus.braun@krawel.de>
 
-Summary: Utility to enable the IBM ThinkPad(tm) special keys.
+Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
 Version: 0.6.1
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: freshrpms
 %define rname libgnomecanvasmm
 
-Summary: C++ wrappers for libglade, for use with gtkmm.
+Summary: C++ wrappers for libglade, for use with gtkmm
 Name: libgnomecanvasmm2
 Version: 2.0.1
 Release: 0
@@ -26,7 +26,7 @@ BuildRequires: atk-devel >= 1.0, libgnomecanvas-devel >= 1.113.0, libart_lgpl-de
 libgnomemm provides C++ wrappers for libgnome, for use with gtkmm.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

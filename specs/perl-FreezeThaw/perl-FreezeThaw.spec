@@ -4,7 +4,7 @@
 
 %define rname FreezeThaw
 
-Summary: FreezeThaw module for perl.
+Summary: FreezeThaw module for perl
 Name: perl-FreezeThaw
 Version: 0.43
 Release: 0

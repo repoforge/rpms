@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Graphical user interface for the GnuPG.
+Summary: Graphical user interface for the GnuPG
 Name: gpa
 Version: 0.6.1
 Release: 0

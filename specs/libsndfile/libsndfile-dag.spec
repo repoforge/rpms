@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Upstream: Erik de Castro Lopo <erikd@zip.com.au>
 
-Summary: Library for reading and writing files containing sampled sound.
+Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
 Version: 1.0.4
 Release: 1
@@ -22,7 +22,7 @@ sampled sound (such as MS Windows WAV and the Apple/SGI AIFF format)
 through one standard library interface.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}, pkgconfig
 

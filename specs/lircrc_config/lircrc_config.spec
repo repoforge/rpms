@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A GNOME .lircrc configuration program.
+Summary: Graphical .lircrc configuration program
 Name: lircrc_config
 Version: 0.1.1
 Release: 0
@@ -13,11 +13,8 @@ URL: http://www.lirc.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/lirc/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/lirc/lircrc_config-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 A GNOME .lircrc configuration program.

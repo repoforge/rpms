@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A web-based administration interface for Unix systems.
+Summary: Web-based administration interface for Unix systems
 Name: webmin
 Version: 1.060
 Release: 0
@@ -13,9 +13,8 @@ URL: http://www.webmin.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.webmin.com/download/%{name}-%{version}.tar.gz
+Source: http://www.webmin.com/download/webmin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503

@@ -4,7 +4,7 @@
 
 ### FIXME: openquicktime: Depends: libopenquicktime.so but it is not installable
 
-Summary: A portable library for handling Apples QuickTime(tm) format.
+Summary: portable library for handling Apples QuickTime(tm) format
 Name: openquicktime
 Version: 1.0
 Release: 0

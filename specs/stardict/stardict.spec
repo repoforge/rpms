@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A versatile online dictionary.
+Summary: versatile online dictionary
 Name: stardict
 Version: 2.4.2
 Release: 0

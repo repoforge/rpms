@@ -10,7 +10,7 @@
 
 %define logmsg logger -t amavisd-new/rpm
 
-Summary: Mail virus-scanner.
+Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 20030616
 Release: 5.%{rrelease}

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Brian Carrier <carrier@sleuthkit.org>
 
-Summary: A forensic browser for use with Sleuth Kit.
+Summary: forensic browser for use with Sleuth Kit
 Name: autopsy
 Version: 1.74
 Release: 1

@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A graphical LDAP directory browser and editor.
+Summary: graphical LDAP directory browser and editor
 Name: gq
 Version: 0.6.0
 Release: 3

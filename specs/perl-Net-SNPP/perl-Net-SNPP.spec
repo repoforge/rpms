@@ -4,7 +4,7 @@
 
 %define rname Net-SNPP
 
-Summary: Perl Simple Network Pager Protocol Client.
+Summary: Perl Simple Network Pager Protocol Client
 Name: perl-Net-SNPP
 Version: 1.16
 Release: 1

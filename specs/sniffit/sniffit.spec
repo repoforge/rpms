@@ -4,7 +4,7 @@
 
 %define rversion 0.3.7.beta
 
-Summary: A network protocol analyzer.
+Summary: network protocol analyzer
 Name: sniffit
 Version: 0.3.7
 Release: 0.beta

@@ -6,7 +6,7 @@
 
 %define rversion 0.6.beta9
 
-Summary: The GNOME Fax Application.
+Summary: The GNOME Fax Application
 Name: gfax
 Version: 0.6
 Release: 0.beta9

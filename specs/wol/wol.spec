@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The Wake On Lan client.
+Summary: The Wake On Lan client
 Name: wol
 Version: 0.7.0
 Release: 0

@@ -30,7 +30,7 @@ libgnomedb is a library that eases the task of writing
 gnome database programs.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Graphical network viewer modeled after etherman.
+Summary: Graphical network viewer modeled after etherman
 Name: etherape
 Version: 0.9.0
 Release: 1

@@ -4,7 +4,7 @@
 
 %define rname clock-desklet
 
-Summary: Clock sensor and display for gdesklets.
+Summary: Clock sensor and display for gdesklets
 Name: gdesklets-clock
 Version: 0.32
 Release: 0

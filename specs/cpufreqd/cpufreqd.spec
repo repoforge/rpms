@@ -6,7 +6,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: CPU frequency scaling daemon.
+Summary: CPU frequency scaling daemon
 Name: cpufreqd
 Version: 1.1.2
 Release: 0

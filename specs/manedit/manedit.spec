@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A GUI editor for creating man pages. 
+Summary: GUI editor for creating man pages. 
 Name: manedit
 Version: 0.5.10
 Release: 0

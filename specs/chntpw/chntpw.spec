@@ -5,7 +5,7 @@
 
 %define rversion 040116
 
-Summary: Offline NT password and registry editor.
+Summary: Offline NT password and registry editor
 Name: chntpw
 Version: 0.0.20040116
 Release: 1

@@ -23,7 +23,7 @@ rendering and blending, dynamic binary filters, scripting, and more.
 
 
 %package devel
-Summary: Imlib2 header, static libraries and documentation.
+Summary: Imlib2 header, static libraries and documentation
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: XFree86-devel, pkgconfig

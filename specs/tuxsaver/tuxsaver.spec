@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A KDE screensaver showing the adventures of Tux, living at the SouthPole.
+Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
 Version: 1.0
 Release: 1

@@ -2,20 +2,19 @@
 
 # Authority: dag
 
-Summary: A library for writing pagers and taskslists.
+Summary: Library for writing pagers and taskslists
 Name: libwnck
 Version: 0.18
 Release: 0
-Group: System Environment/Libraries
 License: GPL
+Group: System Environment/Libraries
 #URL: http://
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.gz
+Source: http://ftp.gnome.org/pub/GNOME/sources/libwnck/2.1/libwnck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2 >= 2.0, atk >= 1.0, pango >= 1.0, glib2 >= 2.0
 
@@ -24,7 +23,7 @@ libwnck is a Window Navigator Construction Kit. I.e. a library
 for writing pagers and taskslists.
 
 %package devel
-Summary: Headers for developing programs that will use %{name}.
+Summary: Headers for developing programs that will use %{name}
 Group: Development/Libraries
 
 Requires: %{name} = %{version}

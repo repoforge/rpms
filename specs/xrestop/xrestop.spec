@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: X resource monitor.
+Summary: X resource monitor
 Name: xrestop
 Version: 0.2
 Release: 0

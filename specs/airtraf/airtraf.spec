@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Wireless sniffer for 802.11 wireless networks.
+Summary: Wireless sniffer for 802.11 wireless networks
 Name: airtraf
 Version: 1.1
 Release: 0

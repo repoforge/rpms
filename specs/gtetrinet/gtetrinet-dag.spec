@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Upstream: Ka-shu Wong <kswong@zip.com.au>
 
-Summary: A GNOME version of the online multiplayer Tetrinet game.
+Summary: GNOME version of the online multiplayer Tetrinet game
 Name: gtetrinet
 Version: 0.7.2
 Release: 0

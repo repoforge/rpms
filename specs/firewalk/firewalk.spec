@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: An active reconnaissance network security tool.
+Summary: Active reconnaissance network security tool
 Name: firewalk
 Version: 5.0
 Release: 0
@@ -13,9 +13,8 @@ URL: http://www.packetfactory.net/projects/firewalk/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.packetfactory.net/firewalk/dist/%{name}-%{version}.tgz
+Source: http://www.packetfactory.net/firewalk/dist/firewalk-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libnet-devel >= 1.1.0, libpcap, libdnet
 
@@ -31,7 +30,7 @@ traffic, it will likely drop the packets on the floor and we will see no
 response.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

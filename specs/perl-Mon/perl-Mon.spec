@@ -4,7 +4,7 @@
 
 %define rname Mon
 
-Summary: Mon module for perl.
+Summary: Mon module for perl
 Name: perl-Mon
 Version: 0.11
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Small web server that hosts ASP.NET.
+Summary: Small web server that hosts ASP.NET
 Name: xsp
 Version: 0.9
 Release: 0

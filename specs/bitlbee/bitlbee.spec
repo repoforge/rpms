@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Wilmer van der Gaast <lintux@lintux.cx>
 
-Summary: IRC to other chat networks gateway.
+Summary: IRC to other chat networks gateway
 Name: bitlbee
 Version: 0.85
 Release: 1

@@ -2,7 +2,7 @@
 
 %define rversion 0.15.1b
 
-Summary: Library for reading and writing ID3v1 and ID3v2 tags.
+Summary: Library for reading and writing ID3v1 and ID3v2 tags
 Name: libid3tag
 Version: 0.15.1
 Release: 0.b
@@ -25,7 +25,7 @@ A library for reading and (eventually) writing ID3 tags, both ID3v1 and the
 various versions of ID3v2.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 
 # Upstream: Gaël Roualland <gael.roualland@iname.com>
 
-Summary: Interface statistics.
+Summary: Interface statistics
 Name: ifstat
 Version: 1.0
 Release: 0

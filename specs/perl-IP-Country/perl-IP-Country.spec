@@ -7,7 +7,7 @@
 
 %define rname IP-Country
 
-Summary: Classes for fast lookup of country codes from IP addresses for Perl.
+Summary: Classes for fast lookup of country codes from IP addresses for Perl
 Name: perl-IP-Country
 Version: 2.17
 Release: 0

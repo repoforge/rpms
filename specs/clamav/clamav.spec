@@ -5,7 +5,7 @@
 %define milter 1
 %{?rhel3:%undefine milter}
 
-Summary: Anti-virus utility for Unix.
+Summary: Anti-virus utility for Unix
 Name: clamav
 Version: 0.68
 Release: 1
@@ -57,7 +57,7 @@ Group: Applications/Databases
 The actual virus database for %{name}
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: clamav = %{version}-%{release}
 Obsoletes: libclamav-static-devel = 0.54 

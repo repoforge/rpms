@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <linux5250@midrange.com>
 
-Summary: 5250 Telnet protocol and terminal program.
+Summary: 5250 Telnet protocol and terminal program
 Name: tn5250
 Version: 0.16.5
 Release: 0

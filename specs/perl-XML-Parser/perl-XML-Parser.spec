@@ -4,7 +4,7 @@
 
 %define rname XML-Parser
 
-Summary: XML-Parser Perl module.
+Summary: XML-Parser Perl module
 Name: perl-XML-Parser
 Version: 2.34
 Release: 0

@@ -16,7 +16,7 @@
 #%%define	krelver	%%(echo %%{kunamer} | tr -s '-' '_')
 #%%endif
 
-Summary: The Linux Infrared Remote Control package.
+Summary: The Linux Infrared Remote Control package
 Name: lirc
 Version: 0.6.6
 #%%if %{kmodule}

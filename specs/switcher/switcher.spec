@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Alp Toker <alp@atoker.com>
 
-Summary: Tray applet for dynamically changing the XFree86 display mode.
+Summary: Tray applet for dynamically changing the XFree86 display mode
 Name: switcher
 Version: 1.0
 Release: 3

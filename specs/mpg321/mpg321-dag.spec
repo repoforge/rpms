@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Dists: rh80 rh90
 
-Summary: An MPEG audio player.
+Summary: MPEG audio player
 Name: mpg321
 Version: 0.2.10
 Release: 0
@@ -12,9 +12,8 @@ URL: http://mpg321.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source: http://prdownloads.sourceforge.net/mpg321/mpg321-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libao-devel >= 0.8.0, libmad >= 0.14.2b
 Obsoletes: mpg123

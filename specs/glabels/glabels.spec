@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jim Evins <evins@snaught.com>
 
-Summary: GUI program to create labels and business cards.
+Summary: GUI program to create labels and business cards
 Name: glabels
 Version: 1.93.3
 Release: 0
@@ -30,7 +30,7 @@ label and business card sheets that you'll find at most office
 supply stores.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

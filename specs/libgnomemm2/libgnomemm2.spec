@@ -3,7 +3,7 @@
 # Authority: freshrpms
 %define rname libgnomemm
 
-Summary: C++ wrappers for libgnome, for use with gtkmm.
+Summary: C++ wrappers for libgnome, for use with gtkmm
 Name: libgnomemm2
 Version: 2.0.1
 Release: 0
@@ -27,7 +27,7 @@ BuildRequires: libgnome >= 2.0, ORBit2 >= 2.0
 libgnomemm provides C++ wrappers for libgnome, for use with gtkmm.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

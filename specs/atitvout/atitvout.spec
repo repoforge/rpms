@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Lennart Poettering <mz617469@poettering.de>
 
-Summary: A tool to use ATI TV-OUT.
+Summary: tool to use ATI TV-OUT
 Name: atitvout
 Version: 0.4
 Release: 0

@@ -6,7 +6,7 @@
 
 %define rversion 221
 
-Summary: A program for making large letters out of ordinary text.
+Summary: program for making large letters out of ordinary text
 Name: figlet
 Version: 2.2.1
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Command line NNTP file grabber.
+Summary: Command line NNTP file grabber
 Name: nget
 Version: 0.26
 Release: 0

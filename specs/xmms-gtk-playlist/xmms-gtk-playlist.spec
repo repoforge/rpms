@@ -1,12 +1,11 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Chris Kuklewicz <chrisk@mit.edu>
 
 %define plugindir %(xmms-config --general-plugin-dir)
 
-Summary: An enhanced playlist plugin for the Linux XMMS music player.
+Summary: Enhanced playlist plugin for the Linux XMMS music player
 Name: xmms-gtk-playlist
 Version: 2.0
 Release: 0
@@ -17,9 +16,8 @@ URL: http://web.mit.edu/chrisk/www/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://web.mit.edu/chrisk/www/%{name}-%{version}.tar.gz
+Source: http://web.mit.edu/chrisk/www/xmms-gtk-playlist-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel >= 1.2.0, xmms-devel
 

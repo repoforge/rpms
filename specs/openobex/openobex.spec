@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Library for using OBEX.
+Summary: Library for using OBEX
 Name: openobex
 Version: 1.0.1
 Release: 1
@@ -25,7 +25,7 @@ BuildRequires: glib-devel >= 1.2.0
 Open OBEX shared c-library.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

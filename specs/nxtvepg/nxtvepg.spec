@@ -2,7 +2,7 @@
 # Upstream: <nxtvepg-users@lists.sourceforge.net>
 # Distcc: 0
 
-Summary: NexTView EPG decoder and browser.
+Summary: NexTView EPG decoder and browser
 Name: nxtvepg
 Version: 2.6.0
 Release: 1

@@ -8,7 +8,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A remote administration system.
+Summary: remote administration system
 Name: tightvnc
 Version: 1.2.9
 Release: 1

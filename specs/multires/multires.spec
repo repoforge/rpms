@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Allows changing of desktop resolution and refresh rate.
+Summary: Allows changing of desktop resolution and refresh rate
 Name: multires
 Version: 0.2.4
 Release: 0

@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: Fast Assembly MPEG Encoding library.
+Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.0
 Release: 1
@@ -20,7 +20,7 @@ It currently allows encoding of fast MPEG-1 video, as well as MPEG-4 (OpenDivX
 compatible) rectangular and arbitrary shaped video.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

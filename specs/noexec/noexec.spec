@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Valery Reznic <valery_reznic@users.sourceforge.net>
 
-Summary: Run a process unable to create childs.
+Summary: Run a process unable to create childs
 Name: noexec
 Version: 1.1.0
 Release: 1

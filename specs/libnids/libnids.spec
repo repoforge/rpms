@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Rafal Wojtczuk <nergal@icm.edu.pl>
 
-Summary: An implementation of an E-component of Network Intrusion Detection System.
+Summary: Implementation of an E-component of Network Intrusion Detection System
 Name: libnids
 Version: 1.18
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.packetfactory.net/projects/libnids/dist/libnids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libnet, libpcap
 

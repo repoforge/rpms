@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A unique multiplayer wargame with liquid armies.
+Summary: unique multiplayer wargame with liquid armies
 Name: liquidwar
 Version: 5.6.2
 Release: 1

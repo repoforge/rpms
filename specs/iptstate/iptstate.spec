@@ -2,7 +2,7 @@
 
 # Authority: atrpms
 
-Summary: Display IP Tables state table information in a "top"-like interface.
+Summary: Display IP Tables state table information in a "top"-like interface
 Name: iptstate
 Version: 1.3
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: atrpms
 
-Summary: GNU cryptographic library.
+Summary: GNU cryptographic library
 Name: libgcrypt
 Version: 1.1.93
 Release: 0
@@ -27,7 +27,7 @@ TIGER-192), MACs (HMAC for all hash algorithms), public key algorithms
 of supporting functions.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

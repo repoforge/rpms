@@ -1,7 +1,7 @@
 # Authority: freshrpms
 %define rname libglademm
 
-Summary: C++ wrappers for libglade, for use with gtkmm.
+Summary: C++ wrappers for libglade, for use with gtkmm
 Name: libglademm2
 Version: 2.0.1
 Release: 0
@@ -24,7 +24,7 @@ BuildRequires: atk-devel >= 1.0, libglade2 >= 2.0, libxml2 >= 2.0
 libglademm provides C++ wrappers for libglade, for use with gtkmm.
 
 %package devel
-Summary: Headers for developing programs that will use %{rname}.
+Summary: Headers for developing programs that will use %{rname}
 Group: Development/Libraries
 
 %description devel

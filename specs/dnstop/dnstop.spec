@@ -4,7 +4,7 @@
 
 %define rversion 20030228
 
-Summary: Displays various tables of DNS traffic on your network.
+Summary: Displays various tables of DNS traffic on your network
 Name: dnstop
 Version: 0.0.%{rversion}
 Release: 0

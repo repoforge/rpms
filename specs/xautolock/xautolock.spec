@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Launches a program when your X session has been idle for some time.
+Summary: Launches a program when your X session has been idle for some time
 Name: xautolock
 Version: 2.1
 Release: 2

@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: Audio player for systems using the Advanced Linux Sound Architecture.
+Summary: Audio player for systems using the Advanced Linux Sound Architecture
 Name: alsaplayer
 Version: 0.99.76
 Release: 1

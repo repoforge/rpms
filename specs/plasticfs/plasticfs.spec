@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The Plastic File System.
+Summary: The Plastic File System
 Name: plasticfs
 Version: 1.8
 Release: 0

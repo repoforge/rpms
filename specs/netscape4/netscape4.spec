@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The Netscape Communicator suite of tools.
+Summary: The Netscape Communicator suite of tools
 Name: netscape4
 Version: 4.8
 Release: 3
@@ -56,7 +56,7 @@ standards, Java, JavaScript and some style sheets.
 Requires: indexhtml >= 6.2-2
 Obsoletes: nls
 Prereq: chkfontpath
-Summary: Files shared by Netscape Navigator and Communicator.
+Summary: Files shared by Netscape Navigator and Communicator
 Group: Applications/Internet
 
 %description -n netscape-common
@@ -71,7 +71,7 @@ netscape-navigator or the netscape-communicator program.
 %package -n netscape-communicator
 Requires: netscape-common = %{version}
 Provides: webclient
-Summary: The Netscape Communicator suite of tools.
+Summary: The Netscape Communicator suite of tools
 Group: Applications/Internet
 
 %description -n netscape-communicator
@@ -81,7 +81,7 @@ Usenet news reader, and an email client.
 %package -n netscape-navigator
 Requires: netscape-common = %{version}
 Provides: webclient
-Summary: The Netscape Navigator Web browser.
+Summary: The Netscape Navigator Web browser
 Group: Applications/Internet
 
 %description -n netscape-navigator

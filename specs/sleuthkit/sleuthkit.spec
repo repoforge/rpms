@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Brian Carrier <carrier@sleuthkit.org>
 
-Summary: Open Source forensic toolkit.
+Summary: Open Source forensic toolkit
 Name: sleuthkit
 Version: 1.68
 Release: 1

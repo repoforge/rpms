@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Richard Hipp <drh@hwaci.com>
 
-Summary: A library that implements an embeddable SQL database engine.
+Summary: library that implements an embeddable SQL database engine
 Name: sqlite
 Version: 2.8.12
 Release: 0
@@ -42,7 +42,7 @@ distribution includes a command-line tool for interacting with SQLite
 databases and SQLite bindings for Tcl/Tk.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

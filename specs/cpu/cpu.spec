@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Blake Matheny <bmatheny@purdue.edu>
 
-Summary: Change Password Utility.
+Summary: Change Password Utility
 Name: cpu
 Version: 1.4.3
 Release: 0

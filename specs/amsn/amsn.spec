@@ -9,7 +9,7 @@
 %define tls_min 1
 %define rversion 0_90
 
-Summary: Full featured MSN Messenger clone.
+Summary: Full featured MSN Messenger clone
 Name: amsn
 Version: 0.90
 Release: 1

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Paul Warren <pdw@ex-parrot.com>, Chris Lightfoot <chris@ex-parrot.com>
 
-Summary: Display bandwidth usage on an interface.
+Summary: Display bandwidth usage on an interface
 Name: iftop
 Version: 0.16
 Release: 0

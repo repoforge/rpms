@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Diego Bazzanella <diegobazzanella@tiscalinet.it>
 
-Summary: A GNOME2 frontend for lpq and lprm working with Cups queues.
+Summary: Graphical frontend for lpq and lprm working with Cups queues
 Name: gqueue
 Version: 0.99.1
 Release: 0
@@ -15,9 +14,8 @@ URL: http://web.tiscali.it/diegobazzanella/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://web.tiscali.it/diegobazzanella/%{name}-%{version}.tar.bz2
+Source: http://web.tiscali.it/diegobazzanella/gqueue-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: cups-devel
 

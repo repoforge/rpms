@@ -7,7 +7,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A LaTeX editor.
+Summary: LaTeX editor
 Name: texmaker
 Version: 1.0.1
 Release: 0

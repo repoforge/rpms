@@ -5,7 +5,7 @@
 
 %define rversion 0.69-1
 
-Summary: Games for children with plugins.
+Summary: Games for children with plugins
 Name: childsplay
 Version: 0.69
 Release: 0

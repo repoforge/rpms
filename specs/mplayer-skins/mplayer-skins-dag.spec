@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A collection of skins for MPlayer.
+Summary: collection of skins for MPlayer
 Name: mplayer-skins
 Version: 1.3
 Release: 0

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Lightweight, purely OSD based xine frontend.
+Summary: Lightweight, purely OSD based xine frontend
 Name: oxine
 Version: 0.2
 Release: 3

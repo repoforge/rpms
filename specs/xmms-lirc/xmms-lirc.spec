@@ -3,7 +3,7 @@
 
 %define xmmsgeneraldir %(xmms-config --general-plugin-dir)
 
-Summary: A plugin to use LIRC supported infrared devices in XMMS
+Summary: plugin to use LIRC supported infrared devices in XMMS
 Name: xmms-lirc
 Version: 1.4
 Release: 2

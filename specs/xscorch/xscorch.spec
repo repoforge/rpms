@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Clone of the classic DOS game, "Scorched Earth".
+Summary: Clone of the classic DOS game, "Scorched Earth"
 Name: xscorch
 Version: 0.2.0
 Release: 1

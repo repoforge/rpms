@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Accessibility implementation for GTK+ and GNOME libraries.
+Summary: Accessibility implementation for GTK+ and GNOME libraries
 Name: gail
 Version: 1.3.3
 Release: 0
@@ -27,7 +27,7 @@ GNOME libraries, enabling accessibility technologies such as at-spi to
 access those GUIs.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

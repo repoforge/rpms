@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A Squid Native Log Format analyzer and report generator.
+Summary: Squid native log format (NLF) analyzer and report generator
 Name: calamaris
 Version: 2.57
 Release: 0
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://calamaris.cord.de/calamaris-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 Requires: perl >= 0:5.00503, perl(Getopt::Std), perl(Sys::Hostname), perl(Time::Local)

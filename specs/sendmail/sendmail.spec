@@ -31,7 +31,7 @@
 %define smshell /dev/null
 %endif
 
-Summary: Widely used Mail Transport Agent (MTA).
+Summary: Widely used Mail Transport Agent (MTA)
 Name: sendmail
 Version: 8.12.8
 Release: 9.1
@@ -105,7 +105,7 @@ the sendmail.cf package installed. If you need documentation on
 Sendmail, you can install the sendmail-doc package.
 
 %package doc
-Summary: Documentation about the Sendmail Mail Transport Agent program.
+Summary: Documentation about the Sendmail Mail Transport Agent program
 Group: Documentation
 
 %description doc
@@ -115,7 +115,7 @@ Sendmail FAQ, and a few papers written about Sendmail. The papers are
 provided in PostScript(TM) and troff formats.
 
 %package devel
-Summary: Extra development include files and development files.
+Summary: Extra development include files and development files
 Group: System Environment/Daemons
 
 %description devel
@@ -123,7 +123,7 @@ Include files and devel libraries for e.g. the milter addons as part
 of sendmail.
 
 %package cf
-Summary: The files needed to reconfigure Sendmail.
+Summary: The files needed to reconfigure Sendmail
 Group: System Environment/Daemons
 
 %description cf

@@ -3,7 +3,7 @@
 
 #$Id$
 
-Summary: A GNOME CD player, CD ripper and MP3 encoder frontend
+Summary: Graphical CD player, CD ripper and MP3 encoder frontend
 Name: grip
 Version: 3.1.5
 Release: 1

@@ -3,7 +3,7 @@
 
 %define xmmsgeneraldir %(xmms-config --general-plugin-dir)
 
-Summary: A useful plugin for XMMS to use special multimedia keys through acme
+Summary: useful plugin for XMMS to use special multimedia keys through acme
 Name: xmms-acme
 Version: 0.4.1
 Release: 1

@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A simple foundation for reading DVD video disks.
+Summary: simple foundation for reading DVD video disks
 Name: libdvdread
 Version: 0.9.4
 Release: 0
@@ -23,7 +23,7 @@ It parses IFO files, reads NAV-blocks, and performs CSS authentication
 and descrambling. 
 
 %package devel
-Summary: Development files from the libdvdread library.
+Summary: Development files from the libdvdread library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

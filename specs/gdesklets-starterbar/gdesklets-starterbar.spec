@@ -4,7 +4,7 @@
 
 %define rname starterbar-desklet
 
-Summary: Starterbar sensor and display for gdesklets.
+Summary: Starterbar sensor and display for gdesklets
 Name: gdesklets-starterbar
 Version: 0.22.1
 Release: 0

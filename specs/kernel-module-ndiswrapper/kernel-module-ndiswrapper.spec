@@ -21,7 +21,7 @@
 %define moduledir /kernel/drivers/net/ndiswrapper
 %define modules ndiswrapper.o
 
-Summary: Linux NDIS wrapper drivers.
+Summary: Linux NDIS wrapper drivers
 Name: kernel-module-ndiswrapper
 Version: 0.6
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -48,7 +48,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n ndiswrapper-utils
-Summary: NDIS wrapper utilities.
+Summary: NDIS wrapper utilities
 Release: %{rrelease}
 License: GPL
 Group: System Environment/Base

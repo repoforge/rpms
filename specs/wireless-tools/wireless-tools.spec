@@ -6,7 +6,7 @@
 %define _libdir /lib
 %define rname wireless_tools
 
-Summary: Wireless ethernet configuration tools.
+Summary: Wireless ethernet configuration tools
 Name: wireless-tools
 Version: 26
 Release: 0

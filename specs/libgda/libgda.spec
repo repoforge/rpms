@@ -6,7 +6,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: Library for writing gnome database programs.
+Summary: Library for writing gnome database programs
 Name: libgda
 Version: 1.0.3
 Release: 0
@@ -38,7 +38,7 @@ libgda is a library that eases the task of writing
 gnome database programs.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

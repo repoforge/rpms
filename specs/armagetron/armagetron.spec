@@ -4,7 +4,7 @@
 %define desktop_vendor freshrpms
 /games/armagetron
 
-Summary: A multiplayer OpenGL 'Tron' racing game clone.
+Summary: multiplayer OpenGL 'Tron' racing game clone
 Name: armagetron
 Version: 0.2.5.2
 Release: 2
@@ -34,7 +34,7 @@ Available rpmbuild rebuild options :
 
 
 %package moviepack
-Summary: Extra graphics and sounds to give armagetron the real 'Tron' look.
+Summary: Extra graphics and sounds to give armagetron the real 'Tron' look
 Group: Amusements/Games
 Requires: %{name}
 

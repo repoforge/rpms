@@ -4,7 +4,7 @@
 
 %define _libdir %{_prefix}/lib/remedial/
 
-Summary: Remedial AVI player.
+Summary: Remedial AVI player
 Name: remedial
 Version: 0.2.22
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Rob Caelers <robc@krandor.org>
 
-Summary: A tool to recover from or prevent Repetitive Strain Injury.
+Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
 Version: 1.4.1
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/workrave/workrave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel
 BuildRequires: gtkmm2-devel

@@ -5,7 +5,7 @@
 %define plugindir %(xmms-config --visualization-plugin-dir)
 %define rname goom
 
-Summary: A neat visual plugin for XMMS.
+Summary: Neat visual plugin for XMMS
 Name: xmms-goom
 Version: 1.99.4
 Release: 0
@@ -19,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ios.free.fr/goom/devel/goom-%{version}-src.tgz
 Patch: goom-1.99.4-gcc3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: xmms-devel, SDL-devel, gtk+-devel
 

@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A GUI desktop publishing (DTP) application.
+Summary: Graphical desktop publishing (DTP) application
 Name: scribus
 Version: 1.0.1
 Release: 0
@@ -15,9 +15,8 @@ URL: http://web2.altmuehlnet.de/fschmid/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://web2.altmuehlnet.de/fschmid/%{name}-%{version}.tar.gz
+Source: http://web2.altmuehlnet.de/fschmid/scribus-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: qt-devel >= 3.0, XFree86-devel
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, libtiff-devel

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: atrpms
-Summary: Graphical user interface for the GnuPG.
+Summary: Graphical user interface for the GnuPG
 Name: gpa
 Version: 0.7.0
 Release: 0

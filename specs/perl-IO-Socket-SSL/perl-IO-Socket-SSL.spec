@@ -4,7 +4,7 @@
 
 %define rname IO-Socket-SSL
 
-Summary: IO-Socket-SSL module for perl.
+Summary: IO-Socket-SSL module for perl
 Name: perl-IO-Socket-SSL
 Version: 0.94
 Release: 0

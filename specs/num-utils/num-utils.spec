@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A set of programs for dealing with numbers.
+Summary: set of programs for dealing with numbers
 Name: num-utils
 Version: 0.3
 Release: 0

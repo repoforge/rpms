@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: HA monitor built upon LVS, VRRP and services poller.
+Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
 Version: 1.1.6
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Set of tools to author a DVD.
+Summary: Set of tools to author a DVD
 Name: dvdauthor
 Version: 0.6.8
 Release: 0

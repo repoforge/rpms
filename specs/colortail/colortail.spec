@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Joakim Andersson <ja@morrdusk.net>
 
-Summary: A log colorizer that makes log checking easier.
+Summary: log colorizer that makes log checking easier
 Name: colortail
 Version: 0.3.0
 Release: 0

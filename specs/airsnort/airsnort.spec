@@ -6,7 +6,7 @@
 
 %define rversion 0.2.3c
 
-Summary: Wireless LAN (WLAN) tool which recovers encryption keys.
+Summary: Wireless LAN (WLAN) tool which recovers encryption keys
 Name: airsnort
 Version: 0.2.3
 Release: 0.c

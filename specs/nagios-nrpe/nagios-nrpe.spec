@@ -4,7 +4,7 @@
 
 %define rname nrpe
 
-Summary: Nagios Remote Plug-ins Execution daemon.
+Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
 Version: 2.0
 Release: 1
@@ -33,7 +33,7 @@ Install the nagios-nrpe package if you want accept and process requests
 from check_nrpe on this hosts.
 
 %package -n nagios-plugins-nrpe
-Summary: Nagios plug-in for NRPE.
+Summary: Nagios plug-in for NRPE
 Group: Applications/Internet
 Requires: nagios
 

@@ -4,7 +4,7 @@
 
 # Upstream: Hubert Feyrer <hubert@feyrer.de>
 
-Summary: Harddisk image cloning tool.
+Summary: Harddisk image cloning tool
 Name: g4u
 Version: 1.12
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: ELF binary-to-process comparison tool.
+Summary: ELF binary-to-process comparison tool
 Name: elfcmp
 Version: 1.0.0
 Release: 0

@@ -4,7 +4,7 @@
 
 %define _libdir /lib
 
-Summary: A library to restrict processes from tampering with directories/files.
+Summary: Library to restrict processes from tampering with directories/files
 Name: soapbox
 Version: 0.3.1
 Release: 1
@@ -15,9 +15,8 @@ URL: http://dag.wieers.com/home-made/soapbox/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dag.wieers.com/home-made/%{name}/%{name}-%{version}.tar.bz2
+Source: http://dag.wieers.com/home-made/soapbox/soapbox-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Soapbox allows to restrict specific processes to write only to those

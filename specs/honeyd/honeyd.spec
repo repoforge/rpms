@@ -6,7 +6,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: Honeypot daemon.
+Summary: Honeypot daemon
 Name: honeyd
 Version: 0.8
 Release: 1

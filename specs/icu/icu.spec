@@ -5,7 +5,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: International Components for Unicode.
+Summary: International Components for Unicode
 Name: icu
 Version: 2.6.2
 Release: 1
@@ -37,7 +37,7 @@ contain any of the data files needed at runtime and present in the `icu'
 and `icu-locales` packages.
 
 %package -n libicu-devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: libicu = %{version}-%{release}
 

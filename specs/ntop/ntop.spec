@@ -4,7 +4,7 @@
 # Upstream: Luca Deri <deri@ntop.org>
 # Distcc: 0
 
-Summary: Network traffic probe that shows the network usage.
+Summary: Network traffic probe that shows the network usage
 Name: ntop
 Version: 3.0
 Release: 1

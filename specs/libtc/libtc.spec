@@ -9,7 +9,7 @@
 ### configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
-Summary: A collection of useful functions for C programming.
+Summary: collection of useful functions for C programming
 Name: libtc
 Version: 1.1.0
 Release: 0
@@ -33,7 +33,7 @@ priority queueing, config-file parsing, reference counting and
 other useful items. All thread-safe and reentrant.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

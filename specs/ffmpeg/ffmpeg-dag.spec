@@ -1,7 +1,7 @@
 # Authority: freshrpms
 %define rversion cvs-2003-07-01
 
-Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder.
+Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder
 Name: ffmpeg
 Version: 0.4.7
 Release: 0.20030701
@@ -34,7 +34,7 @@ FFmpeg generates streaming files, in many popular formats
 simultaneously, faster than any other solution.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

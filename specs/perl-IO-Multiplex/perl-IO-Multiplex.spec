@@ -4,7 +4,7 @@
 
 %define rname IO-Multiplex
 
-Summary: IO-Multiplex module for perl.
+Summary: IO-Multiplex module for perl
 Name: perl-IO-Multiplex
 Version: 1.08
 Release: 1

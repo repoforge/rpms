@@ -3,7 +3,7 @@
 # Authority: newrpms
 # Upstream: David Helder <dhelder@umich.edu>
 
-Summary: Gnet, a network library.
+Summary: Gnet, a network library
 Name: gnet
 Version: 1.1.9
 Release: 0
@@ -36,7 +36,7 @@ Features:
   * Server and Conn objects (Experimental)
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

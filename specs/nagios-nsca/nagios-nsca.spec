@@ -6,7 +6,7 @@
 
 %define rname nsca
 
-Summary: Nagios Service Check Acceptor.
+Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.4
 Release: 2

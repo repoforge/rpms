@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A sokoban game
+Summary: sokoban game
 Name: easysok
 Version: 0.3.3
 Release: 1

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Derek Martin <code@pizzashack.org>, rssh-discuss@lists.sourceforge.net
 
-Summary: A restricted shell for use with OpenSSH, allowing only scp and/or sftp.
+Summary: Restricted shell for use with OpenSSH, allowing only scp and/or sftp
 Name: rssh
 Version: 2.1.1
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.pizzashack.org/rssh/src/rssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: openssh-server
 Requires: openssh-server

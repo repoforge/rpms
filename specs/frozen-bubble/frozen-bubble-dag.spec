@@ -3,7 +3,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Frozen Bubble arcade game.
+Summary: Frozen Bubble arcade game
 Name: frozen-bubble
 Version: 1.0.0
 Release: 0

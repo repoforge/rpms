@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Sendmail milter for spamassassin.
+Summary: Sendmail milter for spamassassin
 Name: spamass-milter
 Version: 0.2.0
 Release: 0

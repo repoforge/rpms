@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Performs analysis of tcp flows from packet dumps.
+Summary: Performs analysis of tcp flows from packet dumps
 Name: tcptrace
 Version: 6.0.1
 Release: 0

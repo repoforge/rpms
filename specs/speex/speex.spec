@@ -1,14 +1,14 @@
 # $Id$
 # Authority: matthias
 
-Summary: An open-source, patent-free speech codec
+Summary: Open-source, patent-free speech codec
 Name: speex
 Version: 1.0.3
 Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.speex.org/
-Source: http://www.speex.org/download/%{name}-%{version}.tar.gz
+Source: http://www.speex.org/download/speex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Provides: libspeex = %{version}-%{release}
 Obsoletes: libspeex <= 1.0.0
@@ -23,7 +23,7 @@ codec.
 
 
 %package devel
-Summary: Speex development files.
+Summary: Speex development files
 Group: Development/Libraries
 Provides: libspeex-devel = %{version}-%{release}
 Requires: %{name} = %{version}

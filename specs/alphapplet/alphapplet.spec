@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
-Summary: Tray applet for displaying phonetic alphabets.
+Summary: Tray applet for displaying phonetic alphabets
 Name: alphapplet
 Version: 0.2
 Release: 0

@@ -8,7 +8,7 @@
 
 %define rname Gtk2
 
-Summary: Perl interface to the 2.x series of the Gimp Toolkit library.
+Summary: Perl interface to the 2.x series of the Gimp Toolkit library
 Name: perl-Gtk2
 Version: 1.040
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: An image and photo viewer, browser, manager and simple editor.
+Summary: Image and photo viewer, browser, manager and simple editor
 Name: pixieplus
 Version: 0.5.4
 Release: 1
@@ -16,7 +16,7 @@ URL: http://www.mosfet.org
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: %{name}-%{version}.tar.gz
+Source: pixieplus-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

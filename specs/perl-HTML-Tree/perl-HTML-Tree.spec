@@ -4,7 +4,7 @@
 
 %define rname HTML-Tree
 
-Summary: HTML-Tree module for perl.
+Summary: HTML-Tree module for perl
 Name: perl-HTML-Tree
 Version: 3.18
 Release: 1

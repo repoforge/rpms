@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A framework and library for writing RADIUS clients.
+Summary: framework and library for writing RADIUS clients
 Name: radiusclient
 Version: 0.3.2
 Release: 0
@@ -27,7 +27,7 @@ application in less than 50 lines of C code. It is highly portable
 and runs at least under Linux, a lot of BSD variants and Solaris. 
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

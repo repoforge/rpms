@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A TV viewer for GNOME.
+Summary: TV viewer for GNOME
 Name: zapping
 Version: 0.6.8
 Release: 0
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/zapping/zapping-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gnome-libs-devel, libxml-devel, libglade-devel, gdk-pixbuf-devel
 BuildRequires: libunicode-devel, librte-devel, libzvbi-devel

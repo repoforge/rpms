@@ -9,7 +9,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: Textmode windowing environment.
+Summary: Textmode windowing environment
 Name: twin
 Version: 0.5.1
 Release: 0
@@ -37,7 +37,7 @@ It supports a variety of displays:
   to attach/detach more displays on-the-fly.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

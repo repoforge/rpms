@@ -5,7 +5,7 @@
 %define rname vlc
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: The VideoLAN client, also a very good standalone DVD player.
+Summary: The VideoLAN client, also a very good standalone DVD player
 Name: videolan-client
 Version: 0.5.3
 Release: 2
@@ -38,7 +38,7 @@ solution. The VideoLAN Client can also be used as a standalone program
 to play MPEG2 streams from a hard disk or a DVD.
 
 %package devel
-Summary: Headers for developing programs that will use %{name}.
+Summary: Headers for developing programs that will use %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

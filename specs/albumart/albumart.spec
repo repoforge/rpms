@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Downloads album cover images semi-automatically from the Internet.
+Summary: Downloads album cover images semi-automatically from the Internet
 Name: albumart
 Version: 1.1
 Release: 0

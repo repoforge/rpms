@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Collection of command line tools for SMIL manipulation.
+Summary: Collection of command line tools for SMIL manipulation
 Name: smilutils
 Version: 0.3.0
 Release: 1
@@ -25,7 +25,7 @@ BuildRequires: libquicktime-devel, SDL-devel, imlib2-devel, libpng-devel
 Tools: smil2raw, smil2yuv, and smil2wav.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

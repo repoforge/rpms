@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Scan for wireless access points and save captured traffic.
+Summary: Scan for wireless access points and save captured traffic
 Name: ssidsniff
 Version: 0.36
 Release: 0

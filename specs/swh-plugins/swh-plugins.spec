@@ -5,7 +5,7 @@
 
 # Distcc: 0
 
-Summary: Steve Harris's set of audio plug-ins for LADSPA.
+Summary: Steve Harris's set of audio plug-ins for LADSPA
 Name: swh-plugins
 Version: 0.4.3
 Release: 1

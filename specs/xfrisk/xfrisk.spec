@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <xfrisk-devel@tuxick.net>
 
-Summary: Multi-user network version of the classic "Risk".
+Summary: Multi-user network version of the classic "Risk"
 Name: xfrisk
 Version: 1.2
 Release: 0

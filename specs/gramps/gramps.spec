@@ -5,7 +5,7 @@
 
 %define _localstatedir /var/lib
 
-Summary: Genealogical Research and Analysis Management Programming System.
+Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
 Version: 0.98.0
 Release: 0

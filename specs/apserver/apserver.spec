@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A NTLM authorization proxy server.
+Summary: NTLM authorization proxy server
 Name: apserver
 Version: 0.9.8
 Release: 2

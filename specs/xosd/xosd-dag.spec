@@ -3,7 +3,7 @@
 
 %define	_plugindir %(xmms-config --general-plugin-dir)
 
-Summary: XOSD displays transparent text on your screen like the OSD of TVs.
+Summary: XOSD displays transparent text on your screen like the OSD of TVs
 Name: xosd
 Version: 2.2.1
 Release: 0
@@ -14,9 +14,8 @@ URL: http://www.ignavus.net/software.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ignavus.net/%{name}-%{version}.tar.gz
+Source: http://www.ignavus.net/xosd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl, xmms-devel
 
@@ -28,7 +27,7 @@ includes an xmms plugin, which automatically displays various interesting
 things as they change (song name, volume etc...) 
 
 %package devel
-Summary: Development files for the XOSD on-screen display library.
+Summary: Development files for the XOSD on-screen display library
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -38,7 +37,7 @@ documentation for developing applications that use the XOSD on-screen
 display.
 
 %package -n xmms-%{name}
-Summary: An XMMS plugin for on-screen display that uses the XOSD library.
+Summary: XMMS plugin for on-screen display that uses the XOSD library
 Group: Applications/Multimedia
 Requires: %{name} = %{version}-%{release}, xmms
 Obsoletes: %{name}-xmms

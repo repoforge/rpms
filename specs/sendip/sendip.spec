@@ -4,7 +4,7 @@
 
 # Upstream: Mike Ricketts <mike@earth.li>
 
-Summary: A command line tool to allow sending arbitrary IP packets.
+Summary: Command line tool to allow sending arbitrary IP packets
 Name: sendip
 Version: 2.4
 Release: 0
@@ -15,9 +15,8 @@ URL: http://www.earth.li/projectpurple/progs/sendip.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.earth.li/projectpurple/files/%{name}-%{version}.tar.gz
+Source: http://www.earth.li/projectpurple/files/sendip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 A command line tool to send arbitrary IP packets. It has a large number of

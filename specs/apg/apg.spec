@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Automated Password Generator for random password generation.
+Summary: Automated Password Generator for random password generation
 Name: apg
 Version: 2.2.3
 Release: 2

@@ -4,7 +4,7 @@
 
 # Tag: test
 
-Summary: The Samba SMB server.
+Summary: The Samba SMB server
 Name: samba
 Version: 3.0.1
 Release: 0
@@ -70,7 +70,7 @@ Samba 3.0 also introduces UNICODE support and kerberos/ldap
 integration as a member server in a Windows 2000 domain.
 
 %package client
-Summary: Samba (SMB) client programs.
+Summary: Samba (SMB) client programs
 Group: Applications/System
 Requires: samba-common = %{version}-%{release}
 Obsoletes: smbfs
@@ -81,7 +81,7 @@ built-in SMB filesystem in Linux. These clients allow access of SMB
 shares and printing to SMB printers.
 
 %package common
-Summary: Files used by both Samba servers and clients.
+Summary: Files used by both Samba servers and clients
 Group: Applications/System
 
 %description common
@@ -89,7 +89,7 @@ Samba-common provides files necessary for both the server and client
 packages of Samba.
 
 %package swat
-Summary: The Samba SMB server configuration program.
+Summary: The Samba SMB server configuration program
 Group: Applications/System
 Requires: samba = %{version}-%{release}, xinetd
 

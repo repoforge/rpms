@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Mozilla Thunderbird mail/news client.
+Summary: Mozilla Thunderbird mail/news client
 Name: thunderbird
 Version: 0.5
 Release: 1

@@ -7,7 +7,7 @@
 %define _bindir /usr/X11R6/bin
 %define rversion 1.11+w01
 
-Summary: A space arcade game.
+Summary: Space arcade game
 Name: xkobo
 Version: 1.11
 Release: 3
@@ -18,10 +18,9 @@ URL: http://seki.math.hokudai.ac.jp:20080/xkobo-current.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.redhead.dk/download/pub/Xkobo/%{name}-%{rversion}.tar.gz
-Patch0: %{name}-%{rversion}-imake.patch
+Source: http://www.redhead.dk/download/pub/Xkobo/xkobo-%{rversion}.tar.gz
+Patch0: xkobo-1.11+w01-imake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Xkobo is a arcade video game for X11. The goal is to

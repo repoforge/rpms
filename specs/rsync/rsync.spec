@@ -5,7 +5,7 @@
 # Upstream: Martin Pool <mbp@sourcefrog.net>
 # Tag: test
 
-Summary: A program for synchronizing files over a network.
+Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 2.5.6
 Release: 1
@@ -16,12 +16,11 @@ URL: http://rsync.samba.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
+Source:	http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
 Patch0: rsync-2.5.4-maxdel.patch
 Patch1: rsync-2.4.6-segv.patch
 Patch2: rsync-2.5.6-moresignage.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Rsync uses a reliable algorithm to bring remote and host files into

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <nrh-up2date-users@lists.sourceforge.net>
 
-Summary: Open Source server for Redhat's up2date suite.
+Summary: Open Source server for Redhat's up2date suite
 Name: nrh-up2date
 Version: 1.3
 Release: 0

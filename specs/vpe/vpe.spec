@@ -4,7 +4,7 @@
 
 ### FIXME: TODO: Add sysv script based on own template.
 
-Summary: Create a virtual ethernet using host-to-host tunnels.
+Summary: Create a virtual ethernet using host-to-host tunnels
 Name: vpe
 Version: 1.5
 Release: 0
@@ -40,7 +40,7 @@ primarily designed to sit on the gateway machines of company branches to
 connect them together. 
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

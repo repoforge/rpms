@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Linux program for uncompressing *.ace files.
+Summary: Linux program for uncompressing *.ace files
 Name: unace
 Version: 2.20
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Boris Wesslowski <boris@wesslowski.com>
 
-Summary: Firewall log analyzer, report generator and realtime response agent.
+Summary: Firewall log analyzer, report generator and realtime response agent
 Name: fwlogwatch
 Version: 0.9.3
 Release: 1

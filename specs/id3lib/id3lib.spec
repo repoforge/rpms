@@ -1,13 +1,13 @@
 # $Id$
 # Authority: matthias
 
-Summary: A software library for manipulating ID3v1 and ID3v2 tags
+Summary: Library for manipulating ID3v1 and ID3v2 tags
 Name: id3lib
 Version: 3.8.3
 Release: 6
 License: LGPL
 Group: System Environment/Libraries
-Source: http://dl.sf.net/id3lib/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/id3lib/id3lib-%{version}.tar.gz
 URL: http://id3lib.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libstdc++

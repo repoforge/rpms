@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Create connections through HTTP-proxy's and SOCKS-servers.
+Summary: Create connections through HTTP-proxy's and SOCKS-servers
 Name: connect
 Version: 1.41
 Release: 1

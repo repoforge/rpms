@@ -3,7 +3,7 @@
 
 %define	skindir	%{_datadir}/mplayer/Skin
 
-Summary: A collection of skins for MPlayer
+Summary: Collection of skins for MPlayer
 Name: mplayer-skins
 Version: 1.3
 Release: 3

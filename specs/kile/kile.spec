@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A user friendly TeX/LaTeX editor.
+Summary: user friendly TeX/LaTeX editor
 Name: kile
 Version: 1.6.1
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Link two X displays together, simulating a multiheaded display.
+Summary: Link two X displays together, simulating a multiheaded display
 Name: x2x
 Version: 1.27
 Release: 0

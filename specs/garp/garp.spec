@@ -4,7 +4,7 @@
 
 # Upstream: Ulrik De Bie <ulrik@mind.be>
 
-Summary: Check unused IP addresses and automagically assign them.
+Summary: Check unused IP addresses and automagically assign them
 Name: garp
 Version: 0.7.2
 Release: 1

@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: The GNOME disk catalog.
+Summary: The GNOME disk catalog
 Name: gtktalog
 Version: 1.0.4
 Release: 2

@@ -2,7 +2,7 @@
 
 # Authority: freshrpms
 
-Summary: Gtk2 spell checker interface library.
+Summary: Gtk2 spell checker interface library
 Name: gtkspell
 Version: 2.0.4
 Release: 0
@@ -25,7 +25,7 @@ in a GtkTextView widget. Right-clicking a misspelled word pops up a
 menu of suggested replacements.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}, pkgconfig
 

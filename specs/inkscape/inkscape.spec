@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Vector drawing application.
+Summary: Vector drawing application
 Name: inkscape
 Version: 0.37
 Release: 0

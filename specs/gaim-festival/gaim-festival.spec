@@ -7,7 +7,7 @@
 %define rname festival-gaim
 %define rversion 0.68
 
-Summary: Voice plugin for gaim.
+Summary: Voice plugin for gaim
 Name: gaim-festival
 Version: 0.68.2
 Release: 0

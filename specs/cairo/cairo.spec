@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Anti-aliased vector-based rendering for X.
+Summary: Anti-aliased vector-based rendering for X
 Name: cairo
 Version: 0.1.18
 Release: 0
@@ -27,7 +27,7 @@ translucence (opacity/alpha) and combined using the extended Porter/Duff
 compositing algebra as found in the X Render Extension.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: libpixman-devel, XFree86-devel

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Stellarium renders 3D photo-realistic skies in real time.
+Summary: Stellarium renders 3D photo-realistic skies in real time
 Summary(nl): Stellarium toont 3D fotorealistische hemels in real time.
 Name: stellarium
 Version: 0.5.2

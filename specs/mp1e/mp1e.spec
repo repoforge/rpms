@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Real-time software MPEG-1 video/audio encoder.
+Summary: Real-time software MPEG-1 video/audio encoder
 Name: mp1e
 Version: 1.9.3
 Release: 1
@@ -24,7 +24,7 @@ BuildRequires: esound-devel, audiofile-devel
 Real-time software MPEG-1 video/audio encoder.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -24,7 +24,7 @@
 %define moduledir /kernel/drivers/net/wireless/airo_mpi
 %define modules airo_mpi.o
 
-Summary: Linux driver for the Cisco 350 miniPCI series.
+Summary: Linux driver for the Cisco 350 miniPCI series
 Name: kernel-module-airo_mpi
 Version: 1.6
 Release: %{rrelease}.%{rversion}_%{kversion}_%{krelease}
@@ -54,7 +54,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-airo_mpi
-Summary: Linux SMP driver for the Cisco 350 miniPCI series.
+Summary: Linux SMP driver for the Cisco 350 miniPCI series
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp

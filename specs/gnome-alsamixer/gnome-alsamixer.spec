@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A GNOME mixer interface for the Advanced Linux Sound Architecture.
+Summary: GNOME mixer interface for the Advanced Linux Sound Architecture
 Name: gnome-alsamixer
 Version: 0.9.6
 Release: 2

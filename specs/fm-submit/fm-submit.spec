@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A script for submitting project updates to freshmeat.net using XML-RPC.
+Summary: script for submitting project updates to freshmeat.net using XML-RPC
 Name: fm-submit
 Version: 0.0.5
 Release: 2

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Linas Vepstas <linas@linas.org>
 
-Summary: GNOME Time Tracker.
+Summary: GNOME Time Tracker
 Name: gnotime
 Version: 2.1.7
 Release: 0

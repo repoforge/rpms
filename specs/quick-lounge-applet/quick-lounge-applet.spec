@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Paolo Bacchilega <paolo.bacch@tin.it>
 
-Summary: Organize your preferred applications on the GNOME Panel.
+Summary: Organize your preferred applications on the GNOME Panel
 Name: quick-lounge-applet
 Version: 2.0.3
 Release: 0

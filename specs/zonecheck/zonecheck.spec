@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: The ZoneCheck Team <zonecheck@nic.fr>
 
-Summary: Perform consistency checks on DNS zones.
+Summary: Perform consistency checks on DNS zones
 Name: zonecheck
 Version: 2.0.2
 Release: 0

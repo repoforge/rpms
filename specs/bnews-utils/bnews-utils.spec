@@ -5,7 +5,7 @@
 
 %define rversion 20020930
 
-Summary: Download, upload, decode and/or encode "Bommanews"-encoded files.
+Summary: Download, upload, decode and/or encode "Bommanews"-encoded files
 Name: bnews-utils
 Version: 0.0.%{rversion}
 Release: 1

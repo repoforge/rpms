@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Access data stored in Microsoft Access databases.
+Summary: Access data stored in Microsoft Access databases
 Name: mdbtools
 Version: 0.5
 Release: 0
@@ -26,7 +26,7 @@ MDB Tools is a suite of libraries and program for accessing data stored
 in Microsoft Access databases.
  
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -36,7 +36,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package gui
-Summary: gmdb2 graphical interface for MDB Tools.
+Summary: gmdb2 graphical interface for MDB Tools
 Group: Applications/Databases
 Requires: %{name} = %{version}-%{release}
  

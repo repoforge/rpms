@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Mark McLoughlin <mark@skynet.ie>
 
-Summary: Network interface status applet.
+Summary: Network interface status applet
 Name: gnome-netstatus
 Version: 0.16
 Release: 0

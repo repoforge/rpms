@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: FTP proxy server.
+Summary: FTP proxy server
 Name: ftpproxy
 Version: 1.2.2
 Release: 0

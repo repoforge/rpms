@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Jabber instant messaging client.
+Summary: Jabber instant messaging client
 Name: gossip
 Version: 0.7.2
 Release: 1

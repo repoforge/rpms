@@ -4,7 +4,7 @@
 # Dists: rh62
 BuildRequires: bind < 9.1.3
 
-Summary: A DNS (Domain Name System) server.
+Summary: DNS (Domain Name System) server
 Name: bind
 Version: 9.1.3
 Release: 2
@@ -43,7 +43,7 @@ tools for verifying that the DNS server is operating properly.
 
 
 %package utils
-Summary: A DNS (Domain Name System) server.
+Summary: DNS (Domain Name System) server
 Group: System Environment/Daemons
 
 %description utils
@@ -55,7 +55,7 @@ tools for verifying that the DNS server is operating properly.
 
 
 %package devel
-Summary: A DNS (Domain Name System) server.
+Summary: DNS (Domain Name System) server
 Group: System Environment/Daemons
 Requires: bind = %{version}
 

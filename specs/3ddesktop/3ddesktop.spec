@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: OpenGL program for switching virtual desktops in 3D.
+Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
 Version: 0.2.5
 Release: 2

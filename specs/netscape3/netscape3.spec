@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The Netscape standalone navigator.
+Summary: The Netscape standalone navigator
 Name: netscape3
 Version: 3.04
 Release: 0

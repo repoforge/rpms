@@ -4,7 +4,7 @@
 
 %define rname libbonobouimm
 
-Summary: C++ wrappers for libbonoboui, for use with gtkmm.
+Summary: C++ wrappers for libbonoboui, for use with gtkmm
 Name: libbonobouimm2
 Version: 1.3.7
 Release: 0
@@ -25,7 +25,7 @@ BuildRequires: gtkmm2-devel >= 2.0, libbonobo-devel >= 2.0, ORBit2-devel >= 2.0
 libbonobouimm provides C++ wrappers for libbonoboui, for use with gtkmm.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

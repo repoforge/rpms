@@ -5,7 +5,7 @@
 
 %define logmsg logger -t mach/rpm
 
-Summary: Make a chroot.
+Summary: Make a chroot
 Name: mach
 Version: 0.4.5
 Release: 1

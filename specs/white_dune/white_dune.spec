@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A graphical VRML97 editor and animation tool.
+Summary: graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.26pl5
 Release: 2

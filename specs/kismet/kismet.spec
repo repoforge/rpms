@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Kismet is an 802.11b network sniffer and network dissector.
+Summary: Kismet is an 802.11b network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
 Release: 1

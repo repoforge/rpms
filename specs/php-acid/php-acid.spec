@@ -19,7 +19,6 @@ Source: http://dl.sf.net/acidlab/acid-%{version}.tar.gz
 Source1: acid.conf
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
 Requires: webserver, php, php-adodb, php-jpgraph
 

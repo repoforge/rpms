@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Bluetooth libraries.
+Summary: Bluetooth libraries
 Name: bluez-libs
 Version: 2.5
 Release: 0
@@ -26,7 +26,7 @@ Libraries for use in Bluetooth applications.
 The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

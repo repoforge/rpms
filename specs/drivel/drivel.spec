@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Todd Kulesza <todd@dropline.net>
 
-Summary: LiveJournal client for GNOME.
+Summary: LiveJournal client for GNOME
 Name: drivel
 Version: 0.9.4
 Release: 1

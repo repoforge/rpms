@@ -7,7 +7,7 @@
 
 %define rname avidemux
 
-Summary: Graphical video editing tool.
+Summary: Graphical video editing tool
 Name: avidemux2
 Version: 2.0.22
 Release: 0

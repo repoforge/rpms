@@ -4,7 +4,7 @@
 
 # Upstream: ptk@lists.stanford.edu
 
-Summary: Tk module for perl.
+Summary: Tk module for perl
 Name: perl-Tk
 #Version: 800.024
 Version: 804.026

@@ -23,7 +23,7 @@
 %define moduledir /kernel/drivers/block
 %define modules cloop.o
 
-Summary: Linux driver for compressed loop devices.
+Summary: Linux driver for compressed loop devices
 Name: kernel-module-cloop
 Version: 2.00
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -55,7 +55,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-cloop
-Summary: Compressed loop device driver for SMP.
+Summary: Compressed loop device driver for SMP
 Group: System Environment/Kernel
 Release: %{rrelease}_%{kversion}_%{krelease}
 
@@ -75,7 +75,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n cloop-utils
-Summary: Utilities for compressed loop device driver.
+Summary: Utilities for compressed loop device driver
 Release: %{rrelease}
 Group: System Environment/Base
 

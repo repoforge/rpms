@@ -5,7 +5,7 @@
 %define rname Blursk
 %define plugindir %(xmms-config --visualization-plugin-dir)
 
-Summary: A visualization plugin for the Linux XMMS music player.
+Summary: Visualization plugin for the Linux XMMS music player
 Name: xmms-blursk
 Version: 1.3
 Release: 0
@@ -16,9 +16,8 @@ URL: http://www.xmms.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cs.pdx.edu/~kirkenda/blursk/%{rname}-%{version}.tar.gz
+Source: http://www.cs.pdx.edu/~kirkenda/blursk/Blursk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib-devel >= 1.2.0, gtk+-devel >= 1.2.0
 

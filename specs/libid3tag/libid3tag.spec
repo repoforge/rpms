@@ -19,7 +19,7 @@ various versions of ID3v2.
 
 
 %package devel
-Summary: Header and library for developing programs that will use libid3tag.
+Summary: Header and library for developing programs that will use libid3tag
 Group: Development/Libraries
 Requires: %{name} = %{version}, zlib-devel
 

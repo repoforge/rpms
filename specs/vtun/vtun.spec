@@ -5,7 +5,7 @@
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
-Summary: Virtual tunnel over TCP/IP networks.
+Summary: Virtual tunnel over TCP/IP networks
 Name: vtun
 Version: 2.6
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Stéphane Bortzmeyer <bortz@users.sourceforge.net>
 
-Summary: Test performances of a remote host by sending it TCP "echo" packets.
+Summary: Test performances of a remote host by sending it TCP "echo" packets
 Name: echoping
 Version: 5.2.0
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Network traffic recorder.
+Summary: Network traffic recorder
 Name: tcpflow
 Version: 0.20
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <info@rndsoftware.com>
 
-Summary: Save memory content for forensic analysis.
+Summary: Save memory content for forensic analysis
 Name: memget
 Version: 0.1.0
 Release: 1

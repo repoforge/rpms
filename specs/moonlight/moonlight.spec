@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: An OpenGL 3D modeller and renderer.
+Summary: OpenGL 3D modeller and renderer
 Name: moonlight
 Version: 0.5.5
 Release: 0
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ml3d.sf.net/install/moonlight-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: freetype-devel
 

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: a KDE filesharing client which uses gift.
+Summary: a KDE filesharing client which uses gift
 Name: apollon
 Version: 0.9.2
 Release: 3

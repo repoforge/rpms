@@ -7,7 +7,7 @@
 
 %define rversion 0.7.1a
 
-Summary: Wireless LAN (WLAN) accesspoint discovery tool.
+Summary: Wireless LAN (WLAN) accesspoint discovery tool
 Name: prismstumbler
 Version: 0.7.1
 Release: 1.a

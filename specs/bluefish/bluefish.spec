@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A GTK2 web development application for experienced users
+Summary: Graphical web development application for experienced users
 Name: bluefish
 Version: 0.12
 Release: 2

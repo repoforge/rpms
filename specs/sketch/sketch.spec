@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Python-based vector drawing program.
+Summary: Python-based vector drawing program
 Name: sketch
 Version: 0.6.14
 Release: 1

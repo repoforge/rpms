@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jonathan Gonzalez V. <jonathan@blueplanet.cl>
 
-Summary: Small cd player for GNOME.
+Summary: Small cd player for GNOME
 Name: apolos
 Version: 0.1.5
 Release: 0

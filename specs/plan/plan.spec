@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: An X/Motif based schedule planner.
+Summary: X/Motif based schedule planner
 Name: plan
 Version: 1.8.6
 Release: 0
@@ -13,12 +13,11 @@ URL: http://www.bitrot.de/plan.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: ftp://ftp.fu-berlin.de/pub/unix/graphics/plan/%{name}-%{version}.tar.gz
+Source0: ftp://ftp.fu-berlin.de/pub/unix/graphics/plan/plan-%{version}.tar.gz
 Source1: netplan
 Source2: plan.wmconfig
 Patch0: plan-%{version}-configure.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: openmotif-devel, byacc
 Requires: openmotif
@@ -39,7 +38,7 @@ to Apple Newton and PalmPilot PDAs.  You'll need either Motif or
 LessTif in order to use Plan.
 
 %package server
-Summary: The network server for the plan scheduling program.
+Summary: The network server for the plan scheduling program
 Group: System Environment/Daemons
 PreReq: /sbin/chkconfig , /sbin/service 
 

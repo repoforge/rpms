@@ -3,7 +3,7 @@
 
 #define	cvs -cvs
 
-Summary: A GNOME interface for the ogle DVD player
+Summary: GNOME interface for the ogle DVD player
 Name: ogle_gui
 Version: 0.9.2
 Release: 1

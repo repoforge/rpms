@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: MIMEDefang mailinglist <mimedefang@lists.roaringpenguin.com>
 
-Summary: Email filtering application using sendmail's milter interface.
+Summary: Email filtering application using sendmail's milter interface
 Name: mimedefang
 Version: 2.40
 Release: 1

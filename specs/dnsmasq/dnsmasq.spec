@@ -5,7 +5,7 @@
 
 # Tag: test
 
-Summary: Lightweight caching nameserver.
+Summary: Lightweight caching nameserver
 Name: dnsmasq
 Version: 2.6
 Release: 0.pre1

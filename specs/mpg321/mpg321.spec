@@ -1,14 +1,14 @@
 # $Id$
 # Authority: matthias
 
-Summary: An MPEG audio player
+Summary: MPEG audio player
 Name: mpg321
 Version: 0.2.10
 Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/
-Source: http://dl.sf.net/mpg321/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/mpg321/mpg321-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libao-devel >= 0.8.0, libmad-devel >= 0.14.2b, libid3tag-devel
 BuildRequires: zlib-devel

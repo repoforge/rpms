@@ -4,7 +4,7 @@
 
 %define major 0.7
 
-Summary: GStreamer Streaming-media framework plugins.
+Summary: GStreamer Streaming-media framework plugins
 Name: gstreamer-plugins
 Version: 0.7.1
 Release: 0
@@ -49,7 +49,7 @@ types or processing capabilities can be added simply by installing new
 plugins.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: gstreamer-devel >= %{version}

@@ -4,7 +4,7 @@
 %define desktop_vendor freshrpms
 #define cvs -cvs
 
-Summary: A DVD player that supports DVD menus
+Summary: DVD player that supports DVD menus
 Name: ogle
 Version: 0.9.2
 Release: 1

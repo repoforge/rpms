@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Bastian Kleineidam <calvin@users.sourceforge.net>
 
-Summary: Check HTML documents for broken links.
+Summary: Check HTML documents for broken links
 Name: linkchecker
 Version: 1.12.0
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rversion 2.0.0-rc2
 
-Summary: A command-line oriented TCP/IP packet assembler/analyzer.
+Summary: Command-line oriented TCP/IP packet assembler/analyzer
 Name: hping
 Version: 2.0.0
 Release: 0.rc2
@@ -15,9 +15,8 @@ URL: http://www.hping.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.hping.org/%{name}%{rversion}.tar.gz
+Source: http://www.hping.org/hping%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 hping is a command-line oriented TCP/IP packet assembler/analyzer.

@@ -3,7 +3,7 @@
 # Authority: dag
 # Soapbox: 0
 
-Summary: Image viewing utility.
+Summary: Image viewing utility
 Name: gliv
 Version: 1.8.1
 Release: 0

@@ -24,7 +24,7 @@
 %define moduledir /kernel/drivers/char/ibmasm
 %define modules src/ibmasm.o src/ibmser.o
 
-Summary: IBM Advanced System Management drivers.
+Summary: IBM Advanced System Management drivers
 Name: kernel-module-ibmasm
 Version: 2.02
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -62,7 +62,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ibmasm
-Summary: IBM Advanced System Management drivers.
+Summary: IBM Advanced System Management drivers
 Group: System Environment/Kernel
 Release: %{rrelease}_%{kversion}_%{krelease}
 
@@ -81,7 +81,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n ibmasm-utils
-Summary: IBM Advanced System Management software.
+Summary: IBM Advanced System Management software
 Release: %{rrelease}
 Group: System Environment/Base
 

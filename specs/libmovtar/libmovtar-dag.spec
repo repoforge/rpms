@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: Tools for the movtar MJPEG video format.
+Summary: Tools for the movtar MJPEG video format
 Name: libmovtar
 Version: 0.1.3
 Release: 0
@@ -21,7 +21,7 @@ This package includes libmovtar, the support library, and various
 tools which together implement the movtar MJPEG video format.
 
 %package devel
-Summary: Development headers and libraries for the movtar MJPEG video format.
+Summary: Development headers and libraries for the movtar MJPEG video format
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

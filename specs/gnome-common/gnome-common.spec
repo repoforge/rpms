@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Useful things common to building gnome packages.
+Summary: Useful things common to building gnome packages
 Name: gnome-common
 Version: 1.2.4
 Release: 0

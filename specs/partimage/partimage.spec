@@ -5,7 +5,7 @@
 # Upstream: François Dupoux <fdupoux@partimage.org>
 # Test: test
 
-Summary: A partition imaging utility, much like Ghost.
+Summary: partition imaging utility, much like Ghost
 Name: partimage
 Version: 0.7.2
 Release: 0
@@ -38,7 +38,7 @@ just have to restore, and after several minutes your system can be restored
 (boot record and all your files) and fully working.
 
 %package static
-Summary: A partition imaging utility, much like Ghost.
+Summary: partition imaging utility, much like Ghost
 Group: Applications/System
 
 %description static
@@ -50,7 +50,7 @@ files to be copied to movable media such as Zip disks or CD-R.
 This package contains a static compiled binary.
 
 %package server
-Summary: The server part of a partition imaging utility, much like Ghost.
+Summary: The server part of a partition imaging utility, much like Ghost
 Group: System Environment/Daemons
 
 %description server

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A simple TCP benchmarking utility.
+Summary: Simple TCP benchmarking utility
 Name: gensink
 Version: 4.1
 Release: 0
@@ -13,9 +13,8 @@ URL: http://jes.home.cern.ch/jes/gensink/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://home.cern.ch/~jes/%{name}-%{version}.tar.gz
+Source: http://home.cern.ch/~jes/gensink-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 gensink consists of a pair of utilities that measure the performance of

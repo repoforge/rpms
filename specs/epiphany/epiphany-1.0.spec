@@ -5,7 +5,7 @@
 
 %define mversion 38:1.6
 
-Summary: Web browser based on the mozilla rendering engine.
+Summary: Web browser based on the mozilla rendering engine
 Name: epiphany
 Version: 1.0.8
 Release: 1
@@ -32,7 +32,7 @@ The name meaning: "An intuitive grasp of reality through something (as
 an event) usually simple and striking".
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

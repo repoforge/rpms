@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Graphical ThinkPad configuration utility.
+Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
 Version: 0.1
 Release: 1

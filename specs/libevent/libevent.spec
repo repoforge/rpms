@@ -6,7 +6,7 @@
 
 %define	rversion 0.7a
 
-Summary: Abstract asynchronous event notification library.
+Summary: Abstract asynchronous event notification library
 Name: libevent
 Version: 0.7
 Release: 0.a
@@ -30,7 +30,7 @@ to call event_dispatch() and can then add or remove events dynamically
 without having to change the event loop.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 
 # Upstream: Fredrik Arnerup <e97_far@e.kth.se>
 
-Summary: Open Source desktop publishing application.
+Summary: Open Source desktop publishing application
 Name: passepartout
 Version: 0.4
 Release: 0

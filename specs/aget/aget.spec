@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A console download accelerator
+Summary: Console download accelerator
 Name: aget
 Version: 0.4
 Release: 4

@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Check locally for signs of a rootkit.
+Summary: Check locally for signs of a rootkit
 Name: chkrootkit
 Version: 0.43
 Release: 2

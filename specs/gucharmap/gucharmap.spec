@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Noah Levitt <nlevitt@columbia.edu>
 
-Summary: Unicode/ISO10646 character map and font viewer.
+Summary: Unicode/ISO10646 character map and font viewer
 Name: gucharmap
 Version: 1.2.0
 Release: 0
@@ -14,9 +14,8 @@ URL: http://gucharmap.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/gnome/sources/gucharmap/1.0/%{name}-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/gnome/sources/gucharmap/1.0/gucharmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel >= 2.2.0
 ### Needed to know if we should link gnome-character-map
@@ -26,7 +25,7 @@ BuildRequires: gnome-utils
 gucharmap is a Unicode/ISO10646 character map and font viewer.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

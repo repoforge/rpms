@@ -3,7 +3,7 @@
 # Authority: dag
 
 Name: gtoaster
-Summary: A versatile CD recording package for both sound and data.
+Summary: versatile CD recording package for both sound and data
 Version: 1.0
 Release: 1.beta6
 License: GPL

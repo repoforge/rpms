@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <monitgroup@tildeslash.com>
 
-Summary: Process monitor and restart utility.
+Summary: Process monitor and restart utility
 Name: monit
 Version: 4.2.0
 Release: 0

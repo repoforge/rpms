@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A program to extract Microsoft Cabinet files
+Summary: program to extract Microsoft Cabinet files
 Name: cabextract
 Version: 1.0
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A GNOME UML modeling environment.
+Summary: GNOME UML modeling environment
 Name: gaphor
 Version: 0.2.0
 Release: 0

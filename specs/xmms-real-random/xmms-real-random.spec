@@ -8,7 +8,7 @@
 
 %define rname real_random
 
-Summary: A plugin for XMMS providing better shuffling.
+Summary: Plugin for XMMS providing better shuffling
 Name: xmms-real-random
 Version: 0.3
 Release: 0
@@ -19,9 +19,8 @@ URL: http://home.pages.at/kingleo/index.php?show=/development/stuff
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://home.pages.at/kingleo/development/stuff/%{rname}-%{version}.tar.gz
+Source: http://home.pages.at/kingleo/development/stuff/real_random-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: xmms-devel
 

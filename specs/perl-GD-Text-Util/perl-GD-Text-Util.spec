@@ -4,7 +4,7 @@
 
 %define rname GDTextUtil
 
-Summary: Text utilities for use with GD.
+Summary: Text utilities for use with GD
 Name: perl-GD-Text-Util
 Version: 0.86
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname Net-SMTP
 
-Summary: Net-SMTP Perl module.
+Summary: Net-SMTP Perl module
 Name: perl-Net-SMTP
 Version: 4.1.2
 Release: 0

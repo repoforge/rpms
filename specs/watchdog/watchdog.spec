@@ -3,7 +3,7 @@
 # Authority: dag
 
 Name: watchdog
-Summary: A software watchdog.
+Summary: software watchdog
 Version: 5.2
 Release: 6
 Group: System Environment/Daemons

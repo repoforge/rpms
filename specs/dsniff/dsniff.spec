@@ -6,7 +6,7 @@
 
 %define _libdir %{_sysconfdir}
 
-Summary: Tools for network auditing and penetration testing.
+Summary: Tools for network auditing and penetration testing
 Name: dsniff
 Version: 2.3
 Release: 0

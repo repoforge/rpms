@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A portable abstraction library for DVD decryption.
+Summary: portable abstraction library for DVD decryption
 Name: libdvdcss
 Version: 1.2.8
 Release: 0
@@ -21,7 +21,7 @@ to install this package in order to have encrypted DVD playback with the
 VideoLAN client and the Xine navigation plugin.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

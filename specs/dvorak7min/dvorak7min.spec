@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A ncurses based dvorak typing tutor.
+Summary: ncurses based dvorak typing tutor
 Name: dvorak7min
 Version: 1.6.1
 Release: 2

@@ -4,7 +4,7 @@
 %define	desktop_vendor	freshrpms
 %define beta 3
 
-Summary: A breakout-style arcade game for Linux
+Summary: breakout-style arcade game for Linux
 Name: lbreakout2
 Version: 2.5
 Release: %{?beta:0.beta%{beta}.}1

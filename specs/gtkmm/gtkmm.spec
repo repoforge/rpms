@@ -2,7 +2,7 @@
 
 # Authority: freshrpms
 
-Summary: C++ interface for GTK++ (a GUI library for X).
+Summary: C++ interface for GTK++ (a GUI library for X)
 Name: gtkmm
 Version: 1.3.26
 Release: 1
@@ -27,7 +27,7 @@ and a comprehensive set of widget classes that can be freely combined to
 quickly create complex user interfaces.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: gtk2-devel, glib2-devel, libsigc++-devel

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A tool for figuring out network masks.
+Summary: tool for figuring out network masks
 Name: netmask
 Version: 2.3.6
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Translates an RPM database and dependency information into HTML.
+Summary: Translates an RPM database and dependency information into HTML
 Name: rpm2html
 Version: 1.8.2
 Release: 0

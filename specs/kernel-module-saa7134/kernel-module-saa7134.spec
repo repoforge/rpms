@@ -21,7 +21,7 @@
 %define moduledir /kernel/drivers/video/media/saa7134
 %define modules ir-common.o msp3400.o saa6752hs.o saa7134.o tda9887.o tuner.o tvaudio.o v4l1-compat.o v4l2-common.o video-buf.o
 
-Summary: Linux saa7130/7134 (TV/capture card) drivers.
+Summary: Linux saa7130/7134 (TV/capture card) drivers
 Name: kernel-module-saa7134
 Version: 0.2.9
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -49,7 +49,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-saa7134
 Release: %{rrelease}_%{kversion}_%{krelease}
-Summary: Linux saa7130/7134 (TV/capture card) drivers.
+Summary: Linux saa7130/7134 (TV/capture card) drivers
 License: GPL
 Group: System Environment/Kernel
 

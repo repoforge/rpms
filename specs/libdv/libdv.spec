@@ -1,13 +1,13 @@
 # $Id$
 # Authority: matthias
 
-Summary: A software codec for DV video, used by most digital camcorders.
+Summary: Codec for DV video, used by most digital camcorders
 Name: libdv
 Version: 0.101
 Release: 2
 License: GPL
 Group: System Environment/Libraries
-Source: http://dl.sf.net/libdv/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/libdv/libdv-%{version}.tar.gz
 URL: http://libdv.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel >= 1.2.4, pkgconfig >= 0.9.0
@@ -20,7 +20,7 @@ according to the official standards for DV video: IEC 61834 and SMPTE 314M.
 
 
 %package devel
-Summary: Development file for programs which use the libdv library.
+Summary: Development file for programs which use the libdv library
 Group: Development/Libraries
 Requires: %{name} = %{version}, gtk+-devel >= 1.2.4, pkgconfig >= 0.9.0
 

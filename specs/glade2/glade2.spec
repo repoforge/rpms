@@ -1,12 +1,11 @@
 # $Id$
 
 # Authority: dag
-
 # Reason: This package doesn't need a lot of devel-packages.
 
 %define rname glade
 
-Summary: A GTK+ GUI builder.
+Summary: GTK+ GUI builder
 Name: glade2
 Version: 2.0.1
 Release: 0
@@ -17,9 +16,8 @@ URL: http://glade.gnome.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/GNOME/pre-gnome2/sources/glade/%{rname}-%{version}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/GNOME/pre-gnome2/sources/glade/glade-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gail-devel >= 0.17
 BuildRequires: glib2-devel >= 2.2.0

@@ -10,7 +10,7 @@
 %{?rhel21:%define pyver 1.5}
 %{?rh62:%define pyver 1.5}
 
-Summary: Python's own image processing library.
+Summary: Python's own image processing library
 Name: python-imaging
 Version: 1.1.4
 Release: 1

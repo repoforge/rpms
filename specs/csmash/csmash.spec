@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: A 3D tabletennis game.
+Summary: 3D tabletennis game
 Name: csmash
 Version: 0.6.6
 Release: 1

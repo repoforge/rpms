@@ -3,13 +3,13 @@
 
 %define real_name libdvbpsi3
 
-Summary: A library for decoding and generating MPEG TS and DVB PSI tables.
+Summary: Library for decoding and generating MPEG TS and DVB PSI tables
 Name: libdvbpsi
 Version: 0.1.4
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-Source: http://download.videolan.org/pub/%{name}/%{version}/%{real_name}-%{version}.tar.bz2
+Source: http://download.videolan.org/pub/libdvbpsi/%{version}/libdvbpsi3-%{version}.tar.bz2
 URL: http://developers.videolan.org/libdvbpsi/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -25,7 +25,7 @@ etc.) present in a TS/DVB stream.
 
 
 %package devel
-Summary: Development files from the libdvbpsi library.
+Summary: Development files from the libdvbpsi library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

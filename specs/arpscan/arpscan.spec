@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Jason Ish <jason@codemonkey.net>
 
-Summary: Very simple ARP scanner.
+Summary: Very simple ARP scanner
 Name: arpscan
 Version: 0.2
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Web server stress testing tool.
+Summary: Web server stress testing tool
 Name: hammerhead
 Version: 2.1.3
 Release: 0
@@ -15,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/hammerhead/hammerhead-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Hammerhead 2 is a stress testing tool designed to test out your web server

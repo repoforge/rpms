@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Font selection widget.
+Summary: Font selection widget
 Name: fontsel
 Version: 0.5.0
 Release: 0
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 A font selection widget for Gtk+ toolkit
 
 %package devel 
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

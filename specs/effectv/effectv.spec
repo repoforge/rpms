@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Real-time video effector.
+Summary: Real-time video effector
 Name: effectv
 Version: 0.3.9
 Release: 0

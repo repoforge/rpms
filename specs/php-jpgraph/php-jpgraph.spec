@@ -37,7 +37,7 @@ learning curve. The features are there when you need it - they don't get
 in your way when you don't need them!
 
 %package docs
-Summary: Documentation for package %{name}.
+Summary: Documentation for package %{name}
 Group: Documentation
 
 %description docs

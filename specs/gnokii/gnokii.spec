@@ -10,7 +10,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Linux/UNIX tool suite for various mobile phones.
+Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
 Version: 0.6.0
 Release: 0
@@ -38,7 +38,7 @@ Gnokii is a Linux/UNIX tool suite and a modem/fax driver for
 Nokia's mobile phones, released under the GPL.
 
 %package gui
-Summary: Graphical Linux/UNIX tool suite for Nokia mobile phones.
+Summary: Graphical Linux/UNIX tool suite for Nokia mobile phones
 Group: Applications/Internet
 Obsoletes: gnokii-xgnokii, gnokii-gtk
 
@@ -48,7 +48,7 @@ allows you to edit your contacts book, send/read SMS's from/in your
 computer and more.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

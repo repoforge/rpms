@@ -4,7 +4,7 @@
 
 %define rname pychm
 
-Summary: Python package to handle CHM files.
+Summary: Python package to handle CHM files
 Name: python-chm
 Version: 0.8.0
 Release: 0

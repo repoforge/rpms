@@ -1,10 +1,11 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <info@otrs.de>
 
 %define rversion 1.2.2-01
 
-Summary: Open Ticket Request System.
+Summary: Open Ticket Request System
 Name: otrs
 Version: 1.2.2
 Release: 0
@@ -17,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.otrs.org/pub/otrs/otrs-%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 #Autoreqprov:  no
 Requires: perl, perl-DBI, perl-DBD-MySQL, perl-URI, mod_perl
@@ -35,7 +35,7 @@ OTRS is an Open source Ticket Request System with many features to manage
 customer telephone calls and e-mails.
 
 %package docs
-Summary: Documentation for package %{name}.
+Summary: Documentation for package %{name}
 Group: Documentation
 
 %description docs
@@ -47,26 +47,17 @@ This package includes the documentation for %{name}.
 %prep
 %setup -n %{name}
 
-%{__mv} -f Kernel/Config.pm.dist Kernel/Config.pm
-
-for file in Kernel/Config/*.dist; do
-	%{__mv} -f $file Kernel/Config/$(basename $file .dist)
-done
-
-for file in var/cron/*.dist; do
-	%{__mv} -f $file var/cron/$(basename $file .dist)
+for file in */*.dist */*/*.dist; do
+	%{__mv} -f $(dirname $file)/$(basename $file .dist)
 done
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/ \
-			%{buildroot}/opt/otrs/
 
 ### Copy everything.
+%{__install} -d -m0755 %{buildroot}/opt/otrs/
 %{__cp} -avf Kernel/ bin/ scripts/ var/ %{buildroot}/opt/otrs/
 
 ### Copy with permissions.
@@ -76,9 +67,9 @@ done
 %{__install} -m0700 bin/DeleteSessionIDs.pl bin/UnlockTickets.pl bin/otrs.getConfig %{buildroot}/opt/otrs/bin/
 
 ### Copy extra configuration files.
-%{__install} -m0755 scripts/redhat-rcotrs %{buildroot}%{_initrddir}/otrs
-%{__install} -m0644 scripts/redhat-rcotrs-config %{buildroot}%{_sysconfdir}/sysconfig/otrs
-%{__install} -m0644 scripts/apache2-httpd.include.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
+%{__install} -D -m0755 scripts/redhat-rcotrs %{buildroot}%{_initrddir}/otrs
+%{__install} -D -m0644 scripts/redhat-rcotrs-config %{buildroot}%{_sysconfdir}/sysconfig/otrs
+%{__install} -D -m0644 scripts/apache2-httpd.include.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
 
 touch %{buildroot}/opt/otrs/var/log/TicketCounter.log
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Proxy profiles applet.
+Summary: Proxy profiles applet
 Name: proxy-profiles-applet
 Version: 0.4
 Release: 0

@@ -27,7 +27,7 @@ formats such as .wav, .aiff and .au, and has multiple undo/redo levels
 and filters. It supports audio filter plugins from the LADSPA project.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 # Upstream: Dag Wieers <dag@wieers.com>
 # Soapbox: 0
 
-Summary: Tray applet for changing network proxy configuration.
+Summary: Tray applet for changing network proxy configuration
 Name: proxy-applet
 Version: 0.2.4
 Release: 0

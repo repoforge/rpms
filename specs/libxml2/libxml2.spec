@@ -3,7 +3,7 @@
 # Authority: atrpms
 # Dists: rh90
 
-Summary: Library providing XML and HTML support.
+Summary: Library providing XML and HTML support
 Name: libxml2
 Version: 2.5.11
 Release: 1
@@ -29,7 +29,7 @@ mechanism is available, with existing HTTP and FTP modules and
 combined to an URI library.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -39,7 +39,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %package python
-Summary: Python scripts for %{name}.
+Summary: Python scripts for %{name}
 Group: System Environment/Libraries
 Requires: %{name} = %{version}-%{release}
 

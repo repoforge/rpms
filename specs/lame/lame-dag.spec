@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Distcc: 0
 
-Summary: Quality LGPL MP3 encoder.
+Summary: Quality LGPL MP3 encoder
 Name: lame
 Version: 3.95.1
 Release: 0
@@ -27,7 +27,7 @@ the LAME project is to use these improvements for the basis of a patent
 free audio compression codec for the GNU project.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

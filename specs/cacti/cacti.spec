@@ -4,7 +4,7 @@
 
 %define _localdatadir %{_var}/www/html/cacti
 
-Summary: Network monitoring/graphing tool.
+Summary: Network monitoring/graphing tool
 Name: cacti
 Version: 0.8.5
 Release: 0
@@ -41,7 +41,7 @@ handles the data gathering. There is SNMP support for those used to
 creating traffic graphs with MRTG.
 
 %package docs
-Summary: Documentation for package %{name}.
+Summary: Documentation for package %{name}
 Group: Documentation
 
 %description docs

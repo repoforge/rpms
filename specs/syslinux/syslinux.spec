@@ -4,7 +4,7 @@
 
 %define rversion 2.08
 
-Summary: Simple kernel loader which boots from a FAT filesystem.
+Summary: Simple kernel loader which boots from a FAT filesystem
 Name: syslinux
 Version: 2.08
 Release: 0

@@ -45,7 +45,7 @@ display time-series data (i.e. network bandwidth, machine-room temperature,
 server load average). This package allow you to use directly this library.
 
 %package -n php-rrdtool
-Summary: A PHP module for using RRD databases or rrdtool.
+Summary: PHP module for using RRD databases or rrdtool
 Version: %{pversion}
 Release: %{release}_%{rversion}
 Group: Development/Languages

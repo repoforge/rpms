@@ -1,7 +1,7 @@
 # Authority: dag
 # Upstream: <tcpick-project@lists.sourceforge.net>
 
-Summary: TCP stream sniffer and connection tracker.
+Summary: TCP stream sniffer and connection tracker
 Name: tcpick
 Version: 0.1.21
 Release: 1

@@ -6,7 +6,7 @@
 
 ### FIXME: Add sysv script based on own template.
 
-Summary: A secure tunneling daemon.
+Summary: secure tunneling daemon
 Name: openvpn
 Version: 1.4.3
 Release: 0

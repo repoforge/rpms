@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Display dBase III and IV (.dbf) files.
+Summary: Display dBase III and IV (.dbf) files
 Name: dbview
 Version: 1.0.3
 Release: 0

@@ -26,7 +26,7 @@
 %define sysname s390_linux24
 %endif
 
-Summary: OpenAFS distributed filesystem.
+Summary: OpenAFS distributed filesystem
 Name: openafs
 Version: 1.2.10
 Release: 0
@@ -76,7 +76,7 @@ This package provides basic server support to host files in an AFS
 Cell.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

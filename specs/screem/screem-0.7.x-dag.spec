@@ -1,7 +1,7 @@
 # Authority: freshrpms
 # Upstream: David A Knight <david@ritter.demon.co.uk>
 
-Summary: Web Site CReating and Editing EnvironMent.
+Summary: Web Site CReating and Editing EnvironMent
 Name: screem
 Version: 0.7.0
 Release: 0

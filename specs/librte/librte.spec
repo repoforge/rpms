@@ -3,7 +3,7 @@
 # Authority: freshrpms
 %define rname rte
 
-Summary: Real Time software audio/video Encoder library.
+Summary: Real Time software audio/video Encoder library
 Name: librte
 Version: 0.5.1
 Release: 0
@@ -31,7 +31,7 @@ codecs and the Zapping TV viewer: http://zapping.sourceforge.net,
 precisely its recording plugin.
 
 %package devel
-Summary: Static library and API documentation of the Real Time Encoder.
+Summary: Static library and API documentation of the Real Time Encoder
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

@@ -10,7 +10,7 @@
 %{?rhel3:%undefine pgsql}
 %{?rhel3:%undefine odbc}
 
-Summary: Open Source network intrusion detection system.
+Summary: Open Source network intrusion detection system
 Name: snort
 Version: 2.1.1
 Release: 0
@@ -48,7 +48,7 @@ a seperate "alert" file, or as a WinPopup message via Samba's smbclient
 This package has no database support.
 
 %package mysql
-Summary: Snort with MySQL support.
+Summary: Snort with MySQL support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
 Obsoletes: snort-postgresql, snort-odbc, snort-bloat
@@ -57,7 +57,7 @@ Obsoletes: snort-postgresql, snort-odbc, snort-bloat
 Snort compiled with mysql support.
 
 %package postgresql
-Summary: Snort with PostgreSQL support.
+Summary: Snort with PostgreSQL support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
 Obsoletes: snort-mysql, snort-odbc, snort-bloat
@@ -66,7 +66,7 @@ Obsoletes: snort-mysql, snort-odbc, snort-bloat
 Snort compiled with PostgreSQL support. 
 
 %package odbc
-Summary: Snort with ODBC support.
+Summary: Snort with ODBC support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
 Obsoletes: snort-mysql, snort-postgresql, snort-bloat
@@ -75,7 +75,7 @@ Obsoletes: snort-mysql, snort-postgresql, snort-bloat
 Snort compiled with ODBC support. 
 
 %package bloat
-Summary: Snort with MySQL, PostgreSQL and ODBC support.
+Summary: Snort with MySQL, PostgreSQL and ODBC support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
 Obsoletes: snort-mysql, snort-postgresql, snort-odbc

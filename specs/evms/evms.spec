@@ -5,7 +5,7 @@
 %define _sbindir /sbin
 %define _libdir /lib
 
-Summary: Enterprise Volume Management System utilities.
+Summary: Enterprise Volume Management System utilities
 Name: evms
 Version: 2.2.2
 Release: 0

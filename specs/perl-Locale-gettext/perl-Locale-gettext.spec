@@ -4,7 +4,7 @@
 
 %define rname gettext
 
-Summary: Internationalization for Perl.
+Summary: Internationalization for Perl
 Name: perl-Locale-gettext
 Version: 1.01
 Release: 0

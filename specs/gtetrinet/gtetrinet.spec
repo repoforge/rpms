@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A GNOME version of a tetris game playable on the net.
+Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
 Version: 0.7.5
 Release: 1

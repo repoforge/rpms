@@ -24,7 +24,7 @@
 %define moduledir /kernel/drivers/block
 %define modules drbd/drbd.o
 
-Summary: Distributed Redundant Block Device driver.
+Summary: Distributed Redundant Block Device driver
 Name: kernel-module-drbd
 Version: 0.6.11
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -57,7 +57,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-drbd
-Summary: Distributed Redundant Block Device driver for SMP.
+Summary: Distributed Redundant Block Device driver for SMP
 Group: System Environment/Kernel
 Release: %{rrelease}_%{kversion}_%{krelease}
 
@@ -77,7 +77,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n drbd-utils
-Summary: Utilities for Distributed Redundant Block Device (DRBD) driver.
+Summary: Utilities for Distributed Redundant Block Device (DRBD) driver
 Release: %{rrelease}
 Group: System Environment/Base
 

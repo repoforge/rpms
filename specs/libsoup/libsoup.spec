@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A HTTP library implementation.
+Summary: HTTP library implementation
 Name: libsoup
 Version: 1.99.26
 Release: 0
@@ -13,10 +13,9 @@ URL: ftp://ftp.gnome.org/pub/gnome/sources/libsoup/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/gnome/sources/libsoup/1.99/%{name}-%{version}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/gnome/sources/libsoup/1.99/libsoup-%{version}.tar.bz2
 Patch: libsoup-1.99.26-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib2-devel, openssl-devel, gnutls-devel >= 0.8.10, libgcrypt-devel >= 1.1.12
 Obsoletes: soup <= %{version}
@@ -32,7 +31,7 @@ the Gtk+ programming model (a synchronous operation mode is also
 supported for those who want it).
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Obsoletes: soup-devel <= %{version}

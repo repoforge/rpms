@@ -21,7 +21,7 @@
 %define moduledir /kernel/drivers/char/ltmodem
 %define modules lt_modem.o lt_serial.o
 
-Summary: Linux Linmodem drivers.
+Summary: Linux Linmodem drivers
 Name: kernel-module-ltmodem
 Version: 8.26
 Release: %{rrelease}.a9_%{kversion}_%{krelease}
@@ -50,7 +50,7 @@ These drivers are built for kernel %{kversion}-%{krelease}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ltmodem
-Summary: Linux Linmodem drivers.
+Summary: Linux Linmodem drivers
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp

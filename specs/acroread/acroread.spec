@@ -6,7 +6,7 @@
 
 %define rversion 508
 
-Summary: Adobe Reader for viewing PDF files.
+Summary: Adobe Reader for viewing PDF files
 Name: acroread
 Version: 5.0.8
 Release: 1
@@ -37,7 +37,7 @@ be converted into a PDF file. Adobe Acrobat Reader have a plug-in
 for Netscape Navigator to to view PDF files inline
 
 %package -n mozilla-acroread
-Summary: Adobe Reader plug-in for viewing PDF files with the mozilla browser.
+Summary: Adobe Reader plug-in for viewing PDF files with the mozilla browser
 Group: Applications/Internet
 Requires: %{name} = %{version}, mozilla
 Provides: %{name}-plugin = %{version}-%{release}

@@ -5,7 +5,7 @@
 %define rname AOL-TOC
 %define rversion 0.340
 
-Summary: AOL-TOC module for perl.
+Summary: AOL-TOC module for perl
 Name: perl-AOL-TOC
 Version: 0.34
 Release: 1
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHARDING/AOL-TOC-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A completely configurable key-combo grabber for blackbox.
+Summary: completely configurable key-combo grabber for blackbox
 Name: bbkeys
 Version: 0.8.6
 Release: 3

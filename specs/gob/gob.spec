@@ -4,7 +4,7 @@
 
 # Soapbox: 0
 
-Summary: GOB, The GTK+ Object Builder.
+Summary: GOB, The GTK+ Object Builder
 Name: gob
 Version: 1.0.12
 Release: 0

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Darxus <darxus@chaosreigns.com>
 
-Summary: Implementation of /dev/speech.
+Summary: Implementation of /dev/speech
 Name: speechd
 Version: 0.56
 Release: 1

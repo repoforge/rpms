@@ -3,7 +3,7 @@
 
 %define gkrellmpluginver 2.5
 
-Summary: Dell laptop (Inspiron 8000 and others) SMM BIOS support tools.
+Summary: Dell laptop (Inspiron 8000 and others) SMM BIOS support tools
 Name: i8kutils
 Version: 1.17
 Release: 7

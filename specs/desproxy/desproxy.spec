@@ -6,7 +6,7 @@
 
 %define rversion 0.1.0-pre2
 
-Summary: A TCP tunnel for HTTP proxies.
+Summary: TCP tunnel for HTTP proxies
 Name: desproxy
 Version: 0.1.0
 Release: 0.pre2
@@ -30,7 +30,7 @@ Pine, Mutt, Eudora), your news reader (Netscape News...)... without
 having to worry whether they have HTTP support or not.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

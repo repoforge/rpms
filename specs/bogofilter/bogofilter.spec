@@ -7,7 +7,7 @@
 
 %define _requires_exceptions perl
 
-Summary: Fast anti-spam filtering by Bayesian statistical analysis.
+Summary: Fast anti-spam filtering by Bayesian statistical analysis
 Name: bogofilter
 Version: 0.16.4
 Release: 0

@@ -21,7 +21,7 @@
 %define moduledir /kernel/drivers/usb/qc-usb
 %define modules quickcam.o
 
-Summary: Linux QuickCam USB Drivers.
+Summary: Linux QuickCam USB Drivers
 Name: kernel-module-qc-usb
 Version: 0.5.1
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -53,7 +53,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-qc-usb
-Summary: Linux QuickCam USB Drivers for SMP kernels.
+Summary: Linux QuickCam USB Drivers for SMP kernels
 Group: System Environment/Kernel
 Release: %{rrelease}_%{kversion}_%{krelease}
 
@@ -72,7 +72,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n qcset
-Summary: Linux QuickCam USB utilities.
+Summary: Linux QuickCam USB utilities
 Release: %{rrelease}
 Group: System Environment/Base
 

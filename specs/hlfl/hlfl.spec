@@ -6,7 +6,7 @@
 
 %define _datadir %{_prefix}/share/hlfl
 
-Summary: High-Level Firewall Language.
+Summary: High-Level Firewall Language
 Name: hlfl
 Version: 0.60.1
 Release: 0

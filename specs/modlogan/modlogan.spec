@@ -4,7 +4,7 @@
 
 # Upstream: Jan Kneschke <jan@kneschke.de>
 
-Summary: Modular Log Analyzer.
+Summary: Modular Log Analyzer
 Name: modlogan
 Version: 0.8.10
 Release: 0

@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: A library for communicating with and sending data to an icecast server.
+Summary: library for communicating with and sending data to an icecast server
 Name: libshout
 Version: 2.0
 Release: 0
@@ -22,7 +22,7 @@ icecast server.  It handles the socket connection, the timing of the
 data, and prevents bad data from getting to the icecast server.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

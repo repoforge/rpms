@@ -5,7 +5,7 @@
 %define rname Convert-BER
 %define rversion 1.3101
 
-Summary: ASN.1 Basic Encoding Rules perl module.
+Summary: ASN.1 Basic Encoding Rules perl module
 Name: perl-Convert-BER
 Version: 1.31.01
 Release: 1

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Alla Bezroutchko <alla@inetcat.org>
 
-Summary: NetBIOS name network scanner.
+Summary: NetBIOS name network scanner
 Name: nbtscan
 Version: 1.5.1
 Release: 1

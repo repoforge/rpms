@@ -3,7 +3,7 @@
 # Authority: dag
 # Distcc: 0
 
-Summary: Another cron daemon.
+Summary: Another cron daemon
 Name: tcron
 Version: 0.4.5
 Release: 0
@@ -25,7 +25,7 @@ It can invoke multiple cron jobs and switch the computer on
 and off any number of times per day.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

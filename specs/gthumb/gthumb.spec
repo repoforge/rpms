@@ -1,14 +1,14 @@
 # $Id$
 # Authority: matthias
 
-Summary: An image viewer and browser for the GNOME desktop.
+Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb
 Version: 2.2.1
 Release: 1
 License: GPL
 URL: http://gthumb.sourceforge.net/
 Group: Applications/Multimedia
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/gtumb/2.1/gthumb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: scrollkeeper, libexif, libgnomeui >= 2.0.0, libgnomeprintui22
 BuildRequires: pkgconfig, scrollkeeper, gettext, libexif-devel

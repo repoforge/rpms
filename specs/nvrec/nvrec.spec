@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Iñaki García Etxebarria <garetxe@users.sourceforge.net>
 
-Summary: A high quality, generic capture core.
+Summary: High quality, generic capture core
 Name: nvrec
 Version: 20030316
 Release: 2
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://nvrec.sf.net/downloads/nvrec-%{version}.tar.gz
 #Source1: http://dl.sf.net/ffmpeg-0.4.6.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: avifile-devel, libquicktime-devel, lame-devel, xvidcore-devel
 BuildRequires: SDL-devel >= 1.2, libmad-devel, librte-devel

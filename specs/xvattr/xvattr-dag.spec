@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: Utility for getting and setting Xv attributes.
+Summary: Utility for getting and setting Xv attributes
 Name: xvattr
 Version: 1.3
 Release: 0

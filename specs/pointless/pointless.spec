@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Peter Andreasen <pandr@pandr.dk>
 
-Summary: Markup-language based presentation tool.
+Summary: Markup-language based presentation tool
 Name: pointless
 Version: 0.5
 Release: 3

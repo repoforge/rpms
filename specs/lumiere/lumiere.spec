@@ -4,7 +4,7 @@
 
 # Upstream: Stéphane Konstantaropoulos <stephanek@brutele.be>
 
-Summary: A GNOME frontend to mplayer, the great movie player for *nix.
+Summary: GNOME frontend to mplayer, the great movie player for *nix
 Name: lumiere
 Version: 0.4
 Release: 0

@@ -4,7 +4,7 @@
 
 # Upstream: Sergey Zhitomirsky <szh@7ka.mipt.ru>
 
-Summary: Execute programs chrooted, with dropped privileges and as another user/group.
+Summary: Execute programs chrooted, with dropped privileges and as another user/group
 Name: dreamland
 Version: 0.1
 Release: 0

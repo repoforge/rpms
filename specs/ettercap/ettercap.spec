@@ -6,7 +6,7 @@
 
 %define rversion 0.6.b
 
-Summary: Multipurpose sniffer/interceptor/logger for switched LAN.
+Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
 Version: 0.6.9
 Release: 0.b

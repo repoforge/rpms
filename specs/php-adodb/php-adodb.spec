@@ -5,7 +5,7 @@
 %define rname adodb
 %define rversion 421
 
-Summary: Portable Database Library for PHP.
+Summary: Portable Database Library for PHP
 Name: php-adodb
 Version: 4.21
 Release: 1

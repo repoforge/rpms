@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: UCL compression library.
+Summary: UCL compression library
 Name: ucl
 Version: 1.01
 Release: 0
@@ -24,7 +24,7 @@ excellent compression ratio while allowing *very* fast decompression.
 Decompression requires no additional memory.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

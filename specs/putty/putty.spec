@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A GUI SSH, Telnet and Rlogin client.
+Summary: GUI SSH, Telnet and Rlogin client
 Name: putty
 Version: 0.54
 Release: 0

@@ -4,7 +4,7 @@
 
 # Upstream: Michael C. Toren <mct@toren.net>
 
-Summary: A traceroute implementation using TCP packets.
+Summary: traceroute implementation using TCP packets
 Name: tcptraceroute
 Version: 1.4
 Release: 3

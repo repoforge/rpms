@@ -4,7 +4,7 @@
 
 # Soapbox: 0
 
-Summary: The GTK+ Object Builder, a preprocessor for making GObjects with inline C code.
+Summary: The GTK+ Object Builder, a preprocessor for making GObjects with inline C code
 Name: gob2
 Version: 2.0.5
 Release: 0

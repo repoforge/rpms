@@ -6,7 +6,7 @@
 
 %define rname imms
 
-Summary: Intelligent Multimedia Management System plugin for XMMS.
+Summary: Intelligent Multimedia Management System plugin for XMMS
 Name: xmms-imms
 Version: 0.9.9
 Release: 0

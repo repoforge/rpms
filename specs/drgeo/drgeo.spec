@@ -6,7 +6,7 @@
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
-Summary: Interactive educational geometry software.
+Summary: Interactive educational geometry software
 Name: drgeo
 Version: 0.9.12
 Release: 0

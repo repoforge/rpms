@@ -5,7 +5,7 @@
 
 %define rversion 1.5-rc6
 
-Summary: JavaScript interpreter.
+Summary: JavaScript interpreter
 Name: js
 Version: 1.5
 Release: 0.rc6
@@ -28,7 +28,7 @@ This package has been created for purposes of Sablotron and is suitable
 for embedding in applications.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

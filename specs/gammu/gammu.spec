@@ -3,7 +3,7 @@
 
 # Authority: dag
 
-Summary: Mobile phone tools.
+Summary: Mobile phone tools
 Name: gammu
 Version: 0.94.0
 Release: 1
@@ -28,7 +28,7 @@ types of logos), synchronizing time, enabling NetMonitor, managing WAP
 settings and bookmarks and much more. Functions depend on the phone model.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -6,7 +6,7 @@
 %define plugindir %(xmms-config --output-plugin-dir)
 %define rname DBMix
 
-Summary: Digital Audio Mixing System.
+Summary: Digital Audio Mixing System
 Name: dbmix
 Version: 0.9.8
 Release: 3

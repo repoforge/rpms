@@ -1,6 +1,6 @@
 # Authority: freshrpms
 
-Summary: A GTK2 web development application for experienced users.
+Summary: GTK2 web development application for experienced users
 Name: bluefish
 Version: 0.9
 Release: 0

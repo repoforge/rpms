@@ -7,7 +7,7 @@
 
 %define __libtoolize :
 
-Summary: Core library for the xine video player.
+Summary: Core library for the xine video player
 Name: xine-lib
 Version: %{apiver}
 Release: 0.1.rc0a
@@ -66,7 +66,7 @@ Available rpmbuild rebuild options :
 
 
 %package devel
-Summary: Development files for the xine library.
+Summary: Development files for the xine library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 Obsoletes: xine-libs-devel <= 1.0.0

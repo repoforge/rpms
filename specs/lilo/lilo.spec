@@ -5,7 +5,7 @@
 ##DarDists: rhfc1
 # Tag: test
 
-Summary: The boot loader for Linux and other operating systems.
+Summary: The boot loader for Linux and other operating systems
 Name: lilo
 Version: 22.5.8
 Release: 0

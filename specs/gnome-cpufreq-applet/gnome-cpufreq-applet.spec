@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: CPU frequency scaling monitor applet.
+Summary: CPU frequency scaling monitor applet
 Name: gnome-cpufreq-applet
 Version: 0.1.1
 Release: 0

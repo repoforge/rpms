@@ -20,7 +20,7 @@
 %define moduledir /kernel/drivers/thinkpad
 %define modules rtcmosram.o smapi.o superio.o thinkpad.o thinkpadpm.o
 
-Summary: IBM ThinkPad kernel modules.
+Summary: IBM ThinkPad kernel modules
 Name: kernel-module-thinkpad
 Version: 5.0
 Release: 0_%{kversion}_%{krelease}

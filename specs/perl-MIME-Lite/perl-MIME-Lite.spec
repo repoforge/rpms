@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Simple standalone module for generating MIME messages.
+Summary: Simple standalone module for generating MIME messages
 Summary(nl): Een eenvoudige onafhankelijke module om MIME berichten te genereren.
 Name: perl-MIME-Lite
 Version: 2.117

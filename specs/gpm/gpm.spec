@@ -7,7 +7,7 @@
 ### This defines the library version that this package builds.
 %define LIBVER 1.19.0
 
-Summary: A mouse server for the Linux console.
+Summary: Mouse server for the Linux console
 Name: gpm
 Version: 1.20.1
 Release: 35.1
@@ -29,7 +29,6 @@ Patch12: gpm-1.20.1-math.patch
 Patch13: gpm-1.20.1-nodebug.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildPrereq: sed gawk texinfo
 Prereq: /sbin/chkconfig /sbin/ldconfig /sbin/install-info
 Requires: bash >= 2.0
@@ -42,7 +41,7 @@ includes a program to allow pop-up menus to appear at the click of a
 mouse button.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: The GNOME Fax Application.
+Summary: The GNOME Fax Application
 Name: gfax
 Version: 0.5
 Release: 0

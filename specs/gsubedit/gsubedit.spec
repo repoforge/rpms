@@ -4,7 +4,7 @@
 
 %define rversion 0.4pre1
 
-Summary: Tool for editing and converting DivX ;-) subtitles.
+Summary: Tool for editing and converting DivX ;-) subtitles
 Name: gsubedit
 Version: 0.3.20020604
 Release: 0

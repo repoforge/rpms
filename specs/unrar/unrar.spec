@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: unRAR - extract, test and view RAR archives.
+Summary: unRAR - extract, test and view RAR archives
 Name: unrar
 Version: 3.3.6
 Release: 1

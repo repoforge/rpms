@@ -4,7 +4,7 @@
 
 %define rname Archive-Zip
 
-Summary: Archive-Zip module for perl.
+Summary: Archive-Zip module for perl
 Name: perl-Archive-Zip
 Version: 1.09
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Dynamic Kernel Module Support.
+Summary: Dynamic Kernel Module Support
 Name: dkms
 Version: 0.31.04
 Release: 0

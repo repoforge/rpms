@@ -3,17 +3,17 @@
 
 %define desktop_vendor freshrpms
 
-Summary: An OpenGL real-time visual space simulation.
+Summary: OpenGL real-time visual space simulation
 Name: celestia
 Version: 1.3.0
 Release: 2
 License: GPL
 Group: Amusements/Graphics
-Source0: http://dl.sf.net/celestia/%{name}-%{version}.tar.bz2
+Source0: http://dl.sf.net/celestia/celestia-%{version}.tar.bz2
 Source1: http://www.shatters.net/celestia/files/minormoons.ssc
 Source2: http://www.shatters.net/celestia/files/numberedmoons.ssc
 URL: http://www.shatters.net/celestia/
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: glut, gtkglarea, libpng, libjpeg
 BuildRequires: glut-devel, gtkglarea, gnome-libs-devel
 BuildRequires: libpng-devel, libjpeg-devel

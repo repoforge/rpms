@@ -4,7 +4,7 @@
 
 # Upstream: Dug Song <dugsong@monkey.org>
 
-Summary: Fragrouter is a network intrusion detection evasion toolkit.
+Summary: Fragrouter is a network intrusion detection evasion toolkit
 Name: fragrouter
 Version: 1.6
 Release: 0

@@ -4,7 +4,7 @@
 # Upstream: CamStream Author <camstream@smcc.demon.nl>
 # Dists: rh80
 
-Summary: A collection of tools for webcams and other video-devices.
+Summary: collection of tools for webcams and other video-devices
 Name: camstream
 Version: 0.26.2
 Release: 0

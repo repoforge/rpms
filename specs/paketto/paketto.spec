@@ -5,7 +5,7 @@
 
 %define rversion 2.00pre3
 
-Summary: Unusual TCP/IP testing tools.
+Summary: Unusual TCP/IP testing tools
 Name: paketto
 Version: 2.00
 Release: 0.pre3
@@ -35,7 +35,7 @@ This package includes:
 and	phentropy (plots a large data source onto a 3D matrix)
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

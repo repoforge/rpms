@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: MySQL Control Center to administer MySQL databases.
+Summary: MySQL Control Center to administer MySQL databases
 Name: mysqlcc
 Version: 0.9.4
 Release: 0

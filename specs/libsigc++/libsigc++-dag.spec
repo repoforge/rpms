@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: Typesafe Signal Framework for C++.
+Summary: Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
 Release: 3
@@ -33,7 +33,7 @@ by other C++ callback libraries. Libsigc++ is licensed under the GNU
 LGPL.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

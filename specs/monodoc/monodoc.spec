@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: C# documentation browser.
+Summary: C# documentation browser
 Name: monodoc
 Version: 0.11
 Release: 0

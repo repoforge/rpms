@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Heartbeat subsystem for High-Availability Linux.
+Summary: Heartbeat subsystem for High-Availability Linux
 Name: heartbeat
 Version: 1.0.2
 Release: 0

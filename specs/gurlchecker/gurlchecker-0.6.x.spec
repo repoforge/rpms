@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Emmanuel Saracco <esaracco@noos.fr>
 
-Summary: Graphical link validity checker.
+Summary: Graphical link validity checker
 Name: gurlchecker
 Version: 0.6.6
 Release: 0

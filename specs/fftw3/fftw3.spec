@@ -4,7 +4,7 @@
 
 %define rname fftw
 
-Summary: Fast Fourier Transform library.
+Summary: Fast Fourier Transform library
 Name: fftw3
 Version: 3.0.1
 Release: 0
@@ -28,7 +28,7 @@ performed on on a variety of platforms, show that FFTW's performance is
 typically superior to that of other publicly available FFT software.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

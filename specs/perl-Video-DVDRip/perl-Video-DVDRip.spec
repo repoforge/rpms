@@ -6,7 +6,7 @@
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 %define __find_provides /usr/lib/rpm/find-provides.perl
 
-Summary: DVD ripping graphical tool using transcode.
+Summary: DVD ripping graphical tool using transcode
 Name: perl-Video-DVDRip
 Version: 0.50.16
 Release: 3

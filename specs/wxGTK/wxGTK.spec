@@ -24,7 +24,7 @@ Motif/LessTif, MS Windows, Mac) from the same source code.
 
 
 %package devel
-Summary: Develoment files of the GTK port of the wxWindows library.
+Summary: Develoment files of the GTK port of the wxWindows library
 Group: Development/Libraries
 Requires: %{name} = %{version}, gtk+-devel, pkgconfig
 Requires: libpng-devel, libjpeg-devel, libtiff-devel
@@ -34,7 +34,7 @@ Header files for wxGTK, the GTK port of the wxWindows library.
 
 
 %package gl
-Summary: OpenGL add-on of the the GTK port of the wxWindows library.
+Summary: OpenGL add-on of the the GTK port of the wxWindows library
 Group: System Environment/Libraries
 Requires: %{name} = %{version}
 
@@ -43,7 +43,7 @@ OpenGL add-on library for wxGTK, the GTK port of the wxWindows library.
 
 
 %package xrc
-Summary: The XML-based resource system for the wxWindows library.
+Summary: The XML-based resource system for the wxWindows library
 Group: System Environment/Libraries
 Requires: %{name} = %{version}
 
@@ -54,7 +54,7 @@ text files and loaded into the application at run-time.
 
 
 %package stc
-Summary: Styled text control add-on for the wxWindows library.
+Summary: Styled text control add-on for the wxWindows library
 Group: System Environment/Libraries
 Requires: %{name} = %{version}
 

@@ -5,7 +5,7 @@
 
 %define plugindir %(xmms-config --general-plugin-dir)
 
-Summary: General plugin for using xmms as an alarm clock.
+Summary: General plugin for using xmms as an alarm clock
 Name: xmms-alarm
 Version: 0.3.4
 Release: 1

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Explore mathematical concepts with interactive geometry.
+Summary: Explore mathematical concepts with interactive geometry
 Name: kig
 Version: 0.6.0
 Release: 4

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: C++ bindings for the ORBit Corba ORB.
+Summary: C++ bindings for the ORBit Corba ORB
 Name: orbitcpp
 Version: 0.30
 Release: 0
@@ -40,7 +40,7 @@ Secondary Objectives
    calls (i.e. no on-the-wire marshalling) for maximum speed.
 
 %package devel
-Summary: C++ bindings for the ORBit Corba ORB.
+Summary: C++ bindings for the ORBit Corba ORB
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

@@ -5,7 +5,7 @@
 
 %define rname egenix-mx-base
 
-Summary: mx-base libraries for Python.
+Summary: mx-base libraries for Python
 Name: python-mx-base
 Version: 2.0.4
 Release: 0

@@ -7,7 +7,7 @@
 
 %define _datadir %{_libdir}
 
-Summary: SOCKS4 and SOCKS5 compliant SOCKS server.
+Summary: SOCKS4 and SOCKS5 compliant SOCKS server
 Name: antinat
 Version: 0.70
 Release: 0
@@ -31,7 +31,7 @@ Requires: libds >= 1.2.0
 A SOCKS server for SOCKS v4 and SOCKS v5.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

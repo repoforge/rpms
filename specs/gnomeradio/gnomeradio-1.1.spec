@@ -4,7 +4,7 @@
 
 # Dists: rh73
 
-Summary: A FM-Tuner program for GNOME.
+Summary: FM-Tuner program for GNOME
 Name: gnomeradio
 Version: 1.1
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname GD
 
-Summary: GD Perl interface to the GD Graphics Library.
+Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
 Version: 2.11
 Release: 0

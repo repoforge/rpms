@@ -4,7 +4,7 @@
 
 %define rname XML-SAX-PurePerl
 
-Summary: XML-SAX-PurePerl Perl module.
+Summary: XML-SAX-PurePerl Perl module
 Name: perl-XML-SAX-PurePerl
 Version: 0.80
 Release: 0

@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: PoEdit is a cross-platform gettext catalogs (.po files) editor.
+Summary: PoEdit is a cross-platform gettext catalogs (.po files) editor
 Summary(nl): PoEdit is een cross-platform gettext catalogs (.po bestanden) editor.
 Name: poedit
 Version: 1.2.5

@@ -4,7 +4,7 @@
 
 # Upstream: Glynn Foster <glynn.foster@sun.com>
 
-Summary: Display GNOME dialogs from the command line.
+Summary: Display GNOME dialogs from the command line
 Name: zenity
 Version: 1.7
 Release: 0

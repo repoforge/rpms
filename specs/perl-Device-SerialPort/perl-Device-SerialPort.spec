@@ -4,7 +4,7 @@
 
 %define rname Device-SerialPort
 
-Summary: Device-SerialPort - Linux/POSIX emulation of Win32::SerialPort functions.
+Summary: Device-SerialPort - Linux/POSIX emulation of Win32::SerialPort functions
 Name: perl-Device-SerialPort
 Version: 1
 Release: 1

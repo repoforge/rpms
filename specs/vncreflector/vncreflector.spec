@@ -4,7 +4,7 @@
 
 %define rname vnc_reflector
 
-Summary: A VNC server which acts as a proxy for a number of VNC clients.
+Summary: VNC server which acts as a proxy for a number of VNC clients
 Name: vncreflector
 Version: 1.2.4
 Release: 0

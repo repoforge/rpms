@@ -5,7 +5,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: IP Subnet Calculator.
+Summary: IP Subnet Calculator
 Name: ipsc
 Version: 0.4.3
 Release: 1

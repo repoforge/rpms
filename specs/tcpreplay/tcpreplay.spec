@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <tcpreplay-users@lists.sourceforge.net>
 
-Summary: Replay captured network traffic.
+Summary: Replay captured network traffic
 Name: tcpreplay
 Version: 2.0.3
 Release: 1

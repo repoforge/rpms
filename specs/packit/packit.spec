@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Network injection and capturing tool.
+Summary: Network injection and capturing tool
 Name: packit
 Version: 0.7.1
 Release: 0

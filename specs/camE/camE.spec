@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A rewrite of the xawtv webcam app, which adds imlib2 support.
+Summary: rewrite of the xawtv webcam app, which adds imlib2 support
 Name: camE
 Version: 1.7
 Release: 2

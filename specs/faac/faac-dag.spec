@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: Reference encoder and encoding library for MPEG2/4 AAC.
+Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.23.1
 Release: 0
@@ -20,7 +20,7 @@ COMPLEXITY object types and MAIN and LOW MPEG-2 object types. It also supports
 multichannel and gapless encoding.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

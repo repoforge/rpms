@@ -4,7 +4,7 @@
 
 %define rname Jcode
 
-Summary: Jcode (Japanese Charset Handler) module for perl.
+Summary: Jcode (Japanese Charset Handler) module for perl
 Name: perl-Jcode
 Version: 0.83
 Release: 0

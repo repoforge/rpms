@@ -3,7 +3,7 @@
 
 #$Id$
 
-Summary: A flexible, stable and highly-configurable FTP Server.
+Summary: flexible, stable and highly-configurable FTP Server
 Name: proftpd
 Version: 1.2.9
 Release: 6%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}

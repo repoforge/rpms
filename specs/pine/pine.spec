@@ -12,7 +12,7 @@
 %{?rh62:%define krb5inc %{_usr}/kerberos/include}
 %{?rh62:%define krb5lib %{_usr}/kerberos/%{_lib}}
 
-Summary: A commonly used, MIME compliant mail and news reader.
+Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
 Version: 4.58
 Release: 0
@@ -23,7 +23,7 @@ URL: http://www.washington.edu/pine/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: ftp://ftp.cac.washington.edu/pine/%{name}%{version}.tar.bz2
+Source0: ftp://ftp.cac.washington.edu/pine/pine%{version}.tar.bz2
 Source1: http://www.megaloman.com/~hany/_data/pinepgp/pinepgp-%{pgpver}.tar.gz
 Source2: pine.conf
 Source3: pine-spellcheck

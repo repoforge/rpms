@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: An advanced calculator.
+Summary: Advanced calculator
 Name: genius
 Version: 0.5.6
 Release: 0
@@ -13,9 +13,8 @@ URL: http://www.5z.com/jirka/genius.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.5z.com/pub/genius/%{name}-%{version}.tar.gz
+Source: http://ftp.5z.com/pub/genius/genius-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel, vte-devel, libgnomeui-devel >= 2.0
 BuildRequires: gtksourceview-devel >= 0.3, libglade2-devel >= 1.99

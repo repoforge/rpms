@@ -4,7 +4,7 @@
 
 # Upstream: <lft-bugs@mainnerve.com>
 
-Summary: Alternative traceroute tool for network (reverse) engineers.
+Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
 Version: 2.2
 Release: 0

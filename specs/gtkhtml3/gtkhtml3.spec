@@ -4,7 +4,7 @@
 
 %define rname gtkhtml
 
-Summary: The Gtk+ HTML viewing widget version 3.
+Summary: The Gtk+ HTML viewing widget version 3
 Name: gtkhtml3
 Version: 3.0.8
 Release: 0
@@ -29,7 +29,7 @@ and standards compilant library for displaying
 html pages.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

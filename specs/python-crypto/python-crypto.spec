@@ -6,7 +6,7 @@
 %define rname pycrypto
 %define rversion 1.9a6
 
-Summary: Collection of cryptographic algorithms and protocols for python.
+Summary: Collection of cryptographic algorithms and protocols for python
 Name: python-crypto
 Version: 1.9
 Release: 0.a6

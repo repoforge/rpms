@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A versatile Integrated Development Environment (IDE) for C and C++.
+Summary: versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
 Version: 1.2.1
 Release: 1

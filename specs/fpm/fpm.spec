@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Figaro's password manager.
+Summary: Figaro's password manager
 Name: fpm
 Version: 0.59
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rversion 1.0
 
-Summary: 68k Macintosh emulator.
+Summary: 68k Macintosh emulator
 Name: BasiliskII
 Version: 0.9.20020115
 Release: 0

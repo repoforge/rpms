@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: <f-spot-list@gnome.org>
 
-Summary: Personal photo management application.
+Summary: Personal photo management application
 Name: f-spot
 Version: 0.0.1
 Release: 1

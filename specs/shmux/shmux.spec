@@ -6,7 +6,7 @@
 
 %define rversion 0.11a
 
-Summary: Program for executing the same command on many hosts in parallel.
+Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
 Version: 0.11
 Release: 0.a

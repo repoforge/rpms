@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: GNOME security camera.
+Summary: GNOME security camera
 Name: gspy
 Version: 0.1.7
 Release: 0

@@ -4,7 +4,7 @@
 
 %define rname dd_rescue
 
-Summary: Fault tolerant "dd" utility for rescueing data from bad media.
+Summary: Fault tolerant "dd" utility for rescueing data from bad media
 Name: ddrescue
 Version: 1.03
 Release: 0

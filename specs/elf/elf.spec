@@ -4,7 +4,7 @@
 
 %define rversion 0.5.4p1
 
-Summary: A simple ELF header analyzer.
+Summary: Simple ELF header analyzer
 Name: elf
 Version: 0.5.4
 Release: 0.p1
@@ -15,9 +15,8 @@ URL: http://www.kerneled.com/projects/elf/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.kerneled.com/projects/elf/%{name}-%{rversion}.tar.bz2
+Source: http://www.kerneled.com/projects/elf/elf-%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 #BuildRequires: 
 

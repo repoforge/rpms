@@ -1,6 +1,6 @@
 # Authority: freshrpms
 
-Summary: Fast Fourier Transform library.
+Summary: Fast Fourier Transform library
 Name: fftw
 Version: 2.1.5
 Release: 2
@@ -24,7 +24,7 @@ performed on on a variety of platforms, show that FFTW's performance is
 typically superior to that of other publicly available FFT software.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

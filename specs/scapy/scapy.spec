@@ -4,7 +4,7 @@
 
 # Upstream: Philippe Biondi <biondi@cartel-securite.fr>
 
-Summary: An interactive packet manipulation tool and network scanner.
+Summary: Interactive packet manipulation tool and network scanner
 Name: scapy
 Version: 0.9.14
 Release: 0
@@ -15,9 +15,8 @@ URL: http://www.cartel-securite.fr/pbiondi/scapy.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cartel-securite.fr/pbiondi/python/%{name}-%{version}.tgz
+Source: http://www.cartel-securite.fr/pbiondi/python/scapy-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 Requires: python >= 2.2, nmap

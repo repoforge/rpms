@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Gerald Teschl <Gerald.Teschl@univie.ac.at>
 
-Summary: AutoUpdate, a simple perl script to keep your system up2date.
+Summary: AutoUpdate, a simple perl script to keep your system up2date
 Name: autoupdate
 Version: 5.3
 Release: 0

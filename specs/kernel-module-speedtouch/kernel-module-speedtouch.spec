@@ -22,7 +22,7 @@
 #define modules speedtouch.o
 %define modules speedtch.o
 
-Summary: Linux SpeedTouch USB ADSL Modem drivers.
+Summary: Linux SpeedTouch USB ADSL Modem drivers
 Name: kernel-module-speedtouch
 Version: 1.7
 Release: %{rrelease}_%{kversion}_%{krelease}
@@ -51,7 +51,7 @@ These drivers are built for kernel %{kversion}-%{krelease}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-speedtouch
-Summary: Linux SpeedTouch USB ADSL Modem drivers for SMP.
+Summary: Linux SpeedTouch USB ADSL Modem drivers for SMP
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp

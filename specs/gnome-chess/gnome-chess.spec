@@ -5,7 +5,7 @@
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
-Summary: GNOME Chess game.
+Summary: GNOME Chess game
 Name: gnome-chess
 Version: 0.3.3
 Release: 0

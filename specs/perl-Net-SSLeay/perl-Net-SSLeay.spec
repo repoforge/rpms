@@ -4,7 +4,7 @@
 
 %define rname Net_SSLeay.pm
 
-Summary: Net-SSLeay module for perl.
+Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
 Version: 1.23
 Release: 0

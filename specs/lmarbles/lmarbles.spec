@@ -3,14 +3,14 @@
 
 %define desktop_vendor freshrpms
 
-Summary: An Atomix clone for Linux that uses the SDL
+Summary: Atomix clone for Linux that uses the SDL
 Name: lmarbles
 Version: 1.0.6
 Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://www.lgames.org/
-Source: http://dl.sf.net/lgames/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/lgames/lmarbles-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.1.4, SDL_mixer
 BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils

@@ -7,7 +7,7 @@
 %define rname lice
 %define rversion 420pre7
 
-Summary: LiCe IRC scripts for epic.
+Summary: LiCe IRC scripts for epic
 Name: epic-lice
 Version: 4.2.0
 Release: 0.pre7

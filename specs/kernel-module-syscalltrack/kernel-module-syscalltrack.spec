@@ -18,7 +18,7 @@
 %define modules_orig module/rules/sct_rules.o module/hijack/sct_hijack.o
 %define modules sct_rules.o sct_hijack.o
 
-Summary: Track invocations of system calls across your Linux system.
+Summary: Track invocations of system calls across your Linux system
 Name: syscalltrack
 Version: 0.82
 Release: 2
@@ -47,7 +47,7 @@ find who is the parent process of that process, etc.). You could even kill the
 process, if you were feeling particularly sadistic.
 
 %package -n kernel-module-%{name}
-Summary: Kernel modules for %{name}.
+Summary: Kernel modules for %{name}
 Group: System Environment/Kernel
 Release: %{release}_%{kversion}_%{krelease}
 

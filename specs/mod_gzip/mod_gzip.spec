@@ -8,7 +8,7 @@
 %define aversion %(rpm -q apache-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 %define rversion 1.3.26.1a
 
-Summary: Gzip compression module for apache.
+Summary: Gzip compression module for apache
 Name: mod_gzip
 Version: 1.3.26
 Release: 0.1a

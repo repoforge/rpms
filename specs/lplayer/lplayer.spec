@@ -4,7 +4,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A playlist manager for XMMS with voting support.
+Summary: Playlist manager for XMMS with voting support
 Name: lplayer
 Version: 0.99.1
 Release: 0
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/lplayer/lplayer-%{version}_src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: tmake, xmms-devel, qt, qt-devel >= 3.1
 

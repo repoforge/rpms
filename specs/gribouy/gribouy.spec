@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A GNOME Type1 font editor.
+Summary: Graphical Type1 font editor
 Name: gribouy
 Version: 0.0.8
 Release: 0
@@ -13,7 +13,7 @@ URL: http://www.nongnu.org/gribouy/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/gribouy/unstable.pkg/0.0/%{name}-%{version}.tar.gz
+Source: http://savannah.nongnu.org/download/gribouy/unstable.pkg/0.0/gribouy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -28,7 +28,7 @@ Gribouy is a GNOME Type1 font editor.
 Name=Gribouy Font Editor
 Comment=A Type1 font editor
 Icon=gribouy.png
-Exec=%{name}
+Exec=gribouy
 Terminal=false
 Type=Application
 Categories=Graphics;Application;

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Monitor the progress of data through a pipe.
+Summary: Monitor the progress of data through a pipe
 Name: pv
 Version: 0.7.0
 Release: 0

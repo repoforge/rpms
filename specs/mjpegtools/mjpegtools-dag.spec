@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: Tools for recording, editing, playing and encoding mpeg video.
+Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.1
 Release: 1
@@ -28,7 +28,7 @@ hardware. With the rest of the tools, this video can be edited and
 encoded into mpeg1/2 or divx video.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

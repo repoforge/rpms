@@ -8,7 +8,7 @@
 %define rname snackAmp
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: Versatile music player.
+Summary: Versatile music player
 Name: snackamp
 Version: 2.2
 Release: 4.fdw

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: A WYSIWYG HTML Editor for Gnome.
+Summary: WYSIWYG HTML Editor for Gnome
 Name: peacock
 Version: 1.9.1
 Release: 0

@@ -5,7 +5,7 @@
 
 %define plugindir %(xmms-config --general-plugin-dir)
 
-Summary: A docklet for XMMS
+Summary: docklet for XMMS
 Name: xmms-status-plugin
 Version: 1.0
 Release: 0

@@ -5,7 +5,7 @@
 
 %define rversion v2.2
 
-Summary: Snort log analyzer.
+Summary: Snort log analyzer
 Name: snortalog
 Version: 2.2.0
 Release: 1

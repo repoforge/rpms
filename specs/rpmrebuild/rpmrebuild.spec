@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Build new RPM packages from an old installed package.
+Summary: Build new RPM packages from an old installed package
 Name: rpmrebuild
 Version: 1.4.6
 Release: 1

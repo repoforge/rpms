@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Ross Burton <ross@burtonini.com>
 
-Summary: Clean and lean CD ripper.
+Summary: Clean and lean CD ripper
 Name: sound-juicer
 Version: 0.5.10.1
 Release: 0

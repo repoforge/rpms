@@ -7,7 +7,7 @@
 %define	_root_sbindir	/sbin
 %define	_root_libdir	/%{_lib}
 
-Summary: Utilities for managing the second extended (ext2) filesystem.
+Summary: Utilities for managing the second extended (ext2) filesystem
 Name: e2fsprogs
 Version: 1.34
 Release: 1
@@ -43,7 +43,7 @@ You should install the e2fsprogs package if you need to manage the
 performance of an ext2 filesystem.
 
 %package devel
-Summary: Ext2 filesystem-specific static libraries and headers.
+Summary: Ext2 filesystem-specific static libraries and headers
 Group: Development/Libraries
 Requires: e2fsprogs = %{version}
 Prereq: /sbin/install-info

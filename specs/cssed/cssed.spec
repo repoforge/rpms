@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A CSS stylesheets editor.
+Summary: CSS stylesheets editor
 Name: cssed
 Version: 0.1.2pre
 Release: 1

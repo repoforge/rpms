@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Dag Lem <rpcmgr@nimrod.no>
 
-Summary: A DVD RPC (Region Playback Control) tool.
+Summary: DVD RPC (Region Playback Control) tool
 Name: rpcmgr
 Version: 1.2
 Release: 0
@@ -18,9 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://perso.club-internet.fr/farzeno/dvds/rpcmgr11.c
 Patch: http://perso.club-internet.fr/farzeno/dvds/rpcmgr12.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 A DVD RPC (Region Playback Control) tool.

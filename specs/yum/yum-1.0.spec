@@ -15,7 +15,7 @@
 # Still needed with some old releases
 %define __libtoolize :
 
-Summary: YellowDog Updater Modified, an rpm package management utility.
+Summary: YellowDog Updater Modified, an rpm package management utility
 Name: yum
 Version: 1.0.3
 Release: 3%{?date:.%{date}}.%{distro}

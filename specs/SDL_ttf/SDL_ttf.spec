@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Simple DirectMedia Layer - Sample TrueType Font Library.
+Summary: Simple DirectMedia Layer - Sample TrueType Font Library
 Name: SDL_ttf
 Version: 2.0.6
 Release: 0
@@ -24,7 +24,7 @@ This library allows you to use TrueType fonts to render text in SDL
 applications.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

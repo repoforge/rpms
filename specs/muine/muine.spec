@@ -3,7 +3,7 @@
 # Authority: dag
 ##Soapbox: 0
 
-Summary: Simple music player.
+Summary: Simple music player
 Name: muine
 Version: 0.5.0
 Release: 0

@@ -2,7 +2,7 @@
 
 %define rname gtkmm
 
-Summary: A C++ interface for GTK2 (a GUI library for X).
+Summary: C++ interface for GTK2 (a GUI library for X)
 Name: gtkmm2
 Version: 2.0.2
 Release: 1
@@ -27,7 +27,7 @@ and a comprehensive set of widget classes that can be freely combined to
 quickly create complex user interfaces.
 
 %package devel
-Summary: Headers for developing programs that will use %{name}.
+Summary: Headers for developing programs that will use %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}, gtk2-devel, glib2-devel, libsigc++-devel
 Requires: atk-devel, pango-devel

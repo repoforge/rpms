@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: newrpms
-Summary: MPEG library for SDL.
+Summary: MPEG library for SDL
 Name: smpeg
 Version: 0.4.4
 Release: 0
@@ -29,7 +29,7 @@ completed the initial work to wed these two projects in order to
 create a general purpose MPEG video/audio player for the Linux OS. 
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

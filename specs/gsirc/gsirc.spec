@@ -4,7 +4,7 @@
 
 # Soapbox: 0
 
-Summary: A lightweight and flexible IRC client for the .NET framework.
+Summary: lightweight and flexible IRC client for the .NET framework
 Name: gsirc
 Version: 0.1.1
 Release: 0

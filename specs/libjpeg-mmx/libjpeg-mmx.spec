@@ -4,7 +4,7 @@
 
 %define rname jpeg-mmx
 
-Summary: Tools for the movtar MJPEG video format.
+Summary: Tools for the movtar MJPEG video format
 Name: libjpeg-mmx
 Version: 0.1.4
 Release: 0

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: Fast Fourier Transform library.
+Summary: Fast Fourier Transform library
 Name: fftw
 Version: 2.1.5
 Release: 3
@@ -22,7 +22,7 @@ typically superior to that of other publicly available FFT software.
 
 
 %package devel
-Summary: Headers, libraries and docs for the FFTW library.
+Summary: Headers, libraries and docs for the FFTW library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 

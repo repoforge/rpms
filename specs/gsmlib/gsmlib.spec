@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: Library to access GSM mobile phones through GSM modems.
+Summary: Library to access GSM mobile phones through GSM modems
 Name: gsmlib
 Version: 1.10
 Release: 0
@@ -31,7 +31,7 @@ Additionally, some simple command line programs are provided to use
 these functionalities.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

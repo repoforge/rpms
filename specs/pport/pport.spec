@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: Utility for accessing the output pins of a parallel port.
+Summary: Utility for accessing the output pins of a parallel port
 Name: pport
 Version: 0.5h
 Release: 1

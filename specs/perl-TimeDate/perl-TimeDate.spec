@@ -4,7 +4,7 @@
 
 %define rname TimeDate
 
-Summary: TimeDate module for perl.
+Summary: TimeDate module for perl
 Name: perl-TimeDate
 Version: 1.16
 Release: 0

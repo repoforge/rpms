@@ -4,7 +4,7 @@
 
 ### FIXME: Add sysv script using sysconfig file.
 
-Summary: A keylogger.
+Summary: Keylogger
 Name: uberkey
 Version: 1.2
 Release: 0
@@ -17,9 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.linuks.mine.nu/uberkey/uberkey-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 A keylogger.

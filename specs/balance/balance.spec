@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: TCP load-balancing proxy server.
+Summary: TCP load-balancing proxy server
 Name: balance
 Version: 3.11
 Release: 0

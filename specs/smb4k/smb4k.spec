@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: A SMB (samba) share browser for KDE.
+Summary: SMB (samba) share browser for KDE
 Name: smb4k
 Version: 0.3.1
 Release: 1

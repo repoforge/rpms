@@ -4,7 +4,7 @@
 
 %define rname libgnomeuimm
 
-Summary: C++ wrappers for libgnomeui, for use with gtkmm.
+Summary: C++ wrappers for libgnomeui, for use with gtkmm
 Name: libgnomeuimm2
 Version: 2.0.0
 Release: 0
@@ -27,7 +27,7 @@ BuildRequires: libbonobouimm2 >= 1.3, libglademm2 >= 2.0
 libgnomeuimm provides C++ wrappers for libgnomeui, for use with gtkmm.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

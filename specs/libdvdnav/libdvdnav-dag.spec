@@ -1,5 +1,5 @@
 # Authority: freshrpms
-Summary: DVD menu navigation library.
+Summary: DVD menu navigation library
 Name: libdvdnav
 Version: 0.1.9
 Release: 0
@@ -21,7 +21,7 @@ The libdvdnav library provides support to applications wishing to make use
 of advanced DVD features.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

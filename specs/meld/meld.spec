@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Stephen Kennedy <steve9000@users.sourceforge.net>
 
-Summary: A GNOME visual diff and merge tool.
+Summary: Graphical visual diff and merge tool
 Name: meld
 Version: 0.9.2
 Release: 0
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/meld/meld-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: pygtk2-devel >= 1.99.14, gnome-python2 >= 1.99.14
 BuildRequires: pyorbit-devel >= 1.99

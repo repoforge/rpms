@@ -25,7 +25,7 @@
 %define	ledsver		0.8.1
 %define bgchgver        0.0.5
 
-Summary: Some neat plugins for GKrellM.
+Summary: Some neat plugins for GKrellM
 Name: gkrellm-plugins
 Version: 2.1.12
 Release: 4
@@ -64,7 +64,7 @@ plugins for GKrellM, the GNU Krell Monitor.
 
 
 %package media
-Summary: Multimedia plugins for GKrellM.
+Summary: Multimedia plugins for GKrellM
 Group: Applications/System
 Requires: gkrellm >= 2.1.0, xmms, esound, fftw
 # xmms needs GTK 1
@@ -76,7 +76,7 @@ Krell Monitor : xmms, volume, radio and esd meter.
 
 
 %package misc
-Summary: Amusement and miscellaneous plugins for GKrellM.
+Summary: Amusement and miscellaneous plugins for GKrellM
 Group: Applications/System
 Requires: gkrellm >= 2.1.0
 Requires: perl(LWP::UserAgent)
@@ -88,7 +88,7 @@ gkrellkam, Flynn and background change.
 
 
 %package utils
-Summary: System and network utility plugins for GKrellM.
+Summary: System and network utility plugins for GKrellM
 Group: Applications/System
 Requires: gkrellm >= 2.1.0, ImageMagick
 
@@ -99,7 +99,7 @@ ping utility, x86 cpu speed, screenshot/lock and reminder.
 
 
 #%package snmp
-#Summary: An snmp monitoring plugin for GKrellM.
+#Summary: SNMP monitoring plugin for GKrellM.
 #Group: Applications/System
 #Requires: gkrellm >= 2.1.0, net-snmp
 #BuildRequires: net-snmp-devel

@@ -1,5 +1,5 @@
 # Authority: atrpms
-Summary: Graphical package management program using apt.
+Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.45
 Release: 0

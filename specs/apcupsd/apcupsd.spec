@@ -8,7 +8,7 @@
 
 %define _sbindir /sbin
 
-Summary: APC UPS power control daemon.
+Summary: APC UPS power control daemon
 Name: apcupsd
 Version: 3.10.12
 Release: 1

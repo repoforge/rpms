@@ -7,7 +7,7 @@
 
 %define rname LinNeighborhood
 
-Summary: SMB network neighborhood.
+Summary: SMB network neighborhood
 Name: linneighborhood
 Version: 0.6.5
 Release: 2

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-Summary: This is the ASN.1 library used in GNUTLS.
+Summary: This is the ASN.1 library used in GNUTLS
 Name: libtasn1
 Version: 0.2.5
 Release: 0
@@ -23,7 +23,7 @@ BuildRequires: bison
 This is the ASN.1 library used in GNUTLS.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

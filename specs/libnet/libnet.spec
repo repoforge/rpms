@@ -5,7 +5,7 @@
 %define rname libnet
 %define rversion 1.0.2a
 
-Summary: Routines to help with network packet construction and handling.
+Summary: Routines to help with network packet construction and handling
 #Name: libnet10
 Name: libnet
 Version: 1.0.2

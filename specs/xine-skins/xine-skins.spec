@@ -3,7 +3,7 @@
 
 %define skindir %(rpm -ql xine|grep '/skins$')
 
-Summary: A collection of skins for the Xine video player
+Summary: collection of skins for the Xine video player
 Name: xine-skins
 Version: 1.7
 Release: 1

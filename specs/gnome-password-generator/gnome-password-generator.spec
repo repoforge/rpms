@@ -1,7 +1,7 @@
 # Authority: dag
 # Upstream: Chris Ladd <caladd@particlestorm.net>
 
-Summary: Graphical secure password generator.
+Summary: Graphical secure password generator
 Name: gnome-password-generator
 Version: 1.0
 Release: 1

@@ -9,7 +9,7 @@
 %define rname squidGuard
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
-Summary: Combined filter, redirector and access controller plugin for squid.
+Summary: Combined filter, redirector and access controller plugin for squid
 Name: squidguard
 Version: 1.2.0
 Release: 2

@@ -9,7 +9,7 @@
 
 ### FIXME: Create a proper sysv script for trickled based on the template.
 
-Summary: A portable lightweight userspace bandwidth shaper.
+Summary: portable lightweight userspace bandwidth shaper
 Name: trickle
 Version: 1.06
 Release: 0

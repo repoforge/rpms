@@ -5,7 +5,7 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-Summary: Lua scripting language.
+Summary: Lua scripting language
 Name: lua
 Version: 5.0.2
 Release: 1
@@ -31,7 +31,7 @@ management with garbage collection, making it ideal for configuration,
 scripting, and rapid prototyping.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

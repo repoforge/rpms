@@ -7,7 +7,7 @@
 %{?rhel21:%undefine vfs}
 %{?rh62:%undefine vfs}
 
-Summary: NTFS filesystem libraries and utilities.
+Summary: NTFS filesystem libraries and utilities
 Name: ntfsprogs
 Version: 1.9.0
 Release: 1
@@ -31,7 +31,7 @@ library and utilities such as mkntfs, ntfscat, ntfsls, ntfsresize, and
 ntfsundelete (for a full list of included utilities see man 8 ntfsprogs).
 
 %package -n gnome-vfs2-ntfs
-Summary: NTFS GNOME virtual filesystem module.
+Summary: NTFS GNOME virtual filesystem module
 Group: System Environment/Base
 Requires: %{name} = %{version}-%{release}
 
@@ -40,7 +40,7 @@ This package contains the NTFS GNOME virtual filesystem (VFS) module which
 allows GNOME VFS clients to seamlessly utilize the NTFS library.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 

@@ -4,7 +4,7 @@
 
 %define rversion 0.92.2
 
-Summary: A diagram drawing program.
+Summary: Diagram drawing program
 Name: dia
 Version: 0.92.2
 Release: 1
@@ -16,9 +16,8 @@ URL: http://www.lysator.liu.se/~alla/dia/dia.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}/%{name}-%{rversion}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/GNOME/stable/sources/dia/dia-%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib2-devel >= 2.0.6, gtk2-devel >= 2.0.6, libxml2-devel >= 2.3.9
 BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0, pango-devel >= 1.1.5

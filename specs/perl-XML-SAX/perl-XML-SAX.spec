@@ -4,7 +4,7 @@
 
 %define rname XML-SAX
 
-Summary: XML-SAX Perl module.
+Summary: XML-SAX Perl module
 Name: perl-XML-SAX
 Version: 0.12
 Release: 3

@@ -3,7 +3,7 @@
 # Authority: dag
 # Upstream: Timo Sirainen <tss@iki.fi>
 
-Summary: Dovecot secure IMAP server.
+Summary: Dovecot secure IMAP server
 Name: dovecot
 Version: 0.99.10.4
 Release: 0
