@@ -1,15 +1,18 @@
-# $Id$
-
+# Authority: freshrpms
 Summary: HERMES pixel format conversion library.
 Name: Hermes
 Version: 1.3.3
-Release: 2.fr
+Release: 0
 License: LGPL
 Group: System Environment/Libraries
-Source: http://clanlib.org/download/files/%{name}-%{version}.tar.bz2
 URL: http://clanlib.org/hermes/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: autoconf
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://dark.x.dtu.dk/~mbn/clanlib/download/%{name}-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Prefix: %{_prefix}
 
 %description
 HERMES is a library designed to convert a source buffer with a specified pixel
@@ -25,61 +28,62 @@ as there is no platform specific code but those are supported: DOS, Win32
 (Visual C), Linux, FreeBSD (IRIX, Solaris are on hold at the moment), some BeOS
 support.
 
-
 %package devel
-Summary: Development tools for %{name}.
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description devel
-The %{name}-devel package contains the static libraries and header files
-needed for development with %{name}.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{_smp_mflags}
+%{__make} %{_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
-%clean
-rm -rf %{buildroot}
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
-%defattr(-, root, root)
-%doc AUTHORS COPYING ChangeLog FAQ NEWS README TODO*
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING FAQ NEWS README TODO*
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc docs/api/*.htm docs/api/*.txt
-%{_includedir}/*
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_includedir}/Hermes/
+#exclude %{_libdir}/*.la
 
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.3.3-2.fr
-- Rebuild for Fedora Core 1.
+* Tue Sep 02 2003 Dag Wieers <dag@wieers.com> - 1.3.3-0
+- Taken from Matthias Saou (FreshRPMS) for compatibility.
 
-* Wed Jul  9 2003 Matthias Saou <http://freshrpms.net/>
+* Wed Jul  9 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
 - Update to 1.3.3.
 - Rebuilt for Red Hat Linux 9 & Yellow Dog Linux 3.0.
 - Exclude .la files.
 
-* Thu Oct 24 2002 Matthias Saou <http://freshrpms.net/>
+* Thu Oct 24 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
 - Rebuilt for Red Hat Linux 8.0.
 
-* Fri Feb  8 2002 Matthias Saou <http://freshrpms.net/>
+* Fri Feb  8 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
 - Spec file cleanup s/Copyright/License/ and fixes.
 
 * Thu Jan  4 2001 Tim Powers <timp@redhat.com>

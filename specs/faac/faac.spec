@@ -1,4 +1,4 @@
-# $Id: faac.spec,v 1.1 2004/02/26 13:13:56 thias Exp $
+# $Id$
 
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac

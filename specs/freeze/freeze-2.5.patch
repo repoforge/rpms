@@ -1,0 +1,37 @@
+diff -uNr freeze-2.5.orig/Makefile.in freeze-2.5/Makefile.in
+--- Makefile.in.in	Wed Sep 11 09:54:37 1996
++++ Makefile.in	Wed Sep 11 10:14:28 1996
+@@ -18,7 +18,7 @@
+ default:        prog
+ 
+ # Added the prefix macro, so that it was easier to change installation place.
+-prefix        = /usr/local
++prefix        = /usr
+ DEST          = $(prefix)/bin
+ MANDEST       = $(prefix)/man/man1
+ SEC           = 1
+@@ -101,18 +101,18 @@
+ 
+ $(DEST)/freeze: freeze
+ 		$(INSTALL_PROGRAM) freeze $@
+-		-ln -f $@ $(DEST)/melt
+-		-ln -f $@ $(DEST)/unfreeze
+-		-ln -f $@ $(DEST)/fcat
++		-ln -fs $@ $(DEST)/melt
++		-ln -fs $@ $(DEST)/unfreeze
++		-ln -fs $@ $(DEST)/fcat
+ 
+ $(DEST)/statist: statist
+ 		$(INSTALL_PROGRAM) statist $@
+ 
+ $(MANDEST)/freeze.$(SEC): freeze.1
+ 		$(INSTALL_DATA) $(srcdir)/freeze.1 $@
+-		-ln -f $@ $(MANDEST)/melt.$(SEC)
+-		-ln -f $@ $(MANDEST)/unfreeze.$(SEC)
+-		-ln -f $@ $(MANDEST)/fcat.$(SEC)
++		-ln -fs $@ $(MANDEST)/melt.$(SEC)
++		-ln -fs $@ $(MANDEST)/unfreeze.$(SEC)
++		-ln -fs $@ $(MANDEST)/fcat.$(SEC)
+ # This is much better for places which keep preformated manpages.
+ #		echo ".so man1/freeze.$(SEC)" > $(MANDEST)/melt.$(SEC)
+ #		echo ".so man1/freeze.$(SEC)" > $(MANDEST)/unfreeze.$(SEC)

@@ -1,4 +1,4 @@
-# $Id: ffmpeg.spec,v 1.1 2004/02/26 15:44:47 thias Exp $
+# $Id$
 
 #define date   2003-11-07
 #define sqdate %(echo %{date} | tr -d '-')

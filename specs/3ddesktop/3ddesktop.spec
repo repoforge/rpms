@@ -1,4 +1,4 @@
-# $Id: 3ddesktop.spec,v 1.1 2004/03/01 10:03:25 driesve Exp $
+# $Id$
 
 # Authority: dries
 

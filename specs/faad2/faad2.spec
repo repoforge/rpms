@@ -1,4 +1,4 @@
-# $Id: faad2.spec,v 1.1 2004/02/26 13:05:25 thias Exp $
+# $Id$
 
 %define xmmsinputdir %(xmms-config --input-plugin-dir)
 #define prever       rc3
