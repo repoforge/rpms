@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: libgnomeui-devel >= 2.0
+BuildRequires: desktop-file-utils
 Requires: transcode >= 0.6.7, xawtv
 
 %description
