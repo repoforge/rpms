@@ -4,7 +4,7 @@
 
 Summary: Graphical secure password generator
 Name: gnome-password-generator
-Version: 1.3
+Version: 1.4
 Release: 1
 License: GPL
 Group: Applications/System
@@ -43,10 +43,13 @@ passwords of a specified length.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/*
-%{_datadir}/pixmaps/*.svg
+%{_datadir}/pixmaps/*.png
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updated to release 1.3.
 
