@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### Skip this package for dag's repo
+# Tag: test
+
 # Which distro to make the default configuration for, defaults to 'rh'
 %{?_with_yellowdog: %{expand: %%define distro yd}}
 %{?_with_redhat: %{expand: %%define distro rh}}
@@ -37,7 +40,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Yum is a utility that can check for and automatically download and
-%{__install} updated RPM packages. Dependencies are obtained and downloaded 
+install updated RPM packages. Dependencies are obtained and downloaded 
 automatically prompting the user as necessary.
 
 Available rpmbuild rebuild options :
