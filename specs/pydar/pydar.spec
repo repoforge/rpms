@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Not finished, not to be released!
 
 %prep
-%setup -q pydar
+%setup -n pydar
 
 %build
 %{__make} %{?_smp_mflags}
