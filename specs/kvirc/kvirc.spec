@@ -27,7 +27,7 @@
 Summary: An IRC client
 Name: kvirc
 Version: 3.2.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.kvirc.net/
@@ -79,6 +79,7 @@ source %{_sysconfdir}/profile.d/qt.sh
   mimelnkdir=%{buildroot}/usr/share/mimelnk/text \
   kdeservicesdir=%{buildroot}/usr/share/services
 echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/applications/kvirc.desktop
+%{__rm} -f %{buildroot}%{_datadir}/services/irc.protocol
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -96,7 +97,7 @@ echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/
 %{_datadir}/kvirc
 %{_datadir}/icons/hicolor/*/apps/kvirc.png
 %{_datadir}/icons/hicolor/*/mimetypes/kvs.png
-%{_mandir}/kvirc.*
+%{_mandir}/man1/kvirc.*
 %{_datadir}/mimelnk/text/x-kvs.desktop
 %{_datadir}/services/*.protocol
 %{_bindir}/kvi_run_netscape.sh
@@ -107,6 +108,9 @@ echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/
 %{_includedir}/kvirc
 
 %changelog
+* Sun Apr 03 2005 Dries Verachtert <dries@ulyssis.org> 3.2.0-2
+- Avoid conflict with kdenetwork (thanks to Spetiam).
+
 * Sun Mar 06 2005 Dries Verachtert <dries@ulyssis.org> 3.2.0-1
 - Update to version 3.2.0.
 
