@@ -6,7 +6,7 @@
 Summary: X MultiMedia System input plugin to play speex files
 Name: xmms-speex
 Version: 0.9.1
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://jzb.rapanden.dk/projects/speex-xmms
@@ -27,7 +27,7 @@ X MultiMedia System input plugin to play speex files.
 
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC -Wall"
 
 
 %install
@@ -46,6 +46,9 @@ X MultiMedia System input plugin to play speex files.
 
 
 %changelog
+* Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-3
+- Fix for x86_64.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-2
 - Rebuild for Fedora Core 2.
 
