@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: XFree86-devel, tcl, tk, freetype-devel >= 2.0
-BuildRequires: libjpeg-devel, libpng-devel, zlib-devel
+BuildRequires: libjpeg-devel, libpng-devel, zlib-devel, gcc-c++
 # needs version 2.0.29 of gdlib but fc3 contains 2.0.28
 # BuildRequires: gd-progs, gd-devel
 
