@@ -1,11 +1,13 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: 
+# Upstream: moagg-devel@lists.sourceforge.net
+# Screenshot: http://moagg.sourceforge.net/screenshots/blackhole.png
+# ScreenshotURL: http://moagg.sourceforge.net/screenshots.php
 
 Summary: Mother of all Gravity Games
 Name: moagg
-Version: 0.10
+Version: 0.11
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -17,12 +19,10 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/moagg/moagg-%{version}-src.tar.bz2
 Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel, paragui-devel, freetype-devel, gcc-c++, SDL_image-devel, zlib-devel
-BuildRequires: desktop-file-utils
+BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel 
+BuildRequires: paragui-devel, freetype-devel, gcc-c++, SDL_image-devel
+BuildRequires: desktop-file-utils, zlib-devel
 Requires: SDL, SDL_gfx, SDL_mixer, paragui, freetype, SDL_image, zlib
-
-# Screenshot: http://moagg.sourceforge.net/screenshots/blackhole.png
-# ScreenshotURL: http://moagg.sourceforge.net/screenshots.php
 
 %description
 Moagg combines several game types of other genres like races, search and
@@ -68,13 +68,16 @@ desktop-file-install --vendor net                  \
 %defattr(-,root,root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO doc moagg.dxy 
 %{_bindir}/moagg
-%{_datadir}/games/moagg
+%{_datadir}/moagg
 %{_datadir}/applications/*.desktop
 %{_mandir}/man6/moagg*
 
 %changelog
+* Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> 0.11-1
+- Update to version 0.11.
+
 * Fri Jun 4 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1
-- update to 0.10
+- Update to version 0.10.
 
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 0.8-1
-- Initial package
+- Initial package.
