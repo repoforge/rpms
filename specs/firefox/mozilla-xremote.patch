@@ -1,0 +1,1416 @@
+? toolkit/components/build/dependentLibs.h
+? toolkit/components/passwordmgr/resources/content/contents.rdf
+? toolkit/components/passwordmgr/resources/locale/contents.rdf
+? toolkit/content/contents-platform.rdf
+? toolkit/content/contents-region.rdf
+? toolkit/content/contents.rdf
+? toolkit/locale/contents-platform.rdf
+? toolkit/locale/contents-region.rdf
+? toolkit/locale/contents.rdf
+? toolkit/mozapps/contents-content.rdf
+? toolkit/mozapps/contents-locale.rdf
+? toolkit/mozapps/downloads/src/nsHelperAppDlg.js
+? widget/src/gtk2/dependentLibs.h
+? widget/src/xremoteclient/dependentLibs.h
+? xpfe/appshell/src/dependentLibs.h
+? xpfe/components/build/dependentLibs.h
+? xpfe/components/find/src/dependentLibs.h
+? xpfe/global/buildconfig.html
+Index: configure.in
+===================================================================
+RCS file: /cvsroot/mozilla/configure.in,v
+retrieving revision 1.1328
+diff -u -r1.1328 configure.in
+--- configure.in	21 Mar 2004 02:31:17 -0000	1.1328
++++ configure.in	23 Mar 2004 19:27:10 -0000
+@@ -3399,6 +3399,7 @@
+ 
+ AC_SUBST(MOZ_STANDALONE_COMPOSER)
+ AC_SUBST(MOZ_XUL_APP)
++AC_DEFINE_UNQUOTED(MOZ_APP_NAME, "$MOZ_APP_NAME")
+ 
+ dnl ========================================================
+ dnl = FreeType2
+Index: toolkit/xre/nsAppRunner.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/toolkit/xre/nsAppRunner.cpp,v
+retrieving revision 1.25
+diff -u -r1.25 nsAppRunner.cpp
+--- toolkit/xre/nsAppRunner.cpp	4 Mar 2004 22:59:50 -0000	1.25
++++ toolkit/xre/nsAppRunner.cpp	23 Mar 2004 19:27:11 -0000
+@@ -53,6 +53,7 @@
+ #include "plevent.h"
+ #include "prmem.h"
+ #include "prnetdb.h"
++#include "prenv.h"
+ 
+ #include "nsCOMPtr.h"
+ #include "nsIAppShell.h"
+@@ -1259,7 +1260,7 @@
+   nsCOMPtr<nsIXRemoteService> remoteService;
+   remoteService = do_GetService(NS_IXREMOTESERVICE_CONTRACTID);
+   if (remoteService)
+-    remoteService->Startup();
++    remoteService->Startup(MOZ_APP_NAME);
+ #endif /* MOZ_ENABLE_XREMOTE */
+ 
+   // remove the nativeApp as an XPCOM autoreg observer
+@@ -1419,43 +1420,104 @@
+ static int HandleRemoteArguments(int argc, char* argv[], PRBool *aArgUsed)
+ {
+   int i = 0;
++
++  const char *remote = 0;
++  const char *profile = 0;
++  const char *program = 0;
++  const char *username = 0;
++
+   for (i=1; i < argc; i++) {
+     if (PL_strcasecmp(argv[i], "-remote") == 0) {
+       // someone used a -remote flag
+       *aArgUsed = PR_TRUE;
+       // check to make sure there's another arg
+       if (argc-1 == i) {
+-        PR_fprintf(PR_STDERR, "-remote requires an argument\n");
++        PR_fprintf(PR_STDERR, "Error: -remote requires an argument\n");
+         return 1;
+       }
+-      // try to get the X remote client
+-      nsCOMPtr<nsIXRemoteClient> client (do_CreateInstance(NS_XREMOTECLIENT_CONTRACTID));
+-      if (!client)
+-        return 1;
+-      nsresult rv;
+-      // try to init - connects to the X server and stuff
+-      rv = client->Init();
+-      if (NS_FAILED(rv)) {
+-        PR_fprintf(PR_STDERR, "Failed to connect to X server.\n");
+-        return 1;
++
++      // Get the remote argument and advance past it.
++      remote = argv[++i];
++    }
++    else if (PL_strcasecmp(argv[i], "-p") == 0) {
++      // someone used the -p <profile> flag - save the contents
++      if (argc-1 == i) {
++        continue;
+       }
+-      PRBool success = PR_FALSE;
+-      rv = client->SendCommand(argv[i+1], &success);
+-      // did the command fail?
+-      if (NS_FAILED(rv)) {
+-        PR_fprintf(PR_STDERR, "Failed to send command.\n");
+-        return 1;
++
++      // Get the argument
++      profile = argv[++i];
++    }
++    else if (PL_strcasecmp(argv[i], "-a") == 0) {
++      // someone used the -a application flag - save the contents
++      if (argc-1 == i) {
++        continue;
+       }
+-      // was there a window not running?
+-      if (!success) {
+-        PR_fprintf(PR_STDERR, "No running window found.\n");
+-        return 2;
++
++      // Get the argument
++      program = argv[++i];
++    }
++    else if (PL_strcasecmp(argv[i], "-u") == 0) {
++      // someone used the -u <username> flag - save the contents
++      if (argc-1 == i) {
++        continue;
+       }
+-      client->Shutdown();
+-      // success
+-      return 0;
++
++      // Get the argument
++      username = argv[++i];
++    }
++  }
++
++  // try to get the X remote client
++  nsCOMPtr<nsIXRemoteClient> client (do_CreateInstance(NS_XREMOTECLIENT_CONTRACTID));
++  if (!client)
++    return 1;
++
++  nsresult rv;
++  // try to init - connects to the X server and stuff
++  rv = client->Init();
++  if (NS_FAILED(rv)) {
++    PR_fprintf(PR_STDERR, "Error: Failed to connect to X server.\n");
++    return 1;
++  }
++
++  // Make sure to set a username if possible
++  if (!username) {
++    username = PR_GetEnv("LOGNAME");
++  }
++
++  // Same with the program name
++  if (!program) {
++    program = MOZ_APP_NAME;
++  }
++
++  char *response = NULL;
++  PRBool success = PR_FALSE;
++  rv = client->SendCommand(program, username, profile, remote,
++                           &response, &success);
++
++  // did the command fail?
++  if (NS_FAILED(rv)) {
++    PR_fprintf(PR_STDERR, "Error: Failed to send command: ");
++    if (response) {
++      PR_fprintf(PR_STDERR, "%s\n", response);
++      free(response);
++    }
++    else {
++      PR_fprintf(PR_STDERR, "No response included.\n");
+     }
++
++    return 1;
++  }
++
++  // was there no window running?
++  if (!success) {
++    PR_fprintf(PR_STDERR, "Error: No running window found.\n");
++    return 2;
+   }
++
++  client->Shutdown();
++  // success
+   return 0;
+ }
+ #endif /* XP_UNIX */
+Index: widget/public/nsIXRemoteClient.idl
+===================================================================
+RCS file: /cvsroot/mozilla/widget/public/nsIXRemoteClient.idl,v
+retrieving revision 1.1
+diff -u -r1.1 nsIXRemoteClient.idl
+--- widget/public/nsIXRemoteClient.idl	20 Oct 2000 05:09:06 -0000	1.1
++++ widget/public/nsIXRemoteClient.idl	23 Mar 2004 19:27:11 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: IDL; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this file
+@@ -31,8 +34,34 @@
+   /**
+    * Sends a command to a running instance.  If it returns false then
+    * there is no running instance.
++   *
++   * @param aProgram This is the preferred program that we want to use
++   * for this particular command.
++   *
++   * @param aNoProgramFallback This boolean attribute tells the client
++   * code that if the preferred program isn't found that it should
++   * fail not send the command to another server.
++   *
++   * @param aUsername This allows someone to only talk to an instance
++   * of the server that's running under a particular username.  If
++   * this isn't specified here it's pulled from the LOGNAME
++   * environmental variable if it's set.
++
++   * @param aProfile This allows you to specify a particular server
++   * running under a named profile.  If it is not specified the
++   * profile is not checked.
++
++   * @param aCommand This is the command that is passed to the server.
++   * Please see the additional information located at:
++   * http://www.mozilla.org/unix/remote.html
++   *
++   * @param aResponse If there is a response, it will be here.  This
++   * includes error messages.  The string is allocated using stdlib
++   * string functions, so free it with free().
+   */
+-  boolean sendCommand(in string aCommand);
++  boolean sendCommand(in string aProgram, in string aUsername,
++                      in string aProfile, in string aCommand,
++                      out string aResponse);
+ 
+   /**
+    * Shuts down the client
+Index: widget/public/nsIXRemoteWidgetHelper.h
+===================================================================
+RCS file: /cvsroot/mozilla/widget/public/nsIXRemoteWidgetHelper.h,v
+retrieving revision 1.1
+diff -u -r1.1 nsIXRemoteWidgetHelper.h
+--- widget/public/nsIXRemoteWidgetHelper.h	4 Sep 2001 22:59:39 -0000	1.1
++++ widget/public/nsIXRemoteWidgetHelper.h	23 Mar 2004 19:27:11 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this file
+@@ -32,7 +35,9 @@
+  public:
+   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IXREMOTEWIDGETHELPER_IID)
+ 
+-  NS_IMETHOD EnableXRemoteCommands(nsIWidget *aWidget) = 0;
++  NS_IMETHOD EnableXRemoteCommands(nsIWidget *aWidget,
++                                   const char *aProfile,
++                                   const char *aProgram) = 0;
+ 
+ };
+ 
+Index: widget/src/gtk/nsGtkMozRemoteHelper.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/widget/src/gtk/nsGtkMozRemoteHelper.cpp,v
+retrieving revision 1.33
+diff -u -r1.33 nsGtkMozRemoteHelper.cpp
+--- widget/src/gtk/nsGtkMozRemoteHelper.cpp	8 Jan 2003 22:56:11 -0000	1.33
++++ widget/src/gtk/nsGtkMozRemoteHelper.cpp	23 Mar 2004 19:27:12 -0000
+@@ -35,18 +35,23 @@
+ #define MOZILLA_COMMAND_PROP   "_MOZILLA_COMMAND"
+ #define MOZILLA_RESPONSE_PROP  "_MOZILLA_RESPONSE"
+ #define MOZILLA_USER_PROP      "_MOZILLA_USER"
++#define MOZILLA_PROFILE_PROP   "_MOZILLA_PROFILE"
++#define MOZILLA_PROGRAM_PROP   "_MOZILLA_PROGRAM"
+ 
+ Atom nsGtkMozRemoteHelper::sMozVersionAtom  = 0;
+ Atom nsGtkMozRemoteHelper::sMozLockAtom     = 0;
+ Atom nsGtkMozRemoteHelper::sMozCommandAtom  = 0;
+ Atom nsGtkMozRemoteHelper::sMozResponseAtom = 0;
+ Atom nsGtkMozRemoteHelper::sMozUserAtom     = 0;
++Atom nsGtkMozRemoteHelper::sMozProfileAtom  = 0;
++Atom nsGtkMozRemoteHelper::sMozProgramAtom  = 0;
+ 
+ // XXX get this dynamically
+ static const char sRemoteVersion[]   = "5.0";
+ 
+ void
+-nsGtkMozRemoteHelper::SetupVersion(GdkWindow *aWindow)
++nsGtkMozRemoteHelper::SetupVersion(GdkWindow *aWindow, const char *aProfile,
++                                   const char *aProgram)
+ {
+   Window window;
+   unsigned char *data = (unsigned char *)sRemoteVersion;
+@@ -68,6 +73,20 @@
+ 		    8, PropModeReplace, data, strlen(logname));
+   }
+ 
++  // set our profile name and program name, if available.
++  if (aProfile) {
++    data = (unsigned char *)aProfile;
++
++    XChangeProperty(GDK_DISPLAY(), window, sMozProfileAtom, XA_STRING,
++                    8, PropModeReplace, data, strlen(aProfile));
++  }
++
++  if (aProgram) {
++    data = (unsigned char *)aProgram;
++
++    XChangeProperty(GDK_DISPLAY(), window, sMozProgramAtom, XA_STRING,
++                    8, PropModeReplace, data, strlen(aProgram));
++  }
+ }
+ 
+ gboolean
+@@ -177,6 +196,10 @@
+ 				   False);
+   if (!sMozUserAtom)
+     sMozUserAtom = XInternAtom(GDK_DISPLAY(), MOZILLA_USER_PROP, False);
++  if (!sMozProfileAtom)
++    sMozProfileAtom = XInternAtom(GDK_DISPLAY(), MOZILLA_PROFILE_PROP, False);
++  if (!sMozProgramAtom)
++    sMozProgramAtom = XInternAtom(GDK_DISPLAY(), MOZILLA_PROGRAM_PROP, False);
+ 
+ }
+ 
+@@ -196,7 +219,9 @@
+ NS_IMPL_ISUPPORTS1(nsGtkXRemoteWidgetHelper, nsIXRemoteWidgetHelper)
+ 
+ NS_IMETHODIMP
+-nsGtkXRemoteWidgetHelper::EnableXRemoteCommands(nsIWidget *aWidget)
++nsGtkXRemoteWidgetHelper::EnableXRemoteCommands(nsIWidget *aWidget,
++                                                const char *aProfile,
++                                                const char *aProgram)
+ {
+   // find the native gdk window
+   GdkWindow *window = NS_STATIC_CAST(GdkWindow *,
+@@ -215,7 +240,7 @@
+   }
+ 
+   // ok, found the toplevel window - set up the version information
+-  nsGtkMozRemoteHelper::SetupVersion(window);
++  nsGtkMozRemoteHelper::SetupVersion(window, aProfile, aProgram);
+   
+   return NS_OK;
+ }
+Index: widget/src/gtk/nsGtkMozRemoteHelper.h
+===================================================================
+RCS file: /cvsroot/mozilla/widget/src/gtk/nsGtkMozRemoteHelper.h,v
+retrieving revision 1.7
+diff -u -r1.7 nsGtkMozRemoteHelper.h
+--- widget/src/gtk/nsGtkMozRemoteHelper.h	18 Sep 2001 21:45:41 -0000	1.7
++++ widget/src/gtk/nsGtkMozRemoteHelper.h	23 Mar 2004 19:27:12 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this file
+@@ -35,7 +38,9 @@
+   virtual ~nsGtkMozRemoteHelper();
+ 
+   // interaction from the outside world
+-  static        void SetupVersion         (GdkWindow *aWindow);
++  static        void SetupVersion         (GdkWindow *aWindow,
++                                           const char *aProfile,
++                                           const char *aProgram);
+   static    gboolean HandlePropertyChange (GtkWidget *aWidget,
+                                            GdkEventProperty *aEvent,
+                                            nsIWidget *ansIWidget);
+@@ -50,6 +55,8 @@
+   static        Atom sMozCommandAtom;
+   static        Atom sMozResponseAtom;
+   static        Atom sMozUserAtom;
++  static        Atom sMozProfileAtom;
++  static        Atom sMozProgramAtom;
+ 
+ };
+ 
+@@ -66,7 +73,9 @@
+ 
+   NS_DECL_ISUPPORTS
+ 
+-  NS_IMETHOD EnableXRemoteCommands(nsIWidget *aWidget);
++  NS_IMETHOD EnableXRemoteCommands(nsIWidget *aWidget,
++                                   const char *aProfile,
++                                   const char *aProgram);
+ };
+ 
+ #endif /* __nsGtkMozRemoteHelper_h__ */
+Index: widget/src/gtk2/nsGtkMozRemoteHelper.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/widget/src/gtk2/nsGtkMozRemoteHelper.cpp,v
+retrieving revision 1.3
+diff -u -r1.3 nsGtkMozRemoteHelper.cpp
+--- widget/src/gtk2/nsGtkMozRemoteHelper.cpp	8 Jan 2003 22:58:07 -0000	1.3
++++ widget/src/gtk2/nsGtkMozRemoteHelper.cpp	23 Mar 2004 19:27:12 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this file
+@@ -35,18 +38,23 @@
+ #define MOZILLA_COMMAND_PROP   "_MOZILLA_COMMAND"
+ #define MOZILLA_RESPONSE_PROP  "_MOZILLA_RESPONSE"
+ #define MOZILLA_USER_PROP      "_MOZILLA_USER"
++#define MOZILLA_PROFILE_PROP   "_MOZILLA_PROFILE"
++#define MOZILLA_PROGRAM_PROP   "_MOZILLA_PROGRAM"
+ 
+ Atom nsGtkMozRemoteHelper::sMozVersionAtom  = 0;
+ Atom nsGtkMozRemoteHelper::sMozLockAtom     = 0;
+ Atom nsGtkMozRemoteHelper::sMozCommandAtom  = 0;
+ Atom nsGtkMozRemoteHelper::sMozResponseAtom = 0;
+ Atom nsGtkMozRemoteHelper::sMozUserAtom     = 0;
++Atom nsGtkMozRemoteHelper::sMozProfileAtom  = 0;
++Atom nsGtkMozRemoteHelper::sMozProgramAtom  = 0;
+ 
+ // XXX get this dynamically
+ static const char sRemoteVersion[]   = "5.0";
+ 
+ void
+-nsGtkMozRemoteHelper::SetupVersion(GdkWindow *aWindow)
++nsGtkMozRemoteHelper::SetupVersion(GdkWindow *aWindow, const char *aProfile,
++                                   const char *aProgram)
+ {
+   Window window;
+   unsigned char *data = (unsigned char *)sRemoteVersion;
+@@ -68,6 +76,20 @@
+ 		    8, PropModeReplace, data, strlen(logname));
+   }
+ 
++  // set our profile name and program name, if available.
++  if (aProfile) {
++    data = (unsigned char *)aProfile;
++
++    XChangeProperty(GDK_DISPLAY(), window, sMozProfileAtom, XA_STRING,
++                    8, PropModeReplace, data, strlen(aProfile));
++  }
++
++  if (aProgram) {
++    data = (unsigned char *)aProgram;
++
++    XChangeProperty(GDK_DISPLAY(), window, sMozProgramAtom, XA_STRING,
++                    8, PropModeReplace, data, strlen(aProgram));
++  }
+ }
+ 
+ gboolean
+@@ -177,6 +199,10 @@
+ 				   False);
+   if (!sMozUserAtom)
+     sMozUserAtom = XInternAtom(GDK_DISPLAY(), MOZILLA_USER_PROP, False);
++  if (!sMozProfileAtom)
++    sMozProfileAtom = XInternAtom(GDK_DISPLAY(), MOZILLA_PROFILE_PROP, False);
++  if (!sMozProgramAtom)
++    sMozProgramAtom = XInternAtom(GDK_DISPLAY(), MOZILLA_PROGRAM_PROP, False);
+ 
+ }
+ 
+@@ -196,7 +222,9 @@
+ NS_IMPL_ISUPPORTS1(nsGtkXRemoteWidgetHelper, nsIXRemoteWidgetHelper)
+ 
+ NS_IMETHODIMP
+-nsGtkXRemoteWidgetHelper::EnableXRemoteCommands(nsIWidget *aWidget)
++nsGtkXRemoteWidgetHelper::EnableXRemoteCommands(nsIWidget *aWidget,
++                                                const char *aProfile,
++                                                const char *aProgram)
+ {
+   // find the native gdk window
+   GdkWindow *window = NS_STATIC_CAST(GdkWindow *,
+@@ -216,7 +244,7 @@
+   }
+ 
+   // ok, found the toplevel window - set up the version information
+-  nsGtkMozRemoteHelper::SetupVersion(window);
++  nsGtkMozRemoteHelper::SetupVersion(window, aProfile, aProgram);
+   
+   return NS_OK;
+ }
+Index: widget/src/gtk2/nsGtkMozRemoteHelper.h
+===================================================================
+RCS file: /cvsroot/mozilla/widget/src/gtk2/nsGtkMozRemoteHelper.h,v
+retrieving revision 1.1
+diff -u -r1.1 nsGtkMozRemoteHelper.h
+--- widget/src/gtk2/nsGtkMozRemoteHelper.h	12 May 2002 06:48:18 -0000	1.1
++++ widget/src/gtk2/nsGtkMozRemoteHelper.h	23 Mar 2004 19:27:12 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this file
+@@ -35,7 +38,9 @@
+   virtual ~nsGtkMozRemoteHelper();
+ 
+   // interaction from the outside world
+-  static        void SetupVersion         (GdkWindow *aWindow);
++  static        void SetupVersion         (GdkWindow *aWindow,
++                                           const char *aProfile,
++                                           const char *aProgram);
+   static    gboolean HandlePropertyChange (GtkWidget *aWidget,
+                                            GdkEventProperty *aEvent,
+                                            nsIWidget *ansIWidget);
+@@ -50,6 +55,8 @@
+   static        Atom sMozCommandAtom;
+   static        Atom sMozResponseAtom;
+   static        Atom sMozUserAtom;
++  static        Atom sMozProfileAtom;
++  static        Atom sMozProgramAtom;
+ 
+ };
+ 
+@@ -66,7 +73,9 @@
+ 
+   NS_DECL_ISUPPORTS
+ 
+-  NS_IMETHOD EnableXRemoteCommands(nsIWidget *aWidget);
++  NS_IMETHOD EnableXRemoteCommands(nsIWidget *aWidget,
++                                   const char *aProfile,
++                                   const char *aProgram);
+ };
+ 
+ #endif /* __nsGtkMozRemoteHelper_h__ */
+Index: widget/src/xremoteclient/XRemoteClient.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/widget/src/xremoteclient/XRemoteClient.cpp,v
+retrieving revision 1.13
+diff -u -r1.13 XRemoteClient.cpp
+--- widget/src/xremoteclient/XRemoteClient.cpp	21 Nov 2003 00:09:45 -0000	1.13
++++ widget/src/xremoteclient/XRemoteClient.cpp	23 Mar 2004 19:27:12 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /* vim:set ts=8 sw=2 et cindent: */
+ /*
+  * The contents of this file are subject to the Mozilla Public
+@@ -44,6 +47,8 @@
+ #define MOZILLA_COMMAND_PROP   "_MOZILLA_COMMAND"
+ #define MOZILLA_RESPONSE_PROP  "_MOZILLA_RESPONSE"
+ #define MOZILLA_USER_PROP      "_MOZILLA_USER"
++#define MOZILLA_PROFILE_PROP   "_MOZILLA_PROFILE"
++#define MOZILLA_PROGRAM_PROP   "_MOZILLA_PROGRAM"
+ 
+ static PRLogModuleInfo *sRemoteLm = NULL;
+ 
+@@ -92,7 +97,9 @@
+   mMozCommandAtom  = XInternAtom(mDisplay, MOZILLA_COMMAND_PROP, False);
+   mMozResponseAtom = XInternAtom(mDisplay, MOZILLA_RESPONSE_PROP, False);
+   mMozWMStateAtom  = XInternAtom(mDisplay, "WM_STATE", False);
+-  mMozUserAtom      = XInternAtom(mDisplay, MOZILLA_USER_PROP, False);
++  mMozUserAtom     = XInternAtom(mDisplay, MOZILLA_USER_PROP, False);
++  mMozProfileAtom  = XInternAtom(mDisplay, MOZILLA_PROFILE_PROP, False);
++  mMozProgramAtom  = XInternAtom(mDisplay, MOZILLA_PROGRAM_PROP, False);
+ 
+   mInitialized = PR_TRUE;
+ 
+@@ -118,113 +125,45 @@
+ }
+ 
+ NS_IMETHODIMP
+-XRemoteClient::SendCommand (const char *aCommand, PRBool *aWindowFound)
++XRemoteClient::SendCommand (const char *aProgram, const char *aUsername,
++                            const char *aProfile, const char *aCommand,
++                            char **aResponse, PRBool *aWindowFound)
+ {
+   PR_LOG(sRemoteLm, PR_LOG_DEBUG, ("XRemoteClient::SendCommand"));
+ 
+-  Window root = RootWindowOfScreen(DefaultScreenOfDisplay(mDisplay));
+-  Window root2, parent, *kids;
+-  unsigned int nkids;
+-  int i;
+-
+   *aWindowFound = PR_FALSE;
+-  
+-  if (!XQueryTree(mDisplay, root, &root2, &parent, &kids, &nkids)) {
+-    PR_LOG(sRemoteLm, PR_LOG_DEBUG,
+-	   ("XQueryTree failed in XRemoteClient::SendCommand"));
+-    return NS_OK;
+-  }
+ 
+-  if (!(kids && nkids)) {
+-    PR_LOG(sRemoteLm, PR_LOG_DEBUG, ("root window has no children"));
+-    return NS_OK;
+-  }
++  Window w = FindBestWindow(aProgram, aUsername, aProfile);
+ 
+   nsresult rv = NS_OK;
+-  for (i=nkids-1; i >= 0; i--) {
+-    Atom type;
+-    int format;
+-    unsigned long nitems, bytesafter;
+-    unsigned char *data_return = 0;
+-    Window w, result = 0;
+-    w = kids[i];
+-    // find the inner window with WM_STATE on it
+-    w = CheckWindow(w);
+-
+-    int status = XGetWindowProperty(mDisplay, w, mMozVersionAtom,
+-				    0, (65536 / sizeof (long)),
+-				    False, XA_STRING,
+-				    &type, &format, &nitems, &bytesafter,
+-				    &data_return);
+-
+-    if (!data_return)
+-      continue;
+ 
+-    XFree(data_return);
+-    data_return = 0;
+-
+-    if (status == Success && type != None) {
+-      // Check to see if it has the user atom on that window.  If there
+-      // is then we need to make sure that it matches what we have.
+-      char *logname;
+-      logname = PR_GetEnv("LOGNAME");
+-
+-      if (logname) {
+-	status = XGetWindowProperty(mDisplay, w, mMozUserAtom,
+-				    0, (65536 / sizeof(long)),
+-				    False, XA_STRING,
+-				    &type, &format, &nitems, &bytesafter,
+-				    &data_return);
+-
+-	// if there's a username compare it with what we have
+-	if (data_return) {
+-
+-	  // if the IDs are equal then this is the window we want.  if
+-	  // they aren't fall through to the next loop iteration.
+-	  if (!strcmp(logname, (const char *)data_return))
+-	    result = w;
+-
+-	  XFree(data_return);
+-	}
+-      }
+-
+-      // ok, this is the one we want since there's no username attribute on
+-      // it.
+-      else {
+-	result = w;
+-      }
+-
+-      if (result) {
+-        // ok, let the caller know that we at least found a window.
+-        *aWindowFound = PR_TRUE;
+-
+-        // make sure we get the right events on that window
+-        XSelectInput(mDisplay, result,
+-                     (PropertyChangeMask|StructureNotifyMask));
++  if (w) {
++    // ok, let the caller know that we at least found a window.
++    *aWindowFound = PR_TRUE;
++
++    // make sure we get the right events on that window
++    XSelectInput(mDisplay, w,
++                 (PropertyChangeMask|StructureNotifyMask));
+         
+-        PRBool destroyed = PR_FALSE;
++    PRBool destroyed = PR_FALSE;
+ 
+-        // get the lock on the window
+-        rv = GetLock(result, &destroyed);
++    // get the lock on the window
++    rv = GetLock(w, &destroyed);
++
++    if (NS_SUCCEEDED(rv)) {
++      // send our command
++      rv = DoSendCommand(w, aCommand, aResponse, &destroyed);
++
++      // if the window was destroyed, don't bother trying to free the
++      // lock.
++      if (!destroyed)
++          FreeLock(w); // doesn't really matter what this returns
+ 
+-        if (NS_SUCCEEDED(rv)) {
+-          // send our command
+-          rv = DoSendCommand(result, aCommand, &destroyed);
+-
+-          // if the window was destroyed, don't bother trying to free the
+-          // lock.
+-          if (!destroyed)
+-            FreeLock(result); // doesn't really matter what this returns
+-
+-          // if accepted then we're done...
+-          if (NS_SUCCEEDED(rv))
+-            break;
+-        }
+-      }
+     }
+   }
+ 
+   PR_LOG(sRemoteLm, PR_LOG_DEBUG, ("SendCommand returning 0x%x\n", rv));
++
+   return rv;
+ }
+ 
+@@ -416,6 +355,145 @@
+   return NS_OK;
+ }
+ 
++Window
++XRemoteClient::FindBestWindow(const char *aProgram, const char *aUsername,
++                              const char *aProfile)
++{
++  Window root = RootWindowOfScreen(DefaultScreenOfDisplay(mDisplay));
++  Window bestWindow = 0;
++  Window root2, parent, *kids;
++  unsigned int nkids;
++  int i;
++
++  // Get a list of the children of the root window, walk the list
++  // looking for the best window that fits the criteria.
++  if (!XQueryTree(mDisplay, root, &root2, &parent, &kids, &nkids)) {
++    PR_LOG(sRemoteLm, PR_LOG_DEBUG,
++           ("XQueryTree failed in XRemoteClient::FindBestWindow"));
++    return 0;
++  }
++
++  if (!(kids && nkids)) {
++    PR_LOG(sRemoteLm, PR_LOG_DEBUG, ("root window has no children"));
++    return 0;
++  }
++
++  // We'll walk the list of windows looking for a window that best
++  // fits the criteria here.
++
++  for (i=nkids-1; i >= 0; i--) {
++    Atom type;
++    int format;
++    unsigned long nitems, bytesafter;
++    unsigned char *data_return = 0;
++    Window w;
++    w = kids[i];
++    // find the inner window with WM_STATE on it
++    w = CheckWindow(w);
++
++    int status = XGetWindowProperty(mDisplay, w, mMozVersionAtom,
++                                    0, (65536 / sizeof (long)),
++                                    False, XA_STRING,
++                                    &type, &format, &nitems, &bytesafter,
++                                    &data_return);
++
++    if (!data_return)
++      continue;
++
++    XFree(data_return);
++    data_return = 0;
++
++    if (status != Success || type == None)
++      continue;
++
++    // If someone passed in a program name, check it against this one
++    // unless it's "any" in which case, we don't care.  If someone did
++    // pass in a program name and this window doesn't support that
++    // protocol, we don't include it in our list.
++    if (aProgram && strcmp(aProgram, "any")) {
++        status = XGetWindowProperty(mDisplay, w, mMozProgramAtom,
++                                    0, (65536 / sizeof(long)),
++                                    False, XA_STRING,
++                                    &type, &format, &nitems, &bytesafter,
++                                    &data_return);
++        
++        // If the return name is not the same as what someone passed in,
++        // we don't want this window.
++        if (data_return) {
++            if (strcmp(aProgram, (const char *)data_return)) {
++                XFree(data_return);
++                continue;
++            }
++
++            // This is actually the success condition.
++            XFree(data_return);
++        }
++        else {
++            // Doesn't support the protocol, even though the user
++            // requested it.  So we're not going to use this window.
++            continue;
++        }
++    }
++
++    // Check to see if it has the user atom on that window.  If there
++    // is then we need to make sure that it matches what we have.
++    const char *username;
++    if (aUsername) {
++      username = aUsername;
++    }
++    else {
++      username = PR_GetEnv("LOGNAME");
++    }
++
++    if (username) {
++        status = XGetWindowProperty(mDisplay, w, mMozUserAtom,
++                                    0, (65536 / sizeof(long)),
++                                    False, XA_STRING,
++                                    &type, &format, &nitems, &bytesafter,
++                                    &data_return);
++
++        // if there's a username compare it with what we have
++        if (data_return) {
++            // If the IDs aren't equal, we don't want this window.
++            if (strcmp(username, (const char *)data_return)) {
++                XFree(data_return);
++                continue;
++            }
++
++            XFree(data_return);
++        }
++    }
++
++    // Check to see if there's a profile name on this window.  If
++    // there is, then we need to make sure it matches what someone
++    // passed in.
++    if (aProfile) {
++        status = XGetWindowProperty(mDisplay, w, mMozProfileAtom,
++                                    0, (65536 / sizeof(long)),
++                                    False, XA_STRING,
++                                    &type, &format, &nitems, &bytesafter,
++                                    &data_return);
++
++        // If there's a profile compare it with what we have
++        if (data_return) {
++            // If the profiles aren't equal, we don't want this window.
++            if (strcmp(aProfile, (const char *)data_return)) {
++                XFree(data_return);
++                continue;
++            }
++
++            XFree(data_return);
++        }
++    }
++
++    // If we got this far, this is the best window so far.  It passed
++    // all the tests.
++    bestWindow = w;
++  }
++
++  return bestWindow;
++}
++
+ nsresult
+ XRemoteClient::FreeLock(Window aWindow)
+ {
+@@ -426,40 +504,40 @@
+   unsigned char *data = 0;
+ 
+   result = XGetWindowProperty(mDisplay, aWindow, mMozLockAtom,
+-			      0, (65536 / sizeof(long)),
+-			      True, /* atomic delete after */
+-			      XA_STRING,
+-			      &actual_type, &actual_format,
+-			      &nitems, &bytes_after,
+-			      &data);
++                              0, (65536 / sizeof(long)),
++                              True, /* atomic delete after */
++                              XA_STRING,
++                              &actual_type, &actual_format,
++                              &nitems, &bytes_after,
++                              &data);
+   if (result != Success) {
+-    PR_LOG(sRemoteLm, PR_LOG_DEBUG,
+-	   ("unable to read and delete " MOZILLA_LOCK_PROP
+-	    " property\n"));
+-    return NS_ERROR_FAILURE;
++      PR_LOG(sRemoteLm, PR_LOG_DEBUG,
++             ("unable to read and delete " MOZILLA_LOCK_PROP
++              " property\n"));
++      return NS_ERROR_FAILURE;
+   }
+   else if (!data || !*data){
+-    PR_LOG(sRemoteLm, PR_LOG_DEBUG,
+-	   ("invalid data on " MOZILLA_LOCK_PROP
+-	    " of window 0x%x.\n",
+-	    (unsigned int) aWindow));
+-    return NS_ERROR_FAILURE;
++      PR_LOG(sRemoteLm, PR_LOG_DEBUG,
++             ("invalid data on " MOZILLA_LOCK_PROP
++              " of window 0x%x.\n",
++              (unsigned int) aWindow));
++      return NS_ERROR_FAILURE;
+   }
+   else if (strcmp((char *)data, mLockData)) {
+-    PR_LOG(sRemoteLm, PR_LOG_DEBUG,
+-	   (MOZILLA_LOCK_PROP " was stolen!  Expected \"%s\", saw \"%s\"!\n",
+-	    mLockData, data));
+-    return NS_ERROR_FAILURE;
++      PR_LOG(sRemoteLm, PR_LOG_DEBUG,
++             (MOZILLA_LOCK_PROP " was stolen!  Expected \"%s\", saw \"%s\"!\n",
++              mLockData, data));
++      return NS_ERROR_FAILURE;
+   }
+ 
+   if (data)
+-    XFree(data);
++      XFree(data);
+   return NS_OK;
+ }
+ 
+ nsresult
+ XRemoteClient::DoSendCommand(Window aWindow, const char *aCommand,
+-			     PRBool *aDestroyed)
++                             char **aResponse, PRBool *aDestroyed)
+ {
+   PRBool done = PR_FALSE;
+   PRBool accepted = PR_FALSE;
+@@ -482,6 +560,7 @@
+       PR_LOG(sRemoteLm, PR_LOG_DEBUG,
+ 	     ("window 0x%x was destroyed.\n",
+ 	      (unsigned int) aWindow));
++      *aResponse = strdup("Window was destroyed while reading response.");
+       *aDestroyed = PR_TRUE;
+       goto DONE;
+     }
+@@ -506,6 +585,7 @@
+ 	       ("failed reading " MOZILLA_RESPONSE_PROP
+ 		" from window 0x%0x.\n",
+ 		(unsigned int) aWindow));
++    *aResponse = strdup("Internal error reading response from window.");
+ 	done = PR_TRUE;
+       }
+       else if (!data || strlen((char *) data) < 5) {
+@@ -513,6 +593,7 @@
+ 	       ("invalid data on " MOZILLA_RESPONSE_PROP
+ 		" property of window 0x%0x.\n",
+ 		(unsigned int) aWindow));
++    *aResponse = strdup("Server returned invalid data in response.");
+ 	done = PR_TRUE;
+       }
+       else if (*data == '1') {	/* positive preliminary reply */
+@@ -522,12 +603,14 @@
+       }
+ 
+       else if (!strncmp ((char *)data, "200", 3)) { /* positive completion */
++	*aResponse = strdup((char *)data);
+ 	accepted = PR_TRUE;
+ 	done = PR_TRUE;
+       }
+ 
+       else if (*data == '2') {	/* positive completion */
+ 	PR_LOG(sRemoteLm, PR_LOG_DEBUG, ("%s\n", data + 4));
++    *aResponse = strdup((char *)data);
+ 	accepted = PR_TRUE;
+ 	done = PR_TRUE;
+       }
+@@ -537,12 +620,14 @@
+ 	       ("internal error: "
+ 		"server wants more information?  (%s)\n",
+ 		data));
++	*aResponse = strdup((char *)data);
+ 	done = PR_TRUE;
+       }
+ 
+       else if (*data == '4' ||	/* transient negative completion */
+ 	       *data == '5') {	/* permanent negative completion */
+ 	PR_LOG(sRemoteLm, PR_LOG_DEBUG, ("%s\n", data + 4));
++	*aResponse = strdup((char *)data);
+ 	done = PR_TRUE;
+       }
+ 
+@@ -551,6 +636,7 @@
+ 	       ("unrecognised " MOZILLA_RESPONSE_PROP
+ 		" from window 0x%x: %s\n",
+ 		(unsigned int) aWindow, data));
++	*aResponse = strdup((char *)data);
+ 	done = PR_TRUE;
+       }
+ 
+Index: widget/src/xremoteclient/XRemoteClient.h
+===================================================================
+RCS file: /cvsroot/mozilla/widget/src/xremoteclient/XRemoteClient.h,v
+retrieving revision 1.6
+diff -u -r1.6 XRemoteClient.h
+--- widget/src/xremoteclient/XRemoteClient.h	21 Nov 2003 00:09:45 -0000	1.6
++++ widget/src/xremoteclient/XRemoteClient.h	23 Mar 2004 19:27:12 -0000
+@@ -46,8 +46,11 @@
+   Window         CheckChildren    (Window aWindow);
+   nsresult       GetLock          (Window aWindow, PRBool *aDestroyed);
+   nsresult       FreeLock         (Window aWindow);
++  Window         FindBestWindow   (const char *aProgram, const char *aUsername,
++				   const char *aProfile);
+   nsresult       DoSendCommand    (Window aWindow,
+ 				   const char *aCommand,
++				   char **aResponse,
+ 				   PRBool *aDestroyed);
+ 
+   Display       *mDisplay;
+@@ -58,6 +61,8 @@
+   Atom           mMozResponseAtom;
+   Atom           mMozWMStateAtom;
+   Atom           mMozUserAtom;
++  Atom           mMozProfileAtom;
++  Atom           mMozProgramAtom;
+ 
+   char          *mLockData;
+ 
+Index: widget/src/xremoteclient/mozilla-xremote-client.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/widget/src/xremoteclient/mozilla-xremote-client.cpp,v
+retrieving revision 1.2
+diff -u -r1.2 mozilla-xremote-client.cpp
+--- widget/src/xremoteclient/mozilla-xremote-client.cpp	12 Dec 2003 23:02:11 -0000	1.2
++++ widget/src/xremoteclient/mozilla-xremote-client.cpp	23 Mar 2004 19:27:12 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /* ***** BEGIN LICENSE BLOCK *****
+  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
+  *
+@@ -34,18 +37,55 @@
+  * ***** END LICENSE BLOCK ***** */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
++#include <plgetopt.h>
+ #include "XRemoteClient.h"
+ 
++static void print_usage(void);
++
+ int main(int argc, char **argv)
+ {
+   nsresult rv;
+   XRemoteClient client;
++  char *browser = 0;
++  char *profile = 0;
++  char *username = 0;
++  char *command = 0;
+ 
+-  if (argc != 2) {
+-    fprintf(stderr, "Usage: mozilla-xremote-client [COMMAND]\n");
++  if (argc < 2) {
++    print_usage();
+     return 4;
+   }
+ 
++  PLOptStatus os;
++  PLOptState *opt = PL_CreateOptState(argc, argv, "ha:u:p:");
++  while (PL_OPT_EOL != (os = PL_GetNextOpt(opt))) {
++    if (PL_OPT_BAD == os) {
++      print_usage();
++      return 4;
++    }
++
++    switch (opt->option) {
++    case 'h':
++      print_usage();
++      return 4;
++      break;
++    case 'u':
++      username = strdup(opt->value);
++      break;
++    case 'a':
++      browser = strdup(opt->value);
++      break;
++    case 'p':
++      profile = strdup(opt->value);
++      break;
++    case 0:
++      command = strdup(opt->value);      
++    default:
++      break;
++    }
++  }
++
+   rv = client.Init();
+   // failed to connect to the X server
+   if (NS_FAILED(rv))
+@@ -53,16 +93,37 @@
+ 
+   // send the command - it doesn't get any easier than this
+   PRBool success = PR_FALSE;
+-  rv = client.SendCommand(argv[1], &success);
++  char *error = 0;
++  rv = client.SendCommand(browser, username, profile, command,
++                          &error, &success);
+ 
+   // failed to send command
+-  if (NS_FAILED(rv))
++  if (NS_FAILED(rv)) {
++    fprintf(stderr, "%s: Error: Failed to send command: ", argv[0]);
++    if (error) {
++      fprintf(stderr, "%s\n", error);
++      free(error);
++    }
++    else {
++      fprintf(stderr, "No error string reported..\n");
++    }
++
+     return 3;
++  }
+ 
+   // no running window found
+-  if (!success)
++  if (!success) {
++    fprintf(stderr, "%s: Error: Failed to find a running server.\n", argv[0]);
+     return 2;
++  }
+ 
+   // else, everything is fine.
+   return 0;
++}
++
++/* static */
++void print_usage(void) {
++  fprintf(stderr, "Usage: mozilla-xremote-client [-a firefox|thunderbird|mozilla|any]\n");
++  fprintf(stderr, "                              [-u <username>]\n");
++  fprintf(stderr, "                              [-p <profile>] COMMAND\n");
+ }
+Index: xpfe/bootstrap/nsAppRunner.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/xpfe/bootstrap/nsAppRunner.cpp,v
+retrieving revision 1.410
+diff -u -r1.410 nsAppRunner.cpp
+--- xpfe/bootstrap/nsAppRunner.cpp	8 Mar 2004 23:48:39 -0000	1.410
++++ xpfe/bootstrap/nsAppRunner.cpp	23 Mar 2004 19:27:13 -0000
+@@ -1275,7 +1275,7 @@
+   nsCOMPtr<nsIXRemoteService> remoteService;
+   remoteService = do_GetService(NS_IXREMOTESERVICE_CONTRACTID);
+   if (remoteService)
+-    remoteService->Startup();
++    remoteService->Startup(MOZ_APP_NAME);
+ #endif /* MOZ_ENABLE_XREMOTE */
+ 
+   // remove the nativeApp as an XPCOM autoreg observer
+@@ -1416,43 +1416,104 @@
+ static int HandleRemoteArguments(int argc, char* argv[], PRBool *aArgUsed)
+ {
+   int i = 0;
++
++  const char *remote = 0;
++  const char *profile = 0;
++  const char *program = 0;
++  const char *username = 0;
++
+   for (i=1; i < argc; i++) {
+     if (PL_strcasecmp(argv[i], "-remote") == 0) {
+       // someone used a -remote flag
+       *aArgUsed = PR_TRUE;
+       // check to make sure there's another arg
+       if (argc-1 == i) {
+-        PR_fprintf(PR_STDERR, "-remote requires an argument\n");
++        PR_fprintf(PR_STDERR, "Error: -remote requires an argument\n");
+         return 1;
+       }
+-      // try to get the X remote client
+-      nsCOMPtr<nsIXRemoteClient> client (do_CreateInstance(NS_XREMOTECLIENT_CONTRACTID));
+-      if (!client)
+-        return 1;
+-      nsresult rv;
+-      // try to init - connects to the X server and stuff
+-      rv = client->Init();
+-      if (NS_FAILED(rv)) {
+-        PR_fprintf(PR_STDERR, "Failed to connect to X server.\n");
+-        return 1;
++
++      // Get the remote argument and advance past it.
++      remote = argv[++i];
++    }
++    else if (PL_strcasecmp(argv[i], "-p") == 0) {
++      // someone used the -p <profile> flag - save the contents
++      if (argc-1 == i) {
++        continue;
+       }
+-      PRBool success = PR_FALSE;
+-      rv = client->SendCommand(argv[i+1], &success);
+-      // did the command fail?
+-      if (NS_FAILED(rv)) {
+-        PR_fprintf(PR_STDERR, "Failed to send command.\n");
+-        return 1;
++
++      // Get the argument
++      profile = argv[++i];
++    }
++    else if (PL_strcasecmp(argv[i], "-a") == 0) {
++      // someone used the -a <application> flag - save the contents
++      if (argc-1 == i) {
++        continue;
+       }
+-      // was there a window not running?
+-      if (!success) {
+-        PR_fprintf(PR_STDERR, "No running window found.\n");
+-        return 2;
++
++      // Get the argument
++      program = argv[++i];
++    }
++    else if (PL_strcasecmp(argv[i], "-u") == 0) {
++      // someone used the -u <username> flag - save the contents
++      if (argc-1 == i) {
++        continue;
+       }
+-      client->Shutdown();
+-      // success
+-      return 0;
++
++      // Get the argument
++      username = argv[++i];
+     }
+   }
++
++  // try to get the X remote client
++  nsCOMPtr<nsIXRemoteClient> client (do_CreateInstance(NS_XREMOTECLIENT_CONTRACTID));
++  if (!client)
++    return 1;
++
++  nsresult rv;
++  // try to init - connects to the X server and stuff
++  rv = client->Init();
++  if (NS_FAILED(rv)) {
++    PR_fprintf(PR_STDERR, "Error: Failed to connect to X server.\n");
++    return 1;
++  }
++
++  // Make sure to set a username if possible
++  if (!username) {
++    username = PR_GetEnv("LOGNAME");
++  }
++
++  // Same with the program name
++  if (!program) {
++    program = MOZ_APP_NAME;
++  }
++
++  char *response = NULL;
++  PRBool success = PR_FALSE;
++  rv = client->SendCommand(program, username, profile, remote,
++                           &response, &success);
++
++  // did the command fail?
++  if (NS_FAILED(rv)) {
++    PR_fprintf(PR_STDERR, "Error: Failed to send command: ");
++    if (response) {
++      PR_fprintf(PR_STDERR, "%s\n", response);
++      free(response);
++    }
++    else {
++      PR_fprintf(PR_STDERR, "No response included.\n");
++    }
++
++    return 1;
++  }
++
++  // was there no window running?
++  if (!success) {
++    PR_fprintf(PR_STDERR, "Error: No running window found.\n");
++    return 2;
++  }
++
++  client->Shutdown();
++  // success
+   return 0;
+ }
+ #endif /* XP_UNIX */
+Index: xpfe/components/xremote/public/nsIXRemoteService.idl
+===================================================================
+RCS file: /cvsroot/mozilla/xpfe/components/xremote/public/nsIXRemoteService.idl,v
+retrieving revision 1.2
+diff -u -r1.2 nsIXRemoteService.idl
+--- xpfe/components/xremote/public/nsIXRemoteService.idl	5 Sep 2001 21:48:14 -0000	1.2
++++ xpfe/components/xremote/public/nsIXRemoteService.idl	23 Mar 2004 19:27:13 -0000
+@@ -30,8 +30,12 @@
+ interface nsIXRemoteService : nsISupports {
+ 
+   // this is called once the browser starts up so that we can create a
+-  // dummy window to respond to requests on
+-  [noscript] void startup      ();
++  // dummy window to respond to requests on.
++  //
++  // @param aProgram This is the name of the program that will be
++  // advertised to clients.  This is so we can seperate the various
++  // Mozilla products.
++  [noscript] void startup      (in string aProgram);
+ 
+   // this is called right before shutdown so we can destroy the window
+   // that we are receving requests on
+Index: xpfe/components/xremote/src/Makefile.in
+===================================================================
+RCS file: /cvsroot/mozilla/xpfe/components/xremote/src/Makefile.in,v
+retrieving revision 1.10
+diff -u -r1.10 Makefile.in
+--- xpfe/components/xremote/src/Makefile.in	7 Jan 2004 13:36:58 -0000	1.10
++++ xpfe/components/xremote/src/Makefile.in	23 Mar 2004 19:27:13 -0000
+@@ -46,6 +46,7 @@
+ 		  appshell \
+ 		  rdf \
+ 		  exthandler \
++		  profile \
+ 		  $(NULL)
+ 
+ CPPSRCS		= \
+Index: xpfe/components/xremote/src/XRemoteService.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/xpfe/components/xremote/src/XRemoteService.cpp,v
+retrieving revision 1.33
+diff -u -r1.33 XRemoteService.cpp
+--- xpfe/components/xremote/src/XRemoteService.cpp	10 Feb 2004 00:18:51 -0000	1.33
++++ xpfe/components/xremote/src/XRemoteService.cpp	23 Mar 2004 19:27:14 -0000
+@@ -1,3 +1,6 @@
++/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
++/* vim:expandtab:shiftwidth=4:tabstop=4:
++ */
+ /*
+  * The contents of this file are subject to the Mozilla Public
+  * License Version 1.1 (the "License"); you may not use this file
+@@ -49,6 +52,7 @@
+ #include <nsIWindowMediator.h>
+ #include <nsCExternalHandlerService.h>
+ #include <nsIExternalProtocolService.h>
++#include <nsIProfile.h>
+ 
+ NS_DEFINE_CID(kWindowCID, NS_WINDOW_CID);
+ 
+@@ -74,12 +78,15 @@
+ NS_IMPL_ISUPPORTS2(XRemoteService, nsIXRemoteService, nsIObserver)
+ 
+ NS_IMETHODIMP
+-XRemoteService::Startup(void)
++XRemoteService::Startup(const char *aProgram)
+ {
+   // We have to destroy the proxy window before the event loop stops running.
+   nsCOMPtr<nsIObserverService> obsServ =
+     do_GetService("@mozilla.org/observer-service;1");
+   obsServ->AddObserver(this, "quit-application", PR_FALSE);
++  obsServ->AddObserver(this, "profile-after-change", PR_FALSE);
++
++  mProgram.Assign(aProgram);
+ 
+   mRunning = PR_TRUE;
+   if (mNumWindows == 0)
+@@ -99,7 +106,7 @@
+ XRemoteService::Observe(nsISupports *aSubject, const char *aTopic,
+                         const PRUnichar *aData)
+ {
+-  if (!nsCRT::strcmp(aTopic, "quit-application")) {
++  if (!strcmp(aTopic, "quit-application")) {
+     Shutdown();
+   } else {
+     NS_NOTREACHED("unexpected topic");
+@@ -384,8 +391,13 @@
+     return NS_ERROR_FAILURE;
+   }
+ 
++
++  nsCAutoString profile;
++  GetProfileName(profile);
++
+   nsresult rv;
+-  rv = widgetHelper->EnableXRemoteCommands(mainWidget);
++  rv = widgetHelper->EnableXRemoteCommands(mainWidget, profile.get(),
++                                           mProgram.get());
+   if (NS_FAILED(rv)) {
+     NS_WARNING("failed to enable x remote commands for widget");
+     return rv;
+@@ -475,7 +487,11 @@
+     return;
+   }
+ 
+-  rv = widgetHelper->EnableXRemoteCommands(mProxyWindow);
++  nsCAutoString profile;
++  GetProfileName(profile);
++
++  rv = widgetHelper->EnableXRemoteCommands(mProxyWindow, profile.get(),
++                                           mProgram.get());
+   if (NS_FAILED(rv)) {
+     NS_WARNING("failed to enable x remote commands for proxy window");
+     return;
+@@ -999,6 +1015,24 @@
+     return NS_ERROR_FAILURE;
+ 
+   return mediator->GetMostRecentWindow(aType, _retval);
++}
++
++void
++XRemoteService::GetProfileName(nsACString &aProfile)
++{
++  // Get the current profile name and save it.
++  nsresult rv;
++  nsCOMPtr<nsIProfile> profileMgr;
++  profileMgr = do_GetService(NS_PROFILE_CONTRACTID, &rv);
++  if (!profileMgr)
++    return;
++
++  PRUnichar *name;
++  rv = profileMgr->GetCurrentProfile(&name);
++  if (!name)
++    return;
++
++  LossyCopyUTF16toASCII(name, aProfile);
+ }
+ 
+ NS_GENERIC_FACTORY_CONSTRUCTOR(XRemoteService)
+Index: xpfe/components/xremote/src/XRemoteService.h
+===================================================================
+RCS file: /cvsroot/mozilla/xpfe/components/xremote/src/XRemoteService.h,v
+retrieving revision 1.8
+diff -u -r1.8 XRemoteService.h
+--- xpfe/components/xremote/src/XRemoteService.h	21 Nov 2003 00:09:45 -0000	1.8
++++ xpfe/components/xremote/src/XRemoteService.h	23 Mar 2004 19:27:14 -0000
+@@ -90,6 +90,9 @@
+   nsresult FindWindow(const PRUnichar *aType,
+ 		      nsIDOMWindowInternal **_retval);
+ 
++  // Save the profile name
++  void GetProfileName(nsACString &aProfile);
++
+   // hidden window for proxy requests
+   nsCOMPtr<nsIWidget> mProxyWindow;
+   
+@@ -104,4 +107,6 @@
+   // have we been started up from the main loop yet?
+   PRBool   mRunning;
+ 
++  // Name of our program
++  nsCString mProgram;
+ };

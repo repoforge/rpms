@@ -3,18 +3,20 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-### FIXME: TODO: Improve firefox start-up script for file:// URLs.
-
-### FIXME: Doesn't compile with distcc (PATH seems to be honored ??)
-# Distcc: 0
-# Soapbox: 0
-
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_autoconf213 1}
+%{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_gtk2 1}
+%{?el2:%define _without_autoconf213 1}
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_gtk2 1}
+%{?rh6:%define _without_autoconf213 1}
+%{?rh6:%define _without_freedesktop 1}
+%{?rh6:%define _without_gtk2 1}
 
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.8
-Release: 2
+Release: 3
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -23,21 +25,20 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-source-%{version}.tar.bz2
+Patch2: mozilla-1.4-x86_64.patch
+Patch3: mozilla-xremote.patch
+Patch4: mozilla-xremote-0.5.patch
+Patch5: mozilla-xremote-stfu.patch
 Patch1001: firefox-0.8-gtk2xtbin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
-BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel
+BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, libIDL-devel, gcc-c++
-%{?fc2:BuildRequires: gtk2-devel}
-%{?fc1:BuildRequires: gtk2-devel}
-%{?el3:BuildRequires: gtk2-devel}
-%{?rh9:BuildRequires: gtk2-devel}
-%{?rh8:BuildRequires: gtk2-devel}
-%{?rh7:BuildRequires: gtk+-devel}
-%{?el2:BuildRequires: gtk+-devel}
-%{?rh6:BuildRequires: gtk+-devel}
-%{?yd3:BuildRequires: gtk2-devel}
+%{!?_without_autoconf213:BuildRequires: autoconf213}
+%{?_without_autoconf213:BuildRequires: autoconf = 2.13}
+%{!?_without_gtk2:BuildRequires: gtk2-devel}
+%{?_without_gtk2:BuildRequires: gtk+-devel}
 
 Obsoletes: phoenix, MozillaFirebird, mozilla-firebird, mozilla-firefox
 
@@ -46,7 +47,13 @@ Mozilla Firefox is an open-source web browser, designed for standards
 compliance, performance and portability.
 
 %prep
-%setup -q -n mozilla
+%setup -n mozilla
+%ifarch x86_64
+%patch2 -p1
+%endif
+%patch3 -p0
+%patch4 -p0
+%patch5 -p0
 %patch1001
 
 %{__cat} <<EOF >bookmarks.html
@@ -100,57 +107,49 @@ export MOZ_PHOENIX="1"
 export PATH="$PATH"
 mk_add_options MOZ_PHOENIX="1"
 mk_add_options PATH="$PATH"
-ac_add_options --with-system-jpeg
-ac_add_options --with-system-zlib
-ac_add_options --with-system-png
-ac_add_options --with-system-mng
-ac_add_options --with-pthreads
-ac_add_options --disable-tests
+ac_add_options --host="%{_host}"
+ac_add_options --build="%{_build}"
+ac_add_options --target="%{_target_platform}"
+ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
+ac_add_options --disable-composer
 ac_add_options --disable-debug
 ac_add_options --disable-debug-modules
-ac_add_options --disable-xprint
-ac_add_options --disable-mailnews
-ac_add_options --disable-composer
-ac_add_options --disable-ldap
-ac_add_options --disable-jsd
 ac_add_options --disable-dtd-debug
-ac_add_options --disable-gtktest
 ac_add_options --disable-freetype2
 ac_add_options --disable-freetypetest
+ac_add_options --disable-gtktest
 ac_add_options --disable-installer
-ac_add_options --enable-plaintext-editor-only
-ac_add_options --enable-optimize="%{optflags}"
+ac_add_options --disable-jsd
+ac_add_options --disable-ldap
+ac_add_options --disable-mailnews
+ac_add_options --disable-tests
+ac_add_options --disable-xprint
 ac_add_options --enable-crypto
+ac_add_options --enable-extensions="default,-irc,-venkman"
+#ac_add_options --enable-extansions="cookie,p3p,pref,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"
+ac_add_options --enable-mathml
+ac_add_options --enable-optimize="%{optflags}"
+ac_add_options --enable-plaintext-editor-only
+ac_add_options --enable-reorder
 ac_add_options --enable-strip
 ac_add_options --enable-strip-libs
-ac_add_options --enable-reorder
-ac_add_options --enable-mathml
 ac_add_options --enable-xinerama
-ac_add_options --enable-extensions="pref,cookie,wallet,typeaheadfind,xmlextras"
-%{?fc2:ac_add_options --enable-xft}
-%{?fc2:ac_add_options --enable-default-toolkit="gtk2"}
-%{?fc1:ac_add_options --enable-xft}
-%{?fc1:ac_add_options --enable-default-toolkit="gtk2"}
-%{?el3:ac_add_options --enable-xft}
-%{?el3:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh9:ac_add_options --enable-xft}
-%{?rh9:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh8:ac_add_options --enable-xft}
-%{?rh8:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh7:ac_add_options --disable-xft}
-%{?rh7:ac_add_options --enable-default-toolkit="gtk"}
-%{?el2:ac_add_options --disable-xft}
-%{?el2:ac_add_options --enable-default-toolkit="gtk"}
-%{?rh6:ac_add_options --disable-xft}
-%{?rh6:ac_add_options --enable-default-toolkit="gtk"}
-%{?yd3:ac_add_options --enable-xft}
-%{?yd3:ac_add_options --enable-default-toolkit="gtk2"}
+ac_add_options --with-pthreads
+ac_add_options --with-system-jpeg
+ac_add_options --with-system-mng
+ac_add_options --with-system-png
+ac_add_options --with-system-zlib
+ac_add_options --without-system-nspr
+%{?_without_gtk2:ac_add_options --disable-xft}
+%{?_without_gtk2:ac_add_options --enable-default-toolkit="gtk"}
+%{!?_without_gtk2:ac_add_options --enable-xft}
+%{!?_without_gtk2:ac_add_options --enable-default-toolkit="gtk2"}
 EOF
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >firefox.desktop
 [Desktop Entry]
 Name=Firefox Web Browser
-Comment=Lightweight Mozilla-based web browser
+Comment=Browse the Internet
 Exec=firefox
 Icon=firefox.png
 Terminal=false
@@ -160,7 +159,7 @@ MimeType=text/html;text/x-java;inode/directory;application/xhtml+xml;
 Categories=Application;Network;
 EOF
 
-%{__cat} <<'EOF' >%{name}.sh
+%{__cat} <<'EOF' >firefox.sh
 #!/bin/sh
 
 ### Written by Dag Wieers <dag@wieers.com>
@@ -168,9 +167,9 @@ EOF
 
 ulimit -c 0
 
-MOZ_PROGRAM="%{_libdir}/firefox/firefox"
-
 MOZILLA_FIVE_HOME="%{_libdir}/firefox"
+MOZ_PROGRAM="$MOZILLA_FIVE_HOME/firefox"
+
 LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$MOZILLA_FIVE_HOME/plugins:$LD_LIBRARY_PATH"
 MOZ_PLUGIN_PATH="$HOME/.mozilla/plugins:$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins"
 FONTCONFIG_PATH="/etc/fonts:$MOZILLA_FIVE_HOME/res/Xft"
@@ -184,40 +183,66 @@ fi
 
 $MOZ_PROGRAM -remote 'ping()' &>/dev/null
 RUNNING=$?
-if [ $? -eq 0 -a $? -eq 2 ]; then RUNNING=0; fi
+if [ $? -eq 2 ]; then RUNNING=0; fi
 
-case "$1" in
-  -mail|-email)
-	if [ $RUNNING -eq 0 ]; then
-		exec $MOZ_PROGRAM -remote "xfeDoCommand(openInbox)" $MOZARGS ${1+"$@"}
-	fi;;
-  -compose|-editor)
-	if [ $RUNNING -eq 0 ]; then
-		exec $MOZ_PROGRAM -remote "xfeDoCommand(composeMessage)" $MOZARGS ${1+"$@"}
-	fi;;
-  -remote)
-	exec $MOZ_PROGRAM -remote "$2" $MOZARGS ${1+"$@"};;
-  -profile|-profile-manager)
-	exec $MOZ_PROGRAM $MOZARGS $@ &;;
-  -*);;
-  '');;
-  *)
-	if [ -z "$1" ]; then continue; fi
-	if [ $RUNNING -eq 0 ]; then
-		$MOZ_PROGRAM -remote "openURL($1,new-tab)" $MOZARGS ${1+"$@"} && exit 0
-	else
-		$MOZ_PROGRAM -remote "openURL($1)" $MOZARGS ${1+"$@"} && exit 0
-	fi;;
-esac
+CMD=0
+while [ "$1" ]; do
+	case "$1" in
+#	  -mail|-email)
+#		if [ $RUNNING -eq 0 -a $CMD -ne 1 ]; then
+#			MOZARGS="-remote xfeDoCommand(openInbox) $MOZARGS"
+#			CMD=1
+#		fi;;
+#	  -compose|-editor)
+#		if [ $RUNNING -eq 0 -a $CMD -ne 1 ]; then
+#			MOZARGS="-remote xfeDoCommand(composeMessage) $MOZARGS"
+#			CMD=1
+#		fi;;
+	  -remote)
+		if [ $CMD -ne 1 ]; then
+			MOZARGS="-remote $2 $MOZARGS"
+			CMD=1
+		fi
+		shift;;
+	  -profile|-profile-manager)
+		CMD=1
+		;;
+	  -*)
+		MOZARGS="$MOZARGS $1"
+		;;
+	  *)
+		if [ $CMD -ne 1 ]; then
+			if [ -e "$PWD/$1" ]; then
+				URL="file://$PWD/$1"
+			elif [ -e "$1" ]; then
+				URL="file://$1"
+			else
+				URL="$1"
+			fi
+			if [ $RUNNING -eq 0 ]; then
+				MOZARGS="-remote openURL(\"$URL\",new-window) $MOZARGS"
+			else
+				MOZARGS="-remote openURL(\"$URL\") $MOZARGS"
+			fi
+			CMD=1
+		else
+			MOZARGS="$MOZARGS $1"
+		fi;;
+	esac
+	shift
+done
 
-if [ $RUNNING -eq 0 ]; then
-	exec $MOZ_PROGRAM -remote "xfeDoCommand (openBrowser)" $MOZARGS $@
+if [ $RUNNING -eq 0 -a $CMD -ne 1 ]; then
+	exec $MOZ_PROGRAM -remote "xfeDoCommand(openBrowser)" $MOZARGS
 else
-	exec $MOZ_PROGRAM $MOZARGS $@ &
+	exec $MOZ_PROGRAM $MOZARGS &
 fi;
 EOF
 
 %build
+export MOZ_APP_NAME="firefox"
+autoconf-2.13
+
 export MOZ_PHOENIX="1"
 export CFLAGS="%{optflags}"
 export CXXFLAGS="%{optflags}"
@@ -240,12 +265,15 @@ export CXXFLAGS="%{optflags}"
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/
 %{__install} -m0644 bookmarks.html %{buildroot}%{_libdir}/firefox/defaults/profile/US/
 
+%{__perl} -pi.orig -e 's|mozilla-MOZILLA_VERSION|firefox|g; s|LIBDIR|%{_libdir}|g;' build/package/rpm/SOURCES/mozilla-rebuild-databases.pl.in
+%{__install} -D -m0755 build/package/rpm/SOURCES/mozilla-rebuild-databases.pl.in %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
+
 ### FIXME: Fixed "nsNativeComponentLoader: GetFactory(libwidget_gtk.so) Load FAILED with error: libwidget_gtk.so" by linking. (Please fix upstream)
 if [ ! -f %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so ]; then
 	%{__ln_s} -f libwidget_gtk2.so %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so
 fi
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 firefox.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/firefox.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -255,21 +283,41 @@ fi
 		firefox.desktop
 %endif
 
+%post
+/sbin/ldconfig 2>/dev/null
+%{_libdir}/firefox/firefox-rebuild-databases.pl &>/dev/null || :
+
+%postun
+/sbin/ldconfig 2>/dev/null
+if [ $1 -gt 1 ]; then
+	%{_libdir}/firefox/firefox-rebuild-databases.pl &>/dev/null || :
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+	%{__rm} -rf %{_libdir}/firefox/{chrome/overlayinfo/,components/}
+	%{__rm} -f %{_libdir}/firefox/chrome/*.rdf
+fi
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
+%doc LEGAL LICENSE
+%{_bindir}/firefox
 %{_libdir}/firefox/
-%{_datadir}/pixmaps/*.png
-%if %{dfi}
-	%{_datadir}/gnome/apps/Internet/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/pixmaps/firefox.png
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/firefox.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Sat Jun 12 2004 Dag Wieers <dag@wieers.com> - 0.8-3
+- Added xremote patches. (Peter Peltonen)
+- Open new window instead of new tab.
+- Enabled all default extensions except irc and venkman. (Luke Ross, Edward Rudd, Anthony Ball, Ian Burrell)
+- Firefox start-up script now handles file://-URLs
+
 * Wed Jun  2 2004 Matthias Saou <http://freshrpms.net/> 0.8-2
 - Added Yellow Dog 3.0 build dependencies.
 - Added libIDL-devel and gcc-c++ build requirements.

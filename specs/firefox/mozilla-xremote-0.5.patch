@@ -1,0 +1,11 @@
+--- xpfe/components/xremote/src/XRemoteService.cpp.xr	2004-04-01 18:16:13.000000000 +1000
++++ xpfe/components/xremote/src/XRemoteService.cpp	2004-04-01 18:19:32.380952134 +1000
+@@ -1041,7 +1041,7 @@
+   if (!name)
+     return;
+ 
+-  LossyCopyUTF16toASCII(name, aProfile);
++  aProfile = NS_LossyConvertUCS2toASCII(nsDependentString(name));
+ }
+ 
+ NS_GENERIC_FACTORY_CONSTRUCTOR(XRemoteService)
