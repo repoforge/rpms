@@ -16,6 +16,7 @@ Source: http://heanet.dl.sourceforge.net/sourceforge/kolourpaint/kolourpaint-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
+%{?fc2:BuildRequires:libselinux-devel}
 
 # Screenshot: http://kolourpaint.sourceforge.net/screenshot0_big.png
 # ScrenshotURL: http://kolourpaint.sourceforge.net/screenshots.html
