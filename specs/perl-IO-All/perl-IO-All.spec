@@ -41,7 +41,7 @@ file stat and manipulation functions.
 IO::All is pluggable, and modules like IO::All::LWP and IO::All::Mailto
 add even more functionality. Optionally, every IO::All object can be
 tied to itself. This means that you can use most perl IO builtins on it:
-readline, <>, getc, print, printf, syswrite, sysread, close.
+readline, getc, print, printf, syswrite, sysread, close.
 
 %prep
 %setup -n %{real_name}-%{version}
