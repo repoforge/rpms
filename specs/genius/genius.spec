@@ -15,7 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.5z.com/pub/genius/genius-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel, vte-devel, libgnomeui-devel >= 2.0
+BuildRequires: gtk2-devel, vte-devel, libgnomeui-devel >= 2.0, gcc-c++
 BuildRequires: gtksourceview-devel >= 0.3, libglade2-devel >= 1.99
 
 %description
