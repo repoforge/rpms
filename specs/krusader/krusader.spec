@@ -71,6 +71,10 @@ export KDEDIR=/usr
 %{_datadir}/doc/HTML/en/krusader
 %{_datadir}/services/krarc.protocol
 %{_libdir}/kde3/kio_krarc.*
+%{_libdir}/kde3/kio_iso*
+%{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
+%{_datadir}/config/kio_isorc
+%{_datadir}/services/iso.protocol
 
 %changelog
 * Mon Nov 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.50-1
