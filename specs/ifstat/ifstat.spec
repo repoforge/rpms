@@ -18,6 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://gael.roualland.free.fr/ifstat/ifstat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{?fc2:BuildRequires: net-snmp-devel}
 %{?fc1:BuildRequires: net-snmp-devel}
 %{?el3:BuildRequires: net-snmp-devel}
 %{?rh9:BuildRequires: net-snmp-devel}

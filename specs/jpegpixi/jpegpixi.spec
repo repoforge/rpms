@@ -15,6 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.zero-based.org/software/jpegpixi/jpegpixi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libjpeg-devel
 
 %description
 Jpegpixi interpolates pixels in JPEG images (single pixels, dots, 

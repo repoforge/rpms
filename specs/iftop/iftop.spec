@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.ex-parrot.com/~pdw/iftop/download/iftop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap
+BuildRequires: libpcap, ncurses-devel
 
 %description
 iftop does for network usage what top(1) does for CPU usage. It listens

@@ -16,6 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.phenoelit.de/irpas/irpas_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libpcap
 
 %description
 Routing protocols are by definition protocols, which are used by routers

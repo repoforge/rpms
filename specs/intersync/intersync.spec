@@ -16,7 +16,7 @@ Source: ftp://ftp.inter-mezzo.org/pub/intermezzo/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: e2fsprogs-devel, readline-devel, curl-devel
+BuildRequires: e2fsprogs-devel, readline-devel, curl-devel, pkgconfig
 Requires: webserver
 
 %description 

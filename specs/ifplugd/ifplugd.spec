@@ -19,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://0pointer.de/lennart/projects/ifplugd/ifplugd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdaemon-devel, pkgconfig >= 0.9.0, lynx
+BuildRequires: libdaemon-devel, pkgconfig >= 0.9.0, lynx, gcc-c++
 
 %description
 ifplugd is a lightweight Linux daemon which configures the network

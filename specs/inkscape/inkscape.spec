@@ -21,6 +21,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: perl(XML::Parser)
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
