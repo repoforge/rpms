@@ -1,9 +1,9 @@
 # $Id$
 # Authority: matthias
 
-Summary: Graphical CD player, CD ripper and MP3 encoder frontend
+Summary: Graphical CD player, CD ripper and encoder frontend
 Name: grip
-Version: 3.1.9
+Version: 3.2.0
 Release: 1
 Epoch: 1
 License: GPL
@@ -15,6 +15,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: vorbis-tools
 BuildRequires: libgnomeui-devel >= 2.2.0, vte-devel, curl-devel
 BuildRequires: id3lib-devel, gettext
+# Required on Yellow Dog Linux 3.0
+BuildRequires: ncurses-devel, openssl-devel
 
 %description
 Grip is a CD player and CD ripper for GNOME. It has the ripping capabilities
@@ -55,6 +57,12 @@ servers.
 
 
 %changelog
+* Wed Apr 28 2004 Matthias Saou <http://freshrpms.net/> 1:3.2.0-1
+- Update to 3.2.0.
+
+* Thu Apr 22 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.10-1
+- Update to 3.1.10.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.9-1
 - Update to 3.1.9.
 
