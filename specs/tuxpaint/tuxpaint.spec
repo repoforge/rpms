@@ -32,11 +32,12 @@ encouraging cartoon mascot who helps guide children as they use the program.
 
 %build
 . /etc/profile.d/qt.sh
-%configure
+cd src
 %{__make} %{?_smp_mflags}
 
 %install
 . /etc/profile.d/qt.sh
+cd src
 %makeinstall
 
 %files
