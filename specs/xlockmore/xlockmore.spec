@@ -15,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
-BuildRequires: XFree86-devel, gcc-c++, esound-devel, gtk2-devel, lesstif-devel
+BuildRequires: XFree86-devel, gcc-c++, esound-devel, gtk2-devel, openmotif-devel, openmotif
 %{?fc2:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
 %{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 
