@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: dag
+
+### Goes into a loop with fc2/x86_64 (Please investigate)
+# ExcludeDist: fc2a
 
 Name: gtoaster
 Summary: versatile CD recording package for both sound and data
