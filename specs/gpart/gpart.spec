@@ -1,12 +1,13 @@
 # $Id$
 # Authority: dag
+# Upstream: Michail Brzitwa <michail$brzitwa,de>
 
 %define real_version 0.1h
 
 Summary: Guesses and recovers a damaged MBR (Master Boot Record)
 Name: gpart
 Version: 0.1
-Release: 0.h
+Release: 1.h
 License: GPL
 Group: Applications/System
 URL: http://home.pages.de/~michab/gpart/
@@ -14,9 +15,9 @@ URL: http://home.pages.de/~michab/gpart/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.stud.uni-hannover.de/user/76201/gpart/%{name}-%{real_version}.tar.gz
+Source: http://www.stud.uni-hannover.de/user/76201/gpart/gpart-%{real_version}.tar.gz
+Patch: ftp://ftp.namesys.com/pub/misc-patches/gpart-0.1h-reiserfs-3.6.patch.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Gpart is a small tool which tries to guess what partitions are on a PC
@@ -24,6 +25,7 @@ type harddisk in case the primary partition table was damaged.
 
 %prep
 %setup -n %{name}-%{real_version}
+%patch0 -p2 -b .reiserfs
 
 ### FIXME: Fix PPC build (Please fix upstream)
 %{__perl} -pi.orig -e 's/(defined\(__alpha__\))/$1 || defined(__powerpc__)/g' src/gm_ntfs.h
@@ -47,10 +49,13 @@ type harddisk in case the primary partition table was damaged.
 %files
 %defattr(-, root, root, 0755)
 %doc Changes COPYING README
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/gpart.8*
+%{_sbindir}/gpart
 
 %changelog
+* Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.1-1.h
+- Added reiserfs patch.
+
 * Wed Sep 17 2003 Dag Wieers <dag@wieers.com> - 0.1-0.h
 - Used contributed package. (Bert de Bruijn)
 

@@ -5,11 +5,12 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.9
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -46,17 +47,21 @@ Support for other protocols like ICQ could be created some day too.
 	--with-glib2 \
         --with-ncurses \
 	--with-gc \
-	--with-perl-lib="%{buildroot}%{perl_vendorarch}"
+	--with-perl-lib="%{buildroot}%{perl_vendorlib}"
+#	--with-perl-lib="%{buildroot}%{perl_vendorarch}"
 #	--with-perl-lib="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	PREFIX="%{buildroot}%{_prefix}" \
-	PERL_USE_LIB="%{buildroot}%{perl_vendorarch}"
+	PREFIX="%{buildroot}%{_prefix}"
+#	PERL_USE_LIB="%{buildroot}%{perl_vendorarch}"
 
 ### Clean up buildroot
+#%{__rm} -rf %{buildroot}%{perl_archlib} \
+#                %{buildroot}%{perl_vendorarch}
+
 %{__rm} -f %{buildroot}%{_libdir}/irssi/modules/*.{a,la} \
 		%{buildroot}%{perl_vendorarch}/auto/Irssi/.packlist \
 		%{buildroot}%{perl_vendorarch}/auto/Irssi/*/.packlist \
@@ -75,9 +80,13 @@ Support for other protocols like ICQ could be created some day too.
 %{_bindir}/*
 %{_libdir}/irssi/
 %{_datadir}/irssi/
-%{perl_vendorarch}/*
+%{perl_vendorlib}/*
 
 %changelog
+* Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.8.9-2
+- Another attempt to fix the brokeness of the irssi perl stuff.
+- Now using %%perl_vendorlib instead of the correcter %%perl_archlib.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.8.9-1
 - Rebuild against new fc1 perl package. (Christopher Stone)
 
