@@ -5,8 +5,8 @@
 
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
-Version: 0.2.5
-Release: 3
+Version: 0.2.6
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://desk3d.sf.net/
@@ -50,6 +50,9 @@ different visualization modes are available.
 %{_datadir}/3ddesktop/digits.bmp
 
 %changelog
+* Sun May 16 2004 Dries Verachtert <dries@ulyssis.org> 0.2.6-1
+- update to 0.2.6
+
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.2.5-3
 - buildreqs update
 
