@@ -11,7 +11,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.10
-Release: 0.1
+Release: 0.2
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -28,6 +28,11 @@ Patch4: firefox-0.7.3-freetype-compile.patch
 Patch5: mozilla-1.7-psfonts.patch
 Patch6: firefox-0.10-gcc3-alpha.patch
 Patch7: firefox-PR1-js-64bit-math.patch
+Patch90: firefox-PR1-gtk-file-chooser-trunk.patch
+Patch91: firefox-PR1-gtk-file-chooser-updates.patch
+Patch101: firefox-PR1-pkgconfig.patch
+Patch102: firefox-PR1-clipboard-access.patch
+Patch103: firefox-PR1-alt-num-tab-switch.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip
@@ -52,7 +57,11 @@ compliance, performance and portability.
 %patch5 -p1 -b .psfonts
 %patch6 -p1 -b .gcc3-alpha
 %patch7 -p0 -b .64bit-math
-
+%patch90 -p0 -b .gtk-file-chooser-trunk
+%patch91 -p1 -b .gtk-file-chooser-updates
+%patch101 -p0 -b .pkgconfig
+%patch102 -p0 -b .clipboard-access
+%patch103 -p0 -b .alt-num-tab-switch
 
 %{__cat} <<'EOF' >.mozconfig
 . $topsrcdir/browser/config/mozconfig
@@ -61,7 +70,7 @@ ac_add_options --disable-debug
 ac_add_options --disable-installer
 ac_add_options --disable-jsd
 ac_add_options --disable-tests
-ac_add_options --enable-extensions="default,-content-packs,-editor,-help,-irc,-spellcheck"
+ac_add_options --enable-extensions="default,-content-packs,-editor,-help,-irc,-spellcheck,-typeaheadfind"
 ac_add_options --enable-official-branding
 # We want to replace -O? with -Os to optimize compilation for size
 ac_add_options --enable-optimize="-Os %(echo "%{optflags}" | sed 's/-O.//')"
@@ -165,11 +174,16 @@ EOF
 
 %build
 export MOZ_PHOENIX=1
+export MOZILLA_OFFICIAL=1
+export BUILD_OFFICIAL=1
 %{__make} -f client.mk depend
 %{__make} %{?_smp_mflags} -f client.mk build
 
 %install
 %{__rm} -rf %{buildroot}
+export MOZ_PHOENIX=1
+export MOZILLA_OFFICIAL=1
+export BUILD_OFFICIAL=1
 %{__make} -C xpinstall/packager/ \
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 

@@ -1,0 +1,36 @@
+Index: layout/html/forms/src/nsTextControlFrame.cpp
+===================================================================
+RCS file: /cvsroot/mozilla/layout/html/forms/src/nsTextControlFrame.cpp,v
+retrieving revision 3.145.2.4.2.1
+diff -d -u -p -r3.145.2.4.2.1 nsTextControlFrame.cpp
+--- layout/html/forms/src/nsTextControlFrame.cpp	10 Sep 2004 02:47:57 -0000	3.145.2.4.2.1
++++ layout/html/forms/src/nsTextControlFrame.cpp	30 Sep 2004 12:37:58 -0000
+@@ -99,6 +99,7 @@
+ #include "nsGUIEvent.h"
+ #include "nsIDOMEventGroup.h"
+ #include "nsIDOM3EventTarget.h"
++#include "nsIDOMNSEvent.h"
+ #include "nsIDOMNSUIEvent.h"
+ #include "nsIEventStateManager.h"
+ 
+@@ -390,12 +391,18 @@ static PRBool
+ DOMEventToNativeKeyEvent(nsIDOMEvent      *aDOMEvent,
+                          nsNativeKeyEvent *aNativeEvent)
+ {
+-  nsCOMPtr<nsIDOMNSUIEvent> nsevent = do_QueryInterface(aDOMEvent);
++  nsCOMPtr<nsIDOMNSUIEvent> uievent = do_QueryInterface(aDOMEvent);
+   PRBool defaultPrevented;
+-  nsevent->GetPreventDefault(&defaultPrevented);
++  uievent->GetPreventDefault(&defaultPrevented);
+   if (defaultPrevented)
+     return PR_FALSE;
+ 
++  nsCOMPtr<nsIDOMNSEvent> nsevent = do_QueryInterface(aDOMEvent);
++  PRBool trusted = PR_FALSE;
++  nsevent->GetIsTrusted(&trusted);
++  if (!trusted)
++    return PR_FALSE;
++
+   nsCOMPtr<nsIDOMKeyEvent> keyEvent = do_QueryInterface(aDOMEvent);
+ 
+   keyEvent->GetCharCode(&aNativeEvent->charCode);

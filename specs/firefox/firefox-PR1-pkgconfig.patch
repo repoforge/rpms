@@ -1,0 +1,36 @@
+Index: build/autoconf/pkg.m4
+===================================================================
+RCS file: /cvsroot/mozilla/build/autoconf/pkg.m4,v
+retrieving revision 1.2
+diff -p -u -1 -2 -r1.2 pkg.m4
+--- build/autoconf/pkg.m4	3 Oct 2002 00:37:11 -0000	1.2
++++ build/autoconf/pkg.m4	22 Sep 2004 23:00:27 -0000
+@@ -19,25 +19,27 @@ AC_DEFUN(PKG_CHECK_MODULES, [
+      if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+         AC_MSG_CHECKING(for $2)
+ 
+         if $PKG_CONFIG --exists "$2" ; then
+             AC_MSG_RESULT(yes)
+             succeeded=yes
+ 
+             AC_MSG_CHECKING($1_CFLAGS)
+             $1_CFLAGS=`$PKG_CONFIG --cflags "$2"`
+             AC_MSG_RESULT($$1_CFLAGS)
+ 
+             AC_MSG_CHECKING($1_LIBS)
+-            $1_LIBS=`$PKG_CONFIG --libs "$2"`
++            ## don't use --libs since that can do evil things like add
++            ## -Wl,--export-dynamic
++            $1_LIBS="`$PKG_CONFIG --libs-only-L \"$2\"` `$PKG_CONFIG --libs-only-l \"$2\"`"
+             AC_MSG_RESULT($$1_LIBS)
+         else
+             $1_CFLAGS=""
+             $1_LIBS=""
+             ## If we have a custom action on failure, don't print errors, but 
+             ## do set a variable so people can do so.
+             $1_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "$2"`
+             ifelse([$4], ,echo $$1_PKG_ERRORS,)
+         fi
+ 
+         AC_SUBST($1_CFLAGS)
+         AC_SUBST($1_LIBS)
