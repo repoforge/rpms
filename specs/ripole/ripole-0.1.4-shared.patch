@@ -1,0 +1,39 @@
+--- Makefile	2004-11-27 11:52:53.000000000 +0100
++++ Makefile.oden	2004-11-27 18:43:29.924503800 +0100
+@@ -1,18 +1,34 @@
++CC=gcc
++MAJOR=0
++MINOR=1
++MICRO=4
+ 
+ OBJS= ole.o olestream-unwrap.o bytedecoders.o logger.o pldstr.o bt-int.o
+ CFLAGS=-Wall -g -O2 -I.
+-
++LIBS=
+ 
+ .c.o:
+ 	$(CC) $(CFLAGS) $(DEFINES) -c $*.c
+ 
+-default: ripole
++all: shared static ripole
++ 
++shared: $(OBJS)
++	$(CC) $(CFLAGS) -Wl,-soname,libripole.so.$(MAJOR) -shared \
++	-o libripole.so.$(MAJOR).$(MINOR).$(MICRO) $(OBJS)
++	ln -snf libripole.so.$(MAJOR).$(MINOR).$(MICRO) libripole.so.$(MAJOR)
++	ln -snf libripole.so.$(MAJOR).$(MINOR).$(MICRO) libripole.so
++ 
++static: $(OBJS)
++	ar ruvs libripole.a $(OBJS)
+ 
+ clean:
+ 	rm -f *.o ripole
+ 
+ ripole: $(OBJS) ripole.[ch]
+ 		$(CC) $(CFLAGS) $(OBJS) $(DEFINES) ripole.c -o ripole
++
++ripole: $(OBJS) shared ripole.[ch]
++	$(CC) $(CFLAGS) $(COMPONENTS) ripole.c -L./ -lripole -o ripole $(LIBS)
+ 	
+ validate: ripole
+ 		cp ripole validate

@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: sendmail-devel >= 8.12, sendmail
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
 Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
-Requires: cabextract, perl(BerkeleyDB)
+Requires: cabextract, ripole, perl(BerkeleyDB)
 Requires: perl(Archive::Tar), perl(Archive::Zip), perl(Compress::Zlib)
 Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
 Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
@@ -135,6 +135,12 @@ start() {
 }
 
 stop() {
+	echo -n $"Shutting down $desc ($prog): "
+	killproc $prog
+#	su - $AMAVIS_USER -c "%{_sbindir}/$prog -c $CONFIG_FILE stop"
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
 	if [ "$MILTER_SOCKET" -o -f %{_localstatedir}/lock/subsys/$prog2 ]; then
 		echo -n $"Shutting down $desc ($prog2): "
 		killproc $prog2
@@ -142,12 +148,6 @@ stop() {
 		echo
 		[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog2
 	fi
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-#	su - $AMAVIS_USER -c "%{_sbindir}/$prog -c $CONFIG_FILE stop"
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
 	return $RETVAL
 }
 
@@ -309,6 +309,10 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 2.2.1-2
+- Change order of shutting down milter/amavisd.
+- Added ripole as a dependency.
+
 * Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 2.2.1-1
 - Updated to release 2.2.1.
 

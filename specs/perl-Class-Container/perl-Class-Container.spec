@@ -11,7 +11,7 @@ Name: perl-Class-Container
 Version: 0.12
 Release: 1
 License: GPL or Artistic
-Group: Development/Perl
+Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Container/
 
 Source: http://www.cpan.org/modules/by-module/Class/Class-Container-%{version}.tar.gz

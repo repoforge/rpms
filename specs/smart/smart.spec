@@ -24,14 +24,13 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.30
+Version: 0.30.2
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
 
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
-Patch0: smart-0.30-x86_64-rpmhelper.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
@@ -75,12 +74,6 @@ KDE tray program for watching updates with Smart Package Manager.
 
 %prep
 %setup
-%ifarch x86_64
-%patch -p0 -b .rpmhelper
-%endif
-
-%{__perl} -pi.orig -e 's|(get_python_lib\()\)|${1}1)|g' setup.py
-%{__perl} -pi.orig -e 's|int32_t lkey|long lkey|g' python/rpmts-py.c
 
 %{?fc3:name="Fedora Core"; version="3"; path="fedora"}
 %{?fc2:name="Fedora Core"; version="2"; path="fedora"}
@@ -150,6 +143,7 @@ priority = 10
 disabled = true
 EOF
 
+%ifarch %{ix86}
 %{__cat} <<EOF >dries.channel
 ### URL: http://dries.studentenweb.org/ayo/
 [dries]
@@ -158,7 +152,9 @@ baseurl = http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS
 type = rpm-md
 priority = 10
 EOF
+%endif
 
+%ifarch %{ix86}
 %{__cat} <<EOF >newrpms.channel
 ### URL: http://newrpms.sunsite.dk/
 [newrpms]
@@ -167,6 +163,7 @@ baseurl = http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version
 type = rpm-md
 priority = 0
 EOF
+%endif
 
 %{__cat} <<EOF >atrpms.channel
 ### URL: http://atrpms.net/
@@ -257,6 +254,7 @@ priority = -100
 disabled = true
 EOF
 
+%ifarch %{ix86}
 %{__cat} <<EOF >fedora.us.channel
 ### URL: http://fedora.us/
 [fedora.us]
@@ -266,6 +264,7 @@ type = rpm-md
 priority = -100
 disabled = true
 EOF
+%endif
 
 %{__cat} <<EOF >smart-gui.console
 USER=root
@@ -310,7 +309,7 @@ cd -
 %{__make} -C contrib/smart-update
 
 %ifarch x86_64
-cd contrib/rpmhelper
+cd contrib/rpmhelper/
 %{__python} setup.py build
 cd -
 %endif
@@ -323,7 +322,7 @@ cd -
 %{!?_without_gui:%{__make} install -C contrib/ksmarttray DESTDIR="%{buildroot}"}
 
 %ifarch x86_64
-cd contrib/rpmhelper
+cd contrib/rpmhelper/
 %{__python} setup.py install --root="%{buildroot}"
 cd -
 %endif
@@ -402,6 +401,9 @@ cd -
 %endif
 
 %changelog
+* Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 0.30.2-1
+- Updated to release 0.30.2.
+
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 0.30-1
 - Removed kernel-doc from distro.py. (Ralf Ertzinger)
 - Updated to release 0.30.

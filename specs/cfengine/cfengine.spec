@@ -10,7 +10,7 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.11
+Version: 2.1.13
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bison, flex, m4, openssl-devel, tetex, texinfo, ghostscript
 BuildRequires: tetex-latex, tetex-dvips
 %{!?_without_db4:BuildRequires: db4-devel}
-%{?_without_db4:BuildRequires: db3-devel}
+%{?_without_db4:BuildRequires: db3-devel >= 3.2}
 
 %description
 Cfengine, or the configuration engine is an agent/software robot and a
@@ -54,9 +54,13 @@ RETVAL=0
 prog="cfenvd"
 desc="cfengine anomaly detection service"
 
+if [ -r /etc/sysconfig/$prog ]; then
+	source %{_sysconfdir}/sysconfig/$prog
+fi
+
 start() {
 	echo -n $"Starting $desc ($prog): "
-	daemon $prog
+	daemon $prog $OPTIONS
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -122,9 +126,13 @@ RETVAL=0
 prog="cfexecd"
 desc="cfengine client daemon"
 
+if [ -r /etc/sysconfig/$prog ]; then
+	source %{_sysconfdir}/sysconfig/$prog
+fi
+
 start() {
 	echo -n $"Starting $desc ($prog): "
-	daemon $prog
+	daemon $prog $OPTIONS
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -301,6 +309,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 2.1.13-1
+- Updated to release 2.1.13.
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 2.1.11-1
 - Updated to release 2.1.11.
 
