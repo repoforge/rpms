@@ -52,6 +52,8 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %{_bindir}/gnubiff
 %{?fc2:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc2:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
+%{?fc3:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
+%{?fc3:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{_datadir}/gnubiff
 %{_datadir}/info/gnubiff.info.gz
 %{_mandir}/man1/gnubiff.*

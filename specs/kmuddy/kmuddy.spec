@@ -40,11 +40,12 @@ text-based online multi-player role-playing game.
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %{__make} install DESTDIR=%{buildroot}
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README AUTHORS CHANGELOG README.MIDI TODO
 %{_bindir}/kmuddy
@@ -52,6 +53,7 @@ text-based online multi-player role-playing game.
 %{_datadir}/doc/HTML/en/kmuddy
 %{_datadir}/icons/hicolor/16x16/actions/aliases.png
 %{_datadir}/icons/*/*/apps/kmuddy.png
+%{_datadir}/kmuddy
 
 %changelog
 * Sat Dec 04 2004 Dries Verachtert <dries@ulyssis.org> - 0.7-1

@@ -68,6 +68,7 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/apps/kconf_update/tellico-rename.upd
 %{_datadir}/doc/HTML/en/tellico
 %{_datadir}/icons/hicolor/*/apps/tellico.png
+%{_datadir}/icons/hicolor/*/mimetypes/tellico.png
 %{_datadir}/mimelnk/application/x-tellico.desktop
 
 %changelog
