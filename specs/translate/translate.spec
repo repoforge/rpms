@@ -28,32 +28,12 @@ tools to help process localizations etc.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=Name Thingy Tool
-Comment=Do things with things
-Icon=name.png
-Exec=name
-Terminal=false
-Type=Application
-StartupNotify=true
-Encoding=UTF-8
-Categories=Application;Network;X-Red-Hat-Extra;
-EOF
-
 %build
 python setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
 python setup.py install --root=%{buildroot} 
-# --install-lib=%{_libdir}/translate --install-scripts=%{_bindir}
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor net                  \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,7 +41,6 @@ desktop-file-install --vendor net                  \
 %files
 %defattr(-, root, root, 0755)
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
 %{_libdir}/python*/site-packages/_csv.*
 %{_libdir}/python*/site-packages/translate
 
