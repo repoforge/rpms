@@ -4,7 +4,7 @@
 Summary: Library for manipulating ID3v1 and ID3v2 tags
 Name: id3lib
 Version: 3.8.3
-Release: 6
+Release: 7
 License: LGPL
 Group: System Environment/Libraries
 Source: http://dl.sf.net/id3lib/id3lib-%{version}.tar.gz
@@ -37,6 +37,7 @@ tag manipulation.
 
 
 %build
+export LDFLAGS="-lstdc++ -lz ${LDFLAGS}"
 %configure --enable-debug="no"
 %{__make} %{?_smp_mflags}
 
@@ -76,7 +77,11 @@ tag manipulation.
 
 
 %changelog
-* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 3.8.3-7
+* Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 3.8.3-7
+- Fix linking problem at last by overriding LDFLAGS manually, thanks to
+  Pedro Lopez for the tip.
+
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 3.8.3-6
 - Rebuild for Fedora Core 2.
 
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 3.8.3-6
