@@ -7,7 +7,7 @@
 
 Summary: File manager
 Name: krusader
-Version: 1.40
+Version: 1.50
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -73,6 +73,9 @@ export KDEDIR=/usr
 %{_libdir}/kde3/kio_krarc.*
 
 %changelog
+* Mon Nov 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.50-1
+- Update to version 1.50.
+
 * Wed Jul 21 2004 Dries Verachtert <dries@ulyssis.org> - 1.40-1
 - Update to version 1.40.
 
