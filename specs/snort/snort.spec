@@ -4,15 +4,11 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define mysql 1
-%define pgsql 1
-%define odbc 1
-%define bloat 1
-#{?el3:#undefine odbc}
+#{?el3:#define _without_odbc 1}
 
 Summary: Open Source network intrusion detection system
 Name: snort
-Version: 2.1.3
+Version: 2.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -24,8 +20,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.snort.org/dl/snort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet
-BuildRequires: pcre-devel, perl, postgresql-devel, unixODBC-devel
+BuildRequires: libpcap >= 0.4, openssl-devel, libnet
+BuildRequires: pcre-devel, perl
 %{!?dist:BuildRequires: net-snmp-devel}
 %{?fc2:BuildRequires: net-snmp-devel}
 %{?fc1:BuildRequires: net-snmp-devel}
@@ -34,6 +30,9 @@ BuildRequires: pcre-devel, perl, postgresql-devel, unixODBC-devel
 %{?rh8:BuildRequires: net-snmp-devel}
 %{?rh7:BuildRequires: ucd-snmp-devel}
 %{?el2:BuildRequires: ucd-snmp-devel}
+%{!?_without_odbc:BuildRequires: unixODBC-devel}
+%{!?_without_postgresql:BuildRequires: postgresql-devel}
+%{!?_without_mysql:BuildRequires: mysql-devel}
 
 %description
 Snort is a libpcap-based packet sniffer/logger which 
@@ -52,7 +51,7 @@ This package has no database support.
 Summary: Snort with MySQL support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
-Obsoletes: snort-postgresql, snort-odbc, snort-bloat
+Conflicts: snort-postgresql, snort-odbc, snort-bloat
 
 %description mysql
 Snort compiled with mysql support.
@@ -61,7 +60,7 @@ Snort compiled with mysql support.
 Summary: Snort with PostgreSQL support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
-Obsoletes: snort-mysql, snort-odbc, snort-bloat
+Conflicts: snort-mysql, snort-odbc, snort-bloat
 
 %description postgresql
 Snort compiled with PostgreSQL support. 
@@ -70,7 +69,7 @@ Snort compiled with PostgreSQL support.
 Summary: Snort with ODBC support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
-Obsoletes: snort-mysql, snort-postgresql, snort-bloat
+Conflicts: snort-mysql, snort-postgresql, snort-bloat
 
 %description odbc
 Snort compiled with ODBC support. 
@@ -79,7 +78,7 @@ Snort compiled with ODBC support.
 Summary: Snort with MySQL, PostgreSQL and ODBC support
 Group: Applications/Internet
 Requires: snort = %{version}-%{release}
-Obsoletes: snort-mysql, snort-postgresql, snort-odbc
+Conflicts: snort-mysql, snort-postgresql, snort-odbc
 
 %description bloat
 Snort compiled with MySQL, PostgreSQL and ODBC support.
@@ -242,7 +241,7 @@ mkdir plain; cd plain
 %{__mv} -f src/snort ../snort-plain
 cd -
 
-%if %{?mysql:1}0
+%if %{!?_without_mysql:1}0
 mkdir mysql; cd mysql
 ../configure $SNORT_BASE_CONFIG \
 	--with-mysql \
@@ -253,7 +252,7 @@ mkdir mysql; cd mysql
 cd -
 %endif
 
-%if %{?pgsql:1}0
+%if %{!?_without_postgresql:1}0
 mkdir pgsql; cd pgsql
 ../configure $SNORT_BASE_CONFIG \
 	--without-mysql \
@@ -264,7 +263,7 @@ mkdir pgsql; cd pgsql
 cd -
 %endif
 
-%if %{?odbc:1}0
+%if %{!?_without_odbc:1}0
 mkdir odbc; cd odbc
 ../configure $SNORT_BASE_CONFIG \
 	--without-mysql \
@@ -359,19 +358,19 @@ fi
 %config(noreplace) %{_sysconfdir}/snort/
 %{_localstatedir}/log/snort/
 
-%if %{?mysql:1}0
+%if %{!?_without_mysql:1}0
 %files mysql
 %defattr(-, root, root, 0755)
 %{_sbindir}/snort-mysql
 %endif
 
-%if %{?pgsql:1}0
+%if %{!?_without_postgresql:1}0
 %files postgresql
 %defattr(-, root, root, 0755)
 %{_sbindir}/snort-pgsql
 %endif
 
-%if %{?odbc:1}0
+%if %{!?_without_odbc:1}0
 %files odbc
 %defattr(-, root, root, 0755)
 %{_sbindir}/snort-odbc
@@ -382,6 +381,9 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
+* Thu Aug 12 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Replaced Obsoletes by Conflicts.
+
 * Fri Jun 25 2004 Dag Wieers <dag@wieers.com> - 2.1.3-1
 - Updated to release 2.1.3.
 
