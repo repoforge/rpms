@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/kyra/kyra_src_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, gcc-c++, SDL_image-devel
+BuildRequires: SDL-devel, gcc-c++, SDL_image-devel, libtiff-devel
 %{?fc2:BuildRequires: alsa-lib-devel}
 
 # Screenshot: http://grinninglizard.com/kyra/demoBemSingle.jpg
