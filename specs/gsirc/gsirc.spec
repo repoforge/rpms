@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.atoker.com/%{name}/files/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: mono
 
 BuildArch: noarch
 
