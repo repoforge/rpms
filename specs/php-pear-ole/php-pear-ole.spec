@@ -9,6 +9,7 @@ Group: Development/Languages
 URL: http://pear.php.net/package/OLE/
 Source: http://pear.php.net/get/OLE-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 Requires: php
 
 %description

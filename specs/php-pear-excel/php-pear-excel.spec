@@ -9,6 +9,7 @@ Group: Development/Languages
 URL: http://pear.php.net/package/Spreadsheet_Excel_Writer/
 Source: http://pear.php.net/get/Spreadsheet_Excel_Writer-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 Requires: php, php-pear-ole
 
 %description
