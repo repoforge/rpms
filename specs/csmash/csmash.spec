@@ -6,7 +6,7 @@
 Summary: 3D tabletennis game
 Name: csmash
 Version: 0.6.6
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 Source: http://dl.sf.net/cannonsmash/%{name}-%{version}.tar.gz
@@ -24,39 +24,44 @@ represent various strategy of tabletennis on computer game.
 This program requires OpenGL and SDL. If your machine doesn't have 3D
 accelaration video card, this program runs very slowly.
 
+
 %prep
 %setup
 
+
 %build
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
+
 # Create the system menu entry
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Cannon Smash
-Comment=%{summary}
-Exec=%{name}
+Comment=3D tabletennis game
+Exec=csmash
 Icon=%{_datadir}/games/%{name}/images/PenAttack.jpg
 Terminal=0
 Type=Application
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Extra                \
   --add-category Application                    \
   --add-category Game                           \
   %{name}.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -65,12 +70,16 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/games/%{name}
 
+
 %changelog
-* Thu Feb 12 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-1.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-2
+- Rebuild for Fedora Core 2.
+
+* Thu Feb 12 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-1
 - Update to 0.6.6, now uses gtk2.
 - Fix a typo in the desktop file and added icon.
 
-* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.6.5-2.fr
+* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.6.5-2
 - Rebuild for Fedora Core 1... the configure problem is gone :-/
 
 * Mon Apr 14 2003 Matthias Saou <http://freshrpms.net/>

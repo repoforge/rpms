@@ -37,7 +37,7 @@ applications such as mail dispatchers and mail notification daemons.
 
 %build
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

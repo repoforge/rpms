@@ -18,27 +18,36 @@ BuildRequires: zlib-devel
 camE is a rewrite of the xawtv webcam app, which adds imlib2 support and
 thus many new possibilities.
 
+
 %prep
 %setup
 
+
 %build
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING *.style example.camErc*
 %{_bindir}/%{name}
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.7-2.fr
-- Rebuild for Fedora Core 1.
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
+- Rebuilt for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.7-2
+- Rebuilt for Fedora Core 1.
 - Added missing zlib dependency.
 
 * Wed Oct  1 2003 Matthias Saou <http://freshrpms.net/>

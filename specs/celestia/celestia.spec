@@ -5,8 +5,8 @@
 
 Summary: OpenGL real-time visual space simulation
 Name: celestia
-Version: 1.3.0
-Release: 2
+Version: 1.3.1
+Release: 1
 License: GPL
 Group: Amusements/Graphics
 Source0: http://dl.sf.net/celestia/celestia-%{version}.tar.bz2
@@ -14,8 +14,8 @@ Source1: http://www.shatters.net/celestia/files/minormoons.ssc
 Source2: http://www.shatters.net/celestia/files/numberedmoons.ssc
 URL: http://www.shatters.net/celestia/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: glut, gtkglarea, libpng, libjpeg
-BuildRequires: glut-devel, gtkglarea, gnome-libs-devel
+Requires: freeglut, gtkglarea, libpng, libjpeg
+BuildRequires: freeglut-devel, gtkglarea, gnome-libs-devel
 BuildRequires: libpng-devel, libjpeg-devel
 BuildRequires: desktop-file-utils, unzip, gcc-c++, libstdc++-devel
 
@@ -32,9 +32,11 @@ simple to navigate through the universe to the object you want to visit.
 %prep
 %setup
 
+
 %build
 %configure  --disable-debug --with-gtk
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -46,26 +48,27 @@ simple to navigate through the universe to the object you want to visit.
 %{__install} -m 644 -D src/celestia/kde/data/hi48-app-celestia.png \
         %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
-cat << EOF > %{name}.desktop
+%{__cat} << EOF > %{name}.desktop
 [Desktop Entry]
 Name=Celestia
 Comment=An OpenGL real-time visual space simulation
-Icon=%{name}.png
-Exec=%{name}
+Icon=celestia.png
+Exec=celestia
 Terminal=false
 Type=Application
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Extras               \
   --add-category Application                    \
   --add-category Graphics                       \
   %{name}.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -86,8 +89,13 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/%{name}/textures
 %{_datadir}/pixmaps/%{name}.png
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.3.0-2.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-1
+- Update to 1.3.1.
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.3.0-2
 - Rebuild for Fedora Core 1.
 
 * Thu Apr 17 2003 Matthias Saou <http://freshrpms.net/>

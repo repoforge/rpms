@@ -42,10 +42,9 @@ and many others!
 
 # Now the menu entry
 %{__install} -m644 -D share/nt.png %{buildroot}%{_datadir}/pixmaps/nt.png
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Extra                \
   --add-category Application                    \
   --add-category Network                        \
   share/nt.desktop
@@ -65,17 +64,18 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/nt.png
 %{_mandir}/man1/nt.1*
 
+
 %changelog
-* Tue Apr 20 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc3.3.fr
+* Tue Apr 20 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc3.3
 - Update to 2.5.0rc3.
 
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc2.3.fr
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc2.3
 - Update to 2.5.0rc2.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.5.0-0.beta2.2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.5.0-0.beta2.2
 - Fix wrong exclude in file list left in by mistake.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.5.0-0.beta2.1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.5.0-0.beta2.1
 - Update to 2.5.0beta2.
 - Rebuild for Fedora Core 1.
 
