@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ulric Eriksson <ulric@siag.nu>
 
 Summary: Load balancer for "simple" tcp based protocols
 Name: pen
-Version: 0.12.3
+Version: 0.13.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -49,9 +48,6 @@ EOF
 %{__install} -D -m0755 penctl.cgi %{buildroot}%{_localstatedir}/www/pen/penctl.cgi
 %{__install} -D -m0644 pen.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/pen.conf
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/doc/
-
 %post
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
         if ! grep -q "Include .*/pen.conf" %{_sysconfdir}/httpd/conf/httpd.conf; then
@@ -70,8 +66,12 @@ fi
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/*.conf
 %{_bindir}/*
 %{_localstatedir}/www/pen/
+%exclude %{_prefix}/doc/
 
 %changelog
+* Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 0.13.0-1
+- Updated to release 0.13.0.
+
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.12.3-1
 - Updated to release 0.12.3.
 
