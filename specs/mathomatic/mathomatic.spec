@@ -1,10 +1,11 @@
 # $Id$
-
+# Upstream: George J. Gesslein II <gesslein$panix,com>
 # Authority: dries
+# Screenshot: http://images.freshmeat.net/screenshots/37777.gif
 
 Summary: Small, portable symbolic math program
 Name: mathomatic
-Version: 11.5
+Version: 11.5b
 Release: 1
 License: LGPL
 Group: Applications/Engineering
@@ -43,6 +44,9 @@ Gesslein II and has been under development since 1986.
 %exclude %{_usr}/doc
 
 %changelog
+* Tue Nov 23 2004 Dries Verachtert <dries@ulyssis.org> 11.5b-1
+- Update to version 11.5b.
+
 * Wed Nov 10 2004 Dries Verachtert <dries@ulyssis.org> 11.5-1
 - Update to version 11.5.
 
