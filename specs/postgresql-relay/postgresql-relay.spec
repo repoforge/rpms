@@ -34,6 +34,29 @@ server.
 %setup
 
 %build
+cat > Makefile <<EOF
+prefix=/usr
+CC=gcc
+CFLAGS=-Wall -g
+all: postgresql-relay postgresql-relay.8
+
+postgresql-relay: postgresql-relay.o
+        ${CC} ${AFLAGS} ${LFLAGS} -o $@ $? ${MYLDFLAGS}
+
+postgresql-relay.o: postgresql-relay.c
+        ${CC} ${MYCFLAGS} ${AFLAGS} ${CFLAGS} -o $@ -c $?
+
+postgresql-relay.8: postgresql-relay.pod
+        pod2man --release="March 22, 2004" --date="March 22, 2004" --center="General Commands Manual" --section=8 $? > $@
+
+install: postgresql-relay postgresql-relay.8
+        install -u bin -g bin -m 755 postgresql-relay ${prefix}/bin
+        install -u bin -g bin -m 644 postgresql-relay.8 ${prefix}/share/man/man8
+
+clean:
+        rm -f postgresql-relay *.o postgresql-relay.8
+
+EOF
 %{__make} %{?_smp_mflags}
 
 %install
