@@ -17,6 +17,9 @@ Source: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/SDL_gfx-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++
 
+# Screenshot: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/Screenshots/SDL_gfxPrimitives.jpg
+# ScreenshotURL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/index.html
+
 %description
 The SDL_gfx library offers several components: Graphic Primitives,
 Rotozoomer, Framerate control, and MMX image filters. The Primitives
