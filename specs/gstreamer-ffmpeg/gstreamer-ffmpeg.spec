@@ -31,11 +31,11 @@ BuildRequires:	SDL-devel
 # Dear Red Hat.  Please get your Requires for -devel packages straight.
 # This time, you forgot to make SDL-devel require alsa-lib-devel.
 # Love, Thomas.
-%{expand:%%define buildforfc2 %(A=$(awk '{print $4}' /etc/fedora-release); if [ "$A" = 2 ]; then echo 1; else echo 0; fi)}
+#%{expand:%%define buildforfc2 %(A=$(awk '{print $4}' /etc/fedora-release); if [ "$A" = 2 ]; then echo 1; else echo 0; fi)}
 
-%if %{buildforfc2}
-BuildRequires:  alsa-lib-devel
-%endif
+#%if %{buildforfc2}
+#BuildRequires:  alsa-lib-devel
+#%endif
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -49,6 +49,8 @@ plugins.
 %setup -q -n gst-ffmpeg-%{version}
 
 %build
+# The FC3 default -mtune=pentium4 makes the build fail on mmx assemply
+CFLAGS="`echo '%{optflags}' | sed 's/-mtune=pentium4/-mtune=pentium3/'`" \
 %configure
 
 make %{?_smp_mflags}
@@ -74,6 +76,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
 
 %changelog
+* Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 0.8.2-0
+- Figure out at last that gcc 3.4's -mtune=pentium4 makes the build fail for
+  x86, so replace with -mtune=pentium3 for now.
+
 * Wed Oct 20 2004 Matthias Saou <http://freshrpms.net/> 0.8.2-0
 - Update to 0.8.2.
 
