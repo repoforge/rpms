@@ -1,12 +1,11 @@
 # $Id: $
-
 # Authority: dries
 
 %define real_version 2002-12-08
 
 Summary: PNG to icon converter
 Name: png2ico
-Version: 20021218
+Version: 0.0.20021218
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -21,8 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, libpng-devel, zlib-devel
 
 %description
-Png2ico is an utility which converts PNG files to Windows icon resource
-files.
+Png2ico is a utility which converts PNG files to Windows icon resource files.
 
 %prep
 %setup -n png2ico
@@ -32,10 +30,8 @@ files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m 0755 %{buildroot}%{_bindir} \
-	%{buildroot}%{_mandir}/man1
-%{__install} -m 0755 png2ico %{buildroot}%{_bindir}
-%{__install} -m 0644 doc/png2ico.1 %{buildroot}%{_mandir}/man1
+%{__install} -D -m0755 png2ico %{buildroot}%{_bindir}/png2ico
+%{__install} -D -m0644 doc/png2ico.1 %{buildroot}%{_mandir}/man1/png2ico.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,5 +43,5 @@ files.
 %{_bindir}/*
 
 %changelog
-* Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> - 20021218-1
+* Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> - 0.0.20021218-1
 - Initial package.
