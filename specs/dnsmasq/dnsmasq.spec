@@ -5,7 +5,7 @@
 
 Summary: Lightweight caching nameserver.
 Name: dnsmasq
-Version: 2.4
+Version: 2.5
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -156,6 +156,9 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 2.5-1
+- Updated to release 2.5.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 2.4-1
 - Updated to release 2.4.
 
