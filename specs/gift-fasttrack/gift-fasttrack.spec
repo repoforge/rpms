@@ -3,7 +3,7 @@
 
 Summary: Gift plugin to access the fasttrack network
 Name: gift-fasttrack
-Version: 0.8.5
+Version: 0.8.7
 Release: 2
 License: GPL
 Group: Development/Libraries
@@ -53,6 +53,9 @@ packages provides the plugin to access the fasttrack network.
 %dir %{_datadir}/giFT/
 
 %changelog
+* Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 0.8.7-1
+- Update to version 0.8.7.
+
 * Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.8.5-2
 - Include .la file because gift requires it. (Willy De la Court)
 
