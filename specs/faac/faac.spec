@@ -3,15 +3,13 @@
 
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
-Version: 1.23.5
+Version: 1.24
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
-
 Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: autoconf, automake, libtool, gcc-c++
 
 %description
@@ -36,24 +34,29 @@ This package contains development files and documentation for libfaac.
 %prep
 %setup -n %{name}
 
+
 %build
 sh bootstrap
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR=%{buildroot}
+%{__make} install DESTDIR=%{buildroot}
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %post
 /sbin/ldconfig 2>/dev/null
 
+
 %postun
 /sbin/ldconfig 2>/dev/null
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -68,11 +71,15 @@ sh bootstrap
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
 
+
 %changelog
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 1.23.5-1.fr
+* Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 1.24-1
+- Update to 1.24.
+
+* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 1.23.5-1
 - Update to 1.23.5.
 - Changed license tag to GPL.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.23.1-1.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.23.1-1
 - Initial rpm release.
 

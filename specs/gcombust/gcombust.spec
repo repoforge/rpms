@@ -23,20 +23,25 @@ structure and size of the disk image without copying files/symlinking
 or writing ten lines of arguments and it can maximize disk usage by
 hinting which directories and files to use.
 
+
 %prep
 %setup
+
 
 %build
 %configure 
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -44,6 +49,7 @@ hinting which directories and files to use.
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
+
 
 %changelog
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1:0.1.55-2

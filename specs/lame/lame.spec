@@ -9,15 +9,13 @@ Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
-
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: ncurses >= 5.0
 BuildRequires: /usr/bin/find, ncurses-devel
 %ifarch %{ix86}
 BuildRequires: nasm, gcc-c++
 %endif
-Requires: ncurses >= 5.0
 Provides: mp3encoder
 
 %description
@@ -44,6 +42,7 @@ these libraries.
 
 %prep
 %setup
+
 
 %build
 ### We want to be optimized to the bone!
@@ -100,7 +99,7 @@ these libraries.
 %doc ChangeLog COPYING README TODO USAGE doc/html
 %{_bindir}/*
 %{_libdir}/*.so.*
-%{_mandir}/man?/*
+%{_mandir}/man1/*
 
 %files devel
 %defattr (-, root, root, 0755)

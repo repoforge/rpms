@@ -9,10 +9,8 @@ Release: 4
 License: GPL
 Group: User Interface/X
 URL: http://www.dtek.chalmers.se/groups/dvd/
-
 Source: http://www.dtek.chalmers.se/groups/dvd/dist/xvattr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: XFree86-devel, gtk+-devel
 
 %description
@@ -41,8 +39,8 @@ XV_BRIGHTNESS, XV_CONTRAST, XV_SATURATION, XV_HUE, XV_COLORKEY, ...
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README
-%doc %{_mandir}/man?/*
 %{_bindir}/*
+%{_mandir}/man?/*
 
 
 %changelog

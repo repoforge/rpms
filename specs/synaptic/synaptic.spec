@@ -1,55 +1,57 @@
 # $Id$
 # Authority: matthias
-# Upstream: Daniel Paarmann <daniel@paarmann.net>
 
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.48.2
-Release: 2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
-
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0, gtk2-devel, libglade2-devel >= 2.0
-BuildRequires: gcc-c++, libstdc++-devel, docbook-utils, gettext
-BuildRequires: scrollkeeper, xmlto
-
 Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
-Requires(pre,postun): scrollkeeper
+Requires(pre): scrollkeeper
+Requires(postun): scrollkeeper
+BuildRequires: apt-devel >= 0.5.4, rpm-devel >= 4.0
+BuildRequires: gtk2-devel, libglade2-devel >= 2.0
+BuildRequires: gcc-c++, libstdc++-devel, docbook-utils, gettext, xmlto
+BuildRequires: scrollkeeper
+BuildRequires: perl(XML::Parser)
 
 %description
 Synaptic (previously known as raptor) is a graphical package management
 program for apt. It provides the same features as the apt-get command line 
 utility with a GUI front-end based on Gtk+
 
+
 %prep
 %setup
+
 
 %build
 %configure 
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -fr %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
-mkdir -p %{buildroot}%{_bindir}
-ln -s %{_bindir}/consolehelper %{buildroot}%{_bindir}/synaptic
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__ln_s} %{_bindir}/consolehelper %{buildroot}%{_bindir}/synaptic
 
-mkdir -p %{buildroot}%{_sysconfdir}/security/console.apps
-cat << EOF > %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/security/console.apps
+%{__cat} << EOF > %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
 USER=root
 PROGRAM=%{_sbindir}/synaptic
 SESSION=true
 FALLBACK=false
 EOF
 
-mkdir -p %{buildroot}%{_sysconfdir}/pam.d
-cat << EOF > %{buildroot}%{_sysconfdir}/pam.d/synaptic
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/pam.d
+%{__cat} << EOF > %{buildroot}%{_sysconfdir}/pam.d/synaptic
 #%PAM-1.0
 auth       sufficient   /lib/security/pam_rootok.so
 auth       sufficient   /lib/security/pam_timestamp.so
@@ -62,23 +64,25 @@ EOF
 
 # Remove legacy menu entries
 %{__rm} -f %{buildroot}%{_sysconfdir}/X11/sysconfig/%{name}.desktop
-#rm -f %{buildroot}%{_datadir}/gnome/apps/System/%{name}.desktop
 
 # Change the default gksu to our wrapper instead
-perl -pi -e 's|Exec=.*|Exec=%{_bindir}/%{name}|g' \
+%{__perl} -pi -e 's|Exec=.*|Exec=%{_bindir}/%{name}|g' \
     %{buildroot}%{_datadir}/applications/%{name}.desktop
 # Move the desktop entry to the main part instead of extras
-perl -pi -e 's|;Application$|;Application;X-Red-Hat-Base;|g' \
+%{__perl} -pi -e 's|;Application$|;Application;X-Red-Hat-Base;|g' \
     %{buildroot}%{_datadir}/applications/%{name}.desktop
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %post
 %{_bindir}/scrollkeeper-update -q || :
 
 %postun
 %{_bindir}/scrollkeeper-update -q || :
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -93,14 +97,19 @@ perl -pi -e 's|;Application$|;Application;X-Red-Hat-Base;|g' \
 %{_datadir}/%{name}
 %{_mandir}/man8/%{name}.8*
 
+
 %changelog
-* Mon Feb 16 2004 Matthias Saou <http://freshrpms.net/> 0.47-1.fr
+* Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 0.48.2-1
+- Update to 0.48.2.
+- Added macros to the spec file.
+
+* Mon Feb 16 2004 Matthias Saou <http://freshrpms.net/> 0.47-1
 - Update to 0.47.
 - Added docbook-utils and scrollkeeper build deps.
 - Added omf file and scriptlets with calls to scrollkeeper-update.
 - Update the menu entry stuff from capplet to applications location.
 
-* Wed Oct 29 2003 Matthias Saou <http://freshrpms.net/> 0.45-1.fr
+* Wed Oct 29 2003 Matthias Saou <http://freshrpms.net/> 0.45-1
 - Rebuild for Fedora Core 1.
 - Update to 0.45.
 - Added missing gettext build requirement (fails miserably without!).

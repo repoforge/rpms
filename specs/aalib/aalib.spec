@@ -12,8 +12,9 @@ License: LGPL
 URL: http://aa-project.sourceforge.net/aalib/
 Source: http://dl.sf.net/aa-project/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires(post,postun): /sbin/ldconfig
-Requires(post,preun): /sbin/install-info
+Requires(post): /sbin/ldconfig, /sbin/install-info
+Requires(preun): /sbin/install-info
+Requires(postun): /sbin/ldconfig
 BuildRequires: XFree86-devel, ncurses-devel, gpm-devel
 
 %description
@@ -76,24 +77,24 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE AUTHORS COPYING ChangeLog NEWS
-%doc %{_infodir}/*.info*
-%doc %{_mandir}/man1/*
 %{_bindir}/aafire
 %{_bindir}/aainfo
 %{_bindir}/aasavefont
 %{_bindir}/aatest
 %{_libdir}/*.so.*
+%{_infodir}/*.info*
+%{_mandir}/man1/*
 
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
 %{_bindir}/aalib-config
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
 %{_datadir}/aclocal/*.m4
 %exclude %{_libdir}/*.la
+%{_mandir}/man3/*
 
 
 %changelog
