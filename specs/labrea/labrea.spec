@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/labrea/labrea-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libpcap
+BuildRequires: libpcap, libdnet
 
 %description
 LaBrea takes over unused IP addresses, and creates virtual servers that
