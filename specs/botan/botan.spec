@@ -3,7 +3,7 @@
 
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
-Version: 1.4.0
+Version: 1.4.1
 Release: 1
 License: Other
 Group: System Environment/Libraries
@@ -70,6 +70,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
+- Update to version 1.4.1.
+
 * Sat Jun 26 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.0-1
 - Update to version 1.4.0.
 
