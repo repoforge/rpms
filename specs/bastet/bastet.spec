@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://fph.altervista.org/prog/bastet-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: ncurses-devel
 
 %description
 Bastet (stands for "bastard tetris") is a free (GPL'd) clone of Tetris(r)
@@ -42,12 +42,8 @@ I-shaped block.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc TODO README HISTORY README-Petris AUTHORS COPYING
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
 
 %changelog
 * Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> - 
