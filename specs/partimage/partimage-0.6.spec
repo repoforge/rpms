@@ -63,6 +63,9 @@ This package contains the server daemon for remote imaging.
 ### FIXME: Disable chowning of files
 %{__perl} -pi.orig -e 's|^\tchown partimag\.root.*$|\\|' Makefile.in
 
+### FIXME: Fix mkinstalldirs during 'make install' in po/
+%{__perl} -pi.orig -e 's|^(mkinstalldirs) = .+$|$1 = %{__mkdir_p}|' po/Makefile.in.in
+
 %{__cat} <<EOF >partimaged.sysconfig
 ### See partimaged --help for more information on these options.
 ###

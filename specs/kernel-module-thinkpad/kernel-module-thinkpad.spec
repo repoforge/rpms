@@ -14,7 +14,7 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define moduledir /kernel/drivers/thinkpad
-%define modules smapi.o superio.o rtcmosram.o thinkpadpm.o thinkpad.o
+%define modules rtcmosram.o smapi.o superio.o thinkpad.o thinkpadpm.o
 
 Summary: IBM ThinkPad kernel modules.
 Name: kernel-module-thinkpad
@@ -28,8 +28,6 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://dl.sf.net/tpctl/thinkpad_%{version}.tar.gz
-Source1: %{rname}-README.modules.conf
-Patch0: thinkpad-4.8-rpm.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -48,17 +46,29 @@ They might work with newer/older kernels.
 
 %prep
 %setup -n %{rname}-%{version}
-%patch0
 
-%{__ln_s} -f 2.4/drivers/ .
-%{__ln_s} -f 2.4/include/ .
-
+### FIXME: Remove chown/chgrp from Makefile. (Please fix upstream)
 %{__perl} -pi.orig -e '
+		s| -o 0 -g 0 | |;
+		s|^(DIR_MOD):=(.+)$|$1:=\$(RPM_BUILD_ROOT)$2|;
 		s|^(DIR_MOD_VER):=.*$|$1:=\$(DIR_MOD)/%{kversion}-%{krelease}/kernel/drivers|;
 		s|^(CFLAGS):=(.*)$|$1:=$2 \$(RPM_OPT_FLAGS)|;
-	' Makefile */Makefile
+	' Makefile */*/Makefile
+
+%{__cat} <<EOF >README.modules.conf
+To enable the thinkpad kernel modules, place the following to your
+/etc/modules.conf:
+
+alias char-major-10-170 thinkpad
+EOF
+
+#%{__ln_s} -f 2.4/drivers/ .
+#%{__ln_s} -f 2.4/include/ .
 
 %build
+%{__rm} -rf %{buildroot}
+echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n"
+
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
 %{__make} -s distclean
@@ -70,18 +80,14 @@ cd -
 ### Make UP module.
 %{__make} %{?_smp_mflags} clean all \
 	KSRC="%{_libmoddir}/%{kversion}-%{krelease}/build"
+cd 2.4/drivers/
+%{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 %install
-%{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{version}\nKernel version: %{kversion}-%{krelease}\n"
-
-### Install UP module.
-%{__make} install_modules
-
 %{__install} -d -m0755 %{buildroot}/dev \
 			%{buildroot}%{_mandir}/man4
 touch %{buildroot}/dev/thinkpad
-%{__install} -m0644 %{SOURCE1} .
 %{__install} -m0644 man/*.4 %{buildroot}%{_mandir}/man4/
 
 ### FIXME: A manual page should not be part of a kernel module package, added to documentation.
