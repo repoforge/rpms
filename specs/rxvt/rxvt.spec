@@ -57,15 +57,11 @@ Type=Application
 Terminal=false
 Encoding=UTF-8
 Categories=GNOME;Application;System;TerminalEmulator;
-StartupNotify=true
 EOF
 
 %build
-#%{__autoconf} -l autoconf autoconf/configure.in > configure 
-#chmod +x configure
-#%{__cp} -f /usr/share/libtool/config.* autoconf
-
 %configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
 	--enable-256-color \
 	--enable-everything \
 	--enable-greek \
@@ -114,7 +110,7 @@ EOF
 
 %changelog
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 2.7.10-1
-- Add improved desktop file.
+- Addded improved desktop file.
 
 * Sun Oct 11 2003 Dag Wieers <dag@wieers.com> - 2.7.10-0
 - Initial package. (using DAR)
