@@ -19,7 +19,7 @@ Source0: http://dl.sf.net/tuxpaint/tuxpaint-%{version}.tar.gz
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, XFree86-devel, qt-devel, SDL-devel, SDL_ttf-devel
-BuildRequires: SDL_image-devel, SDL_mixer-devel
+BuildRequires: SDL_image-devel, SDL_mixer-devel, gnome-libs-devel
 
 %description
 Tux Paint is a free drawing program designed for young children (kids ages 3
