@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Chris Rogers <gandalf@darkcorner.net>
 
+### Goes into a loop with fc2/x86_64 (Please investigate)
+# ExcludeDist: fc2a
+
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: GNOME Samba Browser
