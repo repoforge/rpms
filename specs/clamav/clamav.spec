@@ -4,7 +4,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.72
+Version: 0.73
 Release: 1
 License: GPL
 Group: Applications/System
@@ -251,7 +251,7 @@ fi
 
 %files -n clamd
 %defattr(-, root, root, 0755)
-%doc contrib/clamdwatch/ contrib/trashscan/ etc/clamav.conf
+%doc contrib/clamdwatch/ etc/clamav.conf
 %doc %{_mandir}/man1/clamdscan.1*
 %doc %{_mandir}/man5/clamav.conf.5*
 %doc %{_mandir}/man8/clamd.8*
@@ -285,12 +285,17 @@ fi
 
 %files devel
 %defattr(-, root, root, 0755)
+%{_bindir}/clamav-config
 %{_includedir}/*
-%{_libdir}/*.so
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.73-1
+- Updated to release 0.73.
+
 * Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.72-1
 - Updated to release 0.72.
 
