@@ -46,9 +46,9 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%dir %{_mandir}/man8/createrepo.8*
 %{_bindir}/createrepo
 %{_datadir}/createrepo/
+%{_mandir}/man8/createrepo.8*
 
 
 %changelog
@@ -87,7 +87,7 @@ fi
 - 0.3
 
 * Tue Jan 13 2004 Seth Vidal <skvidal@phy.duke.edu>
-- 0.2 - 
+- 0.2
 
 * Sat Jan 10 2004 Seth Vidal <skvidal@phy.duke.edu>
 - first packaging
