@@ -22,7 +22,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.usebox.net/jjm/dd2/releases/dd2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, SDL_mixer-devel
+BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils
 
 %description
 This is a little shoot'em up arcade game for one or two players. It aims to
@@ -56,7 +56,8 @@ EOF
 %{__rm} -rf %{buildroot}/usr/share/doc/dd2/
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 dd2.desktop %{buildroot}%{_datadir}/gnome/apps/Games/dd2.desktop
+	%{__install} -D -m0644 dd2.desktop \
+		%{buildroot}%{_datadir}/gnome/apps/Games/dd2.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
