@@ -23,12 +23,7 @@ BuildRequires: python-devel, desktop-file-utils, gcc-c++
 BuildRequires: usermode
 
 %description
-GNOME (GNU Network Object Model Environment) is a user-friendly set of
-applications and desktop tools to be used in conjunction with a window
-manager for the X Window System.  GNOME is similar in purpose and scope
-to CDE and KDE, but GNOME is based completely on free software.
-
-This is a TV viewer for the GNOME desktop. It has all the needed
+Zapping is a TV viewer for the GNOME desktop. It has all the needed
 features, plus extensibility through a plugin system.
 
 

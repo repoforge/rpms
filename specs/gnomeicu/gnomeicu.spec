@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 # Upstream: <gnomeicu-support$lists,sourceforge,net>
 
 %{?dist: %{expand: %%define %dist 1}}

@@ -6,10 +6,10 @@
 
 %define real_name Compress-Zlib
 
-Summary: Compress-Zlib module for perl 
+Summary: Compress-Zlib module for perl
 Name: perl-Compress-Zlib
-Version: 1.33
-Release: 0
+Version: 1.34
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-Zlib/
@@ -24,7 +24,7 @@ Requires: perl >= 0:5.004, zlib >= 1.0.2
 Compress-Zlib module for perl
 
 %prep
-%setup -n %{real_name}-%{version} 
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -38,7 +38,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files
@@ -49,6 +49,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Compress/
 
 %changelog
+* Thu Mar 10 2005 Dag Wieers <dag@wieers.com> - 1.34-1
+- Updated to release 1.34.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.33-0
 - Updated to release 1.33.
 

@@ -2,7 +2,12 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
+%{?el3:%define _without_gui 1}
+
 # ExclusiveDist: fc3 el4
+
+### Testing for EL3
+##Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 %{!?dist: %define fc3 1}
@@ -12,10 +17,10 @@
 
 %define desktop_vendor rpmforge
 
-### FIXME: Can't use python_dir because smart install does not seem to obey/follow it, fallback to python_version.
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
-%define python_version %(%{__python} -c 'import sys; print sys.version[:3]')
+%define python_abi %(%{__python} -c 'import sys; print ".".join(sys.version.split(".")[:2])')
+%define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
 
 Summary: Next generation package handling tool
 Name: smart
@@ -30,12 +35,15 @@ Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.
 Patch0: smart-0.29.2-x86_64-rpmhelper.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, pygtk2-devel >= 2.3.94
-BuildRequires: gcc-c++, kdelibs-devel
+BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
+%{!?_without_gui:BuildRequires: gcc-c++, kdelibs-devel, qt-devel, pygtk2-devel >= 2.3.94}
 # *** KDE requires autoconf 2.52, 2.53 or 2.54
 # *** KDE requires automake 1.6.1 or newer
 BuildRequires: autoconf, automake
-Requires: python-abi = %{python_version}
+
+### python-abi is not defined on older dists (eg. EL3)
+#Requires: python-abi = %{python_abi}
+Requires: python = %{python_version}
 
 %description
 Smart Package Manager is a next generation package handling tool.
@@ -296,11 +304,13 @@ EOF
 %build
 env CFLAGS="%{optflags}" %{__python} setup.py build
 
+%if %{!?_without_gui:1}0
 cd contrib/ksmarttray
 %{__make} -f admin/Makefile.common
 %configure
 %{__make}
 cd -
+%endif
 
 %{__make} -C contrib/smart-update
 
@@ -314,7 +324,8 @@ cd -
 %{__rm} -rf %{buildroot}
 
 %{__python} setup.py install --root="%{buildroot}"
-%{__make} install -C contrib/ksmarttray DESTDIR="%{buildroot}"
+
+%{!?_without_gui:%{__make} install -C contrib/ksmarttray DESTDIR="%{buildroot}"}
 
 %ifarch x86_64
 cd contrib/rpmhelper
@@ -326,18 +337,20 @@ cd -
 
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/smart-gui
 
-%{__install} -D -m0755 smart-gui.sh %{buildroot}%{_sbindir}/smart-gui
 %{__install} -D -m0644 distro.py %{buildroot}%{_prefix}/lib/smart/distro.py
-#%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 %{__install} -D -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
-%{__install} -D -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
-%{__install} -D -m0644 smart-gui.pam %{buildroot}%{_sysconfdir}/pam.d/smart-gui
-%{__install} -D -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
+#%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smart/channels/
 %{__cp} -av *.channel %{buildroot}%{_sysconfdir}/smart/channels/
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/smart/
+
+%if %{!?_without_gui:1}0
+%{__install} -D -m0755 smart-gui.sh %{buildroot}%{_sbindir}/smart-gui
+%{__install} -D -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
+%{__install} -D -m0644 smart-gui.pam %{buildroot}%{_sysconfdir}/pam.d/smart-gui
+%{__install} -D -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 smart-gui.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
@@ -348,7 +361,7 @@ cd -
 		--add-category X-Red-Hat-Base              \
 		smart-gui.desktop
 %endif
-
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -363,7 +376,11 @@ cd -
 %{python_sitearch}/smart/
 %exclude %{python_sitearch}/smart/interfaces/gtk/
 %{_localstatedir}/lib/smart/
+%ifarch x86_64
+%{python_sitearch}/rpmhelper.so
+%endif
 
+%if %{!?_without_gui:1}0
 %files gui
 %defattr(-, root, root, 0755)
 %{_sysconfdir}/pam.d/smart-gui
@@ -376,20 +393,23 @@ cd -
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-smart-gui.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/smart-gui.desktop}
 %{_datadir}/pixmaps/smart.png
-%ifarch x86_64
-%{python_sitearch}/rpmhelper.so
 %endif
 
 %files update
 %defattr(4755, root, root, 0755)
 %{_bindir}/smart-update
 
+%if %{!?_without_gui:1}0
 %files -n ksmarttray
 %defattr(-, root, root, 0755)
 %{_bindir}/ksmarttray
 %{_datadir}/apps/ksmarttray/
+%endif
 
 %changelog
+* Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 0.29.2-2
+- Included rpmhelper patch for x86_64 problem. (RHbz 146477)
+
 * Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 0.29.2-1
 - Updated to release 0.29.2.
 

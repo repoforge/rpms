@@ -1,6 +1,5 @@
 # $Id$
-
-# DarAuthority: dag
+# Authority: dag
 
 Summary: Tool for editing and converting subtitles for DivX films
 Name: GTKsubtitler
@@ -13,7 +12,6 @@ URL: http://www.gtksubtitler.prv.pl/
 
 Source: http://www.gtksubtitler.prv.pl/download/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel, gnome-libs-devel
 

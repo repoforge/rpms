@@ -1,5 +1,5 @@
 # $Id$
-# Authority: freshrpms
+# Authority: matthias
 
 %define rname Gabber
 
