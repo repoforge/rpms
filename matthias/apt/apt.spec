@@ -3,7 +3,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15cnc6
-Release: 0.1.fr
+Release: 0
 Group: System Environment/Base
 License: GPL
 URL: https://moin.conectiva.com.br/AptRpm
