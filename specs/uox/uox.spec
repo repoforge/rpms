@@ -29,7 +29,8 @@ dos2unix autogen.sh
 bash autogen.sh || echo autogen.sh problem
 dos2unix configure
 chmod +x configure
-export CXXFLAGS=-I/usr/include/mozilla-1.6/js
+export CXXFLAGS="%{optflags} -I/usr/include/mozilla-1.6/js "
+echo CXX flags: $CXXFLAGS
 %configure --enable-debug
 dos2unix Makefile
 dos2unix depcomp
