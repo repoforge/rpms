@@ -4,15 +4,15 @@
 
 Summary: Extra configuration dialogs for GNOME
 Name: gtweakui
-Version: 0.0.6
-Release: 3
+Version: 0.4.0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://gtweakui.sourceforge.net/
 Source: http://dl.sf.net/gtweakui/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel >= 2.4.0, GConf2-devel >= 2.4.0, gettext
-Obsoletes: gTweakUI <= 0.0.6
+Obsoletes: gTweakUI <= %{version}-%{release}
 
 %description
 gTweakUI Provides extra configuration dialogs for the GNOME 2.0 desktop.
@@ -20,6 +20,20 @@ gTweakUI Provides extra configuration dialogs for the GNOME 2.0 desktop.
 
 %prep
 %setup -n %{real_name}-%{version}
+
+%{__cat} <<EOF >gtweakui-galeon.desktop.in
+[Desktop Entry]
+Name=Galeon
+Comment=Change extra galeon preferences
+Exec=gtweakui-galeon
+Icon=gnome-desktop-config.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;Settings
+OnlyShowIn=GNOME;
+EOF
 
 %{__cat} <<EOF >gtweakui-menus.desktop.in
 [Desktop Entry]
@@ -71,13 +85,14 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{real_name}
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO FAQ
 %{_bindir}/*
@@ -86,14 +101,14 @@ EOF
 
 
 %changelog
-* Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 0.6-3
+* Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 0.0.6-3
 - Fixed typo in summary.
 - Rebuild with proper category.
 
-* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 0.6-2
+* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 0.0.6-2
 - Added improved desktop files.
 
-* Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 0.6-1
+* Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 0.0.6-1
 - Adopted for freshrpms, based on provided source package.
 - Changed the name from gTweakUI to gtweakui.
 

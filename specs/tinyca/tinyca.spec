@@ -10,7 +10,7 @@
 
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca
-Version: 0.6.5
+Version: 0.6.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -91,6 +91,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-tinyca.desktop}
 
 %changelog
+* Sat Aug 14 2004 Dag Wieers <dag@wieers.com> - 0.6.6-1
+- Updated to release 0.6.6.
+
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 0.6.5-1
 - Updated to release 0.6.5.
 

@@ -11,7 +11,7 @@
 
 Summary: Graphical video editing tool
 Name: avidemux2
-Version: 2.0.26
+Version: 2.0.28
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -20,7 +20,7 @@ URL: http://fixounet.free.fr/avidemux/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://fixounet.free.fr/avidemux/avidemux-%{version}.tar.gz
+Source: http://download.berlios.de/avidemux/avidemux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.0.0
@@ -83,11 +83,14 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING History README TODO
-%{_bindir}/*
+%{_bindir}/avidemux2
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-avidemux2.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop}
 
 %changelog
+* Fri Aug 13 2004 Dag Wieers <dag@wieers.com> - 2.0.28-1
+- Updated to release 2.0.28.
+
 * Fri Jul 23 2004 Dag Wieers <dag@wieers.com> - 2.0.26-1
 - Updated to release 2.0.26.
 
