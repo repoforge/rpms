@@ -49,7 +49,7 @@ EOF
 %{__aclocal} #--force
 %{__autoheader}
 %{__automake} --add-missing -a --foreign
-autoconf
+%{__autoconf}
 autoreconf --force --install --symlink
 %configure \
 	--disable-schemas-install

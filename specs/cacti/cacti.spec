@@ -16,6 +16,7 @@ Group: Applications/System
 URL: http://www.cacti.net/
 
 Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
+#Source1: http://www.cacti.net/downloads/cacti-cactid-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, net-snmp-utils, openssl-devel
@@ -35,6 +36,15 @@ The frontend is completely PHP driven. Along with being able to maintain
 graphs, data sources, and round robin archives in a database, Cacti also
 handles the data gathering. There is SNMP support for those used to
 creating traffic graphs with MRTG.
+
+%package cactid
+Summary: Fast c-based poller for package %{name}
+Group: Application/System
+Requires: %{name} = %{version}-%{release}
+
+%description cactid
+Cactid is a supplemental poller for Cacti that makes use of pthreads
+to achieve excellent performance.
 
 %package docs
 Summary: Documentation for package %{name}
@@ -71,9 +81,9 @@ Alias /cacti/ %{_localstatedir}/www/cacti/
 EOF
 
 %build
-cd cactid
-%configure
-%{__make} %{?_smp_mflags}
+#cd cactid
+#configure
+#%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -81,8 +91,8 @@ cd cactid
 %{__install} -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
 %{__cp} -avx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
-%{__install} -D -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
-%{__install} -D -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
+#%{__install} -D -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
+#%{__install} -D -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
 %{__install} -D -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
 %{__install} -D -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
 
@@ -97,8 +107,8 @@ userdel cacti &>/dev/null || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README cactid/AUTHORS cactid/ChangeLog cactid/COPYING cactid/INSTALL cactid/NEWS
-%config(noreplace) %{_sysconfdir}/cactid.conf
+%doc LICENSE README
+#%config(noreplace) %{_sysconfdir}/cactid.conf
 %config(noreplace) %{_localstatedir}/www/cacti/include/config.php
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/*
 %config %{_sysconfdir}/cron.d/*
@@ -112,10 +122,16 @@ userdel cacti &>/dev/null || :
 %{_localstatedir}/www/cacti/lib/
 %{_localstatedir}/www/cacti/resource/
 %{_localstatedir}/www/cacti/scripts/
-%{_bindir}/*
+#%{_bindir}/*
 %defattr(-, cacti, cacti, 0755 )
 %{_localstatedir}/www/cacti/log/
 %{_localstatedir}/www/cacti/rra/
+
+#%files cactid
+#%defattr(-, root, root, 0755)
+#%doc cacti-cactid-%{version}/AUTHORS cacti-cactid-%{version}/CHANGELOG cacti-cactid-%{version}/COPYING cacti-cactid-%{version}/INSTALL cacti-cactid-%{version}/NEWS
+#%config %{_sysconfdir}/cactid.conf
+#%{_bindir}/*
 
 %files docs
 %defattr(-, root, root, 0755)

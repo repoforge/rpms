@@ -10,7 +10,8 @@ License: GPL
 Group: Development/Tools
 URL: http://gtranslator.sourceforge.net/
 
-Source:	http://dl.sf.net/gtranslator/gtranslator-%{version}.tar.gz
+#Source: http://dl.sf.net/gtranslator/gtranslator-%{version}.tar.gz
+Source: http://ftp.gnome.org/pub/GNOME/sources/gtranslator/1.1/gtranslator-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: scrollkeeper >= 0.1.4
@@ -64,7 +65,7 @@ scrollkeeper-update -q || :
 %{_bindir}/pozilla.sh
 %{_datadir}/applications/gtranslator.desktop
 %{_datadir}/gtranslator/
-%{_datadir}/mime-info/gtranslater.mime
+%{_datadir}/mime-info/gtranslator.mime
 %{_datadir}/mime-info/gtranslator.keys
 %{_datadir}/omf/gtranslator/
 %{_datadir}/pixmaps/*.png
