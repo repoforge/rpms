@@ -1,7 +1,7 @@
-# $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
+# $Id$
 # Authority: dag
-# Upstream: Jay Maynard <jmaynard@conmicro.cx>
-# Upstream: <hercules-390@yahoogroups.com>
+# Upstream: Jay Maynard <jmaynard$conmicro,cx>
+# Upstream: <hercules-390$yahoogroups,com>
 
 # Distcc: 0
 
