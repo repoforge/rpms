@@ -16,7 +16,7 @@
 
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball
-Version: 1.3.4
+Version: 1.3.5
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -63,8 +63,8 @@ Exec=%{name}
 Icon=%{_datadir}/%{name}/shot-rlk/risers.jpg
 Terminal=false
 Type=Application
-Categories=Application;Game;
 Encoding=UTF-8
+Categories=Application;Game;
 EOF
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
@@ -92,6 +92,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 1.3.5-1
+- Update to 1.3.5.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.3.4-1
 - Update to 1.3.4.
 - Added proper XFree/x.org and desktop-file-utils build switches.
