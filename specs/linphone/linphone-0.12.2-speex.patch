@@ -1,0 +1,16 @@
+--- linphone-0.12.2/Makefile.am.speex	2004-03-31 15:40:14.000000000 -0500
++++ linphone-0.12.2/Makefile.am	2005-01-21 11:46:24.109386492 -0500
+@@ -6,11 +6,11 @@
+ 
+ if BUILD_SPEEX
+ SUBDIRS = support pixmaps ffmpeg po debian ipkg oRTP gsmlib lpc10-1.5 \
+-                $(WIN32ACM_DIR) speex mediastreamer \
++                $(WIN32ACM_DIR) mediastreamer \
+ 		media_api osipua coreapi console gnome share developer-docs
+ else
+ SUBDIRS = support pixmaps ffmpeg po debian ipkg oRTP gsmlib lpc10-1.5 \
+-                $(WIN32ACM_DIR) speex mediastreamer \
++                $(WIN32ACM_DIR) mediastreamer \
+ 		media_api osipua coreapi console gnome share developer-docs
+ endif
+ 

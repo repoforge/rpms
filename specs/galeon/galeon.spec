@@ -7,7 +7,7 @@
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
-Version: 1.3.19
+Version: 1.3.20
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -31,28 +31,10 @@ engine, for rendering Web pages. It is developed to be fast and lightweight.
 %prep
 %setup
 
-%{__cat} <<'EOF' >galeon.sh
-#!/bin/sh
-
-### Written by Dag Wieers <dag@wieers.com>
-### Please send suggestions and fixes to me.
-
-if [ -z "$MOZILLA_FIVE_HOME" ]; then
-	MOZILLA_FIVE_HOME="%{_libdir}/mozilla-%{lversion}"
-fi
-
-LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$LD_LIBRARY_PATH"
-
-export LD_LIBRARY_PATH MOZILLA_FIVE_HOME
-
-exec %{_libdir}/galeon/galeon $@
-EOF
-
 %build
 %configure \
 	--disable-werror \
-	--disable-schemas-install \
-	--with-mozilla-snapshot="1.7.2"
+	--disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
@@ -60,9 +42,6 @@ EOF
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}-2.0
-
-#%{__mv} -f %{buildroot}%{_bindir}/galeon %{buildroot}%{_libdir}/galeon/galeon
-#%{__install} -D -m0755 galeon.sh %{buildroot}%{_bindir}/galeon
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
 
@@ -98,6 +77,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Mar 13 2005 Dag Wieers <dag@wieers.com> - 1.3.20-1
+- Updated to release 1.3.20.
+
 * Sun Jan 16 2005 Dag Wieers <dag@wieers.com> - 1.3.19-1
 - Updated to release 1.3.19.
 
