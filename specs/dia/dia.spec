@@ -15,7 +15,7 @@ URL: http://www.gnome.org/projects/dia/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/gnome/sources/dia/%{version}/dia-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/gnome/sources/dia/%{version}/dia-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.6, gtk2-devel >= 2.0.6, libxml2-devel >= 2.3.9

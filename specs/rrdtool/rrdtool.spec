@@ -1,24 +1,25 @@
 # $Id$
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
-# Distcc: 0
 
 %define phpextdir %(php-config --extension-dir)
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.0.48
-Release: 3
+Version: 1.0.49
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
+
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
 Patch: rrdtool-1.0.48-php_config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
-Requires: libpng, zlib
+
 BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
 BuildRequires: libpng-devel, zlib-devel
+Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
+Requires: libpng, zlib
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and 
@@ -115,8 +116,8 @@ EOF
 find examples/ contrib/ -type f -exec chmod 0644 {} \;
 
 # Put man pages back into place...
-%{__mkdir_p} %{buildroot}%{_mandir}/
-%{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
+#%{__mkdir_p} %{buildroot}%{_mandir}/
+#%{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
 
 # Clean up the buildroot
 %{__rm} -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}/
@@ -156,6 +157,9 @@ find examples/ contrib/ -type f -exec chmod 0644 {} \;
 
 
 %changelog
+* Thu Aug 25 2004 Dag Wieers <dag@wieers.com> - 1.0.49-1
+- Updated to release 1.0.49.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 1.0.48-3
 - Fixes for x86_64. (Garrick Staples)
 
