@@ -1,23 +1,20 @@
 # $Id$
 
 # Authority: dries
-# Screenshot: http://sebdelestaing.free.fr/gweled/Images/gweled_screenshot.png
 
-# NeedsCleanup
-
-Summary: gnome clone of 'bjeweled' or 'diamond mine'
-Summary(nl): gnome kloon van 'bjeweled' of 'diamond mine'
+Summary: Clone of 'bjeweled' or 'diamond mine'
 Name: gweled
-Version: 0.3
-Release: 1.dries
+Version: 0.4
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://sebdelestaing.free.fr/gweled/
 
 Source: http://sebdelestaing.free.fr/gweled/Release/gweled-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel
+
+# Screenshot: http://sebdelestaing.free.fr/gweled/Images/gweled_screenshot.png
 
 %description
 Gweled is a Gnome version of a popular PalmOS/Windows/Java game called
@@ -41,20 +38,25 @@ zet nog mogelijk is.
 
 %install
 %{__rm} -rf %{buildroot}
-export DESTDIR=$RPM_BUILD_ROOT
-make install
+# export DESTDIR=$RPM_BUILD_ROOT
+# make install
+%makeinstall
 %{__rm} -f ${RPM_BUILD_ROOT}/usr/share/pixmaps/gweled/tile_even.svg~
 %{__rm} -f ${RPM_BUILD_ROOT}/usr/share/pixmaps/gweled/tile_odd.svg~
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc README AUTHORS COPYING INSTALL NEWS 
-/usr/bin/gweled
-/usr/share/applications/gweled.desktop
-/usr/share/pixmaps/gweled.png
-/usr/share/pixmaps/gweled
-/var/games/gweled.easy.scores
+%{_bindir}/gweled
+%{_datadir}/applications/gweled.desktop
+%{_datadir}/pixmaps/gweled.png
+%{_datadir}/pixmaps/gweled
+%{_var}/games/gweled.easy.scores
 
 %changelog
-* Mon Dec 1 2003 Dries Verachtert <dries@ulyssis.org> 0.3-1.dries
+* Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.3-2
+- spec cleanup
+- update to 0.4
+
+* Mon Dec 1 2003 Dries Verachtert <dries@ulyssis.org> 0.3-1
 - first packaging for Fedora Core 1
