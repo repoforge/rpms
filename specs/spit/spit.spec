@@ -68,7 +68,8 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 
 # Makefile doesn't use the defines of makeinstall and doesn't use the
 # default DESTDIR
-%makeinstall INSTALL_ROOT=%{buildroot}
+# export INSTALL_ROOT=%{buildroot}
+%makeinstall
 
 %{__install} -D -m0644 pixmaps/spit.svg %{buildroot}%{_datadir}/pixmaps/spit.svg
 
