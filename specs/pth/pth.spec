@@ -2,11 +2,9 @@
 # Authority: dag
 # Upstream: Ralf S. Engelschall <rse@engelschall.com>
 
-# Distcc: 0
-
 Summary: GNU Portable Threads.
 Name: pth
-Version: 2.0.0
+Version: 2.0.1
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -75,5 +73,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Jul 14 2004 Dag Wieers <dag@wieers.com> - 2.0.1-1
+- Updated to release 2.0.1.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 2.0.0-1
 - Initial package. (using DAR)

@@ -33,7 +33,7 @@ and is thus not very intrusive.
 %setup
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e 's|\${DESTDIR}\${sysinitdir}|\$(DESTDIR)\$(sysconfdir)/rc.d/init.d|' conf/Makefile.in
+%{__perl} -pi.orig -e 's|\${DESTDIR}\${sysvinitdir}|\$(DESTDIR)\$(sysconfdir)/rc.d/init.d|' conf/Makefile.in
 
 %{__perl} -pi.orig -e 's|^(INTERFACES)=.*$|$1="auto"|' conf/ifplugd.conf
 

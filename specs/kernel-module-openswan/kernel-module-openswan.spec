@@ -27,7 +27,7 @@
 
 Summary: Linux drivers for OpenS/WAN IPsec support
 Name: kernel-module-openswan
-Version: 2.1.2
+Version: 2.1.4
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -337,11 +337,15 @@ fi
 #%{_includedir}/*.h
 
 %changelog
+* Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 2.1.4-1
+- Updated to release 2.1.4.
+
 * Sun Jun 27 2004 Dag Wieers <dag@wieers.com> - 2.1.2-1
+- Updated to release 2.1.2.
 - Moved to new standard naming scheme.
 
 * Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
-- Updated to openswan release 2.1.1.
+- Updated to release 2.1.1.
 
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.05-1
 - Fixed the longstanding smp kernel bug. (Bert de Bruijn)

@@ -9,8 +9,8 @@
 
 Summary: Open Ticket Request System
 Name: otrs
-Version: 1.2.3
-Release: 2
+Version: 1.2.4
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://otrs.org/
@@ -54,6 +54,28 @@ for file in */*.dist */*/*.dist; do
 	%{__mv} -f $file $(dirname $file)/$(basename $file .dist)
 done
 
+%{__cat} <<EOF >otrs.httpd
+ScriptAlias /otrs/ "/opt/otrs/bin/cgi-bin/"
+Alias /otrs-web/ "/opt/otrs/var/httpd/htdocs/"
+
+PerlRequire /opt/otrs/scripts/apache2-perl-startup.pl
+
+PerlModule Apache::Reload
+PerlInitHandler Apache::Reload
+
+MaxRequestsPerChild 400
+
+<Location /otrs>
+#	ErrorDocument 403 /otrs/customer.pl
+	ErrorDocument 403 /otrs/index.pl
+	AllowOverride All
+	SetHandler perl-script
+	PerlResponseHandler ModPerl::Registry
+	PerlOptions +ParseHeaders
+	Options +ExecCGI +FollowSymlinks
+</Location>
+EOF
+
 %build
 
 %install
@@ -73,7 +95,8 @@ done
 ### Copy extra configuration files.
 %{__install} -D -m0755 scripts/redhat-rcotrs %{buildroot}%{_initrddir}/otrs
 %{__install} -D -m0644 scripts/redhat-rcotrs-config %{buildroot}%{_sysconfdir}/sysconfig/otrs
-%{__install} -D -m0644 scripts/apache2-httpd.include.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
+#%{__install} -D -m0644 scripts/apache2-httpd.include.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
+%{__install} -D -m0644 otrs.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/otrs.conf
 
 touch %{buildroot}/opt/otrs/var/log/TicketCounter.log
 
@@ -105,7 +128,7 @@ fi
 %config(noreplace) /opt/otrs/Kernel/Language/
 %dir /opt/otrs/Kernel/Config/
 %dir /opt/otrs/Kernel/Output/HTML/
-/opt/otrs/Kernel/cpan-lib*
+%exclude /opt/otrs/Kernel/cpan-lib*
 /opt/otrs/Kernel/Config/Modules.pm
 /opt/otrs/Kernel/Config/Defaults.pm
 /opt/otrs/Kernel/Language.pm
@@ -138,6 +161,9 @@ fi
 %doc doc/
 
 %changelog
+* Wed Jul 14 2004 Dag Wieers <dag@wieers.com> - 1.2.4-1
+- Updated to release 1.2.4.
+
 * Wed Apr 14 2004 Dag Wieers <dag@wieers.com> - 1.2.3-2
 - Require smtpdaemon instead of sendmail.
 

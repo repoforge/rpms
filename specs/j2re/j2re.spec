@@ -1,9 +1,11 @@
 # $Id$
 # Authority: dag
 
-# BuildAsRoot: 0
-
 %{?dist: %{expand: %%define %dist 1}}
+
+%{?fc7:%define _without_gcc3 1}
+%{?el2:%define _without_gcc3 1}
+%{?rh6:%define _without_gcc3 1}
 
 %define real_version 1_4_2
 %define real_release 04
@@ -11,7 +13,7 @@
 Summary: Sun Java(tm) 2 Runtime Environment
 Name: j2re
 Version: 1.4.2
-Release: 7
+Release: 9
 Group: Development/Languages
 License: Redistributable, BCLA
 URL: http://java.sun.com/j2se/1.4.2/download.html
@@ -35,7 +37,7 @@ This packages provides the environment to run java 2 aplications with JRE.
 %package -n mozilla-j2re
 Summary: Sun Java(tm) 2 Plug-in for the mozilla browser
 Group: Applications/Internet
-Requires: j2re = %{version}-%{release}
+Requires: j2re = %{version}
 Provides: java-plugin = %{version}, j2re-java-plugin = %{version}
 Obsoletes: java-plugin < %{version}, j2re-java-plugin = < %{version}
 
@@ -193,14 +195,8 @@ find %{buildroot}%{_libdir}/jre/bin/ -type f -exec %{__chmod} 0755 {} \;
 %{__chmod} 0755 %{buildroot}%{_libdir}/jre/javaws/javaws{,bin}
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins
-%{?fc2:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
-%{?fc1:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
-%{?el3:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
-%{?rh9:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
-%{?rh8:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
-%{?rh7:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
-%{?el2:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
-%{?rh6:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
+%{!?_without_gcc3:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
+%{?_without_gcc3:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/netscape/plugins
 %{__ln_s} -f %{_libdir}/jre/plugin/i386/ns4/libjavaplugin.so %{buildroot}%{_libdir}/netscape/plugins/

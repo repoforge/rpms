@@ -15,7 +15,7 @@ Source: http://dl.sf.net/faac/%{name}-%{version}%{?prever:-%{prever}}.tar.gz
 Patch: faad2-2.0-Makefile-separator.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool, gcc-c++, zlib-devel
-BuildRequires: libsndfile-devel >= 1.0.0
+BuildRequires: libsndfile-devel >= 1.0.0, libstdc++-devel
 BuildRequires: xmms-devel, id3lib-devel, gtk+-devel
 
 %description
@@ -58,7 +58,7 @@ sh bootstrap
     --with-xmms \
     --with-mp4v2
 #   --with-drm
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

@@ -96,7 +96,7 @@ Provides: acx100
 ACX100 wireless driver utilities.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 ####FIXME: Fix for defining own kernel version and get rid of Configure/config.mk (Please fix upstream)
 %{__ln_s} -f /bin/true Configure

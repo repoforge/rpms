@@ -1,8 +1,5 @@
 # $Id$
-
 # Authority: dries
-
-# NeedsCleanup
 
 Summary: Gift openft plugin
 Name: gift-openft
@@ -15,7 +12,7 @@ URL: http://apollon.sourceforge.net/
 Source: http://dl.sf.net/gift/gift-openft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, gift, gcc-c++, pkgconfig, zlib-devel
+BuildRequires: gift, gcc-c++, pkgconfig, zlib-devel
 Requires: gift
 
 Packager: Dries Verachtert <dries@ulyssis.org>
@@ -27,22 +24,28 @@ Openft plugin for gift
 %prep
 %setup
 
+%{__perl} -pi.orig -e '
+                s|\@plugindir\@|\$(libdir)/giFT|g;
+                s|\$\(datadir\)|\$(datadir)/giFT|g;
+        ' Makefile.in */Makefile.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-make install-strip DESTDIR="%{buildroot}"
+%makeinstall
 
 %files
-%defattr(-,root,root,0755)
-%doc README AUTHORS ChangeLog COPYING NEWS TODO
-%{_libdir}/giFT/libOpenFT.*
-%{_datadir}/giFT/OpenFT/OpenFT.conf.template
-%{_datadir}/giFT/OpenFT/nodes
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%dir %{_libdir}/giFT/
+%dir %{_datadir}/giFT/
+%config (noreplace) %{_datadir}/giFT/OpenFT/
+%exclude %{_libdir}/giFT/libOpenFT.la
+%{_libdir}/giFT/libOpenFT.so
 
 %changelog
 * Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.2.1.2-1
 - first packaging for Fedora Core 1
-
