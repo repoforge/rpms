@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
-# Upstream: Carsten Haitzler <raster@rasterman.com>
-# Upstream: <enlightenment-devel@lists.sf.net>
+# Upstream: Carsten Haitzler <raster$rasterman,com>
+# Upstream: <enlightenment-devel$lists,sourceforge,net>
 
 #define date 20030417
 
