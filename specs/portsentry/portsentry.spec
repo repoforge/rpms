@@ -8,7 +8,7 @@ Release: 11
 License: Freely Distributable
 Group: Applications/System
 URL: http://www.psionic.com/products/portsentry.html
-Source0: ftp://www.psionic.com/tools/%{name}-%{version}.tar.gz  
+Source0: http://dl.sf.net/sentrytools/%{name}-%{version}.tar.gz  
 Source1: portsentry.init
 Source2: portsentry.modes
 Source3: portsentry.cron

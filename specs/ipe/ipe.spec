@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: <morin$cs,carleton,ca>
 
-%define real_version 6.0pre14
+%define real_version 6.0pre20
 
 Summary: Extensible drawing editor
 Name: ipe
 Version: 6.0
-Release: 0.pre14
+Release: 0.pre20
 License: GPL
 Group: Publishing
 URL: http://ipe.compgeom.org/
@@ -18,6 +18,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ipe.compgeom.org/ipe-%{real_version}-src.tar.gz
 #Patch: http://cg.scs.carleton.ca/~morin/misc/ipe/ipe-6.0pre13-usr.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: qt-devel
 
 %description
 Ipe is a drawing editor for creating figures in PDF or (encapsulated)
