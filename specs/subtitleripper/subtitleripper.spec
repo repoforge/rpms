@@ -11,9 +11,10 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://subtitleripper.sf.net/
 Source: http://dl.sf.net/subtitleripper/subtitleripper-%{real_version}.tgz
+Patch: subtitleripper-0.3.4-libnetpbm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: netpbm, zlib, transcode
-BuildRequires: netpbm, netpbm-devel, zlib-devel
+Requires: netpbm, transcode
+BuildRequires: netpbm, netpbm-devel, libpng-devel zlib-devel
 
 %description
 Converts DVD subtitles into text format (e.g. subrip) or VobSub.
@@ -21,6 +22,7 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 
 %prep
 %setup -n %{name}
+%patch -p1 -b .libnetpbm
 
 
 %build
@@ -47,6 +49,7 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 %changelog
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.3.4-1
 - Update to 0.3-4.
+- Added patch to fix libppm vs. libnetpbm issue.
 - Rebuild for Fedora Core 2.
 
 * Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.3.2-1

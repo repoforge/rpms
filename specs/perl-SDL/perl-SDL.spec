@@ -4,7 +4,7 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 1.20.0
-Release: 4
+Release: 5
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdlperl.org/
@@ -15,8 +15,9 @@ Requires: SDL_net
 Requires: libjpeg, libpng, perl
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: libjpeg-devel, libpng-devel, perl, /usr/bin/find
-# This was to pull in missing libs
+# This is to pull in missing libs, to fix the "undefined symbol: _Znwj" problem
 #BuildRequires: XFree86-Mesa-libGLU
+BuildRequires: xorg-x11-Mesa-libGLU
 BuildRequires: XFree86-devel
 
 %description
@@ -55,6 +56,10 @@ find %{buildroot}%{_prefix} -type f -print | \
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.20.0-5
+- Rebuild for Fedora Core 2.
+- Replace XFree86-Mesa-libGLU build dependency with new xorg-x11-Mesa-libGLU.
+
 * Wed Dec 10 2003 Matthias Saou <http://freshrpms.net/> 1.20.0-4
 - Fix the package at last by adding XFree86-Mesa-libGLU build dep, thanks to
   Ian Burrell.
