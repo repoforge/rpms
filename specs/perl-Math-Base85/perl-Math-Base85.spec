@@ -1,0 +1,51 @@
+# $Id$
+# Authority: dries
+# Upstream: Tony Monroe <tmonroe+cpan$nog,net>
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Math-Base85
+
+Summary: Base 85 numbers, as referenced by RFC 1924
+Name: perl-Math-Base85
+Version: 0.2
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Math-Base85/
+
+Source: http://search.cpan.org/CPAN/authors/id/T/TM/TMONROE/Math-Base85-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+This module handles numbers in base 85, via strings and Math::BigInt.
+For more information, read the module or rfc1924.txt.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc Changes README
+%doc %{_mandir}/man3/*
+%{perl_vendorlib}/Math/Base85.pm
+
+%changelog
+* Mon Apr 04 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Initial package.
