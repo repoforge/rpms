@@ -4,8 +4,8 @@
 
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
-Version: 0.7.14
-Release: 2
+Version: 0.7.15
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.conglomerate.org/
@@ -39,8 +39,8 @@ with a single source document.
 %build
 %configure \
 	--enable-optimization \
+ 	--enable-printing \
 	--disable-schemas-install
-#	--enable-printing \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -49,6 +49,9 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %post
 scrollkeeper-update -q || :
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -56,9 +59,6 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %postun
 scrollkeeper-update -q || :
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -77,6 +77,10 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/ 
 
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net> 0.7.15-1
+- Update to 0.7.15.
+- Enable printing again, it seems to work now.
+
 * Tue Jul  6 2004 Matthias Saou <http://freshrpms.net> 0.7.14-2
 - Added missing build requirements.
 - Enabled printing support and optimization... not! Build for printing broken.
