@@ -1,11 +1,8 @@
 # $Id$
-
 # Authority: dries
-# Upstream: Remko Tronçon <spike@ulyssis.org>
-# Schreenshot: http://spit.sf.net/images/screenshot-kde.jpg
+# Upstream: Remko Tronçon <spike$ulyssis,org>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
+# Schreenshot: http://spit.sf.net/images/screenshot-kde.jpg
 
 Summary: Graphical picture indexing tool
 Name: spit
