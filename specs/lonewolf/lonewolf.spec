@@ -13,6 +13,8 @@ Source: lonewolf-%{version}.tar.bz2
 Source1: lwscripts-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 LoneWolf is a free open source emulator for the Ultima Online server. It
 allows you to play UO on a single machine, in a LAN or on the internet.
@@ -26,7 +28,7 @@ everything started with Cironian who created the first emulator back in
 %setup -n source_of_lonejoy/src
 
 %build
-sed 's/\-pipe/-Wall -ggdb -pipe/g;' Makefile
+sed -i 's/\-pipe/-Wall -ggdb -pipe/g;' Makefile
 %{__make} LDFLAGS="-ggdb -Wall" %{?_smp_mflags}
 
 %install
