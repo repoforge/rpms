@@ -4,12 +4,10 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define real_version 3.1a
-
 Summary: Thorough, stand alone memory test
 Name: memtest86
-Version: 3.1
-Release: 1.a
+Version: 3.2
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest86.com/
@@ -17,7 +15,7 @@ URL: http://www.memtest86.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.memtest86.com/memtest86-%{real_version}.tar.gz
+Source: http://www.memtest86.com/memtest86-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386
@@ -32,7 +30,7 @@ errors.  The BIOS based memory test is just a quick check that will often
 miss many of the failures that are detected by Memtest86.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 #%{?rh8:CC="gcc296"} %{?rh9:CC="gcc296"} %{?el3:CC="gcc296"} %{?fc1:CC="gcc296"}
@@ -40,28 +38,31 @@ miss many of the failures that are detected by Memtest86.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m644 memtest.bin %{buildroot}/boot/%{name}-%{real_version}
+%{__install} -D -m644 memtest.bin %{buildroot}/boot/%{name}-%{version}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --add-kernel="/boot/%{name}-%{real_version}" \
-		--title "Memtest86 v%{real_version}"
+        /sbin/grubby --add-kernel="/boot/%{name}-%{version}" \
+		--title "Memtest86 v%{version}"
 fi
 
 %postun
 if [ -x /sbin/grubby ] ; then
-        /sbin/grubby --remove-kernel="/boot/%{name}-%{real_version}"
+        /sbin/grubby --remove-kernel="/boot/%{name}-%{version}"
 fi
 
 %files
 %defattr(-, root, root, 0755)
 %doc README
-/boot/%{name}-%{real_version}
+/boot/%{name}-%{version}
 
 %changelog
+* Fri Dec 31 2004 Dag Wieers <dag@wieers.com> - 3.2-1
+- Updated to release 3.2.
+
 * Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 3.1-1.a
 - Fixed the location of the memtest kernel. (Greg Cope)
 

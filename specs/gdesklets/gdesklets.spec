@@ -5,7 +5,7 @@
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.30
+Version: 0.32
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgtop2-devel >= 2.0.0, python-devel >= 2.0.0, gcc-c++
 BuildRequires: gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
-BuildRequires: libcroco-devel, perl(XML::Parser), intltool, pygtk2-devel
+BuildRequires: libcroco-devel, perl(XML::Parser), intltool, pygtk2-devel >= 2.4.0
 BuildRequires: gtk2-devel
 Requires: python >= 2.2, gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
 
@@ -45,7 +45,6 @@ and maybe even available some day.
 
 %build
 %configure \
-	--disable-dependency-tracking \
 	--disable-install-schemas
 %{__make} %{?_smp_mflags}
 
@@ -81,7 +80,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gdesklets-display.png
 #%{_datadir}/mime-info/gdesklets.*
 %{_datadir}/pixmaps/gdesklets.png
-%{_libdir}/pkgconfig/gdesklets-core.pc
+#%{_libdir}/pkgconfig/gdesklets-core.pc
 %exclude %{_datadir}/mime/XMLnamespaces
 %{_datadir}/mime/application/x-gdesklets-display.xml
 %exclude %{_datadir}/applications/mimeinfo.cache
@@ -90,6 +89,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/mime/packages/gdesklets.xml
 
 %changelog
+* Sat Jan 01 2005 Dag Wieers <dag@wieers.com> - 0.32-1
+- Updated to release 0.32.
+
 * Wed Aug 28 2004 Dag Wieers <dag@wieers.com> - 0.30-1
 - Updated to release 0.30.
 

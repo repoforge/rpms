@@ -4,7 +4,7 @@
 
 Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, rsync, http, ftp, ...)
 Name: yam
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -59,6 +59,9 @@ allow installations via the network.
 %{_localstatedir}/www/yam/
 
 %changelog
+* Fri Dec 31 2004 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Updated to release 0.7.2.
+
 * Sun Nov 07 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Updated to release 0.7.1.
 

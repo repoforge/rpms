@@ -2,13 +2,11 @@
 # Authority: dag
 # Upstream: Luca Deri <deri$ntop,org>
 
-# Distcc: 0
-
 %define logmsg logger -t %{name}/rpm
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 3.0
+Version: 3.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -30,7 +28,7 @@ web interface. Optionally, data may be stored into a database for analysis or
 extracted from the web server in formats suitable for manipulation in perl or php.
 
 %prep
-%setup
+%setup -n %{name}
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
 
@@ -252,12 +250,12 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog CONTENTS COPYING INSTALL MANIFESTO NEWS PORTING THANKS
 %doc ntop.conf.sample *.txt docs/*
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man8/ntop.8*
 %config(noreplace) %{_sysconfdir}/ntop.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/ntop
 %config %{_sysconfdir}/ntop/
 %config %{_initrddir}/ntop
-%{_bindir}/*
+%{_bindir}/ntop
 %{_datadir}/ntop/
 %{_libdir}/*.so
 %{_libdir}/ntop/
@@ -270,6 +268,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Sat Jan 01 2005 Dag Wieers <dag@wieers.com> - 3.1-1
+- Updated to release 3.1.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 3.0-2
 - Fixed missing { in logrotate conf. (Martijn Lievaart)
 
