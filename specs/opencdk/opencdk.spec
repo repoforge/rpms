@@ -21,7 +21,7 @@ BuildRequires: libgcrypt-devel, zlib-devel, perl
 This library provides basic parts of the OpenPGP message format.  For
 reference, please read RFC2440. Due to some possible security problems,
 the library also implements parts of draft-ietf-openpgp-rfc2440bis-06.txt.
-                                                                                                      
+
 The aim of the library is *not* to replace any available OpenPGP version.
 There will be no real support for key management (sign, revoke, alter
 preferences, ...) and some other parts are only rudimentary available. The

@@ -20,7 +20,7 @@ BuildRequires: ladspa-devel, fftw-devel
 
 %description
 swh-plugins is a set of audio plugins for LADSPA written.
-                                                                                
+
 %prep
 %setup
 

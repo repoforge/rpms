@@ -21,7 +21,7 @@ Contains runtime shared libraries for libgsm, an implementation of
 the European GSM 06.10 provisional standard for full-rate speech
 transcoding, prI-ETS 300 036, which uses RPE/LTP (residual pulse
 excitation/long term prediction) coding at 13 kbit/s.
-                                                                                
+
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries

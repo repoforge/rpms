@@ -270,7 +270,7 @@ fi
 
 %post milter
 /sbin/chkconfig --add clamav-milter
-                                                                               
+
 %preun milter
 if [ $1 -eq 0 ]; then
 	/sbin/service clamav-milter stop &>/dev/null || :

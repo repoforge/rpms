@@ -32,7 +32,7 @@ decodes multimedia files like AVI, MOV, WMV, and MP3 from local disk drives,
 and displays multimedia streamed over the Internet. It interprets many of the
 most common multimedia formats available - and some of the most uncommon
 formats, too.
-                                                                                
+
 This package contains the GUI of the Xine multimedia player.
 
 Available rpmbuild rebuild options :

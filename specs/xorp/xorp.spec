@@ -39,12 +39,6 @@ between network research and real world.
 %{__rm} -rf %{buildroot}
 
 
-%postun
-if [ $1 -ge 1 ]; then
-    /sbin/service foobar condrestart >/dev/null 2>&1 || :
-fi
-
-
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS BUILD_NOTES ERRATA LICENSE README RELEASE_NOTES TODO VERSION

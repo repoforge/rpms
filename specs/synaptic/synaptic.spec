@@ -161,16 +161,16 @@ EOF
 
 * Tue Mar 11 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.32.
-                                                                                
+
 * Tue Jan 14 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.31.
-                                                                                
+
 * Thu Jan  2 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.30.
-                                                                                
+
 * Mon Dec  9 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.28.1.
-                                                                                
+
 * Mon Oct 21 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.25.
 - New icon, thanks to Alan Cramer.

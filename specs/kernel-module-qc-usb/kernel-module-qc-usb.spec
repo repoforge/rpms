@@ -71,7 +71,7 @@ driver.
 %package -n qcset
 Summary: Utility to configure the QuickCam USB webcam settings
 Group: System Environment/Base
-                                                                                
+
 %description -n qcset
 Simple command-line utility to configure the QuickCam USB webcam settings.
 
