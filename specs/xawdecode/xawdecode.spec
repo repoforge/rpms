@@ -21,7 +21,9 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/xawdecode/xawdecode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, lirc-devel, xosd-devel
+BuildRequires: lirc
+#BuildRequires: lirc-devel
+BuildRequires: XFree86-devel, xosd-devel
 BuildRequires: xvidcore-devel, divx4linux, lame-devel, ffmpeg-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
