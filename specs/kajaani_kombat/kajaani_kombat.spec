@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://kombat.kajaani.net/dl/kajaani_kombat_v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, SDL-devel, SDL_ttf-devel
+BuildRequires: gcc-c++, SDL-devel, SDL_ttf-devel, SDL_net-devel
 
 %description
 todo
