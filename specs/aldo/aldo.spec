@@ -33,7 +33,7 @@ random generated callsigns
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall PREFIX=%{buildroot}/usr
 
 %clean
 %{__rm} -rf %{buildroot}
