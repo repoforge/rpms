@@ -7,8 +7,8 @@
 
 Summary: collection manager
 Name: tellico
-Version: 0.13.1
-Release: 2
+Version: 0.13.4
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.periapsis.org/tellico/
@@ -73,6 +73,9 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/mimelnk/application/x-tellico.desktop
 
 %changelog
+* Mon Feb 28 2005 Dries Verachtert <dries@ulyssis.org> - 0.13.4-1
+- Updated to release 0.13.4.
+
 * Sat Jan 29 2005 Dries Verachtert <dries@ulyssis.org> - 0.13.1-2
 - kdemultimedia-devel added to the buildrequirements so it picks up 
   kcddb support (Thanks to Vic Gedris)
