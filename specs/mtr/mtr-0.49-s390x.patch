@@ -1,0 +1,14 @@
+--- mtr-0.49/configure.in.s390x	2002-03-06 12:27:37.000000000 +0100
++++ mtr-0.49/configure.in	2002-09-24 12:21:55.000000000 +0200
+@@ -69,8 +69,9 @@
+ #  AC_CHECK_FUNC(setuid, , AC_MSG_ERROR (I Need either seteuid or setuid))
+ 
+ AC_CHECK_FUNC(res_mkquery, , 
+-  AC_CHECK_LIB(bind, res_mkquery, , 
+-   AC_CHECK_LIB(resolv, res_mkquery, , AC_MSG_ERROR(No resolver library found))))
++  AC_CHECK_LIB(bind, res_mkquery, LIBS="$LIBS -lbind", 
++   AC_CHECK_LIB(resolv, res_mkquery, LIBS="$LIBS -lresolv",
++    AC_CHECK_LIB(resolv, __res_mkquery, LIBS="$LIBS -lresolv", AC_MSG_ERROR(No resolver library found)))))
+ 
+ AC_CHECK_FUNC(herror, , AC_DEFINE(NO_HERROR))
+ AC_CHECK_FUNC(strerror, , AC_DEFINE(NO_STRERROR))

@@ -1,0 +1,23 @@
+--- mtr-0.52/net.h.orig	Sun Mar 30 18:54:41 2003
++++ mtr-0.52/net.h	Sun Mar 30 19:15:28 2003
+@@ -68,3 +68,10 @@
+ 
+ #define MAXPACKET 4096
+ #define MINPACKET 64
++
++#ifdef linux
++#ifndef SA_LEN
++#define SA_LEN(x) (((x)->sa_family == AF_INET6) ? sizeof(struct sockaddr_in6) : \
++		(((x)->sa_family == AF_INET)?sizeof(struct sockaddr_in):sizeof(struct sockaddr)))
++#endif
++#endif
+--- mtr-0.52/dns.c.orig	Sun Mar 30 18:54:41 2003
++++ mtr-0.52/dns.c	Sun Mar 30 19:17:57 2003
+@@ -44,6 +44,7 @@
+ #include <errno.h>
+ 
+ #include "dns.h"
++#include "net.h"
+ 
+ #ifdef NO_STRERROR
+ extern int sys_nerr;

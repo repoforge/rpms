@@ -1,0 +1,12 @@
+diff -urN mtr-0.54.orig/dns.c mtr-0.54/dns.c
+--- mtr-0.54.orig/dns.c	2004-10-04 00:28:26.000000000 +0200
++++ mtr-0.54/dns.c	2004-10-04 00:30:40.000000000 +0200
+@@ -873,7 +873,7 @@
+       *p++ = '.';
+       *p = '\0';
+    }
+-   strcpy(p, "ip6.int");
++   strcpy(p, "ip6.arpa");
+    return buf;
+ }
+ #endif

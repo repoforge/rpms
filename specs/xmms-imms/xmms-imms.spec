@@ -46,7 +46,8 @@ Some of the key features include:
 %{__autoheader}
 %{__autoconf}
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	LDFLAGS="-lm"
 
 %install
 %{__rm} -rf %{buildroot}

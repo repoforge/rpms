@@ -1,0 +1,29 @@
+diff -urN mtr-0.54.orig/mtr.c mtr-0.54/mtr.c
+--- mtr-0.54.orig/mtr.c	2004-10-04 15:24:45.000000000 +0200
++++ mtr-0.54/mtr.c	2004-10-04 16:34:21.000000000 +0200
+@@ -250,21 +250,21 @@
+ 
+     memset(&hints, 0, sizeof(hints));
+     hints.ai_family = af;
+-    hints.ai_flags = AI_PASSIVE;
++    hints.ai_flags = (AI_PASSIVE|AI_NUMERICHOST);
+     hints.ai_socktype = SOCK_DGRAM;
+-    error = getaddrinfo(NULL, "0", &hints, &res0);
++    error = getaddrinfo(InterfaceAddress, "0", &hints, &res0);
+     if(error) {
+       printf("mtr: bad interface address: %s\n", InterfaceAddress);
+       exit(1);
+     }
+ 
+     for(res = res0; res; res = res->ai_next) {
+-      if((res->ai_family == AF_INET) && (sendsock4 == -1)) {
++      if((res->ai_family == AF_INET) && (sendsock4 >= 0)) {
+         if(bind(sendsock4, (struct sockaddr*)res->ai_addr, res->ai_addrlen) == -1) {
+           perror("mtr: failed to bind to interface");
+           exit(1);
+         }
+-      }else if((res->ai_family == AF_INET6) && (sendsock6 == -1)) {
++      }else if((res->ai_family == AF_INET6) && (sendsock6 >= 0)) {
+         if(bind(sendsock6, (struct sockaddr*)res->ai_addr, res->ai_addrlen) == -1) {
+           perror("mtr: failed to bind to interface");
+           exit(1);

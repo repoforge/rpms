@@ -1,0 +1,39 @@
+diff -ur mtr-0.48/mtr.c mtr-0.48.nogtk/mtr.c
+--- mtr-0.48/mtr.c	Wed Mar  6 19:37:49 2002
++++ mtr-0.48.nogtk/mtr.c	Wed Mar  6 19:40:18 2002
+@@ -63,7 +63,9 @@
+     { "report", 0, 0, 'r' },
+     { "report-cycles", 1, 0, 'c' },
+     { "curses", 0, 0, 't' },
++#ifndef NO_GTK
+     { "gtk", 0, 0, 'g' },
++#endif
+     { "interval", 1, 0, 'i' },
+     { "psize", 1, 0, 'p' },
+     { "no-dns", 0, 0, 'n' },
+@@ -79,7 +81,11 @@
+ 
+   opt = 0;
+   while(1) {
++#ifdef NO_GTK
++    opt = getopt_long(argc, argv, "a:hvrc:tklnsi:p:"
++#else
+     opt = getopt_long(argc, argv, "a:hvrc:tgklnsi:p:"
++#endif
+ #ifdef ENABLE_IPV6
+ 	"46"
+ #endif
+@@ -218,8 +224,13 @@
+   }
+ 
+   if(PrintHelp) {
++#ifdef NO_GTK
++    printf("usage: %s [-hvrctlsni46] [--help] [--version] [--report]\n"
++	   "\t\t[--report-cycles=COUNT] [--curses]\n"
++#else
+     printf("usage: %s [-hvrctglsni46] [--help] [--version] [--report]\n"
+ 	   "\t\t[--report-cycles=COUNT] [--curses] [--gtk]\n"
++#endif
+            "\t\t[--raw] [--split] [--no-dns] [--address interface]\n" /* BL */
+            "\t\t[--psize=bytes/-p=bytes]\n"            /* ok */
+ 	   "\t\t[--interval=SECONDS] HOSTNAME [PACKETSIZE]\n", argv[0]);

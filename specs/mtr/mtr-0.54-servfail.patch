@@ -1,0 +1,24 @@
+diff -urN mtr-0.54.orig/dns.c mtr-0.54/dns.c
+--- mtr-0.54.orig/dns.c	2002-11-23 19:24:16.000000000 +0100
++++ mtr-0.54/dns.c	2004-03-05 17:27:48.000000000 +0100
+@@ -265,6 +265,7 @@
+ dword res_iplookupsuccess = 0;
+ dword res_reversesuccess = 0;
+ dword res_nxdomain = 0;
++dword res_servfail = 0;
+ dword res_nserror = 0;
+ dword res_hostipmismatch = 0;
+ dword res_unknownid = 0;
+@@ -1062,6 +1063,12 @@
+          res_nxdomain++;
+          failrp(rp);
+          break;
++      case SERVFAIL:
++         if (debug)
++            restell("Resolver: Server failure.");
++         res_servfail++;
++         failrp(rp);
++         break;
+       default:
+          sprintf(tempstring,"Resolver: Received error response %u. (%s)",
+           getheader_rcode(hp),getheader_rcode(hp) < ResponsecodeCount ?

@@ -1,0 +1,11 @@
+--- fpu/fpu_proto.h.orig	2004-11-26 01:23:18.245611240 +0100
++++ fpu/fpu_proto.h	2004-11-26 01:23:32.373463480 +0100
+@@ -141,7 +141,7 @@
+ extern int FPU_load_single(bx_address single, FPU_REG *loaded_data) BX_CPP_AttrRegparmN(2);
+ extern int FPU_load_int64(bx_address _s) BX_CPP_AttrRegparmN(1);
+ extern int FPU_load_int32(bx_address _s, FPU_REG *loaded_data) BX_CPP_AttrRegparmN(2);
+-extern int FPU_load_int16(bx_address _s, FPU_REG *loaded_data) BX_CPP_AttrRegparmN(2);
++extern int FPU_load_int16(bx_address _s, FPU_REG *loaded_data) BX_CPP_AttrRegparmN(1);
+ extern int FPU_load_bcd(bx_address s) BX_CPP_AttrRegparmN(1);
+ extern int FPU_store_extended(FPU_REG *st0_ptr, u_char st0_tag,
+ 			      bx_address d) BX_CPP_AttrRegparmN(3);

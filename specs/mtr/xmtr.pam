@@ -1,0 +1,6 @@
+#%PAM-1.0
+auth       sufficient	pam_rootok.so
+auth       required	pam_stack.so service=system-auth
+session    required	pam_permit.so
+session    optional	pam_xauth.so
+account    required	pam_permit.so

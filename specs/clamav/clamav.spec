@@ -11,7 +11,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.80
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -130,8 +130,8 @@ you will need to install %{name}-devel.
 		s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamd.conf|;
 	' etc/freshclam.conf
 
-%{__cat} <<EOF >clamav.logrotate
-%{_localstatedir}/log/clamav/clamav.log {
+%{__cat} <<EOF >clamd.logrotate
+%{_localstatedir}/log/clamav/clamd.log {
 	create 644 clamav clamav
 }
 EOF
@@ -199,7 +199,7 @@ EOF
 %{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/clamd
 %{__install} -D -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
 %{__install} -D -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
-%{__install} -D -m0644 clamav.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
+%{__install} -D -m0644 clamd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
 
 %if %{!?_without_milter:1}0
 %{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamav-milter
@@ -208,7 +208,7 @@ EOF
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/clamav/
 touch %{buildroot}/var/log/clamav/freshclam.log
-touch %{buildroot}/var/log/clamav/clamav.log
+touch %{buildroot}/var/log/clamav/clamd.log
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/clamav/
 
@@ -300,7 +300,7 @@ fi
 %{_localstatedir}/run/clamav/
 %{_localstatedir}/clamav/
 %dir %{_localstatedir}/log/clamav/
-%{_localstatedir}/log/clamav/clamav.log
+%{_localstatedir}/log/clamav/clamd.log
 
 %if %{!?_without_milter:1}0
 %files milter
@@ -332,14 +332,11 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
-* Sun Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.80-4..
+* Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 0.80-2
 - Added %dir /var/clamav/log. (Adam Bowns)
-
-* Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 0.80-3
+- Changed logrotate script to use clamd.log. (Stuart Schneider)
 - Added curl dependency. (Petr Kristof)
 - Synchronized some options from Petr. (Petr Kristof)
-
-* Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.80-2
 - Fixed another clamav.conf reference. (Michael Best)
 
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.80-1

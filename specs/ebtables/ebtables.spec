@@ -16,6 +16,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/ebtables/ebtables-v%{version}.tar.gz
+Patch0: ebtables-2.0.6-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -28,6 +29,7 @@ like iptables. There are no incompatibility issues.
 
 %prep
 %setup -n ebtables-v%{version}
+%patch0 -p1
 
 %{__cat} <<'EOF' >ebtables.sysv
 #!/bin/bash
@@ -180,6 +182,9 @@ fi
 %{_sbindir}/ebtables
 
 %changelog
+* Thu Dec 02 2004 Dag Wieers <dag@wieers.com> - 2.0.6-2
+- Added patch for gcc 3.4. (Nigel Smith)
+
 * Tue Apr 27 2004 Dag Wieers <dag@wieers.com> - 2.0.6-2
 - Cosmetic changes.
 

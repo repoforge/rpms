@@ -1,0 +1,3 @@
+USER=root
+PROGRAM=/usr/X11R6/bin/xmtr
+SESSION=true

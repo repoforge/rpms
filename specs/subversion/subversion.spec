@@ -1,12 +1,17 @@
 # $Id$
 # Authority: matthias
 
+# ExcludeDist: fc3
 # Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?el3:%define _without_perl 1}
-%{?el3:%define _without_python 1}
+%{?el3:%define _without_swig 1}
+
+%if %{?_without_swig:1}0
+%define _without_perl 1
+%define _without_python 1
+%endif
 
 # set to zero to avoid running test suite
 %define make_check 0
@@ -15,8 +20,8 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.0.9
-Release: 2
+Version: 1.1.1
+Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -24,19 +29,18 @@ URL: http://subversion.tigris.org/
 Source0: http://subversion.tigris.org/tarballs/subversion-%{version}.tar.bz2
 Source1: subversion.conf
 Source3: filter-requires.sh
+Source4: http://www.xsteve.at/prg/emacs/psvn.el
 Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
-Patch4: subversion-1.0.2-blame.patch
-Patch5: subversion-r8822.patch
 Patch6: subversion-1.0.3-pie.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo
 BuildRequires: db4-devel >= 4.1.25, expat-devel, docbook-style-xsl
 BuildRequires: apr-devel >= 0.9.3-2, apr-util-devel >= 0.9.3-2, openssl-devel
-%{!?_without_python:BuildRequires: swig}
-%{!?_without_perl:BuildRequires: neon-devel >= 0.24.6-1}
+#%{!?_without_swig:BuildRequires: swig >= 1.3.21-5, neon-devel >= 0.24.7-1}
+%{!?_without_swig:BuildRequires: swig, neon-devel}
 
 %define __perl_requires %{SOURCE3}
 
@@ -88,8 +92,6 @@ This package includes the Perl bindings to the Subversion libraries.
 %patch1 -p1 -b .swig
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
-%patch4 -p1 -b .blame
-%patch5 -p1 -b .r8822
 %patch6 -p1 -b .pie
 
 rm -rf neon apr apr-util db4
@@ -120,13 +122,13 @@ export CC=gcc CXX=g++
 %endif
 
 %if %{!?_without_perl:1}0
-%{__make} %{?_smp_mflags} swig-pl-lib %{swigdirs}}
+%{__make} %{?_smp_mflags} swig-pl %{swigdirs}}
 
 # build the perl modules
-pushd subversion/bindings/swig/perl
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags}
-popd
+#pushd subversion/bindings/swig/perl
+#CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor"
+#%{__make} %{?_smp_mflags}
+#popd
 %endif
 
 %install
@@ -143,9 +145,11 @@ popd
 %{__make} install-swig-pl-lib %{swigdirs} \
         DESTDIR="%{buildroot}"
 
-%{__make} pure_install -C subversion/bindings/swig/perl \
+%{__make} pure_vendor_install -C subversion/bindings/swig/perl/native \
         PERL_INSTALL_ROOT="%{buildroot}"
 %endif
+
+%find_lang %{name}
 
 # Add subversion.conf configuration file into httpd/conf.d directory.
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/subversion.conf
@@ -172,13 +176,16 @@ find %{buildroot}%{_libdir}/perl5 -type f -perm 555 -print0 |
 %{__rm} -rf tools/*/*.in tools/test-scripts \
        doc/book/book/images/images doc/book/book/images/*.ppt
 
+# Install psvn for emacs and xemacs
+%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/emacs/site-lisp
+%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_datadir}/xemacs/site-packages/lisp
+
 # Rename authz_svn INSTALL doc for docdir
 ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 
 %if %{make_check}
 %check
 %{__make} check CLEANUP=yes
-%{__make} -C subversion/bindings/swig/perl test
 %endif
 
 %clean
@@ -192,16 +199,19 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 
 %postun perl -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
 %doc tools subversion/LICENSE mod_authz_svn-INSTALL
-%doc doc/book/book/book.html doc/book/book/images
+%doc doc/book/book/svn-book.html doc/book/book/images
+%doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
 %{_bindir}/*
 %{_libdir}/libsvn_*.so.*
 %{_mandir}/man*/*
 #%exclude %{_bindir}/neon-config
 #%exclude %{_mandir}/man3/*
+%{_datadir}/emacs/site-lisp
+%{_datadir}/xemacs/site-packages/lisp
 %{!?_without_perl:%exclude %{_libdir}/libsvn_swig_perl*}
 %{!?_without_perl:%exclude %{_mandir}/man*/*::*}
 %{!?_without_python:%{pydir}/svn}
@@ -210,7 +220,7 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %files devel
 %defattr(-, root, root, 0755)
 #%{_bindir}/neon-config
-%{_includedir}/subversion-1
+%{_includedir}/subversion-1/
 %{_libdir}/libsvn*.a
 %{_libdir}/libsvn*.la
 %{_libdir}/libsvn*.so
