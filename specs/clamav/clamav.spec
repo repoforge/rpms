@@ -162,7 +162,7 @@ EOF
 ### read the documentation and tweak it as you wish.
 
 CLAMAV_FLAGS="
-	--config-file=%{_sysconfdir}/clamav.conf
+	--config-file=%{_sysconfdir}/clamd.conf
 	--max-children=10
 	--force-scan
 	--quiet
@@ -321,6 +321,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Tue Nov 02 2004 Dag Wieers <dag@wieers.com> - 0.80-2
+- Fixed another clamav.conf reference. (Michael Best)
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.80-1
 - Updated package description. (Arvin Troels)
 - Incorporated fixes from Jima. (Jima)
@@ -331,8 +334,6 @@ fi
 
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.75.1-1
 - Added obsoletes for fedora.us.
-
-* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.75.1-1
 - Updated to release 0.75.1.
 
 * Mon Jul 26 2004 Dag Wieers <dag@wieers.com> - 0.75-2
