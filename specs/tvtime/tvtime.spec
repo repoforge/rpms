@@ -2,12 +2,16 @@
 # Authority: dag
 # Upstream: Billy Biggs <vektor@dumbterm.net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
 
-Summary: high quality TV viewer
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+Summary: High quality TV viewer
 Name: tvtime
 Version: 0.9.12
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://tvtime.sf.net/
@@ -33,8 +37,7 @@ videophiles.
 %setup
 
 %build
-%configure \
-	--disable-dependency-tracking
+%configure
 %{__make} %{_smp_mflags}
 
 %install
@@ -42,8 +45,7 @@ videophiles.
 %makeinstall
 %find_lang %{name}
 
-%if %{dfi}
-%else
+%if %{!?_without_freedesktop:1}0
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
@@ -69,6 +71,9 @@ videophiles.
 %{_bindir}/tvtime
 
 %changelog
+* Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 0.9.12-1
+- Cosmetic changes.
+
 * Sat Nov 22 2003 Dag Wieers <dag@wieers.com> - 0.9.12-0
 - Updated to release 0.9.12.
 
