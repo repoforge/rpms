@@ -18,7 +18,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.dtek.chalmers.se/~d3august/xt/dl/xtraceroute-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bind-utils, traceroute, gettext, gtk2-devel
+BuildRequires: bind-utils, traceroute, gettext, gtk2-devel, gtk+-devel
 
 %description
 Xtraceroute is a graphical version of the traceroute program, which traces

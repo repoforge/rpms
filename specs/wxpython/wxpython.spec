@@ -1,6 +1,8 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://drpython.sourceforge.net/linuxclassbrowser.2.x.jpg
+# ScreenshotURL: http://drpython.sourceforge.net/screenshots.html
 
 Summary: Python bindings for wxWindows
 Name: wxpython
@@ -15,10 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/wxpython/wxPythonSrc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: wxGTK-devel, python, python-devel
-
-# Screenshot: http://drpython.sourceforge.net/linuxclassbrowser.2.x.jpg
-# ScreenshotURL: http://drpython.sourceforge.net/screenshots.html
+BuildRequires: wxGTK-devel, python, python-devel, gcc-c++
 
 %description
 wxPython is a GUI toolkit for the Python programming language. It allows
