@@ -5,7 +5,7 @@
 
 Summary: Ftp/fxp client
 Name: kasablanca
-Version: 0.3.1
+Version: 0.4.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -53,6 +53,9 @@ bookmarks, and queued transfers.
 %{_datadir}/icons/*/*/apps/kasablanca.png
 
 %changelog
+* Sat Aug 21 2004 Dries Verachtert <dries@ulyssis.org> 0.4.0.1-1
+- Update to version 0.4.0.1.
+
 * Wed Jul 14 2004 Dries Verachtert <dries@ulyssis.org> 0.4-1
 - Update to version 0.4.
 
