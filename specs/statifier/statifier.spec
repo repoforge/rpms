@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/statifier/statifier-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: i386
+ExclusiveArch: i386 x86_64
 Requires: binutils, gawk, gdb >= 5.2, sed
 
 %description
