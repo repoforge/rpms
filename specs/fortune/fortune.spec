@@ -43,7 +43,7 @@ Source12: http://www.splitbrain.org/Fortunes/discworld/fortune-discworld.tgz
 # http://www.splitbrain.org/./Fortunes/xfiles/
 Source13: http://www.splitbrain.org/Fortunes/xfiles/fortune-xfiles.tgz
 # http://unattached.i-no.de/software-misc.shtml
-Source14: http://unattached.i-no.de/pkgs/kernelcookies.tar.gz
+Source14: http://www.schwarzvogel.de/pkgs/kernelcookies.tar.gz
 # http://dune.s31.pl/
 Source15: http://dune.s31.pl/fortune-mod-dune-quotes.2.0.1.tar.gz
 # quotes of 'Comic Book Guy'
