@@ -3,6 +3,8 @@
 # Screenshot: http://edu.kde.org/kig/kig-snap-sine-curve.png
 # ScreenshotURL: http://edu.kde.org/kig/screenshots.php
 
+# ExcludeDist: fc3 fc2 fc1 el3
+
 Summary: Explore mathematical concepts with interactive geometry
 Name: kig
 Version: 0.9
