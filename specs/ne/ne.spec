@@ -4,7 +4,7 @@
 
 Summary: Nice editor
 Name: ne
-Version: 1.32
+Version: 1.36
 Release: 1
 License: GPL
 Group: Applications/Editors

@@ -12,7 +12,7 @@ URL: http://muttprint.sourceforge.net/
 
 Packager: Bert de Bruijn <bert@debruijn.be)
 
-Source: muttprint-%{version}.tar.gz
+Source: http://dl.sf.net/muttprint/muttprint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
