@@ -1,15 +1,21 @@
 # $Id$
 # Authority: matthias
+# Upstream: Dan Dennedy <ddennedy@users.sf.net>
+# Upstream: <libdv-dev@lists.sourceforge.net>
+
+# Distcc: 0
 
 Summary: Codec for DV video, used by most digital camcorders
 Name: libdv
 Version: 0.102
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
+URL: http://libdv.sf.net/
+
 Source: http://dl.sf.net/libdv/libdv-%{version}.tar.gz
-URL: http://libdv.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gtk+-devel >= 1.2.4, pkgconfig >= 0.9.0
 # libtool, *sigh*
 BuildRequires: gcc-c++
@@ -49,12 +55,11 @@ incorporate libdv into applications.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %clean
@@ -64,20 +69,27 @@ incorporate libdv into applications.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPY* NEWS README* TODO
-%{_bindir}/*
 %{_libdir}/*.so.*
+
+%files tools
+%defattr(-, root, root, 0755)
+%{_bindir}/*
 %{_mandir}/man1/*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
+%{_includedir}/libdv/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%{_libdir}/pkgconfig/*
+%{_libdir}/pkgconfig/*.pc
 
 
 %changelog
+* Mon May 10 2004 Dag Wieers <dag@wieers.com> - 0.102-3
+- Split off the libdv-tools subpackage.
+- Increased release to 3 to be in sync with dag.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 0.102-1
 - Update to 0.102, which has a newer library version.
 
