@@ -92,7 +92,7 @@ fi
 
 
 %changelog
-* Mon Aug 30 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-5
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.3.15-5
 - Added missing /sbin/ldconfig calls.
 
 * Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4

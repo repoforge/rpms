@@ -39,13 +39,13 @@ documentation for libsndfile.
 %build
 %configure
 %{__make} %{?_smp_mflags}
-# Clean up examples for inclusion in docs
-%{__rm} -rf examples/.libs/
 
 
 %install
 %{__rm} -rf %{buildroot} htmldocdir
 %makeinstall htmldocdir="`pwd`/htmldocdir"
+# Clean up examples for inclusion in docs
+%{__rm} -rf examples/.libs/
 
 
 %clean
