@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtkmm24-devel, gcc-c++, pkgconfig, glibmm-devel
 BuildRequires: glib2-devel, libsigc++2-devel, pango-devel, gtk2-devel
+BuildRequires: desktop-file-utils
 
 %description
 AmyEdit is a gtkmm LaTeX Editor designed to allow easier creation of LaTeX
