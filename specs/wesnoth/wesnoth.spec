@@ -51,7 +51,6 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install-strip DESTDIR=%{buildroot}
-%find_lang %{name}
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor rpmforge             \
 	--add-category X-Red-Hat-Base              \
@@ -61,7 +60,7 @@ desktop-file-install --vendor rpmforge             \
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc README COPYING MANUAL MANUAL.*
 %{_bindir}/wesnoth
