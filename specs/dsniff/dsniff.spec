@@ -48,6 +48,7 @@ dsniff is a collection of tools for network auditing and penetration testing.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc CHANGES LICENSE README TODO 
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*
