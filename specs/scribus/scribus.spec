@@ -10,7 +10,7 @@
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
-Version: 1.2
+Version: 1.2.1
 Release: 0
 License: GPL
 Group: Applications/Productivity
@@ -19,7 +19,7 @@ URL: http://web2.altmuehlnet.de/fschmid/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://web2.altmuehlnet.de/fschmid/scribus-%{version}.tar.gz
+Source: http://www.scribus.org.uk/downloads/%{version}/scribus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.0, XFree86-devel, gcc-c++
@@ -77,6 +77,8 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
+%{_mandir}/man1/scribus*
+%{_mandir}/pl/man1/scribus*
 %{_bindir}/*
 %{_libdir}/scribus/
 %{_includedir}/scribus/
@@ -86,6 +88,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Sun Jan 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Wed Sep 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Updated to release 1.2.
 
