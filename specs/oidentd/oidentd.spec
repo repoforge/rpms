@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Ryan McCabe <ryan@numb.org>
 
 Summary: Implementation of the RFC1413 identification server
 Name: oidentd
@@ -8,14 +9,16 @@ Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://ojnk.sourceforge.net/
+
 Source0: http://download.sourceforge.net/ojnk/oidentd-%{version}.tar.gz
 Source1: identd.init
 Source2: identd.spoof
 Source3: oidentd.users
-Provides: identd = %{version}
-Prereq: /sbin/chkconfig /etc/init.d /sbin/service
-BuildRequires: byacc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: byacc
+Prereq: /sbin/chkconfig /etc/init.d /sbin/service
+Provides: identd = %{version}
 Conflicts: pidentd
 
 %description
@@ -37,9 +40,9 @@ TCP/IP connections.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/identd
-%{__install} -D -m 640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
-%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
+%{__install} -D -m0755 %{SOURCE1} %{buildroot}/etc/init.d/identd
+%{__install} -D -m0640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
+%{__install} -D -m0640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,7 +67,7 @@ fi
 %{_sbindir}/oidentd
 %attr(0640, root, nobody) %config(noreplace) %{_sysconfdir}/identd.spoof
 %attr(0640, root, nobody) %config(noreplace) %{_sysconfdir}/oidentd.users
-%attr(0755, root, root) %config /etc/init.d/identd
+%config /etc/init.d/identd
 %{_mandir}/man?/*
 
 %changelog
