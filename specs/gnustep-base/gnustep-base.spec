@@ -12,7 +12,9 @@ URL: http://www.gnustep.org/
 Source: http://ftp.gnustep.org/pub/gnustep/core/gnustep-base-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh, diffutils, openssl-devel, gcc-objc, ffcall-devel, gnustep-make
+BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
+BuildRequires: diffutils, openssl-devel, gcc-objc, ffcall-devel 
+BuildRequires: gnustep-make, libxml2-devel
 Requires: ffcall
 
 %description
