@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dries
-
 # Screenshot: http://sulk.sourceforge.net/pics/sulk-screen-0.26.1.png
 # ScreenshotURL: http://sulk.sourceforge.net/pics.html
 
@@ -9,7 +8,7 @@
 Summary: Sulk, the hackable Space Hulk
 Name: sulk
 Version: 0.29
-Release: 2
+Release: 3
 License: LGPL
 Group: Amusements/Games
 URL: http://sulk.sourceforge.net/
@@ -38,6 +37,7 @@ made in Python with Pygame.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
+%{__chmod} +x %{buildroot}%{_bindir}/sulk
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,9 +46,13 @@ made in Python with Pygame.
 %defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING HACKING WHATSNEW
 %{_datadir}/games/sulk/
-%{_prefix}/games/sulk/
+%{_bindir}/sulk
 
 %changelog
+* Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.29-3
+- Moved the shell script to /usr/bin/
+- Shell script executable (Thanks to C.Lee Taylor)
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 0.29-2
 - Cosmetic cleanup.
 

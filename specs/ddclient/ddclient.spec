@@ -5,7 +5,7 @@
 Summary: Updates dynamic DNS entries
 Name: ddclient
 Version: 3.6.5
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -38,7 +38,7 @@ updates, and sending update status to syslog and through e-mail.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -D sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/ddclient
-%{__install} -D sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient.conf
+%{__install} -D sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
 %{__install} -D ddclient %{buildroot}%{_sbindir}/ddclient
 
 %clean
@@ -48,16 +48,20 @@ updates, and sending update status to syslog and through e-mail.
 %defattr(-, root, root, 0755)
 %doc COPYRIGHT COPYING README README.cisco sample-*
 %{_sbindir}/ddclient
-%config(noreplace) %{_sysconfdir}/ddclient.conf
+%config(noreplace) %{_sysconfdir}/ddclient/ddclient.conf
 %{_sysconfdir}/rc.d/init.d/ddclient
 
 
 %changelog
-* Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.5-1
+* Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.5-3
+- Fixed the location of ddclient.conf (Thanks to Andi Mueller)
+
+* Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.5-2
 - Update to release 3.6.5.
 
 * Sun Dec 05 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4-2
-- Install additional files.
+- Install additional files fix (Thanks to Thilo Pfennig 
+  and Jorge I Bartos)
 
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 3.6.4-1
 - Initial package.

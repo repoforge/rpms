@@ -13,8 +13,8 @@ diff -uNr sulk-0.29-snapshot-20030623-orig/Makefile sulk-0.29-snapshot-20030623/
 +	cp sulk.py sulkrc $(DATADIR)/
 +	cp -r src data  $(DATADIR)/
 +
-+	mkdir -p $(DESTDIR)/usr/games
-+	cp sulk $(DESTDIR)/usr/games/
++	mkdir -p $(DESTDIR)/usr/bin
++	cp sulk $(DESTDIR)/usr/bin/
 +
 +uninstall:
 +	rm -rf $(DATADIR)
