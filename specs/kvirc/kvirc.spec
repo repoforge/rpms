@@ -26,7 +26,7 @@
 
 Summary: An IRC client
 Name: kvirc
-Version: 3.0.1
+Version: 3.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -110,6 +110,9 @@ echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/
 %{_includedir}/kvirc
 
 %changelog
+* Sun Mar 06 2005 Dries Verachtert <dries@ulyssis.org> 3.2.0-1
+- Update to version 3.2.0.
+
 * Wed Jul 21 2004 Dries Verachtert <dries@ulyssis.org> 3.0.1
 - Update to version 3.0.1.
 

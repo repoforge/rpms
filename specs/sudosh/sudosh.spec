@@ -4,7 +4,7 @@
 
 Summary: sudo shell
 Name: sudosh
-Version: 1.4.2
+Version: 1.4.4
 Release: 1
 License: Open Software License
 Group: Applications/System
@@ -48,6 +48,9 @@ actual session output.
 %{_bindir}/sudosh-replay
 
 %changelog
+* Sun Mar 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.4.4-1
+- Update to release 1.4.4.
+
 * Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 1.4.2-1
 - Update to release 1.4.2.
 
