@@ -17,7 +17,7 @@ Source: http://dl.sf.net/fpm/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: gtk+-devel >= 1.2
+BuildRequires: gtk+-devel >= 1.2, gnome-libs-devel
 
 %description
 Figaro's Password Manager is a program that allows you to securely store the
