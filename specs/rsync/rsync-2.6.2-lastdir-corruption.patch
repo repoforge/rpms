@@ -1,0 +1,19 @@
+--- rsync-2.6.2/flist.c.lastdir-corruption	2004-05-25 07:30:03.211152824 +0100
++++ rsync-2.6.2/flist.c	2004-05-25 07:31:29.930604449 +0100
+@@ -539,6 +539,7 @@
+ 		rdev_major = 0;
+ 		uid = 0, gid = 0;
+ 		*lastname = '\0';
++		lastdir_len = -1;
+ 		return;
+ 	}
+ 
+@@ -745,7 +746,7 @@
+ 	char *basename, *dirname, *bp;
+ 	unsigned short flags = 0;
+ 
+-	if (!flist)	/* lastdir isn't valid if flist is NULL */
++	if (!flist || !flist->count)	/* lastdir isn't valid if flist is NULL */
+ 		lastdir_len = -1;
+ 
+ 	if (strlcpy(thisname, fname, sizeof thisname)
