@@ -21,7 +21,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/giftoxic/giFToxic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gift
+BuildRequires: gift, gtk2-devel, XFree86-devel, gettext, bison
 Requires: gift
 
 %description
