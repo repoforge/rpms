@@ -44,8 +44,13 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING FAQ NEWS README doc/sample.smbcrc
+%{_mandir/man?/smbc*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
-# %exclude %{_datadir}/doc
+%exclude %{_datadir}/FAQ
+%exclude %{_datadir}/README
+%exclude %{_datadir}/sample.smbrc
+
 
 %changelog
 * Sun Oct 03 2004 Dries Verachtert <dries@ulyssis.org> 1.0.0-2

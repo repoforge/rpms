@@ -4,6 +4,8 @@
 # Screenshot: http://scret.sourceforge.net/shot1.png
 # ScreenshotURL: http://scret.sourceforge.net/
 
+%define real_name ScoreReadingTrainer
+
 %{?dist: %{expand: %%define %dist 1}}
                                                                                 
 %{?fc1:%define _without_xorg 1}
@@ -42,7 +44,7 @@ to press the matching note for it.
 
 %prep
 %{__rm} -rf "${RPM_BUILD_ROOT}"
-%setup -n ScoreReadingTrainer-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 source /etc/profile.d/qt.sh
@@ -56,7 +58,7 @@ source /etc/profile.d/qt.sh
 echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 export DESTDIR=$RPM_BUILD_ROOT
 %{__make} install-strip
-# %find_lang %{name}
+%find_lang %{real_name}
 
 %clean
 %{__rm} -rf %{buildroot}

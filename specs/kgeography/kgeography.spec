@@ -35,42 +35,27 @@ KGeography is a geography learning tool. Right now it has three usage modes:
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=KGeography
-Comment=Geography learning tool
-Exec=kgeography
-Terminal=false
-Type=Application
-StartupNotify=true
-Encoding=UTF-8
-Categories=Application;Games;X-Red-Hat-Extra;
-EOF
-
 %build
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %makeinstall
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor net                  \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING INSTALL README TODO
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/kde/*.desktop
+%{_datadir}/apps/kgeography
+%{_datadir}/icons/crystalsvg/*/apps/kgeography.png
 
 %changelog
 * Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1 

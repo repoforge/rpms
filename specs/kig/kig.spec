@@ -5,8 +5,8 @@
 
 Summary: Explore mathematical concepts with interactive geometry
 Name: kig
-Version: 0.6.0
-Release: 4
+Version: 0.9
+Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://edu.kde.org/kig
@@ -65,6 +65,9 @@ wiskundige concepten.
 %{_datadir}/services/kig_part.desktop
 
 %changelog
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 0.9-1
+- Update to release 0.9.
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 0.6.0-4
 - cleanup of spec file
 

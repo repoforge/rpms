@@ -16,7 +16,8 @@ URL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/%{name}-%{version}.tar.gz
+#Source: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/%{name}-%{version}.tar.gz
+Source: http://users.telenet.be/muylkens/tuxsaver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make

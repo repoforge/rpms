@@ -91,6 +91,7 @@ desktop-file-install --vendor net                  \
 %{_datadir}/applications/*.desktop
 %{_libdir}/*.a
 %{_libdir}/*.so
+%{_includedir}/orsa
 %exclude %{_libdir}/*.la
 
 %changelog

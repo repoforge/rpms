@@ -62,7 +62,7 @@ tables and views is easily accessible in a tree view.
 %{_datadir}/doc/HTML/en/kpogre
 
 %changelog
-- Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.4-1
 - Update to release 1.2.4.
 
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.8-1

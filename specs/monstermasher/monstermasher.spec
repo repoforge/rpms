@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.cs.aau.dk/~olau/monster-masher/source/monster-masher-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: intltool, perl(XML::Parser), gtk2-devel, gtk+-devel 
+BuildRequires: intltool, perl(XML::Parser), gtk2-devel, gtk+-devel, gcc-c++
 
 %description
 Monster Masher is an action game for the Gnome desktop environment. The
