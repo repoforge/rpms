@@ -31,7 +31,7 @@ mailers and competes with Mutt.
 %setup
 
 %build
-%configure --enable-debug
+%configure --enable-debug CPPFLAGS=-I/usr/kerberos/include
 %{__make} %{?_smp_mflags}
 
 %install

@@ -36,7 +36,7 @@ in the OpenSSL library.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" INC=-I/usr/kerberos/include
 
 %install
 %{__rm} -rf %{buildroot}

@@ -5,6 +5,8 @@
 # Screenshot: http://www.koffice.org/kexi/pics/relations.png
 # ScreenshotURL: http://www.koffice.org/kexi/screenshots.php
 
+# ExcludeDist el3
+
 %define real_version 0.1beta5
 
 %{?dist: %{expand: %%define %dist 1}}

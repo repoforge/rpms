@@ -61,14 +61,15 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 #%doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_libdir}/libdirac.so.*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc rpm-doc/*
 %{_includedir}/dirac/
 %{_libdir}/*.a
-%exclude %{_libdir}/libdirac.la
+%{_libdir}/*.so
+%exclude %{_libdir}/libdirac*.la
 %{_libdir}/pkgconfig/dirac.pc
 
 %changelog

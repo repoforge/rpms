@@ -4,6 +4,8 @@
 # Screenshot: http://kile.sourceforge.net/images/screenshots/kile_screen.png
 # ScreenshotURL: http://kile.sourceforge.net/screenshots.php
 
+# ExcludeDist el3
+
 Summary: User friendly TeX/LaTeX editor
 Name: kile
 Version: 1.7.1
