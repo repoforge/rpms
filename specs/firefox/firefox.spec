@@ -132,7 +132,7 @@ mk_add_options MOZ_PHOENIX="1"
 mk_add_options PATH="$PATH"
 ac_add_options --host="%{_host}"
 ac_add_options --build="%{_build}"
-ac_add_options --target="%{_arch}"
+ac_add_options --target="%{_target_platform}"
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-composer
 ac_add_options --disable-debug
@@ -188,8 +188,6 @@ EOF
 
 ### Written by Dag Wieers <dag@wieers.com>
 ### Please send suggestions and fixes to me.
-
-ulimit -c 0
 
 MOZILLA_FIVE_HOME="%{_libdir}/firefox"
 MOZ_PROGRAM="$MOZILLA_FIVE_HOME/firefox"
@@ -274,7 +272,7 @@ export BUILD_OFFICIAL="1"
 export CFLAGS="%{optflags}"
 export CXXFLAGS="%{optflags}"
 export RPM_OPT_FLAGS="$(echo %{optflags} | sed -e 's|-O2|-Os|')"
-#%{__make} -f client.mk depend
+%{__make} -f client.mk depend
 %{__make} %{?_smp_mflags} -f client.mk build
 
 %install
@@ -311,13 +309,16 @@ fi
 		firefox.desktop
 %endif
 
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_libdir}/firefox/mozilla-config
+
 %post
 /sbin/ldconfig 2>/dev/null
 %{_libdir}/firefox/firefox-rebuild-databases.pl &>/dev/null || :
 
 ### Work around for creating extensions directory
 unset DISPLAY
-%{_libdir}/firefox-%{version}/firefox --help &>/dev/null || :
+%{_libdir}/firefox/firefox --help &>/dev/null || :
 
 %postun
 /sbin/ldconfig 2>/dev/null
