@@ -11,11 +11,11 @@
 
 Summary: Module for simple terminal control 
 Name: perl-Term-ReadKey
-Version: 
+Version: 2.21
 Release: 1
 License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Term-ReadKey/
+URL: http://search.cpan.org/dist/TermReadKey/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -56,8 +56,5 @@ of the screen size, and retrieval/modification of the control characters.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
-* Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - -1
-- Updated to release .
-
 * Wed Nov 03 2004 Dries Verachtert <dries@ulyssis.org> - 2.21-1
 - Initial package.

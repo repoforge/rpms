@@ -50,6 +50,7 @@ A base class for D[A-Z]AP servers.
 %doc Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/DMAP/Server.pm
+%{perl_vendorlib}/Net/DMAP/Server
 
 %changelog
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1

@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJRAY/RPC-XML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl-libwww-perl
 # Apparently i used the wrong name: XML-RPC doesn't exist, it's RPC-XML
 Obsoletes: perl-XML-RPC
 

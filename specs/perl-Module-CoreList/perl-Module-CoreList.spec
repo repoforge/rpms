@@ -50,6 +50,8 @@ This module gets the list of modules shipped with versions of perl.
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man1/*
 %{perl_vendorlib}/Module/CoreList.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.97-1

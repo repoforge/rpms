@@ -55,6 +55,7 @@ metadata into a separate directory structure for packaging.  See
 %defattr(-, root, root, 0755)
 %doc README ChangeLog
 %{_bindir}/*
+%{perl_vendorlib}/SVG/Metadata.pm
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man1/*
 
