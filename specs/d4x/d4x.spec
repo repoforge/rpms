@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-%define pre            rc3
+%define pre            rc4
 
 Summary: Downloader for X that supports resuming and many other features
 Name: d4x
@@ -12,8 +12,7 @@ Group: Applications/Internet
 License: Artistic
 URL: http://www.krasu.ru/soft/chuchelo/
 Source: http://www.krasu.ru/soft/chuchelo/files/%{name}-%{version}%{?pre}.tar.gz
-Patch: http://den.tourinfo.ru/pack/d4x/Fedora2/gtk-2.4.0.patch
-Buildroot: %{_tmppath}/%{name}-root
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2, libstdc++
 BuildRequires: gtk2-devel, gcc-c++, libstdc++-devel
 BuildRequires: libao-devel, esound-devel, desktop-file-utils
@@ -32,7 +31,7 @@ and many others!
 
 
 %build
-%configure --enable-release
+%configure
 %{__make} %{?_smp_mflags}
 
 
@@ -67,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc4.4
+- Update to 2.5.0rc4.
+
 * Mon May 24 2004 Matthias Saou <http://freshrpms.net/> 2.5.0-0.rc3.4
 - Added patch for gtk 2.4 compatibility from Den.
 
