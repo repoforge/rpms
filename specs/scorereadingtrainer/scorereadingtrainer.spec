@@ -6,7 +6,7 @@
 
 Summary: musical score reading trainer
 Name: scorereadingtrainer
-Version: 0.1.2
+Version: 0.1.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -31,7 +31,7 @@ to press the matching note for it.
 
 %prep
 %{__rm} -rf "${RPM_BUILD_ROOT}"
-%setup -n ScoreReadingTrainer-0.1.2
+%setup -n ScoreReadingTrainer-%{version}
 
 %build
 . /etc/profile.d/qt.sh
@@ -49,15 +49,18 @@ export DESTDIR=$RPM_BUILD_ROOT
 %defattr(-,root,root,0755)
 %doc README
 %{_bindir}/ScoreReadingTrainer
-/usr/share/applnk/Edutainment/Miscellaneous/ScoreReadingTrainer.desktop
-/usr/share/apps/ScoreReadingTrainer/ScoreReadingTrainerui.rc
-/usr/share/apps/ScoreReadingTrainer
-/usr/share/doc/HTML/en/ScoreReadingTrainer
-/usr/share/icons/*/*/apps/ScoreReadingTrainer.png
-/usr/share/locale/*/LC_MESSAGES/ScoreReadingTrainer.mo
+%{_datadir}/applnk/Edutainment/Miscellaneous/ScoreReadingTrainer.desktop
+%{_datadir}/apps/ScoreReadingTrainer/ScoreReadingTrainerui.rc
+%{_datadir}/apps/ScoreReadingTrainer
+%{_datadir}/doc/HTML/en/ScoreReadingTrainer
+%{_datadir}/icons/*/*/apps/ScoreReadingTrainer.png
+%{_datadir}/locale/*/LC_MESSAGES/ScoreReadingTrainer.mo
 
 
 %changelog
+* Sat May 27 2004 Dries Verachtert <dries@ulyssis.org> 0.1.3-1
+- update to version 0.1.3
+
 * Wed Feb 3 2004 Dries Verachtert <dries@ulyssis.org> 0.1.2-1
 - update to version 0.1.2
 
