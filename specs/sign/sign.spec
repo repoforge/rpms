@@ -1,0 +1,63 @@
+# $Id: $
+
+# Authority: dries
+# Upstream: 
+
+Summary: File signing and signature verification utility
+Name: sign
+Version: 1.0.2
+Release: 1
+License: GPL
+Group: Applications/Internet
+URL: http://swapped.cc/sign/
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://swapped.cc/sign/files/sign-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: openssl-devel
+
+%description
+First of all, sign is a file processing tool, it reads from the files
+(including stdin) and writes to the files (including stdout). It can be used
+to append signatures to the files or to verify and/or strip them. 
+
+ Between signing and verifying latter will account for a bulk of usage. When
+checking the signature, sign will check for both intergrity and authenticity
+of the file. An integrity check is done by validating SHA-1 hash embedded
+into the signature, and an authenticity is ensured by checking signer's
+credentials against a trusted list. 
+
+ sign adopts OpenSSH-style authentication model, where the trust hierarchy
+is flat (no certificates), an authentication is done with public keys and
+the list of trusted keys is grown gradually on as-needed basis.
+
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+#doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+%{_libdir}/*.so.*
+%{_datadir}/pixmaps/*.png
+%{_datadir}/applications/*.desktop
+
+%changelog
+* Wed May 5 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.2
+- Initial package.
+
