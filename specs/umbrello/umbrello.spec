@@ -6,7 +6,7 @@
 
 Summary: unified modelling language (UML) diagrams modeller
 Name: umbrello
-Version: 1.2
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -15,7 +15,7 @@ URL: http://uml.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/uml/%{name}-1.2-1.tar.gz
+Source: http://dl.sf.net/uml/umbrello-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
@@ -74,6 +74,9 @@ rm -f $RPM_BUILD_ROOT/usr/share/applications/kde/umbrello.desktop
 %{_datadir}/applications/umbrello.desktop
 
 %changelog
+* Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> 1.3.1-1
+- Updated to release 1.3.1.
+
 * Tue Feb 24 2004 Dries Verachtert <dries@ulyssis.org> 1.2-1
 - updated to 1.2 (1.2-1 on download page)
 - fixed the 'Categories=' in the desktop file
