@@ -42,8 +42,8 @@ bandwidth usage by pairs of hosts. Handy for answering the question
 
 %files
 %defattr(-, root, root, 0755)
-%{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/iftop.8*
+%{_sbindir}/iftop
 
 %changelog
 * Sun Feb 29 2004 Dag Wieers <dag@wieers.com> - 0.16-0
