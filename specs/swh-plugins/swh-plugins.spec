@@ -1,13 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Steve Harris <steve@plugin.org.uk>
 
-# Distcc: 0
-
 Summary: Steve Harris's set of audio plug-ins for LADSPA
 Name: swh-plugins
-Version: 0.4.3
+Version: 0.4.4
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -22,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ladspa-devel, fftw-devel
 
 %description
-swh-plugins is a set of audio plugins for LADSPA written by Steve Harris.
+swh-plugins is a set of audio plugins for LADSPA written.
                                                                                 
 %prep
 %setup
@@ -47,6 +44,9 @@ swh-plugins is a set of audio plugins for LADSPA written by Steve Harris.
 %{_datadir}/ladspa/
 
 %changelog
+* Mon Jul 05 2004 Dag Wieers <dag@wieers.com> - 0.4.4-1
+- Updated to release 0.4.4.
+
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 0.4.3-1
 - Updated to release 0.4.3.
 

@@ -8,7 +8,7 @@
 
 Summary: Free multimedia player
 Name: xine
-Version: 0.99.1
+Version: 0.99.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -38,9 +38,23 @@ Available rpmbuild rebuild options :
 %prep
 %setup -n xine-ui-%{version}
 
+%{__cat} <<EOF >xine.desktop
+[Desktop Entry]
+Name=Xine Movie Player
+Comment=Video Player
+Exec=xine
+MimeType=video/mpeg;video/quicktime;video/x-msvideo;audio/x-mp3;audio/x-mp2;
+Icon=xine.xpm
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;AudioVideo;
+EOF
 
 %build
-%configure %{?_without_lirc:--disable-lirc}
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
+%{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
 
 
@@ -55,18 +69,14 @@ Available rpmbuild rebuild options :
 # Move the docs back into place
 mv %{buildroot}%{_docdir}/xine-ui xine-ui-doc
 
-%if %{!?_without_freedesktop:1}0
-# Convert the menu entry
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
+%if %{?_without_freedesktop:1}0
+%{__install} -D -m644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
+%else
+%{__mkdir_p} %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     --add-category X-Red-Hat-Base               \
-    --add-category Application                  \
-    --add-category AudioVideo                   \
-    misc/desktops/xine.desktop
-%else
-%{__install} -D -m644 misc/desktops/xine.desktop \
-    %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
+    xine.desktop
 %endif
 
 
@@ -80,7 +90,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 #{!?_without_aalib:%{_bindir}/aaxine}
 %{_bindir}/*
 %{_datadir}/pixmaps/*
-%{_datadir}/%{name}
+%{_datadir}/xine/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
 %{?_without_freedesktop:/etc/X11/applnk/Multimedia/%{name}.desktop}
 %{_mandir}/man1/*
@@ -91,6 +101,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Jul 05 2004 Dag Wieers <dag@wieers.com>> - 0.99.2-1
+- Added an improved desktop file.
+- Updated to release 0.99.2
+
 * Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 0.99.1-1
 - Update to 0.99.1.
 - Have curl enabled by default, if it's too old, it'll be disabled anyway.

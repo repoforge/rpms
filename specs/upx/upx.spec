@@ -7,12 +7,13 @@ Version: 1.25
 Release: 1
 License: GPL
 Group: Applications/File
-URL: http://upx.sf.net/
+URL: http://upx.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/upx/upx-%{version}-src.tar.gz
+Source: http://upx.sf.net/download/upx-%{version}-src.tar.gz
+#Source: http://dl.sf.net/upx/upx-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ucl-devel, perl
@@ -57,13 +58,13 @@ export LDFLAGS="%{optflags}"
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING LICENSE LOADER.TXT NEWS PROJECTS README* THANKS
+%doc BUGS COPYING LICENSE NEWS PROJECTS README* THANKS
 %doc doc/upx.doc doc/upx.html
 %doc %{_mandir}/man1/upx.1*
 %{_bindir}/upx
 
 %changelog
-* Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 1.25-1
+* Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 1.25-1
 - Updated to release 1.25.
 
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 1.24-0

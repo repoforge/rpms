@@ -1,11 +1,14 @@
 # $Id$
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.1
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -18,6 +21,7 @@ Source: ftp://ftp.gnokii.org/pub/gnokii/gnokii-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, flex, gtk+-devel >= 1.2.0, bluez-libs-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Gnokii is a Linux/UNIX tool suite and a modem/fax driver for
@@ -84,7 +88,7 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
 %{__install} -m0644 Docs/man/*.8 %{buildroot}%{_mandir}/man8/
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 gnokii.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gnokii.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -127,18 +131,15 @@ EOF
 
 %defattr(4750, root, gnokii, 0755)
 %{_sbindir}/mgnokiidev
-%exclude %{_prefix}/doc/gnokii/gnapplet.sis
+%exclude %{_docdir}/gnokii/gnapplet.sis
 
 %files gui -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man?/xgnokii*
 %{_bindir}/xgnokii
 %{_datadir}/xgnokii/
-%if %{dfi}
-        %{_datadir}/gnome/apps/Utilities/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/net-gnokii.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/gnokii.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -150,6 +151,9 @@ EOF
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jul 04 2004 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

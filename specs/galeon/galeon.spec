@@ -3,10 +3,11 @@
 # Upstream: <galeon-devel@lists.sourceforge.net>
 
 %define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
+%define lversion %(rpm -q mozilla-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
-Version: 1.3.15
+Version: 1.3.16
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -33,9 +34,26 @@ engine, for rendering Web pages. It is developed to be fast and lightweight.
 %prep
 %setup
 
+%{__cat} <<'EOF' >galeon.sh
+#!/bin/sh
+
+### Written by Dag Wieers <dag@wieers.com>
+### Please send suggestions and fixes to me.
+
+if [ -z "$MOZILLA_FIVE_HOME" ]; then
+	MOZILLA_FIVE_HOME="%{_libdir}/mozilla-%{lversion}"
+fi
+
+LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$LD_LIBRARY_PATH"
+MOZ_PLUGIN_PATH="$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins:$LD_LIBRARY_PATH"
+
+export LD_LIBRARY_PATH MOZILLA_FIVE_HOME MOZ_PLUGIN_PATH
+
+exec %{_bindir}/galeon-bin $@
+EOF
+
 %build
 %configure \
-	--disable-dependency-tracking \
 	--disable-werror \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags}
@@ -45,6 +63,8 @@ engine, for rendering Web pages. It is developed to be fast and lightweight.
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}-2.0
+
+%{__install} -D -m0755 galeon.sh %{buildroot}%{_bindir}/galeon
 
 %post
 %{_bindir}/galeon-config-tool --fix-gconf-permissions
@@ -76,6 +96,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Jul 04 2004 Dag Wieers <dag@wieers.com> - 1.3.16-1
+- Updated to release 1.3.16.
+
 * Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 1.3.15-1
 - Updated to release 1.3.15.
 

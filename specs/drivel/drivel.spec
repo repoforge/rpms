@@ -4,7 +4,7 @@
 
 Summary: LiveJournal client for GNOME
 Name: drivel
-Version: 1.0.0
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -55,6 +55,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/drivel/
 
 %changelog
+* Sun Jul 04 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

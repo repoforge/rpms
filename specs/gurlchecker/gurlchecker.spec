@@ -4,7 +4,7 @@
 
 Summary: Graphical link validity checker
 Name: gurlchecker
-Version: 0.7.14
+Version: 0.7.15
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -23,7 +23,7 @@ gURLChecker is a graphical web link checker. It can work on a whole
 site, a single local page or a browser bookmarks file.
 
 %prep
-%setup
+%setup -n %{name}-0.7.13
 
 %{__cat} <<EOF >gurlchecker.desktop
 [Desktop Entry]
@@ -59,11 +59,14 @@ desktop-file-install --vendor gnome                \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO
 %doc %{_datadir}/gtk-doc/html/gurlchecker/
-%{_bindir}/*
+%{_bindir}/gurlchecker
+%{_datadir}/applications/gnome-gurlchecker.desktop
 %{_datadir}/gurlchecker/
-%{_datadir}/applications/*.desktop
 
 %changelog
+* Sun Jul 04 2004 Dag Wieers <dag@wieers.com> - 0.7.15-1
+- Updated to release 0.7.15.
+
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 0.7.14-1
 - Updated to release 0.7.14.
 

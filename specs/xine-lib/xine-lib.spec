@@ -2,6 +2,9 @@
 # Authority: matthias
 # Upstream: <xine-user@lists.sf.net>
 
+### Foolishly complains about compiler on RH7.
+# ExcludeDist: rh7
+
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
 
@@ -109,10 +112,20 @@ use the Xine library.
 %prep
 %setup -n %{name}-%{libver}
 
+### Disable MMX on non-x86 archs
+%ifnarch %{ix86}
+	%{__perl} -pi.orig -e '
+			s|(enable_ffmmx)="yes"|$1="no"|;
+			s|(#define FPM_INTEL) 1|$1 0|;
+			s|(#define FPM_64BIT)|$1 1|;
+		' configure
+%endif
+
 
 %build
 %configure \
     --program-prefix="%{?_program_prefix}" \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --with-pic \
     %{?_without_alsa:--disable-alsa} \
     %{!?_with_ext-dvdnav:--with-included-dvdnav}

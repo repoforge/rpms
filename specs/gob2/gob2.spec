@@ -5,8 +5,8 @@
 
 Summary: The GTK+ Object Builder, a preprocessor for making GObjects with inline C code
 Name: gob2
-Version: 2.0.5
-Release: 0
+Version: 2.0.8
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.5z.com/jirka/gob.html
@@ -14,9 +14,8 @@ URL: http://www.5z.com/jirka/gob.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.5z.com/pub/%{name}/%{name}-%{version}.tar.bz2
+Source: http://ftp.5z.com/pub/gob2/gob2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glib2-devel >= 2.0.0
 
@@ -48,5 +47,8 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 %{_datadir}/aclocal/*
 
 %changelog
-* Tue Jan 07 2003 Dag Wieers <dag@wieers.com> - 2.0.5
+* Sat Jun 12 2004 Dag Wieers <dag@wieers.com> - 2.0.8-1
+- Updated to release 2.0.8.
+
+* Tue Jan 07 2003 Dag Wieers <dag@wieers.com> - 2.0.5-0
 - Initial package. (using DAR)
