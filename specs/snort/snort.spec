@@ -12,8 +12,8 @@
 
 Summary: Open Source network intrusion detection system
 Name: snort
-Version: 2.1.2
-Release: 2
+Version: 2.1.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.snort.org/
@@ -378,6 +378,9 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
+* Fri Jun 25 2004 Dag Wieers <dag@wieers.com> - 2.1.3-1
+- Updated to release 2.1.3.
+
 * Tue Apr 13 2004 Dag Wieers <dag@wieers.com> - 2.1.2-2
 - Added rh-postgresql-devel for RHEL3.
 - Build against libnet 1.2.2.1.
