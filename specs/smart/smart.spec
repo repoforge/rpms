@@ -26,14 +26,24 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
 #Source: http://smart.conectiva.com.br/files/smart-%{version}.tar.bz2
+Source1: channelsync.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
 BuildRequires: kdelibs-devel, qt-devel
-Requires: python, pygtk2 >= 2.3.94
+Requires: python
 
 %description
 Smart Package Manager is a next generation package handling tool.
+
+%package gui
+Summary: Graphical interface to smart
+Group: Applications/System
+Requires: smart = %{version}-%{release}
+Requires: pygtk2 >= 2.3.94
+
+%description gui
+A graphical interface to smart.
 
 %package update
 Summary: Allows execution of 'smart update' by normal users (suid)
@@ -63,126 +73,151 @@ Programa tray do KDE para verificar atualizações com o Smart Package Manager.
 %{?fc1:name="Fedora Core"; version="1"; path="fedora"}
 
 %{__cat} <<EOF >distro.py
-sysconf.set(("channels", "rpm-db"), {
-	"name": "RPM Database on this system",
-	"type": "rpm-sys",
-	"priority": 10,
-})
-
-sysconf.set(("channels", "os"), {
-	"name": "OS packages from Red Hat for $name $version",
-	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core/",
-	"type": "rpm-md",
-	"priority": 10,
-})
-
-sysconf.set(("channels", "updates"), {
-	"name": "Updated packages from Red Hat for $name $version",
-	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/updates/",
-	"type": "rpm-md",
-	"priority": 10,
-})
-
-sysconf.set(("channels", "repo-dag"), {
-	"name": "Various packages from RPMforge.net (dag) for $name $version",
-	"baseurl": "http://apt.sw.be/$path/$version/en/%{_arch}/dag",
-	"type": "rpm-md",
-	"priority": 10,
-})
-
-sysconf.set(("channels", "repo-freshrpms"), {
-	"name": "Various packages from RPMforge.net (freshrpms) for $name $version",
-	"baseurl": "http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/freshrpms",
-	"type": "rpm-md",
-	"priority": 10,
-})
-
-sysconf.set(("channels", "repo-dries"), {
-	"name": "Various packages from RPMforge.net (dries) for $name $version",
-	"baseurl": "http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS",
-	"type": "rpm-md",
-	"priority": 10,
-})
-
-sysconf.set(("channels", "repo-planetccrma"), {
-	"name": "Various packages from RPMforge.net (planetccrma) for $name $version",
-	"baseurl": "rpm http://ccrma.stanford.edu/planetccrma/apt/$path/$version/%{_arch}",
-	"components": "planetccrma planetcore",
-	"type": "apt-rpm",
-	"priority": 10,
-	"disabled": "true",
-})
-
-sysconf.set(("channels", "repo-jpackage"), {
-	"name": "Java packages from JPackage.org for $name $version",
-	"baseurl": "http://mirrors.sunsite.dk/jpackage/1.6/$path-$version/free/",
-	"type": "rpm-md",
-	"priority": 0,
-})
-
-sysconf.set(("channels", "repo-newrpms"), {
-	"name": "Various packages from NewRPMS for $name $version",
-	"baseurl": "http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version",
-	"type": "rpm-md",
-	"priority": 0,
-})
-
-sysconf.set(("channels", "repo-biorpms"), {
-	"name": "Bioinformatic packages from BIOrpms for $name $version",
-	"baseurl": "http://apt.bea.ki.se/biorpms/$path/linux/$version/%{_arch}/biorpms",
-	"type": "rpm-md",
-	"priority": 0,
-})
-
-sysconf.set(("channels", "repo-kde-redhat"), {
-	"name": "KDE packages from the kde-redhat project for $name $version",
-	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/$version/stable",
-	"type": "rpm-md",
-	"priority": -5,
-})
-
-sysconf.set(("channels", "repo-kde-redhat-all"), {
-	"name": "KDE (nodist) packages from the kde-redhat project for $name $version",
-	"baseurl": "http://apt.kde-redhat.org/apt/kde-redhat/all/stable",
-	"type": "rpm-md",
-	"priority": -5,
-})
-
-sysconf.set(("channels", "repo-nrpms"), {
-	"name": "Various packages from Nrpms for $name $version",
-	"baseurl": "http://yum.nrpms.net/$path-$version-%{_arch}/production",
-	"type": "rpm-md",
-	"priority": -10,
-})
-
-sysconf.set(("channels", "repo-atrpms"), {
-	"name": "Various packages from ATrpms for $name $version",
-	"baseurl": "http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing",
-	"type": "rpm-md",
-	"priority": -10,
-})
-
-sysconf.set(("channels", "repo-livna"), {
-	"name": "Incompatible packages from Livna.org for $name $version",
-	"baseurl": "http://rpm.livna.org/fedora/$version/%{_arch}/RPMS.stable",
-	"type": "rpm-md",
-	"priority": -100,
-})
-
-sysconf.set(("channels", "repo-fedora.us"), {
-	"name": "Incompatible packages from Fedora.us for $name $version",
-	"baseurl": "http://download.fedora.us/fedora/$path/$version/%{_arch}/RPMS.extras/",
-	"type": "rpm-md",
-	"priority": -100,
-	"disabled": "true",
-})
-
 for type in ["", "doc", "smp" ]:
 	if type:
 		kernel = "kernel-%s" % type
 	else:
 		kernel = "kernel"
 	pkgconf.setFlag("multi-version", kernel)
+EOF
+
+%{__cat} <<EOF >rpm-db.channel
+[rpm-db]
+name = RPM Database on this system
+type = rpm-sys
+priority = 10
+EOF
+
+%{__cat} <<EOF >os.channel
+[os]
+name = OS packages from Red Hat for $name $version (%{_arch}
+baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core
+type = rpm-md
+priority = 10
+EOF
+
+%{__cat} <<EOF >updates.channel
+[updates]
+name = Updated packages from Red Hat for $name $version (%{_arch})
+baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/updates
+type = rpm-md
+priority = 10
+EOF
+
+%{__cat} <<EOF >dag.channel
+[dag]
+name = RPMforge.net: Various packages from Dag RPM Repository for $name $version (%{_arch})
+baseurl = http://apt.sw.be/$path/$version/en/%{_arch}/dag
+type = rpm-md
+priority = 10
+EOF
+
+%{__cat} <<EOF >freshrpms.channel
+[freshrpms]
+name = RPMforge.net: Various packages from FreshRPMS.net for $name $version (%{_arch})
+baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/freshrpms
+type = rpm-md
+priority = 10
+EOF
+
+%{__cat} <<EOF >dries.channel
+[dries]
+name = RPMforge.net: Various packages from Dries RPM Repository for $name $version (%{_arch})
+baseurl = http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS
+type = rpm-md
+priority = 10
+EOF
+
+%{__cat} <<EOF >planetccrma.channel
+[planetcrrma]
+name = RPMforge.net: Various packages from Planet CCRMA for $name $version (%{_arch})
+baseurl = http://ccrma.stanford.edu/planetccrma/apt/$path/$version/%{_arch}
+components = planetccrma planetcore
+type = apt-rpm
+priority = 10
+disabled = true
+EOF
+
+%{__cat} <<EOF >jpackage.channel
+[jpackage]
+name = Java packages from JPackage.org for $name $version (%{_arch})
+baseurl = http://mirrors.sunsite.dk/jpackage/1.6/$path-$version/free
+type = rpm-md
+priority = 0
+EOF
+
+%{__cat} <<EOF >newrpms.channel
+[newrpms]
+name = Various packages from NewRPMS for $name $version (%{_arch})
+baseurl = http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version
+type = rpm-md
+priority = 0
+EOF
+
+%{__cat} <<EOF >biorpms.channel
+[biorpms]
+name = Bioinformatic packages from BIOrpms for $name $version (%{_arch})
+baseurl = http://apt.bea.ki.se/biorpms/$path/linux/$version/%{_arch}/biorpms
+type = rpm-md
+priority = 0
+EOF
+
+%{__cat} <<EOF >kde-redhat.channel
+[kde-redhat]
+name = KDE packages from the kde-redhat project for $name $version (%{_arch})
+baseurl = http://apt.kde-redhat.org/apt/kde-redhat/$version/stable
+type = rpm-md
+priority = -5
+EOF
+
+%{__cat} <<EOF >kde-redhat-all.channel
+[kde-redhat-all]
+name = KDE (nodist) packages from the kde-redhat project for $name $version
+baseurl = http://apt.kde-redhat.org/apt/kde-redhat/all/stable
+type = rpm-md
+priority = -5
+EOF
+
+%{__cat} <<EOF >nrpms.channel
+[nrpms]
+name = Various packages from Nrpms for $name $version (%{_arch})
+baseurl = http://yum.nrpms.net/$path-$version-%{_arch}/production
+type = rpm-md
+priority = -10
+EOF
+
+%{__cat} <<EOF >atrpms.channel
+[atrpms]
+name = Various packages from ATrpms for $name $version (%{_arch})
+baseurl = http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing
+type = rpm-md
+priority = -10
+EOF
+
+%{__cat} <<EOF >mozilla-seamonkey.channel
+[mozilla-seamonkey]
+name = Mozilla packages from Mozilla SeaMonkey for $name $version (%{_arch})
+baseurl = http://ftp.mozilla.org/pub/mozilla.org/mozilla/yum/SeaMonkey/releases/current/redhat/$version
+type = rpm-md
+priority = -10
+disabled = true
+EOF
+
+%{__cat} <<EOF >livna.channel
+[livna]
+name = Incompatible packages from Livna.org for $name $version (%{_arch})
+baseurl = http://rpm.livna.org/$path/$version/%{_arch}/RPMS.stable
+type = rpm-md 
+priority = -100
+EOF
+
+%{__cat} <<EOF >fedora.us.channel
+[fedora.us]
+name = Incompatible packages from Fedora.us for $name $version (%{_arch})
+baseurl = http://download.fedora.us/fedora/$path/$version/%{_arch}/RPMS.extras
+type = rpm-md
+priority = -100
+disabled = true
 EOF
 
 %{__cat} <<EOF >smart.console
@@ -239,11 +274,13 @@ python setup.py install \
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/smart
 
 %{__install} -D -m0644 distro.py %{buildroot}%{_libdir}/smart/distro.py
-#%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/backends/rpm/rpmmodule.so
+%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 %{__install} -D -m4755 contrib/smart-update/smart-update %{buildroot}%{_bindir}/smart-update
 %{__install} -D -m0644 smart.console %{buildroot}%{_sysconfdir}/security/console.apps/smart
 %{__install} -D -m0644 smart.pam %{buildroot}%{_sysconfdir}/pam.d/smart
 %{__install} -D -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smart/channels/
+%{__cp} -av *.channel %{buildroot}%{_sysconfdir}/smart/channels/
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 smart.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
@@ -264,12 +301,19 @@ python setup.py install \
 %doc HACKING IDEAS LICENSE README TODO
 %config %{_libdir}/smart/distro.py
 %dir %{_libdir}/smart/
+%config(noreplace) %{_sysconfdir}/smart/channels/
 %{_sysconfdir}/security/console.apps/smart
 %{_sysconfdir}/pam.d/smart
 %{_bindir}/smart
 %{_sbindir}/smart
 %{python_dir}/smart/
 %{_libdir}/python%{python_version}/site-packages/smart/
+%exclude %{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
+%{_libdir}/python%{python_version}/site-packages/smart/interfaces/images/
+
+%files gui
+%defattr(-, root, root, 0755)
+%{_libdir}/python%{python_version}/site-packages/smart/interfaces/gtk/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-smart.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/smart.desktop}
 %{_datadir}/pixmaps/smart.png
