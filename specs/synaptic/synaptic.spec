@@ -4,7 +4,7 @@
 
 Summary: Graphical package management program using apt
 Name: synaptic
-Version: 0.55.1
+Version: 0.55.3
 Release: 1
 License: GPL
 Group: Applications/System
@@ -112,6 +112,9 @@ EOF
 
 
 %changelog
+* Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 0.55.3-1
+- Updated to release 0.55.3.
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.55.1-1
 - Update to 0.55.1.
 

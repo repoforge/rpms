@@ -9,7 +9,7 @@
 
 Summary: Fast and small X11 window manager
 Name: icewm
-Version: 1.2.19
+Version: 1.2.20
 Release: 1
 License: LGPL
 Group: User Interface/Desktops
@@ -72,6 +72,9 @@ status.
 %{_datadir}/icewm/
 
 %changelog
+* Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 1.2.20-1
+- Updated to release 1.2.20.
+
 * Thu Jan 06 2005 Dag Wieers <dag@wieers.com> - 1.2.19-1
 - Updated to release 1.2.19.
 

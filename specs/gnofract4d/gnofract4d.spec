@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Edwin Young <edwin$sourceforge,net>
 
+%define desktop_vendor rpmforge
+
 Summary: Program to generate and view fractals
 Name: gnofract4d
 Version: 2.5

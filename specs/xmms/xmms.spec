@@ -7,6 +7,7 @@
 %{?fc1:%define _without_mikmod 1}
 
 %{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_arts 1}
 %{?el3:%define _without_mikmod 1}
 
 %{?rh9:%define _without_alsa 1}
@@ -242,6 +243,9 @@ rm -rf %{buildroot}
 %{_datadir}/xmms/Skins/
 
 %changelog
+* Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
+- Disable arts for el3.
+
 * Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 1:1.2.10-9.2
 - Added _without_arts macros. (Tres Seaver)
 

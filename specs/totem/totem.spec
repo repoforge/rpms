@@ -3,12 +3,12 @@
 
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
-Version: 0.99.22
+Version: 0.100
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.hadess.net/totem.php3
-Source: http://ftp.gnome.org/pub/GNOME/sources/totem/0.99/totem-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/totem/0.100/totem-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): GConf2
 Requires: gnome-desktop >= 2.6.0
@@ -186,6 +186,9 @@ update-desktop-database %{_datadir}/applications
 
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.100-0
+- Updated to release 0.100.
+
 * Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 0.99.22-0
 - Update to 0.99.22.
 

@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
 
 %define real_version 040322
 
@@ -74,7 +72,7 @@ sed -i "s/\/usr\/local\/lve\/bin/\/usr\/bin/g;" src/lve.h
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING DVD-Authoring.txt Readme.avsync Readme.lvemux
 %{_bindir}/*
-%{_datadir}/lve
+%{_datadir}/lve/
 
 %changelog
 * Tue Jun 1 2004 Dries Verachtert <dries@ulyssis.org> - 0.040322-1
