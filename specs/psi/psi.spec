@@ -117,6 +117,10 @@ desktop-file-install \
     %{buildroot}%{_datadir}/psi
 
 
+%clean
+%{__rm} -rf %{buildroot}
+
+
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
