@@ -25,7 +25,7 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %build
-ARCH="%{optflags}" make %{?_smp_mflags}
+ARCH="%{optflags}" %{__make} %{?_smp_mflags}
 
 
 %install
