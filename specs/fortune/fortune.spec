@@ -146,7 +146,7 @@ util/strfile ralph
 %{__cp} SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
 %endif
 %{__cp} fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-osho/osho.dat fortune-osho/osho %{buildroot}%{_datadir}/games/fortune/
+%{__cp} osho.dat osho %{buildroot}%{_datadir}/games/fortune/
 
 %{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
