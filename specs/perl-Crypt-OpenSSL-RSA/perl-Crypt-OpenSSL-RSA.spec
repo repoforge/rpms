@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Crypt-OpenSSL-RSA
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
@@ -45,10 +49,10 @@ in the OpenSSL library.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Crypt/OpenSSL/RSA.pm
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Crypt/OpenSSL/RSA/.packlist
-/usr/lib/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Crypt/OpenSSL/RSA/*
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
+%{perl_vendorarch}/Crypt/OpenSSL/RSA.pm
+%exclude %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/.packlist
+%{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/*
+%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.21-1

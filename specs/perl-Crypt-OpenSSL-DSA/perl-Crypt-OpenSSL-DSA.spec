@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Crypt-OpenSSL-DSA
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: DSA encryption
 Name: perl-Crypt-OpenSSL-DSA
@@ -46,12 +50,12 @@ OpenSSL crypto library, located at http://www.openssl.org.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Crypt/OpenSSL/DSA.pm
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Crypt/OpenSSL/DSA/Signature.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Crypt/OpenSSL/DSA/.packlist
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Crypt/OpenSSL/DSA/DSA.bs
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Crypt/OpenSSL/DSA/DSA.so
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
+%{perl_vendorarch}/Crypt/OpenSSL/DSA.pm
+%{perl_vendorarch}/Crypt/OpenSSL/DSA/Signature.pod
+%exclude %{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/.packlist
+%{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.bs
+%{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.so
+%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.11-1
