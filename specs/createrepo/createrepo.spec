@@ -7,7 +7,7 @@
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.3.5
+Version: 0.3.6
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -51,6 +51,9 @@ fi
 
 
 %changelog
+* Wed Aug 04 2004 Dries Verachtert <dries@ulyssis.org> 0.3.6-1
+- Update to version 0.3.6.
+
 * Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 0.3.5-1
 - Picked up package.
 
