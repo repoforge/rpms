@@ -53,6 +53,7 @@ Categories=Application;Game;ArcadeGame
 EOF
 
 %install
+%{__rm} -rf %{buildroot}
 echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 export DESTDIR=$RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/usr/share/widelands

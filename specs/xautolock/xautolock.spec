@@ -31,6 +31,7 @@ xmkmf
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 strip xautolock
 mkdir -p $RPM_BUILD_ROOT/usr/X11R6/bin/
 mkdir -p $RPM_BUILD_ROOT/usr/X11R6/man/man1/

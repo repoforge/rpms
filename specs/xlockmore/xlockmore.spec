@@ -34,6 +34,7 @@ options.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %{__install} -d -m 755 %{buildroot}/%{_bindir}
 %{__install} -d -m 755 %{buildroot}/%{_datadir}/man/man1
 %{__install} -d -m 755 %{buildroot}/%{_libdir}/X11/app-defaults

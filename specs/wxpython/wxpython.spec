@@ -46,6 +46,7 @@ cd wxPython
 python setup.py build
 
 %install
+%{__rm} -rf %{buildroot}
 cd wxPython
 python setup.py install --root ${RPM_BUILD_ROOT}
 

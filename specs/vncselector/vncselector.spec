@@ -34,6 +34,7 @@ server sessions. This can be useful in a thin client situation (run from
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %{__install} -D -m 755 VncSelector %{buildroot}%{_bindir}/VncSelector
 
 %clean

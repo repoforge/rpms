@@ -48,6 +48,7 @@ EOF
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %{__make} install-strip DESTDIR=%{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor rpmforge             \
