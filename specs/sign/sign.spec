@@ -4,7 +4,7 @@
 
 Summary: File signing and signature verification utility
 Name: sign
-Version: 1.0.4
+Version: 1.0.5
 Release: 1
 License: GPL
 Group: Applications/File
@@ -57,6 +57,9 @@ the list of trusted keys is grown gradually on as-needed basis.
 %{_bindir}/*
 
 %changelog
+* Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 
