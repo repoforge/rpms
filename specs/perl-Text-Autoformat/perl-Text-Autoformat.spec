@@ -1,0 +1,62 @@
+# $Id$
+
+# Authority: dries
+# Upstream: Damian Conway <damian$conway,org>
+
+%define real_name Text-Autoformat
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+Summary: Automatic text wrapping and reformatting
+Name: perl-Text-Autoformat
+Version: 1.12
+Release: 1
+License: Artistic
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Text-Autoformat/
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Text-Autoformat-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+Text::Autoformat provides intelligent formatting of
+plaintext without the need for any kind of embedded mark-up. The module
+recognizes Internet quoting conventions, a wide range of bulleting and
+number schemes, centred text, and block quotations, and reformats each
+appropriately. Other options allow the user to adjust inter-word
+and inter-paragraph spacing, justify text, and impose various
+capitalization schemes. 
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc README Changes
+%doc %{_mandir}/man3/*
+%{perl_vendorlib}/Text/Autoformat.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
+
+%changelog
+* Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Initial package.
