@@ -3,21 +3,20 @@
 
 %define desktop_vendor freshrpms
 
-Summary: OpenGL real-time visual space simulation
+Summary: Real-time visual space simulation
 Name: celestia
 Version: 1.3.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
-Source0: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
-Source1: http://www.shatters.net/celestia/files/minormoons.ssc
-Source2: http://www.shatters.net/celestia/files/numberedmoons.ssc
+Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
 URL: http://www.shatters.net/celestia/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: freeglut, gtkglarea, libpng, libjpeg
-BuildRequires: freeglut-devel, gtkglarea, gnome-libs-devel
+BuildRequires: freeglut-devel, gtkglarea, kdelibs-devel
 BuildRequires: libpng-devel, libjpeg-devel
 BuildRequires: desktop-file-utils, unzip, gcc-c++, libstdc++-devel
+%{!?dist:BuildRequires: libselinux-devel}
+%{?fc2:BuildRequires: libselinux-devel}
 
 %description
 Celestia is a free real-time space simulation that lets you experience our
@@ -34,64 +33,62 @@ simple to navigate through the universe to the object you want to visit.
 
 
 %build
-%configure  --disable-debug --with-gtk \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}"
+%configure \
+    --with-kde \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -m 644 %{SOURCE1} \
-        %{buildroot}%{_datadir}/%{name}/extras/minormoons.ssc
-%{__install} -m 644 %{SOURCE2} \
-        %{buildroot}%{_datadir}/%{name}/extras/numberedmoons.ssc
-%{__install} -m 644 -D src/celestia/kde/data/hi48-app-celestia.png \
-        %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%find_lang %{name}
 
-%{__cat} << EOF > %{name}.desktop
-[Desktop Entry]
-Name=Celestia
-Comment=An OpenGL real-time visual space simulation
-Icon=celestia.png
-Exec=celestia
-Terminal=false
-Type=Application
-EOF
-
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category Graphics                       \
-  %{name}.desktop
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    --add-category Graphics \
+    --delete-original \
+    %{buildroot}%{_datadir}/applnk/Edutainment/Science/celestia.desktop
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%{_bindir}/%{name}
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%dir %{_datadir}/%{name}
-%config %{_datadir}/%{name}/celestia.cfg
-%doc %{_datadir}/%{name}/controls.txt
-%doc %{_datadir}/%{name}/COPYING
-%{_datadir}/%{name}/*.cel
-%{_datadir}/%{name}/data
-%{_datadir}/%{name}/extras
-%{_datadir}/%{name}/fonts
-%doc %{_datadir}/%{name}/manual
-%{_datadir}/%{name}/models
-%{_datadir}/%{name}/shaders
-%{_datadir}/%{name}/textures
-%{_datadir}/pixmaps/%{name}.png
+%{_bindir}/celestia
+%{_datadir}/applications/%{desktop_vendor}-celestia.desktop
+%dir %{_datadir}/apps/celestia/
+%config %{_datadir}/apps/celestia/celestia.cfg
+%config %{_datadir}/apps/celestia/bookmarks.xml
+%doc %{_datadir}/apps/celestia/controls.txt
+%doc %{_datadir}/apps/celestia/COPYING
+%config %{_datadir}/apps/celestia/celestiaui.rc
+%{_datadir}/apps/celestia/*.cel
+%{_datadir}/apps/celestia/data/
+%{_datadir}/apps/celestia/extras/
+%{_datadir}/apps/celestia/favicons/
+%{_datadir}/apps/celestia/fonts
+%doc %{_datadir}/apps/celestia/manual
+%{_datadir}/apps/celestia/models/
+%{_datadir}/apps/celestia/shaders/
+%{_datadir}/apps/celestia/textures/
+%config %{_datadir}/config/celestiarc
+%doc %{_defaultdocdir}/HTML/en/celestia/
+%{_datadir}/icons/hicolor/*/apps/celestia.png
+%{_datadir}/mimelnk/application/x-celestia-script.desktop
+%{_datadir}/services/celestia.protocol
 
 
 %changelog
+* Thu Jul  8 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-1
+- Switch from gtk to kde GUI for now, as the gtk build seems broken.
+- Remove the additionnal extras, they're now bundled in.
+- Major spec update to finalize 1.3.1 changes.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-1
 - Update to 1.3.1.
 - Rebuild for Fedora Core 2.
