@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Chris Ladd <caladd@particlestorm.net>
+# Upstream: Chris Ladd <caladd$particlestorm,net>
 
 Summary: Graphical secure password generator
 Name: gnome-password-generator
@@ -8,7 +8,7 @@ Version: 1.4
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://gnome-password.sf.net/
+URL: http://gnome-password.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -29,7 +29,8 @@ passwords of a specified length.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} datadir="%{_datadir}"
+%{__make} %{?_smp_mflags} \
+	datadir="%{_datadir}"
 
 %install
 %{__rm} -rf %{buildroot}
