@@ -1,31 +1,34 @@
 # $Id$
 # Authority: dries
 
+%define real_version 0.5.4-2
+
 Summary: Image and photo viewer, browser, manager and simple editor
 Name: pixieplus
-Version: 0.5.4
+Version: 0.5.4.2
 Release: 1
-License: GPL (to be checked, site down)
+License: BSD
 Group: Amusements/Graphics
 URL: http://www.mosfet.org
 
-# problem: site seems to be down, mosfet.org doesn't exist anymore
-# license is GPL i think
-
-BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, libungif-devel, libtiff-devel, qt-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel
+BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, 
+BuildRequires: libungif-devel, libtiff-devel, qt-devel, 
+BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, 
+BuildRequires: libpng-devel, arts-devel, zlib-devel, 
+BuildRequires: kdelibs-devel, make, gcc-c++, XFree86-devel
 %{?fc2:BuildRequires:libselinux-devel, libexif-devel, libexif}
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: pixieplus-%{version}.tar.gz
+Source: http://http.us.debian.org/debian/pool/main/p/pixieplus/pixieplus_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 An image and photo viewer, browser, manager and simple editor.
 
 %prep
-%setup
+%setup -n pixieplus-0.5.4
 
 %build
 source /etc/profile.d/qt.sh
@@ -37,11 +40,11 @@ source /etc/profile.d/qt.sh
 source /etc/profile.d/qt.sh
 %{__make} install-strip \
 	DESTDIR="%{buildroot}"
-rm -f $RPM_BUILD_ROOT/usr/share/mimelnk/image/x-pcx.desktop
-rm -f $RPM_BUILD_ROOT/usr/share/applnk/Graphics/pixie-mini.desktop
-rm -f $RPM_BUILD_ROOT/usr/share/applnk/Graphics/pixie.desktop
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications/
-cat >  $RPM_BUILD_ROOT/usr/share/applications/pixieplus.desktop <<EOF
+%{__rm} -f %{buildroot}/usr/share/mimelnk/image/x-pcx.desktop
+%{__rm} -f %{buildroot}/usr/share/applnk/Graphics/pixie-mini.desktop
+%{__rm} -f %{buildroot}/usr/share/applnk/Graphics/pixie.desktop
+%{__mkdir_p} %{buildroot}/usr/share/applications/
+%{__cat} >  %{buildroot}/usr/share/applications/pixieplus.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Comment=PixiePlus Image Manager and Editor
@@ -64,42 +67,24 @@ EOF
 
 %files
 %defattr(-,root,root, 0755)
-/usr/bin/pixie
-/usr/lib/libpixie_misc.la
-/usr/lib/libpixie_misc.so.1.0.0
-/usr/lib/libpixie_misc.so.1
-/usr/lib/libpixie_misc.so
-/usr/lib/pixie.la
-/usr/lib/pixie.so
-/usr/share/apps/konqueror/servicemenus/konqPixie.desktop
-/usr/share/apps/pixie/doc/en
-/usr/share/apps/pixie/pixielogo.jpg
-/usr/share/apps/pixie/toolbar/kwin.png
-/usr/share/apps/pixie/toolbar/mini-ray.png
-/usr/share/apps/pixie/toolbar/mini-run.png
-/usr/share/icons/*/*/actions/backimage.png
-/usr/share/icons/*/*/actions/brightness.png
-/usr/share/icons/*/*/actions/catagory.png
-/usr/share/icons/*/*/actions/contrast+.png
-/usr/share/icons/*/*/actions/contrast-.png
-/usr/share/icons/*/*/actions/dim.png
-/usr/share/icons/*/*/actions/forwardimage.png
-/usr/share/icons/*/*/actions/hotlistadd.png
-/usr/share/icons/*/*/actions/hotlistdel.png
-/usr/share/icons/*/*/actions/nextfilelist.png
-/usr/share/icons/*/*/actions/prevfilelist.png
-/usr/share/icons/*/*/apps/pixie.png
-/usr/share/icons/*/*/actions/thumb.png
-/usr/share/icons/*/*/actions/window_new.png
-/usr/share/icons/*/*/apps/pixie.png
-/usr/share/icons/*/*/apps/ray.png
-/usr/share/icons/*/*/apps/run.png
-/usr/share/mimelnk/image/x-miff.desktop
-/usr/share/mimelnk/image/x-pict.desktop
-/usr/share/mimelnk/image/x-tga.desktop
-/usr/share/mimelnk/image/x-xwd.desktop
-/usr/share/applications/pixieplus.desktop
+%{_bindir}/pixie
+%{_libdir}/libpixie_misc.*
+%{_libdir}/pixie.*
+%{_datadir}/apps/konqueror/servicemenus/konqPixie.desktop
+%{_datadir}/apps/pixie/doc/en
+%{_datadir}/apps/pixie/pixielogo.jpg
+%{_datadir}/apps/pixie/toolbar/*.png
+%{_datadir}/icons/*/*/actions/*.png
+%{_datadir}/icons/*/*/apps/*.png
+%{_datadir}/mimelnk/image/x-miff.desktop
+%{_datadir}/mimelnk/image/x-pict.desktop
+%{_datadir}/mimelnk/image/x-tga.desktop
+%{_datadir}/mimelnk/image/x-xwd.desktop
+%{_datadir}/applications/pixieplus.desktop
 
 %changelog
+* Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> 0.5.4.2-1
+- update to version 0.5.4.2
+
 * Mon Feb 2 2004 Dries Verachtert <dries@ulyssis.org> 0.5.4-1
 - first packaging for Fedora Core 1
