@@ -48,7 +48,7 @@ sed -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{b
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog README TODO BUGS
+%doc AUTHORS COPYING ChangeLog README BUGS
 %{_bindir}/kolourpaint
 %{_datadir}/applications/kolourpaint.desktop
 %{_datadir}/apps/kolourpaint
