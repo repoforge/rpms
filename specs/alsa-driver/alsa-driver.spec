@@ -22,7 +22,7 @@
 
 Summary: The Advanced Linux Sound Architecture (ALSA) base files
 Name: alsa-driver
-Version: 1.0.2c
+Version: 1.0.4
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Base
@@ -85,6 +85,7 @@ This package contains the ALSA kernel modules for the Linux kernel package :
 %setup -n %{name}-%{version}%{?prever}
 %patch0 -p1 -b .nodepmod
 
+
 %build
 # We fool configure with these CFLAGS to not have 686 instructions on 386
 CFLAGS="-D__module__%{_target_cpu} -D__module__%{kernel_type}" \
@@ -101,6 +102,7 @@ CFLAGS="-D__module__%{_target_cpu} -D__module__%{kernel_type}" \
 touch include/linux/workqueue.h
 
 %{__make} %{?_smp_mflags} MODFLAGS="-DMODULE=1 -D__BOOT_KERNEL_H_ -D__MODULE_KERNEL_%{_target_cpu}=1 %{?ksmp:-D__BOOT_KERNEL_SMP=1} %{!?ksmp:-D__BOOT_KERNEL_UP=1}"
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -128,6 +130,7 @@ cp -a %{_sysconfdir}/makedev.d/00macros %{buildroot}%{_sysconfdir}/makedev.d/
 %{__rm} -f %{buildroot}%{_sysconfdir}/makedev.d/00macros
 %{__rm} -f %{buildroot}/etc/rc.d/init.d/alsasound
 
+
 %pre
 test -L /dev/snd && rm -f /dev/snd 2>/dev/null 2>&1 || :
 
@@ -137,8 +140,10 @@ test -L /dev/snd && rm -f /dev/snd 2>/dev/null 2>&1 || :
 %postun -n kernel%{?ksmp}-module-alsa
 /sbin/depmod -a -F /boot/System.map-%{kernel} %{kernel} >/dev/null 2>&1 || :
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f device.list
 %defattr(-, root, root, 0755)
@@ -151,42 +156,46 @@ test -L /dev/snd && rm -f /dev/snd 2>/dev/null 2>&1 || :
 %defattr(-, root, root, 0755)
 /lib/modules/%{kernel}/kernel/sound
 
+
 %changelog
-* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.2c-1.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.4-1
+- Update to 1.0.4.
+
+* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.2c-1
 - Update to 1.0.2c.
 
-* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1.fr
+* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Update to 1.0.2.
 - Fix the kernel_type in CFLAGS.
 
-* Sat Jan 10 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-2.fr
+* Sat Jan 10 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-2
 - Force --with-redhat=yes configure option and touch workqueue.h.
 
-* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-1.fr
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-1
 - Update to 1.0.1.
 - Removed serialmidi patch.
 
-* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1.fr
+* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1
 - Update to 1.0.0rc2.
 
-* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc1.1.fr
+* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc1.1
 - Update to 1.0.0rc1.
 - Removed obsolete (yes, again!) Red Hat Linux kernel workaround.
 
-* Mon Nov 24 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.pre2.1.fr
+* Mon Nov 24 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.pre2.1
 - Update to 1.0.0pre2.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-3.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-3
 - Rebuild for Fedora Core 1.
 - Added a quick and ugly compile fix for serialmidi.c.
 
-* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-2.fr
+* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-2
 - Added workaround to have Red Hat kernel detected with > 2.4.20 too.
 - Added workaround to have i386 and i586 modules not compiled with i686 or
   higher CFLAGS.
 - Removed the "pre" macro.
 
-* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1.fr
+* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1
 - Added kernel-modules provides.
 
 * Fri Oct  3 2003 Matthias Saou <http://freshrpms.net/>

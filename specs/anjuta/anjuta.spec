@@ -3,7 +3,7 @@
 
 Summary: versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -25,12 +25,15 @@ advanced programming features. It is basically a GUI interface for the
 collection of command line programming utilities and tools available for Linux. 
 These are usually run via a text console, and can be unfriendly to use.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,12 +44,14 @@ These are usually run via a text console, and can be unfriendly to use.
     %{buildroot}/usr/share/doc/%{name} \
     %{buildroot}%{_localstatedir}/scrollkeeper || :
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog FUTURE NEWS README THANKS TODO
+%doc AUTHORS COPYING ChangeLog FUTURE NEWS README TODO
 %doc doc/ScintillaDoc.html
 %{_bindir}/%{name}*
 %{_libdir}/%{name}
@@ -59,23 +64,28 @@ These are usually run via a text console, and can be unfriendly to use.
 %{_datadir}/pixmaps/%{name}
 %{_mandir}/man1/*
 
+
 %changelog
-* Mon Feb 16 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-1.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1
+- Update to 1.2.2.
+- Removed THANKS doc file.
+
+* Mon Feb 16 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-1
 - Update to 1.2.1.
 
-* Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2.fr
+* Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2
 - Added ncurses-devel build dependency.
 
-* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-1.fr
+* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-1
 - Update to 1.2.0 final.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.98-1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.98-1
 - Update to 1.1.98.
 - Remove libzvt and pcre dependencies.
 - Added gettext and scrollkeeper build dependencies, fails otherwise.
 - Added help and omf files, and remove scrollkeeper files from the package.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.1.97-2.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.1.97-2
 - Rebuild for Fedora Core 1.
 
 * Fri Jul 18 2003 Matthias Saou <http://freshrpms.net/>

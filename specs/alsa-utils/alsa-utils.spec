@@ -5,7 +5,7 @@
 
 Summary: The Advanced Linux Sound Architecture (ALSA) utilities
 Name: alsa-utils
-Version: 1.0.2
+Version: 1.0.4
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -31,9 +31,11 @@ This package includes utilities for systems using ALSA.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -43,8 +45,10 @@ mkdir -p %{buildroot}/etc/rc{0,6}.d
 ln -sf ../init.d/alsactl %{buildroot}/etc/rc0.d/S01alsactl
 ln -sf ../init.d/alsactl %{buildroot}/etc/rc6.d/S01alsactl
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -56,22 +60,26 @@ ln -sf ../init.d/alsactl %{buildroot}/etc/rc6.d/S01alsactl
 %{_sbindir}/*
 %{_mandir}/man?/*
 
+
 %changelog
-* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.4-1
+- Update to 1.0.4.
+
+* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Update to 1.0.2.
 
-* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-1.fr
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-1
 - Update to 1.0.1.
 
-* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1.fr
+* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1
 - Update to 1.0.0rc2.
 
-* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc1.1.fr
+* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc1.1
 - Update to 1.0.0rc1.
 - Re-added the "prever" macro...
 - Require alsa-driver and alsa-lib >= 1.0.0 to work properly.
 
-* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1.fr
+* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1
 - Removed the optional "prever" macro.
 
 * Fri Oct  3 2003 Matthias Saou <http://freshrpms.net/>

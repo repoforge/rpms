@@ -3,13 +3,12 @@
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
-Version: 1.7.4b
-Release: 2
+Version: 1.8.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 Source: http://dl.sf.net/xmule/%{name}-%{version}.tar.bz2
-Patch0: xmule-1.7.1-destdir.patch
-Patch1: xmule-1.7.4b-dlfix.patch
+Patch: xmule-1.7.1-destdir.patch
 URL: http://www.xmule.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK, /usr/sbin/alternatives
@@ -21,14 +20,16 @@ xMule is an easy to use multi-platform client for ED2K Peer-to-Peer Network.
 It is originally based on eMule, the popular windows-only client for the
 same network.
 
+
 %prep
 %setup
-%patch0 -p1 -b .destdir
-%patch1 -p1 -b .dlfix
+%patch -p1 -b .destdir
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -36,14 +37,18 @@ same network.
 mv %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %find_lang %{name}
 
+
 %post
 /usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 40 || :
+
 
 %preun
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -52,37 +57,39 @@ mv %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
 
+
 %changelog
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.7.4b-2.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.8.1-1
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.7.4b-2
 - Included a fix to get downloads working better again.
 
-* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 1.7.4b-1.fr
+* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 1.7.4b-1
 - Update to 1.7.4b.
 - Updated Source URL to point to the file.
 - Force exit status of the alternatives scriplets to true.
 
-* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 1.7.4a-1.fr
+* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 1.7.4a-1
 - Update to 1.7.4a.
 
-* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 1.7.3-1.fr
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 1.7.3-1
 - Update to 1.7.3.
 
-* Mon Jan 12 2004 Matthias Saou <http://freshrpms.net/> 1.7.2-1.fr
+* Mon Jan 12 2004 Matthias Saou <http://freshrpms.net/> 1.7.2-1
 - Update to 1.7.2.
 
-* Mon Jan 12 2004 Matthias Saou <http://freshrpms.net/> 1.7.1-2.fr
+* Mon Jan 12 2004 Matthias Saou <http://freshrpms.net/> 1.7.1-2
 - Added alternatives support for the ed2k binary between amule and xmule.
   The highest priority is for amule since it's under active development.
 
-* Sun Nov 23 2003 Matthias Saou <http://freshrpms.net/> 1.7.1-1.fr
+* Sun Nov 23 2003 Matthias Saou <http://freshrpms.net/> 1.7.1-1
 - Update to 1.7.1.
 - Added patch to add DESTDIR support to the Makefile.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.6.1-7.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.6.1-7
 - Bump the release to be higher than the RHL ones.
 - Rebuild against gtk+ wxGTK.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.6.1-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.6.1-2
 - Rebuild for Fedora Core 1.
 
 * Mon Oct 13 2003 Matthias Saou <http://freshrpms.net/>

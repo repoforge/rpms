@@ -3,7 +3,7 @@
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
-Version: 2.1.26
+Version: 2.1.28
 Release: 1
 License: GPL
 Group: Applications/System
@@ -48,8 +48,10 @@ machines you intend to monitor with gkrellm from a different location.
 %setup
 %patch -p0 -b .i18n
 
+
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" glib12=1
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,8 +63,10 @@ cat server/gkrellmd.conf | sed 's/#allow-host/allow-host/g' \
     > %{buildroot}%{_sysconfdir}/gkrellmd.conf
 %find_lang %{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -72,10 +76,12 @@ cat server/gkrellmd.conf | sed 's/#allow-host/allow-host/g' \
 %{_datadir}/gkrellm2
 %{_mandir}/man1/gkrellm.1*
 
+
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/gkrellm2
 %{_libdir}/pkgconfig/gkrellm.pc
+
 
 %files daemon
 %defattr(-, root, root, 0755)
@@ -83,26 +89,30 @@ cat server/gkrellmd.conf | sed 's/#allow-host/allow-host/g' \
 %{_bindir}/gkrellmd
 %{_mandir}/man1/gkrellmd.1*
 
+
 %changelog
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 2.1.26-1.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 2.1.28-1
+- Update to 2.1.28.
+
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 2.1.26-1
 - Update to 2.1.26.
 
-* Wed Jan 21 2004 Matthias Saou <http://freshrpms.net/> 2.1.25-1.fr
+* Wed Jan 21 2004 Matthias Saou <http://freshrpms.net/> 2.1.25-1
 - Update to 2.1.25.
 
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 2.1.24-1.fr
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 2.1.24-1
 - Update to 2.1.24.
 
-* Thu Dec 18 2003 DenV <den@nekto.com> 2.1.23-2.fr
+* Thu Dec 18 2003 DenV <den@nekto.com> 2.1.23-2
 - Fix broken localisation.
 
-* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 2.1.23-1.fr
+* Thu Dec 18 2003 Matthias Saou <http://freshrpms.net/> 2.1.23-1
 - Update to 2.1.23.
 
-* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net/> 2.1.22-1.fr
+* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net/> 2.1.22-1
 - Update to 2.1.22.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.21-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.21-2
 - Rebuild for Fedora Core 1.
 - Renamed server to daemon to match distribution naming.
 

@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define libname libxine1
-%define libver  1-rc3b
+%define libver  1-rc3c
 %define apiver  1.0.0
 
 %define __libtoolize :
@@ -10,7 +10,7 @@
 Summary: Core library for the xine video player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.10.rc3b
+Release: 0.11.rc3c
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -143,6 +143,9 @@ use the Xine library.
 
 
 %changelog
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.11.rc3c
+- Update to 1.0rc3c.
+
 * Thu Mar 25 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.10.rc3b
 - Removed explicit XFree86 dependency.
 

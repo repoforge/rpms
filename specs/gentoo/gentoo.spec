@@ -5,16 +5,16 @@
 
 Summary: graphical file managment program in GTK+ for Linux
 Name: gentoo
-Version: 0.11.46
+Version: 0.11.48
 Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.obsession.se/gentoo/
 Source0: http://dl.sf.net/gentoo/%{name}-%{version}.tar.gz
 Source1: gnome-db-icon.png
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk+ >= 1.2.3, fam
 BuildRequires: gtk+-devel, fam-devel, desktop-file-utils
-BuildRoot: %{_tmppath}/%{name}-root
 
 %description
 gentoo is a file manager for Linux written from scratch in pure C. It
@@ -26,12 +26,15 @@ and can display files of different types with different colors and icons.
 gentoo borrows some of its look and feel from the classic Amiga
 file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,8 +61,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --add-category Utility                                          \
   %{name}.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -72,36 +77,43 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{_datadir}/pixmaps/%{name}.png
 %{_mandir}/man1/gentoo.1*
 
+
 %changelog
-* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 0.11.46-1.fr
+* Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 0.11.48-1
+- Update to 0.11.48.
+
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 0.11.47-1
+- Update to 0.11.47.
+
+* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 0.11.46-1
 - Update to 0.11.46.
 
-* Wed Dec  3 2003 Matthias Saou <http://freshrpms.net/> 0.11.45-1.fr
+* Wed Dec  3 2003 Matthias Saou <http://freshrpms.net/> 0.11.45-1
 - Update to 0.11.45.
 
-* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.11.44-1.fr
+* Mon Dec  1 2003 Matthias Saou <http://freshrpms.net/> 0.11.44-1
 - Update to 0.11.44.
 
-* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.11.43-1.fr
+* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.11.43-1
 - Update to 0.11.43.
 
-* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.11.42-1.fr
+* Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.11.42-1
 - Update to 0.11.42.
 - Added icon suggested by Matthias Haase.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.11.41-1.fr
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.11.41-1
 - Update to 0.11.41.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.11.40-1.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.11.40-1
 - Update to 0.11.40.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.11.39-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.11.39-2
 - Rebuild for Fedora Core 1.
 
-* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 0.11.39-1.fr
+* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 0.11.39-1
 - Update to 0.11.39.
 
-* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.11.38-1.fr
+* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.11.38-1
 - Update to 0.11.38.
 
 * Tue Oct 21 2003 Matthias Saou <http://freshrpms.net/>

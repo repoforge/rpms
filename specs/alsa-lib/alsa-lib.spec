@@ -5,8 +5,8 @@
 
 Summary: The Advanced Linux Sound Architecture (ALSA) library
 Name: alsa-lib
-Version: 1.0.2
-Release: %{?prever:0.%{prever}.}2
+Version: 1.0.4
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 Source: ftp://ftp.alsa-project.org/pub/lib/%{name}-%{version}%{?prever}.tar.bz2
@@ -49,6 +49,7 @@ This package includes the ALSA development libraries.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 
+
 %build
 %configure \
     --enable-static=yes \
@@ -56,16 +57,22 @@ This package includes the ALSA development libraries.
 %{__make} %{?_smp_mflags}
 %{__make} doc
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} DESTDIR=%{buildroot} install
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -85,26 +92,30 @@ This package includes the ALSA development libraries.
 %{_libdir}/pkgconfig/alsa.pc
 %{_datadir}/aclocal/alsa.m4
 
+
 %changelog
-* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.4-1
+- Update to 1.0.4.
+
+* Thu Jan 29 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Update to 1.0.2.
 
-* Sun Jan 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-2.fr
+* Sun Jan 11 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-2
 - Fix release tag.
 
-* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-1.fr
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-1
 - Update to 1.0.1.
 
-* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1.fr
+* Tue Dec  9 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc2.1
 - Update to 1.0.0rc2.
 
-* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc1.1.fr
+* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.0.0-0.rc1.1
 - Update to 1.0.0rc1.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-2.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-2
 - Rebuild for Fedora Core 1.
 
-* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1.fr
+* Mon Oct 27 2003 Matthias Saou <http://freshrpms.net/> 0.9.8-1
 - Removed the optional "prever" macro.
 
 * Fri Oct  3 2003 Matthias Saou <http://freshrpms.net/>

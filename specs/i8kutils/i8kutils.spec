@@ -5,11 +5,11 @@
 
 Summary: Dell laptop (Inspiron 8000 and others) SMM BIOS support tools
 Name: i8kutils
-Version: 1.17
-Release: 7
+Version: 1.25
+Release: 1
 License: GPL
 Group: System Environment/Base
-Source0: http://people.debian.org/~dz/i8k/i8kutils-%{version}.tar.bz2
+Source0: http://people.debian.org/~dz/i8k/i8kutils_%{version}.tar.gz
 Source1: http://www.coding-zone.com/i8krellm-%{gkrellmpluginver}.tar.gz
 Source2: i8kbuttons.init
 URL: http://people.debian.org/~dz/i8k/
@@ -29,14 +29,17 @@ Also provided is a cool and useful plugin for gkrellm.
 Note that you need the "Inspiron 8000" option compiled into your kernel
 (included in the main kernel tree since 2.4.14-pre8).
 
+
 %prep
 %setup -a 1
+
 
 %build
 %{__make} %{?_smp_mflags}
 pushd i8krellm-%{gkrellmpluginver}
     make %{?_smp_mflags} i8krellm
 popd
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -54,6 +57,7 @@ popd
 
 %{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_initrddir}/i8kbuttons
 
+
 %post
 /sbin/chkconfig --add i8kbuttons
 
@@ -63,8 +67,10 @@ if [ $1 -eq 0 ]; then
     /sbin/chkconfig --del i8kbuttons
 fi
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -76,8 +82,12 @@ fi
 %{_libdir}/gkrellm2/plugins/*
 %{_mandir}/man1/*
 
+
 %changelog
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.17-7.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.25-1
+- Update to 1.25.
+
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 1.17-7
 - Rebuild for Fedora Core 1.
 - Update gkrellm plugin to 2.5, change in the plugin name.
 

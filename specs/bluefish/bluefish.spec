@@ -5,8 +5,8 @@
 
 Summary: Graphical web development application for experienced users
 Name: bluefish
-Version: 0.12
-Release: 2
+Version: 0.13
+Release: 1
 Group: Development/Tools
 License: GPL
 URL: http://bluefish.openoffice.nl/
@@ -23,49 +23,57 @@ creating environment. Bluefish has extended support for programming
 dynamic and interactive websites, there is for example a lot of PHP
 support.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-# This directory needs to be detected by make install
-mkdir -p %{buildroot}%{_datadir}/applications
-mkdir -p %{buildroot}%{_datadir}/pixmaps
-%makeinstall \
-    pkgdatadir=%{buildroot}%{_datadir}/%{name} \
-    iconpath=%{buildroot}%{_datadir}/pixmaps \
-    gnome2menupath=%{buildroot}%{_datadir}/applications/ \
-    gnome1menupath=we_do_not_want_this_one
+# These directories need to be created before make install
+mkdir -p %{buildroot}%{_datadir}/{application-registry,applications}
+mkdir -p %{buildroot}%{_datadir}/{mime-info,pixmaps}
+# The actual install
+make install DESTDIR=%{buildroot}
 %find_lang %{name}
 
-# Remove that ugly added path...
-perl -pi -e 's|%{buildroot}||g' %{buildroot}%{_datadir}/applications/*
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc COPYING
+%doc AUTHORS COPYING README TODO
 %{_bindir}/bluefish
 %{_datadir}/bluefish
+%{_datadir}/application-registry/*
 %{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/%{name}-icon.png
+%{_datadir}/mime-info/*
+%{_datadir}/pixmaps/*.png
+
 
 %changelog
-* Wed Mar  3 2004 Matthias Saou <http://freshrpms.net/> 0.12-2.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 0.13-1
+- Update to 0.13.
+- Clean up install section to use DESTDIR again.
+- Added mime-info, application-registry and new pixmap files.
+- Added doc files.
+
+* Wed Mar  3 2004 Matthias Saou <http://freshrpms.net/> 0.12-2
 - Added gnome-vfs support to the build.
 - Updated source URL.
 - Removed the conditional stuff for pre-versions.
 
-* Tue Nov 25 2003 Matthias Saou <http://freshrpms.net/> 0.12-1.fr
+* Tue Nov 25 2003 Matthias Saou <http://freshrpms.net/> 0.12-1
 - Update to 0.12.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.11-2.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.11-2
 - Rebuild for Fedora Core 1.
 
 * Sun Aug  3 2003 Matthias Saou <http://freshrpms.net/>

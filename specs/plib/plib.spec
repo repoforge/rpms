@@ -1,16 +1,16 @@
 # $Id$
 # Authority: matthias
 
-Summary: set of portable libraries especially useful for games
+Summary: Set of portable libraries especially useful for games
 Name: plib
-Version: 1.6.0
-Release: 3
+Version: 1.8.3
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/
-Source: http://plib.sourceforge.net/dist/%{name}-%{version}.tar.gz
+Source: http://plib.sourceforge.net/dist/plib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: Mesa, glut, libpng
+Requires: Mesa, libpng
 BuildRequires: gcc-c++
 BuildRequires: Mesa-devel, glut-devel, libpng-devel
 
@@ -21,19 +21,24 @@ portable across a wide range of hardware and operating systems. Here is
 what you need - it's all free and available with LGPL'ed source code on
 the web. All of it works well together.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -41,7 +46,11 @@ the web. All of it works well together.
 %{_libdir}/libplib*
 %{_includedir}/plib
 
+
 %changelog
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.8.3-1
+- Update to 1.8.3.
+
 * Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1.6.0-3.fr
 - Rebuild for Fedora Core 1.
 

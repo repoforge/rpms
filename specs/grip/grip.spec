@@ -3,7 +3,7 @@
 
 Summary: Graphical CD player, CD ripper and MP3 encoder frontend
 Name: grip
-Version: 3.1.8
+Version: 3.1.9
 Release: 1
 Epoch: 1
 License: GPL
@@ -55,31 +55,34 @@ servers.
 
 
 %changelog
-* Sat Mar 27 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.8-1.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.9-1
+- Update to 3.1.9.
+
+* Sat Mar 27 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.8-1
 - Update to 3.1.8.
 
-* Tue Mar 23 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.7-1.fr
+* Tue Mar 23 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.7-1
 - Update to 3.1.7.
 - Change libghttp dependency to curl.
 
-* Wed Mar  3 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.5-1.fr
+* Wed Mar  3 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.5-1
 - Update to 3.1.5.
 
-* Mon Jan 12 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.4-2.fr
+* Mon Jan 12 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.4-2
 - Removed the duplicate desktop entry and obsolete manipulations too.
 
-* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.4-1.fr
+* Mon Jan  5 2004 Matthias Saou <http://freshrpms.net/> 1:3.1.4-1
 - Update to 3.1.4.
 - Removed the cdparanoia and locking patches as fixes have gone upstream.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1:3.1.3-3.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1:3.1.3-3
 - Include the 3 current RH patches to default config to oggenc, fix
   cdparanoia detection and fix locking issues.
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1:3.1.3-2.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 1:3.1.3-2
 - Fixed the default menu entry to have it actually appear.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1:3.1.3-1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1:3.1.3-1
 - Update to 3.1.3, updated dependencies.
 - Rebuild for Fedora Core 1.
 

@@ -8,8 +8,8 @@
 
 Summary: DVD ripping graphical tool using transcode
 Name: perl-Video-DVDRip
-Version: 0.50.16
-Release: 3
+Version: 0.50.17
+Release: 1
 License: Artistic
 Group: Applications/Multimedia
 Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
@@ -24,12 +24,15 @@ BuildRequires: Gtk-Perl, desktop-file-utils
 dvd::rip is a Perl Gtk+ based DVD copy program built on top of a low level
 DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 
+
 %prep
 %setup -n Video-DVDRip-%{version}
+
 
 %build
 perl Makefile.PL
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -72,8 +75,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 # Add Red Hat NPTL workaround
 perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_ASSUME_KERNEL} = "2.2.5";\n/g' %{buildroot}%{_bindir}/dvdrip
 
+
 %clean 
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -82,15 +87,19 @@ perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_AS
 %{_datadir}/applications/*dvdrip.desktop
 %{_mandir}/man*/*
 
+
 %changelog
-* Sat Jan 20 2004 Matthias Saou <http://freshrpms.net/> 0.50.16-3.fr
+* Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 0.50.17-1
+- Update to 0.50.17.
+
+* Sat Jan 20 2004 Matthias Saou <http://freshrpms.net/> 0.50.16-3
 - Changed the LD_ASSUME_KERNEL from 2.4.19 to 2.2.5 to actually work!
 
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.50.16-2.fr
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.50.16-2
 - Rebuild for Fedora Core 1.
 
-* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 0.50.16-1.fr
-- Update to 0.50.16-1.fr.
+* Thu Oct 30 2003 Matthias Saou <http://freshrpms.net/> 0.50.16-1
+- Update to 0.50.16.
 
 * Mon Aug 25 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.50.15.
