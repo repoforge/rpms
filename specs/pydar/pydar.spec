@@ -6,7 +6,7 @@
 
 Summary: far from finished attempt of a buildserver in python
 Name: pydar
-Version: 0.002
+Version: 0.003
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -59,6 +59,9 @@ Not finished, not to be released!
 %defattr(-, root, root, 0755)
 %doc README
 %{_datadir}/pydar/pydar/*.py
+%{_datadir}/pydar/defaults.conf
+%config(noreplace) %{_sysconfdir}/pydar/pydar.conf
+
 
 %files server
 %defattr(-, root, root, 0755)
@@ -73,6 +76,7 @@ Not finished, not to be released!
 %{_bindir}/dar-speccheck
 %{_datadir}/pydar/pydar-remote.py
 %{_datadir}/pydar/pydar-speccheck.py
+%{_datadir}/pydar/dbinit.sql
 
 %changelog
 * Tue Apr 28 2004 Dries Verachtert <dries@ulyssis.org> 0.002-1
