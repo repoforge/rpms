@@ -5,7 +5,7 @@
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
 Version: 0.7.14
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Text
 URL: http://www.conglomerate.org/
@@ -16,10 +16,13 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/conglomerate/conglomerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libxml2-devel >= 2.0, libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
+BuildRequires: gettext, libxml2-devel >= 2.0
+BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
+BuildRequires: libgnomeprintui22-devel, gtksourceview-devel, gtk-doc
 BuildRequires: scrollkeeper
 
 Requires(post): scrollkeeper
+Requires(postun): scrollkeeper
 
 %description
 Conglomerate is a project to create a complete structured information
@@ -35,7 +38,9 @@ with a single source document.
 
 %build
 %configure \
+	--enable-optimization \
 	--disable-schemas-install
+#	--enable-printing \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -72,6 +77,10 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/ 
 
 %changelog
+* Tue Jul  6 2004 Matthias Saou <http://freshrpms.net> 0.7.14-2
+- Added missing build requirements.
+- Enabled printing support and optimization... not! Build for printing broken.
+
 * Thu Jun 14 2004 Dag Wieers <dag@wieers.com> - 0.7.14-1
 - Updated to release 0.7.14.
 - Updated to release 0.7.13.
