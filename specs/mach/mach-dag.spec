@@ -84,7 +84,7 @@ fi
 %dir %{_localstatedir}/cache/mach/packages/
 %dir %{_localstatedir}/cache/mach/archives/
 
-%defattr(-, mach, mach, 2755)
+#%defattr(-, mach, mach, 2755)
 %dir %{_localstatedir}/lib/mach/
 %dir %{_localstatedir}/lib/mach/roots/
 %dir %{_localstatedir}/lib/mach/states/
