@@ -2,12 +2,10 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy@users.sf.net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
-
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.7.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -15,14 +13,15 @@ URL: http://kino.schirmacher.de/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://kino.schirmacher.de/filemanager/download/31/kino-%{version}.tar.gz
+Source0: http://kino.schirmacher.de/filemanager/download/31/kino-%{version}.tar.gz
+Source1: kino.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
-BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
-BuildRequires: gtk+ >= 1.2, XFree86-devel, imlib-devel
-BuildRequires: libxml2-devel, libquicktime-devel
-BuildRequires: libsamplerate
+BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel, ffmpeg-devel
+BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
+BuildRequires: libxml2-devel, libquicktime-devel, libsamplerate-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 Obsoletes: kino-devel <= %{version}
 
@@ -45,9 +44,10 @@ commands for fast navigating and editing inside the movie.
 
 %{__cat} <<EOF >kino.desktop
 [Desktop Entry]
+Encoding=UTF-8
 Name=Kino Video Editor
 Comment=Edit non-linear videos in real-time
-Icon=gnome-multimedia.png
+Icon=kino.png
 Exec=kino
 Terminal=false
 Type=Application
@@ -66,15 +66,18 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%if %{dfi}
-	%{__install} -D -m0644 kino.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/kino.desktop
-%else
+%if %{!?_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		kino.desktop
+%else
+	%{__install} -D -m0644 kino.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/kino.desktop
 %endif
+
+# Install the pixmap for the menu entry
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/kino.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -89,14 +92,20 @@ EOF
 %dir %{_libdir}/hotplug/
 %{_libdir}/hotplug/kino/
 %{_datadir}/kino/
+%{_datadir}/pixmaps/kino.png
 %{_includedir}/kino/
-%if %{dfi}
-	%{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
+%if %{!?_without_freedesktop:1}0
 	%{_datadir}/applications/*.desktop
+%else
+	%{_datadir}/gnome/apps/Multimedia/*.desktop
 %endif
 
 %changelog
+* Mon Jun 14 2004 Matthias Saou <http://freshrpms.net> 0.7.1-2
+- Updated the desktop entry creation to the new current method.
+- Fixed build requirements.
+- Added custom icon for the menu entry (taken from the logo).
+
 * Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Updated to release 0.7.1.
 
