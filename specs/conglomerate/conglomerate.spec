@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Conglomerate Developers <conglomerate-devel@lists.copyleft.no>
 
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/conglomerate/conglomerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libxml2-devel >= 2.0, libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 BuildRequires: scrollkeeper
 
@@ -34,9 +32,6 @@ with a single source document.
 
 %prep
 %setup
-
-#### FIXME: Fix the intltool problem. (Please fix upstream)
-#%{__perl} -pi.orig -e 's|/home/david/jhbuilt/share/intltool|%{_datadir}/intltool|' intltool-merge.in
 
 %build
 %configure \
@@ -77,6 +72,7 @@ scrollkeeper-update -q || :
 %{_datadir}/mime-info/*
 %{_datadir}/omf/conglomerate/
 %{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/conglomerate/
 
 %changelog
 * Wed Feb 18 2004 Dag Wieers <dag@wieers.com> - 0.7.12-0
