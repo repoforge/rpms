@@ -56,6 +56,7 @@ source /etc/profile.d/qt.sh
 %{_datadir}/applications/kde/*.desktop
 %{_datadir}/apps/kgeography
 %{_datadir}/icons/crystalsvg/*/apps/kgeography.png
+%{_datadir}/config.kcfg/kgeography.kcfg
 
 %changelog
 * Tue May 4 2004 Dries Verachtert <dries@ulyssis.org> - 0.1-1 

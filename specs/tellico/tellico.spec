@@ -61,6 +61,11 @@ directly from Amazon.com.
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/*
 %{_datadir}/apps/tellico
+%{_datadir}/applnk/Applications/tellico.desktop
+%{_datadir}/apps/kconf_update/tellico-rename.upd
+%{_datadir}/doc/HTML/en/tellico
+%{_datadir}/icons/hicolor/*/apps/tellico.png
+%{_datadir}/mimelnk/application/x-tellico.desktop
 
 %changelog
 * Sat Oct 02 2004 Dries Verachtert <dries@ulyssis.org> - 0.12-1
