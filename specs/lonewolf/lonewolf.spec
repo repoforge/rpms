@@ -1,7 +1,7 @@
 # $Id: $
 
 # Authority: dries
-# 
+# Upstream: 
 
 Summary: Ultima Online emulator
 Name: lonewolf
