@@ -5,7 +5,6 @@
 # NeedsCleanup
 
 Summary: Deamon for communicating with filesharing protocols
-Summary(nl): daemon om te communiceren met filesharing protocols
 Name: gift
 Version: 0.11.6
 Release: 1
@@ -31,10 +30,8 @@ the end user and specific filesharing protocols (peer-to-peer or otherwise).
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+make install-strip DESTDIR="%{buildroot}"
 
-
-#make install-strip \ 	DESTDIR="%{buildroot}"
 #ln -s libgift.so.0.0.0 ${DESTDIR}/usr/lib/libgift.so
 #ls -l ${DESTDIR}/usr/lib/libgift.so*
 
