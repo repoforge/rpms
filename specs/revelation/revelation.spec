@@ -6,7 +6,7 @@
 Summary: Password manager
 Name: revelation
 Version: 0.3.0
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.wired-networks.net/revelation/
@@ -36,6 +36,10 @@ python2 setup.py build
 python2 setup.py install \
 	--root="%{buildroot}"
 
+%post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -50,6 +54,9 @@ python2 setup.py install \
 %{_datadir}/revelation/
 
 %changelog
+* Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 0.3.0-3
+- Install schema.
+
 * Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 0.3.0-2
 - Added gnome-python2-gconf dependency. (Erik Grinaker)
 

@@ -59,14 +59,14 @@ EOF
 %{__install} -D -m0644 alevt-cap.1 %{buildroot}%{_mandir}/man1/alevt-cap.1
 %{__install} -D -m0644 contrib/mini-alevt.xpm %{buildroot}%{_datadir}/pixmaps/alevt.xpm
 
-%if %{?!_without_freedesktop:1}0
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 alevt.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/alevt.desktop
+%else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor net                  \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 alevt.desktop
-%else
-        %{__install} -D -m0644 alevt.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/alevt.desktop
 %endif
 
 %clean

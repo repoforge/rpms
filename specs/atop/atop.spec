@@ -8,7 +8,7 @@ Name: atop
 Version: 1.12
 Release: 1
 License: GPL
-Group: System Environment
+Group: Applications/System
 URL: ftp://ftp.atcomputing.nl/pub/tools/linux/
 
 Packager: Dag Wieers <dag@wieers.com>
