@@ -4,7 +4,7 @@
 
 Summary: Shell wrapper to log activity
 Name: rootsh
-Version: 0.2
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -13,7 +13,7 @@ URL: http://sourceforge.net/projects/rootsh/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/rootsh/rootsh-%{version}.tar.gz
+Source: http://dl.sf.net/rootsh/rootsh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -43,10 +43,14 @@ mechanism.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS TODO
+%{_mandir}/man1/rootsh*
 %{_bindir}/rootsh
 %defattr(0700, root, root)
 %{_localstatedir}/log/rootsh
 
 %changelog
+* Thu Dec 09 2004 Dries Verachtert <dries@ulyssis.org> - 1.4.1-1
+- Update to release 1.4.1.
+
 * Fri Sep 14 2004 Dag Wieers <dag@wieers.com> - 0.2-1
 - Initial package. (using DAR)

@@ -10,7 +10,7 @@
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
 Version: 1.16
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.prima.eu.org/

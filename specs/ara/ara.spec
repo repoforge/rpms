@@ -1,0 +1,81 @@
+# $Id: $
+
+# Authority: dries
+# Upstream: Berke Durak <berke-dev$ouvaton,org>
+# Screenshot: http://ara.alioth.debian.org/xara.png
+
+Summary: Query the Debian package database
+Name: ara
+Version: 1.0.7
+Release: 1
+License: GPL
+Group: Applications/Utilities
+URL: http://ara.alioth.debian.org/
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://ara.alioth.debian.org/incoming/ara_%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: lablgtk, ocaml
+
+%description
+Ara is a command-line utility for querying the Debian package database. It
+has a query syntax allowing you to search for boolean combinations of
+regular expressions. It includes a simple syntax and line-editing. A
+graphical interface, xara, is also provided.
+
+This program can only be used for querying Debian packages, not for querying
+for example Fedora Core, Red Hat or Aurora packages! You also need a file 
+/var/lib/dpkg/available which contains the list of all Debian packages.
+
+%prep
+%setup
+
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Xara
+Comment=Searches in the debian packages database
+Exec=xara
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=Application;Network;X-Red-Hat-Extra;
+EOF
+
+%build
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%{__install} -D -m 755 cli/ara %{buildroot}%{_bindir}/ara
+%{__install} -D -m 644 doc/ara.1 %{buildroot}%{_mandir}/man1/ara.1
+%{__install} -D -m 644 etc/ara.config %{buildroot}%{_sysconfdir}/ara.config
+%{__install} -D -m 755 gui/xara %{buildroot}%{_bindir}/xara
+%{__install} -D -m 644 doc/xara.1 %{buildroot}%{_mandir}/man1/xara.1
+%{__install} -D -m 644 etc/xara.config %{buildroot}%{_sysconfdir}/xara.config
+
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor net                  \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{name}.desktop
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc COPYING INSTALL TODO BUGS
+%doc %{_mandir}/man?/*
+%{_bindir}/ara
+%{_bindir}/xara
+%{_datadir}/applications/*.desktop
+%{_sysconfdir}/*ara.config
+
+%changelog
+* Thu Dec 09 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1
+- Initial package.
