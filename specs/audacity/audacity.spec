@@ -53,7 +53,7 @@ and Noise Removal, and it also supports VST plug-in effects.
 Name=Audacity Audio Editor
 Comment=Audio editor to record, play sounds and import, export files
 Icon=%{name}.xpm
-Exec=%{_bindir}/%{name}
+Exec=%{name}
 Terminal=false
 Type=Application
 EOF

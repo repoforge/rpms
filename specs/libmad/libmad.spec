@@ -26,7 +26,7 @@ backward compatible with such streams) nor does it currently support AAC.
 %package devel
 Summary: Header and library for developing programs that will use libmad
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, pkgconfig
 
 %description devel
 MAD (libmad) is a high-quality MPEG audio decoder. It currently supports
@@ -41,11 +41,15 @@ to develop programs that will use libmad for mpeg audio decoding.
 %prep
 %setup
 
+
 %build
-%configure --enable-accuracy --disable-debugging
+%configure \
+    --enable-accuracy \
+    --disable-debugging
 %{__make} %{_smp_mflags}
 
-cat << EOF > mad.pc
+# Install an additional pkgconfig file
+%{__cat} << EOF > mad.pc
 prefix=%{_prefix}
 exec_prefix=%{_prefix}
 libdir=%{_libdir}
@@ -59,13 +63,16 @@ Libs: -L%{_libdir} -lmad -lm
 Cflags: -I%{_includedir}
 EOF
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__install} -m 644 -D mad.pc %{buildroot}%{_libdir}/pkgconfig/mad.pc
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files 
 %defattr(-, root, root, 0755)
@@ -80,11 +87,16 @@ EOF
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
 
+
 %changelog
-* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-1.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-2
+- Rebuilt for Fedora Core 2.
+- Added pkgconfig dependency to the devel package.
+
+* Thu Feb 19 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-1
 - Update to 0.15.1b.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.15.0b-3.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.15.0b-3
 - Rebuild for Fedora Core 1.
 
 * Thu Aug 28 2003 Matthias Saou <http://freshrpms.net/>
