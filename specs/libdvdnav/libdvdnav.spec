@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <dvd-devel@lists.sourceforge.net>
+# Upstream: <dvd-devel$lists,sourceforge,net>
 
 Summary: DVD menu navigation library
 Name: libdvdnav
