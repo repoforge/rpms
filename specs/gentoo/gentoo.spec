@@ -3,7 +3,7 @@
 
 %define desktop_vendor freshrpms
 
-Summary: Graphical file managment program in GTK+ for Linux
+Summary: Graphical file management program in GTK+ for Linux
 Name: gentoo
 Version: 0.11.51
 Release: 1
