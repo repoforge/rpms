@@ -7,7 +7,7 @@ Release: 1.fr
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-Source: http://prdownloads.sourceforge.net/mjpeg/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/mjpeg/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL, libjpeg, libpng, gtk+
 Requires: libquicktime

@@ -18,7 +18,7 @@ Release:	%{_release}
 License:	GPL
 Group:		Amusements/Games
 URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
-Source: http://prdownloads.sourceforge.net/gl-117/gl-117-1.1-src.tar.gz
+Source: http://dl.sf.net/gl-117/gl-117-1.1-src.tar.gz
 BuildRequires: gcc, make, glut-devel, glut
 Requires: glut
 

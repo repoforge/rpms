@@ -11,7 +11,7 @@ URL: http://gnochm.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/gnochm/gnochm-%{version}.tar.gz
+Source: http://dl.sf.net/gnochm/gnochm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -21,6 +21,7 @@ BuildRequires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
 
 Requires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2
 Requires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
+Requires: gnome-python2-canvas
 
 %description
 A CHM file viewer. Features are: full text search, bookmarks

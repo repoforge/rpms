@@ -1,10 +1,8 @@
 # Authority: dag
-
 # Upstream: Luca Deri <deri@ntop.org>
-
 # Distcc: 0
 
-Summary: A network traffic probe that shows the network usage.
+Summary: Network traffic probe that shows the network usage.
 Name: ntop
 Version: 2.2
 Release: 0
@@ -15,7 +13,7 @@ URL: http://www.ntop.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/ntop/%{name}-%{version}.tgz
+Source: http://dl.sf.net/ntop/ntop-%{version}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -31,7 +29,7 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 %prep
 %setup -n %{name}-%{version}/ntop
 
-cat <<EOF >ntop.sysv
+%{__cat} <<'EOF' >ntop.sysv
 #!/bin/bash
 #
 # Init file for the NTOP network monitor
@@ -60,21 +58,21 @@ RETVAL=0
 prog="ntop"
 
 start () {
-	echo -n \$"Starting \$prog: "
-	daemon \$prog -d -L @%{_sysconfdir}/ntop.conf
-	RETVAL=\$?
+	echo -n $"Starting $prog: "
+	daemon $prog -d -L @%{_sysconfdir}/ntop.conf
+	RETVAL=$?
 	echo
-	[ \$RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
-	return \$RETVAL
+	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
+	return $RETVAL
 }
 
 stop () {
-	echo -n \$"Stopping \$prog: "
-	killproc \$prog
-	RETVAL=\$?
+	echo -n $"Stopping $prog: "
+	killproc $prog
+	RETVAL=$?
 	echo 
-	[ \$RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/\$prog
-	return \$RETVAL
+	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
 }
 
 restart () {
@@ -82,7 +80,7 @@ restart () {
 	start
 }
 
-case "\$1" in
+case "$1" in
   start)
 	start
 	;;
@@ -93,22 +91,22 @@ case "\$1" in
 	restart
 	;;
   condrestart)
-	[ -e %{_localstatedir}/lock/subsys/\$prog ] && restart
-	RETVAL=\$?
+	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+	RETVAL=$?
 	;;
   status)
-	status \$prog
-	RETVAL=\$?
+	status $prog
+	RETVAL=$?
 	;;
   *)
-	echo \$"Usage: \$0 {start|stop|restart|condrestart|status}"
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
 	RETVAL=1
 esac
 
-exit \$RETVAL
+exit $RETVAL
 EOF
 
-cat <<EOF >ntop.logrotate
+%{__cat} <<EOF >ntop.logrotate
 %{_localstatedir}/log/ntop.access.log { 
 	missingok 
 	postrotate 
@@ -117,7 +115,7 @@ cat <<EOF >ntop.logrotate
 } 
 EOF
 
-cat <<EOF >ntop.conf.sample
+%{__cat} <<EOF >ntop.conf.sample
 ###  You should copy this file to it's normal location, /etc/ntop.conf
 ###  and edit it to fit your needs.
 ###

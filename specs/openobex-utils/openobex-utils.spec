@@ -13,7 +13,7 @@ URL: http://openobex.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://prdownloads.sourceforge.net/openobex/openobex-apps-%{version}.tar.gz
+Source0: http://dl.sf.net/openobex/openobex-apps-%{version}.tar.gz
 Source1: http://www.frasunek.com/sources/unix/obexserver.c
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

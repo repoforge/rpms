@@ -13,7 +13,7 @@ URL: http://freshmeat.net/projects/pport
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/pport/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/pport/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 
 %description

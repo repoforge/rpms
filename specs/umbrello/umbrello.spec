@@ -14,7 +14,7 @@ URL: http://uml.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/uml/%{name}-1.2-1.tar.gz
+Source: http://dl.sf.net/uml/%{name}-1.2-1.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, flex
 

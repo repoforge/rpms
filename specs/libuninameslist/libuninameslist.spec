@@ -13,7 +13,7 @@ URL: http://libuninameslist.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/libuninameslist/%{name}_src-%{rversion}.tgz
+Source: http://dl.sf.net/libuninameslist/%{name}_src-%{rversion}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

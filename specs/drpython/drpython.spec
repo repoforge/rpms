@@ -18,7 +18,7 @@ URL: http://drpython.sf.net
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/drpython/%{name}-%{version}.zip
+Source: http://dl.sf.net/drpython/%{name}-%{version}.zip
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: wxGTK-devel
 

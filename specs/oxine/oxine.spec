@@ -6,7 +6,7 @@ Version: 0.2
 Release: 3.fr
 License: GPL
 Group: Applications/Multimedia
-Source: http://prdownloads.sourceforge.net/oxine/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/oxine/%{name}-%{version}.tar.gz
 URL: http://oxine.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0

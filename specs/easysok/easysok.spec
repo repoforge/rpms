@@ -13,7 +13,7 @@ URL: http://easysok.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/easysok/%{name}-%{version}.tar.bz2 
+Source: http://dl.sf.net/easysok/%{name}-%{version}.tar.bz2 
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Patch: assert-include.patch.bz2
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel

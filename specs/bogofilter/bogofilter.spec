@@ -16,7 +16,7 @@ URL: http://bogofilter.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/bogofilter/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/bogofilter/%{name}-%{version}.tar.gz
 Buildroot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

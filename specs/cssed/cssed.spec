@@ -13,7 +13,7 @@ URL: http://cssed.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/cssed/cssed-pre0.1-2.tar.gz
+Source: http://dl.sf.net/cssed/cssed-pre0.1-2.tar.gz
 BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
 BuildRequires: autoconf, make, gcc, gtk2-devel, gettext, vte-devel
 Requires: gtk2, vte

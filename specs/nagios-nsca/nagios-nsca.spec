@@ -15,7 +15,7 @@ URL: http://www.nagios.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/nagios/nsca-%{version}.tar.gz
+Source: http://dl.sf.net/nagios/nsca-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

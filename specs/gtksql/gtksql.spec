@@ -11,7 +11,7 @@ URL: http://gtksql.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/gtksql/gtksql-%{version}.tar.gz
+Source: http://dl.sf.net/gtksql/gtksql-%{version}.tar.gz
 Patch: %{name}-%{version}.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

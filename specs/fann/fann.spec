@@ -13,7 +13,7 @@ URL: http://fann.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/fann/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/fann/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: gcc, make
 

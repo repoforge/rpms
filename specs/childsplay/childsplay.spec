@@ -14,8 +14,8 @@ URL: http://childsplay.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/childsplay/%{name}-%{rversion}.tar.gz
-Source1: http://prdownloads.sourceforge.net/childsplay/%{name}-plugins-%{version}.tar.gz
+Source: http://dl.sf.net/childsplay/%{name}-%{rversion}.tar.gz
+Source1: http://dl.sf.net/childsplay/%{name}-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -13,7 +13,7 @@ URL: http://sulk.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/sulk/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/sulk/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Patch: makefile-and-shellscript.patch.bz2
 Requires: python, python-game

@@ -14,7 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://nvrec.sourceforge.net/downloads/%{name}-%{version}.tar.gz
-#Source1: http://prdownloads.sourceforge.net/ffmpeg-0.4.6.tar.gz
+#Source1: http://dl.sf.net/ffmpeg-0.4.6.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

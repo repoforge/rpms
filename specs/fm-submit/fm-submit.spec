@@ -13,7 +13,7 @@ URL: http://www.ivarch.com/programs/fm-submit.shtml
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/fm-submit/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/fm-submit/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 #BuildRequires: 
 Requires: perl

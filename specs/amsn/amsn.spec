@@ -1,4 +1,4 @@
-# Authority: dag
+# Authority: dries
 # Screenshot: http://amsn.sourceforge.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sourceforge.net/shots.htm
 
@@ -18,10 +18,10 @@ URL: http://amsn.sourceforge.net/
 Packager: Dries Verachtert <skotty@ulyssis.org>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/amsn/amsn-%{rversion}.tar.gz
+Source: http://dl.sf.net/amsn/amsn-%{rversion}.tar.gz
 ### FIXME: tls-plugin doesn't build because of missing tclPort.h in tcl-devel
-#Source1: http://prdownloads.sourceforge.net/amsn/tls%{tls_maj}.%{tls_min}-src.tar.bz2
-Source2: http://prdownloads.sourceforge.net/amsn/tls%{tls_maj}.%{tls_min}-linux-x86.tar.gz
+#Source1: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-src.tar.bz2
+Source2: http://dl.sf.net/amsn/tls%{tls_maj}.%{tls_min}-linux-x86.tar.gz
 Patch: amsn-0.83-makefile.patch
 Patch1: amsn-0.83-login.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}

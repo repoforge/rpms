@@ -13,7 +13,7 @@ URL: http://kile.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/kile/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/kile/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs

@@ -14,7 +14,7 @@ URL: http://lincity.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/lincity/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/lincity/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 #Requires:  
 BuildRequires: gcc make

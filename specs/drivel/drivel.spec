@@ -11,7 +11,7 @@ URL: http://www.sf.net/projects/drivel
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
 
-Source: http://prdownloads.sourceforge.net/drivel/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/drivel/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

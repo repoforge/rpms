@@ -1,10 +1,10 @@
 # Authority: dag
 # Upstream: Peter Andreasen <pandr@pandr.dk>
 
-Summary: A markup-language based presentation tool.
+Summary: Markup-language based presentation tool.
 Name: pointless
 Version: 0.5
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Productivity
 URL: http://pointless.dk/
@@ -12,7 +12,7 @@ URL: http://pointless.dk/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/pointless/pointless-%{version}.tar.gz
+Source: http://dl.sf.net/pointless/pointless-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -34,7 +34,8 @@ recommended but not required in order to run pointless.
 
 %build
 %configure \
-	--disable-dependency-tracking
+	--disable-dependency-tracking \
+	--enable-html
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,6 +58,9 @@ recommended but not required in order to run pointless.
 %{_datadir}/pointless/
 
 %changelog
+* Sun Feb 29 2004 Dag Wieers <dag@wieers.com> - 0.5-3
+- Fixed the libdir problem. (Jacob Weismann Poulsen)
+
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.5-2
 - Fixed the libdir problem. (Stéphane Lentz)
 

@@ -12,7 +12,7 @@ URL: http://snaught.com/glabels/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/glabels/glabels-%{version}.tar.gz
+Source: http://dl.sf.net/glabels/glabels-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

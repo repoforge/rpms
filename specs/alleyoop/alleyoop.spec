@@ -12,7 +12,7 @@ URL: http://alleyoop.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/alleyoop/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/alleyoop/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

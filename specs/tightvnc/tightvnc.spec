@@ -16,7 +16,7 @@ URL: http://www.tightvnc.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/vnc-tight/%{name}-%{version}_unixsrc.tar.bz2
+Source: http://dl.sf.net/vnc-tight/%{name}-%{version}_unixsrc.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

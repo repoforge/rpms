@@ -18,7 +18,7 @@ Release:	%{_release}
 License:	GPL
 Group:		Applications/Communications
 URL: http://psi.affinix.com/
-Source: http://prdownloads.sourceforge.net/psi/psi-0.9.1.tar.bz2
+Source: http://dl.sf.net/psi/psi-0.9.1.tar.bz2
 Source50: http://psi.affinix.com/beta/qca-tls-1.0.tar.bz2
 Obsoletes: psi-iconsets
 

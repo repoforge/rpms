@@ -18,7 +18,7 @@ Release:	%{_release}
 License:	GPL
 Group:		Development/Libraries
 URL: http://apollon.sourceforge.net/
-Source: http://prdownloads.sourceforge.net/gift/gift-openft-0.2.1.2.tar.bz2
+Source: http://dl.sf.net/gift/gift-openft-0.2.1.2.tar.bz2
 BuildRequires: gcc, make, gift
 Requires: gift
 

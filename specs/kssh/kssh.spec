@@ -13,7 +13,7 @@ URL: http://kssh.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/kssh/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/kssh/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs

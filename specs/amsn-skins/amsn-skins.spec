@@ -1,4 +1,4 @@
-# Authority: dag
+# Authority: dries
 # Screenshot: http://amsn.sourceforge.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sourceforge.net/modules.php?name=Skins
 
@@ -13,13 +13,13 @@ URL: http://amsn.sourceforge.net/
 Packager: Dries Verachtert <skotty@ulyssis.org>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://prdownloads.sourceforge.net/amsn/Bolos.zip
-Source1: http://prdownloads.sourceforge.net/amsn/crystola.zip
-Source2: http://prdownloads.sourceforge.net/amsn/cubic.zip
-Source3: http://prdownloads.sourceforge.net/amsn/MSN.zip
-Source4: http://prdownloads.sourceforge.net/amsn/Tux.zip
-Source5: http://prdownloads.sourceforge.net/amsn/Fluox.zip
-Source6: http://prdownloads.sourceforge.net/amsn/aMac.zip
+Source0: http://dl.sf.net/amsn/Bolos.zip
+Source1: http://dl.sf.net/amsn/crystola.zip
+Source2: http://dl.sf.net/amsn/cubic.zip
+Source3: http://dl.sf.net/amsn/MSN.zip
+Source4: http://dl.sf.net/amsn/Tux.zip
+Source5: http://dl.sf.net/amsn/Fluox.zip
+Source6: http://dl.sf.net/amsn/aMac.zip
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -13,7 +13,7 @@ URL: http://pathological.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/pathological/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/pathological/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Requires: python, python-game
 

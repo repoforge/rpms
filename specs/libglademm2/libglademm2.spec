@@ -6,7 +6,7 @@ Version: 2.0.1
 Release: 2.fr
 License: GPL
 Group: System Environment/Libraries
-Source: http://prdownloads.sourceforge.net/gtkmm/libglademm-%{version}.tar.gz
+Source: http://dl.sf.net/gtkmm/libglademm-%{version}.tar.gz
 URL: http://gtkmm.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libglade2 >= 1.99.11, gtkmm2 >= 2.0.2

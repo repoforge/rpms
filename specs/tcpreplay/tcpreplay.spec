@@ -1,6 +1,6 @@
 # Authority: dag
 
-##DarDistcc: 0
+##Distcc: 0
 
 Summary: A tool to replay captured network traffic.
 Name: tcpreplay
@@ -13,7 +13,7 @@ URL: http://tcpreplay.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sf.net/tcpreplay/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -18,7 +18,7 @@ Release:	%{_release}
 License:	FLTK
 Group:		System Environment/Libraries
 URL: http://www.fltk.org/
-Source: http://prdownloads.sourceforge.net/fltk/fltk-1.1.4-source.tar.bz2
+Source: http://dl.sf.net/fltk/fltk-1.1.4-source.tar.bz2
 BuildRequires: gcc, gcc-c++, libjpeg-devel, zlib-devel, libpng-devel, XFree86-devel
 Requires: libjpeg, zlib, libpng
 

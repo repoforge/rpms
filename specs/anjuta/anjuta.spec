@@ -6,7 +6,7 @@ Version: 1.2.1
 Release: 1.fr
 License: GPL
 Group: Development/Tools
-Source: http://prdownloads.sourceforge.net/anjuta/anjuta-%{version}.tar.gz
+Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
 URL: http://anjuta.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-root
 Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2

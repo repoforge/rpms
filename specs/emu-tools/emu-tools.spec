@@ -13,7 +13,7 @@ URL: http://opensource.creative.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/emu10k1/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/emu10k1/%{name}-%{version}.tar.gz
 Patch0: emu-tools-0.9.4-gcc33.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

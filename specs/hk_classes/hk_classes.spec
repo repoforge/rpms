@@ -14,7 +14,7 @@ URL: http://hk-classes.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/hk-classes/hk_classes-%{version}.tar.bz2
+Source: http://dl.sf.net/hk-classes/hk_classes-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: gcc, make, gcc-c++
 

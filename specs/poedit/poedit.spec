@@ -14,7 +14,7 @@ URL: http://poedit.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/poedit/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/poedit/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: gcc, wxGTK-devel, db4-devel, gettext
 Requires: wxGTK, db4, gettext

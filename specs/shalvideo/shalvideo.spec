@@ -13,7 +13,7 @@ URL: http://shalvideo.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/shalvideo/%{name}-1.1-1.tar.bz2
+Source: http://dl.sf.net/shalvideo/%{name}-1.1-1.tar.bz2
 Patch: no-default-vals-in-cpp-files.patch.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel,qt-devel

@@ -16,7 +16,7 @@ URL: http://linux-ntfs.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sf.net/linux-ntfs/ntfsprogs-%{version}.tar.gz
+Source: http://dl.sf.net/linux-ntfs/ntfsprogs-%{version}.tar.gz
 Buildroot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
