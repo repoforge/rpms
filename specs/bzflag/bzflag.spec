@@ -4,11 +4,11 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %define desktop_vendor rpmforge
-%define date           20050117
+%define date           20050318
 
 Summary: 3D multi-player tank battle game
 Name: bzflag
-Version: 2.0.0
+Version: 2.0.2
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -83,6 +83,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 2.0.2-1
+- Update to 2.0.2.
+
 * Fri Jan 21 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-1
 - Update to 2.0.0.
 - Added ncurses, curl, SDL and libidn devel build requirements.
