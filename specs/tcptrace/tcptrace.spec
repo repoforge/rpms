@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Performs analysis of tcp flows from packet dumps
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://tcptrace.org/download/tcptrace.%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 tcptrace is a tool for performing analysis on network packet dumps and
@@ -40,6 +38,7 @@ several types of graphs.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc ARGS CHANGES COPYING COPYRIGHT FAQ README* THANKS WWW output_finger.snoop.gz input/
 %{_bindir}/*
 
