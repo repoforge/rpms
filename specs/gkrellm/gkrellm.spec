@@ -6,12 +6,12 @@
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
-Version: 2.2.4
+Version: 2.2.5
 Release: 0
 License: GPL
 Group: Applications/System
 URL: http://www.gkrellm.net/
-Source0: http://web.wt.net/~billw/gkrellm/gkrellm-%{version}.tar.bz2
+Source0: http://members.dslextreme.com/users/billw/gkrellm/gkrellm-%{version}.tar.bz2
 Source1: gkrellmd.init
 Source2: http://dev.gentoo.org/~brix/files/gkrellm-wifi/gkrellm-wifi-%{wifi_version}.tar.gz
 Patch0: gkrellm_i18n.patch
@@ -185,6 +185,10 @@ fi
 
 
 %changelog
+* Tue Mar 29 2005 Matthias Saou <http://freshrpms.net/> 2.2.5-0
+- Update to 2.2.5.
+- Update source location.
+
 * Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 2.2.4-0
 - Update to 2.2.4.
 - Add wifi plugin to this package, as the main RH/FC package does.
