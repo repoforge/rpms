@@ -5,7 +5,7 @@
 Name: trac
 Summary: Integrated SCM and project management tool
 Version: 0.8
-Release: 3
+Release: 4
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
@@ -63,7 +63,7 @@ EOF
 python ./setup.py install \
 	--root="%{buildroot}"
 
-%{__install} -D -m0644 trac.httpd %buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
+%{__install} -D -m0644 trac.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/trac.conf
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -72,11 +72,15 @@ python ./setup.py install \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README THANKS UPGRADE
 %doc %{_mandir}/man1/trac*.1*
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/trac.conf
 %{_bindir}/trac*
 %{_datadir}/trac/
 %{_libdir}/python*/site-packages/trac/
 
 %changelog
+* Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 0.8-4
+- Fixed typo causing missing trac.conf. (Simon Perreault)
+
 * Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.8-3
 - Fixed buildroot in %%install phase. (Dimiter Manevski)
 

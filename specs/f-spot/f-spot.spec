@@ -6,7 +6,7 @@
 
 Summary: Personal photo management application
 Name: f-spot
-Version: 0.0.3
+Version: 0.0.5
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.gnome.org/Public/GNOME/sources/f-spot/0.0/f-spot-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mono-devel, libexif-devel
+BuildRequires: mono-devel, libexif-devel, lcms-devel
 Requires: mono, gtk-sharp, libexif
 
 %description
@@ -72,8 +72,11 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %exclude %{_libdir}/f-spot/*.la
 
 %changelog
+* Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 0.0.5-1
+- Updated to release 0.0.5.
+
 * Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.0.3-1
-- Updated to release 0.0.4.
+- Updated to release 0.0.3.
 
 * Sat Mar 20 2004 Dag Wieers <dag@wieers.com> - 0.0.1-1
 - Initial package. (using DAR)

@@ -23,6 +23,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl(GD), perl(GD::Text), perl(GD::Graph)
+
+### Obsolete to provide fedora.us compatibility
 Obsoletes: perl-GDGraph3d <= %{version}
 
 %description
