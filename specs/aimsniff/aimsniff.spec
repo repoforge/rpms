@@ -30,23 +30,22 @@ database or STDOUT.
 %setup -n %{name}-%{real_version}
 
 %build
-%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__install} -D -m0755 aimSniff.pl %{buildroot}%{_bindir}/aimsniff
+%{__install} -D -m0644 aimsniff.config %{buildroot}%{_sysconfdir}/aimsniff.config
+%{__install} -D -m0644 rc.aimsniff %{buildroot}%{_initrddir}/aimsniff
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
+%doc ChangeLog README table.struct
+%config(noreplace) %{_sysconfdir}/aimsniff.config
+%config %{_initrddir}/aimsniff
+%{_bindir}/aimsniff
 
 %changelog
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.9-0.d
