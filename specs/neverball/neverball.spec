@@ -5,7 +5,7 @@
 
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball
-Version: 1.2.5
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -76,6 +76,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Jul  5 2004 Matthias Saou <http://freshrpms.net/> 1.3.1-1
+- Update to 1.3.1.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.2.5-1
 - Update to 1.2.5.
 - Rebuild for Fedora Core 2.
