@@ -1,4 +1,4 @@
-# $Id: bzflag.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 %define desktop_vendor freshrpms
 %define date           20040125

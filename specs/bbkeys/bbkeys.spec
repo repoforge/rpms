@@ -1,4 +1,4 @@
-# $Id: bbkeys.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 Summary: A completely configurable key-combo grabber for blackbox.
 Name: bbkeys

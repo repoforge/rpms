@@ -1,4 +1,4 @@
-# $Id: bluefish.spec,v 1.2 2004/03/03 15:56:12 thias Exp $
+# $Id$
 
 %define desktop_vendor freshrpms
 

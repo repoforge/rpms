@@ -1,4 +1,4 @@
-# $Id: blackbox.spec,v 1.1 2004/02/26 10:51:55 thias Exp $
+# $Id$
 
 Summary: Very small and fast Window Manager.
 Name: blackbox
