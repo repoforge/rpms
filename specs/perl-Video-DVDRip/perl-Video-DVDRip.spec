@@ -3,7 +3,6 @@
 
 %define desktop_vendor  freshrpms
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
-#define __find_provides /usr/lib/rpm/find-provides.perl
 
 Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
@@ -12,7 +11,7 @@ Release: 0
 License: Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
-Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
+Source: http://www.exit1.org/dvdrip/dist/pre/Video-DVDRip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 AutoReq: no
 Requires: transcode >= 0.6.13

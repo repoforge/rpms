@@ -37,8 +37,8 @@ implemented for example in GNU gettext.
 %{__rm} -rf %{buildroot}
 %makeinstall
 # Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_prefix}/lib*/perl5/*/*linux-thread-multi/
+%{__rm} -f %{buildroot}%{_prefix}/lib*/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
 
 %clean
@@ -48,7 +48,7 @@ implemented for example in GNU gettext.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING* NEWS README THANKS TODO
-%{_libdir}/perl5/vendor_perl/*/Locale/
+%{_prefix}/lib/perl5/vendor_perl/*/Locale/
 %{_mandir}/man?/*
 
 

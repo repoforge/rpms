@@ -40,8 +40,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{_prefix}/lib*/perl5/*/*-linux-thread-multi/
+%{__rm} -f %{buildroot}%{_prefix}/lib*/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
 
 %clean 
@@ -51,7 +51,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
-%{_libdir}/perl5/vendor_perl/*/*
+%{_prefix}/lib/perl5/vendor_perl/*/*
 %{_mandir}/man?/*
 
 
