@@ -6,7 +6,7 @@
 Summary:        The 3D Studio File Format Library
 Name:		lib3ds
 Version:	1.2.0
-Release:	1
+Release:	0
 Source0:	http://dl.sf.net/lib3ds/lib3ds-%{version}.tar.gz
 License:	GPL
 Group:		Development/Libraries
