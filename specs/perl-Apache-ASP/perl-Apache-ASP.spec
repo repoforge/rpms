@@ -9,7 +9,7 @@
 Summary: Active Server Pages for Apache with mod_perl
 Name: perl-Apache-ASP
 Version: 2.57
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-ASP/
@@ -24,6 +24,9 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl(Digest::MD5), perl(MLDBM), perl(MLDBM::Sync)
 Requires: perl >= 0:5.00503, perl(Digest::MD5), perl(MLDBM), perl(MLDBM::Sync)
 #Requires: mod_perl
+
+### FIXME: Provide perl(Apache::ASP::Share::CORE) as it seems to be missing
+Provides: perl(Apache::ASP::Share::CORE)
 
 %description
 Apache::ASP provides an Active Server Pages port to the Apache Web
@@ -61,6 +64,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_bindir}/*
 
 %changelog
+* Fri Aug 06 2004 Dag Wieers <dag@wieers.com> - 2.57-2
+- Added explicit perl(Apache::ASP::Share::CORE) provides. (Johnathan Kupferer)
+
 * Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 2.57-1
 - Cosmetic changes.
 
