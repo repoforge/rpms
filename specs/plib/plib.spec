@@ -3,8 +3,8 @@
 
 Summary: Set of portable libraries especially useful for games
 Name: plib
-Version: 1.8.3
-Release: 4
+Version: 1.8.4
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/
@@ -59,6 +59,9 @@ the web. All of it works well together.
 
 
 %changelog
+* Wed Apr  6 2005 Matthias Saou <http://freshrpms.net/> 1.8.4-1
+- Update to 1.8.4.
+
 * Wed Feb  9 2005 Matthias Saou <http://freshrpms.net/> 1.8.3-4
 - Force -fPIC to be added to CXXFLAGS to fix linking against the lib on x86_64.
 
