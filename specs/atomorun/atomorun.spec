@@ -31,13 +31,16 @@ nuclear bomb.
 %setup -n atomorun-1.1_pre2
 
 %build
+echo "ldconfig for libtiff.so.3 in SDL_image"
+/sbin/ldconfig
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
-export DESTDIR=$RPM_BUILD_ROOT
-sed -i "s/^DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g" $(find . -type f | egrep "Makefile$")
-make install-strip
+# export DESTDIR=$RPM_BUILD_ROOT
+# sed -i "s/^DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g" $(find . -type f | egrep "Makefile$")
+# make install-strip
+%makeinstall
 rm -Rf $RPM_BUILD_ROOT/usr/doc/atomorun 
 mkdir -p ${RPM_BUILD_ROOT}/usr/share/applications
 cat > ${RPM_BUILD_ROOT}/usr/share/applications/atomorun.desktop <<EOF
