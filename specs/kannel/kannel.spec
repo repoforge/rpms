@@ -63,9 +63,9 @@ use the kannel WAP and SMS gateway.
 
 
 %post
-if [ $1 -eq 1 ]; then
+#if [ $1 -eq 1 ]; then
 #   /sbin/chkconfig --add foobar
-fi
+#fi
                                                                                 
 %preun
 #if [ $1 -eq 0 ]; then
