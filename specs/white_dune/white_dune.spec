@@ -28,7 +28,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, lesstif-devel, flex, byacc, zlib-devel
-BuildRequires: libjpeg-devel, libpng-devel, ImageMagick
+BuildRequires: libjpeg-devel, libpng-devel, ImageMagick, fleeglut-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Xvfb}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Xvfb}
 
