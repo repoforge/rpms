@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Billy Biggs <vektor@dumbterm.net>
+# Upstream: Billy Biggs <vektor$dumbterm,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 
