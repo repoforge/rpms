@@ -63,7 +63,7 @@ export DESTDIR=$RPM_BUILD_ROOT
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/ScoreReadingTrainer

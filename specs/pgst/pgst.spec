@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/pgst/pgst-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+BuildRequires: desktop-file-utils
 
 %description
 Pgst is an intuitive graphical user interface for PostgreSQL management.
