@@ -15,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/wxpython/wxPythonSrc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
-BuildRequires: wxGTK-devel
+BuildRequires: wxGTK-devel, python, python-devel
 
 # Screenshot: http://drpython.sourceforge.net/linuxclassbrowser.2.x.jpg
 # ScreenshotURL: http://drpython.sourceforge.net/screenshots.html
