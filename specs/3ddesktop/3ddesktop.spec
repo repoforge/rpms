@@ -16,7 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/desk3d/3ddesktop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: imlib2-devel, XFree86-devel
+BuildRequires: imlib2-devel, XFree86-devel, gcc-c++
 Requires: imlib2
 
 # Screenshot: http://desk3d.sourceforge.net/images/seq1-thumb.gif
