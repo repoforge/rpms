@@ -12,11 +12,9 @@ URL: http://madman.sourceforge.net/
 Source: http://dl.sf.net/madman/madman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms
-BuildRequires: XFree86-devel, libpng-devel, libjpeg-devel, glib-devel
-BuildRequires: qt-devel, xmms-devel, id3lib-devel, libogg-devel, libvorbis-devel
-# libtool, *sigh*
-BuildRequires: gcc-c++
-# xmms-devel, *sigh (bis)*
+BuildRequires: scons, gcc-c++, glib-devel, qt-devel
+BuildRequires: xmms-devel, libid3tag-devel, libogg-devel, libvorbis-devel
+# xmms-devel, *sigh*
 BuildRequires: gtk+-devel
 
 %description
@@ -30,13 +28,15 @@ be happier, brighten your teeth and quickly restore world peace.
 
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+scons prefix=%{_prefix}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+scons prefix=%{buildroot}%{_prefix} install
+
+# What is this file anyway?
+%{__rm} -f %{buildroot}%{_prefix}/bin/.sconsign
 
 
 %clean
@@ -45,14 +45,15 @@ be happier, brighten your teeth and quickly restore world peace.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README
-%{_bindir}/%{name}
-%{_libdir}/%{name}
+%doc COPYING README
+%{_prefix}/bin/%{name}
+%{_prefix}/lib/%{name}
 
 
 %changelog
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 0.93-1
 - Update to 0.93.
+- Update to use the new SCons build.
 
 * Fri Apr  2 2004 Matthias Saou <http://freshrpms.net/> 0.91.1-1
 - Initial RPM release.
