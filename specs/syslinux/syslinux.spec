@@ -2,11 +2,13 @@
 # Authority: dag
 # Upstream: <syslinux$zytor,com>
 
+# Rationale: If you need syslinux, you'd appreciate the latest, trust me.
+
 # BuildAsRoot: 1
 
 Summary: Simple kernel loader which boots from a FAT filesystem
 Name: syslinux
-Version: 2.10
+Version: 2.11
 Release: 1
 License: GPL
 Group: Applications/System
@@ -58,6 +60,9 @@ PXE bootloader during network boots.
 %exclude %{_includedir}/syslinux.h
 
 %changelog
+* Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 2.11-1
+- Updated to release 2.11.
+
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 2.10-1
 - Updated to release 2.10.
 

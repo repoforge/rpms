@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: X resource monitor
 Name: xrestop
-Version: 0.2
-Release: 0
+Version: 0.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.freedesktop.org/Software/xrestop/
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://freedesktop.org/Software/xrestop/xrestop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel ncurses-devel
 
@@ -40,9 +38,12 @@ display them in a manner similar to top.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README 
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/xrestop.1*
+%{_bindir}/xrestop
 
 %changelog
+* Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 0.3-1
+- Updated to release 0.3.
+
 * Wed Dec 24 2003 Dag Wieers <dag@wieers.com> - 0.2-0
 - Initial package. (using DAR)

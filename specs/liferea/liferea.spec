@@ -5,8 +5,8 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 0.5.2
-Release: 0.c
+Version: 0.5.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://liferea.sourceforge.net/
@@ -14,7 +14,7 @@ URL: http://liferea.sourceforge.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/liferea/liferea-%{version}c.tar.gz
+Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
@@ -28,13 +28,14 @@ browse through their items, and show their contents
 using GtkHTML.
 
 %prep
-%setup -n %{name}-%{version}c
+%setup
 
 %{__cat} <<'EOF' >liferea.sh
 #!/bin/bash
 
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.6"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7"
+[ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.8"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla"
 
 export LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$LD_LIBRARY_PATH"
@@ -45,7 +46,8 @@ EOF
 
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}"
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
+	--disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
@@ -60,21 +62,31 @@ desktop-file-install --vendor gnome --delete-original \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/applications/liferea.desktop
 
+%post
+/sbin/ldconfig 2>/dev/null
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
+%doc %{_mandir}/man1/liferea.1*
+%config %{_sysconfdir}/gconf/schemas/liferea.schemas
+%{_bindir}/liferea*
+%{_datadir}/applications/gnome-liferea.desktop
 %{_datadir}/liferea/
-%{_datadir}/pixmaps/*.png
-%{_libdir}/liferea/*.so*
+%{_datadir}/pixmaps/liferea.png
+%dir %{_libdir}/liferea/
 %exclude %{_libdir}/liferea/*.la
+%{_libdir}/liferea/*.so*
 
 %changelog
+* Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 0.5.3-1
+- Updated to release 0.5.3.
+
 * Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.5.2-0.c
 - Updated to release 0.5.2c.
 

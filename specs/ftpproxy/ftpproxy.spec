@@ -4,7 +4,7 @@
 Summary: FTP proxy server
 Name: ftpproxy
 Version: 1.2.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ftpproxy.org/
@@ -59,17 +59,23 @@ EOF
 
 %{__install} -D -m0644 ftpproxy.xinet %{buildroot}%{_sysconfdir}/xinetd.d/ftpproxy
 
+### Prevent dependency pollution (akanga)
+%{__chmod} a-x samples/sample-ccp.rc
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc HISTORY LICENSE doc/*.txt samples/
-%doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/xinetd.d/*
-%{_sbindir}/*
+%doc %{_mandir}/man1/ftp.proxy.1*
+%config(noreplace) %{_sysconfdir}/xinetd.d/ftpproxy
+%{_sbindir}/ftp.proxy
 
 %changelog
+* Tue Aug 17 2004 Dag Wieers <dag@wieers.com> - 1.2.3-2
+- Get rid of dependency on akanga. (Jeremy A. Rosengren)
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
 - Updated to release 1.2.3.
 

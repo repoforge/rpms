@@ -2,15 +2,14 @@
 # Authority: dag
 # Upstream: Martin Pool <mbp$sourcefrog,net>
 
-### Lates rsync is part of fc2
-# ExcludeDist: fc2
-
 # Rationale: rsync 2.6.2 uses less resources and has lots of improvements
+
+%define real_version 2.6.3pre1
 
 Summary: Program for synchronizing files over a network
 Name: rsync
-Version: 2.6.2
-Release: 1
+Version: 2.6.3
+Release: 0.pre1
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
@@ -18,7 +17,8 @@ URL: http://rsync.samba.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source:	http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
+Source: http://rsync.samba.org/ftp/rsync/preview/rsync-%{real_version}.tar.gz
+#Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
 Patch1: rsync-2.6.2-lastdir-corruption.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -33,8 +33,8 @@ package.
 
 
 %prep
-%setup
-%patch1 -p1 -b .lastdir-corruption
+%setup -n %{name}-%{real_version}
+#%patch1 -p1 -b .lastdir-corruption
 
 %{__cat} <<EOF >rsync.xinet
 # default: off
@@ -71,14 +71,18 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING NEWS README tech_report.tex TODO *.txt
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/rsync.1*
+%doc %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/xinetd.d/rsync
 %{_bindir}/rsync
 
 
 %changelog
+* Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 2.6.3-0.pre1
+- Updated to release 2.6.3pre1.
+
 * Sun Jun 13 2004 Dag Wieers <dag@wieers.com> - 2.6.2-1
-- Initial package. (using DAR)
+- Updated to release 2.6.2.
 
 * Sat Sep 13 2003 Dag Wieers <dag@wieers.com> - 2.5.6-0
 - Initial package. (using DAR)
