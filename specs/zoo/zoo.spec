@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-# Archs: i386 i686
+##Archs: i386 i686 x86_64
 
 Summary: file archiving utility with compression
 Name: zoo
@@ -14,11 +13,10 @@ Group: Applications/Archiving
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.gz
+Source: ftp://sunsite.unc.edu/pub/Linux/utils/compress/zoo-%{version}.tar.gz
 Patch0: http://ftp.debian.org/debian/pool/non-free/z/zoo/zoo_2.10-9.diff.gz
 Patch1: zoo-2.10-tempfile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 zoo is a file archiving utility for maintaining collections of files. 
@@ -36,11 +34,10 @@ Rahul Dhesi, and posted to the USENET newsgroup comp.sources.misc.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-	%{buildroot}%{_mandir}/man1
-
-%{__install} -m0755 fiz zoo %{buildroot}%{_bindir}/
-%{__install} -m0644 fiz.1 zoo.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 fiz %{buildroot}%{_bindir}/fiz
+%{__install} -D -m0755 zoo %{buildroot}%{_bindir}/zoo
+%{__install} -D -m0644 fiz.1 %{buildroot}%{_mandir}/man1/fiz.1
+%{__install} -D -m0644 zoo.1 %{buildroot}%{_mandir}/man1/zoo.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,7 +49,7 @@ Rahul Dhesi, and posted to the USENET newsgroup comp.sources.misc.
 
 %changelog
 * Sat Dec 06 2003 Dag Wieers <dag@wieers.com> - 2.10-1
-- Patch to build on RHFC1.
+- Patch to build on FC1.
 
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 2.10-0
 - Initial package. (using DAR)

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: framework and library for writing RADIUS clients
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.cityline.net/pub/radiusclient/radiusclient-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Radiusclient is a framework and library for writing RADIUS clients.
@@ -40,6 +38,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+%{__libtoolize} --force --copy
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -47,9 +46,6 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	pkgsysconfdir="%{buildroot}%{_sysconfdir}/radiusclient"
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,6 +60,7 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*.h
 
