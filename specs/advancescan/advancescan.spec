@@ -4,13 +4,13 @@
 
 Summary: Command line rom manager for MAME, MESS and Raine
 Name: advancescan
-Version: 1.8
+Version: 1.9
 Release: 1
 License: GPL
 Group: Applications/Emulators
 URL: http://advancemame.sourceforge.net/
 Source: http://dl.sf.net/advancemame/advancescan-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel
 
 %description
@@ -54,6 +54,9 @@ AdvanceMESS and Raine. The main features are :
 
 
 %changelog
+* Mon Jul 26 2004 Matthias Saou <http://freshrpms.net/> 1.9-1
+- Update to 1.9.
+
 * Thu Apr 22 2004 Matthias Saou <http://freshrpms.net/> 1.8-1
 - Update to 1.8.
 
