@@ -6,7 +6,7 @@
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
 Version: 2.0.0
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Applications/Internet
 URL: http://www.aMule.org/
@@ -44,13 +44,19 @@ same network.
 %find_lang %{name}
 # Move the docs back to be included with %%doc
 %{__mv} %{buildroot}%{_defaultdocdir}/aMule-* _docs
+# Fix encoding of the desktop entry
+iconv -f ISO8859-1 -t UTF-8 %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %post
+update-desktop-database -q 2>/dev/null || :
 /usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 60 || :
 
 %preun
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
+
+%postun
+update-desktop-database -q 2>/dev/null || :
 
 
 %clean
@@ -68,6 +74,9 @@ same network.
 
 
 %changelog
+* Thu Jan 13 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc8.2
+- Add update-desktop-database calls and convert desktop entry to UTF-8.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc8.1
 - Update to 2.0.0rc8.
 
