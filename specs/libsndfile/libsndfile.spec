@@ -1,16 +1,25 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1: %define _without_alsa 1}
+%{?rh9: %define _without_alsa 1}
+%{?rh8: %define _without_alsa 1}
+%{?rh7: %define _without_alsa 1}
+%{?yd3: %define _without_alsa 1}
+
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
-Version: 1.0.10
-Release: 2
+Version: 1.0.11
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.mega-nerd.com/libsndfile/
 Source: http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 Libsndfile is a C library for reading and writing files containing
@@ -78,6 +87,10 @@ documentation for libsndfile.
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.11-1
+- Update to 1.0.11.
+- Add alsa-lib-devel build dependency.
+
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 1.0.10-2
 - Remove .libs from the included examples.
 
