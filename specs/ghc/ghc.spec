@@ -18,7 +18,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.haskell.org/ghc/dist/%{version}/ghc-%{version}-src.tar.bz2
 Source1: http://www.haskell.org/ghc/dist/%{version}/ghc-%{version}-i386-unknown-linux.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: readline-devel, readline
+Requires: readline
 %description
 todo
 
