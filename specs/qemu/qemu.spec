@@ -61,9 +61,11 @@ reasonnable speed while being easy to port on new host CPUs.
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING* README* TODO *.html
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/qemu*
 %{_bindir}/*
-%{_datadir}/qemu/
+%dir %{_datadir}/qemu/
+%{_datadir}/qemu/*.bin
+%exclude %{_datadir}/qemu/doc/
 
 %changelog
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.6.0-1

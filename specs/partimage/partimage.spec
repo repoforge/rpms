@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: François Dupoux <fdupoux$partimage,org>
 
-# Distcc: 0
-
 Summary: partition imaging utility, much like Ghost
 Name: partimage
 Version: 0.6.4
@@ -179,6 +177,7 @@ EOF
 EOF
 
 %build
+autoreconf
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--with-log-dir="%{_localstatedir}/log" \
@@ -207,7 +206,7 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -m0755 partimage-static %{buildroot}%{_sbindir}
+%{__install} -D -m0755 partimage-static %{buildroot}%{_sbindir}/partimage-static
 
 %{__install} -D -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
 %{__install} -D -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged
@@ -217,9 +216,6 @@ EOF
 touch %{buildroot}%{_localstatedir}/log/partimaged.log
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/partimaged/
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_infodir}
 
 %pre server
 /usr/sbin/useradd -M -r -s "/sbin/nologin" -d "%{_localstatedir}/partimaged" partimag &>/dev/null || :
@@ -255,10 +251,13 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/*
 %config(noreplace) %{_sysconfdir}/sysconfig/*
 %{_sbindir}/partimaged
+%exclude %{_infodir}
+
 %defattr(-, partimag, partimag, 0755)
 %config(noreplace) %{_sysconfdir}/partimaged/
 %dir %{_localstatedir}/partimaged/
 %ghost %{_localstatedir}/log/partimaged.log
+
 
 %files static
 %defattr(-, root, root, 0755)
