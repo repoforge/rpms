@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Edwin Groothuis <edwin@mavetju.org>
+# Upstream: Edwin Groothuis <edwin$mavetju,org>
 
 Summary: Multiplex all your databases to one point of origin
 Name: postgresql-relay
