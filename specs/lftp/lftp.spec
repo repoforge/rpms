@@ -3,11 +3,9 @@
 # Upstream: Alexander V. Lukyanov <lav@yars.free.net>
 # Upstream: <lftp-devel@uniyar.ac.ru>
 
-# Distcc: 0
-
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.3
+Version: 3.0.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -35,15 +33,17 @@ reliability in mind.
 	--with-modules \
 	--disable-static \
 	--with-ssl
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} \
+	LIBTOOL="%{_bindir}/libtool"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall \
+	LIBTOOL="%{_bindir}/libtool"
 %find_lang %{name}
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/lftp/%{version}/*.la
+%{__rm} -f %{buildroot}%{_libdir}/lftp/%{version}/*.{a,la}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,12 +52,18 @@ reliability in mind.
 %defattr(-, root, root, 0755)
 %doc BUGS ChangeLog COPYING FAQ FEATURES INSTALL MIRRORS README* NEWS THANKS TODO
 %doc %{_mandir}/man?/*
-%config %{_sysconfdir}/lftp.conf
+%config(noreplace) %{_sysconfdir}/lftp.conf
 %{_bindir}/*
 %{_datadir}/lftp/
 %{_libdir}/lftp/
 
 %changelog
+* Mon May 31 2004 Dag Wieers <dag@wieers.com> - 3.0.5-1
+- Updated to release 3.0.5.
+
+* Wed May 26 2004 Dag Wieers <dag@wieers.com> - 3.0.4-1
+- Updated to release 3.0.4.
+
 * Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 3.0.3-1
 - Updated to release 3.0.3.
 
