@@ -1,11 +1,11 @@
-# $Id: sylpheed-claws.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 %define desktop_vendor freshrpms
 
 Summary: DEVELOPMENT branch of the sylpheed GTK+ e-mail client
 Name: sylpheed-claws
-Version: 0.9.9
-Release: 1.fr
+Version: 0.9.10
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
@@ -98,6 +98,9 @@ rm -rf %{buildroot}
 %{_mandir}/man1/sylpheed.1*
 
 %changelog
+* Mon Mar  8 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
+- Update to 0.9.10claws.
+
 * Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.9-1.fr
 - Update to 0.9.9claws.
 
