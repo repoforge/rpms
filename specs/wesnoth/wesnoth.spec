@@ -55,8 +55,7 @@ cp wesnoth.desktop %{buildroot}/usr/share/applications/
 %defattr(-,root,root, 0755)
 %doc README COPYING MANUAL MANUAL.danish MANUAL.french MANUAL.german MANUAL.italian MANUAL.spanish 
 %{_bindir}/wesnoth
-%{_datadir}/man/man6/wesnoth.6.gz
-%{_datadir}/man/man6/wesnothd.6.gz
+%{_datadir}/man/man6/wesnoth*
 %{_datadir}/wesnoth
 %{_datadir}/applications/wesnoth.desktop
 
