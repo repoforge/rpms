@@ -38,9 +38,6 @@ means that you can press in any konsole "New Session" and then select
 
 %install
 . /etc/profile.d/qt.sh
-# export DESTDIR=$RPM_BUILD_ROOT
-# sed -i "s/^DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g" $(find . -type f | egrep "Makefile$")
-# make install-strip
 %makeinstall
 rm -f %{buildroot}/usr/share/applnk/Internet/kssh.desktop
 mkdir -p %{buildroot}/usr/share/applications
