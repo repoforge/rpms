@@ -7,8 +7,8 @@
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.0.2
-Release: %{?prever:0.%{prever}.}2
+Version: 1.0.3
+Release: %{?prever:0.%{prever}.}1
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
@@ -90,6 +90,9 @@ popd
 
 
 %changelog
+* Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
+- Update to 1.0.3.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-2
 - Further manually symlink libs to get things back to "ldconfig style".
 
