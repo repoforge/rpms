@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Python-based vector drawing program
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/sketch/sketch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: python-imaging >= 1.1
 Requires: python >= 1.5.1, python-imaging >= 1.1
@@ -43,6 +41,7 @@ strip -S Sketch/Modules/*.so
 ./setup.py install --prefix="%{buildroot}%{_prefix}"
 
 %files
+%defattr(-, root, root, 0755)
 %doc Examples/ Doc/
 %doc README INSTALL BUGS CREDITS COPYING TODO PROJECTS FAQ NEWS
 %doc Pax/README.pax Pax/COPYING.pax Pax/COPYING.xext
