@@ -1,26 +1,31 @@
 # $Id$
 # Authority: matthias
+# Upstream: <libquicktime-devel@lists.sf.net>
 
 #define prever pre1
 
-Summary: library for reading and writing quicktime files
+Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.2
 Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: System Environment/Libraries
-URL: http://libquicktime.sourceforge.net/
-Source: http://dl.sf.net/libquicktime/%{name}-%{version}%{?prever}.tar.gz
+URL: http://libquicktime.sf.net/
+
+Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk+, libdv, libvorbis, libpng, libjpeg
-%{!?_without_firewire:Requires: libraw1394 >= 0.9, libavc1394}
+
+%ifarch i386
+%{!?_without_mmx:BuildArch: i586}
+%endif
+
 BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel
 BuildRequires: libpng-devel, libjpeg-devel
 %{!?_without_firewire:BuildRequires: libraw1394-devel >= 0.9, libavc1394-devel}
 # The configure automatically adds MMX stuff it detected
-%ifarch i386
-%{!?_without_mmx:BuildArch: i586}
-%endif
+
+Requires: gtk+, libdv, libvorbis, libpng, libjpeg
+%{!?_without_firewire:Requires: libraw1394 >= 0.9, libavc1394}
 
 %description
 libquicktime is a library for reading and writing quicktime files. It
@@ -46,15 +51,19 @@ programs that need to access quicktime files using libquicktime.
 %prep
 %setup -n %{name}-%{version}%{?prever}
 
+### FIXME: Fix plugin compilation
+#%{__perl} -pi.orig -e 's|^(LDFLAGS) = |$1 = -L../../src/.libs |' plugins/*/Makefile
+#%{__perl} -pi.orig -e 's|^(LQT_LIBS) = |$1 = -L../../src/.libs |g' plugins/Makefile plugins/*/Makefile
+
 
 %build
-# Fix plugin compilation
-#perl -pi -e 's|^LDFLAGS = |LDFLAGS = -L../../src/.libs |' plugins/*/Makefile
-perl -pi -e 's|^LQT_LIBS = (.*)|LQT_LIBS = -L../../src/.libs $1|g' \
-    plugins/Makefile plugins/*/Makefile
 %configure \
     %{?_without_firewire:--disable-firewire}
     %{?_without_mmx:--disable-mmx}
+
+### FIXME: Disabled ffmpeg build (fails)
+%{__perl} -pi.orig -e 's|^libavcodec_subdirs = ffmpeg|libavcodec_subdirs = |' plugins/Makefile
+
 %{__make} %{?_smp_mflags}
 
 
@@ -64,10 +73,10 @@ perl -pi -e 's|^LQT_LIBS = (.*)|LQT_LIBS = -L../../src/.libs $1|g' \
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %clean
