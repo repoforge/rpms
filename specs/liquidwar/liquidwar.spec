@@ -15,22 +15,17 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://liquidwar.sunsite.dk/archive/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: allegro-devel, allegro, allegro-tools, gcc, tetex-latex
+BuildRequires: allegro-devel, allegro, allegro-tools, gcc, tetex-latex, python, texinfo
 Requires: allegro
 
-#(d) primscreenshot: http://www.ufoot.org/images/liquidwarshot5s.jpg
-#(d) screenshotsurl: http://www.ufoot.org/liquidwar/screenshots.php3
+# Screenshot: http://www.ufoot.org/images/liquidwarshot5s.jpg
+# ScreenshotURL: http://www.ufoot.org/liquidwar/screenshots.php3
 
 %description
 Liquid War is a unique multiplayer wargame. You control an army of liquid
 and have to try and eat your opponents. A single player mode is available,
 but the game is definitely designed to be multiplayer, and has network
 support. 
-
-%description -l nl
-Liquid War is een uniek multiplayer oorlogsspel. U controleert een vloeibaar
-leger en u moet proberen de tegenstanders op te eten. Het spel kan alleen
-gespeeld worden en ook via het netwerk.
 
 %prep
 %{__rm} -rf "${RPM_BUILD_ROOT}"
@@ -58,7 +53,7 @@ This package contains the documentation of LiquidWar in html, pdf, ps, txt
 and info format.
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 /usr/share/games/liquidwar
 /usr/share/pixmaps/liquidwar.xpm
 /usr/games/liquidwar
