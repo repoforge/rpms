@@ -4,6 +4,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist: %define gimp_plugin 1}
+%{?el4:   %define gimp_plugin 1}
 %{?fc3:   %define gimp_plugin 1}
 %{?fc2:   %define gimp_plugin 1}
 %{?yd4:   %define gimp_plugin 1}
@@ -112,7 +113,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
-* Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 0.3.2-3
+* Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 0.3.2-2
 - Added update-gdk-pixbuf-loaders to scriptlets.
 
 * Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 0.3.2-2

@@ -6,7 +6,7 @@
 Summary: IPSec VPN client compatible with Cisco equipment
 Name: vpnc
 Version: 0.3.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.unix-ag.uni-kl.de/~massar/vpnc/
@@ -15,9 +15,12 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.unix-ag.uni-kl.de/~massar/vpnc/vpnc-%{version}.tar.gz
+Patch0: vpnc-0.3.2-pie.patch
+Patch1: vpnc-0.3.2-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgcrypt-devel > 1.1.90
+#BuildRequires: libgcrypt-devel > 1.1.90
+BuildRequires: libgcrypt-devel
 Requires: kernel >= 2.4
 
 %description
@@ -28,6 +31,8 @@ shared-secret IPSec authentication, 3DES, MD5, and IP tunneling.
 
 %prep
 %setup
+%patch0 -p1
+%patch1 -p1
 
 %{__cat} <<EOF >vpnc.conf
 ### This is the gateway configuration
@@ -60,6 +65,9 @@ EOF
 %dev(c, 10, 200) /dev/tun
 
 %changelog
+* Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 0.3.2-2
+- Added x86_64 fixes.
+
 * Tue Dec 21 2004 Dag Wieers <dag@wieers.com> - 0.3.2-1
 - Updated to release 0.3.2.
 

@@ -49,6 +49,9 @@ use the kannel WAP and SMS gateway.
 %setup -n gateway-%{version}
 %patch -p0 -b .depend
 
+%{?el3:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
+%{?rh9:%{__perl} -pi.orig -e 's|^(CFLAGS)=|$1=-I/usr/kerberos/include |' Makefile.in}
+
 
 %build
 %configure \

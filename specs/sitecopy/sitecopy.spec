@@ -7,7 +7,7 @@
 
 Summary: Tool for easily maintaining remote web sites
 Name: sitecopy
-Version: 0.14.3
+Version: 0.15.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -17,7 +17,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.lyra.org/sitecopy/sitecopy-%{version}.tar.gz
-Patch: sitecopy-%{version}-gcc34.patch
+Patch: sitecopy-0.14.3-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{version}-root
 
 %description
@@ -76,6 +76,7 @@ cd -
 %doc BUGS COPYING ChangeLog* INSTALL NEWS README* THANKS TODO
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/sitecopy.1*
+%doc %{_mandir}/fr/man1/sitecopy.1*
 %{_bindir}/sitecopy
 %{_datadir}/sitecopy/
 %exclude %{_prefix}/doc/sitecopy/
@@ -91,5 +92,8 @@ cd -
 %endif
 
 %changelog
+* Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 0.15.0-1
+- Updated to release 0.15.0.
+
 * Thu Feb 17 2005 Dag Wieers <dag@wieers.com> - 0.14.3-1
 - Initial package. (using DAR)

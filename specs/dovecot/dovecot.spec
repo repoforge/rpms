@@ -59,7 +59,7 @@ EOF
 #
 # Init file for Dovecot IMAP daemon
 #
-# Written by Dag Wieers <dag@wieers.com>.
+# Written by Dag Wieers <dag@wieers.com>
 #
 # chkconfig: - 54 46
 # description: Dovecot IMAP Daemon

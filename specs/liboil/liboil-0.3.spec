@@ -1,9 +1,11 @@
-# $Id$
+# $Id: liboil.spec 2862 2005-01-28 16:43:13Z dude $
 # Authority: matthias
+
+# Tag: test
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.2.2
+Version: 0.3.0
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -54,27 +56,30 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 
 %post
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 
 %postun
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 
 
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog
-%{_libdir}/liboil*.so.*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/liboil*/
-%{_libdir}/liboil*.a
-%exclude %{_libdir}/liboil*.la
-%{_libdir}/liboil*.so
-%{_libdir}/pkgconfig/liboil*.pc
+%{_includedir}/*
+%{_libdir}/*.a
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
 
 
 %changelog
+* Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 0.3.0-1
+- Update to 0.3.0.
+
 * Wed Nov 24 2004 Matthias Saou <http://freshrpms.net/> 0.2.2-1
 - Update to 0.2.2.
 

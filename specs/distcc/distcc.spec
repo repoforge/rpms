@@ -20,7 +20,7 @@
 Summary: Distributed C/C++ compilation client program
 Name: distcc
 Version: 2.18.3
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://distcc.samba.org/
@@ -33,7 +33,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_gtk2:BuildRequires: gtk2-devel >= 2.0, libgnome-devel, libgnomeui-devel}
 Requires: gcc, gcc-c++
-%{?el4:Requires: compat-gcc, compat-gcc-c++, gcc4}
+%{?el4:Requires: gcc4}
 %{?fc3:Requires: compat-gcc, compat-gcc-c++, gcc4}
 %{?fc2:Requires: compat-gcc, compat-gcc-c++, gcc34}
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
@@ -332,6 +332,9 @@ fi
 %endif
 
 %changelog
+* Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 2.18.3-2
+- Dropped compat-gcc requirement for EL4. (Rob Starkey)
+
 * Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 2.18.3-1
 - Updated to release 2.18.3.
 
