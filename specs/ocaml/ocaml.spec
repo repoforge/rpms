@@ -5,11 +5,22 @@
 
 %{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
+
+%{?rh9:%define _without_tcltk_devel 1}
 %{?rh9:%define _without_xorg 1}
+
+%{?rh8:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_xorg 1}
+
+%{?rh7:%define _without_tcltk_devel 1}
 %{?rh7:%define _without_xorg 1}
-# %{?el2:%define _without_xorg 1}
+
+%{?el2:%define _without_tcltk_devel 1}
+%{?el2:%define _without_xorg 1}
+
+%{?rh6:%define _without_tcltk_devel 1}
 %{?rh6:%define _without_xorg 1}
+
 %{?yd3:%define _without_xorg 1}
 
 Summary: Objective Caml
@@ -26,9 +37,11 @@ Source2: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.ps.gz
 Source3: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.info.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gdbm-devel, tcl-devel, tk-devel
-%{?_without_xorg:BuildRequires: XFree86-devel}
+BuildRequires: gdbm-devel
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 
 %description
 Objective Caml is the latest implementation of the Caml dialect of ML. It

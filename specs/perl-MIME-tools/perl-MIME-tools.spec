@@ -1,8 +1,8 @@
 # $Id$
-# Authority: axel
+# Authority: dag
 
 ### Unresolved dependencies
-# Tag: test
+##Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -13,7 +13,7 @@
 
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
-Version: 5.415
+Version: 5.417
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -43,10 +43,8 @@ parser and tool for building your own MIME parser, and utilities.
 #patch1 -p1
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" 
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 #{__make} test
 
 %install
@@ -55,7 +53,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,10 +62,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALLING MANIFEST README* examples/
 %doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
+%{perl_vendorlib}/MIME/
+%{perl_vendorlib}/set-version.pl
 
 %changelog
-* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 5.414-1
+* Thu Mar 10 2005 Dag Wieers <dag@wieers.com> - 5.417-1
+- Updated to release 5.417.
+
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 5.415-1
 - Updated to release 5.415.
 
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com>

@@ -5,7 +5,7 @@
 Summary: CPU emulator
 Name: qemu
 Version: 0.6.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
@@ -13,6 +13,8 @@ URL: http://fabrice.bellard.free.fr/qemu/
 Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
 #Patch: qemu-0.6.0-glibc-private.patch
 Patch0: qemu-0.6.1-build.patch
+Patch1: qemu-0.6.1-dyngen.patch
+Patch2: qemu-0.6.1-segv.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
@@ -38,7 +40,9 @@ reasonnable speed while being easy to port on new host CPUs.
 %prep
 %setup
 #%patch0 -b .glibc
-%patch0 -p1
+%patch0 -p1 -b .build
+%patch1 -p0 -b .dyngen
+%patch2 -p1 -b .segv
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -64,7 +68,7 @@ start() {
 		(armv4l|armv5l)
 			cpu="arm";;
 	esac
-	echo -n $"Registering binary handler for qemu applications"
+	echo -n $"Registering non-native binary handler for Qemu"
 	/sbin/modprobe binfmt_misc &>/dev/null
 	if [ "$cpu" != "i386" -a -x "%{_bindir}/qemu-i386" -a -d "%{_prefix}/qemu-i386" ]; then
 		echo ':qemu-i386:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x03\x00:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-i386:' >/proc/sys/fs/binfmt_misc/register
@@ -83,7 +87,7 @@ start() {
 }
 
 stop() {
-	echo -n $"Unregistering binary handler for qemu applications"
+	echo -n $"Unregistering non-native binary handler for Qemu"
 	for cpu in i386 i486 ppc arm sparc; do 
 		if [ -r "/proc/sys/fs/binfmt_misc/qemu-$cpu" ]; then
 			echo "-1" >/proc/sys/fs/binfmt_misc/qemu-$cpu
@@ -99,10 +103,10 @@ restart() {
 
 status() {
 	if ls /proc/sys/fs/binfmt_misc/qemu-* &>/dev/null; then 
-		echo $"Qemu non-native binary format handlers are registered."
+		echo $"Qemu non-native binary format handlers registered."
 		return 0
 	else
-		echo $"Qemu non-native binary format handlers are not registered."
+		echo $"Qemu non-native binary format handlers not registered."
 		return 1
 	fi
 }
@@ -179,6 +183,9 @@ fi
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 0.6.1-3
+- Added patch for segmentation fauls on FC3.
+
 * Mon Feb 28 2005 Dag Wieers <dag@wieers.com> - 0.6.1-2
 - Added SDL-devel buildrequirement. (Matthias Saou)
 

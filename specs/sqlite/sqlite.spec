@@ -4,6 +4,11 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh9:%define _without_tcltk_devel 1}
+%{?rh8:%define _without_tcltk_devel 1}
+%{?rh7:%define _without_tcltk_devel 1}
+%{?el2:%define _without_tcltk_devel 1}
+
 Summary: Library that implements an embeddable SQL database engine
 Name: sqlite
 Version: 2.8.16
@@ -15,15 +20,14 @@ Source:	http://www.sqlite.org/sqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, readline-devel
-%{!?dist:BuildRequires: tcl-devel}
-%{?fc3:BuildRequires: tcl-devel}
-%{?fc2:BuildRequires: tcl-devel}
-%{?fc1:BuildRequires: tcllib}
-%{?rh9:BuildRequires: tcllib}
-%{?rh8:BuildRequires: tcllib}
-%{?rh7:BuildRequires: tcllib, tcl}
-%{?el2:BuildRequires: tcllib}
-%{?rh6:BuildRequires: tcllib}
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3}
+#%{?fc1:BuildRequires: tcllib}
+#%{?rh9:BuildRequires: tcllib}
+#%{?rh8:BuildRequires: tcllib}
+#%{?rh7:BuildRequires: tcllib}
+#%{?el2:BuildRequires: tcllib}
+#%{?rh6:BuildRequires: tcllib}
 
 %description
 SQLite is a C library that implements an SQL database engine. A large

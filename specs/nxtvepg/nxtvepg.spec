@@ -1,9 +1,13 @@
 # $Id$
 # Authority: dag
 # Upstream: <nxtvepg-users$lists,sf,net>
-# Distcc: 0
 
 %{?dist: %{expand: %%define %dist 1}}
+
+%{?rh9:%define _without_tcltk_devel 1}
+%{?rh8:%define _without_tcltk_devel 1}
+%{?rh7:%define _without_tcltk_devel 1}
+%{?el2:%define _without_tcltk_devel 1}
 
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg
@@ -17,12 +21,9 @@ Source: http://dl.sf.net/nxtvepg/nxtvepg-%{version}.tar.gz
 Source1: nxtvepg.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, tcl, tk, desktop-file-utils
-%{?el4:BuildRequires: tcl-devel, tk-devel}
-%{?fc3:BuildRequires: tcl-devel, tk-devel}
-%{?fc2:BuildRequires: tcl-devel, tk-devel}
-%{?fc1:BuildRequires: tcl-devel, tk-devel}
-%{?el3:BuildRequires: tcl-devel, tk-devel}
+BuildRequires: XFree86-devel, desktop-file-utils
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 
 %description
 nxtvepg is a decoder and browser for nexTView - an Electronic TV Programme

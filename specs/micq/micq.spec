@@ -5,6 +5,11 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh9:%define _without_tcltk_devel 1}
+%{?rh8:%define _without_tcltk_devel 1}
+%{?rh7:%define _without_tcltk_devel 1}
+%{?el2:%define _without_tcltk_devel 1}
+
 Summary: Clone of the Mirabilis ICQ online messaging program
 Name: micq
 Version: 0.4.11
@@ -17,16 +22,19 @@ Source: http://www.micq.org/source/micq-%{version}.tgz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, tcl
-%{!?dist:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
-%{?el4:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
-%{?fc3:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
-%{?fc2:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
-%{?fc1:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
-#%{?el3:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
+%{!?dist:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{?el4:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{?fc3:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{?fc2:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{?fc1:BuildRequires: libgcrypt-devel, gnutls-devel}
+#%{?el3:BuildRequires: libgcrypt-devel, gnutls-devel}
 %{?el3:BuildRequires: libgcrypt-devel, gnutls-devel}
 %{?rh9:BuildRequires: libgcrypt-devel, gnutls-devel}
 %{?rh8:BuildRequires: libgcrypt-devel, gnutls-devel}
 %{?rh7:BuildRequires: libgcrypt-devel}
+
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3}
 
 %description
 Micq is a clone of the Mirabilis ICQ online messaging/conferencing

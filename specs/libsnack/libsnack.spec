@@ -4,6 +4,11 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh9:%define _without_tcltk_devel 1}
+%{?rh8:%define _without_tcltk_devel 1}
+%{?rh7:%define _without_tcltk_devel 1}
+%{?el2:%define _without_tcltk_devel 1}
+
 %define _lib32dir %{_prefix}/lib
 %define real_name snack
 
@@ -18,13 +23,9 @@ URL: http://www.speech.kth.se/snack/
 Source: http://www.speech.kth.se/~kare/snack%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?dist:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?el4:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?fc3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?fc2:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?fc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?el3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-BuildRequires: tcl >= 8.3, tk >= 8.3, sphere-devel
+BuildRequires: sphere-devel
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 Obsoletes: snack-ogg, snack-sphere
 Provides: libsnack-ogg, libsnack-sphere
 

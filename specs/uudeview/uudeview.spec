@@ -4,6 +4,11 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh9:%define _without_tcltk_devel 1}
+%{?rh8:%define _without_tcltk_devel 1}
+%{?rh7:%define _without_tcltk_devel 1}
+%{?el2:%define _without_tcltk_devel 1}
+
 Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview
 Version: 0.5.20
@@ -16,14 +21,10 @@ Source: http://www.fpx.de/fp/Software/UUDeview/download/uudeview-%{version}.tar.
 Patch: uudeview-shared.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: autoconf, libtool
 BuildRequires: tetex-dvips, tetex-latex, transfig
-%{?fc3:BuildRequires: tcl-devel, tk-devel}
-%{?fc2:BuildRequires: tcl-devel, tk-devel}
-%{?fc1:BuildRequires: tcl-devel, tk-devel}
-%{?el3:BuildRequires: tcl-devel, tk-devel}
-BuildRequires: tcl, tk
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 
 %description
 The uudeview package contains an encoder and a decoder, for

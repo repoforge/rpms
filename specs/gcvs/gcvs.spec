@@ -4,8 +4,14 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh9:%define _without_tcltk_devel 1}
+%{?rh8:%define _without_tcltk_devel 1}
+
 %{?rh7:%define _without_freedesktop 1}
+%{?rh7:%define _without_tcltk_devel 1}
+
 %{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_tcltk_devel 1}
 
 ### FIXME: Modified to co-exist with cvs. (Please fix upstream)
 # Tag: test
@@ -26,11 +32,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gcc-c++, texinfo, autoconf, automake
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?el4:BuildRequires: tcl-devel}
-%{?fc3:BuildRequires: tcl-devel}
-%{?fc2:BuildRequires: tcl-devel}
-%{?fc1:BuildRequires: tcl-devel}
-%{?el3:BuildRequires: tcl-devel}
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 BuildRequires: tcl
 
 #Obsoletes: cvs

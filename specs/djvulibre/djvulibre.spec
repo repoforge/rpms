@@ -44,6 +44,8 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
+
 %{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
 %{__ln_s} ../../netscape/plugins/nsdejavu.so \
     %{buildroot}%{_libdir}/mozilla/plugins/
@@ -65,7 +67,7 @@ update-desktop-database /usr/share/applications || :
 update-desktop-database /usr/share/applications || :
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README COPYRIGHT COPYING NEWS TODO doc
 %{_bindir}/*
@@ -80,7 +82,7 @@ update-desktop-database /usr/share/applications || :
 %{_datadir}/djvu/
 %{_datadir}/pixmaps/djvu.png
 %{_mandir}/man1/*
-%lang(ja) %{_mandir}/ja/man1/*
+%{_datadir}/mimelnk/image/x-djvu.desktop
 
 
 %changelog

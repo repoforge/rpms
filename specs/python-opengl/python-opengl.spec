@@ -1,6 +1,13 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh9:%define _without_tcltk_devel 1}
+%{?rh8:%define _without_tcltk_devel 1}
+%{?rh7:%define _without_tcltk_devel 1}
+%{?el2:%define _without_tcltk_devel 1}
+
 %define real_name PyOpenGL
 
 Summary: OpenGL bindings for Python
@@ -17,12 +24,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python-devel, glut-devel, python-numeric
 BuildRequires: tcl >= 8.3, tk >= 8.3
 BuildRequires: XFree86-devel
-%{!?dist:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?fc3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?fc2:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?fc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-%{?el3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
-Requires: tcl >= 8.3, tk >= 8.3
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 Requires: python-numeric, python-imaging
 
 %description

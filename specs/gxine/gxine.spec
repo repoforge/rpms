@@ -20,6 +20,7 @@ Source: http://dl.sf.net/xine/gxine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0
+BuildRequires: glib2 >= 2.4
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: gtk2 >= 2.0, xine-lib >= 1.0.0
 
