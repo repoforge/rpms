@@ -16,9 +16,10 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, fam-devel, fam
+%{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs, fam
 
-#(d) primscreenshot: http://smb4k.berlios.de/shots/0.3.0/Smb4K-0.3.0-1.png
+# Screenshot: http://smb4k.berlios.de/shots/0.3.0/Smb4K-0.3.0-1.png
 
 %description
 Smb4K is an SMB share browser for KDE. It uses the Samba software suite for
