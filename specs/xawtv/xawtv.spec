@@ -48,13 +48,13 @@ EOF
 
 %build
 ### FIXME: Work-around for buildproblems with rpm configure macro (can't find the problem) Not related to optflags, _target_platform, CFLAGS (Builds fine on rh62 though)
-#configure
-./configure --prefix="%{_prefix}"
+%configure
+#./configure --prefix="%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-### On RH62 it fails because %{buildroot}%{_bindir} does not exits. (Fix upstream please)
+### On RH62 it fails because %{buildroot}%{_bindir} does not exist. (Fix upstream please)
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %makeinstall \
 	DESTDIR="%{buildroot}" \
