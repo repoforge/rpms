@@ -212,7 +212,7 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%post 
+%post
 /sbin/ldconfig 2>/dev/null
 /sbin/chkconfig --add tsocksify
 
@@ -222,7 +222,7 @@ if [ "$1" = 0 ]; then
 	/sbin/chkconfig --del tsocksify
 fi
 
-%postun 
+%postun
 /sbin/ldconfig 2>/dev/null
 /sbin/service tsocksify condrestart > /dev/null 2>&1 || :
 
