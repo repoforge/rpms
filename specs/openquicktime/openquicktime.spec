@@ -1,13 +1,10 @@
 # $Id$
-
 # Authority: dag
 
-### FIXME: openquicktime: Depends: libopenquicktime.so but it is not installable
-
-Summary: portable library for handling Apples QuickTime(tm) format
+Summary: Portable library for handling Apples QuickTime(tm) format
 Name: openquicktime
 Version: 1.0
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.openquicktime.org/
@@ -15,9 +12,10 @@ URL: http://www.openquicktime.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/openquicktime/%{name}-%{version}-src.tgz
+Source: http://dl.sf.net/openquicktime/openquicktime-%{version}-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Provides: libopenquicktime.so
 
 %description
 OpenQuicktime aims to be a portable library for handling Apples QuickTime
@@ -28,8 +26,7 @@ encoding, authoring and editing support as well as video playback.
 %setup -n %{name}-%{version}-src
 
 %build
-%configure \
-	--disable-dependency-tracking
+%configure
 %{__make} %{_smp_mflags}
 
 %install
@@ -55,5 +52,8 @@ done
 %{_includedir}/openquicktime/
 
 %changelog
+* Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+- Added provides for libopenquicktime.so. (Fridrich Strba)
+
 * Thu Aug 28 2003 Dag Wieers <dag@wieers.com> - 1.0-0
 - Initial package. (using DAR)
