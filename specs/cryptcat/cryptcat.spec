@@ -18,6 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://farm9.org/Cryptcat/cryptcat_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 Cryptcat is the standard netcat enhanced with twofish encryption.
