@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Brian Ingerson <ingy$cpan,org>
 
