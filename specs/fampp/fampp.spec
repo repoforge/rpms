@@ -16,6 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/fampp/fampp2-3.5.1.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRequires: gcc-c++
 
 %description
 Fam++ is a C++ wrapper for fam from sgi. Fam uses imon to inform it when 
