@@ -6,7 +6,7 @@
 
 Summary: Personal photo management application
 Name: f-spot
-Version: 0.0.1
+Version: 0.0.3
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -29,7 +29,7 @@ sorting of digital images.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >f-spot.desktop
 [Desktop Entry]
 Name=F-spot Photo Manager
 Comment=Manage your photos
@@ -48,28 +48,32 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %{__install} -D -m0644 icons/f-spot-camera.png %{buildroot}%{_datadir}/pixmaps/f-spot.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
-        --add-category X-Red-Hat-Base              \
-        --dir %{buildroot}%{_datadir}/applications \
-        %{name}.desktop
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	f-spot.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL MAINTAINERS NEWS README TODO
-%{_bindir}/*
+%{_bindir}/f-spot
 %{_libdir}/f-spot/
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/f-spot.png
+%{_datadir}/applications/%{desktop_vendor}-f-spot.desktop
 %exclude %{_libdir}/f-spot/*.a
 %exclude %{_libdir}/f-spot/*.la
 
 %changelog
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.0.3-1
+- Updated to release 0.0.4.
+
 * Sat Mar 20 2004 Dag Wieers <dag@wieers.com> - 0.0.1-1
 - Initial package. (using DAR)
