@@ -1,0 +1,481 @@
+diff -Naur netapplet-0.98.0.ori/netapplet.desktop netapplet-0.98.0/netapplet.desktop
+--- netapplet-0.98.0.ori/netapplet.desktop	2004-08-03 10:53:10.000000000 -0400
++++ netapplet-0.98.0/netapplet.desktop	2004-08-25 21:23:21.000000000 -0400
+@@ -6,5 +6,5 @@
+ Terminal=false
+ Type=Application
+ TryExec=netapplet
+-Categories=GNOME;Application;Internet;X-Ximian-Main;
++Categories=X-Red-Hat-Base;System;Application;
+ StartupNotify=false
+diff -Naur netapplet-0.98.0.ori/netapplet.spec netapplet-0.98.0/netapplet.spec
+--- netapplet-0.98.0.ori/netapplet.spec	2004-07-14 22:44:54.000000000 -0400
++++ netapplet-0.98.0/netapplet.spec	2004-08-25 21:29:32.000000000 -0400
+@@ -1,7 +1,7 @@
+ Name:		netapplet
+ Summary:	Network switching and control applet.
+-Version:	0.90.0
+-Release:	7
++Version:	0.98.0
++Release:	1
+ License:	GPL
+ Group:		Applications/System
+ BuildRoot:	/var/tmp/%{name}-%{version}-%{release}-root
+@@ -10,8 +10,8 @@
+ Source:		%{name}-%{version}.tar.gz
+ BuildRequires:	gtk2-devel >= 2.4.0
+ BuildRequires:	glib2-devel >= 2.4.0
+-BuildRequires:	wireless-tools >= 27pre12
+-Prereq:		wireless-tools >= 27pre12
++BuildRequires:	wireless-tools
++Prereq:		wireless-tools
+ Prereq:		gtk2 >= 2.4.0
+ 
+ %description
+@@ -21,21 +21,14 @@
+ %setup -q
+ 
+ %build
+-./configure --prefix=/opt/gnome --sysconfdir=/etc/opt/gnome --mandir=/opt/gnome/man --infodir=/opt/gnome/info --localstatedir=/var --datadir=/opt/gnome/share
++%configure
+ make
+ 
+ %install
+-mkdir -p $RPM_BUILD_ROOT/opt/gnome/bin/
+-mkdir -p $RPM_BUILD_ROOT/opt/gnome/share/netapplet/
+-mkdir -p $RPM_BUILD_ROOT/opt/gnome/share/icons/gnome/16x16/
+-mkdir -p $RPM_BUILD_ROOT/opt/gnome/share/icons/gnome/24x24/
+-mkdir -p $RPM_BUILD_ROOT/etc/init.d/
+-cp src/netdaemon $RPM_BUILD_ROOT/opt/gnome/bin/
+-cp src/netapplet $RPM_BUILD_ROOT/opt/gnome/bin/
+-cp src/netapplet.glade $RPM_BUILD_ROOT/opt/gnome/share/netapplet/
+-cp icons/16x16/*.png $RPM_BUILD_ROOT/opt/gnome/share/icons/gnome/16x16/
+-cp icons/24x24/*.png $RPM_BUILD_ROOT/opt/gnome/share/icons/gnome/24x24/
+-cp netdaemon $RPM_BUILD_ROOT/etc/init.d/
++/bin/rm -rf $RPM_BUILD_ROOT
++%makeinstall
++mkdir -p $RPM_BUILD_ROOT/%{_initrddir}/
++cp netdaemon $RPM_BUILD_ROOT/%{_initrddir}/
+ 
+ %post
+ /sbin/chkconfig --add netdaemon
+@@ -54,20 +47,20 @@
+ 
+ %files
+ %defattr(-,root,root)
+-%dir /opt/gnome/share/netapplet
+-/opt/gnome/share/netapplet/netapplet.glade
+-/opt/gnome/bin/netapplet
+-/opt/gnome/bin/netdaemon
+-/opt/gnome/share/icons/gnome/16x16/gnome-dev-ethernet.png
+-/opt/gnome/share/icons/gnome/16x16/gnome-dev-modem.png
+-/opt/gnome/share/icons/gnome/16x16/gnome-dev-wavelan-encrypted.png
+-/opt/gnome/share/icons/gnome/16x16/gnome-dev-wavelan.png
+-/opt/gnome/share/icons/gnome/24x24/gnome-dev-ethernet.png
+-/opt/gnome/share/icons/gnome/24x24/gnome-dev-modem.png
+-/opt/gnome/share/icons/gnome/24x24/gnome-dev-wavelan-encrypted.png
+-/opt/gnome/share/icons/gnome/24x24/gnome-dev-wavelan.png
+-/etc/init.d/netdaemon
++%dir %{_datadir}/netapplet
++%{_bindir}/netapplet
++%{_bindir}/netdaemon
++%{_datadir}/netapplet/netapplet.glade
++%{_datadir}/applications/netapplet.desktop
++%{_datadir}/icons/gnome/16x16/apps/*
++%{_datadir}/icons/gnome/24x24/apps/*
++%{_datadir}/pixmaps/netapplet.png
++%{_initrddir}/netdaemon
+ 
+ %changelog
++* Wed Aug 25 2004 Marc Deslauriers <marcdeslauriers@videotron.ca>
++- Adapted spec file for Fedora Core 2
++
+ * Thu Jul 08 2004 Robert Love <rml@ximian.com>
+ - initial package 
++
+diff -Naur netapplet-0.98.0.ori/netdaemon netapplet-0.98.0/netdaemon
+--- netapplet-0.98.0.ori/netdaemon	2004-07-14 14:11:29.000000000 -0400
++++ netapplet-0.98.0/netdaemon	2004-08-25 21:15:00.000000000 -0400
+@@ -1,47 +1,75 @@
+-#! /bin/sh
+-### BEGIN INIT INFO
+-# Provides:       netdaemon
+-# Required-Start: $network
+-# Default-Start:  3 4 5
+-# Default-Stop:   0 1 2 6
+-# Description: netdaemon, the network control and switching daemon
+-### END INIT INFO
++#!/bin/sh
++#
++# netdaemon    This shell script takes care of starting and stopping
++#              the network control and switching daemon.
++#
++# chkconfig: - 11 89
++# description: netdaemon, the network control and switching daemon
++# processname: netdaemon
++ 
++# Source function library.
++. /etc/rc.d/init.d/functions
++ 
++# Source networking configuration.
++. /etc/sysconfig/network
++ 
++# Check that networking is up.
++[ ${NETWORKING} = "no" ] && exit 0
+ 
+-NETDAEMON_BIN=/opt/gnome/bin/netdaemon
+-test -x $NETDAEMON_BIN || exit 5
++[ -x /usr/bin/netdaemon ] || exit 0
+ 
+-. /etc/rc.status
+-rc_reset
++start() {
++        # Start daemon.
++        echo -n $"Starting network control daemon: "
++        /usr/bin/netdaemon &
++	echo $! > /var/run/netdaemon.pid
++	# hack: wait for netdaemon to die, assume success if it doesn't die quickly
++	usleep 100000
++	if [ -d /proc/$(cat /var/run/netdaemon.pid) ] ; then
++        	success $"netdaemon"
++	        RETVAL=0
++	else
++        failure $"netdaemon"
++        	RETVAL=1
++	fi
++	echo
++        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/netdaemon
++	return $RETVAL
++}
+ 
++stop() {
++        # Stop daemon.
++        echo -n $"Shutting down network control daemon: "
++        killproc netdaemon
++        RETVAL=$?
++        echo
++        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/netdaemon /var/run/netdaemon.pid
++	return $RETVAL
++}
++
++# See how we were called.
+ case "$1" in
+-    start)
+-        echo -n "Starting the netdaemon"
+-        startproc $NETDAEMON_BIN
+-	rc_status -v
+-        ;;
+-    stop)
+-        echo -n "Shutting down the netdaemon"
+-        killproc -TERM $NETDAEMON_BIN
+-	rc_status -v
+-        ;;
+-    restart)
+-        $0 stop
+-        $0 start
+-	rc_status
+-        ;;
+-    force-reload|reload)
+-        echo -n "Reloading the netdaemon"
+-        killproc -HUP $NETDAEMON_BIN
+-	rc_status -v
+-        ;;
+-    status)
+-        echo -n "Checking for the netdaemon: "
+-        checkproc $NETDAEMON_BIN
+-        rc_status -v
+-        ;;
+-    *)
+-        echo "Usage: $0 {start|stop|status|restart|force-reload|reload}"
+-        exit 1
++  start)
++	start
++        ;;
++  stop)
++	stop
++        ;;
++  status)
++        status netdaemon
++        RETVAL=$?
++        ;;
++  restart|reload)
++        stop
++        start
++        ;;
++  condrestart)
++        [ -f /var/lock/subsys/netdaemon ] && restart || :
++        ;;
++  *)
++        echo $"Usage: $0 {start|stop|status|restart}"
++        RETVAL=1
+         ;;
+ esac
+-
++ 
++exit $RETVAL
+diff -Naur netapplet-0.98.0.ori/src/netapplet.c netapplet-0.98.0/src/netapplet.c
+--- netapplet-0.98.0.ori/src/netapplet.c	2004-08-23 15:58:40.000000000 -0400
++++ netapplet-0.98.0/src/netapplet.c	2004-08-25 17:41:59.000000000 -0400
+@@ -52,7 +52,7 @@
+ 
+ #define GLADE_APPLET		GLADEDIR "/netapplet.glade"
+ 
+-#define YAST2_ARGV { "/opt/kde3/bin/kdesu", "-n", "/sbin/yast2", "lan", NULL }
++#define NETCONF_ARGV { "/usr/bin/system-config-network", NULL }
+ 
+ typedef struct {
+ 	char *interface;	/* interface name, e.g. eth0 */
+@@ -859,7 +859,7 @@
+ configure_activate_cb (GtkMenuItem *mi G_GNUC_UNUSED,
+ 		       gpointer user_data G_GNUC_UNUSED)
+ {
+-	char *argv[] = YAST2_ARGV;
++	char *argv[] = NETCONF_ARGV;
+ 	GError *err = NULL;
+ 
+ 	if (!g_spawn_async (NULL, argv, NULL, 0, NULL, NULL, NULL, &err)) {
+diff -Naur netapplet-0.98.0.ori/src/netdaemon.c netapplet-0.98.0/src/netdaemon.c
+--- netapplet-0.98.0.ori/src/netdaemon.c	2004-08-18 12:26:16.000000000 -0400
++++ netapplet-0.98.0/src/netdaemon.c	2004-08-26 19:51:18.495653536 -0400
+@@ -25,10 +25,9 @@
+ 
+ #include "netcommon.h"
+ 
+-#define NETWORK_SYSCONF_PATH    "/etc/sysconfig/network"
++#define NETWORK_SYSCONF_PATH    "/etc/sysconfig/network-scripts"
+ #define IFCFG_PREFIX            "ifcfg-"
+-#define GETCFG_CMD		"/sbin/getcfg"
+-#define GETCFG_INTERFACE_CMD	"/sbin/getcfg-interface"
++#define KEYCFG_PREFIX           "keys-"
+ #define IFUP_BIN		"/sbin/ifup"
+ #define IFDOWN_BIN		"/sbin/ifdown"
+ #define ROUTE_CMD               "/sbin/route"
+@@ -100,7 +99,6 @@
+ 
+ 	do {
+ 		char *interface;
+-		const char *argv[3];
+ 
+ 		name = g_dir_read_name (dir);
+ 		if (name == NULL || strncmp (name, IFCFG_PREFIX,
+@@ -111,41 +109,8 @@
+ 		if (strcmp (name, IFCFG_PREFIX"lo") == 0)
+ 			continue;
+ 
+-		argv[0] = GETCFG_INTERFACE_CMD;
+-		argv[1] = (char *) name + sizeof (IFCFG_PREFIX) - 1;
+-		argv[2] = NULL;
+-
+-		if (!g_spawn_sync (NULL, (char **) argv, NULL, 0,
+-				   NULL, NULL, &interface, NULL,
+-				   NULL, &err)) {
+-			g_warning ("Unable to execute "
+-				   GETCFG_INTERFACE_CMD": %s",
+-				   err->message);
+-			g_error_free (err);
+-			continue;
+-		}
+-
+-		if (interface != NULL && interface[0] != '\0') {
+-			/* strip whitespace */
+-			interface = g_strstrip (interface);
+-
+-			/*
+-			 * Workaround for some strange behavior in
+-			 * getcfg-interface.  If you bring up a ppp0
+-			 * interface, and if you run it (as root), it
+-			 * might return "no" as the interface name while
+-			 * it's in the process of connecting.  If that's
+-			 * the case, then return the name as the
+-			 * interface instead.
+-			 */
+-			if (strcmp (interface, "no") == 0) {
+-				g_free (interface);
+-				interface = g_strdup (argv[1]);
+-			}
+-
+-			iface_list = g_slist_prepend (iface_list, interface);
+-		} else
+-			g_free (interface);
++		interface = g_strdup ((char *) name + sizeof (IFCFG_PREFIX) - 1);
++		iface_list = g_slist_prepend (iface_list, interface);
+ 
+ 	} while (name);
+ 
+@@ -530,7 +495,7 @@
+ 	struct iw_statistics stats;
+ 	float quality = 0.0;
+ 
+-	if (iw_get_stats (fd, interface, &stats, NULL, 0) >= 0) {
++	if (iw_get_stats (fd, interface, &stats) >= 0) {
+ 		struct iw_range range;
+ 
+ 		if (iw_get_range_info (fd, interface, &range) >= 0 &&
+@@ -676,72 +641,78 @@
+ static void
+ netdaemon_do_change_essid (GIOChannel *channel, char **args)
+ {
+-	GString *output;
+-	const char *argv[3];
+-	char *data = NULL, *getcfg, *p, *cfg;
++	GString *output, *keyoutput;
++	char *data = NULL, *cfg, *keycfg;
+ 	GIOChannel *file;
+ 	GError *err = NULL;
+ 	char *escaped_essid;
+ 
+-	argv[0] = GETCFG_CMD;
+-	argv[1] = args[1];
+-	argv[2] = NULL;
++	cfg = g_strdup_printf (NETWORK_SYSCONF_PATH"/"IFCFG_PREFIX"%s", args[1]);
++	keycfg = g_strdup_printf (NETWORK_SYSCONF_PATH"/"KEYCFG_PREFIX"%s", args[1]);
+ 
+-	/* get the configuration information for this interface */
+-	if (!g_spawn_sync (NULL, (char **) argv, NULL, 0, NULL, NULL,
+-			   &getcfg, NULL, NULL, &err)) {
+-			g_warning ("Unable to execute "GETCFG_CMD": %s",
+-				   err->message);
+-			g_error_free (err);
+-			return;
++	output = g_string_sized_new (512);  /* start big to prevent resizing */
++	keyoutput = g_string_sized_new (512);
++
++	/* start with the key file */
++	file = g_io_channel_new_file (keycfg, "r", &err);
++	if (!file) {
++		g_warning ("Failed to open %s: %s\n", keycfg, err->message);
++		g_error_free (err);
++		return;
++	}
++
++	/* remove the offending lines */
++	while (g_io_channel_read_line (file, &data, NULL, NULL, &err) ==
++			G_IO_STATUS_NORMAL) {
++		if (!g_str_has_prefix (data, "KEY="))
++			g_string_append (keyoutput, data);
++
++		g_free (data);
+ 	}
+ 
+-	/* get the ifcfg name for this interface */
+-	cfg = strstr (getcfg, "HWD_CONFIG_0");
+-	if (!cfg) {
+-		g_warning ("Unable to determine configuration file for "
+-			   "interface %s", args[1]);
+-		goto out_free_getcfg;
+-	}
+-	cfg = strstr (cfg, "=");
+-	if (!cfg) {
+-		g_warning ("Unable to determine configuration file for "
+-			   "interface %s", args[1]);
+-		goto out_free_getcfg;
+-	}
+-	cfg++;
+-	p = strstr (cfg, ";");
+-	if (!p) {
+-		g_warning ("Unable to determine configuration file for "
+-			   "interface %s", args[1]);
+-		goto out_free_getcfg;
++	if (err) {
++		g_warning ("Failed to read %s: %s\n", keycfg, err->message);
++		g_error_free (err);
++		goto out;
+ 	}
+-	p[0] = '\0';
+-	cfg = g_strdup_printf (NETWORK_SYSCONF_PATH"/"IFCFG_PREFIX"%s", cfg);
+ 
+-	output = g_string_sized_new (512);  /* start big to prevent resizing */
++	/* add back the updated lines */
++	g_string_append_printf (keyoutput, "KEY='%s'\n", args[3]);
++
++	/* close, truncate, and reopen the key file for writing */
++	g_io_channel_unref (file);
++	file = g_io_channel_new_file (keycfg, "w", &err);
++	if (!file) {
++		g_warning ("Failed to open %s: %s\n", keycfg, err->message);
++		g_error_free (err);
++		goto out;
++	}
++
++	/* write out the new key file in one swoop */
++	if (g_io_channel_write_chars (file, keyoutput->str, -1, NULL, &err) !=
++			G_IO_STATUS_NORMAL) {
++		g_warning ("Failed to write to %s: %s\n", keycfg, err->message);
++		g_error_free (err);
++		goto out;
++	}
++
++	g_io_channel_flush (file, NULL);
+ 
++	/* now do the main configuration file */
+ 	file = g_io_channel_new_file (cfg, "r", &err);
+ 	if (!file) {
+ 		g_warning ("Failed to open %s: %s\n", cfg, err->message);
+ 		g_error_free (err);
+-		goto out_free_getcfg;
++		return;
+ 	}
+ 
+ 	/* remove the offending lines */
+ 	while (g_io_channel_read_line (file, &data, NULL, NULL, &err) ==
+ 			G_IO_STATUS_NORMAL) {
+-		if (!g_str_has_prefix (data, "WIRELESS_ESSID=") &&
+-		    !g_str_has_prefix (data, "WIRELESS_NWID=''") &&
+-		    !g_str_has_prefix (data, "WIRELESS_KEY=''") &&
+-		    !g_str_has_prefix (data, "WIRELESS_KEY_0=") &&
+-		    !g_str_has_prefix (data, "WIRELESS_KEY_LENGTH=") &&
+-		    !g_str_has_prefix (data, "WIRELESS_AP") &&
+-		    !g_str_has_prefix (data, "WIRELESS_BITRATE") &&
+-		    !g_str_has_prefix (data, "WIRELESS_CHANNEL") &&
+-		    !g_str_has_prefix (data, "WIRELESS_MODE") &&
+-		    !g_str_has_prefix (data, "WIRELESS_FREQUENCY") &&
+-		    !g_str_has_prefix (data, "WIRELESS_DEFAULT_KEY="))
++		if (!g_str_has_prefix (data, "ESSID") &&
++		    !g_str_has_prefix (data, "RATE") &&
++		    !g_str_has_prefix (data, "CHANNEL") &&
++		    !g_str_has_prefix (data, "MODE"))
+ 			g_string_append (output, data);
+ 
+ 		g_free (data);
+@@ -755,22 +726,14 @@
+ 
+ 	/* add back the updated lines */
+ 	escaped_essid = escape_essid (args[2]);
+-	g_string_append_printf (output, "WIRELESS_ESSID='%s'\n",
++	g_string_append_printf (output, "ESSID='%s'\n",
+ 				escaped_essid);
+ 	g_free (escaped_essid);
+ 
+-	g_string_append_printf (output, "WIRELESS_KEY_0='%s'\n", args[3]);
+-
+ 	/* return the other lines to a nice sane default */
+-	g_string_append_printf (output, "WIRELESS_NWID=''\n");
+-	g_string_append_printf (output, "WIRELESS_KEY=''\n");
+-	g_string_append_printf (output, "WIRELESS_DEFAULT_KEY='0'\n");
+-	g_string_append_printf (output, "WIRELESS_KEY_LENGTH='128'\n");
+-	g_string_append_printf (output, "WIRELESS_AP=''\n");
+-	g_string_append_printf (output, "WIRELESS_BITRATE='auto'\n");
+-	g_string_append_printf (output, "WIRELESS_CHANNEL=''\n");
+-	g_string_append_printf (output, "WIRELESS_MODE='Managed'\n");
+-	g_string_append_printf (output, "WIRELESS_FREQUENCY=''");
++	g_string_append_printf (output, "RATE=''\n");
++	g_string_append_printf (output, "CHANNEL=''\n");
++	g_string_append_printf (output, "MODE='Managed'\n");
+ 
+ 	/* close, truncate, and reopen the file for writing */
+ 	g_io_channel_unref (file);
+@@ -794,12 +757,12 @@
+ 	netdaemon_do_change_active (channel, args);
+ 
+ out:
++	g_string_free (keyoutput, TRUE);
+ 	g_string_free (output, TRUE);
+ 	g_io_channel_unref (file);
++	g_free (keycfg);
+ 	g_free (cfg);
+ 
+-out_free_getcfg:
+-	g_free (getcfg);
+ }
+ 
+ static void
