@@ -24,15 +24,17 @@ foreign function call interfaces in embedded interpreters.
              (a reentrant combination of vacall and trampoline)
 
 %package devel
-Summary: ffcall devel
+Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: ffcall = %{version}-%{release}
 
 %description devel
-Development headers of ffcall: foreign function call libraries
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n %{real_version}
 
 %build
 %configure
@@ -60,25 +62,18 @@ mv -v $RPM_BUILD_ROOT/usr/share/html $RPM_BUILD_ROOT/usr/share/doc/ffcall-1.8d
 %doc trampoline/trampoline.html
 %doc vacall/vacall.html
 %doc ChangeLog COPYING README NEWS
-/usr/lib/libavcall.a
-/usr/lib/libavcall.la
-/usr/lib/libcallback.a
-/usr/lib/libcallback.la
-/usr/lib/libtrampoline.a
-/usr/lib/libvacall.a
-/usr/share/man/man3/avcall.3.gz
-/usr/share/man/man3/callback.3.gz
-/usr/share/man/man3/trampoline.3.gz
-/usr/share/man/man3/trampoline_r.3.gz
-/usr/share/man/man3/vacall.3.gz
+%{_libdir}/*.so.*
+%{_datadir}/man/man3/avcall.3.gz
+%{_datadir}/man/man3/callback.3.gz
+%{_datadir}/man/man3/trampoline.3.gz
+%{_datadir}/man/man3/trampoline_r.3.gz
+%{_datadir}/man/man3/vacall.3.gz
 
 %files devel
-/usr/include/avcall.h
-/usr/include/callback.h
-/usr/include/trampoline.h
-/usr/include/trampoline_r.h
-/usr/include/vacall.h
-/usr/include/vacall_r.h
+%{_includedir}/*.h
+%{_libdir}/*.a
+%{_libdir}/*.so
+%exclude %{_libdir}/*.la
 
 %changelog
 * Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 1.8d-4.dries
