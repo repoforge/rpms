@@ -2,7 +2,13 @@
 # Authority: dag
 # Upstream: Snax <snax$shmoo,com>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 %define real_version 0.2.4a
 
@@ -32,7 +38,7 @@ encryption key when enough packets have been gathered.
 %prep
 %setup -n %{name}-%{real_version}
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >airsnort.desktop
 [Desktop Entry]
 Name=Airsnort Wireless Sniffer
 Comment=Recover wireless encryption keys.
@@ -54,15 +60,14 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -m0644 man/*.1 %{buildroot}%{_mandir}/man1/
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Network/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Network/
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 airsnort.desktop %{buildroot}%{_datadir}/gnome/apps/Network/airsnort.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor gnome                \
+        desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+                airsnort.desktop
 %endif
 
 %clean
@@ -71,13 +76,10 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE README* TODO *.txt
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*
 %{_bindir}/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Network/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Network/airsnort.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-airsnort.desktop}
 
 %changelog
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.2.4-0.a

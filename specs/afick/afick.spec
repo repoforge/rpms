@@ -7,6 +7,8 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 %define real_version %{version}-0
 
 Summary: File integrity checker
@@ -87,9 +89,10 @@ EOF
 	%{__install} -D -m0644 afick.desktop %{buildroot}%{_datadir}/gnome/apps/System/afick.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor gnome --delete-original \
-                --add-category X-Red-Hat-Base                 \
-                --dir %{buildroot}%{_datadir}/applications    \
+        desktop-file-install --vendor %{desktop_vendor}    \
+		--delete-original                          \
+                --add-category X-Red-Hat-Base              \
+                --dir %{buildroot}%{_datadir}/applications \
 		afick.desktop
 %endif
 
@@ -121,7 +124,7 @@ EOF
 %{_bindir}/afick-tk.pl
 %{_datadir}/pixmaps/afick.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/afick.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-afick.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-afick.desktop}
 
 %changelog
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 2.2-2

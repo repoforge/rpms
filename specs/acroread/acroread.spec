@@ -7,6 +7,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 %define real_version 509
 
 Summary: Adobe Reader for viewing PDF files
@@ -127,7 +129,7 @@ export MALLOC_CHECK_|;
         %{__install} -D -m0644 acroread.desktop %{buildroot}%{_datadir}/gnome/apps/Graphics/acroread.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor net                  \
+        desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 acroread.desktop
@@ -147,7 +149,7 @@ export MALLOC_CHECK_|;
 %{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
 %{_datadir}/pixmaps/acroread.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Graphics/acroread.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/net-acroread.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-acroread.desktop}
 
 %files -n mozilla-acroread
 %defattr(-, root, root, 0755)
