@@ -4,14 +4,14 @@
 
 Summary: Ultima Online emulator
 Name: lonewolf
-Version: 0.0
+Version: 1.0
 Release: 0.cvs20040503
 License: GPL
 Group: Applications/Internet
 URL: http://home1.tiscalinet.de/aduke/main2/news2.htm
 
-Source: lonewolf-%{version}.tar.bz2
-Source1: lwscripts-%{version}.tar.bz2
+Source: lonewolf-%{version}-%{release}.tar.bz2
+Source1: lwscripts-%{version}-%{release}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, ncurses-devel
