@@ -3,12 +3,12 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-%define real_version 2.33a
+%define real_version 2.34
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.33
-Release: 1.a
+Version: 2.34
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
@@ -109,7 +109,7 @@ scons
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README release*.txt doc/*
+%doc COPYING README doc/*
 %{_bindir}/*
 #%{_libdir}/*.so.*
 %{_datadir}/pixmaps/*.png
@@ -123,6 +123,9 @@ scons
 #%{_libdir}/*.so
 
 %changelog
+* Fri Sep 03 2004 Dries Verachtert <dries@ulyssis.org> - 2.34-1
+- Updated to release 2.34.
+
 * Tue May 25 2004 Dries Verachtert <dries@ulyssis.org> - 2.33-1.a
 - use Scons for building
 
