@@ -40,8 +40,7 @@ files system.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc Authors ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/*
 
 %changelog
