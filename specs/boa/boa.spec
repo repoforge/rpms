@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define rcver rc20
 %define webroot /var/www/boa

@@ -1,4 +1,5 @@
-# Authority: atrpms
+# $Id$
+# Authority: axel
 # Upstream: Marc Heuse <marc$suse,de>
 
 Summary: Confine services in a limited environment
@@ -12,7 +13,7 @@ URL: http://www.suse.de/~marc/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.suse.de/~marc/%{name}-%{version}.tar.gz
+Source: http://www.suse.de/~marc/compartment-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

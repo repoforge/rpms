@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Graphical user interface for the yum package manager
 Name: yumi

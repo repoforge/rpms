@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dag
-# Upstream:
 
 %define real_name adodb
 %define real_version 422

@@ -1,4 +1,5 @@
-# Authority: atrpms
+# $Id$
+# Authority: axel
 # Upstream: Chip Turner <cturner$redhat,com>
 
 %define real_name RPM-Specfile

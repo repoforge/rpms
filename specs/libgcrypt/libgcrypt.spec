@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 # Upstream: <gnupg-devel$gnupg,org>
 
 # ExcludeDist: fc1 fc2

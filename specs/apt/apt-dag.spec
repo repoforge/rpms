@@ -1,4 +1,5 @@
-# Authority: atrpms
+# $Id$
+# Authority: axel
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
 %{?dist: %{expand: %%define %dist 1}}

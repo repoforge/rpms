@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %{?dist: %{expand: %%define %dist 1}}
  

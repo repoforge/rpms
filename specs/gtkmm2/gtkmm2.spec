@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: The C++ interface for the GIMP ToolKit (GTK+) GUI library
 Name: gtkmm2

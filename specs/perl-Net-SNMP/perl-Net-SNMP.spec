@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 
 %define real_name Net-SNMP
 

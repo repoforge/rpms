@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # For pre-versions
 %define prever RC1

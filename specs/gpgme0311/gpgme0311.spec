@@ -1,4 +1,6 @@
-# Authority: atrpms
+# $Id$
+# Authority: axel
+
 %define real_name gpgme
 
 Summary: GnuPG Made Easy

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 
 Summary: Display IP Tables state table information in a "top"-like interface
 Name: iptstate

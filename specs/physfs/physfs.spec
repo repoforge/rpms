@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 # Upstream: <physfs$icculus,org>
 
 Summary: Library to provide abstract access to various archives

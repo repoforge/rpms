@@ -5,7 +5,7 @@
 Summary: API document browser
 Name: devhelp
 Version: 0.9.1
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://www.imendio.com/projects/devhelp/
@@ -22,6 +22,14 @@ BuildRequires: gtkhtml2-devel >= 2.0.0, intltool
 %description
 devhelp is an API document browser for GNOME.
 
+%package devel
+Summary: Library to embed Devhelp in other applications
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+Library of Devhelp for embedding into other applications.
+
 %prep
 %setup
 
@@ -37,6 +45,9 @@ intltoolize
 %makeinstall
 %find_lang %{name}
 
+%{__ln_s} -f libdevhelp-1.so.0.0.0 %{buildroot}%{_libdir}/libdevhelp-1.so.0
+%{__ln_s} -f libdevhelp-1.so.0.0.0 %{buildroot}%{_libdir}/libdevhelp-1.so
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -45,17 +56,24 @@ intltoolize
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/devhelp.schemas
 %{_bindir}/devhelp*
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/devhelp.desktop
 %{_datadir}/devhelp/
-%{_datadir}/mime-info/*
-%{_datadir}/pixmaps/*
+%{_datadir}/mime-info/devhelp.*
+%{_datadir}/pixmaps/devhelp.png
+%{_libdir}/libdevhelp-1.so.*
+
+%files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/devhelp-1.0/
+%{_libdir}/libdevhelp-1.so
 %exclude %{_libdir}/libdevhelp-1.a
 %exclude %{_libdir}/libdevhelp-1.la
-%{_libdir}/libdevhelp-1.so.0.0.0
 %{_libdir}/pkgconfig/libdevhelp-1.0.pc
 
 %changelog
+* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.9.1-2
+- Added seperate devel subpackage to be in line with Red Hat. (Mads Kiilerich)
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 

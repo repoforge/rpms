@@ -2,7 +2,10 @@
 # Authority: dag
 # Upstream: <dan$machlin,net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 Summary: IP Subnet Calculator
 Name: ipsc
@@ -20,6 +23,7 @@ Source1: http://ipsc.sf.net/dist/prips/prips-0.9.4-src.tar.gz
 Patch0: ipsc-0.4.3-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 The IP Subnet Calculator is a tool that allows network administrators 
@@ -30,7 +34,7 @@ has a number of other useful functions.
 %setup -n %{name} -b 1
 %patch0
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >ipsc.desktop
 [Desktop Entry]
 Name=IP Subnet Calculator
 Comment=Calculate with IPs, subnets and netmasks
@@ -46,18 +50,18 @@ EOF
 	CFLAGS="%{optflags}"
 
 %install
+%{__rm} -rf %{buildroot}
 %{__install} -D -m0755 src/ipsc %{buildroot}%{_bindir}/ipsc
-%{__install} -D -m0755 src/gipsc %{buildroot}%{_bindir}/ipsc
+%{__install} -D -m0755 src/gipsc %{buildroot}%{_bindir}/gipsc
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Network/
-        %{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Network/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 ipsc.desktop %{buildroot}%{_datadir}/gnome/apps/Network/ipsc.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor gnome                \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	desktop-file-install --vendor gnome                \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		ipsc.desktop
 %endif
 
 %clean
@@ -67,11 +71,8 @@ EOF
 %defattr(-, root, root, 0755)
 %doc ChangeLog CONTRIBUTORS COPYING README TODO
 %{_bindir}/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Network/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-ipsc.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Network/ipsc.desktop}
 
 %changelog
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.4.3-1

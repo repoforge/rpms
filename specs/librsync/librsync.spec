@@ -6,7 +6,7 @@
 Summary: Library that implements the rsync remote-delta algorithm
 Name: librsync
 Version: 0.9.6
-Release: 2
+Release: 3
 License: LGPL
 Group: System Environment/Libraries
 URL: http://librsync.sf.net/
@@ -48,8 +48,10 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-dependency-tracking
-#	--enable-shared
+%ifnarch %{ix86}
+	--with-pic
+%endif
+
 %{__make} %{?_smp_mflags}
 
 %install
@@ -82,6 +84,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.9.6-3
+- Added -fPIC for x86_64.
+
 * Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.9.6-1
 - Cosmetic changes.
 

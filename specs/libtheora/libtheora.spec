@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define prever alpha3
 

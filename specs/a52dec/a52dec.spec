@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Library for decoding ATSC A/52 (aka AC-3) audio streams
 Name: a52dec

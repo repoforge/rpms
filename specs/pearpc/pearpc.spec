@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 

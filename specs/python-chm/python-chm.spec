@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name pychm
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/gnochm/pychm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: python, chmlib-devel
 Requires: python, chmlib
 
@@ -35,6 +33,7 @@ MS-ITSS encoded files - Compressed Html Help files (.chm).
 CFLAGS="%{optflags}" python setup.py build
 
 %install
+%{__rm} -rf %{buildroot}
 python setup.py install \
 	--root="%{buildroot}" \
 	--record=INSTALLED_FILES

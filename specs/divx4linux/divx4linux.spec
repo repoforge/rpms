@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://download.divx.com/divx/divx4linux-std-%{date}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: i386 x86_64
+ExclusiveArch: i386
 
 %description
 This archive includes the binary release of DivX Codec 5.0.5 for x86 Linux.

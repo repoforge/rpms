@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Cute little penguins that walk along the tops of your windows
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://xpenguins.seul.org/xpenguins-%{version}.tar.gz
 Source1: http://xpenguins.seul.org/xpenguins_themes-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 XPenguins animates a friendly family of penguins in your root window.
@@ -51,6 +49,7 @@ Themes for xpenguins, includes:
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 %{__tar} -xvzf %{SOURCE1} -C %{buildroot}%{_datadir}/xpenguins/
 

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 # Upstream: Steve Jankowski <steve$qstat,org>
 
 %define real_version 25c

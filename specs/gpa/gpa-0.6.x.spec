@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Graphical user interface for the GnuPG

@@ -33,10 +33,14 @@ and aim to help complete the Unix shell vocabulary.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall \
 	BINDIR="%{buildroot}%{_bindir}" \
 	DOCDIR="rpm-doc" \
 	MANDIR="%{buildroot}%{_mandir}/man1"
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

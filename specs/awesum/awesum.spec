@@ -44,6 +44,7 @@ EOF
 %build
 
 %install
+%{__rm} -rf %{buildroot}
 ./install.sh
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/

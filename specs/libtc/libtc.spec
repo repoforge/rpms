@@ -2,12 +2,6 @@
 # Authority: dag
 # Upstream: Måns Rullgård <mru$kth,se>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
-
-### configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
-
 Summary: Collection of useful functions for C programming
 Name: libtc
 Version: 1.1.0
@@ -46,11 +40,11 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-dependency-tracking \
 	--enable-static
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %post devel

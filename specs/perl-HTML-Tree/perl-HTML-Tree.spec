@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: atrpms
+# Authority: axel
 
 %define real_name HTML-Tree
 

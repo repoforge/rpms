@@ -35,10 +35,14 @@ mv Filter/README Filter/README.filter
 ./setup.py build
 
 %install
+%{__rm} -rf %{buildroot}
 strip -S Pax/*.so
 strip -S Filter/*.so
 strip -S Sketch/Modules/*.so
 ./setup.py install --prefix="%{buildroot}%{_prefix}"
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

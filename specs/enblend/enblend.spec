@@ -35,6 +35,7 @@ does not line up the images for you. Use a tool like Hugin to do that.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %post
@@ -50,7 +51,7 @@ does not line up the images for you. Use a tool like Hugin to do that.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*
-%{_bindir}
+%{_bindir}/*
 
 %changelog
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 1.2-1

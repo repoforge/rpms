@@ -160,6 +160,7 @@ EOF
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %{__install} -D -m0711 src/nrpe %{buildroot}%{_sbindir}/nrpe
 %{__install} -D -m0711 src/check_nrpe %{buildroot}%{_libdir}/nagios/plugins/check_nrpe
 %{__install} -D -m0644 nrpe.cfg %{buildroot}%{_sysconfdir}/nagios/nrpe.cfg
@@ -177,6 +178,9 @@ fi
 
 %postun
 /sbin/service nrpe condrestart &>/dev/null || :
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

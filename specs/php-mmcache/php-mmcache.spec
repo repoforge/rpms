@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define php_extdir %(php-config --extension-dir || echo /usr/lib/php4)
 %{!?php_version:%define php_version %(php-config --version || echo bad)}

@@ -1,13 +1,9 @@
 # $Id$
-
 # Authority: dries
-# Upstream:
 
 %define real_name File-Tail
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Perl extension for reading from continuosly updated files
 Name: perl-File-Tail
@@ -23,6 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/M/MG/MGRABNAR/File-Tail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: perl
 
 %description
@@ -40,25 +37,33 @@ or "cat /dev/null >file") transparently, without losing any input.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib}
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
-%{_mandir}/man3/*
-%{perl_vendorlib}/File/Tail.pm
-%{perl_vendorlib}/auto/File/Tail/autosplit.ix
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%doc Changes README
+%doc %{_mandir}/man3/*
+%exclude %{perl_vendorarch}
+%{perl_vendorlib}/File/
+%{perl_vendorlib}/auto/File/
 
 %changelog
+* Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.98-1
+- Changed to noarch package.
+- Cleanup and cosmetic changes.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.98-1
 - Initial package.

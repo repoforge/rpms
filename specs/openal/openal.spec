@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 
 Summary: Open Audio Library
 Name: openal

@@ -1,5 +1,5 @@
 # $Id$
-# DarAuthority: dag
+# Authority: dag
 # Upstream: Michael Kohn <mike$mikekohn,net>
 
 # Tag: test

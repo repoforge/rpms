@@ -1,8 +1,6 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 # Upstream: <gnupg-devel$gnupg,org>
-
-# Distcc: 0
 
 Summary: GnuPG Made Easy
 Name: gpgme

@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: newrpms
+# Authority: rudolf
 # Upstream: David Helder <dhelder$umich,edu>
 
 Summary: Gnet, a network library

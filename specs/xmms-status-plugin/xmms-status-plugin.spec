@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 # Upstream: Ian Campbell <ijc$hellion,org,uk>
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Programs for 48x48x1 image compression and decompression
 Name: compface

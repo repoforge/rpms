@@ -36,11 +36,15 @@ work after some runtime configuration on RHIDE.
 	RHIDESRC="$(pwd)"
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall \
 	RHIDESRC="$(pwd)"
 
 %post
 tic /usr/share/rhide/eterm-rhide
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)

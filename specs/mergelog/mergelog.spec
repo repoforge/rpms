@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 # Upstream: Bertrand Demiddelaer <bert$zehc,net>
 
 Summary: Merges httpd log files by date

@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 Summary: Access data stored in Microsoft Access databases
 Name: mdbtools
@@ -18,8 +20,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/mdbtools/mdbtools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: unixODBC-devel >= 2.0.0, libgnomeui-devel >= 2.0
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
  
 %description 
 MDB Tools is a suite of libraries and program for accessing data stored
@@ -50,11 +52,12 @@ for MDB Tools
 %{__cat} <<EOF >gmdb2.desktop
 [Desktop Entry]
 Name=MDB database explorer
-Comment=A graphical database explorer for MDB files.
+Comment=Explorer your MDB database files
 Icon=gnome-day.png
 Exec=gmdb2
 Terminal=false
 Type=Application
+Category=Application;Development;
 EOF
 
 %build 
@@ -66,27 +69,21 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Development/
-        %{__install} -m0644 gmdb2.desktop %{buildroot}%{_datadir}/gnome/apps/Development/
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 gmdb2.desktop %{buildroot}%{_datadir}/gnome/apps/Development/gmdb2.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category Development                 \
 		--dir %{buildroot}%{_datadir}/applications \
 		gmdb2.desktop
 %endif
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
-/sbin/ldconfig 
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig 
+/sbin/ldconfig 2>/dev/null
  
 %clean 
 %{__rm} -rf %{buildroot}
@@ -106,6 +103,7 @@ EOF
 %defattr (-, root, root, 0755) 
 %doc HACKING
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*.h
 
@@ -114,12 +112,9 @@ EOF
 %doc %{_datadir}/gnome/help/gmdb/
 %{_bindir}/gmdb2
 %{_datadir}/gmdb/
-%if %{dfi}
-        %{_datadir}/gnome/apps/Development/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
- 
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Development/gmdb2.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-gmdb2.desktop}
+
 %changelog 
 * Fri Jun 13 2003 Dag Wieers <dag@wieers.com> - 0.5-0
 - Initial package. (using DAR)

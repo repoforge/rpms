@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 # Upstream: <portaudio$techweb,rfa,org>
 
 %define rversion v18_1

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 # Upstream: <clamav-devel$lists,sf,net>
 
 Summary: Anti-virus software
@@ -22,7 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bzip2-devel, zlib-devel, gmp-devel
 BuildRequires: sendmail-devel >= 8.12
 Requires: clamav-db = %{version}-%{release}
-Obsoletes: libclamav = 0.54
+Obsoletes: libclamav <= %{version}-%{release}
+Obsoletes: clamav-lib <= %{version}-%{release}
 Provides: libclamav
 
 %description 
@@ -34,6 +35,7 @@ OpenAntivirus.org, and includes a program for auto-updating.
 Summary: The Clam AntiVirus Daemon
 Group: System Environment/Daemons
 Requires: clamav = %{version}-%{release}
+Obsoletes: clamav-server <= %{version}-%{release}
 
 %description -n clamd
 The Clam AntiVirus Daemon
@@ -50,6 +52,8 @@ The Clam AntiVirus sendmail-milter Daemon
 %package db
 Summary: Virus database for %{name}
 Group: Applications/Databases
+Obsoletes: clamav-update <= %{version}-%{release}
+Obsoletes: clamav-data <= %{version}-%{release}
 
 %description db
 The actual virus database for %{name}
@@ -58,8 +62,8 @@ The actual virus database for %{name}
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: clamav = %{version}-%{release}
-Obsoletes: libclamav-static-devel = 0.54 
-Obsoletes: libclamav-devel = 0.54
+Obsoletes: libclamav-static-devel <= %{version}-%{release}
+Obsoletes: libclamav-devel <= %{version}-%{release}
 Provides: libclamav-static-devel, libclamav-devel
 
 %description devel
@@ -309,6 +313,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.75.1-1
+- Added obsoletes for fedora.us.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.75.1-1
 - Updated to release 0.75.1.
 

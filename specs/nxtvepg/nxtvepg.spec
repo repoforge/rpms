@@ -20,7 +20,6 @@ Source: http://dl.sf.net/nxtvepg/nxtvepg-%{version}.tar.gz
 Source1: nxtvepg.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: XFree86-devel, tcl, tk
 %{?fc1:BuildRequires: tcl-devel, tk-devel}
 %{?el3:BuildRequires: tcl-devel, tk-devel}
@@ -58,8 +57,9 @@ EOF
 	CCFLAGS="%{optflags}"
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall \
-	resdir="%{buildroot}%{_prefix}/X11R6/lib/X11" \
+	resdir="%{buildroot}%{_prefix}/X11R6/%{_lib}/X11" \
 	SYS_DBDIR="%{buildroot}%{_localstatedir}/tmp/nxtvdb"
 
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/nxtvepg.png

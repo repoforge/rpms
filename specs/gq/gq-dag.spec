@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 
 Summary: Interactive graphical LDAP browser
 Name: gq

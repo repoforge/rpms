@@ -32,6 +32,7 @@ LinkChecker checks HTML documents for broken links.
 CFLAGS="%{optflags}" python setup.py build
 
 %install
+%{__rm} -rf %{buildroot}
 python setup.py install \
 	--root="%{buildroot}"
 

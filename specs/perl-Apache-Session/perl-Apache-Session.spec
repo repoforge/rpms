@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dries
-# Upstream:
 
 %define real_name Apache-Session
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -36,7 +34,9 @@ interacts with a tied hash.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} -I %{perl_vendorlib} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	DESTDIR="%{buildroot}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -52,8 +52,8 @@ interacts with a tied hash.
 %{_mandir}/man3/*
 %{perl_vendorlib}/Apache/Session.pm
 %{perl_vendorlib}/Apache/Session/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%exclude %{perl_archlib}
+%exclude %{perl_vendorarch}
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.6-1

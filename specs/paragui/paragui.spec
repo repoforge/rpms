@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 
 Summary: Graphical User Interface based on SDL
 Name: paragui

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: rudolf
 
 %{?dist:%{expand: %%define %{dist} 1}}
 

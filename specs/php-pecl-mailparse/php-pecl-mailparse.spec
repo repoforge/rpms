@@ -1,4 +1,5 @@
 # $Id: php-pear-ole.spec 97 2004-03-11 18:31:17Z dude $
+# Authority: matthias
 
 %define php_extdir %(php-config --extension-dir)
 

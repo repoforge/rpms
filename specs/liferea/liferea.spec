@@ -1,20 +1,20 @@
 # $Id$
 # Authority: dag
 # Upstream: Lars Lindner <llando$gmx,de>
-# Upstream: Nathan J. Conrad <t98502$users,sf,net>
+# Upstream: Nathan J. Conrad <t98502$users,sourceforge,net>
 
 Summary: RSS/RDF feed reader
 Name: liferea
 Version: 0.5.2
-Release: 0.b
+Release: 0.c
 License: GPL
 Group: Applications/Internet
-URL: http://liferea.sf.net/
+URL: http://liferea.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/liferea/liferea-%{version}b.tar.gz
+Source: http://dl.sf.net/liferea/liferea-%{version}c.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
@@ -28,7 +28,7 @@ browse through their items, and show their contents
 using GtkHTML.
 
 %prep
-%setup -n %{name}-%{version}b
+%setup -n %{name}-%{version}c
 
 %{__cat} <<'EOF' >liferea.sh
 #!/bin/bash
@@ -75,6 +75,9 @@ desktop-file-install --vendor gnome --delete-original \
 %exclude %{_libdir}/liferea/*.la
 
 %changelog
+* Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.5.2-0.c
+- Updated to release 0.5.2c.
+
 * Sun Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.5.2-0.b
 - Updated to release 0.5.2b.
 

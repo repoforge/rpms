@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define php_extdir %(php-config --extension-dir)
 

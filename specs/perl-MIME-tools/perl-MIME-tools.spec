@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 
 %{?dist: %{expand: %%define %dist 1}}
 

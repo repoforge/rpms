@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: SOAP (Simple Object Access Protocol) implementation
 Name: soup

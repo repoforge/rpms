@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Utility for formatting Phoenix NoteBIOS hibernation partitions under Linux
@@ -13,10 +12,9 @@ URL: http://www.procyon.com/~pda/lphdisk/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.procyon.com/~pda/lphdisk/%{name}-%{version}.tar.gz
+Source: http://www.procyon.com/~pda/lphdisk/lphdisk-%{version}.tar.gz
 Patch: lphdisk-0.9.1-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 lphdisk is a linux reimplementation of the PHDISK.EXE (DOS) utility provided
@@ -33,11 +31,9 @@ to perform this configuration step.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf ${buildroot}
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man8 \
-			%{buildroot}%{_sbindir}
-%{__install} -m0755 lphdisk %{buildroot}%{_sbindir}
-%{__install} -m0644 lphdisk.8 %{buildroot}%{_mandir}/man8
+%{__rm} -rf %{buildroot}
+%{__install} -D -m0755 lphdisk %{buildroot}%{_sbindir}/lphdisk
+%{__install} -D -m0644 lphdisk.8 %{buildroot}%{_mandir}/man8/lphdisk.8
 
 %clean
 %{__rm} -rf ${buildroot}

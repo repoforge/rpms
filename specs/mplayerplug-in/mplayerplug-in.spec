@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 # Upstream: Kevin DeKorte <kdekorte$users,sf,net>
 # Upstream: <mplayerplug-in-devel$lists,sf,net>
 

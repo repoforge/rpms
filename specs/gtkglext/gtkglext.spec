@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: newrpms
+# Authority: rudolf
 # Upstream: <gtkglext-list$gnome,org>
 
 Summary: OpenGL Extension to GTK

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name xpenguins_applet
@@ -36,6 +35,7 @@ something else.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: newrpms
+# Authority: dag
 
 Summary: MPEG library for SDL
 Name: smpeg
@@ -12,7 +12,7 @@ URL: http://icculus.org/smpeg/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smpeg/%{name}-%{version}.tar.gz
+Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smpeg/smpeg-%{version}.tar.gz
 Patch0: smpeg-0.4.4-gcc32.patch
 Patch1: smpeg-0.4.4-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

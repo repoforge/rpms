@@ -1,5 +1,5 @@
 # $Id$
-# Authority: atrpms
+# Authority: axel
 # Upstream: <gnupg-devel$gnupg,org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)

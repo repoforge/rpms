@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Extensible Binary Meta Language library
 Name: libebml

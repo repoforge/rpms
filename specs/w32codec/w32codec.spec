@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: atrpms
+# Authority: axel
 # PackageDir: /forbidden
 
 %define real_version 0.90pre7

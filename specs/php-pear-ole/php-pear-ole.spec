@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define php_dir %(eval "`pear config-get php_dir`"; echo $php_dir)
 

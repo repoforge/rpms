@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: atrpms
+# Authority: axel
 # Dists: rh9
 
 Summary: Library providing XML and HTML support
