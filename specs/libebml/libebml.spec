@@ -7,7 +7,7 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.matroska.org/
-Source: http://www.bunkus.org/videotools/mkvtoolnix/sources/libebml-%{version}.tar.gz
+Source: http://www.bunkus.org/videotools/mkvtoolnix/sources/libebml-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
