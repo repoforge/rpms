@@ -7,7 +7,7 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.1
-Release: %{?date:0.%{date}.}1
+Release: %{?date:0.%{date}.}2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
@@ -36,8 +36,12 @@ libmpeg2.
 
 
 %build
-CFLAGS="%{optflags} -fPIC -DPIC" \
-%configure --enable-shared
+CFLAGS="%{optflags}" \
+%configure \
+%ifnarch %{ix86}
+    --disable-accel-detect \
+%endif
+    --enable-shared 
 %{__make} %{?_smp_mflags}
 
 
@@ -76,6 +80,9 @@ CFLAGS="%{optflags} -fPIC -DPIC" \
 
 
 %changelog
+* Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-0.20040610.2
+- Use --disable-accel-detect for non-x86 to fix asm build failure on x86_64.
+
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-0.20040610.1
 - Update to latest available CVS snaphsot, fixes build issues on FC3.
 - Added SDL support.
