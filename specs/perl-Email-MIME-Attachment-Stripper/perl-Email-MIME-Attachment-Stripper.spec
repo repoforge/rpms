@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: Simon Cozens <simon$simon-cozens,org>
+# Upstream: Casey West <casey$geeknest,com>
 
 %define real_name Email-MIME-Attachment-Stripper
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Email-MIME-Attachment-Stripper/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/Email-MIME-Attachment-Stripper-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWEST/Email-MIME-Attachment-Stripper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
