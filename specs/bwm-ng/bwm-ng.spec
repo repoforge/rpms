@@ -5,9 +5,9 @@
 Summary: Curses based bandwidth monitor
 Name: bwm-ng
 Version: 0.3
-Release: 1
+Release: 2
 License: GPL
-Group: Application/Internet
+Group: Applications/Internet
 URL: http://users.informatik.haw-hamburg.de/~gropp_v/
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -40,5 +40,8 @@ A small and simple curses Bandwidth Monitor.
 %{_bindir}/bwm-ng
 
 %changelog
+* Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 0.3-2
+- Fixed Group tag.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Initial package. (using DAR)

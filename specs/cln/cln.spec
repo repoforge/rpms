@@ -5,9 +5,9 @@
 Summary: C++ Class Library for Numbers
 Name: cln
 Version: 1.1.8
-Release: 1
+Release: 2
 License: GPL
-Group: System/Libraries
+Group: System Environment/Libraries
 URL: http://www.ginac.de/CLN/
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -89,5 +89,8 @@ fi
 %{_libdir}/pkgconfig/cln.pc
 
 %changelog
-* Wed Aug 25 2004 Dag Wieers <dag@wieers.coM> - 1.1.8-1
+* Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 1.1.8-2
+- Fixed Group tag.
+
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 1.1.8-1
 - Initial package. (using DAR)

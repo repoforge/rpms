@@ -5,9 +5,9 @@
 Summary: Hotswap peripherals in portable computers
 Name: hotswap
 Version: 0.4.0
-Release: 1
+Release: 2
 License: GPL
-Group: Base Environment/System
+Group: System Environment/Base
 URL: http://users.ox.ac.uk/~univ1377/c600.html
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -86,6 +86,9 @@ appropriate command line arguments.
 %{_bindir}/xhotswap
 
 %changelog
+* Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 0.4.0-2
+- Fixed Group tag.
+
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Based on Jason Merrill's work.
 - Initial package. (using DAR)

@@ -7,9 +7,9 @@
 Summary: NIST SPeech HEader REsources (SPHERE) Package
 Name: sphere
 Version: 2.6
-Release: 0.a
+Release: 1.a
 License: GPL
-Group: Applications/
+Group: System Environment/Libraries
 URL: ftp://jaguar.ncsl.nist.gov/pub/sphere_2.6a.README
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -114,5 +114,8 @@ EOF
 %{_libdir}/sp/
 
 %changelog
+* Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 2.6-1.a
+- Fixed Group tag.
+
 * Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.6-0.a
 - Initial package. (using DAR)

@@ -99,7 +99,7 @@ EOF
 %{__cat} <<EOF >os.channel
 ### URL: http://fedora.redhat.com/
 [os]
-name = OS packages from Red Hat for $name $version (%{_arch}
+name = OS packages from Red Hat for $name $version (%{_arch})
 baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core
 type = rpm-md
 priority = 10
