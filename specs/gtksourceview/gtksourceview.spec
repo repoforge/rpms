@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/0.9/gtksourceview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: gcc-c++
 
 %description
 GtkSourceView is a text widget that extends the standard gtk+ 2.x
