@@ -47,7 +47,7 @@ This package contains a Perl interface to the MD5 Message-Digest Algorithm.
 %doc README Changes
 %{_mandir}/man3/*
 %{perl_vendorlib}/MD5.pm
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
+%exclude %{perl_archlib}/perllocal.pod
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
