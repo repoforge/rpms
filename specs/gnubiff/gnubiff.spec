@@ -9,7 +9,7 @@ Summary: Mail notification program
 Summary(nl): een programma dat een indicatie geeft als email aankomt
 Name: gnubiff
 Version: 1.0.8
-Release: 1.dries
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://gnubiff.sourceforge.net/

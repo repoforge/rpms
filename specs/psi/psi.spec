@@ -10,7 +10,7 @@ Summary: Qt program for connecting to the Jabber messaging network
 Summary(nl): Qt programma om te verbinden met het Jabber messaging netwerk
 Name: psi
 Version: 0.9.1
-Release: 1.dries
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/

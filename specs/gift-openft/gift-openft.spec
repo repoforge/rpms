@@ -8,7 +8,7 @@ Summary: Gift openft plugin
 Summary(nl): openft plugin voor gift
 Name: gift-openft
 Version: 0.2.1.2
-Release: 1.dries
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://apollon.sourceforge.net/

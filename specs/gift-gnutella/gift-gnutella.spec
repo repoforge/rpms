@@ -8,7 +8,7 @@ Summary: Gift gnutella plugin
 Summary(nl): gnutella plugin voor gift
 Name: gift-gnutella
 Version: 0.0.8
-Release: 1.dries
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://apollon.sourceforge.net/

@@ -8,7 +8,7 @@ Summary: gift fasttrack plugin
 Summary(nl): fasttrack plugin voor gift
 Name: gift-fasttrack
 Version: 0.8.5
-Release: 1.dries
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://developer.berlios.de/projects/gift-fasttrack
