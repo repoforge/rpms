@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -16,9 +15,8 @@ URL: http://www.rxvt.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/rxvt/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/rxvt/rxvt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libtool
 Requires: utempter
@@ -91,26 +89,23 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_libdir} \
 			%{buildroot}%{_prefix}/X11R6/man/man1/ \
 			%{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/ \
-			%{buildroot}%{_docdir}/%{name}-%{version}/menu/ \
 			%{buildroot}%{_prefix}/X11R6/lib/X11/{ja,ko,zh_CN,zh_TW}/{app-defaults,rxvt}/
 %makeinstall \
 	bindir="%{buildroot}%{_prefix}/X11R6/bin" \
 	mandir="%{buildroot}%{_prefix}/X11R6/man/man1"
-%{__install} -m0644 doc/menu/* %{buildroot}%{_docdir}/%{name}-%{version}/menu/
+
+%{__install} -d -m0755 %{buildroot}%{_docdir}/rxvt-%{version}/menu/ \
+%{__install} -m0644 doc/menu/* %{buildroot}%{_docdir}/rxvt-%{version}/menu/
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Utilities/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/
+        %{__install} -D -m0644 rxvt.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/rxvt.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		rxvt.desktop
 %endif
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -121,6 +116,7 @@ EOF
 %doc %{_prefix}/X11R6/man/man?/*
 %{_prefix}/X11R6/bin/*
 %{_libdir}/*.so.*
+%exclude %{_libdir}/*.la
 %if %{dfi}
         %{_datadir}/gnome/apps/Utilities/*.desktop
 %else
