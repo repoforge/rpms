@@ -54,7 +54,7 @@ with additions.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{perl_vendorarch}/Log/Dispatch/FileRotate.pm
+%{perl_vendorlib}/Log/Dispatch/FileRotate.pm
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 1.11-1

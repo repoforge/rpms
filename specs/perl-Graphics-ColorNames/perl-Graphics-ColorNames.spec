@@ -11,7 +11,7 @@
 
 Summary: Defines RGB values for common color names
 Name: perl-Graphics-ColorNames
-Version: 0.3901
+Version: 1.05
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,11 +51,14 @@ specifying a color by name rather than RGB value.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes TODO
+%doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Graphics/ColorNames.pm
 %{perl_vendorlib}/Graphics/ColorNames/*
 
 %changelog
+* Sat Oct 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.05
+- Update to release 1.05
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.3901-1
 - Initial package.
