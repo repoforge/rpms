@@ -4,6 +4,21 @@
 
 %define real_version 1.5.2-3
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: OpenRM Scene Graph
 Name: openrm
 Version: 1.5.2.3
@@ -19,6 +34,8 @@ Source: http://dl.sf.net/openrm/openrm-devel-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 
 %description
 OpenRM Scene Graph is a developers toolkit that implements a scene graph
