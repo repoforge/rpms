@@ -5,8 +5,8 @@
 
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
-Version: 1.3.13
-Release: 2
+Version: 1.3.14
+Release: 1
 License: Other
 Group: System Environment/Libraries
 URL: http://botan.randombit.net/
@@ -41,14 +41,12 @@ you will need to install %{name}-devel.
 
 %build
 ./configure.pl --prefix=%{buildroot}/usr gcc-linux-ia32
-# the following is only needed for Botan 1.2.x
-# sed -i "s/^CXX.*/CXX = g++296/g;" Makefile
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-mv %{buildroot}%{_datadir}/doc/Botan-%{version} botandocs
+%{__mv} %{buildroot}%{_datadir}/doc/Botan-%{version} botandocs
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -72,6 +70,9 @@ mv %{buildroot}%{_datadir}/doc/Botan-%{version} botandocs
 %{_libdir}/*.so
 
 %changelog
+* Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.14-1
+- update to 1.3.14
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.13-2
 - fix the ownership of the devel files
 
