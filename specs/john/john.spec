@@ -33,7 +33,12 @@ supported as well.
 %{__perl} -pi.orig -e 's|ile = ~/|ile = /usr/share/john/|' run/john.ini
 
 %build
+%ifarch %{ix86}
 %{__make} %{?_smp_mflags} -C src linux-x86-any-elf
+%endif
+%ifarch alpha
+%{__make} %{?_smp_mflags} -C src alpha
+%endif
 
 %install
 %{__rm} -rf %{buildroot}

@@ -22,7 +22,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://the.earth.li/~sgtatham/putty/latest/putty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, ImageMagick
+BuildRequires: gtk+-devel, ImageMagick, desktop-file-utils
 
 %description
 Putty is a SSH, Telnet & Rlogin client for Linux.

@@ -15,7 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.citi.umich.edu/u/provos/honeyd/arpd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdnet
+BuildRequires: libdnet, libevent-devel, libpcap
 Provides: farpd = %{version}-%{release}
 
 %description

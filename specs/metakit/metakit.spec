@@ -16,7 +16,7 @@ URL: http://www.equi4.com/metakit/
 Source: http://www.equi4.com/pub/mk/metakit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, tcl
+BuildRequires: gcc-c++, tcl-devel, python-devel
 
 %description
 MetaKit is an embeddable database which runs on Unix, Windows,
