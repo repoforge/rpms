@@ -18,7 +18,7 @@ Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
-BuildRequires: gettext, gcc-c++
+BuildRequires: gettext, gcc-c++, desktop-file-utils
 
 %description
 Liferea (Linux Feed Reader) is an RSS/RDF feed reader. 

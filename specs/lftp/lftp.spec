@@ -20,6 +20,7 @@ Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel, gcc-c++
+BuildRequires: libtool
 
 %description
 LFTP is a sophisticated ftp/http file transfer program. Like bash, it has job

@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: mozilla-devel >= 1.0, mozilla-nspr-devel >= 1.0
 BuildRequires: gtk2-devel >= 2.0, glib2-devel >= 2.0, pango-devel >= 1.0.0
 BuildRequires: atk-devel >= 1.0, freetype-devel >= 2.0, gcc-c++
+BuildRequires: libgnomeui-devel
 #BuildRequires: libbonoboui
 Requires: %{_libdir}/mozilla/plugins/
 

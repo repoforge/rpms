@@ -22,6 +22,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/tvtime/tvtime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+ExcludeArch: sparc sparc64
+
 BuildRequires: freetype-devel >= 2.0, zlib-devel, libpng-devel, XFree86-libs
 BuildRequires: SDL-devel, gcc-c++, libxml2-devel
 #BuildRequires: libstdc++-devel

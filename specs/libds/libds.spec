@@ -13,9 +13,8 @@ URL: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-### FIXME: Source URL isn't clear about the filename, fails for wget and rpm. (Please fix upstream)
-#Source: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/download.php?file=libds-%{version}.tar.bz2
-#Source: libds-%{version}.tar.bz2
+BuildRequires: gcc-c++
+
 Source: http://yallara.cs.rmit.edu.au/~malsmith/C0A00201/libds/libds-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
