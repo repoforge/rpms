@@ -4,12 +4,12 @@
 # Screenshot: http://gambas.sourceforge.net/2003-06-25.png
 # ScreenshotURL: http://gambas.sourceforge.net/screenshots.html
 
-%define real_version 0.93a
+%define real_version 0.93b
 
 Summary: Free development environment based on a basic interpreter with object extensions
 Name: gambas
 Version: 0.93
-Release: 0.a
+Release: 0.b
 License: GPL
 Group: Development/Tools
 URL: http://gambas.sourceforge.net/
@@ -113,7 +113,7 @@ The gambas-examples package contains some examples for gambas.
 %{_datadir}/gambas/examples
 
 %changelog
-* Fri Jun 4 2004 Dries Verachtert <dries@ulyssis.org> 0.93-0.a
+* Fri Jun 4 2004 Dries Verachtert <dries@ulyssis.org> 0.93-0.b
 - update to 0.93a
 
 * Sun Apr 18 2004 Dries Verachtert <dries@ulyssis.org> 0.92a-1
