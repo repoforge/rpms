@@ -17,7 +17,7 @@ Source2: settings.cfg.realistic
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: armagetronad
-Obsoletes: armagetron-moviepack <= 1.0-1
+Obsoletes: armagetron-moviepack < 1.0-2
 Provides: armagetron-moviepack = %{version}-%{release}
 
 %description
