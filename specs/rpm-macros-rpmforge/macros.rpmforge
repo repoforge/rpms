@@ -1,0 +1,74 @@
+### Current distribution
+%ifdef %{?dist:1}0
+%define dist %{dist}
+%define %{dist} 1
+%endif
+
+
+### Fedora Core 1
+%if "%{dist}" == "fc1"
+%define errata 100
+%define _without_alsa 1
+%define _without_theora 1
+%endif
+
+
+### Red Hat Enterprise Linux 3
+%if "%{dist}" == "el3"
+%define errata 91
+%define _without_alsa 1
+%define _without_fribidi 1
+%define _without_theora 1
+%endif
+
+
+
+### Red Hat Linux 9
+%if "%{dist}" == "rh9"
+%define errata 90
+%define _without_alsa 1
+%define _without_fribidi 1
+%define _without_theora 1
+%endif
+
+
+### Red Hat Linux 8.0
+%if "%{dist}" == "rh8"
+%define errata 80
+%define _without_alsa 1
+%define _without_fribidi 1
+%define _without_theora 1
+%endif
+
+
+### Red Hat Linux 7.3
+%if "%{dist}" == "rh7"
+%define errata 73
+%define _without_alsa 1
+%define _without_freedesktop 1
+%define _without_fribidi 1
+%define _without_gnomevfs2 1
+%define _without_theora 1
+%endif
+
+
+### Red hat Enterprise Linux 2.1
+%if "%{dist}" == "el2"
+%define errata 72
+%define _without_alsa 1
+%define _without_freedesktop 1
+%define _without_fribidi 1
+%define _without_gnomevfs2 1
+%define _without_theora 1
+endif
+
+
+### Red Hat Linux 6.2
+%if "%{dist}" == "rh6"
+%define errata 62
+%define _without_alsa 1
+%define _without_freedesktop 1
+%define _without_fribidi 1
+%define _without_gnomevfs2 1
+%define _without_theora 1
+%endif
