@@ -4,34 +4,37 @@
 # # : No longer relevant, usually now included at the latest version
 # O : Shared across all distributions and releases, noarch
 # o : Noarch, but distribution specific
+#
+# grep -v "^#" _build-fr.txt | cut -d ' ' -f 1
+
 a52dec
 aalib
 advancecomp
 advancescan
-* libid3tag
-* libmad
-* libsndfile
-* xosd
+libid3tag *
+libmad *
+libsndfile *
+xosd *
 alsaplayer
-* cryptopp
+cryptopp *
 amule
 anjuta
 apg
 apt
-armagetron x (c++)
+armagetron
 armagetron-moviepack O
-* wxGTK
+wxGTK *
 audacity
 bbkeys
 blackbox
 bluefish
-boa x (doc)
-# bzflag
+boa
+bzflag
 cabextract
-* imlib2
-* giblib
+imlib2 *
+giblib *
 camE
-* gtkglext
+gtkglext *
 celestia
 compface
 conglomerate
@@ -40,46 +43,50 @@ csmash
 d4x
 diradmin
 djvulibre
-* id3lib
+id3lib *
 easytag
 epydoc
 faac
 faad2
-* lame
-* xvidcore
+lame *
+xvidcore *
 ffmpeg
 fftw
 flumotion
-* SDL_gfx
-* SDL_ttf
-* smpeg
-* perl-Module-Build
-* perl-SDL
+# freshrpms-release
+SDL_gfx *
+SDL_ttf *
+smpeg *
+perl-Module-Build *
+perl-SDL *
 frozen-bubble
 gcombust
 gentoo
 gkrellm
 gkrellm-plugins
 gkrellm-themes O
+glame
 gnuboy
 gpgme
-# grip
+gpgme03
+grip
 gsm
-gstreamer-ffmpeg x (mmx)
+gstreamer-ffmpeg
 gstreamer-monkeysaudio
-* libdvdnav
-* libdvdread
-* libfame
-* libmusepack
-* mpeg2dec
-* liboil
-* swfdec
+libdvdnav *
+libdvdread *
+libfame *
+libmusepack *
+lighttpd
+mpeg2dec *
+liboil *
+swfdec *
 gstreamer-plugins-extra
 gstreamer-python
 gtetrinet
 # gthumb
 Gtk-Perl
-* libsigc++
+libsigc++ *
 gtkmm2
 gtkpod
 gtktalog
@@ -93,10 +100,9 @@ i8kutils
 ipw2100-firmware O
 ipw2200-firmware O
 jhead
-js
-kannel x (.depend failure)
-* libsamplerate
-* libquicktime
+kannel
+libsamplerate *
+libquicktime *
 kino
 kino-dvtitler
 ladspa
@@ -109,7 +115,7 @@ libebml
 libmatroska
 libmpeg3
 libshout
-libsidplay x (c++)
+libsidplay
 # libtheora
 libXvMCW
 linux_logo
@@ -118,29 +124,31 @@ lmarbles
 ltris
 lzo
 mach
-* scons o
-madman x (c++)
+scons o *
+madman
 metakit
-* portaudio
+portaudio *
 mixxx
 mjpegtools
-mpeg4ip
+# mpeg4ip
 mpg321
 mplayer
 mplayer-fonts O
 mplayer-skins O
 neverball
-# nmap
+nmap
 ogle
 ogle_gui
 ogmtools
 oidentd
+p7zip
 pearpc
 perl-Cache-Cache o
 perl-Error o
 perl-IPC-ShareLite
 perl-Video-DVDRip
 perl-libintl
+php-eaccelerator
 php-mmcache
 php-pear-excel o
 php-pear-ole o
@@ -154,8 +162,8 @@ psi
 python-imaging
 python-twisted
 rar O
+xine-lib *
 # rhythmbox
-* xine-lib
 rpmlint o
 rrdtool
 rte
@@ -165,7 +173,7 @@ sqlite
 squale
 starfighter
 subtitleripper
-# sylpheed
+sylpheed
 sylpheed-claws
 synaptic
 synergy
@@ -178,8 +186,9 @@ ucarp
 unrar
 vcdimager
 videolan-client
-* zziplib
+zziplib *
 viruskiller
+xdesktopwaves
 xine
 xine-skins O
 xmame
@@ -198,6 +207,7 @@ xplanet
 xplanet-maps O
 xrick
 xvattr
+yasm
 # yum
-* zvbi
+zvbi *
 zapping
