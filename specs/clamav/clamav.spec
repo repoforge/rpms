@@ -11,7 +11,7 @@ Version: 0.68
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://clamav.sf.net/
+URL: http://www.clamav.net/
 
 Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
 Source1: http://dl.sf.net/clamav/clamav-%{version}.tar.gz.sig
@@ -110,7 +110,7 @@ if [ ! -f "$LOG_FILE" ]; then
     chown clamav.clamav "$LOG_FILE"
 fi
 
-/usr/bin/freshclam \
+%{_bindir}/freshclam \
     --quiet \
     --datadir="%{_localstatedir}/clamav" \
     --log="$LOG_FILE" \

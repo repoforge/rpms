@@ -3,10 +3,10 @@
 # Authority: dag
 # Distcc: 0
 
-%define	date 20030319
+%define	date 20030710
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: The avifile library used to play AVI streams.
+Summary: Library used to play AVI streams.
 Name: avifile
 Version: 0.7.38
 Release: 1

@@ -1,15 +1,16 @@
 # $Id$
 
 # Authority: dag
-# Distcc: 0
 # Upstream: Kern Sibbald <kern@sibbald.com>
 # Upstream: <apcupsd-users@lists.sourceforge.net>
+
+# Distcc: 0
 
 %define _sbindir /sbin
 
 Summary: APC UPS power control daemon.
 Name: apcupsd
-Version: 3.10.11
+Version: 3.10.12
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -22,7 +23,7 @@ Source: http://dl.sf.net/apcupsd/apcupsd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
-BuildRequires: gd-devel, glibc-devel
+BuildRequires: glibc-devel, gd-devel
 Requires: perl
 
 %description
@@ -51,6 +52,14 @@ ScriptAlias /apcupsd/ %{_localstatedir}/www/apcupsd/
 </Directory>
 EOF
 
+%{__cat} <<EOF >apcupsd.logrotate
+%{_localstatedir}/log/apcupsd.events {
+        missingok
+        copytruncate
+        notifempty
+}
+EOF
+
 %build
 %configure \
 	--sysconfdir="%{_sysconfdir}/apcupsd" \
@@ -73,9 +82,11 @@ EOF
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/ \
+			%{buildroot}%{_sysconfdir}/logrotate.d/
 %{__install} -m0755 examples/hid-ups examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/
 %{__install} -m0644 apcupsd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -m0644 apcupsd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/apcupsd
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_initrddir}/halt*
@@ -108,11 +119,16 @@ fi
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/apcupsd/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/apcupsd.conf
+%config(noreplace) %{_sysconfdir}/logrotate.d/*
 %config %{_initrddir}/*
 %{_sbindir}/*
 %{_localstatedir}/www/apcupsd/
 
 %changelog
+* Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 3.10.12-1
+- Added apcupsd.logrotate. (Derek Werthmuller)
+- Updated to new release 3.10.12.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 3.10.11-1
 - Added apcupsd.conf. (Andrew Newman)
 - Fixed unsuccessful 'make install'.

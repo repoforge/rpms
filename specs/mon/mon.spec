@@ -1,6 +1,5 @@
 # $Id$
 
-
 # Authority: dag
 
 %define moncgi_version 1.52
@@ -8,7 +7,7 @@
 Summary: General-purpose resource monitoring system.
 Name: mon
 Version: 0.99.2
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kernel.org/software/mon/
@@ -37,6 +36,12 @@ required, the mon server will not need to be changed.
 
 %prep
 %setup -a 1 -a 2
+
+### FIXME: Change to real perl. (Please fix upstream)
+%{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i' mon.cgi-%{moncgi_version}/util/moncgi-appsecret.pl alerts/hpov/*.alert mon.d/*.monitor
+
+### FIXME: get rid of chgrp. (Please fix upstream)
+%{__perl} -pi.orig -e 's|-g uucp ||' mon.d/Makefile
 
 %{__cat} <<EOF >userfile
 # user: passwd
@@ -181,9 +186,6 @@ esac
 exit $RETVAL
 EOF
 
-### FIXME: Change to real perl. (Please fix upstream)
-%{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i;' mon.cgi-%{moncgi_version}/util/moncgi-appsecret.pl alerts/hpov/*.alert mon.d/*.monitor
-
 %build
 %{__make} %{?_smp_mflags} -C mon.d \
 	RPM_OPT_FLAGS="%{optflags} -DUSE_VENDOR_CF_PATH=1"
@@ -246,9 +248,13 @@ fi
 %{_bindir}/*
 %{_localstatedir}/lib/mon/
 %{_libdir}/mon/
-%defattr(02555, root, uucp)
+
+%defattr(2555, root, uucp)
 %{_libdir}/mon/mon.d/dialin.monitor.wrap
 
 %changelog
+* Tue Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.99.2-1
+- Fixed problems with perl-modules.
+
 * Fri Jan 09 2004 Dag Wieers <dag@wieers.com> - 0.99.2-0
 - Initial package. (using DAR)
