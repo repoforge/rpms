@@ -19,7 +19,7 @@ Source: http://dl.sf.net/gnocatan/gnocatan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel, gtk2-devel, libgnome-devel, glib2-devel
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, gcc-c++
 
 Requires(post): scrollkeeper
 
