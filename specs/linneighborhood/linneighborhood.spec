@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Hans Schmid <schmidjo@bnro.de>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -9,7 +10,7 @@
 Summary: SMB network neighborhood.
 Name: linneighborhood
 Version: 0.6.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
 URL: http://www.bnro.de/~schmidjo/
@@ -17,7 +18,8 @@ URL: http://www.bnro.de/~schmidjo/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.bnro.de/~schmidjo/download/%{rname}-%{version}.tar.gz
+Source: http://www.bnro.de/~schmidjo/download/LinNeighborhood-%{version}.tar.gz
+Patch0: linneighborhood-0.6.5-samba3.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -32,6 +34,8 @@ or Samba without smbmount/smbumount/smbmnt but with smbfs installed.
 
 %prep
 %setup -n %{rname}-%{version}
+%{?rhfc1:%patch0 -p1}
+%{?rhel3:%patch0 -p1}
 
 %{__cat} <<EOF >%{rname}.desktop
 [Desktop Entry]
@@ -84,6 +88,9 @@ EOF
 %endif
 
 %changelog
+* Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.6.5-2
+- Patch for samba3 from Debian. (Ng Sheaufeng)
+
 * Tue Feb 03 2004 Dag Wieers <dag@wieers.com> - 0.6.5-1
 - Added proper desktop-file.
 
