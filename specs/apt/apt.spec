@@ -107,7 +107,7 @@ EOF
 # URL: http://ayo.freshrpms.net/
 
 ### Fedora Core
-%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/i386 freshrpms
+%{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} freshrpms
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 
 ### Red Hat Linux
