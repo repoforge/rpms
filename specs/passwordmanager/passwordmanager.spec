@@ -57,7 +57,7 @@ password to access the list.
 
 %files -f %{short_name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
 %{?fc2:%{_datadir}/services/kded/pwmanager_kwalletemu.desktop}
 %{_datadir}/applnk/Applications/pwmanager.desktop
