@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define rcver cvs
+#define rcver cvs
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
 
 %{!?_without_opengl:%define opengl 1}
@@ -24,6 +24,7 @@ Source22: http://www.arcade-history.com/download/history0_88a.zip
 Source23: http://www.mameworld.net/mameinfo/update/Mameinfo088.zip
 # http://www.mameworld.net/catlist/ 0.88 - 25/10/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
+Patch: xmame-0.88-libgl.patch
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -69,6 +70,9 @@ see http://www.mess.org/.
 
 %prep
 %setup -n %{name}-%{version}%{?rcver:-%{rcver}}
+%patch -p1 -b .libgl
+# Cleanup CVS stuff
+find . -type d -name CVS | xargs %{__rm} -rf
 
 
 %build
@@ -92,13 +96,19 @@ done
 # Use system expat library
 %{__perl} -pi -e 's/^BUILD_EXPAT/# BUILD_EXPAT/g' Makefile
 
+# Use glibc libm
+%{__perl} -pi -e 's/^SEPARATE_LIBM/# SEPARATE_LIBM/g' Makefile
+
+# Disable stripping on install, to get proper debuginfo
+%{__perl} -pi -e 's/ -s / /g' Makefile
+
 # Make the package build verbose by default (to see opts etc.)
 %{?_without_quietbuild: %{__perl} -pi -e 's/^QUIET/# QUIET/g' src/unix/unix.mak}
 
 # The default, if not overwritten below
 export PREFIX=%{_prefix}
 export CFLAGS="%{optflags} -fno-merge-constants"
-export JOY_I386=1
+export JOY_STANDARD=1
 export JOY_PAD=1
 %{!?_without_alsa:   export SOUND_ALSA=1}
 %{!?_without_esound: export SOUND_ESOUND=1}
@@ -239,6 +249,15 @@ popd
 
 
 %changelog
+* Fri Nov 12 2004 Matthias Saou <http://freshrpms.net/> 0.88-1
+- Update to 0.88 final.
+- Disable stripping to get proper debuginfo packages... nope :-/
+
+* Mon Nov  8 2004 Matthias Saou <http://freshrpms.net/> 0.88-0.cvs.1
+- Remove CVS dirs from the source.
+- Add libgl patch to change .so names so that devel packages aren't required
+  at runtime.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 0.88-0.cvs.1
 - Update to current CVS, all my bugs are fixed!
 - Release as 0.88 cvs.
