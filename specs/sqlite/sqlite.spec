@@ -7,7 +7,7 @@
 Summary: library that implements an embeddable SQL database engine
 Name: sqlite
 Version: 2.8.13
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Databases
 URL: http://www.sqlite.org/
@@ -57,9 +57,21 @@ you will need to install %{name}-devel.
 %setup -n %{name}
 %patch0 -b .encode
 
+### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
+%{__perl} -pi.orig -e '
+               s|\$\(exec_prefix\)/lib|\$(libdir)|g;
+               s|/usr/lib|\$(libdir)|g;
+       ' Makefile* */Makefile* */*/Makefile*
+
 %build
-CFLAGS="%{optflags} -DNDEBUG=1" \
-CXXFLAGS="%{optflags} -DNDEBUG=1" \
+%ifarch x86_64
+%{__libtoolize} --force
+%{__aclocal}
+%{__autoconf}
+%endif
+CFLAGS="%{optflags} -DNDEBUG=1 -fno-strict-aliasing" \
+CXXFLAGS="%{optflags} -DNDEBUG=1 -fno-strict-aliasing" \
+TARGET_EXEEXT='.so' \
 %configure \
 	--enable-utf8
 %{__make} %{?_smp_mflags}
@@ -67,14 +79,14 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 
 %install
 %{__rm} -rf %{buildroot}
+
+### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_libdir} \
 			%{buildroot}%{_includedir}
+
 %makeinstall
 %{__install} -D -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/sqlite.1
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -97,12 +109,16 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %doc doc/
 %{_includedir}/*.h
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 2.8.13-1
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 2.8.13-2
 - Added UTF8 support. (Vladimir Vukicevic)
+
+* Sun May 30 2004 Dag Wieers <dag@wieers.com> - 2.8.13-1
+- Fixes for building on x86_64 arch.
 
 * Thu May 27 2004 Matthias Saou <http://freshrpms.net/> 2.8.13-0
 - Updated to release 2.8.13.
