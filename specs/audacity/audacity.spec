@@ -4,20 +4,22 @@
 #define prever         pre3
 %define desktop_vendor freshrpms
 
-Summary: Powerful audio editor
+Summary: powerful audio editor
 Name: audacity
 Version: 1.2.1
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
+URL: http://audacity.sf.net/
+
 Source: http://dl.sf.net/audacity/audacity-src-%{version}%{?prever:-%{prever}}.tar.bz2
-URL: http://audacity.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: wxGTK >= 2.4.0, libogg, libvorbis
-Requires: libmad, flac, libsndfile
+
 BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
 BuildRequires: wxGTK-devel >= 2.4.0, libogg-devel, libvorbis-devel
 BuildRequires: libmad-devel, flac-devel, libsndfile-devel, alsa-lib-devel
+Requires: wxGTK >= 2.4.0, libogg, libvorbis
+Requires: libmad, flac, libsndfile
 
 %description
 Audacity is a free audio editor. You can record sounds, play sounds, import
@@ -28,10 +30,8 @@ editor, a customizable spectrogram mode and a frequency analysis window for
 audio analysis applications. Built-in effects include Bass Boost, Wahwah,
 and Noise Removal, and it also supports VST plug-in effects. 
 
-
 %prep
-%setup -n audacity-src-%{version}%{?prever:-%{prever}}
-
+%setup -n %{name}-src-%{version}%{?prever:-%{prever}}
 
 %build
 %configure \
@@ -40,26 +40,24 @@ and Noise Removal, and it also supports VST plug-in effects.
     --without-portmixer
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
-
 # Create a desktop entry
-%{__cat} << EOF > %{name}.desktop
+cat << EOF > %{name}.desktop
 [Desktop Entry]
 Name=Audacity Audio Editor
 Comment=Audio editor to record, play sounds and import, export files
 Icon=%{name}.xpm
-Exec=%{name}
+Exec=%{_bindir}/%{name}
 Terminal=false
 Type=Application
 EOF
 
 # Complete the modifications
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
+mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     --add-category X-Red-Hat-Extra              \
@@ -86,19 +84,19 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_mandir}/man1/*
 
 %changelog
-* Mon May 10 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-1
-- Update to 1.2.1.
+* Tue Jun 01 2004 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
 
-* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2
+* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-2.fr
 - Recompile with ALSA support (should be near stable now).
 
-* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-1
+* Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 1.2.0-1.fr
 - Update to 1.2.0 final.
 
-* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.2
+* Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.2.fr
 - Rebuild against gtk+ wxGTK to fix crashes with the gtk2 version.
 
-* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.1
+* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 1.2.0-0.pre3.1.fr
 - Update to 1.2.0pre3.
 - Added find_lang macro.
 - Updated the menu entry.
