@@ -13,6 +13,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python
 BuildRequires: python, python-devel
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 SCons is an Open Source software construction tool--that is, a
 next-generation build tool. Think of SCons as an improved, cross-platform

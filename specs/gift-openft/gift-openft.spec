@@ -18,6 +18,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, gift, gcc-c++, pkgconfig, zlib-devel
 Requires: gift
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 Openft plugin for gift
 

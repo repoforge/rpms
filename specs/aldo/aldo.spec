@@ -16,6 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 Aldo is a morse tutor released under GPL. 
 At this moment Aldo has four kinds of exercises: 

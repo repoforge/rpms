@@ -24,6 +24,9 @@ BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{?fc1:BuildRequires: freeglut-devel, XFree86-devel}
 %{?rh9:BuildRequires: glut-devel, XFree86-devel}
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 GL-117 is an action flight simulator. Enter the Eagle Squadron and succeed 
 in several challanging missions leading though different landscapes. Five 

@@ -18,6 +18,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++, openssl-devel, libglade-devel, gdk-pixbuf-devel, glib2-devel, libglade2-devel
 %{?fc2:BuildRequires: gnome-panel-devel}
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 Gnubiff is a mail notification program that checks for mail, displays
 headers when new mail has arrived and allows to read the first lines of new

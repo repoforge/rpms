@@ -1,6 +1,5 @@
 # $Id: $
 # Authority: dries
-# Upstream: 
 
 %define real_version cvs20040503
 
@@ -17,6 +16,9 @@ Source1: lwscripts-%{version}-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, ncurses-devel
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 LoneWolf is a free open source emulator for the Ultima Online server. It

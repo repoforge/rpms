@@ -24,6 +24,9 @@ BuildRequires: scons, gcc-c++
 %{?fc2:BuildRequires: desktop-file-utils}
 %{?fc1:BuildRequires: desktop-file-utils}
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 Blender is the essential software solution you need for 3D, from modeling,
 animation, rendering and post-production to interactive creation and

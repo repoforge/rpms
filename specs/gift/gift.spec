@@ -15,6 +15,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 giFT is a modular daemon capable of abstracting the communication between
 the end user and specific filesharing protocols (peer-to-peer or otherwise).

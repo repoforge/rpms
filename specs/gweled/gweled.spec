@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dries
+# Screenshot: http://sebdelestaing.free.fr/gweled/Images/gweled_screenshot.png
 
 Summary: Clone of 'bjeweled' or 'diamond mine'
 Name: gweled
@@ -14,7 +15,9 @@ Source: http://sebdelestaing.free.fr/gweled/Release/gweled-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel
 
-# Screenshot: http://sebdelestaing.free.fr/gweled/Images/gweled_screenshot.png
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 Gweled is a Gnome version of a popular PalmOS/Windows/Java game called

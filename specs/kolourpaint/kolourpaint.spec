@@ -1,6 +1,8 @@
 # $Id: $
 
 # Authority: dries
+# Screenshot: http://kolourpaint.sourceforge.net/screenshot0_big.png
+# ScrenshotURL: http://kolourpaint.sourceforge.net/screenshots.html
 
 Summary: Free easy-to-use paint program
 Name: kolourpaint
@@ -10,16 +12,15 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://kolourpaint.sourceforge.net/
 
-# dunno why but downloading at dl.sf.net does not work
-# Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
-Source: http://heanet.dl.sourceforge.net/sourceforge/kolourpaint/kolourpaint-%{version}.tar.bz2
+Source: http://dl.sf.net/kolourpaint/kolourpaint-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 %{?fc2:BuildRequires:libselinux-devel}
 
-# Screenshot: http://kolourpaint.sourceforge.net/screenshot0_big.png
-# ScrenshotURL: http://kolourpaint.sourceforge.net/screenshots.html
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 KolourPaint is a free, easy-to-use paint program for KDE. It aims to be

@@ -17,6 +17,9 @@ BuildRequires: diffutils, openssl-devel, gcc-objc, ffcall-devel
 BuildRequires: gnustep-make, libxml2-devel
 Requires: ffcall
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 The GNUstep Base Library is a library of general-purpose,
 non-graphical Objective C objects.  For example, it includes classes

@@ -17,6 +17,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, gcc-c++, libjpeg-devel, zlib-devel, libpng-devel, XFree86-devel
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 %description
 FLTK (pronounced "fulltick") is a cross-platform C++ GUI toolkit for
 UNIX/Linux (X11), Microsoft Windows and MacOS X. FLTK provides modern GUI

@@ -1,7 +1,7 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: 
+# Screenshot: http://cernunos.studentenweb.org/images/kotnet-limiet.png
 
 Summary: Superkaramba theme which displays your kotnet stats
 Name: kotnet-limiet
@@ -16,7 +16,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: fedora.patch
 Requires: superkaramba python
 
-# Screenshot: http://cernunos.studentenweb.org/images/kotnet-limiet.png
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 kotnet-limiet is a theme for superkaramba which displays your kotnet

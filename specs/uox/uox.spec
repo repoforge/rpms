@@ -1,7 +1,6 @@
 # $Id: $
 
 # Authority: dries
-# Upstream:
 
 Summary: Ultima online server
 Name: uox
@@ -17,6 +16,9 @@ Source1: ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla%{mozilla
 Source2: http://www.xoduz.org/files/uox3/uox3.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 UOX3 stands for Ultima Offline eXperiment(remake 3). It is a server emulator
