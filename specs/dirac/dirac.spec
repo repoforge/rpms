@@ -18,7 +18,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/dirac/Dirac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, xparam, doxygen
+BuildRequires: gcc-c++, xparam, doxygen, tetex-latex
 
 %description
 Dirac is a general-purpose video codec aimed at resolutions from QCIF
