@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://gnubiff.sourceforge.net/
 
-Source: http://df.sf.net/gnubiff/gnubiff-%{version}.tar.gz
+Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
