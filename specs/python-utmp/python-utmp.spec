@@ -1,0 +1,54 @@
+# $Id$
+# Authority: dag
+
+%define python_version %(python2 -c 'import sys; print sys.version[:3]')
+
+Summary: Python module for working with utmp
+Name: python-utmp
+Version: 0.7
+Release: 1
+License: GPL
+Group: Development/Python
+URL: http://melkor.dnp.fmph.uniba.sk/~garabik/python-utmp/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://melkor.dnp.fmph.uniba.sk/~garabik/python-utmp/python-utmp_%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: python-devel
+Requires: python >= %{python_version}
+
+%description
+This package provides 3 python modules to access utmp and wtmp
+records.  utmpaccess is lowlevel module wrapping glibc functions,
+UTMPCONST provides useful constants, and utmp is module build on top
+of utmpaccess module, providing object oriented interface.
+
+%prep
+%setup
+
+%build
+%{__make} -f Makefile.glibc \
+	PYTHONVER="%{python_version}" \
+	PYTHONDIR="%{_libdir}/python%{python_version}/site-packages/"
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall -f Makefile.glibc \
+	PYTHONVER="%{python_version}" \
+	PYTHONDIR="%{buildroot}%{_libdir}/python%{python_version}/site-packages/"
+
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc README TODO examples/*
+%{_libdir}/python%{python_version}/site-packages/*
+
+%changelog
+* Wed Jan 05 2005 Dag Wieers <dag@wieers.com> - 0.7-1
+- Initial package. (using DAR)

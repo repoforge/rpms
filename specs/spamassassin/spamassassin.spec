@@ -77,7 +77,7 @@ export CFLAGS="%{optflags} -fPIC"
 %{__make} %{?_smp_mflags} \
 	OPTIMIZE="%{optflags} -fPIC"
 %{__make} %{?_smp_mflags} spamd/libspamc.so \
-	OPTIMIZE="%{optflags} -fPIC"
+	LIBS="-ldl %{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -103,11 +103,11 @@ if [ $1 -eq 1 ]; then
 fi
 
 if [ -f %{_sysconfdir}/spamassassin.cf ]; then
-	%{__mv} %{_sysconfdir}/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
+	%{__mv} -f %{_sysconfdir}/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
 fi
 
 if [ -f %{_sysconfdir}/mail/spamassassin.cf ]; then
-	%{__mv} %{_sysconfdir}/mail/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
+	%{__mv} -f %{_sysconfdir}/mail/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
 fi
 
 /sbin/service spamassassin condrestart &>/dev/null || :

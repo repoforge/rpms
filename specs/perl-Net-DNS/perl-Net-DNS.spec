@@ -12,7 +12,7 @@
 Summary: Net-DNS Perl module
 Name: perl-Net-DNS
 Version: 0.48
-Release: 0
+Release: 1
 License: Artistic and GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS/
@@ -41,15 +41,21 @@ script.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" --no-online-tests \
-	INSTALLDIRS="vendor"
+        INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags} \
+        OPTIMIZE="%{optflags}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-# remove this file because it generates an rpm dependency for
-# Win32::Registry
+
+### Remove this file because it generates an rpm dependency for Win32::Registry
 %{__rm} -f %{buildroot}%{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,11 +64,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes README TODO
 %doc %{_mandir}/man?/*
-%{perl_vendorlib}/*
-%exclude %{perl_archlib}/perllocal.pod
+%{perl_vendorarch}/Net/
+%{perl_vendorarch}/auto/Net/
 
 %changelog
-* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 0.48-0
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 0.48-1
 - Update to release 0.48.
 
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 0.47-1

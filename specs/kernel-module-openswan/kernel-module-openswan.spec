@@ -5,8 +5,6 @@
 # ExcludeDist: fc2 fc3
 
 # Archs: i686 i586 i386 athlon
-# Distcc: 0
-# Soapbox: 0
 # BuildAsRoot: 1
 
 %{?dist: %{expand: %%define %dist 1}}
@@ -29,7 +27,7 @@
 
 Summary: Linux drivers for OpenS/WAN IPsec support
 Name: kernel-module-openswan
-Version: 2.2.0
+Version: 2.3.0
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -38,7 +36,7 @@ URL: http://www.openswan.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.openswan.org/code/openswan-%{version}.tar.gz
+Source: http://www.openswan.org/download/openswan-%{version}.tar.gz
 Patch0: openswan-2.1.1-mts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -340,6 +338,9 @@ fi
 #%{_includedir}/*.h
 
 %changelog
+* Mon Jan 17 2005 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
 - Updated to release 2.2.0.
 
