@@ -6,7 +6,7 @@
 Summary: Cryptographic library
 Name: nettle
 Version: 1.10
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://www.lysator.liu.se/~nisse/nettle/
@@ -74,11 +74,15 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/nettle/*.h
 %{_libdir}/*.a
 %{_datadir}/info/nettle.info.gz
 %{_libdir}/*.so
 
 %changelog
+* Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 1.10-1
+- Fix ownership of devel package.
+
 * Tue Jun 08 2004 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.
