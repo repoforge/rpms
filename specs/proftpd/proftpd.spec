@@ -1,7 +1,8 @@
 # $Id$
 # Authority: matthias
+# Upstream: <proftp-devel@lists.sf.net>
 
-#$Id$
+# Distcc: 0
 
 Summary: flexible, stable and highly-configurable FTP Server
 Name: proftpd
@@ -10,25 +11,28 @@ Release: 6%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
-Source0: ftp://proftpd.org/distrib/source/%{name}-%{version}.tar.bz2
+
+Source: ftp://ftp.proftpd.org/distrib/source/proftpd-%{version}.tar.bz2
 Source1: proftpd.conf
 Source2: proftpd.init
 Source3: proftpd-xinetd
 Source4: proftpd.logrotate
 Source5: welcome.msg
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig, /etc/init.d
+
 BuildRequires: pam-devel, perl, pkgconfig
-%{!?_without_tls:Requires: openssl}
 %{!?_without_tls:BuildRequires: openssl-devel, krb5-devel}
-%{?_with_ldap:Requires: openldap}
 %{?_with_ldap:BuildRequires: openldap-devel}
-%{?_with_mysql:Requires: mysql}
 %{?_with_mysql:BuildRequires: mysql-devel, zlib-devel}
-%{?_with_postgresql:Requires: postgresql-libs}
 %{?_with_postgresql:BuildRequires: postgresql-devel}
 Provides: ftpserver
 Conflicts: wu-ftpd, anonftp, vsftpd
+
+Requires: pam >= 0.59, /sbin/service, /sbin/chkconfig, /etc/init.d
+%{!?_without_tls:Requires: openssl}
+%{?_with_ldap:Requires: openldap}
+%{?_with_mysql:Requires: mysql}
+%{?_with_postgresql:Requires: postgresql-libs}
 
 %description
 ProFTPD is an enhanced FTP server with a focus toward simplicity, security,
@@ -49,7 +53,7 @@ Available rpmbuild rebuild options :
 
 %build
 # Workaround for the PostgreSQL include file
-perl -pi -e 's|pgsql/libpq-fe.h|libpq-fe.h|g' contrib/mod_sql_postgres.c
+%{__perl} -pi.orig -e 's|pgsql/libpq-fe.h|libpq-fe.h|g' contrib/mod_sql_postgres.c
 
 # TLS includes
 OPENSSL_INC=""
@@ -73,12 +77,12 @@ fi
 %makeinstall rundir=%{buildroot}%{_localstatedir}/run/proftpd \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
-%{__install} -D -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
-%{__install} -D -m 640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
-%{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
-%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
-%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
-%{__install} -D -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
+%{__install} -D -m0644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
+%{__install} -D -m0640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
+%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
+%{__install} -D -m0640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
+%{__install} -D -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
+%{__install} -D -m0644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
 mkdir -p %{buildroot}/var/ftp/uploads
 mkdir -p %{buildroot}/var/ftp/pub
 mkdir -p %{buildroot}/var/log/proftpd
@@ -115,8 +119,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING CREDITS ChangeLog NEWS README README.LDAP README.mod_sql
-%doc README.modules README.PAM doc/* sample-configurations
+%doc COPYING CREDITS ChangeLog NEWS README* doc/* sample-configurations/
 %dir %{_localstatedir}/run/proftpd
 %config(noreplace) %{_sysconfdir}/proftpd.conf
 %config(noreplace) %{_sysconfdir}/xinetd.d/xproftpd
@@ -127,11 +130,15 @@ fi
 %{_mandir}/*/*
 %{_bindir}/*
 %{_sbindir}/*
-%dir /var/ftp
-%attr(331, ftp, ftp) %dir /var/ftp/uploads
-%dir /var/ftp/pub
+%dir /var/ftp/
+%dir /var/ftp/pub/
 %config(noreplace) /var/ftp/welcome.msg
-%attr(750, root, root) %dir /var/log/proftpd
+
+%defattr(0750, root, root, 0755)
+%dir /var/log/proftpd/
+
+%defattr(0331, ftp, ftp, 0755)
+%dir /var/ftp/uploads/
 
 %changelog
 * Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 1.2.9-6.fr
