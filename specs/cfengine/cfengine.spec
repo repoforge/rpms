@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://ftp.iu.hio.no/pub/cfengine/cfengine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, flex, m4, openssl-devel, tetex
+BuildRequires: bison, flex, m4, openssl-devel, tetex, texinfo
 %{?fc2:BuildRequires: db4-devel}
 %{?fc1:BuildRequires: db4-devel}
 %{?el3:BuildRequires: db4-devel}
