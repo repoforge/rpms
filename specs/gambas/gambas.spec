@@ -4,7 +4,7 @@
 
 Summary: Free development environment based on a basic interpreter with object extensions
 Name: gambas
-Version: 0.90
+Version: 0.92a
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -16,12 +16,12 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://gambas.sourceforge.net/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Patch0: makefiles-destdir.patch.bz2
-Patch0: dont-make-links.patch.bz2
-BuildRequires: automake, autoconf, gcc, make, qt-devel, mysql-devel, postgresql-devel
-Requires: qt
+Patch0: dont-make-links.patch
+BuildRequires: kdelibs-devel, libjpeg-devel, automake, autoconf, gcc, make, qt-devel, SDL-devel, mysql-devel, postgresql-devel, XFree86-devel, zlib-devel, glibc-headers, sqlite-devel, gcc-c++
+Requires: qt, zlib, XFree86, sqlite, SDL, libjpeg
 
-#(d) primscreenshot: http://gambas.sourceforge.net/2003-06-25.png
-#(d) screenshotsurl: http://gambas.sourceforge.net/screenshots.html
+# Screenshot: http://gambas.sourceforge.net/2003-06-25.png
+# ScreenshotURL: http://gambas.sourceforge.net/screenshots.html
 
 %description
 Gambas is a free development environment based on a Basic interpreter
@@ -39,27 +39,38 @@ KDE programma's aansturen met DCOP, uw programma vertalen naar vele talen,
 eenvoudig netwerktoepassingen maken, enzoverder...
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 %patch -p1
 
 %build
 rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.in$")
 ./reconf || echo reconf gives a warning but lets continue anyway
-(cd libltdl/;../reconf || echo reconf gives a warning but lets continue anyway)
-%configure --datadir=/usr/share/gambas
+# (cd libltdl/;../reconf || echo reconf gives a warning but lets continue anyway)
+%configure --datadir=/usr/share/gambas \
+	--enable-intl \
+	--enable-conv \
+	--enable-qt \
+	--enable-kde \
+	--enable-net \
+	--enable-curl \
+	--enable-postgresql \
+	--enable-mysql \
+	--enable-sqlite \
+	--enable-sdl \
+	--enable-vb
 %{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export PATH=$RPM_BUILD_ROOT/usr/bin:$PATH
-%{__make} bindir=$RPM_BUILD_ROOT/usr/bin includedir=$RPM_BUILD_ROOT/usr/include libdir=$RPM_BUILD_ROOT/usr/lib datadir=$RPM_BUILD_ROOT/usr/share/gambas install-strip
+%{__rm} -rf "${RPM_BUILD_ROOT}"
+export PATH=%{buildroot}/usr/bin:$PATH
+#  {__make} bindir=$RPM_BUILD_ROOT/usr/bin includedir=$RPM_BUILD_ROOT/usr/include libdir=$RPM_BUILD_ROOT/usr/lib datadir=$RPM_BUILD_ROOT/usr/share/gambas install-strip
+%makeinstall datadir=%{buildroot}/usr/share/gambas
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %package help
@@ -98,13 +109,19 @@ The gambas-examples package contains some examples for gambas.
 
 %files help
 %defattr(-,root,root,0755)
-/usr/share/gambas/help
+%{_datadir}/gambas/help
 
 %files examples
 %defattr(-,root,root,0755)
-/usr/share/gambas/examples
+%{_datadir}/gambas/examples
 
 %changelog
+* Sun Apr 18 2004 Dries Verachtert <dries@ulyssis.org> 0.92a-1
+- update to version 0.92a
+
+* Mon Mar 22 2004 Dries Verachtert <dries@ulyssis.org> 0.91-1
+- update to version 0.91
+
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 0.90-1
 - update to version 0.90
 
