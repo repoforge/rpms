@@ -8,7 +8,7 @@
 Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
 Version: 0.50.18
-Release: 2
+Release: 3
 License: Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
@@ -59,19 +59,18 @@ Name=DVD Ripper and Encoder
 Comment=Backup and compression utility for DVDs
 Exec=dvdrip
 Icon=%{perl_sitelib}/Video/DVDRip/icon.xpm
-Terminal=0
+Terminal=false
 Type=Application
+Categories=Application;AudioVideo;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category AudioVideo                     \
   dvdrip.desktop
 
 # Add Red Hat NPTL workaround
-perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_ASSUME_KERNEL} = "2.2.5";\n/g' %{buildroot}%{_bindir}/dvdrip
+perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_ASSUME_KERNEL} = "2.4.1";\n/g' %{buildroot}%{_bindir}/dvdrip
 
 
 %clean 
@@ -87,6 +86,9 @@ perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_AS
 
 
 %changelog
+* Sun Jul 11 2004 Matthias Saou <http://freshrpms.net/> - 0.50.18-3
+- Changed LD_ASSUME_KERNEL to 2.4.1 for x86_64.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.50.18-2
 - Rebuild for Fedora Core 2.
 
