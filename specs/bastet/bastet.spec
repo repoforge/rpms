@@ -41,7 +41,8 @@ chmod u+s /usr/bin/bastet
 %{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}/usr/bin
 mkdir -p %{buildroot}/var/games
-%makeinstall BIN_PREFIX=%{buildroot}/usr/bin/ DATA_PREFIX=%{buildroot}/var/games/
+cp bastet %{buildroot}/usr/bin
+touch %{buildroot}/var/games/bastet.scores
 
 %clean
 %{__rm} -rf %{buildroot}
