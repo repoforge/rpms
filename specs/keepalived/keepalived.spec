@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://keepalived.sf.net/software/keepalived-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: openssl-devel
 
 %description
@@ -39,8 +38,10 @@ nodes healthchecks and LVS directors failover.
 %setup
 
 %build
+%{?el3:export CPPFLAGS="-I/usr/kerberos/include"}
 %{?rh9:export CPPFLAGS="-I/usr/kerberos/include"}
 %configure \
+%{?el3:--includedir="/usr/kerberos/include"} \
 %{?rh9:--includedir="/usr/kerberos/include"}
 %{__make} %{?_smp_flags}
 
