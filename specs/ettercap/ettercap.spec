@@ -18,6 +18,7 @@ Source: http://dl.sf.net/ettercap/ettercap-NG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, ncurses-devel, gtk2-devel, gcc-c++, libpcap
+BuildRequires: libnet
 
 %description
 Ettercap is a multipurpose sniffer/interceptor/logger for switched

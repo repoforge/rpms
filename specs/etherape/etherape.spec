@@ -19,6 +19,7 @@ Source: http://dl.sf.net/etherape/etherape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gcc-c++, pkgconfig, libglade2-devel, libgnomeui-devel
+BuildRequires: gettext
 
 %description
 Etherape is a graphical network monitor for Unix modeled after
