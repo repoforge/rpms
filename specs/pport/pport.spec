@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: <pport-developement@lists.sf.net>
+# Upstream: <pport-developement$lists,sourceforge,net>
 
 Summary: Utility for accessing the output pins of a parallel port
 Name: pport
@@ -8,7 +8,7 @@ Version: 0.6.5
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://sf.net/projects/pport/
+URL: http://sourceforge.net/projects/pport/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
