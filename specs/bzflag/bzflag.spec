@@ -2,11 +2,11 @@
 # Authority: matthias
 
 %define desktop_vendor rpmforge
-%define date           20040515
+%define date           20050117
 
 Summary: 3D multi-player tank battle game
 Name: bzflag
-Version: 1.10.6
+Version: 2.0.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -14,6 +14,9 @@ URL: http://bzflag.org/
 Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gcc-c++, desktop-file-utils
+BuildRequires: ncurses-devel, curl-devel, SDL-devel
+# This one should probably required by one of the above instead
+BuildRequires: libidn-devel
 
 %description
 BZFlag is a 3D multi-player tank battle game  that  allows users to play
@@ -37,24 +40,25 @@ There are two main styles of play: capture-the-flag and free-for-all.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m 644 package/rpm/bzflag-m.xpm \
-    %{buildroot}%{_datadir}/pixmaps/bzflag.xpm
+%{__install} -D -m 644 data/bzflag-48x48.png \
+    %{buildroot}%{_datadir}/pixmaps/bzflag.png
 
 # Desktop menu entry
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
+Categories=Game;ArcadeGame
 Name=BZFlag
 Comment=3D multi-player tank battle game
 Exec=bzflag
-Icon=bzflag.xpm
+Icon=bzflag.png
 Terminal=false
 Type=Application
-Categories=Application;Game;
 Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
+desktop-file-install \
+    --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
@@ -68,15 +72,23 @@ desktop-file-install --vendor %{desktop_vendor} \
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README README.Linux
 %{_bindir}/bzadmin
 %{_bindir}/bzflag
-%{_bindir}/bzfrelay
 %{_bindir}/bzfs
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/bzflag
-%{_datadir}/pixmaps/bzflag.xpm
-%{_mandir}/man6/*
+%{_datadir}/bzflag/
+%{_datadir}/pixmaps/bzflag.png
+%{_mandir}/man?/*
 
 
 %changelog
+* Fri Jan 21 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-1
+- Update to 2.0.0.
+- Added ncurses, curl, SDL and libidn devel build requirements.
+- Replace xpm "BZFlag" image by a nicer png tank image.
+
+* Tue Aug 10 2004 Alan Cox <alan@redhat.com> 1.10.6-2
+- Adopted for FC3 core from Matthias Saou's freshrpms package. Thanks
+  to Matthias for doing all the work.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.10.6-1
 - Update to 1.10.6.
 - First rebuild for Fedora Core 2.
