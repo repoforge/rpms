@@ -40,10 +40,8 @@ for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3
 %install
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-#export DESTDIR=%{buildroot}
-#make install-strip
 %makeinstall
-# rm ${DESTDIR}/usr/share/applnk/Applications/Apollon.desktop
+rm %{buildroot}/usr/share/applnk/Applications/Apollon.desktop
 mkdir -p %{buildroot}/usr/share/applications/
 cat > %{buildroot}/usr/share/applications/Apollon.desktop <<EOF
 [Desktop Entry]
