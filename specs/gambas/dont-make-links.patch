@@ -1,0 +1,56 @@
+diff -uNr gambas-0.84a-orig/Makefile.am gambas-0.84a/Makefile.am
+--- gambas-0.84a-orig/Makefile.am	2004-02-08 11:37:04.000000000 +0100
++++ gambas-0.84a/Makefile.am	2004-02-25 15:31:00.000000000 +0100
+@@ -4,33 +4,34 @@
+ 
+ install-exec-local:
+ 	@echo
+-	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
+-	 echo "Making symbolic links in /usr/bin..."; \
+-	 rm -f /usr/bin/gbx; \
+-	 ln -s $(bindir)/gbx /usr/bin/gbx; \
+-	 rm -f /usr/bin/gbc; \
+-	 ln -s $(bindir)/gbc /usr/bin/gbc; \
+-	 rm -f /usr/bin/gba; \
+-	 ln -s $(bindir)/gba /usr/bin/gba; \
+-	 rm -f /usr/bin/gbi; \
+-	 ln -s $(bindir)/gbi /usr/bin/gbi; \
+-	fi
++#	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
++#	 echo "Making symbolic links in /usr/bin..."; \
++#	 rm -f /usr/bin/gbx; \
++#	 ln -s $(bindir)/gbx /usr/bin/gbx; \
++#	 rm -f /usr/bin/gbc; \
++#	 ln -s $(bindir)/gbc /usr/bin/gbc; \
++#	 rm -f /usr/bin/gba; \
++#	 ln -s $(bindir)/gba /usr/bin/gba; \
++#	 rm -f /usr/bin/gbi; \
++#	 ln -s $(bindir)/gbi /usr/bin/gbi; \
++#	fi
+ 
+ 	@echo
+ 	@echo "Installing the development environment..."
+ 	@(cd $(srcdir)/app; d=`pwd`; for p in *; do echo "Compiling $$p..."; cd $$d/$$p; \
+ 	  gbc -ag; gba; rm -rf .gambas; $(INSTALL) $$p $(bindir); done)
+-	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
+-	 rm -f /usr/bin/gambas; \
+-	 ln -s $(bindir)/gambas /usr/bin/gambas; \
+-        fi
++#	@if test "$(bindir)" != "/usr/bin" && test "$(bindir)" != "/usr/bin/"; then \
++#	 rm -f /usr/bin/gambas; \
++#	 ln -s $(bindir)/gambas /usr/bin/gambas; \
++#        fi
+ 
+ 	@echo
+ 	@echo "Creating the library info files..."
+ 	@$(INSTALL) -d $(libdir)/info
+-	@$(bindir)/gbi -a
+-	@rm -f $(libdir)/lib.gb.la
+-	@rm -f $(libdir)/lib.gb.so*
++	@echo "disabled, does not work while building in a change root"
++#	@$(bindir)/gbi -a
++#	@rm -f $(libdir)/lib.gb.la
++#	@rm -f $(libdir)/lib.gb.so*
+ 
+ 	@echo
+ 	@echo "Installing the gambas help files..."
