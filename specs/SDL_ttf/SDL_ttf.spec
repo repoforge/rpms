@@ -3,6 +3,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc2: %define _freetype_fix 1}
+%{!?dist: %define _freetype_fix 1}
+
 Summary: Simple DirectMedia Layer - Sample TrueType Font Library
 Name: SDL_ttf
 Version: 2.0.6
@@ -34,7 +37,7 @@ you will need to install %{name}-devel.
 %setup
 
 ### FIXME: Add missing ftbuild.h include (fix upstream please)
-%{?fc2:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' SDL_ttf.c}
+%{?_freetype_fix:%{__perl} -pi.orig -e 's|^(#include <freetype/freetype.h>)$|#include <ft2build.h>\n$1|' SDL_ttf.c}
 
 ### FIXME: Fix openstream reference for RH9 (fix upstream please)
 %{?rh9:%{__perl} -pi.orig -e 's|ft_open_stream|FT_OPEN_STREAM|g' SDL_ttf.c}
