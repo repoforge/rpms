@@ -1,3 +1,8 @@
+# $Id$
+#
+# Authority: bert
+# Upstream: <lyx-devel@lists.lyx.org>
+
 Name: latex-xft-fonts
 Version: 0.1
 Release: 2
