@@ -10,6 +10,8 @@ URL: http://xplanet.sourceforge.net/
 Source: http://dl.sf.net/xplanet/xplanet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gcc-c++, zlib-devel
+BuildRequires: libungif-devel, libjpeg-devel, libpng-devel
+BuildRequires: netpbm-devel, libtiff-devel, pango-devel
 
 %description
 Xplanet was inspired by Xearth, which renders an image of the earth into the
