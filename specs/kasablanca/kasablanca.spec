@@ -15,12 +15,13 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://download.berlios.de/kasablanca/kasablanca-%{version}.tar.gz 
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel
 BuildRequires: libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc-c++
 BuildRequires: qt-devel, openssl-devel
+BuildRequires: automake, autoconf
 %{?fc2:BuildRequires: xorg-x11-devel}
 %{?fc1:BuildRequires: XFree86-devel}
 

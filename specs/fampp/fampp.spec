@@ -13,8 +13,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/fampp/fampp2-3.5.1.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, stlport-devel
 
 %description

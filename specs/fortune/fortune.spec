@@ -65,7 +65,7 @@ Obsoletes: fortune-mod
 Patch0: fortune-mod-offense.patch
 Patch1: fortune-mod-1.0-remove-offensive.patch
 Patch2: fortune-mod-1.0-remove-offensive-option.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Fortune-mod contains the ever-popular fortune program, which will
