@@ -33,11 +33,13 @@ system and also has a built in support for Zeroconf site discovery.
 %setup -n %{name}-%{version}
 
 %build
+source  /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source  /etc/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 
