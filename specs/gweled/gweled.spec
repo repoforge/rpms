@@ -34,14 +34,17 @@ zet nog mogelijk is.
 %setup
 
 %build
-%configure
+%configure \
+	--disable-setgid
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__rm} -f %{buildroot}%{_datadir}/pixmaps/gweled/tile_even.svg~
-%{__rm} -f %{buildroot}%{_datadir}/pixmaps/gweled/tile_odd.svg~
+%makeinstall scoredir=%{buildroot}/var/games
+# The makefile installs the high score files in the wrong place.
+%{__rm} -Rf %{buildroot}%{_var}/games
+%{__install} -m 664 -D /dev/null %{buildroot}%{_var}/lib/games/gweled.easy.scores
+%{__install} -m 664 -D /dev/null %{buildroot}%{_var}/lib/games/gweled.timed.scores
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,16 +52,23 @@ zet nog mogelijk is.
 %files
 %defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING NEWS 
-%{_bindir}/gweled
+%attr(2551, root, games) %{_bindir}/gweled
 %{_datadir}/applications/gweled.desktop
 %{_datadir}/pixmaps/gweled.png
 %{_datadir}/pixmaps/gweled
-%{_var}/games/gweled.easy.scores
 %{_datadir}/gweled
+%defattr(-, root, games, 0755)
+%config(noreplace) %{_var}/lib/games/gweled.easy.scores
+%config(noreplace) %{_var}/lib/games/gweled.timed.scores
+
 
 %changelog
 * Sat Dec 04 2004 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Update to release 0.6.
+
+* Sat Dec 04 2004 Richard Henderson <rth@twiddle.net> 0.5-2
+- Fix installation directory and permissions for high score files.
+- Install binary as setgid games.
 
 * Wed Sep 01 2004 Dries Verachtert <dries@ulyssis.org> 0.5-1
 - update to version 0.5.
@@ -69,4 +79,3 @@ zet nog mogelijk is.
 
 * Mon Dec 1 2003 Dries Verachtert <dries@ulyssis.org> 0.3-1
 - first packaging for Fedora Core 1
-
