@@ -20,7 +20,9 @@ Source: http://pan.rebelbase.com/download/releases/%{version}/SOURCE/pan-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
-BuildRequires: gnet2-devel, gtkspell >= 2.0.2
+BuildRequires: gnet2-devel, gtkspell >= 2.0.2, pcre-devel >= 4.0, gettext
+%{?fc2:BuildRequires: desktop-file-utils}
+
 
 %description
 Pan is a newsreader, loosely based on Agent and Gravity, which attempts
