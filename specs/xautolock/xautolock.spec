@@ -33,10 +33,10 @@ xmkmf
 %install
 %{__rm} -rf %{buildroot}
 strip xautolock
-mkdir -p $RPM_BUILD_ROOT/usr/X11R6/bin/
-mkdir -p $RPM_BUILD_ROOT/usr/X11R6/man/man1/
-%{__install} -v -c   xautolock $RPM_BUILD_ROOT/usr/X11R6/bin/xautolock
-%{__install} -v -c -m 0444 xautolock._man $RPM_BUILD_ROOT/usr/X11R6/man/man1/xautolock.1x
+mkdir -p %{buildroot}/usr/X11R6/bin/
+mkdir -p %{buildroot}/usr/X11R6/man/man1/
+%{__install} -v -c   xautolock %{buildroot}/usr/X11R6/bin/xautolock
+%{__install} -v -c -m 0444 xautolock._man %{buildroot}/usr/X11R6/man/man1/xautolock.1x
 
 %clean
 %{__rm} -rf %{buildroot}

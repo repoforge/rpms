@@ -38,7 +38,6 @@ platforms are 32-bit Microsoft Windows, most Unix or unix-like systems, and
 Macintosh OS X. 
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -n wxPythonSrc-%{version}
 
 %build
@@ -48,7 +47,7 @@ python setup.py build
 %install
 %{__rm} -rf %{buildroot}
 cd wxPython
-python setup.py install --root ${RPM_BUILD_ROOT}
+python setup.py install --root %{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}

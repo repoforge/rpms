@@ -26,7 +26,6 @@ You will need to do a chmod +s /usr/bin/xlock if you want to use all the
 options.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build

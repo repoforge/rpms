@@ -32,7 +32,6 @@ later. Some of them may be friendly and trade with you. However, if you want
 to rule the world, you will have to train soldiers and fight.
  
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -b 1 -n widelands
 
 %build
@@ -54,16 +53,15 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr/share/widelands
-mkdir -p $RPM_BUILD_ROOT/usr/bin
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications/
+export DESTDIR=%{buildroot}
+mkdir -p %{buildroot}/usr/share/widelands
+mkdir -p %{buildroot}/usr/bin
+mkdir -p %{buildroot}/usr/share/applications/
 
-%{__install} -s -m 755 widelands.orig $RPM_BUILD_ROOT/usr/share/widelands/widelands
-%{__install} -m 755 widelands $RPM_BUILD_ROOT/usr/bin/widelands
-cp -r fonts maps pics tribes worlds $RPM_BUILD_ROOT/usr/share/widelands/
-cp widelands.desktop $RPM_BUILD_ROOT/usr/share/applications/
+%{__install} -s -m 755 widelands.orig %{buildroot}/usr/share/widelands/widelands
+%{__install} -m 755 widelands %{buildroot}/usr/bin/widelands
+cp -r fonts maps pics tribes worlds %{buildroot}/usr/share/widelands/
+cp widelands.desktop %{buildroot}/usr/share/applications/
 
 %clean
 %{__rm} -rf %{buildroot}
