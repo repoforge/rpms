@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: <wireless$kismetwireless,net>
 
-%define real_version 2004-04-R1
+%define real_version 2004-10-R1
 
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-Release: 1.200404r1
+Release: 1.200410r1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -76,6 +76,9 @@ cd -
 %{_datadir}/kismet/
 
 %changelog
+* Thu Dec 23 2004 Dag Wieers <dag@wieers.com> - 3.0.1-1.200410r1
+- Updated to release 2004-10-R1.
+
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 3.0.1-1.200404r1
 - Updated to release 2004-04-R1.
 

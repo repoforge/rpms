@@ -36,9 +36,27 @@ from a file as well as live from the network.
 %prep
 %setup
 
-#%{__perl} -pi.orig -e 's|(\${exec_prefix})/lib|$1/%{_lib}|g' configure
+%{__perl} -pi.orig -e 's|res_mkquery|__res_mkquery|g' configure
+
 %{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 %{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
+
+%{__cat} <<EOF >etherape.console
+USER=root
+PROGRAM=%{_sbindir}/etherape
+SESSION=true
+EOF
+
+%{__cat} <<EOF >etherape.pam
+#%PAM-1.0  
+auth       sufficient   /lib/security/pam_rootok.so
+auth       sufficient   /lib/security/pam_timestamp.so
+auth       required     /lib/security/pam_stack.so service=system-auth
+session    required     /lib/security/pam_permit.so
+session    optional     /lib/security/pam_timestamp.so
+session    optional     /lib/security/pam_xauth.so
+account    required     /lib/security/pam_permit.so
+EOF
 
 %build
 export LDFLAGS="-L%{_libdir} -L/%{_lib}"
@@ -49,6 +67,13 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
+
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
+%{__mv} -f %{buildroot}%{_bindir}/etherape %{buildroot}%{_sbindir}/etherape
+%{__ln_s} -f consolehelper %{buildroot}%{_bindir}/etherape
+
+%{__install} -D -m0644 etherape.console %{buildroot}%{_sysconfdir}/security/console.apps/etherape
+%{__install} -D -m0644 etherape.pam %{buildroot}%{_sysconfdir}/pam.d/etherape
 
 %if %{!?_without_freedesktop:1}0
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
@@ -68,8 +93,12 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FAQ NEWS OVERVIEW README* TODO html/*.html
 %doc %{_mandir}/man1/etherape.1*
+%doc %{_datadir}/gnome/help/etherape/
 %config %{_sysconfdir}/etherape/
+%{_sysconfdir}/security/console.apps/etherape
+%{_sysconfdir}/pam.d/etherape
 %{_bindir}/etherape
+%{_sbindir}/etherape
 %{_datadir}/etherape/
 %{_datadir}/pixmaps/etherape.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/etherape.desktop}

@@ -5,7 +5,7 @@
 
 Summary: AT Computing System and Process Monitor
 Name: atop
-Version: 1.13
+Version: 1.14
 Release: 1
 License: GPL
 Group: Applications/System
@@ -16,6 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.atcomputing.nl/pub/tools/linux/atop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: zlib-devel, ncurses-devel
 
 %description
@@ -83,13 +84,16 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/atop.1*
 %config(noreplace) %{_sysconfdir}/atop/
 %config(noreplace) %{_sysconfdir}/cron.d/atop
 %config %{_initrddir}/atop
 %{_bindir}/atop
 
 %changelog
+* Wed Dec 22 2004 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 1.13-1
 - Updated to release 1.13.
 
