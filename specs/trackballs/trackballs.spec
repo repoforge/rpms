@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/trackballs/trackballs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: guile, guile-devel, SDL, SDL_ttf
+BuildRequires: gcc-c++, guile, guile-devel, SDL, SDL_ttf
 
 %description
 Trackballs is a game for linux in which you steer a marble ball through
