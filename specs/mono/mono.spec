@@ -20,7 +20,6 @@ Source0: http://www.go-mono.com/archive/mono-%{version}.tar.gz
 #Source1: http://www.go-mono.com/archive/mcs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: bison, glib2-devel, libxml2-devel, libxslt-devel
 BuildRequires: pkgconfig, icu, libicu-devel
 Requires: /sbin/ldconfig
@@ -47,6 +46,9 @@ you will need to install %{name}-devel.
 
 ### FIXME: Makefiles still have /usr/include hardcoded which breaks building as user. (Please fix upstream)
 %{__perl} -pi.orig -e 's|\$\(privateincludedir\)|%{buildroot}%{_includedir}/mono/private|' libgc/include/Makefile*
+
+#%{__ln_s} -f amd64/ mono/arch/x86-64
+%{__perl} -pi.orig -e 's|(arch_target)=x86-64|$1=amd64|' configure*
 
 ### FIXME: TODO: Make wine and mono work together once and for all
 %{__cat} <<'EOF' >mono.sysv
