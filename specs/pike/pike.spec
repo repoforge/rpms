@@ -72,7 +72,6 @@ cd build
 %{__mv} %{buildroot}/usr/doc/pike ../pikedocs
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__mv} %{buildroot}/usr/man/man1/pike.1 %{buildroot}%{_mandir}/man1/
-%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -83,7 +82,7 @@ cd build
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE CHANGES COMMITTERS COPYING COPYRIGHT README README-CVS
 %doc %{_mandir}/man?/*
