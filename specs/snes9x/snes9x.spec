@@ -12,7 +12,10 @@ Group: Applications/Emulators
 URL: http://www.snes9x.com/
 Source: http://www.lysator.liu.se/snes9x/%{version}%{?prever}/snes9x-%{version}%{?prever}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, zlib-devel, libpng-devel, nasm
+BuildRequires: XFree86-devel, gcc-c++, zlib-devel, libpng-devel
+%ifarch %{ix86} x86_64
+BuildRequires: nasm
+%endif
 
 %description
 Snes9x is a portable, freeware Super Nintendo Entertainment System (SNES)
