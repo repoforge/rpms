@@ -43,10 +43,15 @@ make install \
 %defattr(-,root,root, 0755)
 %doc README AUTHORS COPYING CREDITS NEWS TODO
 %{_bindir}/gwenview
+%{_libdir}/kd3/libgv*
+%{_libdir}/libgwenview*
+%{_datadir}/apps/gv*
 %{_datadir}/applications/kde/gwenview.desktop
 %{_datadir}/apps/gwenview
 %{_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
 %{_datadir}/icons/*/*/apps/gwenview.png
+%{_datadir}/icons/*/*/apps/imagegallery.png
+%{_datadir}/services/gv*.desktop
 # %{_datadir}/locale/*/LC_MESSAGES/gwenview.mo
 %{_datadir}/man/man1/gwenview*
 
