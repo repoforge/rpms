@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Damian Conway <damian$conway,org>
 
@@ -35,12 +34,18 @@ for the built-in Perl format() mechanism.
 
 %build
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g;' demo*.pl
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,8 +56,6 @@ for the built-in Perl format() mechanism.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Text/Reform.pm
 %{perl_vendorlib}/Text/demo*.pl
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.11

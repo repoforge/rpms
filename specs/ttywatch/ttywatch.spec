@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
-# Upstream: Michael K. Johnson <ttywatch$danlj,org>
+# Upstream: Michael K, Johnson <ttywatch$danlj,org>
 
 Summary: Log output of arbitrarily many devices
 Name: ttywatch
-Version: 0.13
+Version: 0.14
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -33,7 +33,7 @@ ttywatch-devel package.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} \
+%{__make} %{_smp_mflags} \
 	OPTFLAGS="%{optflags} -I/usr/include"
 
 %install
@@ -59,17 +59,20 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING TODO
-%doc %{_mandir}/man?/*
-%config %{_initrddir}/*
+%doc %{_mandir}/man8/ttywatch.8*
+%config %{_initrddir}/ttywatch
 %config(noreplace) %{_sysconfdir}/ttywatch.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/ttywatch
-%{_sbindir}/*
-%{_includedir}/*.h
+%{_sbindir}/ttywatch
+%{_includedir}/ttywatch.h
 
 %defattr(-, root, root, 0700)
 %dir %{_localstatedir}/log/ttywatch/
 
 %changelog
+* Sun Dec 26 2004 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Sat Apr 24 2004 Dag Wieers <dag@wieers.com> - 0.13-1
 - Updated to release 0.13.
 

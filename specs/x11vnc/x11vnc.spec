@@ -4,7 +4,7 @@
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.6.2
+Version: 0.7
 Release: 1
 License: GPL
 Group: User Interface/X
@@ -32,7 +32,6 @@ into a versatile and performant while still easy to use program.
 
 %build
 %configure
-
 %{__make} %{?_smp_mflags}
 
 %install
@@ -45,8 +44,13 @@ into a versatile and performant while still easy to use program.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc %{_mandir}/man1/x11vnc.1*
 %{_bindir}/x11vnc
+%{_datadir}/x11vnc/
 
 %changelog
+* Thu Dec 23 2004 Dag Wieers <dag@wieers.com> - 0.7-1
+- Updated to release 0.7.
+
 * Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Initial package. (using DAR)

@@ -4,7 +4,7 @@
 
 Summary: Program to generate and view fractals
 Name: gnofract4d
-Version: 2.1
+Version: 2.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -31,19 +31,19 @@ same four-dimensional fractal object.
 %setup
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+python2 setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%find_lang %{name}
+python2 setup.py install \
+        --root="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome --delete-original \
-	--add-category X-Red-Hat-Base                 \
-	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/gnome/apps/Graphics/%{name}.desktop
+desktop-file-install --delete-original             \
+	--vendor %{desktop_vendor}                 \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_datadir}/gnome/apps/Graphics/gnofract4d.desktop
 
 %post
 scrollkeeper-update -q || :
@@ -54,22 +54,22 @@ scrollkeeper-update -q || :
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc COPYING README
 %doc %{_datadir}/gnome/help/gnofract4d/
-%{_bindir}/*
-%exclude %{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so.*
-%{_datadir}/gnofract4d/
+%{_bindir}/gnofract4d
 %dir %{_datadir}/maps/
 %{_datadir}/maps/gnofract4d/
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-gnofract4d.desktop
 %{_datadir}/pixmaps/gnofract4d/
-%{_datadir}/omf/gnofract4d/
+%{_prefix}/lib/gnofract4d-%{version}/
+%{_datadir}/formulas/gnofract4d/
 
 %changelog
+* Fri Dec 24 2004 Dag Wieers <dag@wieers.com> - 2.5-1
+- Updated to release 2.5.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 2.1-1
 - Updated to release 2.1.
 

@@ -13,6 +13,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.cityline.net/pub/radiusclient/radiusclient-%{version}.tar.gz
+Patch0: radiusclient-0.3.2-ac.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libtool
 
@@ -37,9 +38,14 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0
 
 %build
 %{__libtoolize} --force --copy
+%{__aclocal} #--force
+%{__automake} --add-missing
+%{__autoconf}
+%{__autoheader}
 %configure
 %{__make} %{?_smp_mflags}
 

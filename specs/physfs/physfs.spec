@@ -4,7 +4,7 @@
 
 Summary: Library to provide abstract access to various archives
 Name: physfs
-Version: 0.1.9
+Version: 1.0.0
 Release: 0
 License: zlib License 
 Group: System Environment/Libraries
@@ -12,7 +12,7 @@ URL: http://www.icculus.org/physfs/
 
 Packager: Rudolf Kastl <che666 at uni.de>
 
-Source: http://www.icculus.org/physfs/downloads/physfs-%{version}.tar.bz2
+Source: http://www.icculus.org/physfs/downloads/physfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, readline-devel, zlib-devel
@@ -26,7 +26,7 @@ No file writing done through the PhysicsFS API can leave that write directory.
 %package devel
 Summary: Headers for developing programs that will use physfs
 Group:   Development/Libraries
-Requires: %{name} = %{version} zlib-devel
+Requires: %{name} = %{version}, zlib-devel
 
 %description devel
 This package contains the headers that programmers will need to develop
@@ -36,7 +36,8 @@ applications which will use physfs
 %setup
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}" \
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,16 +56,19 @@ applications which will use physfs
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG CREDITS INSTALL LICENSE TODO
-%{_libdir}/*.so.*
+%{_libdir}/libphysfs-*.so.*
 
 %files -n %{name}-devel
 %defattr(-, root, root, 0755)
-%{_bindir}/*
-%{_includedir}/*
-%{_libdir}/*.a
-%exclude %{_libdir}/lib%{name}.la
-%{_libdir}/*.so
+%{_bindir}/test_physfs
+%{_includedir}/physfs.h
+%{_libdir}/libphysfs.a
+%exclude %{_libdir}/libphysfs.la
+%{_libdir}/libphysfs.so
  
 %changelog
+* Wed Dec 29 2004 Dag Wieers <dag@wieers.com> - 1.0.0-0
+- Added x86_64 fix.
+
 * Sun Oct 12 2003 Che
 - initial rpm release 

@@ -10,12 +10,12 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 0.2.4a
+%define real_version 0.2.7b
 
 Summary: Wireless LAN (WLAN) tool which recovers encryption keys
 Name: airsnort
-Version: 0.2.4
-Release: 0.a
+Version: 0.2.7
+Release: 0.b
 License: GPL
 Group: System Environment/Base
 URL: http://airsnort.shmoo.com/
@@ -25,7 +25,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/airsnort/airsnort-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel, libgnomeui-devel >= 2.0.0
 BuildRequires: autoconf, automake, libpcap
@@ -50,7 +49,6 @@ Categories=GNOME;Application;Network;
 EOF
 
 %build
-./autogen.sh
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -75,13 +73,16 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE README* TODO *.txt
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README* TODO *.txt
 %doc %{_mandir}/man1/*
 %{_bindir}/*
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Network/airsnort.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-airsnort.desktop}
 
 %changelog
+* Fri Dec 24 2004 Dag Wieers <dag@wieers.com> - 0.2.6-0.b
+- Updated to release 0.2.7b.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.2.4-0.a
 - Updated to release 0.2.4a.
 
