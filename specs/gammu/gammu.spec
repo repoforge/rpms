@@ -4,7 +4,7 @@
 
 Summary: Mobile phone tools
 Name: gammu
-Version: 0.95.0
+Version: 0.96.0
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -67,7 +67,7 @@ you will need to install %{name}-devel.
 %{_datadir}/gammu/
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc docs/develop/*
 %{_libdir}/*.so
 %{_libdir}/*.a
@@ -85,6 +85,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.96.0-1
+- Updated to release 0.96.0.
+
 * Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.95.0-1
 - Updated to release 0.95.0.
 

@@ -4,8 +4,8 @@
 
 Summary: AutoUpdate, a simple perl script to keep your system up2date
 Name: autoupdate
-Version: 5.3
-Release: 0
+Version: 5.3.5
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.mat.univie.ac.at/~gerald/ftp/autoupdate/
@@ -13,8 +13,8 @@ URL: http://www.mat.univie.ac.at/~gerald/ftp/autoupdate/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: ftp://ftp.mat.univie.ac.at/pub/teschl/autoupdate/autoupdate-%{version}-1.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: perl >= 0:5.00503, rpm, sh-utils, perl(Net::FTP), perl(DB_File)
@@ -34,22 +34,22 @@ a customized (RedHat) distribution plus all clients up to date.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/logrotate.d \
-			%{buildroot}%{_sysconfdir}/autoupdate.d \
-			%{buildroot}%{_localstatedir}/{log,spool/autoupdate} \
-			%{buildroot}%{_libdir}/perl5/site_perl/autoupdate \
-			%{buildroot}%{_mandir}/man3
-touch %{buildroot}%{_localstatedir}/log/autoupdate.log
 %{__install} -D -m0755 autoupdate %{buildroot}%{_sbindir}/autoupdate
 %{__install} -D -m0644 autoupdate.8.gz %{buildroot}%{_mandir}/man8/autoupdate.8.gz
+#%{__install} -D -m0644 autoupdate.pm.3.gz %{buildroot}%{_mandir}/man3/autoupdate.pm.3.gz
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
 %{__install} -m0644 autoupdate.pm/* %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
-#%{__install} -m0644 autoupdate.pm.3.gz %{buildroot}%{_mandir}/man3/
+
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/autoupdate.d
 %{__install} -m0755 autoupdate.d/*.sh %{buildroot}/%{_sysconfdir}/autoupdate.d/
 %{__install} -m0644 autoupdate.d/*.{dld,get,conf} %{buildroot}/%{_sysconfdir}/autoupdate.d/
 %{__rm} -f %{buildroot}/etc/autoupdate.d/{powertools,rhsa,rpmfind,texmacs,webmin}.dld
 
-#%{__install} -m0644 autoupdate.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/autoupdate
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/{log,spool/autoupdate}
+touch %{buildroot}%{_localstatedir}/log/autoupdate.log
+
+#%{__install} -D -m0644 autoupdate.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/autoupdate
 for file in auto{upd,ins,dld,get,mrg,prg}; do
 	%{__ln_s} -f autoupdate %{buildroot}%{_sbindir}/$file
 	%{__ln_s} -f autoupdate.8.gz %{buildroot}%{_mandir}/man8/$file.8.gz
@@ -70,6 +70,9 @@ done
 %{_libdir}/perl5/site_perl/autoupdate/
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 5.3.5-1
+- Updated to release 5.3.5.
+
 * Sat Dec 20 2003 Dag Wieers <dag@wieers.com> - 5.3-0
 - Updated to release 5.3.
 

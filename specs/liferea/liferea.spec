@@ -5,7 +5,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 0.4.9
+Version: 0.5.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -50,6 +50,7 @@ desktop-file-install --vendor gnome --delete-original \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
+%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/liferea/
@@ -58,6 +59,9 @@ desktop-file-install --vendor gnome --delete-original \
 %exclude %{_libdir}/liferea/*.la
 
 %changelog
+* Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Sun May 23 2004 Dag Wieers <dag@wieers.com> - 0.4.9-1
 - Updated to release 0.4.9.
 

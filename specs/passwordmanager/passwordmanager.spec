@@ -1,7 +1,7 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: Michael Buesch <mbuesch@freenet.de>
+
 # Screenshot: http://passwordmanager.sourceforge.net/1.png
 # ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
 
@@ -10,7 +10,7 @@
 Summary: Personal password manager
 Name: passwordmanager
 Version: 1.0
-Release: pre1.1
+Release: 0.pre1
 License: GPL
 Group: Applications/Productivity
 URL: http://passwordmanager.sourceforge.net/
@@ -36,7 +36,8 @@ password to access the list.
 %setup -n pwmanager-%{real_version}
 
 %build
-%configure
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install

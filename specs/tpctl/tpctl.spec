@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: IBM ThinkPad configuration tools
 Name: tpctl
-Version: 4.10
-Release: 0
+Version: 4.14
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://tpctl.sf.net/
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/tpctl/tpctl_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: ncurses-devel, perl
 Requires: kernel-module-thinkpad >= 3.2, perl
@@ -64,6 +62,9 @@ tpctl is a package of IBM ThinkPad configuration tools for Linux.
 %{_bindir}/*
 
 %changelog
+* Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 4.14-1
+- Updated to release 4.14.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 4.10-0
 - Updated to release 4.10.
 

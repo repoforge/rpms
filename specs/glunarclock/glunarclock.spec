@@ -1,23 +1,22 @@
 # $Id$
 # Authority: dag
-# Upstream: Josh Buhl <jbuhl@users.sf.net>
+# Upstream: Josh Buhl <jbuhl@users.sourseforge.net>
 
-%define lname glunarclock-0.30
+%define real_version 0.32
 
 Summary: Display the current phase of the Moon as an applet for the gnome panel. 
 Name: glunarclock
-Version: 0.30.3
-Release: 0
+Version: 0.32.1
+Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://glunarclock.sf.net/
+URL: http://glunarclock.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/glunarclock/glunarclock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gail-devel
 BuildRequires: scrollkeeper
@@ -40,10 +39,9 @@ for the gnome panel.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-%find_lang %{lname}
+%find_lang %{name}
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
 
 %post
 scrollkeeper-update -q || :
@@ -54,7 +52,7 @@ scrollkeeper-update -q || :
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{lname}.lang
+%files -f %{name}.lang
 %defattr (-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* NEWS README 
 #%doc %{_mandir}/man1/*
@@ -67,6 +65,7 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/glunarclock/
 %{_datadir}/omf/gnome-applets/*.omf
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
 * Wed Dec 03 2003 Dag Wieers <dag@wieers.com> - 0.30.3-0

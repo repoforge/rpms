@@ -1,7 +1,8 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: 
+
+# Screenshot: http://webperso.easyconnect.fr/om.the/web/cwirc/images/screenshot.jpg
 
 Summary: Plugin for x-chat for transmitting raw morse code
 Name: cwirc
@@ -18,8 +19,6 @@ Source: http://webperso.easyconnect.fr/om.the/web/cwirc/download/cwirc-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel
-
-# Screenshot: http://webperso.easyconnect.fr/om.the/web/cwirc/images/screenshot.jpg
 
 %description
 CWirc is a plugin for the X-Chat IRC client to transmit raw morse code over
@@ -42,19 +41,20 @@ code is transmitted. Only other CWirc users can receive what you send.
 
 %build
 %{__make} %{?_smp_mflags} \
-	TARGET_OS=LINUX \
-	PLUGIN_INSTALL_DIRECTORY=/usr/lib/xchat/plugins \
-	FRONTEND_INSTALL_DIRECTORY=/usr/bin \
-	CWIRC_EXTENSIONS_DIRECTORY=/usr/lib/cwirc/extensions \
-	EXTRA_LDFLAGS=
+	TARGET_OS="LINUX" \
+	CFLAGS="%{optflags} -DLINUX -fPIC" \
+	PLUGIN_INSTALL_DIRECTORY="%{_libdir}/xchat/plugins" \
+	FRONTEND_INSTALL_DIRECTORY="%{_bindir}" \
+	CWIRC_EXTENSIONS_DIRECTORY="%{_libdir}/cwirc/extensions" \
+	EXTRA_LDFLAGS=""
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	TARGET_OS=LINUX \
-	PLUGIN_INSTALL_DIRECTORY=%{buildroot}/usr/lib/xchat/plugins \
-	FRONTEND_INSTALL_DIRECTORY=%{buildroot}/usr/bin \
-	CWIRC_EXTENSIONS_DIRECTORY=%{buildroot}/usr/lib/cwirc/extensions \
+	TARGET_OS="LINUX" \
+	PLUGIN_INSTALL_DIRECTORY="%{buildroot}%{_libdir}/xchat/plugins" \
+	FRONTEND_INSTALL_DIRECTORY="%{buildroot}%{_bindir}" \
+	CWIRC_EXTENSIONS_DIRECTORY="%{buildroot}%{_libdir}/cwirc/extensions" \
 	EXTRA_LDFLAGS=
 
 %post
@@ -73,6 +73,9 @@ code is transmitted. Only other CWirc users can receive what you send.
 %{_libdir}/xchat/plugins/cwirc.so
 
 %changelog
+* Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 1.8.3-1
+- Fixes for x86_64.
+
 * Sat Jun 19 2004 Dries Verachtert <dries@ulyssis.org> 1.8.3-1
 - Update to version 1.8.3.
 

@@ -3,11 +3,11 @@
 
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 6.0
+Version: 6.1
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://awstats.sf.net/
+URL: http://awstats.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -124,6 +124,9 @@ EOF
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 6.1-1
+- Updated to release 6.1.
+
 * Fri Apr 23 2004 Dag Wieers <dag@wieers.com> - 6.0-1
 - Updated to release 6.0.
 

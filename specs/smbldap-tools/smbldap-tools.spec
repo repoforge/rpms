@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jerome Tournier <jerome.tournier@idealx.com>
 
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
-Version: 0.8.4
+Version: 0.8.5
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -17,9 +16,10 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://samba.idealx.org/dist/smbldap-tools-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: perl >= 5.6
 Requires: perl >= 5.6, openldap, openldap-clients, samba
+
+BuildArch: noarch
 
 %description
 In settings with OpenLDAP and Samba-LDAP servers, this collection is
@@ -29,22 +29,21 @@ tools to manage users, groups and passwords.
 
 %prep
 %setup
-%{__tar} -xvzf mkntpwd.tar.gz
+#%{__tar} -xvzf mkntpwd.tar.gz
 
-%{__perl} -pi.orig -e 's| \$\(PREFIX\)/sbin/| \$(sbindir)/|' mkntpwd/Makefile
+#%{__perl} -pi.orig -e 's| \$\(PREFIX\)/sbin/| \$(sbindir)/|' mkntpwd/Makefile
 %{__perl} -pi.orig -e 's|/usr/local/sbin|%{_sbindir}|' smb.conf smbldap.conf
 
 %build
-%{__make} %{?_smp_mflags} -C mkntpwd
+#%{__make} %{?_smp_mflags} -C mkntpwd
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_sysconfdir}/smbldap-tools/
-%makeinstall -C mkntpwd
+#makeinstall -C mkntpwd
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -m0755 smbldap-* smbldap_tools.pm %{buildroot}%{_sbindir}
-%{__install} -m0644 smbldap.conf %{buildroot}%{_sysconfdir}/smbldap-tools/
-%{__install} -m0600 smbldap_bind.conf %{buildroot}%{_sysconfdir}/smbldap-tools/
+%{__install} -D -m0644 smbldap.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap.conf
+%{__install} -D -m0600 smbldap_bind.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap_bind.conf
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,6 +56,9 @@ tools to manage users, groups and passwords.
 %{_sbindir}/*
 
 %changelog
+* Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 0.8.5-1
+- Updated to release 0.8.5.
+
 * Sat Mar 13 2004 Dag Wieers <dag@wieers.com> - 0.8.4-1
 - Updated to release 0.8.4.
 
