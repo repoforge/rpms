@@ -5,7 +5,7 @@
 Summary: KDE front-end to ssh
 Name: kssh
 Version: 0.7
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://kssh.sourceforge.net/
@@ -13,12 +13,13 @@ URL: http://kssh.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/kssh/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
+Source: http://dl.sf.net/kssh/kssh-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs
 
-#(d) primscreenshot: http://kssh.sourceforge.net/foto2.png
+# Screenshot: http://kssh.sourceforge.net/foto2.png
+# ScreenshotURL: http://kssh.sourceforge.net/#screenshots
 
 %description
 Kssh is a KDE front-end to ssh. It can work as a standard KDE application 
@@ -37,12 +38,13 @@ means that you can press in any konsole "New Session" and then select
 
 %install
 . /etc/profile.d/qt.sh
-export DESTDIR=$RPM_BUILD_ROOT
-sed -i "s/^DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g" $(find . -type f | egrep "Makefile$")
-make install-strip
-rm -f ${DESTDIR}/usr/share/applnk/Internet/kssh.desktop
-mkdir -p ${DESTDIR}/usr/share/applications
-cat > ${DESTDIR}/usr/share/applications/kssh.desktop <<EOF
+# export DESTDIR=$RPM_BUILD_ROOT
+# sed -i "s/^DESTDIR =.*/DESTDIR=${RPM_BUILD_ROOT//\//\\/}\//g" $(find . -type f | egrep "Makefile$")
+# make install-strip
+%makeinstall
+rm -f %{buildroot}/usr/share/applnk/Internet/kssh.desktop
+mkdir -p %{buildroot}/usr/share/applications
+cat > %{buildroot}/usr/share/applications/kssh.desktop <<EOF
 [Desktop Entry]
 Name=Kssh
 Icon=kssh.png
@@ -56,12 +58,15 @@ EOF
 
 %files
 %defattr(-,root,root, 0755)
-/usr/bin/kssh
-/usr/share/applications/kssh.desktop
-/usr/share/apps/konsole/kssh.desktop
-/usr/share/doc/HTML/en/kssh
-/usr/share/icons/*/*/apps/kssh.png
+%{_bindir}/kssh
+%{_datadir}/applications/kssh.desktop
+%{_datadir}/apps/konsole/kssh.desktop
+%{_datadir}/doc/HTML/en/kssh
+%{_datadir}/icons/*/*/apps/kssh.png
 
 %changelog
+* Sat Apr 24 2004 Dries Verachtert <dries@ulyssis.org> 0.7-2
+- cleanup of spec file, rebuild
+
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.7-1
 - first packaging for Fedora Core 1
