@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Juri Pakaste <juri@iki.fi>
 
-Summary: desktop news aggregator for GNOME
+Summary: Desktop news aggregator
 Name: straw
-Version: 0.23
+Version: 0.24
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -67,6 +67,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Wed Jul 07 2004 Dag Wieers <dag@wieers.com> - 0.24-1
+- Updated to release 0.24.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.23-1
 - Updated to release 0.23.
 

@@ -14,7 +14,7 @@
 
 Summary: Distributed C/C++ compilation client program
 Name: distcc
-Version: 2.14
+Version: 2.15
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -225,21 +225,21 @@ done
 %{?rh7:%define has_gcc296 1}
 %{?el2:%define has_gcc296 1}
 
-%if %{?has_gcc296:1}%{!?has_gcc296:0}
+%if %{?has_gcc296:1}0
 for compiler in gcc296 g++296; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler
 done
 %endif
 
 %{?fc1:%define has_gcc323 1}
-%if %{?has_gcc323:1}%{!?has_gcc323:0}
+%if %{?has_gcc323:1}0
 for compiler in gcc32 gcc323; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler
 done
 %endif
 
 %{?fc2:%define has_gcc34 1}
-%if %{?has_gcc34:1}%{?has_fcc34:0}
+%if %{?has_gcc34:1}0
 for compiler in gcc34 g++34; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler
 done
@@ -306,7 +306,7 @@ fi
 %config %{_initrddir}/*
 %{_bindir}/distccd
 
-%if %{?gui:1}%{!?gui:0}
+%if %{?gui:1}0
 %files gui
 %defattr(-, root, root, 0755)
 %{_bindir}/distccmon-gnome
@@ -316,6 +316,9 @@ fi
 %endif
 
 %changelog
+* Wed Jul 07 2004 Dag Wieers <dag@wieers.com> - 2.15-1
+- Updated to release 2.15.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 2.14-1
 - Updated to release 2.14.
 
