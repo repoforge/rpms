@@ -42,16 +42,6 @@ URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
-%{?_with_rte:Requires: rte}
-%{?_with_ext-dvdnav:Requires: libdvdnav >= 0.1.4}
-%{!?_without_alsa:Requires: alsa-lib}
-%{!?_without_esound:Requires: esound}
-%{!?_without_aalib:Requires: aalib}
-%{!?_without_flac:Requires: flac}
-%{!?_without_libfame:Requires: libfame}
-%{!?_without_arts:Requires: arts}
-%{!?_without_gnomevfs2:Requires: gnome-vfs2}
-%{!?_without_speex:Requires: speex}
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
 BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
@@ -147,21 +137,23 @@ use the Xine library.
 %{_libdir}/xine/
 %{_datadir}/xine/
 
-
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/hackersguide/*.sgml
 %{_bindir}/*
 %{_includedir}/xine.h
 %{_includedir}/xine/
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/aclocal/*.m4
-%exclude %{_libdir}/*.la
 %{_mandir}/man?/*
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-0.15.rc6a
+- Removed most explicit deps, only libdvdcss is really needed.
+
 * Tue Oct 12 2004 Dag Wieers <dag@wieers.com> - 1.0.0-0.15.rc6a
 - Build against newer flac-1.1.1.
 

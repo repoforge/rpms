@@ -10,8 +10,6 @@ Group: System Environment/Libraries
 URL: http://sdlperl.org/
 Source: ftp://sdlperl.org/SDL_perl/SDL_perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL >= 1.2.3, SDL_mixer >= 1.0.5, SDL_image >= 1.0.0, SDL_net
-Requires: SDL_ttf, libjpeg, libpng, smpeg, perl
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel
 BuildRequires: SDL_ttf-devel, libjpeg-devel, libpng-devel, smpeg-devel
 # This is to pull in missing libs, to fix the "undefined symbol: _Znwj" problem
@@ -39,7 +37,8 @@ CFLAGS="%{optflags}" perl Makefile.PL PREFIX="%{buildroot}%{_prefix}"
 eval `%{__perl} '-V:installarchlib'`
 %{__mkdir_p} %{buildroot}${installarchlib}
 %makeinstall
-%{__rm} -f `/usr/bin/find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
+%{__rm} -f `/usr/bin/find %{buildroot} -type f \
+    -name perllocal.pod -o -name .packlist -o -name '*.bs'`
 
 # Build the file list to include
 find %{buildroot}%{_prefix} -type f -print | \

@@ -6,7 +6,7 @@
 Summary: The Open Racing Car Simulator
 Name: torcs
 Version: 1.2.2
-Release: 3
+Release: 4
 License: GPL
 Group: Amusements/Games
 URL: http://torcs.org/
@@ -79,6 +79,9 @@ desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
+# We need this for proper automatic stripping to take place
+find %{buildroot}%{_libdir}/%{name} -name '*.so' | xargs %{__chmod} +x
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -117,6 +120,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-4
+- Add +x chmod'ing to .so files in order to get them stripped properly.
+
 * Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-3
 - Remove un-needed /sbin/ldconfig calls.
 

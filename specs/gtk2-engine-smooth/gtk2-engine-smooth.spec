@@ -52,6 +52,7 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
+%doc AUTHORS COPYING NEWS README
 %{_libdir}/gtk/themes/engines/libsmooth.*
 %{_libdir}/gtk-2.0/2.4.0/engines/libsmooth.*
 %{_datadir}/themes/*

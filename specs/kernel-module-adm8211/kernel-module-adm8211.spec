@@ -68,7 +68,7 @@ network adaptors.
 
 
 %prep
-%setup -q -n adm8211
+%setup -n adm8211
 %patch -p1
 
 

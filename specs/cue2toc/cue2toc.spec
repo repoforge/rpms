@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Matthias Czapla <dermatsch$gmx,de>
 
 Summary: Convert files in CUE format to cdrdao's TOC format
 Name: cue2toc

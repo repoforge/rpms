@@ -20,7 +20,7 @@ BuildRequires: gcc-c++, m4
 %description
 This library implements a full callback system for use in widget libraries,
 abstract interfaces, and general programming. Originally part of the Gtk--
-widget set, libsigc++ is now a seperate library to provide for more general
+widget set, libsigc++ is now a separate library to provide for more general
 use. It is the most complete library of its kind with the ablity to connect
 an abstract callback to a class method, function, or function object. It
 contains adaptor classes for connection of dissimilar callbacks and has an

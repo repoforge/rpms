@@ -66,7 +66,7 @@ This package contains a kernel module for the Philips USB webcams.
 
 
 %prep
-%setup -q -n pwcx-9.0-beta-2
+%setup -n pwcx-9.0-beta-2
 %patch -p2
 
 

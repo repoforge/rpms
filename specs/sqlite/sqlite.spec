@@ -11,10 +11,6 @@ Release: 1
 License: LGPL
 Group: Applications/Databases
 URL: http://www.sqlite.org/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source:	http://www.sqlite.org/sqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -54,7 +50,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}
-
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e 's|\$\(exec_prefix\)/lib|\$(libdir)|g' Makefile.in
 

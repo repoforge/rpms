@@ -52,7 +52,7 @@ the web. All of it works well together.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NOTICE NEWS README
+%doc AUTHORS COPYING ChangeLog NOTICE README
 %{_includedir}/*
 %{_libdir}/*.a
 

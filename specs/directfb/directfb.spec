@@ -41,7 +41,7 @@ Header files needed for building applications based on DirectFB.
 
 
 %prep
-%setup -q -n DirectFB-%{version}
+%setup -n DirectFB-%{version}
 
 
 %build
@@ -122,7 +122,7 @@ find %{buildroot} -name "*.la" | xargs rm -f
 
 
 %changelog
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> - 0.9.20-1
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.20-1
 - Update to 0.9.20.
 - Rebuild for Fedora Core 1.
 

@@ -22,7 +22,7 @@ Version: 0.6.6
 #%%if %{kmodule}
 #Release: fr1_%{krelver}
 #%%else
-Release: 3
+Release: 4
 #%%endif
 License: GPL
 Group: System Environment/Daemons
@@ -31,12 +31,13 @@ Source0: http://dl.sf.net/lirc/%{name}-%{version}.tar.bz2
 Source1: lircd.init
 Source2: lircd.logrotate
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-PreReq: /sbin/chkconfig, /sbin/service
+Requires: /sbin/chkconfig, /sbin/service
 BuildRequires: perl
 #%%if %{kmodule}
 #Requires: kernel = %{kver}
 #BuildRequires: kernel-source = %{kver}
 #%%endif
+Provides: lirc-devel = %{version}-%{release}
 
 %description
 LIRC is the Linux Infrared Remote Control package.
@@ -65,14 +66,19 @@ having to recompile a kernel and recompile lirc manually to get the modules!
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -m 755 -D %{SOURCE1} %{buildroot}/etc/init.d/lircd
-%{__install} -m 644 -D %{SOURCE2} %{buildroot}/etc/logrotate.d/lircd
-%{__perl} -pi -e 's|\@SBINDIR\@|%{_sbindir}|g' %{buildroot}/etc/init.d/lircd
-%{__rm} -f doc/Makefile*
+%{__install} -m 755 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/lircd
+%{__install} -m 644 -D %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/lircd
+%{__perl} -pi -e 's|\@SBINDIR\@|%{_sbindir}|g' \
+    %{buildroot}%{_sysconfdir}/rc.d/init.d/lircd
+%{__rm} -rf doc/{Makefile*,man2html*,.deps,.libs}
 %{__mkdir_p} %{buildroot}/dev
 %{__ln_s} -f ttyS0 %{buildroot}/dev/lirc
-touch %{buildroot}/etc/lircd.conf
-touch %{buildroot}/etc/lircmd.conf
+touch %{buildroot}%{_sysconfdir}/lircd.conf
+touch %{buildroot}%{_sysconfdir}/lircmd.conf
+
+%clean
+%{__rm} -rf %{buildroot}
+
 
 %post
 /sbin/ldconfig
@@ -90,17 +96,15 @@ if [ "$1" -ge "1" ]; then
     /sbin/service lircd condrestart >/dev/null 2>&1 || :
 fi
 
-%clean
-%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE AUTHORS ChangeLog COPYING NEWS README TODO doc remotes
+%doc ANNOUNCE AUTHORS ChangeLog COPYING NEWS README TODO doc/ remotes
 %doc contrib/*.conf contrib/irman2lirc contrib/lircrc contrib/lircs
-/etc/init.d/lircd
-/etc/logrotate.d/lircd
-%ghost %config(noreplace) /etc/lircd.conf
-%ghost %config(noreplace) /etc/lircmd.conf
+%{_sysconfdir}/rc.d/init.d/lircd
+%config %{_sysconfdir}/logrotate.d/lircd
+%ghost %config(noreplace) %{_sysconfdir}/lircd.conf
+%ghost %config(noreplace) %{_sysconfdir}/lircmd.conf
 %{_bindir}/*
 %{_sbindir}/*
 %{_includedir}/lirc
@@ -113,7 +117,12 @@ fi
 /dev/lirc
 %endif
 
+
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-4
+- Add an lirc-devel provides for now.
+- Other minor tweaks... but a major rework is still needed here!
+
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-3
 - Added missing /sbin/ldconfig calls.
 

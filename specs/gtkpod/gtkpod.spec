@@ -25,7 +25,7 @@ modification of the database with later synchronisation, and more.
 
 
 %prep
-%setup -q -n %{name}-%{version}-%{extrarelease}
+%setup -n %{name}-%{version}-%{extrarelease}
 %patch -p0
 
 # Create a desktop menu entry
@@ -75,7 +75,7 @@ desktop-file-install \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING NEWS README
+%doc AUTHORS COPYING README
 %{_bindir}/gtkpod
 %{_datadir}/gtkpod/
 %{_datadir}/pixmaps/gtkpod.png

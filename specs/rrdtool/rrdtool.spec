@@ -112,6 +112,8 @@ EOF
 %{__rm} -f contrib/Makefile*
 # This is so rpm doesn't pick up perl module dependencies automatically
 find examples/ contrib/ -type f -exec chmod 0644 {} \;
+# And this, to clean up what will be included
+find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 
 # Put man pages back into place...
 #%{__mkdir_p} %{buildroot}%{_mandir}/

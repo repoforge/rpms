@@ -3,13 +3,14 @@
 Summary: Edward Loper's Python API documentation generation tool
 Name: epydoc
 Version: 2.1
-Release: 1
+Release: 2
 Group: Development/Tools
 License: MIT
 URL: http://epydoc.sourceforge.net/
 Source: http://dl.sf.net/epydoc/epydoc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python
+BuildArch: noarch
 
 %description
 Epydoc  is a tool for generating API documentation for Python modules,
@@ -32,7 +33,6 @@ ReStructuredText, Javadoc, and plaintext.
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot}
-
 # Also install the man pages
 %{__install} -D man/epydoc.1    %{buildroot}%{_mandir}/man1/epydoc.1
 %{__install} -D man/epydocgui.1 %{buildroot}%{_mandir}/man1/epydocgui.1
@@ -53,6 +53,9 @@ ReStructuredText, Javadoc, and plaintext.
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 2.1-2
+- Make the package noarch as it contains no binaries.
+
 * Thu Oct 21 2004 Matthias Saou <http://freshrpms.net/> 2.1-1
 - Picked up and rebuilt.
 - Added doc and man pages.

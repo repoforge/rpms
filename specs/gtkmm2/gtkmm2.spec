@@ -37,7 +37,7 @@ needed for developing GTK+ (GIMP ToolKit) applications in C++.
 
 
 %prep
-%setup -q -n gtkmm-%{version}
+%setup -n gtkmm-%{version}
 
 
 %build

@@ -13,7 +13,6 @@ Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/zapping-%{version}%{?prever}.tar.bz2
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libgnomeui, libglade2, zvbi, arts, rte, lirc
 BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
 BuildRequires: zvbi-devel, arts-devel, rte-devel >= 0.5, lirc
@@ -36,23 +35,16 @@ features, plus extensibility through a plugin system.
 
 
 %build
-%configure \
-    --disable-schemas-install
-
-%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' \
-    configure Makefile* */Makefile* */*/Makefile*
-
+%configure
+# Workaround
+%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' configure {,*/,*/*/}Makefile*
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%{__make} install \
-    DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-
-# Fix buggy symlinks (point into the %{buildroot})
-#%{__ln_s} -f zapping %{buildroot}%{_bindir}/zapzilla
 
 # It's still a GNOME 1 type desktop file
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
@@ -80,13 +72,13 @@ scrollkeeper-update
 %config %{_sysconfdir}/pam.d/zapping_setup_fb
 %config %{_sysconfdir}/security/console.apps/zapping_setup_fb
 %{_bindir}/*
-%{_libdir}/%{name}
+%{_libdir}/%{name}/
 %{_sbindir}/*
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/gnome/help/%{name}
-%{_datadir}/omf/%{name}
-%{_datadir}/pixmaps/%{name}
-%{_datadir}/%{name}
+%{_datadir}/gnome/help/%{name}/
+%{_datadir}/omf/%{name}/
+%{_datadir}/pixmaps/%{name}/
+%{_datadir}/%{name}/
 %{_mandir}/man1/*
 
 

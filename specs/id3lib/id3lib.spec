@@ -47,7 +47,8 @@ export LDFLAGS="-lstdc++ -lz ${LDFLAGS}"
 %makeinstall
 # Clean docs for inclusion
 %{__rm} -f doc/{Doxyfile*,Makefile*,*.in}
-%{__rm} -rf examples/{Makefile*,.deps/,.libs/}
+%{__rm} -rf examples/{Makefile*,.deps/,.libs/,*.o}
+%{__rm} -rf examples/{id3convert,id3cp,id3info,id3tag}
 
 
 %clean
@@ -77,6 +78,9 @@ export LDFLAGS="-lstdc++ -lz ${LDFLAGS}"
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 3.8.3-7
+- Removed binary stuff from the included examples, leave only source.
+
 * Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 3.8.3-7
 - Fix linking problem at last by overriding LDFLAGS manually, thanks to
   Pedro Lopez for the tip.

@@ -17,10 +17,6 @@ Release: 2
 License: Distributable
 Group: Development/Libraries
 URL: http://www.pythonware.com/products/pil/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://effbot.org/downloads/Imaging-%{version}.tar.gz
 Patch: python-imaging-1.1.4-setup.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

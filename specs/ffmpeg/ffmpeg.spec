@@ -1,27 +1,35 @@
 # $Id$
 # Authority: matthias
 
-#define date   2003-11-07
-#define sqdate %(echo %{date} | tr -d '-')
+%define date   2004-11-02
+#define prever pre1
+%{?date: %define sqdate %(echo %{date} | tr -d '-')}
 
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
-Version: 0.4.8
-Release: 3%{?date:.%{sqdate}}
+Version: 0.4.9
+Release: %{?date:0.%{sqdate}.}%{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
 %if %{?date:0}%{!?date:1}
-Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}.tar.gz
+Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}%{?prever:-%{prever}}.tar.gz
 %else
 Source: http://ffmpeg.sourceforge.net/cvs/%{name}-cvs-%{date}.tar.gz
 %endif
+Patch0: ffmpeg-0.4.9-pre1-sharedppfix.patch
+Patch2: ffmpeg-0.4.9-pre1-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
+BuildRequires: tetex
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
+%{!?_without_faac:BuildRequires: faac-devel}
+%{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
+# We need those as autoreqprov adds them as a requirement to the package
+# (0.4.8, still true in 0.4.9-pre1)
 Provides: libavcodec.so, libavformat.so
 
 %description
@@ -34,7 +42,7 @@ from any sample rate to any other, and resize video on the fly with a high
 quality polyphase filter.
 
 Available rpmbuild rebuild options :
---without : lame vorbis faad a52dec altivec
+--without : lame vorbis faad faac xvid a52dec altivec
 
 
 %package devel
@@ -45,6 +53,8 @@ Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_lame:Requires: lame-devel}
 %{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
 %{!?_without_faad:Requires: faad2-devel}
+%{!?_without_faac:Requires: faac-devel}
+%{!?_without_xvid:Requires: xvidcore-devel}
 %{!?_without_a52dec:Requires: a52dec-devel}
 
 %description devel
@@ -59,35 +69,59 @@ quality polyphase filter.
 Install this package if you want to compile apps with ffmpeg support.
 
 
+%package -n libpostproc
+Summary: Video postprocessing library from ffmpeg
+Group: System Environment/Libraries
+# We need to override version here... when libpostproc was built from
+# MPlayer, it got up to 1.0-0.11.x) - mach barfs! :-(
+#Version: 1.0.1
+Provides: libpostproc-devel = %{version}-%{release}
+
+%description -n libpostproc
+FFmpeg is a very fast video and audio converter. It can also grab from a
+live audio/video source.
+
+This package contains only ffmpeg's libpostproc post-processing library which
+other projects such as transcode may use. Install this package if you intend
+to use MPlayer, transcode or other similar programs.
+
+
 %prep
-%setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}}
+%setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}%{?prever:-%{prever}}}
+#patch0 -p1 -b .sharedpp
+#patch2 -p1 -b .pic
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi -e 's|\$\(prefix\)/lib|\$(libdir)|' Makefile */Makefile
-%{__perl} -pi -e 's|\$\(prefix\)/include|\$(includedir)|' Makefile */Makefile
+%{__perl} -pi -e 's|\$\(prefix\)/lib|\$(libdir)|g;
+                  s|\$\(prefix\)/include|\$(includedir)|g' \
+                  Makefile */Makefile */*/Makefile
 
 
 %build
 %configure \
-    --enable-shared \
-    --enable-pp \
-%ifarch %{ix86}
-     --disable-mmx \
-%endif
-%ifarch ppc
-    %{?_without_altivec: --disable-altivec} \
-%endif
     %{!?_without_lame: --enable-mp3lame} \
     %{!?_without_vorbis: --enable-vorbis} \
     %{!?_without_faad: --enable-faad} \
-    %{!?_without_a52dec: --enable-a52}
-%{__make} %{?_smp_mflags} \
-    OPTFLAGS="-fPIC %{optflags}" \
-    SHFLAGS="-shared -Wl,-soname -Wl,\$@"
+    %{!?_without_faac: --enable-faac} \
+    %{!?_without_xvid: --enable-xvid} \
+    --enable-pp \
+    --enable-shared-pp \
+    --enable-shared \
+    --enable-gpl \
+    --extra-cflags="%{optflags}" \
+    --disable-strip
+#   %{!?_without_a52: --enable-a52} \
+# Make!
+%{__make} %{?_smp_mflags} -C libavcodec/libpostproc
+%{__make} %{?_smp_mflags}
+%{__make} documentation
+# Leftover, for reference :
+# OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"
 
 
 %install
 %{__rm} -rf %{buildroot}
+%makeinstall -C libavcodec/libpostproc
 %makeinstall
 
 ### Make installlib is broken in 0.4.6-8, so we do it by hand
@@ -96,13 +130,8 @@ Install this package if you want to compile apps with ffmpeg support.
 %{__install} -D -m0644 libavformat/libavformat.a \
     %{buildroot}%{_libdir}/libavformat.a
 
-### Create compat symlink
-%{__install} -d -m0755 %{buildroot}%{_libdir}/{libavcodec,libavformat}/
-%{__ln_s} -f ../libavcodec.a %{buildroot}%{_libdir}/libavcodec/libavcodec.a
-%{__ln_s} -f ../libavformat.a %{buildroot}%{_libdir}/libavformat/libavformat.a
-
 ### Remove from the included docs
-%{__rm} -f doc/Makefile doc/*.1
+%{__rm} -rf doc/{CVS,Makefile}
 
 
 %clean
@@ -110,29 +139,57 @@ Install this package if you want to compile apps with ffmpeg support.
 
 
 %post
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 
 %postun
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
+
+%post -n libpostproc
+/sbin/ldconfig
+
+%postun -n libpostproc
+/sbin/ldconfig
 
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING CREDITS README doc/
-%doc %{_mandir}/man1/*
+%doc Changelog COPYING CREDITS README
 %{_bindir}/*
 %{_libdir}/*.so
 %{_libdir}/vhook/
+%{_mandir}/man1/*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc doc/*
 %{_includedir}/ffmpeg/
 %{_libdir}/*.a
-%{_libdir}/libavcodec/
-%{_libdir}/libavformat/
+
+%files -n libpostproc
+%defattr(-, root, root, 0755)
+%{_includedir}/postproc/
+%{_libdir}/libpostproc.so*
 
 
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 0.4.9-0.20041102.1
+- Update to 20040926 CVS to fix FC3 compilation problems... not!
+- Moved OPTFLAGS to --extra-cflags configure option... no better!
+- Add HAVE_LRINTF workaround to fix compile failure... yeah, one less.
+- Disable -fPIC, libpostproc breaks with it enabled... argh :-(
+- ...I give up, disable a52 for now.
+
+* Mon Sep 27 2004 Matthias Saou <http://freshrpms.net/> 0.4.9-0.pre1.1
+- Update to 0.4.9-pre1.
+- Enable GPL, pp, shared and shared-pp!
+- Add sharedpp and nostrip patches from livna.org rpm.
+- Add PIC vs. __PIC__ patch.
+- Re-enable MMX.
+- Add mandatory -fomit-frame-pointer flag to not bomb on compile.
+- Added man pages.
+- Added -UUSE_FASTMEMCPY for libpostproc, otherwise we get :
+  libpostproc.so.0: undefined reference to `fast_memcpy'
+
 * Mon Aug  2 2004 Matthias Saou <http://freshrpms.net/> 0.4.8-3
 - Removed explicit binary dependencies.
 - Removed faac support, it doesn't exist.

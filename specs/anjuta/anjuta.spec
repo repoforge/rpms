@@ -13,7 +13,6 @@ Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
 Requires: libgnomeprintui22 >= 2.0.1
-Requires: vte, pcre, libxml2
 BuildRequires: libgnome-devel >= 2.0.2, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.0.2, libgnomeprintui22-devel >= 2.0.1
 BuildRequires: vte-devel, pcre-devel, libxml2-devel, gettext, gcc-c++
@@ -65,6 +64,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc doc/ScintillaDoc.html
 %{_bindir}/anjuta*
 %{_libdir}/anjuta/
+%exclude %{_libdir}/anjuta/*.a
 %{_datadir}/anjuta/
 %{_datadir}/applications/anjuta.desktop
 %{_datadir}/gnome/help/anjuta/

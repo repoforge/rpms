@@ -22,7 +22,7 @@ implemented for example in GNU gettext.
 
 
 %prep
-%setup -q -n libintl-perl-%{version}
+%setup -n libintl-perl-%{version}
 
 
 %build

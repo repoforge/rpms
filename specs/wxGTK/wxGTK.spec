@@ -4,7 +4,7 @@
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
 Version: 2.4.2
-Release: 4
+Release: 5
 License: Other
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/
@@ -26,7 +26,8 @@ Motif/LessTif, MS Windows, Mac) from the same source code.
 %package devel
 Summary: Develoment files of the GTK port of the wxWindows library
 Group: Development/Libraries
-Requires: %{name} = %{version}, gtk+-devel, pkgconfig
+Requires: %{name} = %{version}, %{name}-gl, %{name}-xrc, %{name}-stc
+Requires: gtk+-devel, pkgconfig
 Requires: libpng-devel, libjpeg-devel, libtiff-devel
 
 %description devel
@@ -126,7 +127,7 @@ popd
 %files -f wxstd.lang
 %defattr(-, root, root, 0755)
 %doc COPYING.LIB *.txt
-%{_libdir}/libwx_gtk-*
+%{_libdir}/libwx_gtk-*.so.*
 %{_datadir}/wx/
 
 %files devel
@@ -134,22 +135,26 @@ popd
 %{_bindir}/*-config
 %{_includedir}/wx/
 %{_libdir}/wx/
+%{_libdir}/libwx_*.so
 %{_datadir}/aclocal/*.m4
 
 %files gl
 %defattr(-, root, root, 0755)
-%{_libdir}/libwx_gtk_gl-*
+%{_libdir}/libwx_gtk_gl-*.so.*
 
 %files xrc
 %defattr(-, root, root, 0755)
-%{_libdir}/libwx_gtk_xrc-*
+%{_libdir}/libwx_gtk_xrc-*.so.*
 
 %files stc
 %defattr(-, root, root, 0755)
-%{_libdir}/libwx_gtk_stc-*
+%{_libdir}/libwx_gtk_stc-*.so.*
 
 
 %changelog
+* Fri Nov 5  2004 Matthias Saou <http://freshrpms.net/> 2.4.2-5
+- Moved .so symlinks to devel and require all other sub-libs.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 2.4.2-4
 - Rebuilt for Fedora Core 2.
 

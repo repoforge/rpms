@@ -2,11 +2,13 @@
 # Authority: matthias
 
 #define prever rc4
+%define somaj  4
+%define somin  0
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 1.0.2
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}2
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
@@ -53,9 +55,10 @@ popd
 pushd build/generic
     %makeinstall
 popd
-# Make a .so symlink to the so.x.x file
+# Make .so and .so.x symlinks to the so.x.y file
 pushd %{buildroot}%{_libdir}
-    %{__ln_s} lib%{name}.so* lib%{name}.so
+    %{__ln_s} lib%{name}.so.%{somaj}.%{somin} lib%{name}.so.%{somaj}
+    %{__ln_s} lib%{name}.so.%{somaj}.%{somin} lib%{name}.so
 popd
 # Remove unwanted files from the docs
 %{__rm} -f doc/Makefile
@@ -87,6 +90,9 @@ popd
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-2
+- Further manually symlink libs to get things back to "ldconfig style".
+
 * Wed Oct 13 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Update to 1.0.2.
 

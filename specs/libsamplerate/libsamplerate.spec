@@ -12,13 +12,8 @@ Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.mega-nerd.com/SRC/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.mega-nerd.com/SRC/libsamplerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: libsndfile-devel >= 1.0.2
 BuildRequires: pkgconfig, fftw-devel, gcc-c++
 
@@ -30,14 +25,14 @@ output sample rates can be a real number. The conversion ratio can
 also vary with time for speeding up and slowing down effects.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}.
+Summary: Header files, libraries and development docs for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
 This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
+documentation for %{name}. If you like to develop programs using
+%{name}, you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -70,9 +65,9 @@ you will need to install %{name}-devel.
 %doc doc/*.css doc/*.html doc/*.png
 %{_includedir}/samplerate.h
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
-%exclude %{_libdir}/*.la
 
 %changelog
 * Fri Sep 17 2004 Matthias Saou <http://freshrpms.net/> 0.1.2-1

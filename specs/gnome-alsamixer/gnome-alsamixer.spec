@@ -58,7 +58,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README TODO
+%doc AUTHORS COPYING ChangeLog
 %{_bindir}/%{name}
 %{_datadir}/applications/*%{name}.desktop
 %{_datadir}/pixmaps/%{name}

@@ -74,7 +74,8 @@ done
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-
+%{__rm} -f `find %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux*/ \
+    -name .packlist -o -name '*.bs'`
 
 %clean 
 %{__rm} -rf %{buildroot}

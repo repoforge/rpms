@@ -75,6 +75,9 @@ desktop-file-install \
 # Quick fix in order to not have rpm pick up perl(Gimp) as a dependency
 %{__chmod} -x %{buildroot}%{_prefix}/share/%{name}/gfx/shoot/create.pl
 
+# Clean up the installed perl files
+%{__rm} -f `find %{buildroot} -name '*.bs' -o -name .packlist`
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -99,6 +102,7 @@ desktop-file-install \
 %changelog
 * Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-7
 - Added perl-SDL.patch to fix running against recent releases.
+- Remove .bs and .packlist temp perl files from the packaged files.
 
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.0-6
 - Updated the source location.

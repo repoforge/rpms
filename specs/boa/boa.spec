@@ -8,6 +8,9 @@ Summary: The boa web server
 Name: boa
 Version: 0.94.14
 Release: %{?rcver:0.%{rcver}.}1
+Group: System Environment/Daemons
+License: GPL
+URL: http://www.boa.org/
 Source0: http://www.boa.org/%{name}-%{version}%{?rcver}.tar.bz2
 Source1: boa.init
 Source2: boa.sysconfig
@@ -15,14 +18,11 @@ Source10: index.html
 Source11: boa_logo_pasi2.png
 Source12: button-freshrpms.png
 Patch: boa-0.94.14rc17-config.patch
-URL: http://www.boa.org/
-License: GPL
-Group: System Environment/Daemons
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: tetex, texinfo
-%{!?_without_gunzip:Requires: gzip}
-%{!?_without_gunzip:BuildRequires: gzip}
 Requires: /etc/mime.types
+BuildRequires: tetex, texinfo
+%{!?_without_gzip:Requires: gzip}
+%{!?_without_gzip:BuildRequires: gzip}
 Provides: webserver
 
 %description
@@ -38,11 +38,11 @@ and encrypted communications". Boa is not intended as a feature-packed server.
 
 Available rpmbuild rebuild options :
 --with : debug access poll
---without : gunzip sendfile
+--without : gzip sendfile
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?rcver}
+%setup -n %{name}-%{version}%{?rcver}
 %patch -p1 -b .config
 
 
@@ -51,7 +51,7 @@ Available rpmbuild rebuild options :
     %{!?_with_debug:      --disable-debug} \
     %{?_with_access:      --enable-access-control} \
     %{?_with_poll:        --with-poll} \
-    %{?_without_gunzip:   --disable-gunzip} \
+    %{?_without_gzip  :   --disable-gunzip} \
     %{?_without_sendfile: --disable-sendfile}
 %{__make} %{?_smp_mflags}
 %{__make} -C docs
@@ -66,7 +66,7 @@ Available rpmbuild rebuild options :
 %{__install} -m 644 -D examples/boa.conf %{buildroot}%{_sysconfdir}/boa/boa.conf
 %{__install} -m 644 -D contrib/redhat/boa.logrotate \
     %{buildroot}%{_sysconfdir}/logrotate.d/boa
-%{__install} -m 755 -D %{SOURCE1} %{buildroot}%{_initrddir}/boa
+%{__install} -m 755 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/boa
 %{__install} -m 755 -D %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/boa
 
 %{__mkdir_p} %{buildroot}/%{webroot}/html
@@ -87,39 +87,40 @@ Available rpmbuild rebuild options :
     -d %{webroot} -M -r -g www boa 2>/dev/null || :
 
 %post
-if [ $1 -eq 1 ]; then
-    /sbin/chkconfig --add boa
-fi
+/sbin/chkconfig --add boa
 
 %preun
 if [ $1 -eq 0 ]; then
-    /sbin/service boa stop >/dev/null 2>&1 || :
+    /sbin/service boa stop >/dev/null || :
     /sbin/chkconfig --del boa
 fi
 
 %postun
 if [ $1 -ge 1 ]; then
-    /sbin/service boa condrestart >/dev/null 2>&1 || :
+    /sbin/service boa condrestart >/dev/null || :
 fi
 
 
 %files
 %defattr(-, root, root, 0755)
 %doc docs/*.{html,png,txt} COPYING CREDITS README examples/
-%dir %{_sysconfdir}/boa
+%dir %{_sysconfdir}/boa/
 %config(noreplace) %{_sysconfdir}/boa/boa.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/boa
 %config(noreplace) %{_sysconfdir}/sysconfig/boa
-%{_initrddir}/boa
-%dir %{_libdir}/boa
+%{_sysconfdir}/rc.d/init.d/boa
+%dir %{_libdir}/boa/
 %{_libdir}/boa/boa_indexer
 %{_sbindir}/boa
-%{webroot}
-%dir %{_localstatedir}/log/boa
+%{webroot}/
+%dir %{_localstatedir}/log/boa/
 %{_mandir}/man8/*
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> - 0.94.14-0.rc20.1
+- Minor spec tweaks.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> - 0.94.14-0.rc20.1
 - Update to 0.94.14rc20.
 

@@ -95,7 +95,7 @@ programs that need to access quicktime files using libquicktime.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%doc COPYING README TODO
 %{_bindir}/lqtplay
 %{_bindir}/lqt_transcode
 %{_bindir}/qt*

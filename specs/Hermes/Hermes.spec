@@ -4,7 +4,7 @@
 Summary: Pixel format conversion library
 Name: Hermes
 Version: 1.3.3
-Release: 3
+Release: 4
 License: LGPL
 Group: System Environment/Libraries
 URL: http://clanlib.org/hermes/
@@ -42,7 +42,8 @@ needed for development with %{name}.
 
 
 %build
-%configure
+%configure \
+    --with-pic
 %{__make} %{?_smp_mflags}
 
 
@@ -77,6 +78,9 @@ needed for development with %{name}.
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.3.3-4
+- Added --with-pic configure option, doesn't seem to help much, though.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.3.3-3
 - Rebuild for Fedora Core 2.
 

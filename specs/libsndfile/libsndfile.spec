@@ -45,7 +45,7 @@ documentation for libsndfile.
 %{__rm} -rf %{buildroot} _docs
 %makeinstall htmldocdir="`pwd`/_docs"
 # Clean up examples for inclusion in docs
-%{__rm} -rf examples/.libs/
+%{__rm} -rf examples/{.deps,.libs/,*.o}
 
 
 %clean

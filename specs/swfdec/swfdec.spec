@@ -8,10 +8,8 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
-
 Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: mozilla-devel, libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
 BuildRequires: gimp-devel >= 2.0, liboil-devel
@@ -75,7 +73,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING NEWS README TODO 
+%doc AUTHORS COPYING README TODO 
 %exclude %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %{_bindir}/*
 %{_libdir}/*.so.*

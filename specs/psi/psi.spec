@@ -21,10 +21,6 @@ Release: 3
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
-
 Source0: http://dl.sf.net/psi/psi-%{version}.tar.bz2
 Source1: http://psi.affinix.com/beta/%{tls_plugin}.tar.bz2
 Source20: psi_ca.qm
@@ -41,7 +37,6 @@ Source30: psi_se.qm
 Source31: psi_sk.qm
 Source32: psi_zh.qm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: XFree86-devel, kdelibs-devel, openssl-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: psi-iconsets < 0.9.1

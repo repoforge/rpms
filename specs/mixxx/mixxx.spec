@@ -17,13 +17,8 @@ Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/mixxx/mixxx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: glibc-devel, XFree86-devel, qt-devel >= 3.0, glib-devel
 BuildRequires: audiofile-devel, libmad-devel, libid3tag-devel
 BuildRequires: libvorbis-devel, libogg-devel, libsndfile-devel

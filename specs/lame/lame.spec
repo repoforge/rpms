@@ -5,14 +5,14 @@
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.96.1
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel, gcc-c++
-%ifarch %{ix86}
+%ifarch %{ix86} x86_64
 BuildRequires: nasm
 %endif
 Provides: mp3encoder
@@ -44,31 +44,16 @@ these libraries.
 
 
 %build
-### We want to be optimized to the bone!
-### You know what? This i386 stuff is as good as if it was only i686 and
-### the MMX code is enabled at runtime if found! So this is gooooood :-)
-%ifarch i386
-    export CC_OPTS="-O3 -march=i386 -mcpu=i686 -fomit-frame-pointer -fno-strength-reduce -malign-functions=4 -funroll-loops -ffast-math"
-%else
-    # Vague and ix86 inspired (but working) ppc optimizations
-    %ifarch ppc
-        export CC_OPTS="-O3 -fsigned-char -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
-    %else
-        export CC_OPTS="-O3 -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
-    %endif
-%endif
-
 %configure \
     --program-prefix=%{?_program_prefix} \
-%ifarch %{ix86}
+%ifarch %{ix86} x86_64
     --enable-nasm \
 %endif
     --enable-decoder \
     --with-vorbis \
     --enable-analyser="no" \
     --enable-brhist
-
-%{__make} %{?_smp_mflags} test CFLAGS="${CC_OPTS}"
+%{__make} %{?_smp_mflags} test CFLAGS="%{optflags}"
 
 
 %install
@@ -95,7 +80,7 @@ find doc/html -name "Makefile*" | xargs rm -f
 
 %files
 %defattr (-, root, root, 0755)
-%doc ChangeLog COPYING README TODO USAGE doc/html
+%doc ChangeLog COPYING README TODO USAGE doc/html/
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
@@ -105,11 +90,14 @@ find doc/html -name "Makefile*" | xargs rm -f
 %doc API HACKING STYLEGUIDE
 %{_includedir}/*
 %{_libdir}/*.a
-%{_libdir}/*.so
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 3.96.1-2
+- Remove complex CFLAGS, recent compilers already do a grrreat job.
+
 * Mon Sep  6 2004 Matthias Saou <http://freshrpms.net/> 3.96.1-1
 - Update to 3.96.1.
 

@@ -12,6 +12,7 @@ URL: http://heroinewarrior.com/libmpeg3.php3
 Source: http://dl.sf.net/heroines/libmpeg3-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm
+Provides: %{name}-devel = %{version}-%{release}
 
 %description
 LibMPEG3 decodes the many many derivatives of MPEG standards into
@@ -58,7 +59,7 @@ export CFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`"
 %defattr(-, root, root, 0755)
 %doc COPYING docs/
 %{_bindir}/*
-%{_libdir}/*
+%{_libdir}/*.*
 %{_includedir}/*.h
 
 %changelog
@@ -66,6 +67,8 @@ export CFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`"
 - Remove unneeded /usr/bin fix, since we don't use "make install".
 - Replace -O? with -O1 in optflags since build fails with O2 and gcc 3.4.
 - Make nasm mandatory : The configure script won't run without it anyway.
+- Use libdir/*.* in order to not catch all debuginfo files too.
+- Added -devel provides for now.
 
 * Sat Jun 26 2004 Dag Wieers <dag@wieers.com> - 1.5.4-2
 - Fixes for x86_64.

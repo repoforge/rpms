@@ -12,12 +12,15 @@ Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, qt-devel, libjpeg-devel
 BuildRequires: libstdc++-devel, gcc-c++, mozilla
+# Provide these here, they're so small, it's not worth splitting them out
+Provides: mozilla-djvulibre = %{version}-%{release}
+Provides: djvulibre-devel = %{version}-%{release}
 
 %description 
 DjVu is a web-centric format and software platform for distributing documents
 and images.  DjVu content downloads faster, displays and renders faster, looks
 nicer on a screen, and consume less client resources than competing formats.
-DjVu was originally developped at AT&T Labs-Research by Leon Bottou, Yann
+DjVu was originally developed at AT&T Labs-Research by Leon Bottou, Yann
 LeCun, Patrick Haffner, and many others.  In March 2000, AT&T sold DjVu to
 LizardTech Inc. who now distributes Windows/Mac plug-ins, and commercial
 encoders (mostly on Windows)
@@ -41,9 +44,12 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
-#%{__ln_s} ../../netscape/plugins/nsdejavu.so \
-#    %{buildroot}%{_libdir}/mozilla/plugins/
+%{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
+%{__ln_s} ../../netscape/plugins/nsdejavu.so \
+    %{buildroot}%{_libdir}/mozilla/plugins/
+
+# Fix for the libs to get stripped correctly (debuginfo)
+find %{buildroot}%{_libdir} -name '*.so*' | xargs %{__chmod} +x
 
 
 %clean
@@ -78,6 +84,13 @@ update-desktop-database /usr/share/applications || :
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 3.5.14-2
+- Re-enable the lib/mozilla/ symlink to the plugin.
+- Add source of /etc/profile.d/qt.sh to fix weird detection problem on FC3...
+  ...doesn't fix it, some lib required by qt is probably installed after and
+  ldconfig not run.
+- Added lib +x chmod'ing to get proper stripping and debuginfo package.
+
 * Sat Oct 16 2004 Matthias Saou <http://freshrpms.net/> 3.5.14-2
 - Added update-desktop-database scriplet calls.
 

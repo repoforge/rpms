@@ -75,7 +75,7 @@ XOSD library, similarly to TV OSD.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS ChangeLog COPYING README
 %{_bindir}/osd_cat
 %{_libdir}/*.so.*
 %{_datadir}/xosd/

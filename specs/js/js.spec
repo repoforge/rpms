@@ -11,10 +11,6 @@ Release: 0.rc6a
 License: MPL
 Group: Development/Languages
 URL: http://www.mozilla.org/js/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.mozilla.org/pub/mozilla.org/js/js-%{real_version}.tar.gz
 Patch0: js-make.patch
 Patch1: js-shlib.patch
@@ -43,14 +39,14 @@ you will need to install %{name}-devel.
 
 %build
 BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
-	XCFLAGS="%{optflags} -fPIC" \
-	BUILD_OPT="1"
+    XCFLAGS="%{optflags} -fPIC" \
+    BUILD_OPT="1"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}/js/
+                       %{buildroot}%{_libdir} \
+                       %{buildroot}%{_includedir}/js/
 %{__install} -m0755 src/Linux_All_OPT.OBJ/js %{buildroot}%{_bindir}
 %{__install} -m0755 src/Linux_All_OPT.OBJ/jscpucfg %{buildroot}%{_bindir}
 %{__install} -m0755 src/Linux_All_OPT.OBJ/libjs.so %{buildroot}%{_libdir}/libjs.so.1

@@ -250,22 +250,26 @@ desktop-file-install --vendor %{desktop_vendor} \
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
 %doc installed-docs/*
 %{_bindir}/*vlc
-%{_libdir}/vlc
+%{_libdir}/vlc/
+%exclude %{_libdir}/vlc/*.a
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/pixmaps/vlc.png
-%{_datadir}/vlc
+%{_datadir}/vlc/
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc HACKING 
 %{_bindir}/vlc-config
-%{_includedir}/vlc
+%{_includedir}/vlc/
+%dir %{_libdir}/vlc/
+%{_libdir}/vlc/*.a
 %{_libdir}/libvlc.a
 
 
 %changelog
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-1
 - Update to 0.8.0 final and ffmpeg 20041101 snapshot.
+- Move lib/vlc/*.a files to devel package.
 
 * Fri Oct  1 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-0.test2.1
 - Update to 0.8.0-test2 and ffmpeg 20041001 snapshot.

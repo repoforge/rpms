@@ -80,7 +80,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
+%attr(0755, root, root) %{_bindir}/*
 %lang(cs) %{perl_sitelib}/LocaleData/cs/LC_MESSAGES/video.dvdrip.mo
 %lang(de) %{perl_sitelib}/LocaleData/de/LC_MESSAGES/video.dvdrip.mo
 %lang(es) %{perl_sitelib}/LocaleData/es/LC_MESSAGES/video.dvdrip.mo

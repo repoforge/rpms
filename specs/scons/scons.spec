@@ -4,17 +4,16 @@
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
 Version: 0.96.1
-Release: 1
+Release: 2
 License: MIT
 Group: Development/Tools
 URL: http://www.scons.org/
-Source: http://dl.sf.net/scons/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/scons/scons-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python
 BuildRequires: python, python-devel
+BuildArch: noarch
 
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 SCons is an Open Source software construction tool--that is, a
@@ -35,8 +34,8 @@ SCons is an easier, more reliable and faster way to build software.
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install --root=%{buildroot}
-%{__install} -D -m 644 scons.1 %{buildroot}/%{_mandir}/man1/scons.1
-%{__install} -D -m 644 sconsign.1 %{buildroot}/%{_mandir}/man1/sconsign.1
+%{__install} -D -m 0644 scons.1 %{buildroot}/%{_mandir}/man1/scons.1
+%{__install} -D -m 0644 sconsign.1 %{buildroot}/%{_mandir}/man1/sconsign.1
 
 
 %clean
@@ -47,11 +46,14 @@ SCons is an easier, more reliable and faster way to build software.
 %defattr(-, root, root, 0755)
 %doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt 
 %{_prefix}/bin/*
-%{_prefix}/lib/scons
+%{_prefix}/lib/scons/
 %{_mandir}/man1/*
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 0.96.1-2
+- Make the package noarch as it always should have been.
+
 * Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 0.96.1-1
 - Update to 0.96.1.
 

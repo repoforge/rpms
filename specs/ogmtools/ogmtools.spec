@@ -11,7 +11,6 @@ Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/ogmtools/
 Source: http://www.bunkus.org/videotools/ogmtools/ogmtools-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libdvdread, libogg, libvorbis
 BuildRequires: gcc-c++, libdvdread-devel, libogg-devel, libvorbis-devel
 
 %description

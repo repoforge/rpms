@@ -1,0 +1,196 @@
+# Packages to build, in order, to populate freshrpms.net
+# * : Built earlier because of a dependency
+# x : Build fails, with (reason)
+# # : No longer relevant, usually now included at the latest version
+# o : Shared across all distributions and releases, noarch
+compface
+gpgme
+unrar
+a52dec
+aalib
+advancecomp
+advancescan
+* libid3tag
+* libmad
+* libsndfile
+* xosd
+alsaplayer
+* cryptopp x (gcc 3.4 incompatibility)
+amule x (cryptopp)
+anjuta
+apg
+apt
+armagetron x (c++)
+armagetron-moviepack o
+* wxGTK
+audacity
+bbkeys
+blackbox x (gcc)
+bluefish
+boa x (doc)
+# bzflag
+cabextract
+* imlib2
+* giblib
+camE
+celestia x (c++)
+compface
+conglomerate
+createrepo o
+csmash
+d4x
+diradmin
+djvulibre
+* id3lib
+easytag
+epydoc
+faac
+faad2
+* lame
+* xvidcore
+ffmpeg
+fftw
+flumotion
+* SDL_ttf
+* smpeg
+* perl-SDL
+frozen-bubble
+gcombust
+gentoo
+gkrellm
+gkrellm-plugins
+gkrellm-themes o
+gnome-alsamixer
+gnuboy
+gpgme
+# grip
+gsm
+gstreamer-ffmpeg x (mmx)
+gstreamer-monkeysaudio
+gstreamer-plugins-extra x (TODO)
+gstreamer-python
+gtetrinet
+# gthumb
+Gtk-Perl
+* libsigc++
+gtkmm2
+gtkpod
+gtktalog
+gtweakui
+gxmame
+hackedbox x (same as blackbox)
+hardlink++
+hercules
+Hermes
+i8kutils
+ipw2100-firmware o
+ipw2200-firmware o
+jhead
+js
+kannel x (.depend failure)
+* libsamplerate
+* libquicktime
+kino
+ladspa
+lbreakout2
+libcaca
+libdvbpsi
+libdvdcss
+libdvdnav
+* libdvdread
+libdvdplay
+libebml
+libfame
+libmatroska
+libmpeg3
+liboil
+libshout
+libsidplay x (c++)
+# libtheora
+linux_logo
+lirc
+lmarbles
+ltris
+lzo
+mach
+* scons
+madman x (c++)
+metakit
+* portaudio
+mixxx
+mjpegtools x (asm/mmx then compile error)
+mpeg2dec
+mpg321
+mplayer
+mplayer-fonts o
+mplayer-skins o
+neverball
+# nmap
+ogle
+ogle_gui
+ogmtools
+oidentd
+pearpc
+perl-Cache-Cache
+perl-Error
+perl-IPC-ShareLite
+perl-Video-DVDRip
+perl-libintl
+php-mmcache
+php-pear-excel
+php-pear-ole
+php-pecl-mailparse
+php-pecl-sqlite
+plib
+plib16
+powermanga
+proftpd
+psi
+python-imaging
+python-twisted
+rar o
+# rhythmbox
+* xine-lib
+rhythmbox-xine
+rpmlint
+rrdtool
+rte
+sqlite
+starfighter
+subtitleripper
+swfdec
+# sylpheed
+sylpheed-claws
+synaptic
+synergy
+thttpd
+torcs
+torcs-data o
+totem
+transcode
+ucarp
+unrar
+vcdimager
+videolan-client
+* zziplib
+viruskiller
+xine
+xine-skins o
+xmame
+xmame-roms o
+xmms
+xmms-acme
+xmms-crossfade
+# xmms-itouch (unmaintained, xmms-acme is better)
+xmms-lirc
+xmms-musepack
+xmms-speex
+xmms-wma
+xmule
+xplanet
+xplanet-maps o
+xrick
+xvattr
+# yum
+* zvbi
+zapping

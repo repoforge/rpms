@@ -9,15 +9,10 @@ Release: 3
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: zlib-devel
-%ifarch %{ix86}
+%ifarch %{ix86} x86_64
 BuildRequires: nasm
 %endif
 Requires: zlib >= 1.0.0
@@ -44,7 +39,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-shared
+    --enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
@@ -94,3 +89,4 @@ you will need to install %{name}-devel.
 - added -q parameter to %setup
 - added striping of the library
 - removed COPYING file from %doc, copyright is in the header
+

@@ -1,0 +1,80 @@
+# mach dist configuration                                        -*- python -*-
+
+# fedora-3-i386: configuration for Fedora 3
+
+# each distro flavour has an aptsources line describing where to get each
+# kind of package from
+# each actual dist has a packages dict for bootstrap packages and
+# a sourceslist dict referencing aptsources lines to use
+
+### Fedora Core 3 flavours
+aptsources['fedora-3-i386'] = {
+    'core':             'rpm ' + fedora      + ' 3/i386 core',
+    'updates':          'rpm ' + fedora      + ' 3/i386 updates',
+    'gstreamer':        'rpm ' + gstreamer   + ' fedora/3/i386 gst',
+    'gstreamer-build':  'rpm ' + gstreamer   + ' fedora/3/i386 build',
+    'gstreamer-deps':   'rpm ' + gstreamer   + ' fedora/3/i386 deps',
+    'freshrpms':        'rpm ' + freshrpmsfd + ' 3/i386 freshrpms',
+    'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+    'jpackage-fc3':     'rpm ' + jpackage    + ' fedora-3 free',
+    'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+}
+
+# Fedora Core 3
+packages['fedora-3-i386-core'] = {
+    'dir':      'fedoracore-3-i386',
+    'minimal':  'bash glibc',
+    'base':     'coreutils findutils openssh-server',
+    'build':    'dev rpm-devel rpm-build make gcc tar gzip patch ' +
+                'unzip bzip2 diffutils cpio elfutils',
+}
+sourceslist['fedora-3-i386-core'] = {
+    'fedora-3-i386': ('core', )
+}
+config['fedora-3-i386-core'] = {}
+aliases['fedora-3-i386-core'] = ('f3c', 'fc3', )
+
+# Fedora Core 3 with updates
+packages['fedora-3-i386-updates'] = packages['fedora-3-i386-core']
+sourceslist['fedora-3-i386-updates'] = {
+    'fedora-3-i386': ('core', 'updates', )
+}
+config['fedora-3-i386-updates'] = {}
+aliases['fedora-3-i386-updates'] = ('f3u', )
+
+# Fedora Core 3 with GStreamer
+packages['fedora-3-i386-gstreamer'] = packages['fedora-3-i386-core']
+sourceslist['fedora-3-i386-gstreamer'] = {
+    'fedora-3-i386': ('core', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+}
+config['fedora-3-i386-gstreamer'] = { 'release': '3' }
+aliases['fedora-3-i386-gstreamer'] = ('f3g', )
+
+packages['fedora-3-i386-gstreamer-deps'] = packages['fedora-3-i386-core']
+sourceslist['fedora-3-i386-gstreamer-deps'] = {
+    'fedora-3-i386': ('core', 'gstreamer-deps')
+}
+config['fedora-3-i386-gstreamer-deps'] = { 'release': '3' }
+aliases['fedora-3-i386-gstreamer-deps'] = ('f3gd', )
+
+# Fedora Core 3 with freshrpms
+packages['fedora-3-i386-freshrpms'] = packages['fedora-3-i386-updates']
+packages['fedora-3-i386-freshrpms']['build'] = packages['fedora-3-i386-updates']['build'] + ' gcc-c++ elfutils redhat-rpm-config'
+sourceslist['fedora-3-i386-freshrpms'] = {
+    'fedora-3-i386': ('core', 'updates', 'freshrpms', )
+}
+config['fedora-3-i386-freshrpms'] = { 'release': '1.fc3.fr' }
+aliases['fedora-3-i386-freshrpms'] = ('f3fr', )
+
+# Fedora Core 3 with JPackage
+packages['fedora-3-i386-jpackage'] = packages['fedora-3-i386-updates'].copy()
+packages['fedora-3-i386-jpackage']['base'] = packages['fedora-3-i386-updates']['base'] + ' java-1.4.2-sun'
+packages['fedora-3-i386-jpackage']['build'] = packages['fedora-3-i386-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+sourceslist['fedora-3-i386-jpackage'] = {
+    'fedora-3-i386':
+    sourceslist['fedora-3-i386-updates']['fedora-3-i386'] +
+    ('jpackage-generic', 'jpackage-fc3', 'jpackage-nonfree', ),
+}
+config['fedora-3-i386-jpackage'] = {}
+aliases['fedora-3-i386-jpackage'] = ('fc3jpp', )
+

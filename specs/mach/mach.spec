@@ -12,15 +12,16 @@
 Summary: Make A CHroot
 Name: mach
 Version: 0.4.6
-Release: 1
+Release: 2
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
 Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.bz2
 Source1: fedora-2-x86_64
+Source2: fedora-3-i386
+Source3: fedora-3-x86_64
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: %{python} >= 2.0.0
-
 Requires: rpm-python, apt, sed, cpio, python >= 2.0
 
 %description
@@ -52,8 +53,9 @@ to build clean packages.
 %{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/packages
 %{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/archives
 
-# Additionnal x86_64 Fedora Core 2 config
-%{__install} -m 0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/mach/dist.d/
+# Additionnal config files
+%{__install} -m 0644 %{SOURCE1} %{SOURCE2} %{SOURCE3} \
+    %{buildroot}%{_sysconfdir}/mach/dist.d/
 
 
 %clean
@@ -91,20 +93,23 @@ fi
 %files
 %defattr(-, root, root, -)
 %doc ChangeLog COPYING README AUTHORS BUGS TODO FORGETMENOT RELEASE
-%dir %{_sysconfdir}/mach
+%dir %{_sysconfdir}/mach/
 %config %{_sysconfdir}/mach/conf
 %config %{_sysconfdir}/mach/location
-%config %{_sysconfdir}/mach/dist.d
+%config %{_sysconfdir}/mach/dist.d/
 %{_bindir}/mach
 %attr(04750, root, mach) %{_sbindir}/mach-helper
-%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach
-%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/states
-%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/roots
-%attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/packages
-%attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/archives
+%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/
+%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/states/
+%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/roots/
+%attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/packages/
+%attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/archives/
 
 
 %changelog
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net> 0.4.6-2
+- Added Fedora Core 3 files for i386 and x86_64.
+
 * Sun Jul 11 2004 Matthias Saou <http://freshrpms.net> 0.4.6-1
 - Update to 0.4.6.
 

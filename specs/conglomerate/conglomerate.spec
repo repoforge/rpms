@@ -10,9 +10,6 @@ License: GPL
 Group: Applications/Text
 URL: http://www.conglomerate.org/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/conglomerate/conglomerate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -38,9 +35,9 @@ with a single source document.
 
 %build
 %configure \
-	--enable-optimization \
- 	--enable-printing \
-	--disable-schemas-install
+    --enable-optimization \
+    --enable-printing \
+    --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install

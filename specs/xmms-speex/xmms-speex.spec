@@ -13,7 +13,7 @@ URL: http://jzb.rapanden.dk/projects/speex-xmms
 Source: http://jzb.rapanden.dk/pub/speex-xmms-%{version}.tar.gz
 Patch: speex-xmms-0.9.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7, speex, libogg
+Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel, speex-devel, libogg-devel
 
 
@@ -27,7 +27,7 @@ X MultiMedia System input plugin to play speex files.
 
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC -Wall"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC"
 
 
 %install

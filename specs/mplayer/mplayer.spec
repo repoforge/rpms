@@ -214,6 +214,9 @@ if [ ! -e "%{buildroot}%{_libdir}/libpostproc.so" ]; then
     %makeinstall -C libavcodec/libpostproc
 fi
 
+# Clean the docs we'll include
+%{__rm} -f `find DOCS -name .cvsignore`
+
 
 %post
 /sbin/ldconfig

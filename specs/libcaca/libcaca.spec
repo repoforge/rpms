@@ -84,7 +84,7 @@ sprite blitting.
 %files devel
 %defattr(-, root, root, 0755)
 %doc COPYING %{name}-devel-docs/*
-%{_libdir}/*
+%{_libdir}/*.a
 %{_bindir}/caca-config
 %{_includedir}/*
 %{_mandir}/man1/caca-config.1*
@@ -109,6 +109,7 @@ sprite blitting.
 %changelog
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 0.9-4
 - Disable man3 pages, they don't build on FC3, this needs fixing.
+- Fix to not get the debuginfo files go into the devel package.
 
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9-3
 - Rebuild for Fedora Core 2.

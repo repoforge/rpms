@@ -10,7 +10,7 @@ Release: 	0
 Summary: 	GStreamer Monkey's Audio Plugin
 
 Group: 		Applications/Multimedia
-License: 	Free To Use (Monkey's Audio License)
+License: 	Freeware
 URL:		http://gstreamer.net/
 Source: 	http://freedesktop.org/~gstreamer/src/gst-monkeysaudio/gst-monkeysaudio-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -19,9 +19,9 @@ Requires(pre):	%{_bindir}/gst-register-%{majorminor}
 Requires(post):	%{_bindir}/gst-register-%{majorminor}
 Requires:	%{gstreamer}-plugins >= %{gstp_minver}
 
-BuildRequires: 	%{gstreamer}-devel >= %{gst_minver}
-BuildRequires: 	%{gstreamer}-plugins-devel >= %{gst_minver}
-BuildRequires: 	gcc-c++
+BuildRequires:	%{gstreamer}-devel >= %{gst_minver}
+BuildRequires:	%{gstreamer}-plugins-devel >= %{gst_minver}
+BuildRequires:	gcc-c++
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which

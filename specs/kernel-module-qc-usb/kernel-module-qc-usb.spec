@@ -77,7 +77,7 @@ Simple command-line utility to configure the QuickCam USB webcam settings.
 
 
 %prep
-%setup -q -n qc-usb-%{version}
+%setup -n qc-usb-%{version}
 %patch -p1
 
 

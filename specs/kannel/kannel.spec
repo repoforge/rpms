@@ -8,14 +8,20 @@
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.3.2
-Release: 3
+Release: 4
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/
 Source: http://www.kannel.org/download/%{version}/gateway-%{version}.tar.bz2
 Patch: mblox_optionals_0.1.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: bison, byacc, flex, ImageMagick
 BuildRequires: libxml2-devel, openssl-devel, zlib-devel
+BuildRequires: pcre-devel
+# DB backends
+BuildRequires: sqlite-devel
+# For the docs... I think we need transfig too, so disable for now.
+#BuildRequires: jadetex, tetex-dvips, docbook-dtds, docbook-style-dsssl
 
 %description
 The Kannel Open Source WAP and SMS gateway works as both an SMS gateway, for
@@ -52,7 +58,8 @@ use the kannel WAP and SMS gateway.
 # Fix for the openssl THREADS check, which should be OPENSSL_THREADS
 %{!?_without_newsslcheck: %{__perl} -pi.orig -e 's|(defined\()THREADS\)|$1OPENSSL_THREADS)|g' configure}
 %configure \
-    --enable-start-stop-daemon
+    --enable-start-stop-daemon \
+    --with-sqlite
 %{__make} %{?_smp_mflags}
 
 
@@ -98,6 +105,10 @@ use the kannel WAP and SMS gateway.
 
 
 %changelog
+* Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-4
+- Added pcre support, doc building (almost) and sqlite backend...
+  it still fails with a corrupt first line of .depend on FC3, though.
+
 * Mon Sep 20 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-3
 - Added mblox_optionals_0.1.diff patch.
 

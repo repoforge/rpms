@@ -20,7 +20,7 @@ GXMame is a frontend for XMame using the GTK library, the goal is to provide
 the same GUI than mame32. For the moment it will just have the same gui, the
 final goal is to be able to share config files with Mame32k (or any version
 of mame32 that writes config files instead of saving data into windows
-registery) allowing dual booter to have the same environement (favorite,
+registery) allowing dual booter to have the same environment (favorite,
 times played, last game selected, gui preference...) under windows and Linux.
 
 

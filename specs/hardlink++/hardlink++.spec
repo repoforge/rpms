@@ -19,7 +19,7 @@ structures and creates hard links for identical files found.
 
 
 %prep
-%setup -q
+%setup
 %patch -p1 -b .stdio
 
 

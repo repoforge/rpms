@@ -43,6 +43,7 @@ Header, static libraries and documentation for Imlib2.
 
 %build
 %configure \
+    --with-pic \
 %ifarch %{ix86}
     --enable-mmx
 %else
@@ -96,8 +97,9 @@ Header, static libraries and documentation for Imlib2.
 
 
 %changelog
-* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 1.1.2-2
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.1.2-2
 - Added bzip2 support.
+- Add --with-pic configure option, but lib still seems to have non-pic code.
 
 * Sat Sep 25 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Updated to release 1.1.2. (Antti Markus)
