@@ -28,7 +28,6 @@ random generated callsigns
 %setup
 
 %build
-%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -40,7 +39,7 @@ random generated callsigns
 
 %files
 %defattr(-, root, root, 0755)
-%doc
+%doc README.sources THANKS VERSION AUTHORS ChangeLog
 
 %changelog
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 0.6.5-1
