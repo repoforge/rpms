@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/xdb/xbase-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libtool
+BuildRequires: libtool, gcc-c++
 
 %description
 Library for accessing dBase .dbf, .ndx, .dbt, and Clipper .ntx files.
