@@ -5,7 +5,7 @@
 
 Summary: Display the HTTP headers returned by webservers
 Name: furl
-Version: 2.0
+Version: 2.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -43,5 +43,8 @@ in response to client requests.
 %{_bindir}/*
 
 %changelog
+* Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> - 2.1-1
+- Update to version 2.1.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Initial package.
