@@ -18,7 +18,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: ftp://ftp.kde.org/pub/kde/stable/apps/KDE3.x/math/kig-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libjpeg-devel, libpng-devel, arts-devel, kdelibs-devel gcc, make, gcc-c++, XFree86-devel, zlib-devel, qt-devel
+BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, kdelibs-devel gcc, make, gcc-c++, XFree86-devel, zlib-devel, qt-devel
 Requires: kdelibs
 #todo: needed for python scripting
 #BuildRequires:	boost-python-devel
@@ -48,18 +48,18 @@ make install-strip \
 	DESTDIR="%{buildroot}"
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc README COPYING AUTHORS VERSION INSTALL
 %{_bindir}/kig
-/usr/lib/kde3/libkigpart*
-/usr/share/applications/kde/kig.desktop
-/usr/share/apps/kig/builtin-macros/*
-/usr/share/apps/kig/*
-/usr/share/apps/kigpart/kigpartui.rc
-/usr/share/doc/HTML/en/kig/*
-/usr/share/icons/*/*/apps/kig.png
-/usr/share/mimelnk/application/*
-/usr/share/services/kig_part.desktop
+%{_libdir}/kde3/libkigpart*
+%{_datadir}/applications/kde/kig.desktop
+%{_datadir}/apps/kig/builtin-macros/*
+%{_datadir}/apps/kig/*
+%{_datadir}/apps/kigpart/kigpartui.rc
+%{_datadir}/doc/HTML/en/kig/*
+%{_datadir}/icons/*/*/apps/kig.png
+%{_datadir}/mimelnk/application/*
+%{_datadir}/services/kig_part.desktop
 
 %changelog
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 0.6.0-4
