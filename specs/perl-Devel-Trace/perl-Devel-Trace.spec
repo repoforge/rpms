@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Devel-Trace
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Trace perl programs
 Name: perl-Devel-Trace
@@ -44,9 +48,9 @@ the "-x" option of bash.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/Devel/Trace.pm
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Devel/Trace/.packlist
+%{perl_vendorlib}/Devel/Trace.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/Devel/Trace/.packlist
 
 %changelog
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1

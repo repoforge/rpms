@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Data-Dump
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Pretty print data
 Name: perl-Data-Dump
@@ -43,9 +47,9 @@ printing data.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/Data/Dump.pm
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Data/Dump/.packlist
+%{perl_vendorlib}/Data/Dump.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/Data/Dump/.packlist
 
 %changelog
 * Sat Jun 15 2004 Dries Verachtert <dries@ulyssis.org> - 1.03-1
