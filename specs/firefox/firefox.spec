@@ -10,22 +10,20 @@
 
 Summary: Mozilla Firefox web browser
 Name: firefox
-Version: 0.9.3
-Release: 1
+Version: 0.10
+Release: 0
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
 
-Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-%{version}-source.tar.bz2
+#Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-%{version}-source.tar.bz2
+Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-1.0PR-source.tar.bz2
 Source1: firefox-rebuild-databases.pl.in
 Source2: firefox.png
 Source3: bookmarks.html
 Source4: firefox.xpm
-Patch0: firefox-0.9.2-gcc34.patch
-Patch1: firefox-0.9.2-extensions.patch
 Patch2: firefox-0.9.3-uri.patch
 Patch3: mozilla-default-plugin-less-annoying.patch
-Patch4: firefox-0.9.2-nsFormHistory-64bit.patch
 Patch5: mozilla-1.7-psfonts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -45,11 +43,8 @@ compliance, performance and portability.
 
 %prep
 %setup -q -n mozilla
-%patch0 -p1 -b .gcc34
-%patch1 -p0 -b .extensions
 %patch2 -p0 -b .uri
 %patch3 -p1 -b .plugin
-%patch4 -b .nsformhistory
 %patch5 -p1 -b .psfonts
 
 ### FIXME: Shouldn't the default firefox config be part of original source ?
@@ -83,13 +78,13 @@ EOF
 %{__cat} <<EOF >firefox.desktop
 [Desktop Entry]
 Name=Firefox Web Browser
-Comment=Browse the Internet
+GenericName=Web Browser
+Comment=Browse the Web
 Exec=firefox
 Icon=firefox.png
 Terminal=false
 Type=Application
-StartupNotify=false
-MimeType=text/html;text/x-java;inode/directory;application/xhtml+xml;
+MimeType=text/html;text/xml;text/x-java;inode/directory;application/xhtml+xml;
 Categories=Application;Network;
 EOF
 
@@ -240,6 +235,9 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Thu Sep 16 2004 Matthias Saou <http://freshrpms.net/> 0.10-0
+- Update to 1.0 PR.
+
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
 - Added upstream psfonts patch from mozilla 1.7.
 - Added upstream file:// URI extensions patch.
