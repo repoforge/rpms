@@ -2,7 +2,7 @@
 # Dists: rh73 rh62
 # SourceDists: rh73
 
-BuildRequires: sendmail < 8.12
+#BuildRequires: sendmail < 8.12
 
 #%define optflags -O2 -fno-strict-aliasing
 
@@ -10,6 +10,7 @@ BuildRequires: sendmail < 8.12
 # If you want to build this on older Red Hat Linux releases, this defines
 # the version number to build on. Supported should be 62 70 71 72 for
 # Red Hat Linux 6.2 up to 7.2 and "100" for the current rawhide version.
+%{?rhel3:%define errata 90}
 %{?rh90:%define errata 90}
 %{?rh80:%define errata 80}
 %{?rh73:%define errata 73}
@@ -28,10 +29,10 @@ BuildRequires: sendmail < 8.12
 %define smshell /dev/null
 %endif
 
-Summary: A widely used Mail Transport Agent (MTA).
+Summary: Widely used Mail Transport Agent (MTA).
 Name: sendmail
 Version: 8.12.8
-Release: 7.1
+Release: 9.1
 License: BSD
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -57,7 +58,9 @@ Patch9: sendmail-8.12.7-hesiod.patch
 Patch10: sendmail-8.12.7-manpage.patch
 Patch11: sendmail-8.12.8-security.patch
 Patch12: sendmail-8.12.9-sec.patch
-Patch13: sendmail-8.12.8-parseaddr.patch
+Patch13: sendmail-8.12.9-security.patch
+Patch14: sendmail-8.12.9-security2.patch
+
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 BuildRequires: gdbm-devel
@@ -145,6 +148,7 @@ fi
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 %build
 %ifarch s390
@@ -305,6 +309,9 @@ install -m 755 -d $RPM_BUILD_ROOT%{_libdir}
 install -m 644  $OBJDIR/libmilter/libmilter.a $RPM_BUILD_ROOT%{_libdir}
 install -m 644  $OBJDIR/libsmutil/libsmutil.a $RPM_BUILD_ROOT%{_libdir}
 install -m 644  $OBJDIR/libsm/libsm.a         $RPM_BUILD_ROOT%{_libdir}
+
+# get proper debug-symbol stripping done
+chmod 755  $RPM_BUILD_ROOT%{_sbindir}/sendmail
 
 %if %{errata} > 72
 mv $RPM_BUILD_ROOT%{_sbindir}/sendmail $RPM_BUILD_ROOT%{_sbindir}/sendmail.sendmail
@@ -514,6 +521,12 @@ exit 0
 %{_docdir}/sendmail
 
 %changelog
+* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 8.12.8-9.1
+- Updated to new Red Hat release.
+
+* Wed Sep 17 2003 Florian La Roche <Florian.LaRoche@redhat.de>
+- add security patches for CAN-2003-0694 and CAN-2003-0681
+
 * Wed Sep 17 2003 Dag Wieers <dag@wieers.com> - 8.12.8-1
 - Added security patch.
 

@@ -1,0 +1,96 @@
+--- sendmail-8.12.2/sendmail/sendmail.0	Sun Jan 13 14:57:15 2002
++++ sendmail-8.12.2/sendmail/sendmail.0	Tue Feb 19 16:53:19 2002
+@@ -550,13 +550,13 @@
+        _m_a_i_l_._c_f.  Thus, these values are only approximations.
+ 
+ 
+-        /etc/mail/aliases
++        /etc/aliases
+               raw data for alias names
+ 
+         /etc/mail/aliases.db
+               data base of alias names
+ 
+-        /etc/mail/sendmail.cf
++        /etc/mail/sendmail.cf
+               configuration file
+ 
+         /etc/mail/helpfile
+--- sendmail-8.12.2/sendmail/sendmail.8	Fri Mar 23 17:10:00 2001
++++ sendmail-8.12.2/sendmail/sendmail.8	Tue Feb 19 16:53:19 2002
+@@ -663,20 +663,20 @@
+ .I http://www.sendmail.org/tips/DontBlameSendmail.html
+ .SH FILES
+ Except for the file
+-.I /etc/mail/sendmail.cf
++.I /etc/mail/sendmail.cf
+ itself the following pathnames are all specified in
+-.IR /etc/mail/sendmail.cf .
++.IR /etc/mail/sendmail.cf .
+ Thus, 
+ these values are only approximations.
+ .PP
+ .TP
+- /etc/mail/aliases
++ /etc/aliases
+ raw data for alias names
+ .TP
+  /etc/mail/aliases.db
+ data base of alias names
+ .TP
+- /etc/mail/sendmail.cf
++ /etc/mail/sendmail.cf
+ configuration file
+ .TP
+  /etc/mail/helpfile
+--- sendmail-8.12.2/sendmail/newaliases.0	Sun Jan 13 14:57:15 2002
++++ sendmail-8.12.2/sendmail/newaliases.0	Tue Feb 19 16:53:19 2002
+@@ -13,7 +13,7 @@
+ 
+ DDEESSCCRRIIPPTTIIOONN
+        NNeewwaalliiaasseess rebuilds the random access data  base  for  the
+-       mail  aliases file /etc/mail/aliases.  It must be run each
++       mail  aliases file /etc/aliases.  It must be run each
+        time this file is changed in order for the change to  take
+        effect.
+ 
+@@ -27,7 +27,7 @@
+        data base that is required by sseennddmmaaiill..
+ 
+ FFIILLEESS
+-       /etc/mail/aliases   The mail aliases file
++       /etc/aliases   The mail aliases file
+ 
+ SSEEEE AALLSSOO
+        aliases(5), sendmail(8)
+--- sendmail-8.12.2/sendmail/newaliases.1	Tue Oct  9 23:23:17 2001
++++ sendmail-8.12.2/sendmail/newaliases.1	Tue Feb 19 16:53:19 2002
+@@ -20,7 +20,7 @@
+ .SH DESCRIPTION
+ .B Newaliases
+ rebuilds the random access data base for the mail aliases file
+-/etc/mail/aliases.  It must be run each time this file is changed
++/etc/aliases.  It must be run each time this file is changed
+ in order for the change to take effect.
+ .PP
+ .B Newaliases
+@@ -40,7 +40,7 @@
+ .B sendmail.
+ .SH FILES
+ .TP 2i
+-/etc/mail/aliases
++/etc/aliases
+ The mail aliases file
+ .SH SEE ALSO
+ aliases(5), sendmail(8)
+--- sendmail-8.12.2/cf/m4/cfhead.m4	Sat Jul 21 23:25:37 2001
++++ sendmail-8.12.2/cf/m4/cfhead.m4	Tue Feb 19 16:53:19 2002
+@@ -255,7 +255,7 @@
+ define(`DATABASE_MAP_TYPE', `hash')
+ 
+ # set up default values for options
+-define(`ALIAS_FILE', `MAIL_SETTINGS_DIR`'aliases')
++define(`ALIAS_FILE', `/etc/aliases')
+ define(`confMAILER_NAME', ``MAILER-DAEMON'')
+ define(`confFROM_LINE', `From $g $d')
+ define(`confOPERATORS', `.:%@!^/[]+')

@@ -1,0 +1,14 @@
+--- sendmail-8.12.9/sendmail/parseaddr.c
++++ sendmail-8.12.9/sendmail/parseaddr.c
+@@ -700,7 +700,11 @@
+ 						addr[MAXNAME] = '\0';
+ 	returnnull:
+ 					if (delimptr != NULL)
++					{
++						if (p > addr)
++							p--;
+ 						*delimptr = p;
++					}
+ 					CurEnv->e_to = saveto;
+ 					return NULL;
+ 				}

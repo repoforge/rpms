@@ -4,7 +4,7 @@
  #
  
  divert(0)dnl
--VERSIONID(`$Id: sendmail-8.12.5-pid.patch,v 1.1 2004/02/24 23:49:35 dag- Exp $')
+-VERSIONID(`$Id: submit.mc,v 8.6.2.4 2002/12/29 03:54:34 ca Exp $')
 +include(`/usr/share/sendmail-cf/m4/cf.m4')
 +VERSIONID(`linux setup for Red Hat Linux')dnl
  define(`confCF_VERSION', `Submit')dnl
