@@ -1,7 +1,6 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: George J. Gesslein
 
 Summary: Small, portable symbolic math program
 Name: mathomatic
