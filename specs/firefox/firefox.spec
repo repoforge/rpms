@@ -7,8 +7,6 @@
 %{?rh7:%define _without_gtk2 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_gtk2 1}
-%{?rh6:%define _without_freedesktop 1}
-%{?rh6:%define _without_gtk2 1}
 
 Summary: Mozilla Firefox web browser
 Name: firefox
@@ -148,7 +146,6 @@ ac_add_options --enable-reorder
 ac_add_options --enable-single-profile
 ac_add_options --enable-strip
 ac_add_options --enable-strip-libs
-ac_add_options --enable-svg
 ac_add_options --enable-xprint
 ac_add_options --with-pthreads
 ac_add_options --with-system-jpeg
@@ -168,7 +165,7 @@ EOF
 Name=Firefox Web Browser
 Comment=Browse the Internet
 Exec=firefox
-Icon=firefox
+Icon=firefox.xpm
 Terminal=false
 Type=Application
 StartupNotify=false
@@ -337,7 +334,7 @@ fi
 %doc LEGAL LICENSE README.txt
 %{_bindir}/firefox
 %{_libdir}/firefox/
-%{_datadir}/pixmaps/firefox.png
+%{_datadir}/pixmaps/firefox.xpm
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/firefox.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
