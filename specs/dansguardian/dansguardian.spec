@@ -3,11 +3,10 @@
 # Upstream: Daniel Barron <author$dansguardian,org>
 
 %define real_name DansGuardian
-%define real_version 2.8.0-0
 
 Summary: Content filtering web proxy
 Name: dansguardian
-Version: 2.8.0
+Version: 2.8.0.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -16,7 +15,7 @@ URL: http://www.dansguardian.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dansguardian.org/downloads/2/Stable/DansGuardian-%{real_version}.source.tar.gz
+Source: http://dansguardian.org/downloads/2/Stable/dansguardian-%{version}.source.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -28,7 +27,7 @@ including URL and domain filtering, content phrase filtering, PICS filtering,
 MIME filtering, file extension filtering, POST filtering.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup
 
 
 ### FIXME: Add a default dansguardian.httpd for Apache. (Please fix upstream)
@@ -204,6 +203,9 @@ fi
 %{_localstatedir}/log/dansguardian/
 
 %changelog
+* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 2.8.0.2-1
+- Updated to release 2.8.0.2.
+
 * Wed Jul 21 2004 Dag Wieers <dag@wieers.com> - 2.8.0-1
 - Updated to release 2.8.0-0.
 

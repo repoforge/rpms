@@ -4,7 +4,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.75
+Version: 0.75.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -198,14 +198,17 @@ CONFIG="/etc/sysconfig/clock"
 
 if [ -r "$CONFIG" -a -r "$ZONES" ]; then
 	source "$CONFIG"
-	CODE="$(grep -E "\b$ZONE\b" "$ZONES" | head -1 | cut -f1 | tr [A-Z] [a-z])"
+	export CODE="$(grep -E "\b$ZONE\b" "$ZONES" | head -1 | cut -f1 | tr [A-Z] [a-z])"
 fi
 
 if [ -z "$CODE" ]; then
 	export CODE="local"
 fi
 
-%{__perl} -pi -e 's|^(DatabaseMirror) database.clamav.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
+%{__perl} -pi -e '
+		s|^(DatabaseMirror) database\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
+		s|^(DatabaseMirror) db\.\.clamav\.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|;
+	' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
 
 %postun
 /sbin/ldconfig 2>/dev/null
@@ -306,6 +309,12 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.75.1-1
+- Fixed a problem where $ZONE was empty.
+
+* Mon Jul 26 2004 Dag Wieers <dag@wieers.com> - 0.75-2
+- Fixed a problem where $CODE was empty.
+
 * Fri Jul 23 2004 Dag Wieers <dag@wieers.com> - 0.75-1
 - Updated to release 0.75.
 

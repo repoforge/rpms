@@ -4,7 +4,7 @@
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 0.8
+Version: 0.9
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -81,6 +81,9 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %{_libdir}/*.so
 
 %changelog
+* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.9-1
+- Updated to release 0.9.
+
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.
 
