@@ -20,7 +20,7 @@ Source: http://dl.sf.net/lvempeg/lve-%{real_version}.src.tar.bz2
 Source1: http://dl.sf.net/ffmpeg/ffmpeg-0.4.8.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ffmpeg-devel, mpeg2dec-devel, SDL-devel, gcc-c++
+BuildRequires: ffmpeg-devel, mpeg2dec-devel, SDL-devel, gcc-c++, qt-devel, XFree86-devel
 
 %description
 LVE provides frame and GOP accurate editing of MPEG1/2 elementary ("ES") and
