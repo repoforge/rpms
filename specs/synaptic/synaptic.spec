@@ -4,12 +4,13 @@
 
 Summary: Graphical package management program using apt
 Name: synaptic
-Version: 0.48.2
-Release: 2
+Version: 0.52
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
 Source: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz
+Source1: http://savannah.nongnu.org/download/synaptic/synaptic-%{version}.tar.gz.sig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: apt >= 0.5.4, usermode, gtk2, libglade2, libstdc++
 Requires(pre): scrollkeeper
@@ -29,6 +30,36 @@ utility with a GUI front-end based on Gtk+
 %prep
 %setup
 
+%{__cat} <<EOF >synaptic.apps
+USER=root
+PROGRAM=%{_sbindir}/synaptic
+SESSION=true
+FALLBACK=false
+EOF
+
+%{__cat} <<EOF >synaptic.pam
+#%PAM-1.0
+auth    sufficient      /lib/security/pam_rootok.so
+auth    sufficient      /lib/security/pam_timestamp.so
+auth    required        /lib/security/pam_stack.so service=system-auth
+session required        /lib/security/pam_permit.so
+session optional        /lib/security/pam_xauth.so
+session optional        /lib/security/pam_timestamp.so
+account required        /lib/security/pam_permit.so
+EOF
+
+%{__cat} <<EOF >data/synaptic.desktop.in
+[Desktop Entry]
+Name=Synaptic Package Manager
+Comment=Install and remove applications
+Icon=synaptic.png
+Exec=%{_bindir}/synaptic
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;Application;SystemSetup;
+EOF
+
 
 %build
 %configure 
@@ -37,41 +68,23 @@ utility with a GUI front-end based on Gtk+
 
 %install
 %{__rm} -fr %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%makeinstall
 %find_lang %{name}
 
-%{__mkdir_p} %{buildroot}%{_bindir}
-%{__ln_s} %{_bindir}/consolehelper %{buildroot}%{_bindir}/synaptic
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__ln_s} -f %{_bindir}/consolehelper %{buildroot}%{_bindir}/synaptic
 
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/security/console.apps
-%{__cat} << EOF > %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
-USER=root
-PROGRAM=%{_sbindir}/synaptic
-SESSION=true
-FALLBACK=false
-EOF
+%{__install} -D -m0644 synaptic.apps %{buildroot}%{_sysconfdir}/security/console.apps/synaptic
+%{__install} -D -m0644 synaptic.pam %{buildroot}%{_sysconfdir}/pam.d/synaptic
 
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/pam.d
-%{__cat} << EOF > %{buildroot}%{_sysconfdir}/pam.d/synaptic
-#%PAM-1.0
-auth       sufficient   /lib/security/pam_rootok.so
-auth       sufficient   /lib/security/pam_timestamp.so
-auth       required     /lib/security/pam_stack.so service=system-auth
-session    required     /lib/security/pam_permit.so
-session    optional     /lib/security/pam_xauth.so
-session    optional     /lib/security/pam_timestamp.so
-account    required     /lib/security/pam_permit.so
-EOF
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor "gnome" --delete-original \
+	--add-category X-Red-Hat-Base                   \
+	--dir %{buildroot}%{_datadir}/applications      \
+	%{buildroot}%{_datadir}/applications/synaptic.desktop
 
 # Remove legacy menu entries
-%{__rm} -f %{buildroot}%{_sysconfdir}/X11/sysconfig/%{name}.desktop
-
-# Change the default gksu to our wrapper instead
-%{__perl} -pi -e 's|Exec=.*|Exec=%{_bindir}/%{name}|g' \
-    %{buildroot}%{_datadir}/applications/%{name}.desktop
-# Move the desktop entry to the main part instead of extras
-%{__perl} -pi -e 's|;Application$|;Application;X-Red-Hat-Base;|g' \
-    %{buildroot}%{_datadir}/applications/%{name}.desktop
+%{__rm} -f %{buildroot}%{_sysconfdir}/X11/sysconfig/synaptic.desktop
 
 
 %clean
@@ -88,18 +101,24 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{_sysconfdir}/pam.d/*
-%{_sysconfdir}/security/console.apps/*
-%{_bindir}/*
-%{_sbindir}/*
-%{_datadir}/applications/synaptic.desktop
+%{_sysconfdir}/pam.d/synaptic
+%{_sysconfdir}/security/console.apps/synaptic
+%{_bindir}/synaptic
+%{_sbindir}/synaptic
+%{_datadir}/applications/gnome-synaptic.desktop
 %{_datadir}/gnome/help/synaptic/
 %{_datadir}/omf/synaptic/
+%{_datadir}/pixmaps/synaptic.png
 %{_datadir}/synaptic/
 %{_mandir}/man8/*
+%exclude %{_localstatedir}/scrollkeeper/
 
 
 %changelog
+* Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.52-1
+- Updated to release 0.52.
+- Merged with my SPEC file.
+
 * Tue May 18 2004 Dag Wieers <dag@wieers.com> - 0.48.2-2
 - Bumped release to work with my pre-merge packages.
 

@@ -144,7 +144,7 @@ EOF
 	--sysconfdir="%{_sysconfdir}/dansguardian/" \
 	--sysvdir="%{_initrddir}/" \
 	--runas_usr="nobody" \
-	--runas_grp="nobody" \
+	--runas_grp="nobody"
 
 %{__perl} -pi.orig -e '
 		s|^(CHKCONFIG) =.*$|$1 = :|;

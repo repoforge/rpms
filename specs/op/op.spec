@@ -1,14 +1,14 @@
-# $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Alec Thomas <alec$swapoff,org>
 
 Summary: Allows restricted root access for specified users
 Name: op
-Version: 1.23
+Version: 1.24
 Release: 1
 License: BSD
 Group: Applications/System
-URL: http://swapoff.org/op
+URL: https://svn.swapoff.org/op/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -123,6 +123,9 @@ EOF
 %{_bindir}/op
 
 %changelog
+* Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Wed May 05 2004 Dag Wieers <dag@wieers.com> - 1.23-1
 - Updated to release 1.23.
 

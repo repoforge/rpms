@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Timo Sirainen <tss$iki,fi>
+# Upstream: <dovecot$dovecot,org>
 
 Summary: Dovecot secure IMAP server
 Name: dovecot
@@ -8,12 +9,12 @@ Version: 0.99.10.7
 Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://dovecot.procontrol.fi/
+URL: http://dovecot.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dovecot.procontrol.fi/dovecot-%{version}.tar.gz
+Source: http://dovecot.org/releases/dovecot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Prereq: /usr/sbin/useradd, /usr/sbin/usermod
