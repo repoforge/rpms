@@ -1,20 +1,19 @@
 # $Id$
 # Authority: matthias
 
-%define extrarelease   2
 %define desktop_vendor rpmforge
 
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
-Version: 0.80
-Release: 0
+Version: 0.85.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://gtkpod.sourceforge.net/
-Source: http://dl.sf.net/gtkpod/gtkpod-%{version}-%{extrarelease}.tar.gz
+Source: http://dl.sf.net/gtkpod/gtkpod-%{version}.tar.gz
 Patch: gtk2.4-gtk2.0.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel, libid3tag-devel, faad2-devel, gettext
+BuildRequires: gtk2-devel, libid3tag-devel, mpeg4ip-devel, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -25,7 +24,7 @@ modification of the database with later synchronisation, and more.
 
 
 %prep
-%setup -n %{name}-%{version}-%{extrarelease}
+%setup
 %patch -p0
 
 # Create a desktop menu entry
@@ -87,6 +86,9 @@ desktop-file-install \
 
 
 %changelog
+* Mon Nov 22 2004 Matthias Saou <http://freshrpms.net> 0.85.0-1
+- Update to 0.85.0.
+
 * Fri Aug 27 2004 Matthias Saou <http://freshrpms.net> 0.80-0
 - Update to 0.80-2.
 - Added AAC support through faad2.

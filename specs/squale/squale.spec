@@ -2,7 +2,7 @@
 
 Summary: Persistent SQL database connection libarary and daemon
 Name: squale
-Version: 0.1.0
+Version: 0.1.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -128,6 +128,9 @@ fi
 
 
 %changelog
+* Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 0.1.1-1
+- Update to 0.1.1.
+
 * Fri Nov 19 2004 Matthias Saou <http://freshrpms.net/> 0.1.0-1
 - Update to 0.1.0.
 
