@@ -9,12 +9,12 @@ Version: 2.0.3
 Release: 1
 License: LGPL
 Group: Applications/Internet
-URL: http://www.stearns.org/p0f/
+URL: http://lcamtuf.coredump.cx/p0f.shtml
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.stearns.org/p0f/p0f-%{version}.tgz
+Source: http://lcamtuf.coredump.cx/p0f/p0f-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
