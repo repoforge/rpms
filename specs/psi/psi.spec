@@ -135,6 +135,8 @@ desktop-file-install \
 %exclude %{_datadir}/psi/*.qm
 %{_datadir}/psi
 %{qtdir}/plugins/crypto/libqca-tls.so
+%{_datadir}/applnk/Internet/psi.desktop
+%{_datadir}/icons/hicolor/*/apps/psi.png
 %{_datadir}/pixmaps/psi.png
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
 %{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/%{name}.desktop}
