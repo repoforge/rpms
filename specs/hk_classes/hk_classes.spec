@@ -1,3 +1,4 @@
+
 # $Id$
 
 # Authority: dries
@@ -5,7 +6,7 @@
 Summary: C++ library for rapid development of database applications
 Summary(nl): C++ library om snel database applicaties te ontwikkelen
 Name: hk_classes
-Version: 0.6.4
+Version: 0.6.3
 Release: 1
 License: GPL
 Group: Development/Libraries
