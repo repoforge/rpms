@@ -2,12 +2,17 @@
 # Authority: matthias
 # Upstream: <gqclient-discuss@lists.sf.net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define desktop_vendor freshrpms
 
 Summary: graphical LDAP directory browser and editor
 Name: gq
 Version: 0.6.0
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://biot.com/gq/
@@ -15,9 +20,9 @@ URL: http://biot.com/gq/
 Source: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, openldap-devel, krb5-devel, openssl-devel
-BuildRequires: desktop-file-utils
-Requires: gtk+, openldap, krb5-libs, openssl
+BuildRequires: gtk+-devel, openldap-devel >= 2.0, krb5-devel, openssl-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Requires: gtk+, openldap >= 2.0, krb5-libs, openssl
 
 %description
 GQ is a graphical browser for LDAP directories and schemas.  Using GQ,
@@ -27,36 +32,58 @@ in that directory.
 %prep
 %setup
 
+%{__cat} <<EOF >src/gq.desktop
+[Desktop Entry]
+Name=GQ LDAP Client
+Comment=Manage your LDAP directories
+Exec=gq
+Icon=redhat-system_tools.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GNOME;Application;System;
+EOF
+
 %build
-%configure --with-ldap-prefix=%{_prefix}
-%{__make}
+%configure \
+	--enable-cache \
+	--enable-browser-dnd
+#	--with-ldap-prefix="%{_prefix}" \
+
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
-# Desktop entry
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category System                                           \
-  %{buildroot}%{_datadir}/gnome/apps/Internet/%{name}.desktop
+%if %{!?_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor %{desktop_vendor} --delete-original \
+		--add-category X-Red-Hat-Base                             \
+		--dir %{buildroot}%{_datadir}/applications                \
+		%{buildroot}%{_datadir}/gnome/apps/Internet/gq.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc README COPYING ChangeLog NEWS TODO AUTHORS
+%doc AUTHORS ChangeLog COPYING NEWS README* TODO
 %{_bindir}/*
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/pixmaps/%{name}/*
+%{_datadir}/pixmaps/%{name}/
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gq.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/gq.desktop}
+
 
 %changelog
-* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.6.0-3.fr
+* Wed Jun 09 2004 Dag Wieers <dag@wieers.com> - 0.6.0-4
+- Merged SPEC file with my version.
+- Changes to build on older releases.
+- Added improved desktop file.
+
+* Thu Nov 13 2003 Matthias Saou <http://freshrpms.net/> 0.6.0-3
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
