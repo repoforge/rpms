@@ -6,7 +6,7 @@
 
 Summary: Crossfade output plugin for XMMS
 Name: xmms-crossfade
-Version: 0.3.5
+Version: 0.3.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -14,7 +14,7 @@ URL: http://www.eisenlohr.org/xmms-crossfade/
 Source: http://www.eisenlohr.org/xmms-crossfade/xmms-crossfade-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
-BuildRequires: xmms-devel, gtk+-devel
+BuildRequires: xmms-devel, gtk+-devel, libsamplerate-devel
 
 
 %description
@@ -48,6 +48,10 @@ between songs and a gap-killer.
 
 
 %changelog
+* Fri Sep 17 2004 Matthias Saou <http://freshrpms.net/> 0.3.6-1
+- Update to 0.3.6.
+- Now use libsamplerate.
+
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 0.3.5-1
 - Updated to release 0.3.5.
 - Updated URL and Upstream tags.
