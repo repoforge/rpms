@@ -81,6 +81,13 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__rm} -rf %{buildroot}
 
 
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO docs/reference/html
@@ -96,6 +103,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.99.76-2
+- Added ldconfig calls since there are libs included.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.99.76-2
 - Rebuild for Fedora Core 2.
 
