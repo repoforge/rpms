@@ -14,6 +14,9 @@ URL: 	 http://www.bms-austria.com/projects/paragui/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel libpng-devel SDL_image-devel libtiff-devel freetype-devel
 
+Packager: Rudolf Kastl <che666 at uni.de>
+Vendor: http://newrpms.sunsite.dk/
+
 %description
 ParaGUI is a cross-platform high-level application framework and GUI
 (graphical user interface) library. ParaGUI's cross-platform nature is
