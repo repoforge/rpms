@@ -6,7 +6,7 @@
 Summary: APC UPS power control daemon.
 Name: apcupsd
 Version: 3.10.11
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.sibbald.com/apcupsd/
@@ -14,7 +14,7 @@ URL: http://www.sibbald.com/apcupsd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.sibbald.com/apcupsd/apcupsd-%{version}.tar.gz
+Source: http://dl.sf.net/apcupsd/apcupsd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -22,14 +22,14 @@ BuildRequires: gd-devel, glibc-devel
 Requires: perl
 
 %description
-Apcupsd can be used for controlling most APC UPSes. During a
-power failure, apcupsd will inform the users about the power
-failure and that a shutdown may occur. If power is not restored,
-a system shutdown will follow when the battery is exausted, a
-timeout (seconds) expires, or the battery runtime expires based
-on internal APC calculations determined by power consumption
-rates. If the power is restored before one of the above shutdown
-conditions is met, apcupsd will inform users about this fact.
+Apcupsd can be used for controlling most APC UPSes. During a power failure,
+apcupsd will inform the users about the power failure and that a shutdown
+may occur. If power is not restored, a system shutdown will follow when the
+battery is exausted, a timeout (seconds) expires, or the battery runtime
+expires based on internal APC calculations determined by power consumption
+rates. If the power is restored before one of the above shutdown conditions
+is met, apcupsd will inform users about this fact.
+
 Some features depend on what UPS model you have (simple or smart).
 
 %prep
@@ -63,14 +63,18 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
+
+### FIXME: 'make install' doesn't create sysv-dir and bails out.
+%{__install} -d -m0755 %{buildroot}%{_initrddir}
 %{__make} install \
 	DESTDIR="%{buildroot}"
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_localstatedir}/www/apcupsd/ \
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/apcupsd/ \
 			%{buildroot}%{_sysconfdir}/httpd/conf.d/
-%{__install} -m755 platforms/apccontrol %{buildroot}%{_sysconfdir}/apcupsd/
-%{__install} -m755 platforms/redhat/apcupsd %{buildroot}%{_initrddir}
-%{__install} -m755 examples/hid-ups examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/
+#%{__install} -m0755 platforms/apccontrol %{buildroot}%{_sysconfdir}/apcupsd/
+#%{__install} -m0644 platforms/etc/apcupsd.conf %{buildroot}%{_sysconfdir}/apcupsd/
+#%{__install} -m0755 platforms/redhat/apcupsd %{buildroot}%{_initrddir}
+%{__install} -m0755 examples/hid-ups examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/
 %{__install} -m0644 apcupsd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
 
 ### Clean up buildroot
@@ -101,7 +105,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING ChangeLog INSTALL doc/* examples/
+%doc ChangeLog COPYING INSTALL doc/* examples/
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/apcupsd/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/apcupsd.conf
@@ -110,5 +114,9 @@ fi
 %{_localstatedir}/www/apcupsd/
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 3.10.11-1
+- Added apcupsd.conf. (Andrew Newman)
+- Fixed unsuccessful 'make install'.
+
 * Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 3.10.11-0
 - Initial package. (using DAR)

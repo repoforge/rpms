@@ -1,15 +1,11 @@
 # Authority: dag
 
-### Doesn't compile with distcc ?
-# Distcc: 0 
-# Compartment: 0
-
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Mozilla Thunderbird mail/news client.
 Name: thunderbird
 Version: 0.5
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/thunderbird/
@@ -21,6 +17,7 @@ Source: http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/t
 Source1: http://downloads.mozdev.org/enigmail/src/ipc-1.0.5.tar.gz
 Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.83.3.tar.gz
 Source3: thunderbird-icon.png
+Patch0: mozilla-1.4-x86_64.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -42,6 +39,7 @@ Mozilla Thunderbird is a redesign of the Mozilla mail component.
 
 %prep
 %setup -n mozilla
+%patch0 -p1 -b .x86_64
 %setup -T -D -a1 -n mozilla/extensions
 %setup -T -D -a2 -n mozilla/extensions
 %setup -T -D -n mozilla
@@ -73,7 +71,8 @@ ac_add_options --enable-xinerama
 ac_add_options --enable-extensions="wallet,spellcheck,xmlextras"
 ac_add_options --enable-necko-protocols="http,file,jar,viewsource,res,data"
 ac_add_options --enable-image-decoders="png,gif,jpeg,bmp"
-# ac_add_options --enable-optimize
+%{?rhfc1:ac_add_options --enable-xft}
+%{?rhfc1:ac_add_options --enable-default-toolkit="gtk2"}
 %{?rhel3:ac_add_options --enable-xft}
 %{?rhel3:ac_add_options --enable-default-toolkit="gtk2"}
 %{?rh90:ac_add_options --enable-xft}
@@ -101,7 +100,7 @@ EOF
 export MRE_HOME="%{_libdir}/thunderbird/"
 export MOZILLA_FIVE_HOME="%{_libdir}/thunderbird/"
 export LD_LIBRARY_PATH="${MRE_HOME}:${MRE_HOME}/plugins:$LD_LIBRARY_PATH"
-exec %{_libdir}/mozilla-thunderbird/mozilla-thunderbird-bin $@
+exec %{_libdir}/thunderbird/thunderbird-bin $@
 EOF
 
 %build
@@ -112,6 +111,7 @@ export CXXFLAGS="%{optflags}"
 %{__make} %{?_smp_mflags} -f client.mk libs
 #	MAKE="make %{?_smp_mflags}"
 
+export LANG="en_US"
 cd extensions/ipc
 ./makemake
 %{__make} %{?_smp_mflags}
@@ -156,7 +156,7 @@ tar -xzv -C %{buildroot}%{_libdir} -f dist/thunderbird-*-linux-gnu.tar.gz
 %defattr(-, root, root, 0755)
 %doc LEGAL LICENSE README.txt
 %{_bindir}/*
-%{_libdir}/mozilla-thunderbird/
+%{_libdir}/thunderbird/
 %{_datadir}/pixmaps/*
 %if %{dfi}
 	%{_datadir}/gnome/apps/Internet/*.desktop
@@ -167,6 +167,10 @@ tar -xzv -C %{buildroot}%{_libdir} -f dist/thunderbird-*-linux-gnu.tar.gz
 %changelog
 * Fri Feb 26 2004 Dag Wieers <dag@wieers.com> - 0.5-0
 - Updated to release 0.5.
+- Fixed off-by-1 border for plugins. (Daniele Paoni)
+- Open new window by default, added --profile-manager. (Gary Peck)
+- RH73 build using gcc 3.2.3. (Edward Rudd)
+- Added x86_64 patch. (Oliver Sontag)
 
 * Sun Dec 07 2003 Dag Wieers <dag@wieers.com> - 0.4-0
 - Updated to release 0.4.

@@ -2,10 +2,10 @@
 
 %define rname Archive-Zip
 
-Summary: Archive-Zip module for perl
+Summary: Archive-Zip module for perl.
 Name: perl-Archive-Zip
-Version: 1.05
-Release: 1
+Version: 1.09
+Release: 0
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Zip/
@@ -13,7 +13,7 @@ URL: http://search.cpan.org/dist/Archive-Zip/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/N/NE/NEDKONZ/%{rname}-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/N/NE/NEDKONZ/Archive-Zip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -41,6 +41,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### FIXME: Change to real perl location. (Please fix upstream)
+%{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i;' examples/*.pl
+
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
 
@@ -49,11 +52,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README TODO docs/* examples
+%doc README TODO docs/* examples/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/perl5/
 
 %changelog
+* Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.09-0
+- Updated to release 1.09.
+
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 1.05-0
 - Initial package. (using DAR)

@@ -21,7 +21,6 @@ Prefix: %{_prefix}
 
 BuildRequires: bison, glib2-devel, libxml2-devel, libxslt-devel
 BuildRequires: pkgconfig, icu, libicu-devel
-Requires: glib2, libxml2, libxslt, icu, libicu
 Requires: /sbin/ldconfig
 #Requires: mono-classes
 
@@ -54,7 +53,7 @@ you will need to install %{name}-devel.
 # Allow users to run Mono (.Net) applications by just clicking on them
 # (or typing ./file.exe)
 #
-# chkconfig: 35 98 02
+# chkconfig: - 98 02
 # description: Allow users to run Mono (.Net) applications by just clicking \
 #	       on them (or typing ./file.exe)
 
@@ -162,7 +161,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING.LIB ChangeLog NEWS README doc/
+%doc AUTHORS ChangeLog COPYING.LIB NEWS README doc/
 %doc %{_mandir}/man1/mcs.*
 %doc %{_mandir}/man1/mono.*
 %doc %{_mandir}/man1/mint.*

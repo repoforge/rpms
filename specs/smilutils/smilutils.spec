@@ -11,7 +11,7 @@ URL: http://users.pandora.be/acp/kino/smilutils.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://kino.schirmacher.de/filemanager/download/14/%{name}-%{version}.tar.gz
+Source: http://kino.schirmacher.de/filemanager/download/14/smilutils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

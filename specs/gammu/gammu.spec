@@ -1,8 +1,10 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Mobile phone tools.
 Name: gammu
-Version: 0.93.0
+Version: 0.94.0
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -87,6 +89,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Mar 05 2004 Dag Wieers <dag@wieers.com> - 0.94.0-1
+- Updated to release 0.94.0.
+
 * Sat Feb 07 2004 Dag Wieers <dag@wieers.com> - 0.93.0-1
 - Added BuildRequires for bluez-libs-devel. (Soós Péter)
 

@@ -265,8 +265,10 @@ fi
 
 %changelog
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 0.8-2
-- Firefox opens new window by default, added --profile-manager. (Gary Peck)
 - Fixed off-by-1 border for plugins. (Daniele Paoni)
+- Open new window by default, added --profile-manager. (Gary Peck)
+- RH73 build using gcc 3.2.3. (Edward Rudd)
+- Added x86_64 patch. (Oliver Sontag)
 
 * Wed Feb 11 2004 Dag Wieers <dag@wieers.com> - 0.8-1
 - Used gtk2 explicitly as the toolkit again and fix libwidget_gtk2.

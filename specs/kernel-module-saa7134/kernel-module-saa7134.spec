@@ -20,7 +20,7 @@
 
 Summary: Linux saa7130/7134 (TV/capture card) drivers.
 Name: kernel-module-saa7134
-Version: 0.2.10
+Version: 0.2.9
 Release: %{rrelease}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel

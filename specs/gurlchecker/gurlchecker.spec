@@ -3,9 +3,9 @@
 # Authority: dag
 # Upstream: Emmanuel Saracco <esaracco@noos.fr>
 
-Summary: A GNOME link validity checker.
+Summary: GNOME link validity checker.
 Name: gurlchecker
-Version: 0.7.8
+Version: 0.7.9
 Release: 0
 License: GPL
 Group: Applications/Internet
@@ -14,7 +14,7 @@ URL: http://www.nongnu.org/gurlchecker/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/gurlchecker/%{name}-%{version}.tar.gz
+Source: http://savannah.nongnu.org/download/gurlchecker/gurlchecker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -68,6 +68,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Fri Mar 05 2004 Dag Wieers <dag@wieers.com> - 0.7.9-0
+- Updated to release 0.7.9.
+
 * Fri Feb 27 2004 Dag Wieers <dag@wieers.com> - 0.7.8-0
 - Updated to release 0.7.8.
 

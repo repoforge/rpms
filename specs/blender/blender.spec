@@ -1,4 +1,6 @@
-# Authority: dag
+# $Id$
+
+# Authority: dries
 ##Distcc: 0
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)

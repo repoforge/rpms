@@ -1,13 +1,14 @@
-# Authority: dag
+# $Id$
 
+# Authority: dag
 # Upstream: Ole Laursen <olau@hardworking.dk>
 
 %define rname hardware-monitor
 
 Summary: GNOME Applet for hardware monitoring.
 Name: hardware-monitor-applet
-Version: 0.7
-Release: 0
+Version: 1.0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.cs.auc.dk/~olau/hardware-monitor/
@@ -15,7 +16,7 @@ URL: http://www.cs.auc.dk/~olau/hardware-monitor/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cs.auc.dk/~olau/hardware-monitor/source/%{rname}-%{version}.tar.gz
+Source: http://www.cs.auc.dk/~olau/hardware-monitor/source/hardware-monitor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -48,13 +49,16 @@ pleasantly with the rest of your GNOME desktop.
 %files -f %{rname}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README src/TODO
-%doc %{_datadir}/gnome/help/hardware-monitor/
+#%doc %{_datadir}/gnome/help/hardware-monitor/
 %{_libexecdir}/*
 %{_libdir}/bonobo/servers/*
 %{_datadir}/hardware-monitor/
 %{_datadir}/pixmaps/*
 
 %changelog
+* Fri Mar 05 2004 Dag Wieers <dag@wieers.com> - 1.0-0
+- Updated to release 1.0.
+
 * Thu Aug 28 2003 Dag Wieers <dag@wieers.com> - 0.7-0
 - Updated to release 0.7.
 

@@ -1,35 +1,34 @@
 # Authority: dag
-
 # Upstream: George Farris <farrisg@mala.bc.ca>
-# Soapbox: 0
+# Distcc: 0
 
-%define rversion 0.6.beta5
+%define rversion 0.6.beta9
 
 Summary: The GNOME Fax Application.
 Name: gfax
 Version: 0.6
-Release: 0.beta5
+Release: 0.beta9
 License: GPL
 Group: Applications/Communications
-URL: http://www.cowlug.org/gfax/
+URL: http://gfax.cowlug.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gfax.cowlug.org/%{name}-%{rversion}.tar.gz
+Source: http://gfax.cowlug.org/gfax-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
-BuildRequires: mono >= 0.24
+BuildRequires: mono >= 0.30
 #BuildRequires: gtk-sharp-devel >= 0.9
 #Requires: gnome-libs >= 1.2, libglade >= 0.7, python >= 1.5.2
-Requires: mono >= 0.24, gtk-sharp >= 0.9
+Requires: mono >= 0.30, gtk-sharp >= 0.15
 
 BuildArch: noarch
 
 %description
-Gfax is a popup tool for easily sending
-facsimilies by printing to a fax printer.
+Gfax is a popup tool for easily sending facsimilies by printing
+to a fax printer.
 
 %prep
 %setup -n %{name}-%{rversion}
@@ -45,7 +44,10 @@ facsimilies by printing to a fax printer.
 		}
 	' Makefile
 
+%{__perl} -pi.orig -e 's|GtkSharp.ToggledArgs|Gtk.ToggledArgs|' src/*.cs
+
 %build
+%{__make} schema
 %{__make} %{?_smp_mflags}
 
 %install
@@ -85,17 +87,24 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING hylafax.txt NEWS README TODO doc/*.txt
+%doc AUTHORS ChangeLog COPYING hylafax.txt INSTALL NEWS README TODO doc/*.txt
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 #%{_datadir}/gnome-print/profiles/*
 %{_datadir}/gfax/
 %{_datadir}/pixmaps/*
+
 %defattr(-, root, root, 0777)
 %{_localstatedir}/spool/gfax/
 
 %changelog
+* Wed Mar 03 2004 Dag Wieers <dag@wieers.com> - 0.6-0.beta9
+- Updated to release 0.6.beta9.
+
+* Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 0.6-0.beta8
+- Updated to release 0.6.beta8.
+
 * Thu Jan 01 2004 Dag Wieers <dag@wieers.com> - 0.6-0.beta5
 - Updated to release 0.6.beta5.
 

@@ -56,6 +56,8 @@ Requires: php = %{pversion}, rrdtool = %{rversion}
 The php-rrdtool package contains a dynamic shared object that will add
 RRD and RRDtool support to PHP.
 
+This module is built for PHP v%{pversion}.
+
 %prep
 %setup
 

@@ -7,7 +7,7 @@
 Summary: Mail virus-scanner.
 Name: amavisd-new
 Version: 20030616
-Release: 3.%{rrelease}
+Release: 4.%{rrelease}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -192,7 +192,7 @@ fi
 
 if [ -f /etc/mail/sendmail.mc ]; then
 	if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
-		echo -e "\n#define(\`MILTER', 1)\n#INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/spool/amavis/amavisd.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
+		echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/spool/amavis/amavisd.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
 	fi
 fi
 
@@ -220,7 +220,7 @@ fi
 %dir %{_localstatedir}/spool/amavis/virusmails/
 
 %changelog
-- Added perl-Net-Server >= 0.86 as a static requirement. (Alfredo Milani-Comparetti)
+#- Added perl-Net-Server >= 0.86 as a static requirement. (Alfredo Milani-Comparetti)
 
 * Mon Jan 05 2004 Dag Wieers <dag@wieers.com> - 20030616-3.p7
 - Updated to release 20030616-p7

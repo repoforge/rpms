@@ -1,8 +1,10 @@
+# $Id$
+
 # Authority: dag
 
 %define moncgi_version 1.52
 
-Summary: A general-purpose resource monitoring system.
+Summary: General-purpose resource monitoring system.
 Name: mon
 Version: 0.99.2
 Release: 0
@@ -13,8 +15,8 @@ URL: http://www.kernel.org/software/mon/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: ftp://ftp.kernel.org/pub/software/admin/mon/%{name}-%{version}.tar.bz2
-Source1: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/cgi-bin/mon.cgi/%{name}.cgi-%{moncgi_version}.tar.bz2
+Source0: ftp://ftp.kernel.org/pub/software/admin/mon/mon-%{version}.tar.bz2
+Source1: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/cgi-bin/mon.cgi/mon.cgi-%{moncgi_version}.tar.bz2
 Source2: ftp://ftp.kernel.org/pub/software/admin/mon/contrib/all-alerts.tar.bz2
 Buildroot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
@@ -178,8 +180,8 @@ esac
 exit $RETVAL
 EOF
 
-### FIXME: Change to real perl and plugins location. (Please fix upstream)
-%{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i;' mon.cgi-%{moncgi_version}/util/moncgi-appsecret.pl
+### FIXME: Change to real perl. (Please fix upstream)
+%{__perl} -pi -e 's|^#!/.*bin/perl|#!%{__perl}|i;' mon.cgi-%{moncgi_version}/util/moncgi-appsecret.pl alerts/hpov/*.alert mon.d/*.monitor
 
 %build
 %{__make} %{?_smp_mflags} -C mon.d \

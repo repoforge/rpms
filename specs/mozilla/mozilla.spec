@@ -1,5 +1,10 @@
 # Authority: dag
 
+### FIXME: TODO: Build RH73 builds with gcc 3.2.3
+### FIXME: TODO: Improve firefox start-up script for file:// URLs.
+### FIXME: TODO: Check extra patches (x86_64)
+### FIXME: TODO: Fixed off-by-1 border for plugins.
+
 %define rversion 1.6
 %define _unpackaged_files_terminate_build 0
 
@@ -591,6 +596,9 @@ fi
 %changelog
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.6-1
 - Fixed off-by-1 border for plugins. (Daniele Paoni)
+- Open new window by default, added --profile-manager. (Gary Peck)
+- RH73 build using gcc 3.2.3. (Edward Rudd)
+- Added x86_64 patch. (Oliver Sontag)
 
 * Sat Jan 24 2004 Dag Wieers <dag@wieers.com> - 1.6-0
 - Added psm and spellchecker sub-packages to mozilla package.
