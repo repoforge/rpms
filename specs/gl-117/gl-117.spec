@@ -18,7 +18,7 @@ URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
 Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, SDL_mixer-devel
+BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{!?dist:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc2:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc1:BuildRequires: freeglut-devel, XFree86-devel}
