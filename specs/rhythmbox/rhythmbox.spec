@@ -1,20 +1,17 @@
 # $Id$
 # Authority: matthias
 
-# Enable "--with xine" conditional build
-%{?_with_xine:  %{expand: %%define xine 1}}
-%{!?_with_xine: %{expand: %%define xine 0}}
-
 %define majmin 0.8
 
-Name: rhythmbox%{?_with_xine:-xine}
+Name: rhythmbox
 Summary: Music Management Application 
 Version: %{majmin}.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{majmin}/rhythmbox-%{version}.tar.bz2
+Patch: rhythmbox-0.8.8-wma-mpc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.3
 Requires: libgnomeui >= 2.0.0
@@ -24,15 +21,8 @@ Requires(postun): /sbin/ldconfig
 BuildRequires: libgnomeui-devel >= 2.0.0
 BuildRequires: libmusicbrainz-devel >= 2.0.0
 BuildRequires: gettext, scrollkeeper, gcc-c++
-Obsoletes: net-rhythmbox <= 0.4.8
-
-%if %{xine}
-Conflicts: rhythmbox
-BuildRequires: xine-lib-devel >= 1.0.0
-BuildRequires: libvorbis-devel, libid3tag-devel, flac-devel, faad2-devel
-%else
 BuildRequires: gstreamer-plugins-devel >= 0.8.1
-%endif
+Obsoletes: net-rhythmbox <= 0.4.8
 
 %description
 Rhythmbox is an integrated music management application based on the powerful
@@ -43,13 +33,13 @@ through GStreamer, Internet Radio support, playlists and more.
 
 %prep
 %setup -n rhythmbox-%{version}
+%patch -p1 -b .wma-mpc
 
 
 %build
 %configure \
     --enable-ipod \
-    --enable-dashboard \
-    %{?_with_xine:--with-player=xine}
+    --enable-dashboard
 %{__make} %{?_smp_mflags}
 
 
@@ -99,6 +89,10 @@ scrollkeeper-update
 
 
 %changelog
+* Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 0.8.8-2
+- Add patch for WMA (ffmpeg) and MPC (libmusepack) support for the gst backend.
+- Remove conditional xine backend, it's obsolete and non-working right now.
+
 * Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 0.8.8-1
 - Remove the rhythmbox provides from the xine version as apt doesn't stand
   having it along with the conflicts.
