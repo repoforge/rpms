@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: news://comp.mail.pine/
 
@@ -14,7 +13,7 @@
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
 Version: 4.58
-Release: 0
+Release: 1
 License: Freely Distributable
 Group: Applications/Internet
 URL: http://www.washington.edu/pine/
@@ -153,9 +152,9 @@ cd pinepgp-%{pgpver}
 
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 bin/{pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
+%{__install} -m0755 bin/{mailutil,pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
 %{__install} -m0755 %{SOURCE3} %{buildroot}%{_bindir}
-%{__install} -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
+%{__install} -m0644 doc/*.1 imap/src/mailutil/mailutil.1 %{buildroot}%{_mandir}/man1/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -169,5 +168,8 @@ cd pinepgp-%{pgpver}
 %{_bindir}/*
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 4.58-1
+- Added mailutil. (James A Hunsaker)
+
 * Sun Dec 21 2003 Dag Wieers <dag@wieers.com> - 4.58-0
 - Initial package. (using DAR)
