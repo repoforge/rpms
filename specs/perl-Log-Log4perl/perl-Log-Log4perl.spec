@@ -4,6 +4,10 @@
 # Upstream: mailto:log4perl-devel$lists,sourceforge,net
 
 %define real_name Log-Log4perl
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Perl port of log4j
 Name: perl-Log-Log4perl
@@ -58,8 +62,6 @@ perl-Log-Log4perl.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall DESTDIR=%{buildroot}
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/*/i386-linux-thread-multi/auto/Log/Log4perl/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,32 +69,34 @@ perl-Log-Log4perl.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README Changes
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/DBI.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/File.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/Limit.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/Screen.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/Socket.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/Synchronized.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/TestArrayBuffer.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/TestBuffer.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/TestFileCreeper.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Config.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Config
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/DateFormat.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/FAQ.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Filter.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Filter
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/JavaMap.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/JavaMap
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Layout.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Layout
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Level.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Logger.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/MDC.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/NDC.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Util.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%{perl_vendorlib}/Log/Log4perl.pm
+%{perl_vendorlib}/Log/Log4perl/Appender.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/DBI.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/File.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/Limit.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/Screen.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/Socket.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/Synchronized.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/TestArrayBuffer.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/TestBuffer.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/TestFileCreeper.pm
+%{perl_vendorlib}/Log/Log4perl/Config.pm
+%{perl_vendorlib}/Log/Log4perl/Config
+%{perl_vendorlib}/Log/Log4perl/DateFormat.pm
+%{perl_vendorlib}/Log/Log4perl/FAQ.pm
+%{perl_vendorlib}/Log/Log4perl/Filter.pm
+%{perl_vendorlib}/Log/Log4perl/Filter
+%{perl_vendorlib}/Log/Log4perl/JavaMap.pm
+%{perl_vendorlib}/Log/Log4perl/JavaMap
+%{perl_vendorlib}/Log/Log4perl/Layout.pm
+%{perl_vendorlib}/Log/Log4perl/Layout
+%{perl_vendorlib}/Log/Log4perl/Level.pm
+%{perl_vendorlib}/Log/Log4perl/Logger.pm
+%{perl_vendorlib}/Log/Log4perl/MDC.pm
+%{perl_vendorlib}/Log/Log4perl/NDC.pm
+%{perl_vendorlib}/Log/Log4perl/Util.pm
 %{_mandir}/man3/Log::Log4perl.3pm.gz
 %{_mandir}/man3/Log::Log4perl::Appender.3pm.gz
 %{_mandir}/man3/Log::Log4perl::Appender::DBI.3pm.gz
@@ -117,7 +121,7 @@ perl-Log-Log4perl.
 %{_mandir}/man3/Log::Log4perl::Util.3pm.gz
 
 %files RRDs
-%{_libdir}/perl5/vendor_perl/*/Log/Log4perl/Appender/RRDs.pm
+%{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 %doc %{_mandir}/man3/Log::Log4perl::Appender::RRDs.3pm*
 
 
