@@ -25,8 +25,8 @@ Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.85.0.tar.gz
 Patch: thunderbird-0.7.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, zlib-devel, zip
-BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel
+BuildRequires: XFree86-devel, zlib-devel, zip, gzip, perl
+BuildRequires: gtk+-devel, libpng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, vim-enhanced, csh, gcc-c++, krb5-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel, gnome-vfs2-devel}
