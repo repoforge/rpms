@@ -12,7 +12,7 @@
 Summary: Datetime sets and set math
 Name: perl-DateTime-Set
 Version: 0.19
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Set/
@@ -58,5 +58,8 @@ pattern, within a time range.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 0.19-2
+- Requirements fixes.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Initial package.
