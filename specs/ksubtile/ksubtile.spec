@@ -6,6 +6,7 @@
 Summary: Program for editing subtitles in the SRT format
 Name: ksubtile
 Version: 1.0.1
+%define real_version 1.0-1
 Release: 2
 License: GPL
 Group: Applications/Multimedia
@@ -14,7 +15,7 @@ URL: http://ksubtile.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://prdownloads.sourceforge.net/ksubtile/ksubtile_1.0-1.tar.bz2
+Source: http://dl.sf.net/ksubtile/ksubtile_%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 Requires: kdelibs
