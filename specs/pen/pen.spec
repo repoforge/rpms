@@ -4,7 +4,7 @@
 
 Summary: Load balancer for "simple" tcp based protocols
 Name: pen
-Version: 0.13.0
+Version: 0.14.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -69,6 +69,9 @@ fi
 %exclude %{_prefix}/doc/
 
 %changelog
+* Fri Jun 25 2004 Dag Wieers <dag@wieers.com> - 0.14.0-1
+- Updated to release 0.14.0.
+
 * Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 0.13.0-1
 - Updated to release 0.13.0.
 
