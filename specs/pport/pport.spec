@@ -38,7 +38,7 @@ practically no changes.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS THANKS README
-%doc %{_mandir}/man8/*
+%doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/pportd.conf
 %{_bindir}/*
 %exclude %{_prefix}/doc/pport/
