@@ -63,7 +63,7 @@ rm -f $RPM_BUILD_ROOT/usr/share/applications/kde/umbrello.desktop
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc COPYING README
 %{_bindir}/umbrello
 %{_datadir}/apps/umbrello

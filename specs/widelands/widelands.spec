@@ -59,8 +59,8 @@ mkdir -p $RPM_BUILD_ROOT/usr/share/widelands
 mkdir -p $RPM_BUILD_ROOT/usr/bin
 mkdir -p $RPM_BUILD_ROOT/usr/share/applications/
 
-install -s -m 755 widelands.orig $RPM_BUILD_ROOT/usr/share/widelands/widelands
-install -m 755 widelands $RPM_BUILD_ROOT/usr/bin/widelands
+%{__install} -s -m 755 widelands.orig $RPM_BUILD_ROOT/usr/share/widelands/widelands
+%{__install} -m 755 widelands $RPM_BUILD_ROOT/usr/bin/widelands
 cp -r fonts maps pics tribes worlds $RPM_BUILD_ROOT/usr/share/widelands/
 cp widelands.desktop $RPM_BUILD_ROOT/usr/share/applications/
 
@@ -68,7 +68,7 @@ cp widelands.desktop $RPM_BUILD_ROOT/usr/share/applications/
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README COPYING AUTHORS
 %{_bindir}/widelands
 %{_datadir}/widelands

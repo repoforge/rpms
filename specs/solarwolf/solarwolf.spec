@@ -40,7 +40,7 @@ make install
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc readme.txt lgpl.txt
 %{_datadir}/games/solarwolf
 %{_usr}/games/solarwolf

@@ -98,7 +98,7 @@ convert desktop/xfce/dune4kids.xpm %{buildroot}%{_datadir}/icons/hicolor/48x48/a
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README COPYING docs
 %{_bindir}/dune
 %{_bindir}/dune4kids

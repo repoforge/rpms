@@ -55,7 +55,7 @@ This subpackage contains the files which are conflicting with the files of
 the package reiserfs-utils.
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %{_libdir}/libdal-0.3.so.0.0.0
 %{_libdir}/libdal-0.3.so.0
 %{_libdir}/libreiserfs-0.3.so.0.0.0
@@ -71,7 +71,7 @@ the package reiserfs-utils.
 %{_mandir}/man8/tunefs.reiserfs.8.gz
 
 %files devel
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %{_includedir}/dal
 %{_includedir}/reiserfs
 %{_libdir}/libdal.so
@@ -82,7 +82,7 @@ the package reiserfs-utils.
 %{_libdir}/libreiserfs.so
 
 %files conflict
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_sbindir}/fsck.reiserfs
 %{_sbindir}/mkfs.reiserfs
 

@@ -60,11 +60,11 @@ sed -i "s/-lDCOP -lkdecore/-lDCOP -lkdeui -lkdecore/g;" kdecore/Makefile
 %{__rm} -rf %{buildroot}
 
 %files devel
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/sip
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS BUGS ChangeLog COPYING INSTALL importTest.py NEWS THANKS doc
 %{_libdir}/python*/site-packages/*.so
 %{_libdir}/python*/site-packages/*.py

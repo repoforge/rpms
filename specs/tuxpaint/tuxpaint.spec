@@ -47,7 +47,7 @@ cd src
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 
 %changelog
 * Thu Dec 25 2003 Dries Verachtert <dries@ulyssis.org> 0.9.13-1

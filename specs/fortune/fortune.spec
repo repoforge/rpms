@@ -456,7 +456,7 @@ Requires: fortune-osho = %{version}-%{release}
 All fortune packages will be installed if you install this package.
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README ChangeLog TODO
 %{_prefix}/games/fortune
 %{_sbindir}/strfile
@@ -499,63 +499,63 @@ All fortune packages will be installed if you install this package.
 %{_mandir}/man*/*
 
 %files bofh-excuses
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/bofh-excuses*
 
 %files kernelnewbies
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/kernelnewbies*
 
 %files starwars
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/starwars*
 
 %files futurama
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/futurama*
 
 %files calvin
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/calvin*
 
 %files zippy2
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/zippy2*
 
 %files tao
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/tao*
 
 %files hitchhiker
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/hitchhiker*
 
 %files simpsons-chalkboard
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/chalkboard*
 
 %files prog-style
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/prog-style*
 
 %files fgump
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/fgump*
 
 %files discworld
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/discworld*
 
 %files xfiles
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/xfiles*
 
 %files kernelcookies
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/kernelcookies*
 
 %files dune
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/dune*
 %{_datadir}/games/fortune/chapterhouse*
 %{_datadir}/games/fortune/children-of-dune*
@@ -565,31 +565,31 @@ All fortune packages will be installed if you install this package.
 %{_datadir}/games/fortune/house-harkonnen*
 
 %files cbg
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/cbg*
 
 %files simpsons-ralph
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/ralph*
 
 %if %{DisableOffensiveFortunes}
 # Southpark will not be packaged
 %else
 %files southpark
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/SP*
 %endif
 
 %files simpsons-homer
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/homer*
 
 %files osho
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/osho*
 
 %files all
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 
 %changelog
 * Mon Jun 21 2004 Dries Verachtert <dries@ulyssis.org> 1.0-30

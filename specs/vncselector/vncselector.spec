@@ -40,7 +40,7 @@ server sessions. This can be useful in a thin client situation (run from
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc RELEASE_NOTES
 %{_bindir}/VncSelector
 

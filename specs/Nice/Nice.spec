@@ -37,7 +37,7 @@ compilation (null pointers, casts).
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc LICENSE NEWS
 %{_bindir}/nicec
 %{_bindir}/niceunit

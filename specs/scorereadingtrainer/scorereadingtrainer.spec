@@ -49,7 +49,7 @@ export DESTDIR=$RPM_BUILD_ROOT
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/ScoreReadingTrainer
 %{_datadir}/applnk/Edutainment/Miscellaneous/ScoreReadingTrainer.desktop

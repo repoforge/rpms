@@ -49,7 +49,7 @@ Development headers of fann: fast artificial neural network library
 /sbin/ldconfig
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING INSTALL NEWS README TODO
 %{_libdir}/libfloatfann.so.1
 %{_libdir}/libdoublefann.so.1
@@ -63,7 +63,7 @@ Development headers of fann: fast artificial neural network library
 
 
 %files devel
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_libdir}/libfloatfann.so
 %{_libdir}/libdoublefann.so
 %{_libdir}/libfann.so

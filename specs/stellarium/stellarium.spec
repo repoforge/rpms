@@ -94,7 +94,7 @@ chmod +x $RPM_BUILD_ROOT/usr/bin/stellarium
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/run-stellarium
 %{_bindir}/stellarium

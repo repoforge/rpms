@@ -52,7 +52,7 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/poedit
 %{_mandir}/man1/poedit.1.gz
