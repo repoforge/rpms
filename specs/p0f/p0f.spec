@@ -7,7 +7,7 @@
 
 Summary: Passive OS fingerprinting tool
 Name: p0f
-Version: 2.0.3
+Version: 2.0.4
 Release: 1
 License: LGPL
 Group: Applications/Internet
@@ -147,19 +147,11 @@ EOF
 
 %{__install} -D -m0644 p0f.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/p0f
 %{__install} -D -m0755 p0f.sysv %{buildroot}%{_initrddir}/p0f
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/arpwatch/
 						
 %clean
 %{__rm} -rf %{buildroot}
-
-%files
-%defattr(-, root, root, 0755)
-%doc doc/ChangeLog doc/COPYING doc/CREDITS doc/KNOWN_BUGS doc/README doc/TODO
-%doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/sysconfig/p0f
-%config %{_sysconfdir}/p0f/
-%config %{_initrddir}/p0f
-%{_bindir}/*
-%{_sbindir}/*
 
 %post
 if [ ! -f "%{_localstatedir}"/log/p0f ]; then
@@ -178,7 +170,24 @@ fi
 %postun
 /sbin/service p0f condrestart &>/dev/null || :
 
+%files
+%defattr(-, root, root, 0755)
+%doc doc/ChangeLog doc/COPYING doc/CREDITS doc/KNOWN_BUGS doc/README doc/TODO
+%doc %{_mandir}/man?/*
+%config(noreplace) %{_sysconfdir}/sysconfig/p0f
+%config %{_sysconfdir}/p0f/
+%config %{_initrddir}/p0f
+%{_bindir}/*
+%{_sbindir}/*
+
+%defattr(-, pcap, pcap, 0755)
+%{_localstatedir}/arpwatch/
+
 %changelog
+* Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 2.0.4-1
+- Updated to release 2.0.4.
+- Added /var/arpwatch to package. (Juha Sahakangas)
+
 * Tue May 18 2004 Dag Wieers <dag@wieers.com> - 2.0.3-2
 - Fixed sysconfig location.
 
