@@ -5,7 +5,7 @@
 Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, rsync, http, ftp, ...)
 Name: yam
 Version: 0.6
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/yam/
@@ -35,7 +35,7 @@ allow installations via the network.
 %prep
 %setup
 
-%{__perl} -pi.orig -e "s|^(VERSION) =|$1 = '%{version}'|" yam
+%{__perl} -pi.orig -e 's|^(VERSION)\s*=\s*.+$|$1 = "%{version}"|' yam
 
 %build
 
@@ -58,8 +58,9 @@ allow installations via the network.
 %{_localstatedir}/www/yam/
 
 %changelog
-* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.6-1
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.6-2
 - Updated to release 0.6.
+- Fix a version problem.
 
 * Thu Aug 19 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
