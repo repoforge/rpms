@@ -48,6 +48,9 @@ mkdir -p %{buildroot}/usr/share/applications
 mv %{buildroot}/usr/share/applnk/Utilities/kdirstat.desktop %{buildroot}/usr/share/applications/kdirstat.desktop
 echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/applications/kdirstat.desktop
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc README COPYING AUTHORS CREDITS COPYING.LIB TODO INSTALL
