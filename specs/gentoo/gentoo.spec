@@ -32,7 +32,7 @@ file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 
 %build
 %configure
-%{__make} %{_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install

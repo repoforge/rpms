@@ -54,7 +54,7 @@ you will need to install %{name}-devel.
 	--enable-syslog \
 	--enable-dvd
 #	--enable-dvb
-%{__make} %{_smp_mflags} 
+%{__make} %{?_smp_mflags} 
 #%{__make} -C doc/developer/
 
 %install

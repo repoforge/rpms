@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dries
 
-Summary: Gift fasttrack plugin
+Summary: Gift plugin to access the fasttrack network
 Name: gift-fasttrack
 Version: 0.8.5
 Release: 1
@@ -19,7 +19,9 @@ BuildRequires: gift, pkgconfig
 Requires: gift
 
 %description
-Fasttrack plugin for gift
+giFT is a modular daemon capable of abstracting the communication between the
+end user and specific filesharing protocols (peer-to-peer or otherwise). This
+packages provides the plugin to access the fasttrack network.
 
 %prep
 %setup -n giFT-FastTrack-%{version}
@@ -37,6 +39,9 @@ Fasttrack plugin for gift
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
@@ -49,3 +54,4 @@ Fasttrack plugin for gift
 %changelog
 * Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.8.5-1
 - first packaging for Fedora Core 1
+

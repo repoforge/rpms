@@ -74,7 +74,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 #$QTDIR/bin/qmake -makefile -unix "LIBS +=-lm $QTDIR/lib/libqt-mt.so.3" texmaker.pro
 $QTDIR/bin/qmake -makefile -unix texmaker.pro
 
-%{__make} %{?_smp_flags} \
+%{__make} %{?_smp_mflags} \
 	CXXFLAGS="%{optflags}"
 
 %install

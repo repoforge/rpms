@@ -52,7 +52,7 @@ Available rpmbuild rebuild options :
     %{?_with_poll:        --with-poll} \
     %{?_without_gunzip:   --disable-gunzip} \
     %{?_without_sendfile: --disable-sendfile}
-%{__make}
+%{__make} %{?_smp_mflags}
 %{__make} -C docs
 
 

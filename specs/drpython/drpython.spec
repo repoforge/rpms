@@ -1,18 +1,13 @@
 # $Id$
 # Authority: dries
 
-# NeedsCleanup
-
-# TODO: doesn't contain install stuff
-
-
-Summary: todo
+Summary: Editor and environment for developing programs in python
 Name: drpython
-Version: 2.1.9
+Version: 3.1.3
 Release: 1
 License: GPL
 Group: Development/Tools
-URL: http://drpython.sf.net
+URL: http://drpython.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -25,10 +20,11 @@ BuildRequires: wxGTK-devel
 #(d) screenshotsurl: http://drpython.sourceforge.net/screenshots.html
 
 %description
-todo
+DrPython is a clean and simple yet powerful and highly customizable
+editor/environment for developing programs written in the Python
+programming Language.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -36,12 +32,21 @@ todo
 %{__make} %{?_smp_mflags}
 
 %install
-%{__make} install-strip
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc README
 
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 3.1.3-1
+- Update to 3.1.3.
+- Major spec file completing... but nothing near working.
+
 * Wed Jan 28 2004 Dries Verachtert <dries@ulyssis.org> 2.1.4-1
 - first packaging for Fedora Core 1
+

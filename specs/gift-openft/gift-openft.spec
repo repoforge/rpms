@@ -1,25 +1,26 @@
 # $Id$
 # Authority: dries
 
-Summary: Gift openft plugin
+Summary: Gift plugin to access the openft network
 Name: gift-openft
 Version: 0.2.1.2
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://apollon.sourceforge.net/
-
-Source: http://dl.sf.net/gift/gift-openft-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gift, gcc-c++, pkgconfig, zlib-devel
-Requires: gift
+URL: http://www.giftproject.org/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
+Source: http://dl.sf.net/gift/gift-openft-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gift, gcc-c++, pkgconfig, zlib-devel
+Requires: gift
+
 %description
-Openft plugin for gift
+giFT is a modular daemon capable of abstracting the communication between the
+end user and specific filesharing protocols (peer-to-peer or otherwise). This
+packages provides the plugin to access the openft network.
 
 %prep
 %setup
@@ -37,6 +38,9 @@ Openft plugin for gift
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
@@ -49,3 +53,4 @@ Openft plugin for gift
 %changelog
 * Mon Dec 29 2003 Dries Verachtert <dries@ulyssis.org> 0.2.1.2-1
 - first packaging for Fedora Core 1
+

@@ -42,6 +42,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %post
 /sbin/ldconfig 2>/dev/null
 

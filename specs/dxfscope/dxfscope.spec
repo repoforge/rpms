@@ -4,7 +4,7 @@
 # Screenshot: http://wildspark.com/dxfscope/screenshot-city-thumb.png
 # ScreenshotURL: http://wildspark.com/dxfscope/
 
-Summary: viewer for DXF drawings
+Summary: Viewer for DXF drawings
 Name: dxfscope
 Version: 0.2
 Release: 3
@@ -40,6 +40,9 @@ entities of the DXF specification.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

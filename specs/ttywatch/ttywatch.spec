@@ -33,7 +33,7 @@ ttywatch-devel package.
 %setup
 
 %build
-%{__make} %{_smp_mflags} \
+%{__make} %{?_smp_mflags} \
 	OPTFLAGS="%{optflags} -I/usr/include"
 
 %install

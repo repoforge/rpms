@@ -51,7 +51,7 @@ Header files needed for building applications based on DirectFB.
     --enable-linux-input \
     --disable-maintainer-mode \
     --disable-fast-install
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Screenshot: http://gwenview.sourceforge.net/screenshots/shots/thumbs/6.png
 # ScreenshotURL: http://gwenview.sourceforge.net/screenshots/
@@ -36,11 +35,13 @@ source /etc/profile.d/qt.sh
 %install
 %{__rm} -rf %{buildroot}
 source /etc/profile.d/qt.sh
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING CREDITS NEWS TODO
 %{_bindir}/gwenview
 %{_libdir}/kde3/libgv*
@@ -54,7 +55,6 @@ source /etc/profile.d/qt.sh
 %{_datadir}/services/gv*.desktop
 # %{_datadir}/locale/*/LC_MESSAGES/gwenview.mo
 %{_datadir}/man/man1/gwenview*
-
 
 %changelog
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> 1.1.3-1
@@ -72,3 +72,4 @@ source /etc/profile.d/qt.sh
 
 * Sun Dec 7 2003 Dries Verachtert <dries@ulyssis.org> 1.0.0-1
 - first packaging for Fedora Core 1
+

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Screenshot: http://gnubiff.sourceforge.net/pics/screenshot-gtk.png
 # ScreenshotURL: http://gnubiff.sourceforge.net/screenshots.php
@@ -12,16 +11,15 @@ License: GPL
 Group: Applications/Internet
 URL: http://gnubiff.sourceforge.net/
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: gettext, libgnomeui-devel, gnome-panel, gcc-c++
 BuildRequires: openssl-devel, libglade-devel, gdk-pixbuf-devel 
 BuildRequires: glib2-devel, libglade2-devel
 %{?fc2:BuildRequires: gnome-panel-devel}
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 Gnubiff is a mail notification program that checks for mail, displays
@@ -43,8 +41,11 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %makeinstall
 %find_lang %{name}
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files -f %{name}.lang
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README ABOUT-NLS AUTHORS ChangeLog COPYING NEWS INSTALL THANKS
 %{_bindir}/gnubiff
 %{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server

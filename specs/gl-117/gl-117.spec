@@ -15,17 +15,16 @@ License: GPL
 Group: Amusements/Games
 URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{!?dist:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc2:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc1:BuildRequires: freeglut-devel, XFree86-devel}
 %{?rh9:BuildRequires: glut-devel, XFree86-devel}
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 GL-117 is an action flight simulator. Enter the Eagle Squadron and succeed 
@@ -45,6 +44,9 @@ export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING FAQ INSTALL NEWS README
@@ -63,3 +65,4 @@ export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
 
 * Fri Dec 26 2003 Dries Verachtert <dries@ulyssis.org> 1.1-1
 - first packaging for Fedora Core 1
+

@@ -1,12 +1,14 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
 Release: 3
 ### Needs epoch as el2 comes with version 1:1.0.3 ;-(
-#Epoch: 1
+%{?el2:Epoch: 1}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libsigc.sourceforge.net/
@@ -43,7 +45,7 @@ needed for development with libsigc++.
 
 %build
 %configure
-%{__make} %{_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install

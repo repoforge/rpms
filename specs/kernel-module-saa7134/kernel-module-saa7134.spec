@@ -94,7 +94,7 @@ cd -
 
 ### Make SMP module.
 %{__make} clean
-%{__make} %{_smp_mflags} \
+%{__make} %{?_smp_mflags} \
 	KDIR="%{_libmoddir}/%{kversion}-%{krelease}/build"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 %{__install} -s -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}

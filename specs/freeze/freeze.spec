@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Archiver and compressor
@@ -44,11 +43,14 @@ for bin in fcat melt unfreeze; do
 	%{__ln_s} -f freeze.1.gz %{buildroot}%{_mandir}/man1/$bin.1.gz
 done
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README
-%doc %{_mandir}/man?/*
 %{_bindir}/*
+%{_mandir}/man?/*
 
 %changelog
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.5-2

@@ -43,7 +43,7 @@ nodes healthchecks and LVS directors failover.
 %configure \
 %{?el3:--includedir="/usr/kerberos/include"} \
 %{?rh9:--includedir="/usr/kerberos/include"}
-%{__make} %{?_smp_flags}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

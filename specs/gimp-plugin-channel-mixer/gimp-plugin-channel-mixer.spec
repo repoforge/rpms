@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name channel_mixer
@@ -28,11 +27,15 @@ A gimp plugin that combines values of the RGB channels.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__make} %{?_smp_mflag}
+%{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir}/gimp/1.2/plug-ins/
 %{__install} -m0755 channel_mixer %{buildroot}%{_libdir}/gimp/1.2/plug-ins/
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
@@ -42,3 +45,4 @@ A gimp plugin that combines values of the RGB channels.
 %changelog
 * Mon Dec 15 2003 Dag Wieers <dag@wieers.com> - 1.1-0
 - Initial package. (using DAR)
+

@@ -36,7 +36,7 @@ running most PowerPC operating systems.
 %ifarch %{ix86}
     --enable-cpu="jitc_x86"
 %endif
-%{__make} 
+%{__make} %{?_smp_mflags}
 
 
 %install

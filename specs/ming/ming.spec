@@ -42,10 +42,10 @@ you will need to install %{name}-devel.
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags}"
 
-%{__make} %{_smp_mflags} -C util listswf listfdb listmp3 listjpeg makefdb swftophp \
+%{__make} %{?_smp_mflags} -C util listswf listfdb listmp3 listjpeg makefdb swftophp \
 	CFLAGS="%{optflags}"
 
-mkdir temp
+%{__mkdir} temp
 for util in listswf listfdb listmp3 listjpeg makefdb swftophp; do
 	mv $util temp/ming-$util
 done
@@ -74,6 +74,7 @@ done
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so

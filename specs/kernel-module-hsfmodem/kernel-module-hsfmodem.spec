@@ -120,7 +120,7 @@ cd -
 %{__install} -m0644 %{real_name}-smp/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 ### Make utilities.
-%{__make} %{_smp_mflags} clean all
+%{__make} %{?_smp_mflags} clean all
 
 %install
 ### Install utilities.

@@ -24,6 +24,7 @@ BuildRequires: GConf2-devel >= 2.0.0
 BuildRequires: scrollkeeper
 
 Requires(post): scrollkeeper
+Requires(postun): scrollkeeper
 
 %description
 GStreamer-based CD ripping tool. Saves audio CDs to ogg/vorbis, flac or wav.
@@ -35,7 +36,7 @@ GStreamer-based CD ripping tool. Saves audio CDs to ogg/vorbis, flac or wav.
 %configure \
 	--disable-dependency-tracking \
 	--disable-schemas-install
-%{__make} %{_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

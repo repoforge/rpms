@@ -62,7 +62,7 @@ EOF
     --disable-dependency-tracking \
     --enable-accuracy \
     --disable-debugging
-%{__make} %{_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install

@@ -30,12 +30,12 @@ The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 %build
 CFLAGS="%{optflags}" perl Makefile.PL PREFIX="%{buildroot}%{_prefix}"
-%{__make} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 
 %install
 %{__rm} -rf %{buildroot}
-eval `perl '-V:installarchlib'`
+eval `%{__perl} '-V:installarchlib'`
 %{__mkdir_p} %{buildroot}${installarchlib}
 %makeinstall
 %{__rm} -f `/usr/bin/find %{buildroot} -type f -name perllocal.pod -o -name .packlist`

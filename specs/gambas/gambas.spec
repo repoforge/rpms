@@ -6,7 +6,7 @@
 
 %define real_version 0.94
 
-Summary: Free development environment based on a basic interpreter with object extensions
+Summary: Development environment based on a basic interpreter with object extensions
 Name: gambas
 Version: 0.94
 Release: 0
@@ -39,6 +39,8 @@ many languages, create network applications easily, and so on...
 %patch -p1
 
 %build
+# Wouldn't smething like this be better?
+# find . -type f -name "Makefile" -o -name "Makefile.in" -exec rm -f {} \;
 rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.in$")
 ./reconf || echo reconf gives a warning but lets continue anyway
 # (cd libltdl/;../reconf || echo reconf gives a warning but lets continue anyway)
@@ -59,8 +61,11 @@ rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.
 
 %install
 %{__rm} -rf %{buildroot}
-export PATH=%{buildroot}/usr/bin:$PATH
+export PATH=%{buildroot}%{_bindir}:$PATH
 %makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -101,12 +106,12 @@ The gambas-examples package contains some examples for gambas.
 %exclude %{_libdir}/gambas/lib.*.la
 
 %files help
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %dir %{_datadir}/gambas/
 %{_datadir}/gambas/help
 
 %files examples
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %dir %{_datadir}/gambas/
 %{_datadir}/gambas/examples
 

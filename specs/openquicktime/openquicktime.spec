@@ -27,7 +27,7 @@ encoding, authoring and editing support as well as video playback.
 
 %build
 %configure
-%{__make} %{_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

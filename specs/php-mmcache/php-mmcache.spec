@@ -36,7 +36,7 @@ speed of your PHP code by 1-10 times.
 %build
 phpize
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

@@ -59,7 +59,7 @@ This package contains programs for manipulating Crypto++ routines.
 %build
 %configure
 # Don't optimize with -O2, it BREAKS the lib: running 'cryptest v' fails
-%{__make} CXXFLAGS="-DNDEBUG"
+%{__make} %{?_smp_mflags} CXXFLAGS="-DNDEBUG"
 
 
 %install

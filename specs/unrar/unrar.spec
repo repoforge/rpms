@@ -25,7 +25,7 @@ archives created with the RAR archiver version 1.50 and above.
 
 
 %build
-%{__make} -f makefile.unix CXXFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} -f makefile.unix CXXFLAGS="%{optflags}"
 
 
 %install

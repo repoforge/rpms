@@ -31,7 +31,7 @@ It can deal with rfc822 and rfc2045 (MIME) compliant messages.
 %{__mv} mbfl-* ext/mbstring/libmbfl/mbfl
 phpize
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

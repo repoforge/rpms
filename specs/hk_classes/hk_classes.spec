@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Upstream: bugreport@knoda.org
 
@@ -16,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/hk-classes/hk_classes-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, gcc-c++
+BuildRequires: gcc-c++
 BuildRequires: postgresql-devel, mysql-devel
 BuildRequires: unixODBC-devel, python
 BuildRequires: python-devel, sqlite-devel
@@ -27,7 +26,6 @@ applications with all features a modern database application should have
 like forms an reports. hk_classes is database and GUI independent.
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -35,10 +33,14 @@ like forms an reports. hk_classes is database and GUI independent.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__make} install-strip DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING NEWS 
 %{_bindir}/hk_*
 %{_includedir}/hk_classes/*.h
@@ -54,3 +56,4 @@ like forms an reports. hk_classes is database and GUI independent.
 
 * Tue Dec 30 2003 Dries Verachtert <dries@ulyssis.org> 0.6.2a-1
 - first packaging.
+

@@ -31,7 +31,7 @@ and aim to help complete the Unix shell vocabulary.
 %setup
 
 %build
-%{__make} %{?_smp_mpflags}
+%{__make} %{?_smp_mflags}
 
 %install
 %makeinstall \

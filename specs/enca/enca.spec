@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: charset and encoding analyser
+Summary: Charset and encoding analyser
 Name: enca
 Version: 1.4
 Release: 1
@@ -23,7 +23,6 @@ Enca is an Extremely Naive Charset Analyser. It detects character set and
 encoding of text files and can also convert them to other encodings.
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -31,12 +30,15 @@ encoding of text files and can also convert them to other encodings.
 %{__make} %{?_smp_mflags}
 
 %install
-export DESTDIR=$RPM_BUILD_ROOT
-%{__make}  install-strip
-mv ${RPM_BUILD_ROOT}/usr/share/gtk-doc/html ./html
+%{__rm} -rf %{buildroot} _html
+%{__make} install DESTDIR=%{buildroot}
+%{__mv} %{buildroot}%{_datadir}/gtk-doc/html _html
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README html AUTHORS ChangeLog COPYING FAQ INSTALL NEWS THANKS TODO
 %{_bindir}/enca
 %{_includedir}/enca.h
@@ -58,3 +60,4 @@ mv ${RPM_BUILD_ROOT}/usr/share/gtk-doc/html ./html
 
 * Thu Dec 25 2003 Dries Verachtert <dries@ulyssis.org> 1.3-1
 - first packaging for Fedora Core 1
+

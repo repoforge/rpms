@@ -56,7 +56,7 @@ of the mjpegtools package.
 %build
 %ifarch %{ix86}
 pushd jpeg-mmx-%{jpegmmx_version}
-    ./configure && %{__make}
+    ./configure && %{__make} %{?_smp_mflags}
 popd
 %endif
 # ### FIXME Stripping of libmjpegutils.a fails (hence --disable-static)
@@ -67,7 +67,7 @@ popd
     --with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}" \
 %endif
     --with-quicktime
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

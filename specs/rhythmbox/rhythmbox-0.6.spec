@@ -53,7 +53,7 @@ through GStreamer, Internet Radio support, playlists and more.
 
 %build
 %configure %{?_with_xine:--enable-xine}
-%{__make} 
+%{__make} %{?_smp_mflags}
 
 
 %install

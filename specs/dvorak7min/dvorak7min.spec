@@ -14,7 +14,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.linalco.com/ragnar/dvorak7min-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: ncurses-devel
 
 %description
@@ -33,8 +32,10 @@ written in 7 min.
 
 %install
 %{__rm} -rf %{buildroot}
-strip dvorak7min
 %{__make} install INSTALL="%{buildroot}%{_bindir}"
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
@@ -51,3 +52,4 @@ strip dvorak7min
 
 * Sun Feb 1 2004 Dries Verachtert <dries@ulyssis.org> 1.6.1-1
 - first packaging for Fedora Core 1
+

@@ -5,7 +5,7 @@
 
 %define real_version 099
 
-Summary: a free MMORPG in beta stage
+Summary: Free MMORPG in beta stage
 Name: eternallands
 Version: 0.9.9
 Release: 1
@@ -42,9 +42,9 @@ multiplayer online roleplaying game) currently under development.
 %{__cat} > eternallands <<EOF
 #!/bin/bash
 cd /usr/share/games/eternallands
-mkdir -p ~/.elc
+%{__mkdir_p} ~/.elc
 if [[ ! -e ~/.elc/el.ini ]] ; then \
-	cp /usr/share/games/eternallands/el.ini ~/.elc/
+	%{__cp} /usr/share/games/eternallands/el.ini ~/.elc/
 fi
 echo logs and config file are at ~/.elc/
 ./el.x86.linux.bin
@@ -60,11 +60,14 @@ EOF
 %{__install} -m 0755 eternallands %{buildroot}%{_bindir}
 %{__install} el.ini %{buildroot}%{_datadir}/games/eternallands/
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc readme.txt eternal_lands_license.txt
-/usr/share/games/eternallands
-/usr/bin/eternallands
+%{_bindir}/eternallands
+%{_datadir}/games/eternallands
 
 %changelog
 * Sat Jun 26 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.9
@@ -72,3 +75,4 @@ EOF
 
 * Tue Jan 6 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.3
 - first packaging for Fedora Core 1
+

@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: red-eye.scm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: gimp-devel >= 1.2
 Requires: gimp >= 1.2, gimp-plugin-channel-mixer
 
@@ -29,7 +28,11 @@ A gimp script to implement Red-Eye removal technique.
 %build
 
 %install
+%{__rm} -rf %{buildroot}
 %{__install} -D -m0755 %{SOURCE0} %{buildroot}%{_libdir}/gimp/1.2/scripts/red-eye.scm
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
@@ -38,3 +41,4 @@ A gimp script to implement Red-Eye removal technique.
 %changelog
 * Mon Dec 15 2003 Dag Wieers <dag@wieers.com> - 0.95-0
 - Initial package. (using DAR)
+

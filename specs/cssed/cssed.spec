@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 Summary: CSS stylesheets editor
@@ -25,7 +24,6 @@ Requires: gtk2, vte
 Cssed is a GTK2 application for creating and maintaining CSS style sheets.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -n cssed-pre0.1
 
 %build
@@ -34,10 +32,10 @@ autoconf
 %{__make} %{?_smp_mflags}
 
 %install
-export DESTDIR=$RPM_BUILD_ROOT
-make install-strip
-mkdir -p ${DESTDIR}/usr/share/applications/
-cat > ${DESTDIR}/usr/share/applications/cssed.desktop <<EOF
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
+%{__mkdir_p} %{buildroot}%{_datadir}/applications/
+%{__cat} > %{buildroot}%{_datadir}/applications/cssed.desktop << EOF
 [Desktop Entry]
 Name=Cssed
 Comment=A CSS editor
@@ -48,8 +46,11 @@ Encoding=UTF-8
 Categories=Application;Network;X-Red-Hat-Base;
 EOF
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/cssed
 %{_datadir}/applications/cssed.desktop
@@ -61,3 +62,4 @@ EOF
 
 * Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 0.1.1pre-1
 - first packaging for Fedora Core 1
+

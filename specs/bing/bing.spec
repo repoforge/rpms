@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: 
 
@@ -32,14 +31,19 @@ packets to a pair of remote hosts.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc bing.ps
-%doc %{_mandir}/man?/*
 %{_bindir}/*
+%{_mandir}/man?/*
 
 %changelog
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Initial package. (using DAR)
+

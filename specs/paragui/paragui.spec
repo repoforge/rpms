@@ -38,7 +38,7 @@ applications which will use paragui, a GUI on top of SDL.
 
 %build
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# ExcludeDist: fc2
 
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
@@ -23,31 +24,31 @@ See the included script cpanflute2 for usage; documentation coming soon.
 %setup -n RPM-Specfile-%{version}
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL
-%{__make} OPTIMIZE="$RPM_OPT_FLAGS"
+CFLAGS="%{optflags}" perl Makefile.PL
+%{__make} %{?_smp_mflags} OPTIMIZE="$RPM_OPT_FLAGS"
 %{__make} test
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
-eval `perl '-V:installarchlib'`
-mkdir -p $RPM_BUILD_ROOT$installarchlib
-%makeinstall PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
-%{__rm} -f `find $RPM_BUILD_ROOT -type f -name perllocal.pod -o -name .packlist`
+%{__rm} -rf %{buildroot}
+eval `%{__perl} '-V:installarchlib'`
+%{__mkdir_p} %{buildroot}$installarchlib
+%makeinstall PERL_INSTALL_ROOT=%{buildroot}
+%{__rm} -f `find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
 
 [ -x /usr/lib/rpm/brp-compress ] && /usr/lib/rpm/brp-compress
 
-find $RPM_BUILD_ROOT -type f -print | \
-  sed "s@^$RPM_BUILD_ROOT@@g" > %{name}-%{version}-%{release}-filelist
+find %{buildroot} -type f -print | \
+  sed "s@^%{buildroot}@@g" > %{name}-%{version}-%{release}-filelist
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}-%{version}-%{release}-filelist
-%defattr(-, root, root, -)
+%defattr(-, root, root, 0755)
 %doc Changes README
 
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.13-1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.13-1
 - Update to 1.13.
 - Rebuild for Fedora Core 1.
 

@@ -13,7 +13,7 @@ Version: 0.2.6
 Release: 1
 License: GPL
 Group: User Interface/Desktops
-URL: http://desk3d.sf.net/
+URL: http://desk3d.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -43,6 +43,9 @@ source /etc/profile.d/qt.sh
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root, 0755)

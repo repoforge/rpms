@@ -39,17 +39,17 @@ of the mjpegtools package.
 
 %prep
 %setup -a 1
-mv jpeg-mmx-* jpeg-mmx
+%{__mv} jpeg-mmx-* jpeg-mmx
 
 %build
 # For x86, we link against the bundled jpeg-mmx
-%ifarch %ix86
-    (cd jpeg-mmx && %configure && make libjpeg-mmx.a)
+%ifarch %{ix86}
+    (cd jpeg-mmx && %configure && %{__make} libjpeg-mmx.a)
     %configure --with-jpeg-mmx="`pwd`/jpeg-mmx"
 %else
     %configure
 %endif
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

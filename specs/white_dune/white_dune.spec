@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dries
 
-Summary: graphical VRML97 editor and animation tool
+Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.26pl5
 Release: 2
@@ -15,7 +14,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, lesstif-devel, byacc, zlib-devel, libjpeg-devel, libpng-devel, XFree86, XFree86-Xvfb, flex, ImageMagick
+BuildRequires: gcc-c++, lesstif-devel, flex, byacc, zlib-devel
+BuildRequires: libjpeg-devel, libpng-devel, XFree86, XFree86-Xvfb, ImageMagick
 
 # Screenshot: http://www.csv.ica.uni-stuttgart.de/vrml/dune/_gfx/screen02.jpg
 # ScreenshotURL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/screen.html
@@ -44,57 +44,58 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 %setup -q
 
 %build
-%configure --with-optimization \
+%configure \
+  --with-optimization \
   --with-buginlesstif \
   --without-devil \
   --with-vrmlbrowser=mozilla \
-  --with-helpurl="/usr/share/doc/white_dune-0.26pl2/docs/" \
-  --with-nurbscurveprotourl="/usr/share/misc/white_dune/NurbsCurvePROTO.wrl" \
-  --with-nurbsgroupprotourl="/usr/share/misc/white_dune/NurbsGroupPROTO.wrl" \
-  --with-nurbssurfaceprotourl="/usr/share/misc/white_dune/NurbsSurfacePROTO.wrl"
-%{__make} %{_smp_mflags} 
-strip bin/dune
-strip bin/dune4kids
+  --with-helpurl="%{_datadir}/doc/white_dune-0.26pl2/docs/" \
+  --with-nurbscurveprotourl="%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl" \
+  --with-nurbsgroupprotourl="%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl" \
+  --with-nurbssurfaceprotourl="%{_datadir}/misc/white_dune/NurbsSurfacePROTO.wrl"
+%{__make} %{?_smp_mflags} 
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/usr/bin
-mkdir -p $RPM_BUILD_ROOT/usr/share/man/man1
-mkdir -p $RPM_BUILD_ROOT/usr/share/misc/white_dune
-install -s -m 755 bin/dune $RPM_BUILD_ROOT/usr/bin/dune
-install -s -m 755 bin/dune4kids $RPM_BUILD_ROOT/usr/bin/dune4kids
-install -m 644 man/dune.1 $RPM_BUILD_ROOT/usr/share/man/man1/dune.1
-install -m 644 docs/vrml200x_nurbssurface/NurbsCurvePROTO.wrl $RPM_BUILD_ROOT/usr/share/misc/white_dune/NurbsCurvePROTO.wrl
-install -m 644 docs/vrml200x_nurbssurface/NurbsGroupPROTO.wrl $RPM_BUILD_ROOT/usr/share/misc/white_dune/NurbsGroupPROTO.wrl
-install -m 644 docs/vrml200x_nurbssurface/NurbsSurfacePROTO.wrl $RPM_BUILD_ROOT/usr/share/misc/white_dune/NurbsSurfacePROTO.wrl
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications
-cat > $RPM_BUILD_ROOT/usr/share/applications/dune.desktop <<EOF
+%{__rm} -rf %{buildroot}
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__mkdir_p} %{buildroot}%{_mandir}/man1
+%{__mkdir_p} %{buildroot}%{_datadir}/misc/white_dune
+%{__install} -m 0755 bin/dune %{buildroot}%{_bindir}/dune
+%{__install} -m 0755 bin/dune4kids %{buildroot}%{_bindir}/dune4kids
+%{__install} -m 0644 man/dune.1 %{buildroot}%{_mandir}/man1/dune.1
+%{__install} -m 0644 docs/vrml200x_nurbssurface/NurbsCurvePROTO.wrl %{buildroot}%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl
+%{__install} -m 0644 docs/vrml200x_nurbssurface/NurbsGroupPROTO.wrl %{buildroot}%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl
+%{__install} -m 0644 docs/vrml200x_nurbssurface/NurbsSurfacePROTO.wrl %{buildroot}%{_datadir}/misc/white_dune/NurbsSurfacePROTO.wrl
+
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+%{__cat} > %{buildroot}%{_datadir}/applications/dune.desktop << EOF
 [Desktop Entry]
-Version=1.0
-Type=Application
-Encoding=UTF-8
 Name=White Dune
+Exec=dune
 Icon=dune
-Exec=/usr/bin/dune
-Categories=Application;Graphics;X-Red-Hat-Extra;
-EOF
-cat > $RPM_BUILD_ROOT/usr/share/applications/dune4kids.desktop <<EOF
-[Desktop Entry]
-Version=1.0
+Terminal=false
 Type=Application
+Categories=Application;Graphics;
 Encoding=UTF-8
-Icon=dune4kids
-Name=White Dune 4 kids
-Exec=/usr/bin/dune4kids
-Categories=Application;Graphics;X-Red-Hat-Extra;
 EOF
-mkdir -p $RPM_BUILD_ROOT//usr/share/icons/hicolor/48x48/apps
-/usr/bin/convert desktop/xfce/dune.xpm $RPM_BUILD_ROOT/usr/share/icons/hicolor/48x48/apps/dune.png
-/usr/bin/convert desktop/xfce/dune4kids.xpm $RPM_BUILD_ROOT/usr/share/icons/hicolor/48x48/apps/dune4kids.png
+%{__cat} > %{buildroot}%{_datadir}/applications/dune4kids.desktop << EOF
+[Desktop Entry]
+Name=White Dune 4 kids
+Exec=dune4kids
+Icon=dune4kids
+Terminal=false
+Type=Application
+Categories=Application;Graphics;
+Encoding=UTF-8
+EOF
+
+%{__mkdir_p} %{buildroot}/%{_datadir}/icons/hicolor/48x48/apps
+convert desktop/xfce/dune.xpm %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/dune.png
+convert desktop/xfce/dune4kids.xpm %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/dune4kids.png
 
 
 %clean
-# rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root,0755)

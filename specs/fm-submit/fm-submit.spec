@@ -2,7 +2,7 @@
 
 # Authority: dries
 
-Summary: script for submitting project updates to freshmeat.net using XML-RPC
+Summary: Script for submitting project updates to freshmeat.net using XML-RPC
 Name: fm-submit
 Version: 0.0.5
 Release: 2
@@ -15,7 +15,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/fm-submit/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-#BuildRequires: 
 Requires: perl
 
 %description
@@ -32,21 +31,23 @@ kan komen van binaire packages (RPMs) als argument op de commandline of via
 standaard input of via commandline opties.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
-make doc
+%{__make} doc
 
 %install
-export DESTDIR=$RPM_BUILD_ROOT
-make install
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc README COPYING
 %{_bindir}/fm-submit
-/usr/share/man/man1/fm-submit.1.gz
+%{_mandir}/man1/fm-submit.1.gz
 
 %changelog
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 0.0.5-2
@@ -54,3 +55,4 @@ make install
 
 * Fri Dec 26 2003 Dries Verachtert <dries@ulyssis.org> 0.0.5-1
 - first packaging for Fedora Core 1
+

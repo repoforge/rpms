@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 # Warning: you need a lot of diskspace if you want to build this rpm!
@@ -31,10 +30,11 @@ with a generational garbage collector, a space and time profiler, and a
 comprehensive set of libraries. 
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
-%setup
-tar -xjvf %{SOURCE1}
-mkdir -p ghc-6.2/temp
+%setup -a 1
+
+%build
+# This is ugly and x86 centric... :-(
+%{__mkdir_p} ghc-6.2/temp
 echo `pwd`/ghc-6.2/lib/i386-unknown-linux/ghc-6.2 -B`pwd`/ghc-6.2/lib/i386-unknown-linux \$\{1+\"\$@\"\} > ghc-6.2/lib/i386-unknown-linux/ghc
 echo `pwd`/ghc-6.2/lib/i386-unknown-linux/ghc-asm.prl \$\{1+\"\$@\"\} > ghc-6.2/lib/i386-unknown-linux/ghc-asm
 chmod +x ghc-6.2/lib/i386-unknown-linux/ghc
@@ -56,11 +56,14 @@ export PATH=`pwd`/ghc-6.2/lib/i386-unknown-linux:`pwd`/ghc-6.2/bin/i386-unknown-
 	--sharedstatedir=/usr/com \
 	--mandir=/usr/share/man \
 	--infodir=/usr/share/info
-%build
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -79,3 +82,4 @@ export PATH=`pwd`/ghc-6.2/lib/i386-unknown-linux:`pwd`/ghc-6.2/bin/i386-unknown-
 %changelog
 * Mon Mar 1 2004 Dries Verachtert <dries@ulyssis.org>
 - first packaging for Fedora Core 1
+

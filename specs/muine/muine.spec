@@ -29,9 +29,8 @@ use than the iTunes model, which is used by both Rhythmbox and Jamboree.
 %setup
 
 %build
-%configure \
-	--disable-schemas-install
-%{__make} %{_smp_mflags}
+%configure
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

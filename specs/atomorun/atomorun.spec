@@ -5,10 +5,12 @@
 # i've send a description of the problem to the author but he didn't respond 
 # to the last mail
 
+%define prever pre2
+
 Summary: OpenGL Jump&Run game where you have to flee an exploding nuclear bomb
 Name: atomorun
-Version: 1.1_pre2
-Release: 2
+Version: 1.1
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Amusements/Games
 URL: http://atomorun.whosme.de/index.php
@@ -16,26 +18,27 @@ URL: http://atomorun.whosme.de/index.php
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://atomorun.whosme.de/downloads/atomorun-%{version}.tar.gz
+Source: http://atomorun.whosme.de/downloads/atomorun-%{version}%{?prever:_%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, libtiff-devel
+BuildRequires: libvorbis-devel
 
 %description
 Atomorun is a OpenGL Jump&Run game where you have to flee an exploding
 nuclear bomb.
 
 %prep
-%setup -n atomorun-1.1_pre2
+%setup -n %{name}-%{version}%{?prever:_%{prever}}
 
 %{__cat} <<EOF >atomorun.desktop
 [Desktop Entry]
 Name=Atomorun
 Comment=Drive a tank through battle and beat your opponents
 Exec=atomorun
-Terminal=false
 Type=Application
+Terminal=false
+Categories=Application;Game;
 Encoding=UTF-8
-Categories=Application;Game;X-Red-Hat-Extra;
 EOF
 
 %build
@@ -46,14 +49,20 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/atomorun
 %{_datadir}/atomorun/
 %exclude %{_prefix}/doc/atomorun/
 
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 1.1-0.pre2.1
+- Further cleanups.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.1pre2-2
 - Cosmetic cleanup.
 

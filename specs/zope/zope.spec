@@ -54,7 +54,7 @@ highly-productive, object-oriented scripting language.
     --with-python=%{python} \
     --prefix=%{buildroot}%{zope_home} \
     --optimize
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

@@ -1,6 +1,8 @@
 # $Id: _template.spec.freshrpms,v 1.2 2004/02/27 00:34:01 thias Exp $
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: 
 Name: 
 Version: 

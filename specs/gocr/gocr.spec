@@ -51,7 +51,7 @@ This package contains a gtk+ frontend to gocr.
   
 cd frontend/gnome
 %configure
-%{__make} %{?_smp_flags}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

@@ -31,7 +31,7 @@ There are two main styles of play: capture-the-flag and free-for-all.
 
 %build
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

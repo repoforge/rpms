@@ -30,7 +30,7 @@ This extension allows you to access SQLite databases from within PHP.
 %build
 phpize
 %configure
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install

@@ -51,7 +51,7 @@ you will need to install %{name}-devel.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} rpm-doc
 
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
@@ -59,7 +59,10 @@ you will need to install %{name}-devel.
 
 %makeinstall
 
-%{__mv} -f %{buildroot}%{_docdir} rpm-doc/
+%{__mv} -f %{buildroot}%{_docdir} rpm-doc
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

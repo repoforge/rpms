@@ -47,12 +47,15 @@ Thinking Rabbit, Inc.
 %{__make} %{?_smp_mflags}
 
 %install
-export DESTDIR=$RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-make install
+%{__make} install DESTDIR=%{buildroot}
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS THANKS TODO VERSION
 %{_bindir}/easysok
 %{_libdir}/easysok.*

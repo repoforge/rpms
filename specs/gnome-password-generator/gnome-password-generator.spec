@@ -29,8 +29,7 @@ passwords of a specified length.
 %setup
 
 %build
-%{__make} \
-	datadir="%{_datadir}"
+%{__make} %{?_smp_mflags} datadir="%{_datadir}"
 
 %install
 %{__rm} -rf %{buildroot}

@@ -7,16 +7,15 @@ Name: gift
 Version: 0.11.6
 Release: 1
 License: GPL
-Group: Development/Libraries
-URL: http://gift.sf.net/
-
-Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gcc-c++
+Group: Applications/Internet
+URL: http://www.giftproject.org/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 giFT is a modular daemon capable of abstracting the communication between
@@ -25,7 +24,7 @@ the end user and specific filesharing protocols (peer-to-peer or otherwise).
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}, pkgconfig
 
 %description devel
 This package contains the header files, static libraries and development
@@ -41,9 +40,10 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
-%{__make} install-strip \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -53,12 +53,11 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING HACKING INSTALL QUICKSTART README TODO
-%doc %{_mandir}/man1/*
+%doc AUTHORS COPYING HACKING QUICKSTART README TODO
 %{_bindir}/*
-%{_bindir}/giftd
 %{_libdir}/*.so.*
 %{_datadir}/giFT/
+%{_mandir}/man1/*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -68,6 +67,9 @@ you will need to install %{name}-devel.
 %{_includedir}/libgift/
 
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.11.6-1
+- Yet some more cleanups.
+
 * Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.11.6-1
 - Cosmetic cleanup.
 

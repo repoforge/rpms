@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Screenshot: http://sebdelestaing.free.fr/gweled/Images/gweled_screenshot.png
 
@@ -11,13 +10,12 @@ License: GPL
 Group: Amusements/Games
 URL: http://sebdelestaing.free.fr/gweled/
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
 Source: http://sebdelestaing.free.fr/gweled/Release/gweled-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel librsvg2-devel libcroco-devel
-
-
-Packager: Dries Verachtert <dries@ulyssis.org>
-Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 %description
 Gweled is a Gnome version of a popular PalmOS/Windows/Java game called
@@ -41,15 +39,16 @@ zet nog mogelijk is.
 
 %install
 %{__rm} -rf %{buildroot}
-# export DESTDIR=$RPM_BUILD_ROOT
-# make install
 %makeinstall
-%{__rm} -f ${RPM_BUILD_ROOT}/usr/share/pixmaps/gweled/tile_even.svg~
-%{__rm} -f ${RPM_BUILD_ROOT}/usr/share/pixmaps/gweled/tile_odd.svg~
+%{__rm} -f %{buildroot}%{_datadir}/pixmaps/gweled/tile_even.svg~
+%{__rm} -f %{buildroot}%{_datadir}/pixmaps/gweled/tile_odd.svg~
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
-%doc README AUTHORS COPYING INSTALL NEWS 
+%defattr(-, root, root, 0755)
+%doc README AUTHORS COPYING NEWS 
 %{_bindir}/gweled
 %{_datadir}/applications/gweled.desktop
 %{_datadir}/pixmaps/gweled.png
@@ -64,3 +63,4 @@ zet nog mogelijk is.
 
 * Mon Dec 1 2003 Dries Verachtert <dries@ulyssis.org> 0.3-1
 - first packaging for Fedora Core 1
+

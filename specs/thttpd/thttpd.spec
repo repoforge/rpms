@@ -43,7 +43,7 @@ Available rpmbuild rebuild options :
 %{!?_with_indexes:        %{__perl} -pi -e 's/#define GENERATE_INDEXES/#undef GENERATE_INDEXES/g' config.h}
 %{!?_with_showversion:    %{__perl} -pi -e 's/#define SHOW_SERVER_VERSION/#undef SHOW_SERVER_VERSION/g' config.h}
 %{!?_with_expliciterrors: %{__perl} -pi -e 's/#define EXPLICIT_ERROR_PAGES/#undef EXPLICIT_ERROR_PAGES/g' config.h}
-%{__make} WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin
+%{__make} %{?_smp_mflags} WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin
 
 
 %install
