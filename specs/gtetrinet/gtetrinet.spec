@@ -39,7 +39,7 @@ is, check out tetrinet.org)
 %{__rm} -rf %{buildroot}
 %makeinstall GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %find_lang %{name}
-%{__cp} -a %{SOURCE1} .
+%{__cp} -ap %{SOURCE1} .
 %{__tar} -xzvf %{SOURCE2} -C %{buildroot}/%{_datadir}/gtetrinet/themes/
 
 

@@ -77,7 +77,7 @@ OS X platforms.
 source /etc/profile.d/qt.sh
 %configure --enable-debug=full
 %{__sed} -i 's/-lpqxx/-lpqxx -lpq/g;'  kexi/kexidb/drivers/pqxx/Makefile
-%{__cp} -f %{SOURCE2} kexi/main/keximainwindowimpl.cpp
+%{__cp} -fp %{SOURCE2} kexi/main/keximainwindowimpl.cpp
 %{__make} %{?_smp_mflags}
 
 %install

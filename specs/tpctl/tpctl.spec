@@ -29,7 +29,7 @@ tpctl is a package of IBM ThinkPad configuration tools for Linux.
 %build
 %{__make} %{?_smp_mflags} all \
 	CFLAGS="%{optflags}"
-%{__cp} -av apmiser/README ./README.apmiser
+%{__cp} -apv apmiser/README ./README.apmiser
 
 %install
 %{__rm} -rf %{buildroot}

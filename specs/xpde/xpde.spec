@@ -61,10 +61,10 @@ EOF
 %{__install} -Dp -m0755 xinitrcDEFAULT %{buildroot}%{installdir}/xinitrcDEFAULT
 
 %{__install} -d -m0755 %{buildroot}%{installdir}/themes/default/
-%{__cp} -av themes/default/* %{buildroot}%{installdir}/themes/default/
+%{__cp} -apv themes/default/* %{buildroot}%{installdir}/themes/default/
 
 %{__install} -d -m0755 %{buildroot}%{installdir}/defaultdesktop/
-%{__cp} -av defaultdesktop/* %{buildroot}%{installdir}/defaultdesktop/
+%{__cp} -apv defaultdesktop/* %{buildroot}%{installdir}/defaultdesktop/
 
 %{__install} -Dp -m0755 XPde %{buildroot}%{installdir}/bin/XPde
 %{__install} -Dp -m0755 XPwm %{buildroot}%{installdir}/bin/XPwm

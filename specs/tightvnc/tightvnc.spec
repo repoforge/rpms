@@ -206,7 +206,7 @@ cd Xvnc
 			%{buildroot}%{_datadir}/vnc/
 ./vncinstall %{buildroot}%{_bindir} %{buildroot}%{_mandir}
 
-%{__cp} -aR classes %{buildroot}%{_datadir}/vnc/
+%{__cp} -apR classes %{buildroot}%{_datadir}/vnc/
 
 %{__install} -Dp -m0755 vncserver.sysv %{buildroot}%{_initrddir}/vncserver
 %{__install} -Dp -m0644 vncservers.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vncservers

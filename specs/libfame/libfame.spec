@@ -69,7 +69,7 @@ autoreconf --force --install --symlink
 # Install the MMX & SSE build in its special dir
 %ifarch %{ix86}
     %{__mkdir_p} %{buildroot}%{_libdir}/sse2
-    %{__cp} -a sse2/* %{buildroot}%{_libdir}/sse2/
+    %{__cp} -ap sse2/* %{buildroot}%{_libdir}/sse2/
 %endif
 
 # Workaround for direct <libfame/fame.h> includes (include/libfame -> .)

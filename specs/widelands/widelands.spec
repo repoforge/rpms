@@ -57,8 +57,8 @@ export DESTDIR=%{buildroot}
 
 %{__install} -s -m 755 widelands.orig %{buildroot}%{_datadir}/widelands/widelands
 %{__install} -m 755 widelands %{buildroot}%{_bindir}/widelands
-%{__cp} -r fonts maps pics tribes worlds %{buildroot}%{_datadir}/widelands/
-%{__cp} widelands.desktop %{buildroot}%{_datadir}/applications/
+%{__cp} -pr fonts maps pics tribes worlds %{buildroot}%{_datadir}/widelands/
+%{__cp} -p widelands.desktop %{buildroot}%{_datadir}/applications/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -50,7 +50,7 @@ This package contains a collection of skins.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_datadir}/amsn/skins/
-%{__cp} -avx * %{buildroot}%{_datadir}/amsn/skins/
+%{__cp} -apvx * %{buildroot}%{_datadir}/amsn/skins/
 
 %clean
 %{__rm} -rf %{buildroot}

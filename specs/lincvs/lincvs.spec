@@ -63,7 +63,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/lincvs/
-%{__cp} -av LinCVS/* %{buildroot}%{_datadir}/lincvs/
+%{__cp} -apv LinCVS/* %{buildroot}%{_datadir}/lincvs/
 
 %{__install} -Dp -m0755 lincvs.sh %{buildroot}%{_bindir}/lincvs
 %{__install} -Dp -m0644 LinCVS/AppIcon.xpm %{buildroot}%{_datadir}/pixmaps/lincvs.xpm

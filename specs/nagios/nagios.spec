@@ -91,7 +91,7 @@ done
 	INSTALL_OPTS=""
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
-%{__cp} -afv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
+%{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}/nagios/
 %{__install} -m0644 include/*.h %{buildroot}%{_includedir}/nagios/

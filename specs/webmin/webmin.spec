@@ -53,7 +53,7 @@ web browser.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libexecdir}/webmin/
-%{__cp} -a * %{buildroot}%{_libexecdir}/webmin/
+%{__cp} -ap * %{buildroot}%{_libexecdir}/webmin/
 
 %{__install} -Dp -m0644 webmin-daemon %{buildroot}%{_sysconfdir}/sysconfig/daemons/webmin
 %{__install} -Dp -m0755 webmin-init %{buildroot}%{_initrddir}/webmin

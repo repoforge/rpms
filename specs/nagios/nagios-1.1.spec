@@ -113,7 +113,7 @@ you will need to install %{name}-devel.
 %{__mv} -f %{buildroot}%{_libdir}/nagios/cgi/convertcfg %{buildroot}%{_libdir}/nagios/
 %{__mv} -f %{buildroot}%{_libdir}/nagios/cgi/mini_epn %{buildroot}%{_bindir}
 
-%{__cp} -afv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
+%{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 
 ### Install logos
 tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Tool to hardlink duplicate files in a directory tree
@@ -18,7 +17,7 @@ A utility to hardlink duplicate files in a directory tree.
 
 %prep
 %setup -c -T
-%{__cp} -af %{SOURCE0} .
+%{__cp} -afp %{SOURCE0} .
 
 %build
 ${CC:-%{__cc}} %{optflags} -o hardlink hardlink.c

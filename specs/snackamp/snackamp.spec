@@ -56,7 +56,7 @@ EOF
 dos2unix docs/*/*.tml docs/*.css
 #dos2unix lib/*.tcl lib/tablelist/*.tcl lib/tablelist/scripts/*.tcl lib/mySnack/*.tcl *.tcl
 dos2unix *.tcl */*.tcl */*/*.tcl
-%{__cp} -af docs lib %{buildroot}%{_libdir}/tcl/snackAmp/
+%{__cp} -afp docs lib %{buildroot}%{_libdir}/tcl/snackAmp/
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type f -exec chmod 0644 {} \;
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 #%{__install} -m0755 icons/snackAmp.ico %{buildroot}%{_datadir}/pixmaps/

@@ -25,7 +25,7 @@ Ccal is a curses-based calendar/journal/diary & todo list program.
 
 %prep
 %setup -c -T -D
-%{__cp} -av %{SOURCE1} instructions.html
+%{__cp} -apv %{SOURCE1} instructions.html
 
 %build
 

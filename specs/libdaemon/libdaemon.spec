@@ -62,7 +62,7 @@ you will need to install %{name}-devel.
 %makeinstall
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man3/
-%{__cp} -av doc/reference/man/man3/* %{buildroot}%{_mandir}/man3/
+%{__cp} -apv doc/reference/man/man3/* %{buildroot}%{_mandir}/man3/
 
 %post
 /sbin/ldconfig 2>/dev/null

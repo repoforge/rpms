@@ -72,7 +72,7 @@ cp %{SOURCE2} refman.ps.gz
 %{__perl} -pi -e 's|^MANDIR=.*|MANDIR=%{buildroot}%{_mandir}|g;' config/Makefile camlp4/config/Makefile
 %makeinstall
 %{__install} -d %{buildroot}%{_infodir}
-%{__cp} infoman/ocaml*.gz %{buildroot}%{_infodir}
+%{__cp} -p infoman/ocaml*.gz %{buildroot}%{_infodir}
 
 %post
 /sbin/ldconfig 2>/dev/null

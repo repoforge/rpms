@@ -41,7 +41,7 @@ SouthPole.
 %makeinstall
 %find_lang %{name}
 %{__mkdir_p} %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
-%{__cp} %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
+%{__cp} -p %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
 
 %clean
 %{__rm} -rf %{buildroot}

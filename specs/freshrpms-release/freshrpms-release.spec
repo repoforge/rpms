@@ -28,7 +28,7 @@ used to sign them.
 %install
 %{__rm} -rf %{buildroot}
 # Install license and gpg key to be included in the docs
-%{__cp} -a %{SOURCE0} %{SOURCE1} .
+%{__cp} -ap %{SOURCE0} %{SOURCE1} .
 # Install yum repo file
 %{__install} -Dp -m 0644 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/yum.repos.d/freshrpms.repo

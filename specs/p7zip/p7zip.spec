@@ -33,13 +33,13 @@ This package contains also a virtual file system for Midnigth Commander.
 
 %build
 %ifarch %{ix86}
-%{__cp} -f makefile.linux_x86 makefile.machine
+%{__cp} -fp makefile.linux_x86 makefile.machine
 %endif
 %ifarch x86_64
-%{__cp} -f makefile.linux_amd64 makefile.machine
+%{__cp} -fp makefile.linux_amd64 makefile.machine
 %endif
 %ifarch ppc
-%{__cp} -f makefile.linux_ppc makefile.machine
+%{__cp} -fp makefile.linux_ppc makefile.machine
 %endif
 
 # Use optflags
@@ -56,7 +56,7 @@ This package contains also a virtual file system for Midnigth Commander.
 %{__mkdir_p} %{buildroot}{%{_bindir},%{_libexecdir}/p7zip}
 
 # Install binaries (7za, 7z, 7zCon.sfx and Codecs/Formats)
-%{__cp} -a bin/* %{buildroot}%{_libexecdir}/p7zip/
+%{__cp} -ap bin/* %{buildroot}%{_libexecdir}/p7zip/
 
 # Create wrapper scripts, as 7zCon.sfx and Codecs/Formats need to be in the
 # same directory as the binaries, and we don't want them in %{_bindir}.

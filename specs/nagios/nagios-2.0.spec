@@ -102,7 +102,7 @@ you will need to install %{name}-devel.
 %{__install} -m0664 sample-config/template-object/*.cfg %{buildroot}%{_sysconfdir}/nagios/
 #%{__ln_s} -f private/resource.cfg %{buildroot}%{_sysconfdir}/nagios/resource.cfg
 
-#%{__cp} -afv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
+#%{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 
 ### Install logos
 tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}

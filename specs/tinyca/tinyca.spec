@@ -62,10 +62,10 @@ EOF
 %{__install} -Dp -m0755 tinyca %{buildroot}%{_bindir}/tinyca
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/locale/
-%{__cp} -av locale/* %{buildroot}%{_datadir}/locale/
+%{__cp} -apv locale/* %{buildroot}%{_datadir}/locale/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/tinyca/
-%{__cp} -av lib/* %{buildroot}%{_datadir}/tinyca/
+%{__cp} -apv lib/* %{buildroot}%{_datadir}/tinyca/
 
 %find_lang %{name}
 

@@ -286,7 +286,7 @@ for file in libnspr4.so libplc4.so libplds4.so libnss3.so libsmime3.so libsoftok
 done
 
 ### libnssckbi.so must be in both places
-%{__cp} -vf %{buildroot}%{_libdir}/%{name}-%{version}/libnssckbi.so %{buildroot}%{_libdir}/
+%{__cp} -fpv %{buildroot}%{_libdir}/%{name}-%{version}/libnssckbi.so %{buildroot}%{_libdir}/
 
 ### we don't want to ship mozilla's default sidebar components
 for component in bugzilla dmoz lxrmozilla mozilla; do
@@ -339,7 +339,7 @@ buildmozdir inspector mozilla-dom-inspector.list
 
 ### save a copy of the default installed-chrome.txt file before we
 ### muck with it
-%{__cp} -vf %{buildroot}%{_libdir}/%{name}-%{version}/chrome/installed-chrome.txt %{buildroot}%{_libdir}/%{name}-%{version}/chrome/lang/
+%{__cp} -fpv %{buildroot}%{_libdir}/%{name}-%{version}/chrome/installed-chrome.txt %{buildroot}%{_libdir}/%{name}-%{version}/chrome/lang/
 
 (
 ### Build our initial component and chrome registry
@@ -372,7 +372,7 @@ find %{buildroot}%{_libdir}/%{name}-%{version} -type d -perm 0700 -exec chmod 75
 
 ### copy the nss files to the right place
 find security/nss/lib/ -name '*.h' -type f \
-	-exec %{__cp} {} %{buildroot}%{_includedir}/%{name}-%{version}/nss/ \;
+	-exec %{__cp} -p {} %{buildroot}%{_includedir}/%{name}-%{version}/nss/ \;
 
 find %{buildroot}%{_includedir}/%{name}-%{version}/ -type f | \
 		sed -e "s|%{buildroot}||" | \

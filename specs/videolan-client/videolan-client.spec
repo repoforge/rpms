@@ -222,7 +222,7 @@ find  %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
 %{__mv} %{buildroot}%{_docdir}/vlc installed-docs
 # So that the icon gets themable
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
-%{__cp} -a %{buildroot}%{_datadir}/vlc/vlc48x48.png \
+%{__cp} -ap %{buildroot}%{_datadir}/vlc/vlc48x48.png \
     %{buildroot}%{_datadir}/pixmaps/vlc.png
 
 %{__cat} <<EOF >videolan-client.desktop

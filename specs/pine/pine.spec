@@ -90,7 +90,7 @@ mail, and MH style folders.
 
 # imap flock patch
 %patch8 -p0 -b .flock-patch
-%{__cp} %{SOURCE5} imap/src/osdep/unix
+%{__cp} -p %{SOURCE5} imap/src/osdep/unix
 
 %{__perl} -pi.passwd-dag -e 's|/bin/passwd|%{_bindir}/passwd|;' pine/osdep/os-lnx.h
 %patch9 -p1 -b .ldap-patch

@@ -21,7 +21,7 @@ Binary and source packages can be checked.
 
 %prep
 %setup
-%{__cp} %{SOURCE1} config
+%{__cp} -p %{SOURCE1} config
 
 %build
 %{__make} %{?_smp_mflags}

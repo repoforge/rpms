@@ -242,7 +242,7 @@ for file in libnspr4.so libplc4.so libplds4.so libnss3.so libsmime3.so libsoftok
 done
 
 ### libnssckbi.so must be in both places
-%{__cp} -vf %{buildroot}%{_libdir}/%{name}-%{real_version}/libnssckbi.so %{buildroot}%{_libdir}/
+%{__cp} -fpv %{buildroot}%{_libdir}/%{name}-%{real_version}/libnssckbi.so %{buildroot}%{_libdir}/
 
 ### Create empty listfiles
 for file in "" -chat -devel -dom-inspector -js-debugger -mail -nspr -nspr-devel -nss -nss-devel -psm; do
@@ -318,7 +318,7 @@ find %{buildroot}%{_libdir}/%{name}-%{real_version} -type d -perm 0700 -exec chm
 # (POSIX compliance); prior versions don't understand -L, so fall back...
 
 find security/nss/lib/ -name '*.h' -type f \
-	-exec %{__cp} {} %{buildroot}%{_includedir}/%{name}-%{real_version}/nss/ \;
+	-exec %{__cp} -p {} %{buildroot}%{_includedir}/%{name}-%{real_version}/nss/ \;
 
 find %{buildroot}%{_includedir}/%{name}-%{real_version}/ -type f | \
 		sed -e "s|%{buildroot}||" | \

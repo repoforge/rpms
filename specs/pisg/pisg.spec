@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: 
 
@@ -34,7 +33,7 @@ http://pisg.sourceforge.net/docs/
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_datadir}/pisg
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__cp} -R gfx layout modules pisg.cfg pisg lang.txt scripts %{buildroot}%{_datadir}/pisg
+%{__cp} -pR gfx layout modules pisg.cfg pisg lang.txt scripts %{buildroot}%{_datadir}/pisg
 echo '%{_datadir}/pisg/pisg $@' > %{buildroot}%{_bindir}/pisg
 %{__chmod} +x %{buildroot}%{_bindir}/pisg
 

@@ -127,21 +127,21 @@ make	FORTDIR=%{buildroot}/%{_bindir} \
 	FORTMANDIR=%{buildroot}/%{_mandir}/man6 \
 	install
 
-%{__cp} fortune-starwars/starwars fortune-starwars/starwars.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-mod-futurama-0.2/futurama fortune-mod-futurama-0.2/futurama.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-mod-calvin-0.1.1/calvin fortune-mod-calvin-0.1.1/calvin.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-starwars/starwars fortune-starwars/starwars.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-mod-futurama-0.2/futurama fortune-mod-futurama-0.2/futurama.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-mod-calvin-0.1.1/calvin fortune-mod-calvin-0.1.1/calvin.dat %{buildroot}%{_datadir}/games/fortune/
 mv fortune-zippy-0.2/zippy fortune-zippy-0.2/zippy2
 (cd fortune-zippy-0.2; ../util/strfile zippy2)
-%{__cp} fortune-zippy-0.2/zippy2 fortune-zippy-0.2/zippy2.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-tao/tao fortune-tao/tao.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-hitchhiker/hitchhiker fortune-hitchhiker/hitchhiker.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-simpsons-chalkboard/chalkboard fortune-simpsons-chalkboard/chalkboard.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-mod-prog-style/prog-style.dat fortune-mod-prog-style/prog-style %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-fgump/fgump fortune-fgump/fgump.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-discworld/discworld.dat fortune-discworld/discworld %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-xfiles/xfiles.dat fortune-xfiles/xfiles %{buildroot}%{_datadir}/games/fortune/
-%{__cp} kernelcookies*/kernelcookies kernelcookies*/kernelcookies.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} fortune-mod-dune-quotes.2.0.1/chapterhouse-dune fortune-mod-dune-quotes.2.0.1/children-of-dune fortune-mod-dune-quotes.2.0.1/dune-messiah \
+%{__cp} -p fortune-zippy-0.2/zippy2 fortune-zippy-0.2/zippy2.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-tao/tao fortune-tao/tao.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-hitchhiker/hitchhiker fortune-hitchhiker/hitchhiker.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-simpsons-chalkboard/chalkboard fortune-simpsons-chalkboard/chalkboard.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-mod-prog-style/prog-style.dat fortune-mod-prog-style/prog-style %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-fgump/fgump fortune-fgump/fgump.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-discworld/discworld.dat fortune-discworld/discworld %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-xfiles/xfiles.dat fortune-xfiles/xfiles %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p kernelcookies*/kernelcookies kernelcookies*/kernelcookies.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-mod-dune-quotes.2.0.1/chapterhouse-dune fortune-mod-dune-quotes.2.0.1/children-of-dune fortune-mod-dune-quotes.2.0.1/dune-messiah \
   fortune-mod-dune-quotes.2.0.1/dune fortune-mod-dune-quotes.2.0.1/god-emperor fortune-mod-dune-quotes.2.0.1/house-atreides \
   fortune-mod-dune-quotes.2.0.1/house-harkonnen fortune-mod-dune-quotes.2.0.1/heretics-of-dune fortune-mod-dune-quotes.2.0.1/chapterhouse-dune.dat \
   fortune-mod-dune-quotes.2.0.1/children-of-dune.dat fortune-mod-dune-quotes.2.0.1/dune.dat fortune-mod-dune-quotes.2.0.1/dune-messiah.dat \
@@ -153,13 +153,13 @@ util/strfile ralph
 %if %{DisableOffensiveFortunes}
 # southpark.. quite sure it's part of 'offensive'
 %else 
-%{__cp} SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
 %endif
-%{__cp} fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
-%{__cp} osho.dat osho %{buildroot}%{_datadir}/games/fortune/
-%{__cp} powerpuff-*/powerpuff* %{buildroot}%{_datadir}/games/fortune/
-%{__cp} oneliners-0.1/oneliners* %{buildroot}%{_datadir}/games/fortune/
-%{__cp} macintosh/macintosh* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p osho.dat osho %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p powerpuff-*/powerpuff* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p oneliners-0.1/oneliners* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p macintosh/macintosh* %{buildroot}%{_datadir}/games/fortune/
 
 %{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}

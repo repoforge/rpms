@@ -52,10 +52,10 @@ EOF
 %{__rm} -f lam.httpd
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/lam/
-%{__cp} -avx config/ %{buildroot}%{_localstatedir}/www/lam/
-%{__cp} -avx lib/ %{buildroot}%{_localstatedir}/www/lam/
-%{__cp} -avx sess/ %{buildroot}%{_localstatedir}/www/lam/
-%{__cp} -avx tmp/ %{buildroot}%{_localstatedir}/www/lam/
+%{__cp} -apvx config/ %{buildroot}%{_localstatedir}/www/lam/
+%{__cp} -apvx lib/ %{buildroot}%{_localstatedir}/www/lam/
+%{__cp} -apvx sess/ %{buildroot}%{_localstatedir}/www/lam/
+%{__cp} -apvx tmp/ %{buildroot}%{_localstatedir}/www/lam/
 
 find %{buildroot} -name "*.pl" -exec chmod a+x {} \;
 

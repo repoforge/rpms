@@ -129,9 +129,9 @@ EOF
 %{__install} -Dp -m0755 sarg.monthly %{buildroot}%{_sysconfdir}/cron.monthly/sarg
 %{__install} -Dp -m0644 sarg-index.html %{buildroot}%{_localstatedir}/www/sarg/index.html
 
-#%{__cp} -avx fonts/ %{buildroot}%{_sysconfdir}/sarg/fonts/
-#%{__cp} -avx images/ %{buildroot}%{_sysconfdir}/sarg/images/
-#%{__cp} -avx languages/ %{buildroot}%{_sysconfdir}/sarg/languages
+#%{__cp} -apvx fonts/ %{buildroot}%{_sysconfdir}/sarg/fonts/
+#%{__cp} -apvx images/ %{buildroot}%{_sysconfdir}/sarg/images/
+#%{__cp} -apvx languages/ %{buildroot}%{_sysconfdir}/sarg/languages
 
 %clean
 %{__rm} -rf %{buildroot}

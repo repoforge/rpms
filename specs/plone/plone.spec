@@ -40,7 +40,7 @@ used and the policies and services it provides.
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}/%{software_home}/Products
-%{__cp} -a * %{buildroot}%{software_home}/Products/
+%{__cp} -ap * %{buildroot}%{software_home}/Products/
 
 
 %clean

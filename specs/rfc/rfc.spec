@@ -26,8 +26,8 @@ throw in the -l switch and have it spawn lynx to view the RFC.
 
 %prep
 %setup -c -T
-%{__cp} -av %{SOURCE0} ./rfc
-%{__cp} -av %{SOURCE1} ./changelog
+%{__cp} -apv %{SOURCE0} ./rfc
+%{__cp} -apv %{SOURCE1} ./changelog
 
 %{__perl} -pi.orig -e '
 		s|\$viewer -dump|links -source|;

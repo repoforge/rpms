@@ -92,8 +92,8 @@ EOF
 %{__install} -Dp -m0644 wwwroot/classes/awgraphapplet.jar %{buildroot}%{_localstatedir}/www/awstats/classes/awgraphapplet.jar
 %{__install} -Dp -m0644 wwwroot/js/awstats_misc_tracker.js %{buildroot}%{_localstatedir}/www/awstats/js/awstats_misc_tracker.js
 
-%{__cp} -av wwwroot/{css,icon}/ %{buildroot}%{_localstatedir}/www/awstats/
-%{__cp} -av wwwroot/cgi-bin/{lang,lib,plugins} %{buildroot}%{_localstatedir}/www/awstats/
+%{__cp} -apv wwwroot/{css,icon}/ %{buildroot}%{_localstatedir}/www/awstats/
+%{__cp} -apv wwwroot/cgi-bin/{lang,lib,plugins} %{buildroot}%{_localstatedir}/www/awstats/
 
 %clean
 %{__rm} -rf %{buildroot}

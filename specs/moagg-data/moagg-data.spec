@@ -40,7 +40,7 @@ This package contains all the data of this game.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_datadir}/moagg
-%{__cp} -R cfg gfx sound levels %{buildroot}%{_datadir}/moagg
+%{__cp} -pR cfg gfx sound levels %{buildroot}%{_datadir}/moagg
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -45,7 +45,7 @@ unzip -d %{buildroot}%{prefix}/ %{SOURCE0}
 unzip -d %{buildroot}%{prefix}/ %{SOURCE1}
 
 # The 'realistic' settings
-%{__cp} %{SOURCE2} settings.cfg.realistic
+%{__cp} -p %{SOURCE2} settings.cfg.realistic
 
 
 %clean

@@ -22,7 +22,7 @@ been adapted and modified by several persons.
 
 %prep
 %setup -c -T
-%{__cp} -af %{SOURCE0} %{SOURCE1} %{SOURCE2} .
+%{__cp} -afp %{SOURCE0} %{SOURCE1} %{SOURCE2} .
 
 %build
 ${CC:-%{__cc}} %{optflags} -o ttcp ttcp.c

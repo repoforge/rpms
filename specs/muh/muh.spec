@@ -24,7 +24,7 @@ If you have no idea what this is good for you probably don't need it.
 %prep
 %setup -n %{name}-%{real_version}
 
-%{__cp} -av %{SOURCE1} .
+%{__cp} -apv %{SOURCE1} .
 
 %build
 %configure \

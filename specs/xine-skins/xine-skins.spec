@@ -57,7 +57,7 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{skindir}
-%{__cp} -a * %{buildroot}%{skindir}/
+%{__cp} -ap * %{buildroot}%{skindir}/
 
 
 %clean

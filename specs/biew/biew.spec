@@ -42,7 +42,7 @@ other features, making it invaluable for examining binary code.
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/biew/{skn,xlt}/
 %{__install} -m0644 bin_rc/skn/*.skn %{buildroot}%{_datadir}/biew/skn/
-%{__cp} -auvx bin_rc/xlt/* %{buildroot}%{_datadir}/biew/xlt/
+%{__cp} -apuvx bin_rc/xlt/* %{buildroot}%{_datadir}/biew/xlt/
 
 %clean
 %{__rm} -rf %{buildroot}

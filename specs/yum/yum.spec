@@ -76,7 +76,7 @@ fi
 %{__make} DESTDIR=%{buildroot} install
 %find_lang %{name}
 %{__install} -m 644 %{_sourcedir}/yum-%{distro}.conf %{buildroot}/etc/yum.conf
-%{__cp} -a %{SOURCE50} %{SOURCE51} %{SOURCE52} %{SOURCE53} .
+%{__cp} -ap %{SOURCE50} %{SOURCE51} %{SOURCE52} %{SOURCE53} .
 
 
 %clean

@@ -84,7 +84,7 @@ EOF
 %{__install} -Dp -m0644 .procmailrc %{buildroot}/opt/otrs/.procmailrc
 
 ### Copy everything.
-%{__cp} -avf Kernel/ bin/ scripts/ var/ %{buildroot}/opt/otrs/
+%{__cp} -afpv Kernel/ bin/ scripts/ var/ %{buildroot}/opt/otrs/
 
 ### Copy with permissions.
 %{__install} -m0700 bin/DeleteSessionIDs.pl bin/UnlockTickets.pl bin/otrs.getConfig %{buildroot}/opt/otrs/bin/

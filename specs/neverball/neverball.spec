@@ -58,7 +58,7 @@ the physics and graphics of Neverball.
 # Install the binaries and the "data" directory
 %{__install} -m 0755 neverball neverputt mapc \
     %{buildroot}%{_prefix}/games/neverball/
-%{__cp} -a data %{buildroot}%{_prefix}/games/neverball/data
+%{__cp} -ap data %{buildroot}%{_prefix}/games/neverball/data
 # Install the icons for the desktop files
 %{__install} -m 0644 icon/*.png %{buildroot}%{_datadir}/pixmaps/
 

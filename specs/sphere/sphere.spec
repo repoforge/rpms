@@ -71,10 +71,10 @@ EOF
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}/sp/
 #{__install} -m0644 include/sp/* %{buildroot}%{_includedir}/sp/
-%{__cp} -av include/sp/* %{buildroot}%{_includedir}/sp/
+%{__cp} -apv include/sp/* %{buildroot}%{_includedir}/sp/
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}/util/
-%{__cp} -av include/util/* %{buildroot}%{_includedir}/util/
+%{__cp} -apv include/util/* %{buildroot}%{_includedir}/util/
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -m0644 doc/man/man1/* %{buildroot}%{_mandir}/man1/

@@ -28,7 +28,7 @@ itself.
 
 %prep
 %setup -c %{name}-%{version} -T -D
-%{__cp} -f %{SOURCE0} .
+%{__cp} -fp %{SOURCE0} .
 %patch -p0 -b .rpcmgr12
 %{__mv} -f rpcmgr11.c rpcmgr.c
 

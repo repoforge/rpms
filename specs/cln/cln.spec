@@ -46,7 +46,7 @@ you will need to install %{name}-devel.
 %{__rm} -rf documents/
 %{__mkdir} documents/
 %{__mv} %{buildroot}%{_datadir}/html documents/
-%{__cp} --parents examples/*.cc documents/
+%{__cp} -p --parents examples/*.cc documents/
 
 %{__rm} -rf %{buildroot}%{_datadir}/dvi/
 

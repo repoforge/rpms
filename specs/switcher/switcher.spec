@@ -49,7 +49,7 @@ export MONO_PATH="%{_datadir}/switcher"
 exec mono %{_bindir}/switcher.exe $@
 EOF
 
-%{__cp} -av %{SOURCE1} .
+%{__cp} -apv %{SOURCE1} .
 %{__perl} -pi.orig -e '
 		s|args.Event.button|args.Event.Button|;
 		s|args.Event.time|args.Event.Time|;

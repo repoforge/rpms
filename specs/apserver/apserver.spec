@@ -42,7 +42,7 @@ EOF
 %{__install} -Dp -m0644 server.cfg %{buildroot}%{_sysconfdir}/apserver.cfg
 
 %{__install} -Dp -m0644 main.py %{buildroot}%{_datadir}/apserver/main.py
-%{__cp} -av lib/ %{buildroot}%{_datadir}/apserver/
+%{__cp} -apv lib/ %{buildroot}%{_datadir}/apserver/
 
 %clean
 %{__rm} -rf %{buildroot}

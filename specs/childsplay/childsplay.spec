@@ -53,11 +53,11 @@ EOF
 			%{buildroot}%{_datadir}/locale/
 %{__install} -m0755 childsplay.sh %{buildroot}%{_bindir}/childsplay
 %{__install} -m0755 *.py %{buildroot}%{_libdir}/childsplay/
-%{__cp} -rf *.py %{buildroot}%{_libdir}/childsplay/
-%{__cp} -rf Data/ %{buildroot}%{_libdir}/childsplay/
-%{__cp} -rf lib %{buildroot}%{_libdir}/childsplay/
-%{__cp} -rf man/childsplay.6.gz %{buildroot}%{_mandir}/man6/
-%{__cp} -rf locale/* %{buildroot}%{_datadir}/locale/
+%{__cp} -fpr *.py %{buildroot}%{_libdir}/childsplay/
+%{__cp} -fpr Data/ %{buildroot}%{_libdir}/childsplay/
+%{__cp} -fpr lib %{buildroot}%{_libdir}/childsplay/
+%{__cp} -fpr man/childsplay.6.gz %{buildroot}%{_mandir}/man6/
+%{__cp} -fpr locale/* %{buildroot}%{_datadir}/locale/
 
 ### compile bytecode
 python install.py --compile %{buildroot}%{_libdir}/childsplay/
@@ -66,14 +66,14 @@ python install.py --makedir %{buildroot}%{_libdir}/childsplay/
 
 ### fix symlinks
 %{__rm} -f %{buildroot}%{_libdir}/childsplay/lib/LettersData/*
-%{__cp} %{buildroot}%{_libdir}/childsplay/lib/MemoryData/* %{buildroot}%{_libdir}/childsplay/lib/LettersData/
+%{__cp} -p %{buildroot}%{_libdir}/childsplay/lib/MemoryData/* %{buildroot}%{_libdir}/childsplay/lib/LettersData/
 
 ### install plugins
 cd %{name}-plugins-%{version}/
 python %{buildroot}%{_libdir}/childsplay/install.py --compile Lib
-%{__cp} -rf Lib/* %{buildroot}%{_libdir}/childsplay/lib/
-%{__cp} -rf Data/*.icon.png %{buildroot}%{_libdir}/childsplay/Data/icons/
-%{__cp} -rf locale/* %{buildroot}%{_datadir}/locale/
+%{__cp} -fpr Lib/* %{buildroot}%{_libdir}/childsplay/lib/
+%{__cp} -fpr Data/*.icon.png %{buildroot}%{_libdir}/childsplay/Data/icons/
+%{__cp} -fpr locale/* %{buildroot}%{_datadir}/locale/
 python add-score.py %{buildroot}%{_libdir}/childsplay/ "Packid,Numbers"
 cd -
 

@@ -92,7 +92,7 @@ change the appeareance of MPlayer.
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{skindir}
-%{__cp} -a * %{buildroot}%{skindir}/
+%{__cp} -ap * %{buildroot}%{skindir}/
 
 
 %clean

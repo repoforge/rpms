@@ -63,7 +63,7 @@ Categories=Application;System;
 Encoding=UTF-8
 EOF
 
-#%{__cp} -vf %{_datadir}/libtool/config.* config/
+#%{__cp} -fpv %{_datadir}/libtool/config.* config/
 
 %build
 %configure \

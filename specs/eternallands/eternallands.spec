@@ -43,7 +43,7 @@ multiplayer online roleplaying game) currently under development.
 cd /usr/share/games/eternallands
 %{__mkdir_p} ~/.elc
 if [[ ! -e ~/.elc/el.ini ]] ; then \
-	%{__cp} /usr/share/games/eternallands/el.ini ~/.elc/
+	%{__cp} -p /usr/share/games/eternallands/el.ini ~/.elc/
 fi
 echo logs and config file are at ~/.elc/
 ./el.x86.linux.bin

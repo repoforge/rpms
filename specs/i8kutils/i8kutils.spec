@@ -50,14 +50,14 @@ popd
 %{__rm} -rf %{buildroot}
 
 %{__mkdir_p} %{buildroot}%{_bindir}
-%{__cp} -a i8kbuttons i8kctl i8kmon i8kfan %{buildroot}%{_bindir}/
+%{__cp} -ap i8kbuttons i8kctl i8kmon i8kfan %{buildroot}%{_bindir}/
 
 %{__mkdir_p} %{buildroot}%{_mandir}/man1
-%{__cp} -a *[a-z].1 %{buildroot}%{_mandir}/man1/
+%{__cp} -ap *[a-z].1 %{buildroot}%{_mandir}/man1/
 
 %{__mkdir_p} %{buildroot}%{_libdir}/gkrellm2/plugins/
 pushd i8krellm-%{gkrellmpluginver}
-    %{__cp} -a i8krellm.so %{buildroot}%{_libdir}/gkrellm2/plugins/
+    %{__cp} -ap i8krellm.so %{buildroot}%{_libdir}/gkrellm2/plugins/
 popd
 
 %{__install} -Dp -m 755 %{SOURCE2} %{buildroot}%{_initrddir}/i8kbuttons

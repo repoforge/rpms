@@ -180,10 +180,10 @@ EOF
 cd j2re%{version}_%{real_release}
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/jre/
-%{__cp} -av bin/ javaws/ lib/ plugin/ %{buildroot}%{_libdir}/jre/
+%{__cp} -apv bin/ javaws/ lib/ plugin/ %{buildroot}%{_libdir}/jre/
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__cp} -av man/man1/* %{buildroot}%{_mandir}/man1/
+%{__cp} -apv man/man1/* %{buildroot}%{_mandir}/man1/
 
 %{__mv} -f CHANGES COPYRIGHT ControlPanel.html LICENSE README THIRDPARTYLICENSEREADME.txt Welcome.html ../
 

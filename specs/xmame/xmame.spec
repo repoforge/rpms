@@ -89,7 +89,7 @@ find . -type d -name CVS | xargs %{__rm} -rf
 
 
 %build
-%{__rm} -f makefile Makefile; %{__cp} -a makefile.unix Makefile
+%{__rm} -f makefile Makefile; %{__cp} -ap makefile.unix Makefile
 
 # For CVS snapshots, there are empty instead of symlinks, so fix that
 for dir in contrib doc; do
@@ -193,10 +193,10 @@ done
 # We don't want all the docs
 %{__mkdir_p} _docs/{xmame/html,xmess}
 pushd src/unix/doc
-    %{__cp} -a {*.html,*.css,img} ../../../_docs/xmame/html/
-    %{__cp} -a changes.* dga2.txt multiplayer-readme.txt \
+    %{__cp} -ap {*.html,*.css,img} ../../../_docs/xmame/html/
+    %{__cp} -ap changes.* dga2.txt multiplayer-readme.txt \
         xmame-doc.txt xmamerc.dist mame/* ../../../_docs/xmame/
-    %{__cp} -a xmessrc.dist mess/* ../../../_docs/xmess/
+    %{__cp} -ap xmessrc.dist mess/* ../../../_docs/xmess/
 popd
 
 # XMAME specific
@@ -206,7 +206,7 @@ popd
 # The extra dat files
 %{__install} -m 0664 _datfiles/*.dat %{buildroot}%{_datadir}/xmame/
 # Install the OpenGL cabinets
-%{__cp} -a src/unix/cab %{buildroot}%{_datadir}/xmame/
+%{__cp} -ap src/unix/cab %{buildroot}%{_datadir}/xmame/
 # Uncompress catver.ini (will be in the docs)
 %{__unzip} -o -d _docs/ %{SOURCE30}
 

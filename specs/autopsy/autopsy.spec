@@ -60,8 +60,8 @@ EOF
 %{__install} -m0755 autopsyfunc.pm fs.pl search.pl %{buildroot}%{_datadir}/autopsy/
 %{__install} -m0600 conf.pl define.pl %{buildroot}%{_datadir}/autopsy/
 %{__install} -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
-%{__cp} -r help/ pict/ %{buildroot}%{_datadir}/autopsy/
-#%{__cp} base/fsmorgue %{buildroot}%{_localstatedir}/morgue/
+%{__cp} -pr help/ pict/ %{buildroot}%{_datadir}/autopsy/
+#%{__cp} -p base/fsmorgue %{buildroot}%{_localstatedir}/morgue/
 
 %clean
 %{__rm} -rf %{buildroot}

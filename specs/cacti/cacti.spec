@@ -89,7 +89,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/cacti/
 %{__install} -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
-%{__cp} -avx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
+%{__cp} -apvx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
 #%{__install} -Dp -m0755 cactid/cactid %{buildroot}%{_bindir}/cactid
 #%{__install} -Dp -m0644 cactid/cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf

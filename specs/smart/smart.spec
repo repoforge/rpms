@@ -337,7 +337,7 @@ cd -
 #%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{python_dir}/smart/plugins/channelsync.py
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smart/channels/
-%{__cp} -av *.channel %{buildroot}%{_sysconfdir}/smart/channels/
+%{__cp} -apv *.channel %{buildroot}%{_sysconfdir}/smart/channels/
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/smart/
 

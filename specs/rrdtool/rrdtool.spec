@@ -105,7 +105,7 @@ EOF
 
 # We only want .txt and .html files for the main documentation
 %{__mkdir_p} doc2/doc
-%{__cp} -a doc/*.txt doc/*.html doc2/doc/
+%{__cp} -ap doc/*.txt doc/*.html doc2/doc/
 
 # Clean up the examples and contrib
 %{__rm} -f examples/Makefile*
