@@ -1,0 +1,12 @@
+diff -Naupr gpgme-0.3.15.orig/gpgme/gpgme.m4 gpgme-0.3.15/gpgme/gpgme.m4
+--- gpgme-0.3.15.orig/gpgme/gpgme.m4	2002-08-28 19:29:45.000000000 +0200
++++ gpgme-0.3.15/gpgme/gpgme.m4	2004-10-28 13:53:30.905022408 +0200
+@@ -6,7 +6,7 @@ dnl AM_PATH_GPGME([MINIMUM-VERSION,
+ dnl               [ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND ]]])
+ dnl Test for libgpgme and define GPGME_CFLAGS and GPGME_LIBS
+ dnl
+-AC_DEFUN(AM_PATH_GPGME,
++AC_DEFUN([AM_PATH_GPGME],
+ [ AC_ARG_WITH(gpgme-prefix,
+             AC_HELP_STRING([--with-gpgme-prefix=PFX],
+                            [prefix where GPGME is installed (optional)]),

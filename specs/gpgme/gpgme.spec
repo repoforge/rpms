@@ -5,10 +5,11 @@
 Summary: GnuPG Made Easy
 Name: gpgme
 Version: 0.3.15
-Release: 5
+Release: 6
 License: GPL
 Group: Applications/System
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/gpgme-%{version}.tar.gz
+Patch: gpgme-0.3.15-m4warn.patch
 URL: http://www.gnupg.org/gpgme.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
@@ -42,6 +43,7 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 %prep
 %setup
+%patch -p1 -b .m4warn
 
 
 %build
@@ -92,6 +94,9 @@ fi
 
 
 %changelog
+* Thu Oct 28 2004 Matthias Saou <http://freshrpms.net/> 0.3.15-6
+- Add quick patch to fix m4 "warning: underquoted definition" message.
+
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.3.15-5
 - Added missing /sbin/ldconfig calls.
 
