@@ -11,7 +11,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.9.3
-Release: 0
+Release: 1
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -20,10 +20,13 @@ Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firef
 Source1: firefox-rebuild-databases.pl.in
 Source2: firefox.png
 Source3: bookmarks.html
+Source4: firefox.xpm
 Patch0: firefox-0.9.2-gcc34.patch
 Patch1: firefox-0.9.2-extensions.patch
-Patch2: mozilla-default-plugin-less-annoying.patch
-Patch3: firefox-0.9.2-nsFormHistory-64bit.patch
+Patch2: firefox-0.9.2-extensions2.patch
+Patch3: mozilla-default-plugin-less-annoying.patch
+Patch4: firefox-0.9.2-nsFormHistory-64bit.patch
+Patch5: mozilla-1.7-psfonts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip
@@ -44,8 +47,10 @@ compliance, performance and portability.
 %setup -q -n mozilla
 %patch0 -p1 -b .gcc34
 %patch1 -p0 -b .extensions
-%patch2 -p1 -b .plugin
-%patch3 -b .nsformhistory
+%patch2 -p0 -b .extensions2
+%patch3 -p1 -b .plugin
+%patch4 -b .nsformhistory
+%patch5 -p1 -b .psfonts
 
 ### FIXME: Shouldn't the default firefox config be part of original source ?
 %{__cat} <<EOF >.mozconfig
@@ -94,6 +99,7 @@ EOF
 ### Written by Dag Wieers <dag@wieers.com>
 ### Please send suggestions and fixes to me.
 
+MOZ_APP_NAME="firefox"
 MOZILLA_FIVE_HOME="%{_libdir}/firefox"
 MOZ_PROGRAM="$MOZILLA_FIVE_HOME/firefox"
 
@@ -155,9 +161,9 @@ while [ "$1" ]; do
 done
 
 if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
-	exec $MOZ_PROGRAM -a firefox -remote "xfeDoCommand(openBrowser)" $MOZARGS
+	exec $MOZ_PROGRAM -a $MOZ_APP_NAME -remote "xfeDoCommand(openBrowser)" $MOZARGS
 else
-	exec $MOZ_PROGRAM -a firefox $MOZARGS &
+	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS &
 fi;
 EOF
 
@@ -168,26 +174,29 @@ export MOZ_PHOENIX=1
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir}
-
 %{__make} -C xpinstall/packager/ \
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
 %{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
 %{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/firefox.png
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}
 %{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
 %{__install} -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/
 %{__install} -m0644 %{SOURCE3} %{buildroot}%{_libdir}/firefox/defaults/profile/US/
+%{__install} -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/chrome/icons/default/default.xpm
+%{__install} -m0644 %{SOURCE4} %{buildroot}%{_libdir}/firefox/icons/default.xpm
 
-%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
+%{__install} -m0755 %{SOURCE1} %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 %{__perl} -pi -e 's|\$MOZ_DIST_BIN|%{_libdir}/firefox|g;' %{buildroot}%{_libdir}/firefox/firefox-rebuild-database
 
+%if %{?_without_gtk2:1}0
 ### FIXME: Fixed "nsNativeComponentLoader: GetFactory(libwidget_gtk.so) Load FAILED with error: libwidget_gtk.so" by linking. (Please fix upstream)
 if [ ! -f %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so ]; then
 	%{__ln_s} -f libwidget_gtk2.so %{buildroot}%{_libdir}/firefox/components/libwidget_gtk.so
 fi
+%endif
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 firefox.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/firefox.desktop
@@ -199,6 +208,9 @@ fi
 		firefox.desktop
 %endif
 
+### Clean up buildroot
+find %{buildroot}%{_libdir}/firefox/chrome/ -type d -maxdepth 1 -exec %{__rm} -rf {} \;
+
 %post
 /sbin/ldconfig 2>/dev/null
 %{_bindir}/firefox -register &>/dev/null || :
@@ -207,7 +219,8 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	%{__rm} -rf %{_libdir}/firefox/{chrome/overlayinfo,chrome/*.rdf,components,extensions}
+	%{__rm} -rf %{_libdir}/firefox/{chrome/overlayinfo,components,extensions}/
+	%{__rm} -f %{_libdir}/firefox/{chrome/*.rdf,components.ini}
 fi
 
 %postun
@@ -227,6 +240,11 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 0.9.3-1
+- Added upstream psfonts patch from mozilla 1.7.
+- Added another upstream extensions patch.
+- Re-added xpm icon, small improvements and cleanup.
+
 * Fri Aug  6 2004 Matthias Saou <http://freshrpms.net/> 0.9.3-0
 - Update to 0.9.3.
 - Took the bookmarks.html file out of the spec and added entries to it.
