@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: <gift-devel@lists.sf.net>
+# Upstream: <gift-devel$lists,sourceforge,net>
 
 Summary: Deamon for communicating with filesharing protocols
 Name: gift
