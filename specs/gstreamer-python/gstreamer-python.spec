@@ -38,6 +38,12 @@ written in Python.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+# The __init__.py* files go into lib instead of lib64, so fix that
+if [ "%{_lib}" != "lib" ]; then
+    %{__mv} %{buildroot}%{_prefix}/lib/python?.?/site-packages/gst/__init__.* \
+            %{buildroot}%{_libdir}/python?.?/site-packages/gst/
+fi
+
 
 %clean
 %{__rm} -rf %{buildroot}
