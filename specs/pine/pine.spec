@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: news://comp.mail.pine/
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define pgpver		0.18.0
 #%define with_gpgpine	1
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 # NeedsCleanup

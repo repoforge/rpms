@@ -35,10 +35,8 @@ level domains.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man8/
-%{__install} -m0755 dnstop %{buildroot}%{_sbindir}
-%{__install} -m0644 dnstop.8 %{buildroot}%{_mandir}/man8/
+%{__install} -D -m0755 dnstop %{buildroot}%{_sbindir}/dnstop
+%{__install} -D -m0644 dnstop.8 %{buildroot}%{_mandir}/man8/dnstop.8
 						
 %clean
 %{__rm} -rf %{buildroot}

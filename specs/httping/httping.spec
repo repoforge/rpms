@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Folkert Vanheusden <folkert@vanheusden.com>
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Ping alike tool for http requests
 Name: httping
 Version: 0.0.9
@@ -25,8 +27,8 @@ that the transmission across the network also takes time!
 %prep
 %setup
 
-%{?rhel3:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
-%{?rh90:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
+%{?el3:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
+%{?rh9:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
 %{__perl} -pi.orig -e 's|/usr/bin|\$(bindir)|' Makefile
 
 %build

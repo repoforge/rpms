@@ -6,7 +6,9 @@
 # Soapbox: 0
 # BuildAsRoot: 1
 
-%{?rhfc1:%define __cc gcc32}
+%{?dist: %{expand %%define %dist 1}}
+
+%{?fc1:%define __cc gcc32}
 
 %define _libmoddir /lib/modules
 

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Chris Brady <bugs@memtest86.com>
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define _prefix /boot
 %define real_version 3.1a
@@ -20,7 +21,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.memtest86.com/memtest86-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 ExclusiveArch: i386
 ExclusiveOS: Linux
 
@@ -36,13 +36,12 @@ miss many of the failures that are detected by Memtest86.
 %setup -n %{name}-%{real_version}
 
 %build
-#%{?rh80:CC="gcc296"} %{?rh90:CC="gcc296"} %{?rhel3:CC="gcc296"} %{?rhfc1:CC="gcc296"}
+#%{?rh8:CC="gcc296"} %{?rh9:CC="gcc296"} %{?el3:CC="gcc296"} %{?fc1:CC="gcc296"}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_prefix}
-%{__install} -m644 memtest.bin %{buildroot}%{_prefix}/%{name}-%{version}
+%{__install} -D -m644 memtest.bin %{buildroot}%{_prefix}/%{name}-%{version}/memtest.bin
 
 %clean
 %{__rm} -rf %{buildroot}

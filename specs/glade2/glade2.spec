@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Reason: This package doesn't need a lot of devel-packages.
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define real_name glade
 
@@ -56,7 +57,7 @@ The glade2 package contains a version of Glade for GTK+ 2.0.
 %makeinstall
 %find_lang %{real_name}-2.0
 
-%if %{?rhfc1:1}%{!?rhfc1:0}
+%if %{?fc1:1}%{!?fc1:0}
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \

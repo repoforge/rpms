@@ -3,7 +3,7 @@
 # Authority: dag
 
 # Distcc: 0
-# SourceDists: rh73
+# SourceDists: rh7
 
 %define aversion %(rpm -q apache-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 %define real_version 1.3.26.1a

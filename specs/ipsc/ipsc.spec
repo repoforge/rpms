@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <dan@machlin.net>
 
@@ -31,24 +30,24 @@ has a number of other useful functions.
 %setup -n %{name} -b 1
 %patch0
 
-%build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags}" -C src
-
-%install
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 src/ipsc %{buildroot}%{_bindir}
-%{__install} -m0755 src/gipsc %{buildroot}%{_bindir}
-
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=IP Subnet Calculator
-Comment=%{summary}
+Comment=Calculate with IPs, subnets and netmasks
 Icon=gnome-util.png
 Exec=gipsc
 Terminal=false
 Type=Application
 Categories=GNOME;Application;Utility;
 EOF
+
+%build
+%{__make} %{?_smp_mflags} -C src \
+	CFLAGS="%{optflags}"
+
+%install
+%{__install} -D -m0755 src/ipsc %{buildroot}%{_bindir}/ipsc
+%{__install} -D -m0755 src/gipsc %{buildroot}%{_bindir}/ipsc
 
 %if %{dfi}
         %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Network/

@@ -3,7 +3,7 @@
 # Upstream: Pádraig Brady <P@draigBrady.com>
 
 # Soapbox: 0
-# Dists: rhfc1 rhel3 rh90 rh80
+# Dists: fc1 el3 rh9 rh8
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: atrpms
+
+%{?dist: %{expand %%define %dist 1}}
+
 %define real_name MIME-tools
 
 Summary: Perl modules for parsing (and creating!) MIME entities
@@ -23,8 +25,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl(IO::Stringy) >= 1.211, perl-MailTools
 Requires: perl(IO::Stringy) >= 1.211, perl-MailTools >= 1.15
-%{?rh73:BuildRequires: perl(MIME::Base64) >= 2.04}
-%{?rhel21:BuildRequires: perl-MIME-Base64 >= 2.04}
+%{?rh7:BuildRequires: perl(MIME::Base64) >= 2.04}
+%{?el2:BuildRequires: perl-MIME-Base64 >= 2.04}
 
 %description
 MIME-tools - modules for parsing (and creating!) MIME entities Modules in this

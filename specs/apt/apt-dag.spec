@@ -1,6 +1,7 @@
 # Authority: atrpms
 # Upstream: Gustavo Niemeyer <niemeyer@conectiva.com>
 
+%{?dist: %{expand %%define %dist 1}}
 %define LIBVER 3.3
 
 Summary: Debian's Advanced Packaging Tool with RPM support
@@ -22,15 +23,15 @@ Patch2: apt-0.5.15cnc4-nopromote.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 4.0, zlib-devel, gettext
-%{!?rh62:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
+%{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
-%{?rhfc1:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?rhel3:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?rh90:BuildRequires: beecrypt-devel, elfutils-devel}
-%{?rh80:BuildRequires: libelf-devel}
-%{?rh73:BuildRequires: libelf}
-%{?rhel21:BuildRequires: libelf}
-%{?rh62:BuildRequires: libelf}
+%{?fc1:BuildRequires: beecrypt-devel, elfutils-devel}
+%{?el3:BuildRequires: beecrypt-devel, elfutils-devel}
+%{?rh9:BuildRequires: beecrypt-devel, elfutils-devel}
+%{?rh8:BuildRequires: libelf-devel}
+%{?rh7:BuildRequires: libelf}
+%{?el2:BuildRequires: libelf}
+%{?rh6:BuildRequires: libelf}
 
 Requires: rpm >= 4.0, zlib, bzip2-libs, libstdc++
 
@@ -58,13 +59,13 @@ you will need to install %{name}-devel.
 #patch2 -p1 -b .nopromote
 #{?rh62:%patch3 -b .402}
 
-%{?rhfc1:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC1 APT-HTTP/1.3|' methods/http.cc}
-%{?rhel3:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH EL3 APT-HTTP/1.3|' methods/http.cc}
-%{?rh90:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 9 APT-HTTP/1.3|' methods/http.cc}
-%{?rh80:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 8.0 APT-HTTP/1.3|' methods/http.cc}
-%{?rh73:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 7.3 APT-HTTP/1.3|' methods/http.cc}
-%{?rhel21:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH EL2.1 APT-HTTP/1.3|' methods/http.cc}
-%{?rh62:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 6.2 APT-HTTP/1.3|' methods/http.cc}
+%{?fc1:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH FC1 APT-HTTP/1.3|' methods/http.cc}
+%{?el3:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH EL3 APT-HTTP/1.3|' methods/http.cc}
+%{?rh9:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 9 APT-HTTP/1.3|' methods/http.cc}
+%{?rh8:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 8.0 APT-HTTP/1.3|' methods/http.cc}
+%{?rh7:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 7.3 APT-HTTP/1.3|' methods/http.cc}
+%{?el2:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH EL2.1 APT-HTTP/1.3|' methods/http.cc}
+%{?rh6:%{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag Apt Repository RH 6.2 APT-HTTP/1.3|' methods/http.cc}
 
 %{__cat} <<EOF >dag.list
 ### Dag Apt Repository
@@ -73,31 +74,31 @@ you will need to install %{name}-devel.
 ###	http://dag.wieers.com/apt/
 
 ### Dag Apt Repository for Red Hat Fedore Core 1
-%{!?rhfc1:#}rpm http://apt.sw.be redhat/fc1/en/i386 dag
+%{!?fc1:#}rpm http://apt.sw.be redhat/fc1/en/i386 dag
 #rpm-src http://apt.sw.be redhat/fc1/en/i386 dag
 
 ### Dag Apt Repository for Red Hat Enterprise Linux 3
-%{!?rhel3:#}rpm http://apt.sw.be redhat/el3/en/i386 dag
+%{!?el3:#}rpm http://apt.sw.be redhat/el3/en/i386 dag
 #rpm-src http://apt.sw.be redhat/el3/en/i386 dag
 
 ### Dag Apt Repository for Red Hat 9
-%{!?rh90:#}rpm http://apt.sw.be redhat/9/en/i386 dag
+%{!?rh9:#}rpm http://apt.sw.be redhat/9/en/i386 dag
 #rpm-src http://apt.sw.be redhat/9/en/i386 dag
 
 ### Dag Apt Repository for Red Hat 8.0
-%{!?rh80:#}rpm http://apt.sw.be redhat/8.0/en/i386 dag
+%{!?rh8:#}rpm http://apt.sw.be redhat/8.0/en/i386 dag
 #rpm-src http://apt.sw.be redhat/8.0/en/i386 dag
 
 ### Dag Apt Repository for Red Hat 7.3
-%{!?rh73:#}rpm http://apt.sw.be redhat/7.3/en/i386 dag
+%{!?rh7:#}rpm http://apt.sw.be redhat/7.3/en/i386 dag
 #rpm-src http://apt.sw.be redhat/7.3/en/i386 dag
 
 ### Dag Apt Repository for Red Hat Enterprise Linux 2.1
-%{!?rhel21:#}rpm http://apt.sw.be redhat/as2.1/en/i386 dag
+%{!?el2:#}rpm http://apt.sw.be redhat/as2.1/en/i386 dag
 #rpm-src http://apt.sw.be redhat/as2.1/en/i386 dag
 
 ### Dag Apt Repository for Red Hat 6.2
-%{!?rh62:#}rpm http://apt.sw.be redhat/6.2/en/i386 dag
+%{!?rh6:#}rpm http://apt.sw.be redhat/6.2/en/i386 dag
 #rpm-src http://apt.sw.be redhat/6.2/en/i386 dag
 EOF
 
@@ -108,23 +109,23 @@ EOF
 ### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
 
 ### Red Hat Fedora Core 1
-%{!?rhfc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates
+%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates
 #rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 core updates
 
 ### Red Hat Linux 9
-%{!?rh90:#}rpm http://ayo.freshrpms.net redhat/9/i386 os updates
+%{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 os updates
 #rpm-src http://ayo.freshrpms.net redhat/9/i386 os updates
 
 ### Red Hat Linux 8.0
-%{!?rh80:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 os updates
+%{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 os updates
 #rpm-src http://ayo.freshrpms.net redhat/8.0/i386 os updates
 
 ### Red Hat Linux 7.3
-%{!?rh73:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 os updates
+%{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 os updates
 #rpm-src http://ayo.freshrpms.net redhat/7.3/i386 os updates
 
 ### Red Hat Linux 6.2
-%{!?rh62:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
+%{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
 #rpm-src http://ayo.freshrpms.net redhat/6.2/i386 os powertools updates
 EOF
 
@@ -135,23 +136,23 @@ EOF
 ### See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
 
 ### Red Hat Fedora Core 1
-%{!?rhfc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
+%{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 #rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
 
 ### Red Hat Linux 9
-%{!?rh90:#}rpm http://ayo.freshrpms.net redhat/9/i386 freshrpms
+%{!?rh9:#}rpm http://ayo.freshrpms.net redhat/9/i386 freshrpms
 #rpm-src http://ayo.freshrpms.net redhat/9/i386 freshrpms
 
 ### Red Hat Linux 8.0
-%{!?rh80:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 freshrpms
+%{!?rh8:#}rpm http://ayo.freshrpms.net redhat/8.0/i386 freshrpms
 #rpm-src http://ayo.freshrpms.net redhat/8.0/i386 freshrpms
 
 ### Red Hat Linux 7.3
-%{!?rh73:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 freshrpms
+%{!?rh7:#}rpm http://ayo.freshrpms.net redhat/7.3/i386 freshrpms
 #rpm-src http://ayo.freshrpms.net redhat/7.3/i386 freshrpms
 
 ### Red Hat Linux 6.2
-%{!?rh62:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 freshrpms
+%{!?rh6:#}rpm http://ayo.freshrpms.net redhat/6.2/i386 freshrpms
 #rpm-src http://ayo.freshrpms.net redhat/6.2/i386 freshrpms
 EOF
 
@@ -159,15 +160,15 @@ EOF
 ### See http://newrpms.sunsite.dk/ for more information.
 
 ### Red Hat Fedora Core 1
-%{!?rhfc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
+%{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 #rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
 
 ### Red Hat Linux 9
-%{!?rh90:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
+%{!?rh9:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
 #rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/9.0 newrpms 
 
 ### Red Hat Linux 8.0
-%{!?rh80:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
+%{!?rh8:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
 #rpm-src http://newrpms.sunsite.dk/apt/ redhat/en/i386/8.0 newrpms 
 EOF
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 0.1h
@@ -39,10 +38,8 @@ type harddisk in case the primary partition table was damaged.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/ \
-			%{buildroot}%{_sbindir}
-%{__install} -m0755 src/gpart %{buildroot}%{_sbindir}
-%{__install} -m0755 man/gpart.8 %{buildroot}%{_mandir}/man8/
+%{__install} -D -m0755 src/gpart %{buildroot}%{_sbindir}/gpart
+%{__install} -D -m0755 man/gpart.8 %{buildroot}%{_mandir}/man8/gpart.8
 
 %clean
 %{__rm} -rf %{buildroot}

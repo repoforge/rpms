@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Graphical webcam application featuring various image filters

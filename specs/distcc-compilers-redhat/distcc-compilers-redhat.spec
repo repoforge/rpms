@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Red Hat compilers for distccd
 Name: distcc-compilers-redhat
@@ -27,13 +28,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: rpm, cpio, binutils
-%{?rhfc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
-%{?rhel3:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++}
-%{?rh90:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++}
-%{?rh80:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++}
-%{?rh73:Requires: gcc, gcc-c++}
-%{?rhel21:Requires: gcc, gcc-c++}
-%{?rh62:Requires: egcs, egcs-c++}
+%{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
+%{?el3:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++}
+%{?rh9:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++}
+%{?rh8:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++}
+%{?rh7:Requires: gcc, gcc-c++}
+%{?el2:Requires: gcc, gcc-c++}
+%{?rh6:Requires: egcs, egcs-c++}
 
 %description
 distcc-compilers-redhat contains de stock Red Hat compilers for Red Hat 6.2,
@@ -53,7 +54,7 @@ right compiler on your distcc cluster.
 cd %{buildroot}
 
 ### Red Hat 6.2 compilers
-%if %{?rh62:1}%{!?rh62:0}
+%if %{?rh6:1}%{!?rh6:0}
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-cc-2.91.6
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-gcc-2.91.6
 	%{__ln_s} -f g++ .%{_bindir}/i386-redhat-linux-c++-2.91.6
@@ -68,8 +69,8 @@ cd %{buildroot}
 %endif
 
 ### Red Hat 7.3 and AS2.1 compilers
-%{?rh73:%define has_gcc296 1}
-%{?rhel21:%define has_gcc296 1}
+%{?rh7:%define has_gcc296 1}
+%{?el2:%define has_gcc296 1}
 %if %{?has_gcc296:1}%{!?has_gcc296:0}
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-cc-2.96
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-gcc-2.96
@@ -77,10 +78,10 @@ cd %{buildroot}
 	%{__ln_s} -f i386-redhat-linux-g++ .%{_bindir}/i386-redhat-linux-g++-2.96
 %else
 ### Red Hat 8.0, 9, EL3 and RHFC1 have compatible C compilers in compat-gcc
-%{?rhfc1:%define has_compat_gcc296 1}
-%{?rhel3:%define has_compat_gcc296 1}
-%{?rh90:%define has_compat_gcc296 1}
-%{?rh80:%define has_compat_gcc296 1}
+%{?fc1:%define has_compat_gcc296 1}
+%{?el3:%define has_compat_gcc296 1}
+%{?rh9:%define has_compat_gcc296 1}
+%{?rh8:%define has_compat_gcc296 1}
 %if %{?has_compat_gcc296:1}%{!?has_compat_gcc296:0}
 	%{__ln_s} -f i386-redhat-linux7-gcc .%{_bindir}/i386-redhat-linux-cc-2.96
 	%{__ln_s} -f i386-redhat-linux7-gcc .%{_bindir}/i386-redhat-linux-gcc-2.96
@@ -97,7 +98,7 @@ cd %{buildroot}
 %endif
 
 ### Red Hat 8.0 compilers
-%if %{?rh80:1}%{!?rh80:0}
+%if %{?rh8:1}%{!?rh8:0}
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-cc-3.2
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-gcc-3.2
 	%{__ln_s} -f i386-redhat-linux-g++ .%{_bindir}/i386-redhat-linux-c++-3.2
@@ -112,7 +113,7 @@ cd %{buildroot}
 %endif
 
 ### Red Hat 9 compilers
-%if %{?rh90:1}%{!?rh90:0}
+%if %{?rh9:1}%{!?rh9:0}
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-cc-3.2.2
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-gcc-3.2.2
 	%{__ln_s} -f i386-redhat-linux-g++ .%{_bindir}/i386-redhat-linux-c++-3.2.2
@@ -127,14 +128,14 @@ cd %{buildroot}
 %endif
 
 ### Red Hat EL3 compilers
-%if %{?rhel3:1}%{!?rhel3:0}
+%if %{?el3:1}%{!?el3:0}
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-cc-3.2.3
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-gcc-3.2.3
 	%{__ln_s} -f i386-redhat-linux-g++ .%{_bindir}/i386-redhat-linux-c++-3.2.3
 	%{__ln_s} -f i386-redhat-linux-g++ .%{_bindir}/i386-redhat-linux-g++-3.2.3
 %else
 ### Red Hat FC1 includes this one in the gcc32 package (not the c++)
-%{?rhfc1:%define has_gcc323 1}
+%{?fc1:%define has_gcc323 1}
 %if %{?has_gcc323:1}%{!?has_gcc323:0}
 	%{__ln_s} -f gcc32 .%{_bindir}/i386-redhat-linux-cc-3.2.3
 	%{__ln_s} -f gcc32 .%{_bindir}/i386-redhat-linux-gcc-3.2.3

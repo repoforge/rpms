@@ -2,6 +2,8 @@
 # Authority: dag
 # Distcc: 0
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Mozilla Thunderbird mail/news client
@@ -27,13 +29,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel
 BuildRequires: vim-enhanced, csh
-%{?rhfc1:BuildRequires: gtk2-devel}
-%{?rhel3:BuildRequires: gtk2-devel}
-%{?rh90:BuildRequires: gtk2-devel}
-%{?rh80:BuildRequires: gtk2-devel}
-%{?rh73:BuildRequires: gtk+-devel}
-%{?rhel21:BuildRequires: gtk+-devel}
-%{?rhel62:BuildRequires: gtk+-devel}
+%{?fc1:BuildRequires: gtk2-devel}
+%{?el3:BuildRequires: gtk2-devel}
+%{?rh9:BuildRequires: gtk2-devel}
+%{?rh8:BuildRequires: gtk2-devel}
+%{?rh7:BuildRequires: gtk+-devel}
+%{?el2:BuildRequires: gtk+-devel}
+%{?rh6:BuildRequires: gtk+-devel}
 
 Obsoletes: phoenix, MozillaThunderbird, mozilla-thunderbird
 
@@ -76,16 +78,16 @@ ac_add_options --enable-xinerama
 ac_add_options --enable-extensions="wallet,spellcheck,xmlextras"
 ac_add_options --enable-necko-protocols="http,file,jar,viewsource,res,data"
 ac_add_options --enable-image-decoders="png,gif,jpeg,bmp"
-%{?rhfc1:ac_add_options --enable-xft}
-%{?rhfc1:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rhel3:ac_add_options --enable-xft}
-%{?rhel3:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh90:ac_add_options --enable-xft}
-%{?rh90:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh80:ac_add_options --enable-xft}
-%{?rh80:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh73:ac_add_options --disable-xft}
-%{?rh62:ac_add_options --disable-xft}
+%{?fc1:ac_add_options --enable-xft}
+%{?fc1:ac_add_options --enable-default-toolkit="gtk2"}
+%{?el3:ac_add_options --enable-xft}
+%{?el3:ac_add_options --enable-default-toolkit="gtk2"}
+%{?rh9:ac_add_options --enable-xft}
+%{?rh9:ac_add_options --enable-default-toolkit="gtk2"}
+%{?rh8:ac_add_options --enable-xft}
+%{?rh8:ac_add_options --enable-default-toolkit="gtk2"}
+%{?rh7:ac_add_options --disable-xft}
+%{?rh6:ac_add_options --disable-xft}
 EOF
 
 %{__cat} <<EOF >%{name}.desktop

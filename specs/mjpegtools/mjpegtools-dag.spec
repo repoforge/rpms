@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.1
@@ -52,7 +54,7 @@ cd -
 	--enable-cmov-extension \
 	--enable-simd-accel \
 	--with-quicktime="%{_builddir}/%{buildsubdir}/quicktime4linux"
-%{?rh90:echo -e "\n#define LIBDV_PRE_0_9_5 1" >>config.h}
+%{?rh9:echo -e "\n#define LIBDV_PRE_0_9_5 1" >>config.h}
 %{__make} %{?_smp_mflags}
 
 %install

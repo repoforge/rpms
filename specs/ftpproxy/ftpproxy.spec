@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: FTP proxy server
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.ftpproxy.org/download/ftpproxy-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: ctags
 

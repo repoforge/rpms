@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Sergey Zhitomirsky <szh@7ka.mipt.ru>
 
 Summary: Execute programs chrooted, with dropped privileges and as another user/group
@@ -18,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.7ka.mipt.ru/~szh/dreamland/dreamland.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 Dreamland executes programs chrooted, with dropped privileges and as
 another user/group. Besides it can also impose resource limits, and
@@ -28,12 +25,11 @@ all kinds of privileges, defined in Linux.
 %prep
 
 %build
-gcc %{optflags} -o dreamland %{SOURCE0}
+${CC:-%{__cc}} %{optflags} -o dreamland %{SOURCE0}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 dreamland %{buildroot}%{_bindir}/
+%{__install} -D -m0755 dreamland %{buildroot}%{_bindir}/dreamland
 
 %clean
 %{__rm} -rf %{buildroot}

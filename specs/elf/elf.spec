@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 0.5.4p1

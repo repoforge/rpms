@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Provides a simple, uniform password-checking interface
 Name: checkpassword
 Version: 0.90
@@ -33,9 +35,9 @@ support POP toasters.
 %setup
 
 ### FIXME: Fix the errno problem on RH9, RHEL3 and RHFC1
-%{?rhfc1: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
-%{?rhel3: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
-%{?rh90: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
+%{?fc1: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
+%{?el3: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
+%{?rh9: %{__perl} -pi.orig -e 's|^(#include "error.h")$|$1\n#include <errno.h>|' *.c}
 
 %build
 %{__make} %{?_smp_mflags}

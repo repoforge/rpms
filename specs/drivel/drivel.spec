@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Todd Kulesza <todd@dropline.net>
 
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/drivel/drivel-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: gtk2 >= 2.0.0, curl >= 7.10.0
 

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand %%define %dist 1}}
+
 ### FIXME: TODO: Improve firefox start-up script for file:// URLs.
 
 ### FIXME: Doesn't compile with distcc (PATH seems to be honored ??)
@@ -26,13 +28,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel
-%{?rhfc1:BuildRequires: gtk2-devel}
-%{?rhel3:BuildRequires: gtk2-devel}
-%{?rh90:BuildRequires: gtk2-devel}
-%{?rh80:BuildRequires: gtk2-devel}
-%{?rh73:BuildRequires: gtk+-devel}
-%{?rhel21:BuildRequires: gtk+-devel}
-%{?rhel62:BuildRequires: gtk+-devel}
+%{?fc1:BuildRequires: gtk2-devel}
+%{?el3:BuildRequires: gtk2-devel}
+%{?rh9:BuildRequires: gtk2-devel}
+%{?rh8:BuildRequires: gtk2-devel}
+%{?rh7:BuildRequires: gtk+-devel}
+%{?el2:BuildRequires: gtk+-devel}
+%{?rh6:BuildRequires: gtk+-devel}
 
 Obsoletes: phoenix, MozillaFirebird, mozilla-firebird, mozilla-firefox
 
@@ -122,20 +124,20 @@ ac_add_options --enable-reorder
 ac_add_options --enable-mathml
 ac_add_options --enable-xinerama
 ac_add_options --enable-extensions="pref,cookie,wallet,typeaheadfind,xmlextras"
-%{?rhfc1:ac_add_options --enable-xft}
-%{?rhfc1:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rhel3:ac_add_options --enable-xft}
-%{?rhel3:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh90:ac_add_options --enable-xft}
-%{?rh90:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh80:ac_add_options --enable-xft}
-%{?rh80:ac_add_options --enable-default-toolkit="gtk2"}
-%{?rh73:ac_add_options --disable-xft}
-%{?rh73:ac_add_options --enable-default-toolkit="gtk"}
-%{?rhel21:ac_add_options --disable-xft}
-%{?rhel21:ac_add_options --enable-default-toolkit="gtk"}
-%{?rh62:ac_add_options --disable-xft}
-%{?rh62:ac_add_options --enable-default-toolkit="gtk"}
+%{?fc1:ac_add_options --enable-xft}
+%{?fc1:ac_add_options --enable-default-toolkit="gtk2"}
+%{?el3:ac_add_options --enable-xft}
+%{?el3:ac_add_options --enable-default-toolkit="gtk2"}
+%{?rh9:ac_add_options --enable-xft}
+%{?rh9:ac_add_options --enable-default-toolkit="gtk2"}
+%{?rh8:ac_add_options --enable-xft}
+%{?rh8:ac_add_options --enable-default-toolkit="gtk2"}
+%{?rh7:ac_add_options --disable-xft}
+%{?rh7:ac_add_options --enable-default-toolkit="gtk"}
+%{?el2:ac_add_options --disable-xft}
+%{?el2:ac_add_options --enable-default-toolkit="gtk"}
+%{?rh6:ac_add_options --disable-xft}
+%{?rh6:ac_add_options --enable-default-toolkit="gtk"}
 EOF
 
 %{__cat} <<EOF >%{name}.desktop

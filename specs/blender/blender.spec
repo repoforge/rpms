@@ -1,6 +1,4 @@
 # $Id$
-
-
 # Authority: dries
 ##Distcc: 0
 
@@ -13,9 +11,6 @@ Release: 0
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://download.blender.org/source/blender-%{version}.tar.bz2
 Source1: blender.png

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Timo Sirainen <tss@iki.fi>
 
+%{?dist: %{expand %%define %dist 1}}
+
 # Distcc: 0
 
 Summary: Dovecot secure IMAP server
@@ -21,13 +23,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Prereq: /usr/sbin/useradd, /usr/sbin/usermod
 BuildRequires: openssl-devel
 BuildRequires: openldap-devel, cyrus-sasl-devel
-%{?rhfc1:BuildRequires: pam-devel, postgresql-devel}
-%{?rhel3:BuildRequires: pam-devel, rh-postgresql-devel}
-%{?rh90:BuildRequires: pam-devel, postgresql-devel}
-%{?rh80:BuildRequires: pam-devel, postgresql-devel}
-%{?rh73:BuildRequires: pam-devel, postgresql-devel}
-%{?rhel21:BuildRequires: pam-devel, postgresql-devel}
-%{?rh62:BuildRequires: pam, postgresql-devel}
+%{?fc1:BuildRequires: pam-devel, postgresql-devel}
+%{?el3:BuildRequires: pam-devel, rh-postgresql-devel}
+%{?rh9:BuildRequires: pam-devel, postgresql-devel}
+%{?rh8:BuildRequires: pam-devel, postgresql-devel}
+%{?rh7:BuildRequires: pam-devel, postgresql-devel}
+%{?el2:BuildRequires: pam-devel, postgresql-devel}
+%{?rh6:BuildRequires: pam, postgresql-devel}
 
 %description
 Dovecot is an IMAP and POP3 server for Linux/UNIX-like systems,

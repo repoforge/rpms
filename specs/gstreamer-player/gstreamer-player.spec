@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define real_name gst-player
 
@@ -19,10 +20,15 @@ Source: http://dl.sf.net/gstreamer/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: gtk2-devel >= 2.2, glib2-devel, libgnomeui-devel, libglade2-devel %{?rh73:, nautilus2-devel}
-BuildRequires: gstreamer-devel >= 0.6.0, gstreamer-plugins-devel >= 0.6.0 %{?rh80:, nautilus-devel}
+BuildRequires: gtk2-devel >= 2.2, glib2-devel, libgnomeui-devel, libglade2-devel
+BuildRequires: gstreamer-devel >= 0.6.0, gstreamer-plugins-devel >= 0.6.0
 #BuildRequires: gstreamer-play, gstreamer-GConf
-BuildRequires: gettext, eel2-devel, gail-devel, zlib-devel %{?rh90:, nautilus-devel}
+BuildRequires: gettext, eel2-devel, gail-devel, zlib-devel
+%{?fc1:BuildRequires: nautilus-devel}
+%{?el3:BuildRequires: nautilus-devel}
+%{?rh9:BuildRequires: nautilus-devel}
+%{?rh8:BuildRequires: nautilus-devel}
+%{?rh7:BuildRequires: nautilus2-devel}
 
 %description
 This package contains the GStreamer media player and libgstplay, a simple

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Gerald Teschl <Gerald.Teschl@univie.ac.at>
 
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: ftp://ftp.mat.univie.ac.at/pub/teschl/autoupdate/autoupdate-%{version}-1.tar.gz
-
 
 BuildArch: noarch
 Requires: perl >= 0:5.00503, rpm, sh-utils, perl(Net::FTP), perl(DB_File)
@@ -39,13 +37,13 @@ a customized (RedHat) distribution plus all clients up to date.
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/logrotate.d \
 			%{buildroot}%{_sysconfdir}/autoupdate.d \
 			%{buildroot}%{_localstatedir}/{log,spool/autoupdate} \
-			%{buildroot}%{_sbindir} \
 			%{buildroot}%{_libdir}/perl5/site_perl/autoupdate \
-			%{buildroot}%{_mandir}/man{3,8}
+			%{buildroot}%{_mandir}/man3
 touch %{buildroot}%{_localstatedir}/log/autoupdate.log
-%{__install} -m0755 autoupdate %{buildroot}%{_sbindir}/
+%{__install} -D -m0755 autoupdate %{buildroot}%{_sbindir}/autoupdate
+%{__install} -D -m0644 autoupdate.8.gz %{buildroot}%{_mandir}/man8/autoupdate.8.gz
+
 %{__install} -m0644 autoupdate.pm/* %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
-%{__install} -m0644 autoupdate.8.gz %{buildroot}%{_mandir}/man8/
 #%{__install} -m0644 autoupdate.pm.3.gz %{buildroot}%{_mandir}/man3/
 %{__install} -m0755 autoupdate.d/*.sh %{buildroot}/%{_sysconfdir}/autoupdate.d/
 %{__install} -m0644 autoupdate.d/*.{dld,get,conf} %{buildroot}/%{_sysconfdir}/autoupdate.d/

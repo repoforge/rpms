@@ -34,13 +34,11 @@ attempting to recompile modules for new kernels.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_localstatedir}/dkms \
-			%{buildroot}%{_mandir}/man8
-%{__install} -m0755 dkms %{buildroot}%{_sbindir}
-%{__install} -m0644 dkms_framework.conf %{buildroot}%{_sysconfdir}
-%{__install} -m0644 dkms.8.gz %{buildroot}%{_mandir}/man8
+%{__install} -D -m0755 dkms %{buildroot}%{_sbindir}/dkms
+%{__install} -D -m0644 dkms_framework.conf %{buildroot}%{_sysconfdir}/dkms_framework.conf
+%{__install} -D -m0644 dkms.8.gz %{buildroot}%{_mandir}/man8/dkms.8.gz
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/dkms/
 
 %clean
 %{__rm} -rf %{buildroot}

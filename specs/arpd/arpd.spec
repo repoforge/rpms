@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: ARP reply daemon

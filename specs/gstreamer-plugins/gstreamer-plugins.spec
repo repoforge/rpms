@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define major 0.7
 
 Summary: GStreamer Streaming-media framework plugins
@@ -29,7 +31,7 @@ BuildRequires: xmms-devel, mikmod, audiofile-devel >= 0.2.1
 BuildRequires: libogg-devel >= 1.0, libvorbis-devel >= 1.0
 BuildRequires: libmad-devel, libsidplay-devel, libshout-devel, mpeg2dec-devel
 BuildRequires: Hermes-devel, gsm-devel, ladspa-devel
-%{!?rh73:BuildRequires: swfdec-devel, libshout-devel}
+%{!?rh7:BuildRequires: swfdec-devel, libshout-devel}
 #BuildRequires: openquicktime
 #BuildRequires: gnome-vfs2-devel >= 2.1.3
 

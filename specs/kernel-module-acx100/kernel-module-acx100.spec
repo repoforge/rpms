@@ -7,7 +7,9 @@
 # Soapbox: 0
 # BuildAsRoot: 1
 
-%{?rhfc1:%define __cc gcc32}
+%{?dist: %{expand %%define %dist 1}}
+
+%{?fc1:%define __cc gcc32}
 
 %define _libmoddir /lib/modules
 
@@ -36,7 +38,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/acx100/acx100-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}

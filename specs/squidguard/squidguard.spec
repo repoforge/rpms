@@ -1,10 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <squidguard@squidguard.org>
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define real_name squidGuard
 %define dbhomedir %{_localstatedir}/lib/squidguard
@@ -27,12 +28,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: bison, flex, perl
-%{?rhfc1:BuildRequires: db4-devel}
-%{?rhel3:BuildRequires: db4-devel}
-%{?rh90:BuildRequires: db4-devel}
-%{?rh80:BuildRequires: db4-devel}
-%{?rh73:BuildRequires: db3-devel}
-%{?rhel21:BuildRequires: db3-devel}
+%{?fc1:BuildRequires: db4-devel}
+%{?el3:BuildRequires: db4-devel}
+%{?rh9:BuildRequires: db4-devel}
+%{?rh8:BuildRequires: db4-devel}
+%{?rh7:BuildRequires: db3-devel}
+%{?el2:BuildRequires: db3-devel}
 Requires: squid
 Obsoletes: squidGuard
 Provides: squidGuard
@@ -44,8 +45,8 @@ users to a list of webservers, based on keywords.
 
 %prep
 %setup -n %{real_name}-%{version}
-%{?rhfc1:%patch0}
-%{?rhel3:%patch0}
+%{?fc1:%patch0}
+%{?el3:%patch0}
 
 %{__perl} -pi.orig -e '
 		s|^(dbhome) .+$|$1 \@sg_dbhome\@|;

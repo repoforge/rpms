@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Lauris Kaplinski <lauris@kaplinski.com>
+
 # Archs: i686 i386
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Vector drawing application
 Name: sodipodi
@@ -19,8 +21,8 @@ Source: http://dl.sf.net/sodipodi/sodipodi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml-devel, libpng-devel, libglade-devel
-%{?rh90:BuildRequires: libgnomeprint22-devel, libgnomeprintui-devel}
-%{?rh80:BuildRequires: libgnomeprint-devel >= 1.116, libgnomeprintui-devel >= 1.116}
+%{?rh9:BuildRequires: libgnomeprint22-devel, libgnomeprintui-devel}
+%{?rh8:BuildRequires: libgnomeprint-devel >= 1.116, libgnomeprintui-devel >= 1.116}
 
 %description
 Sodipodi is a general purpose vector drawing application which uses a

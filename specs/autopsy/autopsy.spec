@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Brian Carrier <carrier@sleuthkit.org>
 
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/autopsy/autopsy-%{version}.tar.gz
 Patch0: autopsy.patch-1.74
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: sleuthkit >= 1.61
 Provides: perl(conf.pl), perl(define.pl), perl(fs.pl), perl(search.pl), perl(autopsyfunc)

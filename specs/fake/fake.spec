@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Simon Horman <horms@verge.net.au>
 
 Summary: Switches in redundant servers using arp spoofing

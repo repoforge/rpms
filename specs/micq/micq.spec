@@ -3,6 +3,8 @@
 # Upstream: RÃdiger Kuhlmann <info@ruediger-kuhlmann.de>
 # Upstream: <micq-list@micq.org>
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Clone of the Mirabilis ICQ online messaging program
 Name: micq
 Version: 0.4.11
@@ -18,12 +20,12 @@ Source: http://www.micq.org/source/micq-%{version}.tgz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, tcl
-%{?rhfc1:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
-#%{?rhel3:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
-%{?rhel3:BuildRequires: libgcrypt-devel, gnutls-devel}
-%{?rh90:BuildRequires: libgcrypt-devel, gnutls-devel}
-%{?rh80:BuildRequires: libgcrypt-devel, gnutls-devel}
-%{?rh73:BuildRequires: libgcrypt-devel}
+%{?fc1:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
+#%{?el3:BuildRequires: libgcrypt-devel, gnutls-devel, tcl-devel}
+%{?el3:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{?rh9:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{?rh8:BuildRequires: libgcrypt-devel, gnutls-devel}
+%{?rh7:BuildRequires: libgcrypt-devel}
 
 %description
 Micq is a clone of the Mirabilis ICQ online messaging/conferencing

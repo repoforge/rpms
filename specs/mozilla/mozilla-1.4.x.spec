@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 ### Disable Ccache as Distcc is faster
 # Ccache: 0
@@ -56,11 +57,12 @@ Patch30: mozilla-1.4.1-js-thaw.patch
 Patch31: mozilla-1.4.1-gtk2-clipboard.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 ### Removed compat-gcc-c++, compat-libstdc++-devel, compat-gcc
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, zip, perl, autoconf
-BuildRequires: indexhtml %{!?rh73:, glib2-devel, gtk2-devel}
-BuildRequires: perl %{!?rh73:, libIDL-devel >= 0.8.0}
+BuildRequires: indexhtml
+%{!?rh7:BuildRequires: glib2-devel, gtk2-devel}
+BuildRequires: perl
+%{!?rh7:BuildRequires: libIDL-devel >= 0.8.0}
 Requires: fileutils, perl, /usr/bin/killall
 Requires: mozilla-nspr = %{version}-%{release}, indexhtml
 Provides: webclient
@@ -253,11 +255,11 @@ export MOZILLA_OFFICIAL="1"
 	--disable-xprint \
 	--without-system-nspr \
 	--with-system-zlib \
-%{!?rh62:--enable-default-toolkit="gtk2"} \
-%{?rh62:--enable-default-toolkit="gtk"} \
-%{?rh90:--enable-xft} \
-%{?rh80:--enable-xft} \
-%{?rh73:--without-libIDL} \
+%{!?rh6:--enable-default-toolkit="gtk2"} \
+%{?rh6:--enable-default-toolkit="gtk"} \
+%{?rh9:--enable-xft} \
+%{?rh8:--enable-xft} \
+%{?rh7:--without-libIDL} \
 	--disable-freetype2
 
 #unset CFLAGS

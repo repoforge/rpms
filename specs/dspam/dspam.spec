@@ -1,8 +1,9 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <dspam-users@nuclearelephant.com>
 # Upstream: Jonathan A. Zdziarski <jonathan@nuclearelephant.com>
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Library and Mail Delivery Agent for Bayesian spam filtering
 Name: dspam
@@ -19,13 +20,13 @@ Source: http://www.nuclearelephant.com/projects/dspam/sources/dspam-%{version}.t
 Source1: dspam.m4
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{?rhfc1:BuildRequires: db4-devel}
-%{?rhel3:BuildRequires: db4-devel}
-%{?rh90:BuildRequires: db4-devel}
-%{?rh80:BuildRequires: db4-devel}
-%{?rh73:BuildRequires: db3-devel}
-%{?rhel21:BuildRequires: db3-devel}
-%{?rh62:BuildRequires: db3-devel}
+%{?fc1:BuildRequires: db4-devel}
+%{?el3:BuildRequires: db4-devel}
+%{?rh9:BuildRequires: db4-devel}
+%{?rh8:BuildRequires: db4-devel}
+%{?rh7:BuildRequires: db3-devel}
+%{?el2:BuildRequires: db3-devel}
+%{?rh6:BuildRequires: db3-devel}
 Requires: /usr/sbin/useradd
 
 %description
@@ -139,9 +140,9 @@ EOF
 	--enable-source-address-tracking \
 	--enable-client-compression \
 	--enable-whitelist \
-%{?rh73:--with-storage-driver="libdb3_drv"} \
-%{?rhel21:--with-storage-driver="libdb3_drv"} \
-%{?rh62:--with-storage-driver="libdb3_drv"} \
+%{?rh7:--with-storage-driver="libdb3_drv"} \
+%{?el2:--with-storage-driver="libdb3_drv"} \
+%{?rh6:--with-storage-driver="libdb3_drv"} \
 #	--enable-neural-networking
 
 %{__make} %{?_smp_mflags}
@@ -154,41 +155,36 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_includedir} \
-			%{buildroot}%{_sysconfdir}/cron.{daily,hourly,weekly}/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/ \
-			%{buildroot}%{_sysconfdir}/mail/ \
-			%{buildroot}%{_sysconfdir}/smrsh/ \
-			%{buildroot}%{_localstatedir}/log/ \
-			%{buildroot}%{_localstatedir}/www/cgi-bin/ \
-			%{buildroot}%{_localstatedir}/www/dspam/ \
-			%{buildroot}%{_datadir}/sendmail-cf/mailer/
-
-%{__install} -m0755 dspam.optout %{buildroot}%{_bindir}
+%{__install} -D -m0755 dspam.optout %{buildroot}%{_bindir}/dspam.optout
 %{__mv} -f %{buildroot}%{_bindir}/dspam %{buildroot}%{_bindir}/dspam.optin
 %{__ln_s} -f dspam.optout %{buildroot}%{_bindir}/dspam
 
-%{__install} -m0755 addspam.sh %{buildroot}%{_bindir}/addspam
+%{__install} -D -m0755 addspam.sh %{buildroot}%{_bindir}/addspam
 ln -f %{buildroot}%{_bindir}/addspam %{buildroot}%{_bindir}/falsepositive
 
+%{__install} -d -m0755 %{buildroot}%{_includedir}
 %{__install} -m0644 libdspam.h libdspam_objects.h lht.h nodetree.h %{buildroot}%{_includedir}
 
-%{__install} -m0755 dspam.hourly %{buildroot}%{_sysconfdir}/cron.hourly/dspam
-%{__install} -m0755 dspam.daily %{buildroot}%{_sysconfdir}/cron.daily/dspam
-%{__install} -m0755 dspam.weekly %{buildroot}%{_sysconfdir}/cron.weekly/dspam
+%{__install} -D -m0755 dspam.hourly %{buildroot}%{_sysconfdir}/cron.hourly/dspam
+%{__install} -D -m0755 dspam.daily %{buildroot}%{_sysconfdir}/cron.daily/dspam
+%{__install} -D -m0755 dspam.weekly %{buildroot}%{_sysconfdir}/cron.weekly/dspam
 
-%{__install} -m0644 dspam.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -D -m0644 dspam.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/dspam.conf
 
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/mail/
 %{__ln_s} -f %{_localstatedir}/lib/dspam %{buildroot}%{_sysconfdir}/mail/dspam
 
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smrsh/
 %{__ln_s} -f %{_bindir}/addspam %{_bindir}/dspam %{_bindir}/falsepositive %{buildroot}%{_sysconfdir}/smrsh/
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/dspam.log
 
-%{__install} -m0755 dspam.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/
+%{__install} -D -m0755 dspam.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/dspam/
 %{__install} -m0755 cgi/*.css cgi/*.cgi cgi/*.gif cgi/*.html %{buildroot}%{_localstatedir}/www/dspam/
 
-%{__install} -m0755 %{SOURCE1} %{buildroot}%{_datadir}/sendmail-cf/mailer/
+%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_datadir}/sendmail-cf/mailer/dspam.m4
 
 %clean
 %{__rm} -rf %{buildroot}

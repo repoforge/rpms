@@ -34,10 +34,8 @@ bandwidth usage by pairs of hosts. Handy for answering the question
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man8
-%{__install} -m0755 iftop %{buildroot}%{_sbindir}
-%{__install} -m0644 iftop.8 %{buildroot}%{_mandir}/man8/
+%{__install} -D -m0755 iftop %{buildroot}%{_sbindir}/iftop
+%{__install} -D -m0644 iftop.8 %{buildroot}%{_mandir}/man8/iftop.8
 
 %clean
 %{__rm} -rf %{buildroot}

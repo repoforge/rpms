@@ -5,6 +5,8 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Library for writing gnome database programs
 Name: libgda
 Version: 1.1.2
@@ -23,10 +25,10 @@ BuildRequires: pkgconfig >= 0.8, glib2-devel >= 2.0, ncurses-devel
 BuildRequires: libxml2-devel, libxslt-devel >= 1.0.9
 BuildRequires: mysql-devel, postgresql-devel, unixODBC-devel, sqlite-devel
 BuildRequires: freetds-devel, xbase-devel
-%{?rhfc1:BuildRequires: mdbtools-devel}
-%{?rhel3:BuildRequires: mdbtools-devel}
-%{?rh90:BuildRequires: mdbtools-devel}
-%{?rh80:BuildRequires: mdbtools-devel}
+%{?fc1:BuildRequires: mdbtools-devel}
+%{?el3:BuildRequires: mdbtools-devel}
+%{?rh9:BuildRequires: mdbtools-devel}
+%{?rh8:BuildRequires: mdbtools-devel}
 BuildRequires: scrollkeeper
 
 Requires(post): scrollkeeper
@@ -103,7 +105,7 @@ scrollkeeper-update -q || :
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_datadir}/gtk-doc/html/libgda/
-%{?!rh73:%{_datadir}/omf/libgda/}
+%{?!rh7:%{_datadir}/omf/libgda/}
 %{_includedir}/libgda/
 %{_includedir}/libgda-report/
 %{_libdir}/*.a

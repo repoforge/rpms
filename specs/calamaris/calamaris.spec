@@ -33,10 +33,8 @@ content-types and performance.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-		%{buildroot}%{_mandir}/man1
-%{__install} -m0755 calamaris %{buildroot}%{_bindir}
-%{__install} -m0644 calamaris.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 calamaris %{buildroot}%{_bindir}/calamaris
+%{__install} -D -m0644 calamaris.1 %{buildroot}%{_mandir}/man1/calamaris.1
 
 %clean
 %{__rm} -rf %{buildroot}

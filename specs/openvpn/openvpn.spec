@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: James Yonan <jim@yonan.net>
 
+%{?dist: %{expand %%define %dist 1}}
+
 ### FIXME: Add sysv script based on own template.
 
 Summary: Secure tunneling daemon
@@ -46,7 +48,7 @@ LZO library for compression.
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/openvpn/
 
 %{__install} -d -m0755 %{buildroot}/dev/net/
-%{?rh73:touch %{buildroot}/dev/net/tun}
+%{?rh7:touch %{buildroot}/dev/net/tun}
 %{?rh62:touch %{buildroot}/dev/net/tun}
 
 %pre
@@ -81,8 +83,8 @@ fi
 %config(noreplace) %{_sysconfdir}/openvpn/
 %config %{_initrddir}/*
 %{_sbindir}/*
-%{?rh73:%ghost /dev/net/tun}
-%{?rh62:%ghost /dev/net/tun}
+%{?rh7:%ghost /dev/net/tun}
+%{?rh6:%ghost /dev/net/tun}
 
 %changelog
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 1.6.0-1

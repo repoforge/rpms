@@ -1,9 +1,10 @@
 # $Id$
-
 # Authority: dag
 
-# Dists: rh73
-# SourceDists: rh73
+# Dists: rh7
+# SourceDists: rh7
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Translates an RPM database and dependency information into HTML
 Name: rpm2html
@@ -40,7 +41,8 @@ from an RPM database into HTML.
 
 %build
 %configure
-%{__make} %{?_smp_mflags} %{?rh73: LIBXML_FLAGS="-I/usr/include/libxml2 -I/usr/include/libxml2/libxml"}
+%{__make} %{?_smp_mflags} \
+%{?rh7:	LIBXML_FLAGS="-I/usr/include/libxml2 -I/usr/include/libxml2/libxml"}
 
 %install
 %{__rm} -rf %{buildroot}

@@ -1,8 +1,9 @@
 # $Id$
-
 # Authority: dag
 
 # Tag: test
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: The Samba SMB server
 Name: samba
@@ -52,7 +53,9 @@ Requires: logrotate >= 3.4, initscripts >= 5.54-1
 Prereq: /sbin/chkconfig /bin/mktemp /usr/bin/killall
 Prereq: fileutils sed /etc/init.d 
 BuildRequires: pam-devel, readline-devel, ncurses-devel
-BuildRequires: fileutils %{?rh80:, libacl-devel} %{?rh90:, libacl-devel}
+BuildRequires: fileutils
+%{?rh8:BuildRequires: libacl-devel}
+%{?rh9:BuildRequires: libacl-devel}
 
 # Working around perl dependency problem from docs
 %define __perl_requires %{SOURCE999}
@@ -121,10 +124,10 @@ Web browser.
 cd source
 RPM_OPT_FLAGS="%{optflags} -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE"
 %configure \
-%{?rhel3:--with-acl-support} \
-%{?rhfc1:--with-acl-support} \
-%{?rh90:--with-acl-support} \
-%{?rh80:--with-acl-support} \
+%{?el3:--with-acl-support} \
+%{?fc1:--with-acl-support} \
+%{?rh9:--with-acl-support} \
+%{?rh8:--with-acl-support} \
 	--with-automount \
 	--with-codepagedir="%{_datadir}/samba/codepages" \
 	--with-configdir="%{_sysconfdir}/samba" \

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Ross Burton <ross@burtonini.com>
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Clean and lean CD ripper
 Name: sound-juicer
 Version: 0.5.11
@@ -41,7 +43,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-%if %{?rhfc1:1}%{!?rhfc1:0}
+%if %{?fc1:1}%{!?fc1:0}
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \

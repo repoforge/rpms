@@ -1,8 +1,8 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Gaël Roualland <gael.roualland@iname.com>
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Interface statistics
 Name: ifstat
@@ -15,16 +15,16 @@ URL: http://gael.roualland.free.fr/ifstat/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gael.roualland.free.fr/ifstat/%{name}-%{version}.tar.gz
+Source: http://gael.roualland.free.fr/ifstat/ifstat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-%{?rhel3:BuildRequires: net-snmp-devel}
-%{?rh90:BuildRequires: net-snmp-devel}
-%{?rh80:BuildRequires: net-snmp-devel}
-%{?rh73:BuildRequires: ucd-snmp-devel}
-%{?rhel21:BuildRequires: ucd-snmp-devel}
-%{?rh62:BuildRequires: ucd-snmp-devel}
+%{?fc1:BuildRequires: net-snmp-devel}
+%{?el3:BuildRequires: net-snmp-devel}
+%{?rh9:BuildRequires: net-snmp-devel}
+%{?rh8:BuildRequires: net-snmp-devel}
+%{?rh7:BuildRequires: ucd-snmp-devel}
+%{?el2:BuildRequires: ucd-snmp-devel}
+%{?rh6:BuildRequires: ucd-snmp-devel}
 
 %description
 ifstat(1) is a little tool to report interface activity like vmstat/iostat do.

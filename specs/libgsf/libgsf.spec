@@ -1,26 +1,28 @@
 # $Id$
-
 # Authority: dag
+# Dists: rh8 rh9
 
-# Dists: rh80
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: The GNOME Structure file library
 Name: libgsf
 Version: 1.6.0
 Release: 0
-URL: http://ftp.acc.umu.se/pub/GNOME/sources/%{name}/1.6/
+URL: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/
 License: LGPL
 Group: System Environment/Libraries
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.acc.umu.se/pub/GNOME/sources/%{name}/1.6/%{name}-%{version}.tar.gz
+Source: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/libgsf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: gnome-vfs2-devel >= 2.0.0, libbonobo-devel >= 2.0.0
-BuildRequires: gtk-doc >= 0.9 %{?rh80:, orbit-python-devel} %{?rh90:, pyorbit-devel}
+BuildRequires: gtk-doc >= 0.9
+%{?rh9:BuildRequires: pyorbit-devel}
+%{?rh8:BuildRequires: orbit-python-devel}
 
 %description
 The GNOME Structured file library.  At its root it is a replacement

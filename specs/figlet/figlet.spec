@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: <info@figlet.org>
 
 %define real_version 221

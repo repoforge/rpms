@@ -1,10 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Juri Pakaste <juri@iki.fi>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: desktop news aggregator for GNOME
 Name: straw
@@ -28,10 +29,10 @@ BuildRequires: adns, libxml2-python >= 1.99.13
 Requires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.0
 Requires: libxml2-python >= 1.99.13, python-adns, python-bsddb3, mx
 
-%{?rhfc1:Requires: pyorbit, pygtk2 >= 1.99.13, gnome-python2-gnomevfs, gnome-python2-gconf}
-%{?rhel3:Requires: pyorbit, pygtk2 >= 1.99.13, gnome-python2-gnomevfs, gnome-python2-gconf}
-%{?rh90:Requires: pyorbit, pygtk2 >= 1.99.13, gnome-python2-gnomevfs, gnome-python2-gconf}
-%{?rh80:Requires: orbit-python, pygtk2 >= 1.99.12, gnome-python2-gconf}
+%{?fc1:Requires: pyorbit, pygtk2 >= 1.99.13, gnome-python2-gnomevfs, gnome-python2-gconf}
+%{?el3:Requires: pyorbit, pygtk2 >= 1.99.13, gnome-python2-gnomevfs, gnome-python2-gconf}
+%{?rh9:Requires: pyorbit, pygtk2 >= 1.99.13, gnome-python2-gnomevfs, gnome-python2-gconf}
+%{?rh8:Requires: orbit-python, pygtk2 >= 1.99.12, gnome-python2-gconf}
 
 %description
 Straw is a desktop news aggregator for the GNOME environment. Its aim

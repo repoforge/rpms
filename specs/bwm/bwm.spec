@@ -32,8 +32,7 @@ bandwidth in use on all interfaces.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 bwm  %{buildroot}%{_bindir}
+%{__install} -D -m0755 bwm  %{buildroot}%{_bindir}/bwm
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ethan Galstad <nagios@nagios.org>
+
+%{?dist: %{expand %%define %dist 1}}
 
 ### FIXME: TODO: Add sysv script based on own template.
 
@@ -82,7 +83,7 @@ you will need to install %{name}-devel.
 	--with-mail="/bin/mail" \
 	--with-nagios-user="nagios" \
 	--with-nagios-grp="nagios" \
-%{?rh73:--enable-embedded-perl} \
+%{?rh7:	--enable-embedded-perl} \
 	--with-template-objects \
 	--with-template-extinfo
 %{__make} %{?_smp_mflags} all

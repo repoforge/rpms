@@ -21,7 +21,7 @@ URL: http://www.roadfeldt.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://dl.sf.net/gemu/%{name}-%{version}.tar.gz
+Source0: http://dl.sf.net/gemu/gemu-%{version}.tar.gz
 Source1: http://dl.sf.net/emu10k1/emu10k1-v0.20a.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

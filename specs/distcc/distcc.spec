@@ -3,10 +3,12 @@
 # Upstream: Martin Pool <mbp@sourcefrog.net>
 # Upstream: <distcc@lists.samba.org>
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define gui 1
-%{?rh73:%undefine gui}
-%{?rhel21:%undefine gui}
-%{?rh62:%undefine gui}
+%{?rh7:%undefine gui}
+%{?el2:%undefine gui}
+%{?rh6:%undefine gui}
 
 %define gccversion %(rpm -q gcc --qf '%{RPMTAG_VERSION}' | tail -1)
 
@@ -26,9 +28,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?gui:BuildRequires: gtk2-devel >= 2.0}
 Requires: gcc, gcc-c++
-%{?rhfc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
-%{?rh90:Requires: compat-gcc, compat-gcc-c++}
-%{?rh80:Requires: compat-gcc, compat-gcc-c++}
+%{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
+%{?rh9:Requires: compat-gcc, compat-gcc-c++}
+%{?rh8:Requires: compat-gcc, compat-gcc-c++}
 
 %description
 distcc is a distributed compilation front-end.  It sends command lines
@@ -215,11 +217,11 @@ for compiler in cc c++ gcc g++; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/i386-redhat-linux-$compiler-%{gccversion}
 done
 
-%{?rhfc1:%define has_gcc296 1}
-%{?rh90:%define has_gcc296 1}
-%{?rh80:%define has_gcc296 1}
-%{?rh73:%define has_gcc296 1}
-%{?rhel21:%define has_gcc296 1}
+%{?fc1:%define has_gcc296 1}
+%{?rh9:%define has_gcc296 1}
+%{?rh8:%define has_gcc296 1}
+%{?rh7:%define has_gcc296 1}
+%{?el2:%define has_gcc296 1}
 
 %if %{?has_gcc296:1}%{!?has_gcc296:0}
 for compiler in gcc296 g++296; do
@@ -227,7 +229,7 @@ for compiler in gcc296 g++296; do
 done
 %endif
 
-%{?rhfc1:%define has_gcc323 1}
+%{?fc1:%define has_gcc323 1}
 %if %{?has_gcc323:1}%{!?has_gcc323:0}
 for compiler in gcc32 gcc323; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/$compiler

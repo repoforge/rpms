@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 # Distcc: 0

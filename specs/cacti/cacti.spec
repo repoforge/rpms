@@ -2,6 +2,7 @@
 # Authority: dag
 # Upstream: <cacti-user@lists.sf.net>
 
+%{?dist: %{expand %%define %dist 1}}
 %define real_version 0.8.5a
 
 Summary: Network monitoring/graphing tool
@@ -19,12 +20,12 @@ Source: http://www.raxnet.net/downloads/cacti/cacti-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel
-%{?rhel3:BuildRequires: net-snmp-devel}
-%{?rh90:BuildRequires: net-snmp-devel}
-%{?rh80:BuildRequires: net-snmp-devel}
-%{?rh73:BuildRequires: ucd-snmp-devel}
-%{?rhel21:BuildRequires: ucd-snmp-devel}
-%{?rh62:BuildRequires: ucd-snmp-devel}
+%{?el3:BuildRequires: net-snmp-devel}
+%{?rh9:BuildRequires: net-snmp-devel}
+%{?rh8:BuildRequires: net-snmp-devel}
+%{?rh7:BuildRequires: ucd-snmp-devel}
+%{?el2:BuildRequires: ucd-snmp-devel}
+%{?rh6:BuildRequires: ucd-snmp-devel}
 
 Requires: webserver, mysql, net-snmp, rrdtool
 Requires: php, php-mysql, php-snmp, php-rrdtool

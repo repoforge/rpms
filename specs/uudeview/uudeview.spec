@@ -1,8 +1,8 @@
 # $Id$
-
 # Authority: dag
-# Distcc: 0
 # Upstream: Frank Pilhofer <fp@fpx.de>
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview
@@ -22,8 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool
 BuildRequires: tetex-dvips, tetex-latex, transfig
-%{?rhfc1:BuildRequires: tcl-devel, tk-devel}
-%{?rhel3:BuildRequires: tcl-devel, tk-devel}
+%{?fc1:BuildRequires: tcl-devel, tk-devel}
+%{?el3:BuildRequires: tcl-devel, tk-devel}
 BuildRequires: tcl, tk
 
 %description

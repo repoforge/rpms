@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define real_name rte
 
 Summary: Real Time software audio/video Encoder library
@@ -17,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/zapping/rte-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?rh62:BuildRequires: doxygen}
+%{!?rh6:BuildRequires: doxygen}
 
 #Provides: %{real_name}
 Obsoletes: %{real_name}

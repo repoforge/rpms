@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Stef Van Dessel <stef@iguana.be>
 
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.iguana.be/~stef/bnews-utils-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl
 Requires: perl

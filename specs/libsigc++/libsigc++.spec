@@ -5,7 +5,7 @@ Summary: Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
 Release: 2
-### Needs epoch as rhel21 comes with version 1:1.0.3 ;-(
+### Needs epoch as el2 comes with version 1:1.0.3 ;-(
 #Epoch: 1
 License: LGPL
 Group: System Environment/Libraries

@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Krischan Jodies <krischan@jodies.cx>
 
 Summary: IP subnet calculator
 Name: ipcalc
-Version: 0.35
+Version: 0.37
 Release: 1
 License: GPL
 Group: Applications/System
@@ -31,8 +30,7 @@ as easy-to-understand binary values.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 ipcalc %{buildroot}%{_bindir}
+%{__install} -D -m0755 ipcalc %{buildroot}%{_bindir}/ipcalc
 %{__ln_s} -f ipcalc %{buildroot}%{_bindir}/ipcalc.pl
 
 %clean
@@ -43,5 +41,8 @@ as easy-to-understand binary values.
 %{_bindir}/*
 
 %changelog
+* Fri May 14 2003 Dag Wieers <dag@wieers.com> - 0.37-1
+- updated to release 0.37.
+
 * Thu Apr 24 2003 Dag Wieers <dag@wieers.com> - 0.35-0
 - Initial package. (using DAR)

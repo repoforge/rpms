@@ -1,9 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Junichi Uekawa <dancer@netfort.gr.jp>
 
-Summary: distributed shell. Allows running of a single command on multiple hosts
+Summary: Distributed shell. Allows running of a single command on multiple hosts
 Name: dsh
 Version: 0.23.7
 Release: 0
@@ -16,9 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.netfort.gr.jp/~dancer/software/downloads/dsh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 A distributed shell. Allows running of a single command on multiple hosts.

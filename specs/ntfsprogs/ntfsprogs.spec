@@ -1,11 +1,12 @@
 # $Id$
-
 # Authority: dag
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define vfs 1
-%{?rh73:%undefine vfs}
-%{?rhel21:%undefine vfs}
-%{?rh62:%undefine vfs}
+%{?rh7:%undefine vfs}
+%{?el2:%undefine vfs}
+%{?rh6:%undefine vfs}
 
 Summary: NTFS filesystem libraries and utilities
 Name: ntfsprogs

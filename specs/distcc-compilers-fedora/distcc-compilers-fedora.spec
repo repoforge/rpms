@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Red Hat Fedora compilers for distccd
 Name: distcc-compilers-fedora
@@ -20,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: rpm, cpio, binutils
-%{?rhfc1:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++, gcc32}
+%{?fc1:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++, gcc32}
 
 %description
 distcc-compilers-fedora contains de stock Fedora compilers for Fedora Core 1
@@ -39,7 +40,7 @@ right compiler on your distcc cluster.
 cd %{buildroot}
 
 ### Fedora Core 1 compilers
-%if %{?rhfc1:1}%{!?rhfc1:0}
+%if %{?fc1:1}%{!?fc1:0}
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-cc-3.3.2
 	%{__ln_s} -f i386-redhat-linux-gcc .%{_bindir}/i386-redhat-linux-gcc-3.3.2
 	%{__ln_s} -f i386-redhat-linux-g++ .%{_bindir}/i386-redhat-linux-c++-3.3.2
@@ -67,7 +68,7 @@ done
 %files
 %defattr(-, root, root, 0755)
 %{_bindir}/*
-%{!?rhfc1:%{_libdir}/gcc-lib/}
+%{!?fc1:%{_libdir}/gcc-lib/}
 %{_libdir}/distcc/bin/*
 %{_libdir}/ccache/bin/*
 

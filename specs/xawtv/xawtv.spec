@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Gerd Knorr <kraxel@bytesex.org>
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Television application for video4linux compliant devices

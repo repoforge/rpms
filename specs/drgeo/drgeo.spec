@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Hilaire Fernandes <hilaire@ext.cri74.org>
 
@@ -18,9 +17,8 @@ URL: http://www.ofset.org/drgeo/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ofset.org/%{name}/%{name}-%{version}.tar.gz
+Source: http://www.ofset.org/drgeo/drgeo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: flex, bison, gmp-devel >= 2.0.2, glib-devel, gtk+-devel
 BuildRequires: guile-devel, gnome-libs-devel, gob >= 1.0.10, libxml-devel

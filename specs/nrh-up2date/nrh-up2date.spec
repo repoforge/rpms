@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <nrh-up2date-users@lists.sf.net>
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Open Source server for Redhat's up2date suite
 Name: nrh-up2date
 Version: 1.3
@@ -19,13 +21,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: perl, perl-Frontier-RPC, perl-XML-Parser, perl-BerkeleyDB, python, python-bsddb3
-%{?rhfc1:Requires: httpd, rpm, rpm-python, db4}
-%{?rhel3:Requires: httpd, rpm, rpm-python, db4}
-%{?rh90:Requires: httpd, librpm404, rpm404-python, db4}
-%{?rh80:Requires: httpd, librpm404, rpm404-python, db4}
-%{?rh73:Requires: apache, python-xmlrpc, db3, perl-Digest-MD5}
-%{?rhas21:Requires: apache, python-xmlrpc, db3, perl-Digest-MD5}
-%{?rh62:Requires: apache, python-xmlrpc, db3, perl-Digest-MD5}
+%{?fc1:Requires: httpd, rpm, rpm-python, db4}
+%{?el3:Requires: httpd, rpm, rpm-python, db4}
+%{?rh9:Requires: httpd, librpm404, rpm404-python, db4}
+%{?rh8:Requires: httpd, librpm404, rpm404-python, db4}
+%{?rh7:Requires: apache, python-xmlrpc, db3, perl-Digest-MD5}
+%{?el2:Requires: apache, python-xmlrpc, db3, perl-Digest-MD5}
+%{?rh6:Requires: apache, python-xmlrpc, db3, perl-Digest-MD5}
 
 %description
 NRH-up2date is a collection of utilities to use with RedHat's up2date 

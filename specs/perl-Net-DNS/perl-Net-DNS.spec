@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define real_name Net-DNS
 
@@ -21,11 +22,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503, perl(Digest::HMAC)
-%{!?rhel21:BuildRequires: perl(Digest::MD5) >= 2.12, perl(MIME::Base64) >= 2.11}
-%{?rhel21:BuildRequires: perl-Digest-MD5 >= 2.12, perl-MIME-Base64 >= 2.11}
+%{!?el2:BuildRequires: perl(Digest::MD5) >= 2.12, perl(MIME::Base64) >= 2.11}
+%{?el2:BuildRequires: perl-Digest-MD5 >= 2.12, perl-MIME-Base64 >= 2.11}
 Requires: perl >= 0:5.00503, perl(Digest::HMAC)
-%{!?rhel21:Requires: perl(Digest::MD5) >= 2.12, perl(MIME::Base64) >= 2.11}
-%{?rhel21:Requires: perl-Digest-MD5 >= 2.12, perl-MIME-Base64 >= 2.11}
+%{!?el2:Requires: perl(Digest::MD5) >= 2.12, perl(MIME::Base64) >= 2.11}
+%{?el2:Requires: perl-Digest-MD5 >= 2.12, perl-MIME-Base64 >= 2.11}
 
 %description
 Net-DNS Perl module

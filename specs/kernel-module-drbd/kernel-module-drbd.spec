@@ -7,7 +7,9 @@
 # Soapbox: 0
 # BuildAsRoot: 1
 
-%{?rhfc1:%define __cc gcc32}
+%{?dist: %{expand %%define %dist 1}}
+
+%{?fc1:%define __cc gcc32}
 
 %define _libmoddir /lib/modules
 %define _sbindir /sbin
@@ -92,8 +94,8 @@ You could see it as a network RAID 1.
 %setup -n %{real_name}-%{version}
 
 ### Enable SIGHAND_HACK for RH kernel 2.4.20 and greater
-%{?rhfc1:%{__perl} -pi.orig -e 's|//(#define SIGHAND_HACK)|$1|' drbd_config.h}
-%{?rh90:%{__perl} -pi.orig -e 's|//(#define SIGHAND_HACK)|$1|' drbd_config.h}
+%{?fc1:%{__perl} -pi.orig -e 's|//(#define SIGHAND_HACK)|$1|' drbd_config.h}
+%{?rh9:%{__perl} -pi.orig -e 's|//(#define SIGHAND_HACK)|$1|' drbd_config.h}
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '

@@ -2,11 +2,13 @@
 # Authority: dag
 # Upstream: Marty Roesch <roesch@sourcefire.com>
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define mysql 1
 %define pgsql 1
 %define odbc 1
 %define bloat 1
-#{?rhel3:%undefine odbc}
+#{?el3:%undefine odbc}
 
 Summary: Open Source network intrusion detection system
 Name: snort
@@ -24,12 +26,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet
 BuildRequires: pcre-devel, perl, postgresql-devel, unixODBC-devel
-%{?rhfc1:BuildRequires: net-snmp-devel}
-%{?rhel3:BuildRequires: net-snmp-devel}
-%{?rh90:BuildRequires: net-snmp-devel}
-%{?rh80:BuildRequires: net-snmp-devel}
-%{?rh73:BuildRequires: ucd-snmp-devel}
-%{?rhel21:BuildRequires: ucd-snmp-devel}
+%{?fc1:BuildRequires: net-snmp-devel}
+%{?el3:BuildRequires: net-snmp-devel}
+%{?rh9:BuildRequires: net-snmp-devel}
+%{?rh8:BuildRequires: net-snmp-devel}
+%{?rh7:BuildRequires: ucd-snmp-devel}
+%{?el2:BuildRequires: ucd-snmp-devel}
 
 %description
 Snort is a libpcap-based packet sniffer/logger which 

@@ -25,7 +25,7 @@ to collect the green things.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >arrows.desktop
 [Desktop Entry]
 Name=Arrows
 Comment=Follow the arrows to reach the exit
@@ -42,8 +42,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 arrows %{buildroot}%{_bindir}
+%{__install} -D -m0755 arrows %{buildroot}%{_bindir}/arrows
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor net                  \

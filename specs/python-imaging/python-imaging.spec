@@ -1,14 +1,15 @@
 # $Id$
-
 # Authority: dag
 
-%{?rhfc1:%define pyver 2.2}
-%{?rhel3:%define pyver 2.2}
-%{?rh90:%define pyver 2.2}
-%{?rh80:%define pyver 2.2}
-%{?rh73:%define pyver 1.5}
-%{?rhel21:%define pyver 1.5}
-%{?rh62:%define pyver 1.5}
+%{?dist: %{expand %%define %dist 1}}
+
+%{?fc1:%define pyver 2.2}
+%{?el3:%define pyver 2.2}
+%{?rh9:%define pyver 2.2}
+%{?rh8:%define pyver 2.2}
+%{?rh7:%define pyver 1.5}
+%{?el2:%define pyver 1.5}
+%{?rh6:%define pyver 1.5}
 
 Summary: Python's own image processing library
 Name: python-imaging

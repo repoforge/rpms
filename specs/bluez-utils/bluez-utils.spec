@@ -1,9 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define _bindir /bin
 %define _sbindir /sbin
@@ -33,7 +34,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 ExcludeArch: s390 s390x
 BuildRequires: bluez-libs-devel >= 2.0
 BuildRequires: flex, autoconf, automake14
-%{?rhfc1:BuildRequires: dbus-devel}
+%{?fc1:BuildRequires: dbus-devel}
 
 %description
 Bluetooth utilities (bluez-utils):
@@ -68,7 +69,7 @@ The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 aclocal-1.4; automake-1.4; autoconf
 %configure \
 	--enable-pcmcia \
-%{?rhfc1:--enable-dbus}
+%{?fc1:--enable-dbus}
 %{__make} %{?_smp_mflags}
 
 %install

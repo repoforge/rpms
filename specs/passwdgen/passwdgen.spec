@@ -1,9 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 # Distcc: 0
 # Soapbox: 0
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Random Password Generator
 Name: passwdgen
@@ -16,9 +17,8 @@ URL: http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/download/%{name}-%{version}.tar.gz
+Source: http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/download/passwdgen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 passwdGen is a flexible but user-friendly random password generator. It should
@@ -46,7 +46,8 @@ passwdGen and have a Palm OS based PDA I would greatly appreciate your support.
 
 ### FIXME: Fix headerfiles
 %{__perl} -pi.orig -e 's|<string>|<string.h>|' class/*.h
-%{__make} %{?_smp_mflags} %{?rh80:CXX="g++296"}
+%{__make} %{?_smp_mflags} \
+%{?rh8:CXX="g++296"}
 
 %install
 %{__rm} -rf %{buildroot}

@@ -1,9 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <irssi-dev@dragoncat.net>
 
-# Distcc: 0
+%{?dist: %{expand %%define %dist 1}}
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -32,7 +31,7 @@ Support for other protocols like ICQ could be created some day too.
 
 %prep
 %setup
-%{?rh90:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
+%{?rh9:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 
 %build
 %configure \

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Recover files based on their headers and footers
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/foremost/foremost-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Foremost is a Linux program to recover files based on their headers and
@@ -33,12 +31,9 @@ headers you want to look for.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 foremost %{buildroot}%{_sbindir}
-%{__install} -m0644 foremost.conf %{buildroot}%{_sysconfdir}
-%{__install} -m0644 foremost.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 foremost %{buildroot}%{_sbindir}/foremost
+%{__install} -D -m0644 foremost.conf %{buildroot}%{_sysconfdir}/foremost.conf
+%{__install} -D -m0644 foremost.1 %{buildroot}%{_mandir}/man1/foremost.1
 
 %clean
 %{__rm} -rf %{buildroot}

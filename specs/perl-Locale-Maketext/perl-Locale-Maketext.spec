@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dag
-
-# Dists: rh73
+# Dists: rh7
 
 %define real_name Locale-Maketext
 

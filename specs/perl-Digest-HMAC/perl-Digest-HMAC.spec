@@ -1,8 +1,9 @@
 # $Id$
-
 # Authority: dag
 
-# Dists: rh62 rh73 rh80
+# Dists: rh6 rh7 rh8
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define real_name Digest-HMAC
 
@@ -23,8 +24,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 
-BuildRequires: perl(Digest::SHA1) %{?rh73:, perl(Digest::MD5)}
-Requires: perl(Digest::SHA1) %{?rh73:, perl(Digest::MD5)}
+BuildRequires: perl(Digest::SHA1)
+%{?rh7:BuildRequires: perl(Digest::MD5)}
+Requires: perl(Digest::SHA1)
+%{?rh7:BuildRequires: perl(Digest::MD5)}
 
 %description
 HMAC is used for message integrity checks between two parties that

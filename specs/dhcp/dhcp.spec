@@ -1,8 +1,8 @@
 # $Id$
-
 # Authority: dag
-# Dists: rh62 rhel21 rh73
-# SourceDists: rh73
+# Dists: rh6 el2 rh7
+
+# SourceDists: rh7
 BuildRequires: dhcp < 3.0pl1
 
 Summary: DHCP (Dynamic Host Configuration Protocol) server and relay agent

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Lennart Poettering <mz617469@poettering.de>
 
@@ -14,11 +13,10 @@ URL: http://www.stud.uni-hamburg.de/users/lennart/projects/atitvout/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.stud.uni-hamburg.de/users/lennart/projects/atitvout/atitvout-0.4.tar.gz
+Source: http://www.stud.uni-hamburg.de/users/lennart/projects/atitvout/atitvout-%{version}.tar.gz
 Patch0: atitvout-rv200.patch
 Patch1: http://ftp.debian.org/debian/pool/main/a/atitvout/atitvout_0.4-2.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 This utility program may be used for executing several configuration

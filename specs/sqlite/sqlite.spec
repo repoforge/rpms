@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Richard Hipp <drh@hwaci.com>
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: library that implements an embeddable SQL database engine
 Name: sqlite
 Version: 2.8.12
@@ -17,14 +19,13 @@ Source:	http://www.sqlite.org/sqlite-%{version}.tar.gz
 Patch0: sqlite-2.8.12-encode.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: readline-devel
-%{?rhfc1:BuildRequires: tcllib}
-%{?rh90:BuildRequires: tcllib}
-%{?rh80:BuildRequires: tcllib}
-%{?rh73:BuildRequires: tcllib}
-%{?rhel21:BuildRequires: tcllib}
-%{?rh62:BuildRequires: tcllib}
+%{?fc1:BuildRequires: tcllib}
+%{?rh9:BuildRequires: tcllib}
+%{?rh8:BuildRequires: tcllib}
+%{?rh7:BuildRequires: tcllib}
+%{?el2:BuildRequires: tcllib}
+%{?rh6:BuildRequires: tcllib}
 
 %description
 SQLite is a C library that implements an SQL database engine. A large

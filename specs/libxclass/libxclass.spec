@@ -1,8 +1,8 @@
 # $Id$
-
 # Authority: dag
-
 # Distcc: 0
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define real_name xclass
 
@@ -42,10 +42,10 @@ against.
 	' lib/libxclass/Makefile.in
 
 %build
-%{?rhfc1:export CXX="g++296"}
-%{?rhel3:export CXX="g++296"}
-%{?rh90:export CXX="g++296"}
-%{?rh80:export CXX="g++296"}
+%{?fc1:export CXX="g++296"}
+%{?el3:export CXX="g++296"}
+%{?rh9:export CXX="g++296"}
+%{?rh8:export CXX="g++296"}
 %configure
 %{__make} %{?_smp_mflags}
 

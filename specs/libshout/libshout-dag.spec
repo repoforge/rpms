@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout
 Version: 2.0
@@ -38,7 +40,7 @@ you will need to install %{name}-devel.
 %build
 %configure \
 	--disable-dependency-tracking \
-%{?rh90:--disable-thread}
+%{?rh9:--disable-thread}
 %{__make} %{?_smp_mflags}
 
 %install

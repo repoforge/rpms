@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <info@otrs.de>
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define logmsg logger -t %{name}/rpm
 %define real_version 1.2.3-01
 
@@ -23,13 +25,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: perl, perl-DBI, perl-DBD-MySQL, perl-URI, mod_perl
 Requires: mysql, mysql-server, fetchmail, procmail, smtpdaemon
-%{?rhfc1:BuildRequires: httpd}
-%{?rhel3:BuildRequires: httpd}
-%{?rh90:BuildRequires: httpd}
-%{?rh80:BuildRequires: httpd}
-%{?rh73:BuildRequires: apache}
-%{?rhel21:BuildRequires: apache}
-%{?rh62:BuildRequires: apache}
+%{?fc1:BuildRequires: httpd}
+%{?el3:BuildRequires: httpd}
+%{?rh9:BuildRequires: httpd}
+%{?rh8:BuildRequires: httpd}
+%{?rh7:BuildRequires: apache}
+%{?el2:BuildRequires: apache}
+%{?rh6:BuildRequires: apache}
 
 %description
 OTRS is an Open source Ticket Request System with many features to manage

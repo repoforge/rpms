@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Mark Burgess <Mark.Burgess@iu.hio.no>
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: System administration tool for networks
 Name: cfengine
 Version: 2.1.5
@@ -17,13 +19,13 @@ Source: ftp://ftp.iu.hio.no/pub/cfengine/cfengine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, m4, openssl-devel, tetex
-%{?rhfc1:BuildRequires: db4-devel}
-%{?rhel3:BuildRequires: db4-devel}
-%{?rh90:BuildRequires: db4-devel}
-%{?rh80:BuildRequires: db4-devel}
-%{?rh73:BuildRequires: db3-devel}
-%{?rhel21:BuildRequires: db3-devel}
-%{?rh62:BuildRequires: db3-devel}
+%{?fc1:BuildRequires: db4-devel}
+%{?el3:BuildRequires: db4-devel}
+%{?rh9:BuildRequires: db4-devel}
+%{?rh8:BuildRequires: db4-devel}
+%{?rh7:BuildRequires: db3-devel}
+%{?el2:BuildRequires: db3-devel}
+%{?rh6:BuildRequires: db3-devel}
 
 %description
 Cfengine, or the configuration engine is an agent/software robot and a

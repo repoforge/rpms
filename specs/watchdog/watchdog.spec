@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Software watchdog
 Name: watchdog
 Version: 5.2
@@ -22,13 +24,13 @@ A software watchdog.
 %setup
 
 ### FIXME: Make it compile on RH80, RH9, RHEL3 and RHFC1. (Fix upstream please)
-%{?rhfc1:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
-%{?rhel3:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
-%{?rh90:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
-%{?rh80:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
+%{?fc1:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
+%{?el3:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
+%{?rh9:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
+%{?rh8:%{__perl} -pi.orig -e 's| __GNUC__ == 2 && __GNUC_MINOR__ >= 5| __GNUC__ >= 2|' include/sundries.h}
 
 ### FIXME: Fix the errno problem on RH9. (Fix upsteam please)
-%{?rh90: %{__perl} -pi.orig -e 's|^(#include <linux/unistd.h>)$|$1\n#include <errno.h>|' src/quotactl.c}
+%{?rh9: %{__perl} -pi.orig -e 's|^(#include <linux/unistd.h>)$|$1\n#include <errno.h>|' src/quotactl.c}
 
 %{__cat} <<EOF >%{name}.sysconfig
 ### Controls the behaviour of the watchdog

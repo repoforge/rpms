@@ -4,6 +4,8 @@
 
 # Distcc: 0
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 
 Summary: Round Robin Database Tool to store and display time-series data
@@ -22,8 +24,8 @@ Patch: php-1.0.47-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: php-devel, tcl, perl
-%{?rhfc1:BuildRequires: tcl-devel}
-%{?rhel3:BuildRequires: tcl-devel}
+%{?fc1:BuildRequires: tcl-devel}
+%{?el3:BuildRequires: tcl-devel}
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and 

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: atrpms
-# Dists: rh90
+# Dists: rh9
 
 Summary: Library providing XML and HTML support
 Name: libxml2

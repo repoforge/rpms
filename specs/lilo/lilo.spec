@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand %%define %dist 1}}
+
 # Tag: test
 
 Summary: The boot loader for Linux and other operating systems
@@ -30,7 +32,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Exclusivearch: i386
 
 BuildRequires: tetex-latex, fileutils, tetex-dvips
-%{!?rhfc1:BuildRequires: dev86}
+%{!?fc1:BuildRequires: dev86}
 Requires: mkinitrd >= 3.4.7
 Prereq: /sbin/grubby
 

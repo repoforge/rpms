@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: TCP load-balancing proxy server
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/balance/balance-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 Balance is a simple but powerful generic tcp proxy with round robin
 load balancing and failover mechanisms. Its behaviour can be controlled
@@ -31,11 +29,10 @@ at runtime using a simple command line syntax.
 	
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man1
+%{__install} -D -m0755 balance %{buildroot}%{_sbindir}/balance
+%{__install} -D -m0644 balance.1 %{buildroot}%{_mandir}/man1/balance.1
+
 %{__install} -d -m1777 %{buildroot}%{_localstatedir}/run/balance/
-%{__install} -m0755 balance %{buildroot}%{_sbindir}
-%{__install} -m0644 balance.1 %{buildroot}%{_mandir}/man1/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,6 +42,8 @@ at runtime using a simple command line syntax.
 %doc COPYING README
 %doc %{_mandir}/man?/*
 %{_sbindir}/*
+
+%defattr(-, root, root, 1777)
 %{_localstatedir}/run/balance/
 
 %changelog

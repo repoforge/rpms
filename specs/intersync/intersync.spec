@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: InterMezzo synchronization client

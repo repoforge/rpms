@@ -1,5 +1,4 @@
 # $Id: _template.spec 130 2004-03-17 10:51:35Z dude $
-
 # Authority: dag
 # Upstream: <f-spot-list@gnome.org>
 

@@ -34,11 +34,6 @@ you will need to install %{name}-devel.
 
 %build
 %configure
-#CFLAGS="%{optflags}" ./configure \
-#	--bindir=%{_bindir} \
-#	--libdir=%{_libdir} \
-#	--includedir=%{_includedir} \
-#	--datadir=%{_datadir}
 %{__make} %{?_smp_mflags}
 
 %install

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: The GNOME Fax Application
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.cowlug.org/gfax/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 Requires: gnome-libs >= 1.2, libglade >= 0.7, python >= 1.5.2
 
 %description
@@ -30,14 +28,12 @@ facsimilies by printing to a fax printer.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir}/gfax \
-			%{buildroot}%{_datadir}/pixmaps \
-			%{buildroot}%{_datadir}/gnome/apps/Applications
-%{__install} -m0755 gfax.py %{buildroot}%{_bindir}/gfax
+%{__install} -D -m0755 gfax.py %{buildroot}%{_bindir}/gfax
+%{__install} -D -m0644 gfax.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/gfax.desktop
+%{__install} -D -m0644 gfax.png %{buildroot}%{_datadir}/pixmaps/gfax.png
+
+%{__install} -d -m0755 %{buildroot}%{_libdir}/gfax/
 %{__install} -m0644 *.py *.glade %{buildroot}%{_libdir}/gfax/
-%{__install} -m0644 gfax.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
-%{__install} -m0644 gfax.png %{buildroot}%{_datadir}/pixmaps/
 
 %clean
 %{__rm} -rf %{buildroot}

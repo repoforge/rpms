@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: ELF binary-to-process comparison tool
@@ -13,11 +12,8 @@ URL: http://www.hick.org/code/skape/elfcmp/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.hick.org/code/skape/elfcmp/%{name}-%{version}.tar.gz
+Source: http://www.hick.org/code/skape/elfcmp/elfcmp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 ELF binary-to-process comparison tool.

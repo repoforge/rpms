@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Trace a chain of DNS servers to the source
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.mavetju.org/download/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Obsoletes: dnstrace
 

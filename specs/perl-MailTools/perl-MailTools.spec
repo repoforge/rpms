@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define real_name MailTools
 
@@ -22,8 +23,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: perl-Mail
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503 %{?rh73:, perl-libnet >= 1.05}
-Requires: perl >= 0:5.00503 %{?rh73:, perl-libnet >= 1.05}
+BuildRequires: perl >= 0:5.00503
+%{?rh7:BuildRequires: perl-libnet >= 1.05}
+Requires: perl >= 0:5.00503
+%{?rh7:BuildRequires: perl-libnet >= 1.05}
 
 %description
 MailTools module for perl

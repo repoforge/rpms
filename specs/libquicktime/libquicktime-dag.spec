@@ -2,6 +2,8 @@
 # Authority: matthias
 # Upstream: <libquicktime-devel@lists.sf.net>
 
+%{?dist: %{expand %%define %dist 1}}
+
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.2
@@ -21,10 +23,10 @@ BuildArch: i586
 BuildRequires: autoconf, automake, libpng-devel >= 1.0.8, libjpeg-devel
 BuildRequires: libdv-devel, libogg-devel, libvorbis-devel
 BuildRequires: glib-devel
-%{?rhfc1:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?rhel3:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?rh90:BuildRequires: libraw1394-devel, libavc1394-devel}
-%{?rh80:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?fc1:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?el3:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?rh9:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?rh8:BuildRequires: libraw1394-devel, libavc1394-devel}
 
 %description
 Libquicktime is a library for reading and writing QuickTime files

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Distcc: 0
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %define _bindir /usr/X11R6/bin
@@ -22,10 +23,10 @@ Patch: rfb-0.6.1-rpmoptflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-%{?rhfc1:BuildRequires: compat-gcc-c++}
-%{?rhel3:BuildRequires: compat-gcc-c++}
-%{?rh90:BuildRequires: compat-gcc-c++}
-%{?rh80:BuildRequires: compat-gcc-c++}
+%{?fc1:BuildRequires: compat-gcc-c++}
+%{?el3:BuildRequires: compat-gcc-c++}
+%{?rh9:BuildRequires: compat-gcc-c++}
+%{?rh8:BuildRequires: compat-gcc-c++}
 BuildRequires: libxclass
 
 ### Fix problem with apt requiring compat-gcc-c++ (Panu)
@@ -66,14 +67,14 @@ EOF
 
 %build
 ### FIXME: Workaround for RH80 and RH9
-%{?rhfc1:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
-%{?rhel3:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
-%{?rh90:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
-%{?rh80:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
-%{?rhfc1:export CXX="g++296"}
-%{?rhel3:export CXX="g++296"}
-%{?rh90:export CXX="g++296"}
-%{?rh80:export CXX="g++296"}
+%{?fc1:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
+%{?el3:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
+%{?rh9:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
+%{?rh8:export CXXFLAGS="&>/dev/null; g++296 -D\$(USE_ZLIB) `xc-config --cflags` -I../include -finline-functions -funroll-loops %{optflags}"}
+%{?fc1:export CXX="g++296"}
+%{?el3:export CXX="g++296"}
+%{?rh9:export CXX="g++296"}
+%{?rh8:export CXX="g++296"}
 %{__make} %{?_smp_mflags} depend all
 
 %install

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Set of tools to author a DVD

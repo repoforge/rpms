@@ -1,9 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define _libdir /lib
 

@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: CamStream Author <camstream@smcc.demon.nl>
 
-# Dists: rh80
-
 Summary: collection of tools for webcams and other video-devices
 Name: camstream
 Version: 0.26.2

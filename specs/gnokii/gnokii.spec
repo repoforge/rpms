@@ -24,13 +24,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: ftp://ftp.gnokii.org/pub/gnokii/gnokii-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, flex, gtk+-devel >= 1.2.0
-%{?rhfc1:BuildRequires: bluez-libs-devel}
-%{?rhel3:BuildRequires: bluez-libs-devel}
-%{?rh90:BuildRequires: bluez-libs-devel}
-%{?rh80:BuildRequires: bluez-libs-devel}
-%{?rh73:BuildRequires: bluez-libs-devel}
-%{?rhel21:BuildRequires: bluez-libs-devel}
+BuildRequires: gettext, flex, gtk+-devel >= 1.2.0, bluez-libs-devel
 
 %description
 Gnokii is a Linux/UNIX tool suite and a modem/fax driver for

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Hans Schmid <schmidjo@bnro.de>
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -34,8 +35,8 @@ or Samba without smbmount/smbumount/smbmnt but with smbfs installed.
 
 %prep
 %setup -n %{real_name}-%{version}
-%{?rhfc1:%patch0 -p1}
-%{?rhel3:%patch0 -p1}
+%{?fc1:%patch0 -p1}
+%{?el3:%patch0 -p1}
 
 %{__cat} <<EOF >%{real_name}.desktop
 [Desktop Entry]

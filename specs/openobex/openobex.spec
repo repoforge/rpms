@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Library for using OBEX
 Name: openobex
@@ -18,8 +19,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: glib-devel >= 1.2.0
-%{?rhfc1:BuildRequires: bluez-libs-devel}
-%{?rh90:BuildRequires: bluez-libs-devel}
+%{?fc1:BuildRequires: bluez-libs-devel}
+%{?rh9:BuildRequires: bluez-libs-devel}
 
 %description
 Open OBEX shared c-library.
@@ -37,7 +38,7 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%{?rhfc1:echo "Don't build for RHFC1 !"; exit 1}
+%{?fc1:echo "Don't build for RHFC1 !"; exit 1}
 
 %build
 %configure

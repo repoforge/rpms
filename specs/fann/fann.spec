@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 Summary: Fast artificial neural network library

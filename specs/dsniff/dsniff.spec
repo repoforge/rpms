@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Dug Song <dugsong@monkey.org>
 
+%{?dist: %{expand %%define %dist 1}}
+
 %define _libdir %{_sysconfdir}
 
 Summary: Tools for network auditing and penetration testing
@@ -27,8 +29,8 @@ dsniff is a collection of tools for network auditing and penetration testing.
 %setup
 
 ### FIXME: Make it build for RH9 and RHEL3
-%{?rhel3:%{__perl} -pi.orig -e 's|^(INCS	=) |$1 -I/usr/kerberos/include |' Makefile.in}
-%{?rh90:%{__perl} -pi.orig -e 's|^(INCS	=) |$1 -I/usr/kerberos/include |' Makefile.in}
+%{?el3:%{__perl} -pi.orig -e 's|^(INCS	=) |$1 -I/usr/kerberos/include |' Makefile.in}
+%{?rh9:%{__perl} -pi.orig -e 's|^(INCS	=) |$1 -I/usr/kerberos/include |' Makefile.in}
 
 %{__perl} -pi.orig -e 's|/usr/local/lib/|%{_sysconfdir}/|' *.8 pathnames.h
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name red-eye
@@ -30,8 +29,7 @@ A gimp script to implement Red-Eye removal technique.
 %build
 
 %install
-%{__install} -d -m0755 %{buildroot}%{_libdir}/gimp/1.2/scripts/
-%{__install} -m0755 %{SOURCE0} %{buildroot}%{_libdir}/gimp/1.2/scripts/
+%{__install} -D -m0755 %{SOURCE0} %{buildroot}%{_libdir}/gimp/1.2/scripts/red-eye.scm
 
 %files
 %defattr(-, root, root, 0755)

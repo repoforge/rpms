@@ -4,6 +4,8 @@
 # Upstream: Alexandre Parenteau <aubonbeurre@hotmail.com>
 # Distcc: 0
 
+%{?dist: %{expand %%define %dist 1}}
+
 ### FIXME: Modified to co-exist with cvs. (Please fix upstream)
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -23,8 +25,8 @@ Source: http://dl.sf.net/cvsgui/gcvs-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel
-%{?rhfc1:BuildRequires: tcl-devel}
-%{?rhel3:BuildRequires: tcl-devel}
+%{?fc1:BuildRequires: tcl-devel}
+%{?el3:BuildRequires: tcl-devel}
 BuildRequires: tcl
 
 #Obsoletes: cvs

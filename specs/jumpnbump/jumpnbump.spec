@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: <gurkan@linuks.mine.nu>
 
 Summary: Cute multiplayer network game with bunnies
@@ -15,9 +13,8 @@ URL: http://www.jumpbump.mine.nu/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.jumpbump.mine.nu/port/%{name}-%{version}.tar.bz2
+Source: http://www.jumpbump.mine.nu/port/jumpnbump-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: SDL_net, SDL_mixer
 
@@ -34,14 +31,11 @@ alone. It has network support.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/jumpnbump \
-			%{buildroot}%{_mandir}/man6/ 
-%{__install} -m0755 jumpnbump %{buildroot}%{_bindir}
-%{__install} -m0755 jumpnbump.fbcon %{buildroot}%{_bindir}
-%{__install} -m0755 jumpnbump.svgalib %{buildroot}%{_bindir}
-%{__install} -m0644 data/jumpbump.dat %{buildroot}%{_datadir}/jumpnbump/
-%{__install} -m0644 jumpnbump.6 %{buildroot}%{_mandir}/man6/
+%{__install} -D -m0755 jumpnbump %{buildroot}%{_bindir}/jumpnbump
+%{__install} -D -m0755 jumpnbump.fbcon %{buildroot}%{_bindir}/jumpnbump.fbcon
+%{__install} -D -m0755 jumpnbump.svgalib %{buildroot}%{_bindir}/jumpnbump.svgalib
+%{__install} -D -m0644 data/jumpbump.dat %{buildroot}%{_datadir}/jumpnbump/jumpbump.dat
+%{__install} -D -m0644 jumpnbump.6 %{buildroot}%{_mandir}/man6/jumpnbump.6
 
 %clean
 %{__rm} -rf %{buildroot}

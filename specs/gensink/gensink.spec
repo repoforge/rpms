@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Simple TCP benchmarking utility

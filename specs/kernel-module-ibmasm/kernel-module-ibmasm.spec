@@ -6,7 +6,9 @@
 # Soapbox: 0
 # BuildAsRoot: 1
 
-%{?rhfc1:%define __cc gcc32}
+%{?dist: %{expand %%define %dist 1}}
+
+%{?fc1:%define __cc gcc32}
 
 %define _sbindir /sbin
 %define _libdir /lib
@@ -39,12 +41,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: kernel-source
-%{?rhfc1:BuildRequires: libusb-devel >= 0.1.5}
-%{?rhel3:BuildRequires: libusb-devel >= 0.1.5}
-%{?rh90:BuildRequires: libusb-devel >= 0.1.5}
-%{?rh80:BuildRequires: libusb-devel >= 0.1.5}
-%{?rh73:BuildRequires: libusb-devel >= 0.1.5}
-%{?rhel21:BuildRequires: libusb-devel >= 0.1.5}
+BuildRequires: libusb-devel >= 0.1.5
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
 Requires: ibmasm-utils

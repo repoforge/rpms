@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jason Ish <jason@codemonkey.net>
 
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ish.cx/~jason/arpscan/arpscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libdnet, libpcap
 

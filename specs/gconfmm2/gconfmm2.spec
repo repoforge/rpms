@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name gconfmm
@@ -49,9 +48,6 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig &>/dev/null
 
@@ -73,7 +69,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 %{_libdir}/gconfmm-2.0/
 %{_libdir}/pkgconfig/*.pc
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
 * Sat Mar 29 2003 Dag Wieers <dag@wieers.com> - 2.0.1-0

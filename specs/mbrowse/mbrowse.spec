@@ -1,10 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Aaron Hodgen <ahodgen@munsterman.com>
 
 # Screenshot: http://www.kill-9.org/mbrowse/screenshot/tree.png
 # ScreenshotURL: http://www.kill-9.org/mbrowse/#Screenshots
+
+%{?dist: %{expand %%define %dist 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -24,13 +25,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: gtk+-devel >= 1.2
-%{?rhfc1:BuildRequires: net-snmp-devel >= 4.2}
-%{?rhel3:BuildRequires: net-snmp-devel >= 4.2}
-%{?rh90:BuildRequires: net-snmp-devel >= 4.2}
-%{?rh80:BuildRequires: net-snmp-devel >= 4.2}
-%{?rh73:BuildRequires: ucd-snmp-devel}
-%{?rhel21:BuildRequires: ucd-snmp-devel}
-%{?rh62:BuildRequires: ucd-snmp-devel}
+%{?fc1:BuildRequires: net-snmp-devel >= 4.2}
+%{?el3:BuildRequires: net-snmp-devel >= 4.2}
+%{?rh9:BuildRequires: net-snmp-devel >= 4.2}
+%{?rh8:BuildRequires: net-snmp-devel >= 4.2}
+%{?rh7:BuildRequires: ucd-snmp-devel}
+%{?el2:BuildRequires: ucd-snmp-devel}
+%{?rh6:BuildRequires: ucd-snmp-devel}
 
 %description
 Mbrowse is an SNMP MIB browser based on GTK and net-snmp.

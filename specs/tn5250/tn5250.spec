@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <linux5250@midrange.com>
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: 5250 Telnet protocol and terminal program
 Name: tn5250
@@ -17,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/tn5250/tn5250-%{version}.tar.gz
 Patch: tn5250-0.16.5-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: ncurses, slang-devel, openssl-devel, krb5-devel
 
@@ -39,9 +39,9 @@ developing programs using lib5250.
 %patch0 -b .gcc33
 
 %build
-%{?rhfc1:perl -pi.orig -e 's|^INCLUDES = |INCLUDES = -I/usr/kerberos/include |' src/Makefile.in}
-%{?rhel3:perl -pi.orig -e 's|^INCLUDES = |INCLUDES = -I/usr/kerberos/include |' src/Makefile.in}
-%{?rh90:perl -pi.orig -e 's|^INCLUDES = |INCLUDES = -I/usr/kerberos/include |' src/Makefile.in}
+%{?fc1:perl -pi.orig -e 's|^INCLUDES = |INCLUDES = -I/usr/kerberos/include |' src/Makefile.in}
+%{?el3:perl -pi.orig -e 's|^INCLUDES = |INCLUDES = -I/usr/kerberos/include |' src/Makefile.in}
+%{?rh9:perl -pi.orig -e 's|^INCLUDES = |INCLUDES = -I/usr/kerberos/include |' src/Makefile.in}
 %configure \
 	--with-slang \
 	--with-x

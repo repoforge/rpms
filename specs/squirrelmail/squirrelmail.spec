@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: SquirrelMail webmail client
@@ -18,8 +17,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildArch: noarch
-BuildRequires: perl %{?rh80:, httpd} %{!?rh80:, apache}
-Requires: php >= 4.0.4, perl, tmpwatch >= 2.8, aspell, %{?rh80:, httpd} %{!?rh80:, apache}
+BuildRequires: perl, webserver
+Requires: php >= 4.0.4, perl, tmpwatch >= 2.8, aspell, webserver
 Requires: /usr/sbin/sendmail
 
 %description

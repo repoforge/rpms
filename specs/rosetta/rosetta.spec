@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: Interactive tool to help translate documents in the DocBook format
 Name: rosetta
@@ -34,10 +35,10 @@ work to keep the translation up to date with regards to the original.
 
 %prep
 %setup
-#if %{?rh80:1}%{!?rh80:0}
+#if %{?rh8:1}%{!?rh8:0}
 %patch0 -p1 -b .rh8
 #endif
-#if %{?rh90:1}%{!?rh90:0}
+#if %{?rh9:1}%{!?rh9:0}
 #patch0 -p1 -b .rh8
 #endif
 
@@ -48,8 +49,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 rosetta %{buildroot}%{_bindir}
+%{__install} -D -m0755 rosetta %{buildroot}%{_bindir}/rosetta
 
 %clean
 %{__rm} -rf %{buildroot}

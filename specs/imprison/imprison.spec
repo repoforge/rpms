@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Balazs Nagy <js@js.hu>
+
 # Soapbox: 1
 # Imprison: 1
 
@@ -17,9 +16,8 @@ URL: http://js.hu/package/imprison.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://js.hu/package/imprison/%{name}-%{version}.tar.gz
+Source: http://js.hu/package/imprison/imprison-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libcap-devel
 
@@ -35,9 +33,7 @@ capabilities, userid, and groups.
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 src/imprison %{buildroot}%{_sbindir}
+%{__install} -D -m0755 src/imprison %{buildroot}%{_sbindir}/imprison
 
 %clean
 %{__rm} -rf %{buildroot}

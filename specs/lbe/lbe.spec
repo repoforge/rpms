@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Jarek Gawor <gawojar@iit.edu>
 
 %define real_name Browser
@@ -20,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www-unix.mcs.anl.gov/~gawor/ldapcommon/bin/%{real_name}%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: j2re >= 1.2.2
 

@@ -1,8 +1,8 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: James Yonan <jim@yonan.net>
+
+%{?dist: %{expand %%define %dist 1}}
 
 ### FIXME: Add sysv script based on own template.
 
@@ -19,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/openvpn/openvpn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: lzo-devel, openssl-devel
 
@@ -49,7 +48,7 @@ LZO library for compression.
 %{__install} -m0755 openvpn %{buildroot}%{_sbindir}
 %{__install} -m0755 sample-scripts/openvpn.init %{buildroot}%{_initrddir}/openvpn
 
-%{?rh73:touch %{buildroot}/dev/net/tun}
+%{?rh7:touch %{buildroot}/dev/net/tun}
 %{?rh62:touch %{buildroot}/dev/net/tun}
 
 %pre
@@ -84,7 +83,7 @@ fi
 %config(noreplace) %{_sysconfdir}/openvpn/
 %config %{_initrddir}/*
 %{_sbindir}/*
-%{?rh73:%ghost /dev/net/tun}
+%{?rh7:%ghost /dev/net/tun}
 %{?rh62:%ghost /dev/net/tun}
 
 %changelog

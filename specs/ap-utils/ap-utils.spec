@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <ap-utils@lists.polesye.net>
 
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/ap-utils/ap-utils-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Buildrequires: ncurses-devel
 

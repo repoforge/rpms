@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
@@ -38,9 +39,9 @@ nodes healthchecks and LVS directors failover.
 %setup
 
 %build
-%{?rh90:export CPPFLAGS="-I/usr/kerberos/include"}
+%{?rh9:export CPPFLAGS="-I/usr/kerberos/include"}
 %configure \
-%{?rh90:--includedir="/usr/kerberos/include"}
+%{?rh9:--includedir="/usr/kerberos/include"}
 %{__make} %{?_smp_flags}
 
 %install

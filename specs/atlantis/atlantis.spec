@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ali Akcaagac <aliakc@web.de>
 

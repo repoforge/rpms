@@ -1,8 +1,10 @@
 # $Id$
 
 # Authority: dag
-# Dists: rh73 rh62
-# SourceDists: rh73
+# Dists: rh7 rh6
+# SourceDists: rh7
+
+%{?dist: %{expand %%define %dist 1}}
 
 #BuildRequires: sendmail < 8.12
 
@@ -12,12 +14,12 @@
 # If you want to build this on older Red Hat Linux releases, this defines
 # the version number to build on. Supported should be 62 70 71 72 for
 # Red Hat Linux 6.2 up to 7.2 and "100" for the current rawhide version.
-%{?rhel3:%define errata 90}
-%{?rh90:%define errata 90}
-%{?rh80:%define errata 80}
-%{?rh73:%define errata 73}
-%{?rhel21:%define errata 73}
-%{?rh62:%define errata 62}
+%{?el3:%define errata 90}
+%{?rh9:%define errata 90}
+%{?rh8:%define errata 80}
+%{?rh7:%define errata 73}
+%{?el2:%define errata 72}
+%{?rh6:%define errata 62}
 
 %if %{errata} <= 70
 %define sendmailcf usr/lib/sendmail-cf

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 1.0
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://iphcip1.physik.uni-mainz.de/~cbauer/BasiliskII_src_15012002.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: gtk+-devel >= 1.2, esound-devel >= 0.2.8
 
 %description
@@ -32,14 +30,12 @@ a Macintosh ROM image to use Basilisk II.
 
 %build
 cd src/Unix
-#{?rh80: export CC=gcc296; export CXX=g++296}
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-cd src/Unix
-%makeinstall
+%makeinstall -C src/Unix
 
 %clean
 %{__rm} -rf %{buildroot}

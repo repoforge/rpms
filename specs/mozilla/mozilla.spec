@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%{?dist: %{expand %%define %dist 1}}
 
 ### FIXME: TODO: Build RH73 builds with gcc 3.2.3
 ### FIXME: TODO: Improve firefox start-up script for file:// URLs.
@@ -58,10 +59,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 ### Removed compat-gcc-c++, compat-libstdc++-devel, compat-gcc
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, zip, perl, autoconf
 BuildRequires: indexhtml, perl
-%{?rhfc1:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
-%{?rhel3:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
-%{?rh90:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
-%{?rh80:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
+%{?fc1:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
+%{?el3:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
+%{?rh9:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
+%{?rh8:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
 Requires: fileutils, perl, /usr/bin/killall, indexhtml
 Requires: mozilla-nspr = %{epoch}:%{version}-%{release}
 Requires: mozilla-nss = %{epoch}:%{version}-%{release}
@@ -226,22 +227,22 @@ export NATIVE_THEME_SUPPORT="1"
 	--enable-crypto \
 	--without-system-nspr \
 	--with-system-zlib \
-%{?rhfc1:--enable-default-toolkit="gtk2"} \
-%{?rhfc1:--enable-xft} \
-%{?rhfc1:--disable-freetype2} \
-%{?rhel3:--enable-default-toolkit="gtk2"} \
-%{?rhel3:--enable-xft} \
-%{?rhel3:--disable-freetype2} \
-%{?rh90:--enable-default-toolkit="gtk2"} \
-%{?rh90:--enable-xft} \
-%{?rh90:--disable-freetype2} \
-%{?rh80:--enable-default-toolkit="gtk2"} \
-%{?rh80:--enable-xft} \
-%{?rh80:--disable-freetype2} \
-%{?rh73:--disable-xft} \
-%{?rhel21:--disable-xft} \
-%{?rh62:--disable-xft}
-#%{?rh73:--without-libIDL} \
+%{?fc1:--enable-default-toolkit="gtk2"} \
+%{?fc1:--enable-xft} \
+%{?fc1:--disable-freetype2} \
+%{?el3:--enable-default-toolkit="gtk2"} \
+%{?el3:--enable-xft} \
+%{?el3:--disable-freetype2} \
+%{?rh9:--enable-default-toolkit="gtk2"} \
+%{?rh9:--enable-xft} \
+%{?rh9:--disable-freetype2} \
+%{?rh8:--enable-default-toolkit="gtk2"} \
+%{?rh8:--enable-xft} \
+%{?rh8:--disable-freetype2} \
+%{?rh7:--disable-xft} \
+%{?el2:--disable-xft} \
+%{?rh6:--disable-xft}
+#%{?rh7:--without-libIDL} \
 
 #unset CFLAGS
 %{__make} %{?_smp_mflags} export

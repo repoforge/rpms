@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: 
 
 %define real_name lice

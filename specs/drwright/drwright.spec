@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Richard Hult <rhult@codefactory.se>
 
 Summary: program that reminds you to take wrist breaks

@@ -1,7 +1,8 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Joakim Andersson <ja@morrdusk.net>
+
+%{?dist: %{expand %%define %dist 1}}
 
 Summary: log colorizer that makes log checking easier
 Name: colortail
@@ -26,7 +27,7 @@ specified which patterns result in which colors.
 
 %prep
 %setup
-%{!?rh62:%patch0 -b .gcc3}
+%{!?rh6:%patch0 -b .gcc3}
 
 %build
 %configure
