@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define _sbindir /sbin
@@ -17,7 +16,7 @@ URL: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://pcmcia-cs.sourceforge.net/ftp/contrib/wireless_tools.%{version}.tar.gz
+Source: http://pcmcia-cs.sf.net/ftp/contrib/wireless_tools.%{version}.tar.gz
 Patch0: wireless-tools-26-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -1,6 +1,5 @@
 # Authority: dag
-
-# Upstream: Benoît Minisini <gambas@users.sourceforge.net>
+# Upstream: Benoît Minisini <gambas@users.sf.net>
 
 Summary: BASIC compiler, IDE and GUI builder
 Name: gambas
@@ -8,14 +7,13 @@ Version: 0.55
 Release: 0
 License: GPL
 Group: Development/Tools
-URL: http://gambas.sourceforge.net/
+URL: http://gambas.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gambas.sourceforge.net/%{name}-%{version}.tar.gz
+Source: http://gambas.sf.net/gambas-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: postgresql-devel, mysql-devel, qt-devel, qt2-devel
 

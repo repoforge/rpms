@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <libdvbpsi-devel@videolan.org>
 
 %define real_name libdvbpsi3
 

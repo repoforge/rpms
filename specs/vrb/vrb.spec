@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Phil Howard
+
 # Distcc: 0
 
 Summary: The virtual ring buffer library
@@ -16,9 +15,8 @@ URL: http://vrb.slashusr.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://vrb.slashusr.org/%{name}-%{version}.tar.bz2
+Source: http://vrb.slashusr.org/vrb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 The VRB library is a virtual ring buffer. It uses 2 mirrored ranges of

@@ -1,5 +1,7 @@
-# Authority: freshrpms
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+# Upstream: <vlc-devel@videolan.org>
+
 # Distcc: 0
 
 %define real_name vlc
@@ -16,7 +18,7 @@ URL: http://www.videolan.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.videolan.org/pub/%{real_name}/%{real_name}-%{version}.tar.bz2
+Source: http://www.videolan.org/pub/vlc/vlc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -50,7 +52,7 @@ developing applications that use vlc.
 %setup -n %{real_name}-%{version}
 
 %build
-export QTDIR="/usr/lib/qt3"
+source "%{_sysconfdir}/profile.d/qt.sh"
 export X_EXTRA_LIBS="-L%{buildroot}%{_libdir}"
 %configure \
 	--program-prefix="%{?_program_prefix}" \

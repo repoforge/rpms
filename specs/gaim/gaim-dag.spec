@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: multiprotocol instant messaging client
 Name: gaim
 Version: 0.69
@@ -11,10 +13,9 @@ URL: http://gaim.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/gaim/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/gaim/gaim-%{version}.tar.bz2
 Patch0: gaim-prefs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2 >= 2.0, gtkspell-devel, libao-devel
 BuildRequires: mozilla-nss, mozilla-nss-devel

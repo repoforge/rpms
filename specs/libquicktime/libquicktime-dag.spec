@@ -1,20 +1,21 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 %define real_version 0.9.2pre1
 
-Summary: library for manipulating QuickTime files
+Summary: Library for manipulating QuickTime files
 Name: libquicktime
 Version: 0.9.1.91
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://libquicktime.sourceforge.net/
+URL: http://libquicktime.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{real_version}.tar.gz
+Source: http://dl.sf.net/libquicktime/libquicktime-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: autoconf, automake, libpng-devel >= 1.0.8, libjpeg-devel
 BuildRequires: libdv-devel, libogg-devel, libvorbis-devel

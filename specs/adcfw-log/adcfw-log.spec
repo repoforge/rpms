@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Alessandro Dotti Contra <alessandro.dotti@iperbole.bologna.it>
-# Upstream: <adcfw-log-devel@lists.sourceforge.net>
+# Upstream: <adcfw-log-devel@lists.sf.net>
 
 Summary: Tool for analyzing firewall logs
 Name: adcfw-log

@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <monitgroup@tildeslash.com>
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 4.2.0
-Release: 0
+Version: 4.2.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -148,6 +147,9 @@ fi
 %{_bindir}/*
 
 %changelog
+* Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 4.2.1-1
+- Updated to release 4.2.1.
+
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 4.2.0-0
 - Updated to release 4.2.0.
 

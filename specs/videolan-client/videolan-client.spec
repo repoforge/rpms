@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <vlc-devel@videolan.org>
 
 %define desktop_vendor freshrpms
 %define ffmpeg_date    20040103

@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Derry Bryson <xbase@techass.com>
 
 Summary: Xbase dBase database file library
@@ -15,9 +13,8 @@ URL: http://linux.techass.com/projects/xdb/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/xdb/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/xdb/xbase-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Library for accessing dBase .dbf, .ndx, .dbt, and Clipper .ntx files.

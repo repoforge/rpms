@@ -1,9 +1,10 @@
+# $Id$
 # Authority: dag
 # Upstream: <tcpick-project@lists.sf.net>
 
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick
-Version: 0.1.21
+Version: 0.1.22
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -14,9 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/tcpick/tcpick-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 tcpick is a textmode sniffer that can track tcp streams and saves the data
@@ -48,5 +46,8 @@ are doing, and is usable with textmode tools like grep, sed, awk.
 %{_bindir}/*
 
 %changelog
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.1.22-1
+- Updated to release 0.1.22.
+
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.1.21-1
 - Initial package. (using DAR)

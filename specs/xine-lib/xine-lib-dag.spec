@@ -1,5 +1,5 @@
-# Authority: freshrpms
-#$Id: xine-lib.spec,v 1.1 2004/02/25 00:07:30 dag- Exp $
+# $Id: xine-lib.spec,v 1.1 2004/02/25 00:07:30 dag- Exp $
+# Authority: matthias
 
 %define libname libxine1
 %define libver  1-rc0a
@@ -18,9 +18,8 @@ URL: http://xinehq.de/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/xine/%{name}-%{libver}.tar.gz
+Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: zlib, libvorbis, SDL, glut, libmng
 %{?_with_rte:Requires: rte}
@@ -359,6 +358,6 @@ rm -rf %{buildroot}
 - cleaned-up the spec file for RedHat 7.0
 - added stripping, changed prefix, added docs, added defattr
 
-* Fri Oct 17 2000 Daniel Caujolle-Bert <f1rmb@users.sourceforge.net>
+* Fri Oct 17 2000 Daniel Caujolle-Bert <f1rmb@users.sf.net>
 - first spec file.
 

@@ -1,4 +1,5 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 # Upstream: <contact@frozen-bubble.org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -14,7 +15,7 @@ URL: http://www.frozen-bubble.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://frozenbubble.free.fr/fb/%{name}-%{version}.tar.bz2
+Source: http://frozenbubble.free.fr/fb/frozen-bubble-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 0.9b
@@ -16,8 +15,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://forgate.sf.net/forgate-%{real_version}.tgz
-BuildRoot: %{buildroot}/root-%{name}-%{version}
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet >= 1.1
 Requires: libnet >= 1.1

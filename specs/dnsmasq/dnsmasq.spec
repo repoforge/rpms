@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Simon Kelley <simon@thekelleys.org.uk>
-
-# Tag: test
 
 Summary: Lightweight caching nameserver
 Name: dnsmasq
 Version: 2.6
-Release: 0.pre1
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.thekelleys.org.uk/dnsmasq/
@@ -131,7 +128,7 @@ EOF
 %{__install} -D -m0755 src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 %{__install} -D -m0644 dnsmasq.conf.example %{buildroot}%{_sysconfdir}/dnsmasq.conf
 %{__install} -D -m0755 dnsmasq.sysv %{buildroot}%{_initrddir}/dnsmasq
-%{__install} -D -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/
+%{__install} -D -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/dnsmasq.8
 
 %post
 /sbin/chkconfig --add dnsmasq
@@ -158,8 +155,8 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
-* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 2.6-0.pre1
-- Updated to release 2.6test1.
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 2.6-1
+- Updated to release 2.6.
 
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 2.5-1
 - Updated to release 2.5.

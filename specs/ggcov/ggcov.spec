@@ -1,15 +1,13 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Greg Banks <gnb@alphalink.com.au>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: GTK+ front-end for gcov
+Summary: Graphical front-end for gcov
 Name: ggcov
-Version: 0.1.4
-Release: 0
+Version: 0.2.2
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.alphalink.com.au/~gnb/ggcov/
@@ -17,9 +15,8 @@ URL: http://www.alphalink.com.au/~gnb/ggcov/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.alphalink.com.au/~gnb/ggcov/%{name}-%{version}.tar.gz
+Source: http://www.alphalink.com.au/~gnb/ggcov/ggcov-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: gcc
 
@@ -39,6 +36,17 @@ over multiple test runs.
 ### FIXME: -liberty is needed in conjunction with -lbdf to build.
 #%{__perl} -pi.orig -e 's|^GGCOV_LIBS = |GGCOV_LIBS = -liberty |' Makefile.in
 
+%{__cat} <<EOF >ggcov.desktop
+[Desktop Entry]
+Name=Ggcov
+Comment=Browse C test coverage data
+Icon=ggcov.xpm
+Exec=ggcov
+Terminal=false
+Type=Application
+Category=Application;Development;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -47,27 +55,16 @@ over multiple test runs.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-cat <<EOF >gnome-%{name}.desktop
-[Desktop Entry]
-Name=Ggcov
-Comment=%{summary}
-Icon=%{_datadir}/ggcov/logo.xpm
-Exec=%{name}
-Terminal=false
-Type=Application
-EOF
+%{__install} -D -m0644 %{_datadir}/ggcov/logo.xpm %{buildroot}%{_datadir}/pixmaps/ggcov.xpm
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Development/
-        %{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Development/
+        %{__install} -D -m0644 ggcov.desktop %{buildroot}%{_datadir}/gnome/apps/Development/ggcov.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category Development                 \
 		--dir %{buildroot}%{_datadir}/applications \
-		gnome-%{name}.desktop
+		ggcov.desktop
 %endif
 
 %clean
@@ -78,6 +75,7 @@ EOF
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/*
 %{_datadir}/ggcov/
+%{_datadir}/pixmaps/*.xpm
 %if %{dfi}
         %{_datadir}/gnome/apps/Development/*.desktop
 %else
@@ -85,5 +83,8 @@ EOF
 %endif
 
 %changelog
+* Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 0.2.2-1
+- Updated to release 0.2.2.
+
 * Mon Jun 09 2003 Dag Wieers <dag@wieers.com> - 0.1.4-0
 - Initial package. (using DAR)

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Marco Valleri <crwm@freemail.it>
-# Upstream: Alberto Ornaghi <alor@users.sourceforge.net>
+# Upstream: Alberto Ornaghi <alor@users.sf.net>
 
 %define real_version 0.6.b
 

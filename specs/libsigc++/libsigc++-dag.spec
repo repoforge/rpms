@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
@@ -7,14 +9,13 @@ Release: 3
 Epoch: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://libsigc.sourceforge.net/
+URL: http://libsigc.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/libsigc/libsigc++-%{version}.tar.gz
+Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Obsoletes: libsigc++-examples
 ### This doesn't work ;-(

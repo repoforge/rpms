@@ -1,5 +1,8 @@
-# Authority: freshrpms
-Summary: portable abstraction library for DVD menus support
+# $Id$
+# Authority: matthias
+# Upstream: <libdvdplay-devel@videolan.org>
+
+Summary: Portable abstraction library for DVD menus support
 Name: libdvdplay
 Version: 1.0.1
 Release: 0
@@ -10,9 +13,8 @@ URL: http://www.videolan.org/libdvdplay/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.videolan.org/pub/%{name}/%{version}/%{name}-%{version}.tar.bz2
+Source: http://www.videolan.org/pub/libdvdplay/%{version}/libdvdplay-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Buildrequires: libdvdread-devel
 

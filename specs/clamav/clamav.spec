@@ -1,6 +1,6 @@
 # $Id$
 # Authority: newrpms
-# Upstream: <clamav-devel@lists.sourceforge.net>
+# Upstream: <clamav-devel@lists.sf.net>
 
 %define milter 1
 %{?rhel3:%undefine milter}

@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: freshrpms
+# Authority: matthias
 
 Summary: Gtk2 spell checker interface library
 Name: gtkspell
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://gtkspell.sf.net/download/gtkspell-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel, pspell-devel, libtool
 

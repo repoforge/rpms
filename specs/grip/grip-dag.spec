@@ -1,4 +1,5 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 # Upstream: Mike Oliphant <oliphant@gtk.org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -15,9 +16,8 @@ URL: http://www.nostatic.org/grip/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.nostatic.org/%{name}/%{name}-%{version}.tar.gz
+Source: http://www.nostatic.org/grip/grip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gnome-libs-devel, libghttp-devel, cdparanoia-devel
 BuildRequires: id3lib-devel, gettext

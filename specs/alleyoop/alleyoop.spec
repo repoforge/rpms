@@ -1,14 +1,13 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jeffrey Stedfast <fejj@ximian.com>
 
 Summary: Graphical front-end to the Valgrind memory checker for x86
 Name: alleyoop
-Version: 0.8.0
-Release: 0
-Group: Development/Tools
+Version: 0.8.2
+Release: 1
 License: GPL
+Group: Development/Tools
 URL: http://alleyoop.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/alleyoop/alleyoop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: valgrind >= 1.9.0, glib2 >= 2.2, pango-devel >= 1.2, gtk2-devel >= 2.2
 BuildRequires: GConf2-devel >= 2.2, libgnome-devel >= 2.2, libgnomeui-devel >= 2.2
@@ -37,6 +35,18 @@ editor.
 %prep
 %setup
 
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Memory Checker
+Comment=Validate the memory usage of any program
+Icon=gnome-devel.png
+Exec=alleyoop
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Development;
+StartupNotify=true
+EOF
+
 %build
 %configure \
 	--disable-install-schemas
@@ -48,23 +58,11 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-cat <<EOF >gnome-%{name}.desktop
-[Desktop Entry]
-Name=Memory Checker
-Comment=%{summary}
-Icon=gnome-devel.png
-Exec=%{name}
-Terminal=false
-Type=Application
-EOF
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
-	--add-category Application                 \
-	--add-category Development                 \
 	--dir %{buildroot}%{_datadir}/applications \
-	gnome-%{name}.desktop
+	%{name}.desktop
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -84,6 +82,9 @@ scrollkeeper-update -q
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.8.2-1
+- Updated to release 0.8.2.
+
 * Wed Oct 22 2003 Dag Wieers <dag@wieers.com> - 0.8.0-0
 - Updated to release 0.8.0.
 

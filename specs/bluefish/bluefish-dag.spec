@@ -1,4 +1,5 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 
 Summary: GTK2 web development application for experienced users
 Name: bluefish
@@ -11,10 +12,9 @@ URL: http://bluefish.openoffice.nl/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bluefish.openoffice.nl/download/%{name}-%{version}.tar.bz2
+Source: http://bluefish.openoffice.nl/download/bluefish-%{version}.tar.bz2
 Patch: bluefish-0.9-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel >= 2.0.6, pcre-devel >= 3.9
 

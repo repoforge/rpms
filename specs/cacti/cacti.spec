@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: <cacti-user@lists.sourceforge.net>
+# Upstream: <cacti-user@lists.sf.net>
 
 %define real_version 0.8.5a
 

@@ -1,4 +1,4 @@
-# Authority: freshrpms
+# Authority: matthias
 # Upstream: Ka-shu Wong <kswong@zip.com.au>
 
 Summary: GNOME version of the online multiplayer Tetrinet game
@@ -7,16 +7,15 @@ Version: 0.7.2
 Release: 0
 License: GPL
 Group: Amusements/Games
-URL: http://gtetrinet.sourceforge.net/
+URL: http://gtetrinet.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://ftp.gnome.org/pub/GNOME/sources/gtetrinet/0.7/%{name}-%{version}.tar.bz2
+Source0: http://ftp.gnome.org/pub/GNOME/sources/gtetrinet/0.7/gtetrinet-%{version}.tar.bz2
 Source1: tetrinet.txt
 Source2: http://www.mavit.pwp.blueyonder.co.uk/mmr-sounds-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgnome-devel >= 2.0.0, libgnomeui-devel >= 2.0.0
 

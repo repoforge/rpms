@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: simple foundation for reading DVD video disks
 Name: libdvdread
 Version: 0.9.4
@@ -10,9 +12,8 @@ URL: http://www.dtek.chalmers.se/groups/dvd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
+Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: libdvdcss >= 1.2.0
 

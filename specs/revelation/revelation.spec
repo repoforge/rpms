@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Erik Grinaker <erikg@wired-networks.net>
 # Upstream: <revelation-devel@oss.wired-networks.net>
 
 Summary: Password manager
 Name: revelation
-Version: 0.2.1
-Release: 1
+Version: 0.3.0
+Release: 2
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.wired-networks.net/revelation/
@@ -20,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python >= 2.0, python-crypto >= 1.9
-Requires: python-crypto >= 1.9, gnome-python2-canvas
+Requires: python-crypto >= 1.9, gnome-python2-canvas, gnome-python2-gconf
 
 %description
 Revelation is a password manager. It organizes accounts in
@@ -43,13 +42,20 @@ python2 setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
+%config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_libdir}/python*/site-packages/revelation/
-%{_datadir}/revelation/
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.png
+%{_datadir}/revelation/
 
 %changelog
+* Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 0.3.0-2
+- Added gnome-python2-gconf dependency. (Erik Grinaker)
+
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.3.0-1
+- Updated to release 0.3.0.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.2.1-1
 - Cosmetic rebuild for Group-tag and BuildArch-tag.
 

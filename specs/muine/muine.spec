@@ -1,12 +1,12 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Jorn Baayen <muine-list@gnome.org>
 ##Soapbox: 0
 
 Summary: Simple music player
 Name: muine
-Version: 0.5.0
-Release: 0
+Version: 0.5.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://muine.gooeylinux.org/
@@ -17,9 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://muine.gooeylinux.org/muine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: glib2-devel, mono-devel, gtk-sharp-devel >= 0.17, gstreamer-devel
-BuildRequires: gstreamer-plugins-devel, libvorbis-devel, libid3tag-devel, flac-devel
+BuildRequires: gstreamer-plugins-devel, libvorbis-devel, libid3tag-devel, flac-devel, libxine
 Requires: mono, gtk-sharp >= 0.17
 
 %description
@@ -40,9 +39,6 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/muine/*.{a,la}
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -59,12 +55,17 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
-%{_libdir}/muine/
+%{_libdir}/muine/*.a
+%{_libdir}/muine/*.la
+%{_libdir}/muine/*.so.*
 %{_datadir}/pixmaps/*.png
 %{_datadir}/application-registry/*.applications
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.5.2-1
+- Updated to release 0.5.2.
+
 * Fri Feb 27 2004 Dag Wieers <dag@wieers.com> - 0.5.0-0
 - Updated to release 0.5.0.
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice.bellard@free.fr>
-# Upstream: <fftv-devel@lists.sourceforge.net>
+# Upstream: <fftv-devel@lists.sf.net>
 
 Summary: Advanced television viewing and recording program
 Name: fftv
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/fftv/fftv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: a52dec-devel, faad2-devel, faac-devel, libvorbis-devel
 BuildRequires: tcron-devel >= 0.4.3
 Requires: xawtv, ffmpeg
@@ -32,7 +31,7 @@ fftv is an advanced TV viewing and recording program.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=FFTV Television Viewer
-Comment=Advanced television viewing program.
+Comment=Watch television on your computer
 Icon=fftv.png
 Exec=fftv
 Terminal=false

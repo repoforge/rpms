@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Provides a simple, uniform password-checking interface using PAM
@@ -13,9 +12,8 @@ URL: http://checkpasswd-pam.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/checkpasswd-pam/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/checkpasswd-pam/checkpassword-pam-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: pam-devel >= 0.59
 

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dries
-# Screenshot: http://amsn.sourceforge.net/shots/contactlist.jpg
-# ScreenshotURL: http://amsn.sourceforge.net/modules.php?name=Skins
+# Screenshot: http://amsn.sf.net/shots/contactlist.jpg
+# ScreenshotURL: http://amsn.sf.net/modules.php?name=Skins
 
 Summary: Collection of skins for aMSN
 Name: amsn-skins

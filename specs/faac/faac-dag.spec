@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.23.1
@@ -10,9 +12,8 @@ URL: http://www.audiocoding.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sourceforge.net/faac/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/faac/faac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 FAAC is an AAC audio encoder. It currently supports MPEG-4 LTP, MAIN and LOW
@@ -41,16 +42,14 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %files
 %defattr(-, root, root, 0755)
@@ -63,7 +62,7 @@ you will need to install %{name}-devel.
 %{_includedir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
 * Thu Jan 15 2004 Dag Wieers <dag@wieers.com> - 1.32.1-0

@@ -15,9 +15,8 @@ URL: http://leapster.org/remedial/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://apt.leapster.org/src/remedial/%{name}-%{version}.tar.gz
+Source: http://apt.leapster.org/src/remedial/remedial-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: avifile-devel >= 0.7.7, expat-devel
 BuildRequires: qt-devel >= 2.1.0, libvorbis-devel, libao-devel, libmad-devel
@@ -29,13 +28,7 @@ Remedial is a front-end for the avifile libraries.
 %setup
 
 %build
-%{?rhfc1:export QTDIR="/usr/lib/qt-3.1"}
-%{?rhel3:export QTDIR="/usr/lib/qt-3.1"}
-%{?rh90:export QTDIR="/usr/lib/qt3"}
-%{?rh80:export QTDIR="/usr/lib/qt3"}
-%{?rh73:export QTDIR="/usr/lib/qt2"}
-%{?rhel21:export QTDIR="/usr/lib/qt2"}
-%{?rh62:export QTDIR="/usr/lib/qt-2.1.0"}
+source "%{_sysconfdir}/profile.d/qt.sh"
 CFLAGS="%{optflags}" ./am_edit --no-final
 %configure
 %{__make} %{?_smp_mflags}

@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
-# Upstream: <amavis-user@lists.sourceforge.net>
+# Upstream: <amavis-user@lists.sf.net>
 
 %define milter 1
 %{?rhel3:%undefine milter}
 
-%define real_release p8
+%define real_release p9
 
 %define logmsg logger -t amavisd-new/rpm
 
@@ -24,7 +23,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}-%{real_release}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: sendmail
+#BuildRequires: sendmail
 #BuildRequires: postfix
 %{?milter:BuildRequires: sendmail-devel >= 8.12}
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
@@ -192,8 +191,8 @@ cd helper-progs
 %{__perl} -pi.orig -e '
 		s|= '\''vscan'\''|= "amavis"|;
 		s|= '\''sweep'\''|= "amavis"|; 
-		s|^#*(\$MYHOME =).*$|\1 "%{_localstatedir}/spool/amavis";|;
-		s|^#*(\$QUARANTINEDIR =).*$|\1 "%{_localstatedir}/spool/amavis/virusmails";|;
+		s|^#*(\$MYHOME) =.*$|$1 = "%{_localstatedir}/spool/amavis";|;
+		s|^#*(\$QUARANTINEDIR) =.*$|$1 = "%{_localstatedir}/spool/amavis/virusmails";|;
 	' amavisd.conf
 
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/spool/amavis/virusmails/
@@ -272,6 +271,9 @@ fi
 %dir %{_localstatedir}/spool/amavis/virusmails/
 
 %changelog
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 20030616-6.p9
+- Updated to new release 20030616-p9.
+
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 20030616-6.p8
 - Fixed problem with certain versions of 'install'. (Peter Soos)
 - Added contributed amavis-milter support in sysv-script. (Peter Soos)

@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: The GNOME disk catalog
 Name: gtktalog
 Version: 1.0.1
@@ -10,9 +12,8 @@ URL: http://www.freesoftware.fsf.org/gtktalog/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://freesoftware.fsf.org/download/gtktalog/gtktalog/sources/%{name}-%{version}.tar.bz2
+Source: http://freesoftware.fsf.org/download/gtktalog/gtktalog/sources/gtktalog-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: gnome-libs zlib
 

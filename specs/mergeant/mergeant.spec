@@ -1,13 +1,13 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
 
-Summary: database administration tool
+# Distcc: 0
+
+Summary: Database administration tool
 Name: mergeant
-Version: 0.12.1
-Release: 0
+Version: 0.50
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://www.gnome-db.org/
@@ -15,9 +15,8 @@ URL: http://www.gnome-db.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome-db.org/pub/gnome-db/sources/v%{version}/%{name}-%{version}.tar.gz
+Source: http://ftp.gnome.org/pub/GNOME/sources/mergeant/%{version}/mergeant-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgda-devel, libgnomedb-devel
 BuildRequires: scrollkeeper
@@ -26,6 +25,16 @@ Requires(post): scrollkeeper
 
 %description
 Mergeant is a database admin tool working with libgnomedb and libgda.
+
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -44,13 +53,12 @@ Mergeant is a database admin tool working with libgnomedb and libgda.
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
+/sbin/ldconfig 2>/dev/null
 scrollkeeper-update -q || :
 
 %postun
+/sbin/ldconfig 2>/dev/null
 scrollkeeper-update -q || :
 
 %clean
@@ -68,7 +76,19 @@ scrollkeeper-update -q || :
 %{_datadir}/mergeant/
 %{_datadir}/pixmaps/*
 %{_datadir}/omf/mergeant/
+%{_libdir}/bonobo/servers/*.server
+
+%files devel
+%defattr(-, root, root, 0755)
+%doc %{_datadir}/gtk-doc/html/libmergeant/
+%{_includedir}/libmergeant/
+%{_libdir}/*.a
+%{_datadir}/omf/libmergeant/
+%exclude %{_libdir}/*.la
 
 %changelog
-* Fri Jun 13 2003 Dag Wieers <dag@wieers.com> - 0.12.1
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.50-1
+- Updated to release 0.50.
+
+* Fri Jun 13 2003 Dag Wieers <dag@wieers.com> - 0.12.1-0
 - Initial package. (using DAR)

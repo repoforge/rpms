@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 ### FIXME: TODO: Improve firefox start-up script for file:// URLs.
@@ -13,7 +12,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.8
-Release: 1
+Release: 2
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -24,7 +23,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-source-%{version}.tar.bz2
 Patch1001: firefox-0.8-gtk2xtbin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel
@@ -123,7 +121,7 @@ ac_add_options --enable-strip-libs
 ac_add_options --enable-reorder
 ac_add_options --enable-mathml
 ac_add_options --enable-xinerama
-ac_add_options --enable-extensions="pref,cookie,wallet,typeaheadfind"
+ac_add_options --enable-extensions="pref,cookie,wallet,typeaheadfind,xmlextras"
 %{?rhfc1:ac_add_options --enable-xft}
 %{?rhfc1:ac_add_options --enable-default-toolkit="gtk2"}
 %{?rhel3:ac_add_options --enable-xft}
@@ -164,9 +162,9 @@ ulimit -c 0
 MOZ_PROGRAM="%{_libdir}/firefox/firefox"
 
 MOZILLA_FIVE_HOME="%{_libdir}/firefox"
-LD_LIBRARY_PATH="%{_libdir}/firefox:%{_libdir}/firefox/plugins:$LD_LIBRARY_PATH"
-MOZ_PLUGIN_PATH="%{_libdir}/firefox/plugins:%{_libdir}/mozilla/plugins"
-FONTCONFIG_PATH="/etc/fonts:%{_libdir}/firefox/res/Xft"
+LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$MOZILLA_FIVE_HOME/plugins:$LD_LIBRARY_PATH"
+MOZ_PLUGIN_PATH="$HOME/.mozilla/plugins:$MOZILLA_FIVE_HOME/plugins:%{_libdir}/mozilla/plugins"
+FONTCONFIG_PATH="/etc/fonts:$MOZILLA_FIVE_HOME/res/Xft"
 export MOZILLA_FIVE_HOME LD_LIBRARY_PATH MOZ_PLUGIN_PATH FONTCONFIG_PATH
 
 MOZARGS=""
@@ -266,11 +264,12 @@ fi
 %endif
 
 %changelog
-* Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 0.8-2
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.8-2
 - Fixed off-by-1 border for plugins. (Daniele Paoni)
 - Open new window by default, added --profile-manager. (Gary Peck)
 - RH73 build using gcc 3.2.3. (Edward Rudd)
 - Added x86_64 patch. (Oliver Sontag)
+- Added xmlextras to extensionlist. (Richard Prescott)
 
 * Wed Feb 11 2004 Dag Wieers <dag@wieers.com> - 0.8-1
 - Used gtk2 explicitly as the toolkit again and fix libwidget_gtk2.

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define _bindir %{_prefix}/X11R6/bin
@@ -18,9 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://noreason.ca/data/arrows-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-#BuildRequires: 
-
 %description
 It's a maze game of sorts. Guide the spinning blue thing through
 the maze of arrows, creating and destroying arrows as necessary
@@ -32,7 +28,7 @@ to collect the green things.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Arrows
-Comment=A neat little maze game
+Comment=Follow the arrows to reach the exit
 Icon=redhat-games.png
 Exec=%{_bindir}/arrows
 Terminal=false

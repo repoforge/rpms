@@ -1,7 +1,8 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 # Upstream: Tim Wright <tim@ignavus.net>
 
-%define	_plugindir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir)
 
 Summary: XOSD displays transparent text on your screen like the OSD of TVs
 Name: xosd
@@ -19,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, xmms-devel
 
+
 %description
 XOSD displays text on your screen, sounds simple right? The difference is
 it is unmanaged and shaped, so it appears transparent. This gives the
@@ -26,36 +28,43 @@ effect of an On Screen Display, like your TV/VCR etc.. The package also
 includes an xmms plugin, which automatically displays various interesting
 things as they change (song name, volume etc...) 
 
+
 %package devel
 Summary: Development files for the XOSD on-screen display library
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+
 
 %description devel
 The xosd-devel package contains static libraries, header files and
 documentation for developing applications that use the XOSD on-screen
 display.
 
-%package -n xmms-%{name}
+
+%package -n xmms-xosd
 Summary: XMMS plugin for on-screen display that uses the XOSD library
 Group: Applications/Multimedia
 Requires: %{name} = %{version}-%{release}, xmms
 Obsoletes: %{name}-xmms
 Provides: %{name}-xmms
 
-%description -n xmms-%{name}
+
+%description -n xmms-xosd
 An X MultiMedia System plugin to display information on-screen through the
 XOSD library, similarly to TV OSD.
+
 
 %prep
 %setup
 
+
 %build
 %configure \
 	--disable-dependency-tracking \
-	--enable-old-plugin="yes" \
-	--with-plugindir="%{_plugindir}"
+	--enable-old-plugin \
+	--with-plugindir="%{xmms_generaldir}"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,17 +72,18 @@ XOSD library, similarly to TV OSD.
 ### FIXME: makeinstall-macro doesn't work ?
 %{__make} install DESTDIR="%{buildroot}"
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
+
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -83,6 +93,7 @@ XOSD library, similarly to TV OSD.
 %{_libdir}/*.so.*
 %{_datadir}/xosd/
 
+
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/xosd-config*
@@ -91,12 +102,14 @@ XOSD library, similarly to TV OSD.
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
-%{_datadir}/aclocal/*
-#exclude %{_libdir}/*.la
+%{_datadir}/aclocal/*.m4
+%exclude %{_libdir}/*.la
+
 
 %files -n xmms-xosd
 %defattr(-, root, root, 0755)
-%{_plugindir}/*
+%{xmms_generaldir}/*
+
 
 %changelog
 * Sat Apr 19 2003 Dag Wieers <dag@wieers.com> - 2.2.1-0

@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: atrpms
+# Upstream: <gnupg-devel@gnupg.org>
+
+# Tag: test
 
 Summary: GNU cryptographic library
 Name: libgcrypt

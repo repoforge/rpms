@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <effectv-developers@lists.sf.net>
 
 Summary: Real-time video effector
 Name: effectv
@@ -13,9 +13,8 @@ URL: http://effectv.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/effectv/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/effectv/effectv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: nasm
 

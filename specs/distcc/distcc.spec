@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Martin Pool <mbp@sourcefrog.net>
 
@@ -11,7 +10,7 @@
 
 %define gccversion %(rpm -q gcc --qf '%{RPMTAG_VERSION}' | tail -1)
 
-Summary: distributed C/C++ compilation client program
+Summary: Distributed C/C++ compilation client program
 Name: distcc
 Version: 2.13
 Release: 1
@@ -24,7 +23,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://samba.org/ftp/distcc/distcc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %{?gui:BuildRequires: gtk2-devel >= 2.0}
 Requires: gcc, gcc-c++
@@ -62,7 +60,7 @@ in order to use distcc.
 %{__cat} <<EOF >distccmon-gnome.desktop
 [Desktop Entry]
 Name=Distcc Monitor
-Comment=Graphical view of distributed compile tasks
+Comment=View progress of your distributed compile tasks
 Exec=distccmon-gnome
 Icon=distccmon-gnome-icon.png
 Terminal=false

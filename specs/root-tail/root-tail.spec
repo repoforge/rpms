@@ -1,19 +1,17 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Marc Lehmann <pcg@goof.com>
+# Upstream: Marc Lehmann <chris.moore@mail.com>
 
 Summary: Displays a given file anywhere on your X root window
 Name: root-tail
-Version: 0.95
+Version: 1.1
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://goof.com/pcg/marc/root-tail.html
+URL: http://root-tail.plan9.de/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://goof.com/pcg/marc/data/root-tail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -48,6 +46,9 @@ xmkmf -a
 %{_bindir}/*
 
 %changelog
+* Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Fri Apr 02 2004 Dag Wieers <dag@wieers.com> - 0.95-1
 - Updated to release 0.95.
 

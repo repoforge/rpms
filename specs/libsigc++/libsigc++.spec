@@ -1,15 +1,20 @@
 # $Id$
 # Authority: matthias
 
-Summary: The Typesafe Signal Framework for C++
+Summary: Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
 Release: 2
+### Needs epoch as rhel21 comes with version 1:1.0.3 ;-(
+#Epoch: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://libsigc.sourceforge.net/
-Source: http://dl.sf.net/libsigc/%{name}-%{version}.tar.gz
+URL: http://libsigc.sf.net/
+
+Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Obsoletes: libsigc++-examples
 BuildRequires: gcc-c++, m4
 
 %description
@@ -47,16 +52,18 @@ needed for development with libsigc++.
 # Clean up the docs
 find doc -name "Makefile*" | xargs rm -f
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING.LIB README IDEAS NEWS ChangeLog TODO
+%doc AUTHORS ChangeLog COPYING* FEATURES README IDEAS NEWS TODO
 %{_libdir}/*.so.*
 
 %files devel

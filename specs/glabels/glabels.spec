@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jim Evins <evins@snaught.com>
 
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/glabels/glabels-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libxml2-devel >= 2.4, libgnomeui-devel >= 2.0, libglade2-devel >= 2.0.1
 BuildRequires: gtk+-devel >= 1.2, libgnomecanvas-devel >= 2.0
@@ -45,7 +43,7 @@ you will need to install %{name}-devel.
 %{__cat} <<EOF >data/%{name}.desktop.in
 [Desktop Entry]
 Name=Glabels Label Designer
-Comment=Create labels, business cards and media covers.
+Comment=Create labels, business cards and media covers
 Icon=glabels.png
 Exec=glabels
 Terminal=false

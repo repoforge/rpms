@@ -15,8 +15,8 @@ URL: http://www.fpx.de/fp/Software/UUDeview/
 Packager: Bert de Bruijn <bert@debruijn.be>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.fpx.de/fp/Software/UUDeview/download/%{name}-%{version}.tar.gz
-Patch: %{name}-shared.patch
+Source: http://www.fpx.de/fp/Software/UUDeview/download/uudeview-%{version}.tar.gz
+Patch: uudeview-shared.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -70,9 +70,6 @@ you will need to install %{name}-devel.
 	MANDIR="%{buildroot}%{_mandir}"
 %makeinstall -C uulib
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -97,7 +94,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
 * Wed Mar 03 2004 Bert de Bruijn <bert édebruijn.be> - 0.5.20-0

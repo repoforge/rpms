@@ -1,3 +1,4 @@
+# $Id$
 # Authority: dag
 
 %define real_name gtkmm
@@ -8,14 +9,13 @@ Version: 2.0.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://gtkmm.sourceforge.net/
+URL: http://gtkmm.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/gtkmm/%{real_name}-%{version}.tar.gz
+Source: http://dl.sf.net/gtkmm/gtkmm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libsigc++-devel >= 1.2.0, glib2-devel >= 2.0.4
 BuildRequires: atk-devel >= 1.0.0, pango-devel >= 1.0.0, gtk2-devel >= 2.0.5

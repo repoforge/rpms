@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Thomas Sutton <thsutton@utas.edu.au>
 
 Summary: Finds acronyms and filename suffixes information
@@ -15,9 +13,8 @@ URL: http://cronus.comp.utas.edu.au/~thsutton/computing/wtf.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://cronus.comp.utas.edu.au/~thsutton/downloads/computing/%{name}-%{version}.tar.bz2
+Source: http://cronus.comp.utas.edu.au/~thsutton/downloads/computing/wtf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 The wtf program looks-up the definition of a term. It supports a number

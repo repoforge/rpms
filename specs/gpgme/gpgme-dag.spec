@@ -1,8 +1,13 @@
+# $Id$
 # Authority: atrpms
+# Upstream: <gnupg-devel@gnupg.org>
+
+# Distcc: 0
+
 Summary: GnuPG Made Easy
 Name: gpgme
-Version: 0.4.0
-Release: 0
+Version: 0.4.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpgme.html
@@ -10,9 +15,8 @@ URL: http://www.gnupg.org/gpgme.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnupg.org/GnuPG/alpha/gpgme/%{name}-%{version}.tar.gz
+Source: ftp://ftp.gnupg.org/GnuPG/alpha/gpgme/gpgme-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Obsoletes: libgpgme <= 0.4.0
 Requires: gnupg >= 1.0.6
@@ -52,8 +56,8 @@ you will need to install %{name}-devel.
 /sbin/install-info --info-dir="%{_infodir}" %{_infodir}/%{name}.info.gz
 
 %preun devel
-if [ $1 = 0 ]; then
-    /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
+if [ $1 -eq 0 ]; then
+	/sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
 fi
 
 %clean
@@ -68,12 +72,15 @@ fi
 %defattr(-, root, root)
 %doc %{_infodir}/*
 %{_bindir}/*
-%{_libdir}/*.a
+#%{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
 %{_datadir}/aclocal/*.m4
 
 %changelog
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.4.3-1
+- Updated to release 0.4.3.
+
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 0.4.0-0
 - Make work without atrpms package.
 

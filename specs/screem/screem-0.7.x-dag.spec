@@ -1,4 +1,4 @@
-# Authority: freshrpms
+# Authority: matthias
 # Upstream: David A Knight <david@ritter.demon.co.uk>
 
 Summary: Web Site CReating and Editing EnvironMent
@@ -12,9 +12,8 @@ URL: http://www.screem.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.screem.org/src/%{name}-%{version}.tar.gz
+Source: http://www.screem.org/src/screem-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgnome-devel >= 2.0, glib2-devel >= 2.0, ORBit2-devel >= 2.0
 BuildRequires: libbonobo-devel >= 2.0, GConf2-devel >= 1.2, gnome-vfs2-devel >= 2.0

@@ -1,5 +1,6 @@
+# $Id$
 # Authority: dag
-# Upstream: <gtodo-list@lists.sourceforge.net>
+# Upstream: <gtodo-list@lists.sf.net>
 
 Summary: Graphical todo list tool
 Name: gtodo
@@ -11,7 +12,6 @@ URL: http://qball.no-ip.com/test/index.php?s=4
 
 Source: http://download.qballcow.nl/programs/gtodo/gtodo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Buildrequires: gtk2-devel >= 2.0, libxml2-devel >= 2.5
 

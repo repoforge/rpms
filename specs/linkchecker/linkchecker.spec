@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Bastian Kleineidam <calvin@users.sourceforge.net>
+# Upstream: Bastian Kleineidam <calvin@users.sf.net>
 
 Summary: Check HTML documents for broken links
 Name: linkchecker

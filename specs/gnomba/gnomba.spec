@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Chris Rogers <gandalf@darkcorner.net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -20,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/gnomba/gnomba-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 gnomba is a GUI network browser using the smb protocol.  It allows users
 to browse workgroups, machines, and shares in a "Network Neighborhood."
@@ -28,10 +25,10 @@ to browse workgroups, machines, and shares in a "Network Neighborhood."
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >gnomba.desktop
 [Desktop Entry]
 Name=SMB Network Browser
-Comment=Browse your local network servers.
+Comment=Browse your local network SMB servers
 Exec=gnomba
 Icon=gnome-gnomba.png
 Terminal=false
@@ -56,7 +53,7 @@ EOF
 	desktop-file-install --vendor gnome --delete-original \
 		--add-category X-Red-Hat-Base                 \
 		--dir %{buildroot}%{_datadir}/applications    \
-		%{buildroot}%{_datadir}/gnome/apps/Internet/%{name}.desktop
+		%{buildroot}%{_datadir}/gnome/apps/Internet/gnomba.desktop
 %endif
 
 %clean
@@ -67,7 +64,7 @@ EOF
 %doc ChangeLog COPYING README
 %{_bindir}/*
 %{_mandir}/man?/*
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 %if %{dfi}
         %{_datadir}/gnome/apps/Internet/*.desktop
 %else   

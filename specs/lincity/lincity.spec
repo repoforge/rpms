@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: dries
+# Screenshot: http://lincity.sf.net/screenshots/power.png
+# ScreenshotURL: http://lincity.sf.net/screenshots/index.html
+
 
 Summary: city simulation game
 Summary(nl): Een stadsimulatie spel.
@@ -9,7 +11,7 @@ Version: 1.12.0
 Release: 3
 License: GPL
 Group: Amusements/Games
-URL: http://lincity.sourceforge.net/
+URL: http://lincity.sf.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -18,9 +20,6 @@ Source: http://dl.sf.net/lincity/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Requires:  
 BuildRequires: gcc make
-
-#(d) primscreenshot: http://lincity.sourceforge.net/screenshots/power.png
-#(d) screenshotsurl: http://lincity.sourceforge.net/screenshots/index.html
 
 %description
 Lincity is a city simulation game. Build your city up from a primitive

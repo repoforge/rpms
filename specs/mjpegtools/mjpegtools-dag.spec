@@ -1,19 +1,20 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://mjpeg.sourceforge.net/
+URL: http://mjpeg.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://prdownloads.sourceforge.net/mjpeg/mjpegtools-%{version}.tar.gz
-Source1: http://prdownloads.sourceforge.net/mjpeg/quicktime4linux-1.4-patched-2.tar.gz
+Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
+Source1: http://dl.sf.net/mjpeg/quicktime4linux-1.4-patched-2.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: SDL-devel, libjpeg-devel, libpng-devel, gtk+-devel, libdv-devel
 BuildRequires: avifile-devel, libmovtar-devel

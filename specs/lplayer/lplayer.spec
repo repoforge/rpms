@@ -52,14 +52,7 @@ Categories=Application;AudioVideo;
 EOF
 
 %build
-#cd src
-%{?rhfc1:export QTDIR="/usr/lib/qt-3.1"}
-%{?rhel3:export QTDIR="/usr/lib/qt-3.1"}
-%{?rh90:export QTDIR="/usr/lib/qt3"}
-%{?rh80:export QTDIR="/usr/lib/qt3"}
-%{?rh73:export QTDIR="/usr/lib/qt2"}
-%{?rhel21:export QTDIR="/usr/lib/qt2"}
-%{?rh62:export QTDIR="/usr/lib/qt-2.1.0"}
+source "%{_sysconfdir}/profile.d/qt.sh"
 #tmake lp.pro -o Makefile
 %configure \
 	--disable-dependency-tracking \

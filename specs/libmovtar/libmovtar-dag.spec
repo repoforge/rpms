@@ -1,18 +1,19 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: Tools for the movtar MJPEG video format
 Name: libmovtar
 Version: 0.1.3
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://mjpeg.sourceforge.net/
+URL: http://mjpeg.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/mjpeg/libmovtar-%{version}.tar.gz
+Source: http://dl.sf.net/mjpeg/libmovtar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: SDL-devel, glib-devel, libjpeg-mmx
 

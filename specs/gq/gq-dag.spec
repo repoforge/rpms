@@ -1,4 +1,6 @@
+# $Id$
 # Authority: atrpms
+
 Summary: Interactive graphical LDAP browser
 Name: gq
 Version: 0.6.0
@@ -10,9 +12,8 @@ URL: http://biot.com/gq/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/gqclient/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gqclient/gq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: openldap-devel >= 2.0
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Marty Roesch <roesch@sourcefire.com>
 
@@ -12,8 +11,8 @@
 
 Summary: Open Source network intrusion detection system
 Name: snort
-Version: 2.1.1
-Release: 0
+Version: 2.1.2
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.snort.org/
@@ -21,9 +20,8 @@ URL: http://www.snort.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.snort.org/releases/snort-%{version}.tar.gz
+Source: http://www.snort.org/dl/snort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet = 1.0.2
 BuildRequires: pcre-devel, perl
@@ -377,6 +375,9 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
+* Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 2.1.2-1
+- Updated to release 2.1.2.
+
 * Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 2.1.1-0
 - Updated to release 2.1.1.
 - Added %%postun scripts for each build.

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-Summary: GUI editor for creating man pages. 
+Summary: Graphical editor for creating man pages. 
 Name: manedit
 Version: 0.5.10
 Release: 0
@@ -13,9 +12,8 @@ URL: http://wolfpack.twu.net/ManEdit/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://wolfpack.twu.net/users/wolfpack/manedit-0.5.10.tar.bz2
+Source: ftp://wolfpack.twu.net/users/wolfpack/manedit-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel, zlib-devel
 Requires: groff
@@ -34,12 +32,12 @@ and requires the X Window Systems.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Manpage Editor
-Comment=%{summary}
-Exec=%{name}
-Icon=/usr/share/icons/manedit.xpm
+Comment=Create and edit UNIX manual pages
+Exec=manedit
+Icon=manedit.xpm
 Terminal=false
 Type=Application
-Categories=Application;Development;
+Categories=GNOME;Application;Development;
 EOF
 
 %build
@@ -58,6 +56,8 @@ EOF
 	PREFIX="%{buildroot}%{_prefix}" \
 	MAN_DIR="%{buildroot}%{_mandir}/man1"
 
+%{__install} -D -m0644 manedit/manedit.xpm %{buildroot}%{_datadir}/pixmaps/manedit.xpm
+
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor net                  \
 	--add-category X-Red-Hat-Base                \
@@ -74,6 +74,7 @@ desktop-file-install --vendor net                  \
 %{_bindir}/*
 %{_datadir}/manedit/
 %{_datadir}/icons/*
+%{_datadir}/pixmaps/*.xpm
 %{_datadir}/applications/*.desktop
  
 %changelog

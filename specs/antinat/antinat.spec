@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Malcolm Smith <malxau@users.sourceforge.net>
+# Upstream: Malcolm Smith <malxau@users.sf.net>
 
 ### FIXME: Add sysv script using sysconfig file.
 

@@ -1,6 +1,6 @@
 # $Id$
+# Authority: matthias
 
-# Authority: freshrpms
 %define real_name rte
 
 Summary: Real Time software audio/video Encoder library
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/zapping/rte-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %{!?rh62:BuildRequires: doxygen}
 
 #Provides: %{real_name}
@@ -27,7 +26,7 @@ Obsoletes: %{real_name}
 The RTE library is a frontend or wrapper of other libraries or programs
 for real time video and audio compression on Linux. Currently it works
 on x86 CPUs only, sorry. The library is designed to interface between
-codecs and the Zapping TV viewer: http://zapping.sourceforge.net,
+codecs and the Zapping TV viewer: http://zapping.sf.net,
 precisely its recording plugin.
 
 %package devel

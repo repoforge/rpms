@@ -49,7 +49,7 @@ and let the computer take care of the rest.
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=LyX LaTeX frontend
+Name=LyX LaTeX Frontend
 Comment=Write documents in a WYSIWYM way
 Exec=lyx
 Icon=lyx-icon.png
@@ -59,15 +59,8 @@ Encoding=UTF-8
 Categories=Application;Office;
 EOF
 
-
 %build
-%{?rhfc1:export QTDIR="/usr/lib/qt-3.1"}
-%{?rhel3:export QTDIR="/usr/lib/qt-3.1"}
-%{?rh90:export QTDIR="/usr/lib/qt3"}
-%{?rh80:export QTDIR="/usr/lib/qt3"}
-%{?rh73:export QTDIR="/usr/lib/qt2"}
-%{?rhel21:export QTDIR="/usr/lib/qt2"}
-%{?rh62:export QTDIR="/usr/lib/qt-2.1.0"}
+source "%{_sysconfdir}/profile.d/qt.sh"
 %configure \
 	--with-frontend="qt" \
 	--without-warnings \

@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: matthias
-# Upstream: <libexif-devel@lists.sourceforge.net>
+# Upstream: <libexif-devel@lists.sf.net>
 
 Name: libexif
 Summary: EXIF image tag library
@@ -53,8 +52,8 @@ that you can use to develop libexif applications.
 %defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
+%exclude %{_libdir}/*.la
 
 %changelog
 * Mon Nov  5 2003 Matthias Saou <http://freshrpms.net/> 0.5.12-2.fr

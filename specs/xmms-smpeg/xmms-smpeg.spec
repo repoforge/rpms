@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%define	real_name smpeg-xmms
+%define real_name smpeg-xmms
 %define xmms_inputdir %(xmms-config --input-plugin-dir)
 
 Summary: XMMS SMPEG Plugin

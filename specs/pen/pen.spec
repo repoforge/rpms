@@ -5,8 +5,8 @@
 
 Summary: Load balancer for "simple" tcp based protocols
 Name: pen
-Version: 0.12.1
-Release: 0
+Version: 0.12.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://siag.nu/pen/
@@ -26,8 +26,8 @@ servers. This gives high availability and scalable performance.
 %prep
 %setup
 
-### FIXME: Add a default pen.conf for Apache. (Please fix upstream)
-%{__cat} <<EOF >%{name}.conf
+### FIXME: Added a default pen.httpd for Apache. (Please fix upstream)
+%{__cat} <<EOF >pen.httpd
 ScriptAlias /pen/ %{_localstatedir}/www/pen/
 <Directory %{_localstatedir}/www/pen/>
 	DirectoryIndex penctl.cgi
@@ -46,10 +46,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/pen/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/
-%{__install} -m0755 penctl.cgi %{buildroot}%{_localstatedir}/www/pen/
-%{__install} -m0644 pen.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -D -m0755 penctl.cgi %{buildroot}%{_localstatedir}/www/pen/penctl.cgi
+%{__install} -D -m0644 pen.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/pen.conf
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_prefix}/doc/
@@ -74,6 +72,9 @@ fi
 %{_localstatedir}/www/pen/
 
 %changelog
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.12.3-1
+- Updated to release 0.12.3.
+
 * Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 0.12.1-0
 - Updated to release 0.12.1.
 

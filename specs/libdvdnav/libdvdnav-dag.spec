@@ -1,18 +1,19 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: DVD menu navigation library
 Name: libdvdnav
 Version: 0.1.9
 Release: 0
 Group: System Environment/Libraries
 License: GPL
-URL: http://dvd.sourceforge.net/
+URL: http://dvd.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/dvd/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/dvd/libdvdnav-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: automake >= 1.7, doxygen
 

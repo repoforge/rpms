@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <libdvdcss-devel@videolan.org>
 
 Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss

@@ -1,18 +1,19 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: software codec for DV video, used by most digital camcorders
 Name: libdv
 Version: 0.99
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://libdv.sourceforge.net/
+URL: http://libdv.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/libdv/libdv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: pkgconfig >= 0.9.0, gtk+ >= 1.2.4, glib >= 1.2.4
 

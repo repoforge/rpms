@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 %define real_version 0.15.1b
 
 Summary: MPEG audio decoder library
@@ -12,9 +14,8 @@ URL: http://www.underbit.com/products/mad/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.mars.org/pub/mpeg/%{name}-%{real_version}.tar.gz
+Source: ftp://ftp.mars.org/pub/mpeg/libmad-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Provides: mad = %{version}-%{release}
 

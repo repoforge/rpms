@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Olivier Sessink <olivier@bluefish.openoffice.nl>
+# Upstream: T. Bugra Uytun <t.bugra@uytun.com>
 
 Summary: Personal password manager
 Name: gpasman
-Version: 1.9.2
-Release: 0
+Version: 1.9.3
+Release: 2
 License: GPL
 Group: Applications/Productivity
 URL: http://gpasman.sf.net/
@@ -27,23 +26,26 @@ password instead of ten (or more).
 %prep
 %setup
 
+%{__cat} <<EOF >gpasman.desktop.in
+[Desktop Entry]
+Name=Password Manager
+Comment=Manage various types of passwords
+Icon=gpasman.png
+Exec=gpasman
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Utility;
+StartupNotify=true
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
 %makeinstall
 %find_lang %{name}
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor gnome --delete-original \
-	--add-category X-Red-Hat-Base                 \
-	--add-category Application                    \
-	--add-category Utility                        \
-	--dir %{buildroot}%{_datadir}/applications    \
-	%{name}.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,9 +55,15 @@ desktop-file-install --vendor gnome --delete-original \
 %doc AUTHORS ChangeLog COPYING LICENCE* NEWS README TODO 
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 
 %changelog
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.9.3-2
+- Fixed duplicate desktop-file.
+
+* Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 1.9.3-1
+- Updated to release 1.9.3.
+
 * Tue Mar 25 2003 Dag Wieers <dag@wieers.com> - 1.9.2-0
 - Updated to release 1.9.2.
 

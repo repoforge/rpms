@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Wilmer van der Gaast <lintux@lintux.cx>
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
 Version: 0.85
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Bitlbee is an IRC to other chat networks gateway. bitlbee can be used as
@@ -50,7 +48,7 @@ EOF
 	--etcdir="%{_sysconfdir}/bitlbee" \
 	--mandir="%{_mandir}" \
 	--datadir="%{_datadir}/bitlbee" \
-	--config="%{_localstatedir}/lib/biblbee"
+	--config="%{_localstatedir}/lib/bitlbee"
 %{__make} %{?_smp_mflags}
 ### FIXME: Documentation needs old sgmltools tool, deprecated.
 #%{__make} -C doc
@@ -59,15 +57,14 @@ EOF
 %{__rm} -rf %{buildroot}
 ### FIXME: makeinstall-phase doesn't use autotool dirs and wants to change ownerships.
 #makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_datadir}/bitlbee/ \
-			%{buildroot}%{_mandir}/man8/ \
-			%{buildroot}%{_sysconfdir}/xinetd.d \
-			%{buildroot}%{_localstatedir}/lib/bitlbee
-%{__install} -m0755 bitlbee %{buildroot}%{_sbindir}
-%{__install} -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/
+%{__install} -D -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
+%{__install} -D -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
+%{__install} -D -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
 %{__install} -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
-%{__install} -m0644 %{name}.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/bitlbee/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -79,9 +76,14 @@ EOF
 %config %{_sysconfdir}/xinetd.d/*
 %{_sbindir}/*
 %{_datadir}/bitlbee/
-%attr(0700, daemon, root) %{_localstatedir}/lib/bitlbee/
+
+%defattr(-, daemon, root, 0700)
+%{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 0.85-2
+- Fixed typo in config configure option. (Len Trigg)
+
 * Sun Mar 14 2004 Dag Wieers <dag@wieers.com> - 0.85-1
 - Updated to release 0.85.
 

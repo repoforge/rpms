@@ -9,7 +9,7 @@ License: LGPL
 Group: System Environment/Libraries
 Source: http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
 URL: http://www.mega-nerd.com/libsndfile/
-BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description

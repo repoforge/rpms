@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dag
-
-# Upstream: Josh Buhl <jbuhl@users.sourceforge.net>
+# Upstream: Josh Buhl <jbuhl@users.sf.net>
 
 %define lname glunarclock-0.30
 

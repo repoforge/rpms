@@ -1,4 +1,5 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
@@ -11,7 +12,7 @@ URL: http://www.xvid.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://files.xvid.org/downloads/%{name}-%{version}.tar.bz2
+Source: http://files.xvid.org/downloads/xvidcore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

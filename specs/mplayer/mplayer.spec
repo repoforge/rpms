@@ -5,7 +5,7 @@
 %define date      20040325
 #define rcver     pre2
 
-%define xmmsplugindir  %(xmms-config --input-plugin-dir)
+%define xmms_plugindir %(xmms-config --input-plugin-dir)
 %define desktop_vendor freshrpms
 
 Summary: MPlayer, the Movie Player for Linux
@@ -113,7 +113,7 @@ find . -name "CVS" | xargs %{__rm} -rf
     --enable-largefiles \
     --enable-dynamic-plugins \
     --enable-xmms \
-    --with-xmmsplugindir=%{xmmsplugindir} \
+    --with-xmmsplugindir=%{xmms_plugindir} \
 %ifarch %ix86
     --enable-win32 \
     --with-win32libdir=%{_libdir}/win32 \

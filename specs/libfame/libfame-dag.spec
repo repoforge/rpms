@@ -1,18 +1,19 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.0
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://fame.sourceforge.net/
+URL: http://fame.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source:	http://prdownloads.sourceforge.net/fame/%{name}-%{version}.tar.gz
+Source:	http://dl.sf.net/fame/fame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 A library for fast (real-time) MPEG video encoding, written in C and assembly.

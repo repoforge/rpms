@@ -13,8 +13,8 @@ URL: http://xpenguins.seul.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://xpenguins.seul.org/%{name}-%{version}.tar.gz
-Source1: http://xpenguins.seul.org/%{name}_themes-1.0.tar.gz
+Source: http://xpenguins.seul.org/xpenguins-%{version}.tar.gz
+Source1: http://xpenguins.seul.org/xpenguins_themes-1.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

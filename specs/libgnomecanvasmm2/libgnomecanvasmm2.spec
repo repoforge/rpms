@@ -1,6 +1,6 @@
 # $Id$
+# Authority: matthias
 
-# Authority: freshrpms
 %define real_name libgnomecanvasmm
 
 Summary: C++ wrappers for libglade, for use with gtkmm
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gtkmm/libgnomecanvasmm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtkmm2-devel >= 2.2.5, libsigc++ >= 1.2, glib2-devel >= 2.0
 BuildRequires: pango-devel >= 1.0, freetype-devel >= 2.0

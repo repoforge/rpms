@@ -1,13 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <glchess-devel@lists.sf.net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: glChess - A 3D chess interface
+Summary: 3D chess interface
 Name: glchess
 Version: 0.4.7
-Release: 0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://glchess.sf.net/
@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/glchess/glchess-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel >= 1.2.0, gtkglarea
 
@@ -30,6 +29,19 @@ not over a netwerk (see TODO).
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/usr/local/share/games/glchess|%{_datadir}/games/glchess|' glchessrc
+
+%{__cat} <<EOF >glchess.desktop
+[Desktop Entry]
+Name=GLChess
+Comment=Play chess in 3D
+Exec=glchess
+Icon=chess.png
+Terminal=false
+Type=Application
+Categories=Application;Game;
+EOF
+
 %build
 ./autogen.sh
 %configure
@@ -37,37 +49,22 @@ not over a netwerk (see TODO).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man6 \
-			%{buildroot}%{_datadir}/games/glchess/textures \
-			%{buildroot}%{_sysconfdir}/X11/wmconfig
-%{__install} -m0755 src/glchess %{buildroot}%{_bindir}
-%{__install} -m0644 man/glchess.6 %{buildroot}%{_mandir}/man6/
-%{__install} -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/
-%{__install} -m0644 glchessrc %{buildroot}%{_sysconfdir}
-%{__install} -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/
+%{__install} -D -m0755 src/glchess %{buildroot}%{_bindir}/glchess
+%{__install} -D -m0644 man/glchess.6 %{buildroot}%{_mandir}/man6/glchess.6
+%{__install} -D -m0644 glchessrc %{buildroot}%{_sysconfdir}/glchessrc
+%{__install} -D -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/glchess.menu
 
-cat <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=GLChess
-Comment=A 3D Chess game
-Exec=glchess
-Icon=chess.png
-Terminal=false
-Type=Application
-EOF
+%{__install} -d -m0755 %{buildroot}%{_datadir}/games/glchess/textures/
+%{__install} -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
 
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Games/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Games/
+	%{__install} -D -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor "gnome"              \
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor "net"                \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category Game                        \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		glchess.desktop
 %endif
 
 %clean
@@ -75,7 +72,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO
+%doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man6/*
 %config %{_sysconfdir}/glchessrc
 %config %{_sysconfdir}/X11/wmconfig/*

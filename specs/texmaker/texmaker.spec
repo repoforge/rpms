@@ -56,7 +56,7 @@ It have thoses features:
 %build
 #export LD_LIBRARY_PATH="/usr/lix/qt3/lib:$LD_LIBRARY_PATH"
 #export PATH="/usr/lib/qt3/bin:$PATH"
-export QTDIR="/usr/lib/qt3"
+source "%{_sysconfdir}/profile.d/qt.sh"
 $QTDIR/bin/qmake -makefile -unix "LIBS +=-lm $QTDIR/lib/libqt-mt.so.3" texmaker.pro
 
 %{__make} %{?_smp_flags} \

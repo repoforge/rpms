@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Stephen Kennedy <steve9000@users.sourceforge.net>
+# Upstream: Stephen Kennedy <steve9000@users.sf.net>
 
 Summary: Graphical visual diff and merge tool
 Name: meld
@@ -20,10 +19,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pygtk2-devel >= 1.99.14, gnome-python2 >= 1.99.14
 BuildRequires: pyorbit-devel >= 1.99
 
+BuildArch: noarch
 Requires: pygtk2 >= 1.99.14, gnome-python2 >= 1.99, gnome-python2-canvas
 Requires: pygtk2-libglade, gnome-python2-gconf >= 1.99
-
-BuildArch: noarch
 
 %description
 Meld is a GNOME2 visual diff and merge tool. It integrates especially
@@ -34,12 +32,15 @@ allows merges.
 %prep
 %setup
 
-echo "exec %{_datadir}/meld/meld \$@" >%{name}.sh
+%{__cat} <<'EOF' >meld.sh
+#!/bin/sh
+exec %{_datadir}/meld/meld $@
+EOF
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >meld.desktop
 [Desktop Entry]
 Name=Meld Diff Viewer
-Comment=Compare and merge your files.
+Comment=Compare and merge multiple files
 Exec=meld
 Icon=meld.png
 Type=Application
@@ -48,28 +49,24 @@ StartupNotify=true
 Categories=GNOME;Application;Utility;
 EOF
 
-
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/glade2/pixmaps \
-			%{buildroot}%{_datadir}/applications \
-			%{buildroot}%{_datadir}/pixmaps \
-			%{buildroot}%{_bindir}
-%{__install} -m0755 meld %{buildroot}%{_datadir}/meld/
+%{__install} -D -m0755 meld.sh %{buildroot}%{_bindir}/meld
+%{__install} -D -m0644 glade2/pixmaps/icon.png %{buildroot}%{_datadir}/pixmaps/meld.png
+%{__install} -D -m0755 meld %{buildroot}%{_datadir}/meld/meld
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/glade2/pixmaps/
 %{__install} -m0644 *.py %{buildroot}%{_datadir}/meld/
 %{__install} -m0644 glade2/*.glade* %{buildroot}%{_datadir}/meld/glade2/
 %{__install} -m0644 glade2/pixmaps/* %{buildroot}%{_datadir}/meld/glade2/pixmaps/
 
-%{__install} -m0644 glade2/pixmaps/icon.png %{buildroot}%{_datadir}/pixmaps/meld.png
-
-%{__install} -m0755 meld.sh %{buildroot}%{_bindir}/meld
-
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	meld.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -80,7 +77,7 @@ desktop-file-install --vendor gnome                \
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/meld/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 
 %changelog
 * Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 0.9.2-0

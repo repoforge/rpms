@@ -1,4 +1,5 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 # Distcc: 0
 
 Summary: Quality LGPL MP3 encoder
@@ -7,12 +8,12 @@ Version: 3.95.1
 Release: 0
 License: LGPL
 Group: Applications/Multimedia
-URL: http://lame.sourceforge.net/
+URL: http://lame.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/lame/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

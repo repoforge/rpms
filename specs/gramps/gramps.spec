@@ -7,8 +7,8 @@
 
 Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
-Version: 0.98.0
-Release: 0
+Version: 1.0.2
+Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://gramps.sf.net/
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gramps/gramps-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: autoconf >= 2.52, automake >= 1.6, scrollkeeper >= 0.1.4
 BuildRequires: gnome-python2-canvas, gnome-python2-gconf
@@ -83,6 +82,9 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/*.png
  
 %changelog
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.0.1-0
 - Updated to release 1.0.1.
 

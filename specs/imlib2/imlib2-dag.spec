@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: Powerful image loading and rendering library
 Name: imlib2
 Version: 1.0.6
@@ -10,9 +12,8 @@ URL: http://enlightenment.org/pages/imlib2.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/enlightenment/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libjpeg-devel, libpng-devel, libungif-devel, edb-devel >= 1.0.2
 BuildRequires: XFree86-devel, freetype-devel >= 1.2

@@ -7,7 +7,7 @@
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
 Version: 1.4.1
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://sarg.sf.net/sarg.php
@@ -34,9 +34,11 @@ showing users, IP Addresses, bytes, sites and times.
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e '
-		s|\@BINDIR\@|\$(bindir)|g;
-		s|\@MANDIR\@|\$(mandir)/man1|g;
-		s|\@SYSCONFDIR\@|\$(sysconfdir)/sarg|g;
+		s|= \@BINDIR\@|= \$(bindir)|g;
+		s|= \@MANDIR\@|= \$(mandir)/man1|g;
+		s|= \@SYSCONFDIR\@|= \$(sysconfdir)/sarg|g;
+		s|\@BINDIR\@|%{_bindir}|g;
+		s|\@SYSCONFDIR\@|%{_sysconfdir}/sarg|g;
 	' Makefile.in
 
 %{__perl} -pi.orig -e '
@@ -48,26 +50,23 @@ showing users, IP Addresses, bytes, sites and times.
 
 %{__cat} <<EOF >sarg.daily
 #!/bin/bash
-%{_bindir}/sarg \
+exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/daily \
 	-d "$(date --date "1 day ago" +%d/%m/%Y)"
-exit $?
 EOF
 
 %{__cat} <<EOF >sarg.weekly
 #!/bin/bash
-%{_bindir}/sarg \
+exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/weekly \
 	-d "$(date --date "1 day ago" +%d/%m/%Y)-$(date --date "1 week ago" +%d/%m/%Y)"
-exit $?
 EOF
 
 %{__cat} <<EOF >sarg.monthly
 #!/bin/bash
-%{_bindir}/sarg \
+exec %{_bindir}/sarg \
 	-o %{_localstatedir}/www/sarg/monthly \
 	-d "$(date --date "1 day ago" +%d/%m/%Y)-$(date --date "1 month ago" +%d/%m/%Y)"
-exit $?
 EOF
 
 %{__cat} <<EOF >sarg-index.html
@@ -153,5 +152,8 @@ EOF
 %{_localstatedir}/www/sarg/
 
 %changelog
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.4.1-2
+- Fixed missing directories in sarg. (William Hooper)
+
 * Wed Mar 17 2004 Dag Wieers <dag@wieers.com> - 1.4.1-1
 - Initial package. (using DAR)

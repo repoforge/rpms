@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: <cpufreqd-user@lists.sourceforge.net>
+# Upstream: <cpufreqd-user@lists.sf.net>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0

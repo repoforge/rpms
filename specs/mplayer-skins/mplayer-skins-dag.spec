@@ -1,5 +1,7 @@
-# Authority: freshrpms
-Summary: collection of skins for MPlayer
+# $Id$
+# Authority: matthias
+
+Summary: Collection of skins for MPlayer
 Name: mplayer-skins
 Version: 1.3
 Release: 0

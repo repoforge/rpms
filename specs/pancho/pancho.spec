@@ -3,6 +3,10 @@
 # Authority: dag
 # Upstream: <pancho-discuss@lunarmedia.net>
 
+# Distcc: 0
+
+%define perl_sitelib  %(eval "`perl -V:installsitelib`"; echo $installsitelib)
+
 %define real_name Pancho
 
 Summary: Archive and manage remote nodes using SNMP and TFTP
@@ -45,16 +49,15 @@ and shared with the community via the Pancho Project website.
 %makeinstall \
 	PREFIX="%{buildroot}%{_prefix}" \
 	SYS_CONFDIR="%{buildroot}%{_sysconfdir}" \
-	INSTALLSITELIB="%{buildroot}%{_libdir}"
+	LIB="%{buildroot}%{perl_sitelib}"
 
 %{__perl} -pi.orig -e 's|%{buildroot}||' blib/script/pancho
 
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 blib/script/pancho %{buildroot}%{_bindir}
+%{__install} -D -m0755 blib/script/pancho %{buildroot}%{_bindir}/pancho
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/site_perl/*/*-linux-thread-multi/
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_sitearch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,9 +65,10 @@ and shared with the community via the Pancho Project website.
 %files
 %defattr(-, root, root, 0755)
 %doc MANIFEST README license/* samples/*
+%doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/pancho.conf
 %{_bindir}/*
-%{_libdir}/perl5/site_perl/*/Pancho/
+%{perl_sitelib}/*
 
 %changelog
 * Wed Mar 10 2004 Dag Wieers <dag@wieers.com> - 9.3.1-1

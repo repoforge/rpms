@@ -1,5 +1,7 @@
-# Authority: freshrpms
-Summary: library for communicating with and sending data to an icecast server
+# $Id$
+# Authority: matthias
+
+Summary: Library for communicating with and sending data to an icecast server
 Name: libshout
 Version: 2.0
 Release: 0
@@ -10,9 +12,8 @@ URL: http://www.icecast.org/projects/libshout/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.icecast.org/files/libshout/%{name}-%{version}.tar.gz
+Source: http://www.icecast.org/files/libshout/libshout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libogg-devel, libvorbis-devel >= 1:1.0
 

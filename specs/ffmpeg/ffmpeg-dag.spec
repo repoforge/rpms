@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 %define real_version cvs-2003-07-01
 
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder
@@ -7,14 +9,13 @@ Version: 0.4.7
 Release: 0.20030701
 License: GPL
 Group: Applications/Multimedia
-URL: http://ffmpeg.sourceforge.net/
+URL: http://ffmpeg.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/ffmpeg/%{name}-%{real_version}.tar.gz
+Source: http://dl.sf.net/ffmpeg/ffmpeg-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: imlib2-devel, libvorbis-devel, a52dec-devel, lame-devel, zlib-devel
 BuildRequires: faad2-devel, imlib2-devel

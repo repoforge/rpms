@@ -1,13 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <putty@projects.tartarus.org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: GUI SSH, Telnet and Rlogin client
+Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
 Version: 0.54
-Release: 0
+Release: 1
 License: MIT
 Group: Applications/Internet
 URL: http://www.chiark.greenend.org.uk/~sgtatham/putty/
@@ -18,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source0: http://the.earth.li/~sgtatham/putty/latest/putty-%{version}.tar.gz
 Source1: putty.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel
 
@@ -31,7 +30,7 @@ Putty is a SSH, Telnet & Rlogin client for Linux.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Putty Terminal Client
-Comment=A GUI SSH, Telnet and Rlogin client
+Comment=Log on to remote systems using SSH, Telnet or Rlogin
 Exec=putty
 Icon=putty.png
 Terminal=false
@@ -78,10 +77,10 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENCE
+%doc CHECKLST.txt LICENCE MODULE README*
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 %if %{dfi}
         %{_datadir}/gnome/apps/Network/*.desktop
 %else
@@ -89,6 +88,7 @@ EOF
 %endif
 
 %changelog
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.54-1
 - Disabled StartupNotify in desktop-file. (Gavin Henry)
 
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.54-0

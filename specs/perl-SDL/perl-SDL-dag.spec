@@ -1,4 +1,4 @@
-# Authority: freshrpms
+# Authority: matthias
 # Upstream: David J. Goehrig <dave@goehrig.us>
 
 %define real_name SDL_perl
@@ -14,9 +14,8 @@ URL: http://sdlperl.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://sdlperl.org/SDL_perl/%{real_name}-%{version}.tar.gz
+Source: ftp://sdlperl.org/SDL_perl/SDL_perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel, SDL_ttf-devel
 BuildRequires: perl, libjpeg-devel, libpng-devel, smpeg-devel

@@ -1,4 +1,5 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 # Archs: i386 i686
 
 Summary: unRAR - extract, test and view RAR archives
@@ -12,9 +13,8 @@ URL: ftp://sunsite.unc.edu/pub/Linux/utils/compress/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://sunsite.unc.edu/pub/Linux/utils/compress/%{name}-%{version}.tar.gz
+Source: ftp://sunsite.unc.edu/pub/Linux/utils/compress/unrar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 The unRAR utility is a freeware program, distributed with source code

@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Valery Reznic <valery_reznic@users.sourceforge.net>
+# Upstream: Valery Reznic <valery_reznic@users.sf.net>
 
 Summary: Convert dynamicly-linked ELF binaries into to "pseudo-static" binaries
 Name: statifier
@@ -15,8 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/statifier/statifier-%{version}.tar.gz
-BuildRoot: %{_builddir}/root-%{name}-%{version}
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386
 Requires: binutils, gawk, gdb >= 5.2, sed

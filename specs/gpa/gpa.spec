@@ -1,10 +1,13 @@
 # $Id$
-
 # Authority: atrpms
+# Upstream: <gnupg-devel@gnupg.org>
+
+%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+
 Summary: Graphical user interface for the GnuPG
 Name: gpa
 Version: 0.7.0
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpa.html
@@ -12,9 +15,8 @@ URL: http://www.gnupg.org/gpa.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpa/%{name}-%{version}.tar.gz
+Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpa/gpa-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel >= 2.0.6, gpgme-devel >= 0.4.0
 Requires: gnupg, gtk2 >= 2.0.6, gpgme >= 0.4.0
@@ -28,6 +30,18 @@ files by signature management.
 %prep
 %setup
 
+%{__cat} <<EOF >gpa.desktop
+[Desktop Entry]
+Name=GNU Privacy Assistant
+Comment=Organize and edit your keys and signatures
+Icon=gpa.xpm
+Exec=gpa
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;Application;Utility;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -37,6 +51,18 @@ files by signature management.
 %makeinstall
 %find_lang %{name}
 
+%{__install} -D -m0644 pixmaps/keyring.xpm %{buildroot}%{_datadir}/pixmaps/gpa.xpm
+
+%if %{dfi}
+	%{__install} -D -m0644 gpa.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpa.desktop
+%else
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor gnome                \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		gpa.desktop
+%endif
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -45,9 +71,15 @@ files by signature management.
 %doc AUTHORS ChangeLog NEWS README* THANKS TODO
 %{_bindir}/*
 %{_datadir}/gpa/
+%{_datadir}/pixmaps/*.xpm
+%if %{dfi}
+	%{_datadir}/gnome/apps/Utilities/*.desktop
+%else
+	%{_datadir}/applications/*.desktop
+%endif
 
 %changelog
-* Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 0.7.0-0
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 0.6.1-0

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dries
-# Screenshot: http://amsn.sourceforge.net/shots/contactlist.jpg
-# ScreenshotURL: http://amsn.sourceforge.net/shots.htm
+# Screenshot: http://amsn.sf.net/shots/contactlist.jpg
+# ScreenshotURL: http://amsn.sf.net/shots.htm
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %define tls_maj 1.4
@@ -28,7 +27,6 @@ Patch: amsn-0.83-makefile.patch
 Patch1: amsn-0.83-login.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 ExclusiveArch: i386
 %{?rhfc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?rhel3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
@@ -50,8 +48,8 @@ groups, and many more features.
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=Amsn Instant Messaging
-Comment=A full featured MSN Messenger clone
+Name=Amsn Instant Messenger
+Comment=Chat and send files using MSN
 Exec=amsn
 Icon=amsn.png
 Type=Application

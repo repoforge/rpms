@@ -1,14 +1,15 @@
 # $Id$
-
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
+
+# Distcc: 0
 
 %define phpextdir %(php-config --extension-dir)
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.0.46
-Release: 3
+Version: 1.0.47
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -149,6 +150,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.0.47-1
+- Updated to release 1.0.47.
+
+- Change the strict dependency on perl to fix problem with the recent
 * Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.0.46-2.fr
 - Change the strict dependency on perl to fix problem with the recent
   update.

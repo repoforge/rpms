@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Philippe Biondi <biondi@cartel-securite.fr>
 
 Summary: Interactive packet manipulation tool and network scanner

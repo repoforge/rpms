@@ -1,18 +1,19 @@
-# Authority: freshrpms
-Summary: software library for manipulating ID3v1 and ID3v2 tags
+# $Id$
+# Authority: matthias
+
+Summary: Library for manipulating ID3v1 and ID3v2 tags
 Name: id3lib
 Version: 3.8.3
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
-URL: http://id3lib.sourceforge.net/
+URL: http://id3lib.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/id3lib/id3lib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 This package provides a software library for manipulating ID3v1 and ID3v2 tags.

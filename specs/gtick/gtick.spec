@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Roland Stigge <stigge@antcom.de>
+# Upstream: <gtick-devel@nongnu.org>
 
 Summary: Metronome application
 Name: gtick
@@ -16,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.antcom.de/download/gtick/gtick-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: autoconf >= 2.57
 
 %description
@@ -27,15 +27,16 @@ utilizes GTK+ and OSS (ALSA compatible).
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >gtick.desktop
 [Desktop Entry]
 Name=Gtick Metronome
-Comment=%{summary}
+Comment=
 Icon=gnome-multimedia.png
-Exec=%{name}
+Exec=gtick
 Terminal=false
 Type=Application
 Categories=GNOME;Application;AudioVideo;
+StartupNotify=true
 EOF
 
 %build

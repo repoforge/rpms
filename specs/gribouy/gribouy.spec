@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Upstream: David Boucher <bouda1@wanadoo.fr>
 
 Summary: Graphical Type1 font editor
 Name: gribouy
@@ -16,22 +16,22 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://savannah.nongnu.org/download/gribouy/unstable.pkg/0.0/gribouy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 Gribouy is a GNOME Type1 font editor.
 
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >gribouy.desktop
 [Desktop Entry]
 Name=Gribouy Font Editor
-Comment=A Type1 font editor
+Comment=Change and design Type1 fonts
 Icon=gribouy.png
 Exec=gribouy
 Terminal=false
 Type=Application
-Categories=Graphics;Application;
+Categories=GNOME;Graphics;Application;
+StartupNotify=true
 EOF
 
 %build
@@ -43,14 +43,13 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/ \
-			%{buildroot}%{_datadir}/pixmaps/
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	gribouy.desktop
 
-%{__install} -m0755 graphics/gribouy.png %{buildroot}%{_datadir}/pixmaps/
+%{__install} -D -m0755 graphics/gribouy.png %{buildroot}%{_datadir}/pixmaps/gribouy.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,7 +61,7 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/applications/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/gribouy/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 
 %changelog
 * Sat Nov 22 2003 Dag Wieers <dag@wieers.com> - 0.0.8-0

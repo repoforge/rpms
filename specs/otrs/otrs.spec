@@ -1,13 +1,12 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <info@otrs.de>
 
-%define real_version 1.2.2-01
+%define real_version 1.2.3-01
 
 Summary: Open Ticket Request System
 Name: otrs
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -57,14 +56,15 @@ done
 %install
 %{__rm} -rf %{buildroot}
 
+### Copy with permissions.
+%{__install} -D -m0710 .fetchmailrc %{buildroot}/opt/otrs/.fetchmailrc
+%{__install} -D -m0600 .mailfilter %{buildroot}/opt/otrs/.mailfilter
+%{__install} -D -m0644 .procmailrc %{buildroot}/opt/otrs/.procmailrc
+
 ### Copy everything.
-%{__install} -d -m0755 %{buildroot}/opt/otrs/
 %{__cp} -avf Kernel/ bin/ scripts/ var/ %{buildroot}/opt/otrs/
 
 ### Copy with permissions.
-%{__install} -m0710 .fetchmailrc %{buildroot}/opt/otrs/
-%{__install} -m0644 .procmailrc %{buildroot}/opt/otrs/
-%{__install} -m0600 .mailfilter %{buildroot}/opt/otrs/
 %{__install} -m0700 bin/DeleteSessionIDs.pl bin/UnlockTickets.pl bin/otrs.getConfig %{buildroot}/opt/otrs/bin/
 
 ### Copy extra configuration files.
@@ -135,6 +135,9 @@ fi
 %doc doc/
 
 %changelog
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Cosmetic rebuild for Group-tag and BuildArch-tag.
 

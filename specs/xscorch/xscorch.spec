@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: newrpms
 # Upstream: Justin David Smith <justins@chaos2.org>
 
@@ -34,7 +33,7 @@ destroy yours.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Scorched Earth
-Comment=%{summary}
+Comment=Destroy the enemy tanks before they destroy you
 Icon=xscorch.xpm
 Exec=xscorch
 Terminal=false
@@ -52,7 +51,7 @@ EOF
 %{__install} -D -m0644 img/xscorch-icon.xpm %{buildroot}%{_datadir}/pixmaps/xscorch.xpm
 
 %if %{dfi}
-	%{__install} -D -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Games/%{name}.desktop
+	%{__install} -D -m0644 xscorch.desktop %{buildroot}%{_datadir}/gnome/apps/Games/xscorch.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
@@ -69,7 +68,7 @@ EOF
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/xscorch/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.xpm
 %if %{dfi}
         %{_datadir}/gnome/apps/Games/*.desktop
 %else

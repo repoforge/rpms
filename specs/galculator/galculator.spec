@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Simon Floery <simon.floery@gmx.at>
 
@@ -29,6 +28,18 @@ Reverse Polish Notation.
 
 %prep
 %setup
+
+%{__cat} <<EOF >galculator.desktop.in
+[Desktop Entry]
+Name=Galculator
+Comment=Perform simple and scientific calculations
+Exec=galculator
+Icon=gnome-calc2.png
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Utility;
+StartupNotify=true
+EOF
 
 %build
 %configure

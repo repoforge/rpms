@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define xmmsinputdir %(xmms-config --input-plugin-dir)
+%define xmms_inputdir %(xmms-config --input-plugin-dir)
 
 Summary: Encoder/decoder for the Free Lossless Audio Codec
 Name: flac
@@ -65,16 +65,18 @@ xmms.
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{xmmsinputdir}
-%makeinstall xmmsinputplugindir=%{buildroot}%{xmmsinputdir}
+mkdir -p %{buildroot}%{xmms_inputdir}
+%makeinstall xmmsinputplugindir="%{buildroot}%{xmms_inputdir}"
 find doc/ -name "Makefile*" -exec rm -f {} \;
+
+%post
+/sbin/ldconfig 2>/dev/null
+
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -88,14 +90,14 @@ find doc/ -name "Makefile*" -exec rm -f {} \;
 %defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
+%exclude %{_libdir}/*.la
 
 %files -n xmms-flac
 %defattr(-, root, root, 0755)
-%exclude %{xmmsinputdir}/*.la
-%{xmmsinputdir}/*.so
+%{xmms_inputdir}/*.so
+%exclude %{xmms_inputdir}/*.la
 
 %changelog
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.1.0-4.fr

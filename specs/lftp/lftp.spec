@@ -1,12 +1,13 @@
 # $Id$
-
 # Authority: atrpms
 # Upstream: Alexander V. Lukyanov <lav@yars.free.net>
 # Upstream: <lftp-devel@uniyar.ac.ru>
 
+# Distcc: 0
+
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.0
+Version: 3.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -55,6 +56,9 @@ reliability in mind.
 %exclude %{_libdir}/lftp/%{version}/*.la
 
 %changelog
+* Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 3.0.1-1
+- Updated to release 3.0.1.
+
 * Fri Apr 02 2004 Dag Wieers <dag@wieers.com> - 3.0.0-1
 - Updated to release 3.0.0.
 

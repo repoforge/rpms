@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -32,7 +31,7 @@ Dillo is a very small and fast web browser using GTK.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Dillo Web Browser
-Comment=Small and fast GUI web browser
+Comment=Browse the Internet
 Exec=dillo
 Icon=dillo.png
 Terminal=false

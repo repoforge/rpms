@@ -1,7 +1,8 @@
 # $Id$
 # Authority: matthias
+# Upstream: Tim Wright <tim@ignavus.net>
 
-%define xmmsgeneraldir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir)
 
 Summary: XOSD displays transparent text on your screen like the OSD of TVs
 Name: xosd
@@ -10,7 +11,7 @@ Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ignavus.net/software.html
-Source: http://www.ignavus.net/%{name}-%{version}.tar.gz
+Source: http://www.ignavus.net/xosd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel, xmms-devel
 
@@ -48,7 +49,9 @@ XOSD library, similarly to TV OSD.
 %setup
 
 %build
-%configure --enable-old-plugin
+%configure \
+	--enable-old-plugin \
+	--with-plugindir="%{xmms_generaldir}"
 %{__make} %{_smp_mflags}
 
 %install
@@ -58,13 +61,15 @@ XOSD library, similarly to TV OSD.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/osd_cat
 %{_libdir}/*.so.*
 %{_datadir}/xosd
@@ -73,18 +78,18 @@ XOSD library, similarly to TV OSD.
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/xosd-config
-%{_includedir}/*
+%{_includedir}/*.h
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
 %{_mandir}/man1/xosd-config*
 %{_mandir}/man3/*
+%exclude %{_libdir}/*.la
 
 %files -n xmms-xosd
 %defattr(-, root, root, 0755)
-%exclude %{xmmsgeneraldir}/*.la
-%{xmmsgeneraldir}/*.so
+%{xmms_generaldir}/*.so
+%exclude %{xmms_generaldir}/*.la
 
 %changelog
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.2.5-1.fr

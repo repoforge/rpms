@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Michael C. Toren <mct@toren.net>
+# Upstream: <tcptraceroute-dev@netisland.net>
 
 Summary: traceroute implementation using TCP packets
 Name: tcptraceroute
@@ -15,10 +14,9 @@ URL: http://michael.toren.net/code/tcptraceroute/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://michael.toren.net/code/%{name}/%{name}-%{version}.tar.gz
+Source: http://michael.toren.net/code/tcptraceroute/tcptraceroute-%{version}.tar.gz
 Patch: tcptraceroute-1.4-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libnet <= 1.0.2, libpcap
 

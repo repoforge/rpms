@@ -17,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.gnome.org/Public/GNOME/sources/f-spot/0.0/f-spot-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: mono-devel, libexif-devel
 Requires: mono, gtk-sharp, libexif
 
@@ -32,12 +31,13 @@ sorting of digital images.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=F-spot Photo Manager
-Comment=Manage your photos.
+Comment=Manage your photos
 Icon=f-spot.png
 Exec=f-spot
 Terminal=false
 Type=Application
 Categories=GNOME;Application;Graphics;
+StartupNotify=true
 EOF
 
 %build

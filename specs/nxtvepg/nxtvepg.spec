@@ -1,10 +1,11 @@
+# $Id$
 # Authority: dag
-# Upstream: <nxtvepg-users@lists.sourceforge.net>
+# Upstream: <nxtvepg-users@lists.sf.net>
 # Distcc: 0
 
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg
-Version: 2.6.0
+Version: 2.7.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -59,8 +60,7 @@ EOF
 	resdir="%{buildroot}%{_prefix}/X11R6/lib/X11" \
 	SYS_DBDIR="%{buildroot}%{_localstatedir}/tmp/nxtvdb"
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/nxtvepg.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor net                  \
@@ -83,5 +83,8 @@ desktop-file-install --vendor net                  \
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 2.7.0-1
+- Updated to release 2.7.0.
+
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 2.6.0-1
 - Initial package. (using DAR)

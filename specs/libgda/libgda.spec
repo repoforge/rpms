@@ -8,8 +8,8 @@
 
 Summary: Library for writing gnome database programs
 Name: libgda
-Version: 1.0.3
-Release: 0
+Version: 1.1.1
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/
@@ -17,9 +17,8 @@ URL: http://www.gnome-db.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/%{version}/%{name}-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/1.1/libgda-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: pkgconfig >= 0.8, glib2-devel >= 2.0, ncurses-devel
 BuildRequires: libxml2-devel, libxslt-devel >= 1.0.9
@@ -113,6 +112,9 @@ scrollkeeper-update -q || :
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Thu Jan 22 2004 Dag Wieers <dag@wieers.com> - 1.0.3-0
 - Updated to release 1.0.3.
 

@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: freshrpms
+# Authority: matthias
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -1,15 +1,13 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Christophe Kalt <shmux@taranis.org>
 
-%define real_version 0.11a
+%define real_version 0.12b
 
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
-Version: 0.11
-Release: 0.a
+Version: 0.12
+Release: 0.b
 License: Proprietary License with Source
 Group: System Environment/Shells
 URL: http://web.taranis.org/shmux/
@@ -17,9 +15,8 @@ URL: http://web.taranis.org/shmux/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://web.taranis.org/shmux/dist/%{name}-%{real_version}.tgz
+Source: http://web.taranis.org/shmux/dist/shmux-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: fping
 
@@ -39,8 +36,7 @@ the user, or written to files for later processing.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	sharedir="%{buildroot}%{_datadir}/shmux"
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,6 +49,9 @@ the user, or written to files for later processing.
 %{_datadir}/shmux/
 
 %changelog
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.12-0.b
+- Updated to release 0.12b.
+
 * Mon Dec 31 2003 Dag Wieers <dag@wieers.com> - 0.11-0.a
 - Updated to release 0.11a.
 

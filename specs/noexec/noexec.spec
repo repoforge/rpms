@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Valery Reznic <valery_reznic@users.sourceforge.net>
+# Upstream: Valery Reznic <valery_reznic@users.sf.net>
 
 Summary: Run a process unable to create childs
 Name: noexec
@@ -15,8 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/noexec/noexec-%{version}.tar.gz
-BuildRoot: %{_builddir}/root-%{name}-%{version}
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 You want to run a process which will be unable to create a child

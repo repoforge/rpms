@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: HERMES pixel format conversion library
 Name: Hermes
 Version: 1.3.3
@@ -10,9 +12,8 @@ URL: http://clanlib.org/hermes/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dark.x.dtu.dk/~mbn/clanlib/download/%{name}-%{version}.tar.bz2
+Source: http://dark.x.dtu.dk/~mbn/clanlib/download/Hermes-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 HERMES is a library designed to convert a source buffer with a specified pixel

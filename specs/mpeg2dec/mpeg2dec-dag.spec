@@ -1,5 +1,6 @@
-# Authority: freshrpms
-# Upstream: <libmpeg2-devel@lists.sourceforge.net>
+# $Id$
+# Authority: matthias
+# Upstream: <libmpeg2-devel@lists.sf.net>
 
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
@@ -7,14 +8,13 @@ Version: 0.4.0
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
-URL: http://libmpeg2.sourceforge.net/
+URL: http://libmpeg2.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://libmpeg2.sourceforge.net/files/%{name}-%{version}.tar.gz
+Source: http://libmpeg2.sf.net/files/mpeg2dec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel, pkgconfig, SDL-devel
 

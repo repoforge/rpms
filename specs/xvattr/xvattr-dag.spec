@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 Summary: Utility for getting and setting Xv attributes
 Name: xvattr
 Version: 1.3
@@ -10,9 +12,8 @@ URL: http://www.dtek.chalmers.se/groups/dvd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
+Source: http://www.dtek.chalmers.se/groups/dvd/dist/xvattr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel, gtk+-devel
 

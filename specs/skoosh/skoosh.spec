@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Timothy Musson <trmusson@ihug.co.nz>
 
@@ -28,10 +27,10 @@ A simple, friendly, sliding tile puzzle for GNOME2.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >skoosh.desktop
 [Desktop Entry]
 Name=Skoosh Tile Puzzle
-Comment=Slide tiles to complete a picture.
+Comment=Slide tiles to complete a picture
 Icon=skoosh.png
 Exec=skoosh
 Terminal=false
@@ -52,11 +51,11 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/applications/%{name}.desktop
+	%{buildroot}%{_datadir}/applications/skoosh.desktop
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -77,7 +76,8 @@ scrollkeeper-update -q || :
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %config %{_sysconfdir}/sound/events/skoosh.soundlist
 %{_bindir}/*
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/skoosh/
 %{_datadir}/omf/skoosh/
 %{_datadir}/applications/*.desktop
 

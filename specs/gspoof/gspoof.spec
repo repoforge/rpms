@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Embyte <embyte@madlab.it>
 
@@ -17,8 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/gspoof/gspoof-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-#BuildRequires: 
+BuildRequires: libnet-devel >= 1.1.0
 
 %description
 Gspoof is a tool which make easier and accurate the building and sending
@@ -28,15 +26,16 @@ interface graphics written in GTK+ too.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >gspoof.desktop
 [Desktop Entry]
-Name=Gv4l
-Comment=%{summary}
-Icon=gv4l/gv4l.png
-Exec=%{name}
+Name=Gspoof
+Comment=Build and send crafted TCP/IP packets
+Icon=gspoof.png
+Exec=gspoof
 Terminal=false
 Type=Application
-Categories=AudioVideo;Application;
+Categories=GNOME;Application;Network;
+StartupNotify=true
 EOF
 
 %build
@@ -51,8 +50,6 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor net                  \
 	--add-category X-Red-Hat-Base              \
-	--add-category Application                 \
-	--add-category AudioVideo                  \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop
 
@@ -65,7 +62,7 @@ desktop-file-install --vendor net                  \
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 %{_datadir}/applications/*.desktop
 
 %changelog

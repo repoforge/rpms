@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 %define real_name libglademm
 
 Summary: C++ wrappers for libglade, for use with gtkmm
@@ -7,14 +9,13 @@ Version: 2.0.1
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
-URL: http://gtkmm.sourceforge.net/
+URL: http://gtkmm.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/gtkmm/%{real_name}-%{version}.tar.gz
+Source: http://dl.sf.net/gtkmm/libglademm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtkmm2-devel >= 2.0, libsigc++ >= 1.2, glib2-devel >= 2.0
 BuildRequires: pango-devel >= 1.0, freetype-devel >= 2.0

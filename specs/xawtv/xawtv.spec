@@ -16,9 +16,8 @@ URL: http://bytesex.org/xawtv/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bytesex.org/%{name}/%{name}_%{version}.tar.gz
+Source: http://bytesex.org/xawtv/xawtv_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel, ncurses-devel, %{?rh62:, Mesa-devel}
 BuildRequires: Xaw3d-devel, libjpeg-devel, %{!?rh62:, openmotif-devel}
@@ -32,10 +31,10 @@ Xawtv also includes a grabber driver for vic.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >xawtv.desktop
 [Desktop Entry]
 Name=Xawtv Television Viewer
-Comment=A simple television viewing program.
+Comment=Watch television on your computer
 Icon=gnome-multimedia.png
 Exec=xawtv
 Terminal=false
@@ -59,14 +58,13 @@ EOF
 	datadir="%{buildroot}%{_datadir}/xawtv"
 
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+	%{__install} -D -m0644 xawtv.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawtv.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net			\
 		--add-category X-Red-Hat-Base			\
 		--dir %{buildroot}%{_datadir}/applications	\
-		%{name}.desktop
+		xawtv.desktop
 %endif
 
 %clean

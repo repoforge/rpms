@@ -1,6 +1,5 @@
 # $Id$
-
-# Authority: freshrpms
+# Authority: matthias
 
 Summary: C++ interface for GTK++ (a GUI library for X)
 Name: gtkmm
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gtkmm/gtkmm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libsigc++-devel >= 1.2.0, glib2-devel >= 2.0.4
 BuildRequires: atk-devel >= 1.0.0, pango-devel >= 1.0.0, gtk2-devel >= 2.0.5

@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Nicola Fragale <nicolafragale@libero.it>
 
 Summary: Address book application
 Name: rubrica
-Version: 1.0.10
-Release: 0
+Version: 1.0.12
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://digilander.iol.it/nfragale/
@@ -25,9 +24,19 @@ An address book for GNOME.
 %prep
 %setup
 
+%{__cat} <<EOF >rubrica.desktop.in
+[Desktop Entry]
+Name=Rubrica Addressbook
+Comment=Manage contacts and addresses
+Icon=rubrica.png
+Exec=rubrica 
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Office;
+StartupNotify=true
+EOF
+
 %build
-#{__autoconf}
-#{__automake}
 %configure \
 	--disable-install-schemas \
 	--enable-nls
@@ -38,6 +47,8 @@ An address book for GNOME.
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
+
+%{__install} -D -m0644 pixmaps/rub.png %{buildroot}%{_datadir}/pixmaps/rubrica.png
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_docdir}/rubrica/
@@ -58,11 +69,15 @@ scrollkeeper-update -q
 %doc AUTHORS ChangeLog COPYING CREDITS NEWS README TODO doc/examples.rub
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
-%{_datadir}/rubrica/
-%{_datadir}/pixmaps/rubrica/
 %{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/rubrica/
+%{_datadir}/rubrica/
 
 %changelog
+* Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 1.0.12-1
+- Updated to release 1.0.12.
+
 * Sat Feb 07 2004 Dag Wieers <dag@wieers.com> - 1.0.10-0
 - Updated to release 1.0.10.
 

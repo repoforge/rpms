@@ -19,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://clay.ll.pl/download/dlume-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: gtk2-devel >= 2.2.0
 BuildRequires: libxml2-devel >= 2.4.0, ImageMagick
 
@@ -35,12 +34,13 @@ possible.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Dlume Address Manager
-Comment=Manage contacts and addresses.
+Comment=Manage contacts and addresses
 Icon=dlume.png
 Exec=dlume
 Terminal=false
 Type=Application
 Categories=GNOME;Application;Office;
+StartupNotify=true
 EOF
 
 %build 

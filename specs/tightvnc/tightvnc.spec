@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: <vnc-tight-list@lists.sourceforge.net>
+# Upstream: <vnc-tight-list@lists.sf.net>
 
 ### Problem with distcc ?
 # Distcc: 0
@@ -21,7 +20,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/vnc-tight/tightvnc-%{version}_unixsrc.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildPrereq: /usr/bin/perl, tcp_wrappers
 BuildRequires: zlib-devel, libjpeg-devel
@@ -72,12 +70,13 @@ EOF
 
 %{__cat} <<EOF >vncviewer.desktop
 [Desktop Entry]
-Name=VNC Viewer
-Comment=VNC client application
+Name=Tightvnc VNC Viewer
+Comment=Connect to a VNC server
 Icon=gnome-fs-network.png
 Exec=vncviewer
 Terminal=false
 Type=Application
+Categories=Application;Network;
 EOF
 
 %{__cat} <<'EOF' >vncserver.sysv
@@ -210,8 +209,6 @@ cd Xvnc
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
         desktop-file-install --vendor gnome                \
                 --add-category X-Red-Hat-Base              \
-                --add-category Application                 \
-                --add-category Network                     \
                 --dir %{buildroot}%{_datadir}/applications \
                 vncviewer.desktop
 %endif

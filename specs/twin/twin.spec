@@ -1,10 +1,6 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Massimiliano Ghilardi <max@Linuz.sns.it>
-
-# Dists: rh90 rh80 rh73
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
@@ -20,9 +16,8 @@ URL: http://linuz.sns.it/~max/twin/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/twin/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/twin/twin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Twin is a windowing environment with mouse support, window manager,

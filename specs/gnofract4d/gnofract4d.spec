@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Edwin Young <edwin@sourceforge.net>
+# Upstream: Edwin Young <edwin@sf.net>
 
 Summary: GNOME-based program to generate and view fractals
 Name: gnofract4d

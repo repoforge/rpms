@@ -1,5 +1,8 @@
-# Authority: freshrpms
-Summary: portable abstraction library for DVD decryption
+# $Id$
+# Authority: matthias
+# Upstream: <libdvdcss-devel@videolan.org>
+
+Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss
 Version: 1.2.8
 Release: 0
@@ -12,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.videolan.org/pub/videolan/libdvdcss/%{version}/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 This is a portable abstraction library for DVD decryption which is used by

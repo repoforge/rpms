@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Olivier Sessink <olivier@bluefish.openoffice.nl>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -31,6 +29,17 @@ password instead of ten (or more).
 %prep
 %setup
 
+%{__cat} <<EOF >gpasman.desktop
+[Desktop Entry]
+Name=Password Manager
+Comment=Manage various types of passwords
+Icon=keyring.png
+Exec=gpasman
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Utility;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -40,25 +49,12 @@ password instead of ten (or more).
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %makeinstall
 
-cat <<EOF >gnome-%{name}.desktop
-[Desktop Entry]
-Name=Password manager
-Comment=%{summary}
-Icon=keyring.png
-Exec=gpasman
-Terminal=false
-Type=Application
-EOF
-
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Utilities
-	%{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/
+	%{__install} -D -m0644 gpasman.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gpasman.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category Utility                     \
 		--dir %{buildroot}%{_datadir}/applications \
 		gnome-%{name}.desktop
 %endif

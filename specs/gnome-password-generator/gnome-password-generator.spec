@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Chris Ladd <caladd@particlestorm.net>
 
 Summary: Graphical secure password generator
 Name: gnome-password-generator
-Version: 1.0
-Release: 2
+Version: 1.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://gnome-password.sf.net/
@@ -29,32 +28,31 @@ passwords of a specified length.
 %prep
 %setup
 
-### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e '
-		s|/usr/bin|%{buildroot}%{_bindir}|g;
-		s|/usr/share|%{buildroot}%{_datadir}|g;
-		s|^chown|#chown|;
-	' install.sh
-
 %build
+%{__make} \
+	datadir="%{_datadir}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/{applications,pixmaps}/
-sh install.sh
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING INSTALL README
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/*
 %{_datadir}/pixmaps/*.svg
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
+
+* Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 1.0-2
 - Cosmetic rebuild for Group-tag and BuildArch-tag.
 

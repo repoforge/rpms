@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <fixounet@free.fr>
 # Archs: i686 i386
@@ -19,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://fixounet.free.fr/avidemux/avidemux-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk+-devel >= 1.2.9
 BuildRequires: nasm >= 0.98.32
@@ -48,7 +46,7 @@ compatible encoder and the Gimp Toolkit (GTK) libraries.
 cat <<EOF >gnome-%{name}.desktop
 [Desktop Entry]
 Name=Video editing tool
-Comment=%{summary}
+Comment=Edit your videos in real-time
 Icon=gnome-multimedia.png
 Exec=avidemux
 Terminal=false

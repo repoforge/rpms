@@ -1,5 +1,7 @@
-# Authority: freshrpms
-%define	plugindir %(xmms-config --input-plugin-dir)
+# $Id$
+# Authority: matthias
+
+%define xmms_inputdir %(xmms-config --input-plugin-dir)
 
 Summary: Free lossless audio codec
 Name: flac
@@ -7,14 +9,13 @@ Version: 1.1.0
 Release: 3
 License: GPL
 Group: Applications/Multimedia
-URL: http://flac.sourceforge.net/
+URL: http://flac.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://prdownloads.sourceforge.net/flac/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/flac/flac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: xmms-devel, id3lib-devel, libogg-devel, nasm
 Obsoletes: flac-libs
@@ -31,6 +32,7 @@ FLAC metadata, licensed under the GPL; 4) player plugins for XMMS
 and Winamp, licensed under the GPL; and 5) documentation, licensed
 under the GNU Free Documentation License.
 
+
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
@@ -41,6 +43,7 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+
 %package -n xmms-flac
 Summary: X MultiMedia System plugin to play FLAC files
 Group: Applications/Multimedia
@@ -49,6 +52,7 @@ Obsoletes: flac-xmms
 
 %description -n xmms-flac
 An input plugin that enables playback of FLAC files in xmms.
+
 
 %prep
 %setup
@@ -59,18 +63,16 @@ An input plugin that enables playback of FLAC files in xmms.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{plugindir}
-%makeinstall xmmsinputplugindir="%{buildroot}%{plugindir}"
+%{__install} -d -m0755 %{buildroot}%{xmms_inputdir}
+%makeinstall \
+	xmmsinputplugindir="%{buildroot}%{xmms_inputdir}"
 find doc/ -name "Makefile*" -exec %{__rm} -f {} \;
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la \
-		%{buildroot}%{plugindir}/*.la
-
 %post
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
+
 %postun
-/sbin/ldconfig &>/dev/null
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -89,12 +91,12 @@ find doc/ -name "Makefile*" -exec %{__rm} -f {} \;
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_datadir}/aclocal/*.m4
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %files -n xmms-flac
 %defattr(-, root, root, 0755)
-%{plugindir}/*.so
-#exclude %{plugindir}/*.la
+%{xmms_inputdir}/*.so
+%exclude %{xmms_inputdir}/*.la
 
 %changelog
 * Tue Jan 27 2004 Dag Wieers <dag@wieers.com> - 1.1.0-3

@@ -3,9 +3,9 @@
 # Authority: dag
 # Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
 
-%define real_version 1.0.46
+%define real_version 1.0.47
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
-%define release 4
+%define release 1
 
 Summary: RRDtool - round robin database
 Name: rrdtool
@@ -18,7 +18,7 @@ URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/%{name}-%{version}.tar.gz
+Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
 Patch: php-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Anthony Tekatch <anthony@unihedron.com>
 
 Summary: Units conversion utility
 Name: gonvert
 Version: 0.1.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Engineering
 URL: http://unihedron.com/projects/gonvert/gonvert.php
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.unihedron.com/projects/gonvert/downloads/gonvert-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: python >= 1.5, pygtk2-devel >= 2.0, libglade >= 0.13, gnome-libs >= 1.2.4
@@ -31,14 +29,24 @@ your own units.
 %prep 
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
+%{__perl} -pi.orig -e '
+		s|^(BINDIR)   =.*$|$1 = \$(bindir)|;
+		s|^(LIBDIR)   =.*$|$1 = \$(libdir)|;
+		s|^(DOCDIR)   =.*$|$1 = ./rpm-doc|;
+		s|/usr/share|\$(datadir)|;
+		s|\$\(BASEDIR\)/share|\$(datadir)|;
+	' Makefile
+
+%{__cat} <<EOF >gonvert.desktop
 [Desktop Entry]
-Name=Gonvert Unit Conversion
-Comment=Convert various units
+Name=Unit Convertor
+Comment=Convert between various units
+Icon=gonvert.png
 Exec=gonvert
 Terminal=false
 Type=Application
-Icon=gonvert_icon.png
+StartupNotify=true
 Categories=GNOME;Application;Utility
 EOF
 
@@ -47,11 +55,9 @@ EOF
 
 %install 
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	DESTDIR="%{buildroot}"
+%makeinstall
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/doc
+%{__install} -D -m0644 pixmaps/gonvert_icon.png %{buildroot}%{_datadir}/pixmaps/gonvert.png
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -62,9 +68,12 @@ EOF
 %{_bindir}/*
 %{_libdir}/*
 %{_datadir}/gnome/apps/Utilities/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/*.png
 
 %changelog 
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.1.10-2
+- Small cosmetic changes.
+
 * Sat Mar 13 2004 Dag Wieers <dag@wieers.com> - 0.1.10-1
 - Updated to release 0.1.10.
 

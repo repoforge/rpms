@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.0
 BuildRequires: python-adns, python-bsddb3, libxml2-python >= 1.99.13
 BuildRequires: pyorbit, pygtk2 >= 1.99.13, pygtk2-libglade
-BuildRequires: gnome-python2-gtkhtml2, gnome-python2-gnomevfs
+BuildRequires: gnome-python2-gtkhtml2, gnome-python2-gconf, gnome-python2-gnomevfs
 
 Requires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.0
 Requires: libxml2-python >= 1.99.13, python-adns, python-bsddb3, mx

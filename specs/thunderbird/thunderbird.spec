@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Distcc: 0
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -23,7 +23,6 @@ Patch1: mozilla-1.4-x86_64.patch
 Patch2: mozilla-xremote.patch
 Patch1001: mozilla-1.6-gtk2xtbin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel, zlib-devel, zip, perl
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel, ORBit-devel
@@ -220,11 +219,10 @@ tar -xzv -C %{buildroot}%{_libdir} -f dist/thunderbird-*-linux-gnu.tar.gz
 %endif
 
 %changelog
-* Fri Feb 26 2004 Dag Wieers <dag@wieers.com> - 0.5-0
+* Sat Apr 03 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 - Fixed off-by-1 border for plugins. (Daniele Paoni)
 - Open new window by default, added --profile-manager. (Gary Peck)
-- RH73 build using gcc 3.2.3. (Edward Rudd)
 - Added x86_64 patch. (Oliver Sontag)
 
 * Sun Dec 07 2003 Dag Wieers <dag@wieers.com> - 0.4-0

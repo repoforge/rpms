@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: totem
+
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: GTK2 front-end for xine-lib
@@ -12,9 +14,8 @@ URL: http://www.hadess.net/totem.php3
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome.org/pub/gnome/sources/%{name}/%{version}/%{name}-%{version}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/gnome/sources/totem/%{version}/totem-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 PreReq: GConf2
 BuildRequires: glib2-devel >= 2.1, intltool >= 0.20, gnome-vfs2-devel >= 2.1.6

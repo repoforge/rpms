@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Thomas Vander Stichele <thomas@apestaart.org>
 
@@ -14,9 +13,8 @@ URL: http://columbus.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://thomas.apestaart.org/download/columbus/src/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%{release}
-
+Source: http://thomas.apestaart.org/download/columbus/src/columbus-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Columbus automatically detects your location from a set of pre-defined 

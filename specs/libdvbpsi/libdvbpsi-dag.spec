@@ -1,5 +1,8 @@
-# Authority: freshrpms
-Summary: library for decoding and generating MPEG 2 and DVB PSI sections
+# $Id$
+# Authority: matthias
+# Upstream: <libdvbpsi-devel@videolan.org>
+
+Summary: Library for decoding and generating MPEG 2 and DVB PSI sections
 Name: libdvbpsi
 Version: 0.1.2
 Release: 0
@@ -12,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.videolan.org/pub/videolan/libdvbpsi/%{version}/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 libdvbpsi is a simple library designed for MPEG 2 TS and DVB PSI tables

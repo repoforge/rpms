@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Wireless sniffer for 802.11 wireless networks
@@ -15,9 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.elixar.com/airtraf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-#BuildRequires: 
 
 %description
 AirTraf is a wireless sniffer that can detect and determine exactly what

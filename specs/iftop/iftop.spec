@@ -1,7 +1,7 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Paul Warren <pdw@ex-parrot.com>, Chris Lightfoot <chris@ex-parrot.com>
+# Upstream: Paul Warren <pdw@ex-parrot.com>
+# Upstream: Chris Lightfoot <chris@ex-parrot.com>
 
 Summary: Display bandwidth usage on an interface
 Name: iftop
@@ -15,8 +15,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.ex-parrot.com/~pdw/iftop/download/iftop-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}%{version}
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Patrick Prasse <patrick.prasse@gmx.net>
 
@@ -7,7 +6,7 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: computer DJing system
+Summary: Computer DJing system
 Name: beatforce
 Version: 0.1.5
 Release: 0
@@ -18,9 +17,8 @@ URL: http://developer.berlios.de/projects/beatforce/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.berlios.de/beatforce/%{real_name}-%{version}.tar.bz2
+Source: http://download.berlios.de/beatforce/BeatForce-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gettext
 BuildRequires: gnome-libs-devel, libxml-devel, vrb-devel
@@ -41,10 +39,11 @@ database, a mixer with manual and auto-fade and some more features.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Beat Force DJ System
-Comment=A real time sound mixing tool
+Comment=Mix beats and sounds realtime
 Exec=beatforce
 Type=Application
 Terminal=false
+Categories=Application;AudioVideo;
 Encoding=UTF-8
 EOF
 
@@ -72,8 +71,6 @@ EOF
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category AudioVideo                  \
 		--dir %{buildroot}%{_datadir}/applications \
 		%{name}.desktop
 %endif

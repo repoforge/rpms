@@ -3,6 +3,10 @@
 # Authority: dag
 # Upstream: <irssi-dev@dragoncat.net>
 
+# Distcc: 0
+
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.9
@@ -28,11 +32,7 @@ Support for other protocols like ICQ could be created some day too.
 
 %prep
 %setup
-%{?rhfc1:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
-%{?rhel3:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 %{?rh90:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
-
-#{__perl} -pi.orig -e 's|/usr/lib/|\$(libdir)/|' Makefile.in */Makefile.in */*/Makefile.in */*/*/Makefile.in
 
 %build
 %configure \
@@ -44,26 +44,24 @@ Support for other protocols like ICQ could be created some day too.
         --with-proxy \
 	--with-perl="yes" \
 	--enable-ssl \
-	--with-perl-lib="%{buildroot}%{perl_sitearch}/.." \
 	--with-glib2 \
         --with-ncurses \
-	--with-gc
-#	--with-perl-lib="vendor" \
-#	--with-perl-lib="site" \
-#	--with-perl-lib="%{buildroot}%{perl_sitearch}" \
+	--with-gc \
+	--with-perl-lib="%{buildroot}%{perl_vendorarch}"
+#	--with-perl-lib="vendor"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	PREFIX="%{buildroot}%{_prefix}" \
-	PERL_USE_LIB="%{perl_sitearch}/.."
+	PERL_USE_LIB="%{buildroot}%{perl_vendorarch}"
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/irssi/modules/*.{a,la} \
-		%{buildroot}%{perl_sitearch}/../auto/Irssi/.packlist \
-		%{buildroot}%{perl_sitearch}/../auto/Irssi/*/.packlist \
-		%{buildroot}%{perl_sitearch}/../perllocal.pod
+		%{buildroot}%{perl_vendorarch}/auto/Irssi/.packlist \
+		%{buildroot}%{perl_vendorarch}/auto/Irssi/*/.packlist \
+		%{buildroot}%{perl_vendorarch}/perllocal.pod
 %{__rm} -rf %{buildroot}%{_docdir}/irssi/
 
 %clean
@@ -78,7 +76,7 @@ Support for other protocols like ICQ could be created some day too.
 %{_bindir}/*
 %{_libdir}/irssi/
 %{_datadir}/irssi/
-%{_libdir}/perl5/
+%{perl_vendorarch}/*
 
 %changelog
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.8.9-1

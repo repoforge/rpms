@@ -1,13 +1,15 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <bochs-developers@lists.sf.net>
 
-%define logmsg logger -t bochs/rpm
+# Distcc: 0
 
-Summary: Bochs project x86 PC emulator
+%define logmsg logger -t %{name}/rpm
+
+Summary: IA-32 (x86) PC emulator
 Name: bochs
-Version: 2.1
-Release: 0
+Version: 2.1.1
+Release: 1
 License: LGPL
 Group: Applications/Emulators
 URL: http://bochs.sf.net/
@@ -16,9 +18,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/bochs/bochs-%{version}.tar.gz
-#Source1: http://bochs.sourceforge.net/guestos/dlxlinux4.tar.gz
+#Source1: http://bochs.sf.net/guestos/dlxlinux4.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Bochs is a portable x86 PC emulation software package that emulates enough of
@@ -78,6 +79,9 @@ fi
 %{_datadir}/bochs/
 
 %changelog
+* Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
+- Updated to release 2.1.1.
+
 * Sun Feb 01 2004 Dag Wieers <dag@wieers.com> - 2.1-0
 - Updated to release 2.1.
 

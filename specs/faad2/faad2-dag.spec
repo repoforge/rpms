@@ -1,4 +1,6 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
+
 %define plugindir %(xmms-config --input-plugin-dir)
 %define real_version 2.0_rc1
 
@@ -13,9 +15,8 @@ URL: http://www.audiocoding.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.audiocoding.com/files/%{name}_%{real_version}.tar.gz
+Source: http://www.audiocoding.com/files/faad2_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libsndfile-devel >= 1.0.0
 BuildRequires: xmms-devel, id3lib-devel, gtk+-devel

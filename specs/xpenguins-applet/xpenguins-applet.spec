@@ -15,9 +15,8 @@ URL: http://xpenguins.seul.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://xpenguins.seul.org/%{real_name}-%{version}.tar.gz
+Source: http://xpenguins.seul.org/xpenguins_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: xpenguins >= 1.9
 

@@ -1,12 +1,13 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
 
+# Distcc: 0
+
 Summary: Library for writing gnome database programs
 Name: libgnomedb
-Version: 1.0.3
-Release: 0
+Version: 1.1.1
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/
@@ -14,9 +15,8 @@ URL: http://www.gnome-db.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/libgnomedb/%{version}/%{name}-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/libgnomedb/1.1/libgnomedb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: pkgconfig >= 0.8
 BuildRequires: gtk2-devel >= 1.3.6, libbonoboui-devel, libglade2-devel
@@ -81,14 +81,14 @@ scrollkeeper-update -q || :
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 #%config %{_sysconfdir}/gnome-vfs-2.0/modules/*
 %{_bindir}/*
-%{_libexecdir}/*
+#%{_libexecdir}/*
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/gnome-db/
 %{_datadir}/mime-info/*
 %{_datadir}/pixmaps/libgnomedb/
 %{_libdir}/*.so.*
-%{_libdir}/bonobo/monikers/*.so
-%{_libdir}/bonobo/servers/*.server
+#%{_libdir}/bonobo/monikers/*.so
+#%{_libdir}/bonobo/servers/*.server
 #%{_libdir}/gnome-vfs-2.0/modules/*.so
 %{_libdir}/libglade/2.0/*.so
 
@@ -102,6 +102,9 @@ scrollkeeper-update -q || :
 %{_includedir}/libgnomedb/
 
 %changelog
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
+- Updated to release 1.1.1.
+
 * Thu Jan 22 2004 Dag Wieers <dag@wieers.com> - 1.0.3-0
 - Updated to release 1.0.3.
 

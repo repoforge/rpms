@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Niels Provos <provos@citi.umich.edu>
 
@@ -20,6 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: libevent-devel
 
 %description
 Honeyd is a small daemon that creates virtual hosts on a network.
@@ -30,7 +30,6 @@ host to claim multiple addresses on a LAN for network simulation.
 
 %prep
 %setup
-#%patch0 
 
 %build
 %configure
@@ -38,14 +37,14 @@ host to claim multiple addresses on a LAN for network simulation.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man8/ \
-			%{buildroot}%{_datadir}/honeyd/ \
-			%{buildroot}%{_libdir}/honeyd/
-%{__install} -m0755 honeyd %{buildroot}%{_sbindir}
+%{__install} -D -m0755 honeyd %{buildroot}%{_sbindir}/honeyd
+%{__install} -D -m0644 honeyd.8 %{buildroot}%{_mandir}/man8/honeyd.8
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/honeyd/
 %{__install} -m0644 xprobe2.conf nmap.assoc nmap.prints config.sample %{buildroot}%{_datadir}/honeyd/
+
+%{__install} -d -m0755 %{buildroot}%{_libdir}/honeyd/
 %{__install} -m0755 libhoneyd.so honeyd_overload.lo atomicio.lo fdpass.lo %{buildroot}%{_libdir}/honeyd/
-%{__install} -m0644 honeyd.8 %{buildroot}%{_mandir}/man8/
 
 %clean
 %{__rm} -rf %{buildroot}

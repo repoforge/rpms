@@ -18,7 +18,7 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define real_name airo_mpi
-%define real_version 20031220
+%define real_version 20040219
 %define real_release 2
 
 %define moduledir /kernel/drivers/net/wireless/airo_mpi
@@ -35,9 +35,10 @@ URL: http://bellet.info/~bellet/laptop/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bellet.info/~bellet/laptop/airo_mpi-%{real_version}.tar.gz
+Source: http://bellet.info/~bellet/laptop/airo_mpi-20031220.tar.gz
+#Source: http://bellet.info/laptop/airo.c-2.4.25.diff
+Source1: airo_mpi.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: kernel-source
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}
@@ -71,7 +72,8 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-20031220
+%{__cp} -av %{SOURCE1} .
 
 ### FIXME: Fix Makefile to override KERNEL_VERSION
 %{__perl} -pi.orig -e 's|^#(KERNEL_VERSION)=.*$|$1 = %{kversion}-%{krelease}|' Makefile
@@ -137,6 +139,9 @@ cd -
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
 
 %changelog
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 1.6-1.20040219
+- Updated to release 20040219.
+
 * Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.6-2.20031220
 - Fixed the longstanding smp kernel bug. (Bert de Bruijn)
 

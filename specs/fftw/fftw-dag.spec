@@ -1,4 +1,5 @@
-# Authority: freshrpms
+# $Id$
+# Authority: matthias
 
 Summary: Fast Fourier Transform library
 Name: fftw
@@ -11,9 +12,8 @@ URL: http://www.fftw.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.fftw.org/%{name}-%{version}.tar.gz
+Source: http://www.fftw.org/fftw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 FFTW is a C subroutine library for computing the Discrete Fourier Transform

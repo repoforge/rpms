@@ -17,8 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.nuclearelephant.com/projects/dspam/sources/dspam-%{version}.tar.gz
 Source1: dspam.m4
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?rhfc1:BuildRequires: db4-devel}
 %{?rhel3:BuildRequires: db4-devel}

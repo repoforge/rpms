@@ -1,17 +1,20 @@
 # $Id$
 # Authority: matthias
-
-# Authority: dag
-
 # Upstream: Julian Seward <jseward@acm.org>
+
+# Distcc: 0
 
 Summary: Debugging and profiling system for x86-GNU/Linux platforms
 Name: valgrind
-Version: 2.0.0
+Version: 2.1.1
 Release: 1
-Group: Development/Tools
 License: GPL
+Group: Development/Tools
 URL: http://valgrind.kde.org/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
 Source: http://developer.kde.org/~sewardj/valgrind-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel
@@ -45,9 +48,6 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot.
-%{__rm} -rf %{buildroot}%{_docdir}/valgrind/
-
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,9 +60,13 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %{_bindir}/*
 %{_libdir}/valgrind/
 %{_includedir}/valgrind/
+%exclude %{_docdir}/valgrind/
 
 
 %changelog
+* Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
+- Updated to release 2.1.1.
+
 * Tue Mar  2 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-1.fr
 - Minor spec file fixes.
 - Clean up remains of ntpl stuff.

@@ -22,7 +22,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/cvsgui/gcvs-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: gtk+-devel
 %{?rhfc1:BuildRequires: tcl-devel}
 %{?rhel3:BuildRequires: tcl-devel}
@@ -41,12 +40,13 @@ which provides several graphical clients on Mac and Windows as well.
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=gcvs
-Comment=Gcvs CVS Browser
+Name=Gcvs CVS Browser
+Comment=Browse and use CVS graphically
 Icon=gnome-util.png 
 Exec=gcvs
 Type=Application
 Terminal=false
+StartupNotify=true
 EOF
 
 %{__mv} -f cvsunix/man/cvs.1 cvsunix/man/cvs-gcvs.1
