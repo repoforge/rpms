@@ -43,7 +43,7 @@ orthographic, and rectangular.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS README.config NEWS TODO
+%doc AUTHORS NEWS README* TODO
 %{_bindir}/xplanet
 %{_datadir}/xplanet
 %{_mandir}/man1/xplanet.1.gz

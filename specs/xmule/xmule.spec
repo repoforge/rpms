@@ -12,7 +12,7 @@ Patch: xmule-1.7.1-destdir.patch
 URL: http://www.xmule.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK, /usr/sbin/alternatives
-BuildRequires: gcc-c++, wxGTK-devel, zlib-devel
+BuildRequires: gcc-c++, wxGTK-devel, zlib-devel, gettext
 Obsoletes: lmule <= 1.2.1
 
 %description
@@ -38,16 +38,15 @@ same network.
 %find_lang %{name}
 
 
+%clean
+%{__rm} -rf %{buildroot}
+
+
 %post
 /usr/sbin/alternatives --install %{_bindir}/ed2k ed2k %{_bindir}/ed2k.%{name} 40 || :
 
-
 %preun
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
-
-
-%clean
-%{__rm} -rf %{buildroot}
 
 
 %files -f %{name}.lang
@@ -61,6 +60,7 @@ same network.
 %changelog
 * Thu May 13 2004 Matthias Saou <http://freshrpms.net/> 1.8.2b-1
 - Update to 1.8.2b.
+- Added gettext build dependency otherwise the po stuff fails.
 
 * Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 1.8.2-1
 - Update to 1.8.2, finally found after some hunting.

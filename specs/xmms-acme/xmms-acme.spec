@@ -3,16 +3,16 @@
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
 
-Summary: useful plugin for XMMS to use special multimedia keys through acme
+Summary: XMMS plugin to use special multimedia keys in GNOME or through acme
 Name: xmms-acme
 Version: 0.4.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.devin.com/xmms-xf86audio/
 Source: http://www.devin.com/xmms-xf86audio/download/xmms-xf86audio-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xmms >= 1.0.0, acme
+Requires: xmms >= 1.0.0
 BuildRequires: xmms-devel, glib-devel, gtk+-devel
 Provides: xmms-xf86audio = %{version}-%{release}
 
@@ -36,7 +36,6 @@ mapping and expects those media players to listen for the XF86Audio keysyms.
 %{__rm} -rf %{buildroot}
 %{__install} -D -m 0755 libxf86audio.so \
     %{buildroot}%{xmms_generaldir}/libxf86audio.so
-%{__strip} %{buildroot}%{xmms_generaldir}/* || :
 
 
 %clean
@@ -50,6 +49,10 @@ mapping and expects those media players to listen for the XF86Audio keysyms.
 
 
 %changelog
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-2
+- Removed explicit acme dependency as GNOME 2.6 has the key mapping built in.
+- Removed explicit stripping, that goes into the debuginfo package.
+
 * Tue Feb  3 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-1
 - Initial RPM package, called xmms-acme instead of xmms-xf86audio.
 
