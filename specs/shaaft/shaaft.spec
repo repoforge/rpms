@@ -17,8 +17,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://prdownloads.sourceforge.net/criticalmass/Shaaft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: 
-
 %description
 Shaaft is an OpenGL 3D falling block game similar to Blockout. It currently
 runs on Linux and Windows. There is still a lot missing. No menu system,
