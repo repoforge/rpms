@@ -40,6 +40,7 @@ EOF
 
 %build
 %configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
 	--disable-mmx \
 	--enable-mp3lame \
 	--enable-vorbis \
