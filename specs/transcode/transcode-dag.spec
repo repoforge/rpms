@@ -1,11 +1,14 @@
+# $Id$
 # Authority: matthias
 # Upstream: Thomas Östreich <ostreich@theorie.physik.uni-goettingen.de>
 # Upstream: Tilmann Bitterberg <transcode@tibit.org>
 
+# Distcc: 0
+
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 0.6.11
-Release: 0
+Version: 0.6.12
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
@@ -13,15 +16,18 @@ URL: http://zebra.fh-weingarten.de/~transcode/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.gz
+Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: avifile-devel >= 0.6.0, ImageMagick-devel >= 5.4.3, lame-devel >= 3.89
+#BuildRequires: avifile-devel >= 0.6.0, libpostproc
+BuildRequires: ImageMagick-devel >= 5.4.3, lame-devel >= 3.89
 BuildRequires: libogg-devel, libvorbis-devel, libdvdread-devel, libdv-devel
-BuildRequires: libfame-devel, mjpegtools-devel, SDL-devel, libpostproc
-BuildRequires: libxml2-devel, libjpeg-devel, a52dec-devel, glib-devel, xvidcore-devel
+BuildRequires: libfame-devel, mjpegtools-devel, SDL-devel, xvidcore-devel
+BuildRequires: libxml2-devel, libjpeg-devel, a52dec-devel >= 0.7.3, glib-devel,
+BuildRequires: freetype-devel >= 2.0, libquicktime-devel, lzo-devel >= 1.08, bzip2-devel
+%ifarch %{ix86}
 BuildRequires: nasm
+%endif
 
 %description
 transcode is a linux text-console utility for video stream processing,
@@ -37,14 +43,16 @@ of video frames and loading of external filters.
 
 %build
 %configure \
-	--x-includes="/usr/X11R6/include/X11" \
+	--x-includes="%{_prefix}/X11R6/include/X11" \
 	--disable-dependency-tracking \
 	--enable-v4l \
+	--enable-text \
 	--with-a52 \
-	--with-avifile-mods \
+	--with-avifile-mods="no" \
 	--with-dv \
 	--with-dvdread \
 	--with-lame \
+	--with-libfame \
 	--with-libjpeg-mods \
 	--with-libmpeg3 \
 	--with-lzo \
@@ -60,23 +68,23 @@ of video frames and loading of external filters.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	docsdir="../installed-docs/"
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/transcode/*.la
+	docsdir="../rpm-doc/"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO installed-docs/*
+%doc AUTHORS ChangeLog COPYING README TODO rpm-doc/*
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/transcode/
-#exclude %{_libdir}/transcode/*.la
+%exclude %{_libdir}/transcode/*.la
 
 %changelog
+* Fri Apr 16 2004 Dag Wieers <dag@wieers.com> - 0.6.12-1
+- Rebuild against new libdv.
+
 * Sat Nov 08 2003 Dag Wieers <dag@wieers.com> - 0.6.11-0
 - Updated to release 0.6.11.
 
