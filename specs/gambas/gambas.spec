@@ -39,7 +39,7 @@ KDE programma's aansturen met DCOP, uw programma vertalen naar vele talen,
 eenvoudig netwerktoepassingen maken, enzoverder...
 
 %prep
-%setup
+%setup -n gambas-0.92
 %patch -p1
 
 %build
