@@ -18,6 +18,9 @@
 # Don't build debuginfo packages for kernel modules
 %define debug_package %{nil}
 
+# Don't have build fail when i386 modules aren't packaged
+%define _unpackaged_files_terminate_build 0
+
 # Where the kernel build tree lives for post 2.6
 %define basedeveldir %{_libdir}/kernel-module-devel-%{krel}
 %define develdir %{basedeveldir}/kernel%{ktype}-%{krel}.%{_target_cpu}.rpm
@@ -65,6 +68,14 @@ This package contains a kernel module for the qc-usb Logitech QuickCam USB
 driver.
 
 
+%package -n qcset
+Summary: Utility to configure the QuickCam USB webcam settings
+Group: System Environment/Base
+                                                                                
+%description -n qcset
+Simple command-line utility to configure the QuickCam USB webcam settings.
+
+
 %prep
 %setup -q -n qc-usb-%{version}
 %patch -p2
@@ -73,6 +84,14 @@ driver.
 %build
 sh autogen.sh || :
 %if %{post26}
+# Workaround for i386 target to build a module we won't use, just to get
+# the utility as i386
+%ifarch i386
+    %define target i586
+%else
+    %define target %{_target_cpu}
+%endif
+%define develdir %{basedeveldir}/kernel${type}-%{krel}.%{target}.rpm
 %configure \
     --with-linuxdir="%{develdir}"
 %else
@@ -100,9 +119,18 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 
+%ifnarch i386
 %files %{kernel}
 %defattr(-, root, root, 0755)
 /lib/modules/%{kernel}%{?updates}/kernel/drivers/video/quickcam.*o
+%endif
+
+%ifnarch i586 i686 athlon
+%files -n qcset
+%defattr(-, root, root, 0755)
+%doc APPLICATIONS COPYING FAQ README README.qce TODO qcweb-info.txt
+%{_bindir}/qcset
+%endif
 
 
 %changelog
