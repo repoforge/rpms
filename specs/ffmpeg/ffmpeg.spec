@@ -17,16 +17,10 @@ Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}.tar.gz
 Source: http://ffmpeg.sourceforge.net/cvs/%{name}-cvs-%{date}.tar.gz
 %endif
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: imlib2, SDL, freetype, zlib
-%{!?_without_lame:Requires: lame}
-%{!?_without_vorbis:Requires: libogg, libvorbis}
-%{!?_without_faad:Requires: faad2}
-%{!?_without_faac:Requires: faac}
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
-%{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 Provides: libavcodec.so, libavformat.so
 
@@ -47,6 +41,11 @@ Available rpmbuild rebuild options :
 Summary: Header files and static library for the ffmpeg codec library
 Group: Development/Libraries
 Requires: %{name} = %{version}
+Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
+%{!?_without_lame:Requires: lame-devel}
+%{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
+%{!?_without_faad:Requires: faad2-devel}
+%{!?_without_a52dec:Requires: a52dec-devel}
 
 %description devel
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -81,7 +80,6 @@ Install this package if you want to compile apps with ffmpeg support.
     %{!?_without_lame: --enable-mp3lame} \
     %{!?_without_vorbis: --enable-vorbis} \
     %{!?_without_faad: --enable-faad} \
-    %{!?_without_faac: --enable-faac} \
     %{!?_without_a52dec: --enable-a52}
 %{__make} %{?_smp_mflags} \
     OPTFLAGS="-fPIC %{optflags}" \
@@ -135,6 +133,12 @@ Install this package if you want to compile apps with ffmpeg support.
 
 
 %changelog
+* Mon Aug  2 2004 Matthias Saou <http://freshrpms.net/> 0.4.8-3
+- Removed explicit binary dependencies.
+- Removed faac support, it doesn't exist.
+- Seems like Imlib2 support is broken...
+- Added missing -devel requirements for the -devel package.
+
 * Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.4.8-3
 - Fixes for building for x86_64 architecture.
 
