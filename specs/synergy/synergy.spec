@@ -3,7 +3,7 @@
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -41,12 +41,15 @@ own display.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README doc/PORTING
-%doc doc/*.html doc/*.css 
+%doc doc/*.html doc/*.css
 %doc examples/synergy.conf
 %{_bindir}/*
 
 
 %changelog
+* Mon Jan 31 2005 Matthias Saou <http://freshrpms.net/> 1.2.2-1
+- Update to 1.2.2.
+
 * Thu Jan 13 2005 Matthias Saou <http://freshrpms.net/> 1.2.1-1
 - Update to 1.2.1.
 
