@@ -6,7 +6,7 @@
 
 Summary: Open Source desktop publishing application
 Name: passepartout
-Version: 0.5
+Version: 0.6
 Release: 1
 License: BSD
 Group: Applications/Multimedia
@@ -46,8 +46,7 @@ Categories=GNOME;Application;Graphics;
 EOF
 
 %build
-%configure \
-	--disable-dependency-tracking
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -77,6 +76,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %exclude %{_docdir}/passepartout/
 
 %changelog
+* Fri Nov 12 2004 Dag Wieers <dag@wieers.com> - 0.6-1
+- Updated to release 0.6.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 

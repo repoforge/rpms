@@ -13,11 +13,13 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 %define gccversion %(rpm -q gcc --qf '%{RPMTAG_VERSION}' | tail -1)
 
 Summary: Distributed C/C++ compilation client program
 Name: distcc
-Version: 2.18.1
+Version: 2.18.2
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -31,6 +33,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_gtk2:BuildRequires: gtk2-devel >= 2.0, libgnome-devel, libgnomeui-devel}
 Requires: gcc, gcc-c++
+%{?fc3:Requires: compat-gcc, compat-gcc-c++, gcc4}
 %{?fc2:Requires: compat-gcc, compat-gcc-c++, gcc34}
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
 %{?rh9:Requires: compat-gcc, compat-gcc-c++}
@@ -222,6 +225,7 @@ for compiler in cc c++ gcc g++; do
 	%{__ln_s} -f %{_bindir}/distcc %{buildroot}%{_libdir}/distcc/bin/i386-redhat-linux-$compiler-%{gccversion}
 done
 
+%{?fc3:%define has_gcc4 1}
 %{?fc2:%define has_gcc296 1}
 %{?fc1:%define has_gcc296 1}
 %{?rh9:%define has_gcc296 1}
@@ -304,10 +308,10 @@ fi
 %files server
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/distccd.*
-%config(noreplace) %{_sysconfdir}/logrotate.d/*
-%config(noreplace) %{_sysconfdir}/sysconfig/*
-%config(noreplace) %{_sysconfdir}/xinetd.d/*
-%config %{_initrddir}/*
+%config(noreplace) %{_sysconfdir}/logrotate.d/distccd
+%config(noreplace) %{_sysconfdir}/sysconfig/distccd
+%config(noreplace) %{_sysconfdir}/xinetd.d/distccd
+%config %{_initrddir}/distccd
 %{_bindir}/distccd
 
 %if %{!?_without_gtk2:1}0
@@ -315,11 +319,14 @@ fi
 %defattr(-, root, root, 0755)
 %{_bindir}/distccmon-gnome
 %{_datadir}/distcc/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/applications/%{desktop_vendor}-distccmon-gnome.desktop
+%{_datadir}/pixmaps/distccmon-gnome.png
 %endif
 
 %changelog
+* Fri Nov 12 2004 Dag Wieers <dag@wieers.com> - 2.18.2-1
+- Updated to release 2.18.2.
+
 * Tue Nov 09 2004 Dag Wieers <dag@wieers.com> - 2.18.1-1
 - Updated to release 2.18.1.
 

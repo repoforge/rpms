@@ -3,7 +3,7 @@
 
 Summary: Meta-data extraction library 
 Name: libextractor
-Version: 0.3.8
+Version: 0.3.11
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -78,6 +78,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libextractor/libextractor_*.la
 
 %changelog
+* Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 0.3.11-1
+- Updated to release 0.3.11.
+
 * Sun Oct 03 2004 Dag Wieers <dag@wieers.com> - 0.3.8-1
 - Updated to release 0.3.8.
 

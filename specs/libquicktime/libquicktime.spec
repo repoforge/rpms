@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
 %{?!dist:BuildRequires: libraw1394-devel, libavc1394-devel}
+%{?fc3:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?fc2:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?fc1:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?el3:BuildRequires: libraw1394-devel, libavc1394-devel}

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name XML-Parser
@@ -7,7 +6,7 @@
 Summary: XML-Parser Perl module
 Name: perl-XML-Parser
 Version: 2.34
-Release: 0
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser/
@@ -18,10 +17,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: perl >= 0:5.004, expat-devel
 Requires: perl >= 0:5.004
-
 
 %description
 XML-Parser Perl module.
@@ -51,8 +48,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{_libdir}/perl5/vendor_perl/*/*/XML/
+%{_libdir}/perl5/vendor_perl/*/*/auto/XML/
 
 %changelog
+* Fri Nov 12 2004 Dag Wieers <dag@wieers.com> - 2.34-1
+- Workaround directory-conflicts bug in up2date. (RHbz #106123)
+
 * Sat Dec 20 2003 Dag Wieers <dag@wieers.com> - 2.34-0
 - Initial package. (using DAR) 

@@ -1,8 +1,12 @@
 # $Id$
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: Graphical network viewer modeled after etherman
 Name: etherape
@@ -33,12 +37,12 @@ from a file as well as live from the network.
 %setup
 
 #%{__perl} -pi.orig -e 's|(\${exec_prefix})/lib|$1/%{_lib}|g' configure
+%{?fc3:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 %{?fc2:%{__perl} -pi.orig -e 's|net/bpf.h|pcap-bpf.h|' configure src/*.c src/*.h}
 
 %build
 export LDFLAGS="-L%{_libdir} -L/%{_lib}"
-%configure \
-	--disable-dependency-tracking
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -46,15 +50,15 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %makeinstall
 %find_lang %{name}
 
-%if %{dfi}
-%else
+%if %{!?_without_freedesktop:1}0
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor gnome --delete-original \
-                --add-category X-Red-Hat-Base                 \
-                --add-category Application                    \
-                --add-category Network                        \
-                --dir %{buildroot}%{_datadir}/applications    \
-                %{buildroot}%{_datadir}/gnome/apps/Applications/%{name}.desktop
+        desktop-file-install --vendor %{desktop_vendor}   \
+		--delete-original                         \
+                --add-category X-Red-Hat-Base              \
+                --add-category Application                 \
+                --add-category Network                     \
+                --dir %{buildroot}%{_datadir}/applications \
+                %{buildroot}%{_datadir}/gnome/apps/Applications/etherape.desktop
 %endif
 
 %clean
@@ -63,16 +67,13 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FAQ NEWS OVERVIEW README* TODO html/*.html
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/etherape.1*
 %config %{_sysconfdir}/etherape/
-%{_bindir}/*
+%{_bindir}/etherape
 %{_datadir}/etherape/
-%{_datadir}/pixmaps/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Applications/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/pixmaps/etherape.png
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/etherape.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-etherape.desktop}
 
 %changelog
 * Tue Apr 29 2003 Dag Wieers <dag@wieers.com> - 0.9.0-0

@@ -19,6 +19,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
+%{!?dist:BuildRequires: compat-gcc-c++}
+%{?fc3:BuildRequires: compat-gcc-c++}
 %{?fc2:BuildRequires: compat-gcc-c++}
 %{?fc1:BuildRequires: compat-gcc-c++}
 %{?el3:BuildRequires: compat-gcc-c++}
@@ -47,6 +49,7 @@ against.
 	' lib/libxclass/Makefile.in
 
 %build
+%{?fc3:export CXX="g++296"}
 %{?fc2:export CXX="g++296"}
 %{?fc1:export CXX="g++296"}
 %{?el3:export CXX="g++296"}

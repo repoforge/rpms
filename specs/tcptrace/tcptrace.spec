@@ -4,16 +4,16 @@
 
 Summary: Performs analysis of tcp flows from packet dumps
 Name: tcptrace
-Version: 6.0.1
-Release: 0
-License: Modified GPL
+Version: 6.6.7
+Release: 1
+License: GPL
 Group: Applications/Internet
 URL: http://tcptrace.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://tcptrace.org/download/tcptrace.%{version}.tar.gz
+Source: http://tcptrace.org/download/tcptrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -31,18 +31,25 @@ several types of graphs.
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 tcptrace versnum xpl2gpl %{buildroot}%{_bindir}
+%{__install} -D -m0755 tcptrace %{buildroot}%{_bindir}/tcptrace
+%{__install} -D -m0755 versnum %{buildroot}%{_bindir}/versnum
+%{__install} -D -m0755 xpl2gpl %{buildroot}%{_bindir}/xpl2gpl
+%{__install} -D -m0644 tcptrace.man %{buildroot}%{_mandir}/man1/tcptrace.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ARGS CHANGES COPYING COPYRIGHT FAQ README* THANKS WWW output_finger.snoop.gz input/
-%{_bindir}/*
+%doc ARGS CHANGES COPYING COPYRIGHT FAQ README* THANKS WWW input/
+%doc %{_mandir}/man1/tcptrace.1*
+%{_bindir}/tcptrace
+%{_bindir}/versnum
+%{_bindir}/xpl2gpl
 
 %changelog
+* Sat Nov 13 2004 Dag Wieers <dag@wieers.com> - 6.6.7-1
+- Updated to release 6.6.7.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 6.0.1-0
 - Initial package. (using DAR)

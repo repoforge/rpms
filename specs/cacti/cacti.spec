@@ -3,6 +3,9 @@
 # Upstream: <cacti-user$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
+%{?rh7:%define _without_net_snmp 1}
+%{?el2:%define _without_net_snmp 1}
+%{?rh6:%define _without_net_snmp 1}
 
 Summary: Network monitoring/graphing tool
 Name: cacti
@@ -19,14 +22,9 @@ Source: http://www.raxnet.net/downloads/cacti/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, net-snmp-utils, openssl-devel
-%{?fc2:BuildRequires: net-snmp-devel}
-%{?fc1:BuildRequires: net-snmp-devel}
-%{?el3:BuildRequires: net-snmp-devel}
-%{?rh9:BuildRequires: net-snmp-devel}
-%{?rh8:BuildRequires: net-snmp-devel}
-%{?rh7:BuildRequires: ucd-snmp-devel}
-%{?el2:BuildRequires: ucd-snmp-devel}
-%{?rh6:BuildRequires: ucd-snmp-devel}
+
+%{!?_without_net_snmp:BuildRequires: net-snmp-devel}
+%{?_without_net_snmp:BuildRequires: ucd-snmp-devel}
 
 Requires: webserver, mysql, net-snmp, rrdtool
 Requires: php, php-mysql, php-snmp, php-rrdtool

@@ -19,7 +19,8 @@ URL: http://www.gnome-db.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.gnome-db.org/pub/gnome-db/sources/v%{version}/libgda-%{version}.tar.gz
+Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/1.1/libgda-%{version}.tar.bz2
+#Source: ftp://ftp.gnome-db.org/pub/gnome-db/sources/v%{version}/libgda-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig >= 0.8, glib2-devel >= 2.0, ncurses-devel

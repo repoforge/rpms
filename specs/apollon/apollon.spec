@@ -8,10 +8,9 @@
 
 Summary: KDE filesharing client which uses gift
 Name: apollon
+%{?fc3:Version: 1.0b1}
 %{?fc2:Version: 1.0b1}
-%{?fc2:%define real_version 1.0b1}
 %{?fc1:Version: 0.9.2}
-%{?fc1:%define real_version 0.9.2}
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -20,13 +19,14 @@ URL: http://apollon.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/apollon/apollon-%{real_version}.tar.bz2
+Source: http://dl.sf.net/apollon/apollon-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, gift, desktop-file-utils
+%{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs, gift
 
@@ -34,7 +34,7 @@ Requires: kdelibs, gift
 Apollon is a KDE filesharing client which uses gift.
 
 %prep
-%setup -n apollon-%{real_version}
+%setup
 
 %{__cat} <<EOF >apollon.desktop
 [Desktop Entry]

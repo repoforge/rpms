@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Ross Burton <ross$burtonini,com>
 
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
-Version: 0.3.1
-Release: 0
+Version: 0.7
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.burtonini.com/blog/computers/devilspie/
@@ -16,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.burtonini.com/computing/devilspie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gob2 >= 2.0.4, libwnck-devel, libglade-devel, gtk2-devel
 BuildRequires: libglade2-devel
@@ -51,10 +49,13 @@ in the pager or task list.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README NEWS TODO sample-config.xml devilspie.dtd
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/devilspie.1*
+%{_bindir}/devilspie
 
 %changelog
+* Sat Nov 13 2004 Dag Wieers <dag@wieers.com> - 0.7-1
+- Updated to release 0.7.
+
 * Sun Oct 19 2003 Dag Wieers <dag@wieers.com> - 0.3.1-0
 - Updated to release 0.3.1.
 

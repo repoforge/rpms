@@ -22,6 +22,7 @@ Source: http://www.speech.kth.se/~kare/snack%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?dist:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
+%{?fc3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?fc2:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?fc1:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}
 %{?el3:BuildRequires: tcl-devel >= 8.3, tk-devel >= 8.3}

@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### No default is needed (works without BuildRequires too)
 #%{!?dist:BuildRequires: freeglut-devel}
+%{?fc3:BuildRequires: freeglut-devel}
 %{?fc2:BuildRequires: freeglut-devel}
 %{?fc1:BuildRequires: freeglut-devel}
 %{?rh9:BuildRequires: glut-devel}

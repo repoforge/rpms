@@ -20,6 +20,8 @@ Source: http://www.nuclearelephant.com/projects/dspam/sources/dspam-%{version}.t
 Source1: dspam.m4
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%{!?dist:BuildRequires: db4-devel}
+%{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}
 %{?fc1:BuildRequires: db4-devel}
 %{?el3:BuildRequires: db4-devel}

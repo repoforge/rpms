@@ -1,6 +1,13 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_arts 1}
+%{?rh9:%define _without_arts 1}
+%{?rh8:%define _without_arts 1}
+%{?rh7:%define _without_arts 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Real-time visual space simulation
@@ -15,8 +22,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: freeglut-devel, kdelibs-devel
 BuildRequires: libpng-devel, libjpeg-devel, fam-devel
 BuildRequires: desktop-file-utils, unzip, gcc-c++, libstdc++-devel
-%{!?dist:BuildRequires: libselinux-devel, arts-devel}
-%{?fc2:BuildRequires: libselinux-devel, arts-devel}
+
+%{!?dist:BuildRequires: libselinux-devel}
+%{?fc3:BuildRequires: libselinux-devel}
+%{?fc2:BuildRequires: libselinux-devel}
+%{!?_without_arts:BuildRequires: arts-devel}
 
 %description
 Celestia is a free real-time space simulation that lets you experience our

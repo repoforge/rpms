@@ -23,11 +23,11 @@
 %define real_name openswan
 
 %define moduledir /kernel/net/openswan
-%define modules linux/net/ipsec/ipsec.o
+%define modules modobj/ipsec.o
 
 Summary: Linux drivers for OpenS/WAN IPsec support
 Name: kernel-module-openswan
-Version: 2.1.5
+Version: 2.2.0
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -101,7 +101,7 @@ OpenS/WAN programs and libraries.
 %prep
 %setup -n %{real_name}-%{version}
 #%setup -n %{real_name}-%{real_version} -a 1
-%patch0
+#%patch0
 #%{__cat} x509-*/freeswan.diff | patch -p1
 
 %{__cat} <<EOF >ipsec.secrets
@@ -277,7 +277,8 @@ cd -
 
 ### Clean up buildroot
 %{__perl} -pi -e 's|/usr/local|%{_prefix}|g' %{buildroot}%{_libexecdir}/ipsec/* %{buildroot}%{_libdir}/ipsec/*
-%{__mv} -f %{buildroot}%{_docdir}/freeswan/ipsec.conf-sample %{buildroot}%{_sysconfdir}/ipsec.conf
+#%{__mv} -f %{buildroot}%{_docdir}/freeswan/ipsec.conf-sample %{buildroot}%{_sysconfdir}/ipsec.conf
+%{__mv} -f testing/baseconfigs/all/etc/ipsec.d/ipsec.conf.common %{buildroot}%{_sysconfdir}/ipsec.conf
 
 ### Clean up docroot
 %{__mv} -f %{buildroot}%{_prefix}/share/doc/freeswan/ rpm-doc/
@@ -337,6 +338,9 @@ fi
 #%{_includedir}/*.h
 
 %changelog
+* Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Updated to release 2.2.0.
+
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 2.1.5-1
 - Updated to release 2.1.5.
 

@@ -39,7 +39,7 @@ Header, static libraries and documentation for Imlib2.
 
 %prep
 %setup
-
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
 
 %build
 %configure \
