@@ -12,7 +12,7 @@ Group: Development/Debuggers
 URL: http://www.rhide.com/
 
 Source: http://dl.sf.net/rhide/rhide-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires(post): ncurses
 

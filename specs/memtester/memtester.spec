@@ -4,13 +4,13 @@
 
 Summary: Userspace utility for testing the memory subsystem for faults
 Name: memtester
-Version: 4.0.4
+Version: 4.0.5
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://www.qcc.ca/~charlesc/software/memtester/
+URL: http://pyropus.ca/software/memtester/
 
-Source: http://www.qcc.ca/~charlesc/software/memtester/memtester-%{version}.tar.gz
+Source: http://pyropus.ca/software/memtester/memtester-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -37,6 +37,9 @@ memtester is a userspace utility for testing the memory subsystem for faults.
 %{_bindir}/memtester
 
 %changelog
+* Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 4.0.5-1
+- Updated to release 4.0.5.
+
 * Fri Aug 27 2004 Dag Wieers <dag@wieers.com> - 4.0.4-1
 - Updated to release 4.0.4.
 

@@ -14,7 +14,7 @@ Group: Applications/System
 URL: http://www.iozone.org/ 
 
 Source: http://www.iozone.org/src/current/iozone%{real_version}.tar
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 IOzone is a filesystem benchmark tool. The benchmark generates and

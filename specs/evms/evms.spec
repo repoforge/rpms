@@ -7,7 +7,7 @@
 
 Summary: Enterprise Volume Management System utilities
 Name: evms
-Version: 2.4.1
+Version: 2.5.2
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -36,9 +36,7 @@ with EVMS and using the tools after installation.
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %post
@@ -62,6 +60,9 @@ with EVMS and using the tools after installation.
 %exclude %{_libdir}/libevms.a
 
 %changelog
+* Thu Mar 17 2005 Dag Wieers <dag@wieers.com> - 2.5.2-1
+- Updated to release 2.5.2.
+
 * Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 2.4.1-1
 - Updated to release 2.4.1.
 

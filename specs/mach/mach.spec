@@ -20,7 +20,7 @@ Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.bz2
 Source1: fedora-2-x86_64
 Source2: fedora-3-i386
 Source3: fedora-3-x86_64
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: %{python} >= 2.0.0
 Requires: rpm-python, apt, sed, cpio, python >= 2.0
 

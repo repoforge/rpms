@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# Dist: nodist
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
@@ -9,25 +11,31 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 5010
+%define real_version 70
 
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
-Version: 5.0.10
+Version: 7.0.0
 Release: 1
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html
 
-Source: http://ardownload.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{real_version}.tar.gz
+#Source: http://ardownload.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{real_version}.tar.gz
+Source: http://ardownload.adobe.com/pub/adobe/reader/unix/7x/7.0/enu/AdbeRdr%{real_version}_linux_enu.tar.gz
 Source1: acroread.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386
 BuildRequires: perl
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
-Obsoletes: acrobat
+Obsoletes: acrobat <= %{version}, AdobeReader_enu <= %{version}
 Requires: htmlview
+
+### Missing provides ?
+Provides: libACE.so, libACE.so(VERSION), libAGM.so, libAGM.so(VERSION)
+Provides: libBIB.so, libBIB.so(VERSION), libCoolType.so, libCoolType.so(VERSION)
+Provides: libResAccess.so
 
 %description
 Adobe Reader is part of the Adobe Acrobat family of software,
@@ -54,83 +62,42 @@ This package provides the Adobe Reader plugin for mozilla.
 %prep
 %setup -c
 
-%{__cat} <<EOF >acroread.desktop
-[Desktop Entry]
-Name=Adobe Reader
-Comment=View and print PDF files
-Exec=acroread
-Terminal=false
-Type=Application
-Icon=acroread.png
-MimeType=application/pdf
-Categories=Application;Graphics;
-Encoding=UTF-8
-EOF
-
-%{__cat} <<EOF >WebLink
-*LinkDisplay:	CTRL
-*OpenURL:	NO
-*IsMapped:	NO
-*Progress:	NO
-*Toolbar:	YES
-*SelectedBrowser:	/usr/bin/htmlview	
-*SelectedDriver:	Netscape
-EOF
-
 %build
 
 %install
 %{__rm} -rf %{buildroot}
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/acroread/
-%{__tar} -xvf installers/COMMON.TAR -C %{buildroot}%{_libdir}/acroread/
-%{__tar} -xvf installers/LINUXRDR.TAR -C %{buildroot}%{_libdir}/acroread/
+%{__tar} -xvf AdobeReader/COMMON.TAR -C %{buildroot}%{_libdir}/acroread/
+%{__tar} -xvf AdobeReader/ILINXR.TAR -C %{buildroot}%{_libdir}/acroread/
 
-%{__mv} -f %{buildroot}%{_libdir}/acroread/bin/acroread.sh %{buildroot}%{_libdir}/acroread/bin/acroread
-
-### Fixup path and fixed LANG/LC_ALL settings until Adobe adds Unicode locale support
-%{__perl} -pi -e '
-	s|^install_dir=.*$|install_dir=%{_libdir}/acroread/Reader\n
-NLANG="\${LANG//.UTF-8/.ISO8859-1}"
-export LANG="\${NLANG:-C}"
-NLC_ALL="\${LC_ALL//.UTF-8/.ISO8859-1}"
-export LC_ALL="\${NLC_ALL:-C}"
-MALLOC_CHECK_=0
-export MALLOC_CHECK_|;
-	' %{buildroot}%{_libdir}/acroread/bin/acroread
-
-### Shutup some rpm permission warnings
-%{__chmod} +x %{buildroot}%{_libdir}/acroread/Reader/*/lib/lib*.so* %{buildroot}%{_libdir}/acroread/Browsers/*/*.so
-
-%{__install} -D -m0644 WebLink %{buildroot}%{_libdir}/acroread/Reader/intellinux/app-defaults/WebLink
+### Silent some rpm permission warnings
+#%{__chmod} +x %{buildroot}%{_libdir}/acroread/Reader/*/lib/lib*.so* %{buildroot}%{_libdir}/acroread/Browser/*/*.so
 
 ### Make links
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__ln_s} -f %{_libdir}/acroread/bin/acroread %{buildroot}%{_bindir}/acroread
 
-%{__install} -d -m0755 %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/
-%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/AcroRead %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/AcroRead
-%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/WebLink %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/WebLink
-
+### Need to hardlink, softlinks do not work
 %{__install} -d -m0755 %{buildroot}%{_libdir}/netscape/plugins/
-%{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/netscape/plugins/nppdf.so
-
+ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{_libdir}/netscape/plugins/nppdf.so
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
-%{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/mozilla/plugins/nppdf.so
-
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/acroread.png
+ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{_libdir}/mozilla/plugins/nppdf.so
 
 ### Strip binaries and libraries
 #%{__strip} %{buildroot}%{_libdir}/acroread/Reader/intellinux/bin/acroread %{buildroot}%{_libdir}/acroread/Reader/intellinux/lib/*.so.*
 
+%{__install} -D -m0644 %{buildroot}%{_libdir}/acroread/Resource/Icons/AdobeReader.png %{buildroot}%{_datadir}/pixmaps/AdobeReader.png
+
+%{__cp} -af %{buildroot}%{_libdir}/acroread/Resource/Support/AdobeReader_GNOME.desktop acroread.desktop
 %if %{?_without_freedesktop:1}0
-        %{__install} -D -m0644 acroread.desktop %{buildroot}%{_datadir}/gnome/apps/Graphics/acroread.desktop
+        %{__install} -D -m0644 acroread.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/acroread.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
-                acroread.desktop
+		acroread.desktop
 %endif
 
 %clean
@@ -138,26 +105,27 @@ export MALLOC_CHECK_|;
 
 %files
 %defattr(-, root, root, 0755)
-%doc installers/README installers/*.TXT 
+%doc AdobeReader/README AdobeReader/*.TXT 
 %{_bindir}/acroread
 %dir %{_libdir}/acroread/
 %{_libdir}/acroread/Reader/
 %{_libdir}/acroread/Resource/
 %{_libdir}/acroread/bin/
-%{_prefix}/X11R6/%{_lib}/X11/app-defaults/AcroRead
-%{_prefix}/X11R6/%{_lib}/X11/app-defaults/WebLink
-%{_datadir}/pixmaps/acroread.png
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Graphics/acroread.desktop}
+%{_datadir}/pixmaps/AdobeReader.png
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/acroread.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-acroread.desktop}
 
 %files -n mozilla-acroread
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/acroread/
-%{_libdir}/acroread/Browsers/
+%{_libdir}/acroread/Browser/
 %{_libdir}/mozilla/plugins/nppdf.so
 %{_libdir}/netscape/plugins/nppdf.so
 
 %changelog
+* Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 7.0.0-1
+- Updated to release 7.0.0.
+
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 5.0.10-1
 - Feedback from Jason L Tibbitts.
 - Updated to release 5.0.10.

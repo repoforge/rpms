@@ -9,13 +9,13 @@
 
 Summary: Network monitoring/graphing tool
 Name: cacti
-Version: 0.8.6
+Version: 0.8.6c
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://www.raxnet.net/products/cacti/
+URL: http://www.cacti.net/
 
-Source: http://www.raxnet.net/downloads/cacti/cacti-%{version}.tar.gz
+Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, net-snmp-utils, openssl-devel
@@ -122,6 +122,9 @@ userdel cacti &>/dev/null || :
 %doc docs/
 
 %changelog
+* Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 0.8.6c-1
+- Updated to release 0.8.6c.
+
 * Wed Sep 29 2004 Dag Wieers <dag@wieers.com> - 0.8.6-1
 - Updated to release 0.8.6.
 

@@ -18,7 +18,7 @@ Source10: index.html
 Source11: boa_logo_pasi2.png
 Source12: button-freshrpms.png
 Patch: boa-0.94.14rc17-config.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: /etc/mime.types
 BuildRequires: tetex, texinfo
 %{!?_without_gzip:Requires: gzip}

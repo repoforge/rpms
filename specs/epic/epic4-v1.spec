@@ -25,7 +25,7 @@ Source8: http://splitfire.sourceforge.net/schemes/sf-perry-scheme.irc.gz
 Patch0: epic-default.patch
 Patch1: epic4-1.0.1-gcc33.patch
 Patch2: epic-alloca_underrun.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 EPIC (Enhanced Programmable ircII Client) is an advanced ircII chat

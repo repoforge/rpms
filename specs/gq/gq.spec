@@ -2,6 +2,9 @@
 # Authority: matthias
 # Upstream: <gqclient-discuss$lists,sf,net>
 
+### The 1.0 release is very unstable.
+# Tag: test
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}

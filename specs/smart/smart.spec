@@ -31,7 +31,6 @@ Group: Applications/System
 URL: http://www.smartpm.org/
 
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
-#Source1: channelsync.py
 Patch0: smart-0.29.2-x86_64-rpmhelper.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -88,12 +87,8 @@ KDE tray program for watching updates with Smart Package Manager.
 %{?fc1:name="Fedora Core"; version="1"; path="fedora"}
 
 %{__cat} <<EOF >distro.py
-for type in ["", "smp" ]:
-	if type:
-		kernel = "kernel-%s" % type
-	else:
-		kernel = "kernel"
-	pkgconf.setFlag("multi-version", kernel)
+pkgconf.setFlag("multi-version", "kernel")
+pkgconf.setFlag("multi-version", "kernel-smp")
 EOF
 
 %{__cat} <<EOF >smart-gui.sh

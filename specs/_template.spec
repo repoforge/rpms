@@ -49,8 +49,8 @@ EOF
 %{__aclocal} #--force
 %{__autoheader}
 %{__automake} --add-missing -a --foreign
-%{__autoconf}
-%{__autoreconf} --force --copy
+autoconf
+autoreconf --force --install --symlink
 %configure \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags}

@@ -19,7 +19,7 @@ License: GPL
 URL: http://www.micq.org/
 
 Source: http://www.micq.org/source/micq-%{version}.tgz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, tcl
 %{!?dist:BuildRequires: libgcrypt-devel, gnutls-devel}

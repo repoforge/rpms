@@ -10,7 +10,7 @@
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.9
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -29,6 +29,7 @@ Support for other protocols like ICQ could be created some day too.
 
 %prep
 %setup
+%{?el3:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 %{?rh9:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 
 %build
@@ -44,7 +45,7 @@ Support for other protocols like ICQ could be created some day too.
 	--with-glib2 \
         --with-ncurses \
 	--with-gc \
-	--with-perl-lib="%{buildroot}%{perl_vendorlib}"
+	--with-perl-lib="%(dirname %{buildroot}%{perl_vendorarch})"
 #	--with-perl-lib="%{buildroot}%{perl_vendorarch}"
 #	--with-perl-lib="vendor"
 %{__make} %{?_smp_mflags}
@@ -69,19 +70,19 @@ Support for other protocols like ICQ could be created some day too.
 %doc docs/*.txt docs/*.html
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*
-%{_bindir}/*
+%{_bindir}/botti
+%{_bindir}/irssi
 %{_libdir}/irssi/
 %{_datadir}/irssi/
-%{perl_vendorlib}/*
-#%{perl_vendorlib}/Irssi/
-#%{perl_vendorlib}/auto/Irssi/
+%{perl_vendorarch}/Irssi/
+%{perl_vendorarch}/Irssi.pm
+%{perl_vendorarch}/auto/Irssi/
 %exclude %{_docdir}/irssi/
 #%exclude %{perl_vendorarch}
 
 %changelog
-### FIXME: Cannot work around RHbz #106123 because of fucked-up irssi buildtools
-#* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.8.9-3
-#- Workaround directory-conflicts bug in up2date. (RHbz #106123)
+* Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.8.9-4
+- Workaround directory-conflicts bug in up2date. (RHbz #106123)
 
 * Tue Aug 24 2004 Dag Wieers <dag@wieers.com> - 0.8.9-2
 - Another attempt to fix the brokeness of the irssi perl stuff.

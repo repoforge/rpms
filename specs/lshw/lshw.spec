@@ -20,7 +20,7 @@ Group: Applications/System
 URL: http://www.ezix.org/software/lshw.html
 
 Source: http://ezix.sourceforge.net/software/files/lshw-%{real_version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 lshw is a small tool to provide detailed informaton on the hardware

@@ -10,7 +10,7 @@ Group: System Environment/Daemons
 URL: http://current.tigris.org/
 
 Source: ftp://ftp.quackmaster.net/current/current-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: docbook-style-xsl, docbook-style-dsssl, docbook-dtds

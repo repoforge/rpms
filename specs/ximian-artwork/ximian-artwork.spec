@@ -11,7 +11,7 @@ URL: http://www.ximian.com/
 
 Source: http://vortex.floppyhat.net/ximian-artwork-%{version}.tar.gz
 Patch: ximian-artwork-de.po.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gtk2-devel, pkgconfig
 Requires: gnome-themes-extras

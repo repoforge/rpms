@@ -21,7 +21,7 @@ Patch6: subversion-1.0.3-pie.patch
 BuildPreReq: autoconf, libtool, python, python-devel, texinfo
 BuildPreReq: db4-devel >= 4.1.25, swig >= 1.3.21-5, docbook-style-xsl
 BuildPreReq: apr-devel, apr-util-devel, neon-devel >= 0:0.24.7-1
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %define __perl_requires %{SOURCE3}
 

@@ -14,7 +14,7 @@ Group: Applications/Internet
 URL: http://gwget.sourceforge.net/
 
 Source: http://dl.sf.net/gwget/gwget-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildrequires: libgnomeui-devel, libglade-devel, gtk2-devel >= 2.4
 Buildrequires: gnome-vfs2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}

@@ -15,7 +15,7 @@ URL: http://www.lyra.org/sitecopy/
 
 Source: http://www.lyra.org/sitecopy/sitecopy-%{version}.tar.gz
 Patch: sitecopy-0.14.3-gcc34.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 sitecopy allows you to easily maintain remote Web sites. The program

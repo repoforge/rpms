@@ -12,7 +12,7 @@ Group: Applications/Internet
 URL: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/
 
 Source: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/tnftp-%{real_version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: libtermcap
 

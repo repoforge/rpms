@@ -12,7 +12,7 @@ Group: Applications/System
 URL: http://unfs3.sourceforge.net/
 
 Source: http://dl.sf.net/unfs3/unfs3-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 UNFS3 is a user-space implementation of the NFS (Network File System)

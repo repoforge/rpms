@@ -6,16 +6,20 @@
 
 # Rationale: rsync 2.6.3 uses less resources and has lots of improvements
 
+#%define real_version 2.6.4pre2
+%define real_version HEAD-20050315-1733GMT
+
 Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 2.6.4
-Release: 0.cvs20050114
+#Release: 0.pre2
+Release: 0.pre2.cvs20050315
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
 
 #Source: http://rsync.samba.org/ftp/rsync/preview/rsync-%{real_version}.tar.gz
-Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}-cvs20050114.tar.bz2
+Source: http://rsync.samba.org/ftp/rsync/nightly/rsync-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -28,9 +32,9 @@ report which describes the rsync algorithm is included in this
 package.
 
 %prep
-%setup -n %{name}-%{version}-cvs20050114
+%setup -n %{name}-%{real_version}
 
-patch -p0 < patches/delay-renames.diff
+#patch -p0 < patches/delay-renames.diff
 
 %{__cat} <<EOF >rsync.xinet
 # default: off
@@ -69,6 +73,12 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.pre2.cvs20050315
+- Updated to release 2.6.4pre2-cvsHEAD-20050315-1733GMT.
+
+* Mon Mar 14 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.pre2
+- Updated to release 2.6.4pre2.
+
 * Fri Jan 14 2005 Dag Wieers <dag@wieers.com> - 2.6.4-0.cvs20050114
 - Updated to release 2.6.4-cvs20050114.
 

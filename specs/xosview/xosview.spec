@@ -15,7 +15,7 @@ Version: 1.8.0
 Release: 1
 License: GPL/BSD
 Group: Applications/System
-Url: http://xosview.sourceforge.net/
+URL: http://xosview.sourceforge.net/
 
 Source: http://dl.sf.net/xosview/xosview-%{version}.tar.gz
 Source1: xosview.png
@@ -29,7 +29,7 @@ Patch9: xosview-1.8.0-strip.patch
 Patch10: xosview-1.8.0-gcc33.patch
 Patch11: xosview-1.8.0-kernel26.patch
 Patch12: xosview-1.8.0-nfs.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

@@ -11,7 +11,7 @@ Group: Applications/Internet
 URL: http://www.gropp.org/
 
 Source: http://freshmeat.net/redir/bwm-ng/52961/url_tgz/bwm-ng-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
 

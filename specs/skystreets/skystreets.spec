@@ -3,7 +3,7 @@
 # Upstream: <rekless$fastmail,fm>
 
 # Screenshot: http://skystreets.kaosfusion.com/screenshot3.png
-# ScreenshotUrl: http://skystreets.kaosfusion.com/
+# ScreenshotURL: http://skystreets.kaosfusion.com/
 
 # ExcludeDist: fc1
 

@@ -11,7 +11,7 @@ Group: Applications/Multimedia
 URL: http://dvd-create.sourceforge.net/
 
 Source: http://dvd-create.sourceforge.net/dvdbackup-%{version}.tar.gz
-BuildRoot: %{_builddir}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: libdvdread
 

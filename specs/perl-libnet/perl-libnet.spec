@@ -9,7 +9,7 @@ License: distributable
 Group: Applications/CPAN
 Source0: libnet-%{version}.tar.gz
 Source10: filter-depends.sh
-Url: http://www.cpan.org
+URL: http://www.cpan.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503

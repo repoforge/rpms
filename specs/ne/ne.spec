@@ -11,7 +11,7 @@ Group: Applications/Editors
 URL: http://ne.dsi.unimi.it/
 
 Source: http://ne.dsi.unimi.it/ne-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel >= 4.0
 

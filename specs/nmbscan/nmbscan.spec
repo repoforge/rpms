@@ -11,7 +11,7 @@ Group: Applications/System
 URL: http://gbarbier.free.fr/prj/dev/#nmbscan
 
 Source: http://gbarbier.free.fr/prj/dev/down.php3?file=nmbscan-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
 Requires: samba-client, iputils

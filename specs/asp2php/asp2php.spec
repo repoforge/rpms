@@ -19,7 +19,7 @@ Group: Development/Tools
 URL: http://asp2php.naken.cc/
 
 Source: http://downloads.mikekohn.net/asp2php/asp2php-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}

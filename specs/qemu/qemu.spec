@@ -15,7 +15,7 @@ Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
 Patch0: qemu-0.6.1-build.patch
 Patch1: qemu-0.6.1-dyngen.patch
 #Patch2: qemu-0.6.1-segv.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
 

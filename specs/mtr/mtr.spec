@@ -28,7 +28,7 @@ Patch4: mtr-0.54-servfail.patch
 Patch5: mtr-0.54-CVE-2002-0497.patch
 Patch6: mtr-0.54-ipv6-ifaddr.patch
 Patch7: mtr-0.54-ipv6-ip6arpa.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, libtermcap-devel
 BuildRequires: automake, gtk+-devel

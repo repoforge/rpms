@@ -17,7 +17,7 @@ URL: http://www.xpde.com/
 
 NoSource: 0
 Source: http://www.xpde.com/releases/xpde-%{real_version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description 
 XPde is a desktop window Enviroment and a window manager thinking

@@ -38,7 +38,7 @@ Source30: ns-bogus-locale.tgz
 Source31: font.properties.ja
 
 BuildRequires: bzip2
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Prefix: /usr
 
 ExclusiveArch: i386

@@ -14,7 +14,7 @@ Source: http://dl.sf.net/aide/aide-%{version}.tar.gz
 Source1: aide.conf
 Source2: README.quickstart
 Patch1: aide-useless-includes.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: flex, bison, m4
 Buildrequires: mhash-devel, zlib-devel

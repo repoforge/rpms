@@ -22,7 +22,7 @@ Source7: http://splitfire.sourceforge.net/schemes/sf-light-scheme.irc.gz
 Source8: http://splitfire.sourceforge.net/schemes/sf-perry-scheme.irc.gz
 Patch0: toggle-stop-screen-patch
 Patch1: epic-default.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 EPIC (Enhanced Programmable ircII Client) is an advanced ircII chat
