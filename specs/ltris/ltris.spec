@@ -3,21 +3,26 @@
 
 %define desktop_vendor rpmforge
 
-Summary: Tetris clone
+Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.0.6
+Version: 1.0.9
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://www.lgames.org/
+URL: http://lgames.sourceforge.net/
 Source: http://dl.sf.net/lgames/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.1.4, SDL_mixer
 BuildRequires: SDL-devel, SDL_mixer-devel, desktop-file-utils, ImageMagick
 
 %description
-A tetris clone game for Linux that uses the SDL.
-No need to say much more :-)
+LTris as a tetris clone which means you have a bowl with blocks falling down.
+By rotating and moving the blocks you try to assemble whole lines which then
+disappear. LTris has three modes for this: Classic is the classical one where
+you play until the bowl becomes filled, Figures resets the bowl contents to a
+new figure for each level and adds suddenly appearing tiles and lines later
+on and Multiplayer where up to three players either controlled by human or
+CPU(!) compete and send completed lines to each other.
 
 
 %prep
@@ -25,23 +30,23 @@ No need to say much more :-)
 
 
 %build
-%configure
+%configure --localstatedir=%{_var}/lib/games
 %{__make} %{?_smp_mflags}
 # Having it as png seems more consistent
-convert icons/ltris48.xpm %{name}.png
+convert icons/ltris48.xpm ltris.png
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -D %{name}.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D ltris.png %{buildroot}%{_datadir}/pixmaps/ltris.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=LTris
 Comment=Tetris clone
-Exec=%{name}
-Icon=%{name}.png
+Exec=ltris
+Icon=ltris.png
 Terminal=false
 Type=Application
 Categories=Application;Game;
@@ -58,17 +63,27 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__rm} -rf %{buildroot}
 
 
+%post
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%postun
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
-%attr(2551, root, games) %{_bindir}/%{name}
+%attr(2551, root, games) %{_bindir}/ltris
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/games/%{name}
-%{_datadir}/pixmaps/%{name}.png
-%config(noreplace) %attr(664, root, games) %{_localstatedir}/lib/games/%{name}.hscr
+%{_datadir}/ltris/
+%{_datadir}/pixmaps/ltris.png
+%config(noreplace) %attr(664, root, games) %{_localstatedir}/lib/games/ltris.hscr
 
 
 %changelog
+* Wed Jan 26 2005 Matthias Saou <http://freshrpms.net/> 1.0.9-1
+- Update to 1.0.9.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1.0.6-1
 - Rebuild for Fedora Core 2.
 - Update to 1.0.6.
