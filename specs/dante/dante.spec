@@ -1,9 +1,6 @@
 # $Id$
 # Authority: dag
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
-
 %{?dist: %{expand: %%define %dist 1}}
 
 %define _libdir /lib
@@ -248,24 +245,17 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__install} -D -m0644 example/socks-simple.conf %{buildroot}%{_sysconfdir}/socks.conf
+%{__install} -D -m0644 example/sockd.conf %{buildroot}%{_sysconfdir}/sockd.conf
+
+%{__install} -D -m0755 sockd.sysv %{buildroot}%{_initrddir}/sockd
+%{__install} -D -m0644 sockd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/sockd
+%{__install} -D -m0755 dsocksify.sysv %{buildroot}%{_initrddir}/dsocksify
+%{__install} -D -m0755 dsocksify %{buildroot}%{_bindir}/dsocksify
+%{__ln_s} -f dsocksify %{buildroot}%{_bindir}/socksify
+
 ### FIXME: Set library as executable - prevent ldd from complaining
 %{__chmod} +x %{buildroot}%{_libdir}/*.so*
-
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/logrotate.d/ \
-			%{buildroot}%{_bindir}
-
-%{__install} -m0644 example/socks-simple.conf %{buildroot}%{_sysconfdir}/socks.conf
-%{__install} -m0644 example/sockd.conf %{buildroot}%{_sysconfdir}
-
-%{__install} -m0755 sockd.sysv %{buildroot}%{_initrddir}/sockd
-%{__install} -m0644 sockd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/sockd
-%{__install} -m0755 dsocksify.sysv %{buildroot}%{_initrddir}/dsocksify
-%{__install} -m0755 dsocksify %{buildroot}%{_bindir}
-%{__ln_s} -f %{_bindir}/dsocksify %{buildroot}%{_bindir}/socksify
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -311,9 +301,9 @@ fi
 %defattr(-, root, root, 0755)
 %doc INSTALL doc/rfc* doc/SOCKS4.protocol
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*.h
-#exclude %{_libdir}/*.la
 
 %changelog
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.1.14-2
