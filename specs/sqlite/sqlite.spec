@@ -7,7 +7,7 @@
 Summary: library that implements an embeddable SQL database engine
 Name: sqlite
 Version: 2.8.13
-Release: 0
+Release: 1
 License: LGPL
 Group: Applications/Databases
 URL: http://www.sqlite.org/
@@ -20,6 +20,7 @@ Patch0: sqlite-2.8.12-encode.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: readline-devel
+%{!?dist:BuildRequires: tcl-devel}
 %{?fc2:BuildRequires: tcl-devel}
 %{?fc1:BuildRequires: tcllib}
 %{?rh9:BuildRequires: tcllib}
@@ -59,7 +60,8 @@ you will need to install %{name}-devel.
 %build
 CFLAGS="%{optflags} -DNDEBUG=1" \
 CXXFLAGS="%{optflags} -DNDEBUG=1" \
-%configure
+%configure \
+	--enable-utf8
 %{__make} %{?_smp_mflags}
 %{__make} doc
 
@@ -67,10 +69,9 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir} \
-			%{buildroot}%{_mandir}/man1/
+			%{buildroot}%{_includedir}
 %makeinstall
-%{__install} -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0644 sqlite.1 %{buildroot}%{_mandir}/man1/sqlite.1
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la
@@ -100,6 +101,9 @@ CXXFLAGS="%{optflags} -DNDEBUG=1" \
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 2.8.13-1
+- Added UTF8 support. (Vladimir Vukicevic)
+
 * Thu May 27 2004 Matthias Saou <http://freshrpms.net/> 2.8.13-0
 - Updated to release 2.8.13.
 - Added tcl-devel build dependency for Fedora Core 2.
