@@ -1,0 +1,19 @@
+--- MIME-tools-5.411/lib/MIME/Parser/Filer.pm.untaint	Thu Nov 23 02:04:03 2000
++++ MIME-tools-5.411/lib/MIME/Parser/Filer.pm	Mon Nov 26 13:25:14 2001
+@@ -536,7 +536,15 @@
+     
+     ### Get a prefix:
+     ++$GFileNo;
+-    return ($self->output_prefix . "-$$-$GFileNo$ext");
++
++    my $mypid;
++    if ($$ =~ /^(\d+)$/) {
++	$mypid = $1
++    }
++
++    $self->debug("Filer::output_filename: \$mypid = $mypid");
++#    return ($self->output_prefix . "-$$-$GFileNo$ext");
++    return ($self->output_prefix . "-$mypid-$GFileNo$ext");
+ }
+ 
+ #------------------------------

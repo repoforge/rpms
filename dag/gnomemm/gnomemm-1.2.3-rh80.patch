@@ -1,0 +1,12 @@
+diff -Naupr gnomemm-1.2.3.orig/src/procbar.gen_h gnomemm-1.2.3/src/procbar.gen_h
+--- gnomemm-1.2.3.orig/src/procbar.gen_h	Tue Jul 16 14:11:55 2002
++++ gnomemm-1.2.3/src/procbar.gen_h	Thu Oct 24 09:41:23 2002
+@@ -87,7 +87,7 @@ ProcBar::ProcBar(const Gtk::Label &label
+ 			   GTK_WIDGET(const_cast<GtkLabel*>(label.gtkobj())),
+ 			   colors.size(),
+ 			   colors_,
+-			   (type_correctcallback) cb);
++			   cb);
+ }
+ 
+ ProcBar::~ProcBar()

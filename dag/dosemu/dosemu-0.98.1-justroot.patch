@@ -1,0 +1,10 @@
+--- dosemu-0.98.1/etc/dosemu.users.secure.justroot	Wed Aug 26 17:41:51 1998
++++ dosemu-0.98.1/etc/dosemu.users.secure	Tue Sep 15 19:04:44 1998
+@@ -25,5 +25,6 @@
+ nobody nosuidroot guest	# variable 'guest' is checked in /etc/dosemu.conf
+ 			# to allow only DEXE execution
+ guest nosuidroot guest	# login guest treated as 'nobody'
+-all nosuidroot restricted # all other users have normal user restrictions
++# If you want to allow limited dosemu to all users, uncomment the line below
++# all nosuidroot restricted # all other users have normal user restrictions
+ 

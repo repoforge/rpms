@@ -1,0 +1,628 @@
+TetriNET v1.13 PUBLIC
+By:      St0rmCat (If he's not in #tetrinet, he's the wrong St0rmCat)
+E-mail:  stormcat@citilink.com
+Channel: EFNET: #TetriNET - Come join us to get some
+         active servers, advertise your server, find
+         out more about TetriNET, or just chat!!
+
+Gee, Tetris?  Whats that?  Yeah, yeah, so it's been
+done 2 billion times before (give or take a few bil),
+but this is different!  Yes, all you tetris addicts
+out there be prepared for even MORE excitement..
+internet tetris!  Now you can play your five best
+buddies in one of the most well known games in
+existence!
+
+TetriNET is for Windows95/NT machines and WILL NOT RUN
+WITH WIN32S.  TetriNET operates best on a display
+capable of 256 colors or more.  If your screen resolution
+is 640x480, you may have to set your windows taskbar to
+auto-hide while playing to see both windows entirely.
+
+
+PLEASE CONSIDER CONTRIBUTING
+  - READ SCREEN ON TETRINET STARTUP FOR DETAILS
+
+
+CONTENTS:
+
+Concept          - Game explanation
+Inventory        - Explanation of inventory feature (READ!!)
+Win list         - How the game keeps score
+Partyline        - Explanation and features
+Moderators       - What moderators are for
+Server           - What is and how to set up a SERVER
+Client           - What a client is
+Teams            - Explanation of teams
+Modifying        - How to modify TetriNET
+Acknowledgements - People who helped alot in the making of TetriNET
+VERSIONS         - Whats been changed throughout the versions
+
+
+Concept:
+
+According to how the server has modified the settings,
+occasionally a sphere block with a letter will appear in
+your playing field.  When you make one or more lines with
+any of the lines containing one or more of these special
+blocks, the special blocks in the lines will be added
+to your inventory which is located near the bottom of the
+window.  These special blocks do different things to players.
+Each effect for the special blocks will be explained below.
+The more lines you clear at the same time and the more
+special blocks that are in those lines will put more
+special blocks in your inventory.  A player loses when
+his/her blockstack reaches the top of the field.  The Winner
+is the player left after the other players have lost.
+
+Again, Depending on how the server has modified settings,
+you will gain a level (or more) everytime you clear
+out a certain amount of lines.  When you gain levels,
+the fall speed of the blocks coming down will increase
+making it harder to find a decent place for the
+blocks.  The maximum level you can be at is 100.
+
+
+Inventory:  (READ!!!)
+
+As said above, special blocks are added to your inventory
+when you clear lines with special blocks in them.  You
+are only able to use the special block inside the red
+box.  The red box cannot be moved or the game would be
+incredibly easy.  The description of what the special block
+does to a player is located to the left of the inventory.
+To use the current special block, press the player number of
+the player you want to attack.  If the special block is a
+GOOD block, use it on yourself by pressing your player
+number.
+
+Here is a list of all the special blocks:
+
+*  'A' Block:  This is the add line block.  It will add
+               a "junk line" to the players field that
+               you choose.
+$  'C' Block:  This is the clear line block.  It clears
+               the line farthest to the bottom in the
+               playing field.
+$  'N' Block:  This removes all blocks from a playing
+               field giving the player a "fresh start".
+*  'R' Block:  This removes 10 random blocks from
+               a player's field.
+*  'S' Block:  This switches your playing field with
+               another player's field depending on which
+               player number you pressed.  If either of
+               the fields' block stack is over 16 blocks
+               high, the stack will be lowered.
+*  'B' Block:  This removes all special blocks from
+               a players field.
+$  'G' Block:  This "gravity" block takes all the blocks
+               on the field and "pulls" them all towards
+               the bottom of the field eliminating any
+               gaps in the blockstack.
+*  'Q' Block:  This causes each of the lines of blocks
+               on a players field to randomly shift left
+               or right or not at all.
+*  'O' Block:  This is the block bomb, when used on a
+               player, it clears 3x3 portions on their
+               field anywhere there are 'o' blocks.
+               Any blocks that were in the 3x3 areas
+               are scattered around the field.
+
+IMPORTANT:   Blocks with a '*' at the beginning of the line
+             are ATTACK special blocks; use these on
+             other players.
+
+             Blocks with a '$' at the beginning are DEFENSE
+             blocks and should be used on yourself because
+             they are GOOD
+
+You can also press the letter 'D' and it will discard
+the first block in your inventory.
+
+When your inventory becomes full, any special blocks
+you get cannot go into your inventory.  You
+will have to use up some of your inventory blocks.
+
+
+Win list:
+
+The win list keeps track of how points each person
+or team has.  The person or team with the most points
+is at the top.  A player or team gets 3 points
+when they are the last standing in a game.  2 points
+to the player/team that is the last person to lose
+and 1 point to the 2nd to last loser.
+
+When a team wins, their team name is put in the
+win list along with a <T> infront of it to show
+everyone that it's a team and not a person.
+
+The win list on each of the player's clients are
+the same. The server can reset the win list at any
+time by pressing the 'Reset Winlist' button on the
+Server screen.
+
+
+Partyline Screen:
+
+This is where the players connected to the server can
+talk among each other.  You can do bold/underline/italic
+by surrounding the text you want affected with characters
+made from pressing ctl-b/u/i respectively.  You
+can also do actions on the partyline by typing:
+/ME <message>
+
+Next to the partyline box is a list of all the players
+currently connected to the server.  The server can kick
+a player out by selecting his/her name in the nicklist
+and pressing the KICK button.  The server can also
+ban someone from the server completely by selecting
+their nickname and pressing Ban.  For the ban to take
+effect, you must kick them.  Also, when you click
+on the player's nickname in the list, (only if you're
+a server) their IP will be shown above the box.
+
+To change the font of the main partyline box, press
+the right mouse button in the window and then click
+on the 'Change Font...' menu item.
+
+You can also easily talk while the game is going by
+pressing 'T' while on the Playing Fields window and
+then entering your message.  After you press return
+the message will be broadcasted to the rest of the
+players and will be shown in the black box near the
+bottom.  You can press ESCAPE while putting text
+in the edit box and it will hide the edit box. When
+you press 'T', you can start typing again.
+
+
+Moderators:
+
+A moderator is the first person on a server whether
+it is the person that is actually operating the
+server, or if the server isn't playing, the first
+player that connects to the server.  A moderator
+person has a '*' next to their nickname in the nickname
+list on the partyline screen.  A moderator can
+start/stop/pause/unpause games on a server.
+
+
+Server:
+
+To play, you must have someone be the TetriNET server.
+The server should be fast so the game isn't too lagged.
+A 28.8 modem is great for a fun TetriNET game.
+The server can set all of the settings available for
+the game, and decides when the game starts, etc.
+Fill in your Nickname into the correct edit box and any
+options under that.
+
+When you press the Block Occurancy button on the server
+screen, a window will pop up.  On this window you
+can set how often the different pieces and special blocks
+appear (or not at all) throughout the game.  You enter in the
+percentage for each piece/block.  100 means the piece/block
+will appear every single time; 0 means it wont appear at all.
+Note:  All the percents of the pieces and special blocks
+must add up to be 100 percent before you can play.
+
+The ban box on the server screen is where you can put
+IPs of people you dont want on your TetriNET server.
+To ban a person, place only their IP ADDRESS on its
+own line in the ban box.  You can use wildcards like
+'*' and '?'  Besides NOT allowing someone on the
+server, you can also ALLOW certain people on it with
+the '!' prefix before a person's IP.  When you prefix
+an IP with '!' in the ban box, this overrides any other
+bans in the box and lets the person with this IP join.
+If you put '*' as the first line in the box (it bans
+EVERYONE), and then put '!204.246.67.9' on a line
+after that, the person with that IP would be allowed
+in but noone else would be.
+
+When done, press the Start Server button.  Now players
+can connect to your IP.  When a player connects, a join
+message will be shown in the partyline box.  When a message
+is added to the partyline box and you are currently
+on another screen, the partyline button text will turn
+green to notify you.  When everyone is ready to play,
+click on the Start New Game button.
+
+Originally, the levels of each player are individual
+and when a player's level increases, only THEIR
+level increases.  The 'All Have Players' Averaged
+Levels' option will make all players have the same
+level throughout the game.  When a player's REAL
+level increases, it is averaged in with the rest
+of the players' levels and that is the ACTIVE level
+of everyone on the server.
+
+The server also has the option to play or not to.
+Enabling the 'Server Play' checkbox on the server
+screen will put yourself in the game as player 1.
+If there was any player on as player 1, they are
+kicked out.  Unchecking this box will take you
+off and you will not play.
+
+To speed up a game of TetriNET, there is an option
+on the server screen for after a certain amount of
+minutes playing, the game will start adding lines
+to all players every certain amount of seconds.  This
+is useful to keep players on your server if they lose
+early and get bored.
+
+Another option is the Classic Multiplayer Rules.  This
+makes the game play like the old 2 player gameboy
+version of tetris.  When a player clears lines, lines
+are added to everyone else's field.  If you clear 1 line,
+no lines are added to everyone else.  If you clear 2 lines,
+1 line is added to everyone else.  If you clear 3, 2 is
+added.  If you clear 4, 4 lines are added to everyone.
+NOTE:  This option is best when you set the 'Special
+  Blocks Added at a Time' option to '0'.
+
+
+Client:
+
+A client is just a person playing that is not the server.
+A client connects to a server.  Find the IP of a server with
+people you want to play with and put that in to the
+correct edit box.  Then put your nickname in the
+Nickname box and press the Connect button.  You should
+then see the nicknames playing pop up in the partyline
+window and any teams the players are on.
+
+When the game has started, click on the Show Fields
+button and a window with all 6 fields will be shown.
+The fields will be updated every time a player's block
+is placed onto their field to keep everyone updated
+on who's winning.
+
+
+Teams:
+
+Teams are now possible in TetriNET.  You can now have
+matches with 3 teams of 2 people or whatever you want!
+To be on a team, just fill out the Team edit box
+with the team you would like to be on, if on a server
+click the button right next to the box to update your
+team name.  The team name is not case-sensitive.
+
+When you are on a team, if one of the players that is
+on your team wins a TetriNET game, you win too and
+your team name is placed in the Win List instead of
+your individual names.
+
+
+Modifying TetriNET:
+
+Themes are handled by a "project file" to tell
+TetriNET where it should find all the theme
+components.  It is just an INI file.  When
+you create a theme, copy over the default.tnp
+file to a new file that represents your theme and
+make a new directory in your TetriNET directory
+where all your theme stuff will be.  Any files you
+want different or modified, just put them in your
+theme directory and put the paths for the new files
+in your project file.
+
+If you want to make a theme pack with like only the
+graphics changed but you want it to have same sounds
+and music, only change the graphics releated lines
+in your theme project file and leave the rest of
+the lines pointing to the default DATA\ directory.
+
+
+Explanations of Graphics/Music/Sounds:
+
+When you create a new graphics file, the file MUST
+have the same image dimensions and have the same block
+layout of the one included with the original tetrinet
+ZIP file.  Here is a description of the layout:
+
+- The top row of blocks are the blocks for the big
+  field in TetriNET.  They are 16 pixels wide and
+  16 pixels high.  There should be 14 blocks in the row.
+- The row under that are the same blocks as the
+  normal 16 pixel blocks, but are half as wide.
+  These smaller blocks are for the 5 other fields
+  on the TetriNET field.  They are 8 pixels across
+  and 8 pixels high.
+  *  The Upper-left coordinates of the first block in
+     this row are at (0,16)
+- The picture under this is the background image
+  for the large field in TetriNET.  It is 192
+  pixels wide and 352 pixels high.
+  *  The Upper-left coordinates of this image is
+     (0,24)
+- The picture to the right is the miniture version
+  of the main background image.  It is used as the
+  background for the smaller fields in TetriNET.
+  It is 96 pixels wide and 176 pixels high.
+  *  The Upper-left coordinates of this image is
+     (352,24)
+
+Your new graphic file does NOT have to have the same palette
+as the one included in the TetriNET zip.  If you use
+Photoshop, work in RGB mode while modifying the file.
+When you're done, convert it back to 256 colors to
+make sure the colors look as good as possible.
+
+You can also leave the BMP in 16million colors mode
+if you have a monitor capable of that.  If you are going
+to distribute your theme, it is best to convert it to
+256 colors because many don't have systems capable
+of high color mode.
+
+The sound descriptions are listed in default.tnp file.
+Modify any of the sounds you want, but make sure you
+modify the project file if you changed any of the WAV
+filenames. You can also include a MIDI file inside the
+theme package.
+
+Any sound/graphic themes created can be distributed
+freely.
+
+You can also modify the keys.  Click on the Misc. Settings
+button.  Click in any of the boxes and press a key and
+the text in the edit box will change to the key that you
+pressed.
+
+
+Acknowledgements:
+
+Darktick for all his ideas and help with graphics
+coding on TetriNET.
+
+myname, [bart], and Galardo because they kept playing
+and playing as betas went by - also for all the bugs
+they found and suggestions they gave.
+
+Knowledge, ReT, and the #square crew for beta testing,
+holding the #TetriNET channel, and giving suggestions.
+
+Also, netmonk, ATA, and phib for all of the above :)
+
+The many other people I know ;) for their support and
+testing they've done for me.
+
+
+VERSIONS:
+
+  New in 1.13 PUBLIC:
+  1.  Fixed teams of other players not being shown
+      to people sometimes
+  2.  Fixed win list from counting people that come
+      in during a game as a person that lost
+
+  New in 1.12 PUBLIC:
+  1.  Fixed server not allowing clients to connect in
+      many conditions
+  2.  Added team switching while connected to a server
+  3.  Fixed not saving key settings
+  4.  Code for receiving text from winsock is smaller
+  5.  Any lines transfered with classic style rules to
+      the server and the server isn't playing, they
+      are ignored.
+  6.  Fixed it from adding lines to other team members
+      in classic rules
+
+  New in 1.11 PUBLIC:
+  1.  Fixed people not being able to start working servers
+      or not being able to connect to servers.
+
+  New in 1.1 PUBLIC:
+  1.  While playing a game with classic multiplayer rules
+      turned on, anyone on your team wont be affected if
+      you add lines to everyone else.
+  2.  Fixed minor display quirks
+  3.  If system doesn't support MIDI, it won't crash
+  4.  Fixed a player double losing
+  5.  Fixed out of memory error
+  6.  Fixed player being added to win list when player isnt
+      on server
+  7.  RELEASE!
+
+  New in 1.1f BETA:
+  1.  Fixed EConvert errors (right? :))
+  2.  Fixed displaying of teams on the playing fields
+
+  New in 1.1e BETA:
+  1.  Tabbing between edit boxes/checkboxes/etc on the
+      windows is now in order
+  2.  Fixed win list from making doubles of winners
+  3.  Playing fields window is now hidden when a game
+      ends
+  4.  Fixed background/blocks not appearing sometimes
+      when setting focus to the playing fields window
+  5.  Fixed game from saying you gave other people
+      lines when you only made one line. (with classic
+      multiplayer rules turned on)
+  6.  Fixed 'o' blocks sometimes not "blowing up"
+      when attacked with Block Bomb
+  7.  Sounds 3.WAV and 6.WAV's description were switched
+      around in the docs
+
+  New in 1.1d BETA:
+  1.  Fixed font in main chatbox not changing on start.
+  2.  Fixed blinking when a message arrives
+  3.  Fixed bug in win list routines
+  4.  Fixed bug where if a person lost, server always
+      won
+  5.  Fixed random EConvertError crashes
+
+  New in 1.1c BETA:
+  1.  Made the classic multiplayer rules like gameboy now :)
+  2.  Fixed partyline not scrolling
+  3.  Ingame chat box should show all 3 lines on all types
+      of systems
+  4.  Added ability for multiple themes.. it uses a project
+      file that points to the graphics,sounds, and music files
+  5.  Server can change its nickname and team its on if
+      the Server Playing checkbox is unchecked
+  6.  Fixed server not losing when the Server Playing is
+      checked while a game is in progress
+  7.  Now puts a <T> before any team in the win list.
+  8.  Changed the way Block Bomb works
+
+  New in 1.1b BETA:
+  1.  Fixed bug in text recieving
+  2.  Fixed other minor bugs
+
+  New in 1.1a BETA:
+  1.  Fixed the scrolling on the attacks/defenses
+      box and mini-partyline box AGAIN
+  2.  Now when the Switch Special Block is used on someone
+      each client updates itself first to prevent field copying
+      if switch block is used 2 or more times in a row
+  3.  Ingame chat box is now 3 lines
+  4.  Secured connect negotiation between server and client
+  5.  Added bomb special block
+  6.  Added /me to ingame chat box
+  7.  Added teams
+  8.  Added MIDI
+  9.  Added background images
+  10. Added start up sound
+  11. The server now has the option to not play
+  12. The first person on a server (if the server isn't playing)
+      is a moderator - he can start/stop and pause/unpause the game
+  13. Option to average the player's levels
+  14. Classic rules option - when a player clears a line, it adds
+      a line to the other players
+  15. Fixed bug in IP ban box
+  16. Players can join a game already in progress
+  17. Winlist is now saved when you close and reload game
+  18. Option for after a certain amount of time, the game will
+      start adding lines to all the player's fields.  This speeds
+      up games
+  19. Now, the winning team/player recieves 3 points, last loser
+      gets 2, second to last loser gets 1 point.
+  20. The server can set the stack height when the game starts
+      for each player individually.
+  21. Levels go up to 100 instead of 50
+  22. Field displaying has been sped up alot
+  23. Better handling of winsock routines HOPEFULLY eliminating
+      the Access Violation errors
+  24. Fixed server screen not being enabled when a client game
+      has ended.
+  25. You can press ESCAPE when editing a msg in game, and it
+      will keep the text in the editbox until you press 't' to
+      edit it again.
+  26. You can change the font of the partyline box by right
+      clicking.
+  27. Moved Pause and Start New Game buttons to partyline
+      screen.
+  28. Any special blocks you get are now randomly placed in your
+      inventory
+
+  New in 1.0 FINAL:
+  1.  First released version!!
+  2.  Fixed Attacks/Defenses box's scrolling *again*
+  3.  Fixed range check error when typing in a box
+      while tetrinet is connecting to a server
+  4.  Now saves your nickname in the INI
+
+  New in BETA 1.0b:
+  1.  Fixed Attacks/Defenses box's scrolling and now it
+      doesn't say a player is attacking you when in fact they
+      aren't
+  2.  Fixed Pause button not enabling and disabling properly
+  3.  Partyline edit box now disables at the right times
+  4.  New icon
+
+  New in BETA 1.0a:
+  1.  Kicking users is fixed and works/looks alot better
+  2.  When a player dies, their field is filled with random
+      blocks
+  3.  You can now pause the game.
+  4.  Fixed not removing player from server if they quit
+      abnormally
+  5.  Tabbing between edit fields on the different screens
+      is now in order
+  6.  You can now see all attacks on players, even from other
+      players
+  7.  Fixed when making the piece fall down immediately, sometimes
+      it would jump up
+
+  New in BETA 1.0:
+      AKA BETA .88
+
+  New in BETA .88:
+  1.  Fixed distortion of window if your monitor's pixels per inch
+      settings were set akwardly
+  2.  Moderated Switch Field block now, no more cheating ;)
+
+  New in BETA .87:
+  1.  Hopefully fixed the bug that randomly kicked players
+      off the server.
+  2.  Added description label next to inventory for current
+      special block.
+  3.  Made windows smaller to better accommodate users
+      with 640x480 resolutions. (You will still have to
+      auto-hide your win95/nt taskbar)
+
+  New in BETA .86:
+  1.  New WAV for when a message arrives in the playing
+      window
+  2.  Added IP Banlist
+  3.  TetriNET now pops up the reason why you can't
+      connect to a server
+  4.  Now you have more time to move a piece left or
+      right when it's just about to hit the bottom.
+  5.  Other minor bugs fixed
+
+  New in BETA .85:
+  1.  Greatly improved handling of data coming in
+      from multiple sockets.  It shouldn't crash
+      anymore (?)
+  2.  TetriNET now passes a little less data to
+      the other players.  A fast modem is still
+      recommended if you're the server.
+  3.  Added easy talking while playing
+
+  New in BETA .84:
+  1.  New name because of copyrights ;)
+  2.  Rearranged playing field window
+  3.  Rotating certain pieces at the edge of the field
+      now works
+  4.  Pieces drop slower than before when you hold DOWN
+      (for greater accuracy)
+
+  New in BETA .83:
+  1.  Fixed partyline jumping every once in awhile
+  2.  Kick button is disable properly
+
+  New in BETA .82:
+  1.  I've added 2 more players.  Now you can compete
+      with a total of 5 players!
+  2.  Added player list to the partyline screen
+  3.  The Server can kick someone off if needed
+  4.  Added actions to partyline
+  5.  Added ctl-b/u/i character attributes to partyline
+  6.  Now allows playing by yourself so you can practice
+  7.  Many new special blocks added
+  8.  The show fields screen is now a seperate window
+      (to fix all that stupid palette handling)
+  9.  Added a winlist.  It shows all the players who
+      won and how many times they've won in the current
+      game.
+  10. Added ability to discard the special block in
+      inventory
+  11. A title screen with some nifty graphics! :)
+  12. Graphics are just one file now.
+  13. Fixed a few barely noticable bugs
+
+  New in BETA .81:
+  1.  Inventory system plus other special blocks -- more to come!
+  2.  Added sound!
+  3.  New graphics
+  4.  You can change Key config, sounds, and graphics
+  5.  Made playing fields of other player's smaller to reduce
+      lag
+  6.  Before, TetriNET sent the entire playing field of a player
+      to the rest of the players.  Now it sends just modifications
+      to the fields - this also reduces lots of lag
+  7.  Increased size of playing fields
+  8.  You can change how often each of the pieces/special blocks
+      appear in the game

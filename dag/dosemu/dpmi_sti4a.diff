@@ -1,0 +1,134 @@
+--- src/include/cpu.h	Mon Mar 11 03:37:34 2002
++++ src/include/cpu.h	Mon Mar 18 17:01:32 2002
+@@ -179,7 +179,7 @@
+ 
+   /* Flag setting and clearing, and testing */
+         /* interrupt flag */
+-#define set_IF() ((_EFLAGS |= (VIF | IF)), (dpmi_eflags |= IF), pic_sti())
++#define set_IF() ((_EFLAGS |= (VIF | IF)), (dpmi_eflags |= IF), is_cli = 0, pic_sti())
+ #define clear_IF() ((_EFLAGS &= ~(VIF | IF)), (dpmi_eflags &= ~IF), pic_cli())
+ #define isset_IF() ((_EFLAGS & VIF) != 0)
+        /* carry flag */
+--- src/dosext/dpmi/dpmi.h	Sat Nov 17 05:40:34 2001
++++ src/dosext/dpmi/dpmi.h	Sun Nov 25 22:04:18 2001
+@@ -40,6 +40,7 @@
+ EXTERN int in_dpmi_timer_int INIT(0);
+ EXTERN int dpmi_mhp_TF INIT(0);
+ EXTERN unsigned char dpmi_mhp_intxxtab[256] INIT({0});
++EXTERN int is_cli INIT(0);
+ 
+ void dpmi_get_entry_point();
+ 
+@@ -64,6 +65,8 @@
+ void dpmi_mhp_setreg(int regnum, unsigned long val);
+ #endif
+ 
++void add_cli_to_blacklist(void);
++
+ /* DANG_BEGIN_REMARK
+  * Handling of the virtual interrupt flag is still not correct and there
+  * are many open questions since DPMI specifications are unclear in this
+@@ -78,7 +81,7 @@
+ 
+ #define dpmi_cli() 	({ dpmi_eflags &= ~IF; pic_cli(); })
+ 
+-#define dpmi_sti() 	({ dpmi_eflags |= IF; pic_sti(); })
++#define dpmi_sti() 	({ dpmi_eflags |= IF; is_cli = 0; pic_sti(); })
+ 
+ #define CHECK_SELECTOR(x) \
+ { if ( (((x) >> 3) >= MAX_SELECTORS) || (!Segments[((x) >> 3)].used) \
+--- src/dosext/dpmi/dpmi.c	Sat Nov 24 02:48:43 2001
++++ src/dosext/dpmi/dpmi.c	Sun Nov 25 22:04:32 2001
+@@ -118,6 +118,12 @@
+ /* for real mode call back, DPMI function 0x303 0x304 */
+ static RealModeCallBack realModeCallBack[DPMI_MAX_CLIENTS][0x10];
+ 
++#define CLI_BLACKLIST_LEN 128
++static unsigned char * cli_blacklist[CLI_BLACKLIST_LEN];
++static unsigned char * current_cli;
++static int cli_blacklisted = 0;
++static int find_cli_in_blacklist(unsigned char *);
++
+ static RealModeCallBack mouseCallBack; /* user\'s mouse routine */
+ 
+ struct vm86_regs DPMI_rm_stack[DPMI_max_rec_rm_func];
+@@ -1917,6 +1923,7 @@
+     if (ldt_buffer) free(ldt_buffer);
+     if (pm_stack) free(pm_stack);
+   }
++  cli_blacklisted = 0;
+   in_dpmi_dos_int = 1;
+   in_dpmi--;
+   in_win31 = 0;
+@@ -3157,7 +3164,14 @@
+ 	dbug_printf("OUCH! deadly loop, cannot continue");
+ 	leavedos(97);
+       }
++      if (find_cli_in_blacklist(lina)) {
++        D_printf("DPMI: Ignoring blacklisted cli\n");
++	break;
++      }
++      current_cli = lina;
+       dpmi_cli();
++      if (!is_cli)
++	is_cli = 1;
+       break;
+     case 0xfb:			/* sti */
+       _eip += 1;
+@@ -3884,4 +3898,33 @@
+ 
+ #endif /* dosdebug support */
+ 
++void add_cli_to_blacklist(void)
++{
++  if (*current_cli != 0xfa) {
++    error("DPMI: add_cli_to_blacklist() called with no cli at %p (0x%x)!\n",
++      current_cli, *current_cli);
++    return;
++  }
++  if (cli_blacklisted < CLI_BLACKLIST_LEN) {
++    if (debug_level('M') > 5)
++      D_printf("DPMI: adding cli to blacklist: lina=%p\n", current_cli);
++    cli_blacklist[cli_blacklisted++] = current_cli;
++  }
++  else
++    D_printf("DPMI: Warning: cli blacklist is full!\n");
++}
++
++static int find_cli_in_blacklist(unsigned char * cur_cli)
++{
++int i;
++  if (debug_level('M') > 8)
++    D_printf("DPMI: searching blacklist (%d elements) for cli (lina=%p)\n",
++      cli_blacklisted, cur_cli);
++  for (i=0; i<cli_blacklisted; i++) {
++    if (cli_blacklist[i] == cur_cli)
++      return 1;
++  }
++  return 0;
++}
++
+ #undef DPMI_C
+--- src/base/dev/misc/timers.c	Sat Nov 24 05:02:59 2001
++++ src/base/dev/misc/timers.c	Sat Nov 24 05:04:20 2001
+@@ -154,6 +154,20 @@
+   /* Save old value of the timer */
+   time_old = time_curr;
+   
++  if (config.features[0] && in_dpmi && !in_dpmi_dos_int && is_cli) {
++/*
++   XXX as IF is not set by popf, we have to set it explicitly after a
++   reasonable delay. This will allow Doom to work with sound one day.
++   $_features="0:10" is recommended.
++*/
++    if (is_cli++ >= config.features[0]) {
++      D_printf("DPMI: Warning: Interrupts were disabled for too long, "
++      "re-enabling.\n");
++      add_cli_to_blacklist();
++      dpmi_sti();
++    }
++  }
++  
+   /* test for stuck interrupts, trigger any scheduled interrupts */
+   pic_watch(&tp);
+ }

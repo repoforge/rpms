@@ -1,0 +1,19 @@
+    README.vga_cyr8x16.pcf
+
+    The vga_cyr8x16.pcf font is based on a standard DosEmu font, with only
+cyrillic characters replaced.
+
+    As far as I know, there is no cyrillic font in the standard DosEmu
+distribution (at least, nobody in our institute could find one). So, I made
+it and it can be distributed under the same conditions as DosEmu.
+
+    To use the font:
+
+	cp vga_cyr8x16.pcf /usr/X11/lib/X11/fonts/misc/vga.pcf
+	cd /usr/X11/lib/X11/fonts/misc
+	mkfontdir
+
+
+Dmitry Bolkhovityanov, bolkhov@inp.nsk.su
+The Budker Institute of Nuclear Physics
+Novosibirsk, Russia
