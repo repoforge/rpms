@@ -1,21 +1,22 @@
 # $Id$
+# Authority: matthias
 
-%define desktop_vendor freshrpms
+%define rname Gabber
 
-Summary: A GNOME client for the Jabber instant messaging system.
+Summary: Client for the Jabber instant messaging system
 Name: gabber
-Version: 0.8.8
-Release: fr1
-Group: Applications/Communications
+Version: 1.9.4
+Release: 1
 License: GPL
-URL: http://gabber.sourceforge.net/
-Source: http://prdownloads.sourceforge.net/gabber/%{name}-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-root
-Requires: gnome-libs >= 1.2.0, libglade >= 0.11, libunicode >= 0.4
-Requires: libsigc++ >= 1.0.0, gnomemm >= 1.2.0, gal, libxml
-BuildRequires: gnome-libs-devel, libglade-devel, libunicode-devel
-BuildRequires: libsigc++-devel, gtkmm-devel, gnomemm-devel, gal-devel
-BuildRequires: libxml-devel, desktop-file-utils
+Group: Applications/Internet
+URL: http://gabber.jabberstudio.org/
+
+Source: http://www.jabberstudio.org/files/gabber/Gabber-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gnome-libs-devel, libglade-devel, libsigc++-devel, aspell-devel
+BuildRequires: gtkmm2-devel, libgnomemm2-devel, gconfmm2-devel, libglademm2-devel
+BuildRequires: gal >= 0.7, gal-devel, openssl-devel
 
 %description
 Gabber is a Gnome client for the distributed Open Source instant messaging 
@@ -24,43 +25,55 @@ remaining easy to use, trying to maintain a balance between too many
 features and being powerful enough.
 
 %prep
-%setup -q
+%setup -n %{real_name}-%{version}
+
 
 %build
-%configure --disable-xmms
-make %{?_smp_mflags}
+%configure \
+        --localstatedir="%{_localstatedir}/lib" \
+        --with-release-libs="%{_libdir}" \
+        --disable-schemas-install
+%{__make} %{?_smp_mflags}
+
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-%find_lang %{name}
-rm -rf %{buildroot}%{_localstatedir}/scrollkeeper
+#%find_lang %{name}
 
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category Network                                          \
-  %{buildroot}%{_datadir}/gnome/apps/Internet/%{name}.desktop
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_libdir}/Gabber/*.{a,la}
+
+
+%post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
-%defattr(-, root, root)
-%doc AUTHORS COPYING* ChangeLog NEWS README TODO
-%{_sysconfdir}/sound/events/%{name}.soundlist
-%{_bindir}/%{name}
-%{_datadir}/applications/*%{name}.desktop
-%{_datadir}/%{name}
-%{_datadir}/gnome/help/%{name}
-%{_datadir}/omf/gabber
-%{_datadir}/pixmaps/%{name}*
-%{_datadir}/sounds/%{name}
-%{_mandir}/man1/%{name}.1*
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING* NEWS README* TODO
+%config %{_sysconfdir}/gconf/schemas/*.schemas
+%{_bindir}/*
+%{_datadir}/applications/*.desktop
+%{_datadir}/Gabber/
+%{_datadir}/pixmaps/Gabber/
+%{_datadir}/pixmaps/gabber.png
+%{_libdir}/Gabber/
+
 
 %changelog
+* Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 1.9.4-1
+- Updated to release 1.9.4.
+
+* Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.9.3-0
+- Updated to release 1.9.3.
+
 * Sun May 25 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
 - Update to 0.8.8.
 
