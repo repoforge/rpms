@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Dists: rh7
+# ExclusiveDist: rh7
 # Tag: test
 
 %define	_root_sbindir	/sbin
