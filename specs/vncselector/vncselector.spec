@@ -11,10 +11,12 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.dooglio.net/VncSelector/
 
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
-BuildRequires: fltk-devel
+BuildRequires: fltk-devel, gcc-c++
 Requires: fltk
 
 # Screenshot: http://www.dooglio.net/VncSelector/screenshot.png
@@ -32,13 +34,15 @@ server sessions. This can be useful in a thin client situation (run from
 %{__make} %{?_smp_mflags}
 
 %install
-%makeinstall
+%{__install} -D -m 755 VncSelector %{buildroot}%{_bindir}/VncSelector
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root,0755)
+%doc RELEASE_NOTES
+%{_bindir}/VncSelector
 
 %changelog
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 1.2-1
