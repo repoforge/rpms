@@ -6,47 +6,38 @@
 
 # NeedsCleanup
 
+%{?fc2:%define qt_version_dir 3.3}
+%{?fc1:%define qt_version_dir 3.1}
+
 Summary: Qt program for connecting to the Jabber messaging network
 Name: psi
 Version: 0.9.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
 
 Source: http://dl.sf.net/psi/psi-%{version}.tar.bz2
 Source50: http://psi.affinix.com/beta/qca-tls-1.0.tar.bz2
+
+Source20: psi_ca.qm
+Source21: psi_cs.qm
+Source22: psi_de.qm
+Source23: psi_el.qm
+Source24: psi_es.qm
+Source25: psi_fr.qm
+Source26: psi_it.qm
+Source27: psi_mk.qm
+Source28: psi_nl.qm
+Source29: psi_pl.qm
+Source30: psi_se.qm
+Source31: psi_sk.qm
+Source32: psi_zh.qm
+
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: psi-iconsets
-
-#Source1: aqualight.zip
-#Source2: aquaploum.zip
-#Source3: bluekeramik.zip
-#Source4: businessblack.zip
-#Source5: crystal.zip
-#Source6: gabber.zip
-#Source7: icq2.zip
-#Source8: jilly.zip
-#Source9: licq.zip
-#Source10: mike.zip
-#Source11: psi_dudes.zip
-#Source12: smiley.zip
-#Source13: thomas.zip
-#Source14: beos.zip
-#Source15: cosmic.zip
-
-Source20: psi_pl.qm
-Source21: psi_sr.qm
-Source22: psi_fr.qm
-Source23: psi_eo.qm
-Source24: psi_sr@Latn.qm
-Source25: psi_fi.qm
-Source26: psi_cs.qm
-Source27: psi_it.qm
-Source28: psi_sk.qm
-Source29: psi_el.qm
-Source30: psi_ca.qm
 
 BuildRequires: gcc, make, gcc-c++, XFree86-devel, qt-devel, openssl, openssl-devel
 Requires: qt, openssl
@@ -64,36 +55,6 @@ multiple accounts, group chat, Unicode and encryption with SSL.
 export KDEDIR=/usr
 ./configure --prefix=/usr 
 make
-#mkdir iconsets/aqualight
-#unzip -d iconsets/aqualight %{SOURCE1}
-#mkdir iconsets/aquaploum
-#unzip -d iconsets/aquaploum %{SOURCE2}
-#mkdir iconsets/bluekeramik
-#unzip -d iconsets/bluekeramik %{SOURCE3}
-#mkdir iconsets/businessblack
-#unzip -d iconsets/businessblack %{SOURCE4}
-#mkdir iconsets/crystal
-#unzip -d iconsets/crystal %{SOURCE5}
-#mkdir iconsets/gabber
-#unzip -d iconsets/gabber %{SOURCE6}
-#mkdir iconsets/icq2
-#unzip -d iconsets/icq2 %{SOURCE7}
-#mkdir iconsets/jilly
-#unzip -d iconsets/jilly %{SOURCE8}
-#mkdir iconsets/licq
-#unzip -d iconsets/licq %{SOURCE9}
-#mkdir iconsets/mike
-#unzip -d iconsets/mike %{SOURCE10}
-#mkdir iconsets/psi_dudes
-#unzip -d iconsets/psi_dudes %{SOURCE11}
-#mkdir iconsets/smiley
-#unzip -d iconsets/smiley %{SOURCE12}
-#mkdir iconsets/thomas
-#unzip -d iconsets/thomas %{SOURCE13}
-#mkdir iconsets/beos
-#unzip -d iconsets/beos %{SOURCE14}
-#mkdir iconsets/cosmic
-#unzip -d iconsets/cosmic %{SOURCE15}
 
 # ssl plugin
 tar -xjvf %{SOURCE50}
@@ -124,7 +85,7 @@ mkdir -p "${RPM_BUILD_ROOT}/usr/share/icons/hicolor/32x32/apps/"
 cp -f -p iconsets/system/default/icon_32.png ${RPM_BUILD_ROOT}/usr/share/icons/hicolor/32x32/apps/psi.png
 mkdir -p "${RPM_BUILD_ROOT}/usr/share/icons/hicolor/48x48/apps/"
 cp -f -p iconsets/system/default/icon_48.png ${RPM_BUILD_ROOT}/usr/share/icons/hicolor/48x48/apps/psi.png
-
+ 
 
 cp %{SOURCE20} ${DESTDIR}/usr/share/psi
 cp %{SOURCE21} ${DESTDIR}/usr/share/psi
@@ -137,11 +98,13 @@ cp %{SOURCE27} ${DESTDIR}/usr/share/psi
 cp %{SOURCE28} ${DESTDIR}/usr/share/psi
 cp %{SOURCE29} ${DESTDIR}/usr/share/psi
 cp %{SOURCE30} ${DESTDIR}/usr/share/psi
- 
+cp %{SOURCE31} ${DESTDIR}/usr/share/psi
+cp %{SOURCE32} ${DESTDIR}/usr/share/psi
+
 # ssl plugin
-mkdir -p ${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/
-cp -f "qca-tls-1.0/libqca-tls.so" "${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/libqca-tls.so"
-strip --strip-unneeded "${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/libqca-tls.so"
+mkdir -p ${DESTDIR}/usr/lib/qt-%{qt_version_dir}/plugins/crypto/
+cp -f "qca-tls-1.0/libqca-tls.so" "${DESTDIR}/usr/lib/qt-%{qt_version_dir}/plugins/crypto/libqca-tls.so"
+strip --strip-unneeded "${DESTDIR}/usr/lib/qt-%{qt_version_dir}/plugins/crypto/libqca-tls.so"
 
 %post
 /sbin/ldconfig
@@ -151,7 +114,6 @@ strip --strip-unneeded "${DESTDIR}/usr/lib/qt-3.1/plugins/crypto/libqca-tls.so"
 
 %package languagepack
 Summary: translations of the jabber client Psi
-Summary(nl): vertalingen van de jabber client Psi
 Group: Applications/Communications
 Requires: psi = %{version}-%{release}
 
@@ -160,46 +122,31 @@ This package contains the necessairy files for using the jabber client Psi
 in other languages then English.
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc README COPYING TODO
-/usr/bin/psi
-/usr/share/psi/certs
-#/usr/share/psi/image
-/usr/share/psi/sound
-#/usr/share/psi/iconsets/stellar
-#/usr/share/psi/iconsets/thomas
-/usr/lib/qt-3.1/plugins/crypto/libqca-tls.so
-/usr/share/icons/hicolor/*/apps/psi.png
-/usr/share/applnk/Internet/psi.desktop
-/usr/share/psi/iconsets
-#/usr/share/psi/iconsets/aqualight
-#/usr/share/psi/iconsets/aquaploum
-#/usr/share/psi/iconsets/beos
-#/usr/share/psi/iconsets/bluekeramik
-#/usr/share/psi/iconsets/businessblack
-#/usr/share/psi/iconsets/cosmic
-#/usr/share/psi/iconsets/crystal
-#/usr/share/psi/iconsets/gabber
-#/usr/share/psi/iconsets/icq2
-#/usr/share/psi/iconsets/jilly
-#/usr/share/psi/iconsets/licq
-#/usr/share/psi/iconsets/lightbulb
-#/usr/share/psi/iconsets/mike
-#/usr/share/psi/iconsets/psi_dudes
-#/usr/share/psi/iconsets/smiley
+%{_bindir}/psi
+%{_datadir}/psi/certs
+%{_datadir}/psi/sound
+%{_libdir}/qt-*/plugins/crypto/libqca-tls.so
+%{_datadir}/icons/hicolor/*/apps/psi.png
+%{_datadir}/applnk/Internet/psi.desktop
+%{_datadir}/psi/iconsets
 
 %files languagepack
 /usr/share/psi/psi_*.qm
 
 %changelog
-* Fri Jan 2 2004 Dries Verachtert <dries@ulyssis.org> 0.9.1-1.dries
+* Thu May 27 2004 Dries Verachtert <dries@ulyssis.org> 0.9.1-2
+- small changes in spec file
+
+* Fri Jan 2 2004 Dries Verachtert <dries@ulyssis.org> 0.9.1-1
 - great, i finish uploading the 0.9 rpms to the webserver and 0.9.1 is
 released (spike tells so on irc). Ok upgrade..
 - add ssl plugin
 - all the iconsets seems to be contained within the 0.9.1 now
 
-* Fri Jan 2 2004 Dries Verachtert <dries@ulyssis.org> 0.9-2.dries
+* Fri Jan 2 2004 Dries Verachtert <dries@ulyssis.org> 0.9-2
 - further packaging, added iconsets and language packs
 
-* Thu Jan 1 2004 Dries Verachtert <dries@ulyssis.org> 0.9-1.dries
+* Thu Jan 1 2004 Dries Verachtert <dries@ulyssis.org> 0.9-1
 - first packaging for Fedora Core 1
