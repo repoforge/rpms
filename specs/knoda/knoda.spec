@@ -1,11 +1,13 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: 
+# Upstream: bugreport@knoda.org
+# Screenshot: http://hk-classes.sourceforge.net/screenshots/relationeditor.html
+# ScreenshotURL: http://hk-classes.sourceforge.net/screenshot.html
 
 Summary: Database frontend
 Name: knoda
-Version: 0.6.3
+Version: 0.7
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -16,11 +18,13 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/knoda/knoda-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel, hk_classes, python-devel, python
+BuildRequires: gcc, make, libpng-devel
+BuildRequires: libart_lgpl-devel, arts-devel
+BuildRequires: gcc-c++, gettext, XFree86-devel
+BuildRequires: zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: kdelibs-devel, hk_classes
+BuildRequires: python-devel, python
 %{?fc2:BuildRequires: libselinux-devel}
-
-# Screenshot: http://hk-classes.sourceforge.net/screenshots/relationeditor.html
-# ScreenshotURL: http://hk-classes.sourceforge.net/screenshot.html
 
 %description
 knoda is a database frontend for KDE. It is based on hk_classes. 
@@ -49,12 +53,17 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+%{__perl} -pi.orig -e 's|\$\(datadir\)|\$(picsdatadir)|g' hk_kdeclasses/pics/Makefile.* knoda/pics/Makefile.*
+%{__perl} -pi.orig -e 's|^datadir|picsdatadir|g' hk_kdeclasses/pics/Makefile.* knoda/pics/Makefile.*
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+# with stripping: 21Mb -> 2Mb
+%{__strip} %{buildroot}%{_libdir}/libhk_kdeclasses.so
+%find_lang %{name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -65,28 +74,26 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/knoda
 %{_libdir}/libhk_kdeclasses.*
-%{_libdir}/kde3/libhk_kdegridpart.*
-%{_datadir}/apps/hk_kdeclasses/*.rc
-%{_datadir}/apps/knoda/*.rc
-%{_datadir}/*.png
-%{_datadir}/services/hk_kdegridpart.desktop
+%{_libdir}/kde3/libhk*
+%{_datadir}/apps/hk_kdeclasses
+%{_datadir}/apps/knoda
+%{_datadir}/services/*.desktop
 %{_datadir}/icons/*/*/apps/*.png
 %{_datadir}/applnk/Office/*.desktop
-%{_datadir}/locale/*/LC_MESSAGES/knoda.mo
 %{_datadir}/doc/HTML/en/knoda
-
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/hk_*.h
 
-
 %changelog
+* Mon Jul 12 2004 Dries Verachtert <dries@ulyssis.org> - 0.7-1
+- Update to version 0.7.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.6.3-1
 - Initial package.
-
