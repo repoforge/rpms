@@ -1,0 +1,45 @@
+# $Id: _template.spec 765 2004-05-20 17:33:53Z dag $
+# Authority: dag
+
+Summary: Low complexity and fast waveform coder
+Name: shorten
+Version: 3.6.0
+Release: 1
+License: Distributable
+Group: Applications/Multimedia
+URL: http://www.etree.org/shnutils/shorten/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://www.etree.org/shnutils/shorten/source/shorten-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%description
+shorten is a low complexity and fast waveform coder (i.e. audio
+compressor), originally written by Tony Robinson at SoftSound. It can
+operate in both lossy and lossless modes.
+
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS README doc/LICENSE doc/TODO doc/tr156.ps
+%doc %{_mandir}/man?/*
+%{_bindir}/shorten
+
+%changelog
+* Wed Jul 14 2004 Dag Wieers <dag@wieers.com> - 3.6.0-1
+- Initial package. (using DAR)

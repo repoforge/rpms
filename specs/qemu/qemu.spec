@@ -6,8 +6,8 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.5.5
-Release: 3
+Version: 0.6.0
+Release: 1
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
@@ -39,7 +39,7 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-%{?fc2:%patch0}
+#%{?fc2:%patch0}
 
 %build
 %configure
@@ -72,6 +72,9 @@ reasonnable speed while being easy to port on new host CPUs.
 %exclude %{_docdir}
 
 %changelog
+* Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.6.0-1
+- Updated to release 0.6.0.
+
 * Fri May 28 2004 Dag Wieers <dag@wieers.com> - 0.5.5-3
 - Fixed SDL relocation error on fc2. (David Woodhouse)
 

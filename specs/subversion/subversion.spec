@@ -30,7 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildPreReq: autoconf, libtool, python, python-devel, texinfo
 #BuildPreReq: db4-devel >= 4.1.25, swig >= 1.3.15, docbook-style-xsl
 BuildPreReq: db4-devel >= 4.1.25, swig, docbook-style-xsl
-BuildPreReq: apr-devel, apr-util-devel, neon-devel >= 0:0.24.0-1
+BuildPreReq: apr-devel, apr-util-devel, neon-devel >= 0:0.24.6-1
 
 %define __perl_requires %{SOURCE3}
 

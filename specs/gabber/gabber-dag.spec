@@ -1,11 +1,12 @@
+# $Id$
 # Authority: freshrpms
 
 %define rname Gabber
 
 Summary: Client for the Jabber instant messaging system.
 Name: gabber
-Version: 1.9.3
-Release: 0
+Version: 1.9.4
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://gabber.jabberstudio.org/
@@ -14,8 +15,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.jabberstudio.org/files/gabber/Gabber-%{version}.tar.gz
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gnome-libs-devel, libglade-devel, libsigc++-devel, aspell-devel
 BuildRequires: gtkmm2-devel, libgnomemm2-devel, gconfmm2-devel, libglademm2-devel
@@ -46,7 +46,6 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 #%find_lang %{name}
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
 %{__rm} -f %{buildroot}%{_libdir}/Gabber/*.{a,la}
 
 %post
@@ -70,7 +69,11 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/gabber.png
 %{_datadir}/Gabber/
 %{_datadir}/applications/*.desktop
+#exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 1.9.4-1
+- Updated to release 1.9.4.
+
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.9.3-0
 - Initial package. (using DAR)

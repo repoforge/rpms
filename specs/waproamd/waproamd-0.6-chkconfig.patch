@@ -1,0 +1,12 @@
+diff -ur waproamd-0.6.orig/conf/waproamd.init.in waproamd-0.6/conf/waproamd.init.in
+--- waproamd-0.6.orig/conf/waproamd.init.in	2004-06-28 03:12:22.599168220 +0200
++++ waproamd-0.6/conf/waproamd.init.in	2004-06-28 03:13:19.843123387 +0200
+@@ -1,6 +1,8 @@
+ #!/bin/sh
+ # $Id: waproamd.init.in 59 2004-01-26 15:37:47Z lennart $
+ 
++# chkconfig: 2345 10 90
++
+ # This file is part of waproamd.
+ #
+ # waproamd is free software; you can redistribute it and/or modify it under

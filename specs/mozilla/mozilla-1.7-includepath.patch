@@ -1,0 +1,8 @@
+--- mozilla/build/unix/mozilla-xpcom.pc.in.foo	2004-06-22 15:29:57.000000000 -0400
++++ mozilla/build/unix/mozilla-xpcom.pc.in	2004-06-22 15:29:58.000000000 -0400
+@@ -8,4 +8,4 @@
+ Version: %MOZILLA_VERSION%
+ Requires: mozilla-nspr = %MOZILLA_VERSION%
+ Libs: -L${libdir} -lxpcom
+-Cflags: -I${includedir}/xpcom -I${includedir}/string
++Cflags: -I${includedir} -I${includedir}/xpcom -I${includedir}/string
