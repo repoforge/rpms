@@ -2,9 +2,9 @@
 # Authority: newrpms
 # Upstream: <clamav-devel@lists.sf.net>
 
-Summary: Anti-virus utility for Unix
+Summary: Anti-virus software
 Name: clamav
-Version: 0.71
+Version: 0.72
 Release: 1
 License: GPL
 Group: Applications/System
@@ -242,6 +242,7 @@ fi
 %doc %{_mandir}/man1/sigtool.1*
 %doc %{_mandir}/man1/clamscan.1*
 %doc %{_mandir}/man1/freshclam.1*
+%doc %{_mandir}/man5/freshclam.conf.5*
 %config(noreplace) %{_sysconfdir}/freshclam.conf
 %{_bindir}/clamscan
 %{_bindir}/freshclam
@@ -290,6 +291,9 @@ fi
 %exclude %{_libdir}/*.la
 
 %changelog
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.72-1
+- Updated to release 0.72.
+
 * Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.71-1
 - Updated to release 0.71.
 
