@@ -116,6 +116,7 @@ use the Xine library.
 
 %build
 %configure \
+    --program-prefix="%{?_program_prefix}" \
     --with-pic \
     %{?_without_alsa:--disable-alsa} \
     %{!?_with_ext-dvdnav:--with-included-dvdnav}
