@@ -6,7 +6,7 @@
 Summary: The Open Racing Car Simulator
 Name: torcs
 Version: 1.2.2
-Release: 2
+Release: 3
 License: GPL
 Group: Amusements/Games
 URL: http://torcs.org/
@@ -16,11 +16,12 @@ Source2: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-berniw.tgz
 Source3: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-K1999.tgz
 Source4: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-billy.tgz
 Source5: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-bt.tgz
+Patch: torcs-1.2.2-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: torcs-data
-#BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL
-BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL
-BuildRequires: gcc-c++, plib-devel >= 1.6.0, freeglut-devel
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
+BuildRequires: gcc-c++, plib16-devel, freeglut-devel
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel
 BuildRequires: desktop-file-utils
 
@@ -45,13 +46,14 @@ This package contains the robots who can race on their own.
 
 %prep
 %setup -a 1 -a 2 -a 3 -a 4 -a 5
+%patch -p1 -b .build
 # Put the drivers back where they belong
 %{__mv} %{name}-%{version}/src/drivers/* src/drivers/
 
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} RPM_OPT_FLAGS="%{optflags}"
 
 
 %install
@@ -64,12 +66,12 @@ This package contains the robots who can race on their own.
 [Desktop Entry]
 Name=TORCS
 Comment=The Open Racing Car Simulator
-Exec=%{name}
-Icon=%{name}.png
+Exec=torcs
+Icon=torcs.png
 Terminal=false
 Type=Application
-Categories=Application;Game;
 Encoding=UTF-8
+Categories=Application;Game;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
@@ -80,13 +82,6 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %clean
 %{__rm} -rf %{buildroot}
-
-
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
 
 
 %files
@@ -122,6 +117,14 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-3
+- Remove un-needed /sbin/ldconfig calls.
+
+* Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-3
+- Change build dependency of plib to compat package plib16-devel as
+  rebuilding against 1.8 is not currently possible.
+- Add patch for -fPIC to fix x86_64 build (hmm, doesn't work).
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-2
 - Rebuild for Fedora Core 2.
 - Change XFree86 deps to xorg-x11 and glut to freeglut.

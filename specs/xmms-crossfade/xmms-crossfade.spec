@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: Peter Eisenlohr <peter$eisenlohr,org>
 
-%define xmms_outputdir %(xmms-config --output-plugin-dir)
+%define xmms_outputdir %(xmms-config --output-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Output)
 
 Summary: Crossfade output plugin for XMMS
 Name: xmms-crossfade

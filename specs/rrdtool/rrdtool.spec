@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
-%define phpextdir %(php-config --extension-dir || echo %{_libdir}/php4)
+%define phpextdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool

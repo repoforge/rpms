@@ -5,11 +5,11 @@
 Summary: Implementation of the RFC1413 identification server
 Name: oidentd
 Version: 2.0.7
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Daemons
 URL: http://ojnk.sourceforge.net/
-Source0: http://download.sourceforge.net/ojnk/oidentd-%{version}.tar.gz
+Source0: http://dl.sf.net/ojnk/oidentd-%{version}.tar.gz
 Source1: identd.init
 Source2: identd.spoof
 Source3: oidentd.users
@@ -43,7 +43,7 @@ TCP/IP connections.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/identd
+%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/rc.d/init.d/identd
 %{__install} -D -m 640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
 %{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
 
@@ -56,28 +56,32 @@ TCP/IP connections.
 /sbin/chkconfig --add identd
 
 %preun
-if [ $1 = 0 ]; then
-    /sbin/service identd stop > /dev/null 2>&1
+if [ $1 -eq 0 ]; then
+    /sbin/service identd stop >/dev/null 2>&1
     /sbin/chkconfig --del identd
 fi
 
 %postun
-if [ "$1" -ge "1" ]; then
-    /sbin/service identd condrestart > /dev/null 2>&1
+if [ $1 -ge 1 ]; then
+    /sbin/service identd condrestart >/dev/null 2>&1
 fi
 
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING* NEWS README TODO doc/rfc1413
-%{_sbindir}/oidentd
 %attr(0640, root, nobody) %config(noreplace) %{_sysconfdir}/identd.spoof
 %attr(0640, root, nobody) %config(noreplace) %{_sysconfdir}/oidentd.users
-%config /etc/init.d/identd
+%config /etc/rc.d/init.d/identd
+%{_sbindir}/oidentd
 %{_mandir}/man?/*
 
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-4
+- Rebuild for Fedora Core 3.
+- Change /etc/init.d to /etc/rc.d/init.d and minor other spec tweaks.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-3
 - Rebuild for Fedora Core 2.
 

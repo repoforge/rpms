@@ -7,8 +7,8 @@ Version: 1.3.3
 Release: 3
 License: LGPL
 Group: System Environment/Libraries
-Source: http://clanlib.org/download/files/%{name}-%{version}.tar.bz2
 URL: http://clanlib.org/hermes/
+Source: http://clanlib.org/download/files/Hermes-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf
 

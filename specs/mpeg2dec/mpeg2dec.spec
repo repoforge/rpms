@@ -11,7 +11,7 @@ Release: %{?date:0.%{date}.}4b
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
-Source: http://libmpeg2.sf.net/files/mpeg2dec-%{?date:date}%{!?date:%{version}b}.tar.gz
+Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:date}%{!?date:%{version}b}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, pkgconfig, gcc-c++
 

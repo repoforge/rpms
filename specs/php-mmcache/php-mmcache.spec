@@ -1,8 +1,8 @@
 # $Id$
 # Authority: matthias
 
-%define php_extdir %(php-config --extension-dir || echo /usr/lib/php4)
-%{!?php_version:%define php_version %(php-config --version || echo bad)}
+%define php_extdir %(php-config --extension-dir 2>/dev/null || echo /usr/lib/php4)
+%{!?php_version:%define php_version %(php-config --version 2>/dev/null || echo 4.3.9)}
 
 %define module_version 2.4.6
 

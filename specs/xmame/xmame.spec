@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-#define rcver rc2
+%define rcver cvs
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
 
 %{!?_without_opengl:%define opengl 1}
@@ -11,8 +11,8 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.87cvs
-Release: %{?rcver:0.%{rcver}.}4
+Version: 0.88
+Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
@@ -97,12 +97,13 @@ done
 
 # The default, if not overwritten below
 export PREFIX=%{_prefix}
-export CFLAGS="%{optflags}"
+export CFLAGS="%{optflags} -fno-merge-constants"
 export JOY_I386=1
 export JOY_PAD=1
-%{!?_without_alsa:export SOUND_ALSA=1}
-%{!?_without_esound:export SOUND_ESOUND=1}
-%{!?_without_arts:export SOUND_ARTS_SMOTEK=1; export SOUND_ARTS_TEIRA=1}
+%{!?_without_alsa:   export SOUND_ALSA=1}
+%{!?_without_esound: export SOUND_ESOUND=1}
+%{!?_without_arts:   export SOUND_ARTS_SMOTEK=1}
+%{!?_without_arts:   export SOUND_ARTS_TEIRA=1}
 
 # Optimization flags, CPU type and defaults for the makefile
 %ifarch %{ix86}
@@ -111,7 +112,7 @@ export JOY_PAD=1
     %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=i386 -mcpu=pentium4 -Wall -fno-merge-constants"}
     %{!?_without_asm68000: export X86_ASM_68000=1}
     %{!?_without_mips3drc: export X86_MIPS3_DRC=1}
-    %{!?_without_effmmx: export EFFECT_MMX_ASM=1}
+    %{!?_without_effmmx:   export EFFECT_MMX_ASM=1}
 %endif
 
 %ifarch i686
@@ -136,7 +137,7 @@ export JOY_PAD=1
     #{!?_without_mips3drc: export X86_MIPS3_DRC=1}
     # If you enable EFFECT_MMX_ASM, you'll get "Illegal instruction" for
     # the 6tap2x effect (0.88)
-    #{!?_without_effmmx: export EFFECT_MMX_ASM=1}
+    #{!?_without_effmmx:   export EFFECT_MMX_ASM=1}
 %endif
 
 # Now, do all the building (this is long!)
@@ -211,12 +212,12 @@ popd
 %{_bindir}/romcmp
 %attr(2755, root, games) %{_bindir}/xmame
 %{_bindir}/xml2info
-%dir %attr(2775, root, games) %{_datadir}/xmame
-%dir %attr(2775, root, games) %{_datadir}/xmame/artwork
-%attr(-, root, root) %{_datadir}/xmame/cab
-%dir %attr(2775, root, games) %{_datadir}/xmame/roms
-%dir %attr(2775, root, games) %{_datadir}/xmame/samples
-%dir %attr(2775, root, games) %{_datadir}/xmame/snap
+%dir %attr(2775, root, games) %{_datadir}/xmame/
+%dir %attr(2775, root, games) %{_datadir}/xmame/artwork/
+%attr(-, root, root) %{_datadir}/xmame/cab/
+%dir %attr(2775, root, games) %{_datadir}/xmame/roms/
+%dir %attr(2775, root, games) %{_datadir}/xmame/samples/
+%dir %attr(2775, root, games) %{_datadir}/xmame/snap/
 %{_datadir}/xmame/*.dat
 %{_mandir}/man6/xmame.6*
 %endif
@@ -226,18 +227,22 @@ popd
 %defattr(-, root, root, 0755)
 %doc README _docs/xmess/*
 %attr(2755, root, games) %{_bindir}/xmess
-%dir %attr(2775, root, games) %{_datadir}/xmess
-%dir %attr(2775, root, games) %{_datadir}/xmess/artwork
-%dir %attr(2775, root, games) %{_datadir}/xmess/bios
-%dir %attr(2775, root, games) %{_datadir}/xmess/crc
-%dir %attr(2775, root, games) %{_datadir}/xmess/samples
-%dir %attr(2775, root, games) %{_datadir}/xmess/snap
-%dir %attr(2775, root, games) %{_datadir}/xmess/software
+%dir %attr(2775, root, games) %{_datadir}/xmess/
+%dir %attr(2775, root, games) %{_datadir}/xmess/artwork/
+%dir %attr(2775, root, games) %{_datadir}/xmess/bios/
+%dir %attr(2775, root, games) %{_datadir}/xmess/crc/
+%dir %attr(2775, root, games) %{_datadir}/xmess/samples/
+%dir %attr(2775, root, games) %{_datadir}/xmess/snap/
+%dir %attr(2775, root, games) %{_datadir}/xmess/software/
 %{_mandir}/man6/xmess.6.*
 %endif
 
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 0.88-0.cvs.1
+- Update to current CVS, all my bugs are fixed!
+- Release as 0.88 cvs.
+
 * Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 0.87cvs-3
 - Update all related files for 0.88.
 - This is still versionned 0.87cvs, but it has 0.88 core.

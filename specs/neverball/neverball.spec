@@ -16,7 +16,7 @@
 
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball
-Version: 1.3.7
+Version: 1.4.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -121,6 +121,9 @@ desktop-file-install \
 
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.4.0-1
+- Update to 1.4.0.
+
 * Wed Aug 11 2004 Matthias Saou <http://freshrpms.net/> 1.3.7-1
 - Update to 1.3.7.
 

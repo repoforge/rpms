@@ -36,7 +36,7 @@
 %define date      20041025
 #define rcver     pre5
 
-%define xmms_plugindir %(xmms-config --input-plugin-dir || echo %{_libdir}/xmms/Input)
+%define xmms_plugindir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer

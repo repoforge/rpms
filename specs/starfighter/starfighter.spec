@@ -13,7 +13,7 @@ Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.parallelrealities.co.uk/starfighter.php
-Source0: starfighter-%{version}-1.tar.gz
+Source0: starfighter-%{version}-1.tar.bz2
 Source1: starfighter.png
 Patch: starfighter-1.1-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

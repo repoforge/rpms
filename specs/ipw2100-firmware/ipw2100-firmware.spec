@@ -4,13 +4,13 @@
 
 Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
-Version: 1.2
+Version: 1.3
 Release: 1
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/firmware.php
-# Full path not available because of the end user agreement
-Source: ipw2100-fw-1.2.tgz
+# License agreement must be displayed before download (referer protection)
+Source: ipw2100-fw-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -30,12 +30,15 @@ Linux. Usage of the firmware is subject to the terms contained in :
 %install
 %{__rm} -rf %{buildroot}
 # Install all firmware files
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/firmware \
+%{__mkdir_p} %{buildroot}/lib/firmware \
+             %{buildroot}%{_sysconfdir}/firmware \
              %{buildroot}%{_libdir}/hotplug/firmware
-%{__install} -m 0644 *.fw %{buildroot}%{_sysconfdir}/firmware/
-# Symlink all of them for hotplug loading to work
+%{__install} -m 0644 *.fw %{buildroot}/lib/firmware/
+# Symlink all of them for new and old hotplug loading to work
 for file in *.fw; do
-    %{__ln_s} %{_sysconfdir}/firmware/${file} \
+    %{__ln_s} /lib/firmware/${file} \
+        %{buildroot}%{_sysconfdir}/firmware/
+    %{__ln_s} /lib/firmware/${file} \
         %{buildroot}%{_libdir}/hotplug/firmware/
 done
 
@@ -47,11 +50,18 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE
+/lib/firmware/*.fw
 %{_sysconfdir}/firmware/*.fw
 %{_libdir}/hotplug/firmware/*.fw
 
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net> 1.3-2
+- Now put the files in /lib/firmware and symlinks in other dirs.
+
+* Tue Sep 28 2004 Matthias Saou <http://freshrpms.net> 1.3-1
+- Update to 1.3.
+
 * Wed Aug 25 2004 Matthias Saou <http://freshrpms.net> 1.2-1
 - Update to 1.2.
 

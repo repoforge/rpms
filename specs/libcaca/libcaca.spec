@@ -5,14 +5,13 @@
 Summary: Library for Colour AsCii Art, text mode graphics
 Name: libcaca
 Version: 0.9
-Release: 1
+Release: 4
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sam.zoy.org/projects/libcaca/
-
 Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
+Patch: libcaca-0.9-man3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 Buildrequires: XFree86-devel, ncurses-devel >= 5, slang-devel, imlib2-devel
 Buildrequires: zlib-devel, doxygen, tetex-latex, tetex-dvips
 
@@ -58,6 +57,7 @@ sprite blitting.
 
 %prep
 %setup
+%patch -p1 -b .man3
 
 
 %build
@@ -88,7 +88,7 @@ sprite blitting.
 %{_bindir}/caca-config
 %{_includedir}/*
 %{_mandir}/man1/caca-config.1*
-%{_mandir}/man3/*
+#{_mandir}/man3/*
 
 %files -n caca-utils
 %defattr(-, root, root, 0755)
@@ -107,6 +107,9 @@ sprite blitting.
 
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 0.9-4
+- Disable man3 pages, they don't build on FC3, this needs fixing.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9-3
 - Rebuild for Fedora Core 2.
 

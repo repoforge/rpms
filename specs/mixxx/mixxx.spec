@@ -13,7 +13,7 @@
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
 Version: 1.4.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/
@@ -61,8 +61,9 @@ EOF
 source "/etc/profile.d/qt.sh"
 # The PWD thing is an ugly hack since relative paths mess everything up...
 pushd src
-    # Alsa doesn't seem to get enabled for now (unimplemented?)
-    ./configure --prefix="${PWD}%{_prefix}" --enable-features="Alsa"
+    ./configure \
+        --prefix="${PWD}%{_prefix}" \
+        --enable-alsa
     %{__perl} -pi.orig -e "s|${PWD}||g" Makefile
     # Ugly workaround to not have the docs installed
     %{__perl} -pi.orig -e 's|install_readme install_licence install_copying install_manual ||g' Makefile
@@ -72,19 +73,19 @@ popd
 %install
 %{__rm} -rf %{buildroot}
 # That trailing slash is mandatory because of "$(INSTALL_ROOT)usr" lines
-%{__make} install -C src \
-	INSTALL_ROOT="%{buildroot}/"
+%{__make} install -C src INSTALL_ROOT="%{buildroot}/"
 
 %{__install} -D -m0644 src/icon.png %{buildroot}%{_datadir}/pixmaps/mixxx.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -D -m0644 mixxx.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/mixxx.desktop
+    %{__install} -D -m0644 mixxx.desktop \
+        %{buildroot}%{_datadir}/gnome/apps/Multimedia/mixxx.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		mixxx.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        mixxx.desktop
 %endif
 
 %clean
@@ -92,7 +93,7 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING LICENSE README Mixxx-Manual.pdf
+%doc COPYING LICENSE README* Mixxx-Manual.pdf
 %{_bindir}/mixxx
 %{_datadir}/mixxx/
 %{_datadir}/pixmaps/mixxx.png
@@ -100,6 +101,9 @@ popd
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/mixxx.desktop}
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.4.2-2
+- Enable ALSA properly.
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> -  1.4.2-1
 - Updated to release 1.4.2.
 

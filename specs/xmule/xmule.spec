@@ -3,11 +3,11 @@
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
-Version: 1.9.2
+Version: 1.9.4b
 Release: 1
 License: GPL
 Group: Applications/Internet
-Source: http://dl.sf.net/xmule/%{name}-%{version}.tar.bz2
+Source: http://download.berlios.de/xmule/xmule-%{version}.tar.bz2
 Patch: xmule-1.9.2-install.patch
 URL: http://www.xmule.ws/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -36,7 +36,7 @@ same network.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+%find_lang xMule
 %{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 
 
@@ -51,7 +51,7 @@ same network.
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
 
-%files -f %{name}.lang
+%files -f xMule.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog ED2K-Links.HOWTO README TODO
 %{_bindir}/*
@@ -60,6 +60,10 @@ same network.
 
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.9.4b-1
+- Update to 1.9.4b.
+- Reflect xmule -> xMule change for the .po files.
+
 * Fri Oct  1 2004 Matthias Saou <http://freshrpms.net/> 1.9.2-1
 - Update to 1.9.2, updated install patch.
 

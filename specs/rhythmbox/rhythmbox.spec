@@ -94,7 +94,7 @@ scrollkeeper-update
 %{_datadir}/omf/rhythmbox/
 %{_datadir}/idl/Rhythmbox.idl
 %{_datadir}/mime-info/rhythmbox.keys
-%{_libdir}/bonobo/librb-nautilus-context-menu.so
+#{_libdir}/bonobo/librb-nautilus-context-menu.so
 %{_libdir}/bonobo/servers/*.server
 %{_libdir}/pkgconfig/rhythmbox.pc
 

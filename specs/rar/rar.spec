@@ -8,7 +8,7 @@
 
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
-Version: 3.3.0
+Version: 3.4.1
 Release: 1
 License: Shareware
 Group: Applications/Archiving
@@ -47,6 +47,9 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 
 %changelog
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 3.4.1-1
+- Update to 3.4.1.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 3.3.0-2
 - Updated description.
 - Fixed the rarfiles.lst installation.

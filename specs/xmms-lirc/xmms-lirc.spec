@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define xmms_generaldir %(xmms-config --general-plugin-dir)
+%define xmms_generaldir %(xmms-config --general-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/General)
 %define real_name       lirc-xmms-plugin
 
 Summary: Plugin to use LIRC supported infrared devices in XMMS

@@ -1,6 +1,6 @@
 # $Id$
 
-%define xmms_inputdir %(xmms-config --input-plugin-dir)
+%define xmms_inputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 
 Summary: X MultiMedia System input plugin to play Windows Media Audio files
 Name: xmms-wma
