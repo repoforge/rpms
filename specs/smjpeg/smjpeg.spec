@@ -16,7 +16,7 @@ Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smjpeg/smjpeg-%{version}.
 Patch: smjpeg-0.2.1-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel
+BuildRequires: SDL-devel, libtool
 
 %description
 SMJPEG is a custom Motion JPEG format used by Loki Entertainment

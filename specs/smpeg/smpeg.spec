@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: SDL-devel, gtk+-devel
-BuildRequires: automake14
+BuildRequires: automake14, gcc-c++
 BuildRequires: automake, autoconf
 
 %description
