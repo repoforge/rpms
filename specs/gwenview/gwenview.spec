@@ -6,7 +6,7 @@
 
 Summary: Image viewer for KDE
 Name: gwenview
-Version: 1.0.1
+Version: 1.1.2
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -18,17 +18,12 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/gwenview/gwenview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
-Requires: kdelibs
+%{?fc2:BuildRequires:libselinux-devel}
 
 %description
 Gwenview can load and save all image formats supported by KDE and 
 also browse GIMP files (*.xcf). It can also show meta-information and zoom
 images to any size. 
-
-%description -l nl
-Gwenview is een image viewer die de formaten ondersteund door KDE kan openen
-en bewaren. Ook kan het GIMP bestanden (*.xcf) openen. Het kan ook meta
-informatie tonen en zoomen.
 
 %prep
 %setup
@@ -47,16 +42,19 @@ make install \
 %files
 %defattr(-,root,root, 0755)
 %doc README AUTHORS COPYING CREDITS NEWS TODO
-/usr/bin/gwenview
-/usr/share/applications/kde/gwenview.desktop
-/usr/share/apps/gwenview
-/usr/share/apps/konqueror/servicemenus/konqgwenview.desktop
-/usr/share/icons/*/*/apps/gwenview.png
-/usr/share/locale/*/LC_MESSAGES/gwenview.mo
-/usr/share/man/man1/gwenview.1.gz
+%{_bindir}/gwenview
+%{_datadir}/applications/kde/gwenview.desktop
+%{_datadir}/apps/gwenview
+%{_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
+%{_datadir}/icons/*/*/apps/gwenview.png
+%{_datadir}/locale/*/LC_MESSAGES/gwenview.mo
+%{_datadir}/man/man1/gwenview.1.gz
 
 
 %changelog
+* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 1.1.2-1
+- update to 1.1.2
+
 * Tue Jan 27 2004 Dries Verachtert <dries@ulyssis.org> 1.0.1-1
 - update to version 1.0.1
 
