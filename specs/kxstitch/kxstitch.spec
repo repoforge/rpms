@@ -19,9 +19,10 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/kxstitch/kxstitch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, 
-BuildRequires: gcc-c++, gettext, XFree86-devel, zlib-devel, 
+BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel 
+BuildRequires: gcc-c++, gettext, XFree86-devel, zlib-devel
 BuildRequires: qt-devel, libjpeg-devel, kdelibs-devel
+BuildRequires: ImageMagick-c++-devel
 
 %description
 KXStitch allows the creation and editing of cross stitch patterns. 
