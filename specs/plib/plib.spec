@@ -4,7 +4,7 @@
 Summary: Set of portable libraries especially useful for games
 Name: plib
 Version: 1.8.3
-Release: 3
+Release: 4
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/
@@ -23,8 +23,7 @@ the web. All of it works well together.
 %package devel
 Summary: Set of portable libraries especially useful for games
 Group: Development/Libraries
-
-Obsoletes: plib < %{version}-%{release}
+Obsoletes: plib <= 1.6.0
 
 %description devel
 This is a set of OpenSource (LGPL) libraries that will permit programmers
@@ -39,7 +38,7 @@ the web. All of it works well together.
 
 
 %build
-%configure
+%configure CXXFLAGS="%{optflags} -fPIC"
 %{__make} %{?_smp_mflags}
 
 
@@ -60,6 +59,9 @@ the web. All of it works well together.
 
 
 %changelog
+* Wed Feb  9 2005 Matthias Saou <http://freshrpms.net/> 1.8.3-4
+- Force -fPIC to be added to CXXFLAGS to fix linking against the lib on x86_64.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 1.8.3-3
 - Only build a devel package now as all files are headers and static libs.
 
