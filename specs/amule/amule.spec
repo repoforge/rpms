@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-%define prever rc3
+%define prever rc4
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
@@ -36,10 +36,12 @@ same network.
 
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} _docs
 %{__make} install DESTDIR=%{buildroot}
 %{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %find_lang %{name}
+# Move the docs back to be included with %%doc
+%{__mv} %{buildroot}%{_defaultdocdir}/aMule-* _docs
 
 
 %post
@@ -56,14 +58,19 @@ same network.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc docs/*
+%doc _docs/*
 %{_bindir}/*
-%{_datadir}/applications/%{name}.desktop
+%{_libdir}/xchat/plugins/xas.pl
+%{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/%{name}.xpm
 %{_datadir}/pixmaps/stat.png
 
 
 %changelog
+* Tue Jul 13 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc4.1
+- Update to 2.0.0rc4.
+- Add workaround for installed docs.
+
 * Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc3.1
 - Update to 2.0.0rc3.
 
