@@ -1,0 +1,29 @@
+diff -uNr sulk-0.29-snapshot-20030623-orig/Makefile sulk-0.29-snapshot-20030623/Makefile
+--- sulk-0.29-snapshot-20030623-orig/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ sulk-0.29-snapshot-20030623/Makefile	2003-12-25 12:04:24.000000000 +0100
+@@ -0,0 +1,17 @@
++
++DATADIR = $(DESTDIR)/usr/share/games/sulk
++
++all:
++	echo nothing to compile
++
++install: all
++	mkdir -p $(DATADIR)
++	cp sulk.py sulkrc $(DATADIR)/
++	cp -r src data  $(DATADIR)/
++
++	mkdir -p $(DESTDIR)/usr/games
++	cp sulk $(DESTDIR)/usr/games/
++
++uninstall:
++	rm -rf $(DATADIR)
++	rm -f $(DESTDIR)/usr/games/sulk
+diff -uNr sulk-0.29-snapshot-20030623-orig/sulk sulk-0.29-snapshot-20030623/sulk
+--- sulk-0.29-snapshot-20030623-orig/sulk	1970-01-01 01:00:00.000000000 +0100
++++ sulk-0.29-snapshot-20030623/sulk	2003-12-25 12:40:20.000000000 +0100
+@@ -0,0 +1,4 @@
++#!/bin/bash
++
++cd /usr/share/games/sulk
++exec ./sulk.py
