@@ -310,7 +310,7 @@ fi
 
 %changelog
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.75.1-1
-- Fixed a problem where $ZONE was empty.
+- Updated to release 0.75.1.
 
 * Mon Jul 26 2004 Dag Wieers <dag@wieers.com> - 0.75-2
 - Fixed a problem where $CODE was empty.
