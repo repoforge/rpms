@@ -1,7 +1,7 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Jay Maynard <jmaynard@conmicro.cx>
-# Upstream: <hercules-390@yahoogroups.com>
+# Upstream: Jay Maynard <jmaynard$conmicro,cx>
+# Upstream: <hercules-390$yahoogroups,com>
 
 # Distcc: 0
 
@@ -9,7 +9,7 @@ Summary: Hercules S/370, ESA/390, and z/Architecture emulator
 Name: hercules
 Version: 3.01
 Release: 1
-License: QPL
+License: Q Public License
 Group: Applications/Emulators
 URL: http://www.conmicro.cx/hercules/
 
@@ -18,6 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.conmicro.cx/hercules/hercules-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: bison, zlib-devel, bzip2-devel, libgcrypt
 
 %description
@@ -29,18 +30,11 @@ card reader, card punch, channel-to-channel adapter, LCS Ethernet, and
 printer-keyboard, 3270 terminal, and 3287 printer devices.
 
 %package docs
-Summary: Documentation for the Hercules emulator
+Summary: Documentation for package %{name}
 Group: Documentation
 
 %description docs
-Hercules is an emulator for the IBM System/370, ESA/390, and z/Architecture
-series of mainframe computers. It is capable of running any IBM operating
-system and applications that a real system will run, as long as the hardwre
-needed is emulated. Hercules can emulate FBA and CKD DASD, tape, printer,
-card reader, card punch, channel-to-channel adapter, LCS Ethernet, and
-printer-keyboard, 3270 terminal, and 3287 printer devices.
-
-This package contains documentation for Hercules.
+This package includes the documentation for package %{name}.
 
 %prep
 %setup
@@ -176,28 +170,30 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/hercules/
-%{__install} -m0644 hercules-rh.cnf hercules.{ins,prm,tdf,init} \
-    %{buildroot}%{_sysconfdir}/hercules/
+
+%{__install} -D -m0644 hercules-rh.cnf %{buildroot}%{_sysconfdir}/hercules/hercules.cnf
+%{__install} -D -m0644 hercules.ins %{buildroot}%{_sysconfdir}/hercules/hercules.ins
+%{__install} -D -m0644 hercules.prm %{buildroot}%{_sysconfdir}/hercules/hercules.prm
+%{__install} -D -m0644 hercules.tdf %{buildroot}%{_sysconfdir}/hercules/hercules.tdf
+%{__install} -D -m0755 hercules.init %{buildroot}%{_sysconfdir}/hercules/hercules.init
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc CHANGES README* RELEASE* hercules.cnf util/
-%dir %{_sysconfdir}/hercules/
-%config(noreplace) %{_sysconfdir}/hercules/*
+%doc CHANGES INSTALL README* RELEASE* hercules.cnf util/
+%doc %{_mandir}/man?/*
+%config(noreplace) %{_sysconfdir}/hercules/
 %{_bindir}/*
 %{_datadir}/hercules/
 %{_libdir}/hercules/
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
-%{_mandir}/man?/*
 
 %files docs
 %defattr(-, root, root, 0755)
-%doc html/*
+%doc html/
 
 %changelog
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 3.01-1
