@@ -7,7 +7,7 @@
 
 Summary: Database frontend
 Name: knoda
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -95,6 +95,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_includedir}/hk_*.h
 
 %changelog
+* Sat Dec 04 2004 Dries Verachtert <dries@ulyssis.org> - 0.7.2-1
+- Update to release 0.7.2.
+
 * Sat Oct 02 2004 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Update to version 0.7.1.
 
