@@ -1,22 +1,16 @@
 # $Id$
 # Authority: matthias
 
-%define desktop_vendor freshrpms
-
-Summary: Tag editor for mp3, ogg and flac files.
+Summary: Tag editor for mp3, ogg, flac and other music files
 Name: easytag
-Version: 0.30
-Release: 4d
+Version: 0.30.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
-Patch10: http://dl.sf.net/easytag/patch_easytag_030_030a.diff
-Patch11: http://dl.sf.net/easytag/patch_easytag_030a_030b.diff
-Patch12: http://dl.sf.net/easytag/patch_easytag_030b_030c.diff
-Patch13: http://dl.sf.net/easytag/patch_easytag_030c_030d.diff
 URL: http://easytag.sourceforge.net/
 BuildRequires: gtk+-devel >= 1.2.7, id3lib-devel >= 3.7.12
-BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext, desktop-file-utils
+BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext
 BuildRoot: %{_tmppath}/%{name}-root
 
 %description
@@ -24,32 +18,25 @@ EasyTAG is an utility for viewing, editing and writing tags of your
 MP3, MP2, FLAC and OGG files. Its simple and nice GTK+ interface makes
 tagging easier.
 
+
 %prep
 %setup
-%patch10 -p1 -b .030a
-%patch11 -p1 -b .030b
-%patch12 -p1 -b .030c
-%patch13 -p1 -b .030d
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category AudioVideo                                       \
-  %{buildroot}%{_datadir}/gnome/apps/Multimedia/%{name}.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -60,7 +47,12 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{_datadir}/pixmaps/*
 %{_mandir}/man?/*
 
+
 %changelog
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.30.1-1
+- Update to unstable 0.30.1.
+- Remove desktop-file-install as it's now freedesktop style.
+
 * Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 0.30-4d.fr
 - Added patch for 0.30d.
 
