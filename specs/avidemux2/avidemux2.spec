@@ -6,6 +6,9 @@
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 %define real_name avidemux
 
@@ -70,7 +73,7 @@ EOF
 	%{__install} -D -m0755 avidemux2.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		avidemux2.desktop
@@ -84,7 +87,7 @@ EOF
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING History README TODO
 %{_bindir}/avidemux2
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-avidemux2.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-avidemux2.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop}
 
 %changelog

@@ -7,13 +7,15 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical checksum verifier
 Name: awesum
 Version: 0.6.0
 Release: 1
 License: BSD
 Group: Applications/File
-URL: http://awesum.sf.net/
+URL: http://awesum.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -54,7 +56,7 @@ EOF
 ./install.sh
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	awesum.desktop
@@ -69,7 +71,7 @@ desktop-file-install --vendor gnome                \
 %defattr(-, root, root, 0755)
 %doc *.txt doc/html/
 %{_bindir}/awesum
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop-vendor}-awesum.desktop
 %{_datadir}/awesum/
 %exclude %{_docdir}/awesum/
 

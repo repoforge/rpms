@@ -11,6 +11,8 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 %define tls_maj 1.4
 %define tls_min 1
 %define real_version 0_93
@@ -21,7 +23,7 @@ Version: 0.93
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://amsn.sf.net/
+URL: http://amsn.sourceforge.net/
 
 Packager: Dries Verachtert <skotty@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -69,7 +71,7 @@ StartupNotify=true
 Categories=Application;Network;
 EOF
 
-%{__cat} <<'EOF2' >%{name}.sh
+%{__cat} <<'EOF2' >amsn.sh
 #!/bin/bash
 
 AMSNLANG="$(echo $LANG | tr '[A-Z]' '[a-z]')"
@@ -132,7 +134,7 @@ cd plugins/traydock
 	%{__install} -D -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
 %else
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		amsn.desktop
@@ -147,8 +149,8 @@ cd plugins/traydock
 %{_bindir}/amsn
 %{_datadir}/amsn/
 %{_datadir}/pixmaps/*.png
-%{!?_without_freedesktop:%{_datadir}/applications/net-amsn.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/amsn.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-amsn.desktop}
 
 %changelog
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.94-1

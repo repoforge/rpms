@@ -2,13 +2,15 @@
 # Authority: dag
 # Upstream: Jeffrey Stedfast <fejj$ximian,com>
 
+%define desktop_vendor rpmforge
+
 Summary: Graphical front-end to the Valgrind memory checker for x86
 Name: alleyoop
 Version: 0.8.2
 Release: 1
 License: GPL
 Group: Development/Tools
-URL: http://alleyoop.sf.net/
+URL: http://alleyoop.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -35,7 +37,7 @@ editor.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >alleyoop.desktop
 [Desktop Entry]
 Name=Memory Checker
 Comment=Validate the memory usage of any program
@@ -59,10 +61,10 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	alleyoop.desktop
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -77,9 +79,9 @@ scrollkeeper-update -q
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
+%config %{_sysconfdir}/gconf/schemas/alleyoop.schemas
+%{_bindir}/alleyoop
+%{_datadir}/applications/%{desktop_vendor}-alleyoop.desktop
 
 %changelog
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.8.2-1

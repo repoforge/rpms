@@ -4,12 +4,16 @@
 
 # Tag: test
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Converts WWW Active Server Pages to PHP pages
 Name: asp2php
-Version: 0.76.19
-Release: 3
+Version: 0.76.23
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://asp2php.naken.cc/
@@ -17,7 +21,7 @@ URL: http://asp2php.naken.cc/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.mikekohn.com/asp2php/asp2php-%{version}.tar.gz
+Source: http://downloads.mikekohn.net/asp2php/asp2php-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel
@@ -59,11 +63,11 @@ EOF
 %{__install} -D -m0755 asp2php %{buildroot}%{_bindir}/asp2php
 %{__install} -D -m0755 gtkasp2php %{buildroot}%{_bindir}/gtkasp2php
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 gtkasp2php.desktop %{buildroot}%{_datadir}/gnome/apps/Development/gtkasp2php.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		gtkasp2php.desktop
@@ -74,18 +78,18 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README TODO *.png sample/
+%doc CHANGES LICENSE README *.png sample/
 %{_bindir}/asp2php
 
 %files gtk
 %defattr(-, root, root, 0755)
 %{_bindir}/gtkasp2php
-%if %{dfi}
-	%{_datadir}/gnome/apps/Development/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Development/gtkasp2php.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gtkasp2php.desktop}
 
 %changelog
+* Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.76.23-1
+- Updated to release 0.76.23.
+
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.76.19-1
 - Initial package. (using DAR)

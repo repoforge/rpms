@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
+%define desktop_vendor rpmforge
+
 Summary: Tray applet for displaying phonetic alphabets
 Name: alphapplet
 Version: 0.2
@@ -15,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dag.wieers.com/home-made/gnome-applets/alphapplet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: mono, gtk-sharp
 ### FIXME: gtk-sharp needs gtk2/gnome2 *.so files ;(
@@ -43,10 +44,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-desktop-file-install --vendor gnome --delete-original \
-        --add-category X-Red-Hat-Base                 \
-        --dir %{buildroot}%{_datadir}/applications    \
-        %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-install --vendor %{desktop_vendor}    \
+	--delete-original                          \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        %{buildroot}%{_datadir}/applications/alphapplet.desktop
 %{__install} -m0755 alphapplet.sh %{buildroot}%{_bindir}/alphapplet
 
 %clean
@@ -56,7 +58,7 @@ desktop-file-install --vendor gnome --delete-original \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT README TODO
 %{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-alphapplet.desktop
 %{_datadir}/pixmaps/*
 %{_datadir}/alphapplet/
 

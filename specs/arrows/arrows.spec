@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%define desktop_vendor rpmforge
+
 %define _bindir %{_prefix}/X11R6/bin
 
 Summary: Neat little maze game
@@ -46,10 +48,10 @@ EOF
 %{__install} -D -m0755 arrows %{buildroot}%{_bindir}/arrows
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor net                  \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	arrows.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,8 +59,8 @@ desktop-file-install --vendor net                  \
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
+%{_bindir}/arrows
+%{_datadir}/applications/%{desktop_vendor}-arrows.desktop
 
 %changelog
 * Wed Jan 14 2004 Dag Wieers <dag@wieers.com> - 0.6-1

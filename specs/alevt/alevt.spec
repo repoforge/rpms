@@ -2,9 +2,13 @@
 # Authority: dag
 # Upstream: Edgar Toernig <froese$gmx,de>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: Teletext/videotext decoder and browser for the bttv driver and X
 Name: alevt
@@ -63,7 +67,7 @@ EOF
         %{__install} -D -m0644 alevt.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/alevt.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor net                  \
+        desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 alevt.desktop
@@ -75,11 +79,11 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYRIGHT README alevt.lsm.in
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/*
 %{_bindir}/*
 %{_datadir}/pixmaps/alevt.xpm
-%{!?_without_freedesktop:%{_datadir}/applications/net-alevt.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/alevt.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-alevt.desktop}
 
 %changelog
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.6.1-1

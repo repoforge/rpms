@@ -4,6 +4,8 @@
 # Screenshot: http://apollon.sourceforge.net/apollon1.png
 # ScreenshotURL: http://apollon.sourceforge.net/pictures.html
 
+%define desktop_vendor rpmforge
+
 Summary: KDE filesharing client which uses gift
 Name: apollon
 %{?fc2:Version: 1.0b1}
@@ -61,7 +63,7 @@ source  /etc/profile.d/qt.sh
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor kde                  \
+desktop-file-install --vendor %{desktop_version}   \
 	--dir %{buildroot}%{_datadir}/applications \
 	--add-category X-Red-Hat-Extras            \
 	apollon.desktop
@@ -83,7 +85,7 @@ desktop-file-install --vendor kde                  \
 %exclude %{_libdir}/libapollon.la
 %{_libdir}/libapollon.so*
 %exclude %{_datadir}/applnk/Applications/Apollon.desktop
-%{_datadir}/applications/kde-apollon.desktop
+%{_datadir}/applications/%{desktop_vendor}-apollon.desktop
 %{_datadir}/apps/apollon/
 %{_datadir}/icons/crystalsvg/*/filesystems/folder_apollon.png
 %{_datadir}/icons/*/*/actions/*.png

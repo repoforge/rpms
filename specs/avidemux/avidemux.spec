@@ -2,7 +2,13 @@
 # Authority: dag
 # Upstream: <fixounet$free,fr>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: Graphical multiplex/demultiplex tool using GTK
 Name: avidemux
@@ -57,7 +63,7 @@ EOF
 	%{__install} -D -m0644 avidemux.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor gnome                \
+        desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 avidemux.desktop
@@ -69,12 +75,9 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING History README TODO
-%{_bindir}/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_bindir}/avidemux
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-avidemux.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux.desktop}
 
 %changelog
 * Sat Aug 23 2003 Dag Wieers <dag@wieers.com>- 0.9-1

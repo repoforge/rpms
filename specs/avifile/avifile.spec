@@ -2,8 +2,15 @@
 # Authority: dag
 # Distcc: 0
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
+
 %define	date 20030710
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: Library used to play AVI streams
 Name: avifile
@@ -81,15 +88,14 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %makeinstall
 %{__install} -m0644 -D bin/test.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
-%if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 avifile.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avifile.desktop
 %else
 	%{__install} -m0755 -d %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor=net                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		avifile.desktop
 %endif
 
 %{__rm} -f doc/Makefile*
@@ -125,11 +131,8 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{_libdir}/avifile0.7/vidix/*.so
 %{_datadir}/avifile0.7/
 %{_datadir}/pixmaps/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-avifile.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avifile.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)
