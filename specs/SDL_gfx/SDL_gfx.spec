@@ -4,7 +4,7 @@
 
 Summary: Graphic Primitives, Rotozoomer, Framerate control and image filters
 Name: SDL_gfx
-Version: 2.0.10 
+Version: 2.0.12
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -72,5 +72,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Sep 01 2004 Dries Verachtert <dries@ulyssis.org> 2.0.12-1
+- Update to version 2.0.12.
+
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 2.0.10-1
 - Initial package

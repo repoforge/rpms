@@ -10,7 +10,7 @@
 
 Summary: Personal password manager
 Name: passwordmanager
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -66,6 +66,9 @@ password to access the list.
 %{?fc2:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Mon Sep 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
+- Update to version 1.0.1.
+
 * Fri Jul 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Update to version 1.0.
 

@@ -4,7 +4,7 @@
 
 Summary: SMB (samba) share browser for KDE
 Name: smb4k
-Version: 0.3.1
+Version: 0.4.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -67,5 +67,8 @@ EOF
 %{_datadir}/icons/crystalsvg/*/apps/smb4k.png
 
 %changelog
+* Wed Sep 01 2004 Dries Verachtert <dries@ulyssis.org> 0.4.1-1
+- Update to version 0.4.1.
+
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.3.1-1
 - first packaging for Fedora Core 1
