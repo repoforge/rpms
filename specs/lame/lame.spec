@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 # Upstream: <mp3encoder@minnie.tuhs.org>
-# Distcc: 0
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
@@ -10,8 +9,10 @@ Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
+
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: /usr/bin/find, ncurses-devel
 %ifarch %{ix86}
 BuildRequires: nasm, gcc-c++
@@ -106,8 +107,8 @@ these libraries.
 %doc API HACKING STYLEGUIDE
 %{_includedir}/*
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%exclude %{_libdir}/*.la
 
 
 %changelog
