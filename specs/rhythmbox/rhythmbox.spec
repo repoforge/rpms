@@ -46,6 +46,7 @@ through GStreamer, Internet Radio support, playlists and more.
 %configure %{?_with_xine:--with-player=xine}
 %{__make} %{?_smp_mflags}
 
+
 %install
 rm -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
