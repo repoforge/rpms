@@ -118,6 +118,7 @@ desktop-file-install \
 %endif
  
 # Install the languagepack files
+%{__install} -m0755 -d %{buildroot}%{_datadir}/psi
 %{__install} -m 0644 \
     %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \
     %{SOURCE25} %{SOURCE26} %{SOURCE27} %{SOURCE28} %{SOURCE29} \
