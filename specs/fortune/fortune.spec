@@ -61,7 +61,7 @@ Source19: http://www.cs.indiana.edu/~crcarter/homer/homer-quotes.tar.gz
 # http://www.geocities.com/avitiw/fortune.html
 Source20: http://www.geocities.com/avitiw/fortune-osho-1.1.tar.gz
 # http://eol.init1.nl/content/category/2/36/54/
-Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.1.tar.gz
+Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.2.tar.gz
 # http://eol.init1.nl/content/category/2/36/54/
 Source22: http://eelco.is.a.rootboy.net/fortunecookies/oneliners-0.1.tar.gz
 
@@ -155,7 +155,7 @@ util/strfile ralph
 %endif
 %{__cp} fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
 %{__cp} osho.dat osho %{buildroot}%{_datadir}/games/fortune/
-%{__cp} powerpuff-0.1/powerpuff* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} powerpuff-0.2/powerpuff* %{buildroot}%{_datadir}/games/fortune/
 %{__cp} oneliners-0.1/oneliners* %{buildroot}%{_datadir}/games/fortune/
 
 %{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
