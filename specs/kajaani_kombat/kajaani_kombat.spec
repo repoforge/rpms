@@ -37,10 +37,20 @@ same computer. Enjoy it with your friends!
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+install -m 0755 -d %{buildroot}/%{_bindir}
+install -m 0755 -d %{buildroot}/%{_datadir}/games/kajaanikombat
+install -m 0755 -d %{buildroot}/%{_datadir}/man/man6
+install -m 0755 kajaani-kombat %{buildroot}/%{_bindir}/kajaani-kombat
+install -m 0644 *.png %{buildroot}/%{_datadir}/games/kajaanikombat/
+install -m 0644 *.ttf %{buildroot}/%{_datadir}/games/kajaanikombat/
+install -m 0644 kajaani-kombat.6 %{buildroot}/%{_datadir}/man/man6/
 
 %files
 %defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING README
+%{_bindir}/kajaani-kombat
+%{_datadir}/games/kajaanikombat
+%{_datadir}/man/man6/*
 
 %changelog
 * Thu May 20 2004 Dries Verachtert <dries@ulyssis.org> 0.4-1
