@@ -6,8 +6,8 @@
 
 Summary: library that implements an embeddable SQL database engine
 Name: sqlite
-Version: 2.8.13
-Release: 2
+Version: 2.8.14
+Release: 1
 License: LGPL
 Group: Applications/Databases
 URL: http://www.sqlite.org/
@@ -16,7 +16,6 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source:	http://www.sqlite.org/sqlite-%{version}.tar.gz
-Patch0: sqlite-2.8.12-encode.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: readline-devel
@@ -55,7 +54,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}
-%patch0 -b .encode
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e '
@@ -114,6 +112,9 @@ TARGET_EXEEXT='.so' \
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 2.8.14-1
+- Updated to release 2.8.14.
+
 * Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 2.8.13-2
 - Added UTF8 support. (Vladimir Vukicevic)
 

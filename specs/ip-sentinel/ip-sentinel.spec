@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
 
 Summary: tool to prevent unauthorized usage of IPs
 Name: ip-sentinel
-Version: 0.9
-Release: 0
+Version: 0.10
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.tu-chemnitz.de/~ensc/ip-sentinel/
@@ -15,9 +13,8 @@ URL: http://www.tu-chemnitz.de/~ensc/ip-sentinel/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.tu-chemnitz.de/~ensc/ip-sentinel/files/%{name}-%{version}.tar.bz2
+Source: http://www.tu-chemnitz.de/~ensc/ip-sentinel/files/ip-sentinel-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 #BuildRequires: dietlibc
 
@@ -45,11 +42,10 @@ invalid MAC, rendering the IP unreachable.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%_initrddir
+%{__install} -D -m755 contrib/ip-sentinel.init %{buildroot}%{_initrddir}/ip-sentinel
+%{__install} -D -m644 contrib/ip-sentinel.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/ip-sentinel
+
 %{__install} -d -m0750 %{buildroot}%{_var}/lib/ip-sentinel/
-%{__install} -m755 contrib/ip-sentinel.init %{buildroot}%{_initrddir}/ip-sentinel
-%{__install} -m644 contrib/ip-sentinel.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/ip-sentinel
 
 %pre
 /usr/sbin/groupadd -r ip-sentinel &>/dev/null || :
@@ -86,6 +82,9 @@ service ip-sentinel condrestart &>/dev/null || :
 %{_var}/lib/ip-sentinel/
 
 %changelog
+* Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Wed Dec 17 2003 Dag Wieers <dag@wieers.com> - 0.9-0
 - Updated to release 0.9.
 

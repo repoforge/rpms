@@ -6,7 +6,7 @@
 
 Summary: Simple kernel loader which boots from a FAT filesystem
 Name: syslinux
-Version: 2.09
+Version: 2.10
 Release: 1
 License: GPL
 Group: Applications/System
@@ -58,6 +58,9 @@ PXE bootloader during network boots.
 %exclude %{_includedir}/syslinux.h
 
 %changelog
+* Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 2.10-1
+- Updated to release 2.10.
+
 * Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 2.09-1
 - Updated to release 2.09.
 

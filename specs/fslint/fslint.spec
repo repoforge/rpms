@@ -2,17 +2,19 @@
 # Authority: dag
 # Upstream: Pádraig Brady <P@draigBrady.com>
 
-# Soapbox: 0
-# Dists: fc1 el3 rh9 rh8
+# ExclusiveDist: fc1 el3 rh9 rh8
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 %define real_name FSlint
 
 Summary: Utility to find and clean "lint" on a filesystem
 Name: fslint
-Version: 2.06
-Release: 2
+Version: 2.08
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.pixelbeat.org/fslint/
@@ -25,6 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: gettext, pygtk2-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: python >= 2.0, pygtk2, pygtk2-libglade, textutils >= 2.0.21, gettext >= 0.11.1, cpio
 
 %description
@@ -69,7 +72,7 @@ EOF
 	DATADIR="%{buildroot}%{_datadir}"
 %find_lang %{name}
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 fslint.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/fslint.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -88,13 +91,13 @@ EOF
 %{_bindir}/*
 %{_datadir}/fslint/
 %{_datadir}/pixmaps/*.png
-%if %{dfi}
-        %{_datadir}/gnome/apps/Applications/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-fslint.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/fslint.desktop}
 
 %changelog
+* Thu Jun 17 2004 Dag Wieers <dag@wieers.com> - 2.08-1
+- Updated to release 2.08.
+
 * Sun Apr 25 2004 Dag Wieers <dag@wieers.com> - 2.06-2
 - Reverted datadir location patch. (Erik Williamson)
 

@@ -4,8 +4,8 @@
 
 Summary: Cute multiplayer network game with bunnies
 Name: jumpnbump
-Version: 1.41
-Release: 0
+Version: 1.50
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.jumpbump.mine.nu/
@@ -13,7 +13,7 @@ URL: http://www.jumpbump.mine.nu/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.jumpbump.mine.nu/port/jumpnbump-%{version}.tar.bz2
+Source: http://www.jumpbump.mine.nu/port/jumpnbump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL_net-devel, SDL_mixer
@@ -27,7 +27,8 @@ alone. It has network support.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} PREFIX="%{_prefix}"
+%{__make} %{?_smp_mflags} \
+	PREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -49,6 +50,9 @@ alone. It has network support.
 %{_datadir}/jumpnbump/
 
 %changelog 
+* Wed Jun 16 2004 Dag Wieers <dag@wieers.com> - 1.50-1
+- Updated to release 1.50.
+
 * Sun Mar 30 2003 Dag Wieers <dag@wieers.com> - 1.41-0
 - Updated to release 1.41.
 

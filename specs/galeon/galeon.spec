@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
-
-# Tag: test
+# Upstream: <galeon-devel@lists.sourceforge.net>
 
 %define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 
@@ -11,7 +10,7 @@ Version: 1.3.15
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://galeon.sf.net/
+URL: http://galeon.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
