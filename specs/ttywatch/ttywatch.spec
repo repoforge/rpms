@@ -1,6 +1,6 @@
 # $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
 # Authority: dag
-# Upstream: Michael K. Johnson <ttywatch@danlj.org>
+# Upstream: Michael K. Johnson <ttywatch$danlj,org>
 
 Summary: Log output of arbitrarily many devices
 Name: ttywatch
