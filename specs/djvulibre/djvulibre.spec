@@ -3,13 +3,13 @@
 
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
-Version: 3.5.13
+Version: 3.5.14
 Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://djvu.sourceforge.net/
 Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, qt-devel, libjpeg-devel
 BuildRequires: libstdc++-devel, gcc-c++, mozilla
 
@@ -41,9 +41,9 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
-%{__ln_s} ../../netscape/plugins/nsdejavu.so \
-    %{buildroot}%{_libdir}/mozilla/plugins/
+#%{__mkdir_p} %{buildroot}%{_libdir}/mozilla/plugins
+#%{__ln_s} ../../netscape/plugins/nsdejavu.so \
+#    %{buildroot}%{_libdir}/mozilla/plugins/
 
 
 %clean
@@ -61,14 +61,25 @@ compatible with version 3.5 of the LizardTech DjVu software suite.
 %defattr(-, root, root, 0755)
 %doc README COPYRIGHT COPYING NEWS TODO doc
 %{_bindir}/*
+%{_includedir}/libdjvu/
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so*
 %{_libdir}/*/plugins/*.so
-%{_datadir}/djvu
+%{_datadir}/application-registry/djvu.applications
+%{_datadir}/applications/djview.desktop
+%{_datadir}/icons/hicolor/??x??/mimetypes/djvu.png
+%{_datadir}/mime-info/djvu.*
+%{_datadir}/djvu/
+%{_datadir}/pixmaps/djvu.png
 %{_mandir}/man1/*
 %lang(ja) %{_mandir}/ja/man1/*
 
 
 %changelog
+* Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 3.5.14-1
+- Update to 3.5.14.
+- Added newly introduced files to the package.
+
 * Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 3.5.13-1
 - Update to 3.5.13.
 - Added new Japanese man pages.

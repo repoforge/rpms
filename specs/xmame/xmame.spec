@@ -247,10 +247,6 @@ for target in %{targets}; do
     %{!?_without_x11: %{__make} %{?_smp_mflags} DISPLAY_METHOD=x11 X11_DGA=1 X11_XV=1} TARGET=$target
     %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL SOUND_SDL=1} TARGET=$target
     %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl} TARGET=$target
-#   %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl GLCFLAGS="-D_X11_ -DGLU_VERSION_1_2"} TARGET=$target
-    # The MAME chd manager and the xml listing to old listinfo utility
-    %{?!_without_mame: %{__make} %{?_smp_mflags} chdman}
-    %{?!_without_mame: (cd src/xml2info; %{__cc} %{optflags} -o xml2info xml2info.c)}
 done
 
 
@@ -272,7 +268,7 @@ for target in %{targets}; do
     %{!?_without_SDL: %{__install} -m 755 x${target}.SDL %{buildroot}%{_bindir}/}
     %{!?_without_xgl: %{__install} -m 755 x${target}.xgl %{buildroot}%{_bindir}/}
 done
-%{?!_without_mame: %{__install} -m 755 chdman src/xml2info/xml2info %{buildroot}%{_bindir}/}
+%{?!_without_mame: %{__install} -m 755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
 
 # We don't want all the docs
 %{__mkdir_p} doc2/{xmame/html,xmess}
@@ -320,6 +316,7 @@ popd
 %doc README doc2/xmame/* contrib/tools/mame-cd 
 %doc catver.ini
 %{_bindir}/chdman
+%{_bindir}/romcmp
 %{_bindir}/xmame
 %{_bindir}/xml2info
 %dir %attr(2775, root, games) %{_datadir}/xmame
@@ -387,6 +384,7 @@ popd
 %changelog
 * Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 0.85-1
 - Update to 0.85, with the usual related files too.
+- Added romcmp to be included, simplified the chdman and xml2info build.
 
 * Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 0.84.1-2
 - Add 0.84.2 preview patch to fix xmess xgl build and other improvements.
