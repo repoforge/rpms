@@ -8,7 +8,7 @@
 Summary: Perl port of log4j
 Name: perl-Log-Log4perl
 Version: 0.45
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/CPAN
 URL: http://log4perl.sourceforge.net/
@@ -38,6 +38,13 @@ Requires: %{name} = %{version}-%{release}
 Requires: rrdtool
 
 %description RRDs
+Log::Log4perl is a Perl port of the widely popular log4j logging package. It
+allows you to control the amount of logging messages generated very
+effectively. You can bump up the logging level of certain components in your
+software, using powerful inheritance techniques. You can redirect the
+additional logging messages to an entirely different output (append to a
+file, send by email etc.) -- and everything without modifying a single line
+of source code. 
 This package contains the perl module and manpage for rrdtool support for
 perl-Log-Log4perl.
 
@@ -115,6 +122,9 @@ perl-Log-Log4perl.
 
 
 %changelog
+* Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 0.45-3
+- better description for the subpackage
+
 * Mon Jun 7 2004 Dries Verachtert <dries@ulyssis.org> - 0.45-2
 - split package so rrdtool isn't always needed
 
