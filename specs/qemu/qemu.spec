@@ -38,11 +38,107 @@ reasonnable speed while being easy to port on new host CPUs.
 %prep
 %setup
 #%patch0 -b .glibc
+%patch0 -p1
+
+%{__cat} <<'EOF' >qemu.sysv
+#!/bin/sh
+#
+# Init file for configuring Qemu non-native binary formats
+#
+# Written by Dag Wieers <dag@wieers.com>
+#
+# chkconfig: 2345 35 98
+# description: Qemu non-native binary formats
+
+source %{_initrddir}/functions
+
+RETVAL=0
+prog="qemu"
+
+start() {
+	case "$(uname -m)" in
+		(i386|i486|i586|i686|i86pc|BePC)
+			cpu="i386";;
+		("Power Macintosh"|ppc|ppc64)
+			cpu="ppc";;
+		(armv4l|armv5l)
+			cpu="arm";;
+	esac
+	echo -n $"Registering binary handler for qemu applications"
+	/sbin/modprobe binfmt_misc &>/dev/null
+	if [ "$cpu" != "i386" -a -x "%{_bindir}/qemu-i386" -a -d "%{_prefix}/qemu-i386" ]; then
+		echo ':qemu-i386:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x03\x00:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-i386:' >/proc/sys/fs/binfmt_misc/register
+		echo ':qemu-i486:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x06\x00:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-i386:' >/proc/sys/fs/binfmt_misc/register
+	fi
+	if [ "$cpu" != "arm" -a -x "%{_bindir}/qemu-arm" -a -d "%{_prefix}/qemu-arm" ]; then
+		echo ':qemu-arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-arm:' >/proc/sys/fs/binfmt_misc/register
+	fi
+	if [ "$cpu" != "ppc" -a -x "%{_bindir}/qemu-ppc" -a -d "%{_prefix}/qemu-ppc" ]; then
+		echo ':ppc:M::\x7fELF\x01\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x14:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-ppc:' >/proc/sys/fs/binfmt_misc/register
+	fi
+	if [ "$cpu" != "sparc" -a -x "%{_bindir}/qemu-sparc" -a -d "%{_prefix}/qemu-sparc" ]; then
+		echo ':qemu-sparc:M::\x7fELF\x01\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x02:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:$QEMU/qemu-sparc:' >/proc/sys/fs/binfmt_misc/register
+	fi
+	echo
+}
+
+stop() {
+	echo -n $"Unregistering binary handler for qemu applications"
+	for cpu in i386 i486 ppc arm sparc; do 
+		if [ -r "/proc/sys/fs/binfmt_misc/qemu-$cpu" ]; then
+			echo "-1" >/proc/sys/fs/binfmt_misc/qemu-$cpu
+		fi
+	done
+	echo
+}
+
+restart() {
+	stop
+	start
+}
+
+status() {
+	if ls /proc/sys/fs/binfmt_misc/qemu-* &>/dev/null; then 
+		echo $"Qemu non-native binary format handlers are registered."
+		return 0
+	else
+		echo $"Qemu non-native binary format handlers are not registered."
+		return 1
+	fi
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload)
+	restart
+	;;
+  condrestart)
+	if status &>/dev/null; then
+		restart
+	fi
+	;;
+  status)
+	status
+	RETVAL=$?
+	;;
+  *)
+	echo $"Usage: $prog {start|stop|restart|condrestart|status}"
+	RETVAL=1
+esac
+
+exit $RETVAL
+EOF
+
+
 
 %build
 %configure \
 	--interp-prefix="%{_prefix}/qemu-%%M" \
-	
 
 %{__perl} -pi.orig -e '
 		s|\$\(datadir\)|\$(datadir)/qemu|;
@@ -57,6 +153,18 @@ reasonnable speed while being easy to port on new host CPUs.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__install} -D -m0755 qemu.sysv %{buildroot}%{_initrddir}/qemu
+
+%post
+/sbin/chkconfig --add qemu
+/sbin/service dovecot start &>/dev/null || :
+
+%preun
+if [ $1 -eq 0 ]; then
+	/sbin/service qemu stop &>/dev/null || :
+	/sbin/chkconfig --del qemu
+fi
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -64,7 +172,8 @@ reasonnable speed while being easy to port on new host CPUs.
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING* README* TODO *.html
 %doc %{_mandir}/man1/qemu*
-%{_bindir}/*
+%config %{_initrddir}/qemu
+%{_bindir}/qemu*
 %dir %{_datadir}/qemu/
 %{_datadir}/qemu/*.bin
 %exclude %{_datadir}/qemu/doc/
