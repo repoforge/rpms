@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Digest-MD2
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Interface to the MD2 algorithm
 Name: perl-Digest-MD2
@@ -45,11 +49,11 @@ output a 128-bit "fingerprint" or "message digest" of the input.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Digest/MD2.pm
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Digest/MD2/MD2.bs
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Digest/MD2/MD2.so
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{perl_vendorarch}/Digest/MD2.pm
+%{perl_vendorarch}/auto/Digest/MD2/MD2.bs
+%{perl_vendorarch}/auto/Digest/MD2/MD2.so
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.03-1

@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Digest-Nilsimsa
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Nilsimsa algorithm
 Name: perl-Digest-Nilsimsa
@@ -42,11 +46,11 @@ This module contains a perl version of the Nilsimsa code.
 %defattr(-, root, root, 0755)
 %doc README COPYING
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Digest/Nilsimsa.pm
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Digest/Nilsimsa/Nilsimsa.bs
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Digest/Nilsimsa/Nilsimsa.so
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{perl_vendorarch}/Digest/Nilsimsa.pm
+%{perl_vendorarch}/auto/Digest/Nilsimsa/Nilsimsa.bs
+%{perl_vendorarch}/auto/Digest/Nilsimsa/Nilsimsa.so
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
