@@ -1,9 +1,6 @@
 # $Id$
 # Authority: dag
 
-### Builds on RH73, but doesn't work.
-##DistExclude: rh73
-
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
@@ -16,7 +13,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.9.2
-Release: 2
+Release: 3
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -26,8 +23,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/%{version}/firefox-%{version}-source.tar.bz2
 Source1: firefox-rebuild-databases.pl.in
-Source2: firefox.png
-Source3: firefox.xpm
 Patch1: firefox-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -50,7 +45,7 @@ compliance, performance and portability.
 %setup -n mozilla
 %patch1 -p1
 
-%{__cp} -av %{SOURCE3} browser/app/default.xpm
+#%{__cp} -av other-licenses/branding/firefox/mozicon50.xpm browser/app/default.xpm
 
 %{__cat} <<EOF >bookmarks.html
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
@@ -126,12 +121,7 @@ EOF
 ### FIXME: Shouldn't the default firefox config be part of original source ?
 %{__cat} <<EOF >.mozconfig
 export MOZ_PHOENIX="1"
-export PATH="$PATH"
 mk_add_options MOZ_PHOENIX="1"
-mk_add_options PATH="$PATH"
-ac_add_options --host="%{_host}"
-ac_add_options --build="%{_build}"
-ac_add_options --target="%{_target_platform}"
 ac_add_options --x-libraries="%{_prefix}/X11R6/%{_lib}"
 ac_add_options --disable-composer
 ac_add_options --disable-debug
@@ -158,7 +148,7 @@ ac_add_options --enable-reorder
 ac_add_options --enable-single-profile
 ac_add_options --enable-strip
 ac_add_options --enable-strip-libs
-ac_add_options --enable-xinerama
+ac_add_options --enable-svg
 ac_add_options --enable-xprint
 ac_add_options --with-pthreads
 ac_add_options --with-system-jpeg
@@ -170,6 +160,7 @@ ac_add_options --without-system-nspr
 %{?_without_gtk2:ac_add_options --enable-default-toolkit="gtk"}
 %{!?_without_gtk2:ac_add_options --enable-xft}
 %{!?_without_gtk2:ac_add_options --enable-default-toolkit="gtk2"}
+%{!?_without_gtk2:ac_add_options --enable-xinerama}
 EOF
 
 %{__cat} <<EOF >firefox.desktop
@@ -177,7 +168,7 @@ EOF
 Name=Firefox Web Browser
 Comment=Browse the Internet
 Exec=firefox
-Icon=firefox.png
+Icon=firefox
 Terminal=false
 Type=Application
 StartupNotify=false
@@ -294,7 +285,7 @@ export RPM_OPT_FLAGS="$(echo %{optflags} | sed -e 's|-O2|-Os|')"
 	MOZILLA_BIN="\$(DIST)/bin/firefox-bin"
 
 %{__install} -D -m0755 firefox.sh %{buildroot}%{_bindir}/firefox
-%{__install} -D -m0644 %{SOURCE2} %{buildroot}%{_datadir}/pixmaps/firefox.png
+%{__install} -D -m0644 other-licenses/branding/firefox/mozicon50.xpm %{buildroot}%{_datadir}/pixmaps/firefox.xpm
 
 %{__tar} -xvz -C %{buildroot}%{_libdir} -f dist/firefox-*-linux-gnu.tar.gz
 
@@ -351,10 +342,19 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.9.2-3
+- Sanitized firefox startup script.
+- Don't kill Xvfb and allow -register to dump error info.
+- Disabled StartupNotify and register mimetypes for Gnome 2.8.
+- Don't rebuild firefox databases in %postun.
+- Disabled xinerama for < RH7 and enabled svg support.
+- Use supplied icons.
+
 * Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.9.2-2
 - Fixed firefox -register and firefox-rebuild-databases. (Gary Peck)
 - Remove extensions-directory after uninstalling. (Gary Peck)
 - Added gnomevfs extension. (Gary Peck)
+- Clean up Xvfb afterwards.
 
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.9.2-1
 - Updated to release 0.9.2.
