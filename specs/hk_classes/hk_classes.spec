@@ -5,7 +5,7 @@
 Summary: C++ library for rapid development of database applications
 Summary(nl): C++ library om snel database applicaties te ontwikkelen
 Name: hk_classes
-Version: 0.6.2a
+Version: 0.6.4
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -16,7 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/hk-classes/hk_classes-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, gcc-c++, postgresql-devel, mysql-devel, unixODBC-devel
+BuildRequires: gcc, make, gcc-c++, postgresql-devel, mysql-devel, unixODBC-devel, python, python-devel
 
 %description
 hk_classes is C++ library which allows rapid development of database
@@ -82,4 +82,3 @@ database.
 %changelog
 * Tue Dec 30 2003 Dries Verachtert <dries@ulyssis.org> 0.6.2a-1
 - first packaging for Fedora Core 1
-
