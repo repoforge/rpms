@@ -6,10 +6,10 @@
 
 %define real_name pynids
 
-Summary: Python bindings for GNU adns library
+Summary: Python wrapper for libnids (Network Intrusion Detection System)
 Name: python-nids
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://pilcrow.madison.wi.us/pynids/
@@ -18,7 +18,7 @@ Source: http://pilcrow.madison.wi.us/pynids/pynids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.2, python-devel, libnids
-Requires: python >= 2.2, adns, libpcap, libnet, libnids
+Requires: python >= 2.2, libpcap, libnet, libnids
 
 %description
 pynids is a python wrapper for libnids, a Network Intrusion Detection System
@@ -30,11 +30,11 @@ conversations.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" python setup.py build
+CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
+%{__python} setup.py install \
 	--prefix="%{_prefix}" \
 	--root="%{buildroot}"
 
@@ -44,8 +44,11 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING Example README
-%{python_sitearch}/*
+%{python_sitearch}/nidsmodule.so
 
 %changelog
+* Sat Mar 19 2005 Dag Wieers <dag@wieers.com> - 0.5-2
+- Fixed left-over stuff from python-adns. (Jeff Pitman)
+
 * Fri Feb 11 2005 Dag Wieers <dag@wieers.com> - 0.5-1
 - Initial package. (using DAR)
