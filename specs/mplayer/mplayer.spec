@@ -32,10 +32,6 @@
 %{?yd3:%define _without_fribidi 1}
 %{?yd3:%define _without_theora 1}
 
-%ifarch x86_64
-%define _without_lirc 1
-%endif
-
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
 #define date      20041025
 %define rcver     pre6a
@@ -45,7 +41,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.13%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.14%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -55,10 +51,13 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{date}.tar.bz2
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
 Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.4.tar.bz2
+# Only for reference, required on YDL4 at least
+Source10: uio.h-ppc.patch
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
+Patch11: MPlayer-1.0pre6a-lirc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
@@ -84,6 +83,7 @@ BuildRequires: libmad-devel, xmms-devel, libdv-devel
 %{!?_without_fame:BuildRequires: libfame-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
+%{!?_without_xvmc:BuildRequires: libXvMCW-devel}
 #{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
 
 %description
@@ -94,7 +94,7 @@ nice antialiased shaded subtitles and OSD.
 Available rpmbuild rebuild options :
 --with : samba dvb
 --without : aalib lirc cdparanoia arts xvid esd dvdread faad2 lzo libfame caca
-            theora osdmenu gcccheck freedesktop fribidi
+            theora osdmenu gcccheck freedesktop fribidi xvmc
 
 
 %package -n libpostproc
@@ -122,6 +122,7 @@ to use MPlayer, transcode or other similar programs.
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
 %patch10 -p1 -b .fribidi
+%patch11 -p1 -b .lirc
 
 # Overwrite the system menu entry with ours
 %{__cat} <<EOF > etc/mplayer.desktop
@@ -183,7 +184,8 @@ find . -name "CVS" | xargs %{__rm} -rf
     --language=all \
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb} \
-    %{!?_without_fribidi:--enable-fribidi}
+    %{!?_without_fribidi:--enable-fribidi} \
+    %{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW}
 
     # "dvdnav disabled, it does not work" (1.0pre5, still the same)
     #{!?_without_dvdnav:--enable-dvdnav} \
@@ -250,7 +252,7 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 %dir %{_sysconfdir}/mplayer/
 #config %{_sysconfdir}/mplayer/mplayer.conf
 %{_bindir}/*
-%ifarch %{ix86}
+%ifarch %{ix86} ppc
 %{_libdir}/libdha.so*
 %{_libdir}/mplayer/
 %endif
@@ -274,6 +276,16 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 
 
 %changelog
+* Fri Jan  7 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.14.pre6a
+- Added quick patch to skip /dev/lirc* file presence check, since this doesn't
+  work as expected with udev.
+- Add ppc to the ifarch for libdha and vidix modules inclusion as configure
+  enables it for "ppc && linux" (not x86_64, though, probably a good reason?).
+- Include uio.h-ppc.patch as source, as this is a required change on YDL4 (ppc)
+  to get MPlayer's x11 vo to compile properly (VECTOR vs. IOVEC).
+- Added libXvMCW support for Unichrome and others, even though a comment in the
+  configure script seems to suggest it's not entirely ready yet.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.13.pre6a
 - Update to 1.0pre6a.
 - Remove cz man pages, add cs ones.

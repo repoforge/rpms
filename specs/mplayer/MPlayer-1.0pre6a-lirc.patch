@@ -1,0 +1,12 @@
+diff -Naupr MPlayer-1.0pre6a.orig/configure MPlayer-1.0pre6a/configure
+--- MPlayer-1.0pre6a.orig/configure	2004-12-23 16:36:00.000000000 +0100
++++ MPlayer-1.0pre6a/configure	2005-01-07 11:09:00.559379528 +0100
+@@ -6477,7 +6477,7 @@ echo Checking for joystick ... "$_joysti
+ echocheck "lirc"
+ if test "$_lirc" = auto ; then
+   _lirc=no
+-  if test -c /dev/lirc -o -c /dev/lirc/0 ; then
++  if /bin/true ; then
+       cat > $TMPC <<EOF
+ #include <lirc/lirc_client.h>
+ int main(void) { return 0; }
