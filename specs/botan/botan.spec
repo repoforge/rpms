@@ -1,7 +1,5 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
 
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
@@ -17,7 +15,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://botan.randombit.net/files/Botan-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, perl, compat-gcc-c++
+BuildRequires: gcc-c++, perl
+#BuildRequires: compat-gcc-c++
 
 %description
 Botan is a library, written in C++. It's main purpose it to provide an easy
@@ -40,13 +39,14 @@ you will need to install %{name}-devel.
 %setup -n Botan-%{version}
 
 %build
-./configure.pl --prefix=%{buildroot}/usr
+./configure.pl \
+	--prefix="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__mv} %{buildroot}%{_datadir}/doc/Botan-%{version} botandocs
+%{__mv} -vf %{buildroot}%{_docdir}/Botan-%{version} rpm-doc
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -59,7 +59,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc botandocs/*
+%doc rpm-doc/*
 %{_bindir}/*
 %{_libdir}/libbotan-*.so
 
