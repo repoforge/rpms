@@ -1,6 +1,5 @@
-diff -uNr gambas-0.84a-orig/Makefile.am gambas-0.84a/Makefile.am
---- gambas-0.84a-orig/Makefile.am	2004-02-08 11:37:04.000000000 +0100
-+++ gambas-0.84a/Makefile.am	2004-02-25 15:31:00.000000000 +0100
+--- gambas-0.93b/Makefile.am.orig	2004-06-04 11:12:47.748386744 +0200
++++ gambas-0.93b/Makefile.am	2004-06-04 11:27:51.636974792 +0200
 @@ -4,33 +4,34 @@
  
  install-exec-local:
@@ -43,14 +42,15 @@ diff -uNr gambas-0.84a-orig/Makefile.am gambas-0.84a/Makefile.am
  
  	@echo
  	@echo "Creating the library info files..."
- 	@$(INSTALL) -d $(libdir)/info
+-	@$(INSTALL) -d $(pkgdatadir)/info
 -	@$(bindir)/gbi -a
--	@rm -f $(libdir)/lib.gb.la
--	@rm -f $(libdir)/lib.gb.so*
-+	@echo "disabled, does not work while building in a change root"
+-	@rm -f $(pkglibdir)/lib.gb.la
+-	@rm -f $(pkglibdir)/lib.gb.so*
++	@echo "disabled, does not work while building in a chroot"
++#	@$(INSTALL) -d $(pkgdatadir)/info
 +#	@$(bindir)/gbi -a
-+#	@rm -f $(libdir)/lib.gb.la
-+#	@rm -f $(libdir)/lib.gb.so*
++#	@rm -f $(pkglibdir)/lib.gb.la
++#	@rm -f $(pkglibdir)/lib.gb.so*
  
  	@echo
  	@echo "Installing the gambas help files..."

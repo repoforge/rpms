@@ -59,8 +59,9 @@ rm -f  $(find . -type f | egrep "Makefile$") $(find . -type f | egrep "Makefile.
 %{__rm} -rf "${RPM_BUILD_ROOT}"
 export PATH=%{buildroot}/usr/bin:$PATH
 #  {__make} bindir=$RPM_BUILD_ROOT/usr/bin includedir=$RPM_BUILD_ROOT/usr/include libdir=$RPM_BUILD_ROOT/usr/lib datadir=$RPM_BUILD_ROOT/usr/share/gambas install-strip
-%makeinstall \
-	datadir="%{buildroot}/usr/share/gambas"
+%makeinstall
+#  \
+#	datadir="%{buildroot}/usr/share/gambas"
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -88,9 +89,9 @@ The gambas-examples package contains some examples for gambas.
 %files
 %defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING INSTALL NEWS README README.REDHAT TODO
-%{_libdir}/*.so.*
-%{_libdir}/lib.gb*.component
-%{_libdir}/info
+%{_libdir}/gambas/*.so.*
+%{_libdir}/gambas/lib.gb*.component
+# %{_libdir}/info
 %{_bindir}/gambas
 %{_bindir}/gbc
 %{_bindir}/gba
@@ -99,8 +100,8 @@ The gambas-examples package contains some examples for gambas.
 %{_bindir}/gambas-database-manager
 %{_bindir}/Util
 %{_includedir}/gambas.h
-%exclude %{_libdir}/lib.*.la
-%{_libdir}/lib.*.so
+%exclude %{_libdir}/gambas/lib.*.la
+%{_libdir}/gambas/lib.*.so
 
 %files help
 %defattr(-,root,root,0755)
