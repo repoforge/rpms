@@ -2,7 +2,9 @@
 # Authority: dag
 
 ### Builds on RH73, but doesn't work.
-# DistExclude: rh73
+##DistExclude: rh73
+
+# Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -18,8 +20,8 @@
 
 Summary: Mozilla Firefox web browser
 Name: firefox
-Version: 0.8
-Release: 3
+Version: 0.9
+Release: 1
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -317,6 +319,9 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 0.9-1
+- Updated to release 0.9.
+
 * Sat Jun 12 2004 Dag Wieers <dag@wieers.com> - 0.8-3
 - Added xremote patches. (Peter Peltonen)
 - Open new window instead of new tab.

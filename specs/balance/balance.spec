@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dag
+# Upstream: <balance-general@lists.sf.net>
 
 Summary: TCP load-balancing proxy server
 Name: balance
-Version: 3.11
-Release: 0
+Version: 3.15
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://balance.sf.net/
@@ -47,6 +48,9 @@ at runtime using a simple command line syntax.
 %{_localstatedir}/run/balance/
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 3.15-1
+- Updated to release 3.15.
+
 * Mon Oct 06 2003 Dag Wieers <dag@wieers.com> - 3.11-0
 - Updated to release 3.11.
 

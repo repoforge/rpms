@@ -6,8 +6,8 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.5
-Release: 2
+Version: 2.1.6
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
@@ -259,6 +259,7 @@ EOF
 			%{buildroot}%{_datadir}/cfengine/ \
 			%{buildroot}%{_localstatedir}/cfengine/{bin,inputs}/ \
 %makeinstall
+%makeinstall -C doc
 %{__install} -D -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
 %{__install} -D -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
 %{__install} -D -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
@@ -305,6 +306,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 2.1.6-1
+- Updated to release 2.1.6.
+
 * Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 2.1.5-2
 - Removed the %%{_infodir}/dir from the buildroot. (Shawn Ashlee)
 
