@@ -8,7 +8,7 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://easytag.sourceforge.net/
-Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/easytag/easytag-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel >= 1.2.7, id3lib-devel >= 3.7.12
 BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext

@@ -92,6 +92,7 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README examples/linux/*.sh
 %config %{_initrddir}/carp
+%dir /etc/sysconfig/carp/
 %{_sysconfdir}/sysconfig/carp/vip-001.conf.example
 %attr(0700, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/carp/vip-up
 %attr(0700, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/carp/vip-down

@@ -99,7 +99,7 @@ sprite blitting.
 %{_bindir}/cacamoir
 %{_bindir}/cacaplas
 %{_bindir}/cacaview
-%{_datadir}/libcaca/*
+%{_datadir}/libcaca/
 %{_mandir}/man1/cacaball.1*
 %{_mandir}/man1/cacademo.1*
 %{_mandir}/man1/cacafire.1*
