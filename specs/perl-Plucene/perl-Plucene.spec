@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream: Simon Cozens <simon$cpan,org>
+# Upstream: Marc Kerr <coder$stray-toaster,co,uk>
 
 %define real_name Plucene
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Plucene/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/Plucene-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/ST/STRYTOAST/Plucene-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

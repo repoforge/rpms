@@ -20,7 +20,7 @@ URL: http://search.cpan.org/dist/Module-Starter/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/Module-Starter-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Module-Starter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

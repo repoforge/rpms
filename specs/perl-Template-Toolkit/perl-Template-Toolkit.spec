@@ -37,7 +37,8 @@ LaTeX, and so on.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot} \
+	TT_DBI=n TT_XS_ENABLE=y
 %{__make} %{?_smp_mflags} \
 	TT_PREFIX=/usr/share/tt2
 
