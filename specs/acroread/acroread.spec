@@ -1,13 +1,17 @@
 # $Id$
 # Authority: dag
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
 
-%define real_version 508
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define real_version 509
 
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
-Version: 5.0.8
+Version: 5.0.9
 Release: 1
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
@@ -17,12 +21,14 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.adobe.com/pub/adobe/acrobatreader/unix/5.x/linux-%{real_version}.tar.gz
+Source1: acroread.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 ExclusiveArch: i386
 BuildRequires: perl
+%{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: acrobat
+Requires: htmlview
 
 %description
 Adobe Reader is part of the Adobe Acrobat family of software,
@@ -38,7 +44,7 @@ for Netscape Navigator to to view PDF files inline
 %package -n mozilla-acroread
 Summary: Adobe Reader plug-in for viewing PDF files with the mozilla browser
 Group: Applications/Internet
-Requires: %{name} = %{version}, mozilla
+Requires: %{name} = %{version}
 Provides: %{name}-plugin = %{version}-%{release}
 Obsoletes: %{name}-plugin < %{version}
 
@@ -48,7 +54,7 @@ This package provides the Adobe Reader plugin for mozilla.
 %prep
 %setup -c
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >acroread.desktop
 [Desktop Entry]
 Name=Adobe Reader
 Comment=View and print PDF files
@@ -74,48 +80,56 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir}/acroread/ \
-			%{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/ \
-			%{buildroot}%{_libdir}/mozilla/plugins/ \
-			%{buildroot}%{_libdir}/netscape/plugins/
+
+%{__install} -d -m0755 %{buildroot}%{_libdir}/acroread/
 %{__tar} -xvf COMMON.TAR -C %{buildroot}%{_libdir}/acroread/
 %{__tar} -xvf LINUXRDR.TAR -C %{buildroot}%{_libdir}/acroread/
 
 %{__mv} -f %{buildroot}%{_libdir}/acroread/bin/acroread.sh %{buildroot}%{_libdir}/acroread/bin/acroread
 
 ### Fixup path and fixed LANG/LC_ALL settings until Adobe adds Unicode locale support
-%{__perl} -pi -e 's|^install_dir=.*$|install_dir=%{_libdir}/acroread/Reader\n
+%{__perl} -pi -e '
+	s|^install_dir=.*$|install_dir=%{_libdir}/acroread/Reader\n
 NLANG="\${LANG//.UTF-8/.ISO8859-1}"
 export LANG="\${NLANG:-C}"
 NLC_ALL="\${LC_ALL//.UTF-8/.ISO8859-1}"
-export LC_ALL="\${NLC_ALL:-C}"|' \
-	%{buildroot}%{_libdir}/acroread/bin/acroread
+export LC_ALL="\${NLC_ALL:-C}"
+MALLOC_CHECK_=0
+export MALLOC_CHECK_|;
+	' %{buildroot}%{_libdir}/acroread/bin/acroread
 
 ### Shutup some rpm permission warnings
 %{__chmod} +x %{buildroot}%{_libdir}/acroread/Reader/*/lib/lib*.so* %{buildroot}%{_libdir}/acroread/Browsers/*/*.so
 
-%{__install} -m0644 WebLink %{buildroot}%{_libdir}/acroread/Reader/intellinux/app-defaults/
+%{__install} -D -m0644 WebLink %{buildroot}%{_libdir}/acroread/Reader/intellinux/app-defaults/WebLink
 
 ### Make links
+%{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__ln_s} -f %{_libdir}/acroread/bin/acroread %{buildroot}%{_bindir}/
-%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/AcroRead %{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/
-%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/WebLink %{buildroot}%{_prefix}/X11R6/lib/X11/app-defaults/
+
+%{__install} -d -m0755 %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/
+%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/AcroRead %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/
+%{__ln_s} -f %{_libdir}/acroread/Reader/intellinux/app-defaults/WebLink %{buildroot}%{_prefix}/X11R6/%{_lib}/X11/app-defaults/
+
+%{__install} -d -m0755 %{buildroot}%{_libdir}/netscape/plugins/
 %{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/netscape/plugins/
+
+%{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
 %{__ln_s} -f %{_libdir}/acroread/Browsers/intellinux/nppdf.so %{buildroot}%{_libdir}/mozilla/plugins/
+
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/acroread.png
 
 ### Strip binaries and libraries
 #%{__strip} %{buildroot}%{_libdir}/acroread/Reader/intellinux/bin/acroread %{buildroot}%{_libdir}/acroread/Reader/intellinux/lib/*.so.*
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Graphics/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Graphics/
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 acroread.desktop %{buildroot}%{_datadir}/gnome/apps/Graphics/acroread.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor net                  \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+                acroread.desktop
 %endif
 
 %clean
@@ -124,20 +138,29 @@ export LC_ALL="\${NLC_ALL:-C}"|' \
 %files
 %defattr(-, root, root, 0755)
 %doc README *.TXT 
-%{_bindir}/*
-%{_libdir}/acroread/
-%{_prefix}/X11R6/lib/X11/app-defaults/*
-%if %{dfi}
-        %{_datadir}/gnome/apps/Graphics/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{_bindir}/acroread
+%dir %{_libdir}/acroread/
+%{_libdir}/acroread/Reader/
+%{_libdir}/acroread/Resource/
+%{_libdir}/acroread/bin/
+%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
+%{_datadir}/pixmaps/acroread.png
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Graphics/acroread.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/net-acroread.desktop}
 
 %files -n mozilla-acroread
+%defattr(-, root, root, 0755)
+%dir %{_libdir}/acroread/
+%{_libdir}/acroread/Browsers/
 %{_libdir}/mozilla/plugins/*
 %{_libdir}/netscape/plugins/*
 
 %changelog
+* Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 5.0.9-1
+- Updated to release 5.0.9.
+- Fixed the acroread icon. (Sahak Petrosyan)
+- Added fix for crash when doing 'Find' on non-existing strings. (Stefan Hoelldampf)
+
 * Tue Jan 27 2004 Dag Wieers <dag@wieers.com> - 5.0.8-1
 - Added fix to make locale settings still work. (Fernando Lozano)
 

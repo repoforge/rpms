@@ -1,11 +1,10 @@
 # $Id: _template.spec 130 2004-03-17 10:51:35Z dude $
-
 # Authority: dag
 # Upstream: <socat@dest-unreach.org>
 
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
-Version: 1.3.2.2
+Version: 1.4.0.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -28,7 +27,7 @@ SSL socket, proxy CONNECT connection, a file descriptor (stdin etc.), the GNU
 line editor, a program, or a combination of two of these. 
 
 %prep
-%setup -n %{name}-1.3
+%setup -n %{name}-1.4
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e '
@@ -60,5 +59,8 @@ line editor, a program, or a combination of two of these.
 %{_bindir}/*
 
 %changelog
-* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.3-1
+* Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 1.4.0.0-1
+- Updated to release 1.4.0.0.
+
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.3.2.2-1
 - Initial package. (using DAR)

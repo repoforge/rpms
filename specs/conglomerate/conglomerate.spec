@@ -4,8 +4,8 @@
 
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
-Version: 0.7.12
-Release: 0
+Version: 0.7.14
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.conglomerate.org/
@@ -44,10 +44,6 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/ 
-%{__rm} -f %{buildroot}%{_datadir}/pixmaps/ChangeLog
-
 %post
 scrollkeeper-update -q || :
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -63,7 +59,7 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO
 %doc %{_datadir}/gnome/help/conglomerate/
-#%doc %{_datadir}/gtk-doc/html/conglomerate/
+%doc %{_datadir}/gtk-doc/html/conglomerate/
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_datadir}/application-registry/*.applications
@@ -72,8 +68,14 @@ scrollkeeper-update -q || :
 %{_datadir}/mime-info/*
 %{_datadir}/omf/conglomerate/
 %{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/conglomerate/
+%exclude %{_localstatedir}/scrollkeeper/ 
 
 %changelog
+* Thu Jun 14 2004 Dag Wieers <dag@wieers.com> - 0.7.14-1
+- Updated to release 0.7.14.
+- Updated to release 0.7.13.
+
 * Wed Feb 18 2004 Dag Wieers <dag@wieers.com> - 0.7.12-0
 - Updated to release 0.7.12.
 
