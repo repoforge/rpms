@@ -4,12 +4,12 @@
 Summary: Simple library and a wrapper for imlib2
 Name: giblib
 Version: 1.2.3
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
-Source: http://linuxbrit.co.uk/downloads/%{name}-%{version}.tar.gz
+Source: http://linuxbrit.co.uk/downloads/giblib-%{version}.tar.gz
 URL: http://linuxbrit.co.uk/giblib/
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: imlib2
 BuildRequires: imlib2-devel
 
@@ -23,7 +23,7 @@ and more importantly, wraps imlib2's context API.
 
 
 %package devel
-Summary: Static libs and header files for giblib
+Summary: Static library and header files for giblib
 Group: Development/Libraries
 Requires: %{name} = %{version}
 
@@ -34,21 +34,28 @@ Install this package if you intend to develop using the giblib library.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}/usr/doc
+%{__rm} -rf %{buildroot}%{_prefix}/doc
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -63,8 +70,12 @@ Install this package if you intend to develop using the giblib library.
 %exclude %{_libdir}/lib%{name}.la
 %{_libdir}/lib%{name}.so
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.2.3-3.fr
+* Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 1.2.3-4
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.2.3-3
 - Rebuild for Fedora Core 1.
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
