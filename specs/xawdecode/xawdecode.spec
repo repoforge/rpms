@@ -2,14 +2,14 @@
 # Authority: dag
 # Upstream: <xawdecode-project@lists.sf.net>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation) (Please fix upstream)
-# Distcc: 0
+%{?dist: %{expand: %%define %dist 1}}
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 Summary: Video4Linux stream capture viewer
 Name: xawdecode
-Version: 1.9.1
+Version: 1.9.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, lirc-devel, xosd-devel
 BuildRequires: xvidcore-devel, divx4linux, lame-devel, ffmpeg-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 xawdecode allows you to watch TV, record AVI and DIVX files.
@@ -41,7 +42,7 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >xawdecode.desktop
 [Desktop Entry]
 Name=Xawdecode Video Capture
 Comment=A versatile video capturing tool
@@ -54,6 +55,7 @@ EOF
 
 %build
 %configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
 	--disable-dependency-tracking \
 	--disable-alsa \
 	--enable-xosd
@@ -72,10 +74,10 @@ EOF
 %{__install} -D -m0644 xawdecode_cmd.1 %{buildroot}%{_mandir}/man1/xawdecode_cmd.1
 %{__install} -D -m0644 xawdecode-48.png %{buildroot}%{_datadir}/pixmaps/xawdecode.png
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 xawdecode.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
@@ -99,20 +101,20 @@ xset fp rehash || :
 %config(noreplace) %{_sysconfdir}/*.conf
 %{_bindir}/*
 %{_datadir}/xawdecode/
-%{_prefix}/X11R6/lib/X11/app-defaults/*
-%{_prefix}/X11R6/lib/X11/fonts/misc/*
+%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
+%{_prefix}/X11R6/%{_lib}/X11/fonts/misc/*
 %{_datadir}/pixmaps/*.png
-%if %{dfi}
-	%{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-	%{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/net-xawdecode.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/xawdecode/
 
 %changelog
+* Mon Jun 21 2004 Dag Wieers <dag@wieers.com> - 1.9.2-1
+- Updated to release 1.9.2.
+
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.9.1-1
 - Updated to release 1.9.1.
 
