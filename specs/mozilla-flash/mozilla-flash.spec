@@ -18,6 +18,7 @@ Source1: http://macromedia.rediris.es/rpmsource/LICENSE
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: i386
+Requires: %{_libdir}/mozilla/plugins/
 
 %description
 Macromedia Flash Player
