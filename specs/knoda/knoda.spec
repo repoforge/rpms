@@ -54,6 +54,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %{__perl} -pi.orig -e 's|\$\(datadir\)|\$(picsdatadir)|g' hk_kdeclasses/pics/Makefile.* knoda/pics/Makefile.*
 %{__perl} -pi.orig -e 's|^datadir|picsdatadir|g' hk_kdeclasses/pics/Makefile.* knoda/pics/Makefile.*
 %configure
@@ -61,6 +62,7 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 # with stripping: 21Mb -> 2Mb
 %{__strip} %{buildroot}%{_libdir}/libhk_kdeclasses.so
