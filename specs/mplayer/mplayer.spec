@@ -1,6 +1,22 @@
 # $Id$
 # Authority: matthias
 
+%{?fc1:%define _without_alsa 1}
+%{?fc1:%define _without_fribidi 1}
+%{?fc1:%define _without_theora 1}
+
+%{?el3:%define _without_alsa 1}
+%{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_theora 1}
+
+%{?rh9:%define _without_alsa 1}
+%{?rh9:%define _without_fribidi 1}
+%{?rh9:%define _without_theora 1}
+
+%{?rh8:%define _without_alsa 1}
+%{?rh8:%define _without_fribidi 1}
+%{?rh8:%define _without_theora 1}
+
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
 #define date      20040415
 %define rcver     pre4
@@ -42,11 +58,12 @@ BuildRequires: gtk+-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libogg-devel, libvorbis-devel, libmad-devel
-BuildRequires: xmms-devel, fribidi-devel
-BuildRequires: alsa-lib-devel, libdv-devel
+BuildRequires: xmms-devel, libdv-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #{?_with_dvdnav:BuildRequires: libdvdnav-devel}
 %{?_with_samba:BuildRequires: samba-common}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_fribidi:BuildRequires: fribidi-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_lirc:BuildRequires: lirc}
 %{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
@@ -101,6 +118,7 @@ to use MPlayer, transcode or other similar programs.
 find . -name "CVS" | xargs %{__rm} -rf
 #       %{?_with_dvdnav:--enable-dvdnav} \
 ./configure \
+    --target=%{_target_platform} \
     --prefix=%{_prefix} \
     --datadir=%{_datadir}/mplayer \
     --confdir=%{_sysconfdir}/mplayer \
@@ -143,6 +161,8 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb}
 
+%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|' config.mak
+
 %{__make} %{?_smp_mflags}
 
 
@@ -150,14 +170,12 @@ find . -name "CVS" | xargs %{__rm} -rf
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
-# The default Skin
-%{__mkdir_p} %{buildroot}%{_datadir}/mplayer/Skin
-pushd %{buildroot}%{_datadir}/mplayer/Skin
-    %{__tar} -xjf %{SOURCE2}
-    %{__mv} * default
-popd
+### The default Skin
+%{__mkdir_p} %{buildroot}%{_datadir}/mplayer/Skin/
+%{__tar} -xjf %{SOURCE2} -C %{buildroot}%{_datadir}/mplayer/Skin/
+%{__mv} -f %{buildroot}%{_datadir}/mplayer/Skin/* %{buildroot}%{_datadir}/mplayer/Skin/default
 
-# Fix eventual skin permissions :-(
+### Fix eventual skin permissions :-(
 find %{buildroot}%{_datadir}/mplayer/Skin -type d -exec chmod 755 {} \;
 find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 
@@ -165,15 +183,15 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 %{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
 
 # The icon used in the menu entry
-%{__install} -D -m 644 Gui/mplayer/pixmaps/logo.xpm \
-    %{buildroot}%{_datadir}/pixmaps/mplayer-logo.xpm
+%{__install} -D -m0644 Gui/mplayer/pixmaps/logo.xpm \
+    %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
 
 # Last, add system menu entries!
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Movie Player
 Comment=Play DivX ;-), MPEG, DVDs and more
-Icon=mplayer-logo.xpm
+Icon=mplayer.xpm
 Exec=gmplayer %f
 Terminal=false
 MimeType=video/mpeg;video/x-msvideo;video/quicktime
@@ -187,28 +205,29 @@ EOF
 desktop-file-install \
     --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
+    mplayer.desktop
 %else
-%{__install} -D -m 644 %{name}.desktop \
-    %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
+%{__install} -D -m0644 mplayer.desktop \
+    %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/mplayer.desktop
 %endif
 
-# Install libpostproc if not already installed
-test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
-    %{__make} prefix=%{buildroot}%{_prefix} -C libavcodec/libpostproc install
+### Install libpostproc if not already installed
+if [ ! -e "%{buildroot}%{_libdir}/libpostproc.so" ]; then
+	%makeinstall -C libavcodec/libpostproc
+fi
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %post -n libpostproc
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun -n libpostproc
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %clean
@@ -218,16 +237,17 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 %files
 %defattr(-, root, root, 755)
 %doc AUTHORS ChangeLog DOCS/ README etc/*.conf
-%dir %{_sysconfdir}/mplayer
+%dir %{_sysconfdir}/mplayer/
 #config %{_sysconfdir}/mplayer/mplayer.conf
-%{_prefix}/bin/*
-%{_prefix}/lib/libdha.so*
-%{_prefix}/lib/%{name}
-%{!?_without_freedesktop:%{_datadir}/applications/*%{name}.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Multimedia/%{name}.desktop}
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/Skin
-%{_datadir}/pixmaps/mplayer-logo.xpm
+%{_bindir}/*
+%ifarch %ix86
+%{_libdir}/libdha.so*
+%{_libdir}/mplayer/
+%endif
+%{!?_without_freedesktop:%{_datadir}/applications/*mplayer.desktop}
+%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Multimedia/mplayer.desktop}
+%{_datadir}/mplayer/
+%{_datadir}/pixmaps/mplayer.xpm
 %{_mandir}/man1/*.1*
 %lang(de) %{_mandir}/de/man1/*.1*
 %lang(es) %{_mandir}/es/man1/*.1*
@@ -238,8 +258,8 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 
 %files -n libpostproc
 %defattr(-, root, root, 755)
-%{_prefix}/include/postproc
-%{_prefix}/lib/libpostproc.so*
+%{_includedir}/postproc/
+%{_libdir}/libpostproc.so*
 
 
 %changelog
