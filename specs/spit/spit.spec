@@ -45,7 +45,7 @@ EOF
 
 %build
 source "%{_sysconfdir}/profile.d/qt.sh"
-export CXX=g++296
+# export CXX=g++296
 ./configure \
 	--prefix="%{_prefix}"
 %{__make} src/Makefile
