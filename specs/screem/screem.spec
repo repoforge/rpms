@@ -1,32 +1,39 @@
 # $Id$
 # Authority: matthias
+# Upstream: David A Knight <david@ritter.demon.co.uk>
 
 Summary: Web Site CReating and Editing EnvironMent for GNOME
 Name: screem
-Version: 0.8.2
-Release: 2
+Version: 0.10.2
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.screem.org/
 Source: http://dl.sf.net/screem/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires(post): scrollkeeper, GConf2
+Requires(postun): scrollkeeper
 BuildRequires: GConf2-devel, pkgconfig, scrollkeeper, gettext, krb5-devel
-BuildRequires: gcc-c++, neon-devel
+BuildRequires: gcc-c++, neon-devel, openssl-devel, perl(XML::Parser)
 BuildRequires: libgnomeui-devel >= 2.2.0
 BuildRequires: libgnomeprintui22-devel >= 2.2.0
 BuildRequires: gtkhtml2-devel >= 2.2.0
 BuildRequires: gtksourceview-devel >= 0.3.0
+BuildRequires: libcroco-devel >= 0.4.0
 
 %description
 SCREEM (Site CReating and Editing EnvironMent) is an integrated development
 environment for the creation and maintainance of websites and pages.
 
+
 %prep
 %setup
 
+
 %build
-%configure
+%configure --with-ssl
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -34,13 +41,20 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %post
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
 gconftool-2 --makefile-install-rule \
     %{_sysconfdir}/gconf/schemas/%{name}.schemas >/dev/null || :
+scrollkeeper-update -q || :
+
+%postun
+scrollkeeper-update -q || :
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -56,8 +70,15 @@ gconftool-2 --makefile-install-rule \
 %{_datadir}/pixmaps/%{name}*
 %{_datadir}/%{name}
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.8.2-2.fr
+* Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 0.10.2-1
+- Update to 0.10.2.
+
+* Mon Mar 29 2004 Matthias Saou <http://freshrpms.net/> 0.10.0-1
+- Update to 0.10.0, only builds on Fedora Development for now.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.8.2-2
 - Rebuild for Fedora Core 1.
 - Enabled neon.
 

@@ -8,7 +8,7 @@
 
 Summary: DVD ripping graphical tool using transcode
 Name: perl-Video-DVDRip
-Version: 0.50.17
+Version: 0.50.18
 Release: 1
 License: Artistic
 Group: Applications/Multimedia
@@ -89,6 +89,9 @@ perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_AS
 
 
 %changelog
+* Mon Apr 19 2004 Matthias Saou <http://freshrpms.net/> 0.50.18-1
+- Update to 0.50.18.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 0.50.17-1
 - Update to 0.50.17.
 

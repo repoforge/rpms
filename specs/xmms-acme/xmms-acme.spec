@@ -23,26 +23,33 @@ keyboard scancodes with the media-control scancodes, it does not know how to
 individually control the various media players.  Instead, it arranges the
 mapping and expects those media players to listen for the XF86Audio keysyms.
 
+
 %prep
 %setup -n xmms-xf86audio-%{version}
+
 
 %build
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m 0755 libxf86audio.so %{buildroot}%{xmms_generaldir}/libxf86audio.so
-strip %{buildroot}%{xmms_generaldir}/* || :
+%{__install} -D -m 0755 libxf86audio.so \
+    %{buildroot}%{xmms_generaldir}/libxf86audio.so
+%{__strip} %{buildroot}%{xmms_generaldir}/* || :
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
 %{xmms_generaldir}/libxf86audio.so
 
+
 %changelog
-* Tue Feb  3 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-1.fr
+* Tue Feb  3 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-1
 - Initial RPM package, called xmms-acme instead of xmms-xf86audio.
 
