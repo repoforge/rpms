@@ -2,8 +2,9 @@
 # Authority: dag
 # Upstream: Bram Cohen <bram$bitconjurer,org>
 
-### Needs python >= 2.3
-# ExcludeDist: el2 rh7 rh8 rh9 el3 fc1
+### Requires python >= 2.3, works on 2.2 too (Pasi Pirhonen)
+
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %define desktop_vendor rpmforge
 
@@ -11,19 +12,20 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 3.9.0
-Release: 3
-License: MIT
+Version: 4.0.0
+Release: 1
+License: BitTorrent Open Source License
 Group: Applications/Internet
-URL: http://bitconjurer.org/
+URL: http://bittorrent.com/
 
-Source: http://bittorrent.com/BitTorrent-%{version}.tar.gz
+Source: http://bittorrent.com/dl/BitTorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel
+BuildArch: noarch
+BuildRequires: python-devel >= 2.3, pygtk2-devel >= 2.4
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: python >= 2.3
-BuildArch: noarch
+Obsoletes: BitTorrent
 
 %description
 BitTorrent is a tool for copying files from one machine to
@@ -35,7 +37,7 @@ download, making the publisher's burden almost nothing.
 %package gui
 Summary: GUI versions of the BitTorrent file transfer tool
 Group: Applications/Internet
-Requires: pygtk2 >= 2.4.0
+Requires: pygtk2 >= 2.4
 Requires: %{name} = %{version}-%{release}
 
 %description gui 
@@ -59,13 +61,13 @@ Encoding=UTF-8
 EOF
 
 %build
-CFLAGS="%{optflags}" %{__python} setup.py build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install -O1 \
+%{__python} setup.py install \
 	--skip-build \
-	--root %{buildroot}
+	--root "%{buildroot}"
 %{__perl} -pi -e 's|env python2|env python|' %{buildroot}%{_bindir}/*.py
 
 %if %{?_without_freedesktop:1}0
@@ -95,12 +97,12 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc *.html *.txt
 %{_bindir}/*.py
 %exclude %{_bindir}/btdownloadgui.py
-%dir %{_libdir}/python*/site-packages/BitTorrent/
-%{_libdir}/python*/site-packages/BitTorrent/*.py
-%{_libdir}/python*/site-packages/BitTorrent/*.pyc
-%ghost %{_libdir}/python*/site-packages/BitTorrent/*.pyo
-%exclude %{_docdir}/BitTorrent-%{version}/
+%dir %{python_sitelib}/BitTorrent/
+%{python_sitelib}/BitTorrent/*.py
+%{python_sitelib}/BitTorrent/*.pyc
+%ghost %{python_sitelib}/BitTorrent/*.pyo
 %{_datadir}/pixmaps/BitTorrent-%{version}/
+%exclude %{_docdir}/BitTorrent-%{version}/
 
 %files gui
 %defattr(-, root, root, 0755)
@@ -110,6 +112,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/bittorrent.desktop}
 
 %changelog
+* Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 4.0.0-1 - $Rev$
+- Updated to release 4.0.0.
+
 * Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 3.9.0-3
 - Replaced wxpython dependency by pgtk2. (Paul Howarth, Jorge Bartos)
 
