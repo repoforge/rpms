@@ -10,11 +10,14 @@ Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://icculus.org/neverball/
-Source: http://icculus.org/neverball/neverball-%{version}.tar.bz2
+Source: http://icculus.org/neverball/neverball-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL, SDL_image, SDL_mixer, SDL_ttf
-BuildRequires: perl, desktop-file-utils, XFree86-Mesa-libGLU, zlib-devel
+BuildRequires: perl, desktop-file-utils, zlib-devel
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_ttf-devel
+# This is required for correct linking
+#BuildRequires: XFree86-Mesa-libGLU
+BuildRequires: xorg-x11-Mesa-libGLU
 
 %description
 Tilt the floor to roll a ball through an obstacle course before time runs out.
@@ -47,8 +50,9 @@ Name=Neverball
 Comment=Test of skill, part puzzle game and part action game
 Exec=%{name}
 Icon=%{_datadir}/%{name}/shot-rlk/risers.jpg
-Terminal=0
+Terminal=false
 Type=Application
+Encoding=UTF-8
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
@@ -65,7 +69,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING MAPPING README
+%doc CHANGES COPYING README
 %{_bindir}/%{name}
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %{_datadir}/%{name}
@@ -74,6 +78,8 @@ desktop-file-install --vendor %{desktop_vendor} \
 %changelog
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.2.5-1
 - Update to 1.2.5.
+- Rebuild for Fedora Core 2.
+- Change build requirement to new xorg-x11-Mesa-libGLU.
 
 * Wed Feb  4 2004 Matthias Saou <http://freshrpms.net/> 1.1.0-1
 - Initial RPM release.

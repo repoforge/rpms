@@ -34,9 +34,11 @@ libfame library.
 %prep
 %setup
 
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,12 +47,17 @@ libfame library.
 # Workaround for direct <libfame/fame.h> includes.
 ln -s . %{buildroot}%{_includedir}/%{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -67,22 +74,23 @@ ln -s . %{buildroot}%{_includedir}/%{name}
 %{_datadir}/aclocal/%{name}.m4
 %{_mandir}/man3/*
 
+
 %changelog
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-1.fr
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-1
 - Update to 0.9.1.
 - Updated the Source URL.
 
-* Fri Dec  5 2003 Matthias Saou <http://freshrpms.net/> 0.9.0-4.fr
+* Fri Dec  5 2003 Matthias Saou <http://freshrpms.net/> 0.9.0-4
 - Added /usr/include/libfame -> . symlink as a workaround for MPlayer.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.0-3.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.9.0-3
 - Rebuild for Fedora Core 1.
 
-* Mon Mar 31 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 9.
 - Exclude .la files.
 
-* Mon Oct 28 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Oct 28 2002 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup.
 
 * Mon Jun 17 2002 Thomas Vander Stichele <thomas@apestaart.org>
