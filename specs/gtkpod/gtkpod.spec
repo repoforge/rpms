@@ -12,8 +12,9 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://gtkpod.sourceforge.net/
 Source: http://dl.sf.net/gtkpod/gtkpod-%{version}-%{extrarelease}.tar.gz
+Patch: gtk2.4-gtk2.0.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel, libid3tag-devel, gettext
+BuildRequires: gtk2-devel, libid3tag-devel, faad2-devel, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -25,6 +26,8 @@ modification of the database with later synchronisation, and more.
 
 %prep
 %setup -q -n %{name}-%{version}-%{extrarelease}
+%patch -p0
+
 # Create a desktop menu entry
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
@@ -86,6 +89,7 @@ desktop-file-install \
 %changelog
 * Fri Aug 27 2004 Matthias Saou <http://freshrpms.net> 0.80-0
 - Update to 0.80-2.
+- Added AAC support through faad2.
 - Spec file cleanup, use included pixmap, use find_lang macro, fix files.
 
 * Sat Mar 21 2004 Casper Pedersen <cpedersen [at] c-note.dk> 0.72-2.3

@@ -1,0 +1,41 @@
+--- configure	2004-07-17 16:48:14.000000000 +0100
++++ configure.new	2004-07-19 20:22:09.000000000 +0100
+@@ -3992,23 +3992,23 @@
+   else
+      PKG_CONFIG_MIN_VERSION=0.9.0
+      if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+-        echo "$as_me:$LINENO: checking for gtk+-2.0 >= 2.4.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0" >&5
+-echo $ECHO_N "checking for gtk+-2.0 >= 2.4.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0... $ECHO_C" >&6
++        echo "$as_me:$LINENO: checking for gtk+-2.0 >= 2.0.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0" >&5
++echo $ECHO_N "checking for gtk+-2.0 >= 2.0.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0... $ECHO_C" >&6
+ 
+-        if $PKG_CONFIG --exists "gtk+-2.0 >= 2.4.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0" ; then
++        if $PKG_CONFIG --exists "gtk+-2.0 >= 2.0.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0" ; then
+             echo "$as_me:$LINENO: result: yes" >&5
+ echo "${ECHO_T}yes" >&6
+             succeeded=yes
+ 
+             echo "$as_me:$LINENO: checking PACKAGE_CFLAGS" >&5
+ echo $ECHO_N "checking PACKAGE_CFLAGS... $ECHO_C" >&6
+-            PACKAGE_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.4.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0"`
++            PACKAGE_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= 2.0.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0"`
+             echo "$as_me:$LINENO: result: $PACKAGE_CFLAGS" >&5
+ echo "${ECHO_T}$PACKAGE_CFLAGS" >&6
+ 
+             echo "$as_me:$LINENO: checking PACKAGE_LIBS" >&5
+ echo $ECHO_N "checking PACKAGE_LIBS... $ECHO_C" >&6
+-            PACKAGE_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.4.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0"`
++            PACKAGE_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= 2.0.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0"`
+             echo "$as_me:$LINENO: result: $PACKAGE_LIBS" >&5
+ echo "${ECHO_T}$PACKAGE_LIBS" >&6
+         else
+@@ -4016,7 +4016,7 @@
+             PACKAGE_LIBS=""
+             ## If we have a custom action on failure, don't print errors, but
+             ## do set a variable so people can do so.
+-            PACKAGE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.4.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0"`
++            PACKAGE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= 2.0.0 gthread-2.0 >= 0.14.0 glib-2.0 > 2.0.0"`
+ 
+         fi
+ 
+
