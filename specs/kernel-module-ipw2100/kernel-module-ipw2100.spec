@@ -28,7 +28,7 @@
 
 Summary: Driver for Intel® PRO/Wireless 2100 network adaptors
 Name: kernel-module-ipw2100
-Version: 0.46_3
+Version: 0.47
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -113,6 +113,9 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 
 %changelog
+* Mon Jul  5 2004 Matthias Saou <http://freshrpms.net> 0.47-1
+- Update to 0.47.
+
 * Tue Jun 22 2004 Matthias Saou <http://freshrpms.net> 0.46_3-1
 - Re-enable legacy firmware loading, since it fails a bootup otherwise.
 
