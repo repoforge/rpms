@@ -1,7 +1,7 @@
-diff -Naupr grip-3.1.5/src/grip.c grip-3.1.5.ogg/src/grip.c
---- grip-3.1.5/src/grip.c	2003-12-29 18:25:17.000000000 +0100
-+++ grip-3.1.5.ogg/src/grip.c	2004-03-03 10:37:47.896833592 +0100
-@@ -808,7 +808,7 @@ static void DoLoadConfig(GripInfo *ginfo
+diff -Naupr grip-3.1.7.orig/src/grip.c grip-3.1.7/src/grip.c
+--- grip-3.1.7.orig/src/grip.c	2004-03-22 18:02:30.000000000 +0100
++++ grip-3.1.7/src/grip.c	2004-03-23 15:08:04.251836120 +0100
+@@ -805,7 +805,7 @@ static void DoLoadConfig(GripInfo *ginfo
    ginfo->using_builtin_cdp=FALSE;
  #endif
    ginfo->in_rip_thread=FALSE;
@@ -10,7 +10,7 @@ diff -Naupr grip-3.1.5/src/grip.c grip-3.1.5.ogg/src/grip.c
  #ifdef __linux__
    FindExeInPath("cdparanoia", ginfo->ripexename, sizeof(ginfo->ripexename));
    strcpy(ginfo->ripcmdline,"-d %c %t:[.%s]-%t:[.%e] %w");
-@@ -832,9 +832,9 @@ static void DoLoadConfig(GripInfo *ginfo
+@@ -829,9 +829,9 @@ static void DoLoadConfig(GripInfo *ginfo
    *ginfo->wav_filter_cmd='\0';
    *ginfo->disc_filter_cmd='\0';
    ginfo->selected_encoder=1;
@@ -23,7 +23,7 @@ diff -Naupr grip-3.1.5/src/grip.c grip-3.1.5.ogg/src/grip.c
    strcpy(ginfo->mp3extension,"mp3");
    ginfo->mp3nice=0;
    *ginfo->mp3_filter_cmd='\0';
-@@ -842,7 +842,7 @@ static void DoLoadConfig(GripInfo *ginfo
+@@ -839,7 +839,7 @@ static void DoLoadConfig(GripInfo *ginfo
    ginfo->add_to_db=FALSE;
    ginfo->add_m3u=TRUE;
    ginfo->rel_m3u=TRUE;
@@ -32,9 +32,9 @@ diff -Naupr grip-3.1.5/src/grip.c grip-3.1.5.ogg/src/grip.c
    ginfo->kbits_per_sec=128;
    ginfo->edit_num_cpu=1;
    ginfo->doid3=TRUE;
-diff -Naupr grip-3.1.5/src/gripcfg.c grip-3.1.5.ogg/src/gripcfg.c
---- grip-3.1.5/src/gripcfg.c	2003-12-24 20:37:55.000000000 +0100
-+++ grip-3.1.5.ogg/src/gripcfg.c	2004-03-03 10:40:16.433252624 +0100
+diff -Naupr grip-3.1.7.orig/src/gripcfg.c grip-3.1.7/src/gripcfg.c
+--- grip-3.1.7.orig/src/gripcfg.c	2004-03-12 17:59:38.000000000 +0100
++++ grip-3.1.7/src/gripcfg.c	2004-03-23 15:11:09.065740136 +0100
 @@ -46,16 +46,16 @@ static Ripper ripper_defaults[]={
    {"",""}
  };
@@ -50,7 +50,7 @@ diff -Naupr grip-3.1.5/src/gripcfg.c grip-3.1.5.ogg/src/gripcfg.c
  				       "mp3"},
  				      {"gogo","-b %b %w %m","mp3"},
 -				      {"oggenc",
--				       "-o %m -a %a -l %d -t %n -b %b %w",
+-				       "-o %m -a %a -l %d -t %n -b %b %w -N %t -G %g -d %y",
 -				       "ogg"},
 +				      {"bladeenc","-%b -QUIT %w %m","mp3"},
  				      {"flac","-V -o %m %w","flac"},
