@@ -13,6 +13,8 @@ Source: http://devin.com/acme/download/acme-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel >= 2.0.0, libglade2-devel >= 2.0.0
 BuildRequires: libwnck-devel, startup-notification-devel, gettext
+# Required for intltool...
+BuildRequires: perl(XML::Parser)
 
 %description
 ACME is a small GNOME tool to make use of the multimedia buttons present on
@@ -25,7 +27,7 @@ Search, E-Mail, Sleep, Screensaver, Finance and Help buttons.
 
 
 %build
-%configure --disable-schemas-install
+%configure
 %{__make} %{?_smp_mflags}
 
 
@@ -43,11 +45,11 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
-scrollkeeper-update -q
+scrollkeeper-update -q || :
 
 
 %postun
-scrollkeeper-update -q
+scrollkeeper-update -q || :
 
 
 %files -f %{name}.lang
