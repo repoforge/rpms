@@ -8,7 +8,7 @@ Version: 0.9.4.1
 Release: 1
 License: GPL
 Group: Applications/Text
-URL: http://meld.sf.net/
+URL: http://meld.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

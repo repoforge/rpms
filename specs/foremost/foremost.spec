@@ -7,7 +7,7 @@ Version: 0.69
 Release: 0
 License: freeware
 Group: Applications/Archiving
-URL: http://foremost.sf.net/
+URL: http://foremost.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

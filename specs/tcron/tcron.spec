@@ -8,7 +8,7 @@ Version: 0.4.7
 Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://tcron.sf.net/
+URL: http://tcron.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

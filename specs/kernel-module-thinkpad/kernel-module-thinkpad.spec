@@ -25,7 +25,7 @@ Version: 5.0
 Release: 0_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://tpctl.sf.net/
+URL: http://tpctl.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

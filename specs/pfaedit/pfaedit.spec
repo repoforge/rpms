@@ -15,7 +15,7 @@ Version: 0.0.20040301
 Release: 0
 License: BSD
 Group: Applications/Publishing
-URL: http://pfaedit.sf.net/
+URL: http://pfaedit.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

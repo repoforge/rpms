@@ -18,7 +18,7 @@ Version: 0.7.38
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://avifile.sf.net/
+URL: http://avifile.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

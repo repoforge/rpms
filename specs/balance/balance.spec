@@ -8,7 +8,7 @@ Version: 3.15
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://balance.sf.net/
+URL: http://balance.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

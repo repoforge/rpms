@@ -11,7 +11,7 @@ Version: 0.69
 Release: 0
 License: GPL
 Group: Amusements/Games
-URL: http://childsplay.sf.net/
+URL: http://childsplay.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

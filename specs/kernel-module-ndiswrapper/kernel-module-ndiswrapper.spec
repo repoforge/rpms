@@ -27,7 +27,7 @@ Version: 0.7
 Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://ndiswrapper.sf.net/
+URL: http://ndiswrapper.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

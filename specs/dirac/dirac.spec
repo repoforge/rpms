@@ -8,7 +8,7 @@ Version: 0.4.3
 Release: 1
 License: MPL 1.1
 Group: System Environment/Libraries
-URL: http://sf.net/projects/dirac
+URL: http://sourceforge.net/projects/dirac
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -9,7 +9,7 @@ Version: 0.3.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://subtitleripper.sf.net/
+URL: http://subtitleripper.sourceforge.net/
 Source: http://dl.sf.net/subtitleripper/subtitleripper-%{real_version}.tgz
 Patch: subtitleripper-0.3.4-libnetpbm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

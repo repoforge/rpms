@@ -10,7 +10,7 @@ Version: 2.9
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://bluez.sourceforge.net/
+URL: http://www.bluez.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -30,6 +30,7 @@ The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+Obsoletes: bluez-sdp-devel
 
 %description devel
 This package contains the header files, static libraries and development
@@ -60,14 +61,14 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%{_libdir}/*.so.*
+%{_libdir}/libbluetooth.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/bluetooth/*
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_libdir}/libbluetooth*.a
+%exclude %{_libdir}/libbluetooth.la
+%{_libdir}/libbluetooth.so
 %{_libdir}/pkgconfig/bluez.pc
 
 %changelog

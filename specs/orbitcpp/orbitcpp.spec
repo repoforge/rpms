@@ -7,7 +7,7 @@ Version: 1.3.9
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://orbitcpp.sf.net/
+URL: http://orbitcpp.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -9,7 +9,7 @@ Release: 3
 Epoch: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://libsigc.sf.net/
+URL: http://libsigc.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

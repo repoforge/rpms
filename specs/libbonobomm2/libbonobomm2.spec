@@ -10,7 +10,7 @@ Version: 1.3.8
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
-URL: http://gtkmm.sf.net/
+URL: http://gtkmm.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

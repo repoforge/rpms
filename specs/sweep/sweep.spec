@@ -12,7 +12,7 @@ Version: 0.8.3
 Release: 2
 License: GPL
 Group: Applications/Multimedia
-URL: http://sweep.sf.net/
+URL: http://sweep.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

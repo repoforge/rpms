@@ -9,7 +9,7 @@ Version: 1.0.0
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://trackballs.sf.net/
+URL: http://trackballs.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -7,7 +7,7 @@ Version: 1.22
 Release: 1
 License: GPL+Other
 Group: System Environment/Libraries
-URL: http://xparam.sf.net/
+URL: http://xparam.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -11,7 +11,7 @@ Version: 1.001
 Release: 1
 License: GPL
 Group: Applications/CPAN
-URL: http://gtk2-perl.sf.net/
+URL: http://gtk2-perl.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

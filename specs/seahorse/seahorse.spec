@@ -8,7 +8,7 @@ Version: 0.7.3
 Release: 0
 License: GPL
 Group: User Interface/Desktops
-URL: http://seahorse.sf.net/
+URL: http://seahorse.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

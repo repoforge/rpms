@@ -9,7 +9,7 @@ Version: 0.7.2
 Release: 0.a
 License: GPL
 Group: Applications/Multimedia
-URL: http://denemo.sf.net/
+URL: http://denemo.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -8,7 +8,7 @@ Version: 5.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://echoping.sf.net/
+URL: http://echoping.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

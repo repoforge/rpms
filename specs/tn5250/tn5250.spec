@@ -10,7 +10,7 @@ Version: 0.16.5
 Release: 0
 License: GPL 
 Group: Applications/Communications
-URL: http://tn5250.sf.net/
+URL: http://tn5250.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

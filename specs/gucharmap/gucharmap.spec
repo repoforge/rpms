@@ -10,7 +10,7 @@ Version: 1.2.0
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://gucharmap.sf.net/
+URL: http://gucharmap.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

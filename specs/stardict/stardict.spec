@@ -7,7 +7,7 @@ Version: 2.4.3
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://stardict.sf.net/
+URL: http://stardict.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -13,7 +13,7 @@ Version: 1.34
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://e2fsprogs.sf.net/
+URL: http://e2fsprogs.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

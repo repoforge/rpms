@@ -10,7 +10,7 @@ Version: 0.9.1
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://mhash.sf.net/
+URL: http://mhash.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -10,7 +10,7 @@ Version: 0.9.2
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://diacanvas.sf.net/
+URL: http://diacanvas.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -10,7 +10,7 @@ Version: 1.42
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://ngrep.sf.net/
+URL: http://ngrep.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

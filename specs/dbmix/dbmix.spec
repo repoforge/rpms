@@ -12,7 +12,7 @@ Version: 0.9.8
 Release: 3
 License: GPL
 Group: Applications/Multimedia
-URL: http://dbmix.sf.net/
+URL: http://dbmix.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

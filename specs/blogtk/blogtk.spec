@@ -7,6 +7,8 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 %define real_name BloGTK
 
 Summary: Graphical weblogging client
@@ -15,7 +17,7 @@ Version: 1.0
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://blogtk.sf.net/
+URL: http://blogtk.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -69,7 +71,7 @@ EOF
 %{__ln_s} -f %{_libdir}/blogtk/BloGTK.py %{buildroot}%{_bindir}/BloGTK
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome                \
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	blogtk.desktop

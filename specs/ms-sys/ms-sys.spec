@@ -8,7 +8,7 @@ Version: 2.0.0
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://ms-sys.sf.net/
+URL: http://ms-sys.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -8,7 +8,7 @@ Version: 0.99.5
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://powertweak.sf.net/
+URL: http://powertweak.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

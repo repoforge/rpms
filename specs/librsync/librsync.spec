@@ -9,7 +9,7 @@ Version: 0.9.6
 Release: 3
 License: LGPL
 Group: System Environment/Libraries
-URL: http://librsync.sf.net/
+URL: http://librsync.sourceforge.net/
 
 Packager: Wim Vandersmissen <wim@bofh.be>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

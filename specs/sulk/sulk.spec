@@ -12,7 +12,7 @@ Version: 0.29
 Release: 2
 License: LGPL
 Group: Amusements/Games
-URL: http://sulk.sf.net/
+URL: http://sulk.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -30,7 +30,7 @@ Version: 3.2.4.4
 Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://atmelwlandriver.sf.net/
+URL: http://atmelwlandriver.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

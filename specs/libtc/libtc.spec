@@ -8,7 +8,7 @@ Version: 1.1.0
 Release: 1
 License: MIT/X11
 Group: System Environment/Libraries
-URL: http://libtc.sf.net/
+URL: http://libtc.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

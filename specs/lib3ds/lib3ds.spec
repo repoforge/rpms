@@ -9,7 +9,7 @@ Version: 1.2.0
 Release: 0
 License: GPL
 Group: Development/Libraries
-URL: http://lib3ds.sf.net/
+URL: http://lib3ds.sourceforge.net/
 
 Packager: Rudolf Kastl <che666 at uni.de>
 Vendor: http://newrpms.sunsite.dk/

@@ -8,7 +8,7 @@ Version: 0.8.1
 Release: 0
 License: GPL
 Group: Applications/Editors
-URL: http://gramps.sf.net/
+URL: http://gramps.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -7,7 +7,7 @@ Version: 0.6.14
 Release: 1
 License: LGPL, Python style
 Group: Applications/Multimedia
-URL: http://sketch.sf.net/
+URL: http://sketch.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

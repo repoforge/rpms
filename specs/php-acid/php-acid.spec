@@ -9,7 +9,7 @@ Version: 0.9.6b22
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://acidlab.sf.net/
+URL: http://acidlab.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

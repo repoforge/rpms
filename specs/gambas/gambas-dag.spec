@@ -7,7 +7,7 @@ Version: 0.55
 Release: 0
 License: GPL
 Group: Development/Tools
-URL: http://gambas.sf.net/
+URL: http://gambas.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

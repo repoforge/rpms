@@ -7,7 +7,7 @@ Version: 2.0.6
 Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://gtkspell.sf.net/
+URL: http://gtkspell.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

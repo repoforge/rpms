@@ -8,7 +8,7 @@ Version: 1.6.2
 Release: 1
 License: GPL
 Group: User Interface/Desktops
-URL: http://multignometerm.sf.net/
+URL: http://multignometerm.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -10,7 +10,7 @@ Version: 0.3.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
-URL: http://spit.sf.net/
+URL: http://spit.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -10,7 +10,7 @@ Version: 0.5.0
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://pysqlite.sf.net/
+URL: http://pysqlite.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -18,7 +18,7 @@ Version: 1.2.2
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
-URL: http://audacity.sf.net/
+URL: http://audacity.sourceforge.net/
 Source: http://dl.sf.net/audacity/audacity-src-%{version}%{?prever:-%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK >= 2.4.0

@@ -8,7 +8,7 @@ Version: 0.4.12
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://gtm.sf.net/
+URL: http://gtm.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

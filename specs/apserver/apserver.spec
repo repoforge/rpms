@@ -11,7 +11,7 @@ Version: 0.9.8
 Release: 2
 License: GPL
 Group: System Environment/Daemons
-URL: http://apserver.sf.net/
+URL: http://apserver.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

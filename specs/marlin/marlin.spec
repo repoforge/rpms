@@ -8,7 +8,7 @@ Version: 0.1
 Release: 0
 Group: Applications/Multimedia
 License: GPL
-URL: http://marlin.sf.net/
+URL: http://marlin.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -8,7 +8,7 @@ Version: 0.18
 Release: 1
 License: LGPL
 Group: Development/Libraries
-URL: http://gtk-sharp.sf.net/
+URL: http://gtk-sharp.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

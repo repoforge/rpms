@@ -10,7 +10,7 @@ Version: 3.2
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://gspoof.sf.net/
+URL: http://gspoof.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -8,9 +8,9 @@ Summary: The GNOME Structure file library
 Name: libgsf
 Version: 1.6.0
 Release: 0
-URL: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/
 License: LGPL
 Group: System Environment/Libraries
+URL: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

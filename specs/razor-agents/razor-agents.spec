@@ -10,7 +10,7 @@ Version: 2.40
 Release: 1
 License: Artistic
 Group: Applications/Internet
-URL: http://razor.sf.net/
+URL: http://razor.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

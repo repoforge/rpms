@@ -10,11 +10,11 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.39
+Version: 0.40
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://inkscape.sf.net/
+URL: http://inkscape.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -31,7 +31,7 @@ Inkscape is a SVG based generic vector-drawing program.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop.in
+%{__cat} <<EOF >inkscape.desktop.in
 [Desktop Entry]
 Name=Inkscape Vector Drawing Program
 Comment=Vector drawing program.
@@ -59,7 +59,7 @@ EOF
         desktop-file-install --vendor gnome --delete-original \
                 --add-category X-Red-Hat-Base                 \
                 --dir %{buildroot}%{_datadir}/applications    \
-                %{buildroot}%{_datadir}/applications/%{name}.desktop
+                %{buildroot}%{_datadir}/applications/inkscape.desktop
 %endif
 
 %clean
@@ -68,14 +68,17 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* HACKING NEWS README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/ink*
+%{_bindir}/ink*
 #%{_libdir}/inkscape/
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-inkscape.desktop}
 %{_datadir}/inkscape/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Sat Oct 09 2004 Dag Wieers <dag@wieers.com> - 0.40-1
+- Updated to release 0.40.
+
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.39-1
 - Updated to release 0.39.
 

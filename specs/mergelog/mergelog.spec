@@ -8,7 +8,7 @@ Version: 4.5
 Release: 1
 License: GPL
 Group: Applications/File
-URL: http://mergelog.sf.net/
+URL: http://mergelog.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

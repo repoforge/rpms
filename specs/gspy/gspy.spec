@@ -7,7 +7,7 @@ Version: 0.1.7
 Release: 0
 Group: Applications/Multimedia
 License: GPL
-URL: http://gspy.sf.net/
+URL: http://gspy.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

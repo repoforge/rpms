@@ -11,7 +11,7 @@ Version: 2.7.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://nxtvepg.sf.net/
+URL: http://nxtvepg.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

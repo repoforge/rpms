@@ -8,7 +8,7 @@ Version: 1.2.3
 Release: 1
 License: GPL
 Group: Applications/Engineering
-URL: http://galculator.sf.net/
+URL: http://galculator.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -13,7 +13,7 @@ Version: 0.4.3
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://ipsc.sf.net/software.html
+URL: http://ipsc.sourceforge.net/software.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

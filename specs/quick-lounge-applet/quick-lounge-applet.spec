@@ -8,7 +8,7 @@ Version: 2.1.2
 Release: 1
 License: GPL
 Group: User Interface/Desktops
-URL: http://quick-lounge.sf.net/
+URL: http://quick-lounge.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

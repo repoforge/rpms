@@ -8,7 +8,7 @@ Version: 1.2
 Release: 2
 License: BSD
 Group: Applications/Internet
-URL: http://sf.net/projects/mavetju/
+URL: http://sourceforge.net/projects/mavetju/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

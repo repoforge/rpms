@@ -8,7 +8,7 @@ Version: 0.3
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://peeper.sf.net/
+URL: http://peeper.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

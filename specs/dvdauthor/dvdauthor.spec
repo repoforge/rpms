@@ -8,7 +8,7 @@ Version: 0.6.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://dvdauthor.sf.net/
+URL: http://dvdauthor.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -10,7 +10,7 @@ Version: 0.4.7
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://glchess.sf.net/
+URL: http://glchess.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -8,7 +8,7 @@ Version: 2.3.1
 Release: 1
 License: BSD
 Group: Applications/Internet
-URL: http://tcpreplay.sf.net/
+URL: http://tcpreplay.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

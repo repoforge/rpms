@@ -8,7 +8,7 @@ Version: 1.0.6
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://gtkglext.sf.net/
+URL: http://gtkglext.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

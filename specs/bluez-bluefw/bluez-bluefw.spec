@@ -12,7 +12,7 @@ Version: 1.0
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://bluez.sf.net/
+URL: http://bluez.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

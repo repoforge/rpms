@@ -10,7 +10,7 @@ Version: 0.20030713
 Release: 0
 License: BSD
 Group: System Environment/Libraries
-URL: http://libuninameslist.sf.net/
+URL: http://libuninameslist.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

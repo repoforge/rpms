@@ -13,7 +13,7 @@ Version: 0.4
 Release: 0.pre1
 Group: Applications/Multimedia
 License: GPL
-URL: http://gsubedit.sf.net/
+URL: http://gsubedit.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -10,7 +10,7 @@ Version: 0.9.0
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://etherape.sf.net/
+URL: http://etherape.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

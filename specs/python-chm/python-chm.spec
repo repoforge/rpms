@@ -9,7 +9,7 @@ Version: 0.8.0
 Release: 0
 License: GPL
 Group: Development/Libraries
-URL: http://gnochm.sf.net/
+URL: http://gnochm.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

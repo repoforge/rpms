@@ -12,7 +12,7 @@ Version: 1.7.1
 Release: 1
 Group: Amusements/Games
 License: GPL
-URL: http://sdl-sopwith.sf.net/
+URL: http://sdl-sopwith.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -4,16 +4,16 @@
 
 Summary: Music player
 Name: jamboree
-Version: 0.4
+Version: 0.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://www.gnome.org/~jdahlin/jamboree/
+URL: http://www.imendio.com/projects/jamboree/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/sources/jamboree/%{version}/jamboree-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/gnome/sources/jamboree/%{version}/jamboree-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.2.0, libgnomeui-devel >= 2.0.0, libglade2-devel >= 2.0.0
@@ -47,13 +47,16 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FAQ README NEWS
-%config %{_sysconfdir}/gconf/schemas/*.schemas
+%config %{_sysconfdir}/gconf/schemas/jamboree.schemas
 %{_bindir}/jamboree
 %{_datadir}/jamboree/
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*
+%{_datadir}/applications/jamboree.desktop
+%{_datadir}/pixmaps/jamboree.png
 
 %changelog
+* Tue Sep 28 2004 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.4-1
 - Updated to release 0.4.
 

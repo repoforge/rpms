@@ -8,7 +8,7 @@ Version: 0.7.3
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://prismstumbler.sf.net/
+URL: http://prismstumbler.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

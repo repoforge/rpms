@@ -8,7 +8,7 @@ Version: 0.15.0
 Release: 1
 License: LGPL
 Group: Development/Libraries
-URL: http://libbraille.sf.net/
+URL: http://libbraille.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -7,7 +7,7 @@ Version: 0.2.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://swfdec.sf.net/
+URL: http://swfdec.sourceforge.net/
 
 Source: http://dl.sf.net/swfdec/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -9,7 +9,7 @@ Version: 1.4.1
 Release: 5
 License: GPL
 Group: System Environment/Daemons
-URL: http://sarg.sf.net/sarg.php
+URL: http://sarg.sourceforge.net/sarg.php
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

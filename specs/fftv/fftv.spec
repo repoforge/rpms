@@ -9,7 +9,7 @@ Version: 0.7.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://fftv.sf.net/
+URL: http://fftv.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

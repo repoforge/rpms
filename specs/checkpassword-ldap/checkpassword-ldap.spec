@@ -8,7 +8,7 @@ Version: 0.01
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://chkpasswd-ldap.sf.net/
+URL: http://chkpasswd-ldap.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

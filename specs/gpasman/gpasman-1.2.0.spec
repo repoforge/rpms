@@ -10,14 +10,13 @@ Version: 1.2.0
 Release: 0
 License: GPL
 Group: Applications/Productivity
-URL: http://gpasman.sf.net/
+URL: http://gpasman.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://gpasman.sf.net/files/gpasman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Gpasman is a password manager. People working with the internet have to

@@ -12,7 +12,7 @@ Version: 0.91
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://amsn.sf.net/
+URL: http://amsn.sourceforge.net/
 
 Packager: Dries Verachtert <skotty@ulyssis.org>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

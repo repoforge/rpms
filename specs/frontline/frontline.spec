@@ -9,7 +9,7 @@ Version: 0.5.4
 Release: 2
 License: GPL
 Group: Applications/Multimedia
-URL: http://autotrace.sf.net/frontline/
+URL: http://autotrace.sourceforge.net/frontline/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -15,7 +15,7 @@ Version: 1.0
 Release: 1
 License: GPL
 Group: Development/Tools
-URL: http://cvsgui.sf.net/
+URL: http://cvsgui.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

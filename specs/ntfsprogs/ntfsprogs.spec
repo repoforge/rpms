@@ -14,7 +14,7 @@ Version: 1.9.4
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://linux-ntfs.sf.net/
+URL: http://linux-ntfs.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

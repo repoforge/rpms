@@ -11,7 +11,7 @@ Version: 0.8.0
 Release: 1
 License: GPL
 Group: Applications/Editors
-URL: http://hte.sf.net/
+URL: http://hte.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -7,7 +7,7 @@ Version: 0.31.1
 Release: 2
 License: GPL and LGPL
 Group: Applications/Multimedia
-URL: http://autotrace.sf.net/
+URL: http://autotrace.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -7,7 +7,7 @@ Version: 3.2
 Release: 1
 Group: Applications/Multimedia
 License: GPL
-URL: http://dvr.sf.net/
+URL: http://dvr.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

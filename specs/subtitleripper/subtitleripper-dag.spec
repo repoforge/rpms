@@ -10,7 +10,7 @@ Version: 0.3.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://subtitleripper.sf.net/
+URL: http://subtitleripper.sourceforge.net/
 
 Source: http://dl.sf.net/subtitleripper/subtitleripper-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

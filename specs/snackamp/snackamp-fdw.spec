@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Tom Wilkason <tom,wilkason$cox,net>
+
 # Tag: test
 
 %define real_name snackAmp
@@ -14,7 +13,7 @@ Version: 2.2
 Release: 4.fdw
 License: GPL
 Group: Applications/Multimedia
-URL: http://snackamp.sf.net/
+URL: http://snackamp.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

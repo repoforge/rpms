@@ -10,7 +10,7 @@ Version: 4.2.4
 Release: 1
 License: Unknown
 Group: Development/Libraries
-URL: http://pybsddb.sf.net/
+URL: http://pybsddb.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

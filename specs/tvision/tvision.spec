@@ -8,7 +8,7 @@ Version: 0.8
 Release: 1
 License: BSD-like
 Group: Libraries
-URL: http://tvision.sf.net/
+URL: http://tvision.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

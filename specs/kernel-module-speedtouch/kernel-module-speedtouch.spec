@@ -27,7 +27,7 @@ Version: 1.7
 Release: %{real_release}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://linux-usb.sf.net/SpeedTouch/
+URL: http://linux-usb.sourceforge.net/SpeedTouch/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
