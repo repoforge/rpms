@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
 Requires: python
+BuildRequires: python
 
 %description
 Tentakel is a program that executes the same command on many hosts in parallel 
