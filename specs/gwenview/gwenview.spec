@@ -43,7 +43,7 @@ make install \
 %defattr(-,root,root, 0755)
 %doc README AUTHORS COPYING CREDITS NEWS TODO
 %{_bindir}/gwenview
-%{_libdir}/kd3/libgv*
+%{_libdir}/kde3/libgv*
 %{_libdir}/libgwenview*
 %{_datadir}/apps/gv*
 %{_datadir}/applications/kde/gwenview.desktop
