@@ -7,13 +7,15 @@ Version: 1.2.6
 Release: 1
 License: GPL
 Group: Applications/Internet
-Source: http://dl.sf.net/amule/aMule-%{version}.tar.bz2
 URL: http://www.aMule.org/
-BuildRoot: %{_tmppath}/%{name}-root
-Requires: wxGTK, curl, /usr/sbin/alternatives
+
+Source: http://dl.sf.net/amule/aMule-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
 # Required on Yellwo Dog Linux 3.0
-BuildRequires: openssl-devel
+BuildRequires: openssl-devel, bc
+Requires: wxGTK, curl, /usr/sbin/alternatives
 
 %description
 aMule is an easy to use multi-platform client for ED2K Peer-to-Peer Network.
