@@ -5,7 +5,7 @@
 %define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
 
 Name: 		%{gstreamer}-ffmpeg
-Version: 	0.8.2
+Version: 	0.8.3
 Release: 	0
 Summary: 	GStreamer FFmpeg-based streaming media framework plugin
 
@@ -76,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
 
 %changelog
+* Wed Jan  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.3-0
+- Update to 0.8.3.
+
 * Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 0.8.2-0
 - Figure out at last that gcc 3.4's -mtune=pentium4 makes the build fail for
   x86, so replace with -mtune=pentium3 for now.
