@@ -38,6 +38,7 @@ an easy access to the SMB shares of your local network neighborhood.
 . /etc/profile.d/qt.sh
 export DESTDIR=$RPM_BUILD_ROOT
 make install-strip
+%find_lang %{name}
 rm -f ${DESTDIR}/usr/share/applnk/Applications/smb4k.desktop
 mkdir -p ${DESTDIR}/usr/share/applications
 cat > ${DESTDIR}/usr/share/applications/smb4k.desktop <<EOF
@@ -55,15 +56,13 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root, 0755)
 %{_bindir}/smb4k
 /usr/share/applications/smb4k.desktop
 /usr/share/apps/smb4k/smb4kui.rc
 /usr/share/doc/HTML/en/smb4k
 /usr/share/icons/crystalsvg/*/apps/smb4k.png
-/usr/share/locale/*/LC_MESSAGES/smb4k.mo
-
 
 %changelog
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 0.3.1-1

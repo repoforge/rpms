@@ -50,11 +50,12 @@ Thinking Rabbit, Inc.
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %{__make} install DESTDIR=%{buildroot}
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README AUTHORS THANKS TODO VERSION
 %{_bindir}/easysok
@@ -63,7 +64,6 @@ Thinking Rabbit, Inc.
 %{_datadir}/apps/easysok
 %{_datadir}/doc/HTML/en/easysok
 %{_datadir}/icons/*/*/apps/easysok.png
-%{_datadir}/locale/de/LC_MESSAGES/easysok.mo
 %{_datadir}/wallpapers/GreenBallThemeBackground.jpg
 %{_datadir}/wallpapers/KSokobanThemeBackground.jpg
 %{_datadir}/wallpapers/SpaceThemeBackground.png

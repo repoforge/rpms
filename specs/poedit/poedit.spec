@@ -36,6 +36,7 @@ with wxWindows.
 %install
 export DESTDIR=$RPM_BUILD_ROOT
 %{__make} install-strip
+%find_lang %{name}
 mkdir -p $RPM_BUILD_ROOT/usr/share/applications
 cat > $RPM_BUILD_ROOT/usr/share/applications/poedit.desktop <<EOF
 [Desktop Entry]
@@ -50,11 +51,10 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,0755)
 %doc README
 %{_bindir}/poedit
-/usr/share/locale/*/LC_MESSAGES/poedit.mo
 /usr/share/man/man1/poedit.1.gz
 /usr/share/poedit
 /usr/share/applications/poedit.desktop

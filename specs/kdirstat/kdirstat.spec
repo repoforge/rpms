@@ -45,6 +45,7 @@ programma bevat ook een aantal hulpmiddelen om terug vrije ruimte te winnen.
 %install
 . /etc/profile.d/qt.sh
 %makeinstall
+%find_lang %{name}
 mkdir -p %{buildroot}/usr/share/applications
 mv %{buildroot}/usr/share/applnk/Utilities/kdirstat.desktop %{buildroot}/usr/share/applications/kdirstat.desktop
 echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/applications/kdirstat.desktop
@@ -52,7 +53,7 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,0755)
 %doc README COPYING AUTHORS CREDITS COPYING.LIB TODO INSTALL
 %{_bindir}/kdirstat
@@ -60,7 +61,6 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 %{_datadir}/apps/kdirstat
 %{_datadir}/doc/HTML/en/kdirstat
 %{_datadir}/icons/*/*/apps/kdirstat.png
-%{_datadir}/locale/*/LC_MESSAGES/kdirstat.mo
 %{_datadir}/*/*/actions/symlink.png
 
 %changelog
