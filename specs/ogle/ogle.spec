@@ -2,7 +2,7 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-#define cvs -cvs
+%define cvs -cvs
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -18,21 +18,18 @@
 Summary: DVD player that supports DVD menus
 Name: ogle
 Version: 0.9.2
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
 Source0: http://www.dtek.chalmers.se/groups/dvd/dist/ogle-%{version}%{?cvs}.tar.gz
 Source1: bluecurve-xine.png
-Patch: ogle-0.9.2-alsa.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel
 BuildRequires: libdvdread-devel >= 0.9.4, libjpeg-devel, a52dec-devel >= 0.7.3
 BuildRequires: libxml2-devel >= 2.4.19, libmad-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-# Needed for ALSA patch
-BuildRequires: autoconf
 
 %description
 Ogle is a DVD player. It's features are: Supports DVD menus and navigation,
@@ -60,13 +57,11 @@ to build programs that use it (like GUIs).
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
-%patch -p2 -b .alsa
 # Workaround the hardcoded "lib" path for dvdread (vs. lib64)... doesn't work
 #%{__perl} -pi.orig -e 's|dvd_path/lib|dvd_path/%{_lib}|g' configure*
 
 
 %build
-autoconf
 %configure \
     %{?_without_altivec:--disable-altivec}
 %{__make} %{?_smp_mflags}
@@ -137,13 +132,16 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/ogle/
-%dir %{_libdir}/ogle
+%dir %{_libdir}/ogle/
 %{_libdir}/ogle/*.so
 %exclude %{_libdir}/ogle/*.la
 %{_libdir}/ogle/*.a
 
 
 %changelog
+* Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-4
+- Updated to latest available CVS snapshot to fix FC3 build failure.
+
 * Mon Aug  3 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-3
 - Added patch for proper ALSA detection.
 - Cosmetic changes.

@@ -4,12 +4,13 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 2
+Release: 4
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
 Source: http://dl.sf.net/fame/%{name}-%{version}.tar.gz
-Patch: libfame-0.9.1-fstrict-aliasing.patch
+Patch0: libfame-0.9.1-fstrict-aliasing.patch
+Patch1: http://www.linuxfromscratch.org/blfs/downloads/svn/libfame-0.9.1-gcc34-1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -35,7 +36,8 @@ libfame library.
 
 %prep
 %setup
-%patch -p1 -b .fstrict-aliasing
+%patch0 -p1 -b .fstrict-aliasing
+%patch1 -p1 -b .mmxone
 
 
 %build
@@ -102,6 +104,9 @@ autoreconf --force --install --symlink
 
 
 %changelog
+* Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-4
+- Add libfame-0.9.1-gcc34-1.patch to fix "undefined symbol: _mmx_one".
+
 * Mon Oct 25 2004 Matthias Saou <http://freshrpms.net/> 0.9.1-3
 - Add libfame-0.9.1-fstrict-aliasing.patch to actually make the lib work,
   thanks to Nicholas Miell.

@@ -1,6 +1,5 @@
 # $Id: armagetron.spec 173 2004-03-28 04:37:02Z dag $
 # Authority: matthias
-
 # Dist: nodist
 
 %define prefix %{_prefix}/games/armagetron
@@ -11,10 +10,10 @@ Version: 1.0
 Release: 1
 License: Proprietary
 Group: Amusements/Games
+URL: http://armagetron.sourceforge.net/
 Source0: http://armagetron.sourceforge.net/addons/moviepack.zip
 Source1: http://armagetron.sourceforge.net/addons/moviesounds_mq.zip
 Source2: settings.cfg.realistic
-URL: http://armagetron.sourceforge.net/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: armagetron

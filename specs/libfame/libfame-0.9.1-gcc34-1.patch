@@ -1,0 +1,35 @@
+Submitted By:            Randy McMurchy <randy_at_linuxfromscratch_dot_org>
+Date:                    2004-09-04
+Initial Package Version: 0.9.1
+Upstream Status:         Not submitted 
+Origin:                  Randy McMurchy
+Description:             Fixes libfame library when compiled with GCC-3.4.x
+
+$LastChangedBy: randy $
+$Date: 2004-09-05 00:11:51 -0600 (Sun, 05 Sep 2004) $
+
+diff -Naur libfame-0.9.1-orig/src/half_mmx.h libfame-0.9.1/src/half_mmx.h
+--- libfame-0.9.1-orig/src/half_mmx.h	2002-04-30 18:04:02.000000000 +0000
++++ libfame-0.9.1/src/half_mmx.h	2004-09-05 03:49:09.666845896 +0000
+@@ -18,7 +18,7 @@
+ */
+ /**************************** half-pixel interpolation ***********************/
+ 
+-static short const _mmx_one[] = { 1, 1, 1, 1 };
++const _mmx_one[] = { 1, 1, 1, 1 };
+ 
+ static void inline mmx_interpolate(unsigned char **ref,
+ 				   int pitch,
+
+diff -Naur libfame-0.9.1-orig/src/half_sse.h libfame-0.9.1/src/half_sse.h
+--- libfame-0.9.1-orig/src/half_sse.h	2002-01-27 02:24:56.000000000 +0000
++++ libfame-0.9.1/src/half_sse.h	2004-09-05 03:49:39.894250632 +0000
+@@ -19,7 +19,7 @@
+ */
+ /**************************** half-pixel interpolation ***********************/
+ 
+-static short const _mmx_one[] = { 1, 1, 1, 1 };
++const _mmx_one[] = { 1, 1, 1, 1 };
+ static unsigned char const _mmx_one_byte[] = {1,1,1,1,1,1,1,1};
+ 
+ 

@@ -32,11 +32,10 @@ of the filesystem or shared memory.
 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+%{__perl} Makefile.PL \
     PREFIX="%{buildroot}%{_prefix}" \
     INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-    OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 
 %install

@@ -33,9 +33,9 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor freshrpms
-%define ffmpeg_date    20041001
+%define ffmpeg_date    20041101
 %define real_name      vlc
-%define prever         test2
+#define prever         test2
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
@@ -264,6 +264,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-1
+- Update to 0.8.0 final and ffmpeg 20041101 snapshot.
+
 * Fri Oct  1 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-0.test2.1
 - Update to 0.8.0-test2 and ffmpeg 20041001 snapshot.
 

@@ -3,20 +3,21 @@
 
 %define desktop_vendor  freshrpms
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
-%define __find_provides /usr/lib/rpm/find-provides.perl
+#define __find_provides /usr/lib/rpm/find-provides.perl
 
 Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.50.18
-Release: 3
+Version: 0.51.2
+Release: 0
 License: Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
 Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 AutoReq: no
-Requires: transcode >= 0.6.3
-Requires: Gtk-Perl, ImageMagick, ogmtools, subtitleripper, vcdimager, xvidcore
+Requires: transcode >= 0.6.13
+Requires: Gtk-Perl, ImageMagick, ogmtools, subtitleripper, vcdimager
+Requires: perl(Locale::Messages)
 BuildRequires: Gtk-Perl, desktop-file-utils
 
 %description
@@ -49,7 +50,7 @@ DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 # Unpackaged strange files!
 %{__rm} -f %{buildroot}%{_mandir}/man?/.exists* || :
 
-# Unneeded, all is in sitelib
+# Unneeded, all is in sitelib (only a .packlist in there)
 %{__rm} -rf %{buildroot}%{perl_sitearch}
 
 # Desktop entry
@@ -66,11 +67,11 @@ EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  dvdrip.desktop
+    --dir %{buildroot}%{_datadir}/applications \
+    dvdrip.desktop
 
 # Add Red Hat NPTL workaround
-perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_ASSUME_KERNEL} = "2.4.1";\n/g' %{buildroot}%{_bindir}/dvdrip
+#perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_ASSUME_KERNEL} = "2.4.1";\n/g' %{buildroot}%{_bindir}/dvdrip
 
 
 %clean 
@@ -80,12 +81,20 @@ perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_AS
 %files
 %defattr(-, root, root, 0755)
 %{_bindir}/*
-%{perl_sitelib}/Video/*
+%lang(cs) %{perl_sitelib}/LocaleData/cs/LC_MESSAGES/video.dvdrip.mo
+%lang(de) %{perl_sitelib}/LocaleData/de/LC_MESSAGES/video.dvdrip.mo
+%lang(es) %{perl_sitelib}/LocaleData/es/LC_MESSAGES/video.dvdrip.mo
+%lang(fr) %{perl_sitelib}/LocaleData/fr/LC_MESSAGES/video.dvdrip.mo
+%{perl_sitelib}/Video/
 %{_datadir}/applications/*dvdrip.desktop
 %{_mandir}/man*/*
 
 
 %changelog
+* Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 0.51.2-0
+- Update to unstable 0.51.2, as it adds compatibility for transcode 0.6.13.
+- Added translations that are now included and perl(Locale::Messages) dep.
+
 * Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 0.50.18-3
 - Changed LD_ASSUME_KERNEL to 2.4.1 for x86_64.
 

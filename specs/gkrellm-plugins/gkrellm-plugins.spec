@@ -7,7 +7,7 @@
 %define xmmsver		2.1.20
 %define setiver		0.7.0b
 %define dnetver		0.12.1
-%define volumever	2.1.11
+%define volumever	2.1.13
 %define mailwatchver	2.4.2
 %define snmpver		0.21
 %define radiover	2.0.4
@@ -20,17 +20,18 @@
 %define whover		0.5
 %define x86ver		0.0.2
 %define ssver		2.6
-%define shootver	0.4.1
+%define shootver	0.4.2
 %define flynnver	0.8
 %define	ledsver		0.8.1
-%define bgchgver        0.1.1
+%define bgchgver        0.1.2
 %define trayver         1.02
-%define cpufreqver      0.5.1
+%define cpufreqver      0.5.2
 %define alltraxver      0.2
+%define hdplopver       0.9.6
 
 Summary: Some neat plugins for GKrellM
 Name: gkrellm-plugins
-Version: 2.2.0
+Version: 2.2.4
 Release: 1
 License: GPL
 Group: Applications/System
@@ -51,7 +52,7 @@ Source12: http://download.sf.net/gkrellmoon/gkrellmoon-%{moonver}.tar.gz
 #Source13: 
 Source14: http://kmlinux.fjfi.cvut.cz/~makovick/gkrellm/gkrellm-multiping-%{multipingver}.tgz
 #Source15: http://sperion.vuse.vanderbilt.edu/kirk/gkrellmwho2.tgz
-Source16: http://anchois.free.fr/gkx86info%{x86ver}.tar.gz
+Source16: http://anchois.free.fr/gkx86info2-%{x86ver}.tar.gz
 Source17: http://web.wt.net/~billw/gkrellmss/gkrellmss-%{ssver}.tar.gz
 Source18: http://download.sf.net/gkrellshoot/gkrellshoot-%{shootver}.tar.gz
 Source19: http://horus.comlab.uni-rostock.de/flynn/gkrellflynn-%{flynnver}.tar.gz
@@ -59,7 +60,8 @@ Source20: http://heim.ifi.uio.no/~oyvinha/gkleds/gkleds-%{ledsver}.tar.gz
 Source21: http://www.bender-suhl.de/stefan/comp/sources/gkrellmbgchg2-%{bgchgver}.tar.gz
 Source22: http://sweb.cz/tripie/gkrellm/trayicons/dist/gkrellm-trayicons-%{trayver}.tar.gz
 Source23: http://iacs.epfl.ch/~winkelma/gkrellm2-cpufreq/gkrellm2-cpufreq-%{cpufreqver}.tar.gz
-Source24: http://perso.wanadoo.fr/alltrax/alltraxclock2_%{alltraxver}-1.tar.gz
+Source24: http://invalid.url/alltraxclock2_%{alltraxver}-1.tar.gz
+Source25: http://hules.free.fr/wmhdplop/wmhdplop-%{hdplopver}.tar.gz
 Patch0: http://xavier.serpaggi.free.fr/seti/seti-0.7.0b-gkrellm2.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gkrellm-devel >= 2.1.0, gtk2-devel, perl
@@ -89,6 +91,8 @@ Summary: Amusement and miscellaneous plugins for GKrellM
 Group: Applications/System
 Requires: gkrellm >= 2.1.0
 Requires: perl(LWP::UserAgent)
+# wmhdplop
+BuildRequires: imlib-devel
 
 %description misc
 This package contains the following amusements plugins for GKrellM, the GNU
@@ -106,6 +110,10 @@ This package contains the following utility plugins for GKrellM, the GNU
 Krell Monitor : ACPI monitor, mail watch, wireless network monitor, multi
 ping utility, x86 cpu speed, screenshot/lock and reminder.
 
+For the cpufreq plugin, you might want to use visudo and add the following :
+<your user> ALL = (root) NOPASSWD: /usr/sbin/cpufreqset [0-9]*
+<your user> ALL = (root) NOPASSWD: /usr/sbin/cpufreqsetgovernor [a-z]
+
 
 %package snmp
 Summary: SNMP monitoring plugin for GKrellM.
@@ -118,47 +126,49 @@ This is a snmp monitoring plugin for GKrellM, the GNU Krell Monitor.
 
 
 %prep
-%setup -T -a0 -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a14 -a16 -a17 -a18 -a19 -a20 -a21 -a22 -a23 -a24 -c %{name}-%{version}
-# -a15
+%setup -T -a0 -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a14 -a16 -a17 -a18 -a19 -a20 -a21 -a22 -a23 -a24 -a25 -c %{name}-%{version}
+# -a13 -a15
 %patch0 -p0
-perl -pi -e \
-  's|/usr/.+/GrabWeather|%{_bindir}/GrabWeather|' \
-  gkrellweather-%{weatherver}/gkrellweather.c
+# Fix for multiping
+%{__perl} -pi.orig -e \
+    's|/usr/local/lib/gkrellm2/plugins|%{_libdir}/gkrellm2/plugins|g' \
+    gkrellm-multiping-%{multipingver}/multiping.c
 
 
 %build
-mkdir plugins
-# No configure macro here, hence manual exports...
-CFLAGS="%{optflags}"   ; export CFLAGS
-CXXFLAGS="%{optflags}" ; export CXXFLAGS
-( cd gkrellweather-%{weatherver} ; make ; mv *.so ../plugins ; cp GrabWeather .. )
+%{__mkdir} plugins/ bin/ sbin/ man5/
+# Nearly no configure macro here, hence manual exports...
+export CFLAGS="%{optflags}"
+export CXXFLAGS="%{optflags}"
+( cd gkrellweather-%{weatherver} ; make PREFIX=%{_prefix} ; mv *.so ../plugins// ; cp GrabWeather ../bin/ )
 # gkrellmms contains locales, skipping them for now.
-( cd gkrellmms ; make ; mv *.so ../plugins )
-( cd seti-%{setiver} ; make ; mv *.so ../plugins )
-( cd gkrelldnet-%{dnetver} ; make ; mv *.so ../plugins ; cp dnetw .. )
+( cd gkrellmms ; make ; mv *.so ../plugins/ )
+( cd seti-%{setiver} ; make ; mv *.so ../plugins/ )
+( cd gkrelldnet-%{dnetver} ; make ; mv *.so ../plugins/ ; cp dnetw ../bin/ )
 # volume plugin contains locales, skipping them for now.
-( cd gkrellm-volume ; make ; mv *.so ../plugins )
-( cd gkrellm-mailwatch ; make ; mv *.so ../plugins )
-# cd gkrellm_snmp-%{snmpver} ; make ; mv *.so ../plugins )
+( cd gkrellm-volume ; make ; mv *.so ../plugins/ )
+( cd gkrellm-mailwatch ; make ; mv *.so ../plugins/ )
+# cd gkrellm_snmp-%{snmpver} ; make ; mv *.so ../plugins/ )
 # radio has locales as well...
-( cd gkrellm-radio ; make ; mv *.so ../plugins )
-( cd gkrellmwireless ; make ; mv *.so ../plugins )
-( cd gkrellAclock-%{aclockver} ; make ; mv *.so ../plugins )
-( cd gkrellkam-%{kamver} ; make ; mv *.so ../plugins ; mv *.5 .. )
-( cd gkrellm-reminder-%{reminderver} ; make ; mv *.so ../plugins )
-( cd gkrellmoon-%{moonver} ; make ; mv *.so ../plugins )
-( cd gkrellm-multiping-%{multipingver} ; make ; mv *.so ../plugins ; cp pinger .. )
-#( cd gkrellmwho2 ; make ; mv *.so ../plugins )
-( cd gkrellmss-%{ssver} ; make ; mv src/*.so ../plugins )
-( cd gkrellShoot-%{shootver} ; make ; mv *.so ../plugins )
-( cd gkrellflynn-%{flynnver} ; make gkrellm2 ; mv *.so ../plugins )
-( cd gkleds-%{ledsver} ; make ; mv *.so ../plugins )
-( cd gkrellmbgchg2-%{bgchgver} ; make ; mv *.so ../plugins )
-( cd gkrellm-trayicons-%{trayver} ; make ; mv *.so ../plugins )
-( cd gkrellm2-cpufreq-%{cpufreqver} ; make ; mv *.so ../plugins ; cp cpufreqset cpufreqsetgovernor .. )
-( cd alltraxclock2_%{alltraxver} ; make ; mv *.so ../plugins )
+( cd gkrellm-radio ; make ; mv *.so ../plugins/ )
+( cd gkrellmwireless ; make ; mv *.so ../plugins/ )
+( cd gkrellAclock-%{aclockver} ; make ; mv *.so ../plugins/ )
+( cd gkrellkam-%{kamver} ; make ; mv *.so ../plugins/ ; mv *.5 ../man5/ )
+( cd gkrellm-reminder-%{reminderver} ; make ; mv *.so ../plugins/ )
+( cd gkrellmoon-%{moonver} ; make ; mv *.so ../plugins/ )
+( cd gkrellm-multiping-%{multipingver} ; make ; mv *.so ../plugins/ ; cp pinger ../plugins/ )
+#( cd gkrellmwho2 ; make ; mv *.so ../plugins/ )
+( cd gkrellmss-%{ssver} ; make ; mv src/*.so ../plugins/ )
+( cd gkrellShoot-%{shootver} ; make ; mv *.so ../plugins/ )
+( cd gkrellflynn-%{flynnver} ; make gkrellm2 ; mv *.so ../plugins/ )
+( cd gkleds-%{ledsver} ; make ; mv *.so ../plugins/ )
+( cd gkrellmbgchg2-%{bgchgver} ; make ; mv *.so ../plugins/ )
+( cd gkrellm-trayicons-%{trayver} ; make ; mv *.so ../plugins/ )
+( cd gkrellm2-cpufreq-%{cpufreqver} ; make ; mv *.so ../plugins/ ; cp cpufreqset cpufreqsetgovernor ../sbin/ )
+( cd alltraxclock2_%{alltraxver} ; make ; mv *.so ../plugins/ )
+( cd wmhdplop-%{hdplopver} ; ./configure && make ; mv gkhdplop.so ../plugins/ )
 %ifarch %ix86
-( cd gkx86info%{x86ver} ; ./build ; mv *.so ../plugins )
+( cd gkx86info%{x86ver} ; ./build ; mv *.so ../plugins/ )
 %endif
 
 
@@ -167,14 +177,12 @@ CXXFLAGS="%{optflags}" ; export CXXFLAGS
 %{__mkdir_p} %{buildroot}%{gkplugindir}
 %{__mkdir_p} %{buildroot}%{_bindir}
 %{__mkdir_p} %{buildroot}%{_sbindir}
-%{__install} -m 755 plugins/* %{buildroot}%{gkplugindir}
-%{__install} -m 755 dnetw %{buildroot}%{_bindir}
-%{__install} -m 755 GrabWeather %{buildroot}%{_bindir}
-%{__install} -m 755 pinger %{buildroot}%{gkplugindir}
-%{__install} -m 755 cpufreqset cpufreqsetgovernor %{buildroot}%{_sbindir}
+%{__install} -m 0755 plugins/* %{buildroot}%{gkplugindir}/
+%{__install} -m 0755 bin/*     %{buildroot}%{_bindir}/
+%{__install} -m 0755 sbin/*    %{buildroot}%{_sbindir}/
 # Man pages
 %{__mkdir_p} %{buildroot}%{_mandir}/man5
-%{__install} -m 644 `find . -type f -name "*.5"` %{buildroot}%{_mandir}/man5
+%{__install} -m 644 `find . -type f -name "*.5"` %{buildroot}%{_mandir}/man5/
 
 
 %clean
@@ -203,6 +211,7 @@ CXXFLAGS="%{optflags}" ; export CXXFLAGS
 %{gkplugindir}/gkrellmbgchg.so
 %{gkplugindir}/trayicons.so
 %{gkplugindir}/alltraxclock.so
+%{gkplugindir}/gkhdplop.so
 
 %files utils
 %defattr(-, root, root, 0755)
@@ -226,6 +235,13 @@ CXXFLAGS="%{optflags}" ; export CXXFLAGS
 
 
 %changelog
+* Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 2.2.4-1
+- Updated shoot, cpufreq and volume plugins.
+- Updated file name for gk86info2.
+- Known gkrellm2 alltraxclock web page seems gone :-(
+- Added hdplop.
+- Fixed gkrellweather and multiping paths, thanks to Kevin Otte for reporting.
+
 * Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 2.2.0-1
 - Updated plugins and added tray icon and cpufreq plugins.
 

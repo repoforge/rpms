@@ -3,53 +3,55 @@
 # Upstream: Thomas Östreich <ostreich$theorie,physik,uni-goettingen,de>
 # Upstream: Tilmann Bitterberg <transcode$tibit,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc3:%define _without_mjpeg 1}
+
 %{?fc1:%define _without_theora 1}
+
 %{?el3:%define _without_theora 1}
+
 %{?rh9:%define _without_theora 1}
 
 %{?rh8:%define _without_theora 1}
 %{?rh8:%define _without_magick 1}
 
 %{?rh7:%define _without_theora 1}
-%{?rh7:%define _without_gcc3 1}
 
 %{?el2:%define _without_theora 1}
-%{?el2:%define _without_gcc3 1}
 
 %{?rh6:%define _without_theora 1}
-%{?rh6:%define _without_gcc3 1}
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 0.6.12
-Release: 6
+Version: 0.6.13
+Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://zebra.fh-weingarten.de/~transcode/
-
-Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.bz2
-Patch: transcode-0.6.12-gcc296.patch
+URL: http://www.transcoding.org/
+Source: http://www.jakemsr.com/transcode-%{version}.tar.gz
+Patch: http://www.exit1.org/dvdrip/dist/patches/transcode-0.6.13-bitstream.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, glib-devel, gtk+-devel
-BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
-BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel, libdv-devel
-BuildRequires: bzip2-devel, ed
+BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
+BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
+BuildRequires: libdv-devel, bzip2-devel, ed, lzo-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
-%{!?_without_dvdread:BuildRequires: libdvdread-devel}
-%{!?_without_xvidcore:BuildRequires: xvidcore-devel}
-#{!?_without_postproc:BuildRequires: libpostproc}
-%{!?_without_quicktime:BuildRequires: libquicktime-devel}
-%{!?_without_lzo:BuildRequires: lzo-devel >= 1.08}
-%{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
-%{!?_without_libfame:BuildRequires: libfame-devel}
-# All these are only build requirements since they compile in statically
-%{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
-%{!?_without_mpeg3:BuildRequires: libmpeg3}
 %{!?_without_theora:BuildRequires: libtheora-devel}
+%{!?_without_dvdread:BuildRequires: libdvdread-devel}
+%{!?_without_quicktime:BuildRequires: libquicktime-devel}
+%{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
+%{!?_without_mpeg3:BuildRequires: libmpeg3}
+%{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
+%{!?_without_libfame:BuildRequires: libfame-devel}
 %{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3}
+# Non configure options
 %{!?_without_nasm:BuildRequires: nasm}
+%{!?_without_postproc:BuildRequires: libpostproc}
+%{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
+%{!?_without_xvidcore:BuildRequires: xvidcore-devel}
+Conflicts: perl-Video-DVDRip < 0.51.2
 
 %description
 Transcode is a linux text-console utility for video stream processing.
@@ -62,43 +64,46 @@ video frames and loading of external filters.
 Please see the included README file for more.
 
 Available rpmbuild rebuild options :
---with    : avifile
---without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg mpeg3
-            theora magick
+--without : lame theora dvdread quicktime a52 mpeg3 mjpeg libfame magick
+            nasm postproc ffmpeg xvidcore
 
 
 %prep
 %setup
-%{?_without_gcc3:%patch0}
+%patch -p1 -b .bitstream
 
-### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e 's|\@MOD_PATH\@|\$(libdir)/transcode|' \
-    Makefile.in */Makefile.in */*/Makefile.in
+### FIXME: Use standard autotools directories (Fix upstream please)
+#{__perl} -pi.orig -e 's|${prefix}/lib|%{_libdir}|g' configure
 
 
 %build
 %configure \
-    --program-prefix="%{?_program_prefix}" \
-    %{?_without_lame:--without-lame} \
-    %{?_without_dvdread:--without-dvdread} \
-    %{?_without_xvidcore:--without-xvidcore} \
-    %{!?_without_xvidcore:--with-default-xvid=xvid4} \
-    %{!?_without_quicktime:--with-qt} \
-    %{?_without_lzo:--without-lzo} \
-    %{?_without_a52:--without-a52} \
-    %{?_without_libfame:--without-libfame} \
-    %{?_without_mjpeg:--without-mjpeg} \
-    %{?_without_mpeg3:--without-libmpeg3} \
-    %{!?_without_theora:--with-theora} \
-    %{!?_with_avifile:--without-avifile-mods} \
-    %{?_without_magick:--without-magick-mods}
+    --enable-netstream \
+    --enable-v4l \
+    %{?_without_lame:--disable-lame} \
+    --enable-ogg \
+    --enable-vorbis \
+    %{!?_without_theora:--enable-theora} \
+    %{?_without_dvdread:--disable-dvdread} \
+    --enable-libdv \
+    %{!?_without_quicktime:--enable-libquicktime} \
+    --enable-lzo \
+    %{!?_without_a52:--enable-a52} \
+    %{!?_without_mpeg3:--enable-libmpeg3} \
+    --enable-libxml2 \
+    %{!?_without_mjpeg:--enable-mjpegtools} \
+    --enable-sdl \
+    --enable-gtk \
+    %{!?_without_libfame:--enable-libfame} \
+    %{!?_without_magick:--enable-imagemagick} \
+    %{!?_without_ffmpeg:--enable-ffbin}
 %{__make} %{?_smp_mflags}
 
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} _docs
 %makeinstall \
-    docsdir="../rpm-doc/"
+    docsdir="../_docs/"
 
 
 %clean
@@ -107,7 +112,7 @@ Available rpmbuild rebuild options :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO rpm-doc/*
+%doc AUTHORS ChangeLog COPYING README TODO _docs/*
 %{_bindir}/*
 %{_libdir}/transcode/
 %exclude %{_libdir}/transcode/*.la
@@ -115,6 +120,13 @@ Available rpmbuild rebuild options :
 
 
 %changelog
+* Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 0.6.13-0
+- Update to 0.6.13.
+- Reworked the configure options, build reqs and rpmbuild conditionals.
+- Remove gcc 2.96 patch, it doesn't apply anymore.
+- Include bitstream patch to fix dvd::rip usage.
+- Re-add ffmpeg-devel build dep, it builds shared again now.
+
 * Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.6.12-6
 - Added patch for building with gcc < 3. (Edward Rudd, ATbz #183)
 

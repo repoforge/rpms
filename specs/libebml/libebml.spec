@@ -3,7 +3,7 @@
 
 Summary: Extensible Binary Meta Language library
 Name: libebml
-Version: 0.7.1
+Version: 0.7.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -72,6 +72,9 @@ use the Extensible Binary Meta Language.
 
 
 %changelog
+* Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-1
+- Update to 0.7.2.
+
 * Tue Aug  3 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-1
 - Update to 0.7.1.
 

@@ -12,8 +12,8 @@ Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
 Source: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: ogle >= 0.9.1, gtk2, libglade2
-BuildRequires: ogle-devel >= 0.9.1, gtk2-devel, libglade2-devel, gettext
+Requires: ogle >= 0.9.2
+BuildRequires: ogle-devel >= 0.9.2, gtk2-devel, libglade2-devel, gettext
 
 %description
 This is a grapihcal user interface for the ogle DVD player. Install this if
@@ -43,8 +43,8 @@ menu navigation with keyboard shortcuts.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING
-%{_libdir}/ogle
-%{_datadir}/ogle_gui
+%{_libdir}/ogle/
+%{_datadir}/ogle_gui/
 
 
 %changelog
