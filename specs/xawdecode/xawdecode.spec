@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <xawdecode-project@lists.sf.net>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation) (Please fix upstream)
 # Distcc: 0
@@ -9,8 +9,8 @@
 
 Summary: Video4Linux stream capture viewer
 Name: xawdecode
-Version: 1.9.0
-Release: 0
+Version: 1.9.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xawdecode.sf.net/
@@ -20,7 +20,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/xawdecode/xawdecode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel, lirc-devel, xosd-devel
 BuildRequires: xvidcore-devel, divx4linux, lame-devel, ffmpeg-devel
@@ -62,25 +61,25 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
+
 ### FIXME: /etc is not created by make install. (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}
+
 %makeinstall \
 	ROOT="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 xawdecode.1 xawdecode_cmd.1 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 xawdecode-48.png %{buildroot}%{_datadir}/pixmaps/xawdecode.png
+%{__install} -D -m0644 xawdecode.1 %{buildroot}%{_mandir}/man1/xawdecode.1
+%{__install} -D -m0644 xawdecode_cmd.1 %{buildroot}%{_mandir}/man1/xawdecode_cmd.1
+%{__install} -D -m0644 xawdecode-48.png %{buildroot}%{_datadir}/pixmaps/xawdecode.png
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+	%{__install} -D -m0644 xawdecode.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor net                  \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	desktop-file-install --vendor net                  \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		xawdecode.desktop
 %endif
 
 %post
@@ -104,9 +103,9 @@ xset fp rehash || :
 %{_prefix}/X11R6/lib/X11/fonts/misc/*
 %{_datadir}/pixmaps/*.png
 %if %{dfi}
-        %{_datadir}/gnome/apps/Multimedia/*.desktop
+	%{_datadir}/gnome/apps/Multimedia/*.desktop
 %else
-        %{_datadir}/applications/*.desktop
+	%{_datadir}/applications/*.desktop
 %endif
 
 %files devel
@@ -114,6 +113,9 @@ xset fp rehash || :
 %{_includedir}/xawdecode/
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.9.1-1
+- Updated to release 1.9.1.
+
 * Mon Feb 09 2004 Dag Wieers <dag@wieers.com> - 1.9.0-0
 - Updated to release 1.9.0.
 
