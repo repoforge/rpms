@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Screenshot: http://edu.kde.org/kig/kig-snap-sine-curve.png
 # ScreenshotURL: http://edu.kde.org/kig/screenshots.php
@@ -44,11 +43,13 @@ wiskundige concepten.
 %install
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-make install-strip \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR=%{buildroot}
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README COPYING AUTHORS VERSION INSTALL
 %{_bindir}/kig
 %{_libdir}/kde3/libkigpart*
@@ -73,3 +74,4 @@ make install-strip \
 
 * Sat Nov 29 2003 Dries Verachtert <dries@ulyssis.org> 0.6.0-1
 - first packaging for Fedora Core 1, without python support
+

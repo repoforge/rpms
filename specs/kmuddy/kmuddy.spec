@@ -1,6 +1,8 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
+
+# Screenshot: http://www.kmuddy.org/shots/kmuddy1.png
+# ScreenshotURL: http://www.kmuddy.org/screenshots.php
 
 Summary: MUD (multi user dungeon) client
 Name: kmuddy
@@ -19,15 +21,11 @@ Source: http://www.kmuddy.org/files/kmuddy-%{version}.tar.gz
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 %{?fc2:BuildRequires: libselinux-devel}
 
-# Screenshot: http://www.kmuddy.org/shots/kmuddy1.png
-# ScreenshotURL: http://www.kmuddy.org/screenshots.php
-
 %description
 Kmuddy is a MUD client for KDE. A MUD is a multi user dungeon, a 
 text-based online multi-player role-playing game.
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -36,11 +34,15 @@ text-based online multi-player role-playing game.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %{__make} install DESTDIR=%{buildroot}
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS CHANGELOG README.MIDI TODO
 %{_bindir}/kmuddy
 %{_datadir}/applnk/Games/kmuddy.desktop
@@ -48,10 +50,10 @@ text-based online multi-player role-playing game.
 %{_datadir}/icons/hicolor/16x16/actions/aliases.png
 %{_datadir}/icons/*/*/apps/kmuddy.png
 
-
 %changelog
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.6.1-1
 - update to 0.6.1
 
 * Fri Dec 13 2003 Dries Verachtert <dries@ulyssis.org> 0.6-1
 - first packaging for Fedora Core 1
+

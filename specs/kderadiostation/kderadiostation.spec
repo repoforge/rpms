@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Josef Spillner <spillner@kde.org>
 
@@ -17,8 +17,7 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://kderadiostation.coolprojects.org/source/kderadiostation-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: XFree86-devel, zlib-devel
 BuildRequires: arts-devel, qt-devel, kdelibs-devel
@@ -39,8 +38,11 @@ source /etc/profile.d/qt.sh
 %install
 %{__rm} -rf %{buildroot}
 source /etc/profile.d/qt.sh
-%{__make} install-strip DESTDIR=$RPM_BUILD_ROOT
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -72,3 +74,4 @@ source /etc/profile.d/qt.sh
 
 * Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 0.5-1
 - first packaging for Fedora Core 1
+

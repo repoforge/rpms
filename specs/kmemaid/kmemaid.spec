@@ -1,7 +1,9 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
 # Upstream:
+
+# Screenshot: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/thumbs/edit_elements_correct.png
+# ScreenshotURL: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/
 
 Summary: Helps you to memorise question/answer pairs
 Name: kmemaid
@@ -15,13 +17,10 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/memaid/kmemaid-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 %{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs
-
-# Screenshot: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/thumbs/edit_elements_correct.png
-# ScreenshotURL: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/
 
 %description
 MemAid is a program to help you memorise question/answer pairs. It uses a
@@ -33,7 +32,6 @@ gebruikt een neuraal netwerk om het ideale moment te bepalen om een bepaalde
 vraag te stellen.
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -42,17 +40,20 @@ vraag te stellen.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
-%defattr(-,root,root, 0755)
-%doc README AUTHORS COPYING INSTALL TODO
+%defattr(-, root, root, 0755)
+%doc README AUTHORS COPYING TODO
 %{_bindir}/kmemaid
 %{_datadir}/applnk/Applications/kmemaid.desktop
 %{_datadir}/apps/kmemaid/kmemaidui.rc
 %{_datadir}/doc/HTML/en/kmemaid
 %{_datadir}/icons/locolor/*/apps/kmemaid.png
-
 
 %changelog
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 0.4.7.0-3
@@ -64,3 +65,4 @@ vraag te stellen.
 
 * Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 0.4.7.0-1
 - first packaging for Fedora Core 1
+

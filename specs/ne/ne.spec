@@ -76,3 +76,4 @@ This package includes the documentation for package %{name}.
 %changelog
 * Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 1.32-1
 - Initial package. (using DAR)
+

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name pygame
@@ -36,7 +35,7 @@ Mark Baker.
 
 %package doc
 Summary: Pygame documentation and example programs
-Group: Development/Libraries
+Group: Documentation
 
 %description doc
 pygame is a Python wrapper module for the SDL multimedia library, written by

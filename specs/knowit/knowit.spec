@@ -1,6 +1,8 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
+
+# Screenshot: http://knowit.sourceforge.net/images/knowit.png
+# ScreenshotURL: http://knowit.sourceforge.net/screenshots.html
 
 Summary: Tool for managing notes
 Name: knowit
@@ -14,19 +16,15 @@ Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://knowit.sourceforge.net/files/%{name}-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 %{?fc2:BuildRequires:libselinux-devel}
-
-# Screenshot: http://knowit.sourceforge.net/images/knowit.png
-# ScreenshotURL: http://knowit.sourceforge.net/screenshots.html
 
 %description
 KnowIt is a tool for managing notes. Notes are organized in a tree-like
 hierarchy.
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -35,23 +33,28 @@ hierarchy.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-%{__make} install-strip DESTDIR=$RPM_BUILD_ROOT
+%{__make} install DESTDIR=%{buildroot}
+%find_lang %{name}
 
-%files
-%defattr(-,root,root,0755)
+%clean
+%{__rm} -rf %{buildroot}
+
+%files -f %{name}.lang
+%defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/knowit
 %{_datadir}/applnk/Applications/knowit.desktop
-%{_datadir}/apps/knowit/knowitui.rc
-%{_datadir}/apps/knowit/tips
-%{_datadir}/doc/HTML/en/knowit/index.cache.bz2
-%{_datadir}/doc/HTML/en/knowit/index.docbook
-%{_datadir}/doc/HTML/en/knowit/screenshot.png
+%{_datadir}/apps/knowit/
+%{_datadir}/doc/HTML/en/knowit/
 %{_datadir}/icons/hicolor/*/apps/knowit.png
-%{_datadir}/locale/*/LC_MESSAGES/knowit.mo
 
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.10-1
+- Spec file cleanup, use %%find_lang.
+- Fix orphaned directories.
+
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1
 - update to 0.10
 

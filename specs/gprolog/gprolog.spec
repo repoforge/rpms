@@ -22,8 +22,8 @@ fast in execution. Another feature is the included constraint solver.
 
 %package doc
 Summary: Documentation of gprolog.
-Group: Development/Languages
-Requires: gprolog = %{version}-%{release}
+Group: Documentation
+Requires: gprolog = %{version}
 
 %description doc
 This package contains the documentation of gprolog.

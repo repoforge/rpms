@@ -1,6 +1,8 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
+
+# Screenshot: http://konserve.sourceforge.net/konserve-screenshot424.png
+# ScreenshotURL: http://konserve.sourceforge.net/screens.html
 
 Summary: Small backup application
 Name: konserve
@@ -13,14 +15,11 @@ URL: http://konserve.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://dl.sf.net/konserve/konserve-%{version}.tar.bz2
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs
-
-# Screenshot: http://konserve.sourceforge.net/konserve-screenshot424.png
-# ScreenshotURL: http://konserve.sourceforge.net/screens.html
 
 %description
 Konserve is a small backup application for the KDE 3.x environment. It lives
@@ -35,7 +34,6 @@ mouse click.
 A wizard helps you with the first steps in using Konserve.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -44,14 +42,15 @@ A wizard helps you with the first steps in using Konserve.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-#echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-#export DESTDIR=$RPM_BUILD_ROOT
-#make install-strip
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING TODO
 %{_bindir}/konserve
 %{_datadir}/applnk/Applications/konserve.desktop

@@ -1,7 +1,10 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
-Summary: Shows the status of the keyboard indicator LED's in the KDE Panel
+# Screenshot: http://www.hansmatzen.de/pics/kleds_ss01.png
+# ScreenshotURL: http://www.hansmatzen.de/english/kleds.html#screenshots
+
+Summary: Shows the status of the keyboard indicator LEDs in the KDE panel
 Name: kleds
 Version: 0.8.0
 Release: 2
@@ -12,12 +15,9 @@ URL: http://www.hansmatzen.de/english/kleds.html
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://www.hansmatzen.de/software/kleds/kleds-%{version}.tar.bz2
 BuildRequires: gcc, gcc-c++, qt-devel, kdelibs-devel, XFree86-devel, zlib-devel, libart_lgpl-devel, make, arts-devel, gettext, libpng-devel, libjpeg-devel
-
-# Screenshot: http://www.hansmatzen.de/pics/kleds_ss01.png
-# ScreenshotURL: http://www.hansmatzen.de/english/kleds.html#screenshots
 
 %description
 KLeds is a little program for the KDE Desktop Environment. It shows 
@@ -25,7 +25,6 @@ up in the KDE Panel and displays the current state of the keyboard
 indicator LED's (NumLock, ScrollLock and CapsLock).
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -34,19 +33,27 @@ indicator LED's (NumLock, ScrollLock and CapsLock).
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-%{__make} install-strip DESTDIR=${RPM_BUILD_ROOT}
+%{__make} install DESTDIR=%{buildroot}
+%find_lang %{name}
 
-%files
+%clean
+%{__rm} -rf %{buildroot}
+
+%files -f %{name}.lang
 %doc AUTHORS COPYING NEWS README TODO
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %{_bindir}/kleds
 %{_bindir}/kledsd
-%{_datadir}/locale/de/LC_MESSAGES/kleds.mo
 
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.0-2
+- Spec file cleanup, added %%find_lang.
+
 * Thu Dec 11 2003 Dries Verachtert <dries@ulyssis.org> 0.8.0-2
 - added some BuildRequires
 
 * Sun Nov 30 2003 Dries Verachtert <dries@ulyssis.org> 0.8.0-1
 - first packaging for Fedora Core 1
+

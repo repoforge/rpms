@@ -9,10 +9,8 @@ Release: 1
 Group: System Environment/Libraries
 License: GPL
 URL: http://dvd.sourceforge.net/
-
 Source: http://dl.sf.net/dvd/libdvdnav-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: doxygen, m4
 
 %description
@@ -39,7 +37,7 @@ applications which will use libdvdnav.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}"
+    --program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 
@@ -61,10 +59,10 @@ applications which will use libdvdnav.
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/dvdnav-config
-%{_datadir}/aclocal/dvdnav.m4
+%{_includedir}/dvdnav/
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%{_includedir}/dvdnav/
+%{_datadir}/aclocal/dvdnav.m4
 
 
 %changelog

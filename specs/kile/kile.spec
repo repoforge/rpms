@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dries
 
-Summary: user friendly TeX/LaTeX editor
+# Screenshot: http://kile.sourceforge.net/images/screenshots/kile_screen.png
+# ScreenshotURL: http://kile.sourceforge.net/screenshots.php
+
+Summary: User friendly TeX/LaTeX editor
 Name: kile
 Version: 1.6.3
 Release: 1
@@ -18,9 +20,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs
-
-# Screenshot: http://kile.sourceforge.net/images/screenshots/kile_screen.png
-# ScreenshotURL: http://kile.sourceforge.net/screenshots.php
 
 %description
 Kile is a user friendly TeX/LaTeX editor. The main features are:
@@ -47,7 +46,6 @@ de editor en andersom.
 van alle hoofdstukken en dergelijke.
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
 
 %build
@@ -56,16 +54,20 @@ van alle hoofdstukken en dergelijke.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-export DESTDIR=$RPM_BUILD_ROOT
-%{__make} install-strip
-echo "Encoding=UTF-8" >> $DESTDIR/usr/share/applications/kde/kile.desktop
-sed -i "s/KDE Desktop Entry/Desktop Entry/g;" $DESTDIR/usr/share/applications/kde/kile.desktop
-sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;X-Red-Hat-Extra;/g;" $DESTDIR/usr/share/applications/kde/kile.desktop
-mv $DESTDIR/usr/share/applications/kde/kile.desktop $DESTDIR/usr/share/applications/kile.desktop
+%{__make} install DESTDIR=%{buildroot}
+%find_lang %{name}
+echo "Encoding=UTF-8" >> %{buildroot}%{_datadir}/applications/kde/kile.desktop
+sed -i "s/KDE Desktop Entry/Desktop Entry/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
+sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
+%{__mv} %{buildroot}%{_datadir}/applications/kde/kile.desktop %{buildroot}%{_datadir}/applications/kile.desktop
 
-%files
-%defattr(-,root,root,0755)
+%clean
+%{__rm} -rf %{buildroot}
+
+%files -f %{name}.lang
+%defattr(-, root, root, 0755)
 %doc README
 %{_datadir}/doc/HTML/*/kile
 %{_datadir}/apps/kile
@@ -73,12 +75,13 @@ mv $DESTDIR/usr/share/applications/kde/kile.desktop $DESTDIR/usr/share/applicati
 %{_datadir}/apps/katepart/syntax/bibtex-kile.xml
 %{_datadir}/icons/crystalsvg/*/apps/kile.png
 %{_datadir}/applications/kile.desktop
-%{_datadir}/locale/*/LC_MESSAGES/kile.mo
 %{_datadir}/mimelnk/text/x-kilepr.desktop
 %{_bindir}/kile
 
-
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net> 1.6.3-1
+- Partial spec file cleanup, added %%find_lang.
+
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> 1.6.3-1
 - update to 1.6.3
 
