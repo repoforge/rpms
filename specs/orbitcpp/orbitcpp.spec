@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: C++ bindings for the ORBit Corba ORB
 Name: orbitcpp
-Version: 1.3.8
-Release: 0
+Version: 1.3.9
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://orbitcpp.sf.net/
@@ -62,10 +61,6 @@ you will need to install %{name}-devel.
 %makeinstall \
 	ORBIT_BACKEND_DIR="%{buildroot}%{_libdir}/orbit-2.0/idl-backends"
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la \
-		%{buildroot}%{_libdir}/orbit-2.0/idl-backends/*.la
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -77,12 +72,14 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
+%{_includedir}/orbitcpp-2.0/
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/orbit-2.0/idl-backends/*.a
+%exclude %{_libdir}/orbit-2.0/idl-backends/*.la
 %{_libdir}/orbit-2.0/idl-backends/*.so
-%{_includedir}/orbitcpp-2.0/
 
 %changelog
 * Tue Nov 18 2003 Dag Wieers <dag@wieers.com> - 1.3.8-0

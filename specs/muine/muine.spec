@@ -55,15 +55,13 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
-%{_libdir}/muine/*.a
-%{_libdir}/muine/*.la
-%{_libdir}/muine/*.so.*
+%{_libdir}/muine/
 %{_datadir}/pixmaps/*.png
 %{_datadir}/application-registry/*.applications
 %{_datadir}/applications/*.desktop
 
 %changelog
-* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.5.3-1
+* Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.5.3-1
 - Updated to release 0.5.3.
 
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.5.2-1

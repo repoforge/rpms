@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Florian <florian.boor@unix-ag.org>
-# Distcc: 0
 
 %define real_version 0.7.1a
 
@@ -19,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/prismstumbler/prismstumbler-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk2-devel, sqlite-devel
 
@@ -60,6 +57,7 @@ EOF
 cd src/gpsd/
 %configure
 cd -
+
 %{__make} %{?_smp_mflags}
 
 %install

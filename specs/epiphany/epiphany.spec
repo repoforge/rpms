@@ -2,11 +2,11 @@
 # Authority: dag
 # Upstream: Marco Pesenti Gritti <mpeseng@tin.it>
 
-%define mversion 38:1.6
+%define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 
 Summary: Web browser based on the mozilla rendering engine
 Name: epiphany
-Version: 1.2.0
+Version: 1.2.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -90,6 +90,9 @@ scrollkeeper-update -q || :
 %{_includedir}/epiphany-1.0/
 
 %changelog
+* Thu May 20 2004 Dag Wieers <dag@wieers.com> - 1.2.5-1
+- Updated to release 1.2.5.
+
 * Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

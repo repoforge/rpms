@@ -2,11 +2,9 @@
 # Authority: dag
 # Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
 
-# Distcc: 0
-
 Summary: Library for writing gnome database programs
 Name: libgnomedb
-Version: 1.1.1
+Version: 1.1.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries

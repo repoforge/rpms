@@ -12,10 +12,12 @@ Epoch: 1
 License: GPL
 Group: Applications/Internet
 URL: http://gaim.sourceforge.net/
-Source: http://dl.sf.net/gaim/%{name}-%{version}.tar.bz2
+
+Source: http://dl.sf.net/gaim/gaim-%{version}.tar.bz2
 Patch0: gaim-0.75-desktop.patch
 Patch1: gaim-prefs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
+
 Requires: gtk2, gtkspell, libao
 Requires: mozilla-nss, mozilla-nspr
 Requires: startup-notification, audiofile

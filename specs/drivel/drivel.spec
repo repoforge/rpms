@@ -27,12 +27,18 @@ in mind, and presents an elegant user interface.
 %setup
 
 %build
-%configure
+%configure \
+        --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
+
+%post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,8 +48,9 @@ in mind, and presents an elegant user interface.
 %doc ChangeLog COPYING README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
-%{_datadir}/pixmaps/*
-%{_datadir}/applications/*
+%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/drivel/
 
 %changelog
 * Thu Mar 25 2004 Dag Wieers <dag@wieers.com> - 0.9.4-1

@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Markus Braun <markus.braun@krawel.de>
 
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
-Version: 0.6.1
-Release: 0
+Version: 0.6.2
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/
@@ -14,10 +13,9 @@ URL: http://www.nongnu.org/tpb/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/tpb/%{name}-%{version}.tar.gz
+Source: http://savannah.nongnu.org/download/tpb/tpb-%{version}.tar.gz
 #Source1: tpbrc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gettext, XFree86-devel, xosd-devel >= 2.0
 
@@ -42,12 +40,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d \
-			%{buildroot}/dev
-#%{__install} -m0755 %{SOURCE1} %{buildroot}%{_sysconfdir}
-%{__install} -m0755 doc/tpbrc %{buildroot}%{_sysconfdir}
-%{__install} -m0755 tpb.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/tpb
+#%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/tpbrc
+%{__install} -D -m0755 doc/tpbrc %{buildroot}%{_sysconfdir}/tpbrc
+%{__install} -D -m0755 tpb.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/tpb
 
+%{__install} -d -m0755 %{buildroot}/dev
 touch %{buildroot}/dev/nvram
 
 %post
@@ -75,6 +72,9 @@ fi
 %ghost /dev/nvram
 
 %changelog
+* Wed May 19 2004 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Tue Jan 20 2004 Dag Wieers <dag@wieers.com> - 0.6.1-0
 - Updated to release 0.6.1.
 

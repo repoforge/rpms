@@ -1,16 +1,7 @@
 # $Id$
 # Authority: dag
 
-%{?dist: %{expand: %%define %dist 1}}
-
-%{?fc1:%define pyver 2.3}
-%{?fc1:%define pyver 2.2}
-%{?el3:%define pyver 2.2}
-%{?rh9:%define pyver 2.2}
-%{?rh8:%define pyver 2.2}
-%{?rh7:%define pyver 1.5}
-%{?el2:%define pyver 1.5}
-%{?rh6:%define pyver 1.5}
+%define pyver %(python2 -c 'import sys; print sys.version[:3]')
 
 Summary: Python's own image processing library
 Name: python-imaging
@@ -51,26 +42,18 @@ cd libImaging
 	OPT="%{optflags}"
 cd -
 
-%{__make} -f Makefile.pre.in boot
-%{__make} \
-	OPT="%{optflags}"
+python2 setup.py build_ext -i
+#%{__make} -f Makefile.pre.in boot
+#%{__make} \
+#	OPT="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir}/python%{pyver}/site-packages/ \
-		        %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/ \
-		        %{buildroot}%{_includedir}/python%{pyver}/
-%{__install} -m0644 PIL.pth %{buildroot}%{_libdir}/python%{pyver}/site-packages/
-%{__install} -m0555 _imaging.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/
-%{__install} -m0555 _imagingtk.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/
-%{__cp} -a  PIL/* %{buildroot}%{_libdir}/python%{pyver}/site-packages/
-%{__cp} -a  libImaging/*.h %{buildroot}%{_includedir}/python%{pyver}/
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%{__install} -D -m0644 PIL.pth %{buildroot}%{_libdir}/python%{pyver}/site-packages/PIL.pth
+%{__install} -D -m0755 _imaging.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/_imaging.so
+%{__install} -D -m0755 _imagingtk.so %{buildroot}%{_libdir}/python%{pyver}/lib-dynload/_imagingtk.so
+%{__cp} -av  PIL/* %{buildroot}%{_libdir}/python%{pyver}/site-packages/
+%{__cp} -av  libImaging/*.h %{buildroot}%{_includedir}/python%{pyver}/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -7,8 +7,8 @@
 
 Summary: GStreamer Streaming media framework player
 Name: gstreamer-player
-Version: 0.6.0
-Release: 0
+Version: 0.8.0
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/apps/gst-player/
@@ -16,14 +16,14 @@ URL: http://gstreamer.net/apps/gst-player/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gstreamer/%{real_name}-%{version}.tar.bz2
+Source: http://gstreamer.freedesktop.org/src/gst-player/gst-player-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: gtk2-devel >= 2.2, glib2-devel, libgnomeui-devel, libglade2-devel
-BuildRequires: gstreamer-devel >= 0.6.0, gstreamer-plugins-devel >= 0.6.0
+BuildRequires: gstreamer-devel >= 0.8.0, gstreamer-plugins-devel >= 0.8.0
 #BuildRequires: gstreamer-play, gstreamer-GConf
 BuildRequires: gettext, eel2-devel, gail-devel, zlib-devel
+%{?fc2:BuildRequires: nautilus-devel}
 %{?fc1:BuildRequires: nautilus-devel}
 %{?el3:BuildRequires: nautilus-devel}
 %{?rh9:BuildRequires: nautilus-devel}
@@ -83,14 +83,6 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{real_name}
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}{,/gst}/*.la \
-		%{buildroot}%{_libdir}/mozilla/plugins/*.{a,la} \
-		%{buildroot}%{_libdir}/mozilla/plugins/*.so{,.0}
-
-### Clean up mozilla plugin
-%{__mv} -f %{buildroot}%{_libdir}/mozilla/plugins/libmozstreamer.so* %{buildroot}%{_libdir}/mozilla/plugins/libmozstreamer.so
-
 %post
 /sbin/ldconfig 2>/dev/null
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -106,7 +98,7 @@ scrollkeeper-update -q
 
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
@@ -119,13 +111,14 @@ scrollkeeper-update -q
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/*.so
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
 %{_includedir}/gst-player-%{version}/
 
-%files -n mozilla-gstreamer
-%defattr(-, root, root, 0755)
-%{_libdir}/mozilla/plugins/*.so
+#%files -n mozilla-gstreamer
+#%defattr(-, root, root, 0755)
+#%{_libdir}/mozilla/plugins/*.so
 
 %files -n nautilus-gstreamer
 %defattr(-, root, root, 0755)
@@ -134,6 +127,9 @@ scrollkeeper-update -q
 %{_datadir}/gnome-2.0/ui/gst-player-view-ui.xml
 
 %changelog
+* Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Sun Sep 14 2003 Dag Wieers <dag@wieers.com> - 0.6.0-0
 - Updated to release 0.6.0.
 

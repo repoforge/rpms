@@ -4,8 +4,8 @@
 
 Summary: Anti-virus utility for Unix
 Name: clamav
-Version: 0.70
-Release: 2
+Version: 0.71
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -290,6 +290,9 @@ fi
 %exclude %{_libdir}/*.la
 
 %changelog
+* Thu May 20 2004 Dag Wieers <dag@wieers.com> - 0.71-1
+- Updated to release 0.71.
+
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.70-2
 - Fixed the installation check for conf files. (Richard Soderberg)
 - Changed the init-order of the sysv scripts. (Will McCutcheon)

@@ -2,9 +2,6 @@
 # Authority: dag
 # Upstream: Juri Pakaste <juri@iki.fi>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
-
 Summary: desktop news aggregator for GNOME
 Name: straw
 Version: 0.23
@@ -19,12 +16,12 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://savannah.nongnu.org/download/straw/straw-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.4
+BuildRequires: python >= 2.2, gtk2 >= 2.4, libglade2 >= 2.3
 BuildRequires: python-adns, python-bsddb3, libxml2-python >= 1.99.13
 BuildRequires: pyorbit, pygtk2 >= 1.99.13, pygtk2-libglade
 BuildRequires: gnome-python2-gtkhtml2, gnome-python2-gconf, gnome-python2-gnomevfs
 
-Requires: python >= 2.2, gtk2 >= 2.0, libglade2 >= 2.0
+Requires: python >= 2.2, gtk2 >= 2.4, libglade2 >= 2.0
 Requires: libxml2-python >= 1.99.13, python-adns, python-bsddb3, mx
 Requires: gnome-python2-gconf, gnome-python2-gnomevfs, pyorbit, pygtk2 >= 1.99.13
 
