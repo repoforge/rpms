@@ -1,12 +1,13 @@
 # $Id$
 # Authority: dag
+# Upstream: Marc Lehmann <pether@plan9.de>
 
 ### FIXME: TODO: Add sysv script based on own template.
 
 Summary: Create a virtual ethernet using host-to-host tunnels
 Name: vpe
-Version: 1.5
-Release: 0
+Version: 1.6
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://savannah.nongnu.org/projects/vpe/
@@ -17,6 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://vpe-dist.plan9.de/vpe-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: openssl-devel
 
 %description
 VPE creates a virtual ethernet (broadcasts supported, any protocol that works
@@ -76,7 +78,11 @@ you will need to install %{name}-devel.
 %doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_sbindir}/*
+#%exclude %{_infodir}/dir
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 1.6-1
+- Updated to release 1.6.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.5-0
 - Initial package. (using DAR)
