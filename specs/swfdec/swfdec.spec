@@ -1,6 +1,13 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist: %define gimp_plugin 1}
+%{?fc3:   %define gimp_plugin 1}
+%{?fc2:   %define gimp_plugin 1}
+%{?yd4:   %define gimp_plugin 1}
+
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.1
@@ -12,7 +19,8 @@ Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: mozilla-devel, libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
-BuildRequires: gimp-devel >= 2.0, liboil-devel
+BuildRequires: liboil-devel
+%{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
@@ -77,7 +85,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %exclude %{_sysconfdir}/gtk-2.0/gdk-pixbuf.loaders
 %{_bindir}/swf_play
 %{_libdir}/libswfdec*.so.*
-%{_libdir}/gimp/1.3/plug-ins/swf
+%{?gimp_plugin:%{_libdir}/gimp/1.3/plug-ins/swf}
 %{_libdir}/gtk-2.0/*/loaders/swf_loader.so
 
 %files devel
@@ -98,6 +106,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Tue Nov  9 2004 Matthias Saou <http://freshrpms.net/> 0.3.1-1
+- Make gimp plugin conditional and build only for FC2, FC3 and YD4 (gimp2).
+
 * Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Updated to release 0.3.1.
 
