@@ -1,0 +1,14 @@
+--- src/mon-gnome.c.orig 2004-03-21 19:00:25.000000000 +1100
++++ src/mon-gnome.c 2005-04-10 02:42:30.913615304 +1001
+@@ -586,9 +586,11 @@ static GtkWidget * dcc_gnome_make_mainwi
+   g_signal_connect (GTK_OBJECT(mainwin), "destroy",
+                     G_CALLBACK (gtk_main_quit), NULL);
+
++#if GTK_CHECK_VERSION(2,2,0)
+   gtk_window_set_icon_from_file (GTK_WINDOW (mainwin),
+                                  PKGDATADIR "/distccmon-gnome-icon.png",
+                                  NULL);
++#endif
+
+   return mainwin;
+ }
