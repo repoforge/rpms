@@ -1,6 +1,8 @@
 # $Id: armagetron.spec 173 2004-03-28 04:37:02Z dag $
 # Authority: matthias
 
+# Dist: nodist
+
 %define prefix %{_prefix}/games/armagetron
 
 Summary: Sounds and graphics to give armagetron the real 'Tron' look

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# Dist: nodist
+
 Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
 Version: 1.1

@@ -1,7 +1,9 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
+
+### DB files are different depending on version of db3/db4
+##Dist: nodist
 
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
@@ -22,6 +24,7 @@ Source2: http://www.ingrid.org/~harada/filtering/dmozlists/dmozlists-ages-adult-
 Source3: http://www.bn-paf.de/filter/de-blacklists.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: squidguard = 1.2.0
 Requires: squidguard = 1.2.0
 
