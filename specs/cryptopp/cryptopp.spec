@@ -1,15 +1,17 @@
 # $Id$
 # Authority: matthias
 
+%define real_version 521
+
 Summary: Free C++ class library of cryptographic schemes
 Name: cryptopp
-Version: 5.1
+Version: 5.2.1
 Release: 1
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://www.cryptopp.com/
-Source: http://www.eskimo.com/~weidai/crypto51.zip
-Patch: crypto-5.1.patch.bz2
+Source: http://www.eskimo.com/~weidai/cryptopp%{real_version}.zip
+Patch: crypto-5.2.patch.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildrequires: unzip, gcc-c++
 
@@ -58,6 +60,7 @@ This package contains programs for manipulating Crypto++ routines.
 
 %build
 %configure
+# For 5.1 at least :
 # Don't optimize with -O2, it BREAKS the lib: running 'cryptest v' fails
 %{__make} %{?_smp_mflags} CXXFLAGS="-DNDEBUG"
 
@@ -97,6 +100,9 @@ This package contains programs for manipulating Crypto++ routines.
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 5.2.1-1
+- Update to 5.2.1, with newer patch from Mandrake Cooker.
+
 * Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 5.1-1
 - Fedora Core package based on the Mandrake one.
 
