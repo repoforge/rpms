@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name File-NCopy
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Copy files
 Name: perl-File-NCopy
@@ -42,10 +46,9 @@ Easy functions for copying files.
 %defattr(-, root, root, 0755)
 %doc Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/File/NCopy.pm
-# %{_libdir}/perl5/vendor_perl/*/File/NCopy/*
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{perl_vendorlib}/File/NCopy.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.34-1
