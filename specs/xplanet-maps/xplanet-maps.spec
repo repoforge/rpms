@@ -3,7 +3,7 @@
 Summary: Additional maps for Xplanet, the planet image rendering program
 Name: xplanet-maps
 Version: 1.0
-Release: 1.fr
+Release: 2.fr
 License: Distributable
 Group: Amusements/Graphics
 URL: http://flatplanet.sourceforge.net/maps/
@@ -28,6 +28,8 @@ Additional maps (surfaces) to use with Xplanet.
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_datadir}/
+# Already included with xplanet
+rm -f usr/local/share/xplanet/images/earth.jpg
 cp -a usr/local/share/xplanet %{buildroot}%{_datadir}/
 
 
@@ -41,6 +43,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Mar 16 2004 Matthias Saou <http://freshrpms.net> 1.0-2.fr
+- Remove conflicting earth.jpg file.
+
 * Thu Mar  4 2004 Matthias Saou <http://freshrpms.net> 1.0-1.fr
 - Initial spec file.
 
