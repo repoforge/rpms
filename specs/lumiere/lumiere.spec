@@ -48,6 +48,7 @@ scrollkeeper-update -q
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %{_bindir}/*
 %{_datadir}/dvr/
 %{_libdir}/lib/*
