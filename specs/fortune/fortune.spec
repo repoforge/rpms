@@ -47,7 +47,7 @@ Source14: http://www.schwarzvogel.de/pkgs/kernelcookies.tar.gz
 # http://dune.s31.pl/
 Source15: http://dune.s31.pl/fortune-mod-dune-quotes.2.0.1.tar.gz
 # quotes of 'Comic Book Guy'
-Source16: http://www.pinkemostar.com/files/cbg-quotes.tar.gz
+Source16: http://pinkemostar.com:8008/files/cbg-quotes.tar.gz
 # Simpsons Ralph Wiggum Quotes is a 'fortune' quote file with quotes from
 # the one, the only, Ralph Wiggum. This was inspired by the Quotable Homer
 # fortune file. 
