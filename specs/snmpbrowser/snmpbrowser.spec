@@ -4,6 +4,26 @@
 # Upstream: 
 # Screenshot: http://snmpbrowser.sourceforge.net/screenshot.png
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
 Summary: SNMP browser
 Name: snmpbrowser
 Version: 0.4
@@ -19,10 +39,12 @@ Source: http://dl.sf.net/snmpbrowser/snmpbrowser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++
-BuildRequires: gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: gettext, zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, fam-devel
 BuildRequires: net-snmp-devel, openssl-devel
-%{?fc2:BuildRequires: libselinux-devel}
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Snmpbrowser displays data from SNMP devices.
@@ -31,11 +53,13 @@ Snmpbrowser displays data from SNMP devices.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure LDFLAGS=-lssl
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 
 %post

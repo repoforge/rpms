@@ -5,6 +5,26 @@
 # Screenshot: http://kxstitch.sourceforge.net/image/mainview.png
 # ScreenshotURL: http://kxstitch.sourceforge.net/screenshots.shtml
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
 Summary: Cross stitch patterns editor
 Name: kxstitch
 Version: 0.5
@@ -20,10 +40,14 @@ Source: http://dl.sf.net/kxstitch/kxstitch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel 
-BuildRequires: gcc-c++, gettext, XFree86-devel, zlib-devel
+BuildRequires: gcc-c++, gettext, zlib-devel
 BuildRequires: qt-devel, libjpeg-devel, kdelibs-devel
 BuildRequires: ImageMagick-c++-devel
-%{?fc2:BuildRequires:libselinux-devel, libexif-devel, libexif}
+BuildRequires: libexif-devel, libexif
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+BuildRequires: libexif-devel, libexif
 
 %description
 KXStitch allows the creation and editing of cross stitch patterns. 
@@ -32,11 +56,13 @@ KXStitch allows the creation and editing of cross stitch patterns.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 

@@ -3,6 +3,17 @@
 # Authority: dries
 # Screenshot: http://kasablanca.berlios.de/images/screenshots/sshot031.png
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: Ftp/fxp client
 Name: kasablanca
 Version: 0.4.0.1
@@ -22,8 +33,8 @@ BuildRequires: arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc-c++
 BuildRequires: qt-devel, openssl-devel
 BuildRequires: automake, autoconf
-%{?fc2:BuildRequires: xorg-x11-devel}
-%{?fc1:BuildRequires: XFree86-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Kasablanca is an ftp client, written in c++, using the kde libraries. among
@@ -34,11 +45,13 @@ bookmarks, and queued transfers.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 

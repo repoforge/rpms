@@ -3,6 +3,26 @@
 # Authority: dries
 # Upstream: 
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
 Summary: Gui for lvemkdvd
 Name: klvemkdvd
 Version: 0.4
@@ -18,9 +38,11 @@ Source: http://dl.sf.net/lvempeg/klvemkdvd-%{version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
-BuildRequires: XFree86-devel, zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel
-%{?fc2:BuildRequires:libselinux-devel}
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: lve, dvd+rw-tools, dvdauthor
 
 %description
@@ -41,12 +63,14 @@ lve package.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{?fc1:for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.2"/version="3.1"/g;' $i; done}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 
 %clean

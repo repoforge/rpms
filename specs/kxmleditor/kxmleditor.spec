@@ -5,6 +5,26 @@
 # Screenshot: http://kxmleditor.sourceforge.net/screenshot.png
 # ScreenshotURL: http://kxmleditor.sourceforge.net/screenshots.htm
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
 Summary: XML Editor
 Name: kxmleditor
 Version: 1.0.0
@@ -22,7 +42,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel
 BuildRequires: gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel, fam-devel
-%{?fc2:BuildRequires: libselinux-devel}
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 KXML Editor is program, that display and edit contents of XML file. Main
@@ -37,12 +59,14 @@ features:
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 sed -i "s/<UI version=\"3.2\" /<UI version=\"3.3\"/g;" $(find . | egrep "\.ui$")
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 
 %post

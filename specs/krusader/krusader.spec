@@ -5,6 +5,26 @@
 # Screenshot: http://krusader.sourceforge.net/img/scr01.png
 # ScreenshotURL: http://krusader.sourceforge.net/scr.php
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
 Summary: File manager
 Name: krusader
 Version: 1.50
@@ -20,9 +40,11 @@ Source: http://dl.sf.net/krusader/krusader-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
-BuildRequires: XFree86-devel, zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel
-%{?fc2:BuildRequires: libselinux-devel}
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Krusader is an advanced twin-panel (commander-style) file-manager for KDE
@@ -41,12 +63,14 @@ great on your desktop! :-)
 
 %build
 export KDEDIR=/usr
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 export KDEDIR=/usr
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %{__rm} -f %{buildroot}%{_datadir}/mimelnk/application/x-ace.desktop
 %find_lang %{name}

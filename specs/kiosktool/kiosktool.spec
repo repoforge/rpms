@@ -5,6 +5,27 @@
 # Screenshot: http://extragear.kde.org/apps/kiosktool/kiosktool3.png
 # ScreenshotURL: http://extragear.kde.org/apps/kiosktool.php
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+%{?fc1:%define _without_selinux 1}
+%{?el3:%define _without_selinux 1}
+%{?rh9:%define _without_selinux 1}
+%{?rh8:%define _without_selinux 1}
+%{?rh7:%define _without_selinux 1}
+%{?el2:%define _without_selinux 1}
+%{?rh6:%define _without_selinux 1}
+%{?yd3:%define _without_selinux 1}
+
+
 Summary: KIOSK administration admin tool
 Name: kiosktool
 Version: 0.7
@@ -23,9 +44,10 @@ BuildRequires: gettext, libart_lgpl-devel
 BuildRequires: libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make
-BuildRequires: gcc-c++, XFree86-devel
-BuildRequires: qt-devel
-%{?fc2:BuildRequires: libselinux-devel}
+BuildRequires: gcc-c++, qt-devel
+%{!?_without_selinux:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 A Point and Click tool for system administrators to enable KDE's KIOSK features
@@ -35,11 +57,13 @@ or otherwise preconfigure KDE for groups of users.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 

@@ -25,17 +25,6 @@
 %{?rh6:%define _without_selinux 1}
 %{?yd3:%define _without_selinux 1}
 
-%{?fc2:%define _without_qt_config 1}
-%{?fc1:%define _without_qt_config 1}
-%{?el3:%define _without_qt_config 1}
-%{?rh9:%define _without_qt_config 1}
-%{?rh8:%define _without_qt_config 1}
-%{?rh7:%define _without_qt_config 1}
-%{?el2:%define _without_qt_config 1}
-%{?rh6:%define _without_qt_config 1}
-%{?yd3:%define _without_qt_config 1}
-
-
 Summary: Kicker-applet which reminds you of birthdays
 Name: kbirthday
 Version: 0.7.3
@@ -57,7 +46,6 @@ BuildRequires: kdelibs-devel, desktop-file-utils
 %{!?_without_selinux:BuildRequires: libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
-%{!?_without_qt_config:BuildRequires: qt-config}
 
 %description
 Kbirthday is a kicker-applet that reminds you of birthdays and anniversaries
@@ -69,11 +57,13 @@ your friends addresses, birthdays and anniversaries.
 %setup
 
 %build
+source %{_sysconfdir}/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 
