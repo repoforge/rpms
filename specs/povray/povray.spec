@@ -73,6 +73,7 @@ you will need to install %{name}-devel.
 %{_datadir}/applications/*.desktop
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so

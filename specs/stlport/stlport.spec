@@ -3,9 +3,11 @@
 # Authority: dries
 # Upstream: 
 
+%define real_version 5.0-0125
+
 Summary: C++ STL library compatible with the latest ANSI/ISO C++ specification
 Name: stlport
-Version: 4.6.2 
+Version: 5.0.0125
 Release: 1
 License: Freeware
 Group: System Environment/Libraries
@@ -14,7 +16,7 @@ URL: http://www.stlport.org
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://www.stlport.org/archive/STLport-%{version}.tar.gz
+Source: http://www.stlport.org/beta/STLport-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -38,7 +40,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n STLport-%{version}
+%setup -n STLport-%{real_version}
 
 %build
 #%{__make} %{?_smp_mflags} -C src -f gcc-linux.mak
@@ -65,6 +67,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
