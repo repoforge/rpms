@@ -15,6 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Source: http://www.air.rzeszow.pl/smbc/smbc/%{version}/smbc-%{version}.tgz
+BuildRequires: gettext, ncurses-devel
 
 %description
 Smbc is a program for browsing a local SMB (Samba) network. With smbc, you
