@@ -5,7 +5,7 @@
 
 Summary: TV viewer for GNOME
 Name: zapping
-Version: 0.9.1
+Version: 0.9.2
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -15,7 +15,7 @@ Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
 BuildRequires: zvbi-devel, arts-devel, lirc-devel
-BuildRequires: python-devel, desktop-file-utils
+BuildRequires: python-devel, desktop-file-utils, gcc-c++
 %ifarch %{ix86}
 %{!?_without_rte:BuildRequires: rte-devel >= 0.5}
 %endif
@@ -51,10 +51,12 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 
 
 %post
-scrollkeeper-update
+scrollkeeper-update -q || :
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
 %postun
-scrollkeeper-update
+scrollkeeper-update -q || :
 
 
 %clean
@@ -64,6 +66,7 @@ scrollkeeper-update
 %files -f %{name}.lang
 %defattr (-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README* THANKS TODO
+%config %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %config %{_sysconfdir}/pam.d/zapping_setup_fb
 %config %{_sysconfdir}/security/console.apps/zapping_setup_fb
 %{_bindir}/*
@@ -74,10 +77,15 @@ scrollkeeper-update
 %{_datadir}/omf/%{name}/
 %{_datadir}/pixmaps/%{name}/
 %{_datadir}/%{name}/
-#{_mandir}/man1/*
+%{_mandir}/man1/*
 
 
 %changelog
+* Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 0.9.2-1
+- Update to 0.9.2.
+- Man pages are back.
+- Added new GConf entry and import in %%post.
+
 * Sun Feb 20 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-1
 - Update to 0.9.1.
 - Man pages are no longer installed automatically.
