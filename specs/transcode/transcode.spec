@@ -11,8 +11,13 @@
 %{?rh8:%define _without_magick 1}
 
 %{?rh7:%define _without_theora 1}
+%{?rh7:%define _without_gcc3 1}
+
 %{?el2:%define _without_theora 1}
+%{?el2:%define _without_gcc3 1}
+
 %{?rh6:%define _without_theora 1}
+%{?rh6:%define _without_gcc3 1}
 
 Summary: Linux video stream processing utility
 Name: transcode
@@ -21,7 +26,9 @@ Release: 6
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
+
 Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.bz2
+Patch: transcode-0.6.12-gcc296.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, glib-devel, gtk+-devel
 BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
@@ -62,6 +69,7 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup
+%{?_without_gcc3:%patch0}
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e 's|\@MOD_PATH\@|\$(libdir)/transcode|' \
@@ -107,6 +115,9 @@ Available rpmbuild rebuild options :
 
 
 %changelog
+* Fri Jul 30 2004 Dag Wieers <dag@wieers.com> - 0.6.12-6
+- Added patch for building with gcc < 3. (Edward Rudd, ATbz #183)
+
 * Fri Jul 23 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-6
 - Added ed build requirement for x86_64 build to succeed...
 - Fix missing \ to configure lines.
