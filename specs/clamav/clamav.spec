@@ -199,7 +199,7 @@ CONFIG="/etc/sysconfig/clock"
 
 if [ -r "$CONFIG" -a -r "$ZONES" ]; then
 	source $CONFIG
-	CODE="$(grep "$ZONE" "$ZONES" | cut -f1 -d'	' | head -1 | tr [A-Z] [a-z] )"
+	CODE="$(grep -E "\b$ZONE\b" "$ZONES" | cut -f1 | head -1 | tr [A-Z] [a-z] )"
 fi
 
 if [ -z "$CODE" ]; then
