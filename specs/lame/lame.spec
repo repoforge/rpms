@@ -1,20 +1,26 @@
 # $Id$
 # Authority: matthias
+# Upstream: <mp3encoder@minnie.tuhs.org>
 
-Summary : LAME Ain't an MP3 Encoder... but it's the best of all
+# Distcc: 0
+
+Summary: Quality LGPL MP3 encoder
 Name: lame
-Version: 3.95.1
+Version: 3.96
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
-Source: http://dl.sf.net/lame/%{name}-%{version}.tar.gz
-URL: http://www.mp3dev.org/
+URL: http://lame.sf.net/
+
+Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: ncurses >= 5.0
+
 BuildRequires: /usr/bin/find, ncurses-devel
 %ifarch %{ix86}
-BuildRequires: nasm, gcc >= 3.2, gcc-c++
+BuildRequires: nasm, gcc-c++
+#BuildRequires: gcc >= 3.2
 %endif
+Requires: ncurses >= 5.0
 Provides: mp3encoder
 
 %description
@@ -43,66 +49,71 @@ these libraries.
 %setup
 
 %build
-# We want to be optimized to the bone!
-# You know what? This i386 stuff is as good as if it was only i686 and
-# the MMX code is enabled at runtime if found! So this is gooooood :-)
+### We want to be optimized to the bone!
+### You know what? This i386 stuff is as good as if it was only i686 and
+### the MMX code is enabled at runtime if found! So this is gooooood :-)
 %ifarch i386
-  export CC_OPTS="-O3 -march=i386 -mcpu=i686 -fomit-frame-pointer -fno-strength-reduce -malign-functions=4 -funroll-loops -ffast-math"
+	export CC_OPTS="-O3 -march=i386 -mcpu=i686 -fomit-frame-pointer -fno-strength-reduce -malign-functions=4 -funroll-loops -ffast-math"
 %else
-  # Vague and ix86 inspired (but working) ppc optimizations
-  %ifarch ppc
-    export CC_OPTS="-O3 -fsigned-char -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
-  %else
-    export CC_OPTS="-O3 -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
-  %endif
+	# Vague and ix86 inspired (but working) ppc optimizations
+	%ifarch ppc
+		export CC_OPTS="-O3 -fsigned-char -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
+	%else
+		export CC_OPTS="-O3 -fomit-frame-pointer -fno-strength-reduce -funroll-loops -ffast-math"
+	%endif
 %endif
 
-# Vorbis makes the build fail...
-%configure --program-prefix=%{?_program_prefix} \
+%configure \
+	--program-prefix=%{?_program_prefix} \
 %ifarch %ix86
-    --enable-nasm \
+	--enable-nasm \
 %endif
-    --enable-decoder \
-    --without-vorbis \
-    --enable-analyser=no \
-    --enable-brhist
-%{__make} %{?_smp_mflags} CFLAGS="${CC_OPTS}" test
+	--enable-decoder \
+	--with-vorbis \
+	--enable-analyser="no" \
+	--enable-brhist
+%{__make} %{?_smp_mflags} test \
+	CFLAGS="${CC_OPTS}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-# Some apps still expect to find <lame.h>
-ln -sf lame/lame.h %{buildroot}%{_includedir}/lame.h
+### Some apps still expect to find <lame.h>
+%{__ln_s} -f lame/lame.h %{buildroot}%{_includedir}/lame.h
 
 find doc/html -name "Makefile*" | xargs rm -f
-%{__rm} -rf %{buildroot}%{_docdir}/%{name}
+%{__rm} -rf %{buildroot}%{_docdir}/lame/
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root)
-%doc COPYING ChangeLog README TODO USAGE doc/html
-%doc doc/html
-%{_bindir}/lame
-%{_libdir}/libmp3lame.so.*
-%{_mandir}/man1/lame.1*
+%defattr (-, root, root, 0755)
+%doc ChangeLog COPYING README TODO USAGE doc/html
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+%{_libdir}/*.so.*
 
 %files devel
-%defattr (-, root, root)
+%defattr (-, root, root, 0755)
 %doc API HACKING STYLEGUIDE
-%{_libdir}/libmp3lame.a
-%exclude %{_libdir}/libmp3lame.la
-%{_libdir}/libmp3lame.so
-%{_includedir}/lame
+%{_libdir}/*.a
+%{_libdir}/*.so
+%{_includedir}/lame/
 %{_includedir}/lame.h
+%exclude %{_libdir}/*.la
 
 %changelog
+* Wed Apr 21 2004 Matthias Saou <http://freshrpms.net/> 3.96-1
+- Update to 3.96.
+
 * Tue Jan 13 2004 Matthias Saou <http://freshrpms.net/> 3.95.1-1.fr
 - Update to 3.95.1.
 
