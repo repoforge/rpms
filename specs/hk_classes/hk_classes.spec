@@ -16,7 +16,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/hk-classes/hk_classes-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, gcc-c++
+BuildRequires: gcc, make, gcc-c++, postgresql-devel, mysql-devel, unixODBC-devel
 
 %description
 hk_classes is C++ library which allows rapid development of database
@@ -38,9 +38,10 @@ database.
 %{__make} %{?_smp_mflags}
 
 %install
-echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
-export DESTDIR=$RPM_BUILD_ROOT
-%{__make} install-strip
+%makeinstall
+# echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
+# export DESTDIR=$RPM_BUILD_ROOT
+# {__make} install-strip
 
 %files
 %defattr(-,root,root,0755)
