@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Kåre Sjölander <kare@speech.kth.se>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%define _lib32dir %{_prefix}/lib
 %define real_name snack
 
 Summary: Snack Sound Toolkit
@@ -58,10 +61,10 @@ cd unix
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -d -m0755 %{buildroot}%{_prefix}/lib/snack%{version}/
+%{__install} -d -m0755 %{buildroot}%{_lib32dir}/snack%{version}/
 %makeinstall -C unix \
 	VERSION="%{version}" \
-	SNACK_INSTALL_PATH="%{buildroot}%{_prefix}/lib"
+	SNACK_INSTALL_PATH="%{buildroot}%{_lib32dir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,8 +72,7 @@ cd unix
 %files
 %defattr(-, root, root, 0755)
 %doc changes README doc/*
-#%{_libdir}/snack%{version}/
-%{_prefix}/lib/snack%{version}/
+%{_lib32dir}/snack%{version}/
 
 %changelog
 * Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.2.7-1
