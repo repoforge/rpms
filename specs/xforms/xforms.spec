@@ -3,6 +3,17 @@
 # Authority: dries
 # Upstream: 
 
+%{?dist: %{expand: %%define %dist 1}}
+                                                                                
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: GUI toolkit based on Xlib
 Name: xforms
 Version: 1.0.90
@@ -17,7 +28,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://savannah.nongnu.org/download/xforms/xforms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+BuildRequires: libjpeg-devel
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 
 %description
 XForms is a GUI toolkit based on Xlib for X Window Systems. It features a
