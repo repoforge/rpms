@@ -21,7 +21,7 @@ BuildRequires: python-devel, gcc-c++, XFree86-devel, zlib-devel, qt-devel, kdeli
 
 %description
 Boson is an OpenGL real-time strategy game, with the feeling of
-Command&Conquer(tm) or StarCraft(tm). It is designed to run on Unix (Linux)
+Command and Conquer(tm) or StarCraft(tm). It is designed to run on Unix (Linux)
 computers, and is built on top of the KDE, Qt and kdegames libraries.
 A minimum of two players is required, since there is no artificial
 intelligence yet.
