@@ -5,25 +5,21 @@
 Summary: DEVELOPMENT branch of the sylpheed GTK+ e-mail client
 Name: sylpheed-claws
 Version: 0.9.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
 Source: http://dl.sf.net/sylpheed-claws/sylpheed-%{version}claws.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk+ >= 1.2.6, gdk-pixbuf >= 0.8.0, pkgconfig
-%{!?_without_openssl:Requires: openssl >= 0.9.6}
-%{!?_without_gpgme:Requires: gpgme >= 0.3.10}
+Requires: openssl, gpgme, openldap
 %{!?_without_aspell:Requires: aspell >= 0.50}
-%{!?_without_ldap:Requires: openldap}
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, desktop-file-utils, pkgconfig, gcc-c++
-%{!?_without_openssl:BuildRequires: openssl-devel >= 0.9.6}
-%{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.3.10}
+BuildRequires: openssl-devel, gpgme-devel, openldap-devel
+BuildRequires: compface-devel
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
-%{!?_without_ldap:BuildRequires: openldap-devel}
-%{!?_without_compface:BuildRequires: compface-devel}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
 Conflicts: sylpheed
 
@@ -42,7 +38,7 @@ You have been warned ;-)
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : openssl, ipv6, gpgme, ldap, aspell, compface
+--without : aspell
 
 
 %prep
@@ -72,12 +68,10 @@ fi
 %{__rm} -rf %{buildroot}
 %makeinstall gnomedatadir=%{buildroot}%{_datadir}
 %find_lang sylpheed
-%{__strip} %{buildroot}%{_libdir}/sylpheed/plugins/*.so
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
   --add-category Application                                      \
   --add-category Network                                          \
   %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
@@ -106,8 +100,12 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-2
+- Rebuilt for Fedora Core 2.
+
 * Tue May 11 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
 - Added compface (X-Face) support.
+- Left only aspell and pilot conditional builds.
 
 * Mon Mar  8 2004 Matthias Saou <http://freshrpms.net/> 0.9.10-1
 - Update to 0.9.10claws.

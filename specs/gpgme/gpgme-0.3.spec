@@ -4,8 +4,8 @@
 
 Summary: GnuPG Made Easy
 Name: gpgme
-Version: 0.4.7
-Release: 1
+Version: 0.3.15
+Release: 4
 License: GPL
 Group: Applications/System
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/gpgme-%{version}.tar.gz
@@ -13,8 +13,8 @@ URL: http://www.gnupg.org/gpgme.html
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
 Provides: libgpgme = %{version}-%{release}
-Requires: gnupg >= 1.2.0, libgpg-error >= 0.5
-BuildRequires: gnupg >= 1.2.0, libgpg-error-devel >= 0.5, info
+Requires: gnupg >= 1.2.0
+BuildRequires: gnupg >= 1.2.0, info
 
 %description
 GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG easier
@@ -29,7 +29,6 @@ Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires(post): info
 Requires(preun): info
-Requires: libgpg-error-devel >= 0.5
 Provides: libgpgme-devel = %{version}-%{release}
 
 %description devel
@@ -79,6 +78,7 @@ fi
 %defattr(-, root, root, 0755)
 %{_bindir}/%{name}-config
 %{_includedir}/*
+%{_libdir}/*.a
 %{_libdir}/*.so
 %{_datadir}/aclocal/%{name}.m4
 %{_infodir}/%{name}.info*
@@ -86,9 +86,6 @@ fi
 
 
 %changelog
-* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.4.7-1
-- Update to 0.4.7, as libgpg-error is in Fedora Core 2 at last.
-
 * Mon Nov 17 2003 Matthias Saou <http://freshrpms.net/> 0.3.15-4
 - Exclude the dir info file.
 - Added scriplets for info file install.

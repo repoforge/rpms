@@ -14,7 +14,7 @@ URL: http://www.saunalahti.fi/~syrjala/xmms-itouch/
 Source: http://www.saunalahti.fi/~syrjala/xmms-itouch/xmms-itouch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
-BuildRequires: xmms-devel
+BuildRequires: xmms-devel, glib-devel >= 1.2.7, gtk+-devel >= 1.2.7
 
 
 %description
