@@ -14,6 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/multignometerm/multi-gnome-terminal-%{version}.tar.bz2
+Patch0: multi-gnome-terminal-1.6.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gnome-libs-devel, gdk-pixbuf-devel
@@ -28,6 +29,7 @@ terminal, and many other keyboard controlled features...
 
 %prep
 %setup
+%patch0
 
 %{__cat} <<EOF >multi-gnome-terminal.desktop
 [Desktop Entry]

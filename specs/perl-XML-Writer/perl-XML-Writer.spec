@@ -1,18 +1,15 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Joseph Walton <joe$kafsemo,org>
 
-
-%define real_name XML-Writer
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name XML-Writer
 
 Summary: Extension for writing XML documents
 Name: perl-XML-Writer
-Version: 0.510
+Version: 0.520
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -21,7 +18,7 @@ URL: http://search.cpan.org/dist/XML-Writer/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JO/JOSEPHW/XML-Writer-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-Writer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,25 +31,32 @@ This module contains a perl extension for writing XML documents.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL \
+	PREFIX="%{buildroot}%{_prefix}" \
+	INSTALLDIRS="vendor"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes TODO
-%{_mandir}/man3/*
+%doc Changes README TODO
+%doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Writer.pm
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 0.520-1
+- Updated to release 0.520.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.510-1
 - Initial package.

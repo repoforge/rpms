@@ -3,12 +3,15 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name MIME-tools
 
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
-Version: 5.411
-Release: 2
+Version: 5.415
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
@@ -16,11 +19,10 @@ URL: http://search.cpan.org/dist/MIME-tools/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/E/ER/ERYQ/%{real_name}-%{version}a.tar.gz
+Source: http://www.cpan.org/modules/by-module/MIME/MIME-tools-%{version}.tar.gz
 Patch: http://www.roaringpenguin.com/mimedefang/mime-tools-patch.txt
 Patch1: MIME-Tools.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl(IO::Stringy) >= 1.211, perl-MailTools
@@ -37,8 +39,8 @@ parser and tool for building your own MIME parser, and utilities.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch -p1
-%patch1 -p1
+#patch -p1
+#patch1 -p1
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
@@ -52,18 +54,21 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING INSTALLING MANIFEST README* docs/ examples/
+%doc COPYING INSTALLING MANIFEST README* examples/
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/*
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 5.414-1
+- Updated to release 5.415.
+
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)

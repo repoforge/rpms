@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 Summary: Screen lock and screen saver.
@@ -29,20 +28,20 @@ options.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+
 %build
-%configure
+%configure \
+	--with-crypt
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m 755 %{buildroot}/%{_bindir}
-%{__install} -d -m 755 %{buildroot}/%{_datadir}/man/man1
-%{__install} -d -m 755 %{buildroot}/%{_libdir}/X11/app-defaults
-%{__install} -c -s -o root -m 755 xlock/xlock %{buildroot}/%{_bindir}
-%{__install} -c -m 644 xlock/xlock.man %{buildroot}/%{_datadir}/man/man1/xlock.1
-%{__install} -c -m 644 xlock/XLock.ad %{buildroot}/%{_libdir}/X11/app-defaults/XLock
-%{__install} -c xmlock/xmlock %{buildroot}/%{_bindir}
-%{__install} -c -m 644 xmlock/XmLock.ad %{buildroot}/%{_libdir}/X11/app-defaults/XmLock
+%{__install} -D -m0755 xlock/xlock %{buildroot}%{_bindir}/xlock
+%{__install} -D -m0755 xmlock/xmlock %{buildroot}%{_bindir}/xmlock
+%{__install} -D -m0644 xlock/xlock.man %{buildroot}%{_mandir}/man1/xlock.1
+%{__install} -D -m0644 xlock/XLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XLock
+%{__install} -D -m0644 xmlock/XmLock.ad %{buildroot}%{_libdir}/X11/app-defaults/XmLock
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,11 +49,11 @@ options.
 %files
 %defattr(-, root, root, 0755)
 %doc README
+%doc %{_mandir}/man1/xlock.1*
 %{_bindir}/xlock
 %{_bindir}/xmlock
 %{_libdir}/X11/app-defaults/XLock
 %{_libdir}/X11/app-defaults/XmLock
-%{_datadir}/man/man1/xlock.1.gz
 
 %changelog
 * Sun Dec 12 2004 Dries Verachtert <dries@ulyssis.org> 5.14.1-1

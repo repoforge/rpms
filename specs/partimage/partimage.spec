@@ -177,11 +177,9 @@ EOF
 EOF
 
 %build
-autoreconf
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--with-log-dir="%{_localstatedir}/log" \
-	--disable-dependency-tracking \
 	--disable-ssl \
 	--enable-gui-text \
 	--enable-gui-newt \
@@ -193,7 +191,6 @@ autoreconf
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--with-log-dir="%{_localstatedir}/log" \
-	--disable-dependency-tracking \
 	--disable-ssl \
 	--with-xinerama \
 	--enable-gui-text \

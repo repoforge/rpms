@@ -20,7 +20,7 @@ Source: http://www.kmuddy.org/files/kmuddy-%{version}.tar.gz
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
-BuildRequires: gcc-c++, XFree86-devel, qt-devel
+BuildRequires: gcc-c++, XFree86-devel, qt-devel >= 3.2
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 

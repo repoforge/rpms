@@ -8,8 +8,8 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 2.11
-Release: 2
+Version: 2.13
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -69,6 +69,9 @@ ISO 9660 CD-ROMs (ISOLINUX).
 %{_includedir}/syslinux.h
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 2.13-1
+- Updated to release 2.13.
+
 * Mon Oct 11 2004 Dag Wieers <dag@wieers.com> - 2.11-2
 - Re-added libsyslinux.
 

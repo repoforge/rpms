@@ -7,7 +7,7 @@
 Summary: Program for executing the same command on many hosts in parallel
 Name: shmux
 Version: 1.0
-Release: 0.b5
+Release: 0.b6
 License: Proprietary License with Source
 Group: System Environment/Shells
 URL: http://web.taranis.org/shmux/
@@ -52,6 +52,9 @@ the user, or written to files for later processing.
 %{_datadir}/shmux/
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 1.0-0.b6
+- Updated to release 1.0b6.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.0-0.b5
 - Updated to release 1.0b5.
 

@@ -1,11 +1,12 @@
 # $Id$
 # Authority: dag
+# Upstream: Kurt Garloff <kurt$garloff,de>
 
 %define real_name dd_rescue
 
 Summary: Fault tolerant "dd" utility for rescueing data from bad media
 Name: ddrescue
-Version: 1.04
+Version: 1.10
 Release: 1
 License: GPL
 Group: Applications/System
@@ -46,10 +47,13 @@ rescuing data from media with errors, e.g. a disk with bad sectors.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README
+%doc COPYING README*
 %{_bindir}/dd_rescue
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 1.04-1
 - Updated to release 1.04.
 

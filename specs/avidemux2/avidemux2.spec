@@ -14,8 +14,8 @@
 
 Summary: Graphical video editing tool
 Name: avidemux2
-Version: 2.0.32
-Release: 1
+Version: 2.0.34
+Release: 0.test2
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/
@@ -23,7 +23,7 @@ URL: http://fixounet.free.fr/avidemux/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.berlios.de/avidemux/avidemux-%{version}.tar.gz
+Source: http://download.berlios.de/avidemux/avidemux-%{version}-test2.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.0.0
@@ -39,7 +39,7 @@ You can also process video with included filters. It requires a DivX
 compatible encoder and the Gimp Toolkit (GTK) libraries.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}-test2
 
 %{__cat} <<EOF >avidemux2.desktop
 [Desktop Entry]
@@ -50,6 +50,7 @@ Exec=avidemux2
 Terminal=false
 Type=Application
 Categories=GNOME;Application;AudioVideo;
+MimeType=video/mp4v-es;video/mpeg;video/quicktime;video/x-msvideo;video/x-avi;audio/ac3;audio/x-mpeg;audio/x-mp3;audio/x-mp2;audio/x-wav;
 EOF
 
 %build
@@ -79,6 +80,12 @@ EOF
 		avidemux2.desktop
 %endif
 
+%post
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
+%postun
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -91,6 +98,9 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/avidemux2.desktop}
 
 %changelog
+* Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 2.0.34-0.test2
+- Updated to release 2.0.34-test2.
+
 * Fri Nov 05 2004 Dag Wieers <dag@wieers.com> - 2.0.32-1
 - Updated to release 2.0.32.
 
