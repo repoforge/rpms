@@ -17,6 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: pydar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
+BuildRequires: mach
 Requires: mach, coreutils
 
 %description
@@ -31,6 +32,7 @@ Not finished, not to be released!
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+cat /usr/bin/mach | grep -v builtin > %{buildroot}/%{_datadir}/pydar/pydar/mach.py
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,6 +43,7 @@ Not finished, not to be released!
 %{_sysconfdir}/rc.d/init.d/pydar-buildserver-master
 %{_sysconfdir}/rc.d/init.d/pydar-buildserver-slave
 %{_bindir}/dar-remote
+%{_bindir}/dar-speccheck
 %{_datadir}/pydar/*.py
 %{_datadir}/pydar/pydar/*.py
 
