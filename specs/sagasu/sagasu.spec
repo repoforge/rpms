@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Pierre Sarrazin <sarrazip@sympatico.ca>
 
 Summary: GNOME tool to find strings in a set of files
@@ -15,9 +13,8 @@ URL: http://sarrazip.com/dev/sagasu.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://sarrazip.com/dev/%{name}-%{version}.tar.gz
+Source: http://www3.sympatico.ca/sarrazip/dev/sagasu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libgnomeui-devel >= 2.0.0
 Requires: libgnomeui >= 2.0.0
@@ -43,9 +40,6 @@ CVS directories.
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_docdir}
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -58,6 +52,7 @@ CVS directories.
 %{_datadir}/sounds/sagasu/
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*
+%exclude %{_docdir}
 
 %changelog
 * Sat Oct 25 2003 Dag Wieers <dag@wieers.com> - 2.0.5-0
