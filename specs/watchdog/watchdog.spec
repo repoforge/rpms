@@ -2,20 +2,19 @@
 
 # Authority: dag
 
+Summary: Software watchdog
 Name: watchdog
-Summary: software watchdog
 Version: 5.2
-Release: 6
-Group: System Environment/Daemons
+Release: 7
 License: GPL
+Group: System Environment/Daemons
 URL: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/%{name}-%{version}.tar.gz
+Source: http://www.ibiblio.org/pub/Linux/system/daemons/watchdog/watchdog-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 A software watchdog.
@@ -154,11 +153,10 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/sysconfig \
-			%{buildroot}%{_initrddir}
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}
 %makeinstall
-%{__install} -m0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/watchdog
-%{__install} -m0755 %{name}.sysv %{buildroot}%{_initrddir}/watchdog
+%{__install} -D -m0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/watchdog
+%{__install} -D -m0755 %{name}.sysv %{buildroot}%{_initrddir}/watchdog
 
 %post 
 /sbin/chkconfig --add watchdog
@@ -167,6 +165,7 @@ EOF
 if [ $1 -eq 0 ]; then
         /sbin/service watchdog stop &>/dev/null || :
         /sbin/chkconfig --del watchdog
+fi
 
 %postun 
 /sbin/service watchdog condrestart &>/dev/null || :
@@ -176,7 +175,7 @@ if [ $1 -eq 0 ]; then
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING examples/ IAFA-PACKAGE NEWS README TODO watchdog.lsm
+%doc AUTHORS ChangeLog COPYING IAFA-PACKAGE NEWS README TODO watchdog.lsm examples/
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/watchdog.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/watchdog
@@ -184,6 +183,9 @@ if [ $1 -eq 0 ]; then
 %{_sbindir}/*
 
 %changelog
+* Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 5.2-7
+- Fixed missing statement in %preun. (Matthew Lenz)
+
 * Wed Jan 28 2004 Dag Wieers <dag@wieers.com> - 5.2-6
 - Register sysv script with chkconfig.
 
