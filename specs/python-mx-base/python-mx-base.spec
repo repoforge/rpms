@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dag
+
 # Tag: test
 
 %define real_name egenix-mx-base
