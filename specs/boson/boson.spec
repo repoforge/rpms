@@ -44,7 +44,7 @@ intelligence yet.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO docs
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_datadir}/doc/HTML/en/boson-apidocs
 %doc %{_datadir}/doc/HTML/en/boson
 %{_datadir}/icons/*/*/apps/boson.png
