@@ -31,7 +31,7 @@ BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel
 
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch %{ix86}
-    %{!?_without_mmx:BuildArch: i586}
+%{!?_without_mmx:BuildArch: i586}
 %endif
 
 %description
