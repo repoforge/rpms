@@ -1,0 +1,21 @@
+--- rpmpriorities.orig	2004-03-23 03:30:19.000000000 +0100
++++ rpmpriorities	2004-03-23 03:31:07.000000000 +0100
+@@ -2,16 +2,15 @@
+   apt
+   basesystem
+   bash
+-  conectiva-release
+   dev
+   e2fsprogs
+   filesystem
+-  fileutils
+-  glibc-base
++  glibc
+   initscripts
+   modutils
+   mount
+   pam
+   passwd
++  redhat-release
+   rpm
+   setup
