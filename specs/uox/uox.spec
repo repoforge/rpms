@@ -15,7 +15,7 @@ URL: http://www.uox3.org/
 Source: http://www.uox3.org/files/uox3-source.zip
 Source1: ftp://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla%{mozilla_version}/src/mozilla-source-%{mozilla_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: dos2unix, autoconf, automake, gcc-c++
+BuildRequires: dos2unix, autoconf, automake, gcc-c++, unzip
 
 %description
 todo
