@@ -3,7 +3,7 @@
 
 Summary: GNUstep make
 Name: gnustep-make
-Version: 1.9.1
+Version: 1.9.2
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -54,6 +54,9 @@ EOF
 %{_prefix}/GNUstep/
 
 %changelog
+* Mon Jun 14 2004 Dries Verachtert <dries@ulyssis.org> 1.9.2-1
+- Updated to release 1.9.2.
+
 * Thu Jun 10 2004 Dag Wieers <dag@wieers.com> - 1.9.1-1
 - Updated to release 1.9.1.
 - Cosmetic cleanup.
