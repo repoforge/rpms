@@ -17,7 +17,7 @@ Source: http://dl.sf.net/peeper/peeper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-#BuildRequires: 
+BuildRequires: XFree86-devel, libgnomeui-devel
 
 %description
 Peeper is a program to view an area of the screen at a certain
