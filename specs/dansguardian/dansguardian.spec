@@ -1,15 +1,14 @@
 # $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
-
 # Authority: dag
 # Upstream: Daniel Barron <author@dansguardian.org>
 
 %define real_name DansGuardian
-%define real_version 2.6.1-12
+%define real_version 2.6.1-13
 %define sversion 2.6.1
 
 Summary: Content filtering web proxy
 Name: dansguardian
-Version: 2.6.1.12
+Version: 2.6.1.13
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -196,5 +195,8 @@ fi
 %{_localstatedir}/log/dansguardian/
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 2.6.1.13-1
+- Updated to release 2.6.1-13.
+
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 2.6.1.12-1
 - Initial package. (using DAR)
