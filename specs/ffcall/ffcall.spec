@@ -47,13 +47,10 @@ you will need to install %{name}-devel.
 %{__install} -d -m0755 %{buildroot}%{_docdir}/ffcal-%{real_version}
 %makeinstall
 
-# todo
-# rpmbuild removes the doc directory, so this mv has no effect..
-mv -v $RPM_BUILD_ROOT/usr/share/html $RPM_BUILD_ROOT/usr/share/doc/ffcall-1.8d
+rm -Rf $RPM_BUILD_ROOT/usr/share/html
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-,root,root,0755)
