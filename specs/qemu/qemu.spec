@@ -1,8 +1,6 @@
-# $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice$bellard,org>
-
-#%define _use_internal_dependency_generator 0
 
 Summary: CPU emulator
 Name: qemu
@@ -16,7 +14,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
-Patch: qemu-0.5.5-glibc-private.patch
+Patch: qemu-0.6.0-glibc-private.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -39,15 +37,16 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-#%{?fc2:%patch0}
+%patch0 -b .glibc
 
 %build
 %configure
 
 %{__perl} -pi.orig -e '
+		s|\$\(datadir\)|\$(datadir)/qemu|;
 		s|\$\(sharedir\)|\$(datadir)/qemu|;
 		s|\$\(prefix\)/bin|\$(bindir)|;
-		s|/usr/share|\$(datadir)|;
+		s|/usr/share|\$(datadir)/qemu|;
 	' Makefile* config-host.mak
 
 %{__make} %{?_smp_mflags}
@@ -55,10 +54,6 @@ reasonnable speed while being easy to port on new host CPUs.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-
-#echo -e "#!/bin/sh\nexec %{__find_requires} | grep -v GLIBC_PRIVATE" >%{_builddir}/%{buildsubdir}/find-requires
-#chmod +x %{_builddir}/%{buildsubdir}/find-requires
-#%define __find_requires %{_builddir}/%{buildsubdir}/find-requires
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,7 +64,6 @@ reasonnable speed while being easy to port on new host CPUs.
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/qemu/
-%exclude %{_docdir}
 
 %changelog
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.6.0-1
