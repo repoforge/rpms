@@ -1,16 +1,19 @@
 # $Id$
 # Authority: matthias
+# Upstream: <metakit@equi4.com>
 
 Summary: Embeddable database
 Name: metakit
-Version: 2.4.9.2
-Release: 3
+Version: 2.4.9.3
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.equi4.com/metakit/
-Source: http://www.equi4.com/pub/mk/%{name}-%{version}.tar.gz
-BuildRequires: gcc-c++, tcl
+
+Source: http://www.equi4.com/pub/mk/metakit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gcc-c++, tcl
 
 %description
 MetaKit is an embeddable database which runs on Unix, Windows,
@@ -46,9 +49,11 @@ cd unix
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %files
 %defattr(-, root, root, 0755)
@@ -57,12 +62,15 @@ cd unix
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc CHANGES MetaKit.html WHATSNEW doc
+%doc CHANGES WHATSNEW doc
 %{_includedir}/*
 %exclude %{_libdir}/*.la
 %{_libdir}/*.a
 
 %changelog
+* Sun May 16 2004 Matthias Saou <http://freshrpms.net/> 2.4.9.2-1
+- Updated to release 2.4.9.3.
+
 * Fri Nov 14 2003 Matthias Saou <http://freshrpms.net/> 2.4.9.2-3.fr
 - Rebuild for Fedora Core 1.
 

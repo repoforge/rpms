@@ -8,7 +8,7 @@ Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.deater.net/weave/vmwprod/linux_logo/
-Source: http://www.deater.net/weave/vmwprod/linux_logo/%{name}-%{version}.tar.gz
+Source: http://www.deater.net/weave/vmwprod/linux_logo/linux_logo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext
 
@@ -16,7 +16,8 @@ BuildRequires: gettext
 Linux logo creates a colorful penguin logo on the console.
 
 %prep
-%setup
+### This seems to be a bug in the 4.07 release ?
+%setup -n %{name}-4.09
 
 %build
 # Disabled many logos since they prevent building on FC1 :-(

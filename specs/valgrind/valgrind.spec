@@ -23,7 +23,8 @@ Source1: valgrind-nptltest.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: %{ix86}
-BuildRequires: XFree86-devel, gdb
+BuildRequires: XFree86-devel
+#BuildRequires: gdb
 
 %description
 Valgrind is a GPL'd tool to help you find memory-management problems in
@@ -74,7 +75,7 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	docdir="rpm-doc"
+	docdir="../../rpm-doc"
 
 %{__install} -m0755 nptltest %{buildroot}%{_libdir}/valgrind/
 
@@ -90,7 +91,6 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/valgrind/
 %{_includedir}/valgrind/
-%exclude %{_docdir}/valgrind/
 
 
 %changelog

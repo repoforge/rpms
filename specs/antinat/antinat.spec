@@ -17,9 +17,7 @@ URL: http://yallara.cs.rmit.edu.au/~malsmith/products/antinat/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-### FIXME: Source URL isn't clear about the filename, fails for wget and rpm. (Please fix upstream)
-#Source: http://yallara.cs.rmit.edu.au/~malsmith/products/antinat/download.php?file=antinat-%{version}.tar.bz2
-Source: antinat-%{version}.tar.bz2
+Source: http://dl.sf.net/antinat/antinat-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libds-devel >= 1.2.0

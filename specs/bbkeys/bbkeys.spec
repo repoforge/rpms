@@ -1,16 +1,18 @@
 # $Id$
 # Authority: matthias
 
-Summary: completely configurable key-combo grabber for blackbox
+Summary: Completely configurable key-combo grabber for blackbox
 Name: bbkeys
 Version: 0.8.6
 Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://bbkeys.sf.net/
-Source: http://dl.sf.net/bbkeys/%{name}-%{version}.tar.gz
+
+Source: http://dl.sf.net/bbkeys/bbkeys-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: XFree86-devel, gcc-c++
-BuildRoot: %{_tmppath}/%{name}-root
 
 %description
 bbkeys is a configurable key-grabber designed for the blackbox window manager

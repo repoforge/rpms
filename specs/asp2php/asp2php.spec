@@ -77,7 +77,7 @@ EOF
 %doc LICENSE README TODO *.png sample/
 %{_bindir}/asp2php
 
-%files gui
+%files gtk
 %defattr(-, root, root, 0755)
 %{_bindir}/gtkasp2php
 %if %{dfi}

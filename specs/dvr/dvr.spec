@@ -1,11 +1,10 @@
 # $Id$
 # Authority: dag
-# Dists: rh7
 
 Summary: Video4Linux Digital Video Recorder
 Name: dvr
-Version: 2.7.9
-Release: 0
+Version: 3.2
+Release: 1
 Group: Applications/Multimedia
 License: GPL
 URL: http://dvr.sf.net/
@@ -16,6 +15,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/dvr/dvr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: avifile-devel
+
 %description
 DVR is a tool to record movies on a computer equipped with a video
 capture card. It can record and compress data in real time, using
@@ -25,11 +26,13 @@ recent codecs like DivX 5 or Indeo 5 for example.
 %setup
 
 %build
-%{__make}-1.4 || %{__make}
+%{__make} %{?_smp_mflags} \
+	version="%{version}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall \
+	version="%{version}"
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -42,10 +45,14 @@ recent codecs like DivX 5 or Indeo 5 for example.
 
 %files
 %defattr(-, root, root, 0755)
+%doc doc/*
 %{_bindir}/*
 %{_datadir}/dvr/
-%{_libdir}/lib/*
+%{_libdir}/*.so.*
 
 %changelog
+* Sun May 16 2004 Dag Wieers <dag@wieers.com> - 3.2-1
+- Updated to release 3.2.
+
 * Sun Jan 19 2003 Dag Wieers <dag@wieers.com> - 2.7.9-0
 - Initial package. (using DAR)

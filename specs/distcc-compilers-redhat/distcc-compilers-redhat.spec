@@ -26,7 +26,6 @@ Source8: ftp://ftp.redhat.com/pub/redhat/linux/el3/en/os/i386/RedHat/RPMS/gcc-3.
 Source9: ftp://ftp.redhat.com/pub/redhat/linux/el3/en/os/i386/RedHat/RPMS/gcc-c++-3.2.3-20.i386.rpm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: rpm, cpio, binutils
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
 %{?el3:Requires: gcc, gcc-c++, compat-gcc, compat-gcc-c++}

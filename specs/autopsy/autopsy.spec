@@ -43,7 +43,7 @@ EOF
 %{__cat} <<'EOF' >autopsyfunc.pm
 #!%{__perl} -wT
 EOF
-%{__cat} base/autopsyfunc.pm.base >>autopsyfunc.pm
+#%{__cat} base/autopsyfunc.pm.base >>autopsyfunc.pm
 
 %{__perl} -pi.orig -e 's|\$INSTALLDIR/|%{_datadir}/autopsy/|' autopsy 
 %{__perl} -pi.orig -e 's|\$INSTALLDIR|%{_datadir}/autopsy|' define.pl

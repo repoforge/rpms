@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dag
-# Distcc: 0
 
 %{?dist: %{expand %%define %dist 1}}
 
@@ -19,7 +18,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Obsoletes: xclass, xclass-devel
 Provides: xclass
@@ -42,7 +40,7 @@ against.
 	' lib/libxclass/Makefile.in
 
 %build
-%{?fc2:export CXX="g++296"}
+#%{?fc2:export CXX="g++296"}
 %{?fc1:export CXX="g++296"}
 %{?el3:export CXX="g++296"}
 %{?rh9:export CXX="g++296"}

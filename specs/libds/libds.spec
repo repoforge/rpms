@@ -4,7 +4,7 @@
 
 Summary: Shared Library for Data Structures
 Name: libds
-Version: 1.5.1
+Version: 1.5.2
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -43,9 +43,6 @@ you will need to install %{name}-devel.
 %install
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -67,9 +64,12 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
+* Sun May 16 2004 Dag Wieers <dag@wieers.com> - 1.5.2-1
+- Updated to release 1.5.2.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.5.1-1
 - Updated to release 1.5.1.
 

@@ -18,7 +18,7 @@ Source: http://dl.sf.net/gtkmm/libbonobouimm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtkmm2-devel >= 2.0, libbonobo-devel >= 2.0, libbonoboui-devel >= 2.0
-BuildRequires: ORBit2-devel >= 2.0
+BuildRequires: ORBit2-devel >= 2.0, libbonobomm-devel
 
 %description
 libbonobouimm provides C++ wrappers for libbonoboui, for use with gtkmm.

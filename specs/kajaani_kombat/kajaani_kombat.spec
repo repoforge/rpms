@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 
+# Screenshot: http://kombat.kajaani.net/ss/07.png
+
 Summary: todo
 Name: kajaani_kombat
 Version: 0.3
@@ -14,26 +16,24 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://kombat.kajaani.net/dl/kajaani_kombat_v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL
 
-# Screenshot: http://kombat.kajaani.net/ss/07.png
+BuildRequires: SDL, SDL_ttf
 
 %description
 todo
 
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup -n kajaani_kombat_v%{version}
 
 %build
 %{__make} %{?_smp_mflags}
 
 %install
-#mkdir -p %{
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 
 %changelog
 * Fri Feb 27 2004 Dries Verachtert <dries@ulyssis.org> 0.3-1
