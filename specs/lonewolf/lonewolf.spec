@@ -2,10 +2,12 @@
 # Authority: dries
 # Upstream: 
 
+%define real_version cvs20040503
+
 Summary: Ultima Online emulator
 Name: lonewolf
 Version: 1.0
-Release: 0.cvs20040503
+Release: 0.%{real_version}
 License: GPL
 Group: Applications/Internet
 URL: http://home1.tiscalinet.de/aduke/main2/news2.htm
