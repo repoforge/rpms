@@ -2,13 +2,10 @@
 # Authority: dag
 # Upstream: <cpufreqd-user@lists.sf.net>
 
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
-
 Summary: CPU frequency scaling daemon
 Name: cpufreqd
 Version: 1.1.2
-Release: 0
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://cpufreqd.sf.net/
@@ -18,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/cpufreqd/cpufreqd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 cpufreqd is meant to be a replacement of the speedstep applet you
@@ -57,7 +53,7 @@ EOF
 source %{_initrddir}/functions
 
 ### Default variables
-SPEEDSTEP_MODULE="speedstep-centrino"
+SPEEDSTEP_MODULE=""
 
 [ -x %{_sbindir}/cpufreqd ] || exit 1
 [ -r %{_sysconfdir}/sysconfig/cpufreqd ] && source %{_sysconfdir}/sysconfig/cpufreqd
@@ -126,10 +122,8 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%{_initrddir}
-%{__install} -m0755 cpufreqd.sysv %{buildroot}%{_initrddir}/cpufreqd
-%{__install} -m0644 cpufreqd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpufreqd
+%{__install} -D -m0755 cpufreqd.sysv %{buildroot}%{_initrddir}/cpufreqd
+%{__install} -D -m0644 cpufreqd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cpufreqd
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -157,6 +151,9 @@ fi
 %{_libdir}/*
 
 %changelog
+* Mon May 31 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Don't load a module by default.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 1.1.2-0
 - Updated to release 1.1.2.
 
