@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # The source contains only binaries...
 %define _use_internal_dependency_generator 0
@@ -8,7 +9,7 @@
 Summary: RAR archiver to manage RAR archive files.
 Name: rar
 Version: 3.3.0
-Release: 1.fr
+Release: 1
 License: Shareware
 Group: Applications/Archiving
 Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
@@ -22,16 +23,16 @@ Console RAR supports archives only in RAR format, which names usually have
 a ".rar" extension. ZIP and other formats are not supported.
 
 %prep
-%setup -q -n %{name}
+%setup -n %{name}
 
 %install
-rm -rf %{buildroot}
-install -m 755 -D rar %{buildroot}%{_bindir}/rar
-install -m 644 -D rarfiles.lst %{buildroot}%{_sysconfig}/rarfiles.lst
-install -m 755 -D default.sfx %{buildroot}%{_libdir}/default.sfx
+%{__rm} -rf %{buildroot}
+%{__install} -m 755 -D rar %{buildroot}%{_bindir}/rar
+%{__install} -m 644 -D rarfiles.lst %{buildroot}%{_sysconfig}/rarfiles.lst
+%{__install} -m 755 -D default.sfx %{buildroot}%{_libdir}/default.sfx
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

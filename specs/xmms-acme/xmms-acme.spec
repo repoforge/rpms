@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define xmmsgeneraldir %(xmms-config --general-plugin-dir)
 
 Summary: A useful plugin for XMMS to use special multimedia keys through acme
 Name: xmms-acme
 Version: 0.4.1
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.devin.com/xmms-xf86audio/
@@ -23,21 +24,21 @@ individually control the various media players.  Instead, it arranges the
 mapping and expects those media players to listen for the XF86Audio keysyms.
 
 %prep
-%setup -q -n xmms-xf86audio-%{version}
+%setup -n xmms-xf86audio-%{version}
 
 %build
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-install -D -m 0755 libxf86audio.so %{buildroot}%{xmmsgeneraldir}/libxf86audio.so
+%{__rm} -rf %{buildroot}
+%{__install} -D -m 0755 libxf86audio.so %{buildroot}%{xmmsgeneraldir}/libxf86audio.so
 strip %{buildroot}%{xmmsgeneraldir}/* || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING README
 %{xmmsgeneraldir}/libxf86audio.so
 

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 %define date           20040125
@@ -6,7 +7,7 @@
 Summary: A 3D multi-player tank battle game.
 Name: bzflag
 Version: 1.10.4
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Amusements/Games
 Source: http://dl.sourceforge.net/bzflag/%{name}-%{version}.%{date}.tar.bz2
@@ -25,16 +26,16 @@ cannot shoot teammates and they do not have a team score.
 There are two main styles of play: capture-the-flag and free-for-all.
 
 %prep
-%setup -q -n %{name}-%{version}.%{date}
+%setup -n %{name}-%{version}.%{date}
 
 %build
 %configure
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
-install -D -m 644 package/rpm/bzflag-m.xpm \
+%{__install} -D -m 644 package/rpm/bzflag-m.xpm \
     %{buildroot}%{_datadir}/pixmaps/bzflag.xpm
 
 # Desktop menu entry
@@ -57,10 +58,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README README.Linux
 %{_bindir}/bzadmin
 %{_bindir}/bzflag

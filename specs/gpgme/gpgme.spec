@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: GnuPG Made Easy.
 Name: gpgme
 Version: 0.3.15
-Release: 4.fr
+Release: 4
 License: GPL
 Group: Applications/System
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/gpgme/gpgme-%{version}.tar.gz
@@ -37,19 +38,19 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
-rm -f %{buildroot}%{_infodir}/dir || :
+%{__rm} -f %{buildroot}%{_infodir}/dir || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post devel
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
@@ -60,12 +61,12 @@ if [ $1 -eq 0 ]; then
 fi
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/%{name}-config
 %{_includedir}/*
 %{_libdir}/*.a

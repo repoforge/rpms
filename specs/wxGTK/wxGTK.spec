@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
 Version: 2.4.2
-Release: 3.1.fr
+Release: 3.1
 License: Other
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/
@@ -62,7 +63,7 @@ Styled text control add-on for wxGTK. Based on the Scintillia project.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 # For the shared libs
@@ -71,7 +72,7 @@ Styled text control add-on for wxGTK. Based on the Scintillia project.
     --enable-optimise \
     --with-opengl
 #   --enable-gtk2 \
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 pushd contrib/src
     make -C xrc %{?_smp_mflags}
@@ -79,7 +80,7 @@ pushd contrib/src
 popd
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang wxstd
 
@@ -101,31 +102,31 @@ popd
 %postun stc -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f wxstd.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING.LIB *.txt
 %{_libdir}/libwx_gtk-*
 %{_datadir}/wx
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/*-config
 %{_includedir}/wx
 %{_libdir}/wx
 %{_datadir}/aclocal/*.m4
 
 %files gl
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_libdir}/libwx_gtk_gl-*
 
 %files xrc
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_libdir}/libwx_gtk_xrc-*
 
 %files stc
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_libdir}/libwx_gtk_stc-*
 
 %changelog

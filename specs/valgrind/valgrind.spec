@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Authority: dag
 
@@ -7,7 +8,7 @@
 Summary: Debugging and profiling system for x86-GNU/Linux platforms
 Name: valgrind
 Version: 2.0.0
-Release: 1.fr
+Release: 1
 Group: Development/Tools
 License: GPL
 URL: http://valgrind.kde.org/

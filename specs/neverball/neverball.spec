@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A test of skill, part puzzle game and part action game
 Name: neverball
 Version: 1.1.0
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://icculus.org/%{name}/
@@ -23,17 +24,17 @@ If the ball falls or time expires, a ball is lost. Collect 100 coins to save
 your progress and earn an extra ball. Red coins are worth 5, blue are worth 10.
 
 %prep
-%setup -q
+%setup
 
 %build
 # Change the location where the binary will look for the "data" directory
 perl -pi -e 's|./data|%{_datadir}/%{name}|g' config.h
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 # Install the binary and the "data" directory
-install -D -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
+%{__install} -D -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
 mkdir -p %{buildroot}%{_datadir}
 cp -a data %{buildroot}%{_datadir}/%{name}
 
@@ -56,7 +57,7 @@ desktop-file-install --vendor %{desktop_vendor} \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

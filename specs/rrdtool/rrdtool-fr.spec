@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 
 %define phpextdir %(php-config --extension-dir)
@@ -6,7 +7,7 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.0.46
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Databases
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/%{name}-%{version}.tar.gz
@@ -49,7 +50,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 
 %prep
-%setup -q
+%setup
 
 
 %build
@@ -57,16 +58,16 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
     --enable-shared \
     --enable-local-libpng \
     --enable-local-zlib
-make
+%{__make}
 
 # Build the php4 module, the tmp install is required
 %define rrdtmpdir %(pwd)/tmpinstall
-make install DESTDIR=%{rrdtmpdir}
+%{__make} install DESTDIR=%{rrdtmpdir}
 pushd contrib/php4
     ./configure --with-rrdtool=%{rrdtmpdir}%{_prefix}
     make
 popd
-rm -rf %{rrdtmpdir}
+%{__rm} -rf %{rrdtmpdir}
 
 # Fix @perl@ and @PERL@
 find examples/ -type f \
@@ -76,13 +77,13 @@ find examples/ -name "*.pl" \
 
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 # Install the php4 module
-install -m755 -D contrib/php4/modules/rrdtool.so %{buildroot}%{phpextdir}/rrdtool.so
+%{__install} -m755 -D contrib/php4/modules/rrdtool.so %{buildroot}%{phpextdir}/rrdtool.so
 # Clean up the examples for inclusion as docs
-rm -rf contrib/php4/examples/CVS
+%{__rm} -rf contrib/php4/examples/CVS
 
 # Put perl files back where they belong
 mkdir -p %{buildroot}%{perl_sitearch}/
@@ -93,8 +94,8 @@ mkdir -p doc2/doc
 cp -a doc/*.txt doc/*.html doc2/doc/
 
 # Clean up the examples and contrib
-rm -f examples/Makefile*
-rm -f contrib/Makefile*
+%{__rm} -f examples/Makefile*
+%{__rm} -f contrib/Makefile*
 # This is so rpm doesn't pick up perl module dependencies automatically
 find examples contrib -type f -exec chmod 644 {} \;
 
@@ -103,15 +104,15 @@ mkdir -p %{buildroot}%{_mandir}/
 mv %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
 
 # Clean up the buildroot
-rm -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}
+%{__rm} -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
  
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING README TODO doc2/doc
 %{_bindir}/*
 %{_libdir}/*.so.*
@@ -121,7 +122,7 @@ rm -rf %{buildroot}
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc examples
 %doc contrib/add_ds contrib/killspike contrib/log2rrd contrib/rrdexplorer
 %doc contrib/rrdfetchnames contrib/rrd-file-icon contrib/rrdlastds
@@ -133,7 +134,7 @@ rm -rf %{buildroot}
 
 
 %files -n php-%{name}
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc contrib/php4/examples contrib/php4/README
 %{phpextdir}/rrdtool.so
 

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore09
 Version: 0.9.2
-Release: 5.fr
+Release: 5
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
@@ -18,7 +19,7 @@ Free reimplementation of the OpenDivX video codec. You can play OpenDivX
 and DivX4 videos with it, as well as encode compatible files.
 
 %prep
-%setup -q -n xvidcore-%{version}
+%setup -n xvidcore-%{version}
 
 %build
 pushd build/generic
@@ -27,7 +28,7 @@ pushd build/generic
 popd
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{_libdir}
 mkdir -p %{buildroot}%{_includedir}
 pushd build/generic
@@ -35,14 +36,14 @@ pushd build/generic
 popd
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc LICENSE README.txt authors.txt changelog.txt todo.txt
 %exclude %{_includedir}/xvid.h
 %exclude %{_libdir}/*.a

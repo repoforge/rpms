@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: The C++ interface for the libglade user interface library.
 Name: libglademm2
 Version: 2.0.1
-Release: 2.fr
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 Source: http://dl.sf.net/gtkmm/libglademm-%{version}.tar.gz
@@ -28,28 +29,28 @@ interface library.
 
 
 %prep
-%setup -q -n libglademm-%{version}
+%setup -n libglademm-%{version}
 
 %build
 %configure --enable-static
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 # Clean up docs
-rm -rf examples/*/.deps
+%{__rm} -rf examples/*/.deps
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc examples
 %{_includedir}/*
 %{_libdir}/*.a

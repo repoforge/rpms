@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A library for providing raw access to IEEE 1394 devices
 Name: libavc1394
 Version: 0.4.1
-Release: 2.fr
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libavc1394/
@@ -28,32 +29,32 @@ developing applications that use libavc1394.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING NEWS README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

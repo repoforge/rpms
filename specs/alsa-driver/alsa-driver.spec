@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Is this a preversion?
 #define prever rc2
@@ -22,7 +23,7 @@
 Summary: The Advanced Linux Sound Architecture (ALSA) base files.
 Name: alsa-driver
 Version: 1.0.2c
-Release: %{?prever:0.%{prever}.}1.fr
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Base
 Source0: ftp://ftp.alsa-project.org/pub/driver/%{name}-%{version}%{?prever}.tar.bz2
@@ -81,7 +82,7 @@ This package contains the ALSA kernel modules for the Linux kernel package :
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?prever}
+%setup -n %{name}-%{version}%{?prever}
 %patch0 -p1 -b .nodepmod
 
 %build
@@ -99,21 +100,21 @@ CFLAGS="-D__module__%{_target_cpu} -D__module__%{kernel_type}" \
 # The good old workaround... again
 touch include/linux/workqueue.h
 
-make %{?_smp_mflags} MODFLAGS="-DMODULE=1 -D__BOOT_KERNEL_H_ -D__MODULE_KERNEL_%{_target_cpu}=1 %{?ksmp:-D__BOOT_KERNEL_SMP=1} %{!?ksmp:-D__BOOT_KERNEL_UP=1}"
+%{__make} %{?_smp_mflags} MODFLAGS="-DMODULE=1 -D__BOOT_KERNEL_H_ -D__MODULE_KERNEL_%{_target_cpu}=1 %{?ksmp:-D__BOOT_KERNEL_SMP=1} %{!?ksmp:-D__BOOT_KERNEL_UP=1}"
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 mkdir -p %{buildroot}/etc/rc.d/init.d/
-make install \
+%{__make} install \
     IUSER=`id -un` \
     IGROUP=`id -gn` \
     DESTDIR=%{buildroot}
 
 # Install and generate all the device stuff
-install -m 644 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/makedev.d/alsa
+%{__install} -m 644 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/makedev.d/alsa
 cp -a %{_sysconfdir}/makedev.d/00macros %{buildroot}%{_sysconfdir}/makedev.d/
-rm -f devices
+%{__rm} -f devices
 
 # Create entry list
 /dev/MAKEDEV \
@@ -121,11 +122,11 @@ rm -f devices
     -d %{buildroot}/dev -M alsa | sed 's|%{buildroot}||g' > device.list
 
 # Remove from the included docs
-rm -f doc/Makefile
+%{__rm} -f doc/Makefile
 
 # Remove for default rpm 4.1 to not fail
-rm -f %{buildroot}%{_sysconfdir}/makedev.d/00macros
-rm -f %{buildroot}/etc/rc.d/init.d/alsasound
+%{__rm} -f %{buildroot}%{_sysconfdir}/makedev.d/00macros
+%{__rm} -f %{buildroot}/etc/rc.d/init.d/alsasound
 
 %pre
 test -L /dev/snd && rm -f /dev/snd 2>/dev/null 2>&1 || :
@@ -137,17 +138,17 @@ test -L /dev/snd && rm -f /dev/snd 2>/dev/null 2>&1 || :
 /sbin/depmod -a -F /boot/System.map-%{kernel} %{kernel} >/dev/null 2>&1 || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f device.list
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CARDS-STATUS COPYING FAQ README TODO WARNING
 %doc doc/ alsa-kernel/Documentation/
 %{_sysconfdir}/makedev.d/alsa
 %{_includedir}/sound
 
 %files -n kernel%{?ksmp}-module-alsa
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 /lib/modules/%{kernel}/kernel/sound
 
 %changelog

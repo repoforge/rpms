@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 #define date           20031202
@@ -6,7 +7,7 @@
 Summary: A complete GTK+ frontend for xmame
 Name: gxmame
 Version: 0.34b
-Release: %{?date:0.%{date}.}1.fr
+Release: %{?date:0.%{date}.}1
 License: GPL
 Group: Applications/Emulators
 Source: http://dl.sf.net/gxmame/gxmame-%{!?date:%{version}}%{?date}.tar.gz
@@ -27,15 +28,15 @@ registery) allowing dual booter to have the same environement (favorite,
 times played, last game selected, gui preference...) under windows and Linux.
 
 %prep
-%setup -q -n %{name}-%{!?date:%{version}}%{?date}
+%setup -n %{name}-%{!?date:%{version}}%{?date}
 
 %build
 test -x configure || ./autogen.sh
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
@@ -44,10 +45,10 @@ mkdir installed-docs
 mv %{buildroot}%{_docdir}/%{name}*/* installed-docs/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc installed-docs/*
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Planet image rendering into the X root window
 Name: xplanet
 Version: 1.0.3
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Amusements/Graphics
 URL: http://xplanet.sourceforge.net/
@@ -22,7 +23,7 @@ orthographic, and rectangular.
 
 
 %prep
-%setup -q
+%setup
 
 
 %build

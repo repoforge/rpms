@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 #define prever pre1
 
 Summary: A library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.2
-Release: %{?prever:0.%{prever}.}1.fr
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -43,7 +44,7 @@ programs that need to access quicktime files using libquicktime.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?prever}
+%setup -n %{name}-%{version}%{?prever}
 
 %build
 # Fix plugin compilation
@@ -53,10 +54,10 @@ perl -pi -e 's|^LQT_LIBS = (.*)|LQT_LIBS = -L../../src/.libs $1|g' \
 %configure \
     %{?_without_firewire:--disable-firewire}
     %{?_without_mmx:--disable-mmx}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %post -p /sbin/ldconfig
@@ -64,10 +65,10 @@ rm -rf %{buildroot}
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_bindir}/lqtplay
 %{_bindir}/qt*
@@ -77,7 +78,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/libquicktime_config
 %{_bindir}/lqt-config
 %{_includedir}/*

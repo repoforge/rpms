@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: unRAR - extract, test and view RAR archives.
 Name: unrar
 Version: 3.3.6
-Release: 1.fr
+Release: 1
 License: Freeware
 Group: Applications/Archiving
 URL: http://www.rarlab.com/
@@ -19,21 +20,21 @@ and developed for extracting, testing and viewing the contents of
 archives created with the RAR archiver version 1.50 and above.
 
 %prep
-%setup -q -n %{name}
+%setup -n %{name}
 
 %build
 CXXFLAGS="%{optflags}" make -f makefile.unix
 
 %install
-rm -rf %{buildroot}
-install -m755 -D unrar %{buildroot}%{_bindir}/%{name}
-install -m644 -D %{SOURCE1} %{buildroot}%{_mandir}/man1/%{name}.1
+%{__rm} -rf %{buildroot}
+%{__install} -m755 -D unrar %{buildroot}%{_bindir}/%{name}
+%{__install} -m644 -D %{SOURCE1} %{buildroot}%{_mandir}/man1/%{name}.1
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc *.txt
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

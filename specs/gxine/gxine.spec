@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A GTK based frontend for the xine multimedia library
 Name: gxine
 Version: 0.3.3
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 Source:http://dl.sf.net/xine/%{name}-%{version}.tar.gz
@@ -25,18 +26,18 @@ Available rpmbuild rebuild options :
 --without : freedesktop
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 # We don't want those...
-rm -f %{buildroot}%{_libdir}/%{name}/{*.a,*.la}
+%{__rm} -f %{buildroot}%{_libdir}/%{name}/{*.a,*.la}
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
 # Desktop entry
@@ -51,10 +52,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %endif
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
 %{_bindir}/%{name}*
 %{_libdir}/%{name}

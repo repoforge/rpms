@@ -1,13 +1,14 @@
 # $Id$
+# Authority: matthias
 
-#$Id: xine.spec,v 1.1 2004/02/26 17:54:31 thias Exp $
+#$Id$
 
 %define desktop_vendor freshrpms
 
 Summary: A free multimedia player
 Name: xine
 Version: 0.9.23
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -35,15 +36,15 @@ Available rpmbuild rebuild options :
 --without : curl aalib lirc freedesktop
 
 %prep
-%setup -q -n xine-ui-%{version}
+%setup -n xine-ui-%{version}
 
 %build
 %configure %{?_without_lirc:--disable-lirc}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 %find_lang xine-ui
 
 # Remove unpackaged files
@@ -62,15 +63,15 @@ desktop-file-install --vendor %{desktop_vendor} \
     --add-category AudioVideo                   \
     misc/desktops/xine.desktop
 %else
-install -D -m644 misc/desktops/xine.desktop \
+%{__install} -D -m644 misc/desktops/xine.desktop \
     %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f xine-ui.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc xine-ui-doc/*
 #{!?_without_aalib:%{_bindir}/aaxine}
 %{_bindir}/*

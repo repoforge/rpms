@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.23.5
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 Source0: http://dl.sf.net/faac/%{name}-%{version}.tar.gz
@@ -31,19 +32,19 @@ This package contains development files and documentation for libfaac.
 
 
 %prep
-%setup -q -n %{name}
+%setup -n %{name}
 
 %build
 sh bootstrap
 %configure
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 

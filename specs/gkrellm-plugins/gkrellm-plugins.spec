@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define gkplugindir	%{_libdir}/gkrellm2/plugins
 
@@ -27,7 +28,7 @@
 Summary: Some neat plugins for GKrellM.
 Name: gkrellm-plugins
 Version: 2.1.12
-Release: 4.fr
+Release: 4
 License: GPL
 Group: Applications/System
 Source0: http://kmlinux.fjfi.cvut.cz/~makovick/gkrellm/gkrellweather-%{weatherver}.tgz
@@ -108,7 +109,7 @@ ping utility, x86 cpu speed, screenshot/lock and reminder.
 
 
 %prep
-%setup -q -T -a0 -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a14 -a16 -a17 -a18 -a19 -a20 -a21 -c %{name}-%{version}
+%setup -T -a0 -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a14 -a16 -a17 -a18 -a19 -a20 -a21 -c %{name}-%{version}
 # -a15
 %patch0 -p0
 perl -pi -e \
@@ -150,31 +151,31 @@ CXXFLAGS="%{optflags}" ; export CXXFLAGS
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{gkplugindir}
-install -m 755 plugins/* %{buildroot}%{gkplugindir}
+%{__install} -m 755 plugins/* %{buildroot}%{gkplugindir}
 mkdir -p %{buildroot}%{_bindir}
-install -m 755 dnetw %{buildroot}%{_bindir}
-install -m 755 GrabWeather %{buildroot}%{_bindir}
-install -m 755 pinger %{buildroot}%{gkplugindir}
+%{__install} -m 755 dnetw %{buildroot}%{_bindir}
+%{__install} -m 755 GrabWeather %{buildroot}%{_bindir}
+%{__install} -m 755 pinger %{buildroot}%{gkplugindir}
 # Man pages
 mkdir -p %{buildroot}%{_mandir}/man5
-install -m 644 `find . -type f -name "*.5"` %{buildroot}%{_mandir}/man5
+%{__install} -m 644 `find . -type f -name "*.5"` %{buildroot}%{_mandir}/man5
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files media
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{gkplugindir}/gkrellmms.so
 %{gkplugindir}/volume.so
 %{gkplugindir}/radio.so
 %{gkplugindir}/gkrellmss.so
 
 %files misc
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{gkplugindir}/seti.so
 %{gkplugindir}/gkrelldnet.so
 %{_bindir}/dnetw
@@ -188,7 +189,7 @@ rm -rf %{buildroot}
 %{gkplugindir}/gkrellmbgchg.so
 
 %files utils
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{gkplugindir}/mailwatch.so
 %{gkplugindir}/wireless.so
 %{gkplugindir}/reminder.so
@@ -201,7 +202,7 @@ rm -rf %{buildroot}
 %endif
 
 #%files snmp
-#%defattr(-, root, root)
+#%defattr(-, root, root, 0755)
 #%{gkplugindir}/gkrellm_snmp.so
 
 

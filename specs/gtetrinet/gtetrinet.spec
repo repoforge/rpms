@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A GNOME version of a tetris game playable on the net.
 Name: gtetrinet
 Version: 0.7.5
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Amusements/Games
 Source0: http://download.sourceforge.net/gtetrinet/%{name}-%{version}.tar.bz2
@@ -21,25 +22,25 @@ tetris game that is played over the internet. (If you don't know what Tetrinet
 is, check out tetrinet.org)
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
 perl -pi -e 's|Exec=%{name}|Exec=%{_prefix}/games/%{name}|g' %{name}.desktop
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %find_lang %{name}
 cp -a %{SOURCE1} .
 tar -xzvf %{SOURCE2} -C %{buildroot}/%{_datadir}/gtetrinet/themes/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README tetrinet.txt
 %config %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_prefix}/games/%{name}

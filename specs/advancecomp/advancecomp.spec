@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Recompression utilities for .PNG, .MNG and .ZIP files.
 Name: advancecomp
 Version: 1.7
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Emulators
 Source: http://dl.sf.net/advancemame/%{name}-%{version}.tar.gz
@@ -18,21 +19,21 @@ The main features are :
 * Recompress MNG files using Delta and Move optimization. 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING HISTORY README
 %{_bindir}/*
 %{_mandir}/man1/*

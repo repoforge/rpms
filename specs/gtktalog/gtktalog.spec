@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: The GNOME disk catalog.
 Name: gtktalog
 Version: 1.0.4
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Archiving
 Source: http://savannah.nongnu.org/download/gtktalog/gtktalog/sources/%{name}-%{version}.tar.bz2
@@ -23,14 +24,14 @@ search for files in your database with filename, category, description or file
 information parameter, and find in which CD the file you are looking for is.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
@@ -40,10 +41,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{buildroot}%{_datadir}/gnome/apps/Applications/%{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc ABOUT-NLS AUTHORS ChangeLog NEWS README TODO
 %{_bindir}/%{name}
 %{_libdir}/%{name}

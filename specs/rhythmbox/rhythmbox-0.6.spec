@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Do we build with mp3 and flac support?
 %define id3tag 1
@@ -10,7 +11,7 @@
 Name: rhythmbox
 Summary: Music Management Application 
 Version: 0.6.8
-Release: 0.1%{?_with_xine:xine}.fr
+Release: 0.1%{?_with_xine:xine}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
@@ -46,28 +47,28 @@ through GStreamer, Internet Radio support, playlists and more.
 
 
 %prep
-%setup -q
+%setup
 
 
 %build
 %configure %{?_with_xine:--enable-xine}
-make 
+%{__make} 
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
-rm -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
 %find_lang %name
 
-rm %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
+%{__rm} %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 touch %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %post 
@@ -82,7 +83,7 @@ done
 
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README NEWS
 %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/rhythmbox.schemas

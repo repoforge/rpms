@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # The driver(s) you want to compile in, e.g. "pctv", "serial", "any"
 %define driver "pctv"
@@ -21,7 +22,7 @@ Version: 0.6.6
 #%%if %{kmodule}
 #Release: fr1_%{krelver}
 #%%else
-Release: 2.fr
+Release: 2
 #%%endif
 License: GPL
 Group: System Environment/Daemons
@@ -50,21 +51,21 @@ If your remote requires special kernel modules to run, I guess you're stuck
 having to recompile a kernel and recompile lirc manually to get the modules!
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure \
     --with-driver=%{driver} \
     --disable-manage-devices
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
-install -m 755 -D %{SOURCE1} %{buildroot}/etc/init.d/lircd
-install -m 644 -D %{SOURCE2} %{buildroot}/etc/logrotate.d/lircd
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
+%{__install} -m 755 -D %{SOURCE1} %{buildroot}/etc/init.d/lircd
+%{__install} -m 644 -D %{SOURCE2} %{buildroot}/etc/logrotate.d/lircd
 perl -pi -e 's|\@SBINDIR\@|%{_sbindir}|g' %{buildroot}/etc/init.d/lircd
-rm -f doc/Makefile*
+%{__rm} -f doc/Makefile*
 mkdir -p %{buildroot}/dev
 ln -sf ttyS0 %{buildroot}/dev/lirc
 touch %{buildroot}/etc/lircd.conf
@@ -85,10 +86,10 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc ANNOUNCE AUTHORS ChangeLog COPYING NEWS README TODO doc remotes
 %doc contrib/*.conf contrib/irman2lirc contrib/lircrc contrib/lircs
 /etc/init.d/lircd

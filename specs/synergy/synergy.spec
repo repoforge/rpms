@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
 Version: 1.0.14
-Release: 1.fr
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/
@@ -19,18 +20,18 @@ with multiple computers on their desk since each system uses its
 own display.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

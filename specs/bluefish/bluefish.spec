@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A GTK2 web development application for experienced users
 Name: bluefish
 Version: 0.12
-Release: 2.fr
+Release: 2
 Group: Development/Tools
 License: GPL
 URL: http://bluefish.openoffice.nl/
@@ -23,14 +24,14 @@ dynamic and interactive websites, there is for example a lot of PHP
 support.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 # This directory needs to be detected by make install
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/pixmaps
@@ -45,10 +46,10 @@ mkdir -p %{buildroot}%{_datadir}/pixmaps
 perl -pi -e 's|%{buildroot}||g' %{buildroot}%{_datadir}/applications/*
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING
 %{_bindir}/bluefish
 %{_datadir}/bluefish

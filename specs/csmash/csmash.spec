@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A 3D tabletennis game.
 Name: csmash
 Version: 0.6.6
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Amusements/Games
 Source: http://dl.sf.net/cannonsmash/%{name}-%{version}.tar.gz
@@ -24,14 +25,14 @@ This program requires OpenGL and SDL. If your machine doesn't have 3D
 accelaration video card, this program runs very slowly.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
@@ -55,10 +56,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING CREDITS ChangeLog README README.en
 %{_bindir}/%{name}
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop

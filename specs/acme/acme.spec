@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Multimedia keyboard button tool for GNOME.
 Name: acme
 Version: 2.4.2
-Release: 2.fr
+Release: 2
 Group: System Environment/Daemons
 License: GPL
 URL: http://www.hadess.net/misc-code.php3
@@ -18,20 +19,20 @@ most laptops and internet keyboards: Volume, Brightness, Power, Eject, My Home,
 Search, E-Mail, Sleep, Screensaver, Finance and Help buttons.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --disable-schemas-install
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"

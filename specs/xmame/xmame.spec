@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 #define rcver rc2
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
@@ -6,7 +7,7 @@
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.79.1
-Release: %{?rcver:0.%{rcver}.}1.fr
+Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
 Source10: http://www.mame.net/roms/polyplay.zip
@@ -183,7 +184,7 @@ This version has been compiled for OpenGL display.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?rcver:-%{rcver}}
+%setup -n %{name}-%{version}%{?rcver:-%{rcver}}
 
 
 %build
@@ -239,7 +240,7 @@ done
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 for target in %{targets}; do
     make install-man \
@@ -273,11 +274,11 @@ popd
 mkdir -p %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
 
 # Install the ROMs
-install -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
+%{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
     %{buildroot}%{_datadir}/xmame/roms/
 
 # The extra dat files
-install -m 664 datfiles/*.dat %{buildroot}%{_datadir}/xmame/
+%{__install} -m 664 datfiles/*.dat %{buildroot}%{_datadir}/xmame/
 
 # Install the OpenGL cabinets
 %{!?_without_xgl: cp -a src/unix/cab %{buildroot}%{_datadir}/xmame/}
@@ -296,12 +297,12 @@ unzip -o %{SOURCE30}
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %if %{?_without_mame:0}%{!?_without_mame:1}
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README doc2/xmame/* contrib/tools/romalizer contrib/tools/mame-cd 
 %doc catver.ini
 %{_bindir}/chdman
@@ -339,7 +340,7 @@ rm -rf %{buildroot}
 
 %if %{?_without_mess:0}%{!?_without_mess:1}
 %files -n xmess
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README doc2/xmess/*
 %dir %attr(2775, root, games) %{_datadir}/xmess
 %dir %attr(2775, root, games) %{_datadir}/xmess/artwork

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A program to extract Microsoft Cabinet files
 Name: cabextract
 Version: 1.0
-Release: 1.fr
+Release: 1
 Group: Applications/Archiving
 License: GPL
 Source: http://www.kyz.uklinux.net/downloads/%{name}-%{version}.tar.gz
@@ -17,25 +18,25 @@ cabextract program simply unpacks such files.
 
 
 %prep
-%setup -q
+%setup
 
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

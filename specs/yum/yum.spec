@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Which distro to make the default configuration for, defaults to 'rh'
 %{?_with_yellowdog: %{expand: %%define distro yd}}
@@ -15,7 +16,7 @@
 Summary: YellowDog Updater Modified, an rpm package management utility
 Name: yum
 Version: 2.0.5
-Release: 1%{?date:.%{date}}.%{distro}.fr
+Release: 1%{?date:.%{date}}.%{distro}
 License: GPL
 Group: System Environment/Base
 URL: http://www.linux.duke.edu/projects/yum/
@@ -36,14 +37,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Yum is a utility that can check for and automatically download and
-install updated RPM packages. Dependencies are obtained and downloaded 
+%{__install} updated RPM packages. Dependencies are obtained and downloaded 
 automatically prompting the user as necessary.
 
 Available rpmbuild rebuild options :
 --with : fedora (default) yellowdog redhat
 
 %prep
-%setup -q -n %{name}%{!?date:-%{version}}
+%setup -n %{name}%{!?date:-%{version}}
 
 %build
 # Replace interpreter's name if it's not "python"
@@ -55,17 +56,17 @@ fi
 # Change the defaut debug level of the cron entry
 perl -pi -e 's|-d 0|-d 1|g' etc/yum.cron
 %configure 
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
-make DESTDIR=%{buildroot} install
+%{__rm} -rf %{buildroot}
+%{__make} DESTDIR=%{buildroot} install
 %find_lang %{name}
-install -m 644 %{_sourcedir}/yum-%{distro}.conf %{buildroot}/etc/yum.conf
+%{__install} -m 644 %{_sourcedir}/yum-%{distro}.conf %{buildroot}/etc/yum.conf
 cp -a %{_sourcedir}/RPM-GPG-KEY* .
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add yum
@@ -90,7 +91,7 @@ if [ $1 -eq 0 ]; then
 fi
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README AUTHORS COPYING TODO
 %ifarch ppc
 %doc RPM-GPG-KEY.yellowdog

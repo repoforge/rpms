@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: DVD menu navigation library
 Name: libdvdnav
 Version: 0.1.9
-Release: 3.fr
+Release: 3
 Group: System Environment/Libraries
 License: GPL
 URL: http://dvd.sourceforge.net/
@@ -30,26 +31,26 @@ applications which will use libdvdnav.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/dvdnav-config
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so

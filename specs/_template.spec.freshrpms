@@ -1,9 +1,9 @@
 # $Id: _template.spec.freshrpms,v 1.2 2004/02/27 00:34:01 thias Exp $
 
-Summary: .
+Summary: 
 Name: 
 Version: 
-Release: 1.fr
+Release: 1
 License: GPL
 Group: 
 URL: 
@@ -17,19 +17,19 @@ BuildRequires:
 %description
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
@@ -44,6 +44,6 @@ rm -rf %{buildroot}
 %{_mandir}/man?/*
 
 %changelog
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 0
+* Wed Mar 17 2004 Matthias Saou <http://freshrpms.net/> 0-1
 - Initial RPM release.
 

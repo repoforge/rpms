@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
-#$Id: proftpd.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+#$Id$
 
 Summary: A flexible, stable and highly-configurable FTP Server.
 Name: proftpd
 Version: 1.2.9
-Release: 6%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}.fr
+Release: 6%{?_with_ldap:_ldap}%{?_with_mysql:_mysql}%{?_with_postgresql:_pgsql}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/
@@ -44,7 +45,7 @@ Available rpmbuild rebuild options :
 --with : ldap mysql postgresql
 
 %prep
-%setup -q
+%setup
 
 %build
 # Workaround for the PostgreSQL include file
@@ -65,19 +66,19 @@ fi
     %{?_with_mysql:--with-libraries=%{_libdir}/mysql} \
     %{?_with_postgresql:--with-libraries=%{_libdir}} \
     --with-modules=mod_readme:mod_auth_pam%{?_with_ldap::mod_ldap}%{?_with_mysql::mod_sql:mod_sql_mysql}%{?_with_postgresql::mod_sql:mod_sql_postgres}%{!?_without_tls::mod_tls}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall rundir=%{buildroot}%{_localstatedir}/run/proftpd \
     INSTALL_USER=`id -un` \
     INSTALL_GROUP=`id -gn`
-install -D -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
-install -D -m 640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
-install -D -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
-install -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
-install -D -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
-install -D -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
+%{__install} -D -m 644 contrib/dist/rpm/ftp.pamd %{buildroot}%{_sysconfdir}/pam.d/ftp
+%{__install} -D -m 640 %{SOURCE1} %{buildroot}%{_sysconfdir}/proftpd.conf
+%{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_sysconfdir}/rc.d/init.d/proftpd
+%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/xproftpd
+%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/proftpd
+%{__install} -D -m 644 %{SOURCE5} %{buildroot}/var/ftp/welcome.msg
 mkdir -p %{buildroot}/var/ftp/uploads
 mkdir -p %{buildroot}/var/ftp/pub
 mkdir -p %{buildroot}/var/log/proftpd
@@ -110,10 +111,10 @@ if [ $1 -ge 1 ]; then
 fi
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING CREDITS ChangeLog NEWS README README.LDAP README.mod_sql
 %doc README.modules README.PAM doc/* sample-configurations
 %dir %{_localstatedir}/run/proftpd

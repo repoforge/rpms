@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define mozver 1.4.1
 
 Summary: DjVu viewers, encoders and utilities.
 Name: djvulibre
 Version: 3.5.12
-Release: 3.fr
+Release: 3
 License: GPL
 Group: Applications/Publishing
 Source: http://dl.sf.net/djvu/%{name}-%{version}.tar.gz
@@ -41,27 +42,27 @@ DjVulibre-3.5 contains:
 - An up-to-date version of the C++ DjVu Reference Library.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 mkdir -p %{buildroot}%{_libdir}/mozilla-%{mozver}/plugins
 ln -s ../../netscape/plugins/nsdejavu.so %{buildroot}%{_libdir}/mozilla-%{mozver}/plugins/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README COPYRIGHT COPYING INSTALL NEWS TODO doc
 %{_bindir}/*
 %{_libdir}/*.so*

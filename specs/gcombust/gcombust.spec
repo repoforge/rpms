@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A useful GTK+ front-end for mkisofs and cdrecord
 Name: gcombust
 Version: 0.1.55
-Release: 2.fr
+Release: 2
 Epoch: 1
 License: GPL
 Group: Applications/Archiving
@@ -23,19 +24,19 @@ or writing ten lines of arguments and it can maximize disk usage by
 hinting which directories and files to use.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure 
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)

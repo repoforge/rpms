@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A Linux video stream processing utility
 Name: transcode
 Version: 0.6.12
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
@@ -61,7 +62,7 @@ Available rpmbuild rebuild options :
             a52 libfame magick mjpeg
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure \
@@ -78,19 +79,19 @@ Available rpmbuild rebuild options :
     %{?_without_dv:--without-dv} \
     %{?_without_a52:--without-a52} \
     %{?_without_libfame:--without-libfame}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 mv %{buildroot}%{_docdir}/transcode installed-docs
 strip %{buildroot}%{_libdir}/transcode/*.so
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO installed-docs/*
 %{_bindir}/*
 %{_libdir}/transcode

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 #define date   2003-11-07
 #define sqdate %(echo %{date} | tr -d '-')
@@ -6,7 +7,7 @@
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
 Version: 0.4.8
-Release: 2%{?date:.%{sqdate}}.fr
+Release: 2%{?date:.%{sqdate}}
 License: GPL
 Group: System Environment/Libraries
 %if %{?date:0}%{!?date:1}
@@ -60,7 +61,7 @@ Install this package if you want to compile apps with ffmpeg support.
 
 
 %prep
-%setup -q -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}}
+%setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}}
 
 %build
 %configure \
@@ -77,15 +78,15 @@ Install this package if you want to compile apps with ffmpeg support.
     %{!?_without_faad: --enable-faad} \
     %{!?_without_faac: --enable-faac} \
     %{!?_without_a52dec: --enable-a52}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Make installlib is broken in 0.4.6-8, so we do it by hand
-install -m 644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/
-install -m 644 libavformat/libavformat.a %{buildroot}%{_libdir}/
+%{__install} -m 644 libavcodec/libavcodec.a %{buildroot}%{_libdir}/
+%{__install} -m 644 libavformat/libavformat.a %{buildroot}%{_libdir}/
 
 # Create compat symlink
 mkdir %{buildroot}%{_libdir}/{libavcodec,libavformat}
@@ -93,10 +94,10 @@ ln -s ../libavcodec.a %{buildroot}%{_libdir}/libavcodec/libavcodec.a
 ln -s ../libavformat.a %{buildroot}%{_libdir}/libavformat/libavformat.a
 
 # Remove from the included docs
-rm -f doc/Makefile doc/*.1
+%{__rm} -f doc/Makefile doc/*.1
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
@@ -104,7 +105,7 @@ rm -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING CREDITS Changelog README doc/
 %{_bindir}/*
 %{_libdir}/libavcodec-*.so
@@ -115,7 +116,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/%{name}
 %{_libdir}/libavcodec
 %{_libdir}/libavcodec.a

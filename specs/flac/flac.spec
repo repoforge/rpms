@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define xmmsinputdir %(xmms-config --input-plugin-dir)
 
 Summary: An encoder/decoder for the Free Lossless Audio Codec
 Name: flac
 Version: 1.1.0
-Release: 4.fr
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/flac/%{name}-%{version}.tar.gz
@@ -56,27 +57,27 @@ xmms.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{xmmsinputdir}
 %makeinstall xmmsinputplugindir=%{buildroot}%{xmmsinputdir}
 find doc/ -name "Makefile*" -exec rm -f {} \;
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING* README doc
 %{_bindir}/flac
 %{_bindir}/metaflac
@@ -84,7 +85,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -92,7 +93,7 @@ rm -rf %{buildroot}
 %{_datadir}/aclocal/*.m4
 
 %files -n xmms-flac
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %exclude %{xmmsinputdir}/*.la
 %{xmmsinputdir}/*.so
 

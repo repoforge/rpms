@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A software codec for DV video, used by most digital camcorders.
 Name: libdv
 Version: 0.101
-Release: 2.fr
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 Source: http://dl.sf.net/libdv/%{name}-%{version}.tar.gz
@@ -34,14 +35,14 @@ incorporate libdv into applications.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %post -p /sbin/ldconfig
@@ -49,17 +50,17 @@ rm -rf %{buildroot}
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPY* NEWS README* TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

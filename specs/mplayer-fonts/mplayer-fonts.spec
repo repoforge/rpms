@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Default font encoding, iso-8859-1 iso-8859-2 iso-8859-7 or cp1250
 %define font iso-8859-1
@@ -9,7 +10,7 @@
 Summary: Font files for MPlayer, the Movie Player for Linux
 Name: mplayer-fonts
 Version: 1.1
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -29,12 +30,12 @@ nice antialiased shaded subtitles and OSD.
 This package contains the fonts used for subtitles and OSD.
 
 %prep
-%setup -q -c %{name}-%{version} -a1 -a2 -a3
+%setup -c %{name}-%{version} -a1 -a2 -a3
 
 %build
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{_datadir}/mplayer/
 cp -a * %{buildroot}%{_datadir}/mplayer/
 # Make a symlink to the default font
@@ -48,7 +49,7 @@ ln -s -f \
         rmdir %{_datadir}/mplayer/font 2>/dev/null || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(0644, root, root, 0755)

@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define real_name libdvbpsi3
 
 Summary: A library for decoding and generating MPEG TS and DVB PSI tables.
 Name: libdvbpsi
 Version: 0.1.4
-Release: 1.fr
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 Source: http://download.videolan.org/pub/%{name}/%{version}/%{real_name}-%{version}.tar.bz2
@@ -38,14 +39,14 @@ programs with libdvbpsi support.
 
 
 %prep
-%setup -q -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure --enable-release
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %post -p /sbin/ldconfig
@@ -53,15 +54,15 @@ rm -rf %{buildroot}
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README
 %{_libdir}/%{name}.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/%{name}.a
 %exclude %{_libdir}/%{name}.la

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor  freshrpms
 
@@ -8,7 +9,7 @@
 Summary: DVD ripping graphical tool using transcode.
 Name: perl-Video-DVDRip
 Version: 0.50.16
-Release: 3.fr
+Release: 3
 License: Artistic
 Group: Applications/Multimedia
 Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
@@ -24,15 +25,15 @@ dvd::rip is a Perl Gtk+ based DVD copy program built on top of a low level
 DVD Ripping API, which uses the Linux Video Stream Processing Tool transcode.
 
 %prep
-%setup -q -n Video-DVDRip-%{version}
+%setup -n Video-DVDRip-%{version}
 
 %build
 perl Makefile.PL
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install \
+%{__rm} -rf %{buildroot}
+%{__make} install \
     INSTALLSCRIPT=%{buildroot}%{_bindir} \
     INSTALLSITELIB=%{buildroot}%{perl_sitelib} \
     INSTALLSITEARCH=%{buildroot}%{perl_sitearch} \
@@ -44,10 +45,10 @@ make install \
     INST_MAN3DIR=%{buildroot}%{_mandir}/man3
 
 # Unpackaged strange files!
-rm -f %{buildroot}%{_mandir}/man?/.exists* || :
+%{__rm} -f %{buildroot}%{_mandir}/man?/.exists* || :
 
 # Unneeded, all is in sitelib
-rm -rf %{buildroot}%{perl_sitearch}
+%{__rm} -rf %{buildroot}%{perl_sitearch}
 
 # Desktop entry
 cat > dvdrip.desktop << EOF
@@ -72,10 +73,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 perl -pi -e 's/BEGIN {\n/BEGIN {\n\t# Workaround for RH9 NPTL bug\n\t\$ENV{LD_ASSUME_KERNEL} = "2.2.5";\n/g' %{buildroot}%{_bindir}/dvdrip
 
 %clean 
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/*
 %{perl_sitelib}/Video/*
 %{_datadir}/applications/*dvdrip.desktop

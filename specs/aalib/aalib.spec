@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define real_version 1.4rc5
 
 Summary: An ASCII art library
 Name: aalib
 Version: 1.4.0
-Release: 4.fr
+Release: 4
 Group: System Environment/Libraries
 License: LGPL
 URL: http://aa-project.sourceforge.net/aalib/
@@ -45,13 +46,13 @@ using AA-lib, you'll need to install aalib-devel.
     --with-x \
     --with-ncurses \
     --with-curses-driver=yes
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall 
-rm -f %{buildroot}%{_infodir}/dir || :
+%{__rm} -f %{buildroot}%{_infodir}/dir || :
 
 
 %post
@@ -69,11 +70,11 @@ fi
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc ANNOUNCE AUTHORS COPYING ChangeLog NEWS
 %{_bindir}/aafire
 %{_bindir}/aainfo
@@ -85,7 +86,7 @@ rm -rf %{buildroot}
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/aalib-config
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

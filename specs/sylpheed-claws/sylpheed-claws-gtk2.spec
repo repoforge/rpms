@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: DEVELOPMENT branch of the sylpheed GTK+ e-mail client
 Name: sylpheed-claws
 Version: 0.9.9
-Release: 1.gtk2.fr
+Release: 1.gtk2
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/
@@ -44,7 +45,7 @@ Available rpmbuild rebuild options :
 --without : openssl, ipv6, gpgme, ldap, aspell
 
 %prep
-%setup -q -n sylpheed-%{version}claws
+%setup -n sylpheed-%{version}claws
 
 %build
 if pkg-config openssl; then
@@ -61,10 +62,10 @@ fi
     %{?_with_pilot: --enable-jpilot} \
     --enable-trayicon-plugin \
     --enable-spamassassin-plugin
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall gnomedatadir=%{buildroot}%{_datadir}
 #find_lang sylpheed
 strip %{buildroot}%{_libdir}/sylpheed/plugins/*.so
@@ -83,11 +84,11 @@ test -d %{buildroot}%{_prefix}/sylpheed && \
     mv %{buildroot}%{_prefix}/sylpheed %{buildroot}%{_datadir}/sylpheed
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 #files -f sylpheed.lang
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog* README* INSTALL* TODO*
 %{_bindir}/sylpheed
 %{_includedir}/sylpheed

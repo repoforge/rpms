@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define real_name      CMFPlone
 %define real_version   2.0-rc6
@@ -11,7 +12,7 @@
 Summary: Content Management System built over Zope's content management framework
 Name: plone
 Version: 2.0
-Release: 0.1.rc6.fr
+Release: 0.1.rc6
 License: GPL
 Group: System Environment/Daemons
 Source: http://dl.sf.net/plone/%{real_name}%{real_version}.tar.gz
@@ -29,18 +30,18 @@ intended to be easily customizable, in terms of both the types of content
 used and the policies and services it provides.
 
 %prep
-%setup -q -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 # Not much, eh? :-)
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}/%{software_home}/Products
 cp -a * %{buildroot}%{software_home}/Products/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

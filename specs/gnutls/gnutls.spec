@@ -1,10 +1,11 @@
 # $Id$
+# Authority: matthias
 
 
 Summary:  The GNU Transport Layer Security library
 Name: gnutls
 Version: 1.0.7
-Release: 1.fr
+Release: 1
 License: LGPL/GPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/gnutls/
@@ -51,7 +52,7 @@ This package contains some tools using for GnuTLS.
 
 
 %prep
-%setup -q
+%setup
 
 
 %build

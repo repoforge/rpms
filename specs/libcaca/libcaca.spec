@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: The library for Colour AsCii Art, text mode graphics
 Name: libcaca
 Version: 0.9
-Release: 1.fr
+Release: 1
 URL: http://sam.zoy.org/projects/libcaca/
 Source: http://sam.zoy.org/projects/libcaca/%{name}-%{version}.tar.bz2
 License: LGPL
@@ -53,7 +54,7 @@ sprite blitting.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure \
@@ -61,16 +62,16 @@ sprite blitting.
     --enable-ncurses \
     --enable-x11 \
     --enable-imlib2
-make 
+%{__make} 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 # We want to include the docs ourselves from the source directory
 mv %{buildroot}%{_docdir}/%{name}-dev %{name}-devel-docs
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files devel
 %defattr(-, root, root, 0755)

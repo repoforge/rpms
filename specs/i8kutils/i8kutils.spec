@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define gkrellmpluginver 2.5
 
 Summary: Dell laptop (Inspiron 8000 and others) SMM BIOS support tools.
 Name: i8kutils
 Version: 1.17
-Release: 7.fr
+Release: 7
 License: GPL
 Group: System Environment/Base
 Source0: http://people.debian.org/~dz/i8k/i8kutils-%{version}.tar.bz2
@@ -29,16 +30,16 @@ Note that you need the "Inspiron 8000" option compiled into your kernel
 (included in the main kernel tree since 2.4.14-pre8).
 
 %prep
-%setup -q -a 1
+%setup -a 1
 
 %build
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 pushd i8krellm-%{gkrellmpluginver}
     make %{?_smp_mflags} i8krellm
 popd
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 mkdir -p %{buildroot}%{_bindir}
 cp -a i8kbuttons i8kctl i8kmon i8kfan %{buildroot}%{_bindir}/
@@ -51,7 +52,7 @@ pushd i8krellm-%{gkrellmpluginver}
     cp -a i8krellm.so %{buildroot}%{_libdir}/gkrellm2/plugins/
 popd
 
-install -D -m 755 %{SOURCE2} %{buildroot}%{_initrddir}/i8kbuttons
+%{__install} -D -m 755 %{SOURCE2} %{buildroot}%{_initrddir}/i8kbuttons
 
 %post
 /sbin/chkconfig --add i8kbuttons
@@ -63,10 +64,10 @@ if [ $1 -eq 0 ]; then
 fi
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README.i8kutils i8kmon.conf
 %doc i8krellm-%{gkrellmpluginver}/AUTHORS i8krellm-%{gkrellmpluginver}/README
 %doc i8krellm-%{gkrellmpluginver}/Changelog

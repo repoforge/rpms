@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 #define prever rc2
 
 Summary: The Advanced Linux Sound Architecture (ALSA) utilities.
 Name: alsa-utils
 Version: 1.0.2
-Release: %{?prever:0.%{prever}.}1.fr
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 Source0: ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}%{?prever}.tar.bz2
@@ -28,25 +29,25 @@ binary compatibility for most OSS programs.
 This package includes utilities for systems using ALSA.
 
 %prep
-%setup -q -n %{name}-%{version}%{?prever}
+%setup -n %{name}-%{version}%{?prever}
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make DESTDIR=%{buildroot} install
-install -D -m755 %{SOURCE1} %{buildroot}%{_initrddir}/alsactl
+%{__rm} -rf %{buildroot}
+%{__make} DESTDIR=%{buildroot} install
+%{__install} -D -m755 %{SOURCE1} %{buildroot}%{_initrddir}/alsactl
 mkdir -p %{buildroot}/etc/rc{0,6}.d
 ln -sf ../init.d/alsactl %{buildroot}/etc/rc0.d/S01alsactl
 ln -sf ../init.d/alsactl %{buildroot}/etc/rc6.d/S01alsactl
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING ChangeLog README TODO
 %{_initrddir}/alsactl
 /etc/rc0.d/S01alsactl

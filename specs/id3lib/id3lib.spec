@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A software library for manipulating ID3v1 and ID3v2 tags
 Name: id3lib
 Version: 3.8.3
-Release: 6.fr
+Release: 6
 License: LGPL
 Group: System Environment/Libraries
 Source: http://dl.sf.net/id3lib/%{name}-%{version}.tar.gz
@@ -33,35 +34,35 @@ tag manipulation.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --enable-debug=no
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Clean docs for inclusion
-rm -f doc/{Doxyfile*,Makefile*,*.in}
-rm -rf examples/{Makefile*,.deps/,.libs/}
+%{__rm} -f doc/{Doxyfile*,Makefile*,*.in}
+%{__rm} -rf examples/{Makefile*,.deps/,.libs/}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog HISTORY NEWS README THANKS TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc doc/ examples/
 %{_includedir}/*
 %exclude %{_libdir}/*.la

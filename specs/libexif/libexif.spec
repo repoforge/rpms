@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Name: libexif
 Summary: EXIF image tag library
 Version: 0.5.12
-Release: 2.fr
+Release: 2
 License: GPL
 URL: http://libexif.sourceforge.net/
 Source: http://dl.sf.net/libexif/%{name}-%{version}.tar.gz
@@ -27,27 +28,27 @@ that you can use to develop libexif applications.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc ChangeLog README
 %{_libdir}/*.so*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: An MPEG audio player
 Name: mpg321
 Version: 0.2.10
-Release: 4.fr
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/
@@ -21,21 +22,21 @@ of these capacities, mpg321 can be used as a drop-in replacement for
 mpg123.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --with-default-audio=esd
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files 
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING HACKING NEWS README* THANKS TODO
 %{_bindir}/*
 %{_mandir}/man1/*

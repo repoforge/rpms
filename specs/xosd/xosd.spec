@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define xmmsgeneraldir %(xmms-config --general-plugin-dir)
 
 Summary: XOSD displays transparent text on your screen like the OSD of TVs
 Name: xosd
 Version: 2.2.5
-Release: 1.fr
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ignavus.net/software.html
@@ -44,25 +45,25 @@ XOSD library, similarly to TV OSD.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --enable-old-plugin
-make %{_smp_mflags}
+%{__make} %{_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %{_bindir}/osd_cat
 %{_libdir}/*.so.*
@@ -70,7 +71,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/osd_cat*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/xosd-config
 %{_includedir}/*
 %{_libdir}/*.a
@@ -81,7 +82,7 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %files -n xmms-xosd
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %exclude %{xmmsgeneraldir}/*.la
 %{xmmsgeneraldir}/*.so
 

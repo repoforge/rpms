@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Some themes for the GNU Krell Monitor.
 Name: gkrellm-themes
 Version: 2.1.8
-Release: 3.fr
+Release: 3
 License: GPL
 Group: Applications/System
 Source: gkrellm-themes.tar.bz2
@@ -24,12 +25,12 @@ This package contains various themes to use with GKrellM. You will of
 course have to install the main GKrellM package to use them.
 
 %prep
-%setup -q -n %{name}
+%setup -n %{name}
 
 %build
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{_datadir}/gkrellm2/themes
 cd %{buildroot}%{_datadir}/gkrellm2/themes
 find $RPM_BUILD_DIR/%{name} -name "*gz" -exec tar -xzvf {} \;
@@ -39,10 +40,10 @@ find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_datadir}/gkrellm2/themes/*
 
 %changelog

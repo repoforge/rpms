@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Embeddable database
 Name: metakit
 Version: 2.4.9.2
-Release: 3.fr
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.equi4.com/metakit/
@@ -30,32 +31,32 @@ Header files and development documentation for metakit.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 cd unix
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 cd unix
-make install DESTDIR=%{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README
 %{_libdir}/*.so
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGES MetaKit.html WHATSNEW doc
 %{_includedir}/*
 %exclude %{_libdir}/*.la

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Additional maps for Xplanet, the planet image rendering program
 Name: xplanet-maps
 Version: 1.0
-Release: 2.fr
+Release: 2
 License: Distributable
 Group: Amusements/Graphics
 URL: http://flatplanet.sourceforge.net/maps/
@@ -22,19 +23,19 @@ Additional maps (surfaces) to use with Xplanet.
 
 
 %prep
-%setup -q -c %{name}-%{version} -a 1 -a 2 -a 3 -a 4 -a 5 -a 6
+%setup -c %{name}-%{version} -a 1 -a 2 -a 3 -a 4 -a 5 -a 6
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{_datadir}/
 # Already included with xplanet
-rm -f usr/local/share/xplanet/images/earth.jpg
+%{__rm} -f usr/local/share/xplanet/images/earth.jpg
 cp -a usr/local/share/xplanet %{buildroot}%{_datadir}/
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files

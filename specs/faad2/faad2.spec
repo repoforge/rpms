@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define xmmsinputdir %(xmms-config --input-plugin-dir)
 #define prever       rc3
@@ -6,7 +7,7 @@
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
-Release: %{?prever:0.%{prever}.}1.fr
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/faac/%{name}-%{version}%{?prever:-%{prever}}.tar.gz
@@ -47,7 +48,7 @@ This package contains development files and documentation for libfaad.
 
 
 %prep
-%setup -q -n %{name}
+%setup -n %{name}
 %patch -p1 -b .makefile-separator
 
 %build
@@ -56,30 +57,30 @@ sh bootstrap
     --with-xmms \
     --with-mp4v2
 #   --with-drm
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 # Remove this wrong include
 perl -pi -e 's|#include <systems.h>||g' %{buildroot}%{_includedir}/mpeg4ip.h
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 
 %files -n xmms-aac
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc plugins/xmms/AUTHORS plugins/xmms/NEWS
 %doc plugins/xmms/README plugins/xmms/TODO
 %exclude %{xmmsinputdir}/*.a
@@ -87,7 +88,7 @@ rm -rf %{buildroot}
 %{xmmsinputdir}/*.so
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

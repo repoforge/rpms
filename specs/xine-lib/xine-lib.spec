@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define libname libxine1
 %define libver  1-rc3a
@@ -9,7 +10,7 @@
 Summary: Core library for the xine video player
 Name: xine-lib
 Version: %{apiver}
-Release: 0.8.rc3a.fr
+Release: 0.8.rc3a
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -85,17 +86,17 @@ use the Xine library.
 
 
 %prep
-%setup -q -n %{name}-%{libver}
+%setup -n %{name}-%{libver}
 
 %build
 %configure \
     --with-pic \
     %{?_without_alsa:--disable-alsa} \
     %{!?_with_ext-dvdnav:--with-included-dvdnav}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-make install DESTDIR=%{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{libname}
 
 # Strip all those libs!
@@ -105,24 +106,24 @@ strip \
     || :
 
 # Remove all those unused docs
-rm -rf %{buildroot}%{_docdir}/xine || :
+%{__rm} -rf %{buildroot}%{_docdir}/xine || :
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{libname}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_libdir}/*.so.*
 %{_libdir}/xine
 %{_datadir}/xine
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc doc/hackersguide/*.sgml
 %{_bindir}/*
 %{_includedir}/*

@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A full-featured GTK+ based fast e-mail client
 Name: sylpheed
 Version: 0.9.10
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://sylpheed.good-day.net/
@@ -38,7 +39,7 @@ Available rpmbuild rebuild options :
 --without : ssl, ipv6, gpgme, ldap
 
 %prep
-%setup -q
+%setup
 
 %build
 if pkg-config openssl; then
@@ -52,13 +53,13 @@ fi
     %{!?_without_gpgme: --enable-gpgme} \
     %{!?_without_ldap: --enable-ldap} \
     %{?_with_pilot: --enable-jpilot}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-install -D -m644 %{name}-64x64.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D -m644 %{name}-64x64.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} --delete-original \
@@ -69,10 +70,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f  %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING README* TODO*
 %{_bindir}/%{name}
 %{_datadir}/applications/*%{name}.desktop

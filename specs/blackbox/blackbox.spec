@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Very small and fast Window Manager.
 Name: blackbox
 Version: 0.65.0
-Release: 7.fr
+Release: 7
 License: GPL
 Group: User Interface/Desktops
 Source0: http://dl.sf.net/blackboxwm/blackbox-%{version}.tar.gz
@@ -26,17 +27,17 @@ Available rpmbuild rebuild options :
 --without : nls
 
 %prep
-%setup -q
+%setup
 %patch -p0
 
 %build
 # Work around NLS problem
 export LANG="en_US" LC_ALL="en_US"
 %configure %{?_without_nls:--disable-nls}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 mkdir -p %{buildroot}%{_datadir}/apps/switchdesk
 cat > %{buildroot}%{_datadir}/apps/switchdesk/Xclients.%{name} << EOF
@@ -50,13 +51,13 @@ exec /etc/X11/xdm/Xsession %{name}
 EOF
 
 # Install the desktop entry
-install -m 644 -D %{SOURCE1} %{buildroot}%{_datadir}/xsessions/%{name}.desktop
+%{__install} -m 644 -D %{SOURCE1} %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* LICENSE README*
 %attr(755, root, root) /etc/X11/gdm/Sessions/Blackbox
 %{_bindir}/*

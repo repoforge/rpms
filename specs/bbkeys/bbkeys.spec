@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A completely configurable key-combo grabber for blackbox.
 Name: bbkeys
 Version: 0.8.6
-Release: 3.fr
+Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://bbkeys.sf.net/
@@ -19,21 +20,21 @@ as well.  bbkeys is easily configurable via directly hand-editting the user's
 ~/.bbkeysrc file, or by using the GUI total blackbox configurator, bbconf.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files 
-%defattr(-, root, root) 
+%defattr(-, root, root, 0755) 
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO
 %exclude %{_prefix}/doc
 %{_bindir}/*

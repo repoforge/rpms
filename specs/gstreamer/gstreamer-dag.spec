@@ -8,7 +8,7 @@
 Summary: GStreamer streaming media framework runtime
 Name: gstreamer07
 Version: %{majmin}.%{micro}
-Release: 0.1.fr
+Release: 0.1
 Group: Applications/Multimedia
 License: LGPL
 URL: http://gstreamer.net/
@@ -84,9 +84,9 @@ with different major/minor versions of GStreamer.
 
 
 %prep
-%setup -q -n gstreamer-%{version}
+%setup -n gstreamer-%{version}
 # Workaround a glib 2.3 problem for now
-rm -f gst/gstmarshal.{c,h}
+%{__rm} -f gst/gstmarshal.{c,h}
 
 
 %build
@@ -97,23 +97,23 @@ rm -f gst/gstmarshal.{c,h}
     --disable-examples \
     --enable-debug \
     --with-cachedir=%{_localstatedir}/cache/gstreamer-%{majmin}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install  
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang gstreamer-%{majmin}
 
 # Remove .la files and static libs that we don't want in the packages
-rm -f %{buildroot}%{_libdir}/gstreamer-%{majmin}/*.{a,la}
-rm -f %{buildroot}%{_libdir}/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majmin}/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/*.{a,la}
 # Create empty cache directory
 mkdir -p %{buildroot}%{_localstatedir}/cache/gstreamer-%{majmin}
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 <<<<<<< gstreamer.spec
 %post 
@@ -135,7 +135,7 @@ DISPLAY="" %{_bindir}/gst-register --gst-mask="0" &>/dev/null
 >>>>>>> 1.3
 
 %files -f gstreamer-%{majmin}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING* ChangeLog DEVEL NEWS README TODO
 %{_bindir}/gst-complete-%{majmin}
 %{_bindir}/gst-compprep-%{majmin}
@@ -162,7 +162,7 @@ DISPLAY="" %{_bindir}/gst-register --gst-mask="0" &>/dev/null
 
 
 %files -n gstreamer-tools
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/gst-complete
 %{_bindir}/gst-compprep
 %{_bindir}/gst-feedback
@@ -176,7 +176,7 @@ DISPLAY="" %{_bindir}/gst-register --gst-mask="0" &>/dev/null
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/gstreamer-%{majmin}
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.so

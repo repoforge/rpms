@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A Nintendo GameBoy Color emulator.
 Name: gnuboy
 Version: 1.0.3
-Release: 4.fr
+Release: 4
 License: GPL
 Group: Applications/Emulators
 Source: http://gnuboy.unix-fu.org/%{name}-%{version}.tar.gz
@@ -17,21 +18,21 @@ gnuboy (all lowercase) is a portable program for emulating the
 Nintendo GameBoy Color software platform.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc docs/* COPYING README 
 %{_bindir}/*
 

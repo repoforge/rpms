@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)
@@ -6,7 +7,7 @@
 Summary: A Gtk2 based multiprotocol instant messaging client
 Name: gaim
 Version: 0.75
-Release: 2.fr
+Release: 2
 Epoch: 1
 License: GPL
 Group: Applications/Internet
@@ -54,7 +55,7 @@ Available rpmbuild rebuild options :
 --with : tcltk arts perl
 
 %prep
-%setup -q -n %{name}-%{?date:%{date}}%{!?date:%{version}}
+%setup -n %{name}-%{?date:%{date}}%{!?date:%{version}}
 %patch0 -p1 -b .desktop
 %patch1 -p1 -b .prefs
 %patch2 -p0 -b .security
@@ -64,17 +65,17 @@ Available rpmbuild rebuild options :
     %{!?_with_tcltk:--disable-tcl --disable-tk} \
     %{!?_with_arts:--disable-artsc} \
     %{!?_with_perl:--disable-perl}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 strip %{buildroot}%{_libdir}/{*.so*,%{name}/*.so} || :
 %{?_with_perl:rm -f %{buildroot}%{perl_archlib}/perllocal.pod}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)

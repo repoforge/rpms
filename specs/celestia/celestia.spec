@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: An OpenGL real-time visual space simulation.
 Name: celestia
 Version: 1.3.0
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Amusements/Graphics
 Source0: http://dl.sf.net/celestia/%{name}-%{version}.tar.bz2
@@ -29,20 +30,20 @@ spacecraft only a few meters across. A 'point-and-goto' interface makes it
 simple to navigate through the universe to the object you want to visit.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure  --disable-debug --with-gtk
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
-install -m 644 %{SOURCE1} \
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
+%{__install} -m 644 %{SOURCE1} \
         %{buildroot}%{_datadir}/%{name}/extras/minormoons.ssc
-install -m 644 %{SOURCE2} \
+%{__install} -m 644 %{SOURCE2} \
         %{buildroot}%{_datadir}/%{name}/extras/numberedmoons.ssc
-install -m 644 -D src/celestia/kde/data/hi48-app-celestia.png \
+%{__install} -m 644 -D src/celestia/kde/data/hi48-app-celestia.png \
         %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 cat << EOF > %{name}.desktop
@@ -64,10 +65,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %{_bindir}/%{name}
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop

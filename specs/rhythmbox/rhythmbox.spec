@@ -1,17 +1,20 @@
 # $Id$
+# Authority: matthias
 
 # Enable "--with xine" conditional build
 %{?_with_xine:  %{expand: %%define xine 1}}
 %{!?_with_xine: %{expand: %%define xine 0}}
 
+%define majmin 0.7
+
 Name: rhythmbox
 Summary: Music Management Application 
-Version: 0.7.0
-Release: 0.1%{?_with_xine:xine}.fr
+Version: %{majmin}.1
+Release: 0.1%{?_with_xine:xine}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/0.7/%{name}-%{version}.tar.bz2
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{majmin}/rhythmbox-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.3
 Requires: libgnomeui >= 2.0.0
@@ -19,6 +22,7 @@ Requires: eel2 >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.0.0
 BuildRequires: libmusicbrainz-devel >= 2.0.0
 BuildRequires: gettext, scrollkeeper, gcc-c++
+Obsoletes: net-rhythmbox <= 0.4.8
 
 %if %{xine}
 BuildRequires: xine-lib-devel >= 1.0.0
@@ -33,26 +37,26 @@ GStreamer media framework. It has a number of features, including and easy to
 use music browser, searching and sorting, comprehensive audio format support
 through GStreamer, Internet Radio support, playlists and more.
 
+
 %prep
-%setup -q
+%setup
+
 
 %build
 %configure %{?_with_xine:--with-player=xine}
-make 
+%{__make} %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
-unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
-rm -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
 %find_lang %name
+rm -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
 
-#rm %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
-#touch %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 
 %clean
 rm -rf %{buildroot}
+
 
 %post 
 /sbin/ldconfig
@@ -62,10 +66,12 @@ for S in $SCHEMAS; do
   gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/$S >/dev/null
 done
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README NEWS
 %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/rhythmbox.schemas
@@ -82,7 +88,12 @@ done
 %{_libdir}/bonobo/servers/*.server
 %{_libdir}/pkgconfig/rhythmbox.pc
 
+
 %changelog
+* Wed Mar 17 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-0.1
+- Update to 0.7.1.
+- Minor spec file updates.
+
 * Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.1.fr
 - Update to 0.7.0.
 - GStreamer build no longer requires libid3tag or flac, only the xine one does.

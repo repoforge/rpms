@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A rewrite of the xawtv webcam app, which adds imlib2 support.
 Name: camE
 Version: 1.7
-Release: 2.fr
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 Source: http://linuxbrit.co.uk/downloads/camE-%{version}.tar.gz
@@ -18,20 +19,20 @@ camE is a rewrite of the xawtv webcam app, which adds imlib2 support and
 thus many new possibilities.
 
 %prep
-%setup -q
+%setup
 
 %build
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING *.style example.camErc*
 %{_bindir}/%{name}
 

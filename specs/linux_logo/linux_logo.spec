@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo
 Version: 4.07
-Release: 3.fr
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.deater.net/weave/vmwprod/linux_logo/
@@ -15,7 +16,7 @@ BuildRequires: gettext
 Linux logo creates a colorful penguin logo on the console.
 
 %prep
-%setup -q
+%setup
 
 %build
 # Disabled many logos since they prevent building on FC1 :-(
@@ -23,23 +24,23 @@ Linux logo creates a colorful penguin logo on the console.
 for logo in ./logos/*.logo; do
     echo "$logo" >> logo_config
 done
-make %{?_smp_mflags} C_OPTS="-I./libsysinfo $RPM_OPT_FLAGS"
+%{__make} %{?_smp_mflags} C_OPTS="-I./libsysinfo $RPM_OPT_FLAGS"
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 mkdir -p %{buildroot}{%{_bindir},%{_mandir}/man1}
-make install \
+%{__make} install \
     INSTALL_BINPATH=%{buildroot}%{_bindir} \
     INSTALL_MANPATH=%{buildroot}%{_mandir} \
     INSTALLDIR=%{buildroot}%{_datadir}/locale
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGES COPYING README LINUX_LOGO.FAQ README* TODO USAGE
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*

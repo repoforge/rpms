@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A GNOME mixer interface for the Advanced Linux Sound Architecture.
 Name: gnome-alsamixer
 Version: 0.9.6
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 Source0: ftp://ftp.paw.co.za/pub/PAW/sources/%{name}-%{version}.tar.gz
@@ -21,14 +22,14 @@ A sound mixer for GNOME which is written for the Advanced Linux Sound
 Architecture (ALSA) version 0.9.x.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -40,10 +41,10 @@ desktop-file-install --vendor %{desktop_vendor}  \
 %{SOURCE1}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_bindir}/%{name}
 %{_datadir}/applications/*%{name}.desktop

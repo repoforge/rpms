@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 %define ffmpeg_date    20040103
@@ -6,7 +7,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.7.0
-Release: 0.3.fr
+Release: 0.3
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.videolan.org/
@@ -75,7 +76,7 @@ to link statically to it.
 
 
 %prep
-%setup -q -n vlc-%{version} -a 1
+%setup -n vlc-%{version} -a 1
 
 %build
 # Build bundeled ffmpeg first
@@ -155,15 +156,15 @@ popd
     %{?_with_mozilla:--enable-mozilla} \
     --disable-testsuite \
     --enable-plugins
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 find  %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
 %find_lang vlc
 # Include the docs below, our way
-rm -rf installed-docs
+%{__rm} -rf installed-docs
 mv %{buildroot}%{_docdir}/vlc installed-docs
 
 cat > %{name}.desktop << EOF
@@ -185,11 +186,11 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files -f vlc.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
 %doc installed-docs/*
 %{_bindir}/*vlc
@@ -198,7 +199,7 @@ rm -rf %{buildroot}
 %{_datadir}/vlc
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc HACKING 
 %{_bindir}/vlc-config
 %{_includedir}/vlc

@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define jpegmmxver 0.1.4
 
 Summary: Tools for the movtar MJPEG video format
 Name: libmovtar
 Version: 0.1.3
-Release: 3.fr
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
@@ -37,7 +38,7 @@ of the mjpegtools package.
 
 
 %prep
-%setup -q -a 1
+%setup -a 1
 mv jpeg-mmx-* jpeg-mmx
 
 %build
@@ -48,28 +49,28 @@ mv jpeg-mmx-* jpeg-mmx
 %else
     %configure
 %endif
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README*
 %{_bindir}/movtar_*
 %{_bindir}/pnm2rtj
 %{_bindir}/rtjshow
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/movtar-config
 %{_includedir}/*
 %{_libdir}/*.a

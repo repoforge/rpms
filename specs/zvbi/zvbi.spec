@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
 Version: 0.2.5
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -31,19 +32,19 @@ the zvbi library.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --disable-gtk-doc
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 

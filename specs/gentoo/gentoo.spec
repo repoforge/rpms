@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A graphical file managment program in GTK+ for Linux
 Name: gentoo
 Version: 0.11.46
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.obsession.se/gentoo/
@@ -26,18 +27,18 @@ gentoo borrows some of its look and feel from the classic Amiga
 file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{_smp_mflags}
+%{__make} %{_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-install -D docs/gentoo.1x %{buildroot}%{_mandir}/man1/gentoo.1
-install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D docs/gentoo.1x %{buildroot}%{_mandir}/man1/gentoo.1
+%{__install} -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 cat > %{name}.desktop << EOF
 [Desktop Entry]
@@ -58,10 +59,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog CONFIG-CHANGES COPYING CREDITS docs
 %doc NEWS ONEWS README README.gtkrc TODO
 %config %{_sysconfdir}/gentoo*

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define xmmsgeneraldir %(xmms-config --general-plugin-dir)
 %define xmmsdatadir    %(xmms-config --data-dir)
@@ -6,7 +7,7 @@
 Summary: A useful plugin for XMMS to use special keyboard multimedia keys
 Name: xmms-itouch
 Version: 0.1.2
-Release: 4.fr
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.saunalahti.fi/~syrjala/xmms-itouch/
@@ -23,24 +24,24 @@ won't work if some other application (eg. xscreensaver) has grabbed the
 keyboard.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install \
+%{__rm} -rf %{buildroot}
+%{__make} install \
     libdir=%{buildroot}%{xmmsgeneraldir} \
     datadir=%{buildroot}%{xmmsdatadir}
 strip %{buildroot}%{xmmsgeneraldir}/* || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %exclude %{xmmsgeneraldir}/libitouch.la
 %{xmmsgeneraldir}/libitouch.so

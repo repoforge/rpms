@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: An open-source, patent-free speech codec
 Name: speex
 Version: 1.0.3
-Release: 1.fr
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.speex.org/
@@ -32,37 +33,45 @@ Speex development files.
 
 
 %prep
-%setup -q
+%setup
+
 
 %build
 export CFLAGS='%{optflags} -DRELEASE'
 %configure --enable-shared --enable-static
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
+
 
 %install
-rm -rf %{buildroot}
-make DESTDIR=%{buildroot} install
+%{__rm} -rf %{buildroot}
+%{__make} DESTDIR=%{buildroot} install
 
-%post -p /sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
+
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING AUTHORS ChangeLog NEWS README doc/manual.pdf
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+
 
 %changelog
 * Thu Nov 20 2003 Matthias Saou <http://freshrpms.net/> 1.0.3-1.fr

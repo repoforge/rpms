@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Simple DirectMedia Layer - Bindings for the perl language.
 Name: perl-SDL
 Version: 1.20.0
-Release: 4.fr
+Release: 4
 License: GPL
 Group: System Environment/Libraries
 Source: http://sdlperl.org/downloads/SDL_perl-%{version}.tar.gz
@@ -19,18 +20,18 @@ BuildRequires: libjpeg-devel, libpng-devel, perl, XFree86-Mesa-libGLU
 The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 %prep
-%setup -q -n SDL_perl-%{version}
+%setup -n SDL_perl-%{version}
 
 %build
 CFLAGS="%{optflags}" perl Makefile.PL PREFIX=%{buildroot}%{_prefix}
-make OPTIMIZE="%{optflags}"
+%{__make} OPTIMIZE="%{optflags}"
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 eval `perl '-V:installarchlib'`
 mkdir -p %{buildroot}$installarchlib
 %makeinstall
-rm -f `find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
+%{__rm} -f `find %{buildroot} -type f -name perllocal.pod -o -name .packlist`
 
 # Build the file list to include
 find %{buildroot}%{_prefix} -type f -print | \
@@ -38,7 +39,7 @@ find %{buildroot}%{_prefix} -type f -print | \
     sed "s|3pm$|3pm*|g" > %{name}.list
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.list
 %defattr(-, root, root, 0755)

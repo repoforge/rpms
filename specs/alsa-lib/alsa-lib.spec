@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 #define prever rc2
 
 Summary: The Advanced Linux Sound Architecture (ALSA) library.
 Name: alsa-lib
 Version: 1.0.2
-Release: %{?prever:0.%{prever}.}2.fr
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: System Environment/Libraries
 Source: ftp://ftp.alsa-project.org/pub/lib/%{name}-%{version}%{?prever}.tar.bz2
@@ -46,28 +47,28 @@ This package includes the ALSA development libraries.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?prever}
+%setup -n %{name}-%{version}%{?prever}
 
 %build
 %configure \
     --enable-static=yes \
     --program-prefix=%{?_program_prefix}
-make %{?_smp_mflags}
-make doc
+%{__make} %{?_smp_mflags}
+%{__make} doc
 
 %install
-rm -rf %{buildroot}
-make DESTDIR=%{buildroot} install
+%{__rm} -rf %{buildroot}
+%{__make} DESTDIR=%{buildroot} install
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING ChangeLog TODO doc/asoundrc.txt
 %{_bindir}/alsalisp
 %{_bindir}/aserver
@@ -75,7 +76,7 @@ rm -rf %{buildroot}
 %{_datadir}/alsa
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc doc/doxygen
 %{_includedir}/alsa
 %{_includedir}/sys/asoundlib.h

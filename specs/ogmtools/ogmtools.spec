@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Tools for Ogg media streams
 Name: ogmtools
 Version: 1.2
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/ogmtools/
@@ -19,21 +20,21 @@ creation of (ogmmerge) OGG media streams. Note that OGM is used for "OGG media
 streams". 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README ChangeLog TODO COPYING 
 %{_bindir}/*
 %{_mandir}/man1/*

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.47
-Release: 1.1.fr
+Release: 1.1
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
@@ -21,15 +22,15 @@ program for apt. It provides the same features as the apt-get command line
 utility with a GUI front-end based on Gtk+
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure 
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -fr %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -fr %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
 mkdir -p %{buildroot}%{_bindir}
@@ -56,7 +57,7 @@ account    required     /lib/security/pam_permit.so
 EOF
 
 # Remove legacy menu entries
-rm -f %{buildroot}%{_sysconfdir}/X11/sysconfig/%{name}.desktop
+%{__rm} -f %{buildroot}%{_sysconfdir}/X11/sysconfig/%{name}.desktop
 #rm -f %{buildroot}%{_datadir}/gnome/apps/System/%{name}.desktop
 
 # Change the default gksu to our wrapper instead
@@ -67,7 +68,7 @@ perl -pi -e 's|;Application$|;Application;X-Red-Hat-Base;|g' \
     %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 %{_bindir}/scrollkeeper-update -q || :
@@ -76,7 +77,7 @@ rm -rf %{buildroot}
 %{_bindir}/scrollkeeper-update -q || :
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_sysconfdir}/pam.d/%{name}
 %{_sysconfdir}/security/console.apps/%{name}

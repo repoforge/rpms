@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %{?_without_gstreamer:  %{expand: %%define gstreamer 0}}
 %{!?_without_gstreamer: %{expand: %%define gstreamer 1}}
@@ -6,7 +7,7 @@
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
 Version: 0.99.9
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.hadess.net/totem.php3
@@ -50,31 +51,31 @@ xine one. You can still use the xine backend by running "totem --xine".
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %if %{gstreamer}
 %configure \
     --enable-gstreamer \
     %{?_without_lirc:--disable-lirc}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 # Move the binary out of the way and cleanup for the xine build
 mv src/%{name} src/%{name}-gstreamer
-make clean
+%{__make} clean
 %endif
 
 %configure \
     %{?_without_lirc:--disable-lirc}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
 %find_lang %{name}
 %if %{gstreamer}
 # Install the GStreamer version
-install -m 755 src/%{name}-gstreamer %{buildroot}%{_bindir}/%{name}-gstreamer
+%{__install} -m 755 src/%{name}-gstreamer %{buildroot}%{_bindir}/%{name}-gstreamer
 # Rename the xine version
 mv %{buildroot}%{_bindir}/%{name} %{buildroot}%{_bindir}/%{name}-xine
 # Make the wrapper script
@@ -101,10 +102,10 @@ gconftool-2 --makefile-install-rule \
     %{_sysconfdir}/gconf/schemas/totem-video-thumbnail.schemas >/dev/null || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/%{name}
@@ -126,7 +127,7 @@ rm -rf %{buildroot}
 
 %if %{gstreamer}
 %files gstreamer
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/%{name}-gstreamer
 %endif
 

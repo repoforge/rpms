@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A versatile Integrated Development Environment (IDE) for C and C++.
 Name: anjuta
 Version: 1.2.1
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Development/Tools
 Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
@@ -25,26 +26,26 @@ collection of command line programming utilities and tools available for Linux.
 These are usually run via a text console, and can be unfriendly to use.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 # Remove unpackaged files
-rm -rf \
+%{__rm} -rf \
     %{buildroot}/usr/share/doc/%{name} \
     %{buildroot}%{_localstatedir}/scrollkeeper || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog FUTURE NEWS README THANKS TODO
 %doc doc/ScintillaDoc.html
 %{_bindir}/%{name}*

@@ -1,10 +1,11 @@
 # $Id$
+# Authority: matthias
 
 
 Summary: Make a chroot.
 Name: mach
 Version: 0.4.3.1
-Release: 2.fr
+Release: 2
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
@@ -22,23 +23,23 @@ The clean root can be used to run jail roots, to create image files, or
 to build clean packages.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
-install -d -m 775 %{buildroot}%{_localstatedir}/lib/mach
-install -d -m 775 %{buildroot}%{_localstatedir}/lib/mach/states
-install -d -m 775 %{buildroot}%{_localstatedir}/lib/mach/roots
-install -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/packages
-install -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/archives
+%{__install} -d -m 775 %{buildroot}%{_localstatedir}/lib/mach
+%{__install} -d -m 775 %{buildroot}%{_localstatedir}/lib/mach/states
+%{__install} -d -m 775 %{buildroot}%{_localstatedir}/lib/mach/roots
+%{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/packages
+%{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/archives
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %pre
 # create user and group mach

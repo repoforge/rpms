@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define skindir %(rpm -ql xine|grep '/skins$')
 
 Summary: A collection of skins for the Xine video player
 Name: xine-skins
 Version: 1.7
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -37,22 +38,22 @@ Xine video player frontend. Install this package if you wish to change the
 appeareance of Xine.
 
 %prep
-%setup -q -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16
+%setup -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16
 
 %build
 find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
     -exec rm -rf {} \; || :
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{skindir}
 cp -a * %{buildroot}%{skindir}/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{skindir}/*
 
 %changelog

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: An implementation of the RFC1413 identification server.
 Name: oidentd
 Version: 2.0.7
-Release: 2.fr
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://ojnk.sourceforge.net/
@@ -27,21 +28,21 @@ Install oidentd if you need to look up information about specific
 TCP/IP connections.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
-install -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/identd
-install -D -m 640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
-install -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
+%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/identd
+%{__install} -D -m 640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
+%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add identd
@@ -58,7 +59,7 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING* NEWS README TODO doc/rfc1413
 %{_sbindir}/oidentd
 %attr(0640, root, nobody) %config(noreplace) %{_sysconfdir}/identd.spoof

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Simple library and a wrapper for imlib2
 Name: giblib
 Version: 1.2.3
-Release: 3.fr
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 Source: http://linuxbrit.co.uk/downloads/%{name}-%{version}.tar.gz
@@ -31,31 +32,31 @@ Install this package if you intend to develop using the giblib library.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
-rm -rf %{buildroot}/usr/doc
+%{__rm} -rf %{buildroot}/usr/doc
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog
 %{_libdir}/lib%{name}.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/%{name}-config
 %{_includedir}/%{name}
 %{_libdir}/lib%{name}.a

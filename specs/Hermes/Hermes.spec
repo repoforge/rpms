@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: HERMES pixel format conversion library.
 Name: Hermes
 Version: 1.3.3
-Release: 2.fr
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 Source: http://clanlib.org/download/files/%{name}-%{version}.tar.bz2
@@ -37,30 +38,30 @@ needed for development with %{name}.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{_smp_mflags}
+%{__make} %{_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog FAQ NEWS README TODO*
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc docs/api/*.htm docs/api/*.txt
 %{_includedir}/*
 %{_libdir}/*.a

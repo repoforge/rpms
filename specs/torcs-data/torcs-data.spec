@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: The Open Racing Car Simulator data files
 Name: torcs-data
 Version: 1.2.2
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://torcs.org/
@@ -165,7 +166,7 @@ This package contains additional cars for the game.
 
 
 %prep
-%setup -q -T -c %{name}-%{version}
+%setup -T -c %{name}-%{version}
 # Uncompress all packages in a separate tree
 for source in %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8} %{SOURCE9} %{SOURCE10}; do
     package="`basename ${source} .tgz | sed 's/TORCS-%{version}-//g'`"
@@ -188,7 +189,7 @@ done
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 # Install all trees into the main build root
 mkdir -p %{buildroot}
 for package in `cat package.list`; do
@@ -197,51 +198,51 @@ done
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files -f data.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files tracks-dirt -f data-tracks-dirt.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files tracks-oval -f data-tracks-oval.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files tracks-road -f data-tracks-road.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files cars-extra -f data-cars-extra.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files cars-kcendra-gt -f data-cars-kcendra-gt.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files cars-kcendra-roadsters -f data-cars-kcendra-roadsters.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files cars-kcendra-sport -f data-cars-kcendra-sport.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files cars-nascar -f data-cars-nascar.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files cars-Patwo-Design -f data-cars-Patwo-Design.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %files cars-VM -f data-cars-VM.files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 
 %changelog

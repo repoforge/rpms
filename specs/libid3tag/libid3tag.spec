@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Library for reading and writing ID3v1 and ID3v2 tags
 Name: libid3tag
 Version: 0.15.1b
-Release: 1.fr
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.underbit.com/products/mad/
@@ -31,11 +32,11 @@ to develop programs that will use libid3tag for ID3 tar reading and writing.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{_smp_mflags}
+%{__make} %{_smp_mflags}
 
 cat << EOF > id3tag.pc
 prefix=%{_prefix}
@@ -52,20 +53,20 @@ Cflags: -I%{_includedir}
 EOF
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
-install -m 644 -D id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
+%{__install} -m 644 -D id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files 
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGES COPYING COPYRIGHT CREDITS README TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so

@@ -8,7 +8,7 @@
 Summary: GStreamer streaming media framework runtime
 Name: gstreamer
 Version: %{majmin}.%{micro}
-Release: 0.1.fr
+Release: 0.1
 Group: Applications/Multimedia
 License: LGPL
 URL: http://gstreamer.net/
@@ -84,7 +84,7 @@ with different major/minor versions of GStreamer.
 
 
 %prep
-%setup -q -n gstreamer-%{version}
+%setup -n gstreamer-%{version}
 
 
 %build
@@ -95,22 +95,22 @@ with different major/minor versions of GStreamer.
     --disable-examples \
     --enable-debug \
     --with-cachedir=%{_localstatedir}/cache/gstreamer-%{majmin}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install  
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Remove .la files and static libs that we don't want in the packages
-rm -f %{buildroot}%{_libdir}/gstreamer-%{majmin}/*.{a,la}
-rm -f %{buildroot}%{_libdir}/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majmin}/*.{a,la}
+%{__rm} -f %{buildroot}%{_libdir}/*.{a,la}
 # Create empty cache directory
 mkdir -p %{buildroot}%{_localstatedir}/cache/gstreamer-%{majmin}
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %post
@@ -121,7 +121,7 @@ rm -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING* ChangeLog DEVEL NEWS README TODO
 %{_bindir}/gst-complete-%{majmin}
 %{_bindir}/gst-compprep-%{majmin}
@@ -148,7 +148,7 @@ rm -rf %{buildroot}
 
 
 %files -n gstreamer-tools
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/gst-complete
 %{_bindir}/gst-compprep
 %{_bindir}/gst-feedback
@@ -162,7 +162,7 @@ rm -rf %{buildroot}
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/gstreamer-%{majmin}
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.so

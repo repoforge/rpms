@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: Audio player for systems using the Advanced Linux Sound Architecture.
 Name: alsaplayer
 Version: 0.99.76
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 Source0: http://www.alsaplayer.org/%{name}-%{version}.tar.bz2
@@ -41,19 +42,19 @@ Available rpmbuild rebuild options :
 --without : xosd
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --enable-audiofile
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 # Install icons
 mkdir -p %{buildroot}%{_datadir}/pixmaps
-install -m644 %{SOURCE1} %{SOURCE2} %{SOURCE3} %{buildroot}%{_datadir}/pixmaps/
+%{__install} -m644 %{SOURCE1} %{SOURCE2} %{SOURCE3} %{buildroot}%{_datadir}/pixmaps/
 
 # System menu entry
 cat << EOF > %{name}.desktop
@@ -75,14 +76,14 @@ desktop-file-install --vendor %{desktop_vendor} \
   %{name}.desktop
 
 # Clean up for the docs
-rm -f examples/Makefile*
-rm -rf %{buildroot}%{_docdir}/%{name}
+%{__rm} -f examples/Makefile*
+%{__rm} -rf %{buildroot}%{_docdir}/%{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO docs/reference/html
 %doc examples
 %{_bindir}/%{name}

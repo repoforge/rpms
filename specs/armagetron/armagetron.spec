@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 Prefix: %{_prefix}/games/armagetron
@@ -6,7 +7,7 @@ Prefix: %{_prefix}/games/armagetron
 Summary: A multiplayer OpenGL 'Tron' racing game clone.
 Name: armagetron
 Version: 0.2.5.2
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Amusements/Games  
 Source0: http://dl.sf.net/armagetron/armagetron-%{version}.tar.bz2
@@ -47,14 +48,14 @@ more realistic (read "fast!" ;-)).
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 strip %{buildroot}%{prefix}/bin/* || :
 
@@ -67,7 +68,7 @@ unzip -d %{buildroot}%{prefix}/ %{SOURCE2}
 
 # Yeah, add an icon for the menu entry!
 convert tron.ico armagetron.png
-install -D -m 644 armagetron.png %{buildroot}%{_datadir}/pixmaps/armagetron.png
+%{__install} -D -m 644 armagetron.png %{buildroot}%{_datadir}/pixmaps/armagetron.png
 
 # Put the realistic config where we can get it
 cp -a %{SOURCE3} settings.cfg.realistic
@@ -111,15 +112,15 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   --add-category Game                                             \
   %{name}.desktop
 %else
-install -D -m644 %{name}.desktop \
+%{__install} -D -m644 %{name}.desktop \
   %{buildroot}/etc/X11/applnk/Games/%{name}.desktop
 %endif
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc installed-docs/*
 %dir %{_sysconfdir}/armagetron
 %config(noreplace) %{_sysconfdir}/armagetron/*

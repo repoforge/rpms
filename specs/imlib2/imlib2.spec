@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 #define date 20030417
 
 Summary: Powerful image loading and rendering library.
 Name: imlib2
 Version: 1.1.0
-Release: %{?date:0.%{date}.}1.fr
+Release: %{?date:0.%{date}.}1
 License: BSD
 Group: System Environment/Libraries
 Source: http://dl.sf.net/enlightenment/%{name}-%{version}.tar.gz
@@ -35,25 +36,25 @@ Header, static libraries and documentation for Imlib2.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS README COPYING ChangeLog doc/
 %{_libdir}/*.so.*
 %dir %{_libdir}/loaders
@@ -63,7 +64,7 @@ rm -rf %{buildroot}
 %{_libdir}/loaders/image/*.so
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/*
 %{_includedir}/*
 %{_libdir}/*.a

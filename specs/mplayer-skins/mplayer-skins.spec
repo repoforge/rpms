@@ -1,11 +1,12 @@
-# $Id: mplayer-skins.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
+# Authority: matthias
 
 %define	skindir	%{_datadir}/mplayer/Skin
 
 Summary: A collection of skins for MPlayer
 Name: mplayer-skins
 Version: 1.3
-Release: 3.fr
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 Source0: http://www.mplayerhq.hu/MPlayer/Skin/AlienMind-1.1.tar.bz2
@@ -59,19 +60,19 @@ of MPlayer, the movie player for Linux. Install this package if you wish to
 change the appeareance of MPlayer.
 
 %prep
-%setup -q -c %{name}-%{version} -a0  -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20 -a21 -a22 -a23 -a24 -a25 -a26 -a27 -a28 -a29 -a30 -a31 -a32 -a33 -a34 -a35 -a36 -a37 -a38 -a39
+%setup -c %{name}-%{version} -a0  -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20 -a21 -a22 -a23 -a24 -a25 -a26 -a27 -a28 -a29 -a30 -a31 -a32 -a33 -a34 -a35 -a36 -a37 -a38 -a39
 
 %build
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{skindir}
 # As the default is now "Blue", move the old "default" to "classic"
 mv default classic
 cp -a * %{buildroot}%{skindir}/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(0644, root, root, 0755)

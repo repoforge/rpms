@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Define when building a CVS shapshot
 #define	cvs	-cvs
@@ -6,7 +7,7 @@
 Summary: A simple foundation for reading DVD video disks.
 Name: libdvdread
 Version: 0.9.4
-Release: 4%{?cvs:cvs}.fr
+Release: 4%{?cvs:cvs}
 License: GPL
 Group: System Environment/Libraries
 Source: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
@@ -37,14 +38,14 @@ programs that use this library.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?cvs}
+%setup -n %{name}-%{version}%{?cvs}
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %post -p /sbin/ldconfig
@@ -52,15 +53,15 @@ rm -rf %{buildroot}
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

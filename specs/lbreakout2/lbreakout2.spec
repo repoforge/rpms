@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define	desktop_vendor	freshrpms
 %define beta 3
@@ -6,7 +7,7 @@
 Summary: A breakout-style arcade game for Linux
 Name: lbreakout2
 Version: 2.5
-Release: %{?beta:0.beta%{beta}.}1.fr
+Release: %{?beta:0.beta%{beta}.}1
 License: GPL
 Group: Amusements/Games
 Source: http://dl.sf.net/lgames/%{name}-%{version}%{?beta:beta-%{beta}}.tar.gz
@@ -21,19 +22,19 @@ BuildRequires: zlib-devel, libpng-devel
 A breakout-style arcade game for Linux that uses the SDL
 
 %prep
-%setup -q -n %{name}-%{version}%{?beta:beta-%{beta}}
+%setup -n %{name}-%{version}%{?beta:beta-%{beta}}
 
 %build
 %configure \
     --with-highscore-path=%{_localstatedir}/lib/games \
     --with-doc-path=%{_docdir}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{_localstatedir}/lib/games
-make install DESTDIR=%{buildroot}
-install -m 644 -D lbreakout48.gif %{buildroot}%{_datadir}/pixmaps/lbreakout.gif
+%{__make} install DESTDIR=%{buildroot}
+%{__install} -m 644 -D lbreakout48.gif %{buildroot}%{_datadir}/pixmaps/lbreakout.gif
 
 # Put the doc back into place
 mv %{buildroot}%{_docdir}/%{name} doc
@@ -58,10 +59,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO doc/
 %attr(2551, root, games) %{_bindir}/%{name}*
 %{_datadir}/applications/*%{name}.desktop

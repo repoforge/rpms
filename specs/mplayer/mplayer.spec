@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
 %define date      20040211
@@ -9,7 +10,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.7%{?rcver:.%{rcver}}%{?date:.%{date}}.fr
+Release: 0.7%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -85,9 +86,9 @@ to use MPlayer, transcode or other similar programs.
 
 %prep
 %if %{?date:1}%{!?date:0}
-%setup -q -n MPlayer-%{date}
+%setup -n MPlayer-%{date}
 %else
-%setup -q -n MPlayer-%{version}%{?rcver}
+%setup -n MPlayer-%{version}%{?rcver}
 %endif
 %patch0 -p1 -b .runtimemsg
 %patch1 -p1 -b .playlist
@@ -134,11 +135,11 @@ find . -name "CVS" | xargs rm -rf
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb} << EOF
 EOF
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 # The default Skin
 mkdir -p %{buildroot}%{_datadir}/mplayer/Skin
@@ -152,10 +153,10 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type d -exec chmod 755 {} \;
 find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 
 # The fonts are not in a separate package
-rm -rf %{buildroot}%{_datadir}/mplayer/font || :
+%{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
 
 # The icon used in the menu entry
-install -D -m 644 Gui/mplayer/pixmaps/logo.xpm \
+%{__install} -D -m 644 Gui/mplayer/pixmaps/logo.xpm \
     %{buildroot}%{_datadir}/pixmaps/mplayer-logo.xpm
 
 # Last, add system menu entries!
@@ -177,7 +178,7 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 %else
-install -D -m644 %{name}.desktop \
+%{__install} -D -m644 %{name}.desktop \
     %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
@@ -194,7 +195,7 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 %postun -n libpostproc -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 755)

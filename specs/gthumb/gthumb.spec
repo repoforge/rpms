@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: An image viewer and browser for the GNOME desktop.
 Name: gthumb
 Version: 2.2.1
-Release: 1.fr
+Release: 1
 License: GPL
 URL: http://gthumb.sourceforge.net/
 Group: Applications/Multimedia
@@ -21,17 +22,17 @@ XPM. View EXIF data attached to JPEG images. View in fullscreen mode. View
 images rotated, flipped, in black and white.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
-rm -rf %{buildroot}%{_localstatedir}
+%{__rm} -rf %{buildroot}%{_localstatedir}
 strip %{buildroot}%{_libdir}/%{name}/{*.so,modules/*.so}
 find %{buildroot}%{_libdir} -name "*.a" -o -name "*.la" | xargs rm -f
 %find_lang %{name}
@@ -46,10 +47,10 @@ gconftool-2 --makefile-install-rule \
 /usr/bin/scrollkeeper-update -q || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %config %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_bindir}/%{name}
 %{_libdir}/bonobo/servers/*

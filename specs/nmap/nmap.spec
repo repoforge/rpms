@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: Network exploration tool and security scanner
 Name: nmap
 Version: 3.48
-Release: 2.fr
+Release: 2
 Epoch: 2
 License: GPL
 Group: Applications/System
@@ -35,14 +36,14 @@ be installed before installing nmap-frontend.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall nmapdatadir=%{buildroot}%{_datadir}/nmap
 
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -54,10 +55,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{buildroot}%{_datadir}/gnome/apps/Utilities/nmapfe.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files 
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING
 %doc docs/README docs/*.html docs/*.txt
 %{_bindir}/nmap
@@ -65,7 +66,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/nmap.1*
 
 %files frontend
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/nmapfe
 %{_bindir}/xnmap
 %{_datadir}/applications/%{desktop_vendor}-nmapfe.desktop

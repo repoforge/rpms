@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define prever rc3
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 1.0.0
-Release: %{?prever:0.%{prever}.}1.fr
+Release: %{?prever:0.%{prever}.}1
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
@@ -33,7 +34,7 @@ Static library and API documentation of the XviD video codec.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?prever:-%{prever}}
+%setup -n %{name}-%{version}%{?prever:-%{prever}}
 
 
 %build
@@ -44,7 +45,7 @@ popd
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 pushd build/generic
     %makeinstall
 popd
@@ -53,11 +54,11 @@ pushd %{buildroot}%{_libdir}
     ln -s lib%{name}.so* lib%{name}.so
 popd
 # Remove unwanted files from the docs
-rm -f doc/Makefile
+%{__rm} -f doc/Makefile
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %post -p /sbin/ldconfig
@@ -66,14 +67,14 @@ rm -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE README TODO
 %{_includedir}/*
 %{_libdir}/*.so*
 
 
 %files static
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CodingStyle doc/* examples
 %{_libdir}/*.a
 

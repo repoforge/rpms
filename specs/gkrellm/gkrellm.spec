@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process.
 Name: gkrellm
 Version: 2.1.26
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/System
 Source: http://web.wt.net/~billw/gkrellm/gkrellm-%{version}.tar.bz2
@@ -44,27 +45,27 @@ machines you intend to monitor with gkrellm from a different location.
 
 
 %prep
-%setup -q
+%setup
 %patch -p0 -b .i18n
 
 %build
-make %{?_smp_mflags} CFLAGS="%{optflags}" glib12=1
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}" glib12=1
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{_sysconfdir}
 mkdir -p %{buildroot}%{_libdir}/gkrellm2/plugins
 mkdir -p %{buildroot}%{_datadir}/gkrellm2/themes
-make install INSTALLROOT=%{buildroot}%{_prefix}
+%{__make} install INSTALLROOT=%{buildroot}%{_prefix}
 cat server/gkrellmd.conf | sed 's/#allow-host/allow-host/g' \
     > %{buildroot}%{_sysconfdir}/gkrellmd.conf
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYRIGHT CREDITS Changelog* README Themes.html
 %{_bindir}/gkrellm
 %{_libdir}/gkrellm2
@@ -72,12 +73,12 @@ rm -rf %{buildroot}
 %{_mandir}/man1/gkrellm.1*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/gkrellm2
 %{_libdir}/pkgconfig/gkrellm.pc
 
 %files daemon
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %config(noreplace) %{_sysconfdir}/gkrellmd.conf
 %{_bindir}/gkrellmd
 %{_mandir}/man1/gkrellmd.1*

@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: An Atomix clone for Linux that uses the SDL
 Name: lmarbles
 Version: 1.0.6
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://www.lgames.org/
@@ -19,15 +20,15 @@ Obsoletes: marbles <= 1.0.5
 An Atomix clone game for Linux that uses the SDL.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 cat > %{name}.desktop << EOF
 [Desktop Entry]
@@ -48,10 +49,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
 %attr(2551, root, games) %{_bindir}/%{name}
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop

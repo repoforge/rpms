@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: Tag editor for mp3, ogg and flac files.
 Name: easytag
 Version: 0.30
-Release: 4d.fr
+Release: 4d
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
@@ -24,7 +25,7 @@ MP3, MP2, FLAC and OGG files. Its simple and nice GTK+ interface makes
 tagging easier.
 
 %prep
-%setup -q
+%setup
 %patch10 -p1 -b .030a
 %patch11 -p1 -b .030b
 %patch12 -p1 -b .030c
@@ -32,10 +33,10 @@ tagging easier.
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
@@ -48,10 +49,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{buildroot}%{_datadir}/gnome/apps/Multimedia/%{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING ChangeLog README TODO THANKS USERS-GUIDE
 %{_bindir}/%{name}
 %{_datadir}/applications/*%{name}.desktop

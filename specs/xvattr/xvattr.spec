@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Utility for getting and setting Xv attributes
 Name: xvattr
 Version: 1.3
-Release: 3.fr
+Release: 3
 License: GPL
 Group: User Interface/X
 URL: http://www.dtek.chalmers.se/groups/dvd/
@@ -17,21 +18,21 @@ This program is used for getting and setting Xv attributes such as
 XV_BRIGHTNESS, XV_CONTRAST, XV_SATURATION, XV_HUE, XV_COLORKEY, ...
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_bindir}/g%{name}
 %{_bindir}/%{name}

@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Automated Password Generator for random password generation.
 Name: apg
 Version: 2.2.3
-Release: 2.fr
+Release: 2
 License: GPL
 Group: System Environment/Base
 Source: http://www.adel.nursat.kz/apg/download/%{name}-%{version}.tar.gz
@@ -16,22 +17,22 @@ generation. This standalone version generates some random words of
 required type and prints them to standard output.
 
 %prep
-%setup -q
+%setup
 
 %build
 find . | xargs chmod u+w
-make %{?_smp_mflags} standalone
+%{__make} %{?_smp_mflags} standalone
 
 %install
-rm -rf %{buildroot}
-install -D apg %{buildroot}%{_bindir}/apg
-install -D doc/man/apg.1 %{buildroot}%{_mandir}/man1/apg.1
+%{__rm} -rf %{buildroot}
+%{__install} -D apg %{buildroot}%{_bindir}/apg
+%{__install} -D doc/man/apg.1 %{buildroot}%{_mandir}/man1/apg.1
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGES COPYING README THANKS TODO doc/rfc*
 %{_bindir}/apg
 %{_mandir}/man*/*

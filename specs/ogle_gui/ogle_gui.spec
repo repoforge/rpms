@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 #define	cvs -cvs
 
 Summary: A GNOME interface for the ogle DVD player
 Name: ogle_gui
 Version: 0.9.2
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
@@ -19,22 +20,22 @@ This is a GNOME interface for the ogle DVD player. Install this if you want
 a graphical GUI for the ogle DVD player.
 
 %prep
-%setup -q -n %{name}-%{version}%{?cvs}
+%setup -n %{name}-%{version}%{?cvs}
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc COPYING
 %{_libdir}/ogle
 %{_datadir}/ogle_gui

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 #define prever         pre3
 %define desktop_vendor freshrpms
@@ -6,7 +7,7 @@
 Summary: A powerful audio editor
 Name: audacity
 Version: 1.2.0
-Release: %{?prever:0.%{prever}.}2.fr
+Release: %{?prever:0.%{prever}.}2
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/audacity/%{name}-src-%{version}%{?prever:-%{prever}}.tar.gz
@@ -28,18 +29,18 @@ audio analysis applications. Built-in effects include Bass Boost, Wahwah,
 and Noise Removal, and it also supports VST plug-in effects. 
 
 %prep
-%setup -q -n %{name}-src-%{version}%{?prever:-%{prever}}
+%setup -n %{name}-src-%{version}%{?prever:-%{prever}}
 
 %build
 %configure \
     --with-libsndfile=system \
     --with-portaudio=v19 \
     --without-portmixer
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
 # Create a desktop entry
@@ -63,14 +64,14 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{name}.desktop
 
 # Install the image used in the desktop entry
-install -D -m 644 images/AudacityLogo.xpm \
+%{__install} -D -m 644 images/AudacityLogo.xpm \
     %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 # The help is actually in %{_docdir}/%{name} in order to be accessible directly
 #doc LICENSE.txt README.txt help
 %{_bindir}/%{name}

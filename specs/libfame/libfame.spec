@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 1.fr
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
@@ -31,33 +32,33 @@ libfame library.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Workaround for direct <libfame/fame.h> includes.
 ln -s . %{buildroot}%{_includedir}/%{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING README TODO 
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/%{name}-config
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 %define pre            rc2
@@ -6,7 +7,7 @@
 Summary: Downloader for X that supports resuming and many other features.
 Name: d4x
 Version: 2.5.0
-Release: %{?pre:0.%{pre}.}3.fr
+Release: %{?pre:0.%{pre}.}3
 Group: Applications/Internet
 License: Artistic
 URL: http://www.krasu.ru/soft/chuchelo/
@@ -25,19 +26,19 @@ proxy support, bandwidth limitation, scheduling, mass download, ftp search,
 and many others!
 
 %prep
-%setup -q -n %{name}-%{version}%{?pre}
+%setup -n %{name}-%{version}%{?pre}
 
 %build
 %configure --enable-release
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
 # Now the menu entry
-install -m644 -D share/nt.png %{buildroot}%{_datadir}/pixmaps/nt.png
+%{__install} -m644 -D share/nt.png %{buildroot}%{_datadir}/pixmaps/nt.png
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
@@ -47,10 +48,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   share/nt.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING NEWS PLANS README TODO
 %doc DOC/FAQ* DOC/THANKS DOC/TROUBLES
 %{_bindir}/nt

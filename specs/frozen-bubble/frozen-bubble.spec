@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: Frozen Bubble arcade game.
 Name: frozen-bubble
 Version: 1.0.0
-Release: 5.fr
+Release: 5
 License: GPL
 Group: Amusements/Games
 Source: http://frozenbubble.free.fr/fb/%{name}-%{version}.tar.bz2
@@ -24,22 +25,22 @@ stereo sound effects, 7 unique graphical transition effects and a level
 editor.
 
 %prep
-%setup -q
+%setup
 
 %build
-make %{?_smp_mflags} OPTIMIZE="%{optflags}" PREFIX="%{_prefix}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" PREFIX="%{_prefix}"
 
 %install
-rm -rf %{buildroot}
-make install \
+%{__rm} -rf %{buildroot}
+%{__make} install \
     PREFIX=%{buildroot}%{_prefix} \
     INSTALLARCHLIB=%{buildroot}%{perl_sitearch} \
     INSTALLSITEARCH=%{buildroot}%{perl_sitearch} \
     INSTALLVENDORARCH=%{buildroot}%{perl_sitearch}
-rm -f %{buildroot}%{perl_sitearch}/{build_fbsyms,perllocal.pod}
+%{__rm} -f %{buildroot}%{perl_sitearch}/{build_fbsyms,perllocal.pod}
 find %{buildroot} -name .xvpics | xargs rm -rf
 
-install -D -m644 icons/frozen-bubble-icon-48x48.png \
+%{__install} -D -m644 icons/frozen-bubble-icon-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/frozen-bubble.png
 
 # Create the system menu entry
@@ -65,10 +66,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original   \
 chmod -x %{buildroot}%{_prefix}/share/%{name}/gfx/shoot/create.pl
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS CHANGES COPYING README
 %{_prefix}/bin/*
 %{_prefix}/share/%{name}

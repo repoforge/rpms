@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Fast Fourier Transform library.
 Name: fftw
 Version: 2.1.5
-Release: 3.fr
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 Source: http://www.fftw.org/fftw-%{version}.tar.gz
@@ -38,7 +39,7 @@ develop programs using the FFTW fast Fourier transform library.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 # Build double precision
@@ -48,10 +49,10 @@ develop programs using the FFTW fast Fourier transform library.
 %endif
     --enable-shared \
     --enable-threads
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 # Install double precision, yes this is hack-ish
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Build single precision (prefixed)
@@ -63,7 +64,7 @@ rm -rf %{buildroot}
     --enable-threads \
     --enable-type-prefix \
     --enable-float
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
 # Don't remove previously installed double precision
@@ -73,22 +74,22 @@ make %{?_smp_mflags}
 %makeinstall
 
 # Clean up docs
-rm -f doc/Makefile*
+%{__rm} -f doc/Makefile*
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING COPYRIGHT ChangeLog NEWS README* TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc FAQ/fftw-faq.html/ doc/
 %{_includedir}/*
 %{_libdir}/*.a

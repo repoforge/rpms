@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: A set of portable libraries especially useful for games
 Name: plib
 Version: 1.6.0
-Release: 3.fr
+Release: 3
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/
@@ -21,21 +22,21 @@ what you need - it's all free and available with LGPL'ed source code on
 the web. All of it works well together.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NOTICE NEWS README
 %{_libdir}/libplib*
 %{_includedir}/plib

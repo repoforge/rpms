@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Lightweight, purely OSD based xine frontend.
 Name: oxine
 Version: 0.2
-Release: 3.fr
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/oxine/%{name}-%{version}.tar.gz
@@ -21,21 +22,21 @@ and is particularly suitable for appliances like set-top boxes, home
 entertainment systems or kiosk systems.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --datadir=%{_datadir}/%{name}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall datadir=%{buildroot}%{_datadir}/%{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO doc/doc.html
 %{_bindir}/%{name}
 %{_datadir}/%{name}

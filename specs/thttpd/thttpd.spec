@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define webroot /var/www/thttpd
 #define prever  beta1
@@ -6,7 +7,7 @@
 Summary: Tiny, turbo, throttleable lightweight http server
 Name: thttpd
 Version: 2.25b
-Release: %{?prever:0.%{prever}.}1.fr
+Release: %{?prever:0.%{prever}.}1
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.acme.com/software/thttpd/
@@ -28,7 +29,7 @@ Available rpmbuild rebuild options :
 --with : indexes showversion expliciterrors
 
 %prep
-%setup -q -n %{name}-%{version}%{?prever}
+%setup -n %{name}-%{version}%{?prever}
 
 %build
 %configure
@@ -39,15 +40,15 @@ perl -pi -e 's/.*chgrp.*//g; s/.*chmod.*//g' extras/Makefile
 %{!?_with_indexes: perl -pi -e 's/#define GENERATE_INDEXES/#undef GENERATE_INDEXES/g' config.h}
 %{!?_with_showversion: perl -pi -e 's/#define SHOW_SERVER_VERSION/#undef SHOW_SERVER_VERSION/g' config.h}
 %{!?_with_expliciterrors: perl -pi -e 's/#define EXPLICIT_ERROR_PAGES/#undef EXPLICIT_ERROR_PAGES/g' config.h}
-make WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin
+%{__make} WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{webroot}/{cgi-bin,html,logs}
 mkdir -p %{buildroot}%{_mandir}/man{1,8}
 mkdir -p %{buildroot}%{_sbindir}
-install -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/thttpd
-make install BINDIR=%{buildroot}%{_sbindir} \
+%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/thttpd
+%{__make} install BINDIR=%{buildroot}%{_sbindir} \
     MANDIR=%{buildroot}%{_mandir} \
     WEBDIR=%{buildroot}%{webroot}/html \
     CGIBINDIR=%{buildroot}%{webroot}/cgi-bin
@@ -60,7 +61,7 @@ mv %{buildroot}%{_mandir}/man1/htpasswd.1 \
     %{buildroot}%{_mandir}/man1/htpasswd.thttpd.1
 
 # Install the default index.html file
-install -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{buildroot}%{webroot}/html/
+%{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{buildroot}%{webroot}/html/
 
 cat << EOF > %{buildroot}%{_sysconfdir}/thttpd.conf
 # BEWARE : No empty lines are allowed!
@@ -102,10 +103,10 @@ if [ $1 -ge 1 ]; then
 fi
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README TODO
 %config /etc/init.d/thttpd
 %config(noreplace) %{_sysconfdir}/thttpd.conf

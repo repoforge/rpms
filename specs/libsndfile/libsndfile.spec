@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
 Version: 1.0.8
-Release: 1.fr
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 Source: http://www.mega-nerd.com/libsndfile/%{name}-%{version}.tar.gz
@@ -32,21 +33,21 @@ documentation for libsndfile.
 
 
 %prep
-%setup -q
+%setup
 
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %post -p /sbin/ldconfig
@@ -55,7 +56,7 @@ rm -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc NEWS TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
@@ -63,7 +64,7 @@ rm -rf %{buildroot}
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc doc/*.html doc/*.jpg
 %{_includedir}/*
 %{_libdir}/*.a

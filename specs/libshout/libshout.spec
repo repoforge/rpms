@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout
 Version: 1.0.9
-Release: 3.fr
+Release: 3
 License: LGPL
 Group: System Environment/Libraries
 URL: http://developer.icecast.org/libshout/
@@ -28,26 +29,26 @@ develop applications using libshout.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 test -d %{buildroot}/usr/doc && rm -rf %{buildroot}/usr/doc
 
 %clean 
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS CHANGES COPYING README
 %{_libdir}/*.so.*
 

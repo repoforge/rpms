@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 #define cvs -cvs
@@ -6,7 +7,7 @@
 Summary: A DVD player that supports DVD menus
 Name: ogle
 Version: 0.9.2
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 Source0: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
@@ -47,18 +48,18 @@ to build programs that use it (like GUIs).
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?cvs}
+%setup -n %{name}-%{version}%{?cvs}
 
 %build
 %configure %{?_without_altivec:--disable-altivec}
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 # Needed for library dependencies
 export LIBRARY_PATH=%{buildroot}/usr/lib/ogle
-make DESTDIR=%{buildroot} install
-install -m 644 -D %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__make} DESTDIR=%{buildroot} install
+%{__install} -m 644 -D %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 # Change the ALSA default to OSS, unless "alsa-default" was chosen
 %{!?_with_alsadefaultdriver:perl -pi -e 's|<driver>alsa</driver>|<driver>oss</driver>|g' %{buildroot}%{_datadir}/ogle/oglerc}
@@ -82,13 +83,13 @@ desktop-file-install --vendor %{desktop_vendor} \
   --add-category AudioVideo                     \
   %{name}.desktop
 %else
-install -D -m644 %{name}.desktop \
+%{__install} -D -m644 %{name}.desktop \
   %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig
@@ -98,7 +99,7 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README
 %{_bindir}/*
 %dir %{_libdir}/%{name}
@@ -113,7 +114,7 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 %{?_without_freedesktop:/etc/X11/applnk/Multimedia/%{name}.desktop}
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/%{name}
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/*.so

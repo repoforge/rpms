@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
 Version: 1.7.4b
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Internet
 Source: http://dl.sf.net/xmule/%{name}-%{version}.tar.bz2
@@ -21,17 +22,17 @@ It is originally based on eMule, the popular windows-only client for the
 same network.
 
 %prep
-%setup -q
+%setup
 %patch0 -p1 -b .destdir
 %patch1 -p1 -b .dlfix
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 mv %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %find_lang %{name}
 
@@ -42,10 +43,10 @@ mv %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop

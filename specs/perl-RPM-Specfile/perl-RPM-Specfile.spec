@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
 Version: 1.13
-Release: 1.fr
+Release: 1
 License: GPL or Artistic
 Group: Development/Tools
 Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/RPM-Specfile-%{version}.tar.gz
@@ -19,19 +20,19 @@ tarballs into RPM modules.
 See the included script cpanflute2 for usage; documentation coming soon.
 
 %prep
-%setup -q -n RPM-Specfile-%{version}
+%setup -n RPM-Specfile-%{version}
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL
-make OPTIMIZE="$RPM_OPT_FLAGS"
-make test
+%{__make} OPTIMIZE="$RPM_OPT_FLAGS"
+%{__make} test
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf $RPM_BUILD_ROOT
 eval `perl '-V:installarchlib'`
 mkdir -p $RPM_BUILD_ROOT$installarchlib
 %makeinstall PERL_INSTALL_ROOT=$RPM_BUILD_ROOT
-rm -f `find $RPM_BUILD_ROOT -type f -name perllocal.pod -o -name .packlist`
+%{__rm} -f `find $RPM_BUILD_ROOT -type f -name perllocal.pod -o -name .packlist`
 
 [ -x /usr/lib/rpm/brp-compress ] && /usr/lib/rpm/brp-compress
 
@@ -39,7 +40,7 @@ find $RPM_BUILD_ROOT -type f -print | \
   sed "s@^$RPM_BUILD_ROOT@@g" > %{name}-%{version}-%{release}-filelist
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf $RPM_BUILD_ROOT
 
 %files -f %{name}-%{version}-%{release}-filelist
 %defattr(-, root, root, -)

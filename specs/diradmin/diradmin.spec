@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define real_name      directory_administrator
 %define desktop_vendor freshrpms
@@ -6,7 +7,7 @@
 Summary: User control management tool for LDAP directories.
 Name: diradmin
 Version: 1.5.1
-Release: 3.fr
+Release: 3
 License: GPL
 Group: Applications/System
 Source: http://diradmin.open-it.org/%{real_name}-%{version}.tar.gz
@@ -25,18 +26,18 @@ at the same time. Along with popular software, it's the preferred solution
 for single sign-on maintenance.
 
 %prep
-%setup -q -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Replace desktop file, removing the categories
-rm -f %{buildroot}%{_datadir}/applications/*
+%{__rm} -f %{buildroot}%{_datadir}/applications/*
 cat applnk/dragonfear-%{real_name}.desktop \
   | grep -v ^Categories > %{name}.desktop
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -48,10 +49,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   %{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS NEWS COPYING ChangeLog TODO README doc
 %{_bindir}/%{real_name}
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop

@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: The Open Racing Car Simulator
 Name: torcs
 Version: 1.2.2
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://torcs.org/
@@ -42,21 +43,21 @@ This package contains the robots who can race on their own.
 
 
 %prep
-%setup -q -a 1 -a 2 -a 3 -a 4 -a 5
+%setup -a 1 -a 2 -a 3 -a 4 -a 5
 # Put the drivers back where they belong
 mv %{name}-%{version}/src/drivers/* src/drivers/
 
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
-install -m 644 -D Ticon.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -m 644 -D Ticon.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 cat > %{name}.desktop << EOF
 [Desktop Entry]
@@ -84,11 +85,11 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGELOG.html COPYING README.linux TODO.html
 %{_bindir}/*
 %dir %{_libdir}/%{name}
@@ -109,7 +110,7 @@ rm -rf %{buildroot}
 
 
 %files robots
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/drivers
 # Easier this way, since we package them all-minus-one in ;-)

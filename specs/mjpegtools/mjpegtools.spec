@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.2
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
@@ -47,7 +48,7 @@ of the mjpegtools package.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure \
@@ -55,10 +56,10 @@ of the mjpegtools package.
     --disable-static \
     %{?_with_cmov:--enable-cmov-extension} \
     --with-quicktime
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Let's remove the static libs for now, as their stripping makes the build fail
@@ -66,7 +67,7 @@ rm -rf %{buildroot}
 #rm -f %{buildroot}%{_libdir}/*.a
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig
@@ -80,7 +81,7 @@ rm -rf %{buildroot}
 #exit 0
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING HINTS PLANS README TODO
 %{?_with_avifile:%{_bindir}/divxdec}
 %{_bindir}/glav
@@ -103,7 +104,7 @@ rm -rf %{buildroot}
 %{_mandir}/man5/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/*-config
 %{_includedir}/*
 %{_libdir}/pkgconfig/*.pc

@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
-#$Id: grip.spec,v 1.4 2004/03/03 09:41:13 thias Exp $
+#$Id$
 
 Summary: A GNOME CD player, CD ripper and MP3 encoder frontend
 Name: grip
 Version: 3.1.5
-Release: 1.fr
+Release: 1
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -26,23 +27,23 @@ protocol is supported for retrieving track information from disc database
 servers.
 
 %prep
-%setup -q
+%setup
 %patch -p1 -b .rh-default-encoder
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}-2.2
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}-2.2.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING CREDITS README TODO
 %{_bindir}/%{name}
 %{_datadir}/applications/*%{name}.desktop

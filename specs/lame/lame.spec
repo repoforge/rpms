@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary : LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.95.1
-Release: 1.fr
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/lame/%{name}-%{version}.tar.gz
@@ -39,7 +40,7 @@ these libraries.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 # We want to be optimized to the bone!
@@ -65,24 +66,24 @@ these libraries.
     --without-vorbis \
     --enable-analyser=no \
     --enable-brhist
-make %{?_smp_mflags} CFLAGS="${CC_OPTS}" test
+%{__make} %{?_smp_mflags} CFLAGS="${CC_OPTS}" test
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 # Some apps still expect to find <lame.h>
 ln -sf lame/lame.h %{buildroot}%{_includedir}/lame.h
 
 find doc/html -name "Makefile*" | xargs rm -f
-rm -rf %{buildroot}%{_docdir}/%{name}
+%{__rm} -rf %{buildroot}%{_docdir}/%{name}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr (-, root, root)

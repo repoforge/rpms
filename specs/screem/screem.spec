@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Web Site CReating and Editing EnvironMent for GNOME
 Name: screem
 Version: 0.8.2
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://www.screem.org/
@@ -21,20 +22,20 @@ SCREEM (Site CReating and Editing EnvironMent) is an integrated development
 environment for the creation and maintainance of websites and pages.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-make install DESTDIR=%{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 export GCONF_CONFIG_SOURCE=`gconftool-2 --get-default-source`
@@ -42,7 +43,7 @@ gconftool-2 --makefile-install-rule \
     %{_sysconfdir}/gconf/schemas/%{name}.schemas >/dev/null || :
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_bindir}/%{name}

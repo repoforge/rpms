@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 #define date 20030701
 
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: %{?date:0.%{date}.}2b.fr
+Release: %{?date:0.%{date}.}2b
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
@@ -31,32 +32,32 @@ libmpeg2.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?date:-cvs}
+%setup -n %{name}-%{version}%{?date:-cvs}
 
 %build
 %configure --enable-shared --disable-sdl
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

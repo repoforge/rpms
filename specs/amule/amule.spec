@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
-Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule.
+Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
 Version: 1.2.6
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Internet
 Source: http://dl.sf.net/amule/aMule-%{version}.tar.bz2
@@ -18,15 +19,15 @@ It is originally based on eMule, the popular windows-only client for the
 same network.
 
 %prep
-%setup -q -n aMule-%{version}
+%setup -n aMule-%{version}
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 mv %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 %find_lang %{name}
 
@@ -37,10 +38,10 @@ mv %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name}
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc docs/*
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop

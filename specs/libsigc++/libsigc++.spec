@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: The Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
-Release: 2.fr
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libsigc.sourceforge.net/
@@ -34,14 +35,14 @@ needed for development with libsigc++.
 
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{_smp_mflags}
+%{__make} %{_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 # Clean up the docs
 find doc -name "Makefile*" | xargs rm -f
@@ -51,15 +52,15 @@ find doc -name "Makefile*" | xargs rm -f
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING.LIB README IDEAS NEWS ChangeLog TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc doc/*
 %{_includedir}/*
 %{_libdir}/*.a

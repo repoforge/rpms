@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
 Version: 0.7.20
-Release: 1.fr
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
@@ -22,24 +23,24 @@ is, ripping mpeg streams from images (and already burned VideoCDs)
 and showing some information about the VideoCD.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make DESTDIR=%{buildroot} install
+%{__rm} -rf %{buildroot}
+%{__make} DESTDIR=%{buildroot} install
 
 # Sometimes this file gets created... but we don't want it!
-rm -f %{buildroot}%{_infodir}/dir
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS FAQ TODO COPYING ChangeLog INSTALL NEWS README THANKS
 %{_bindir}/*
 %{_infodir}/*

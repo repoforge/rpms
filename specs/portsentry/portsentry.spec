@@ -1,9 +1,10 @@
 # $Id$
+# Authority: matthias
 
 Summary: Port scan detection and active defense
 Name: portsentry
 Version: 1.1
-Release: 11.fr
+Release: 11
 License: Freely Distributable
 Group: Applications/System
 URL: http://www.psionic.com/products/portsentry.html
@@ -36,24 +37,24 @@ you've manually excluded. This is a very sensitive way for looking for
 port probes, but also the most prone to false alarms.
 
 %prep
-%setup -q
+%setup
 %patch -p1 -b .freshrpms
 
 %build
-make %{?_smp_mflags} linux
+%{__make} %{?_smp_mflags} linux
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 mkdir -p %{buildroot}/var/portsentry
-make install
+%{__make} install
 
-install -D -m 700 %{SOURCE1} %{buildroot}/etc/init.d/portsentry
-install -D -m 600 %{SOURCE2} %{buildroot}/etc/portsentry/portsentry.modes
-install -D -m 600 %{SOURCE3} %{buildroot}/etc/cron.d/portsentry
+%{__install} -D -m 700 %{SOURCE1} %{buildroot}/etc/init.d/portsentry
+%{__install} -D -m 600 %{SOURCE2} %{buildroot}/etc/portsentry/portsentry.modes
+%{__install} -D -m 600 %{SOURCE3} %{buildroot}/etc/cron.d/portsentry
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add portsentry
@@ -70,7 +71,7 @@ if [ $1 -ge 1 ]; then
 fi
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGES CREDITS LICENSE README*
 %config /etc/init.d/portsentry
 %config /etc/cron.d/portsentry

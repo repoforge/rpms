@@ -1,11 +1,12 @@
 # $Id$
+# Authority: matthias
 
 %define desktop_vendor freshrpms
 
 Summary: A graphical LDAP directory browser and editor.
 Name: gq
 Version: 0.6.0
-Release: 3.fr
+Release: 3
 Source: http://biot.com/gq/download/gq-%{version}.tar.gz
 URL: http://biot.com/gq/
 Group: Applications/Internet
@@ -21,14 +22,14 @@ an administrator can search through a directory and modify objects stored
 in that directory.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure --with-ldap-prefix=%{_prefix}
-make
+%{__make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
@@ -42,10 +43,10 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
   %{buildroot}%{_datadir}/gnome/apps/Internet/%{name}.desktop
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README COPYING ChangeLog NEWS TODO AUTHORS
 %{_bindir}/*
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
