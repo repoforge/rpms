@@ -4,7 +4,7 @@
 
 Summary: Easy access to Braille displays and terminals 
 Name: libbraille
-Version: 0.12.0
+Version: 0.14.1
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -85,5 +85,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libbraille/*.la
 
 %changelog
+* Fri Jul 30 2004 Dries Verachtert <dries@ulyssis.org> 0.14.1-1
+- Update to version 0.14.1
+
 * Sat Apr 24 2004 Dries Verachtert <dries@ulyssis.org> 0.12.0-1
 - initial package
