@@ -1,7 +1,7 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: bastian@kde.org
+# Upstream: <bastian$kde,org>
+
 # Screenshot: http://extragear.kde.org/apps/kiosktool/kiosktool3.png
 # ScreenshotURL: http://extragear.kde.org/apps/kiosktool.php
 
@@ -10,7 +10,7 @@ Name: kiosktool
 Version: 0.7
 Release: 1
 License: GPL
-Group: Applications/
+Group: System Environment/Base
 URL: http://extragear.kde.org/apps/kiosktool.php
 
 Packager: Dries Verachtert <dries@ulyssis.org>
