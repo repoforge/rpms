@@ -1,9 +1,8 @@
 # $Id$
 # Authority: matthias
-# Upstream: Thomas Östreich <ostreich$theorie,physik,uni-goettingen,de>
-# Upstream: Tilmann Bitterberg <transcode$tibit,org>
+# Upstream: <transcode-users$exit1.org>
 
-%define prever pre1
+#define prever pre1
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -29,7 +28,7 @@ Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
-Source: http://www.jakemsr.com/transcode-%{version}%{?prever}.tar.gz
+Source: http://www.jakemsr.com/transcode/transcode-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
@@ -118,6 +117,9 @@ Available rpmbuild rebuild options :
 
 
 %changelog
+* Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-1
+- Update to 0.6.14 final.
+
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-0.pre1.1
 - Rebuild with mjpegtools (fixed at last) support on FC3.
 
