@@ -4,7 +4,7 @@
 
 Summary: Image viewing utility
 Name: gliv
-Version: 1.8.3
+Version: 1.8.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -33,8 +33,23 @@ Exec=gliv
 Icon=redhat-graphics.png
 Terminal=false
 Type=Application
+MimeType=image/gif;image/x-xpm;image/x-xbm;image/jpeg;image/x-bmp;image/png;image/x-tiff;image/x-tga;
 Categories=GNOME;Application;Graphics;
 EOF
+
+%{__cat} <<EOF >gliv.applications
+gliv
+	command=gliv
+	name=Gliv Image Viewer
+	can_open_multiple_files=true
+	expects_uris=no
+	requires_terminal=false
+	all_gnome_vfs_schemes_supported=yes
+	uses_gnomevfs=true
+	startup_notify=true
+	mime_types=image/gif;image/x-xpm;image/x-xbm;image/jpeg;image/x-bmp;image/png;image/x-tiff;image/x-tga;
+EOF
+
 
 %build
 %configure \
@@ -45,6 +60,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
+
+%{__install} -D -m0644 gliv.applications %{buildroot}%{_datadir}/application-registry/gliv.applications
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
@@ -58,12 +75,16 @@ desktop-file-install --vendor gnome                \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING NEWS README THANKS
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/gliv.1*
 %{_bindir}/*
 %{_datadir}/applications/gnome-gliv.desktop
+%{_datadir}/application-registry/gliv.applications
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 1.8.4-1
+- Updated to release 1.8.4.
+
 * Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 1.8.3-1
 - Updated to release 1.8.3.
 

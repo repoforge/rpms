@@ -6,12 +6,11 @@
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
-
-%define real_name TinyCA
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca
-Version: 0.6.3
+Version: 0.6.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -34,7 +33,7 @@ TinyCA supports - creation and revocation of x509 - S/MIME
 certificates.
 
 %prep
-%setup -n %{real_name}
+%setup
 
 %{__perl} -pi.orig -e '
 		s|./lib|%{_datadir}/tinyca|g;
@@ -60,10 +59,12 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0644 templates/openssl.cnf %{buildroot}%{_sysconfdir}/tinyca/openssl.cnf
 %{__install} -D -m0755 tinyca %{buildroot}%{_bindir}/tinyca
-%{__install} -D -m0644 locale/de/LC_MESSAGES/tinyca.mo %{buildroot}%{_datadir}/locale/de/LC_MESSAGES/tinyca.mo
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/locale/
+%{__cp} -av locale/* %{buildroot}%{_datadir}/locale/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/tinyca/
-%{__install} -m0644 lib/*.pm %{buildroot}%{_datadir}/tinyca/
+%{__cp} -av lib/* %{buildroot}%{_datadir}/tinyca/
 
 %find_lang %{name}
 
@@ -82,14 +83,17 @@ EOF
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc CHANGES
+%doc CHANGES INSTALL
 %config %{_sysconfdir}/tinyca/
-%{_bindir}/*
+%{_bindir}/tinyca
 %{_datadir}/tinyca/
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/tinyca.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-tinyca.desktop}
 
 %changelog
+* Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 0.6.5-1
+- Updated to release 0.6.5.
+
 * Wed Jun 16 2004 Dag Wieers <dag@wieers.com> - 0.6.3-1
 - Updated to release 0.6.3.
 
