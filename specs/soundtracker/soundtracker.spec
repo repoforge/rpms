@@ -1,13 +1,18 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Michael Krause <rawstyle@soundtracker.org>
+# Upstream: <soundtracker-discuss@lists.sourceforge.net>
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Sound module player and composer
 Name: soundtracker
 Version: 0.6.7
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.soundtracker.org/
@@ -15,12 +20,12 @@ URL: http://www.soundtracker.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.soundtracker.org/dl/v0.6/%{name}-%{version}.tar.gz
+Source: http://www.soundtracker.org/dl/v0.6/soundtracker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gtk+-devel, gdk-pixbuf-devel, audiofile-devel, esound-devel
 BuildRequires: libsndfile-devel, gettext
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Soundtracker is a module tracker similar to the DOS program `FastTracker'.
@@ -28,46 +33,45 @@ Soundtracker is based on the XM file format.
 
 %prep
 %setup
+
 ### FIXME: Disable chown and suid for local packaging. (Please fix upstream)
 %{__perl} -pi.orig -e '
 		s|(chown)|echo $1|g;
 		s|(chmod \+s)|echo $1|g;
 	' app/Makefile.in
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >soundtracker.desktop
 [Desktop Entry]
 Name=SoundTracker Module Tracker
-Comment=Sound module player and composer
+Comment=Play and compose XM sound module files
 Exec=soundtracker
-Icon=gv4l/gv4l.png
+Icon=gnome-multimedia.png
 Terminal=false
 Type=Application
+Encoding=UTF-8
 Categories=GNOME;Application;AudioVideo;
 EOF
 
 %build
-%configure \
-	--disable-dependency-tracking
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+
+### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_bindir}
+
 %makeinstall
 %find_lang %{name}
 
-### Clean up buildroot (before dfi)
-%{__rm} -f %{buildroot}%{_datadir}/gnome/apps/Multimedia/*.desktop
 
-%if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor gnome                \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+%if %{!?_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor gnome --delete-original \
+		--add-category X-Red-Hat-Base                 \
+		--dir %{buildroot}%{_datadir}/applications    \
+		%{buildroot}%{_datadir}/gnome/apps/Multimedia/soundtracker.desktop
 %endif
 
 %clean
@@ -78,12 +82,9 @@ EOF
 %doc AUTHORS ChangeLog* COPYING FAQ NEWS README TODO
 %{_bindir}/*
 %{_datadir}/soundtracker/
-%if %{dfi}
-        %{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/soundtracker.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-soundtracker.desktop}
 
 %changelog
-* Wed Jan 14 2004 Dag Wieers <dag@wieers.coM> - 0.6.7-0
+* Wed Jan 14 2004 Dag Wieers <dag@wieers.com> - 0.6.7-1
 - Initial package. (using DAR)
