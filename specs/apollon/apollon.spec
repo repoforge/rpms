@@ -6,7 +6,7 @@
 Summary: KDE filesharing client which uses gift
 Name: apollon
 Version: 0.9.3.2
-%define real_version 0.9.3-2
+%define real_version 0.9.3
 Release: 1
 License: GPL
 Group: Applications/Internet
