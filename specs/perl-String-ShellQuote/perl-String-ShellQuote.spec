@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name String-ShellQuote
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Quote a string for passing through a shell
 Name: perl-String-ShellQuote
@@ -43,9 +47,9 @@ which are going to pass through the shell or a shell-like object.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/String/ShellQuote.pm
-%exclude %{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%exclude %{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{perl_vendorlib}/String/ShellQuote.pm
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
