@@ -5,7 +5,7 @@
 
 Summary: Extension for reading and writing YAML
 Name: syck
-Version: 0.42
+Version: 0.45
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -51,5 +51,8 @@ your language's symbol table.
 %{_libdir}/*.a
 
 %changelog
+* Mon Sep 13 2004 Dries Verachtert <dries@ulyssis.org> - 0.45-1
+- Update to version 0.45.
+
 * Sat Jul 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.42-1
 - Initial package.

@@ -1,10 +1,11 @@
 # $Id$
 # Authority: dries
+# Screenshot: http://coldstonelabs.org/images/kbbtray/kbbtray-sh.png
 
 Summary: Display the status of a Big Brother page in the system tray
 Name: kbbtray
-Version: 0.03
-Release: 2
+Version: 0.04
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://coldstonelabs.org/index.jsp?projectIndex=4
@@ -15,8 +16,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://coldstonelabs.org/files/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: PyKDE, python
-
-# Screenshot: http://coldstonelabs.org/images/kbbtray/kbbtray-sh.png
 
 %description
 Kbbtray displays the status of a Big Brother page in the system tray. It's
@@ -45,6 +44,9 @@ sed -i "s|/usr/local|%{_prefix}|g" kbbtray.py
 %{_datadir}/kbbtray/
 
 %changelog
+* Mon Sep 13 2004 Dries Verachtert <dries@ulyssis.org> 0.04-1
+- Update to version 0.04.
+
 * Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 0.03-2
 - cleanup of spec file
 
