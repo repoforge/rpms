@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Gerd Knorr <kraxel@bytesex.org>
+# Upstream: Gerd Knorr <kraxel$bytesex,org>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
