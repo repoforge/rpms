@@ -15,7 +15,8 @@ URL: http://www.fltk.org/
 Source: http://dl.sf.net/fltk/fltk-%{version}-source.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, gcc-c++, libjpeg-devel, zlib-devel, libpng-devel, XFree86-devel
+BuildRequires: gcc, gcc-c++, zlib-devel, XFree86-devel
+BuildRequires: libjpeg-devel, libpng-devel
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -17,7 +17,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: ftp://ftp.kde.org/pub/kde/stable/apps/KDE3.x/math/kig-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, kdelibs-devel gcc, make, gcc-c++, XFree86-devel, zlib-devel, qt-devel
+BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
+BuildRequires: arts-devel, kdelibs-devel gcc, make, gcc-c++, XFree86-devel
+BuildRequires: zlib-devel, qt-devel
 Requires: kdelibs
 #todo: needed for python scripting
 #BuildRequires:	boost-python-devel

@@ -2,6 +2,7 @@
 
 # Authority: dries
 # Upstream: 
+# Screenshot: http://gemhun.sourceforge.net/images/screenshots/20031016/jungle.jpg
 
 %define real_version 20040529
 
@@ -20,9 +21,8 @@ Source: http://dl.sf.net/gemhun/GemHunters-src-%{real_version}.tar.gz
 # Source1: http://dl.sf.net/gemhun/GemHunters-data-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, kyra-devel, SDL_image-devel, SDL_mixer-devel, SDL_net-devel
-
-# Screenshot: http://gemhun.sourceforge.net/images/screenshots/20031016/jungle.jpg
+BuildRequires: SDL-devel, kyra-devel, SDL_image-devel
+BuildRequires: SDL_mixer-devel, SDL_net-devel
 
 %description
 Gemhun is all about grouping gems/stones of a chosen amount together which

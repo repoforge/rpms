@@ -2,6 +2,8 @@
 
 # Authority: dries
 # Upstream:
+# Screenshot: http://kdirstat.sourceforge.net/thumbnails/kdirstat-main.jpg
+# ScreenshotURL: http://kdirstat.sourceforge.net/kdirstat.html#screen_shots
 
 Summary: Graphical disk usage utility
 Name: kdirstat
@@ -16,12 +18,14 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://kdirstat.sourceforge.net/download/kdirstat-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
+BuildRequires: gcc, make, libpng-devel
+BuildRequires: libart_lgpl-devel, arts-devel
+BuildRequires: gcc-c++, gettext, XFree86-devel
+BuildRequires: zlib-devel, qt-devel
+BuildRequires: libjpeg-devel, kdelibs-devel
 %{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs, qt
 
-# Screenshot: http://kdirstat.sourceforge.net/thumbnails/kdirstat-main.jpg
-# ScreenshotURL: http://kdirstat.sourceforge.net/kdirstat.html#screen_shots
 
 %description
 KDirStat is a graphical disk usage utility, very much like the Unix "du"
