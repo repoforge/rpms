@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <gtk-sharp-list@ximian.com>
 
 ### FIXME: Tries to manipulate /root/.wapi/* ??
 # Soapbox: 0
@@ -10,7 +11,7 @@
 
 Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp
-Version: 0.17
+Version: 0.18
 Release: 0
 License: LGPL
 Group: Development/Libraries
@@ -21,7 +22,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gtk-sharp/gtk-sharp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: mono-devel
 BuildRequires: libgnomeui-devel >= 2.0, libgnomecanvas-devel >= 2.0, libglade2-devel, gtk2-devel >= 2.2.0
@@ -71,14 +71,14 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README*
+%doc ChangeLog COPYING README
 %{_bindir}/gconfsharp-schemagen*
 %{_libdir}/*.dll
 %{_libdir}/*.so
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc HACKING sample/
+%doc README.generator sample/
 %{_bindir}/gapi*
 %{_libdir}/*.a
 %{_libdir}/pkgconfig/*.pc
@@ -86,8 +86,11 @@ you will need to install %{name}-devel.
 %{_datadir}/perl5/GAPI/
 
 %changelog
+* Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 0.18-1
+- Updated to release 0.18.
+
 * Sat Feb 28 2004 Dag Wieers <dag@wieers.com> - 0.17-0
-- Symlinked gtk-sharp.pc to gapi.pc.
+- Updated to release 0.17.
 
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 0.15-1
 - Symlinked gtk-sharp.pc to gapi.pc.

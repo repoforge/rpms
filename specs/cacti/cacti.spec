@@ -8,7 +8,7 @@
 Summary: Network monitoring/graphing tool
 Name: cacti
 Version: 0.8.5
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.raxnet.net/products/cacti/
@@ -57,8 +57,8 @@ This package includes the documentation for %{name}.
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/html/cacti/cmd.php &>/dev/null" >cacti.crontab
 
 ### Add a default cacti.conf for Apache.
-%{__cat} <<EOF >cacti.conf
-ScriptAlias /cacti/ %{_localstatedir}/www/cacti/
+%{__cat} <<EOF >cacti.httpd
+Alias /cacti/ %{_localstatedir}/www/cacti/
 <Directory %{_localstatedir}/www/cacti/>
         DirectoryIndex index.php
 	Options -Indexes
@@ -86,7 +86,7 @@ cd cactid
 %{__cp} -avx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
 %{__install} -D -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
-%{__install} -D -m0644 cacti.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
+%{__install} -D -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
 
 %pre
 useradd -d %{_localstatedir}/www/cacti cacti &>/dev/null || :
@@ -124,6 +124,9 @@ userdel cacti &>/dev/null || :
 %doc docs/
 
 %changelog
+* Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 0.8.5-1
+- Fixed cacti.httpd. (Dean Takemori)
+
 * Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 0.8.5-0
 - Cosmetic rebuild for Group-tag.
 - Initial package. (using DAR)

@@ -1,11 +1,12 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Marc Lehmann <pcg@goof.com>
 
 Summary: Displays a given file anywhere on your X root window
 Name: root-tail
-Version: 0.9
-Release: 0
+Version: 0.95
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://goof.com/pcg/marc/root-tail.html
@@ -15,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://goof.com/pcg/marc/data/root-tail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: XFree86-devel
 
@@ -35,10 +35,8 @@ export CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 root-tail %{buildroot}%{_bindir}
-%{__install} -m0644 root-tail.man %{buildroot}%{_mandir}/man1/root-tail.1
+%{__install} -D -m0755 root-tail %{buildroot}%{_bindir}/root-tail
+%{__install} -D -m0644 root-tail.man %{buildroot}%{_mandir}/man1/root-tail.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,6 +48,9 @@ export CFLAGS="%{optflags}"
 %{_bindir}/*
 
 %changelog
+* Fri Apr 02 2004 Dag Wieers <dag@wieers.com> - 0.95-1
+- Updated to release 0.95.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 0.9-0
 - Updated to release 0.9.
 

@@ -5,7 +5,7 @@
 
 Summary: Graphical scientific calculator
 Name: galculator
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -16,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/galculator/galculator-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gettext, gtk2-devel >= 2.0, libglade2-devel >= 2.0
 
@@ -52,6 +51,9 @@ Reverse Polish Notation.
 %{_datadir}/galculator/
 
 %changelog
+* Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Sun Mar 21 2004 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

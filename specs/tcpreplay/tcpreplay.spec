@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <tcpreplay-users@lists.sourceforge.net>
+# Upstream: <tcpreplay-users@lists.sf.net>
 
 Summary: Replay captured network traffic
 Name: tcpreplay
@@ -35,13 +35,11 @@ capture files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_mandir}/man8/
-%{__install} -m0755 capinfo tcpprep tcpreplay %{buildroot}%{_sbindir}/
-%{__install} -m0644 capinfo.1 tcpprep.1 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 tcpreplay.8 %{buildroot}%{_mandir}/man8/
+%{__install} -d -m0755 %{buildroot}%{_sbindir} \
+%{__install} -m0755 capinfo tcpprep tcpreplay %{buildroot}%{_sbindir}
+%{__install} -D -m0644 capinfo.1 %{buildroot}%{_mandir}/man1/capinfo.1
+%{__install} -D -m0644 tcpprep.1 %{buildroot}%{_mandir}/man1/tcpprep.1
+%{__install} -D -m0644 tcpreplay.8 %{buildroot}%{_mandir}/man8/tcpreplay.8
 
 %clean
 %{__rm} -rf %{buildroot}

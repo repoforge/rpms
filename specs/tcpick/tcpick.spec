@@ -1,5 +1,5 @@
 # Authority: dag
-# Upstream: <tcpick-project@lists.sourceforge.net>
+# Upstream: <tcpick-project@lists.sf.net>
 
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick

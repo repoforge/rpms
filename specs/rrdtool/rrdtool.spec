@@ -1,21 +1,28 @@
 # $Id$
 
+# Authority: matthias
+# Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
 
 %define phpextdir %(php-config --extension-dir)
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.0.46
-Release: 2.fr
+Release: 2
 License: GPL
 Group: Applications/Databases
-Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/%{name}-%{version}.tar.gz
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
+BuildRequires: libpng-devel, zlib-devel
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 Requires: libpng, zlib
-BuildRequires: gcc-c++, perl, php-devel >= 4.3.0, openssl-devel
-BuildRequires: libpng-devel, zlib-devel
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and 
@@ -49,7 +56,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 
 %prep
-%setup -q
+%setup
 
 
 %build
@@ -57,16 +64,18 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
     --enable-shared \
     --enable-local-libpng \
     --enable-local-zlib
-make
+%{__make} %{?_smp_mflags}
 
 # Build the php4 module, the tmp install is required
-%define rrdtmpdir %(pwd)/tmpinstall
-make install DESTDIR=%{rrdtmpdir}
+%define rrdtmpdir %{_tmppath}/%{buildsubdir}-tmpinstall
+%{__make} install \
+	DESTDIR="%{rrdtmpdir}"
 pushd contrib/php4
-    ./configure --with-rrdtool=%{rrdtmpdir}%{_prefix}
-    make
+    ./configure \
+	--with-rrdtool="%{rrdtmpdir}%{_prefix}"
+    %{__make} %{?_smp_mflags}
 popd
-rm -rf %{rrdtmpdir}
+%{__rm} -rf %{rrdtmpdir}
 
 # Fix @perl@ and @PERL@
 find examples/ -type f \
@@ -77,7 +86,8 @@ find examples/ -name "*.pl" \
 
 %install
 rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+make install \
+	DESTDIR="%{buildroot}"
 
 # Install the php4 module
 install -m755 -D contrib/php4/modules/rrdtool.so %{buildroot}%{phpextdir}/rrdtool.so
@@ -111,7 +121,7 @@ rm -rf %{buildroot}
 
  
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING README TODO doc2/doc
 %{_bindir}/*
 %{_libdir}/*.so.*
@@ -121,7 +131,7 @@ rm -rf %{buildroot}
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc examples
 %doc contrib/add_ds contrib/killspike contrib/log2rrd contrib/rrdexplorer
 %doc contrib/rrdfetchnames contrib/rrd-file-icon contrib/rrdlastds
