@@ -4,7 +4,7 @@
 
 Summary: JPEG pixel interpolator
 Name: jpegpixi
-Version: 0.15.1
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -32,22 +32,22 @@ pixel can be interpolated with jpegpixi.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 jpegpixi jpeghotp %{buildroot}%{_bindir}
-
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 jpegpixi.1 jpeghotp.1 %{buildroot}%{_mandir}/man1/
+%makeinstall
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README*
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 
 %changelog
+* Sun Oct 03 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Fri May 07 2004 Dag Wieers <dag@wieers.com> - 0.15.1-1
 - Updated to release 0.15.1.
 

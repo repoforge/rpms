@@ -2,12 +2,10 @@
 # Authority: dag
 # Upstream: Florian <florian,boor$unix-ag,org>
 
-%define real_version 0.7.1a
-
 Summary: Wireless LAN (WLAN) accesspoint discovery tool
 Name: prismstumbler
-Version: 0.7.1
-Release: 1.a
+Version: 0.7.3
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://prismstumbler.sf.net/
@@ -15,7 +13,7 @@ URL: http://prismstumbler.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/prismstumbler/prismstumbler-%{real_version}.tar.bz2
+Source: http://dl.sf.net/prismstumbler/prismstumbler-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, sqlite-devel, autoconf, automake
@@ -27,7 +25,7 @@ switching channels and monitors any frames recived on the currently
 selected channel.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e '
@@ -65,21 +63,23 @@ cd -
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/doc/
+%{__rm} -rf %{buildroot}%{_docdir}/prismstumbler/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/INSTALL NEWS README doc/TODO doc/help.txt doc/README*
-%config %{_sysconfdir}/*
+%doc AUTHORS ChangeLog doc/INSTALL NEWS README doc/TODO doc/help.txt doc/README*
+%config %{_sysconfdir}/manufacturers.dat.gz
 %{_bindir}/*
 %{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
-%{_docdir}/prismstumbler/help.txt
+%{_datadir}/applications/prismstumbler.desktop
 
 %changelog
+* Sat Oct 02 2004 Dag Wieers <dag@wieers.com> - 0.7.3-1
+- Updated to release 0.7.3.
+
 * Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1.a
 - Updated to release 0.7.1a.
 
