@@ -1,0 +1,232 @@
+diff -urN unarj-2.43/unarj.c unarj-2.43.new/unarj.c
+--- unarj-2.43/unarj.c	Mon Sep 29 14:00:24 1997
++++ unarj-2.43.new/unarj.c	Tue Aug  8 15:57:58 2000
+@@ -42,7 +42,8 @@
+  * 02/17/93  R. Jung     Added archive modified date support.
+  * 01/22/94  R. Jung     Changed copyright message.
+  * 07/29/96  R. Jung     Added "/" to list of path separators.
+- *
++ * 08/08/00  P. Knirsch  Added subdirectory creation for the x command. Also
++ *                       fixed some compiler warnings.
+  */
+ 
+ #include "unarj.h"
+@@ -51,6 +52,10 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <ctype.h>
++#include <sys/stat.h>
++#include <sys/types.h>
++#include <fcntl.h>
++#include <unistd.h>
+ #else /* !MODERN */
+ extern void free();
+ extern void exit();
+@@ -712,6 +717,8 @@
+ extract()
+ {
+     char name[FNAME_MAX];
++    char dir[FNAME_MAX];
++    char *pos;
+ 
+     if (check_flags())
+     {
+@@ -730,6 +737,21 @@
+ 
+     if (host_os != OS)
+         default_case_path(name);
++
++
++    /*
++       8/8/2000 Phil Knirsch: Bugfix to create subdirectories. Unarj didn't
++       do this for a long time, so it's finally fixed.
++    */
++    pos = strchr(name, PATH_CHAR);
++
++    while (pos != NULL)
++    {
++        strncpy(dir, name, pos-name);
++        dir[pos-name] = '\0';
++        mkdir(dir, 0777);
++        pos = strchr(pos+1, PATH_CHAR);
++    }
+ 
+     if (file_exists(name))
+     {
+diff -urN unarj-2.43/unarj.h unarj-2.43.new/unarj.h
+--- unarj-2.43/unarj.h	Mon Sep 29 14:00:24 1997
++++ unarj-2.43.new/unarj.h	Tue Aug  8 15:19:33 2000
+@@ -198,90 +198,90 @@
+ /* end of environmental defines                              */
+ /* ********************************************************* */
+ 
+-/* ********************************************************* */
+-/*
+-/* Structure of archive main header (low order byte first):
+-/*
+-/*  2  header id (comment and local file) = 0x60, 0xEA
+-/*  2  basic header size (from 'first_hdr_size' thru 'comment' below)
+-/*	     = first_hdr_size + strlen(filename) + 1 + strlen(comment) + 1
+-/*	     = 0 if end of archive
+-/*
+-/*  1  first_hdr_size (size up to 'extra data')
+-/*  1  archiver version number
+-/*  1  minimum archiver version to extract
+-/*  1  host OS	 (0 = MSDOS, 1 = PRIMOS, 2 = UNIX, 3 = AMIGA, 4 = MACDOS)
+-/*               (5 = OS/2, 6 = APPLE GS, 7 = ATARI ST, 8 = NEXT)
+-/*               (9 = VAX VMS)
+-/*  1  arj flags (0x01 = GARBLED_FLAG, 0x02 = OLD_SECURED_FLAG)
+-/*               (0x04 = VOLUME_FLAG,  0x08 = EXTFILE_FLAG)
+-/*               (0x10 = PATHSYM_FLAG, 0x20 = BACKUP_FLAG)
+-/*               (0x40 = SECURED_FLAG)
+-/*  1  arj security version (2 = current)
+-/*  1  file type            (2 = comment header)
+-/*  1  ?                   ]
+-/*  4  date time stamp created
+-/*  4  date time stamp modified
+-/*  4  archive size up to the end of archive marker
+-/*  4  file position of security envelope data
+-/*  2  entryname position in filename
+-/*  2  length in bytes of trailing security data
+-/*  2  host data
+-/*  ?  extra data
+-/*
+-/*  ?  archive filename (null-terminated)
+-/*  ?  archive comment  (null-terminated)
+-/*
+-/*  4  basic header CRC
+-/*
+-/*  2  1st extended header size (0 if none)
+-/*  ?  1st extended header
+-/*  4  1st extended header's CRC
+-/*  ...
+-/*
+-/*
+-/* Structure of archive file header (low order byte first):
+-/*
+-/*  2  header id (comment and local file) = 0x60, 0xEA
+-/*  2  basic header size (from 'first_hdr_size' thru 'comment' below)
+-/*	     = first_hdr_size + strlen(filename) + 1 + strlen(comment) + 1
+-/*	     = 0 if end of archive
+-/*
+-/*  1  first_hdr_size (size up to 'extra data')
+-/*  1  archiver version number
+-/*  1  minimum archiver version to extract
+-/*  1  host OS	 (0 = MSDOS, 1 = PRIMOS, 2 = UNIX, 3 = AMIGA, 4 = MACDOS)
+-/*               (5 = OS/2, 6 = APPLE GS, 7 = ATARI ST, 8 = NEXT)
+-/*               (9 = VAX VMS)
+-/*  1  arj flags (0x01 = GARBLED_FLAG, 0x02 = NOT USED)
+-/*               (0x04 = VOLUME_FLAG,  0x08 = EXTFILE_FLAG)
+-/*               (0x10 = PATHSYM_FLAG, 0x20 = BACKUP_FLAG)
+-/*               (0x40 = NOT USED)
+-/*  1  method    (0 = stored, 1 = compressed most ... 4 compressed fastest)
+-/*  1  file type (0 = binary, 1 = text, 2 = comment header, 3 = directory)
+-/*               (4 = label)
+-/*  1  garble password modifier
+-/*  4  date time stamp modified
+-/*  4  compressed size
+-/*  4  original size
+-/*  4  original file's CRC
+-/*  2  entryname position in filename
+-/*  2  file access mode
+-/*  2  host data
+-/*  ?  extra data
+-/*     4 bytes for extended file position
+-/*
+-/*  ?  filename (null-terminated)
+-/*  ?  comment	(null-terminated)
+-/*
+-/*  4  basic header CRC
+-/*
+-/*  2  1st extended header size (0 if none)
+-/*  ?  1st extended header
+-/*  4  1st extended header's CRC
+-/*  ...
+-/*  ?  compressed file
+ /*
++ *
++ * Structure of archive main header (low order byte first):
++ *
++ *  2  header id (comment and local file) = 0x60, 0xEA
++ *  2  basic header size (from 'first_hdr_size' thru 'comment' below)
++ *	     = first_hdr_size + strlen(filename) + 1 + strlen(comment) + 1
++ *	     = 0 if end of archive
++ *
++ *  1  first_hdr_size (size up to 'extra data')
++ *  1  archiver version number
++ *  1  minimum archiver version to extract
++ *  1  host OS	 (0 = MSDOS, 1 = PRIMOS, 2 = UNIX, 3 = AMIGA, 4 = MACDOS)
++ *               (5 = OS/2, 6 = APPLE GS, 7 = ATARI ST, 8 = NEXT)
++ *               (9 = VAX VMS)
++ *  1  arj flags (0x01 = GARBLED_FLAG, 0x02 = OLD_SECURED_FLAG)
++ *               (0x04 = VOLUME_FLAG,  0x08 = EXTFILE_FLAG)
++ *               (0x10 = PATHSYM_FLAG, 0x20 = BACKUP_FLAG)
++ *               (0x40 = SECURED_FLAG)
++ *  1  arj security version (2 = current)
++ *  1  file type            (2 = comment header)
++ *  1  ?                   ]
++ *  4  date time stamp created
++ *  4  date time stamp modified
++ *  4  archive size up to the end of archive marker
++ *  4  file position of security envelope data
++ *  2  entryname position in filename
++ *  2  length in bytes of trailing security data
++ *  2  host data
++ *  ?  extra data
++ *
++ *  ?  archive filename (null-terminated)
++ *  ?  archive comment  (null-terminated)
++ *
++ *  4  basic header CRC
++ *
++ *  2  1st extended header size (0 if none)
++ *  ?  1st extended header
++ *  4  1st extended header's CRC
++ *  ...
++ *
++ *
++ * Structure of archive file header (low order byte first):
++ *
++ *  2  header id (comment and local file) = 0x60, 0xEA
++ *  2  basic header size (from 'first_hdr_size' thru 'comment' below)
++ *	     = first_hdr_size + strlen(filename) + 1 + strlen(comment) + 1
++ *	     = 0 if end of archive
++ *
++ *  1  first_hdr_size (size up to 'extra data')
++ *  1  archiver version number
++ *  1  minimum archiver version to extract
++ *  1  host OS	 (0 = MSDOS, 1 = PRIMOS, 2 = UNIX, 3 = AMIGA, 4 = MACDOS)
++ *               (5 = OS/2, 6 = APPLE GS, 7 = ATARI ST, 8 = NEXT)
++ *               (9 = VAX VMS)
++ *  1  arj flags (0x01 = GARBLED_FLAG, 0x02 = NOT USED)
++ *               (0x04 = VOLUME_FLAG,  0x08 = EXTFILE_FLAG)
++ *               (0x10 = PATHSYM_FLAG, 0x20 = BACKUP_FLAG)
++ *               (0x40 = NOT USED)
++ *  1  method    (0 = stored, 1 = compressed most ... 4 compressed fastest)
++ *  1  file type (0 = binary, 1 = text, 2 = comment header, 3 = directory)
++ *               (4 = label)
++ *  1  garble password modifier
++ *  4  date time stamp modified
++ *  4  compressed size
++ *  4  original size
++ *  4  original file's CRC
++ *  2  entryname position in filename
++ *  2  file access mode
++ *  2  host data
++ *  ?  extra data
++ *     4 bytes for extended file position
++ *
++ *  ?  filename (null-terminated)
++ *  ?  comment	(null-terminated)
++ *
++ *  4  basic header CRC
++ *
++ *  2  1st extended header size (0 if none)
++ *  ?  1st extended header
++ *  4  1st extended header's CRC
++ *  ...
++ *  ?  compressed file
++ */
+ /* ********************************************************* */
+ /* ********************************************************* */
+ /*                                                           */
