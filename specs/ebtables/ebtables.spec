@@ -1,16 +1,16 @@
 # $Id$
 # Authority: dag
-# Upstream: <ebtables-devel$lists,sf,net>
+# Upstream: <ebtables-devel$lists,sourceforge,net>
 
 %define _sbindir /sbin
 
 Summary: Ethernet Bridge frame table administration tool
 Name: ebtables
 Version: 2.0.6
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
-URL: http://ebtables.sf.net/
+URL: http://ebtables.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -169,15 +169,19 @@ if [ $1 -eq 0 ]; then
 fi
 
 %postun
-/sbin/service dnsmasq condrestart &>/dev/null || :
+/sbin/service ebtables condrestart &>/dev/null || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog INSTALL THANKS
-%doc %{_mandir}/man?/*
-%config %{_sysconfdir}/*
-%{_sbindir}
+%doc ChangeLog COPYING INSTALL THANKS
+%doc %{_mandir}/man8/ebtables.8*
+%config %{_sysconfdir}/ethertypes
+%config %{_initrddir}/ebtables
+%{_sbindir}/ebtables
 
 %changelog
+* Tue Apr 27 2004 Dag Wieers <dag@wieers.com> - 2.0.6-2
+- Cosmetic changes.
+
 * Tue Apr 27 2004 Dag Wieers <dag@wieers.com> - 2.0.6-1
 - Initial package. (using DAR)

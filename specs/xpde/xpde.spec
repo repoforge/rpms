@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <development$xpde,com>
 
+# Tag: test
+
 %define installdir /opt/xkde
 %define real_version 0.4.0-20030730
 
