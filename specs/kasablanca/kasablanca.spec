@@ -3,6 +3,8 @@
 # Authority: dries
 # Screenshot: http://kasablanca.berlios.de/images/screenshots/sshot031.png
 
+# ExcludeDist: el3 fc1
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc1:%define _without_xorg 1}

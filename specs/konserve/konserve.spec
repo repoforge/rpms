@@ -4,7 +4,7 @@
 # Screenshot: http://konserve.sourceforge.net/konserve-screenshot424.png
 # ScreenshotURL: http://konserve.sourceforge.net/screens.html
 
-# ExcludeDist: el3
+# ExcludeDist: el3 fc1
 
 Summary: Small backup application
 Name: konserve

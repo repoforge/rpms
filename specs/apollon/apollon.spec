@@ -4,7 +4,7 @@
 # Screenshot: http://apollon.sourceforge.net/apollon1.png
 # ScreenshotURL: http://apollon.sourceforge.net/pictures.html
 
-# ExcludeDist: el3
+# ExcludeDist: el3 fc1
 
 %define desktop_vendor rpmforge
 

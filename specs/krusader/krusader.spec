@@ -5,7 +5,7 @@
 # Screenshot: http://krusader.sourceforge.net/scr/thumbs/krusader-150cvs_01.png
 # ScreenshotURL: http://krusader.sourceforge.net/scr.php
 
-# ExcludeDist: el3
+# ExcludeDist: el3 fc1
 
 %{?dist: %{expand: %%define %dist 1}}
 

@@ -5,7 +5,7 @@
 # Screenshot: http://kgeography.berlios.de/screen1.png
 # ScreenshotURL: http://kgeography.berlios.de/screenshots.html
 
-# ExcludeDist: el3
+# ExcludeDist: el3 fc2 fc1
 
 Summary: Geography learning tool
 Name: kgeography

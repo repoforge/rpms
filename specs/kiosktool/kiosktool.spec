@@ -5,7 +5,7 @@
 # Screenshot: http://extragear.kde.org/apps/kiosktool/kiosktool3.png
 # ScreenshotURL: http://extragear.kde.org/apps/kiosktool.php
 
-# ExcludeDist: el3
+# ExcludeDist: el3 fc1
 
 %{?dist: %{expand: %%define %dist 1}}
 
