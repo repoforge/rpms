@@ -1,17 +1,17 @@
 # $Id$
 # Authority: matthias
 
-%define date 20041213
+#define date 20041213
+%define prever beta1
 
 Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.35
-Release: %{?date:0.%{date}.}1
+Release: %{?date:0.%{date}.}%{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
-Source: http://dl.sf.net/gxmame/gxmame-%{version}%{?date:cvs}.tar.gz
-Patch: gxmame-0.35cvs-mkinstalldirs.patch
+Source: http://dl.sf.net/gxmame/gxmame-%{version}%{?date:cvs}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1
 BuildRequires: gtk2-devel, zlib-devel, expat-devel, gettext-devel, intltool
@@ -26,9 +26,7 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 
 %prep
-%setup -n %{name}-%{version}%{?date:cvs}
-%patch -p1 -b .mkinstalldirs
-chmod +x po/mkinstalldirs
+%setup -n %{name}-%{version}%{?date:cvs}%{?prever}
 
 
 %build
@@ -62,6 +60,9 @@ chmod +x po/mkinstalldirs
 
 
 %changelog
+* Mon Feb 14 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.beta1.1
+- Update to 0.35beta1.
+
 * Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 0.35-0.20041213.1
 - Update to today's CVS.
 
