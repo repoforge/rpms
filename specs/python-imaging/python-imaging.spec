@@ -45,7 +45,7 @@ internal representation, and powerful image processing capabilities.
 %build
 pushd libImaging
     %configure
-    %{__make} OPT="%{optflags}"
+    %{__make} OPT="%{optflags} -fPIC"
 popd
 %{__python} setup.py build
 
