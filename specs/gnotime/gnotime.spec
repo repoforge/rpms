@@ -18,6 +18,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0.3, guile-devel
 #BuildRequires: gtkhtml3-devel >= 3.1.0
+# from configure output: checking for libgtkhtml-3.1 >= 3.0.0... 
+BuildRequires: gtkhtml3-devel
 
 %description
 The GNOME Time Tracker is a desktop utility for tracking the amount
