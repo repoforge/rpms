@@ -1,13 +1,15 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Germano Rizzo <mano@pluto.linux.it>
 
-Summary: Gringotts, an electronic strongbox
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+Summary: Electronic strongbox
 Name: gringotts
 Version: 1.2.8
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://devel.pluto.linux.it/projects/Gringotts/
@@ -15,12 +17,10 @@ URL: http://devel.pluto.linux.it/projects/Gringotts/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://devel.pluto.linux.it/projects/Gringotts/current/%{name}-%{version}.tar.bz2
+Source: http://devel.pluto.linux.it/projects/Gringotts/current/gringotts-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildPrereq: gtk2-devel, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig
-#Requires: gtk2, bash, popt, textutils, libgringotts >= 1.1.1
+BuildRequires: gtk2-devel, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig
 
 %description
 Gringotts is a small but (hopely ;) useful utility that stores sensitive
@@ -32,6 +32,20 @@ to be as trustworthy as possible.
 %prep
 %setup
 
+### FIXME: Include improved desktop-file. (Please fix upstream)
+%{__cat} <<EOF >gringotts.desktop.in
+[Desktop Entry]
+Name=Gringotts Data Protection
+Comment=Store sensitive data securely
+Icon=gringotts.xpm
+Exec=gringotts
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=GNOME;Application;Utility;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -41,17 +55,31 @@ to be as trustworthy as possible.
 %makeinstall
 %find_lang %{name}
 
+%if %{!?_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor gnome --delete-original \
+		--add-category X-Red-Hat-Base                 \
+		--dir %{buildroot}%{_datadir}/applications    \
+		%{buildroot}%{_datadir}/gnome/apps/Utilities/gringotts.desktop
+%endif
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog FAQ NEWS README TODO
-%attr(4755, -, -) %{_bindir}/*
 %{_datadir}/pixmaps/gringotts.xpm
-%{_datadir}/gnome/apps/Utilities/gringotts.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-gringotts.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/gringotts.desktop}
+
+%defattr(4755, root, root, 0755)
+%{_bindir}/gringotts
 
 %changelog
+* Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.2.8-1
+- Add improved desktop file.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 1.2.8-0
 - Updated to release 1.2.8.
 
