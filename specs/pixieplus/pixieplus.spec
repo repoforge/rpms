@@ -69,7 +69,7 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %{_bindir}/pixie
 %{_libdir}/libpixie_misc.*
 %{_libdir}/pixie.*

@@ -54,7 +54,7 @@ you will need to install %{name}-devel.
 /sbin/ldconfig 2>/dev/null
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc README ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS TODO README.nl
 %{_bindir}/gnuvd
 %doc %{_mandir}/man?/*

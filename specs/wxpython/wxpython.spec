@@ -53,7 +53,7 @@ python setup.py install --root ${RPM_BUILD_ROOT}
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %{_libdir}/python*/site-packages/wxPython
 %{_libdir}/python*/site-packages/wx
 %{_bindir}/helpviewer

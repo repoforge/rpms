@@ -48,7 +48,7 @@ mv %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroo
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %{_bindir}/tuxsaver.kss
 %{_datadir}/apps/kscreensaver/ScreenSavers/tuxsaver.desktop
 %{_datadir}/apps/tuxsaver/objects

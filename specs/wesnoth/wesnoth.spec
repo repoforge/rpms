@@ -59,7 +59,7 @@ desktop-file-install --vendor rpmforge             \
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc README COPYING MANUAL MANUAL.*
 %{_bindir}/wesnoth
 %{_mandir}/man6/wesnoth*

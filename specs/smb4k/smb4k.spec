@@ -59,7 +59,7 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %{_bindir}/smb4k
 %{_datadir}/applications/smb4k.desktop
 %{_datadir}/apps/smb4k

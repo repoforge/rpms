@@ -41,7 +41,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/X11R6/man/man1/
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %{_usr}/X11R6/bin/xautolock
 %{_usr}/X11R6/man/man1/xautolock.1x.gz
 
