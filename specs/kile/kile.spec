@@ -4,7 +4,7 @@
 
 Summary: user friendly TeX/LaTeX editor
 Name: kile
-Version: 1.6.2
+Version: 1.6.3
 Release: 1
 License: GPL
 Group: Applications/Publishing
