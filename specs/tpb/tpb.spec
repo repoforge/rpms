@@ -5,7 +5,7 @@
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
 Version: 0.6.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/
@@ -32,6 +32,11 @@ volume, mute and brightness of the LCD.
 %{_bindir}/tpb -d
 EOF
 
+%{__perl} -pi.orig -e '
+		s|^#(OSDFONT.+)$|#$1\n$1|;
+		s|^#(OSDCOLOR)(.+)|#$1$2\n$1\tGreen|;
+	' doc/tpbrc
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -42,7 +47,7 @@ EOF
 %find_lang %{name}
 #%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/tpbrc
 %{__install} -D -m0755 doc/tpbrc %{buildroot}%{_sysconfdir}/tpbrc
-%{__install} -D -m0755 tpb.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/tpb
+%{__install} -D -m0755 tpb.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/tpb.sh
 
 %{__install} -d -m0755 %{buildroot}/dev
 touch %{buildroot}/dev/nvram
@@ -67,11 +72,14 @@ fi
 %doc ChangeLog COPYING CREDITS README TODO doc/callback_example.sh doc/nvram.txt doc/tpbrc
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/tpbrc
-%config(noreplace) %{_sysconfdir}/X11/xinit/xinitrc.d/*
+%config(noreplace) %{_sysconfdir}/X11/xinit/xinitrc.d/tpb.sh
 %{_bindir}/*
 %ghost /dev/nvram
 
 %changelog
+* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 0.6.2-2
+- Fixed naming of tpb xinit file to tpb.sh for FC2. (Patrick C. F. Ernzer)
+
 * Wed May 19 2004 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Updated to release 0.6.2.
 
