@@ -17,6 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/memaid/kmemaid-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
+%{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs
 
 # Screenshot: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/thumbs/edit_elements_correct.png
@@ -44,7 +45,7 @@ vraag te stellen.
 %makeinstall
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root, 0755)
 %doc README AUTHORS COPYING INSTALL TODO
 %{_bindir}/kmemaid
 %{_datadir}/applnk/Applications/kmemaid.desktop
