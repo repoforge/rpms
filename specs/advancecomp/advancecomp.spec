@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <advancemame-devel@lists.sf.net>
 
 Summary: Recompression utilities for .PNG, .MNG and .ZIP files
 Name: advancecomp
@@ -7,9 +8,11 @@ Version: 1.7
 Release: 2
 License: GPL
 Group: Applications/Emulators
-Source: http://dl.sf.net/advancemame/%{name}-%{version}.tar.gz
 URL: http://advancemame.sf.net/
-BuildRoot: %{_tmppath}/%{name}-root
+
+Source: http://dl.sf.net/advancemame/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}root
+
 BuildRequires: gcc-c++, zlib-devel
 
 %description
