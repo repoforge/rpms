@@ -27,7 +27,7 @@ A minimum of two players is required, since there is no artificial
 intelligence yet.
 
 %prep
-%setup
+%setup -n boson-all-%{version}
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
