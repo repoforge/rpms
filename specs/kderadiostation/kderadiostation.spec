@@ -57,7 +57,6 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config/kderadiostationrc
 %{_datadir}/icons/*/*/apps/kderadiostation.png
 %{_libdir}/kde3/*.so.*
-%exclude %{_libdir}/kde3/*.a
 %exclude %{_libdir}/kde3/*.la
 %exclude %{_libdir}/kde3/*.so
 
