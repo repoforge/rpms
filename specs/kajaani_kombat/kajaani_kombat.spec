@@ -6,7 +6,7 @@
 
 Summary: Multiplayer game in space
 Name: kajaani-kombat
-Version: 0.4
+Version: 0.5
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -56,6 +56,9 @@ same computer. Enjoy it with your friends!
 %{_mandir}/man6/*
 
 %changelog
+* Sat Oct 30 2004 Dries Verachtert <dries@ulyssis.org> 0.5-1
+-  Update to release 0.5.
+
 * Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.4-1
 - Renamed from kajaani_kombat to kajaani-kombat to match upstream.
 
@@ -64,4 +67,3 @@ same computer. Enjoy it with your friends!
 
 * Fri Feb 27 2004 Dries Verachtert <dries@ulyssis.org> 0.3-1
 - first packaging for Fedora Core 1
-
