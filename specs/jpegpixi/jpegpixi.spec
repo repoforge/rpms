@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Martin Dickopp <martin-jpegpixi@zero-based.org>
 
@@ -17,7 +16,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.zero-based.org/software/jpegpixi/jpegpixi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 %description
 Jpegpixi interpolates pixels in JPEG images (single pixels, dots, 
 stripes). This is useful to correct images from a digital camera with 
@@ -33,9 +31,10 @@ pixel can be interpolated with jpegpixi.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__install} -m0755 jpegpixi jpeghotp %{buildroot}%{_bindir}
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -m0644 jpegpixi.1 jpeghotp.1 %{buildroot}%{_mandir}/man1/
 
 %clean
