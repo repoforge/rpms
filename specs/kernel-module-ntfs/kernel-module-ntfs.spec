@@ -20,7 +20,6 @@
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define real_name ntfs
-%define real_release 1
 
 %define moduledir /kernel/fs/ntfs
 %define modules ntfs.o
@@ -28,7 +27,7 @@
 Summary: Linux driver for NTFS filesystem
 Name: kernel-module-ntfs
 Version: 0.0
-Release: %{real_release}
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://linux-ntfs.sf.net/info/redhat.html
@@ -51,7 +50,7 @@ Group: System Environment/Kernel
 Requires: /boot/vmlinuz-%{kernel}
 Requires: kernel = %{kernel}
 
-Provides: kernel-module-ntfs = %{version}-%{real_release}
+Provides: kernel-module-ntfs = %{version}-%{release}
 Provides: kernel-modules
 
 %description -n kernel-module-ntfs-%{kernel}
@@ -69,7 +68,7 @@ Group: System Environment/Kernel
 Requires: /boot/vmlinuz-%{kernel}smp
 Requires: kernel-smp = %{kernel}smp
 
-Provides: kernel-module-ntfs = %{version}-%{real_release}
+Provides: kernel-module-ntfs = %{version}-%{release}
 Provides: kernel-modules
 
 %description -n kernel-smp-module-ntfs-%{kernel}
@@ -84,7 +83,7 @@ They might work with newer/older kernels.
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{real_version}\nKernel version: %{kernel}\n"
+echo -e "\nDriver version: %{version}\nKernel version: %{kernel}\n"
 
 ### Prepare UP kernel.
 cd %{_usrsrc}/linux-%{kernel}

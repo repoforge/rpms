@@ -1,7 +1,7 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: smbc-list@lists.sourceforge.net
+# Upstream: <smbc-list@lists.sourceforge.net>
+
 # Screenshot: http://www.air.rzeszow.pl/smbc/smbc/screenshots/mainpage.jpg
 # ScreenshotURL: http://www.air.rzeszow.pl/smbc/smbc/screenshots/
 
@@ -16,8 +16,9 @@ URL: http://www.rafim.prv.pl/smbc/smbc/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Source: http://www.air.rzeszow.pl/smbc/smbc/%{version}/smbc-%{version}.tgz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gettext, ncurses-devel, samba-common
 
 %description
@@ -26,7 +27,6 @@ can download and upload files or directories and create remote and local
 directories. Smbc has a resume function and supports UTF-8 characters.
 
 %prep
-%{__rm} -rf %{buildroot}
 %setup
 
 %build
@@ -34,12 +34,13 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
 %files -f %{name}.lang
-%defattr(-,root,root,0755)
-%doc FAQ NEWS COPYING README doc/sample.smbcrc
+%defattr(-, root, root, 0755)
+%doc COPYING FAQ NEWS README doc/sample.smbcrc
 %{_bindir}/*
 %exclude %{_datadir}/doc
 

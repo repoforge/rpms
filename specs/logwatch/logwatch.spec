@@ -1,10 +1,12 @@
 # $Id$
 # Authority: dag
 # Upstream: Kirk Bauer <kirk@kaybee.org>
+# Upstream: <logwatch-bugs@logwatch.org>
+# Upstream: <logwatch-devel@logwatch.org>
 
 Summary: Log file analysis program
 Name: logwatch
-Version: 5.2
+Version: 5.2.2
 Release: 0.1
 License: MIT
 Group: Applications/System
@@ -91,6 +93,9 @@ done
 %{_sbindir}/logwatch
 
 %changelog
+* Sat Jun 26 2004 Dag Wieers <dag@wieers.com> - 5.2.2-1
+- Updated to release 5.2.2.
+
 * Mon Jun 21 2004 Dag Wieers <dag@wieers.com> - 5.2-1
 - Updated to release 5.2.
 

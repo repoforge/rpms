@@ -39,9 +39,7 @@ for the gnome panel.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-%find_lang %{name}
-
-### Clean up buildroot
+%find_lang %{name}-%{real_version}
 
 %post
 scrollkeeper-update -q || :
@@ -52,7 +50,7 @@ scrollkeeper-update -q || :
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files -f %{name}-%{real_version}.lang
 %defattr (-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* NEWS README 
 #%doc %{_mandir}/man1/*
@@ -64,7 +62,7 @@ scrollkeeper-update -q || :
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/glunarclock/
-%{_datadir}/omf/gnome-applets/*.omf
+%{_datadir}/omf/glunarclock/*.omf
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog

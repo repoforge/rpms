@@ -4,7 +4,7 @@
 
 Summary: Network interface status applet
 Name: gnome-netstatus
-Version: 2.6.1
+Version: 2.6.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -67,6 +67,9 @@ scrollkeeper-update -q
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sat Jun 26 2004 Dag Wieers <dag@wieers.com> -  2.6.2-1
+- Updated to release 2.6.2.
+
 * Fri May 21 2004 Dag Wieers <dag@wieers.com> -  2.6.1-1
 - Updated to release 2.6.1.
 

@@ -2,7 +2,23 @@
 # Authority: matthias
 # Upstream: Thomas Östreich <ostreich@theorie.physik.uni-goettingen.de>
 # Upstream: Tilmann Bitterberg <transcode@tibit.org>
-# Distcc: 0
+
+%{?fc1:%define _without_theora 1}
+%{?el3:%define _without_theora 1}
+%{?rh9:%define _without_theora 1}
+
+%{?rh8:%define _without_theora 1}
+%{?rh8:%define _without_magick 1}
+
+%{?rh7:%define _without_theora 1}
+%{?el2:%define _without_theora 1}
+%{?rh6:%define _without_theora 1}
+
+%ifarch x86_64
+	%define _without_mjpeg 1
+	%define _without_nasm 1
+	%define _without_quicktime 1
+%endif
 
 Summary: Linux video stream processing utility
 Name: transcode
@@ -11,23 +27,14 @@ Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://zebra.fh-weingarten.de/~transcode/
+
 Source: http://zebra.fh-weingarten.de/~transcode/pre/transcode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL, libxml2, libjpeg
-Requires: freetype >= 2.0, libogg, libvorbis, libdv
-Requires: ImageMagick >= 5.4.3, bzip2
-%{!?_without_lame:Requires: lame >= 3.89}
-%{!?_without_dvdread:Requires: libdvdread}
-%{!?_without_xvidcore:Requires: xvidcore}
-#{!?_without_postproc:Requires: libpostproc}
-%{!?_without_quicktime:Requires: libquicktime}
-%{!?_without_lzo:Requires: lzo >= 1.08}
-%{!?_without_a52:Requires: a52dec}
-%{!?_without_libfame:Requires: libfame}
+
 BuildRequires: gcc-c++, glib-devel, gtk+-devel
 BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel, libdv-devel
-BuildRequires: ImageMagick-devel >= 5.4.3, bzip2-devel
+BuildRequires: bzip2-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
@@ -42,9 +49,20 @@ BuildRequires: libexif-devel
 %{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
 %{!?_without_mpeg3:BuildRequires: libmpeg3}
 %{!?_without_theora:BuildRequires: libtheora-devel}
-%ifarch %{ix86}
-BuildRequires: nasm
-%endif
+%{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3}
+%{!?_without_nasm:BuildRequires: nasm}
+Requires: SDL, libxml2, libjpeg
+Requires: freetype >= 2.0, libogg, libvorbis, libdv
+Requires: bzip2
+%{!?_without_lame:Requires: lame >= 3.89}
+%{!?_without_dvdread:Requires: libdvdread}
+%{!?_without_xvidcore:Requires: xvidcore}
+#{!?_without_postproc:Requires: libpostproc}
+%{!?_without_quicktime:Requires: libquicktime}
+%{!?_without_lzo:Requires: lzo >= 1.08}
+%{!?_without_a52:Requires: a52dec}
+%{!?_without_libfame:Requires: libfame}
+%{!?_without_magick:Requires: ImageMagick >= 5.4.3}
 
 %description
 Transcode is a linux text-console utility for video stream processing.
@@ -57,11 +75,15 @@ video frames and loading of external filters.
 Please see the included README file for more.
 
 Available rpmbuild rebuild options :
---without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg mpeg3 theora
+--without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg mpeg3 theora magick
+--with : avifile
 
 
 %prep
 %setup
+
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
+%{__perl} -pi.orig -e 's|\@MOD_PATH\@|\$(libdir)/transcode|' Makefile.in */Makefile.in */*/Makefile.in
 
 
 %build
@@ -76,14 +98,16 @@ Available rpmbuild rebuild options :
     %{?_without_libfame:--without-libfame} \
     %{?_without_mjpeg:--without-mjpeg} \
     %{?_without_mpeg3:--without-libmpeg3} \
-    %{!?_without_theora:--with-theora}
+    %{!?_without_theora:--with-theora} \
+    %{!?_with_avifile:--without-avifile-mods} \
+    %{?_without_magick:--without-magick-mods}
 %{__make} %{?_smp_mflags}
 
 
 %install
-%{__rm} -rf %{buildroot} rpm-doc
-%makeinstall
-%{__mv} -f %{buildroot}%{_docdir}/transcode rpm-doc
+%{__rm} -rf %{buildroot}
+%makeinstall \
+	docsdir="../rpm-doc/"
 
 
 %clean
@@ -92,7 +116,7 @@ Available rpmbuild rebuild options :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README TODO rpm-doc/*
+%doc AUTHORS ChangeLog COPYING README TODO rpm-doc/*
 %{_bindir}/*
 %{_libdir}/transcode/
 %exclude %{_libdir}/transcode/*.la

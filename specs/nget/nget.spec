@@ -1,21 +1,20 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Matthew Mueller <donut@dakotacom.net>
 
 Summary: Command line NNTP file grabber
 Name: nget
-Version: 0.26
-Release: 0
+Version: 0.27
+Release: 1
 License: GPL
 Group: Applications/System
-URL: http://nget.sf.net/
+URL: http://nget.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/nget/nget-%{version}+uulib.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: pcre-devel, popt, ncurses-devel, zlib-devel
 
@@ -36,8 +35,6 @@ succesfully downloaded.
 	        
 %install
 %{__rm} -rf %{buildroot}
-#%{__install} -d -m0755 %{buildroot}%{_bindir} \
-#			%{buildroot}%{_mandir}
 %makeinstall
 
 %post
@@ -56,6 +53,9 @@ succesfully downloaded.
 %{_bindir}/*
 
 %changelog
+* Sun Jun 27 2004 Dag Wieers <dag@wieers.com> - 0.27-1
+- Updated to release 0.27.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.26-0
 - Updated to release 0.26.
 

@@ -7,24 +7,28 @@
 # Soapbox: 0
 # BuildAsRoot: 1
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define __cc gcc32}
+
 %define _libmoddir /lib/modules
 
 %{!?kernel:%define kernel %(rpm -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
+
+%define _with_smp %(test -f /usr/src/linux-%{kernel}/configs/kernel-%{kversion}-%{_target_cpu}-smp.config && echo 1 || echo 0)
 
 %define kversion %(echo "%{kernel}" | sed -e 's|-.*||')
 %define krelease %(echo "%{kernel}" | sed -e 's|.*-||')
 
 %define real_name openswan
-%define real_version 2.1.1
-%define real_release 1
 
 %define moduledir /kernel/net/openswan
 %define modules linux/net/ipsec/ipsec.o
 
 Summary: Linux drivers for OpenS/WAN IPsec support
 Name: kernel-module-openswan
-Version: %{real_version}
-Release: %{real_release}_%{kversion}_%{krelease}
+Version: 2.1.2
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.openswan.org/
@@ -32,49 +36,58 @@ URL: http://www.openswan.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.openswan.org/code/openswan-%{real_version}.tar.gz
+Source: http://www.openswan.org/code/openswan-%{version}.tar.gz
 Patch0: openswan-2.1.1-mts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap, gmp-devel
-BuildRequires: /usr/bin/man2html
-
-Requires: /boot/vmlinuz-%{kversion}-%{krelease}
-Requires: openswan-utils
-
-Provides: kernel-modules
-Provides: freeswan-modules = %{version}-%{release}, freeswan-module = %{version}-%{release}
-Obsoletes: freeswan-modules <= %{version}, freeswan-module <= %{version}, openswan
+BuildRequires: libpcap, gmp-devel, /usr/bin/man2html
+BuildRequires: kernel-source = %{kernel}
 
 %description
 Linux drivers for OpenS/WAN IPsec support.
 
-These drivers are built for kernel %{kversion}-%{krelease}
+%package -n kernel-module-openswan-%{kernel}
+Summary: Linux SMP drivers for OpenS/WAN IPsec support
+Group: System Environment/Kernel
+
+Requires: /boot/vmlinuz-%{kernel}
+Requires: kernel = %{kernel}
+Requires: openswan-utils
+
+Provides: kernel-module-openswan = %{version}-%{release}
+Provides: kernel-modules
+Provides: freeswan-modules = %{version}-%{release}, freeswan-module = %{version}-%{release}
+Obsoletes: freeswan-modules <= %{version}, freeswan-module <= %{version}, openswan
+
+%description -n kernel-module-openswan-%{kernel}
+Linux drivers for OpenS/WAN IPsec support.
+
+These drivers are built for kernel %{kernel}
 and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
-%package -n kernel-smp-module-openswan
+%package -n kernel-smp-module-openswan-%{kernel}
 Summary: Linux SMP drivers for OpenS/WAN IPsec support
-Release: %{real_release}_%{kversion}_%{krelease}
 Group: System Environment/Kernel
 
-Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
+Requires: /boot/vmlinuz-%{kernel}smp
+Requires: kernel-smp = %{kernel}
 Requires: openswan-utils
 
+Provides: kernel-module-openswan = %{version}-%{release}
 Provides: kernel-modules
 Provides: freeswan-modules = %{version}-%{release}, freeswan-module = %{version}-%{release}
 #Obsoletes: freeswan-modules <= %{version}, freeswan-module <= %{version}
 
-%description -n kernel-smp-module-openswan
+%description -n kernel-smp-module-openswan-%{kernel}
 Linux SMP drivers for OpenS/WAN IPsec support.
 
-These drivers are built for kernel %{kversion}-%{krelease}smp
+These drivers are built for kernel %{kernel}smp
 and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n openswan-utils
 Summary: OpenS/WAN programs and libraries
-Release: %{real_release}
 Group: System Environment/Base
 
 Provides: freeswan = %{version}-%{release}, freeswan-programs = %{version}-%{release}
@@ -86,7 +99,7 @@ Obsoletes: freeswan-userland <= %{version}, freeswan-doc <= %{version}
 OpenS/WAN programs and libraries.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 #%setup -n %{real_name}-%{real_version} -a 1
 %patch0
 #%{__cat} x509-*/freeswan.diff | patch -p1
@@ -199,39 +212,47 @@ EOF
 
 %build
 %{__rm} -rf %{buildroot}
-echo -e "\nDriver version: %{real_version}\nKernel version: %{kversion}-%{krelease}\n"
+echo -e "\nDriver version: %{version}\nKernel version: %{kernel}\n"
 
 ### Prepare UP kernel.
-cd %{_usrsrc}/linux-%{kversion}-%{krelease}
+cd %{_usrsrc}/linux-%{kernel}
 %{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}.config .config
-%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}" &>/dev/null
+%{__make} -s symlinks oldconfig dep \
+	EXTRAVERSION="-%{krelease}" \
+	ARCH="$(echo %{_target_cpu} | sed -e 's/\(i.86\|athlon\)/i386/' -e 's|sun4u|sparc64|' -e 's|arm.*|arm|' -e 's|sa110|arm|')" \
+	&>/dev/null
 cd -
 
 ### Make UP module.
 %{__make} clean module \
-	KERNELSRC="%{_libmoddir}/%{kversion}-%{krelease}/build" \
-	ARCH="%{_arch}" \
+	KERNELSRC="%{_libmoddir}/%{kernel}/build" \
+	ARCH="$(echo %{_target_cpu} | sed -e 's/\(i.86\|athlon\)/i386/' -e 's|sun4u|sparc64|' -e 's|arm.*|arm|' -e 's|sa110|arm|')" \
 	SUBARCH="%{_arch}" \
 	CC="${CC:-%{__cc}}"
-%{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
+%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
 
+%if %{_with_smp}
 ### Prepare SMP kernel.
-cd %{_usrsrc}/linux-%{kversion}-%{krelease}
+cd %{_usrsrc}/linux-%{kernel}
 %{__make} -s distclean &>/dev/null
 %{__cp} -f configs/kernel-%{kversion}-%{_target_cpu}-smp.config .config
-%{__make} -s symlinks oldconfig dep EXTRAVERSION="-%{krelease}smp" &>/dev/null
+%{__make} -s symlinks oldconfig dep \
+	EXTRAVERSION="-%{krelease}smp" \
+	ARCH="$(echo %{_target_cpu} | sed -e 's/\(i.86\|athlon\)/i386/' -e 's|sun4u|sparc64|' -e 's|arm.*|arm|' -e 's|sa110|arm|')" \
+	&>/dev/null
 cd -
 
 ### Make SMP module.
 %{__make} clean module \
-	KERNELSRC="%{_libmoddir}/%{kversion}-%{krelease}/build" \
-	ARCH="%{_arch}" \
+	KERNELSRC="%{_libmoddir}/%{kernel}/build" \
+	ARCH="$(echo %{_target_cpu} | sed -e 's/\(i.86\|athlon\)/i386/' -e 's|sun4u|sparc64|' -e 's|arm.*|arm|' -e 's|sa110|arm|')" \
 	SUBARCH="%{_arch}" \
 	CC="${CC:-%{__cc}}"
-%{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
+%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
+%endif
 
 ### Build utilities.
 %{__make} %{?_smp_mflags} programs \
@@ -252,7 +273,7 @@ cd -
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/run/pluto/ \
 			%{buildroot}%{_sysconfdir}/ipsec.d/
 #%{__install} -m0755 freeswan.sysv %{buildroot}%{_initrddir}/freeswan
-%{__install} -m0644 ipsec.secrets %{buildroot}%{_sysconfdir}
+%{__install} -D -m0644 ipsec.secrets %{buildroot}%{_sysconfdir}/ipsec.secrets
 
 ### Clean up buildroot
 %{__perl} -pi -e 's|/usr/local|%{_prefix}|g' %{buildroot}%{_libexecdir}/ipsec/* %{buildroot}%{_libdir}/ipsec/*
@@ -262,17 +283,17 @@ cd -
 %{__mv} -f %{buildroot}%{_prefix}/share/doc/freeswan/ rpm-doc/
 %{__rm} -f rpm-doc/*.{pdf,ps}
 
-%post
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+%post -n kernel-module-openswan-%{kernel}
+/sbin/depmod -ae %{kernel} || :
 
-%postun
-/sbin/depmod -ae %{kversion}-%{krelease} || :
+%postun -n kernel-module-openswan-%{kernel}
+/sbin/depmod -ae %{kernel} || :
 
-%post -n kernel-smp-module-openswan
-/sbin/depmod -ae %{kversion}-%{krelease}smp || :
+%post -n kernel-smp-module-openswan-%{kernel}
+/sbin/depmod -ae %{kernel}smp || :
 
-%postun -n kernel-smp-module-openswan
-/sbin/depmod -ae %{kversion}-%{krelease}smp || :
+%postun -n kernel-smp-module-openswan-%{kernel}
+/sbin/depmod -ae %{kernel}smp || :
 
 %post -n openswan-utils
 /sbin/chkconfig --add ipsec
@@ -289,17 +310,19 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -n kernel-module-openswan-%{kernel}
 %defattr(-, root, root, 0755)
-%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}/
+%{_libmoddir}/%{kernel}%{moduledir}/
 
-%files -n kernel-smp-module-openswan
+%if %{_with_smp}
+%files -n kernel-smp-module-openswan-%{kernel}
 %defattr(-, root, root, 0755)
-%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/
+%{_libmoddir}/%{kernel}smp%{moduledir}/
+%endif
 
 %files -n openswan-utils
 %defattr(-, root, root, 0755)
-%doc BUGS* CHANGES* COPYING CREDITS INSTALL LICENSE README* doc/ rpm-doc/*
+%doc BUGS* CHANGES* COPYING CREDITS LICENSE README* doc/ rpm-doc/*
 %doc programs/_confread/ipsec.conf
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/ipsec.secrets
@@ -314,6 +337,9 @@ fi
 #%{_includedir}/*.h
 
 %changelog
+* Sun Jun 27 2004 Dag Wieers <dag@wieers.com> - 2.1.2-1
+- Moved to new standard naming scheme.
+
 * Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
 - Updated to openswan release 2.1.1.
 

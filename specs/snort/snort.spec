@@ -8,7 +8,7 @@
 %define pgsql 1
 %define odbc 1
 %define bloat 1
-#{?el3:%undefine odbc}
+#{?el3:#undefine odbc}
 
 Summary: Open Source network intrusion detection system
 Name: snort
@@ -26,6 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 0.4, mysql-devel, openssl-devel, libnet
 BuildRequires: pcre-devel, perl, postgresql-devel, unixODBC-devel
+%{!?dist:BuildRequires: net-snmp-devel}
 %{?fc2:BuildRequires: net-snmp-devel}
 %{?fc1:BuildRequires: net-snmp-devel}
 %{?el3:BuildRequires: net-snmp-devel}
@@ -87,7 +88,10 @@ Requires snort libnet rpm.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|lib lib/|%{_lib} %{_lib}/|' configure
+%{__perl} -pi.orig -e '
+		s|lib lib/|%{_lib} %{_lib}/|;
+		s|(\$ODBC_DIR)/lib|$1/%{_lib}|;
+	' configure
 
 %{__cat} <<EOF >snort.sysconf
 ### Specify your network interface here
@@ -238,7 +242,7 @@ mkdir plain; cd plain
 %{__mv} -f src/snort ../snort-plain
 cd -
 
-%if %{?mysql:1}%{!?mysql:0}
+%if %{?mysql:1}0
 mkdir mysql; cd mysql
 ../configure $SNORT_BASE_CONFIG \
 	--with-mysql \
@@ -249,7 +253,7 @@ mkdir mysql; cd mysql
 cd -
 %endif
 
-%if %{?pgsql:1}%{!?pgsql:0}
+%if %{?pgsql:1}0
 mkdir pgsql; cd pgsql
 ../configure $SNORT_BASE_CONFIG \
 	--without-mysql \
@@ -260,7 +264,7 @@ mkdir pgsql; cd pgsql
 cd -
 %endif
 
-%if %{?odbc:1}%{!?odbc:0}
+%if %{?odbc:1}0
 mkdir odbc; cd odbc
 ../configure $SNORT_BASE_CONFIG \
 	--without-mysql \
@@ -355,19 +359,19 @@ fi
 %config(noreplace) %{_sysconfdir}/snort/
 %{_localstatedir}/log/snort/
 
-%if %{?mysql:1}%{!?mysql:0}
+%if %{?mysql:1}0
 %files mysql
 %defattr(-, root, root, 0755)
 %{_sbindir}/snort-mysql
 %endif
 
-%if %{?pgsql:1}%{!?pgsql:0}
+%if %{?pgsql:1}0
 %files postgresql
 %defattr(-, root, root, 0755)
 %{_sbindir}/snort-pgsql
 %endif
 
-%if %{?odbc:1}%{!?odbc:0}
+%if %{?odbc:1}0
 %files odbc
 %defattr(-, root, root, 0755)
 %{_sbindir}/snort-odbc
