@@ -1,11 +1,11 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: 
+# Upstream: Douglas Hanks
 
 Summary: sudo shell
 Name: sudosh
-Version: 1.2.2
+Version: 1.3.2
 Release: 1
 License: Open Software License
 Group: Applications/System
@@ -14,7 +14,8 @@ URL: http://sourceforge.net/projects/sudosh
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/sudosh/sudosh-%{version}.tar.gz
+#Source: http://dl.sf.net/sudosh/sudosh-%{version}.tar.gz
+Source: http://sudosh.sourceforge.net/sudosh-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: sudo
@@ -31,24 +32,25 @@ actual session output.
 %setup
 
 %build
+%configure
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir}
-%{__install} sudosh %{buildroot}%{_bindir}/sudosh
-%{__install} sudosh-show-sessions %{buildroot}%{_bindir}/sudosh-show-sessions
-%{__install} sudosh-view-session %{buildroot}%{_bindir}/sudosh-view-session
-%{__install} sudoshd %{buildroot}%{_bindir}/sudoshd
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING INSTALL
+%doc NEWS README AUTHORS COPYING INSTALL
 %{_bindir}/*
 
 %changelog
+* Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
+- Update to release 1.3.2.
+
 * Mon Oct 18 2004 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
 - Update to release 1.2.2.
 
