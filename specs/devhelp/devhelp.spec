@@ -5,7 +5,7 @@
 
 Summary: API document browser.
 Name: devhelp
-Version: 0.8.1
+Version: 0.9
 Release: 0
 Group: Development/Tools
 License: GPL
@@ -14,11 +14,11 @@ URL: http://www.imendio.com/projects/devhelp/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.imendio.com/projects/devhelp/src/devhelp-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/devhelp/0.9/devhelp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
-BuildRequires: gtk2-devel >= 2.2, libgnomeui-devel >= 2.2, gnome-vfs2-devel >= 2.2
+BuildRequires: gtk2-devel >= 2.3.1, libgnomeui-devel >= 2.2, gnome-vfs2-devel >= 2.2
 BuildRequires: gtkhtml2-devel >= 2.0.0, intltool
 
 %description
@@ -56,6 +56,9 @@ intltoolize
 %{_datadir}/mime-info/*
 
 %changelog
+* Wed Mar 17 2004 Dag Wieers <dag@wieers.com> - 0.9-0
+- Updated to release 0.9.
+
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.8.1-0
 - Updated to release 0.8.1.
 

@@ -1,0 +1,58 @@
+--- index.c	Fri Jul  4 11:37:41 2003
++++ new/index.c	Fri Jul  4 11:37:36 2003
+@@ -58,11 +58,29 @@
+          continue;
+ 
+       bzero(newname, 512);
+-      strncat(newname,direntp->d_name,4);
+-      strncpy(month,direntp->d_name+4,3);
+-      conv_month(month);
+-      strcat(newname,month);
+-      strncat(newname,direntp->d_name+7,2);
++      if(strncmp(df,"e",1) == 0) {
++         strncpy(newname,direntp->d_name+5,4);
++         strncpy(month,direntp->d_name+2,3);
++         conv_month(month);
++         strncat(newname,month,2);
++         strncat(newname,direntp->d_name,2);
++         strncat(newname,direntp->d_name+15,4);
++         strncpy(month,direntp->d_name+12,3);
++         conv_month(month);
++         strncat(newname,month,2);
++         strncat(newname,direntp->d_name+10,2);
++      } else if(strncmp(df,"u",1) == 0) {
++         strncpy(newname,direntp->d_name,4);
++         strncpy(month,direntp->d_name+4,3);
++         conv_month(month);
++         strncat(newname,month,2);
++         strncat(newname,direntp->d_name+7,2);
++         strncat(newname,direntp->d_name+10,4);
++         strncpy(month,direntp->d_name+14,3);
++         conv_month(month);
++         strncat(newname,month,2);
++         strncat(newname,direntp->d_name+17,2);
++      }
+ 
+       obtdate(dirname,direntp->d_name,data);
+       obtuser(dirname,direntp->d_name,tuser);
+@@ -72,6 +90,8 @@
+       getword(mon,html,' ');
+       getword(mon,html,' ');
+       getword(day,html,' ');
++      if(strcmp(day,"") == 0)
++         getword(day,html,' ');
+       getword(hour,html,' ');
+       getword(year,html,' ');
+       getword(year,html,' ');
+@@ -91,9 +111,9 @@
+    (void)rewinddir( dirp );
+ 
+    if(strcmp(IndexSortOrder,"A") == 0)
+-      sprintf(html,"sort -t';' -k 7,7 %s -o %s", wdir_tmp, wdir_tmp2);
++      sprintf(html,"sort -n -t';' -k 7,7 %s -o %s", wdir_tmp, wdir_tmp2);
+    else
+-      sprintf(html,"sort -t';' -r -k 7,7 %s -o %s", wdir_tmp, wdir_tmp2);
++      sprintf(html,"sort -n -t';' -r -k 7,7 %s -o %s", wdir_tmp, wdir_tmp2);
+ 
+    system(html);
+ 
