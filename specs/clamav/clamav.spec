@@ -194,6 +194,20 @@ touch %{buildroot}/var/log/clamav/clamav.log
 %post
 /sbin/ldconfig 2>/dev/null
 
+ZONES="/usr/share/zoneinfo/zone.tab"
+CONFIG="/etc/sysconfig/clock"
+
+if [ -r "$CONFIG" -a -r "$ZONES" ]; then
+	source $CONFIG
+	CODE="$(grep "$ZONE" "$ZONES" | cut -f1 -d'	' | head -1 | tr [A-Z] [a-z] )"
+fi
+
+if [ -z "$CODE" ]; then
+	export CODE="local"
+fi
+
+%{__perl} -pi -e 's|^(DatabaseMirror) database.clamav.net$|$1 db.$ENV{"CODE"}.clamav.net\n$1 db.local.clamav.net|' %{_sysconfdir}/freshclam.conf{,.rpmnew} &>/dev/null || :
+
 %postun
 /sbin/ldconfig 2>/dev/null
 
