@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/partimage/partimage-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: parted-devel, newt-devel, libmcrypt-devel, gcc-c++
+BuildRequires: parted-devel, newt-devel, libmcrypt-devel, gcc-c++, autoconf
 
 %description
 Partition Image is a Linux/UNIX partition imaging utility: it saves all used

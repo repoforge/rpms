@@ -19,7 +19,7 @@ Source: http://dnstop.measurement-factory.com/src/%{name}-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: libpcap
+BuildRequires: libpcap, ncurses-devel
 
 %description
 dnstop is a libpcap application (ala tcpdump) that displays various

@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.musicbrainz.org/pub/musicbrainz/libmusicbrainz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: automake, libtool
+BuildRequires: automake, libtool, gcc-c++
 
 Provides: musicbrainz
 Obsoletes: musicbrainz

@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.4.0, glib2-devel >= 2.4.0
 BuildRequires: wireless-tools, gnome-keyring-devel
+BuildRequires: perl(XML::Parser), intltool
 Prereq: wireless-tools
 
 %description

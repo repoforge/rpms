@@ -17,6 +17,7 @@ Source: http://dl.sf.net/dvdauthor/dvdauthor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.5.0, libdvdread-devel
+BuildRequires: libpng-devel
 #BuildRequires: ImageMagick-devel >= 5.5.7
 
 %description

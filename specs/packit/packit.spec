@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://packit.sf.net/downloads/packit-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet >= 1.1
+BuildRequires: libnet >= 1.1, libpcap
 
 %description
 Packit is a network auditing tool. It's value is derived from its

@@ -21,6 +21,7 @@ Source: http://dl.sf.net/sodipodi/sodipodi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml-devel, libpng-devel, libglade-devel, gcc-c++
+%{?fc2:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel)
 %{?rh9:BuildRequires: libgnomeprint22-devel, libgnomeprintui-devel}
 %{?rh8:BuildRequires: libgnomeprint-devel >= 1.116, libgnomeprintui-devel >= 1.116}
 

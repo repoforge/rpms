@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source:	http://open-carpet.org/tarballs/open-carpet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python2-devel >= 2.2, pkgconfig >= 0.12
+BuildRequires: python, python2-devel >= 2.2, pkgconfig >= 0.12
 Requires: python2 >= 2.2, libredcarpet-python >= 2.0
 
 Provides: ximian-open-carpet = %{version}-%{release}

@@ -28,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: dos2unix, tcl >= 8.4
 Requires: tcl >= 8.4, tk, libsnack, metakit
-{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 SnackAmp is a multi-platform music player with normal music player
