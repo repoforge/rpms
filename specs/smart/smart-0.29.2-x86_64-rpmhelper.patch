@@ -1,0 +1,174 @@
+Index: smart/backends/rpm/header.py
+===================================================================
+--- smart/backends/rpm/header.py	(revision 481)
++++ smart/backends/rpm/header.py	(working copy)
+@@ -29,6 +29,11 @@
+ import rpm
+ import os
+ 
++try:
++    import rpmhelper
++except ImportError:
++    rpmhelper = None
++
+ CRPMTAG_FILENAME          = 1000000
+ CRPMTAG_FILESIZE          = 1000001
+ CRPMTAG_MD5               = 1000005
+@@ -466,10 +471,16 @@
+             prog.show()
+         prog.add(1)
+ 
+-    def getHeader(self, pkg):
+-        ts = rpm.ts(sysconf.get("rpm-root", "/"))
+-        mi = ts.dbMatch(0, pkg.loaders[self])
+-        return mi.next()
++    if rpmhelper:
++        def getHeader(self, pkg):
++            ts = rpm.ts(sysconf.get("rpm-root", "/"))
++            mi = rpmhelper.dbMatch(ts, 0, pkg.loaders[self])
++            return mi.next()
++    else:
++        def getHeader(self, pkg):
++            ts = rpm.ts(sysconf.get("rpm-root", "/"))
++            mi = ts.dbMatch(0, pkg.loaders[self])
++            return mi.next()
+ 
+     def getURL(self):
+         return None
+Index: contrib/rpmhelper/rpmhelper.c
+===================================================================
+--- contrib/rpmhelper/rpmhelper.c	(revision 0)
++++ contrib/rpmhelper/rpmhelper.c	(revision 0)
+@@ -0,0 +1,79 @@
++#include <Python.h>
++#include <rpmlib.h>
++
++#include <fcntl.h>
++
++#define _RPMTS_INTERNAL
++#include <rpmte.h>
++#include <rpmts.h>
++
++typedef struct rpmtsObject_s {
++    PyObject_HEAD
++    PyObject *md_dict;
++    rpmts       ts;
++    /* Other unneeded fields */
++} rpmtsObject;
++
++PyObject *rpmmi_Wrap(rpmdbMatchIterator mi);
++long tagNumFromPyObject(PyObject *item);
++
++static PyObject *
++dbMatch(PyObject *self, PyObject *args, PyObject *kwds)
++{
++    rpmtsObject *s;
++    PyObject *TagN = NULL;
++    PyObject *Key = NULL;
++    char *key = NULL;
++    unsigned int ikey;
++    int len = 0;
++    int tag = RPMDBI_PACKAGES;
++    char * kwlist[] = {"ts", "tagNumber", "key", NULL};
++
++    if (!PyArg_ParseTupleAndKeywords(args, kwds, "O|OO:Match", kwlist,
++                                     &s, &TagN, &Key))
++        return NULL;
++
++    if (TagN && (tag = tagNumFromPyObject (TagN)) == -1) {
++        PyErr_SetString(PyExc_TypeError, "unknown tag type");
++        return NULL;
++    }
++
++    if (Key) {
++        if (PyString_Check(Key)) {
++            key = PyString_AsString(Key);
++            len = PyString_Size(Key);
++        } else if (PyInt_Check(Key)) {
++            ikey = PyInt_AsLong(Key);
++            key = (char *)&ikey;
++            len = sizeof(ikey);
++        } else {
++            PyErr_SetString(PyExc_TypeError, "unknown key type");
++            return NULL;
++        }
++    }
++
++    if (s->ts->rdb == NULL) {
++        int rc = rpmtsOpenDB(s->ts, O_RDONLY);
++        if (rc || s->ts->rdb == NULL) {
++            PyErr_SetString(PyExc_TypeError, "rpmdb open failed");
++            return NULL;
++        }
++    }
++
++    return rpmmi_Wrap(rpmtsInitIterator(s->ts, tag, key, len));
++}
++
++static PyMethodDef rpmhelper_methods[] = {
++    {"dbMatch", (PyCFunction)dbMatch, METH_VARARGS|METH_KEYWORDS, NULL},
++    {NULL, NULL}
++};
++
++DL_EXPORT(void)
++initrpmhelper(void)
++{
++    PyObject *m;
++    m = Py_InitModule3("rpmhelper", rpmhelper_methods, "");
++}
++
++/* vim:ts=4:sw=4:et
++*/
+Index: contrib/rpmhelper/setup.py
+===================================================================
+--- contrib/rpmhelper/setup.py	(revision 0)
++++ contrib/rpmhelper/setup.py	(revision 0)
+@@ -0,0 +1,31 @@
++#!/usr/bin/python
++from distutils.core import setup, Extension
++from distutils.sysconfig import get_python_lib
++import distutils.file_util
++import distutils.dir_util
++import sys, os
++import glob
++import re
++
++PYTHONLIB = get_python_lib(1)
++
++import rpm
++rpmmoduledir = os.path.dirname(rpm.__file__)
++
++setup(name="rpmhelper",
++      version = "0.1",
++      description = "",
++      author = "Gustavo Niemeyer",
++      author_email = "niemeyer@conectiva.com",
++      license = "GPL",
++      url = "http://smartpm.org",
++      long_description = "",
++      ext_modules = [
++                     Extension("rpmhelper", ["rpmhelper.c"],
++                               include_dirs=["/usr/include/rpm"],
++                               runtime_library_dirs=[rpmmoduledir],
++                               extra_link_args=[rpm.__file__],
++                               )
++                    ],
++      )
++
+
+Property changes on: contrib/rpmhelper/setup.py
+___________________________________________________________________
+Name: svn:executable
+   + *
+
+Index: contrib/rpmhelper/README
+===================================================================
+--- contrib/rpmhelper/README	(revision 0)
++++ contrib/rpmhelper/README	(revision 0)
+@@ -0,0 +1,6 @@
++The rpmhelper Python module introduces a custom dbMatch() function
++which works correctly on x86_64 when using iterator offsets, just
++like RPM >= 4.4.1-0.18. If compiled and importable by Smart, it
++will be used automatically.
++
++If you have RPM >= 4.4.1-0.18, or is not on x86_64, DO NOT USE IT!

@@ -88,7 +88,7 @@ KDE tray program for watching updates with Smart Package Manager.
 %{?fc1:name="Fedora Core"; version="1"; path="fedora"}
 
 %{__cat} <<EOF >distro.py
-for type in ["", "doc", "smp" ]:
+for type in ["", "smp" ]:
 	if type:
 		kernel = "kernel-%s" % type
 	else:
@@ -407,6 +407,9 @@ cd -
 %endif
 
 %changelog
+* Mon Mar 14 2005 Dag Wieers <dag@wieers.com> - 0.29.2-3
+- Removed kernel-doc from distro.py. (Ralf Ertzinger)
+
 * Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 0.29.2-2
 - Included rpmhelper patch for x86_64 problem. (RHbz 146477)
 
