@@ -18,6 +18,9 @@ Source: http://kftpgrabber.sf.net/releases/kftpgrabber-%{version}-beta1.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.3.2, kdelibs-devel >= 3.2.0, openssl-devel >= 0.9.7
+BuildRequires: libpng-devel, libart_lgpl-devel, desktop-file-utils, gcc-c++
+BuildRequires: arts-devel, libjpeg-devel, gettext, XFree86-devel, zlib-devel
+%{?fc2:BuildRequires: libselinux-devel}
 
 %description
 KFTPGrabber is a graphical FTP client for KDE. It provides a nice GUI
