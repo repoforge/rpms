@@ -13,7 +13,8 @@ URL: http://www.mlview.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.gnu.org/download/mlview/tarballs/mlview-%{version}.tar.bz2
+#Source: http://savannah.gnu.org/download/mlview/tarballs/mlview-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/mlview/0.6/mlview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.4.30, libgnomeui-devel >= 2.0.3, libglade-devel >= 0.17
@@ -41,11 +42,11 @@ you will need to install %{name}-devel.
 [Desktop Entry]
 Name=MlView XML Editor
 Comment=Edit XML documents
-Icon=mlview-app-icon.xpm
-#Icon=redhat-office.png
+Icon=mlview.png
 Exec=mlv %%F
 TryExec=mlv
 Terminal=false
+Encoding=UTF-8
 Type=Application
 Categories=GNOME;Application;Office;TextEditor;
 EOF
@@ -60,6 +61,8 @@ EOF
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall 
 %find_lang %{name}
+
+%{__install} -D -m0644 pixmaps/mlview-app-icon.png %{buildroot}%{_datadir}/pixmaps/mlview.png
 
 desktop-file-install --vendor gnome --delete-original \
   --dir %{buildroot}%{_datadir}/applications          \
