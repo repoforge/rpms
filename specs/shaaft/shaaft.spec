@@ -1,0 +1,75 @@
+# $Id: $
+
+# Authority: dries
+# Upstream: 
+
+Summary: OpenGL 3D falling block game
+Name: shaaft
+Version: 0.5.0
+Release: 1
+License: GPL
+Group: Applications/
+URL: http://criticalmass.sourceforge.net/shaaft.php
+
+Packager: Dries Verachtert <dries@ulyssis.org>
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
+
+Source: http://prdownloads.sourceforge.net/criticalmass/Shaaft-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: 
+
+%description
+Shaaft is an OpenGL 3D falling block game similar to Blockout. It currently
+runs on Linux and Windows. There is still a lot missing. No menu system,
+forgets highscore, some of the sound effects need work (Clearing a single
+plane sounds like a f*rt. Try clearing >1 plane, though...), etc. That said,
+I find it is very playable. Enjoy! 
+
+# Screenshot: http://criticalmass.sourceforge.net/images-shaaft/shaaft02.jpg
+
+%prep
+%setup
+
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=Name Thingy Tool
+Comment=Do things with things
+Icon=name.png
+Exec=name
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=Application;Network;X-Red-Hat-Extra;
+EOF
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor net                  \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{name}.desktop
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+%{_libdir}/*.so.*
+%{_datadir}/pixmaps/*.png
+%{_datadir}/applications/*.desktop
+
+%changelog
+* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 
+- Initial package.
