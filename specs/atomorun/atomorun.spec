@@ -55,24 +55,7 @@ EOF
 %defattr(-,root,root,0755)
 %doc README AUTHORS COPYING NEWS TODO ChangeLog
 ${_bindir}/atomorun
-/usr/share/atomorun/atom.ogg
-/usr/share/atomorun/explode.ogg
-/usr/share/atomorun/ingame_music.ogg
-/usr/share/atomorun/jump.ogg
-/usr/share/atomorun/menu_change.ogg
-/usr/share/atomorun/pixmaps/acid.png
-/usr/share/atomorun/pixmaps/acidfog.png
-/usr/share/atomorun/pixmaps/atomorun_icon.png
-/usr/share/atomorun/pixmaps/atomorun_winicon.ico
-/usr/share/atomorun/pixmaps/b.png
-/usr/share/atomorun/pixmaps/font.png
-/usr/share/atomorun/pixmaps/g.png
-/usr/share/atomorun/pixmaps/g_top.png
-/usr/share/atomorun/pixmaps/menu.png
-/usr/share/atomorun/pixmaps/skybox.png
-/usr/share/atomorun/walk.ogg
-/usr/share/atomorun/wind.ogg
-
+%{_datadir}/atomorun
 
 %changelog
 * Sat Jan 10 2004 Dries Verachtert <dries@ulyssis.org> 1.1pre2-2

@@ -29,19 +29,6 @@ intelligence yet.
 %prep
 %setup -n boson-all-%{version}
 
-%{__cat} <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=Name Thingy Tool
-Comment=Do things with things
-Icon=name.png
-Exec=name
-Terminal=false
-Type=Application
-StartupNotify=true
-Encoding=UTF-8
-Categories=Application;Network;X-Red-Hat-Extra;
-EOF
-
 %build
 . /etc/profile.d/qt.sh
 %configure
@@ -50,16 +37,32 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
-%makeinstall
+%makeinstall kde_widgetdir=%{buildroot}/usr/lib/kde3/plugins/designer
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO docs
+%doc %{_datadir}/doc/HTML/en/boson-apidocs
+%doc %{_datadir}/doc/HTML/en/boson
+%{_datadir}/icons/*/*/apps/boson.png
+%{_datadir}/apps/boson
+%{_datadir}/applnk/Games/TacticStrategy/boson/*.desktop
+%{_datadir}/config/bodebug*
+%{_bindir}/bo*
+%{_libdir}/kde3/plugins/designer/bosonwidgets.so
+%{_libdir}/kde3/plugins/designer/bosonwidgets.la
+%{_libdir}/kde3/plugins/boson
+%{_libdir}/kde3/plugins/boson/libbomeshrendererplugin.so.0.0.0
+%{_libdir}/kde3/plugins/boson/libbomeshrendererplugin.so.0
+%{_libdir}/kde3/plugins/boson/libbomeshrendererplugin.so
+%{_libdir}/kde3/plugins/boson/libbomeshrendererplugin.la
+%{_libdir}/kde3/plugins/boson/libbogroundrendererplugin.so.0.0.0
+%{_libdir}/kde3/plugins/boson/libbogroundrendererplugin.so.0
+%{_libdir}/kde3/plugins/boson/libbogroundrendererplugin.so
+%{_libdir}/kde3/plugins/boson/libbogroundrendererplugin.la
 
 %changelog
 * Mon May 3 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1 

@@ -29,21 +29,11 @@ workstations (FreeBSD, IRIX, SunOS, Solaris and others).
 image processing tasks. A Perl program using PRIMA looks and behaves
 identically on X, Win32 and OS/2 PM.
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}.
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
-
 %prep
 %setup -n Prima-%{version}
 
 %build
-%configure
+%{__perl} Makefile.PL PREFIX=%{buildroot}/usr
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,20 +51,10 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc Copying HISTORY README 
+%{_libdir}/perl5/site_perl
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
-
-%files devel
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
-%exclude %{_libdir}/*.la
 
 %changelog
 * Wed May 5 2004 Dries Verachtert <dries@ulyssis.org> 1.15-1
 - Initial package.
-
