@@ -3,7 +3,7 @@
 
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
-Version: 0.4.0
+Version: 0.5.0
 Release: 1
 License: GPL
 Group: Applications/File
@@ -44,11 +44,12 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/doodle.1*
@@ -63,6 +64,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
+* Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Updated to release 0.4.0.
 

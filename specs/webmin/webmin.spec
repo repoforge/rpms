@@ -26,9 +26,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 AutoReq: 0
 BuildRequires: perl, perl-Net-SSLeay, perl(CGI), perl(Mon::Client)
-BuildRequires: perl(Compress::Zlib)
 Requires: perl, perl(Net::SSLeay), perl(CGI), perl(Mon::Client)
-Requires: perl(Compress::Zlib)
+Requires(post): openssl
 
 %description
 A web-based administration interface for Unix systems. Using Webmin you can
@@ -65,17 +64,21 @@ web browser.
 
 echo "rpm" >%{buildroot}%{_libexecdir}/webmin/install-type
 
-### Prepare configuration
-export os_type="redhat-linux"
-export real_os_type="Redhat Linux"
-%{?fc2:export oscheck="Redhat Linux Fedora 2";	export os_version="11.0";	export real_os_version="11.0"}
-%{?fc1:export oscheck="Redhat Linux Fedora 1";	export os_version="10.0";	export real_os_version="10.0"}
-%{?el3:export oscheck="Redhat Linux 3.0AS";	export os_version="9.0";	export real_os_version="3.0AS"}
-%{?rh9:export oscheck="Redhat Linux 9";		export os_version="9.0";	export real_os_version="9.0"}
-%{?rh8:export oscheck="Redhat Linux 8.0";	export os_version="8.0";	export real_os_version="8.0"}
-%{?rh7:export oscheck="Redhat Linux 7.3";	export os_version="7.3";	export real_os_version="7.3"}
-%{?el2:export oscheck="Redhat Linux 2.1AS";	export os_version="7.2";	export real_os_version="2.1AS"}
-%{?rh6:export oscheck="Redhat Linux 6.2";	export os_version="6.2";	export real_os_version="6.2"}
+### Prepare configuration (see os_list.txt)
+os_type="redhat-linux"
+%{?fc3:os_version="12.0"; real_os_type="Fedora Core";      real_os_version="3"}
+%{?fc2:os_version="11.0"; real_os_type="Fedora Core";      real_os_version="2"}
+%{?fc1:os_version="10.0"; real_os_type="Fedora Core";      real_os_version="1"}
+%{?el3:os_version="9.0";  real_os_type="Red Hat Enterprise Linux"; real_os_version="3"}
+%{?rh9:os_version="9.0";  real_os_type="Red Hat Linux";    real_os_version="9"}
+%{?rh8:os_version="8.0";  real_os_type="Red Hat Linux";    real_os_version="8.0"}
+%{?rh7:os_version="7.3";  real_os_type="Red Hat Linux";    real_os_version="7.3"}
+%{?el2:os_version="7.2";  real_os_type="Red Hat Enterprise Linux"; real_os_version="2.1"}
+%{?rh6:os_version="6.2";  real_os_type="Red Hat Linux";    real_os_version="6.2"}
+%{?yd4:os_version="11.0"; real_os_type="Yellow Dog Linux"; real_os_version="4.0"}
+%{?yd3:os_version="9.0";  real_os_type="Yellow Dog Linux"; real_os_version="3.0"}
+%{?yd2:os_version="8.0";  real_os_type="Yellow Dog Linux"; real_os_version="2.3"}
+export os_type os_version real_os_type real_os_version
 
 export config_dir="%{buildroot}%{_sysconfdir}/webmin"
 export var_dir="%{_localstatedir}/webmin"
@@ -97,26 +100,24 @@ export makeboot="0"
 %{buildroot}%{_libexecdir}/webmin/setup.sh
 
 ### Clean up buildroot
-%{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}/etc/webmin/{miniserv.conf,start,stop}
+%{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}/etc/webmin/{miniserv.conf,restart,start,stop}
 %{__rm} -f %{buildroot}%{_libexecdir}/webmin/{LICENCE*,README*}
 %{__rm} -f %{buildroot}%{_libexecdir}/setup.sh
+#%{__rm} -f %{buildroot}%{_sysconfdir}/webmin/miniserv.pem
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
-%defattr(-, root, root, 0755)
-%doc LICENCE* README*
-%config %{_initrddir}/webmin
-%config %{_sysconfdir}/pam.d/webmin
-%config %{_sysconfdir}/webmin/
-%config(noreplace) %{_sysconfdir}/sysconfig/daemons/webmin
-%config(noreplace) %{_sysconfdir}/webmin/config/
-%config(noreplace) %{_sysconfdir}/webmin/miniserv.*
-%dir %{_localstatedir}/webmin/
-%{_libexecdir}/webmin
-
 %post
+echo -e ".\n.\n.\nWebmin Webserver on $(hostname)\n.\n*\nroot@$(hostname)" | \
+openssl req -newkey rsa:512 -x509 -nodes -days 1825 -set_serial $(date +%s) -out %{_tmppath}/cert -keyout %{_tmppath}/key &>/dev/null
+if [ $? -eq 0 ]; then
+	PEMFILE="%{_sysconfdir}/webmin/miniserv.pem"
+	if [ -f "$PEMFILE" ]; then PEMFILE="$PEMFILE.rpmnew"; fi
+	%{__cat} %{_tmppath}/{cert,key} >"$PEMFILE"
+	%{__rm} -f %{_tmppath}/{cert,key}
+	%{__chmod} 0600 "$PEMFILE"
+fi
 /sbin/chkconfig --add webmin
 /sbin/service webmin start &>/dev/null || :
 
@@ -129,9 +130,29 @@ fi
 %postun
 /sbin/service webmin condrestart &>/dev/null || :
 
+%files
+%defattr(-, root, root, 0755)
+%doc LICENCE* README*
+%config %{_initrddir}/webmin
+%config %{_sysconfdir}/pam.d/webmin
+%config %{_sysconfdir}/webmin/
+%config(noreplace) %{_sysconfdir}/sysconfig/daemons/webmin
+%config(noreplace) %{_sysconfdir}/webmin/config/
+%config(noreplace) %{_sysconfdir}/webmin/miniserv.*
+%ghost %{_sysconfdir}/webmin/miniserv.pem
+%ghost %{_sysconfdir}/webmin/module.infos.cache
+%dir %{_localstatedir}/webmin/
+%{_libexecdir}/webmin
+
 %changelog
+* Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - ?
+- Updated to release ?
+- Added -set_serial to openssl. (Donavan Nelson)
+
 * Sat Oct 09 2004 Dag Wieers <dag@wieers.com> - 1.160-1
 - Updated to release 1.160.
+- Cleaned up buildroot artifacts in restart script. (Bill Thompson)
+- Removed locally build certificate. (Christopher V. Browne)
 
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.150-1
 - Updated to release 1.150.

@@ -2,7 +2,7 @@
 
 Summary: Common Address Redundancy Protocol (CARP) for Unix
 Name: ucarp
-Version: 1.0
+Version: 1.1
 Release: 1
 License: BSD
 Group: System Environment/Daemons
@@ -90,14 +90,17 @@ fi
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README examples/linux/*.sh
-/etc/rc.d/init.d/carp
-/etc/sysconfig/carp/vip-001.conf.example
-%attr(0700, root, root) %config(noreplace) /etc/sysconfig/carp/vip-up
-%attr(0700, root, root) %config(noreplace) /etc/sysconfig/carp/vip-down
+%config %{_initrddir}/carp
+%{_sysconfdir}/sysconfig/carp/vip-001.conf.example
+%attr(0700, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/carp/vip-up
+%attr(0700, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/carp/vip-down
 %{_sbindir}/ucarp
 
 
 %changelog
+* Sun Oct 17 2004 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Fri Jul  9 2004 Matthias Saou <http://freshrpms.net/> 1.0-1
 - Initial RPM release.
 

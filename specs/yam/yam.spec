@@ -4,7 +4,7 @@
 
 Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, rsync, http, ftp, ...)
 Name: yam
-Version: 0.6.1
+Version: 0.7
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -17,6 +17,7 @@ Source: http://dag.wieers.com/home-made/yam/yam-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: /usr/bin/python2
 Requires: python >= 2.0
 
 %description
@@ -58,6 +59,9 @@ allow installations via the network.
 %{_localstatedir}/www/yam/
 
 %changelog
+* Sun Oct 10 2004 Dag Wieers <dag@wieers.com> - 0.7-1
+- Updated to release 0.7.
+
 * Fri Aug 27 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

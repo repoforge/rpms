@@ -8,10 +8,12 @@
 %{?rh7:%define _without_alsa 1}
 %{?el2:%define _without_alsa 1}
 
+%define desktop_vendor rpmforge
+
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
-Version: 1.3.2
-Release: 0
+Version: 1.4.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/
@@ -22,7 +24,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/mixxx/mixxx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glibc-devel, XFree86-devel, qt3-devel, glib-devel
+BuildRequires: glibc-devel, XFree86-devel, qt-devel >= 3.0, glib-devel
 BuildRequires: audiofile-devel, libmad-devel, libid3tag-devel
 BuildRequires: libvorbis-devel, libogg-devel, libsndfile-devel
 BuildRequires: portaudio, fftw-devel
@@ -75,13 +77,14 @@ popd
 
 %{__install} -D -m0644 src/icon.png %{buildroot}%{_datadir}/pixmaps/mixxx.png
 
-%if %{!?_without_freedesktop:1}0
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 mixxx.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/mixxx.desktop
+%else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net \
+	desktop-file-install --vendor %{desktop_vendor}    \
+		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		mixxx.desktop
-%else
-	%{__install} -D -m0644 mixxx.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/mixxx.desktop
 %endif
 
 %clean
@@ -90,13 +93,19 @@ popd
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING LICENSE README Mixxx-Manual.pdf
-%{_bindir}/*
+%{_bindir}/mixxx
 %{_datadir}/mixxx/
 %{_datadir}/pixmaps/mixxx.png
-%{!?_without_freedesktop:%{_datadir}/applications/net-mixxx.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-mixxx.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/mixxx.desktop}
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> -  1.4.2-1
+- Updated to release 1.4.2.
+
+* Tue Oct 12 2004 Matthias Saou <http://freshrpms.net/> 1.4-1
+- Update to 1.4.
+
 * Mon Jun 14 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-0
 - Update to 1.3.2.
 

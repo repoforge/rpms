@@ -2,11 +2,12 @@
 # Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
+%{!?kernel:%define kernel %(rpm --quiet -q kernel-source --qf '%{RPMTAG_VERSION}-%{RPMTAG_RELEASE}' | tail -1)}
 
 Summary: HA monitor built upon LVS, VRRP and services poller
 Name: keepalived
 Version: 1.1.7
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://keepalived.sourceforge.net/
@@ -44,7 +45,8 @@ nodes healthchecks and LVS directors failover.
 %{?rh9:export CPPFLAGS="-I/usr/kerberos/include"}
 %configure \
 %{?el3:--includedir="/usr/kerberos/include"} \
-%{?rh9:--includedir="/usr/kerberos/include"}
+%{?rh9:--includedir="/usr/kerberos/include"} \
+	--with-kernel-dir="/lib/modules/%{kernel}/build"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -77,6 +79,9 @@ fi
 %{_sbindir}/keepalived
 
 %changelog
+* Sun Oct 17 2004 Dag Wieers <dag@wieers.com> - 1.1.7-2
+- Fixes to build with kernel IPVS support. (Tim Verhoeven)
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 1.1.7-1
 - Updated to release 1.1.7. (Mathieu Lubrano)
 

@@ -18,7 +18,7 @@
 
 Summary: Distributed C/C++ compilation client program
 Name: distcc
-Version: 2.17
+Version: 2.18
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -30,13 +30,12 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://samba.org/ftp/distcc/distcc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?_without_gtk2:BuildRequires: gtk2-devel >= 2.0}
+%{!?_without_gtk2:BuildRequires: gtk2-devel >= 2.0, libgnome-devel, libgnomeui-devel}
 Requires: gcc, gcc-c++
 %{?fc2:Requires: compat-gcc, compat-gcc-c++, gcc34}
 %{?fc1:Requires: compat-gcc, compat-gcc-c++, gcc32}
 %{?rh9:Requires: compat-gcc, compat-gcc-c++}
 %{?rh8:Requires: compat-gcc, compat-gcc-c++}
-BuildRequires: libgnome-devel, libgnomeui-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -254,7 +253,7 @@ done
 %if %{!?_without_gtk2:1}0
 	%{__install} -D -m0644 gnome/distccmon-gnome-icon.png %{buildroot}%{_datadir}/pixmaps/distccmon-gnome.png
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome                \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		distccmon-gnome.desktop
@@ -322,6 +321,9 @@ fi
 %endif
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 2.18-1
+- Updated to release 2.18.
+
 * Sun Aug 01 2004 Dag Wieers <dag@wieers.com> - 2.17-1
 - Updated to release 2.17.
 

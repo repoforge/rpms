@@ -4,7 +4,7 @@
 
 Summary: JPEG pixel interpolator
 Name: jpegpixi
-Version: 1.0.1
+Version: 1.0.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -41,10 +41,16 @@ pixel can be interpolated with jpegpixi.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README*
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/jpeg*.1*
+%{_bindir}/jpeg*
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.0.3-1
+- Updated to release 1.0.3.
+
+* Sat Oct 09 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Tue Oct 05 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 

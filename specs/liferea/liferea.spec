@@ -5,7 +5,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -28,7 +28,7 @@ browse through their items, and show their contents
 using GtkHTML.
 
 %prep
-%setup -n %{name}-%{version}
+%setup -n liferea-%{version}
 
 %{__cat} <<'EOF' >liferea.sh
 #!/bin/bash
@@ -39,6 +39,7 @@ using GtkHTML.
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.6"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7.2"
+[ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7.3"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.8"
 [ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla"
 
@@ -88,6 +89,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_libdir}/liferea/*.so*
 
 %changelog
+* Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Updated to release 0.6.0.
 
