@@ -1,7 +1,8 @@
 # $Id: $
 # Authority: newrpms
+# Upstream: <physfs@icculus.org>
 
-Summary: library to provide abstract access to various archives
+Summary: Library to provide abstract access to various archives
 Name: physfs
 Version: 0.1.9
 Release: 0
@@ -10,7 +11,6 @@ Group: System Environment/Libraries
 URL: http://www.icculus.org/physfs/
 
 Packager: Rudolf Kastl <che666 at uni.de>
-Vendor: http://newrpms.sunsite.dk/
 
 Source: http://www.icculus.org/physfs/downloads/physfs-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -68,6 +68,3 @@ applications which will use physfs
 %changelog
 * Sun Oct 12 2003 Che
 - initial rpm release 
-
-
-
