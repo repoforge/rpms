@@ -3,11 +3,12 @@
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
 Version: 1.7.4b
-Release: 1.fr
+Release: 2.fr
 License: GPL
 Group: Applications/Internet
 Source: http://dl.sf.net/xmule/%{name}-%{version}.tar.bz2
-Patch: xmule-1.7.1-destdir.patch
+Patch0: xmule-1.7.1-destdir.patch
+Patch1: xmule-1.7.4b-dlfix.patch
 URL: http://www.xmule.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK, /usr/sbin/alternatives
@@ -21,7 +22,8 @@ same network.
 
 %prep
 %setup -q
-%patch -p1 -b .destdir
+%patch0 -p1 -b .destdir
+%patch1 -p1 -b .dlfix
 
 %build
 %configure
@@ -50,6 +52,9 @@ rm -rf %{buildroot}
 %{_datadir}/pixmaps/%{name}.xpm
 
 %changelog
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net/> 1.7.4b-2.fr
+- Included a fix to get downloads working better again.
+
 * Mon Mar  1 2004 Matthias Saou <http://freshrpms.net/> 1.7.4b-1.fr
 - Update to 1.7.4b.
 - Updated Source URL to point to the file.
