@@ -1,43 +1,52 @@
-# $Id$
-# Authority: matthias
+%define		majorminor	0.8
+%define 	_glib2		2.2
+%define 	_libxml2	2.4.0
+%define		gstreamer	gstreamer
+%define		register	%{_bindir}/gst-register-%{majorminor} >/dev/null 2>&1 || :
 
-%define glib2minver   2.0.1
-%define libxml2minver 2.4.0
-%define major         0
-%define minor         7
-%define micro         5
-%define majmin        %{major}.%{minor}
+Name: 		%{gstreamer}
+Version: 	0.8.1
+Release: 	0
+Summary: 	GStreamer streaming media framework runtime
 
-Summary: GStreamer streaming media framework runtime
-Name: gstreamer07
-Version: %{majmin}.%{micro}
-Release: 0.1
-Group: Applications/Multimedia
-License: LGPL
-URL: http://gstreamer.net/
-Source: http://freedesktop.org/~gstreamer/src/gstreamer-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Group: 		Applications/Multimedia
+License: 	LGPL
+URL:		http://gstreamer.net/
+Source: 	http://freedesktop.org/~gstreamer/src/gstreamer/gstreamer-%{version}.tar.gz
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Requires: gstreamer-tools >= %{version}
-Requires: glib2 >= %{glib2minver}
-Requires: libxml2 >= %{libxml2minver}
-Requires: popt > 1.6
-Requires(post,postun): /sbin/ldconfig
+Requires:	gstreamer-tools >= %{version}
 
-Provides: gstreamer = %{version}-%{release}
-Provides: gstreamer = %{majmin}
+Obsoletes:	gstreamer08
 
-BuildRequires: glib2-devel >= %{glib2minver}
-BuildRequires: libxml2-devel >= %{libxml2minver}
-BuildRequires: zlib-devel, gtk-doc >= 1.1, popt > 1.6
-BuildRequires: m4, bison, flex, gcc-c++, gettext
-BuildRequires: autoconf, automake, libtool
-BuildRequires: libgnomeui-devel >= 2.0
+BuildRequires: 	glib2-devel >= %{_glib2}
+BuildRequires: 	libxml2-devel >= %{_libxml2}
+BuildRequires: 	bison
+BuildRequires: 	flex
+BuildRequires: 	m4
+BuildRequires: 	gtk-doc >= 1.1
+BuildRequires: 	gcc
+BuildRequires: 	zlib-devel
+BuildRequires:  popt > 1.6
+BuildRequires:	gettext
+# because AM_PROG_LIBTOOL was used in configure.ac
+BuildRequires:	gcc-c++
+Requires(pre):	/sbin/ldconfig
+Requires(post):	/sbin/ldconfig
 
-### documentation requirements
-BuildRequires: openjade, python2, jadetex, libxslt
-BuildRequires: docbook-style-dsssl, docbook-utils
-BuildRequires: transfig, xfig, netpbm-progs, ghostscript
+### documentation requirements; work on rh9 and f1
+BuildRequires:  python2
+BuildRequires:  openjade
+BuildRequires:  jadetex
+BuildRequires:	libxslt
+BuildRequires:  docbook-style-dsssl
+BuildRequires:  docbook-style-xsl
+BuildRequires:  docbook-utils
+BuildRequires:	transfig
+BuildRequires:  xfig
+BuildRequires:  netpbm-progs
+BuildRequires:  tetex-dvips
+BuildRequires:  ghostscript
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -47,15 +56,15 @@ else media-related.  Its plugin-based architecture means that new data
 types or processing capabilities can be added simply by installing new 
 plugins.
 
-
 %package devel
-Summary: Libraries/include files for GStreamer streaming media framework
-Group: Development/Libraries
-Requires: %{name} = %{version}
-Requires: glib2-devel >= %{glib2minver}
-Requires: libxml2-devel >= %{libxml2minver}
-Provides: gstreamer-devel = %{version}-%{release}
-Provides: gstreamer-devel = %{majmin}
+Summary: 	Libraries/include files for GStreamer streaming media framework
+Group: 		Development/Libraries
+
+Requires: 	%{name} = %{version}
+Requires: 	glib2-devel >= %{_glib2}
+Requires: 	libxml2-devel >= %{_libxml2}
+
+Obsoletes:	gstreamer08-devel
 
 %description devel
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -66,95 +75,108 @@ types or processing capabilities can be added simply by installing new
 plugins.
 
 This package contains the libraries and includes files necessary to develop
-applications and plugins for GStreamer %{majmin}, as well as general and API
+applications and plugins for GStreamer, as well as general and API
 documentation.
 
-
 %package -n gstreamer-tools
-Summary: Common tools and files for the GStreamer media framework
-Group: Applications/Multimedia
+Summary: 	common tools and files for GStreamer streaming media framework
+Group: 		Applications/Multimedia
 
 %description -n gstreamer-tools
 GStreamer is a streaming-media framework, based on graphs of filters which
 operate on media data. Applications using this library can do anything
 from real-time sound processing to playing videos, and just about anything
 else media-related.  Its plugin-based architecture means that new data
-types or processing capabilities can be added simply by installing new
+types or processing capabilities can be added simply by installing new   
 plugins.
 
 This package contains wrapper scripts for the command-line tools that work
 with different major/minor versions of GStreamer.
 
-
 %prep
-%setup -n gstreamer-%{version}
-# Workaround a glib 2.3 problem for now
-%{__rm} -f gst/gstmarshal.{c,h}
+%setup -q -n gstreamer-%{version}
 
+# 0.7.5 tarball was generated with glib 2.3, and the gstmarshal files
+# are included; so delete them to regenerate them.
+rm -f gst/gstmarshal.{c,h}
 
 %build
-#{?__libtoolize:[ -f configure.in ] && %{__libtoolize} --copy --force}
 %configure \
-    --disable-docs-build \
-    --disable-tests \
-    --disable-examples \
-    --enable-debug \
-    --with-cachedir=%{_localstatedir}/cache/gstreamer-%{majmin}
-%{__make} %{?_smp_mflags}
+  --enable-debug \
+  --with-cachedir=%{_localstatedir}/cache/gstreamer-%{majorminor} \
+  --disable-tests \
+  --disable-examples
 
+make %{?_smp_mflags}
 
 %install  
-%{__rm} -rf %{buildroot}
-%makeinstall
-%find_lang gstreamer-%{majmin}
+rm -rf $RPM_BUILD_ROOT
 
-# Remove .la files and static libs that we don't want in the packages
-%{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majmin}/*.{a,la}
-%{__rm} -f %{buildroot}%{_libdir}/*.{a,la}
+# Install doc temporarily in order to be included later by rpm
+%makeinstall docdir="`pwd`/installed-doc"
+
+%find_lang gstreamer-%{majorminor}
+# Clean out files that should not be part of the rpm. 
+mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/cache/gstreamer-%{majorminor}
+rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.a
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 # Create empty cache directory
-mkdir -p %{buildroot}%{_localstatedir}/cache/gstreamer-%{majmin}
-
+mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/cache/gstreamer-%{majorminor}
 
 %clean
-%{__rm} -rf %{buildroot}
-
+rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-%{_bindir}/gst-register-%{majmin} >/dev/null 2>&1 || :
+%{register}
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+rm -rf %{_localstatedir}/cache/gstreamer-%{majorminor} || :
 
-
-%files -f gstreamer-%{majmin}.lang
-%defattr(-, root, root, 0755)
-%doc AUTHORS COPYING* ChangeLog DEVEL NEWS README TODO
-%{_bindir}/gst-complete-%{majmin}
-%{_bindir}/gst-compprep-%{majmin}
-%{_bindir}/gst-feedback-%{majmin}
-%{_bindir}/gst-inspect-%{majmin}
-%{_bindir}/gst-launch-%{majmin}
-%{_bindir}/gst-md5sum-%{majmin}
-%{_bindir}/gst-register-%{majmin}
-%{_bindir}/gst-typefind-%{majmin}
-%{_bindir}/gst-xmlinspect-%{majmin}
-%{_bindir}/gst-xmllaunch-%{majmin}
-%{_libdir}/gstreamer-%{majmin}
-%{_libdir}/*.so.*
-%{_mandir}/man1/gst-complete-%{majmin}.*
-%{_mandir}/man1/gst-compprep-%{majmin}.*
-%{_mandir}/man1/gst-feedback-%{majmin}.*
-%{_mandir}/man1/gst-inspect-%{majmin}.*
-%{_mandir}/man1/gst-launch-%{majmin}.*
-%{_mandir}/man1/gst-md5sum-%{majmin}.*
-%{_mandir}/man1/gst-register-%{majmin}.*
-%{_mandir}/man1/gst-typefind-%{majmin}.*
-%{_mandir}/man1/gst-xmllaunch-%{majmin}.*
-%dir %{_localstatedir}/cache/gstreamer-%{majmin}
-
+%files -f gstreamer-%{majorminor}.lang
+%defattr(-, root, root, -)
+%doc AUTHORS COPYING NEWS README RELEASE TODO REQUIREMENTS DOCBUILDING
+%dir %{_libdir}/gstreamer-%{majorminor}
+%{_libdir}/libgstreamer-%{majorminor}.so.*
+%{_libdir}/libgstcontrol-%{majorminor}.so.*
+%{_libdir}/gstreamer-%{majorminor}/libgstbasicgthreadscheduler.so
+%{_libdir}/gstreamer-%{majorminor}/libgstbasicomegascheduler.so
+%{_libdir}/gstreamer-%{majorminor}/libgstentrygthreadscheduler.so
+%{_libdir}/gstreamer-%{majorminor}/libgstentryomegascheduler.so
+%{_libdir}/gstreamer-%{majorminor}/libgstoptscheduler.so
+%{_libdir}/gstreamer-%{majorminor}/libgstoptomegascheduler.so
+%{_libdir}/gstreamer-%{majorminor}/libgstoptgthreadscheduler.so
+%{_libdir}/gstreamer-%{majorminor}/libgstelements.so
+%{_libdir}/gstreamer-%{majorminor}/libgstgetbits.so
+%{_libdir}/gstreamer-%{majorminor}/libgstspider.so
+%{_libdir}/gstreamer-%{majorminor}/libgstindexers.so
+%{_libdir}/gstreamer-%{majorminor}/libgstbytestream.so
+%{_bindir}/gst-complete-%{majorminor}
+%{_bindir}/gst-compprep-%{majorminor}
+%{_bindir}/gst-feedback-%{majorminor}
+%{_bindir}/gst-inspect-%{majorminor}
+%{_bindir}/gst-launch-%{majorminor}
+%{_bindir}/gst-md5sum-%{majorminor}
+%{_bindir}/gst-register-%{majorminor}
+%{_bindir}/gst-typefind-%{majorminor}
+%{_bindir}/gst-xmlinspect-%{majorminor}
+%{_bindir}/gst-xmllaunch-%{majorminor}
+%{_mandir}/man1/gst-complete-%{majorminor}.*
+%{_mandir}/man1/gst-compprep-%{majorminor}.*
+%{_mandir}/man1/gst-feedback-%{majorminor}.*
+%{_mandir}/man1/gst-inspect-%{majorminor}.*
+%{_mandir}/man1/gst-launch-%{majorminor}.*
+%{_mandir}/man1/gst-md5sum-%{majorminor}.*
+%{_mandir}/man1/gst-register-%{majorminor}.*
+%{_mandir}/man1/gst-typefind-%{majorminor}.*
+%{_mandir}/man1/gst-xmllaunch-%{majorminor}.*
+%dir %{_localstatedir}/cache/gstreamer-%{majorminor}
 
 %files -n gstreamer-tools
-%defattr(-, root, root, 0755)
+%defattr(-, root, root, -)
 %{_bindir}/gst-complete
 %{_bindir}/gst-compprep
 %{_bindir}/gst-feedback
@@ -166,107 +188,96 @@ mkdir -p %{buildroot}%{_localstatedir}/cache/gstreamer-%{majmin}
 %{_bindir}/gst-xmlinspect
 %{_bindir}/gst-xmllaunch
 
-
 %files devel
-%defattr(-, root, root, 0755)
-%{_includedir}/gstreamer-%{majmin}
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/*.so
-%{_datadir}/aclocal/*.m4
+%defattr(-, root, root, -)
+%doc installed-doc/*
+%dir %{_includedir}/gstreamer-%{majorminor}
+%dir %{_includedir}/gstreamer-%{majorminor}/gst
+%{_includedir}/gstreamer-%{majorminor}/gst/*.h
+%dir %{_includedir}/gstreamer-%{majorminor}/gst/control
+%{_includedir}/gstreamer-%{majorminor}/gst/control/*.h
+%dir %{_includedir}/gstreamer-%{majorminor}/gst/getbits
+%{_includedir}/gstreamer-%{majorminor}/gst/getbits/getbits.h
+%{_includedir}/gstreamer-%{majorminor}/gst/bytestream/bytestream.h
+%{_libdir}/libgstreamer-%{majorminor}.so
+%{_libdir}/libgstcontrol-%{majorminor}.so
+%{_datadir}/aclocal/gst-element-check-%{majorminor}.m4
+%{_libdir}/pkgconfig/gstreamer-%{majorminor}.pc
+%{_libdir}/pkgconfig/gstreamer-control-%{majorminor}.pc
 
+%doc %{_datadir}/gtk-doc/html/gstreamer-%{majorminor}/*
+%doc %{_datadir}/gtk-doc/html/gstreamer-libs-%{majorminor}/*
 
 %changelog
-* Fri Feb 27 2004 Matthias Saou <http://freshrpms.net/> 0.7.5-0.1
-- Update to 0.6.5 and 0.7.5.
-- Major spec file changes to sync 0.6 and 0.7 builds.
-- Removed obsolete patches for 0.7.
-- Update %%files to include %%{majmin} where required for 0.6 too.
+* Mon Apr 19 2004 Mattias Saou <http://fresrhrpms.net/> 0.8.1-0
+- Nothing :-)
 
-* Fri Feb  6 2004 Matthias Saou <http://freshrpms.net/> 0.6.4-0.1
-- Update to 0.6.4.
-- Added missing BuildRequires for rebuilding with mach.
+* Thu Apr 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.1-0.fdr.1: update for new GStreamer release
 
-* Thu Sep 11 2003 Alexander Larsson <alexl@redhat.com> 0.6.3-1
-- Update to 0.6.3 (gnome 2.4 final)
+* Thu Apr 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- add entry schedulers, clean up scheduler file section
 
-* Tue Aug 19 2003 Alexander Larsson <alexl@redhat.com> 0.6.2-6
-- 0.6.2
+* Tue Mar 16 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.0-0.fdr.1: update for new GStreamer release, renamed base to gstreamer
 
-* Wed Jun 04 2003 Elliot Lee <sopwith@redhat.com>
-- rebuilt
+* Tue Mar 09 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.7.6-0.fdr.1: updated for new GStreamer release, with maj/min set to 0.8
 
-* Mon Feb 17 2003 Elliot Lee <sopwith@redhat.com> 0.6.0-5
-- ppc64 patch
+* Mon Mar 08 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.7.5-0.fdr.3: fix postun script
 
-* Wed Feb 12 2003 Bill Nottingham <notting@redhat.com> 0.6.0-4
-- fix group
+* Fri Mar 05 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.7.5-0.fdr.2: new release
 
-* Tue Feb 11 2003 Bill Nottingham <notting@redhat.com> 0.6.0-3
-- prereq, not require, gstreamer-tools
+* Wed Feb 11 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.7.4-0.fdr.1: synchronize with Matthias's package
 
-* Tue Feb 11 2003 Jonathan Blandford <jrb@redhat.com> 0.6.0-2
-- unset the DISPLAY when running gst-register
+* Sat Feb 07 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- make the package name gstreamer07 since this is an unstable release
 
-* Mon Feb  3 2003 Jonathan Blandford <jrb@redhat.com> 0.6.0-1
-- yes it is needed.  Readding
+* Wed Feb 04 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- put versioned tools inside base package, and put unversioned tools in tools
 
-* Sat Feb 01 2003 Florian La Roche <Florian.LaRoche@redhat.de>
-- remove "tools" sub-rpm, this is not needed at all
+* Mon Dec 01 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- changed documentation buildrequires
 
-* Thu Jan 30 2003 Jonathan Blandford <jrb@redhat.com> 0.5.2-7
-- stopped using %configure so we need to pass in all the args
+* Sun Nov 09 2003 Christian Schaller <Uraeus@gnome.org>
+- Fix spec to handle new bytestream library 
 
-* Mon Jan 27 2003 Jonathan Blandford <jrb@redhat.com>
-- remove -Werror explicitly as the configure macro isn't working.
+* Sun Aug 17 2003 Christian Schaller <uraeus@gnome.org>
+- Remove docs build from RPM as the build is broken
+- Fix stuff since more files are versioned now
+- Remove wingo schedulers
+- Remove putbits stuff
 
-* Wed Jan 22 2003 Tim Powers <timp@redhat.com>
-- rebuilt
+* Sun May 18 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- devhelp files are now generated by gtk-doc, changed accordingly
 
-* Thu Dec 19 2002 Elliot Lee <sopwith@redhat.com> 0.5.0-10
-- Add patch1 to fix C++ plugins on ia64
+* Sun Mar 16 2003 Christian F.K. Schaller <Uraeus@gnome.org>
+- Add gthread scheduler
 
-* Wed Dec 18 2002 Jonathan Blandford <jrb@redhat.com>
-- %post -p was wrong
+* Sat Dec 07 2002 Thomas Vander Stichele <thomas at apestaart dot org>
+- define majorminor and use it everywhere
+- full parallel installability
 
-* Tue Dec 17 2002 Jonathan Blandford <jrb@redhat.com> 0.5.0-7
-- explicitly add %{_libdir}/libgstreamer-{major}.so
-- explicitly add %{_libdir}/libgstcontrol-{major}.so
+* Tue Nov 05 2002 Christian Schaller <Uraeus@linuxrising.org>
+- Add optwingo scheduler
+* Sat Oct 12 2002 Christian Schaller <Uraeus@linuxrising.org>
+- Updated to work better with default RH8 rpm
+- Added missing unspeced files
+- Removed .a and .la files from buildroot
 
-* Mon Dec 16 2002 Jonathan Blandford <jrb@redhat.com>
-- bump release
+* Sat Sep 21 2002 Thomas Vander Stichele <thomas@apestaart.org>
+- added gst-md5sum
 
-* Fri Dec 13 2002 Jonathan Blandford <jrb@redhat.com>
-- move .so files out of -devel
+* Tue Sep 17 2002 Thomas Vander Stichele <thomas@apestaart.org>
+- adding flex to buildrequires
 
-* Tue Dec 10 2002 Jonathan Blandford <jrb@redhat.com>
-- new version 0.5.0
-- require docbook-style-xsl
-- add gstreamer-tools package too
-- New patch to use the right docbook prefix.
-
-* Tue Dec 10 2002 Jonathan Blandford <jrb@redhat.com>
-- downgrade to a release candidate.  Should work better on other arches
-- build without Werror
-
-* Mon Dec  9 2002 Jonathan Blandford <jrb@redhat.com>
-- update to new version.  Remove ExcludeArch
-
-* Tue Dec  3 2002 Havoc Pennington <hp@redhat.com>
-- excludearch some arches
-
-* Mon Dec  2 2002 Havoc Pennington <hp@redhat.com>
-- import into CVS and build "officially"
-- use smp_mflags
-- temporarily disable docs build, doesn't seem to work
-
-* Thu Nov  7 2002 Jeremy Katz <katzj@redhat.com>
-- 0.4.2
-
-* Mon Sep 23 2002 Jeremy Katz <katzj@redhat.com>
-- 0.4.1
-
-* Sun Sep 22 2002 Jeremy Katz <katzj@redhat.com>
-- minor cleanups
+* Fri Sep 13 2002 Christian F.K. Schaller <Uraeus@linuxrising.org>
+- Fixed the schedulers after the renaming
+* Sun Sep 08 2002 Thomas Vander Stichele <thomas@apestaart.org>
+- added transfig to the BuildRequires:
 
 * Sat Jun 22 2002 Thomas Vander Stichele <thomas@apestaart.org>
 - moved header location
