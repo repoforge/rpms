@@ -3,10 +3,12 @@
 # Upstream: Timo Sirainen <tss$iki,fi>
 # Upstream: <dovecot$dovecot,org>
 
+%define logmsg logger -t %{name}/rpm
+
 Summary: Dovecot secure IMAP server
 Name: dovecot
 Version: 0.99.10.9
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.org/
@@ -17,10 +19,10 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dovecot.org/releases/dovecot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Prereq: /usr/sbin/useradd, /usr/sbin/usermod
 BuildRequires: openssl-devel, cyrus-sasl-devel, pam-devel
 BuildRequires: openldap-devel, postgresql-devel, mysql-devel
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, zlib-devel
+Requires: /usr/sbin/useradd, /usr/sbin/usermod, /sbin/chkconfig
 
 %description
 Dovecot is an IMAP and POP3 server for Linux/UNIX-like systems,
@@ -35,10 +37,19 @@ clients accessing the mailboxes directly.
 %prep
 %setup
 
+%{__perl} -pi.orig -e '
+		s|/etc/ssl|%{_datadir}/ssl|;
+		s|^#(logindir) = |$1 = |;
+		s|^(mbox_locks) = .*|$1 = fcntl|;
+		s|^(auth_passdb) = |$1 = pam\n#$1 = |;
+	' dovecot-example.conf
+
 %{__cat} <<EOF >dovecot.pam
 #%PAM-1.0
+auth       required     pam_nologin.so
 auth       required     pam_stack.so service=system-auth
 account    required     pam_stack.so service=system-auth
+session    required     pam_stack.so service=system-auth
 EOF
 
 %{__cat} <<'EOF' >dovecot.sysv
@@ -144,12 +155,38 @@ export LDFLAGS="-L%{_libdir}/mysql"
 %{__install} -D -m0644 dovecot.pam %{buildroot}%{_sysconfdir}/pam.d/dovecot
 %{__mv} -f %{buildroot}%{_sysconfdir}/dovecot-example.conf %{buildroot}%{_sysconfdir}/dovecot.conf
 
+# generate ghost .pem file
+%{__install} -d -m0755 %{buildroot}%{_datadir}/ssl/{certs,private}/
+touch %{buildroot}%{_datadir}/ssl/{certs,private}/dovecot.pem
+
+%{__install} -d -m0700 %{buildroot}%{_localstatedir}/run/dovecot/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/dovecot-login/
+
 %pre
-/usr/sbin/useradd -M -d "%{_libexecdir}/dovecot/" -c "Dovecot daemon" -r dovecot &>/dev/null || :
+if ! /usr/bin/id dovecot &>/dev/null; then
+	/usr/sbin/useradd -c dovecot -u 97 -r -d "%{_libexecdir}/dovecot/" dovecot &>/dev/null || \
+		%logmsg "Unexpected error adding user \"dovecot\". Aborting installation."
+fi
 /usr/sbin/usermod -s /sbin/nologin dovecot &>/dev/null || :
 
 %post
 /sbin/chkconfig --add dovecot
+
+# create a ssl cert
+if [ ! -f %{_datadir}/ssl/certs/dovecot.pem ]; then
+	umask 077
+	%{__cat} << EOF | openssl req -new -x509 -days 365 -nodes -out %{_datadir}/ssl/certs/dovecot.pem -keyout %{_datadir}/ssl/private/dovecot.pem &>/dev/null
+--
+SomeState
+SomeCity
+SomeOrganization
+SomeOrganizationalUnit
+localhost.localdomain
+root@localhost.localdomain
+EOF
+	%{__chown} root:root %{_datadir}/ssl/private/dovecot.pem %{_datadir}/ssl/certs/dovecot.pem
+	%{__chmod} 600 %{_datadir}/ssl/private/dovecot.pem %{_datadir}/ssl/certs/dovecot.pem
+fi
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -165,16 +202,30 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* NEWS README TODO
+%doc AUTHORS ChangeLog COPYING* INSTALL NEWS README TODO
 %doc doc/*.cnf doc/*.conf doc/*.sh doc/*.txt
 %config(noreplace) %{_sysconfdir}/dovecot.conf
-%config(noreplace) %{_sysconfdir}/pam.d/dovecot
+%config %{_sysconfdir}/pam.d/dovecot
 %config %{_initrddir}/dovecot
 %{_sbindir}/*
 %{_libexecdir}/dovecot/
 %exclude %{_docdir}/dovecot/
+%{_localstatedir}/run/dovecot-login/
+
+%defattr(0600, root, root, 0755)
+%ghost %config(missingok,noreplace) %verify(not md5 size mtime) %{_datadir}/ssl/certs/dovecot.pem
+%ghost %config(missingok,noreplace) %verify(not md5 size mtime) %{_datadir}/ssl/private/dovecot.pem
+
+%defattr(0700, root, root, 0755)
+%{_localstatedir}/run/dovecot/
+
+%defattr(0750, root, dovecot, 0755)
+%{_localstatedir}/run/dovecot-login/
 
 %changelog
+* Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 0.99.10.9-2
+- Bring in line with newly introduced dovecot in FC2. (Morten Kjeldgaard)
+
 * Sun Aug 01 2004 Dag Wieers <dag@wieers.com> - 0.99.10.9-1
 - Updated to release 0.99.10.9.
 
