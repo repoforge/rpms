@@ -1,0 +1,12 @@
+diff -urN Mail-SpamAssassin-2.63.orig/Makefile.PL Mail-SpamAssassin-2.63/Makefile.PL
+--- Mail-SpamAssassin-2.63.orig/Makefile.PL	2004-01-17 18:56:12.000000000 -0500
++++ Mail-SpamAssassin-2.63/Makefile.PL	2004-01-21 07:45:14.000000000 -0500
+@@ -962,7 +962,7 @@
+ 	$(MAKE) -f spamd/binaries.mk $@
+ 
+ spamd/binaries.mk: spamd/configure
+-	cd spamd; ./configure --prefix="$(I_PREFIX)" --sysconfdir="$(I_SYSCONFDIR)" --datadir="$(I_DATADIR)" --enable-ssl="$(ENABLE_SSL)"
++	cd spamd; ./configure --prefix="$(I_PREFIX)" --sysconfdir="$(I_SYSCONFDIR)" --datadir="$(I_DATADIR)" --enable-ssl="$(ENABLE_SSL) --includedir=/usr/kerberos/include"
+ 
+ conf__install:
+ 	-$(MKPATH) $(B_CONFDIR)

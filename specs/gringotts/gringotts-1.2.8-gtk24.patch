@@ -1,0 +1,10 @@
+--- src/gringotts.c.orig	2004-06-30 01:41:06.799151944 +0200
++++ src/gringotts.c	2004-06-30 01:41:18.137428264 +0200
+@@ -28,6 +28,7 @@
+ #include <time.h>
+ #include <fcntl.h>
+ 
++#undef GTK_DISABLE_DEPRECATED
+ #include <gtk/gtk.h>
+ 
+ #include "grg_defs.h"

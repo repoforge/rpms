@@ -1,0 +1,101 @@
+--- bing.c
++++ bing.c	2000/02/02 16:03:23
+@@ -171,6 +171,8 @@
+ #include <errno.h>
+ #include <string.h>
+ #include <limits.h>
++#include <pwd.h>
++#include <grp.h>
+ 
+ #include "sysdep.h"
+ 
+@@ -527,7 +529,7 @@
+ 	(void)printf("   %1x %04x", ((ip->ip_off) & 0xe000) >> 13,
+ 	    (ip->ip_off) & 0x1fff);
+ 	(void)printf("  %02x  %02x %04x", ip->ip_ttl, ip->ip_p, ip->ip_sum);
+-#ifdef linux
++#if defined linux && !defined __NETINET_IP_ICMP_H
+ 	(void)printf(" %s ", inet_ntoa(ip->ip_src));
+ 	(void)printf(" %s ", inet_ntoa(ip->ip_dst));
+ #else
+@@ -641,7 +643,7 @@
+ 			(void)printf("Redirect, Bad Code: %d", icp->icmp_code);
+ 			break;
+ 		}
+-#ifdef linux
++#if defined linux && !defined __NETINET_IP_ICMP_H
+ 		(void)printf("(New addr: 0x%08lx)\n", icp->icmp_gwaddr);
+ #else
+ 		(void)printf("(New addr: 0x%08lx)\n", icp->icmp_gwaddr.s_addr);
+@@ -668,7 +670,7 @@
+ 		pr_retip((struct ip *)ICMP_TO_DATA(icp));
+ 		break;
+ 	case ICMP_PARAMPROB:
+-#ifdef linux
++#if defined linux && !defined __NETINET_IP_ICMP_H
+ 		(void)printf("Parameter problem: pointer = 0x%02x\n",
+ 		    icp->un.gateway);
+ #else
+@@ -722,9 +724,9 @@
+ 
+ 	if ((options & F_NUMERIC) ||
+ 	    !(hp = gethostbyaddr((char *)&l, 4, AF_INET)))
+-		(void)sprintf(buf, "%s", inet_ntoa(*(struct in_addr *)&l));
++		(void)snprintf(buf, sizeof(buf), "%s", inet_ntoa(*(struct in_addr *)&l));
+ 	else
+-		(void)sprintf(buf, "%s (%s)", hp->h_name,
++		(void)snprintf(buf, sizeof(buf), "%s (%s)", hp->h_name,
+ 		    inet_ntoa(*(struct in_addr *)&l));
+ 	return(buf);
+ }
+@@ -1226,6 +1228,7 @@
+ 	struct protoent *proto;
+ 	struct in_addr ifaddr;
+ 	struct hoststats *hs1, *hs2;
++  struct passwd *pwd;
+ 	int ntrans, nloops, bits;
+ 	int i;
+ 	int ch, hold, recv_packlen, preload;
+@@ -1403,6 +1406,21 @@
+ 		perror("bing: socket");
+ 		exit(1);
+ 	}
++
++  // drop root privs
++  if((pwd = getpwuid(getuid())) == NULL)
++  {
++    perror("bing: getpwuid()");
++    exit(1);
++  }
++  if(initgroups(pwd->pw_name, pwd->pw_gid) < 0)
++  {
++    perror("bing: initgroups()");
++    exit(1);
++  }
++  setgid(getgid());
++  setuid(getuid());
++
+ 	hold = 1;
+ 	if (options & F_SO_DEBUG)
+ 		(void)setsockopt(s, SOL_SOCKET, SO_DEBUG, (char *)&hold,
+--- sysdep.h
++++ sysdep.h	2000/02/02 16:03:05
+@@ -46,7 +46,7 @@
+ #ifndef _SYSDEP_H_
+ #define _SYSDEP_H_
+ 
+-#ifdef linux
++#if defined linux && !defined __NETINET_IP_ICMP_H
+ #define icmp		icmphdr
+ #define ip		iphdr
+ #define icmp_type	type
+@@ -66,7 +66,9 @@
+ #define ip_sum		check
+ #define ip_src		saddr
+ #define ip_dst		daddr
++#ifndef MAX_IPOPTLEN
+ #define MAX_IPOPTLEN	4096
++#endif
+ #define ICMP_MINLEN	16
+ 
+ #define IPOPT_MINOFF	4

@@ -1,0 +1,31 @@
+--- ./common/UCvsFolders.cpp.fc2-fix	2004-05-27 14:12:26.000000000 -0600
++++ ./common/UCvsFolders.cpp	2004-05-27 14:23:51.000000000 -0600
+@@ -828,7 +828,7 @@
+ 		if(fileView != 0L)
+ 		{
+ 			ASSERT(fileView->IsKindOf(URUNTIME_CLASS(UCvsFiles)));
+-			fileView->ResetView(path);
++			fileView->ResetView(path.c_str(), true);
+ 		}
+ 	}
+ 
+--- ./common/UCvsFiles.cpp.fc2-fix	2004-05-27 14:35:53.000000000 -0600
++++ ./common/UCvsFiles.cpp	2004-05-27 14:34:31.000000000 -0600
+@@ -1214,7 +1214,7 @@
+ {
+ 	UStr uppath, filename;
+ 	SplitPath(m_path, uppath, filename);
+-	ResetView(uppath, true);
++	ResetView(uppath.c_str(), true);
+ 	return 0;
+ }
+ 
+@@ -1895,7 +1895,7 @@
+ 	fullpath << (*data)[EntnodeData::kName];
+ 	if(data->GetType() == ENT_SUBDIR)
+ 	{
+-		ResetView(fullpath, true);
++		ResetView(fullpath.c_str(), true);
+ 	}
+ 	else
+ 	{

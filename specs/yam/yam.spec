@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
 
-Summary: Tool to create a local RPM repository from ISO files and RPM packages
+Summary: Tool to set up a Yum/Apt mirror from various sources (ISO, ftp, ...)
 Name: yam
-Version: 0.3
+Version: 0.5
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -17,7 +17,7 @@ Source: http://dag.wieers.com/home-made/yam/yam-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: python
+Requires: python >= 2.0
 
 %description
 Yam builds a local Apt/Yum RPM repository from local ISO files,
@@ -27,20 +27,14 @@ It can download all updates and extras automatically, creates
 the repository structure and meta-data, enables HTTP access to 
 the repository and creates a directory-structure for PXE/TFTP.
 
-With yam, you can enable your laptop or a local server to provide
+With Yam, you can enable your laptop or a local server to provide
 updates for the whole network and provide the proper files to
 allow installations via the network.
 
-By default it works out of the box with:
-
-	Fedora Core 1 and 2
-	Red Hat Enterprise Linux 2.1 and 3 (WS, ES, AS)
-	TaoLinux 1
-	CentOS 2.1 and 3
-	Red Hat Linux 6.2, 7.3, 8.0 and 9
-
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's|\% VERSION|\% "%{version}"|' yam
 
 %build
 
@@ -48,24 +42,25 @@ By default it works out of the box with:
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/yam
-
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README THANKS TODO
+%doc AUTHORS ChangeLog COPYING README* THANKS TODO *.conf
 %config(noreplace) %{_sysconfdir}/yam.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
 %config %{_initrddir}/yam
 %{_bindir}/yam
-%{_libdir}/yam/
-%dir %{_localstatedir}/www/yam/
+%{_datadir}/yam/
+%{_localstatedir}/yam/
+%{_localstatedir}/www/yam/
 
 %changelog
-* Fri May 21 2004 Dag Wieers <dag@wieers.com> - 0.3-1
+* Tue Aug 17 2004 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
+* Wed May 19 2004 Dag Wieers <dag@wieers.com> - 0.3-1
 - Updated to release 0.3.
 
 * Fri May 14 2004 Dag Wieers <dag@wieers.com> - 0.2-1

@@ -1,0 +1,13 @@
+--- spamd/redhat-rc-script.sh~	2004-01-18 01:56:18.000000000 +0200
++++ spamd/redhat-rc-script.sh	2004-05-02 15:00:02.000000000 +0300
+@@ -4,8 +4,8 @@
+ #
+ # chkconfig: 2345 80 30
+ #
+-# description: spamd is a daemon process which uses SpamAssassin to check
+-#              email messages for SPAM.  It is normally called by spamc
++# description: spamd is a daemon process which uses SpamAssassin to check \
++#              email messages for SPAM.  It is normally called by spamc \
+ #	       from a MDA.
+ 
+ # Source function library.
