@@ -3,13 +3,13 @@
 # Upstream: Timo Sirainen <tss$iki,fi>
 # Upstream: <dovecot$dovecot,org>
 
-# ExcludeDist: fc3
+# ExcludeDist: fc3 el4
 
 %define logmsg logger -t %{name}/rpm
 
-Summary: Dovecot secure IMAP server
+Summary: Secure IMAP server
 Name: dovecot
-Version: 0.99.13
+Version: 0.99.14
 Release: 1
 License: GPL
 Group: System Environment/Daemons

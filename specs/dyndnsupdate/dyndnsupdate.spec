@@ -1,7 +1,7 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
+
+# Screenshot: http://lillesvin.linux.dk/dyndnsupdate_screenshot.jpg
 
 Summary: Update dndns hosts
 Name: dyndnsupdate
@@ -17,8 +17,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://lillesvin.linux.dk/stuff/dyndnsupdate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# Screenshot: http://lillesvin.linux.dk/dyndnsupdate_screenshot.jpg
-
 %description
 DynDNSupdate is a small Bash-script to update your dyndns hosts at reboot or
 from cron. It simply consists of 2 files, dyndnsupdate and dyndns.hosts.
@@ -30,7 +28,7 @@ processes the URLs in dyndns.hosts.
 
 %build
 # nothing to build...
-sed -i "s/^some/#some/g;" dyndns.hosts.example
+%{__perl} -pi.orig -e 's|^some|#some|g' dyndns.hosts.example
 
 %install
 %{__rm} -rf %{buildroot}

@@ -2,13 +2,17 @@
 # Authority: dag
 # Upstream: Hilaire Fernandes <hilaire$ext,cri74,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Interactive educational geometry software
 Name: drgeo
-Version: 0.9.14
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -21,7 +25,7 @@ Source: http://dl.sf.net/ofset/drgeo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex, bison, gmp-devel >= 2.0.2, glib-devel, gtk+-devel
-BuildRequires: guile-devel, gnome-libs-devel, gob >= 1.0.10, libxml-devel
+BuildRequires: guile-devel, gnome-libs-devel, gob >= 1.0.10
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 Obsoletes: drgenius
@@ -62,9 +66,10 @@ EOF
 
 %if %{?!_without_freedesktop:1}0
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor gnome --delete-original \
-		--add-category X-Red-Hat-Base                 \
-		--dir %{buildroot}%{_datadir}/applications    \
+	desktop-file-install --delete-original             \
+		--vendor %{desktop_vendor}                 \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
 		%{buildroot}%{_datadir}/applications/drgeo.desktop
 %endif
 
@@ -75,14 +80,17 @@ EOF
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 #%doc %{_datadir}/gnome/help/*
-%{_bindir}/*
+%{_bindir}/drgeo
 %{_datadir}/drgeo/
 %{_datadir}/pixmaps/*.png
 %{_datadir}/texmacs/TeXmacs/plugins/drgeo/
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-drgeo.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-drgeo.desktop}
 %{?_without_freedesktop:%{_datadir}/applications/drgeo.desktop}
 
 %changelog
+* Sun Mar 06 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 0.9.14-1
 - Updated to release 0.9.14.
 

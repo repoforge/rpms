@@ -40,7 +40,7 @@ and data CDs, and to duplicate CDs.
 %find_lang %{name}
 
 desktop-file-install --delete-original             \
-	--vendor="%{desktop_vendor}"               \
+	--vendor "%{desktop_vendor}"               \
 	--remove-category Utility                  \
 	--add-category X-Red-Hat-Base              \
 	--add-category AudioVideo                  \
@@ -55,7 +55,7 @@ desktop-file-install --delete-original             \
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/graveman
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%{_datadir}/applications/%{desktop_vendor}-graveman.desktop
 %{_datadir}/graveman/
 %{_datadir}/pixmaps/graveman48.png
 

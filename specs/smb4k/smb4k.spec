@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dries
+
 # Screenshot: http://smb4k.berlios.de/shots/0.3.0/Smb4K-0.3.0-1.png
 
 # ExcludeDist: el3 fc1
@@ -18,6 +18,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, XFree86-devel, qt-devel, fam-devel, fam
@@ -33,14 +34,15 @@ an easy access to the SMB shares of your local network neighborhood.
 %setup
 
 %build
-. /etc/profile.d/qt.sh
+source "/etc/profile.d/qt.sh"
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-. /etc/profile.d/qt.sh
-make install-strip DESTDIR=%{buildroot}
+source "/etc/profile.d/qt.sh"
+%{__make} install \
+	DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -48,10 +50,13 @@ make install-strip DESTDIR=%{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
+%doc %{_docdir}/HTML/en/smb4k
 %{_bindir}/smb4k
+%{_bindir}/smb4k_kill
+%{_bindir}/smb4k_mount
+%{_bindir}/smb4k_umount
 %{_datadir}/applications/kde/smb4k.desktop
 %{_datadir}/apps/smb4k
-%{_datadir}/doc/HTML/en/smb4k
 %{_datadir}/icons/crystalsvg/*/apps/smb4k.png
 
 %changelog

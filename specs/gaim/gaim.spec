@@ -5,16 +5,18 @@
 ##ExcludeDist: fc3
 # ExcludeDist: fc2 fc3 el4
 
-### rh9 and el3 wants to install perl modules outside buildroot
+### rh7, rh9 and el3 wants to install perl modules outside buildroot
 %{?el3:%define _without_perl 1}
 %{?rh9:%define _without_perl 1}
+%{?rh7:%define _without_perl 1}
+%{?rh7:%define _without_startup_notification 1}
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
 %define perl_vendorman3dir %(eval "`perl -V:installvendorman3dir`"; echo $installvendorman3dir)
 
 Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.1.3
+Version: 1.1.4
 Release: 1
 Epoch: 1
 License: GPL
@@ -33,7 +35,8 @@ BuildRequires: XFree86-devel, gcc-c++
 BuildRequires: libtool, gtk2-devel, gtkspell-devel, libao-devel
 BuildRequires: mozilla-nss, mozilla-nss-devel
 BuildRequires: mozilla-nspr, mozilla-nspr-devel, libstdc++-devel
-BuildRequires: startup-notification-devel, audiofile-devel
+BuildRequires: audiofile-devel
+%{!?_without_startup_notification:BuildRequires: startup-notification-devel}
 %{?_with_tcltk:BuildRequires: tcl-devel, tk-devel}
 %{?_with_arts:BuildRequires: arts-devel}
 %{!?_without_perl:BuildRequires: perl}
@@ -72,10 +75,11 @@ Available rpmbuild rebuild options :
 
 %build
 %configure \
-    --enable-nss="yes" \
-    %{!?_with_tcltk:--disable-tcl --disable-tk} \
-    %{!?_with_arts:--disable-artsc} \
-    %{?_without_perl:--disable-perl}
+	--program-prefix="%{?_program_prefix}" \
+	--enable-nss="yes" \
+	%{!?_with_tcltk:--disable-tcl --disable-tk} \
+	%{!?_with_arts:--disable-artsc} \
+	%{?_without_perl:--disable-perl}
 %{__make} %{?_smp_mflags}
 
 
@@ -125,6 +129,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Sun Mar 06 2005 Dag Wieers <dag@wieers.com> - 1.1.4-1
+- Updated to release 1.1.4.
+
 * Sat Feb 26 2005 Dag Wieers <dag@wieers.com> - 1.1.3-1
 - Updated to release 1.1.3.
 

@@ -5,7 +5,7 @@
 Summary: C library for manipulating POSIX tar files.
 Name: libtar
 Version: 1.2.11
-Release: 1
+Release: 2
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.feep.net/libtar/
@@ -36,6 +36,8 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+%{expand: %%define optflags %{optflags} -fPIC}
+
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -54,9 +56,13 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%{_libdir}/*.a
+%{_includedir}/libtar.h
+%{_includedir}/libtar_listhash.h
+%{_libdir}/libtar.a
 
 %changelog
+* Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 1.2.11-2
+- Compiled with -fPIC for x86_64·
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.11-1
 - Initial package.
