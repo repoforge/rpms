@@ -1,10 +1,15 @@
 # $Id$
 # Authority: dries
-# Upstream: <lincity-users@lists.sf.net>
+# Upstream: <lincity-users$lists,sourceforge,net>
+
 # Screenshot: http://lincity.sf.net/screenshots/power.png
 # ScreenshotURL: http://lincity.sf.net/screenshots/index.html
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: City simulation game
 Name: lincity
@@ -12,7 +17,7 @@ Version: 1.13.1
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://lincity.sf.net/
+URL: http://lincity.sourceforge.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -20,7 +25,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/lincity/lincity-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, XFree86-devel
+BuildRequires: XFree86-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Lincity is a city simulation game. Build your city up from a primitive
@@ -50,7 +56,7 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 lincity.desktop %{buildroot}%{_datadir}/gnome/apps/Games/lincity.desktop
 %else   
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -68,12 +74,9 @@ EOF
 %doc CHANGES COPYING COPYRIGHT README TODO
 %doc %{_mandir}/man6/*
 %{_bindir}/xlincity
-%{_datadir}/lincity
-%if %{dfi}
-	%{_datadir}/gnome/apps/Games/*.desktop
-%else   
-	%{_datadir}/applications/*.desktop
-%endif
+%{_datadir}/lincity/
+%{!?_without_freedesktop:%{_datadir}/applications/net-lincity.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Games/lincity.desktop}
 
 %changelog
 * Tue Jul 13 2004 Dries Verachtert <dries@ulyssis.org> 1.13.1-1
