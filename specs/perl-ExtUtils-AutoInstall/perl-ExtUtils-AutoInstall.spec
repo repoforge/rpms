@@ -26,10 +26,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/ExtUtils-AutoInstal
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-%{?fc2:BuildRequires: perl-CPANPLUS}
-%{?fc1:BuildRequires: perl-CPANPLUS}
-%{?el3:BuildRequires: perl-CPANPLUS}
+BuildRequires: perl, perl-CPANPLUS
 
 %description
 ExtUtils::AutoInstall is a module to let Makefile.PL automatically 
