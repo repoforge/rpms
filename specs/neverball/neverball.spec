@@ -17,7 +17,7 @@
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball
 Version: 1.3.6
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://icculus.org/neverball/
@@ -34,8 +34,8 @@ BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_ttf-devel
 Tilt the floor to roll a ball through an obstacle course before time runs out.
 Neverball is part puzzle game, part action game, and entirely a test of skill.
 
-If the ball falls or time expires, a ball is lost. Collect 100 coins to save
-your progress and earn an extra ball. Red coins are worth 5, blue are worth 10.
+Also included is Neverputt, a hot-seat multiplayer miniature golf game using
+the physics and graphics of Neverball. 
 
 
 %prep
@@ -44,23 +44,42 @@ your progress and earn an extra ball. Red coins are worth 5, blue are worth 10.
 
 %build
 # Change the location where the binary will look for the "data" directory
-%{__perl} -pi.orig -e 's|./data|%{_datadir}/%{name}|g' share/config.h
-%{__make} %{?_smp_mflags}
+%{__perl} -pi.orig -e 's|./data|%{_prefix}/games/neverball/data|g' \
+    share/config.h
+# Override relevant part of the CFLAGS
+%{__make} %{?_smp_mflags} \
+    CFLAGS='-Wall %{optflags} -ansi $(shell sdl-config --cflags)'
 
 
 %install
 %{__rm} -rf %{buildroot}
-# Install the binary and the "data" directory
-%{__install} -D -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
-%{__mkdir_p} %{buildroot}%{_datadir}
-%{__cp} -a data %{buildroot}%{_datadir}/%{name}
+%{__mkdir_p} %{buildroot}%{_prefix}/games/neverball
+%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
+# Install the binaries and the "data" directory
+%{__install} -m 0755 neverball neverputt mapc \
+    %{buildroot}%{_prefix}/games/neverball/
+%{__cp} -a data %{buildroot}%{_prefix}/games/neverball/data
+# Install the icons for the desktop files
+%{__install} -m 0644 icon/*.png %{buildroot}%{_datadir}/pixmaps/
 
-%{__cat} > %{name}.desktop << EOF
+# Install the desktop files
+%{__cat} > neverball.desktop << EOF
 [Desktop Entry]
 Name=Neverball
 Comment=Test of skill, part puzzle game and part action game
-Exec=%{name}
-Icon=%{_datadir}/%{name}/shot-rlk/risers.jpg
+Exec=%{_prefix}/games/neverball/neverball
+Icon=neverball.png
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Game;
+EOF
+%{__cat} > neverputt.desktop << EOF
+[Desktop Entry]
+Name=Neverputt
+Comment=Multiplayer miniature golf game
+Exec=%{_prefix}/games/neverball/neverputt
+Icon=neverputt.png
 Terminal=false
 Type=Application
 Encoding=UTF-8
@@ -69,12 +88,19 @@ EOF
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
+desktop-file-install \
+    --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
+    neverball.desktop
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    neverputt.desktop
 %else
-%{__install} -D -m 644 %{name}.desktop \
-  %{buildroot}/etc/X11/applnk/Games/%{name}.desktop
+%{__install} -D -m 644 neverball.desktop \
+    %{buildroot}/etc/X11/applnk/Games/neverball.desktop
+%{__install} -D -m 644 neverputt.desktop \
+    %{buildroot}/etc/X11/applnk/Games/neverputt.desktop
 %endif
 
 
@@ -85,13 +111,21 @@ desktop-file-install --vendor %{desktop_vendor} \
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README
-%{_bindir}/%{name}
-%{_datadir}/%{name}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Games/%{name}.desktop}
+%{_prefix}/games/neverball/
+%{_datadir}/pixmaps/neverball.png
+%{_datadir}/pixmaps/neverputt.png
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-neverball.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-neverputt.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Games/neverball.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Games/neverputt.desktop}
 
 
 %changelog
+* Mon Aug  2 2004 Matthias Saou <http://freshrpms.net/> 1.3.6-2
+- Add neverputt and mapc to the package, as suggested by Andrew Pam.
+- Use the icons now provided in the source for the desktop entries.
+- Move everything in %{_prefix}/games/neverball.
+
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 1.3.6-1
 - Update to 1.3.6.
 
