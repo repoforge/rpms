@@ -11,7 +11,7 @@
 
 Summary: MP3 playlist parser
 Name: perl-MP3-M3U-Parser
-Version: 2.0
+Version: 2.1
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ formats like xml and html.
 %{perl_vendorlib}/MP3/M3U/Parser.pm
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 2.1-1
+- Update to release 2.1.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Initial package.

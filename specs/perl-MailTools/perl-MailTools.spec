@@ -7,7 +7,7 @@
 
 Summary: MailTools module for perl 
 Name: perl-MailTools
-Version: 1.60
+Version: 1.64
 Release: 0
 License: distributable
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.64-0
+- Updated to release 1.64.
+
 * Fri Nov 28 2003 Dag Wieers <dag@wieers.com> - 1.60-0
 - Updated to release 1.60.
 

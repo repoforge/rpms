@@ -11,7 +11,7 @@
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
-Version: 0.824
+Version: 0.830
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -66,5 +66,8 @@ the B:: modules.
 %{perl_vendorlib}/PPI/*
 
 %changelog
+* Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 0.830-1
+- Update to release 0.830.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.824-1
 - Initial package.
