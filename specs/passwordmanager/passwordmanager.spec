@@ -5,13 +5,13 @@
 # Screenshot: http://passwordmanager.sourceforge.net/1.png
 # ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
 
-%define real_version 1.0rc1
+%define real_version 1.0
 %define short_name pwmanager
 
 Summary: Personal password manager
 Name: passwordmanager
 Version: 1.0
-Release: 0.rc1
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://passwordmanager.sourceforge.net/
@@ -66,6 +66,9 @@ password to access the list.
 %{?fc2:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Fri Jul 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-1
+- Update to version 1.0.
+
 * Sun Jul 11 2004 Dag Wieers <dag@wieers.com> - 1.0-0.rc1
 - Update to release 1.0rc1.
 
