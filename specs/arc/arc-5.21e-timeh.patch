@@ -1,0 +1,28 @@
+--- arc-5.21e/arcdos.c.timeh	Tue Apr 14 18:58:21 1992
++++ arc-5.21e/arcdos.c	Tue Aug 13 18:26:53 2002
+@@ -30,10 +30,10 @@
+ #if	UNIX
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#include <time.h>
+ #if	BSD
+ #include <sys/time.h>
+-#else	
+-#include <time.h>		/* Sys V. Bleah. */
++#else
+ struct	timeval {
+ 	long	tv_sec;
+ 	long	tv_usec;
+--- arc-5.21e/tmclock.c.timeh	Tue Apr 14 18:58:50 1992
++++ arc-5.21e/tmclock.c	Tue Aug 13 18:26:41 2002
+@@ -17,9 +17,9 @@
+ #if	BSD
+ #include <sys/time.h>
+ #else
+-#include <time.h>
+ extern long	timezone;	/* should be in <time.h>, but isn't on Sun */
+ #endif
++#include <time.h>
+ 
+ long	tzone;
+ 
