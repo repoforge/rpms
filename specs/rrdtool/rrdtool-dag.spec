@@ -1,16 +1,15 @@
 # $Id$
-
-# Authority: dag
+# Authority: matthias
 # Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
 
-%define real_version 1.0.47
-%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
-%define release 1
+# Distcc: 0
 
-Summary: RRDtool - round robin database
+%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
+
+Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: %{real_version}
-Release: %{release}
+Version: 1.0.47
+Release: 3
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -19,11 +18,12 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
-Patch: php-rrdtool-config.patch
+Patch: php-1.0.47-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: php-devel, tcl-devel, perl
+BuildRequires: php-devel, tcl, perl
+%{?rhfc1:BuildRequires: tcl-devel}
+%{?rhel3:BuildRequires: tcl-devel}
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and 
@@ -35,23 +35,19 @@ scripts (from shell or Perl) or via frontends that poll network devices and
 put a friendly user interface on it.
 
 %package devel
-Summary: RRDtool - round robin database static libraries and headers
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-RRD is the Acronym for Round Robin Database. RRD is a system to store and
-display time-series data (i.e. network bandwidth, machine-room temperature,
-server load average). This package allow you to use directly this library.
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %package -n php-rrdtool
 Summary: PHP module for using RRD databases or rrdtool
-Version: %{pversion}
-Release: %{release}_%{real_version}
 Group: Development/Languages
-
-BuildRequires: php-devel
-Requires: php = %{pversion}, rrdtool = %{real_version}
+Requires: php = %{pversion}, rrdtool = %{version}-%{release}
 
 %description -n php-rrdtool
 The php-rrdtool package contains a dynamic shared object that will add
@@ -61,9 +57,11 @@ This module is built for PHP v%{pversion}.
 
 %prep
 %setup
+%patch0
 
 %build
 %configure \
+	--program-prefix="%{?_program_prefix}" \
 	--enable-shared \
 	--enable-local-libpng \
 	--enable-local-zlib \
@@ -90,13 +88,14 @@ cd contrib/php4
 	#	LTLIBRARY_LDFLAGS="-g"
 cd -
 
-%{__install} -d -m0755 %{buildroot}/%{perl_archlib} \
-			%{buildroot}%{_includedir} \
-			%{buildroot}%{_libdir}/php4/ 
+%{__install} -D -m0755 contrib/log2rrd/log2rrd.pl %{buildroot}%{_bindir}/log2rrd.pl
+%{__install} -D -m0755 contrib/php4/modules/rrdtool.so %{buildroot}%{_libdir}/php4/rrdtool.so
+
+%{__install} -d -m0755 %{buildroot}/%{perl_archlib}
 %{__mv} -f %{buildroot}%{_libdir}/perl/* %{buildroot}%{perl_archlib}
+
+%{__install} -d -m0755 %{buildroot}%{_includedir}
 %{__install} -m0644 src/rrd*.h %{buildroot}%{_includedir}
-%{__install} -m0755 contrib/log2rrd/log2rrd.pl %{buildroot}%{_bindir}
-%{__install} -m0755 contrib/php4/modules/rrdtool.so %{buildroot}%{_libdir}/php4/
 
 ### Clean up examples
 %{__perl} -pi -e '
@@ -104,9 +103,8 @@ cd -
 		s|\015||gi;
 	' examples/*.pl
 
-### Clean up buildroot
+### Clean up docs
 %{__rm} -rf contrib/php4/examples/CVS/
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -114,19 +112,23 @@ cd -
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT README TODO
+%doc doc/*.html doc/*.txt
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_datadir}/rrdtool/
-%{perl_archlib}
+%{perl_archlib}/*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc examples/*
+%doc examples/
+%doc contrib/add_ds contrib/killspike contrib/log2rrd contrib/rrdexplorer
+%doc contrib/rrdfetchnames contrib/rrd-file-icon contrib/rrdlastds
+%doc contrib/rrdproc contrib/rrdview contrib/snmpstats contrib/trytime
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %files -n php-rrdtool
 %defattr(-, root, root, 0755)
@@ -135,6 +137,12 @@ cd -
 %{_libdir}/php4/*.so
 
 %changelog
+* Mon Apr 19 2004 Dag Wieers <dag@wieers.com> - 1.0.47-3
+- Re-added missing php-config patch. (Roy-Magne Mo)
+
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.0.47-1
+- Updated to release 1.0.47.
+
 * Mon Jan 05 2004 Dag Wieers <dag@wieers.com> - 1.0.46-0
 - Updated to release 1.0.46.
 

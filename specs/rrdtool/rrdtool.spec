@@ -8,16 +8,14 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.0.47
+Version: 1.0.48
 Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
+Patch: php-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
@@ -46,12 +44,12 @@ display time-series data (i.e. network bandwidth, machine-room temperature,
 server load average). This package allow you to use directly this library.
 
 
-%package -n php-%{name}
+%package -n php-rrdtool
 Summary: RRDtool module for PHP
 Group: Development/Languages
 Requires: %{name} = %{version}, php >= 4.0
 
-%description -n php-%{name}
+%description -n php-rrdtool
 The php-%{name} package includes a dynamic shared object (DSO) that adds
 RRDtool bindings to the PHP HTML-embedded scripting language.
 
@@ -62,9 +60,10 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 %build
 %configure \
-    --enable-shared \
-    --enable-local-libpng \
-    --enable-local-zlib
+	--program-prefix="%{?_program_prefix}" \
+	--enable-shared \
+	--enable-local-libpng \
+	--enable-local-zlib
 %{__make} %{?_smp_mflags}
 
 # Build the php4 module, the tmp install is required
@@ -123,7 +122,7 @@ rm -rf %{buildroot}
  
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES CONTRIBUTORS COPYING README TODO doc2/doc
+%doc CHANGES CONTRIBUTORS COPYING COPYRIGHT README TODO doc2/doc
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{perl_sitearch}/*.pm
@@ -133,23 +132,26 @@ rm -rf %{buildroot}
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc examples
+%doc examples/
 %doc contrib/add_ds contrib/killspike contrib/log2rrd contrib/rrdexplorer
 %doc contrib/rrdfetchnames contrib/rrd-file-icon contrib/rrdlastds
 %doc contrib/rrdproc contrib/rrdview contrib/snmpstats contrib/trytime
-%{_includedir}/*
+%{_includedir}/*.h
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 
 
-%files -n php-%{name}
+%files -n php-rrdtool
 %defattr(-, root, root)
 %doc contrib/php4/examples contrib/php4/README
 %{phpextdir}/rrdtool.so
 
 
 %changelog
+* Thu May 13 2004 Dag Wieers <dag@wieers.com> - 1.0.48-1
+- Updated to release 1.0.48.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.0.47-1
 - Updated to release 1.0.47.
 
