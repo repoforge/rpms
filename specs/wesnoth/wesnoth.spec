@@ -41,7 +41,7 @@ Type=Application
 Encoding=UTF-8
 Name=Wesnoth
 Exec=/usr/bin/wesnoth
-Categories=Application;Game;ArcadeGame
+Categories=Application;Game;ArcadeGame;
 EOF
 
 %build
@@ -54,7 +54,7 @@ EOF
 desktop-file-install --vendor rpmforge             \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	wesnoth.desktop
 
 %files
 %defattr(-,root,root, 0755)
@@ -62,7 +62,7 @@ desktop-file-install --vendor rpmforge             \
 %{_bindir}/wesnoth
 %{_mandir}/man6/wesnoth*
 %{_datadir}/wesnoth
-%{_datadir}/applications/wesnoth.desktop
+# %{_datadir}/applications/wesnoth.desktop
 
 %changelog
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> 0.7.9-1
