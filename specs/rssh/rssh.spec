@@ -18,7 +18,7 @@ Source: http://www.pizzashack.org/rssh/src/rssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssh-server, openssh-clients
-Requires: openssh-server, openssh-clients
+Requires: openssh-server
 
 %description
 rssh is a restricted shell for use with OpenSSH, allowing only scp
