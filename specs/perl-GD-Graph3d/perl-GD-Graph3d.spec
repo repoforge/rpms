@@ -12,7 +12,7 @@
 Summary: Create 3D Graphs
 Name: perl-GD-Graph3d
 Version: 0.63
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD-Graph3d/
@@ -53,5 +53,8 @@ With this perl module, you can create 3D graphs with GD.
 %{perl_vendorlib}/GD/Graph/*.pm
 
 %changelog
+* Sun Oct 03 2004 Dries Verachtert <dries@ulyssis.org> - 0.63-2
+- Rebuild.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.63-1
 - Initial package.
