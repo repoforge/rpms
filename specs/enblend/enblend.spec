@@ -1,4 +1,4 @@
-# $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Andrew Mihal <mihal$eecs,berkeley,edu>
 

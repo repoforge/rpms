@@ -4,7 +4,7 @@
 
 Summary: Allows restricted root access for specified users
 Name: op
-Version: 1.24
+Version: 1.25
 Release: 1
 License: BSD
 Group: Applications/System
@@ -123,8 +123,8 @@ EOF
 %{_bindir}/op
 
 %changelog
-* Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 1.24-1
-- Updated to release 1.24.
+* Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 1.25-1
+- Updated to release 1.25.
 
 * Wed May 05 2004 Dag Wieers <dag@wieers.com> - 1.23-1
 - Updated to release 1.23.

@@ -1,4 +1,4 @@
-# $Id: _template.spec 765 2004-05-20 17:33:53Z dag $
+# $Id$
 # Authority: dag
 # Upstream: lorgor <lorgor$users,sourceforge,net>
 

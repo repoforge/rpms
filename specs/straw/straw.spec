@@ -4,8 +4,8 @@
 
 Summary: Desktop news aggregator
 Name: straw
-Version: 0.24
-Release: 1
+Version: 0.25.1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/straw/
@@ -57,21 +57,23 @@ python setup.py install \
 	--sysconfdir="%{buildroot}%{_sysconfdir}"
 %find_lang %{name}
 
+%{__install} -D -m0644 data/straw.schemas %{buildroot}%{_sysconfdir}/gconf/schemas/straw.schemas
+
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/applications/*.desktop
 
-#%post
-#export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
-#gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+%post
+export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-#%config %{_sysconfdir}/gconf/schemas/*.schemas
+%config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_libdir}/python*/site-packages/straw/
 %{_datadir}/straw/
@@ -79,6 +81,9 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.25.1-1
+- Updated to release 0.25.1.
+
 * Wed Jul 07 2004 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 

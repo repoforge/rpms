@@ -1,4 +1,4 @@
-# $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
+# $Id$
 # Authority: dag
 # Upstream: 
 

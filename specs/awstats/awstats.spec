@@ -95,21 +95,8 @@ EOF
 %{__install} -D -m0644 wwwroot/classes/awgraphapplet.jar %{buildroot}%{_localstatedir}/www/awstats/classes/awgraphapplet.jar
 %{__install} -D -m0644 wwwroot/js/awstats_misc_tracker.js %{buildroot}%{_localstatedir}/www/awstats/js/awstats_misc_tracker.js
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/awstats/{css,lang,lib,plugins/example}/
-%{__install} -m0644 wwwroot/css/* %{buildroot}%{_localstatedir}/www/awstats/css/
-%{__install} -m0644 wwwroot/cgi-bin/lang/* %{buildroot}%{_localstatedir}/www/awstats/lang/
-%{__install} -m0755 wwwroot/cgi-bin/lib/* %{buildroot}%{_localstatedir}/www/awstats/lib/
-%{__install} -m0755 wwwroot/cgi-bin/plugins/*.pm %{buildroot}%{_localstatedir}/www/awstats/plugins/
-%{__install} -m0755 wwwroot/cgi-bin/plugins/example/* %{buildroot}%{_localstatedir}/www/awstats/plugins/example/
-
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/awstats/icon/{browser,clock,cpu,flags,mime,os,other}/
-%{__install} -m0644 wwwroot/icon/browser/* %{buildroot}%{_localstatedir}/www/awstats/icon/browser/
-%{__install} -m0644 wwwroot/icon/clock/* %{buildroot}%{_localstatedir}/www/awstats/icon/clock/
-%{__install} -m0644 wwwroot/icon/cpu/* %{buildroot}%{_localstatedir}/www/awstats/icon/cpu/
-%{__install} -m0644 wwwroot/icon/flags/* %{buildroot}%{_localstatedir}/www/awstats/icon/flags/
-%{__install} -m0644 wwwroot/icon/mime/* %{buildroot}%{_localstatedir}/www/awstats/icon/mime/
-%{__install} -m0644 wwwroot/icon/os/* %{buildroot}%{_localstatedir}/www/awstats/icon/os/
-%{__install} -m0644 wwwroot/icon/other/* %{buildroot}%{_localstatedir}/www/awstats/icon/other/
+%{__cp} -av wwwroot/{css,icon}/ %{buildroot}%{_localstatedir}/www/awstats/
+%{__cp} -av wwwroot/cgi-bin/{lang,lib,plugins} %{buildroot}%{_localstatedir}/www/awstats/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -126,6 +113,7 @@ EOF
 %changelog
 * Sat Jun 19 2004 Dag Wieers <dag@wieers.com> - 6.1-1
 - Updated to release 6.1.
+- Added tooltips. (Eric Hopper)
 
 * Fri Apr 23 2004 Dag Wieers <dag@wieers.com> - 6.0-1
 - Updated to release 6.0.

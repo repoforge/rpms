@@ -4,7 +4,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.74
+Version: 0.75
 Release: 1
 License: GPL
 Group: Applications/System
@@ -14,9 +14,8 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
-Source1: http://dl.sf.net/clamav/clamav-%{version}.tar.gz.sig
-Source2: clamav.init
-Source3: clamav-milter.init
+Source1: clamav.init
+Source2: clamav-milter.init
 Patch0: clamav-0.67-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -178,8 +177,8 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamd
-%{__install} -D -m0755 %{SOURCE3} %{buildroot}%{_initrddir}/clamav-milter
+%{__install} -D -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/clamd
+%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamav-milter
 %{__install} -D -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter
 %{__install} -D -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
 %{__install} -D -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
@@ -307,6 +306,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Fri Jul 23 2004 Dag Wieers <dag@wieers.com> - 0.75-1
+- Updated to release 0.75.
+
 * Wed Jun 30 2004 Dag Wieers <dag@wieers.com> - 0.74-1
 - Updated to release 0.74.
 

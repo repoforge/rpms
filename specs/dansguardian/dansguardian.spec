@@ -20,7 +20,7 @@ Source: http://dansguardian.org/downloads/2/Stable/DansGuardian-%{real_version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-Dan's Guardian is a web filtering engine that checks the content within
+DansGuardian is a web filtering engine that checks the content within
 the page itself in addition to the more traditional URL filtering.
 
 DansGuardian is a content filtering proxy. It filters using multiple methods,
@@ -48,12 +48,12 @@ EOF
 %{__cat} <<'EOF' >dansguardian.init
 #!/bin/bash
 #
-# Init file for Dansguardian content filter.
+# Init file for DansGuardian content filter.
 #
 # Written by Dag Wieers <dag@wieers.com>.
 #
 # chkconfig: - 92 8
-# description: Dansguardian content filter.
+# description: DansGuardian content filter.
 #
 # processname: dansguardian
 # config: %{_sysconfdir}/dansguardian/dansguardian.conf

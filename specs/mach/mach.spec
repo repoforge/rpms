@@ -13,7 +13,7 @@ Release: 1
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
-Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.bz2
+Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.bz2
 Source1: fedora-2-x86_64
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: rpm-python, apt, sed, cpio

@@ -16,7 +16,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.9.2
-Release: 1
+Release: 2
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -144,19 +144,22 @@ ac_add_options --disable-installer
 ac_add_options --disable-jsd
 ac_add_options --disable-ldap
 ac_add_options --disable-mailnews
+ac_add_options --disable-profilesharing
 ac_add_options --disable-tests
 ac_add_options --disable-xprint
 ac_add_options --enable-crypto
 #ac_add_options --enable-extensions="default,-irc,-venkman"
-ac_add_options --enable-extensions="cookie,inspector,negotiateauth,p3p,pref,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"
+ac_add_options --enable-extensions="cookie,gnomevfs,inspector,negotiateauth,p3p,pref,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"
 ac_add_options --enable-mathml
 ac_add_options --enable-official-branding
 ac_add_options --enable-optimize="%{optflags}"
 ac_add_options --enable-plaintext-editor-only
 ac_add_options --enable-reorder
+ac_add_options --enable-single-profile
 ac_add_options --enable-strip
 ac_add_options --enable-strip-libs
 ac_add_options --enable-xinerama
+ac_add_options --enable-xprint
 ac_add_options --with-pthreads
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-mng
@@ -336,7 +339,7 @@ fi
 
 %preun
 if [ $1 -eq 0 ]; then
-	%{__rm} -rf %{_libdir}/firefox/{chrome/overlayinfo/,components/}
+	%{__rm} -rf %{_libdir}/firefox/{chrome/overlayinfo,components,extensions}/
 	%{__rm} -f %{_libdir}/firefox/chrome/*.rdf
 fi
 
@@ -353,6 +356,12 @@ fi
 %{!?_without_freedesktop:%{_datadir}/applications/net-firefox.desktop}
 
 %changelog
+* Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.9.2-2
+- Fixed firefox -register and firefox-rebuild-databases. (Gary Peck)
+- Remove extensions-directory after uninstalling. (Gary Peck)
+- Added gnomevfs extension. (Gary Peck)
+- Clean up Xvfb afterwards.
+
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 0.9.2-1
 - Updated to release 0.9.2.
 
