@@ -5,15 +5,16 @@
 
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
-Version: 0.94
-Release: 3
+Version: 1.00
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://sourceforge.net/projects/mpegplus/
-Source: http://dl.sf.net/mpegplus/xmms-musepack-%{version}.tar.bz2
+Source: http://dl.sf.net/mpegplus/xmms-musepack-%{version}.tar.gz
+Patch: xmms-musepack-1.00-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
-BuildRequires: xmms-devel, gtk+-devel
+BuildRequires: xmms-devel, gtk+-devel, esound-devel
 
 
 %description
@@ -22,18 +23,16 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 %prep
 %setup
+%patch -p1 -b .makefile
 
 
 %build
-ARCH="%{optflags} -fPIC" %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} OPTIONS="%{optflags} -fPIC"
 
 
 %install
 %{__rm} -rf %{buildroot}
-# Patching the Makefile would be overkill for a single file...
-# We also change the name to keep more consistent with existing plugins
-%{__install} -D -m 0755 %{name}-%{version}.so \
-    %{buildroot}%{xmms_inputdir}/libmusepack.so
+%{__make} install DESTDIR=%{buildroot}
 
 
 %clean
@@ -42,7 +41,7 @@ ARCH="%{optflags} -fPIC" %{__make} %{?_smp_mflags}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING.LGPL ChangeLog README_mpc-plugin_english.txt
+%doc ChangeLog README_mpc-plugin_english.txt Wanted
 %lang(fi) %doc README_mpc-plugin_finnish.txt
 %lang(de) %doc README_mpc-plugin_german.txt
 %lang(ko) %doc README_mpc-plugin_korean.txt
@@ -51,6 +50,11 @@ ARCH="%{optflags} -fPIC" %{__make} %{?_smp_mflags}
 
 
 %changelog
+* Wed Jul  7 2004 Matthias Saou <http://freshrpms.net/> 1.00-1
+- Update to 1.00.
+- Added Makefile patch this time, the gcc flags stuff was just too ugly.
+- Hmm, now requires esound-devel (esd.h).
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.94-3
 - Rebuilt for Fedora Core 2.
 

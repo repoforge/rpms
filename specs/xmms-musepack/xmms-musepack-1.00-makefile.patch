@@ -1,0 +1,23 @@
+diff -Naupr xmms-musepack-1.00.orig/Makefile xmms-musepack-1.00/Makefile
+--- xmms-musepack-1.00.orig/Makefile	2004-06-25 13:24:47.000000000 +0200
++++ xmms-musepack-1.00/Makefile	2004-07-07 14:18:48.287616200 +0200
+@@ -1,6 +1,6 @@
+ CC      = gcc
+ VERSION = 1.00
+-OPTIONS = -Wall -shared -O3 -march=pentium --fast-math -DPOSIX -D_REENTRANT -DREENTRANT -I.. -DMPP_ENCODER
++OPTIONS = $(CFLAGS) -Wall -shared -DPOSIX -D_REENTRANT -DREENTRANT -I.. -DMPP_ENCODER
+ 
+ 
+ SOURCE  = in_mpc.c bitstream.c huffsv46.c huffsv7.c requant.c synth_filter.c mpc_dec.c equalizer.c equal.c tags.c
+@@ -16,9 +16,9 @@ install-test:   all
+ 	~/.xmms/Plugins/xmms-musepack-`echo $(VERSION)`.so
+ 
+ install:        all
+-	install -g root -o root -m 755 \
++	install -D -m 0755 \
+ 	  ./xmms-musepack-`echo $(VERSION)`.so \
+-	  `xmms-config --input-plugin-dir`/xmms-musepack-`echo $(VERSION)`.so
++	  $(DESTDIR)`xmms-config --input-plugin-dir`/libmusepack.so
+ 
+ xmms-musepack-$(VERSION).so: $(SOURCE) $(HEADER) $(EQUAL) Makefile
+ 	@echo
