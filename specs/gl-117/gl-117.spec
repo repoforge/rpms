@@ -9,7 +9,7 @@
 
 Summary: Action flight simulator
 Name: gl-117
-Version: 1.2
+Version: 1.3
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -49,6 +49,9 @@ export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
 %{_datadir}/gl-117/
 
 %changelog
+* Mon Jun 14 2004 Dries Verachtert <dries@ulyssis.org> 1.3-1
+- update to 1.3
+
 * Mon May 24 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Cosmetic cleanup.
 
