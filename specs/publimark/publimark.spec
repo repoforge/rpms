@@ -14,7 +14,8 @@ URL: http://perso.wanadoo.fr/gleguelv/soft/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://perso.wanadoo.fr/gleguelv/soft/publimark-%{version}.tgz
+#Source: http://perso.wanadoo.fr/gleguelv/soft/publimark-%{version}.tgz
+Source: http://perso.wanadoo.fr/gleguelv/soft/publimark/publimark-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: audiofile-devel, botan-devel, gcc-c++, automake, autoconf
