@@ -2,14 +2,10 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
-%ifnarch %{ix86}
-%define _without_quicktime 1
-%endif
-
 Summary: Simple non-linear video editor
 Name: kino
 Version: 0.7.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -103,6 +99,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-kino.desktop}
 
 %changelog
+* Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.7.1-3
+- Rebuild for x86_64 with quicktime support.
+
 * Mon Jun 14 2004 Matthias Saou <http://freshrpms.net> 0.7.1-2
 - Updated the desktop entry creation to the new current method.
 - Fixed build requirements.
