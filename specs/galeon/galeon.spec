@@ -1,12 +1,14 @@
 # $Id$
 # Authority: dag
 
+# Tag: test
+
 %define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
-Version: 1.3.14
-Release: 0.a
+Version: 1.3.15
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://galeon.sf.net/
@@ -14,7 +16,7 @@ URL: http://galeon.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/galeon/galeon-%{version}a.tar.bz2
+Source: http://dl.sf.net/galeon/galeon-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mozilla-devel = %{mversion}, gtk2-devel >= 2.0, libxml2-devel >= 2.4
@@ -75,6 +77,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 1.3.15-1
+- Updated to release 1.3.15.
+
 * Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.3.14-0.a
 - Updated to release 1.3.14a.
 
