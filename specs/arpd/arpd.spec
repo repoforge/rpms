@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.citi.umich.edu/u/provos/arpd/arpd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libdnet
+Provides: farpd = %{version}-%{release}
 
 %description
 arpd replies to any ARP request for an IP address matching the specified

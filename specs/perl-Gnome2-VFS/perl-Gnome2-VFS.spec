@@ -7,18 +7,18 @@
 
 Summary: Perl interface to the 2.x series of the GNOME VFS library
 Name: perl-Gnome2-VFS
-Version: 0.10
+Version: 1.001
 Release: 1
 License: GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/Gnome2-VFS/
+URL: http://gtk2-perl.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-VFS-%{version}.tar.gz
+#Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-VFS-%{version}.tar.gz
+Source: http://dl.sf.net/gtk2-perl/Gnome2-VFS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),
 BuildRequires: perl(Glib), perl(Gtk2)
@@ -59,5 +59,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
-* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.10-0
+* Tue Mar 30 2004 Dag Wieers <dag@wieers.com> - 1.001-1
+- Updated to release 1.001.
+
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.10-1
 - Initial package. (using DAR)
