@@ -1,6 +1,6 @@
-diff -Naupr ipw2100-0.53/autogen.sh ipw2100-0.53-autotools/autogen.sh
---- ipw2100-0.53/autogen.sh	1970-01-01 01:00:00.000000000 +0100
-+++ ipw2100-0.53-autotools/autogen.sh	2004-08-25 14:20:02.554270520 +0200
+diff -Naupr ipw2100-0.54.orig/autogen.sh ipw2100-0.54/autogen.sh
+--- ipw2100-0.54.orig/autogen.sh	1970-01-01 01:00:00.000000000 +0100
++++ ipw2100-0.54/autogen.sh	2004-09-14 13:12:06.642943640 +0200
 @@ -0,0 +1,6 @@
 +#!/bin/bash
 +set -x
@@ -8,9 +8,9 @@ diff -Naupr ipw2100-0.53/autogen.sh ipw2100-0.53-autotools/autogen.sh
 +autoconf || exit 1
 +automake -a --foreign || exit 1
 +./configure $@
-diff -Naupr ipw2100-0.53/configure.ac ipw2100-0.53-autotools/configure.ac
---- ipw2100-0.53/configure.ac	1970-01-01 01:00:00.000000000 +0100
-+++ ipw2100-0.53-autotools/configure.ac	2004-08-25 14:20:02.554270520 +0200
+diff -Naupr ipw2100-0.54.orig/configure.ac ipw2100-0.54/configure.ac
+--- ipw2100-0.54.orig/configure.ac	1970-01-01 01:00:00.000000000 +0100
++++ ipw2100-0.54/configure.ac	2004-09-14 13:12:06.643943488 +0200
 @@ -0,0 +1,81 @@
 +AC_INIT(ipw2100_main.c)
 +
@@ -93,9 +93,9 @@ diff -Naupr ipw2100-0.53/configure.ac ipw2100-0.53-autotools/configure.ac
 +AM_CONDITIONAL(WPA, test "x$WPA" = "xyes")
 +
 +AC_OUTPUT(Makefile)
-diff -Naupr ipw2100-0.53/m4/as-linux.m4 ipw2100-0.53-autotools/m4/as-linux.m4
---- ipw2100-0.53/m4/as-linux.m4	1970-01-01 01:00:00.000000000 +0100
-+++ ipw2100-0.53-autotools/m4/as-linux.m4	2004-08-24 19:33:18.000000000 +0200
+diff -Naupr ipw2100-0.54.orig/m4/as-linux.m4 ipw2100-0.54/m4/as-linux.m4
+--- ipw2100-0.54.orig/m4/as-linux.m4	1970-01-01 01:00:00.000000000 +0100
++++ ipw2100-0.54/m4/as-linux.m4	2004-09-14 13:12:06.676938472 +0200
 @@ -0,0 +1,775 @@
 +dnl as-linux.m4 0.2.4
 +
@@ -872,9 +872,9 @@ diff -Naupr ipw2100-0.53/m4/as-linux.m4 ipw2100-0.53-autotools/m4/as-linux.m4
 +	dnl restore CFLAGS
 +        CFLAGS="$ac_save_CFLAGS"
 +])
-diff -Naupr ipw2100-0.53/m4/as-modtool.m4 ipw2100-0.53-autotools/m4/as-modtool.m4
---- ipw2100-0.53/m4/as-modtool.m4	1970-01-01 01:00:00.000000000 +0100
-+++ ipw2100-0.53-autotools/m4/as-modtool.m4	2004-08-24 19:33:18.000000000 +0200
+diff -Naupr ipw2100-0.54.orig/m4/as-modtool.m4 ipw2100-0.54/m4/as-modtool.m4
+--- ipw2100-0.54.orig/m4/as-modtool.m4	1970-01-01 01:00:00.000000000 +0100
++++ ipw2100-0.54/m4/as-modtool.m4	2004-09-14 13:12:06.677938320 +0200
 @@ -0,0 +1,147 @@
 +dnl as-modtool.m4 0.0.1
 +dnl autostars m4 macro for building modtool, a linker for Linux kernel
@@ -1023,10 +1023,10 @@ diff -Naupr ipw2100-0.53/m4/as-modtool.m4 ipw2100-0.53-autotools/m4/as-modtool.m
 +])
 +
 +
-diff -Naupr ipw2100-0.53/Makefile.am ipw2100-0.53-autotools/Makefile.am
---- ipw2100-0.53/Makefile.am	1970-01-01 01:00:00.000000000 +0100
-+++ ipw2100-0.53-autotools/Makefile.am	2004-08-25 14:20:02.567268544 +0200
-@@ -0,0 +1,92 @@
+diff -Naupr ipw2100-0.54.orig/Makefile.am ipw2100-0.54/Makefile.am
+--- ipw2100-0.54.orig/Makefile.am	1970-01-01 01:00:00.000000000 +0100
++++ ipw2100-0.54/Makefile.am	2004-09-14 13:26:43.373660312 +0200
+@@ -0,0 +1,83 @@
 +### check options for modules
 +
 +# check if we want legacy firmware loading
@@ -1038,7 +1038,7 @@ diff -Naupr ipw2100-0.53/Makefile.am ipw2100-0.53-autotools/Makefile.am
 +
 +# check if we want DEBUG
 +if DEBUG
-+DEBUG_CFLAGS = -DCONFIG_IPW2100_DEBUG=y
++DEBUG_CFLAGS = -DCONFIG_IPW_DEBUG=y
 +else
 +DEBUG_CFLAGS =
 +endif
@@ -1077,9 +1077,7 @@ diff -Naupr ipw2100-0.53/Makefile.am ipw2100-0.53-autotools/Makefile.am
 +	$(WPA_MODULES)
 +
 +ipw2100_ko_SOURCES = \
-+        ipw2100_main.c \
-+        ipw2100_fw.c \
-+        ipw2100_wx.c
++        ipw2100_main.c
 +
 +ieee80211_ko_SOURCES = \
 +        ieee80211_module.c \
@@ -1096,18 +1094,11 @@ diff -Naupr ipw2100-0.53/Makefile.am ipw2100-0.53-autotools/Makefile.am
 +  $(PROMISC_CFLAGS)
 +
 +LINK = $(top_builddir)/modtool --link -o $@
-+#eee80211_ko_LINK = $(top_builddir)/modtool --link -o $@
 +
-+# FIXME: might be good to make hostap install the hostap_crypt header !
 +noinst_HEADERS = \
-+  ieee802_11.h \
 +  ieee80211_crypt.h \
 +  ieee80211.h \
-+  ipw2100_fw.h \
-+  ipw2100.h \
-+  ipw2100_hw.h \
-+  ipw2100_wx.h \
-+  ipwversion.h
++  ipw2100.h
 +
 +EXTRA_DIST = \
 +  m4/as-linux.m4 \

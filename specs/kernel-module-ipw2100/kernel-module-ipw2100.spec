@@ -28,15 +28,14 @@
 
 Summary: Driver for Intel® PRO/Wireless 2100 network adaptors
 Name: kernel-module-ipw2100
-Version: 0.53
+Version: 0.54
 Release: 0
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/
 Source: http://dl.sf.net/ipw2100/ipw2100-%{version}.tgz
-Source1: ieee802_11.h
-Patch0: ipw2100-0.53-autotools.patch
-Patch1: ipw2100-0.53-vfs_read_2.patch
+Patch0: ipw2100-0.54-autotools.patch
+Patch1: ipw2100-0.54-typofix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -73,8 +72,6 @@ network adaptors, found for instance in Centrino laptops.
 %setup -q -n ipw2100-%{version}
 %patch0 -p1
 %patch1 -p1
-# Include file missing from the Fedora Core kernels (as of 2.6.6-1.435.2.3)
-%{__install} -m 0644 %{SOURCE1} ieee802_11.h
 
 
 %build
@@ -117,6 +114,12 @@ depmod -ae -F /boot/System.map-%{kernel} %{kernel} >/dev/null
 
 
 %changelog
+* Tue Sep 14 2004 Matthias Saou <http://freshrpms.net> 0.54-0
+- Update to 0.54.
+- Removed included ieee802_11.h file, no longer needed.
+- Updated patch to reflect .c/.h grouping and IPW_DEBUG name change.
+- Added ipw2100-0.54-typofix.patch.
+
 * Wed Aug 25 2004 Matthias Saou <http://freshrpms.net> 0.53-0
 - Update to 0.53 with Thomas's new patch.
 - Remove no longer needed hostap module stuff.
