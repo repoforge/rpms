@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Gnome Toaster
-Comment=Versatile CD mastering software
-COmment[de]=Vielseitige CD Brennen Software
-Icon=gtoaster.png
-Exec=/usr/bin/gtoaster
-Type=Application
-Terminal=0
