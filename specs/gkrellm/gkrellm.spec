@@ -2,18 +2,21 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
+%define wifi_version   0.9.12
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
-Version: 2.2.2
-Release: 2
+Version: 2.2.4
+Release: 0
 License: GPL
 Group: Applications/System
 URL: http://www.gkrellm.net/
 Source0: http://web.wt.net/~billw/gkrellm/gkrellm-%{version}.tar.bz2
 Source1: gkrellmd.init
+Source2: http://dev.gentoo.org/~brix/files/gkrellm-wifi/gkrellm-wifi-%{wifi_version}.tar.gz
 Patch0: gkrellm_i18n.patch
 Patch1: gkrellm-2.1.28-config.patch
+Patch2: gkrellm-wifi-0.9.12-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel, openssl-devel, gettext, pkgconfig
 BuildRequires: ImageMagick, desktop-file-utils
@@ -48,10 +51,26 @@ This contains only the gkrellm daemon, which you can install on its own on
 machines you intend to monitor with gkrellm from a different location.
 
 
+%ifnarch s390 s390x
+%package wireless
+Summary: Wireless monitor for the GNU Krell Monitor
+Group: Applications/System
+Requires: %{name} = %{version}
+
+%description wireless
+This plug-in monitors the wireless LAN cards in your computer and
+displays a graph of the link quality percentage for each card.
+%endif
+
+
 %prep
 %setup
 %patch0 -p0 -b .i18n
 %patch1 -p1 -b .config
+%ifnarch s390 s390x
+%{__tar} xzf %{SOURCE2}
+%patch2 -p0 -b .wifibuild
+%endif
 
 # Fix for lib vs. lib64
 %{__perl} -pi.orig -e 's|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g' \
@@ -61,6 +80,9 @@ machines you intend to monitor with gkrellm from a different location.
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" debug=1
+%ifnarch s390 s390x
+(cd gkrellm-wifi-%{wifi_version}; %{__make} OPTFLAGS="%{optflags}")
+%endif
 
 
 %install
@@ -90,7 +112,7 @@ Exec=gkrellm
 Icon=gkrellm.png
 Terminal=false
 Encoding=UTF-8
-Categories=Application;System;Monitor;
+Categories=Application;System;Monitor;X-Red-Hat-Extra;
 EOF
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
@@ -99,8 +121,14 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{name}.desktop
 
 # Install the init script
-%{__install} -D -m 755 %{SOURCE1} \
+%{__install} -D -m 0755 %{SOURCE1} \
     %{buildroot}/etc/rc.d/init.d/gkrellmd
+
+# Install the wireless plugin
+%ifnarch s390 s390x
+%{__install} gkrellm-wifi-%{wifi_version}/gkrellm-wifi.so \
+    %{buildroot}%{_libdir}/gkrellm2/plugins/
+%endif
 
 
 %clean
@@ -137,12 +165,10 @@ fi
 %{_datadir}/pixmaps/gkrellm.png
 %{_mandir}/man1/gkrellm.1*
 
-
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/gkrellm2
 %{_libdir}/pkgconfig/gkrellm.pc
-
 
 %files daemon
 %defattr(-, root, root, 0755)
@@ -151,8 +177,19 @@ fi
 %{_bindir}/gkrellmd
 %{_mandir}/man1/gkrellmd.1*
 
+%ifnarch s390 s390x
+%files wireless
+%defattr(-, root, root, 0755)
+%{_libdir}/gkrellm2/plugins/gkrellm-wifi.so
+%endif
+
 
 %changelog
+* Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 2.2.4-0
+- Update to 2.2.4.
+- Add wifi plugin to this package, as the main RH/FC package does.
+- Minor tweaks.
+
 * Tue Aug 24 2004 Matthias Saou <http://freshrpms.net/> 2.2.2-2
 - Fix the gkrellmd location in the init script, thanks to Sammy Atmadja.
 

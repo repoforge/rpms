@@ -1,0 +1,28 @@
+diff -Naupr gkrellm-wifi-0.9.12.orig/gkrellm-wifi.h gkrellm-wifi-0.9.12/gkrellm-wifi.h
+--- gkrellm-wifi-0.9.12.orig/gkrellm-wifi.h	2003-12-31 12:34:49.000000000 +0100
++++ gkrellm-wifi-0.9.12/gkrellm-wifi.h	2004-11-02 09:47:52.206428488 +0100
+@@ -22,7 +22,7 @@
+ #define __GKRELLM_WIFI_H__
+ 
+ 
+-#include <gkrellm2/gkrellm.h>
++#include <gkrellm.h>
+ 
+ 
+ #define GKRELLM_WIFI_VERSION_MAJOR         0
+diff -Naupr gkrellm-wifi-0.9.12.orig/Makefile gkrellm-wifi-0.9.12/Makefile
+--- gkrellm-wifi-0.9.12.orig/Makefile	2003-12-31 12:34:49.000000000 +0100
++++ gkrellm-wifi-0.9.12/Makefile	2004-11-02 09:49:49.299627616 +0100
+@@ -1,8 +1,9 @@
+-GKRELLM_CFLAGS = $(shell pkg-config gkrellm --cflags)
+-GKRELLM_LIBS   = $(shell pkg-config gkrellm --libs)
++GKRELLM_CFLAGS = $(shell PKG_CONFIG_PATH=../ pkg-config gkrellm --cflags)
++GKRELLM_LIBS   = $(shell PKG_CONFIG_PATH=../ pkg-config gkrellm --libs)
++GTK2_INCLUDES  = $(shell pkg-config  gtk+-2.0 --cflags-only-I)
+ 
+ 
+-CFLAGS  += -Wall -O2 -fPIC $(GKRELLM_CFLAGS)
++CFLAGS  += $(OPTFLAGS) -fPIC $(GKRELLM_CFLAGS) -I../src $(GTK2_INCLUDES)
+ LDFLAGS  = -shared
+ LIBS     = $(GKRELLM_LIBS) -lm
+ 
