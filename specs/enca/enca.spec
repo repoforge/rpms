@@ -39,7 +39,7 @@ encoding of text files and can also convert them to other encodings.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README html AUTHORS ChangeLog COPYING FAQ INSTALL NEWS THANKS TODO
+%doc README AUTHORS ChangeLog COPYING FAQ INSTALL NEWS THANKS TODO
 %{_bindir}/enca
 %{_includedir}/enca.h
 %{_libdir}/libenca.*
