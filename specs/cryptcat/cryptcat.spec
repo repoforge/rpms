@@ -28,20 +28,20 @@ netcat was origianally written by the l0pht (hobbit and weld pond).
 %setup -n %{name}_%{real_version}
 
 %build
-%{__make} linux
+%{__perl} -pi -e 's|STATIC=-static||g;' Makefile
+%{__make} linux XLIBS=-lstdc++
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__install} -m0755 -D cryptcat %{buildroot}%{_bindir}/cryptcat
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README* *.html
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc Changelog README*
+%{_bindir}/cryptcat
 
 %changelog
 * Sun Mar 28 2004 Dag Wieers <dag@wieers.com> - 0.0.20031202-1
