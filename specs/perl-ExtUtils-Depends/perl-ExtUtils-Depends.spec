@@ -12,7 +12,7 @@ License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-Depends/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/ExtUtils-Depends-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-Depends-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Richard Clamp <richardc$unixbeard,net>
 
-%define real_name Module-Depends
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Module-Depends
 
 Summary: Identify the dependencies of a distribution
 Name: perl-Module-Depends
@@ -17,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Depends/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCLAMP/Module-Depends-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Depends-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -30,24 +28,27 @@ Identify the dependencies of a distribution.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Module/
 %{perl_vendorlib}/Module/Depends.pm
-%{perl_vendorlib}/Module/Depends
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%{perl_vendorlib}/Module/Depends/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1

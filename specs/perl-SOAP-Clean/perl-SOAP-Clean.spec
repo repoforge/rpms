@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Clean/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/ST/STODGHIL/SOAP-Clean-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SOAP/SOAP-Clean-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

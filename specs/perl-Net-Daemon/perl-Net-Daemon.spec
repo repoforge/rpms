@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Daemon/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JW/JWIED/Net-Daemon-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Daemon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Steve Hancock <shancock7078$bigfoot,com>
 
-%define real_name Perl-Tidy
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Perl-Tidy
 
 Summary: Parses and beautifies perl source
 Name: perl-Tidy
@@ -17,7 +15,7 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Tidy/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHANCOCK/Perl-Tidy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Perl/Perl-Tidy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,13 +30,15 @@ write scripts in html format.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,6 +49,7 @@ write scripts in html format.
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man1/*
 %{_bindir}/perltidy
+%dir %{perl_vendorlib}/Perl/
 %{perl_vendorlib}/Perl/Tidy.pm
 
 %changelog

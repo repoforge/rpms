@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-LoadFileCached/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORIAN/YAML-LoadFileCached-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/YAML/YAML-LoadFileCached-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Table/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AJ/AJPEACOCK/HTML-Table-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-Table-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Python/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NE/NEILW/Inline-Python-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Inline/Inline-Python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, python-devel

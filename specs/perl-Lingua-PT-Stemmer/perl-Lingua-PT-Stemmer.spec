@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: <xern$cpan,org>
 
-%define real_name Lingua-PT-Stemmer
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Lingua-PT-Stemmer
 
 Summary: Galician Stemmer
 Name: perl-Lingua-PT-Stemmer
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-PT-Stemmer/
 
-Source: http://search.cpan.org/CPAN/authors/id/X/XE/XERN/Lingua-PT-Stemmer-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-PT-Stemmer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -30,12 +28,16 @@ Stemmers for Portuguese and Galician.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,10 +46,10 @@ Stemmers for Portuguese and Galician.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Lingua/
+%dir %{perl_vendorlib}/Lingua/GL/
 %{perl_vendorlib}/Lingua/GL/Stemmer.pm
 %{perl_vendorlib}/Lingua/PT/Stemmer.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1

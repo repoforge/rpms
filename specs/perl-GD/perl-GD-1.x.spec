@@ -11,7 +11,7 @@ License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LD/LDS/GD-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GD/GD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0, gd-devel >= 1.8.4, libpng-devel, zlib-devel

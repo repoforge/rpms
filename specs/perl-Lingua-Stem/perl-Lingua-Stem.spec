@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Benjamin Franz <snowhare$nihongo,org>
 
-%define real_name Lingua-Stem
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Lingua-Stem
 
 Summary: Stemming of words
 Name: perl-Lingua-Stem
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SN/SNOWHARE/Lingua-Stem-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-Stem-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -30,24 +28,27 @@ Provides word stemming algorithms localized by language.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Lingua/
 %{perl_vendorlib}/Lingua/Stem.pm
-%{perl_vendorlib}/Lingua/Stem
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%{perl_vendorlib}/Lingua/Stem/
 
 %changelog
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.81-1

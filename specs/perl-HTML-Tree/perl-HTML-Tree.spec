@@ -11,7 +11,7 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Tree/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/HTML-Tree-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-Tree-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Gerald Richter <richter$ecos,de>
 
-%define real_name SVN-Push
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name SVN-Push
 
 Summary: Push Repository to Remote Subversion Repository
 Name: perl-SVN-Push
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Push/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GR/GRICHTER/SVN-Push-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SVN/SVN-Push-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,23 +49,26 @@ have the same uuid.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man1/*
 %{_bindir}/*
+%dir %{perl_vendorlib}/SVN/
 %{perl_vendorlib}/SVN/Push.pm
 
 %changelog

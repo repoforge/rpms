@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-TextDir/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Tie-TextDir-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Tie/Tie-TextDir-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

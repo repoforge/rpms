@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: Byrne Reese <cpancontact$majordomo,com>
 
@@ -17,7 +16,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BY/BYRNE/SOAP/SOAP-Lite-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SOAP/SOAP-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -33,11 +32,13 @@ on client and server side.
 
 %build
 (echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}") || echo "ignore warnings"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
 # remove dependency on MQSeries
@@ -53,12 +54,12 @@ on client and server side.
 %{_bindir}/SOAPsh.pl
 %{_bindir}/XMLRPCsh.pl
 %{_bindir}/stubmaker.pl
-%{perl_vendorlib}/Apache
-%{perl_vendorlib}/IO
-%{perl_vendorlib}/SOAP
-%{perl_vendorlib}/UDDI
-%{perl_vendorlib}/XML
-%{perl_vendorlib}/XMLRPC
+%{perl_vendorlib}/Apache/
+%{perl_vendorlib}/IO/
+%{perl_vendorlib}/SOAP/
+%{perl_vendorlib}/UDDI/
+%{perl_vendorlib}/XML/
+%{perl_vendorlib}/XMLRPC/
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.60a

@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-ContentType/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWEST/Email-MIME-ContentType-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-ContentType-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

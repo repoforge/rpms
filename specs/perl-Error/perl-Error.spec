@@ -10,7 +10,7 @@ Release: 2
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Error/
-Source: http://search.cpan.org/CPAN/authors/id/U/UA/UARUN/Error-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Error/Error-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 BuildRequires: perl >= 0:5.8.0

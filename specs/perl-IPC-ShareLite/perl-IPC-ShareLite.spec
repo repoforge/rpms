@@ -10,7 +10,7 @@ Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-ShareLite/
-Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAURICE/IPC-ShareLite-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IPC/IPC-ShareLite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 BuildRequires: perl >= 0:5.8.0

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IANA-PortNumbers/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FO/FOX/Net-IANA-PortNumbers-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-IANA-PortNumbers-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

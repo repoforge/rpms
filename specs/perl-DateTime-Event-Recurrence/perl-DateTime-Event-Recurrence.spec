@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Recurrence/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FG/FGLOCK/DateTime-Event-Recurrence-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Recurrence-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

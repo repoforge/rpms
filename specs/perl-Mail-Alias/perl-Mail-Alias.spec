@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Alias/
 
-Source: http://search.cpan.org/CPAN/authors/id/Z/ZE/ZELT/Mail-Alias-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-Alias-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

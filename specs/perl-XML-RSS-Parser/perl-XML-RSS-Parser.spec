@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-Parser/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TI/TIMA/XML-RSS-Parser-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-RSS-Parser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

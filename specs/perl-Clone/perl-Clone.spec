@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Clone/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RD/RDF/Clone-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Clone/Clone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Quota/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TO/TOMZO/Quota-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Quota/Quota-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, quota

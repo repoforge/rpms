@@ -16,7 +16,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Reform/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Text-Reform-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Reform-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

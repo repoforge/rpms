@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Python-Bytecode/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSUGAL/Python-Bytecode-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Python/Python-Bytecode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BigInt-GMP/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/math/Math-BigInt-GMP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-GMP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, gmp-devel

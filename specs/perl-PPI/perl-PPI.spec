@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Adam Kennedy <cpan$ali,as>
 
-%define real_name PPI
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name PPI
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PPI/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/PPI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/PPI/PPI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,8 +49,10 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,7 +62,7 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/PPI.pm
-%{perl_vendorlib}/PPI/*
+%{perl_vendorlib}/PPI/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.902-1

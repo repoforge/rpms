@@ -14,7 +14,7 @@ Release: 1
 License: Artistic or GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Build/
-Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/Module-Build-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Module/Module-Build-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(Archive::Tar)
 BuildArch: noarch

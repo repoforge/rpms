@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream:Flávio Soibelmann Glock <fglock$pucrs,br>
 
-%define real_name DateTime-Set
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name DateTime-Set
 
 Summary: Datetime sets and set math
 Name: perl-DateTime-Set
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Set/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FG/FGLOCK/DateTime-Set-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Set-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -33,14 +31,19 @@ pattern, within a time range.
 %prep
 %setup -n %{real_name}-%{version}
 
-%build
 %{__perl} -pi -e 's|use Set::Infinite 0.5502;|use Set::Infinite;|g;' lib/Set/Infinite/_recurrence.pm
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,10 +52,9 @@ pattern, within a time range.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
-%{perl_vendorlib}/DateTime/*.pm
-%{perl_vendorlib}/Set/Infinite/_recurrence.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
+%{perl_vendorlib}/DateTime/
+%dir %{perl_vendorlib}/Set/
+%{perl_vendorlib}/Set/Infinite/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.20-1

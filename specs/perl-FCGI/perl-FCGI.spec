@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FCGI/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKIMO/FCGI-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/FCGI/FCGI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

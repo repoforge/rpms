@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Validator-Schema/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SA/SAMTREGAR/XML-Validator-Schema-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-Validator-Schema-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -18,7 +18,7 @@ License: Unknown
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch-FileRotate/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKPF/Log-Dispatch-FileRotate-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Log/Log-Dispatch-FileRotate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

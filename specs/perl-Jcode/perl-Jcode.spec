@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name Jcode
@@ -12,9 +11,8 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jcode/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DA/DANKOGAI/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Jcode/Jcode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0

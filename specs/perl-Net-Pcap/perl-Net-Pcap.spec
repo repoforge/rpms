@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Pcap/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KC/KCARNUT/Net-Pcap-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-Pcap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, libpcap

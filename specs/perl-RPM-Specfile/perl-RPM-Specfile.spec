@@ -8,7 +8,7 @@ Version: 1.13
 Release: 1
 License: GPL or Artistic
 Group: Development/Tools
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/RPM-Specfile-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/RPM/RPM-Specfile-%{version}.tar.gz
 URL: http://search.cpan.org/dist/RPM-Specfile/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl

@@ -12,7 +12,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-TrulyRandom/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GARY/Math-TrulyRandom-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Math/Math-TrulyRandom-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

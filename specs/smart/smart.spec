@@ -20,13 +20,14 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.29.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
 
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
 #Source1: channelsync.py
+Patch0: smart-0.29.2-x86_64-rpmhelper.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, pygtk2-devel >= 2.3.94
@@ -67,6 +68,9 @@ KDE tray program for watching updates with Smart Package Manager.
 
 %prep
 %setup
+%ifarch x86_64
+%patch -p0 -b .rpmhelper
+%endif
 
 %{__perl} -pi.orig -e 's|(get_python_lib\()\)|${1}1)|g' setup.py
 %{__perl} -pi.orig -e 's|int32_t lkey|long lkey|g' python/rpmts-py.c
@@ -292,21 +296,31 @@ EOF
 %build
 env CFLAGS="%{optflags}" %{__python} setup.py build
 
-pushd contrib/ksmarttray
+cd contrib/ksmarttray
 %{__make} -f admin/Makefile.common
 %configure
 %{__make}
-popd
+cd -
 
 %{__make} -C contrib/smart-update
 
+%ifarch x86_64
+cd contrib/rpmhelper
+%{__python} setup.py build
+cd -
+%endif
+
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install \
-	--root="%{buildroot}"
 
-%{__make} install -C "contrib/ksmarttray" \
-	DESTDIR="%{buildroot}"
+%{__python} setup.py install --root="%{buildroot}"
+%{__make} install -C contrib/ksmarttray DESTDIR="%{buildroot}"
+
+%ifarch x86_64
+cd contrib/rpmhelper
+%{__python} setup.py install --root="%{buildroot}"
+cd -
+%endif
 
 %find_lang %{name}
 
@@ -362,6 +376,9 @@ popd
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-smart-gui.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/System/smart-gui.desktop}
 %{_datadir}/pixmaps/smart.png
+%ifarch x86_64
+%{python_sitearch}/rpmhelper.so
+%endif
 
 %files update
 %defattr(4755, root, root, 0755)

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Casey West <casey$geeknest,com>
 
-%define real_name Email-Address
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Email-Address
 
 Summary: RFC 2822 Address Parsing and Creation
 Name: perl-Email-Address
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Address/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWEST/Email-Address-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-Address-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -33,12 +31,16 @@ software is to be correct, and very very fast.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,9 +49,8 @@ software is to be correct, and very very fast.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/Address.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Sun Jan  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.80-1

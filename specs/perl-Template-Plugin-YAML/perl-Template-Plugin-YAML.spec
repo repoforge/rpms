@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Plugin-YAML/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCLAMP/Template-Plugin-YAML-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Template/Template-Plugin-YAML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

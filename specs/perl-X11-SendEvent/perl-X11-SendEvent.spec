@@ -17,7 +17,7 @@ License: MIT
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-SendEvent/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EC/ECALDER/X11-SendEvent-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/X11/X11-SendEvent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

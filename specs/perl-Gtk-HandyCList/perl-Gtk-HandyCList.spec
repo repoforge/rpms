@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name Gtk-HandyCList
@@ -12,9 +11,8 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk-HandyCList/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geography/Geography-Countries-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503

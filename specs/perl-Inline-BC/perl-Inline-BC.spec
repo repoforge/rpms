@@ -14,7 +14,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-BC/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PI/PIERS/Inline-BC-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Inline/Inline-BC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Manifest/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BD/BDFOY/Test-Manifest-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Manifest-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

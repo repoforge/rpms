@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name XML-SAX-Base
@@ -12,9 +11,8 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX-Base/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KH/KHAMPTON/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-Base-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 BuildRequires: perl

@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CSS-Tiny/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/CSS-Tiny-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/CSS/CSS-Tiny-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,8 +44,10 @@ still live with simple CSS files.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,6 +56,7 @@ still live with simple CSS files.
 %defattr(-, root, root, 0755)
 %doc README Changes LICENSE
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/CSS/
 %{perl_vendorlib}/CSS/Tiny.pm
 
 %changelog

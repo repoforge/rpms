@@ -1,8 +1,9 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo %$installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo %$installvendorarch)
 
 %define real_name Log-Dispatch
 
@@ -14,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Log-Dispatch-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Log/Log-Dispatch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -38,12 +39,16 @@ not to change the message format.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,8 +57,9 @@ not to change the message format.
 %defattr(-, root, root, 0755)
 %doc LICENSE README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/Log/Dispatch.pm
-%{_libdir}/perl5/vendor_perl/*/Log/Dispatch
+%dir %{perl_vendorlib}/Log/
+%dir %{perl_vendorlib}/Log/Dispatch.pm
+%dir %{perl_vendorlib}/Log/Dispatch/
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 2.10-1

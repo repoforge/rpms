@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-vFile-asData/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCLAMP/Text-vFile-asData-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-vFile-asData-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

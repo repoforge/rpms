@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-DumpXML/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Data-DumpXML-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Data/Data-DumpXML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

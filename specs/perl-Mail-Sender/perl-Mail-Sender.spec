@@ -18,7 +18,7 @@ License: Other
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Sender/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JE/JENDA/Mail-Sender-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Mail/Mail-Sender-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

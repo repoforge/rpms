@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Types/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MIME-Types-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/MIME/MIME-Types-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

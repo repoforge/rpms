@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-SocialMap/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUGOD/Graph-SocialMap-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Graph/Graph-SocialMap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

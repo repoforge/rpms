@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Michael G Schwern <mschwern$cpan,org>
 
-%define real_name File-chdir
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name File-chdir
 
 Summary: More sensible way to change directories
 Name: perl-File-chdir
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-chdir/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/File-chdir-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/File/File-chdir-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -37,6 +35,10 @@ A more sensible way to change directories.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -44,9 +46,8 @@ A more sensible way to change directories.
 %defattr(-, root, root, 0755)
 %doc Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/File/
 %{perl_vendorlib}/File/chdir.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1

@@ -12,7 +12,7 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM-Specfile/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/RPM/RPM-Specfile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

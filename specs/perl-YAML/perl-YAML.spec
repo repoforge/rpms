@@ -14,7 +14,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/YAML-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/YAML/YAML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

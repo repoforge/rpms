@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2-Vte/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TS/TSCH/Gnome2-Vte-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Vte-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig

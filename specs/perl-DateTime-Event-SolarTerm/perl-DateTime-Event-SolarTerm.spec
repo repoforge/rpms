@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-SolarTerm/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/DateTime-Event-SolarTerm-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-SolarTerm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PerlIO-gzip/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWCLARK/PerlIO-gzip-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/PerlIO/PerlIO-gzip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, zlib-devel

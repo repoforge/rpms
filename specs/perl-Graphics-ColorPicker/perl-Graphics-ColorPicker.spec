@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorPicker/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/Graphics-ColorPicker-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorPicker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

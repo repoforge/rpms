@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Clean/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LI/LINDNER/HTML-Clean-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/HTML/HTML-Clean-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

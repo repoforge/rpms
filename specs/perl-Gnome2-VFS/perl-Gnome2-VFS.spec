@@ -14,7 +14,7 @@ Group: Applications/CPAN
 URL: http://gtk2-perl.sourceforge.net/
 
 #Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-VFS-%{version}.tar.gz
-Source: http://dl.sf.net/gtk2-perl/Gnome2-VFS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-VFS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig),

@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-TrayIcon/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Gtk2-TrayIcon-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-TrayIcon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-ExtUtils-Depends, perl-ExtUtils-PkgConfig

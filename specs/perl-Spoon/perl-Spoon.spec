@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Brian Ingerson <ingy$cpan,org>
 
-%define real_name Spoon
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Spoon
 
 Summary: Spiffy Application Building Framework
 Name: perl-Spoon
@@ -17,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spoon/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/Spoon-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Spoon/Spoon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,12 +30,16 @@ built on top of Spoon.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,14 +49,7 @@ built on top of Spoon.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Spoon.pm
-%{perl_vendorlib}/Spoon/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
+%{perl_vendorlib}/Spoon/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.21-1

@@ -13,7 +13,7 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-Parser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.004, expat-devel

@@ -12,9 +12,8 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Locale/Locale-Maketext-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: perl >= 0:5.00503
 Requires: perl >= 0:5.00503

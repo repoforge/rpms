@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-ParseXS/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KW/KWILLIAMS/ExtUtils-ParseXS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-ParseXS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

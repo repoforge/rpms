@@ -40,6 +40,8 @@ actual session output.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc %{_mandir}/man1/sudosh.1*
+%doc %{_mandir}/man8/sudosh-replay.8*
 %{_bindir}/sudosh
 %{_bindir}/sudosh-replay
 

@@ -13,7 +13,7 @@ Release: 2
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libintl-perl/
-Source: http://search.cpan.org/CPAN/authors/id/G/GU/GUIDO/libintl-perl-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/libintl/libintl-perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl
 Provides: perl-libintl-perl = %{version}-%{release}

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name FreezeThaw
@@ -12,7 +11,7 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FreezeThaw/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/FreezeThaw/FreezeThaw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Martin 'Kingpin' Thurn <mthurn$verizon,net>
 
-%define real_name WWW-Search
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name WWW-Search
 
 Summary: Perl module for WWW searches.
 Name: perl-WWW-Search
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MT/MTHURN/WWW-Search-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-Search-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -29,14 +27,19 @@ This module contains functions for WWW searches.
 %prep
 %setup -n %{real_name}-%{version}
 
-%build
 %{__perl} -pi -e 's|/usr/local/bin/perl|%{_bindir}/perl|g;' lib/WWW/Search/*.pm
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,16 +51,10 @@ This module contains functions for WWW searches.
 %doc %{_mandir}/man1/*
 %{_bindir}/AutoSearch
 %{_bindir}/WebSearch
+%dir %{perl_vendorlib}/WWW/
 %{perl_vendorlib}/WWW/Search.pm
 %{perl_vendorlib}/WWW/SearchResult.pm
-%{perl_vendorlib}/WWW/Search/*
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
+%{perl_vendorlib}/WWW/Search/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.476-1

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-IntSpan/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SW/SWMCD/Set-IntSpan-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Set/Set-IntSpan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

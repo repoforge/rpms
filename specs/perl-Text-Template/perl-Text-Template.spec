@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Template/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MJ/MJD/Text-Template-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-Template-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

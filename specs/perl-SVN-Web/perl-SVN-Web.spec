@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: clkao$clkao,org
 
-%define real_name SVN-Web
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name SVN-Web
 
 Summary: Subversion repository web frontend
 Name: perl-SVN-Web
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Web/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLKAO/SVN-Web-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SVN/SVN-Web-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,13 +30,15 @@ SVN::Web is a subversion repository web frontend.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,14 +47,10 @@ SVN::Web is a subversion repository web frontend.
 %defattr(-, root, root, 0755)
 %doc README CHANGES TODO
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/SVN/
 %{perl_vendorlib}/SVN/Web.pm
 %{perl_vendorlib}/SVN/Web/*
 %{_bindir}/svnweb-install
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.38-1

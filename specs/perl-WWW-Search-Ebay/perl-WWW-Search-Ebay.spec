@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search-Ebay/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MT/MTHURN/WWW-Search-Ebay-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-Search-Ebay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

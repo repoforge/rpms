@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-ISBN-Data/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BD/BDFOY/Business-ISBN-Data-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Business/Business-ISBN-Data-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

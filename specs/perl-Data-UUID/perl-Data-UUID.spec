@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-UUID/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AG/AGOLOMSH/Data-UUID-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Data/Data-UUID-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

@@ -17,7 +17,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-TimeZone/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-TimeZone-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-TimeZone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl-Module-Build, perl

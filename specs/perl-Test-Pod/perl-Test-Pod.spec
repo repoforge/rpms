@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Pod/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/Test-Pod-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -13,7 +13,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-%{version}.tar.gz
 Source1: ParserDetails.ini
 Patch0: perl-XML-SAX-parsers.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

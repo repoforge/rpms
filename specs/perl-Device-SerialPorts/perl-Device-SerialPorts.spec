@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name Device-SerialPort
@@ -12,7 +11,7 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Device-SerialPorts/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CO/COOK/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Device/Device-SerialPort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0

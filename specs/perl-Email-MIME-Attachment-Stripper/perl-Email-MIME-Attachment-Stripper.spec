@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Attachment-Stripper/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWEST/Email-MIME-Attachment-Stripper-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-Attachment-Stripper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

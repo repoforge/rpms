@@ -17,7 +17,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-ToolKit/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/Net-DNS-ToolKit-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-ToolKit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

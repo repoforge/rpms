@@ -1,6 +1,9 @@
 # $Id$
 # Authority: axel
 
+### Unresolved dependencies
+# Tag: test
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-DateTime/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MC/MCMAHON/SOAP-DateTime-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SOAP/SOAP-DateTime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG-Metadata/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRYCE/SVG-Metadata-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SVG/SVG-Metadata-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

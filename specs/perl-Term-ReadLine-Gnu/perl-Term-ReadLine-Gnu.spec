@@ -16,7 +16,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-ReadLine-Gnu/
 
-Source: http://search.cpan.org/CPAN/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Term/Term-ReadLine-Gnu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, readline-devel

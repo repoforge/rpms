@@ -2,9 +2,10 @@
 # Authority: dries
 # Upstream: Tony Bowden <tony$tmtm,com>
 
-%define real_name Bit-Vector-Minimal
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Bit-Vector-Minimal
 
 Summary: Object-oriented wrapper around vec()
 Name: perl-Bit-Vector-Minimal

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD5-M4p/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BI/BILLH/Digest-MD5-M4p-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-MD5-M4p-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

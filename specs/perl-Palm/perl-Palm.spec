@@ -16,7 +16,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/p5-Palm/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AR/ARENSB/p5-Palm-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/p5/p5-Palm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

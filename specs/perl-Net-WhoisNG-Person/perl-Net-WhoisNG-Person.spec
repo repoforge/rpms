@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-WhoisNG-Person/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/ST/STIQS/Net-WhoisNG-Person-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-WhoisNG-Person-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

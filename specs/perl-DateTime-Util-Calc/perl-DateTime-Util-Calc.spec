@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Daisuke Maki <dmaki$cpan,org>
 
-%define real_name DateTime-Util-Calc
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name DateTime-Util-Calc
 
 Summary: DateTime calculation utilities 
 Name: perl-DateTime-Util-Calc
@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Util-Calc/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/DateTime-Util-Calc-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Util-Calc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -29,13 +29,16 @@ A perl module with additional DateTime calculation utilities.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,6 +47,8 @@ A perl module with additional DateTime calculation utilities.
 %defattr(-, root, root, 0755)
 %doc CHANGES LICENSE
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/DateTime/
+%dir %{perl_vendorlib}/DateTime/Util/
 %{perl_vendorlib}/DateTime/Util/Calc.pm
 
 %changelog

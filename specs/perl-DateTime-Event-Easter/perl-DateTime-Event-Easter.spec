@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Easter/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RI/RICKM/DateTime-Event-Easter-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Easter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

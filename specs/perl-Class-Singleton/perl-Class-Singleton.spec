@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Singleton/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABW/Class-Singleton-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Singleton-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Neil Bowers <neil$bowers,com>
 
-%define real_name Graph-ReadWrite
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Graph-ReadWrite
 
 Summary: Graph file format readers and writers
 Name: perl-Graph-ReadWrite
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-ReadWrite/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NE/NEILB/Graph-ReadWrite-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Graph/Graph-ReadWrite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,12 +30,16 @@ represented in Perl using Jarkko Hietaniemi's Graph classes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,11 +48,10 @@ represented in Perl using Jarkko Hietaniemi's Graph classes.
 %defattr(-, root, root, 0755)
 %doc README ChangeLog
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Graph/
 %{perl_vendorlib}/Graph/*.pm
-%{perl_vendorlib}/Graph/Reader
-%{perl_vendorlib}/Graph/Writer
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
+%{perl_vendorlib}/Graph/Reader/
+%{perl_vendorlib}/Graph/Writer/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.00-1

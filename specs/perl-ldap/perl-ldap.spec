@@ -1,14 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Graham Barr <gbarr$pobox,com>
 
-
-%define real_name perl-ldap
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name perl-ldap
 
 Summary: Interface to LDAP for Perl
 Name: perl-ldap
@@ -18,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ldap/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/perl/perl-ldap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -33,7 +30,7 @@ This package contains a perl module with an interface to LDAP.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}

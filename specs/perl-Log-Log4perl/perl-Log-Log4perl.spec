@@ -1,13 +1,10 @@
 # $Id$
-
 # Authority: dries
 # Upstream: mailto:log4perl-devel$lists,sourceforge,net
 
-%define real_name Log-Log4perl
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+%define real_name Log-Log4perl
 
 Summary: Perl port of log4j
 Name: perl-Log-Log4perl
@@ -17,7 +14,7 @@ License: GPL
 Group: Applications/CPAN
 URL: http://log4perl.sourceforge.net/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHILLI/Log-Log4perl-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Log/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -54,78 +51,34 @@ perl-Log-Log4perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR=%{buildroot}
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+%makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README Changes
+%doc Changes LICENSE README
+%doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Log/
 %{perl_vendorlib}/Log/Log4perl.pm
-%{perl_vendorlib}/Log/Log4perl/Appender.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/DBI.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/File.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/Limit.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/Screen.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/Socket.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/Synchronized.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/TestArrayBuffer.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/TestBuffer.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/TestFileCreeper.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/ScreenColoredLevels.pm
-%{perl_vendorlib}/Log/Log4perl/Appender/Buffer.pm
-%{perl_vendorlib}/Log/Log4perl/Config.pm
-%{perl_vendorlib}/Log/Log4perl/Config
-%{perl_vendorlib}/Log/Log4perl/DateFormat.pm
-%{perl_vendorlib}/Log/Log4perl/FAQ.pm
-%{perl_vendorlib}/Log/Log4perl/Filter.pm
-%{perl_vendorlib}/Log/Log4perl/Filter
-%{perl_vendorlib}/Log/Log4perl/JavaMap.pm
-%{perl_vendorlib}/Log/Log4perl/JavaMap
-%{perl_vendorlib}/Log/Log4perl/Layout.pm
-%{perl_vendorlib}/Log/Log4perl/Layout
-%{perl_vendorlib}/Log/Log4perl/Level.pm
-%{perl_vendorlib}/Log/Log4perl/Logger.pm
-%{perl_vendorlib}/Log/Log4perl/MDC.pm
-%{perl_vendorlib}/Log/Log4perl/NDC.pm
-%{perl_vendorlib}/Log/Log4perl/Util.pm
-%{_mandir}/man3/Log::Log4perl.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::DBI.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::File.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::Limit.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::Screen.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::Socket.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::Synchronized.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::TestArrayBuffer.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::TestBuffer.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::TestFileCreeper.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::ScreenColoredLevels.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Config*
-%{_mandir}/man3/Log::Log4perl::DateFormat.3pm.gz
-%{_mandir}/man3/Log::Log4perl::FAQ.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Filter*
-%{_mandir}/man3/Log::Log4perl::JavaMap*
-%{_mandir}/man3/Log::Log4perl::Layout*
-%{_mandir}/man3/Log::Log4perl::Level.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Logger.3pm.gz
-%{_mandir}/man3/Log::Log4perl::MDC.3pm.gz
-%{_mandir}/man3/Log::Log4perl::NDC.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Util.3pm.gz
-%{_mandir}/man3/Log::Log4perl::Appender::Buffer.3pm.gz
+%{perl_vendorlib}/Log/Log4perl/
+%exclude %{_mandir}/man3/Log::Log4perl::Appender::RRDs.3pm*
+%exclude %{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 
 %files RRDs
 %defattr(-, root, root, 0755)
-%{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 %doc %{_mandir}/man3/Log::Log4perl::Appender::RRDs.3pm*
+%{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 
 
 %changelog

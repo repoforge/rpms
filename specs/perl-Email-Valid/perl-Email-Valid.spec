@@ -14,7 +14,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Valid/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAURICE/Email-Valid-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Email/Email-Valid-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

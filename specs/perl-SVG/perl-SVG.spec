@@ -14,7 +14,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RO/RONAN/SVG-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/SVG/SVG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

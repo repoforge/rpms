@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Pierre Denis <pdenis$fotango,com>
 
-%define real_name Class-Hook
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Class-Hook
 
 Summary: Add hooks on methods from other classes
 Name: perl-Class-Hook
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Hook/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PD/PDENIS/Class-Hook-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Hook-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -31,12 +29,16 @@ classes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,10 +47,9 @@ classes.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Class/
 %{perl_vendorlib}/Class/FOO.pm
 %{perl_vendorlib}/Class/Hook.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1

@@ -18,7 +18,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-Nilsimsa/
 
-Source: http://search.cpan.org/CPAN/authors/id/V/VI/VIPUL/Digest-Nilsimsa-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-Nilsimsa-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

@@ -12,7 +12,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SNPP/
 
-Source: http://search.cpan.org/CPAN/authors/id/T/TO/TOBEYA/Net-SNPP-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/Net-SNPP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Parser-Syck/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/YAML-Parser-Syck-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/YAML/YAML-Parser-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, syck

@@ -13,7 +13,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA1/
 
-Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Digest-SHA1-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Digest/Digest-SHA1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Nigel Wetters <nigel$wetters,net>
 
@@ -13,7 +12,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geography-Countries/
 
-Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABIGAIL/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Geography/Geography-Countries-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

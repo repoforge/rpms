@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Brian Ingerson <ingy$cpan,org>
 
-%define real_name Spiffy
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name Spiffy
 
 Summary: Spiffy Perl Interface Framework For You
 Name: perl-Spiffy
@@ -17,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spiffy/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/Spiffy-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Spiffy/Spiffy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,12 +32,16 @@ clean, straightforward and (perhaps someday) standard way.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,8 +51,6 @@ clean, straightforward and (perhaps someday) standard way.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Spiffy.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Leon Brocard <leon$astray,com>
 
-%define real_name GraphViz
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name GraphViz
 
 Summary: Interface to the GraphViz graphing tool
 Name: perl-GraphViz
@@ -17,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LB/LBROCARD/GraphViz-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/GraphViz/GraphViz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -35,12 +33,16 @@ http://www.research.att.com/sw/tools/graphviz/).
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,11 +51,10 @@ http://www.research.att.com/sw/tools/graphviz/).
 %defattr(-, root, root, 0755)
 %doc README CHANGES
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Devel/
 %{perl_vendorlib}/GraphViz.pm
 %{perl_vendorlib}/Devel/GraphVizProf.pm
-%{perl_vendorlib}/GraphViz
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/.packlist
+%{perl_vendorlib}/GraphViz/
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1

@@ -17,7 +17,7 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-AutoBuild/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DA/DANBERR/Test-AutoBuild-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Test/Test-AutoBuild-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

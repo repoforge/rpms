@@ -17,7 +17,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Imlib2/
 
-Source: http://search.cpan.org/CPAN/authors/id/L/LB/LBROCARD/Image-Imlib2-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Image/Image-Imlib2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, imlib2-devel, perl-Module-Build, zlib-devel

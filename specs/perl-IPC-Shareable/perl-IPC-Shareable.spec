@@ -12,7 +12,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Shareable/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BS/BSUGARS/IPC-Shareable-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IPC/IPC-Shareable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

@@ -17,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Cron/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSISK/DateTime-Event-Cron-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Event-Cron-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -10,13 +10,12 @@ License: GPL
 Group: Applications/
 URL: 
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Buildarch: noarch
 BuildRequires: 
+Requires:
 
 %description
 
@@ -51,6 +50,7 @@ EOF
 %{__autoheader}
 %{__automake} --add-missing -a --foreign
 %{__autoconf}
+%{__autoreconf} --force --copy
 %configure \
 	--disable-schemas-install
 %{__make} %{?_smp_mflags}
@@ -94,5 +94,5 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %exclude %{_libdir}/*.la
 
 %changelog
-* Son Jan 19 2004 Dag Wieers <dag@wieers.com> - 
+* Son Jan 19 2005 Dag Wieers <dag@wieers.com> - 
 - Initial package. (using DAR)

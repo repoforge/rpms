@@ -10,8 +10,10 @@ Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/%{real_name}/
-Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/%{real_name}-%{version}.tar.gz
+
+Source: http://www.cpan.org/modules/by-module/Storable/Storable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Requires: perl >= 0:5.8.0
 BuildRequires: perl >= 0:5.8.0
 

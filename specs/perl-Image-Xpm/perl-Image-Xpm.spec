@@ -17,7 +17,7 @@ License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Xpm/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SU/SUMMER/Image-Xpm-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Image/Image-Xpm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

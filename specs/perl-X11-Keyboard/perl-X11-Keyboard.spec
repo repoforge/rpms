@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Erick Calder <ecalder$cpan,org>
 
-%define real_name X11-Keyboard
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
+
+%define real_name X11-Keyboard
 
 Summary: Keyboard support functions for X11
 Name: perl-X11-Keyboard
@@ -17,7 +15,7 @@ License: MIT
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-Keyboard/
 
-Source: http://search.cpan.org/CPAN/authors/id/E/EC/ECALDER/X11-Keyboard-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/X11/X11-Keyboard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -31,12 +29,16 @@ keysyms and keycodes, when working with the X11::Protocol module.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,9 +47,8 @@ keysyms and keycodes, when working with the X11::Protocol module.
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/X11/
 %{perl_vendorlib}/X11/Keyboard.pm
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 1.4-1
