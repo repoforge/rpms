@@ -54,6 +54,9 @@ sed -i "s/-lDCOP -lkdecore/-lDCOP -lkdeui -lkdecore/g;" kdecore/Makefile
 . /etc/profile.d/qt.sh
 %makeinstall DESTDIR=%{buildroot}
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files devel
 %defattr(-,root,root,0755)
 %{_datadir}/sip

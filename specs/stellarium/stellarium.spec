@@ -90,6 +90,9 @@ run-stellarium
 EOF
 chmod +x $RPM_BUILD_ROOT/usr/bin/stellarium
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc README

@@ -74,6 +74,9 @@ EOF
 		%{name}.desktop
 %endif
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO doc moagg.dxy 

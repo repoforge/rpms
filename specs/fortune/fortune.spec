@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 29
+Release: 30
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -58,7 +58,7 @@ Source18: http://eol.init1.nl/linux/SP-0.1.tar.gz
 Source19: http://www.cs.indiana.edu/~crcarter/homer/homer-quotes.tar.gz
 # Osho quotes
 # http://www.geocities.com/avitiw/fortune.html
-Source20: http://www.geocities.com/avitiw/fortune-osho.tar.gz
+Source20: http://www.geocities.com/avitiw/fortune-osho-1.1.tar.gz
 
 Obsoletes: fortune-mod
 
@@ -161,7 +161,7 @@ echo bla2
 bzcat %{SOURCE2} | %{__tar} xvf - -C %{buildroot}%{_datadir}/games/fortune/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %package bofh-excuses
 Summary: Fortune files with BOFH excuses
@@ -616,6 +616,7 @@ All fortune packages will be installed if you install this package.
   cookies from the 2.6.6 kernel tree.
 - Added a subpackage 'all' which requires all the other 
   subpackages.
+- Osho quotes updated.
 
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0-29
 - added quotes found on freshmeat: quotes from the spiritual 

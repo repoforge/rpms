@@ -45,6 +45,9 @@ mkdir -p %{buildroot}/usr/share/applications
 mv %{buildroot}/usr/share/applnk/Editors/ksubtile.desktop %{buildroot}/usr/share/applications/ksubtile.desktop
 echo "Categories=Application;AudioVideo;X-Red-Hat-Extra;" >> %{buildroot}/usr/share/applications/ksubtile.desktop
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc README AUTHORS COPYING TODO

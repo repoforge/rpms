@@ -55,6 +55,9 @@ desktop-file-install --vendor rpmforge             \
 	--dir %{buildroot}%{_datadir}/applications \
 	wesnoth.desktop
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root, 0755)
 %doc README COPYING MANUAL MANUAL.*

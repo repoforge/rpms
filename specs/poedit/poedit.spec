@@ -47,6 +47,9 @@ Exec=/usr/bin/poedit
 Categories=Application;Development;X-Red-Hat-Extra;
 EOF
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc README

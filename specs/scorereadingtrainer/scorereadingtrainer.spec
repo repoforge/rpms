@@ -45,6 +45,9 @@ echo RPM_BUILD_ROOT is $RPM_BUILD_ROOT
 export DESTDIR=$RPM_BUILD_ROOT
 %{__make} install-strip
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-,root,root,0755)
 %doc README
