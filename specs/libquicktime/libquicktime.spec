@@ -2,6 +2,11 @@
 # Authority: matthias
 # Upstream: <libquicktime-devel@lists.sf.net>
 
+# We want to explicitely disable MMX for ppc, x86_64 etc.
+%ifnarch %{ix86}
+    %define _without_mmx 1
+%endif
+
 #define prever pre1
 
 Summary: Library for reading and writing quicktime files
@@ -11,16 +16,14 @@ Release: %{?prever:0.%{prever}.}3
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sf.net/
-
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
 #Patch0: libquicktime-0.9.2-lib64.patch
 #Patch1: libquicktime-0.9.2-64bit-fixes.patch
 Patch0: libquicktime-lib64.patch
 Patch1: libquicktime-rtjpeg.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel, libpng-devel >= 1.0.8
-BuildRequires: libjpeg-devel, libraw1394-devel >= 0.9, libavc1394-devel, glib-devel
+BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel
+BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel
 %{?!dist:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?fc2:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?fc1:BuildRequires: libraw1394-devel, libavc1394-devel}
@@ -28,10 +31,9 @@ BuildRequires: libjpeg-devel, libraw1394-devel >= 0.9, libavc1394-devel, glib-de
 %{?rh9:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?rh8:BuildRequires: libraw1394-devel, libavc1394-devel}
 
-Requires: gtk+, libdv, libvorbis, libpng, libjpeg, libraw1394 >= 0.9, libavc1394
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch %{ix86}
-%{!?_without_mmx:BuildArch: i586}
+    %{!?_without_mmx:BuildArch: i586}
 %endif
 
 %description
@@ -72,7 +74,6 @@ programs that need to access quicktime files using libquicktime.
 #%{__libtoolize} --force
 #autoreconf --force --install
 %configure \
-    %{?_without_firewire:--disable-firewire}
     %{?_without_mmx:--disable-mmx}
 %{__make} %{?_smp_mflags}
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <broadcast@earthling.net>
 
-%ifarch x86_64
+%ifnarch %{ix86}
         %define _without_nasm 1
 %endif
 
@@ -47,8 +47,7 @@ libmpeg3 currently decodes:
 %build
 %ifarch x86_64
 export CFLAGS="%{optflags} -fPIC"
-%endif
-%ifarch %{ix86}
+%else
 export CFLAGS="%{optflags}"
 %endif
 %{__make} %{?_smp_mflags}
