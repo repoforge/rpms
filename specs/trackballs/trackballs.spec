@@ -18,6 +18,7 @@ Source: http://dl.sf.net/trackballs/trackballs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, guile, guile-devel, SDL-devel, SDL_ttf-devel, zlib-devel, SDL_mixer-devel, SDL_image-devel
+%{?fc2:BuildRequires: xorg-x11-Mesa-libGLU}
 
 %description
 Trackballs is a game for linux in which you steer a marble ball through
