@@ -6,7 +6,7 @@
 
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3
-Version: 0.9.2
+Version: 1.0.2
 Release: 0
 License: Artistic
 Group: Applications/Databases
@@ -15,11 +15,12 @@ URL: http://www.pgadmin.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.postgresql.org/postgresql/pgadmin3/beta/src/%{name}-%{version}.tar.gz
+Source: ftp://ftp.postgresql.org/pub/pgadmin3/release/src/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: wxGTK2-devel >= 2.5
+BuildRequires: wxGTK-devel >= 2.4.2, postgresql-devel, wxGTK-stc, wxGTK-xrc
+BuildRequires: desktop-file-utils
 
 %description
 pgAdmin III is a comprehensive PostgreSQL database design and management
@@ -51,7 +52,7 @@ desktop-file-install --vendor net                  \
 	--add-category Application                 \
 	--add-category Development                 \
 	--dir %{buildroot}%{_datadir}/applications \
-	pkg/redhat/pgadmin3.desktop
+	pkg/pgadmin3.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,6 +63,9 @@ desktop-file-install --vendor net                  \
 %{_datadir}/applications/*.desktop
 %{_datadir}/pgadmin3/
 
-%changelog
+%changelogA
+* Wed Aug 18 2004 Bert de Bruijn <bert@debruijn.be> - 1.0.2-0
+- update.
+
 * Sat Sep 13 2003 Dag Wieers <dag@wieers.com> - 0.9.2-0
 - Initial package. (using DAR)
