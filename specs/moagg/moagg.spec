@@ -17,8 +17,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/moagg/moagg-%{version}-src.tar.bz2
 Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel, paragui-devel, freetype-devel, gcc-c++, SDL_image-devel
-Requires: SDL, SDL_gfx, SDL_mixer, paragui, freetype, SDL_image
+BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel, paragui-devel, freetype-devel, gcc-c++, SDL_image-devel, zlib-devel
+Requires: SDL, SDL_gfx, SDL_mixer, paragui, freetype, SDL_image, zlib
 
 # Screenshot: http://moagg.sourceforge.net/screenshots/blackhole.png
 # ScreenshotURL: http://moagg.sourceforge.net/screenshots.php
@@ -44,7 +44,6 @@ master.
 
 %files
 %defattr(-,root,root, 0755)
-%doc
 
 %changelog
 * Mon Apr 26 2004 Dries Verachtert <dries@ulyssis.org> 0.8-1
