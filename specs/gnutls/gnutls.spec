@@ -12,7 +12,7 @@ URL: http://www.gnu.org/software/gnutls/
 Source: ftp://ftp.gnutls.org/pub/gnutls/gnutls-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, lzo-devel
+BuildRequires: zlib-devel, lzo-devel, opencdk-devel >= 0.5.2
 
 %description
 GnuTLS is a project that aims to develop a library which provides a secure
