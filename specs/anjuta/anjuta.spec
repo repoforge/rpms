@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <anjuta-devel@lists.sf.net>
 
 Summary: Versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
@@ -7,16 +8,18 @@ Version: 1.2.2
 Release: 1
 License: GPL
 Group: Development/Tools
-Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
 URL: http://anjuta.sourceforge.net/
-BuildRoot: %{_tmppath}/%{name}-root
-Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
-Requires: libgnomeprintui22 >= 2.0.1
-Requires: vte, pcre, libxml2
+
+Source: http://dl.sf.net/anjuta/anjuta-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: libgnome-devel >= 2.0.2, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.0.2, libgnomeprintui22-devel >= 2.0.1
 BuildRequires: vte-devel, pcre-devel, libxml2-devel, gettext, gcc-c++
 BuildRequires: scrollkeeper, ncurses-devel
+Requires: libgnome >= 2.0.2, libglade2 >= 2.0.0, libgnomeui >= 2.0.2
+Requires: libgnomeprintui22 >= 2.0.1
+Requires: vte, pcre, libxml2
 
 %description
 Anjuta is a versatile Integrated Development Environment (IDE) for C and C++ 
@@ -29,6 +32,10 @@ These are usually run via a text console, and can be unfriendly to use.
 %prep
 %setup
 
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
+%{__perl} -pi.orig -e '
+		s|^(plugindir) = .+$|$1 = \$(libdir)/anjuta|;
+	' Makefile.in */Makefile.in */*/Makefile.in
 
 %build
 %configure
@@ -39,11 +46,12 @@ These are usually run via a text console, and can be unfriendly to use.
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-# Remove unpackaged files
-%{__rm} -rf \
-    %{buildroot}/usr/share/doc/%{name} \
-    %{buildroot}%{_localstatedir}/scrollkeeper || :
 
+%post
+scrollkeeper-update -q
+
+%postun
+scrollkeeper-update -q
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,19 +61,25 @@ These are usually run via a text console, and can be unfriendly to use.
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog FUTURE NEWS README TODO
 %doc doc/ScintillaDoc.html
-%{_bindir}/%{name}*
-%{_libdir}/%{name}
-%{_datadir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/gnome/help/%{name}
-%{_datadir}/mime-info/%{name}.mime
-%{_datadir}/mimelnk/application/x-%{name}-project.desktop
-%{_datadir}/omf/%{name}
-%{_datadir}/pixmaps/%{name}
+%{_bindir}/anjuta*
+%{_libdir}/anjuta/
+%{_datadir}/anjuta/
+%{_datadir}/applications/anjuta.desktop
+%{_datadir}/gnome/help/anjuta/
+%{_datadir}/mime-info/anjuta.mime
+%{_datadir}/mimelnk/application/x-anjuta-project.desktop
+%{_datadir}/omf/anjuta/
+%{_datadir}/pixmaps/anjuta/
 %{_mandir}/man1/*
+%exclude %{_datadir}/doc/anjuta/
+%exclude %{_localstatedir}/scrollkeeper/
 
 
 %changelog
+* Sun Jun 13 2004 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Fixes for x86_64.
+- Added scrollkeeper to %%post and %%postun.
+
 * Thu Apr 15 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1
 - Update to 1.2.2.
 - Removed THANKS doc file.
