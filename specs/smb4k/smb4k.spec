@@ -37,6 +37,7 @@ an easy access to the SMB shares of your local network neighborhood.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 export DESTDIR=$RPM_BUILD_ROOT
 make install-strip

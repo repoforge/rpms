@@ -38,6 +38,7 @@ SouthPole.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 . /etc/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}

@@ -41,6 +41,7 @@ standaard formaat.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 export DESTDIR=$RPM_BUILD_ROOT
 %{__make} install-strip
 mkdir -p $RPM_BUILD_ROOT/usr/share/applications

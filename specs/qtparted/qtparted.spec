@@ -35,6 +35,7 @@ todo
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall
 
 %clean

@@ -71,6 +71,7 @@ chmod +x configure
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %{__make} DESTDIR=$RPM_BUILD_ROOT install-strip
 mv %{buildroot}/%{_bindir}/stellarium %{buildroot}/%{_bindir}/run-stellarium
 mkdir -p $RPM_BUILD_ROOT/usr/share/applications

@@ -33,6 +33,7 @@ race through 48 levels. Good Luck.
 make
 
 %install
+%{__rm} -rf %{buildroot}
 export DESTDIR=$RPM_BUILD_ROOT
 make install
 
