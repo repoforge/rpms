@@ -1,11 +1,11 @@
-%define		gst_minver	0.7.6
-%define		gstp_minver	0.7.6
+%define		gst_minver	0.8.4
+%define		gstp_minver	0.8.5
 %define		majorminor	0.8
 %define		gstreamer	gstreamer
 %define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
 
 Name:		%{gstreamer}-plugins-extra
-Version:	0.8.2
+Version:	0.8.6
 Release:	0
 Summary:	GStreamer extra streaming media framework plugins
 
@@ -20,6 +20,9 @@ BuildRequires:	%{gstreamer}-devel >= %{gst_minver}
 BuildRequires:	gcc-c++
 # so gst-libs can build
 BuildRequires:	XFree86-devel
+
+# so configure passes
+BuildRequires:	GConf2-devel
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -38,6 +41,7 @@ BuildRequires:	gsm-devel >= 1.0.10
 BuildRequires:	lame-devel >= 3.89
 BuildRequires:	libid3tag-devel >= 0.15.0
 BuildRequires:	libmad-devel >= 0.15.0
+BuildRequires:	libmusepack-devel
 
 Requires:	%{gstreamer}-plugins >= %{gstp_minver}
 Requires(pre):	%{_bindir}/gst-register-%{majorminor}
@@ -47,6 +51,7 @@ Provides:	%{gstreamer}-faad = %{version}-%{release}
 Provides:	%{gstreamer}-gsm = %{version}-%{release}
 Provides:	%{gstreamer}-lame = %{version}-%{release}
 Provides:	%{gstreamer}-mad = %{version}-%{release}
+Provides:	%{gstreamer}-musepack = %{version}-%{release}
 
 %description audio
 This package contains extra audio plugins for GStreamer, including
@@ -54,6 +59,7 @@ This package contains extra audio plugins for GStreamer, including
 - faad2 decoding
 - mad mp3 decoding
 - lame mp3 encoding
+- musepack mp3 decoding
 
 %post audio
 %{register}
@@ -66,6 +72,7 @@ This package contains extra audio plugins for GStreamer, including
 %{_libdir}/gstreamer-%{majorminor}/libgstgsm.so
 %{_libdir}/gstreamer-%{majorminor}/libgstlame.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmad.so
+%{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
 
 %package dvd
 Summary:	DVD plugins for GStreamer
@@ -106,9 +113,9 @@ This package contains dvd plugins for GStreamer, including
 Summary:	Extra video plugins for GStreamer
 Group:		Applications/Multimedia
 
-BuildRequires:	libfame-devel >= 0.9.0
+BuildRequires:	libfame-devel >= 0.9.1
 BuildRequires:	mpeg2dec-devel >= 0.4.0
-BuildRequires:	swfdec-devel
+BuildRequires:	swfdec-devel >= 0.3.1
 
 Requires:	%{gstreamer}-plugins >= %{gstp_minver}
 Requires:	%{gstreamer}-plugins-extra-audio >= %{gstp_minver}
@@ -147,6 +154,8 @@ This package contains extra video plugins for GStreamer, including
 
 %build
 %configure \
+  --with-package-name='Fedora freshrpms rpm' \
+  --with-package-origin='http://freshrpms.net/' \
   --with-plugins=\
 mpeg1sys,mpeg1videoparse,mpeg2sub,mpegaudio,mpegaudioparse,mpegstream \
   --enable-debug \
@@ -171,7 +180,7 @@ done
 cd ..
 
 cd ext
-for p in a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec swfdec
+for p in a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec musepack swfdec
 do
   cd $p
   %makeinstall
@@ -186,8 +195,35 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 0.8.2-0
-- Update to 0.8.2.
+* Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 0.8.6-0
+- Update to 0.8.6.
+- Sync with Thomas's current spec file.
+
+* Mon Nov 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.5.3-0.lvn.1
+- new prerelease
+
+* Wed Oct 06 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.5-0.lvn.1: new release
+- added GConf2 requirement to pass configure
+
+* Tue Aug 31 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.4-0.lvn.1: new release
+
+* Fri Aug 27 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.3.2-0.lvn.1: new prerelease
+
+* Mon Aug 02 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.3-0.lvn.1: new source release
+
+* Fri Jul 30 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.2.2-0.lvn.1: new prerelease
+
+* Wed Jun 23 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.2-0.lvn.1: new source release
+
+* Fri Jun 18 2004 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.8.1.2-0.lvn.1: new source prerelease
 
 * Thu Apr 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
 - 0.8.1-0.lvn.1: new source release
