@@ -13,7 +13,7 @@ Source: lonewolf-%{version}.tar.bz2
 Source1: lwscripts-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, ncurses-devel
 
 %description
 LoneWolf is a free open source emulator for the Ultima Online server. It
