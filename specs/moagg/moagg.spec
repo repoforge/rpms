@@ -35,7 +35,8 @@ master.
 %setup -D -a 1
 
 %build
-%configure
+%configure \
+	--disable-paraguitest
 %{__make} %{?_smp_mflags}
 
 %install
