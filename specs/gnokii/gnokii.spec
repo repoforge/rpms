@@ -12,8 +12,8 @@
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.0
-Release: 0
+Version: 0.6.1
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://gnokii.org/
@@ -23,7 +23,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.gnokii.org/pub/gnokii/gnokii-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gettext, flex, gtk+-devel >= 1.2.0
 %{?rhfc1:BuildRequires: bluez-libs-devel}
@@ -60,7 +59,11 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+### FIXME: Fix broken configure with xgettext options (Please fix upstream)
+%{__perl} -pi.orig -e 's| --msgid-bugs-address=||' configure
+%{__perl} -pi.orig -e 's| --msgid-bugs-address=.+||' po/Makefile.in.in
+
+%{__cat} <<EOF >gnokii.desktop
 [Desktop Entry]
 Name=Gnokii Mobile Manager
 Comment=Access your mobile phone data
@@ -86,16 +89,16 @@ EOF
 #makeinstall -C smsd
 %find_lang %{name}
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_mandir}/man1/ \
-			%{buildroot}%{_mandir}/man8/
-%{__install} -m0644 Docs/sample/gnokiirc %{buildroot}%{_sysconfdir}
+%{__install} -D -m0644 Docs/sample/gnokiirc %{buildroot}%{_sysconfdir}/gnokiirc
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -m0644 Docs/man/*.1 Docs/man/*.1x %{buildroot}%{_mandir}/man1/
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
 %{__install} -m0644 Docs/man/*.8 %{buildroot}%{_mandir}/man8/
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Utilities/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/
+        %{__install} -D -m0644 gnokii.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gnokii.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor net                  \
@@ -103,9 +106,6 @@ EOF
                 --dir %{buildroot}%{_datadir}/applications \
                 %{name}.desktop
 %endif
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %pre
 /usr/sbin/groupadd -r -f gnokii 2>/dev/null
@@ -124,7 +124,7 @@ EOF
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING MAINTAINERS TODO Docs/Bugs Docs/CREDITS Docs/DataCalls-QuickStart
 %doc Docs/FAQ Docs/README* Docs/gnokii-IrDA-Linux Docs/gnokii-ir-howto Docs/ringtones.txt
-%doc Docs/protocol/ Docs/sample/
+%doc Docs/protocol/ Docs/sample/ utils/gnapplet.sis
 %doc %{_mandir}/man?/gnokii*
 %doc %{_mandir}/man?/mgnokii*
 %doc %{_mandir}/man?/ppm2nokia*
@@ -137,8 +137,10 @@ EOF
 %{_bindir}/todologo
 %{_bindir}/gnokii
 %{_sbindir}/gnokiid
+
 %defattr(4750, root, gnokii, 0755)
 %{_sbindir}/mgnokiidev
+%exclude %{_prefix}/doc/gnokii/gnapplet.sis
 
 %files gui -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -158,8 +160,12 @@ EOF
 %{_libdir}/*.so
 %{_includedir}/*.h
 %{_includedir}/gnokii/
+%exclude %{_libdir}/*.la
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Mon Feb 23 2004 Dag Wieers <dag@wieers.com> - 0.6.0-0
 - Updated to release 0.6.0.
 
