@@ -39,11 +39,13 @@ great on your desktop! :-)
 %setup
 
 %build
+. /etc/profile.d/kde.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+. /etc/profile.d/kde.sh
 %makeinstall
 
 %post
