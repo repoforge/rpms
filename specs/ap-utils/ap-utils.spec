@@ -4,7 +4,7 @@
 
 Summary: Configure and monitor Wireless Access Points
 Name: ap-utils
-Version: 1.4.1
+Version: 1.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -13,7 +13,8 @@ URL: http://ap-utils.polesye.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/ap-utils/ap-utils-%{version}.tar.bz2
+Source: ftp://linux.zhitomir.net/ap-utils/ap-utils-%{version}.tar.bz2
+#Source: http://dl.sf.net/ap-utils/ap-utils-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: ncurses-devel
@@ -41,11 +42,24 @@ to configure and monitor Wireless Access Points using SNMP.
 %defattr (-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc Documentation/FAQ Documentation/*.html 
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_sbindir}/*
+%doc %{_mandir}/man8/ap-auth.8*
+%doc %{_mandir}/man8/ap-config.8*
+%doc %{_mandir}/man8/ap-gl.8*
+%doc %{_mandir}/man8/ap-mrtg.8*
+%doc %{_mandir}/man8/ap-tftp.8*
+%doc %{_mandir}/man8/ap-trapd.8*
+%{_bindir}/ap-auth
+%{_bindir}/ap-config
+%{_bindir}/ap-gl
+%{_bindir}/ap-mrtg
+%{_bindir}/ap-rrd
+%{_bindir}/ap-tftp
+%{_sbindir}/ap-trapd
 
 %changelog
+* Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 1.5-1
+- Updated to release 1.5.
+
 * Sun May 30 2004 Dag Wieers <dag@wieers.com> - 1.4.1-1
 - Updated to release 1.4.1.
 

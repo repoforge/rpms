@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: fc3
+# ExcludeDist: fc3 el4
 
 Summary: Graphical user interface for the yum package manager
 Name: yumi

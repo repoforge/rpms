@@ -19,7 +19,7 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.29.1
+Version: 0.29.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -29,7 +29,6 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
-#Source: http://smart.conectiva.com.br/files/smart-%{version}.tar.bz2
 #Source1: channelsync.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -323,8 +322,11 @@ popd
 %{__install} -D -m0644 smart-gui.console %{buildroot}%{_sysconfdir}/security/console.apps/smart-gui
 %{__install} -D -m0644 smart-gui.pam %{buildroot}%{_sysconfdir}/pam.d/smart-gui
 %{__install} -D -m0644 smart/interfaces/images/smart.png %{buildroot}%{_datadir}/pixmaps/smart.png
+
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/smart/channels/
 %{__cp} -av *.channel %{buildroot}%{_sysconfdir}/smart/channels/
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/smart/
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 smart-gui.desktop %{buildroot}%{_datadir}/gnome/apps/System/smart.desktop
@@ -349,6 +351,7 @@ popd
 %{_bindir}/smart
 %{python_sitearch}/smart/
 %exclude %{python_sitearch}/smart/interfaces/gtk/
+%{_localstatedir}/lib/smart/
 
 %files gui
 %defattr(-, root, root, 0755)
@@ -373,6 +376,9 @@ popd
 %{_datadir}/apps/ksmarttray/
 
 %changelog
+* Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 0.29.2-1
+- Updated to release 0.29.2.
+
 * Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 0.29.1-1
 - Updated to release 0.29.1.
 

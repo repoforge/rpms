@@ -3,8 +3,8 @@
 
 Summary: Openssl encryption plugin for gaim
 Name: gaim-encryption
-Version: 2.34
-Release: 1
+Version: 2.35
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/
@@ -16,7 +16,7 @@ Source: http://dl.sf.net/gaim-encryption/gaim-encryption-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 Buildrequires: gtk2-devel, mozilla-nss-devel, mozilla-nspr-devel, gaim
-Requires: gaim mozilla-nss
+Requires: gaim, mozilla-nss
 
 %description
 Openssl encryption support for gaim.
@@ -43,6 +43,12 @@ Openssl encryption support for gaim.
 %{_libdir}/gaim/encrypt.so
 
 %changelog
+* Sun Mar 06 2005 Dag Wieers <dag@wieers.com> - 2.35-2
+- Build against gaim 1.1.4.
+
+* Sun Feb 27 2005 Dag Wieers <dag@wieers.com> - 2.35-1
+- Updated to release 2.35.
+
 * Mon Jan 31 2005 Chris Weyl <cweyl@alumni.drew.edu> - 2.34-1
 - Updated gaim-e release
 

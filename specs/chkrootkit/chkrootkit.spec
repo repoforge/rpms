@@ -12,7 +12,7 @@
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
 Version: 0.45
-Release: 1
+Release: 2
 License: BSD-like
 Group: Applications/System
 URL: http://www.chkrootkit.org/
@@ -20,8 +20,10 @@ URL: http://www.chkrootkit.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit-%{version}.tar.gz
+Source: ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit-%{version}.tar.gz
 Source1: chkrootkit.png
+Patch: chkrootkit-0.44-getCMD.patch
+Patch1: chkrootkit-0.44-inetd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: binutils
@@ -31,6 +33,9 @@ chkrootkit is a tool to locally check for signs of a rootkit.
 
 %prep
 %setup
+
+%patch -p1 -b .getCMD
+%patch1 -p1 -b .inetd
 
 %{__cat} <<EOF >chkrootkit.apps
 USER=root
@@ -87,7 +92,7 @@ EOF
 %{__ln_s} -f %{_bindir}/consolehelper %{buildroot}%{_bindir}/chkrootkit
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/chkrootkit-%{version}/
-%{__install} -m0755 check_wtmpx chkdirs chklastlog chkproc chkrootkit chkrootkit.sh chkwtmp ifpromisc strings-static %{buildroot}%{_libdir}/chkrootkit-%{version}/
+%{__install} -m0755 check_wtmpx chkdirs chklastlog chkproc chkrootkit chkrootkit.sh chkutmp chkwtmp ifpromisc strings-static %{buildroot}%{_libdir}/chkrootkit-%{version}/
 
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chkrootkit.png
 
@@ -118,6 +123,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
+* Mon Mar 07 2005 Dag Wieers <dag@wieers.com> - 0.45-2
+- Added missing chkutmp. (Bradley Leonard)
+
 * Fri Feb 25 2005 Dag Wieers <dag@wieers.com> - 0.45-1
 - Updated to release 0.45.
 

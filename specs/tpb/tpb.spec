@@ -5,7 +5,7 @@
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
 Version: 0.6.3
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/
@@ -33,9 +33,10 @@ volume, mute and brightness of the LCD.
 EOF
 
 %{__perl} -pi.orig -e '
-		s|^#(OSDCOLOR)(.+)|#$1$2\n$1\tGREEN|;
+		s|^#(OSDCOLOR)(.+)|#$1$2\n$1\tGreen|;
 		s|^#(OSDFONT)(.+)$|#$1$2\n$1 -adobe-helvetica-bold-r-*-*-*-240-*-*-*-*-*-*|;
-		s|^#(OSDALIGN)(.+)|#$1$2\n$1\tCENTER|;
+		s|^#(OSDALIGN)(.+)|#$1$2\n$1\tCenter|;
+		s|^#(OSDVERTICAL)(.+)|#$1$2\n$1\t60|;
 	' doc/tpbrc
 
 %build
@@ -63,7 +64,7 @@ else
 	if [ ! -e /dev/nvram ]; then
 		/dev/MAKEDEV nvram
 		chmod 0644 /dev/nvram
-		cp -avx /dev/nvram %{buildroot}%{_sysconfdir}/udev/devices/nvram
+		cp -avx /dev/nvram %{_sysconfdir}/udev/devices/nvram
 	fi
 fi
 
@@ -83,6 +84,9 @@ fi
 %ghost %{_sysconfdir}/udev/devices/nvram
 
 %changelog
+* Sun Mar 06 2005 Manfred Paul <manfred.paul@de.ibm.com> - 0.6.3-3
+- Repair udev support.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.6.3-2
 - Added udev support for FC3+. (Matthew Saltzman)
 
