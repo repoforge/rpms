@@ -39,6 +39,7 @@ Gesslein II and has been under development since 1986.
 
 %files
 %defattr(-, root, root, 0755)
+%doc changes_old.txt changes.txt lgpl.txt readme.txt source.txt am.htm manual.htm notes.htm
 %{_bindir}/*
 %{_datadir}/man/man1/am.*
 
