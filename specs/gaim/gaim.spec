@@ -105,8 +105,12 @@ Available rpmbuild rebuild options :
 #%{_sysconfdir}/gaim/
 %{_bindir}/gaim*
 %{_includedir}/gaim/
-%{_libdir}/gaim/
-%{_libdir}/libgaim-remote.*
+%dir %{_libdir}/gaim/
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/libgaim-remote.a
+%exclude %{_libdir}/libgaim-remote.la
+%{_libdir}/libgaim-remote.so*
 %{_datadir}/applications/gaim.desktop
 %{_datadir}/pixmaps/gaim.png
 %{_datadir}/pixmaps/gaim/
@@ -120,6 +124,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Sun Jul 24 2004 Dag Wieers <dag@wieers.com> - 0.80-2
+- Removed .la files.
+
 * Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 0.80-1
 - Update to 0.80.
 
