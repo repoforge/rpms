@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <modem.support@linuxant.com>
+# Upstream: <modem,support$linuxant,com>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
