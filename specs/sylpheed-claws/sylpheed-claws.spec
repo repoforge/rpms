@@ -2,11 +2,11 @@
 # Authority: matthias
 
 %define desktop_vendor rpmforge
-%define extraver       cvs173.1
+%define extraver       cvs9.1
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 0.9.12
+Version: 0.9.13
 Release: 1.gtk2%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -115,6 +115,9 @@ desktop-file-install \
 
 
 %changelog
+* Thu Dec  9 2004 Matthias Saou <http://freshrpms.net/> 0.9.13-1.gtk2.cvs9.1
+- Update to 0.9.13cvs9.1.
+
 * Tue Jul 13 2004 Matthias Saou <http://freshrpms.net/> 0.9.12-1.gtk2.cvs18.2
 - Update to 0.9.12cvs18.2.
 
