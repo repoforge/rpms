@@ -1,4 +1,4 @@
-# $Id: id3lib.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: A software library for manipulating ID3v1 and ID3v2 tags
 Name: id3lib
