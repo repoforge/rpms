@@ -1,12 +1,12 @@
 # $Id: php-pear-ole.spec 97 2004-03-11 18:31:17Z dude $
 # Authority: matthias
 
-%define php_extdir %(php-config --extension-dir)
+%define php_extdir %(php-config --extension-dir || echo %{_libdir}/php4)
 
 Summary: PECL package for parsing and working with email messages
 Name: php-pecl-mailparse
-Version: 2.0b
-Release: 4
+Version: 2.1
+Release: 1
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/mailparse
@@ -63,6 +63,9 @@ EOF
 
 
 %changelog
+* Wed Feb 16 2005 Matthias Saou <http://freshrpms.net/> 2.1-1
+- Update to 2.1.
+
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 2.0b-4
 - Update included mbfl source to 4.3.8 as the current 4.3.4 doesn't work
   anymore.

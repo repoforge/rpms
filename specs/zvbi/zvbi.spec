@@ -3,14 +3,14 @@
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
-Version: 0.2.12
+Version: 0.2.13
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/zvbi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, doxygen, gettext
+BuildRequires: XFree86-devel, libpng-devel, gcc-c++, doxygen, gettext
 Obsoletes: libzvbi <= 0.2.4
 
 %description
@@ -78,6 +78,10 @@ the zvbi library.
 
 
 %changelog
+* Sun Feb 20 2005 Matthias Saou <http://freshrpms.net/> 0.2.13-1
+- Update to 0.2.13.
+- Added X and libpng build requirements.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 0.2.12-1
 - Updated to release 0.2.12.
 

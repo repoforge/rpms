@@ -1,0 +1,55 @@
+diff -Naupr lighttpd-1.3.10-cleanconf/doc/lighttpd.conf lighttpd-1.3.10/doc/lighttpd.conf
+--- lighttpd-1.3.10-cleanconf/doc/lighttpd.conf	2005-02-18 11:11:30.512994000 +0100
++++ lighttpd-1.3.10/doc/lighttpd.conf	2005-02-18 11:12:13.136515056 +0100
+@@ -35,10 +35,10 @@ server.modules              = (
+ 
+ ## a static document-root, for virtual-hosting take look at the
+ ## server.virtual-* options
+-server.document-root        = "/www/pages/"
++server.document-root        = "/srv/www/lighttpd/"
+ 
+ ## where to send error-messages to
+-server.errorlog             = "/www/logs/lighttpd.error.log"
++server.errorlog             = "/var/log/lighttpd/error_log"
+ 
+ # files to check for if .../ is requested
+ server.indexfiles           = ( "index.php", "index.html",
+@@ -46,6 +46,7 @@ server.indexfiles           = ( "index.p
+ 
+ # mimetype mapping
+ mimetype.assign             = (
++  ".rpm"          =>      "application/x-rpm",
+   ".pdf"          =>      "application/pdf",
+   ".sig"          =>      "application/pgp-signature",
+   ".spl"          =>      "application/futuresplash",
+@@ -103,7 +104,7 @@ mimetype.assign             = (
+ #server.tag                 = "lighttpd"
+ 
+ #### accesslog module
+-accesslog.filename          = "/www/logs/access.log"
++accesslog.filename          = "/var/log/lighttpd/access_log"
+ 
+ ## deny access the file-extensions
+ #
+@@ -127,7 +128,7 @@ url.access-deny             = ( "~", ".i
+ #server.error-handler-404   = "/error-handler.php"
+ 
+ ## to help the rc.scripts
+-#server.pid-file            = "/var/run/lighttpd.pid"
++server.pid-file             = "/var/run/lighttpd.pid"
+ 
+ 
+ ###### virtual hosts
+@@ -165,10 +166,10 @@ url.access-deny             = ( "~", ".i
+ #server.chroot              = "/"
+ 
+ ## change uid to <uid> (default: don't care)
+-#server.username            = "wwwrun"
++server.username             = "lighttpd"
+ 
+ ## change uid to <uid> (default: don't care)
+-#server.groupname           = "wwwrun"
++server.groupname            = "lighttpd"
+ 
+ #### compress module
+ #compress.cache-dir         = "/tmp/lighttpd/cache/compress/"

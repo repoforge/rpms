@@ -5,7 +5,7 @@
 
 Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.0.9
+Version: 1.0.10
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -81,6 +81,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Sat Feb 19 2005 Matthias Saou <http://freshrpms.net/> 1.0.10-1
+- Update to 1.0.10.
+
 * Wed Jan 26 2005 Matthias Saou <http://freshrpms.net/> 1.0.9-1
 - Update to 1.0.9.
 

@@ -11,18 +11,18 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.90
-Release: %{?rcver:0.%{rcver}.}1
+Version: 0.92
+Release: %{?rcver:0.%{rcver}.}0
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.90 - 12/01/2005
-Source21: http://www.mameworld.net/highscore/uhsdat090.zip
-# http://www.arcade-history.com/ 0.90 - 04/01/2005
-Source22: http://www.arcade-history.com/download/history0_90.zip
-# http://www.mameworld.net/mameinfo/ 0.90 - 05/01/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo090.zip
-# http://www.mameworld.net/catlist/ 0.90 - 09/01/2005
+# http://www.mameworld.net/highscore/ 0.91 - 31/01/2005
+Source21: http://www.mameworld.net/highscore/uhsdat091.zip
+# http://www.arcade-history.com/ 0.91 - 29/01/2005
+Source22: http://www.arcade-history.com/download/history0_91.zip
+# http://www.mameworld.net/mameinfo/ 0.91 - 30/01/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo091.zip
+# http://www.mameworld.net/catlist/ 0.92 - 14/02/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/

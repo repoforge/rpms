@@ -1,11 +1,11 @@
 # $Id$
 # Authority: matthias
 
-%define php_extdir %(php-config --extension-dir)
+%define php_extdir %(php-config --extension-dir || echo %{_libdir}/php4)
 
 Summary: PECL package for accessing SQLite databases
 Name: php-pecl-sqlite
-Version: 1.0.2
+Version: 1.0.3
 Release: 1
 License: PHP
 Group: Development/Languages
@@ -59,6 +59,9 @@ EOF
 
 
 %changelog
+* Wed Feb 16 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
+- Update to 1.0.3.
+
 * Thu Jun  3 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Initial RPM release.
 

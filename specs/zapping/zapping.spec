@@ -5,7 +5,7 @@
 
 Summary: TV viewer for GNOME
 Name: zapping
-Version: 0.8
+Version: 0.9.1
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -14,8 +14,11 @@ Source: http://dl.sf.net/zapping/zapping-%{version}%{?prever}.tar.bz2
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
-BuildRequires: zvbi-devel, arts-devel, rte-devel >= 0.5, lirc
+BuildRequires: zvbi-devel, arts-devel, lirc-devel
 BuildRequires: python-devel, desktop-file-utils
+%ifarch %{ix86}
+%{!?_without_rte:BuildRequires: rte-devel >= 0.5}
+%endif
 # This one is to get /usr/bin/consolehelper
 BuildRequires: usermode
 
@@ -71,10 +74,15 @@ scrollkeeper-update
 %{_datadir}/omf/%{name}/
 %{_datadir}/pixmaps/%{name}/
 %{_datadir}/%{name}/
-%{_mandir}/man1/*
+#{_mandir}/man1/*
 
 
 %changelog
+* Sun Feb 20 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-1
+- Update to 0.9.1.
+- Man pages are no longer installed automatically.
+- Disable rte support on non-x86 as rte only builds on x86 (asm).
+
 * Thu Nov 11 2004 Matthias Saou <http://freshrpms.net/> 0.8-1
 - Update to 0.8.
 - Change desktop file installation, as it's a GNOME 2 one at last.
