@@ -7,7 +7,7 @@
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
 Version: 1.4.1
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Daemons
 URL: http://sarg.sf.net/sarg.php
@@ -46,6 +46,7 @@ showing users, IP Addresses, bytes, sites and times.
 		s|^#(output_dir) (.+)$|#$1 $2\n$1 %{_localstatedir}/www/sarg/ONE-SHOT|;
 		s|^#(resolve_ip) (.+)$|#$1 $2\n$1 yes|;
 		s|^#(show_successful_message) (.+)$|#$1 $2\n$1 no|;
+		s|^#(mail_utility) (.+)$|#$1 $2\n$1 mail|;
 	' sarg.conf
 
 %{__cat} <<'EOF' >sarg.daily
@@ -152,6 +153,9 @@ EOF
 %{_localstatedir}/www/sarg/
 
 %changelog
+* Wed Jun 30 2004 Dag Wieers <dag@wieers.com> - 1.4.1-4
+- Fixed default mail_utility. (John Florian)
+
 * Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 1.4.1-3
 - Fixed problem with inline cron-scripts. (Luigi Iotti)
 

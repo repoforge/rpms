@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: UCL compression library
 Name: ucl
-Version: 1.01
-Release: 0
+Version: 1.02
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/ucl/
@@ -13,9 +12,8 @@ URL: http://www.oberhumer.com/opensource/ucl/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.oberhumer.com/opensource/ucl/download/%{name}-%{version}.tar.gz
+Source: http://www.oberhumer.com/opensource/ucl/download/ucl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 UCL is a portable lossless data compression library written in ANSI C.
@@ -38,17 +36,13 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-shared \
-	--disable-dependency-tracking
+	--enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
 	includedir="%{buildroot}%{_includedir}/ucl/"
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -67,9 +61,13 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/ucl/*
-%{_libdir}/*.so
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 %changelog
+* Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 1.02-1
+- Updated to release 1.02.
+
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 1.01-0
 - Initial package. (using DAR)

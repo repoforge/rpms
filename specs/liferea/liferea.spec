@@ -5,7 +5,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 0.5.0
+Version: 0.5.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -30,14 +30,30 @@ using GtkHTML.
 %prep
 %setup
 
+%{__cat} <<'EOF' >liferea.sh
+#!/bin/bash
+
+[ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.6"
+[ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla-1.7"
+[ -f "$MOZILLA_FIVE_HOME/chrome/comm.jar" ] || export MOZILLA_FIVE_HOME="%{_libdir}/mozilla"
+
+export LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME:$LD_LIBRARY_PATH"
+export MOZ_PLUGIN_PATH="$MOZ_PLUGIN_PATH:%{_libdir}/mozilla/plugins:$MOZILLA_FIVE_HOME/plugins"
+
+exec %{_bindir}/liferea-bin $@
+EOF
+
 %build
-%configure
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
+
+%{__install} -D -m0755 liferea.sh %{buildroot}%{_bindir}/liferea
 
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
@@ -59,6 +75,9 @@ desktop-file-install --vendor gnome --delete-original \
 %exclude %{_libdir}/liferea/*.la
 
 %changelog
+* Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Updated to release 0.5.1.
+
 * Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Updated to release 0.5.0.
 

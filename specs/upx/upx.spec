@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: The Ultimate Packer for eXecutables
 Name: upx
-Version: 1.24
-Release: 0
+Version: 1.25
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://upx.sf.net/
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/upx/upx-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: ucl-devel, perl
 
@@ -37,8 +35,7 @@ Win95/98/ME/NT/2000 programs and DLLs, DOS programs, and Linux executables.
 
 %build
 # Makefile is very fucked up.. so, let hack it even more :(
-perl -pi.orig -e 's|\s+-Werror||' src/Makefile
-perl -pi.orig -e '
+%{__perl} -pi.orig -e '
 		s|\s+-Werror||;
 		s|CC \+= -march=i386 -mcpu=i586|CFLAGS = %{optflags} -fexceptions|;
 	' src/Makefile
@@ -47,15 +44,13 @@ export UCLDIR="%{_prefix}"
 export CFLAGS="%{optflags}"
 export LDFLAGS="%{optflags}"
 
-make -C src target="linux"
-make -C doc
+%{__make} %{?_smp_mflags} -C src target="linux"
+%{__make} -C doc
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 src/upx %{buildroot}%{_bindir}
-%{__install} -m0444 doc/upx.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0755 src/upx %{buildroot}%{_bindir}/upx
+%{__install} -D -m0444 doc/upx.1 %{buildroot}%{_mandir}/man1/upx.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,9 +59,12 @@ make -C doc
 %defattr(-, root, root, 0755)
 %doc BUGS COPYING LICENSE LOADER.TXT NEWS PROJECTS README* THANKS
 %doc doc/upx.doc doc/upx.html
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/upx.1*
+%{_bindir}/upx
 
 %changelog
+* Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 1.25-1
+- Updated to release 1.25.
+
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 1.24-0
 - Initial package. (using DAR)

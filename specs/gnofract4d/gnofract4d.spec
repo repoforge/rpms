@@ -1,21 +1,20 @@
 # $Id$
 # Authority: dag
-# Upstream: Edwin Young <edwin@sf.net>
+# Upstream: Edwin Young <edwin@sourceforge.net>
 
-Summary: GNOME-based program to generate and view fractals
+Summary: Program to generate and view fractals
 Name: gnofract4d
-Version: 1.9
-Release: 0
+Version: 2.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://gnofract4d.sf.net/
+URL: http://gnofract4d.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gnofract4d/gnofract4d-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: scrollkeeper
 
@@ -46,9 +45,6 @@ desktop-file-install --vendor gnome --delete-original \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/gnome/apps/Graphics/%{name}.desktop
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 scrollkeeper-update -q || :
 
@@ -64,6 +60,7 @@ scrollkeeper-update -q || :
 %doc %{_datadir}/gnome/help/gnofract4d/
 %{_bindir}/*
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so.*
 %{_datadir}/gnofract4d/
 %dir %{_datadir}/maps/
@@ -73,6 +70,9 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/gnofract4d/
 
 %changelog
+* Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 1.9.
+
 * Sat Dec 13 2003 Dag Wieers <dag@wieers.com> - 1.9-0
 - Updated to release 1.9.
 

@@ -2,14 +2,14 @@
 # Authority: dag
 # Upstream: <amavis-user@lists.sf.net>
 
-%define real_release p9
+%define real_release p10
 
 %define logmsg logger -t %{name}/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 20030616
-Release: 8.%{real_release}
+Release: 9.%{real_release}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -179,6 +179,7 @@ EOF
 %build
 cd helper-progs
 %configure \
+	--with-milterlib="%{_libdir}" \
 	--with-user="amavis" \
 	--with-sockname="%{_localstatedir}/spool/amavis/amavisd.sock" \
 	--with-runtime-dir="%{_localstatedir}/spool/amavis" \
@@ -277,6 +278,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Thu Jul 01 2004 Dag Wieers <dag@wieers.com> - 20030616-9.p10
+- Updated to release 20030616-p10.
+
 * Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 20030616-8.p9
 - Moved milter to subpackage. Please add it if you use it !
 
@@ -284,7 +288,7 @@ fi
 - Added perl(DB_File) dependency. (Edward Rudd)
 
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 20030616-6.p9
-- Updated to new release 20030616-p9.
+- Updated to release 20030616-p9.
 
 * Mon Mar 29 2004 Dag Wieers <dag@wieers.com> - 20030616-6.p8
 - Fixed problem with certain versions of 'install'. (Peter Soos)

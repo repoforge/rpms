@@ -18,6 +18,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://devel.pluto.linux.it/projects/Gringotts/current/gringotts-%{version}.tar.bz2
+Patch: gringotts-1.2.8-gtk24.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig
@@ -32,6 +33,7 @@ to be as trustworthy as possible.
 
 %prep
 %setup
+%patch0
 
 ### FIXME: Include improved desktop-file. (Please fix upstream)
 %{__cat} <<EOF >gringotts.desktop.in
@@ -78,6 +80,9 @@ EOF
 %{_bindir}/gringotts
 
 %changelog
+* Wed Jun 29 2004 Dag Wieers <dag@wieers.com> - 1.2.8-1
+- Fix for gtk 2.4. (Rok Mandeljc)
+
 * Sun Jun 06 2004 Dag Wieers <dag@wieers.com> - 1.2.8-1
 - Add improved desktop file.
 
