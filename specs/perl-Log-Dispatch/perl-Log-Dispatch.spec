@@ -20,7 +20,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Log-Dispatch-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl-Params-Validate
-Requires: perl-Params-Validate
+Requires: perl-Params-Validate, perl-Mail-Sender, perl-Mail-Sendmail
 
 %description
 Log::Dispatch is a suite of OO modules for logging messages to
