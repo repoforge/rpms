@@ -53,6 +53,10 @@ you will need to install %{name}-devel.
 %setup -n gnet-%{version}
 
 %build
+%{__libtoolize} --force
+%{__aclocal}
+%{__automake}
+%{__autoconf}
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--with-html-dir="%{buildroot}%{_docdir}/libgnet2.0-dev/"
