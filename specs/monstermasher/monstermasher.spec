@@ -29,7 +29,7 @@ for monsters that want to roll over you. You do the cleaning by mashing the
 monsters with stone blocks.
 
 %prep
-%setup
+%setup -n monster-masher-%{version}
 
 %build
 %configure
