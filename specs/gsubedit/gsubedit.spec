@@ -21,7 +21,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/gsubedit/gsubedit-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ORBit-devel, gtk+-devel
+BuildRequires: ORBit-devel, gtk+-devel, gnome-libs-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
