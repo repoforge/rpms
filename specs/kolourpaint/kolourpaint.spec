@@ -53,6 +53,7 @@ sed -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{b
 %{_datadir}/applications/kolourpaint.desktop
 %{_datadir}/apps/kolourpaint
 %{_datadir}/icons/hicolor/*/apps/kolourpaint.png
+%{_datadir}/doc/HTML/en/kolourpaint
 
 %changelog
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 1.0.2-1
