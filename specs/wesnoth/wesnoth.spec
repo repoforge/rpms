@@ -62,7 +62,7 @@ desktop-file-install --vendor rpmforge             \
 %{_bindir}/wesnoth
 %{_mandir}/man6/wesnoth*
 %{_datadir}/wesnoth
-# %{_datadir}/applications/wesnoth.desktop
+%{_datadir}/applications/*.desktop
 
 %changelog
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> 0.7.9-1
