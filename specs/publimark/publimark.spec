@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://perso.wanadoo.fr/gleguelv/soft/publimark-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: audiofile-devel, botan-devel, gcc-c++
+BuildRequires: audiofile-devel, botan-devel, gcc-c++, automake
 
 %description
 Publimark is a command line tool to secretly embed text in an audio file.
