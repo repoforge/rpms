@@ -40,6 +40,8 @@ targeted towards the average user. It's designed for daily tasks like:
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+mv %{buildroot}/usr/share/applications/kde/kolourpaint.desktop %{buildroot}/usr/share/applications/kolourpaint.desktop
+sed -i 's/Categories=.*/Categories=Application;Graphics;X-Red-Hat-Extra;/g;' %{buildroot}/usr/share/applications/kolourpaint.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,7 +50,7 @@ targeted towards the average user. It's designed for daily tasks like:
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO BUGS
 %{_bindir}/kolourpaint
-%{_datadir}/applications/kde/kolourpaint.desktop
+%{_datadir}/applications/kolourpaint.desktop
 %{_datadir}/apps/kolourpaint
 %{_datadir}/icons/hicolor/*/apps/kolourpaint.png
 
