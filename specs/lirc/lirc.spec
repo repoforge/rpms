@@ -50,8 +50,10 @@ to your device.
 If your remote requires special kernel modules to run, I guess you're stuck
 having to recompile a kernel and recompile lirc manually to get the modules!
 
+
 %prep
 %setup
+
 
 %build
 %configure \
@@ -59,15 +61,16 @@ having to recompile a kernel and recompile lirc manually to get the modules!
     --disable-manage-devices
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %{__install} -m 755 -D %{SOURCE1} %{buildroot}/etc/init.d/lircd
 %{__install} -m 644 -D %{SOURCE2} %{buildroot}/etc/logrotate.d/lircd
-perl -pi -e 's|\@SBINDIR\@|%{_sbindir}|g' %{buildroot}/etc/init.d/lircd
+%{__perl} -pi -e 's|\@SBINDIR\@|%{_sbindir}|g' %{buildroot}/etc/init.d/lircd
 %{__rm} -f doc/Makefile*
-mkdir -p %{buildroot}/dev
-ln -sf ttyS0 %{buildroot}/dev/lirc
+%{__mkdir_p} %{buildroot}/dev
+%{__ln_s} -f ttyS0 %{buildroot}/dev/lirc
 touch %{buildroot}/etc/lircd.conf
 touch %{buildroot}/etc/lircmd.conf
 
@@ -109,7 +112,10 @@ fi
 %endif
 
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.6.6-2.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-3
+- Rebuild for Fedora Core 2... this spec file still _really_ needs reworking!
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.6.6-2
 - Rebuild for Fedora Core 1... this spec file _really_ needs reworking!
 
 * Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>

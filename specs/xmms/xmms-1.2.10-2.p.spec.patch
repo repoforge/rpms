@@ -5,7 +5,7 @@
  Name: xmms
  Version: 1.2.10
 -Release: 2.p
-+Release: 2.1.p
++Release: 2.2.p
  Epoch: 1
  License: GPL
  Group: Applications/Multimedia
@@ -19,7 +19,7 @@
  BuildRequires: alsa-lib-devel glib2-devel
  BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
  Obsoletes: x11amp0.7-1-1 x11amp xmms-esd xmms-gl xmms-mikmod xmms-gnome
-+Obsoletes: xmms-alsa <= 0.9.12, alsa-xmms <= 0.9.12
++Obsoletes: xmms-alsa alsa-xmms
  
  Conflicts: arts < 1.2.0-1.5
  
@@ -111,7 +111,7 @@
  %{_datadir}/xmms/Skins
  
  %changelog
-+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1:1.2.10-2.1.p
++* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1:1.2.10-2.2.p
 +- Put back pristine sources.
 +- Added the usual mp3 sub-package.
 +- Removed nomp3 patch and commented out rh_mp3 plugin build/install.

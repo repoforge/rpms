@@ -43,6 +43,9 @@ applications which will use %{name}.
 %{__rm} -rf %{buildroot} installed-docs
 %makeinstall
 %{__mv} %{buildroot}%{_datadir}/doc/libtheora* installed-docs
+# Fix the location of the include file
+%{__mkdir_p} %{buildroot}%{_includedir}/theora
+%{__mv} %{buildroot}%{_includedir}/theora.h %{buildroot}%{_includedir}/theora/
 
 
 %clean
@@ -52,7 +55,7 @@ applications which will use %{name}.
 %files devel
 %defattr(-, root, root, 0755)
 %doc README COPYING installed-docs/*
-%{_includedir}/theora.h
+%{_includedir}/theora/
 %exclude %{_libdir}/libtheora.la
 %{_libdir}/libtheora.a
 

@@ -1,9 +1,9 @@
 # $Id$
 # Authority: matthias
 
-%define real_name      CMFPlone
-%define real_version   2.0-final
-%define zope_minver    2.6.2
+%define real_name      Plone
+%define real_version   2.0.2
+%define zope_minver    2.6.4
 %define cmf_minver     1.4.2
 
 %define zope_home      %{_prefix}/lib/zope
@@ -11,8 +11,8 @@
 
 Summary: Content management system built over Zope's content management framework
 Name: plone
-Version: 2.0
-Release: 0.3
+Version: 2.0.2
+Release: 0.1
 License: GPL
 Group: System Environment/Daemons
 Source: http://dl.sf.net/plone/%{real_name}-%{real_version}.tar.gz
@@ -41,8 +41,8 @@ used and the policies and services it provides.
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}/%{software_home}/Products
-cp -a * %{buildroot}%{software_home}/Products/
+%{__mkdir_p} %{buildroot}/%{software_home}/Products
+%{__cp} -a * %{buildroot}%{software_home}/Products/
 
 
 %clean
@@ -57,6 +57,9 @@ cp -a * %{buildroot}%{software_home}/Products/
 
 
 %changelog
+* Fri May 14 2004 Matthias Saou <http://freshrpms.net/> 2.0.2-0.1
+- Update to 2.0.2.
+
 * Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.3
 - Update to 2.0 final.
 

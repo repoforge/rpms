@@ -2,8 +2,8 @@
 # Authority: matthias
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20040415
-#define rcver     pre2
+#define date      20040415
+%define rcver     pre4
 
 %define xmms_plugindir %(xmms-config --input-plugin-dir)
 %define desktop_vendor freshrpms
@@ -18,7 +18,7 @@ URL: http://mplayerhq.hu/
 %if %{?date:1}%{!?date:0}
 Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-current.tar.bz2
 %else
-Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-%{version}%{?rcver}.tar.bz2
+Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
 Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.2.tar.bz2
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
@@ -243,10 +243,9 @@ test -e %{buildroot}%{_prefix}/lib/libpostproc.so || \
 
 
 %changelog
-* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.10.20040415
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.10.pre4
 - Rebuild for Fedora Core 2.
-- Kept this CVS snapshot since pre4 seems to have more bugs (drag'n drop
-  doesn't work, full screen aspect ratio is wrong...).
+- Update to 1.0pre4... why doesn't drag'n drop work anymore? :-(
 - Updated Blue skin to 1.2.
 - Added caca and theora support.
 - Un-conditionalized alsa and libdv, which are now part of Fedora Core 2.

@@ -4,7 +4,7 @@
 Summary: Typesafe Signal Framework for C++
 Name: libsigc++
 Version: 1.2.5
-Release: 2
+Release: 3
 ### Needs epoch as el2 comes with version 1:1.0.3 ;-(
 #Epoch: 1
 License: LGPL
@@ -80,6 +80,9 @@ find doc -name "Makefile*" | xargs rm -f
 
 
 %changelog
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 1.2.5-3
+- Rebuild for Fedora Core 2.
+
 * Thu Nov 12 2003 Matthias Saou <http://freshrpms.net/> 1.2.5-2
 - Rebuild for Fedora Core 1.
 

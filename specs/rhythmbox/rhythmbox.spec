@@ -5,12 +5,12 @@
 %{?_with_xine:  %{expand: %%define xine 1}}
 %{!?_with_xine: %{expand: %%define xine 0}}
 
-%define majmin 0.7
+%define majmin 0.8
 
 Name: rhythmbox
 Summary: Music Management Application 
-Version: %{majmin}.1
-Release: 0.1%{?_with_xine:xine}
+Version: %{majmin}.4
+Release: 1%{?_with_xine:xine}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
@@ -19,6 +19,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.3
 Requires: libgnomeui >= 2.0.0
 Requires: eel2 >= 2.0.0
+Requires(post): /sbin/ldconfig, GConf2
+Requires(postun): /sbin/ldconfig
 BuildRequires: libgnomeui-devel >= 2.0.0
 BuildRequires: libmusicbrainz-devel >= 2.0.0
 BuildRequires: gettext, scrollkeeper, gcc-c++
@@ -28,7 +30,7 @@ Obsoletes: net-rhythmbox <= 0.4.8
 BuildRequires: xine-lib-devel >= 1.0.0
 BuildRequires: libvorbis-devel, libid3tag-devel, flac-devel, faad2-devel
 %else
-BuildRequires: gstreamer-plugins-devel >= 0.7.4
+BuildRequires: gstreamer-plugins-devel >= 0.8.1
 %endif
 
 %description
@@ -43,7 +45,10 @@ through GStreamer, Internet Radio support, playlists and more.
 
 
 %build
-%configure %{?_with_xine:--with-player=xine}
+%configure \
+    --enable-ipod \
+    --enable-dashboard \
+    %{?_with_xine:--with-player=xine}
 %{__make} %{?_smp_mflags}
 
 
@@ -91,6 +96,13 @@ done
 
 
 %changelog
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 0.8.4-0
+- Update to 0.8.4.
+- Enabled iPod and dashboard support.
+
+* Wed May  5 2004 Matthias Saou <http://freshrpms.net/> 0.8.3-0
+- Update to 0.8.3.
+
 * Wed Mar 17 2004 Matthias Saou <http://freshrpms.net/> 0.7.1-0.1
 - Update to 0.7.1.
 - Minor spec file updates.

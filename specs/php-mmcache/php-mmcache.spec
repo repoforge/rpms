@@ -1,12 +1,12 @@
 # $Id$
 
 %define php_extdir %(php-config --extension-dir || echo /usr/lib/php4)
-%define php_version %(php-config --version || echo foo)
+%define php_version %(php-config --version || echo badbuild)
 
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-mmcache
-Version: 2.4.6
-Release: 3
+Version: %{php_version}_2.4.6
+Release: 4
 License: GPL
 Group: Development/Languages
 URL: http://turck-mmcache.sourceforge.net/
@@ -81,6 +81,10 @@ EOF
 
 
 %changelog
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 4.3.x_2.4.6-1
+- Change the version to be phpversion_mmcacheversion since each build
+  is tightly tied to a version, and to have an easy upgrade path.
+
 * Mon May 10 2004 Matthias Saou <http://freshrpms.net/> 2.4.6-1
 - Initial RPM release.
 
