@@ -6,8 +6,6 @@
 %define real_name Class-Autouse
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
-%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Run-time class loading on first method call
 Name: perl-Class-Autouse
@@ -36,12 +34,16 @@ large amounts of memory, and decrease the script load time.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" destdir=%{buildroot}
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX=%{buildroot}%{_prefix}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+	%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,10 +53,8 @@ large amounts of memory, and decrease the script load time.
 %doc README Changes
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Class/Autouse.pm
-%{perl_vendorlib}/Class/prefork.pm
+#%{perl_vendorlib}/Class/prefork.pm
 %{perl_vendorlib}/Class/Autouse
-%exclude %{perl_archlib}/perllocal.pod
-%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-1
