@@ -19,6 +19,22 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
+This library makes it possible to easily access Braille displays and
+terminals : you can write text on the braille display, directly draw braille
+dots, or get the value of pressed keys. It is compatible with a wide range
+of braille displays.
+
+The features contain:
+* usable from C, C++, Python and Java
+* supports over 10 braille displays (including some recent models)
+* easy configuration of the braille table
+* distributed under the LGPL Free Software Licence
+* portable (currently linux and win32)
+* packages available
+* easy to incorporate in any application wanting to use braille displays
+(simple shared library)
+* uses autoconf, automake and libtool for easier installation and portability
+* contains a virtual graphical terminal made with Gtk+ for developers testing 
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -55,6 +71,7 @@ you will need to install %{name}-devel.
 %doc
 %{_bindir}/*
 %{_libdir}/*.so.*
+%{_datadir}/libbraille
 
 %files devel
 %defattr(-, root, root, 0755)
