@@ -3,11 +3,11 @@
 # Screenshot: http://www.eternal-lands.com/gfx/screenshots/01.jpg
 # ScreenshotURL: http://www.eternal-lands.com/index.php?content=screenshots
 
-%define real_version 099
+%define real_version 100
 
 Summary: Free MMORPG in beta stage
 Name: eternallands
-Version: 0.9.9
+Version: 1.0.0
 Release: 1
 License: Other
 Group: Amusements/Games
@@ -70,6 +70,9 @@ EOF
 %{_datadir}/games/eternallands
 
 %changelog
+* Mon Aug 23 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
+- Update to version 1.0.0.
+
 * Sat Jun 26 2004 Dries Verachtert <dries@ulyssis.org> - 0.9.9
 - Update to version 0.9.9.
 
