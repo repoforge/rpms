@@ -49,7 +49,7 @@ Easy tool to create a social map.
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man3/*
-%{perl_vendorlib}/Graph/SocialMap.pm
+%{perl_vendorlib}/Graph/SocialMap.*
 
 %changelog
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
