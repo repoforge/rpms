@@ -4,16 +4,16 @@
 
 Summary: Graphical link validity checker
 Name: gurlchecker
-Version: 0.7.12
+Version: 0.7.13
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.nongnu.org/gurlchecker/
+URL: http://labs.libre-entreprise.org/projects/gurlchecker/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/gurlchecker/gurlchecker-%{version}.tar.gz
+Source: http://labs.libre-entreprise.org/download.php/146/gurlchecker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0, gnet2 >= 2.0
@@ -25,10 +25,10 @@ site, a single local page or a browser bookmarks file.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >gurlchecker.desktop
 [Desktop Entry]
 Name=Website URL Validator
-Comment=%{summary}
+Comment=Find broken links on websites
 Icon=gnome-spider.png
 Exec=gurlchecker
 Terminal=false
@@ -50,7 +50,7 @@ EOF
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+	gurlchecker.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,6 +64,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.7.13-1
+- Updated to release 0.7.13.
+
 * Sat May 22 2004 Dag Wieers <dag@wieers.com> - 0.7.12-1
 - Updated to release 0.7.12.
 
