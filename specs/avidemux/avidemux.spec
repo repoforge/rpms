@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 # Upstream: <fixounet@free.fr>
-# Archs: i686 i386
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
