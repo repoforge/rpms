@@ -24,7 +24,7 @@ todo
 %setup -c
 
 %build
-tar zxvf %{SOURCE1} mozilla/js
+tar xjvf %{SOURCE1} mozilla/js
 dos2unix autogen.sh
 bash autogen.sh || echo autogen.sh problem
 %configure --enable-debug
