@@ -4,8 +4,8 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 0.85
-Release: 2
+Version: 0.90
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
@@ -71,7 +71,8 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING help.txt doc/AUTHORS doc/CHANGES doc/CREDITS doc/FAQ doc/README doc/TODO doc/*.sgml utils/
+%doc COPYING bitlbee.conf help.txt motd.txt doc/AUTHORS doc/CHANGES doc/CREDITS
+%doc doc/FAQ doc/INSTALL doc/README doc/TODO doc/*.xml utils/
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/xinetd.d/*
 %{_sbindir}/*
@@ -81,6 +82,9 @@ EOF
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Sat May 29 2004 Dag Wieers <dag@wieers.com> - 0.90-1
+- Updated to release 0.90.
+
 * Thu Apr 08 2004 Dag Wieers <dag@wieers.com> - 0.85-2
 - Fixed typo in config configure option. (Len Trigg)
 
