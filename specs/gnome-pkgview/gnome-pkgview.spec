@@ -17,6 +17,7 @@ Source: http://www.greatnorthern.demon.co.uk/packages/gnome-pkgview/gnome-pkgvie
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2 >= 2.0.0, libxml2 >= 2.0.0, libgnomeui >= 2.0
+BuildRequires: perl-XML-Parser
 
 %description
 Displays version information for desktop components, and determines the
