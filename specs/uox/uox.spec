@@ -31,6 +31,7 @@ dos2unix configure
 chmod +x configure
 %configure --enable-debug
 dos2unix Makefile
+dos2unix depcomp
 %{__make} %{?_smp_mflags}
 
 %install
