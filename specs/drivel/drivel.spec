@@ -4,7 +4,7 @@
 
 Summary: LiveJournal client for GNOME
 Name: drivel
-Version: 0.90.0
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -35,6 +35,7 @@ in mind, and presents an elegant user interface.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
+%find_lang %{name}
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -43,16 +44,20 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
+%{_datadir}/drivel/
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/drivel/
 
 %changelog
+* Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
 * Mon May 24 2004 Dag Wieers <dag@wieers.com> - 0.90.0-1
 - Updated to release 0.90.0.
 

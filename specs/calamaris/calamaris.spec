@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Squid native log format (NLF) analyzer and report generator
 Name: calamaris
-Version: 2.57
-Release: 0
+Version: 2.59
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://calamaris.cord.de/
@@ -46,5 +45,8 @@ content-types and performance.
 %{_bindir}/*
 
 %changelog
+* Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 0.59-1
+- Updated to release 0.59.
+
 * Sun Feb 09 2003 Dag Wieers <dag@wieers.com> - 0.57-0
 - Initial package. (using DAR)
