@@ -1,10 +1,10 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Darryl Luff <djluff@users.sf.net>
 
 Summary: Graphical database query tool for MySQL and PostgreSQL
 Name: gtksql
-Version: 0.4
+Version: 0.4.1
 Release: 0
 License: GPL
 Group: Applications/Databases
@@ -14,11 +14,13 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gtksql/gtksql-%{version}.tar.gz
-Patch: gtksql-0.4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: mysql-devel, postgresql-devel, lua-devel
+BuildRequires: mysql-devel, lua-devel
+%{?rhfc1:BuildRequires: postgresql-devel}
+%{?rhel3:BuildRequires: rh-postgresql-devel}
+%{?rh90:BuildRequires: postgresql-devel}
+%{?rh80:BuildRequires: postgresql-devel}
 
 %description
 GtkSQL is a graphical database query tool for the PostgreSQL and MySQL
@@ -27,23 +29,22 @@ databases.
 It is similar to PostgreSQL's psql, or the Microsoft Query Analyser. It
 is a free tool released under the GNU GPL license.
 
-Its main features are :
+Its main features are:
 
-* multiple SQL buffers
-* SQL keywords, table names and fields auto-completion
-* displays table definition
-* PostgreSQL and MySQL support (and easy addition of other databases)
+	multiple SQL buffers,
+	SQL keywords, table names and fields auto-completion,
+	displays table definition
+and	PostgreSQL and MySQL support (and easy addition of other databases)
 
 %prep
 %setup
-#%patch -p1
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >gtksql.desktop
 [Desktop Entry]
 Name=GtkSql SQL Client
-Comment=A SQL database query interface.
+Comment=Query SQL databases
 Exec=gtksql
-Icon=gtksql_gnome_icon.png
+Icon=gtksql.png
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -59,16 +60,12 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 pixmaps/gtksql_gnome_icon.png %{buildroot}%{_datadir}/pixmaps/
+%{__install} -D -m0644 pixmaps/gtksql_gnome_icon.png %{buildroot}%{_datadir}/pixmaps/gtksql.png
 
 desktop-file-install --vendor gnome                \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_prefix}/doc/
+	gtksql.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -81,7 +78,11 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/gtksql/
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.png
+%exclude %{_prefix}/doc/
 
 %changelog
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Mon Oct 13 2003 Dag Wieers <dag@wieers.com> - 0.4-0
 - Initial package. (using DAR)
