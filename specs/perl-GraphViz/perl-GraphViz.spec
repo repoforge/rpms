@@ -11,7 +11,7 @@
 
 Summary: Interface to the GraphViz graphing tool
 Name: perl-GraphViz
-Version: 2.01
+Version: 2.02
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -59,5 +59,8 @@ http://www.research.att.com/sw/tools/graphviz/).
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1
+- Updated to release 2.02.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 2.01-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Easy tool to create a social map
 Name: perl-Graph-SocialMap
-Version: 0.09
+Version: 0.12
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ Easy tool to create a social map.
 %{perl_vendorlib}/Graph/SocialMap.pm
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 

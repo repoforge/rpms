@@ -11,7 +11,7 @@
 
 Summary: Backend for searching www.ebay.com
 Name: perl-WWW-Search-Ebay
-Version: 2.204
+Version: 2.205
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ This is a backend for use with the WWW::Search module for searching on Ebay.
 %{perl_vendorlib}/WWW/Search/Ebay/*
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.205-1
+- Updated to release 2.205.
+
 * Tue Dec 14 2004 Dries Verachtert <dries@ulyssis.org> - 2.204-1
 - Updated to release 2.204.
 

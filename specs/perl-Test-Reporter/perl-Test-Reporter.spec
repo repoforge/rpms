@@ -11,7 +11,7 @@
 
 Summary: Report test results of a package retrieved from CPAN
 Name: perl-Test-Reporter
-Version: 1.25
+Version: 1.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ Test::Reporter has wide support for various perl5's and platforms.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
+- Updated to release 1.27.
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.25-1
 - Updated to release 1.25.
 

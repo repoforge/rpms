@@ -11,7 +11,7 @@
 
 Summary: Produce common sub-string indices for two strings
 Name: perl-String-Ediff
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ common substrings.
 %{perl_vendorarch}/auto/String/Ediff/*
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
+- Updated to release 0.04.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

@@ -8,7 +8,7 @@
 
 Summary: Perl extension for reading from continuosly updated files
 Name: perl-File-Tail
-Version: 0.98
+Version: 0.99.1
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ or "cat /dev/null >file") transparently, without losing any input.
 %{perl_vendorlib}/auto/File/
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.99.1-1
+- Updated to release 0.99.1.
+
 * Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.98-1
 - Changed to noarch package.
 - Cleanup and cosmetic changes.

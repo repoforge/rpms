@@ -11,7 +11,7 @@
 
 Summary: Use the GMP library for Math::BigInt routines
 Name: perl-Math-BigInt-GMP
-Version: 1.16
+Version: 1.17
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ core, Math::BigInt::Calc.pm.
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.17-1
+- Updated to release 1.17.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Updated to release 1.16.
 

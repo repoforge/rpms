@@ -12,7 +12,7 @@
 
 Summary: Automatically archive and rotate logfiles
 Name: perl-Log-Dispatch-FileRotate
-Version: 1.11
+Version: 1.13
 Release: 1
 License: Unknown
 Group: Applications/CPAN
@@ -57,5 +57,8 @@ with additions.
 %{perl_vendorlib}/Log/Dispatch/FileRotate.pm
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
+- Updated to release 1.13.
+
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 1.11-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Subversion repository mirroring tool
 Name: perl-SVN-Mirror
-Version: 0.51
+Version: 0.56
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_pre
 %{perl_vendorlib}/SVN/Mirror/*
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.56-1
+- Updated to release 0.56.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Updated to release 0.51.
 

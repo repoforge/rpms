@@ -11,7 +11,7 @@
 
 Summary: Web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.08
+Version: 1.12
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ echo y | %{__perl} Makefile.PL --nolive INSTALLDIRS="vendor" destdir=%{buildroot
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+- Updated to release 1.12.
+
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.
 

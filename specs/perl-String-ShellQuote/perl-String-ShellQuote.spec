@@ -12,7 +12,7 @@
 
 Summary: Quote a string for passing through a shell
 Name: perl-String-ShellQuote
-Version: 1.00
+Version: 1.02
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ which are going to pass through the shell or a shell-like object.
 %{perl_vendorlib}/String/ShellQuote.pm
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
+- Updated to release 1.02.
+
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 1.00-1
 - Initial package.

@@ -11,7 +11,7 @@
 
 Summary: Time zone object base class and factory 
 Name: perl-DateTime-TimeZone
-Version: 0.31
+Version: 0.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ tools/parse_olson.
 %{perl_vendorlib}/DateTime/TimeZoneCatalog.pm
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.33-1
+- Updated to release 0.33.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Updated to release 0.31.
 

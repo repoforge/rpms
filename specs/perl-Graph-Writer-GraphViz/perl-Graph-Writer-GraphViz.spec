@@ -11,7 +11,7 @@
 
 Summary: GraphViz Writer for Graph object
 Name: perl-Graph-Writer-GraphViz
-Version: 0.06
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ by nature.
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

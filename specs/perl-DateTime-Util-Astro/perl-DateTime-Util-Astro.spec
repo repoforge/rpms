@@ -11,7 +11,7 @@
 
 Summary: Astronomical Calendar Calculations
 Name: perl-DateTime-Util-Astro
-Version: 0.02
+Version: 0.06
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ This module contains functions for astronomical calendar calculations.
 %{perl_vendorlib}/DateTime/Util/Astro/*.pm
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Sun Dec 05 2004 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

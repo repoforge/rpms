@@ -11,7 +11,7 @@
 
 Summary: Write Perl subs and classes in Python
 Name: perl-Inline-Python
-Version: 0.21
+Version: 0.22
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ echo 1 | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorarch}/auto/Inline/Python/*
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
+- Updated to release 0.22.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Updated to release 0.21.
 

@@ -11,7 +11,7 @@
 
 Summary: Perl interface to Snowball stemmers
 Name: perl-Lingua-Stem-Snowball
-Version: 0.8
+Version: 0.9
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ Perl interface to Snowball stemmers.
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Updated to release 0.9.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

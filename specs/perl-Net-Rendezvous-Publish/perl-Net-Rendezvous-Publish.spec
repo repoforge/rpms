@@ -11,7 +11,7 @@
 
 Summary: Publish Rendezvous services
 Name: perl-Net-Rendezvous-Publish
-Version: 0.01
+Version: 0.03
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ With this module, you can publish Rendezvous services.
 %{perl_vendorlib}/Net/Rendezvous/Publish/*
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
+- Updated to release 0.03.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.01
 - Initial package.

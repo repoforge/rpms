@@ -9,7 +9,7 @@
 
 Summary: Parse a MIME Content-Type Header
 Name: perl-Email-MIME-ContentType
-Version: 1.0
+Version: 1.01
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ Parse a MIME Content-Type Header.
 %{perl_vendorlib}/Email/MIME/ContentType.pm
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
+- Updated to release 1.01.
+
 * Sun Jan  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

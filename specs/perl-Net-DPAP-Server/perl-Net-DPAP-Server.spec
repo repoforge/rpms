@@ -11,7 +11,7 @@
 
 Summary: Provide a DPAP Server
 Name: perl-Net-DPAP-Server
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ With this module, you can provide a DPAP Server.
 %{perl_vendorlib}/Net/DPAP/Server/*
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
+- Updated to release 0.02.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

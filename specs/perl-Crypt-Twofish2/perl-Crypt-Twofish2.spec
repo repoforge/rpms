@@ -10,7 +10,7 @@
 
 Summary: Twofish encryption module
 Name: perl-Crypt-Twofish2
-Version: 1.0
+Version: 1.01
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ that module (except generality, which is often a good thing), since
 %{perl_vendorarch}/auto/Crypt/Twofish2/*
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
+- Updated to release 1.01.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

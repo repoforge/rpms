@@ -11,7 +11,7 @@
 
 Summary: Graph file format readers and writers
 Name: perl-Graph-ReadWrite
-Version: 1.07
+Version: 2.00
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ represented in Perl using Jarkko Hietaniemi's Graph classes.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 2.00-1
+- Updated to release 2.00.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Initial package.
