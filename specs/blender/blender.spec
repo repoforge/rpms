@@ -9,17 +9,17 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 2.35
+%define real_version 2.36
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.35
+Version: 2.36
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
 
-Source: http://download.blender.org/source/blender-%{real_version}.tar.bz2
+Source: http://download.blender.org/source/blender-%{real_version}.tar.gz
 Source1: blender.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -41,18 +41,8 @@ Professionals and novices can easily and inexpensively publish stand-alone,
 secure, multi-platform content to the web, CD-ROMs, and other media, whether
 they are users of Windows, Linux, Irix, Sun Solaris, FreeBSD or OSX.
 
-#%package devel
-#Summary: Header files, libraries and development documentation for %{name}
-#Group: Development/Libraries
-#Requires: %{name} = %{version}-%{release}
-
-#%description devel
-#This package contains the header files, static libraries and development
-#documentation for %{name}. If you like to develop programs using %{name},
-#you will need to install %{name}-devel.
-
 %prep
-%setup -n %{name}-%{real_version}
+%setup -n %{name}
 
 %{__cat} <<EOF >blender.desktop
 [Desktop Entry]
@@ -69,28 +59,15 @@ EOF
 %build
 # blender now works with a new build system, named Scons
 sed -i "s/use_openal =.*/use_openal = 'true'/g;" SConstruct
+scons clean
 scons
-
-# {__aclocal}
-# {__autoconf}
-# {__autoheader}
-# {__automake} \
-#	--gnu \
-#	--add-missing \
-#	--foreign
-#configure
-#	--disable-dependency-tracking \
-#	--disable-shared \
-#	--disable-openal \
-#	--disable-rpath
-##	--enable-quicktime \
-##	--enable-fmod
-#{__make} {?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0755 blender %{buildroot}%{_bindir}/blender
 %{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/blender.png
+%{__install} -d %{buildroot}%{_libdir}/blender
+%{__install} -m0644 release/scripts/* %{buildroot}%{_libdir}/blender/
 
 %if %{?_without_freedesktop:1}0
         %{__install} -D -m0644 blender.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/blender.desktop
@@ -113,21 +90,19 @@ scons
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README doc/*
+%doc COPYING README doc/* release/text/blender.html release/text/copyright.txt
+%doc release/text/Python-license.txt release/text/release_*.txt
 %{_bindir}/blender
-#%{_libdir}/*.so.*
+%{_libdir}/blender
 %{_datadir}/pixmaps/blender.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/blender.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
-#%files devel
-#%defattr(-, root, root, 0755)
-#%doc INSTALL doc/building_blender.html
-#%{_libdir}/*.a
-#%exclude %{_libdir}/*.la
-#%{_libdir}/*.so
-
 %changelog
+* Thu Dec 23 2004 David Cornette <rpms@davidcornette.com> - 2.36-1
+- Updated to release 2.36.
+- Also install the python scripts
+
 * Tue Dec 14 2004 Dries Verachtert <dries@ulyssis.org> - 2.35-1
 - Updated to release 2.35.
 
