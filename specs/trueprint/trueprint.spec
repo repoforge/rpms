@@ -8,6 +8,7 @@ Name: trueprint
 Version: 5.3
 Release: 1
 License: GPL
+Group: Applications/Text
 URL: http://www.gnu.org/software/trueprint/trueprint.html
 
 Packager: Dries Verachtert <dries@ulyssis.org>
