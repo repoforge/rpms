@@ -4,7 +4,7 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.5.4
+Version: 0.5.5
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -37,18 +37,23 @@ reasonnable speed while being easy to port on new host CPUs.
 %prep
 %setup
 
+%build
+%configure
+
 %{__perl} -pi.orig -e '
 		s|\$\(sharedir\)|\$(datadir)/qemu|;
 		s|\$\(prefix\)/bin|\$(bindir)|;
-	' Makefile*
+		s|/usr/share|\$(datadir)|;
+	' Makefile* config-host.mak
 
-%build
-%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+### Clean up docdir
+%{__rm} -rf %{buildroot}%{_docdir}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,5 +66,8 @@ reasonnable speed while being easy to port on new host CPUs.
 %{_datadir}/qemu/
 
 %changelog
+* Wed May 12 2004 Dag Wieers <dag@wieers.com> - 0.5.5-1
+- Updated to release 0.5.5.
+
 * Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 0.5.4-1
 - Initial package. (using DAR)
