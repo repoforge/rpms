@@ -6,7 +6,7 @@
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 0.9.12
+Version: 0.9.12b
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -58,12 +58,11 @@ fi
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-openssl \
+    --enable-ldap \
     %{!?_without_aspell: --enable-aspell} \
     %{?_with_pilot: --enable-jpilot} \
     --enable-gpgme \
     --enable-spamassassin-plugin
-    # Disable for now :-(
-    #--enable-ldap \
 %{__make} %{?_smp_mflags}
 
 # Fix this path for the make install stage
@@ -115,6 +114,10 @@ desktop-file-install \
 
 
 %changelog
+* Mon Sep 27 2004 Matthias Saou <http://freshrpms.net/> 0.9.12b-1
+- Update to 0.9.12b.
+- Re-enable LDAP support.
+
 * Wed Jun 30 2004 Matthias Saou <http://freshrpms.net/> 0.9.12-1
 - Update to 0.9.12.
 - Changes from "sylpheed" to "sylpheed-claws" here and there to reflect
