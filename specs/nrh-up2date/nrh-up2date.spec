@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: 
+# Upstream: <nrh-up2date-users@lists.sourceforge.net>
 
 Summary: Open Source server for Redhat's up2date suite.
 Name: nrh-up2date
@@ -9,7 +9,7 @@ Version: 1.3
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://www.nrh-up2date.org
+URL: http://www.nrh-up2date.org/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

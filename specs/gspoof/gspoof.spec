@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: 
+# Upstream: Embyte <embyte@madlab.it>
 
 Summary: Network tool to build and send TCP/IP packets.
 Name: gspoof

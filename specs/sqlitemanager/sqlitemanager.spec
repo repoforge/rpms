@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: 
+# Upstream: Frédéric Henninot <fhenninot@freesurf.fr>
 
 %define rname SQLiteManager
 

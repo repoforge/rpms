@@ -1,10 +1,9 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <libxmlplusplus-general@lists.sourceforge.net>
 
-# Upstream: 
-
-Summary: A C++ interface for working with XML files.
+Summary: C++ interface for working with XML files.
 Name: libxml++
 Version: 0.26.0
 Release: 0

@@ -1,8 +1,7 @@
 # $Id$
 
 # Authority: dag
-
-# Upstream: 
+# Upstream: <fftv-devel@lists.sourceforge.net>
 
 Summary: Advanced TV program.
 Name: fftv
@@ -10,7 +9,7 @@ Version: 0.6.4
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://fftv.sf.net/fftv.html
+URL: http://fftv.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
