@@ -5,7 +5,7 @@
 Summary: CPU frequency scaling daemon
 Name: cpufreqd
 Version: 1.1.2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://cpufreqd.sourceforge.net/
@@ -32,8 +32,9 @@ a set of rules specified in the config file (see cpufreqd.conf (5)).
 %{__perl} -pi.orig -e 's|^(pm_type=.*)$|#$1\npm_type=apm|' cpufreqd.conf
 
 %{__cat} <<EOF >cpufreqd.sysconfig
-SPEEDSTEP_MODULE="speedstep-centrino"
+#SPEEDSTEP_MODULE="speedstep-centrino"
 #SPEEDSTEP_MODULE="speedstep-ich"
+#SPEEDSTEP_MODULE="speedstep-smi"
 EOF
 
 %{__cat} <<'EOF' >cpufreqd.sysv
@@ -63,7 +64,7 @@ prog="cpufreqd"
 desc="CPU frequency scaling deamon"
 
 start() {
-	if [ $SPEEDSTEP_MODULE ]; then
+	if [ "$SPEEDSTEP_MODULE" ]; then
 		/sbin/modprobe -k $SPEEDSTEP_MODULE
 	fi
 	echo -n $"Starting $desc ($prog): "
@@ -143,14 +144,19 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO examples/
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man5/cpufreqd.conf.5*
+%doc %{_mandir}/man8/cpufreqd.8*
 %config(noreplace) %{_sysconfdir}/cpufreqd.conf
-%config(noreplace) %{_sysconfdir}/sysconfig/*
-%config %{_initrddir}/*
-%{_sbindir}/*
-%{_libdir}/*
+%config(noreplace) %{_sysconfdir}/sysconfig/cpufreqd
+%config %{_initrddir}/cpufreqd
+%{_sbindir}/cpufreqd
+%exclude %{_libdir}/libsys_*.la
+%{_libdir}/libsys_*.so
 
 %changelog
+* Sat Jul 24 2004 Dag Wieers <dag@wieers.com> - 1.1.2-2
+- Removed .la files.
+
 * Mon May 31 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Don't load a module by default.
 
