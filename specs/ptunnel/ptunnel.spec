@@ -5,7 +5,7 @@
 
 Summary: Reliably tunnel TCP connections over ICMP packets
 Name: ptunnel
-Version: 0.51
+Version: 0.52
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -16,7 +16,6 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.cs.uit.no/~daniels/PingTunnel/PingTunnel.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch: makefile.patch
 
 BuildRequires: libpcap
 
@@ -31,7 +30,6 @@ is required.
 
 %prep
 %setup -n PingTunnel
-%patch -p1
 
 %build
 %{__make} %{?_smp_mflags}
@@ -49,5 +47,8 @@ is required.
 %{_bindir}/ptunnel
 
 %changelog
+* Mon Jan 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.52-1
+- Updated to release 0.52 (Makefile patch applied by author).
+
 * Sun Jan 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Initial package.
