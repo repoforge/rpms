@@ -11,7 +11,7 @@ Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
 Source: http://dl.sf.net/lame/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: ncurses-devel
+BuildRequires: ncurses-devel, gcc-c++
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif

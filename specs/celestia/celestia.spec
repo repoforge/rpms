@@ -18,7 +18,7 @@ BuildRequires: freeglut-devel, gtkglarea, kdelibs-devel
 BuildRequires: libpng-devel, libjpeg-devel
 BuildRequires: desktop-file-utils, unzip, gcc-c++, libstdc++-devel
 %{!?dist:BuildRequires: libselinux-devel}
-%{?fc2:BuildRequires: libselinux-devel}
+%{?fc2:BuildRequires: libselinux-devel, arts-devel}
 
 %description
 Celestia is a free real-time space simulation that lets you experience our

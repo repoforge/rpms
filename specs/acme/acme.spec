@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel >= 2.0.0, libglade2-devel >= 2.0.0
 BuildRequires: libwnck-devel, startup-notification-devel, gettext
 # Required for intltool...
-BuildRequires: perl(XML::Parser)
+BuildRequires: perl(XML::Parser), intltool
 
 %description
 ACME is a small GNOME tool to make use of the multimedia buttons present on

@@ -13,7 +13,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(pre): scrollkeeper
 Requires(postun): scrollkeeper
 BuildRequires: libgnomeui-devel >= 2.0.0, libgnomeprintui22-devel
-BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
+BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel, gcc-c++
 BuildRequires: scrollkeeper, gettext, libexif-devel, gphoto2-devel
 # Required for intltool...
 BuildRequires: perl(XML::Parser)

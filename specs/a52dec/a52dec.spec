@@ -14,6 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %ifnarch %{ix86}
 BuildRequires: autoconf, automake, libtool
 %endif
+BuildRequires: gcc-c++
 
 %description
 liba52 is a free library for decoding ATSC A/52 streams. It is released

@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
 Provides: libgpgme = %{version}-%{release}
 Requires: gnupg >= 1.2.0, libgpg-error >= 0.5
-BuildRequires: gnupg >= 1.2.0, libgpg-error-devel >= 0.5, info
+BuildRequires: gnupg >= 1.2.0, libgpg-error-devel >= 0.5, info, gcc-c++
 
 %description
 GnuPG Made Easy (GPGME) is a library designed to make access to GnuPG easier

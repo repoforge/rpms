@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.alphalink.com.au/~gnb/ggcov/ggcov-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, pkgconfig, gtk2-devel, libglade2-devel
 Requires: gcc, gcc-c++
 
 %description

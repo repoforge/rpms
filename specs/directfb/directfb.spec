@@ -11,7 +11,7 @@ URL: http://www.directfb.org/
 Source: http://www.directfb.org/download/DirectFB/DirectFB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, freetype-devel >= 2.0
-BuildRequires: SDL-devel, libtool
+BuildRequires: SDL-devel, libtool, gcc-c++
 
 %description
 DirectFB is a thin library that provides hardware graphics acceleration,

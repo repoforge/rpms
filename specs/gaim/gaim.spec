@@ -25,7 +25,7 @@ Patch4: gaim-0.76-xinput.patch
 Patch128: gaim-0.79-cached_buddy_icons.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel
+BuildRequires: XFree86-devel, gcc-c++
 BuildRequires: libtool, gtk2-devel, gtkspell-devel, libao-devel
 BuildRequires: mozilla-nss, mozilla-nss-devel
 BuildRequires: mozilla-nspr, mozilla-nspr-devel, libstdc++-devel
