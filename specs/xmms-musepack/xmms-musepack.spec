@@ -6,14 +6,13 @@
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
 Version: 1.00
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://sourceforge.net/projects/mpegplus/
 Source: http://dl.sf.net/mpegplus/xmms-musepack-%{version}.tar.gz
 Patch: xmms-musepack-1.00-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel, esound-devel
 
 
@@ -27,7 +26,7 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %build
-%{__make} %{?_smp_mflags} OPTIONS="%{optflags} -fPIC"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC"
 
 
 %install
@@ -50,6 +49,9 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %changelog
+* Tue Aug 10 2004 Matthias Saou <http://freshrpms.net/> 1.00-2
+- Fix OPTIONS vs. CFLAGS in addition to the patch to fix x86_64 build.
+
 * Wed Jul  7 2004 Matthias Saou <http://freshrpms.net/> 1.00-1
 - Update to 1.00.
 - Added Makefile patch this time, the gcc flags stuff was just too ugly.
