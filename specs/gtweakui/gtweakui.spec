@@ -2,10 +2,10 @@
 
 %define real_name gTweakUI
 
-Summary: Extra configuration dialogus for GNOME
+Summary: Extra configuration dialogs for GNOME
 Name: gtweakui
 Version: 0.0.6
-Release: 2
+Release: 3
 License: GPL
 Group: User Interface/Desktops
 URL: http://gtweakui.sourceforge.net/
@@ -86,7 +86,11 @@ EOF
 
 
 %changelog
-* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 0.6.2
+* Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 0.6-3
+- Fixed typo in summary.
+- Rebuild with proper category.
+
+* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 0.6-2
 - Added improved desktop files.
 
 * Wed Jun  9 2004 Matthias Saou <http://freshrpms.net/> 0.6-1
