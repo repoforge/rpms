@@ -15,7 +15,7 @@
 
 Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.2.0
+Version: 1.2.1
 Release: 0
 Epoch: 1
 License: GPL
@@ -128,6 +128,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 1.2.1-0
+- Updated to release 1.2.1.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 1.2.0-0
 - Updated to release 1.2.0, keep release 0.
 

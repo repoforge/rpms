@@ -4,8 +4,8 @@
 
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
-Version: 0.8.7
-Release: 2
+Version: 0.8.8
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://samba.idealx.org/index.en.html
@@ -51,6 +51,9 @@ tools to manage users, groups and passwords.
 %{_sbindir}/*
 
 %changelog
+* Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 0.8.8-1
+- Updated to release 0.8.8.
+
 * Wed Feb 16 2005 Dag Wieers <dag@wieers.com> - 0.8.7-2
 - Fixed locations, removed /opt/IDEALX. (Alain Rykaert)
 

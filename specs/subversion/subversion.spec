@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc3
+##ExcludeDist: fc3
 ##Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
@@ -22,7 +22,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.1.3
+Version: 1.1.4
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -37,6 +37,7 @@ Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
 Patch6: subversion-1.0.3-pie.patch
+Patch7: subversion-1.1.3-java.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo
@@ -183,6 +184,7 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 
 %if %{make_check}
 %check
+export LANG=C LC_ALL=C
 %{__make} check CLEANUP=yes
 %endif
 
@@ -241,10 +243,13 @@ ln -f subversion/mod_authz_svn/INSTALL mod_authz_svn-INSTALL
 %endif
 
 %changelog
-* Sat Jan 15 2005 Dag Wieers <dag@wieers.com> - 1.1.3-1
+* Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 1.1.4-0.1
+- Updated to release 1.1.4.
+
+* Sat Jan 15 2005 Dag Wieers <dag@wieers.com> - 1.1.3-0.1
 - Updated to release 1.1.3.
 
-* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 1.1.2-1
+* Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 1.1.2-0.1
 - Updated to release 1.1.2.
 
 * Sat Dec 04 2004 Dag Wieers <dag@wieers.com> - 1.1.1-0.1

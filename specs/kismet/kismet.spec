@@ -2,17 +2,17 @@
 # Authority: dag
 # Upstream: <wireless$kismetwireless,net>
 
-%define real_version 2004-10-R1
+%define real_version 2005-04-R1
 
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-Release: 2.200504r1
+Release: 3.200504r1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
 
-Source0: http://www.kismetwireless.net/code/kismet-%{real_version}.tar.gz
+Source: http://www.kismetwireless.net/code/kismet-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ImageMagick-devel, ncurses-devel, autoconf, flex, gcc-c++
@@ -23,9 +23,15 @@ Kismet is an 802.11 (wireless) network sniffer and network dissector.
 It is capable of sniffing using most wireless cards, automatic network
 IP block detection via UDP, ARP, and DHCP packets, Cisco equipment lists
 via Cisco Discovery Protocol, weak cryptographic packet logging, and
-Ethereal and tcpdump compatible packet dump files. It also includes
-the ability to plot detected networks and estimated network ranges on
-downloaded maps or user supplied image files.
+Ethereal and tcpdump compatible packet dump files.
+
+%package -n gpsmap
+Summary: Tool to plot networks based on kismet files
+Group: Applications/Internet
+
+%description -n gpsmap
+gpsmap allows to plot networks and estimated network ranges detected by
+kismet on downloaded maps or user supplied image files.
 
 %prep
 %setup -n %{name}-%{real_version}
@@ -56,10 +62,16 @@ downloaded maps or user supplied image files.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG GPL README TODO docs/DEVEL.* docs/README*
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/kismet*.1*
+%doc %{_mandir}/man5/*
 %config(noreplace) %{_sysconfdir}/*
-%{_bindir}/*
+%{_bindir}/kismet*
 %{_datadir}/kismet/
+
+%files -n gpsmap
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/gpsmap.1*
+%{_bindir}/gpsmap*
 
 %changelog
 * Sun Apr 03 2005 Dag Wieers <dag@wieers.com> - 3.0.1-2.200504r1

@@ -1,18 +1,17 @@
 # $Id$
 # Authority: dag
 
-##Archs: i386 i686 x86_64
-
-Summary: file archiving utility with compression
+Summary: File archiving utility with compression
 Name: zoo
 Version: 2.10
-Release: 1
+Release: 2
 License: Distributable
 Group: Applications/Archiving
 
 Source: ftp://sunsite.unc.edu/pub/Linux/utils/compress/zoo-%{version}.tar.gz
 Patch0: http://ftp.debian.org/debian/pool/non-free/z/zoo/zoo_2.10-9.diff.gz
 Patch1: zoo-2.10-tempfile.patch
+Patch2: zoo-2.10-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -25,9 +24,10 @@ Rahul Dhesi, and posted to the USENET newsgroup comp.sources.misc.
 %setup
 %patch0 -p1 -b .debian
 %patch1 -p1 -b .tempfile
+%patch2 -p1 -b .gcc4
 
 %build
-%{__make} %{?_smp_mflags} OPTIM="%{optflags}" linux
+%{__make} %{?_smp_mflags} linux OPTIM="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,10 +41,16 @@ Rahul Dhesi, and posted to the USENET newsgroup comp.sources.misc.
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc Copyright Install
+%doc %{_mandir}/man1/fiz.1*
+%doc %{_mandir}/man1/zoo.1*
+%{_bindir}/fiz
+%{_bindir}/zoo
 
 %changelog
+* Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 2.10-2
+- Added gcc4 patch. (Adrian Reber)
+
 * Sat Dec 06 2003 Dag Wieers <dag@wieers.com> - 2.10-1
 - Patch to build on FC1.
 
