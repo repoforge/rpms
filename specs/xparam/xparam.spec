@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/xparam/xparam-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, automake, autoconf, libtool
+BuildRequires: gcc-c++, automake, autoconf, libtool, gdbm-devel, XFree86-devel, db4-devel
 
 %description
 XParam is a general-purpose tool for parameter handling in C++. 
