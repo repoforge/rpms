@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Stéphane Konstantaropoulos <stephanek@brutele.be>
+# Upstream: Stéphane Konstantaropoulos <stephanek$brutele,be>
 
 Summary: GNOME frontend to mplayer, the great movie player for *nix
 Name: lumiere

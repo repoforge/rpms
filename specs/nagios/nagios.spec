@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Ethan Galstad <nagios@nagios.org>
+# Upstream: Ethan Galstad <nagios$nagios,org>
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm

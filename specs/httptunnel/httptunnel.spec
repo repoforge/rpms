@@ -1,6 +1,6 @@
 # $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
 # Authority: dag
-# Upstream: Lars Brinkhoff <bug-httptunnel@gnu.org>
+# Upstream: Lars Brinkhoff <bug-httptunnel$gnu,org>
 
 Summary: Tunnels tcp/ip connections over http
 Name: httptunnel

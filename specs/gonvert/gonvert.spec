@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Anthony Tekatch <anthony@unihedron.com>
+# Upstream: Anthony Tekatch <anthony$unihedron,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: <users@conserver.com>
-# Upstream: Bryan Stansell <bryan@conserver.com>
+# Upstream: <users$conserver,com>
+# Upstream: Bryan Stansell <bryan$conserver,com>
 
 ### FIXME: Add sysv script using sysconfig file.
 

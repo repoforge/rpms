@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Ryan McCabe <ryan@numb.org>
+# Upstream: Ryan McCabe <ryan$numb,org>
 
 Summary: Implementation of the RFC1413 identification server
 Name: oidentd

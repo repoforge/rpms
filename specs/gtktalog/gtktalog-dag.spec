@@ -1,6 +1,6 @@
 # $Id: gtktalog.spec 171 2004-03-28 01:43:07Z dag $
 # Authority: matthias
-# Upstream: <gtktalog-devel@nongnu.org>
+# Upstream: <gtktalog-devel$nongnu,org>
 
 %define desktop_vendor freshrpms
 

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Alp Toker <alp@atoker.com>
+# Upstream: Alp Toker <alp$atoker,com>
 
 Summary: Tray applet for dynamically changing the XFree86 display mode
 Name: switcher

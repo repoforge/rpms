@@ -1,6 +1,6 @@
 # $Id: _template.spec 130 2004-03-17 10:51:35Z dude $
 # Authority: dag
-# Upstream: <socat@dest-unreach.org>
+# Upstream: <socat$dest-unreach,org>
 
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat

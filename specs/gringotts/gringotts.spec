@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Germano Rizzo <mano@pluto.linux.it>
+# Upstream: Germano Rizzo <mano$pluto,linux,it>
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

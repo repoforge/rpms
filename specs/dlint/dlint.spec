@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Paul A. Balyoz <pab@domtools.com>
+# Upstream: Paul A. Balyoz <pab$domtools,com>
 
 Summary: DNS error checking utility
 Name: dlint

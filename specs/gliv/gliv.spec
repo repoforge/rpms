@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Guillaume Chazarain <guichaz@yahoo.fr>
+# Upstream: Guillaume Chazarain <guichaz$yahoo,fr>
 
 Summary: Image viewing utility
 Name: gliv

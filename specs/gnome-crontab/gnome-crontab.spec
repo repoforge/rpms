@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Gavin Brown <jodrell@spod.uk.net>
+# Upstream: Gavin Brown <jodrell$spod,uk,net>
 
 Summary: graphical interface to the crontab program
 Name: gnome-crontab

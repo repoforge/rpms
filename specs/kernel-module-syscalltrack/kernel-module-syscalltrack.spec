@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Muli Ben-Yehuda <mulix@mulix.org>
+# Upstream: Muli Ben-Yehuda <mulix$mulix,org>
 
 # Distcc: 0
 # Soapbox: 0

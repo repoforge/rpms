@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <metakit@equi4.com>
+# Upstream: <metakit$equi4,com>
 
 %define _lib32dir %{_prefix}/lib
 %define python_version %(python -c 'import sys; print sys.version[:3]')

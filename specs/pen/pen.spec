@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ulric Eriksson <ulric@siag.nu>
+# Upstream: Ulric Eriksson <ulric$siag,nu>
 
 Summary: Load balancer for "simple" tcp based protocols
 Name: pen

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <libexif-devel@lists.sf.net>
+# Upstream: <libexif-devel$lists,sf,net>
 
 Name: libexif
 Summary: EXIF image tag library

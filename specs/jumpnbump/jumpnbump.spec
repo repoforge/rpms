@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gurkan@linuks.mine.nu>
+# Upstream: <gurkan$linuks,mine,nu>
 
 Summary: Cute multiplayer network game with bunnies
 Name: jumpnbump

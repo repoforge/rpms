@@ -1,6 +1,6 @@
 # $Id: _template.spec 765 2004-05-20 17:33:53Z dag $
 # Authority: dag
-# Upstream: Samuel Abels <spam@debain.org>
+# Upstream: Samuel Abels <spam$debain,org>
 
 %define real_version 1.2.0-1
 

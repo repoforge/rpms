@@ -1,5 +1,5 @@
 # Authority: dag
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 
 Summary: All-purpose iptables firewall generator
 Name: dwall

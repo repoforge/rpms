@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <nxtvepg-users@lists.sf.net>
+# Upstream: <nxtvepg-users$lists,sf,net>
 # Distcc: 0
 
 %{?dist: %{expand: %%define %dist 1}}

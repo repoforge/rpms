@@ -1,7 +1,7 @@
 # $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
 
 # Authority: dag
-# Upstream: Michal Zalewski <lcamtuf@coredump.cx>
+# Upstream: Michal Zalewski <lcamtuf$coredump,cx>
 
 Summary: Dump the memory of a running process.
 Name: memfetch

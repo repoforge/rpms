@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <broadcast@earthling.net>
+# Upstream: <broadcast$earthling,net>
 
 Summary: Quicktime for Linux
 Name: quicktime4linux

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: atrpms
-# Upstream: <gnupg-devel@gnupg.org>
+# Upstream: <gnupg-devel$gnupg,org>
 
 # ExcludeDist: fc1 fc2
 

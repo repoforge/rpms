@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Markus F.X.J. Oberhumer <markus@oberhumer.com>
+# Upstream: Markus F.X.J. Oberhumer <markus$oberhumer,com>
 
 Summary: Real-time file compressor
 Name: lzop

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <syslinux@zytor.com>
+# Upstream: <syslinux$zytor,com>
 
 # BuildAsRoot: 1
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Mike Ricketts <mike@earth.li>
+# Upstream: Mike Ricketts <mike$earth,li>
 
 Summary: Command line tool to allow sending arbitrary IP packets
 Name: sendip

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Thomas Krennwallner <krennwallner@aon.at>
+# Upstream: Thomas Krennwallner <krennwallner$aon,at>
 
 Summary: The Wake On Lan client
 Name: wol

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Paolo Bacchilega <paolo.bacch@tin.it>
+# Upstream: Paolo Bacchilega <paolo,bacch$tin,it>
 
 Summary: Organize your preferred applications on the GNOME Panel
 Name: quick-lounge-applet

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
+# Upstream: Jorge Ferrer <jferrer$ieeesb,etsit,upm,es>
 
 Summary: Library for writing gnome database programs
 Name: libgnomedb

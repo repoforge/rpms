@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <nagiosplug-devel@lists.sf.net>
+# Upstream: <nagiosplug-devel$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

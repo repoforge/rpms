@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Mike Newman <mike@gtnorthern.demon.co.uk>
+# Upstream: Mike Newman <mike$gtnorthern,demon,co,uk>
 
 Summary: Tool for determining versions of installed GNOME packages
 Name: gnome-pkgview

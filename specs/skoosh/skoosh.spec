@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Timothy Musson <trmusson@ihug.co.nz>
+# Upstream: Timothy Musson <trmusson$ihug,co,nz>
 
 Summary: Simple, friendly, sliding tile puzzle
 Name: skoosh

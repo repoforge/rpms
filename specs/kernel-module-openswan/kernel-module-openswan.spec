@@ -1,6 +1,6 @@
 # $Id: kernel-module-freeswan.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
-# Upstream: <dev@lists.openswan.org>
+# Upstream: <dev$lists,openswan,org>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

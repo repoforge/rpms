@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Simon Floery <simon.floery@gmx.at>
+# Upstream: Simon Floery <simon,floery$gmx,at>
 
 Summary: Graphical scientific calculator
 Name: galculator

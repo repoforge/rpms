@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Ulrik De Bie <ulrik@mind.be>
+# Upstream: Ulrik De Bie <ulrik$mind,be>
 
 Summary: Check unused IP addresses and automagically assign them
 Name: garp

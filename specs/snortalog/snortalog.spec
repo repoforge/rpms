@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jeremy Chartier <jeremy.chartier@free.fr>
+# Upstream: Jeremy Chartier <jeremy,chartier$free,fr>
 
 %define real_version v2.2
 

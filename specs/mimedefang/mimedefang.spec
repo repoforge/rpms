@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
-# Upstream: MIMEDefang mailinglist <mimedefang@lists.roaringpenguin.com>
+# Upstream: MIMEDefang mailinglist <mimedefang$lists,roaringpenguin,com>
 
 Summary: Email filtering application using sendmail's milter interface
 Name: mimedefang
-Version: 2.43
+Version: 2.44
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -115,6 +115,9 @@ fi
 %dir %{_localstatedir}/spool/MD-Quarantine
 
 %changelog
+* Fri Jul 16 2004 Dag Wieers <dag@wieers.com> - 2.44-1
+- Updated to release 2.43.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 2.43-1
 - Updated to release 2.43.
 

@@ -67,15 +67,15 @@ with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
 %patch4 -p0
 
 %build
-echo | CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+echo | CFLAGS="%{optflags} -fPIC" %{__perl} Makefile.PL \
 		PREFIX="%{_prefix}" \
 		SYSCONFDIR="%{_sysconfdir}" \
 		DESTDIR="%{buildroot}" \
 		INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+	OPTIMIZE="%{optflags} -fPIC"
 %{__make} %{?_smp_mflags} spamd/libspamc.so \
-	OPTIMIZE="%{optflags}"
+	OPTIMIZE="%{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}

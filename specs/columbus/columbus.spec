@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Thomas Vander Stichele <thomas@apestaart.org>
+# Upstream: Thomas Vander Stichele <thomas$apestaart,org>
 
 Summary: Automatically detect and configure network settings
 Name: columbus

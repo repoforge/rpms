@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jim Evins <evins@snaught.com>
+# Upstream: Jim Evins <evins$snaught,com>
 
 Summary: GUI program to create labels and business cards
 Name: glabels

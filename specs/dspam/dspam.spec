@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: <dspam-users@nuclearelephant.com>
-# Upstream: Jonathan A. Zdziarski <jonathan@nuclearelephant.com>
+# Upstream: <dspam-users$nuclearelephant,com>
+# Upstream: Jonathan A. Zdziarski <jonathan$nuclearelephant,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

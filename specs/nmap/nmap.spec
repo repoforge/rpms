@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <nmap-dev@insecure.org>
+# Upstream: <nmap-dev$insecure,org>
 
 %define desktop_vendor freshrpms
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Nigel Wetters <nigel@wetters.net>
+# Upstream: Nigel Wetters <nigel$wetters,net>
 # Distcc: 0
 
 %define real_name IP-Country

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <prism54-devel@prism54.org>
+# Upstream: <prism54-devel$prism54,org>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

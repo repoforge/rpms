@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <madwifi-devel@lists.sf.net>
+# Upstream: <madwifi-devel$lists,sf,net>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Dug Song <dugsong@monkey.org>
-# Upstream: <libdnet-devel@lists.sf.net>
+# Upstream: Dug Song <dugsong$monkey,org>
+# Upstream: <libdnet-devel$lists,sf,net>
 
 Summary: Simple portable interface to lowlevel networking routines
 Name: libdnet

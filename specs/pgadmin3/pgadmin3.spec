@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Jean-Michel POURE <jm@poure.com>
+# Upstream: Jean-Michel POURE <jm$poure,com>
 
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3

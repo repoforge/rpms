@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Markus Braun <markus.braun@krawel.de>
+# Upstream: Markus Braun <markus,braun$krawel,de>
 
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb

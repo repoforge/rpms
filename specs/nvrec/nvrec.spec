@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Iñaki García Etxebarria <garetxe@users.sf.net>
+# Upstream: Iñaki García Etxebarria <garetxe$users,sf,net>
 
 Summary: High quality, generic capture core
 Name: nvrec

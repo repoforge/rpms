@@ -1,7 +1,7 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Michal Zalewski <lcamtuf@coredump.cx>
-# Upstream: William Stearns <wstearns@pobox.com>
+# Upstream: Michal Zalewski <lcamtuf$coredump,cx>
+# Upstream: William Stearns <wstearns$pobox,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

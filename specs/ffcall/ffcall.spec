@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Bruno Haible <bruno@clisp.org>
+# Upstream: Bruno Haible <bruno$clisp,org>
 
 Summary: Foreign function call libraries
 Name: ffcall

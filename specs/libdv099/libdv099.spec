@@ -1,6 +1,6 @@
 # $Id: libdv.spec,v 1.5 2003/01/23 18:22:53 dude Exp $
 # Authority: dag
-# Upstream: <libdv-dev@lists.sf.net>
+# Upstream: <libdv-dev$lists,sf,net>
 
 %define real_name libdv
 

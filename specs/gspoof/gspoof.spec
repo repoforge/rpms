@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Embyte <embyte@madlab.it>
+# Upstream: Embyte <embyte$madlab,it>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

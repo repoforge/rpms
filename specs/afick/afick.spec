@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Eric Gerbier <gerbier@users.sf.net>
+# Upstream: Eric Gerbier <gerbier$users,sourceforge,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -15,7 +15,7 @@ Version: 2.2
 Release: 2
 License: GPL
 Group: Applications/System
-URL: http://afick.sf.net/
+URL: http://afick.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

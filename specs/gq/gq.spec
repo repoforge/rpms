@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <gqclient-discuss@lists.sf.net>
+# Upstream: <gqclient-discuss$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

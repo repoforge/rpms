@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Fredrik Hubinette <hubbe@hubbe.net>
+# Upstream: Fredrik Hubinette <hubbe$hubbe,net>
 
 Summary: Bond an X display and a VNC session together
 Name: x2vnc

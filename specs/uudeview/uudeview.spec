@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Frank Pilhofer <fp@fpx.de>
+# Upstream: Frank Pilhofer <fp$fpx,de>
 
 %{?dist: %{expand: %%define %dist 1}}
 

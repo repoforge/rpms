@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <cacti-user@lists.sf.net>
+# Upstream: <cacti-user$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 %define real_version 0.8.5a

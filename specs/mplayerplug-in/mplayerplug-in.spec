@@ -1,7 +1,7 @@
 # $Id$
 # Authority: atrpms
-# Upstream: Kevin DeKorte <kdekorte@users.sf.net>
-# Upstream: <mplayerplug-in-devel@lists.sf.net>
+# Upstream: Kevin DeKorte <kdekorte$users,sf,net>
+# Upstream: <mplayerplug-in-devel$lists,sf,net>
 
 %define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
 

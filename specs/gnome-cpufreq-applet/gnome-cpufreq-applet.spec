@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Carlos Garcia Campos <elkalmail@yahoo.es>
+# Upstream: Carlos Garcia Campos <elkalmail$yahoo,es>
 
 Summary: CPU frequency scaling monitor applet
 Name: gnome-cpufreq-applet

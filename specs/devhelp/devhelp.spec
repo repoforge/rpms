@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Mikael Hallendal <micke@imendio.com>
+# Upstream: Mikael Hallendal <micke$imendio,com>
 
 Summary: API document browser
 Name: devhelp

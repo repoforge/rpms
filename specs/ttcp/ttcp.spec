@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Danny Davids <daniel.davids@cern.ch>
+# Upstream: Danny Davids <daniel,davids$cern,ch>
 
 Summary: tool to do memory to memory performance measurements with TCP/IP. 
 Name: ttcp

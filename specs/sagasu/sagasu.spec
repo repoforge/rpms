@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Pierre Sarrazin <sarrazip@sympatico.ca>
+# Upstream: Pierre Sarrazin <sarrazip$sympatico,ca>
 
 Summary: Tool to find strings in a set of files
 Name: sagasu

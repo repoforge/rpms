@@ -1,7 +1,7 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Erik de Castro Lopo <erikd@mega-nerd.com>
-# Upstream: <src@mega-nerd.com>
+# Upstream: Erik de Castro Lopo <erikd$mega-nerd,com>
+# Upstream: <src$mega-nerd,com>
 
 # Distcc: 0
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Christophe Kalt <shmux@taranis.org>
+# Upstream: Christophe Kalt <shmux$taranis,org>
 
 %define real_version 1.0b3
 

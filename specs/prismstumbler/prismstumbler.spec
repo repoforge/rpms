@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Florian <florian.boor@unix-ag.org>
+# Upstream: Florian <florian,boor$unix-ag,org>
 
 %define real_version 0.7.1a
 

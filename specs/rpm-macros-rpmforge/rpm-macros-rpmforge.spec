@@ -81,9 +81,11 @@ RPM macros used by the RPMForge project.
 %%distribution RPMForge repository for Red Hat Linux 7.X
 %%errata 73
 %%_without_alsa 1
+%%_without_autoconf213 1
 %%_without_freedesktop 1
 %%_without_fribidi 1
 %%_without_gnomevfs2 1
+%%_without_gtk2 1
 %%_without_theora 1
 %endif
 %if "%dist" == "el2"
@@ -91,9 +93,11 @@ RPM macros used by the RPMForge project.
 %%distribution RPMForge repository for Red Hat Enterprise Linux 2.1
 %%errata 72
 %%_without_alsa 1
+%%_without_autoconf213 1
 %%_without_freedesktop 1
 %%_without_fribidi 1
 %%_without_gnomevfs2 1
+%%_without_gtk2 1
 %%_without_theora 1
 %endif
 %if "%dist" == "rh6"
@@ -101,10 +105,19 @@ RPM macros used by the RPMForge project.
 %%distribution RPMForge repository for Red Hat Linux 6.2
 %%errata 62
 %%_without_alsa 1
+%%_without_autoconf213 1
 %%_without_freedesktop 1
 %%_without_fribidi 1
 %%_without_gnomevfs2 1
+%%_without_gtk2 1
 %%_without_theora 1
+%endif
+
+%ifarch x86_64
+### Architecture: x86_64
+%%_without_mjpeg 1
+%%_without_nasm 1
+%%_without_quicktime 1
 %endif
 EOF
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <webadmin-devel@lists.sf.net>
+# Upstream: <webadmin-devel$lists,sf,net>
 
 # BuildAsRoot: 1
 

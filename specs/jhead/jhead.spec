@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Matthias Wandel <mwandel@sentex.net>
+# Upstream: Matthias Wandel <mwandel$sentex,net>
 
 Summary: Tool for handling EXIF metadata in JPEG image files
 Name: jhead

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <libquicktime-devel@lists.sf.net>
+# Upstream: <libquicktime-devel$lists,sf,net>
 
 # We want to explicitely disable MMX for ppc, x86_64 etc.
 %ifnarch %{ix86}

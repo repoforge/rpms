@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <monitgroup@tildeslash.com>
+# Upstream: <monitgroup$tildeslash,com>
 
 Summary: Process monitor and restart utility
 Name: monit

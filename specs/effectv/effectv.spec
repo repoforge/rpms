@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <effectv-developers@lists.sf.net>
+# Upstream: <effectv-developers$lists,sf,net>
 
 Summary: Real-time video effector
 Name: effectv

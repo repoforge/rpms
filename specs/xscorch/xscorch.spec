@@ -1,6 +1,6 @@
 # $Id$
 # Authority: newrpms
-# Upstream: Justin David Smith <justins@chaos2.org>
+# Upstream: Justin David Smith <justins$chaos2,org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Lauris Kaplinski <lauris@kaplinski.com>
+# Upstream: Lauris Kaplinski <lauris$kaplinski,com>
 
 ##Archs: i686 i386 x86_64
 

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <childsplay@linux.isbeter.nl>
+# Upstream: <childsplay$linux,isbeter,nl>
 
 %define real_version 0.69-1
 

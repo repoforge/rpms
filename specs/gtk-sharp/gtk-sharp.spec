@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gtk-sharp-list@ximian.com>
+# Upstream: <gtk-sharp-list$ximian,com>
 
 Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Pedro L. Orso <orso@onda.com.br>
-# Upstream: <orso@yahoogroups.com>
+# Upstream: Pedro L. Orso <orso$onda,com,br>
+# Upstream: <orso$yahoogroups,com>
 
 Summary: Squid usage report generator per user/ip/name
 Name: sarg

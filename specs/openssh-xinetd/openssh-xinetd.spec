@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 
 Summary: OpenSSH backup xinetd entry
 Name: openssh-xinetd

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ricardo Galli <gallir@uib.es>
+# Upstream: Ricardo Galli <gallir$uib,es>
 
 Summary: Control the speed and power consumption of your computer
 Name: cpudyn

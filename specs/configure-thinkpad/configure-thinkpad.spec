@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <wang@ai.mit.edu>
+# Upstream: <wang$ai,mit,edu>
 
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad

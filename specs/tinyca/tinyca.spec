@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <sm@sm-zone.net>
+# Upstream: <sm$sm-zone,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

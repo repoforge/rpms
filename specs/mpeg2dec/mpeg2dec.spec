@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <libmpeg2-devel@lists.sf.net>
+# Upstream: <libmpeg2-devel$lists,sf,net>
 
 #define date 20030701
 

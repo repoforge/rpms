@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <proftp-devel@lists.sf.net>
+# Upstream: <proftp-devel$lists,sf,net>
 # Distcc: 0
 
 Summary: Flexible, stable and highly-configurable FTP server

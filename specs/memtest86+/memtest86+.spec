@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Samuel Demeulemeester <memtest@memtest.org>
+# Upstream: Samuel Demeulemeester <memtest$memtest,org>
 
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 

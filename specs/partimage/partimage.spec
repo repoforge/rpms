@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: François Dupoux <fdupoux@partimage.org>
+# Upstream: François Dupoux <fdupoux$partimage,org>
 
 # Distcc: 0
 

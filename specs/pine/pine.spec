@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: news://comp.mail.pine/
+# Upstream: news://comp,mail,pine/
 
 %{?dist: %{expand: %%define %dist 1}}
 

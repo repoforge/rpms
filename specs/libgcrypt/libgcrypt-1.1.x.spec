@@ -1,6 +1,6 @@
 # $Id: libgcrypt.spec 171 2004-03-28 01:43:07Z dag $
 # Authority: atrpms
-# Upstream: <gnupg-devel@gnupg.org>
+# Upstream: <gnupg-devel$gnupg,org>
 
 # Tag: test
 

@@ -1,7 +1,7 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Gerard Paul Java <riker@seul.org>
-# Upstream: <iptraf-users@seul.org>
+# Upstream: Gerard Paul Java <riker$seul,org>
+# Upstream: <iptraf-users$seul,org>
 
 Summary: Console-based network monitoring utility
 Name: iptraf

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Tobi Oetiker <oetiker@ee.ethz.ch>
+# Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
 %{?dist: %{expand: %%define %dist 1}}
 

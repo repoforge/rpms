@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jutta Degener <jutta@pobox.com>
+# Upstream: Jutta Degener <jutta$pobox,com>
 
 %define srcver 1.0-pl10
 

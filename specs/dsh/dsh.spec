@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Junichi Uekawa <dancer@netfort.gr.jp>
+# Upstream: Junichi Uekawa <dancer$netfort,gr,jp>
 
 Summary: Distributed shell. Allows running of a single command on multiple hosts
 Name: dsh

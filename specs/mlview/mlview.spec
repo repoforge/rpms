@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Dodji Seketeli <dodji@gnome.org>
+# Upstream: Dodji Seketeli <dodji$gnome,org>
 
 Summary: Graphical XML Editor
 Name: mlview

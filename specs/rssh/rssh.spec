@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Derek Martin <code@pizzashack.org>
-# Upstream: <rssh-discuss@lists.sf.net>
+# Upstream: Derek Martin <code$pizzashack,org>
+# Upstream: <rssh-discuss$lists,sf,net>
 
 Summary: Restricted shell for use with OpenSSH, allowing only scp and/or sftp
 Name: rssh

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Massimiliano Ghilardi <max@Linuz.sns.it>
+# Upstream: Massimiliano Ghilardi <max$Linuz,sns,it>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0

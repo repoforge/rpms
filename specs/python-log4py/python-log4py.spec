@@ -1,7 +1,7 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: Martin Preishuber <Martin.Preishuber@eclipt.at>
+# Upstream: Martin Preishuber <Martin,Preishuber$eclipt,at>
 # Screenshot: http://www.its4you.at/images/screenshots/log4py.png
 
 %define real_name log4py

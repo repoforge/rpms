@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Hans Schmid <schmidjo@bnro.de>
+# Upstream: Hans Schmid <schmidjo$bnro,de>
 
 %{?dist: %{expand: %%define %dist 1}}
 

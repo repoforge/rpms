@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Rob Caelers <robc@krandor.org>
+# Upstream: Rob Caelers <robc$krandor,org>
 
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave

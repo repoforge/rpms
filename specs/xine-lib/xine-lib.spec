@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <xine-user@lists.sf.net>
+# Upstream: <xine-user$lists,sf,net>
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}

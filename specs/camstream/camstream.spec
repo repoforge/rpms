@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: CamStream Author <camstream@smcc.demon.nl>
+# Upstream: CamStream Author <camstream$smcc,demon,nl>
 
 Summary: collection of tools for webcams and other video-devices
 Name: camstream

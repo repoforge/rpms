@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Martin Pool <mbp@sourcefrog.net>
-# Upstream: <distcc@lists.samba.org>
+# Upstream: Martin Pool <mbp$sourcefrog,net>
+# Upstream: <distcc$lists,samba,org>
 
 %{?dist: %{expand: %%define %dist 1}}
 

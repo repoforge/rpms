@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <pancho-discuss@lunarmedia.net>
+# Upstream: <pancho-discuss$lunarmedia,net>
 
 %define perl_sitelib  %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 

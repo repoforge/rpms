@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: <trac@lists.edgewall.com>
+# Upstream: <trac$lists,edgewall,com>
 
 Name: trac
 Summary: Integrated SCM and project management tool

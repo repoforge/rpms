@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Blake Matheny <bmatheny@purdue.edu>
+# Upstream: Blake Matheny <bmatheny$purdue,edu>
 
 Summary: Change Password Utility
 Name: cpu

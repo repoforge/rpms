@@ -1,6 +1,6 @@
 # $Id: perl-IP-Country.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
-# Upstream: Andrew Arensburger <arensb@ooblick.com>
+# Upstream: Andrew Arensburger <arensb$ooblick,com>
 
 %define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)

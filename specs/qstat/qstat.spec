@@ -1,6 +1,6 @@
 # $Id$
 # Authority: newrpms
-# Upstream: Steve Jankowski <steve@qstat.org>
+# Upstream: Steve Jankowski <steve$qstat,org>
 
 %define real_version 25c
 

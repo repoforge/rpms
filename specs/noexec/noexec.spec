@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Valery Reznic <valery_reznic@users.sf.net>
+# Upstream: Valery Reznic <valery_reznic$users,sf,net>
 
 Summary: Run a process unable to create childs
 Name: noexec

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Marco Valleri <crwm@freemail.it>
-# Upstream: Alberto Ornaghi <alor@users.sourceforge.net>
+# Upstream: Marco Valleri <crwm$freemail,it>
+# Upstream: Alberto Ornaghi <alor$users,sourceforge,net>
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap

@@ -1,6 +1,6 @@
 # $Id: _template.spec 130 2004-03-17 10:51:35Z dude $
 # Authority: dag
-# Upstream: Chris Lightfoot <chris@ex-parrot.com>
+# Upstream: Chris Lightfoot <chris$ex-parrot,com>
 
 Summary: Sniff the network for images and movies and displays them
 Name: driftnet

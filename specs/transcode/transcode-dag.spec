@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
-# Upstream: Thomas Östreich <ostreich@theorie.physik.uni-goettingen.de>
-# Upstream: Tilmann Bitterberg <transcode@tibit.org>
+# Upstream: Thomas Östreich <ostreich$theorie,physik,uni-goettingen,de>
+# Upstream: Tilmann Bitterberg <transcode$tibit,org>
 
 # Distcc: 0
 

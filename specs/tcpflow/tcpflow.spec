@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jeremy Elson <jelson@circlemud.org>
+# Upstream: Jeremy Elson <jelson$circlemud,org>
 
 Summary: Network traffic recorder
 Name: tcpflow

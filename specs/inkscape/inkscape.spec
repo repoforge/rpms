@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <inkscape-devel@lists.sf.net>
+# Upstream: <inkscape-devel$lists,sf,net>
 
 # Distcc: 0
 

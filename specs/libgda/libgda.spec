@@ -1,15 +1,12 @@
 # $Id$
 # Authority: dag
-# Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
-
-### FIXME: Makefiles don't allow -jX (parallel compilation)
-# Distcc: 0
+# Upstream: Jorge Ferrer <jferrer$ieeesb,etsit,upm,es>
 
 %{?dist: %{expand: %%define %dist 1}}
 
 Summary: Library for writing gnome database programs
 Name: libgda
-Version: 1.1.2
+Version: 1.1.4
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -18,7 +15,7 @@ URL: http://www.gnome-db.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/1.1/libgda-%{version}.tar.bz2
+Source: ftp://ftp.gnome-db.org/pub/gnome-db/sources/v%{version}/libgda-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig >= 0.8, glib2-devel >= 2.0, ncurses-devel
@@ -70,13 +67,12 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_datadir}
 %makeinstall
 %find_lang %{name}-2
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la \
-		%{buildroot}%{_libdir}/libgda/providers/*.a \
-		%{buildroot}%{_libdir}/libgda/providers/*.la
+%{__rm} -f %{buildroot}%{_libdir}/libgda/providers/*.{a,la}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -110,12 +106,19 @@ scrollkeeper-update -q || :
 %{_includedir}/libgda/
 %{_includedir}/libgda-report/
 %{_libdir}/*.a
+%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Tue Apr 27 2004 Dag Wieers <dag@wieers.com> - 1.2.1-1
-- Updated to release 1.2.1.
+* Fri Jun 11 2004 Dag Wieers <dag@wieers.com> - 1.1.4-1
+- Updated to release 1.1.4.
+
+* Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 1.1.3-1
+- Updated to release 1.1.3.
+
+* Mon May 17 2004 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2.
 
 * Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
 - Updated to release 1.1.1.

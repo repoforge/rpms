@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
+# Upstream: Jorge Ferrer <jferrer$ieeesb,etsit,upm,es>
 
 # Distcc: 0
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Joshua Reich <josh@i2pi.com>
+# Upstream: Joshua Reich <josh$i2pi,com>
 
 Summary: Funneling POP proxy
 Name: smunge

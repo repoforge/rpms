@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gordon MacKay <mackay@uno.slctech.org>
+# Upstream: Gordon MacKay <mackay$uno,slctech,org>
 
 %define real_version 1.0a
 

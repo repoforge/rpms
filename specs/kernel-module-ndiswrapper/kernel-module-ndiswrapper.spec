@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <ndiswrapper-general@lists.sourceforge.net>
+# Upstream: <ndiswrapper-general$lists,sourceforge,net>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

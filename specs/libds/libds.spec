@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Malcolm Smith <malxau@users.sf.net>
+# Upstream: Malcolm Smith <malxau$users,sf,net>
 
 Summary: Shared Library for Data Structures
 Name: libds

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <graeme@rillion.net>
+# Upstream: <graeme$rillion,net>
 
 Summary: Interactive program which monitors squid logs and displays them in a nice fashion
 Name: squidview

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Juri Pakaste <juri@iki.fi>
+# Upstream: Juri Pakaste <juri$iki,fi>
 
 Summary: Desktop news aggregator
 Name: straw

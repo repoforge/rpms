@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tomasz Maka <pasp@ll.pl>
+# Upstream: Tomasz Maka <pasp$ll,pl>
 
 Summary: Graphical address book
 Name: dlume

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <spamass-milt-list@nongnu.org>
+# Upstream: <spamass-milt-list$nongnu,org>
 
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter

@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Sébastien Sablé <sable@users.sf.net>
+# Upstream: Sébastien Sablé <sable$users,sf,net>
 
 Summary: Easy access to Braille displays and terminals 
 Name: libbraille

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Brian Carrier <carrier@sleuthkit.org>
+# Upstream: Brian Carrier <carrier$sleuthkit,org>
 
 Summary: Open Source forensic toolkit
 Name: sleuthkit

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Edwin Groothuis <edwin@mavetju.org>
+# Upstream: Edwin Groothuis <edwin$mavetju,org>
 
 Summary: Trace a chain of DNS servers to the source
 Name: dnstracer

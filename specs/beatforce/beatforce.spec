@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Patrick Prasse <patrick.prasse@gmx.net>
+# Upstream: Patrick Prasse <patrick,prasse$gmx,net>
 
 %define real_name BeatForce
 

@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
-# Upstream: Kirk Bauer <kirk@kaybee.org>
-# Upstream: <logwatch-bugs@logwatch.org>
-# Upstream: <logwatch-devel@logwatch.org>
+# Upstream: Kirk Bauer <kirk$kaybee,org>
+# Upstream: <logwatch-bugs$logwatch,org>
+# Upstream: <logwatch-devel$logwatch,org>
 
 Summary: Log file analysis program
 Name: logwatch

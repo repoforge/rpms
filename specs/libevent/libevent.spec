@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Niels Provos <provos@citi.umich.edu>
+# Upstream: Niels Provos <provos$citi,umich,edu>
 
 Summary: Abstract asynchronous event notification library
 Name: libevent

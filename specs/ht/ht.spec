@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dries
-# Upstream: Stefan Weyergraf <sw@weyergraf.de>
-# Upstream: Sebastian Biallas <sb@biallas.net>
+# Upstream: Stefan Weyergraf <sw$weyergraf,de>
+# Upstream: Sebastian Biallas <sb$biallas,net>
 # Screenshot: http://hte.sourceforge.net/screenshots/screenshot5.gif
 # ScreenshotURL: http://hte.sourceforge.net/screenshots.htm
 

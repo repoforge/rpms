@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <gnupg-devel@gnupg.org>
+# Upstream: <gnupg-devel$gnupg,org>
 
 Summary: GnuPG Made Easy
 Name: gpgme

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gaphor-list@lists.sf.net>
+# Upstream: <gaphor-list$lists,sf,net>
 
 Summary: Graphical UML modeling environment
 Name: gaphor

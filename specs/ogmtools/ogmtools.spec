@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Moritz Bunkus <moritz@bunkus.org>
+# Upstream: Moritz Bunkus <moritz$bunkus,org>
 
 Summary: Tools for Ogg media streams
 Name: ogmtools

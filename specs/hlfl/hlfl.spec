@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Arnaud Launay <asl@launay.org>
+# Upstream: Arnaud Launay <asl$launay,org>
 
 %define _datadir %{_prefix}/share/hlfl
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gtranslator-devel@lists.sf.net>
+# Upstream: <gtranslator-devel$lists,sf,net>
 
 Summary: Gettext po file editor
 Name: gtranslator

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Bram Avontuur <bram@avontuur.org>
+# Upstream: Bram Avontuur <bram$avontuur,org>
 
 Summary: Record a program using a video grabber card
 Name: vcr

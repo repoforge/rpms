@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <pybsddb-users@lists.sf.net>
+# Upstream: <pybsddb-users$lists,sf,net>
 
 %define real_name bsddb3
 

@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Simon Howard <fraggle@alkali.org>
+# Upstream: Simon Howard <fraggle$alkali,org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

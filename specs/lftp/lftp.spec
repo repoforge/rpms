@@ -1,7 +1,7 @@
 # $Id$
 # Authority: atrpms
-# Upstream: Alexander V. Lukyanov <lav@yars.free.net>
-# Upstream: <lftp-devel@uniyar.ac.ru>
+# Upstream: Alexander V. Lukyanov <lav$yars,free,net>
+# Upstream: <lftp-devel$uniyar,ac,ru>
 
 # Rationale: lftp 3.0+ supports sftp, http redirects and lots of important improvements
 

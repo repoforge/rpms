@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Mike D. Schiffman <mike@infonexus.com>
+# Upstream: Mike D. Schiffman <mike$infonexus,com>
 
 Summary: Active reconnaissance network security tool
 Name: firewalk

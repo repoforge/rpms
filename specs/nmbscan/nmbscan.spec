@@ -1,6 +1,6 @@
 # $Id: _template.spec 765 2004-05-20 17:33:53Z dag $
 # Authority: dag
-# Upstream: Grégoire Barbier <gb@gbarbier.org>
+# Upstream: Grégoire Barbier <gb$gbarbier,org>
 
 Summary: NMB/SMB network scanner
 Name: nmbscan

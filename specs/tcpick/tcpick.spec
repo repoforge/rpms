@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <tcpick-project@lists.sf.net>
+# Upstream: <tcpick-project$lists,sf,net>
 
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick

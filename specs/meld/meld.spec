@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Stephen Kennedy <steve9000@users.sf.net>
+# Upstream: Stephen Kennedy <steve9000$users,sf,net>
 
 Summary: Graphical visual diff and merge tool
 Name: meld

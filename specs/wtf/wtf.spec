@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Thomas Sutton <thsutton@utas.edu.au>
+# Upstream: Thomas Sutton <thsutton$utas,edu,au>
 
 Summary: Finds acronyms and filename suffixes information
 Name: wtf

@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Michal Zalewski <lcamtuf@ids.pl>
+# Upstream: Michal Zalewski <lcamtuf$ids,pl>
 
 Summary: Realtime packet payload mangling
 Name: netsed

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: T. Bugra Uytun <t.bugra@uytun.com>
+# Upstream: T. Bugra Uytun <t,bugra$uytun,com>
 
 Summary: Personal password manager
 Name: gpasman

@@ -1,6 +1,6 @@
 # $Id: _template.spec 765 2004-05-20 17:33:53Z dag $
 # Authority: dag
-# Upstream: Christopher O'Brien <siege@preoccupied.net>
+# Upstream: Christopher O'Brien <siege$preoccupied,net>
 
 Summary: Lotus Sametime Community Client plugin for Gaim
 Name: gaim-meanwhile

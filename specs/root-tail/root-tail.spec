@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Marc Lehmann <chris.moore@mail.com>
+# Upstream: Marc Lehmann <chris,moore$mail,com>
 
 Summary: Displays a given file anywhere on your X root window
 Name: root-tail

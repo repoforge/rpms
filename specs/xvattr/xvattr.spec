@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Björn Englund <d4bjorn@dtek.chalmers.se>
+# Upstream: Björn Englund <d4bjorn$dtek,chalmers,se>
 
 Summary: Utility for getting and setting Xv attributes
 Name: xvattr

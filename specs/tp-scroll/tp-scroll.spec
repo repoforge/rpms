@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Daniel Grobe Sachs <sachs@uiuc.edu>
+# Upstream: Daniel Grobe Sachs <sachs$uiuc,edu>
 
 Summary: IBM Trackpoint scroll-wheel emulation
 Name: tp-scroll

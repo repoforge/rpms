@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ramos Rubens <rubensr@users.sourceforge.net>
+# Upstream: Ramos Rubens <rubensr$users,sourceforge,net>
 
 Summary: CHM file viewer
 Name: gnochm

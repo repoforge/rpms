@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Derrick J. Houy <djhouy@paw.za.org>
+# Upstream: Derrick J. Houy <djhouy$paw,za,org>
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

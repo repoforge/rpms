@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: newrpms
-# Upstream: <physfs@icculus.org>
+# Upstream: <physfs$icculus,org>
 
 Summary: Library to provide abstract access to various archives
 Name: physfs

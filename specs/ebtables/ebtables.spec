@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <ebtables-devel@lists.sf.net>
+# Upstream: <ebtables-devel$lists,sf,net>
 
 %define _sbindir /sbin
 

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: <warder@warder.ath.cx>
+# Upstream: <warder$warder,ath,cx>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Christian Glodt <chris@mind.lu>
+# Upstream: Christian Glodt <chris$mind,lu>
 
 Summary: Mozilla plugin for using bonobo components
 Name: mozilla-bonobo

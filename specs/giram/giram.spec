@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: David Odin <David@dindinx.org>
+# Upstream: David Odin <David$dindinx,org>
 
 %define major 0.3
 

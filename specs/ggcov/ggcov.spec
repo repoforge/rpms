@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Greg Banks <gnb@alphalink.com.au>
+# Upstream: Greg Banks <gnb$alphalink,com,au>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

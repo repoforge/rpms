@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ian Macdonald <ian@caliban.org>
+# Upstream: Ian Macdonald <ian$caliban,org>
 
 %define real_name bash_completion
 

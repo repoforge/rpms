@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <tcpreplay-users@lists.sf.net>
+# Upstream: <tcpreplay-users$lists,sf,net>
 
 Summary: Replay captured network traffic
 Name: tcpreplay

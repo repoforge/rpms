@@ -1,7 +1,7 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: Martin Pool <mbp@sourcefrog.net>
-# Upstream: <librsync-devel@lists.sf.net>
+# Upstream: Martin Pool <mbp$sourcefrog,net>
+# Upstream: <librsync-devel$lists,sf,net>
 
 Summary: Library that implements the rsync remote-delta algorithm
 Name: librsync

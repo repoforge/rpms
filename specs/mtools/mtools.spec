@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <mtools@tux.org>
+# Upstream: <mtools$tux,org>
 
 # ExclusiveDist: el2 el3
 

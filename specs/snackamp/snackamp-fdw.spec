@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Tom Wilkason <tom.wilkason@cox.net>
+# Upstream: Tom Wilkason <tom,wilkason$cox,net>
 # Tag: test
 
 %define real_name snackAmp

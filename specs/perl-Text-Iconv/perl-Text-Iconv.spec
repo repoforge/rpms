@@ -1,6 +1,6 @@
 # $Id: perl-Text-Iconv 201 2004-06-03 15:24:49Z bert $
 # Authority: dag
-# Upstream: Michael Piotrowski <mxp@dynalabs.de>
+# Upstream: Michael Piotrowski <mxp$dynalabs,de>
 
 %define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <speedtouch-request@ml.free.fr>
+# Upstream: <speedtouch-request$ml,free,fr>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

@@ -1,6 +1,6 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dries
-# Upstream: Alex Pankratov <ap@swapped.cc>
+# Upstream: Alex Pankratov <ap$swapped,cc>
 
 Summary: File signing and signature verification utility
 Name: sign

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <lyx-devel@lists.lyx.org>
+# Upstream: <lyx-devel$lists,lyx,org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

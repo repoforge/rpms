@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gossip-dev@lists.imendio.com>
+# Upstream: <gossip-dev$lists,imendio,com>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

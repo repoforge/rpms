@@ -1,6 +1,6 @@
 # $Id: _template.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
-# Upstream: Sebastian Kienzl <seb@riot.org>
+# Upstream: Sebastian Kienzl <seb$riot,org>
 
 %define real_version 2.1rc1
 

@@ -1,6 +1,6 @@
 # $Id: _template.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
-# Upstream: <gnupg-devel@gnupg.org>
+# Upstream: <gnupg-devel$gnupg,org>
 
 Summary: PIN or passphrase entry dialog
 Name: pinentry

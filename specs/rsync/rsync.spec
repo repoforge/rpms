@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Martin Pool <mbp@sourcefrog.net>
+# Upstream: Martin Pool <mbp$sourcefrog,net>
 
 ### Lates rsync is part of fc2
 # ExcludeDist: fc2

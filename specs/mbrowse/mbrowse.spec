@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Aaron Hodgen <ahodgen@munsterman.com>
+# Upstream: Aaron Hodgen <ahodgen$munsterman,com>
 
 # Screenshot: http://www.kill-9.org/mbrowse/screenshot/tree.png
 # ScreenshotURL: http://www.kill-9.org/mbrowse/#Screenshots

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Emmanuel Saracco <esaracco@noos.fr>
+# Upstream: Emmanuel Saracco <esaracco$noos,fr>
 
 Summary: Graphical link validity checker
 Name: gurlchecker

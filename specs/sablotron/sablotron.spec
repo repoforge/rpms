@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <sablist@gingerall.cz>
+# Upstream: <sablist$gingerall,cz>
 
 %define real_name Sablot
 

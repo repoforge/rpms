@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Nigel Wetters <nigel@wetters.net>
+# Upstream: Nigel Wetters <nigel$wetters,net>
 
 %define real_name Geography-Countries
 

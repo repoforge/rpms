@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <libdvdplay-devel@videolan.org>
+# Upstream: <libdvdplay-devel$videolan,org>
 
 Summary: Portable abstraction library for DVD menus support
 Name: libdvdplay

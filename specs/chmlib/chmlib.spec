@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jed Wing <jedwin@ugcs.caltech.edu>
+# Upstream: Jed Wing <jedwin$ugcs,caltech,edu>
 
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib

@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: <dirac-develop@lists.sf.net>
+# Upstream: <dirac-develop$lists,sf,net>
 
 Summary: General-purpose video codec
 Name: dirac

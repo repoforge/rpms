@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Kevin Vigor <kevin@vigor.nu>
+# Upstream: Kevin Vigor <kevin$vigor,nu>
 
 Summary: Differential X protocol compressor
 Name: dxpc

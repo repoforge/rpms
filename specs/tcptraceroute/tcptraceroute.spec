@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Michael C. Toren <mct@toren.net>
-# Upstream: <tcptraceroute-dev@netisland.net>
+# Upstream: Michael C. Toren <mct$toren,net>
+# Upstream: <tcptraceroute-dev$netisland,net>
 
 %define real_version 1.5beta5
 

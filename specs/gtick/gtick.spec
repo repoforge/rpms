@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Roland Stigge <stigge@antcom.de>
-# Upstream: <gtick-devel@nongnu.org>
+# Upstream: Roland Stigge <stigge$antcom,de>
+# Upstream: <gtick-devel$nongnu,org>
 
 Summary: Metronome application
 Name: gtick

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Thomas Vander Stichele <thomas@apestaart.org>
+# Upstream: Thomas Vander Stichele <thomas$apestaart,org>
 
 %define logmsg logger -t mach/rpm
 

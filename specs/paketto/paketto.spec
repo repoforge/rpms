@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Dan Kaminsky <dan@doxpara.com>
+# Upstream: Dan Kaminsky <dan$doxpara,com>
 # Distcc: 0
 
 %define real_version 2.00pre3

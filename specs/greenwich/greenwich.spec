@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gavin Brown <jodrell@spod.uk.net>
+# Upstream: Gavin Brown <jodrell$spod,uk,net>
 
 Summary: Graphical whois client
 Name: greenwich

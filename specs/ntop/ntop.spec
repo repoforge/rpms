@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Luca Deri <deri@ntop.org>
+# Upstream: Luca Deri <deri$ntop,org>
 
 # Distcc: 0
 

@@ -1,6 +1,6 @@
 # $Id: perl-Tk.spec 1 2004-03-22 12:05:34Z bert $
 # Authority: dag
-# Upstream: <ptk@lists.stanford.edu>
+# Upstream: <ptk$lists,stanford,edu>
 
 %define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)

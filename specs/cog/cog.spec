@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <maxx@daimi.au.dk>
+# Upstream: <maxx$daimi,au,dk>
 
 Summary: Advanced GNOME configuration editor
 Name: cog

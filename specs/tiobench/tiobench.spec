@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Mika Kuoppala <miku@iki.fi>
+# Upstream: Mika Kuoppala <miku$iki,fi>
 
 Summary: Threaded IO benchmarking utility
 Name: tiobench

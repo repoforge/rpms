@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Thierry Godefroy <xdialog@free.fr>
+# Upstream: Thierry Godefroy <xdialog$free,fr>
 
 %define real_name Xdialog
 

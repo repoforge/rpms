@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Krischan Jodies <krischan@jodies.cx>
+# Upstream: Krischan Jodies <krischan$jodies,cx>
 
 Summary: IP subnet calculator
 Name: ipcalc

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <squidguard@squidguard.org>
+# Upstream: <squidguard$squidguard,org>
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0

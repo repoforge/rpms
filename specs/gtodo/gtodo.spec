@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gtodo-list@lists.sf.net>
+# Upstream: <gtodo-list$lists,sf,net>
 
 Summary: Graphical todo list tool
 Name: gtodo

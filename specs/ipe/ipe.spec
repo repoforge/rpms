@@ -1,6 +1,6 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: <morin@cs.carleton.ca>
+# Upstream: <morin$cs,carleton,ca>
 
 %define real_version 6.0pre14
 

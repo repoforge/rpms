@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jordan Ritter <jpr5@darkridge.com>
+# Upstream: Jordan Ritter <jpr5$darkridge,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

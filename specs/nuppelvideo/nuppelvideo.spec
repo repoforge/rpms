@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Roman Hochleitner <roman@mars.tuwien.ac.at>
+# Upstream: Roman Hochleitner <roman$mars,tuwien,ac,at>
 
 %define real_name NuppelVideo
 %define real_version 0.52a

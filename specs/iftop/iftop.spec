@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Paul Warren <pdw@ex-parrot.com>
-# Upstream: Chris Lightfoot <chris@ex-parrot.com>
+# Upstream: Paul Warren <pdw$ex-parrot,com>
+# Upstream: Chris Lightfoot <chris$ex-parrot,com>
 
 Summary: Display bandwidth usage on an interface
 Name: iftop

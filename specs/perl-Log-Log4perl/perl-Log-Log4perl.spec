@@ -1,7 +1,7 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: mailto:log4perl-devel@lists.sourceforge.net
+# Upstream: mailto:log4perl-devel$lists,sourceforge,net
 
 %define real_name Log-Log4perl
 

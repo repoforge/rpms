@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Eric M. Johnston <emj@postal.net>
+# Upstream: Eric M. Johnston <emj$postal,net>
 
 Summary: Shows Exif (Exchangeable Image File) image metadata
 Name: exiftags

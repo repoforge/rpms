@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Dag Lem <rpcmgr@nimrod.no>
+# Upstream: Dag Lem <rpcmgr$nimrod,no>
 
 Summary: DVD RPC (Region Playback Control) tool
 Name: rpcmgr

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: marius aamodt eriksen <marius@monkey.org>
+# Upstream: marius aamodt eriksen <marius$monkey,org>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation) with -j5
 # Distcc: 0

@@ -1,6 +1,6 @@
 # $Id: lincvs.spec,v 1.2 2004/04/01 11:53:59 costa Exp costa $
 # Authority: dag
-# Upstream: <lincvs-users@sunsite.dk>
+# Upstream: <lincvs-users$sunsite,dk>
 
 Summary: Graphical frontend to CVS.
 Name: lincvs
@@ -52,7 +52,12 @@ EOF
 source "%{_sysconfdir}/profile.d/qt.sh"
 
 ### FIXME: Dirty trick so RH qmake creates Makefile with exceptions enabled (Please fix upstream)
-qmake -o - lincvs.pro | sed -e 's|-fno-exceptions|-fexceptions|g' | grep -v '^Project MESSAGE:' > Makefile
+qmake -o - lincvs.pro | sed -e 's|-fno-exceptions|-fexceptions|g' > Makefile
+
+#qmake -o Makefile.tmp lincvs.pro
+#sed -e 's|-fno-exceptions|-fexceptions|g' Makefile.tmp >Makefile
+#rm Makefile.tmp
+
 %{__make} %{?_smp_mflags}
 
 %install

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <vlc-devel@videolan.org>
+# Upstream: <vlc-devel$videolan,org>
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
@@ -128,6 +128,7 @@ pushd ffmpeg-%{ffmpeg_date}
 popd
 
 %configure \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --enable-release \
     %{?_without_dvd:--disable-dvd} \
     %{!?_without_dvdread:--enable-dvdread} \

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Pascal Brochart <pbrochart@tuxfamily.org>
+# Upstream: Pascal Brochart <pbrochart$tuxfamily,org>
 
 %define xmms_visualdir %(xmms-config --visualization-plugin-dir)
 

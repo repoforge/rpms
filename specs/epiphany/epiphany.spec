@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Marco Pesenti Gritti <mpeseng@tin.it>
+# Upstream: Marco Pesenti Gritti <mpeseng$tin,it>
 
 %define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 

@@ -1,6 +1,6 @@
 # $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
 # Authority: dag
-# Upstream: Daniel Barron <author@dansguardian.org>
+# Upstream: Daniel Barron <author$dansguardian,org>
 
 %define real_name DansGuardian
 %define real_version 2.6.1-13

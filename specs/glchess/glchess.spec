@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <glchess-devel@lists.sf.net>
+# Upstream: <glchess-devel$lists,sf,net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

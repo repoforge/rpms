@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Darryl Luff <djluff@users.sf.net>
+# Upstream: Darryl Luff <djluff$users,sf,net>
 
 Summary: Graphical database query tool for MySQL and PostgreSQL
 Name: gtksql

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Peter Andreasen <pandr@pandr.dk>
+# Upstream: Peter Andreasen <pandr$pandr,dk>
 
 Summary: Markup-language based presentation tool
 Name: pointless

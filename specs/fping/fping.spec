@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Thomas Dzubin <dzubin@vcn.bc.ca>
+# Upstream: Thomas Dzubin <dzubin$vcn,bc,ca>
 
 %define real_version 2.4b2
 

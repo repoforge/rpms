@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <contact@frozen-bubble.org>
+# Upstream: <contact$frozen-bubble,org>
 
 %define desktop_vendor freshrpms
 

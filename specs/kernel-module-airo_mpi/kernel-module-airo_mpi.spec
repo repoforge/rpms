@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Fabrice Bellet <fabrice@bellet.info>
+# Upstream: Fabrice Bellet <fabrice$bellet,info>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

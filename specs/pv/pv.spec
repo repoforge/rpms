@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Andrew Wood <andrew.wood@ivarch.com>
+# Upstream: Andrew Wood <andrew,wood$ivarch,com>
 
 Summary: Monitor the progress of data through a pipe
 Name: pv

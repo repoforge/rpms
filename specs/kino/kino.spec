@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Dan Dennedy <ddennedy@users.sf.net>
+# Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
 %ifnarch %{ix86}
 %define _without_quicktime 1

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <nester@users.sf.net>
+# Upstream: <nester$users,sf,net>
 
 Summary: Secure file deletion utility
 Name: wipe

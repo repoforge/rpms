@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Josh Buhl <jbuhl@users.sourseforge.net>
+# Upstream: Josh Buhl <jbuhl$users,sourseforge,net>
 
 %define real_version 0.32
 

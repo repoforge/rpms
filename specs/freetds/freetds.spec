@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <freetds@lists.ibiblio.org>
+# Upstream: <freetds$lists,ibiblio,org>
 
 %define _includedir %{_prefix}/include/freetds
  

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <drbd-devel@lists.sourceforge.net>
+# Upstream: <drbd-devel$lists,sourceforge,net>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Pavel Krauz <kra@gncz.cz>
+# Upstream: Pavel Krauz <kra$gncz,cz>
 
 Summary: TCP hijacking tool
 Name: hunt

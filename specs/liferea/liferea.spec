@@ -1,7 +1,7 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: Lars Lindner <llando@gmx.de>
-# Upstream: Nathan J. Conrad <t98502@users.sf.net>
+# Upstream: Lars Lindner <llando$gmx,de>
+# Upstream: Nathan J. Conrad <t98502$users,sf,net>
 
 Summary: RSS/RDF feed reader
 Name: liferea

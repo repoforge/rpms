@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Stef Van Dessel <stef@iguana.be>
+# Upstream: Stef Van Dessel <stef$iguana,be>
 
 %define real_version 20020930
 

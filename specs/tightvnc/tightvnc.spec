@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <vnc-tight-list@lists.sf.net>
+# Upstream: <vnc-tight-list$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)

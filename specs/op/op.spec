@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Alec Thomas <alec@swapoff.org>
+# Upstream: Alec Thomas <alec$swapoff,org>
 
 Summary: Allows restricted root access for specified users
 Name: op

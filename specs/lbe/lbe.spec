@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jarek Gawor <gawojar@iit.edu>
+# Upstream: Jarek Gawor <gawojar$iit,edu>
 
 %define real_name Browser
 %define real_version 281

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Jarl van Katwijk <jarl@xs4all.nl>
+# Upstream: Jarl van Katwijk <jarl$xs4all,nl>
 
 Summary: Drip is a DVD-to-DIVX;-) ripping frontend for GNOME
 Name: drip

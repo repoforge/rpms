@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Darxus <darxus@chaosreigns.com>
+# Upstream: Darxus <darxus$chaosreigns,com>
 
 Summary: Implementation of /dev/speech
 Name: speechd

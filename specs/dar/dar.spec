@@ -1,6 +1,6 @@
 # $Id$
 
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 
 Summary: Dag Apt Repository builder
 Name: dar

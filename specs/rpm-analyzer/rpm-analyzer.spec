@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <ra@maisondubonheur.com>
+# Upstream: <ra$maisondubonheur,com>
 
 %define pyver %(python2 -c 'import sys; print sys.version[:3]')
 

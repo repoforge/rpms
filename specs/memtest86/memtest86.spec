@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Chris Brady <bugs@memtest86.com>
+# Upstream: Chris Brady <bugs$memtest86,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

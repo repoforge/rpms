@@ -41,8 +41,8 @@ you will need to install %{name}-devel.
 %setup -n STLport-%{version}
 
 %build
-cd src
-%{__make} %{?_smp_mflags} -f gcc-linux.mak
+#%{__make} %{?_smp_mflags} -C src -f gcc-linux.mak
+%{__make} %{?_smp_mflags} -C src -f gcc.mak
 
 %install
 %{__rm} -rf %{buildroot}

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <mhash-dev@lists.sf.net>
+# Upstream: <mhash-dev$lists,sf,net>
 
 %define real_name mhash
 

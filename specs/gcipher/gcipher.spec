@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Shannon -jj Behrens <jjinux@yahoo.com>
-# Upstream: <gcipher-development@lists.sf.net>
+# Upstream: Shannon -jj Behrens <jjinux$yahoo,com>
+# Upstream: <gcipher-development$lists,sf,net>
 
 # Screenshot: http://gcipher.sourceforge.net/images/screenshot_sparse.png
 # ScreenshotURL: http://gcipher.sourceforge.net/images/screenshot.png

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <broadcast@earthling.net>
+# Upstream: <broadcast$earthling,net>
 
 %ifnarch %{ix86}
         %define _without_nasm 1

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: David Boucher <bouda1@wanadoo.fr>
+# Upstream: David Boucher <bouda1$wanadoo,fr>
 
 Summary: Graphical Type1 font editor
 Name: gribouy

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Daniel Stephens <daniel@cheeseplant.org>
+# Upstream: Daniel Stephens <daniel$cheeseplant,org>
 
 Name: metacam
 Version: 1.1

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <distros@mj2.freeswan.org>
+# Upstream: <distros$mj2,freeswan,org>
 # Obsoleted: kernel-module-openswan
 
 # Archs: i686 i586 i386 athlon

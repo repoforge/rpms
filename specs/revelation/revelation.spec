@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Erik Grinaker <erikg@wired-networks.net>
-# Upstream: <revelation-devel@oss.wired-networks.net>
+# Upstream: Erik Grinaker <erikg$wired-networks,net>
+# Upstream: <revelation-devel$oss,wired-networks,net>
 
 Summary: Password manager
 Name: revelation

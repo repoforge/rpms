@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Hilaire Fernandes <hilaire@ext.cri74.org>
+# Upstream: Hilaire Fernandes <hilaire$ext,cri74,org>
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

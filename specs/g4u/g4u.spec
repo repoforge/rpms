@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Hubert Feyrer <hubert@feyrer.de>
+# Upstream: Hubert Feyrer <hubert$feyrer,de>
 
 Summary: Harddisk image cloning tool
 Name: g4u

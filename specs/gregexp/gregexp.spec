@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jens Reimann <ctron@dentrassi.de>
+# Upstream: Jens Reimann <ctron$dentrassi,de>
 
 Summary: Graphical regular expression explorer
 Name: gregexp

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: David Helder <dhelder@umich.edu>
+# Upstream: David Helder <dhelder$umich,edu>
 
 Summary: Simple network library
 Name: gnet2

@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Edwin Groothuis <edwin@mavetju.org>
+# Upstream: Edwin Groothuis <edwin$mavetju,org>
 
 Summary: DHCP daemon ping program
 Name: dhcping

@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: George Farris <farrisg@mala.bc.ca>
+# Upstream: George Farris <farrisg$mala,bc,ca>
 # Distcc: 0
 
 %define real_version 0.6.beta9

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Glynn Foster <glynn.foster@sun.com>
+# Upstream: Glynn Foster <glynn,foster$sun,com>
 
 # ExclusiveDist: rh7 rh8 rh9 el3
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Daniel Elstner <daniel.elstner@gmx.net>
+# Upstream: Daniel Elstner <daniel,elstner$gmx,net>
 
 Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Andy Dustman <webmaster@dustman.net>
+# Upstream: Andy Dustman <webmaster$dustman,net>
 
 %define real_name adns-python
 

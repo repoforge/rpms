@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <info@rndsoftware.com>
+# Upstream: <info$rndsoftware,com>
 
 Summary: Save memory content for forensic analysis
 Name: memget

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Niels Provos <provos@citi.umich.edu>
+# Upstream: Niels Provos <provos$citi,umich,edu>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Folkert Vanheusden <folkert@vanheusden.com>
+# Upstream: Folkert Vanheusden <folkert$vanheusden,com>
 # Screenshot: http://www.vanheusden.com/multitail/multitail.png
 
 Summary: View one or multiple files like tail but with multiple windows

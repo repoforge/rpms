@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Oliver Kurth <oku@masqmail.cx>
+# Upstream: Oliver Kurth <oku$masqmail,cx>
 
 Summary: Offline mail server with pop3 client support
 Name: masqmail

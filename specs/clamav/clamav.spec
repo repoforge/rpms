@@ -1,6 +1,6 @@
 # $Id$
 # Authority: newrpms
-# Upstream: <clamav-devel@lists.sf.net>
+# Upstream: <clamav-devel$lists,sf,net>
 
 Summary: Anti-virus software
 Name: clamav

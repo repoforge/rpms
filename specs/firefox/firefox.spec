@@ -60,6 +60,9 @@ compliance, performance and portability.
 
 %{__cat} <<EOF >bookmarks.html
 <!DOCTYPE NETSCAPE-Bookmark-file-1>
+<!-- This is an automatically generated file.
+It will be read and overwritten.
+Do Not Edit! -->
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 <TITLE>Bookmarks</TITLE>
 <H1>Bookmarks</H1>
@@ -68,14 +71,16 @@ compliance, performance and portability.
     <DT><H3 PERSONAL_TOOLBAR_FOLDER="true" ID="NC:PersonalToolbarFolder">Personal Toolbar Folder</H3>
     <DL><p>
         <DT><A HREF="http://dag.wieers.com/apt/">Dag RPM Repository</A>
+        <DT><A HREF="http://dries.studentenweb.org/apt/">Dries RPM Repository</A>
+        <DT><A HREF="http://freshrpms.net/">FreshRPMS</A>
         <DT><A HREF="http://www.google.com/">Google</A>
         <DT><A HREF="http://www.redhat.com/">Red Hat</A>
     </DL><p>
     <HR>
     <DT><H3>RPMS</H3>
     <DL><p>
-	<DT><A HREF="http://atrpms.physik.fu-berlin.de/">ATrpms</A>
         <DT><A HREF="http://dag.wieers.com/apt/">Dag RPM Repository</A>
+        <DT><A HREF="http://dries.studentenweb.org/apt/">Dries RPM Repository</A>
         <DT><A HREF="http://freshrpms.net/">FreshRPMS</A>
 	<DT><A HREF="http://newrpms.sunsite.dk/">NewRPMS</A>
         <DT><A HREF="http://rpm.pbone.net/">RPM PBone search</A>

@@ -1,6 +1,6 @@
 # $Id: _template.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
-# Upstream: <development@xpde.com>
+# Upstream: <development$xpde,com>
 
 %define installdir /opt/xkde
 %define real_version 0.4.0-20030730

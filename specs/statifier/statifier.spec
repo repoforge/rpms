@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Valery Reznic <valery_reznic@users.sf.net>
+# Upstream: Valery Reznic <valery_reznic$users,sf,net>
 
 Summary: Convert dynamicly-linked ELF binaries into to "pseudo-static" binaries
 Name: statifier

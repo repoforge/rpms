@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <kingleo@gmx.at>
+# Upstream: <kingleo$gmx,at>
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
 %define real_name real_random

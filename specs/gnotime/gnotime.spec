@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Linas Vepstas <linas@linas.org>
+# Upstream: Linas Vepstas <linas$linas,org>
 
 Summary: Graphical Time Tracker
 Name: gnotime

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: <lft-bugs@mainnerve.com>
+# Upstream: <lft-bugs$mainnerve,com>
 
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft

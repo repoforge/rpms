@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Richard Hipp <drh@hwaci.com>
+# Upstream: Richard Hipp <drh$hwaci,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

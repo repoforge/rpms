@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Laurent Protois <laurent.protois@free.fr>
+# Upstream: Laurent Protois <laurent,protois$free,fr>
 
 %define _localstatedir /var/lib
 

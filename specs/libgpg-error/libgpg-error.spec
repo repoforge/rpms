@@ -1,6 +1,6 @@
 # $Id: gpgme.spec 171 2004-03-28 01:43:07Z dag $
 # Authority: dag
-# Upstream: <gnupg-devel@gnupg.org>
+# Upstream: <gnupg-devel$gnupg,org>
 
 # ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
 

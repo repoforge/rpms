@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Noah Levitt <nlevitt@columbia.edu>
+# Upstream: Noah Levitt <nlevitt$columbia,edu>
 
 # ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Chris Kuklewicz <chrisk@mit.edu>
+# Upstream: Chris Kuklewicz <chrisk$mit,edu>
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
 

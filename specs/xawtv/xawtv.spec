@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gerd Knorr <kraxel@bytesex.org>
+# Upstream: Gerd Knorr <kraxel$bytesex,org>
 
 %{?dist: %{expand: %%define %dist 1}}
 

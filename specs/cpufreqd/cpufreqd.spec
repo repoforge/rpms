@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <cpufreqd-user@lists.sourceforge.net>
+# Upstream: <cpufreqd-user$lists,sourceforge,net>
 
 Summary: CPU frequency scaling daemon
 Name: cpufreqd

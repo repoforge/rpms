@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Russell Coker <russell@coker.com.au>
+# Upstream: Russell Coker <russell$coker,com,au>
 
 %define real_version 1.03a
 

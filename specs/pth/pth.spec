@@ -1,6 +1,6 @@
 # $Id: _template.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
-# Upstream: Ralf S. Engelschall <rse@engelschall.com>
+# Upstream: Ralf S. Engelschall <rse$engelschall,com>
 
 Summary: GNU Portable Threads.
 Name: pth

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Nicola Fragale <nicolafragale@libero.it>
+# Upstream: Nicola Fragale <nicolafragale$libero,it>
 
 Summary: Address book application
 Name: rubrica

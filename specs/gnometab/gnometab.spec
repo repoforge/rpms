@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: <jmullins@solutionm.com>, <wguelker@solutionm.com>
+# Upstream: <jmullins$solutionm,com>
+# Upstream: <wguelker$solutionm,com>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

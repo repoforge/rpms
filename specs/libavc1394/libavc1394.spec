@@ -10,15 +10,17 @@ Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libavc1394/
-Source0: http://dl.sf.net/libavc1394/%{name}-%{version}.tar.gz
+
+Source: http://dl.sf.net/libavc1394/libavc1394-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libraw1394 >= 0.8
+
 BuildRequires: libraw1394-devel >= 0.8
+Requires: libraw1394 >= 0.8
 
 %description
 libavc1394 is a programming interface for the 1394 Trade Association
 AV/C (Audio/Video Control) Digital Interface Command Set.
-
+s
 
 %package devel
 Summary: Files for developing applications that use libavc1394
@@ -34,6 +36,10 @@ developing applications that use libavc1394.
 %setup
 
 %build
+%{__libtoolize} --force --copy
+%{__aclocal}
+%{__automake}
+#%{__autoconf}
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -44,9 +50,11 @@ developing applications that use libavc1394.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig 2>/dev/null
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig 2>/dev/null
 
 %files
 %defattr(-, root, root, 0755)

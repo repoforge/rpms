@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Marc Lehmann <pether@plan9.de>
+# Upstream: Marc Lehmann <pether$plan9,de>
 
 ### FIXME: TODO: Add sysv script based on own template.
 

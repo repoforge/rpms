@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Juri Pakaste <juri@iki.fi>
+# Upstream: Juri Pakaste <juri$iki,fi>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0

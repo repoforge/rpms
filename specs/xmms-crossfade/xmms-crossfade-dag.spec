@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Peter Eisenlohr <p.eisenlohr@gmx.net>
+# Upstream: Peter Eisenlohr <p,eisenlohr$gmx,net>
 
 %define xmms_outputdir %(xmms-config --output-plugin-dir)
 

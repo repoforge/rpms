@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Wez Furlong <wez@php.net>
+# Upstream: Wez Furlong <wez$php,net>
 
 %define real_name SQLite
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)

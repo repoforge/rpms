@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Carlos Hasan <chasan@acm.org>
+# Upstream: Carlos Hasan <chasan$acm,org>
 
 %define real_name seal
 %define real_version 107

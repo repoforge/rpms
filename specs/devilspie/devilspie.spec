@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Ross Burton <ross@burtonini.com>
+# Upstream: Ross Burton <ross$burtonini,com>
 
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie

@@ -1,7 +1,6 @@
 # $Id: checkpassword-pam.spec 78 2004-03-09 15:32:47Z dag $
-
 # Authority: dag
-# Upstream: Herve Commowick <hervec@sports.fr>
+# Upstream: Herve Commowick <hervec$sports,fr>
 
 Summary: Provides a simple, uniform password-checking interface using an LDAP database. 
 Name: checkpassword-ldap

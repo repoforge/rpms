@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Michael Krause <rawstyle@soundtracker.org>
-# Upstream: <soundtracker-discuss@lists.sourceforge.net>
+# Upstream: Michael Krause <rawstyle$soundtracker,org>
+# Upstream: <soundtracker-discuss$lists,sourceforge,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Federico Poloni <fph@ngi.it>
+# Upstream: Federico Poloni <fph$ngi,it>
 
 Summary: Very nasty tetris game
 Name: bastet

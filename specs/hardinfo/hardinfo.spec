@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Leandro Pereira <leandro@linuxmag.com.br>
+# Upstream: Leandro Pereira <leandro$linuxmag,com,br>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Marty Roesch <roesch@sourcefire.com>
+# Upstream: Marty Roesch <roesch$sourcefire,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

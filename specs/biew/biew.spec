@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <biew-general@lists.sf.net>
+# Upstream: <biew-general$lists,sf,net>
 
 %define real_version 561
 

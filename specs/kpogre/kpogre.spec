@@ -1,7 +1,7 @@
 # $Id: $
 
 # Authority: dries
-# Upstream: Lumir Vanek <lvanek@eanet.cz>
+# Upstream: Lumir Vanek <lvanek$eanet,cz>
 # Screenshot: http://kpogre.sourceforge.net/kpogre1.png
 # ScreenshotURL: http://kpogre.sourceforge.net/screenshots.htm
 

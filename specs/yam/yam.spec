@@ -1,6 +1,6 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 
 Summary: Tool to create a local RPM repository from ISO files and RPM packages
 Name: yam

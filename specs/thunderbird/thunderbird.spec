@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
-# Distcc: 0
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
 
 Summary: Mozilla Thunderbird mail/news client
 Name: thunderbird
@@ -17,9 +17,9 @@ URL: http://www.mozilla.org/projects/thunderbird/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/thunderbird-%{version}-source.tar.bz2
+Source: http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/thunderbird-source-%{version}.tar.bz2
 Source1: http://downloads.mozdev.org/enigmail/src/ipc-1.0.5.tar.gz
-Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.83.3.tar.gz
+Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.84.tar.gz
 Source3: thunderbird-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -27,6 +27,7 @@ BuildRequires: XFree86-devel, zlib-devel, zip, perl
 BuildRequires: gtk+-devel, libpng-devel, libmng-devel, libjpeg-devel
 BuildRequires: libIDL-devel, ORBit-devel
 BuildRequires: vim-enhanced, csh, gcc-c++
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?fc1:BuildRequires: gtk2-devel}
 %{?el3:BuildRequires: gtk2-devel}
 %{?rh9:BuildRequires: gtk2-devel}

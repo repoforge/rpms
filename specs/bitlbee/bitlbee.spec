@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Wilmer van der Gaast <lintux@lintux.cx>
+# Upstream: Wilmer van der Gaast <lintux$lintux,cx>
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Marcin Wiacek <marcin@mwiacek.com>
+# Upstream: Marcin Wiacek <marcin$mwiacek,com>
 
 Summary: Mobile phone tools
 Name: gammu

@@ -1,7 +1,7 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: Hisham Muhammad <lode@gobolinux.org>
-# Upstream: <htop-general@lists.sf.net>
+# Upstream: Hisham Muhammad <lode$gobolinux,org>
+# Upstream: <htop-general$lists,sf,net>
 
 Summary: Interactive process viewer
 Name: htop

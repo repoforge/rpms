@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: John Smith <imipak@sf.net>
+# Upstream: John Smith <imipak$sf,net>
 
 %define real_name mcrypt
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Tim Wright <tim@ignavus.net>
+# Upstream: Tim Wright <tim$ignavus,net>
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
 

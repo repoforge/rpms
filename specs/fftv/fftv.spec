@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Fabrice Bellard <fabrice.bellard@free.fr>
-# Upstream: <fftv-devel@lists.sf.net>
+# Upstream: Fabrice Bellard <fabrice,bellard$free,fr>
+# Upstream: <fftv-devel$lists,sf,net>
 
 Summary: Advanced television viewing and recording program
 Name: fftv

@@ -1,8 +1,8 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Bjoern Berg <clergyman@gmx.de>
-# Upstream: <info@anubisnet.de>
-# Upstream: <dbf-general@lists.sf.net>
+# Upstream: Bjoern Berg <clergyman$gmx,de>
+# Upstream: <info$anubisnet,de>
+# Upstream: <dbf-general$lists,sf,net>
 
 Summary: Fast convert for dBase, Clipper, FoxBase and Visual FoxPro databases
 Name: dbf

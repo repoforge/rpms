@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Miguelanxo Otero Salgueiro <miguelanxotero@hotmail.com>
+# Upstream: Miguelanxo Otero Salgueiro <miguelanxotero$hotmail,com>
 
 %define real_version 0.1.0-pre2
 

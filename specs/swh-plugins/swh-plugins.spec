@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Steve Harris <steve@plugin.org.uk>
+# Upstream: Steve Harris <steve$plugin,org,uk>
 
 Summary: Steve Harris's set of audio plug-ins for LADSPA
 Name: swh-plugins

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <galeon-devel@lists.sourceforge.net>
+# Upstream: <galeon-devel$lists,sourceforge,net>
 
 %define mversion %(rpm -q mozilla-devel --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' | tail -1)
 %define lversion %(rpm -q mozilla-devel --qf '%{RPMTAG_VERSION}' | tail -1)

@@ -1,7 +1,7 @@
 # $Id: _template.spec 165 2004-03-25 21:32:54Z dag $
 
 # Authority: dag
-# Upstream: FX <fx@phenoelit.de>
+# Upstream: FX <fx$phenoelit,de>
 
 Summary: Inter-network routing protocol attack suite
 Name: irpas

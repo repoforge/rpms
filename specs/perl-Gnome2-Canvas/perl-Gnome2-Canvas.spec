@@ -1,7 +1,7 @@
 # $Id: perl-Gnome2.spec 125 2004-03-16 22:05:34Z dag $
 
 # Authority: dag
-# Upstream: <gtk-perl-list@gnome.org>
+# Upstream: <gtk-perl-list$gnome,org>
 
 %define real_name Gnome2-Canvas
 

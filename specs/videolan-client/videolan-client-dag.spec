@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <vlc-devel@videolan.org>
+# Upstream: <vlc-devel$videolan,org>
 
 # Distcc: 0
 

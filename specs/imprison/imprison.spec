@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Balazs Nagy <js@js.hu>
+# Upstream: Balazs Nagy <js$js,hu>
 
 # Soapbox: 1
 # Imprison: 1

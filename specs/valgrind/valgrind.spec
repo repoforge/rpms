@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Julian Seward <jseward@acm.org>
+# Upstream: Julian Seward <jseward$acm,org>
 
 %define _use_internal_dependency_generator 0
 

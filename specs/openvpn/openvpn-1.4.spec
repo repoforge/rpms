@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: James Yonan <jim@yonan.net>
+# Upstream: James Yonan <jim$yonan,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

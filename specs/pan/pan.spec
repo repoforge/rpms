@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <pan-devel@nongnu.org>
+# Upstream: <pan-devel$nongnu,org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

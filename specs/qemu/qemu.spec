@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Fabrice Bellard <fabrice@bellard.org>
+# Upstream: Fabrice Bellard <fabrice$bellard,org>
 
 #%define _use_internal_dependency_generator 0
 

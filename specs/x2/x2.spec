@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Blair W. Thompson <blair@tangbu.com>
+# Upstream: Blair W. Thompson <blair$tangbu,com>
 
 Summary: The X2 text editor
 Name: x2

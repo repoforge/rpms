@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Feakin <adamf@snika.uklinux.net>
+# Upstream: Adam Feakin <adamf$snika,uklinux,net>
 
 # Distcc: 0
 

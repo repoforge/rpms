@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Kåre Sjölander <kare@speech.kth.se>
+# Upstream: Kåre Sjölander <kare$speech,kth,se>
 
 %{?dist: %{expand: %%define %dist 1}}
 

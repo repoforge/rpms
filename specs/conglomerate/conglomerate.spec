@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Conglomerate Developers <conglomerate-devel@lists.copyleft.no>
+# Upstream: Conglomerate Developers <conglomerate-devel$lists,copyleft,no>
 
 Summary: Information authoring, management, and transformation system
 Name: conglomerate

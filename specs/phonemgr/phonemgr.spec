@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <gnome-bluetooth@usefulinc.com>
+# Upstream: <gnome-bluetooth$usefulinc,com>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0

@@ -1,6 +1,6 @@
 # $Id: epic.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: <list@epicsol.org>
+# Upstream: <list$epicsol,org>
 
 # ExclusiveDist: el2 el3
 

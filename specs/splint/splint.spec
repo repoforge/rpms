@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: splint@splint.org
+# Upstream: splint$splint,org
 
 Summary: Secure programming lint
 Name: splint

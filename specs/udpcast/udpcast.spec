@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <udpcast@udpcast.linux.lu>
+# Upstream: <udpcast$udpcast,linux,lu>
 
 %define real_version 20040222
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: David A Knight <david@ritter.demon.co.uk>
+# Upstream: David A Knight <david$ritter,demon,co,uk>
 
 Summary: Web Site CReating and Editing EnvironMent for GNOME
 Name: screem

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Dug Song <dugsong@monkey.org>
+# Upstream: Dug Song <dugsong$monkey,org>
 
 %{?dist: %{expand: %%define %dist 1}}
 

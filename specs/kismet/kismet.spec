@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <wireless@kismetwireless.net>
+# Upstream: <wireless$kismetwireless,net>
 
 %define real_version 2004-04-R1
 

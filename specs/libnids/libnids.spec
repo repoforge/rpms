@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Rafal Wojtczuk <nergal@icm.edu.pl>
+# Upstream: Rafal Wojtczuk <nergal$icm,edu,pl>
 
 Summary: Implementation of an E-component of Network Intrusion Detection System
 Name: libnids

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <irssi-dev@dragoncat.net>
+# Upstream: <irssi-dev$dragoncat,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

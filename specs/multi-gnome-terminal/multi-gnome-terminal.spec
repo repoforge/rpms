@@ -1,6 +1,6 @@
 # $Id: multi-gnome-terminal.spec,v 1.9 2003/05/02 12:17:30 dude Exp $
 # Authority: dag
-# Upstream: Cristiano De Michele <demichel@na.infn.it>
+# Upstream: Cristiano De Michele <demichel$na,infn,it>
 
 Summary: Extended version of the GNOME terminal
 Name: multi-gnome-terminal

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <libdvbpsi-devel@videolan.org>
+# Upstream: <libdvbpsi-devel$videolan,org>
 
 Summary: Library for decoding and generating MPEG 2 and DVB PSI sections
 Name: libdvbpsi

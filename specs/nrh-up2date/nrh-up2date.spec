@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <nrh-up2date-users@lists.sf.net>
+# Upstream: <nrh-up2date-users$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

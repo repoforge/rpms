@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Fredrik Arnerup <e97_far@e.kth.se>
+# Upstream: Fredrik Arnerup <e97_far$e,kth,se>
 
 Summary: Open Source desktop publishing application
 Name: passepartout

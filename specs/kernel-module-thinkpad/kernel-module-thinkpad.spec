@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Thomas Hood <jdthood@yahoo.co.uk>
+# Upstream: Thomas Hood <jdthood$yahoo,co,uk>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

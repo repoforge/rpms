@@ -1,0 +1,11 @@
+--- wavemon-0.4.0b/wavemon.c.orig
++++ wavemon-0.4.0b/wavemon.c	2004-07-11 19:29:14
+@@ -170,7 +170,7 @@
+ 
+ 	if (conf.dump == 1) {
+ 	  dump_parameters(&conf);
+-	  exit();
++	  exit(0);
+ 	}
+ 
+ 	/* initialize the ncurses interface */

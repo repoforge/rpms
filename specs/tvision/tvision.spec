@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Sergio Sigala <sergio@sigala.it>
+# Upstream: Sergio Sigala <sergio$sigala,it>
 
 Summary: Unix port of Borland TurboVision library
 Name: tvision

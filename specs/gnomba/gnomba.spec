@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Chris Rogers <gandalf@darkcorner.net>
+# Upstream: Chris Rogers <gandalf$darkcorner,net>
 
 ### Goes into a loop with x86_64 (Please investigate)
 # ExcludeDist: el3a fc2a

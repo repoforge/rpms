@@ -1,6 +1,6 @@
 # $Id: epiphany.spec 68 2004-03-09 13:51:01Z dag $
 # Authority: dag
-# Upstream: Marco Pesenti Gritti <mpeseng@tin.it>
+# Upstream: Marco Pesenti Gritti <mpeseng$tin,it>
 
 %define mversion 38:1.6
 

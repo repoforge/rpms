@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Diego Bazzanella <diegobazzanella@tiscalinet.it>
+# Upstream: Diego Bazzanella <diegobazzanella$tiscalinet,it>
 
 Summary: Graphical frontend for lpq and lprm working with Cups queues
 Name: gqueue

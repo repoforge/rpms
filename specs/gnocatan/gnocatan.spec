@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <gnocatan-develop@sf.net>
+# Upstream: <gnocatan-develop$sf,net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

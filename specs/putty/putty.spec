@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <putty@projects.tartarus.org>
+# Upstream: <putty$projects,tartarus,org>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
-# Upstream: Dan Dennedy <ddennedy@users.sf.net>
-# Upstream: <libdv-dev@lists.sourceforge.net>
+# Upstream: Dan Dennedy <ddennedy$users,sf,net>
+# Upstream: <libdv-dev$lists,sourceforge,net>
 # ExcludeDist: fc2
 
 Summary: Codec for DV video, used by most digital camcorders

@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Tommi Saviranta <tsaviran@users.sf.net>
+# Upstream: Tommi Saviranta <tsaviran$users,sf,net>
 
 Summary: Full featured IRC bouncer
 Name: miau

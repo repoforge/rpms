@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Timo Sirainen <tss@iki.fi>
+# Upstream: Timo Sirainen <tss$iki,fi>
 
 Summary: Dovecot secure IMAP server
 Name: dovecot

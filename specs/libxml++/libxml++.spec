@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <libxmlplusplus-general@lists.sf.net>
+# Upstream: <libxmlplusplus-general$lists,sf,net>
 
 Summary: C++ interface for working with XML files
 Name: libxml++

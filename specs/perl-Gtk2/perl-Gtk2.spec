@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <gtk-perl-list@gnome.org>
+# Upstream: <gtk-perl-list$gnome,org>
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0

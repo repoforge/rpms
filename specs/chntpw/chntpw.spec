@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Petter Nordahl-Hagen <pnordahl@eunet.no>
+# Upstream: Petter Nordahl-Hagen <pnordahl$eunet,no>
 
 %define real_version 040116
 

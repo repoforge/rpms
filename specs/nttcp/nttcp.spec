@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Elmar Bartel <bartel@informatik.tu-muenchen.de>
+# Upstream: Elmar Bartel <bartel$informatik,tu-muenchen,de>
 
 Summary: tool to do memory to memory performance measurements with TCP/IP. 
 Name: nttcp

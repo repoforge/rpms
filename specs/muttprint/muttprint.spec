@@ -1,6 +1,6 @@
 # $Id: muttprint.spec 171 2004-04-05 04:43:07Z bert $
 # Authority: bert
-# Upstream: <Bernhard.Walle@gmx.de>
+# Upstream: <Bernhard,Walle$gmx,de>
 
 Summary: pretty printing of mails with Mutt
 Name: muttprint

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Mark McLoughlin <mark@skynet.ie>
+# Upstream: Mark McLoughlin <mark$skynet,ie>
 
 Summary: Network interface status applet
 Name: gnome-netstatus

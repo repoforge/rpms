@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <gtk-perl-list@gnome.org>
+# Upstream: <gtk-perl-list$gnome,org>
 
 %define real_name Glib
 

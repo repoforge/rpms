@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dag
-# Upstream: Tigrux <tigrux@avantel.net>
+# Upstream: Sandindo Flores <saflores$hotmail,com>
+# Upstream: Rishi Sharma <rishsharma$hotmail,com>
 
 %define real_name festival-gaim
 
 Summary: Voice plugin for gaim
 Name: gaim-festival
-Version: 0.77
+Version: 0.78
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://primates.ximian.com/~sandino/festival/
+URL: http://festival-gaim.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -52,10 +53,13 @@ It use festival and is configurable.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENCE README THANKS
+%doc INSTALL LICENSE README THANKS
 %{_libdir}/gaim/*
 
 %changelog
+* Mon Jul 19 2004 Dag Wieers <dag@wieers.com> - 0.78-1
+- Updated to release 0.78.
+
 * Tue May 18 2004 Dag Wieers <dag@wieers.com> - 0.77-1
 - Updated to release 0.77.
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <dvdauthor-developer@lists.sf.net>
+# Upstream: <dvdauthor-developer$lists,sf,net>
 
 Summary: Set of tools to author a DVD
 Name: dvdauthor

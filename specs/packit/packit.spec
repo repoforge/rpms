@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Darren Bounds <dbounds@intrusense.com>
+# Upstream: Darren Bounds <dbounds$intrusense,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

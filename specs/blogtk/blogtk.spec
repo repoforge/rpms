@@ -1,6 +1,6 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: Jay Reding <blogtk@jayreding.com>
+# Upstream: Jay Reding <blogtk$jayreding,com>
 
 %define real_name BloGTK
 

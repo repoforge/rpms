@@ -1,5 +1,5 @@
 # Authority: atrpms
-# Upstream: Marc Heuse <marc@suse.de>
+# Upstream: Marc Heuse <marc$suse,de>
 
 Summary: Confine services in a limited environment
 Name: compartment

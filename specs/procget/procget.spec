@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <info@rndsoftware.com>
+# Upstream: <info$rndsoftware,com>
 
 Summary: Save proc filesystem content for forensic analysis
 Name: procget

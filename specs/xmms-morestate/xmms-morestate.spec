@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: David Deephanphongs <deephan@users.sourceforge.net>
+# Upstream: David Deephanphongs <deephan$users,sourceforge,net>
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir)
 

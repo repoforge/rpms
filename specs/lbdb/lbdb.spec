@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Roland Rosenfeld <roland@spinnaker.de>
+# Upstream: Roland Rosenfeld <roland$spinnaker,de>
 
 Name: lbdb
 Summary: Address database for mutt

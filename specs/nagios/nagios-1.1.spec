@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ethan Galstad <nagios@nagios.org>
+# Upstream: Ethan Galstad <nagios$nagios,org>
 
 %{?dist: %{expand: %%define %dist 1}}
 

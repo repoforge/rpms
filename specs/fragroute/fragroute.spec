@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Dug Song <dugsong@monkey.org>
+# Upstream: Dug Song <dugsong$monkey,org>
 
 Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Daniel Paarmann <daniel@paarmann.net>
+# Upstream: Daniel Paarmann <daniel$paarmann,net>
 
 Summary: Graphical package management program using apt
 Name: synaptic

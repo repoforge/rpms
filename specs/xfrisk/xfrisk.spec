@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: <xfrisk-devel@tuxick.net>
+# Upstream: <xfrisk-devel$tuxick,net>
 
 Summary: Multi-user network version of the classic "Risk"
 Name: xfrisk

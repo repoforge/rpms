@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Michael Grigoriev <mag@luminal.org>
+# Upstream: Michael Grigoriev <mag$luminal,org>
 
 %define plugindir %(xmms-config --general-plugin-dir)
 

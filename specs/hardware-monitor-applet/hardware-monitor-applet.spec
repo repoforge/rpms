@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ole Laursen <olau@hardworking.dk>
+# Upstream: Ole Laursen <olau$hardworking,dk>
 
 %define real_name hardware-monitor
 

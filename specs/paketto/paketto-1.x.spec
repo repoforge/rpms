@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Dan Kaminsky <dan@doxpara.com>
+# Upstream: Dan Kaminsky <dan$doxpara,com>
 
 Summary: Unusual TCP/IP testing tools
 Name: paketto

@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Todor T. Zviskov <warder@warder.ath.cx>
+# Upstream: Todor T. Zviskov <warder$warder,ath,cx>
 
 Summary: Video-For-Linux frontend of transcode
 Name: gv4l

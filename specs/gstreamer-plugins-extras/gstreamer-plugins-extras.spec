@@ -6,7 +6,7 @@
 
 Name: 		%{gstreamer}-plugins-extra
 Version: 	0.8.1
-Release: 	1
+Release: 	0
 Summary: 	GStreamer extra streaming media framework plugins
 
 Group: 		Applications/Multimedia
@@ -188,9 +188,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 0.8.1-1
-- Bumped release for rebuild against newer libdvdnav.
-
 * Thu Apr 15 2004 Thomas Vander Stichele <thomas at apestaart dot org>
 - 0.8.1-0.lvn.1: new source release
 

@@ -1,7 +1,7 @@
 # $Id: _template.spec 130 2004-03-17 10:51:35Z dude $
 
 # Authority: dag
-# Upstream: Alla Bezroutchko <alla@inetcat.org>
+# Upstream: Alla Bezroutchko <alla$inetcat,org>
 
 Summary: NetBIOS name network scanner
 Name: nbtscan

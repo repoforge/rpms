@@ -1,6 +1,6 @@
 # $Id: _template.spec 649 2004-05-15 04:42:12Z dag $
 # Authority: dag
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 
 Summary: Enhanced files copying tool
 Name: vcp

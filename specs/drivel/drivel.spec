@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Todd Kulesza <todd@dropline.net>
+# Upstream: Todd Kulesza <todd$dropline,net>
 
 Summary: LiveJournal client for GNOME
 Name: drivel

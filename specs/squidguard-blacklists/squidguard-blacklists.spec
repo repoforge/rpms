@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 
 ### DB files are different depending on version of db3/db4
 ##Dist: nodist

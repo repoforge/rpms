@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Edward Liu <dhliu@users.sf.net>
+# Upstream: Edward Liu <dhliu$users,sf,net>
 
 Summary: Another cron daemon
 Name: tcron

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Andrew Tridgell <tridge@samba.org>
+# Upstream: Andrew Tridgell <tridge$samba,org>
 
 Summary: Compiler cache
 Name: ccache

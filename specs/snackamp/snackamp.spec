@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tom Wilkason <tom.wilkason@cox.net>
+# Upstream: Tom Wilkason <tom,wilkason$cox,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

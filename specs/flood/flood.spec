@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <test-dev@httpd.apache.org>
+# Upstream: <test-dev$httpd,apache,org>
 
 # Distcc: 0
 

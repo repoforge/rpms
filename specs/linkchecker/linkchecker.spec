@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
-# Upstream: Bastian Kleineidam <calvin@users.sf.net>
+# Upstream: Bastian Kleineidam <calvin$users,sf,net>
+
+### FIXME: Install man-pages in /
 
 Summary: Check HTML documents for broken links
 Name: linkchecker
@@ -15,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/linkchecker/linkchecker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: python-devel >= 2.3
 Requires: python >= 2.3

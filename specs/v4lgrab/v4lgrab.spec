@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Marcus Schneider <marcus.schneider@gmx.net>
+# Upstream: Marcus Schneider <marcus,schneider$gmx,net>
 
 Summary: Realtime Video4Linux recording software
 Name: v4lgrab

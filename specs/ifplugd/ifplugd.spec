@@ -1,7 +1,7 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Lennart Poettering <mzvscyhtq@0pointer.de>
-# Upstream: <ifplugd-discuss@mail.0pointer.de>
+# Upstream: Lennart Poettering <mzvscyhtq$0pointer,de>
+# Upstream: <ifplugd-discuss$mail,0pointer,de>
 
 %define _sbindir /sbin
 

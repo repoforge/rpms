@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Olivier Sessink <olivier@bluefish.openoffice.nl>
+# Upstream: Olivier Sessink <olivier$bluefish,openoffice,nl>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

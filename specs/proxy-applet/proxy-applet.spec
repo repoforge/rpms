@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 # Soapbox: 0
 
 Summary: Tray applet for changing network proxy configuration

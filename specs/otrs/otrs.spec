@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <info@otrs.de>
+# Upstream: <info$otrs,de>
 
 %{?dist: %{expand: %%define %dist 1}}
 

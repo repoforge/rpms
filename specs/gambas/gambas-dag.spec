@@ -1,5 +1,5 @@
 # Authority: dag
-# Upstream: Benoît Minisini <gambas@users.sf.net>
+# Upstream: Benoît Minisini <gambas$users,sf,net>
 
 Summary: BASIC compiler, IDE and GUI builder
 Name: gambas

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <linux5250@midrange.com>
+# Upstream: <linux5250$midrange,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

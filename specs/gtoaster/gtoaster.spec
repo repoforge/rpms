@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <A.Eckleder@bigfoot.com>
+# Upstream: <A,Eckleder$bigfoot,com>
 
 ### Goes into a loop with fc2/x86_64 (Please investigate)
 ##ExcludeDist: fc2i fc2a

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Dug Song <dugsong@monkey.org>
+# Upstream: Dug Song <dugsong$monkey,org>
 
 Summary: Fragrouter is a network intrusion detection evasion toolkit
 Name: fragrouter

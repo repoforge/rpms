@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Germano Rizzo <mano@pluto.linux.it>
+# Upstream: Germano Rizzo <mano$pluto,linux,it>
 
 Summary: libGringotts, a strongbox library
 Name: libgringotts

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <acx100-users@lists.sourceforge.net>
+# Upstream: <acx100-users$lists,sourceforge,net>
 
 # Archs: i686 i586 i386 athlon
 # Distcc: 0

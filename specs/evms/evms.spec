@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <evms-devel@lists.sf.net>
+# Upstream: <evms-devel$lists,sf,net>
 
 %define _sbindir /sbin
 %define _libdir /lib

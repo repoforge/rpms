@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jan Kneschke <jan@kneschke.de>
+# Upstream: Jan Kneschke <jan$kneschke,de>
 
 Summary: Modular Log Analyzer
 Name: modlogan

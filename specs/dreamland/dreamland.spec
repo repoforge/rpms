@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Sergey Zhitomirsky <szh@7ka.mipt.ru>
+# Upstream: Sergey Zhitomirsky <szh$7ka,mipt,ru>
 
 Summary: Execute programs chrooted, with dropped privileges and as another user/group
 Name: dreamland

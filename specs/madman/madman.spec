@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <madman-discuss@lists.sourceforge.net>
+# Upstream: <madman-discuss$lists,sourceforge,net>
 
 Summary: Madman Administrates Digital Music Archives Neatly
 Name: madman

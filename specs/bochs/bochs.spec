@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <bochs-developers@lists.sf.net>
+# Upstream: <bochs-developers$lists,sf,net>
 
 # Distcc: 0
 

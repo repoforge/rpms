@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jerome Tournier <jerome.tournier@idealx.com>
+# Upstream: Jerome Tournier <jerome,tournier$idealx,com>
 
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools

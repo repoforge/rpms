@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Amos Waterland <apw@us.ibm.com>
+# Upstream: Amos Waterland <apw$us,ibm,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

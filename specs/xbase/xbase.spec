@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Derry Bryson <xbase@techass.com>
-# Upstream: <xdb-devel@lists.sf.net>
+# Upstream: Derry Bryson <xbase$techass,com>
+# Upstream: <xdb-devel$lists,sf,net>
 
 Summary: Xbase dBase database file library
 Name: xbase

@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Philip Van Hoof <me@freax.org>
+# Upstream: Philip Van Hoof <me$freax,org>
 
 Summary: GNOME Clipboard Manager
 Name: gcm

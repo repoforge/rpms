@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Adam Kopacz <adam.k@klografx.de>
+# Upstream: Adam Kopacz <adam,k$klografx,de>
 
 Summary: Quick Image Viewer
 Name: qiv

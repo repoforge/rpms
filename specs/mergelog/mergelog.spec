@@ -1,6 +1,6 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: atrpms
-# Upstream: Bertrand Demiddelaer <bert@zehc.net>
+# Upstream: Bertrand Demiddelaer <bert$zehc,net>
 
 Summary: Merges httpd log files by date
 Name: mergelog

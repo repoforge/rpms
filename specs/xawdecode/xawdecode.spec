@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <xawdecode-project@lists.sf.net>
+# Upstream: <xawdecode-project$lists,sf,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Alexandre Parenteau <aubonbeurre@hotmail.com>
+# Upstream: Alexandre Parenteau <aubonbeurre$hotmail,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

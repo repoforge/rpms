@@ -1,6 +1,6 @@
 # $Id: _template.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
-# Upstream: <tril@igs.net>
+# Upstream: <tril$igs,net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

@@ -1,6 +1,6 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: <pysqlite-devel@lists.sf.net>
+# Upstream: <pysqlite-devel$lists,sf,net>
 
 %define real_name pysqlite
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Stuart Caie <kyzer@4u.net>
+# Upstream: Stuart Caie <kyzer$4u,net>
 
 Summary: Program to extract Microsoft Cabinet files
 Name: cabextract

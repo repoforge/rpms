@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: The ZoneCheck Team <zonecheck@nic.fr>
+# Upstream: The ZoneCheck Team <zonecheck$nic,fr>
 
 Summary: Perform consistency checks on DNS zones
 Name: zonecheck

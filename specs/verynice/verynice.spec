@@ -2,7 +2,7 @@
 
 # Authority: dag
 
-# Upstream: Steve Holland <sdh4@cornell.edu>
+# Upstream: Steve Holland <sdh4$cornell,edu>
 
 Summary: Dynamic process renicer and killer
 Name: verynice

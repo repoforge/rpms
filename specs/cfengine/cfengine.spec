@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Mark Burgess <Mark.Burgess@iu.hio.no>
+# Upstream: Mark Burgess <Mark,Burgess$iu,hio,no>
 
 %{?dist: %{expand: %%define %dist 1}}
 

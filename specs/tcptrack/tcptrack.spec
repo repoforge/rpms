@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Steve Benson <steve@rhythm.cx>
+# Upstream: Steve Benson <steve$rhythm,cx>
 
 Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack

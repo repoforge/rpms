@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Matthew Mueller <donut@dakotacom.net>
+# Upstream: Matthew Mueller <donut$dakotacom,net>
 
 Summary: Command line NNTP file grabber
 Name: nget

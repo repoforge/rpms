@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dag
-# Upstream: Nils Philippsen <nphilipp@redhat.com>
+# Upstream: Nils Philippsen <nphilipp$redhat,com>
 
 Summary: Display expanded Source/Patch macros from SPEC files
 Name: spectool

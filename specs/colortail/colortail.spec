@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Joakim Andersson <ja@morrdusk.net>
+# Upstream: Joakim Andersson <ja$morrdusk,net>
 
 %{?dist: %{expand: %%define %dist 1}}
 
