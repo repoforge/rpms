@@ -7,8 +7,8 @@
 
 Summary: Powerful image loading and rendering library
 Name: imlib2
-Version: 1.1.2
-Release: %{?date:0.%{date}.}2
+Version: 1.2.0
+Release: %{?date:0.%{date}.}1
 License: BSD
 Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/imlib2.html
@@ -39,11 +39,12 @@ Header, static libraries and documentation for Imlib2.
 
 %prep
 %setup
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+%{__perl} -pi.orig -e 's|/lib(?=[^/\w])|/%{_lib}|g' configure
 
 %build
 %configure \
     --with-pic \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
 %ifarch %{ix86}
     --enable-mmx
 %else
@@ -71,32 +72,31 @@ Header, static libraries and documentation for Imlib2.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README doc/
-%{_bindir}/*test
-%{_bindir}/color_spaces
-%{_bindir}/imconvert
-%{_bindir}/imlib2*
+%{_bindir}/imlib2_*
 %{_libdir}/libImlib2.so.*
-%dir %{_libdir}/imlib2_loaders/
-%dir %{_libdir}/imlib2_loaders/filter/
-%dir %{_libdir}/imlib2_loaders/image/
-%{_libdir}/imlib2_loaders/filter/*.so
-%{_libdir}/imlib2_loaders/image/*.so
+%{_libdir}/imlib2/
+%{_datadir}/imlib2/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/imlib2-config
 %{_includedir}/Imlib2.h
 %{_libdir}/libImlib2.a
-%exclude %{_libdir}/libImlib2.la
+### Required by kdelibs bug (RHbz #142244)
+%{_libdir}/libImlib2.la
 %{_libdir}/libImlib2.so
-%exclude %{_libdir}/imlib2_loaders/filter/*.a
-%exclude %{_libdir}/imlib2_loaders/filter/*.la
-%exclude %{_libdir}/imlib2_loaders/image/*.a
-%exclude %{_libdir}/imlib2_loaders/image/*.la
-%{_libdir}/pkgconfig/*.pc
+%exclude %{_libdir}/imlib2/filters/*.a
+%exclude %{_libdir}/imlib2/filters/*.la
+%exclude %{_libdir}/imlib2/loaders/*.a
+%exclude %{_libdir}/imlib2/loaders/*.la
+%{_libdir}/pkgconfig/imlib2.pc
 
 
 %changelog
+* Mon Jan 17 2005 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Added --x-libraries and improved x86_64 perl oneliner.
+- Updated to release 1.2.0.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.1.2-2
 - Added bzip2 support.
 - Add --with-pic configure option, but lib still seems to have non-pic code.

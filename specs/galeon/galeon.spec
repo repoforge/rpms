@@ -7,7 +7,7 @@
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
-Version: 1.3.18
+Version: 1.3.19
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -64,8 +64,8 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}-2.0
 
-%{__mv} -f %{buildroot}%{_bindir}/galeon %{buildroot}%{_libdir}/galeon/galeon
-%{__install} -D -m0755 galeon.sh %{buildroot}%{_bindir}/galeon
+#%{__mv} -f %{buildroot}%{_bindir}/galeon %{buildroot}%{_libdir}/galeon/galeon
+#%{__install} -D -m0755 galeon.sh %{buildroot}%{_bindir}/galeon
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/mozilla/plugins/
 
@@ -89,7 +89,7 @@ scrollkeeper-update -q || :
 %config %{_sysconfdir}/sound/events/galeon.soundlist
 %{_bindir}/galeon*
 %{_libdir}/bonobo/servers/*.server
-%{_libdir}/galeon/
+#%{_libdir}/galeon/
 %{_datadir}/applications/galeon.desktop
 %{_datadir}/galeon/
 %{_datadir}/gnome-2.0/ui/*.xml
@@ -101,6 +101,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Jan 16 2005 Dag Wieers <dag@wieers.com> - 1.3.19-1
+- Updated to release 1.3.19.
+
 * Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 1.3.18-1
 - Updated to release 1.3.18.
 
