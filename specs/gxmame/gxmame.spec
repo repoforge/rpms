@@ -1,6 +1,12 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_gettextdevel 1}
+%{?fc4:  %define _with_gettextdevel 1}
+%{?fc3:  %define _with_gettextdevel 1}
+
 #define date 20041213
 %define prever beta1
 
@@ -15,7 +21,8 @@ Source: http://dl.sf.net/gxmame/gxmame-%{version}%{?date:cvs}%{?prever}.tar.gz
 Patch: gxmame-0.35beta1-optfree.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1
-BuildRequires: gtk2-devel, zlib-devel, expat-devel, gettext-devel, intltool
+BuildRequires: gtk2-devel, zlib-devel, expat-devel, intltool, gettext
+%{?_with_gettextdevel:BuildRequires: gettext-devel}
 
 %description
 GXMame is a frontend for XMame using the GTK library, the goal is to provide
@@ -64,6 +71,7 @@ times played, last game selected, gui preference...) under windows and Linux.
 %changelog
 * Wed Mar 16 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.beta1.2
 - Add gxmame-0.35beta1-optfree.patch to fix crash, as reported by Motor.
+- Add _with_gettextdevel build option.
 
 * Mon Feb 14 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.beta1.1
 - Update to 0.35beta1.
