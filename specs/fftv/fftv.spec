@@ -1,12 +1,11 @@
-#D $Id$
-
+# $Id$
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice.bellard@free.fr>
 # Upstream: <fftv-devel@lists.sf.net>
 
 Summary: Advanced television viewing and recording program
 Name: fftv
-Version: 0.7.5
+Version: 0.7.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -46,7 +45,8 @@ EOF
 	--enable-vorbis \
 	--enable-a52 \
 	--enable-faad \
-	--enable-faac
+	--enable-faac \
+	--enable-gpl
 #	--enable-shared
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
@@ -74,15 +74,21 @@ desktop-file-install --vendor gnome                \
 %defattr(-, root, root, 0755)
 %doc Changelog* CREDITS* COPYING INSTALL README
 %doc doc/*.html doc/*.txt
+%doc %{_mandir}/man1/*
 %{_bindir}/*
 #%{_libdir}/*.so
 %{_libdir}/fftv/
+%{_libdir}/menu/*
 %{_libdir}/vhook/
+%{_datadir}/icons/*.png
 %{_datadir}/icons/fftv/
 %{_datadir}/applications/*.desktop
 #%{_includedir}/ffmpeg/
 
 %changelog
+* Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 0.7.9-1
+- Updated to release 0.7.9.
+
 * Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 0.7.5-1
 - Updated to release 0.7.5.
 
