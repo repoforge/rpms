@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: Manuel Amador
 
 %define real_name      directory_administrator
 %define desktop_vendor freshrpms
@@ -10,11 +11,13 @@ Version: 1.5.1
 Release: 3
 License: GPL
 Group: Applications/System
-Source: http://diradmin.open-it.org/%{real_name}-%{version}.tar.gz
 URL: http://diradmin.open-it.org/
-BuildRoot: %{_tmppath}/%{name}-root
-Requires: gnome-libs, openldap
+
+Source: http://diradmin.open-it.org/directory_administrator-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{release}-%{version}-root
+
 BuildRequires: gnome-libs-devel, openldap-devel, desktop-file-utils
+Requires: gnome-libs, openldap
 Obsoletes: directory_administrator <= 1.3.5
 
 %description
