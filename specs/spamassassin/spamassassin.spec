@@ -8,7 +8,7 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 2.63
+Version: 2.64
 Release: 1
 License: GPL or Artistic
 Group: System Environment/Daemons
@@ -17,7 +17,7 @@ URL: http://spamassassin.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://spamassassin.org/released/Mail-SpamAssassin-%{version}.tar.bz2
+Source: http://old.spamassassin.org/released/Mail-SpamAssassin-%{version}.tar.bz2
 Source2: redhat_local.cf
 Source3: spamassassin-default.rc
 Source4: spamassassin-spamc.rc
@@ -67,11 +67,13 @@ with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
 %patch4 -p0
 
 %build
-echo | CFLAGS="%{optflags} -fPIC" %{__perl} Makefile.PL \
-		PREFIX="%{_prefix}" \
+export CFLAGS="%{optflags} -fPIC"
+
+%{__perl} Makefile.PL \
 		SYSCONFDIR="%{_sysconfdir}" \
 		DESTDIR="%{buildroot}" \
-		INSTALLDIRS="vendor"
+		INSTALLDIRS="vendor" \
+		ENABLE_SSL="yes" </dev/null
 %{__make} %{?_smp_mflags} \
 	OPTIMIZE="%{optflags} -fPIC"
 %{__make} %{?_smp_mflags} spamd/libspamc.so \
@@ -143,6 +145,9 @@ fi
 %doc sql/ tools/ masses/ contrib/
 
 %changelog
+* Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 2.64-1
+- Updated to release 2.64.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 2.63-1
 - Merge spamassassin and perl-Mail-SpamAssassin.
 
