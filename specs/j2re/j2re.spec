@@ -35,7 +35,7 @@ This packages provides the environment to run java 2 aplications with JRE.
 %package -n mozilla-j2re
 Summary: Sun Java(tm) 2 Plug-in for the mozilla browser
 Group: Applications/Internet
-Requires: j2re = %{version}-%{release}, mozilla
+Requires: j2re = %{version}-%{release}
 Provides: java-plugin = %{version}, j2re-java-plugin = %{version}
 Obsoletes: java-plugin < %{version}, j2re-java-plugin = < %{version}
 
@@ -240,6 +240,9 @@ find %{buildroot}%{_libdir}/jre/bin/ -type f -exec %{__chmod} 0755 {} \;
 %{_libdir}/netscape/plugins/*
 
 %changelog
+* Thu Jun 24 2004 Dag Wieers <dag@wieers.com> - 1.4.2-9
+- Removed mozilla dependency. (Anand Buddhdev)
+
 * Wed Jun 02 2004 Dag Wieers <dag@wieers.com> - 1.4.2-8
 - Don't fail when update-mime-database is missing. (David Vernon)
 
