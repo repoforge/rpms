@@ -19,7 +19,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/festival-gaim/festival-gaim-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gaim
+BuildRequires: gaim, pkgconfig, libtool
 Requires: gaim, festival
 Obsoletes: festival-gaim
 
