@@ -5,6 +5,7 @@
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
@@ -66,6 +67,7 @@ Categories=Application;Utility;
 EOF
 
 %build
+#./autogen.sh
 %configure \
 	--with-x \
 	--with-gnu-ld \
