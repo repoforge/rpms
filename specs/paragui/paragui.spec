@@ -12,7 +12,7 @@ Group: 	 System Environment/Libraries
 Source:  http://savannah.nongnu.org/download/paragui/%{name}-%{version}.tar.gz
 URL: 	 http://www.bms-austria.com/projects/paragui/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel libpng-devel SDL_image-devel libtiff-devel freetype-devel
+BuildRequires: SDL-devel libpng-devel SDL_image-devel libtiff-devel, freetype-devel, gcc-c++
 
 Packager: Rudolf Kastl <che666 at uni.de>
 Vendor: http://newrpms.sunsite.dk/
