@@ -5,10 +5,12 @@
 # Screenshot: http://passwordmanager.sourceforge.net/1.png
 # ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
 
+%define real_version 1.0pre1
+
 Summary: Personal password manager
 Name: passwordmanager
-Version: 0.8.1
-Release: 1
+Version: 1.0
+Release: pre1.1
 License: GPL
 Group: Applications/Productivity
 URL: http://passwordmanager.sourceforge.net/
@@ -16,7 +18,7 @@ URL: http://passwordmanager.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/passwordmanager/pwmanager-%{version}.tar.bz2
+Source: http://dl.sf.net/passwordmanager/pwmanager-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++,
@@ -31,7 +33,7 @@ master-password you can use a chipcard, so you don't have to remember a
 password to access the list.
 
 %prep
-%setup -n pwmanager-%{version}
+%setup -n pwmanager-%{real_version}
 
 %build
 %configure
@@ -62,8 +64,11 @@ password to access the list.
 %{?fc2:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Sun Jun 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-pre1.1
+- Update to version 1.0-pre1.
+
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
-- update to version 0.8.1
+- Update to version 0.8.1.
 
 * Tue Jun 1 2004 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.
