@@ -1,6 +1,6 @@
---- gambas-0.93b/Makefile.am.orig	2004-06-04 11:12:47.748386744 +0200
-+++ gambas-0.93b/Makefile.am	2004-06-04 11:27:51.636974792 +0200
-@@ -4,33 +4,34 @@
+--- gambas-0.94/Makefile.am.orig	2004-06-25 16:42:41.504044056 +0200
++++ gambas-0.94/Makefile.am	2004-06-25 16:43:56.250680840 +0200
+@@ -4,33 +4,33 @@
  
  install-exec-local:
  	@echo
@@ -28,6 +28,17 @@
 +#	fi
  
  	@echo
+ 	@echo "Creating the library info files..."
+-	@$(INSTALL) -d $(pkgdatadir)/info
+-	@$(bindir)/gbi -a
+-	@rm -f $(pkglibdir)/lib.gb.la
+-	@rm -f $(pkglibdir)/lib.gb.so*
++#	@$(INSTALL) -d $(pkgdatadir)/info
++#	@$(bindir)/gbi -a
++#	@rm -f $(pkglibdir)/lib.gb.la
++#	@rm -f $(pkglibdir)/lib.gb.so*
+ 
+ 	@echo
  	@echo "Installing the development environment..."
  	@(cd $(srcdir)/app; d=`pwd`; for p in *; do echo "Compiling $$p..."; cd $$d/$$p; \
  	  gbc -ag; gba; rm -rf .gambas; $(INSTALL) $$p $(bindir); done)
@@ -39,18 +50,6 @@
 +#	 rm -f /usr/bin/gambas; \
 +#	 ln -s $(bindir)/gambas /usr/bin/gambas; \
 +#        fi
- 
- 	@echo
- 	@echo "Creating the library info files..."
--	@$(INSTALL) -d $(pkgdatadir)/info
--	@$(bindir)/gbi -a
--	@rm -f $(pkglibdir)/lib.gb.la
--	@rm -f $(pkglibdir)/lib.gb.so*
-+	@echo "disabled, does not work while building in a chroot"
-+#	@$(INSTALL) -d $(pkgdatadir)/info
-+#	@$(bindir)/gbi -a
-+#	@rm -f $(pkglibdir)/lib.gb.la
-+#	@rm -f $(pkglibdir)/lib.gb.so*
  
  	@echo
  	@echo "Installing the gambas help files..."
