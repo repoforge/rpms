@@ -3,7 +3,7 @@
 
 Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb
-Version: 2.4.1
+Version: 2.4.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -77,6 +77,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Mon Sep  6 2004 Matthias Saou <http://freshrpms.net/> 2.4.2-1
+- Update to 2.4.2.
+
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 2.4.1-1
 - Update to 2.4.1.
 
