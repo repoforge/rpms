@@ -8,7 +8,7 @@ Summary: Free, cross platform, open-source, audio I/O library.
 Name: portaudio
 Version: 18.1
 Release: 1
-License: distributable
+License: BSD-like
 Group: System Environment/Libraries
 URL: http://www.portaudio.com/
 
@@ -53,3 +53,4 @@ and will be converted to the native format internally.
 
 * Sat Sep 13 2003 Dag Wieers <dag@wieers.com> - 18.1-0
 - Initial package. (using DAR)
+

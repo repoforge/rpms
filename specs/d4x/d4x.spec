@@ -13,8 +13,8 @@ License: Artistic
 URL: http://www.krasu.ru/soft/chuchelo/
 Source: http://www.krasu.ru/soft/chuchelo/files/%{name}-%{version}%{?pre}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk2, libstdc++
-BuildRequires: gtk2-devel, gcc-c++, libstdc++-devel
+Requires: gtk2, glib2, libstdc++
+BuildRequires: gtk2-devel, glib2-devel >= 2.4.0, gcc-c++, libstdc++-devel
 BuildRequires: libao-devel, esound-devel, desktop-file-utils
 
 %description

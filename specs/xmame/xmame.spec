@@ -6,7 +6,7 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.82.1
+Version: 0.83.1
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
@@ -16,11 +16,11 @@ Source12: http://www.mame.net/roms/gridlee.zip
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 8.3 - 09/04/2004
 Source21: http://www.mameworld.net/highscore/uhsdat83.zip
-# http://www.arcade-history.com/ 0.82b - 12/05/2004
-Source22: http://www.arcade-history.com/download/history0_82b.zip
-# http://www.mameworld.net/mameinfo/ 0.82 - 16/05/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo082.zip
-# http://www.mameworld.net/catlist/ 0.82 - 16/05/2004
+# http://www.arcade-history.com/ 0.83 - 05/06/2004
+Source22: http://www.arcade-history.com/download/history0_83.zip
+# http://www.mameworld.net/mameinfo/ 0.83 - 05/06/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo083.zip
+# http://www.mameworld.net/catlist/ 0.83 - 07/06/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -189,13 +189,13 @@ This version has been compiled for OpenGL display.
 
 
 %build
-test -e Makefile || cp -a makefile.unix Makefile
+test -e Makefile || %{__cp} -a makefile.unix Makefile
 # Comment out the defaults, to enable overriding with the env variables
-perl -pi -e 's/^CFLAGS/# CFLAGS/g' Makefile
-perl -pi -e 's/^MY_CPU/# MY_CPU/g' Makefile
+%{__perl} -pi -e 's/^CFLAGS/# CFLAGS/g' Makefile
+%{__perl} -pi -e 's/^MY_CPU/# MY_CPU/g' Makefile
 
 # Make the package build verbose by default (to see opts etc.)
-%{?_without_quietbuild: perl -pi -e 's/^QUIET/# QUIET/g' src/unix/unix.mak}
+%{?_without_quietbuild: %{__perl} -pi -e 's/^QUIET/# QUIET/g' src/unix/unix.mak}
 
 # The default, if not overwritten below
 export PREFIX=%{_prefix}
@@ -225,19 +225,19 @@ export JOY_I386=1
 %endif
 
 # Prepare all the extra .dat files
-mkdir datfiles
+%{__mkdir} datfiles
 for file in %{SOURCE20} %{SOURCE21} %{SOURCE22} %{SOURCE23}; do
-    unzip -o -d datfiles/ $file
+    %{__unzip} -o -d datfiles/ $file
 done
 
 # Now, do all the building (this is long!)
 for target in %{targets}; do
-    %{!?_without_x11: make %{?_smp_mflags} DISPLAY_METHOD=x11 X11_DGA=1 X11_XV=1} TARGET=$target
-    %{!?_without_SDL: make %{?_smp_mflags} DISPLAY_METHOD=SDL SOUND_SDL=1} TARGET=$target
-    %{!?_without_xgl: make %{?_smp_mflags} DISPLAY_METHOD=xgl} TARGET=$target
-#   %{!?_without_xgl: make %{?_smp_mflags} DISPLAY_METHOD=xgl GLCFLAGS="-D_X11_ -DGLU_VERSION_1_2"} TARGET=$target
+    %{!?_without_x11: %{__make} %{?_smp_mflags} DISPLAY_METHOD=x11 X11_DGA=1 X11_XV=1} TARGET=$target
+    %{!?_without_SDL: %{__make} %{?_smp_mflags} DISPLAY_METHOD=SDL SOUND_SDL=1} TARGET=$target
+    %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl} TARGET=$target
+#   %{!?_without_xgl: %{__make} %{?_smp_mflags} DISPLAY_METHOD=xgl GLCFLAGS="-D_X11_ -DGLU_VERSION_1_2"} TARGET=$target
     # The MAME chd manager
-    %{?!_without_mame: make %{?_smp_mflags} chdman}
+    %{?!_without_mame: %{__make} %{?_smp_mflags} chdman}
 done
 
 
@@ -245,35 +245,35 @@ done
 %{__rm} -rf %{buildroot}
 
 for target in %{targets}; do
-    make install-man \
+    %{__make} install-man \
         INSTALL_USER=`id -un` \
         INSTALL_GROUP=`id -gn` \
         MANDIR=%{buildroot}%{_mandir}/man6 \
         TARGET=$target
 done
 
-mkdir -p %{buildroot}%{_bindir}
+%{__mkdir_p} %{buildroot}%{_bindir}
 for target in %{targets}; do
-    install -m 755 %{SOURCE1} %{buildroot}%{_bindir}/x${target}
-    %{!?_without_x11: install -m 755 x${target}.x11 %{buildroot}%{_bindir}/}
-    %{!?_without_SDL: install -m 755 x${target}.SDL %{buildroot}%{_bindir}/}
-    %{!?_without_xgl: install -m 755 x${target}.xgl %{buildroot}%{_bindir}/}
+    %{__install} -m 755 %{SOURCE1} %{buildroot}%{_bindir}/x${target}
+    %{!?_without_x11: %{__install} -m 755 x${target}.x11 %{buildroot}%{_bindir}/}
+    %{!?_without_SDL: %{__install} -m 755 x${target}.SDL %{buildroot}%{_bindir}/}
+    %{!?_without_xgl: %{__install} -m 755 x${target}.xgl %{buildroot}%{_bindir}/}
 done
-%{?!_without_mame: install -m 755 chdman %{buildroot}%{_bindir}/}
+%{?!_without_mame: %{__install} -m 755 chdman %{buildroot}%{_bindir}/}
 
 # We don't want all the docs
-mkdir -p doc2/{xmame/html,xmess}
+%{__mkdir_p} doc2/{xmame/html,xmess}
 pushd src/unix/doc
-    cp -a {*.html,*.css,img} ../../../doc2/xmame/html/
-    cp -a changes.* dga2.txt multiplayer-readme.txt \
+    %{__cp} -a {*.html,*.css,img} ../../../doc2/xmame/html/
+    %{__cp} -a changes.* dga2.txt multiplayer-readme.txt \
         xmame-doc.txt xmamerc.dist mame/* ../../../doc2/xmame/
-    cp -a xmessrc.dist mess/* ../../../doc2/xmess/
+    %{__cp} -a xmessrc.dist mess/* ../../../doc2/xmess/
 popd
 
 
 %if %{?_without_mame:0}%{!?_without_mame:1}
 # Add all directories
-mkdir -p %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
+%{__mkdir_p} %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
 
 # Install the ROMs
 %{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
@@ -283,19 +283,18 @@ mkdir -p %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
 %{__install} -m 664 datfiles/*.dat %{buildroot}%{_datadir}/xmame/
 
 # Install the OpenGL cabinets
-%{!?_without_xgl: cp -a src/unix/cab %{buildroot}%{_datadir}/xmame/}
+%{!?_without_xgl: %{__cp} -a src/unix/cab %{buildroot}%{_datadir}/xmame/}
 %endif
 
 
 %if %{?_without_mess:0}%{!?_without_mess:1}
 # Add all directories
-mkdir -p %{buildroot}%{_datadir}/xmess/{artwork,bios,crc,samples,snap,software}
+%{__mkdir_p} %{buildroot}%{_datadir}/xmess/{artwork,bios,crc,samples,snap,software}
 %endif
 
 
 # Uncompress catver.ini (will be in the docs)
-unzip -o %{SOURCE30}
-#unzip -o catver.zip
+%{__unzip} -o %{SOURCE30}
 
 
 %clean
@@ -372,6 +371,9 @@ unzip -o %{SOURCE30}
 
 
 %changelog
+* Sun Jun 13 2004 Matthias Saou <http://freshrpms.net/> 0.83.1-1
+- Update to 0.83.1, with the usual related files too.
+
 * Sun May 16 2004 Matthias Saou <http://freshrpms.net/> 0.82.1-1
 - Update to 0.82.1, with the usual related files too.
 
