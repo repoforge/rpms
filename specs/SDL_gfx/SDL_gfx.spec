@@ -72,7 +72,7 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
-* Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 2.0.12-2
+* Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 2.0.12-3
 - fixed some buildrequirements so the correct version of libSDL_gfx.so 
   can be found in the list of provides.
 
