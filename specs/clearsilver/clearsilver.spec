@@ -20,7 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.clearsilver.net/downloads/clearsilver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, python-devel
+BuildRequires: zlib-devel, python-devel, python
 #BuildRequires: perl-devel, ruby >= 1.4.5
 
 %description
