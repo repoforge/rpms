@@ -4,7 +4,7 @@
 
 Summary: Image Blending with Multiresolution Splines
 Name: enblend
-Version: 1.2
+Version: 1.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -50,9 +50,12 @@ does not line up the images for you. Use a tool like Hugin to do that.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/enblend.1*
+%{_bindir}/enblend
 
 %changelog
+* Sat Sep 04 2004 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updatd to release 1.3.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 - Initial package. (using DAR)
