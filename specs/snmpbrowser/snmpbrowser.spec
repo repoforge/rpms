@@ -17,7 +17,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/snmpbrowser/snmpbrowser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
+BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++
+BuildRequires: gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: kdelibs-devel
 BuildRequires: net-snmp-devel, openssl-devel
 %{?fc2:BuildRequires: libselinux-devel}
 

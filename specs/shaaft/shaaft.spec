@@ -16,7 +16,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/criticalmass/Shaaft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, zlib-devel, libpng-devel, XFree86-devel, gcc-c++, desktop-file-utils
+BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, zlib-devel
+BuildRequires: libpng-devel, XFree86-devel, gcc-c++, desktop-file-utils
 
 %description
 Shaaft is an OpenGL 3D falling block game similar to Blockout. It currently

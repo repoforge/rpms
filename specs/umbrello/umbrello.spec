@@ -16,7 +16,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/uml/%{name}-1.2-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, flex
+BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
+BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
+BuildRequires: XFree86-devel, qt-devel, flex
 
 #(d) primscreenshot: http://uml.sourceforge.net/images/thumbnails/activity-diagram.png
 #(d) screenshotsurl: http://uml.sourceforge.net/screen.php

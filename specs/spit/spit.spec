@@ -21,7 +21,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/spit/spit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, qt-devel, ImageMagick-c++-devel, libxml2-devel, libxslt-devel, gcc-c++, desktop-file-utils
+BuildRequires: XFree86-devel, qt-devel, ImageMagick-c++-devel
+BuildRequires: libxml2-devel, libxslt-devel, gcc-c++, desktop-file-utils
 
 %description
 Spit is a graphical picture indexing tool. It can be used to manage pictures,

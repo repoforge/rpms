@@ -2,6 +2,8 @@
 
 # Authority: dries
 # Upstream: 
+# Screenshot: http://kxmleditor.sourceforge.net/screenshot.png
+# ScreenshotURL: http://kxmleditor.sourceforge.net/screenshots.htm
 
 Summary: XML Editor
 Name: kxmleditor
@@ -17,11 +19,10 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/kxmleditor/kxmleditor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel, gift
+BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel
+BuildRequires: gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel
+BuildRequires: libjpeg-devel, kdelibs-devel
 %{?fc2:BuildRequires: libselinux-devel}
-
-# Screenshot: http://kxmleditor.sourceforge.net/screenshot.png
-# ScreenshotURL: http://kxmleditor.sourceforge.net/screenshots.htm
 
 %description
 KXML Editor is program, that display and edit contents of XML file. Main

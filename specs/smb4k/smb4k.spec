@@ -15,7 +15,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://download.berlios.de/smb4k/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel, fam-devel, fam
+BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
+BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
+BuildRequires: gcc-c++, XFree86-devel, qt-devel, fam-devel, fam
 %{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs, fam
 
