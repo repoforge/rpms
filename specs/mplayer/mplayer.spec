@@ -18,7 +18,7 @@
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
 #define date      20040415
-%define rcver     pre4
+%define rcver     pre5
 
 %define xmms_plugindir %(xmms-config --input-plugin-dir)
 %define desktop_vendor freshrpms
@@ -35,24 +35,13 @@ Source0: http://www.mplayerhq.hu/MPlayer/cvs/MPlayer-current.tar.bz2
 %else
 Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
 %endif
-Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.2.tar.bz2
+Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.4.tar.bz2
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
-#{?_with_dvdnav:Requires: libdvdnav}
-%{?_with_samba:Requires: samba-common}
-%{!?_without_aalib:Requires: aalib}
-%{!?_without_lirc:Requires: lirc}
-%{!?_without_arts:Requires: arts}
-%{!?_without_xvid:Requires: xvidcore}
-%{!?_without_esd:Requires: esound}
-%{!?_without_dvdread:Requires: libdvdread}
-%{!?_without_faad2:Requires: faad2}
-%{!?_without_lzo:Requires: lzo}
-%{!?_without_fame:Requires: libfame}
 BuildRequires: gtk+-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
@@ -160,7 +149,7 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb}
 
-%{__perl} -pi -e 's|/usr/lib/|%{_libdir}/|' config.mak
+%{__perl} -pi.orig -e 's|/usr/lib|%{_libdir}|' config.mak
 %{__make} %{?_smp_mflags}
 
 
@@ -177,11 +166,11 @@ find . -name "CVS" | xargs %{__rm} -rf
 find %{buildroot}%{_datadir}/mplayer/Skin -type d -exec chmod 755 {} \;
 find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 
-# The fonts are not in a separate package
+# The fonts are now in a separate package
 %{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
 
 # The icon used in the menu entry
-%{__install} -D -m0644 Gui/mplayer/pixmaps/logo.xpm \
+%{__install} -D -m0644 Gui/mplayer/pixmaps/MPlayer_mini.xpm \
     %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
 
 # Last, add system menu entries!
@@ -261,6 +250,11 @@ fi
 
 
 %changelog
+* Fri Jul 16 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.10.pre5
+- Update to 1.0pre5.
+- Updated Blue skin to 1.4.
+- Now use the MPlayer_mini.xpm icon to fix the transparent vs. white problem.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.10.pre4
 - Rebuild for Fedora Core 2.
 - Update to 1.0pre4... why doesn't drag'n drop work anymore? :-(
