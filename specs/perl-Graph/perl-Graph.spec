@@ -47,6 +47,7 @@ This modules contains functions for manipulating graphics.
 %doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Graph.pm
+%{perl_vendorlib}/Graph.pod
 %{perl_vendorlib}/Graph/
 
 %changelog

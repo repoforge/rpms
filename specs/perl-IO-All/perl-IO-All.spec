@@ -63,6 +63,7 @@ readline, getc, print, printf, syswrite, sysread, close.
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/IO/
 %{perl_vendorlib}/IO/All.pm
+%{perl_vendorlib}/IO/All.pod
 %{perl_vendorlib}/IO/All/
 
 %changelog
