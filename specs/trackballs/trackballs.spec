@@ -1,7 +1,17 @@
 # $Id$
 # Authority: dries
-
 # Screenshot: http://trackballs.sourceforge.net/pic1.jpg
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
 
 Summary: Steer a marble ball through a labyrinth
 Name: trackballs
@@ -19,7 +29,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, guile, guile-devel, SDL-devel, SDL_ttf-devel
 BuildRequires: zlib-devel, SDL_mixer-devel, SDL_image-devel
-%{?fc2:BuildRequires: xorg-x11-Mesa-libGLU}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
 
 %description
 Trackballs is a game for linux in which you steer a marble ball through
