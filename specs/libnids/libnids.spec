@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Rafal Wojtczuk <nergal@icm.edu.pl>
 
 Summary: An implementation of an E-component of Network Intrusion Detection System.
@@ -8,12 +7,12 @@ Version: 1.18
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://libnids.sourceforge.net/
+URL: http://libnids.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.packetfactory.net/projects/libnids/dist/%{name}-%{version}.tar.gz
+Source: http://www.packetfactory.net/projects/libnids/dist/libnids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

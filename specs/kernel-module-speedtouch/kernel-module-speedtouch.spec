@@ -2,6 +2,7 @@
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
@@ -18,16 +19,16 @@
 
 Summary: Linux SpeedTouch USB ADSL Modem drivers.
 Name: kernel-module-speedtouch
-Version: 1.6
+Version: 1.7
 Release: 0_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://linux-usb.sourceforge.net/SpeedTouch/
+URL: http://linux-usb.sf.net/SpeedTouch/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/linux-usb/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/linux-usb/speedtouch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -122,5 +123,8 @@ cd -
 %{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}/*
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 1.7-0
+- Updated to release 1.7.
+
 * Wed Jun 18 2003 Dag Wieers <dag@wieers.com> - 1.6-0
 - Initial package. (using DAR)

@@ -25,12 +25,12 @@ Version: 0.2.0
 Release: %{rrelease}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://acx100.sourceforge.net/
+URL: http://acx100.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://rhlx01.fht-esslingen.de/~andi/acx100/acx100-%{rversion}.tar.bz2
+Source: http://dl.sf.net/acx100/acx100-%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

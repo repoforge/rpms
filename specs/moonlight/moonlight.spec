@@ -11,7 +11,7 @@ URL: http://www.moonlight3d.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ml3d.sourceforge.net/install/%{name}-%{version}.tar.bz2
+Source: http://ml3d.sf.net/install/moonlight-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

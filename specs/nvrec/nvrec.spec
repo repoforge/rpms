@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Iñaki García Etxebarria <garetxe@users.sourceforge.net>
 
 Summary: A high quality, generic capture core.
@@ -8,12 +7,12 @@ Version: 20030316
 Release: 2
 Group: Applications/Multimedia
 License: GPL
-URL: http://nvrec.sourceforge.net/
+URL: http://nvrec.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://nvrec.sourceforge.net/downloads/%{name}-%{version}.tar.gz
+Source: http://nvrec.sf.net/downloads/nvrec-%{version}.tar.gz
 #Source1: http://dl.sf.net/ffmpeg-0.4.6.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

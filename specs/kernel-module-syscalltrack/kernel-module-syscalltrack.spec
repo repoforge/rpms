@@ -2,6 +2,7 @@
 # Upstream: Muli Ben-Yehuda <mulix@mulix.org>
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 

@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Conrad Parker <conrad@vergenet.net>
 
 Summary: Sound wave editor
@@ -8,12 +7,12 @@ Version: 0.8.2
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://sweep.sourceforge.net/
+URL: http://sweep.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/sweep/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/sweep/sweep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

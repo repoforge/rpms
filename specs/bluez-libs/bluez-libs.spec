@@ -6,12 +6,12 @@ Version: 2.5
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://bluez.sourceforge.net/
+URL: http://bluez.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bluez.sourceforge.net/download/bluez-libs-%{version}.tar.gz
+Source: http://bluez.sf.net/download/bluez-libs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

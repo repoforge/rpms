@@ -10,12 +10,12 @@ Version: 0.30.3
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://glunarclock.sourceforge.net/
+URL: http://glunarclock.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/glunarclock/glunarclock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

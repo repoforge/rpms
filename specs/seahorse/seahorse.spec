@@ -1,17 +1,17 @@
 # Authority: dag
 
-Summary: A GNOME gnupg interface.
+Summary: GNOME gnupg interface.
 Name: seahorse
 Version: 0.7.3
 Release: 0
 License: GPL
 Group: User Interface/Desktops
-URL: http://seahorse.sourceforge.net/
+URL: http://seahorse.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/seahorse/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/seahorse/seahorse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

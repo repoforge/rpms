@@ -8,12 +8,12 @@ Version: 1.0
 Release: 0.b1
 License: GPL
 Group: Applications/Internet
-URL: http://fidelio.sourceforge.net/
+URL: http://fidelio.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{rversion}.tar.gz
+Source: http://dl.sf.net/fidelio/fidelio-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

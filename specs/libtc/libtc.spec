@@ -6,19 +6,18 @@
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
 # Soapbox: 0
 
-
 Summary: A collection of useful functions for C programming.
 Name: libtc
 Version: 1.0.3
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://libtc.sourceforge.net/
+URL: http://libtc.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/libtc/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/libtc/libtc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

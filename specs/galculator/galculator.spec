@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Simon Floery <simon.floery@gmx.at>
 
 Summary: GTK 2 based scientific calculator.
@@ -8,7 +7,7 @@ Version: 1.1.4
 Release: 0
 License: GPL
 Group: Applications/Engineering
-URL: http://galculator.sourceforge.net/
+URL: http://galculator.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

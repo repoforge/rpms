@@ -7,7 +7,7 @@ Release: 2.fr
 License: GPL
 Group: Applications/Emulators
 Source: http://dl.sf.net/advancemame/%{name}-%{version}.tar.gz
-URL: http://advancemame.sourceforge.net/
+URL: http://advancemame.sf.net/
 BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: gcc-c++, zlib-devel
 

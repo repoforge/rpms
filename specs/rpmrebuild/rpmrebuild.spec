@@ -2,15 +2,16 @@
 
 Summary: Build new RPM packages from an old installed package.
 Name: rpmrebuild
-Version: 1.4.5
-Release: 0
+Version: 1.4.6
+Release: 1
 License: GPL
 Group: Applications/System
-URL: http://rpmrebuild.sourceforge.net/
+URL: http://rpmrebuild.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
+# Source: http://dl.sf.net/rpmrebuild/rpmrebuild-%{version}-1.src.rpm
 Source: rpmrebuild.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
@@ -147,5 +148,8 @@ this tool is for you.
 /a
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 1.4.6-1
+- Updated to release 1.4.6.
+
 * Tue Oct 07 2003 Dag Wieers <dag@wieers.com> - 1.4.5-0
 - Initial package. (using DAR)

@@ -10,12 +10,12 @@ Version: 1.8
 Release: 6.beta5
 License: GPL
 Group: Applications/Internet
-URL: http://tsocks.sourceforge.net/
+URL: http://tsocks.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/tsocks/%{name}-%{rversion}.tar.gz
+Source: http://dl.sf.net/tsocks/tsocks-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -10,12 +10,12 @@ Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://gnomba.sourceforge.net/
+URL: http://gnomba.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gnomba.sourceforge.net/src/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gnomba/gnomba-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

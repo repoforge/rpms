@@ -6,12 +6,12 @@ Version: 0.7.0
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://ahh.sourceforge.net/wol/
+URL: http://ahh.sf.net/wol/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/ahh/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/ahh/wol-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

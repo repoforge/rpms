@@ -3,22 +3,22 @@
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0
 
-### FIXME: Add desktop file.
+### FIXME: TODO: Add desktop file.
 
-%define rversion 030720
+%define rversion 040301
 
 Summary: A PostScript font editor.
 Name: pfaedit
-Version: 0.0.20030720
+Version: 0.0.20040301
 Release: 0
 License: BSD
 Group: Applications/Publishing
-URL: http://pfaedit.sourceforge.net/
+URL: http://pfaedit.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://pfaedit.sourceforge.net/%{name}_full-%{rversion}.tgz
+Source: http://dl.sf.net/pfaedit/pfaedit_full-%{rversion}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -31,7 +31,7 @@ can convert among PostScript (ASCII & binary Type 1, some Type 3s,
 some Type 0s), TrueType, OpenType (Type2) and CID-keyed fonts.
 
 %prep
-%setup -T -b0 -n %{name}
+%setup -T -b0 -n %{name}-%{rversion}
 
 %build
 %configure \
@@ -68,5 +68,8 @@ some Type 0s), TrueType, OpenType (Type2) and CID-keyed fonts.
 %{_datadir}/pfaedit/
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.0.20040301-0
+- Updated to release 040301.
+
 * Mon Jul 28 2003 Dag Wieers <dag@wieers.com> - 0.0.20030720-0
 - Initial package. (using DAR)

@@ -2,16 +2,16 @@
 
 Summary: Command line NNTP file grabber.
 Name: nget
-Version: 0.24.2
+Version: 0.26
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://nget.sourceforge.net/
+URL: http://nget.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://belnet.dl.sourceforge.net/sourceforge/nget/%{name}-%{version}+uulib.tar.gz
+Source: http://dl.sf.net/nget/nget-%{version}+uulib.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -54,5 +54,8 @@ succesfully downloaded.
 %{_bindir}/*
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.26-0
+- Updated to release 0.26.
+
 * Mon Oct 13 2003 Dag Wieers <dag@wieers.com> - 0.24.2-0
 - Initial package. (using DAR)

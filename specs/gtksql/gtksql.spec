@@ -1,18 +1,18 @@
 # Authority: dag
 
-Summary: GtkSQL is a graphical database query tool for MySQL and PostgreSQL.
+Summary: Graphical database query tool for MySQL and PostgreSQL.
 Name: gtksql
 Version: 0.4
 Release: 0
 License: GPL
 Group: Applications/Databases
-URL: http://gtksql.sourceforge.net/
+URL: http://gtksql.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/gtksql/gtksql-%{version}.tar.gz
-Patch: %{name}-%{version}.patch
+Patch: gtksql-0.4.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

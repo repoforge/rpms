@@ -6,7 +6,7 @@ Version: 0.2.0
 Release: 0
 Group: Development/Tools
 License: GPL
-URL: http://gaphor.sourceforge.net/
+URL: http://gaphor.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

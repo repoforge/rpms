@@ -8,7 +8,7 @@ Version: 1.4rc5
 Release: 4.fr
 Group: System Environment/Libraries
 License: LGPL
-URL: http://aa-project.sourceforge.net/aalib/
+URL: http://aa-project.sf.net/aalib/
 Source: http://dl.sf.net/aa-project/%{name}-%{version}.tar.gz
 Buildroot: %{_tmppath}/%{name}-root
 Prereq: /sbin/ldconfig /sbin/install-info

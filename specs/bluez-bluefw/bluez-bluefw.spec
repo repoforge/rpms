@@ -6,12 +6,12 @@ Version: 1.0
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://bluez.sourceforge.net/
+URL: http://bluez.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bluez.sourceforge.net/download/bluez-bluefw-%{version}.tar.gz
+Source: http://bluez.sf.net/download/bluez-bluefw-%{version}.tar.gz
 Source1: pcmcia-includes.tar.gz
 Patch0: bluez-bluefw-0.9-path.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}

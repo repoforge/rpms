@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: <linux5250@midrange.com>
 
 Summary: 5250 Telnet protocol and terminal program.
@@ -8,12 +7,12 @@ Version: 0.16.5
 Release: 0
 License: GPL 
 Group: Applications/Communications
-URL: http://tn5250.sourceforge.net/
+URL: http://tn5250.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/tn5250/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/tn5250/tn5250-%{version}.tar.gz
 Patch: tn5250-0.16.5-gcc33.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

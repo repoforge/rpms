@@ -8,12 +8,12 @@ Version: 2.0.4
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://gcm.sourceforge.net/
+URL: http://gcm.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gcm/gcm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

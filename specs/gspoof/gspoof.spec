@@ -1,19 +1,18 @@
 # Authority: dag
-
 # Upstream: 
 
-Summary: A network tool to build and send TCP/IP packets.
+Summary: Network tool to build and send TCP/IP packets.
 Name: gspoof
-Version: 3.1
+Version: 3.2
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://gspoof.sourceforge.net/
+URL: http://gspoof.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gspoof.sourceforge.net/src/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gspoof/gspoof-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

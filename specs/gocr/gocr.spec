@@ -11,7 +11,7 @@ URL: http://altmark.nat.uni-magdeburg.de/~jschulen/ocr/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sourceforge.net/jocr/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/jocr/gocr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}-%{release}
 Prefix: %{_prefix}
 

@@ -1,16 +1,17 @@
 # Authority: freshrpms
-Summary: A C++ interface for GTK++ (a GUI library for X).
+
+Summary: C++ interface for GTK++ (a GUI library for X).
 Name: gtkmm
 Version: 1.3.26
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://gtkmm.sourceforge.net/
+URL: http://gtkmm.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/gtkmm/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gtkmm/gtkmm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

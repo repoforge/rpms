@@ -1,19 +1,17 @@
 # Authority: dag
 
-# Upstream: 
-
-Summary: A GNOME sample editor.
+Summary: GNOME sample editor.
 Name: marlin
 Version: 0.1
 Release: 0
 Group: Applications/Multimedia
 License: GPL
-URL: http://marlin.sourceforge.net/
+URL: http://marlin.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/marlin/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/marlin/marlin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

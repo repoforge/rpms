@@ -6,12 +6,12 @@ Version: 0.2.4
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://multires.sourceforge.net/
+URL: http://multires.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/multires/multires-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

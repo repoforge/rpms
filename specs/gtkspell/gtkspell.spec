@@ -1,16 +1,17 @@
 # Authority: freshrpms
+
 Summary: Gtk2 spell checker interface library.
 Name: gtkspell
 Version: 2.0.4
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://gtkspell.sourceforge.net/
+URL: http://gtkspell.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gtkspell.sourceforge.net/download/%{name}-%{version}.tar.gz
+Source: http://gtkspell.sf.net/download/gtkspell-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

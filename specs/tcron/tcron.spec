@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Distcc: 0
 
 Summary: Another cron daemon.
@@ -8,7 +7,7 @@ Version: 0.4.5
 Release: 0
 License: GPL
 Group: System Environment/Daemons
-URL: http://tcron.sourceforge.net/
+URL: http://tcron.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

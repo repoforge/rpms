@@ -1,19 +1,18 @@
 # Authority: dag
-
 # Upstream: Edwin Young <edwin@sourceforge.net>
 
-Summary: A GNOME-based program to generate and view fractals.
+Summary: GNOME-based program to generate and view fractals.
 Name: gnofract4d
 Version: 1.9
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://gnofract4d.sourceforge.net/
+URL: http://gnofract4d.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gnofract4d/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gnofract4d/gnofract4d-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

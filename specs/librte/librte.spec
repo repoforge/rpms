@@ -7,12 +7,12 @@ Version: 0.5.1
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://zapping.sourceforge.net/
+URL: http://zapping.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/zapping/%{rname}-%{version}.tar.bz2
+Source: http://dl.sf.net/zapping/rte-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

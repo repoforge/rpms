@@ -6,12 +6,12 @@ Version: 1.20
 Release: 1
 Group: Applications/Internet
 License: Artistic
-URL: http://razor.sourceforge.net/
+URL: http://razor.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/razor-agents/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/razor-agents/razor-agents-%{version}.tar.gz
 Patch0: %{name}-makefile.patch
 Patch1: %{name}-redhat.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}

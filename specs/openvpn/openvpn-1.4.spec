@@ -10,12 +10,12 @@ Version: 1.4.3
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://sourceforge.net/projects/openvpn/
+URL: http://openvpn.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/openvpn/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/openvpn/openvpn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

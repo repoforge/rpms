@@ -8,12 +8,12 @@ Version: 2.2.2
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://gv4l.sourceforge.net/
+URL: http://gv4l.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gv4l/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gv4l/gv4l-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

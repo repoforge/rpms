@@ -12,12 +12,12 @@ Version: 2.4
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://bluez.sourceforge.net/
+URL: http://bluez.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bluez.sourceforge.net/download/bluez-utils-%{version}.tar.gz
+Source: http://bluez.sf.net/download/bluez-utils-%{version}.tar.gz
 Patch2: bluez-utils-2.2-pcmciaerr.patch
 Patch5: bluez-utils-2.3-bluepin-gtk2.patch
 Patch6: bluez-utils-2.5-pinwait.patch

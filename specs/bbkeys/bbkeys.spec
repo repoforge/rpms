@@ -6,8 +6,8 @@ Version: 0.8.6
 Release: 3.fr
 License: GPL
 Group: User Interface/Desktops
-URL: http://bbkeys.sourceforge.net/
-Source: http://bbkeys.sourceforge.net/downloads/%{name}-%{version}.tar.gz
+URL: http://bbkeys.sf.net/
+Source: http://dl.sf.net/bbkeys/%{name}-%{version}.tar.gz
 BuildRequires: XFree86-devel, gcc-c++
 BuildRoot: %{_tmppath}/%{name}-root
 

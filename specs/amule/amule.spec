@@ -6,7 +6,7 @@ Version: 1.2.6
 Release: 1.fr
 License: GPL
 Group: Applications/Internet
-Source: http://download.sourceforge.net/amule/aMule-%{version}.tar.bz2
+Source: http://dl.sf.net/amule/aMule-%{version}.tar.bz2
 URL: http://www.aMule.org/
 BuildRoot: %{_tmppath}/%{name}-root
 Requires: wxGTK, curl, /usr/sbin/alternatives

@@ -8,7 +8,7 @@ Version: 1.0.0
 Release: 0
 License: LGPL
 Group: System Environment/Base
-URL: http://openobex.sourceforge.net/
+URL: http://openobex.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -7,12 +7,12 @@ Version: 2.7.9
 Release: 0
 Group: Applications/Multimedia
 License: GPL
-URL: http://dvr.sourceforge.net
+URL: http://dvr.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/dvr/dvr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

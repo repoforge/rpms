@@ -8,12 +8,12 @@ Version: 0.9.6b22
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://acidlab.sourceforge.net/
+URL: http://acidlab.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://acidlab.sourceforge.net/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/acidlab/acid-%{version}.tar.gz
 Source1: acid.conf
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

@@ -9,12 +9,12 @@ Version: 2.6
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://vtun.sourceforge.net/
+URL: http://vtun.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/vtun/vtun-%{version}.tar.gz
+Source: http://dl.sf.net/vtun/vtun-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -2,6 +2,7 @@
 # Archs: i686 i586 i386 athlon
 # Distcc: 0
 # Soapbox: 0
+# BuildAsUser: 0
 
 %define _libmoddir /lib/modules
 
@@ -17,16 +18,16 @@
 
 Summary: IBM ThinkPad kernel modules.
 Name: kernel-module-thinkpad
-Version: 4.8
+Version: 5.0
 Release: 0_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
-URL: http://tpctl.sourceforge.net/
+URL: http://tpctl.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://download.sourceforge.net/tpctl/%{rname}_%{version}.tar.gz
+Source0: http://dl.sf.net/tpctl/thinkpad_%{version}.tar.gz
 Source1: %{rname}-README.modules.conf
 Patch0: thinkpad-4.8-rpm.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
@@ -111,6 +112,9 @@ groupdel thinkpad
 %ghost /dev/thinkpad
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 5.0-0
+- Updated to release 5.0.
+
 * Thu Dec 04 2003 Dag Wieers <dag@wieers.com> - 4.8-0
 - Updated to release 4.8.
 

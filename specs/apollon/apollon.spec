@@ -8,7 +8,7 @@ Version: 0.9.2
 Release: 3
 License: GPL
 Group: Applications/Internet
-URL: http://apollon.sourceforge.net/
+URL: http://apollon.sf.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

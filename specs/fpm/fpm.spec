@@ -6,7 +6,7 @@ Version: 0.59
 Release: 0
 License: GPL
 Group: Applications/Utilities
-URL: http://fpm.sourceforge.net/
+URL: http://fpm.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

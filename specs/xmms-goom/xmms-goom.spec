@@ -9,12 +9,12 @@ Version: 1.99.4
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://goom.sourceforge.net/
+URL: http://goom.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ios.free.fr/%{rname}/devel/%{rname}-%{version}-src.tgz
+Source: http://ios.free.fr/goom/devel/goom-%{version}-src.tgz
 Patch: goom-1.99.4-gcc3.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

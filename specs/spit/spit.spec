@@ -1,4 +1,4 @@
-# Authority: dag
+# Authority: dries
 # Upstream: Remko Tronçon <spike@ulyssis.org>
 # Schreenshot: http://spit.sourceforge.net/images/screenshot-kde.jpg
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
@@ -10,12 +10,12 @@ Version: 0.3
 Release: 0
 License: GPL
 Group: Amusements/Graphics
-URL: http://spit.sourceforge.net/
+URL: http://spit.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/spit/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/spit/spit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

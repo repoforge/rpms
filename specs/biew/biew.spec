@@ -8,12 +8,12 @@ Version: 5.5.0
 Release: 0
 Group: Development/Debuggers
 License: GPL
-URL: http://biew.sourceforge.net/
+URL: http://biew.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/biew/%{name}-%{rversion}.tar.bz2
+Source: http://dl.sf.net/biew/biew-%{rversion}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,21 +1,20 @@
 # Authority: dag
-
 # Upstream: Mark Hessling <M.Hessling@qut.edu.au>
 
 %define rname Regina
 
 Summary: Regina Rexx interpreter.
 Name: regina-rexx
-Version: 3.2
+Version: 3.3
 Release: 0
 License: LGPL
 Group: Development/Languages
-URL: http://regina-rexx.sourceforge.net/
+URL: http://regina-rexx.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/%{name}/%{rname}-REXX-%{version}.tar.gz
+Source: http://dl.sf.net/regina-rexx/Regina-REXX-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -164,6 +163,9 @@ fi
 %{_includedir}/rexxsaa.h
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 3.3-0
+- Updated to release 3.3.
+
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 3.2-0
 - Updated to release 3.2.
 - Added rxstack.sysv script.

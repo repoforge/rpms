@@ -15,12 +15,12 @@ Version: 1.3.1
 Release: 7
 License: GPL
 Group: Applications/System
-URL: http://nagiosplug.sourceforge.net/
+URL: http://nagiosplug.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://nagiosplug.sourceforge.net/src/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/nagiosplug/nagiosplug-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -9,12 +9,12 @@ Version: 0.98.0
 Release: 0
 License: GPL
 Group: Applications/Editors
-URL: http://gramps.sourceforge.net/
+URL: http://gramps.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sourceforge.net/gramps/gramps-%{version}.tar.gz
+Source: http://dl.sf.net/gramps/gramps-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

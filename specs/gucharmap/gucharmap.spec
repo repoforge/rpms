@@ -1,14 +1,13 @@
 # Authority: dag
-
 # Upstream: Noah Levitt <nlevitt@columbia.edu>
 
-Summary: A Unicode/ISO10646 character map and font viewer.
+Summary: Unicode/ISO10646 character map and font viewer.
 Name: gucharmap
 Version: 1.2.0
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://gucharmap.sourceforge.net/
+URL: http://gucharmap.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

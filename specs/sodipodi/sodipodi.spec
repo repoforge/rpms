@@ -2,18 +2,18 @@
 # Upstream: Lauris Kaplinski <lauris@kaplinski.com>
 # Archs: i686 i386
 
-Summary: A vector drawing application.
+Summary: Vector drawing application.
 Name: sodipodi
 Version: 0.34
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://sodipodi.sourceforge.net/
+URL: http://sodipodi.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/sodipodi/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/sodipodi/sodipodi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

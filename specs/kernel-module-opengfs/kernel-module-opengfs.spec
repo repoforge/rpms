@@ -20,12 +20,12 @@ Version: 0.2.1
 Release: 0
 License: GPL
 Group: System Environment/Utilities
-URL: http://opengfs.sourceforge.net/
+URL: http://opengfs.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/opengfs/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/opengfs/opengfs-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

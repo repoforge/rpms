@@ -8,12 +8,12 @@ Version: 0.9
 Release: 0.b
 License: GPL
 Group: Applications/Internet
-URL: http://forgate.sourceforge.net/
+URL: http://forgate.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://forgate.sourceforge.net/%{name}-%{rversion}.tgz
+Source: http://forgate.sf.net/forgate-%{rversion}.tgz
 BuildRoot: %{buildroot}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

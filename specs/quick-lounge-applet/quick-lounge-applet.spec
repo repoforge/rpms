@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Paolo Bacchilega <paolo.bacch@tin.it>
 
 Summary: Organize your preferred applications on the GNOME Panel.
@@ -8,12 +7,12 @@ Version: 2.0.3
 Release: 0
 License: GPL
 Group: User Interface/Desktops
-URL: http://quick-lounge.sourceforge.net/
+URL: http://quick-lounge.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/quick-lounge-applet/2.0/%{name}-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/quick-lounge-applet/2.0/quick-lounge-applet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

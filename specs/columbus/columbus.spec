@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Thomas Vander Stichele <thomas@apestaart.org>
 
 Summary: Automatically detect and configure network settings.
@@ -8,7 +7,7 @@ Version: 0.1.1
 Release: 0
 License: GPL
 Group: System Environment/Base
-URL: http://columbus.sourceforge.net/
+URL: http://columbus.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -1,19 +1,18 @@
 # Authority: dag
-
 # Upstream: Linas Vepstas <linas@linas.org>
 
 Summary: GNOME Time Tracker.
 Name: gnotime
-Version: 2.1.6
+Version: 2.1.7
 Release: 0
 License: GPL
 Group: Applications/Productivity
-URL: http://gttr.sourceforge.net/
+URL: http://gttr.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gttr/gnotime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -50,6 +49,9 @@ invoices based on that time.
 %{_datadir}/gnome/apps/Applications/*.desktop
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 2.1.7-0
+- Updated to release 2.1.7.
+
 * Mon May 05 2003 Dag Wieers <dag@wieers.com> - 2.1.6-0
 - Updated to release 2.1.6.
 

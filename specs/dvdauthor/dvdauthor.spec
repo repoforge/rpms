@@ -1,17 +1,17 @@
 # Authority: dag
 
-Summary: A set of tools to author a DVD.
+Summary: Set of tools to author a DVD.
 Name: dvdauthor
 Version: 0.6.8
 Release: 0
-License:        GPL
+License: GPL
 Group: Applications/Multimedia
-URL: http://dvdauthor.sourceforge.net/
+URL: http://dvdauthor.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/dvdauthor/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/dvdauthor/dvdauthor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

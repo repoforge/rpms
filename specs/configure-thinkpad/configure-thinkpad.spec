@@ -6,12 +6,12 @@ Version: 0.1
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://tpctl.sourceforge.net/configure-thinkpad.html
+URL: http://tpctl.sf.net/configure-thinkpad.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sf.net/tpctl/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/tpctl/configure-thinkpad-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

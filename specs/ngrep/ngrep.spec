@@ -1,19 +1,18 @@
 # Authority: dag
-
 # Upstream: Jordan Ritter <jpr5@darkridge.com>
 
-Summary: A network grep tool.
+Summary: Network grep tool.
 Name: ngrep
 Version: 1.41
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://ngrep.sourceforge.net/
+URL: http://ngrep.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/ngrep/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/ngrep/ngrep-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

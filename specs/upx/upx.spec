@@ -6,12 +6,12 @@ Version: 1.24
 Release: 0
 License: GPL
 Group: Applications/File
-URL: http://upx.sourceforge.net/
+URL: http://upx.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://upx.sourceforge.net/download/%{name}-%{version}-src.tar.gz
+Source: http://dl.sf.net/upx/upx-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

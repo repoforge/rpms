@@ -8,7 +8,7 @@ Version: 0.2.5
 Release: 2
 License: GPL
 Group: Applications/Desktop
-URL: http://desk3d.sourceforge.net/
+URL: http://desk3d.sf.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/

@@ -3,18 +3,18 @@
 ### FIXME: frontline triggers a strange bug in Distcc 2.2 (RH9 maybe others)
 # Distcc: 0
 
-Summary: A GUI frontend program and library for autotrace.
+Summary: GUI frontend program and library for autotrace.
 Name: frontline
 Version: 0.5.4
 Release: 2
 License: GPL
 Group: Applications/Multimedia
-URL: http://autotrace.sourceforge.net/frontline/
+URL: http://autotrace.sf.net/frontline/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/autotrace/frontline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,17 +1,17 @@
 # Authority: dag
 
-Summary:python-based vector drawing program
+Summary: Python-based vector drawing program.
 Name: sketch
 Version: 0.6.14
 Release: 1
 License: LGPL, Python style
 Group: Applications/Multimedia
-URL: http://sketch.sourceforge.net/
+URL: http://sketch.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/sketch/sketch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -2,16 +2,16 @@
 
 Summary: The Plastic File System.
 Name: plasticfs
-Version: 1.7
+Version: 1.8
 Release: 0
 License: GPL
 Group: Development/Tools
-URL: http://plasticfs.sourceforge.net/
+URL: http://plasticfs.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://plasticfs.sourceforge.net/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/plasticfs/plasticfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -44,5 +44,8 @@ to exist in user space, without kernel hacks or modules.
 
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 1.8-0
+- Updated to release 1.8.
+
 * Fri Mar 14 2003 Dag Wieers <dag@wieers.com> - 1.7-0
 - Initial package. (using DAR)

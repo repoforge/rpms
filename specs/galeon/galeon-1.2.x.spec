@@ -6,7 +6,7 @@ Version: 1.2.11
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://galeon.sourceforge.net/
+URL: http://galeon.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

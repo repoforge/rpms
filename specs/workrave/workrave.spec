@@ -7,12 +7,12 @@ Version: 1.4.1
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://workrave.sourceforge.net/
+URL: http://workrave.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/workrave/workrave-%{version}.tar.gz
+Source: http://dl.sf.net/workrave/workrave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

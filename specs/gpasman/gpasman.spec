@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Olivier Sessink <olivier@bluefish.openoffice.nl>
 
 Summary: A personal password manager for GNOME
@@ -8,12 +7,12 @@ Version: 1.9.2
 Release: 0
 Group: Applications/Productivity
 License: GPL
-URL: http://gpasman.sourceforge.net/
+URL: http://gpasman.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gpasman.sourceforge.net/files/%{name}-%{version}.tar.gz
+Source: http://gpasman.sf.net/files/gpasman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

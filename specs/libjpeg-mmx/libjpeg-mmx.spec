@@ -8,12 +8,12 @@ Version: 0.1.4
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://mjpeg.sourceforge.net/
+URL: http://mjpeg.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/mjpeg/jpeg-mmx-0.1.4.tar.gz
+Source: http://dl.sf.net/mjpeg/jpeg-mmx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

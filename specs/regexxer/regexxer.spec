@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Daniel Elstner <daniel.elstner@gmx.net>
 
 Summary: A GUI search/replace tool featuring Perl-style regular expressions.
@@ -8,12 +7,12 @@ Version: 0.6
 Release: 0
 License: GPL
 Group: Applications/Text
-URL: http://regexxer.sourceforge.net/
+URL: http://regexxer.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sourceforge.com/regexxer/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.com/regexxer/regexxer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

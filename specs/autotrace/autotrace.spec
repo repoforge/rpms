@@ -1,17 +1,17 @@
 # Authority: dag
 
-Summary: A utility for converting bitmaps to vector graphics
+Summary: Utility for converting bitmaps to vector graphics
 Name: autotrace
 Version: 0.31.1
 Release: 2
 License: GPL and LGPL
 Group: Applications/Multimedia
-URL: http://autotrace.sourceforge.net/
+URL: http://autotrace.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/autotrace/autotrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

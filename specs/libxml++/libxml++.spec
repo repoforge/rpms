@@ -8,12 +8,12 @@ Version: 0.26.0
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
-URL: http://libxmlplusplus.sourceforge.net/
+URL: http://libxmlplusplus.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/libxmlplusplus/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/libxmlplusplus/libxml++-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

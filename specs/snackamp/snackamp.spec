@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Tom Wilkason <tom.wilkason@cox.net>
 
 %define rname snackAmp
@@ -8,15 +7,15 @@
 Summary: Versatile music player.
 Name: snackamp
 Version: 2.2.1
-Release: 0.beta1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://snackamp.sourceforge.net/
+URL: http://snackamp.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/snackamp/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/snackamp/snackAmp-%{version}.tar.gz
 Source1: snackamp.png
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
@@ -96,6 +95,9 @@ find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 %endif
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 2.2.1-1
+- Updated to release 2.2.1.
+
 * Sat Jul 05 2003 Dag Wieers <dag@wieers.com> - 2.2.1-0.beta1
 - Updated to release 2.2.1.
 - Added tk requirement. (Peter Peltonen)

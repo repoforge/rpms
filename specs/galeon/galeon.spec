@@ -8,7 +8,7 @@ Version: 1.3.13
 Release: 0.a
 License: GPL
 Group: Applications/Internet
-URL: http://galeon.sourceforge.net/
+URL: http://galeon.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

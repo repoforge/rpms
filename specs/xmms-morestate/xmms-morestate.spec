@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: David Deephanphongs <deephan@users.sourceforge.net>
 
 %define plugindir %(xmms-config --general-plugin-dir)
@@ -10,12 +9,12 @@ Version: 1.1
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://xmms-morestate.sourceforge.net/
+URL: http://xmms-morestate.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/xmms-morestate/%{name}-%{version}.tgz
+Source: http://dl.sf.net/xmms-morestate/xmms-morestate-%{version}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

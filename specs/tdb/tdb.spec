@@ -7,12 +7,12 @@ Version: 1.0.6
 Release: 3
 License: GPL
 Group: System Environment/Libraries
-URL: http://sourceforge.net/projects/tdb/
+URL: http://sf.net/projects/tdb/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://belnet.dl.sourceforge.net/sourceforge/tdb/tdb-%{version}.tar.gz
+Source: http://dl.sf.net/tdb/tdb-%{version}.tar.gz
 Patch: tdb-1.0.6-gcc33.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

@@ -7,12 +7,12 @@ Version: 0.8.0
 Release: 0
 Group: Development/Tools
 License: GPL
-URL: http://alleyoop.sourceforge.net/
+URL: http://alleyoop.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/alleyoop/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/alleyoop/alleyoop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

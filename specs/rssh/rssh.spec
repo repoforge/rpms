@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Derek Martin <code@pizzashack.org>, rssh-discuss@lists.sourceforge.net
 
 Summary: A restricted shell for use with OpenSSH, allowing only scp and/or sftp.
@@ -13,7 +12,7 @@ URL: http://www.pizzashack.org/rssh/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.pizzashack.org/rssh/src/%{name}-%{version}.tar.gz
+Source: http://www.pizzashack.org/rssh/src/rssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

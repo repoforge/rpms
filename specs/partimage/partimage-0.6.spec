@@ -1,10 +1,9 @@
 # Authority: dag
-
 # Upstream: François Dupoux <fdupoux@partimage.org>
 
 Summary: A partition imaging utility, much like Ghost.
 Name: partimage
-Version: 0.6.2
+Version: 0.6.4
 Release: 1
 License: GPL
 Group: Applications/System
@@ -13,7 +12,7 @@ URL: http://www.partimage.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/sourceforge/partimage/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/partimage/partimage-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -263,6 +262,9 @@ fi
 %{_sbindir}/partimage-static
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.4-1
+- Updated to release 0.6.4.
+
 * Tue Jul 31 2003 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Added seperate server package.
 

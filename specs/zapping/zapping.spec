@@ -1,18 +1,19 @@
 # Authority: freshrpms
+
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: A TV viewer for GNOME.
 Name: zapping
-Version: 0.6.6
+Version: 0.6.8
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://zapping.sourceforge.net/
+URL: http://zapping.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/zapping/zapping-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -79,6 +80,9 @@ features, plus extensibility through a plugin system.
 %endif
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.8-0
+- Updated to 0.6.8.
+
 * Fri Feb 28 2003 Dag Wieers <dag@wieers.com> - 0.6.6-0
 - Updated to 0.6.6.
 

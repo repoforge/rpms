@@ -1,21 +1,20 @@
 # Authority: dag
-
 # Upstream: <gnocatan-develop@sourceforge.net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
 Summary: An addictive game based on "The Settlers of Catan".
 Name: gnocatan
-Version: 0.8.0.0
+Version: 0.8.1.16
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://gnocatan.sourceforge.net/
+URL: http://gnocatan.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gnocatan/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gnocatan/gnocatan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -82,18 +81,20 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man6/gnocatan.6*
+%doc %{_mandir}/man6/gnocatanai.6*
 %doc %{_datadir}/gnome/help/gnocatan/
 %{_bindir}/gnocatan
 %{_bindir}/gnocatanai
 %dir %{_datadir}/games/gnocatan/
 %{_datadir}/games/gnocatan/computer_names
-%{_datadir}/games/gnocatan/images/
+%{_datadir}/games/gnocatan/themes/
 %{_datadir}/applications/gnome-gnocatan.desktop
 %{_datadir}/omf/gnocatan/
 %{_datadir}/pixmaps/*
 
 %files server
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man6/gnocatan-meta-server.6*
 %doc %{_mandir}/man6/gnocatan-server-console.6*
 %doc %{_mandir}/man6/gnocatan-server-gtk.6*
 %{_bindir}/gnocatan-meta-server
@@ -104,6 +105,9 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/gnome-gnocatan-server.desktop
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.8.1.16-1
+- Updated to release 0.8.1.16.
+
 * Wed Oct 15 2003 Dag Wieers <dag@wieers.com> - 0.8.0.0-1
 - Split gnocatan into a seperate server package.
 

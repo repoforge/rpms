@@ -7,12 +7,12 @@ Release: 0
 #Icon: orbitcpp.png
 License: GPL
 Group: Development/Libraries
-URL: http://orbitcpp.sourceforge.net/
+URL: http://orbitcpp.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/%{name}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/orbitcpp/orbitcpp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

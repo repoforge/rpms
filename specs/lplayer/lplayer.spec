@@ -8,12 +8,12 @@ Version: 0.99.1
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://lplayer.sourceforge.net/
+URL: http://lplayer.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/lplayer/%{name}-%{version}_src.tgz
+Source: http://dl.sf.net/lplayer/lplayer-%{version}_src.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

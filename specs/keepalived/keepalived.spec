@@ -6,12 +6,12 @@ Version: 1.1.6
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://keepalived.sourceforge.net/
+URL: http://keepalived.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://keepalived.sourceforge.net/software/keepalived-%{version}.tar.gz
+Source: http://keepalived.sf.net/software/keepalived-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -6,12 +6,12 @@ Version: 2.2.0
 Release: 0
 License: GPL
 Group: System Environment/Base
-URL: http://wipe.sourceforge.net/
+URL: http://wipe.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://unc.dl.sourceforge.net/sourceforge/wipe/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/wipe/wipe-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -2,17 +2,16 @@
 
 Summary: IBM ThinkPad configuration tools.
 Name: tpctl
-Version: 4.8
+Version: 4.10
 Release: 0
 License: GPL
 Group: System Environment/Base
-URL: http://tpctl.sourceforge.net/
+URL: http://tpctl.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sf.net/tpctl/%{name}_%{version}.tar.gz
-Patch: tpctl-4.8-rpm.patch
+Source: http://dl.sf.net/tpctl/tpctl_%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -26,10 +25,13 @@ tpctl is a package of IBM ThinkPad configuration tools for Linux.
 
 %prep
 %setup
-%patch0 -b .rpm
+
+### FIXME: Remove chown/chgrp from Makefile. (Please fix upstream)
+%{__perl} -pi.orig -e 's| -o 0 -g 0 | |' Makefile
 
 %build
-%{__make} %{?_smp_mflags} all
+%{__make} %{?_smp_mflags} all \
+	CFLAGS="%{optflags}"
 %{__cp} -av apmiser/README ./README.apmiser
 
 %install
@@ -56,10 +58,13 @@ tpctl is a package of IBM ThinkPad configuration tools for Linux.
 %doc AUTHORS ChangeLog COPYING README* SUPPORTED* TROUBLE* VGA-MODES
 %doc %{_mandir}/man?/*
 %{_sbindir}/*
-%{_libdir}/*
+%{_libdir}/*.so.*
 %{_bindir}/*
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 4.10-0
+- Updated to release 4.10.
+
 * Thu Dec 04 2003 Dag Wieers <dag@wieers.com> - 4.8-0
 - Updated to release 4.8.
 

@@ -9,7 +9,7 @@ Version: 0.9.3
 Release: 0
 License: GPL
 Group: Applications/
-URL: http://sqlitemanager.sourceforge.net/
+URL: http://sqlitemanager.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -78,5 +78,5 @@ fi
 %{_localstatedir}/www/sqlitemanager/
 
 %changelog
-* Sat Feb 29 2004 Dag Wieers <dag@wieers.com> - 
+* Sat Feb 29 2004 Dag Wieers <dag@wieers.com> - 0.9.3-0
 - Initial package. (using DAR)

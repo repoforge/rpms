@@ -6,12 +6,12 @@ Version: 1.0
 Release: 1
 License: BSD
 Group: Applications/System
-URL: http://gcipher.sourceforge.net/
+URL: http://gcipher.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gcipher/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/gcipher/gcipher-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

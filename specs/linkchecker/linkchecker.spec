@@ -7,7 +7,7 @@ Version: 1.12.0
 Release: 0
 License: GPL
 Group: Applications/Publishing
-URL: http://linkchecker.sourceforge.net/
+URL: http://linkchecker.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

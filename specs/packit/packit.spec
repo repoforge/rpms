@@ -6,12 +6,12 @@ Version: 0.7.1
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://packit.sourceforge.net/
+URL: http://packit.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://packit.sourceforge.net/%{name}-%{version}.tgz
+Source: http://packit.sf.net/packit-%{version}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,19 +1,17 @@
 # Authority: dag
 
-# Upstream: 
-
-Summary: A web server stress testing tool.
+Summary: Web server stress testing tool.
 Name: hammerhead
 Version: 2.1.3
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://hammerhead.sourceforge.net/
+URL: http://hammerhead.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/sourceforge/hammerhead/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/hammerhead/hammerhead-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -10,12 +10,12 @@ Version: 0.9.8
 Release: 3
 License: GPL
 Group: Applications/Multimedia
-URL: http://dbmix.sourceforge.net/
+URL: http://dbmix.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/DBMix/DBMix-%{version}.tar.gz
+Source: http://dl.sf.net/DBMix/DBMix-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

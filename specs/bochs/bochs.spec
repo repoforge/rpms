@@ -8,7 +8,7 @@ Version: 2.1
 Release: 0
 License: LGPL
 Group: Applications/Emulators
-URL: http://bochs.sourceforge.net/
+URL: http://bochs.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -2,16 +2,16 @@
 
 Summary: Recover files based on their headers and footers.
 Name: foremost
-Version: 0.64
+Version: 0.69
 Release: 0
 License: freeware
 Group: Applications/Archiving
-URL: http://foremost.sourceforge.net/
+URL: http://foremost.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://foremost.sourceforge.net/pkg/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/foremost/foremost-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -49,5 +49,8 @@ headers you want to look for.
 %{_sbindir}/foremost
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.69-0
+- Updated to release 0.69.
+
 * Thu Oct 23 2003 Dag Wieers <dag@wieers.com> - 0.64-0
 - Initial package. (using DAR)

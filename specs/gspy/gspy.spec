@@ -1,17 +1,17 @@
 # Authority: dag
 
-Summary: A GNOME security camera.
+Summary: GNOME security camera.
 Name: gspy
 Version: 0.1.7
 Release: 0
 Group: Applications/Multimedia
 License: GPL
-URL: http://gspy.sourceforge.net/
+URL: http://gspy.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://gspy.sourceforge.net/%{name}-%{version}-src.tar.gz
+Source: http://gspy.sf.net/gspy-%{version}-src.tar.gz
 Patch0: gspy-configure.patch
 Patch1: gspy-autogen.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}

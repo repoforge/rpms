@@ -8,12 +8,12 @@ Version: 1.2.4
 Release: 0
 Group: User Interface/Desktops
 License: GPL
-URL: http://sourceforge.net/projects/vnc-reflector/
+URL: http://sf.net/projects/vnc-reflector/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/vnc-reflector/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/vnc-reflector/vnc_reflector-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

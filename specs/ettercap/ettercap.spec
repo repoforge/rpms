@@ -1,22 +1,21 @@
 # Authority: dag
-
 # Upstream: Marco Valleri <crwm@freemail.it>
 # Upstream: Alberto Ornaghi <alor@users.sourceforge.net>
 
-%define rversion 0.6.a
+%define rversion 0.6.b
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN.
 Name: ettercap
 Version: 0.6.9
-Release: 0.a
+Release: 0.b
 License: GPL
 Group: Applications/Internet
-URL: http://ettercap.sourceforge.net/
+URL: http://ettercap.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ettercap.sourceforge.net/download/ettercap-%{rversion}.tar.gz
+Source: http://dl.sf.net/ettercap/ettercap-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -56,6 +55,9 @@ analysis.
 %{_datadir}/ettercap/
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 0.6.9-0.b
+- Updated to release 0.6.b.
+
 * Wed May 07 2003 Dag Wieers <dag@wieers.com> - 0.6.9-0.a
 - Updated to release 0.6.a.
 

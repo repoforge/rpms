@@ -11,12 +11,12 @@ Version: 1.9.0
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://xawdecode.sourceforge.net/
+URL: http://xawdecode.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/xawdecode/xawdecode-%{version}.tar.bz2
+Source: http://dl.sf.net/xawdecode/xawdecode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

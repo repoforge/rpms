@@ -6,12 +6,12 @@ Version: 1.3.8
 Release: 0
 License: GPL
 Group: Development/Libraries
-URL: http://orbitcpp.sourceforge.net/
+URL: http://orbitcpp.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/%{name}/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/orbitcpp/orbitcpp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -11,7 +11,7 @@ Version: 1.8.5
 Release: 0
 License: GPL
 Group: System Environment/Base
-URL: http://linux-ntfs.sourceforge.net/
+URL: http://linux-ntfs.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: <dan@machlin.net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -10,13 +9,13 @@ Version: 0.4.3
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://ipsc.sourceforge.net/software.html
+URL: http://ipsc.sf.net/software.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://ipsc.sourceforge.net/dist/ipsc/%{name}-%{version}-src.tar.gz
-Source1: http://ipsc.sourceforge.net/dist/prips/prips-0.9.4-src.tar.gz
+Source0: http://ipsc.sf.net/dist/ipsc/ipsc-%{version}-src.tar.gz
+Source1: http://ipsc.sf.net/dist/prips/prips-0.9.4-src.tar.gz
 Patch0: ipsc-0.4.3-gcc33.patch
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}

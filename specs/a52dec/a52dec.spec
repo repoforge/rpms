@@ -6,8 +6,8 @@ Version: 0.7.4
 Release: 5.fr
 License: GPL
 Group: Applications/Multimedia
-URL: http://liba52.sourceforge.net/
-Source: http://liba52.sourceforge.net/files/%{name}-%{version}.tar.gz
+URL: http://liba52.sf.net/
+Source: http://liba52.sf.net/files/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

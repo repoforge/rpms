@@ -6,12 +6,12 @@ Version: 1.1.1
 Release: 0
 License: GPL
 Group: System Environment/Kernel
-URL: http://sourceforge.net/projects/cpufreqd/
+URL: http://cpufreqd.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/cpufreqd/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/cpufreqd/cpufreqd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

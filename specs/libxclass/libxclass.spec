@@ -10,12 +10,12 @@ Version: 0.8.2
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-URL: http://xclass.sourceforge.net/
+URL: http://xclass.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/xclass/%{rname}-%{version}.tar.gz
+Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -8,12 +8,12 @@ Version: 0.5
 Release: 0
 License: LGPL/GPL
 Group: System Environment/Libraries
-URL: http://mdbtools.sourceforge.net/
+URL: http://mdbtools.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://download.sourceforge.net/mdbtools/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/mdbtools/mdbtools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,5 +1,4 @@
 # Authority: dag
-
 # Upstream: Billy Biggs <vektor@dumbterm.net>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -10,12 +9,12 @@ Version: 0.9.12
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-URL: http://tvtime.sourceforge.net/
+URL: http://tvtime.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/tvtime/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/tvtime/tvtime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

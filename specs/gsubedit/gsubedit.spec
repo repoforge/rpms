@@ -2,18 +2,18 @@
 
 %define rversion 0.4pre1
 
-Summary: A tool for editing and converting DivX ;-) subtitles.
+Summary: Tool for editing and converting DivX ;-) subtitles.
 Name: gsubedit
 Version: 0.3.20020604
 Release: 0
 Group: Applications/Multimedia
 License: GPL
-URL: http://gsubedit.sourceforge.net/
+URL: http://gsubedit.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.sourceforge.net/pub/sourceforge/%{name}/%{name}-%{rversion}.tar.gz
+Source: http://dl.sf.net/gsubedit/gsubedit-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -10,7 +10,7 @@ Version: 0.1.0
 Release: 0.pre2
 License: GPL
 Group: Applications/Internet
-URL: http://desproxy.sourceforge.net/
+URL: http://desproxy.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -11,7 +11,7 @@ Version: 0.16.4
 Release: 0
 License: GPL
 Group: Applications/Internet
-URL: http://bogofilter.sourceforge.net/
+URL: http://bogofilter.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/

@@ -1,19 +1,17 @@
 # Authority: dag
 
-# Upstream: 
-
-Summary: A tool to magnify parts of your screen.
+Summary: Tool to magnify parts of your screen.
 Name: peeper
 Version: 0.3
 Release: 0
 License: GPL
 Group: Applications/System
-URL: http://peeper.sourceforge.net/
+URL: http://peeper.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/peeper/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/peeper/peeper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -6,12 +6,12 @@ Version: 2.0.3
 Release: 1
 License: GPL
 Group: User Interface/Desktops
-URL: http://girda.sourceforge.net/
+URL: http://girda.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/girda/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/girda/girda-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -6,12 +6,12 @@ Version: 1.0.5
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
-URL: http://gtkglext.sourceforge.net/
+URL: http://gtkglext.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://umn.dl.sourceforge.net/sourceforge/gtkglext/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/gtkglext/gtkglext-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 BuildRequires: XFree86-devel, gtk+-devel, pkgconfig
 

@@ -8,12 +8,12 @@ Version: 0.9.8
 Release: 2
 License: GPL
 Group: System Environment/Daemons
-URL: http://apserver.sourceforge.net/
+URL: http://apserver.sf.net/
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://apserver.sourceforge.net/aps098.tar.gz
+Source: http://apserver.sf.net/aps098.tar.gz
 BuildRoot: %{_tmppath}/root-%{_name}-%{_version}
 BuildRequires: dos2unix
 Requires: python
