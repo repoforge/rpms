@@ -1,11 +1,10 @@
 # Authority: dag
-
 # Upstream: MIMEDefang mailinglist <mimedefang@lists.roaringpenguin.com>
 
 Summary: Email filtering application using sendmail's milter interface.
 Name: mimedefang
-Version: 2.38
-Release: 0
+Version: 2.40
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.roaringpenguin.com/mimedefang/
@@ -13,7 +12,7 @@ URL: http://www.roaringpenguin.com/mimedefang/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.roaringpenguin.com/mimedefang/%{name}-%{version}.tar.gz
+Source: http://www.roaringpenguin.com/mimedefang/mimedefang-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -114,6 +113,9 @@ fi
 %dir %{_localstatedir}/spool/MD-Quarantine
 
 %changelog
+* Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 2.40-1
+- Updated to release 2.40.
+
 * Thu Oct 09 2003 Dag Wieers <dag@wieers.com> - 2.38-0
 - Updated to release 2.38.
 

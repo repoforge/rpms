@@ -4,7 +4,7 @@
 Summary: JPEG pixel interpolator.
 Name: jpegpixi
 Version: 0.14.2
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.zero-based.org/software/jpegpixi/
@@ -35,7 +35,6 @@ pixel can be interpolated with jpegpixi.
 			%{buildroot}%{_mandir}/man1/
 %{__install} -m0755 jpegpixi jpeghotp %{buildroot}%{_bindir}
 %{__install} -m0644 jpegpixi.1 jpeghotp.1 %{buildroot}%{_mandir}/man1/
-
 
 %clean
 %{__rm} -rf %{buildroot}
