@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/boson/boson-all-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, XFree86-devel, zlib-devel, qt-devel, kdelibs-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel
+BuildRequires: gcc-c++, XFree86-devel, zlib-devel, qt-devel, kdelibs-devel, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, lib3ds
 
 %description
 Boson is an OpenGL real-time strategy game, with the feeling of
