@@ -4,7 +4,7 @@
 
 Summary: Small, portable symbolic math program
 Name: mathomatic
-Version: 11.2c
+Version: 11.2d
 Release: 1
 License: LGPL
 Group: Applications/Engineering
@@ -32,8 +32,6 @@ Gesslein II and has been under development since 1986.
 %{__rm} -rf %{buildroot}
 %{__install} -d -m 755 %{buildroot}%{_bindir} \
 	%{buildroot}%{_mandir}/man1
-%{__sed} -i "s/.PREFIX.\/bin/\(bindir\)/g;" makefile
-%{__sed} -i "s/.PREFIX.\/man/\(mandir\)/g;" makefile
 %makeinstall
 
 %clean
@@ -46,14 +44,17 @@ Gesslein II and has been under development since 1986.
 %{_datadir}/man/man1/am.*
 
 %changelog
+* Wed Jun 30 2004 Dries Verachtert <dries@ulyssis.org> 11.2d-1
+* Update to version 11.2d.
+
 * Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> 11.2c-1
-- Update to 11.2c
+- Update to 11.2c.
 
 * Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> 11.2b-1
-- Update to 11.2b
+- Update to 11.2b.
 
 * Sat May 29 2004 Dries Verachtert <dries@ulyssis.org> 11.1d-1
-- Update to 11.1d
+- Update to 11.1d.
 
 * Tue Apr 27 2004 Dries Verachtert <dries@ulyssis.org> 11.0e-1
-- Initial package
+- Initial package.
