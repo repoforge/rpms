@@ -10,7 +10,7 @@ Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/rte-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: doxygen, gettext
+BuildRequires: doxygen, gettext, gcc-c++
 # Definitely doesn't build on anything else... (0.5.4)
 ExclusiveArch: %{ix86}
 
