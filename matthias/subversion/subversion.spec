@@ -1,11 +1,11 @@
 # If you don't have 360+ MB of free disk space or don't want to run checks then
 # set make_check to 0.
-%define make_check 1
+%define make_check 0
 
 Summary: A Concurrent Versioning system similar to, but better than, CVS.
 Name: subversion
-Version: 1.0.1
-Release: 0.fc1.1
+Version: 1.0.2
+Release: 0
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org
@@ -16,8 +16,9 @@ Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
 BuildPreReq: autoconf, libtool, python, python-devel
-BuildPreReq: db4-devel >= 4.1.25, swig >= 1.3.15, docbook-style-xsl
+BuildPreReq: swig >= 1.3.15, docbook-style-xsl
 BuildPreReq: apr-devel, apr-util-devel, neon-devel >= 0:0.24.0-1
+BuildRequires: gcc-c++, openssl-devel, zlib-devel
 BuildRoot: %{_tmppath}/%{name}-root
 
 %define __perl_requires %{SOURCE3}
@@ -60,7 +61,7 @@ using HTTP, via the Apache httpd server.
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
 
-rm -rf neon apr apr-util db4
+rm -rf neon apr apr-util
 
 %build
 ./autogen.sh
@@ -137,6 +138,13 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/httpd/modules/mod_authz_svn.so
 
 %changelog
+* Mon May  3 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-0
+- Update to 1.0.2.
+- Use included db4.
+
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 1.0.1-0
+- Update to 1.0.1.
+
 * Mon Feb 23 2004 Joe Orton <jorton@redhat.com> 1.0.0-1
 - update to one-dot-oh
 
