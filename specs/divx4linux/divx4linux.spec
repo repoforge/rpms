@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define	date 20030428
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://download.divx.com/divx/divx4linux-std-%{date}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 ExclusiveArch: i386
 
@@ -40,12 +38,12 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}
 for file in *.so; do
-	%{__install} -m0755 $file %{buildroot}%{_libdir}/$file.0
+	%{__install} -D -m0755 $file %{buildroot}%{_libdir}/$file.0
 	%{__ln_s} -f %{_libdir}/$file.0 %{buildroot}%{_libdir}/$file
 done
+
+%{__install} -d -m0755 %{buildroot}%{_includedir}
 %{__install} -m0644 *.h %{buildroot}%{_includedir}
 
 %post
