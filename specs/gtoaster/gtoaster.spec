@@ -1,13 +1,20 @@
 # $Id$
 # Authority: dag
+# Upstream: <A.Eckleder@bigfoot.com>
 
 ### Goes into a loop with fc2/x86_64 (Please investigate)
-# ExcludeDist: fc2a
+##ExcludeDist: fc2i fc2a
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
+%define real_version 1.0Beta6
 
 Name: gtoaster
-Summary: versatile CD recording package for both sound and data
+Summary: Versatile CD recording package for both sound and data
 Version: 1.0
-Release: 1.beta6
+Release: 2.beta6
 License: GPL
 Group: Applications/Archiving
 URL: http://gnometoaster.rulez.org/
@@ -15,16 +22,13 @@ URL: http://gnometoaster.rulez.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://gnometoaster.rulez.org/archive/%{name}1.0Beta5.tgz
-Source1: gtoaster.desktop
-Source2: gtoaster.console
-Source3: gtoaster.pam
-Source4: gtoaster.png
+Source0: http://gnometoaster.rulez.org/archive/gtoaster%{real_version}.tgz
+Source1: gtoaster.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: audiofile-devel gnome-libs-devel ORBit-devel
-Requires: cdrecord cdrdao mkisofs cdda2wav sox mpg321
+BuildRequires: audiofile-devel, gnome-libs-devel, ORBit-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+Requires: cdrecord, cdrdao, mkisofs, cdda2wav, sox, mpg321
 ExcludeArch: s390 s390x
 
 %description
@@ -37,41 +41,85 @@ filemanagers.
 %prep
 %setup -n %{name}
 
+%{__cat} <<EOF >gtoaster.desktop
+[Desktop Entry]
+Name=Gnome Toaster
+Comment=Create audio and data CDs
+Icon=gtoaster.png
+Exec=gtoaster
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GNOME;Application;AudioVideo;
+EOF
+
+%{__cat} <<EOF >gtoaster.console
+USER=root
+PROGRAM=%{_bindir}/gtoaster-root
+SESSION=true
+EOF
+
+%{__cat} <<EOF >gtoaster.pam
+#%PAM-1.0
+auth       sufficient	/lib/security/pam_rootok.so
+auth       required	/lib/security/pam_stack.so service=system-auth
+session	   required	/lib/security/pam_permit.so
+session    optional	/lib/security/pam_xauth.so
+account    required	/lib/security/pam_permit.so
+EOF
+
 %build
+%{__libtoolize} --force
+#%{__aclocal} --force
+#%{__automake} -a
+%{__autoconf} --force
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+#%find_lang %{name}
 
 %{__mv} -f %{buildroot}%{_bindir}/gtoaster %{buildroot}%{_bindir}/gtoaster-root
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/gtoaster
 
-# helper stuff
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/{X11/applnk/Multimedia,security/console.apps,pam.d}/ \
-	%{buildroot}%{_datadir}/pixmaps
+%{__install} -D -m0644 gtoaster.console %{buildroot}%{_sysconfdir}/security/console.apps/gtoaster
+%{__install} -D -m0644 gtoaster.pam %{buildroot}%{_sysconfdir}/pam.d/gtoaster
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/gtoaster.png
 
-%{__install} -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia
-%{__install} -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/security/console.apps/gtoaster
-%{__install} -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/pam.d/gtoaster
-%{__install} -m0644 %{SOURCE4} %{buildroot}%{_datadir}/pixmaps
-
-%find_lang %{name}
+%if %{!?_without_freedesktop:1}0
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor gnome --delete-original \
+		--add-category X-Red-Hat-Base                 \
+		--dir %{buildroot}%{_datadir}/applications    \
+		gtoaster.desktop
+%else
+	%{__install} -D -m0644 gtoaster.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/gtoaster.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
-%defattr (-,root,root)
-%doc AUTHORS ChangeLog* NEWS README TODO
-%config %{_sysconfdir}/X11/applnk/Multimedia/gtoaster.desktop
+#%files -f %{name}.lang
+%files
+%defattr (-, root, root, 0755)
+%doc AUTHORS ChangeLog* COPYING INSTALL NEWS README TODO
 %config(noreplace) %{_sysconfdir}/pam.d/gtoaster
 %config(noreplace) %{_sysconfdir}/security/console.apps/gtoaster
+%{!?_without_freedesktop:%{_datadir}/applications/gnome-gtoaster.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/gtoaster.desktop}
 %{_datadir}/pixmaps/*
 %{_bindir}/*
 
 %changelog
+* Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 1.0-2.beta6
+- Added improved desktop file.
+- Cosmetic cleanup.
+
+* Mon Feb 24 2003 Dag Wieers <dag@wieers.com> - 1.0-1.beta6
+- Updated to release 1.0Beta6.
+
 * Fri Feb 08 2002 John Thacker <thacker@math.cornell.edu>
 - update to 1.0Beta5
 
