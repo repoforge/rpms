@@ -11,7 +11,7 @@ Source: gkrellm-themes.tar.bz2
 URL: http://muhri.net/gkrellm/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gkrellm >= 2.0.0
-BuildPreReq: /usr/bin/find
+BuildRequires: /usr/bin/find
 BuildArch: noarch
 
 %description
@@ -27,30 +27,35 @@ course have to install the main GKrellM package to use them.
 %prep
 %setup -n %{name}
 
+
 %build
+
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{_datadir}/gkrellm2/themes
-cd %{buildroot}%{_datadir}/gkrellm2/themes
-find $RPM_BUILD_DIR/%{name} -name "*gz" -exec tar -xzvf {} \;
+%{__mkdir_p} %{buildroot}%{_datadir}/gkrellm2/themes
+%{__cd} %{buildroot}%{_datadir}/gkrellm2/themes
+/usr/bin/find $RPM_BUILD_DIR/%{name} -name "*gz" -exec tar -xzvf {} \;
 # Cleanup / Fixup
-find . -name ".xvpics" | xargs rm -rf
-find . -type d -exec chmod 755 {} \;
-find . -type f -exec chmod 644 {} \;
+/usr/bin/find . -name ".xvpics" | xargs rm -rf
+/usr/bin/find . -type d -exec chmod 755 {} \;
+/usr/bin/find . -type f -exec chmod 644 {} \;
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
 %{_datadir}/gkrellm2/themes/*
 
+
 %changelog
-* Wed Jan  7 3004 Matthias Saou <http://freshrpms.net/> 2.1.8-3.fr
+* Wed Jan  7 3004 Matthias Saou <http://freshrpms.net/> 2.1.8-3
 - Fix permissions for the installed files, thanks to Brett Pemberton.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.8-2.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.1.8-2
 - Rebuild for Fedora Core 1.
 - Not a single new skin on http://muhri.net/gkrellm/ :-(
 

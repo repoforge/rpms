@@ -4,10 +4,10 @@
 %define desktop_vendor freshrpms
 #define date           20031202
 
-Summary: complete GTK+ frontend for xmame
+Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.34b
-Release: %{?date:0.%{date}.}1
+Release: %{?date:0.%{date}.}2
 License: GPL
 Group: Applications/Emulators
 Source: http://dl.sf.net/gxmame/gxmame-%{!?date:%{version}}%{?date}.tar.gz
@@ -27,13 +27,16 @@ of mame32 that writes config files instead of saving data into windows
 registery) allowing dual booter to have the same environement (favorite,
 times played, last game selected, gui preference...) under windows and Linux.
 
+
 %prep
 %setup -n %{name}-%{!?date:%{version}}%{?date}
+
 
 %build
 test -x configure || ./autogen.sh
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -41,11 +44,13 @@ test -x configure || ./autogen.sh
 %find_lang %{name}
 
 # Put the docs back into place
-mkdir installed-docs
-mv %{buildroot}%{_docdir}/%{name}*/* installed-docs/
+%{__mkdir} installed-docs
+%{__mv} %{buildroot}%{_docdir}/%{name}*/* installed-docs/
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -55,11 +60,15 @@ mv %{buildroot}%{_docdir}/%{name}*/* installed-docs/
 %{_datadir}/icons/%{name}.png
 %{_datadir}/icons/mini/%{name}.xpm
 
+
 %changelog
-* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.34b-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.34b-2
+- Rebuilt for Fedora Core 2.
+
+* Sun Jan  4 2004 Matthias Saou <http://freshrpms.net/> 0.34b-1
 - Update to 0.34b.
 
-* Tue Dec 16 2003 Matthias Saou <http://freshrpms.net/> 0.34-1.fr
+* Tue Dec 16 2003 Matthias Saou <http://freshrpms.net/> 0.34-1
 - Update to 0.34 final.
 
 * Wed Nov 19 2003 Matthias Saou <http://freshrpms.net/> 0.34-0.20031202.1.fr

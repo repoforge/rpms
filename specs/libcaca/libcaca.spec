@@ -8,10 +8,8 @@ Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sam.zoy.org/projects/libcaca/
-
 Source: http://sam.zoy.org/projects/libcaca/libcaca-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 Buildrequires: XFree86-devel, ncurses-devel >= 5, slang-devel, imlib2-devel
 Buildrequires: zlib-devel, doxygen, tetex-latex, tetex-dvips
 
@@ -36,7 +34,7 @@ compile applications or shared objects that use libcaca.
 
 
 %package -n caca-utils
-Summary: Text mode graphics utilities
+Summary: Colour AsCii Art Text mode graphics utilities based on libcaca
 Group: Amusements/Graphics
 
 %description -n caca-utils
@@ -58,22 +56,26 @@ sprite blitting.
 %prep
 %setup
 
+
 %build
 %configure \
     --enable-slang \
     --enable-ncurses \
     --enable-x11 \
     --enable-imlib2
-%{__make} 
+%{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 # We want to include the docs ourselves from the source directory
-mv %{buildroot}%{_docdir}/%{name}-dev %{name}-devel-docs
+%{__mv} %{buildroot}%{_docdir}/%{name}-dev %{name}-devel-docs
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -99,15 +101,19 @@ mv %{buildroot}%{_docdir}/%{name}-dev %{name}-devel-docs
 %{_mandir}/man1/cacafire.1*
 %{_mandir}/man1/cacaview.1*
 
+
 %changelog
-* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.9-2.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9-3
+- Rebuild for Fedora Core 2.
+
+* Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.9-2
 - Fix License tag from GPL to LGPL.
 
-* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9-1.fr
+* Mon Feb  9 2004 Matthias Saou <http://freshrpms.net/> 0.9-1
 - Update to 0.9.
 - Added cacamoir and cacaplas.
 
-* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.7-1.fr
+* Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.7-1
 - Spec file cleanup for Fedora Core 1.
 
 * Sat Jan 7 2004 Sam Hocevar (RPM packages) <sam+rpm@zoy.org> 0.7-1
