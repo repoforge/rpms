@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <mtools@tux.org>
 
-Summary: mtools, read/write/list/format DOS disks under Unix
+Summary: Read/write/list/format DOS disks
 Name: mtools
 Version: 3.9.9
-Release: 0
+Release: 2
 License: GPL/Lilux
 Group: System Environment/Base
 URL: http://mtools.linux.lu/
@@ -13,9 +13,8 @@ URL: http://mtools.linux.lu/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://mtools.linux.lu/%{name}-%{version}.tar.bz2
+Source: http://mtools.linux.lu/mtools-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Mtools is a collection of utilities to access MS-DOS disks
@@ -25,52 +24,40 @@ disks (store up to 1992k on a high density 3 1/2 disk).
 
 %prep
 %setup
-%configure
 
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__make} install-info infodir="%{buildroot}%{_infodir}"
-#/usr/bin/strip /usr/bin/mtools /usr/bin/mkmanifest /usr/bin/floppyd
-
-%files
-%doc Changelog COPYING README* Release.notes scripts/
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/man5/*
-%{_infodir}/*
-%{_bindir}/*
+%makeinstall install-info
 
 %pre
-groupadd floppy 2>/dev/null || echo -n ""
+groupadd floppy 2>/dev/null || :
 
 %post
-if [ -f /usr/bin/install-info ] ; then
-	if [ -f /usr/info/dir ] ; then
-		/usr/bin/install-info /usr/info/mtools.info /usr/info/dir
-	fi
-	if [ -f /usr/info/dir.info ] ; then
-		/usr/bin/install-info /usr/info/mtools.info /usr/info/dir.info
-	fi
-fi
-
+/sbin/install-info %{_infodir}/mtools.info.gz %{_infodir}/dir
 
 %preun
-install-info --delete /usr/info/mtools.info /usr/info/dir.info
-if [ -f /usr/bin/install-info ] ; then
-	if [ -f /usr/info/dir ] ; then
-		/usr/bin/install-info --delete /usr/info/mtools.info /usr/info/dir
-	fi
-	if [ -f /usr/info/dir.info ] ; then
-		/usr/bin/install-info --delete /usr/info/mtools.info /usr/info/dir.info
-	fi
-fi
+/sbin/install-info --delete %{_infodir}/mtools.info.gz %{_infodir}/dir
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%files
+%defattr(-, root, root, 0755)
+%doc Changelog COPYING README* Release.notes scripts/
+%doc %{_mandir}/man?/*
+%doc %{_infodir}/*.info*
+%{_bindir}/*
+
 %changelog
+* Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 3.9.9-2
+- Cosmetic fixes, the sequel.
+
+* Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 3.9.9-1
+- Cosmetic fixes.
+
 * Thu Apr 03 2003 Dag Wieers <dag@wieers.com> - 3.9.9-0
 - Initial package. (using DAR)
