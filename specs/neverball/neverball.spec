@@ -33,7 +33,7 @@ your progress and earn an extra ball. Red coins are worth 5, blue are worth 10.
 
 %build
 # Change the location where the binary will look for the "data" directory
-perl -pi -e 's|./data|%{_datadir}/%{name}|g' config.h
+%{__perl} -pi.orig -e 's|./data|%{_datadir}/%{name}|g' share/config.h
 %{__make} %{?_smp_mflags}
 
 
