@@ -2,18 +2,18 @@
 # Authority: matthias
 # Upstream: <libmpeg2-devel$lists,sf,net>
 
-#define date 20030701
+%define date 20040610
 
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
-Version: 0.4.0
-Release: %{?date:0.%{date}.}4b
+Version: 0.4.1
+Release: %{?date:0.%{date}.}1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/
-Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:date}%{!?date:%{version}b}.tar.gz
+Source: http://libmpeg2.sourceforge.net/files/mpeg2dec-%{?date:snapshot}%{!?date:%{version}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, pkgconfig, gcc-c++
+BuildRequires: XFree86-devel, SDL-devel, pkgconfig, gcc-c++
 
 %description
 A free library for decoding MPEG-2 and MPEG-1 video streams.
@@ -36,7 +36,7 @@ libmpeg2.
 
 
 %build
-CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" \
+CFLAGS="%{optflags} -fPIC -DPIC" \
 %configure --enable-shared
 %{__make} %{?_smp_mflags}
 
@@ -76,6 +76,10 @@ CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" \
 
 
 %changelog
+* Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 0.4.1-0.20040610.1
+- Update to latest available CVS snaphsot, fixes build issues on FC3.
+- Added SDL support.
+
 * Sun May 30 2004 Dag Wieers <dag@wieers.com> - 0.4.0-4b
 - Added -fPIC for non ix86 archs.
 - Merged with my SPEC file.
