@@ -5,19 +5,19 @@
 Summary: Implementation of the RFC1413 identification server
 Name: oidentd
 Version: 2.0.7
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Daemons
 URL: http://ojnk.sourceforge.net/
-
 Source0: http://download.sourceforge.net/ojnk/oidentd-%{version}.tar.gz
 Source1: identd.init
 Source2: identd.spoof
 Source3: oidentd.users
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires(post): /sbin/chkconfig
+Requires(preun): /sbin/service, /sbin/chkconfig
+Requires(postun): /sbin/service
 BuildRequires: byacc
-Prereq: /sbin/chkconfig /etc/init.d /sbin/service
 Provides: identd = %{version}
 Conflicts: pidentd
 
@@ -30,22 +30,27 @@ process that owns the connection.
 Install oidentd if you need to look up information about specific
 TCP/IP connections.
 
+
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -D -m0755 %{SOURCE1} %{buildroot}/etc/init.d/identd
-%{__install} -D -m0640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
-%{__install} -D -m0640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
+%{__install} -D -m 755 %{SOURCE1} %{buildroot}/etc/init.d/identd
+%{__install} -D -m 640 %{SOURCE2} %{buildroot}%{_sysconfdir}/identd.spoof
+%{__install} -D -m 640 %{SOURCE3} %{buildroot}%{_sysconfdir}/oidentd.users
+
 
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %post
 /sbin/chkconfig --add identd
@@ -61,6 +66,7 @@ if [ "$1" -ge "1" ]; then
     /sbin/service identd condrestart > /dev/null 2>&1
 fi
 
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING* NEWS README TODO doc/rfc1413
@@ -70,8 +76,12 @@ fi
 %config /etc/init.d/identd
 %{_mandir}/man?/*
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.0.7-2.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-3
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 2.0.7-2
 - Rebuild for Fedora Core 1.
 
 * Tue Jul 15 2003 Matthias Saou <http://freshrpms.net/>

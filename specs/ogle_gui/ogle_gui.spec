@@ -6,7 +6,7 @@
 Summary: GNOME interface for the ogle DVD player
 Name: ogle_gui
 Version: 0.9.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
@@ -19,20 +19,25 @@ BuildRequires: ogle-devel >= 0.9.1, gnome-libs-devel >= 1.2.0, libglade-devel
 This is a GNOME interface for the ogle DVD player. Install this if you want
 a graphical GUI for the ogle DVD player.
 
+
 %prep
 %setup -n %{name}-%{version}%{?cvs}
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -40,11 +45,15 @@ a graphical GUI for the ogle DVD player.
 %{_libdir}/ogle
 %{_datadir}/ogle_gui
 
+
 %changelog
-* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-2
+- Rebuild for Fedora Core 2.
+
+* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-1
 - Update to 0.9.2.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.1-4.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.1-4
 - Rebuild for Fedora Core 1.
 
 * Mon Apr 14 2003 Matthias Saou <http://freshrpms.net/>

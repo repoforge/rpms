@@ -4,7 +4,7 @@
 Summary: MPEG audio player
 Name: mpg321
 Version: 0.2.10
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/
@@ -24,16 +24,20 @@ mpg123.
 %prep
 %setup
 
+
 %build
-%configure --with-default-audio=esd
+%configure --with-default-audio="esd"
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files 
 %defattr(-, root, root, 0755)
@@ -41,8 +45,12 @@ mpg123.
 %{_bindir}/*
 %{_mandir}/man1/*
 
+
 %changelog
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.2.10-4.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.2.10-5
+- Rebuild for Fedora Core 2.
+
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.2.10-4
 - Rebuild for Fedora Core 1.
 
 * Mon Jul 21 2003 Matthias Saou <http://freshrpms.net/>

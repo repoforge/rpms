@@ -7,12 +7,12 @@
 Summary: DVD player that supports DVD menus
 Name: ogle
 Version: 0.9.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
+URL: http://www.dtek.chalmers.se/groups/dvd/
 Source0: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
 Source1: bluecurve-xine.png
-URL: http://www.dtek.chalmers.se/groups/dvd/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdread >= 0.9.4, libjpeg, libxml2 >= 2.4.19
 %{!?_without_alsa:Requires: alsa-lib}
@@ -50,9 +50,11 @@ to build programs that use it (like GUIs).
 %prep
 %setup -n %{name}-%{version}%{?cvs}
 
+
 %build
 %configure %{?_without_altivec:--disable-altivec}
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -64,12 +66,12 @@ export LIBRARY_PATH=%{buildroot}/usr/lib/ogle
 # Change the ALSA default to OSS, unless "alsa-default" was chosen
 %{!?_with_alsadefaultdriver:perl -pi -e 's|<driver>alsa</driver>|<driver>oss</driver>|g' %{buildroot}%{_datadir}/ogle/oglerc}
 
-cat << EOF > %{name}.desktop
+%{__cat} << EOF > %{name}.desktop
 [Desktop Entry]
-Name=Ogle DVD Player
-Comment=Play all DVDs including encrypted ones with full menu support
+Name=DVD Player
+Comment=Play video DVDs with full menu support
 Icon=%{name}.png
-Exec=%{_bindir}/%{name}
+Exec=%{name}
 Terminal=false
 Type=Application
 EOF
@@ -91,12 +93,15 @@ desktop-file-install --vendor %{desktop_vendor} \
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %post
 /sbin/ldconfig
 # If the /dev/dvd link doesn't exist, create a default one
 test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -121,79 +126,84 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 %exclude %{_libdir}/%{name}/*.la
 %{_libdir}/%{name}/*.a
 
+
 %changelog
-* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-2
+- Rebuild for Fedora Core 2.
+- Minor spec updates.
+
+* Thu Nov  6 2003 Matthias Saou <http://freshrpms.net/> 0.9.2-1
 - Update to 0.9.2.
 
-* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.1-7.fr
+* Sun Nov  2 2003 Matthias Saou <http://freshrpms.net/> 0.9.1-7
 - Rebuild for Fedora Core 1.
 
-* Fri Sep 19 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Sep 19 2003 Matthias Saou <http://freshrpms.net/>
 - Update to today's CVS snapshot that will become 0.9.2.
 - Change build dep from libmad to libmad-devel.
 
-* Wed May 14 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed May 14 2003 Matthias Saou <http://freshrpms.net/>
 - Added --without altivec build option for ppc < G4 users.
 
-* Mon Apr 14 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Apr 14 2003 Matthias Saou <http://freshrpms.net/>
 - Added libdvdread and libxml devel deps.
 
-* Mon Mar 31 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Mar 31 2003 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 9.
 - Exclude .la file.
 
-* Sat Mar 15 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Sat Mar 15 2003 Matthias Saou <http://freshrpms.net/>
 - Add freedesktop build option.
 
-* Tue Mar 11 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Tue Mar 11 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.9.1.
 
-* Tue Feb 25 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Tue Feb 25 2003 Matthias Saou <http://freshrpms.net/>
 - Update to 0.9.0.
 
-* Sun Feb 16 2003 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Sun Feb 16 2003 Matthias Saou <http://freshrpms.net/>
 - Update to CVS version, "release imminent" :-)
 
-* Fri Oct  4 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Oct  4 2002 Matthias Saou <http://freshrpms.net/>
 - Moved the /dev/dvd link creation to the %%post script.
 - Enabled ALSA by default in the build, but OSS as default in the config
   unless rebuilt with --with alsadefaultdriver.
 
-* Fri Sep 27 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Sep 27 2002 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 8.0.
 - Added the new desktop entry to this main ogle package, it makes more sense.
 - Shameless ripoff of the cool BlueCurve Xine icon for the menu entry.
 - Added default /dev/dvd -> cdrom symlink.
 
-* Fri Aug 30 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Fri Aug 30 2002 Matthias Saou <http://freshrpms.net/>
 - Now build with support for ALSA by default.
 - Updated description and URLs.
 
-* Tue Aug  6 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Tue Aug  6 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.8.5.
 
-* Mon Jul  1 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Mon Jul  1 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.8.4.
 
-* Wed Jun 12 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Jun 12 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.8.3.
 - Spec file cleanup and inclusion of the Ogle team changes (Björn & Martin).
 
-* Wed May 15 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed May 15 2002 Matthias Saou <http://freshrpms.net/>
 - Rebuilt for Red Hat Linux 7.3 (added a workaround for libxml2).
 - Added the %%{?_smp_mflags} expansion.
 
-* Tue Mar 19 2002 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Tue Mar 19 2002 Matthias Saou <http://freshrpms.net/>
 - Update to 0.8.2 current CVS version.
 
-* Sat Dec  8 2001 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Sat Dec  8 2001 Matthias Saou <http://freshrpms.net/>
 - Update to 0.8.2.
 
-* Sun Nov  4 2001 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Sun Nov  4 2001 Matthias Saou <http://freshrpms.net/>
 - Added an ugly hack to prevent the need to build the package twice to
   have it work done correctly.
 
-* Wed Oct 31 2001 Matthias Saou <matthias.saou@est.une.marmotte.net>
+* Wed Oct 31 2001 Matthias Saou <http://freshrpms.net/>
 - Spec file cleanup and fixes.
 
 * Fri Oct 26 2001 Martin Norbäck <d95mback@dtek.chalmers.se>

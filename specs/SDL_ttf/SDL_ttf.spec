@@ -11,9 +11,6 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_ttf/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -77,3 +74,4 @@ you will need to install %{name}-devel.
 %changelog
 * Thu Sep 04 2003 Dag Wieers <dag@wieers.com> - 2.0.6-0
 - Initial package. (using DAR)
+

@@ -9,13 +9,10 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/ogmtools/
-
 Source: http://www.bunkus.org/videotools/ogmtools/ogmtools-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gcc-c++
-BuildRequires: libdvdread-devel, libogg-devel, libvorbis-devel
 Requires: libdvdread, libogg, libvorbis
+BuildRequires: gcc-c++, libdvdread-devel, libogg-devel, libvorbis-devel
 
 %description
 These tools allow information about (ogminfo) or extraction from (ogmdemux) or
