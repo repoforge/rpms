@@ -6,7 +6,7 @@
 
 Summary: A TV viewer for GNOME
 Name: zapping
-Version: 0.7.2
+Version: 0.7.3
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -37,9 +37,10 @@ features, plus extensibility through a plugin system.
 
 %build
 %configure \
-	--disable-schemas-install
+    --disable-schemas-install
 
-%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' configure Makefile* */Makefile* */*/Makefile*
+%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g' \
+    configure Makefile* */Makefile* */*/Makefile*
 
 %{__make} %{?_smp_mflags}
 
@@ -47,7 +48,7 @@ features, plus extensibility through a plugin system.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %{__make} install \
-	DESTDIR="%{buildroot}"
+    DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 # Fix buggy symlinks (point into the %{buildroot})
@@ -83,6 +84,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Wed Oct 13 2004 Matthias Saou <http://freshrpms.net/> 0.7.3-1
+- Update to 0.7.3.
+
 * Mon Oct  4 2004 Matthias Saou <http://freshrpms.net/> 0.7.2-1
 - Update to 0.7.2.
 
