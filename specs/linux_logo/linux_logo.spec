@@ -3,8 +3,8 @@
 
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo
-Version: 4.09
-Release: 1
+Version: 4.10
+Release: 0
 License: GPL
 Group: Applications/System
 URL: http://www.deater.net/weave/vmwprod/linux_logo/
@@ -24,7 +24,10 @@ Linux logo creates a colorful penguin logo on the console.
 for logo in ./logos/*.logo ./logos/*/*.logo; do
     echo "$logo" >> logo_config
 done
-%{__make} %{?_smp_mflags} C_OPTS="-I./libsysinfo $RPM_OPT_FLAGS"
+# C_OPTS is used by linux_logo.c and C_FLAGS by libsysinfo
+%{__make} %{?_smp_mflags} \
+    C_OPTS="%{optflags} -I./\$(LIBSYSINFO)" \
+    C_FLAGS="%{optflags} -I.. -I. -I../include"
 
 
 %install
@@ -44,12 +47,16 @@ done
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING README LINUX_LOGO.FAQ README* TODO USAGE
+%doc CHANGES COPYING LINUX_LOGO.FAQ README* TODO USAGE
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
 
 
 %changelog
+* Sat Apr  2 2005 Matthias Saou <http://freshrpms.net/> 4.10-0
+- Update to 4.10.
+- Get optflags also used during the compilation of libsysinfo.
+
 * Mon May 17 2004 Matthias Saou <http://freshrpms.net/> 4.09-1
 - Update to 4.09.
 - Re-enabled all logos, they build fine again.
