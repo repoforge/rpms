@@ -27,6 +27,7 @@ Source1: gtoaster.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: audiofile-devel, gnome-libs-devel, ORBit-devel
+BuildRequires: libtool
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: cdrecord, cdrdao, mkisofs, cdda2wav, sox, mpg321
 ExcludeArch: s390 s390x
