@@ -1,12 +1,18 @@
 # $Id$
-
 # Authority: dries
+# Screenshot: http://stellarium.free.fr/gfx/pleiades.jpg
+# ScreenshotURL: http://stellarium.free.fr/
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 
 Summary: Stellarium renders 3D photo-realistic skies in real time
-Summary(nl): Stellarium toont 3D fotorealistische hemels in real time.
 Name: stellarium
-Version: 0.5.2
-Release: 5
+Version: 0.6.0
+Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://stellarium.free.fr/
@@ -17,9 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dos2unix, gcc-c++, XFree86-devel, SDL-devel
-
-# Screenshot: http://stellarium.free.fr/gfx/pleiades.jpg
-# ScreenshotURL: http://stellarium.free.fr/
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Stellarium renders 3D photo-realistic skies in real time. Most important
@@ -41,41 +45,9 @@ telescope.
 * Smooth real time navigation.
 * Windowed and fullscreen modes.
  
-%description -l nl
-Stellarium toont 3D fotorealistische hemels in real time. De belangrijkste
-features zijn:
-* Meer dan 120000 sterren van de Hipparcos catalogus met naam en info voor
-de helderste sterren.
-* Planeten in real time, met een zoom mode zodat u ze ziet zoals met een
-telescoop
-* Tonen van de 88 constellaties met hun namen
-* Tonen van meer dan 40 'messiers' objecten (Orion, M32, enz)
-* Fotorealistische melkweg
-* Grond, mist en landschap
-* Schitteren van sterren
-* Een grid met de coordinaten
-* Een eenvoudig grafisch menu
-* Informatie met een muisklik bij sterren, planeten en nebula's
-* Ecliptische en 'celestrial' equator lijnen
-* vloeiende real time navigatie
-* fullscreen en venster modus
-
 %prep
-%{__rm} -rf "${RPM_BUILD_ROOT}"
 %setup
-
-%build
-dos2unix configure
-chmod +x configure
-%configure
-%{__make} %{?_smp_mflags}
-
-%install
-%{__rm} -rf %{buildroot}
-%{__make} DESTDIR=$RPM_BUILD_ROOT install-strip
-mv %{buildroot}/%{_bindir}/stellarium %{buildroot}/%{_bindir}/run-stellarium
-mkdir -p $RPM_BUILD_ROOT/usr/share/applications
-cat > $RPM_BUILD_ROOT/usr/share/applications/stellarium.desktop <<EOF
+%{__cat} > stellarium.desktop <<EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -84,12 +56,35 @@ Name=Stellarium
 Exec=/usr/bin/stellarium
 Categories=Application;Graphics;X-Red-Hat-Extra;
 EOF
-cat > $RPM_BUILD_ROOT/usr/bin/stellarium <<EOF
+
+%build
+dos2unix configure
+%{__chmod} +x configure
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+# {__make} DESTDIR=%{buildroot} install-strip
+%{__mv} %{buildroot}/%{_bindir}/stellarium %{buildroot}/%{_bindir}/run-stellarium
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+%{__cat} > %{buildroot}%{_bindir}/stellarium <<EOF
 #!/bin/bash
-mkdir -p ~/.stellarium/0.5.2
+mkdir -p ~/.stellarium/%{version}
 run-stellarium
 EOF
-chmod +x $RPM_BUILD_ROOT/usr/bin/stellarium
+%{__chmod} +x %{buildroot}%{_bindir}/stellarium
+
+%if %{?_without_freedesktop:1}0
+        %{__install} -D -m0644 stellarium.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/stellarium.desktop
+%else
+        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+        desktop-file-install --vendor net                  \
+                --add-category X-Red-Hat-Base              \
+                --dir %{buildroot}%{_datadir}/applications \
+                stellarium.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -97,12 +92,16 @@ chmod +x $RPM_BUILD_ROOT/usr/bin/stellarium
 %files
 %defattr(-, root, root, 0755)
 %doc README
+%doc %{_mandir}/man?/*
 %{_bindir}/run-stellarium
 %{_bindir}/stellarium
 %{_datadir}/stellarium
-%{_datadir}/applications/stellarium.desktop
+%{_datadir}/applications/*.desktop
 
 %changelog
+* Fri Jul 30 2004 Dries Verachtert <dries@ulyssis.org> 0.6.0-1
+- Update to version 0.6.0
+
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.5.2-5
 - renamed the original program to run-stellarium 
 - renamed the wrapper to stellarium
