@@ -22,7 +22,7 @@ Source: http://dl.sf.net/ksubtile/ksubtile_%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel
+BuildRequires: XFree86-devel, qt-devel, fam-devel
 %{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs
 
