@@ -8,6 +8,8 @@
 %{?rh7:%define _without_tcltk_devel 1}
 %{?el2:%define _without_tcltk_devel 1}
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name PyOpenGL
 
 Summary: OpenGL bindings for Python
@@ -40,17 +42,18 @@ unset DISPLAY
 #python setup.py build
 ### ugly kludge to get togl to build (tk bindings)
 ### as you can't pass -L to build, only build_togl
-python setup.py build_w
-python setup.py build_py
-python setup.py build_clib
-python setup.py build_ext
-python setup.py build_togl -L/usr/X11R6/lib
-python setup.py build
+%{__python} setup.py build_w
+%{__python} setup.py build_py
+%{__python} setup.py build_clib
+%{__python} setup.py build_ext
+%{__python} setup.py build_togl -L/usr/X11R6/lib
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--prefix="%{buildroot}%{_prefix}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,7 +61,7 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_libdir}/python*/site-packages/OpenGL/
+%{python_sitearch}/OpenGL/
 
 %changelog
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 2.0.1.09-1

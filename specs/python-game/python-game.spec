@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name pygame
 
 Summary: Python module for interfacing with the SDL multimedia library
@@ -47,13 +49,14 @@ Install pygame-doc if you need the API documentation and example programs.
 %setup -n %{real_name}-%{version}
 
 %build
-python config.py
-python setup.py build
+%{__python} config.py
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--prefix="%{buildroot}%{_prefix}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,7 +64,7 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc WHATSNEW readme.*
-%{_libdir}/python*/site-packages/pygame/
+%{python_sitearch}/pygame/
 %{_includedir}/python*/pygame/
 
 %files doc

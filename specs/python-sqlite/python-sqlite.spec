@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <pysqlite-devel$lists,sf,net>
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name pysqlite
 
 Summary: Python bindings for sqlite
@@ -29,8 +31,9 @@ sqlite is a simple database engine.
 
 %install
 %{__rm} -rf %{buildroot}
-python ./setup.py install \
-	--prefix="%{buildroot}/%{_prefix}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,7 +41,7 @@ python ./setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README doc/ examples/
-%{_libdir}/python*/site-packages/*
+%{python_sitearch}/*
 
 %changelog
 * Sat May 01 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1

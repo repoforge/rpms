@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name pycrypto
 
 Summary: Collection of cryptographic algorithms and protocols for python
@@ -35,12 +37,13 @@ implemented for use from Python. Among the contents of the package:
 %setup -n %{real_name}-%{version}
 
 %build
-python2 setup.py build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python2 setup.py install \
-	--root="%{buildroot}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,7 +51,7 @@ python2 setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc ACKS ChangeLog LICENSE MANIFEST README TODO
-%{_libdir}/python*/site-packages/Crypto/
+%{python_sitearch}/Crypto/
 
 %changelog
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 2.0-1

@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dries
 # Upstream: Martin Preishuber <Martin,Preishuber$eclipt,at>
+
 # Screenshot: http://www.its4you.at/images/screenshots/log4py.png
+
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name log4py
 
@@ -29,13 +31,13 @@ configurable output formats and configuration via configuration files.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--prefix="%{_prefix}" \
-	--root="%{buildroot}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,7 +45,7 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc doc/* readme.txt log4py.conf
-%{_libdir}/python*/site-packages/log4py.py*
+%{python_sitearch}/log4py.py*
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 1.3-1

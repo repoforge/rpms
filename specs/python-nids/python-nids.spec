@@ -35,8 +35,8 @@ CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 %install
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install \
-	--prefix="%{_prefix}" \
-	--root="%{buildroot}"
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}

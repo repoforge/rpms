@@ -3,6 +3,8 @@
 
 # Tag: test
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name egenix-mx-base
 
 Summary: mx-base libraries for Python
@@ -36,11 +38,11 @@ packages of the series.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
+%{__python} setup.py install \
 	--root="%{buildroot}" \
 	--prefix="%{_prefix}"
 
@@ -50,7 +52,7 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc README mx/Doc/ mx/*/Doc/ mx/DateTime/COPYRIGHT mx/DateTime/LICENSE
-%{_libdir}/python*/site-packages/mx/
+%{python_sitearch}/mx/
 
 %changelog
 * Sat Aug 02 2003 Dag Wieers <dag@wieers.com> - 2.0.4-0

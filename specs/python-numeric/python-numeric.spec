@@ -1,6 +1,7 @@
 # $Id$
-
 # Authority: dag
+
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name Numeric
 
@@ -12,7 +13,7 @@ License: UNKNOWN
 Group: Development/Libraries
 URL: http://www.pfdubois.com/numpy/
 
-Source: http://dl.sf.net/numpy/%{real_name}-%{version}.tar.gz
+Source: http://dl.sf.net/numpy/Numeric-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python, python-devel
 
@@ -25,12 +26,13 @@ Numerical Extension to Python with subpackages.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--root="%{buildroot}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,6 +40,6 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc Demo/
-%{_libdir}/python*/site-packages/Numeric.pth
-%{_libdir}/python*/site-packages/Numeric/
+%{python_sitearch}/Numeric.pth
+%{python_sitearch}/Numeric/
 %{_includedir}/python*/Numeric/

@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
-# Upstream: <list@epicsol.org>
+# Upstream: <list$epicsol,org>
 
 Summary: IrcII chat client
 Name: epic
-Version: 2.0
+Version: 2.2
 Release: 1
 Epoch: 4
 License: Distributable
@@ -31,8 +31,8 @@ you to chat with other people.
 
 %prep 
 %setup -n epic4-%{version} -a 1
-%patch -p1 -b .stop
-%patch1 -p0 -b .default
+#%patch -p1 -b .stop
+#%patch1 -p0 -b .default
 
 ### Clean up CVS dirs
 find . -type d -name CVS -exec %{__rm} -rf {} \; || :
@@ -78,8 +78,11 @@ find %{buildroot} -type f -name Makefile -exec %{__rm} -f {} \; || :
 %exclude %{_libexecdir}/wserv4
 
 %changelog
+* Sat Mar 19 2005 Bert de Bruijn <bert@debruijn.be> - 4:2.2-1
+- Updated to release 2.2.
+
 * Thu Jul 15 2004 Bert de Bruijn <bert@debruijn.be> - 4:2.0-1
-- update to 2.0.
+- Updated to release 2.0.
 
 * Sat Apr 17 2004 Dag Wieers <dag@wieers.com> - 4:1.0.1-16
 - Clean up SPEC file.

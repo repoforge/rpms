@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Andy Dustman <webmaster$dustman,net>
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name adns-python
 
 Summary: Python bindings for GNU adns library
@@ -15,7 +17,7 @@ URL: http://dustman.net/andy/python/adns-python/
 Source: http://dustman.net/andy/python/adns-python/%{version}/adns-python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, adns-devel, python-devel
+BuildRequires: python, python-devel, adns-devel
 Requires: python, adns
 
 %description
@@ -26,13 +28,13 @@ resolver library.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" python setup.py build
+CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--prefix="%{_prefix}" \
-	--root="%{buildroot}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -40,7 +42,7 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc GPL license.py README
-%{_libdir}/python*/site-packages/*
+%{python_sitearch}/*
 
 %changelog
 * Mon May 10 2004 Dag Wieers <dag@wieers.com> - 1.0.0-1

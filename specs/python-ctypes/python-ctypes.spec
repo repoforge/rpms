@@ -27,11 +27,13 @@ It allows wrapping these libraries in pure Python.
 %setup -n %{real_name}-%{version}
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install --root="%{buildroot}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}

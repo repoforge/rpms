@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_version %(python2 -c 'import sys; print sys.version[:3]')
 
 Summary: Python module for working with utmp
@@ -29,14 +30,13 @@ of utmpaccess module, providing object oriented interface.
 %build
 %{__make} -f Makefile.glibc \
 	PYTHONVER="%{python_version}" \
-	PYTHONDIR="%{_libdir}/python%{python_version}/site-packages/"
+	PYTHONDIR="%{python_sitearch}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall -f Makefile.glibc \
 	PYTHONVER="%{python_version}" \
-	PYTHONDIR="%{buildroot}%{_libdir}/python%{python_version}/site-packages/"
-
+	PYTHONDIR="%{buildroot}%{python_sitearch}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,7 +44,7 @@ of utmpaccess module, providing object oriented interface.
 %files
 %defattr(-, root, root, 0755)
 %doc README TODO examples/*
-%{_libdir}/python%{python_version}/site-packages/*
+%{python_sitearch}/*
 
 %changelog
 * Wed Jan 05 2005 Dag Wieers <dag@wieers.com> - 0.7-1

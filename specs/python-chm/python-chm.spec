@@ -29,13 +29,13 @@ MS-ITSS encoded files - Compressed Html Help files (.chm).
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
+%{__python} setup.py install \
 	--root="%{buildroot}" \
-	--record=INSTALLED_FILES
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}

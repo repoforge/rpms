@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <pybsddb-users$lists,sf,net>
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 %define real_name bsddb3
 
 Summary: Python interface for BerkeleyDB 3.x and 4.x
@@ -41,13 +43,13 @@ Python object!
 	' setup.py
 
 %build
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--prefix="%{_prefix}" \
-	--root="%{buildroot}"
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,7 +57,7 @@ python setup.py install \
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog *.txt docs/
-%{_libdir}/python*/site-packages/bsddb3/
+%{python_sitearch}/bsddb3/
 
 %changelog
 * Wed May 19 2004 Dag Wieers <dag@wieers.com> - 4.2.4-1

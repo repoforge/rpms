@@ -8,6 +8,7 @@
 %{?fc2: %define ft2build 1}
 %{?yd4: %define ft2build 1}
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define pyver %(%{__python} -c 'import sys; print sys.version[:3]' || echo 2.0)
 
 Summary: Python's own image processing library
@@ -52,7 +53,9 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root=%{buildroot}
+%{__python} setup.py install \
+	--root="%{buildroot}" \
+	--prefix="%{_prefix}"
 
 
 %clean
@@ -62,8 +65,8 @@ popd
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES* CONTENTS README Images/ Sane/ Scripts/
-%{_libdir}/python*/site-packages/PIL.pth
-%{_libdir}/python*/site-packages/PIL/
+%{python_sitearch}/PIL.path
+%{python_sitearch}/PIL/
 
 
 %changelog
