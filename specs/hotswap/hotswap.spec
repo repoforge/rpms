@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Tim Stadelmann <t,stadelmann1$physics,ox,ac,uk>
 
 Summary: Hotswap peripherals in portable computers
 Name: hotswap
@@ -7,7 +8,7 @@ Version: 0.4.0
 Release: 1
 License: GPL
 Group: Base Environment/System
-URL: http://users.ox.ac.uk/~univ1377/
+URL: http://users.ox.ac.uk/~univ1377/c600.html
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
