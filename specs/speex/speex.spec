@@ -3,7 +3,7 @@
 
 Summary: Open-source, patent-free speech codec
 Name: speex
-Version: 1.0.3
+Version: 1.0.4
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -12,7 +12,6 @@ Source: http://www.speex.org/download/speex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Provides: libspeex = %{version}-%{release}
 Obsoletes: libspeex <= 1.0.0
-Requires: libogg
 BuildRequires: libogg-devel
 
 %description
@@ -51,10 +50,10 @@ export CFLAGS='%{optflags} -DRELEASE'
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %clean
@@ -70,13 +69,19 @@ export CFLAGS='%{optflags} -DRELEASE'
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
+%{_includedir}/*.h
+%{_includedir}/speex/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/speex.pc
+%{_datadir}/aclocal/speex.m4
 
 
 %changelog
+* Wed Jul 21 2004 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.0.2-3
 - Rebuild for Fedora Core 2.
 
