@@ -3,11 +3,13 @@
 Summary: Library for decoding ATSC A/52 (aka AC-3) audio streams
 Name: a52dec
 Version: 0.7.4
-Release: 6
+Release: 7
 License: GPL
 Group: Applications/Multimedia
 URL: http://liba52.sourceforge.net/
-Source: http://liba52.sf.net/files/%{name}-%{version}.tar.gz
+
+Source: http://liba52.sf.net/files/a52dec-%{version}.tar.gz
+Patch: a52dec-0.7.4-PIC.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -34,9 +36,18 @@ to build programs that use it.
 
 %prep
 %setup
-
+%ifnarch %ix86
+%patch -p1 -b .PIC
+%endif
 
 %build
+%ifnarch %ix86
+%{__libtoolize} --force
+%{__aclocal}
+%{__autoheader}
+%{__automake} -a
+%{__autoconf}
+%endif
 %configure --enable-shared
 %{__make} %{?_smp_mflags}
 
@@ -51,10 +62,10 @@ to build programs that use it.
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %files
@@ -74,6 +85,9 @@ to build programs that use it.
 
 
 %changelog
+* Sat May 29 2004 Dag Wieers <dag@wieers.com> - 0.7.4-7
+- Added -fPIC patch for non ix86 architectures.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.7.4-7
 - Rebuilt for Fedora Core 2.
 
