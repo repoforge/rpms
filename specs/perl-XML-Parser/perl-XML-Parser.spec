@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/%{real_name}-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: perl >= 0:5.004
+BuildRequires: perl >= 0:5.004, expat-devel
 Requires: perl >= 0:5.004
 
 
