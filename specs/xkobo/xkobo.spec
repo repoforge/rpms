@@ -23,7 +23,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.redhead.dk/download/pub/Xkobo/xkobo-%{real_version}.tar.gz
 Patch0: xkobo-1.11+w01-imake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: gcc-c++
 %{!?dist:BuildRequires: xorg-x11-devel}
 %{?fc2:BuildRequires: xorg-x11-devel}
 %{?fc1:BuildRequires: XFree86-devel}

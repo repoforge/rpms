@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.atcomputing.nl/pub/tools/linux/atop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: zlib-devel
+BuildRequires: zlib-devel, ncurses-devel
 
 %description
 The program atop is an interactive monitor to view the load on

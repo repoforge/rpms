@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://vpe-dist.plan9.de/vpe-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel
+BuildRequires: openssl-devel, gcc-c++
 
 %description
 VPE creates a virtual ethernet (broadcasts supported, any protocol that works

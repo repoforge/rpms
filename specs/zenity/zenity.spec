@@ -18,7 +18,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://ftp.gnome.org/pub/GNOME/sources/zenity/%{version}/zenity-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: popt, scrollkeeper, intltool
+BuildRequires: popt, scrollkeeper, intltool, GConf2-devel
 BuildRequires: gtk2-devel, libglade2-devel >= 2.0, libgnomecanvas-devel >= 2.0
 
 Requires(post): scrollkeeper

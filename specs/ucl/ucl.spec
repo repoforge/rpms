@@ -14,6 +14,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.oberhumer.com/opensource/ucl/download/ucl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 UCL is a portable lossless data compression library written in ANSI C.

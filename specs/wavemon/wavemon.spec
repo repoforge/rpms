@@ -19,6 +19,7 @@ Source: http://www.janmorgenstern.de/wavemon-%{real_version}.tar.gz
 #Source: http://www.wavemage.com/wavemon-%{real_version}.tar.bz2
 Patch: wavemon.c.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: ncurses-devel
 
 %description
 wavemon is a wireless device monitoring application that allows you to

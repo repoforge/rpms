@@ -18,7 +18,7 @@ Source: http://0pointer.de/lennart/projects/waproamd/waproamd-%{version}.tar.gz
 Patch: waproamd-0.6-chkconfig.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdaemon-devel, lynx
+BuildRequires: libdaemon-devel, lynx, pkgconfig
 
 %description
 WapRoamD is a roaming daemon for wireless IEEE 802.11 NICs supporting the

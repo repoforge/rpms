@@ -19,7 +19,7 @@ Source: http://tinc.nl.linux.org/packages/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: openssl >= 0.9.7
+BuildRequires: openssl >= 0.9.7, openssl-devel
 
 %description
 tinc is a Virtual Private Network (VPN) daemon that uses tunnelling

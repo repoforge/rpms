@@ -17,7 +17,7 @@ Source: http://ftp.edgewall.com/pub/trac/trac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.1
+BuildRequires: python >= 2.1, python-devel
 Requires: python >= 2.1, subversion-python >= 1.0.0, python-sqlite >= 0.4.3
 Requires: python-clearsilver >= 0.9.3, webserver
 
