@@ -209,7 +209,7 @@ fi
 %endif
 
 ### Clean up buildroot
-find %{_libdir}/firefox/chrome/*/ -type d -exec %{__rmdir} -p {} \; &>/dev/null
+find %{buildroot}%{_libdir}/firefox/chrome/*/ -type d -exec %{__rmdir} -p {} \; &>/dev/null
 
 %post
 /sbin/ldconfig 2>/dev/null
