@@ -5,12 +5,12 @@
 Summary: PECL package for parsing and working with email messages
 Name: php-pecl-mailparse
 Version: 2.0b
-Release: 3
+Release: 4
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/mailparse
 Source0: http://pecl.php.net/get/mailparse-%{version}.tgz
-Source1: mbfl-4.3.4.tar.gz
+Source1: mbfl-4.3.8.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php
 BuildRequires: php, php-devel
@@ -61,6 +61,10 @@ EOF
 
 
 %changelog
+* Tue Jul 27 2004 Matthias Saou <http://freshrpms.net/> 2.0b-4
+- Update included mbfl source to 4.3.8 as the current 4.3.4 doesn't work
+  anymore.
+
 * Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 2.0b-3
 - Rebuild for Fedora Core 2.
 - No need for a strict dependency on this package, it works fine with

@@ -1,7 +1,7 @@
 # $Id$
 
 %define php_extdir %(php-config --extension-dir || echo /usr/lib/php4)
-%define php_version %(php-config --version || echo badbuild)
+%{!?php_version:%define php_version %(php-config --version || echo bad)}
 
 %define module_version 2.4.6
 

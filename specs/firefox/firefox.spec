@@ -24,7 +24,7 @@ Source1: firefox-rebuild-databases.pl.in
 Patch1: firefox-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, zlib-devel, zip, gzip, perl,
+BuildRequires: XFree86-devel, zlib-devel, zip
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -134,7 +134,6 @@ ac_add_options --disable-ldap
 ac_add_options --disable-mailnews
 ac_add_options --disable-profilesharing
 ac_add_options --disable-tests
-ac_add_options --disable-xprint
 ac_add_options --enable-crypto
 #ac_add_options --enable-extensions="default,-irc,-venkman"
 ac_add_options --enable-extensions="cookie,gnomevfs,inspector,negotiateauth,p3p,pref,transformiix,typeaheadfind,universalchardet,wallet,webservices,xmlextras,xml-rpc"

@@ -1,12 +1,11 @@
 # $Id$
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sourceforge,net>
-# ExcludeDist: fc2
 
 Summary: DV grabber through the FireWire interface
 Name: dvgrab
-Version: 1.5
-Release: 3
+Version: 1.6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -14,7 +13,7 @@ URL: http://kino.schirmacher.de/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://kino.schirmacher.de/filemanager/download/20/dvgrab-%{version}.tar.gz
+Source: http://kino.schirmacher.de/filemanager/download/37/dvgrab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libraw1394-devel, libavc1394-devel, libdv-devel
@@ -49,6 +48,9 @@ generation.
 %{_bindir}/*
 
 %changelog
+* Tue Jul 27 2004 Matthias Saou <http://freshrpms.net> 1.6-1
+- Update to 1.6.
+
 * Tue Jun 22 2004 Matthias Saou <http://freshrpms.net> 1.5-3
 - Added missing build requirements to obtain a full-featured package.
 

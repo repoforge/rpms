@@ -2,6 +2,8 @@
 # Authority: matthias
 # Upstream: <vlc-devel$videolan,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
 
@@ -26,6 +28,9 @@
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_theora 1}
+
+%{?yd3:%define _without_alsa 1}
+%{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor freshrpms
 %define ffmpeg_date 20040520

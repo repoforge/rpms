@@ -4,8 +4,8 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.7.1
-Release: 3
+Version: 0.7.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -13,7 +13,7 @@ URL: http://kino.schirmacher.de/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source0: http://kino.schirmacher.de/filemanager/download/31/kino-%{version}.tar.gz
+Source0: http://kino.schirmacher.de/filemanager/download/36/kino-%{version}.tar.gz
 Source1: kino.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -21,6 +21,7 @@ BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel
+BuildRequires: dos2unix
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
@@ -35,36 +36,24 @@ commands for fast navigating and editing inside the movie.
 
 %prep
 %setup
-
-### FIXME: Buildtools don't use proper autotool directories (Please fix upstream)
-%{__perl} -pi.orig -e '
-		s|/usr/share/pixmaps/kino|\$(datadir)/pixmaps/kino|;
-		s|^(gnomedatadir) = /usr/share$|$1 = \$(datadir)|;
-		s|^(hotplugscriptdir) = .*|$1 = \$(sysconfdir)/hotplug/usb|;
-		s|^(hotplugusermapdir) = .*|$1 = \$(libdir)/hotplug/kino|;
-	' Makefile.in help/Makefile.in linux-hotplug/Makefile.in
-
-%{__cat} <<EOF >kino.desktop
-[Desktop Entry]
-Name=Kino Video Editor
-Comment=Edit non-linear videos in real-time
-Icon=kino.png
-Exec=kino
-Terminal=false
-Type=Application
-Encoding=UTF-8
-Categories=GNOME;Application;AudioVideo;
-EOF
+# Fix up the desktop entry (it has CRLF line ends in 0.7.2, dfi barfs on it!)
+dos2unix kino.desktop
+# Use the kino icon we include
+%{__perl} -pi.orig -e 's|gnome-multimedia.png|kino.png|g' kino.desktop
 
 %build
 %configure \
-%{!?_without_quicktime:--with-quicktime} \
-%{!?_without_ffmpeg:--with-avcodec}
+    --with-hotplug-script-dir=%{_sysconfdir}/hotplug/usb \
+    --with-hotplug-usermap-dir=%{_libdir}/hotplug/kino \
+    %{!?_without_quicktime:--with-quicktime} \
+    %{!?_without_ffmpeg:--with-avcodec}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall \
+    hotplugscriptdir=%{buildroot}%{_sysconfdir}/hotplug/usb \
+    hotplugusermapdir=%{buildroot}%{_libdir}/hotplug/kino
 %find_lang %{name}
 
 %if %{?_without_freedesktop:1}0
@@ -85,7 +74,7 @@ EOF
 
 %files -f %{name}.lang
 %defattr (-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog NEWS README*
+%doc AUTHORS BUGS ChangeLog COPYING NEWS README*
 %doc %{_mandir}/man?/*
 #%doc %{_datadir}/gnome/help/kino/
 %config %{_sysconfdir}/hotplug/usb/*
@@ -99,6 +88,10 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-kino.desktop}
 
 %changelog
+* Tue Jul 27 2004 Matthias Saou <http://freshrpms.net> 0.7.2-1
+- Update to 0.7.2.
+- Spec file changes to match upstream build fixes.
+
 * Tue Jul 20 2004 Dag Wieers <dag@wieers.com> - 0.7.1-3
 - Rebuild for x86_64 with quicktime support.
 
