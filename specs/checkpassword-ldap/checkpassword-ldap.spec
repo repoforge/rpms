@@ -29,8 +29,7 @@ ${CC:-%{__cc}} %{optflags} -o checkpassword-ldap checkpassword-ldap.o -lldap -ld
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 checkpassword-ldap %{buildroot}%{_bindir}
+%{__install} -D -m0755 checkpassword-ldap %{buildroot}%{_bindir}/checkpassword-ldap
 
 %clean
 %{__rm} -rf %{buildroot}
