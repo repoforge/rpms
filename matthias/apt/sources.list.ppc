@@ -5,11 +5,13 @@
 #
 # $Id$
 
+# Yellow Dog Linux 4.0
+rpm http://ayo.freshrpms.net yellowdog/4.0/ppc os updates freshrpms
+#rpm-src http://ayo.freshrpms.net yellowdog/4.0/ppc os updates freshrpms
+ 
 # Yellow Dog Linux 3.0
-rpm http://ayo.freshrpms.net yellowdog/3.0/ppc os updates freshrpms
-#rpm http://ayo.freshrpms.net yellowdog/3.0/ppc ruffpack
+#rpm http://ayo.freshrpms.net yellowdog/3.0/ppc os updates freshrpms
 #rpm-src http://ayo.freshrpms.net yellowdog/3.0/ppc os updates freshrpms
-#rpm-src http://ayo.freshrpms.net yellowdog/3.0/ppc ruffpack
  
 # Yellow Dog Linux 2.3
 #rpm http://ayo.freshrpms.net yellowdog/2.3/ppc os updates freshrpms
