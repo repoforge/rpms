@@ -1,4 +1,4 @@
-# $Id: libavc1394.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: A library for providing raw access to IEEE 1394 devices
 Name: libavc1394

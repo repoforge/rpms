@@ -4,10 +4,10 @@
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A simple non-linear video editor.
+Summary: Simple non-linear video editor.
 Name: kino
 Version: 0.7.0
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -24,21 +24,13 @@ BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: gtk+ >= 1.2, XFree86-devel, imlib-devel
 BuildRequires: libxml2-devel, libquicktime-devel
 
+Obsoletes: kino-devel <= %{version}
+
 %description
 The new generation of digital camcorders use the Digital Video (DV) data
 format. Kino allows you to record, create, edit, and play movies recorded
 with DV camcorders. Unlike other editors, this program uses many keyboard
 commands for fast navigating and editing inside the movie.
-
-%package devel
-Summary: Header files, libraries and development documentation for %{name}.
-Group: Development/Libraries
-Requires: %{name} = %{epoch}:%{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -46,7 +38,7 @@ you will need to install %{name}-devel.
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
 Name=Kino Video Editor
-Comment=%{summary}
+Comment=Simple non-linear video editor
 Icon=gnome-multimedia.png
 Exec=kino
 Terminal=false
@@ -85,8 +77,8 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files
-%doc AUTHORS BUGS ChangeLog NEWS README*
 %defattr (-, root, root, 0755)
+%doc AUTHORS BUGS ChangeLog NEWS README*
 %doc %{_mandir}/man?/*
 %doc %{_datadir}/gnome/help/kino/
 %{_bindir}/*
@@ -99,6 +91,9 @@ EOF
 %{_includedir}/kino/
 
 %changelog
+* Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Obsolete older kino-devel package. (Jeff Moe)
+
 * Fri Dec 19 2003 Dag Wieers <dag@wieers.com> - 0.7.0-0
 - Updated to 0.7.0.
 

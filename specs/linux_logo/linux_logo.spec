@@ -1,4 +1,4 @@
-# $Id: linux_logo.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo

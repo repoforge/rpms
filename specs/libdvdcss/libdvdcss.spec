@@ -1,4 +1,4 @@
-# $Id: libdvdcss.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: A portable abstraction library for DVD decryption.
 Name: libdvdcss

@@ -1,4 +1,4 @@
-# $Id: libshout.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout

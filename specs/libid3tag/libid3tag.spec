@@ -1,4 +1,4 @@
-# $Id: libid3tag.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: Library for reading and writing ID3v1 and ID3v2 tags
 Name: libid3tag

@@ -1,4 +1,4 @@
-# $Id: mplayer.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
 %define date      20040211

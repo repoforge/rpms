@@ -1,4 +1,4 @@
-# $Id: libdv.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary: A software codec for DV video, used by most digital camcorders.
 Name: libdv

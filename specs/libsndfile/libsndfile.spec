@@ -1,4 +1,4 @@
-# $Id: libsndfile.spec,v 1.1 2004/02/25 15:20:32 thias Exp $
+# $Id$
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile

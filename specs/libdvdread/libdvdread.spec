@@ -1,4 +1,4 @@
-# $Id: libdvdread.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 # Define when building a CVS shapshot
 #define	cvs	-cvs

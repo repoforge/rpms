@@ -1,4 +1,4 @@
-# $Id: lirc.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 # The driver(s) you want to compile in, e.g. "pctv", "serial", "any"
 %define driver "pctv"

@@ -1,4 +1,4 @@
-# $Id: mplayer-fonts.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 # Default font encoding, iso-8859-1 iso-8859-2 iso-8859-7 or cp1250
 %define font iso-8859-1

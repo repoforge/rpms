@@ -1,4 +1,4 @@
-# $Id: muine.spec,v 1.3 2004/02/29 11:46:52 dag- Exp $
+# $Id$
 
 # Authority: dag
 ##Soapbox: 0

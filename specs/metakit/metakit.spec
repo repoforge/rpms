@@ -1,4 +1,4 @@
-# $Id: metakit.spec,v 1.1 2004/02/26 17:57:39 thias Exp $
+# $Id$
 
 Summary: Embeddable database
 Name: metakit

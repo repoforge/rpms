@@ -1,4 +1,4 @@
-# $Id: libglademm2.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
+# $Id$
 
 Summary: The C++ interface for the libglade user interface library.
 Name: libglademm2

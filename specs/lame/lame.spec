@@ -1,4 +1,4 @@
-# $Id: lame.spec,v 1.1 2004/02/26 17:54:29 thias Exp $
+# $Id$
 
 Summary : LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame

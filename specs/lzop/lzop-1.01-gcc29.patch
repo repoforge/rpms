@@ -1,0 +1,19 @@
+--- src/util.c.orig	Sun Nov  2 00:46:46 2003
++++ src/util.c	Sun Nov  2 00:47:09 2003
+@@ -210,12 +210,15 @@
+     assert(size >= 18);
+ #if defined(HAVE_SNPRINTF)
+     snprintf(s, size, "%04d-%02d-%02d %02d:%02d:%02d",
++            (int) tmp->tm_year + 1900, (int) tmp->tm_mon + 1,
++            (int) tmp->tm_mday,
++            (int) tmp->tm_hour, (int) tmp->tm_min, (int) tmp->tm_sec);
+ #else
+     sprintf(s, "%04d-%02d-%02d %02d:%02d:%02d",
+-#endif
+             (int) tmp->tm_year + 1900, (int) tmp->tm_mon + 1,
+             (int) tmp->tm_mday,
+             (int) tmp->tm_hour, (int) tmp->tm_min, (int) tmp->tm_sec);
++#endif
+ }
+ #endif
+ 
