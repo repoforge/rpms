@@ -1,18 +1,22 @@
 # $Id$
 # Authority: matthias
+# Upstream: <libmpeg2-devel@lists.sf.net>
 
 #define date 20030701
 
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.0
-Release: %{?date:0.%{date}.}4b
+Release: %{?date:0.%{date}.}3b
 License: LGPL
 Group: System Environment/Libraries
-URL: http://libmpeg2.sourceforge.net/
-Source: http://libmpeg2.sourceforge.net/files/%{name}-%{?date:date}%{!?date:%{version}b}.tar.gz
+URL: http://libmpeg2.sf.net/
+
+Source: http://libmpeg2.sf.net/files/mpeg2dec-%{?date:date}%{!?date:%{version}b}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: XFree86-devel, pkgconfig, gcc-c++
+Requires(post,postun): /sbin/ldconfig
 
 %description
 A free library for decoding MPEG-2 and MPEG-1 video streams.
@@ -35,9 +39,9 @@ libmpeg2.
 
 
 %build
-%configure \
-    --enable-shared \
-    --disable-sdl
+CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" \
+%configure --enable-shared
+#	--disable-sdl
 %{__make} %{?_smp_mflags}
 
 
@@ -47,10 +51,10 @@ libmpeg2.
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig 2>/dev/null
 
 
 %clean
@@ -67,7 +71,8 @@ libmpeg2.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
+%doc doc/*.txt doc/*.c
+%{_includedir}/mpeg2dec/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
@@ -75,7 +80,11 @@ libmpeg2.
 
 
 %changelog
-* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-4b
+* Sun May 30 2004 Dag Wieers <dag@wieers.com> - 0.4.0-4b
+- Added -fPIC for non ix86 archs.
+- Merged with my SPEC file.
+
+* Wed Mar 24 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-3b
 - Removed explicit dependency on XFree86 for the binary package.
 
 * Thu Feb  5 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-2b
