@@ -6,6 +6,7 @@
 # ScreenshotURL: http://passwordmanager.sourceforge.net/screenshots.html
 
 %define real_version 1.0rc1
+%define short_name pwmanager
 
 Summary: Personal password manager
 Name: passwordmanager
@@ -18,7 +19,7 @@ URL: http://passwordmanager.sourceforge.net/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://dl.sf.net/passwordmanager/pwmanager-%{real_version}.tar.bz2
+Source: http://dl.sf.net/passwordmanager/%{short_name}-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++,
@@ -33,7 +34,7 @@ master-password you can use a chipcard, so you don't have to remember a
 password to access the list.
 
 %prep
-%setup -n pwmanager-%{real_version}
+%setup -n %{short_name}-%{real_version}
 
 %build
 %configure \
@@ -43,7 +44,7 @@ password to access the list.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+%find_lang %{short_name}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -54,7 +55,7 @@ password to access the list.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files -f %{short_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/*
