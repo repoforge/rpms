@@ -37,6 +37,11 @@ Not finished, not to be released!
 %files
 %defattr(-, root, root, 0755)
 %doc README
+%{_sysconfdir}/rc.d/init.d/pydar-buildserver-master
+%{_sysconfdir}/rc.d/init.d/pydar-buildserver-slave
+%{_bindir}/dar-remote
+%{_datadir}/pydar/*.py
+%{_datadir}/pydar/pydar/*.py
 
 %changelog
 * Sat Mar 20 2004 Dries Verachtert <dries@ulyssis.org> 0.001-1
