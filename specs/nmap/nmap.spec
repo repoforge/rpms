@@ -1,5 +1,6 @@
 # $Id$
 # Authority: matthias
+# Upstream: <nmap-dev@insecure.org>
 
 %define desktop_vendor freshrpms
 
@@ -11,8 +12,10 @@ Epoch: 2
 License: GPL
 Group: Applications/System
 URL: http://www.insecure.org/nmap/
+
 Source: http://download.insecure.org/nmap/dist/nmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, libpcap, pcre-devel, openssl-devel
 
 %description
