@@ -3,6 +3,8 @@
 # Upstream: Giuseppe Martino <denever$users,sourceforge,net>
 # Upstream: <aldo-main$nongnu,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Morse tutor
 Name: aldo
 Version: 0.6.5
@@ -15,6 +17,7 @@ Source: http://savannah.nongnu.org/download/aldo/aldo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
+%{?fc3:BuildRequires: compat-gcc-c++}
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
@@ -36,12 +39,14 @@ random generated callsigns
 %{__perl} -pi.orig -e 's| -oroot | |' Makefile */Makefile
 
 %build
+%{?fc3:export CXX=g++33}
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
+%{?fc3:export CXX=g++33}
 %makeinstall \
 	PREFIX="%{buildroot}%{_prefix}"
 
