@@ -22,18 +22,6 @@ diff -uNr gl-117-1.3-src/src/audio.cpp gl-117-1.3-src-fix/src/audio.cpp
  
  SoundSystem::~SoundSystem ()
  {
-diff -uNr gl-117-1.3-src/src/glland.cpp gl-117-1.3-src-fix/src/glland.cpp
---- gl-117-1.3-src/src/glland.cpp	2004-06-12 07:44:13.000000000 +0200
-+++ gl-117-1.3-src-fix/src/glland.cpp	2004-11-08 17:57:25.766973184 +0100
-@@ -79,7 +79,7 @@
-     n ++;
-     return n - 1;
-   }
--};
-+}
- 
- IndexCounter ic;
- 
 diff -uNr gl-117-1.3-src/src/model.cpp gl-117-1.3-src-fix/src/model.cpp
 --- gl-117-1.3-src/src/model.cpp	2004-06-12 07:44:13.000000000 +0200
 +++ gl-117-1.3-src-fix/src/model.cpp	2004-11-08 17:55:37.727397696 +0100
