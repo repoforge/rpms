@@ -3,7 +3,7 @@
 
 Summary: Planet image rendering into the X root window
 Name: xplanet
-Version: 1.0.7
+Version: 1.0.8
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -50,6 +50,9 @@ orthographic, and rectangular.
 
 
 %changelog
+* Mon May 24 2004 Matthias Saou <http://freshrpms.net> 1.0.8-1
+- Update to 1.0.8.
+
 * Thu May 20 2004 Matthias Saou <http://freshrpms.net> 1.0.7-1
 - Update to 1.0.7.
 - Add xplanets-maps as a dependency as requested by users.
