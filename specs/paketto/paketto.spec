@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Dan Kaminsky <dan$doxpara,com>
 # Distcc: 0
@@ -33,16 +32,6 @@ This package includes:
 	linkcat(lc) (provides direct access to the network level 2)
 	paratrace (traceroute-like tool using existing TCP connections)
 and	phentropy (plots a large data source onto a 3D matrix)
-
-%package devel
-Summary: Header files, libraries and development documentation for %{name}
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}-%{real_version}

@@ -1,4 +1,4 @@
-# $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
+# $Id$
 # Authority: dag
 # Upstream: <vls-devel$videolan,org>
 
@@ -72,6 +72,7 @@ you will need to install %{name}-devel.
 %{_libdir}/videolan/
 
 #%files devel
+#%defattr(-, root, root, 0755)
 #%doc doc/developer/*.html
 
 %changelog

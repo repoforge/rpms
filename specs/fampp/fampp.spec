@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 Summary: C++ wrapper for fam, the file alteration monitor

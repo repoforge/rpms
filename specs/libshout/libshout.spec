@@ -64,6 +64,7 @@ test -d %{buildroot}%{_datadir}/doc && %{__rm} -rf %{buildroot}%{_datadir}/doc
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.a

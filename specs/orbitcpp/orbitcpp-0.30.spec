@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: C++ bindings for the ORBit Corba ORB
@@ -69,6 +68,7 @@ such programs, you'll also need to install the orbitcpp package.
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %doc HACKING
 %{_bindir}/*
 %{_libdir}/*.a

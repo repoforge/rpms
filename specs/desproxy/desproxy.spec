@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Miguelanxo Otero Salgueiro <miguelanxotero$hotmail,com>
 
 %define real_version 0.1.0-pre2
@@ -28,16 +26,6 @@ With desproxy you can use every application you got used to work with:
 your favourite browser (MSIE, Mozilla...), your mailer (Outlook Express,
 Pine, Mutt, Eudora), your news reader (Netscape News...)... without
 having to worry whether they have HTTP support or not.
-
-%package devel
-Summary: Header files, libraries and development documentation for %{name}
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}-%{real_version}
@@ -69,3 +57,4 @@ you will need to install %{name}-devel.
 %changelog
 * Wed Sep 24 2003 Dag Wieers <dag@wieers.com> - 0.1.0-0.pre2
 - Initial package. (using DAR)
+

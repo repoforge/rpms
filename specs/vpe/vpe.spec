@@ -40,16 +40,6 @@ protocols (https-proxy, tcp, udp, rawip, icmp-tunneling). It is, however,
 primarily designed to sit on the gateway machines of company branches to
 connect them together. 
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
-
 %prep
 %setup
 
@@ -72,7 +62,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README src/TODO
+%doc AUTHORS ChangeLog COPYING NEWS README src/TODO
 %doc doc/complex-example/
 %doc %{_mandir}/man?/*
 %doc %{_infodir}/*.info*

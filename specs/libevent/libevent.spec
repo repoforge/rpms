@@ -75,6 +75,7 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
@@ -85,3 +86,4 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 
 * Tue Aug 05 2003 Dag Wieers <dag@wieers.com> - 0.7-0.a
 - Initial package. (using DAR)
+

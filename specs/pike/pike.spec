@@ -1,5 +1,4 @@
-# $Id: $
-
+# $Id$
 # Authority: dries
 # Upstream: 
 
@@ -94,8 +93,13 @@ find . -type f | xargs perl -pi -e "s|/usr/local/bin/pike|%{_bindir}/pike|g"
 %exclude /usr/hilfe
 %{_bindir}/*
 %{_libdir}/pike
+
+%files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/pike
+### FIXME : some libs needs to be moved from the main to here?
 
 %changelog
 * Tue Jun 08 2004 Dries Verachtert <dries@ulyssis.org> - 7.6.6-1
 - Initial package.
+

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: MUD client with plugins
@@ -76,6 +75,7 @@ EOF
 %{_libdir}/papaya/
 
 %files devel
+%defattr(-, root, root, 0755)
 %doc doc/Programmers/*.README doc/Programmers/README.*
 %{_includedir}/papaya/
 %{_libdir}/pkgconfig/*.pc
