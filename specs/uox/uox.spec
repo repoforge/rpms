@@ -30,6 +30,7 @@ bash autogen.sh || echo autogen.sh problem
 dos2unix configure
 chmod +x configure
 %configure --enable-debug
+dos2unix Makefile
 %{__make} %{?_smp_mflags}
 
 %install
