@@ -1,12 +1,12 @@
-# $Id$
+# $Id: libbonobouimm2.spec 201 2004-04-03 15:24:49Z dag $
 # Authority: dag
 
 %define real_name libbonobouimm
 
 Summary: C++ wrappers for libbonoboui, for use with gtkmm
 Name: libbonobouimm2
-Version: 1.3.7
-Release: 0
+Version: 1.3.5
+Release: 0.dag
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sf.net/
@@ -14,8 +14,9 @@ URL: http://gtkmm.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gtkmm/libbonobouimm-%{version}.tar.bz2
+Source: http://dl.sf.net/gtkmm/libbonobouimm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Prefix: %{_prefix}
 
 BuildRequires: gtkmm2-devel >= 2.0, libbonobo-devel >= 2.0, libbonoboui-devel >= 2.0
 BuildRequires: ORBit2-devel >= 2.0
@@ -24,14 +25,12 @@ BuildRequires: ORBit2-devel >= 2.0
 libbonobouimm provides C++ wrappers for libbonoboui, for use with gtkmm.
 
 %package devel
-Summary: Header files, libraries and development documentation for %{name}
+Summary: Headers for developing programs that will use %{real_name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
 
 %description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
+This package contains the static libraries and header files needed for
+developing gtkmm applications.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -62,22 +61,15 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_libdir}/bonobo-2.0/samples/*
-%{_libdir}/bonobo/servers/*.server
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_libdir}/libbonobouimm-2.0/
-%{_datadir}/gnome/ui/*.xml
-%{_libdir}/gtkmm-2.0/proc/m4/*.m4
-#%{_libdir}/libgnomemm-2.0/proc/m4/*
+%{_libdir}/libgnomemm-2.0/proc/m4/*
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/libbonobouimm-2.0/
-#%{_includedir}/libgnomemm-2.0/
+%{_includedir}/libgnomemm-2.0/
 %exclude %{_libdir}/*.la
 
 %changelog
-* Tue Nov 23 2003 Dag Wieers <dag@wieers.com> - 1.3.7-0
-- Updated to release 1.3.7.
-
 * Sat Mar 29 2003 Dag Wieers <dag@wieers.com> - 1.3.5-0
 - Initial package. (using DAR)
