@@ -6,15 +6,13 @@
 Summary: 3D tabletennis game
 Name: csmash
 Version: 0.6.6
-Release: 2
+Release: 3
 License: GPL
 Group: Amusements/Games
 URL: http://cannonsmash.sourceforge.net/
 Source: http://dl.sf.net/cannonsmash/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-root
-Requires: Mesa, libjpeg, gtk2 >= 2.0.0
-Requires: SDL >= 1.2.0, SDL_mixer, SDL_image
-BuildRequires: Mesa-devel, libjpeg-devel, gtk2-devel >= 2.0.0
+BuildRequires: Mesa-devel, libjpeg-devel, zlib-devel, gtk2-devel >= 2.0.0
 BuildRequires: SDL-devel >= 1.2.0, SDL_mixer-devel, SDL_image-devel
 BuildRequires: gcc-c++, desktop-file-utils
 
@@ -72,6 +70,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Sep 16 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-3
+- Added missing zlib-devel build dep for YDL4.
+- Removed explicit deps, they're all picked up automatically.
+
 * Tue May 18 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-2
 - Rebuild for Fedora Core 2.
 

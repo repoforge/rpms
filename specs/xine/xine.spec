@@ -16,7 +16,7 @@ URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
-BuildRequires: XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
+BuildRequires: gcc-c++, XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
 BuildRequires: curl-devel, libtermcap-devel, pkgconfig, /usr/bin/find
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aalib:BuildRequires: aalib-devel}

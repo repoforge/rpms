@@ -13,8 +13,8 @@ Source: http://gstreamer.freedesktop.org/src/gst-python/gst-python-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gnome-python2, pygtk2
 Requires: %{gstreamer}, %{gstreamer}-plugins
-BuildRequires: python >= 2, python-devel >= 2, pygtk2-devel, xmlto, links
-BuildRequires: %{gstreamer}-devel, %{gstreamer}-plugins-devel
+BuildRequires: gcc-c++, python >= 2, python-devel >= 2, pygtk2-devel
+BuildRequires: %{gstreamer}-devel, %{gstreamer}-plugins-devel, xmlto, links
 # xwindowlistener needs X11 headers
 BuildRequires: XFree86-devel
 Provides: python-gstreamer = %{version}-%{release}

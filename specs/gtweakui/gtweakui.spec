@@ -12,6 +12,8 @@ URL: http://gtweakui.sourceforge.net/
 Source: http://dl.sf.net/gtweakui/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel >= 2.4.0, GConf2-devel >= 2.4.0, gettext
+# Required for intltool
+BuildRequires: perl(XML::Parser)
 Obsoletes: gTweakUI <= %{version}-%{release}
 
 %description

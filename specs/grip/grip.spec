@@ -14,7 +14,7 @@ Source: http://dl.sf.net/grip/grip-%{version}.tar.gz
 Patch: grip-3.1.7-default.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: vorbis-tools
-BuildRequires: libgnomeui-devel >= 2.2.0, vte-devel, curl-devel
+BuildRequires: gcc-c++, libgnomeui-devel >= 2.2.0, vte-devel, curl-devel
 BuildRequires: id3lib-devel, gettext
 # Required on Yellow Dog Linux 3.0
 %{?yd3:BuildRequires: ncurses-devel, openssl-devel}
