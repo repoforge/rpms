@@ -14,8 +14,8 @@ Group: System Environment/Libraries
 URL: http://www.xvid.org/
 Source: http://files.xvid.org/downloads/xvidcore-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%ifarch %ix86 ia64 x86_64
-BuildRequires: nasm
+%ifarch %{ix86} ia64 x86_64 ppc
+BuildRequires: yasm
 %endif
 Provides: lib%{name} = %{version}-%{release}
 
@@ -92,6 +92,7 @@ popd
 %changelog
 * Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-0.beta1.1
 - Fork off the devel branch.
+- Switch from using nasm to yasm for improved x86_64 and ppc support.
 
 * Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Update to 1.0.3.
