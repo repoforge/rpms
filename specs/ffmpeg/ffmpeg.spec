@@ -30,7 +30,12 @@ BuildRequires: tetex
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 # We need those as autoreqprov adds them as a requirement to the package
 # (0.4.8, still true in 0.4.9-pre1)
-Provides: libavcodec.so, libavformat.so
+Provides: libavcodec.so
+Provides: libavformat.so
+%ifarch x86_64
+Provides: libavcodec.so()(64bit)
+Provides: libavformat.so()(64bit)
+%endif
 
 %description
 FFmpeg is a very fast video and audio converter. It can also grab from a

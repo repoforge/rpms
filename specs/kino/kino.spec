@@ -19,6 +19,8 @@ BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel
+# libtool *sigh*
+BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
 %if %{?cvs:1}0
