@@ -2,10 +2,12 @@
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice@bellard.org>
 
+#%define _use_internal_dependency_generator 0
+
 Summary: CPU emulator
 Name: qemu
 Version: 0.5.5
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
@@ -14,6 +16,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
+Patch: qemu-0.5.5-glibc-private.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -36,6 +39,7 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
+%{?fc2:%patch0}
 
 %build
 %configure
@@ -52,8 +56,9 @@ reasonnable speed while being easy to port on new host CPUs.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up docdir
-%{__rm} -rf %{buildroot}%{_docdir}
+#echo -e "#!/bin/sh\nexec %{__find_requires} | grep -v GLIBC_PRIVATE" >%{_builddir}/%{buildsubdir}/find-requires
+#chmod +x %{_builddir}/%{buildsubdir}/find-requires
+#%define __find_requires %{_builddir}/%{buildsubdir}/find-requires
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -64,8 +69,15 @@ reasonnable speed while being easy to port on new host CPUs.
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/qemu/
+%exclude %{_docdir}
 
 %changelog
+* Fri May 28 2004 Dag Wieers <dag@wieers.com> - 0.5.5-3
+- Fixed SDL relocation error on fc2. (David Woodhouse)
+
+* Sun May 23 2004 Dag Wieers <dag@wieers.com> - 0.5.5-2
+- Fixed libc.so.6(GLIBC_PRIVATE) dependency for fc2. (Christopher Stone)
+
 * Wed May 12 2004 Dag Wieers <dag@wieers.com> - 0.5.5-1
 - Updated to release 0.5.5.
 
