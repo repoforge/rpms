@@ -27,7 +27,7 @@
 
 Summary: XML Editor
 Name: kxmleditor
-Version: 1.0.0
+Version: 1.1.3
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -94,5 +94,8 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/services/kxmleditorpart.desktop
 
 %changelog
+* Wed Nov 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.1.3-1
+- Update to release 1.1.3.
+
 * Sun May 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
 - Initial package.
