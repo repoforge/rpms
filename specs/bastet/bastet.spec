@@ -27,6 +27,10 @@ you the worst, the most bastard it can find. Playing bastet can be a painful
 experience, especially if you usually make "canyons" and wait for the long
 I-shaped block.
 
+With the following command, you can make the binary setuid games, so normal
+users can save their highscores. This can be security hole!
+chmod u+s /usr/bin/bastet
+
 %prep
 %setup
 
@@ -35,15 +39,18 @@ I-shaped block.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+mkdir -p %{buildroot}/usr/bin
+mkdir -p %{buildroot}/var/games
+%makeinstall BIN_PREFIX=%{buildroot}/usr/bin/ DATA_PREFIX=%{buildroot}/var/games/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-, games, root, 0755)
 %doc TODO README HISTORY README-Petris AUTHORS COPYING
-%{_bindir}/*
+%{_bindir}/bastet
+%{_var}/games/bastet.scores
 
 %changelog
 * Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> - 
