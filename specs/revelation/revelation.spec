@@ -7,7 +7,7 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.2
+Version: 0.4.3
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -20,6 +20,7 @@ BuildRequires: python >= 2.3, python-crypto >= 1.9, python-devel, pygtk2 >= 2.4
 BuildRequires: gnome-keyring-devel
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
+Requires: cracklib
 
 %description
 Revelation is a password manager. It organizes accounts in
@@ -68,6 +69,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/mime/packages/revelation.xml
 
 %changelog
+* Fri Apr 01 2005 Dag Wieers <dag@wieers.com> - 0.4.3-1
+- Updated to release 0.4.3.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Updated to release 0.4.2.
 
