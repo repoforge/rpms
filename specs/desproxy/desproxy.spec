@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Miguelanxo Otero Salgueiro <miguelanxotero@hotmail.com>

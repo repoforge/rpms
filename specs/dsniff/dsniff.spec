@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Dug Song <dugsong@monkey.org>

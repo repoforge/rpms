@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Mark Burgess <Mark.Burgess@iu.hio.no>
 
@@ -15,7 +17,7 @@ URL: http://www.cfengine.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.iu.hio.no/pub/cfengine/%{name}-%{version}.tar.gz
+Source: ftp://ftp.iu.hio.no/pub/cfengine/cfengine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A set of programs for dealing with numbers.

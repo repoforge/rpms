@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary:  A utility to hardlink duplicate files in a directory tree.

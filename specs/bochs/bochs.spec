@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define logmsg logger -t bochs/rpm

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define _localdatadir %{_var}/www/html/cacti

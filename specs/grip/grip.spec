@@ -1,3 +1,5 @@
+# $Id$
+
 #$Id: grip.spec,v 1.4 2004/03/03 09:41:13 thias Exp $
 
 Summary: A GNOME CD player, CD ripper and MP3 encoder frontend

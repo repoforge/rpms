@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Simple sticky notes applet for the GNOME desktop.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %{?rhfc1:%define pyver 2.2}

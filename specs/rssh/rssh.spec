@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Derek Martin <code@pizzashack.org>, rssh-discuss@lists.sourceforge.net
 

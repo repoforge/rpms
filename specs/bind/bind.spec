@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Dists: rh62
 BuildRequires: bind < 9.1.3

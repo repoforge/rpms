@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Wireless sniffer for 802.11 wireless networks.
@@ -11,7 +13,7 @@ URL: http://www.elixar.com/products/airtraf.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.elixar.com/%{name}-%{version}.tar.gz
+Source: http://www.elixar.com/airtraf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define rname Net_SSLeay.pm

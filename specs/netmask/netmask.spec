@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A tool for figuring out network masks.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Peter Andreasen <pandr@pandr.dk>
 

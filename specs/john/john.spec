@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: John the Ripper password cracker.

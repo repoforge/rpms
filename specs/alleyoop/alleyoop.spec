@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Jeffrey Stedfast <fejj@ximian.com>
 

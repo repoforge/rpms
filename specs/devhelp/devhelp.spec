@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Mikael Hallendal <micke@imendio.com>
 

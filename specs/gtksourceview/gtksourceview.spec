@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Source code viewer.

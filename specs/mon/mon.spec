@@ -1,5 +1,6 @@
 # $Id$
 
+
 # Authority: dag
 
 %define moncgi_version 1.52

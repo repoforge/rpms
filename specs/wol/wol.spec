@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: The Wake On Lan client.

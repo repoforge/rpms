@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Simon Floery <simon.floery@gmx.at>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Ross Burton <ross@burtonini.com>

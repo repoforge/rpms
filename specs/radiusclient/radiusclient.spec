@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A framework and library for writing RADIUS clients.

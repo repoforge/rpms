@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Pascal Brochart <pbrochart@tuxfamily.org>

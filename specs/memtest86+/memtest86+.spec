@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Distcc: 0
 # Screenshot: http://www.memtest.org/pics/i875-big.gif

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Display dBase III and IV (.dbf) files.

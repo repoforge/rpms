@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: xfrisk, a multi-user network version of the classic "Risk".

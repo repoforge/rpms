@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Krischan Jodies <krischan@jodies.cx>

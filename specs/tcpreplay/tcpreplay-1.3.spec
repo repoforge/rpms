@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Distcc: 0
 
@@ -10,7 +12,7 @@ Group: Applications/Internet
 URL: http://tcpreplay.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}

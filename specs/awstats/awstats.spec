@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Free, powerful and fullfeatured server logfile analyzer.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Jarl van Katwijk <jarl@xs4all.nl>
 
@@ -10,7 +12,7 @@ Group: Applications/Multimedia
 URL: http://www.xs4all.nl/~jarl/
 
 Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.xs4all.nl/~jarl/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: This is the ASN.1 library used in GNUTLS.

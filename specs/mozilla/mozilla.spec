@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: TODO: Build RH73 builds with gcc 3.2.3

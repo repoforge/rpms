@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 # Upstream: Justin David Smith <justins@chaos2.org>
 

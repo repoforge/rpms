@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: <gnocatan-develop@sourceforge.net>
 

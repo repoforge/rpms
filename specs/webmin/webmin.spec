@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A web-based administration interface for Unix systems.

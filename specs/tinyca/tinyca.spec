@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A Graphical Tool for Managing a Certification Authority.

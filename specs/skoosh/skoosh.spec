@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Timothy Musson <trmusson@ihug.co.nz>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Massimiliano Ghilardi <max@Linuz.sns.it>

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A versatile online dictionary.

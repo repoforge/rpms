@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Utility for converting bitmaps to vector graphics

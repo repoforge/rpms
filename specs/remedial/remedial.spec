@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define _libdir %{_prefix}/lib/remedial/

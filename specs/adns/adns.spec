@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Asynchronous-capable resolver library.
@@ -11,7 +13,7 @@ URL: http://www.chiark.greenend.org.uk/~ian/adns/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.chiark.greenend.org.uk/~ian/%{name}/ftp/%{name}-%{version}.tar.gz
+Source: http://www.chiark.greenend.org.uk/~ian/adns/ftp/adns-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

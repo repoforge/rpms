@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Linux program for uncompressing *.ace files.

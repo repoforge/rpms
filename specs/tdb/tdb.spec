@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Andrew Tridgell <tridge@samba.org>
 

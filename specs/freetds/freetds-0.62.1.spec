@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define _includedir %{_prefix}/include/freetds

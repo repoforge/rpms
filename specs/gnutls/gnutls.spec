@@ -1,5 +1,6 @@
 # $Id$
 
+
 Summary:  The GNU Transport Layer Security library
 Name: gnutls
 Version: 1.0.7

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Dag Lem <rpcmgr@nimrod.no>

@@ -1,3 +1,5 @@
+# $Id$
+
 Summary: libnet module for perl.
 Name: perl-libnet
 Version: 1.17

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A free vector drawing application.

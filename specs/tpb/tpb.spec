@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Markus Braun <markus.braun@krawel.de>
 

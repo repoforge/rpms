@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Paolo Bacchilega <paolo.bacch@tin.it>
 

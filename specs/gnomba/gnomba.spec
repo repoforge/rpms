@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Chris Rogers <gandalf@darkcorner.net>

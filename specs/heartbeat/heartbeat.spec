@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Heartbeat subsystem for High-Availability Linux.

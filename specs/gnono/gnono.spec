@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A GNOME UNO card game.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: LibMPEG3 decodes the many many derivatives of MPEG standards.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: <warder@warder.ath.cx>

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Wez Furlong <wez@php.net>
 

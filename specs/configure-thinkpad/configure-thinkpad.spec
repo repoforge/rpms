@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Graphical ThinkPad configuration utility.

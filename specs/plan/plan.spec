@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: An X/Motif based schedule planner.

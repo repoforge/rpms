@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Fredrik Arnerup <e97_far@e.kth.se>

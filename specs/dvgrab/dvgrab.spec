@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: DV grabber through the FireWire interface.

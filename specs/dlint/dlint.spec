@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Paul A. Balyoz <pab@domtools.com>

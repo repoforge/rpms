@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: An OpenGL 3D modeller and renderer.

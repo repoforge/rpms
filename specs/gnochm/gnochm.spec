@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: CHM file viewer.

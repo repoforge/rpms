@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: RPM doesn't seem to allow i386-packages with noarch-subpackages.

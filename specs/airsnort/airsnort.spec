@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -15,7 +17,7 @@ URL: http://airsnort.shmoo.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/airsnort/%{name}-%{rversion}.tar.gz
+Source: http://dl.sf.net/airsnort/airsnort-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Pierre Sarrazin <sarrazip@sympatico.ca>

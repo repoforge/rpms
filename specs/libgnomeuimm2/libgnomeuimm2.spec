@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: freshrpms
 
 %define rname libgnomeuimm

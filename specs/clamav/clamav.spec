@@ -1,3 +1,5 @@
+# $Id$
+
 %{!?_without_milter: %{expand: %%define milter 1}}
 %{?_without_milter:  %{expand: %%define milter 0}}
 

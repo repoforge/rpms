@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Elmar Bartel <bartel@informatik.tu-muenchen.de>

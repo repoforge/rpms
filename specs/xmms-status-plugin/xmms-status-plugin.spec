@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 # Upstream: Ian Campbell <ijc@hellion.org.uk>
 

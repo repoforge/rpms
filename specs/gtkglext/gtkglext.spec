@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 
 Summary: OpenGL Extension to GTK.

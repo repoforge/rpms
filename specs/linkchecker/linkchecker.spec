@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Bastian Kleineidam <calvin@users.sourceforge.net>
 

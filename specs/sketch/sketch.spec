@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Python-based vector drawing program.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: The X2 text editor

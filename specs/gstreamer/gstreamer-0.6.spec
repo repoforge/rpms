@@ -1,3 +1,5 @@
+# $Id$
+
 %define glib2minver   2.0.1
 %define libxml2minver 2.4.0
 %define major         0

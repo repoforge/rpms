@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Alexandre Parenteau <aubonbeurre@hotmail.com>
 # Distcc: 0

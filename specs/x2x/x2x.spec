@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Link two X displays together, simulating a multiheaded display.

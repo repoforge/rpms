@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Martin Dickopp <martin@zero-based.org>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: HA monitor built upon LVS, VRRP and services poller.

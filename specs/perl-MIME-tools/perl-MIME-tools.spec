@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: atrpms
 %define rname MIME-tools
 

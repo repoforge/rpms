@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A GNOME 2 Webcam application featuring various image filters.
@@ -11,7 +13,7 @@ URL: http://camorama.fixedgear.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://camorama.fixedgear.org/downloads/%{name}-%{version}.tar.bz2
+Source: http://camorama.fixedgear.org/downloads/camorama-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

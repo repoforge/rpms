@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Sergey Zhitomirsky <szh@7ka.mipt.ru>

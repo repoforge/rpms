@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: An interactive tool to help translate documents in the DocBook format

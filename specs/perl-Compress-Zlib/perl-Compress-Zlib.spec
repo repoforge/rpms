@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Dists: rh80 rh73 rh62

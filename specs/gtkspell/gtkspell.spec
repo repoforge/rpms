@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: freshrpms
 
 Summary: Gtk2 spell checker interface library.

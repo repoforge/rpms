@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Free AC-3 stream decoder.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Tool to magnify parts of your screen.

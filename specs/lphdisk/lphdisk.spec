@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Utility for formatting Phoenix NoteBIOS hibernation partitions under Linux

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Paul Warren <pdw@ex-parrot.com>, Chris Lightfoot <chris@ex-parrot.com>
 

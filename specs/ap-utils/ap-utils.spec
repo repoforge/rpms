@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Configure and monitor Wireless Access Points.

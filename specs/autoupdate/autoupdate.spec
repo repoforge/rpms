@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Gerald Teschl <Gerald.Teschl@univie.ac.at>
 
@@ -13,7 +15,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Source: ftp://ftp.mat.univie.ac.at/pub/teschl/%{name}/%{name}-%{version}-1.tar.gz
+Source: ftp://ftp.mat.univie.ac.at/pub/teschl/autoupdate/autoupdate-%{version}-1.tar.gz
 Prefix: %{_prefix}
 
 BuildArch: noarch

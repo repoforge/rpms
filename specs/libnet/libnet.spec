@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: freshrpms
 Summary: Routines to help with network packet contruction and handling
 Name: libnet

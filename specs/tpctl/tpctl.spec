@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: IBM ThinkPad configuration tools.

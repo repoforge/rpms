@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Graphical database query tool for MySQL and PostgreSQL.

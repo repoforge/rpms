@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Kåre Sjölander <kare@speech.kth.se>

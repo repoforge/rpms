@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Jerome Tournier <jerome.tournier@idealx.com>
 

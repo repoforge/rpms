@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 Summary: MPEG library for SDL.
 Name: smpeg

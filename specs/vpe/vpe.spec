@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: TODO: Add sysv script based on own template.

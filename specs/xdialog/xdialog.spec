@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Thierry Godefroy <xdialog@free.fr>

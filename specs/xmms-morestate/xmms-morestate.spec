@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: David Deephanphongs <deephan@users.sourceforge.net>
 

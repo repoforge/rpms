@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Martin Pool <mbp@sourcefrog.net>

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>

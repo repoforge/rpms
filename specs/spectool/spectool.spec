@@ -1,9 +1,11 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Nils Philippsen <nphilipp@redhat.com>
 
 Summary: Tool to display expanded Source/Patch macros from a SPEC file.
 Name: spectool
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -41,5 +43,8 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %{_bindir}/*
 
 %changelog
+* Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Wed Mar 03 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

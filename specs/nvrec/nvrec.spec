@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Iñaki García Etxebarria <garetxe@users.sourceforge.net>
 

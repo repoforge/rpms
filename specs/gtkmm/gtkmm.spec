@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: freshrpms
 
 Summary: C++ interface for GTK++ (a GUI library for X).

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
@@ -16,7 +18,7 @@ URL: http://bogofilter.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/bogofilter/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/bogofilter/bogofilter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Timo Sirainen <tss@iki.fi>
 

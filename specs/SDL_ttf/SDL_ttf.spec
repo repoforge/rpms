@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Simple DirectMedia Layer - Sample TrueType Font Library.

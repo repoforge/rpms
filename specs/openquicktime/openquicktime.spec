@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: openquicktime: Depends: libopenquicktime.so but it is not installable

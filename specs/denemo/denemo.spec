@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define rversion 0.7.2a

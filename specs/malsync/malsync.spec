@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define sourcedir stable/%{version}/distribution/tar/generic/source

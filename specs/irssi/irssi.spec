@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 Summary: A modular text-mode IRC client.
 Name: irssi

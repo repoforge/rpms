@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define major 0.7

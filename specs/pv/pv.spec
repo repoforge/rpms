@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Monitor the progress of data through a pipe.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Change the dynamic library load path (rpath) of binaries.

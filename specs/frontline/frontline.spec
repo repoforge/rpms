@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: frontline triggers a strange bug in Distcc 2.2 (RH9 maybe others)

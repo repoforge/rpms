@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Ethan Galstad <nagios@nagios.org>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Advanced TFTP program.
@@ -11,7 +13,7 @@ URL: ftp://ftp.mamalinux.com/pub/atftp/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.mamalinux.com/pub/atftp/%{name}-%{version}.tar.gz
+Source: ftp://ftp.mamalinux.com/pub/atftp/atftp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

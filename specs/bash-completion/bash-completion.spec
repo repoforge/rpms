@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Ian Macdonald <ian@caliban.org>
 

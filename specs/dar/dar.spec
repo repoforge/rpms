@@ -1,3 +1,5 @@
+# $Id$
+
 # Upstream: Dag Wieers <dag@wieers.com>
 
 Summary: Dag Apt Repository builder.

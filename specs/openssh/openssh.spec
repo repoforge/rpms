@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # OpenSSH privilege separation requires a user & group ID

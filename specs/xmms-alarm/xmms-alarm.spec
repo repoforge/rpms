@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Adam Feakin <adamf@snika.uklinux.net>

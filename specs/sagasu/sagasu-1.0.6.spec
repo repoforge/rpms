@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: GNOME tool to find strings in multiple files.

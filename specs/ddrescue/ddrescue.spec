@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define rname dd_rescue

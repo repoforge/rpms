@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Build new RPM packages from an old installed package.

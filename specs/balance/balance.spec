@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: TCP load-balancing proxy server.
@@ -11,7 +13,7 @@ URL: http://balance.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/balance/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/balance/balance-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

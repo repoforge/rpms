@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A GUI editor for creating man pages. 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Dists: rh73
 
@@ -10,7 +12,7 @@ License: GPL
 URL: http://dvr.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/dvr/dvr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}

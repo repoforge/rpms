@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3

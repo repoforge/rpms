@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: The Netscape Communicator suite of tools.

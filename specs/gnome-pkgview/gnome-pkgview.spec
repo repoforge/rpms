@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Mike Newman <mike@gtnorthern.demon.co.uk>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Jörgen Scheibengruber <mfcn@gmx.de>
 

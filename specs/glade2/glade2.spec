@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Reason: This package doesn't need a lot of devel-packages.

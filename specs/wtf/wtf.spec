@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Thomas Sutton <thsutton@utas.edu.au>

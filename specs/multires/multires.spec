@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Allows changing of desktop resolution and refresh rate.

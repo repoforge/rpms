@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Daniel Elstner <daniel.elstner@gmx.net>
 

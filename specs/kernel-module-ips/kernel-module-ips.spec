@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Archs: i686 i586 i386 athlon
 # Soapbox: 0

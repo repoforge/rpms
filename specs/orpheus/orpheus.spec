@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A text-mode player for CDs and MP3 files.

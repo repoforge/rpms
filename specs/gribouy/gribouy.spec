@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A GNOME Type1 font editor.

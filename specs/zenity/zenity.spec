@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Glynn Foster <glynn.foster@sun.com>

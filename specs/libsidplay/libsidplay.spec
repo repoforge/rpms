@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A Commodore 64 music player and SID chip emulator library.

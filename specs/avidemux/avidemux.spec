@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: <fixounet@free.fr>
 # Archs: i686 i386
@@ -15,7 +17,7 @@ URL: http://fixounet.free.fr/avidemux/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://fixounet.free.fr/%{name}/%{name}-%{version}.tgz
+Source: http://fixounet.free.fr/avidemux/avidemux-%{version}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

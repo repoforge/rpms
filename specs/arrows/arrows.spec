@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define _bindir %{_prefix}/X11R6/bin
@@ -13,7 +15,7 @@ URL: http://noreason.ca/?file=software
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://noreason.ca/data/%{name}-%{version}.tar.gz
+Source: http://noreason.ca/data/arrows-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

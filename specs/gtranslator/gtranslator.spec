@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A GNOME po file editor with many bells and whistles.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Archs: i386 i686

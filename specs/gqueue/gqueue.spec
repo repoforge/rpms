@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Diego Bazzanella <diegobazzanella@tiscalinet.it>

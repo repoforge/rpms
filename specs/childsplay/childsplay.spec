@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: <childsplay@linux.isbeter.nl>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine).

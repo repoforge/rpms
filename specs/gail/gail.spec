@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Accessibility implementation for GTK+ and GNOME libraries.

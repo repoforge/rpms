@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Daniel Stephens <daniel@cheeseplant.org>

@@ -1,5 +1,6 @@
-# Authority: dag
+# $Id$
 
+# Authority: dag
 # Upstream: Joakim Andersson <ja@morrdusk.net>
 
 Summary: A log colorizer that makes log checking easier.

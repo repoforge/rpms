@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: George Farris <farrisg@mala.bc.ca>
 # Distcc: 0

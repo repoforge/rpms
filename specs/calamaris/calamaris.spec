@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A Squid Native Log Format analyzer and report generator.
@@ -11,7 +13,7 @@ URL: http://calamaris.cord.de/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://calamaris.cord.de/%{name}-%{version}.tar.gz
+Source: http://calamaris.cord.de/calamaris-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

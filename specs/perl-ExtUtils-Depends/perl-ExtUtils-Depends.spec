@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: <gtk-perl-list@gnome.org>

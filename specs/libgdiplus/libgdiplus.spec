@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Open Source implementation of the GDI+ API.

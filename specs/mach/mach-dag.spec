@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Thomas Vander Stichele <thomas@apestaart.org>

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A FM-Tuner program for GNOME.

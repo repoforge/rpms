@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Collection of command line tools for SMIL manipulation.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Red Hat compilers for distccd.

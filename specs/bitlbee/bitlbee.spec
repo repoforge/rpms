@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Wilmer van der Gaast <lintux@lintux.cx>
 

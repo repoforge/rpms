@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Adam Kopacz <adam.k@klografx.de>

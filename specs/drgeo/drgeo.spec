@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Hilaire Fernandes <hilaire@ext.cri74.org>
 

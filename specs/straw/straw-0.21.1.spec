@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Juri Pakaste <juri@iki.fi>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define srcver 1.0-pl10

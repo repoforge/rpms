@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Useful things common to building gnome packages.

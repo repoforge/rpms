@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: <kingleo@gmx.at>

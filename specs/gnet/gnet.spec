@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 # Upstream: David Helder <dhelder@umich.edu>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ##DarDists: rhfc1

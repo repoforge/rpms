@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dries
 # Upstream: Remko Tronçon <spike@ulyssis.org>
 # Schreenshot: http://spit.sourceforge.net/images/screenshot-kde.jpg

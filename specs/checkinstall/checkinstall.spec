@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Soapbox: 0
 
@@ -12,7 +14,7 @@ URL: http://asic-linux.com.mx/~izto/checkinstall/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://checkinstall.izto.org/files/source/%{name}-%{version}.tgz
+Source: http://checkinstall.izto.org/files/source/checkinstall-%{version}.tgz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A DJ software emulating an analog mixer with two playback devices.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Gaël Roualland <gael.roualland@iname.com>

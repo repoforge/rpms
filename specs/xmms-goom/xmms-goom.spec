@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define plugindir %(xmms-config --visualization-plugin-dir)

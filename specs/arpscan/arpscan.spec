@@ -1,5 +1,6 @@
-# Authority: dag
+# $Id$
 
+# Authority: dag
 # Upstream: Jason Ish <jason@codemonkey.net>
 
 Summary: Very simple ARP scanner.
@@ -13,7 +14,7 @@ URL: http://ish.cx/~jason/arpscan/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ish.cx/~jason/arpscan/%{name}-%{version}.tar.gz
+Source: http://ish.cx/~jason/arpscan/arpscan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

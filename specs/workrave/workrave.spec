@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Rob Caelers <robc@krandor.org>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Anti-aliased vector-based rendering for X.

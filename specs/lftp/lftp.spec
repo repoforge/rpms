@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: atrpms
 
 Summary: Sophisticated file transfer program.

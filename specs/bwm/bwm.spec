@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Bandwidth Monitor
@@ -11,7 +13,7 @@ URL: http://packages.debian.org/unstable/net/bwm.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{name}.tar.gz
+Source: bwm.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

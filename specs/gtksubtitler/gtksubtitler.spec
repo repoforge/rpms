@@ -1,3 +1,5 @@
+# $Id$
+
 # DarAuthority: dag
 
 Summary: Tool for editing and converting subtitles for DivX films

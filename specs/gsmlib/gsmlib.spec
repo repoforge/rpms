@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Library to access GSM mobile phones through GSM modems.

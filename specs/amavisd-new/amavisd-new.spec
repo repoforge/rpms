@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define rrelease p7

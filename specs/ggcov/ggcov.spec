@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Greg Banks <gnb@alphalink.com.au>

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: mtools, read/write/list/format DOS disks under Unix

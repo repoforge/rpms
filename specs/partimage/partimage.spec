@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: François Dupoux <fdupoux@partimage.org>

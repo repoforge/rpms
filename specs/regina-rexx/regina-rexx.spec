@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Mark Hessling <M.Hessling@qut.edu.au>
 ### FIXME: Makefiles don't allow -jX (parallel compilation)

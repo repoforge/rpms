@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: VCR is a program which enables you to record a program using a video grabber card

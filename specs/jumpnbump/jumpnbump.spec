@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: <gurkan@linuks.mine.nu>

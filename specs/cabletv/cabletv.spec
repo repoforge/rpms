@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: CableCrypt Decoder for Linux
@@ -11,7 +13,7 @@ URL: http://sector17.tvand.net/cabletv/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://sector17.tvand.net/cabletv/download/%{name}-%{version}.tar.bz2
+Source: http://sector17.tvand.net/cabletv/download/cabletv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

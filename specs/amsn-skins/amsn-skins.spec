@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dries
 # Screenshot: http://amsn.sourceforge.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sourceforge.net/modules.php?name=Skins

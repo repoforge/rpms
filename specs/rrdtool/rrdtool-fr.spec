@@ -1,5 +1,6 @@
 # $Id$
 
+
 %define phpextdir %(php-config --extension-dir)
 
 Summary: Round Robin Database Tool to store and display time-series data

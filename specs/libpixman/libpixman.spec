@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A merge of libpixregion and libic.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Olivier Sessink <olivier@bluefish.openoffice.nl>
 

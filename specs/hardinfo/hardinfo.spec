@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Leandro Pereira <leandro@linuxmag.com.br>

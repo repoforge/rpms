@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Malcolm Smith <malxau@users.sourceforge.net>
 

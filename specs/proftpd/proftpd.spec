@@ -1,3 +1,5 @@
+# $Id$
+
 #$Id: proftpd.spec,v 1.1 2004/02/26 17:54:30 thias Exp $
 
 Summary: A flexible, stable and highly-configurable FTP Server.

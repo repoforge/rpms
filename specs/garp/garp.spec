@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Ulrik De Bie <ulrik@mind.be>

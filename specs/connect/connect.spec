@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Create connections through HTTP-proxy's and SOCKS-servers.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: CPU frequency scaling daemon.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Displays a given file anywhere on your X root window.

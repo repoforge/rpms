@@ -1,3 +1,5 @@
+# $Id$
+
 %{!?builduser:  %define builduser  machbuild}
 %{!?buildgroup: %define buildgroup machbuild}
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: atrpms
 # PackageDir: /forbidden
 

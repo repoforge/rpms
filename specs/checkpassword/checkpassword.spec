@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Provides a simple, uniform password-checking interface.

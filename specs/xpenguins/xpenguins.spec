@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Cute little penguins that walk along the tops of your windows

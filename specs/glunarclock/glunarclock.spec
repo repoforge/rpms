@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Josh Buhl <jbuhl@users.sourceforge.net>

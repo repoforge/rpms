@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Scan for wireless access points and save captured traffic.

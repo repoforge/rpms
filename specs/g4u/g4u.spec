@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Hubert Feyrer <hubert@feyrer.de>

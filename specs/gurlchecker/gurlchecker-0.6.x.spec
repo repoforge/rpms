@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Emmanuel Saracco <esaracco@noos.fr>
 

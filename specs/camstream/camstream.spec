@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: CamStream Author <camstream@smcc.demon.nl>
 # Dists: rh80
@@ -11,9 +13,9 @@ License: GPL
 URL: http://www.smcc.demon.nl/camstream/
 
 Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.smcc.demon.nl/%{name}/download/%{name}-%{version}.tar.gz
+Source: http://www.smcc.demon.nl/camstream/download/camstream-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX.

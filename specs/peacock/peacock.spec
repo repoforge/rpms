@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A WYSIWYG HTML Editor for Gnome.

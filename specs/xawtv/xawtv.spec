@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Gerd Knorr <kraxel@bytesex.org>
 

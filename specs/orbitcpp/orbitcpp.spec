@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: C++ bindings for the ORBit Corba ORB.

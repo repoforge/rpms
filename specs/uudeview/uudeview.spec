@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Distcc: 0
 # Upstream: Frank Pilhofer <fp@fpx.de>

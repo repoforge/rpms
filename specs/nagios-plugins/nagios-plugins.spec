@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: When using Soapbox configure has problems with defining PS_COMMAND and PS_FORMAT

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Laurent Protois <laurent.protois@free.fr>
 

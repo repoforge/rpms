@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Fredrik Hubinette <hubbe@hubbe.net>

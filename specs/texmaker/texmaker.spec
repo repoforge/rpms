@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: Makefiles don't allow -jX (parallel compilation) (Please fix upstream)

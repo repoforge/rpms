@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: MIMEDefang mailinglist <mimedefang@lists.roaringpenguin.com>
 

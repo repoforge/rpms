@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: atrpms
 Summary: GNU cryptographic library.
 Name: libgcrypt

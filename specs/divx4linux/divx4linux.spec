@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define	date 20030428

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A simple commandline network inquiry/formatting tool.

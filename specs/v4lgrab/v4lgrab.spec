@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Marcus Schneider <marcus.schneider@gmx.net>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Todor T. Zviskov <warder@warder.ath.cx>

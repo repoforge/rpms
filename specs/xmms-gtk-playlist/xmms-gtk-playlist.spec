@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Chris Kuklewicz <chrisk@mit.edu>

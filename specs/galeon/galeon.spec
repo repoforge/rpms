@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 %define mversion 38:1.6

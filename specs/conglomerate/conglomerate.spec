@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Conglomerate Developers <conglomerate-devel@lists.copyleft.no>
 

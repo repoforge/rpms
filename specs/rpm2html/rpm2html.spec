@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Translates an RPM database and dependency information into HTML.

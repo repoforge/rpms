@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Simon Kelley <simon@thekelleys.org.uk>
 

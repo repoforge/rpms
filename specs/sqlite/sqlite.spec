@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Richard Hipp <drh@hwaci.com>
 

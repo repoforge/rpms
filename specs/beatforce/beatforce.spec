@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Patrick Prasse <patrick.prasse@gmx.net>
 

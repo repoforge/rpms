@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Dynamic Kernel Module Support.

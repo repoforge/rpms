@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Billy Biggs <vektor@dumbterm.net>
 

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Marco Pesenti Gritti <mpeseng@tin.it>
 

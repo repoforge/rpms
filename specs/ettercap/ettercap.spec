@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Marco Valleri <crwm@freemail.it>
 # Upstream: Alberto Ornaghi <alor@users.sourceforge.net>

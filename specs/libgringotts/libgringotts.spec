@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Germano Rizzo <mano@pluto.linux.it>

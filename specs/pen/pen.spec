@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Ulric Eriksson <ulric@siag.nu>
 

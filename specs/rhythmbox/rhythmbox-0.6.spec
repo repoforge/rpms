@@ -1,3 +1,5 @@
+# $Id$
+
 # Do we build with mp3 and flac support?
 %define id3tag 1
 %define flac   1

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: <dan@machlin.net>
 

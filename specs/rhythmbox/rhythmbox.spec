@@ -1,3 +1,5 @@
+# $Id$
+
 # Enable "--with xine" conditional build
 %{?_with_xine:  %{expand: %%define xine 1}}
 %{!?_with_xine: %{expand: %%define xine 0}}

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 # Upstream: Edwin Young <edwin@sourceforge.net>
 

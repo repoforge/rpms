@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 ### FIXME: Makefiles don't allow -jX (parallel compilation)
 # Distcc: 0

@@ -1,5 +1,6 @@
-# Authority: dag
+# $Id$
 
+# Authority: dag
 # Upstream: Jonathan Gonzalez V. <jonathan@blueplanet.cl>
 
 Summary: Small cd player for GNOME.
@@ -13,7 +14,7 @@ URL: http://www.nongnu.org/apolos/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/apolos/unstable.pkg/%{version}/%{name}-%{version}.tar.bz2
+Source: http://savannah.nongnu.org/download/apolos/unstable.pkg/%{version}/apolos-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

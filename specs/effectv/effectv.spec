@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Real-time video effector.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: An Optical Character Recognition (OCR) program.

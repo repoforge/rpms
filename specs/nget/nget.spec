@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: Command line NNTP file grabber.

@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 ### FIXME: TODO: Improve firefox start-up script for file:// URLs.

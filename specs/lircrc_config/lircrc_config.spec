@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 Summary: A GNOME .lircrc configuration program.

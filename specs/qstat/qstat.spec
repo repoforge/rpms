@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: newrpms
 %define rversion 25c
 

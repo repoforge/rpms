@@ -1,3 +1,5 @@
+# $Id$
+
 # Authority: dag
 
 # Upstream: Dodji Seketeli <dodji@gnome.org>
