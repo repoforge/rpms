@@ -17,7 +17,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://webperso.easyconnect.fr/om.the/web/cwirc/download/cwirc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# BuildRequires: 
+BuildRequires: gtk2-devel
 
 # Screenshot: http://webperso.easyconnect.fr/om.the/web/cwirc/images/screenshot.jpg
 
