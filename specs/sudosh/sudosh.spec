@@ -4,13 +4,12 @@
 
 Summary: sudo shell
 Name: sudosh
-Version: 1.4.4
+Version: 1.4.5
 Release: 1
 License: Open Software License
 Group: Applications/System
 URL: http://sourceforge.net/projects/sudosh/
 
-#Source: http://dl.sf.net/sudosh/sudosh-%{version}.tar.gz
 Source: http://sudosh.sourceforge.net/sudosh-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -45,6 +44,9 @@ actual session output.
 %{_bindir}/sudosh-replay
 
 %changelog
+* Wed Mar 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.4.5-1
+- Update to release 1.4.5.
+
 * Sun Mar 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.4.4-1
 - Update to release 1.4.4.
 
