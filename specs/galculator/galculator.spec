@@ -4,7 +4,7 @@
 
 Summary: Graphical scientific calculator
 Name: galculator
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -29,18 +29,6 @@ Reverse Polish Notation.
 %prep
 %setup
 
-%{__cat} <<EOF >galculator.desktop.in
-[Desktop Entry]
-Name=Galculator
-Comment=Perform simple and scientific calculations
-Exec=galculator
-Icon=gnome-calc2.png
-Terminal=false
-Type=Application
-Categories=GNOME;Application;Utility;
-StartupNotify=true
-EOF
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -62,6 +50,9 @@ EOF
 %{_datadir}/galculator/
 
 %changelog
+* Thu May 27 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Thu Apr 01 2004 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
