@@ -35,9 +35,9 @@ EOF
 %{__mkdir} -p %{buildroot}%{_datadir}/gdesklets/Sensors
 %{__mkdir} -p %{buildroot}%{_datadir}/gdesklets/Displays/%{rname}
 ./Install_rssgrab_Sensor.bin %{buildroot}%{_datadir}/gdesklets/Sensors
-%{__install} -m 644 *.display %{buildroot}%{_datadir}/gdesklets/Displays/%{rname}
+%{__install} -p -m0644 *.display %{buildroot}%{_datadir}/gdesklets/Displays/%{rname}
 %{__cp} -ap gfx %{buildroot}%{_datadir}/gdesklets/Displays/%{rname}
-%{__install} -m 755 gdesklets-add-%{rname}-display %{buildroot}%{_bindir}
+%{__install} -p -m0755 gdesklets-add-%{rname}-display %{buildroot}%{_bindir}
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -33,9 +33,9 @@ Graphical user interface for the yum package manager.
 
 # The main install
 %{__mkdir_p} %{buildroot}%{_datadir}/yum
-%{__install} -m 0644 yumgui.py progress_bar.py yumi.png \
+%{__install} -p -m0644 yumgui.py progress_bar.py yumi.png \
     %{buildroot}%{_datadir}/yum/
-%{__install} -m 0755 yumi \
+%{__install} -p -m0755 yumi \
     %{buildroot}%{_datadir}/yum/
 # Actually, replace .pyc with .py to make a true .noarch.rpm
 %{__perl} -pi.orig -e 's|\.pyc$|\.py|g' %{buildroot}%{_datadir}/yum/yumi
@@ -43,9 +43,9 @@ Graphical user interface for the yum package manager.
 # The helper stuff
 %{__mkdir_p} %{buildroot}%{_bindir}
 %{__ln_s} %{_bindir}/consolehelper %{buildroot}%{_bindir}/yumi
-%{__install} -m 0644 -D yumi.pam \
+%{__install} -Dp -m0644 yumi.pam \
     %{buildroot}%{_sysconfdir}/pam.d/yumi
-%{__install} -m 0644 -D yumi.console.app \
+%{__install} -Dp -m0644 yumi.console.app \
     %{buildroot}%{_sysconfdir}/security/console.apps/yumi
 
 

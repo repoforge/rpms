@@ -83,10 +83,10 @@ EOF
 %{__install} -Dp -m0644 Docs/sample/gnokiirc %{buildroot}%{_sysconfdir}/gnokiirc
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 Docs/man/*.1 Docs/man/*.1x %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0644 Docs/man/*.1 Docs/man/*.1x %{buildroot}%{_mandir}/man1/
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
-%{__install} -m0644 Docs/man/*.8 %{buildroot}%{_mandir}/man8/
+%{__install} -p -m0644 Docs/man/*.8 %{buildroot}%{_mandir}/man8/
 
 %if %{?_without_freedesktop:1}0
         %{__install} -Dp -m0644 gnokii.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gnokii.desktop

@@ -53,13 +53,13 @@ python %{_libdir}/python*/compileall.py src
 %{__install} -Dp -m0755 src/gcipher %{buildroot}%{_bindir}/gcipher
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/gcipher/lib/{cipher,ciphergui}/
-%{__install} -m0644 src/*.{py,pyc,glade,gladep} %{buildroot}%{_datadir}/gcipher/lib/
-%{__install} -m0644 src/cipher/*.{py,pyc} %{buildroot}%{_datadir}/gcipher/lib/cipher/
-%{__install} -m0644 src/ciphergui/*.{py,pyc,glade,gladep} %{buildroot}%{_datadir}/gcipher/lib/ciphergui/
+%{__install} -p -m0644 src/*.{py,pyc,glade,gladep} %{buildroot}%{_datadir}/gcipher/lib/
+%{__install} -p -m0644 src/cipher/*.{py,pyc} %{buildroot}%{_datadir}/gcipher/lib/cipher/
+%{__install} -p -m0644 src/ciphergui/*.{py,pyc,glade,gladep} %{buildroot}%{_datadir}/gcipher/lib/ciphergui/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/gcipher/plugins/{cipher,ciphergui}/
-%{__install} -m0644 plugins/cipher/*.py %{buildroot}%{_datadir}/gcipher/plugins/cipher/
-%{__install} -m0644 plugins/ciphergui/*.py %{buildroot}%{_datadir}/gcipher/plugins/ciphergui/
+%{__install} -p -m0644 plugins/cipher/*.py %{buildroot}%{_datadir}/gcipher/plugins/cipher/
+%{__install} -p -m0644 plugins/ciphergui/*.py %{buildroot}%{_datadir}/gcipher/plugins/ciphergui/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \

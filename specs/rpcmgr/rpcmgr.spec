@@ -37,8 +37,7 @@ ${CC:-%{__cc}} %{optflags} -o rpcmgr rpcmgr.c
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} rpcmgr %{buildroot}%{_sbindir}
+%{__install} -Dp -m0755 rpcmgr %{buildroot}%{_sbindir}/rpcmgr
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,7 +45,7 @@ ${CC:-%{__cc}} %{optflags} -o rpcmgr rpcmgr.c
 %files
 %defattr(-, root, root, 0755)
 %doc rpcmgr.c
-%{_sbindir}/*
+%{_sbindir}/rpcmgr
 
 %changelog
 * Sun Dec 01 2003 Dag Wieers <dag@wieers.com> - 1.2-0

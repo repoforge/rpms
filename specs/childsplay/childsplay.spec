@@ -46,17 +46,14 @@ EOF
 %build
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir}/childsplay/lib/LettersData/ \
+%{__install} -d -m0755 %{buildroot}%{_libdir}/childsplay/lib/LettersData/ \
 			%{buildroot}%{_libdir}/childsplay/MemoryData/ \
-			%{buildroot}%{_mandir}/man6/ \
 			%{buildroot}%{_datadir}/locale/
-%{__install} -m0755 childsplay.sh %{buildroot}%{_bindir}/childsplay
-%{__install} -m0755 *.py %{buildroot}%{_libdir}/childsplay/
+%{__install} -Dp -m0755 childsplay.sh %{buildroot}%{_bindir}/childsplay
+%{__install} -Dp -m0644 man/childsplay.6.gz %{buildroot}%{_mandir}/man6/childsplay.6.gz
 %{__cp} -fpr *.py %{buildroot}%{_libdir}/childsplay/
 %{__cp} -fpr Data/ %{buildroot}%{_libdir}/childsplay/
 %{__cp} -fpr lib %{buildroot}%{_libdir}/childsplay/
-%{__cp} -fpr man/childsplay.6.gz %{buildroot}%{_mandir}/man6/
 %{__cp} -fpr locale/* %{buildroot}%{_datadir}/locale/
 
 ### compile bytecode

@@ -30,7 +30,7 @@ netcat was origianally written by the l0pht (hobbit and weld pond).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m0755 -D cryptcat %{buildroot}%{_bindir}/cryptcat
+%{__install} -Dp -m0755 cryptcat %{buildroot}%{_bindir}/cryptcat
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -158,10 +158,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/hercules/
-%{__install} -m0755 hercules.init %{buildroot}%{_sysconfdir}/hercules/
-%{__install} -m0644 hercules.cnf hercules.{ins,prm,tdf} \
-    %{buildroot}%{_sysconfdir}/hercules/
+%{__install} -Dp -m0755 hercules.init %{buildroot}%{_sysconfdir}/hercules/hercules.init
+%{__install} -Dp -m0644 hercules.cnf %{buildroot}%{_sysconfdir}/hercules/hercules.cnf
+%{__install} -Dp -m0644 hercules.ins %{buildroot}%{_sysconfdir}/hercules/hercules.ins
+%{__install} -Dp -m0644 hercules.prm %{buildroot}%{_sysconfdir}/hercules/hercules.prm
+%{__install} -Dp -m0644 hercules.tdf %{buildroot}%{_sysconfdir}/hercules/hercules.tdf
 
 %clean
 %{__rm} -rf %{buildroot}

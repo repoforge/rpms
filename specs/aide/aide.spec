@@ -50,7 +50,7 @@ checker and intrusion detection program.
 %{__install} -Dp -m0600 %{SOURCE1} %{buildroot}%{_sysconfdir}/aide.conf
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/aide/
 
-%{__install} -m0644 %{SOURCE2} README.quickstart
+%{__install} -p -m0644 %{SOURCE2} README.quickstart
 %{__install} -Dp -m0644 doc/aide.1.ru %{buildroot}%{_mandir}/ru/man1/aide.1
 %{__install} -Dp -m0644 doc/aide.conf.5.ru %{buildroot}%{_mandir}/ru/man5/aide.conf.5
 

@@ -104,14 +104,10 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_sysconfdir}/sysconfig \
-			%{buildroot}/dev
-%{__install} -m0755 tp-scroll %{buildroot}%{_sbindir}
-%{__install} -m0755 tp-scroll.sysv %{buildroot}%{_initrddir}/tp-scroll
-#%{__install} -m0644 tp-scroll.rc %{buildroot}%{_initrddir}/tp-scroll
-%{__install} -m0644 tp-scroll.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/tp-scroll
+%{__install} -Dp -m0755 tp-scroll %{buildroot}%{_sbindir}/tp-scroll
+%{__install} -Dp -m0755 tp-scroll.sysv %{buildroot}%{_initrddir}/tp-scroll
+#%{__install} -Dp -m0644 tp-scroll.rc %{buildroot}%{_initrddir}/tp-scroll
+%{__install} -Dp -m0644 tp-scroll.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/tp-scroll
 
 touch %{buildroot}/dev/imouse
 

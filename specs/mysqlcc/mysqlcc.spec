@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
@@ -50,18 +49,15 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/mysqlcc/translations/ \
-			%{buildroot}%{_datadir}/applications/ \
-			%{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0755 mysqlcc %{buildroot}%{_bindir}
-%{__install} -m0644 syntax.txt *.wav %{buildroot}%{_datadir}/mysqlcc/
-%{__install} -m0644 translations/*.{qm,ts} %{buildroot}%{_datadir}/mysqlcc/translations/
-%{__install} -m0644 xpm/applicationIcon.xpm %{buildroot}%{_datadir}/pixmaps/mysqlcc.xpm
+%{__install} -Dp -m0755 mysqlcc %{buildroot}%{_bindir}/mysqlcc
+%{__install} -Dp -m0644 xpm/applicationIcon.xpm %{buildroot}%{_datadir}/pixmaps/mysqlcc.xpm
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/mysqlcc/translations/
+%{__install} -p -m0644 syntax.txt *.wav %{buildroot}%{_datadir}/mysqlcc/
+%{__install} -p -m0644 translations/*.{qm,ts} %{buildroot}%{_datadir}/mysqlcc/translations/
 
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Development/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Development/
+	%{__install} -Dp -m0644 mysqlcc.desktop %{buildroot}%{_datadir}/gnome/apps/Development/mysqlcc.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
         desktop-file-install --vendor net                 \

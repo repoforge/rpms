@@ -45,10 +45,10 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/profile.d \
-			%{buildroot}%{_libdir}/ccache/bin/
-%{__install} -m0755 ccache.csh ccache.sh %{buildroot}%{_sysconfdir}/profile.d/
+%{__install} -Dp -m0755 ccache.csh %{buildroot}%{_sysconfdir}/profile.d/ccache.csh
+%{__install} -Dp -m0755 ccache.sh %{buildroot}%{_sysconfdir}/profile.d/ccache.sh
 
+%{__install} -d -m0755 %{buildroot}%{_libdir}/ccache/bin/
 for compiler in cc c++ gcc g++ gcc296 g++296; do
     %{__ln_s} -f %{_bindir}/ccache %{buildroot}%{_libdir}/ccache/bin/$compiler
 done

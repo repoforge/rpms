@@ -42,9 +42,8 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/intermezzo \
-			%{buildroot}%{_sysconfdir}/intermezzo
-%{__install} -m0644 sampleconfigs/intersync.conf %{buildroot}%{_sysconfdir}/intermezzo
+%{__install} -Dp -m0644 sampleconfigs/intersync.conf %{buildroot}%{_sysconfdir}/intermezzo/intersync.conf
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/intermezzo/
 
 ### FIXME: Fix problem with default Makefiles (?)
 ### Clean up buildroot

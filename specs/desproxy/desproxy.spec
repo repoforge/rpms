@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://desproxy.sourceforge.net/
 
-Source: http://dl.sf.net/desproxy/%{name}-%{real_version}.tar.gz
+Source: http://dl.sf.net/desproxy/desproxy-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -37,10 +37,12 @@ having to worry whether they have HTTP support or not.
 %install
 %{__rm} -rf %{buildroot}
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
-%{__install} -d -m0755 %{buildroot}%{_bindir}
 #makeinstall
-%{__install} -m0755 src/desproxy src/desproxy-inetd src/desproxy-dns %{buildroot}%{_bindir}
-%{__install} -m0755 src/desproxy-socksserver src/socket2socket %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 src/desproxy %{buildroot}%{_bindir}/desproxy
+%{__install} -Dp -m0755 src/desproxy-dns %{buildroot}%{_bindir}/desproxy-dns
+%{__install} -Dp -m0755 src/desproxy-inetd %{buildroot}%{_bindir}/desproxy-inetd
+%{__install} -Dp -m0755 src/desproxy-socksserver %{buildroot}%{_bindir}/desproxy-socksserver
+%{__install} -Dp -m0755 src/socket2socket %{buildroot}%{_bindir}/socket2socket
 
 
 %clean

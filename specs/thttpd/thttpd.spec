@@ -56,8 +56,8 @@ Available rpmbuild rebuild options :
 %{__mkdir_p} %{buildroot}%{_sbindir}
 
 # Install init script and logrotate entry
-%{__install} -Dp -m 755 %{SOURCE1} %{buildroot}%{_initrddir}/thttpd
-%{__install} -Dp -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/thttpd
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/thttpd
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/thttpd
 
 # Main install
 %{__make} install BINDIR=%{buildroot}%{_sbindir} \
@@ -73,7 +73,7 @@ Available rpmbuild rebuild options :
         %{buildroot}%{_mandir}/man1/htpasswd.thttpd.1
 
 # Install the default index.html file
-%{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{buildroot}%{webroot}/html/
+%{__install} -p -m0644 %{SOURCE10} %{SOURCE11} %{SOURCE12} %{buildroot}%{webroot}/html/
 
 # Install a default configuration file
 %{__cat} << EOF > %{buildroot}%{_sysconfdir}/thttpd.conf

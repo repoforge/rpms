@@ -186,9 +186,9 @@ done
 
 %{__mkdir_p} %{buildroot}%{_bindir}
 for target in %{targets}; do
-    %{__install} -m 0755 x${target}.x11 %{buildroot}%{_bindir}/x${target}
+    %{__install} -p -m0755 x${target}.x11 %{buildroot}%{_bindir}/x${target}
 done
-%{?!_without_mame: %{__install} -m 0755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
+%{?!_without_mame: %{__install} -p -m0755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
 
 # We don't want all the docs
 %{__mkdir_p} _docs/{xmame/html,xmess}
@@ -204,7 +204,7 @@ popd
 # Add all directories
 %{__mkdir_p} %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
 # The extra dat files
-%{__install} -m 0664 _datfiles/*.dat %{buildroot}%{_datadir}/xmame/
+%{__install} -p -m0664 _datfiles/*.dat %{buildroot}%{_datadir}/xmame/
 # Install the OpenGL cabinets
 %{__cp} -ap src/unix/cab %{buildroot}%{_datadir}/xmame/
 # Uncompress catver.ini (will be in the docs)

@@ -90,7 +90,7 @@ export CFLAGS="%{optflags} -fPIC"
 
 %{__install} -Dp -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/sysconfig/spamassassin
 %{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/mail/spamassassin/local.cf
-%{__install} -m0644 %{SOURCE3} %{SOURCE4} %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/
+%{__install} -p -m0644 %{SOURCE3} %{SOURCE4} %{SOURCE10} %{buildroot}%{_sysconfdir}/mail/spamassassin/
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib}

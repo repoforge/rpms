@@ -38,18 +38,16 @@ xmkmf
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1
-%{__install} -m0755 x2x %{buildroot}%{_bindir}
-%{__install} -m0755 x2x.man %{buildroot}%{_mandir}/man1/x2x.1
+%{__install} -Dp -m0755 x2x %{buildroot}%{_bindir}/x2x
+%{__install} -Dp -m0755 x2x.man %{buildroot}%{_mandir}/man1/x2x.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
-%{_mandir}/man?/*
+%doc %{_mandir}/man1/x2x.1*
+%{_bindir}/x2x
 
 %changelog
 * Mon May 05 2003 Dag Wieers <dag@wieers.com> - 1.27-0

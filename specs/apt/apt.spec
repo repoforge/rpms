@@ -220,8 +220,8 @@ EOF
 		%{buildroot}%{_localstatedir}/cache/apt/{archives/partial,genpkglist,gensrclist} \
 		%{buildroot}%{_localstatedir}/state/apt/lists/partial \
 		%{buildroot}%{_libdir}/apt/scripts/
-%{__install} -m0644 rpmpriorities apt.conf %{buildroot}%{_sysconfdir}/apt/
-%{__install} -m0644 dag.list os.list freshrpms.list newrpms.list dries.list atrpms.list %{buildroot}%{_sysconfdir}/apt/sources.list.d/
+%{__install} -p -m0644 rpmpriorities apt.conf %{buildroot}%{_sysconfdir}/apt/
+%{__install} -p -m0644 dag.list os.list freshrpms.list newrpms.list dries.list atrpms.list %{buildroot}%{_sysconfdir}/apt/sources.list.d/
 touch %{buildroot}%{_sysconfdir}/apt/preferences \
 	%{buildroot}%{_sysconfdir}/apt/vendors.list
 

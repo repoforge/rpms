@@ -199,11 +199,9 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_initrddir}
 %makeinstall
-%{__install} -m0644 tsocks.conf.simple.example %{buildroot}%{_sysconfdir}/tsocks.conf
-%{__install} -m0755 tsocksify.sysv %{buildroot}%{_initrddir}/tsocksify
+%{__install} -Dp -m0644 tsocks.conf.simple.example %{buildroot}%{_sysconfdir}/tsocks.conf
+%{__install} -Dp -m0755 tsocksify.sysv %{buildroot}%{_initrddir}/tsocksify
 %{__ln_s} -f tsocks %{buildroot}%{_bindir}/tsocksify
 
 %clean

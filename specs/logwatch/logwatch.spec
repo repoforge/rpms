@@ -43,15 +43,15 @@ analyzing areas that you specify, in as much detail as you require.
 %{__install} -Dp -m0755 scripts/logwatch.pl %{buildroot}%{_sysconfdir}/log.d/scripts/logwatch.pl
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/log.d/scripts/services/
-%{__install} -m0755 scripts/services/* %{buildroot}%{_sysconfdir}/log.d/scripts/services/
+%{__install} -p -m0755 scripts/services/* %{buildroot}%{_sysconfdir}/log.d/scripts/services/
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/log.d/scripts/shared/
-%{__install} -m0755 scripts/shared/* %{buildroot}%{_sysconfdir}/log.d/scripts/shared/
+%{__install} -p -m0755 scripts/shared/* %{buildroot}%{_sysconfdir}/log.d/scripts/shared/
 
 for file in scripts/logfiles/* ; do
 	if [ $(ls $file | wc -l) -ne 0 ] ; then
 		%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/log.d/$file
-		%{__install} -m0755 $file/* %{buildroot}%{_sysconfdir}/log.d/$file
+		%{__install} -p -m0755 $file/* %{buildroot}%{_sysconfdir}/log.d/$file
 	fi
 done
 
@@ -60,10 +60,10 @@ done
 %{__install} -Dp -m0644 lib/Logwatch.pm %{buildroot}%{_sysconfdir}/log.d/lib/Logwatch.pm
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/log.d/conf/logfiles/
-%{__install} -m0644 conf/logfiles/* %{buildroot}%{_sysconfdir}/log.d/conf/logfiles/
+%{__install} -p -m0644 conf/logfiles/* %{buildroot}%{_sysconfdir}/log.d/conf/logfiles/
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/log.d/conf/services/
-%{__install} -m0644 conf/services/* %{buildroot}%{_sysconfdir}/log.d/conf/services/
+%{__install} -p -m0644 conf/services/* %{buildroot}%{_sysconfdir}/log.d/conf/services/
 
 %{__ln_s} -f scripts/logwatch.pl %{buildroot}%{_sysconfdir}/log.d/logwatch
 %{__ln_s} -f conf/logwatch.conf %{buildroot}%{_sysconfdir}/log.d/

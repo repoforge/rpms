@@ -47,7 +47,7 @@ EOF
 %{__perl} -pi -e 's|/local||g' %{buildroot}%{_datadir}/%{name}/menu
 
 # Install the desktop entry
-%{__install} -m 644 -D %{SOURCE1} \
+%{__install} -Dp -m644 %{SOURCE1} \
     %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 
 

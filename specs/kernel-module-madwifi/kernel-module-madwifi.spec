@@ -98,7 +98,7 @@ cd -
 	KERNEL_VERSION="%{kversion}-%{krelease}" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -112,7 +112,7 @@ cd -
 	KERNEL_VERSION="%{kversion}-%{krelease}" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 ### Build utilities
 %{__make} %{?_smp_mflags} -C tools
@@ -120,8 +120,7 @@ cd -
 
 %install
 ### Install utilities
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 tools/athstats %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 tools/athstats %{buildroot}%{_bindir}/athstats
 
 %postun
 /sbin/depmod -ae %{kversion}-%{krelease} || :

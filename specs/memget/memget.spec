@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <info$rndsoftware,com>
 
@@ -26,15 +25,16 @@ workstation.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 * %{buildroot}%{_sbindir}
+%{__install} -p -m0755 memget %{buildroot}%{_sbindir}/memget
+%{__install} -p -m0755 mempeek %{buildroot}%{_sbindir}/mempeek
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_sbindir}/*
+%{_sbindir}/memget
+%{_sbindir}/mempeek
 
 %changelog
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.1.0-2

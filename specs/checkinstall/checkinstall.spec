@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-# Soapbox: 0
 
 Summary: CheckInstall installations tracker
 Name: checkinstall
@@ -47,10 +45,10 @@ standard package management  utilities.
 	PREFIX="%{_prefix}" \
 	BINDIR="%{buildroot}%{_bindir}" \
 	LIBDIR="%{buildroot}%{_libdir}"
-#%{__install} -m0755 installwatch-*/installwatch %{buildroot}%{_bindir}
-#%{__install} -m0755 checkinstall makepak %{buildroot}%{_sbindir}
-#%{__install} -m0755 installwatch-*/installwatch.so %{buildroot}%{_libdir}
-#%{__install} -m0755 checkinstallrc %{buildroot}%{_libdir}/checkinstall/
+#%{__install} -p -m0755 installwatch-*/installwatch %{buildroot}%{_bindir}
+#%{__install} -p -m0755 checkinstall makepak %{buildroot}%{_sbindir}
+#%{__install} -p -m0755 installwatch-*/installwatch.so %{buildroot}%{_libdir}
+#%{__install} -p -m0755 checkinstallrc %{buildroot}%{_libdir}/checkinstall/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 
 Summary: Launches a program when your X session has been idle for some time
@@ -28,19 +27,16 @@ xmkmf
 
 %install
 %{__rm} -rf %{buildroot}
-strip xautolock
-mkdir -p %{buildroot}/usr/X11R6/bin/
-mkdir -p %{buildroot}/usr/X11R6/man/man1/
-%{__install} -v -c   xautolock %{buildroot}/usr/X11R6/bin/xautolock
-%{__install} -v -c -m 0444 xautolock._man %{buildroot}/usr/X11R6/man/man1/xautolock.1x
+%{__install} -Dp -m0755 xautolock %{buildroot}%{_prefix}/usr/X11R6/bin/xautolock
+%{__install} -Dp -m0644 xautolock._man %{buildroot}%{_prefix}/X11R6/man/man1/xautolock.1x
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_usr}/X11R6/bin/xautolock
-%{_usr}/X11R6/man/man1/xautolock.1x.gz
+%doc %{_prefix}/X11R6/man/man1/xautolock.1x.gz
+%{_prefix}/X11R6/bin/xautolock
 
 %changelog
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 2.1-2

@@ -150,12 +150,12 @@ cd pinepgp-%{pgpver}
 %{__install} -Dp -m0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/pine.conf.fixed
 
 %{__install} -Dp -m0755 %{SOURCE3} %{buildroot}%{_bindir}/pine-spellcheck
-%{__install} -m0755 bin/{mailutil,pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
+%{__install} -p -m0755 bin/{mailutil,pine,pico,pilot,rpdump,rpload} %{buildroot}%{_bindir}
 %{__install} -Dp -m0755 imap/{dmail/dmail,tmail/tmail} %{buildroot}%{_bindir}
 %{__install} -Dp -m2755 imap/mlock/mlock %{buildroot}%{_sbindir}/mlock
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 doc/*.1 imap/src/*/*.1 %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0644 doc/*.1 imap/src/*/*.1 %{buildroot}%{_mandir}/man1/
 
 %{__mv} -f imap/docs/ imap-docs/
 

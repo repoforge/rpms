@@ -34,10 +34,10 @@ alerts, tcpdump binary logs, ipchians, iptables, and ipfw.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/acid \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d
-%{__install} acid_* %{buildroot}%{_localstatedir}/www/acid/
-%{__install} %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -Dp %{SOURCE1} %{buildroot}%{_sysconfdir}/httpd/conf.d/acid.conf
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/acid/
+%{__install} -p acid_* %{buildroot}%{_localstatedir}/www/acid/
 touch %{buildroot}%{_localstatedir}/www/acid-users
 
 %clean

@@ -51,14 +51,11 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 export DESTDIR=%{buildroot}
-%{__install} -d %{buildroot}%{_datadir}/widelands
-%{__install} -d %{buildroot}%{_bindir}
-%{__install} -d %{buildroot}%{_datadir}/applications
 
-%{__install} -s -m 755 widelands.orig %{buildroot}%{_datadir}/widelands/widelands
-%{__install} -m 755 widelands %{buildroot}%{_bindir}/widelands
+%{__install} -Dp -m0755 widelands %{buildroot}%{_bindir}/widelands
+%{__install} -Dp -m0755 widelands.orig %{buildroot}%{_datadir}/widelands/widelands
 %{__cp} -pr fonts maps pics tribes worlds %{buildroot}%{_datadir}/widelands/
-%{__cp} -p widelands.desktop %{buildroot}%{_datadir}/applications/
+%{__install} -Dp -m0644 widelands.desktop %{buildroot}%{_datadir}/applications/widelands.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,7 +64,7 @@ export DESTDIR=%{buildroot}
 %defattr(-, root, root, 0755)
 %doc README COPYING AUTHORS
 %{_bindir}/widelands
-%{_datadir}/widelands
+%{_datadir}/widelands/
 %{_datadir}/applications/widelands.desktop
 
 %changelog

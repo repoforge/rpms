@@ -57,7 +57,7 @@ This package contains the robots who can race on their own.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
-%{__install} -m 644 -D Ticon.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -Dp -m0644 Ticon.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]

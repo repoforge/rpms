@@ -33,40 +33,38 @@ multiplayer online roleplaying game) currently under development.
 %prep
 %setup -n elc
 
-%build
 %{__sed} -i "s/^CFLAGS=/CFLAGS=-I\/usr\/include\/SDL /g;" Makefile.linux
-%{__make} %{?_smp_mflags} -f Makefile.linux
-%{__strip} el.x86.linux.bin
-%{__chmod} +x el.x86.linux.bin
-%{__cat} > eternallands <<EOF
-#!/bin/bash
-cd /usr/share/games/eternallands
+
+%{__cat} <<EOF > eternallands
+#!/bin/sh
+cd %{_datadir}/games/eternallands
 %{__mkdir_p} ~/.elc
 if [[ ! -e ~/.elc/el.ini ]] ; then \
-	%{__cp} -p /usr/share/games/eternallands/el.ini ~/.elc/
+	%{__cp} -p el.ini ~/.elc/
 fi
 echo logs and config file are at ~/.elc/
 ./el.x86.linux.bin
 EOF
-%{__chmod} +x eternallands
+
+%build
+%{__make} %{?_smp_mflags} -f Makefile.linux
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m 0755 %{buildroot}%{_datadir}/games/eternallands \
-	%{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_datadir}/games/eternallands
 %{__unzip} -d %{buildroot}%{_datadir}/games/eternallands %{SOURCE1}
-%{__install} -m 0755 el.x86.linux.bin %{buildroot}%{_datadir}/games/eternallands/
-%{__install} -m 0755 eternallands %{buildroot}%{_bindir}
-%{__install} el.ini %{buildroot}%{_datadir}/games/eternallands/
+%{__install} -Dp -m0755 el.x86.linux.bin %{buildroot}%{_datadir}/games/eternallands/el.x86.linux.bin
+%{__install} -Dp -m0755 eternallands %{buildroot}%{_bindir}/eternallands
+%{__install} -Dp -m0644 el.ini %{buildroot}%{_datadir}/games/eternallands/el.ini
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme.txt eternal_lands_license.txt
+%doc eternal_lands_license.txt readme.txt
 %{_bindir}/eternallands
-%{_datadir}/games/eternallands
+%{_datadir}/games/eternallands/
 
 %changelog
 * Mon Aug 23 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1

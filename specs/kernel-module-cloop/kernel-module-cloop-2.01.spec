@@ -105,7 +105,7 @@ cd -
 	KERNEL_DIR="%{_libmoddir}/%{kversion}-%{krelease}/build" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -119,13 +119,13 @@ cd -
 	KERNEL_DIR="%{_libmoddir}/%{kversion}-%{krelease}/build" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
 ### Install utilities.
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}/dev/
-%{__install} -m0755 create_compressed_fs extract_compressed_fs %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 create_compressed_fs %{buildroot}%{_bindir}/create_compressed_fs
+%{__install} -Dp -m0755 extract_compressed_fs %{buildroot}%{_bindir}/extract_compressed_fs
+%{__install} -d -m0755 %{buildroot}/dev/
 mknod %{buildroot}/dev/cloop b 240 0
 for i in 0 1 2 3 4 5 6 7 8 9; do
 	mknod %{buildroot}/dev/cloop$i b 240 $i

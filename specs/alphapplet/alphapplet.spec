@@ -46,7 +46,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
         --add-category X-Red-Hat-Base              \
         --dir %{buildroot}%{_datadir}/applications \
         %{buildroot}%{_datadir}/applications/alphapplet.desktop
-%{__install} -m0755 alphapplet.sh %{buildroot}%{_bindir}/alphapplet
+%{__install} -Dp -m0755 alphapplet.sh %{buildroot}%{_bindir}/alphapplet
 
 %clean
 %{__rm} -rf %{buildroot}

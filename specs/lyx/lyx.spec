@@ -80,7 +80,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 ### Miscellaneous files
 %{__install} -Dp -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/lyx.xpm
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/lyx.png
-%{__install} -m0644 lib/reLyX/README README.reLyX
+%{__install} -p -m0644 lib/reLyX/README README.reLyX
 
 ### Install desktop file and icon
 %if %{?_without_freedesktop:1}0

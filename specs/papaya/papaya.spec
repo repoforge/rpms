@@ -57,7 +57,7 @@ EOF
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-%{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/applications/
+%{__install} -Dp -m0644 gnome-papaya.desktop %{buildroot}%{_datadir}/applications/gnome-papaya.desktop
 
 %clean
 %{__rm} -rf %{buildroot}

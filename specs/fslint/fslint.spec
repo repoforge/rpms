@@ -63,9 +63,9 @@ EOF
 %{__install} -Dp -m0644 fslint.glade %{buildroot}%{_datadir}/fslint/fslint.glade
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/fslint/fslint/{fstool,rmlint}
-%{__install} -m0755 fslint/{find*,fsl*,get*,zipdir} %{buildroot}%{_datadir}/fslint/fslint/
-%{__install} -m0755 fslint/fstool/* %{buildroot}%{_datadir}/fslint/fslint/fstool/
-%{__install} -m0755 fslint/rmlint/* %{buildroot}%{_datadir}/fslint/fslint/rmlint/
+%{__install} -p -m0755 fslint/{find*,fsl*,get*,zipdir} %{buildroot}%{_datadir}/fslint/fslint/
+%{__install} -p -m0755 fslint/fstool/* %{buildroot}%{_datadir}/fslint/fslint/fstool/
+%{__install} -p -m0755 fslint/rmlint/* %{buildroot}%{_datadir}/fslint/fslint/rmlint/
 
 %makeinstall -C po \
 	DATADIR="%{buildroot}%{_datadir}"

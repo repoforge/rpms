@@ -41,7 +41,7 @@ Use it at your own risk!!
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 burn{BX,K6,K7,MMX,P5,P6} %{buildroot}%{_sbindir}
+%{__install} -p -m0755 burn{BX,K6,K7,MMX,P5,P6} %{buildroot}%{_sbindir}
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -36,11 +36,11 @@ a customized (RedHat) distribution plus all clients up to date.
 #%{__install} -Dp -m0644 autoupdate.pm.3.gz %{buildroot}%{_mandir}/man3/autoupdate.pm.3.gz
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
-%{__install} -m0644 autoupdate.pm/* %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
+%{__install} -p -m0644 autoupdate.pm/* %{buildroot}%{_libdir}/perl5/site_perl/autoupdate/
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/autoupdate.d
-%{__install} -m0755 autoupdate.d/*.sh %{buildroot}/%{_sysconfdir}/autoupdate.d/
-%{__install} -m0644 autoupdate.d/*.{dld,get,conf} %{buildroot}/%{_sysconfdir}/autoupdate.d/
+%{__install} -p -m0755 autoupdate.d/*.sh %{buildroot}/%{_sysconfdir}/autoupdate.d/
+%{__install} -p -m0644 autoupdate.d/*.{dld,get,conf} %{buildroot}/%{_sysconfdir}/autoupdate.d/
 %{__rm} -f %{buildroot}/etc/autoupdate.d/{powertools,rhsa,rpmfind,texmacs,webmin}.dld
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/{log,spool/autoupdate}

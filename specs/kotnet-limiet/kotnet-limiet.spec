@@ -32,7 +32,7 @@ download and upload stats, made by Stijn Opheide
 %{__mkdir_p} %{buildroot}%{_datadir}/apps/kotnet-limiet/
 %{__cp} -ap kotnet-limiet.conf.template kotnet-limiet.theme pics \
     %{buildroot}%{_datadir}/apps/kotnet-limiet/
-%{__install} -m 0755 kotnet-limiet knl.py %{buildroot}%{_bindir}/
+%{__install} -p -m0755 kotnet-limiet knl.py %{buildroot}%{_bindir}/
 
 %clean
 %{__rm} -rf %{buildroot}

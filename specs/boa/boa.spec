@@ -60,20 +60,20 @@ Available rpmbuild rebuild options :
 %install
 %{__rm} -rf %{buildroot}
 # Manual install is still mandatory
-%{__install} -m 755 -D src/boa %{buildroot}%{_sbindir}/boa
-%{__install} -m 755 -D src/boa_indexer %{buildroot}%{_libdir}/boa/boa_indexer
-%{__install} -m 644 -D docs/boa.8 %{buildroot}%{_mandir}/man8/boa.8
-%{__install} -m 644 -D examples/boa.conf %{buildroot}%{_sysconfdir}/boa/boa.conf
-%{__install} -m 644 -D contrib/redhat/boa.logrotate \
+%{__install} -Dp -m0755 src/boa %{buildroot}%{_sbindir}/boa
+%{__install} -Dp -m0755 src/boa_indexer %{buildroot}%{_libdir}/boa/boa_indexer
+%{__install} -Dp -m0644 docs/boa.8 %{buildroot}%{_mandir}/man8/boa.8
+%{__install} -Dp -m0644 examples/boa.conf %{buildroot}%{_sysconfdir}/boa/boa.conf
+%{__install} -Dp -m0644 contrib/redhat/boa.logrotate \
     %{buildroot}%{_sysconfdir}/logrotate.d/boa
-%{__install} -m 755 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/boa
-%{__install} -m 755 -D %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/boa
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/boa
+%{__install} -Dp -m0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/boa
 
 %{__mkdir_p} %{buildroot}/%{webroot}/html
 %{__mkdir_p} %{buildroot}/%{_localstatedir}/log/boa
 
 # Install the default index.html file and images
-%{__install} -m 644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
+%{__install} -p -m0644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
     %{buildroot}%{webroot}/html/
 
 

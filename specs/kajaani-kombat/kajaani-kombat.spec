@@ -36,12 +36,11 @@ same computer. Enjoy it with your friends!
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m 0755 -d %{buildroot}/%{_bindir}
-%{__install} -m 0755 -d %{buildroot}/%{_datadir}/games/kajaanikombat
-%{__install} -m 0755 -d %{buildroot}/%{_mandir}/man6
-%{__install} -m 0755 kajaani-kombat %{buildroot}/%{_bindir}/kajaani-kombat
-%{__install} -m 0644 *.ttf *.ogg *.png %{buildroot}/%{_datadir}/games/kajaanikombat/
-%{__install} -m 0644 kajaani-kombat.6 %{buildroot}/%{_mandir}/man6/
+%{__install} -Dp -m0755 kajaani-kombat %{buildroot}%{_bindir}/kajaani-kombat
+%{__install} -Dp -m0644 kajaani-kombat.6 %{buildroot}%{_mandir}/man6/kajaani-kombat.6
+
+%{__install} -d -m0755 %{buildroot}/%{_datadir}/games/kajaanikombat
+%{__install} -p -m0644 *.ogg *.png *.ttf %{buildroot}%{_datadir}/games/kajaanikombat/
 
 #%clean
 #%{__rm} -rf %{buildroot}
@@ -49,9 +48,9 @@ same computer. Enjoy it with your friends!
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
+%doc %{_mandir}/man6/kajaani-kombat.6*
 %{_bindir}/kajaani-kombat
-%{_datadir}/games/kajaanikombat
-%{_mandir}/man6/*
+%{_datadir}/games/kajaanikombat/
 
 %changelog
 * Mon Jan 10 2005 Dries Verachtert <dries@ulyssis.org> 0.6-1

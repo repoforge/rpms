@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Carlos Hasan <chasan$acm,org>
 
 %define real_name seal
@@ -42,12 +40,11 @@ source code files and HTML documentation.
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}
-%{__install} -m0755 src/mp %{buildroot}%{_bindir}/
-%{__install} -m0755 lib/Linux/* %{buildroot}%{_libdir}/
-%{__install} -m0644 src/audio.h %{buildroot}%{_includedir}/seal.h
+%{__install} -Dp -m0755 src/mp %{buildroot}%{_bindir}/mp
+%{__install} -Dp -m0644 src/audio.h %{buildroot}%{_includedir}/seal.h
+
+%{__install} -d -m0755 %{buildroot}%{_libdir}
+%{__install} -p -m0755 lib/Linux/* %{buildroot}%{_libdir}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,9 +52,10 @@ source code files and HTML documentation.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog LICENSE.TXT README.TXT doc/man.html
-%{_bindir}/*
-%{_libdir}/*.so.*
+%{_bindir}/mp
+%{_includedir}/seal.h
 %{_libdir}/*.a
+%{_libdir}/*.so.*
 
 %changelog
 * Mon Apr 21 2003 Dag Wieers <dag@wieers.com> - 1.07-0

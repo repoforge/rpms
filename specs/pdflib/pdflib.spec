@@ -58,8 +58,8 @@ the PDFlib library.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
-%{__install} -m 0644 bind/cpp/pdflib.hpp %{buildroot}%{_includedir}/pdflib.hpp
+%{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m0644 bind/cpp/pdflib.hpp %{buildroot}%{_includedir}/pdflib.hpp
 
 
 %clean

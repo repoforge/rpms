@@ -69,7 +69,7 @@ EOF
 %{__install} -Dp -m0755 XPde %{buildroot}%{installdir}/bin/XPde
 %{__install} -Dp -m0755 XPwm %{buildroot}%{installdir}/bin/XPwm
 %{__install} -Dp -m0755 stub.sh %{buildroot}%{installdir}/bin/stub.sh
-%{__install} -m0755 *.so* %{buildroot}%{installdir}/bin/
+%{__install} -p -m0755 *.so* %{buildroot}%{installdir}/bin/
 
 %{__install} -Dp -m0755 calculator %{buildroot}%{installdir}/bin/apps/calculator
 %{__install} -Dp -m0755 fileexplorer %{buildroot}%{installdir}/bin/apps/fileexplorer

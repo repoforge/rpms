@@ -53,7 +53,7 @@ This package includes the documentation for %{name}.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/%{real_name}-%{version}
-%{__install} -m0644 src/jpgraph*.php src/*.inc src/*.dat %{buildroot}%{_localstatedir}/www/%{real_name}-%{version}/
+%{__install} -p -m0644 src/jpgraph*.php src/*.inc src/*.dat %{buildroot}%{_localstatedir}/www/%{real_name}-%{version}/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -125,7 +125,7 @@ echo -n >config.mk
 	KERNEL_OUTPUT="%{_libmoddir}/%{kernel}/build" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}/
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
 
 %if %{_with_smp}
 ### Prepare SMP kernel.
@@ -147,7 +147,7 @@ echo -n >config.mk
 	KERNEL_OUTPUT="%{_libmoddir}/%{kernel}/build" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}/
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
 %endif
 
 ### Build utilities.

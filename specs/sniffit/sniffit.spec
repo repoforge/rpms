@@ -33,11 +33,9 @@ some level of human readable form.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man{5,8}/
-%{__install} -m0755 sniffit   %{buildroot}%{_sbindir}
-%{__install} -m0444 sniffit.5 %{buildroot}%{_mandir}/man5/
-%{__install} -m0444 sniffit.8 %{buildroot}%{_mandir}/man8/
+%{__install} -Dp -m0755 sniffit   %{buildroot}%{_sbindir}/sniffit
+%{__install} -Dp -m0644 sniffit.5 %{buildroot}%{_mandir}/man5/sniffit.5
+%{__install} -Dp -m0644 sniffit.8 %{buildroot}%{_mandir}/man8/sniffit.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,8 +43,9 @@ some level of human readable form.
 %files
 %defattr(-, root, root, 0755)
 %doc BETA-TESTING HISTORY LICENSE README.FIRST sample_config_file sniffit-FAQ
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man5/sniffit.5
+%doc %{_mandir}/man8/sniffit.8
+%{_sbindir}/sniffit
 
 %changelog
 * Wed Oct 08 2003 Dag Wieers <dag@wieers.com> - 0.3.7-0.beta

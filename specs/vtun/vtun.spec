@@ -139,9 +139,8 @@ EOF
         VAR_DIR="%{buildroot}%{_localstatedir}" \
 	INSTALL_OWNER=
 
-%{__install} -d -m0755 %{buildroot}%{_initrddir}
-%{__install} -m0755 vtund.sysv %{buildroot}%{_initrddir}/vtund
-#%{__install} -m0755 scripts/vtund.rc.red_hat %{buildroot}%{_initrddir}/vtund
+%{__install} -Dp -m0755 vtund.sysv %{buildroot}%{_initrddir}/vtund
+#%{__install} -Dp -m0755 scripts/vtund.rc.red_hat %{buildroot}%{_initrddir}/vtund
 
 %pre
 if [ ! -e /dev/net/tun ]; then

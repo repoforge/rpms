@@ -94,7 +94,7 @@ cd driver/
 %{__cc} -MD -O2 -Wall -Wstrict-prototypes -D__KERNEL__ -DMODULE -pipe -I%{_libmoddir}/%{kversion}-%{krelease}/build/include -c mpi350.c
 #%{__cc} -MD -O2 -Wall -Wstrict-prototypes -D__KERNEL__ -DMODULE -pipe -I%{_libmoddir}/%{kversion}-%{krelease}/build/include -c airo.c
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 cd -
 
 ### Prepare SMP kernel.
@@ -109,15 +109,13 @@ cd driver/
 %{__cc} -MD -O2 -Wall -Wstrict-prototypes -D__KERNEL__ -DMODULE -pipe -I%{_libmoddir}/%{kversion}-%{krelease}/build/include  -c mpi350.c
 #%{__cc} -MD -O2 -Wall -Wstrict-prototypes -D__KERNEL__ -DMODULE -pipe -I%{_libmoddir}/%{kversion}-%{krelease}/build/include  -c airo.c
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_sysconfdir} \
-			%{buildroot}/opt/cisco/
-%{__install} -m0755 utilities/acu utilities/bcard utilities/leapset utilities/leapscript utilities/leaplogin %{buildroot}%{_bindir}
-%{__install} -m0644 ACU.PRFS %{buildroot}/opt/cisco/
-%{__install} -m0644 ethX.cfg %{buildroot}%{_sysconfdir}/eth2.cfg
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -p -m0755 utilities/acu utilities/bcard utilities/leapset utilities/leapscript utilities/leaplogin %{buildroot}%{_bindir}
+%{__install} -Dp -m0644 ethX.cfg %{buildroot}%{_sysconfdir}/eth2.cfg
+%{__install} -Dp -m0644 ACU.PRFS %{buildroot}/opt/cisco/ACU.PRFS
 %{__tar} -xvzf helpml.tar.gz -C %{buildroot}/opt/cisco/
 
 %post

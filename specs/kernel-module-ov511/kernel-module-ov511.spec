@@ -84,7 +84,7 @@ cd -
 %{__make} %{?_smp_mflags} clean all \
 	INCLUDEDIR="%{_libmoddir}/%{kversion}-%{krelease}/build/include"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -97,7 +97,7 @@ cd -
 %{__make} %{?_smp_mflags} clean all \
 	INCLUDEDIR="%{_libmoddir}/%{kversion}-%{krelease}/build/include"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
 

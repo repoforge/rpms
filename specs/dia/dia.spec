@@ -53,7 +53,7 @@ format, and can export to PostScript(TM).
 %makeinstall
 %find_lang %{name}
 #%{__mv} %{buildroot}%{_bindir}/dia %{buildroot}%{_bindir}/dia-bin
-#%{__install} -m0755 dia.sh %{buildroot}%{_bindir}/dia
+#%{__install} -Dp -m0755 dia.sh %{buildroot}%{_bindir}/dia
 
 ### Clean up buildroot
 #{__rm} -f %{buildroot}%{_libdir}/dia/*.la

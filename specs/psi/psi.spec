@@ -143,11 +143,11 @@ desktop-file-install \
 %endif
  
 # Install the languagepack files
-%{__install} -m0644 \
+%{__install} -p -m0644 \
     %{SOURCE21} %{SOURCE22} %{SOURCE23} %{SOURCE24} \
     %{SOURCE25} %{SOURCE27} %{SOURCE28} %{SOURCE29} \
     %{SOURCE31} %{SOURCE32} %{SOURCE33} %{SOURCE34} %{SOURCE35} \
-    %{buildroot}%{_datadir}/psi
+    %{buildroot}%{_datadir}/psi/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -13,7 +13,7 @@ License: GPL
 Group: Applications/System
 URL: http://alpha.linuxmag.com.br/~leandro/hardinfo/
 
-Source: http://alpha.linuxmag.com.br/~leandro/hardinfo/%{name}-%{version}.tar.bz2
+Source: http://alpha.linuxmag.com.br/~leandro/hardinfo/hardinfo-%{version}.tar.bz2
 Patch: hardinfo-0.3.6-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -35,7 +35,7 @@ USB, IDE, SCSI, Serial and parallel port devices.
 		s|/usr/share/|\$(datadir)/|;
 	' Makefile.in
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >hardinfo.desktop
 [Desktop Entry]
 Name=Hardware Information
 Comment=%{summary}
@@ -59,8 +59,7 @@ EOF
 %makeinstall
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/System/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/System/
+        %{__install} -Dp -m0644 hardinfo.desktop %{buildroot}%{_datadir}/gnome/apps/System/hardinfo.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor %{desktop_vendor}    \

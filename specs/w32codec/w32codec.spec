@@ -30,7 +30,7 @@ W32 Codec package for MPlayer on x86 UNIX systems.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir}/win32
-%{__install} -m0644 * %{buildroot}%{_libdir}/win32/
+%{__install} -p -m0644 * %{buildroot}%{_libdir}/win32/
 
 %clean
 %{__rm} -rf %{buildroot}

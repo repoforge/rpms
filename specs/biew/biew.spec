@@ -41,7 +41,7 @@ other features, making it invaluable for examining binary code.
 %{__install} -Dp -m0644 bin_rc/biew.hlp %{buildroot}%{_datadir}/biew/biew.hlp
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/biew/{skn,xlt}/
-%{__install} -m0644 bin_rc/skn/*.skn %{buildroot}%{_datadir}/biew/skn/
+%{__install} -p -m0644 bin_rc/skn/*.skn %{buildroot}%{_datadir}/biew/skn/
 %{__cp} -apuvx bin_rc/xlt/* %{buildroot}%{_datadir}/biew/xlt/
 
 %clean

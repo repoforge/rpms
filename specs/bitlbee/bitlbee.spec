@@ -68,7 +68,7 @@ EOF
 %{__install} -Dp -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
-%{__install} -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
+%{__install} -p -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/bitlbee/
 

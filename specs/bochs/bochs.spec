@@ -58,7 +58,7 @@ and other OS's, all on your workstation.
 %makeinstall \
 	docdir="doc-rpm"
 #makeinstall install_dlx
-#%{__install} -m0644 dlxlinux/* %{buildroot}%{_datadir}/bochs/dlxlinux/
+#%{__install} -p -m0644 dlxlinux/* %{buildroot}%{_datadir}/bochs/dlxlinux/
 
 %post
 if [ -x %{_datadir}/bochs/install-x11-fonts ]; then

@@ -29,7 +29,7 @@ structures and creates hard links for identical files found.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m 0755 -D hardlink++ %{buildroot}%{_bindir}/hardlink++
+%{__install} -Dp -m0755 hardlink++ %{buildroot}%{_bindir}/hardlink++
 
 
 %clean

@@ -97,9 +97,9 @@ you will need to install %{name}-devel.
 
 ### Install config files
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/nagios/private/ \
-%{__install} -m0664 sample-config/{cgi,nagios}.cfg %{buildroot}%{_sysconfdir}/nagios/
-%{__install} -m0640 sample-config/resource.cfg %{buildroot}%{_sysconfdir}/nagios/private/
-%{__install} -m0664 sample-config/template-object/*.cfg %{buildroot}%{_sysconfdir}/nagios/
+%{__install} -p -m0664 sample-config/{cgi,nagios}.cfg %{buildroot}%{_sysconfdir}/nagios/
+%{__install} -p -m0640 sample-config/resource.cfg %{buildroot}%{_sysconfdir}/nagios/private/
+%{__install} -p -m0664 sample-config/template-object/*.cfg %{buildroot}%{_sysconfdir}/nagios/
 #%{__ln_s} -f private/resource.cfg %{buildroot}%{_sysconfdir}/nagios/resource.cfg
 
 #%{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
@@ -119,12 +119,12 @@ exit 0
 %{__make} install DESTDIR="%{buildroot}" INSTALL_OPTS="" COMMAND_OPTS=""
 %{__make} install-daemoninit DESTDIR="%{buildroot}" INSTALL_OPTS="" COMMAND_OPTS="" INIT_OPTS=""
 
-%{__install} -m0644 common/locations.h %{buildroot}%{_includedir}/nagios/
-#%{__install} -m0644 common/common.h common/config.h common/locations.h ./cgi/cgiutils.h cgi/popen.h %{buildroot}%{_includedir}/nagios/
+%{__install} -Dp -m0644 common/locations.h %{buildroot}%{_includedir}/nagios/locations.h
+#%{__install} -p -m0644 common/common.h common/config.h common/locations.h ./cgi/cgiutils.h cgi/popen.h %{buildroot}%{_includedir}/nagios/
 
 ### FIXME: Add default .htpasswd file in /etc/nagios/ (in nagios.conf) (Please fix upstream)
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|' contrib/htaccess.sample
-%{__install} -m0644 contrib/htaccess.sample %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
+%{__install} -Dp -m0644 contrib/htaccess.sample %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
 
 %pre
 if ! /usr/bin/id nagios &>/dev/null; then

@@ -113,7 +113,7 @@ cd -
 	EXTFLAGS="%{optflags}" \
 	KERNEL_DIR="%{_libmoddir}/%{kversion}-%{krelease}/build"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 #### Prepare SMP kernel.
 #cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -127,14 +127,13 @@ cd -
 #	EXTFLAGS="%{optflags}" \
 #	KERNEL_DIR="%{_libmoddir}/%{kversion}-%{krelease}/build"
 #%{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-#%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+#%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
 ### Install utilities
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_localstatedir}/lib/slmodem/ \
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/slmodem/ \
 			%{buildroot}/dev/
-%{__install} -m0755 modem/slmodemd %{buildroot}%{_sbindir}
+%{__install} -Dp -m0755 modem/slmodemd %{buildroot}%{_sbindir}/slmodemd
 for i in 0 1 2 3; do
 	touch %{buildroot}/dev/slamr$i %{buildroot}/dev/slusb$i
 done

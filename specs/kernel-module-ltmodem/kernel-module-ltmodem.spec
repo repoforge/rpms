@@ -85,7 +85,7 @@ cd source
 	--with-kernel="%{_libmoddir}/%{kversion}-%{krelease}/build"
 %{__make} %{?_smp_mflags} all
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 cd -
 
 ### Prepare SMP kernel.
@@ -102,12 +102,10 @@ cd source
 	--with-kernel="%{_libmoddir}/%{kversion}-%{krelease}/build"
 %{__make} %{?_smp_mflags} all
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
-cd source
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/devfs/conf.d/
-%{__install} -m0644 debian/etc_devfs_conf.d_ltmodem %{buildroot}%{_sysconfdir}/devfs/conf.d/ltmodem
+%{__install} -Dp -m0644 source/debian/etc_devfs_conf.d_ltmodem %{buildroot}%{_sysconfdir}/devfs/conf.d/ltmodem
 
 %post
 /sbin/depmod -ae %{kversion}-%{krelease} || :

@@ -33,7 +33,7 @@ Linux. Usage of the firmware is subject to the terms contained in :
 %{__mkdir_p} %{buildroot}/lib/firmware \
              %{buildroot}%{_sysconfdir}/firmware \
              %{buildroot}%{_libdir}/hotplug/firmware
-%{__install} -m 0644 *.fw %{buildroot}/lib/firmware/
+%{__install} -p -m0644 *.fw %{buildroot}/lib/firmware/
 # Symlink all of them for new and old hotplug loading to work
 for file in *.fw; do
     %{__ln_s} /lib/firmware/${file} \

@@ -31,8 +31,7 @@ designed to work efficiently with large number of clients.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 vncreflector %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 vncreflector %{buildroot}%{_bindir}/vncreflector
 
 %clean
 %{__rm} -rf %{buildroot}

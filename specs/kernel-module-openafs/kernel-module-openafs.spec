@@ -150,18 +150,18 @@ chmod +x configure-libafs
 #%{__ln_s} -f kpasswd %{buildroot}%{_bindir}/kapasswd
 
 ### Copy root.client config files
-%{__install} -m0755 %{sysname}/dest/root.client/usr/vice/etc/afs.conf %{buildroot}%{_sysconfdir}/sysconfig/afs
-%{__install} -m0755 %{sysname}/dest/root.client/usr/vice/etc/afs.rc %{buildroot}%{_initrddir}/afs
+%{__install} -Dp -m0755 %{sysname}/dest/root.client/usr/vice/etc/afs.conf %{buildroot}%{_sysconfdir}/sysconfig/afs
+%{__install} -Dp -m0755 %{sysname}/dest/root.client/usr/vice/etc/afs.rc %{buildroot}%{_initrddir}/afs
 
 ### Copy PAM modules
-#%{__install} -m0755 %{sysname}/dest/lib/pam* %{buildroot}/lib/security/
+#%{__install} -p -m0755 %{sysname}/dest/lib/pam* %{buildroot}/lib/security/
 #%{__ln_s} -f pam_afs.so.1 %{buildroot}/lib/security/pam_afs.so
 #%{__ln_s} -f pam_afs.krb.so.1 %{buildroot}/lib/security/pam_afs.krb.so
 
 ### Populate /usr/vice/etc
-#%{__install} -m0644 cacheinfo SuidCells ThisCell %{buildroot}%{_prefix}/vice/etc/
-#%{__install} -m0644 %{SOURCE5} %{buildroot}%{_prefix}/vice/etc/CellServDB
-#%{__install} -m0755 %{SOURCE6} %{buildroot}%{_prefix}/vice/etc/afsmodname
+#%{__install} -p -m0644 cacheinfo SuidCells ThisCell %{buildroot}%{_prefix}/vice/etc/
+#%{__install} -p -m0644 %{SOURCE5} %{buildroot}%{_prefix}/vice/etc/CellServDB
+#%{__install} -p -m0755 %{SOURCE6} %{buildroot}%{_prefix}/vice/etc/afsmodname
 
 ### Install DOCUMENTATION
 ### Build the DOC directory

@@ -100,7 +100,7 @@ recompile PHP yourself.
 
 # Install our own default web page and images
 %{__mkdir_p} %{buildroot}%{webroot}
-%{__install} -m 0644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
+%{__install} -p -m0644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
     %{buildroot}%{webroot}/
 
 # Install empty log directory to include

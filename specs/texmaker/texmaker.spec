@@ -86,7 +86,7 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{__install} -Dp -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/texmaker/
-%{__install} -m0644 utilities/*.{css,gif,html,png} %{buildroot}%{_datadir}/texmaker/
+%{__install} -p -m0644 utilities/*.{css,gif,html,png} %{buildroot}%{_datadir}/texmaker/
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop

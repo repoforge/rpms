@@ -224,7 +224,7 @@ development or web page development.
 %patch31 -p1
 
 ### set up our default bookmarks
-%{__install} -m0644 %{SOURCE19} profile/defaults/bookmarks.html
+%{__install} -p -m0644 %{SOURCE19} profile/defaults/bookmarks.html
 
 %build
 export BUILD_OFFICIAL="1"
@@ -383,18 +383,18 @@ find %{buildroot}%{_includedir}/%{name}-%{real_version}/ -type f | \
 #   tar xvf -))
 
 ### copy our devel tools
-%{__install} -m0755 dist/bin/xpcshell \
+%{__install} -p -m0755 dist/bin/xpcshell \
   dist/bin/xpidl \
   dist/bin/xpt_dump \
   dist/bin/xpt_link \
   %{buildroot}%{_libdir}/%{name}-%{real_version}/
 
 ### set up our desktop files
-%{__install} -m0644 %{SOURCE2} %{SOURCE13} %{SOURCE15} %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 %{SOURCE4} %{SOURCE12} %{SOURCE14} %{buildroot}%{_datadir}/applications/
+%{__install} -p -m0644 %{SOURCE2} %{SOURCE13} %{SOURCE15} %{buildroot}%{_datadir}/pixmaps/
+%{__install} -p -m0644 %{SOURCE4} %{SOURCE12} %{SOURCE14} %{buildroot}%{_datadir}/applications/
 
 ### our icons are better!
-%{__install} -m0644 %{SOURCE9} %{SOURCE10} %{buildroot}%{_libdir}/%{name}-%{real_version}/icons/
+%{__install} -p -m0644 %{SOURCE9} %{SOURCE10} %{buildroot}%{_libdir}/%{name}-%{real_version}/icons/
 
 ### install our mozilla.sh file
 %{__cat} %{SOURCE1} | sed -e 's|MOZILLA_VERSION|%{real_version}|g' \

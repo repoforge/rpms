@@ -216,7 +216,7 @@ cd -
 	NODRIVER="n" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}/
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
 
 %if %{_with_smp}
 ### Prepare SMP kernel.
@@ -237,7 +237,7 @@ cd -
 	NODRIVER="n" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}/
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
 %endif
 
 %install
@@ -245,8 +245,8 @@ cd ibmasm-src
 
 ### Install binary software.
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
-#%{__install} -m0755 ibmspup ibmspdown ibmspremove exe/ibmsprem exe/ibmsprem2 exe/ibmsphalt %{buildroot}%{_sbindir}
-%{__install} -m0755 ibmspup ibmspdown exe/ibmsprem exe/ibmsprem2 exe/ibmsphalt %{buildroot}%{_sbindir}
+#%{__install} -p -m0755 ibmspup ibmspdown ibmspremove exe/ibmsprem exe/ibmsprem2 exe/ibmsphalt %{buildroot}%{_sbindir}
+%{__install} -p -m0755 ibmspup ibmspdown exe/ibmsprem exe/ibmsprem2 exe/ibmsphalt %{buildroot}%{_sbindir}
 %{__install} -Dp -m0755 shlib/libsysSp.so %{buildroot}%{_libdir}/libsysSp.so
 %{__install} -Dp -m0755 ibmasm.sysv %{buildroot}%{_initrddir}/ibmasm
 %{__install} -Dp -m0755 ibmspup.xinit %{buildroot}%{_sysconfdir}/X11/xinit/xinitrc.d/ibmspup

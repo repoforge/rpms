@@ -1,8 +1,5 @@
 # $Id$
-
 # Authority: dag
-
-# Soapbox: 0
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
@@ -18,7 +15,6 @@ URL: http://www.pixelbeat.org/fslint/
 
 Source: http://www.iol.ie/~padraiga/fslint/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 Requires: python, pygtk, pygtk-libglade, textutils >= 2.0.21
@@ -36,22 +32,21 @@ It is written in Python, using pyGtk and libGlade.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/pixmaps/ \
-			%{buildroot}%{_datadir}/fslint/fslint/{fstool,rmlint}
-%{__install} -m0755 FSlint %{buildroot}%{_bindir}/fslint
+%{__install} -Dp -m0755 FSlint %{buildroot}%{_bindir}/fslint
 %{__ln_s} -f %{_bindir}/fslint %{_bindir}/FSlint
-%{__install} -m0755 FSlint %{buildroot}%{_bindir}
-%{__install} -m0644 fslint_icon.png %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 fslint_icon.png %{buildroot}%{_datadir}/fslint/
-%{__install} -m0644 fslint.glade %{buildroot}%{_datadir}/fslint/
-%{__install} -m0755 fslint/{find*,fsl*,get*,zipdir} %{buildroot}%{_datadir}/fslint/fslint/
-%{__install} -m0755 fslint/fstool/* %{buildroot}%{_datadir}/fslint/fslint/fstool/
-%{__install} -m0755 fslint/rmlint/* %{buildroot}%{_datadir}/fslint/fslint/rmlint/
+
+%{__install} -Dp -m0755 FSlint %{buildroot}%{_bindir}/FSlint
+%{__install} -Dp -m0644 fslint_icon.png %{buildroot}%{_datadir}/pixmaps/fslint_icon.png
+%{__install} -Dp -m0644 fslint_icon.png %{buildroot}%{_datadir}/fslint/fslint_icon.png
+%{__install} -Dp -m0644 fslint.glade %{buildroot}%{_datadir}/fslint/fslint.glade
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/fslint/fslint/{fstool,rmlint}
+%{__install} -p -m0755 fslint/{find*,fsl*,get*,zipdir} %{buildroot}%{_datadir}/fslint/fslint/
+%{__install} -p -m0755 fslint/fstool/* %{buildroot}%{_datadir}/fslint/fslint/fstool/
+%{__install} -p -m0755 fslint/rmlint/* %{buildroot}%{_datadir}/fslint/fslint/rmlint/
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Applications/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
+        %{__install} -Dp -m0644 fslint.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/fslint.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
         desktop-file-install --vendor %{desktop_vendor}    \
@@ -59,7 +54,7 @@ It is written in Python, using pyGtk and libGlade.
                 --add-category Application                 \
                 --add-category Utility                     \
                 --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
+                fslint.desktop
 %endif
 
 %clean

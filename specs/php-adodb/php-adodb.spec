@@ -35,14 +35,14 @@ Sybase, DB2 and generic ODBC.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/adodb/{datadict,drivers,lang,perf,session,tests,xsl}/
-%{__install} -m0644 *.php *.dtd %{buildroot}%{_localstatedir}/www/adodb/
-%{__install} -m0644 datadict/*.php %{buildroot}%{_localstatedir}/www/adodb/datadict/
-%{__install} -m0644 drivers/*.php %{buildroot}%{_localstatedir}/www/adodb/drivers/
-%{__install} -m0644 lang/*.php %{buildroot}%{_localstatedir}/www/adodb/lang/
-%{__install} -m0644 perf/*.php %{buildroot}%{_localstatedir}/www/adodb/perf/
-%{__install} -m0644 session/*.php %{buildroot}%{_localstatedir}/www/adodb/session/
-%{__install} -m0644 tests/*.php %{buildroot}%{_localstatedir}/www/adodb/tests/
-%{__install} -m0644 xsl/*.xsl %{buildroot}%{_localstatedir}/www/adodb/xsl/
+%{__install} -p -m0644 *.php *.dtd %{buildroot}%{_localstatedir}/www/adodb/
+%{__install} -p -m0644 datadict/*.php %{buildroot}%{_localstatedir}/www/adodb/datadict/
+%{__install} -p -m0644 drivers/*.php %{buildroot}%{_localstatedir}/www/adodb/drivers/
+%{__install} -p -m0644 lang/*.php %{buildroot}%{_localstatedir}/www/adodb/lang/
+%{__install} -p -m0644 perf/*.php %{buildroot}%{_localstatedir}/www/adodb/perf/
+%{__install} -p -m0644 session/*.php %{buildroot}%{_localstatedir}/www/adodb/session/
+%{__install} -p -m0644 tests/*.php %{buildroot}%{_localstatedir}/www/adodb/tests/
+%{__install} -p -m0644 xsl/*.xsl %{buildroot}%{_localstatedir}/www/adodb/xsl/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Dag Wieers <dag$wieers,com>
-# Soapbox: 0
 
 Summary: Tray applet for changing network proxy configuration
 Name: proxy-applet
@@ -14,7 +12,6 @@ URL: http://dag.wieers.com/home-made/gnome-applets/
 
 Source: http://dag.wieers.com/home-made/gnome-applets/proxy-applet-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: mono, gtk-sharp
 ### FIXME: gtk-sharp needs gtk2/gnome2 *.so files ;(
@@ -40,11 +37,12 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+%{__install} -Dp -m0755 proxy-applet.sh %{buildroot}%{_bindir}/proxy-applet
+
 desktop-file-install --vendor gnome --delete-original \
 	--add-category X-Red-Hat-Base                 \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/applications/%{name}.desktop
-%{__install} -m0755 proxy-applet.sh %{buildroot}%{_bindir}/proxy-applet
 
 %clean
 %{__rm} -rf %{buildroot}

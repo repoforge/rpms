@@ -38,7 +38,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Yum is a utility that can check for and automatically download and
-%{__install} updated RPM packages. Dependencies are obtained and downloaded 
+install updated RPM packages. Dependencies are obtained and downloaded 
 automatically prompting the user as necessary.
 
 Available rpmbuild rebuild options :
@@ -56,7 +56,7 @@ perl -pi -e 's|-d 0|-d 1|g' etc/yum.cron
 %install
 %{__rm} -rf %{buildroot}
 %{__make} DESTDIR=%{buildroot} install
-%{__install} -m 644 %{_sourcedir}/yum-%{distro}.conf \
+%{__install} -p -m0644 %{_sourcedir}/yum-%{distro}.conf \
     %{buildroot}%{_sysconfdir}/yum.conf
 perl -pi -e 's/\$releasever/%{distrover}/g' %{buildroot}%{_sysconfdir}/yum.conf
 perl -pi -e 's/\$basearch/%{distroarch}/g' %{buildroot}%{_sysconfdir}/yum.conf

@@ -30,7 +30,7 @@ facsimilies by printing to a fax printer.
 %{__install} -Dp -m0644 gfax.png %{buildroot}%{_datadir}/pixmaps/gfax.png
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/gfax/
-%{__install} -m0644 *.py *.glade %{buildroot}%{_libdir}/gfax/
+%{__install} -p -m0644 *.py *.glade %{buildroot}%{_libdir}/gfax/
 
 %clean
 %{__rm} -rf %{buildroot}

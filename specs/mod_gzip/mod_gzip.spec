@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dag
 
-# Distcc: 0
 # SourceDists: rh7
 
 %define aversion %(rpm -q apache-devel --qf '%{RPMTAG_VERSION}' | tail -1)
@@ -16,9 +14,8 @@ License: Apache License
 Group: System Environment/Daemons
 URL: http://www.schroepl.net/projekte/mod_gzip/
 
-Source: http://dl.sf.net/mod-gzip/%{name}-%{real_version}.tgz
+Source: http://dl.sf.net/mod-gzip/mod_gzip-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: zlib-devel, apache-devel
 Requires: apache = %{aversion}, mm >= 1.0
@@ -84,10 +81,8 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir}/apache/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/
-%{__install} -m0755 mod_gzip.so %{buildroot}%{_libdir}/apache/
-%{__install} -m0644 mod_gzip.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -Dp -m0755 mod_gzip.so %{buildroot}%{_libdir}/apache/mod_gzip.so
+%{__install} -Dp -m0644 mod_gzip.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/mod_gzip.conf
 
 %clean
 %{__rm} -rf %{buildroot}

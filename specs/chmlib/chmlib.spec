@@ -47,7 +47,7 @@ you will need to install %{name}-devel.
 			%{buildroot}%{_includedir}
 %makeinstall \
 	INSTALLPREFIX="%{buildroot}%{_prefix}"
-%{__install} -m0755 *_chmLib chm_http %{buildroot}%{_bindir}
+%{__install} -p -m0755 *_chmLib chm_http %{buildroot}%{_bindir}
 
 ### Fix library symlinks
 for lib in $(ls %{buildroot}%{_libdir}); do

@@ -66,8 +66,8 @@ They might work with newer/older kernels.
 
 %prep
 %setup -c -n %{real_name}-%{real_version}
-%{__install} -m0644 %{SOURCE1} Makefile
-%{__install} -m0644 %{SOURCE2} kernel-ver.c
+%{__install} -p -m0644 %{SOURCE1} Makefile
+%{__install} -p -m0644 %{SOURCE2} kernel-ver.c
 
 %build
 %{__rm} -rf %{buildroot}
@@ -83,7 +83,7 @@ cd -
 ### Make UP module.
 %{__make} clean all
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -95,7 +95,7 @@ cd -
 ### Make SMP module.
 %{__make} clean all
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
 

@@ -41,9 +41,9 @@ cd src/file
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir} \
 			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 bin/* %{buildroot}%{_sbindir}
-%{__install} -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
-%{__install} -m0755 src/file/src/file %{buildroot}%{_sbindir}
+%{__install} -p -m0755 bin/* %{buildroot}%{_sbindir}
+%{__install} -p -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0755 src/file/src/file %{buildroot}%{_sbindir}
 %{__ln_s} -f %{_sbindir}/file %{buildroot}%{_sbindir}/file_sk
 #%{__mv} -f %{buildroot}%{_mandir}/man1/file.1 %{buildroot}%{_mandir}/man1/file_sk.1
 

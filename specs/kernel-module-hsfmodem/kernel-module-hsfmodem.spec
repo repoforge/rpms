@@ -98,7 +98,7 @@ cd -
 	DISTRO_CFLAGS="-D__BOOT_KERNEL_H_ -D__BOOT_KERNEL_UP=1 -D__MODULE_KERNEL_%{_target_cpu}=1" \
 	CNXT_MODS_DIR="../%{real_name}-up/"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{real_name}-up/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{real_name}-up/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -116,7 +116,7 @@ cd -
 	DISTRO_CFLAGS="-D__BOOT_KERNEL_H_ -D__BOOT_KERNEL_SMP=1 -D__MODULE_KERNEL_%{_target_cpu}=1" \
 	CNXT_MODS_DIR="../%{real_name}-smp/"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{real_name}-smp/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{real_name}-smp/*.o %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 ### Make utilities.
 %{__make} %{?_smp_mflags} clean all

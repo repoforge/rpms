@@ -83,13 +83,13 @@ cd -
 	KSRC="%{_libmoddir}/%{kversion}-%{krelease}/build"
 cd 2.4/drivers/
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 %install
 %{__install} -d -m0755 %{buildroot}/dev \
 			%{buildroot}%{_mandir}/man4
 touch %{buildroot}/dev/thinkpad
-%{__install} -m0644 man/*.4 %{buildroot}%{_mandir}/man4/
+%{__install} -p -m0644 man/*.4 %{buildroot}%{_mandir}/man4/
 
 ### FIXME: A manual page should not be part of a kernel module package, added to documentation.
 %{__rm} -rf %{buildroot}%{_mandir}

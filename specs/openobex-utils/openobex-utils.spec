@@ -38,7 +38,7 @@ Utilities based on Openobex.
 ### Ugly (smart?) hack to have obexserver when bluetooth is compiled in openobex.
 cd src
 ${CC:-%{__cc}} %{optflags} -o obexserver %{SOURCE1} libmisc.a $(openobex-config --libs) && \
-%{__install} -m0755 obexserver %{buildroot}%{_bindir} || :
+%{__install} -Dp -m0755 obexserver %{buildroot}%{_bindir}/obexserver || :
 
 %clean
 %{__rm} -rf %{buildroot}

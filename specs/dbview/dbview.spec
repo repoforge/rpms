@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Display dBase III and IV (.dbf) files
@@ -10,7 +9,7 @@ License: GPL
 Group: Applications/Databases
 URL: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/
 
-Source: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/%{name}-%{version}.tar.gz
+Source: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/dbview-%{version}.tar.gz
 Patch: dbview-patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -29,10 +28,8 @@ with Unix.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 dbview %{buildroot}%{_bindir}
-%{__install} -m0644 dbview.1 %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0755 dbview %{buildroot}%{_bindir}/dbview
+%{__install} -Dp -m0644 dbview.1 %{buildroot}%{_mandir}/man1/dbview.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -40,8 +37,8 @@ with Unix.
 %files
 %defattr(-, root, root, 0755)
 %doc dBASE README
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/dbview.1*
+%{_bindir}/dbview
 
 %changelog
 * Mon Oct 06 2003 Dag Wieers <dag@wieers.com> - 1.0.3-0

@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Daniel Stephens <daniel$cheeseplant,org>
 
 Name: metacam
@@ -12,9 +10,10 @@ Group: Applications/Multimedia
 License: GPL
 URL: http://www.cheeseplant.org/~daniel/pages/metacam.html
 
-Source: ftp://ftp.cheeseplant.org/pub/%{name}-%{version}.tar.gz
+Source: ftp://ftp.cheeseplant.org/pub/metacam-%{version}.tar.gz
 Source1: %{name}.1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description 
@@ -30,10 +29,8 @@ from a Nikon D1, but it supports other cameras too.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 %{name} %{buildroot}%{_bindir}
-%{__install} -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0755 metacam %{buildroot}%{_bindir}/metacam
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_mandir}/man1/metacam.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,8 +38,8 @@ from a Nikon D1, but it supports other cameras too.
 %files
 %defattr(-, root, root, 0755)
 %doc README* THANKS
-%doc %{_mandir}/man1/*
-%{_bindir}/*
+%doc %{_mandir}/man1/metacam.1*
+%{_bindir}/metacam
 
 %changelog
 * Tue Jan 04 2005 Bert de Bruijn <bert@debruijn.be> 1.2-0

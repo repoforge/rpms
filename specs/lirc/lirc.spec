@@ -66,8 +66,8 @@ having to recompile a kernel and recompile lirc manually to get the modules!
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -m 755 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/lircd
-%{__install} -m 644 -D %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/lircd
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/lircd
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/lircd
 %{__perl} -pi -e 's|\@SBINDIR\@|%{_sbindir}|g' \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/lircd
 %{__rm} -rf doc/{Makefile*,man2html*,.deps,.libs}

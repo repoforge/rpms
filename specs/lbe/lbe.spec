@@ -61,14 +61,14 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_datadir}/lbe/help/ \
 			%{buildroot}%{_datadir}/lbe/templates/ \
 			%{buildroot}%{_bindir}
-%{__install} -m0755 lbe.sh %{buildroot}%{_datadir}/lbe/
+%{__install} -Dp -m0755 lbe.sh %{buildroot}%{_datadir}/lbe/lbe.sh
 %{__ln_s} -f %{_datadir}/lbe/lbe.sh %{buildroot}%{_bindir}/lbe
 
-%{__install} -m0644 *.cfg* *.config* %{buildroot}%{_datadir}/lbe/
-%{__install} -m0644 help/*.html %{buildroot}%{_datadir}/lbe/help/
-%{__install} -m0644 lib/*.jar %{buildroot}%{_datadir}/lbe/
-%{__install} -m0644 *.jar %{buildroot}%{_datadir}/lbe/
-%{__install} -m0644 templates/* %{buildroot}%{_datadir}/lbe/templates/
+%{__install} -p -m0644 *.cfg* *.config* %{buildroot}%{_datadir}/lbe/
+%{__install} -p -m0644 help/*.html %{buildroot}%{_datadir}/lbe/help/
+%{__install} -p -m0644 lib/*.jar %{buildroot}%{_datadir}/lbe/
+%{__install} -p -m0644 *.jar %{buildroot}%{_datadir}/lbe/
+%{__install} -p -m0644 templates/* %{buildroot}%{_datadir}/lbe/templates/
 
 %clean
 %{__rm} -rf %{buildroot}

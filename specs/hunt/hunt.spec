@@ -39,9 +39,9 @@ connections it sees.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 hunt tpserv/tpserv tpsetup/transproxy %{buildroot}%{_sbindir}
-
+%{__install} -Dp -m0755 hunt %{buildroot}%{_sbindir}/hunt
+%{__install} -Dp -m0755 tpserv/tpserv %{buildroot}%{_sbindir}/tpserv
+%{__install} -Dp -m0755 tpsetup/transproxy %{buildroot}%{_sbindir}/transproxy
 %{__install} -Dp -m0644 man/hunt.1 %{buildroot}%{_mandir}/man1/hunt.1
 
 %clean

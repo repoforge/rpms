@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name gc
@@ -44,12 +43,12 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}/%{real_name} \
+			%{buildroot}%{_includedir}/libgc/ \
 			%{buildroot}%{_mandir}/man1/
 %makeinstall \
 	DESTDIR="%{buildroot}"
-#%{__install} -m0644 include/*.h %{buildroot}%{_includedir}/%{real_name}
-%{__install} -m0655 doc/gc.man %{buildroot}%{_mandir}/man1/gc.1
+#%{__install} -Dp -m0644 include/*.h %{buildroot}%{_includedir}/libgc/
+%{__install} -Dp -m0655 doc/gc.man %{buildroot}%{_mandir}/man1/gc.1
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la
@@ -76,7 +75,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-%{_includedir}/%{real_name}/
+%{_includedir}/libgc/
 #exclude %{_libdir}/*.la
 
 %changelog

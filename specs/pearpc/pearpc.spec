@@ -74,9 +74,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 # Empty compressed disk images + video driver
 %{__mkdir_p} %{buildroot}%{_datadir}/pearpc/emptyimages
-%{__install} -m 0644 %{SOURCE2} %{SOURCE3} \
+%{__install} -p -m0644 %{SOURCE2} %{SOURCE3} \
     %{buildroot}%{_datadir}/pearpc/emptyimages/
-%{__install} -m 0644 video.x %{buildroot}%{_datadir}/pearpc/
+%{__install} -p -m0644 video.x %{buildroot}%{_datadir}/pearpc/
 
 # Change some paths in the configuration file
 %{__perl} -pi -e \

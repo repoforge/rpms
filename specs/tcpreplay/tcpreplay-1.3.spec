@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-# Distcc: 0
 
 Summary: tool to replay captured network traffic
 Name: tcpreplay
@@ -13,7 +11,6 @@ URL: http://tcpreplay.sourceforge.net/
 
 Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: libnet
 
@@ -33,14 +30,12 @@ capture files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man1 \
-			%{buildroot}%{_mandir}/man8
-%{__install} -m0755 capinfo tcpprep %{buildroot}%{_sbindir}/
-%{__install} -m0755 tcpreplay %{buildroot}%{_sbindir}/
-%{__install} -m0644 capinfo.1 tcpprep.1 %{buildroot}%{_mandir}/man1
-%{__install} -m0644 tcpreplay.8 %{buildroot}%{_mandir}/man8
+%{__install} -Dp -m0755 capinfo %{buildroot}%{_sbindir}/capinfo
+%{__install} -Dp -m0755 tcpprep %{buildroot}%{_sbindir}/tcpprep
+%{__install} -Dp -m0755 tcpreplay %{buildroot}%{_sbindir}/tcpreplay
+%{__install} -Dp -m0644 capinfo.1 %{buildroot}%{_mandir}/man1/capinfo.1
+%{__install} -Dp -m0644 tcpprep.1 %{buildroot}%{_mandir}/man1/tcpprep.1
+%{__install} -Dp -m0644 tcpreplay.8 %{buildroot}%{_mandir}/man8/tcpreplay.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,8 +43,12 @@ capture files.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG LICENSE README tcpprep.FAQ
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc %{_mandir}/man1/capinfo.1*
+%doc %{_mandir}/man1/tcpprep.1*
+%doc %{_mandir}/man8/tcpreplay.8*
+%{_sbindir}/capinfo
+%{_sbindir}/tcpprep
+%{_sbindir}/tcpreplay
 
 %changelog
 * Sun May 04 2003 Dag Wieers <dag@wieers.com> - 1.3.3-0

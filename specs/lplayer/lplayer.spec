@@ -37,7 +37,7 @@ test -f ~/.lptable.lp2 && cp -f ~/.lptable.lp2 ~/.lptable.lp2.1
 exec %{_bindir}/lplayer-bin
 EOF
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >lplayer.desktop
 [Desktop Entry]
 Name=longplayer
 Comment=%{summary}
@@ -59,19 +59,17 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 src/lplayer/images/lplayerlogo.png %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0755 lplayer.sh %{buildroot}%{_bindir}/lplayer
+%{__install} -Dp -m0644 src/lplayer/images/lplayerlogo.png %{buildroot}%{_datadir}/pixmaps/lplayerlogo.png
+%{__install} -Dp -m0755 lplayer.sh %{buildroot}%{_bindir}/lplayer
 
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+	%{__install} -Dp -m0644 lplayer.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/lplayer.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+		lplayer.desktop
 %endif
 
 %clean

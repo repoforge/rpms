@@ -35,7 +35,7 @@ This package contains 3 arcade games that are freely available:
 
 # Install the ROMs
 %{__mkdir_p} %{buildroot}%{_datadir}/xmame/roms/
-%{__install} -m 644 %{SOURCE0} %{SOURCE1} %{SOURCE2} \
+%{__install} -p -m0644 %{SOURCE0} %{SOURCE1} %{SOURCE2} \
     %{buildroot}%{_datadir}/xmame/roms/
 
 

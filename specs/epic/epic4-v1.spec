@@ -59,10 +59,10 @@ for file in %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} %{SOURCE8}; do
 	sNAME="${file//%.gz/}"
 	bNAME="$(basename $sNAME)"
 	zcat $file | sed -e 's|^\(\^set HELP_PATH.*\)|#\1|' >$bNAME;
-	%{__install} $bNAME %{buildroot}%{_datadir}/epic/script/
+	%{__install} -p $bNAME %{buildroot}%{_datadir}/epic/script/
 done;
 
-%{__install} %{SOURCE3} %{buildroot}%{_datadir}/epic/
+%{__install} -p %{SOURCE3} %{buildroot}%{_datadir}/epic/
 
 ### Clean up Makefiles
 find %{buildroot} -type f -name Makefile -exec %{__rm} -f {} \; || :

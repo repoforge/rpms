@@ -49,8 +49,8 @@ developing programs using lib5250.
 %makeinstall
 %{__install} -d -m0755 %{buildroot}%{_datadir}/%{name} \
 			%{buildroot}%{_datadir}/pixmaps
-%{__install} linux/5250.tcap linux/5250.terminfo %{buildroot}%{_datadir}/%{name}/
-%{__install} *.png *.xpm %{buildroot}%{_datadir}/pixmaps
+%{__install} -p linux/5250.tcap linux/5250.terminfo %{buildroot}%{_datadir}/%{name}/
+%{__install} -p *.png *.xpm %{buildroot}%{_datadir}/pixmaps
 export TERMINFO="%{buildroot}%{_datadir}/terminfo/"
 /usr/bin/tic linux/5250.terminfo
 #/usr/bin/tic -o%{buildroot}%{_datadir}/terminfo/ linux/5250.terminfo

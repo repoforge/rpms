@@ -30,10 +30,8 @@ common IP netmask and address formats.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 netmask %{buildroot}%{_bindir}
-%{__install} -m0644 netmask.1 %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0755 netmask %{buildroot}%{_bindir}/netmask
+%{__install} -Dp -m0644 netmask.1 %{buildroot}%{_mandir}/man1/netmask.1
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir &>/dev/null || :

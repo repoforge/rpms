@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Heartbeat subsystem for High-Availability Linux
@@ -83,8 +82,7 @@ implementing any number of interfaces.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/adm/fillup-templates/
-%{__install} -m0644 rc.config.heartbeat %{buildroot}%{_localstatedir}/adm/fillup-templates/
+%{__install} -Dp -m0644 rc.config.heartbeat %{buildroot}%{_localstatedir}/adm/fillup-templates/rc.config.heartbeat
 
 %{__ln_s} -f %{_sbindir}/ldirectord %{buildroot}%{_sysconfdir}/ha.d/resource.d/ldirectord
 

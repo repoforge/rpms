@@ -43,8 +43,8 @@ you will need to install %{name}-devel.
 		s|^(INSTALL_INC=).*$|$1 \$(includedir)|;
 		s|^(INSTALL_LIB=).*$|$1 \$(libdir)|;
 		s|^(INSTALL_MAN=).*$|$1 \$(mandir)/man1|;
-		s|^(INSTALL_EXEC=).*$|$1 %{__install} -m0755|;
-		s|^(INSTALL_DATA=).*$|$1 %{__install} -m0644|;
+		s|^(INSTALL_EXEC=).*$|$1 %{__install} -p -m0755|;
+		s|^(INSTALL_DATA=).*$|$1 %{__install} -p -m0644|;
 	' config
 
 %build
@@ -54,7 +54,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -m0755 lib/*.so* %{buildroot}%{_libdir}
+%{__install} -p -m0755 lib/*.so* %{buildroot}%{_libdir}
 
 %post
 /sbin/ldconfig 2>/dev/null

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Packet generator
@@ -25,8 +24,8 @@ A console and gtk based packet generator allowing the custom building of IP, TCP
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 magic ipmagic %{buildroot}%{_sbindir}
+%{__install} -Dp -m0755 ipmagic %{buildroot}%{_sbindir}/ipmagic
+%{__install} -Dp -m0755 magic %{buildroot}%{_sbindir}/magic
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -34,7 +33,8 @@ A console and gtk based packet generator allowing the custom building of IP, TCP
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS changelog GPL HOWTO README
-%{_sbindir}/*
+%{_sbindir}/ipmagic
+%{_sbindir}/magic
 
 %changelog
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 1.7.5-0

@@ -42,8 +42,7 @@ with little effort. With a bit more time, more complex programs can be written
 	INC_PREFIX="%{buildroot}%{_includedir}" \
 	LIB_PREFIX="%{buildroot}%{_libdir}" \
 	MAN_PREFIX="%{buildroot}/%{_mandir}/man3"
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 libnet-config %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 libnet-config %{buildroot}%{_bindir}/libnet-config
 
 %clean
 %{__rm} -rf %{buildroot}

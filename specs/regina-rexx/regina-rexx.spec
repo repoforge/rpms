@@ -122,7 +122,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -m0755 rxstack.sysv %{buildroot}%{_initrddir}/rxstack
+%{__install} -Dp -m0755 rxstack.sysv %{buildroot}%{_initrddir}/rxstack
 
 ### FIXME: Fix broken REXX scripts
 %{__perl} -pi -e 's|%{buildroot}||g' %{buildroot}%{_datadir}/regina/*.rexx

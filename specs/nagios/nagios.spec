@@ -94,10 +94,10 @@ done
 %{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}/nagios/
-%{__install} -m0644 include/*.h %{buildroot}%{_includedir}/nagios/
+%{__install} -p -m0644 include/*.h %{buildroot}%{_includedir}/nagios/
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/
-%{__install} -m0644 sample-config/httpd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
+%{__install} -Dp -m0644 sample-config/httpd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
 
 ### Install logos
 tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}

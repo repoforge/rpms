@@ -35,8 +35,7 @@ signal strength of network components, and more.
 %{__rm} -rf %{buildroot}
 #makeinstall -C src \
 #	INSTALL_DIR="%{buildroot}%{_bindir}"
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 src/airtraf %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 src/airtraf %{buildroot}%{_bindir}/airtraf
 
 %clean
 %{__rm} -rf %{buildroot}

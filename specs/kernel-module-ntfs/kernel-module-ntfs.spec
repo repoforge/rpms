@@ -100,7 +100,7 @@ cd %{_usrsrc}/linux-%{kernel}/fs/ntfs/
 	TOPDIR="%{_usrsrc}/linux-%{kernel}" \
 	CFLAGS="-Wall -pipe -O3 -fomit-frame-pointer -D__KERNEL__ -DMODULE -DEXPORT_SYMTAB -DMODVERSIONS -I%{_libmoddir}/%{kernel}/build/include -include %{_libmoddir}/%{kernel}/build/include/linux/modversions.h"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}/
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}%{moduledir}
 cd -
 
 %if %{_with_smp}
@@ -121,7 +121,7 @@ cd %{_usrsrc}/linux-%{kernel}/fs/ntfs/
 	CFLAGS="-Wall -pipe -O3 -fomit-frame-pointer -D__KERNEL__ -DMODULE -DEXPORT_SYMTAB -DMODVERSIONS -I%{_libmoddir}/%{kernel}/build/include -include %{_libmoddir}/%{kernel}/build/include/linux/modversions.h"
 #TEST	CFLAGS="-D__KERNEL__ -I%{_usrsrc}/linux-%{kversion}-%{krelease}/include -Wall -Wstrict-prototypes -Wno-trigraphs -O2 -fomit-frame-pointer -fno-strict-aliasing -fno-common -pipe -mpreferred-stack-boundary=2 -march=%{_arch} -DMODULE -DMODVERSIONS -include %{_usrsrc}/linux-%{kversion}-%{krelease}/include/linux/modversions.h -nostdinc -iwithprefix include"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}/
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kernel}smp%{moduledir}
 cd -
 %endif
 

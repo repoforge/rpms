@@ -74,12 +74,11 @@ automake
     docdir=$(pwd)/_docs
 
 # Manually install tools
-%{__mkdir_p} %{buildroot}%{_bindir}
-%{__install} -m 0755 examples/.libs/dump_video \
+%{__install} -Dp -m0755 examples/.libs/dump_video \
     %{buildroot}%{_bindir}/theora_dump_video
-%{__install} -m 0755 examples/.libs/encoder_example \
+%{__install} -Dp -m0755 examples/.libs/encoder_example \
     %{buildroot}%{_bindir}/theora_encode
-%{__install} -m 0755 examples/.libs/player_example \
+%{__install} -Dp -m0755 examples/.libs/player_example \
     %{buildroot}%{_bindir}/theora_player
 
 

@@ -34,12 +34,13 @@ under load, or the ability of the port to service a set of requests.
 %{__rm} -rf %{buildroot}
 #makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_sysconfdir}/hammerhead/ \
-			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 src/hammerhead %{buildroot}%{_bindir}
-%{__install} -m0644 doc/*.conf doc/*.scn %{buildroot}%{_sysconfdir}/hammerhead/
-%{__install} -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0755 src/hammerhead %{buildroot}%{_bindir}/hammerhead
+
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/hammerhead/
+%{__install} -p -m0644 doc/*.conf doc/*.scn %{buildroot}%{_sysconfdir}/hammerhead/
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -81,7 +81,7 @@ cd driver
 	KSRC="%{_libmoddir}/%{kversion}-%{krelease}/build" \
 	KVERS="24"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 cd -
 
 ### Make utilities.
@@ -90,7 +90,7 @@ cd -
 
 %install
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 utils/loadndisdriver utils/ndiswrapper utils/wlan_radio_averatec_5110hx %{buildroot}%{_sbindir}
+%{__install} -p -m0755 utils/loadndisdriver utils/ndiswrapper utils/wlan_radio_averatec_5110hx %{buildroot}%{_sbindir}
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/ndiswrapper/
 

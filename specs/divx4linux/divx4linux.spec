@@ -41,7 +41,7 @@ for file in *.so; do
 done
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}
-%{__install} -m0644 *.h %{buildroot}%{_includedir}
+%{__install} -p -m0644 *.h %{buildroot}%{_includedir}
 
 %post
 /sbin/ldconfig 2>/dev/null

@@ -30,7 +30,7 @@ A resizable border sensor, designed to replace LTVBorder.
 ./Install_RDGBorder_Sensor.bin %{buildroot}%{_datadir}/gdesklets/Sensors
 ./Install_bluegrey_RDGTheme.bin %{buildroot}%{_datadir}/gdesklets/RDGThemes
 ./Install_scooby_RDGTheme.bin %{buildroot}%{_datadir}/gdesklets/RDGThemes
-%{__install} -m 644 *.display %{buildroot}%{_datadir}/gdesklets/Displays/%{rname}
+%{__install} -p -m0644 *.display %{buildroot}%{_datadir}/gdesklets/Displays/%{rname}
 
 %clean
 %{__rm} -rf %{buildroot}

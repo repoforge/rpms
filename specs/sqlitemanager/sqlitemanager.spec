@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Frédéric Henninot <fhenninot$freesurf,fr>
 
@@ -50,11 +49,11 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sqlitemanager/{include,lang,theme/default,pics}/
-%{__install} -m0644 *.php *.sqlite %{buildroot}%{_localstatedir}/www/sqlitemanager/
-%{__install} -m0644 include/*.{db,js,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/include/
-%{__install} -m0644 lang/*.inc.php %{buildroot}%{_localstatedir}/www/sqlitemanager/lang/
-%{__install} -m0644 theme/default/*.{css,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/theme/default/
-%{__install} -m0644 pics/*.{gif,png} %{buildroot}%{_localstatedir}/www/sqlitemanager/pics/
+%{__install} -p -m0644 *.php *.sqlite %{buildroot}%{_localstatedir}/www/sqlitemanager/
+%{__install} -p -m0644 include/*.{db,js,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/include/
+%{__install} -p -m0644 lang/*.inc.php %{buildroot}%{_localstatedir}/www/sqlitemanager/lang/
+%{__install} -p -m0644 theme/default/*.{css,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/theme/default/
+%{__install} -p -m0644 pics/*.{gif,png} %{buildroot}%{_localstatedir}/www/sqlitemanager/pics/
 
 %{__install} -Dp -m0644 sqlitemanager.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/sqlitemanager.conf
 

@@ -51,7 +51,7 @@ Install AlsaPlayer if you want a versatile audio player.
 %{__make} install DESTDIR=%{buildroot}
 # Install icons
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
-%{__install} -m 644 %{SOURCE1} %{SOURCE2} %{SOURCE3} \
+%{__install} -p -m644 %{SOURCE1} %{SOURCE2} %{SOURCE3} \
     %{buildroot}%{_datadir}/pixmaps/
 
 # System menu entry

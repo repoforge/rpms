@@ -32,7 +32,7 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{_bindir}
-%{__install} -m 755 pgm2txt srttool subtitle2pgm subtitle2vobsub \
+%{__install} -p -m0755 pgm2txt srttool subtitle2pgm subtitle2vobsub \
     %{buildroot}%{_bindir}/
 
 

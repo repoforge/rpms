@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Ulrik De Bie <ulrik$mind,be>
 
 Summary: Check unused IP addresses and automagically assign them
@@ -12,9 +10,8 @@ License: GPL
 Group: System Environment/Base
 URL: http://garp.3va.net/
 
-Source: http://garp.3va.net/down/%{name}-%{version}.tar.gz
+Source: http://garp.3va.net/down/garp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Garp is a Gratuitous ARP implementation. Garp can be used to check
@@ -30,10 +27,8 @@ unused IP addresses (from a given IP range).
 %install
 %{__rm} -rf %{buildroot}
 #makeinstall
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man8
-%{__install} -m0755 garp %{buildroot}%{_sbindir}
-%{__install} -m0644 garp.8 %{buildroot}%{_mandir}/man8
+%{__install} -Dp -m0755 garp %{buildroot}%{_sbindir}/garp
+%{__install} -Dp -m0644 garp.8 %{buildroot}%{_mandir}/man8/garp.8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -41,8 +36,8 @@ unused IP addresses (from a given IP range).
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING
+%doc %{_mandir}/man8/garp.8
 %{_sbindir}/garp
-%{_mandir}/man?/*
 
 %changelog 
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 0.7.2-1

@@ -1,8 +1,6 @@
 # $Id$
-
 # Authority: dag
 # Upstream: George Farris <farrisg$mala,bc,ca>
-# Distcc: 0
 
 %define real_version 0.6.beta9
 
@@ -62,15 +60,15 @@ to a fax printer.
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 
-%{__install} -m0644 data/gfax.schema %{buildroot}%{_sysconfdir}/gconf/schemas/%{name}.schemas
+%{__install} -Dp -m0644 data/gfax.schema %{buildroot}%{_sysconfdir}/gconf/schemas/gfax.schemas
 
 ### FIXME: Install fax printer profile for GNOME 1.x
 #%{__install} -m0644 data/fax-g3.profile %{buildroot}%{_datadir}/gnome-print/profiles/
 
 ### FIXME: Install fax printer profile for GNOME 2.x
 #for dir in /usr/share/libgnomeprint/*; do
-#	%{__install} -m0644 data/GFAX.xml $dir/printers
-#	%{__install} -m9644 data/GNOME-GFAX-PS.xml $dir/models
+#	%{__install} -p -m0644 data/GFAX.xml $dir/printers
+#	%{__install} -p -m0644 data/GNOME-GFAX-PS.xml $dir/models
 #done
 
 %post

@@ -178,15 +178,14 @@ lispdir="%{buildroot}%{_datadir}/emacs/site-lisp" \
 			%{buildroot}%{_datadir}/emacs/site-lisp/
 %makeinstall lispdir="%{buildroot}%{_datadir}/emacs/site-lisp"
 
-%{__install} -m0644 contrib/emacs/t-mouse.el* %{buildroot}%{_datadir}/emacs/site-lisp/
+%{__install} -p -m0644 contrib/emacs/t-mouse.el* %{buildroot}%{_datadir}/emacs/site-lisp/
 
 %ifnarch s390 s390x
-	%{__install} -d -m0755 %{buildroot}%{_initrddir}
-	%{__install} -m0755 gpm.sysv %{buildroot}%{_initrddir}/gpm
-	%{__install} -m0644 gpm.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/gpm
-	%{__install} -m0644 doc/gpm-root.1 %{buildroot}%{_mandir}/man1/
-	%{__install} -m0644 conf/gpm-root.conf %{buildroot}%{_sysconfdir}
-	%{__install} -s -m0755 src/prog/hltest %{buildroot}%{_bindir}
+	%{__install} -Dp -m0755 gpm.sysv %{buildroot}%{_initrddir}/gpm
+	%{__install} -Dp -m0644 gpm.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/gpm
+	%{__install} -Dp -m0644 doc/gpm-root.1 %{buildroot}%{_mandir}/man1/gpm-root.1
+	%{__install} -Dp -m0644 conf/gpm-root.conf %{buildroot}%{_sysconfdir}/gpm-root.conf
+	%{__install} -Dp -m0755 src/prog/hltest %{buildroot}%{_bindir}/hltest
 %else
 	%{__rm} -f %{buildroot}%{_bindir}/mev \
 			%{buildroot}%{_bindir}gpm-root

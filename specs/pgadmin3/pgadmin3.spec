@@ -1,8 +1,8 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Jean-Michel POURE <jm$poure,com>
+
+%define desktop-vendor rpmforge
 
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3
@@ -41,10 +41,10 @@ created, dropped and edited to the extent supported by the database.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-%{__install} -m0644 src/include/images/elephant48.xpm %{buildroot}%{_datadir}/pgadmin3/pgadmin3.xpm
+%{__install} -Dp -m0644 src/include/images/elephant48.xpm %{buildroot}%{_datadir}/pgadmin3/pgadmin3.xpm
 
-desktop-file-install --vendor net                  \
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \
 	--add-category Application                 \
 	--add-category Development                 \

@@ -137,10 +137,10 @@ EOF
 %{__install} -Dp -m0755 p0f %{buildroot}%{_sbindir}/p0f
 
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 p0frep test/p0fq test/sendack test/sendack2 test/sendsyn %{buildroot}%{_bindir}
+%{__install} -p -m0755 p0frep test/p0fq test/sendack test/sendack2 test/sendsyn %{buildroot}%{_bindir}
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/p0f/
-%{__install} -m0644 *.fp %{buildroot}%{_sysconfdir}/p0f/
+%{__install} -p -m0644 *.fp %{buildroot}%{_sysconfdir}/p0f/
 
 %{__install} -Dp -m0644 p0f.1 %{buildroot}%{_mandir}/man1/p0f.1
 

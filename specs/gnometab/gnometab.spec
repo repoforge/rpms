@@ -46,8 +46,7 @@ Instead, the emphasis has been on the appearance of the output.
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man1
-%{__install} -m0644 gnometab.1 %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0644 gnometab.1 %{buildroot}%{_mandir}/man1/gnometab.1
 
 %if %{dfi}
 %else

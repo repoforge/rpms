@@ -41,11 +41,11 @@ export CFLAGS="`echo "%{optflags} -fPIC" | sed 's/-O./-O1/'`"
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 */mpeg3dump */mpeg3cat */mpeg3toc \
+%{__install} -p -m0755 */mpeg3dump */mpeg3cat */mpeg3toc \
     %{buildroot}%{_bindir}/
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}
-%{__install} -m0644 libmpeg3.h mpeg3private.h mpeg3protos.h \
+%{__install} -p -m0644 libmpeg3.h mpeg3private.h mpeg3protos.h \
     %{buildroot}%{_includedir}
 
 %{__install} -Dp -m0755 */libmpeg3.a %{buildroot}%{_libdir}/libmpeg3.a

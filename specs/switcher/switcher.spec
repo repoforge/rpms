@@ -62,14 +62,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/applications/ \
- 			%{buildroot}%{_datadir}/pixmaps/ \
-			%{buildroot}%{_datadir}/switcher/
-%{__install} -m0644 switcher.png %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0755 *.dll *.so %{buildroot}%{_datadir}/switcher/
-%{__install} -m0755 switcher.exe %{buildroot}%{_bindir}
-%{__install} -m0755 switcher.sh %{buildroot}%{_bindir}/switcher
+%{__install} -Dp -m0755 switcher.exe %{buildroot}%{_bindir}/switcher.exe
+%{__install} -Dp -m0755 switcher.sh %{buildroot}%{_bindir}/switcher
+%{__install} -Dp -m0644 switcher.png %{buildroot}%{_datadir}/pixmaps/switcher.png
+%{__install} -d -m0755 %{buildroot}%{_datadir}/switcher/
+%{__install} -p -m0755 *.dll *.so %{buildroot}%{_datadir}/switcher/
 
 desktop-file-install --vendor %{desktop_vendor}    \
 	--add-category X-Red-Hat-Base              \

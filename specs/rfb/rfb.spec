@@ -1,12 +1,12 @@
 # $Id$
 # Authority: dag
-# Distcc: 0
 
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
 %define _bindir /usr/X11R6/bin
 
 Summary: heXoNet RFB (remote control for the X Window System)
@@ -82,20 +82,20 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man1 \
-			%{buildroot}%{_bindir}
-%{__install} -m0644 man/man1/* %{buildroot}%{_mandir}/man1
-%{__install} -s -m0755 x0rfbserver/x0rfbserver %{buildroot}%{_bindir}
-%{__install} -s -m0755 xvncconnect/xvncconnect %{buildroot}%{_bindir}
-%{__install} -s -m0755 xrfbviewer/{xrfbviewer,xplayfbs} %{buildroot}%{_bindir}
-%{__install} -s -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
+%{__install} -Dps -m0755 x0rfbserver/x0rfbserver %{buildroot}%{_bindir}/x0rfbserver
+%{__install} -Dps -m0755 xvncconnect/xvncconnect %{buildroot}%{_bindir}/xvncconnect
+%{__install} -Dps -m0755 xrfbviewer/xplayfbs %{buildroot}%{_bindir}/xplayfbs
+%{__install} -Dps -m0755 xrfbviewer/xrfbviewer %{buildroot}%{_bindir}/xrfbviewer
+%{__install} -Dps -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}/rfbcat
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 x0rfbserver.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/x0rfbserver.desktop
 	%{__install} -Dp -m0644 xvncconnect.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xvncconnect.desktop
 %else
         install -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor "gnome"              \
+        desktop-file-install --vendor "%{desktop_vendor}"              \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 x0rfbserver.desktop xvncconnect.desktop

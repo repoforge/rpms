@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %{?dist: %{expand: %%define %dist 1}}
@@ -7,6 +6,8 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
+
+%define desktop_vendor rpmforge
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
@@ -52,14 +53,13 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps/
-%{__install} -m0644 scribus/icons/scribusicon.png %{buildroot}%{_datadir}/pixmaps/scribus.png
+%{__install} -Dp -m0644 scribus/icons/scribusicon.png %{buildroot}%{_datadir}/pixmaps/scribus.png
 
 %if %{?_without_freedesktop:1}0
-        %{__install} -Dp -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/
+        %{__install} -Dp -m0644 scribus.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/scribus.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor kde                  \
+	desktop-file-install --vendor %{desktop_vendor}    \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		%{name}.desktop

@@ -105,7 +105,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 %if %{!?_without_gstreamer:1}0
 # Install the GStreamer version
-%{__install} -m0755 src/totem-gstreamer %{buildroot}%{_bindir}/totem-gstreamer
+%{__install} -Dp -m0755 src/totem-gstreamer %{buildroot}%{_bindir}/totem-gstreamer
 # Rename the xine version
 %{__mv} %{buildroot}%{_bindir}/totem %{buildroot}%{_bindir}/totem-xine
 # Make the wrapper script

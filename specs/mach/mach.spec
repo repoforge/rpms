@@ -47,14 +47,14 @@ to build clean packages.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach
-%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/states
-%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/roots
-%{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/packages
-%{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/archives
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach/states
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach/roots
+%{__install} -d -m775 %{buildroot}%{_localstatedir}/cache/mach/packages
+%{__install} -d -m775 %{buildroot}%{_localstatedir}/cache/mach/archives
 
 # Additionnal config files
-%{__install} -m 0644 %{SOURCE1} %{SOURCE2} %{SOURCE3} \
+%{__install} -p -m0644 %{SOURCE1} %{SOURCE2} %{SOURCE3} \
     %{buildroot}%{_sysconfdir}/mach/dist.d/
 
 

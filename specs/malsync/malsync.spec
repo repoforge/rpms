@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define sourcedir stable/%{version}/distribution/tar/generic/source
@@ -30,8 +29,7 @@ Utilities to update from Avantgo and MobileLink web site to Palm's.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 malsync %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 malsync %{buildroot}%{_bindir}/malsync
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -39,7 +37,7 @@ Utilities to update from Avantgo and MobileLink web site to Palm's.
 %files
 %defattr(-, root, root, 0755)
 %doc Doc/README* mal/MPL-1_0.txt mal/client/unix/{HISTORY,TODO} README
-%{_bindir}/*
+%{_bindir}/malsync
 
 %changelog
 * Thu Feb 27 2003 Dag Wieers <dag@wieers.com> - 2.0.6-0

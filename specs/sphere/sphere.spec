@@ -46,7 +46,7 @@ gcc
 yes
 %{optflags} -fPIC
 yes
-%{__install} -m0755
+%{__install} -p -m0755
 yes
 ranlib
 yes
@@ -63,7 +63,7 @@ EOF
 %{__make} install
 
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 bin/* %{buildroot}%{_bindir}
+%{__install} -p -m0755 bin/* %{buildroot}%{_bindir}
 
 %{__install} -Dp -m0755 lib/libsp.a %{buildroot}%{_libdir}/sp/libsp.a
 %{__install} -Dp -m0755 lib/libutil.a %{buildroot}%{_libdir}/sp/libutil.a
@@ -77,10 +77,10 @@ EOF
 %{__cp} -apv include/util/* %{buildroot}%{_includedir}/util/
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 doc/man/man1/* %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0644 doc/man/man1/* %{buildroot}%{_mandir}/man1/
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man3/
-%{__install} -m0644 doc/man/man3/* %{buildroot}%{_mandir}/man3/
+%{__install} -p -m0644 doc/man/man3/* %{buildroot}%{_mandir}/man3/
 
 ### Clean up buildroot (conflict with shorten package)
 %{__rm} -f %{buildroot}%{_mandir}/man1/shorten*

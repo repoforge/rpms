@@ -83,7 +83,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__rm} -rf %{buildroot}
 #make install DESTDIR="%{buildroot}"
 %makeinstall
-%{__install} -m0644 -D bin/test.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -Dp -m0644 bin/test.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 avifile.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avifile.desktop

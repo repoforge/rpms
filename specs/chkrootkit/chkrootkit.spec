@@ -89,7 +89,7 @@ EOF
 %{__ln_s} -f %{_bindir}/consolehelper %{buildroot}%{_bindir}/chkrootkit
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/chkrootkit-%{version}/
-%{__install} -m0755 check_wtmpx chkdirs chklastlog chkproc chkrootkit chkrootkit.sh chkutmp chkwtmp ifpromisc strings-static %{buildroot}%{_libdir}/chkrootkit-%{version}/
+%{__install} -p -m0755 check_wtmpx chkdirs chklastlog chkproc chkrootkit chkrootkit.sh chkutmp chkwtmp ifpromisc strings-static %{buildroot}%{_libdir}/chkrootkit-%{version}/
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chkrootkit.png
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: John the Ripper password cracker
@@ -39,12 +38,12 @@ supported as well.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir} \
-			%{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/john/
-%{__install} -m0644 run/john.ini %{buildroot}%{_sysconfdir}
-%{__install} -m0755 run/john run/mailer %{buildroot}%{_bindir}
-%{__install} -m0644 run/*.chr run/password.lst %{buildroot}%{_datadir}/john/
+%{__install} -Dp -m0644 run/john.ini %{buildroot}%{_sysconfdir}/john.ini
+%{__install} -Dp -m0755 run/john %{buildroot}%{_bindir}/john
+%{__install} -Dp -m0755 run/mailer %{buildroot}%{_bindir}/mailer
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/john/
+%{__install} -p -m0644 run/*.chr run/password.lst %{buildroot}%{_datadir}/john/
 %{__ln_s} -f john %{buildroot}%{_bindir}/unafs
 %{__ln_s} -f john %{buildroot}%{_bindir}/unique
 %{__ln_s} -f john %{buildroot}%{_bindir}/unshadow

@@ -41,7 +41,7 @@ and many others!
 %find_lang %{name}
 
 # Now the menu entry
-%{__install} -m644 -D share/nt.png %{buildroot}%{_datadir}/pixmaps/nt.png
+%{__install} -Dp -m644 share/nt.png %{buildroot}%{_datadir}/pixmaps/nt.png
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \

@@ -29,9 +29,9 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m 755 -D rar %{buildroot}%{_bindir}/rar
-%{__install} -m 644 -D rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
-%{__install} -m 755 -D default.sfx %{buildroot}%{_libdir}/default.sfx
+%{__install} -Dp -m0755 rar %{buildroot}%{_bindir}/rar
+%{__install} -Dp -m0644 rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
+%{__install} -Dp -m0755 default.sfx %{buildroot}%{_libdir}/default.sfx
 
 
 %clean

@@ -42,7 +42,7 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m 0755 -D snes9x/snes9x %{buildroot}%{_bindir}/snes9x
+%{__install} -Dp -m0755 snes9x/snes9x %{buildroot}%{_bindir}/snes9x
 
 
 %clean

@@ -71,21 +71,20 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}/etc/fw/
-%{__install} -d -m0755 %{buildroot}/usr/bin/
-%{__install} -d -m0755 %{buildroot}/etc/rc.d/init.d/
-%{__install} -m644 %{SOURCE0} %{SOURCE1} %{SOURCE2} %{buildroot}/etc/fw/
-%{__install} -m0755 %{SOURCE3} %{buildroot}/usr/bin/
-%{__install} -m0755 fw-rulegen %{buildroot}/etc/rc.d/init.d/
+%{__install} -Dp -m0755 %{SOURCE3} %{buildroot}%{_bindir}/fw-rulegen.pl
+%{__install} -Dp -m0755 fw-rulegen %{buildroot}%{_initrddir}/fw-rulegen
+
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/fw/
+%{__install} -p -m0644 %{SOURCE0} %{SOURCE1} %{SOURCE2} %{buildroot}%{_sysconfdir}/fw/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%config(noreplace) %{_sysconfdir}/fw/
+%config %{_initrddir}/fw-rulegen
 %{_bindir}/fw-rulegen.pl
-%{_sysconfdir}/rc.d/init.d/fw-rulegen
-%config(noreplace) %{_sysconfdir}/fw/*
 
 %changelog
 * Fri May 7 2004 Dries Verachtert <dries@ulyssis.org> - 1.0-1

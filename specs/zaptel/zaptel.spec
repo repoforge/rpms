@@ -71,7 +71,7 @@ export CFLAGS="%{optflags}"
     ROOT_PREFIX=%{buildroot}
 
 # Install and generate all the device stuff
-%{__install} -m 644 -D %{SOURCE1} %{buildroot}%{_sysconfdir}/makedev.d/zaptel
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/makedev.d/zaptel
  
 # Create entry list
 /dev/MAKEDEV \
@@ -80,9 +80,9 @@ export CFLAGS="%{optflags}"
     grep -v 'dir /dev$' > device.list
 
 # Install the init script and sysconfig file
-%{__install} -m 0644 -D zaptel.sysconfig \
+%{__install} -Dp -m0644 zaptel.sysconfig \
     %{buildroot}%{_sysconfdir}/sysconfig/zaptel
-%{__install} -m 0755 -D zaptel.init \
+%{__install} -Dp -m0755 zaptel.init \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/zaptel
 
 # Move kernel modules in the "kernel" subdirectory, also get smp right

@@ -44,17 +44,18 @@ sed -i "s/\/usr\/local\/lve\/bin/\/usr\/bin/g;" src/lve.h
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -Dp -m0755 src/lve %{buildroot}%{_bindir}/lve
+%{__install} -Dp -m0755 src/lvedemux %{buildroot}%{_bindir}/lvedemux
+%{__install} -Dp -m0755 src/lvedump %{buildroot}%{_bindir}/lvedump
+%{__install} -Dp -m0755 src/lvemkdvd %{buildroot}%{_bindir}/lvemkdvd
+%{__install} -Dp -m0755 src/lvemkidx %{buildroot}%{_bindir}/lvemkidx
+%{__install} -Dp -m0755 src/lvemux %{buildroot}%{_bindir}/lvemux
+%{__install} -Dp -m0755 src/lverequant %{buildroot}%{_bindir}/lverequant
+%{__install} -Dp -m0755 qdir/qdir %{buildroot}%{_bindir}/qdir
+%{__install} -Dp -m0755 bin/lvefilter %{buildroot}%{_bindir}/lvefilter
+
 %{__install} -d -m755 %{buildroot}%{_datadir}/lve/lib
-%{__install} -m755 lib/* %{buildroot}%{_datadir}/lve/lib/
-%{__install} -m755 -D src/lve %{buildroot}%{_bindir}/lve
-%{__install} -m755 -D src/lvedemux %{buildroot}%{_bindir}/lvedemux
-%{__install} -m755 -D src/lvedump %{buildroot}%{_bindir}/lvedump
-%{__install} -m755 -D src/lvemkdvd %{buildroot}%{_bindir}/lvemkdvd
-%{__install} -m755 -D src/lvemkidx %{buildroot}%{_bindir}/lvemkidx
-%{__install} -m755 -D src/lvemux %{buildroot}%{_bindir}/lvemux
-%{__install} -m755 -D src/lverequant %{buildroot}%{_bindir}/lverequant
-%{__install} -m755 -D qdir/qdir %{buildroot}%{_bindir}/qdir
-%{__install} -m755 -D bin/lvefilter %{buildroot}%{_bindir}/lvefilter
+%{__install} -p -m0755 lib/* %{buildroot}%{_datadir}/lve/lib/
 
 %post
 /sbin/ldconfig 2>/dev/null

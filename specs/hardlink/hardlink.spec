@@ -24,15 +24,14 @@ ${CC:-%{__cc}} %{optflags} -o hardlink hardlink.c
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 hardlink %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 hardlink %{buildroot}%{_bindir}/hardlink
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
+%{_bindir}/hardlink
 
 %changelog
 * Tue Apr 29 2003 Dag Wieers <dag@wieers.com> - 1.2-1

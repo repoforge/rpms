@@ -53,7 +53,7 @@ EOF
 %{__install} -Dp -m0644 glchess.menu %{buildroot}%{_sysconfdir}/X11/wmconfig/glchess.menu
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/games/glchess/textures/
-%{__install} -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
+%{__install} -p -m0644 textures/* %{buildroot}%{_datadir}/games/glchess/textures/
 
 %if %{dfi}
 	%{__install} -Dp -m0644 glchess.desktop %{buildroot}%{_datadir}/gnome/apps/Games/glchess.desktop

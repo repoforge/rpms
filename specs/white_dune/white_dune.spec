@@ -54,7 +54,7 @@ gebruiker toe om eigenschappen te wijzigen.
 Documentatie over het gebruik van dune is ook beschikbaar.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure \
@@ -70,20 +70,15 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir}
-%{__install} -d %{buildroot}%{_mandir}/man1
-%{__install} -d %{buildroot}%{_datadir}/misc/white_dune
-%{__install} -d %{buildroot}%{_datadir}/applications
-%{__install} -d %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps
-%{__install} -m 0755 bin/dune %{buildroot}%{_bindir}/dune
-%{__install} -m 0755 bin/dune4kids %{buildroot}%{_bindir}/dune4kids
-%{__install} -m 0644 man/dune.1 %{buildroot}%{_mandir}/man1/dune.1
-install -m 644 desktop/kde/redhat/dune.desktop %{buildroot}%{_datadir}/applications/dune.desktop
-install -m 644 desktop/kde/dune.png %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps/dune.png
-install -m 644 desktop/kde/redhat/dune4kids.desktop %{buildroot}%{_datadir}/applications/dune4kids.desktop
-install -m 644 desktop/kde/dune4kids.png %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps/dune4kids.png
-install -m 755 bin/illegal2vrml %{buildroot}/usr/bin/illegal2vrml
-install -m 644 man/illegal2vrml.1 %{buildroot}%{_mandir}/man1/illegal2vrml.1
+%{__install} -Dp -m0755 bin/dune %{buildroot}%{_bindir}/dune
+%{__install} -Dp -m0755 bin/dune4kids %{buildroot}%{_bindir}/dune4kids
+%{__install} -Dp -m0644 man/dune.1 %{buildroot}%{_mandir}/man1/dune.1
+%{__install} -Dp -m0644 desktop/kde/redhat/dune.desktop %{buildroot}%{_datadir}/applications/dune.desktop
+%{__install} -Dp -m0644 desktop/kde/dune.png %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps/dune.png
+%{__install} -Dp -m0644 desktop/kde/redhat/dune4kids.desktop %{buildroot}%{_datadir}/applications/dune4kids.desktop
+%{__install} -Dp -m0644 desktop/kde/dune4kids.png %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps/dune4kids.png
+%{__install} -Dp -m0755 bin/illegal2vrml %{buildroot}/usr/bin/illegal2vrml
+%{__install} -Dp -m0644 man/illegal2vrml.1 %{buildroot}%{_mandir}/man1/illegal2vrml.1
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -94,12 +94,12 @@ displays a graph of the link quality percentage for each card.
 %find_lang %{name}
 
 # Install the daemon config file
-%{__install} -Dp -m 755 server/gkrellmd.conf \
+%{__install} -Dp -m0755 server/gkrellmd.conf \
     %{buildroot}%{_sysconfdir}/gkrellmd.conf
 
 # Install the icon for the menu entry
 convert gkrellm.ico gkrellm.png
-%{__install} -Dp -m 644 gkrellm.png.3 \
+%{__install} -Dp -m0644 gkrellm.png.3 \
     %{buildroot}%{_datadir}/pixmaps/gkrellm.png
 
 # Install the menu entry
@@ -121,12 +121,12 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{name}.desktop
 
 # Install the init script
-%{__install} -Dp -m 0755 %{SOURCE1} \
+%{__install} -Dp -m0755 %{SOURCE1} \
     %{buildroot}/etc/rc.d/init.d/gkrellmd
 
 # Install the wireless plugin
 %ifnarch s390 s390x
-%{__install} gkrellm-wifi-%{wifi_version}/gkrellm-wifi.so \
+%{__install} -p gkrellm-wifi-%{wifi_version}/gkrellm-wifi.so \
     %{buildroot}%{_libdir}/gkrellm2/plugins/
 %endif
 

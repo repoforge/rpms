@@ -68,15 +68,15 @@ Development headers and library for SQuaLe.
 %{__mkdir_p} %{buildroot}%{_localstatedir}/log/squale
 
 # Install the init script
-%{__install} -m 0755 -D contrib/squale.init \
+%{__install} -Dp -m0755 contrib/squale.init \
     %{buildroot}%{_initrddir}/squale
 
 # Install the logrotate entry
-%{__install} -m 0644 -D contrib/squale.logrotate \
+%{__install} -Dp -m0644 contrib/squale.logrotate \
     %{buildroot}%{_sysconfdir}/logrotate.d/squale
 
 # Install the monitoring check script
-%{__install} -m 0755 -D %{SOURCE1} \
+%{__install} -Dp -m0755 %{SOURCE1} \
     %{buildroot}%{_bindir}/squale_check.py
 
 

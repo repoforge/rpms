@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name jpeg-mmx
@@ -32,10 +31,9 @@ of the libjpeg-mmx package.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}
-%{__install} -m0755 libjpeg-mmx.a %{buildroot}%{_libdir}/
-%{__install} -m0644 jpegint.h jinclude.h %{buildroot}%{_includedir}/
+%{__install} -Dp -m0755 libjpeg-mmx.a %{buildroot}%{_libdir}/libjpeg-mmx.a
+%{__install} -Dp -m0644 jinclude.h %{buildroot}%{_includedir}/jinclude.h
+%{__install} -Dp -m0644 jpegint.h %{buildroot}%{_includedir}/jpegint.h
 
 %post
 /sbin/ldconfig 2>/dev/null

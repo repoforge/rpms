@@ -204,7 +204,7 @@ EOF
 %makeinstall
 %find_lang %{name}
 
-%{__install} -m0755 partimage-static %{buildroot}%{_sbindir}
+%{__install} -Dp -m0755 partimage-static %{buildroot}%{_sbindir}/partimage-static
 
 %{__install} -Dp -m0755 partimaged.sysv %{buildroot}%{_initrddir}/partimaged
 %{__install} -Dp -m0644 partimaged.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/partimaged

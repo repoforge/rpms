@@ -164,7 +164,7 @@ EOF
 ln -f %{buildroot}%{_bindir}/addspam %{buildroot}%{_bindir}/falsepositive
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}
-%{__install} -m0644 libdspam.h libdspam_objects.h lht.h nodetree.h %{buildroot}%{_includedir}
+%{__install} -p -m0644 libdspam.h libdspam_objects.h lht.h nodetree.h %{buildroot}%{_includedir}
 
 %{__install} -Dp -m0755 dspam.hourly %{buildroot}%{_sysconfdir}/cron.hourly/dspam
 %{__install} -Dp -m0755 dspam.daily %{buildroot}%{_sysconfdir}/cron.daily/dspam
@@ -183,7 +183,7 @@ touch %{buildroot}%{_localstatedir}/log/dspam.log
 
 %{__install} -Dp -m0755 dspam.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/dspam.cgi
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/dspam/
-%{__install} -m0755 cgi/*.css cgi/*.cgi cgi/*.gif cgi/*.html %{buildroot}%{_localstatedir}/www/dspam/
+%{__install} -p -m0755 cgi/*.css cgi/*.cgi cgi/*.gif cgi/*.html %{buildroot}%{_localstatedir}/www/dspam/
 
 %{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_datadir}/sendmail-cf/mailer/dspam.m4
 

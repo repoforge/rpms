@@ -51,15 +51,15 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_datadir}/autopsy/ \
+%{__install} -d -m0755 %{buildroot}%{_datadir}/autopsy/ \
 			%{buildroot}%{_localstatedir}/log/autopsy/ \
 			%{buildroot}%{_localstatedir}/morgue/ \
 			%{buildroot}%{_mandir}/man1/
-%{__install} -m0755 autopsy %{buildroot}%{_sbindir}
-%{__install} -m0755 autopsyfunc.pm fs.pl search.pl %{buildroot}%{_datadir}/autopsy/
-%{__install} -m0600 conf.pl define.pl %{buildroot}%{_datadir}/autopsy/
-%{__install} -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0755 autopsy %{buildroot}%{_sbindir}/autopsy
+%{__install} -p -m0755 autopsyfunc.pm fs.pl search.pl %{buildroot}%{_datadir}/autopsy/
+%{__install} -Dp -m0600 conf.pl %{buildroot}%{_datadir}/autopsy/conf.pl
+%{__install} -Dp -m0600 define.pl %{buildroot}%{_datadir}/autopsy/define.pl
+%{__install} -p -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
 %{__cp} -pr help/ pict/ %{buildroot}%{_datadir}/autopsy/
 #%{__cp} -p base/fsmorgue %{buildroot}%{_localstatedir}/morgue/
 
@@ -72,7 +72,7 @@ EOF
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_datadir}/autopsy/conf.pl
 %config(noreplace) %{_datadir}/autopsy/define.pl
-%{_sbindir}/*
+%{_sbindir}/autopsy
 %{_localstatedir}/log/autopsy/
 %{_localstatedir}/morgue/
 %{_datadir}/autopsy/

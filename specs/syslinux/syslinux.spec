@@ -46,7 +46,7 @@ ISO 9660 CD-ROMs (ISOLINUX).
 	BINDIR="%{_bindir}" \
 	LIBDIR="%{_libdir}" \
 	INCDIR="%{_includedir}"
-%{__install} -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_libdir}/syslinux/
+%{__install} -p -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_libdir}/syslinux/
 
 %clean
 %{__rm} -rf %{buildroot}

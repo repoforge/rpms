@@ -215,7 +215,7 @@ cd -
 	SUBARCH="%{_arch}" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -231,7 +231,7 @@ cd -
 	SUBARCH="%{_arch}" \
 	CC="${CC:-%{__cc}}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 ### Build utilities.
 %{__make} %{?_smp_mflags} programs \
@@ -251,8 +251,8 @@ cd -
 
 %{__install} -d -m0700 %{buildroot}%{_localstatedir}/run/pluto/ \
 			%{buildroot}%{_sysconfdir}/ipsec.d/
-#%{__install} -m0755 freeswan.sysv %{buildroot}%{_initrddir}/freeswan
-%{__install} -m0644 ipsec.secrets %{buildroot}%{_sysconfdir}
+#%{__install} -Dp -m0755 freeswan.sysv %{buildroot}%{_initrddir}/freeswan
+%{__install} -Dp -m0644 ipsec.secrets %{buildroot}%{_sysconfdir}/ipsec.secrets
 
 
 ### Clean up buildroot

@@ -36,10 +36,8 @@ to other architectures like PPC: No TV-Out on Macs with this tool.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_mandir}/man1
-%{__install} -m0755 atitvout %{buildroot}%{_sbindir}
-%{__install} -m0644 debian/atitvout.1 %{buildroot}%{_mandir}/man1/
+%{__install} -Dp -m0755 atitvout %{buildroot}%{_sbindir}/atitvout
+%{__install} -Dp -m0644 debian/atitvout.1 %{buildroot}%{_mandir}/man1/atitvout.1
 
 %clean
 %{__rm} -rf %{buildroot}

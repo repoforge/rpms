@@ -37,7 +37,7 @@ for a consumer library should use OpenQuicktime or FFMPEG.
 %{__install} -Dp -m0755 i686/libquicktime.a %{buildroot}%{_libdir}/libquicktime.a
 
 %{__install} -d -m0755 %{buildroot}%{_includedir}/quicktime/
-%{__install} -m0644 *.h %{buildroot}%{_includedir}/quicktime/
+%{__install} -p -m0644 *.h %{buildroot}%{_includedir}/quicktime/
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -44,16 +44,15 @@ BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-                       %{buildroot}%{_libdir} \
-                       %{buildroot}%{_includedir}/js/
-%{__install} -m0755 src/Linux_All_OPT.OBJ/js %{buildroot}%{_bindir}
-%{__install} -m0755 src/Linux_All_OPT.OBJ/jscpucfg %{buildroot}%{_bindir}
-%{__install} -m0755 src/Linux_All_OPT.OBJ/libjs.so %{buildroot}%{_libdir}/libjs.so.1
+%{__install} -Dp -m0755 src/Linux_All_OPT.OBJ/js %{buildroot}%{_bindir}/js
+%{__install} -Dp -m0755 src/Linux_All_OPT.OBJ/jscpucfg %{buildroot}%{_bindir}/jscpucfg
+%{__install} -Dp -m0755 src/Linux_All_OPT.OBJ/libjs.a %{buildroot}%{_libdir}/libjs.a
+%{__install} -Dp -m0755 src/Linux_All_OPT.OBJ/libjs.so %{buildroot}%{_libdir}/libjs.so.1
 %{__ln_s} -nf libjs.so.1 %{buildroot}%{_libdir}/libjs.so
-%{__install} -m0755 src/Linux_All_OPT.OBJ/libjs.a %{buildroot}%{_libdir}
-%{__install} -m0644 src/*.h %{buildroot}%{_includedir}/js/
-%{__install} -m0644 src/Linux_All_OPT.OBJ/jsautocfg.h %{buildroot}%{_includedir}/js/
+
+%{__install} -d -m0755 %{buildroot}%{_includedir}/js/
+%{__install} -p -m0644 src/*.h %{buildroot}%{_includedir}/js/
+%{__install} -p -m0644 src/Linux_All_OPT.OBJ/jsautocfg.h %{buildroot}%{_includedir}/js/
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -68,13 +67,13 @@ BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
 %defattr(-, root, root, 0755)
 %doc src/README.html README
 %{_bindir}/js
-%{_libdir}/*.so.*
+%{_libdir}/libjs.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/jscpucfg
-%{_libdir}/*.so
-%{_libdir}/*.a
+%{_libdir}/libjs.so
+%{_libdir}/libjs.a
 %{_includedir}/js/
 
 %changelog

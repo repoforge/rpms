@@ -30,8 +30,8 @@ archives created with the RAR archiver version 1.50 and above.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m755 -D unrar %{buildroot}%{_bindir}/unrar
-%{__install} -m644 -D %{SOURCE1} %{buildroot}%{_mandir}/man1/unrar.1
+%{__install} -Dp -m755 unrar %{buildroot}%{_bindir}/unrar
+%{__install} -Dp -m644 %{SOURCE1} %{buildroot}%{_mandir}/man1/unrar.1
 
 
 %clean

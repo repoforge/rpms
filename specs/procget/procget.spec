@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <info$rndsoftware,com>
 
@@ -26,15 +25,16 @@ on a separate workstation.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 * %{buildroot}%{_sbindir}
+%{__install} -Dp -m0755 procget %{buildroot}%{_sbindir}/procget
+%{__install} -Dp -m0755 procsave %{buildroot}%{_sbindir}/procsave
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_sbindir}/*
+%{_sbindir}/procget
+%{_sbindir}/procsave
 
 %changelog
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.1.0-2

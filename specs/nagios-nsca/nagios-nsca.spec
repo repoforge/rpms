@@ -150,17 +150,14 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_sysconfdir}/nagios/ \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/xinetd.d/ \
-			%{buildroot}%{_localstatedir}/spool/nagios/
-%{__install} -m0755 src/nsca %{buildroot}%{_sbindir}
-%{__install} -m0755 src/send_nsca %{buildroot}%{_sbindir}
-%{__install} -m0644 nsca.cfg %{buildroot}%{_sysconfdir}/nagios/
-%{__install} -m0644 send_nsca.cfg %{buildroot}%{_sysconfdir}/nagios/
-%{__install} -m0755 nsca.sysv %{buildroot}%{_initrddir}/nsca
-%{__install} -m0644 nsca.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nsca
+%{__install} -Dp -m0755 src/nsca %{buildroot}%{_sbindir}/nsca
+%{__install} -Dp -m0755 src/send_nsca %{buildroot}%{_sbindir}/send_nsca
+%{__install} -Dp -m0644 nsca.cfg %{buildroot}%{_sysconfdir}/nagios/nsca.cfg
+%{__install} -Dp -m0644 send_nsca.cfg %{buildroot}%{_sysconfdir}/nagios/send_nsca.cfg
+%{__install} -Dp -m0755 nsca.sysv %{buildroot}%{_initrddir}/nsca
+%{__install} -Dp -m0644 nsca.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nsca
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/spool/nagios/
 
 %post
 /sbin/chkconfig --add nsca
@@ -184,7 +181,8 @@ fi
 %config(noreplace) %{_sysconfdir}/xinetd.d/nsca
 %config %{_initrddir}/nsca
 %dir %{_localstatedir}/spool/nagios/
-%{_sbindir}/*
+%{_sbindir}/nsca
+%{_sbindir}/send_nsca
 
 %changelog
 * Tue Nov 11 2003 Dag Wieers <dag@wieers.com> - 2.4-2

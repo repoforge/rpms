@@ -155,12 +155,12 @@ cd -
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -m0755 snort-* %{buildroot}%{_sbindir}
+%{__install} -p -m0755 snort-* %{buildroot}%{_sbindir}
 
 %{__install} -Dp -m0644 snort.8 %{buildroot}%{_mandir}/man8/snort.8
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/snort
-%{__install} -m0644 etc/*.config etc/*.conf etc/*.map rules/*.rules %{buildroot}%{_sysconfdir}/snort/
+%{__install} -p -m0644 etc/*.config etc/*.conf etc/*.map rules/*.rules %{buildroot}%{_sysconfdir}/snort/
 
 #%{__install} -Dp -m0755 snortd.sysv %{buildroot}%{_initrddir}/snortd
 #%{__install} -Dp -m0644 snort.sysconf %{buildroot}%{_sysconfdir}/sysconfig/snort

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jim Trocki <trockij$linux,kernel,org>
 
@@ -200,22 +199,22 @@ EOF
 %makeinstall -C mon.d \
 	MONPATH="%{buildroot}%{_libdir}/mon"
 
-#%{__install} -m0755 mon.d/*.monitor %{buildroot}%{_libdir}/mon/mon.d/
-#%{__install} -m0555 mon.d/dialin.monitor.wrap %{buildroot}%{_libdir}/mon/mon.d/
+#%{__install} -p -m0755 mon.d/*.monitor %{buildroot}%{_libdir}/mon/mon.d/
+#%{__install} -p -m0555 mon.d/dialin.monitor.wrap %{buildroot}%{_libdir}/mon/mon.d/
 
-%{__install} -m0755 mon clients/moncmd clients/monshow clients/skymon/skymon %{buildroot}%{_bindir}
-%{__install} -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
-%{__install} -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
+%{__install} -p -m0755 mon clients/moncmd clients/monshow clients/skymon/skymon %{buildroot}%{_bindir}
+%{__install} -p -m0644 doc/*.1 %{buildroot}%{_mandir}/man1/
+%{__install} -p -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
 
-%{__install} -m0755 alert.d/* %{buildroot}%{_libdir}/mon/alert.d/
-%{__install} -m0755 alerts/*/*.alert %{buildroot}%{_libdir}/mon/alert.d/
+%{__install} -p -m0755 alert.d/* %{buildroot}%{_libdir}/mon/alert.d/
+%{__install} -p -m0755 alerts/*/*.alert %{buildroot}%{_libdir}/mon/alert.d/
 
-%{__install} -m0644 etc/auth.cf %{buildroot}%{_sysconfdir}/mon/auth.cf
-%{__install} -m0644 mon.cf %{buildroot}%{_sysconfdir}/mon/
-%{__install} -m0600 userfile %{buildroot}%{_sysconfdir}/mon/userfile
-%{__install} -m0755 mon.sysv %{buildroot}%{_initrddir}/mon
+%{__install} -Dp -m0644 etc/auth.cf %{buildroot}%{_sysconfdir}/mon/auth.cf
+%{__install} -Dp -m0644 mon.cf %{buildroot}%{_sysconfdir}/mon/mon.cf
+%{__install} -Dp -m0600 userfile %{buildroot}%{_sysconfdir}/mon/userfile
+%{__install} -Dp -m0755 mon.sysv %{buildroot}%{_initrddir}/mon
 
-%{__install} -m0755 mon.cgi-%{moncgi_version}/mon.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/mon.cgi
+%{__install} -Dp -m0755 mon.cgi-%{moncgi_version}/mon.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/mon.cgi
 
 %clean
 %{__rm} -rf %{buildroot}

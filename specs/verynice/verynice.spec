@@ -207,7 +207,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_initrddir}
 %makeinstall PREFIX="%{_prefix}" RPM_BUILD_ROOT="%{buildroot}"
-%{__install} -m0755 verynice.sysv %{buildroot}%{_initrddir}/verynice
+%{__install} -Dp -m0755 verynice.sysv %{buildroot}%{_initrddir}/verynice
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_docdir}

@@ -195,8 +195,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_initrddir}
-%{__install} -m0755 slpd.sysv %{buildroot}%{_initrddir}/slpd
+%{__install} -Dp -m0755 slpd.sysv %{buildroot}%{_initrddir}/slpd
 
 %{__rm} -rf %{buildroot}/usr/doc/
 %{__rm} -rf $(find doc/ -name "CVS" -type d)

@@ -48,13 +48,13 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %makeinstall
 
 ### FIXME: This should be part of the normal 'make install' procedure !
-%{__install} -m0755 libevent.so.0.0.7 %{buildroot}%{_libdir}
+%{__install} -Dp -m0755 libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so.0.0.7
 %{__ln_s} -f libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so
 %{__ln_s} -f libevent.so.0.0.7 %{buildroot}%{_libdir}/libevent.so.0
 
-%{__install} -m0755 event.h %{buildroot}%{_includedir}/event.h
+%{__install} -Dp -m0755 event.h %{buildroot}%{_includedir}/event.h
 %{__ln_s} -f event.h %{buildroot}%{_includedir}/libevent.h
-%{__install} -m0755 event-internal.h %{buildroot}%{_includedir}/event-internal.h
+%{__install} -Dp -m0755 event-internal.h %{buildroot}%{_includedir}/event-internal.h
 
 %post
 /sbin/ldconfig 2>/dev/null

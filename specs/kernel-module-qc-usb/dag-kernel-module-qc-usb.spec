@@ -95,7 +95,7 @@ cd -
 %{__make} %{?_smp_mflags} clean all \
 	MODULE_DIR="%{_libmoddir}/%{kversion}-%{krelease}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}%{moduledir}
 
 ### Prepare SMP kernel.
 cd %{_usrsrc}/linux-%{kversion}-%{krelease}
@@ -108,12 +108,11 @@ cd -
 %{__make} %{?_smp_mflags} clean all \
 	MODULE_DIR="%{_libmoddir}/%{kversion}-%{krelease}"
 %{__install} -d -m0755 %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
-%{__install} -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
+%{__install} -p -m0644 %{modules} %{buildroot}%{_libmoddir}/%{kversion}-%{krelease}smp%{moduledir}
 
 %install
 ### Install utilities.
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 qcset %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 qcset %{buildroot}%{_bindir}/qcset
 
 %post
 /sbin/depmod -ae %{kversion}-%{krelease} || :

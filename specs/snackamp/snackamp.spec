@@ -8,6 +8,7 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%define desktop_vendor rpmforge
 %define real_name snackAmp
 
 Summary: Versatile music player
@@ -59,10 +60,10 @@ dos2unix *.tcl */*.tcl */*/*.tcl
 %{__cp} -afp docs lib %{buildroot}%{_libdir}/tcl/snackAmp/
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type f -exec chmod 0644 {} \;
 find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
-#%{__install} -m0755 icons/snackAmp.ico %{buildroot}%{_datadir}/pixmaps/
+#%{__install} -p -m0755 icons/snackAmp.ico %{buildroot}%{_datadir}/pixmaps/
 %{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/snackamp.png
 %{__install} -Dp -m0755 snackAmp.tcl %{buildroot}%{_libdir}/tcl/snackAmp/snackAmp.tcl
-%{__install} -m0644 main.tcl snackAmphotKeys.tcl %{buildroot}%{_libdir}/tcl/snackAmp/
+%{__install} -p -m0644 main.tcl snackAmphotKeys.tcl %{buildroot}%{_libdir}/tcl/snackAmp/
 %{__ln_s} -f %{_libdir}/tcl/snackAmp/snackAmp.tcl %{buildroot}%{_bindir}/snackamp
 %{__ln_s} -f %{_libdir}/tcl/snackAmp/snackAmp.tcl %{buildroot}%{_bindir}/snackAmp
 
@@ -70,7 +71,7 @@ find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 	%{__install} -Dp -m0644 snackamp.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/snackamp.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor net                  \
+        desktop-file-install --vendor %{desktop_vendor}    \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 snackamp.desktop
@@ -90,7 +91,7 @@ find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 %{_libdir}/tcl/snackAmp/
 %{_datadir}/pixmaps/*
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/snackamp.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/net-snackamp.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-snackamp.desktop}
 
 %changelog
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 3.0.2-1

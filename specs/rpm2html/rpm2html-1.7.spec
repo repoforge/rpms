@@ -13,9 +13,8 @@ Group: Applications/System
 License: MIT
 URL: http://rpmfind.net/linux/rpm2html/
 
-Source: ftp://rpmfind.net/pub/%{name}/%{name}-%{version}.tar.gz
+Source: ftp://rpmfind.net/pub/rpm2html/rpm2html-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: rpm-devel, db3-devel
 
@@ -42,16 +41,12 @@ from an RPM database into HTML.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-		%{buildroot}%{_sysconfdir} \
-		%{buildroot}%{_datadir}/rpm2html \
-		%{buildroot}%{_mandir}/man1
-%{__install} -s -m0755 rpm2html %{buildroot}%{_bindir}
-%{__install} -m0644 rpm2html.config  %{buildroot}%{_sysconfdir}
-%{__install} -m0644 rpm2html.1  %{buildroot}%{_mandir}/man1
+%{__install} -Dp -m0755 rpm2html %{buildroot}%{_bindir}/rpm2html
+%{__install} -Dp -m0644 rpm2html.config  %{buildroot}%{_sysconfdir}/rpm2html.config
+%{__install} -Dp -m0644 rpm2html.1  %{buildroot}%{_mandir}/man1/rpm2html.1
 
 for i in msg.*; do
-  %{__install} -m0644 $i %{buildroot}%{_datadir}/rpm2html/msg.$ll
+  %{__install} -Dp -m0644 $i %{buildroot}%{_datadir}/rpm2html/msg.$ll
 done
 
 %clean
@@ -61,9 +56,9 @@ done
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGES PRINCIPLES README TODO 
 %doc rpm2html-cdrom.config rpm2html-en.config
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/rpm2html.1*
 %config %{_sysconfdir}/rpm2html.config
-%{_bindir}/*
+%{_bindir}/rpm2html
 %{_datadir}/rpm2html/
 
 %changelog

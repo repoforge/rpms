@@ -24,8 +24,9 @@ a TCP connection between two hosts.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} gen4 sink4 tub4 %{buildroot}%{_sbindir}
+%{__install} -Dp -m0755 gen4 %{buildroot}%{_sbindir}/gen4
+%{__install} -Dp -m0755 sink4 %{buildroot}%{_sbindir}/sink4
+%{__install} -Dp -m0755 tub4 %{buildroot}%{_sbindir}/tub4
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -33,7 +34,9 @@ a TCP connection between two hosts.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING
-%{_sbindir}/*
+%{_sbindir}/gen4
+%{_sbindir}/sink4
+%{_sbindir}/tub4
 
 %changelog
 * Mon Aug 04 2003 Dag Wieers <dag@wieers.com> - 4.1-0

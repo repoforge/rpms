@@ -87,7 +87,7 @@ EOF
 %{__cp} -afpv Kernel/ bin/ scripts/ var/ %{buildroot}/opt/otrs/
 
 ### Copy with permissions.
-%{__install} -m0700 bin/DeleteSessionIDs.pl bin/UnlockTickets.pl bin/otrs.getConfig %{buildroot}/opt/otrs/bin/
+%{__install} -p -m0700 bin/DeleteSessionIDs.pl bin/UnlockTickets.pl bin/otrs.getConfig %{buildroot}/opt/otrs/bin/
 
 ### Copy extra configuration files.
 %{__install} -Dp -m0755 scripts/redhat-rcotrs %{buildroot}%{_initrddir}/otrs

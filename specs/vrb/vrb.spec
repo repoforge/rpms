@@ -49,7 +49,7 @@ you will need to install %{name}-devel.
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man3/ \
 			%{buildroot}%{_includedir}/libvrb/
-%{__install} -m0644 vrb/man/man3/*.3 %{buildroot}%{_mandir}/man3/
+%{__install} -p -m0644 vrb/man/man3/*.3 %{buildroot}%{_mandir}/man3/
 %{__ln_s} -f %{_includedir}/vrb.h %{buildroot}%{_includedir}/libvrb/
 
 %clean

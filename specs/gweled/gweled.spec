@@ -40,8 +40,8 @@ zet nog mogelijk is.
 %makeinstall scoredir=%{buildroot}/var/games
 # The makefile installs the high score files in the wrong place.
 %{__rm} -Rf %{buildroot}%{_var}/games
-%{__install} -m 664 -D /dev/null %{buildroot}%{_var}/lib/games/gweled.easy.scores
-%{__install} -m 664 -D /dev/null %{buildroot}%{_var}/lib/games/gweled.timed.scores
+%{__install} -Dp -m0664 /dev/null %{buildroot}%{_var}/lib/games/gweled.easy.scores
+%{__install} -Dp -m0664 /dev/null %{buildroot}%{_var}/lib/games/gweled.timed.scores
 
 %clean
 %{__rm} -rf %{buildroot}

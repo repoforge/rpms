@@ -152,8 +152,8 @@ EOF
 %{__install} -Dp -m0755 masqmail.sysv %{buildroot}%{_initrddir}/masqmail
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man{5,8}/
-%{__install} -m0644 docs/man/*.5 %{buildroot}%{_mandir}/man5/
-%{__install} -m0644 docs/man/*.8 %{buildroot}%{_mandir}/man8/
+%{__install} -p  -m0644 docs/man/*.5 %{buildroot}%{_mandir}/man5/
+%{__install} -p -m0644 docs/man/*.8 %{buildroot}%{_mandir}/man8/
 
 %{__install} -Dp -m0644 masqmail.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/masqmail
 %{__install} -Dp -m0644 examples/masqmail.conf %{buildroot}%{_sysconfdir}/masqmail/masqmail.conf
