@@ -6,7 +6,7 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.84.1
+Version: 0.85
 Release: %{?rcver:0.%{rcver}.}2
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 Source1: xmame.wrapper
@@ -14,15 +14,14 @@ Source10: http://www.mame.net/roms/polyplay.zip
 Source11: http://www.mame.net/roms/robby.zip
 Source12: http://www.mame.net/roms/gridlee.zip
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.84 - 03/07/2004
-Source21: http://www.mameworld.net/highscore/uhsdat084.zip
-# http://www.arcade-history.com/ 0.84b - 16/07/2004
-Source22: http://www.arcade-history.com/download/history0_84b.zip
-# http://www.mameworld.net/mameinfo/ 0.84u3 - 16/07/2004
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo084u3.zip
-# http://www.mameworld.net/catlist/ 0.84u2 - 11/07/2004
+# http://www.mameworld.net/highscore/ 0.85 - 14/08/2004
+Source21: http://www.mameworld.net/highscore/uhsdat085.zip
+# http://www.arcade-history.com/ 0.85c - 15/08/2004
+Source22: http://www.arcade-history.com/download/history0_85c.zip
+# http://www.mameworld.net/mameinfo/ 0.85u2a - 15/08/2004
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo085u2a.zip
+# http://www.mameworld.net/catlist/ 0.85u2 - 15/08/2004
 Source30: http://www.mameworld.net/catlist/files/catver.zip
-Patch: 0.84.1-0.84.2-preview.diff
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -187,7 +186,6 @@ This version has been compiled for OpenGL display.
 
 %prep
 %setup -n %{name}-%{version}%{?rcver:-%{rcver}}
-%patch -p1 -b .preview
 
 
 %build
@@ -387,6 +385,9 @@ popd
 
 
 %changelog
+* Mon Aug 16 2004 Matthias Saou <http://freshrpms.net/> 0.85-1
+- Update to 0.85, with the usual related files too.
+
 * Thu Jul 22 2004 Matthias Saou <http://freshrpms.net/> 0.84.1-2
 - Add 0.84.2 preview patch to fix xmess xgl build and other improvements.
 
