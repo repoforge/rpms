@@ -6,7 +6,7 @@ Summary: Stellarium renders 3D photo-realistic skies in real time
 Summary(nl): Stellarium toont 3D fotorealistische hemels in real time.
 Name: stellarium
 Version: 0.5.2
-Release: 4
+Release: 5
 License: GPL
 Group: Amusements/Graphics
 URL: http://stellarium.free.fr/
@@ -18,8 +18,8 @@ Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dos2unix, gcc-c++, XFree86-devel, SDL-devel
 
-#(d) primscreenshot: http://stellarium.free.fr/gfx/pleiades.jpg
-#(d) screenshotsurl: http://stellarium.free.fr/
+# Screenshot: http://stellarium.free.fr/gfx/pleiades.jpg
+# ScreenshotURL: http://stellarium.free.fr/
 
 %description
 Stellarium renders 3D photo-realistic skies in real time. Most important
@@ -72,6 +72,7 @@ chmod +x configure
 
 %install
 %{__make} DESTDIR=$RPM_BUILD_ROOT install-strip
+mv %{buildroot}/%{_bindir}/stellarium %{buildroot}/%{_bindir}/run-stellarium
 mkdir -p $RPM_BUILD_ROOT/usr/share/applications
 cat > $RPM_BUILD_ROOT/usr/share/applications/stellarium.desktop <<EOF
 [Desktop Entry]
@@ -79,25 +80,29 @@ Version=1.0
 Type=Application
 Encoding=UTF-8
 Name=Stellarium
-Exec=/usr/bin/stellarium-wrapper
+Exec=/usr/bin/stellarium
 Categories=Application;Graphics;X-Red-Hat-Extra;
 EOF
-cat > $RPM_BUILD_ROOT/usr/bin/stellarium-wrapper <<EOF
+cat > $RPM_BUILD_ROOT/usr/bin/stellarium <<EOF
 #!/bin/bash
 mkdir -p ~/.stellarium/0.5.2
-stellarium
+run-stellarium
 EOF
-chmod +x $RPM_BUILD_ROOT/usr/bin/stellarium-wrapper
+chmod +x $RPM_BUILD_ROOT/usr/bin/stellarium
 
 %files
 %defattr(-,root,root,0755)
 %doc README
+%{_bindir}/run-stellarium
 %{_bindir}/stellarium
-%{_bindir}/stellarium-wrapper
-/usr/share/stellarium
-/usr/share/applications/stellarium.desktop
+%{_datadir}/stellarium
+%{_datadir}/applications/stellarium.desktop
 
 %changelog
+* Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.5.2-5
+- renamed the original program to run-stellarium 
+- renamed the wrapper to stellarium
+
 * Tue Feb 24 2004 Dries Verachtert <dries@ulyssis.org> 0.5.2-4
 - fixed the BuildRequires
 - fixed the location of the stellarium icon
