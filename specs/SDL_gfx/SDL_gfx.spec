@@ -65,7 +65,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
 %{_libdir}/*.so
-# {_includedir}/SDL/
+%{_includedir}/SDL*.h
 %exclude %{_libdir}/*.la
 
 %changelog
