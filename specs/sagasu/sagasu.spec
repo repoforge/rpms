@@ -2,10 +2,10 @@
 # Authority: dag
 # Upstream: Pierre Sarrazin <sarrazip@sympatico.ca>
 
-Summary: GNOME tool to find strings in a set of files
+Summary: Tool to find strings in a set of files
 Name: sagasu
-Version: 2.0.5
-Release: 0
+Version: 2.0.6
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://sarrazip.com/dev/sagasu.html
@@ -33,7 +33,7 @@ CVS directories.
 %build
 %configure \
 	--disable-dependency-tracking
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,6 +55,9 @@ CVS directories.
 %exclude %{_docdir}
 
 %changelog
+* Sat Jun 12 2004 Dag Wieers <dag@wieers.com> - 2.0.6-1
+- Updated to release 2.0.6.
+
 * Sat Oct 25 2003 Dag Wieers <dag@wieers.com> - 2.0.5-0
 - Updated to release 2.0.5.
 
