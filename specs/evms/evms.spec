@@ -7,7 +7,7 @@
 
 Summary: Enterprise Volume Management System utilities
 Name: evms
-Version: 2.3.2
+Version: 2.3.3
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -53,7 +53,7 @@ with EVMS and using the tools after installation.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc ChangeLog ChangeLog COPYING INSTALL* PLUGIN.IDS README* TERMINOLOGY
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/evms.conf*
@@ -64,6 +64,9 @@ with EVMS and using the tools after installation.
 %exclude %{_libdir}/*.a
 
 %changelog
+* Sat May 29 2004 Dag Wieers <dag@wieers.com> - 2.3.3-1
+- Updated to release 2.3.3.
+
 * Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 2.3.2-1
 - Updated to release 2.3.2.
 
