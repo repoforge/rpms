@@ -13,7 +13,7 @@ URL: http://gtkpod.sourceforge.net/
 Source: http://dl.sf.net/gtkpod/gtkpod-%{version}.tar.gz
 Patch: gtk2.4-gtk2.0.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel, libid3tag-devel, mpeg4ip-devel, gettext
+BuildRequires: gtk2-devel, libid3tag-devel, faad2-devel, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

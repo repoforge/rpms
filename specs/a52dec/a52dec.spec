@@ -8,7 +8,7 @@ Release: 7
 License: GPL
 Group: Applications/Multimedia
 URL: http://liba52.sourceforge.net/
-Source: http://liba52.sf.net/files/a52dec-%{version}.tar.gz
+Source: http://liba52.sourceforge.net/files/a52dec-%{version}.tar.gz
 Patch: a52dec-0.7.4-PIC.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++

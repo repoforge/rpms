@@ -12,6 +12,8 @@ URL: http://gtkglext.sourceforge.net/
 Source: http://dl.sf.net/gtkglext/gtkglext-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, gtk2-devel
+# libtool *sigh*
+BuildRequires: gcc-c++
 
 %description
 GtkGLExt is an OpenGL extension to GTK. It provides the GDK objects
@@ -35,7 +37,7 @@ you will need to install %{name}-devel.
 
 
 %build
-%configure
+%configure --with-pic
 %{__make} %{?_smp_mflags}
 
 

@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glibc-devel, XFree86-devel, qt-devel >= 3.0, glib-devel
 BuildRequires: audiofile-devel, libmad-devel, libid3tag-devel
 BuildRequires: libvorbis-devel, libogg-devel, libsndfile-devel
-BuildRequires: portaudio, fftw-devel
+BuildRequires: portaudio, fftw-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 

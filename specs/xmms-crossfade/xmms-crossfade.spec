@@ -15,6 +15,8 @@ Source: http://www.eisenlohr.org/xmms-crossfade/xmms-crossfade-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel, libsamplerate-devel
+# libtool *sigh*
+BuildRequires: gcc-c++
 
 
 %description

@@ -4,7 +4,7 @@
 
 Summary: Python bindings for GStreamer
 Name: %{gstreamer}-python
-Version: 0.8.0
+Version: 0.8.1
 Release: 1
 Group: Development/Languages
 License: LGPL
@@ -53,6 +53,9 @@ written in Python.
 
 
 %changelog
+* Thu Dec  9 2004 Matthias Saou <http://freshrpms.net> 0.8.1-1
+- Update to 0.8.1.
+
 * Fri Nov 19 2004 Matthias Saou <http://freshrpms.net> 0.8.0-1
 - Update to 0.8.0.
 

@@ -31,7 +31,7 @@ printer-keyboard, 3270 terminal, and 3287 printer devices.
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e 's|^(modexecdir) =.*$|$1 = \$(libdir)/hercules|' \
-	Makefile.in crypto/Makefile.in
+    Makefile.in crypto/Makefile.in
 
 %{__mv} hercules.cnf hercules.cnf.sample
 %{__cat} <<EOF >hercules.cnf
@@ -104,13 +104,13 @@ export PATH
 unset LANG LC_COLLATE
 
 if [ `id -u` != 0 ]; then
-	echo "This script requires root permissions."
-	exit 1
+    echo "This script requires root permissions."
+    exit 1
 fi
 
 lsmod | grep -q ipchains && {
-	echo "ipchains module is already loaded, cannot setup iptables."
-	exit 1
+    echo "ipchains module is already loaded, cannot setup iptables."
+    exit 1
 }
 
 ### This device must be present for hercules to setup networking.
@@ -150,8 +150,9 @@ EOF
 
 %build
 %configure \
-	--enable-dependency-tracking \
-	--enable-optimization="%{optflags}"
+    --enable-shared \
+    --enable-dependency-tracking \
+    --enable-optimization="%{optflags}"
 %{__make} %{?_smp_mflags}
 
 %install

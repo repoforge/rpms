@@ -18,7 +18,7 @@ BuildRequires: XFree86-devel, freetype-devel >= 1.2
 BuildRequires: zlib-devel, bzip2-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel, libtiff-devel
 # The ltdl.h file is required...
-BuildRequires: libtool
+BuildRequires: libtool, gcc-c++
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that

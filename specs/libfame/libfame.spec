@@ -39,6 +39,9 @@ libfame library.
 %patch0 -p1 -b .fstrict-aliasing
 %patch1 -p1 -b .mmxone
 
+# Fix lib stuff for lib64
+%{__perl} -pi.orig -e 's|/lib"|/%{_lib}"|g' configure.in
+
 
 %build
 for file in ChangeLog NEWS; do

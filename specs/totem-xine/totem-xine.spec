@@ -3,7 +3,7 @@
 
 Summary: Movie player for GNOME 2 based on the Xine engine
 Name: totem-xine
-Version: 0.99.20
+Version: 0.99.22
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -130,6 +130,9 @@ update-desktop-database %{_datadir}/applications || :
 
 
 %changelog
+* Fri Dec 10 2004 Matthias Saou <http://freshrpms.net/> 0.99.22-0
+- Update to 0.99.22.
+
 * Mon Nov  8 2004 Matthias Saou <http://freshrpms.net/> 0.99.20-1
 - Quick strip of the spec to only build the Xine backend as FC ships with
   totem based on GStreamer dy default now.

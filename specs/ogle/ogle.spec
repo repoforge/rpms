@@ -31,7 +31,7 @@ Source1: bluecurve-xine.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel
 BuildRequires: libdvdread-devel >= 0.9.4, libjpeg-devel, a52dec-devel >= 0.7.3
-BuildRequires: libxml2-devel >= 2.4.19, libmad-devel
+BuildRequires: libxml2-devel >= 2.4.19, libmad-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
