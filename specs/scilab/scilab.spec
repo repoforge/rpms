@@ -18,8 +18,8 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: ftp://ftp.inria.fr/INRIA/Scilab/distributions/scilab-%{version}.src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: tcl tk Xaw3d-devel, libpng10-devel 
-BuildRequires: perl gtkhtml2-devel, gcc-g77, gcc-c++
+BuildRequires: tcl tk Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
+BuildRequires: perl gtkhtml2-devel, gcc-g77, gcc-c++, gtk+-devel
 Requires: libpng10
 
 %description
