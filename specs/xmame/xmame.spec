@@ -22,18 +22,18 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.94
+Version: 0.95
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.94 - 07/03/2005
-Source21: http://www.mameworld.net/highscore/uhsdat094.zip
-# http://www.arcade-history.com/ 0.94b - 16/03/2005
-Source22: http://www.arcade-history.com/download/history0_94b.zip
-# http://www.mameworld.net/mameinfo/ 0.94u1 - 13/03/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo094u1a.zip
-# http://www.mameworld.net/catlist/ 0.94 - 06/03/2005
+# http://www.mameworld.net/highscore/ 0.95 - 29/03/2005
+Source21: http://www.mameworld.net/highscore/uhsdat095.zip
+# http://www.arcade-history.com/ 0.95 - 27/03/2005
+Source22: http://www.arcade-history.com/download/history0_95.zip
+# http://www.mameworld.net/mameinfo/ 0.94u5 - 23/03/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo094u5.zip
+# http://www.mameworld.net/catlist/ 0.94u3 - 27/03/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 Patch0: http://www.anthrofox.org/code/mame/64bitclean/seibuspi_64bit_patch.txt
 Patch1: http://www.anthrofox.org/code/mame/64bitclean/wecleman_64bit_patch.txt
@@ -186,9 +186,9 @@ done
 
 %{__mkdir_p} %{buildroot}%{_bindir}
 for target in %{targets}; do
-    %{__install} -p -m0755 x${target}.x11 %{buildroot}%{_bindir}/x${target}
+    %{__install} -p -m 0755 x${target}.x11 %{buildroot}%{_bindir}/x${target}
 done
-%{?!_without_mame: %{__install} -p -m0755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
+%{?!_without_mame: %{__install} -p -m 0755 chdman romcmp xml2info %{buildroot}%{_bindir}/}
 
 # We don't want all the docs
 %{__mkdir_p} _docs/{xmame/html,xmess}
@@ -204,7 +204,7 @@ popd
 # Add all directories
 %{__mkdir_p} %{buildroot}%{_datadir}/xmame/{artwork,roms,samples,snap}
 # The extra dat files
-%{__install} -p -m0664 _datfiles/*.dat %{buildroot}%{_datadir}/xmame/
+%{__install} -p -m 0664 _datfiles/*.dat %{buildroot}%{_datadir}/xmame/
 # Install the OpenGL cabinets
 %{__cp} -ap src/unix/cab %{buildroot}%{_datadir}/xmame/
 # Uncompress catver.ini (will be in the docs)
@@ -259,6 +259,9 @@ popd
 
 
 %changelog
+* Wed Mar 30 2005 Matthias Saou <http://freshrpms.net/> 0.95-1
+- Update to 0.95.
+
 * Wed Mar 16 2005 Matthias Saou <http://freshrpms.net/> 0.94-1
 - Update to 0.94.
 - Completely remove asm68000, it's now totally unmaintained and broken.
