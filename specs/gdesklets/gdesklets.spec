@@ -5,7 +5,7 @@
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.26.2
+Version: 0.30
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgtop2-devel >= 2.0.0, python-devel >= 2.0.0, gcc-c++
 BuildRequires: gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
-BuildRequires: perl(XML::Parser), intltool
+BuildRequires: libcroco-devel, perl(XML::Parser), intltool
 Requires: python >= 2.2, gnome-python2 >= 1.99.17, gnome-python2-gconf >= 2.0
 
 %description
@@ -40,7 +40,7 @@ and maybe even available some day.
 		s|\@gnulocaledir\@|\$(datadir)/gdesklets/locale|g;
 		s|\@localedir\@|\$(datadir)/gdesklets/locale|g;
 		s|\@PIXMAPDIR\@|\$(datadir)/pixmaps|g;
-	' Makefile.in */Makefile.in */*/Makefile.in
+	' Makefile.in */Makefile.in */*/Makefile.in */*/*/Makefile.in
 
 %build
 %configure \
@@ -60,6 +60,10 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-display-thumbnail.schemas &>/dev/null
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+
+%postun
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,18 +71,26 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/gdesklets.1*
 %config %{_sysconfdir}/gconf/schemas/gdesklets-display-thumbnail.schemas
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
-%{_datadir}/application-registry/*.applications
+%{_bindir}/gdesklets*
+%{_datadir}/applications/gdesklets.desktop
+#%{_datadir}/application-registry/gdesklets.applications
 %{_datadir}/gdesklets/
-%{_datadir}/icons/gnome/48x48/mimetypes/*.png
-%{_datadir}/mime-info/*
-%{_datadir}/pixmaps/*.png
-%{_libdir}/pkgconfig/*.pc
+%{_datadir}/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gdesklets-display.png
+#%{_datadir}/mime-info/gdesklets.*
+%{_datadir}/pixmaps/gdesklets.png
+%{_libdir}/pkgconfig/gdesklets-core.pc
+%exclude %{_datadir}/mime/XMLnamespaces
+%{_datadir}/mime/application/x-gdesklets-display.xml
+%exclude %{_datadir}/mime/globs
+%exclude %{_datadir}/mime/magic
+%{_datadir}/mime/packages/gdesklets.xml
 
 %changelog
+* Wed Aug 28 2004 Dag Wieers <dag@wieers.com> - 0.30-1
+- Updated to release 0.30.
+
 * Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.26.2-1
 - Updated to release 0.26.2.
 
