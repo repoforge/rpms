@@ -1,15 +1,16 @@
 # $Id$
 # Authority: dag
+# Upstream: <bluez-devel$lists,sourceforge,net>
 
-# ExclusiveDist: rh6 el2 rh7 rh8 rh9 fc1
+##ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
 
 Summary: Bluetooth libraries
 Name: bluez-libs
-Version: 2.5
-Release: 0
+Version: 2.9
+Release: 1
 License: GPL
 Group: System Environment/Libraries
-URL: http://bluez.sf.net/
+URL: http://bluez.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -67,7 +68,11 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/bluez.pc
 
 %changelog
+* Sat Aug 07 2004 Dag Wieers <dag@wieers.com> - 2.9-1
+- Updated to release 2.9.
+
 * Wed Feb 04 2004 Dag Wieers <dag@wieers.com> - 2.5-0
 - Initial package. (using DAR)
