@@ -18,10 +18,11 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://dl.sf.net/scret/ScoreReadingTrainer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++, XFree86-devel, qt-devel
+%{?fc2:BuildRequires:libselinux-devel}
 Requires: kdelibs
 
-#(d) primscreenshot: http://scret.sourceforge.net/shot1.png
-#(d) screenshotsurl: http://scret.sourceforge.net/
+# Screenshot: http://scret.sourceforge.net/shot1.png
+# ScreenshotURL: http://scret.sourceforge.net/
 
 %description
 Score Reading Trainer helps you improve your (musical) score reading skills
@@ -35,7 +36,7 @@ to press the matching note for it.
 %build
 . /etc/profile.d/qt.sh
 %configure
-for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.."/version="3.1"/g;' $i; done
+%{?fc1:for i in $(find . -type f | egrep '\.ui'); do sed -i 's/version="3.."/version="3.1"/g;' $i; done}
 %{__make} %{?_smp_mflags}
 
 %install
