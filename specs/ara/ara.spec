@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Upstream: Berke Durak <berke-dev$ouvaton,org>

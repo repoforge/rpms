@@ -1,4 +1,4 @@
-# $Id: checkpassword-pam.spec 78 2004-03-09 15:32:47Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Herve Commowick <hervec$sports,fr>
 

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Upstream: Pasquale Tricarico <tricaric$wsu,edu>

@@ -1,4 +1,4 @@
-# $Id: perl-GD-Graph.spec 120 2004-03-15 17:26:20Z dag $
+# $Id$
 
 # Authority: dag
 

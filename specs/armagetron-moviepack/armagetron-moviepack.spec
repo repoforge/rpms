@@ -1,4 +1,4 @@
-# $Id: armagetron.spec 173 2004-03-28 04:37:02Z dag $
+# $Id$
 # Authority: matthias
 # Dist: nodist
 

@@ -1,4 +1,4 @@
-# $Id: muttprint.spec 171 2004-04-05 04:43:07Z bert $
+# $Id$
 # Authority: bert
 # Upstream: <Bernhard,Walle$gmx,de>
 

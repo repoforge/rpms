@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Upstream: Björn Augustsson <d3august $ dtek , chalmers , se>

@@ -1,4 +1,4 @@
-# $Id: liboil.spec 2862 2005-01-28 16:43:13Z dude $
+# $Id$
 # Authority: matthias
 
 # Tag: test

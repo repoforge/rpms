@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Screenshot: http://libvisual.sourceforge.net/v2/images/jess1.png

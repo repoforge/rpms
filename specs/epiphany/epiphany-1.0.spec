@@ -1,4 +1,4 @@
-# $Id: epiphany.spec 68 2004-03-09 13:51:01Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Marco Pesenti Gritti <mpeseng$tin,it>
 

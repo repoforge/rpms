@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: "David L. Parsley" <parsley$linuxjedi,org>
 

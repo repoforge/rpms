@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Screenshot: http://www.nongnu.org/giftcurs/shots/giFTcurs-0.5.4.png

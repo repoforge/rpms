@@ -1,4 +1,4 @@
-# $Id: multi-gnome-terminal.spec,v 1.9 2003/05/02 12:17:30 dude Exp $
+# $Id$
 # Authority: dag
 # Upstream: Cristiano De Michele <demichel$na,infn,it>
 

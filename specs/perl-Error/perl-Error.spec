@@ -1,4 +1,4 @@
-# $Id: perl-Convert-UUlib.spec 125 2004-03-16 22:05:34Z dag $
+# $Id$
 # Authority: matthias
 
 %define real_name Error

@@ -1,4 +1,4 @@
-# $Id: lincvs.spec,v 1.2 2004/04/01 11:53:59 costa Exp costa $
+# $Id$
 # Authority: dag
 # Upstream: <lincvs-users$sunsite,dk>
 

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: rzyjontko <rzyj$plusnet,pl>
 # Screenshot: http://elmo.sourceforge.net/screenshots/elmo-main.png

@@ -1,4 +1,4 @@
-# $Id: kernel-module-airo_mpi.spec 72 2004-03-09 14:37:51Z dag $
+# $Id$
 # Authority: dag
 # Upstream: <atmelwlandriver-devel>
 

@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Screenshot: http://ktechlab.fadedminds.com/screenshots/555_counter.png

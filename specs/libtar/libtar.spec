@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Mark D. Roth <roth$feep,net>
 

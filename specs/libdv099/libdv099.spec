@@ -1,4 +1,4 @@
-# $Id: libdv.spec,v 1.5 2003/01/23 18:22:53 dude Exp $
+# $Id$
 # Authority: dag
 # Upstream: <libdv-dev$lists,sf,net>
 

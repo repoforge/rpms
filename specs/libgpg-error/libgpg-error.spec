@@ -1,4 +1,4 @@
-# $Id: gpgme.spec 171 2004-03-28 01:43:07Z dag $
+# $Id$
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 

@@ -1,4 +1,4 @@
-# $Id: kernel-module-ov511.spec 72 2004-03-09 14:37:51Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Mark McClelland <mark$alpha,dyndns,org>
 

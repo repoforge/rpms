@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Screenshot: http://www.dattalo.com/gnupic/desktop.0.18.1.gif

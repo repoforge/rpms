@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Screenshot: http://scigraphica.sourceforge.net/images/gradient.jpg

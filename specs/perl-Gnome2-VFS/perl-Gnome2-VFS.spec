@@ -1,4 +1,4 @@
-# $Id: perl-Gnome2.spec 125 2004-03-16 22:05:34Z dag $
+# $Id$
 
 # Authority: dag
 # Upstream: <gtk-perl-list$gnome,org>

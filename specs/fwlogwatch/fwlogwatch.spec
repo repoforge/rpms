@@ -1,4 +1,4 @@
-# $Id: fwlogwatch.spec,v 1.49 2003/06/23 13:42:44 bw Exp $
+# $Id$
 # Authority: dag
 # Upstream: Boris Wesslowski <boris$wesslowski,com>
 

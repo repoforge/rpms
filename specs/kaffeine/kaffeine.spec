@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Screenshot: http://kaffeine.sourceforge.net/pics/05/kaffeine05-1.png
 # ScreenshotURL: http://kaffeine.sourceforge.net/screenshots.html

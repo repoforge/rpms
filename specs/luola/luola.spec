@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 
 # Authority: dries
 # Upstream: Calle Laakkonen <calle,laakkonen$saunalahti,fi>

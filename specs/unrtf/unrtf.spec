@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: bug-unrtf$gnu,org
 

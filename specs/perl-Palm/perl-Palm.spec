@@ -1,4 +1,4 @@
-# $Id: perl-IP-Country.spec 201 2004-04-03 15:24:49Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Andrew Arensburger <arensb$ooblick,com>
 

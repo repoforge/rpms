@@ -1,4 +1,4 @@
-# $Id: libbonobouimm2.spec 201 2004-04-03 15:24:49Z dag $
+# $Id$
 # Authority: dag
 
 %define real_name libbonobouimm

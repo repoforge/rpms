@@ -1,4 +1,4 @@
-# $Id: libnet.spec 72 2004-03-09 14:37:51Z dag $
+# $Id$
 
 # Authority: dag
 

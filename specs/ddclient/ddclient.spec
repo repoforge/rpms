@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 
 Summary: Updates dynamic DNS entries

@@ -1,4 +1,4 @@
-# $Id: hackedbox.spec,v 1.9 2004/02/23 12:36:00 dude Exp $
+# $Id$
 # Authority: matthias
 
 Summary: The bastard son of Blackbox, a small and fast Window Manager
