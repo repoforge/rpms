@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/DateTime-Util-Astro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 This module contains functions for astronomical calendar calculations.
