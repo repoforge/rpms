@@ -94,12 +94,15 @@ displays a graph of the link quality percentage for each card.
 %find_lang %{name}
 
 # Install the daemon config file
-%{__install} -Dp -m0755 server/gkrellmd.conf \
+%{__install} -D -p -m 0755 server/gkrellmd.conf \
     %{buildroot}%{_sysconfdir}/gkrellmd.conf
 
 # Install the icon for the menu entry
+# (it seems like new versions of ImageMagick rename with a dash now)
 convert gkrellm.ico gkrellm.png
-%{__install} -Dp -m0644 gkrellm.png.3 \
+[ -f gkrellm3.png ]  && ICON="gkrellm3.png"
+[ -f gkrellm-3.png ] && ICON="gkrellm-3.png"
+%{__install} -D -p -m 0644 ${ICON} \
     %{buildroot}%{_datadir}/pixmaps/gkrellm.png
 
 # Install the menu entry
@@ -121,7 +124,7 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{name}.desktop
 
 # Install the init script
-%{__install} -Dp -m0755 %{SOURCE1} \
+%{__install} -D -p -m 0755 %{SOURCE1} \
     %{buildroot}/etc/rc.d/init.d/gkrellmd
 
 # Install the wireless plugin
@@ -188,6 +191,7 @@ fi
 * Tue Mar 29 2005 Matthias Saou <http://freshrpms.net/> 2.2.5-0
 - Update to 2.2.5.
 - Update source location.
+- Workaround new ImageMagick renaming gkrellm-3.png instead of gkrellm3.png.
 
 * Tue Nov  2 2004 Matthias Saou <http://freshrpms.net/> 2.2.4-0
 - Update to 2.2.4.
