@@ -17,7 +17,6 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{version}.tar.bz2
-Patch: lftp-3.0.2-http302.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel
