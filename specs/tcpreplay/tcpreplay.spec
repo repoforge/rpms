@@ -4,7 +4,7 @@
 
 Summary: Replay captured network traffic
 Name: tcpreplay
-Version: 2.2.0
+Version: 2.2.1
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -51,6 +51,9 @@ capture files.
 %{_sbindir}/*
 
 %changelog
+* Thu May 27 2004 Dag Wieers <dag@wieers.com> - 2.2.1-1
+- Updated to release 2.2.1.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
 - Updated to release 2.2.0.
 
