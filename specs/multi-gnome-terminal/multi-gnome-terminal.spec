@@ -17,7 +17,8 @@ Source: http://dl.sf.net/multignometerm/multi-gnome-terminal-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gnome-libs-devel, gdk-pixbuf-devel
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, flex, libxml-devel, gettext, libglade-devel
+BuildRequires: bzip2-libs, scrollkeeper
 
 %description
 Multi Gnome Terminal offers a lot of useful and powerful extensions to the

@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.tildeslash.com/monit/dist/monit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, openssl-devel
+BuildRequires: flex, openssl-devel, byacc
 
 %description
 Monit is an utility for monitoring daemons or similar programs running on

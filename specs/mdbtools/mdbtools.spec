@@ -20,7 +20,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/mdbtools/mdbtools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: unixODBC-devel >= 2.0.0, libgnomeui-devel >= 2.0, bison
+BuildRequires: unixODBC-devel >= 2.0.0, libgnomeui-devel >= 2.0, bison, flex
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
  
 %description 
