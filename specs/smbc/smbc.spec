@@ -3,6 +3,7 @@
 # Authority: dries
 
 Summary: Text mode SMB (Samba) commander
+Name: smbc
 Version: 0.7.3
 Release: 1
 License: GPL
