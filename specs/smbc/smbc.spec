@@ -1,10 +1,13 @@
 # $Id: $
 
 # Authority: dries
+# Upstream: smbc-list@lists.sourceforge.net
+# Screenshot: http://www.air.rzeszow.pl/smbc/smbc/screenshots/mainpage.jpg
+# ScreenshotURL: http://www.air.rzeszow.pl/smbc/smbc/screenshots/
 
 Summary: Text mode SMB (Samba) commander
 Name: smbc
-Version: 0.7.3
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -22,12 +25,9 @@ Smbc is a program for browsing a local SMB (Samba) network. With smbc, you
 can download and upload files or directories and create remote and local
 directories. Smbc has a resume function and supports UTF-8 characters.
 
-# Screenshot: http://www.air.rzeszow.pl/smbc/smbc/screenshots/mainpage.jpg
-# ScreenshotURL: http://www.air.rzeszow.pl/smbc/smbc/screenshots/
-
 %prep
 %{__rm} -rf %{buildroot}
-%setup -n smbc
+%setup
 
 %build
 %configure
@@ -35,16 +35,17 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 
 %install
 %makeinstall
+%find_lang %{name}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,0755)
 %doc FAQ NEWS COPYING README doc/sample.smbcrc
-%{_bindir}/smbc
-%{_bindir}/smbc-utf-x
+%{_bindir}/*
 %exclude %{_datadir}/doc
-%{_datadir}/locale/pl/LC_MESSAGES/smbc.mo
-
 
 %changelog
+* Fri Jun 25 2004 Dries Verachtert <dries@ulyssis.org> 0.8.1-1
+- Update to version 0.8.1.
+
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.7.3-1
-- Initial package
+- Initial package.
