@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: expat-devel >= 1.95.2, ncurses-devel, libstdc++-devel
 BuildRequires: js-devel >= 1.5, readline-devel
+# Building the documentation requires this
+BuildRequires: perl(XML::Parser)
 #Requires: expat >= 1.95.2, ncurses, libstdc++
 #Requires: js >= 1.5, readline
 Conflicts: expat = 1.95.6
@@ -45,7 +47,6 @@ you will need to install %{name}-devel.
 
 %build
 export CPLUS_INCLUDE_PATH="%{_includedir}/js"
-export CXXFLAGS="%{optflags}"
 export SABLOT_GPL="1"
 %configure \
 	--enable-javascript \
