@@ -60,6 +60,7 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 %{_datadir}/doc/HTML/en/kdirstat
 %{_datadir}/icons/*/*/apps/kdirstat.png
 %{_datadir}/locale/*/LC_MESSAGES/kdirstat.mo
+%{_datadir}/*/*/actions/symlink.png
 
 %changelog
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 2.4.0-3
