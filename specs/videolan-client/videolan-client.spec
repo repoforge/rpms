@@ -142,6 +142,7 @@ popd
 
 %configure \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --program-prefix="%{?_program_prefix}" \
     --enable-release \
     %{?_without_dvd:--disable-dvd} \
     %{!?_without_dvdread:--enable-dvdread} \
@@ -222,7 +223,7 @@ find  %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
 %{__cp} -a %{buildroot}%{_datadir}/vlc/vlc48x48.png \
     %{buildroot}%{_datadir}/pixmaps/vlc.png
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >videolan-client.desktop
 [Desktop Entry]
 Name=VideoLAN Client
 Comment=Play DVDs, other various video formats and network streamed videos
@@ -240,10 +241,10 @@ desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
   --add-category Application                    \
   --add-category AudioVideo                     \
-  %{name}.desktop
+  videolan-client.desktop
 %else
-%{__install} -D -m644 misc/desktops/%{name}.desktop \
-    %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
+%{__install} -D -m644 videolan-client.desktop \
+    %{buildroot}%{_datadir}/gnome/apps/Multimedia/videolan-client.desktop
 %endif
 
 
@@ -259,7 +260,8 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_bindir}/*vlc
 %{_libdir}/vlc/
 %exclude %{_libdir}/vlc/*.a
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-videolan-client.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/videolan-client.desktop}
 %{_datadir}/pixmaps/vlc.png
 %{_datadir}/vlc/
 
