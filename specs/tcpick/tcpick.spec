@@ -1,14 +1,14 @@
 # $Id$
 # Authority: dag
-# Upstream: <tcpick-project$lists,sf,net>
+# Upstream: <tcpick-project$lists,sourceforge,net>
 
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick
-Version: 0.1.23
+Version: 0.1.24
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://tcpick.sf.net/
+URL: http://tcpick.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -43,10 +43,13 @@ are doing, and is usable with textmode tools like grep, sed, awk.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL KNOWN-BUGS NEWS OPTIONS README THANKS TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man8/tcpick.8*
+%{_bindir}/tcpick
 
 %changelog
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.1.24-1
+- Updated to release 0.1.24.
+
 * Fri Jun 04 2004 Dag Wieers <dag@wieers.com> - 0.1.23-1
 - Updated to release 0.1.23.
 

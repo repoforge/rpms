@@ -4,7 +4,7 @@
 
 Summary: Organize your preferred applications on the GNOME Panel
 Name: quick-lounge-applet
-Version: 2.1.1
+Version: 2.1.2
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -58,16 +58,19 @@ scrollkeeper-update -q
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README
 %doc %{_datadir}/gnome/help/quick-lounge/
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_libexecdir}/*
-%{_libdir}/bonobo/servers/*.server
-%{_datadir}/gnome-2.0/ui/*.xml
+%config %{_sysconfdir}/gconf/schemas/quick-lounge.schemas
+%{_datadir}/gnome-2.0/ui/GNOME_QuickLoungeApplet.xml
 %{_datadir}/omf/quick-lounge-applet/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/pixmaps/quick-lounge-applet.png
 %{_datadir}/quick-lounge/
+%{_libdir}/bonobo/servers/GNOME_QuickLoungeApplet_Factory.server
+%{_libexecdir}/quick-lounge-applet
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 2.1.2-1
+- Updated to release 2.1.2.
+
 * Mon May 17 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
 - Updated to release 2.1.1.
 

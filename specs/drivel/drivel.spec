@@ -4,7 +4,7 @@
 
 Summary: LiveJournal client for GNOME
 Name: drivel
-Version: 1.0.2
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -41,6 +41,13 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+s &>/dev/null
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+scrollkeeper-update -q || :
+
+%postun
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+scrollkeeper-update -q || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -48,14 +55,28 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README TODO
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
+%doc %{_datadir}/gnome/help/drivel/
+%config %{_sysconfdir}/gconf/schemas/drivel.schemas
+%{_bindir}/drivel
+%{_datadir}/application-registry/drivel.applications
+%{_datadir}/applications/drivel.desktop
 %{_datadir}/drivel/
-%{_datadir}/pixmaps/*.png
+%{_datadir}/mime-info/drivel.*
+%exclude %{_datadir}/mime/XMLnamespaces
+%{_datadir}/mime/application/x-drivel.xml
+%exclude %{_datadir}/mime/globs
+%exclude %{_datadir}/mime/magic
+%{_datadir}/mime/packages/drivel.xml
+%{_datadir}/pixmaps/gnome-application-x-drivel.png
+%{_datadir}/pixmaps/livejournal.png
 %{_datadir}/pixmaps/drivel/
+%{_datadir}/omf/drivel/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Sun Jul 04 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 

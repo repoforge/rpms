@@ -1,14 +1,14 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Chris Picton <cpicton$users,sourceforge,net>
 
 Summary: Allows changing of desktop resolution and refresh rate
 Name: multires
-Version: 0.2.4
-Release: 0
+Version: 0.4
+Release: 1
 License: GPL
 Group: Applications/System
-URL: http://multires.sf.net/
+URL: http://multires.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -16,8 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/multires/multires-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: libgnomeui-devel >= 2.0, gnome-panel-devel
+BuildRequires: libgnomeui-devel >= 2.0
+#BuildRequires: gnome-panel-devel
 
 %description
 GNOME Multires is an applet for the GNOME 2 panel which allows changing
@@ -25,6 +25,8 @@ of desktop resolution and refresh rate.
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's|/usr/X11R6/lib|%{_prefix}/X11R6/%{_lib}|' configure
 
 %build
 %configure
@@ -40,10 +42,15 @@ of desktop resolution and refresh rate.
 %files 
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README
-%{_bindir}/*
-%{_libdir}/bonobo/servers/*
-%{_datadir}/pixmaps/*
+%{_bindir}/multires-applet-2
+%{_libdir}/bonobo/servers/GNOME_MultiresApplet.server
+%{_datadir}/multires/
+%{_datadir}/pixmaps/gnome-multires.png
 
 %changelog
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+- Fix for x86_64.
+
 * Mon Mar 10 2003 Dag Wieers <dag@wieers.com> - 0.2.4-0
 - Initial package. (using DAR)

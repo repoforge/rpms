@@ -1,7 +1,5 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Fredrik Hubinette <hubbe$hubbe,net>
 
 %{?dist: %{expand: %%define %dist 1}}
@@ -18,8 +16,8 @@
 
 Summary: Bond an X display and a VNC session together
 Name: x2vnc
-Version: 1.6
-Release: 0
+Version: 1.6.1
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://fredrik.hubbe.net/x2vnc.html
@@ -27,11 +25,10 @@ URL: http://fredrik.hubbe.net/x2vnc.html
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://fredrik.hubbe.net/x2vnc/%{name}-%{version}.tar.gz
+Source: http://fredrik.hubbe.net/x2vnc/x2vnc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
-
 
 %description
 x2vnc is an implementation of the VNC RFB protocol designed to control
@@ -49,8 +46,8 @@ devices on two or more machines.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1
 %makeinstall \
 	BINDIR="%{buildroot}%{_bindir}" \
 	MANDIR="%{buildroot}%{_mandir}"
@@ -60,10 +57,13 @@ devices on two or more machines.
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/x2vnc.1*
+%{_bindir}/x2vnc
 
 %changelog
+* Sat Aug 28 2004 Dag Wieers <dag@wieers.com> - 1.6.1-1
+- Updated to release 1.6.1.
+
 * Thu Nov 27 2003 Dag Wieers <dag@wieers.com> - 1.6-0
 - Updated to release 1.6.
 

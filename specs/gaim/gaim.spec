@@ -10,7 +10,7 @@
 
 Summary: Gtk2 based multiprotocol instant messaging client
 Name: gaim
-Version: 0.82
+Version: 0.82.1
 Release: 1
 Epoch: 1
 License: GPL
@@ -83,10 +83,7 @@ Available rpmbuild rebuild options :
 %find_lang %{name}
 %{__strip} %{buildroot}%{_libdir}/*.so* %{buildroot}%{_libdir}/gaim/*.so || :
 
-#%{__install} -D -m0644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/gaim/prefs.xml
-
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib}
+#%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/gaim/prefs.xml
 
 %post
 /sbin/ldconfig -n %{_libdir}/gaim
@@ -118,12 +115,16 @@ Available rpmbuild rebuild options :
 %{_mandir}/man1/*
 %{_libdir}/pkgconfig/gaim.pc
 %if %{!?_without_perl:1}0
-  %{perl_vendorarch}/Gaim.pm
-  %{perl_vendorarch}/auto/Gaim
-  %{perl_vendorman3dir}/*
+%{perl_vendorarch}/Gaim.pm
+%{perl_vendorarch}/auto/Gaim
+%{perl_vendorman3dir}/*
+%exclude %{buildroot}%{perl_archlib}
 %endif
 
 %changelog
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.82.1-1
+- Updated to 0.82.1.
+
 * Fri Aug 27 2004 Dag Wieers <dag@wieers.com> - 0.82-1
 - Updated to 0.82.
 

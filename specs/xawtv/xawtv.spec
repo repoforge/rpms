@@ -4,11 +4,13 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%define dfi %(which desktop-file-install &>/dev/null; echo $?)
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 Summary: Television application for video4linux compliant devices
 Name: xawtv
-Version: 3.92
+Version: 3.94
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -22,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, ncurses-devel, %{?rh62:, Mesa-devel}
 BuildRequires: Xaw3d-devel, libjpeg-devel, %{!?rh62:, openmotif-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #BuildRequires: libdv-devel, libquicktime-devel
 
 %description
@@ -61,7 +64,7 @@ EOF
 	libdir="%{buildroot}%{_libdir}/xawtv" \
 	datadir="%{buildroot}%{_datadir}/xawtv"
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 xawtv.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawtv.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -84,13 +87,13 @@ EOF
 %{_datadir}/xawtv/
 %{_prefix}/X11R6/lib/X11/app-defaults/*
 %{!?rh62:%{_prefix}/X11R6/lib/X11/*/app-defaults/*}
-%if %{dfi}
-        %{_datadir}/gnome/apps/Multimedia/*.desktop
-%else
-        %{_datadir}/applications/*.desktop
-%endif
+%{!?_without_freedesktop:%{_datadir}/applications/net-xawtv.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Multimedia/xawtv.desktop}
 
 %changelog
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 3.94-1
+- Updated to release 3.94.
+
 * Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 3.92-1
 - Updated to release 3.92.
 

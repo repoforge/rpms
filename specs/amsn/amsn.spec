@@ -9,21 +9,22 @@
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
 
 %define tls_maj 1.4
 %define tls_min 1
-%define real_version 0_92
+%define real_version 0_93
 
 Summary: Full featured MSN Messenger clone
 Name: amsn
-Version: 0.92
+Version: 0.93
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://amsn.sf.net/
 
 Packager: Dries Verachtert <skotty@ulyssis.org>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/amsn/amsn-%{real_version}.tar.gz
 ### FIXME: tls-plugin doesn't build because of missing tclPort.h in tcl-devel
@@ -50,9 +51,7 @@ Unix, Windows, or Macintosh platforms. It supports file transfers,
 groups, and many more features.
 
 %prep
-#setup -n msn -a 1
-%setup -n msn -a 2
-#%patch -p0
+%setup -n amsn-%{real_version} -a 2
 %patch1 -p0
 
 %{__perl} -pi.orig -e 's|\$\(datadir\)|\$(datadir)/amsn|g' Makefile
@@ -129,14 +128,14 @@ cd plugins/traydock
 %{__install} -d -m0755 %{buildroot}%{_datadir}/amsn/plugins/tls%{tls_maj}/
 %{__install} -m0755 tls%{tls_maj}/libtls%{tls_maj}.so tls%{tls_maj}/pkgIndex.tcl tls%{tls_maj}/tls.tcl %{buildroot}%{_datadir}/amsn/plugins/tls%{tls_maj}/
 
-%if %{!?_without_freedesktop:1}0
+%if %{?_without_freedesktop:1}0
+	%{__install} -D -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
+%else
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \
 		amsn.desktop
-%else
-	%{__install} -D -m0644 amsn.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/amsn.desktop
 %endif
 
 %clean
@@ -145,13 +144,16 @@ cd plugins/traydock
 %files
 %defattr(-, root, root, 0755)
 %doc FAQ GNUGPL HELP README TODO
-%{_bindir}/*
+%{_bindir}/amsn
 %{_datadir}/amsn/
 %{_datadir}/pixmaps/*.png
 %{!?_without_freedesktop:%{_datadir}/applications/net-amsn.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/amsn.desktop}
 
 %changelog
+* Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 0.94-1
+- Updated to release 0.94.
+
 * Mon May 31 2004 Dries Verachtert <dries@ulyssis.org> - 0.92-1
 - update to version 0.92
 - added Encoding tag to desktop file
