@@ -1,0 +1,11 @@
+--- ./loadparts.cpp.gege	2003-11-19 17:49:31.000000000 +0100
++++ ./loadparts.cpp	2004-01-22 18:22:24.864717067 +0100
+@@ -245,7 +245,7 @@
+ 
+ 	while ('\\' == line[l-1]) {
+             // concat next line(s)
+-	    int bufsize = clamp(0U, sizeof(line)-l, sizeof(line)-1);
++	    int bufsize = clamp((size_t)0, sizeof(line)-l, sizeof(line)-1);
+ 	    fgets(&line[l-2], bufsize, fp);
+ 	    if (feof((FILE*)fp)) break;
+ 	    l = strlen(line);

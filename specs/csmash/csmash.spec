@@ -6,11 +6,12 @@
 Summary: 3D tabletennis game
 Name: csmash
 Version: 0.6.6
-Release: 3
+Release: 4
 License: GPL
 Group: Amusements/Games
 URL: http://cannonsmash.sourceforge.net/
 Source: http://dl.sf.net/cannonsmash/%{name}-%{version}.tar.gz
+Patch: csmash-0.6.6-64bit-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: Mesa-devel, libjpeg-devel, zlib-devel, gtk2-devel >= 2.0.0
 BuildRequires: SDL-devel >= 1.2.0, SDL_mixer-devel, SDL_image-devel
@@ -25,6 +26,7 @@ accelaration video card, this program runs very slowly.
 
 %prep
 %setup
+%patch -p0 -b .64bit
 
 
 %build
@@ -70,6 +72,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-4
+- Add 64bit-fixes patch from Mandrake Linux to fix x86_64 build.
+
 * Thu Sep 16 2004 Matthias Saou <http://freshrpms.net/> 0.6.6-3
 - Added missing zlib-devel build dep for YDL4.
 - Removed explicit deps, they're all picked up automatically.
