@@ -37,15 +37,15 @@
 %endif
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
-%define date      20041025
-#define rcver     pre5
+#define date      20041025
+%define rcver     pre6a
 
 %define xmms_plugindir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.12%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.13%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -61,7 +61,7 @@ Patch2: MPlayer-0.90pre10-redhat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
-BuildRequires: gtk+-devel, SDL-devel
+BuildRequires: XFree86-devel, gtk+-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libogg-devel, libvorbis-devel, libmatroska-devel
@@ -72,7 +72,7 @@ BuildRequires: libmad-devel, xmms-devel, libdv-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
-%{!?_without_lirc:BuildRequires: lirc}
+%{!?_without_lirc:BuildRequires: lirc-devel}
 %{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
@@ -255,7 +255,7 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 %{_datadir}/mplayer/
 %{_datadir}/pixmaps/*
 %{_mandir}/man1/*.1*
-%lang(cz) %{_mandir}/cz/man1/*.1*
+%lang(cs) %{_mandir}/cs/man1/*.1*
 %lang(de) %{_mandir}/de/man1/*.1*
 %lang(es) %{_mandir}/es/man1/*.1*
 %lang(fr) %{_mandir}/fr/man1/*.1*
@@ -271,6 +271,10 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 
 
 %changelog
+* Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.13.pre6a
+- Update to 1.0pre6a.
+- Remove cz man pages, add cs ones.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 1.0-0.12.20042025
 - Merge Dag's scriplet changes.
 
