@@ -4,8 +4,8 @@
 
 Summary: Graphical XML Editor
 Name: mlview
-Version: 0.6.2
-Release: 0
+Version: 0.6.3
+Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://www.mlview.org/
@@ -40,7 +40,7 @@ you will need to install %{name}-devel.
 %{__cat} <<'EOF' >mlview.desktop.in
 [Desktop Entry]
 Name=MlView XML Editor
-Comment=A powerful XML editor
+Comment=Edit XML documents
 Icon=mlview-app-icon.xpm
 #Icon=redhat-office.png
 Exec=mlv %%F
@@ -90,6 +90,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue May 11 2004 Dag Wieers <dag@wieers.com> - 0.6.3-1
+- Updated to release 0.6.3.
+
 * Wed Dec 10 2003 Dag Wieers <dag@wieers.com> - 0.6.2-0
 - Added missing BuildRequires. (Dries Verachtert)
 - Updated to release 0.6.2.
