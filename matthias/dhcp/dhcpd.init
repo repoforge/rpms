@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+# dhcpd         This shell script takes care of starting and stopping
+#               dhcpd.
+#
+# chkconfig: - 65 35
+# description: dhcpd provide access to Dynamic Host Control Protocol.
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+. /etc/sysconfig/dhcpd
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+[ -f /usr/sbin/dhcpd ] || exit 0
+[ -f /etc/dhcpd.conf ] || exit 0
+[ -f /var/lib/dhcp/dhcpd.leases ] || exit 0
+
+RETVAL=0
+prog="dhcpd"
+
+start() {
+	# Start daemons.
+	echo -n $"Starting $prog: "
+	daemon /usr/sbin/dhcpd ${DHCPDARGS}
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/dhcpd
+	return $RETVAL
+}
+
+stop() {
+	# Stop daemons.
+	echo -n $"Shutting down $prog: "
+	killproc dhcpd
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/dhcpd
+	return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload)
+	stop
+	start
+	RETVAL=$?
+	;;
+  condrestart)
+	if [ -f /var/lock/subsys/dhcpd ]; then
+	    stop
+	    start
+	    RETVAL=$?
+	fi
+	;;
+  status)
+	status dhcpd
+	RETVAL=$?
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+	exit 1
+esac
+
+exit $RETVAL
+

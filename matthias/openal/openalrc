@@ -1,0 +1,5 @@
+;;(define devices '(alsa native))
+
+;; uncomment this to output via the 2nd soundcard
+;;(define alsa-device "plughw:2,0")
+

@@ -1,0 +1,23 @@
+--- rsync-2.4.2/options.c.maxdel	Thu Mar 30 09:23:02 2000
++++ rsync-2.4.2/options.c	Tue Apr  4 10:59:34 2000
+@@ -64,7 +64,10 @@
+ int delete_after=0;
+ int only_existing=0;
+ int opt_ignore_existing=0;
+-int max_delete=0;
++#if !defined(MAX_DELETE)       /* XXX preserve legacy Red Hat behavior */
++#define        MAX_DELETE      1000000000
++#endif
++int max_delete = MAX_DELETE;
+ int ignore_errors=0;
+ #ifdef _WIN32
+ int modify_window=2;
+@@ -645,7 +648,7 @@
+ 		args[ac++] = bsize;
+ 	}    
+ 
+-	if (max_delete && am_sender) {
++	if (max_delete && (max_delete != MAX_DELETE) && am_sender) {
+ 		snprintf(mdelete,sizeof(mdelete),"--max-delete=%d",max_delete);
+ 		args[ac++] = mdelete;
+ 	}    

@@ -1,0 +1,37 @@
+--- dhcp-3.0pl1/relay/dhcrelay.c	Sat Apr 27 05:34:20 2002
++++ dhcp-3.0pl1/relay/dhcrelay.c	Wed Oct 16 14:29:04 2002
+@@ -88,6 +88,7 @@
+ 				   did not match any known circuit ID. */
+ int missing_circuit_id = 0;	/* Circuit ID option in matching RAI option
+ 				   was missing. */
++int max_hop_count = 255;	/* Maximum hop count */
+ 
+ 	/* Maximum size of a packet with agent options added. */
+ int dhcp_max_agent_option_packet_length = 576;
+@@ -182,6 +183,15 @@
+ 			quiet_interface_discovery = 1;
+ 		} else if (!strcmp (argv [i], "-a")) {
+ 			add_agent_options = 1;
++		} else if (!strcmp (argv [i], "-c")) {
++			int	hcount;	
++			if (++i == argc)
++				usage ();
++			hcount = atoi(argv[i]);	
++			if (hcount <=255)
++				max_hop_count=hcount;
++			else
++				usage ();
+ 		} else if (!strcmp (argv [i], "-A")) {
+ 			if (++i == argc)
+ 				usage ();
+@@ -425,4 +435,8 @@
+ 		packet -> giaddr = ip -> primary_address;
++ 	if (packet -> hops != 255)
++ 		packet -> hops = packet -> hops + 1;
++	if (packet -> hops >= max_hop_count)
++		return;
+ 
+ 	/* Otherwise, it's a BOOTREQUEST, so forward it to all the
+ 	   servers. */
+
+

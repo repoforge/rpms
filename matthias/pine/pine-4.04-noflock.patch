@@ -1,0 +1,44 @@
+--- pine4.04/imap/src/osdep/unix/os_lnx.h.noflock	Thu Sep  3 03:05:55 1998
++++ pine4.04/imap/src/osdep/unix/os_lnx.h	Fri Oct  9 17:35:09 1998
+@@ -41,6 +41,7 @@
+ #include <fcntl.h>
+ #include <syslog.h>
+ #include <sys/file.h>
++#include <ustat.h>
+ 
+ 
+ /* Linux gets this wrong */
+@@ -53,3 +54,5 @@
+ #include "ftl.h"
+ #include "nl.h"
+ #include "tcp.h"
++
++#include "lockfix.h"
+--- pine4.04/imap/src/osdep/unix/os_lnx.c.noflock	Thu Sep  3 03:05:54 1998
++++ pine4.04/imap/src/osdep/unix/os_lnx.c	Fri Oct  9 17:35:09 1998
+@@ -57,4 +57,6 @@
+ #define fork vfork
+ #include "tcp_unix.c"
+ #include "gr_waitp.c"
++#undef flock
++#include "flock.c"
+ #include "tz_sv4.c"
+--- pine4.04/imap/src/osdep/unix/flock.c.noflock	Thu Sep  3 03:04:53 1998
++++ pine4.04/imap/src/osdep/unix/flock.c	Fri Oct  9 17:35:09 1998
+@@ -33,10 +33,16 @@
+  *
+  */
+  
++#ifdef	USE_NFS_JACKET
+ #define flock fcntl_flock
+ #include "flcksafe.c"		/* get safe locking routines */
+ #undef flock
+ #include "flockbsd.c"		/* get flock() NFS jacket */
++#else
++#include "flcksafe.c"		/* get safe locking routines */
++#include "flocksv4.c"		/* get flock() NFS jacket */
++#define fcntl_flock flock
++#endif
+ 
+ /* Emulator for flock() call using fcntl() locking
+  * Accepts: file descriptor

@@ -1,0 +1,49 @@
+# Authority: dag
+
+Summary: xfrisk, a multi-user network version of the classic "Risk".
+Name: xfrisk
+Version: 1.2
+Release: 0
+Group: Amusements/Games
+License: GPL
+URL: http://www.iki.fi/morphy/xfrisk/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://morphy.iki.fi/%{name}/files/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Prefix: %{_prefix}
+
+Obsoletes: XFrisk
+
+%description
+XFrisk is a computer version of the classic Risk board game. It is
+a multiplayer game played on a TCP/IP network, uses the X11 window
+system for graphics and runs on most UNIX and UNIX-like platforms.
+
+%prep
+%setup -n XFrisk
+
+%build
+%{__make} %{?_smp_mflags} \
+	PREFIX="%{_prefix}" \
+	BINDIR="%{_bindir}" \
+	LIBDIR="%{_libdir}/xfrisk"
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall BINDIR="%{buildroot}%{_bindir}" LIBDIR="%{buildroot}%{_libdir}/xfrisk"
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc BUGS ChangeLog COPYING FAQ README.NEW TODO
+%{_bindir}/*
+%{_libdir}/xfrisk/
+
+%changelog
+* Sat Feb 15 2003 Dag Wieers <dag@wieers.com> - 1.2-0
+- Initial package. (using DAR)

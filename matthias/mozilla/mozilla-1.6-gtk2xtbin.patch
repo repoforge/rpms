@@ -1,0 +1,19 @@
+--- widget/src/gtkxtbin/gtk2xtbin.c.orig	2002-12-14 23:03:56.000000000 +0100
++++ widget/src/gtkxtbin/gtk2xtbin.c	2004-01-17 01:06:58.000000000 +0100
+@@ -511,7 +511,7 @@
+                    int width ) 
+ {
+   int           n;
+-  Arg           args[5];
++  Arg           args[6];
+   Widget        child_widget;
+   Widget        top_widget;
+ 
+@@ -540,6 +540,7 @@
+   XtSetArg(args[n], XtNvisual,   xtclient->xtvisual ); n++;
+   XtSetArg(args[n], XtNdepth,    xtclient->xtdepth ); n++;
+   XtSetArg(args[n], XtNcolormap, xtclient->xtcolormap ); n++;
++  XtSetArg(args[n], XtNborderWidth, 0); n++;
+   XtSetValues(child_widget, args, n);
+ 
+   XSync(xtclient->xtdisplay, FALSE);

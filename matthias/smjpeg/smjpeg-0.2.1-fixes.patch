@@ -1,0 +1,242 @@
+Index: smjpeg_decode.c
+===================================================================
+RCS file: /cvs/cvsroot/smjpeg/smjpeg_decode.c,v
+retrieving revision 1.6
+retrieving revision 1.9
+diff -u -u -r1.6 -r1.9
+--- smjpeg_decode.c	1999/11/23 20:25:33	1.6
++++ smjpeg_decode.c	2001/02/08 01:43:31	1.9
+@@ -9,6 +9,11 @@
+ #include "smjpeg_file.h"
+ #include "smjpeg_decode.h"
+ 
++#ifdef __MINGW32__
++#warning mingw32 detected, replacing vsnprintf by vsprintf...
++#define vsnprintf(BUF,SIZE,FMT...)	vsprintf (BUF, FMT)
++#endif
++
+ /* Only define this when analyzing the performance on slow systems */
+ /*#define DEBUG_TIMING*/
+ 
+@@ -31,7 +36,11 @@
+     movie->status.code = code;
+     if ( fmt ) {
+         va_start(ap, fmt);
++#ifdef WIN32
++        vsprintf(movie->status.message,fmt,ap);
++#else
+         vsnprintf(movie->status.message,(sizeof movie->status.message),fmt,ap);
++#endif
+         va_end(ap);
+     } else {
+         movie->status.message[0] = '\0';
+@@ -147,7 +156,7 @@
+     memset(movie, 0, (sizeof *movie));
+ 
+     /* Open the SMJPEG file */
+-    movie->src = fopen(file, "r");
++    movie->src = fopen(file, "rb");
+     if ( movie->src == NULL ) {
+         SMJPEG_status(movie,-1, "Couldn't open %s: %s", file, strerror(errno));
+         goto error_return;
+@@ -266,6 +275,15 @@
+                     movie->jpeg_colorspace = JCS_RGB16_555_DBL;
+                 } else {
+                     movie->jpeg_colorspace = JCS_RGB16_555;
++                }
++            } else
++            if ( (target->format->Rmask == 0x001F) &&
++                 (target->format->Gmask == 0x03E0) &&
++                 (target->format->Bmask == 0x7C00) ) {
++                if ( movie->video.doubled ) {
++                    movie->jpeg_colorspace = JCS_BGR16_555_DBL;
++                } else {
++                    movie->jpeg_colorspace = JCS_BGR16_555;
+                 }
+             } else {
+                 if ( movie->video.doubled ) {
+Index: smjpeg_decode.h
+===================================================================
+RCS file: /cvs/cvsroot/smjpeg/smjpeg_decode.h,v
+retrieving revision 1.4
+retrieving revision 1.5
+diff -u -u -r1.4 -r1.5
+--- smjpeg_decode.h	2000/02/17 20:30:41	1.4
++++ smjpeg_decode.h	2000/08/10 06:35:44	1.5
+@@ -94,41 +94,41 @@
+ extern "C" {
+ #endif
+ 
+-extern int SMJPEG_load(SMJPEG *movie, const char *file);
++extern DECLSPEC int SMJPEG_load(SMJPEG *movie, const char *file);
+ 
+-extern void SMJPEG_free(SMJPEG *movie);
++extern DECLSPEC void SMJPEG_free(SMJPEG *movie);
+ 
+ /* Turn on or off pixel doubling for SMJPEG display.
+    You must call SMJPEG_target() after you call this function.
+  */
+-extern void SMJPEG_double(SMJPEG *movie, int state);
++extern DECLSPEC void SMJPEG_double(SMJPEG *movie, int state);
+ 
+ /* Set the target display for video playback of an SMJPEG video */
+-extern int SMJPEG_target(SMJPEG *movie,
++extern DECLSPEC int SMJPEG_target(SMJPEG *movie,
+        SDL_mutex *lock, int x, int y, SDL_Surface *target,
+        void (*update)(SDL_Surface *, int, int, unsigned int, unsigned int));
+ 
+ /* Seek to a particular offset in the MJPEG stream */
+-extern int SMJPEG_seek(SMJPEG *movie, Uint32 ms);
++extern DECLSPEC int SMJPEG_seek(SMJPEG *movie, Uint32 ms);
+ 
+ /* Functions for saving the current position and restoring it */
+-extern Uint32 SMJPEG_getposition(SMJPEG *movie);
+-extern void SMJPEG_setposition(SMJPEG *movie, Uint32 pos);
++extern DECLSPEC Uint32 SMJPEG_getposition(SMJPEG *movie);
++extern DECLSPEC void SMJPEG_setposition(SMJPEG *movie, Uint32 pos);
+ 
+ /* Rewind to the start of an MJPEG stream */
+-extern void SMJPEG_rewind(SMJPEG *movie);
++extern DECLSPEC void SMJPEG_rewind(SMJPEG *movie);
+ 
+ /* Start the playback of a movie, optionally specifying time synchronization */
+-extern void SMJPEG_start(SMJPEG *movie, int use_timing);
++extern DECLSPEC void SMJPEG_start(SMJPEG *movie, int use_timing);
+ 
+ /* Advance the specified number of frames, or the whole movie if -1 */
+-extern int SMJPEG_advance(SMJPEG *movie, int num_frames, int do_wait);
++extern DECLSPEC int SMJPEG_advance(SMJPEG *movie, int num_frames, int do_wait);
+ 
+ /* Stop playback of a movie */
+-extern void SMJPEG_stop(SMJPEG *movie);
++extern DECLSPEC void SMJPEG_stop(SMJPEG *movie);
+ 
+ /* Function that can be passed to SDL as an audio callback */
+-extern void SMJPEG_feedaudio(void *udata, Uint8 *stream, int len);
++extern DECLSPEC void SMJPEG_feedaudio(void *udata, Uint8 *stream, int len);
+ 
+ #ifdef __cplusplus
+ };
+Index: smjpeg_encode.c
+===================================================================
+RCS file: /cvs/cvsroot/smjpeg/smjpeg_encode.c,v
+retrieving revision 1.3
+retrieving revision 1.5
+diff -u -u -r1.3 -r1.5
+--- smjpeg_encode.c	1999/11/23 20:25:33	1.3
++++ smjpeg_encode.c	2000/04/24 21:00:33	1.5
+@@ -42,7 +42,7 @@
+     int status;
+ 
+     status = -1;
+-    input = fopen(file, "r");
++    input = fopen(file, "rb");
+     if ( input ) {
+         struct jpeg_error_mgr errmgr;
+         struct jpeg_decompress_struct cinfo;
+@@ -217,7 +217,7 @@
+     /* Check to see if there is any audio input */
+     stat(audiofile, &sb);
+     audio_left = sb.st_size;
+-    audioinput = fopen(audiofile, "r");
++    audioinput = fopen(audiofile, "rb");
+     if ( audioinput == NULL ) {
+         fprintf(stderr, "Warning: no audio stream - video only\n");
+     }
+@@ -229,7 +229,7 @@
+     }
+ 
+     /* Open the output file */
+-    output = fopen(outputfile, "w");
++    output = fopen(outputfile, "wb");
+     if ( output == NULL ) {
+         fprintf(stderr, "Unable to write output to %s\n", outputfile);
+         exit(2);
+@@ -274,7 +274,7 @@
+     fwrite(HEADER_END_MAGIC, 4, 1, output);
+ 
+     /* Multiplex the audio and video data */
+-    audio_framesize = DEFAULT_AUDIO_FRAME * (audio_bits / 8);
++    audio_framesize = DEFAULT_AUDIO_FRAME * (audio_bits / 8) * audio_channels;
+     audio_time = 0.0;
+     video_time = 0.0;
+     ms_per_audio_frame = (1000.0 * DEFAULT_AUDIO_FRAME) / audio_rate;
+Index: jpeg-6b/jdmaster.c
+===================================================================
+RCS file: /cvs/cvsroot/smjpeg/jpeg-6b/jdmaster.c,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -u -u -r1.1.1.1 -r1.2
+--- jpeg-6b/jdmaster.c	1999/08/26 06:27:38	1.1.1.1
++++ jpeg-6b/jdmaster.c	2001/02/08 01:43:31	1.2
+@@ -45,8 +45,10 @@
+ {
+ #ifdef UPSAMPLE_MERGING_SUPPORTED
+   if (cinfo->out_color_space == JCS_RGB16_555 || 
++      cinfo->out_color_space == JCS_BGR16_555 || 
+       cinfo->out_color_space == JCS_RGB16_565 ||
+       cinfo->out_color_space == JCS_RGB16_555_DBL || 
++      cinfo->out_color_space == JCS_BGR16_555_DBL || 
+       cinfo->out_color_space == JCS_RGB16_565_DBL) return TRUE;
+   /* Merging is the equivalent of plain box-filter upsampling */
+   if (cinfo->do_fancy_upsampling || cinfo->CCIR601_sampling)
+Index: jpeg-6b/jdmerge.c
+===================================================================
+RCS file: /cvs/cvsroot/smjpeg/jpeg-6b/jdmerge.c,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -u -u -r1.1.1.1 -r1.2
+--- jpeg-6b/jdmerge.c	1999/08/26 06:27:38	1.1.1.1
++++ jpeg-6b/jdmerge.c	2001/02/08 01:43:31	1.2
+@@ -185,13 +185,19 @@
+       hicolor_g[i] = (i >> 3) << 5;
+       hicolor_b[i] = (i >> 3) ;
+     }
+-
++  else if (cinfo->out_color_space == JCS_BGR16_555 || cinfo->out_color_space == JCS_BGR16_555_DBL)
++    for (i = 0; i < 256; i++) {
++      hicolor_r[i] = (i >> 3) ;
++      hicolor_g[i] = (i >> 3) << 5;
++      hicolor_b[i] = (i >> 3) << 10;
++    }
+   else if (cinfo->out_color_space == JCS_RGB16_565 || cinfo->out_color_space == JCS_RGB16_565_DBL)
+     for (i = 0; i < 256; i++) {
+       hicolor_r[i] = (i >> 3) << 11;
+       hicolor_g[i] = (i >> 2) << 5;
+       hicolor_b[i] = (i >> 3) ;
+     }
++
+   /* Optimization - double all pixels for free. :) */
+   for (i = 0; i < 256; i++) {
+     hicolor_r[i] = (hicolor_r[i]<<16)|hicolor_r[i];
+@@ -602,10 +608,12 @@
+     /* Zebaoth-specific extension: */
+     switch (cinfo->out_color_space) {
+       case JCS_RGB16_555:
++      case JCS_BGR16_555:
+       case JCS_RGB16_565:
+         upsample->upmethod = h2v2_merged_upsample_hicolor;
+    	    break;
+       case JCS_RGB16_555_DBL:
++      case JCS_BGR16_555_DBL:
+       case JCS_RGB16_565_DBL:
+         upsample->upmethod = h2v2_merged_upsample_hicolor_dbl;
+    	    break;
+Index: jpeg-6b/jpeglib.h
+===================================================================
+RCS file: /cvs/cvsroot/smjpeg/jpeg-6b/jpeglib.h,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -u -u -r1.1.1.1 -r1.2
+--- jpeg-6b/jpeglib.h	1999/08/26 06:27:38	1.1.1.1
++++ jpeg-6b/jpeglib.h	2001/02/08 01:43:31	1.2
+@@ -212,7 +212,9 @@
+ 	JCS_YCCK,		/* Y/Cb/Cr/K */
+ 	/* Zebaoth-specific extensions: */
+ 	JCS_RGB16_555,
++	JCS_BGR16_555,
+ 	JCS_RGB16_565,		/* hicolor modes */
+ 	JCS_RGB16_555_DBL,
++	JCS_BGR16_555_DBL,
+ 	JCS_RGB16_565_DBL       /* hicolor with 2x1 pixels */
+ } J_COLOR_SPACE;

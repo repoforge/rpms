@@ -1,0 +1,21 @@
+diff -uNr pine4.30.orig/imap/src/osdep/unix/Makefile pine4.30/imap/src/osdep/unix/Makefile
+--- pine4.30.orig/imap/src/osdep/unix/Makefile	Mon Oct 30 15:41:31 2000
++++ pine4.30/imap/src/osdep/unix/Makefile	Mon Oct 30 15:43:24 2000
+@@ -382,7 +382,7 @@
+ 	 SPOOLDIR=/var/spool \
+ 	 ACTIVEFILE=/var/lib/news/active \
+ 	 RSHPATH=/usr/bin/rsh \
+-	 BASECFLAGS="-g -fno-omit-frame-pointer -O6" \
++	 BASECFLAGS="-fno-omit-frame-pointer -O6 $(RPM_OPT_FLAGS)" \
+ 	 BASELDFLAGS="-lpam -ldl"
+ 
+ lnx:	# Linux non-shadow passwords
+@@ -395,7 +395,7 @@
+ 	 SPOOLDIR=/var/spool \
+ 	 ACTIVEFILE=/var/lib/news/active \
+ 	 RSHPATH=/usr/bin/rsh \
+-	 BASECFLAGS="-g -O"
++	 BASECFLAGS="-O $(RPM_OPT_FLAGS)"
+ 
+ lyn:	# LynxOS
+ 	$(BUILD) `$(CAT) SPECIALS` OS=$@ \

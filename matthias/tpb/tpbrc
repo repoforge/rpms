@@ -1,0 +1,219 @@
+#### TPB CONFIGURATION FILE
+
+### DEVICE SETTINGS
+
+## NVRAM
+# Should define the nvram device from where the information about the key
+# states is read. Default is to try /dev/nvram, followed by /dev/misc/nvram.
+#
+#NVRAM       /dev/nvram
+
+## POLLTIME
+# Defines the delay between polls in microseconds. Default is 1000.
+#
+#POLLTIME    1000
+
+
+### KEYBINDINGS AND CALLBACK
+
+## THINKPAD
+# String with command and options that should be executed when ThinkPad
+# button is pressed. The command is executed by the system() call. So it is
+# possible to execute any shell code. By default no command is executed.
+#
+#THINKPAD    xterm -T ntpctl -e ntpctl
+
+## HOME
+# String with command and options that should be executed when Home button is
+# pressed (only available on A and S series). By default no command is executed.
+#
+#HOME        mozilla 
+HOME         gnome-moz-remote --raise --local
+
+## SEARCH
+# String with command and options that should be executed when Search button is
+# pressed (only available on A and S series). By default no command is executed.
+#
+#SEARCH      mozilla http://www.google.com
+SEARCH		gnome-moz-remote --raise --local http://google.com/
+
+## MAIL
+# String with command and options that should be executed when Mail button is
+# pressed(only available on A and S series). By default no command is executed.
+#
+#MAIL        xterm -T mutt -geometry 140x40 -e mutt
+
+## FAVORITES
+# String with command and options that should be executed when Favorites button is
+# pressed (only available on A series). By default no command is executed.
+#
+# FAVORITES
+
+## RELOAD
+# String with command and options that should be executed when Reload button is
+# pressed (only available on A series). By default no command is executed.
+#
+# RELOAD
+
+## ABORT
+# String with command and options that should be executed when Abort button is
+# pressed (only available on A series). By default no command is executed.
+#
+# ABORT
+
+## BACKWARD
+# String with command and options that should be executed when Backward button is
+# pressed (only available on A series). By default no command is executed.
+#
+# BACKWARD
+
+## FORWARD
+# String with command and options that should be executed when Forward button is
+# pressed (only available on A series). By default no command is executed.
+#
+# FORWARD
+
+## FN
+# String with command and options that should be executed when Fn button is
+# pressed. This is only triggered, when Fn is released again and it was not used for
+# a key combination.By default no command is executed.
+#
+# FN
+
+## CALLBACK
+# String with command and options that should be executed each button press and
+# state change. tpb passes an identifier as first argument and the new state as
+# second argument to the callback. So you can do fancy things :) By default no
+# command is executed. Supported identifiers and states are:
+#
+#  IDENTIFIER        STATES/VALUE            
+#  thinkpad          pressed                
+#  home              pressed                
+#  search            pressed                
+#  mail              pressed                
+#  favorites         pressed
+#  reload            pressed
+#  abort             pressed
+#  backward          pressed
+#  forward           pressed
+#  fn                pressed
+#  zoom              on, off                
+#  thinklight        on, off                
+#  display           lcd, crt, both         
+#  expand            on, off                
+#  brightness        PERCENT                
+#  volume            PERCENT                
+#  mute              on, off                
+#  ac_power          connected, disconnected
+#  powermgt_ac       high, auto, manual     
+#  powermgt_battery  high, auto, manual     
+#
+#CALLBACK    /usr/share/doc/tpb/callback_example.sh
+
+
+### MIXER SETTINGS
+
+## MIXER
+# Use OSS mixer to change volume and for mute/unmute. This should be use on
+# models with no hardware mixer (volume and mute buttons show no effect). R31
+# is reported to have no hardware mixer. To use this you must enable write
+# access to the NVRAM device (possibly dangerous). Possible values are on and
+# off. Default is off.
+#
+# MIXER      OFF
+
+## MIXERSTEPS
+# Defines how much steps should be available when using the OSS mixer. Default
+# is 14. If an other number of steps is used, tpb needs write access to the
+# nvram device.
+#
+#MIXERSTEPS  14
+
+## MIXERDEVICE
+# Defines the mixer device to use for OSS mixer support. Default is /dev/mixer.
+#
+#MIXERDEVICE /dev/mixer
+
+
+### POWERMANAGEMENT SETTINGS
+
+## APM
+# Some ThinkPads generate mouse and keyboard events or have a high CPU load when
+# polling /proc/apm. You may enable this, if you want the AC connected/AC
+# disconnected messages. Default is off.
+#
+# APM OFF
+APM ON
+
+## POWERMGT
+# The program apmiser (part of tpctl package) switches the power management
+# mode according to the needs of the user. This results in lots of changes
+# displayed in OSD. To avoid this, the power management messages can be turned
+# off. Default is auto.
+#
+#POWERMGT    auto
+
+
+### ON-SCREEN DISPLAY SETTINGS
+
+## OSD
+# Show on-screen display for volume, mute and brightness. Possible values are
+# on and off. Default is on.
+#
+#OSD         on
+
+## OSDFONT
+# Defines the font for the on-screen display. You may use "xfontsel" to choose
+# one. Default is "10x20"
+#
+#OSDFONT     10x20
+#OSDFONT     -*-helvetica-bold-r-normal-*-24-240-75-75-p-138-iso8859-1
+OSDFONT     -*-helvetica-bold-r-*-*-24-*-*-*-*-*-*-*
+
+## OSDCOLOR
+# Defines the color of the on-screen display. You may use "xcolors" to choose
+# one. Default is BLUE.
+#
+#OSDCOLOR    Blue
+OSDCOLOR    Green
+
+## OSDTIMEOUT
+# Defines how long (in seconds) the on-screen display is shown after the last
+# keys was pressed. Default is 3.
+#
+#OSDTIMEOUT  3
+
+## OSDOFFSET
+# For backward compatibility. Same as OSDVERTICAL.
+#
+#OSDOFFSET   25
+
+## OSDSHADOW
+# Defines the offset of the font shadow in pixels. Default is 2.
+#
+#OSDSHADOW   2
+
+## OSDVERTICAL
+# Defines the offset from the top or bottom of the screen in pixels. Default is 25.
+#
+#OSDVERTICAL   25
+OSDVERTICAL   55
+
+## OSDHORIZONTAL
+# Defines the offset from the left or right of the screen in pixels. Only
+# supported by xosd 2.0.0 and above. Default is 25.
+#
+#OSDHORIZONTAL   25
+
+## OSDPOS
+# Defines where the osd is shown. Possible values are top, middle and bottom.
+# The value middle is only supported by xosd 2.0.0 and above. Default is bottom.
+#
+#OSDPOS      bottom
+
+## OSDALIGN
+# Defines the alignment of the osd. Possible values are left, center and right.
+# Default is left.
+#
+#OSDALIGN    left
+OSDALIGN    center

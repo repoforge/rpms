@@ -1,0 +1,11 @@
+--- alsa-driver-0.9.0rc2/Makefile.nodepmod	Sun Jun 30 21:04:53 2002
++++ alsa-driver-0.9.0rc2/Makefile	Sun Jun 30 21:05:01 2002
+@@ -135,8 +135,6 @@
+ 	@for d in $(SUBDIRS); do if ! $(MAKE) -C $$d modules_install; then exit 1; fi; done
+ ifeq ($(DESTDIR),)
+ 	-/sbin/depmod -a $(kaversion) $(SYSTEM_MAP_OPT)
+-else
+-	-/sbin/depmod -a -b $(DESTDIR)/ $(SYSTEM_MAP_OPT) $(kaversion)
+ endif
+ 
+ .PHONY: install-scripts

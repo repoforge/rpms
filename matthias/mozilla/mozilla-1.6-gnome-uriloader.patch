@@ -1,0 +1,21 @@
+--- mozilla/uriloader/exthandler/unix/nsGNOMERegistry.cpp.foo	2004-01-05 18:38:48.000000000 -0500
++++ mozilla/uriloader/exthandler/unix/nsGNOMERegistry.cpp	2004-01-05 19:14:51.000000000 -0500
+@@ -39,6 +39,7 @@
+ #include "nsGNOMERegistry.h"
+ #include "prlink.h"
+ #include "prmem.h"
++#include "prenv.h"
+ #include "nsString.h"
+ #include "nsIComponentManager.h"
+ #include "nsILocalFile.h"
+@@ -137,6 +138,10 @@
+     } \
+     PR_END_MACRO
+ 
++  // Don't even use this code if an env var is set
++  if (PR_GetEnv("MOZ_DISABLE_GNOME"))
++    return;
++
+   // Attempt to open libgconf
+   gconfLib = LoadVersionedLibrary("gconf-2", ".4");
+   ENSURE_LIB(gconfLib);

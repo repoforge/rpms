@@ -1,0 +1,331 @@
+--- src/main.cc.orig
++++ src/main.cc
+@@ -180,13 +180,6 @@
+ 
+ 	parse_arguments(argc, argv);
+ 
+-	if (!filename)
+-	{
+-		fprintf(stderr, "No filename argument found. Type 'vcr -h' for "\
+-			"instructions.\n");
+-    exit(1);
+-	}
+-
+ 	if (want_debug)
+ 		init_debug();
+ 
+@@ -265,7 +258,7 @@
+ 	cap = new CaptureProcess(
+ 		v4l,
+ 		filename,
+-		-1,
++		(splitsize > -1 ? splitsize * 1024 * 1024 : -1),
+ 		codecID,
+ 		quality * 100,
+ 		keyframes,
+@@ -273,8 +266,8 @@
+ 		samplesize,
+ 		soundchan,
+ 		videores,
+-		rectime,
+-		(splitsize > -1 ? splitsize * 1024 * 1024 : -1),
++    rectime,
++    -1,
+ 		fps,
+ 		window,
+ 		(audio_bitrate ? 0x55 : 0), //mp3 codec or uncompressed audio
+@@ -353,11 +346,14 @@
+ 		ready = finished;		
+ 		if (ready)
+ 		{
+-			printf("Captured %d frames.\n", processed);
+-			printf("\tFrames dropped in capture: %d (%.1f%%)\n",
+-				cap_drop,  (double)(100 * cap_drop / processed) );
+-			printf("\tFrames dropped in encoder: %d (%.1f%%)\n",
+-				comp_drop, (double)(100 * comp_drop / processed));
++		    printf("Captured %d frames.\n", processed);
++		    if (processed)
++			{
++			    printf("\tFrames dropped in capture: %d (%.1f%%)\n",
++				    cap_drop,  (double)(100 * cap_drop / processed) );
++			    printf("\tFrames dropped in encoder: %d (%.1f%%)\n",
++				    comp_drop, (double)(100 * comp_drop / processed));
++			}
+ 		}
+ 		else
+ 			sleep(1);
+@@ -501,7 +497,7 @@
+ void
+ list_codecs()
+ {
+-	vector<CodecInfo>::iterator it;
++	avm::vector<CodecInfo>::iterator it;
+ 
+ 	fprintf(stderr, "Available codecs: \n\n");
+ 
+@@ -541,9 +537,13 @@
+ void
+ list_attributes(int fourcc)
+ {
+-	int defval;
+-	char def_str[256];
+-
++   int defval;
++   #ifdef OLDAVIFILE
++        char def_str[256];
++    #else
++        const char *def_str;
++    #endif
++              
+ 	int idx = get_codec_index(fourcc);
+ 	if (idx < 0)
+ 		return;
+@@ -556,7 +556,7 @@
+ 
+ 	fprintf(stderr, "These attributes are supported for this codec:\n\n");
+ 
+-	vector<AttributeInfo>::const_iterator it;
++	avm::vector<AttributeInfo>::const_iterator it;
+ 	for(it=encinfo.begin(); it!=encinfo.end(); it++)
+ 	{
+ #ifdef OLDAVIFILE
+@@ -587,9 +587,9 @@
+ 			fprintf(stderr, "\tPossible values: ");
+ 
+ #ifdef OLDAVIFILE
+-			vector<string>::const_iterator sit;
++			avm::vector<string>::const_iterator sit;
+ #else
+-			vector<avm::string>::const_iterator sit;
++			avm::vector<avm::string>::const_iterator sit;
+ #endif
+ 			for (sit=(it->options).begin(); sit!=(it->options).end(); sit++)
+ 				fprintf(stderr, "\"%s\" ", sit->c_str());
+@@ -601,7 +601,7 @@
+ #ifdef OLDAVIFILE
+ 			IVideoEncoder::GetExtendedAttr(fourcc, it->name.c_str(), def_str, 256);
+ #else
+-			GetCodecAttr(video_codecs[idx], it->GetName(), def_str, 256);
++			GetCodecAttr(video_codecs[idx], it->GetName(), &def_str);
+ #endif
+ 			fprintf(stderr, "\tType: string (default value: %s)\n", def_str);
+ 			break;
+@@ -805,7 +805,7 @@
+ 	int
+ 		found_codec = -1;
+ 
+-	vector<CodecInfo>::iterator it;
++	avm::vector<CodecInfo>::iterator it;
+ 
+ 	for (it = video_codecs.begin(); it != video_codecs.end(); it++)
+ 	{
+@@ -943,11 +943,17 @@
+ 		return set_error("Could not find mixer device.");
+ 	}
+ 		
+-	if (!(available_recdevs & (1 << i)))
++	if (!(available_devs & (1 << i)))
+ 	{
+ 		close(mixer);
+ 		return set_error("Selected mixer device is not a valid recording device.");
+-	}
++  }
++  if (!(available_recdevs & (1 << i)))
++  {
++    sprintf(notice_str, "WARNNING: %s:%s is not a recording device",
++       dev, mixdev);
++    vcr_notice(notice_str);
++  }
+ 	
+ 	unsigned int
+ 		recdevs;
+@@ -1003,7 +1009,7 @@
+ int
+ get_codec_index(int fourcc)
+ {
+-	vector<CodecInfo>::iterator it;
++	avm::vector<CodecInfo>::iterator it;
+ 	int i = 0;
+ 
+ 	for (it = video_codecs.begin(); it != video_codecs.end(); it++)
+@@ -1023,7 +1029,7 @@
+ 	int setval = 0;
+ 	int retval = 0;
+ 
+-	vector<AttributeInfo>::const_iterator it;
++	avm::vector<AttributeInfo>::const_iterator it;
+ 	int idx = get_codec_index(fourcc);
+ 	if (idx < 0)
+ 		return 0;
+@@ -1762,6 +1768,12 @@
+ 		list_freqtabs();
+ 		end_program(1);
+ 	}
++	if (!filename)
++	{
++		fprintf(stderr, "No filename argument found. Type 'vcr -h' for "\
++			"instructions.\n");
++    end_program(1);
++	}
+ 
+ 	if (preset && !set_tuner_frequency(preset))
+ 	{
+--- src/capproc.cc.orig
++++ src/capproc.cc
+@@ -141,8 +141,10 @@
+ 		int o_x_off = a.window.x * 3;
+ 		
+ 		for (int i = 0; i < c_lines; i++)
+-		  {
+-		    memcpy(tmpframe + i*c_bpl, z + (o_y_end -i -1)*o_bpl + o_x_off, c_bpl);
++    {
++        // RO patch to fix mirroring
++        memcpy(tmpframe + i*c_bpl, z + (i)* o_bpl + o_x_off, c_bpl);
++		    //memcpy(tmpframe + i*c_bpl, z + (o_y_end -i -1)*o_bpl + o_x_off, c_bpl);
+ 		  }
+ 	      }
+ 	    ch.data=tmpframe;
+@@ -265,7 +267,33 @@
+ 	wfm.nAvgBytesPerSec=(int)abps;
+ 	wfm.nBlockAlign=(a.samplesize*a.chan)/8;
+ 	wfm.wBitsPerSample=a.samplesize;
+-	wfm.cbSize=0;
++  wfm.cbSize=0;
++
++  if(audioStream==0 && mp3Stream == 0)
++  {
++     if (a.audiocodec)
++     {
++        debug("Adding mp3 stream...");
++        mp3Stream = file->AddAudioStream(
++        a.audiocodec, //(0x55 = mp3)
++        &wfm,
++        a.audiobitrate); //bitrate, let's hope it's valid.
++        mp3Stream->Start();
++        debug("done");
++     }
++     else
++     {
++        debug("adding audio stream...");
++        audioStream=file->AddStream(AviStream::Audio,
++           (const char*)&wfm, 18,
++           1, //uncompressed PCM data
++           (int)abps, //bytes/sec
++           (a.samplesize*a.chan)/8                 //bytes/sample
++           );
++        debug("done");
++     }
++  }
++        
+ 
+ 		
+ 	//ve.SetQuality(9500);
+@@ -348,24 +376,6 @@
+ 		}
+ 		if(a.m_audq.size())
+ 		{
+-			if(audioStream==0 && mp3Stream == 0)
+-			{
+-				if (a.audiocodec)
+-				{
+-					mp3Stream = file->AddAudioStream(
+-						a.audiocodec, //(0x55 = mp3)
+-						&wfm,
+-						a.audiobitrate); //bitrate, let's hope it's valid.
+-					mp3Stream->Start();
+-				}
+-				else
+-					audioStream=file->AddStream(AviStream::Audio,
+-						(const char*)&wfm, 18,
+-						1, //uncompressed PCM data
+-						(int)abps, //bytes/sec
+-						(a.samplesize*a.chan)/8			//bytes/sample
+-				 );
+-			}	
+ 			ch=a.m_audq.front();
+ 			a.m_audq.pop();
+ 			//std::cerr<<ch.timestamp-snd_time<<" "<<ch.timestamp-(audiodata+audioblock)/44100./2<<std::endl;
+--- src/.hotkeys/viento.xml.orig
++++ src/.hotkeys/viento.xml
+@@ -0,0 +1,56 @@
++<?xml version="1.0"?>
++<CONFIG model="Viento Keyboard">
++
++  <VolUp        keycode="163" adj="2"/>
++  <VolDown      keycode="153" adj="2"/>
++  <Mute         keycode="146"/>
++  <PrevTrack    keycode="162"/>
++
++
++<!--
++Possible tags are (not all are implemented) :
++
++    PrevTrack
++    Play
++    Eject
++    Stop
++    Pause
++    NextTrack
++    VolUp
++    VolDown
++    Mute
++    WebBrowser
++    Email
++    Help
++    WakeUp
++    PowerDown
++    Communities
++    Search
++    Idea
++    Shopping
++    Print
++    Go
++    Record
++    Shell
++    Transfer
++    MyDocuments
++    MyComputer
++    Calculator
++    iNews
++    Sleep
++    Suspend
++    Rewind
++    Rotate
++-->
++
++
++  <!-- User define functions -->
++
++  <userdef keycode="152" command="xterm -rv">Xterms</userdef>
++  <userdef keycode="149" command="mozilla -mail">Mozilla Mail</userdef>
++
++  <userdef keycode="152" command="xmms -r">XMMS REW</userdef>
++  <userdef keycode="149" command="xmms -p">XMMS PLAY</userdef>
++  <userdef keycode="147" command="xmms -f">XMMS FWD</userdef>
++
++</CONFIG>
+--- doc/vcrtimer.pl.orig
++++ doc/vcrtimer.pl
+@@ -28,7 +28,7 @@
+ 	"sat(urday)?"
+ );
+ # days in month.
+-my @dom	= (31,28,31,30,31,30, 31,30,31,30,31,30);
++my @dom	= (31,28,31,30,31,30, 31,31,30,31,30,31);
+ 
+ my $pidfile	= "/var/run/vcrtimer.pid"; # need root for this :(
+ my $date	= strftime("%Y%m%d", localtime());
+--- src/vcr.h.orig	2003-03-16 19:40:31.000000000 +0100
++++ src/vcr.h	2003-03-16 19:41:01.000000000 +0100
+@@ -11,11 +11,6 @@
+ #endif
+ 
+ #include <version.h>
+-#if (AVIFILE_MAJOR_VERSION == 0) && (AVIFILE_MINOR_VERSION ==  53)
+-#  error "Avifile 0.53.3 support has been dropped."
+-#elif !defined(VCR_AVIFILE_0_6)
+-#  error "Read the README, section 2 & 3 about avifile-0.6 and follow the instructions."
+-#endif
+ 
+ #ifdef HAVE_SYS_SOUNDCARD_H
+ #  define _VCR_SOUNDCARD <sys/soundcard.h>

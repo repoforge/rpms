@@ -1,0 +1,71 @@
+# This file was written to create all needed additional /dev entries in order
+# to use ALSA with Red Hat Linux.
+# It integrates cleanly into the original device creation mechanism.
+# See http://freshrpms.net/ for more information.
+# Type Perms User Group Major Minor Inc Count Base
+
+# OSS devices that aren't part of Red Hat Linux
+
+c $ALLWRITE             14   9 16   4 dmmidi%d
+c $ALLWRITE             14  10 16   4 dmfm%d
+c $ALLWRITE             14  11 16   4 amixer%d
+c $ALLWRITE             14  12 16   4 adsp%d
+c $ALLWRITE             14  13 16   4 amidi%d
+c $ALLWRITE             14  14 16   4 admmidi%d
+
+# Some links are reversed because of existing nodes (mixer, dsp, audio)
+l                                     mixer0  mixer
+l                                     midi    midi0
+l                                     dsp0    dsp
+l                                     audio0  audio
+l                                     music   sequencer2
+l                                     adsp    adsp0
+l                                     amidi   amidi0
+
+# ALSA devices
+# Most is now accessed through the /dev/snd link to /proc/asound/dev
+
+c $ALLWRITE            116   0 32   4 snd/controlC%d
+c $ALLWRITE            116   1  1   1 snd/seq
+c $ALLWRITE            116  33  1   1 snd/timer
+
+c $ALLWRITE            116   4  1   4 snd/hwC0D%d
+c $ALLWRITE            116  36  1   4 snd/hwC1D%d
+c $ALLWRITE            116  68  1   4 snd/hwC2D%d
+c $ALLWRITE            116 100  1   4 snd/hwC3D%d
+
+c $ALLWRITE            116   8  1   8 snd/midiC0D%d
+c $ALLWRITE            116  40  1   8 snd/midiC1D%d
+c $ALLWRITE            116  72  1   8 snd/midiC2D%d
+c $ALLWRITE            116 104  1   8 snd/midiC3D%d
+
+c $ALLWRITE            116  16  1   8 snd/pcmC0D%dp
+c $ALLWRITE            116  48  1   8 snd/pcmC1D%dp
+c $ALLWRITE            116  80  1   8 snd/pcmC2D%dp
+c $ALLWRITE            116 112  1   8 snd/pcmC3D%dp
+
+c $ALLWRITE            116  24  1   8 snd/pcmC0D%dc
+c $ALLWRITE            116  56  1   8 snd/pcmC1D%dc
+c $ALLWRITE            116  88  1   8 snd/pcmC2D%dc
+c $ALLWRITE            116 120  1   8 snd/pcmC3D%dc
+
+c $ALLWRITE            116   0 32   4 aloadC%d
+c $ALLWRITE            116   1  1   1 aloadSEQ
+
+# Aliases to have all created with "alsa"
+
+a alsa dmmidi
+a alsa dmfm
+a alsa amixer
+a alsa adsp
+a alsa amidi
+a alsa admmidi
+a alsa snd/controlC
+a alsa snd/seq
+a alsa snd/timer
+a alsa snd/hwC
+a alsa snd/midiC
+a alsa snd/pcmC
+a alsa aloadC
+a alsa aloadSEQ
+

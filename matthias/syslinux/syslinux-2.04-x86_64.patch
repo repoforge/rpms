@@ -1,0 +1,25 @@
+--- syslinux-2.04/sample/Makefile.x86_64	2003-04-19 06:18:29.000000000 +0900
++++ syslinux-2.04/sample/Makefile	2003-04-22 01:42:03.000000000 +0900
+@@ -23,6 +23,13 @@
+ OBJCOPY    = objcopy
+ PPMTOLSS16 = 	../ppmtolss16
+ 
++ARCH := $(shell uname -m)
++ifneq (x86_64, $ARCH)
++CFLAGS += -m32
++SFLAGS += -m32
++LDFLAGS += -m elf_i386
++endif
++
+ .SUFFIXES: .lss .c .o .elf .c32
+ 
+ all: syslogo.lss hello.c32 hello2.c32
+@@ -34,7 +41,7 @@
+ 	$(CC) $(CFLAGS) -c -o $@ $<
+ 
+ %.elf: c32entry.o %.o
+-	$(LD) -Ttext 0x101000 -e _start -o $@ $^
++	$(LD) $(LDFLAGS) -Ttext 0x101000 -e _start -o $@ $^
+ 
+ %.c32: %.elf
+ 	$(OBJCOPY) -O binary $< $@

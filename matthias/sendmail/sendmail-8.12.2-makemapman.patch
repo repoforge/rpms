@@ -1,0 +1,67 @@
+--- sendmail-8.12.2/devtools/OS/Linux	Tue Feb 19 15:23:34 2002
++++ sendmail-8.12.2/devtools/OS/Linux	Tue Feb 19 15:24:05 2002
+@@ -1,7 +1,7 @@
+ #	$Id: sendmail-8.12.2-makemapman.patch,v 1.1 2004/02/24 23:49:35 dag- Exp $
+ define(`confDEPEND_TYPE', `CC-M')
+ define(`confSM_OS_HEADER', `sm_os_linux')
+-define(`confMANROOT', `/usr/man/man')
++define(`confMANROOT', `/usr/share/man/man')
+ define(`confLIBS', `-ldl')
+ define(`confEBINDIR', `/usr/sbin')
+ APPENDDEF(`confLIBSEARCH', `crypt nsl')
+@@ -11,6 +11,8 @@
+ define(`confMTLDOPTS', `-lpthread')
+ define(`confLDOPTS_SO', `-shared')
+ define(`confSONAME',`-soname')
++define('confSBINGRP', 'mail')
++define('confSBINMODE', '6755')
+ 
+ ifelse(confBLDVARIANT, `DEBUG',
+ dnl Debug build
+--- sendmail-8.12.2/makemap/makemap.8	Tue Oct  9 23:23:02 2001
++++ sendmail-8.12.2/makemap/makemap.8	Tue Feb 19 15:23:34 2002
+@@ -50,12 +50,6 @@
+ parameter.  
+ They may be
+ .TP
+-dbm
+-DBM format maps.  
+-This requires the 
+-ndbm(3) 
+-library.
+-.TP
+ btree
+ B-Tree format maps.  
+ This requires the new Berkeley DB 
+--- sendmail-8.12.2/sendmail/daemon.c	Mon Dec 31 14:46:38 2001
++++ sendmail-8.12.2/sendmail/daemon.c	Tue Feb 19 15:23:34 2002
+@@ -3418,7 +3418,7 @@
+ 
+ 	/* get result */
+ 	p = &ibuf[0];
+-	nleft = sizeof ibuf - 1;
++	nleft = sizeof(ibuf) - 1;
+ 	while ((i = read(s, p, nleft)) > 0)
+ 	{
+ 		p += i;
+--- sendmail-8.12.2/cf/cf/Build	Mon Mar  1 21:37:12 1999
++++ sendmail-8.12.2/cf/cf/Build	Tue Feb 19 15:23:34 2002
+@@ -18,7 +18,7 @@
+ SMROOT=${SMROOT-../..}
+ BUILDTOOLS=${BUILDTOOLS-$SMROOT/devtools}
+ 
+-M4=`sh $BUILDTOOLS/bin/find_m4.sh`
++M4=/usr/bin/m4
+ ret=$?
+ if [ $ret -ne 0 ]
+ then
+--- sendmail-8.12.2/rmail/rmail.c	Tue Sep 18 17:45:29 2001
++++ sendmail-8.12.2/rmail/rmail.c	Tue Feb 19 15:23:34 2002
+@@ -276,7 +276,6 @@
+ 	args[i++] = _PATH_SENDMAIL;	/* Build sendmail's argument list. */
+ 	args[i++] = "-G";		/* relay submission */
+ 	args[i++] = "-oee";		/* No errors, just status. */
+-	args[i++] = "-odq";		/* Queue it, don't try to deliver. */
+ 	args[i++] = "-oi";		/* Ignore '.' on a line by itself. */
+ 
+ 	/* set from system and protocol used */

@@ -1,0 +1,10 @@
+--- bind-9.1.0b1/bin/dig/dighost.c.broken	Tue Dec 19 20:21:57 2000
++++ bind-9.1.0b1/bin/dig/dighost.c	Tue Dec 19 20:22:41 2000
+@@ -212,6 +212,7 @@
+ 		if (n == 0) {
+ 			return (DNS_R_BADDOTTEDQUAD);
+ 		}
++		reverse[0] = 0;
+ 		for (i = n - 1; i >= 0; i--) {
+ 			snprintf(working, MXNAME/8, "%d.",
+ 				 adrs[i]);

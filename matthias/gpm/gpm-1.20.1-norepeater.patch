@@ -1,0 +1,27 @@
+--- gpm-1.20.1/src/gpn.c.orig	2003-06-24 04:16:52.000000000 -0400
++++ gpm-1.20.1/src/gpn.c	2003-06-24 04:17:18.000000000 -0400
+@@ -256,9 +256,7 @@
+          case 'l': opt_lut = optarg;                     break;
+          case 'm': add_mouse(GPM_ADD_DEVICE,optarg);     
+                    opt_dev = optarg;                     break; /* GO AWAY!*/
+-         case 'M': opt_double++; option.repeater++;
+-            if (option.repeater_type == 0)
+-               option.repeater_type = "msc";
++         case 'M': opt_double++;
+             which_mouse=mouse_table+2;                   break;
+          case 'o': add_mouse(GPM_ADD_OPTIONS,optarg);
+                    gpm_report(GPM_PR_DEBUG,"options: %s",optarg);
+--- gpm-1.20.1/doc/doc.gpm.in.orig	2003-06-26 14:52:57.000000000 -0400
++++ gpm-1.20.1/doc/doc.gpm.in	2003-06-26 14:56:58.000000000 -0400
+@@ -390,8 +390,9 @@
+ @item -M
+         Enable multiple mode. The daemon will read two different mouse devices.
+         Any subsequent option will refer to the second device, while any
+-        preceding option will be used for the first device. This option
+-        automatically forces the @emph{repeater} (@samp{-R}) option on.
++        preceding option will be used for the first device. In Red Hat Linux,
++        this option @emph{DOES NOT} enable the @emph{repeater} (@samp{-R})
++        option on.
+ 
+ @item -o @var{list-of-extra-options}
+ 	The option works similary to the ``-o'' option of mount; it is

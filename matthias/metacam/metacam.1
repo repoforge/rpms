@@ -1,0 +1,30 @@
+.TH "metacam" "1" "December 2001" "Daniel Stephens" ""
+.SH "NAME"
+.LP 
+metacam \- extract EXIF information from digital camera files
+.SH "SYNOPSIS"
+.LP 
+.B metacam
+[\fB\-v\fP|\fB\-a\fP] [\fIFILE\fP]...
+.br 
+
+.SH "DESCRIPTION"
+.LP 
+.B metacam
+supports all standard EXIF fields in addition to (known) vendor specific blocks from Nikon, Olympus and Canon.
+.SH "OPTIONS"
+.LP 
+.TP 
+\fB\-h\fR, \fB\-\-help\fR
+Output help information and exit.
+.TP 
+\fB\-v\fR, \fB\-\-verbose\fR
+Output unknown tags too.
+.TP 
+\fB\-a\fR, \fB\-\-all\fR
+Output ALL tags (implies \-v).
+.SH "AUTHORS"
+.LP 
+Daniel Stephens <daniel@cheeseplant.org>
+.br 
+Manual page by Alp Toker <alp@atoker.com>

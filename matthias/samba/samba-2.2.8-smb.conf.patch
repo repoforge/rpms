@@ -1,0 +1,284 @@
+--- samba-2.2.8/packaging/RedHat/smb.conf.oldconf	2001-04-16 14:28:57.000000000 -0400
++++ samba-2.2.8/packaging/RedHat/smb.conf	2003-04-24 15:57:35.000000000 -0400
+@@ -34,24 +34,37 @@
+ 
+ # It should not be necessary to spell out the print system type unless
+ # yours is non-standard. Currently supported print systems include:
+-# bsd, sysv, plp, lprng, aix, hpux, qnx
+-;   printing = bsd
++# bsd, sysv, plp, lprng, aix, hpux, qnx, cups
++   printing = cups
++
++# list of users and groups which should be able to remotely manage
++# printer drivers installed on the server
++;  printer admin = root, +ntadmin
+ 
+ # Uncomment this if you want a guest account, you must add this to /etc/passwd
+ # otherwise the user "nobody" is used
+ ;  guest account = pcguest
+ 
++# This tells Samba to put the smbd.pid and nmbd.pid files where the initscripts
++# can find them
++   pid directory = /var/run
++
+ # this tells Samba to use a separate log file for each machine
+ # that connects
+-   log file = /var/log/samba/log.%m
++   log file = /var/log/samba/%m.log
+ 
+ # Put a capping on the size of the log files (in Kb).
+-   max log size = 50
++   max log size = 0
+ 
+ # Security mode. Most people will want user level security. See
+ # security_level.txt for details.
+    security = user
++
+ # Use password server option only with security = server
++# The argument list may include:
++#   password server = My_PDC_Name [My_BDC_Name] [My_Next_BDC_Name]
++# or to auto-locate the domain controller/s
++#   password server = *
+ ;   password server = <NT-Server-Name>
+ 
+ # Password Level allows matching of _n_ characters of the password for
+@@ -62,18 +75,30 @@
+ # You may wish to use password encryption. Please read
+ # ENCRYPTION.txt, Win95.txt and WinNT.txt in the Samba documentation.
+ # Do not enable this option unless you have read those documents
+-;  encrypt passwords = yes
+-;  smb passwd file = /etc/samba/smbpasswd
++   encrypt passwords = yes
++   smb passwd file = /etc/samba/smbpasswd
++
++# The following is needed to keep smbclient from spouting spurious errors
++# when Samba is built with support for SSL.
++;   ssl CA certFile = /usr/share/ssl/certs/ca-bundle.crt
+ 
+ # The following are needed to allow password changing from Windows to
+-# update the Linux sytsem password also.
++# update the Linux system password also.
+ # NOTE: Use these with 'encrypt passwords' and 'smb passwd file' above.
+ # NOTE2: You do NOT need these to allow workstations to change only
+ #        the encrypted SMB passwords. They allow the Unix password
+ #        to be kept in sync with the SMB password.
+-;  unix password sync = Yes
+-;  passwd program = /usr/bin/passwd %u
+-;  passwd chat = *New*UNIX*password* %n\n *ReType*new*UNIX*password* %n\n *passwd:*all*authentication*tokens*updated*successfully*
++   unix password sync = Yes
++   passwd program = /usr/bin/passwd %u
++   passwd chat = *New*password* %n\n *Retype*new*password* %n\n *passwd:*all*authentication*tokens*updated*successfully*
++
++# You can use PAM's password change control flag for Samba. If
++# enabled, then PAM will be used for password changes when requested
++# by an SMB client instead of the program listed in passwd program.
++# It should be possible to enable this without changing your passwd
++# chat parameter for most setups.
++
++   pam password change = yes
+ 
+ # Unix users can map to different SMB User names
+ ;  username map = /etc/samba/smbusers
+@@ -83,13 +108,22 @@
+ # of the machine that is connecting
+ ;   include = /etc/samba/smb.conf.%m
+ 
++# This parameter will control whether or not Samba should obey PAM's
++# account and session management directives. The default behavior is
++# to use PAM for clear text authentication only and to ignore any
++# account or session management. Note that Samba always ignores PAM
++# for authentication in the case of encrypt passwords = yes
++
++  obey pam restrictions = yes
++
+ # Most people will find that this option gives better performance.
+ # See speed.txt and the manual pages for details
+    socket options = TCP_NODELAY SO_RCVBUF=8192 SO_SNDBUF=8192
+ 
+ # Configure Samba to use multiple interfaces
+-# If you have multiple network interfaces then you must list them
+-# here. See the man page for details.
++# If you have multiple network interfaces, and you don't want Samba
++# to use them all (the default), you must list the interfaces you want
++# Samba to use here. See the man page for details.
+ ;   interfaces = 192.168.12.2/24 192.168.13.2/24 
+ 
+ # Configure remote browse list synchronisation here
+@@ -99,27 +133,29 @@
+ # Cause this host to announce itself to local subnets here
+ ;   remote announce = 192.168.1.255 192.168.2.44
+ 
++# Should smbd report that it has MS-DFS Capabilities?
++# MS-DFS allows you to create shares that contain special links to
++# other shares, potentially on other servers.  See the Samba documentation
++# or swat for details.
++;   host msdfs = no
++
+ # Browser Control Options:
+ # set local master to no if you don't want Samba to become a master
+ # browser on your network. Otherwise the normal election rules apply
+-;   local master = no
++   local master = no
+ 
+ # OS Level determines the precedence of this server in master browser
+ # elections. The default value should be reasonable
+-;   os level = 33
++;   os level = 20
+ 
+ # Domain Master specifies Samba to be the Domain Master Browser. This
+ # allows Samba to collate browse lists between subnets. Don't use this
+ # if you already have a Windows NT domain controller doing this job
+-;   domain master = yes 
++;   domain master = no
+ 
+ # Preferred Master causes Samba to force a local browser election on startup
+ # and gives it a slightly higher chance of winning the election
+-;   preferred master = yes
+-
+-# Use only if you have an NT server on your network that has been
+-# configured at install time to be a primary domain controller.
+-;   domain controller = <NT-Domain-Controller-SMBName>
++   preferred master = no
+ 
+ # Enable this if you want Samba to be a domain logon server for 
+ # Windows95 workstations. 
+@@ -137,19 +173,6 @@
+ #        You must uncomment the [Profiles] share below
+ ;   logon path = \\%L\Profiles\%U
+ 
+-# All NetBIOS names must be resolved to IP Addresses
+-# 'Name Resolve Order' allows the named resolution mechanism to be specified
+-# the default order is "host lmhosts wins bcast". "host" means use the unix
+-# system gethostbyname() function call that will use either /etc/hosts OR
+-# DNS or NIS depending on the settings of /etc/host.config, /etc/nsswitch.conf
+-# and the /etc/resolv.conf file. "host" therefore is system configuration
+-# dependant. This parameter is most often of use to prevent DNS lookups
+-# in order to resolve NetBIOS names to IP Addresses. Use with care!
+-# The example below excludes use of name resolution for machines that are NOT
+-# on the local network segment
+-# - OR - are not deliberately to be known via lmhosts or via WINS.
+-; name resolve order = wins lmhosts bcast
+-
+ # Windows Internet Name Serving Support Section:
+ # WINS Support - Tells the NMBD component of Samba to enable it's WINS Server
+ ;   wins support = yes
+@@ -166,7 +189,7 @@
+ # DNS Proxy - tells Samba whether or not to try to resolve NetBIOS names
+ # via DNS nslookups. The built-in default for versions 1.9.17 is yes,
+ # this has been changed in version 1.9.18 to no.
+-   dns proxy = no 
++;  dns proxy = no 
+ 
+ # Case Preservation can be handy - system default is _no_
+ # NOTE: These can be set on a per share basis
+@@ -177,16 +200,47 @@
+ # Be very careful with case sensitivity - it can break things!
+ ;  case sensitive = no
+ 
++##  
++## Winbind
++##
++
++# specify the uid range which can be used by winbindd
++# to allocate uids for Windows users as necessary
++; winbind uid = 10000-65000
++
++# specify the uid range which can be used by winbindd
++# to allocate uids for Windows users as necessary
++; winbind gid = 10000-65000
++
++# Define a home directory to be given to passwd(5) style entries
++# generated by libnss_winbind.so.  You can use variables here
++; winbind template homedir = /home/%D/%U
++
++# Specify a shell for all winbind user entries return by the
++# libnss_winbind.so library.
++; winbind template shell = /bin/sh
++
++# What character should be used to separate the DOMAIN and Username
++# for a Windows user.  The default is DOMAIN\user, but many people
++# prefer DOMAIN+user
++; winbind separator = +
++
+ #============================ Share Definitions ==============================
+ [homes]
+    comment = Home Directories
+    browseable = no
+    writable = yes
++   valid users = %S
++   create mode = 0664
++   directory mode = 0775
++# If you want users samba doesn't recognize to be mapped to a guest user
++; map to guest = bad user
++
+ 
+ # Un-comment the following and create the netlogon directory for Domain Logons
+ ; [netlogon]
+ ;   comment = Network Logon Service
+-;   path = /home/netlogon
++;   path = /usr/local/samba/lib/netlogon
+ ;   guest ok = yes
+ ;   writable = no
+ ;   share modes = no
+@@ -195,7 +249,7 @@
+ # Un-comment the following to provide a specific roving profile share
+ # the default is to use the user's home directory
+ ;[Profiles]
+-;    path = /home/profiles
++;    path = /usr/local/samba/profiles
+ ;    browseable = no
+ ;    guest ok = yes
+ 
+@@ -211,6 +265,13 @@
+    writable = no
+    printable = yes
+ 
++# This share contains symbolic links whose linknames refer to another
++# SMB share.  See the Samba documentation or swat for details.  It can
++# only be used if "host msdfs" is set to "yes" above.
++;[dfsroot]
++;   path = /usr/local/samba/dfsroot
++;   dfs root = yes
++
+ # This one is useful for people to share files
+ ;[tmp]
+ ;   comment = Temporary file space
+@@ -224,7 +285,8 @@
+ ;   comment = Public Stuff
+ ;   path = /home/samba
+ ;   public = yes
+-;   read only = yes
++;   writable = yes
++;   printable = no
+ ;   write list = @staff
+ 
+ # Other examples. 
+@@ -235,7 +297,7 @@
+ ;[fredsprn]
+ ;   comment = Fred's Printer
+ ;   valid users = fred
+-;   path = /homes/fred
++;   path = /home/fred
+ ;   printer = freds_printer
+ ;   public = no
+ ;   writable = no
+@@ -253,11 +315,11 @@
+ 
+ # a service which has a different directory for each machine that connects
+ # this allows you to tailor configurations to incoming machines. You could
+-# also use the %u option to tailor it by user name.
++# also use the %U option to tailor it by user name.
+ # The %m gets replaced with the machine name that is connecting.
+ ;[pchome]
+ ;  comment = PC Directories
+-;  path = /usr/pc/%m
++;  path = /usr/local/pc/%m
+ ;  public = no
+ ;  writable = yes
+ 
+@@ -286,5 +348,3 @@
+ ;   writable = yes
+ ;   printable = no
+ ;   create mask = 0765
+-
+-

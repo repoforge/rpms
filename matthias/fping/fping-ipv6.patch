@@ -1,0 +1,952 @@
+diff -Naur fping-2.4b2/ChangeLog fping-2.4b2_to-ipv6/ChangeLog
+--- fping-2.4b2/ChangeLog	Thu Mar 15 03:09:39 2001
++++ fping-2.4b2_to-ipv6/ChangeLog	Mon Jan 21 02:15:04 2002
+@@ -1,12 +1,23 @@
+-Tue Mar 14 18:37:50 2001
+-Jason Ewasiuk (ZeroHype Technologies Inc.) <noc@zerohype.com>
++Wed Jan 16 2002
++Jeroen Massar
++- Revision v2.4b2-to-IPv6
++   - Added IPv6 support.
++   - Added -I option for selecting source IPv4/IPv6 address.
++   - Makefile.in now generates a Makefile which will build both 
++     fping (IPv4) and fping6 (IPv6). Thus it makes an fping (IPv4 only)
++     and an fping6 (IPv6 only).
++   - num_unreachable was counted twice when a sendto() generated errors.
++   - See http://unfix.org/projects/ipv6/ 
++
++Tue Mar 14 2001
++Jason Ewasiuk <jasone@remote.net>
+ - Revision v2.4b1
+ 	- added -g option for generating IPs from a start to an end value
+ 		- two available options, generate IPs from start IP to end IP
+ 		  or from a passed netmask, such as 192.168.1.0/24
+ 
+-Thu Feb 15 14:35:00 2001
+-Jason Ewasiuk (ZeroHype Technologies Inc.) <noc@zerohype.com>
++Thu Feb 15 2001
++Jason Ewasiuk <jasone@remote.net>
+ - Revision v2.3b1
+ 	- formatting changes to code layout (fping.c)
+ 	NOTE:  Best viewed with a tab stop of 4
+diff -Naur fping-2.4b2/Makefile.am fping-2.4b2_to-ipv6/Makefile.am
+--- fping-2.4b2/Makefile.am	Thu Mar 15 03:07:52 2001
++++ fping-2.4b2_to-ipv6/Makefile.am	Wed Jan 16 01:52:18 2002
+@@ -1,5 +1,5 @@
+-
+ sbin_PROGRAMS = fping
+ fping_SOURCES = fping.c options.h linux.h
+ man_MANS = fping.8
+ AUTOMAKE_OPTIONS=foreign
++EXTRA_DIST = $(man_MANS)
+diff -Naur fping-2.4b2/README fping-2.4b2_to-ipv6/README
+--- fping-2.4b2/README	Wed Apr 25 20:29:10 2001
++++ fping-2.4b2_to-ipv6/README	Mon Jan 21 02:02:12 2002
+@@ -1,9 +1,9 @@
+ fping README
+ ------------
+ 
+-Current maintainer and cool feature adder:
++Current maintainer:
+ 
+-ZeroHype Technologies Inc. (noc@zerohype.com) http://www.zerohype.com
++David Papp - david@remote.net 
+ 
+ 
+ fping website:  http://www.fping.com
+@@ -11,6 +11,7 @@
+ 
+ Original author:  Roland Schemers (schemers@stanford.edu)
+ Previous maintainer:  RL "Bob" Morgan (morgan@stanford.edu)
++IPv6 Support: Jeroen Massar (jeroen@unfix.org / jeroen@ipng.nl)
+ 
+ 
+ Suggestions and patches:
+diff -Naur fping-2.4b2/acconfig.h fping-2.4b2_to-ipv6/acconfig.h
+--- fping-2.4b2/acconfig.h	Thu Mar 15 03:07:52 2001
++++ fping-2.4b2_to-ipv6/acconfig.h	Sat Nov  3 16:23:40 2001
+@@ -1,4 +1,18 @@
++#ifndef CONFIG_H
++#define CONFIG_H
++
++@TOP@
+ 
+ /* VERSION (from configure.in) */
+ #undef VERSION
+ 
++
++@BOTTOM@
++
++/* some OSes do not define this ... lets take a wild guess */
++
++#ifndef INADDR_NONE
++#  define INADDR_NONE 0xffffffffU
++#endif
++
++#endif /* CONFIG_H */
+diff -Naur fping-2.4b2/aclocal.m4 fping-2.4b2_to-ipv6/aclocal.m4
+--- fping-2.4b2/aclocal.m4	Thu Jan  1 01:00:00 1970
++++ fping-2.4b2_to-ipv6/aclocal.m4	Wed Jan 16 01:48:55 2002
+@@ -0,0 +1,127 @@
++dnl aclocal.m4 generated automatically by aclocal 1.4
++
++dnl Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
++dnl This file is free software; the Free Software Foundation
++dnl gives unlimited permission to copy and/or distribute it,
++dnl with or without modifications, as long as this notice is preserved.
++
++dnl This program is distributed in the hope that it will be useful,
++dnl but WITHOUT ANY WARRANTY, to the extent permitted by law; without
++dnl even the implied warranty of MERCHANTABILITY or FITNESS FOR A
++dnl PARTICULAR PURPOSE.
++
++# Do all the work for Automake.  This macro actually does too much --
++# some checks are only needed if your package does certain things.
++# But this isn't really a big deal.
++
++# serial 1
++
++dnl Usage:
++dnl AM_INIT_AUTOMAKE(package,version, [no-define])
++
++AC_DEFUN(AM_INIT_AUTOMAKE,
++[AC_REQUIRE([AC_PROG_INSTALL])
++PACKAGE=[$1]
++AC_SUBST(PACKAGE)
++VERSION=[$2]
++AC_SUBST(VERSION)
++dnl test to see if srcdir already configured
++if test "`cd $srcdir && pwd`" != "`pwd`" && test -f $srcdir/config.status; then
++  AC_MSG_ERROR([source directory already configured; run "make distclean" there first])
++fi
++ifelse([$3],,
++AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE", [Name of package])
++AC_DEFINE_UNQUOTED(VERSION, "$VERSION", [Version number of package]))
++AC_REQUIRE([AM_SANITY_CHECK])
++AC_REQUIRE([AC_ARG_PROGRAM])
++dnl FIXME This is truly gross.
++missing_dir=`cd $ac_aux_dir && pwd`
++AM_MISSING_PROG(ACLOCAL, aclocal, $missing_dir)
++AM_MISSING_PROG(AUTOCONF, autoconf, $missing_dir)
++AM_MISSING_PROG(AUTOMAKE, automake, $missing_dir)
++AM_MISSING_PROG(AUTOHEADER, autoheader, $missing_dir)
++AM_MISSING_PROG(MAKEINFO, makeinfo, $missing_dir)
++AC_REQUIRE([AC_PROG_MAKE_SET])])
++
++#
++# Check to make sure that the build environment is sane.
++#
++
++AC_DEFUN(AM_SANITY_CHECK,
++[AC_MSG_CHECKING([whether build environment is sane])
++# Just in case
++sleep 1
++echo timestamp > conftestfile
++# Do `set' in a subshell so we don't clobber the current shell's
++# arguments.  Must try -L first in case configure is actually a
++# symlink; some systems play weird games with the mod time of symlinks
++# (eg FreeBSD returns the mod time of the symlink's containing
++# directory).
++if (
++   set X `ls -Lt $srcdir/configure conftestfile 2> /dev/null`
++   if test "[$]*" = "X"; then
++      # -L didn't work.
++      set X `ls -t $srcdir/configure conftestfile`
++   fi
++   if test "[$]*" != "X $srcdir/configure conftestfile" \
++      && test "[$]*" != "X conftestfile $srcdir/configure"; then
++
++      # If neither matched, then we have a broken ls.  This can happen
++      # if, for instance, CONFIG_SHELL is bash and it inherits a
++      # broken ls alias from the environment.  This has actually
++      # happened.  Such a system could not be considered "sane".
++      AC_MSG_ERROR([ls -t appears to fail.  Make sure there is not a broken
++alias in your environment])
++   fi
++
++   test "[$]2" = conftestfile
++   )
++then
++   # Ok.
++   :
++else
++   AC_MSG_ERROR([newly created file is older than distributed files!
++Check your system clock])
++fi
++rm -f conftest*
++AC_MSG_RESULT(yes)])
++
++dnl AM_MISSING_PROG(NAME, PROGRAM, DIRECTORY)
++dnl The program must properly implement --version.
++AC_DEFUN(AM_MISSING_PROG,
++[AC_MSG_CHECKING(for working $2)
++# Run test in a subshell; some versions of sh will print an error if
++# an executable is not found, even if stderr is redirected.
++# Redirect stdin to placate older versions of autoconf.  Sigh.
++if ($2 --version) < /dev/null > /dev/null 2>&1; then
++   $1=$2
++   AC_MSG_RESULT(found)
++else
++   $1="$3/missing $2"
++   AC_MSG_RESULT(missing)
++fi
++AC_SUBST($1)])
++
++# Like AC_CONFIG_HEADER, but automatically create stamp file.
++
++AC_DEFUN(AM_CONFIG_HEADER,
++[AC_PREREQ([2.12])
++AC_CONFIG_HEADER([$1])
++dnl When config.status generates a header, we must update the stamp-h file.
++dnl This file resides in the same directory as the config header
++dnl that is generated.  We must strip everything past the first ":",
++dnl and everything past the last "/".
++AC_OUTPUT_COMMANDS(changequote(<<,>>)dnl
++ifelse(patsubst(<<$1>>, <<[^ ]>>, <<>>), <<>>,
++<<test -z "<<$>>CONFIG_HEADERS" || echo timestamp > patsubst(<<$1>>, <<^\([^:]*/\)?.*>>, <<\1>>)stamp-h<<>>dnl>>,
++<<am_indx=1
++for am_file in <<$1>>; do
++  case " <<$>>CONFIG_HEADERS " in
++  *" <<$>>am_file "*<<)>>
++    echo timestamp > `echo <<$>>am_file | sed -e 's%:.*%%' -e 's%[^/]*$%%'`stamp-h$am_indx
++    ;;
++  esac
++  am_indx=`expr "<<$>>am_indx" + 1`
++done<<>>dnl>>)
++changequote([,]))])
++
+diff -Naur fping-2.4b2/config.h.in fping-2.4b2_to-ipv6/config.h.in
+--- fping-2.4b2/config.h.in	Thu Mar 15 03:07:52 2001
++++ fping-2.4b2_to-ipv6/config.h.in	Wed Jan 16 01:49:45 2002
+@@ -1,4 +1,7 @@
+ /* config.h.in.  Generated automatically from configure.in by autoheader.  */
++#ifndef CONFIG_H
++#define CONFIG_H
++
+ 
+ /* VERSION (from configure.in) */
+ #undef VERSION
+@@ -20,3 +23,18 @@
+ 
+ /* Define if you have the socket library (-lsocket).  */
+ #undef HAVE_LIBSOCKET
++
++/* Name of package */
++#undef PACKAGE
++
++/* Version number of package */
++#undef VERSION
++
++
++/* some OSes do not define this ... lets take a wild guess */
++
++#ifndef INADDR_NONE
++#  define INADDR_NONE 0xffffffffU
++#endif
++
++#endif /* CONFIG_H */
+diff -Naur fping-2.4b2/configure.in fping-2.4b2_to-ipv6/configure.in
+--- fping-2.4b2/configure.in	Thu Nov  7 21:11:57 2002
++++ fping-2.4b2_to-ipv6/configure.in	Wed Jan 16 01:48:02 2002
+@@ -1,18 +1,26 @@
+ dnl Process this file with autoconf to produce a configure script.
+ AC_INIT(fping.c)
+-AM_INIT_AUTOMAKE(fping,fping)
++AM_INIT_AUTOMAKE(fping, 2.4b2_to_ipv6)
++
+ AM_CONFIG_HEADER(config.h)
++#VERSION=2.4b2
++#PACKAGE=fping
++AC_SUBST(PACKAGE)
++AC_SUBST(VERSION)
++AC_DEFINE_UNQUOTED(VERSION,"$VERSION")
+ 
+ dnl Checks for programs.
+ 
+-AC_ARG_PROGRAM
+ AC_PROG_CC
+ AC_PROG_CPP
+ AC_PROG_INSTALL
+ 
+ dnl Checks for libraries.
+ 
+-AC_CHECK_FUNC(gethostbyname, [] AC_CHECK_LIB(nsl, gethostbyname))
++AC_CHECK_FUNC(gethostbyname)
++if test $ac_cv_func_gethostbyname = no; then
++    AC_CHECK_LIB(nsl, gethostbyname)
++fi
+ AC_CHECK_FUNC(connect)
+ if test $ac_cv_func_connect = no; then
+     AC_CHECK_LIB(socket, connect)
+@@ -21,4 +29,4 @@
+ dnl Checks for header files.
+ AC_CHECK_HEADERS(unistd.h sys/file.h stdlib.h sys/select.h)
+ 
+-AC_OUTPUT([Makefile])
++AC_OUTPUT(Makefile)
+diff -Naur fping-2.4b2/fping.8 fping-2.4b2_to-ipv6/fping.8
+--- fping-2.4b2/fping.8	Thu Mar 15 03:10:45 2001
++++ fping-2.4b2_to-ipv6/fping.8	Mon Jan 21 02:05:48 2002
+@@ -192,7 +192,7 @@
+ .nf
+ Roland J. Schemers III, Stanford University, concept and versions 1.x
+ RL "Bob" Morgan, Stanford University, versions 2.x
+-ZeroHype Technologies Inc. (http://www.zerohype.com), versions 2.3x and up,
++David Papp, versions 2.3x and up,
+ fping website:  http://www.fping.com
+ .ni
+ .SH DIAGNOSTICS
+diff -Naur fping-2.4b2/fping.c fping-2.4b2_to-ipv6/fping.c
+--- fping-2.4b2/fping.c	Fri Jul 20 19:10:26 2001
++++ fping-2.4b2_to-ipv6/fping.c	Mon Jan 21 02:06:30 2002
+@@ -17,12 +17,13 @@
+  *
+  * Current maintainers of fping:
+  *
+- * ZeroHype Technologies Inc. (http://www.zerohype.com)
+- * Suggestions and patches, please email noc@zerohype.com
++ * David Papp
++ * Suggestions and patches, please email david@remote.net
+  *
+  *
+  *
+- * Original author:  Roland Schemers  <schemers@stanford.edu> 
++ * Original author:  Roland Schemers  <schemers@stanford.edu>
++ * IPv6 Support:     Jeroen Massar    <jeroen@unfix.org / jeroen@ipng.nl>
+  *
+  *
+  *
+@@ -41,6 +42,7 @@
+  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  */
++#define IPV6 1						/* This should be a compiler option, or even better be done from the Makefile... ;) */
+ 
+ #ifndef _NO_PROTO
+ #if !__STDC__ && !defined( __cplusplus ) && !defined( FUNCPROTO ) \
+@@ -65,13 +67,16 @@
+ 
+ /*** autoconf includes ***/
+ 
+-#include <config.h>
+ 
+ #include <stdio.h>
+ #include <errno.h>
+ #include <time.h>
+ #include <signal.h>
+ 
++#include <netinet/in.h>
++
++#include "config.h"
++
+ #ifdef HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif /* HAVE_UNISTD_H */
+@@ -91,8 +96,10 @@
+ #include <sys/file.h>
+ #endif /* HAVE_SYS_FILE_H */
+ 
++#ifdef IPV6
++#include <netinet/icmp6.h>
++#endif
+ #include <netinet/in_systm.h>
+-#include <netinet/in.h>
+ 
+ /* Linux has bizarre ip.h and ip_icmp.h */
+ #if defined( __linux__ )
+@@ -126,8 +133,8 @@
+ 
+ /*** Constants ***/
+ 
+-#define REV_DATE	"2001/01/25 11:25:04"
+-#define EMAIL		"noc@zerohype.com"
++#define REV_DATE	"2002/01/16 00:33:42"
++#define EMAIL		"david@remote.net"
+ 
+ /*** Ping packet defines ***/
+ 
+@@ -215,6 +222,13 @@
+ };
+ 
+ #define	ICMP_UNREACH_MAXTYPE	15
++#ifndef IPV6
++#define	FPING_SOCKADDR struct sockaddr_in
++#define	FPING_ICMPHDR	struct icmp
++#else
++#define	FPING_SOCKADDR struct sockaddr_in6
++#define	FPING_ICMPHDR	struct icmp6_hdr
++#endif
+ 
+ /* entry used to keep track of each host we are pinging */
+ 
+@@ -225,7 +239,7 @@
+      char                 *name;              /* name as given by user */
+      char                 *host;              /* text description of host */
+      char                 *pad;               /* pad to align print names */
+-     struct sockaddr_in   saddr;              /* internet address */
++     FPING_SOCKADDR       saddr;              /* internet address */
+      int                  timeout;            /* time to wait for response */
+      u_char               running;            /* unset when through sending */
+      u_char               waiting;            /* waiting for response */
+@@ -335,7 +349,11 @@
+ #else
+ 
+ void add_name( char *name );
++#ifndef IPV6
+ void add_addr( char *name, char *host, struct in_addr ipaddr );
++#else
++void add_addr( char *name, char *host, FPING_SOCKADDR *ipaddr );
++#endif
+ char *na_cat( char *name, struct in_addr ipaddr );
+ char *cpystr( char *string );
+ void crash_and_burn( char *message );
+@@ -343,7 +361,7 @@
+ char *get_host_by_address( struct in_addr in );
+ int in_cksum( u_short *p, int n );
+ void u_sleep( int u_sec );
+-int recvfrom_wto ( int s, char *buf, int len, struct sockaddr *saddr, int timo );
++int recvfrom_wto ( int s, char *buf, int len, FPING_SOCKADDR *saddr, int timo );
+ void remove_job( HOST_ENTRY *h );
+ void send_ping( int s, HOST_ENTRY *h );
+ long timeval_diff( struct timeval *a, struct timeval *b );
+@@ -353,7 +371,7 @@
+ void print_per_system_splits( void );
+ void print_global_stats( void );
+ void finish();
+-int handle_random_icmp( struct icmp *p, int psize, struct sockaddr_in *addr );
++int handle_random_icmp( FPING_ICMPHDR *p, int psize, FPING_SOCKADDR *addr );
+ char *sprint_tm( int t );
+ 
+ #endif /* _NO_PROTO */
+@@ -382,12 +400,14 @@
+ #endif /* _NO_PROTO */
+ {
+ 	int c, i, n;
++#ifdef IPV6
++	int opton = 1;
++#endif
+ 	u_int lt, ht;
+ 	int advance;
+ 	struct protoent *proto;
+ 	char *buf;
+ 	uid_t uid;
+-
+ 	/* check if we are root */
+ 
+ 	if( geteuid() )
+@@ -400,15 +420,62 @@
+ 	}/* IF */
+ 
+ 	/* confirm that ICMP is available on this machine */
++#ifndef IPV6
+ 	if( ( proto = getprotobyname( "icmp" ) ) == NULL ) 
++#else
++	if( ( proto = getprotobyname( "ipv6-icmp" ) ) == NULL ) 
++#endif
+ 		crash_and_burn( "icmp: unknown protocol" );
+ 
+ 	/* create raw socket for ICMP calls (ping) */
++#ifndef IPV6
+ 	s = socket( AF_INET, SOCK_RAW, proto->p_proto );
++#else
++	s = socket( AF_INET6, SOCK_RAW, proto->p_proto );
++#endif
+ 
+ 	if( s < 0 )
+ 		errno_crash_and_burn( "can't create raw socket" );
+ 
++#ifdef IPV6
++	/*
++	 * let the kerel pass extension headers of incoming packets,
++	 * for privileged socket options
++	 */
++#ifdef IPV6_RECVHOPOPTS
++		if (setsockopt(s, IPPROTO_IPV6, IPV6_RECVHOPOPTS, &opton,
++		    sizeof(opton)))
++			err(1, "setsockopt(IPV6_RECVHOPOPTS)");
++#else  /* old adv. API */
++		if (setsockopt(s, IPPROTO_IPV6, IPV6_HOPOPTS, &opton,
++		    sizeof(opton)))
++			err(1, "setsockopt(IPV6_HOPOPTS)");
++#endif
++#ifdef IPV6_RECVDSTOPTS
++		if (setsockopt(s, IPPROTO_IPV6, IPV6_RECVDSTOPTS, &opton,
++		    sizeof(opton)))
++			err(1, "setsockopt(IPV6_RECVDSTOPTS)");
++#else  /* old adv. API */
++		if (setsockopt(s, IPPROTO_IPV6, IPV6_DSTOPTS, &opton,
++		    sizeof(opton)))
++			err(1, "setsockopt(IPV6_DSTOPTS)");
++#endif
++#ifdef IPV6_RECVRTHDRDSTOPTS
++		if (setsockopt(s, IPPROTO_IPV6, IPV6_RECVRTHDRDSTOPTS, &opton,
++		    sizeof(opton)))
++			err(1, "setsockopt(IPV6_RECVRTHDRDSTOPTS)");
++#endif
++#ifdef IPV6_RECVRTHDR
++		if (setsockopt(s, IPPROTO_IPV6, IPV6_RECVRTHDR, &opton,
++		    sizeof(opton)))
++			err(1, "setsockopt(IPV6_RECVRTHDR)");
++#else  /* old adv. API */
++		if (setsockopt(s, IPPROTO_IPV6, IPV6_RTHDR, &opton,
++		    sizeof(opton)))
++			err(1, "setsockopt(IPV6_RTHDR)");
++#endif
++#endif
++
+ 	if( ( uid = getuid() ) )
+ 	{
+ 		seteuid( getuid() );
+@@ -1425,7 +1492,7 @@
+ #endif /* _NO_PROTO */
+ {
+ 	char *buffer;
+-	struct icmp *icp;
++	FPING_ICMPHDR *icp;
+ 	PING_DATA *pdp;
+ 	int n;
+ 
+@@ -1434,9 +1501,10 @@
+ 		crash_and_burn( "can't malloc ping packet" );
+ 	
+ 	memset( buffer, 0, ping_pkt_size * sizeof( char ) );
+-	icp = ( struct icmp* )buffer;
++	icp = ( FPING_ICMPHDR* )buffer;
+ 
+ 	gettimeofday( &h->last_send_time, &tz );
++#ifndef IPV6
+ 	icp->icmp_type = ICMP_ECHO;
+ 	icp->icmp_code = 0;
+ 	icp->icmp_cksum = 0;
+@@ -1448,14 +1516,25 @@
+ 	pdp->ping_count = h->num_sent;
+ 
+ 	icp->icmp_cksum = in_cksum( ( u_short* )icp, ping_pkt_size );
++#else
++	icp->icmp6_type = ICMP6_ECHO_REQUEST;
++	icp->icmp6_code = 0;
++	icp->icmp6_seq = h->i;
++	icp->icmp6_id = ident;
++
++	pdp = ( PING_DATA* )( buffer + SIZE_ICMP_HDR );
++	pdp->ping_ts = h->last_send_time;
++	pdp->ping_count = h->num_sent;
+ 
++	icp->icmp6_cksum = 0;	// The IPv6 stack calculates the checksum for us...
++#endif
+ #if defined(DEBUG) || defined(_DEBUG)
+ 	if( trace_flag )
+ 		printf( "sending [%d] to %s\n", h->num_sent, h->host );
+ #endif /* DEBUG || _DEBUG */
+ 
+ 	n = sendto( s, buffer, ping_pkt_size, 0,
+-		( struct sockaddr* )&h->saddr, sizeof( struct sockaddr_in ) );
++		( struct sockaddr* )&h->saddr, sizeof( FPING_SOCKADDR ) );
+ 
+ 	if( n < 0 || n != ping_pkt_size )
+ 	{
+@@ -1520,18 +1599,17 @@
+ {
+ 	int result;
+ 	static char buffer[4096];
+-	struct sockaddr_in response_addr;
++	FPING_SOCKADDR response_addr;
+ 	struct ip *ip;
+-	int hlen;
+-	struct icmp *icp;
++	int hlen = 0;
++	FPING_ICMPHDR *icp;
+ 	int n, avg;
+ 	HOST_ENTRY *h;
+ 	long this_reply;
+ 	int this_count;
+ 	struct timeval sent_time;
+ 
+-	result = recvfrom_wto( s, buffer, 4096,
+-		( struct sockaddr* )&response_addr, select_time );
++	result = recvfrom_wto( s, buffer, sizeof(buffer), &response_addr, select_time );
+ 
+ 	if( result < 0 )
+ 		return 0;	/* timeout */
+@@ -1546,7 +1624,7 @@
+ #endif /* DEBUG || _DEBUG */
+ 
+ 	ip = ( struct ip* )buffer;
+-
++#ifndef IPV6
+ #if defined( __alpha__ ) && __STDC__ && !defined( __GLIBC__ )
+ 	/* The alpha headers are decidedly broken.
+ 	 * Using an ANSI compiler, it provides ip_vhl instead of ip_hl and
+@@ -1556,37 +1634,59 @@
+ #else
+ 	hlen = ip->ip_hl << 2;
+ #endif /* defined(__alpha__) && __STDC__ */
+-
+ 	if( result < hlen + ICMP_MINLEN )
++#else
++	if( result < sizeof(FPING_ICMPHDR) )
++#endif
+ 	{
+ 		if( verbose_flag )
++		{
++#ifndef IPV6
+ 			printf( "received packet too short for ICMP (%d bytes from %s)\n", result,
+ 				inet_ntoa( response_addr.sin_addr ) );
+-		
++#else			
++			char buf[INET6_ADDRSTRLEN];
++			inet_ntop(response_addr.sin6_family, &response_addr.sin6_addr, buf, INET6_ADDRSTRLEN);
++			printf( "received packet too short for ICMP (%d bytes from %s)\n", result, buf);
++#endif
++		}
+ 		return( 1 ); /* too short */ 
+-	
+ 	}/* IF */
+ 
+-	icp = ( struct icmp* )( buffer + hlen );
++	icp = ( FPING_ICMPHDR* )( buffer + hlen );
++#ifndef IPV6
+ 	if( icp->icmp_type != ICMP_ECHOREPLY )
++#else
++	if( icp->icmp6_type != ICMP6_ECHO_REPLY )
++#endif
+ 	{
+ 		/* handle some problem */
+ 		if( handle_random_icmp( icp, result, &response_addr ) )
+ 			num_othericmprcvd++;
+-		
+ 		return 1;
+-	
+ 	}/* IF */
+ 
++#ifndef IPV6
+ 	if( icp->icmp_id != ident )
++#else
++	if( icp->icmp6_id != ident )
++#endif
+ 		return 1; /* packet received, but not the one we are looking for! */
+ 
+ 	num_pingreceived++;
+ 
++#ifndef IPV6
+ 	if( icp->icmp_seq  >= ( n_short )num_hosts )
++#else
++	if( icp->icmp6_seq  >= ( n_short )num_hosts )
++#endif
+ 		return( 1 ); /* packet received, don't worry about it anymore */
+ 
++#ifndef IPV6
+ 	n = icp->icmp_seq;
++#else
++	n = icp->icmp6_seq;
++#endif
+ 	h = table[n];
+ 
+ 	/* received ping is cool, so process it */
+@@ -1595,9 +1695,14 @@
+ 	h->timeout = timeout;
+ 	h->num_recv++;
+ 	h->num_recv_i++;
+-	
++
++#ifndef IPV6
+ 	memcpy( &sent_time, icp->icmp_data + offsetof( PING_DATA, ping_ts ), sizeof( sent_time ) );
+ 	memcpy( &this_count, icp->icmp_data, sizeof( this_count ) );
++#else
++	memcpy( &sent_time, ((char *)icp->icmp6_data32)+4+offsetof(PING_DATA, ping_ts), sizeof( sent_time ) );
++	memcpy( &this_count, ((char *)icp->icmp6_data32)+4, sizeof( this_count ) );
++#endif
+ 
+ #if defined( DEBUG ) || defined( _DEBUG )
+ 	if( trace_flag ) 
+@@ -1627,10 +1732,18 @@
+ 				{
+ 					fprintf( stderr, "%s : duplicate for [%d], %d bytes, %s ms",
+ 						h->host, this_count, result, sprint_tm( this_reply ) );
+-
++#ifndef IPV6
+ 					if( response_addr.sin_addr.s_addr != h->saddr.sin_addr.s_addr )
+ 						fprintf( stderr, " [<- %s]", inet_ntoa( response_addr.sin_addr ) );
+-	  
++#else
++					if(memcmp(&response_addr.sin6_addr, &h->saddr.sin6_addr, sizeof(response_addr.sin6_addr)))
++					{
++						char buf[INET6_ADDRSTRLEN];
++						inet_ntop(response_addr.sin6_family, &response_addr.sin6_addr, buf, INET6_ADDRSTRLEN);
++
++						fprintf( stderr, " [<- %s]", buf);
++					}
++#endif	  
+ 					fprintf( stderr, "\n" );
+ 	
+ 				}/* IF */
+@@ -1660,10 +1773,17 @@
+ 
+ 			if( elapsed_flag )
+ 				printf( " (%s ms)", sprint_tm( this_reply ) );
+-      
++#ifndef IPV6
+ 			if( response_addr.sin_addr.s_addr != h->saddr.sin_addr.s_addr )
+ 				printf( " [<- %s]", inet_ntoa( response_addr.sin_addr ) );
+-
++#else
++      	if(memcmp(&response_addr.sin6_addr, &h->saddr.sin6_addr, sizeof(response_addr.sin6_addr)))
++			{
++				char buf[INET6_ADDRSTRLEN];
++				inet_ntop(response_addr.sin6_family, &response_addr.sin6_addr, buf, INET6_ADDRSTRLEN);
++				fprintf( stderr, " [<- %s]", buf);
++			}
++#endif
+ 			printf( "\n" );
+ 		
+ 		}/* IF */
+@@ -1688,9 +1808,17 @@
+ 				( h->num_recv * 100 ) / h->num_sent );
+ 		
+ 		}/* ELSE */
+-
++#ifndef IPV6
+ 		if( response_addr.sin_addr.s_addr != h->saddr.sin_addr.s_addr )
+ 			printf( " [<- %s]", inet_ntoa( response_addr.sin_addr ) );
++#else
++   	if(memcmp(&response_addr.sin6_addr, &h->saddr.sin6_addr, sizeof(response_addr.sin6_addr)))
++		{
++			char buf[INET6_ADDRSTRLEN];
++			inet_ntop(response_addr.sin6_family, &response_addr.sin6_addr, buf, INET6_ADDRSTRLEN);
++			fprintf( stderr, " [<- %s]", buf);
++		}
++#endif
+ 		
+ 		printf( "\n" );
+ 	
+@@ -1706,7 +1834,7 @@
+ 
+ *************************************************************
+ 
+-  Inputs:  struct icmp *p, int psize, struct sockaddr_in *addr
++  Inputs:  FPING_ICMPHDR *p, int psize, FPING_SOCKADDR *addr
+ 
+   Returns:  int
+ 
+@@ -1717,22 +1845,33 @@
+ 
+ #ifdef _NO_PROTO
+ int handle_random_icmp( p, psize, addr )
+-     struct icmp *p;
++     FPING_ICMPHDR *p;
+      int psize;
+-     struct sockaddr_in *addr;
++     FPING_SOCKADDR *addr;
+ #else
+-int handle_random_icmp( struct icmp *p, int psize, struct sockaddr_in *addr )
++int handle_random_icmp( FPING_ICMPHDR *p, int psize, FPING_SOCKADDR *addr )
+ #endif /* _NO_PROTO */
+ {
+-	struct icmp *sent_icmp;
++	FPING_ICMPHDR *sent_icmp;
+ 	struct ip *sent_ip;
+ 	u_char *c;
+ 	HOST_ENTRY *h;
++#ifdef IPV6
++	char addr_ascii[INET6_ADDRSTRLEN];
++	inet_ntop(addr->sin6_family, &addr->sin6_addr, addr_ascii, INET6_ADDRSTRLEN);
++#endif
+ 
+ 	c = ( u_char* )p;
++#ifndef IPV6
+ 	switch( p->icmp_type )
++#else
++	switch( p->icmp6_type )
++#endif
+ 	{
+ 	case ICMP_UNREACH:
++		sent_icmp = ( FPING_ICMPHDR* )( c + 28 );
++		
++#ifndef IPV6
+ 		sent_icmp = ( struct icmp* )( c + 28 );
+ 		
+ 		if( ( sent_icmp->icmp_type == ICMP_ECHO ) &&
+@@ -1747,16 +1886,37 @@
+ 				fprintf( stderr, "ICMP Unreachable (Invalid Code) from %s for ICMP Echo sent to %s",
+ 					inet_ntoa( addr->sin_addr ), h->host );
+ 
++#else
++		if( ( sent_icmp->icmp6_type == ICMP_ECHO ) &&
++			( sent_icmp->icmp6_id == ident ) &&
++			( sent_icmp->icmp6_seq < ( n_short )num_hosts ) )
++		{
++			/* this is a response to a ping we sent */
++			h = table[sent_icmp->icmp6_seq];
++			
++			if( p->icmp6_code > ICMP_UNREACH_MAXTYPE )
++			{
++				fprintf( stderr, "ICMP Unreachable (Invalid Code) from %s for ICMP Echo sent to %s",
++					addr_ascii, h->host );
++#endif
+ 			}/* IF */
+ 			else
+ 			{
+ 				fprintf( stderr, "%s from %s for ICMP Echo sent to %s",
++#ifndef IPV6
+ 					icmp_unreach_str[p->icmp_code], inet_ntoa( addr->sin_addr ), h->host );
++#else
++					icmp_unreach_str[p->icmp6_code], addr_ascii, h->host );
++#endif
+ 			
+ 			}/* ELSE */
+ 
+ 			if( inet_addr( h->host ) == -1 )
++#ifndef IPV6
+ 				fprintf( stderr, " (%s)", inet_ntoa( h->saddr.sin_addr ) );
++#else
++				fprintf( stderr, " (%s)", addr_ascii);
++#endif
+ 			
+ 			fprintf( stderr, "\n" );
+ 		
+@@ -1768,7 +1928,8 @@
+ 	case ICMP_REDIRECT:
+ 	case ICMP_TIMXCEED:
+ 	case ICMP_PARAMPROB:
+-		sent_icmp = ( struct icmp* )( c + 28 );
++		sent_icmp = ( FPING_ICMPHDR* )( c + 28 );
++#ifndef IPV6
+ 		if( ( sent_icmp->icmp_type = ICMP_ECHO ) && 
+ 			( sent_icmp->icmp_id = ident ) &&
+ 			( sent_icmp->icmp_seq < ( n_short )num_hosts ) )
+@@ -1780,6 +1941,19 @@
+       
+ 			if( inet_addr( h->host ) == -1 )
+ 				fprintf( stderr, " (%s)", inet_ntoa( h->saddr.sin_addr ) );
++#else
++		if( ( sent_icmp->icmp6_type = ICMP_ECHO ) && 
++			( sent_icmp->icmp6_id = ident ) &&
++			( sent_icmp->icmp6_seq < ( n_short )num_hosts ) )
++		{
++			/* this is a response to a ping we sent */
++			h = table[sent_icmp->icmp6_seq];
++			fprintf( stderr, "%s from %s for ICMP Echo sent to %s",
++				icmp_type_str[p->icmp6_type], addr_ascii, h->host );
++      
++			if( inet_addr( h->host ) == -1 )
++				fprintf( stderr, " (%s)", addr_ascii );
++#endif
+ 
+ 			fprintf( stderr, "\n" );
+ 		
+@@ -1879,6 +2053,7 @@
+ void add_name( char *name )
+ #endif /* _NO_PROTO */
+ {
++#ifndef IPV6
+ 	struct hostent *host_ent;
+ 	u_int ipaddress;
+ 	struct in_addr *ipa = ( struct in_addr* )&ipaddress;
+@@ -1985,7 +2160,27 @@
+ 
+ 		}/* WHILE */
+ 	}/* ELSE */
+-
++#else
++	FPING_SOCKADDR	dst;
++	struct addrinfo		*res, hints;
++	int						ret_ga;
++	char						*hostname;
++
++	/* getaddrinfo */
++	bzero(&hints, sizeof(struct addrinfo));
++	hints.ai_flags = AI_CANONNAME;
++	hints.ai_family = AF_INET6;
++	hints.ai_socktype = SOCK_RAW;
++	hints.ai_protocol = IPPROTO_ICMPV6;
++
++	ret_ga = getaddrinfo(name, NULL, &hints, &res);
++	if (ret_ga) errx(1, "%s", gai_strerror(ret_ga));
++	if (res->ai_canonname) hostname = res->ai_canonname;
++	else hostname = name;
++	if (!res->ai_addr) errx(1, "getaddrinfo failed");
++	(void)memcpy(&dst, res->ai_addr, sizeof(FPING_SOCKADDR)); /*res->ai_addrlen);*/
++	add_addr(name, name, &dst);
++#endif
+ } /* add_name() */
+ 
+ 
+@@ -2048,9 +2243,17 @@
+ void add_addr( name, host, ipaddr )
+ char *name;
+ char *host;
++#ifndef IPV6
+ struct in_addr ipaddr;
+ #else
++FPING_SOCKADDR *ipaddr;
++#endif
++#else
++#ifndef IPV6
+ void add_addr( char *name, char *host, struct in_addr ipaddr )
++#else
++void add_addr( char *name, char *host, FPING_SOCKADDR *ipaddr )
++#endif
+ #endif /* _NO_PROTO */
+ {
+ 	HOST_ENTRY *p;
+@@ -2064,8 +2267,13 @@
+ 
+ 	p->name = name;
+ 	p->host = host;
++#ifndef IPV6
+ 	p->saddr.sin_family = AF_INET;
+ 	p->saddr.sin_addr = ipaddr; 
++#else
++	p->saddr.sin6_family = AF_INET6;
++	(void)memcpy(&p->saddr, ipaddr, sizeof(FPING_SOCKADDR));
++#endif
+ 	p->timeout = timeout;
+ 	p->running = 1;
+ 	p->min_reply = 10000000;
+@@ -2193,7 +2401,11 @@
+ #endif /* _NO_PROTO */
+ {
+ 	struct hostent *h;
++#ifndef IPV6
+ 	h = gethostbyaddr( ( char* )&in, sizeof( struct in_addr ),AF_INET );
++#else
++	h = gethostbyaddr( ( char* )&in, sizeof( FPING_SOCKADDR ),AF_INET6 );
++#endif
+ 	
+ 	if( h == NULL || h->h_name == NULL )
+ 		return inet_ntoa( in );
+@@ -2429,7 +2641,7 @@
+ 
+ *************************************************************
+ 
+-  Inputs:  int s, char* buf, int len, struct sockaddr *saddr, int timo
++  Inputs:  int s, char* buf, int len, FPING_SOCKADDR *saddr, int timo
+ 
+   Returns:  int
+ 
+@@ -2443,9 +2655,9 @@
+ 
+ #ifdef _NO_PROTO
+ int recvfrom_wto( s, buf, len, saddr, timo )
+-int s; char *buf; int len; struct sockaddr *saddr; int timo;
++int s; char *buf; int len; FPING_SOCKADDR *saddr; int timo;
+ #else
+-int recvfrom_wto( int s, char *buf, int len, struct sockaddr *saddr, int timo )
++int recvfrom_wto( int s, char *buf, int len, FPING_SOCKADDR *saddr, int timo )
+ #endif /* _NO_PROTO */
+ {
+ 	int nfound, slen, n;
+@@ -2465,8 +2677,12 @@
+ 	if( nfound == 0 )
+ 		return -1;		/* timeout */
+ 
++#ifndef IPV6
+ 	slen = sizeof( struct sockaddr );
+-	n = recvfrom( s, buf, len, 0, saddr, &slen );
++#else
++	slen = sizeof( FPING_SOCKADDR );
++#endif
++	n = recvfrom( s, buf, len, 0, (struct sockaddr *)saddr, &slen );
+ 	if( n < 0 )
+ 		errno_crash_and_burn( "recvfrom" );
+ 	

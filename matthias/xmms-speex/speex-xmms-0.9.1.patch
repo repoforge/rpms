@@ -1,0 +1,33 @@
+diff -Naupr speex-xmms.orig/Makefile speex-xmms/Makefile
+--- speex-xmms.orig/Makefile	2003-08-03 18:18:42.000000000 +0200
++++ speex-xmms/Makefile	2004-01-05 15:48:48.000000000 +0100
+@@ -4,7 +4,7 @@ PACKAGE=\"libspeex\"
+ 
+ INCDIRS=`xmms-config --cflags`
+ CFLAGS = -Wall
+-OBJS = http.o config.o fileinfo.o speexutil.o # utf8.o
++OBJS = http.o config.o fileinfo.o speexutil.o utf8.o
+ GUIOBJS = gui/interface.o gui/support.o gui/callbacks.o
+ GUISRCS = gui/interface.c gui/interface.h gui/support.c gui/support.h gui/callbacks.c gui/callbacks.h
+ 
+@@ -16,8 +16,8 @@ $(GUIOBJS): $(GUISRCS)
+ libspeex.so: libspeex.c libspeex.h $(OBJS) $(GUIOBJS)
+ 	$(CC) -shared -logg -lspeex -lgtk -lpthread -lxmms $(INCDIRS) $(CFLAGS) -DVERSION=$(VERSION) -DPACKAGE=\"libspeex\" -o libspeex.so libspeex.c $(OBJS) $(GUIOBJS)
+ 
+-#utf8.o: utf8.c utf8.h
+-#	$(CC) -c $(INCDIRS) $(CFLAGS) -DHAVE_ICONV -DICONV_CONST= -o utf8.o utf8.c
++utf8.o: utf8.c utf8.h
++	$(CC) -c $(INCDIRS) $(CFLAGS) -DHAVE_ICONV -DICONV_CONST= -o utf8.o utf8.c
+ 
+ http.o: http.c http.h
+ 	$(CC) -c $(INCDIRS) $(CFLAGS) -DVERSION=$(VERSION) -DPACKAGE=$(PACKAGE) -o http.o http.c
+@@ -32,7 +32,8 @@ speexutil.o: speexutil.c speexutil.h
+ 	$(CC) -c $(INCDIRS) $(CFLAGS) -DVERSION=$(VERSION) -DPACKAGE=$(PACKAGE) -o speexutil.o speexutil.c
+ 
+ install: libspeex.so
+-	install libspeex.so `xmms-config --input-plugin-dir`
++	install -d $(DESTDIR)`xmms-config --input-plugin-dir`
++	install libspeex.so $(DESTDIR)`xmms-config --input-plugin-dir`
+ 
+ clean:
+ 	$(MAKE) -C gui/ clean

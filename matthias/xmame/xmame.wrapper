@@ -1,0 +1,14 @@
+#!/bin/sh
+
+PROG=`basename $0`
+if [ -x /usr/bin/$PROG.xgl ]; then
+	RUN=$PROG.xgl
+elif [ -x /usr/bin/$PROG.SDL ]; then
+	RUN=$PROG.SDL
+elif [ -x /usr/bin/$PROG.x11 ]; then
+	RUN=$PROG.x11
+else
+	echo "No suitable binary for $PROG found?!?"
+	exit 1
+fi
+exec $RUN $*

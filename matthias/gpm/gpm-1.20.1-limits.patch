@@ -1,0 +1,11 @@
+--- gpm-1.20.1/src/special.c.orig	2003-06-24 04:01:03.000000000 -0400
++++ gpm-1.20.1/src/special.c	2003-06-24 04:02:17.000000000 -0400
+@@ -155,7 +155,7 @@
+       open(GPM_NULL_DEV,O_RDONLY); /* stdin  */
+       open(option.consolename,O_WRONLY); /* stdout */
+       dup(1);                     /* stderr */
+-      for (i=3;i<OPEN_MAX; i++) close(i);
++      for (i=3;i<sysconf(_SC_OPEN_MAX); i++) close(i);
+       execl("/bin/sh","sh","-c",command,(char *)NULL);
+       exit(1); /* shouldn't happen */
+       

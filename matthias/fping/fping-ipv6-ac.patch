@@ -1,0 +1,461 @@
+diff -Naur fping-2.4b2_to-ipv6/config.h.in fping-2.4b2_to-ipv6-ac/config.h.in
+--- fping-2.4b2_to-ipv6/config.h.in	Wed Jan 16 01:49:45 2002
++++ fping-2.4b2_to-ipv6-ac/config.h.in	Thu Nov  7 20:53:14 2002
+@@ -1,4 +1,4 @@
+-/* config.h.in.  Generated automatically from configure.in by autoheader.  */
++/* config.h.in.  Generated from configure.in by autoheader.  */
+ #ifndef CONFIG_H
+ #define CONFIG_H
+ 
+@@ -6,31 +6,77 @@
+ /* VERSION (from configure.in) */
+ #undef VERSION
+ 
+-/* Define if you have the <stdlib.h> header file.  */
++
++
++/* Define if you want to enable IPv6 support */
++#undef ENABLE_IPV6
++
++/* Define if getaddrinfo exists and works */
++#undef HAVE_GETADDRINFO
++
++/* Define to 1 if you have the <inttypes.h> header file. */
++#undef HAVE_INTTYPES_H
++
++/* Define to 1 if you have the `nsl' library (-lnsl). */
++#undef HAVE_LIBNSL
++
++/* Define to 1 if you have the `socket' library (-lsocket). */
++#undef HAVE_LIBSOCKET
++
++/* Define to 1 if you have the <memory.h> header file. */
++#undef HAVE_MEMORY_H
++
++/* Define to 1 if you have the <stdint.h> header file. */
++#undef HAVE_STDINT_H
++
++/* Define to 1 if you have the <stdlib.h> header file. */
+ #undef HAVE_STDLIB_H
+ 
+-/* Define if you have the <sys/file.h> header file.  */
++/* Define to 1 if you have the <strings.h> header file. */
++#undef HAVE_STRINGS_H
++
++/* Define to 1 if you have the <string.h> header file. */
++#undef HAVE_STRING_H
++
++/* Define to 1 if you have the <sys/file.h> header file. */
+ #undef HAVE_SYS_FILE_H
+ 
+-/* Define if you have the <sys/select.h> header file.  */
++/* Define to 1 if you have the <sys/select.h> header file. */
+ #undef HAVE_SYS_SELECT_H
+ 
+-/* Define if you have the <unistd.h> header file.  */
+-#undef HAVE_UNISTD_H
++/* Define to 1 if you have the <sys/stat.h> header file. */
++#undef HAVE_SYS_STAT_H
+ 
+-/* Define if you have the nsl library (-lnsl).  */
+-#undef HAVE_LIBNSL
++/* Define to 1 if you have the <sys/types.h> header file. */
++#undef HAVE_SYS_TYPES_H
+ 
+-/* Define if you have the socket library (-lsocket).  */
+-#undef HAVE_LIBSOCKET
++/* Define to 1 if you have the <unistd.h> header file. */
++#undef HAVE_UNISTD_H
+ 
+ /* Name of package */
+ #undef PACKAGE
+ 
++/* Define to the address where bug reports for this package should be sent. */
++#undef PACKAGE_BUGREPORT
++
++/* Define to the full name of this package. */
++#undef PACKAGE_NAME
++
++/* Define to the full name and version of this package. */
++#undef PACKAGE_STRING
++
++/* Define to the one symbol short name of this package. */
++#undef PACKAGE_TARNAME
++
++/* Define to the version of this package. */
++#undef PACKAGE_VERSION
++
++/* Define to 1 if you have the ANSI C header files. */
++#undef STDC_HEADERS
++
+ /* Version number of package */
+ #undef VERSION
+ 
+-
+ /* some OSes do not define this ... lets take a wild guess */
+ 
+ #ifndef INADDR_NONE
+diff -Naur fping-2.4b2_to-ipv6/configure.in fping-2.4b2_to-ipv6-ac/configure.in
+--- fping-2.4b2_to-ipv6/configure.in	Wed Jan 16 01:48:02 2002
++++ fping-2.4b2_to-ipv6-ac/configure.in	Thu Nov  7 20:52:17 2002
+@@ -14,6 +14,84 @@
+ AC_PROG_CC
+ AC_PROG_CPP
+ AC_PROG_INSTALL
++AC_PROG_AWK
++
++dnl **********************************************************************
++dnl Checks for IPv6
++dnl **********************************************************************
++dnl borrowed from curl
++
++AC_MSG_CHECKING([whether to enable ipv6])
++AC_ARG_ENABLE(ipv6,
++[  --enable-ipv6		Enable ipv6 (with ipv4) support
++  --disable-ipv6	Disable ipv6 support],
++[ case "$enableval" in
++  no)
++       AC_MSG_RESULT(no)
++       ipv6=no
++       ;;
++  *)   AC_MSG_RESULT(yes)
++       ipv6=yes
++       ;;
++  esac ],
++
++  AC_TRY_RUN([ /* is AF_INET6 available? */
++#include <sys/types.h>
++#include <sys/socket.h>
++main()
++{
++ if (socket(AF_INET6, SOCK_STREAM, 0) < 0)
++   exit(1);
++ else
++   exit(0);
++}
++],
++  AC_MSG_RESULT(yes)
++  ipv6=yes,
++  AC_MSG_RESULT(no)
++  ipv6=no,
++  AC_MSG_RESULT(no)
++  ipv6=no
++))
++
++if test "$ipv6" = "yes"; then
++  AC_CACHE_CHECK(for working getaddrinfo, ac_cv_working_getaddrinfo,[
++  AC_TRY_RUN( [
++#include <netdb.h>
++#include <sys/types.h>
++#include <sys/socket.h>
++
++void main(void) {
++    struct addrinfo hints, *ai;
++    int error;
++
++    memset(&hints, 0, sizeof(hints));
++    hints.ai_family = AF_UNSPEC;
++    hints.ai_socktype = SOCK_STREAM;
++    error = getaddrinfo("127.0.0.1", "8080", &hints, &ai);
++    if (error) {
++        exit(1);
++    }
++    else {
++        exit(0);
++    }
++}
++],[
++  ac_cv_working_getaddrinfo="yes"
++],[
++  ac_cv_working_getaddrinfo="no"
++],[
++  ac_cv_working_getaddrinfo="yes"
++])])
++if test "$ac_cv_working_getaddrinfo" = "yes"; then
++  AC_DEFINE(HAVE_GETADDRINFO, 1, [Define if getaddrinfo exists and works])
++  AC_DEFINE(ENABLE_IPV6, 1, [Define if you want to enable IPv6 support])
++
++  IPV6_ENABLED=1
++  AC_SUBST(IPV6_ENABLED)
++fi
++fi
++
+ 
+ dnl Checks for libraries.
+ 
+diff -Naur fping-2.4b2_to-ipv6/fping.c fping-2.4b2_to-ipv6-ac/fping.c
+--- fping-2.4b2_to-ipv6/fping.c	Mon Jan 21 02:06:30 2002
++++ fping-2.4b2_to-ipv6-ac/fping.c	Thu Nov  7 20:56:42 2002
+@@ -42,7 +42,6 @@
+  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  */
+-#define IPV6 1						/* This should be a compiler option, or even better be done from the Makefile... ;) */
+ 
+ #ifndef _NO_PROTO
+ #if !__STDC__ && !defined( __cplusplus ) && !defined( FUNCPROTO ) \
+@@ -96,7 +95,7 @@
+ #include <sys/file.h>
+ #endif /* HAVE_SYS_FILE_H */
+ 
+-#ifdef IPV6
++#ifdef ENABLE_IPV6
+ #include <netinet/icmp6.h>
+ #endif
+ #include <netinet/in_systm.h>
+@@ -222,7 +221,7 @@
+ };
+ 
+ #define	ICMP_UNREACH_MAXTYPE	15
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ #define	FPING_SOCKADDR struct sockaddr_in
+ #define	FPING_ICMPHDR	struct icmp
+ #else
+@@ -349,7 +348,7 @@
+ #else
+ 
+ void add_name( char *name );
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ void add_addr( char *name, char *host, struct in_addr ipaddr );
+ #else
+ void add_addr( char *name, char *host, FPING_SOCKADDR *ipaddr );
+@@ -400,7 +399,7 @@
+ #endif /* _NO_PROTO */
+ {
+ 	int c, i, n;
+-#ifdef IPV6
++#ifdef ENABLE_IPV6
+ 	int opton = 1;
+ #endif
+ 	u_int lt, ht;
+@@ -420,7 +419,7 @@
+ 	}/* IF */
+ 
+ 	/* confirm that ICMP is available on this machine */
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	if( ( proto = getprotobyname( "icmp" ) ) == NULL ) 
+ #else
+ 	if( ( proto = getprotobyname( "ipv6-icmp" ) ) == NULL ) 
+@@ -428,7 +427,7 @@
+ 		crash_and_burn( "icmp: unknown protocol" );
+ 
+ 	/* create raw socket for ICMP calls (ping) */
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	s = socket( AF_INET, SOCK_RAW, proto->p_proto );
+ #else
+ 	s = socket( AF_INET6, SOCK_RAW, proto->p_proto );
+@@ -437,7 +436,7 @@
+ 	if( s < 0 )
+ 		errno_crash_and_burn( "can't create raw socket" );
+ 
+-#ifdef IPV6
++#ifdef ENABLE_IPV6
+ 	/*
+ 	 * let the kerel pass extension headers of incoming packets,
+ 	 * for privileged socket options
+@@ -1504,7 +1503,7 @@
+ 	icp = ( FPING_ICMPHDR* )buffer;
+ 
+ 	gettimeofday( &h->last_send_time, &tz );
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	icp->icmp_type = ICMP_ECHO;
+ 	icp->icmp_code = 0;
+ 	icp->icmp_cksum = 0;
+@@ -1624,7 +1623,7 @@
+ #endif /* DEBUG || _DEBUG */
+ 
+ 	ip = ( struct ip* )buffer;
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ #if defined( __alpha__ ) && __STDC__ && !defined( __GLIBC__ )
+ 	/* The alpha headers are decidedly broken.
+ 	 * Using an ANSI compiler, it provides ip_vhl instead of ip_hl and
+@@ -1641,7 +1640,7 @@
+ 	{
+ 		if( verbose_flag )
+ 		{
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 			printf( "received packet too short for ICMP (%d bytes from %s)\n", result,
+ 				inet_ntoa( response_addr.sin_addr ) );
+ #else			
+@@ -1654,7 +1653,7 @@
+ 	}/* IF */
+ 
+ 	icp = ( FPING_ICMPHDR* )( buffer + hlen );
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	if( icp->icmp_type != ICMP_ECHOREPLY )
+ #else
+ 	if( icp->icmp6_type != ICMP6_ECHO_REPLY )
+@@ -1666,7 +1665,7 @@
+ 		return 1;
+ 	}/* IF */
+ 
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	if( icp->icmp_id != ident )
+ #else
+ 	if( icp->icmp6_id != ident )
+@@ -1675,14 +1674,14 @@
+ 
+ 	num_pingreceived++;
+ 
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	if( icp->icmp_seq  >= ( n_short )num_hosts )
+ #else
+ 	if( icp->icmp6_seq  >= ( n_short )num_hosts )
+ #endif
+ 		return( 1 ); /* packet received, don't worry about it anymore */
+ 
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	n = icp->icmp_seq;
+ #else
+ 	n = icp->icmp6_seq;
+@@ -1696,7 +1695,7 @@
+ 	h->num_recv++;
+ 	h->num_recv_i++;
+ 
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	memcpy( &sent_time, icp->icmp_data + offsetof( PING_DATA, ping_ts ), sizeof( sent_time ) );
+ 	memcpy( &this_count, icp->icmp_data, sizeof( this_count ) );
+ #else
+@@ -1732,7 +1731,7 @@
+ 				{
+ 					fprintf( stderr, "%s : duplicate for [%d], %d bytes, %s ms",
+ 						h->host, this_count, result, sprint_tm( this_reply ) );
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 					if( response_addr.sin_addr.s_addr != h->saddr.sin_addr.s_addr )
+ 						fprintf( stderr, " [<- %s]", inet_ntoa( response_addr.sin_addr ) );
+ #else
+@@ -1773,7 +1772,7 @@
+ 
+ 			if( elapsed_flag )
+ 				printf( " (%s ms)", sprint_tm( this_reply ) );
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 			if( response_addr.sin_addr.s_addr != h->saddr.sin_addr.s_addr )
+ 				printf( " [<- %s]", inet_ntoa( response_addr.sin_addr ) );
+ #else
+@@ -1808,7 +1807,7 @@
+ 				( h->num_recv * 100 ) / h->num_sent );
+ 		
+ 		}/* ELSE */
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 		if( response_addr.sin_addr.s_addr != h->saddr.sin_addr.s_addr )
+ 			printf( " [<- %s]", inet_ntoa( response_addr.sin_addr ) );
+ #else
+@@ -1856,13 +1855,13 @@
+ 	struct ip *sent_ip;
+ 	u_char *c;
+ 	HOST_ENTRY *h;
+-#ifdef IPV6
++#ifdef ENABLE_IPV6
+ 	char addr_ascii[INET6_ADDRSTRLEN];
+ 	inet_ntop(addr->sin6_family, &addr->sin6_addr, addr_ascii, INET6_ADDRSTRLEN);
+ #endif
+ 
+ 	c = ( u_char* )p;
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	switch( p->icmp_type )
+ #else
+ 	switch( p->icmp6_type )
+@@ -1871,7 +1870,7 @@
+ 	case ICMP_UNREACH:
+ 		sent_icmp = ( FPING_ICMPHDR* )( c + 28 );
+ 		
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 		sent_icmp = ( struct icmp* )( c + 28 );
+ 		
+ 		if( ( sent_icmp->icmp_type == ICMP_ECHO ) &&
+@@ -1903,7 +1902,7 @@
+ 			else
+ 			{
+ 				fprintf( stderr, "%s from %s for ICMP Echo sent to %s",
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 					icmp_unreach_str[p->icmp_code], inet_ntoa( addr->sin_addr ), h->host );
+ #else
+ 					icmp_unreach_str[p->icmp6_code], addr_ascii, h->host );
+@@ -1912,7 +1911,7 @@
+ 			}/* ELSE */
+ 
+ 			if( inet_addr( h->host ) == -1 )
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 				fprintf( stderr, " (%s)", inet_ntoa( h->saddr.sin_addr ) );
+ #else
+ 				fprintf( stderr, " (%s)", addr_ascii);
+@@ -1929,7 +1928,7 @@
+ 	case ICMP_TIMXCEED:
+ 	case ICMP_PARAMPROB:
+ 		sent_icmp = ( FPING_ICMPHDR* )( c + 28 );
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 		if( ( sent_icmp->icmp_type = ICMP_ECHO ) && 
+ 			( sent_icmp->icmp_id = ident ) &&
+ 			( sent_icmp->icmp_seq < ( n_short )num_hosts ) )
+@@ -2053,7 +2052,7 @@
+ void add_name( char *name )
+ #endif /* _NO_PROTO */
+ {
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	struct hostent *host_ent;
+ 	u_int ipaddress;
+ 	struct in_addr *ipa = ( struct in_addr* )&ipaddress;
+@@ -2243,13 +2242,13 @@
+ void add_addr( name, host, ipaddr )
+ char *name;
+ char *host;
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ struct in_addr ipaddr;
+ #else
+ FPING_SOCKADDR *ipaddr;
+ #endif
+ #else
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ void add_addr( char *name, char *host, struct in_addr ipaddr )
+ #else
+ void add_addr( char *name, char *host, FPING_SOCKADDR *ipaddr )
+@@ -2267,7 +2266,7 @@
+ 
+ 	p->name = name;
+ 	p->host = host;
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	p->saddr.sin_family = AF_INET;
+ 	p->saddr.sin_addr = ipaddr; 
+ #else
+@@ -2401,7 +2400,7 @@
+ #endif /* _NO_PROTO */
+ {
+ 	struct hostent *h;
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	h = gethostbyaddr( ( char* )&in, sizeof( struct in_addr ),AF_INET );
+ #else
+ 	h = gethostbyaddr( ( char* )&in, sizeof( FPING_SOCKADDR ),AF_INET6 );
+@@ -2677,7 +2676,7 @@
+ 	if( nfound == 0 )
+ 		return -1;		/* timeout */
+ 
+-#ifndef IPV6
++#ifndef ENABLE_IPV6
+ 	slen = sizeof( struct sockaddr );
+ #else
+ 	slen = sizeof( FPING_SOCKADDR );

@@ -1,0 +1,279 @@
+# @(#)font.properties.ja	1.12 98/07/21
+#
+#  Copyright (c) 1994-1996 by Sun Microsystems Inc
+#
+# AWT Font default Properties for Japanese Solaris 
+#
+# Modify[Linux_PJE version]: 98/11/24 Takeshi ITOH <tito@ca.mbn.or.jp>
+# article__	http://www.linet.gr.jp/ML/mozilla/19981124/187.html
+
+# Serif font definition
+#
+serif.plain.0=-adobe-times-medium-r-normal--*-%d-*-*-p-*-iso8859-1
+serif.1=-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0208.1983-0
+serif.2=-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0201.1976-0
+#serif.3=-urw-itc zapfdingbats-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+#serif.4=--symbol-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+
+serif.italic.0=-adobe-times-medium-i-normal--*-%d-*-*-p-*-iso8859-1
+
+serif.bold.0=-adobe-times-bold-r-normal--*-%d-*-*-p-*-iso8859-1
+
+serif.bolditalic.0=-adobe-times-bold-i-normal--*-%d-*-*-p-*-iso8859-1
+
+# SansSerif font definition
+#
+sansserif.plain.0=-adobe-helvetica-medium-r-normal-*-*-%d-*-*-p-*-iso8859-1
+sansserif.plain.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+sansserif.2=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+#sansserif.3=-urw-itc zapfdingbats-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+#sanserif.4=--symbol-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+
+sansserif.italic.0=-adobe-helvetica-medium-o-normal-*-*-%d-*-*-p-*-iso8859-1
+sansserif.italic.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+sansserif.bold.0=-adobe-helvetica-bold-r-normal-*-*-%d-*-*-p-*-iso8859-1
+sansserif.bold.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+sansserif.bolditalic.0=-adobe-helvetica-bold-o-normal-*-*-%d-*-*-p-*-iso8859-1
+sansserif.bolditalic.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+# Monospaced font definition
+#
+monospaced.0=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+monospaced.plain.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+monospaced.2=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+#monospaced.3=-urw-itc zapfdingbats-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+#monospaced.4=--symbol-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+
+monospaced.italic.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+monospaced.bold.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+monospaced.bolditalic.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+# Dialog font definition
+#
+dialog.plain.0=-b&h-lucida sans-medium-r-normal-*-*-%d-*-*-p-*-iso8859-1
+dialog.plain.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+dialog.2=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+#dialog.3=-urw-itc zapfdingbats-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+#dialog.4=--symbol-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+
+dialog.italic.0=-b&h-lucida sans-medium-i-normal-*-*-%d-*-*-p-*-iso8859-1
+dialog.italic.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+dialog.bold.0=-b&h-lucida sans-bold-r-normal-*-*-%d-*-*-p-*-iso8859-1
+dialog.bold.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+dialog.bolditalic.0=-b&h-lucida sans-bold-i-normal-*-*-%d-*-*-p-*-iso8859-1
+dialog.bolditalic.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+# DialogInput font definition
+#
+dialoginput.plain.0=-b&h-lucida sans typewriter-medium-r-normal-*-*-%d-*-*-m-*-iso8859-1
+dialoginput.plain.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+dialoginput.2=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+#dialoginput.3=-urw-itc zapfdingbats-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+#dialoginput.4=--symbol-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+
+dialoginput.italic.0=-b&h-lucida sans typewriter-medium-r-normal-*-*-%d-*-*-m-*-iso8859-1
+dialoginput.italic.1=-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+dialoginput.bold.0=-b&h-lucida sans typewriter-bold-r-normal-*-*-%d-*-*-m-*-iso8859-1
+dialoginput.bold.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+dialoginput.bolditalic.0=-b&h-lucida sans typewriter-bold-r-normal-*-*-%d-*-*-m-*-iso8859-1
+dialoginput.bolditalic.1=-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0
+
+
+# Default font definition
+#
+default.char=274f
+
+# name aliases
+#
+# alias.timesroman=serif
+# alias.helvetica=sansserif
+# alias.courier=monospaced
+
+# for backward compatibility
+timesroman.plain.0=-adobe-times-medium-r-normal--*-%d-*-*-p-*-iso8859-1
+timesroman.italic.0=-adobe-times-medium-i-normal--*-%d-*-*-p-*-iso8859-1
+timesroman.bold.0=-adobe-times-bold-r-normal--*-%d-*-*-p-*-iso8859-1
+timesroman.bolditalic.0=-adobe-times-bold-i-normal--*-%d-*-*-p-*-iso8859-1
+#
+helvetica.plain.0=-adobe-helvetica-medium-r-normal-*-*-%d-*-*-p-*-iso8859-1
+helvetica.italic.0=-adobe-helvetica-medium-o-normal-*-*-%d-*-*-p-*-iso8859-1
+helvetica.bold.0=-adobe-helvetica-bold-r-normal-*-*-%d-*-*-p-*-iso8859-1
+helvetica.bolditalic.0=-adobe-helvetica-bold-o-normal-*-*-%d-*-*-p-*-iso8859-1
+#
+courier.plain.0=--courier-medium-r-normal--*-%d-*-*-m-*-iso8859-1
+courier.italic.0=--courier-medium-o-normal--*-%d-*-*-m-*-iso8859-1
+courier.bold.0=--courier-bold-r-normal--*-%d-*-*-m-*-iso8859-1
+courier.bolditalic.0=--courier-bold-o-normal--*-%d-*-*-m-*-iso8859-1
+#
+#zapfdingbats.0=-urw-itc zapfdingbats-medium-r-normal--*-%d-*-*-p-*-sun-fontspecific
+
+# Static FontCharset info.
+#
+# This information is used by the font which is not indexed by Unicode.
+# Such fonts can use their own subclass of FontCharset.
+#
+# This information can be overriden by describing more specific style.
+# For example
+#
+#  fontcharset.serif.plain.3=SpecialSymbols
+#  means serif.plain.3 font's index can be retrieved with the convert() method
+#  of instance of SpecialSymbols and what kind of characters serif.plain.3 font
+#  has can be judged with the isCovered() method of instance of SpecialSymbols.
+#
+fontcharset.serif.0=sun.io.CharToByteISO8859_1 
+fontcharset.serif.1=sun.awt.motif.CharToByteX11JIS0208
+fontcharset.serif.2=sun.awt.motif.CharToByteX11JIS0201
+fontcharset.serif.3=sun.awt.motif.CharToByteX11Dingbats
+fontcharset.serif.4=sun.awt.CharToByteSymbol
+
+fontcharset.sansserif.0=sun.io.CharToByteISO8859_1
+fontcharset.sansserif.1=sun.awt.motif.CharToByteX11JIS0208
+fontcharset.sansserif.2=sun.awt.motif.CharToByteX11JIS0201
+fontcharset.sansserif.3=sun.awt.motif.CharToByteX11Dingbats
+fontcharset.sansserif.4=sun.awt.CharToByteSymbol
+
+fontcharset.monospaced.0=sun.io.CharToByteISO8859_1
+fontcharset.monospaced.1=sun.awt.motif.CharToByteX11JIS0208
+fontcharset.monospaced.2=sun.awt.motif.CharToByteX11JIS0201
+fontcharset.monospaced.3=sun.awt.motif.CharToByteX11Dingbats
+fontcharset.monospaced.4=sun.awt.CharToByteSymbol
+
+fontcharset.dialog.0=sun.io.CharToByteISO8859_1
+fontcharset.dialog.1=sun.awt.motif.CharToByteX11JIS0208
+fontcharset.dialog.2=sun.awt.motif.CharToByteX11JIS0201
+fontcharset.dialog.3=sun.awt.motif.CharToByteX11Dingbats
+fontcharset.dialog.4=sun.awt.CharToByteSymbol
+
+fontcharset.dialoginput.0=sun.io.CharToByteISO8859_1
+fontcharset.dialoginput.1=sun.awt.motif.CharToByteX11JIS0208
+fontcharset.dialoginput.2=sun.awt.motif.CharToByteX11JIS0201
+fontcharset.dialoginput.3=sun.awt.motif.CharToByteX11Dingbats
+fontcharset.dialoginput.4=sun.awt.CharToByteSymbol
+
+# exclusion info.
+#
+# This information describe exclusion ranges for each fonts.
+#
+# 'exclusion.serif.plain.0' overrides 'exclusion.serif.0', and
+# 'exclusion.serif.0' overrides exclusion.0, and so on.
+#
+
+# XFontSet string
+# X11 only properties
+#
+
+fontset.serif.plain=\
+-adobe-times-medium-r-normal--*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0201.1976-0
+
+fontset.serif.italic=\
+-adobe-times-medium-i-normal--*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0201.1976-0
+
+fontset.serif.bold=\
+-adobe-times-bold-r-normal--*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0201.1976-0
+
+fontset.serif.bolditalic=\
+-adobe-times-bold-i-normal--*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal--*-%d-*-*-m-*-jisx0201.1976-0
+
+fontset.sansserif.italic=\
+-adobe-helvetica-medium-o-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.sansserif.bold=\
+-adobe-helvetica-bold-r-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.sansserif.bolditalic=\
+-adobe-helvetica-bold-o-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.sansserif.plain=\
+-adobe-helvetica-medium-r-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+
+fontset.monospaced.italic=\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-adobe-courier-medium-o-normal--*-%d-*-*-m-*-iso8859-1 
+
+fontset.monospaced.bold=\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-adobe-courier-bold-r-normal--*-%d-*-*-m-*-iso8859-1
+ 
+fontset.monospaced.bolditalic=\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+--courier-bold-o-normal--*-%d-*-*-m-*-iso8859-1
+ 
+fontset.monospaced.plain=\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+--courier-medium-r-normal--*-%d-*-*-m-*-iso8859-1
+ 
+fontset.dialog.italic=\
+-b&h-lucida sans-medium-i-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.dialog.bold=\
+-b&h-lucida sans-bold-r-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.dialog.bolditalic=\
+-b&h-lucida sans-medium-i-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.dialog.plain=\
+-b&h-lucida sans-medium-r-normal-*-*-%d-*-*-p-*-iso8859-1,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.dialoginput.italic=\
+-b&h-lucida sans typewriter-medium-r-normal-*-*-%d-*-*-m-*-iso8859-1,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.dialoginput.bold=\
+-b&h-lucida sans typewriter-bold-r-normal-*-*-%d-*-*-m-*-iso8859-1,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.dialoginput.bolditalic=\
+-b&h-lucida sans typewriter-bold-r-normal-*-*-%d-*-*-m-*-iso8859-1,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-bold-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+ 
+fontset.dialoginput.plain=\
+-b&h-lucida sans typewriter-medium-r-normal-*-*-%d-*-*-m-*-iso8859-1,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+
+#
+#fontset.default=\
+#-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0208.1983-0,\
+#-misc-fixed-medium-r-normal-*-*-%d-*-*-m-*-jisx0201.1976-0
+#
+
+exclusion.monospaced.0=0080-ffff
+
+

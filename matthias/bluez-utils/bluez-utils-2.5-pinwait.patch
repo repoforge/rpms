@@ -1,0 +1,43 @@
+--- hcid/security.c.orig	2004-02-04 15:14:16.000000000 +0100
++++ hcid/security.c	2004-02-04 15:16:31.000000000 +0100
+@@ -229,7 +229,7 @@
+ 	pin_code_reply_cp pr;
+ 	char addr[12], str[255], *pin, name[20];
+ 	FILE *pipe;
+-	int len;
++	int len, ret;
+ 	
+ 	/* Run PIN helper in the separate process */
+ 	switch (fork()) {
+@@ -291,6 +291,17 @@
+ 	exit(0);
+ }
+ 
++static void request_pin(int dev, struct hci_conn_info *ci)
++{
++#ifdef ENABLE_DBUS
++       if (hcid.dbus_pin_helper) {
++               hcid_dbus_request_pin (dev, ci);
++               return;
++       }
++#endif
++       call_pin_helper (dev, ci);
++}
++
+ static void pin_code_request(int dev, bdaddr_t *sba, bdaddr_t *dba)
+ {
+ 	struct hci_conn_info_req *cr;
+@@ -337,11 +348,11 @@
+ 			/* Outgoing connection */
+ 		
+ 			/* Let PIN helper handle that */ 
+-			call_pin_helper(dev, ci);
++			request_pin(dev, ci);
+ 		}
+ 	} else {
+ 		/* Let PIN helper handle that */ 
+-		call_pin_helper(dev, ci);
++		request_pin(dev, ci);
+ 	}	
+ 	free(cr);
+ 	return;

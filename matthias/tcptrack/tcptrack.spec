@@ -1,0 +1,47 @@
+# Authority: dag
+
+Summary: A packet sniffer which displays TCP information like the 'top' command.
+Name: tcptrack
+Version: 1.0.0
+Release: 0
+License: GPL
+Group: Applications/Internet
+URL: http://www.rhythm.cx/~steve/devel/tcptrack/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://www.rhythm.cx/~steve/devel/tcptrack/release/%{version}/source/tcptrack-%{version}.tar.gz
+BuildRoot: %{_tmppath}/root-%{name}-%{version}
+Prefix: %{_prefix}
+
+%description 
+tcptrack is a sniffer which displays information about TCP connections it
+sees on a network interface. It passively watches for connections on the
+network interface, keeps track of their state and displays a list of
+connections in a manner similar to the unix 'top' command. It displays
+source and destination addresses and ports, connection state, idle time, and
+bandwidth usage.
+
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%makeinstall
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING README
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+
+%changelog
+* Tue Nov 23 2003 Dag Wieers <dag@wieers.com> - 1.0.0-0
+- Initial package. (using DAR)

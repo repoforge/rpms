@@ -1,0 +1,12 @@
+diff -urN MPlayer-0.90.orig/playtreeparser.c MPlayer-0.90/playtreeparser.c
+--- MPlayer-0.90.orig/playtreeparser.c	2003-02-06 20:57:25.000000000 +0000
++++ MPlayer-0.90/playtreeparser.c	2003-08-05 03:21:59.000000000 +0000
+@@ -226,7 +226,7 @@
+   }
+ 
+   num = atoi(line);
+-  if(num < 0) {
++  if(num <= 0) {
+     num = max_entry+1;
+     mp_msg(MSGT_PLAYTREE,MSGL_WARN,"No entry index in entry %s\nAssuming %d\n",line,num);
+   }

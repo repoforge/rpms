@@ -1,0 +1,143 @@
+'\"macro stdmacro
+.TH TTCP 1 local
+.SH NAME
+ttcp \- test TCP and UDP performance
+.SH SYNOPSIS
+.B ttcp \-t
+.RB [ \-u ]
+.RB [ \-s ]
+.RB [ \-p\0 \fIport\fP ]
+.RB [ \-l\0 \fIbuflen\fP ]
+.RB [ \-b\0 \fIsize\fP ]
+.RB [ \-n\0 \fInumbufs\fP ]
+.RB [ \-A\0 \fIalign\fP ]
+.RB [ \-O\0 \fIoffset\fP ]
+.RB [ \-f\0 \fIformat\fP ]
+.RB [ \-D ]
+.RB [ \-v]
+.RB host
+.RB [ < in ]
+.br
+.B ttcp \-r
+.RB [ \-u ]
+.RB [ \-s ]
+.RB [ \-p\0 \fIport\fP ]
+.RB [ \-l\0 \fIbuflen\fP ]
+.RB [ \-b\0 \fIsize\fP ]
+.RB [ \-A\0 \fIalign\fP ]
+.RB [ \-O\0 \fIoffset\fP ]
+.RB [ \-f\0 \fIformat\fP ]
+.RB [ \-B ]
+.RB [ \-T ]
+.RB [ \-v ]
+.RB [ > out ]
+.SH DESCRIPTION
+.I Ttcp
+times the transmission and reception of data between two systems using 
+the UDP or TCP protocols.
+It differs from common ``blast'' tests, which tend to measure the remote
+.I inetd
+as much as the network performance, and which usually do not allow 
+measurements at the remote end of a UDP transmission.
+.PP
+For testing, the transmitter should be started with \f3\-t\f1 and \f3\-s\f1
+after the receiver has been started with \f3\-r\f1 and \f3\-s\f1.
+Tests lasting at least tens of seconds should be used to obtain accurate
+measurements.
+Graphical presentations of throughput versus buffer size for
+buffers ranging from tens of bytes to several ``pages'' can illuminate
+bottlenecks.
+.PP
+.I Ttcp
+can also be used as a ``network pipe'' for moving directory hierarchies
+between systems when routing problems exist or when the use of other
+mechanisms is undesirable. For example, on the destination machine, use:
+.Ex
+ttcp \-r \-B | tar xvpf \-
+.Ee
+.PP
+and on the source machine:
+.Ex
+tar cf \- directory | ttcp \-t dest_machine
+.Ee
+.PP
+Additional intermediate machines can be included by:
+.Ex
+ttcp \-r | ttcp \-t next_machine
+.Ee
+.SH OPTIONS
+.TP 10
+\-t
+Transmit mode.
+.TP 10
+\-r
+Receive mode.
+.TP 10
+\-u
+Use UDP instead of TCP.
+.TP 10
+\-s
+If transmitting, source a data pattern to network;
+if receiving, sink (discard) the data.
+Without the \f3\-s\f1 option, the default is to transmit data from
+.I stdin
+or print the received data to
+.IR stdout .
+.TP 10
+\-l \fIlength\fP
+Length of buffers in bytes (default 8192).
+For UDP, this value is the number of data bytes in each packet.
+The system limits the maximum UDP packet length. This limit can be 
+changed with the \f3\-b\f1 option.
+.TP 10
+\-b \fIsize\fP
+Set size of socket buffer.  The default varies from system to system.
+This parameter affects the maximum UDP packet length.
+It may not be possible to set this parameter on some systems
+(for example, 4.2BSD).
+.TP 10
+\-n \fInumbufs\fP
+Number of source buffers transmitted (default 2048).
+.TP 10
+\-p \fIport\fP
+Port number to send to or listen on (default 2000).
+On some systems, this port may be allocated to another network daemon.
+.TP 10
+\-D
+If transmitting using TCP, do not buffer data when sending
+(sets the TCP_NODELAY socket option).
+It may not be possible to set this parameter on some systems
+(for example, 4.2BSD).
+.TP 10
+\-B
+When receiving data, output only full blocks, 
+using the block size specified by \f3\-l\f1.
+This option is useful for programs, such as \f2tar\f1(1), that require
+complete blocks.
+.TP 10
+\-A \fIalign\fP
+Align the start of buffers to this modulus (default 16384).
+.TP 10
+\-O \fIoffset\fP
+Align the start of buffers to this offset (default 0).
+For example, ``\-A8192 \-O1'' causes buffers to start at the second byte
+of an 8192-byte page.
+.TP 10
+\-f \fIformat\fP
+Specify, using one of the following characters, 
+the format of the throughput rates as 
+kilobits/sec ('k'), kilobytes/sec ('K'), 
+megabits/sec ('m'), megabytes/sec ('M'), 
+gigabits/sec ('g'), or gigabytes/sec ('G').
+The default is 'K'.
+.TP 10
+\-T
+``Touch'' the data as they are read in order to measure cache effects.
+.TP 10
+\-v
+Verbose: print more statistics.
+.TP 10
+\-d
+Debug: set the SO_DEBUG socket option.
+.SH SEE ALSO
+ping(1M), traceroute(1M), netsnoop(1M)

@@ -1,0 +1,146 @@
+--- xmms.spec.1.2.9.rh	2004-01-30 18:28:44.000000000 +0100
++++ xmms.spec	2004-01-30 18:44:36.000000000 +0100
+@@ -3,12 +3,12 @@
+ Summary: A media player for X which resembles Winamp.
+ Name: xmms
+ Version: 1.2.9
+-Release: 1.p
++Release: 1.1.fr
+ Epoch: 1
+ License: GPL
+ Group: Applications/Multimedia
+ URL: http://www.xmms.org/
+-Source: http://www.xmms.org/files/1.2.x/%{name}-%{version}.patched.tar.bz2
++Source: http://www.xmms.org/files/1.2.x/%{name}-%{version}.tar.bz2
+ Source2: mp3license 
+ Source3: README.ESD 
+ Source4: arts_output-%{artsplugin_ver}.tar.gz
+@@ -32,9 +32,10 @@ Requires: redhat-menus >= 0.11
+ 
+ BuildRequires: arts-devel >= 1.0.1 gtk+-devel esound-devel mikmod
+ BuildRequires: /usr/bin/automake-1.4 /usr/bin/autoconf-2.13 libvorbis-devel
+-#BuildRequires: alsa-lib-devel
++BuildRequires: alsa-lib-devel
+ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+ Obsoletes: x11amp0.7-1-1 x11amp xmms-esd xmms-gl xmms-mikmod xmms-gnome
++Obsoletes: xmms-alsa <= 0.9.12, alsa-xmms <= 0.9.12
+ 
+ %define _use_internal_dependency_generator 0
+ %define __find_requires %{SOURCE5}
+@@ -48,12 +49,30 @@ streaming content and has a configurable
+ Summary: Static libraries and header files for Xmms plug-in development.
+ Group: Development/Libraries
+ Obsoletes: x11amp-devel
+-Requires: %{name} = %{epoch}:%{version}
++Requires: %{name} = %{epoch}:%{version}, gtk+-devel
+ 
+ %description devel
+ The static libraries and header files needed for building plug-ins for
+ the Xmms multimedia player.
+ 
++%package mp3
++Summary: XMMS plugin for mp3 playback.
++Group: Applications/Multimedia
++Requires: %{name} = %{epoch}:%{version}
++
++%description mp3
++This is the mp3 plugin for XMMS that was removed from Red Hat Linux because
++the patented mp3 format itself is theoretically GPL incompatible.
++
++%package alsa
++Summary: Advanced Linux Sound Architecture plugin for XMMS.
++Group: Applications/Multimedia
++Requires: %{name} = %{epoch}:%{version}, alsa-lib
++
++%description alsa
++Output plugin for XMMS that ads support for ALSA, the Advanced Linux Sound
++Architecture.
++
+ %package skins
+ Summary: Skins for the xmms multimedia player.
+ Group: Applications/Multimedia
+@@ -73,11 +92,11 @@ skins were obtained from http://www.xmms
+ # Change the default skin
+ %patch3 -p1 -b .default-skin
+ # Don't build MP3 support, support bits for MP3 placeholder
+-%patch4 -p1 -b .nomp3
++#patch4 -p1 -b .nomp3
+ # Link arts dynamically and detect its presence for choosing output plugin
+ %patch5 -p1 -b .arts
+ # Don't link *everything* against alsa-lib
+-%patch6 -p1 -b .alsalib
++#patch6 -p1 -b .alsalib
+ 
+ #%patch8 -p1 -b .ja
+ 
+@@ -90,13 +109,14 @@ make
+ 
+ ln -snf ../libxmms/configfile.h xmms/configfile.h
+ 
++export XMMS_CONFIG=`pwd`/xmms-config
+ cd arts_output-%{artsplugin_ver}
+ CFLAGS="$RPM_OPT_FLAGS -I.." %configure 
+ make
+ cd ..
+ 
+-gcc -fPIC $RPM_OPT_FLAGS -shared -Wl,-soname -Wl,librh_mp3.so -o librh_mp3.so \
+-     %{SOURCE8} -I. `gtk-config --cflags gtk`
++#gcc -fPIC $RPM_OPT_FLAGS -shared -Wl,-soname -Wl,librh_mp3.so -o librh_mp3.so \
++#     %{SOURCE8} -I. `gtk-config --cflags gtk`
+ 
+ %install
+ rm -rf %{buildroot}
+@@ -106,7 +126,7 @@ cd arts_output-%{artsplugin_ver}
+ make install DESTDIR=%{buildroot}
+ cd ..
+ 
+-install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
++#install -m 755 librh_mp3.so %{buildroot}%{_libdir}/xmms/Input
+ 
+ mkdir -p %{buildroot}%{_datadir}/xmms/Skins
+ pushd %{buildroot}%{_datadir}/xmms/Skins
+@@ -147,8 +167,18 @@ rm -rf %{buildroot}
+ %dir %{_libdir}/xmms
+ %{_libdir}/xmms/Effect
+ %{_libdir}/xmms/General
+-%{_libdir}/xmms/Input
+-%{_libdir}/xmms/Output
++%dir %{_libdir}/xmms/Input
++%{_libdir}/xmms/Input/libcdaudio.so
++%{_libdir}/xmms/Input/libmikmod.so
++%{_libdir}/xmms/Input/libtonegen.so
++%{_libdir}/xmms/Input/libvorbis.so
++%{_libdir}/xmms/Input/libwav.so
++%dir %{_libdir}/xmms/Output
++%{_libdir}/xmms/Output/libOSS.so
++%exclude %{_libdir}/xmms/Output/libarts.a
++%{_libdir}/xmms/Output/libarts.so
++%{_libdir}/xmms/Output/libdisk_writer.so
++%{_libdir}/xmms/Output/libesdout.so
+ %{_libdir}/xmms/Visualization
+ %{_datadir}/applications/*
+ %{_datadir}/pixmaps/xmms.xpm
+@@ -170,7 +200,23 @@ rm -rf %{buildroot}
+ %defattr(-,root,root)
+ %{_datadir}/xmms/Skins
+ 
++%files mp3
++%defattr(-,root,root)
++%dir %{_libdir}/xmms/Input
++%{_libdir}/xmms/Input/libmpg123.so
++
++%files alsa
++%defattr(-,root,root)
++%dir %{_libdir}/xmms/Output
++%{_libdir}/xmms/Output/libALSA.so
++
+ %changelog
++* Fri Jan 30 2004 Matthias Saou <http://freshrpms.net/> 1:1.2.9-1.1.fr
++- Put back pristine sources.
++- Removed nomp3 patch and commented out rh_mp3 plugin build/install.
++- Added alsa dependency with xmms-alsa obsoletes.
++- Added XMMS_CONFIG export for arts plugin to compile
++
+ * Wed Jan 28 2004 Bill Nottingham <notting@redhat.com> 1:1.2.9-1.p
+ - update to 1.2.9
+ 

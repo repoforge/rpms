@@ -1,0 +1,79 @@
+--- samba-3.0.0/docs/htmldocs/bugreport.html.orig	2003-09-26 00:08:47.000000000 +0200
++++ samba-3.0.0/docs/htmldocs/bugreport.html	2003-09-26 00:10:15.000000000 +0200
+@@ -42,7 +42,7 @@
+ <tt class="filename">smb.conf</tt>. You may also find it useful to set the log 
+ level higher for just one machine and keep separate logs for each machine. 
+ To do this, add the following lines to your main <tt class="filename">smb.conf</tt> file:
+-</p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>log level = 10</tt></i></td></tr><tr><td><i class="parameter"><tt>log file = /usr/local/samba/lib/log.%m</tt></i></td></tr><tr><td><i class="parameter"><tt>include = /usr/local/samba/lib/smb.conf.%m</tt></i></td></tr></table><p>
++</p><table class="simplelist" border="0" summary="Simple list"><tr><td><i class="parameter"><tt>log level = 10</tt></i></td></tr><tr><td><i class="parameter"><tt>log file = /usr/local/samba/lib/%m.log</tt></i></td></tr><tr><td><i class="parameter"><tt>include = /usr/local/samba/lib/smb.conf.%m</tt></i></td></tr></table><p>
+ and create a file <tt class="filename">/usr/local/samba/lib/smb.conf.<i class="replaceable"><tt>machine</tt></i></tt> where
+ <i class="replaceable"><tt>machine</tt></i> is the name of the client you wish to debug. In that file
+ put any <tt class="filename">smb.conf</tt> commands you want, for example 
+--- samba-3.0.0/packaging/RedHat/samba.log.orig	2003-09-24 16:01:16.000000000 +0200
++++ samba-3.0.0/packaging/RedHat/samba.log	2003-09-26 00:06:55.000000000 +0200
+@@ -1,10 +1,10 @@
+-/var/log/samba/log.nmbd {
++/var/log/samba/nmbd.log {
+     postrotate
+ 	/usr/bin/killall -HUP nmbd
+     endscript
+ }
+ 
+-/var/log/samba/log.smbd {
++/var/log/samba/smbd.log {
+     postrotate
+ 	/usr/bin/killall -HUP smbd
+     endscript
+--- samba-3.0.0/packaging/RedHat/smb.conf.orig	2003-09-24 16:01:16.000000000 +0200
++++ samba-3.0.0/packaging/RedHat/smb.conf	2003-09-26 00:06:55.000000000 +0200
+@@ -43,7 +43,7 @@
+ 
+ # this tells Samba to use a separate log file for each machine
+ # that connects
+-   log file = /var/log/samba/log.%m
++   log file = /var/log/samba/%m.log
+ 
+ # Put a capping on the size of the log files (in Kb).
+    max log size = 50
+--- samba-3.0.0/source/lib/popt_common.c.orig	2003-09-26 00:35:02.000000000 +0200
++++ samba-3.0.0/source/lib/popt_common.c	2003-09-26 00:35:22.000000000 +0200
+@@ -55,7 +55,7 @@
+ 		pname++;
+ 
+ 	if (reason == POPT_CALLBACK_REASON_PRE) {
+-		pstr_sprintf(logfile, "%s/log.%s", dyn_LOGFILEBASE, pname);
++		pstr_sprintf(logfile, "%s/%s.log", dyn_LOGFILEBASE, pname);
+ 		lp_set_logfile(logfile);
+ 		return;
+ 	}
+@@ -93,7 +93,7 @@
+ 
+ 	case 'l':
+ 		if (arg) {
+-			pstr_sprintf(logfile, "%s/log.%s", arg, pname);
++			pstr_sprintf(logfile, "%s/%s.log", arg, pname);
+ 			lp_set_logfile(logfile);
+ 		}
+ 		break;
+--- samba-3.0.0/source/nmbd/nmbd.c.orig	2003-09-24 16:01:20.000000000 +0200
++++ samba-3.0.0/source/nmbd/nmbd.c	2003-09-26 00:06:55.000000000 +0200
+@@ -623,7 +623,7 @@
+ 	
+ 	sys_srandom(time(NULL) ^ sys_getpid());
+ 	
+-	slprintf(logfile, sizeof(logfile)-1, "%s/log.nmbd", dyn_LOGFILEBASE);
++	slprintf(logfile, sizeof(logfile)-1, "%s/nmbd.log", dyn_LOGFILEBASE);
+ 	lp_set_logfile(logfile);
+ 	
+ 	fault_setup((void (*)(void *))fault_continue );
+--- samba-3.0.0/source/nsswitch/winbindd.c.orig	2003-09-24 16:01:20.000000000 +0200
++++ samba-3.0.0/source/nsswitch/winbindd.c	2003-09-26 00:20:31.000000000 +0200
+@@ -824,7 +824,7 @@
+ 		exit(1);
+ 	}
+ 
+-	pstr_sprintf(logfile, "%s/log.winbindd", dyn_LOGFILEBASE);
++	pstr_sprintf(logfile, "%s/winbindd.log", dyn_LOGFILEBASE);
+ 	lp_set_logfile(logfile);
+ 	setup_logging("winbindd", log_stdout);
+ 	reopen_logs();

@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Title:	pine-spellcheck
+# Author:	Mike A. Harris <mharris@redhat.com>
+# Created on:	Feb 6, 2001
+#
+# Having PINE call this script for spell checking instead of calling
+# the various spell checkers directly makes it possible to easily
+# maintain a single PINE src.rpm that should build and run properly
+# on Red Hat 7.x, 6.x, 5.x without breaking spell checking.
+
+# Try to use "aspell" as the spell checker first (Red Hat 7.0 default)
+if   [ -e /usr/bin/aspell ];then
+	/usr/bin/aspell --mode=email check $*
+
+# Fall back to ispell for Red Hat 6.x, 5.x, etc..
+elif [ -e /usr/bin/ispell ];then
+	/usr/bin/ispell $*
+else
+	exit 1
+fi
+
+

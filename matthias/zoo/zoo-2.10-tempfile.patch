@@ -1,0 +1,24 @@
+--- zoo/zoopack.c.tempfile	Thu Jul 11 21:08:04 1991
++++ zoo/zoopack.c	Fri Jan 18 13:34:56 2002
+@@ -171,8 +171,19 @@
+ } else {
+    strcpy (temp_file, xes);
+ }
+-mktemp (temp_file);                    /* ... and make unique */
+-new_file = zoocreate (temp_file);
++
++/* make unique name */
++/* my god, this coding style sucks */
++new_file = NOFILE;
++{
++  int fd;
++
++  if ((fd = mkstemp(temp_file)) >= 0) {
++    new_file = zoocreate (temp_file);
++    close(fd);
++  }
++}
++
+ if (new_file == NOFILE)
+    prterror ('f', "Could not create temporary file %s.\n", temp_file);
+ 

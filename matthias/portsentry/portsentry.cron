@@ -1,0 +1,8 @@
+# Restart portsentry to reset the history file
+# - & -
+# Flush the entries added by portsentry in iptables or ipchains
+# $Id: portsentry.cron,v 1.1 2004/02/26 17:54:30 thias Exp $
+
+03,23,43 * * * *	root	/sbin/service portsentry restart >/dev/null && /sbin/service iptables restart >/dev/null
+#03,23,43 * * * *	root	/sbin/service portsentry restart >/dev/null && /sbin/service ipchains restart >/dev/null
+

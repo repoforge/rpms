@@ -1,0 +1,170 @@
+diff -Naupr portsentry-1.1.orig/Makefile portsentry-1.1/Makefile
+--- portsentry-1.1.orig/Makefile	Wed Jul 11 18:57:49 2001
++++ portsentry-1.1/Makefile	Thu Dec  6 17:58:48 2001
+@@ -20,13 +20,13 @@
+ #
+ #
+ # Generic compiler (usually linked to gcc on most platforms)
+-CC = cc
++#CC = cc
+ 
+ # GNU..
+-#CC = gcc 
++CC = gcc 
+ 
+ # Normal systems flags
+-CFLAGS = -O -Wall
++CFLAGS = $(RPM_OPT_FLAGS)
+ 
+ # Debug mode for portsentry
+ #CFLAGS = -Wall -g -DNODAEMON -DDEBUG
+@@ -37,8 +37,8 @@ CFLAGS = -O -Wall
+ #CFLAGS = -pg -O -Wall -DNODAEMON
+ #LIBS = /usr/lib/libefence.a
+ 
+-INSTALLDIR = /usr/local/psionic
+-CHILDDIR=/portsentry
++INSTALLDIR = $(RPM_BUILD_ROOT)/usr/sbin
++CONFIGDIR = $(RPM_BUILD_ROOT)/etc/portsentry
+ 
+ all:
+ 		@echo "Usage: make <systype>"
+@@ -68,31 +68,33 @@ uninstall:	
+ 
+ install:	
+ 		@echo "Creating psionic directory $(INSTALLDIR)"
+-		@if [ ! -d $(INSTALLDIR) ]; then /bin/mkdir $(INSTALLDIR); fi
++		@if [ ! -d $(INSTALLDIR) ]; then /bin/mkdir -p $(INSTALLDIR); fi
+ 		@echo "Setting directory permissions"
+-		@if [ "$(INSTALLDIR)" = "/usr/local/psionic" ]; then /bin/chmod 700 $(INSTALLDIR) ; fi
+-		@echo "Creating portsentry directory $(INSTALLDIR)$(CHILDDIR)"
+-		@if [ ! -d $(INSTALLDIR)$(CHILDDIR) ]; then /bin/mkdir\
+-			$(INSTALLDIR)$(CHILDDIR); fi
++		@echo "Creating portsentry directory $(CONFIGDIR)"
++		@if [ ! -d $(CONFIGDIR) ]; then /bin/mkdir -p \
++			$(CONFIGDIR); fi
++		@echo "Creating portsentry directory $(INSTALLDIR)"
++		@if [ ! -d $(INSTALLDIR) ]; then /bin/mkdir -p \
++			$(INSTALLDIR); fi
+ 		@echo "Setting directory permissions"
+-		chmod 700 $(INSTALLDIR)$(CHILDDIR)
++		chmod 700 $(CONFIGDIR)
+ 		@echo "Copying files"
+-		cp ./portsentry.conf $(INSTALLDIR)$(CHILDDIR)
+-		cp ./portsentry.ignore $(INSTALLDIR)$(CHILDDIR)
+-		cp ./portsentry $(INSTALLDIR)$(CHILDDIR)
++		cp ./portsentry.conf $(CONFIGDIR)
++		cp ./portsentry.ignore $(CONFIGDIR)
++		cp ./portsentry $(INSTALLDIR)
+ 		@echo "Setting permissions"
+-		chmod 600 $(INSTALLDIR)$(CHILDDIR)/portsentry.ignore
+-		chmod 600 $(INSTALLDIR)$(CHILDDIR)/portsentry.conf
+-		chmod 700 $(INSTALLDIR)$(CHILDDIR)/portsentry
++		chmod 600 $(CONFIGDIR)/portsentry.ignore
++		chmod 600 $(CONFIGDIR)/portsentry.conf
++		chmod 700 $(INSTALLDIR)/portsentry
+ 		@echo ""
+ 		@echo ""
+-		@echo "Edit $(INSTALLDIR)$(CHILDDIR)/portsentry.conf and change"
++		@echo "Edit $(CONFIGDIR)/portsentry.conf and change"
+ 		@echo "your settings if you haven't already. (route, etc)" 
+ 		@echo ""
+ 		@echo ""
+ 		@echo "WARNING: This version and above now use a new"
+ 		@echo "directory structure for storing the program"
+-		@echo "and config files ($(INSTALLDIR)$(CHILDDIR))."
++		@echo "and config files ($(CONFIGDIR))."
+ 		@echo "Please make sure you delete the old files when" 
+ 		@echo "the testing of this install is complete."
+ 		@echo ""
+diff -Naupr portsentry-1.1.orig/ignore.csh portsentry-1.1/ignore.csh
+--- portsentry-1.1.orig/ignore.csh	Wed Jul 11 18:57:49 2001
++++ portsentry-1.1/ignore.csh	Thu Dec  6 17:58:48 2001
+@@ -35,7 +35,7 @@ elseif ($OS == "NeXTStep" || $OS == "Sun
+ endif
+   
+ # Safe directory 
+-set SENTRYDIR=/usr/local/psionic/portsentry
++set SENTRYDIR=/etc/portsentry
+ set TMPFILE=portsentry.ignore.tmp
+  
+ if (-f $SENTRYDIR/portsentry.ignore) then 
+diff -Naupr portsentry-1.1.orig/portsentry.conf portsentry-1.1/portsentry.conf
+--- portsentry-1.1.orig/portsentry.conf	Wed Jul 11 18:57:49 2001
++++ portsentry-1.1/portsentry.conf	Thu Dec  6 17:59:47 2001
+@@ -70,9 +70,9 @@ ADVANCED_PORTS_UDP="1024"
+ # all but the most isolated systems/networks.
+ #
+ # Default TCP ident and NetBIOS service
+-ADVANCED_EXCLUDE_TCP="113,139"
++ADVANCED_EXCLUDE_TCP="21,22,25,53,80,110,113,135,137,138,139,443"
+ # Default UDP route (RIP), NetBIOS, bootp broadcasts.
+-ADVANCED_EXCLUDE_UDP="520,138,137,67"
++ADVANCED_EXCLUDE_UDP="520,517,518,513,138,137,123,68,67,53"
+ 
+ 
+ ######################
+@@ -80,11 +80,11 @@ ADVANCED_EXCLUDE_UDP="520,138,137,67"
+ ######################
+ #
+ # Hosts to ignore
+-IGNORE_FILE="/usr/local/psionic/portsentry/portsentry.ignore"
++IGNORE_FILE="/etc/portsentry/portsentry.ignore"
+ # Hosts that have been denied (running history)
+-HISTORY_FILE="/usr/local/psionic/portsentry/portsentry.history"
++HISTORY_FILE="/etc/portsentry/portsentry.history"
+ # Hosts that have been denied this session only (temporary until next restart)
+-BLOCKED_FILE="/usr/local/psionic/portsentry/portsentry.blocked"
++BLOCKED_FILE="/etc/portsentry/portsentry.blocked"
+ 
+ ##############################
+ # Misc. Configuration Options#
+@@ -203,8 +203,8 @@ BLOCK_TCP="1"
+ #KILL_ROUTE="/sbin/ipchains -I input -s $TARGET$ -j DENY"
+ #
+ # iptables support for Linux
+-#KILL_ROUTE="/usr/local/bin/iptables -I INPUT -s $TARGET$ -j DROP"
+-#
++KILL_ROUTE="/sbin/iptables -I INPUT -s $TARGET$ -j DROP"
++
+ # For those of you running FreeBSD (and compatible) you can
+ # use their built in firewalling as well. 
+ #
+@@ -226,7 +226,7 @@ BLOCK_TCP="1"
+ # Format One: Old Style - The default when extended host processing
+ # options are not enabled.
+ #
+-KILL_HOSTS_DENY="ALL: $TARGET$"
++#KILL_HOSTS_DENY="ALL: $TARGET$"
+ 
+ # Format Two: New Style - The format used when extended option
+ # processing is enabled. You can drop in extended processing
+@@ -259,6 +259,7 @@ KILL_HOSTS_DENY="ALL: $TARGET$"
+ #
+ #
+ #KILL_RUN_CMD="/some/path/here/script $TARGET$ $PORT$"
++#KILL_RUN_CMD="/bin/mail -s 'Portscan from $TARGET$ on port $PORT$' user@host < /dev/null"
+ 
+ 
+ #####################
+@@ -278,7 +279,7 @@ KILL_HOSTS_DENY="ALL: $TARGET$"
+ # SSL [TCP port 443] and you immediately block them). Some of you
+ # may even want this though. Just be careful.
+ #
+-SCAN_TRIGGER="0"
++SCAN_TRIGGER="2"
+ 
+ ######################
+ # Port Banner Section#
+diff -Naupr portsentry-1.1.orig/portsentry_config.h portsentry-1.1/portsentry_config.h
+--- portsentry-1.1.orig/portsentry_config.h	Wed Jul 11 18:57:49 2001
++++ portsentry-1.1/portsentry_config.h	Thu Dec  6 17:58:48 2001
+@@ -29,7 +29,7 @@
+ 
+ /* These are probably ok. Be sure you change the Makefile if you */
+ /* change the path */
+-#define CONFIG_FILE "/usr/local/psionic/portsentry/portsentry.conf"
++#define CONFIG_FILE "/etc/portsentry/portsentry.conf"
+ 
+ /* The location of Wietse Venema's TCP Wrapper hosts.deny file */
+ #define WRAPPER_HOSTS_DENY "/etc/hosts.deny"

@@ -1,0 +1,6 @@
+# Currently, you can use the following options:
+# ROOTDIR="/some/where"  --  will run named in a chroot environment.
+#                            you must set up the chroot environment before
+#                            doing this.
+# OPTIONS="whatever" -- These additional options will be passed to named
+#                       at startup. Don't add -t here, use ROOTDIR instead.
