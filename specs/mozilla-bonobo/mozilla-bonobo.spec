@@ -1,14 +1,13 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Christian Glodt <chris@mind.lu>
+
 # Distcc: 0
 
 Summary: Mozilla plugin for using bonobo components
 Name: mozilla-bonobo
-Version: 0.4.0
-Release: 0
+Version: 0.4.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/moz-bonobo/
@@ -18,7 +17,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://savannah.nongnu.org/download/moz-bonobo/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: mozilla-devel >= 1.0, mozilla-nspr-devel >= 1.0
 BuildRequires: gtk2-devel >= 2.0, glib2-devel >= 2.0, pango-devel >= 1.0.0
@@ -66,6 +64,9 @@ scrollkeeper-update -q
 %{_libdir}/mozilla/plugins/*.so
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Fri Oct 03 2003 Dag Wieers <dag@wieers.com> - 0.4.0-0
 - Updated to release 0.4.0.
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <gossip-dev@lists.imendio.com>
 
@@ -7,7 +6,7 @@
 
 Summary: Jabber instant messaging client
 Name: gossip
-Version: 0.7.2
+Version: 0.7.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -45,7 +44,7 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 	desktop-file-install --vendor gnome --delete-original \
 		--add-category X-Red-Hat-Base                 \
 		--dir %{buildroot}%{_datadir}/applications    \
-		%{buildroot}%{_datadir}/applications/%{name}.desktop
+		%{buildroot}%{_datadir}/applications/gossip.desktop
 %endif
 
 %post
@@ -65,6 +64,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.7.5-1
+- Updated to release 0.7.5.
+
 * Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Gerd Knorr <kraxel@bytesex.org>
 
@@ -7,8 +6,8 @@
 
 Summary: Television application for video4linux compliant devices
 Name: xawtv
-Version: 3.91
-Release: 0
+Version: 3.92
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://bytesex.org/xawtv/
@@ -16,11 +15,12 @@ URL: http://bytesex.org/xawtv/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://bytesex.org/xawtv/xawtv_%{version}.tar.gz
+Source: http://dl.bytesex.org/releases/xawtv/xawtv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, ncurses-devel, %{?rh62:, Mesa-devel}
 BuildRequires: Xaw3d-devel, libjpeg-devel, %{!?rh62:, openmotif-devel}
+#BuildRequires: libdv-devel, libquicktime-devel
 
 %description
 Xawtv is a simple xaw-based TV program which uses the bttv driver or
@@ -30,6 +30,8 @@ Xawtv also includes a grabber driver for vic.
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's| -o root||' Makefile.in
 
 %{__cat} <<EOF >xawtv.desktop
 [Desktop Entry]
@@ -87,6 +89,12 @@ EOF
 %endif
 
 %changelog
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 3.92-1
+- Updated to release 3.92.
+
+* Sat Apr 11 2004 Dag Wieers <dag@wieers.com> - 3.91-1
+- Rebuild against libdv 0.102.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 3.91-0
 - Updated to release 3.91.
 

@@ -6,8 +6,8 @@
 
 Summary: Conway's game of life.
 Name: gtklife
-Version: 2.0
-Release: 2
+Version: 2.1
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.igs.net/~tril/gtklife/
@@ -84,6 +84,9 @@ EOF
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
+
 * Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 2.0-2
 - Small cosmetic changes.
 

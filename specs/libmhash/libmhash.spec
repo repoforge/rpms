@@ -1,13 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <mhash-dev@lists.sf.net>
 
 %define real_name mhash
 
 Summary: Thread-safe hash library
 Name: libmhash
-Version: 0.8.18
-Release: 0
+Version: 0.9.1
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://mhash.sf.net/
@@ -15,9 +15,8 @@ URL: http://mhash.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://mhash.sf.net/dl/%{real_name}-%{version}.tar.gz
+Source: http://dl.sf.net/mhash/mhash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Provides: %{real_name}
 Obsoletes: %{real_name}
@@ -59,9 +58,6 @@ will use the mhash library.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
 %post
 /sbin/ldconfig 2>/dev/null
 
@@ -79,13 +75,16 @@ will use the mhash library.
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/example.c doc/md5-rfc1321.txt doc/mhash.html doc/skid2-authentication
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man?/*
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
-#exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
+* Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Thu Apr 17 2003 Dag Wieers <dag@wieers.com> - 0.8.18-0
 - Updated to release 0.8.18.
 

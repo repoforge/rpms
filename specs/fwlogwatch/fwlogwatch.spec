@@ -1,12 +1,11 @@
 # $Id: fwlogwatch.spec,v 1.49 2003/06/23 13:42:44 bw Exp $
-
 # Authority: dag
 # Upstream: Boris Wesslowski <boris@wesslowski.com>
 
 Summary: Firewall log analyzer, report generator and realtime response agent
 Name: fwlogwatch
-Version: 0.9.3
-Release: 2
+Version: 1.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://cert.uni-stuttgart.de/projects/fwlogwatch/
@@ -17,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.kyb.uni-stuttgart.de/boris/sw/fwlogwatch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex
+BuildRequires: flex, zlib-devel
 
 %description
 fwlogwatch produces Linux ipchains, Linux netfilter/iptables,
@@ -53,7 +52,7 @@ reporting anomalies or starting attack countermeasures.
 %{__install} -d -m0755 %{buildroot}%{_sbindir} \
 			%{buildroot}%{_initrddir} \
 			%{buildroot}%{_mandir}/man8/ \
-			%{buildroot}%{_datadir}/locale/{de,pt_BR,sv,zh_CN,zh_TW}/LC_MESSAGES
+			%{buildroot}%{_datadir}/locale/{de,ja,pt_BR,sv,zh_CN,zh_TW}/LC_MESSAGES
 %makeinstall install-config install-i18n install-rhinit
 %find_lang %{name}
 
@@ -72,6 +71,10 @@ reporting anomalies or starting attack countermeasures.
 %{_sbindir}/f*
 
 %changelog
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+- Added missing zlib-devel dependency. (Herbert Straub)
+- Updated to release 1.0.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.9.3-2
 - Cosmetic rebuild for Group-tag.
 

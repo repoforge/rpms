@@ -1,29 +1,29 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <gtranslator-devel@lists.sf.net>
 
-Summary: GNOME po file editor with many bells and whistles
+Summary: Gettext po file editor
 Name: gtranslator
-Version: 1.0
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: Development/Tools
-URL: http://www.gtranslator.org/
+URL: http://gtranslator.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source:	http://dl.sf.net/gtranslator/%{name}-%{version}.tar.gz
+Source:	http://dl.sf.net/gtranslator/gtranslator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: scrollkeeper >= 0.1.4
 BuildRequires: glib2-devel >= 2.0, gtk2-devel >= 2.0, libxml2-devel => 2.4
 BuildRequires: libgnomeui-devel >= 1.105, libbonoboui-devel >= 1.108
 BuildRequires: libgnomecanvas-devel >= 1.112, gnome-vfs2-devel >= 1.9.4
-BuildRequires: GConf2-devel >= 1.2
+BuildRequires: GConf2-devel >= 1.2, gettext, perl-XML-Parser
 
 Requires(post): scrollkeeper
+Requires(postun): scrollkeeper
 
 %description
 gtranslator is a comfortable po file editor with many bells and whistles.
@@ -33,21 +33,21 @@ files imminently.
 %prep
 %setup
 
+### FIXME: Improve desktop-file entry according to standards (Please fix upstream)
+%{__perl} -pi.orig -e '
+		s|^_(Name)=.*$|$1=Translation Editor|;
+		s|^_(Comment)=.*$|$1=Translate GUI applications|;
+	' data/desktop/gtranslator.desktop.in
+
 %build
-%configure \
-	--enable-mime-bind="yes" \
-	--with-gconf
+%configure
 %{__make} %{?_smp_mflags}
 %{__make} %{?_smp_mflags} check
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	SC_OMFDIR="%{buildroot}%{_datadir}/omf"
+%makeinstall
 %find_lang %{name}
-
-### Cleean up buildroot
-%{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
 
 %post 
 scrollkeeper-update -q || :
@@ -70,8 +70,12 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/gtranslator/
 %{_datadir}/pixmaps/*.png
 %{_datadir}/pixmaps/gtranslator/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Thu Sep 04 2003 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

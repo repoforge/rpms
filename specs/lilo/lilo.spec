@@ -1,15 +1,12 @@
 # $Id$
-
 # Authority: dag
 
-##DarDists: rhfc1
 # Tag: test
 
 Summary: The boot loader for Linux and other operating systems
 Name: lilo
-Version: 22.5.8
-Release: 0
-Exclusivearch: i386
+Version: 22.5.9
+Release: 1
 License: MIT
 Group: System Environment/Base
 URL: http://home.san.rr.com/johninsd/
@@ -17,7 +14,7 @@ URL: http://home.san.rr.com/johninsd/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://brun.dyndns.org/pub/linux/lilo/%{name}-%{version}.tar.gz
+Source: http://home.san.rr.com/johninsd/pub/linux/lilo/lilo-%{version}.tar.gz
 Source2: keytab-lilo.c
 #Patch3: lilo-21.4.4-graphical.patch
 #Patch4: lilo-0.21-enableflame.patch
@@ -28,9 +25,9 @@ Source2: keytab-lilo.c
 #Patch9: lilo-21.4.4-unsafe.patch
 #Patch10: lilo-21.4.4-2DAC960.patch
 #Patch100: lilo-21.4.4-lvm.patch
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Exclusivearch: i386
 
 BuildRequires: tetex-latex, fileutils, tetex-dvips
 %{!?rhfc1:BuildRequires: dev86}
@@ -76,15 +73,14 @@ dvips doc/tech.dvi -o doc/Technical_Guide.ps
 	AS86="echo" \
 	LD86="echo" || :
 #%{__mv} -f %{buildroot}%{_sbindir} %{buildroot}%{_bindir}
-%{__install} -m0755 keytab-lilo %{buildroot}%{_bindir}
+%{__install} -D -m0755 keytab-lilo %{buildroot}%{_bindir}/keytab-lilo
 
 # remove unpackaged file from the buildroot
 #%{__rm} -f %{buildroot}%{_bindir}/keytab-lilo.pl
 
 %post
 if [ -f /etc/lilo.conf ]; then
-    inst=$(/sbin/grubby --bootloader-probe | grep lilo)
-    if [ -n "$inst" ]; then
+    if [ "$(/sbin/grubby --bootloader-probe | grep -q lilo)" ]; then
         /sbin/lilo > /dev/null
     fi
 fi
@@ -101,6 +97,9 @@ fi
 /sbin/*
 
 %changelog
+* Tue Apr 13 2004 Dag Wieers <dag@wieers.com> - 21.5.9-1
+- Updated to release 21.5.9.
+
 * Mon Nov 17 2003 Dag Wieers <dag@wieers.com> - 21.4.4-0
 - Added LVM /boot patch.
 - Reverted to release 21.4.4.

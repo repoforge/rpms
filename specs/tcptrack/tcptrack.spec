@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Steve Benson <steve@rhythm.cx>
 
 Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack
-Version: 1.0.2
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -45,6 +44,9 @@ bandwidth usage.
 %{_bindir}/*
 
 %changelog
+* Fri Apr 23 2004 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Tue Mar 09 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 

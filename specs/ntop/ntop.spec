@@ -1,8 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Luca Deri <deri@ntop.org>
+
 # Distcc: 0
+
+%define logmsg logger -t %{name}/rpm
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
@@ -29,6 +31,15 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
+
+%{__perl} -pi.orig -e 's|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;' Makefile.in
+
+%{__perl} -pi.orig -e '
+		s|user = "nobody"|user = "ntop"|;
+		s|user = "anonymous"|user = "nobody"|;
+	' main.c
 
 %{__cat} <<EOF >ntop.logrotate
 %{_localstatedir}/log/ntop.access.log
@@ -117,23 +128,23 @@ exit $RETVAL
 EOF
 
 %{__cat} <<EOF >ntop.conf.sample
-###  You should copy this file to it's normal location, /etc/ntop.conf
+###  You should copy this file to it's normal location, %{_sysconfdir}/etc/ntop.conf
 ###  and edit it to fit your needs.
 ###
 ###       ntop is easily launched with options by referencing this file from
 ###       a command line like this:
 ###
-###       ntop @/etc/ntop.conf
+###       ntop @%{_sysconfdir}/ntop.conf
 ###
 ###  Remember, options may also be listed directly on the command line, both
-###  before and  after the @/etc/ntop.conf.
+###  before and  after the @%{_sysconfdir}/ntop.conf.
 ###
 ###  For switches that provide values, e.g. -i, the last one matters.
 ###  For switches just say 'do things', e..g -M, if it's ANYWHERE in the
 ###  commands, it will be set.  There's no unset option.
 ###
 ###  You can use this to your advantage, for example:
-###       ntop @/etc/ntop.conf -i none
+###       ntop @%{_sysconfdir}/ntop.conf -i none
 ###  Overrides the -i in the file.
 
 ### Sets the user that ntop runs as.  
@@ -152,7 +163,7 @@ EOF
 ### Logging messages to syslog (instead of the console):
 ###  NOTE: To log to a specific facility, use --use-syslog=local3
 ###  NOTE: The = is REQUIRED and no spaces are permitted.
-#--use-syslog
+--use-syslog
 
 ### Tells ntop to track only local hosts as specified by the --local-subnets option
 #--track-local-hosts
@@ -172,16 +183,12 @@ EOF
 ### Sets the domain.  ntop should be able to determine this automatically.
 #--domain mydomain.com
 
-### Allows rrd to reuse graphics (reduces cpu usage) if the data has not changed.
---reuse-rrd-graphics
-
 ### Sets program to run as a daemon
 ###  NOTE: For more than casual use, you probably want this.
 #--daemon
 EOF
 
 %build
-%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|' configure configure.in
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--enable-optimize \
@@ -205,18 +212,21 @@ EOF
 %{__install} -D -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
 %{__install} -D -m0700 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.a %{buildroot}%{_libdir}/*.la
-%{__rm} -rf %{buildroot}%{_libdir}/plugins/
-
 %pre
-/usr/sbin/useradd -M -s /sbin/nologin -r ntop &>/dev/null || :
-/usr/sbin/usermod -s /sbin/nologin -c "ntop server user" -g ntop \
-			-d %{_localstatedir}/ntop ntop &>/dev/null || :
+if ! /usr/bin/id ntop &>/dev/null; then
+	/usr/sbin/useradd -M -s /sbin/nologin -r ntop &>/dev/null || \
+		%logmsg "Unexpected error adding user \"ntop\". Abort installation."
+fi
 
 %post
 /sbin/chkconfig --add ntop
 /sbin/ldconfig 2>/dev/null
+
+if /usr/bin/id ntop &>/dev/null; then
+	/usr/sbin/usermod -s /sbin/nologin -c "ntop user" -g ntop \
+		-d %{_localstatedir}/ntop ntop &>/dev/null || \
+		%logmsg "Unexpected error modifying user \"ntop\". Abort installation."
+fi
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -225,6 +235,11 @@ if [ $1 -eq 0 ]; then
 fi
 
 %postun
+if [ $1 -eq 0 ]; then
+	/usr/sbin/userdel ntop || %logmsg "User \"ntop\" could not be deleted."
+	/usr/sbin/groupdel ntop || %logmsg "Group \"ntop\" could not be deleted."
+fi
+
 if [ $1 -ge 1 ]; then
 	/sbin/service ntop condrestart &>/dev/null || :
 fi
@@ -235,20 +250,24 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog CONTENTS COPYING MANIFESTO NEWS PORTING
-%doc SUPPORT_NTOP.txt THANKS docs/*
+%doc AUTHORS ChangeLog CONTENTS COPYING INSTALL MANIFESTO NEWS PORTING THANKS
+%doc ntop.conf.sample *.txt docs/*
 %doc %{_mandir}/man?/*
-%config %{_initrddir}/ntop
-%config %{_sysconfdir}/logrotate.d/ntop
-%config %{_sysconfdir}/ntop.conf
+%config(noreplace) %{_sysconfdir}/ntop.conf
+%config(noreplace) %{_sysconfdir}/logrotate.d/ntop
 %config %{_sysconfdir}/ntop/
+%config %{_initrddir}/ntop
+%{_bindir}/*
 %{_datadir}/ntop/
-%{_bindir}/ntop
 %{_libdir}/*.so
 %{_libdir}/ntop/
 
-%defattr(-, ntop, ntop, 0755)
+%defattr(-, ntop, nobody, 0775)
 %{_localstatedir}/ntop/
+
+%exclude %{_libdir}/*.a
+%exclude %{_libdir}/*.la
+#%exclude %{_libdir}/plugins/
 
 %changelog
 * Tue Mar 23 2004 Dag Wieers <dag@wieers.com> - 3.0-1

@@ -1,11 +1,11 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Andrew Wood <andrew.wood@ivarch.com>
 
 Summary: Monitor the progress of data through a pipe
 Name: pv
-Version: 0.7.0
-Release: 0
+Version: 0.8.2
+Release: 1
 License: Artistic
 Group: Development/Tools
 URL: http://www.ivarch.com/programs/pv.shtml
@@ -13,9 +13,8 @@ URL: http://www.ivarch.com/programs/pv.shtml
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.ivarch.com/programs/sources/pv-%{version}.tar.bz2
+Source: http://www.ivarch.com/programs/sources/pv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 PV ("Pipe Viewer") is a tool for monitoring the progress of data through a
@@ -52,10 +51,13 @@ will be until completion.
 %defattr(-, root, root, 0755)
 %doc README doc/COPYING doc/NEWS doc/TODO doc/*.html doc/*.txt
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 
 %changelog
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 0.8.6-1
+- Updated to release 0.8.6.
+
 * Fri Feb 13 2004 Dag Wieers <dag@wieers.com> - 0.7.0-0
 - Updated to release 0.7.0.
 

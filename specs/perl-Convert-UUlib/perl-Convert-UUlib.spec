@@ -1,13 +1,15 @@
 # $Id$
-
 # Authority: dag
+
+%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Convert-UUlib
 
-Summary: Convert-UUlib module for perl
+Summary: Perl interface to the uulib library
 Name: perl-Convert-UUlib
-Version: 1.01
-Release: 0
+Version: 1.03
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UUlib/
@@ -22,7 +24,7 @@ BuildRequires: perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
 
 %description
-Convert-UUlib module for perl.
+A perl interface to the uulib library (a.k.a. uudeview/uuenview).
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -38,9 +40,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+### Clean up buildroot (arch)
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -49,9 +51,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes COPYING* MANIFEST README doc/*
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*/*
+%{perl_vendorarch}/*
 
 %changelog
+* Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 1.03-1
+- Updated to release 1.03.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.01-0
 - Updated to release 1.01.
 

@@ -7,7 +7,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.0.1
+Version: 3.0.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -17,6 +17,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{version}.tar.bz2
+Patch: lftp-3.0.2-http302.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel
@@ -42,6 +43,9 @@ reliability in mind.
 %makeinstall
 %find_lang %{name}
 
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_libdir}/lftp/%{version}/*.la
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -53,9 +57,17 @@ reliability in mind.
 %{_bindir}/*
 %{_datadir}/lftp/
 %{_libdir}/lftp/
-%exclude %{_libdir}/lftp/%{version}/*.la
 
 %changelog
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 3.0.3-1
+- Updated to release 3.0.3.
+
+* Fri Apr 16 2004 Dag Wieers <dag@wieers.com> - 3.0.2-2
+- Fixed HTTP 301/302 redirects. (Alexander V. Lukyanov)
+
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 3.0.2-1
+- Updated to release 3.0.2.
+
 * Wed Apr 07 2004 Dag Wieers <dag@wieers.com> - 3.0.1-1
 - Updated to release 3.0.1.
 

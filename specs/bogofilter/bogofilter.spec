@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 ### FIXME: configure has problems finding flex output using soapbox on RHEL3
@@ -9,8 +8,8 @@
 
 Summary: Fast anti-spam filtering by Bayesian statistical analysis
 Name: bogofilter
-Version: 0.16.4
-Release: 0
+Version: 0.17.5
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://bogofilter.sf.net/
@@ -20,7 +19,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/bogofilter/bogofilter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: flex
 Conflicts: bogofilter-static
@@ -85,5 +83,8 @@ done
 %{_datadir}/bogofilter/
 
 %changelog
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 0.17.5-1
+- Updated to release 0.17.5.
+
 * Mon Jan 26 2004 Dag Wieers <dag@wieers.com> - 0.16.4-0
 - Initial package. (using DAR)

@@ -7,8 +7,8 @@
 
 Summary: Multilingual web based tool to manage SQLite database
 Name: sqlitemanager
-Version: 0.9.4
-Release: 2
+Version: 0.9.6
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://sqlitemanager.sf.net/
@@ -30,7 +30,7 @@ The programming language used is: PHP4, but work fine with PHP5.
 %setup -n %{real_name}-%{version}
 
 ### FIXME: Add a default sqlitemanager.conf for Apache. (Please fix upstream)
-%{__cat} <<EOF >sqlitemanager.conf
+%{__cat} <<EOF >sqlitemanager.httpd
 ### You need to include conf.d/php.conf to make it work.
 
 Alias /sqlitemanager/ %{_localstatedir}/www/sqlitemanager/
@@ -52,14 +52,14 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sqlitemanager/{include,lang,theme/default,pics}/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/sqlitemanager/{include,lang,theme/default,pics}/
 %{__install} -m0644 *.php *.sqlite %{buildroot}%{_localstatedir}/www/sqlitemanager/
 %{__install} -m0644 include/*.{db,js,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/include/
 %{__install} -m0644 lang/*.inc.php %{buildroot}%{_localstatedir}/www/sqlitemanager/lang/
 %{__install} -m0644 theme/default/*.{css,php} %{buildroot}%{_localstatedir}/www/sqlitemanager/theme/default/
 %{__install} -m0644 pics/*.{gif,png} %{buildroot}%{_localstatedir}/www/sqlitemanager/pics/
-%{__install} -m0644 sqlitemanager.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
+
+%{__install} -D -m0644 sqlitemanager.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/sqlitemanager.conf
 
 %post
 if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
@@ -79,6 +79,9 @@ fi
 %{_localstatedir}/www/sqlitemanager/
 
 %changelog
+* Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.9.4-2
 - Cosmetic rebuild for Group-tag and BuildArch-tag.
 

@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dag
 
 %define real_name libnet
 %define real_version 1.0.2a
 
 Summary: Routines to help with network packet construction and handling
-#Name: libnet10
-Name: libnet
+Name: libnet10
 Version: 1.0.2
 Release: 2
 License: GPL
@@ -17,7 +15,7 @@ URL: http://www.packetfactory.net/projects/libnet/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.packetfactory.net/libnet/dist/%{real_name}-%{real_version}.tar.gz
+Source: http://www.packetfactory.net/libnet/dist/libnet-%{real_version}.tar.gz
 Patch: libnet-1.0.2a-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -52,8 +50,7 @@ with little effort. With a bit more time, more complex programs can be written
 	INC_PREFIX="%{buildroot}%{_includedir}/" \
 	LIB_PREFIX="%{buildroot}%{_libdir}" \
 	MAN_PREFIX="%{buildroot}%{_mandir}/man3"
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 libnet-config %{buildroot}%{_bindir}
+%{__install} -D -m0755 libnet-config %{buildroot}%{_bindir}/libnet-config
 
 %clean
 %{__rm} -rf %{buildroot}

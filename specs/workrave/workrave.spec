@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Rob Caelers <robc@krandor.org>
 
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
-Version: 1.4.1
-Release: 0
+Version: 1.6.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://workrave.sf.net/
@@ -71,6 +70,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/workrave/
 
 %changelog
+* Sat May 01 2004 Dag Wieers <dag@wieers.com> - 1.6.0-1
+- Updated to release 1.6.0.
+
 * Tue Nov 04 2003 Dag Wieers <dag@wieers.com> - 1.4.1-0
 - Updated to release 1.4.1.
 

@@ -2,16 +2,16 @@
 # Authority: newrpms
 # Upstream: <clamav-devel@lists.sf.net>
 
-%define milter 1
-%{?rhel3:%undefine milter}
-
 Summary: Anti-virus utility for Unix
 Name: clamav
-Version: 0.68
+Version: 0.70
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
 Source1: http://dl.sf.net/clamav/clamav-%{version}.tar.gz.sig
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: bzip2-devel, zlib-devel
-%{?milter:BuildRequires: sendmail-devel >= 8.12}
+BuildRequires: sendmail-devel >= 8.12
 Requires: clamav-db = %{version}-%{release}
 Obsoletes: libclamav = 0.54
 Provides: libclamav
@@ -132,7 +132,7 @@ EOF
 %build
 %configure  \
 	--program-prefix="%{?_program_prefix}" \
-%{?milter:--enable-milter} \
+	--enable-milter \
 	--disable-clamav \
 	--with-user="clamav" \
 	--with-group="clamav" \
@@ -143,27 +143,20 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/sysconfig/ \
-			%{buildroot}%{_sysconfdir}/cron.daily/ \
-			%{buildroot}%{_sysconfdir}/logrotate.d/ \
-			%{buildroot}%{_localstatedir}/log/clamav/ \
-			%{buildroot}%{_localstatedir}/run/clamav/
+%{__install} -D -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamd
+%{__install} -D -m0755 %{SOURCE3} %{buildroot}%{_initrddir}/clamav-milter
+%{__install} -D -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter
+%{__install} -D -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
+%{__install} -D -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
+%{__install} -D -m0644 clamav.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
 
-%{__install} -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamd
-
-%{?milter:%{__install} -m0755 %{SOURCE3} %{buildroot}%{_initrddir}/clamav-milter}
-%{?milter:%{__install} -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter}
-
-%{__install} -m0755 freshclam.cron %{buildroot}%{_sysconfdir}/cron.daily/freshclam
-%{__install} -m0644 freshclam.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/freshclam
-%{__install} -m0644 clamav.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/clamav
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/clamav/
 touch %{buildroot}/var/log/clamav/freshclam.log
 touch %{buildroot}/var/log/clamav/clamav.log
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/clamav/
+
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la \
-%{!?milter:	%{buildroot}%{_mandir}/man8/clamav-milter.8*}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -239,7 +232,6 @@ fi
 %{_localstatedir}/clamav/
 %{_localstatedir}/log/clamav/clamav.log
 
-%if %{?milter:1}%{!?milter:0}
 %files milter
 %defattr(-, root, root, 0755)
 %doc clamav-milter/INSTALL
@@ -247,7 +239,6 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/clamav-milter
 %config %{_initrddir}/clamav-milter
 %{_sbindir}/clamav-milter
-%endif
 
 %files db
 %defattr(-, root, root, 0755)
@@ -263,9 +254,12 @@ fi
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.a
-#%exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.la
 
 %changelog
+* Sat Mar 17 2004 Dag Wieers <dag@wieers.com> - 0.70-1
+- Updated to release 0.70.
+
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 0.68-1
 - Updated to release 0.68.
 

@@ -1,10 +1,9 @@
 # $Id$
-
 # Authority: dag
 
-Summary: Free, powerful and fullfeatured server logfile analyzer
+Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 5.9
+Version: 6.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/awstats/awstats-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: noarch
 
@@ -81,26 +79,30 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/cron.hourly/ \
-			%{buildroot}%{_sysconfdir}/httpd/conf.d/ \
-			%{buildroot}%{_sysconfdir}/awstats/ \
-			%{buildroot}%{_bindir} \
-			%{buildroot}%{_localstatedir}/www/awstats/{css,js,lang,lib,plugins/example}/ \
-			%{buildroot}%{_localstatedir}/www/awstats/icon/{browser,clock,cpu,flags,mime,os,other}/
-%{__install} -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/
-%{__install} -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/awstats.localhost.localdomain.conf
-%{__install} -m0755 awstats.cron %{buildroot}%{_sysconfdir}/cron.hourly/00awstats
-%{__install} -m0644 awstats.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/awstats.conf
-%{__install} -m0755 tools/logresolvemerge.pl %{buildroot}%{_bindir}/
-%{__install} -m0755 tools/awstats_buildstaticpages.pl %{buildroot}%{_bindir}/
-#%{__install} -m0755 tools/awstats_exportlib.pl %{buildroot}%{_bindir}/
-%{__install} -m0755 tools/awstats_updateall.pl %{buildroot}%{_bindir}/
+%{__install} -D -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/awstats.model.conf
+%{__install} -D -m0644 wwwroot/cgi-bin/awstats.model.conf %{buildroot}%{_sysconfdir}/awstats/awstats.localhost.localdomain.conf
+%{__install} -D -m0755 awstats.cron %{buildroot}%{_sysconfdir}/cron.hourly/00awstats
+%{__install} -D -m0644 awstats.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/awstats.conf
+%{__install} -D -m0755 tools/logresolvemerge.pl %{buildroot}%{_bindir}/logresolvemerge.pl
+%{__install} -D -m0755 tools/awstats_buildstaticpages.pl %{buildroot}%{_bindir}/awstats_buildstaticpages.pl
+%{__install} -D -m0755 tools/awstats_exportlib.pl %{buildroot}%{_bindir}/awstats_exportlib.pl
+%{__install} -D -m0755 tools/awstats_updateall.pl %{buildroot}%{_bindir}/awstats_updateall.pl
+%{__install} -D -m0755 tools/maillogconvert.pl %{buildroot}%{_bindir}/maillogconvert.pl
+%{__install} -D -m0755 tools/urlaliasbuilder.pl %{buildroot}%{_bindir}/urlaliasbuilder.pl
+
+%{__install} -D -m0755 wwwroot/cgi-bin/awstats.pl %{buildroot}%{_localstatedir}/www/awstats/awstats.pl
+%{__install} -D -m0755 wwwroot/cgi-bin/awredir.pl %{buildroot}%{_localstatedir}/www/awstats/awredir.pl
+%{__install} -D -m0644 wwwroot/classes/awgraphapplet.jar %{buildroot}%{_localstatedir}/www/awstats/classes/awgraphapplet.jar
+%{__install} -D -m0644 wwwroot/js/awstats_misc_tracker.js %{buildroot}%{_localstatedir}/www/awstats/js/awstats_misc_tracker.js
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/awstats/{css,lang,lib,plugins/example}/
 %{__install} -m0644 wwwroot/css/* %{buildroot}%{_localstatedir}/www/awstats/css/
-%{__install} -m0755 wwwroot/cgi-bin/awstats.pl %{buildroot}%{_localstatedir}/www/awstats/
+%{__install} -m0644 wwwroot/cgi-bin/lang/* %{buildroot}%{_localstatedir}/www/awstats/lang/
 %{__install} -m0755 wwwroot/cgi-bin/lib/* %{buildroot}%{_localstatedir}/www/awstats/lib/
 %{__install} -m0755 wwwroot/cgi-bin/plugins/*.pm %{buildroot}%{_localstatedir}/www/awstats/plugins/
 %{__install} -m0755 wwwroot/cgi-bin/plugins/example/* %{buildroot}%{_localstatedir}/www/awstats/plugins/example/
-%{__install} -m0644 wwwroot/cgi-bin/lang/* %{buildroot}%{_localstatedir}/www/awstats/lang/
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/awstats/icon/{browser,clock,cpu,flags,mime,os,other}/
 %{__install} -m0644 wwwroot/icon/browser/* %{buildroot}%{_localstatedir}/www/awstats/icon/browser/
 %{__install} -m0644 wwwroot/icon/clock/* %{buildroot}%{_localstatedir}/www/awstats/icon/clock/
 %{__install} -m0644 wwwroot/icon/cpu/* %{buildroot}%{_localstatedir}/www/awstats/icon/cpu/
@@ -122,6 +124,9 @@ EOF
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Fri Apr 23 2004 Dag Wieers <dag@wieers.com> - 6.0-1
+- Updated to release 6.0.
+
 * Fri Sep 26 2003 Dag Wieers <dag@wieers.com> - 5.9-1
 - Fixed missing icon/mime set. (Gerke Kok)
 

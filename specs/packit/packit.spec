@@ -1,11 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream: Darren Bounds <dbounds@intrusense.com>
+
+# Distcc: 0
 
 Summary: Network injection and capturing tool
 Name: packit
-Version: 0.7.1
-Release: 0
+Version: 1.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://packit.sf.net/
@@ -13,12 +15,10 @@ URL: http://packit.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://packit.sf.net/packit-%{version}.tgz
+Source: http://packit.sf.net/downloads/packit-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: libnet >= 1.1
-Requires: libnet >= 1.1
 
 %description
 Packit is a network auditing tool. It's value is derived from its
@@ -33,7 +33,6 @@ learning TCP/IP.
 %setup
 
 %build
-#CC='gcc -I/usr/include/pcap' ./configure --prefix=/usr
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -51,5 +50,8 @@ learning TCP/IP.
 %{_sbindir}/*
 
 %changelog
-* Sat Jan 24 2004 Dag Wieers <dag@wieers.com> - 0.7.1-0
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 1.0-1
+- Updated to release 1.0.
+
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Initial package. (using DAR)

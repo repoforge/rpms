@@ -1,11 +1,10 @@
 # $Id$
 # Authority: dag
 # Upstream: Jorn Baayen <muine-list@gnome.org>
-##Soapbox: 0
 
 Summary: Simple music player
 Name: muine
-Version: 0.5.2
+Version: 0.5.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -18,7 +17,8 @@ Source: http://muine.gooeylinux.org/muine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, mono-devel, gtk-sharp-devel >= 0.17, gstreamer-devel
-BuildRequires: gstreamer-plugins-devel, libvorbis-devel, libid3tag-devel, flac-devel, libxine
+BuildRequires: gstreamer-plugins-devel, libvorbis-devel, libid3tag-devel, flac-devel
+#BuildRequires: libxine
 Requires: mono, gtk-sharp >= 0.17
 
 %description
@@ -63,6 +63,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Fri Apr 09 2004 Dag Wieers <dag@wieers.com> - 0.5.3-1
+- Updated to release 0.5.3.
+
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Updated to release 0.5.2.
 

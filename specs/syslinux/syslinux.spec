@@ -1,13 +1,13 @@
 # $Id$
-
 # Authority: dag
+# Upstream: <syslinux@zytor.com>
 
-%define real_version 2.08
+# BuildAsRoot: 1
 
 Summary: Simple kernel loader which boots from a FAT filesystem
 Name: syslinux
-Version: 2.08
-Release: 0
+Version: 2.09
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -15,10 +15,8 @@ URL: http://syslinux.zytor.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/%{name}-%{real_version}.tar.bz2
-#Patch: syslinux-2.04-x86_64.patch
+Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 #Autoreq: 0
 ExclusiveArch: i386 x86_64
@@ -31,8 +29,7 @@ optional initrd image) from a FAT filesystem. It can also be used as a
 PXE bootloader during network boots.
 
 %prep
-%setup -n %{name}-%{real_version}
-#patch0 -p1 -b .x86_64
+%setup
 
 %build
 %{__make} clean
@@ -49,10 +46,6 @@ PXE bootloader during network boots.
 	INCDIR="%{buildroot}%{_includedir}"
 %{__install} -m0755 mkdiskimage sys2ansi.pl keytab-lilo.pl %{buildroot}%{_libdir}/syslinux/
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/libsyslinux* \
-		%{buildroot}%{_includedir}/syslinux.h
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -61,8 +54,13 @@ PXE bootloader during network boots.
 %doc BUGS COPYING NEWS README TODO *.doc memdisk/memdisk.doc sample/sample.*
 %{_bindir}/*
 %{_libdir}/syslinux/
+%exclude %{_libdir}/libsyslinux*
+%exclude %{_includedir}/syslinux.h
 
 %changelog
+* Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 2.09-1
+- Updated to release 2.09.
+
 * Mon Jan 19 2004 Dag Wieers <dag@wieers.com> - 2.08-0
 - Updated to release 2.08.
 

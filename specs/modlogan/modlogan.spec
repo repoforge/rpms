@@ -1,13 +1,11 @@
 # $Id$
-
 # Authority: dag
-
 # Upstream: Jan Kneschke <jan@kneschke.de>
 
 Summary: Modular Log Analyzer
 Name: modlogan
-Version: 0.8.10
-Release: 0
+Version: 0.8.11
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://jan.kneschke.de/projects/modlogan/
@@ -15,9 +13,8 @@ URL: http://jan.kneschke.de/projects/modlogan/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.kneschke.de/projekte/modlogan/download/%{name}-%{version}.tar.gz
+Source: http://jan.kneschke.de/projects/modlogan/download/modlogan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: gd-devel >= 1.8.3, libxml2-devel, pcre-devel, adns-devel, perl, libtool
 
@@ -54,13 +51,16 @@ done
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING Doxyfile NEWS README TODO doc/license.GD  doc/*txt doc/*ihtml
+%doc AUTHORS ChangeLog COPYING Doxyfile NEWS README TODO doc/license.GD doc/*txt doc/*ihtml
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/modlogan/
 %{_bindir}/*
 %{_libdir}/*
 
 %changelog
+* Sat May 01 2004 Dag Wieers <dag@wieers.com> - 0.8.11-1
+- Updated to release 0.8.11.
+
 * Fri Sep 19 2003 Dag Wieers <dag@wieers.com> - 0.8.10-0
 - Updated to release 0.8.10.
 

@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <tcpreplay-users@lists.sf.net>
 
 Summary: Replay captured network traffic
 Name: tcpreplay
-Version: 2.0.3
+Version: 2.1.0
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -17,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/tcpreplay/tcpreplay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet >= 1.1.0
+BuildRequires: libnet >= 1.1.1, tcpdump
 
 %description
 Tcpreplay is a tool to replay captured network traffic.  Currently, tcpreplay
@@ -29,28 +28,35 @@ capture files.
 %prep
 %setup
 
+### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
+%{__perl} -pi.orig -e 's|\@mandir\@|\$(mandir)|' Makefile.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-%{__install} -m0755 capinfo tcpprep tcpreplay %{buildroot}%{_sbindir}
-%{__install} -D -m0644 capinfo.1 %{buildroot}%{_mandir}/man1/capinfo.1
-%{__install} -D -m0644 tcpprep.1 %{buildroot}%{_mandir}/man1/tcpprep.1
-%{__install} -D -m0644 tcpreplay.8 %{buildroot}%{_mandir}/man8/tcpreplay.8
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG LICENSE README tcpprep.FAQ
+%doc README Docs/CHANGELOG Docs/CREDIT Docs/INSTALL Docs/LICENSE
+%doc Docs/*.css Docs/*.html Docs/*.txt
 %doc %{_mandir}/man?/*
+%{_bindir}/*
 %{_sbindir}/*
 
 %changelog
+* Sat Apr 24 2004 Dag Wieers <dag@wieers.com> - 2.1.0-1
+- Updated to release 2.1.0.
+
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 2.0.3-2
+- Rebuild against libnet 1.1.2.1.
+
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 2.0.3-1
 - Updated to release 2.0.3.
 

@@ -9,7 +9,7 @@
 
 Summary: APC UPS power control daemon
 Name: apcupsd
-Version: 3.10.12
+Version: 3.10.13
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -20,7 +20,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/apcupsd/apcupsd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: glibc-devel, gd-devel
 Requires: perl
@@ -40,7 +39,7 @@ Some features depend on what UPS model you have (simple or smart).
 %setup
 
 ### Add a default apcupsd.conf for Apache.
-%{__cat} <<EOF >apcupsd.conf
+%{__cat} <<EOF >apcupsd.httpd
 ScriptAlias /apcupsd/ %{_localstatedir}/www/apcupsd/
 <Directory %{_localstatedir}/www/apcupsd/>
         DirectoryIndex upsstats.cgi
@@ -81,14 +80,9 @@ EOF
 %{__make} install \
 	DESTDIR="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/ \
-			%{buildroot}%{_sysconfdir}/logrotate.d/
 %{__install} -m0755 examples/hid-ups examples/make-hiddev %{buildroot}%{_sysconfdir}/apcupsd/
-%{__install} -m0644 apcupsd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/
-%{__install} -m0644 apcupsd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/apcupsd
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_initrddir}/halt*
+%{__install} -D -m0644 apcupsd.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/apcupsd.conf
+%{__install} -D -m0644 apcupsd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/apcupsd
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -122,8 +116,12 @@ fi
 %config %{_initrddir}/*
 %{_sbindir}/*
 %{_localstatedir}/www/apcupsd/
+%exclude %{_initrddir}/halt*
 
 %changelog
+* Wed Apr 21 2004 Dag Wieers <dag@wieers.com> - 3.10.13-1
+- Updated to new release 3.10.13.
+
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 3.10.12-1
 - Added apcupsd.logrotate. (Derek Werthmuller)
 - Updated to new release 3.10.12.

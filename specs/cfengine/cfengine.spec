@@ -1,15 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Mark Burgess <Mark.Burgess@iu.hio.no>
 
-### FIXME: configure has problems finding flex output using soapbox on RHEL3
-# Soapbox: 0
-
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.1
-Release: 0
+Version: 2.1.5
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
@@ -19,7 +15,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.iu.hio.no/pub/cfengine/cfengine-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: bison, flex, m4, openssl-devel, tetex
 %{?rhfc1:BuildRequires: db4-devel}
@@ -41,6 +36,73 @@ system.
 
 %prep
 %setup
+
+%{__cat} <<'EOF' >cfenvd.sysv
+#!/bin/bash
+#
+# Init file for the cfengine anomaly detection service
+#
+# chkconfig: 2345 98 20
+# description: cfenvd is an optional anomaly detection service for cfengine.
+#
+# processname: cfenvd
+# pidfile: %{_localstatedir}/run/cfengine
+
+# Source function library.
+. %{_initrddir}/functions
+
+RETVAL=0
+prog="cfenvd"
+desc="cfengine anomaly detection service"
+
+start() {
+	echo -n $"Starting $desc ($prog): "
+	daemon $prog
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
+}
+
+stop() {
+	echo -n $"Stopping $desc ($prog): "
+	killproc $prog
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+	return $RETVAL
+}
+
+restart() {
+  	stop
+	start
+}	
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  condrestart)
+	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+	RETVAL=$?
+	;;
+  status)
+	status $prog
+	RETVAL=$?
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+	RETVAL=1
+esac
+
+exit $RETVAL
+EOF
 
 %{__cat} <<'EOF' >cfexecd.sysv
 #!/bin/bash
@@ -191,33 +253,35 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_datadir}/cfengine \
-			%{buildroot}%{_localstatedir}/cfengine/inputs \
-			%{buildroot}%{_localstatedir}/cfengine/bin \
-			%{buildroot}%{_initrddir}
+			%{buildroot}%{_datadir}/cfengine/ \
+			%{buildroot}%{_localstatedir}/cfengine/{bin,inputs}/ \
 %makeinstall
-%{__install} -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
-%{__install} -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
+%{__install} -D -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
+%{__install} -D -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
+%{__install} -D -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_datadir}/cfengine/
 %{__rm} -f %{buildroot}%{_infodir}/dir
 
 %post
 %{_sbindir}/cfkey &>/dev/null || :
-/sbin/install-info %{_infodir}/cfengine*.info.gz %{_infodir}/dir
+/sbin/install-info %{_infodir}/cfengine-Anomalies.info.gz %{_infodir}/dir
+/sbin/install-info %{_infodir}/cfengine-Reference.info.gz %{_infodir}/dir
+/sbin/install-info %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
 
-if [ "$1" = "1" ]; then
+if [ $1 -eq 1 ]; then
 	chkconfig --add cfenvd
 	chkconfig --add cfexecd
 	chkconfig --add cfservd
 fi
 
 %preun
-/sbin/install-info --delete %{_infodir}/cfengine*.info.gz %{_infodir}/dir
+/sbin/install-info --delete %{_infodir}/cfengine-Anomalies.info.gz %{_infodir}/dir
+/sbin/install-info --delete %{_infodir}/cfengine-Reference.info.gz %{_infodir}/dir
+/sbin/install-info --delete %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
 
-if [ "$1" = "0" ]; then
+if [ $1 -eq 0 ]; then
 	chkconfig --del cfenvd
 	chkconfig --del cfexecd
 	chkconfig --del cfservd
@@ -228,15 +292,23 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING DOCUMENTATION NEWS README TODO
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc contrib/cfengine.el doc/*.html inputs/*
 %doc %{_mandir}/man?/*
-%doc %{_infodir}/*
+%doc %{_infodir}/*.info*
 %config %{_initrddir}/*
 %{_sbindir}/*
 %{_localstatedir}/cfengine/
+%exclude %{_datadir}/cfengine/
 
 %changelog
+* Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 2.1.5-2
+- Removed the %%{_infodir}/dir from the buildroot. (Shawn Ashlee)
+
+* Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 2.1.5-1
+- Updated to release 2.1.5.
+- Fixed problem with info-files and added cfenvd sysv script. (James Wilkinson)
+
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 2.1.1-0
 - Updated to release 2.1.1.
 

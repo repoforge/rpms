@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Jorge Ferrer <jferrer@ieeesb.etsit.upm.es>
 
@@ -8,7 +7,7 @@
 
 Summary: Library for writing gnome database programs
 Name: libgda
-Version: 1.1.1
+Version: 1.1.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -102,7 +101,7 @@ scrollkeeper-update -q || :
 %{_libdir}/libgda/
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc %{_datadir}/gtk-doc/html/libgda/
 %{?!rh73:%{_datadir}/omf/libgda/}
 %{_includedir}/libgda/
@@ -112,6 +111,9 @@ scrollkeeper-update -q || :
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Tue Apr 27 2004 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Mon Apr 05 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
 - Updated to release 1.1.1.
 

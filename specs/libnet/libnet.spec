@@ -1,15 +1,10 @@
 # $Id$
-
 # Authority: dag
 
-%define real_name libnet
-%define real_version 1.0.2a
-
-Summary: Routines to help with network packet construction and handling
-#Name: libnet10
+Summary: Routines to help with network packet contruction and handling
 Name: libnet
-Version: 1.0.2
-Release: 2
+Version: 1.1.2.1
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://www.packetfactory.net/projects/libnet/
@@ -17,10 +12,8 @@ URL: http://www.packetfactory.net/projects/libnet/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.packetfactory.net/libnet/dist/%{real_name}-%{real_version}.tar.gz
-Patch: libnet-1.0.2a-gcc33.patch
+Source: http://www.packetfactory.net/libnet/dist/libnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 Libnet is a high-level API (toolkit) allowing the application programmer to
@@ -38,8 +31,7 @@ with little effort. With a bit more time, more complex programs can be written
 (Traceroute and ping were easily rewritten using libnet and libpcap).
 
 %prep
-%setup -n Libnet-%{real_version}
-%patch0 -b .gcc33
+%setup -n %{name}
 
 %build
 %configure
@@ -47,28 +39,29 @@ with little effort. With a bit more time, more complex programs can be written
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	BIN_PREFIX="%{buildroot}%{_bindir}" \
-	INC_PREFIX="%{buildroot}%{_includedir}/" \
-	LIB_PREFIX="%{buildroot}%{_libdir}" \
-	MAN_PREFIX="%{buildroot}%{_mandir}/man3"
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 libnet-config %{buildroot}%{_bindir}
+%makeinstall
+%{__install} -D -m0755 libnet-config %{buildroot}%{_bindir}/libnet-config
+
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man3/
+%{__install} -D -m0644 doc/man/man3/*.3 %{buildroot}%{_mandir}/man3/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc/*
-%doc %{_mandir}/man?/*
+%doc README doc/BUGS doc/CHANGELOG doc/CONTRIB doc/COPYING doc/DESIGN_NOTES
+%doc doc/MIGRATION doc/PACKET* doc/PORTED doc/RAWSOCKET* doc/TODO doc/html/
+%doc %{_mandir}/man3/*
 %{_bindir}/*
-%{_libdir}/*
+%{_libdir}/*.a
 %{_includedir}/libnet.h
 %{_includedir}/libnet/
-#%{_libdir}/libpwrite
 
 %changelog
+* Sat Apr 10 2004 Dag Wieers <dag@wieers.com> - 1.1.2.1-1
+- Updated to 1.1.2.1.
+
 * Fri Nov 21 2003 Dag Wieers <dag@wieers.com> - 1.0.2-2
 - Patch to build with gcc-3.3.
 

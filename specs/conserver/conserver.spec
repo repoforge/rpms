@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: <users@conserver.com>
 # Upstream: Bryan Stansell <bryan@conserver.com>
@@ -8,7 +7,7 @@
 
 Summary: Serial console server daemon/client
 Name: conserver
-Version: 8.1.3
+Version: 8.1.4
 Release: 1
 License: BSD style
 Group: System Environment/Daemons
@@ -44,9 +43,6 @@ bells and whistles to accentuate that basic functionality.
 %{__install} -D -m0600 conserver.cf/conserver.passwd %{buildroot}%{_sysconfdir}/conserver.passwd
 %{__install} -D -m0755 contrib/redhat-rpm/conserver.init %{buildroot}%{_initrddir}/conserver
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_datadir}/examples/
-
 %post
 /sbin/chkconfig --add conserver
 if ! egrep -q '\<conserver\>' /etc/services; then
@@ -67,14 +63,18 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES FAQ README conserver.cf/
+%doc CHANGES FAQ INSTALL README conserver.cf/
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/conserver.*
 %config %{_initrddir}/*
 %{_bindir}/*
 %{_sbindir}/*
+%exclude %{_datadir}/examples/
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 8.1.4-1
+- Updated to release 8.1.4.
+
 * Fri Mar 26 2004 Dag Wieers <dag@wieers.com> - 8.1.3-1
 - Updated to release 8.1.3.
 

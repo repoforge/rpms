@@ -1,12 +1,11 @@
 # $Id$
-
 # Authority: dag
 # Conrad Parker <conrad@vergenet.net>
 
 Summary: Sound wave editor
 Name: sweep
-Version: 0.8.2
-Release: 0
+Version: 0.8.3
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://sweep.sf.net/
@@ -17,8 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/sweep/sweep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
-BuildRequires: tdb-devel >= 1.0.6, libsndfile-devel >= 1.0.1, libmad-devel
+BuildRequires: libsndfile-devel >= 1.0.1, libmad-devel
 BuildRequires: gtk+-devel >= 1.2.0, libvorbis-devel, speex-devel
 
 %description
@@ -71,5 +69,8 @@ you will need to install %{name}-devel.
 %{_includedir}/sweep/
 
 %changelog
+* Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 0.8.3-1
+- Updated to release 0.8.3.
+
 * Fri May 02 2003 Dag Wieers <dag@wieers.com> - 0.8.2-0
 - Initial package. (using DAR)
