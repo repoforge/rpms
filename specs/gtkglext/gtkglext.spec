@@ -11,7 +11,10 @@ Group: System Environment/Libraries
 URL: http://gtkglext.sourceforge.net/
 Source: http://dl.sf.net/gtkglext/gtkglext-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, gtk2-devel
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
+BuildRequires: gtk2-devel
+
 # libtool *sigh*
 BuildRequires: gcc-c++
 
