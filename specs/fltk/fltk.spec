@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: <fltk-dev@easysw.com>
+# Upstream: <fltk-dev$easysw,com>
 
 # Screenshot: http://www.fltk.org/images/fluid.gif
 
@@ -52,7 +52,7 @@ you will need to install %{name}-devel.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf %{buildroot} rpm-doc
+%{__rm} -rf %{buildroot}
 
 ### FIXME: Makefile doesn't create target directories (Please fix upstream)
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
@@ -60,7 +60,7 @@ you will need to install %{name}-devel.
 
 %makeinstall
 
-%{__mv} -f %{buildroot}%{_docdir} rpm-doc
+%{__mv} -f %{buildroot}%{_docdir} rpm-doc/
 
 %clean
 %{__rm} -rf %{buildroot}
