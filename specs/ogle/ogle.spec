@@ -4,23 +4,35 @@
 %define desktop_vendor freshrpms
 #define cvs -cvs
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_alsa 1}
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh8:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?el2:%define _without_alsa 1}
+%{?rh6:%define _without_alsa 1}
+%{?yd3:%define _without_alsa 1}
+
 Summary: DVD player that supports DVD menus
 Name: ogle
 Version: 0.9.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/
-Source0: http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}%{?cvs}.tar.gz
+Source0: http://www.dtek.chalmers.se/groups/dvd/dist/ogle-%{version}%{?cvs}.tar.gz
 Source1: bluecurve-xine.png
+Patch: ogle-0.9.2-alsa.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libdvdread >= 0.9.4, libjpeg, libxml2 >= 2.4.19
-%{!?_without_alsa:Requires: alsa-lib}
 BuildRequires: XFree86-devel
 BuildRequires: libdvdread-devel >= 0.9.4, libjpeg-devel, a52dec-devel >= 0.7.3
-BuildRequires: libxml2-devel >= 2.4.19, libmad-devel, perl
+BuildRequires: libxml2-devel >= 2.4.19, libmad-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
+# Needed for ALSA patch
+BuildRequires: autoconf
 
 %description
 Ogle is a DVD player. It's features are: Supports DVD menus and navigation,
@@ -32,14 +44,13 @@ S/PDIF with an external command, fullscreen mode, screenshots with and
 without subpicture overlay...
 
 Available rpmbuild rebuild options :
---with : alsadefaultdriver
 --without : alsa freedesktop altivec
 
 
 %package devel
 Summary: Header files and static libraries from the Ogle DVD player
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}
 Requires: libdvdread-devel >= 0.9.4, libxml2-devel >= 2.4.19
 
 %description devel
@@ -49,44 +60,49 @@ to build programs that use it (like GUIs).
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
+%patch -p2 -b .alsa
+# Workaround the hardcoded "lib" path for dvdread (vs. lib64)... doesn't work
+#%{__perl} -pi.orig -e 's|dvd_path/lib|dvd_path/%{_lib}|g' configure*
 
 
 %build
-%configure %{?_without_altivec:--disable-altivec}
+autoconf
+%configure \
+    %{?_without_altivec:--disable-altivec}
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-# Needed for library dependencies
+# Needed for library dependencies (still current in 0.9.2)
 export LIBRARY_PATH=%{buildroot}/usr/lib/ogle
 %{__make} DESTDIR=%{buildroot} install
-%{__install} -m 644 -D %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/ogle.png
 
-# Change the ALSA default to OSS, unless "alsa-default" was chosen
-%{!?_with_alsadefaultdriver:perl -pi -e 's|<driver>alsa</driver>|<driver>oss</driver>|g' %{buildroot}%{_datadir}/ogle/oglerc}
+# Change the ALSA default to OSS if we have --without alsa
+%{?_without_alsa:%{__perl} -pi -e 's|<driver>alsa</driver>|<driver>oss</driver>|g' %{buildroot}%{_datadir}/ogle/oglerc}
 
-%{__cat} << EOF > %{name}.desktop
+%{__cat} > ogle.desktop << EOF
 [Desktop Entry]
 Name=DVD Player
 Comment=Play video DVDs with full menu support
-Icon=%{name}.png
-Exec=%{name}
+Exec=ogle
+Icon=ogle.png
 Terminal=false
 Type=Application
+Encoding=UTF-8
+Categories=X-Red-Hat-Base;Application;AudioVideo;
 EOF
 
-%if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
+%if %{!?_without_freedesktop:1}0
 mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Base                 \
-  --add-category Application                    \
-  --add-category AudioVideo                     \
-  %{name}.desktop
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    ogle.desktop
 %else
-%{__install} -D -m644 %{name}.desktop \
-  %{buildroot}/etc/X11/applnk/Multimedia/%{name}.desktop
+%{__install} -D -m 0644 ogle.desktop \
+    %{buildroot}/etc/X11/applnk/Multimedia/ogle.desktop
 %endif
 
 
@@ -107,27 +123,31 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README
 %{_bindir}/*
-%dir %{_libdir}/%{name}
-%{_libdir}/%{name}/*.so.*
-%{_libdir}/%{name}/%{name}_*
+%dir %{_libdir}/ogle/
+%{_libdir}/ogle/*.so.*
+%{_libdir}/ogle/ogle_*
 %{_mandir}/man?/*
-%{!?_without_freedesktop:%{_datadir}/applications/*%{name}.desktop}
-%dir %{_datadir}/%{name}
-%config %{_datadir}/%{name}/oglerc
-%{_datadir}/%{name}/ogle_conf.dtd
-%{_datadir}/pixmaps/%{name}.png
-%{?_without_freedesktop:/etc/X11/applnk/Multimedia/%{name}.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-ogle.desktop}
+%dir %{_datadir}/ogle/
+%config %{_datadir}/ogle/oglerc
+%{_datadir}/ogle/ogle_conf.dtd
+%{_datadir}/pixmaps/ogle.png
+%{?_without_freedesktop:/etc/X11/applnk/Multimedia/ogle.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/%{name}
-%dir %{_libdir}/%{name}
-%{_libdir}/%{name}/*.so
-%exclude %{_libdir}/%{name}/*.la
-%{_libdir}/%{name}/*.a
+%{_includedir}/ogle/
+%dir %{_libdir}/ogle
+%{_libdir}/ogle/*.so
+%exclude %{_libdir}/ogle/*.la
+%{_libdir}/ogle/*.a
 
 
 %changelog
+* Mon Aug  3 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-3
+- Added patch for proper ALSA detection.
+- Cosmetic changes.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.9.2-2
 - Rebuild for Fedora Core 2.
 - Minor spec updates.
