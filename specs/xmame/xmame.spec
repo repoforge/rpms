@@ -31,7 +31,7 @@ BuildRequires: unzip, XFree86-devel, zlib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
-%ifarch %ix86
+%ifarch %{ix86} x86_64
 %{!?_without_asm68000:BuildRequires: nasm >= 0.98}
 %{!?_without_mips3:BuildRequires: nasm >= 0.98}
 %endif
@@ -194,6 +194,9 @@ test -e Makefile || %{__cp} -a makefile.unix Makefile
 %{__perl} -pi -e 's/^CFLAGS/# CFLAGS/g' Makefile
 %{__perl} -pi -e 's/^MY_CPU/# MY_CPU/g' Makefile
 
+# Replace lib with lib64 when required
+%{__perl} -pi -e 's|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g' Makefile
+
 # Make the package build verbose by default (to see opts etc.)
 %{?_without_quietbuild: %{__perl} -pi -e 's/^QUIET/# QUIET/g' src/unix/unix.mak}
 
@@ -206,7 +209,7 @@ export JOY_I386=1
 %{!?_without_arts:export SOUND_ARTS_TEIRA=1}
 
 # Optimization flags, CPU type and defaults for the makefile
-%ifarch %ix86
+%ifarch %{ix86}
     export MY_CPU="i386"
     %{!?_without_opts: export CFLAGS="%{optflags} -O3 -Wall"}
     %{!?_without_asm68000: export X86_ASM_68000=1}
@@ -216,6 +219,15 @@ export JOY_I386=1
 %ifarch ppc
     export MY_CPU="risc"
     %{!?_without_opts: export CFLAGS="%{optflags} -O3 -Wall"}
+%endif
+
+%ifarch x86_64
+    export MY_CPU="amd64"
+    %{!?_without_opts: export CFLAGS="%{optflags} -O3 -Wall"}
+    # Nope: warning: i386 architecture of input file `68000.o' is
+    # incompatible with i386:x86-64 output
+    #{!?_without_asm68000: export X86_ASM_68000=1}
+    %{!?_without_mips3: export X86_MIPS3_DRC=1}
 %endif
 
 %ifarch sparc sparcv8 sparcv9 sparc64
