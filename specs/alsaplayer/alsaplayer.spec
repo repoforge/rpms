@@ -6,22 +6,20 @@
 Summary: Audio player for systems using the Advanced Linux Sound Architecture
 Name: alsaplayer
 Version: 0.99.76
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
-Source0: http://www.alsaplayer.org/%{name}-%{version}.tar.bz2
+URL: http://www.alsaplayer.org/
+Source0: http://www.alsaplayer.org/alsaplayer-%{version}.tar.bz2
 Source1: alsaplayer.png
 Source2: alsaplayer-small.png
 Source3: alsaplayer-large.png
-URL: http://www.alsaplayer.org/
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
-Requires: alsa-lib, esound, gtk+, libvorbis, flac, libmad, libid3tag, libsndfile
-%{!?_without_xosd:Requires: xosd}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: alsa-lib-devel, esound-devel, gtk+-devel, libvorbis-devel
 BuildRequires: flac-devel, libmad-devel, libid3tag-devel, libsndfile-devel
 BuildRequires: zlib-devel, libstdc++-devel, mikmod
 BuildRequires: gcc-c++, doxygen, desktop-file-utils
-%{!?_without_xosd:BuildRequires: xosd-devel}
+BuildRequires: xosd-devel
 
 %description
 AlsaPlayer is a new PCM player developed on the Linux Operating System. Since
@@ -36,28 +34,28 @@ Audiofile. The Output Plugins include: ALSA, OSS and OSS/Lite, Esound,
 Sparc (tested on UltraSparc), SGI, and JACK. There are also a few scope 
 plugins included.
 
-Install AlsaPlayer if you want a versitile audio player.
+Install AlsaPlayer if you want a versatile audio player.
 
-Available rpmbuild rebuild options :
---without : xosd
 
 %prep
 %setup
+
 
 %build
 %configure --enable-audiofile
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-
 # Install icons
-mkdir -p %{buildroot}%{_datadir}/pixmaps
-%{__install} -m644 %{SOURCE1} %{SOURCE2} %{SOURCE3} %{buildroot}%{_datadir}/pixmaps/
+%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
+%{__install} -m 644 %{SOURCE1} %{SOURCE2} %{SOURCE3} \
+    %{buildroot}%{_datadir}/pixmaps/
 
 # System menu entry
-cat << EOF > %{name}.desktop
+%{__cat} << EOF > %{name}.desktop
 [Desktop Entry]
 Name=ALSA Player
 Comment=Audio player for the Advanced Linux Sound Architecture
@@ -65,12 +63,12 @@ Icon=alsaplayer.png
 Exec=alsaplayer
 Terminal=false
 Type=Application
+Encoding=UTF-8
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Extra                \
   --add-category Application                    \
   --add-category AudioVideo                     \
   %{name}.desktop
@@ -79,8 +77,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{__rm} -f examples/Makefile*
 %{__rm} -rf %{buildroot}%{_docdir}/%{name}
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -95,8 +95,12 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/applications/*%{name}.desktop
 %{_datadir}/pixmaps/%{name}*
 
+
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.99.76-1.fr
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.99.76-2
+- Rebuild for Fedora Core 2.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.99.76-1
 - Update to 0.99.76.
 - Rebuild for Fedora Core 1.
 - Added missing gcc-c++ build dependency.

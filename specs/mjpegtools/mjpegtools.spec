@@ -9,14 +9,13 @@ Version: 1.6.2
 Release: 2
 License: GPL
 Group: Applications/Multimedia
-URL: http://mjpeg.sf.net/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
+URL: http://mjpeg.sourceforge.net/
 Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: SDL, libjpeg, libpng, gtk+
+Requires: libquicktime
+%{?_with_avifile:Requires: avifile}
+%{?_with_dv:Requires: libdv}
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk+-devel
 BuildRequires: libquicktime-devel
 %{?_with_avifile:BuildRequires: avifile-devel}
@@ -27,10 +26,6 @@ BuildRequires: libquicktime-devel
 BuildRequires: nasm
 %endif
 
-Requires: SDL, libjpeg, libpng, gtk+
-Requires: libquicktime
-%{?_with_avifile:Requires: avifile}
-%{?_with_dv:Requires: libdv}
 
 %description
 The MJPEG-tools are a basic set of utilities for recording, editing, 
@@ -58,6 +53,7 @@ of the mjpegtools package.
 %prep
 %setup
 
+
 %build
 %configure \
     --enable-shared \
@@ -65,6 +61,7 @@ of the mjpegtools package.
     %{?_with_cmov:--enable-cmov-extension} \
     --with-quicktime
 %{__make}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -74,19 +71,15 @@ of the mjpegtools package.
 # No, give them back as mjpegutils is only built as static and required
 #rm -f %{buildroot}%{_libdir}/*.a
 
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig
-#/sbin/install-info %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
 
 %postun
 /sbin/ldconfig
-#if [ $1 -eq 0 ]; then
-#    /sbin/install-info --delete %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
-#fi
-#exit 0
 
 %files
 %defattr(-, root, root, 0755)
@@ -119,26 +112,27 @@ of the mjpegtools package.
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
 
+
 %changelog
 * Sun Apr 11 2004 Dag Wieers <dag@wieers.com> - 1.6.2-2
 - Rebuild against libdv 0.102.
 
-* Wed Feb 18 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-1.fr
+* Wed Feb 18 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-1
 - Update to 1.6.2.
 
-* Mon Feb  2 2004 Matthias Saou <http://freshrpms.net/> 1.6.1.93-1.fr
+* Mon Feb  2 2004 Matthias Saou <http://freshrpms.net/> 1.6.1.93-1
 - Update to 1.6.1.93.
 - Don't remove static libs, as libmjpegutils.a is required by certain apps,
   use --disable-static instead, as that one .a file is built nevertheless.
 
-* Thu Dec  4 2003 Matthias Saou <http://freshrpms.net/> 1.6.1.92-1.fr
+* Thu Dec  4 2003 Matthias Saou <http://freshrpms.net/> 1.6.1.92-1
 - Update to 1.6.1.92.
 - Remove static libs for new as their stripping makes the build fail :-(
 - Remove the bundled quicktime4linux and libmovtar deps, replaced by cleaner
   libquicktime dependencies.
 - Added 'cmov' conditional build, which then forces an i686 build.
 
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.6.1.90-1.fr
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.6.1.90-1
 - Update to 1.6.1.90.
 - Added new info files and binaries.
 - Rebuild for Fedora Core 1.
