@@ -4,6 +4,10 @@
 # Upstream:
 
 %define real_name Params-Validate
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`perl -V:archlib`"; echo $archlib)
+%define perl_privlib %(eval "`perl -V:privlib`"; echo $privlib)
 
 Summary: Validation of method parameters
 Name: perl-Params-Validate
@@ -45,8 +49,6 @@ implementation that it can fall back on.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Params/Validate/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,9 +57,11 @@ implementation that it can fall back on.
 %defattr(-, root, root, 0755)
 %doc LICENSE README Changes
 %{_mandir}/man3/*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Attribute/Params/Validate.pm
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/Params/Validate*
-%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/Params/Validate/Validate.*
+%{perl_vendorarch}/Attribute/Params/Validate.pm
+%{perl_vendorarch}/Params/Validate*
+%{perl_vendorarch}/auto/Params/Validate/Validate.*
+%exclude %{perl_archlib}/perllocal.pod
+%exclude %{perl_vendorarch}/auto/Params/Validate/.packlist
 
 %changelog
 * Sun Jun 6 2004 Dries Verachtert <dries@ulyssis.org> - 0.74-1
