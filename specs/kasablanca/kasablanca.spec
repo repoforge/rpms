@@ -1,6 +1,7 @@
 # $Id: $
 
 # Authority: dries
+# Screenshot: http://kasablanca.berlios.de/images/screenshots/sshot031.png
 
 Summary: Ftp/fxp client
 Name: kasablanca
@@ -15,10 +16,13 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://download.berlios.de/kasablanca/kasablanca-%{version}.tar.gz 
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
-BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel, arts-devel, zlib-devel, kdelibs-devel, gcc-c++, XFree86-devel, qt-devel, openssl-devel
-Requires: kdelibs, openssl
-
-# Screenshot: http://kasablanca.berlios.de/images/screenshots/sshot031.png
+BuildRequires: gettext, libart_lgpl-devel
+BuildRequires: libjpeg-devel, libpng-devel
+BuildRequires: arts-devel, zlib-devel
+BuildRequires: kdelibs-devel, gcc-c++
+BuildRequires: qt-devel, openssl-devel
+%{?fc2:BuildRequires: xorg-x11-devel}
+%{?fc1:BuildRequires: XFree86-devel}
 
 %description
 Kasablanca is an ftp client, written in c++, using the kde libraries. among
@@ -41,7 +45,15 @@ bookmarks, and queued transfers.
 
 %files
 %defattr(-, root, root, 0755)
+%{_bindir}/*
+%{_datadir}/applnk/Utilities/kasablanca.desktop
+%{_datadir}/apps/kasablanca
+%{_datadir}/doc/HTML/en/kasablanca
+%{_datadir}/icons/*/*/apps/kasablanca.png
 
 %changelog
+* Wed Jul 14 2004 Dries Verachtert <dries@ulyssis.org> 0.4-1
+- Update to version 0.4.
+
 * Mon Mar 22 2004 Dries Verachtert <dries@ulyssis.org> 0.3-1
 - Initial package
