@@ -2,11 +2,13 @@
 
 # Authority: dries
 # Upstream: koen muylkens <koen,muylkens$esat,kuleuven,ac,be>
+# Screenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg 
+# ScreenshotURL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
 
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
 Version: 1.0
-Release: 2
+Release: 3
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
@@ -21,9 +23,6 @@ BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, XFree86-devel, qt-devel
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs
-
-# Screenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg 
-# ScreenshotURL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
 
 %description
 A screensaver for KDE which shows the adventures of Tux, living at the
@@ -42,8 +41,8 @@ SouthPole.
 . /etc/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
-mkdir -p %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
-mv %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
+%{__mkdir_p} %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
+%{__cp} %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroot}/usr/share/apps/kscreensaver/ScreenSavers/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -52,6 +51,7 @@ mv %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroo
 %defattr(-, root, root, 0755)
 %{_bindir}/tuxsaver.kss
 %{_datadir}/apps/kscreensaver/ScreenSavers/tuxsaver.desktop
+%{_datadir}/applnk/System/ScreenSavers/tuxsaver.desktop
 %{_datadir}/apps/tuxsaver/objects
 %{_datadir}/apps/tuxsaver/pics
 %{_datadir}/apps/tuxsaver/sounds
@@ -59,6 +59,9 @@ mv %{buildroot}/usr/share/applnk/System/ScreenSavers/tuxsaver.desktop %{buildroo
 %{_datadir}/doc/HTML/en/tuxsaver
 
 %changelog
+* Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 1.0-3
+- Fix: screensaver desktop file now in two directories.
+
 * Wed Apr 14 2004 Dries Verachtert <dries@ulyssis.org> 1.0-2
 - spec file cleanup
 
