@@ -148,6 +148,7 @@ cp ralph ralph.dat %{buildroot}%{_datadir}/games/fortune/
 cp SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
 %endif
 cp fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
+cp fortune-osho/osho.dat fortune-osho/osho %{buildroot}%{_datadir}/games/fortune/
 
 tar zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
