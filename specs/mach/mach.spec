@@ -6,10 +6,10 @@
 # Override with --define 'python python2'
 %{!?python:     %define python     python}
 
-Summary: Make a chroot
+Summary: Make A CHroot
 Name: mach
 Version: 0.4.5
-Release: 2
+Release: 3
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
@@ -61,12 +61,13 @@ to build clean packages.
 if [ $1 -eq 0 ]; then
     # Last removal
     # Be a good boy and clean out the dirs we filled with junk
-    rm -rf %{_localstatedir}/lib/mach/states/*
+    # Actually... the roots may be used later on, so better keep them
+    #rm -rf %{_localstatedir}/lib/mach/states/*
     umount %{_localstatedir}/lib/mach/roots/*/proc >/dev/null 2>&1 || :
-    rm -rf %{_localstatedir}/lib/mach/roots/* >/dev/null 2>&1 || :
+    #rm -rf %{_localstatedir}/lib/mach/roots/* >/dev/null 2>&1 || :
     rm -rf %{_localstatedir}/cache/mach/* >/dev/null 2>&1 || :
-    rmdir %{_localstatedir}/lib/mach/states >/dev/null 2>&1 || :
-    rmdir %{_localstatedir}/lib/mach/roots >/dev/null 2>&1 || :
+    #rmdir %{_localstatedir}/lib/mach/states >/dev/null 2>&1 || :
+    #rmdir %{_localstatedir}/lib/mach/roots >/dev/null 2>&1 || :
     rmdir %{_localstatedir}/cache/mach >/dev/null 2>&1 || :
     rm -rf %{_localstatedir}/tmp/mach >/dev/null 2>&1 || :
 fi
@@ -96,6 +97,10 @@ fi
 
 
 %changelog
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-3
+- Rebuild for Fedora Core 2.
+- Don't remove the roots and states upon last removal.
+
 * Thu May  6 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-2
 - Added %%{python} macro to allow python2 dependency.
 
