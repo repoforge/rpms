@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### FIXME: It's obvious that the mozilla developers are not able to release something that is working on Linux without patches, don't expect it to work without problems.
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
@@ -10,8 +12,8 @@
 
 Summary: Mozilla Firefox web browser
 Name: firefox
-Version: 0.10
-Release: 0.2
+Version: 0.10.1
+Release: 0.1
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/
@@ -122,6 +124,8 @@ RUNNING=$?
 [ $? -eq 2 ] && RUNNING=0
 
 REMOTE=0
+METHOD="new-window"
+
 while [ "$1" ]; do
 	case "$1" in
 #	  -mail|-email)
@@ -134,6 +138,18 @@ while [ "$1" ]; do
 #			MOZARGS="-remote xfeDoCommand(composeMessage) $MOZARGS"
 #			REMOTE=1
 #		fi;;
+#	  -safemode)
+#		FONTCONFIG_PATH=""
+#		MOZLOCALE="en_US"
+#		LD_LIBRARY_PATH="$MOZILLA_FIVE_HOME${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+#		MOZ_PLUGIN_PATH=""
+#		RUNNING=1
+#		MOZARGS="-P safemode"
+#		MOZ_PROGRAM="ltrace -o firefox-ltrace -S -f $MOZ_PROGRAM-bin"
+#		HOME="/tmp/dag"
+#		rm -rf $HOME; mkdir -p $HOME
+#		export FONTCONFIG_PATH LD_LIBRARY_PATH MOZ_PLUGIN_PATH HOME
+#		;;
 	  -remote)
 		if [ $REMOTE -ne 1 ]; then
 			MOZARGS="-remote $2 $MOZARGS"
@@ -143,6 +159,9 @@ while [ "$1" ]; do
 	  -profile|-profile-manager)
 		MOZARGS="$MOZARGS -profilemanager"
 		REMOTE=1
+		;;
+	  -t|-tab)
+		METHOD="new-tab"
 		;;
 	  -*)
 		MOZARGS="$MOZARGS $1"
@@ -156,7 +175,7 @@ while [ "$1" ]; do
 			URL="$1"
 		fi
 		if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
-			MOZARGS="$MOZARGS -remote openURL(\'$URL\',new-window)"
+			MOZARGS="$MOZARGS -remote openURL($URL,$METHOD)"
 			REMOTE=1
 		else
 			MOZARGS="$MOZARGS $URL"
@@ -165,8 +184,10 @@ while [ "$1" ]; do
 	shift
 done
 
-if [ $RUNNING -eq 0 -a $REMOTE -ne 1 ]; then
+if [ $RUNNING -ne 0 -a $REMOTE -ne 1 ]; then
 	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS -remote "xfeDoCommand(openBrowser)"
+elif [ $REMOTE -ne 1 ]; then
+	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS -remote "openURL(about:blank,$METHOD)"
 else
 	exec $MOZ_PROGRAM -a $MOZ_APP_NAME $MOZARGS &
 fi;
