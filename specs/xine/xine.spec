@@ -11,7 +11,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -41,6 +41,9 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-ui-%{version}
+# Fix for lirc needed to be searched for in lib64
+%{__perl} -pi.orig -e 's|(lirc_libprefix /lib) /usr/lib|$1 %{_libdir}|g' \
+    configure
 
 %{__cat} <<EOF >xine.desktop
 [Desktop Entry]
@@ -129,6 +132,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri Jan  7 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-2
+- Add a quick lib vs. lib64 replace for lirc static lib detection to work on
+  x86_64.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-1
 - Update to 0.99.3.
 - Re-enable lirc on x86_64, don't even know why it was disabled.
