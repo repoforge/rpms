@@ -7,7 +7,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 27
+Release: 28
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -64,16 +64,13 @@ Obsoletes: fortune-mod
 Patch0: fortune-mod-offense.patch
 Patch1: fortune-mod-1.0-remove-offensive.patch
 Patch2: fortune-mod-1.0-remove-offensive-option.patch
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 %description
 Fortune-mod contains the ever-popular fortune program, which will
 display quotes or witticisms. Fun-loving system administrators can add
 fortune to users' .login files, so that the users get their dose of
 wisdom each time they log in.
-
-%description -l nl
-todo
 
 %prep
 %setup -q -n fortune-mod-9708
@@ -148,9 +145,6 @@ cp SP/SP SP/SP.dat %{buildroot}%{_datadir}/games/fortune/
 %endif
 cp fortune-homer/homer fortune-homer/homer.dat %{buildroot}%{_datadir}/games/fortune/
 
-
-
-echo bla1
 tar zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
 rm %{buildroot}%{_datadir}/games/fortune/men-women*
@@ -164,7 +158,7 @@ echo bla2
 bzcat %{SOURCE2} | tar xvf - -C %{buildroot}%{_datadir}/games/fortune/
 
 %clean
-# rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %package bofh-excuses
 Summary: Fortune files with BOFH excuses
@@ -437,7 +431,7 @@ Enkele fortune quotes van Homer Simpson, gedownload van
 http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 
 %files
-%defattr(-,root,root)
+%defattr(-,root,root,0755)
 %doc README ChangeLog TODO
 %{_prefix}/games/fortune
 %{_sbindir}/strfile
@@ -480,48 +474,63 @@ http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 %{_mandir}/man*/*
 
 %files bofh-excuses
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/bofh-excuses*
 
 %files kernelnewbies
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/kernelnewbies*
 
 %files starwars
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/starwars*
 
 %files futurama
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/futurama*
 
 %files calvin
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/calvin*
 
 %files zippy2
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/zippy2*
 
 %files tao
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/tao*
 
 %files hitchhiker
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/hitchhiker*
 
 %files simpsons-chalkboard
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/chalkboard*
 
 %files prog-style
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/prog-style*
 
 %files fgump
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/fgump*
 
 %files discworld
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/discworld*
 
 %files xfiles
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/xfiles*
 
 %files kernelcookies
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/kernelcookies*
 
 %files dune
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/dune*
 %{_datadir}/games/fortune/chapterhouse*
 %{_datadir}/games/fortune/children-of-dune*
@@ -531,23 +540,30 @@ http://freshmeat.net/redir/quotablehomerquotes/8751/url_homepage/homer.html
 %{_datadir}/games/fortune/house-harkonnen*
 
 %files cbg
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/cbg*
 
 %files simpsons-ralph
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/ralph*
 
 %if %{DisableOffensiveFortunes}
 # Southpark will not be packaged
 %else
 %files southpark
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/SP*
 %endif
 
 %files simpsons-homer
+%defattr(-,root,root,0755)
 %{_datadir}/games/fortune/homer*
 
 
 %changelog
+* Thu Apr 22 2004 Dries Verachtert <dries@ulyssis.org> 1.0-28
+- spec cleanup, fix file ownerships
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 1.0-27
 - a bit of cleanup in the spec file
 
