@@ -38,6 +38,16 @@ time as possible. Some obstacles require more thought or tact.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+mkdir -p %{buildroot}/usr/share/applications
+cat > %{buildroot}/usr/share/applications/skystreets.desktop <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Name=SkyStreets
+Exec=/usr/bin/skystreets
+Categories=Application;Game;ArcadeGame
+EOF
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,6 +57,7 @@ time as possible. Some obstacles require more thought or tact.
 %doc README
 %{_bindir}/skystreets
 %{_datadir}/skystreets
+%{_datadir}/applications/skystreets.desktop
 
 %changelog
 * Wed Mar 31 2004 Dries Verachtert <dries@ulyssis.org> 0.2.3-1
