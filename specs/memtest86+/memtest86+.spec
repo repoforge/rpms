@@ -1,17 +1,15 @@
 # $Id$
 
 # Authority: dag
-# Distcc: 0
+# Upstream: Samuel Demeulemeester <memtest@memtest.org>
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
 %define _prefix /boot
-%define rname memtest
-%define rversion 1.00
 
-Summary: A thorough stand-alone memory tester.
+Summary: Thorough, stand-alone memory tester.
 Name: memtest86+
-Version: 1.0
-Release: 0
+Version: 1.11
+Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest.org/
@@ -19,14 +17,14 @@ URL: http://www.memtest.org/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.memtest.org/download/%{rname}_source_v%{rversion}.tar.gz
+Source: http://www.memtest.org/download/memtest_source_v%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 ExclusiveArch: i386 i486 i586 i686 x86_64
 
 %description
-Memtest86+ is thorough, stand alone memory test for 386, 486, Pentium and
+Memtest86+ is a thorough, stand alone memory test for 386, 486, Pentium and
 AMD64 systems. Memtest86+ is a stand alone program and can be loaded from
 either a disk partition via lilo or a floppy disk. Memtest86+ uses a
 "moving inversions" algorithm that is proven to be effective in finding
@@ -34,7 +32,7 @@ memory errors. The BIOS based memory test is just a quick check that will
 often miss many of the failures that are detected by Memtest86+.
 
 %prep
-%setup -c
+%setup -n %{name}_v%{version}
 
 %build
 %{__make} %{?_smp_mflags}
@@ -64,5 +62,8 @@ fi
 %{_prefix}/%{name}-%{version}/
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.11-1
+- Updated to release 1.11.
+
 * Wed Jan 21 2004 Dag Wieers <dag@wieers.com> - 1.0-0
 - Initial package. (using DAR)

@@ -14,7 +14,7 @@ URL: http://homepages.ihug.co.nz/~trmusson/programs.html#skoosh
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://homepages.ihug.co.nz/~trmusson/stuff/%{name}-%{version}.tar.gz
+Source: http://homepages.ihug.co.nz/~trmusson/stuff/skoosh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 

@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: Jim Trocki <trockij@linux.kernel.org>
 
 %define moncgi_version 1.52
 

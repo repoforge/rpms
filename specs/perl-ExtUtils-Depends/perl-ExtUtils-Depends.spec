@@ -2,13 +2,11 @@
 
 # Authority: dag
 
-# Upstream: <gtk-perl-list@gnome.org>
-
 %define rname ExtUtils-Depends
 
 Summary: ExtUtils-Depends module for perl.
 Name: perl-ExtUtils-Depends
-Version: 0.103
+Version: 0.202
 Release: 0
 License: LGPL
 Group: Applications/CPAN
@@ -17,7 +15,7 @@ URL: http://search.cpan.org/dist/ExtUtils-Depends/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gtk2-perl/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/ExtUtils-Depends-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -60,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.202-0
+- Updated to release 0.202.
+
 * Sat Oct 11 2003 Dag Wieers <dag@wieers.com> - 0.103-0
 - Updated to release 0.103.
 

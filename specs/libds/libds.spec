@@ -5,8 +5,8 @@
 
 Summary: Shared Library for Data Structures.
 Name: libds
-Version: 1.5.0
-Release: 0
+Version: 1.5.1
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/
@@ -14,8 +14,9 @@ URL: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-#Source: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/download.php?file=%{name}-%{version}.tar.bz2
-Source: %{name}-%{version}.tar.bz2
+### FIXME: Source URL isn't clear about the filename, fails for wget and rpm. (Please fix upstream)
+#Source: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/download.php?file=libds-%{version}.tar.bz2
+Source: libds-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -70,6 +71,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.5.1-1
+- Updated to release 1.5.1.
+
 * Wed Feb 25 2004 Dag Wieers <dag@wieers.com> - 1.5.0-0
 - Updated to release 1.5.0.
 

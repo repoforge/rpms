@@ -23,7 +23,7 @@
 
 Summary: Linux NDIS wrapper drivers.
 Name: kernel-module-ndiswrapper
-Version: 0.5
+Version: 0.6
 Release: %{rrelease}_%{kversion}_%{krelease}
 License: GPL
 Group: System Environment/Kernel
@@ -110,6 +110,9 @@ cd -
 %{_bindir}/*
 
 %changelog
+* Wed Mar 17 2004 Dag Wieers <dag@wieers.com> - 0.6-1
+- Updated to release 0.6.
+
 * Mon Mar 08 2004 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 

@@ -1,15 +1,14 @@
 # $Id$
 
 # Authority: dag
-
-# Upstream: gtk-perl-list@gnome.org
+# Upstream: <gtk-perl-list@gnome.org>
 
 %define rname Glib
 
-Summary: Glib module for perl.
+Summary: Perl wrappers for the GLib utility and Object libraries.
 Name: perl-Glib
-Version: 1.00
-Release: 0
+Version: 1.022
+Release: 1
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Glib/
@@ -17,7 +16,7 @@ URL: http://search.cpan.org/dist/Glib/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gtk2-perl/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Glib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -59,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.022-1
+- Updated to release 1.022.
+
 * Sat Oct 11 2003 Dag Wieers <dag@wieers.com> - 1.00-0
 - Updated to release 1.00.
 

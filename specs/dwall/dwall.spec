@@ -3,7 +3,7 @@
 
 Summary: All-purpose iptables firewall generator.
 Name: dwall
-Version: 0.5.1
+Version: 0.5.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -13,8 +13,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dag.wieers.com/home-made/dwall/dwall-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/root-%{name}-%{version}
-Prefix: %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: iptables
@@ -179,6 +178,12 @@ fi
 %{_libdir}/dwall/
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 0.5.3-1
+- Updated to release 0.5.3.
+
+* Fri Mar 19 2004 Dag Wieers <dag@wieers.com> - 0.5.2-1
+- Updated to release 0.5.2.
+
 * Sun Mar 14 2004 Dag Wieers <dag@wieers.com> - 0.5.1-1
 - Updated to release 0.5.1.
 

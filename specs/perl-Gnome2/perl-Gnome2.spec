@@ -1,15 +1,14 @@
 # $Id$
 
 # Authority: dag
-
-# Upstream: gtk-perl-list@gnome.org
+# Upstream: <gtk-perl-list@gnome.org>
 
 %define rname Gnome2
 
-Summary: Gnome2 module for perl.
+Summary: Perl interface to the 2.x series of the GNOME libraries.
 Name: perl-Gnome2
-Version: 0.38
-Release: 0
+Version: 0.90
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2/
@@ -17,7 +16,7 @@ URL: http://search.cpan.org/dist/Gnome2/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/gtk2-perl/%{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -60,6 +59,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.90-1
+- Updated to release 0.90.
+
 * Sat Oct 11 2003 Dag Wieers <dag@wieers.com> - 0.38-0
 - Updated to release 0.38.
 

@@ -6,7 +6,7 @@
 
 Summary: GNOME browser based on Gecko (Mozilla rendering engine).
 Name: galeon
-Version: 1.3.13
+Version: 1.3.14
 Release: 0.a
 License: GPL
 Group: Applications/Internet
@@ -74,8 +74,12 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/galeon/
 %{_datadir}/pixmaps/*
 %{_datadir}/sounds/galeon/
+%exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 1.3.14-0.a
+- Updated to release 1.3.14a.
+
 * Thu Feb 19 2004 Dag Wieers <dag@wieers.com> - 1.3.13-0.a
 - Updated to release 1.3.13a.
 

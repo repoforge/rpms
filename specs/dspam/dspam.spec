@@ -6,7 +6,7 @@
 
 Summary: Library and Mail Delivery Agent for Bayesian spam filtering.
 Name: dspam
-Version: 2.10.0
+Version: 2.10.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.nuclearelephant.com/projects/dspam/sources/dspam-%{version}.tar.gz
 Source1: dspam.m4
-Buildroot: %{_tmppath}/root-%{name}-%{version}
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Prefix: %{_prefix}
 
 %{?rhfc1:BuildRequires: db4-devel}
@@ -92,10 +92,10 @@ die() {
 }
 
 log() {
-  echo `date '+%b%d %H:%M:%S'` "$*" >&2
+  echo "$(date '+%b%d %H:%M:%S')" "$*" >&2
 }
 
-action="--`basename $0 .sh`"
+action="--$(basename $0 .sh)"
 log dspam -d $user $action
 
 exec >>%{_localstatedir}/log/dspam.log 2>&1
@@ -261,5 +261,8 @@ fi
 %{_includedir}/*.h
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 2.10.1-1
+- Updated to release 2.10.1.
+
 * Sun Mar 14 2004 Dag Wieers <dag@wieers.com> - 2.10.0-1
 - Initial package. (using DAR)

@@ -1,15 +1,15 @@
 # $Id$
 
 # Authority: dag
-
-# Distcc: 0
+# Upstream: Chris Brady <bugs@memtest86.com>
 
 %define _prefix /boot
+%define rversion 3.1a
 
-Summary: Memtest86 is thorough, stand alone memory test.
+Summary: Thorough, stand alone memory test.
 Name: memtest86
-Version: 3.0
-Release: 2
+Version: 3.1
+Release: 0.a
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest86.com/
@@ -17,7 +17,7 @@ URL: http://www.memtest86.com/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.memtest86.com/%{name}-%{version}.tar.gz
+Source: http://www.memtest86.com/memtest86-%{rversion}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -25,7 +25,7 @@ ExclusiveArch: i386
 ExclusiveOS: Linux
 
 %description
-Memtest86 is thorough, stand alone memory test for 386, 486 and Pentium 
+Memtest86 is a thorough, stand alone memory test for 386, 486 and Pentium 
 systems. Memtest86 is a stand alone program and can be loaded from either
 a disk partition via lilo or a floppy disk. Memtest86 uses a "moving 
 inversions" algorithm that is proven to be effective in finding memory
@@ -33,10 +33,11 @@ errors.  The BIOS based memory test is just a quick check that will often
 miss many of the failures that are detected by Memtest86.
 
 %prep
-%setup
+%setup -n %{name}-%{rversion}
 
 %build
-%{__make} %{?rh80:CC="gcc296"} %{?rh90:CC="gcc296"} %{?rhel3:CC="gcc296"} %{?rhfc1:CC="gcc296"}
+#%{?rh80:CC="gcc296"} %{?rh90:CC="gcc296"} %{?rhel3:CC="gcc296"} %{?rhfc1:CC="gcc296"}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,6 +64,9 @@ fi
 %{_prefix}/%{name}-%{version}/
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 3.1-0.a
+- Updated to release 3.1a.
+
 * Mon Dec 16 2002 Dag Wieers <dag@wieers.com> - 3.0-1
 - Changes for Red Hat 8.0
 

@@ -1,23 +1,25 @@
 # $Id$
 
 # Authority: dag
-
 # Upstream: Aaron Hodgen <ahodgen@munsterman.com>
+
+# Screenshot: http://www.kill-9.org/mbrowse/screenshot/tree.png
+# ScreenshotURL: http://www.kill-9.org/mbrowse/#Screenshots
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 
-Summary: A GNOME SNMP MIB browser.
+Summary: GUI SNMP MIB browser.
 Name: mbrowse
 Version: 0.3.1
 Release: 0
-Group: Applications/Internet
 License: GPL
+Group: Applications/Internet
 URL: http://www.kill-9.org/mbrowse/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.kill-9.org/%{name}/%{name}-%{version}.tar.gz
+Source: http://www.kill-9.org/mbrowse/mbrowse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -36,6 +38,17 @@ Mbrowse is an SNMP MIB browser based on GTK and net-snmp.
 %prep
 %setup
 
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=MIB Browser
+Comment=%{summary}
+Icon=gnome-internet.png
+Exec=mbrowse
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Internet;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
@@ -44,27 +57,15 @@ Mbrowse is an SNMP MIB browser based on GTK and net-snmp.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__cat} <<EOF >gnome-%{name}.desktop
-[Desktop Entry]
-Name=MIB Browser
-Comment=%{summary}
-Icon=gnome-internet.png
-Exec=%{name}
-Terminal=false
-Type=Application
-EOF
-
 %if %{dfi}
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Internet/
-	%{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/
+	%{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
-		--add-category Application                 \
-		--add-category Internet                    \
 		--dir %{buildroot}%{_datadir}/applications \
-		gnome-%{name}.desktop
+		%{name}.desktop
 %endif
 
 %clean

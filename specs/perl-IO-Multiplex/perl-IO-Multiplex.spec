@@ -6,8 +6,8 @@
 
 Summary: IO-Multiplex module for perl.
 Name: perl-IO-Multiplex
-Version: 1.04
-Release: 0
+Version: 1.08
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Multiplex/
@@ -15,7 +15,7 @@ URL: http://search.cpan.org/dist/IO-Multiplex/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: IO-Multiplex-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BB/BBB/IO-Multiplex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -41,7 +41,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*/auto/*{,/*}/.packlist
 
 %clean 
 %{__rm} -rf %{buildroot}
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.08-0
+- Updated to release 1.08.
+
 * Mon Jul 14 2003 Dag Wieers <dag@wieers.com> - 1.04-0
 - Initial package. (using DAR)

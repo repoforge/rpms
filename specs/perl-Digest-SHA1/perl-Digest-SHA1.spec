@@ -2,14 +2,12 @@
 
 # Authority: dag
 
-# Dists: rh80 rh73 rh62
-
 %define rname Digest-SHA1
 
-Summary: Digest-SHA1 Perl module
+Summary: Digest-SHA1 Perl module.
 Name: perl-Digest-SHA1
-Version: 2.03
-Release: 0
+Version: 2.07
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA1/
@@ -17,7 +15,7 @@ URL: http://search.cpan.org/dist/Digest-SHA1/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: %{rname}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Digest-SHA1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -60,10 +58,13 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes fip180-1*
+%doc Changes MANIFEST README fip180-1*
 %doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
-* Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 2.07-1
+- Updated to release 2.07.
+
+* Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 2.03-0
 - Initial package. (using DAR)

@@ -3,12 +3,12 @@
 # Authority: dag
 
 %define rname adodb
-%define rversion 420
+%define rversion 421
 
 Summary: Portable Database Library for PHP.
 Name: php-adodb
-Version: 4.20
-Release: 0
+Version: 4.21
+Release: 1
 License: BSD or LGPL
 Group: Development/Languages
 URL: http://php.weblogs.com/adodb/
@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 BuildArch: noarch
-Requires: webserver, php
+BuildRequires: php >= 4.0.5
+Requires: webserver, php >= 4.0.5
 Obsoletes: adodb
 Provides: adodb
 
@@ -37,11 +38,11 @@ Sybase, DB2 and generic ODBC.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/%{rname}-%{rversion}/{datadict,drivers,lang}/
-%{__install} -m0644 *.php %{buildroot}%{_localstatedir}/www/%{rname}-%{rversion}/
-%{__install} -m0644 datadict/*.php %{buildroot}%{_localstatedir}/www/%{rname}-%{rversion}/datadict/
-%{__install} -m0644 drivers/*.php %{buildroot}%{_localstatedir}/www/%{rname}-%{rversion}/drivers/
-%{__install} -m0644 lang/*.php %{buildroot}%{_localstatedir}/www/%{rname}-%{rversion}/lang/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/adodb/{datadict,drivers,lang}/
+%{__install} -m0644 *.php %{buildroot}%{_localstatedir}/www/adodb/
+%{__install} -m0644 datadict/*.php %{buildroot}%{_localstatedir}/www/adodb/datadict/
+%{__install} -m0644 drivers/*.php %{buildroot}%{_localstatedir}/www/adodb/drivers/
+%{__install} -m0644 lang/*.php %{buildroot}%{_localstatedir}/www/adodb/lang/
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,9 +50,12 @@ Sybase, DB2 and generic ODBC.
 %files
 %defattr(-, root, root, 0755)
 %doc cute_icons_for_site/ license.txt old-changelog.htm readme.* tests/ tips_portable_sql.htm tute.htm
-%{_localstatedir}/www/%{rname}-%{rversion}/
+%{_localstatedir}/www/adodb/
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 4.21-1
+- Updated to release 4.21.
+
 * Fri Feb 27 2004 Dag Wieers <dag@wieers.com> - 4.20-0
 - Updated to release 4.20.
 

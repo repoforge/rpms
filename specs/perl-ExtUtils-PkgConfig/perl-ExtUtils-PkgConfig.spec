@@ -2,17 +2,15 @@
 
 # Authority: dag
 
-# Upstream: <gtk-perl-list@gnome.org>
-
 %define rname ExtUtils-PkgConfig
 
 Summary: ExtUtils-PkgConfig module for perl.
 Name: perl-ExtUtils-PkgConfig
-Version: 1.01
+Version: 1.03
 Release: 0
 License: LGPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/ExtUtils-Depends/
+URL: http://search.cpan.org/dist/ExtUtils-PkgConfig/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
@@ -57,5 +55,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.03-0
+- Updated to release 1.03.
+
 * Sat Oct 11 2003 Dag Wieers <dag@wieers.com> - 1.01-0
 - Initial package. (using DAR)

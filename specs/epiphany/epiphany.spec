@@ -7,16 +7,16 @@
 
 Summary: Web browser based on the mozilla rendering engine.
 Name: epiphany
-Version: 1.0.7
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://epiphany.mozdev.org/
+URL: http://www.gnome.org/projects/epiphany/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/epiphany/1.0/%{name}-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/epiphany/1.2/epiphany-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -91,6 +91,9 @@ scrollkeeper-update -q || :
 %{_includedir}/epiphany-1.0/
 
 %changelog
+* Mon Mar 15 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Sat Jan 24 2004 Dag Wieers <dag@wieers.com> - 1.0.7-1
 - Rebuild against mozilla-1.6.
 

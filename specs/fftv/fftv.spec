@@ -6,7 +6,7 @@
 
 Summary: Advanced television viewing and recording program.
 Name: fftv
-Version: 0.7.2
+Version: 0.7.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -47,13 +47,13 @@ EOF
 	--enable-vorbis \
 	--enable-a52 \
 	--enable-faad \
-	--enable-faac \
-	--enable-shared
+	--enable-faac
+#	--enable-shared
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '
-		s|=/usr/lib|=\$(libdir)|;
-		s|=/usr/share|=\$(datadir)|;
+		s|^(sharedir)=.*$|$1=\$(datadir)|;
+		s|^(FFTV_SHARE_ICON)=share/(.*)$|$1=$2|;
 	' config.mak
 
 %{__make} %{?_smp_mflags}
@@ -69,9 +69,7 @@ desktop-file-install --vendor gnome                \
 	%{name}.desktop
 
 ### FIXME: Clean up buildroot to make it co-exist with ffmpeg/ffmpeg-devel (Fix upstream please)
-%{__rm} -f %{buildroot}%{_libdir}/*.so \
-		%{buildroot}%{_libdir}/vhook/{drawtext,fish,null}.so
-%{__rm} -rf %{buildroot}%{_includedir}/ffmpeg/
+%{__rm} -f %{buildroot}%{_libdir}/vhook/{drawtext,fish,null}.so
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -89,6 +87,9 @@ desktop-file-install --vendor gnome                \
 #%{_includedir}/ffmpeg/
 
 %changelog
+* Mon Mar 22 2004 Dag Wieers <dag@wieers.com> - 0.7.3-1
+- Updated to release 0.7.3.
+
 * Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 

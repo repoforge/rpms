@@ -6,7 +6,7 @@
 
 Summary: A set of Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules.
 Name: perl-Convert-ASN1
-Version: 0.17
+Version: 0.18
 Release: 0
 License: distributable
 Group: Applications/CPAN
@@ -51,11 +51,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST README examples/
+%doc ChangeLog MANIFEST README SIGNATURE examples/
 %doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.18-0
+- Updated to release 0.18.
+
 * Mon Jul 14 2003 Dag Wieers <dag@wieers.com> - 0.17-0
 - Updated to release 0.17.
 

@@ -1,6 +1,7 @@
 # $Id$
 
 # Authority: dag
+# Upstream: <ap-utils@lists.polesye.net>
 
 Summary: Configure and monitor Wireless Access Points.
 Name: ap-utils

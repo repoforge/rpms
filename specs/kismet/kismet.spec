@@ -5,7 +5,7 @@
 Summary: Kismet is an 802.11b network sniffer and network dissector.
 Name: kismet
 Version: 3.0.1
-Release: 0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -13,7 +13,9 @@ URL: http://www.kismetwireless.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.kismetwireless.net/code/%{name}-%{version}.tar.gz
+Source0: http://www.kismetwireless.net/code/kismet-%{version}.tar.gz
+Source1: http://www.kismetwireless.net/code/configure
+Patch0: http://www.kismetwireless.net/code/kismet-feb.04.01.diff.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -30,6 +32,8 @@ downloaded maps or user supplied image files.
 
 %prep
 %setup
+%patch0 -p1
+%{__install} -m0755 %{SOURCE1} .
 
 ### FIXME: Get rid of the ownership changes
 %{__perl} -pi.orig -e '
@@ -47,7 +51,7 @@ cd -
 %{__autoconf}
 %configure
 #	--enable-syspcap
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} dep all
 
 %install
 %{__rm} -rf %{buildroot}
@@ -70,6 +74,9 @@ cd -
 %{_datadir}/kismet/
 
 %changelog
+* Tue Mar 16 2004 Dag Wieers <dag@wieers.com> - 3.0.1-1
+- Updated to release 3.0.1-feb.04.01.
+
 * Wed Aug 13 2003 Dag Wieers <dag@wieers.com> - 3.0.1-0
 - Updated to release 3.0.1.
 

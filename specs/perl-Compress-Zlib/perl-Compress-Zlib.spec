@@ -2,13 +2,11 @@
 
 # Authority: dag
 
-# Dists: rh80 rh73 rh62
-
 %define rname Compress-Zlib
 
 Summary: Compress-Zlib module for perl 
 Name: perl-Compress-Zlib
-Version: 1.22
+Version: 1.33
 Release: 0
 License: distributable
 Group: Applications/CPAN
@@ -17,7 +15,7 @@ URL: http://search.cpan.org/dist/Compress-Zlib/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/P/PM/PMQS/%{rname}-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/P/PM/PMQS/Compress-Zlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -50,11 +48,14 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ANNOUNCE
+%doc ANNOUNCE README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{_libdir}/perl5/vendor_perl/*/*/*
 
 %changelog
+* Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.33-0
+- Updated to release 1.33.
+
 * Mon Jul 14 2003 Dag Wieers <dag@wieers.com> - 1.22-0
 - Updated to release 1.22.
 

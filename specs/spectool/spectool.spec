@@ -3,10 +3,10 @@
 # Authority: dag
 # Upstream: Nils Philippsen <nphilipp@redhat.com>
 
-Summary: Tool to display expanded Source/Patch macros from a SPEC file.
+Summary: Display expanded Source/Patch macros from SPEC files.
 Name: spectool
-Version: 1.0.2
-Release: 2
+Version: 1.0.3
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://people.redhat.com/nphilipp/spectool/
@@ -28,8 +28,8 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %prep
 %setup
 
-### FIXME: Don't do a dependency check. (Please fix upstream)
-%{__perl} -pi.orig -e 's|(rpmbuild -bp \$filename)|$1 --nodeps|' spectool
+#### FIXME: Don't do a dependency check. (Please fix upstream)
+#%{__perl} -pi.orig -e 's|(rpmbuild -bp \$filename)|$1 --nodeps|' spectool
 
 %build
 
@@ -43,10 +43,13 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING
+%doc COPYING README
 %{_bindir}/*
 
 %changelog
+* Wed Mar 16 2004 Dag Wieers <dag@wieers.com> - 1.0.3-1
+- Updated to release 1.0.3.
+
 * Fri Mar 12 2004 Dag Wieers <dag@wieers.com> - 1.0.2-2
 - Changed BuildArch to noarch. (Bert de Bruijn)
 - Added fix to make spectool work better. (Bert de Bruijn)
