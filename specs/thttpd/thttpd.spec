@@ -7,7 +7,7 @@
 Summary: Tiny, turbo, throttleable lightweight http server
 Name: thttpd
 Version: 2.25b
-Release: %{?prever:0.%{prever}.}3
+Release: %{?prever:0.%{prever}.}4
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.acme.com/software/thttpd/
@@ -43,7 +43,8 @@ Available rpmbuild rebuild options :
 %{!?_with_indexes:        %{__perl} -pi -e 's/#define GENERATE_INDEXES/#undef GENERATE_INDEXES/g' config.h}
 %{!?_with_showversion:    %{__perl} -pi -e 's/#define SHOW_SERVER_VERSION/#undef SHOW_SERVER_VERSION/g' config.h}
 %{!?_with_expliciterrors: %{__perl} -pi -e 's/#define EXPLICIT_ERROR_PAGES/#undef EXPLICIT_ERROR_PAGES/g' config.h}
-%{__make} %{?_smp_mflags} WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin
+%{__make} %{?_smp_mflags} WEBDIR=%{webroot}/html CGIBINDIR=%{webroot}/cgi-bin \
+    CCOPT="%{optflags} -D_FILE_OFFSET_BITS=64"
 
 
 %install
@@ -141,6 +142,9 @@ fi
 
 
 %changelog
+* Thu Jan 20 2005 Matthias Saou <http://freshrpms.net/> 2.25b-4
+- Compile with -D_FILE_OFFSET_BITS=64 to support > 2GB log files.
+
 * Thu Jul 10 2004 Dag Wieers <dag@wieers.com> - 2.25b-3
 - Fixed location of service in logrotate conf. (Peter Bieringer)
 
