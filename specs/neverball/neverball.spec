@@ -16,8 +16,8 @@
 
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball
-Version: 1.3.6
-Release: 2
+Version: 1.3.7
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://icculus.org/neverball/
@@ -121,6 +121,9 @@ desktop-file-install \
 
 
 %changelog
+* Wed Aug 11 2004 Matthias Saou <http://freshrpms.net/> 1.3.7-1
+- Update to 1.3.7.
+
 * Mon Aug  2 2004 Matthias Saou <http://freshrpms.net/> 1.3.6-2
 - Add neverputt and mapc to the package, as suggested by Andrew Pam.
 - Use the icons now provided in the source for the desktop entries.
