@@ -5,7 +5,7 @@
 
 Summary: graphical file managment program in GTK+ for Linux
 Name: gentoo
-Version: 0.11.50
+Version: 0.11.51
 Release: 1
 License: GPL
 Group: Applications/File
@@ -79,6 +79,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Mon May 10 2004 Matthias Saou <http://freshrpms.net/> 0.11.51-1
+- Update to 0.11.51.
+
 * Tue May  4 2004 Matthias Saou <http://freshrpms.net/> 0.11.50-1
 - Update to 0.11.50.
 
