@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/T/TJ/TJMATHER/Crypt-OpenSSL-DSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, openssl-devel
 
 %description
 Crypt::OpenSSL::DSA implements the DSA (Digital Signature Algorithm) 
