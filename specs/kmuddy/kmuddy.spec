@@ -6,7 +6,7 @@
 
 Summary: MUD (multi user dungeon) client
 Name: kmuddy
-Version: 0.6.1
+Version: 0.7
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -54,6 +54,9 @@ text-based online multi-player role-playing game.
 %{_datadir}/icons/*/*/apps/kmuddy.png
 
 %changelog
+* Sat Dec 04 2004 Dries Verachtert <dries@ulyssis.org> - 0.7-1
+- Update to release 0.7.
+
 * Mon May 24 2004 Dries Verachtert <dries@ulyssis.org> 0.6.1-1
 - update to 0.6.1
 
