@@ -6,7 +6,7 @@
 
 Summary: Displays transparent text on your screen like the OSD of TVs
 Name: xosd
-Version: 2.2.10
+Version: 2.2.12
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -99,6 +99,9 @@ XOSD library, similarly to TV OSD.
 
 
 %changelog
+* Tue Sep 14 2004 Matthias Saou <http://freshrpms.net/> 2.2.12-1
+- Update to 2.2.12.
+
 * Fri Aug 27 2004 Matthias Saou <http://freshrpms.net/> 2.2.10-1
 - Update to 2.2.10.
 
