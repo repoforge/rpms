@@ -17,7 +17,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.antcom.de/gtick/download/gtick-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf >= 2.57
+BuildRequires: autoconf >= 2.57, pkgconfig, gtk2-devel, glib2-devel
 
 %description
 gtick is a small metronome application written for Linux and UN*X supporting 
