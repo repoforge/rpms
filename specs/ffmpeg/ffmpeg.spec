@@ -15,7 +15,7 @@
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
 Version: 0.4.9
-Release: %{?date:0.%{sqdate}.}%{?prever:0.%{prever}.}1
+Release: %{?date:0.%{sqdate}.}%{?prever:0.%{prever}.}2
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
@@ -27,6 +27,13 @@ Source: http://ffmpeg.sourceforge.net/cvs/%{name}-cvs-%{date}.tar.gz
 Patch0: ffmpeg-0.4.9-pre1-sharedppfix.patch
 Patch2: ffmpeg-0.4.9-pre1-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+# Seems like automatic req/provs _really_ don't work well on this package
+%{!?_without_lame:BuildRequires: lame}
+%{!?_without_vorbis:BuildRequires: libogg, libvorbis}
+%{!?_without_faad:BuildRequires: faad2}
+%{!?_without_faac:BuildRequires: faac}
+%{!?_without_xvid:BuildRequires: xvidcore}
+%{!?_without_a52dec:BuildRequires: a52dec}
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
 BuildRequires: tetex
 %{!?_without_lame:BuildRequires: lame-devel}
@@ -190,6 +197,10 @@ to use MPlayer, transcode or other similar programs.
 
 
 %changelog
+* Sun Nov 21 2004 Matthias Saou <http://freshrpms.net/> 0.4.9-0.20041110.2
+- Put back explicit requirements since some (all?) don't get properly added
+  automatically, like faad2 (thanks to Holden McGroin).
+
 * Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 0.4.9-0.20041110.1
 - Update to latest CVS snaphsot.
 - Explicitely disable mmx on non-x86 to fix x86_64 build.

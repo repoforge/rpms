@@ -83,10 +83,14 @@ documentation for libsndfile.
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
-%exclude %{_datadir}/octave
+%{_datadir}/octave/
 
 
 %changelog
+* Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 1.0.11-2
+- No longer exclude octave *.m files: Can't find the reason why they were,
+  maybe in the PLD spec used as the starting point?
+
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 1.0.11-1
 - Update to 1.0.11.
 - Add alsa-lib-devel build dependency.

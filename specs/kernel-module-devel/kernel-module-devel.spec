@@ -11,8 +11,8 @@
 
 Summary: Build files for all kernel arch/types for %{krel} 
 Name: kernel-module-devel-%{krel}
-Version: 0.2
-Release: 0
+Version: 0.5
+Release: 1
 Group: System Environment/Kernel
 License: GPL
 URL: http://thomas.apestaart.org/
@@ -35,32 +35,25 @@ all architectures and types of kernels.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__mkdir_p} %{buildroot}%{_libdir}/%{name}
-%{__cp} -a kernel-* %{buildroot}%{_libdir}/%{name}/
+%{__mkdir_p} %{buildroot}%{_libdir}/kernel-module-devel
+%{__cp} -a * %{buildroot}%{_libdir}/kernel-module-devel/
+%{__ln_s} /lib/modules/%{krel}/build \
+    %{buildroot}%{_libdir}/kernel-module-devel/%{krel}-common
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%post
-if test -d /lib/modules/%{krel}smp
-then
-  %{__ln_s} -f /lib/modules/%{krel}smp/build %{_libdir}/%{name}/common
-else
-  %{__ln_s} -f /lib/modules/%{krel}/build %{_libdir}/%{name}/common
-fi
-
-%preun
-%{__rm} -f %{_libdir}/%{name}/common 2>/dev/null || true
-
-
 %files
 %defattr(-, root, root, 0755)
-%{_libdir}/%{name}
+%{_libdir}/kernel-module-devel/
 
 
 %changelog
+* Tue Nov  9 2004 Matthias Saou <http://freshrpms.net/> 0.5-1
+- Update to match Thomas' latest changes.
+
 * Wed Jun 16 2004 Matthias Saou <http://freshrpms.net/> 0.2-1
 - Shamelessly borrow this cool piece of work.
 

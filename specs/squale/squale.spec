@@ -1,9 +1,12 @@
 # $Id$
 
+%{?dist: %{expand: %%define %dist 1}}
+%{?rh7:  %define _without_python 1}
+
 Summary: Persistent SQL database connection libarary and daemon
 Name: squale
 Version: 0.1.1
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://squale.sourceforge.net/
@@ -18,8 +21,8 @@ Requires(postun): /usr/sbin/userdel, /usr/sbin/groupdel, /sbin/ldconfig, /sbin/s
 # at runtime and make squale crash
 Requires: glib2 >= 2.2.0
 BuildRequires: glib2-devel >= 2.2.0, libxml2-devel, pkgconfig, gettext, popt
-BuildRequires: Pyrex, python-devel, python
 BuildRequires: perl(XML::Parser), gcc-c++
+%{!?_without_python:BuildRequires: Pyrex, python-devel, python}
 %{?_with_oracle:BuildRequires: libsqlora8-devel >= 2.2.0}
 %{!?_without_mysql:BuildRequires: mysql-devel}
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
@@ -111,9 +114,11 @@ fi
 %config %{_sysconfdir}/logrotate.d/squale
 %{_initrddir}/squale
 %{_bindir}/*
+%if %{!?_without_python:1}0
 %exclude %{_libdir}/python?.?/site-packages/squale.a
 %exclude %{_libdir}/python?.?/site-packages/squale.la
 %{_libdir}/python?.?/site-packages/squale.so
+%endif
 %{_libdir}/*.so.*
 %{_mandir}/man?/*
 %attr(0770, root, squale) %{_localstatedir}/log/squale
@@ -128,6 +133,9 @@ fi
 
 
 %changelog
+* Tue Nov 30 2004 Matthias Saou <http://freshrpms.net/> 0.1.1-1
+- Changed python to be conditional, and disable on rh7.
+
 * Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 0.1.1-1
 - Update to 0.1.1.
 

@@ -5,9 +5,10 @@ WHAT TO DO
 - cd to it
 - mkdir rpms
 - download the four kernel rpms to rpms/
-- ../kmd.py -l /usr/lib -u 2.6.5-1.358 rpms/*.rpm
+- kmd.py -u 2.6.5-1.358 rpms/*.rpm
 - wait a long time
-- tar cjf kernel-module-devel-2.6.5-1.358.tar.bz2 kernel-module-devel-2.6.5-1.358
+- tar cjf kernel-module-devel-2.6.5-1.358.tar.bz2 \
+    kernel-module-devel-2.6.5-1.358
 
 ALGORITHM
 ---------

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python -tt
 
 # vi:si:et:sw=4:sts=4:ts=4
 
@@ -8,17 +8,23 @@ import commands
 import string
 import getopt
 
+__version__ = "0.0.4"
 
-usage = '''Usage: kmd.py -l (libdir) -u (uname -r) (list of rpms)
+usage = '''Usage: kmd.py -u (uname -r) (list of rpms)
 '''
 
-help = '''kmd.py 0.0.1
+help = '''kmd.py %s
 
 Unpack and compare rpms, and create a symlink/copy forest
 That is the smallest one recreating the different package lists
 
-'''
+''' % __version__
 
+# we don't want CDPATH to affect "cd" operations
+try:
+    del os.environ["CDPATH"]
+except:
+    pass
 
 def error (message):
     sys.stderr.write ("ERROR: %s\n" % message)
@@ -34,25 +40,27 @@ def error (message):
 def setup (rpms):
     ret = []
     print rpms
-    tmpdir = os.tempnam ('.')
+    tmpdir = '/tmp/test'
     os.system ("mkdir unpack")
     for rpm in rpms:
         print "Unpacking %s" % rpm
         rpmpath = os.path.realpath (rpm)
-        rpmname = os.path.split (rpm)[1]
-        unpack = os.path.join ('unpack', rpmname)
-        if os.path.exists (unpack):
-            print "%s already exists, keeping" % unpack
-        else:
-            os.system ("rm -rf %s" % tmpdir)
-            os.system ("mkdir %s" % tmpdir)
-            cmd = "cd %s && rpm2cpio %s | cpio -id" % (tmpdir, rpmpath)
-            if os.system (cmd) != 0:
-                error ("Could not unpack %s" % rpmpath)
-                return
-            cmd = "mv %s/lib/modules/*/build %s" % (tmpdir, unpack)
-            os.system (cmd)
-        ret.append (rpmname)
+        os.system ("rm -rf %s" % tmpdir)
+        os.system ("mkdir %s" % tmpdir)
+        cmd = "cd %s && rpm2cpio %s | cpio -id" % (tmpdir, rpmpath)
+        if os.system (cmd) != 0:
+            error ("Could not unpack %s" % rpmpath)
+            return
+        # find out the uname and arch
+        cmd = "ls -1d %s/lib/modules/*" % tmpdir
+        rpm_uname = os.path.split (commands.getoutput (cmd))[1]
+        rpm_arch = commands.getoutput ("rpm -qp --qf %%{ARCH} %s 2>/dev/null" % rpmpath)
+        dest = "%s-%s" % (rpm_uname, rpm_arch)
+        os.system ("rm -rf unpack/%s" % dest)
+        cmd = "mv %s/lib/modules/*/build unpack/%s" % (tmpdir, dest)
+        os.system (cmd)
+        os.system ("rm -rf %s/lib" % tmpdir)
+        ret.append (dest)
 
     os.system ("rm -rf %s" % tmpdir)
     return ret
@@ -181,18 +189,32 @@ def remove_children (paths):
         if parent_in_list == 0:
             result.append (path)
     return result
-    
+
+# commonpath() and relpath() based on
+# http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/208993
+
+def commonpath (l1, l2, common=[]):
+    if len (l1) < 1: return (common, l1, l2)
+    if len (l2) < 1: return (common, l1, l2)
+    if l1[0] != l2[0]: return (common, l1, l2)
+    return commonpath (l1[1:], l2[1:], common+[l1[0]])
+
+def relpath (p1, p2):
+    (common, l1, l2) = commonpath (p1.split (os.path.sep), p2.split (os.path.sep))
+    p = []
+    if len (l1) > 0: p = [ '..%s' % os.path.sep * len (l1) ]
+    p = p + l2
+    if len (p) is 0: return '.'
+    return os.path.join (*p)
+
 # main
-libdir = ''
 uname = ''
-opts, args = getopt.getopt (sys.argv[1:], "vhl:u:", [ "version", "help", "libdir=", "uname=" ])
+opts, args = getopt.getopt (sys.argv[1:], "vhu:", [ "version", "help", "uname=" ])
 for opt, arg in opts:
-    if opt in ('-l', '--libdir'):
-        libdir = arg
-    elif opt in ('-u', '--uname'):
+    if opt in ('-u', '--uname'):
         uname = arg
     elif opt in ('-v', '--version'):
-        print "kmd.py 0.0.1"
+        print "kmd.py %s" % __version__
         sys.exit (0)
     elif opt in ('-h', '--help'):
         print usage
@@ -202,11 +224,6 @@ if not args:
     sys.stderr.write (help)
     sys.stderr.write (usage)
     sys.exit (0)
-
-if not libdir:
-    sys.stderr.write ("Please supply a lib directory (eg. /usr/libdir) using -l.\n")
-    sys.stderr.write (usage)
-    sys.exit (1)
 
 if not uname:
     sys.stderr.write ("Please supply a uname -r value using -u.\n")
@@ -267,7 +284,7 @@ for rpm in paths.keys ():
 
     # then symlink all files from symlink_list
     for path in symlink_list:
-        source = os.path.join (libdir, 'kernel-module-devel-' + uname, 'common', path)
+        source = os.path.join (uname + '-common', path)
         # create parent dir if necessary
         dir = os.path.join (targetdir, os.path.dirname (path))
         if not os.path.exists (dir):
@@ -277,7 +294,7 @@ for rpm in paths.keys ():
                 sys.stderr.write ('Could not execute %s\n' % cmd)
                 sys.exit (1)
         # now symlink
-        cmd = "ln -sf %s %s/%s" % (source, targetdir, path)
+        cmd = "ln -sf %s %s" % (relpath (path, source), os.path.join (targetdir, path))
         print "DEBUG: ln: %s" % cmd
         if os.system (cmd) != 0:
             sys.stderr.write ('Could not execute %s\n' % cmd)
@@ -308,4 +325,8 @@ for rpm in paths.keys ():
             sys.stderr.write ('ERROR: symlink copy: Could not execute %s' % cmd)
             sys.exit (1)
 
+os.system ("rm -rf unpack")
 
+# Local varibles:
+# indent-tabs-mode: nil
+# End:
