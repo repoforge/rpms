@@ -43,7 +43,8 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure \
+	--with-pic
 %{__make} %{?_smp_mflags}
 
 %install
