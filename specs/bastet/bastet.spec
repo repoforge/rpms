@@ -1,7 +1,6 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
+# Upstream: Federico Poloni <fph@ngi.it>
 
 Summary: Very nasty tetris game
 Name: bastet
@@ -39,20 +38,24 @@ chmod u+s /usr/bin/bastet
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}/usr/bin
-mkdir -p %{buildroot}/var/games
-cp bastet %{buildroot}/usr/bin
-touch %{buildroot}/var/games/bastet.scores
+%{__install} -D -m0755 bastet %{buildroot}%{_bindir}/bastet
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/games/
+touch %{buildroot}%{_localstatedir}/games/bastet.scores
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, games, root, 0755)
-%doc TODO README HISTORY README-Petris AUTHORS COPYING
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING HISTORY README* TODO
 %{_bindir}/bastet
-%{_var}/games/bastet.scores
+
+%defattr(-, games, root, 0755)
+%{_localstatedir}/games/bastet.scores
 
 %changelog
-* Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> - 
+* Sat May 15 2004 Dag Wieers <dag@wieers.com> - 0.37-1
+- Cosmetic cleanup.
+
+* Sun May 2 2004 Dries Verachtert <dries@ulyssis.org> - 0.37-1
 - Initial package.

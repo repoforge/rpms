@@ -65,10 +65,9 @@ EOF
 	THEME_DIR="%{buildroot}%{_datadir}/beatforce"
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+        %{__install} -D -m0644 beatforce.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/beatforce.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor gnome                \
 		--add-category X-Red-Hat-Base              \
 		--dir %{buildroot}%{_datadir}/applications \

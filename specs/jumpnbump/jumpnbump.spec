@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.jumpbump.mine.nu/port/jumpnbump-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL_net, SDL_mixer
+BuildRequires: SDL_net-devel, SDL_mixer
 
 %description
 You, as a bunny, have to jump on your opponents to make them

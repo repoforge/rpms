@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Simple encryption tool
@@ -30,20 +29,17 @@ It can run as either a GUI, a command-line application, or a network proxy.
 %{__perl} -pi.orig -e 's|^# sys.path.append.+$|sys.path.append("%{_datadir}/gcipher/lib")|' src/gcipher
 
 %build
-python %{_libdir}/python2.2/compileall.py src
+python %{_libdir}/python*/compileall.py src
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/applications \
-			%{buildroot}%{_mandir}/man1 \
-			%{buildroot}%{_datadir}/gcipher/lib/{cipher,ciphergui} \
+%{__install} -d -m0755 %{buildroot}%{_datadir}/gcipher/lib/{cipher,ciphergui} \
 			%{buildroot}%{_datadir}/gcipher/plugins/{cipher,ciphergui}
 
-%{__install} -m0644 gcipher.1 %{buildroot}%{_mandir}/man1/
+%{__install} -D -m0644 gcipher.1 %{buildroot}%{_mandir}/man1/gcipher.1
 
-%{__install} -m0755 src/gcipher %{buildroot}%{_bindir}
-%{__install} -m0644 src/gcipher.desktop %{buildroot}%{_datadir}/applications/gnome-gcipher.desktop
+%{__install} -D -m0755 src/gcipher %{buildroot}%{_bindir}/gcipher
+%{__install} -D -m0644 src/gcipher.desktop %{buildroot}%{_datadir}/applications/gnome-gcipher.desktop
 %{__install} -m0644 src/*.{py,pyc,glade,gladep} %{buildroot}%{_datadir}/gcipher/lib/
 
 %{__install} -m0644 src/cipher/*.{py,pyc} %{buildroot}%{_datadir}/gcipher/lib/cipher/

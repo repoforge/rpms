@@ -27,6 +27,7 @@ Apolos is a small cd player for GNOME.
 
 ### FIXME: Add /usr/include/cdda to include dirs. (Please fix upstream)
 %{__perl} -pi.orig -e 's|^(CFLAGS =)|$1 -I%{_includedir}/cdda|' src/Makefile.in
+%{__perl} -pi.orig -e 's|Aplication|Application|' apolos.desktop
 
 %build
 %configure \

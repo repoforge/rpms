@@ -7,12 +7,13 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.7.0
-Release: 0.3
-Group: Applications/Multimedia
+Version: 0.7.1
+Release: 0.1
 License: GPL
+Group: Applications/Multimedia
 URL: http://www.videolan.org/
-Source0: http://www.videolan.org/pub/videolan/vlc/vlc-%{version}.tar.bz2
+
+Source0: http://download.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://download.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, desktop-file-utils
@@ -208,6 +209,9 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 
 
 %changelog
+* Sat May 15 2004 Dag Wieers <dag@wieers.com> - 0.7.1-0.1
+- Updated to release 0.7.1.
+
 * Tue Feb 24 2004 Matthias Saou <http://freshrpms.net/> 0.7.0-0.3.fr
 - Rebuild against new libfame.
 

@@ -72,7 +72,7 @@ you will need to install %{name}-devel.
 %doc AUTHORS COPYING NEWS README
 %doc %{_mandir}/man1/*
 %{_bindir}/*
-%{_libdir}/*.so.*
+#%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)

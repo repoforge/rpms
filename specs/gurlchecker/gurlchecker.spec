@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 # Upstream: Emmanuel Saracco <esaracco@noos.fr>
 
@@ -17,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://savannah.nongnu.org/download/gurlchecker/gurlchecker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
+BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0, gnet2 >= 2.0
 
 %description
 gURLChecker is a graphical web link checker. It can work on a whole

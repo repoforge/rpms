@@ -1,21 +1,21 @@
 # $Id$
 # Authority: dries
-##Distcc: 0
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
+
+%define real_version 2.33a
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
 Version: 2.33
-Release: 0
+Release: 0.a
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/
 
-Source: http://download.blender.org/source/blender-%{version}.tar.bz2
+Source: http://download.blender.org/source/blender-%{real_version}.tar.bz2
 Source1: blender.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, glut, python-devel
 BuildRequires: XFree86-devel, openssl-devel, SDL-devel, libvorbis-devel
@@ -41,9 +41,9 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
-%{__cat} <<EOF >%{name}.desktop
+%{__cat} <<EOF >blender.desktop
 [Desktop Entry]
 Name=Blender 3D Animations
 Comment=Model, animate, render and post-produce 3D animations
@@ -75,13 +75,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/pixmaps
-%{__install} -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/blender.png
 
 
 %if %{dfi}
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Graphics/
-        %{__install} -m0644 %{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Graphics/
+        %{__install} -D -m0644 blender.desktop %{buildroot}%{_datadir}/gnome/apps/Graphics/blender.desktop
 %else
 	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 	desktop-file-install --vendor net                  \
@@ -89,9 +87,6 @@ EOF
 		--dir %{buildroot}%{_datadir}/applications \
 		%{name}.desktop
 %endif
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -118,10 +113,13 @@ EOF
 #%defattr(-, root, root, 0755)
 #%doc INSTALL doc/building_blender.html
 #%{_libdir}/*.a
-#%{_libdir}/*.so
 #%exclude %{_libdir}/*.la
+#%{_libdir}/*.so
 
 %changelog
+* Sat May 15 2004 Dag Wieers <dag@wieers.com> - 2.33-0.a
+- Updated to release 2.30.
+
 * Wed Nov 05 2003 Dag Wieers <dag@wieers.com> - 2.30-0
 - Updated to release 2.30.
 

@@ -17,7 +17,7 @@ Source: http://dl.sf.net/gttr/gnotime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0.3, guile-devel
-BuildRequires: gtkhtml3-devel >= 3.1.0
+#BuildRequires: gtkhtml3-devel >= 3.1.0
 
 %description
 The GNOME Time Tracker is a desktop utility for tracking the amount

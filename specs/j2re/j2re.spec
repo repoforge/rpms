@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# BuildAsRoot: 1
+
 %{?dist: %{expand %%define %dist 1}}
 
 %define real_version 1_4_2
@@ -19,7 +21,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: %{name}-%{real_version}_%{real_release}-linux-i586.bin
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildArch: i586
 AutoReq: no
@@ -76,6 +77,7 @@ find %{buildroot}%{_libdir}/jre/bin/ -type f -exec chmod 0755 {} \;
 chmod 0644 %{buildroot}%{_mandir}/man?/*
 find . -type f -exec chmod 0644 {} \;
 
+%{?fc2:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
 %{?fc1:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
 %{?el3:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}
 %{?rh9:%{__ln_s} -f %{_libdir}/jre/plugin/i386/ns610-gcc32/libjavaplugin_oji.so %{buildroot}%{_libdir}/mozilla/plugins/}

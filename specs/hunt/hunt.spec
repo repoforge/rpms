@@ -40,7 +40,7 @@ connections it sees.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -m0755 hunt tpserv/tpserv tpsetup/transproxy %{buildroot}%{_sbindir}
 
 %{__install} -D -m0644 man/hunt.1 %{buildroot}%{_mandir}/man1/hunt.1

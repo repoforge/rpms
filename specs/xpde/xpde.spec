@@ -16,6 +16,7 @@ URL: http://www.xpde.com/
 Packager: Ricardo Arroyo <ricarro@terra.com.pe>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
+NoSource: 0
 Source: http://www.xpde.com/releases/xpde-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root 
 

@@ -55,9 +55,10 @@ env - PATH="$PATH" %{__make} %{?_smp_mflags}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ACKNOWLEDGEMENTS AUTHORS ChangeLog COPYING NEWS PATCHES* README* TODO
+%doc ACKNOWLEDGEMENTS AUTHORS COPYING NEWS README* TODO
 %doc docs/*.html
 %{_bindir}/*
+%{_libdir}/pkgconfig/*.pc
 %{_libdir}/valgrind/
 %{_includedir}/valgrind/
 %exclude %{_docdir}/valgrind/

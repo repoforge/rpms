@@ -62,7 +62,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
@@ -72,8 +72,8 @@ you will need to install %{name}-devel.
 %files devel
 %{_includedir}/*.h
 %{_libdir}/*.a
-%{_libdir}/*.so
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 %changelog
 * Tue May 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.22-1

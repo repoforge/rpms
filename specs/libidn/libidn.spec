@@ -1,5 +1,4 @@
 # $Id: _template.spec 130 2004-03-17 10:51:35Z dude $
-
 # Authority: dag
 # Upstream: <bug-libidn@gnu.org>
 
@@ -52,6 +51,9 @@ you will need to install %{name}-devel.
 ### Clean up docs
 %{__find} doc/ -name "Makefile*" | xargs rm -f
 
+### Clean up buildroot
+#%{__rm} -f %{buildroot}%{_datadir}/info/dir
+
 %post
 /sbin/install-info %{_infodir}/libidn*.info.gz %{_infodir}/dir
 /sbin/ldconfig 2>/dev/null
@@ -69,11 +71,10 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* FAQ INSTALL NEWS README* THANKS TODO doc/libidn.html contrib
 %doc %{_mandir}/man1/*
-%doc %{_infodir}/libidn.info*
+%doc %{_infodir}/*.info*
 %{_bindir}/*
 %{_datadir}/emacs/site-lisp/*.el
 %{_libdir}/*.so.*
-%exclude %{_datadir}/info/dir
 
 %files devel
 %defattr(-, root, root, 0755)

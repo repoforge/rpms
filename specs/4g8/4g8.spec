@@ -17,7 +17,7 @@ Source: http://forgate.sf.net/downloads/4g8-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: forgate
-BuildRequires: libnet >= 1.1
+BuildRequires: libnet >= 1.1, libpcap
 
 %description
 Forgate was written as a proof of concept in one method of capturing 

@@ -1,24 +1,18 @@
 # $Id$
 # Authority: dries
 
-# NeedsCleanup
-
-%define _name		ffcall
-%define _version	1.8d
-%define	_release	4.dries
+%define real_version	1.8d
 
 Summary: foreign function call libraries
-Summary(nl): foreign function call libraries
-Name:		%{_name}
-License:	GPL
-Version:	%{_version}
-Release:	%{_release}
-URL: ftp://ftp.gnustep.org/
+Name: ffcall
+Version: 1.8
+Release: 4.d
+License: GPL
 Group: Development/Libraries
-BuildRoot: %{_tmppath}/%{name}-root
-Source0: ftp://ftp.gnustep.org/pub/gnustep/libs/ffcall-1.8d.tar.gz
-BuildRequires: gcc diffutils make 
+URL: ftp://ftp.gnustep.org/
 
+Source: ftp://ftp.gnustep.org/pub/gnustep/libs/ffcall-1.8d.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 This is a collection of four libraries which can be used to build
@@ -29,40 +23,6 @@ foreign function call interfaces in embedded interpreters.
 * callback - closures with variable arguments as first-class C functions
              (a reentrant combination of vacall and trampoline)
 
-
-%description -l nl
-Dit is een verzameling van vier libraries die gebruikt kunnen worden in
-embedded interpreters voor 'foreign function call interfaces'.
-* avcall - calling C functions with variable arguments
-* vacall - C functions accepting variable argument prototypes
-* trampoline - closures as first-class C functions
-* callback - closures with variable arguments as first-class C functions
-             (a reentrant combination of vacall and trampoline)
-
-
-
-%prep
-rm -rf $RPM_BUILD_ROOT
-%setup
-
-%build
-%configure
-make 
-
-%install
-mkdir -p $RPM_BUILD_ROOT/usr/share/man
-mkdir -p $RPM_BUILD_ROOT/usr/share/doc/ffcall-1.8d
-
-%makeinstall
-
-# todo
-# rpmbuild removes the doc directory, so this mv has no effect..
-mv -v $RPM_BUILD_ROOT/usr/share/html $RPM_BUILD_ROOT/usr/share/doc/ffcall-1.8d
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %package devel
 Summary: ffcall devel
 Group: Development/Libraries
@@ -71,8 +31,25 @@ Requires: ffcall = %{version}-%{release}
 %description devel
 Development headers of ffcall: foreign function call libraries
 
-%description -l nl devel
-Development headers van ffcall: foreign function call libraries
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_mandir}
+%{__install} -d -m0755 %{buildroot}%{_docdir}/ffcal-%{real_version}
+%makeinstall
+
+# todo
+# rpmbuild removes the doc directory, so this mv has no effect..
+mv -v $RPM_BUILD_ROOT/usr/share/html $RPM_BUILD_ROOT/usr/share/doc/ffcall-1.8d
+
+%clean
+%{__rm} -rf %{buildroot}
 
 
 %files

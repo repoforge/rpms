@@ -57,7 +57,7 @@ EOF
 ### FIXME: Base kde_locale on $(datadir). (Please fix upstream)
 %makeinstall \
 	kde_locale="%{buildroot}%{_datadir}/locale"
-%find_lang %{real_name}
+#%find_lang %{real_name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor gnome                \
@@ -68,7 +68,8 @@ desktop-file-install --vendor gnome                \
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{real_name}.lang
+#%files -f %{real_name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING History README TODO
 %{_bindir}/*

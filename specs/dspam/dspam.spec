@@ -181,7 +181,7 @@ ln -f %{buildroot}%{_bindir}/addspam %{buildroot}%{_bindir}/falsepositive
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/
 touch %{buildroot}%{_localstatedir}/log/dspam.log
 
-%{__install} -D -m0755 dspam.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/
+%{__install} -D -m0755 dspam.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/dspam.cgi
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/dspam/
 %{__install} -m0755 cgi/*.css cgi/*.cgi cgi/*.gif cgi/*.html %{buildroot}%{_localstatedir}/www/dspam/
 

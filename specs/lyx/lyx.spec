@@ -52,7 +52,7 @@ and let the computer take care of the rest.
 Name=LyX LaTeX Frontend
 Comment=Write documents in a WYSIWYM way
 Exec=lyx
-Icon=lyx-icon.png
+Icon=lyx.png
 Type=Application
 Terminal=false
 Encoding=UTF-8
@@ -79,8 +79,8 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__mv} -f %{buildroot}%{_datadir}/lyx/tex %{buildroot}%{_datadir}/texmf/tex/latex/lyx
 
 ### Miscellaneous files
-%{__install} -D -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/
-%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
+%{__install} -D -m0644 lib/images/lyx.xpm %{buildroot}%{_datadir}/lyx/images/lyx.xpm
+%{__install} -D -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/lyx.png
 %{__install} -m0644 lib/reLyX/README README.reLyX
 
 ### Install desktop file and icon

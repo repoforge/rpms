@@ -20,6 +20,8 @@ Source: http://www.raxnet.net/downloads/cacti/cacti-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel
+%{?fc2:BuildRequires: net-snmp-devel}
+%{?fc1:BuildRequires: net-snmp-devel}
 %{?el3:BuildRequires: net-snmp-devel}
 %{?rh9:BuildRequires: net-snmp-devel}
 %{?rh8:BuildRequires: net-snmp-devel}

@@ -1,27 +1,22 @@
 # $Id$
+# Authority: matthias
 
-# Authority: dag
-# Upstream: Thomas Vander Stichele <thomas@apestaart.org>
-
-%define logmsg logger -t mach/rpm
+%{!?builduser:  %define builduser  machbuild}
+%{!?buildgroup: %define buildgroup machbuild}
+# Override with --define 'python python2'
+%{!?python:     %define python     python}
 
 Summary: Make a chroot
 Name: mach
 Version: 0.4.5
-Release: 1
-License: GPL
+Release: 2
 Group: Applications/System
+License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
-Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-
-BuildRequires:python
-Requires: rpm, python, rpm-python, apt, sed
+Source: http://thomas.apestaart.org/download/mach/%{name}-%{version}.tar.bz2
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: rpm-python, apt, sed, cpio
+BuildRequires:	%{python} >= 2.0.0
 
 %description
 mach makes a chroot.
@@ -31,74 +26,102 @@ environments based on the original packages for that distribution.
 The clean root can be used to run jail roots, to create image files, or
 to build clean packages.
 
+
 %prep
 %setup
 
+
 %build
-%configure
+%configure \
+    --enable-builduser=%{builduser} \
+    --enable-buildgroup=%{buildgroup}
+
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/mach/{roots,states} \
-			%{buildroot}%{_localstatedir}/cache/mach/{archives,packages}
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/states
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/roots
+%{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/packages
+%{__install} -d -m 775 %{buildroot}%{_localstatedir}/cache/mach/archives
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%pre
-if ! /usr/bin/id mach &>/dev/null; then
-	/usr/sbin/useradd -r -d %{_localstatedir}/lib/mach -s /bin/sh -c "mach user" -m mach || \
-		%logmsg "Unexpected error adding user \"mach\". Aborting installation."
-fi
 
-#%preun
-#if [ $1 -eq 0 ]; then
-#  rm -rf %{_localstatedir}/lib/mach/states/*
-#  rm -rf %{_localstatedir}/lib/mach/roots/*
-#  rm -rf %{_localstatedir}/cache/mach/* > /dev/null 2>&1 || :
-#  rmdir %{_localstatedir}/lib/mach/states > /dev/null 2>&1 || :
-#  rmdir %{_localstatedir}/lib/mach/roots > /dev/null 2>&1 || :
-#  rmdir %{_localstatedir}/cache/mach > /dev/null 2>&1 || :
-#  rm -rf %{_localstatedir}/tmp/mach
-#fi
+%pre
+# create user and group mach
+/usr/sbin/useradd -c "mach user" \
+    -r -m mach -d %{_localstatedir}/lib/mach >/dev/null 2>&1 || :
+
+%preun
+if [ $1 -eq 0 ]; then
+    # Last removal
+    # Be a good boy and clean out the dirs we filled with junk
+    rm -rf %{_localstatedir}/lib/mach/states/*
+    umount %{_localstatedir}/lib/mach/roots/*/proc >/dev/null 2>&1 || :
+    rm -rf %{_localstatedir}/lib/mach/roots/* >/dev/null 2>&1 || :
+    rm -rf %{_localstatedir}/cache/mach/* >/dev/null 2>&1 || :
+    rmdir %{_localstatedir}/lib/mach/states >/dev/null 2>&1 || :
+    rmdir %{_localstatedir}/lib/mach/roots >/dev/null 2>&1 || :
+    rmdir %{_localstatedir}/cache/mach >/dev/null 2>&1 || :
+    rm -rf %{_localstatedir}/tmp/mach >/dev/null 2>&1 || :
+fi
 
 %postun
 if [ $1 -eq 0 ]; then
-  /usr/sbin/userdel mach || %logmsg "User \"mach\" could not be deleted."
-  /usr/sbin/groupdel mach || %logmsg "Group \"mach\" could not be deleted."
+    # Last removal
+    userdel mach >/dev/null 2>&1 || : 
+    groupdel mach >/dev/null 2>&1 || :
 fi
 
+
 %files
-%defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING FORGETMENOT README RELEASE TODO
-%dir %{_sysconfdir}/mach/
+%defattr(-, root, root, -)
+%doc ChangeLog COPYING README AUTHORS BUGS TODO FORGETMENOT RELEASE
+%dir %{_sysconfdir}/mach
 %config %{_sysconfdir}/mach/conf
-%config %{_sysconfdir}/mach/dist
+%config %{_sysconfdir}/mach/location
+%config %{_sysconfdir}/mach/dist.d
 %{_bindir}/mach
-%defattr(-, mach, mach, 0755)
-%dir %{_localstatedir}/lib/mach/
-%dir %{_localstatedir}/lib/mach/states/
-%dir %{_localstatedir}/lib/mach/roots/
-%dir %{_localstatedir}/cache/mach/
-%dir %{_localstatedir}/cache/mach/packages/
-%dir %{_localstatedir}/cache/mach/archives/
-%defattr(4750, root, mach, 0755)
-%{_sbindir}/mach-helper
+%attr(04750, root, mach) %{_sbindir}/mach-helper
+%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach
+%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/states
+%attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/roots
+%attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/packages
+%attr(-, mach, mach) %dir %{_localstatedir}/cache/mach/archives
+
 
 %changelog
-* Sat Mar 20 2004 Dag Wieers <dag@wieers.com> - 0.4.5-1
-- Updated to release 0.4.5.
+* Thu May  6 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-2
+- Added %%{python} macro to allow python2 dependency.
 
-* Wed Dec 17 2003 Dag Wieers <dag@wieers.com> - 0.4.3-0
-- Updated to release 0.4.3.
+* Fri Mar 19 2004 Matthias Saou <http://freshrpms.net> - 0.4.5-1
+- Update to 0.4.5
 
-* Tue Nov 18 2003 Dag Wieers <dag@wieers.com> - 0.4.2-1
-- Added missing mach-directories from filelist. (Rudolf Kastl)
+* Mon Mar  1 2004 Matthias Saou <http://freshrpms.net> - 0.4.3.1-1
+- Update to 0.4.3.1.
 
-* Sat Oct 25 2003 Dag Wieers <dag@wieers.com> - 0.4.2-0
-- Updated to release 0.4.2.
+* Wed Dec 17 2003 Matthias Saou <http://freshrpms.net> - 0.4.3-1
+- Cosmetic spec file changes.
+- Update to 0.4.3.
 
-* Thu Sep 11 2003 Dag Wieers <dag@wieers.com> - 0.4.0-0
-- Initial package. (using DAR)
+* Wed Sep 17 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- add Requires: cpio
+- change home dir to /var/lib/mach
+
+* Mon Sep 08 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- 0.4.0-0.fdr.1: first public release.
+
+* Sat Aug 16 2003 Ville Skyttä <ville.skytta at iki.fi>
+- Add COPYING to docs.
+
+* Wed May 21 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- added mach-helper
+
+* Wed Apr 30 2003 Thomas Vander Stichele <thomas at apestaart dot org>
+- initial creation
+

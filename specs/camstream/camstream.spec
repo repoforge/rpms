@@ -26,8 +26,8 @@ framework.
 %setup
 
 %build
-#configure
-export CXX="g++296"
+%{?fc1:export CXX="g++296"}
+%{?rh9:export CXX="g++296"}
 ./configure \
 	--program-prefix="" --prefix="%{_prefix}" --exec-prefix="%{_prefix}" \
 	--bindir="%{_bindir}" --sbindir="%{_sbindir}" --sysconfdir="%{_sysconfdir}" \

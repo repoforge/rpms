@@ -1,7 +1,8 @@
 # $Id: $
-
 # Authority: dries
-# Upstream: 
+# Upstream: <dirac-develop@lists.sf.net>
+
+%define real_name Dirac
 
 Summary: General-purpose video codec
 Name: dirac
@@ -9,14 +10,15 @@ Version: 0.1.0
 Release: 1
 License: MPL 1.1
 Group: System Environment/Libraries
-URL: http://sourceforge.net/projects/dirac
+URL: http://sf.net/projects/dirac
 
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://dl.sf.net/dirac/Dirac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++
+
+BuildRequires: gcc-c++, xparam
 
 %description
 Dirac is a general-purpose video codec aimed at resolutions from QCIF
@@ -35,7 +37,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n Dirac-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %configure
@@ -66,8 +68,8 @@ you will need to install %{name}-devel.
 %files devel
 %{_includedir}/*.h
 %{_libdir}/*.a
-%{_libdir}/*.so
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 %changelog
 * Tue May 11 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.0

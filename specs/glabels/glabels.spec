@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.4, libgnomeui-devel >= 2.0, libglade2-devel >= 2.0.1
 BuildRequires: gtk+-devel >= 1.2, libgnomecanvas-devel >= 2.0
+BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel
 #BuildRequires: libgnomeprint-devel >= 0.115
 
 %description
@@ -91,6 +92,7 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/glabels/
 %{_datadir}/pixmaps/*.png
 %{_datadir}/omf/glabels/
+%exclude %{_localstatedir}/scrollkeeper
 
 %files devel
 %defattr(-, root, root, 0755)

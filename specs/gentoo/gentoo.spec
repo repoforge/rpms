@@ -10,7 +10,7 @@ Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.obsession.se/gentoo/
-Source0: http://dl.sf.net/gentoo/%{name}-%{version}.tar.gz
+Source0: http://dl.sf.net/gentoo/gentoo-%{version}.tar.gz
 Source1: gnome-db-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk+ >= 1.2.3, fam

@@ -16,7 +16,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://dl.sf.net/effectv/effectv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: nasm
+BuildRequires: nasm, SDL-devel
 
 %description
 EffecTV is a real-time video effector. You can watch TV or video through

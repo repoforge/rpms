@@ -18,7 +18,12 @@ Source: http://dl.sf.net/pointless/pointless-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: XFree86-Mesa-libGL, XFree86-devel, libpng-devel, zlib-devel, python >= 2.2
+BuildRequires: XFree86-devel, libpng-devel, zlib-devel, python >= 2.2
+%{?fc2:BuildRequires: xorg-x11-Mesa-libGL}
+%{?fc1:BuildRequires: XFree86-Mesa-libGL}
+%{?el3:BuildRequires: XFree86-Mesa-libGL}
+%{?rh9:BuildRequires: XFree86-Mesa-libGL}
+%{?rh8:BuildRequires: XFree86-Mesa-libGL}
 Requires: python >= 2.2
 
 %description

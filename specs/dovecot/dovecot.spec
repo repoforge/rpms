@@ -147,10 +147,8 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__install} -d -m0755 %{buildroot}%{_initrddir} \
-			%{buildroot}%{_sysconfdir}/pam.d/
-%{__install} -m0755 dovecot.sysv %{buildroot}%{_initrddir}/dovecot
-%{__install} -m0644 dovecot.pam %{buildroot}%{_sysconfdir}/pam.d/dovecot
+%{__install} -D -m0755 dovecot.sysv %{buildroot}%{_initrddir}/dovecot
+%{__install} -D -m0644 dovecot.pam %{buildroot}%{_sysconfdir}/pam.d/dovecot
 %{__mv} -f %{buildroot}%{_sysconfdir}/dovecot-example.conf %{buildroot}%{_sysconfdir}/dovecot.conf
 
 ### Clean up buildroot

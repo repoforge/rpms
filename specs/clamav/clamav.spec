@@ -290,9 +290,8 @@ fi
 %exclude %{_libdir}/*.la
 
 %changelog
-- Fixed the installation check for conf files. (Richard Soderberg)
-
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.70-2
+- Fixed the installation check for conf files. (Richard Soderberg)
 - Changed the init-order of the sysv scripts. (Will McCutcheon)
 - Changes to the default configuration files.
 

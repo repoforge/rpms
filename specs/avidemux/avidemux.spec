@@ -31,7 +31,18 @@ You can also process video with included filters. It requires a DivX
 compatible encoder and the Gimp Toolkit (GTK) libraries.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
+
+%{__cat} <<EOF >avidemux.desktop
+[Desktop Entry]
+Name=Video editing tool
+Comment=Edit your videos in real-time
+Icon=gnome-multimedia.png
+Exec=avidemux
+Terminal=false
+Type=Application
+Categories=Application;AudioVideo;
+EOF
 
 %build
 %configure \
@@ -43,27 +54,14 @@ compatible encoder and the Gimp Toolkit (GTK) libraries.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-cat <<EOF >gnome-%{name}.desktop
-[Desktop Entry]
-Name=Video editing tool
-Comment=Edit your videos in real-time
-Icon=gnome-multimedia.png
-Exec=avidemux
-Terminal=false
-Type=Application
-EOF
-
 %if %{dfi}
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/gnome/apps/Multimedia/
-	%{__install} -m0644 gnome-%{name}.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/
+	%{__install} -D -m0644 avidemux.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
         desktop-file-install --vendor gnome                \
                 --add-category X-Red-Hat-Base              \
-                --add-category Application                 \
-                --add-category AudioVideo                  \
                 --dir %{buildroot}%{_datadir}/applications \
-                gnome-%{name}.desktop
+                avidemux.desktop
 %endif
 
 %clean

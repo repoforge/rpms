@@ -16,6 +16,8 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 Source: http://www.tildeslash.com/monit/dist/monit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: flex
+
 %description
 Monit is an utility for monitoring daemons or similar programs running on
 a Unix system. It will start specified programs if they are not running
