@@ -4,15 +4,19 @@
 %define		gstreamer	gstreamer
 %define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
 
+%define		gstplugs	mpeg1sys mpeg1videoparse mpeg2sub mpegaudio mpegaudioparse mpegstream
+%define		extplugs	a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec musepack swfdec
+
 Name:		%{gstreamer}-plugins-extra
 Version:	0.8.6
-Release:	0
+Release:	1
 Summary:	GStreamer extra streaming media framework plugins
 
 Group:		Applications/Multimedia
 License:	LGPL
 URL:		http://gstreamer.net/
 Source:		http://gstreamer.freedesktop.org/src/gst-plugins/gst-plugins-%{version}.tar.bz2
+Patch:		gst-plugins-0.8.6-faad2-test.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	%{gstreamer}-devel >= %{gst_minver}
@@ -23,6 +27,9 @@ BuildRequires:	XFree86-devel
 
 # so configure passes
 BuildRequires:	GConf2-devel
+
+# because we patch configure.in
+BuildRequires:	autoconf, automake, libtool, gettext-devel, which, cvs
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -151,8 +158,10 @@ This package contains extra video plugins for GStreamer, including
 
 %prep
 %setup -n gst-plugins-%{version}
+%patch -p1 -b .faad2
 
 %build
+./autogen.sh --noconfigure
 %configure \
   --with-package-name='Fedora freshrpms rpm' \
   --with-package-origin='http://freshrpms.net/' \
@@ -163,6 +172,14 @@ mpeg1sys,mpeg1videoparse,mpeg2sub,mpegaudio,mpegaudioparse,mpegstream \
   --disable-tests \
   --disable-examples
 
+# Die if some of the plugins we want aren't configured properly
+grep -oP "(?<=will not be built: )[[:alpha:] ]+" config.log | sort > notbuilt
+BADPLUGS=$(echo %{gstplugs} %{extplugs} | xargs -n1 echo | sort | join - notbuilt)
+if [ $BADPLUGS != "" ]; then
+	echo "Plugins not configured: $BADPLUGS"
+	exit 1;
+fi
+
 make %{?_smp_mflags}
 
 %install
@@ -171,7 +188,7 @@ rm -rf $RPM_BUILD_ROOT
 # we're better off manually installing the plugins we want to package
 
 cd gst
-for p in mpeg1sys mpeg1videoparse mpeg2sub mpegaudio mpegaudioparse mpegstream
+for p in %{gstplugs}
 do
   cd $p
   %makeinstall
@@ -180,7 +197,7 @@ done
 cd ..
 
 cd ext
-for p in a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec musepack swfdec
+for p in %{extplugs}
 do
   cd $p
   %makeinstall
@@ -195,6 +212,13 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Wed Feb  2 2005 Matthias Saou <http://freshrpms.net/> 0.8.6-1
+- Include all changes by Nicholas Miell :
+- Fix for faad2 detection (new and old).
+- Have build die if any of the requested plugins aren't configured properly,
+  since they could get built (because of the short circuiting of the built)
+  but be totally broken.
+
 * Fri Nov 26 2004 Matthias Saou <http://freshrpms.net/> 0.8.6-0
 - Update to 0.8.6.
 - Sync with Thomas's current spec file.
