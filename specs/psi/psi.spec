@@ -10,7 +10,7 @@
 Summary: Client application for the Jabber network
 Name: psi
 Version: 0.9.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
@@ -31,6 +31,8 @@ Source31: psi_sk.qm
 Source32: psi_zh.qm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, kdelibs-devel, openssl-devel, gcc-c++
+%{?fc2:BuildRequires: desktop-file-utils}
+%{?fc1:BuildRequires: desktop-file-utils}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: psi-iconsets < 0.9.1
 
@@ -58,10 +60,11 @@ in other languages than English.
 %build
 # It's not an autoconf generated script...
 # The PWD thing is an ugly hack since relative paths mess everything up...
-./configure \
-    --prefix="${PWD}/src%{_prefix}" \
-    --bindir="${PWD}/src%{_bindir}" \
-    --libdir="${PWD}/src%{_datadir}/%{name}"
+#./configure \
+#    --prefix="${PWD}/src%{_prefix}" \
+#    --bindir="${PWD}/src%{_bindir}" \
+#    --libdir="${PWD}/src%{_datadir}/%{name}"
+./configure --prefix=/usr
 %{__perl} -pi.orig -e "s|${PWD}||g" Makefile
 %{__make} %{?_smp_mflags}
 
@@ -123,7 +126,6 @@ desktop-file-install \
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README TODO
@@ -131,6 +133,8 @@ desktop-file-install \
 %exclude %{_datadir}/psi/COPYING
 %exclude %{_datadir}/psi/README
 %exclude %{_datadir}/psi/*.qm
+%exclude %{_datadir}/applnk/Internet/psi.desktop
+%{_datadir}/icons/*/*/apps/psi.png
 %{_datadir}/psi
 %{qtdir}/plugins/crypto/libqca-tls.so
 %{_datadir}/pixmaps/psi.png
@@ -154,6 +158,9 @@ desktop-file-install \
 
 
 %changelog
+* Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> 0.9.2-2
+- fix so iconsets and language files work again
+
 * Fri Jun 11 2004 Matthias Saou <http://freshrpms.net> 0.9.2-1
 - Update to 0.9.2 (not the language files yet, not available for now).
 - Major spec file cleanup, leaning towards a rewrite :-).
