@@ -14,7 +14,7 @@
 
 Summary: Distributed C/C++ compilation client program
 Name: distcc
-Version: 2.15
+Version: 2.16
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -316,6 +316,9 @@ fi
 %endif
 
 %changelog
+* Thu Jul 08 2004 Dag Wieers <dag@wieers.com> - 2.16-1
+- Updated to release 2.16.
+
 * Wed Jul 07 2004 Dag Wieers <dag@wieers.com> - 2.15-1
 - Updated to release 2.15.
 

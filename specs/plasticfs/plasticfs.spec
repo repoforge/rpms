@@ -1,11 +1,10 @@
 # $Id$
-
 # Authority: dag
 
 Summary: The Plastic File System
 Name: plasticfs
-Version: 1.8
-Release: 0
+Version: 1.9
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://plasticfs.sf.net/
@@ -15,7 +14,6 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/plasticfs/plasticfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: groff
 
@@ -40,12 +38,15 @@ to exist in user space, without kernel hacks or modules.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE MANIFEST README
+%doc BUILDING LICENSE MANIFEST README
 %doc %{_mandir}/man?/*
 %{_libdir}/*
 
 
 %changelog
+* Wed Jul 07 2004 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Sat Mar 06 2004 Dag Wieers <dag@wieers.com> - 1.8-0
 - Updated to release 1.8.
 

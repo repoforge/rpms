@@ -13,7 +13,7 @@ URL: http://www.nongnu.org/straw/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/straw/straw-%{version}.tar.bz2
+Source: http://savannah.nongnu.org/download/straw/straw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.2, gtk2 >= 2.4, libglade2 >= 2.3
@@ -33,8 +33,20 @@ blogs than the traditional browser.
 %prep
 %setup
 
+%{__cat} <<EOF >straw.desktop.in
+[Desktop Entry]
+Name=Straw Desktop News Aggregator
+Comment=Aggregates newsfeeds and blogs
+TryExec=straw
+Exec=straw %U
+Terminal=false
+Type=Application
+Icon=straw.png
+Encoding=UTF-8
+Categories=GNOME;Application;Network;
+EOF
+
 %build
-#%{__make} %{?_smp_mflags}
 python setup.py build
 
 %install
@@ -50,16 +62,16 @@ desktop-file-install --vendor gnome --delete-original \
 	--dir %{buildroot}%{_datadir}/applications    \
 	%{buildroot}%{_datadir}/applications/*.desktop
 
-%post
-export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
+#%post
+#export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
+#gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%config %{_sysconfdir}/gconf/schemas/*.schemas
+#%config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_libdir}/python*/site-packages/straw/
 %{_datadir}/straw/

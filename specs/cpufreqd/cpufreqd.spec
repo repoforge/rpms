@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <cpufreqd-user@lists.sf.net>
+# Upstream: <cpufreqd-user@lists.sourceforge.net>
 
 Summary: CPU frequency scaling daemon
 Name: cpufreqd
@@ -8,7 +8,7 @@ Version: 1.1.2
 Release: 1
 License: GPL
 Group: System Environment/Kernel
-URL: http://cpufreqd.sf.net/
+URL: http://cpufreqd.sourceforge.net/
 
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
