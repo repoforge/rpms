@@ -40,6 +40,7 @@ BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
 BuildRequires: ORBit-devel, gcc-c++
 %{!?_without_autoconf213:BuildRequires: autoconf213}
 %{?_without_autoconf213:BuildRequires: autoconf = 2.13}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_gtk2:BuildRequires: gtk2-devel, libIDL-devel}
 %{?_without_gtk2:BuildRequires: gtk+-devel}
 
