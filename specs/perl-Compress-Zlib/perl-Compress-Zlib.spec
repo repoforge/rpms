@@ -51,8 +51,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE README
 %doc %{_mandir}/man?/*
-%{perl_vendorarch}/File/
-%{perl_vendorarch}/auto/File/
+%{perl_vendorarch}/Compress/
+%{perl_vendorarch}/auto/Compress/
 
 %changelog
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.33-0

@@ -4,8 +4,8 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.8
-Release: 4
+Version: 0.8.1
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
@@ -78,6 +78,9 @@ python ./setup.py install \
 %{_libdir}/python*/site-packages/trac/
 
 %changelog
+* Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 0.8-4
 - Fixed typo causing missing trac.conf. (Simon Perreault)
 
