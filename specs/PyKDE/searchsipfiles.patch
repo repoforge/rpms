@@ -1,0 +1,12 @@
+diff -uNr PyKDE-3.8.0-orig/build/discover.py PyKDE-3.8.0/build/discover.py
+--- PyKDE-3.8.0-orig/build/discover.py	2003-10-31 01:32:05.000000000 +0100
++++ PyKDE-3.8.0/build/discover.py	2003-12-26 23:40:37.000000000 +0100
+@@ -621,7 +621,7 @@
+         else:
+             pyQtSipPath = ["../", "/usr/local/", "/usr/local/src/", "/usr/src/", "/usr/share/sip", "/usr/local/share/sip",\
+                            "/usr/share/sip/qt"]
+-        self.pyQtSip = DiscoverPyQtSip (os.path.join ("PyQt-x11-gpl-" + self.pyQtLib.vers, "sip", "qtmod.sip"), pyQtSipPath)
++        self.pyQtSip = DiscoverPyQtSip (os.path.join ( "qt", "qtmod.sip"), pyQtSipPath)
+         print
+ 
+     def discoverKDE3 (self, opts):

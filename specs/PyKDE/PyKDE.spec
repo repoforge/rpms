@@ -15,7 +15,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
 Source: http://www.river-bank.demon.co.uk/download/PyKDE2/PyKDE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch0: searchsipfiles.patch.bz2
+Patch0: searchsipfiles.patch
 BuildRequires: python, sip, PyQt, qt-devel, sip-devel, kdelibs-devel
 Requires: kdelibs, sip, python, PyQt, PyQt-devel
 
