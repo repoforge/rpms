@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: 
+# Upstream: <pcoupard@easyconnect.fr>
 
 # Screenshot: http://webperso.easyconnect.fr/om.the/web/cwirc/images/screenshot.jpg
 
