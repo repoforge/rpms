@@ -1,6 +1,6 @@
 # $Id: _template.spec 471 2004-05-03 19:42:19Z dag $
 # Authority: dag
-# Upstream: Darren L. LaChausse <the_trapper@users.sf.net>
+# Upstream: Darren L. LaChausse <the_trapper$users,sourceforge,net>
 
 Summary: Graphical checksum verifier
 Name: awesum

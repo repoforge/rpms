@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Adel I. Mirzazhanov <a-del@iname.com>
+# Upstream: Adel I. Mirzazhanov <a-del$iname,com>
 
 Summary: Automated Password Generator for random password generation
 Name: apg

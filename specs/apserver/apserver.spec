@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Dmitry Rozmanov <dima@xenon.spb.ru>
+# Upstream: Dmitry Rozmanov <dima$xenon,spb,ru>
 
 %define real_name aps
 %define real_release 098

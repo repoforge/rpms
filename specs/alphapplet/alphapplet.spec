@@ -1,7 +1,6 @@
 # $Id$
-
 # Authority: dag
-# Upstream: Dag Wieers <dag@wieers.com>
+# Upstream: Dag Wieers <dag$wieers,com>
 
 Summary: Tray applet for displaying phonetic alphabets
 Name: alphapplet

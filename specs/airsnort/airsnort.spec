@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Snax <snax@shmoo.com>
+# Upstream: Snax <snax$shmoo,com>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

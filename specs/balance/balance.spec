@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <balance-general@lists.sf.net>
+# Upstream: <balance-general$lists,sourceforge,net>
 
 Summary: TCP load-balancing proxy server
 Name: balance

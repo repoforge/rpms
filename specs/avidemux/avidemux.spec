@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <fixounet@free.fr>
+# Upstream: <fixounet$free,fr>
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 

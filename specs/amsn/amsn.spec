@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Alvaro J. Iradier Muro <airadier@users.sf.net>
+# Upstream: Alvaro J. Iradier Muro <airadier$users,sourceforge,net>
 
 # Screenshot: http://amsn.sf.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sf.net/shots.htm

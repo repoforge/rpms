@@ -1,6 +1,6 @@
 # $Id: _template.spec 765 2004-05-20 17:33:53Z dag $
 # Authority: dag
-# Upstream: Edgar Toernig <froese@gmx.de>
+# Upstream: Edgar Toernig <froese$gmx,de>
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

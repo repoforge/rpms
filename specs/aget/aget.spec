@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Murat Balaban <murat@enderunix.org>
+# Upstream: Murat Balaban <murat$enderunix,org>
 # Screenshot: http://www.enderunix.org/aget/aget-shot.jpg
 
 Summary: Console download accelerator

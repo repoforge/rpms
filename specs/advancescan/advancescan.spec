@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <advancemame-devel@lists.sf.net>
+# Upstream: <advancemame-devel$lists,sourceforge,net>
 
 Summary: Command line rom manager for MAME, MESS and Raine
 Name: advancescan

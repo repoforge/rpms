@@ -1,7 +1,7 @@
 # $Id: $
 # Authority: dries
-# Upstream: Giuseppe Martino <denever@users.sf.net>
-# Upstream: <aldo-main@nongnu.org>
+# Upstream: Giuseppe Martino <denever$users,sourceforge,net>
+# Upstream: <aldo-main$nongnu,org>
 
 Summary: Morse tutor
 Name: aldo

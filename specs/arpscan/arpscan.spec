@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jason Ish <jason@codemonkey.net>
+# Upstream: Jason Ish <jason$codemonkey,net>
 
 Summary: Very simple ARP scanner
 Name: arpscan

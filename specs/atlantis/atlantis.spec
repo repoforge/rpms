@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ali Akcaagac <aliakc@web.de>
+# Upstream: Ali Akcaagac <aliakc$web,de>
 
 Summary: Light-weight GNOME web browser
 Name: atlantis

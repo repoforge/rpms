@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Brad Wasson <bard@systemtoolbox.com>
+# Upstream: Brad Wasson <bard$systemtoolbox,com>
 
 # Screenshot: http://desk3d.sourceforge.net/images/seq1-thumb.gif
 # ScreenshotURL: http://desk3d.sourceforge.net/screenshots.php

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Gerald Teschl <Gerald.Teschl@univie.ac.at>
+# Upstream: Gerald Teschl <Gerald,Teschl$univie,ac,at>
 
 Summary: AutoUpdate, a simple perl script to keep your system up2date
 Name: autoupdate

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <amavis-user@lists.sf.net>
+# Upstream: <amavis-user@lists,sourceforge,net>
 
 %define real_release p10
 

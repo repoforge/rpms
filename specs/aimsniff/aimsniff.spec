@@ -1,7 +1,7 @@
 # $Id: _template.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Shawn Grimes <shawn@aimsniff.com>
-# Upstream: <aimsniff-devel@lists.sf.net>
+# Upstream: Shawn Grimes <shawn$aimsniff,com>
+# Upstream: <aimsniff-devel$lists,sourceforge,net>
 
 %define real_version 0.9d
 

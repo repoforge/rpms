@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Lennart Poettering <mz617469@poettering.de>
+# Upstream: Lennart Poettering <mz617469$poettering,de>
 
 Summary: tool to use ATI TV-OUT
 Name: atitvout

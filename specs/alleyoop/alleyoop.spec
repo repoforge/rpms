@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jeffrey Stedfast <fejj@ximian.com>
+# Upstream: Jeffrey Stedfast <fejj$ximian,com>
 
 Summary: Graphical front-end to the Valgrind memory checker for x86
 Name: alleyoop

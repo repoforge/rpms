@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jean-Pierre Lefebvre <helix@step.polymtl.ca>
+# Upstream: Jean-Pierre Lefebvre <helix$step,polymtl,ca>
 
 Summary: Advanced Trivial File Transfer Protocol (TFTP) client
 Name: atftp

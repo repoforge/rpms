@@ -1,6 +1,6 @@
 # $Id: forgate.spec 219 2004-04-09 06:21:45Z dag $
 # Authority: dag
-# Upstream: Darren Bounds <dbounds@intrusense.com>
+# Upstream: Darren Bounds <dbounds$intrusense,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 

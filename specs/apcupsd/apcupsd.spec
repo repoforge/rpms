@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Kern Sibbald <kern@sibbald.com>
-# Upstream: <apcupsd-users@lists.sf.net>
+# Upstream: Kern Sibbald <kern$sibbald,com>
+# Upstream: <apcupsd-users$lists,sourceforge,net>
 
 # Distcc: 0
 

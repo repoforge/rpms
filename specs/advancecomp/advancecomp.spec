@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <advancemame-devel@lists.sf.net>
+# Upstream: <advancemame-devel$lists,sourceforge,net>
 
 Summary: Recompression utilities for .PNG, .MNG and .ZIP files
 Name: advancecomp

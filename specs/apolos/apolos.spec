@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jonathan Gonzalez V. <jonathan@blueplanet.cl>
+# Upstream: Jonathan Gonzalez V. <jonathan$blueplanet,cl>
 
 %{?dist: %{expand: %%define %dist 1}}
 

@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <fixounet@free.fr>
+# Upstream: <fixounet$free,fr>
 
 %{?dist: %{expand: %%define %dist 1}}
 
