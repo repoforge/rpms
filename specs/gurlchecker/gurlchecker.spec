@@ -32,9 +32,10 @@ site, a single local page or a browser bookmarks file.
 Name=Website URL Validator
 Comment=%{summary}
 Icon=gnome-spider.png
-Exec=%{name}
+Exec=gurlchecker
 Terminal=false
 Type=Application
+StartupNotify=true
 Categories=GNOME;Application;Network;
 EOF
 

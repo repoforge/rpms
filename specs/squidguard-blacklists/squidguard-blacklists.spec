@@ -106,8 +106,8 @@ cd %{buildroot}%{dbhomedir}/
 	done
 	echo -e "### Define your local blacklists here"
 	echo -e "dest bad {\n\tlogfile localbad.log\n\n#\tdomainlist\tlocal/bad/domains\n#\turllist\t\tlocal/bad/urls\n#\texpressionlist\tlocal/bad/expressions\n}\n"
-	echo -e "dest good {\n#\tdomainlist\tlocal/good/domains\n#\turllist\t\tlocal/good/urls\n#\texpressionlist\tlocal/good/expressions\n}\n\n"
-	echo -e "### ACL definition\nacl {\n\tdefault {\n\t\tpass good !bad !adult !aggressive !audio-video !hacking !warez any\n#\t\tredirect 302:http://localhost/access-denied.html\n\t}\n}"
+	echo -e "dest good {\n#\tdomainlist\tlocal/good/domains\n#\turllist\t\tlocal/good/urls\n#\texpressionlist\tlocal/good/expressions\n}\n"
+	echo -e "### ACL definition\nacl {\n\tdefault {\n\t\tpass good !bad !adult !aggressive !audio-video !hacking !warez any\n#\t\tredirect 302:http://localhost/access-denied.html?url=%u\n\t}\n}"
 	echo -e "acl {\n\tdefault {\n\t\tpass any\n\t}\n}" >&3
 ) >%{buildroot}%{_sysconfdir}/squid/squidguard-blacklists.conf 3>temp.conf
 

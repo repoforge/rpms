@@ -1,11 +1,12 @@
 # $Id$
 
 # Authority: newrpms
+# Upstream: <gtkglext-list@gnome.org>
 
 Summary: OpenGL Extension to GTK.
 Name: gtkglext
-Version: 1.0.5
-Release: 0
+Version: 1.0.6
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkglext.sf.net/
@@ -74,5 +75,8 @@ export CFLAGS="-UGTK_DISABLE_DEPRECATED"
 %{_datadir}/aclocal/*.m4
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.0.6-1
+- Updated to release 1.0.6.
+
 * Sat Jan 24 2004 Dag Wieers <dag@wieers.com> - 1.0.5-0
 - Initial package. (using DAR)

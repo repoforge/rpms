@@ -2,11 +2,12 @@
 
 # Authority: dag
 # Upstream: Simon Kelley <simon@thekelleys.org.uk>
+# Tag: test
 
-Summary: A lightweight caching nameserver.
+Summary: Lightweight caching nameserver.
 Name: dnsmasq
-Version: 2.2
-Release: 0
+Version: 2.4
+Release: 0.pre
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.thekelleys.org.uk/dnsmasq/
@@ -14,7 +15,7 @@ URL: http://www.thekelleys.org.uk/dnsmasq/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.thekelleys.org.uk/dnsmasq/%{name}-%{version}.tar.gz
+Source: http://www.thekelleys.org.uk/dnsmasq/dnsmasq-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -156,6 +157,10 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 2.4-0.pre
+- Updated to release 2.4pre.
+- Updated to release 2.3.
+
 * Sat Jan 31 2004 Dag Wieers <dag@wieers.com> - 2.2-0
 - Updated to release 2.2.
 

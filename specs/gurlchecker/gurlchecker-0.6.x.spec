@@ -3,9 +3,9 @@
 # Authority: dag
 # Upstream: Emmanuel Saracco <esaracco@noos.fr>
 
-Summary: Link validity checker.
+Summary: Graphical link validity checker.
 Name: gurlchecker
-Version: 0.6.5
+Version: 0.6.6
 Release: 0
 License: GPL
 Group: Applications/Internet
@@ -14,15 +14,15 @@ URL: http://www.nongnu.org/gurlchecker/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://savannah.nongnu.org/download/gurlchecker/%{name}-%{version}.tar.gz
+Source: http://savannah.nongnu.org/download/gurlchecker/gurlchecker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0
 
 %description
-gURLChecker is a GNOME tool that can check links on a single web page
-or on a whole web site in order to determine validity of each page.
+gURLChecker is a graphical web link checker. It can work on a whole
+site, a single local page or a browser bookmarks file.
 
 %prep
 %setup
@@ -68,6 +68,9 @@ desktop-file-install --vendor gnome                \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Wed Mar 10 2004 Dag Wieers <dag@wieers.com> - 0.6.6-0
+- Updated to release 0.6.6.
+
 * Mon Feb 16 2004 Dag Wieers <dag@wieers.com> - 0.6.5-0
 - Updated to release 0.6.5.
 

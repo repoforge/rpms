@@ -3,10 +3,10 @@
 # Authority: dag
 # Upstream: Simon Floery <simon.floery@gmx.at>
 
-Summary: GTK 2 based scientific calculator.
+Summary: Graphical scientific calculator.
 Name: galculator
-Version: 1.1.4
-Release: 0
+Version: 1.2.0
+Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://galculator.sf.net/
@@ -14,7 +14,7 @@ URL: http://galculator.sf.net/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://dl.sf.net/galculator/%{name}-%{version}.tar.bz2
+Source: http://dl.sf.net/galculator/galculator-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/root-%{name}-%{version}
 Prefix: %{_prefix}
 
@@ -53,6 +53,9 @@ functions.
 %{_datadir}/galculator/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Mon Nov 17 2003 Dag Wieers <dag@wieers.com> - 1.1.4-0
 - Updated to release 1.1.4.
 

@@ -7,10 +7,10 @@
 
 Summary: Multilingual web based tool to manage SQLite database.
 Name: sqlitemanager
-Version: 0.9.3
-Release: 0
+Version: 0.9.4
+Release: 1
 License: GPL
-Group: Applications/
+Group: Applications/Databases
 URL: http://sqlitemanager.sf.net/
 
 Packager: Dag Wieers <dag@wieers.com>
@@ -69,7 +69,6 @@ if [ -f %{_sysconfdir}/httpd/conf/httpd.conf ]; then
 	fi
 fi
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -80,5 +79,8 @@ fi
 %{_localstatedir}/www/sqlitemanager/
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Sat Feb 29 2004 Dag Wieers <dag@wieers.com> - 0.9.3-0
 - Initial package. (using DAR)

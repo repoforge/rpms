@@ -9,8 +9,8 @@
 
 Summary: NTFS filesystem libraries and utilities.
 Name: ntfsprogs
-Version: 1.8.5
-Release: 0
+Version: 1.9.0
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://linux-ntfs.sf.net/
@@ -102,6 +102,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 
 %changelog
+* Thu Mar 11 2004 Dag Wieers <dag@wieers.com> - 1.9.0-1
+- Updated to release 1.9.0.
+
 * Mon Mar 01 2004 Dag Wieers <dag@wieers.com> - 1.8.5-0
 - Updated to release 1.8.5.
 
