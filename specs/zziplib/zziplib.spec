@@ -10,7 +10,7 @@ Group: Applications/Archiving
 URL: http://zziplib.sourceforge.net/
 Source: http://dl.sf.net/zziplib/zziplib-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: zlib-devel, zip, python, SDL-devel, xmlto, pkgconfig
+BuildRequires: gcc-c++, zlib-devel, zip, python, SDL-devel, xmlto, pkgconfig
 
 %description
 The zziplib library is intentionally lightweight, it offers the ability to
