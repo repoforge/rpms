@@ -1,12 +1,14 @@
 # $Id$
-
 # Authority: dag
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name perl-ldap
 
 Summary: set of Perl classes implementing an LDAP client
 Name: perl-Net-LDAP
-Version: 0.2701
+Version: 0.3202
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -15,15 +17,16 @@ URL: http://search.cpan.org/dist/Net-LDAP/
 Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
-Source: http://www.cpan.org/authors/id/G/GB/GBARR/%{real_name}-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Net/perl-ldap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, perl(IO::Socket::SSL), perl(Convert::ASN1)
+BuildRequires: perl(Authen::SASL), perl(Digest::MD5), perl(URI::ldap), perl(XML::SAX::Base)
+BuildRequires: perl(MIME::Base64)
 Requires: perl >= 0:5.00503, perl(Carp), perl(Convert::ASN1), perl(Data::Dumper)
-Requires: perl(Exporter), perl(Getopt::Std), perl(MIME::Base64)
-#Requires: perl(IO::Socket::SSL)
+Requires: perl(Exporter), perl(Getopt::Std), perl(MIME::Base64), perl(Authen::SASL)
+Requires: perl(IO::Socket::SSL)
 AutoReq: no
 
 Obsoletes: perl-ldap
@@ -38,7 +41,7 @@ by relying on as little compiled code as possible.
 %setup -n %{real_name}-%{version} 
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
+%{__perl} Makefile.PL \
 	PREFIX="%{buildroot}%{_prefix}" \
 	INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags}
@@ -48,18 +51,32 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog CREDITS MANIFEST RELEASE_NOTES README TODO contrib/
+%doc Changes CREDITS MANIFEST README TODO contrib/
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%dir %{perl_vendorlib}/Bundle/
+%dir %{perl_vendorlib}/Bundle/Net/
+%{perl_vendorlib}/Bundle/Net/LDAP.pm
+%dir %{perl_vendorlib}/LWP/
+%dir %{perl_vendorlib}/LWP/Protocol/
+%{perl_vendorlib}/LWP/Protocol/ldap.pm
+%dir %{perl_vendorlib}/Net/
+%{perl_vendorlib}/Net/LDAP/
+%{perl_vendorlib}/Net/LDAP.pm
+%{perl_vendorlib}/Net/LDAP.pod
+%{perl_vendorlib}/Net/LDAPI.pm
+%{perl_vendorlib}/Net/LDAPS.pm
 
 %changelog
-* Mon Feb 03 2003 Dag Wieers <dag@wieers.com>
+* Thu Jan 27 2005 Dag Wieers <dag@wieers.com> - 0.3202-1
+- Updated to release 0.3202.
+
+* Mon Feb 03 2003 Dag Wieers <dag@wieers.com> - 0.2701-0
 - Initial package. (using DAR)

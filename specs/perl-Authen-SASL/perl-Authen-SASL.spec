@@ -31,14 +31,18 @@ This module permits authentication with SASL.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL \
+	INSTALLDIRS="vendor" \
+	PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+                %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -49,7 +53,7 @@ This module permits authentication with SASL.
 %{_mandir}/man3/*
 %{perl_vendorlib}/Authen/SASL.pm
 %{perl_vendorlib}/Authen/SASL.pod
-%{perl_vendorlib}/Authen/SASL/*
+%{perl_vendorlib}/Authen/SASL/
 
 %changelog
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.08-1

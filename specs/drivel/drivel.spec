@@ -4,7 +4,7 @@
 
 Summary: LiveJournal client for GNOME
 Name: drivel
-Version: 1.2.0
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -35,7 +35,8 @@ in mind, and presents an elegant user interface.
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
-%makeinstall
+%{__make} install \
+	DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %post
@@ -74,6 +75,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Fri Jan 28 2005 Dag Wieers <dag@wieers.com> - 1.2.4-1
+- Updated to release 1.2.4.
+
 * Sun Aug 29 2004 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

@@ -5,7 +5,7 @@
 # Screenshot: http://extragear.kde.org/apps/kiosktool/kiosktool3.png
 # ScreenshotURL: http://extragear.kde.org/apps/kiosktool.php
 
-# ExcludeDist: el3 fc1
+##ExcludeDist: el3 fc1
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -27,10 +27,9 @@
 %{?rh6:%define _without_selinux 1}
 %{?yd3:%define _without_selinux 1}
 
-
 Summary: KIOSK administration admin tool
 Name: kiosktool
-Version: 0.7
+Version: 0.9
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -46,7 +45,7 @@ BuildRequires: gettext, libart_lgpl-devel
 BuildRequires: libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make
-BuildRequires: gcc-c++, qt-devel
+BuildRequires: gcc-c++, qt-devel >= 3.2
 %{!?_without_selinux:BuildRequires: libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
@@ -81,13 +80,15 @@ source %{_sysconfdir}/profile.d/qt.sh
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%{_bindir}/*
+%{_bindir}/kiosktool*
 %{_datadir}/applnk/Utilities/kiosktool.desktop
 %{_datadir}/apps/kiosktool
 %{_datadir}/icons/crystalsvg/*/apps/kiosktool.png
 
-
 %changelog
+* Thu Jan 27 2005 Dag Wieers <dag@wieers.com> - 0.9-1
+- Update to version 0.9.
+
 * Wed Jul 14 2004 Dries Verachtert <dries@ulyssis.org> - 0.7-1
 - Update to version 0.7.
 

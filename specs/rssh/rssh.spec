@@ -5,8 +5,8 @@
 
 Summary: Restricted shell for use with OpenSSH, allowing only scp and/or sftp
 Name: rssh
-Version: 2.2.1
-Release: 2
+Version: 2.2.2
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.pizzashack.org/rssh/
@@ -45,10 +45,13 @@ access, you can use rssh to do that.
 %doc AUTHORS ChangeLog CHROOT COPYING NEWS README SECURITY TODO
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/rssh.conf
-%{_bindir}/*
+%{_bindir}/rssh
 %attr(4755, root, root) %{_libexecdir}/rssh_chroot_helper
 
 %changelog
+* Thu Jan 27 2005 Dag Wieers <dag@wieers.com> - 2.2.3-1
+- Updated to release 2.2.3.
+
 * Mon Jun 28 2004 Dag Wieers <dag@wieers.com> - 2.2.1-2
 - Fixed ownership of rssh_chroot_helper, defattr is ignored. (Robin Green)
 

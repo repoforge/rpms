@@ -10,8 +10,8 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.80
-Release: 2
+Version: 0.81
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -204,7 +204,8 @@ EOF
 	--disable-clamav \
 	--with-user="clamav" \
 	--with-group="clamav" \
-	--with-dbdir="%{_localstatedir}/clamav"
+	--with-dbdir="%{_localstatedir}/clamav" \
+	--disable-zlib-vcheck
 %{__make} %{?_smp_mflags}
 
 %install
@@ -288,7 +289,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README TODO test/
-%doc docs/clamdoc.* docs/html/ etc/freshclam.conf
+%doc docs/*.pdf etc/freshclam.conf
 %doc %{_mandir}/man1/sigtool.1*
 %doc %{_mandir}/man1/clamscan.1*
 %doc %{_mandir}/man1/freshclam.1*
@@ -347,8 +348,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
-* Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 0.80-3
+* Thu Jan 27 2005 Dag Wieers <dag@wieers.com> - 0.81-1
 - Improved logrotate scripts. (Filippo Grassilli)
+- Updated to release 0.81.
 
 * Wed Dec 01 2004 Dag Wieers <dag@wieers.com> - 0.80-2
 - Added %dir /var/clamav/log. (Adam Bowns)

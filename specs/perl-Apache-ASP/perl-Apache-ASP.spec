@@ -1,4 +1,4 @@
-# $Id: perl-Archive-Tar.spec 201 2004-04-03 15:24:49Z dag $
+# $Id$
 # Authority: dag
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)

@@ -13,7 +13,7 @@
 Summary: LaTeX editor
 Name: texmaker
 Version: 1.11
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://www.xm1math.net/texmaker/
@@ -73,7 +73,6 @@ EOF
 
 %build
 source "%{_sysconfdir}/profile.d/qt.sh"
-#$QTDIR/bin/qmake -makefile -unix "LIBS +=-lm $QTDIR/lib/libqt-mt.so.3" texmaker.pro
 $QTDIR/bin/qmake -makefile -unix texmaker.pro
 
 %{__make} %{?_smp_mflags} \
@@ -81,11 +80,16 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install \
+#	DESTDIR="%{buildroot}"
 %{__install} -D -m0755 texmaker %{buildroot}%{_bindir}/texmaker
 %{__install} -D -m0644 utilities/texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
 %{__install} -D -m0644 utilities/texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
 %{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/texmaker.png
 %{__install} -D -m0644 utilities/texmaker48x48.png %{buildroot}%{_datadir}/pixmaps/texmaker.png
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/texmaker/
+%{__install} -m0644 utilities/*.{css,gif,html,png} %{buildroot}%{_datadir}/texmaker/
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -D -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
@@ -103,14 +107,17 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %files
 %defattr(-, root, root, 0755)
 %doc INSTALL utilities/AUTHORS utilities/COPYING
-%doc utilities/*.css utilities/*.gif utilities/*.html utilities/*.png
 %{_bindir}/texmaker
 %{?_without_freedesktop:%{_datadir}/applications/texmaker.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-texmaker.desktop}
 %{_datadir}/icons/hicolor/*/apps/texmaker.png
 %{_datadir}/pixmaps/texmaker.png
+%{_datadir}/texmaker/
 
 %changelog
+* Wed Jan 26 2005 Dag Wieers <dag@weers.com> - 1.11-2
+- Fixed location of the documentation. (Richard Heck)
+
 * Sun Aug 15 2004 Dag Wieers <dag@weers.com> - 1.11-1
 - Updated to release 1.11.
 
