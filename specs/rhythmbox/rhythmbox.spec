@@ -7,10 +7,10 @@
 
 %define majmin 0.8
 
-Name: rhythmbox
+Name: rhythmbox%{?xine:-xine}
 Summary: Music Management Application 
 Version: %{majmin}.5
-Release: 0%{?_with_xine:xine}
+Release: 0
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
@@ -27,6 +27,8 @@ BuildRequires: gettext, scrollkeeper, gcc-c++
 Obsoletes: net-rhythmbox <= 0.4.8
 
 %if %{xine}
+Conflicts: rhythmbox
+Provides: rhythmbox = %{version}-%{release}
 BuildRequires: xine-lib-devel >= 1.0.0
 BuildRequires: libvorbis-devel, libid3tag-devel, flac-devel, faad2-devel
 %else
@@ -41,7 +43,7 @@ through GStreamer, Internet Radio support, playlists and more.
 
 
 %prep
-%setup
+%setup -n rhythmbox-%{version}
 
 
 %build
@@ -56,7 +58,7 @@ through GStreamer, Internet Radio support, playlists and more.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 %makeinstall
-%find_lang %name
+%find_lang rhythmbox
 %{__rm} -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
 
 
@@ -76,7 +78,7 @@ done
 /sbin/ldconfig
 
 
-%files -f %{name}.lang
+%files -f rhythmbox.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README NEWS
 %{_bindir}/*
@@ -96,6 +98,10 @@ done
 
 
 %changelog
+* Thu Jul 29 2004 Matthias Saou <http://freshrpms.net/> 0.8.5-0
+- Change the name of the xine build to "rhythmbox-xine" in order to be able
+  to include it in repositories without conflict.
+
 * Fri Jun 25 2004 Matthias Saou <http://freshrpms.net/> 0.8.5-0
 - Update to 0.8.5.
 
