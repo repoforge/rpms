@@ -1,0 +1,29 @@
+# List of available apt repositories available from ayo.freshrpms.net.
+# This file should contain an uncommented default suitable for your system.
+#
+# See http://ayo.freshrpms.net/ for a list of other repositories and mirrors.
+#
+# $Id: sources.list.i386 720 2004-05-19 18:24:16Z dude $
+
+# Fedora Linux 3
+rpm http://ayo.freshrpms.net fedora/linux/3/i386 core updates freshrpms
+#rpm http://ayo.freshrpms.net fedora/linux/3/i386 tupdates
+#rpm-src http://ayo.freshrpms.net fedora/linux/3/i386 core updates freshrpms
+#rpm-src http://ayo.freshrpms.net fedora/linux/3/i386 tupdates
+
+# Fedora Linux 2
+#rpm http://ayo.freshrpms.net fedora/linux/2/i386 core updates freshrpms
+#rpm http://ayo.freshrpms.net fedora/linux/2/i386 tupdates
+#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 core updates freshrpms
+#rpm-src http://ayo.freshrpms.net fedora/linux/2/i386 tupdates
+
+# Fedora Linux 1
+#rpm http://ayo.freshrpms.net fedora/linux/1/i386 core updates
+#rpm http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 core updates
+#rpm-src http://ayo.freshrpms.net fedora/linux/1/i386 tupdates
+
+# Fedora Linux Development
+#rpm http://ayo.freshrpms.net fedora/linux/development/i386 core
+#rpm-src http://ayo.freshrpms.net fedora/linux/development/i386 core
+

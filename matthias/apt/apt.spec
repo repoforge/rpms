@@ -14,6 +14,7 @@ Source2: vendors.list
 Source3: RPM-GPG-KEY.freshrpms
 Source4: sources.list.i386
 Source5: sources.list.ppc
+Source6: sources.list.x86_64
 Patch0: apt-0.5.5cnc1-freshrpms.patch
 Patch1: apt-0.5.15cnc6-rpmpriorities.patch
 Patch10: apt-0.5.15cnc5-nodigest.patch
@@ -83,14 +84,18 @@ with APT's libapt-pkg package manipulation library, modified for RPM.
 %{__cp} -a rpmpriorities %{buildroot}%{_sysconfdir}/apt/
 %{__cp} -a %{SOURCE1} %{SOURCE2} %{buildroot}%{_sysconfdir}/apt/
 %{__cp} -a %{SOURCE3} .
-%ifarch %ix86
-    %{__cp} -a %{SOURCE4} %{buildroot}%{_sysconfdir}/apt/sources.list
+%ifarch %{ix86}
+  %{__cp} -a %{SOURCE4} %{buildroot}%{_sysconfdir}/apt/sources.list
 %else
   %ifarch ppc
     %{__cp} -a %{SOURCE5} %{buildroot}%{_sysconfdir}/apt/sources.list
   %else
-    echo "# No repositories for %{arch} are available, sorry." \
-    > %{buildroot}%{_sysconfdir}/apt/sources.list
+    %ifarch x86_64
+      %{__cp} -a %{SOURCE6} %{buildroot}%{_sysconfdir}/apt/sources.list
+    %else
+      echo "# No repositories for %{arch} are available, sorry." \
+      > %{buildroot}%{_sysconfdir}/apt/sources.list
+    %endif
   %endif
 %endif
 
