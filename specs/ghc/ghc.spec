@@ -70,7 +70,7 @@ export PATH=`pwd`/ghc-6.2/lib/i386-unknown-linux:`pwd`/ghc-6.2/bin/i386-unknown-
 
 %files
 %defattr(-,root,root, 0755)
-%doc README
+%doc README docs
 %{_bindir}/*
 %{_includedir}/*
 %{_libdir}/*
