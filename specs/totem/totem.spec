@@ -85,6 +85,7 @@ watching and resizing live video.
 %build
 %if %{gstreamer}
 %configure \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --enable-gstreamer \
     %{?_without_lirc:--disable-lirc}
 %{__make} %{?_smp_mflags}
@@ -94,6 +95,7 @@ watching and resizing live video.
 %endif
 
 %configure \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --enable-vanity \
     --enable-mozilla \
     %{?_without_lirc:--disable-lirc}

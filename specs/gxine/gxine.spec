@@ -50,7 +50,8 @@ Categories=GNOME;Application;AudioVideo;
 EOF
 
 %build
-%configure
+%configure \
+	--x-libraries="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags}
 
 %install
