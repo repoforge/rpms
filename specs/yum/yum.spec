@@ -7,7 +7,7 @@
 %{!?distro: %{expand: %%define distro fd}}
 
 # Defined as YYYYMMDD if this is a snapshot build
-%define date 20040416
+#define date 20040416
 
 # Python name and version, use "--define 'python python2'"
 %{!?python: %{expand: %%define python python}}
@@ -15,8 +15,8 @@
 
 Summary: YellowDog Updater Modified, an rpm package management utility
 Name: yum
-Version: 2.0.6
-Release: 1%{?date:.%{date}}
+Version: 2.0.7
+Release: 0%{?date:.%{date}}
 License: GPL
 Group: System Environment/Base
 URL: http://www.linux.duke.edu/projects/yum/
@@ -120,6 +120,9 @@ fi
 
 
 %changelog
+* Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 2.0.7-1
+- Update to 2.0.7 at last.
+
 * Fri Apr 30 2004 Matthias Saou <http://freshrpms.net/> 2.0.6-1.20040416
 - Update to 20040416 snapshot.
 
