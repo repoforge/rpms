@@ -1,0 +1,19 @@
+--- lcap-0.0.6-orig/lcap.8	2004-08-19 14:19:46.000000000 +0200
++++ lcap-0.0.6/lcap.8	2004-08-19 15:18:55.000000000 +0200
+@@ -46,6 +46,16 @@
+ other bits are left as is.  Multiple capabilities may be listed on
+ the command line (except when using the \fB-c\fR option, in which case
+ only one \fBcapability\fR may be specified).
++.PP
++Note that if you remove the CAP_SYS_MODULE capability from the system,
++then no further capability-modifications are possible, and lcap will no
++longer be able to correctly report the bound capability set.
++.PP
++Note also that if CAP_SYS_RAWIO or CAP_SYS_MODULE are part of the
++capability set, then it's possible to re-insert capabilities by 
++various means. Hence, after you have adjusted your set of bound
++capabilities, you will need to remove CAP_SYS_RAWIO and CAP_SYS_MODULE
++if you want to make sure that capabilies are not re-introduced.
+ .SH "REPORTING BUGS"
+ Report bugs to <spoon@ix.netcom.com>.
+ .SH "SEE ALSO"

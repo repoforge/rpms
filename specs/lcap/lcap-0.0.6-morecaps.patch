@@ -1,0 +1,12 @@
+diff -ur lcap-0.0.6-orig/lcap.c lcap-0.0.6/lcap.c
+--- lcap-0.0.6-orig/lcap.c	2004-08-19 14:19:46.000000000 +0200
++++ lcap-0.0.6/lcap.c	2004-08-19 14:24:05.000000000 +0200
+@@ -76,6 +76,8 @@
+     "CAP_SYS_RESOURCE",     "setting resource limits",
+     "CAP_SYS_TIME",         "setting system time",
+     "CAP_SYS_TTY_CONFIG",   "tty configuration",
++    "CAP_MKNOD",            "Allow the privileged aspects of mknod()",
++    "CAP_LEASE",            "Allow taking of leases on files",
+     NULL, NULL,
+     };
+ 
