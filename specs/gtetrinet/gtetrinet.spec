@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Ka-shu Wong <kswong@zip.com.au>
+# Upstream: Ka-shu Wong <kswong$zip,com,au>
 
 Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
