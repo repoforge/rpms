@@ -1,19 +1,18 @@
 # $Id$
 # Authority: matthias
 
-Summary: Very small and fast Window Manager.
+Summary: Very small and fast Window Manager
 Name: blackbox
 Version: 0.65.0
-Release: 7
+Release: 8
 License: GPL
 Group: User Interface/Desktops
 Source0: http://dl.sf.net/blackboxwm/blackbox-%{version}.tar.gz
 Source1: blackbox.desktop
 Patch: blackbox-0.65.0-assert.patch.txt
 URL: http://blackboxwm.sourceforge.net/
-BuildRoot: %{_tmppath}/%{name}-root
-Requires: XFree86, libstdc++
-BuildRequires: XFree86-devel, libstdc++-devel, gcc-c++
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: XFree86-devel, gcc-c++
 
 %description
 Blackbox is a window manager for the X Window environment, which is
@@ -23,18 +22,18 @@ simple menus. Fast built-in graphics code that can render solids,
 gradients and bevels is used to draw window decorations. Remaining
 small in size, blackbox preserves memory and CPU.
 
-Available rpmbuild rebuild options :
---without : nls
 
 %prep
 %setup
 %patch -p0
 
+
 %build
 # Work around NLS problem
 export LANG="en_US" LC_ALL="en_US"
-%configure %{?_without_nls:--disable-nls}
+%configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -53,8 +52,10 @@ EOF
 # Install the desktop entry
 %{__install} -m 644 -D %{SOURCE1} %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -66,15 +67,19 @@ EOF
 %attr(755, root, root) %{_datadir}/apps/switchdesk/Xclients.%{name}
 %{_mandir}/man1/*
 
+
 %changelog
-* Mon Feb 23 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-7.fr
+* Wed Mar 24 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-8
+- Removed explicit XFree86 dependency.
+
+* Mon Feb 23 2004 Mattthias Saou <http://freshrpms.net/> 0.65.0-7
 - Added blackbox.desktop file for xsessions based on the GNOME one.
 
-* Tue Feb 10 2004 Scott R. Godin <nospam@webdragon.net> 0.65.0-6.fr
+* Tue Feb 10 2004 Scott R. Godin <nospam@webdragon.net> 0.65.0-6
 - Patch for #include <cassert> in Window.cc
 - Fixed nls problem, left in --disable just in case. Smile, Matthias. :-) 
 
-* Fri Nov 14 2003 Mattthias Saou <http://freshrpms.net/> 0.65.0-5.fr
+* Fri Nov 14 2003 Mattthias Saou <http://freshrpms.net/> 0.65.0-5
 - Rebuild for Fedora Core 1.
 
 * Wed May 14 2003 Matthias Saou <http://freshrpms.net/>
