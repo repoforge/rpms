@@ -28,14 +28,18 @@ RPM macros used by the RPMForge project.
 %%dist %dist
 %%%dist 1
 %else
-### Current disitribution undefine in original buildsystem
-#%%define dist ???
-#%%define ??? 1
+### Current distribution undefined in original buildsystem
+#%%dist ???
+#%%??? 1
 %endif
 
+%if "%dist" == "fc2"
+### Fedora Core 2
+%%errata 120
+%endif
 %if "%dist" == "fc1"
 ### Fedora Core 1
-%%errata 100
+%%errata 110
 %%_without_alsa 1
 %%_without_theora 1
 %endif
