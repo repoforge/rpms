@@ -1,0 +1,53 @@
+diff -Naupr boa-0.94.14rc17.orig/examples/boa.conf boa-0.94.14rc17/examples/boa.conf
+--- boa-0.94.14rc17.orig/examples/boa.conf	2003-02-02 06:02:22.000000000 +0100
++++ boa-0.94.14rc17/examples/boa.conf	2003-10-22 16:11:48.000000000 +0200
+@@ -45,14 +45,14 @@ Port 80
+ #  User: The name or UID the server should run as.
+ # Group: The group name or GID the server should run as.
+ 
+-User nobody
+-Group nogroup
++User boa
++Group www
+ 
+ # ServerAdmin: The email address where server problems should be sent.
+ # Note: this is not currently used, except as an environment variable
+ # for CGIs.
+ 
+-#ServerAdmin root@localhost
++ServerAdmin root@localhost
+ 
+ # PidFile: where to put the pid of the process.
+ # Comment out to write no pid file.
+@@ -155,7 +155,7 @@ AccessLog /var/log/boa/access_log
+ # DocumentRoot: The root directory of the HTML documents.
+ # Comment out to disable server non user files.
+ 
+-DocumentRoot /var/www
++DocumentRoot /var/www/boa/html
+ 
+ # UserDir: The name of the directory which is appended onto a user's home
+ # directory if a ~user request is received.
+@@ -217,7 +217,8 @@ CGIPath /bin:/usr/bin:/usr/local/bin
+ # Example: AddType type extension [extension ...]
+ 
+ # Uncomment the next line if you want .cgi files to execute from anywhere
+-#AddType application/x-httpd-cgi cgi
++AddType application/x-httpd-cgi cgi
++AddType application/x-httpd-cgi pl
+ 
+ # Redirect, Alias, and ScriptAlias all have the same semantics -- they
+ # match the beginning of a request and take appropriate action.  Use
+@@ -232,10 +233,10 @@ CGIPath /bin:/usr/bin:/usr/local/bin
+ # Aliases: Aliases one path to another.
+ # Example: Alias /path1/bar /path2/foo
+ 
+-Alias /doc /usr/doc
++# Alias /doc /usr/doc
+ 
+ # ScriptAlias: Maps a virtual path to a directory for serving scripts
+ # Example: ScriptAlias /htbin/ /www/htbin/
+ 
+-ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
++ScriptAlias /cgi-bin/ /usr/lib/boa/cgi-bin/
+ 

@@ -1,0 +1,93 @@
+#!/bin/bash
+#
+# $Id: boa.init,v 1.1 2003/10/22 14:39:40 dude Exp $
+#
+# boa		This shell script takes care of starting and stopping \
+#		the boa webserver
+#
+# chkconfig: - 85 15
+# description:	This web server is used to serve HTML files and CGI scripts.
+#
+# processname: boa
+# config: /etc/boa/boa.conf
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+[ -f /etc/boa/boa.conf ] || exit 0
+[ -f /etc/sysconfig/boa ] && . /etc/sysconfig/boa
+ 
+# Optional configuration
+TMP=${TMP:=/tmp}
+[ -n "${SERVERROOT}" ] && BOA_OPTIONS="-c "${SERVERROOT}
+[ -n "${CHROOT}" ] && BOA_OPTIONS="-r "${CHROOT}
+
+RETVAL=0
+prog="boa"
+
+start() {
+	# Start daemons.
+	echo -n $"Starting $prog: "
+	daemon boa ${BOA_OPTIONS}
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/boa
+	echo
+	return $RETVAL
+}
+
+stop() {
+	# Stop daemons.
+	echo -n $"Stopping $prog: "
+	killproc boa
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/boa
+	echo
+	return $RETVAL
+}
+
+reload() {
+	# REload daemons.
+	echo -n $"Reloading $prog: "
+	killproc boa -HUP
+	RETVAL=$?
+	echo
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	status boa
+	;;
+  reload)
+	reload
+	;;
+  restart)
+	restart
+	;;
+  condrestart)
+	[ -f /var/lock/subsys/boa ] && restart
+	;;
+  *)
+	echo $"Usage: boa {start|stop|status|reload|restart|condrestart}"
+	exit 1
+esac
+
+exit $?

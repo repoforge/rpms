@@ -14,7 +14,6 @@ Source0: http://dl.sf.net/pearpc/pearpc-%{version}.tar.bz2
 Source1: http://pearpc.sourceforge.net/pearpc3.png
 Source2: http://dl.sf.net/pearpc/pearpc-3gib.img.bz2
 Source3: http://dl.sf.net/pearpc/pearpc-6gib.img.bz2
-Patch: pearpc-0.2.0-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, qt-devel
 BuildRequires: desktop-file-utils

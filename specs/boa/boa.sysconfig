@@ -1,0 +1,12 @@
+# Optional boa parameters. You should edit /etc/boa/boa.conf instead, unless
+# you've set up a chroot environment for the boa webserver to run in.
+
+# Read/write directory needed for CGI/POST
+TMP="/tmp"
+
+# Alternate boa.conf location (default: /etc/boa)
+SERVERROOT=
+
+# Chroot directory (default: empty for normal startup)
+CHROOT=
+

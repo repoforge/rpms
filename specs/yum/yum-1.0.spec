@@ -24,9 +24,9 @@ Group: System Environment/Base
 Source: http://www.dulug.duke.edu/yum/download/1.0/%{name}-%{?date}%{!?date:%{version}}.tar.gz
 Source11: yum-rh.conf
 Source12: yum-yd.conf
-Source50: RPM-GPG-KEY.redhat
-Source51: RPM-GPG-KEY.yellowdog
-Source52: RPM-GPG-KEY.freshrpms
+Source50: RPM-GPG-KEY-redhat
+Source51: RPM-GPG-KEY-yellowdog
+Source52: RPM-GPG-KEY-freshrpms
 URL: http://www.linux.duke.edu/projects/yum/
 Requires(pre): /sbin/chkconfig, /sbin/service
 Requires(post): /sbin/chkconfig, /sbin/service
@@ -70,13 +70,13 @@ cp -a %{_sourcedir}/RPM-GPG-KEY* .
 /sbin/service yum condrestart >/dev/null 2>&1 || :
 %ifnarch ppc
 # Import Red Hat gpg key
-gpg --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY.redhat >/dev/null 2>&1
+gpg --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY-redhat >/dev/null 2>&1
 %else
 # Import Yellow Dog gpg key
-gpg --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY.yellowdog >/dev/null 2>&1
+gpg --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY-yellowdog >/dev/null 2>&1
 %endif
 # Import Freshrpms.net gpg key
-gpg --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY.freshrpms >/dev/null 2>&1
+gpg --import %{_docdir}/%{name}-%{version}/RPM-GPG-KEY-freshrpms >/dev/null 2>&1
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -86,7 +86,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING TODO RPM-GPG-KEY.*
+%doc README AUTHORS COPYING TODO RPM-GPG-KEY-*
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %config %{_sysconfdir}/cron.daily/%{name}.cron
 %config %{_sysconfdir}/init.d/%{name}
