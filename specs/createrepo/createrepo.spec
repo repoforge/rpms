@@ -7,11 +7,11 @@
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.3.6
+Version: 0.4.0
 Release: 1
 License: GPL
 Group: System Environment/Base
-Source: http://linux.duke.edu/projects/metadata/generate/%{name}-%{version}.tar.gz
+Source: http://linux.duke.edu/projects/metadata/generate/createrepo-%{version}.tar.gz
 URL: http://linux.duke.edu/projects/metadata/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
@@ -51,6 +51,9 @@ fi
 
 
 %changelog
+* Mon Oct 18 2004 Matthias Saou <http://freshrpms.net/> 0.4.0-1
+- Update to 0.4.0.
+
 * Wed Aug 04 2004 Dries Verachtert <dries@ulyssis.org> 0.3.6-1
 - Update to version 0.3.6.
 
