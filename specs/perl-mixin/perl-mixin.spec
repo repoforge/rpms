@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/mixin/
 
-Source: http://www.cpan.org/modules/by-module/mixin/mixin-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/mixin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

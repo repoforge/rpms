@@ -34,7 +34,7 @@ requires that the OpenSSL libraries and header files be installed.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" INC=-I/usr/kerberos/include
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
