@@ -15,7 +15,7 @@ URL: http://gnubiff.sourceforge.net/
 Source: http://dl.sf.net/gnubiff/gnubiff-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gnome-panel, gcc-c++, openssl-devel, libglade-devel, gdk-pixbuf-devel, glib2-devel, libglade2-devel
+BuildRequires: libgnomeui-devel, gnome-panel, gcc-c++, openssl-devel, libglade-devel, gdk-pixbuf-devel, glib2-devel, libglade2-devel
 
 %description
 Gnubiff is a mail notification program that checks for mail, displays
