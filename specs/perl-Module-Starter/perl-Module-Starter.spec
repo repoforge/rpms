@@ -52,6 +52,7 @@ A simple starterkit for any module.
 %doc %{_mandir}/man1/*
 %{_bindir}/*
 %{perl_vendorlib}/Module/Starter.pm
+%{perl_vendorlib}/Module/Starter
 
 %changelog
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.34-1

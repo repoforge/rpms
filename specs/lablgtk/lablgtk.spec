@@ -16,7 +16,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/dist/lablgtk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ocaml, pkgconfig, gtk2-devel
+BuildRequires: ocaml, pkgconfig, gtk2-devel, libglade2-devel
+BuildRequires: librsvg2-devel, libgnomecanvas-devel, libgnomeui-devel
+BuildRequires: gnome-panel-devel
 
 %description
 LablGTK is is an Objective Caml interface to gtk+.

@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, kyra-devel, SDL_image-devel, gcc-c++, bison
 BuildRequires: SDL_mixer-devel, SDL_net-devel, automake14, gettext
+BuildRequires: ncurses-devel
 
 %description
 Gemhun is all about grouping gems/stones of a chosen amount together which
