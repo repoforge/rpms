@@ -15,7 +15,7 @@ Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://dl.sf.net/chkpasswd-ldap/checkpassword-ldap.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+BuildRequires: openldap-devel
 
 %description
 checkpassword implementation that searches an LDAP database.
