@@ -1,10 +1,23 @@
 # $Id$
 # Authority: dries
+# Screenshot: http://www.csv.ica.uni-stuttgart.de/vrml/dune/_gfx/screen02.jpg
+# ScreenshotURL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/screen.html
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
 
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
-Version: 0.26pl5
-Release: 2
+Version: 0.27beta230
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
@@ -15,10 +28,9 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://www.csv.ica.uni-stuttgart.de/vrml/dune/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, lesstif-devel, flex, byacc, zlib-devel
-BuildRequires: libjpeg-devel, libpng-devel, XFree86, XFree86-Xvfb, ImageMagick
-
-# Screenshot: http://www.csv.ica.uni-stuttgart.de/vrml/dune/_gfx/screen02.jpg
-# ScreenshotURL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/screen.html
+BuildRequires: libjpeg-devel, libpng-devel, ImageMagick
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Xvfb}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Xvfb}
 
 %description
 The white_dune program is a graphical VRML97 editor and animation tool.
@@ -57,42 +69,20 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__mkdir_p} %{buildroot}%{_bindir}
-%{__mkdir_p} %{buildroot}%{_mandir}/man1
-%{__mkdir_p} %{buildroot}%{_datadir}/misc/white_dune
+%{__install} -d %{buildroot}%{_bindir}
+%{__install} -d %{buildroot}%{_mandir}/man1
+%{__install} -d %{buildroot}%{_datadir}/misc/white_dune
+%{__install} -d %{buildroot}%{_datadir}/applications
+%{__install} -d %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps
 %{__install} -m 0755 bin/dune %{buildroot}%{_bindir}/dune
 %{__install} -m 0755 bin/dune4kids %{buildroot}%{_bindir}/dune4kids
 %{__install} -m 0644 man/dune.1 %{buildroot}%{_mandir}/man1/dune.1
-%{__install} -m 0644 docs/vrml200x_nurbssurface/NurbsCurvePROTO.wrl %{buildroot}%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl
-%{__install} -m 0644 docs/vrml200x_nurbssurface/NurbsGroupPROTO.wrl %{buildroot}%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl
-%{__install} -m 0644 docs/vrml200x_nurbssurface/NurbsSurfacePROTO.wrl %{buildroot}%{_datadir}/misc/white_dune/NurbsSurfacePROTO.wrl
-
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-%{__cat} > %{buildroot}%{_datadir}/applications/dune.desktop << EOF
-[Desktop Entry]
-Name=White Dune
-Exec=dune
-Icon=dune
-Terminal=false
-Type=Application
-Categories=Application;Graphics;
-Encoding=UTF-8
-EOF
-%{__cat} > %{buildroot}%{_datadir}/applications/dune4kids.desktop << EOF
-[Desktop Entry]
-Name=White Dune 4 kids
-Exec=dune4kids
-Icon=dune4kids
-Terminal=false
-Type=Application
-Categories=Application;Graphics;
-Encoding=UTF-8
-EOF
-
-%{__mkdir_p} %{buildroot}/%{_datadir}/icons/hicolor/48x48/apps
-convert desktop/xfce/dune.xpm %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/dune.png
-convert desktop/xfce/dune4kids.xpm %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/dune4kids.png
-
+install -m 644 desktop/kde/redhat/dune.desktop %{buildroot}%{_datadir}/applications/dune.desktop
+install -m 644 desktop/kde/dune.png %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps/dune.png
+install -m 644 desktop/kde/redhat/dune4kids.desktop %{buildroot}%{_datadir}/applications/dune4kids.desktop
+install -m 644 desktop/kde/dune4kids.png %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps/dune4kids.png
+install -m 755 bin/illegal2vrml %{buildroot}/usr/bin/illegal2vrml
+install -m 644 man/illegal2vrml.1 %{buildroot}%{_mandir}/man1/illegal2vrml.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -102,17 +92,18 @@ convert desktop/xfce/dune4kids.xpm %{buildroot}%{_datadir}/icons/hicolor/48x48/a
 %doc README COPYING docs
 %{_bindir}/dune
 %{_bindir}/dune4kids
-%{_mandir}/man1/dune.1*
-%{_datadir}/misc/white_dune/NurbsCurvePROTO.wrl
-%{_datadir}/misc/white_dune/NurbsGroupPROTO.wrl
-%{_datadir}/misc/white_dune/NurbsSurfacePROTO.wrl
+%{_bindir}/illegal2vrml
+%{_mandir}/man1/*
 %{_datadir}/applications/dune.desktop
 %{_datadir}/applications/dune4kids.desktop
-%{_datadir}/icons/hicolor/48x48/apps/dune.png
-%{_datadir}/icons/hicolor/48x48/apps/dune4kids.png
+%{_datadir}/icons/*/48x48/apps/dune.png
+%{_datadir}/icons/*/48x48/apps/dune4kids.png
 
 
 %changelog
+* Thu Oct 28 2004 Dries Verachtert <dries@ulyssis.org> 0.27beta230-1
+- Update to 0.27beta230.
+
 * Thu Feb 26 2004 Dries Verachtert <dries@ulyssis.org> 0.26pl5-2
 - added an icon for the desktop file
 
