@@ -24,11 +24,12 @@ Requires: ImageMagick >= 5.4.3, bzip2
 %{!?_without_lzo:Requires: lzo >= 1.08}
 %{!?_without_a52:Requires: a52dec}
 %{!?_without_libfame:Requires: libfame}
-%{!?_without_mjpeg:Requires: mjpegtools}
-BuildRequires: gcc-c++, glib-devel
+BuildRequires: gcc-c++, glib-devel, gtk+-devel
 BuildRequires: SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel, libdv-devel
 BuildRequires: ImageMagick-devel >= 5.4.3, bzip2-devel
+# Seems like ImageMagick-devel should require this! (FC2 and higher)
+BuildRequires: libexif-devel
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_xvidcore:BuildRequires: xvidcore-devel}
@@ -37,7 +38,10 @@ BuildRequires: ImageMagick-devel >= 5.4.3, bzip2-devel
 %{!?_without_lzo:BuildRequires: lzo-devel >= 1.08}
 %{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
 %{!?_without_libfame:BuildRequires: libfame-devel}
+# All these are only build requirements since they compile in statically
 %{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
+%{!?_without_mpeg3:BuildRequires: libmpeg3}
+%{!?_without_theora:BuildRequires: libtheora-devel}
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
@@ -53,7 +57,7 @@ video frames and loading of external filters.
 Please see the included README file for more.
 
 Available rpmbuild rebuild options :
---without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg
+--without : lame dvdread xvidcore quicktime lzo a52 libfame mjpeg mpeg3 theora
 
 
 %prep
@@ -69,7 +73,10 @@ Available rpmbuild rebuild options :
     %{!?_without_quicktime:--with-qt} \
     %{?_without_lzo:--without-lzo} \
     %{?_without_a52:--without-a52} \
-    %{?_without_libfame:--without-libfame}
+    %{?_without_libfame:--without-libfame} \
+    %{?_without_mjpeg:--without-mjpeg} \
+    %{?_without_mpeg3:--without-libmpeg3} \
+    %{!?_without_theora:--with-theora}
 %{__make} %{?_smp_mflags}
 
 
@@ -98,6 +105,8 @@ Available rpmbuild rebuild options :
 - Remove explicit stripping, it goes into the debuginfo package.
 - Change some of the obvious conditional builds to be static (ogg...).
 - Make xvid4 the default instead of xvid2.
+- Added theora and libmpeg3 support.
+- Added libexif-devel build requirement, although ImageMagick-devel should.
 
 * Fri Apr 16 2004 Matthias Saou <http://freshrpms.net/> 0.6.12-3
 - Rebuild against new libdv.

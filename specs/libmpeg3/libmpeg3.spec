@@ -10,9 +10,6 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://dl.sf.net/heroines/libmpeg3-%{version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -6,7 +6,7 @@
 Summary: The Open Racing Car Simulator
 Name: torcs
 Version: 1.2.2
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://torcs.org/
@@ -17,9 +17,10 @@ Source3: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-K1999.tgz
 Source4: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-billy.tgz
 Source5: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-bt.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: torcs-data, glut, plib >= 1.6.0
-BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL
-BuildRequires: gcc-c++, plib >= 1.6.0, glut-devel
+Requires: torcs-data, freeglut, plib >= 1.6.0
+#BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL
+BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL
+BuildRequires: gcc-c++, plib >= 1.6.0, freeglut-devel
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel
 BuildRequires: desktop-file-utils
 
@@ -45,7 +46,7 @@ This package contains the robots who can race on their own.
 %prep
 %setup -a 1 -a 2 -a 3 -a 4 -a 5
 # Put the drivers back where they belong
-mv %{name}-%{version}/src/drivers/* src/drivers/
+%{__mv} %{name}-%{version}/src/drivers/* src/drivers/
 
 
 %build
@@ -59,33 +60,34 @@ mv %{name}-%{version}/src/drivers/* src/drivers/
 
 %{__install} -m 644 -D Ticon.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=TORCS
-Comment=%{summary}
+Comment=The Open Racing Car Simulator
 Exec=%{name}
 Icon=%{name}.png
 Terminal=false
 Type=Application
+Encoding=UTF-8
 EOF
 
-mkdir -p %{buildroot}%{_datadir}/applications
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
   --dir %{buildroot}%{_datadir}/applications    \
-  --add-category X-Red-Hat-Extra                \
   --add-category Application                    \
   --add-category Game                           \
   %{name}.desktop
 
 
-%post -p /sbin/ldconfig
-
-
-%postun -p /sbin/ldconfig
-
-
 %clean
 %{__rm} -rf %{buildroot}
+
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
 
 
 %files
@@ -121,17 +123,21 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
-* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1.fr
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-2
+- Rebuild for Fedora Core 2.
+- Change XFree86 deps to xorg-x11 and glut to freeglut.
+
+* Thu Feb 26 2004 Matthias Saou <http://freshrpms.net/> 1.2.2-1
 - Update to 1.2.2.
 - No longer require compat-libstdc++-devel for building.
 - This version broke %%makeinstall, so switch to DESTDIR method.
 - Re-enabled K1999 build, it works again.
 - Added new robots : billy and bt.
 
-* Tue Jan 13 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-4.fr
+* Tue Jan 13 2004 Matthias Saou <http://freshrpms.net/> 1.2.1-4
 - Work around the XFree86 dependency problem by adding XFree86-Mesa-libGLU.
 
-* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.2.1-3.fr
+* Tue Dec  2 2003 Matthias Saou <http://freshrpms.net/> 1.2.1-3
 - Rebuild for Fedora Core 1.
 - Disabled build of the K1999 driver (strstream.h seems obsolete).
 

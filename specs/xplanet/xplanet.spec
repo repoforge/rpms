@@ -3,13 +3,14 @@
 
 Summary: Planet image rendering into the X root window
 Name: xplanet
-Version: 1.0.3
-Release: 2
+Version: 1.0.7
+Release: 1
 License: GPL
 Group: Amusements/Graphics
 URL: http://xplanet.sourceforge.net/
 Source: http://dl.sf.net/xplanet/xplanet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: xplanet-maps
 BuildRequires: XFree86-devel, gcc-c++, zlib-devel
 BuildRequires: libungif-devel, libjpeg-devel, libpng-devel
 BuildRequires: netpbm-devel, libtiff-devel, pango-devel
@@ -33,7 +34,7 @@ orthographic, and rectangular.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install-strip DESTDIR=%{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 
 %clean
@@ -49,7 +50,11 @@ orthographic, and rectangular.
 
 
 %changelog
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net> 1.0.3-2.fr
+* Thu May 20 2004 Matthias Saou <http://freshrpms.net> 1.0.7-1
+- Update to 1.0.7.
+- Add xplanets-maps as a dependency as requested by users.
+
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net> 1.0.3-2
 - Spec file cleanup.
 - Split off the extra maps.
 
