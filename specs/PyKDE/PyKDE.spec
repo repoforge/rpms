@@ -50,27 +50,20 @@ python configure.py
 sed -i "s/-lDCOP -lkdecore/-lDCOP -lkdeui -lkdecore/g;" kdecore/Makefile
 %{__make} %{?_smp_mflags}
 
-# (cd pythonize; {__make} ../libs/libpythonize.so.1.0.0)
-
 %install
 . /etc/profile.d/qt.sh
 %makeinstall DESTDIR=%{buildroot}
 
 %files devel
 %defattr(-,root,root,0755)
-%{_libdir}/python*/site-packages/*.so
 %{_datadir}/sip
-%{_libdir}/kde3/*.so
-%{_libdir}/*.so
 
 %files
 %defattr(-,root,root, 0755)
 %doc README AUTHORS BUGS ChangeLog COPYING INSTALL importTest.py NEWS THANKS doc
-%{_libdir}/python2.2/site-packages/*.so.*
-%{_libdir}/python2.2/site-packages/*.py
-%{_libdir}/python2.2/site-packages/*.pyc
-%{_libdir}/kde3/*.so.*
-%{_libdir}/*.so.*
+%{_libdir}/python*/site-packages/*.so
+%{_libdir}/python*/site-packages/*.py
+%{_libdir}/python*/site-packages/*.pyc
 
 %changelog
 * Wed May 26 2004 Dries Verachtert <dries@ulyssis.org> 3.11rc1-1
