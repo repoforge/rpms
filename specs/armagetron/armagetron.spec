@@ -2,24 +2,23 @@
 # Authority: matthias
 
 %define desktop_vendor freshrpms
-/games/armagetron
+%define prefix         %{_prefix}/games/armagetron
 
-Summary: multiplayer OpenGL 'Tron' racing game clone
+Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetron
 Version: 0.2.5.2
-Release: 2
+Release: 3
 License: GPL
 Group: Amusements/Games
-Source0: http://dl.sf.net/armagetron/armagetron-%{version}.tar.bz2
-Source1: http://armagetron.sourceforge.net/addons/moviepack.zip
-Source2: http://armagetron.sourceforge.net/addons/moviesounds_mq.zip
-Source3: settings.cfg
 URL: http://armagetron.sourceforge.net/
-Buildroot: %{_tmppath}/%{name}-root
-Requires: SDL_image >= 1.2.0 esound
+Source: http://dl.sf.net/armagetron/armagetron-%{version}.tar.bz2
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: SDL_image >= 1.2.0, esound
 BuildRequires: gcc-c++, libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: XFree86-devel, SDL_image-devel, SDL-devel, esound-devel
-BuildRequires: /usr/bin/find, unzip, ImageMagick, XFree86-Mesa-libGLU
+BuildRequires: /usr/bin/find, unzip, ImageMagick
+#BuildRequires: XFree86-Mesa-libGLU
+BuildRequires: xorg-x11-Mesa-libGLU
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -33,48 +32,28 @@ Available rpmbuild rebuild options :
 --without : freedesktop
 
 
-%package moviepack
-Summary: Extra graphics and sounds to give armagetron the real 'Tron' look
-Group: Amusements/Games
-Requires: %{name}
-
-%description moviepack
-This package includes all files needed by armagetron to have the "real" look
-from the original Tron movie. This includes neat colorful graphics and a few
-sounds.
-In this package's documentation directory, you will also find a new config
-file that you can use in %{_sysconfdir}/armagetron to have the game be a bit
-more realistic (read "fast!" ;-)).
-
-
 %prep
 %setup
+
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} installed-docs
 %makeinstall
-strip %{buildroot}%{prefix}/bin/* || :
 
 # Put the docs where we include them with %%doc
-mv %{buildroot}%{prefix}/doc installed-docs
-
-# Add the moviepack stuff
-unzip -d %{buildroot}%{prefix}/ %{SOURCE1}
-unzip -d %{buildroot}%{prefix}/ %{SOURCE2}
+%{__mv} %{buildroot}%{prefix}/doc installed-docs
 
 # Yeah, add an icon for the menu entry!
-convert tron.ico armagetron.png
-%{__install} -D -m 644 armagetron.png %{buildroot}%{_datadir}/pixmaps/armagetron.png
-
-# Put the realistic config where we can get it
-cp -a %{SOURCE3} settings.cfg.realistic
+%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
+convert tron.ico %{buildroot}%{_datadir}/pixmaps/armagetron.png
 
 # The wrapper script (overwrite the default)
-cat > %{buildroot}%{_bindir}/armagetron << 'EOF'
+%{__cat} > %{buildroot}%{_bindir}/armagetron << 'EOF'
 #!/bin/sh -e
 
 INSTALL=%{prefix}
@@ -93,31 +72,33 @@ $INSTALL/bin/armagetron --datadir $INSTALL --configdir %{_sysconfdir}/armagetron
 
 EOF
 
-cat > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Armagetron
-Comment=A multiplayer OpenGL 'Tron' racing game clone
+Comment=Multiplayer 'Tron' 3D racing game
 Exec=%{_bindir}/armagetron
 Icon=armagetron.png
 Terminal=false
 Type=Application
+Encoding=UTF-8
 EOF
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
-mkdir -p %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} --delete-original \
-  --dir %{buildroot}%{_datadir}/applications                      \
-  --add-category X-Red-Hat-Extra                                  \
-  --add-category Application                                      \
-  --add-category Game                                             \
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+  --dir %{buildroot}%{_datadir}/applications    \
+  --add-category Application                    \
+  --add-category Game                           \
   %{name}.desktop
 %else
-%{__install} -D -m644 %{name}.desktop \
+%{__install} -D -m 644 %{name}.desktop \
   %{buildroot}/etc/X11/applnk/Games/%{name}.desktop
 %endif
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -142,14 +123,13 @@ desktop-file-install --vendor %{desktop_vendor} --delete-original \
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
 %{?_without_freedesktop:/etc/X11/applnk/Games/%{name}.desktop}
 
-%files moviepack
-%defattr(644, root, root, 755)
-%doc settings.cfg.realistic
-%{prefix}/moviepack
-%{prefix}/moviesounds
 
 %changelog
-* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.2.5.2-2.fr
+* Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 0.2.5.2-3
+- Rebuild for Fedora Core 2.
+- Split off the moviepack files into their own noarch package.
+
+* Fri Dec 12 2003 Matthias Saou <http://freshrpms.net/> 0.2.5.2-2
 - Added missing XFree86-Mesa-libGLU build dep :-(
 - Rebuild for Fedora Core 1 at last.
 
