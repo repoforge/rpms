@@ -8,7 +8,7 @@
 Summary: Sprite Engine
 Name: kyra
 Version: 2.0.7
-Release: 1
+Release: 2
 License: GPL
 Group: Development/LibrariesDevelopment/Libraries
 URL: http://grinninglizard.com/kyra/
@@ -67,12 +67,16 @@ you will need to install %{name}-devel.
 %{_datadir}/aclocal/kyra.m4
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/Kyra
 %{_libdir}/*.a
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon May 31 2004 Dries Verachtert <dries@ulyssis.org> - 2.0.7-2
+- fix file ownership of devel package
+
 * Sun May 30 2004 Dries Verachtert <dries@ulyssis.org> - 2.0.7-1
 - Initial package.
 
