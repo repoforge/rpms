@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: <mp3encoder@minnie.tuhs.org>
+# Upstream: <mp3encoder$minnie,tuhs,org>
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
