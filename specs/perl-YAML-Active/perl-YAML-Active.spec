@@ -23,7 +23,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCEL/YAML-Active-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 YAML is an intuitive way to describe nested data structures. This module
