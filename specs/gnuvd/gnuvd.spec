@@ -15,7 +15,7 @@ URL: http://www.djcbsoftware.nl/projecten/gnuvd/
 Packager: Dries Verachtert <dries@ulyssis.org>
 Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 
-Source: http://www.djcbsoftware.nl/projecten/gnuvd/gnuvd-%{version}.tar.gz
+Source: http://www.djcbsoftware.nl/code/gnuvd/gnuvd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -67,7 +67,7 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
-* Tue Feb 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0.
+* Tue Feb 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0-1
 - Update to release 1.0.
 
 * Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 1.0beta5

@@ -5,7 +5,7 @@
 
 Summary: The W3C Web browser and editor
 Name: amaya
-Version: 8.7
+Version: 9.1
 Release: 1
 License: W3C
 Group: Applications/Internet
@@ -78,5 +78,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-amaya.desktop
 
 %changelog
+* Tue Mar 08 2005 Dries Verachtert <dries@ulyssis.org> - 9.1-1
+- Update to release 9.1.
+
 * Wed Jan 05 2005 Dries Verachtert <dries@ulyssis.org> - 8.7-1
 - Initial package.

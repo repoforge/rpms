@@ -19,7 +19,7 @@ Vendor: Dries Apt/Yum Repository http://dries.ulyssis.org/ayo/
 Source: ftp://ftp.edlsystems.com/shellsql/shellsql-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: postgresql-devel, mysql-devel, unixODBC-devel
+BuildRequires: postgresql-devel, mysql-devel, unixODBC-devel, zlib-devel
 
 %description
 ShellSQL is a suite of programs designed to enable LINUX/UNIX shell scripts

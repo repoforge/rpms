@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 34
+Release: 35
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -26,7 +26,7 @@ Source5: http://www.netmeister.org/apps/fortune-mod-calvin-0.1.1.tar.gz
 #  Zippy the Pinhead
 Source6: http://www.aboleo.net/software/misc/fortune-zippy.tar.gz
 #  Tao Te Ching
-Source7: http://www.aboleo.net/software/misc/fortune-tao.tar.gz
+Source7: http://www.aboleo.net/sw/other/fortune-tao.tar.gz
 # http://www.splitbrain.org/./Fortunes/hitchhiker/
 Source8: http://www.splitbrain.org/Fortunes/hitchhiker/fortune-hitchhiker.tgz
 # http://www.splitbrain.org/./Fortunes/simpsons/
@@ -64,7 +64,8 @@ Source20: http://www.geocities.com/avitiw/fortune-osho-1.1.tar.gz
 Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.3.tar.gz
 # http://eol.init1.nl/content/category/2/36/54/
 Source22: http://eelco.is.a.rootboy.net/fortunecookies/oneliners-0.1.tar.gz
-
+# fortune macintosh
+Source23: http://www.diablonet.net/~mercadal/projects/fortune/macintosh.tgz
 
 Obsoletes: fortune-mod < %{version}-%{release}
 Provides:  fortune-mod = %{version}-%{release}
@@ -105,6 +106,7 @@ wisdom each time they log in.
 %setup -D -T -a 20 -n fortune-mod-9708
 %setup -D -T -a 21 -n fortune-mod-9708
 %setup -D -T -a 22 -n fortune-mod-9708
+%setup -D -T -a 23 -n fortune-mod-9708
 
 %if %{DisableOffensiveFortunes}
 %patch0 -p1 -b .disable-offensive1
@@ -160,6 +162,7 @@ util/strfile ralph
 %{__cp} osho.dat osho %{buildroot}%{_datadir}/games/fortune/
 %{__cp} powerpuff-*/powerpuff* %{buildroot}%{_datadir}/games/fortune/
 %{__cp} oneliners-0.1/oneliners* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} macintosh/macintosh* %{buildroot}%{_datadir}/games/fortune/
 
 %{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
@@ -454,6 +457,15 @@ Requires: fortune = %{version}-%{release}
 Fortune files with quotes with random oneliners, found at:
 http://eol.init1.nl/content/category/2/36/54/
 
+%package macintosh
+Summary: Fortune files with quotes about macintoshes
+Group: Amusements/Games
+Requires: fortune = %{version}-%{release}
+
+%description oneliners
+Fortune files with quotes about macintoshes, found at:
+http://www.diablonet.net/~mercadal/projects/fortune/
+
 %package all
 Summary: Installs all fortune packages
 Group: Amusements/Games
@@ -630,10 +642,18 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/powerpuff*
 
+%files macintosh
+%defattr(-, root, root, 0755)
+%{_datadir}/games/fortune/macintosh*
+
 %files all
 %defattr(-, root, root, 0755)
 
 %changelog
+* Tue Mar 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0-35
+- Added macintosh quotes
+- New url for Tao quotes
+
 * Sun Jan 02 2005 Dries Verachtert <dries@ulyssis.org> 1.0-33
 - Fixed a grammatical error found by Greg Hogan.
 
