@@ -4,7 +4,7 @@
 
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
-Version: 0.1
+Version: 0.2
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -29,10 +29,12 @@ configure-thinkpad is a ThinkPad configuration utility.
 [Desktop Entry]
 Name=ThinkPad
 Comment=Edit your ThinkPad configuration
-Icon=configure-thinkpad/gnome-laptop.png
+Icon=configure-thinkpad.png
 Exec=configure-thinkpad
 Type=Application
 Terminal=false
+Encoding=UTF-8
+StartupNotify=true
 Categories=GNOME;Application;Settings;HardwareSettings;System;SystemSetup;
 EOF
 
@@ -60,6 +62,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__install} -D -m0644 pixmaps/gnome-laptop.png %{buildroot}%{_datadir}/pixmaps/configure-thinkpad.png
 %{__install} -D -m0644 configure-thinkpad.pam %{buildroot}%{_sysconfdir}/pam.d/configure-thinkpad
 %{__install} -D -m0644 configure-thinkpad.consolehelper %{buildroot}%{_sysconfdir}/security/console.apps/configure-thinkpad
 
@@ -78,15 +81,20 @@ desktop-file-install --vendor gnome                \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %config %{_sysconfdir}/pam.d/*
 %config %{_sysconfdir}/security/console.apps/*
 %{_bindir}/*
 %{_sbindir}/*
 %{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/configure-thinkpad.png
 %{_datadir}/pixmaps/configure-thinkpad/
 
 %changelog
+* Mon Jun 07 2004 Dag Wieers <dag@wieers.com> - 0.2-1
+- Added improved desktop file.
+- Updated to release 0.2.
+
 * Sat Jan 03 2004 Dag Wieers <dag@wieers.com> - 0.1-1
 - Added consolehelper support.
 
