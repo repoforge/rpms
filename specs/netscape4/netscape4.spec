@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-Summary: The Netscape Communicator suite of tools
+Summary: The Netscape Communicator suite of tools.
 Name: netscape4
 Version: 4.8
 Release: 3
@@ -12,7 +11,7 @@ Group: Applications/Internet
 URL: http://www.netscape.com/
 
 Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+Vendor: Dag Apt Repository, http://dag.wieers.com/home-made/apt/
 
 Source0: ftp://ftp.netscape.com/pub/communicator/english/4.8/unix/supported/linux22/complete_install/communicator-v48-us.x86-unknown-linux2.2.tar.gz
 Source1: ftp://ftp.netscape.com/pub/communicator/english/4.8/unix/supported/linux22/navigator_standalone/navigator-v48-us.x86-unknown-linux2.2.tar.gz
@@ -40,10 +39,10 @@ Source26: nethelp-ko.tar.bz2
 # Japanese fix
 Source30: ns-bogus-locale.tgz
 Source31: font.properties.ja
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 BuildRequires: bzip2
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Prefix: /usr
 
 ExclusiveArch: i386
 %define __spec_install_post :
@@ -56,7 +55,7 @@ standards, Java, JavaScript and some style sheets.
 Requires: indexhtml >= 6.2-2
 Obsoletes: nls
 Prereq: chkfontpath
-Summary: Files shared by Netscape Navigator and Communicator
+Summary: Files shared by Netscape Navigator and Communicator.
 Group: Applications/Internet
 
 %description -n netscape-common
@@ -69,9 +68,9 @@ Install the netscape-common package if you're installing either the
 netscape-navigator or the netscape-communicator program.
 
 %package -n netscape-communicator
-Requires: netscape-common = %{version}
+Requires: netscape-common = %{epoch}:%{version}-%{release}
 Provides: webclient
-Summary: The Netscape Communicator suite of tools
+Summary: The Netscape Communicator suite of tools.
 Group: Applications/Internet
 
 %description -n netscape-communicator
@@ -79,9 +78,9 @@ Netscape Communicator is a suite of tools including a Web browser, a
 Usenet news reader, and an email client.
 
 %package -n netscape-navigator
-Requires: netscape-common = %{version}
+Requires: netscape-common = %{epoch}:%{version}-%{release}
 Provides: webclient
-Summary: The Netscape Navigator Web browser
+Summary: The Netscape Navigator Web browser.
 Group: Applications/Internet
 
 %description -n netscape-navigator
@@ -267,6 +266,9 @@ exit 0
 
 
 %changelog
+* Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 4.8-4
+- Fixed epoch problem for RH9, RHEL3 and RHFC1. (Erik Williamson)
+
 * Tue Feb 25 2003 Dag Wieers <dag@wieers.com> - 4.8-3
 - Renamed package to netscape4.
 
