@@ -4,6 +4,8 @@
 # Screenshot: http://pwp.netcabo.pt/users/51/0251296501/tagtool/tt_edit.png
 # ScreenshotURL: http://pwp.netcabo.pt/users/51/0251296501/tagtool/Default.htm#shots
 
+# ExcludeDist: fc1
+
 Summary: Manage the information fields in MP3 and Ogg Vorbis files
 Name: tagtool
 Version: 0.11.1

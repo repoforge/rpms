@@ -5,6 +5,8 @@
 # Screenshot: http://kderadiostation.coolprojects.org/shots/kderadioshot1.thumb.png
 # ScreenshotURL: http://kderadiostation.coolprojects.org/screenshots.html
 
+# ExcludeDist: fc1 el3
+
 Summary: Tool which presents you a list of internet streaming radio stations
 Name: kderadiostation
 Version: 0.6
@@ -60,8 +62,8 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config/kderadiostationrc
 %{_datadir}/icons/*/*/apps/kderadiostation.png
 %{_libdir}/kde3/*.so.*
-%exclude %{_libdir}/kde3/*.la
-%exclude %{_libdir}/kde3/*.so
+%{_libdir}/kde3/*.la
+%{_libdir}/kde3/*.so
 
 %changelog
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> 0.6-1

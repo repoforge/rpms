@@ -26,6 +26,7 @@ BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{?fc3:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc2:BuildRequires: freeglut-devel, xorg-x11-devel}
 %{?fc1:BuildRequires: freeglut-devel, XFree86-devel}
+%{?el3:BuildRequires: glut-devel, XFree86-devel}
 %{?rh9:BuildRequires: glut-devel, XFree86-devel}
 
 %description

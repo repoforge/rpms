@@ -5,6 +5,8 @@
 # Screenshot: http://skystreets.kaosfusion.com/screenshot3.png
 # ScreenshotUrl: http://skystreets.kaosfusion.com/
 
+# ExcludeDist: fc1
+
 %{?dist: %{expand: %%define %dist 1}}
                                                                                 
 %{?fc1:%define _without_xorg 1}

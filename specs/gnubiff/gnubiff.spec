@@ -3,6 +3,8 @@
 # Screenshot: http://gnubiff.sourceforge.net/pics/screenshot-gtk.png
 # ScreenshotURL: http://gnubiff.sourceforge.net/screenshots.php
 
+# ExcludeDist: fc1 el3
+
 Summary: Mail notification program
 Name: gnubiff
 Version: 2.1.0

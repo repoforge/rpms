@@ -20,7 +20,7 @@ Source: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/luola-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_gfx-devel
-BuildRequires: SDL_ttf-devel, desktop-file-utils
+BuildRequires: SDL_ttf-devel, desktop-file-utils, zlib-devel
 Requires: luola-levels
 
 %description

@@ -5,6 +5,8 @@
 # Screenshot: http://amsn.sf.net/shots/contactlist.jpg
 # ScreenshotURL: http://amsn.sf.net/shots.htm
 
+# ExcludeDist: fc1
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}

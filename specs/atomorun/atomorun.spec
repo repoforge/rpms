@@ -5,6 +5,8 @@
 # i've send a description of the problem to the author but he didn't respond 
 # to the last mail
 
+# ExcludeDist: fc1
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc1:%define _without_alsa 1}
