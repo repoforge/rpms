@@ -52,7 +52,7 @@ With this module, you can load, create, manipulate and save xbm image files.
 %{perl_vendorlib}/Image/Xbm.pm
 
 %changelog
-* Sat Jan 01 2004 Dries Verachtert <dries@ulyssis.org> - 1.08-1
+* Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Fixed the license (Thanks to David Necas !)
 
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.08-1
