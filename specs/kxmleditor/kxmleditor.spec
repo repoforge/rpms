@@ -18,6 +18,7 @@ Source: http://dl.sf.net/kxmleditor/kxmleditor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel, gift
+%{?fc2:BuildRequires: libselinux-devel}
 
 # Screenshot: http://kxmleditor.sourceforge.net/screenshot.png
 # ScreenshotURL: http://kxmleditor.sourceforge.net/screenshots.htm
