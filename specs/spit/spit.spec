@@ -52,10 +52,10 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{__make} src/Makefile
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e '
-		s|/usr/bin|\$(bindir)|;
-		s|/usr/share|\$(datadir)|;
-	' src/Makefile
+# {__perl} -pi.orig -e '
+#		s|/usr/bin|\$(bindir)|;
+#		s|/usr/share|\$(datadir)|;
+#	' src/Makefile
 
 %{__make} %{?_smp_mflags}
 
