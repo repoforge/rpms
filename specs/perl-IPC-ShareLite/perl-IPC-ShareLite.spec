@@ -3,20 +3,22 @@
 
 %define real_name IPC-ShareLite
 
-Summary: %{real_name} module for perl
+Summary: Simple shared memory interface module for perl
 Name: perl-IPC-ShareLite
 Version: 0.09
-Release: 1
-License: GPL or Artistic
+Release: 2
+License: Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/%{real_name}/
-Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAURICE/%{real_name}-%{version}.tar.gz
+URL: http://search.cpan.org/dist/IPC-ShareLite/
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAURICE/IPC-ShareLite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 BuildRequires: perl >= 0:5.8.0
 
 %description
-%{summary}.
+IPC::ShareLite provides a simple interface to shared memory, allowing data to
+be efficiently communicated between processes.  Your operating system must
+support SysV IPC (shared memory and semaphores) in order to use this module.   
 
 
 %prep
@@ -25,8 +27,8 @@ BuildRequires: perl >= 0:5.8.0
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor" << 'EOF'
+    PREFIX="%{buildroot}%{_prefix}" \
+    INSTALLDIRS="vendor" << 'EOF'
 
 
 
@@ -37,7 +39,7 @@ y
 
 EOF
 %{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+    OPTIMIZE="%{optflags}"
 
 
 %install
@@ -61,6 +63,9 @@ EOF
 
 
 %changelog
+* Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 0.09-2
+- Rebuild for Fedora Core 2.
+
 * Fri Mar 19 2004 Matthias Saou <http://freshrpms.net/> 0.09-1
 - Initial RPM release.
 

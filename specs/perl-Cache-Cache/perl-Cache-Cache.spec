@@ -3,14 +3,14 @@
 
 %define real_name Cache-Cache
 
-Summary: %{real_name} module for perl
+Summary: Cache-Cache module for perl
 Name: perl-Cache-Cache
 Version: 1.02
-Release: 2
+Release: 3
 License: GPL or Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/%{real_name}/
-Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCLINTON/%{real_name}-%{version}.tar.gz
+URL: http://search.cpan.org/dist/Cache-Cache/
+Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCLINTON/Cache-Cache-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 Requires: perl(Error), perl(Storable), perl(IPC::ShareLite)
@@ -18,7 +18,13 @@ BuildRequires: perl >= 0:5.8.0
 BuildArch: noarch
 
 %description
-%{summary}.
+The Cache modules are designed to assist a developer in persisting data for a
+specified period of time.  Often these modules are used in web applications to
+store data locally to save repeated and redundant expensive calls to remote
+machines or databases.  People have also been known to use Cache::Cache for
+its straightforward interface in sharing data between runs of an application
+or invocations of a CGI-style script or simply as an easy to use abstraction
+of the filesystem or shared memory.
 
 
 %prep
@@ -27,10 +33,10 @@ BuildArch: noarch
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+    PREFIX="%{buildroot}%{_prefix}" \
+    INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+    OPTIMIZE="%{optflags}"
 
 
 %install
@@ -54,6 +60,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 
 %changelog
+* Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 1.02-3
+- Rebuilt for Fedora Core 2.
+
 * Fri Apr  2 2004 Matthias Saou <http://freshrpms.net/> 1.02-2
 - Change the explicit package deps to perl package style ones to fix the
   perl-Storable obsoletes problem.

@@ -3,21 +3,24 @@
 
 %define real_name Error
 
-Summary: %{real_name} module for perl
+Summary: Error and exception handling in an OO-ish way module for perl
 Name: perl-Error
 Version: 0.15
-Release: 1
+Release: 2
 License: GPL or Artistic
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/%{real_name}/
-Source: http://search.cpan.org/CPAN/authors/id/U/UA/UARUN/%{real_name}-%{version}.tar.gz
+URL: http://search.cpan.org/dist/Error/
+Source: http://search.cpan.org/CPAN/authors/id/U/UA/UARUN/Error-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= 0:5.8.0
 BuildRequires: perl >= 0:5.8.0
 BuildArch: noarch
 
 %description
-%{summary}.
+The Error package provides two interfaces. Firstly Error provides a procedural
+interface to exception handling. Secondly Error is a base class for
+errors/exceptions that can either be thrown, for subsequent catch, or can
+simply be recorded.
 
 
 %prep
@@ -26,10 +29,10 @@ BuildArch: noarch
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
+    PREFIX="%{buildroot}%{_prefix}" \
+    INSTALLDIRS="vendor"
 %{__make} %{?_smp_mflags} \
-	OPTIMIZE="%{optflags}"
+    OPTIMIZE="%{optflags}"
 
 
 %install
@@ -53,6 +56,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 
 %changelog
+* Wed May 26 2004 Matthias Saou <http://freshrpms.net/> 0.15-2
+- Rebuild for Fedora Core 2.
+
 * Fri Mar 19 2004 Matthias Saou <http://freshrpms.net/> 0.15-1
 - Initial RPM release.
 
