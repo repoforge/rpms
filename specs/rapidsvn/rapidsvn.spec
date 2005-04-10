@@ -45,23 +45,22 @@ EOF
 %build
 export CPPFLAGS="-I/usr/include/subversion-1"
 %configure \
-	--with-svn-lib="%{_libdir}" \
+	--disable-no-exceptions \
 	--with-docbook-xsl="%{_datadir}/sgml/docbook/xsl-stylesheets" \
-	--disable-no-exceptions
-# --with-wx-config="%{_bindir}/wxgtk-2.4-config" \
+	--with-svn-lib="%{_libdir}"
 # --with-apr-config="%{_bindir}/apr-config" \
 # --with-apu-config="%{_bindir}/apu-config" \
 # --with-svn-include="%{_includedir}" \
+# --with-wx-config="%{_bindir}/wxgtk-2.4-config" \
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 
 convert src/res/svn.ico rapidsvn.png
-%{__install} -Dp -m0644 rapidsvn.png.0 %{buildroot}%{_datadir}/pixmaps/rapidsvn.png
-
+%{__install} -Dp -m0644 rapidsvn.png.0 %{buildroot}%{_datadir}/pixmaps/rapidsvn.png || :
+%{__install} -Dp -m0644 rapidsvn-0.png %{buildroot}%{_datadir}/pixmaps/rapidsvn.png || :
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
@@ -85,5 +84,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/rapidsvn.png
 
 %changelog
+* Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Fix for change in ImageMagick 6.2's convert. (Thomas Zehetbauer)
+
 * Tue Jan 04 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Initial package. (using DAR)

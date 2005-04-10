@@ -12,7 +12,7 @@
 
 Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
-Version: 0.57
+Version: 0.58
 Release: 1
 License: MIT
 Group: Applications/Internet
@@ -67,8 +67,9 @@ EOF
 		putty.desktop
 %endif
 
-convert putty.ico putty.png
-%{__install} -Dp -m644 putty.png.0 %{buildroot}%{_datadir}/pixmaps/putty.png
+convert windows/putty.ico putty.png
+%{__install} -Dp -m644 putty.png.0 %{buildroot}%{_datadir}/pixmaps/putty.png || :
+%{__install} -Dp -m644 putty-0.png %{buildroot}%{_datadir}/pixmaps/putty.png || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,6 +84,9 @@ convert putty.ico putty.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Network/putty.desktop}
 
 %changelog
+* Fri Apr 08 2005 Dag Wieers <dag@wieers.com> - 0.58-1
+- Updated to release 0.58.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.57-1
 - Updated to release 0.57.
 

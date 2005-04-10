@@ -4,7 +4,7 @@
 
 Summary: Allows restricted root access for specified users
 Name: op
-Version: 1.25
+Version: 1.28
 Release: 1
 License: BSD
 Group: Applications/System
@@ -27,8 +27,9 @@ controlled.
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '
-		s|\$\(BINDIR\)|\$(bindir)|;
-		s|\$\(MANDIR\)|\$(mandir)/man1|;
+		s|\$\(BINDIR\)|\$(DESTDIR)\$(bindir)|;
+		s|\$\(MANDIR\)|\$(DESTDIR)\$(mandir)/man1|;
+		s|\$\(CONFDIR\)|\$(DESTDIR)\$(sysconfdir)/man1|;
 		s|-o \$\(\w+\) -g \$\(\w+\)||;
 	' Makefile
 
@@ -99,7 +100,7 @@ session    required	pam_stack.so service=system-auth
 EOF
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} #INC="-I. %{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -107,19 +108,24 @@ EOF
 
 %{__install} -Dp -m0600 op.conf %{buildroot}%{_sysconfdir}/op.conf
 %{__install} -Dp -m0644 op.pam %{buildroot}%{_sysconfdir}/pam.d/op
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/op.d/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README op.paper op.conf
-%doc %{_mandir}/man?/*
+%doc ChangeLog COPYING README op.conf* op.paper
+%doc %{_mandir}/man1/op.1*
 %config(noreplace) %{_sysconfdir}/op.conf
+%config(noreplace) %{_sysconfdir}/op.d/
 %config %{_sysconfdir}/pam.d/op
 %{_bindir}/op
 
 %changelog
+* Fri Apr 08 2005 Dag Wieers <dag@wieers.com> - 1.28-1
+- Updated to release 1.28.
+
 * Thu Jul 22 2004 Dag Wieers <dag@wieers.com> - 1.25-1
 - Updated to release 1.25.
 

@@ -2,16 +2,20 @@
 # Authority: dag
 # Upstream: <nxtvepg-users$lists,sf,net>
 
+%define desktop_vendor rpmforge
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh9:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_tcltk_devel 1}
+%{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_tcltk_devel 1}
+%{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_tcltk_devel 1}
 
 Summary: NexTView EPG decoder and browser
 Name: nxtvepg
-Version: 2.7.0
+Version: 2.7.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -21,7 +25,8 @@ Source: http://dl.sf.net/nxtvepg/nxtvepg-%{version}.tar.gz
 Source1: nxtvepg.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, desktop-file-utils
+BuildRequires: XFree86-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 
@@ -39,6 +44,7 @@ France and Switzerland.
 		s|/usr/lib|%{_datadir}|g;
 		s|/usr/tmp|%{_localstatedir}/tmp|g;
 		s|\$\(mandir\)|\$(mandir)/man1|g;
+		s|/lib\b|/%{_lib}|g;
 	' Makefile
 
 %{__cat} <<EOF >%{name}.desktop
@@ -65,12 +71,15 @@ EOF
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/nxtvepg.png
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor net                  \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
-
+%if %{?_without_freedesktop:1}0
+	%{__install} -Dp -m0644 nxtvepg.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/nxtvepg.desktop
+%else
+	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+	desktop-file-install --vendor %{desktop_vendor}    \
+		--add-category X-Red-Hat-Base              \
+		--dir %{buildroot}%{_datadir}/applications \
+		nxtvepg.desktop
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -78,14 +87,17 @@ desktop-file-install --vendor net                  \
 %files 
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYRIGHT README* TODO manual.html
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/nxtvepg.1*
+%{_bindir}/nxtvepg
 %{_localstatedir}/tmp/nxtvdb/
-%{_prefix}/X11R6/lib/X11/app-defaults/*
-%{_datadir}/applications/*.desktop
-%{_datadir}/pixmaps/*.png
+%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
+%{_datadir}/applications/%{desktop_vendor}-nxtvepg.desktop
+%{_datadir}/pixmaps/nxtvepg.png
 
 %changelog
+* Sat Apr 04 2005 Dag Wieers <dag@wieers.com> - 2.7.5-1
+- Updated to release 2.7.5.
+
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 2.7.0-1
 - Updated to release 2.7.0.
 

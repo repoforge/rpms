@@ -1,22 +1,23 @@
 # $Id$
 # Authority: matthias
 
-%define jpegmmxver 0.1.4
+%define jpegmmxver 0.1.5
 
 Summary: Tools for the movtar MJPEG video format
 Name: libmovtar
 Version: 0.1.3
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
 Source0: http://dl.sf.net/mjpeg/libmovtar-%{version}.tar.gz
 Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmxver}.tar.gz
+Patch0: jpeg-mmx-0.1.5.patch
+Patch1: libmovtar-0.1.3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL, glib
 BuildRequires: SDL-devel, glib-devel
-# Sorry... :-(
-ExclusiveArch: %{ix86}
+#ExclusiveArch: %{ix86}
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
@@ -39,16 +40,17 @@ of the mjpegtools package.
 
 %prep
 %setup -a 1
+%patch0 -p0
+%patch1 -p0
 %{__mv} jpeg-mmx-* jpeg-mmx
 
 %build
 # For x86, we link against the bundled jpeg-mmx
 %ifarch %{ix86}
     (cd jpeg-mmx && %configure && %{__make} libjpeg-mmx.a)
-    %configure --with-jpeg-mmx="`pwd`/jpeg-mmx"
-%else
-    %configure
 %endif
+export CFLAGS="%{optflags} -I`pwd`/jpeg-mmx"
+%configure --with-jpeg-mmx="`pwd`/jpeg-mmx"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -77,7 +79,12 @@ of the mjpegtools package.
 %{_datadir}/aclocal/*
 
 %changelog
-* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.1.3-3.fr
+* Wed Apr 06 2005 Dag Wieers <dag@wieers.com> - 0.1.3-4
+- Updated jpeg-mmx to 0.1.5.
+- Added patches from Axel Thimm.
+- Removed ExclusiveArch.
+
+* Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.1.3-3
 - Rebuild for Fedora Core 1.
 - Added missing nasm build requirement for jpeg-mmx.
 

@@ -6,13 +6,13 @@
 
 Summary: General plugin for using xmms as an alarm clock
 Name: xmms-alarm
-Version: 0.3.6
+Version: 0.3.7
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.snika.uklinux.net/?p=xmms-alarm
 
-Source: http://www.snika.uklinux.net/xmms-alarm/xmms-alarm-%{version}.tar.gz
+Source: http://www.snika.uklinux.net/xmms-alarm/xmms-alarm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xmms-devel, glib-devel >= 1.2.6, gtk+-devel >= 1.2.6
@@ -42,6 +42,9 @@ xmms plugin for using xmms as an alarm clock.
 %exclude %{xmms_generaldir}/libalarm.la
 
 %changelog
+* Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 0.3.7-1
+- Updated to release 0.3.7.
+
 * Thu Mar 17 2005 Dag Wieers <dag@wieers.com> - 0.3.6-1
 - Updated to release 0.3.6.
 

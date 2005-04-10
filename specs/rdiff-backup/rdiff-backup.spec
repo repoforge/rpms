@@ -4,16 +4,17 @@
 # Upstream: <rdiff-backup-users$nongnu,org>
 
 %define python_version %(python2 -c 'import sys; print sys.version[:3]')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
-Version: 0.12.7
+Version: 0.12.8
 Release: 1
 License: GPL
 Group: Applications/Archiving
-URL: http://rdiff-backup.stanford.edu/
+URL: http://www.nongnu.org/rdiff-backup/
 
-Source: http://rdiff-backup.stanford.edu/OLD/%{version}/rdiff-backup-%{version}.tar.gz
+Source: http://savannah.nongnu.org/download/rdiff-backup/rdiff-backup-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel >= 2.2, librsync-devel >= 0.9.6, python
@@ -52,15 +53,18 @@ python -Oc 'from compileall import *; compile_dir("%{buildroot}%{_libdir}/python
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG COPYING examples.html FAQ.html README
-%doc %{_mandir}/man1/rdiff-backup*
+%doc %{_mandir}/man1/rdiff-backup.1*
 %{_bindir}/rdiff-backup
-%dir %{_libdir}/python*/site-packages/rdiff_backup/
-%{_libdir}/python*/site-packages/rdiff_backup/*.py
-%{_libdir}/python*/site-packages/rdiff_backup/*.pyc
-%ghost %{_libdir}/python*/site-packages/rdiff_backup/*.pyo
-%{_libdir}/python*/site-packages/rdiff_backup/*.so
+%dir %{python_sitearch}/rdiff_backup/
+%{python_sitearch}/rdiff_backup/*.py
+%{python_sitearch}/rdiff_backup/*.pyc
+%ghost %{python_sitearch}/rdiff_backup/*.pyo
+%{python_sitearch}/rdiff_backup/*.so
 
 %changelog
+* Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 0.12.8-1
+- Updated to release 0.12.8.
+
 * Mon Aug 02 2004 Dag Wieers <dag@wieers.com> - 0.12.7-1
 - Cosmetic changes.
 

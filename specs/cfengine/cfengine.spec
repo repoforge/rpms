@@ -10,7 +10,7 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.13
+Version: 2.1.14
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -35,6 +35,13 @@ system.
 
 %prep
 %setup
+
+%{__cat} <<EOF >default.sysconfig
+# OPTIONS defines additional command line options to execute the program
+# with.  Please see the output of --help for a brief description of the
+# possible options availible.
+#OPTIONS=""
+EOF
 
 %{__cat} <<'EOF' >cfenvd.sysv
 #!/bin/bash
@@ -199,12 +206,16 @@ RETVAL=0
 prog="cfservd"
 desc="cfengine server daemon"
 
+if [ -r /etc/sysconfig/$prog ]; then
+	source %{_sysconfdir}/sysconfig/$prog
+fi
+
 start() {
 	echo -n $"Starting $desc ($prog): "
 	if [ ! -f %{_localstatedir}/cfengine/ppkeys/localhost.priv ]; then
 	    /usr/sbin/cfkey
 	fi
-	daemon $prog
+	daemon $prog $OPTIONS
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -266,6 +277,9 @@ EOF
 %{__install} -Dp -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
 %{__install} -Dp -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
 %{__install} -Dp -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
+%{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfenvd
+%{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfexecd
+%{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfservd
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
 
 ### Clean up buildroot
@@ -304,11 +318,18 @@ fi
 %doc %{_mandir}/man?/*
 %doc %{_infodir}/*.info*
 %config %{_initrddir}/*
+%config(noreplace) %{_sysconfdir}/sysconfig/cfexecd
+%config(noreplace) %{_sysconfdir}/sysconfig/cfenvd
+%config(noreplace) %{_sysconfdir}/sysconfig/cfservd
 %{_sbindir}/*
 %{_localstatedir}/cfengine/
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 2.1.14-1
+- Added sysconfig files for sysv scripts. (Nathan R. Hruby)
+- Updated to release 2.1.14.
+
 * Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 2.1.13-1
 - Updated to release 2.1.13.
 
