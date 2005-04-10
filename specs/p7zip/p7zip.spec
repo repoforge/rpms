@@ -3,7 +3,7 @@
 
 Summary: Very high compression ratio file archiver
 Name: p7zip
-Version: 4.14.01
+Version: 4.16
 Release: 1
 License: LGPL
 Group: Applications/Archiving
@@ -30,19 +30,27 @@ This package contains also a virtual file system for Midnigth Commander.
 %prep 
 %setup -n %{name}_%{version}
 
+### Create wrapper scripts, as 7zCon.sfx and Codecs/Formats need to be in the
+### same directory as the binaries, and we don't want them in %{_bindir}.
+%{__cat} <<'EOF' >7za.sh
+#!/bin/sh
+exec %{_libexecdir}/p7zip/7za $@
+EOF
+
+%{__cat} <<'EOF' >7z.sh
+#!/bin/sh
+exec %{_libexecdir}/p7zip/7z $@
+EOF
 
 %build
-%ifarch %{ix86}
-%{__cp} -fp makefile.linux_x86 makefile.machine
+%ifarch %{ix86} ppc
+%{__cp} -fp makefile.linux_x86_ppc_alpha makefile.machine
 %endif
 %ifarch x86_64
 %{__cp} -fp makefile.linux_amd64 makefile.machine
 %endif
-%ifarch ppc
-%{__cp} -fp makefile.linux_ppc makefile.machine
-%endif
 
-# Use optflags
+### Use optflags
 %{__perl} -pi -e 's|^ALLFLAGS=.*|ALLFLAGS=-Wall %{optflags} -fPIC \\|g' \
     makefile.machine
 
@@ -52,25 +60,13 @@ This package contains also a virtual file system for Midnigth Commander.
 %install 
 %{__rm} -rf %{buildroot}
 
-# Prepare directories
-%{__mkdir_p} %{buildroot}{%{_bindir},%{_libexecdir}/p7zip}
-
-# Install binaries (7za, 7z, 7zCon.sfx and Codecs/Formats)
+### Install binaries (7za, 7z, 7zCon.sfx and Codecs/Formats)
+%{__mkdir_p} %{buildroot}%{_libexecdir}/p7zip/
 %{__cp} -ap bin/* %{buildroot}%{_libexecdir}/p7zip/
 
-# Create wrapper scripts, as 7zCon.sfx and Codecs/Formats need to be in the
-# same directory as the binaries, and we don't want them in %{_bindir}.
-%{__cat} > %{buildroot}%{_bindir}/7za << 'EOF'
-#!/bin/sh
-exec %{_libexecdir}/p7zip/7za "$@"
-EOF
-%{__cat} > %{buildroot}%{_bindir}/7z << 'EOF'
-#!/bin/sh
-exec %{_libexecdir}/p7zip/7z "$@"
-EOF
-
-# Since we use "-" defattr, change wrapper scripts to executable now
-%{__chmod} +x %{buildroot}%{_bindir}/*
+### Install wrapper scripts
+%{__install} -Dp -m0755 7z.sh %{buildroot}%{_bindir}/7z
+%{__install} -Dp -m0755 7za.sh %{buildroot}%{_bindir}/7za
 
 
 %clean
@@ -95,6 +91,10 @@ EOF
 
 
 %changelog
+* Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 4.16-1
+- Moved inline scripts to %%prep stage.
+- Removed quotes for $@ as it should not be necessary.
+
 * Thu Mar 17 2005 Matthias Saou <http://freshrpms.net/> 4.14.01-1
 - Spec file cleanup.
 - Fix wrapper scripts : Double quote $@ for filenames with spaces to work.

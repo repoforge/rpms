@@ -5,7 +5,7 @@
 Summary: Honeypot daemon
 Name: honeyd
 Version: 1.0
-Release: 1
+Release: 2
 License: BSD
 Group: Applications/Internet
 URL: http://www.citi.umich.edu/u/provos/honeyd/
@@ -25,20 +25,16 @@ host to claim multiple addresses on a LAN for network simulation.
 %prep
 %setup
 
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
+%{__perl} -pi.orig -e 's| (\$\(honeyddatadir\))| \$(DESTDIR)$1|g' Makefile.in
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 honeyd %{buildroot}%{_sbindir}/honeyd
-%{__install} -Dp -m0644 honeyd.8 %{buildroot}%{_mandir}/man8/honeyd.8
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/honeyd/
-%{__install} -p -m0644 xprobe2.conf nmap.assoc nmap.prints config.sample %{buildroot}%{_datadir}/honeyd/
-
-%{__install} -d -m0755 %{buildroot}%{_libdir}/honeyd/
-%{__install} -p -m0755 libhoneyd.so honeyd_overload.lo atomicio.lo fdpass.lo %{buildroot}%{_libdir}/honeyd/
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,12 +42,18 @@ host to claim multiple addresses on a LAN for network simulation.
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README TODO config.sample nmap.prints scripts/
+%doc %{_mandir}/man1/honeydctl.1*
 %doc %{_mandir}/man8/honeyd.8*
-%{_sbindir}/honeyd
-%{_libdir}/honeyd/
+%{_bindir}/honeyd
+%{_bindir}/honeydctl
 %{_datadir}/honeyd/
+%{_includedir}/honeyd/
+%{_libdir}/honeyd/
 
 %changelog
+* Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 1.0-2
+- Added pf.os, use %%{__make} install. (Mario Pascucci)
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 
