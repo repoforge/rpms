@@ -12,7 +12,7 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.0.0
+Version: 4.0.1
 Release: 1
 License: BitTorrent Open Source License
 Group: Applications/Internet
@@ -80,7 +80,6 @@ EOF
 		bittorrent.desktop
 %endif
 
-#convert bittorrent.ico bittorrent.png
 %{__install} -Dp -m644 images/logo/bittorrent_96.png %{buildroot}%{_datadir}/pixmaps/bittorrent.png
 
 %post gui
@@ -100,7 +99,6 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %dir %{python_sitelib}/BitTorrent/
 %{python_sitelib}/BitTorrent/*.py
 %{python_sitelib}/BitTorrent/*.pyc
-%ghost %{python_sitelib}/BitTorrent/*.pyo
 %{_datadir}/pixmaps/BitTorrent-%{version}/
 %exclude %{_docdir}/BitTorrent-%{version}/
 
@@ -112,7 +110,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/bittorrent.desktop}
 
 %changelog
-* Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 4.0.0-1 - $Rev$
+* Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 4.0.1-1
+- Updated to release 4.0.1.
+
+* Wed Mar 09 2005 Dag Wieers <dag@wieers.com> - 4.0.0-1
 - Updated to release 4.0.0.
 
 * Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 3.9.0-3

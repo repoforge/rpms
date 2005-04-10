@@ -8,7 +8,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 1.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -70,13 +70,14 @@ you will need to install %{name}-devel.
 	--with-command-grp="apache" \
 	--with-gd-lib="%{_libdir}" \
 	--with-gd-inc="%{_includedir}" \
-	--with-init-dir="%{_initrddir}" \
 	--with-htmurl="/nagios" \
+	--with-init-dir="%{_initrddir}" \
 	--with-lockfile="%{_localstatedir}/run/nagios.pid" \
 	--with-mail="/bin/mail" \
 	--with-nagios-user="nagios" \
 	--with-nagios-grp="nagios" \
 	--enable-embedded-perl \
+	--with-perlcache \
 	--with-template-objects \
 	--with-template-extinfo
 %{__make} %{?_smp_mflags} all
@@ -180,6 +181,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 1.2-2
+* Enabled --with-perlcache in configure. (Michael Donovan)
+
 * Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 1.2-1
 * Fixed %%{_libdir} in httpd nagios.conf. (Thomas Zehetbauer)
 
