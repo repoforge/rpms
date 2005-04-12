@@ -10,7 +10,7 @@
 Summary: Persistent SQL database connection libarary and daemon
 Name: squale
 Version: 0.1.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://squale.sourceforge.net/
@@ -42,7 +42,7 @@ Available rpmbuild rebuild options :
 %package devel
 Summary: Development headers and library for SQuaLe
 Group: Development/Libraries
-Requires: %{name} = %{version}, libxml2-devel, pkgconfig
+Requires: %{name} = %{version}, glib2-devel, libxml2-devel, pkgconfig
 
 %description devel
 Development headers and library for SQuaLe.
@@ -53,6 +53,7 @@ Development headers and library for SQuaLe.
 
 
 %build
+export CFLAGS="%{optflags} -fPIC"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -137,6 +138,10 @@ fi
 
 
 %changelog
+* Tue Apr 12 2005 Matthias Saou <http://freshrpms.net/> 0.1.3-2
+- Added glib2-devel to devel package requirements.
+- Build with -fPIC to fix x86_64 build.
+
 * Wed Jan 12 2005 Matthias Saou <http://freshrpms.net/> 0.1.3-1
 - Update to 0.1.3.
 
