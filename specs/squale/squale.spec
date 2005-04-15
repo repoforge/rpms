@@ -4,12 +4,11 @@
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %{?dist: %{expand: %%define %dist 1}}
-
 %{?rh7:  %define _without_python 1}
 
 Summary: Persistent SQL database connection libarary and daemon
 Name: squale
-Version: 0.1.3
+Version: 0.1.4
 Release: 2
 License: GPL
 Group: System Environment/Daemons
@@ -53,7 +52,7 @@ Development headers and library for SQuaLe.
 
 
 %build
-export CFLAGS="%{optflags} -fPIC"
+export CFLAGS="%{optflags}"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -138,6 +137,13 @@ fi
 
 
 %changelog
+* Fri Apr 15 2005 Matthias Saou <http://freshrpms.net/> 0.1.4-2
+- Remove -fPIC forcing, as tests show it now works as expected (the shared lib
+  is built with -fPIC, the rest isn't).
+
+* Thu Apr 14 2005 Matthias Saou <http://freshrpms.net/> 0.1.4-1
+- Update to 0.1.4 (fixes NLS_LANG problem & reconnection problems).
+
 * Tue Apr 12 2005 Matthias Saou <http://freshrpms.net/> 0.1.3-2
 - Added glib2-devel to devel package requirements.
 - Build with -fPIC to fix x86_64 build.
