@@ -1,16 +1,16 @@
 # $Id$
 # Authority: matthias
 
-%define php_dir %(eval "`pear config-get php_dir`"; echo $php_dir)
+%define pear_dir %{_datadir}/pear
 
 Summary: PEAR package for generating Excel spreadsheets
 Name: php-pear-excel
-Version: 0.7
-Release: 2
+Version: 0.8
+Release: 1
 License: LGPL
 Group: Development/Languages
 URL: http://pear.php.net/package/Spreadsheet_Excel_Writer/
-Source1: http://pear.php.net/get/Spreadsheet_Excel_Writer-%{version}.tgz
+Source0: http://pear.php.net/get/Spreadsheet_Excel_Writer-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: php, php-pear-ole >= 0.5
@@ -30,9 +30,9 @@ available.
 
 %install
 %{__rm} -rf %{buildroot}
-pear install -R %{buildroot} -n %{SOURCE1}
+pear install -R %{buildroot} -n %{SOURCE0}
 # Remove .filemap and .lock, we don't want to include those
-%{__rm} -f %{buildroot}%{php_dir}/{.filemap,.lock}
+%{__rm} -f %{buildroot}%{pear_dir}/{.filemap,.lock}
 
 
 %clean
@@ -41,10 +41,16 @@ pear install -R %{buildroot} -n %{SOURCE1}
 
 %files
 %defattr(0644, root, root, 0755)
-%{php_dir}
+%{pear_dir}
 
 
 %changelog
+* Fri Apr 15 2005 Matthias Saou <http://freshrpms.net/> 0.8-1
+- Update to 0.8.
+- Change single source from 1 to 0.
+- Use %%{_datadir}/pear instead of the eval method, as it's triggering a
+  nasty side-effect that prevents building.
+
 * Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 0.7-2
 - Rebuild for Fedora Core 2.
 
