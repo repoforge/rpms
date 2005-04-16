@@ -1,0 +1,57 @@
+# $Id$
+# Authority: dries
+# Upstream: Jochen Stenzel <perl$jochen-stenzel,de>
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Getopt-ArgvFile
+
+Summary: Interpolates script options from files
+Name: perl-Getopt-ArgvFile
+Version: 1.10
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Getopt-ArgvFile/
+
+Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSTENZEL/Getopt-ArgvFile-%{version}.tgz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+This module is a simple supplement to other option handling modules.
+It allows script options and parameters to be read from files
+instead of from the command line by interpolating file contents
+into @ARGV. This way it PREPARES the final option handling.
+
+Getopt::ArgvFile does NOT perform any option processing itself, and
+should work fine together with any other option handling module
+(e.g. Getopt::Long) or even self coded option handling.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc README
+%doc %{_mandir}/man3/*
+%{perl_vendorlib}/Getopt/ArgvFile.pm
+
+%changelog
+* Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
+- Initial package.
