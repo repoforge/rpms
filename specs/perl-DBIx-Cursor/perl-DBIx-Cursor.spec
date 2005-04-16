@@ -1,0 +1,56 @@
+# $Id$
+# Authority: dries
+# Upstream: Tommi Maekitalo <tommi$maekitalo,de>
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name DBIx-Cursor
+
+Summary: Easy DBI-access to a single table
+Name: perl-DBIx-Cursor
+Version: 0.14
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/DBIx-Cursor/
+
+Source: http://search.cpan.org/CPAN/authors/id/T/TM/TMAEK/DBIx-Cursor-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+The class DBIx::Cursor represents a cursor for a single Database-table.
+You can select, update, insert or delete entries in a table easier than
+creating SQL-statements. It does not use any specific features of any
+database, so it should work with every DBD-driver.
+
+DBIx::Cursor is not a replacement for DBI, but a add-on. You can use
+DBI as usual and use SQL-statements as you need.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc Changes README
+%doc %{_mandir}/man3/*
+%{perl_vendorlib}/DBIx/Cursor.pm
+
+%changelog
+* Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Initial package.
