@@ -1,0 +1,56 @@
+# $Id$
+# Authority: dries
+# Upstream: Jan-Pieter Cornet <johnpc$xs4all,nl>
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Net-Ident
+
+Summary: Lookup the username on the remote end of a TCP/IP connection
+Name: perl-Net-Ident
+Version: 1.20
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Net-Ident/
+
+Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPC/Net-Ident-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+Net::Ident is a module that looks up the username on the
+remote side of a TCP/IP connection through the ident
+(auth/tap) protocol described in RFC1413 (which supersedes
+RFC931). Note that this requires the remote site to run a
+daemon (often called identd) to provide the requested
+information, so it is not always available for all TCP/IP
+connections.
+	   
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc Changes README
+%doc %{_mandir}/man3/*
+%{perl_vendorlib}/Net/Ident.pm
+
+%changelog
+* Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Initial package.
