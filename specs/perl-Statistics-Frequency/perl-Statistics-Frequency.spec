@@ -1,0 +1,53 @@
+# $Id$
+# Authority: dries
+# Upstream: Jarkko Hietaniemi <jhi$iki,fi>
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Statistics-Frequency
+
+Summary: Simple counting of elements
+Name: perl-Statistics-Frequency
+Version: 0.03
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Statistics-Frequency/
+
+Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHI/Statistics-Frequency-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+This is a small module for a small but very common task: counting things,
+in another words, frequencies.  Sure, you can $freq{$elem}++ yourself,
+but what if you need to normalize the frequencies, or what if you have
+several frequencies you want to combine?  Statistics::Frequency to rescue.
+
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc ChangeLog README
+#%doc %{_mandir}/man3/*
+%{perl_vendorlib}/Statistics/Frequency.pm
+
+%changelog
+* Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.03-1
+- Initial package.
