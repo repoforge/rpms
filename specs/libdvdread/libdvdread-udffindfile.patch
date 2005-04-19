@@ -1,0 +1,15 @@
+diff -uNr libdvdread-0.9.4/dvdread/Makefile.am libdvdread-0.9.4-mod/dvdread/Makefile.am
+--- libdvdread-0.9.4/dvdread/Makefile.am	2003-02-13 22:33:38.000000000 +0100
++++ libdvdread-0.9.4-mod/dvdread/Makefile.am	2005-03-09 15:03:24.000000000 +0100
+@@ -6,9 +6,9 @@
+ 	dvdread_internal.h \
+ 	md5.c md5.h
+ libdvdread_la_LIBADD = @DL_LIBS@ @CSS_LIBS@
+-libdvdread_la_LDFLAGS = -version-info 3:0:0 -export-symbols-regex "(DVD.*|ifo.*|nav.*)"
++libdvdread_la_LDFLAGS = -version-info 3:0:0 -export-symbols-regex "(UDFFindFile|DVD.*|ifo.*|nav.*)"
+ 
+ pkgincludedir = $(includedir)/dvdread
+ 
+ pkginclude_HEADERS = dvd_reader.h ifo_types.h ifo_read.h \
+-	ifo_print.h nav_types.h nav_read.h nav_print.h
++	ifo_print.h nav_types.h nav_read.h nav_print.h dvd_udf.h
