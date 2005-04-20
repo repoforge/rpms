@@ -3,12 +3,12 @@
 
 %define xmmsinputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 #define prever       rc3
-%define date         20040923
+#define date         20040923
 
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
-Release: %{?prever:0.%{prever}.}2%{?date:.%{date}}
+Release: 3%{?prever:.%{prever}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
@@ -18,10 +18,14 @@ Source: http://download.videolan.org/pub/videolan/vlc/0.8.1/contrib/faad2-%{date
 %else
 Source: http://dl.sf.net/faac/%{name}-%{version}%{?prever:-%{prever}}.tar.gz
 %endif
-Patch: faad2-2.0-Makefile-separator.patch
+Patch0: faad2-2.0-Makefile-separator.patch
+Patch1: faad2-2.0-gcc34.patch
+Patch2: faad2-2.0-xmms-noext.patch
+Patch3: faad2-2.0-gcc4.patch
+Patch4: faad2-2.0-configure-mpeg4ip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: autoconf, automake, libtool, gcc-c++, zlib-devel
-BuildRequires: libsndfile-devel >= 1.0.0, libstdc++-devel
+BuildRequires: autoconf, automake, libtool
+BuildRequires: gcc-c++, zlib-devel, libsndfile-devel >= 1.0.0
 BuildRequires: xmms-devel, id3lib-devel, gtk+-devel
 
 %description
@@ -59,19 +63,24 @@ This package contains development files and documentation for libfaad.
 %setup -n %{name}-%{date}
 %else
 %setup -n %{name}
-%patch -p1 -b .makefilesep
 %endif
+%patch0 -p1 -b .makefilesep
+%patch1 -p1 -b .gcc34
+%patch2 -p1 -b .noext
+%patch3 -p1 -b .gcc4
+%patch4 -p0 -b .mpeg4ip
 
 
 %build
-#sh bootstrap
+test -x configure || sh bootstrap
 %configure \
     --disable-static \
     --with-xmms \
-    --with-mpeg4ip
-#   --with-drm \
-#   --with-mp4v2
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC"
+    --with-mpeg4ip \
+    --with-drm \
+    --with-mp4v2
+%{__make} %{?_smp_mflags}
+# CFLAGS="%{optflags} -fPIC"
 
 
 %install
@@ -117,6 +126,11 @@ This package contains development files and documentation for libfaad.
 
 
 %changelog
+* Wed Apr 20 2005 Matthias Saou <http://freshrpms.net/> 2.0-3
+- Downgrade to 2.0 with gcc 3.4 and 4 patches from dev.gentoo.org, the libmp4v2
+  is now internal again, no need for the external mpeg4ip mess... should fix
+  many issues, like gtkpod AAC support.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 2.0-2.20040923
 - Use the snapshot from 20040923 that videolan provides.
 

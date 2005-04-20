@@ -1,0 +1,11 @@
+--- configure.in.orig	2004-03-13 15:24:19.783147336 +0100
++++ configure.in	2004-03-13 15:24:48.430792232 +0100
+@@ -67,7 +67,7 @@
+         [HAVE_FPOS_T_POS])
+ 
+ 
+-external_mp4v2=yes
++AC_CHECK_PROG(external_mp4v2, mpeg4ip-config, yes, no)
+ AC_CHECK_LIB(mp4v2, MP4Create, , external_mp4v2=no, -lstdc++)
+ AC_CHECK_LIB(mp4v2, MP4MetadataDelete, , external_mp4v2=no, -lstdc++)
+ AC_CHECK_HEADER(mp4.h, , external_mp4v2=no)
