@@ -4,12 +4,13 @@
 
 Summary: X MultiMedia System input plugin to play Windows Media Audio files
 Name: xmms-wma
-Version: 1.0.3
+Version: 1.0.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mcmcc.bat.ru/xmms-wma/
 Source: http://mcmcc.bat.ru/xmms-wma/xmms-wma-%{version}.tar.bz2
+Patch: xmms-wma-1.0.4-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.1, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel
@@ -24,6 +25,7 @@ Tag informations are converted from unicode to your system locale.
 
 %prep
 %setup
+%patch -p1 -b .gcc4
 
 
 %build
@@ -54,6 +56,10 @@ Tag informations are converted from unicode to your system locale.
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-1
+- Update to 1.0.4.
+- Added gcc4 compile fix (http://gcc.gnu.org/ml/gcc/2005-02/msg00053.html).
+
 * Mon Jun  7 2004 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Initial rpm package.
 

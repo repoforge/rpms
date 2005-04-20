@@ -1,0 +1,18 @@
+diff -Naupr xmms-wma-1.0.4.orig/ffmpeg-strip-wma/common.h xmms-wma-1.0.4/ffmpeg-strip-wma/common.h
+--- xmms-wma-1.0.4.orig/ffmpeg-strip-wma/common.h	2004-01-26 20:09:47.000000000 +0100
++++ xmms-wma-1.0.4/ffmpeg-strip-wma/common.h	2005-04-20 15:29:00.000000000 +0200
+@@ -62,12 +62,8 @@
+ #define AVOPTION_END() AVOPTION_SUB(NULL)
+ 
+ struct AVOption;
+-#ifdef HAVE_MMX
+-extern const struct AVOption avoptions_common[3 + 5];
+-#else
+-extern const struct AVOption avoptions_common[3];
+-#endif
+-extern const struct AVOption avoptions_workaround_bug[11];
++extern const struct AVOption *avoptions_common;
++extern const struct AVOption *avoptions_workaround_bug;
+ 
+ #endif /* HAVE_AV_CONFIG_H */
+ 
