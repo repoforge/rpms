@@ -68,6 +68,7 @@ BuildRequires: gcc-c++, XFree86-devel, libpng-devel
 %{!?_without_dvbpsi:BuildRequires: libdvbpsi-devel}
 %{!?_without_ogg:BuildRequires: libogg-devel}
 %{!?_without_mad:BuildRequires: libmad-devel}
+%{!?_without_ffmpeg:BuildRequires: lame-devel}
 #{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_a52:BuildRequires: a52dec-devel}
@@ -136,8 +137,8 @@ pushd ffmpeg-%{ffmpeg_date}
     %configure \
         --disable-shared \
         --enable-gpl \
-        --enable-pp
-#       --enable-mp3lame \
+        --enable-pp \
+        --enable-mp3lame
 #       --enable-faac
     %{__make} %{?_smp_mflags}
 popd
@@ -158,7 +159,7 @@ popd
     %{?_without_ogg:--disable-ogg} \
     %{?_without_rawdv:--disable-rawdv} \
     %{!?_without_mad:--enable-mad} \
-    %{!?_without_ffmpeg:--enable-ffmpeg} \
+    %{!?_without_ffmpeg:--enable-ffmpeg --with-ffmpeg-mp3lame} \
     %{!?_without_ffmpeg:--with-ffmpeg-tree=ffmpeg-%{ffmpeg_date}} \
     %{!?_without_faad:--enable-faad} \
     %{!?_without_xvid:--enable-xvid} \

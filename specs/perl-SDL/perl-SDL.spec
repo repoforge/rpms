@@ -13,8 +13,7 @@ Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdl.perl.org/
-
-Source: http://www.cpan.org/modules/by-module/SDL_Perl/SDL_Perl-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DG/DGOEHRIG/SDL_Perl-%{version}.tar.gz
 Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, SDL_net-devel

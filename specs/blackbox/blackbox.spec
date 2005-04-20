@@ -53,7 +53,7 @@ exec /etc/X11/xdm/Xsession %{name}
 EOF
 
 # Install the desktop entry
-%{__install} -Dp -m644 %{SOURCE1} \
+%{__install} -D -p -m 0644 %{SOURCE1} \
     %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 
 
@@ -98,7 +98,7 @@ EOF
 
 * Tue Feb 10 2004 Scott R. Godin <nospam@webdragon.net> 0.65.0-6
 - Patch for #include <cassert> in Window.cc
-- Fixed nls problem, left in --disable just in case. Smile, Matthias. :-) 
+- Fixed nls problem, left in --disable just in case. Smile, Matthias. :-)
 
 * Fri Nov 14 2003 Mattthias Saou <http://freshrpms.net/> 0.65.0-5
 - Rebuild for Fedora Core 1.

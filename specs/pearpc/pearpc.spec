@@ -10,13 +10,11 @@ Release: 1
 Group: Applications/Emulators
 License: GPL
 URL: http://pearpc.sourceforge.net/
-
 Source0: http://dl.sf.net/pearpc/pearpc-%{version}.tar.bz2
 Source1: http://pearpc.sourceforge.net/pearpc3.png
 Source2: http://dl.sf.net/pearpc/pearpc-3gib.img.bz2
 Source3: http://dl.sf.net/pearpc/pearpc-6gib.img.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: XFree86-devel, SDL-devel
 BuildRequires: desktop-file-utils, gcc-c++
 %ifarch %{ix86}

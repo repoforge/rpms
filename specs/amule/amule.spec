@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /usr/sbin/alternatives
 Requires(preun): /usr/sbin/alternatives
 BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
-BuildRequires: gd-progs, gd-devel, libidn-devel
+BuildRequires: gd-progs, gd-devel, libidn-devel, libjpeg-devel
 # Required on Yellow Dog Linux 3.0
 BuildRequires: openssl-devel
 # Required for a configure check (curl)

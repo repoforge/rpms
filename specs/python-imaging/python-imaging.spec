@@ -65,7 +65,7 @@ popd
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES* CONTENTS README Images/ Sane/ Scripts/
-%{python_sitearch}/PIL.path
+%{python_sitearch}/PIL.pth
 %{python_sitearch}/PIL/
 
 

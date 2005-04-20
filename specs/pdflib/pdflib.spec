@@ -13,7 +13,7 @@ Patch1: pdflib-4.0.3-shared-libs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # perl, python, tcl bindings are disabled on purpose : the goal was only to
 # get the php module built
-BuildRequires: libpng-devel, zlib-devel
+BuildRequires: zlib-devel, libpng-devel
 
 %description
 PDFlib is a C library for generating PDF files. It offers a graphics
@@ -27,7 +27,7 @@ format in the PDFlib distribution.
 %package devel
 Summary: Development files for pdflib
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, zlib-devel, libpng-devel
 
 %description devel
 PDFlib is a C library for generating PDF files. It offers a graphics

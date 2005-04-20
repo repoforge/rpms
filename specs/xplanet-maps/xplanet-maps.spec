@@ -1,6 +1,5 @@
 # $Id$
 # Authority: matthias
-
 # Dist: nodist
 
 Summary: Additional maps for Xplanet, the planet image rendering program
@@ -30,10 +29,10 @@ Additional maps (surfaces) to use with Xplanet.
 
 %install
 %{__rm} -rf %{buildroot}
-mkdir -p %{buildroot}%{_datadir}/
+%{__mkdir_p} %{buildroot}%{_datadir}
 # Already included with xplanet
 %{__rm} -f usr/local/share/xplanet/images/earth.jpg
-cp -a usr/local/share/xplanet %{buildroot}%{_datadir}/
+%{__cp} -a usr/local/share/xplanet %{buildroot}%{_datadir}/
 
 
 %clean
@@ -41,14 +40,14 @@ cp -a usr/local/share/xplanet %{buildroot}%{_datadir}/
 
 
 %files
-%defattr(-, root, root, 0755)
-%{_datadir}/xplanet
+%defattr(0644, root, root, 0755)
+%{_datadir}/xplanet/
 
 
 %changelog
-* Tue Mar 16 2004 Matthias Saou <http://freshrpms.net> 1.0-2.fr
+* Tue Mar 16 2004 Matthias Saou <http://freshrpms.net> 1.0-2
 - Remove conflicting earth.jpg file.
 
-* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net> 1.0-1.fr
+* Thu Mar  4 2004 Matthias Saou <http://freshrpms.net> 1.0-1
 - Initial spec file.
 

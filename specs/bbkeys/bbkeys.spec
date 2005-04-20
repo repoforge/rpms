@@ -40,8 +40,8 @@ as well.  bbkeys is easily configurable via directly hand-editing the user's
 %{__rm} -rf %{buildroot}
 
 
-%files 
-%defattr(-, root, root, 0755) 
+%files
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog LICENSE NEWS README TODO
 %{_bindir}/bbkeys
 %dir %{_datadir}/bbkeys/
@@ -49,8 +49,8 @@ as well.  bbkeys is easily configurable via directly hand-editing the user's
 %config %{_datadir}/bbkeys/defaultStyle
 %{_mandir}/man?/*
 
- 
-%changelog 
+
+%changelog
 * Fri Apr  1 2005 Matthias Saou <http://freshrpms.net/> 0.9.0-1
 - Update to 0.9.0.
 
@@ -85,8 +85,8 @@ as well.  bbkeys is easily configurable via directly hand-editing the user's
 - added to file list for newly included files (docs and man pages)
 - install to %{prefix} instead of /usr
 
-* Sun May 6 2001 Hollis Blanchard <hollis@terraplex.com> 
-- removed file list in favor of explicit %files section 
-- install to /usr instead of /usr/local 
+* Sun May 6 2001 Hollis Blanchard <hollis@terraplex.com>
+- removed file list in favor of explicit %files section
+- install to /usr instead of /usr/local
 - buildroot = /var/tmp/bbkeys-buildroot instead of /tmp/buildroot
 
