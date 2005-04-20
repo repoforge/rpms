@@ -12,7 +12,7 @@ Summary: 	GStreamer Monkey's Audio Plugin
 Group: 		Applications/Multimedia
 License: 	Freeware
 URL:		http://gstreamer.net/
-Source: 	http://freedesktop.org/~gstreamer/src/gst-monkeysaudio/gst-monkeysaudio-%{version}.tar.gz
+Source:		http://gstreamer.freedesktop.org/src/gst-monkeysaudio/gst-monkeysaudio-%{version}.tar.bz2
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Requires(pre):	%{_bindir}/gst-register-%{majorminor}

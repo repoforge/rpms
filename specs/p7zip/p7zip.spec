@@ -24,7 +24,7 @@ Requires: %{name} = %{version}
 
 %description plugins
 Additional plugins that can be used with 7z to extend its abilities.
-This package contains also a virtual file system for Midnigth Commander.
+This package contains also a virtual file system for Midnight Commander.
 
 
 %prep 
@@ -32,22 +32,22 @@ This package contains also a virtual file system for Midnigth Commander.
 
 ### Create wrapper scripts, as 7zCon.sfx and Codecs/Formats need to be in the
 ### same directory as the binaries, and we don't want them in %{_bindir}.
-%{__cat} <<'EOF' >7za.sh
+%{__cat} << 'EOF' > 7za.sh
 #!/bin/sh
 exec %{_libexecdir}/p7zip/7za $@
 EOF
 
-%{__cat} <<'EOF' >7z.sh
+%{__cat} << 'EOF' > 7z.sh
 #!/bin/sh
 exec %{_libexecdir}/p7zip/7z $@
 EOF
 
 %build
 %ifarch %{ix86} ppc
-%{__cp} -fp makefile.linux_x86_ppc_alpha makefile.machine
+%{__cp} -f makefile.linux_x86_ppc_alpha makefile.machine
 %endif
 %ifarch x86_64
-%{__cp} -fp makefile.linux_amd64 makefile.machine
+%{__cp} -f makefile.linux_amd64 makefile.machine
 %endif
 
 ### Use optflags
@@ -62,11 +62,11 @@ EOF
 
 ### Install binaries (7za, 7z, 7zCon.sfx and Codecs/Formats)
 %{__mkdir_p} %{buildroot}%{_libexecdir}/p7zip/
-%{__cp} -ap bin/* %{buildroot}%{_libexecdir}/p7zip/
+%{__cp} -a bin/* %{buildroot}%{_libexecdir}/p7zip/
 
 ### Install wrapper scripts
-%{__install} -Dp -m0755 7z.sh %{buildroot}%{_bindir}/7z
-%{__install} -Dp -m0755 7za.sh %{buildroot}%{_bindir}/7za
+%{__install} -D -m0755 7z.sh %{buildroot}%{_bindir}/7z
+%{__install} -D -m0755 7za.sh %{buildroot}%{_bindir}/7za
 
 
 %clean
