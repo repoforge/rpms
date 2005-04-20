@@ -3,7 +3,7 @@
 
 Summary: Tag editor for mp3, ogg, flac and other music files
 Name: easytag
-Version: 1.0
+Version: 1.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -14,9 +14,8 @@ BuildRequires: gtk+-devel >= 1.2.7, id3lib-devel >= 3.7.12
 BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext
 
 %description
-EasyTAG is an utility for viewing, editing and writing tags of your
-MP3, MP2, FLAC and OGG files. Its simple and nice GTK+ interface makes
-tagging easier.
+EasyTAG is a utility for viewing, editing and writing the tags of MP3,
+MP2, FLAC, Ogg Vorbis, MusePack and Monkey's Audio files.
 
 
 %prep
@@ -42,13 +41,16 @@ tagging easier.
 %defattr(-, root, root, 0755)
 %doc COPYING ChangeLog README TODO THANKS USERS-GUIDE
 %{_bindir}/easytag
-%{_datadir}/applications/*easytag.desktop
+%{_datadir}/applications/easytag.desktop
 %{_datadir}/easytag/
 %{_datadir}/pixmaps/*
 %{_mandir}/man?/*
 
 
 %changelog
+* Fri Apr  8 2005 Matthias Saou <http://freshrpms.net/> 1.1-1
+- Update to 1.1.
+
 * Fri Oct 29 2004 Matthias Saou <http://freshrpms.net/> 1.0-1
 - Update to stable 1.0.
 

@@ -1,12 +1,12 @@
 # $Id$
 # Authority: matthias
 
-%define prever -WIP1
+#define prever -WIP1
 
 Summary: Portable, freeware Super Nintendo Entertainment System (TM) emulator
 Name: snes9x
 Version: 1.43
-Release: 0
+Release: 1
 License: Other
 Group: Applications/Emulators
 URL: http://www.snes9x.com/
@@ -42,7 +42,7 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 snes9x/snes9x %{buildroot}%{_bindir}/snes9x
+%{__install} -D -m 0755 snes9x/snes9x %{buildroot}%{_bindir}/snes9x
 
 
 %clean
@@ -57,6 +57,9 @@ popd
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.43-1
+- Update to 1.43 final (was WIP1).
+
 * Sat Dec 18 2004 Matthias Saou <http://freshrpms.net/> 1.43-0
 - Initial RPM release.
 

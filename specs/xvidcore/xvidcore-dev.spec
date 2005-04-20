@@ -1,14 +1,14 @@
 # $Id$
 # Authority: matthias
 
-%define prever beta1
+%define prever beta2
 %define somaj  4
 %define somin  0
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
 Version: 1.1.0
-Release: %{?prever:0.%{prever}.}1
+Release: 0.1%{?prever:.%{prever}}
 License: XviD
 Group: System Environment/Libraries
 URL: http://www.xvid.org/
@@ -90,6 +90,9 @@ popd
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-0.1.beta2
+- Update to 1.1.0-beta2.
+
 * Fri Jan 28 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-0.beta1.1
 - Fork off the devel branch.
 - Switch from using nasm to yasm for improved x86_64 and ppc support.

@@ -5,7 +5,7 @@
 
 Summary: TV viewer for GNOME
 Name: zapping
-Version: 0.9.2
+Version: 0.9.3
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: Applications/Multimedia
@@ -76,6 +76,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 0.9.3-1
+- Update to 0.9.3.
+
 * Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 0.9.2-1
 - Update to 0.9.2.
 - Man pages are back.

@@ -3,7 +3,7 @@
 
 Summary: Musepack audio decoding library
 Name: libmusepack
-Version: 1.1
+Version: 1.1.1
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -77,6 +77,9 @@ heavily optimized and patentless code.
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.1.1-1
+- Update to 1.1.1, that's a lot of 1's :-)
+
 * Wed Feb 23 2005 Matthias Saou <http://freshrpms.net/> 1.1-1
 - Update to 1.1.
 - Switch build to use autotools as it's now possible.
