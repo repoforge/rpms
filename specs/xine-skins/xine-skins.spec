@@ -34,6 +34,7 @@ Source19: http://www.xinehq.de/index.php/force-download/skins/Bambino-Blue.tar.g
 Source20: http://www.xinehq.de/index.php/force-download/skins/Antares.tar.gz
 Source21: http://www.xinehq.de/index.php/force-download/skins/Polaris.tar.gz
 Source22: http://www.xinehq.de/index.php/force-download/skins/Bluton.tar.gz
+Source23: http://www.xinehq.de/index.php/force-download/skins/xinium.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine >= 0.99.0
 BuildRequires: xine >= 0.99.0
@@ -46,7 +47,7 @@ appeareance of Xine.
 
 
 %prep
-%setup -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20 -a21 -a22
+%setup -c %{name}-%{version} -a2 -a3 -a4 -a5 -a6 -a9 -a10 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20 -a21 -a22 -a23
 
 
 %build
@@ -66,10 +67,13 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 
 %files
 %defattr(0644, root, root, 0755)
-%{skindir}/*
+%{skindir}/
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.10-1
+- Added xinium skin.
+
 * Thu Jan 13 2005 Matthias Saou <http://freshrpms.net/> 1.9-1
 - Added Polaris and Bluton skins.
 
