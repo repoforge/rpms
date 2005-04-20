@@ -3,7 +3,7 @@
 
 Summary: Fluendo Streaming Server
 Name: flumotion
-Version: 0.1.4
+Version: 0.1.7
 Release: 1
 Group: Applications/Internet
 License: GPL
@@ -63,7 +63,7 @@ Fluendo Streaming Server.
 
 %pre
 /usr/sbin/useradd -s /sbin/nologin -r -d %{_datadir}/flumotion -M -r \
-    flumotion >/dev/null 2>&1 || :
+    flumotion &>/dev/null || :
 
 %post
 /sbin/chkconfig --add flumotion
@@ -77,43 +77,49 @@ fi
 
 # If we have no manager or worker configuration, create the defaults
 # The default account is user/test (only listens on localhost, don't panic!)
-if ! (ls %{_sysconfdir}/flumotion/managers/*/*.xml || %{_sysconfdir}/flumotion/workers/*.xml) >/dev/null 2>&1; then
-    test -d %{_sysconfdir}/flumotion/managers/default || \
-        mkdir -p %{_sysconfdir}/flumotion/managers/default
-    cat > %{_sysconfdir}/flumotion/managers/default/planet.xml << EOF
-<planet>
-
-  <manager>
-    <component name="manager-bouncer" type="htpasswdcrypt">
-      <!-- user / test -->
-      <data><![CDATA[
-user:PSfNpHTkpTx1M
-]]></data>
-    </component>
-  </manager>
-
-</planet>
-EOF
-
-    cat > %{_sysconfdir}/flumotion/workers/default.xml << EOF
-<worker>
-
-  <manager>
-  </manager>
-
-  <authentication type="plaintext">
-    <username>user</username>
-    <password>test</password>
-  </authentication>
-
-</worker>
-EOF
-fi
+#if ! (ls %{_sysconfdir}/flumotion/managers/*/*.xml || %{_sysconfdir}/flumotion/workers/*.xml) >/dev/null 2>&1; then
+#    test -d %{_sysconfdir}/flumotion/managers/default || \
+#        mkdir -p %{_sysconfdir}/flumotion/managers/default
+#    cat > %{_sysconfdir}/flumotion/managers/default/planet.xml << EOF
+#<planet>
+#
+#  <manager>
+#    <component name="manager-bouncer" type="htpasswdcrypt">
+#      <!-- user / test -->
+#      <data><![CDATA[
+#user:PSfNpHTkpTx1M
+#]]></data>
+#    </component>
+#  </manager>
+#
+#</planet>
+#EOF
+#
+#    cat > %{_sysconfdir}/flumotion/workers/default.xml << EOF
+#<worker>
+#
+#  <manager>
+#  </manager>
+#
+#  <authentication type="plaintext">
+#    <username>user</username>
+#    <password>test</password>
+#  </authentication>
+#
+#</worker>
+#EOF
+#fi
 
 %preun
 if [ $1 -eq 0 ]; then
     /sbin/service flumotion stop >/dev/null 2>&1
     /sbin/chkconfig --del flumotion
+fi
+
+%postun
+if [ $1 -eq 0 ]; then
+    %{__rm} -rf %{_var}/lock/flumotion/
+    %{__rm} -rf %{_var}/run/flumotion/
 fi
 
 
@@ -129,7 +135,9 @@ fi
 %{_bindir}/flumotion-worker
 %{_sbindir}/flumotion
 %{_libdir}/flumotion/
+%{_datadir}/applications/flu-admin.desktop
 %{_datadir}/flumotion/
+%{_datadir}/pixmaps/flumotion.png
 %dir %attr(0750, flumotion, flumotion) %{_datadir}/flumotion/.flumotion
 %{_libdir}/pkgconfig/flumotion.pc
 %dir %attr(0750, flumotion, flumotion) %{_var}/cache/flumotion/
@@ -138,6 +146,13 @@ fi
 
 
 %changelog
+* Sat Apr  9 2005 Matthias Saou <http://freshrpms.net/> 0.1.7-1
+- Update to 0.1.7.
+
+* Thu Feb 24 2005 Matthias Saou <http://freshrpms.net/> 0.1.6-3
+- Update to 0.1.6.
+- Don't create the default manager & worker for now, it's annoying on updates.
+
 * Sun Dec 19 2004 Matthias Saou <http://freshrpms.net/> 0.1.4-0
 - Update to 0.1.4.
 
