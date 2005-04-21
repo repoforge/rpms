@@ -9,7 +9,7 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 2.1.2
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Libraries
 URL: http://sdl.perl.org/
@@ -48,7 +48,8 @@ The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 %install
 %{__rm} -rf %{buildroot}
-./Build install PREFIX="%{buildroot}%{_prefix}"
+export PERL_INSTALL_ROOT=%{buildroot}
+./Build install
 
 # Remove files we don't want to include
 %{__rm} -f `/usr/bin/find %{buildroot} -type f \
@@ -71,6 +72,9 @@ The SDL (Simple DirectMedia Layer) bindings for the perl language.
 
 
 %changelog
+* Thu Apr 21 2005 Matthias Saou <http://freshrpms.net/> 2.1.2-3
+- Change PREFIX override to env PERL_INSTALL_ROOT, as perl 5.8.6 requires it.
+
 * Wed Jan  5 2005 Matthias Saou <http://freshrpms.net/> 2.1.2-2
 - Rebuild against SDL_gfx 2.0.13.
 
