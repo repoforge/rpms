@@ -5,11 +5,12 @@
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.5.4
-Release: 3
+Release: 4
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
 Source: http://dl.sf.net/heroines/libmpeg3-%{version}-src.tar.bz2
+Patch: libmpeg3-1.5.4-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: nasm
 Provides: %{name}-devel = %{version}-%{release}
@@ -28,6 +29,7 @@ libmpeg3 currently decodes:
 
 %prep
 %setup
+%patch -p1 -b .gcc4
 
 %build
 # With gcc 3.4 (FC3), build fails with -O2 and also with -fPIC :-(
@@ -67,6 +69,9 @@ export CFLAGS="`echo "%{optflags} -fPIC" | sed 's/-O./-O1/'`"
 %{_includedir}/*.h
 
 %changelog
+* Fri Apr 22 2005 Matthias Saou <http://freshrpms.net/> 1.5.4-4
+- Add gcc4 patch.
+
 * Thu Nov  4 2004 Matthias Saou <http://freshrpms.net/> 1.5.4-3
 - Remove unneeded /usr/bin fix, since we don't use "make install".
 - Replace -O? with -O1 in optflags since build fails with O2 and gcc 3.4.
