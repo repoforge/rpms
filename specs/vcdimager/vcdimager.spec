@@ -3,14 +3,15 @@
 
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
-Version: 0.7.14
-Release: 4
+Version: 0.7.21
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
-Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7_UNSTABLE/%{name}-%{version}.tar.gz
+Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt
+BuildRequires: libcdio-devel >= 0.71
 
 %description 
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
@@ -20,6 +21,20 @@ burning BIN/CUE files.
 VCDRip, which comes with VCDImager, does the reverse operation. That
 is, ripping mpeg streams from images (and already burned VideoCDs)
 and showing some information about the VideoCD.
+
+
+%package devel
+Summary: Header files and static library for VCDImager
+Group: Development/Libraries
+Requires: %{name} = %{version}, pkgconfig
+
+%description devel
+VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
+files which can be burned with cdrdao or any other program capable of
+burning BIN/CUE files.
+
+This package contains the header files and a static library to develop
+applications that will use VCDImager.
 
 
 %prep
@@ -43,13 +58,13 @@ and showing some information about the VideoCD.
 
 
 %post
-for infofile in vcdxrip.info.gz vcdimager.info.gz vcddump.info.gz; do
+for infofile in vcdxrip.info vcdimager.info vcd-info.info; do
     /sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir
 done
 
 %preun
 if [ $1 -eq 0 ]; then
-    for infofile in vcdxrip.info.gz vcdimager.info.gz vcddump.info.gz; do
+    for infofile in vcdxrip.info vcdimager.info vcd-info.info; do
         /sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir
     done
 fi
@@ -59,13 +74,30 @@ fi
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS FAQ TODO COPYING ChangeLog NEWS README THANKS
 %{_bindir}/*
+%{_libdir}/libvcdinfo.so.*
 %{_infodir}/vcdxrip.info*
 %{_infodir}/vcdimager.info*
-%{_infodir}/vcddump.info*
+%{_infodir}/vcd-info.info*
+#{_infodir}/vcddump.info*
 %{_mandir}/man1/*
+
+%files devel
+%defattr(-, root, root, 0755)
+%{_includedir}/libvcd/
+%{_libdir}/libvcdinfo.a
+%exclude %{_libdir}/libvcdinfo.la
+%{_libdir}/libvcdinfo.so
+%{_libdir}/pkgconfig/libvcdinfo.pc
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 0.7.21-1
+- Update to 0.7.21 at last.
+- Split off new -devel package.
+- Added libcdio build requirement.
+- Update Source URL, it's not "UNSTABLE" anymore.
+- Remove vcddump.info and add vcd-info.info. Remove .gz from scriplets.
+
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.7.14-4
 - Added missing install-info calls.
 
