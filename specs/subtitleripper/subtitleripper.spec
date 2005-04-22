@@ -6,15 +6,17 @@
 Summary: DVD subtitle ripper
 Name: subtitleripper
 Version: 0.3.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://subtitleripper.sourceforge.net/
 Source: http://dl.sf.net/subtitleripper/subtitleripper-%{real_version}.tgz
-Patch: subtitleripper-0.3.4-libnetpbm.patch
+Patch0: subtitleripper-0.3.4-20041108cvs.patch
+Patch1: subtitleripper-0.3.4-libnetpbm.patch
+Patch2: subtitleripper-0.3.4-nopng.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: netpbm, transcode
-BuildRequires: netpbm, netpbm-devel, libpng-devel zlib-devel
+BuildRequires: netpbm, netpbm-devel, libpng-devel, zlib-devel
 
 %description
 Converts DVD subtitles into text format (e.g. subrip) or VobSub.
@@ -22,17 +24,19 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 
 %prep
 %setup -n %{name}
-%patch -p1 -b .libnetpbm
+%patch0 -p1 -b .20041108cvs
+%patch1 -p1 -b .libnetpbm
+%patch2 -p1 -b .nopng
 
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} COPT="%{optflags}"
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{_bindir}
-%{__install} -p -m0755 pgm2txt srttool subtitle2pgm subtitle2vobsub \
+%{__install} -p -m 0755 pgm2txt srttool subtitle2pgm subtitle2vobsub \
     %{buildroot}%{_bindir}/
 
 
@@ -47,6 +51,11 @@ Converts DVD subtitles into text format (e.g. subrip) or VobSub.
 
 
 %changelog
+* Fri Apr 22 2005 Matthias Saou <http://freshrpms.net/> 0.3.4-2
+- Update to 20041108 CVS (with a patch).
+- Set COPT to use optflags.
+- Disable png support for now as it errors out on FC4. Fix required!
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.3.4-1
 - Update to 0.3-4.
 - Added patch to fix libppm vs. libnetpbm issue.

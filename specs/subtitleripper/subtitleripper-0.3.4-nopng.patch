@@ -1,0 +1,14 @@
+diff -Naupr subtitleripper-new.orig/Makefile subtitleripper-new/Makefile
+--- subtitleripper-new.orig/Makefile	2004-01-13 15:07:05.000000000 +0100
++++ subtitleripper-new/Makefile	2005-04-22 11:34:16.000000000 +0200
+@@ -12,8 +12,8 @@ DEFINES  += -D_HAVE_LIB_PPM_
+ LIBS     += -lppm
+ 
+ ### enable PNG support ###
+-DEFINES += -D_HAVE_PNG_
+-LIBS    += -lpng
++#DEFINES += -D_HAVE_PNG_
++#LIBS    += -lpng
+ 
+ ### enable zlib support ###
+ DEFINES += -D_HAVE_ZLIB_

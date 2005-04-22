@@ -1,0 +1,991 @@
+diff -Naupr subtitleripper/ChangeLog subtitleripper-new/ChangeLog
+--- subtitleripper/ChangeLog	2003-12-08 10:28:03.000000000 +0100
++++ subtitleripper-new/ChangeLog	2004-09-05 16:57:28.000000000 +0200
+@@ -17,4 +17,14 @@
+ 2003-02-24
+ 	- subtitleripper.spec added and Makefile adjusted to
+ 	  new phony target rpm
+-	  (spec file contributed by Florin Andrei <florin@andrei.myip.org>)
+\ No newline at end of file
++	  (spec file contributed by Florin Andrei <florin@andrei.myip.org>)
++2003-11-25
++	- croping now checks alpha plane too
++	- png output with alpha channel
++	- bugfix for end_pts  (Scott Smith)
++	- dvdxml output
++	- dvdxml output extended for forced subtitle flag (Scott Smith)
++
++2004-09-05
++	- Forced subs only flag added to subtitle2pgm
++	  (Contributed by <roman.grothausmann@stud.uni-regensburg.de>)
+\ No newline at end of file
+diff -Naupr subtitleripper/gocrfilter_de.sed subtitleripper-new/gocrfilter_de.sed
+--- subtitleripper/gocrfilter_de.sed	1970-01-01 01:00:00.000000000 +0100
++++ subtitleripper-new/gocrfilter_de.sed	2002-09-04 12:48:08.000000000 +0200
+@@ -0,0 +1,19 @@
++# Replace common gocr mistakes in german language
++# Please use info sed to obtain more information
++# about sed syntax or read
++# http://www.ptug.org/sed/sedfaq.htm
++s/\<lch\>/Ich/g
++s/\<lowa\>/Iowa/g
++s/\<lst\>/Ist/g
++s/\<ln\>/In/g
++s/\<lhre\>/Ihre/g
++s/\<ldentifikation\>/Identifikation/g
++s/\<ldentifiziere\>/Identifiziere/g
++s/\<lnteressiert\>/Interessiert/g
++s/N E l N/N E I N/g
++s/()ubel)/(Jubel)/g
++
++
++
++
++
+diff -Naupr subtitleripper/README.srttool subtitleripper-new/README.srttool
+--- subtitleripper/README.srttool	2003-12-08 10:28:03.000000000 +0100
++++ subtitleripper-new/README.srttool	2004-11-08 19:29:46.000000000 +0100
+@@ -72,12 +72,16 @@ Options
+                   the hour in the output time stamps is still 3600 seconds".
+                   So, positive values for <seconds> make your subtitles displayed
+                   earlier and negative values later. Currently,
+-                  only adjustments for less than 60 seconds are considered
++                  only adjustments for less than 600 seconds are considered
+                   valid. The time scaling is done _after_ the -d
+                   and -a option are processed to let you specify time
+                   offsets in the original time scale.
+- 
+- 
++
++-f <factor>       Multiply all time stamps by <factor>. This is most useful for
++                  frame rate conversion. To convert subtitles from PAL to NTSC
++                  (25 FPS to 23.976 FPS) you would use the factor 25/23.976=1.0427.
++                  e.g. -f 1.0427 for PAL->NTSC
++                  For NTSC to PAL conversion you would use -f 0.959 as conversion option.
+  
+ 
+ 
+diff -Naupr subtitleripper/README.vobsub subtitleripper-new/README.vobsub
+--- subtitleripper/README.vobsub	2003-12-08 10:28:03.000000000 +0100
++++ subtitleripper-new/README.vobsub	2004-01-15 09:35:48.000000000 +0100
+@@ -137,7 +137,8 @@ subtitle2vobsub -e 2700,5400,0 -i vts_01
+ 
+ The -e option expects the start and end time in the original subtitle
+ stream that you want to extract in seconds (e.g. 2700 = 30*60 seconds)
+-and as third parameter the new start time. 
++and as third parameter the new start time. All parameters are floating point
++numbers so that you can use sub-second accuracy. 
+ 
+ A user reported that a negative "new start time" fixed his out of sync
+ problem. So, if you have an out of sync problem try a negative 
+diff -Naupr subtitleripper/spudec.c subtitleripper-new/spudec.c
+--- subtitleripper/spudec.c	2003-12-08 10:28:02.000000000 +0100
++++ subtitleripper-new/spudec.c	2004-10-05 19:14:23.000000000 +0200
+@@ -281,27 +281,59 @@ static void spudec_writeout_png(spudec_h
+ {
+ #ifdef _HAVE_PNG_
+   char file_name[FILENAME_MAX];
+-  unsigned int width  = this->bb_end_col-this->bb_start_col+1;
+-  unsigned int height = this->bb_end_row-this->bb_start_row+1;
+-  unsigned int stride = this->stride;
++  unsigned int src_width  = this->bb_end_col-this->bb_start_col+1;
++  unsigned int src_height = this->bb_end_row-this->bb_start_row+1;
++  unsigned int src_stride = this->stride;
++
+   FILE *fp;
+   png_structp png_ptr;
+   png_infop info_ptr;
+-  png_bytep row_pointers[height];
+   unsigned int k,j;
++  unsigned int dest_image_size;
++  volatile unsigned int dest_start_row=0;
++  volatile unsigned int dest_start_col=0;
++  volatile unsigned int dest_width = src_width;
++  volatile unsigned int dest_height= src_height;
+   volatile png_bytep output_image=NULL;
+   unsigned int channels = 1;
++  png_bytep row_pointers[max(dest_height,this->opts.user_height)];
+ 
+   //fprintf(stderr,"Image size %d x %d\n",this->stride, this->height);
+   assert(this->image);
+   assert(this->aimage);
+ 
+-
+   // construct the file name for png image 
+   sprintf(file_name,"%s%04d.png",this->ppm_base_name, this->title_num);
+ 
+   // fprintf(stderr, "Writing to file %s\n",file_name);
+ 
++
++  // handle setting for user defined output image size
++  if(this->opts.user_image_size){
++
++    // if the user requests a user defined output size
++    // make sure that the image would fit!
++    if(this->opts.user_width > src_width){
++      dest_width=this->opts.user_width;
++    } else {
++      fprintf(stderr,"User defined image width is to small, using default!");
++    }
++    if(this->opts.user_height > src_height){
++      dest_height=this->opts.user_height;
++    } else {
++      fprintf(stderr,"User defined image width is to small, using default!");
++    }
++
++    // handle palcement of subtitle within output image
++    // -> simply use the original position of the image as it is on DVD
++    // this will certainly result in useless results of image sizes
++    // different from that of the DVD but as I currently see no application
++    // that need a more involved image placing strategy I skip the problem :-)
++    dest_start_col= this->start_col;
++    dest_start_row= this->start_row;
++  }
++
++
+    /* open the file */
+    fp = fopen(file_name, "wb");
+    if (fp == NULL){
+@@ -365,68 +397,143 @@ static void spudec_writeout_png(spudec_h
+      channels = 1; // only gray channel
+ 
+      /* Write image in gray scale format without alpha channel */
+-     png_set_IHDR(png_ptr, info_ptr, width, height, 8, PNG_COLOR_TYPE_GRAY,
++     png_set_IHDR(png_ptr, info_ptr, dest_width, dest_height, 8, PNG_COLOR_TYPE_GRAY,
+ 		  PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+ 
+-     /* Construct an array with pointers to all rows of the image */
+-     for(k=this->bb_start_row,j=0; k <= this->bb_end_row; ++k,++j){
+-       row_pointers[j] = this->image + k*stride + this->bb_start_col;
++     /* 
++	original gray scale image to grayscale image of user defined size
++     */
++     dest_image_size = dest_width*dest_height*channels*sizeof(png_byte);
++     output_image = malloc(dest_image_size); 
++
++     if(!output_image){
++       fprintf(stderr,"Cannot allocate memory for internal gray image of size %d\n",
++	       dest_image_size);
++       exit(1);
+      }
+ 
++     // fill image with white as text should be mostly dark
++     memset(output_image,0xff,dest_image_size);
++
++     /* Copy the gray values into the new image */
++     for(k = 0; k < src_height; ++k){
++       for(j = 0; j < src_width; ++j){
++	 const png_byte pixel = this->image[(this->bb_start_row+k)*src_stride+j+this->bb_start_col];
++	 const unsigned int row = k + dest_start_row;
++	 const unsigned int col = j + dest_start_col;
++	 const unsigned int dest_idx = row*dest_width*channels+channels*col;
++	 // check for valid array index
++	 if(dest_idx < dest_image_size){
++	   output_image[dest_idx] = pixel;
++	 } else {
++	   fprintf(stderr,"Index into internal image out of range (Check your images.)!\n");
++	   fprintf(stderr,"row: %u col: %u dest_idx: %u dest_image_size: %u",
++		   row,col,dest_idx,dest_image_size);
++	 }
++       }
++     }
++
++     /* Construct an array with pointers to all rows of the image */
++     for (k = 0; k < dest_height; k++){
++       row_pointers[k] = output_image + k*dest_width*channels;
++     }
+ 
+    } else if (this->image_format == PNG_GRAY_ALPHA) {
+      channels = 2; // gray and alpha channel
+      /* Write image in gray scale format with alpha channel */
+-     png_set_IHDR(png_ptr, info_ptr, width, height, 8, PNG_COLOR_TYPE_GRAY_ALPHA,
++     png_set_IHDR(png_ptr, info_ptr, dest_width, dest_height, 8, PNG_COLOR_TYPE_GRAY_ALPHA,
+ 		  PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+ 
+      /* 
+ 	Convert the original gray scale image to grayscale + alpha.
+      */
+-     output_image = malloc(width*height*channels*sizeof(png_byte)); 
++     dest_image_size = dest_width*dest_height*channels*sizeof(png_byte);
++     output_image = malloc(dest_image_size); 
++
++     if(!output_image){
++       fprintf(stderr,"Cannot allocate memory for internal gray-alpha image of size %d\n",
++	       dest_image_size);
++       exit(1);
++     }
++
++     // fill image with 0 so that the alpha channel is transparent
++     // the color would be black but for transparent this dosen't matter ...
++     memset(output_image, 0, dest_image_size);
+      
+      /* Copy the gray and alpha values into the new image */
+-     for(k = 0; k < height; ++k){
+-       for(j = 0; j < width; ++j){
+-	 const png_byte pixel = this->image[(this->bb_start_row+k)*stride+j+this->bb_start_col];
+-	 const png_byte alpha = this->aimage[(this->bb_start_row+k)*stride+j+this->bb_start_col];
+-	 output_image[k*width*channels+channels*j]   = pixel;
+-	 output_image[k*width*channels+channels*j+1] = alpha;
++     for(k = 0; k < src_height; ++k){
++       for(j = 0; j < src_width; ++j){
++	 const png_byte pixel = this->image[(this->bb_start_row+k)*src_stride+j+this->bb_start_col];
++	 const png_byte alpha = this->aimage[(this->bb_start_row+k)*src_stride+j+this->bb_start_col];
++	 const unsigned int row = k + dest_start_row;
++	 const unsigned int col = j + dest_start_col;
++	 const unsigned int dest_idx = row*dest_width*channels+channels*col;
++	 // check for valid array index
++	 if(dest_idx+1 < dest_image_size){
++	   output_image[dest_idx]   = pixel;
++	   output_image[dest_idx+1] = alpha;
++	 } else {
++	   fprintf(stderr,"Index into internal image out of range (Check your images.)!\n");
++	   fprintf(stderr,"row: %u col: %u dest_idx: %u dest_image_size: %u",
++		   row,col,dest_idx,dest_image_size);
++	 }
+        }
+      }
+ 
+      /* Construct an array with pointers to all rows of the image */
+-     for (k = 0; k < height; k++){
+-       row_pointers[k] = output_image + k*width*channels;
++     for (k = 0; k < dest_height; k++){
++       row_pointers[k] = output_image + k*dest_width*channels;
+      }
+ 
+    } else if (this->image_format == PNG_RGBA){
+      channels = 4; // RGB+A channels
+      /* Write image in gray scale format with alpha channel */
+-     png_set_IHDR(png_ptr, info_ptr, width, height, 8, PNG_COLOR_TYPE_RGB_ALPHA,
++     png_set_IHDR(png_ptr, info_ptr, dest_width, dest_height, 8, PNG_COLOR_TYPE_RGB_ALPHA,
+ 		  PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+ 
+      /* 
+ 	Convert the original gray scale image to RGB-A format.
+      */
+-     output_image = malloc(width*height*channels*sizeof(png_byte)); // 4 channels
+-     
++     dest_image_size = dest_width*dest_height*channels*sizeof(png_byte); // 4 channels
++     output_image = malloc(dest_image_size); 
++
++     if(!output_image){
++       fprintf(stderr,"Cannot allocate memory for internal RGB-A image of size %d\n",
++	       dest_image_size);
++       exit(1);
++     }
++
++     // fill image with 0 so that the alpha channel is transparent
++     // the color would be black but for transparent this dosen't matter ...
++     memset(output_image, 0x0, dest_image_size);
++
++
+      /* Copy the gray and alpha values into the new image */
+-     for(k = 0; k < height; ++k){
+-       for(j = 0; j < width; ++j){
+-	 const png_byte pixel = this->image[(this->bb_start_row+k)*stride+j+this->bb_start_col];
+-	 const png_byte alpha = this->aimage[(this->bb_start_row+k)*stride+j+this->bb_start_col];
++     for(k = 0; k < src_height; ++k){
++       for(j = 0; j < src_width; ++j){
++	 const png_byte pixel = this->image[(this->bb_start_row+k)*src_stride+j+this->bb_start_col];
++	 const png_byte alpha = this->aimage[(this->bb_start_row+k)*src_stride+j+this->bb_start_col];
+ 	 /* TODO: color lookup table needed */
+-	 output_image[k*width*channels+channels*j]     = pixel; // red
+-	 output_image[k*width*channels+channels*j+1]   = pixel; // green
+-	 output_image[k*width*channels+channels*j+2]   = pixel; // blue
+-	 output_image[k*width*channels+channels*j+3]   = alpha;
++	 const unsigned int row = k + dest_start_row;
++	 const unsigned int col = j + dest_start_col;
++	 const unsigned int dest_idx = row*dest_width*channels+channels*col;
++	 // check for valid array index
++	 if(dest_idx+3 < dest_image_size){
++	   output_image[dest_idx]     = pixel; // red
++	   output_image[dest_idx+1]   = pixel; // green
++	   output_image[dest_idx+2]   = pixel; // blue
++	   output_image[dest_idx+3]   = alpha;
++	 } else {
++	   fprintf(stderr,"Index into internal image out of range (Check your images.)!\n");
++	   fprintf(stderr,"row: %u col: %u dest_idx: %u dest_image_size: %u",
++		   row,col,dest_idx,dest_image_size);
++	 }
+        }
+      }
+ 
+      /* Construct an array with pointers to all rows of the image */
+-     for (k = 0; k < height; k++){
+-       row_pointers[k] = output_image + k*width*channels;
++     for (k = 0; k < dest_height; k++){
++       row_pointers[k] = output_image + k*dest_width*channels;
+      }
+    } else {
+      fprintf(stderr,"Unsupported PNG output format\n");
+@@ -596,53 +703,58 @@ static void spudec_writeout_srtx_tag(spu
+   double start_pts=this->start_pts/100.0;
+   double  end_pts=this->end_pts/100.0;
+   int start_subsec, end_subsec;
++  int forced_subs_only = this->opts.forced;
+ 
+-  // writeout current number
+-  fprintf(this->tag_file,"%d\n",this->title_num);
+-
+-  // writeout start and end time of this title
+-  start_hour = start_pts/(3600);
+-  start_min  = (start_pts-3600*start_hour)/60;
+-  start_sec  = (start_pts-3600*start_hour-60*start_min);
+-  start_subsec = (start_pts-3600*start_hour-60*start_min-start_sec)*1000;
+-
+-  end_hour = end_pts/(3600);
+-  end_min  = (end_pts-3600*end_hour)/60;
+-  end_sec  = (end_pts-3600*end_hour-60*end_min);
+-  end_subsec = (end_pts-3600*end_hour-60*end_min-end_sec)*1000;
+-
+-  fprintf(this->tag_file,"%02d:%02d:%02d,%.3d --> %02d:%02d:%02d,%.3d\n",
+-	  start_hour,start_min,start_sec,start_subsec,
+-	  end_hour,end_min,end_sec,end_subsec);
+-  switch(this->image_format){
+ 
+-  case PGM:
+-    fprintf(this->tag_file,"%s%04d.pgm.txt\n\n",
+-	    this->ppm_base_name, 
+-	    this->title_num);
+-    break;
+-
+-  case PGMGZ:
+-    fprintf(this->tag_file,"%s%04d.pgm.gz.txt\n\n",
+-	    this->ppm_base_name, 
+-	    this->title_num);
+-    break;
++  // check if we only want forced subtitles for srtx file
++  if( !forced_subs_only || this->is_forced ){
++    // writeout current number
++    fprintf(this->tag_file,"%d\n",this->title_num);
+     
+-  case PPM:
+-    fprintf(this->tag_file,"%s%04d.ppm.txt\n\n",
+-	    this->ppm_base_name, 
+-	    this->title_num);
+-    break;
+-  case PNG_GRAY:
+-  case PNG_GRAY_ALPHA:
+-  case PNG_RGBA:
+-    fprintf(this->tag_file,"%s%04d.png.txt\n\n",
+-	    this->ppm_base_name, 
+-	    this->title_num);
+-    break;
+-  default:
+-    fprintf(stderr,"Invalid output format\n");
+-    exit(1);
++    // writeout start and end time of this title
++    start_hour = start_pts/(3600);
++    start_min  = (start_pts-3600*start_hour)/60;
++    start_sec  = (start_pts-3600*start_hour-60*start_min);
++    start_subsec = (start_pts-3600*start_hour-60*start_min-start_sec)*1000;
++    
++    end_hour = end_pts/(3600);
++    end_min  = (end_pts-3600*end_hour)/60;
++    end_sec  = (end_pts-3600*end_hour-60*end_min);
++    end_subsec = (end_pts-3600*end_hour-60*end_min-end_sec)*1000;
++    
++    fprintf(this->tag_file,"%02d:%02d:%02d,%.3d --> %02d:%02d:%02d,%.3d\n",
++	    start_hour,start_min,start_sec,start_subsec,
++	    end_hour,end_min,end_sec,end_subsec);
++    switch(this->image_format){
++      
++    case PGM:
++      fprintf(this->tag_file,"%s%04d.pgm.txt\n\n",
++	      this->ppm_base_name, 
++	      this->title_num);
++      break;
++      
++    case PGMGZ:
++      fprintf(this->tag_file,"%s%04d.pgm.gz.txt\n\n",
++	      this->ppm_base_name, 
++	      this->title_num);
++      break;
++      
++    case PPM:
++      fprintf(this->tag_file,"%s%04d.ppm.txt\n\n",
++	      this->ppm_base_name, 
++	      this->title_num);
++      break;
++    case PNG_GRAY:
++    case PNG_GRAY_ALPHA:
++    case PNG_RGBA:
++      fprintf(this->tag_file,"%s%04d.png.txt\n\n",
++	      this->ppm_base_name, 
++	      this->title_num);
++      break;
++    default:
++      fprintf(stderr,"Invalid output format\n");
++      exit(1);
++    }
+   }
+ }
+ 
+@@ -726,7 +838,7 @@ static void  spudec_crop_image(spudec_ha
+   unsigned int end_col;
+   unsigned char background_color;
+   unsigned char background_alpha;
+-  int border = this->crop_border_size;
++  int border = this->opts.crop_border_size;
+ 
+   // only crop if border is >= 0 (see -C flag)
+   if(border < 0 ){
+@@ -965,7 +1077,8 @@ void spudec_reset(spudec_handle_t *this)
+ // ppm_base_name     base filename for ppm files
+ // tag_base_name     base filename for tag file
+ spudec_handle_t * spudec_new(int color[4], char* ppm_base_name, 
+-			     char* tag_base_name, output_formats format, tag_formats tag_format, int crop)
++			     char* tag_base_name, output_formats format, tag_formats tag_format, 
++			     const spudec_options_t* opts)
+ {
+   char tag_filename[FILENAME_MAX];
+   spudec_handle_t *this = calloc(1, sizeof(spudec_handle_t));
+@@ -975,8 +1088,8 @@ spudec_handle_t * spudec_new(int color[4
+     exit(1);
+   }
+ 
+-  // set how many pixel should be kept around the text
+-  this->crop_border_size = crop;
++  // copy the options 
++  this->opts=*opts;
+ 
+   // initialize the color settings
+   spudec_set_color(this,color);
+diff -Naupr subtitleripper/spudec.h subtitleripper-new/spudec.h
+--- subtitleripper/spudec.h	2003-12-08 10:28:02.000000000 +0100
++++ subtitleripper-new/spudec.h	2004-10-05 19:14:24.000000000 +0200
+@@ -5,6 +5,19 @@
+ // list of supported output formats
+ typedef enum{PGM, PPM, PGMGZ, PNG_GRAY,PNG_GRAY_ALPHA,PNG_RGBA, LAST_FORMAT} output_formats;
+ typedef enum{SRTX, DVDAUTHOR_XML,LAST_TAG_FORMAT} tag_formats;
++
++// the list of options to spudec_new() has grown
++// with every version. Therefore I use this
++// struct as an argument for all
++// the (new) options.
++typedef struct{
++  int crop_border_size;   // num pixels to frame the croped text
++  int forced;             // flag for forced subtitles only
++  int user_image_size;    // ~0 if output image size is defined by user
++  int user_width;         // width of user defined image size
++  int user_height;        // height of user defined image size
++} spudec_options_t;
++
+ typedef struct {
+   unsigned char* packet;
+   size_t packet_reserve;	    /* size of the memory pointed to by packet */
+@@ -45,15 +58,19 @@ typedef struct {
+   unsigned int bb_end_row;
+   unsigned int bb_start_col;
+   unsigned int bb_end_col;
+-  int crop_border_size;              
++  int crop_border_size;
++  int forced;
++  int user_image_size;    // ~0 if output image size is defined by user
++  int user_image_size_x;  // x-size of user defined image size
++  int user_image_size_y;  // y-size of user defined image size
+ 
++  spudec_options_t opts;   
+ } spudec_handle_t;
+ 
+-
+ void spudec_assemble(spudec_handle_t *this, unsigned char *packet, int len, int pts100);
+ spudec_handle_t * spudec_new(int color[4], char* ppm_base_name, 
+ 			     char* tag_base_name, output_formats image_format,
+-			     tag_formats tag_format, int crop);
++			     tag_formats tag_format, const spudec_options_t* opts);
+  void spudec_free(spudec_handle_t *this);
+ void spudec_reset(spudec_handle_t *this);	// called after seek
+ unsigned int spudec_get_title_num(spudec_handle_t* this);
+@@ -63,3 +80,10 @@ unsigned int spudec_get_title_num(spudec
+ 
+ 
+ 
++
++
++
++
++
++
++
+diff -Naupr subtitleripper/srttool.c subtitleripper-new/srttool.c
+--- subtitleripper/srttool.c	2003-12-08 10:28:02.000000000 +0100
++++ subtitleripper-new/srttool.c	2004-11-08 19:29:46.000000000 +0100
+@@ -59,7 +59,9 @@ void usage(void)
+   fprintf(stderr,"\t	               and basenameXXXX.txt files.\n");
+   fprintf(stderr,"\t -w                Remove leading white space in text lines\n");
+   fprintf(stderr,"\t -e <seconds>      'Expand' the subtitle hour by <seconds>\n"
+-                 "\t                   (valid values are -60.0<=x<=+60.0 seconds)\n");
++                 "\t                   (valid values are -600.0<=x<=+600.0 seconds)\n");
++  fprintf(stderr,"\t -f <factor>       Multiply all time stamps by <factor>\n");
++  fprintf(stderr,"\t                   e.g. -f 1.0427 for PAL->NTSC conversion\n");
+   fprintf(stderr,"\t Example: \n");
+   fprintf(stderr,"\t Adjust the subtitle timing by -2.3 seconds. \n");
+   fprintf(stderr,"\t srttool -d -2.3 -i subtitle.srt > new_subtitle.srt \n");
+@@ -75,7 +77,7 @@ void convert_crlf2lf(char *line)
+   // does the line end in \r\n ?
+   if(len >= 2 && line[len-2] == '\r' && line[len-1] == '\n'){
+     line[len-2]='\n'; // replace \r with \n
+-    line[len-1] = 0;    // repalce \n with end of string
++    line[len-1] = 0;    // replace \n with end of string
+   }
+ 
+ }
+@@ -132,20 +134,27 @@ double srt_time2sec(const srt_time_t tim
+ 
+ 
+ 
+-srt_time_t sec2srt_time(double t)
++srt_time_t sec2srt_time(const double t)
+ {
+     srt_time_t time_stamp;
+ 
+     time_stamp.hour   = t/(3600);
+     time_stamp.min    = (t-3600*time_stamp.hour)/60;
+     time_stamp.sec    = (t-3600*time_stamp.hour-60*time_stamp.min);
+-    time_stamp.msec = (unsigned int) rint((t-3600*time_stamp.hour-60*time_stamp.min
+-					   -time_stamp.sec)*1000.0);
++    time_stamp.msec = (unsigned int) floor((t-3600*time_stamp.hour-60*time_stamp.min
++					    -time_stamp.sec)*1000.0);
++
++    if(time_stamp.msec == 1000){
++      time_stamp.msec = 999;
++      fprintf(stderr,"Rounding bug: Please report this bug to author by copying the following line:\n"
++	      "t=%f hour=%u min=%u sec=%u msec=%u\n",
++	      t, time_stamp.hour, time_stamp.min, time_stamp.sec, time_stamp.msec);
++    } 
+ 
+     return time_stamp;
+ }
+ 
+-void adjust_srt_time(srt_time_t* time_stamp, double time_offset, double time_scale)
++void adjust_srt_time(srt_time_t* time_stamp, const double time_offset, const double time_scale)
+ {
+   double t;
+ 
+@@ -379,7 +388,7 @@ int main(int argc, char** argv)
+ 
+   /* scan command line arguments */
+   opterr=0;
+-  while ((ch = getopt(argc, argv, "wvi:o:a:d:c:x:e:rsh")) != -1) {
++  while ((ch = getopt(argc, argv, "wvi:o:a:d:c:x:e:f:rsh")) != -1) {
+       
+       switch (ch) {
+ 	  case 'v':
+@@ -486,8 +495,8 @@ int main(int argc, char** argv)
+ 		  fprintf(stderr,"no time specified with option -e\n");
+ 		  exit(1);
+ 	      }
+-	      // complain about an adjustment of more than 60 seconds
+-	      if(fabs(hour_expansion > 60)){
++	      // complain about an adjustment of more than 600 seconds
++	      if(fabs(hour_expansion > 600)){
+ 		  fprintf(stderr,"Parameter to option -e to large.\n");
+ 		  exit(1);
+ 	      }
+@@ -497,6 +506,14 @@ int main(int argc, char** argv)
+ 	      if(verbose)
+ 		  fprintf(stderr,"Using %f seconds for hour expansion\n",hour_expansion);
+ 	      break;
++
++          case 'f':
++	      n = sscanf(optarg,"%lf", &time_scale_factor);
++	      if(n!=1) {
++		  fprintf(stderr,"no time scale factor given to -f option\n");
++		  exit(1);
++	      }
++	      break;
+ 	  case 'h':
+ 	      usage();
+ 	      break;
+diff -Naupr subtitleripper/subtitle2pgm.c subtitleripper-new/subtitle2pgm.c
+--- subtitleripper/subtitle2pgm.c	2003-12-08 10:28:02.000000000 +0100
++++ subtitleripper-new/subtitle2pgm.c	2004-10-05 19:14:24.000000000 +0200
+@@ -15,6 +15,7 @@
+   
+   Version: 0.02
+ */
++#define _GNU_SOURCE
+ 
+ #include "spudec.h"
+ #include <stdio.h>
+@@ -66,13 +67,16 @@ void usage(void)
+   fprintf(stderr,"\t  -t <format>      Set tag file format 0=srtx (default) 1=dvdxml\n");
+   fprintf(stderr,"\t  -l <seconds>     Add <seconds> to PTS for every DVD-9 layer skip\n"); 
+   fprintf(stderr,"\t                   (default 0.0)\n");
+-  fprintf(stderr,"\t  -C <boarder>     Crop image but keep <boarder> pixels if possible\n");
++  fprintf(stderr,"\t  -C <border>      Crop image but keep <border> pixels if possible\n");
+   fprintf(stderr,"\t                   (default is < 0 = don't crop at all)\n");
+   fprintf(stderr,"\t  -e <hh:mm:ss,n>  extract only n subtitles starting from hh:mm:ss\n");
++  fprintf(stderr,"\t  -f               include only forced subtitles in srtx file\n");
+   fprintf(stderr,"\t  -v               verbose output\n");
+   fprintf(stderr,"\t  -P               progress output\n");
+-  fprintf(stderr,"\t Version 0.3 (alpha) for >transcode-0.6.0\n");
+-
++  fprintf(stderr,"\t  -X<x,y>          create images with size x*y\n");
++  fprintf(stderr,"\t                   without parameters option defaults to 720x576 (PAL)\n");
++  fprintf(stderr,"\t                   Note: use e.g. '-X320,200' and not '-X 320,200' ");
++  fprintf(stderr,"\t Version 0.4 (alpha) for >transcode-0.6.0\n");
+   exit(0);
+ }
+ 
+@@ -103,7 +107,6 @@ int main(int argc, char** argv)
+   double layer_skip_adjust=0.0;
+   double layer_skip_offset=0.0;
+   unsigned int discont_ctr=0;
+-  int crop = -1;  // default cropping = don't crop
+ 
+   unsigned int extract_start_hour=0;
+   unsigned int extract_start_min=0;
+@@ -114,6 +117,15 @@ int main(int argc, char** argv)
+ 
+   unsigned int last_subtitle_number=0;
+ 
++  spudec_options_t spudec_options;
++
++  spudec_options.crop_border_size = -1;  // default cropping = don't crop
++  spudec_options.forced=0;               // forced subtitle
++  spudec_options.user_image_size=0;      // use image size defined by -X option
++
++  spudec_options.user_width=720;         // (default) size of user defined image size
++  spudec_options.user_height=576;
++
+ #ifdef _HAVE_LIB_PPM_
+   // initialize libppm
+   ppm_init(&argc, argv);
+@@ -143,7 +155,7 @@ int main(int argc, char** argv)
+ 
+   /* scan command line arguments */
+   opterr=0;
+-  while ((ch = getopt(argc, argv, "e:i:g:t:c:C:o:l:hvP")) != -1) {
++  while ((ch = getopt(argc, argv, ":e:i:g:t:c:C:o:l:hvP:fX::")) != -1) {
+       
+       switch (ch) {
+ 
+@@ -158,7 +170,7 @@ int main(int argc, char** argv)
+ 	      break;
+ 	      
+ 	  case 'C':
+-	      n = sscanf(optarg,"%d", &crop);
++	      n = sscanf(optarg,"%d", &spudec_options.crop_border_size);
+ 	      
+ 	      if(n != 1) {
+ 		  fprintf(stderr,"invalid argument to crop\n");
+@@ -266,7 +278,37 @@ int main(int argc, char** argv)
+ 			  extract_start_sec);
+ 	      }
+ 	      break;
+-	      
++	   
++          case 'f':
++	      spudec_options.forced = 1;
++	      break;
++
++          case 'X':
++	    if(optarg){
++	      n = sscanf(optarg,"%d,%d", 
++			 &spudec_options.user_width,
++			 &spudec_options.user_height);
++	      if(n !=2){
++		fprintf(stderr,"Invalid number of arguments to option -X\n");
++		exit(1);
++	      }
++	    }
++	    spudec_options.user_image_size=~0;
++	    if(verbose){
++	      fprintf(stderr,"%s\n", optarg);
++	      fprintf(stderr,"Producing images with user defined image size (%dx%d)\n",
++		      spudec_options.user_width, 
++		      spudec_options.user_height);
++	    }
++
++	    break;
++          case ':':
++	    /* missing option argument */
++	    fprintf(stderr, "option '-%c' requires an argument\n",
++		    optopt);
++	    break;
++          case '?':
++	    // no break
+ 	  default:
+ 	      fprintf(stderr,"Unknown option. Use -h for list of valid options.\n");
+ 	      exit(1);
+@@ -295,7 +337,7 @@ int main(int argc, char** argv)
+ 
+   
+   // allocate the data struct used by the decoder
+-  spudec_handle = spudec_new(colors, output_base_name, output_base_name, image_format, tag_format, crop);
++  spudec_handle = spudec_new(colors, output_base_name, output_base_name, image_format, tag_format,&spudec_options);
+   
+   assert(spudec_handle);
+   
+diff -Naupr subtitleripper/subtitle2vobsub.c subtitleripper-new/subtitle2vobsub.c
+--- subtitleripper/subtitle2vobsub.c	2003-12-08 10:28:03.000000000 +0100
++++ subtitleripper-new/subtitle2vobsub.c	2004-01-15 09:35:48.000000000 +0100
+@@ -239,7 +239,7 @@ void usage(void)
+     fprintf(stderr,"\t -o <output file base> name\n");
+     fprintf(stderr,"\t -s <width,height> set the default movie size if ifo-file is missing\n");
+     fprintf(stderr,"\t -c <up to 16 hex values> set color palette if ifo-file is missing\n");
+-    fprintf(stderr,"\t -e <start,end,new_start> extract only part of file (parameters in seconds)\n");
++    fprintf(stderr,"\t -e <start,end,new_start> extract only part of file (parameters are floats in seconds)\n");
+     fprintf(stderr,"\t -a n,[xx] append additionally language to existing sub and idx files\n");
+     fprintf(stderr,"\t    n = language index, xx = optional two letter language code (e.g. fr for French)\n");
+     fprintf(stderr,"\t -t <factor> time scale factor\n");
+diff -Naupr subtitleripper/vobsub2pgm.c subtitleripper-new/vobsub2pgm.c
+--- subtitleripper/vobsub2pgm.c	2003-12-08 10:28:03.000000000 +0100
++++ subtitleripper-new/vobsub2pgm.c	2004-10-05 19:14:24.000000000 +0200
+@@ -47,7 +47,10 @@ void usage(void){
+ 	fprintf(stderr,"\t -g <format>        Set output format to 0=PGM (default)\n");
+ 	fprintf(stderr,"\t                    1=PPM, 2=PGM.GZ\n");
+ 	fprintf(stderr,"\t -v                 verbose output\n");
+-	fprintf(stderr,"\t Version 0.2\n");
++	fprintf(stderr,"\t  -X<x,y>           create images with size x*y\n");
++	fprintf(stderr,"\t                    without parameters option defaults to 720x576 (PAL)\n");
++	fprintf(stderr,"\t                    Note: use e.g. '-X320,200' and not '-X 320,200' ");
++	fprintf(stderr,"\t Version 0.3\n");
+ 	exit(0);
+ }
+ 
+@@ -57,8 +60,7 @@ int main(int argc, char* argv[]){
+ 	char ifofilename[FILENAME_MAX];
+ 
+ 	output_formats image_format=0;
+-
+-	int crop=-1;
++	spudec_options_t spudec_options;
+ 	int colors[4];
+ 
+ 	int ch,n; //getopt
+@@ -71,6 +73,13 @@ int main(int argc, char* argv[]){
+ 	spudec_handle_t *spudec_handle;
+ 
+ 	//default options
++	spudec_options.crop_border_size = -1;  // default cropping = don't crop
++	spudec_options.forced=0;               // forced subtitle
++	spudec_options.user_image_size=0;      // use image size defined by -X option
++	spudec_options.user_width=720;  // (default) size of user defined image size
++	spudec_options.user_height=576;
++
++
+ 	verbose=0;
+ 	vobsub_id=0;
+ 
+@@ -88,7 +97,7 @@ int main(int argc, char* argv[]){
+ 
+ 
+ 	//scan input
+-	while((ch=getopt(argc,argv,"i:t:c:g:vh")) != -1){
++	while((ch=getopt(argc,argv,"i:t:c:g:vhX::")) != -1){
+ 
+ 		switch(ch){
+ 
+@@ -151,6 +160,25 @@ int main(int argc, char* argv[]){
+ 			case 'h': //help
+ 				usage();
+ 				break;
++		        case 'X':
++			  if(optarg){
++			    n = sscanf(optarg,"%d,%d", 
++				       &spudec_options.user_width,
++				       &spudec_options.user_height);
++			    if(n !=2){
++			      fprintf(stderr,"Invalid number of arguments to option -X\n");
++			      exit(1);
++			    }
++			  }
++			  spudec_options.user_image_size=~0;
++			  if(verbose){
++			    fprintf(stderr,"%s\n", optarg);
++			    fprintf(stderr,"Producing images with user defined image size (%dx%d)\n",
++				    spudec_options.user_width, 
++				    spudec_options.user_height);
++			  }
++			  
++			  break;
+ 
+ 			default:
+ 				fprintf(stderr,"Unknown option. Use -h to list all valid options.\n");
+@@ -179,7 +207,7 @@ int main(int argc, char* argv[]){
+ 
+ 
+ 	//let's open the output stream
+-	spudec_handle = spudec_new(colors,argv[optind+1],argv[optind+1], image_format,SRTX, crop);
++	spudec_handle = spudec_new(colors,argv[optind+1],argv[optind+1], image_format,SRTX, &spudec_options);
+ 	//not needed
+ 	//spudec_reset(spudec_handle);	
+ 
+diff -Naupr subtitleripper/vobsub.c subtitleripper-new/vobsub.c
+--- subtitleripper/vobsub.c	2003-12-08 10:28:02.000000000 +0100
++++ subtitleripper-new/vobsub.c	2004-09-05 16:57:29.000000000 +0200
+@@ -1076,6 +1076,13 @@ create_idx(vobsub_out_t *me, const unsig
+ 		    MIN(MAX((int)(y + 1.7710 * v), 0), 0xff));
+ 	}
+ 	putc('\n', me->fidx);
++
++	// just write it as a comment into the idx-file so that a user
++	// can edit it by hand. In a later version I will make it
++	// depend on some commandline flag.
++        fprintf(me->fidx,
++                "# ON: displays only forced subtitles, OFF: shows everything\n"
++                "forced subs: OFF\n");
+     }
+ }
+ 
+diff -Naupr subtitleripper/write-png.c subtitleripper-new/write-png.c
+--- subtitleripper/write-png.c	1970-01-01 01:00:00.000000000 +0100
++++ subtitleripper-new/write-png.c	2003-11-18 17:47:27.000000000 +0100
+@@ -0,0 +1,145 @@
++
++#include <stdio.h>
++#include <stdlib.h>
++
++#include <png.h>
++
++
++/*
++  Write an image in PNG format.
++  filename   name of the file
++  width      width in pixel of the image
++  height     height in pixel of the image
++  stride     number of bytes in one row (if rows are padded to something != width)
++  image      pointer to image in memory of size (width*stride) bytes
++  alpha      alpha channel (transparency) of the image
++
++  return: -1 on error, 0 otherwise
++ */
++
++int write_png_with_alpha(char* file_name,  unsigned int width, unsigned int height, unsigned int stride, char* image, char* alpha)
++{
++   FILE *fp;
++   png_structp png_ptr;
++   png_infop info_ptr;
++   png_colorp palette=NULL;
++   png_bytep row_pointers[height];
++   unsigned int k;
++
++   /* open the file */
++   fp = fopen(file_name, "wb");
++   if (fp == NULL){
++     fprintf(stderr,"Could not open file %s for writing PNG\n",file_name);
++     return -1;
++   }
++
++   /* Create and initialize the png_struct with the desired error handler
++    * functions.  If you want to use the default stderr and longjump method,
++    * you can supply NULL for the last three parameters.  We also check that
++    * the library version is compatible with the one used at compile time,
++    * in case we are using dynamically linked libraries.  REQUIRED.
++    */
++   png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING,
++				     NULL, NULL, NULL);
++
++   if (png_ptr == NULL)
++   {
++      fclose(fp);
++      fprintf(stderr,"png_create_write_struct() failed\n");
++      return -1;
++   }
++
++   /* Allocate/initialize the image information data.  REQUIRED */
++   info_ptr = png_create_info_struct(png_ptr);
++   if (info_ptr == NULL)
++   {
++      fclose(fp);
++      png_destroy_write_struct(&png_ptr,  (png_infopp)NULL);
++      fprintf(stderr,"png_create_info_struct failed\n");
++      return -1;
++   }
++
++   /* Set error handling.  REQUIRED if you aren't supplying your own
++    * error handling functions in the png_create_write_struct() call.
++    */
++   if (setjmp(png_jmpbuf(png_ptr)))
++   {
++      /* If we get here, we had a problem writing the file */
++      fclose(fp);
++      png_destroy_write_struct(&png_ptr, &info_ptr);
++      fprintf(stderr,"PNG error handler called\n");
++      return -1;
++   }
++
++   /* set up the output control for using standard C streams */
++   png_init_io(png_ptr, fp);
++
++   /* Set the image information here.  Width and height are up to 2^31,
++    * bit_depth is one of 1, 2, 4, 8, or 16, but valid values also depend on
++    * the color_type selected. color_type is one of PNG_COLOR_TYPE_GRAY,
++    * PNG_COLOR_TYPE_GRAY_ALPHA, PNG_COLOR_TYPE_PALETTE, PNG_COLOR_TYPE_RGB,
++    * or PNG_COLOR_TYPE_RGB_ALPHA.  interlace is either PNG_INTERLACE_NONE or
++    * PNG_INTERLACE_ADAM7, and the compression_type and filter_type MUST
++    * currently be PNG_COMPRESSION_TYPE_BASE and PNG_FILTER_TYPE_BASE. REQUIRED
++    */
++   png_set_IHDR(png_ptr, info_ptr, width, height, 8, PNG_COLOR_TYPE_GRAY,
++		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
++
++#ifdef USE_PALETTE
++   /* set the palette if there is one.  REQUIRED for indexed-color images */
++   palette = (png_colorp)png_malloc(png_ptr, PNG_MAX_PALETTE_LENGTH
++             * sizeof (png_color));
++   /* ... set palette colors ... */
++   png_set_PLTE(png_ptr, info_ptr, palette, PNG_MAX_PALETTE_LENGTH);
++   /* You must not free palette here, because png_set_PLTE only makes a link to
++      the palette that you malloced.  Wait until you are about to destroy
++      the png structure. */
++
++   /* optional significant bit chunk */
++   /* if we are dealing with a grayscale image then */
++   sig_bit.gray = true_bit_depth;
++   /* otherwise, if we are dealing with a color image then */
++   sig_bit.red = true_red_bit_depth;
++   sig_bit.green = true_green_bit_depth;
++   sig_bit.blue = true_blue_bit_depth;
++   /* if the image has an alpha channel then */
++   sig_bit.alpha = true_alpha_bit_depth;
++   png_set_sBIT(png_ptr, info_ptr, sig_bit);
++#endif
++
++   /* Write the file header information. */
++   png_write_info(png_ptr, info_ptr);
++
++
++   /* Construct an array with pointers to all rows of the image */
++   for (k = 0; k < height; k++){
++     row_pointers[k] = image + k*stride;
++   }
++
++   /* Write the full image */
++   png_write_image(png_ptr, row_pointers);
++
++   /* It is REQUIRED to call this to finish writing the rest of the file */
++   png_write_end(png_ptr, info_ptr);
++
++   /* If you png_malloced a palette, free it here (don't free info_ptr->palette,
++      as recommended in versions 1.0.5m and earlier of this example; if
++      libpng mallocs info_ptr->palette, libpng will free it).  If you
++      allocated it with malloc() instead of png_malloc(), use free() instead
++      of png_free(). */
++   png_free(png_ptr, palette);
++   palette=NULL;
++
++   /* clean up after the write, and free any memory allocated */
++   png_destroy_write_struct(&png_ptr, &info_ptr);
++
++   /* close the file */
++   fclose(fp);
++
++   /* that's it */
++   return 0;
++}
++
++
++
++
+diff -Naupr subtitleripper/write-png.h subtitleripper-new/write-png.h
+--- subtitleripper/write-png.h	1970-01-01 01:00:00.000000000 +0100
++++ subtitleripper-new/write-png.h	2003-11-18 17:47:27.000000000 +0100
+@@ -0,0 +1,6 @@
++#ifndef _WRITE_PGM_H_
++#define _WRITE_PGM_H_
++
++int write_png_with_alpha(char* file_name,  unsigned int width, unsigned int height, unsigned int stride, char* image, char* alpha);
++
++#endif
