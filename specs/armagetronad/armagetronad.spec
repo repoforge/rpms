@@ -18,11 +18,12 @@
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
 Version: 0.2.7.1
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://armagetronad.sourceforge.net/
 Source: http://dl.sf.net/armagetronad/armagetronad-%{version}.tar.bz2
+Patch: armagetronad-0.2.7.1-gcc4.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL_image >= 1.2.0, esound
 BuildRequires: gcc-c++, libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
@@ -47,6 +48,7 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup
+%patch -p1 -b .gcc4
 
 
 %build
@@ -137,6 +139,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Apr 22 2005 Matthias Saou <http://freshrpms.net/> 0.2.7.1-2
+- Added gcc4 patch (sf.net bug 1187292).
+
 * Thu Mar 10 2005 Matthias Saou <http://freshrpms.net/> 0.2.7.1-1
 - Update to armagetron advanced 0.2.7.1.
 - Obsolete armagetron <= 0.2.6.1.
