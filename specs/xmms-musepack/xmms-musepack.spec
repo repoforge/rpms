@@ -5,15 +5,14 @@
 
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
-Version: 1.00
-Release: 2
-License: LGPL
+Version: 1.1.2
+Release: 1
+License: BSD
 Group: Applications/Multimedia
-URL: http://sourceforge.net/projects/mpegplus/
-Source: http://dl.sf.net/mpegplus/xmms-musepack-%{version}.tar.gz
-Patch: xmms-musepack-1.00-makefile.patch
+URL: http://www.musepack.net/
+Source: http://www.saunalahti.fi/grimmel/musepack.net-files/linux/plugins/xmms-musepack-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xmms-devel, gtk+-devel, esound-devel
+BuildRequires: xmms-devel, libmusepack-devel
 
 
 %description
@@ -22,11 +21,11 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 %prep
 %setup
-%patch -p1 -b .makefile
 
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC"
+%configure
+%{__make} %{?_smp_mflags}
 
 
 %install
@@ -40,15 +39,17 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README_mpc-plugin_english.txt Wanted
-%lang(fi) %doc README_mpc-plugin_finnish.txt
-%lang(de) %doc README_mpc-plugin_german.txt
-%lang(ko) %doc README_mpc-plugin_korean.txt
-%lang(es) %doc README_mpc-plugin_spanish.txt
-%{xmms_inputdir}/libmusepack.so
+%doc ChangeLog COPYING
+%exclude %{xmms_inputdir}/libmpc.la
+%{xmms_inputdir}/libmpc.so
 
 
 %changelog
+* Mon Apr 25 2005 Matthias Saou <http://freshrpms.net/> 1.1.2-1
+- Update to 1.1.2.
+- Update package info from sf project to musepack.net locations.
+- Change license from LGPL to BSD.
+
 * Tue Aug 10 2004 Matthias Saou <http://freshrpms.net/> 1.00-2
 - Fix OPTIONS vs. CFLAGS in addition to the patch to fix x86_64 build.
 
