@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Guile/
 Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSTROUT/Guile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, guile-devel
 
 %description
 This module provides an interface to the Gnu Guile system.

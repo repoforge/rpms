@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Crypt-OpenSSL-Random/
 Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-Random-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, openssl-devel
 
 %description
 This package contains the Crypt::OpenSSL::Random module.

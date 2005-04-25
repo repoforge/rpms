@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NI/NI-S/Tk-HTML-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Tk
 
 %description
 Tk-HTML Perl module.

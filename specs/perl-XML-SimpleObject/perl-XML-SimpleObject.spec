@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DB/DBRIAN/XML-SimpleObject-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-XML-Parser
 
 %description
 This is a small and simple package that takes the output of an XML parser
