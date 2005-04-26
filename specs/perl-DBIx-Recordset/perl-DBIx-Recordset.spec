@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GR/GRICHTER/DBIx-Recordset-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-DBI
+BuildRequires: perl, perl-DBI, perl-DBD-Pg
 
 %description
 DBIx::Recordset is a perl module for abstraction and simplification of

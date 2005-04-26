@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Net-RawIP/
 Source: http://search.cpan.org/CPAN/authors/id/S/SK/SKOLYCHEV/Net-RawIP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, libpcap
 
 %description
 This is Net::RawIP, a perl module can to manipulate raw IP packets,

@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHOUT/Apache-AuthCookie-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, mod_perl
 
 %description
 Apache::AuthCookie allows you to intercept a user's first unauthenticated

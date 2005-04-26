@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Math-GMP/
 Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHIPT/Math-GMP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, gmp-devel
 
 %description
 Math::GMP gives you access to the fast GMP library for fast
