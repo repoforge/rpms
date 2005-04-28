@@ -3,9 +3,9 @@
 
 %define desktop_vendor rpmforge
 
-Summary: GNU/Linux Audio Mechanics, the GIMP of audio processing
+Summary: GNU/Linux Audio MEchanics, the GIMP of audio processing
 Name: glame
-Version: 2.0.0
+Version: 2.0.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -15,10 +15,12 @@ URL: http://glame.sourceforge.net/
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): info
 Requires(preun): info
-BuildRequires: gcc-c++, libgnomeui-devel, guile-devel, fftw-devel
-BuildRequires: audiofile-devel, esound-devel
+BuildRequires: gcc-c++, libgnomeui-devel, libglade-devel, guile-devel
+BuildRequires: libgnomecanvas-devel, gtk2-devel >= 2.6.0
+BuildRequires: fftw-devel, audiofile-devel, esound-devel
 BuildRequires: lame-devel, libmad-devel, libvorbis-devel, ladspa-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 GLAME is meant to be the GIMP of audio processing. It is designed to be
@@ -27,7 +29,7 @@ and compatible systems.
 
 
 %package devel
-Summary: Development libraries from the GNU/Linux Audio Mechanics
+Summary: Development libraries from the GNU/Linux Audio MEchanics
 Group: Development/Libraries
 Requires(post): info
 Requires(preun): info
@@ -86,6 +88,7 @@ fi
 %postun
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
+
 %post devel
 /sbin/install-info %{_infodir}/glame-dev.info.gz %{_infodir}/dir
 
@@ -119,6 +122,10 @@ fi
 
 
 %changelog
+* Tue Mar 29 2005 Matthias Saou <http://freshrpms.net/> 2.0.1-1
+- Update to 2.0.1.
+- Requires gtk2 >= 2.6.0, which will only be relased when FC4 is.
+
 * Tue Jan 11 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-1
 - Update to 2.0.0.
 - Added lame support. Interestingly, build fails when it's not enabled.
