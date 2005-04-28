@@ -8,19 +8,22 @@
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name libapreq
+%define real_version 2.04_03
 
 Summary: Apache Request C Library
 Name: perl-libapreq
-Version: 1.33
-Release: 1
+Version: 2.04
+Release: 0.03.1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libapreq/
 
-Source: http://www.cpan.org/modules/by-module/libapreq/libapreq-%{version}.tar.gz
+#The version at cpan is very old
+#Source: http://www.cpan.org/modules/by-module/libapreq/libapreq-%{version}.tar.gz
+Source: http://apache.belnet.be/httpd/libapreq/libapreq2-%{real_version}-dev.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, httpd-devel
+BuildRequires: perl, httpd-devel, mod_perl, perl-ExtUtils-XSBuilder
 
 %description
 This package contains modules for manipulating client request data via
@@ -30,7 +33,7 @@ the Apache API with Perl and C.  Functionality includes:
  - parsing of HTTP Cookies
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}2-%{version}-dev
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -53,10 +56,11 @@ the Apache API with Perl and C.  Functionality includes:
 %doc %{_mandir}/man3/*
 #%{perl_vendorlib}/libapreq.pm
 #%{perl_vendorlib}/libapreq/*
-#%exclude %{perl_archlib}/perllocal.pod
-#%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Mon Apr 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.04-0.03.1
+- Update.
+
 * Fri Jan  7 2005 Dries Verachtert <dries@ulyssis.org> - 1.33-1
 - Initial package.
 

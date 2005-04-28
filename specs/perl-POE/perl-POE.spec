@@ -9,13 +9,13 @@
 
 Summary: Portable multitasking and networking framework for Perl
 Name: perl-POE
-Version: 0.3009
+Version: 0.31
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE/
 
-Source: http://www.cpan.org/modules/by-module/POE/POE-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCAPUTO/POE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -28,9 +28,6 @@ framework for Perl.
 
 %prep
 %setup -n %{real_name}-%{version}
-
-### Disable, causes filesystem to fill up
-exit 1
 
 %build
 %{__perl} Makefile.PL \
@@ -55,8 +52,12 @@ exit 1
 %doc README CHANGES TODO HISTORY
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/POE/
+%{perl_vendorlib}/POE.pm
 
 %changelog
+* Thu Apr 28 2005 Dries Verachtert <dries@ulyssis.org> - 0.31-1
+- Updated to release 0.31.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.3009-1
 - Updated to release 0.3009.
 

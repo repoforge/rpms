@@ -27,7 +27,8 @@ This package allows you to create generic methods for OO Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+# doesn't work with PREFIX
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" DESTDIR="%{buildroot}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install

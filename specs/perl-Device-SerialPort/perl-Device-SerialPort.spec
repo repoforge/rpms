@@ -32,7 +32,8 @@ Operating Systems.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} -pi -e 's/^if \(\!defined\(\$file\)\)/if (1 == 0)/g;' Makefile.PL
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" TESTPORT=/dev/ttyS1
 %{__make} %{?_smp_mflags}
 
 %install
