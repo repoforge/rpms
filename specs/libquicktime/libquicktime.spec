@@ -4,6 +4,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_ffmpeg 1}
+
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
 %{?rh9:%define _without_alsa 1}
@@ -29,6 +31,7 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
+Patch: libquicktime-0.9.4-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
@@ -71,6 +74,7 @@ programs that need to access quicktime files using libquicktime.
 
 %prep
 %setup -n %{name}-%{version}%{?prever}
+%patch -p1 -b .gcc4
 
 %{__perl} -pi.orig -e '
     s|\$exec_prefix/lib|\$libdir|g;
@@ -130,6 +134,10 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Thu Apr 21 2005 Matthias Saou <http://freshrpms.net/> 0.9.4-3
+- Add _without_ffmpeg on FC4 for now, current ffmpeg doesn't work here anyway.
+- Add gcc4 patch, where rt-jpeg is disabled :-/
+
 * Fri Feb  4 2005 Matthias Saou <http://freshrpms.net/> 0.9.4-2
 - Added alsa-lib-devel and lame-devel build requirement.
 - Fixed missing libtool and autotools build reqs for autogen.sh to work.
