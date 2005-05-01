@@ -1,0 +1,56 @@
+# $Id$
+# Authority: dries
+# Upstream: Erich Roncarolo <erich-roncarolo$users,sourceforge,net>
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
+%define real_name Crypt-Mimetic
+
+Summary: Crypt a file and mask it behind another file
+Name: perl-Crypt-Mimetic
+Version: 0.02
+Release: 1
+License: Artistic/GPL
+Group: Applications/CPAN
+URL: http://search.cpan.org/dist/Crypt-Mimetic/
+
+Source: http://search.cpan.org/CPAN/authors/id/E/ER/ERICH/Crypt-Mimetic-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildArch: noarch
+BuildRequires: perl
+
+%description
+This module allows you to hide a file by encrypting it and then attaching
+it to another file of your choice.  This mimetic file then looks and
+behaves like a normal file, and can be stored, used or emailed without
+attracting attention.
+  
+%prep
+%setup -n %{real_name}-%{version}
+
+%build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc Changes README
+%doc %{_mandir}/man?/*
+%{_bindir}/mimetic
+%{perl_vendorlib}/Crypt/Mimetic.pm
+%{perl_vendorlib}/Crypt/Mimetic
+%{perl_vendorlib}/Error/Mimetic.pm
+
+%changelog
+* Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
+- Initial package.
