@@ -114,7 +114,7 @@ use the Xine library.
 %patch0 -p1 -b .faad
 %patch1 -p1 -b .gcc4
 %patch2 -p1 -b .noffmmx
-#./autogen.sh noconfig
+./autogen.sh noconfig
 
 
 %build

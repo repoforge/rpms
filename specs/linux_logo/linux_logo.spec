@@ -3,7 +3,7 @@
 
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo
-Version: 4.11
+Version: 4.12
 Release: 1
 License: GPL
 Group: Applications/System
@@ -53,6 +53,9 @@ done
 
 
 %changelog
+* Mon May  2 2005 Matthias Saou <http://freshrpms.net/> 4.12-1
+- Update to 4.12.
+
 * Sat Apr 30 2005 Matthias Saou <http://freshrpms.net/> 4.11-1
 - Update to 4.11.
 
