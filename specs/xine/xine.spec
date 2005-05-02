@@ -11,11 +11,15 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.3
-Release: 2
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
-Source: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
+Source0: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
+Source1: xine.png
+Source2: http://www.bluebeamentertainment.com/xine/smokeyglass_splash.png
+Source3: http://www.bluebeamentertainment.com/xine/smokeyglass_logo.m1v
+Patch: xine-ui-0.99.3-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
@@ -41,17 +45,23 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-ui-%{version}
+%patch -p1 -b .gcc4
 # Fix for lirc needed to be searched for in lib64
 %{__perl} -pi.orig -e 's|(lirc_libprefix /lib) /usr/lib|$1 %{_libdir}|g' \
     configure
 
+# Replace the default Christmas splash screen, it's nearly May already!
+%{__cp} -a -f %{SOURCE2} misc/xine_splash.png
+# Replace the default window content with one matching the splash screen
+%{__cp} -a -f %{SOURCE3} misc/xine-ui_logo.mpv
+
 %{__cat} <<EOF >xine.desktop
 [Desktop Entry]
-Name=Xine Multimedia Player
+Name=Xine
 Comment=Versatile Multimedia Player
-Exec=xine
+Exec=xine %U
 MimeType=video/mpeg;video/quicktime;video/x-msvideo;audio/x-mp3;audio/x-mp2;audio/x-mpegurl;
-Icon=xine.xpm
+Icon=xine.png
 Terminal=false
 Type=Application
 Encoding=UTF-8
@@ -85,7 +95,12 @@ EOF
 %{__make} install DESTDIR=%{buildroot}
 %find_lang xine-ui
 
-%{__install} -Dp -m0644 xine.applications %{buildroot}%{_datadir}/application-registry/xine.applications
+%{__install} -D -m 0644 xine.applications \
+    %{buildroot}%{_datadir}/application-registry/xine.applications
+
+# Replace (ugly) default icons with a nice one
+%{__rm} -rf %{buildroot}%{_datadir}/pixmaps/*
+%{__install} -p -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/
 
 # Remove unpackaged files
 find %{buildroot} -name "xitk*" | xargs rm -rf || :
@@ -94,7 +109,7 @@ find %{buildroot} -name "xitk*" | xargs rm -rf || :
 %{__mv} %{buildroot}%{_docdir}/xine-ui xine-ui-doc
 
 %if %{?_without_freedesktop:1}0
-%{__install} -Dp -m644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
+%{__install} -D -m 0644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
 %else
 %{__mkdir_p} %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor} \
@@ -120,7 +135,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 #{!?_without_aalib:%{_bindir}/aaxine}
 %{_bindir}/*
 %{_datadir}/application-registry/xine.applications
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/xine.png
 %{_datadir}/xine/
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
 %{?_without_freedesktop:/etc/X11/applnk/Multimedia/%{name}.desktop}
@@ -132,6 +147,14 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri Apr 29 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-4
+- Replace Christmas splash screen with another one.
+- Add gcc4 patch.
+- Replace default icons with a nicer home made one.
+
+* Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-3
+- Fix Exec line in desktop file to get drag and drop to work properly (%U).
+
 * Fri Jan  7 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-2
 - Add a quick lib vs. lib64 replace for lirc static lib detection to work on
   x86_64.

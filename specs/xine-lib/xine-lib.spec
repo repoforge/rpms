@@ -36,23 +36,25 @@
 
 %define libname libxine1
 %define libver  1.0
-%define apiver  1.0.0
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: %{apiver}
-Release: 2
+Version: 1.0.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
-Source: http://dl.sf.net/xine/xine-lib-%{libver}.tar.gz
-Patch: xine-lib-1.0-unbreak-64bit-faad.patch
+Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.gz
+Patch0: xine-lib-1.0-unbreak-64bit-faad.patch
+Patch1: xine-lib-1.0.1-gcc4.patch
+Patch2: xine-lib-1.0.1-noffmmx.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
 BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
+BuildRequires: libtool, autoconf, automake
 %{?_with_rte:BuildRequires: rte-devel}
 %{?_with_ext-dvdnav:BuildRequires: libdvdnav-devel >= 0.1.4}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
@@ -108,8 +110,11 @@ use the Xine library.
 
 
 %prep
-%setup -n %{name}-%{libver}
-%patch -p1 -b .faad
+%setup
+%patch0 -p1 -b .faad
+%patch1 -p1 -b .gcc4
+%patch2 -p1 -b .noffmmx
+#./autogen.sh noconfig
 
 
 %build
@@ -162,6 +167,12 @@ use the Xine library.
 
 
 %changelog
+* Thu Apr 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.1-1
+- Update to 1.0.1.
+- Add patch for GCC4 from Ville.
+- Disable ffmpeg's MMX, build fails otherwise.
+- Run autogen to fix lib linking problem.
+
 * Fri Feb  4 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-2
 - Added patch to fix faad on x86_64, thanks to Nicholas Miell.
 
