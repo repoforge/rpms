@@ -5,7 +5,7 @@
 Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
 Version: 2.2
-Release: 2
+Release: 3
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2200.sourceforge.net/firmware.php
@@ -25,26 +25,12 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 
 %build
-# Rename all files properly
-for i in *.fw; do
-    %{__mv} ${i} `echo ${i} | sed 's/ipw-2.2-/ipw2200_/'`
-done
 
 
 %install
 %{__rm} -rf %{buildroot}
-# Install all firmware files
-%{__mkdir_p} %{buildroot}/lib/firmware \
-             %{buildroot}%{_sysconfdir}/firmware \
-             %{buildroot}%{_libdir}/hotplug/firmware
-%{__install} -p -m0644 *.fw %{buildroot}/lib/firmware/
-# Symlink all of them for new and old hotplug loading to work
-for file in *.fw; do
-    %{__ln_s} /lib/firmware/${file} \
-        %{buildroot}%{_sysconfdir}/firmware/
-    %{__ln_s} /lib/firmware/${file} \
-        %{buildroot}%{_libdir}/hotplug/firmware/
-done
+%{__mkdir_p} %{buildroot}/lib/firmware
+%{__install} -p -m 0644 *.fw %{buildroot}/lib/firmware/
 
 
 %clean
@@ -55,11 +41,14 @@ done
 %defattr(-, root, root, 0755)
 %doc LICENSE
 /lib/firmware/*.fw
-%{_sysconfdir}/firmware/*.fw
-%{_libdir}/hotplug/firmware/*.fw
 
 
 %changelog
+* Thu Apr 21 2005 Matthias Saou <http://freshrpms.net> 2.2-3
+- Remove all symlinks, the only useful location is /lib/firmware now.
+- No longer rename all firmware files, recent ipw2200 modules expect the
+  default names now (tested w/ FC3 2.6.11 updates and FC4test).
+
 * Thu Feb 17 2005 Matthias Saou <http://freshrpms.net> 2.2-2
 - Rename all files from ipw-2.2-* to ipw2200_* as required.
 
