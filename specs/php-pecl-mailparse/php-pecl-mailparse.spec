@@ -1,7 +1,7 @@
 # $Id: php-pear-ole.spec 97 2004-03-11 18:31:17Z dude $
 # Authority: matthias
 
-%define php_extdir %(php-config --extension-dir || echo %{_libdir}/php4)
+%define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 
 Summary: PECL package for parsing and working with email messages
 Name: php-pecl-mailparse
