@@ -129,10 +129,15 @@ use the Xine library.
 
 
 %install
+%{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{libname}
 # Remove all those unused docs
 %{__rm} -rf %{buildroot}%{_docdir}/xine || :
+
+
+%clean
+%{__rm} -rf %{buildroot}
 
 
 %post
@@ -140,10 +145,6 @@ use the Xine library.
 
 %postun
 /sbin/ldconfig 2>/dev/null
-
-
-%clean
-%{__rm} -rf %{buildroot}
 
 
 %files -f %{libname}.lang
@@ -172,6 +173,7 @@ use the Xine library.
 - Add patch for GCC4 from Ville.
 - Disable ffmpeg's MMX, build fails otherwise.
 - Run autogen to fix lib linking problem.
+- Add missing buildroot removal in %%install.
 
 * Fri Feb  4 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-2
 - Added patch to fix faad on x86_64, thanks to Nicholas Miell.
