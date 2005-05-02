@@ -116,7 +116,6 @@ noise, rgb/yuv conversion) and more.
 %package docs
 Summary: Documentation for MPlayer, the Movie Player for Linux
 Group: Applications/Multimedia
-Requires: %{name}
 
 %description docs
 MPlayer is a movie player. It plays most video formats as well as DVDs.
@@ -217,16 +216,14 @@ export CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+# The libdir override is required for libpostproc when _libdir is /usr/lib64
+%{__make} install DESTDIR=%{buildroot} \
+    libdir=%{buildroot}%{_libdir}
 
 ### The default Skin
 %{__mkdir_p} %{buildroot}%{_datadir}/mplayer/Skin/
 %{__tar} -xjf %{SOURCE2} -C %{buildroot}%{_datadir}/mplayer/Skin/
 %{__mv} -f %{buildroot}%{_datadir}/mplayer/Skin/* %{buildroot}%{_datadir}/mplayer/Skin/default
-
-### Fix eventual skin permissions :-(
-find %{buildroot}%{_datadir}/mplayer/Skin -type d -exec chmod 755 {} \;
-find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 
 # The fonts are now in a separate package
 %{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
