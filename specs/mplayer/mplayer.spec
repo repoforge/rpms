@@ -34,14 +34,12 @@
 
 # Is this a daily build? If so, put the date like "20020808" otherwise put 0
 #define date      20041025
-%define rcver     pre6a
-
-%define xmms_plugindir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
+%define rcver     pre7
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.15%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.16%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -58,15 +56,17 @@ Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
 Patch11: MPlayer-1.0pre6a-udev.patch
+Patch12: MPlayer-1.0pre7-gcc4.patch
+Patch13: MPlayer-1.0pre7-gcc_detection.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
 BuildRequires: XFree86-devel, gtk+-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
-BuildRequires: libogg-devel, libvorbis-devel, libmatroska-devel
-BuildRequires: libmad-devel, xmms-devel, libdv-devel
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: libmatroska-devel
+BuildRequires: libmad-devel, libdv-devel
+BuildRequires: ImageMagick
 %{?_with_samba:BuildRequires: samba-common}
 %{?_with_dvb:BuildRequires: kernel-source}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
@@ -78,7 +78,6 @@ BuildRequires: libmad-devel, xmms-devel, libdv-devel
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_esd:BuildRequires: esound-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
-%{!?_without_faad2:BuildRequires: faad2-devel}
 %{!?_without_lzo:BuildRequires: lzo-devel}
 %{!?_without_fame:BuildRequires: libfame-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
@@ -87,14 +86,16 @@ BuildRequires: libmad-devel, xmms-devel, libdv-devel
 #{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
 
 %description
-MPlayer is a movie player. It plays most video formats as well as DVDs.
+MPlayer is a multimedia player. It plays most video formats as well as DVDs.
 Its big feature is the wide range of supported output drivers. There are also
 nice antialiased shaded subtitles and OSD.
 
+On x86, additional Win32 binary codecs should be added to %{_libdir}/win32/.
+
 Available rpmbuild rebuild options :
 --with : samba dvb
---without : aalib lirc cdparanoia arts xvid esd dvdread faad2 lzo libfame caca
-            theora osdmenu gcccheck freedesktop fribidi xvmc
+--without : aalib lirc cdparanoia arts xvid esd dvdread lzo libfame caca
+            theora osdmenu gcccheck fribidi xvmc
 
 
 %package -n libpostproc
@@ -123,20 +124,14 @@ to use MPlayer, transcode or other similar programs.
 %patch2 -p0 -b .redhat
 %patch10 -p1 -b .fribidi
 %patch11 -p1 -b .udev
+%patch12 -p1 -b .gcc4
+%patch13 -p0 -b .gcc_detection
 
-# Overwrite the system menu entry with ours
-%{__cat} <<EOF > etc/mplayer.desktop
-[Desktop Entry]
-Name=Movie Player
-Comment=Play multimedia files and media
-Icon=mplayer.xpm
-Exec=gmplayer %f
-Terminal=false
-MimeType=video/mpeg;video/x-msvideo;video/quicktime
-Type=Application
-Categories=Application;AudioVideo;
-Encoding=UTF-8
-EOF
+# Overwrite some of the details of the provided system menu entry
+%{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
+                  s|^Categories=.*|Categories=Application;AudioVideo;|g' \
+    etc/mplayer.desktop
+echo "MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;video/x-anim;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;video/x-nsv;video/x-flc;video/x-fli;application/ogg;application/x-ogg;application/x-matroska;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-m4a;audio/x-ms-asf;audio/x-ms-asx;audio/x-ms-wax;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;misc/ultravox;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo;audio/x-pn-realaudio-plugin;" >> etc/mplayer.desktop
 
 
 %build
@@ -149,8 +144,6 @@ find . -name "CVS" | xargs %{__rm} -rf
     --enable-gui \
     --enable-largefiles \
     --enable-dynamic-plugins \
-    --enable-xmms \
-    --with-xmmsplugindir=%{xmms_plugindir} \
 %ifarch %{ix86}
     --enable-runtime-cpudetection \
     --enable-win32 \
@@ -171,8 +164,6 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{?_without_arts:--disable-arts} \
     %{?_without_esd:--disable-esd} \
     %{?_without_dvdread:--disable-dvdread} \
-    %{?_without_faad2:--disable-faad} \
-    %{!?_without_faad2:--enable-external-faad} \
     %{?_without_libfame:--disable-libfame} \
     %{?_without_caca:--disable-caca} \
     %{?_without_theora:--disable-theora} \
@@ -189,11 +180,6 @@ find . -name "CVS" | xargs %{__rm} -rf
 
     # "dvdnav disabled, it does not work" (1.0pre5, still the same)
     #{!?_without_dvdnav:--enable-dvdnav} \
-
-# Fix some lib vs. lib64 issues
-%{__perl} -pi.orig -e 's|/usr/lib/libxmms|%{_libdir}/libxmms|s' config.mak
-%{__perl} -pi.orig -e 's|\$\(prefix\)/lib|\$(libdir)|g' \
-    libavcodec/libpostproc/Makefile
 
 %{__make} %{?_smp_mflags}
 
@@ -214,26 +200,22 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 # The fonts are now in a separate package
 %{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
 
-# The nicer icon used in the menu entry
-%{__install} -Dp -m0644 Gui/mplayer/pixmaps/MPlayer_mini.xpm \
-    %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
+# Remove unwanted stuff from the docs to be included
+%{__rm} -rf DOCS/{man,xml}
 
-### Install libpostproc if not already installed
-if [ ! -e "%{buildroot}%{_libdir}/libpostproc.so" ]; then
-    %makeinstall -C libavcodec/libpostproc
-fi
-
-# Clean the docs we'll include
-%{__rm} -f `find DOCS -name .cvsignore`
+# Create empty Win32 binary codec directory
+%ifarch %{ix86}
+%{__mkdir_p} %{buildroot}%{_libdir}/win32
+%endif
 
 
 %post
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %postun
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
+update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %post -n libpostproc
 /sbin/ldconfig
@@ -248,17 +230,20 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog DOCS/ README etc/*.conf
+%doc AUTHORS ChangeLog Copyright DOCS/ LICENSE README etc/*.conf
 %dir %{_sysconfdir}/mplayer/
 #config %{_sysconfdir}/mplayer/mplayer.conf
 %{_bindir}/*
+%ifarch %{ix86}
+%dir %{_libdir}/win32/
+%endif
 %ifarch %{ix86} ppc
 %{_libdir}/libdha.so*
 %{_libdir}/mplayer/
 %endif
-%{_datadir}/applications/mplayer.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
 %{_datadir}/mplayer/
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/mplayer-desktop.xpm
 %{_mandir}/man1/*.1*
 %lang(cs) %{_mandir}/cs/man1/*.1*
 %lang(de) %{_mandir}/de/man1/*.1*
@@ -276,6 +261,21 @@ update-desktop-database %{_datadir}/applications >/dev/null 2>&1 || :
 
 
 %changelog
+* Sun May  1 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.16.pre7
+- Include gcc4 patches from Gentoo portage, to build on FC4..
+
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.16.pre7
+- Update to 1.0pre7.
+- No longer overwrite the entire desktop file, just replace a few fields.
+- Remove libogg and libvorbis deps, ogg/vorbis now uses Tremor internally.
+- Disable xmms support, as it's been moved to Extras.
+- Disable external faad2, it changes too much, using the internal is safer.
+- Add Copyright and LICENSE files to %%doc.
+- Remove .cvsignore file removal from DOCS, there are none leftover anymore.
+- Remove manual libpostproc install, it seems fixed now.
+- Add same MimeType as totem, except flac and flash types.
+- Remove lib64 hacks, problems have been fixed.
+
 * Thu Jan 13 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.15.pre6a
 - Change lirc patch into more generic udev one to avoid /dev/video* detection.
 - Enable v4l again (from the above patch).
