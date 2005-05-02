@@ -58,6 +58,7 @@ Patch10: MPlayer-1.0pre6a-fribidi.patch
 Patch11: MPlayer-1.0pre6a-udev.patch
 Patch12: MPlayer-1.0pre7-gcc4.patch
 Patch13: MPlayer-1.0pre7-gcc_detection.patch
+Patch14: MPlayer-1.0pre7-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
@@ -98,6 +99,33 @@ Available rpmbuild rebuild options :
             theora osdmenu gcccheck fribidi xvmc
 
 
+%package -n mencoder
+Summary: MPlayer’s Movie Encoder
+Group: Applications/Multimedia
+Requires: %{name} = %{version}
+
+%description -n mencoder
+MPlayer’s Movie Encoder is a simple movie encoder, designed to encode 
+MPlayer-playable movies to other MPlayer-playable formats. It encodes to
+MPEG-4 (DivX/XviD), one of the libavcodec codecs and PCM/MP3/VBRMP3 audio
+in 1, 2 or 3 passes.  Furthermore  it has stream copying abilities, a
+powerful filter system (crop, expand, flip, postprocess, rotate, scale,
+noise, rgb/yuv conversion) and more.
+
+
+%package docs
+Summary: Documentation for MPlayer, the Movie Player for Linux
+Group: Applications/Multimedia
+Requires: %{name}
+
+%description docs
+MPlayer is a movie player. It plays most video formats as well as DVDs.
+Its big feature is the wide range of supported output drivers. There are also
+nice antialiased shaded subtitles and OSD.
+
+This package contains the end user documentation.
+
+
 %package -n libpostproc
 Summary: Video postprocessing library from MPlayer
 Group: System Environment/Libraries
@@ -126,6 +154,7 @@ to use MPlayer, transcode or other similar programs.
 %patch11 -p1 -b .udev
 %patch12 -p1 -b .gcc4
 %patch13 -p0 -b .gcc_detection
+%patch14 -p1 -b .nostrip
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -136,6 +165,7 @@ echo "MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;vi
 
 %build
 find . -name "CVS" | xargs %{__rm} -rf
+export CFLAGS="%{optflags}"
 ./configure \
     --prefix=%{_prefix} \
     --datadir=%{_datadir}/mplayer \
@@ -176,7 +206,8 @@ find . -name "CVS" | xargs %{__rm} -rf
     %{!?_without_osdmenu:--enable-menu} \
     %{?_with_samba:--enable-smb} \
     %{!?_without_fribidi:--enable-fribidi} \
-    %{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW}
+    %{!?_without_xvmc:--enable-xvmc --with-xvmclib=XvMCW} \
+    --enable-debug
 
     # "dvdnav disabled, it does not work" (1.0pre5, still the same)
     #{!?_without_dvdnav:--enable-dvdnav} \
@@ -212,10 +243,12 @@ find %{buildroot}%{_datadir}/mplayer/Skin -type f -exec chmod 644 {} \;
 %post
 /sbin/ldconfig
 update-desktop-database %{_datadir}/applications &>/dev/null || :
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 
 %postun
 /sbin/ldconfig
 update-desktop-database %{_datadir}/applications &>/dev/null || :
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 
 %post -n libpostproc
 /sbin/ldconfig
@@ -230,10 +263,11 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog Copyright DOCS/ LICENSE README etc/*.conf
+%doc AUTHORS ChangeLog Copyright LICENSE README etc/*.conf
 %dir %{_sysconfdir}/mplayer/
 #config %{_sysconfdir}/mplayer/mplayer.conf
-%{_bindir}/*
+%{_bindir}/gmplayer
+%{_bindir}/mplayer
 %ifarch %{ix86}
 %dir %{_libdir}/win32/
 %endif
@@ -244,15 +278,32 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
 %{_datadir}/mplayer/
 %{_datadir}/pixmaps/mplayer-desktop.xpm
-%{_mandir}/man1/*.1*
-%lang(cs) %{_mandir}/cs/man1/*.1*
-%lang(de) %{_mandir}/de/man1/*.1*
-%lang(es) %{_mandir}/es/man1/*.1*
-%lang(fr) %{_mandir}/fr/man1/*.1*
-%lang(hu) %{_mandir}/hu/man1/*.1*
-%lang(it) %{_mandir}/it/man1/*.1*
-%lang(pl) %{_mandir}/pl/man1/*.1*
-%lang(sv) %{_mandir}/sv/man1/*.1*
+%{_mandir}/man1/mplayer.1*
+%lang(cs) %{_mandir}/cs/man1/mplayer.1*
+%lang(de) %{_mandir}/de/man1/mplayer.1*
+%lang(es) %{_mandir}/es/man1/mplayer.1*
+%lang(fr) %{_mandir}/fr/man1/mplayer.1*
+%lang(hu) %{_mandir}/hu/man1/mplayer.1*
+%lang(it) %{_mandir}/it/man1/mplayer.1*
+%lang(pl) %{_mandir}/pl/man1/mplayer.1*
+%lang(sv) %{_mandir}/sv/man1/mplayer.1*
+
+%files -n mencoder
+%defattr(-, root, root, 0755)
+%{_bindir}/mencoder
+%{_mandir}/man1/mencoder.1*
+%lang(cs) %{_mandir}/cs/man1/mencoder.1*
+%lang(de) %{_mandir}/de/man1/mencoder.1*
+%lang(es) %{_mandir}/es/man1/mencoder.1*
+%lang(fr) %{_mandir}/fr/man1/mencoder.1*
+%lang(hu) %{_mandir}/hu/man1/mencoder.1*
+%lang(it) %{_mandir}/it/man1/mencoder.1*
+%lang(pl) %{_mandir}/pl/man1/mencoder.1*
+%lang(sv) %{_mandir}/sv/man1/mencoder.1*
+
+%files docs
+%defattr(-, root, root, 0755)
+%doc DOCS/*
 
 %files -n libpostproc
 %defattr(-, root, root, 0755)
@@ -263,6 +314,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %changelog
 * Sun May  1 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.16.pre7
 - Include gcc4 patches from Gentoo portage, to build on FC4..
+- Split off docs sub-package, as it represents 7MB of data!
+- Split off mencoder sub-package too, not everyone uses it.
+- Add gtk-update-icon-cache calls in post and postun.
+- Add debug option (it only adds -g and disabled stripping) + patch.
 
 * Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.16.pre7
 - Update to 1.0pre7.

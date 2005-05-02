@@ -1,0 +1,24 @@
+diff -Naupr MPlayer-1.0pre7.orig/libdha/Makefile MPlayer-1.0pre7/libdha/Makefile
+--- MPlayer-1.0pre7.orig/libdha/Makefile	2005-01-01 15:45:11.000000000 +0100
++++ MPlayer-1.0pre7/libdha/Makefile	2005-05-02 14:57:16.000000000 +0200
+@@ -79,7 +79,7 @@ depend: pci_names.c
+ 
+ install:
+ 	mkdir -p $(LIBDIR)
+-	install -m 755 -s -p $(LIBNAME) $(LIBDIR)/$(LIBNAME)
++	install -m 755 -p $(LIBNAME) $(LIBDIR)/$(LIBNAME)
+ 	rm -f $(LIBDIR)/libdha.so
+ 	ln -sf $(LIBNAME) $(LIBDIR)/$(SHORTNAME)
+ ifeq ($(TARGET_OS),OpenBSD)
+diff -Naupr MPlayer-1.0pre7.orig/vidix/drivers/Makefile MPlayer-1.0pre7/vidix/drivers/Makefile
+--- MPlayer-1.0pre7.orig/vidix/drivers/Makefile	2004-12-27 19:11:06.000000000 +0100
++++ MPlayer-1.0pre7/vidix/drivers/Makefile	2005-05-02 14:57:40.000000000 +0200
+@@ -162,7 +162,7 @@ depend:
+ 
+ install:
+ 	mkdir -p $(LIBDIR)/mplayer/vidix
+-	-install -m 755 -s -p *.so $(LIBDIR)/mplayer/vidix
++	-install -m 755 -p *.so $(LIBDIR)/mplayer/vidix
+ uninstall:
+ 	rm -f $(LIBDIR)/mplayer/vidix/*.so
+ 	rmdir -p --ignore-fail-on-non-empty $(LIBDIR)/mplayer/vidix
