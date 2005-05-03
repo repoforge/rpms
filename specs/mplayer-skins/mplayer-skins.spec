@@ -6,7 +6,7 @@
 
 Summary: Collection of skins for MPlayer
 Name: mplayer-skins
-Version: 1.6
+Version: 1.7
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -107,7 +107,7 @@ change the appeareance of MPlayer.
 
 %files
 %defattr(0644, root, root, 0755)
-%{skindir}/
+%{skindir}/*
 
 
 %changelog

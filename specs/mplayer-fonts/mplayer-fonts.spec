@@ -43,8 +43,7 @@ This package contains the fonts used for subtitles and OSD.
 %{__mkdir_p} %{buildroot}%{_datadir}/mplayer/
 %{__cp} -a * %{buildroot}%{_datadir}/mplayer/
 # Make a symlink to the default font
-%{__ln_s} -f \
-    font-arial-%{font}/font-arial-%{size}-%{font} \
+%{__ln_s} -f font-arial-%{font}/font-arial-%{size}-%{font} \
     %{buildroot}%{_datadir}/mplayer/font
 
 
@@ -55,12 +54,12 @@ This package contains the fonts used for subtitles and OSD.
 %pre
 # We provide a symlink... some have an empty dir, this fixes it!
 [ -d %{_datadir}/mplayer/font ] && \
-        rmdir %{_datadir}/mplayer/font 2>/dev/null || :
+    rmdir %{_datadir}/mplayer/font 2>/dev/null || :
 
 
 %files
 %defattr(0644, root, root, 0755)
-%{_datadir}/mplayer/
+%{_datadir}/mplayer/*
 
 
 %changelog

@@ -6,7 +6,7 @@
 
 Summary: Collection of skins for the Xine multimedia player
 Name: xine-skins
-Version: 1.9
+Version: 1.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -58,7 +58,7 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{skindir}
-%{__cp} -ap * %{buildroot}%{skindir}/
+%{__cp} -a * %{buildroot}%{skindir}/
 
 
 %clean
@@ -67,7 +67,7 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 
 %files
 %defattr(0644, root, root, 0755)
-%{skindir}/
+%{skindir}/*
 
 
 %changelog
