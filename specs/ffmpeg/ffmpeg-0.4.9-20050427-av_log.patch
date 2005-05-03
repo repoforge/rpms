@@ -1,0 +1,11 @@
+--- libavcodec/common.h.orig	2005-04-27 12:59:59.400853307 +0200
++++ libavcodec/common.h	2005-04-27 13:00:46.144678217 +0200
+@@ -511,8 +511,6 @@
+ #define sprintf sprintf_is_forbidden_due_to_security_issues_use_snprintf
+ #define strcat strcat_is_forbidden_due_to_security_issues_use_pstrcat
+ #if !(defined(LIBAVFORMAT_BUILD) || defined(_FRAMEHOOK_H))
+-#define printf please_use_av_log
+-#define fprintf please_use_av_log
+ #endif
+ 
+ #define CHECKED_ALLOCZ(p, size)\

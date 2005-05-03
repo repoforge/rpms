@@ -3,43 +3,31 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?rh9:%define _without_fast_memcpy 1}
-%{?rh8:%define _without_fast_memcpy 1}
 %{?rh7:%define _without_faac 1}
-%{?rh7:%define _without_fast_memcpy 1}
 %{?el2:%define _without_faac 1}
-%{?el2:%define _without_fast_memcpy 1}
 %{?el2:%define _without_vorbis 1}
 
-%define date   2004-11-10
+%define date   20050502
 #define prever pre1
-%{?date: %define sqdate %(echo %{date} | tr -d '-')}
 
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
 Version: 0.4.9
-Release: %{?date:0.%{sqdate}.}%{?prever:0.%{prever}.}3
+Release: 0.1%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
 %if %{?date:0}%{!?date:1}
 Source: http://dl.sf.net/ffmpeg/ffmpeg-%{version}%{?prever:-%{prever}}.tar.gz
 %else
-Source: http://ffmpeg.sourceforge.net/cvs/%{name}-cvs-%{date}.tar.gz
+Source: http://mplayerhq.hu/MPlayer/cvs/FFMpeg-%{date}.tar.bz2
 %endif
-Patch0: ffmpeg-0.4.9-pre1-sharedppfix.patch
-Patch2: ffmpeg-0.4.9-pre1-pic.patch
-Patch3: ffmpeg-cvs-ldlibs.patch
+Patch0: ffmpeg-0.4.9-20050427-gcc4.patch
+Patch1: ffmpeg-0.4.9-20050427-av_log.patch
+Patch2: ffmpeg-0.4.9-20050427-a52link.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-# Seems like automatic req/provs _really_ don't work well on this package
-%{!?_without_lame:BuildRequires: lame}
-%{!?_without_vorbis:BuildRequires: libogg, libvorbis}
-%{!?_without_faad:BuildRequires: faad2}
-%{!?_without_faac:BuildRequires: faac}
-%{!?_without_xvid:BuildRequires: xvidcore}
-%{!?_without_a52dec:BuildRequires: a52dec}
 BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
-BuildRequires: tetex
+BuildRequires: /usr/bin/texi2html
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
@@ -48,11 +36,12 @@ BuildRequires: tetex
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 # We need those as autoreqprov adds them as a requirement to the package
 # (0.4.8, still true in 0.4.9-pre1)
-Provides: libavcodec.so
-Provides: libavformat.so
 %ifarch x86_64
 Provides: libavcodec.so()(64bit)
 Provides: libavformat.so()(64bit)
+%else
+Provides: libavcodec.so
+Provides: libavformat.so
 %endif
 
 %description
@@ -110,58 +99,46 @@ to use MPlayer, transcode or other similar programs.
 
 
 %prep
-%setup -n %{name}-%{?date:cvs-%{date}}%{!?date:%{version}%{?prever:-%{prever}}}
-#patch0 -p1 -b .sharedpp
-#patch2 -p1 -b .pic
-%patch3
-
-### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
-%{__perl} -pi -e 's|\$\(prefix\)/lib|\$(libdir)|g;
-                  s|\$\(prefix\)/include|\$(includedir)|g' \
-                  Makefile */Makefile */*/Makefile
+%setup -n %{?date:FFMpeg-%{date}}%{!?date:%{name}-%{version}%{?prever:-%{prever}}}
+%patch0 -p0 -b .gcc4
+%patch1 -p0 -b .av_log
+%patch2 -p0 -b .a52link
 
 
 %build
 %configure \
 %ifnarch %{ix86}
     --disable-mmx \
-    --extra-cflags="%{optflags} -fPIC" \
-%else
-    --extra-cflags="%{optflags}" \
 %endif
-    %{!?_without_lame: --enable-mp3lame} \
-    %{!?_without_vorbis: --enable-vorbis} \
-    %{!?_without_faad: --enable-faad} \
-    %{!?_without_faac: --enable-faac} \
-    %{!?_without_xvid: --enable-xvid} \
+%ifarch x86_64
+    --extra-cflags="-fPIC" \
+%endif
+    %{!?_without_lame:   --enable-mp3lame} \
+    %{!?_without_vorbis: --enable-libogg --enable-vorbis} \
+    %{!?_without_faad:   --enable-faad} \
+    %{!?_without_faac:   --enable-faac} \
+    %{!?_without_xvid:   --enable-xvid} \
+    %{!?_without_a52:    --enable-a52 --enable-a52bin} \
     --enable-pp \
     --enable-shared-pp \
     --enable-shared \
     --enable-gpl \
+    --disable-opts \
     --disable-strip
-#   %{!?_without_a52: --enable-a52} \
-# Make!
-%{__make} %{?_smp_mflags} -C libavcodec/libpostproc
 %{__make} %{?_smp_mflags}
-#%{?_without_fast_memcpy:OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"}
-%{__make} documentation
-# Leftover, for reference :
-# OPTFLAGS="-fPIC -fomit-frame-pointer %{optflags} -UUSE_FASTMEMCPY"
 
 
 %install
-%{__rm} -rf %{buildroot}
-%makeinstall -C libavcodec/libpostproc
+%{__rm} -rf %{buildroot} _docs
 %makeinstall
 
-### Make installlib is broken in 0.4.6-8, so we do it by hand
-%{__install} -Dp -m0644 libavcodec/libavcodec.a \
-    %{buildroot}%{_libdir}/libavcodec.a
-%{__install} -Dp -m0644 libavformat/libavformat.a \
-    %{buildroot}%{_libdir}/libavformat.a
+# Make installlib is broken in 0.4.6-8 (20050502 too), so we do it by hand
+%{__install} -m 0644 libavcodec/libavcodec.a libavformat/libavformat.a \
+    %{buildroot}%{_libdir}/
 
-### Remove from the included docs
-%{__rm} -rf doc/{CVS,Makefile}
+# Remove unwanted files from the included docs
+%{__cp} -a doc _docs
+%{__rm} -rf _docs/{CVS,Makefile,*.1,*.texi,*.pl}
 
 
 %clean
@@ -192,7 +169,7 @@ to use MPlayer, transcode or other similar programs.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/*
+%doc _docs/*
 %{_includedir}/ffmpeg/
 %{_libdir}/*.a
 
@@ -203,6 +180,17 @@ to use MPlayer, transcode or other similar programs.
 
 
 %changelog
+* Tue May  3 2005 Matthias Saou <http://freshrpms.net/> 0.4.9-0.1.20050502
+- Update and include patches from Enrico to fix gcc4 build.
+- Remove no longer include static libs from the devel package.
+- Remove no longer required explicit requirements.
+- Clean up obsolete stuff from the build : separate libpostproc compile etc.
+
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 0.4.9-0.1.20050417
+- Update to today's snapshot (no upgrade path, but that shouldn't matter).
+- Disable patch3 as it's nowhere to be found :-(
+- Added theora... hmm, nope, the build is broken.
+
 * Sat Jan 15 2005 Dag Wieers <dag@wieers.com> - 0.4.9-0.20041110.3
 - Exclude libpostproc.so* from ffmpeg package.
 
