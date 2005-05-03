@@ -4,6 +4,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _with_extffmpeg 1}
+
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
 %{?fc1:%define _without_xvmc 1}
@@ -40,23 +42,22 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: 1.0.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.gz
 Patch0: xine-lib-1.0-unbreak-64bit-faad.patch
 Patch1: xine-lib-1.0.1-gcc4.patch
-Patch2: xine-lib-1.0.1-noffmmx.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
 BuildRequires: libvorbis-devel, SDL-devel
 # BUG : libmng-devel should apparently require libjpeg-devel for includes
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel
-BuildRequires: libtool, autoconf, automake
 %{?_with_rte:BuildRequires: rte-devel}
-%{?_with_ext-dvdnav:BuildRequires: libdvdnav-devel >= 0.1.4}
+%{?_with_extdvdnav:BuildRequires: libdvdnav-devel >= 0.1.4}
+%{?_with_extffmpeg:BuildRequires: ffmpeg-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
@@ -86,7 +87,7 @@ formats, too.
 This package contains the backend files for the Xine multimedia player.
 
 Available rpmbuild rebuild options :
---with : rte ext-dvdnav
+--with : rte extdvdnav extffmpeg
 --without : alsa aalib libfame flac esound arts gnomevfs2 speex caca xvmc
 (only alsa can be really disabled, others only remove explicit package
  dependency which won't make much difference if devel files are found)
@@ -113,18 +114,14 @@ use the Xine library.
 %setup
 %patch0 -p1 -b .faad
 %patch1 -p1 -b .gcc4
-%patch2 -p1 -b .noffmmx
-./autogen.sh noconfig
 
 
 %build
 %configure \
-    --program-prefix="%{?_program_prefix}" \
-    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
-    --disable-static-xv \
-    --with-pic \
+    --enable-ipv6 \
+    %{?_with_extffmpeg:--with-external-ffmpeg} \
     %{?_without_alsa:--disable-alsa} \
-    %{!?_with_ext-dvdnav:--with-included-dvdnav}
+    %{!?_with_extdvdnav:--with-included-dvdnav}
 %{__make} %{?_smp_mflags}
 
 
@@ -168,6 +165,11 @@ use the Xine library.
 
 
 %changelog
+* Tue May  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.1-2
+- Remove ffmpeg MMX disabling, it works, go figure.
+- No longer run autogen.sh or libtool. Same, it works... confusing.
+- Use external ffmpeg lib only for FC4, as there are issues (at least on FC3).
+
 * Thu Apr 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.1-1
 - Update to 1.0.1.
 - Add patch for GCC4 from Ville.
