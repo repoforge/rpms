@@ -7,13 +7,13 @@
 %{?el2:%define _without_faac 1}
 %{?el2:%define _without_vorbis 1}
 
-%define date   20050502
+%define date   20050427
 #define prever pre1
 
 Summary: Hyper fast MPEG1/MPEG4/H263/RV and AC3/MPEG audio encoder and decoder
 Name: ffmpeg
 Version: 0.4.9
-Release: 0.1%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.2%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://ffmpeg.sourceforge.net/
@@ -180,6 +180,9 @@ to use MPlayer, transcode or other similar programs.
 
 
 %changelog
+* Tue May  3 2005 Matthias Saou <http://freshrpms.net/> 0.4.9-0.2.20050427
+- Downgrade to 20050427 since avcodec.h is missing AVCodecContext otherwise.
+
 * Tue May  3 2005 Matthias Saou <http://freshrpms.net/> 0.4.9-0.1.20050502
 - Update and include patches from Enrico to fix gcc4 build.
 - Remove no longer include static libs from the devel package.
