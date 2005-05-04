@@ -1,12 +1,12 @@
 # $Id$
 # Authority: matthias
 
-%define prever rc8
+#define prever rc8
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
 Version: 2.0.0
-Release: %{?prever:0.%{prever}.}3
+Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Internet
 URL: http://www.aMule.org/
@@ -33,6 +33,7 @@ same network.
 
 %build
 %configure \
+    --enable-alc \
     --enable-utf8-systray
 %{__make} %{?_smp_mflags}
 
@@ -72,11 +73,21 @@ update-desktop-database -q 2>/dev/null || :
 %{_bindir}/*
 %{_libdir}/xchat/plugins/xas.pl
 %{_datadir}/applications/*.desktop
-%{_datadir}/cas/
+#{_datadir}/cas/
 %{_datadir}/pixmaps/*.xpm
+%lang(de) %{_mandir}/de/man1/*.1*
+%lang(es) %{_mandir}/es/man1/*.1*
+%lang(fr) %{_mandir}/fr/man1/*.1*
+%lang(hu) %{_mandir}/hu/man1/*.1*
+%{_mandir}/man1/*.1*
 
 
 %changelog
+* Wed May  4 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-1
+- Update to 2.0.0 final.
+- Add new man pages.
+- Explicitly enable alc, as it no longer gets built otherwise.
+
 * Wed Feb  2 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-0.rc8.3
 - Really fix the UTF-8 alc.desktop problem... it was converted to stdout.
 
