@@ -5,6 +5,7 @@
 
 %{!?dist: %define gimp_plugin 1}
 %{?el4:   %define gimp_plugin 1}
+%{?fc4:   %define gimp_plugin 1}
 %{?fc3:   %define gimp_plugin 1}
 %{?fc2:   %define gimp_plugin 1}
 %{?yd4:   %define gimp_plugin 1}
@@ -12,7 +13,7 @@
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.4
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
@@ -32,7 +33,7 @@ supported yet.
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, glib2-devel, liboil-devel
 
 %description devel
 This package contains the header files, static libraries and development
@@ -113,6 +114,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.3.4-2
+- Add missing glib2-devel and liboil-devel reqs in the devel package.
+
 * Sat Apr  2 2005 Matthias Saou <http://freshrpms.net/> 0.3.4-1
 - Update to 0.3.4.
 - Change %%makeinstall for DESTDIR method because of the gimp plugin.
