@@ -1,0 +1,170 @@
+diff -Naupr snes9x-1.43-src.orig/snes9x/getset.h snes9x-1.43-src/snes9x/getset.h
+--- snes9x-1.43-src.orig/snes9x/getset.h	2004-12-30 23:15:45.000000000 +0100
++++ snes9x-1.43-src/snes9x/getset.h	2005-05-05 17:09:08.000000000 +0200
+@@ -120,7 +120,7 @@ INLINE uint8 S9xGetByte (uint32 Address)
+ 		return (*(GetAddress + (Address & 0xffff)));
+     }
+ 	
+-    switch ((int) GetAddress)
++    switch ((long) GetAddress)
+     {
+     case CMemory::MAP_PPU:
+ 		return (S9xGetPPU (Address & 0xffff));
+@@ -222,7 +222,7 @@ INLINE uint16 S9xGetWord (uint32 Address
+ #endif	
+     }
+ 
+-    switch ((int) GetAddress)
++    switch ((long) GetAddress)
+     {
+     case CMemory::MAP_PPU:
+ 		return (S9xGetPPU (Address & 0xffff) |
+@@ -346,7 +346,7 @@ INLINE void S9xSetByte (uint8 Byte, uint
+ 		return;
+     }
+ 	
+-    switch ((int) SetAddress)
++    switch ((long) SetAddress)
+     {
+     case CMemory::MAP_PPU:
+ 		S9xSetPPU (Byte, Address & 0xffff);
+@@ -479,7 +479,7 @@ INLINE void S9xSetWord (uint16 Word, uin
+ 		return;
+     }
+ 	
+-    switch ((int) SetAddress)
++    switch ((long) SetAddress)
+     {
+     case CMemory::MAP_PPU:
+ 		S9xSetPPU ((uint8) Word, Address & 0xffff);
+@@ -600,7 +600,7 @@ INLINE uint8 *GetBasePointer (uint32 Add
+ 	{
+ 		return s7r.bank50;
+ 	}
+-    switch ((int) GetAddress)
++    switch ((long) GetAddress)
+     {
+ 	case CMemory::MAP_SPC7110_DRAM:
+ #ifdef SPC7110_DEBUG
+@@ -666,7 +666,7 @@ INLINE uint8 *S9xGetMemPointer (uint32 A
+ 	if(Settings.SPC7110&&((Address&0x7FFFFF)==0x4800))
+ 		return s7r.bank50;
+ 
+-    switch ((int) GetAddress)
++    switch ((long) GetAddress)
+     {
+ 	case CMemory::MAP_SPC7110_DRAM:
+ #ifdef SPC7110_DEBUG
+@@ -726,7 +726,7 @@ INLINE void S9xSetPCBase (uint32 Address
+ 		return;
+     }
+ 	
+-    switch ((int) GetAddress)
++    switch ((long) GetAddress)
+     {
+     case CMemory::MAP_PPU:
+ 		CPU.PCBase = Memory.FillRAM;
+diff -Naupr snes9x-1.43-src.orig/snes9x/offsets.cpp snes9x-1.43-src/snes9x/offsets.cpp
+--- snes9x-1.43-src.orig/snes9x/offsets.cpp	2004-12-30 23:15:47.000000000 +0100
++++ snes9x-1.43-src/snes9x/offsets.cpp	2005-05-05 17:09:08.000000000 +0200
+@@ -100,30 +100,30 @@
+ #endif
+ 
+ #define OFFSET(N,F) \
+-fprintf (S9xSTREAM, "#define " #N " CPU + %d\n", (int) &((struct SCPUState *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " CPU + %ld\n", (long) &((struct SCPUState *) 0)->F);
+ #define OFFSET2(N,F) \
+-fprintf (S9xSTREAM, "#define " #N " Registers + %d\n", (int) &((struct SRegisters *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " Registers + %ld\n", (long) &((struct SRegisters *) 0)->F);
+ #define OFFSET3(F) \
+-fprintf (S9xSTREAM, "#define " #F " Memory + %d\n", (int) &((class CMemory *) 0)->F);
++fprintf (S9xSTREAM, "#define " #F " Memory + %ld\n", (long) &((class CMemory *) 0)->F);
+ #define OFFSET4(N,F) \
+-fprintf (S9xSTREAM, "#define " #N " APU + %d\n", (int) &((struct SAPU *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " APU + %ld\n", (long) &((struct SAPU *) 0)->F);
+ #define OFFSET5(N,F) \
+-fprintf (S9xSTREAM, "#define " #N " IAPU + %d\n", (int) &((struct SIAPU *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " IAPU + %ld\n", (long) &((struct SIAPU *) 0)->F);
+ #define OFFSET6(N,F) \
+-fprintf (S9xSTREAM, "#define " #N " ICPU + %d\n", (int) &((struct SICPU *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " ICPU + %ld\n", (long) &((struct SICPU *) 0)->F);
+ #define OFFSET7(N,F) \
+-fprintf (S9xSTREAM, "#define " #N " Settings + %d\n", (int) &((struct SSettings *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " Settings + %ld\n", (long) &((struct SSettings *) 0)->F);
+ #define OFFSET8(N, F) \
+-fprintf (S9xSTREAM, "#define " #N " APURegisters + %d\n", (int) &((struct SAPURegisters *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " APURegisters + %ld\n", (long) &((struct SAPURegisters *) 0)->F);
+ 
+ #define OFFSET9(N, F) \
+-fprintf (S9xSTREAM, "#define " #N " PPU + %d\n", (int) &((struct SPPU *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " PPU + %ld\n", (long) &((struct SPPU *) 0)->F);
+ #define OFFSET10(N, F) \
+-fprintf (S9xSTREAM, "#define " #N " IPPU + %d\n", (int) &((struct InternalPPU *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " IPPU + %ld\n", (long) &((struct InternalPPU *) 0)->F);
+ #define OFFSET11(N, F) \
+-fprintf (S9xSTREAM, "#define " #N " SA1 + %d\n", (int) &((struct SSA1 *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " SA1 + %dl\n", (long) &((struct SSA1 *) 0)->F);
+ #define OFFSET12(N, F) \
+-fprintf (S9xSTREAM, "#define " #N " SA1Registers + %d\n", (int) &((struct SSA1Registers *) 0)->F);
++fprintf (S9xSTREAM, "#define " #N " SA1Registers + %ld\n", (long) &((struct SSA1Registers *) 0)->F);
+ 
+ int main (int /*argc*/, char ** /*argv*/)
+ {
+diff -Naupr snes9x-1.43-src.orig/snes9x/sa1.cpp snes9x-1.43-src/snes9x/sa1.cpp
+--- snes9x-1.43-src.orig/snes9x/sa1.cpp	2004-12-30 23:15:47.000000000 +0100
++++ snes9x-1.43-src/snes9x/sa1.cpp	2005-05-05 17:09:08.000000000 +0200
+@@ -201,7 +201,7 @@ uint8 S9xSA1GetByte (uint32 address)
+     if (GetAddress >= (uint8 *) CMemory::MAP_LAST)
+ 	return (*(GetAddress + (address & 0xffff)));
+ 
+-    switch ((int) GetAddress)
++    switch ((long) GetAddress)
+     {
+     case CMemory::MAP_PPU:
+ 	return (S9xGetSA1 (address & 0xffff));
+@@ -248,7 +248,7 @@ void S9xSA1SetByte (uint8 byte, uint32 a
+ 	return;
+     }
+ 
+-    switch ((int) Setaddress)
++    switch ((long) Setaddress)
+     {
+     case CMemory::MAP_PPU:
+ 	S9xSetSA1 (byte, address & 0xffff);
+@@ -310,7 +310,7 @@ void S9xSA1SetPCBase (uint32 address)
+ 	return;
+     }
+ 
+-    switch ((int) GetAddress)
++    switch ((long) GetAddress)
+     {
+     case CMemory::MAP_PPU:
+ 	SA1.PCBase = Memory.FillRAM - 0x2000;
+diff -Naupr snes9x-1.43-src.orig/snes9x/server.cpp snes9x-1.43-src/snes9x/server.cpp
+--- snes9x-1.43-src.orig/snes9x/server.cpp	2004-12-30 23:15:47.000000000 +0100
++++ snes9x-1.43-src/snes9x/server.cpp	2005-05-05 17:09:08.000000000 +0200
+@@ -820,9 +820,9 @@ void S9xNPServerLoop (void *)
+                     S9xNPSendROMImageToAllClients ();
+                     break;
+                 case NP_SERVER_SYNC_CLIENT:
+-                    NPServer.Clients [(int) task_data].Ready = FALSE;
++                    NPServer.Clients [(long) task_data].Ready = FALSE;
+                     S9xNPRecomputePause ();
+-                    S9xNPSyncClient ((int) task_data);
++                    S9xNPSyncClient ((long) task_data);
+                     break;
+                 case NP_SERVER_SYNC_ALL:
+                     S9xNPSyncClients ();
+@@ -855,10 +855,10 @@ void S9xNPServerLoop (void *)
+                     }
+                     break;
+                 case NP_SERVER_SEND_SRAM:
+-                    NPServer.Clients [(int) task_data].Ready = FALSE;
++                    NPServer.Clients [(long) task_data].Ready = FALSE;
+                     S9xNPRecomputePause ();
+                     S9xNPWaitForEmulationToComplete ();
+-                    S9xNPSendSRAMToClient ((int) task_data);
++                    S9xNPSendSRAMToClient ((long) task_data);
+                     break;
+ 
+                 case NP_SERVER_SEND_SRAM_ALL:
