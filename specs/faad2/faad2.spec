@@ -8,7 +8,7 @@
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.0
-Release: 3%{?prever:.%{prever}}%{?date:.%{date}}
+Release: 4%{?prever:.%{prever}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
@@ -23,6 +23,8 @@ Patch1: faad2-2.0-gcc34.patch
 Patch2: faad2-2.0-xmms-noext.patch
 Patch3: faad2-2.0-gcc4.patch
 Patch4: faad2-2.0-configure-mpeg4ip.patch
+Patch5: faad2-2.0-64bit.patch
+Patch6: faad2-2.0-symbol.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool
 BuildRequires: gcc-c++, zlib-devel, libsndfile-devel >= 1.0.0
@@ -69,6 +71,8 @@ This package contains development files and documentation for libfaad.
 %patch2 -p1 -b .noext
 %patch3 -p1 -b .gcc4
 %patch4 -p0 -b .mpeg4ip
+%patch5 -p1 -b .64bit
+%patch6 -p1 -b .symbol
 
 
 %build
@@ -126,6 +130,9 @@ test -x configure || sh bootstrap
 
 
 %changelog
+* Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 2.0-4
+- (Re-?)Add 64bit and symbol patches, thanks to Nicholas Miell.
+
 * Wed Apr 20 2005 Matthias Saou <http://freshrpms.net/> 2.0-3
 - Downgrade to 2.0 with gcc 3.4 and 4 patches from dev.gentoo.org, the libmp4v2
   is now internal again, no need for the external mpeg4ip mess... should fix

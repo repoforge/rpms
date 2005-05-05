@@ -1,0 +1,104 @@
+--- faad2/libfaad/decoder.c.~1~	2005-05-04 16:34:50.000000000 -0700
++++ faad2/libfaad/decoder.c	2005-05-04 16:47:24.000000000 -0700
+@@ -50,12 +50,17 @@
+ uint16_t dbg_count;
+ #endif
+ 
++#define alias(target, name) _alias(target, name)
++#define _alias(target, name) \
++  extern __typeof (target) name __attribute__ ((alias (#target)));
++
+ char* FAADAPI faacDecGetErrorMessage(unsigned char errcode)
+ {
+     if (errcode >= NUM_ERROR_MESSAGES)
+         return NULL;
+     return err_msg[errcode];
+ }
++alias(faacDecGetErrorMessage, NeAACDecGetErrorMessage)
+ 
+ unsigned long FAADAPI faacDecGetCapabilities(void)
+ {
+@@ -82,6 +87,7 @@
+ 
+     return cap;
+ }
++alias(faacDecGetCapabilities, NeAACDecGetCapabilities)
+ 
+ faacDecHandle FAADAPI faacDecOpen(void)
+ {
+@@ -147,6 +153,7 @@
+ 
+     return hDecoder;
+ }
++alias(faacDecOpen, NeAACDecOpen)
+ 
+ faacDecConfigurationPtr FAADAPI faacDecGetCurrentConfiguration(faacDecHandle hDecoder)
+ {
+@@ -159,6 +166,7 @@
+ 
+     return NULL;
+ }
++alias(faacDecGetCurrentConfiguration, NeAACDecGetCurrentConfiguration)
+ 
+ uint8_t FAADAPI faacDecSetConfiguration(faacDecHandle hDecoder,
+                                     faacDecConfigurationPtr config)
+@@ -189,6 +197,7 @@
+ 
+     return 0;
+ }
++alias(faacDecSetConfiguration, NeAACDecSetConfiguration)
+ 
+ long FAADAPI faacDecInit(faacDecHandle hDecoder, unsigned char *buffer,
+                             unsigned long buffer_size,
+@@ -282,6 +291,7 @@
+ 
+     return bits;
+ }
++alias(faacDecInit, NeAACDecInit)
+ 
+ /* Init the library using a DecoderSpecificInfo */
+ char FAADAPI faacDecInit2(faacDecHandle hDecoder, unsigned char *pBuffer,
+@@ -364,6 +374,7 @@
+ 
+     return 0;
+ }
++alias(faacDecInit2, NeAACDecInit2)
+ 
+ #ifdef DRM
+ char FAADAPI faacDecInitDRM(faacDecHandle hDecoder, unsigned long samplerate,
+@@ -457,7 +468,14 @@
+ 
+     return 0;
+ }
++#else
++char FAADAPI faacDecInitDRM(faacDecHandle hDecoder, unsigned long samplerate,
++                              unsigned char channels)
++{
++     return 1;
++}
+ #endif
++alias(faacDecInitDRM, NeAACDecInitDRM)
+ 
+ void FAADAPI faacDecClose(faacDecHandle hDecoder)
+ {
+@@ -511,6 +529,7 @@
+ 
+     if (hDecoder) faad_free(hDecoder);
+ }
++alias(faacDecClose, NeAACDecClose)
+ 
+ void FAADAPI faacDecPostSeekReset(faacDecHandle hDecoder, long frame)
+ {
+@@ -522,6 +541,7 @@
+             hDecoder->frame = frame;
+     }
+ }
++alias(faacDecPostSeekReset, NeAACDecPostSeekReset)
+ 
+ static void create_channel_config(faacDecHandle hDecoder, faacDecFrameInfo *hInfo)
+ {
+@@ -970,3 +990,4 @@
+ 
+     return NULL;
+ }
++alias(faacDecDecode, NeAACDecDecode)
