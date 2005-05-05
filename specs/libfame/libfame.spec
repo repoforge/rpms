@@ -4,7 +4,7 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 5
+Release: 6
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
@@ -39,16 +39,14 @@ libfame library.
 %setup
 %patch0 -p1 -b .fstrict-aliasing
 %patch1 -p1 -b .mmxone
+%patch2 -p1 -b .m4
+./autogen.sh
 
 # Fix lib stuff for lib64
 %{__perl} -pi.orig -e 's|/lib"|/%{_lib}"|g' configure.in
 
 
 %build
-for file in ChangeLog NEWS; do
-    test -e ${file} || touch ${file}
-done
-autoreconf --force --install --symlink
 # Compile a special MMX & SSE enabled lib first
 %ifarch %{ix86}
     %configure --enable-sse --enable-mmx
@@ -108,6 +106,11 @@ autoreconf --force --install --symlink
 
 
 %changelog
+* Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-6
+- Run plain "./autogen.sh" instead of autoreconf to avoid libm problem on
+  x86_64 (weird one!).
+- Actually really apply the last patch too...
+
 * Sun May  1 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-5
 - Patch the m4 file to fix underquoted warning.
 
