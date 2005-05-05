@@ -1,41 +1,34 @@
-%define		gst_minver	0.8.0
-%define		gstp_minver	0.8.0
-%define		majorminor	0.8
-%define		gstreamer	gstreamer
-%define		register	%{_bindir}/gst-register-%{majorminor} > /dev/null 2>&1 || :
+# $Id$
+# Authority: matthias
 
-Name: 		%{gstreamer}-ffmpeg
-Version: 	0.8.3
-Release: 	0
-Summary: 	GStreamer FFmpeg-based streaming media framework plugin
+%define gst_minver 0.8.0
+%define gstp_minver 0.8.0
+%define majorminor 0.8
+%define gstreamer gstreamer
+%define register %{_bindir}/gst-register-%{majorminor}
 
-Group: 		Applications/Multimedia
-License: 	LGPL
-URL:		http://gstreamer.net/
-Source: 	http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-Requires(pre):	%{_bindir}/gst-register-%{majorminor}
-Requires(post):	%{_bindir}/gst-register-%{majorminor}
-Requires:	%{gstreamer}-plugins >= %{gstp_minver}
-
-BuildRequires:	%{gstreamer}-devel >= %{gst_minver}
+Summary: GStreamer streaming media framework FFmpeg-based plugin
+Name: %{gstreamer}-ffmpeg
+Version: 0.8.4.1
+Release: 1
+License: GPL
+Group: Applications/Multimedia
+URL: http://gstreamer.net/
+#Source: http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
+Source: http://ronald.bitfreak.net/priv/gst-ffmpeg-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires(pre): %{register}
+Requires(post): %{register}
+Requires: %{gstreamer} >= %{gst_minver}
+Requires: %{gstreamer}-plugins >= %{gstp_minver}
+BuildRequires: %{gstreamer}-devel >= %{gst_minver}
+BuildRequires: %{gstreamer}-plugins-devel >= %{gstp_minver}
 # libtool needs this, sigh
-BuildRequires:	gcc-c++
-
-# all of the FFmpeg dependencies we need to get the codecs we want
-BuildRequires:	freetype-devel
-BuildRequires:	imlib2-devel
-BuildRequires:	SDL-devel
-
-# Dear Red Hat.  Please get your Requires for -devel packages straight.
-# This time, you forgot to make SDL-devel require alsa-lib-devel.
-# Love, Thomas.
-#%{expand:%%define buildforfc2 %(A=$(awk '{print $4}' /etc/fedora-release); if [ "$A" = 2 ]; then echo 1; else echo 0; fi)}
-
-#%if %{buildforfc2}
-#BuildRequires:  alsa-lib-devel
-#%endif
+BuildRequires: gcc-c++
+# The FFmpeg dependencies we need to get the codecs we want
+BuildRequires: freetype-devel
+BuildRequires: imlib2-devel
+BuildRequires: SDL-devel
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -45,37 +38,49 @@ else media-related.  Its plugin-based architecture means that new data
 types or processing capabilities can be added simply by installing new 
 plugins.
 
+
 %prep
-%setup -q -n gst-ffmpeg-%{version}
+%setup -n gst-ffmpeg-%{version}
+
 
 %build
-# The FC3 default -mtune=pentium4 makes the build fail on mmx assemply
-CFLAGS="`echo '%{optflags}' | sed 's/-mtune=pentium4/-mtune=pentium3/'`" \
 %configure
+%{__make} %{?_smp_mflags}
 
-make %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 %makeinstall
 
-# Clean out files that should not be part of the rpm.
-rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.{a,la}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
+
 
 %post
-%{register}
+%{register} &>/dev/null || :
 
 %postun
-%{register}
+%{register} &>/dev/null || :
+
 
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING NEWS README TODO
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
+%exclude %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.la
+
 
 %changelog
+* Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.4.1-1
+- Update to 0.8.4.1 snapshot that builds on FC4test.
+- Added some docs to be included, the mandatory license for instance.
+- Change the license from LGPL to GPL, as that's what COPYING states.
+- Spec file cleanup, as it's in fact here to stay.
+
+* Tue Apr 12 2005 Matthias Saou <http://freshrpms.net/> 0.8.4-0
+- Update to 0.8.4.
+
 * Wed Jan  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.3-0
 - Update to 0.8.3.
 
