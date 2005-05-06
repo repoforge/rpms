@@ -1,0 +1,24 @@
+diff -Nur pitfdll-0.8.1.orig/gst-libs/ext/loader/wine/ext.c pitfdll-0.8.1/gst-libs/ext/loader/wine/ext.c
+--- pitfdll-0.8.1.orig/gst-libs/ext/loader/wine/ext.c	2005-04-23 16:44:21.000000000 +0200
++++ pitfdll-0.8.1/gst-libs/ext/loader/wine/ext.c	2005-04-23 19:17:47.000000000 +0200
+@@ -469,7 +469,7 @@
+ 
+     if (type&MEM_RESERVE && (unsigned)address&0xffff) {
+        size += (unsigned)address&0xffff;
+-       (unsigned)address &= ~0xffff;
++       address = (LPVOID)((unsigned)address & ~0xffff);
+     }
+     pgsz = sysconf(_SC_PAGESIZE);
+     if (type&MEM_COMMIT && (unsigned)address%pgsz) {
+diff -Nur pitfdll-0.8.1.orig/gst-libs/ext/loader/wine/win32.c pitfdll-0.8.1/gst-libs/ext/loader/wine/win32.c
+--- pitfdll-0.8.1.orig/gst-libs/ext/loader/wine/win32.c	2005-04-23 16:44:29.000000000 +0200
++++ pitfdll-0.8.1/gst-libs/ext/loader/wine/win32.c	2005-04-23 19:19:08.000000000 +0200
+@@ -2623,7 +2623,7 @@
+     dbgprintf("GetWindowThreadProcessId(0x%x, 0x%x) => %d\n",
+ 	win, pid_data, tid);
+     if (pid_data)
+-	(int)*pid_data = tid;
++	*pid_data = tid;
+     return tid;
+ }
+ 
