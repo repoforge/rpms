@@ -6,7 +6,7 @@
 
 Summary: Reliably tunnel TCP connections over ICMP packets
 Name: ptunnel
-Version: 0.55
+Version: 0.60
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -41,10 +41,13 @@ is required.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG LICENSE README web
+%doc CHANGELOG LICENSE README web/
 %{_bindir}/ptunnel
 
 %changelog
+* Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 0.60-1
+- Updated to release 0.60.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 0.55-1
 - Updated to release 0.55.
 

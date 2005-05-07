@@ -6,11 +6,11 @@
 
 ### FIXME: Disabled snortalog as it does not provide an install script and it is too hard to setup properly.
 
-%define real_version v2.3
+%define real_version v2.4
 
 Summary: Snort log analyzer
 Name: snortalog
-Version: 2.3.0
+Version: 2.4.0
 Release: 1
 License: GPL
 Group: Applications/Internet

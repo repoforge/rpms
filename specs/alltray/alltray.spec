@@ -4,7 +4,7 @@
 
 Summary: Dock any application into the system tray
 Name: alltray
-Version: 0.40
+Version: 0.51
 Release: 1
 License: GPL
 Group: System Environment/Desktops
@@ -33,15 +33,29 @@ minimize to system tray.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
+### Fix library symlinks
+for lib in $(ls %{buildroot}%{_libdir}/ooRexx/*.so.?.?.?); do
+	%{__ln_s} -f $(basename $lib) ${lib//%\.?}
+	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?}
+#	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?\.?}
+done
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc %{_mandir}/man1/alltray.1*
 %{_bindir}/alltray
+%exclude %{_libdir}/liballtraynomap.a
+%exclude %{_libdir}/liballtraynomap.la
+%{_libdir}/liballtraynomap.so.*
 
 %changelog
+* Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.51-1
+- Updated to release 0.51.
+
 * Fri Feb 25 2005 Dag Wieers <dag@wieers.com> - 0.40-1
 - Updated to release 0.40.
 

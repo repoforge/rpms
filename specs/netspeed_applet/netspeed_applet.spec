@@ -4,7 +4,7 @@
 
 Summary: GNOME applet that shows traffic on a network device
 Name: netspeed_applet
-Version: 0.10
+Version: 0.11
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -46,13 +46,16 @@ scrollkeeper-update -q || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_datadir}/gnome/help/netspeed_applet/
-%{_libexecdir}/*
-%{_libdir}/bonobo/servers/*
-%{_datadir}/pixmaps/*
+%{_datadir}/pixmaps/netspeed_applet.png
 %{_datadir}/omf/netspeed_applet/
+%{_libdir}/bonobo/servers/GNOME_NetspeedApplet.server
+%{_libexecdir}/netspeed_applet2
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun May 01 2005 Dag Wieers <dag@wieers.com> - 0.11-1
+- Updated to release 0.11.
+
 * Thu Jun 03 2004 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 

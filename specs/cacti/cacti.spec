@@ -11,8 +11,8 @@
 
 Summary: Network monitoring/graphing tool
 Name: cacti
-Version: 0.8.6c
-Release: 2
+Version: 0.8.6d
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -123,6 +123,9 @@ fi
 %doc docs/
 
 %changelog
+* Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 0.8.6d-1
+- Updated to release 0.8.6d.
+
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.8.6c-2
 - Fix for the crontab entry. (Gilles Chauvin, Joe Pruett)
 - Removed the php-rrdtool dependency. (Gilles Chauvin, Joe Pruett)

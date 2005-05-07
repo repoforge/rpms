@@ -13,7 +13,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.190
+Version: 1.200
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -26,6 +26,7 @@ BuildArch: noarch
 AutoReq: 0
 BuildRequires: perl, perl-Net-SSLeay, perl(CGI), perl(Mon::Client)
 Requires: perl, perl(Net::SSLeay), perl(CGI), perl(Mon::Client)
+Requires: perl(Authen::PAM)
 Requires(post): openssl
 
 %description
@@ -145,6 +146,10 @@ fi
 %{_libexecdir}/webmin
 
 %changelog
+* Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 1.200-1
+- Updated to release 1.200.
+- Added perl(Authen::PAM) dependency. (Treyavn)
+
 * Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.190-1
 - Updated to release 1.190.
 

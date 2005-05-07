@@ -14,8 +14,8 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 3.0.2
-Release: 2
+Version: 3.0.3
+Release: 1
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -175,15 +175,18 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/spamassassin
 %{_bindir}/*
 %{_datadir}/spamassassin/
-%{_libdir}/*.so
+%{_libdir}/libspamc.so
 %{perl_vendorlib}/Mail/
-%{_includedir}/*.h
+%{_includedir}/libspamc.h
 
 %files tools
 %defattr(0644, root, root, 0755)
 %doc contrib/ masses/ sql/ tools/
 
 %changelog
+* Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 3.0.3-1
+- Updated to release 3.0.3.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 3.0.2-2
 - Removed accidental %%{buildroot} from scripts. (Robert Evans)
 - Reinserted perl(Mail::SpamAssassin) provides. (Josh Kelley)

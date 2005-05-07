@@ -2,9 +2,7 @@
 # Authority: dag
 # Upstream: James Yonan <jim$yonan,net>
 
-# Tag: test
-
-%define prever rc20
+#define prever rc20
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
@@ -42,8 +40,11 @@ fi
 	--enable-iproute2 \
 	--enable-pthread
 %{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} -C plugin/auth-pam
-%{__make} %{?_smp_mflags} -C plugin/down-root
+
+### Build plugins
+for pi in auth-pam down-root; do
+	%{__make} %{?_smp_mflags} -C plugin/$pi
+done
 
 
 %install
@@ -56,7 +57,7 @@ fi
 ### Install empty configuration directory
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/openvpn/
 
-### Install plugins
+### Install plugins and move plugin documentation
 for pi in auth-pam down-root; do
 	%{__mv} -f plugin/$pi/README plugin/README.$pi
 	%{__install} -Dp -m0755 plugin/$pi/openvpn-$pi.so %{buildroot}%{_datadir}/openvpn/plugin/lib/openvpn-$pi.so
@@ -96,6 +97,9 @@ fi
 
 
 %changelog
+* Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 2.0-0.rc20.1
 - Updated to release 2.0_rc20.
 

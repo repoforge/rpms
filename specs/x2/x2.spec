@@ -4,7 +4,7 @@
 
 Summary: The X2 text editor
 Name: x2
-Version: 2.04.1
+Version: 2.05.1
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -12,6 +12,8 @@ URL: http://www.tangbu.com/
 
 Source: http://www.tangbu.com/DOWNLOAD/xlinux.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+ExclusiveArch: i386
 
 %description
 X2 is a text mode editor that is designed to make the code writing process as
@@ -24,8 +26,16 @@ macros are available to turn X2 into a Usenet news reader or a POP mail client.
 %prep
 %setup -c %{name}-%{version}
 
-%{__cat} <<EOF >x2.sh
+%{__cat} <<'EOF' >x.sh
+#!/bin/sh
 export X2PATH="%{_datadir}/x2"
+exec %{_datadir}/x2/x $@
+EOF
+
+%{__cat} <<'EOF' >xx.sh
+#!/bin/sh
+export X2PATH="%{_datadir}/x2"
+exec %{_datadir}/x2/xx $@
 EOF
 
 %build
@@ -33,15 +43,16 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 x %{buildroot}%{_bindir}/x
-%{__install} -Dp -m0755 xx %{buildroot}%{_bindir}/xx
+%{__install} -Dp -m0755 x.sh %{buildroot}%{_bindir}/x
+%{__install} -Dp -m0755 xx.sh %{buildroot}%{_bindir}/xx
+%{__install} -Dp -m0755 x %{buildroot}%{_datadir}/x2/x
+%{__install} -Dp -m0755 xx %{buildroot}%{_datadir}/x2/xx
 %{__install} -Dp -m0755 xutils.so %{buildroot}%{_libdir}/xutils.so
 %{__install} -Dp -m0644 xprofile %{buildroot}%{_datadir}/x2/xprofile
 %{__install} -Dp -m0644 xprofile.def %{buildroot}%{_datadir}/x2/xprofile.def
 %{__install} -Dp -m0644 xprofile.unx %{buildroot}%{_datadir}/x2/xprofile.unx
 %{__install} -Dp -m0644 xunix.hlp %{buildroot}%{_datadir}/x2/X.HLP
 %{__install} -Dp -m0644 XUNIX.PRO %{buildroot}%{_datadir}/x2/XUNIX.PRO
-%{__install} -Dp -m0755 x2.sh %{buildroot}%{_sysconfdir}/profile.d/x2.sh
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -56,15 +67,21 @@ EOF
 %defattr(-, root, root, 0755)
 %doc README
 %config %{_datadir}/x2/XUNIX.PRO
-%config %{_sysconfdir}/profile.d/
-%{_bindir}/*
-%{_libdir}/*
+%{_bindir}/x
+%{_bindir}/xx
+%{_libdir}/xutils.so
+%dir %{_datadir}/x2/
+%{_datadir}/x2/x
+%{_datadir}/x2/xx
 %{_datadir}/x2/xprofile
 %{_datadir}/x2/xprofile.def
 %{_datadir}/x2/xprofile.unx
 %{_datadir}/x2/X.HLP
 
 %changelog
+* Tue May 03 2005 Dag Wieers <dag@wieers.com> - 2.05.1-1
+- Updated to release 2.05.1.
+
 * Wed May 12 2004 Dag Wieers <dag@wieers.com> - 2.04.1-1
 - Updated to release 2.04.1.
 

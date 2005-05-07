@@ -7,8 +7,8 @@
 
 Summary: Tool for easily maintaining remote web sites
 Name: sitecopy
-Version: 0.15.0
-Release: 2
+Version: 0.15.1
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.lyra.org/sitecopy/
@@ -89,6 +89,9 @@ cd -
 %endif
 
 %changelog
+* Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.15.1-1
+- Updated to release 0.15.1.
+
 * Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.15.0-2
 - Fixed ownership of the docs. (Oron Peled)
 

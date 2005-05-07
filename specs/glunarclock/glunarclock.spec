@@ -2,11 +2,11 @@
 # Authority: dag
 # Upstream: Josh Buhl <jbuhl$users,sourseforge,net>
 
-%define real_version 0.32
+%define po_version 0.32
 
 Summary: Display the current phase of the Moon as an applet for the gnome panel. 
 Name: glunarclock
-Version: 0.32.2
+Version: 0.32.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -15,8 +15,7 @@ URL: http://glunarclock.sourceforge.net/
 Source: http://dl.sf.net/glunarclock/glunarclock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gail-devel
-BuildRequires: scrollkeeper
+BuildRequires: gail-devel, libxklavier-devel, scrollkeeper
 
 Requires(post): scrollkeeper
 
@@ -36,7 +35,7 @@ for the gnome panel.
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
-%find_lang %{name}-%{real_version}
+%find_lang %{name}-%{po_version}
 
 %post
 scrollkeeper-update -q || :
@@ -47,22 +46,25 @@ scrollkeeper-update -q || :
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}-%{real_version}.lang
+%files -f %{name}-%{po_version}.lang
 %defattr (-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* NEWS README 
 #%doc %{_mandir}/man1/*
 %doc %{_datadir}/gnome/help/glunarclock-applet-2/
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_libexecdir}/*
-%{_libdir}/bonobo/servers/*.server
+%config %{_sysconfdir}/gconf/schemas/glunarclock.schemas
+%{_libexecdir}/glunarclock-applet-2
+%{_libdir}/bonobo/servers/GNOME_GLunarclockApplet_Factory.server
 %{_datadir}/glunarclock/
-%{_datadir}/gnome-2.0/ui/*.xml
-%{_datadir}/pixmaps/*.png
+%{_datadir}/gnome-2.0/ui/GNOME_GLunarclockApplet.xml
+%{_datadir}/pixmaps/glunarclock-logo.png
 %{_datadir}/pixmaps/glunarclock/
-%{_datadir}/omf/glunarclock/*.omf
+%{_datadir}/omf/glunarclock/
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.32.4-0
+- Updated to release 0.32.4.
+
 * Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 0.32.2-0
 - Updated to release 0.32.2.
 

@@ -6,22 +6,25 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
-%define desktop_vendor clamtk
+%define desktop_vendor rpmforge
 
-Summary: Easy to use front-end for ClamAV.
+Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 1.0.10
+Version: 1.97
 Release: 1
 License: Perl
 Group: Applications/File
 URL: http://clamtk.sourceforge.net/
 
+### FIXME: Source should include a version (Please fix upstream)
 Source: http://dl.sf.net/clamtk/clamtk.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: perl-Tk, perl-File-Find-Rule, perl-DateManip, perl-libwww-perl
-Requires: clamav, clamav-db
+Requires: perl-Gtk2, perl-File-Find-Rule, perl-Date-Calc, perl-libwww-perl
+Requires: clamav >= 0.83, clamav-db
+
+Obsoletes: clamtk2
 
 %description
 ClamTk is a front-end, point and click gui for ClamAV on Linux systems.
@@ -33,7 +36,7 @@ It supports easy signature-updates.
 %{__cat} <<EOF >clamtk.desktop
 [Desktop Entry]
 Name=ClamTk Virus Scanner
-Comment=Scan your system for virusses.
+Comment=Scan your system for viruses.
 Exec=clamtk
 Icon=clam.xpm
 Terminal=false
@@ -48,7 +51,6 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 clamtk %{buildroot}%{_bindir}/clamtk
 %{__install} -Dp -m0644 clam.xpm %{buildroot}%{_datadir}/pixmaps/clam.xpm
-%{__install} -Dp -m0644 clam-stop.xpm %{buildroot}%{_datadir}/pixmaps/clam-stop.xpm
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 clamtk.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/clamtk.desktop
@@ -66,13 +68,16 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE README TODO clamtk.pl clamtk.pm
+%doc CHANGES DISCLAIMER LICENSE README clamtk.pl clamtk
 %{_bindir}/clamtk
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-clamtk.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/clamtk.desktop}
 %{_datadir}/pixmaps/clam.xpm
-%{_datadir}/pixmaps/clam-stop.xpm
 
 %changelog
+* Thu May 05 2005 Dag Wieers <dag@wieers.com> - 1.97-1
+- Updated to release 1.97.
+- Added changes from Dave M.
+
 * Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 1.0.10-1
 - Initial package. (using DAR)

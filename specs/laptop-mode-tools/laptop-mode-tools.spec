@@ -75,5 +75,5 @@ fi
 %{_sbindir}/lm-syslog-setup
 
 %changelog
-* Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 1.04-1
+* Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 1.05-1
 - Initial package. (using DAR)

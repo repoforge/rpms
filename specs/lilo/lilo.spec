@@ -7,7 +7,7 @@
 
 Summary: The boot loader for Linux and other operating systems
 Name: lilo
-Version: 22.6.1
+Version: 22.7
 Release: 1
 License: MIT
 Group: System Environment/Base
@@ -89,6 +89,9 @@ fi
 %exclude %{_sbindir}/keytab-lilo.pl
 
 %changelog
+* Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 21.7-1
+- Updated to release 21.7.
+
 * Thu Nov 18 2004 Dag Wieers <dag@wieers.com> - 21.6.1-1
 - Updated to release 21.6.1.
 

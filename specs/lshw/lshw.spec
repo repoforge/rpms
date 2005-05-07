@@ -9,11 +9,11 @@
 %{?rh7:%define _without_gtk24 1}
 %{?el2:%define _without_gtk24 1}
 
-%define real_version B.02.03
+%define real_version B.02.04
 
 Summary: Hardware lister
 Name: lshw
-Version: 2.03
+Version: 2.04
 Release: 1
 License: GPL
 Group: Applications/System
@@ -93,6 +93,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 2.04-1
+- Updated to release B.02.04.
+
 * Mon Feb 07 2005 Dag Wieers <dag@wieers.com> - 2.03-1
 - Updated to release B.02.03.
 

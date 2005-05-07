@@ -4,16 +4,16 @@
 
 Summary: Light-weight GNOME web browser
 Name: atlantis
-Version: 0.1.2
-Release: 0
-Group: Applications/Internet
+Version: 0.1.3
+Release: 1
 License: Proprietary/Binary Only
+Group: Applications/Internet
 URL: http://www.akcaagac.com/index_atlantis.html
 
-Source: http://mirrors.egwn.net/cvsgnome/atlantis-%{version}.tar.bz2
+Source: http://www.akcaagac.com/atlantis/files/atlantis-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+ExclusiveArch: i386
 BuildRequires: gtkhtml2 >= 2.0
 
 %description
@@ -39,14 +39,17 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%config %{_sysconfdir}/gconf/schemas/*.schemas
-%{_bindir}/*
+%config %{_sysconfdir}/gconf/schemas/atlantis.schemas
+%{_bindir}/atlantis
 %{_datadir}/atlantis/
-%{_datadir}/applications/*.desktop
-%{_datadir}/application-registry/*.applications
-%{_datadir}/pixmaps/*
+%{_datadir}/applications/atlantis.desktop
+%{_datadir}/application-registry/atlantis.applications
+%{_datadir}/pixmaps/atlantis.png
 
 %changelog
+* Mon May 02 2005 Dag Wieers <dag@wieers.com> - 0.1.3-1
+- Updated to release 0.1.3.
+
 * Mon Jun 23 2003 Dag Wieers <dag@wieers.com> - 0.1.2-0
 - Updated to release 0.1.2.
 

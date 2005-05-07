@@ -8,13 +8,13 @@
 
 Summary: Archive and manage remote nodes using SNMP and TFTP
 Name: pancho
-Version: 9.3.6
+Version: 9.3.7
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.panchoproject.org/
+URL: http://www.pancho.org/
 
-Source: http://www.panchoproject.org/archives/pancho/pancho-v%{version}.tar.gz
+Source: http://www.pancho.org/archives/pancho/pancho-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -65,6 +65,9 @@ and shared with the community via the Pancho Project website.
 %{perl_sitelib}/*
 
 %changelog
+* Wed May 04 2005 Dag Wieers <dag@wieers.com> - 9.3.7-1
+- Updated to release 9.3.7.
+
 * Fri Sep 24 2004 Dag Wieers <dag@wieers.com> - 9.3.6-1
 - Updated to release 9.3.6.
 

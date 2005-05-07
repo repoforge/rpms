@@ -4,17 +4,15 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.6.1
-Release: 3
+Version: 0.7.0
+Release: 1
 License: GPL
 Group: Applications/Emulators
 URL: http://fabrice.bellard.free.fr/qemu/
 
 Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
-#Patch: qemu-0.6.0-glibc-private.patch
-Patch0: qemu-0.6.1-build.patch
-Patch1: qemu-0.6.1-dyngen.patch
-#Patch2: qemu-0.6.1-segv.patch
+Patch0: qemu-0.7.0-build.patch
+Patch1: qemu-0.7.0-dyngen.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
@@ -39,10 +37,8 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-#%patch0 -b .glibc
 %patch0 -p1 -b .build
-%patch1 -p0 -b .dyngen
-#%patch2 -p0 -b .segv
+%patch1 -p1 -b .dyngen
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -179,10 +175,15 @@ fi
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
 %dir %{_datadir}/qemu/
+%{_datadir}/qemu/keymaps/
 %{_datadir}/qemu/*.bin
+%{_datadir}/qemu/*.elf
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Sun May 01 2005 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 0.6.1-3
 - Removed erroneous dovecot reference. (Zoltán Vörösbaranyi)
 

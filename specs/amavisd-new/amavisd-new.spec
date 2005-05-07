@@ -9,7 +9,7 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.2.1
+Version: 2.3.0
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -18,14 +18,14 @@ URL: http://www.ijs.si/software/amavisd/
 Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: sendmail-devel >= 8.12, sendmail
+BuildRequires: perl >= 5.8.1, sendmail-devel >= 8.12, sendmail
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
 Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
 Requires: cabextract, ripole, perl(BerkeleyDB)
 Requires: perl(Archive::Tar), perl(Archive::Zip), perl(Compress::Zlib)
 Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
 Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
-Requires: perl(Time::HiRes), perl(Digest::MD5), perl(Digest::SHA1)
+Requires: perl(Time::HiRes), perl(Digest::MD5) >= 2.22, perl(Digest::SHA1)
 Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
 Requires: perl-MailTools, perl(Net::Server) >= 0.86, perl-HTML-Parser >= 3.24
 Requires: perl(DB_File)
@@ -309,6 +309,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 2.2.1-2
 - Change order of shutting down milter/amavisd.
 - Added ripole as a dependency.
