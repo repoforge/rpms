@@ -2,9 +2,9 @@
 # Authority: dries
 # Upstream: Douglas Hanks
 
-Summary: sudo shell
+Summary: Logged root shell that can be used for auditing
 Name: sudosh
-Version: 1.4.8
+Version: 1.6.0
 Release: 1
 License: Open Software License
 Group: Applications/System
@@ -27,7 +27,8 @@ actual session output.
 %setup
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -46,6 +47,9 @@ actual session output.
 %{_bindir}/sudosh-replay
 
 %changelog
+* Sun May 24 2005 Dag Wieers <dag@wieers.com> - 1.6.0-1
+- Update to release 1.6.0.
+
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 1.4.8-1
 - Update to release 1.4.8.
 
