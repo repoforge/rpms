@@ -1,0 +1,24 @@
+--- shell/viewglob.in.default_terminal	2005-05-06 04:15:09.000000000 +0200
++++ shell/viewglob.in	2005-05-07 23:56:41.000000000 +0200
+@@ -126,8 +126,19 @@
+ 	then VGSEER_ONLY=yep
+ elif [[ -z "$TERM" ]] || [[ "$TERM" = dumb ]]
+ 	# There's no terminal associated with the shell, but an X display is
+-	# present, so make a new xterm.
+-	then VGSEER_EXEC="xterm -e $VGSEER_EXEC"
++	# present, so make a new xterm. It tries to find a decent terminal with
++	# gconf-tool2
++	then
++
++	GCONF='gconftool-2'
++	if [ -n `which ${GCONF}` ] ; then
++		GCONF_TERM_EXEC=`${GCONF} -g /desktop/gnome/applications/terminal/exec`
++		GCONF_TERM_EXEC_ARG=`${GCONF} -g /desktop/gnome/applications/terminal/exec_arg`
++		VGSEER_EXEC="${GCONF_TERM_EXEC_ARG} ${GCONF_TERM_EXEC_ARG} $VGSEER_EXEC"
++	else 
++		# fallback to xterm
++		VGSEER_EXEC="xterm -e $VGSEER_EXEC"
++	fi
+ fi
+ 
+ # This is an excellent script to replace bash's getopts with one which allows
