@@ -1,18 +1,19 @@
 # $Id$
 # Authority: matthias
 
+%define prever RC1
 %define xmms_inputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 
 Summary: X MultiMedia System input plugin to play mpegplus (mpc) files
 Name: xmms-musepack
-Version: 1.1.2
-Release: 1
+Version: 1.2
+Release: 0.1%{?prever:.%{prever}}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/
-Source: http://www.saunalahti.fi/grimmel/musepack.net-files/linux/plugins/xmms-musepack-%{version}.tar.bz2
+Source: http://musepack.origean.net/files/linux/plugins/xmms-musepack-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xmms-devel, libmusepack-devel
+BuildRequires: xmms-devel, libmpcdec-devel, taglib-devel
 
 
 %description
@@ -20,7 +21,7 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %prep
-%setup
+%setup -n %{name}-%{version}%{?prever:-%{prever}}
 
 
 %build
@@ -45,6 +46,11 @@ X MultiMedia System input plugin to play mpegplus, aka mpc files.
 
 
 %changelog
+* Mon May  9 2005 Matthias Saou <http://freshrpms.net/> 1.2-0.1.RC1
+- Update to 1.2-RC1.
+- Now build against new libmpcdec and not libmusepack.
+- Added taglib-devel build depencency.
+
 * Mon Apr 25 2005 Matthias Saou <http://freshrpms.net/> 1.1.2-1
 - Update to 1.1.2.
 - Update package info from sf project to musepack.net locations.
