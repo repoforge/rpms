@@ -1,11 +1,12 @@
 # $Id
 # Authority: dag
+# Upstream: Colin Phipps <cph@moria.org.uk>
 
 Summary: Partial/differential file transfer client over HTTP
 Name: zsync
-Version: 0.3.3
+Version: 0.4.0
 Release: 1
-License: Artistic
+License: Artistic License v2
 Group: Applications/Internet
 URL: http://zsync.moria.org.uk/
 
@@ -48,5 +49,8 @@ the server, making it ideal for large scale file distribution.
 %exclude %{_docdir}/zsync/
 
 %changelog
+* Sun May 08 2005 Dag Wieers <dag@wieers.com> - 0.4.0-1
+- Updated to release 0.4.0.
+
 * Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 0.3.3-1
 - Initial package. (using DAR)

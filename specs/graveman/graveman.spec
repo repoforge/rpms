@@ -5,13 +5,14 @@
 
 Summary: Graphical front-end for cdrtools
 Name: graveman
-Version: 0.3.10
+Version: 0.3.11
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://graveman.tuxfamily.org/
 
-Source: http://savannah.nongnu.org/download/graveman/graveman-%{version}.tar.bz2
+#Source: http://savannah.nongnu.org/download/graveman/graveman-%{version}.tar.bz2
+Source: http://graveman.tuxfamily.org/graveman-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.4, libglade2-devel >= 2.4
@@ -53,14 +54,18 @@ desktop-file-install --delete-original             \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man1/*
-%doc %{_mandir}/fr/man1/*
+%doc %{_mandir}/man1/graveman.1*
+%doc %{_mandir}/fr/man1/graveman.1*
+%doc %{_mandir}/nl/man1/graveman.1*
 %{_bindir}/graveman
 %{_datadir}/applications/%{desktop_vendor}-graveman.desktop
 %{_datadir}/graveman/
 %{_datadir}/pixmaps/graveman48.png
 
 %changelog
+* Sun May 08 2005 Dag Wieers <dag@wieers.com> - 0.3.11-1
+- Updated to release 0.3.11.
+
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.3.10-1
 - Updated to release 0.3.10.
 

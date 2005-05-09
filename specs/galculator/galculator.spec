@@ -4,7 +4,7 @@
 
 Summary: Graphical scientific calculator
 Name: galculator
-Version: 1.2.3
+Version: 1.2.5
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -42,12 +42,15 @@ Reverse Polish Notation.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO doc/shortcuts
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
+%doc %{_mandir}/man1/galculator.1*
+%{_bindir}/galculator
+%{_datadir}/applications/galculator.desktop
 %{_datadir}/galculator/
 
 %changelog
+* Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.2.5-1
+- Updated to release 1.2.5.
+
 * Thu May 27 2004 Dag Wieers <dag@wieers.com> - 1.2.3-1
 - Updated to release 1.2.3.
 

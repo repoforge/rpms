@@ -1,0 +1,41 @@
+diff -Nur icmpinfo-1.11.orig/defs.h icmpinfo-1.11/defs.h
+--- icmpinfo-1.11.orig/defs.h	Wed Feb 24 18:01:50 1999
++++ icmpinfo-1.11/defs.h	Wed Feb 24 18:02:07 1999
+@@ -22,6 +22,7 @@
+ #else
+ #include <netinet/ip_icmp.h>
+ #endif
++#define __FAVOR_BSD
+ #include <netinet/tcp.h>
+ #include <netdb.h>
+ 
+Binary files icmpinfo-1.11.orig/err.o and icmpinfo-1.11/err.o differ
+Binary files icmpinfo-1.11.orig/icmpinfo and icmpinfo-1.11/icmpinfo differ
+Binary files icmpinfo-1.11.orig/icmpinfo.o and icmpinfo-1.11/icmpinfo.o differ
+diff -Nur icmpinfo-1.11.orig/linux_ip_icmp.h icmpinfo-1.11/linux_ip_icmp.h
+--- icmpinfo-1.11.orig/linux_ip_icmp.h	Wed Feb 24 18:01:50 1999
++++ icmpinfo-1.11/linux_ip_icmp.h	Wed Feb 24 18:02:25 1999
+@@ -22,21 +22,6 @@
+ #define	icmp_seq	icmp_hun.ih_idseq.icd_seq
+ #define	icmp_void	icmp_hun.ih_void
+ 
+-struct ip {
+-        u_char  ip_hl:4,                /* header length */
+-        ip_v:4;                 /* version */
+-        u_char  ip_tos;                 /* type of service */
+-        short   ip_len;                 /* total length */
+-        u_short ip_id;                  /* identification */
+-        short   ip_off;                 /* fragment offset field */
+-#define IP_DF 0x4000                    /* dont fragment flag */
+-#define IP_MF 0x2000                    /* more fragments flag */
+-        u_char  ip_ttl;                 /* time to live */
+-        u_char  ip_p;                   /* protocol */
+-        u_short ip_sum;                 /* checksum */
+-        struct  in_addr ip_src,ip_dst;  /* source and dest address */
+-      };
+-
+ 
+ 	union {
+ 		struct id_ts {
+Binary files icmpinfo-1.11.orig/print.o and icmpinfo-1.11/print.o differ
+Binary files icmpinfo-1.11.orig/recvping.o and icmpinfo-1.11/recvping.o differ

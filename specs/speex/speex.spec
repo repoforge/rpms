@@ -5,7 +5,7 @@
 
 Summary: Open-source, patent-free speech codec
 Name: speex
-Version: 1.0.4
+Version: 1.0.5
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -65,22 +65,27 @@ export CFLAGS='%{optflags} -DRELEASE'
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING AUTHORS ChangeLog NEWS README doc/manual.pdf
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_mandir}/man1/*
+%{_bindir}/speexdec
+%{_bindir}/speexenc
+%{_libdir}/libspeex.so.*
+%{_mandir}/man1/speexdec.1*
+%{_mandir}/man1/speexenc.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_includedir}/speex/
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_libdir}/libspeex.a
+%exclude %{_libdir}/libspeex.la
+%{_libdir}/libspeex.so
 %{_libdir}/pkgconfig/speex.pc
 %{_datadir}/aclocal/speex.m4
 
 
 %changelog
+* Wed Jul 21 2004 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Wed Jul 21 2004 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Updated to release 1.0.4.
 

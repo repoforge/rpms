@@ -28,7 +28,7 @@ and attempts to initialize the video card from scratch.
 %patch
 
 %build
-autoreconf --force
+autoreconf --force --install --symlink
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -46,6 +46,6 @@ autoreconf --force
 %{_sbindir}/vbetool
 
 %changelog
-* Fri Mar 18 2005 Koenraad Heijlen <krpm@heijlen.be> - 0.2-1 
+* Fri Mar 18 2005 Koenraad Heijlen <krpms@heijlen.be> - 0.2-1
 - Initial package based on the debian package by Matthew Garrett.
 - Patched the Makefile.

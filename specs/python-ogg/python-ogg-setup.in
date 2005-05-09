@@ -1,0 +1,2 @@
+ogg_lib_dir = @libdir@
+ogg_include_dir = @includedir@

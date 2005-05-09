@@ -2,11 +2,10 @@
 # Authority: dag
 
 %define real_name WifiScanner
-%define desktop_vendor rpmforge
 
 Summary: Discover wireless clients and access points
 Name: wifiscanner
-Version: 0.9.5
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -32,29 +31,22 @@ WifiScanner is a tool to discover wireless clients and access points.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
-
-#%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-#desktop-file-install --vendor %{desktop_vendor}    \
-#	--add-category X-Red-Hat-Base              \
-#	--add-category Application                 \
-#	--add-category AudioVideo                  \
-#	--dir %{buildroot}%{_datadir}/applications \
-#	gnome-%{name}.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUG-REPORT-ADDRESS ChangeLog COPYING FAQ NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/*
-%{_datadir}/pixmaps/*
-%{_datadir}/applications/*.desktop
+%doc %{_mandir}/man1/wifiscanner.1*
+%{_sbindir}/wifiscanner
+%exclude %{_libdir}/libwiretap.a
+%exclude %{_libdir}/libwiretap.la
 
 %changelog
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.9.5-1
 - Updated to release 0.9.5.
 
