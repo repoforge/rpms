@@ -11,19 +11,20 @@
 # commas, don't mangle them)
 %define gstplugs mpeg1sys mpeg1videoparse mpeg2sub mpegaudio mpegaudioparse mpegstream
 # external plugin directories that we want built
-%define extplug_dirs a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec swfdec
+%define extplug_dirs a52dec dvdnav dvdread faad gsm lame libfame mad mpeg2dec swfdec musepack
 # corresponding external plugin names
-%define extplug_names a52dec dvdnavsrc dvdreadsrc faad gsmenc gsmdec lame libfame mad mpeg2dec swfdec
+%define extplug_names a52dec dvdnavsrc dvdreadsrc faad gsmenc gsmdec lame libfame mad mpeg2dec swfdec musepack
 
 Summary: GStreamer streaming media framework extra plugins
 Name: %{gstreamer}-plugins-extra
 Version: 0.8.8
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
 Source: http://gstreamer.freedesktop.org/src/gst-plugins/gst-plugins-%{version}.tar.bz2
-Patch: gst-plugins-0.8.6-faad2-test.patch
+Patch0: gst-plugins-0.8.6-faad2-test.patch
+Patch1: gst-plugins-0.8.8-mpcdec.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 # libtool needs this, sigh
@@ -53,7 +54,7 @@ BuildRequires: faad2-devel >= 2.0
 BuildRequires: gsm-devel >= 1.0.10
 BuildRequires: lame-devel >= 3.89
 BuildRequires: libmad-devel >= 0.15.0, libid3tag-devel >= 0.15.0
-#BuildRequires: libmusepack-devel >= 1.1
+BuildRequires: libmpcdec-devel >= 1.2
 
 Requires: %{gstreamer}-plugins >= %{gstp_minver}
 Requires(pre): %{register}
@@ -64,7 +65,7 @@ Provides: %{gstreamer}-faad = %{version}-%{release}
 Provides: %{gstreamer}-gsm = %{version}-%{release}
 Provides: %{gstreamer}-lame = %{version}-%{release}
 Provides: %{gstreamer}-mad = %{version}-%{release}
-#Provides: %{gstreamer}-musepack = %{version}-%{release}
+Provides: %{gstreamer}-musepack = %{version}-%{release}
 
 %description audio
 This package contains extra audio plugins for GStreamer, including :
@@ -87,7 +88,7 @@ This package contains extra audio plugins for GStreamer, including :
 %{_libdir}/gstreamer-%{majorminor}/libgstgsm.so
 %{_libdir}/gstreamer-%{majorminor}/libgstlame.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmad.so
-#{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
+%{_libdir}/gstreamer-%{majorminor}/libgstmusepack.so
 
 
 %package dvd
@@ -167,7 +168,8 @@ This package contains extra video plugins for GStreamer, including :
 
 %prep
 %setup -n gst-plugins-%{version}
-%patch -p1 -b .faad2
+%patch0 -p1 -b .faad2
+%patch1 -p0 -b .mpcdec
 
 
 %build
@@ -226,6 +228,9 @@ cd ..
 
 
 %changelog
+* Tue May 10 2005 Matthias Saou <http://freshrpms.net/> 0.8.8-2
+- Re-enable musepack, with patch, against libmpcdec 1.2.
+
 * Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.8-1
 - Spec file cleanup at last.
 - Update to 0.8.8 to rebuild for FC4.
