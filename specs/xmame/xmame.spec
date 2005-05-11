@@ -22,18 +22,18 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.95
+Version: 0.96
 Release: %{?rcver:0.%{rcver}.}1
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.95 - 29/03/2005
-Source21: http://www.mameworld.net/highscore/uhsdat095.zip
-# http://www.arcade-history.com/ 0.95 - 27/03/2005
-Source22: http://www.arcade-history.com/download/history0_95.zip
-# http://www.mameworld.net/mameinfo/ 0.94u5 - 23/03/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo094u5.zip
-# http://www.mameworld.net/catlist/ 0.94u3 - 27/03/2005
+# http://www.mameworld.net/highscore/ 0.96 - 06/05/2005
+Source21: http://www.mameworld.net/highscore/uhsdat096.zip
+# http://www.arcade-history.com/ 0.96 - 04/05/2005
+Source22: http://www.arcade-history.com/download/history0_96.zip
+# http://www.mameworld.net/mameinfo/ 0.96 - 04/05/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo096.zip
+# http://www.mameworld.net/catlist/ 0.96u1 - 07/05/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 Patch0: http://www.anthrofox.org/code/mame/64bitclean/seibuspi_64bit_patch.txt
 Patch1: http://www.anthrofox.org/code/mame/64bitclean/wecleman_64bit_patch.txt
@@ -259,6 +259,9 @@ popd
 
 
 %changelog
+* Wed May 11 2005 Matthias Saou <http://freshrpms.net/> 0.96-1
+- Update to 0.96.
+
 * Wed Mar 30 2005 Matthias Saou <http://freshrpms.net/> 0.95-1
 - Update to 0.95.
 
