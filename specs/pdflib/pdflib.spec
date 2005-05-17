@@ -3,17 +3,15 @@
 Summary: Portable C library for dynamically generating PDF files
 Name: pdflib
 Version: 4.0.3
-Release: 1
+Release: 2
 License: Aladdin Free Public License
 Group: System Environment/Libraries
 URL: http://www.pdflib.com/
 Source: http://www.pdflib.com/pdflib/download/pdflib-%{version}.tar.gz
 Patch0: pdflib-4.0.3-DESTDIR.patch
-Patch1: pdflib-4.0.3-shared-libs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # perl, python, tcl bindings are disabled on purpose : the goal was only to
 # get the php module built
-BuildRequires: zlib-devel, libpng-devel
 
 %description
 PDFlib is a C library for generating PDF files. It offers a graphics
@@ -44,22 +42,19 @@ the PDFlib library.
 %prep
 %setup -q
 %patch0 -p1 -b destdir
-%patch1 -p1 -b shared
 
 
 %build
 %configure \
     --enable-cxx \
-    --enable-shared-pdflib \
-    --with-zlib \
-    --with-pnglib
+    --with-perl="no"
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m0644 bind/cpp/pdflib.hpp %{buildroot}%{_includedir}/pdflib.hpp
+%{__install} -D -p -m 0644 bind/cpp/pdflib.hpp %{buildroot}%{_includedir}/pdflib.hpp
 
 
 %clean
@@ -89,6 +84,11 @@ the PDFlib library.
 
 
 %changelog
+* Tue May 17 2005 Matthias Saou <http://freshrpms.net/> 4.0.3-2
+- Use internal tiff and png libs to fix problems with external recent versions.
+- Keep zlib-devel and libpng-devel reqs for the devel package, as it fails
+  otherwise with unresolved symbols when trying to recompile the php module.
+
 * Wed Feb  9 2005 Matthias Saou <http://freshrpms.net/> 4.0.3-1
 - Spec file cleanup.
 
