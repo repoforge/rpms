@@ -3,7 +3,7 @@
 
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
-Version: 0.7.21
+Version: 0.7.22
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -91,6 +91,9 @@ fi
 
 
 %changelog
+* Tue May 17 2005 Matthias Saou <http://freshrpms.net/> 0.7.22-1
+- Update to 0.7.22.
+
 * Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 0.7.21-1
 - Update to 0.7.21 at last.
 - Split off new -devel package.
