@@ -2,16 +2,16 @@
 # Authority: matthias
 
 %define desktop_vendor rpmforge
-#define beta 8
+%define prever beta
 
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
-Version: 2.5.2
-Release: %{?beta:0.beta%{beta}.}1
+Version: 2.6
+Release: 0.1%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
 URL: http://www.lgames.org/
-Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?beta:beta-%{beta}}.tar.gz
+Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, zlib-devel, libpng-devel
 BuildRequires: ImageMagick
@@ -27,7 +27,7 @@ the integrated level editor.
 
 
 %prep
-%setup -n %{name}-%{version}%{?beta:beta-%{beta}}
+%setup -n %{name}-%{version}%{?prever}
 
 
 %build
@@ -94,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue May 17 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.1.beta
+- Update to 2.5.2.
+
 * Fri Jan 14 2005 Matthias Saou <http://freshrpms.net/> 2.5.2-1
 - Update to 2.5.2.
 
