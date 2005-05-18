@@ -5,7 +5,7 @@
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: amule
-Version: 2.0.0
+Version: 2.0.1
 Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Internet
@@ -14,8 +14,8 @@ Source: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /usr/sbin/alternatives
 Requires(preun): /usr/sbin/alternatives
-BuildRequires: gcc-c++, wxGTK-devel, curl-devel >= 7.9.7, zlib-devel, gettext
-BuildRequires: gd-progs, gd-devel, libidn-devel, libjpeg-devel
+BuildRequires: gcc-c++, wxGTK2-devel, curl-devel >= 7.9.7, zlib-devel
+BuildRequires: gd-progs, gd-devel, libidn-devel, libjpeg-devel, gettext-devel
 # Required on Yellow Dog Linux 3.0
 BuildRequires: openssl-devel
 # Required for a configure check (curl)
@@ -83,6 +83,10 @@ update-desktop-database -q 2>/dev/null || :
 
 
 %changelog
+* Wed May 18 2005 Matthias Saou <http://freshrpms.net/> 2.0.1-1
+- Update to 2.0.1.
+- Change gettext to gettext-devel, since autopoint is required.
+
 * Wed May  4 2005 Matthias Saou <http://freshrpms.net/> 2.0.0-1
 - Update to 2.0.0 final.
 - Add new man pages.
