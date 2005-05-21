@@ -1,13 +1,9 @@
 # $Id$
-
 # Authority: dries
-# Upstream: 
-
-# Problem: the lib files don't have an .so extension
 
 Summary: Library for connection to iTunes music shares
 Name: libopendaap
-Version: 0.3.0
+Version: 0.4.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -55,16 +51,19 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%doc %{_mandir}/man?/*
-%{_libdir}/libopendaap.0*
+%{_libdir}/libopendaap.so.*
 
 %files devel
+%doc %{_mandir}/man?/*
 %{_includedir}/daap
-%{_libdir}/*.a
-%{_libdir}/libopendaap
+%{_libdir}/libopendaap.a
+%exclude %{_libdir}/libopendaap.la
+%{_libdir}/libopendaap.so
 %{_libdir}/pkgconfig/opendaap.pc
-%exclude %{_libdir}/*.la
 
 %changelog
+* Mon May 16 2005 Dag Wieers <dag@wieers.com> - 0.4.0-1
+- Updated to release 0.4.0.
+
 * Thu Jan 06 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.0
 - Initial package.

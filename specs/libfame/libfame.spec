@@ -8,7 +8,7 @@ Release: 6
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
-Source: http://dl.sf.net/fame/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/fame/libfame-%{version}.tar.gz
 Patch0: libfame-0.9.1-fstrict-aliasing.patch
 Patch1: http://www.linuxfromscratch.org/blfs/downloads/svn/libfame-0.9.1-gcc34-1.patch
 Patch2: libfame-0.9.1-underquoted.patch

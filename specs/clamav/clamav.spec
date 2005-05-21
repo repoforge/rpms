@@ -10,14 +10,14 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.84
+Version: 0.85.1
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
 
-#Source: http://www.clamav.net/clamav-%{version}.tar.gz
-Source: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
+Source: http://www.clamav.net/clamav-%{version}.tar.gz
+#Source: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -314,7 +314,7 @@ fi
 %{_localstatedir}/run/clamav/
 %{_localstatedir}/clamav/
 %dir %{_localstatedir}/log/clamav/
-%{_localstatedir}/log/clamav/clamd.log
+%ghost %{_localstatedir}/log/clamav/clamd.log
 
 %if %{!?_without_milter:1}0
 %files milter
@@ -334,7 +334,7 @@ fi
 %defattr(0644, clamav, clamav, 0755)
 %config(noreplace) %verify(user group mode) %{_localstatedir}/clamav/
 %dir %{_localstatedir}/log/clamav/
-%{_localstatedir}/log/clamav/freshclam.log
+%ghost %{_localstatedir}/log/clamav/freshclam.log
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -346,6 +346,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Mon May 16 2005 Dag Wieers <dag@wieers.com> - 0.85.1-1
+- Updated to release 0.85.1.
+
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.84-1
 - Updated to release 0.84.
 

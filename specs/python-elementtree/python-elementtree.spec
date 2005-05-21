@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-%define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
 
 %define real_name elementtree
 %define real_version 1.2.6-20050316

@@ -2,16 +2,18 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define phpextdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.0.49
-Release: 2
+Version: 1.0.50
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
-Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
+Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-1.0.x/rrdtool-%{version}.tar.gz
 Patch: rrdtool-1.0.48-php_config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
@@ -39,6 +41,16 @@ display time-series data (i.e. network bandwidth, machine-room temperature,
 server load average). This package allow you to use directly this library.
 
 
+%package -n perl-rrdtool
+Summary: Perl RRDtool bindings
+Group: Development/Languages
+Requires: %{name} = %{version}
+Obsoletes: rrdtool-perl <= %{version}
+
+%description -n perl-rrdtool
+The Perl RRDtool bindings
+
+
 %package -n php-rrdtool
 Summary: RRDtool module for PHP
 Group: Development/Languages
@@ -61,6 +73,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-shared \
+    --with-perl-options='INSTALLDIRS="vendor"' \
     --enable-local-libpng \
     --enable-local-zlib \
     --with-pic
@@ -85,7 +98,7 @@ find examples/ -name "*.pl" \
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install site-perl-install DESTDIR="%{buildroot}"
 
 # Install the php4 module
 %{__install} -Dp -m0755 contrib/php4/modules/rrdtool.so \
@@ -99,28 +112,23 @@ find examples/ -name "*.pl" \
 extension=rrdtool.so
 EOF
 
-# Put perl files back where they belong
-%{__mkdir_p} %{buildroot}%{perl_sitearch}/
-%{__mv} %{buildroot}%{_libdir}/perl/* %{buildroot}%{perl_sitearch}/
-
 # We only want .txt and .html files for the main documentation
-%{__mkdir_p} doc2/doc
-%{__cp} -ap doc/*.txt doc/*.html doc2/doc/
+%{__mkdir_p} rpm-doc/docs/
+%{__cp} -ap doc/*.txt doc/*.html rpm-doc/docs/
 
 # Clean up the examples and contrib
-%{__rm} -f examples/Makefile*
-%{__rm} -f contrib/Makefile*
+%{__rm} -f examples/Makefile* contrib/Makefile*
+
 # This is so rpm doesn't pick up perl module dependencies automatically
 find examples/ contrib/ -type f -exec chmod 0644 {} \;
 # And this, to clean up what will be included
 find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 
-# Put man pages back into place...
-#%{__mkdir_p} %{buildroot}%{_mandir}/
-#%{__mv} %{buildroot}%{_prefix}/man/* %{buildroot}%{_mandir}/
-
 # Clean up the buildroot
 %{__rm} -rf %{buildroot}%{_prefix}/{contrib,doc,examples,html}/
+%{__rm} -rf %{buildroot}%{perl_archlib} \
+		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
 
 
 %clean
@@ -129,34 +137,45 @@ find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
  
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES CONTRIBUTORS COPYING COPYRIGHT README TODO doc2/doc
+%doc CHANGES CONTRIBUTORS COPYING COPYRIGHT README TODO
+%doc rpm-doc/docs/
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{perl_sitearch}/*.pm
-%{perl_sitearch}/auto/*
+#%{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc examples/
 %doc contrib/add_ds contrib/killspike contrib/log2rrd contrib/rrdexplorer
 %doc contrib/rrdfetchnames contrib/rrd-file-icon contrib/rrdlastds
 %doc contrib/rrdproc contrib/rrdview contrib/snmpstats contrib/trytime
-%{_includedir}/*.h
+%{_includedir}/rrd.h
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
-%{_libdir}/*.so
+#%{_libdir}/*.so
+
+
+%files -n perl-rrdtool
+%defattr(-, root, root, 0755)
+%doc examples/
+%doc %{_mandir}/man3/RRDp.3*
+%doc %{_mandir}/man3/RRDs.3*
+%{perl_vendorlib}/RRDp.pm
+%{perl_vendorarch}/RRDs.pm
+%{perl_vendorarch}/auto/RRDs/
 
 
 %files -n php-rrdtool
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc contrib/php4/examples contrib/php4/README
 %config(noreplace) %{_sysconfdir}/php.d/rrdtool.ini
 %{phpextdir}/rrdtool.so
 
 
 %changelog
+* Wed May 18 2005 Dag Wieers <dag@wieers.com> - 1.0.50-2
+- Updated to release 1.0.50.
+
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 1.0.49-2
 - Fix for the php-rrdtool patch. (Joe Pruett)
 

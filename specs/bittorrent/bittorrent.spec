@@ -12,7 +12,7 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.0.1
+Version: 4.1.0
 Release: 1
 License: BitTorrent Open Source License
 Group: Applications/Internet
@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-devel >= 2.3, pygtk2-devel >= 2.4
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: python >= 2.3
+Requires: python >= 2.3, python-khashmir
 Obsoletes: BitTorrent
 
 %description
@@ -42,6 +42,14 @@ Requires: %{name} = %{version}-%{release}
 
 %description gui 
 This package contains the GUI versions of the BitTorrent file transfer tool.
+
+%package -n python-khashmir
+Summary: Distributed hash table library of the Kademlia flavor for python
+Group: Development/Libraries
+
+%description -n python-khashmir
+Khashmir is a distributed hash table library of the Kademlia flavor
+implemented in Python.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -96,9 +104,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc *.html *.txt
 %{_bindir}/*.py
 %exclude %{_bindir}/btdownloadgui.py
-%dir %{python_sitelib}/BitTorrent/
-%{python_sitelib}/BitTorrent/*.py
-%{python_sitelib}/BitTorrent/*.pyc
+%{python_sitelib}/BitTorrent/
 %{_datadir}/pixmaps/BitTorrent-%{version}/
 %exclude %{_docdir}/BitTorrent-%{version}/
 
@@ -109,7 +115,15 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-bittorrent.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/bittorrent.desktop}
 
+
+%files -n python-khashmir
+%defattr(-, root, root, 0755)
+%{python_sitelib}/khashmir/
+
 %changelog
+* Fri May 20 2005 Dag Wieers <dag@wieers.com> - 4.1.0-1
+- Updated to release 4.1.0.
+
 * Sun Apr 10 2005 Dag Wieers <dag@wieers.com> - 4.0.1-1
 - Updated to release 4.0.1.
 

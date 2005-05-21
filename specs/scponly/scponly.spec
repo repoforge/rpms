@@ -3,7 +3,7 @@
 
 Summary: Limited shell for secure file transfers
 Name: scponly
-Version: 4.0
+Version: 4.1
 Release: 1
 License: GPL
 Group: System Environments/Shell
@@ -44,5 +44,8 @@ as a wrapper to the "tried and true" ssh suite of applications.
 %{_bindir}/scponly
 
 %changelog
+* Tue May 10 2005 Dag Wieers <dag@wwieers.com> - 4.1-1
+- Updated to release 4.1.
+
 * Thu Mar 03 2005 Dag Wieers <dag@wwieers.com> - 4.0-1
 - Initial package. (using DAR)

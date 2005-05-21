@@ -3,11 +3,11 @@
 # Upstream: <capps$iozone,org>
 # Upstream: William Norcott <William,Norcott$oracle,com>
 
-%define real_version 3_235
+%define real_version 3_239
 
 Summary: IOzone Filesystem Benchmark
 Name: iozone
-Version: 3.235
+Version: 3.239
 Release: 1
 License: Freeware
 Group: Applications/System
@@ -27,7 +27,7 @@ operations: Read, write, re-read, re-write, read backwards, read strided,
 fread, fwrite, random read, pread ,mmap, aio_read, aio_write.
 
 %prep
-%setup -c
+%setup -n %{name}%{real_version}
 
 %build
 %{__make} %{?_smp_mflags} -C src/current linux
@@ -52,6 +52,9 @@ fread, fwrite, random read, pread ,mmap, aio_read, aio_write.
 %{_datadir}/iozone/
 
 %changelog
+* Tue May 10 2005 Dag Wieers <dag@wieers.com> - 3.239-1
+- Updated to release 3.239.
+
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 3.235-1
 - Updated to release 3.235.
 

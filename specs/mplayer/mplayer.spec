@@ -5,28 +5,38 @@
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
+%{?fc1:%define _without_xvmc 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_theora 1}
+%{?el3:%define _without_xvmc 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_theora 1}
+%{?rh9:%define _without_xvmc 1}
 
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_theora 1}
+%{?rh8:%define _without_xvmc 1}
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_theora 1}
+%{?rh7:%define _without_gcccheck 1}
+%{?rh7:%define _without_xvmc 1}
 
 %{?el2:%define _without_alsa 1}
+%{?el2:%define _without_arts 1}
+%{?el2:%define _without_caca 1}
+%{?el2:%define _without_dv 1}
 %{?el2:%define _without_fribidi 1}
 %{?el2:%define _without_freedesktop 1}
 %{?el2:%define _without_theora 1}
+%{?el2:%define _without_xvmc 1}
 
 %{?yd3:%define _without_alsa 1}
 %{?yd3:%define _without_fribidi 1}
@@ -66,8 +76,9 @@ BuildRequires: XFree86-devel, gtk+-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
 BuildRequires: libmatroska-devel
-BuildRequires: libmad-devel, libdv-devel
+BuildRequires: libmad-devel
 BuildRequires: ImageMagick
+%{!?_without_dv:BuildRequires: libdv-devel}
 %{?_with_samba:BuildRequires: samba-common}
 %{?_with_dvb:BuildRequires: kernel-source}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
@@ -165,7 +176,7 @@ echo "MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;vi
 %build
 find . -name "CVS" | xargs %{__rm} -rf
 export CFLAGS="%{optflags}"
-./configure \
+echo | ./configure \
     --prefix=%{_prefix} \
     --datadir=%{_datadir}/mplayer \
     --confdir=%{_sysconfdir}/mplayer \

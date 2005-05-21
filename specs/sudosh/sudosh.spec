@@ -4,7 +4,7 @@
 
 Summary: Logged root shell that can be used for auditing
 Name: sudosh
-Version: 1.6.0
+Version: 1.6.1
 Release: 1
 License: Open Software License
 Group: Applications/System
@@ -47,7 +47,10 @@ actual session output.
 %{_bindir}/sudosh-replay
 
 %changelog
-* Sun May 24 2005 Dag Wieers <dag@wieers.com> - 1.6.0-1
+* Tue May 10 2005 Dag Wieers <dag@wieers.com> - 1.6.1-1
+- Update to release 1.6.1.
+
+* Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.6.0-1
 - Update to release 1.6.0.
 
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 1.4.8-1

@@ -5,11 +5,13 @@
 ### FIXME: If clamd is installed, add user clamav to group amavis
 ### FIXME: Look into amavis own stop/reload functionality
 
+# ExclusiveDist: fc1 fc2 fc3 el4
+
 %define logmsg logger -t %{name}/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.3.0
+Version: 2.3.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -309,6 +311,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Tue May 10 2005 Dag Wieers <dag@wieers.com> - 2.3.1-1
+- Updated to release 2.3.1.
+
 * Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 2.3.0-1
 - Updated to release 2.3.0.
 

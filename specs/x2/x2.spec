@@ -5,7 +5,7 @@
 Summary: The X2 text editor
 Name: x2
 Version: 2.05.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Editors
 URL: http://www.tangbu.com/
@@ -48,11 +48,14 @@ EOF
 %{__install} -Dp -m0755 x %{buildroot}%{_datadir}/x2/x
 %{__install} -Dp -m0755 xx %{buildroot}%{_datadir}/x2/xx
 %{__install} -Dp -m0755 xutils.so %{buildroot}%{_libdir}/xutils.so
-%{__install} -Dp -m0644 xprofile %{buildroot}%{_datadir}/x2/xprofile
+%{__install} -Dp -m0755 xprofile %{buildroot}%{_datadir}/x2/xprofile
 %{__install} -Dp -m0644 xprofile.def %{buildroot}%{_datadir}/x2/xprofile.def
 %{__install} -Dp -m0644 xprofile.unx %{buildroot}%{_datadir}/x2/xprofile.unx
 %{__install} -Dp -m0644 xunix.hlp %{buildroot}%{_datadir}/x2/X.HLP
 %{__install} -Dp -m0644 XUNIX.PRO %{buildroot}%{_datadir}/x2/XUNIX.PRO
+%{__install} -Dp -m0644 cpp.xprofile %{buildroot}%{_datadir}/x2/cpp.xprofile
+%{__install} -Dp -m0644 html.xprofile %{buildroot}%{_datadir}/x2/html.xprofile
+%{__install} -Dp -m0644 rexx.xprofile %{buildroot}%{_datadir}/x2/rexx.xprofile
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -76,9 +79,15 @@ EOF
 %{_datadir}/x2/xprofile
 %{_datadir}/x2/xprofile.def
 %{_datadir}/x2/xprofile.unx
+%{_datadir}/x2/cpp.xprofile
+%{_datadir}/x2/html.xprofile
+%{_datadir}/x2/rexx.xprofile
 %{_datadir}/x2/X.HLP
 
 %changelog
+* Mon May 09 2005 Dag Wieers <dag@wieers.com> - 2.05.1-2
+- Added missing syntax files. (Alain Rykaert)
+
 * Tue May 03 2005 Dag Wieers <dag@wieers.com> - 2.05.1-1
 - Updated to release 2.05.1.
 

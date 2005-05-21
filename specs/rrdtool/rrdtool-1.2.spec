@@ -4,23 +4,31 @@
 
 # Tag: test
 
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%{?fc1:%define _without_python 1}
+%{?el3:%define _without_python 1}
+%{?rh9:%define _without_python 1}
+%{?rh7:%define _without_python 1}
+%{?el2:%define _without_python 1}
+
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.2.2
+Version: 1.2.8
 Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
-Patch: rrdtool-1.0.48-php_config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, openssl-devel, libart_lgpl-devel >= 2.0, cgilib-devel
 BuildRequires: libpng-devel, zlib-devel, freetype-devel
+%{!?_without_python:BuildRequires: python-devel >= 2.3}
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 
 %description
@@ -43,13 +51,23 @@ display time-series data (i.e. network bandwidth, machine-room temperature,
 server load average). This package allow you to use directly this library.
 
 %package -n perl-rrdtool
-Summary: RRDtool Perl interface
+Summary: Perl RRDtool bindings
 Group: Development/Languages
 Requires: %{name} = %{version}
 Obsoletes: rrdtool-perl <= %{version}
 
 %description -n perl-rrdtool
-The RRDtools Perl modules.
+The Perl RRDtool bindings
+
+%package -n python-rrdtool
+Summary: Python RRDtool bindings
+Group: Development/Languages
+BuildRequires: python
+Requires: python >= %{python_version}
+Requires: %{name} = %{version}
+
+%description -n python-rrdtool
+Python RRDtool bindings.
 
 %package -n php-rrdtool
 Summary: RRDtool module for PHP
@@ -69,17 +87,19 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %build
 %configure \
 	--enable-perl-site-install \
-	--with-perl-options="PREFIX=\"%{buildroot}%{_prefix}\" INSTALLDIRS=\"vendor\""
+	--with-perl-options='INSTALLDIRS="vendor"'
 #	--with-tcllib="%{_libdir}"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 ### We only want .txt and .html files for the main documentation
-%{__mkdir_p} doc2/doc/
-%{__cp} -ap doc/*.txt doc/*.html doc2/doc/
+%{__mkdir_p} rpm-doc/docs/
+%{__cp} -ap doc/*.txt doc/*.html rpm-doc/docs/
+
+%{__rm} -f examples/Makefile* examples/*.in
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
@@ -91,7 +111,8 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
  
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO doc2/doc/
+%doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO
+%doc rpm-doc/docs/ examples/
 %doc %{_mandir}/man1/*.1*
 %{_bindir}/rrdcgi
 %{_bindir}/rrdtool
@@ -121,7 +142,19 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %{perl_vendorarch}/auto/RRDs/
 %exclude %{_prefix}/examples/
 
+%if %{!?_without_python:1}0
+%files -n python-rrdtool
+%defattr(-, root, root, 0755)
+%{python_sitearch}/rrdtoolmodule.so
+%endif
+
 %changelog
+* Wed May 18 2005 Dag Wieers <dag@wieers.com> - 1.2.8-1
+- Updated to release 1.2.8.
+
+* Tue May 10 2005 Dag Wieers <dag@wieers.com> - 1.2.6-1
+- Updated to release 1.2.6.
+
 * Sat May 07 2005 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 

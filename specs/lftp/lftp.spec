@@ -9,7 +9,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.1.3
+Version: 3.2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -31,10 +31,11 @@ reliability in mind.
 %setup
 
 %build
-autoreconf --force --install --symlink
+#autoreconf --force --install --symlink
 %configure \
 	--with-modules \
 	--disable-static \
+	--without-gnutls \
 	--with-ssl
 %{__make} %{?_smp_mflags} \
 	LIBTOOL="%{_bindir}/libtool"
@@ -61,6 +62,9 @@ autoreconf --force --install --symlink
 %{_libdir}/lftp/
 
 %changelog
+* Mon May 16 2005 Dag Wieers <dag@wieers.com> - 3.2.0-1
+- Updated to release 3.2.0.
+
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 3.1.3-1
 - Updated to release 3.1.3.
 

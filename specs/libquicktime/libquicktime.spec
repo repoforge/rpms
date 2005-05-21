@@ -25,8 +25,8 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 0.9.4
-Release: %{?prever:0.%{prever}.}2
+Version: 0.9.6
+Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -134,6 +134,12 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Fri May 20 2005 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
+* Mon May 16 2005 Dag Wieers <dag@wieers.com> - 0.9.5-1
+- Updated to release 0.9.5.
+
 * Thu Apr 21 2005 Matthias Saou <http://freshrpms.net/> 0.9.4-3
 - Add _without_ffmpeg on FC4 for now, current ffmpeg doesn't work here anyway.
 - Add gcc4 patch, where rt-jpeg is disabled :-/

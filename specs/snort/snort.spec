@@ -12,13 +12,13 @@
 
 Summary: Open Source network intrusion detection system (NIDS)
 Name: snort
-Version: 2.3.0
+Version: 2.3.3
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.snort.org/
 
-Source: http://www.snort.org/dl/snort-%{version}.tar.gz
+Source: http://www.snort.org/dl/current/snort-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap >= 0.4, openssl-devel, libnet
@@ -256,6 +256,9 @@ fi
 %{_sbindir}/snort-bloat
 
 %changelog
+* Tue May 17 2005 Dag Wieers <dag@wieers.com> - 2.3.3-1
+- Updated to release 2.3.3.
+
 * Tue Feb 22 2005 Dag Wieers <dag@wieers.com> - 2.3.0-1
 - Replaced own sysv logic by provided one.
 - Updated to release 2.3.0.

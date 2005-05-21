@@ -6,7 +6,7 @@
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 0.9.5
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -64,6 +64,8 @@ EOF
 %{__install} -p -m0644 *.py %{buildroot}%{_datadir}/meld/
 %{__install} -p -m0644 glade2/*.glade* %{buildroot}%{_datadir}/meld/glade2/
 %{__install} -p -m0644 glade2/pixmaps/* %{buildroot}%{_datadir}/meld/glade2/pixmaps/
+
+%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/po/
 %{__install} -p -m0644 po/*.po %{buildroot}%{_datadir}/meld/po/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -85,6 +87,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/meld.png
 
 %changelog
+* Wed May 18 2005 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 0.9.5-1
 - Updated to release 0.9.5.
 
