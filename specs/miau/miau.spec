@@ -4,8 +4,8 @@
 
 Summary: Full featured IRC bouncer
 Name: miau
-Version: 0.5.3
-Release: 2
+Version: 0.5.4
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://miau.sourceforge.net/
@@ -70,10 +70,14 @@ export OPTIONS="
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO misc/miaurc
 %doc %{_infodir}/*.info*
+%doc %{_mandir}/man1/miau.1*
 %{_bindir}/miau*
 %exclude %{_datadir}/miaurc
 
 %changelog
+* Sat May 21 2005 Dag Wieers <dag@wieers.com> - 0.5.4-1
+- Updated to release 0.5.4.
+
 * Mon Nov 15 2004 Dag Wieers <dag@wieers.com> - 0.5.3-2
 - Fixed the non-ipv6 build by doing make clean. (Chris Grau)
 
