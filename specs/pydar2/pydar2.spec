@@ -6,7 +6,7 @@
 
 Summary: buildserver in python
 Name: pydar2
-Version: 0.007
+Version: 0.010
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -35,6 +35,11 @@ Summary: pydar2 slave
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
 
+%package dries
+Summary: scripts which generate dries.ulyssis.org/rpm
+Group: Development/Tools
+Requires: %{name} = %{version}-%{release}
+
 %description master
 Not finished
 
@@ -43,6 +48,9 @@ Not finished
 
 %description slave
 Not finished
+
+%description dries
+Script which generates http://dries.ulyssis.org/rpm/
 
 %prep
 %setup -n %{name}
@@ -78,6 +86,10 @@ Not finished
 %dir %{_var}/lib/pydar2
 %{_datadir}/pydar2/sql
 %{_datadir}/pydar2/pydar-buildserver-master.py
+
+%files dries
+%defattr(-, root, root, 0755)
+%{_datadir}/pydar2/dries
 
 %files slave
 %defattr(-, root, pydar2slave, 0740)
