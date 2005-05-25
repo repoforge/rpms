@@ -1,0 +1,39 @@
+--- liboil-0.3.0/liboil/conv/Makefile.in.BAD	2005-05-24 15:25:13.000000000 -0500
++++ liboil-0.3.0/liboil/conv/Makefile.in	2005-05-24 15:26:42.000000000 -0500
+@@ -96,6 +96,7 @@
+ ETAGS = etags
+ CTAGS = ctags
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
++3DNOWFLAGS = -m3dnow
+ ACLOCAL = @ACLOCAL@
+ ACLOCAL_AMFLAGS = @ACLOCAL_AMFLAGS@
+ AMDEP_FALSE = @AMDEP_FALSE@
+@@ -503,7 +504,7 @@
+ @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libconv_la_CFLAGS) $(CFLAGS) -c -o libconv_la-conv_3dnow.obj `if test -f 'conv_3dnow.c'; then $(CYGPATH_W) 'conv_3dnow.c'; else $(CYGPATH_W) '$(srcdir)/conv_3dnow.c'; fi`
+ 
+ libconv_la-conv_3dnow.lo: conv_3dnow.c
+-@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libconv_la_CFLAGS) $(CFLAGS) -MT libconv_la-conv_3dnow.lo -MD -MP -MF "$(DEPDIR)/libconv_la-conv_3dnow.Tpo" -c -o libconv_la-conv_3dnow.lo `test -f 'conv_3dnow.c' || echo '$(srcdir)/'`conv_3dnow.c; \
++@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(3DNOWFLAGS) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libconv_la_CFLAGS) $(CFLAGS) -MT libconv_la-conv_3dnow.lo -MD -MP -MF "$(DEPDIR)/libconv_la-conv_3dnow.Tpo" -c -o libconv_la-conv_3dnow.lo `test -f 'conv_3dnow.c' || echo '$(srcdir)/'`conv_3dnow.c; \
+ @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libconv_la-conv_3dnow.Tpo" "$(DEPDIR)/libconv_la-conv_3dnow.Plo"; else rm -f "$(DEPDIR)/libconv_la-conv_3dnow.Tpo"; exit 1; fi
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='conv_3dnow.c' object='libconv_la-conv_3dnow.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libconv_la-conv_3dnow.Plo' tmpdepfile='$(DEPDIR)/libconv_la-conv_3dnow.TPlo' @AMDEPBACKSLASH@
+--- liboil-0.3.0/configure.BAD	2005-05-24 15:17:04.000000000 -0500
++++ liboil-0.3.0/configure	2005-05-24 15:19:04.000000000 -0500
+@@ -20710,7 +20710,7 @@
+ 
+ fi
+ 
+-LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L -I\$(top_srcdir) -O2"
++LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L -I\$(top_srcdir)"
+ 
+ 
+ LIBOIL_LIBS="\$(top_builddir)/liboil/liboil-$LIBOIL_MAJORMINOR.la"
+@@ -20720,7 +20720,7 @@
+ 
+ 
+ #CFLAGS=`echo "$CFLAGS" | sed -e 's/-O[0-9*]//g'`
+-CFLAGS="-g"
++#CFLAGS="-g"
+ 
+                                                                                                                                                                 ac_config_files="$ac_config_files Makefile liboil/Makefile liboil/colorspace/Makefile liboil/conv/Makefile liboil/copy/Makefile liboil/dct/Makefile liboil/md5/Makefile liboil/jpeg/Makefile liboil/simdpack/Makefile testsuite/Makefile examples/Makefile examples/jpeg/Makefile examples/md5/Makefile examples/uberopt/Makefile examples/work/Makefile liboil.pc"
+ 

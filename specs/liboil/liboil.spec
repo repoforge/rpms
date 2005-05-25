@@ -3,12 +3,13 @@
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.1
+Version: 0.3.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.schleef.org/liboil/
 Source: http://www.schleef.org/liboil/download/liboil-%{version}.tar.gz
+Patch: liboil-0.3.0-gccoptfixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel, gcc-c++
 
@@ -37,6 +38,7 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 %prep
 %setup
+%patch0 -p1
 
 
 %build
@@ -53,11 +55,9 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -73,9 +73,19 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
+%doc %{_datadir}/gtk-doc/html/liboil/
 
 
 %changelog
+* Wed May 25 2005 Matthias Saou <http://freshrpms.net/> 0.3.2-1
+- Update to 0.3.2.
+- Change ldconfig calls to be the program.
+- Include new gtk-doc files in the devel package.
+
+* Tue May 24 2005 Tom "spot" Callaway <tcallawa@redhat.com> - 0.3.0-4
+- fix compilation error in FC-4 (bz #158641)
+- use buildtime exported CFLAGS instead of making up its own
+
 * Sat Apr  2 2005 Matthias Saou <http://freshrpms.net/> 0.3.1-1
 - Update to 0.3.1.
 - Include gtk-doc files.
