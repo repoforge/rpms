@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
 
-Summary: Openssl encryption plugin for gaim
+Summary: RSA encryption support for Gaim
 Name: gaim-encryption
 Version: 2.36
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/
@@ -16,7 +16,7 @@ Buildrequires: gtk2-devel, mozilla-nss-devel, mozilla-nspr-devel, gaim
 Requires: gaim, mozilla-nss
 
 %description
-Openssl encryption support for gaim.
+RSA encryption support for Gaim.
 
 %prep
 %setup
@@ -40,6 +40,9 @@ Openssl encryption support for gaim.
 %{_libdir}/gaim/encrypt.so
 
 %changelog
+* Sat May 21 2005 Dag Wieers <dag@wieers.com> - 2.36-4
+- Rebuild against gaim 1.3.0-1 (FC3).
+
 * Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 2.36-3
 - Rebuild against gaim 1.2.1-0.
 

@@ -2,9 +2,11 @@
 # Authority: dag
 # Upstream: Christian Grothoff <libextractor$cs,purdue,edu>
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+
 Summary: Meta-data extraction library 
 Name: libextractor
-Version: 0.4.2
+Version: 0.5.0
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -36,6 +38,14 @@ Requires: %{name} = %{version}-%{release}
 This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
+
+%package -n python-extractor
+Summary: Python bindings to libextractor
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description -n python-extractor
+Python bindings to libextractor.
 
 %prep
 %setup
@@ -76,7 +86,14 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libextractor.la
 %{_libdir}/libextractor.so
 
+%files -n python-extractor
+%defattr(-, root, root, 0755)
+%{python_sitearch}/extractor.so
+
 %changelog
+* Sun May 22 2005 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Fri Feb 25 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Updated to release 0.4.2.
 

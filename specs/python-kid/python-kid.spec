@@ -42,6 +42,8 @@ triangle between XSLT, TAL, and PHP.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING HISTORY README doc/ examples/
+%{_bindir}/kid
+%{_bindir}/kidc
 %{python_sitelib}/kid/
 
 %changelog

@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Dave M <dave,nerd$gmail,com>
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -11,13 +12,12 @@
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
 Version: 1.99
-Release: 1
+Release: 2
 License: Perl
 Group: Applications/File
 URL: http://clamtk.sourceforge.net/
 
-### FIXME: Source should include a version (Please fix upstream)
-Source: http://dl.sf.net/clamtk/clamtk.tar.gz
+Source: http://dl.sf.net/clamtk/clamtk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -31,7 +31,7 @@ ClamTk is a front-end, point and click gui for ClamAV on Linux systems.
 It supports easy signature-updates.
 
 %prep
-%setup -n %{name}
+%setup
 
 %{__cat} <<EOF >clamtk.desktop
 [Desktop Entry]

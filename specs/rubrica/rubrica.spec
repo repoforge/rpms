@@ -4,7 +4,7 @@
 
 Summary: Address book application
 Name: rubrica
-Version: 1.0.13
+Version: 1.0.14
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -73,6 +73,9 @@ scrollkeeper-update -q
 %{_datadir}/rubrica/
 
 %changelog
+* Tue May 24 2004 Dag Wieers <dag@wieers.com> - 1.0.14-1
+- Updated to release 1.0.14.
+
 * Sun Nov 14 2004 Dag Wieers <dag@wieers.com> - 1.0.13-1
 - Updated to release 1.0.13.
 
