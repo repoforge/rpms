@@ -12,8 +12,8 @@
 
 Summary: Flash animations rendering library
 Name: swfdec
-Version: 0.3.4
-Release: 2
+Version: 0.3.5
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
@@ -114,6 +114,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %changelog
+* Wed May 25 2005 Matthias Saou <http://freshrpms.net/> 0.3.5-1
+- Update to 0.3.5.
+
 * Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.3.4-2
 - Add missing glib2-devel and liboil-devel reqs in the devel package.
 
