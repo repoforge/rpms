@@ -12,7 +12,7 @@
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.9.6
+Version: 1.9.11
 Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -122,6 +122,9 @@ desktop-file-install \
 
 
 %changelog
+* Fri May 27 2005 Matthias Saou <http://freshrpms.net/> 1.9.11-1
+- Update to 1.9.11.
+
 * Wed Mar 30 2005 Matthias Saou <http://freshrpms.net/> 1.9.6-1
 - Update to 1.9.6, the first "released" tarball of the claws gtk2 version.
 - Make gettext(-devel) build dep friendly to older distributions.
