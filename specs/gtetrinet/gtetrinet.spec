@@ -4,7 +4,7 @@
 
 Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
-Version: 0.7.8
+Version: 0.7.9
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -60,6 +60,9 @@ is, check out tetrinet.org)
 
 
 %changelog
+* Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 0.7.9-1
+- Update to 0.7.9.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 0.7.8-1
 - Update to 0.7.8.
 
