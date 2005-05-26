@@ -4,8 +4,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc4:%define _without_ffmpeg 1}
-
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
 %{?rh9:%define _without_alsa 1}
@@ -16,36 +14,28 @@
 %{?el2:%define _without_1394 1}
 %{?yd3:%define _without_alsa 1}
 
-# We want to explicitely disable MMX for ppc, x86_64 etc.
-%ifnarch %{ix86}
-    %define _without_mmx 1
-%endif
-
 #define prever pre1
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 0.9.6
+Version: 0.9.7
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}%{?prever}.tar.gz
-Patch: libquicktime-0.9.4-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk+-devel, libdv-devel, libvorbis-devel, lame-devel
+BuildRequires: gtk2-devel, libdv-devel, libvorbis-devel, lame-devel
 BuildRequires: libpng-devel >= 1.0.8, libjpeg-devel, gcc-c++
 %{?!_without_1394:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{?!_without_alsa:BuildRequires: alsa-lib-devel}
 %{?!_without_ffmpeg:BuildRequires: ffmpeg-devel}
 # A bug, the devel libs don't require the main ones :-(
 %{?yd3:BuildRequires: libraw1394, libavc1394}
-# Required for the autogen.sh script to work
-BuildRequires: libtool, autoconf, automake
 
 # The configure automatically adds MMX stuff if detected, so x86 becomes i586
 %ifarch %{ix86}
-%{!?_without_mmx:BuildArch: i586}
+BuildArch: i586
 %endif
 
 %description
@@ -74,19 +64,12 @@ programs that need to access quicktime files using libquicktime.
 
 %prep
 %setup -n %{name}-%{version}%{?prever}
-%patch -p1 -b .gcc4
-
-%{__perl} -pi.orig -e '
-    s|\$exec_prefix/lib|\$libdir|g;
-    s|(OPTIMIZE_CFLAGS)="-O3|$1="%{optflags}|;
-    ' configure.ac
 
 
 %build
-./autogen.sh
 %configure \
-    --enable-static \
-    %{?_without_mmx:--disable-mmx}
+    --with-cpuflags="%{optflags}" \
+    --enable-static
 %{__make} %{?_smp_mflags}
 
 
@@ -99,11 +82,9 @@ programs that need to access quicktime files using libquicktime.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -134,6 +115,13 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 0.9.7-1
+- Update to 0.9.7, remove all patches (gcc4 build is fixed).
+- Remove hack for putting optflags in configure.ac, remove autogen run.
+- Remove hack for replacing libdir.
+- Remove explicit mmx disabling on non x86, not needed anymore.
+- Change gtk+-devel requirement to gtk2-devel.
+
 * Fri May 20 2005 Dag Wieers <dag@wieers.com> - 0.9.6-1
 - Updated to release 0.9.6.
 
