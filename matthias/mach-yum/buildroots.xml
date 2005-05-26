@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE comps PUBLIC "-//Red Hat, Inc.//DTD Comps info//EN" "comps.dtd">
+
+<comps>
+  <group>
+   <id>build-minimal</id>
+   <uservisible>true</uservisible>
+   <name>Minimal Install</name>
+   <packagelist>
+     <packagereq type="mandatory">bash</packagereq>
+     <packagereq type="mandatory">glibc</packagereq>   
+     <packagereq type="mandatory">python</packagereq>   
+     <packagereq type="mandatory">createrepo</packagereq>   
+     <packagereq type="mandatory">rpm</packagereq>   
+     <packagereq type="mandatory">rpm-python</packagereq>   
+     <packagereq type="mandatory">initscripts</packagereq>
+     <packagereq type="mandatory">chkconfig</packagereq>
+     <packagereq type="mandatory">fedora-release</packagereq>
+   </packagelist>
+  </group>
+  <group>
+   <id>build-base</id>
+   <uservisible>true</uservisible>
+   <name>Basic Install</name>
+   <grouplist>
+      <groupreq>build-minimal</groupreq>
+   </grouplist>
+   <packagelist>
+      <packagereq type="mandatory">coreutils</packagereq>
+      <packagereq type="mandatory">findutils</packagereq>
+      <packagereq type="mandatory">openssh-server</packagereq>
+   </packagelist>
+  </group>
+  <group>
+   <id>build</id>
+   <uservisible>true</uservisible>
+   <name>Build Install</name>
+   <grouplist>
+      <groupreq>build-base</groupreq>
+      <groupreq>build-minimal</groupreq>
+   </grouplist>
+   <packagelist>
+      <packagereq type="mandatory">udev</packagereq>
+      <packagereq type="mandatory">rpm-build</packagereq>
+      <packagereq type="mandatory">make</packagereq>
+      <packagereq type="mandatory">gcc</packagereq>      
+      <packagereq type="mandatory">tar</packagereq>
+      <packagereq type="mandatory">gzip</packagereq>
+      <packagereq type="mandatory">patch</packagereq>
+      <packagereq type="mandatory">unzip</packagereq>
+      <packagereq type="mandatory">bzip2</packagereq>
+      <packagereq type="mandatory">diffutils</packagereq>
+      <packagereq type="mandatory">cpio</packagereq>
+      <packagereq type="mandatory">elfutils</packagereq>
+      <packagereq type="mandatory">intltool</packagereq>
+      <packagereq type="mandatory">redhat-rpm-config</packagereq>
+      <packagereq type="mandatory">gcc-c++</packagereq>
+      <packagereq type="mandatory">autoconf</packagereq>
+      <packagereq type="mandatory">gettext</packagereq>
+      <packagereq type="mandatory">automake</packagereq>
+      <packagereq type="mandatory">gdb</packagereq>
+      <packagereq type="mandatory">flex</packagereq>
+      <packagereq type="mandatory">libtool</packagereq>
+      <packagereq type="mandatory">strace</packagereq>
+      <packagereq type="mandatory">bison</packagereq>
+      <packagereq type="mandatory">binutils</packagereq>
+      <packagereq type="mandatory">patchutils</packagereq>                                                            
+      <packagereq type="mandatory">elfutils</packagereq>
+      <packagereq type="mandatory">byacc</packagereq>
+      <packagereq type="mandatory">diffstat</packagereq>
+      <packagereq type="mandatory">perl-XML-Parser</packagereq>
+      <packagereq type="mandatory">perl-XML-Dumper</packagereq>
+      <packagereq type="mandatory">perl-XML-SAX</packagereq>
+      <packagereq type="mandatory">ctags</packagereq>                                          
+      <packagereq type="mandatory">automake14</packagereq>
+      <packagereq type="mandatory">automake15</packagereq>
+      <packagereq type="mandatory">automake16</packagereq>
+      <packagereq type="mandatory">automake17</packagereq>
+      <packagereq type="mandatory">doxgen</packagereq>
+      <packagereq type="mandatory">indent</packagereq>
+   </packagelist>
+  </group>
+</comps>

@@ -1,0 +1,298 @@
+diff -Naupr mach-0.4.6.1.orig/etc/conf.in mach-0.4.6.1/etc/conf.in
+--- mach-0.4.6.1.orig/etc/conf.in	2005-03-17 08:06:49.000000000 +0100
++++ mach-0.4.6.1/etc/conf.in	2005-04-17 19:20:51.000000000 +0200
+@@ -19,8 +19,8 @@ config['spinner'] = {
+ config['dirs'] = {
+     'states':   '@STATESDIR@',
+     'roots':    '@ROOTSDIR@',
+-    'results':  '@LOCALSTATEDIR@/tmp/mach',
+-    'tmps':     '@LOCALSTATEDIR@/tmp/mach/tmp',
++    'results':  '@LOCALSTATEDIR@/lib/mach/rpms',
++    'tmps':     '@LOCALSTATEDIR@/tmp/mach',
+     'packages': '@LOCALSTATEDIR@/cache/mach/packages',
+     'archives': '@ARCHIVESDIR@',
+ }
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386 mach-0.4.6.1/etc/dist.d/fedora-3-i386
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386	2005-03-17 08:08:35.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-3-i386	2005-05-10 13:01:29.000000000 +0200
+@@ -6,29 +6,29 @@
+ # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
+ 
+ yumsources['fedora-3-i386'] = {
+-    'core':             'rpm ' + fedora + ' /3/i386/os core',
+-    'updates':          'rpm ' + fedora + ' /updates/3/i386 updates',
+-    'buildgroups':      'rpm ' + buildgroups + ' /i386/ groups',
+-    'extras':           'rpm ' + fdrextras + ' /3/i386 extras',
++    'core':        'rpm ' + fedora + ' /core/3/i386/os core',
++    'updates':     'rpm ' + fedora + ' /core/updates/3/i386 updates',
++    'extras':      'rpm ' + fedora + ' /extras/3/i386 extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/3/i386/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
+ }
+ 
+-# Fedora Core Development
+-groups['fedora-3-i386-core'] = {
++
++# Fedora Core 3
++groups['fedora-3-i386'] = {
+     'minimal':  'build-minimal',
+     'base':     'build-base',
+     'build':    'build',
+ }
+ 
+-# Fedora Core 3
+-packages['fedora-3-i386-core'] = {
+-    'dir':      'fedoracore-3-i386',
++packages['fedora-3-i386'] = {
++    'dir':      'fedora-3-i386',
+ }
+ 
+-sourceslist['fedora-3-i386-core'] = {
+-    'fedora-3-i386': ('core', 'updates', 'buildgroups', )
++sourceslist['fedora-3-i386'] = {
++    'fedora-3-i386': ('core', 'updates', 'extras', 'freshrpms', 'buildgroups', )
+ }
+ 
+-# FC3 roots should use runuser instead of su
+-config['fedora-3-i386-core'] = {'runuser': '/sbin/runuser'}
+-
++# Fedora Core 3 roots should use runuser instead of su
++config['fedora-3-i386'] = {'runuser': '/sbin/runuser'}
+ 
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.6.1/etc/dist.d/fedora-3-x86_64
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64	2005-03-17 08:08:13.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-3-x86_64	2005-05-10 13:01:09.000000000 +0200
+@@ -6,29 +6,29 @@
+ # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
+ 
+ yumsources['fedora-3-x86_64'] = {
+-    'core':             'rpm ' + fedora + ' /3/x86_64/os core',
+-    'updates':          'rpm ' + fedora + ' /updates/3/x86_64 updates',
+-    'buildgroups':      'rpm ' + buildgroups + ' /x86_64/ groups',
+-    'extras':           'rpm ' + fdrextras + ' /3/x86_64 extras',
++    'core':        'rpm ' + fedora + ' /core/3/x86_64/os core',
++    'updates':     'rpm ' + fedora + ' /core/updates/3/x86_64 updates',
++    'extras':      'rpm ' + fedora + ' /extras/3/x86_64 extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/3/x86_64/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
+ }
+ 
+-# Fedora Core Development
+-groups['fedora-3-x86_64-core'] = {
++
++# Fedora Core 3
++groups['fedora-3-x86_64'] = {
+     'minimal':  'build-minimal',
+     'base':     'build-base',
+     'build':    'build',
+ }
+ 
+-# Fedora Core 3
+-packages['fedora-3-x86_64-core'] = {
+-    'dir':      'fedoracore-3-x86_64',
++packages['fedora-3-x86_64'] = {
++    'dir':      'fedora-3-x86_64',
+ }
+ 
+-sourceslist['fedora-3-x86_64-core'] = {
+-    'fedora-3-x86_64': ('core', 'updates', 'buildgroups', )
++sourceslist['fedora-3-x86_64'] = {
++    'fedora-3-x86_64': ('core', 'updates', 'extras', 'freshrpms', 'buildgroups', )
+ }
+ 
+-# FC3 roots should use runuser instead of su
+-config['fedora-3-x86_64-core'] = {'runuser': '/sbin/runuser'}
+-
++# Fedora Core 3 roots should use runuser instead of su
++config['fedora-3-x86_64'] = {'runuser': '/sbin/runuser'}
+ 
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386 mach-0.4.6.1/etc/dist.d/fedora-development-i386
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386	2005-03-18 07:33:15.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-development-i386	2005-05-10 13:04:58.000000000 +0200
+@@ -1,37 +1,33 @@
+-# mach dist configuration                          -*- python -*-
++# mach dist configuration                                        -*- python -*-
+ 
+-# fedora-development-i386: configuration for Fedora core Development (rawhide)
++# fedora-development-i386: configuration for Fedora Development (rawhide)
+ 
+ # yum sources layout:
+ # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
+ 
+ yumsources['fedora-development-i386'] = {
+-    'core':         'rpm ' + fedora + ' /development/i386 core',
+-    'buildgroups':	'rpm ' + buildgroups + ' /i386/ groups',
+-    'extras':		'rpm ' + fdrextras + ' /development/i386 extras',
++    'core':        'rpm ' + fedora + ' /core/development/i386 core',
++    'extras':      'rpm ' + fedora + ' /extras/development/i386 extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/development/i386/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
+ }
+   
++
+ # Fedora Core Development
+-groups['fedora-development-i386-core'] = {
++groups['fedora-development-i386'] = {
+     'minimal':  'build-minimal',
+     'base':     'build-base',
+     'build':    'build',
+ }
+ 
+-# we need this dir, yes it's silly
+-packages['fedora-development-i386-core'] = {
+-    'dir':      'fedoracore-development-i386',
++packages['fedora-development-i386'] = {
++    'dir':      'fedora-development-i386',
+ }
+ 
+-sourceslist['fedora-development-i386-core'] = {
+-    'fedora-development-i386': ('core', 'buildgroups', )
++sourceslist['fedora-development-i386'] = {
++    'fedora-development-i386': ('core', 'extras', 'freshrpms', 'buildgroups', )
+ }
+ 
+-config['fedora-development-i386-core'] = {'runuser': '/sbin/runuser'}
++# Fedora Core Development roots should use runuser instead of su
++config['fedora-development-i386'] = {'runuser': '/sbin/runuser'}
+ 
+-# Fedora Core development with Extras
+-packages['fedora-development-i386-extras-stable'] = packages['fedora-development-i386-core'].copy ()
+-groups['fedora-development-i386-extras-stable'] = groups['fedora-development-i386-core'].copy ()
+-sourceslist['fedora-development-i386-extras-stable'] = {
+-    'fedora-development-i386': ('core', 'buildgroups', 'extras', )
+-}
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc mach-0.4.6.1/etc/dist.d/fedora-development-ppc
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc	2005-03-18 07:33:55.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-development-ppc	2005-05-10 13:05:10.000000000 +0200
+@@ -1,37 +1,33 @@
+-# mach dist configuration                          -*- python -*-
++# mach dist configuration                                        -*- python -*-
+ 
+-# fedora-development-ppc: configuration for Fedora core Development (rawhide)
++# fedora-development-ppc: configuration for Fedora Development (rawhide)
+ 
+ # yum sources layout:
+ # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
+ 
+ yumsources['fedora-development-ppc'] = {
+-    'core':         'rpm ' + fedora + ' /development/ppc core',
+-    'buildgroups':	'rpm ' + buildgroups + ' /ppc/ groups',
+-    'extras':		'rpm ' + fdrextras + ' /development/ppc extras',
++    'core':        'rpm ' + fedora + ' /core/development/ppc core',
++    'extras':      'rpm ' + fedora + ' /extras/development/ppc extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/development/ppc/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
+ }
+   
++
+ # Fedora Core Development
+-groups['fedora-development-ppc-core'] = {
++groups['fedora-development-ppc'] = {
+     'minimal':  'build-minimal',
+     'base':     'build-base',
+     'build':    'build',
+ }
+ 
+-# we need this dir, yes it's silly
+-packages['fedora-development-ppc-core'] = {
+-    'dir':      'fedoracore-development-ppc',
++packages['fedora-development-ppc'] = {
++    'dir':      'fedora-development-ppc',
+ }
+ 
+-sourceslist['fedora-development-ppc-core'] = {
+-    'fedora-development-ppc': ('core', 'buildgroups', )
++sourceslist['fedora-development-ppc'] = {
++    'fedora-development-ppc': ('core', 'extras', 'freshrpms', 'buildgroups', )
+ }
+ 
+-config['fedora-development-ppc-core'] = {'runuser': '/sbin/runuser'}
++# Fedora Core Development roots should use runuser instead of su
++config['fedora-development-ppc'] = {'runuser': '/sbin/runuser'}
+ 
+-# Fedora Core development with Extras
+-packages['fedora-development-ppc-extras-stable'] = packages['fedora-development-ppc-core'].copy ()
+-groups['fedora-development-ppc-extras-stable'] = groups['fedora-development-ppc-core'].copy ()
+-sourceslist['fedora-development-ppc-extras-stable'] = {
+-    'fedora-development-ppc': ('core', 'buildgroups', 'extras', )
+-}
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.6.1/etc/dist.d/fedora-development-x86_64
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64	2005-03-14 04:53:27.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-development-x86_64	2005-05-10 13:04:38.000000000 +0200
+@@ -1,37 +1,33 @@
+-# mach dist configuration                          -*- python -*-
++# mach dist configuration                                        -*- python -*-
+ 
+-# fedora-development-x86_64: configuration for Fedora core Development (rawhide)
++# fedora-development-x86_64: configuration for Fedora Development (rawhide)
+ 
+ # yum sources layout:
+ # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
+ 
+ yumsources['fedora-development-x86_64'] = {
+-    'core':         'rpm ' + fedora + ' /development/x86_64 core',
+-    'buildgroups':	'rpm ' + buildgroups + ' /x86_64/ groups',
+-    'extras':		'rpm ' + fdrextras + '/development/x86_64 extras',
++    'core':        'rpm ' + fedora + ' /core/development/x86_64 core',
++    'extras':      'rpm ' + fedora + ' /extras/development/x86_64 extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/development/x86_64/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
+ }
+   
++
+ # Fedora Core Development
+-groups['fedora-development-x86_64-core'] = {
++groups['fedora-development-x86_64'] = {
+     'minimal':  'build-minimal',
+     'base':     'build-base',
+     'build':    'build',
+ }
+ 
+-# we need this dir, yes it's silly
+-packages['fedora-development-x86_64-core'] = {
+-    'dir':      'fedoracore-development-x86_64',
++packages['fedora-development-x86_64'] = {
++    'dir':      'fedora-development-x86_64',
+ }
+ 
+-sourceslist['fedora-development-x86_64-core'] = {
+-    'fedora-development-x86_64': ('core', 'buildgroups', )
++sourceslist['fedora-development-x86_64'] = {
++    'fedora-development-x86_64': ('core', 'extras', 'freshrpms', 'buildgroups', )
+ }
+ 
+-config['fedora-development-x86_64-core'] = {'runuser': '/sbin/runuser'}
++# Fedora Core Development roots should use runuser instead of su
++config['fedora-development-x86_64'] = {'runuser': '/sbin/runuser'}
+ 
+-# Fedora Core development with Extras
+-packages['fedora-development-x86_64-extras-stable'] = packages['fedora-development-x86_64-core'].copy ()
+-groups['fedora-development-x86_64-extras-stable'] = groups['fedora-development-x86_64-core'].copy ()
+-sourceslist['fedora-development-x86_64-extras-stable'] = {
+-    'fedora-development-x86_64': ('core', 'buildgroups', 'extras', )
+-}
+diff -Naupr mach-0.4.6.1.orig/etc/location mach-0.4.6.1/etc/location
+--- mach-0.4.6.1.orig/etc/location	2005-03-14 04:51:20.000000000 +0100
++++ mach-0.4.6.1/etc/location	2005-05-10 12:54:44.000000000 +0200
+@@ -7,12 +7,15 @@
+ 
+ # Base download locations.
+ 
+-# Fedora Core; this location should contain versioned directions
+-fedora      = 'http://download.fedora.redhat.com/pub/fedora/linux/core/'
++# Fedora (Core and Extras)
++fedora      = 'http://download.fedora.redhat.com/pub/fedora/linux/'
+ 
+-# build groups
+-buildgroups = 'http://linux.duke.edu/~skvidal/mach/'
++# Build groups
++buildgroups = 'file:///etc/mach/buildgroups/'
+ 
+-# Fedora Extras
+-fdrextras = 'http://download.fedora.redhat.com/pub/fedora/linux/extras/'
++# Freshrpms
++freshrpms   = 'http://ayo.freshrpms.net/'
++
++# Red Hat Enterprise Linux
++redhat      = 'file:///redhat/'
+ 
