@@ -6,13 +6,13 @@
 
 Summary: Reliably tunnel TCP connections over ICMP packets
 Name: ptunnel
-Version: 0.60
+Version: 0.61
 Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.cs.uit.no/~daniels/PingTunnel/index.html
 
-Source: http://www.cs.uit.no/~daniels/PingTunnel/PingTunnel.tar.gz
+Source: http://www.cs.uit.no/~daniels/PingTunnel/PingTunnel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
@@ -34,7 +34,7 @@ is required.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR="%{buildroot}"
+%makeinstall mandir="%{buildroot}%{_mandir}/man8"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,9 +42,13 @@ is required.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG LICENSE README web/
+%doc %{_mandir}/man8/ptunnel.8*
 %{_bindir}/ptunnel
 
 %changelog
+* Fri May 27 2005 Dag Wieers <dag@wieers.com> - 0.61-1
+- Updated to release 0.61.
+
 * Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 0.60-1
 - Updated to release 0.60.
 

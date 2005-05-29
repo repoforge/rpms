@@ -1,0 +1,58 @@
+Blech, give us a relatively simple way to drop in "lib" or "lib64", as
+appropriate.  Needs fixing to be more correct.
+
+--- ./bin/mrtg	2003-03-05 14:49:37.000000000 -0500
++++ ./bin/mrtg	2003-03-05 14:49:31.000000000 -0500
+@@ -52,7 +52,7 @@
+ 
+ use FindBin;
+ use lib "${FindBin::Bin}";
+-use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
++use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+ use Getopt::Long;
+ 
+ # search for binaries in the bin and bin/../lib  directory
+--- ./bin/cfgmaker	2003-03-05 14:51:51.000000000 -0500
++++ ./bin/cfgmaker	2003-03-05 14:52:09.000000000 -0500
+@@ -39,7 +39,7 @@
+ 
+ use FindBin;
+ use lib "${FindBin::Bin}";
+-use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
++use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+ 
+ use MRTG_lib "2.090017";
+ use SNMP_util "0.86";
+--- ./bin/indexmaker	2003-03-05 14:51:56.000000000 -0500
++++ ./bin/indexmaker	2003-03-05 14:52:16.000000000 -0500
+@@ -44,7 +44,7 @@
+ 
+ use FindBin;
+ use lib "${FindBin::Bin}";
+-use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
++use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+ 
+ use MRTG_lib "2.090017";
+ use Getopt::Long;
+--- ./doc/cfgmaker.pod	2003-03-05 14:53:09.000000000 -0500
++++ ./doc/cfgmaker.pod	2003-03-05 14:53:27.000000000 -0500
+@@ -39,7 +39,7 @@
+ 
+ use FindBin;
+ use lib "${FindBin::Bin}";
+-use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
++use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+ 
+ use MRTG_lib "2.090017";
+ use SNMP_util "0.86";
+--- ./doc/indexmaker.pod	2003-03-05 14:54:49.000000000 -0500
++++ ./doc/indexmaker.pod	2003-03-05 14:54:59.000000000 -0500
+@@ -44,7 +44,7 @@
+ 
+ use FindBin;
+ use lib "${FindBin::Bin}";
+-use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
++use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+ 
+ use MRTG_lib "2.090017";
+ use Getopt::Long;

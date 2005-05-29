@@ -3,7 +3,7 @@
 
 Summary: Unpack Microsoft MS-TNEF MIME attachements
 Name: tnef
-Version: 1.3.2
+Version: 1.3.3
 Release: 1
 License: GPL
 Group: Applications/File
@@ -41,5 +41,8 @@ being attached seperately.
 %{_bindir}/tnef
 
 %changelog
+* Fri May 27 2005 Dag Wieers <dag@wieers.com> - 1.3.3-1
+- Updated to release 1.3.3.
+
 * Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 1.3.2-1
 - Initial package. (using DAR)

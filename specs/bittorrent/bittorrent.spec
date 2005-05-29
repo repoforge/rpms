@@ -12,7 +12,7 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.1.0
+Version: 4.1.1
 Release: 1
 License: BitTorrent Open Source License
 Group: Applications/Internet
@@ -76,6 +76,7 @@ EOF
 %{__python} setup.py install \
 	--skip-build \
 	--root "%{buildroot}"
+%find_lang %{name}
 %{__perl} -pi -e 's|env python2|env python|' %{buildroot}%{_bindir}/*.py
 
 %if %{?_without_freedesktop:1}0
@@ -99,7 +100,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc *.html *.txt
 %{_bindir}/*.py
@@ -121,6 +122,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{python_sitelib}/khashmir/
 
 %changelog
+* Fri May 27 2005 Dag Wieers <dag@wieers.com> - 4.1.1-1
+- Updated to release 4.1.1.
+
 * Fri May 20 2005 Dag Wieers <dag@wieers.com> - 4.1.0-1
 - Updated to release 4.1.0.
 

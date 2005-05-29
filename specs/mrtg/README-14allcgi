@@ -1,0 +1,27 @@
+README for 14all.cgi
+--------------------
+
+14all.cgi is a CGI script to create html pages and graphics for mrtg.
+It's not another index.cgi for the mrtg-created html pages! Instead it
+creates everything itself.
+
+To use this script you have to switch from rateup .log files to rrdtool:
+1. install rrdtool (install perl-shared with "make site-perl-inst" if possible
+2. convert every .log file to .rrd with log2rrd.pl (from mrtg contrib)
+3. insert the line "UseRRDTool: Yes" to your mrtg.cfg.
+4. make 14all.cgi accessible via your web server. change the path to your
+   mrtg.cfg file in the line beginning with "$cfgfile = ..."
+
+14all.cgi parses the mrtg config file (often called mrtg.cfg) and uses
+most of the information to create
+- main index page: one link for every "Directory[...]: adir"
+- group index pages: one for every "Directory..." with small versions
+  of the daily graphics
+- statistic pages: one for every target with daily/weekly/monthly/yearly
+  graphics according to "Suppress[...]: ..."
+
+MRTG does not create any graphics/pictures if you set "UseRRDTool: Yes"!
+
+Author: Rainer.Bawidamann@informatik.uni-ulm.de
+Homepage: http://www.uni-ulm.de/~rbawidam/mrtg-rrd/
+License: Use freely, but: NO WARRANTY - USE AT YOUR OWN RISK!
