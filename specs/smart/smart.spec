@@ -24,7 +24,7 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.30.2
+Version: 0.35
 Release: 1
 License: GPL
 Group: Applications/System
@@ -401,6 +401,9 @@ cd -
 %endif
 
 %changelog
+* Mon May 30 2005 Dag Wieers <dag@wieers.com> - 0.35-1
+- Updated to release 0.35.
+
 * Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 0.30.2-1
 - Updated to release 0.30.2.
 

@@ -13,7 +13,7 @@
 Summary: Network file transfer tool
 Name: bittorrent
 Version: 4.1.1
-Release: 1
+Release: 2
 License: BitTorrent Open Source License
 Group: Applications/Internet
 URL: http://bittorrent.com/
@@ -25,7 +25,7 @@ BuildArch: noarch
 BuildRequires: python-devel >= 2.3, pygtk2-devel >= 2.4
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: python >= 2.3, python-khashmir
-Obsoletes: BitTorrent
+Obsoletes: BitTorrent <= %{version}
 
 %description
 BitTorrent is a tool for copying files from one machine to
@@ -53,6 +53,8 @@ implemented in Python.
 
 %prep
 %setup -n %{real_name}-%{version}
+
+%{__perl} -pi.orig -e "s|dp = os.path.join\('share', 'doc'    , appdir\)|dp = '%{_docdir}/%{name}-%{version}/'|" BitTorrent/__init__.py
 
 %{__cat} <<EOF >bittorrent.desktop
 [Desktop Entry]
@@ -107,7 +109,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %exclude %{_bindir}/btdownloadgui.py
 %{python_sitelib}/BitTorrent/
 %{_datadir}/pixmaps/BitTorrent-%{version}/
-%exclude %{_docdir}/BitTorrent-%{version}/
+#exclude %{_docdir}/BitTorrent-%{version}/
 
 %files gui
 %defattr(-, root, root, 0755)
@@ -122,6 +124,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{python_sitelib}/khashmir/
 
 %changelog
+* Sun May 29 2005 Dag Wieers <dag@wieers.com> - 4.1.1-2
+- Small fix for About to work.
+
 * Fri May 27 2005 Dag Wieers <dag@wieers.com> - 4.1.1-1
 - Updated to release 4.1.1.
 

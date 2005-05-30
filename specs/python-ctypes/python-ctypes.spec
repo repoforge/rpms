@@ -10,7 +10,7 @@ Name: python-ctypes
 Version: 0.9.1
 Release: 1
 License: MIT
-Group: Development/Python
+Group: Development/Libraries
 URL: http://starship.python.net/crew/theller/ctypes/
 
 Source: http://dl.sf.net/ctypes/ctypes-%{version}.tar.gz

@@ -1,8 +1,7 @@
 # $Id$
-
 # Authority: dag
 
-# Archs: i386 i686
+##Archs: i386 i686
 
 Name: nomarch
 Summary: GPLed Arc de-archiver 
@@ -14,7 +13,6 @@ URL: http://rus.members.beeb.net/nomarch.html
 
 Source: ftp://ftp.ibiblio.org/pub/Linux/utils/compress/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 nomarch lists/extracts/tests `.arc' archives. (It also handles `.ark'
@@ -30,7 +28,7 @@ you can still run into it every so often.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
+%{__make} install \
 	BINDIR="%{buildroot}%{_bindir}" \
 	MANDIR="%{buildroot}%{_mandir}/man1"
 
@@ -40,8 +38,8 @@ you can still run into it every so often.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog NEWS README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/nomarch.1*
+%{_bindir}/nomarch
 
 %changelog
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com> - 1.3-0
