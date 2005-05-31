@@ -3,14 +3,14 @@
 
 Summary: Multimedia container format library
 Name: libmatroska
-Version: 0.7.5
+Version: 0.7.7
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.matroska.org/
 Source: http://dl.matroska.org/downloads/libmatroska/libmatroska-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libebml-devel >= 0.7.3
+BuildRequires: gcc-c++, libebml-devel >= 0.7.5
 
 %description
 In short, matroska is a new Audio/Video container file format. It is an
@@ -28,8 +28,7 @@ All these features are not yet implemented but already defined in the format.
 %package devel
 Summary: Development files for the Matroska container format library
 Group: Development/Libraries
-# Static lib, no main package (yet)
-#Requires: %{name} = %{version}
+Requires: %{name} = %{version}, libebml-devel >= 0.7.5
 
 %description devel
 In short, matroska is a new Audio/Video container file format. It is an
@@ -62,6 +61,9 @@ the Matroska container format library.
     libdir=%{buildroot}%{_libdir} \
     includedir=%{buildroot}%{_includedir}/matroska
 
+# Needed for proper stripping of the library (0.7.7)
+%{__chmod} +x %{buildroot}%{_libdir}/*.so.*
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -74,18 +76,24 @@ the Matroska container format library.
 /sbin/ldconfig
 
 
-# No files for now, as there is only a static library
-#files
-#defattr(-, root, root, 0755)
+%files
+%defattr(-, root, root, 0755)
+%doc ChangeLog LICENSE.LGPL
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc ChangeLog LICENSE.LGPL
 %{_includedir}/matroska/
 %{_libdir}/*.a
+%{_libdir}/*.so
 
 
 %changelog
+* Tue May 31 2005 Matthias Saou <http://freshrpms.net/> 0.7.7-1
+- Update to 0.7.7.
+- Shared lib is now built by default, so include it at last.
+- Explicit chmod +x of the shared lib to get it stripped properly.
+
 * Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 0.7.5-1
 - Update to 0.7.5.
 

@@ -3,7 +3,7 @@
 
 Summary: Extensible Binary Meta Language library
 Name: libebml
-Version: 0.7.3
+Version: 0.7.5
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -20,8 +20,7 @@ This library is used for I/O operations in the Extensible Binary Meta Language
 %package devel
 Summary: Development files for the Extensible Binary Meta Language
 Group: Development/Libraries
-# Static lib, no main package (yet)
-#Requires: %{name} = %{version}
+Requires: %{name} = %{version}
 
 %description devel
 This library is used for I/O operations in the Extensible Binary Meta Language
@@ -33,8 +32,6 @@ use the Extensible Binary Meta Language.
 
 %prep
 %setup
-# Fix mode for this text file
-%{__chmod} -x ChangeLog
 
 
 %build
@@ -48,6 +45,9 @@ use the Extensible Binary Meta Language.
     libdir=%{buildroot}%{_libdir} \
     includedir=%{buildroot}%{_includedir}/ebml
 
+# Needed for proper stripping of the library (0.7.5)
+%{__chmod} +x %{buildroot}%{_libdir}/*.so.*
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -60,18 +60,24 @@ use the Extensible Binary Meta Language.
 /sbin/ldconfig
 
 
-# No files for now, as there is only a static library
-#files
-#defattr(-, root, root, 0755)
+%files
+%defattr(-, root, root, 0755)
+%doc ChangeLog LICENSE.LGPL
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc ChangeLog LICENSE.LGPL
 %{_includedir}/ebml/
 %{_libdir}/*.a
+%{_libdir}/*.so
 
 
 %changelog
+* Tue May 31 2005 Matthias Saou <http://freshrpms.net/> 0.7.5-1
+- Update to 0.7.5.
+- Shared lib is now built by default, so include it at last.
+- Explicit chmod +x of the shared lib to get it stripped properly.
+
 * Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 0.7.3-1
 - Update to 0.7.3.
 
