@@ -4,8 +4,8 @@
 
 Summary: Versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
-Version: 1.2.2
-Release: 4
+Version: 1.2.3
+Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://anjuta.sourceforge.net/
@@ -86,6 +86,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Thu Jun  2 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Update to 1.2.3, bugfix release.
+
 * Thu Feb  3 2005 Matthias Saou <http://freshrpms.net/> 1.2.2-4
 - Added gettext-devel dep on FC3 to get gettext stuff included in new projects
   properly (thanks to Paul Frields).
