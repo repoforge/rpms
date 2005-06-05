@@ -4,7 +4,7 @@
 
 Summary: Extract, test and view RAR archives
 Name: unrar
-Version: 3.5.1
+Version: 3.5.2
 Release: 1
 License: Freeware
 Group: Applications/Archiving
@@ -22,6 +22,8 @@ archives created with the RAR archiver version 1.50 and above.
 
 %prep
 %setup -n %{name}
+# Remove stripping to get useful debuginfo package
+%{__perl} -pi -e 's|^STRIP=.*|STRIP=true|g' makefile.unix
 
 
 %build
@@ -46,6 +48,10 @@ archives created with the RAR archiver version 1.50 and above.
 
 
 %changelog
+* Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 3.5.2-1
+- Update to 3.5.2.
+- Disable stripping to get useful debuginfo package.
+
 * Mon Apr  4 2005 Matthias Saou <http://freshrpms.net/> 3.5.1-1
 - Update to 3.5.1.
 
