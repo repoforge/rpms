@@ -10,38 +10,32 @@
 %{?rh7:%define _without_alsa 1}
 %{?el2:%define _without_alsa 1}
 
-# We want to explicitely disable MMX for ppc, x86_64 etc.
-%ifnarch %{ix86}
-    %define _without_mmx 1
-%endif
-
-%define jpegmmx_version 0.1.5
+%define jpegmmx_version 0.1.6
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
-Version: 1.6.2
-Release: 4
+Version: 1.6.3
+Release: 0.1.rc1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
+Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}-rc1.tar.gz
 Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
-Patch0: mjpegtools-1.6.2-gcc34.patch
-Patch1: jpeg-mmx-0.1.5-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL, libjpeg, libpng, gtk+
-Requires: libquicktime, libdv
-BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk+-devel
+BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel
 # Some other -devel package surely forgot this as a dependency
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-
+# Required by some other package, it seems... (SDL-devel is a good guess)
+BuildRequires: arts-devel
 %ifarch %{ix86}
 # Optimisations are automatically turned on when detected
 # as we build on i686, this will be an i686 only package
 %{!?_without_mmx:BuildArch: i686}
 BuildRequires: nasm
 %endif
+Requires(post): /sbin/install-info
+Requires(preun): /sbin/install-info
 
 
 %description
@@ -56,7 +50,7 @@ encoded into mpeg1/2 or divx video.
 %package devel
 Summary: Development headers and libraries for the mjpegtools
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}, pkgconfig
 
 %description devel
 This package contains static libraries and C system header files
@@ -65,57 +59,41 @@ of the mjpegtools package.
 
 
 %prep
-%setup -a 1
-%patch0 -p1 -b .gcc34
-%patch1 -p0 -b .jpegmmx-gcc34
+%setup -a 1 -n %{name}-%{version}-rc1
 
 
 %build
 %ifarch %{ix86}
-pushd jpeg-mmx-%{jpegmmx_version}
-#    ./configure && %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+pushd jpeg-mmx
     ./configure && %{__make} CFLAGS="%{optflags}"
 popd
 %endif
 
-# This -fPIC is required (1.6.2) to build on x86_64
-# ### FIXME Stripping of libmjpegutils.a fails (hence --disable-static)
-#CFLAGS="%{optflags} -fPIC" \
-CFLAGS="%{optflags}" \
 %configure \
-    --program-prefix="%{?_program_prefix}" \
-    --disable-static \
-    --enable-shared \
-    --with-pic \
 %ifarch %{ix86}
-    %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"} \
-    --enable-cmov-extension \
+    %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"}
 %endif
-    --with-dv="%{_prefix}" --with-dv-yv12 \
-    --with-quicktime \
-    --enable-large-file \
-    --enable-xfree-ext \
-    --enable-simd-accel \
-    --enable-zalpha
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %post
 /sbin/ldconfig
-#/sbin/install-info %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
+/sbin/install-info %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
 
-#preun
-#if [ $1 -eq 0]; then
-#    /sbin/install-info --delete %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
-#fi
+%preun
+if [ $1 -eq 0 ]; then
+    /sbin/install-info --delete %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
+fi
 
 %postun
 /sbin/ldconfig
@@ -124,36 +102,35 @@ CFLAGS="%{optflags}" \
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING HINTS PLANS README TODO
-%{?_with_avifile:%{_bindir}/divxdec}
-%{_bindir}/glav
-#%{_bindir}/img2mpg
-%{_bindir}/jpeg2yuv
-%{_bindir}/lav*
-%{_bindir}/mp*
-%{_bindir}/pgmtoy4m
-%{_bindir}/png2yuv
-%{_bindir}/ppm*
-%{_bindir}/testrec
-%{_bindir}/y4m*
-%{_bindir}/ypipe
-%{_bindir}/yuv*
-%{_bindir}/*.flt
+%{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man?/*
 %{_infodir}/mjpeg-howto.info*
-%exclude %{_infodir}/dir
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/*-config
 %{_includedir}/mjpegtools/
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.a
-%{_libdir}/*.so
 %exclude %{_libdir}/*.la
+%{_libdir}/*.so
 
 
 %changelog
+* Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 1.6.3-0.1.rc1
+- Update to 1.6.3-rc1.
+- Don't enable "MPEG Z/Alpha" anymore : It fails to compile.
+- Clean up configure options and patches : Static lib doesn't make stripping
+  fail anymore, explicit -fPIC no longer required, etc.
+- Update gtk build requirement to gtk2 for glav.
+- Remove no longer included *-config binaries (only pkgconfig now).
+- Re-enable install-info calls, things are working again now.
+
+* Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 1.6.2-5
+- Add gcc4 patch, a backport of recent CVS changes.
+- Disable libquicktime in configure for now.
+- Add mjpegtools-1.6.2-quantize_x86.patch (ASM changes from CVS).
+
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 1.6.2-4
 - Add gcc34 patch from bugs.gentoo.org #48890.
 - Add gcc34 patch to jpeg-mmx from linuxfromscratch commit 629.
