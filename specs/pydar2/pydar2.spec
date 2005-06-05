@@ -6,7 +6,7 @@
 
 Summary: buildserver in python
 Name: pydar2
-Version: 0.010
+Version: 0.015
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -85,15 +85,23 @@ Script which generates http://dries.ulyssis.org/rpm/
 %defattr(-, root, root, 0755)
 %dir %{_var}/lib/pydar2
 %{_datadir}/pydar2/sql
+%dir %{_datadir}/pydar2/scripts
 %{_datadir}/pydar2/pydar-buildserver-master.py
+%{_datadir}/pydar2/pydar-master-autoqueue.py
+%{_datadir}/pydar2/pydar-master-update.py
+%{_datadir}/pydar2/pydar-master-movecommandresults.py
+%{_datadir}/pydar2/log4py.conf
 
 %files dries
 %defattr(-, root, root, 0755)
 %{_datadir}/pydar2/dries
+%{_datadir}/pydar2/scripts/*.py
 
 %files slave
 %defattr(-, root, pydar2slave, 0740)
 %config(noreplace) %{_sysconfdir}/pydar2/slave.conf
+%dir %{_sysconfdir}/pydar2/yum
+%config(noreplace) %{_sysconfdir}/pydar2/yum/*.conf
 %defattr(-, pydar2slave, pydar2slave, 0700)
 %dir %{_var}/lib/pydar2/slavedataroot
 %dir %{_var}/lib/pydar2/roots
@@ -109,10 +117,13 @@ Script which generates http://dries.ulyssis.org/rpm/
 %pre
 /usr/sbin/groupadd pydar2master || :
 /usr/sbin/groupadd pydar2slave || :
-/usr/sbin/useradd -g pydar2master pydar2master || :
-/usr/sbin/useradd -g pydar2slave pydar2slave || :
+/usr/sbin/useradd -M -g pydar2master pydar2master || :
+/usr/sbin/useradd -M -g pydar2slave pydar2slave || :
 
 %changelog
+* Wed May 25 2005 Dries Verachtert <dries@ulyssis.org> 0.011-1
+- Update
+
 * Sat May 14 2005 Dries Verachtert <dries@ulyssis.org> 0.007-1
 - Update
 
