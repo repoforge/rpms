@@ -1,10 +1,10 @@
 # $Id$
-# Authority: dag
+# Authority: bert
 # Upstream: Martin Dickopp <martin-jpegpixi$zero-based,org>
 
 Summary: JPEG pixel interpolator
 Name: jpegpixi
-Version: 1.0.3
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -42,6 +42,9 @@ pixel can be interpolated with jpegpixi.
 %{_bindir}/jpeg*
 
 %changelog
+* Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Mon Nov 01 2004 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3.
 

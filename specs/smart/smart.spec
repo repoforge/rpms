@@ -134,7 +134,7 @@ EOF
 
 %{__cat} <<EOF >planetccrma.channel
 ### URL: http://ccrma.stanford.edu/planetccrma/software/
-[planetcrrma]
+[planetccrma]
 name = RPMforge.net: Various packages from Planet CCRMA for $name $version (%{_arch})
 baseurl = http://ccrma.stanford.edu/planetccrma/apt/$path/$version/%{_arch}
 components = planetccrma planetcore

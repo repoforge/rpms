@@ -1,0 +1,11 @@
+--- include/freetype/config/ftoption.h.enable-ft2-bci	2002-11-06 17:32:53.000000000 -0500
++++ include/freetype/config/ftoption.h	2002-12-17 02:43:47.000000000 -0500
+@@ -378,7 +378,7 @@
+   /*   do not #undef this macro here, since the build system might         */
+   /*   define for certain configurations                                   */
+   /*                                                                       */
+-/* #define  TT_CONFIG_OPTION_BYTECODE_INTERPRETER */
++#define  TT_CONFIG_OPTION_BYTECODE_INTERPRETER
+ 
+ 
+   /*************************************************************************/

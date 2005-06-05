@@ -1,0 +1,20 @@
+--- freetype-pre1.4/test/ftdump.c.gcc33	2000-01-04 20:16:07.000000000 -0500
++++ freetype-pre1.4/test/ftdump.c	2003-06-09 18:17:28.000000000 -0400
+@@ -140,7 +140,7 @@
+     old_memory += *var;
+   }
+ 
+-#define FOOTPRINT( field )  Save_Memory( &memory_footprint.##field )
++#define FOOTPRINT( field )  Save_Memory( &memory_footprint.field )
+ 
+ 
+   static void
+@@ -153,7 +153,7 @@
+   }
+ 
+ #define PRINT_MEM( field, string ) \
+-          Print_Mem( memory_footprint.##field, string )
++          Print_Mem( memory_footprint.field, string )
+ 
+ 
+   /* Print the memory footprint */

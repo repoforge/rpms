@@ -11,13 +11,13 @@
 
 Summary: Conway's game of life.
 Name: gtklife
-Version: 4.1
+Version: 4.2
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://www.igs.net/~tril/gtklife/
+URL: http://ironphoenix.org/tril/gtklife/
 
-Source: http://www.igs.net/~tril/gtklife/gtklife-%{version}.tar.gz
+Source: http://ironphoenix.org/tril/gtklife/gtklife-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2.0
@@ -46,6 +46,7 @@ Comment=Create patterns and see them evolve
 Icon=gtklife.png
 Exec=gtklife
 Terminal=false
+Encoding=UTF-8
 Type=Application
 Categories=GNOME;Application;Game;
 EOF
@@ -84,6 +85,9 @@ EOF
 %{_datadir}/pixmaps/gtklife.png
 
 %changelog
+* Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 4.2-1
+- Updated to release 4.2.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 4.1-1
 - Updated to release 4.1.
 

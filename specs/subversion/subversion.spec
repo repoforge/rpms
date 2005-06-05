@@ -22,7 +22,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.1.4
+Version: 1.2.0
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -99,6 +99,10 @@ This package includes the Perl bindings to the Subversion libraries.
 %{!?_without_pie:%patch6 -p1 -b .pie}
 
 %{__rm} -rf neon apr apr-util
+
+echo _without_swig: %{_without_swig}
+echo _without_pie: %{_without_pie}
+echo dist: %{dist}
 
 %build
 ./autogen.sh
@@ -191,23 +195,16 @@ export LANG=C LC_ALL=C
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
-
-%post perl
-/sbin/ldconfig 2>/dev/null
-
-%postun perl
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+%post perl -p /sbin/ldconfig
+%postun perl -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
 %doc tools subversion/LICENSE mod_authz_svn-INSTALL
-%doc doc/book/book/svn-book.html doc/book/book/images
+%doc doc/book/svn-book.html
 %doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
 %{_bindir}/*
 %{_libdir}/libsvn_*.so.*
@@ -216,8 +213,8 @@ export LANG=C LC_ALL=C
 %{_datadir}/xemacs/site-packages/lisp/
 %{!?_without_swig:%exclude %{_libdir}/libsvn_swig_perl*}
 %{!?_without_swig:%exclude %{_mandir}/man*/*::*}
-%{!?_without_swig:%{python_dir}/svn}
-%{!?_without_swig:%{python_dir}/libsvn}
+%{!?_without_swig:%{python_dir}/svn/}
+%{!?_without_swig:%{python_dir}/libsvn/}
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -243,6 +240,9 @@ export LANG=C LC_ALL=C
 %endif
 
 %changelog
+* Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 1.2.0-0.1
+- Updated to release 1.2.0.
+
 * Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 1.1.4-0.1
 - Updated to release 1.1.4.
 

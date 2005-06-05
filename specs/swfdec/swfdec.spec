@@ -9,6 +9,15 @@
 %{?fc3:   %define gimp_plugin 1}
 %{?fc2:   %define gimp_plugin 1}
 %{?yd4:   %define gimp_plugin 1}
+%{?fc1: %define _without_mozilla 1}
+%{?el3: %define _without_mozilla 1}
+%{?el3: %define _without_gstreamer 1}
+%{?rh9: %define _without_mozilla 1}
+%{?rh9: %define _without_gstreamer 1}
+%{?rh7: %define _without_mozilla 1}
+%{?rh7: %define _without_gstreamer 1}
+%{?el2: %define _without_mozilla 1}
+%{?el2: %define _without_gstreamer 1}
 
 Summary: Flash animations rendering library
 Name: swfdec
@@ -19,10 +28,12 @@ Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/
 Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: mozilla-devel, libart_lgpl-devel, gtk2-devel >= 2.1.2
+BuildRequires: libart_lgpl-devel, gtk2-devel >= 2.1.2
 BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
-BuildRequires: liboil-devel, gstreamer-plugins-devel, GConf2-devel
+BuildRequires: liboil-devel, GConf2-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
+%{!?_without_mozilla:BuildRequires: mozilla-devel}
+%{!?_without_gstreamer:gstreamer-plugins-devel}
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
@@ -55,7 +66,8 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 
 %build
-%configure
+%configure \
+%{?_without_mozilla:--disable-mozilla-plugin}
 %{__make} %{?_smp_mflags}
 
 
@@ -105,12 +117,14 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %{_libdir}/libswfdec*.so
 %{_libdir}/pkgconfig/swfdec*.pc
 
+%if %{!?_without_mozilla:1}0
 %files -n mozilla-swfdec
 %defattr(-, root, root, 0755)
 %{_bindir}/swfdec-mozilla-player
 %exclude %{_libdir}/mozilla/plugins/libswfdecmozilla.a
 %exclude %{_libdir}/mozilla/plugins/libswfdecmozilla.la
 %{_libdir}/mozilla/plugins/libswfdecmozilla.so
+%endif
 
 
 %changelog

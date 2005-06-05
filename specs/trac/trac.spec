@@ -6,7 +6,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -43,7 +43,7 @@ Alias /trac/ "%{_datadir}/trac/htdocs/"
 
 ### Trac need to know where the database is located
 <Location "/cgi-bin/trac.cgi">
-	SetEnv TRAC_DB "%{_datadir}/trac/myproject.db"
+	SetEnv TRAC_ENV "%{_datadir}/trac/myproject.db"
 </Location>
 
 ### You need this to allow users to authenticate
@@ -78,6 +78,10 @@ EOF
 %{_localstatedir}/lib/trac/
 
 %changelog
+* Wed Jun 01 2005 Matt Whiteley <mattw@cat.pdx.edu> - 0.8.2-1                                     
+- Updated to release 0.8.2.                                                                       
+- Fixed env in apache conf.d file     
+
 * Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Updated to release 0.8.1.
 
