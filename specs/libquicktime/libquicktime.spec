@@ -19,7 +19,7 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 0.9.7
-Release: %{?prever:0.%{prever}.}1
+Release: 2%{?prever:.%{prever}}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -52,7 +52,7 @@ loadable CODECs.
 %package devel
 Summary: Development files from the libquicktime library
 Group: Development/Libraries
-Requires: %{name} = %{version}, pkgconfig
+Requires: %{name} = %{version}, zlib-devel, pkgconfig
 
 %description devel
 libquicktime is a library for reading and writing quicktime files. It
@@ -76,6 +76,9 @@ programs that need to access quicktime files using libquicktime.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+# Add compatibility symlink for "quicktime/lqt.h" includes
+# (for transcode 1.0.0beta3)
+%{__ln_s} lqt %{buildroot}%{_includedir}/quicktime
 
 
 %clean
@@ -103,7 +106,8 @@ programs that need to access quicktime files using libquicktime.
 %defattr(-, root, root, 0755)
 %{_bindir}/libquicktime_config
 %{_bindir}/lqt-config
-%{_includedir}/*
+%{_includedir}/lqt/
+%{_includedir}/quicktime
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
@@ -115,6 +119,10 @@ programs that need to access quicktime files using libquicktime.
 
 
 %changelog
+* Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 0.9.7-2
+- Add quicktime -> lqt include symlink (required currently for transcode).
+- Add zlib-devel devel package requirement.
+
 * Thu May 26 2005 Matthias Saou <http://freshrpms.net/> 0.9.7-1
 - Update to 0.9.7, remove all patches (gcc4 build is fixed).
 - Remove hack for putting optflags in configure.ac, remove autogen run.
