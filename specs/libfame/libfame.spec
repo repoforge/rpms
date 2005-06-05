@@ -4,7 +4,7 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 6
+Release: 7
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
@@ -79,11 +79,9 @@ libfame library.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -106,6 +104,10 @@ libfame library.
 
 
 %changelog
+* Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-7
+- Make the underquoted patch apply to the .in file too, so it actually works.
+- Put ldconfig calls back as programs to have rpm's deps pick them up.
+
 * Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-6
 - Run plain "./autogen.sh" instead of autoreconf to avoid libm problem on
   x86_64 (weird one!).
