@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: <transcode-users$exit1.org>
 
-#define prever pre1
+%define prever beta3
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -23,8 +23,8 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 0.6.14
-Release: %{?prever:0.%{prever}.}1
+Version: 1.0.0
+Release: 0.1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -32,9 +32,11 @@ Source: http://www.jakemsr.com/transcode/transcode-%{version}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, SDL-devel, libxml2-devel, libjpeg-devel
 BuildRequires: freetype-devel >= 2.0, libogg-devel, libvorbis-devel
-BuildRequires: libdv-devel, bzip2-devel, ed, lzo-devel
+BuildRequires: libdv-devel, bzip2-devel, ed, lzo-devel, libpng-devel
+BuildRequires: mpeg2dec-devel, ffmpeg-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
+%{!?_without_postproc:BuildRequires: libpostproc-devel}
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
@@ -45,9 +47,6 @@ BuildRequires: libexif-devel
 %{!?_without_libfame:BuildRequires: libfame-devel}
 %{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3}
 # Non configure options
-%{!?_without_nasm:BuildRequires: nasm}
-%{!?_without_postproc:BuildRequires: libpostproc}
-%{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
 %{!?_without_xvidcore:BuildRequires: xvidcore-devel}
 Conflicts: perl-Video-DVDRip < 0.51.2
 
@@ -69,14 +68,16 @@ Available rpmbuild rebuild options :
 %prep
 %setup -n %{name}-%{version}%{?prever}
 
-### FIXME: Use standard autotools directories (Fix upstream please)
-#{__perl} -pi.orig -e 's|${prefix}/lib|%{_libdir}|g' configure
-
 
 %build
+# This is required to get "#include <postprocess.h>" to work
+export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 %configure \
+    --disable-mmx \
     --enable-netstream \
     --enable-v4l \
+    %{!?_without_postproc:--enable-libpostproc} \
+    --enable-freetype2 \
     %{?_without_lame:--disable-lame} \
     --enable-ogg \
     --enable-vorbis \
@@ -85,16 +86,15 @@ Available rpmbuild rebuild options :
     --enable-libdv \
     %{!?_without_quicktime:--enable-libquicktime} \
     --enable-lzo \
-    %{!?_without_a52:--enable-a52} \
+    %{!?_without_a52:--enable-a52 --enable-a52-default-decoder} \
     %{!?_without_mpeg3:--enable-libmpeg3} \
     --enable-libxml2 \
     %{!?_without_mjpeg:--enable-mjpegtools} \
     --enable-sdl \
     --enable-gtk \
     %{!?_without_libfame:--enable-libfame} \
-    %{!?_without_magick:--enable-imagemagick} \
-    %{!?_without_ffmpeg:--enable-ffbin}
-%{__make} %{?_smp_mflags} \
+    %{!?_without_magick:--enable-imagemagick}
+%{__make} %{?_smp_mflags}
     pkgdir="%{_libdir}/transcode" \
     MOD_PATH="%{_libdir}/transcode"
 
@@ -102,7 +102,7 @@ Available rpmbuild rebuild options :
 %install
 %{__rm} -rf %{buildroot} _docs
 %makeinstall \
-    docsdir="../_docs/" \
+    docsdir="../_docs/"
     pkgdir="%{buildroot}%{_libdir}/transcode" \
     MOD_PATH="%{buildroot}%{_libdir}/transcode"
 
@@ -115,12 +115,26 @@ Available rpmbuild rebuild options :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO _docs/*
 %{_bindir}/*
-%{_libdir}/transcode/
+%dir %{_libdir}/transcode/
+%{_libdir}/transcode/*.so
+%config %{_libdir}/transcode/xvid2.cfg
+%config %{_libdir}/transcode/xvid3.cfg
+%config %{_libdir}/transcode/xvid4.cfg
+%config %{_libdir}/transcode/export_af6.conf
+%{_libdir}/transcode/filter_list.awk
+%{_libdir}/transcode/parse_csv.awk
 %exclude %{_libdir}/transcode/*.la
-%{_mandir}/man?/*
+%{_mandir}/man1/*
 
 
 %changelog
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-0.1.beta3
+- Update to 1.0.0beta3 (not the released tarball, a CVS checkout with fixes).
+- Explicitly disable MMX for now, it makes the build fail :-(
+- Add libpng-devel build requirement (libquicktime test fails otherwise...).
+- Explicitly change postproc and freetype2 configure options.
+- Mark all cfg and config files in libdir as %%config (but not noreplace).
+
 * Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 0.6.14-1
 - Update to 0.6.14 final.
 - Override pkgdir and MOD_PATH to fix lib vs. lib64.
