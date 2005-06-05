@@ -1,6 +1,18 @@
 diff -Naupr libfame-0.9.1.orig/libfame.m4 libfame-0.9.1/libfame.m4
 --- libfame-0.9.1.orig/libfame.m4	2004-02-11 14:13:23.000000000 +0100
-+++ libfame-0.9.1/libfame.m4	2005-05-01 20:03:17.000000000 +0200
++++ libfame-0.9.1/libfame.m4	2005-06-05 20:26:21.000000000 +0200
+@@ -3,7 +3,7 @@ dnl Test for libfame, and define LIBFAME
+ dnl Vivien Chappelier 12/11/00
+ dnl stolen from ORBit autoconf
+ dnl
+-AC_DEFUN(AM_PATH_LIBFAME,
++AC_DEFUN([AM_PATH_LIBFAME],
+ [dnl 
+ dnl Get the cflags and libraries from the libfame-config script
+ dnl
+diff -Naupr libfame-0.9.1.orig/libfame.m4.in libfame-0.9.1/libfame.m4.in
+--- libfame-0.9.1.orig/libfame.m4.in	2001-11-20 12:56:37.000000000 +0100
++++ libfame-0.9.1/libfame.m4.in	2005-06-05 20:26:08.000000000 +0200
 @@ -3,7 +3,7 @@ dnl Test for libfame, and define LIBFAME
  dnl Vivien Chappelier 12/11/00
  dnl stolen from ORBit autoconf
