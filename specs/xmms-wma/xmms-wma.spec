@@ -5,7 +5,7 @@
 Summary: X MultiMedia System input plugin to play Windows Media Audio files
 Name: xmms-wma
 Version: 1.0.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mcmcc.bat.ru/xmms-wma/
@@ -26,22 +26,25 @@ Tag informations are converted from unicode to your system locale.
 %prep
 %setup
 %patch -p1 -b .gcc4
+%{__perl} -pi.orig -e 's|\@strip .*||g' Makefile
+%ifnarch %{ix86}
+%{__perl} -pi.orig -e 's|#define ARCH_X86.*|#undef ARCH_X86|g;
+                       s|#define __CPU__.*|#undef __CPU__|g' \
+    ffmpeg-strip-wma/config.h
+%endif
+%{__perl} -pi.orig -e 's| (-shared)| $1 -fPIC|;
+                       s| (-DX86)| $1 -fPIC|;' i\
+    Makefile.inc
 
 
 %build
-%ifnarch %{ix86}
-%{__perl} -pi.orig -e 's|#define ARCH_X86.*|#undef ARCH_X86|g;
-                  s|#define __CPU__.*|#undef __CPU__|g' \
-    ffmpeg-strip-wma/config.h
-%endif
-%{__perl} -pi.orig -e 's| (-shared)| $1 -fPIC|; s| (-DX86)| $1 -fPIC|;' Makefile.inc
 %{__make} %{?_smp_mflags} \
-	OPTFLAGS="%{optflags} -fPIC"
+    OPTFLAGS="%{optflags} -fPIC"
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m 0755 libwma.so %{buildroot}%{xmms_inputdir}/libwma.so
+%{__install} -D -m 0755 libwma.so %{buildroot}%{xmms_inputdir}/libwma.so
 
 
 %clean
@@ -56,6 +59,9 @@ Tag informations are converted from unicode to your system locale.
 
 
 %changelog
+* Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-2
+- Disable explicit stripping to get useful debuginfo package.
+
 * Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-1
 - Update to 1.0.4.
 - Added gcc4 compile fix (http://gcc.gnu.org/ml/gcc/2005-02/msg00053.html).
