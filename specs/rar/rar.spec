@@ -8,12 +8,12 @@
 
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
-Version: 3.4.1
-Release: 1
+Version: 3.5
+Release: 0.b1
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/
-Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
+Source: http://www.rarlabs.com/rar/rarlinux-%{version}.b1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: i586
 
@@ -47,6 +47,9 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 
 %changelog
+* Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 3.5-0.b1
+- Update to 3.5.b1.
+
 * Wed Nov  3 2004 Matthias Saou <http://freshrpms.net/> 3.4.1-1
 - Update to 3.4.1.
 
