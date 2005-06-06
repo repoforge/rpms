@@ -5,8 +5,8 @@
 
 Summary: Kino titling plugin
 Name: kino-dvtitler
-Version: 0.1.1
-Release: 0
+Version: 0.2.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://dvtitler.sourceforge.net/
@@ -46,6 +46,9 @@ backend to Pango international text layout. Titles can be animated as well.
 
 
 %changelog
+* Mon Jun  6 2005 Matthias Saou <http://freshrpms.net/> 0.2.0-0
+- Update to 0.2.0.
+
 * Mon Nov 22 2004 Matthias Saou <http://freshrpms.net/> 0.1.0-0
 - Rename package to kino-dvtitler.
 

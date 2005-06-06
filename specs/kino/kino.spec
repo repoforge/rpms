@@ -6,15 +6,13 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.7.5
+Version: 0.7.6
 Release: 1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
-
 Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
@@ -57,6 +55,13 @@ commands for fast navigating and editing inside the movie.
 %find_lang %{name}
 
 
+%post
+update-mime-database %{_datadir}/mime &>/dev/null || :
+
+%postun
+update-mime-database %{_datadir}/mime &>/dev/null || :
+
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -70,11 +75,19 @@ commands for fast navigating and editing inside the movie.
 %{_libdir}/hotplug/kino/
 %{_datadir}/applications/Kino.desktop
 %{_datadir}/kino/
+%{_datadir}/mime/packages/kino.xml
 %{_datadir}/pixmaps/kino.png
 %{_mandir}/man1/*
 
 
 %changelog
+* Mon Jun  6 2005 Matthias Saou <http://freshrpms.net> 0.7.6-1
+- Update to 0.7.6.
+- Add update-mime-database calls.
+
+* Fri Apr 29 2005 Matthias Saou <http://freshrpms.net> 0.7.5-1
+- Disable ffmpeg on FC4 for now.
+
 * Mon Nov 22 2004 Matthias Saou <http://freshrpms.net> 0.7.5-1
 - Update to 0.7.5.
 
