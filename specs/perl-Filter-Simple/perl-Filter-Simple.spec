@@ -9,7 +9,7 @@
 
 Summary: Simplified source filtering
 Name: perl-Filter-Simple
-Version: 0.79
+Version: 0.80
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ This module permits simplified source filtering.
 %{perl_vendorlib}/Filter/Simple.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.80-1
+- Updated to release 0.80.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.79-1
 - Initial package.

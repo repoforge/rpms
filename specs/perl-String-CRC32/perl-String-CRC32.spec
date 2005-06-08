@@ -9,7 +9,7 @@
 
 Summary: Cyclic redundency check generation
 Name: perl-String-CRC32
-Version: 1.2
+Version: 1.3
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ and from files.
 %{perl_vendorarch}/auto/String/CRC32
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.3-1
+- Updated to release 1.3.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.

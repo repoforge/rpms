@@ -9,7 +9,7 @@
 
 Summary: Read a file backwards by lines
 Name: perl-File-ReadBackwards
-Version: 1.03
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ basis.
 %{perl_vendorlib}/File/ReadBackwards.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.04-1
+- Updated to release 1.04.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Generic Perl Event Loop
 Name: perl-Event
-Version: 1.04
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ a broad class of applications.
 %{perl_vendorarch}/auto/Event
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Authentication and Authorization via cookie
 Name: perl-Apache-AuthCookie
-Version: 3.06
+Version: 3.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,5 +57,8 @@ AuthCookie will verify the session key and re-authenticate the user.
 %{perl_vendorlib}/Apache/AuthCookie
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 3.08-1
+- Updated to release 3.08.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 3.06-1
 - Initial package.

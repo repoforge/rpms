@@ -9,7 +9,7 @@
 
 Summary: Read and write CSS files
 Name: perl-CSS-Tiny
-Version: 1.08
+Version: 1.10
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ still live with simple CSS files.
 %{perl_vendorlib}/CSS/Tiny.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
+- Updated to release 1.10.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Updated to release 1.08.
 

@@ -9,7 +9,7 @@
 
 Summary: Load modules and create objects on demand
 Name: perl-Class-Loader
-Version: 2.02
+Version: 2.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Load modules and create objects on demand.
 %{perl_vendorlib}/Class/LoaderTest.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.03-1
+- Updated to release 2.03.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Perl client interface to SSH
 Name: perl-Net-SSH-Perl
-Version: 1.27
+Version: 1.28
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ both the SSH1 and SSH2 protocols.
 #%{perl_vendorlib}/NAMEDIR/*
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.28-1
+- Updated to release 1.28.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
 - Updated to release 1.27.
 

@@ -9,7 +9,7 @@
 
 Summary: Automated build engine
 Name: perl-Test-AutoBuild
-Version: 1.0.2
+Version: 1.0.3
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -84,5 +84,8 @@ programming language used for the software.
 # perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1
+- Updated to release 1.0.3.
+
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.2
 - Initial package.

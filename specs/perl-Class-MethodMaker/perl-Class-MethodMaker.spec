@@ -9,7 +9,7 @@
 
 Summary: Create generic methods for OO Perl
 Name: perl-Class-MethodMaker
-Version: 2.05
+Version: 2.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" DESTDIR="%{build
 %{perl_vendorarch}/auto/Class/MethodMaker/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.07-1
+- Updated to release 2.07.
+
 * Wed Feb  2 2005 Dries Verachtert <dries@ulyssis.org> - 2.05-1
 - Initial package.

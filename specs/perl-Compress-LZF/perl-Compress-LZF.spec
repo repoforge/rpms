@@ -9,7 +9,7 @@
 
 Summary: Extremely light-weight Lev-Zimpel-Free compression
 Name: perl-Compress-LZF
-Version: 1.5
+Version: 1.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ problems incoporating this module into commercial programs.
 %{perl_vendorarch}/auto/Compress/LZF
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.51-1
+- Updated to release 1.51.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Identify the dependencies of a distribution
 Name: perl-Module-Depends
-Version: 0.07
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ Identify the dependencies of a distribution.
 %{perl_vendorlib}/Module/Depends/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
 

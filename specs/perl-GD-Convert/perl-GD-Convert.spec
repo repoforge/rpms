@@ -9,7 +9,7 @@
 
 Summary: Additional output formats for GD
 Name: perl-GD-Convert
-Version: 2.11
+Version: 2.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ is for you.
 %{perl_vendorlib}/GD/Convert.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.12-1
+- Updated to release 2.12.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.11-1
 - Initial package.

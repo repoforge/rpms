@@ -12,7 +12,7 @@
 
 Summary: Efficient reading and writing of complete files
 Name: perl-File-Slurp
-Version: 9999.07
+Version: 9999.09
 Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ in a directory.
 %{perl_vendorlib}/File/Slurp.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 9999.09-1
+- Updated to release 9999.09.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 9999.07-1
 - Updated to release 9999.07.
 

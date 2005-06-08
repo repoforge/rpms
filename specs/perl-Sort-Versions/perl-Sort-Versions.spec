@@ -9,7 +9,7 @@
 
 Summary: Module for sorting of revision-like numbers
 Name: perl-Sort-Versions
-Version: 1.4
+Version: 1.5
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,6 +48,9 @@ packages and shared library systems use.
 %{perl_vendorlib}/Sort/Versions.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
 - Initial package.
 

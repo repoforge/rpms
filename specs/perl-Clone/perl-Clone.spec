@@ -9,7 +9,7 @@
 
 Summary: Recursively copy Perl datatypes
 Name: perl-Clone
-Version: 0.15
+Version: 0.18
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Clone/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.18-1
+- Updated to release 0.18.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Initial package.

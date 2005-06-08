@@ -9,7 +9,7 @@
 
 Summary: Localization support for DateTime
 Name: perl-DateTime-Locale
-Version: 0.21
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ DateTime.pm class.
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
+- Updated to release 0.22.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Updated to release 0.21.
 

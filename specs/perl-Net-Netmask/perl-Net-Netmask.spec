@@ -10,7 +10,7 @@
 
 Summary: Parse, manipulate and lookup IP network blocks
 Name: perl-Net-Netmask
-Version: 1.9011
+Version: 1.9012
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ lookup IP network blocks.
 %{perl_vendorlib}/Net/Netmask.pod
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.9012-1
+- Updated to release 1.9012.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.9011-1
 - Initial package.

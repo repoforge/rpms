@@ -9,7 +9,7 @@
 
 Summary: Base class for writing DBI drivers for plain files
 Name: perl-DBD-File
-Version: 0.22
+Version: 0.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ for modules like DBD::CSV and DBD::AnyData.
 %{perl_vendorlib}/DBD/File.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.33-1
+- Updated to release 0.33.
+
 * Tue Mar  1 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
 - Initial package.

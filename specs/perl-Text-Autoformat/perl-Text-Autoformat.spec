@@ -11,7 +11,7 @@
 
 Summary: Automatic text wrapping and reformatting
 Name: perl-Text-Autoformat
-Version: 1.12
+Version: 1.13
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -59,5 +59,8 @@ capitalization schemes.
 %{perl_vendorlib}/Text/Autoformat.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
+- Updated to release 1.13.
+
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Initial package.

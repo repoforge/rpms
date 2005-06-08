@@ -9,7 +9,7 @@
 
 Summary: Authenticates and authorizes via a DBI connection
 Name: perl-Apache-DBILogin
-Version: 2.03
+Version: 2.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ DBI/DBD modules to integrate database authentication with Apache.
 %{perl_vendorlib}/Apache/DBILogin.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.06-1
+- Updated to release 2.06.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Initial package.

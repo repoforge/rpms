@@ -9,7 +9,7 @@
 
 Summary: Foundation of a POE HTTP Daemon
 Name: perl-POE-Component-Server-HTTP
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ This module is a foundation of a POE HTTP Daemon.
 %{perl_vendorlib}/POE/Component/Server/HTTP/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
 

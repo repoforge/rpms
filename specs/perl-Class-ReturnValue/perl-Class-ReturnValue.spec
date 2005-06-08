@@ -9,7 +9,7 @@
 
 Summary: Return-value object
 Name: perl-Class-ReturnValue
-Version: 0.52
+Version: 0.53
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ A return-value object that lets you treat it as as a boolean, array or object.
 %{perl_vendorlib}/Class/ReturnValue.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.53-1
+- Updated to release 0.53.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Initial package.

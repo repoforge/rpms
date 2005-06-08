@@ -9,7 +9,7 @@
 
 Summary: Check International Standard Book Numbers
 Name: perl-Test-ISBN
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ This module allows you to check International Standard Book Numbers.
 %{perl_vendorlib}/Test/ISBN.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Sun Mar  6 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

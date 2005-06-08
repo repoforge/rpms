@@ -9,7 +9,7 @@
 
 Summary: Set of classes for core data, message and XML handling
 Name: perl-RPC-XML
-Version: 0.57
+Version: 0.58
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,5 +61,8 @@ are used by them.
 %{perl_vendorlib}/auto/RPC/XML/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.58-1
+- Updated to release 0.58.
+
 * Sat Jan  1 2005 Dries Verachtert <dries@ulyssis.org> - 0.57-1
 - Initial package.

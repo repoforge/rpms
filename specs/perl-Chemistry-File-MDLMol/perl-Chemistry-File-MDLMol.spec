@@ -9,7 +9,7 @@
 
 Summary: MDL molfile reader and writer
 Name: perl-Chemistry-File-MDLMol
-Version: 0.19
+Version: 0.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ The SDF module registers the 'sdf' format.
 %{perl_vendorlib}/Chemistry/File/SDF.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.20-1
+- Updated to release 0.20.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 

@@ -8,7 +8,7 @@
 
 Summary: Perl port of log4j
 Name: perl-Log-Log4perl
-Version: 0.51
+Version: 0.52
 Release: 3
 License: GPL
 Group: Applications/CPAN
@@ -82,6 +82,9 @@ perl-Log-Log4perl.
 
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.52-1
+- Updated to release 0.52.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.51-1
 - Updated to release 0.51.
 

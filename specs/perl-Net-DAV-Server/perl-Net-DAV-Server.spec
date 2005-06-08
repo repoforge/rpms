@@ -11,7 +11,7 @@
 
 Summary: Provides a DAV Server
 Name: perl-Net-DAV-Server
-Version: 1.23
+Version: 1.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,5 +62,8 @@ cadaver and the Mac OS X Finder as clients.
 %{perl_vendorlib}/Net/DAV/Server.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.27-1
+- Updated to release 1.27.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.23-1
 - Initial package.

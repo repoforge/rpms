@@ -9,7 +9,7 @@
 
 Summary: Extract translatable strings from source
 Name: perl-Locale-Maketext-Lexicon
-Version: 0.48
+Version: 0.49
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ PO files, MO files, or from databases via the "Tie" interface.
 %{perl_vendorlib}/Locale/Maketext
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.49-1
+- Updated to release 0.49.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.48-1
 - Initial package.

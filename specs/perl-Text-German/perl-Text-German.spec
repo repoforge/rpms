@@ -9,7 +9,7 @@
 
 Summary: German grundform reduction
 Name: perl-Text-German
-Version: 0.03
+Version: 0.06
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -59,5 +59,8 @@ faster.
 %{perl_vendorlib}/Text/German/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.

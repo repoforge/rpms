@@ -8,7 +8,7 @@
 
 Summary: Machine parseable data serialization format
 Name: perl-YAML
-Version: 0.36
+Version: 0.39
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ echo y | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorlib}/YAML/*
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.39-1
+- Updated to release 0.39.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.36-1
 - Updated to release 0.36.
 

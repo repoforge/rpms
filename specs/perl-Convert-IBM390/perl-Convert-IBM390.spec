@@ -9,7 +9,7 @@
 
 Summary: Functions for manipulating mainframe data
 Name: perl-Convert-IBM390
-Version: 0.19
+Version: 0.20
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ hexdump:  dump memory in an MVS-like format
 %{perl_vendorarch}/auto/Convert/IBM390/*
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.20-1
+- Updated to release 0.20.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Initial package.

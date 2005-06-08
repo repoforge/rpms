@@ -9,7 +9,7 @@
 
 Summary: Configuration file access
 Name: perl-Config-Record
-Version: 1.0.5
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ to an arbitrary depth.
 %{perl_vendorlib}/Config/Record.pod
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Mon Dec 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.5
 - Initial package.

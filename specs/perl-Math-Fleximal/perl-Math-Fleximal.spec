@@ -9,7 +9,7 @@
 
 Summary: Integers with flexible representations
 Name: perl-Math-Fleximal
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ your numbers.
 %{perl_vendorlib}/Math/Fleximal.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
+- Updated to release 0.06.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

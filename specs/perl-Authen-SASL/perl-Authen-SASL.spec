@@ -9,7 +9,7 @@
 
 Summary: Interface to SASL
 Name: perl-Authen-SASL
-Version: 2.08
+Version: 2.09
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ This module permits authentication with SASL.
 %{perl_vendorlib}/Authen/SASL/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
+- Updated to release 2.09.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 2.08-1
 - Initial package.
 

@@ -9,7 +9,7 @@
 
 Summary: Read/write encrypted ASN.1 PEM files
 Name: perl-Convert-PEM
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ to ASN.1-encoded PEM files (with optional encryption).
 %{perl_vendorlib}/Convert/PEM
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

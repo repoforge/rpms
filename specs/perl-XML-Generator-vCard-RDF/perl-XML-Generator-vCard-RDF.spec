@@ -8,7 +8,7 @@
 
 Summary: Generate RDF/XML SAX2 events for vCard 3.0
 Name: perl-XML-Generator-vCard-RDF
-Version: 1.3
+Version: 1.4
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,5 +45,8 @@ Generate RDF/XML SAX2 events for vCard 3.0.
 %{perl_vendorlib}/XML/Generator/vCard/RDF.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
+- Updated to release 1.4.
+
 * Mon Dec 27 2004 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: DBI SQL abstraction
 Name: perl-DBIx-Abstract
-Version: 1.005
+Version: 1.006
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ SELECT, INSERT, REPLACE, UPDATE, DELETE).
 %{perl_vendorlib}/DBIx/Abstract.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.006-1
+- Updated to release 1.006.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.005-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Date and time object
 Name: perl-DateTime
-Version: 0.28
+Version: 0.29
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/DateTime/DateTime.*
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.29-1
+- Updated to release 0.29.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.28-1
 - Updated to release 0.28.
 

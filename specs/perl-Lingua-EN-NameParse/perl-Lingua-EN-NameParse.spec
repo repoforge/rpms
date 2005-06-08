@@ -9,7 +9,7 @@
 
 Summary: Routines for manipulating a person's name
 Name: perl-Lingua-EN-NameParse
-Version: 1.20
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ the name is broken down into components.
 %{perl_vendorlib}/Lingua/EN/NameGrammar.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1
+- Updated to release 1.21.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Initial package.

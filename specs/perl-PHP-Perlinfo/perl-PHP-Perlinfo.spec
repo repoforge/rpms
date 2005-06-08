@@ -9,7 +9,7 @@
 
 Summary: Clone of PHP's phpinfo function for Perl
 Name: perl-PHP-Perlinfo
-Version: 0.07
+Version: 0.08
 Release: 2
 License: Artistic
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ environment, OS version information, Perl modules, and the Perl License.
 %{perl_vendorlib}/PHP/Perlinfo/
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
+- Updated to release 0.08.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 0.07-2
 - Added perl(PHP::Perlinfo::HTML) provides.
 

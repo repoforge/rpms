@@ -9,7 +9,7 @@
 
 Summary: SQL parsing and processing engine
 Name: perl-SQL-Statement
-Version: 1.09
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ XML, CSV, Fixed Length, Excel Spreadsheets and many others.
 %{perl_vendorlib}/SQL
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
+- Updated to release 1.14.
+
 * Tue Mar  1 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-1
 - Initial package.

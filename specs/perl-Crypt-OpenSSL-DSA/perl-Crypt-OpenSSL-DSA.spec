@@ -11,7 +11,7 @@
 
 Summary: DSA encryption
 Name: perl-Crypt-OpenSSL-DSA
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ OpenSSL crypto library, located at http://www.openssl.org.
 %{perl_vendorarch}/auto/Crypt/OpenSSL/DSA/DSA.so
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.

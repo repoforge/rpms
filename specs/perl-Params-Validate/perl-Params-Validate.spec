@@ -12,7 +12,7 @@
 
 Summary: Validation of method parameters
 Name: perl-Params-Validate
-Version: 0.76
+Version: 0.77
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ implementation that it can fall back on.
 %{perl_vendorarch}/auto/Params/Validate/Validate.*
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.77-1
+- Updated to release 0.77.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.76-1
 - Updated to release 0.76.
 

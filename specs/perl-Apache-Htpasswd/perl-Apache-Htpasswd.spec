@@ -9,7 +9,7 @@
 
 Summary: Manage Unix crypt-style password file
 Name: perl-Apache-Htpasswd
-Version: 1.5.9
+Version: 1.6.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ it was written specifically for .htaccess style files.
 %{perl_vendorlib}/Apache/Htpasswd.pm
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.6.0-1
+- Updated to release 1.6.0.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.5.9-1
 - Initial package.
 

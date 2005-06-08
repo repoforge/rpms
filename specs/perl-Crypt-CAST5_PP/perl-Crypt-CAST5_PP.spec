@@ -9,7 +9,7 @@
 
 Summary: CAST5 block cipher, implemented in pure Perl
 Name: perl-Crypt-CAST5_PP
-Version: 1.02
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ The CAST5 block cipher, implemented in pure Perl.
 %{perl_vendorlib}/auto/Crypt/CAST5_PP
 
 %changelog
+* Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
+- Updated to release 1.03.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.
