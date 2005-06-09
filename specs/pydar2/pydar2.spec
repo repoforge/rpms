@@ -2,28 +2,35 @@
 
 # Authority: dries
 
-# Again far from finished, not to be released :)
-
-Summary: buildserver in python
+Summary: rpm build system
 Name: pydar2
-Version: 0.015
+Version: 0.021
 Release: 1
 License: GPL
 Group: Development/Tools
-URL: http://dries.ulyssis.org/pydar2/
+URL: http://dries.ulyssis.org/rpm/pydar2/
 
-Source: http://dries.ulyssis.org/pydar2/files/pydar2-%{version}.tar.gz
+Source: http://dries.ulyssis.org/rpm/pydar2/pydar2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: python-log4py
+Requires: python-log4py, rpm-build
 
 %description
-Not finished, not to be released!
-But if you want to try anyway, try to follow the howto.txt
+Pydar2 is a distributed build system for rpm packages. It allows you to
+build spec files from multiple spec repositories (spec files in svn, cvs, ..)
+for multiple distribution/architectures on multiple computers with one
+central queue. It's possible to automatically queue new builds and you can
+alter most of the behaviour with scripts. 
+
+Pydar2 is not yet finished. It can be used but it's far from userfriendly.
+The slave-buildserver uses sudo and the network communication between the 
+programs is not encrypted, so i suggest you only use it on a private network
+with only users which you trust.
 
 %package master
 Summary: pydar2 master server
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
+Requires: spectool
 
 %package client
 Summary: pydar2 client
@@ -34,6 +41,7 @@ Requires: %{name} = %{version}-%{release}
 Summary: pydar2 slave
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
+Requires: yum, sudo
 
 %package dries
 Summary: scripts which generate dries.ulyssis.org/rpm
@@ -41,16 +49,22 @@ Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
 
 %description master
-Not finished
+The master build server keeps the central queue of commands (spec files
+which have to be build), a checkout of all the spec repositories and
+information about users, slave build machines and targets.
 
 %description client
-Not finished
+The client program allows you to add new commands to the queue.
 
 %description slave
-Not finished
+The slave build server gets commands from the master and builds rpm
+packages.
+
+Warning: the slave build server currently uses sudo for certain commands.
 
 %description dries
-Script which generates http://dries.ulyssis.org/rpm/
+This package contains some scripts which are rpmforge/dries specific and
+which can be used to customize pydar2 so it builds rpmforge packages.
 
 %prep
 %setup -n %{name}
@@ -121,6 +135,9 @@ Script which generates http://dries.ulyssis.org/rpm/
 /usr/sbin/useradd -M -g pydar2slave pydar2slave || :
 
 %changelog
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> 0.021-1
+- Update, most of the functionality seems to work.
+
 * Wed May 25 2005 Dries Verachtert <dries@ulyssis.org> 0.011-1
 - Update
 

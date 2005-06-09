@@ -8,7 +8,7 @@
 
 Summary: User friendly TeX/LaTeX editor
 Name: kile
-Version: 1.7.1
+Version: 1.8
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -86,6 +86,9 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 
 
 %changelog
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> 1.8-1
+- Update to release 1.8.
+
 * Fri Oct 22 2004 Dries Verachtert <dries@ulyssis.org> 1.7.1-1
 - Update to release 1.7.1.
 

@@ -4,8 +4,8 @@
 
 Summary: Shows Exif (Exchangeable Image File) image metadata
 Name: exiftags
-Version: 0.99.1
-Release: 2
+Version: 1.00
+Release: 1
 License: BSD
 Group: Applications/Multimedia
 URL: http://johnst.org/sw/exiftags/
@@ -53,6 +53,9 @@ camera and digitized image.
 %{_bindir}/*
 
 %changelog
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.00
+- Update to release 1.00.
+
 * Mon May 31 2004 Dag Wieers <dag@wieers.com> - 0.99.1-2
 - Added exiftime and use %%makeinstall. (Eric M. Johnston)
 

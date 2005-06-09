@@ -16,6 +16,7 @@ URL: http://www.networkdweebs.com/software/dspam/
 Source: http://www.nuclearelephant.com/projects/dspam/sources/dspam-%{version}.tar.gz
 Source1: dspam.m4
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: postgresql-python
 
 %{!?dist:BuildRequires: db4-devel}
 %{?el4:BuildRequires: db4-devel}

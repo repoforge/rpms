@@ -7,7 +7,7 @@
 
 Summary: Free MMORPG in beta stage
 Name: eternallands
-Version: 1.0.0
+Version: 1.0.1
 Release: 1
 License: Other
 Group: Amusements/Games
@@ -67,6 +67,9 @@ EOF
 %{_datadir}/games/eternallands/
 
 %changelog
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
+- Update to release 1.0.1.
+
 * Mon Aug 23 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
 - Update to version 1.0.0.
 

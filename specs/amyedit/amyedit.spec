@@ -5,7 +5,7 @@
 
 Summary: LaTeX Editor
 Name: amyedit
-Version: 0.8
+Version: 0.9
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -69,6 +69,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Updated to release 0.9.
+
 * Sun Mar 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Updated to release 0.8.
 

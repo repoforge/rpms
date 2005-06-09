@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AA/AADLER/Inline-Octave-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, octave
+BuildRequires: perl, octave, libf2c
 
 %description
 Inline octave code into your perl.

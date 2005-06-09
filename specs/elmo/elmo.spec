@@ -6,7 +6,7 @@
 
 Summary: Feature rich highly configurable console mail client
 Name: elmo
-Version: 1.2.0
+Version: 1.3.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -49,5 +49,8 @@ mailers and competes with Mutt.
 %{_datadir}/elmo
 
 %changelog
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
+- Update to release 1.3.2.
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
 - Initial package.

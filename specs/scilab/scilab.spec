@@ -8,7 +8,7 @@
 
 Summary: Scientific software package
 Name: scilab
-Version: 3.0
+Version: 3.1.1
 Release: 1
 License: Other
 Group: Applications/Engineering
@@ -75,5 +75,8 @@ overloading. A number of toolboxes are available with the system.
 %exclude %{_libdir}/scilab-%{version}/examples/mex-examples/mexglx
 
 %changelog
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 3.1.1
+- Update to release 3.1.1.
+
 * Wed Jul 14 2004 Dries Verachtert <dries@ulyssis.org> - 3.0-1
 - Initial package.
