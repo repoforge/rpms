@@ -12,7 +12,7 @@
 Summary: Make A CHroot
 Name: mach
 Version: 0.4.6.1
-Release: 1.yum
+Release: 2.yum
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
@@ -111,7 +111,10 @@ fi
 
 
 %changelog
-* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net> 0.4.6.1-1
+* Tue Jun 14 2005 Matthias Saou <http://freshrpms.net> 0.4.6.1-2.yum
+- Add FC4 entries.
+
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net> 0.4.6.1-1.yum
 - Update to seth's yum-ified fork and update spec accordingly.
 
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net> 0.4.6-2

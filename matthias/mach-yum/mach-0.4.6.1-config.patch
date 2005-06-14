@@ -1,6 +1,6 @@
 diff -Naupr mach-0.4.6.1.orig/etc/conf.in mach-0.4.6.1/etc/conf.in
 --- mach-0.4.6.1.orig/etc/conf.in	2005-03-17 08:06:49.000000000 +0100
-+++ mach-0.4.6.1/etc/conf.in	2005-04-17 19:20:51.000000000 +0200
++++ mach-0.4.6.1/etc/conf.in	2005-06-14 15:16:22.000000000 +0200
 @@ -19,8 +19,8 @@ config['spinner'] = {
  config['dirs'] = {
      'states':   '@STATESDIR@',
@@ -14,7 +14,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/conf.in mach-0.4.6.1/etc/conf.in
  }
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386 mach-0.4.6.1/etc/dist.d/fedora-3-i386
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386	2005-03-17 08:08:35.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-3-i386	2005-05-10 13:01:29.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-3-i386	2005-06-14 15:16:22.000000000 +0200
 @@ -6,29 +6,29 @@
  # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
  
@@ -61,7 +61,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386 mach-0.4.6.1/etc/dist.d/f
  
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.6.1/etc/dist.d/fedora-3-x86_64
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64	2005-03-17 08:08:13.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-3-x86_64	2005-05-10 13:01:09.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-3-x86_64	2005-06-14 15:16:22.000000000 +0200
 @@ -6,29 +6,29 @@
  # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
  
@@ -106,9 +106,123 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.6.1/etc/dist.d
 +# Fedora Core 3 roots should use runuser instead of su
 +config['fedora-3-x86_64'] = {'runuser': '/sbin/runuser'}
  
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-i386 mach-0.4.6.1/etc/dist.d/fedora-4-i386
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-4-i386	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-4-i386	2005-06-14 15:17:24.000000000 +0200
+@@ -0,0 +1,34 @@
++# mach dist configuration                                        -*- python -*-
++
++# fedora-4-i386: configuration for Fedora 4
++
++# yum sources layout:
++# 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
++
++yumsources['fedora-4-i386'] = {
++    'core':        'rpm ' + fedora + ' /core/4/i386/os core',
++    'updates':     'rpm ' + fedora + ' /core/updates/4/i386 updates',
++    'extras':      'rpm ' + fedora + ' /extras/4/i386 extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/4/i386/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
++}
++
++
++# Fedora Core 4
++groups['fedora-4-i386'] = {
++    'minimal':  'build-minimal',
++    'base':     'build-base',
++    'build':    'build',
++}
++
++packages['fedora-4-i386'] = {
++    'dir':      'fedora-4-i386',
++}
++
++sourceslist['fedora-4-i386'] = {
++    'fedora-4-i386': ('core', 'updates', 'extras', 'freshrpms', 'buildgroups', )
++}
++
++# Fedora Core 4 roots should use runuser instead of su
++config['fedora-4-i386'] = {'runuser': '/sbin/runuser'}
++
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-ppc mach-0.4.6.1/etc/dist.d/fedora-4-ppc
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-4-ppc	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-4-ppc	2005-06-14 15:18:38.000000000 +0200
+@@ -0,0 +1,34 @@
++# mach dist configuration                                        -*- python -*-
++
++# fedora-4-ppc: configuration for Fedora 4
++
++# yum sources layout:
++# 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
++
++yumsources['fedora-4-ppc'] = {
++    'core':        'rpm ' + fedora + ' /core/4/ppc/os core',
++    'updates':     'rpm ' + fedora + ' /core/updates/4/ppc updates',
++    'extras':      'rpm ' + fedora + ' /extras/4/ppc extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/4/ppc/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
++}
++
++
++# Fedora Core 4
++groups['fedora-4-ppc'] = {
++    'minimal':  'build-minimal',
++    'base':     'build-base',
++    'build':    'build',
++}
++
++packages['fedora-4-ppc'] = {
++    'dir':      'fedora-4-ppc',
++}
++
++sourceslist['fedora-4-ppc'] = {
++    'fedora-4-ppc': ('core', 'updates', 'extras', 'freshrpms', 'buildgroups', )
++}
++
++# Fedora Core 4 roots should use runuser instead of su
++config['fedora-4-ppc'] = {'runuser': '/sbin/runuser'}
++
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.6.1/etc/dist.d/fedora-4-x86_64
+--- mach-0.4.6.1.orig/etc/dist.d/fedora-4-x86_64	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/fedora-4-x86_64	2005-06-14 15:18:06.000000000 +0200
+@@ -0,0 +1,34 @@
++# mach dist configuration                                        -*- python -*-
++
++# fedora-4-x86_64: configuration for Fedora 4
++
++# yum sources layout:
++# 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
++
++yumsources['fedora-4-x86_64'] = {
++    'core':        'rpm ' + fedora + ' /core/4/x86_64/os core',
++    'updates':     'rpm ' + fedora + ' /core/updates/4/x86_64 updates',
++    'extras':      'rpm ' + fedora + ' /extras/4/x86_64 extras',
++    'freshrpms':   'rpm ' + freshrpms + ' /fedora/linux/4/x86_64/freshrpms freshrpms',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
++}
++
++
++# Fedora Core 4
++groups['fedora-4-x86_64'] = {
++    'minimal':  'build-minimal',
++    'base':     'build-base',
++    'build':    'build',
++}
++
++packages['fedora-4-x86_64'] = {
++    'dir':      'fedora-4-x86_64',
++}
++
++sourceslist['fedora-4-x86_64'] = {
++    'fedora-4-x86_64': ('core', 'updates', 'extras', 'freshrpms', 'buildgroups', )
++}
++
++# Fedora Core 4 roots should use runuser instead of su
++config['fedora-4-x86_64'] = {'runuser': '/sbin/runuser'}
++
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386 mach-0.4.6.1/etc/dist.d/fedora-development-i386
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386	2005-03-18 07:33:15.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-development-i386	2005-05-10 13:04:58.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-development-i386	2005-06-14 15:16:22.000000000 +0200
 @@ -1,37 +1,33 @@
 -# mach dist configuration                          -*- python -*-
 +# mach dist configuration                                        -*- python -*-
@@ -163,7 +277,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386 mach-0.4.6.1/et
 -}
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc mach-0.4.6.1/etc/dist.d/fedora-development-ppc
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc	2005-03-18 07:33:55.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-development-ppc	2005-05-10 13:05:10.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-development-ppc	2005-06-14 15:16:22.000000000 +0200
 @@ -1,37 +1,33 @@
 -# mach dist configuration                          -*- python -*-
 +# mach dist configuration                                        -*- python -*-
@@ -218,7 +332,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc mach-0.4.6.1/etc
 -}
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.6.1/etc/dist.d/fedora-development-x86_64
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64	2005-03-14 04:53:27.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-development-x86_64	2005-05-10 13:04:38.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-development-x86_64	2005-06-14 15:16:22.000000000 +0200
 @@ -1,37 +1,33 @@
 -# mach dist configuration                          -*- python -*-
 +# mach dist configuration                                        -*- python -*-
@@ -273,7 +387,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.6.1/
 -}
 diff -Naupr mach-0.4.6.1.orig/etc/location mach-0.4.6.1/etc/location
 --- mach-0.4.6.1.orig/etc/location	2005-03-14 04:51:20.000000000 +0100
-+++ mach-0.4.6.1/etc/location	2005-05-10 12:54:44.000000000 +0200
++++ mach-0.4.6.1/etc/location	2005-06-14 15:16:22.000000000 +0200
 @@ -7,12 +7,15 @@
  
  # Base download locations.
