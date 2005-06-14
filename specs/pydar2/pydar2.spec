@@ -4,12 +4,13 @@
 
 Summary: rpm build system
 Name: pydar2
-Version: 0.021
+Version: 0.022
 Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://dries.ulyssis.org/rpm/pydar2/
 
+BuildArch: noarch
 Source: http://dries.ulyssis.org/rpm/pydar2/pydar2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python-log4py, rpm-build
@@ -104,7 +105,13 @@ which can be used to customize pydar2 so it builds rpmforge packages.
 %{_datadir}/pydar2/pydar-master-autoqueue.py
 %{_datadir}/pydar2/pydar-master-update.py
 %{_datadir}/pydar2/pydar-master-movecommandresults.py
+%{_datadir}/pydar2/pydar-master-targetupdate.py
 %{_datadir}/pydar2/log4py.conf
+%{_bindir}/pydar-buildserver-master
+%{_bindir}/pydar-master-autoqueue
+%{_bindir}/pydar-master-movecommandresults
+%{_bindir}/pydar-master-update
+%{_bindir}/pydar-master-targetupdate
 
 %files dries
 %defattr(-, root, root, 0755)
@@ -122,11 +129,13 @@ which can be used to customize pydar2 so it builds rpmforge packages.
 %dir %{_var}/lib/pydar2/yum
 %defattr(-, root, root, 0755)
 %{_datadir}/pydar2/pydar-buildserver-slave.py
+%{_bindir}/pydar-buildserver-slave
 
 %files client
 %defattr(-, root, root, 0755)
 %config(noreplace) %{_sysconfdir}/pydar2/client.conf
 %{_datadir}/pydar2/pydar-remote.py
+%{_bindir}/pydar-remote
 
 %pre
 /usr/sbin/groupadd pydar2master || :
@@ -135,6 +144,9 @@ which can be used to customize pydar2 so it builds rpmforge packages.
 /usr/sbin/useradd -M -g pydar2slave pydar2slave || :
 
 %changelog
+* Fri Jun 10 2005 Dries Verachtert <dries@ulyssis.org> 0.022-1
+- Update, bash scripts in /usr/bin added.
+
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> 0.021-1
 - Update, most of the functionality seems to work.
 

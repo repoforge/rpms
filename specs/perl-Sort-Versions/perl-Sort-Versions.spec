@@ -13,9 +13,9 @@ Version: 1.5
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/SortVersions/
+URL: http://search.cpan.org/dist/Sort-Versions/
 
-Source: http://www.cpan.org/modules/by-category/13_Internationalization_Locale/Sort/Sort-Versions-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/ED/EDAVIS/Sort-Versions-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

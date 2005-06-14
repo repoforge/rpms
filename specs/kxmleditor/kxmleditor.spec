@@ -61,7 +61,7 @@ features:
 source %{_sysconfdir}/profile.d/qt.sh
 %configure
 sed -i "s/<UI version=\"3.2\" /<UI version=\"3.3\"/g;" $(find . | egrep "\.ui$")
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -fPIC" CXXFLAGS="%{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}

@@ -33,11 +33,11 @@ and search for things in them later.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
-%{__rm} -Rf %{buildroot}%{perl_vendorarch} %{buildroot}%{perl_archlib}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -Rf %{buildroot}%{perl_vendorarch} %{buildroot}%{perl_archlib}
 
 %clean
 %{__rm} -rf %{buildroot}
