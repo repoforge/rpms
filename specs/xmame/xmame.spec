@@ -22,21 +22,19 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.96
-Release: %{?rcver:0.%{rcver}.}1
+Version: 0.97
+Release: %{?rcver:0.%{rcver}.}2
 Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
 # http://www.mameworld.net/highscore/ 0.96 - 06/05/2005
 Source21: http://www.mameworld.net/highscore/uhsdat096.zip
-# http://www.arcade-history.com/ 0.96 - 04/05/2005
+# http://www.arcade-history.com/ 0.97 - 02/06/2005
 Source22: http://www.arcade-history.com/download/history0_96.zip
-# http://www.mameworld.net/mameinfo/ 0.96 - 04/05/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo096.zip
-# http://www.mameworld.net/catlist/ 0.96u1 - 07/05/2005
+# http://www.mameworld.net/mameinfo/ 0.97 - 06/06/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo097.zip
+# http://www.mameworld.net/catlist/ 0.97 - 03/06/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
-Patch0: http://www.anthrofox.org/code/mame/64bitclean/seibuspi_64bit_patch.txt
-Patch1: http://www.anthrofox.org/code/mame/64bitclean/wecleman_64bit_patch.txt
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -63,7 +61,7 @@ combined into a single multi-game emulator.
 This version has been compiled with X11, XV, OpenGL and Glide3 displays.
 
 Available rpmbuild rebuild options :
---without mame mess mips3drc effmmx opengl glide3
+--without mame mess mips3drc ppcdrc effmmx opengl glide3
           alsa esound arts lirc opts quietbuild
 
 
@@ -82,8 +80,6 @@ see http://www.mess.org/.
 
 %prep
 %setup -n %{name}-%{version}%{?rcver:-%{rcver}}
-%patch0 -p0 -b .64bit
-%patch1 -p0 -b .64bit
 # Cleanup CVS stuff
 find . -type d -name CVS | xargs %{__rm} -rf
 
@@ -130,9 +126,9 @@ export JOY_PAD=1
 # Optimization flags, CPU type and defaults for the makefile
 %ifarch %{ix86}
     export MY_CPU="i386"
-    # With FC3 gcc, -mtune is preferred as -mcpu is marked obsolete
-    %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=i386 -mcpu=pentium4 -Wall -fno-merge-constants"}
+    %{!?_without_opts: export CFLAGS="-O3 -g -pipe -march=i386 -mtune=pentium4 -Wall -fno-merge-constants"}
     %{!?_without_mips3drc: export X86_MIPS3_DRC=1}
+    %{!?_without_ppcdrc:   export X86_PPC_DRC=1}
     %{!?_without_effmmx:   export EFFECT_MMX_ASM=1}
 %endif
 
@@ -259,6 +255,14 @@ popd
 
 
 %changelog
+* Tue Jun 14 2005 Matthias Saou <http://freshrpms.net/> 0.97-2
+- Update to 0.97 (final).
+
+* Mon Jun  6 2005 Matthias Saou <http://freshrpms.net/> 0.97-1
+- Update to 0.97 (CVS).
+- Enable X86_PPC_DRC by default for i386.
+- Replace -mcpu with -mtune for i386.
+
 * Wed May 11 2005 Matthias Saou <http://freshrpms.net/> 0.96-1
 - Update to 0.96.
 
