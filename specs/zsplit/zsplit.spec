@@ -4,7 +4,7 @@
 
 Summary: Split, compress and backup devices and files to zsplit images
 Name: zsplit
-Version: 1.0.1
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -39,5 +39,8 @@ zsplit splits, compresses and backups devices and files to zsplit images.
 %{_bindir}/zsplit
 
 %changelog
+* Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Sun May 22 2005 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Initial package. (using DAR)

@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Log/
 
-Source: http://www.cpan.org/modules/by-module/SVN/SVN-Log-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROONEG/SVN-Log-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

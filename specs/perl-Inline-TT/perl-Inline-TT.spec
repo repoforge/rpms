@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-TT/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/Inline-TT-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PH/PHILCROW/Inline-TT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

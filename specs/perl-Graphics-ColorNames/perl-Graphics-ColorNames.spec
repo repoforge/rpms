@@ -11,13 +11,14 @@
 
 Summary: Defines RGB values for common color names
 Name: perl-Graphics-ColorNames
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorNames/
 
-Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorNames-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RR/RRWO/Graphics-ColorNames-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Graphics/Graphics-ColorNames-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -55,6 +56,9 @@ specifying a color by name rather than RGB value.
 %{perl_vendorlib}/Graphics/ColourNames.pm
 
 %changelog
+* Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.06
+- Update
+
 * Sat Oct 30 2004 Dries Verachtert <dries@ulyssis.org> - 1.05
 - Update to release 1.05
 

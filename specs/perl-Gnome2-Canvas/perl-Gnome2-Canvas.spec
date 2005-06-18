@@ -7,14 +7,15 @@
 
 Summary: Perl interface to the 2.x series of the GNOME Canvas library
 Name: perl-Gnome2-Canvas
-Version: 1.00
+Version: 1.002
 Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://gtk2-perl.sourceforge.net/
 
 #Source: http://search.cpan.org/CPAN/authors/id/R/RM/RMCFARLA/Gtk2-Perl/Gnome2-Canvas-%{version}.tar.gz
-Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Canvas-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Gnome2/Gnome2-Canvas-%{version}.tar.gz
+Source: http://dl.sf.net/gtk2-perl/Gnome2-Canvas-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0, perl(ExtUtils::Depends), perl(ExtUtils::PkgConfig) >= 1.03,
@@ -56,5 +57,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.002-1
+- Update.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.00-1
 - Initial package. (using DAR)

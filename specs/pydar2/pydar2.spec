@@ -4,7 +4,7 @@
 
 Summary: rpm build system
 Name: pydar2
-Version: 0.022
+Version: 0.023
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -144,6 +144,9 @@ which can be used to customize pydar2 so it builds rpmforge packages.
 /usr/sbin/useradd -M -g pydar2slave pydar2slave || :
 
 %changelog
+* Tue Jun 14 2005 Dries Verachtert <dries@ulyssis.org> 0.023-1
+- Update to release 0.023.
+
 * Fri Jun 10 2005 Dries Verachtert <dries@ulyssis.org> 0.022-1
 - Update, bash scripts in /usr/bin added.
 

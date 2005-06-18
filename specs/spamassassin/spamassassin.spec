@@ -20,7 +20,7 @@ License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
 
-Source: http://www.apache.org/dist/spamassassin/Mail-SpamAssassin-%{version}.tar.bz2
+Source: http://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-%{version}.tar.bz2
 Source99: filter-requires-spamassassin.sh
 Patch3: spamassassin-3.0.2-krb5-backcompat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

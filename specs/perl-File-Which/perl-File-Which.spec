@@ -14,7 +14,8 @@ License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Which/
 
-Source: http://www.cpan.org/modules/by-module/File/File-Which-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PEREINAR/File-Which-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/File/File-Which-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

@@ -5,13 +5,14 @@
 
 Summary: Perform consistency checks on DNS zones
 Name: zonecheck
-Version: 2.0.2
+Version: 2.0.3
 Release: 0
 License: GPL
 Group: Applications/Internet
 URL: http://www.zonecheck.fr/
 
-Source: http://savannah.nongnu.org/download/zonecheck/zonecheck-%{version}.tgz
+Source: http://www.zonecheck.fr/download/src/zonecheck-%{version}.tgz
+#Source: http://savannah.nongnu.org/download/zonecheck/zonecheck-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -57,6 +58,9 @@ ruby ./installer.rb common cli cgi \
 %{_libdir}/zonecheck/
 
 %changelog
+* Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> -2.0.3-0
+- Updated to release 2.0.3.
+
 * Sat Jan 24 2004 Dag Wieers <dag@wieers.com> - 2.0.2-0
 - Updated to release 2.0.2.
 

@@ -14,7 +14,8 @@ License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GDTextUtil/
 
-Source: http://www.cpan.org/modules/by-module/GDTextUtil/GDTextUtil-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MV/MVERB/GDTextUtil-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/GDTextUtil/GDTextUtil-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

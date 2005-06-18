@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IMAP-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CW/CWEST/Net-IMAP-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CF/CFABER/Net-IMAP-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

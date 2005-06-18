@@ -9,13 +9,13 @@
 
 Summary: Classes for fast lookup of country codes from IP addresses for Perl
 Name: perl-IP-Country
-Version: 2.18
+Version: 2.20
 Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IP-Country/
 
-Source: http://www.cpan.org/modules/by-module/IP/IP-Country-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWETTERS/IP-Country-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -62,6 +62,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/IP/
 
 %changelog
+* Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 2.20-1
+- Updated to release 2.20.
+
 * Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 2.18-1
 - Updated to release 2.18.
 
