@@ -10,7 +10,8 @@ License: BSD
 Group: Applications/File
 URL: http://members.optusnet.com.au/~dbbryan/vcp/
 
-Source: http://members.optusnet.com.au/~dbbryan/vcp/vcp-%{version}.tar.gz
+Source: http://cudlug.cudenver.edu/gentoo/distfiles/vcp-%{version}.tar.gz
+#Source: http://members.optusnet.com.au/~dbbryan/vcp/vcp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

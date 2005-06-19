@@ -23,7 +23,8 @@ Patch1: gnome-chess-0.3.3-quit.patch
 Patch2: gnome-chess-0.3.3-scrollkeeper.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, gdk-pixbuf-devel, gnome-print-devel, libglade-devel, scrollkeeper
+BuildRequires: flex, gdk-pixbuf-devel, gnome-print-devel, libglade-devel
+BuildRequires: scrollkeeper, intltool
 
 Requires(post): scrollkeeper
 

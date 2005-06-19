@@ -28,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Exclusivearch: i386 x86_64
 
-BuildRequires: tetex-latex, fileutils, tetex-dvips
+BuildRequires: tetex-latex, fileutils, tetex-dvips, dev86
 Requires: mkinitrd >= 3.4.7
 Prereq: /sbin/grubby
 

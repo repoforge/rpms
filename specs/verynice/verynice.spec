@@ -12,7 +12,7 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://www.tam.cornell.edu/~sdh4/verynice/
 
-Source: http://www.tam.cornell.edu/~sdh4/verynice/%{name}-%{version}.tar.gz
+Source: http://www.tam.cornell.edu/~sdh4/verynice/down/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

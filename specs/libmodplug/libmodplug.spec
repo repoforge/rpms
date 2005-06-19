@@ -11,6 +11,7 @@ URL: http://modplug-xmms.sourceforge.net/
 
 Source: http://dl.sf.net/modplug-xmms/libmodplug-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 Libmodplug is the library behind Modplug-XMMS, a fully featured, complete

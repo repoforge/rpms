@@ -15,6 +15,7 @@ URL: http://www.theether.org/pssh/
 Source: http://www.theether.org/pssh/pssh-%{version}.tar.gz 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: python
 Requires: openssh, python >= 2.0
 
 %description

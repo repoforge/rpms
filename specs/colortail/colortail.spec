@@ -12,7 +12,8 @@ Group: Applications/File
 License: GPL
 URL: http://www.student.hk-r.se/~pt98jan/colortail.html
 
-Source: http://www.student.hk-r.se/~pt98jan/colortail-%{version}.tar.gz
+Source: http://search.belnet.be/mirror/ftp.openbsd.org/distfiles/colortail-%{version}.tar.gz
+#Source: http://www.student.hk-r.se/~pt98jan/colortail-%{version}.tar.gz
 Patch: colortail-0.3.0-gcc3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

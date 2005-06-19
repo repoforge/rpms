@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtkmm2-devel >= 2.0, libsigc++-devel >= 1.2, glib2-devel >= 2.0
 BuildRequires: atk-devel >= 1.0, pango-devel >= 1.0, gtk2-devel >= 2.0
-BuildRequires: ORBit2-devel >= 2.0, GConf2-devel >= 1.2
+BuildRequires: ORBit2-devel >= 2.0, GConf2-devel >= 1.2, gcc-c++
 
 %description
 C++ wrappers for GConf.

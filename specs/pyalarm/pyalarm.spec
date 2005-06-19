@@ -17,6 +17,7 @@ Source: http://dl.sf.net/pyalarm/pyAlarm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: python
 Requires: python wxPython
 Obsoletes: pyAlarm <= %{version}
 

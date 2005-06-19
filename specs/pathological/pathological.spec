@@ -14,6 +14,7 @@ URL: http://pathological.sourceforge.net/
 
 Source: http://dl.sf.net/pathological/pathological-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: netpbm-progs
 Requires: python, python-game
 
 %description

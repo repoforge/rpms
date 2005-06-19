@@ -11,7 +11,7 @@ Group: Applications/System
 URL: http://ms-sys.sourceforge.net/
 
 Source: http://dl.sf.net/ms-sys/ms-sys-%{version}.tgz
-BuildRequires: bash
+BuildRequires: bash, gettext
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

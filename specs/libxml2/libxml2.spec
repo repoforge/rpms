@@ -16,6 +16,7 @@ URL: http://xmlsoft.org/
 Source: http://xmlsoft.org/sources/libxml2-%{version}.tar.gz
 #Source: http://ftp.gnome.org/pub/GNOME/sources/libxml2/2.5/libxml2-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++, python
 
 %description
 This library allows to manipulate XML files. It includes support

@@ -12,6 +12,8 @@ URL: http://www.5z.com/jirka/gob.html
 Source: http://ftp.5z.com/pub/gob/gob-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: flex, glib2-devel
+
 %description
 GOB is a simple preprocessor for making GTK+ objects.  It makes objects from a
 single file which has inline C code so that you don't have to edit the

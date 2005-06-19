@@ -19,6 +19,7 @@ URL: http://xcircuit.ece.jhu.edu/
 
 Source: http://xcircuit.ece.jhu.edu/archive/xcircuit-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libtool
 
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}

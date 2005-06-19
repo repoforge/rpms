@@ -13,7 +13,7 @@ Source: http://upx.sf.net/download/upx-%{version}-src.tar.gz
 #Source: http://dl.sf.net/upx/upx-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ucl-devel, perl
+BuildRequires: ucl-devel, perl, gcc-c++
 
 %description
 UPX is a free, portable, extendable, high-performance executable packer for

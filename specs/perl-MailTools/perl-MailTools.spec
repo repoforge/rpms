@@ -10,13 +10,14 @@
 
 Summary: MailTools module for perl 
 Name: perl-MailTools
-Version: 1.66
+Version: 1.67
 Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MailTools/
 
-Source: http://www.cpan.org/modules/by-module/Mail/MailTools-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Mail/MailTools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: perl-Mail
@@ -58,6 +59,9 @@ MailTools module for perl
 %{perl_vendorlib}/auto/Mail/
 
 %changelog
+* Sat Jun 19 2005 Dries Verachtert <dries@ulyssis.org> - 1.67-1
+- Updated to release 1.67.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.coM> - 1.66-1
 - Updated to release 1.66.
 

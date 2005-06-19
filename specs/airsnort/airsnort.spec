@@ -25,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, libgnomeui-devel >= 2.0.0
 BuildRequires: autoconf, automake, libpcap
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 AirSnort is a wireless LAN (WLAN) tool which recovers encryption keys.

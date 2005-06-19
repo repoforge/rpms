@@ -12,7 +12,7 @@ URL: http://plasticfs.sourceforge.net/
 Source: http://dl.sf.net/plasticfs/plasticfs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: groff, gcc-c++
+BuildRequires: groff, gcc-c++, libtool
 
 %description
 The Plastic File System is an LD_PRELOAD module for manipulating what the

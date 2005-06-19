@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.2
-Requires: libxml2-python
+Requires: libxml2-python, libxml2-devel
 
 %description
 Epylog is a syslog parser which runs periodically, looks at your logs,

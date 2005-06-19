@@ -16,7 +16,7 @@ URL: http://www.rtfm.com/ssldump/
 Source: http://www.rtfm.com/ssldump/ssldump-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel >= 0.9.6, libpcap >= 0.4
+BuildRequires: openssl-devel >= 0.9.6, libpcap >= 0.4, libtool
 
 %description
 ssldump is an SSLv3/TLS network protocol analyzer. It identifies TCP

@@ -16,7 +16,7 @@ Source2: plan.wmconfig
 Patch0: plan-%{version}-configure.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openmotif-devel, byacc
+BuildRequires: openmotif-devel, byacc, flex
 Requires: openmotif
 
 %description

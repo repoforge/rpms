@@ -11,7 +11,8 @@ License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX-Base/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-Base-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/K/KH/KHAMPTON/XML-SAX-Base-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-Base-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

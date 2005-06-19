@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: docbook-style-xsl, docbook-style-dsssl, docbook-dtds
 BuildRequires: docbook-utils, docbook-utils-pdf, python-devel >= 2.2
+BuildRequires: xmlto
 Requires: python >= 2.2, rpm-python >= 4.0.2-8
 Requires: httpd, mod_python, mod_ssl
 

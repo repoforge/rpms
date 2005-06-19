@@ -15,6 +15,7 @@ Source: http://dl.sf.net/marlin/marlin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gstreamer-devel >= 0.7
+BuildRequires: gtk2-devel
 
 %description
 Marlin is a sample editor for GNOME 2. It uses GStreamer for file

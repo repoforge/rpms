@@ -13,7 +13,7 @@ URL: http://www.danlj.org/mkj/ttywatch/
 Source: http://www.danlj.org/mkj/ttywatch/ttywatch-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: lockdev-devel, /usr/bin/install
+BuildRequires: lockdev-devel, /usr/bin/install, pkgconfig, glib2-devel
 Requires: /sbin/chkconfig
 
 %description

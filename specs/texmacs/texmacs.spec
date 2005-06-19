@@ -26,7 +26,7 @@ URL: http://www.texmacs.org/
 Source: ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: tetex-latex, guile-devel, gcc-c++
+BuildRequires: tetex-latex, guile-devel, gcc-c++, python
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

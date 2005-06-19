@@ -13,7 +13,7 @@ Source: http://dl.sf.net/solfege/solfege-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: swig, texinfo, python >= 2.1, pygtk2 >= 0.6.3, gcc-c++
-BuildRequires: pkgconfig
+BuildRequires: pkgconfig, python-devel, m4
 Requires: pygnome >= 2.1, pygtk2 >= 0.6.3
 
 %description

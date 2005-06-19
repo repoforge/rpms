@@ -16,6 +16,7 @@ Patch: rsnapshot-1.2.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: rsync
 Requires: perl, rsync
 
 %description

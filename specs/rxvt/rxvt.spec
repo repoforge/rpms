@@ -17,7 +17,7 @@ URL: http://www.rxvt.org/
 Source: http://dl.sf.net/rxvt/rxvt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtool
+BuildRequires: libtool, xorg-x11-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: utempter
 

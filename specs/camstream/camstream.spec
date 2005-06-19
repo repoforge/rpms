@@ -12,7 +12,7 @@ URL: http://www.smcc.demon.nl/camstream/
 
 Source: http://www.smcc.demon.nl/camstream/download/camstream-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, qt-devel
 
 %description
 A collection of tools for webcams and other video-devices, enxtending

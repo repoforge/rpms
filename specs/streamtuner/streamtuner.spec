@@ -16,6 +16,7 @@ Source: http://savannah.nongnu.org/download/streamtuner/streamtuner-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.4, curl-devel, openssl-devel, scrollkeeper
+BuildRequires: libxml2-devel, python
 Obsoletes: streamtuner-live365 < %{version}
 Obsoletes: streamtuner-xiph < %{version}
 Obsoletes: streamtuner-local < %{version}

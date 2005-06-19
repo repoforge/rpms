@@ -25,6 +25,7 @@ BuildRequires: kdelibs-devel, libjpeg-devel, automake, autoconf
 BuildRequires: gcc, make, qt-devel, SDL-devel, mysql-devel
 BuildRequires: postgresql-devel, XFree86-devel, zlib-devel
 BuildRequires: glibc-headers, sqlite-devel, gcc-c++, automake15
+BuildRequires: libtool
 
 %description
 Gambas is a free development environment based on a Basic interpreter

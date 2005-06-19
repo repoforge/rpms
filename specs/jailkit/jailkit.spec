@@ -11,6 +11,7 @@ URL: http://olivier.sessink.nl/jailkit/
 
 Source: http://olivier.sessink.nl/jailkit/jailkit-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: python
 
 %description
 Jailkit is a set of utilities to limit user accounts to specific files

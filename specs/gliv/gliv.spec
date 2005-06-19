@@ -16,6 +16,9 @@ Source: http://guichaz.free.fr/gliv/gliv-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, gtk2-devel >= 2.4.0, gtkglext-devel >= 0.7.0
+BuildRequires: gettext, desktop-file-utils
+# for mkdirhier
+BuildRequires: xorg-x11
 
 %description
 GLiv is an OpenGL image viewer. GLiv is very fast and smooth at rotating,
