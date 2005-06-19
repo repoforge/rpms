@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GE/GED/Test-SimpleUnit-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Data::Compare)
+BuildRequires: perl, perl(Data::Compare), perl-ExtUtils-AutoInstall
 
 %description
 This is a simplified Perl unit-testing framework for creating unit tests to be

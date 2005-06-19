@@ -4,7 +4,7 @@
 
 Summary: rpm build system
 Name: pydar2
-Version: 0.023
+Version: 0.024
 Release: 1
 License: GPL
 Group: Development/Tools

@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Class-MethodMaker/
 Source: http://www.cpan.org/modules/by-module/Class/Class-MethodMaker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 This package allows you to create generic methods for OO Perl.
@@ -30,13 +30,19 @@ This package allows you to create generic methods for OO Perl.
 # doesn't work with PREFIX
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" DESTDIR="%{buildroot}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+#./configure --prefix=%{buildroot}
+#%{__perl} Build.PL 
+#./Build
+
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+#makeinstall
+make install
+#./Build install 
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
+%{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod \
 		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
@@ -46,11 +52,11 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" DESTDIR="%{build
 %defattr(-, root, root, 0755)
 %doc README Changes
 %doc %{_mandir}/man3/*
-%dir %{perl_vendorarch}/Class/
-%{perl_vendorarch}/Class/MethodMaker.pm
-%{perl_vendorarch}/Class/MethodMaker/
-%dir %{perl_vendorarch}/auto/Class/
-%{perl_vendorarch}/auto/Class/MethodMaker/
+%dir %{perl_archlib}/Class/
+%{perl_archlib}/Class/MethodMaker.pm
+%{perl_archlib}/Class/MethodMaker/
+%dir %{perl_archlib}/auto/Class/
+%{perl_archlib}/auto/Class/MethodMaker/
 
 %changelog
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.07-1
