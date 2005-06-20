@@ -12,7 +12,7 @@ License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Period/
 
-Source: http://www.cpan.org/modules/by-module/Period/Period-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PR/PRYAN/Period-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

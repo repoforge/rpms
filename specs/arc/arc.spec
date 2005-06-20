@@ -1,18 +1,16 @@
 # $Id$
 # Authority: dag
 
-%define real_version 521e.pl8
-
 Summary: Arc archiver 
 Name: arc
-Version: 5.21e
+Version: 5.21j
 Release: 0
 License: distributable 
 Group: Applications/Archiving
 URL: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/
 
-Source: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/arc%{real_version}.tar.Z
-Patch: arc-5.21e-timeh.patch
+Source: ftp://ftp.freebsd.org/pub/FreeBSD/distfiles/arc-%{version}.tar.gz
+#Patch: arc-5.21e-timeh.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -20,8 +18,8 @@ Arc file archiver and compressor. Long since superseded by zip/unzip
 but useful if you have old .arc files you need to unpack.
 
 %prep
-%setup -c
-%patch -p1
+%setup
+#%patch -p1
 
 %build
 %{__make} %{?_smp_mflags}
@@ -38,10 +36,13 @@ but useful if you have old .arc files you need to unpack.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Arc521.doc Arcinfo Changes.521 README
+%doc Arc521.doc Arcinfo Changes.521 Readme
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 
 %changelog
+* Mon Jun 20 2005 Dries Verachtert <dries@ulyssis.org> - 5.21j-0
+- Update to release 5.21j.
+
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)

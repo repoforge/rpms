@@ -3,8 +3,8 @@
 
 Summary: Screen lock and screen saver.
 Name: xlockmore
-Version: 5.15
-Release: 2
+Version: 5.18
+Release: 1
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.tux.org/~bagleyd/xlockmore.html
@@ -87,6 +87,9 @@ desktop-file-install \
 %{_datadir}/applications/%{desktop_vendor}-xlockmore.desktop
 
 %changelog
+* Mon Jun 20 2005 Dries Verachtert <dries@ulyssis.org> - 5.18-1
+- Update to release 5.18.
+
 * Tue Mar 22 2005 Dag Wieers <dag@wieers.com> - 5.15-2
 - Fixed garbage from /etc/pam.d/xlock. (Zamil M. Cavalcanti)
 
