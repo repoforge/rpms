@@ -1,11 +1,10 @@
 # $Id$
 # Authority: matthias
 
-### FIXME: phpize on fc2/x86_64 is utterly broken as it uses /usr/lib/php4
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
-%{!?php_version:%define php_version %(php-config --version 2>/dev/null || echo 4.3.10)}
+%{!?php_version:%define php_version %(php-config --version 2>/dev/null || echo 4.3.11)}
 
-%define module_version 0.9.2a
+%define module_version 0.9.3
 
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-eaccelerator
@@ -18,6 +17,7 @@ Source: http://dl.sf.net/eaccelerator/eaccelerator-%{module_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php = %{php_version}
 Provides: php-zend_extension
+Conflicts: php-mmcache
 BuildRequires: php, php-devel
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
@@ -28,8 +28,8 @@ It increases performance of PHP scripts by caching them in compiled state, so
 that the overhead of compiling is almost completely eliminated.
 
 
-%prep 
-%setup -n eaccelerator
+%prep
+%setup -n eaccelerator-%{module_version}
 
 
 %build
@@ -82,6 +82,9 @@ EOF
 
 
 %changelog
+* Tue Jun 21 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-0
+- Update to 0.9.3, bugfix release.
+
 * Tue Jan 11 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.2a-0
-- Initial RPM release based on my php-mmcache spec file.
+- Initial RPM release based on the php-mmcache spec file.
 
