@@ -3,6 +3,16 @@
 # Screenshot: http://gwenview.sourceforge.net/screenshots/shots/thumbs/6.png
 # ScreenshotURL: http://gwenview.sourceforge.net/screenshots/
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 ### Temporary exclude as it loops endlessly in configure on x86_64
 # ExcludeDist: el4
 
@@ -19,10 +29,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel
+BuildRequires: qt-devel
 %{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Gwenview can load and save all image formats supported by KDE and 

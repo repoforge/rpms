@@ -2,6 +2,16 @@
 # Authority: dag
 # Upstream: Marc Lehmann <chris,moore$mail,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Displays a given file anywhere on your X root window
 Name: root-tail
 Version: 1.1
@@ -13,7 +23,8 @@ URL: http://root-tail.plan9.de/
 Source: http://goof.com/pcg/marc/data/root-tail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Displays a given file anywhere on your X11 root window with a transparent

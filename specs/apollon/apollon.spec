@@ -6,6 +6,17 @@
 
 # ExcludeDist: el3 fc1
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+# %{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: KDE filesharing client which uses gift
@@ -20,10 +31,13 @@ Source: http://dl.sf.net/apollon/apollon-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, gift-devel, desktop-file-utils
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?el4:BuildRequires: libselinux-devel}
+%{?fc4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
 Requires: kdelibs, gift

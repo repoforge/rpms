@@ -7,6 +7,16 @@
 
 # ExcludeDist: fc1 el3
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Tool which presents you a list of internet streaming radio stations
 Name: kderadiostation
 Version: 0.6
@@ -18,11 +28,13 @@ URL: http://kderadiostation.coolprojects.org/
 Source: http://kderadiostation.coolprojects.org/source/kderadiostation-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
-BuildRequires: XFree86-devel, zlib-devel
+BuildRequires: zlib-devel
 BuildRequires: arts-devel, qt-devel, kdelibs-devel
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 This tool presents you a list of internet streaming radio stations. Just

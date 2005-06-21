@@ -5,6 +5,16 @@
 # Screenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg 
 # ScreenshotURL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
 Version: 1.0
@@ -18,9 +28,11 @@ Source: http://users.telenet.be/muylkens/tuxsaver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
-BuildRequires: gcc-c++, XFree86-devel, qt-devel
+BuildRequires: gcc-c++, qt-devel
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: kdelibs
 
 %description

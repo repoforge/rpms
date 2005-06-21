@@ -5,6 +5,16 @@
 
 # ExcludeDist: el3
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Drawing program designed for young children
 Name: tuxpaint
 Version: 0.9.14
@@ -17,8 +27,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source0: http://dl.sf.net/tuxpaint/tuxpaint-%{version}.tar.gz
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
-BuildRequires: gcc-c++, XFree86-devel, qt-devel, SDL-devel, SDL_ttf-devel
+BuildRequires: gcc-c++, qt-devel, SDL-devel, SDL_ttf-devel
 BuildRequires: SDL_image-devel, SDL_mixer-devel, gnome-libs-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Tux Paint is a free drawing program designed for young children (kids ages 3

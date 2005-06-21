@@ -8,6 +8,13 @@
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
 
 Summary: Stellarium renders 3D photo-realistic skies in real time
 Name: stellarium
@@ -19,8 +26,10 @@ URL: http://stellarium.free.fr/
 
 Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: dos2unix, gcc-c++, XFree86-devel, SDL-devel
+BuildRequires: dos2unix, gcc-c++, SDL-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Stellarium renders 3D photo-realistic skies in real time. Most important

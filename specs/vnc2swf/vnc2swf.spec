@@ -2,6 +2,16 @@
 # Authority: dag
 # Upstream: <vnc2swf-users$lists,sourceforge,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Recording tool for VNC
 Name: vnc2swf
 Version: 0.4.2
@@ -13,7 +23,9 @@ URL: http://www.unixuser.org/~euske/vnc2swf/
 Source: http://www.unixuser.org/~euske/vnc2swf/vnc2swf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ming-devel, libdnet, XFree86-devel, libstdc++-devel, zlib-devel
+BuildRequires: ming-devel, libdnet, libstdc++-devel, zlib-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 vnc2swf is a recoding tool for Flash.

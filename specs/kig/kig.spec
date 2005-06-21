@@ -5,6 +5,16 @@
 
 # ExcludeDist: fc3 fc2 fc1 el3
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Explore mathematical concepts with interactive geometry
 Name: kig
 Version: 0.9
@@ -17,8 +27,10 @@ Source: ftp://ftp.kde.org/pub/kde/stable/apps/KDE3.x/math/kig-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
-BuildRequires: arts-devel, kdelibs-devel gcc, make, gcc-c++, XFree86-devel
+BuildRequires: arts-devel, kdelibs-devel gcc, make, gcc-c++
 BuildRequires: zlib-devel, qt-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: kdelibs
 #todo: needed for python scripting
 #BuildRequires:	boost-python-devel

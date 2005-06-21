@@ -1,6 +1,16 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Graphical FTP client for the K Desktop Environment.
@@ -16,7 +26,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.3.2, kdelibs-devel >= 3.2.0, openssl-devel >= 0.9.7
 BuildRequires: libpng-devel, libart_lgpl-devel, desktop-file-utils, gcc-c++
-BuildRequires: arts-devel, libjpeg-devel, gettext, XFree86-devel, zlib-devel
+BuildRequires: arts-devel, libjpeg-devel, gettext, zlib-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}

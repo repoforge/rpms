@@ -6,6 +6,16 @@
 
 # ExcludeDist: el3
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: MUD (multi user dungeon) client
 Name: kmuddy
 Version: 0.7.1
@@ -19,10 +29,12 @@ Source: http://www.kmuddy.org/files/kmuddy-%{version}.tar.gz
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
-BuildRequires: gcc-c++, XFree86-devel, qt-devel >= 3.2
+BuildRequires: gcc-c++, qt-devel >= 3.2
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Kmuddy is a MUD client for KDE. A MUD is a multi user dungeon, a 

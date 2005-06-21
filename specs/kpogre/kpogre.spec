@@ -7,6 +7,16 @@
 
 %define real_version 1.3.0
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: PostgreSQL graphical frontend
 Name: kpogre
 Version: 1.3.0
@@ -20,9 +30,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Patch: fc2-compile-fixes.patch
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel, kdelibs-devel
 BuildRequires: postgresql-devel, libpqxx, libpqxx-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 KPoGre is a graphical client for PostgreSQL databases. All important

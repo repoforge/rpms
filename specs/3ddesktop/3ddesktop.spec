@@ -27,7 +27,7 @@ URL: http://desk3d.sourceforge.net/
 Source: http://dl.sf.net/desk3d/3ddesktop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, XFree86-devel, zlib-devel
+BuildRequires: gcc-c++, zlib-devel
 BuildRequires: imlib2-devel, qt-devel, kdelibs-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}

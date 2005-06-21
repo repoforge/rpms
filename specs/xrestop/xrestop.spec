@@ -1,6 +1,16 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: X resource monitor
 Name: xrestop
 Version: 0.3
@@ -12,7 +22,10 @@ URL: http://www.freedesktop.org/Software/xrestop/
 Source: http://freedesktop.org/Software/xrestop/xrestop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel ncurses-devel
+BuildRequires: ncurses-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+
 
 %description
 A utility to monitor the usage of resources within the X Server, and

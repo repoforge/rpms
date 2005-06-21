@@ -5,6 +5,16 @@
 # Screenshot: http://www.periapsis.org/tellico/sshots/main_screen-0.9.png
 # ScreenshotURL: http://www.periapsis.org/tellico/sshots.php
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: collection manager
 Name: tellico
 Version: 0.13.6
@@ -17,12 +27,14 @@ Source: http://www.periapsis.org/tellico/download/tellico-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, libgcrypt-devel
-BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel, libxslt-devel
 BuildRequires: kdelibs-devel, desktop-file-utils, libxml2-devel
 BuildRequires: kdemultimedia-devel
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Tellico is a collection manager for KDE. It includes default collections for

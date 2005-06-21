@@ -4,7 +4,17 @@
 # ScreenshotURL: http://gambas.sourceforge.net/screenshots.html
 
 # It compiles, but it does not work on my machine
-# Tag: test
+Tag: test
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
 
 %define real_version 1.0
 
@@ -23,9 +33,11 @@ Patch0: dont-make-links.patch
 Patch1: automake.patch
 BuildRequires: kdelibs-devel, libjpeg-devel, automake, autoconf
 BuildRequires: gcc, make, qt-devel, SDL-devel, mysql-devel
-BuildRequires: postgresql-devel, XFree86-devel, zlib-devel
+BuildRequires: postgresql-devel, zlib-devel
 BuildRequires: glibc-headers, sqlite-devel, gcc-c++, automake15
 BuildRequires: libtool
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Gambas is a free development environment based on a Basic interpreter

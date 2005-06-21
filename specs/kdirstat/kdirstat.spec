@@ -4,6 +4,16 @@
 # Screenshot: http://kdirstat.sourceforge.net/thumbnails/kdirstat-main.jpg
 # ScreenshotURL: http://kdirstat.sourceforge.net/kdirstat.html#screen_shots
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Graphical disk usage utility
 Name: kdirstat
 Version: 2.4.0
@@ -17,12 +27,14 @@ Patch: gcc34-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, libpng-devel
 BuildRequires: libart_lgpl-devel, arts-devel
-BuildRequires: gcc-c++, gettext, XFree86-devel
+BuildRequires: gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel
 %{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: kdelibs, qt
 
 

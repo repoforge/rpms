@@ -1,6 +1,16 @@
 # $Id$
 # Authority: dries
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: sokoban game
 Name: easysok
 Version: 0.3.3
@@ -15,7 +25,9 @@ Patch: assert-include.patch
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel, fam-devel
+BuildRequires: qt-devel, fam-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}

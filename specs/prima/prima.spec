@@ -7,6 +7,16 @@
 
 %define perl_sitearch %(eval "`perl -V:installsitearch`"; echo $installsitearch)
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
 Version: 1.16
@@ -17,11 +27,13 @@ URL: http://www.prima.eu.org/
 
 Source: http://search.cpan.org/CPAN/authors/id/K/KA/KARASIK/Prima-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, gdbm-devel, db4-devel, libpng-devel
+BuildRequires: gdbm-devel, db4-devel, libpng-devel
 BuildRequires: libjpeg-devel, libungif-devel, libtiff-devel
 Provides: perl(Prima::Buttons), perl(Prima::Classes), perl(Prima::ExtLists)
 Provides: perl(Prima::Grids), perl(Prima::Notebooks), perl(Prima::Outlines)
 Provides: perl(Prima::Sliders), perl(Prima::StdDlg)
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Prima is an extensible Perl toolkit for multi-platform GUI development.

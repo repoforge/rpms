@@ -2,6 +2,17 @@
 # Authority: dag
 # Upstream: <cairo$cairographics,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+# %{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
 Version: 0.2.0
@@ -13,9 +24,11 @@ URL: http://cairo.freedesktop.org/
 Source: http://cairo.freedesktop.org/snapshots/cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, freetype-devel, fontconfig-devel, libpixman-devel, XFree86-devel
+BuildRequires: pkgconfig, freetype-devel, fontconfig-devel, libpixman-devel
 BuildRequires: libpng-devel
 #BuildRequires: glitz-devel, libxcb-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Cairo provides anti-aliased vector-based rendering for X. Paths consist

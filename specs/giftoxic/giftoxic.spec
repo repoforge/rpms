@@ -4,6 +4,17 @@
 # Upstream: 
 # Screenshot: http://giftoxic.sourceforge.net/data/images/screenie-transfer.png
 # ScreenshotURL: http://giftoxic.sourceforge.net/index.php?screenshots
+
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
  
 %define real_name giFToxic
 
@@ -18,7 +29,9 @@ URL: http://giftoxic.sourceforge.net/
 Source: http://dl.sf.net/giftoxic/giFToxic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gift-devel, gtk2-devel, XFree86-devel, gettext, bison
+BuildRequires: gift-devel, gtk2-devel, gettext, bison
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: gift
 
 %description

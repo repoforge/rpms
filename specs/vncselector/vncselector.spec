@@ -6,6 +6,16 @@
 
 # DistExclude: el3
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Manage a list of currently active VNC server sessions
 Name: vncselector
 Version: 1.6
@@ -18,8 +28,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
 # Source: http://dl.sf.net/vncselector/VncSelector_1.6.tar.gz
 Source: http://vncselector.sourceforge.net/VncSelector_%{version}.tar.gz
-BuildRequires: fltk-devel, gcc-c++, XFree86-devel, autoconf, automake
+BuildRequires: fltk-devel, gcc-c++, autoconf, automake
 BuildRequires: libtool
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: fltk
 
 %description

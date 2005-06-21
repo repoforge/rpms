@@ -11,6 +11,14 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: City simulation game
 Name: lincity
 Version: 1.13.1
@@ -22,8 +30,10 @@ URL: http://lincity.sourceforge.net/
 Source: http://dl.sf.net/lincity/lincity-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, gcc-c++, libpng-devel
+BuildRequires: gcc-c++, libpng-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Lincity is a city simulation game. Build your city up from a primitive

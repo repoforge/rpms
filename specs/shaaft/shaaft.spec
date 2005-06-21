@@ -3,6 +3,16 @@
 
 # Screenshot: http://criticalmass.sourceforge.net/images-shaaft/shaaft02.jpg
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: OpenGL 3D falling block game
 Name: shaaft
 Version: 0.5.0
@@ -14,7 +24,9 @@ URL: http://criticalmass.sourceforge.net/shaaft.php
 Source: http://dl.sf.net/criticalmass/Shaaft-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, zlib-devel
-BuildRequires: libpng-devel, XFree86-devel, gcc-c++, desktop-file-utils
+BuildRequires: libpng-devel, gcc-c++, desktop-file-utils
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Shaaft is an OpenGL 3D falling block game similar to Blockout. It currently

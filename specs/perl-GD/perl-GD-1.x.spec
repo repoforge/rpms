@@ -3,6 +3,16 @@
 
 %define real_name GD
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
 Version: 1.41
@@ -15,8 +25,10 @@ Source: http://www.cpan.org/modules/by-module/GD/GD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.8.0, gd-devel >= 1.8.4, libpng-devel, zlib-devel
-BuildRequires: freetype-devel, libjpeg-devel, XFree86-devel
+BuildRequires: freetype-devel, libjpeg-devel
 Requires: perl >= 0:5.8.0
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 perl-GD is a Perl interface to the gd graphics library. GD allows you

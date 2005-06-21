@@ -2,6 +2,16 @@
 # Authority: dag
 # Upstream: Karl Runge <xvml$karlrunge,com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: VNC server for the current X11 session
 Name: x11vnc
 Version: 0.7.1
@@ -14,7 +24,9 @@ Source:	http://dl.sf.net/libvncserver/x11vnc-%{version}.tar.gz
 # Source0-md5: b03ba2f34355a4e3c2e0420af2065703
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, libjpeg-devel, zlib-devel
+BuildRequires: libjpeg-devel, zlib-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 x11vnc is to X Window System what WinVNC is to Windows, i.e. a server

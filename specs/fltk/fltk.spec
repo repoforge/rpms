@@ -4,6 +4,17 @@
 
 # Screenshot: http://www.fltk.org/images/fluid.gif
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
+
 Summary: Cross-platform C++ GUI toolkit
 Name: fltk
 Version: 1.1.6
@@ -15,8 +26,10 @@ URL: http://www.fltk.org/
 Source: http://dl.sf.net/fltk/fltk-%{version}-source.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, gcc-c++, zlib-devel, XFree86-devel
+BuildRequires: gcc, gcc-c++, zlib-devel
 BuildRequires: libjpeg-devel, libpng-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 FLTK (pronounced "fulltick") is a cross-platform C++ GUI toolkit for

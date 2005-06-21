@@ -4,6 +4,16 @@
 # Screenshot: http://kssh.sourceforge.net/foto2.png
 # ScreenshotURL: http://kssh.sourceforge.net/#screenshots
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: KDE front-end to ssh
 Name: kssh
 Version: 0.7
@@ -16,10 +26,12 @@ Source: http://dl.sf.net/kssh/kssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
-BuildRequires: XFree86-devel, qt-devel, fam-devel
+BuildRequires: qt-devel, fam-devel
 %{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: kdelibs
 
 %description

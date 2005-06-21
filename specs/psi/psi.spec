@@ -10,6 +10,14 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 %define desktop_vendor rpmforge
 %define qca            qca-1.0
 %define tls_plugin     qca-tls-1.0
@@ -44,7 +52,9 @@ Source33: psi_et.qm
 Source34: psi_vi.qm
 Source35: psi_ru.qm
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: XFree86-devel, kdelibs-devel, openssl-devel, gcc-c++
+BuildRequires: kdelibs-devel, openssl-devel, gcc-c++
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: psi-iconsets < 0.9.1
 

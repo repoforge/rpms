@@ -7,6 +7,14 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 %define desktop_vendor rpmforge
 
 Summary: Graphical desktop publishing (DTP) application
@@ -20,10 +28,12 @@ URL: http://web2.altmuehlnet.de/fschmid/
 Source: http://www.scribus.org.uk/downloads/%{version}/scribus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 3.0, XFree86-devel, gcc-c++
+BuildRequires: qt-devel >= 3.0, gcc-c++
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, libtiff-devel
 BuildRequires: libart_lgpl-devel, arts-devel, gettext, kdelibs-devel
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Scribus is a GUI desktop publishing (DTP) application for GNU/Linux.

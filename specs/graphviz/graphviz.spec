@@ -1,6 +1,16 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 %{?rh9:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_tcltk_devel 1}
 %{?rh7:%define _without_tcltk_devel 1}
@@ -17,13 +27,15 @@ URL: http://www.graphviz.org/
 Source: http://www.graphviz.org/pub/graphviz/ARCHIVE/graphviz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, freetype-devel >= 2.0, bison, m4, flex
+BuildRequires: freetype-devel >= 2.0, bison, m4, flex
 BuildRequires: libjpeg-devel, libpng-devel, zlib-devel, expat-devel, gcc-c++
 #BuildRequires: /bin/ksh
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 # needs version 2.0.29 of gdlib but fc3 contains 2.0.28
 # BuildRequires: gd-progs, gd-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 A collection of tools and tcl packages for the manipulation and layout

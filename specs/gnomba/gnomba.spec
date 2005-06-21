@@ -18,7 +18,7 @@ URL: http://gnomba.sourceforge.net/
 Source: http://dl.sf.net/gnomba/gnomba-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, readline-devel, gnome-libs-devel
-BuildRequires: gettext
+BuildRequires: gettext, automake, autoconf, texinfo
 
 %description
 gnomba is a GUI network browser using the smb protocol.  It allows users

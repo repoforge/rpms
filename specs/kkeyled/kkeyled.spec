@@ -4,6 +4,16 @@
 # Screenshot: http://www.truesoft.ch/dieter/kkeyled/help/en/HTML/screenshot.png
 # ScreenshotURL: http://www.truesoft.ch/dieter/kkeyled-screens.html
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Displays the LED states of the keyboard
 Name: kkeyled
 Version: 0.8.11
@@ -16,9 +26,11 @@ Source: http://www.truesoft.ch/dieter/kkeyled/software/kkeyled-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext, XFree86-devel
+BuildRequires: arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, automake, autoconf
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 KKeyled is a KDE panel tray widget which displays the LED states of

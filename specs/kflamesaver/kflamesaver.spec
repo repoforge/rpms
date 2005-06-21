@@ -2,6 +2,16 @@
 # Authority: dries
 # Screenshot: http://kde-apps.org/content/pics/4485-1.png
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Screensaver with flames
 Name: kflamesaver
 Version: 0.1
@@ -15,11 +25,12 @@ Patch: gcc34-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel, kdelibs-devel
-BuildRequires: gcc, make, gcc-c++, XFree86-devel, qt-devel
+BuildRequires: gcc, make, gcc-c++, qt-devel
 %{?el4:BuildRequires:libselinux-devel}
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
-
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 A screensaver for KDE with flame effects like in Twin Peaks.

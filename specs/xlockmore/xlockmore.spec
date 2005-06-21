@@ -1,6 +1,16 @@
 # $Id$
 # Authority: dries
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Screen lock and screen saver.
 Name: xlockmore
 Version: 5.18
@@ -12,11 +22,10 @@ URL: http://www.tux.org/~bagleyd/xlockmore.html
 Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, gcc-c++, esound-devel, gtk2-devel
+BuildRequires: gcc-c++, esound-devel, gtk2-devel
 BuildRequires: openmotif-devel, openmotif
-%{?fc3:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
-%{?fc2:BuildRequires: xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
-%{?fc1:BuildRequires: XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
 
 %description
 A screen locker and screen saver.

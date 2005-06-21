@@ -39,7 +39,7 @@ Source: http://dl.sf.net/kxmleditor/kxmleditor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel, arts-devel
-BuildRequires: gcc-c++, gettext, XFree86-devel, zlib-devel, qt-devel
+BuildRequires: gcc-c++, gettext, zlib-devel, qt-devel
 BuildRequires: libjpeg-devel, kdelibs-devel, fam-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}

@@ -7,6 +7,16 @@
 
 # ExcludeDist: el3 fc1
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Database frontend
 Name: knoda
 Version: 0.7.3
@@ -19,13 +29,15 @@ Source: http://dl.sf.net/knoda/knoda-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc, make, libpng-devel
 BuildRequires: libart_lgpl-devel, arts-devel
-BuildRequires: gcc-c++, gettext, XFree86-devel
+BuildRequires: gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, hk_classes
 BuildRequires: python-devel, python
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 knoda is a database frontend for KDE. It is based on hk_classes. 
