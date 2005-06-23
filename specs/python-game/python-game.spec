@@ -13,7 +13,7 @@ License: LGPL style
 Group: Development/Libraries
 URL: http://pygame.seul.org/
 
-Source: http://pygame.seul.org/pygame-%{version}.tar.gz
+Source: http://pygame.seul.org/ftp/pygame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-numeric, smpeg-devel,
