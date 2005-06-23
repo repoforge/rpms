@@ -32,7 +32,7 @@ Also, it is able to summarize Fw-1 (NG and 4.1), Netfilter and IPFilter
 logs in a simmilar way.
 
 %prep
-%setup -n %{name}_%{real_version}
+%setup -c -n %{name}_%{real_version}
 
 %{__perl} -pi.orig -e '
 		s|^#(\$domains_file) = .+;|$1 = "%{_sysconfdir}/snortalog/domains";|;

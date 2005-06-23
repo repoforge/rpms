@@ -14,7 +14,7 @@ URL: http://rapidsvn.tigris.org/
 Source: http://www.rapidsvn.org/download/rapidsvn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: apr-devel, apr-util-devel, neon-devel
+BuildRequires: apr-devel, apr-util-devel, neon-devel, gcc-c++
 BuildRequires: autoconf >= 2.53, libtool >= 1.4.2
 BuildRequires: docbook-style-xsl >= 1.58.1, doxygen, libxslt >= 1.0.27
 BuildRequires: subversion-devel >= 1.0.0

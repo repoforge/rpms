@@ -17,6 +17,7 @@ Source: http://www.cs.aau.dk/~olau/monster-masher/source/monster-masher-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: intltool, perl(XML::Parser), gtk2-devel, gtk+-devel, gcc-c++
+BuildRequires: libgnomeuimm-devel
 
 %description
 Monster Masher is an action game for the Gnome desktop environment. The

@@ -15,6 +15,7 @@ Source: http://ftp.gnu.org/gnu/osip/libosip2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: /sbin/ldconfig
+BuildRequires: gcc-c++, autoconf, automake
 
 %description
 oSIP is an implementation of the Session Initiation Protocol as described

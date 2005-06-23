@@ -14,7 +14,7 @@ Source: http://www.gnetlibrary.org/src/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: glib >= 1.2.10
+BuildRequires: glib >= 1.2.10, glib-devel
 
 %description
 Gnet is a simple network library. It is writen in C, object-oriented,

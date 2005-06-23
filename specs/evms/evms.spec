@@ -17,6 +17,7 @@ Source: http://dl.sf.net/evms/evms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel >= 1.2.0, gtk+-devel >= 1.2.0, ncurses-devel
+BuildRequires: gettext
 
 %description
 This package contains the user-space tools needed to manage EVMS (Enterprise

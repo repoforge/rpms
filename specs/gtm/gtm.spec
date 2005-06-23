@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: ORBit-devel >= 0.4.0, gnome-libs-devel >= 1.0.59, wget
+BuildRequires: oaf-devel
 #Requires: wget
 
 %description

@@ -13,7 +13,7 @@ URL: http://www.plugin.org.uk/
 Source: http://plugin.org.uk/releases/%{version}/swh-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ladspa-devel, fftw-devel
+BuildRequires: ladspa-devel, fftw-devel, gcc-c++
 
 %description
 swh-plugins is a set of audio plugins for LADSPA written.

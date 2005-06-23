@@ -13,7 +13,7 @@ URL: http://pamtester.sourceforge.net/
 Source: http://dl.sf.net/pamtester/pamtester-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pam-devel
+BuildRequires: pam-devel, gcc-devel, autoconf, automake
 
 %description
 pamtester is a tiny utility program to test the pluggable

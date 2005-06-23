@@ -14,7 +14,7 @@ Patch0: gspy-configure.patch
 Patch1: gspy-autogen.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext
+BuildRequires: gettext, autoconf, automake
 
 %description
 Gspy retrieves images from a video4linux device and processes these

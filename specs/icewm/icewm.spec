@@ -24,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool
 BuildRequires: XFree86-devel, XFree86-font-utils
 BuildRequires: imlib-devel, libpng-devel, kdelibs
+BuildRequires: gcc-c++
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
 Obsoletes: icewm-common <= %{version}
 Obsoletes: icewm-l10n <= %{version}

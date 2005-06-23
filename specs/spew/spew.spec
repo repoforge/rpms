@@ -13,6 +13,8 @@ URL: http://spew.berlios.de/
 Source: ftp://ftp.berlios.de/pub/spew/1.0.4/spew-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 Spew is used to measure I/O performance of character devices, block devices,
 and regular files. It can also be used to generate high I/O loads to stress

@@ -15,7 +15,7 @@ URL: http://glunarclock.sourceforge.net/
 Source: http://dl.sf.net/glunarclock/glunarclock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gail-devel, libxklavier-devel, scrollkeeper
+BuildRequires: gail-devel, libxklavier-devel, scrollkeeper, gcc-c++
 
 Requires(post): scrollkeeper
 

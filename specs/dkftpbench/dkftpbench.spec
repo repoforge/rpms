@@ -11,6 +11,7 @@ URL: http://www.kegel.com/dkftpbench/
 
 Source: http://www.kegel.com/dkftpbench/dkftpbench-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: autoconf, automake, gcc-c++
 
 %description
 dkftpbench is an FTP benchmark program inspired by SPECweb99. The result

@@ -23,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: nasm, gtk2-devel, gdk-pixbuf-devel, ORBit-devel, libstdc++-devel, gdbm-devel
 BuildRequires: zlib-devel, ncurses-devel, libogg-devel, libvorbis-devel, libmusicbrainz-devel
-BuildRequires: arts-devel, audiofile-devel, esound-devel, boost-devel
+BuildRequires: arts-devel, audiofile-devel, esound-devel, boost-devel, gcc-c++
 BuildRequires: id3lib-devel > 3.8.0
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 

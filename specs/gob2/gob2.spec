@@ -15,7 +15,7 @@ Source: http://ftp.5z.com/pub/gob/gob2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### gob2 2.0.9 was the last one to generate glib 2.2 compatible code
-BuildRequires: glib2-devel >= 2.4.0
+BuildRequires: glib2-devel >= 2.4.0, flex, bison
 
 %description
 GOB is a simple preprocessor for making GTK+ objects.  It makes objects from a

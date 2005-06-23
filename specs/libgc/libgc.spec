@@ -75,6 +75,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
+%{_includedir}/gc
 %{_includedir}/libgc/
 #exclude %{_libdir}/*.la
 

@@ -62,6 +62,7 @@ the secret key and the name of some other simple Digest:: as argument.
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Digest/
 %{perl_vendorlib}/Digest/HMAC.pm
+%{perl_vendorlib}/Digest/HMAC_*.pm
 
 %changelog
 * Sun Jan 26 2003 Dag Wieers <dag@wieers.com>

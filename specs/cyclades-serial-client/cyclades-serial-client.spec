@@ -13,6 +13,7 @@ URL: http://www.lysator.liu.se/~astrand/projects/cyclades-serial-client/
 
 Source: http://www.lysator.liu.se/~astrand/projects/cyclades-serial-client/cyclades-serial-client-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %description
 cyclades-serial-client is a RFC 2217 compliant client. It works with

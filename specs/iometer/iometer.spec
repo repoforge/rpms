@@ -14,6 +14,7 @@ URL: http://www.iometer.org/
 Source: http://dl.sf.net/iometer/iometer-%{real_version}.common-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
 ExclusiveArch: i386 ppc
 
 %description

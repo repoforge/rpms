@@ -14,7 +14,7 @@ Source: http://w3.opensource.ibm.com/~meanwhile/yum/source/gaim-meanwhile-ibm-%{
 NoSource: 0
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libghttp-devel, openldap-devel
+BuildRequires: libghttp-devel, openldap-devel, gcc-c++
 Requires: gaim, libghttp, openldap, meanwhile >= 0.3, gaim-meanwhile
 Obsoletes: meanwhile-gaim-persona <= %{version}, gaimblue <= %{version}
 

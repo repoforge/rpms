@@ -12,6 +12,7 @@ URL: http://weplab.sourceforge.net/
 
 Source: http://dl.sf.net/weplab/weplab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libpcap, autoconf, automake
 
 %description
 WepLab is a tool designed to teach how WEP works, what different

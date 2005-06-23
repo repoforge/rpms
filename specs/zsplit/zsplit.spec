@@ -13,7 +13,7 @@ URL: http://www.device-image.de/
 Source: http://www.device-image.de/download/zsplit_src-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel
+BuildRequires: zlib-devel, gcc-c++
 
 %description
 zsplit splits, compresses and backups devices and files to zsplit images.

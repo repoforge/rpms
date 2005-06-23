@@ -13,7 +13,7 @@ URL: http://www.moonlight3d.org/
 Source: http://ml3d.sf.net/install/moonlight-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: freetype-devel, libtiff-devel
+BuildRequires: freetype-devel, libtiff-devel, gcc-c++
 
 %description
 Moonlight|3D is a free software modeller and renderer for 3D scenes

@@ -16,7 +16,7 @@ Source: http://dl.sf.net/elmo/elmo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # It compiles but does not work without gpgme-devel
-BuildRequires: gpgme-devel, openssl-devel, bison
+BuildRequires: gpgme-devel, openssl-devel, bison, gcc-c++
 BuildRequires: ncurses-devel, flex, gettext, krb5-devel
 
 %description

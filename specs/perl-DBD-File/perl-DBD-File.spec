@@ -47,6 +47,7 @@ for modules like DBD::CSV and DBD::AnyData.
 %doc README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DBD/File.pm
+%{perl_vendorlib}/DBI/SQL/Nano.pm
 
 %changelog
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.33-1

@@ -13,7 +13,7 @@ URL: http://clueful.shagged.org/apachetop/
 Source: http://clueful.shagged.org/apachetop/files/apachetop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel, m4, readline-devel
+BuildRequires: ncurses-devel, m4, readline-devel, gcc-c++
 Requires: httpd
 
 %description

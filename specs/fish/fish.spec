@@ -12,6 +12,8 @@ URL: http://roo.no-ip.org/fish/
 Source: http://roo.no-ip.org/fish/files/%{version}/fish-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: ncurses-devel
+
 %description 
 fish is a shell geared towards interactive use. It's features are
 focused on user friendlieness and discoverability. The language syntax

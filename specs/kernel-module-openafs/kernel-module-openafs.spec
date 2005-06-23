@@ -44,7 +44,7 @@ Source6: openafs-afsmodname
 Patch0: openafs-1.2.9-rc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildRequires: autoconf, automake
 #BuildRequires: kernel-source %{!?rh62:, pam-devel}
 Requires: kernel-module-openafs = %{version}
 

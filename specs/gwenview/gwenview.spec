@@ -63,7 +63,10 @@ source /etc/profile.d/qt.sh
 %doc README AUTHORS COPYING CREDITS NEWS TODO
 %{_bindir}/gwenview
 %{_libdir}/kde3/libgv*
+%{_libdir}/kde3/gwenview.*
 %{_libdir}/libgwenview*
+%{_libdir}/libkdeinit_gwenview.*
+%{_datadir}/doc/HTML/en/gwenview
 %{_datadir}/apps/gv*
 %{_datadir}/applications/kde/gwenview.desktop
 %{_datadir}/apps/gwenview

@@ -69,6 +69,7 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %defattr(-, root, root, 0755)
 %doc README
 %{_libdir}/libevent.so.*
+%{_libdir}/libevent-%{version}.so*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -77,8 +78,9 @@ ${CC:-%{__cc}} -Wl,-soname,libevent.so.0 -shared %{optflags} -fPIC -o libevent.s
 %{_includedir}/event.h
 %{_includedir}/event-internal.h
 %{_includedir}/libevent.h
-%{_libdir}/libevent.a
-%{_libdir}/libevent.so
+%{_libdir}/libevent*.a
+%{_libdir}/libevent*.so
+%{_libdir}/libevent*.la
 
 %changelog
 * Fri May 06 2005 Dag Wieers <dag@wieers.com> - 1.0e-1

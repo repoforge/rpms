@@ -15,7 +15,7 @@ Source: http://dl.sf.net/autotrace/frontline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libart_lgpl-devel >= 2.0, gimp-devel, autotrace-devel
-BuildRequires: gnome-libs-devel
+BuildRequires: gnome-libs-devel, autotrace
 
 %description
 Frontline provides a Gtk+/GNOME based GUI frontend for 

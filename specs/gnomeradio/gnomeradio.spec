@@ -15,7 +15,7 @@ Patch: gnomeradio-1.4-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, intltool, libgnomeui-devel
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, gnome-libs-devel
 
 Requires(post): scrollkeeper
 

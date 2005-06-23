@@ -14,6 +14,7 @@ Source: http://www.vanheusden.com/nasty/nasty-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: gpgme-devel >= 1.0
+BuildRequires: gpgme-devel
 
 %description
 Nasty is a program that helps to recover the passphrase of a PGP or GPG key.

@@ -20,6 +20,7 @@ URL: http://xosview.sourceforge.net/
 Source: http://dl.sf.net/xosview/xosview-%{version}.tar.gz
 Source1: xosview.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: gcc-c++
 
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

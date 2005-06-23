@@ -69,6 +69,7 @@ source  /etc/profile.d/qt.sh
 ### .la files are needed by kftpgrabber
 %{_libdir}/libkftpinterfaces.la
 %{_libdir}/libkftpinterfaces.so.*
+%{_libdir}/libkftpinterfaces.so
 %{_libdir}/kde3/kftpimportplugin_gftp.la
 %{_libdir}/kde3/kftpimportplugin_gftp.so
 

@@ -15,7 +15,7 @@ URL: http://www.amautacorp.com/staff/Rudd-O/projects/search-services/
 Source: http://www.amautacorp.com/staff/Rudd-O/projects/files/search-services/python-inotify-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, python-devel
 Requires: python >= %{python_version}
 
 %description

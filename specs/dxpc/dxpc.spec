@@ -14,7 +14,7 @@ URL: http://www.vigor.nu/dxpc/
 Source: http://www.vigor.nu/dxpc/%{version}/dxpc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: lzo-devel
+BuildRequires: lzo-devel, gcc-c++
 
 %description
 dxpc is an X protocol compressor designed to improve the

@@ -22,6 +22,7 @@ Source: http://xscorch.org/releases/xscorch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2
+BuildRequires: gcc-c++
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

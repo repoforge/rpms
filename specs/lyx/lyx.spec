@@ -22,6 +22,7 @@ Source1: lyx-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel, gcc-c++
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: qt >= 2.2.1, tetex-xdvi, tetex, tetex-latex
 Obsoletes: tetex-lyx
 

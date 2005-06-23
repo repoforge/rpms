@@ -15,6 +15,8 @@ URL: http://www.gnupg.org/
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/libgcrypt/libgcrypt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: libgpg-error-devel
+
 %description
 libgcrypt is a general purpose cryptographic library based on the code
 from GNU Privacy Guard. It provides functions for all cryptograhic

@@ -66,7 +66,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### Removed compat-gcc-c++, compat-libstdc++-devel, compat-gcc
 BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, zip, perl, autoconf
-BuildRequires: autoconf213
+BuildRequires: autoconf213, gcc-c++
 %{!?_without_gtk2:BuildRequires: glib2-devel, gtk2-devel, libIDL-devel >= 0.8.0}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

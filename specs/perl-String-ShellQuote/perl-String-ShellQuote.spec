@@ -47,7 +47,9 @@ which are going to pass through the shell or a shell-like object.
 %files
 %defattr(-, root, root, 0755)
 %doc README Changes
+%{_bindir}/shell-quote
 %{_mandir}/man3/*
+%{_mandir}/man1/*
 %{perl_vendorlib}/String/ShellQuote.pm
 
 %changelog

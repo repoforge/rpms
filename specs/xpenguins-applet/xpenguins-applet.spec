@@ -15,6 +15,7 @@ Source: http://xpenguins.seul.org/xpenguins_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: xpenguins >= 1.9
+BuildRequires: gnome-libs-devel, automake, autoconf
 
 %description
 This program is a GNOME panel applet that animates a friendly family

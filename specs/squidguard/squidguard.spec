@@ -20,6 +20,7 @@ Patch0: squidguard-1.2.0-db4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, perl
+%{?fc4:BuildRequires: db4-devel}
 %{?fc3:BuildRequires: db4-devel}
 %{?fc2:BuildRequires: db4-devel}
 %{?fc1:BuildRequires: db4-devel}

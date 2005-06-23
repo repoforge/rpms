@@ -12,7 +12,7 @@ URL: http://www.cairographics.org/
 Source: http://www.cairographics.org/snapshots/libpixman-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig
+BuildRequires: pkgconfig, gcc-c++
 Obsoletes: slim, libic, libpixregion
 
 %description

@@ -19,7 +19,7 @@ Source: http://dl.sf.net/viewglob/viewglob-%{version}.tar.gz
 Patch: viewglob-2.0.1-default_terminal.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bash, gtk2-devel >= 2.4, pkgconfig
+BuildRequires: bash, gtk2-devel >= 2.4, pkgconfig, autoconf, automake
 Requires: bash, gtk2 >= 2.4
 
 %description 

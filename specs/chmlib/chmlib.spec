@@ -74,6 +74,7 @@ done
 #%{_bindir}/extract_chmLib
 #%{_bindir}/test_chmLib
 %{_libdir}/libchm.so.*
+%{_libdir}/libchm
 
 %files devel
 %defattr(-, root, root, 0755)

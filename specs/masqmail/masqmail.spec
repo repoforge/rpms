@@ -14,6 +14,7 @@ Source: http://innominate.org/kurth/masqmail/download/masqmail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Provides: /usr/bin/mailq, /usr/sbin/sendmail, MTA, smtpd, smtpdaemon
+BuildRequires: glib-devel, glib2-devel
 
 %description
 MasqMail is a mail server designed for hosts that do not have a

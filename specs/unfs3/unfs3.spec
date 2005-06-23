@@ -14,6 +14,8 @@ URL: http://unfs3.sourceforge.net/
 Source: http://dl.sf.net/unfs3/unfs3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: byacc, bison, flex
+
 %description
 UNFS3 is a user-space implementation of the NFS (Network File System)
 version 3 server specification. It provides a daemon that supports both

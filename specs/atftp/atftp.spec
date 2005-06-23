@@ -13,8 +13,8 @@ URL: ftp://ftp.mamalinux.com/pub/atftp/
 Source: ftp://ftp.mamalinux.com/pub/atftp/atftp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtermcap-devel, pcre-devel
-Requires: binutils, gawk, readline
+BuildRequires: libtermcap-devel, pcre-devel, ncurses-devel
+Requires: binutils, gawk, readline, readline-devel
 Provides: tftp
 
 %description

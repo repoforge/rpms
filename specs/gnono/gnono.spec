@@ -17,6 +17,7 @@ URL: http://www.paw.co.za/projects/gnono/
 Source: ftp://ftp.paw.co.za/pub/PAW/sources/gnono-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gnome-libs-devel, autoconf, automake
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

@@ -15,7 +15,7 @@ Patch: vbetool-0.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: i386
-BuildRequires: autoconf, pciutils-devel
+BuildRequires: autoconf, pciutils-devel, automake
 
 %description 
 vbetool allows you to run real-mode video BIOS code to alter 

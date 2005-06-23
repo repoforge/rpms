@@ -16,7 +16,8 @@ URL: http://gwget.sourceforge.net/
 Source: http://dl.sf.net/gwget/gwget-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildrequires: libgnomeui-devel, libglade-devel, gtk2-devel >= 2.4
-Buildrequires: gnome-vfs2-devel
+Buildrequires: gnome-vfs2-devel, automake, autoconf
+BuildRequires: perl-XML-Parser, intltool
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: wget
 

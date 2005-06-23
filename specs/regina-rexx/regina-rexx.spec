@@ -159,6 +159,7 @@ fi
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/regina-config
+%{_libdir}/*.so
 %{_libdir}/*.a
 %{_includedir}/rexxsaa.h
 %exclude %{_libdir}/libtest?.so

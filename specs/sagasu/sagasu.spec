@@ -14,6 +14,7 @@ Source: http://www3.sympatico.ca/sarrazip/dev/sagasu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.0.0
+BuildRequires: gcc-c++
 Requires: libgnomeui >= 2.0.0
 
 %description

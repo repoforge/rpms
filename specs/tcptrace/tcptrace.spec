@@ -12,6 +12,7 @@ URL: http://tcptrace.org/
 
 Source: http://tcptrace.org/download/tcptrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libpcap
 
 %description
 tcptrace is a tool for performing analysis on network packet dumps and

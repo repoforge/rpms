@@ -16,7 +16,7 @@ Source: http://dl.sf.net/workrave/workrave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel
-BuildRequires: gtkmm2-devel
+BuildRequires: gtkmm2-devel, libgnomeuimm
 
 %description
 Workrave is a program that assists in the recovery and prevention of

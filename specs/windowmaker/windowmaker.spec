@@ -15,7 +15,7 @@ Source: ftp://windowmaker.org/pub/source/release/WindowMaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, libpng-devel, libjpeg-devel, libungif-devel 
-BuildRequires: libtiff-devel, zlib-devel, gettext
+BuildRequires: libtiff-devel, zlib-devel, gettext, gcc-c++
 
 Provides: WindowMaker = %{version}-%{release}
 Provides: WindowMaker-libs = %{version}-%{release}

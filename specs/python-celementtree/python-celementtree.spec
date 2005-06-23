@@ -18,7 +18,7 @@ URL: http://effbot.org/zone/celementtree.htm
 Source: http://effbot.org/downloads/cElementTree-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.2, expat-devel
+BuildRequires: python >= 2.2, expat-devel, python-devel
 Requires: python >= %{python_version}, expat
 
 %description

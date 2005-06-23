@@ -75,7 +75,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %doc CONTRIB LICENSE README
 %doc %{_mandir}/man?/*
 %{_bindir}/gcipher
-%{_datadir}/applications/gnome-gcipher.desktop
+%{_datadir}/applications/*gcipher.desktop
 %{_datadir}/gcipher/
 
 %changelog

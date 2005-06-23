@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: python
+BuildRequires: python
 
 %description
 Dstat is a versatile replacement for vmstat, iostat, netstat and ifstat.

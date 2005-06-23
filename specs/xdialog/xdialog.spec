@@ -16,6 +16,7 @@ Source: http://thgodef.nerim.net/xdialog/Xdialog-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2.0
+BuildRequires: autoconf, automake, gettext
 
 Provides: Xdialog
 Obsoletes: Xdialog < %{version}

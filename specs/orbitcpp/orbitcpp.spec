@@ -14,6 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: ORBit2 >= 2.5.0
+BuildRequires: gcc-c++, autoconf, automake
 
 %description
 ORBit-C++ is a project to develop C++ bindings for the ORBit Corba

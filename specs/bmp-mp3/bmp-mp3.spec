@@ -12,7 +12,7 @@ Source: http://dl.sf.net/beepmp/bmp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: bmp >= %{version}
 BuildRequires: XFree86-devel, gtk2-devel, libglade2-devel, libvorbis-devel
-BuildRequires: id3lib-devel
+BuildRequires: id3lib-devel, gcc-c++
 
 %description
 This package contains an MP3 playback plugin for BMP (Beep Media Player),

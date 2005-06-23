@@ -15,7 +15,7 @@ URL: http://razor.sourceforge.net/
 Source: http://dl.sf.net/razor/razor-agents-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl(Net::DNS), perl(Digest::SHA1), perl(Time::HiRes), perl(MIME::Base64)
+BuildRequires: perl, perl(Net::DNS), perl(Digest::SHA1), perl(Time::HiRes), perl(MIME::Base64), perl-URI
 Requires: perl-Razor-Agent = %{version}-%{release}
 
 %description

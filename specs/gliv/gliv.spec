@@ -83,6 +83,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-gliv.desktop
 %{_datadir}/application-registry/gliv.applications
 %{_datadir}/pixmaps/gliv.png
+%{_datadir}/applications/gnome-gliv.desktop
 
 %changelog
 * Fri May 27 2005 Dag Wieers <dag@wieers.com> - 1.9.3-1

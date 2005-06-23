@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.4.30, libgnomeui-devel >= 2.0.3, libglade-devel >= 0.17
 BuildRequires: eel2-devel, gettext, desktop-file-utils, perl(XML::Parser)
+BuildRequires: gcc-c++, intltool
 
 %description
 MlView is an XML editor for GNOME.

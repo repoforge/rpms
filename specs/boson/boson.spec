@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel, gcc-c++, zlib-devel, qt-devel
 BuildRequires: kdelibs-devel, gettext, libart_lgpl-devel, libjpeg-devel
-BuildRequires: libpng-devel, arts-devel, lib3ds
+BuildRequires: libpng-devel, arts-devel, lib3ds, python
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 

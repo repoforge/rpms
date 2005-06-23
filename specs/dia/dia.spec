@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel >= 2.0.6, gtk2-devel >= 2.0.6, libxml2-devel >= 2.3.9
 BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0, pango-devel >= 1.1.5
 BuildRequires: libart_lgpl-devel >= 2.3.10, libxslt-devel, libpng-devel
-BuildRequires: python-devel >= 2.2.1, pygtk2-devel
+BuildRequires: python-devel >= 2.2.1, pygtk2-devel, gcc-c++
 
 %description
 The Dia drawing program is designed to be like the Microsoft(R) Visio

@@ -13,7 +13,7 @@ URL: http://www.ginac.de/CLN/
 Source: ftp://ftpthep.physik.uni-mainz.de/pub/gnu/cln-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gmp-devel
+BuildRequires: gmp-devel, gcc-c++
 
 %description
 A GPLed collection of C++ math classes and functions, that will bring

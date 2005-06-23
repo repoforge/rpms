@@ -42,12 +42,12 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+#%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc README ABOUT-NLS AUTHORS ChangeLog COPYING NEWS INSTALL THANKS
 %{_bindir}/gnubiff

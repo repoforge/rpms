@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: expat-devel >= 1.95.2, ncurses-devel, libstdc++-devel
 BuildRequires: js-devel >= 1.5, readline-devel
 # Building the documentation requires this
-BuildRequires: perl(XML::Parser)
+BuildRequires: perl(XML::Parser), intltool, gcc-c++
 #Requires: expat >= 1.95.2, ncurses, libstdc++
 #Requires: js >= 1.5, readline
 Conflicts: expat = 1.95.6

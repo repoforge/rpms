@@ -56,12 +56,14 @@ applications such as mail dispatchers and mail notification daemons.
 %{_bindir}/compface
 %{_bindir}/uncompface
 %{_mandir}/man1/compface.1*
+%{_mandir}/man1/uncompface.1*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/libcompface.a
 %{_includedir}/compface.h
 %{_mandir}/man3/compface.3*
+%{_mandir}/man3/uncompface.3*
 
 
 %changelog

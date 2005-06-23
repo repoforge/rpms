@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel, gtk2-devel, libgnome-devel, glib2-devel
 BuildRequires: scrollkeeper, gcc-c++, libgnomeui-devel
+BuildRequires: gettext
 
 Requires(post): scrollkeeper
 

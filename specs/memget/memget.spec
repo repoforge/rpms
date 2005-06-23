@@ -25,6 +25,7 @@ workstation.
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__install} -p -m0755 memget %{buildroot}%{_sbindir}/memget
 %{__install} -p -m0755 mempeek %{buildroot}%{_sbindir}/mempeek
 

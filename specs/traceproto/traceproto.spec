@@ -12,7 +12,7 @@ URL: http://traceproto.sourceforge.net/
 Source: http://dl.sf.net/traceproto/traceproto-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet >= 1.1.0, libpcap
+BuildRequires: libnet >= 1.1.0, libpcap, ncurses-devel
 Requires: libnet >= 1.1.0, libpcap
 
 %description

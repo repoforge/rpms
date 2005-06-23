@@ -44,6 +44,7 @@ This module is a simple way to access IMAP accounts.
 %doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/IMAP/Simple.pm
+%{perl_vendorlib}/Net/IMAP/imap.pl
 
 %changelog
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.101-1

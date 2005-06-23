@@ -4,6 +4,12 @@
 
 # Upstream: Gavin Brown <jodrell$spod,uk,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+%{?rh6:%define _without_freedesktop 1}
+
 Summary: graphical interface to the crontab program
 Name: gnome-crontab
 Version: 0.0.5
@@ -17,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: perl >= 0:5.00503
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 #Requires: perl >= 0:5.00503
 #Requires: Gtk-Perl, perl(Locale::Maketext), perl(Gtk::HandyCList)
 #Requires: perl(ExtUtils::Depends), perl(Gnome2), perl(Gtk2)

@@ -13,7 +13,7 @@ URL: http://dvd-create.sourceforge.net/
 Source: http://dvd-create.sourceforge.net/dvdbackup-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: libdvdread
+Requires: libdvdread, libdvdread-devel
 
 %description
 DVD-Createxi is a DVD-Video creation framework. It offers you a

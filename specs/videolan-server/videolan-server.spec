@@ -15,7 +15,7 @@ URL: http://www.videolan.org/streaming/
 Source: http://download.videolan.org/pub/videolan/vls/%{version}/vls-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdvdread-devel, libdvbpsi-devel, linuxdoc-tools
+BuildRequires: libdvdread-devel, libdvbpsi-devel, linuxdoc-tools, gcc-c++
 Provides: vls = %{version}-%{release}
 
 %description

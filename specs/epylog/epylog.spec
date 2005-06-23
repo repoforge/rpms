@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.2
+BuildRequires: lixbml2-devel, libxml2-python
 Requires: libxml2-python, libxml2-devel
 
 %description

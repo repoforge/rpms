@@ -19,7 +19,7 @@ URL: http://www.andrewchatham.com/pyogg/
 Source: http://www.andrewchatham.com/pyogg/download/pyao-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, python-devel, libao-devel
 Requires: python >= %{python_version}
 
 %description

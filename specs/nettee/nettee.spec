@@ -2,11 +2,11 @@
 # Authority: dag
 # Upstream: David Mathog <mathog@caltech.edu>
 
-%define real_version 0.1
+%define real_version 0.1.6
 
 Summary: Network "tee" program
 Name: nettee
-Version: 0.1.5
+Version: 0.1.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -43,5 +43,8 @@ database files.
 %{_bindir}/nettee
 
 %changelog
+* Thu Jun 23 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.6-1
+- Update to release 0.1.6.
+
 * Tue May 10 2005 Dag Wieers <dag@wieers.com> - 0.1.5-1
 - Initial package. (using DAR)

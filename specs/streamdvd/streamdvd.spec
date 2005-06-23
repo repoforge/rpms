@@ -15,6 +15,7 @@ Source: http://www.badabum.de/down/streamdvd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdvdread-devel >= 0.9.2
+BuildRequires: gcc-c++
 
 %description
 StreamDVD is a fast tool to backup Video DVDs. You can select the desired

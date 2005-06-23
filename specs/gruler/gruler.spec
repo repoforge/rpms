@@ -17,6 +17,8 @@ URL: http://linuxadvocate.org/projects/gruler/
 Source: http://linuxadvocate.org/projects/gruler/downloads/gruler-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: pkgconfig
+
 %description
 gruler is a customizable screen ruler.
 
