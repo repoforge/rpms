@@ -12,8 +12,8 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.1.1
-Release: 2
+Version: 4.1.2
+Release: 1
 License: BitTorrent Open Source License
 Group: Applications/Internet
 URL: http://bittorrent.com/
@@ -124,6 +124,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{python_sitelib}/khashmir/
 
 %changelog
+* Thu Jun 23 2005 Dries Verachtert <dries@ulyssis.org> - 4.1.2-1
+- Update to release 4.1.2.
+
 * Sun May 29 2005 Dag Wieers <dag@wieers.com> - 4.1.1-2
 - Small fix for About to work.
 
