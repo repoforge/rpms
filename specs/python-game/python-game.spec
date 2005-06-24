@@ -16,7 +16,7 @@ URL: http://pygame.seul.org/
 Source: http://pygame.seul.org/ftp/pygame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-numeric, smpeg-devel,
+BuildRequires: python-numeric, smpeg-devel, python-devel
 BuildRequires: SDL_mixer-devel, SDL_image-devel, SDL_ttf-devel
 Requires: SDL >= 1.2.2
 

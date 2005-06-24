@@ -3,6 +3,9 @@
 # Screenshot: http://stellarium.free.fr/gfx/pleiades.jpg
 # ScreenshotURL: http://stellarium.free.fr/
 
+# TODO: mail author about template problems with gcc 4
+# also warnings about non virtual constructors in the classes in orbit.h
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?rh7:%define _without_freedesktop 1}
@@ -25,6 +28,7 @@ Group: Amusements/Graphics
 URL: http://stellarium.free.fr/
 
 Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
+Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dos2unix, gcc-c++, SDL-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -53,6 +57,7 @@ telescope.
  
 %prep
 %setup
+%patch -p1
 %{__cat} > stellarium.desktop <<EOF
 [Desktop Entry]
 Version=1.0

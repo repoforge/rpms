@@ -26,7 +26,8 @@ hinting which directories and files to use.
 
 %prep
 %setup
-
+%{__perl} -pi -e 's|^static GtkWidget \*opt_try_harder|GtkWidget *opt_try_harder|g;' src/optimize_usage.c
+%{__perl} -pi -e 's|^static GtkWidget \*rip_path_entry|GtkWidget *rip_path_entry|g;' src/rip_audio.c
 
 %build
 %configure 

@@ -36,8 +36,8 @@ This is a CPAN distribution of the venerable MakeMaker module.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m0755 %{buildroot}%{_mandir}
-%{__mv} -f %{buildroot}%{_prefix}/man/man3/ %{buildroot}%{_mandir}
+#%{__install} -d -m0755 %{buildroot}%{_mandir}
+#%{__mv} -f %{buildroot}%{_prefix}/man/man3/ %{buildroot}%{_mandir}
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}

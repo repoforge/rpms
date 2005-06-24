@@ -1,0 +1,28 @@
+diff -u --recursive gnomeradio-1.4/src/Makefile.am gnomeradio-1.4f/src/Makefile.am
+--- gnomeradio-1.4/src/Makefile.am	2002-11-02 11:10:46.000000000 +0000
++++ gnomeradio-1.4f/src/Makefile.am	2004-10-24 14:11:13.481604816 +0100
+@@ -2,8 +2,6 @@
+            $(GNOMERADIO_CFLAGS) \
+            -DG_LOG_DOMAIN=\"gnomeradio\" \
+            -DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
+-           -DGNOME_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED \
+-           -DGDK_DISABLE_DEPRECATED -DG_DISABLE_DEPRECATED \
+            -DDATADIR=\""$(datadir)/"\" \
+            -DPREFIX=\""$(prefix)/"\" \
+            -DLIBDIR=\""$(libdir)/"\" \
+diff -u --recursive gnomeradio-1.4/src/Makefile.in gnomeradio-1.4f/src/Makefile.in
+--- gnomeradio-1.4/src/Makefile.in	2002-12-14 12:31:16.000000000 +0000
++++ gnomeradio-1.4f/src/Makefile.in	2004-10-24 14:11:30.646995280 +0100
+@@ -164,8 +164,6 @@
+            $(GNOMERADIO_CFLAGS) \
+            -DG_LOG_DOMAIN=\"gnomeradio\" \
+            -DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
+-           -DGNOME_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED \
+-           -DGDK_DISABLE_DEPRECATED -DG_DISABLE_DEPRECATED \
+            -DDATADIR=\""$(datadir)/"\" \
+            -DPREFIX=\""$(prefix)/"\" \
+            -DLIBDIR=\""$(libdir)/"\" \
+Only in gnomeradio-1.4f/src: Makefile.in~
+Only in gnomeradio-1.4f/src: prefs.h~
+Only in gnomeradio-1.4f/src: tech.o
+Only in gnomeradio-1.4f: stamp-h1

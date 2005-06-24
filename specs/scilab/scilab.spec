@@ -14,7 +14,7 @@ License: Other
 Group: Applications/Engineering
 URL: http://scilabsoft.inria.fr/
 
-Source: ftp://ftp.inria.fr/INRIA/Scilab/distributions/scilab-%{version}.src.tar.gz
+Source: http://scilabsoft.inria.fr/download/stable/scilab-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcl tk Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel

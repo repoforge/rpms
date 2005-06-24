@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.cartel-securite.fr/pbiondi/projects/scapy.html
 
-Source: http://www.cartel-securite.fr/pbiondi/python/scapy-%{version}.tar.gz
+Source: http://www.cartel-securite.fr/pbiondi/projects/scapy/files/scapy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

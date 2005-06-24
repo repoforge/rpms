@@ -4,7 +4,7 @@
 
 Summary: Glue, decompress and restore zsplit images
 Name: unzsplit
-Version: 1.0.1
+Version: 1.2.0
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -39,5 +39,8 @@ zunsplit decompresses, glues and restores zsplit images to its original form.
 %{_bindir}/unzsplit
 
 %changelog
+* Fri Jun 24 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.0-1
+- Update to release 1.2.0.
+
 * Sun May 22 2005 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Initial package. (using DAR)

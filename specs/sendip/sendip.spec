@@ -6,7 +6,7 @@
 
 Summary: Command line tool to allow sending arbitrary IP packets
 Name: sendip
-Version: 2.4
+Version: 2.5
 Release: 0
 License: GPL
 Group: Applications/Internet
@@ -47,5 +47,8 @@ data to be added to the packet.
 %{_libdir}/sendip/
 
 %changelog
+* Fri Jun 24 2005 Dries Verachtert <dries@ulyssis.org> - 2.5-0
+- Update to release 2.5.
+
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 2.4-0
 - Initial package. (using DAR)

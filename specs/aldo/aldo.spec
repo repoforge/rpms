@@ -14,6 +14,7 @@ Group: Applications/Internet
 URL: http://www.nongnu.org/aldo/
 
 Source: http://savannah.nongnu.org/download/aldo/aldo-%{version}.tar.bz2
+Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -33,7 +34,7 @@ random generated callsigns
 
 %prep
 %setup
-
+%patch -p1
 %{__perl} -pi.orig -e 's| -oroot | |' Makefile */Makefile
 
 %build

@@ -1,0 +1,36 @@
+diff -uNr stellarium-0.6.1-old/src/vecmath.h stellarium-0.6.1/src/vecmath.h
+--- stellarium-0.6.1-old/src/vecmath.h	2004-10-09 02:14:04.000000000 +0200
++++ stellarium-0.6.1/src/vecmath.h	2005-06-24 07:56:22.239444224 +0200
+@@ -73,8 +73,8 @@
+     inline Vector2 operator-(const Vector2<T>&) const;
+     inline Vector2 operator+(const Vector2<T>&) const;
+ 
+-	inline Vector2 Vector2<T>::operator-() const;
+-	inline Vector2 Vector2<T>::operator+() const;
++	inline Vector2 /*Vector2<T>::*/operator-() const;
++	inline Vector2 /*Vector2<T>::*/operator+() const;
+ 
+ 	inline Vector2 operator*(T) const;
+ 	inline Vector2 operator/(T) const;
+@@ -119,8 +119,8 @@
+     inline Vector3 operator-(const Vector3<T>&) const;
+     inline Vector3 operator+(const Vector3<T>&) const;
+ 
+-	inline Vector3 Vector3<T>::operator-() const;
+-	inline Vector3 Vector3<T>::operator+() const;
++	inline Vector3 /*Vector3<T>::*/operator-() const;
++	inline Vector3 /*Vector3<T>::*/operator+() const;
+ 
+ 	inline Vector3 operator*(T) const;
+ 	inline Vector3 operator/(T) const;
+@@ -168,8 +168,8 @@
+     inline Vector4 operator-(const Vector4<T>&) const;
+     inline Vector4 operator+(const Vector4<T>&) const;
+ 
+-	inline Vector4 Vector4<T>::operator-() const;
+-	inline Vector4 Vector4<T>::operator+() const;
++	inline Vector4 /*Vector4<T>::*/operator-() const;
++	inline Vector4 /*Vector4<T>::*/operator+() const;
+ 
+ 	inline Vector4 operator*(T) const;
+ 	inline Vector4 operator/(T) const;

@@ -20,7 +20,7 @@
 
 Summary: Clone of skyroads, jump and speed along platforms to reach the goal
 Name: skystreets
-Version: 0.2.3
+Version: 0.2.4
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -72,5 +72,8 @@ EOF
 %{_datadir}/applications/skystreets.desktop
 
 %changelog
+* Fri Jun 24 2005 Dries Verachtert <dries@ulyssis.org> 0.2.4-1
+- Update to release 0.2.4.
+
 * Wed Mar 31 2004 Dries Verachtert <dries@ulyssis.org> 0.2.3-1
 - initial packaging

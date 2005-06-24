@@ -30,6 +30,8 @@ computers and operating systems.
 %prep
 %setup -n %{real_version}-%{version}
 
+%{__perl} -pi -e 's|^extern BOOL *titleflg|static BOOL titleflg|g;' src/swmain.h
+
 %{__cat} <<EOF >sopwith.desktop
 [Desktop Entry]
 Name=Sopwith
