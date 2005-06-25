@@ -14,7 +14,10 @@ Source0: http://dl.sf.net/gentoo/gentoo-%{version}.tar.gz
 Source1: gnome-db-icon.png
 Patch: gentoo-0.11.52-pomkinstalldirs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk+-devel, fam-devel, desktop-file-utils
+BuildRequires: gtk+-devel, desktop-file-utils
+%{?fc4:BuildRequires: gamin-devel}
+%{!?el4:BuildRequires: fam-devel}
+
 
 %description
 gentoo is a file manager for Linux written from scratch in pure C. It

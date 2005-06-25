@@ -13,13 +13,13 @@
 
 Summary: sokoban game
 Name: easysok
-Version: 0.3.3
+Version: 0.3.5
 Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://easysok.sourceforge.net/
 
-Source: http://dl.sf.net/easysok/%{name}-%{version}.tar.bz2 
+Source: http://dl.sf.net/easysok/%{name}-%{version}-kde3.tar.bz2 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: assert-include.patch
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel
@@ -85,6 +85,9 @@ Thinking Rabbit, Inc.
 
 
 %changelog
+* Sat Jun 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.5-1
+- Update to release 0.3.5.
+
 * Sun Jan 11 2004 Dries Verachtert <dries@ulyssis.org> 0.3.3-1
 - cleanup of spec file
 - update to 0.3.3

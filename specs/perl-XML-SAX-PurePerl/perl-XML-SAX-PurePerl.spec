@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name XML-SAX-PurePerl
 
 Summary: XML-SAX-PurePerl Perl module
@@ -35,8 +38,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib}
+%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*{,/*}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,7 +48,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/XML/SAX/PurePerl.pm
+%{perl_vendorlib}/XML/SAX/PurePerl
 
 %changelog
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 0.80-0

@@ -19,8 +19,8 @@ Source: http://www.cpan.org/modules/by-module/OurNet/CLKAO/SVN-Web-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl perl-Template-Toolkit perl-YAML perl-XML-RSS perl-Text-Diff
-BuildRequires: perl-Locale-Maketext-Simple subversion-perl
+BuildRequires: perl, perl-Template-Toolkit, perl-YAML, perl-XML-RSS, perl-Text-Diff
+BuildRequires: perl-Locale-Maketext-Simple, subversion-perl
 
 %description
 SVN::Web is a subversion repository web frontend.

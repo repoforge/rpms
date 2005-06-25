@@ -10,6 +10,7 @@ Group: Networking/File transfer
 URL: http://www.kegel.com/dkftpbench/
 
 Source: http://www.kegel.com/dkftpbench/dkftpbench-%{version}.tar.gz
+Patch: 64bit-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, gcc-c++
 
@@ -34,6 +35,7 @@ still alive at the end.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure \

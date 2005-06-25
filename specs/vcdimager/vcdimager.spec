@@ -12,6 +12,7 @@ Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7/%{name}-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt
 BuildRequires: libcdio-devel >= 0.71
+BuildRequires: gcc-c++
 
 %description 
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg

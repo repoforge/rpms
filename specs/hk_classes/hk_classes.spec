@@ -4,7 +4,7 @@
 
 Summary: C++ library for rapid development of database applications
 Name: hk_classes
-Version: 0.7.3
+Version: 0.7.4
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -48,6 +48,9 @@ like forms an reports. hk_classes is database and GUI independent.
 %{_datadir}/man/man1/hk_*
 
 %changelog
+* Sat Jun 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.4-1
+- Update to release 0.7.4.
+
 * Sat Mar 19 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.3-1
 - Update to release 0.7.3.
 

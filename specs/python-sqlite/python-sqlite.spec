@@ -8,13 +8,14 @@
 
 Summary: Python bindings for sqlite
 Name: python-sqlite
-Version: 0.5.0
+Version: 2.0.3
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://pysqlite.sourceforge.net/
+URL: http://initd.org/tracker/pysqlite
 
-Source: http://dl.sf.net/pysqlite/pysqlite-%{version}.tar.gz
+Source: http://initd.org/pub/software/pysqlite/releases/2.0/%{version}/pysqlite-%{version}.tar.gz
+#Source: http://dl.sf.net/pysqlite/pysqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel, sqlite-devel, python
@@ -24,7 +25,7 @@ This packages allows you to use sqlite with python.
 sqlite is a simple database engine.
 
 %prep
-%setup -n %{real_name}
+%setup -n %{real_name}-%{version}
 %{__rm} -f doc/rest/.*swp
 
 %build
@@ -44,5 +45,8 @@ sqlite is a simple database engine.
 %{python_sitearch}/*
 
 %changelog
+* Sat Jun 25 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1
+- Update to release 2.0.3.
+
 * Sat May 01 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Initial package. (using DAR)

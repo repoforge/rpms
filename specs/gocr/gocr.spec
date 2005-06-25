@@ -43,7 +43,10 @@ This package contains a gtk+ frontend to gocr.
 %{__ln_s} -f gnome/mkinstalldirs frontend/mkinstalldirs
 
 %build
+# needed for configure
+export CFLAGS=-lm
 %configure
+%{__perl} -pi -e 's|^LDFLAGS=|LDFLAGS=-lm |g;' Makefile */Makefile
 %{__make} %{?_smp_mflags}
   
 cd frontend/gnome

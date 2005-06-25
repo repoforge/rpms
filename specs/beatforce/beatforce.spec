@@ -17,7 +17,8 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.beatforce.org/
 
-Source: http://www.beatforce.org/files/beatforce-%{version}.tar.gz
+Source: http://download.berlios.de/beatforce/beatforce-%{version}.tar.gz
+#Source: http://www.beatforce.org/files/beatforce-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext

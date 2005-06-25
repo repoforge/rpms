@@ -1,0 +1,54 @@
+Only in dkftpbench-0.45-new: bench.o
+Only in dkftpbench-0.45-new: CHECK.o
+Only in dkftpbench-0.45-new: config.log
+Only in dkftpbench-0.45-new: config.status
+Only in dkftpbench-0.45-new: dkftpbench
+Only in dkftpbench-0.45-new: dklimits
+Only in dkftpbench-0.45-new: dklimits.o
+Only in dkftpbench-0.45-new: dprint.o
+Only in dkftpbench-0.45-new: eclock.o
+Only in dkftpbench-0.45-new: ftp_client_pipe.o
+Only in dkftpbench-0.45-new: ftp_client_pipe_test
+Only in dkftpbench-0.45-new: ftp_client_pipe_test.o
+Only in dkftpbench-0.45-new: ftp_client_proto.o
+Only in dkftpbench-0.45-new: ftp_client_proto_test
+Only in dkftpbench-0.45-new: ftp_client_proto_test.o
+Only in dkftpbench-0.45-new: getifaddrs.o
+Only in dkftpbench-0.45-new: libPoller.a
+Only in dkftpbench-0.45-new: Makefile
+Only in dkftpbench-0.45-new: nbbio.o
+Only in dkftpbench-0.45-new: nbbio_test
+Only in dkftpbench-0.45-new: nbbio_test.o
+Only in dkftpbench-0.45-new: Platoon.o
+Only in dkftpbench-0.45-new: Poller_bench
+Only in dkftpbench-0.45-new: Poller_bench.o
+Only in dkftpbench-0.45-new: Poller_devpoll.o
+Only in dkftpbench-0.45-new: Poller_kqueue.o
+Only in dkftpbench-0.45-new: Poller.o
+Only in dkftpbench-0.45-new: Poller_poll.o
+Only in dkftpbench-0.45-new: Poller_select.o
+Only in dkftpbench-0.45-new: Poller_sigfd.o
+Only in dkftpbench-0.45-new: Poller_sigio.o
+Only in dkftpbench-0.45-new: Poller_test
+diff -ur dkftpbench-0.45/Poller_test.cc dkftpbench-0.45-new/Poller_test.cc
+--- dkftpbench-0.45/Poller_test.cc	2002-07-31 16:59:52.000000000 +0200
++++ dkftpbench-0.45-new/Poller_test.cc	2005-06-25 22:37:30.605021896 +0200
+@@ -386,7 +386,7 @@
+ 
+ 	// send all DPRINTs to logfile
+ 	FILE *log = fopen("Poller_test.log", "w");
+-	CHECKNE(0,log);
++//	CHECKNE(0,log);
+ 	DPRINT_SETFP(log);
+ 	// setlinebuf(log)
+ 	setvbuf(log, (char *)NULL, _IOLBF, 0); 
+Only in dkftpbench-0.45-new: Poller_test.cc~
+Only in dkftpbench-0.45-new: Poller_test.o
+Only in dkftpbench-0.45-new: profile
+Only in dkftpbench-0.45-new: profile.o
+Only in dkftpbench-0.45-new: robouser.o
+Only in dkftpbench-0.45-new: robouser_test
+Only in dkftpbench-0.45-new: robouser_test.o
+Only in dkftpbench-0.45-new: Sked.o
+Only in dkftpbench-0.45-new: Sked_test
+Only in dkftpbench-0.45-new: Sked_test.o

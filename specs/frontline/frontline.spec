@@ -1,6 +1,17 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 %define gimp %(rpm -q gimp-devel | grep -q 1\.2; echo $?)
 
 Summary: GUI frontend program and library for autotrace
@@ -16,6 +27,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libart_lgpl-devel >= 2.0, gimp-devel, autotrace-devel
 BuildRequires: gnome-libs-devel, autotrace
+BuildRequires: ImageMagick-devel, libtiff-devel, freetype-devel
+BuildRequires: libjpeg-devel, libpng-devel, bzip2-devel, libxml2-devel, zlib-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Frontline provides a Gtk+/GNOME based GUI frontend for 

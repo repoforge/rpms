@@ -62,7 +62,7 @@ EOF
 %doc README TODO LICENSE
 %{_usr}/X11R6/include/X11/pixmaps/pathological.xpm
 %{_usr}/games/pathological
-%{_libdir}/pathological/
+%{_usr}/lib/pathological/
 %{_docdir}/pathological/
 %{_datadir}/games/pathological
 %{_mandir}/man6/pathological.6.gz

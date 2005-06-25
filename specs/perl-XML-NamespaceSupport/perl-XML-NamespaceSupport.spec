@@ -3,6 +3,9 @@
 
 # ExcludeDist: el4
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name XML-NamespaceSupport
 
 Summary: XML-NamespaceSupport Perl module
@@ -46,7 +49,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/XML/NamespaceSupport.pm
 
 %changelog
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 1.08-1

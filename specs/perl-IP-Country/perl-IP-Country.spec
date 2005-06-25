@@ -19,7 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/N/NW/NWETTERS/IP-Country-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503, perl(Geography::Countries)
+BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(Geography::Countries)
 Requires: perl >= 0:5.00503
 
 %description

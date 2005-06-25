@@ -1,0 +1,13 @@
+diff -ur whowatch-1.4/process.c whowatch-1.4-new/process.c
+--- whowatch-1.4/process.c	2000-06-06 12:16:12.000000000 +0200
++++ whowatch-1.4-new/process.c	2005-06-25 21:12:56.334428280 +0200
+@@ -74,7 +74,8 @@
+ 		memset(z, 0, sizeof *z);
+ 		check_line(l);
+ 		z->line = l++;
+-		(struct process *) p->priv = z;
++		//(struct process *) p->priv = z;
++		p->priv = z;
+ 		z->proc = p;
+ 		if (*current){
+ 			z->next = *current;
