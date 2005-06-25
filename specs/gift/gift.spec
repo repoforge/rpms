@@ -11,7 +11,8 @@ Group: Applications/Internet
 URL: http://www.giftproject.org/
 
 Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
-BuildRequires: libtool, libtool, gcc-c++
+%{?fc4:BuildRequires: libtool-ltdl-devel, libtool-ltdl}
+BuildRequires: libtool, gcc-c++
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
