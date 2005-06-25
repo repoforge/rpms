@@ -33,7 +33,7 @@ URL: http://www.smartpm.org/
 Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: popt, rpm-devel >= 4.2.1, python-devel
+BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, rpm-python
 %{!?_without_gui:BuildRequires: gcc-c++, kdelibs-devel, qt-devel, pygtk2-devel >= 2.3.94}
 # *** KDE requires autoconf 2.52, 2.53 or 2.54
 # *** KDE requires automake 1.6.1 or newer
