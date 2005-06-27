@@ -39,63 +39,56 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-%define ffmpeg_date    20050209
+%define ffmpeg_date    20050513
 %define real_name      vlc
-#define prever         test2
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.8.1
-Release: %{?prever:0.%{prever}.}3
+Version: 0.8.2
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
-%if %{?prever:1}0
-Source0: http://download.videolan.org/pub/testing/vlc-%{version}-%{prever}//vlc-%{version}-%{prever}.tar.bz2
-Source1: http://download.videolan.org/pub/testing/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
-%else
-Source0: http://download.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
-Source1: http://download.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
-%endif
+Source0: http://download.videolan.org/pub/vlc/%{version}/vlc-%{version}.tar.bz2
+Source1: http://download.videolan.org/pub/vlc/0.8.1/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
+Patch0: ffmpeg-20050513-patch.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gcc-c++, XFree86-devel, libpng-devel
-%{!?_without_fribidi:BuildRequires: fribidi-devel}
+BuildRequires: gcc-c++, XFree86-devel, libpng-devel, libxml2-devel
+BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{!?_without_dvd:BuildRequires: libdvdcss-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
-%{!?_without_dvdplay:BuildRequires: libdvdplay-devel}
+%{!?_without_dvdnav:BuildRequires: libdvdnav-devel}
+%{!?_without_smb:BuildRequires: samba-common}
 %{!?_without_dvbpsi:BuildRequires: libdvbpsi-devel}
 %{!?_without_ogg:BuildRequires: libogg-devel}
-%{!?_without_mad:BuildRequires: libmad-devel}
-%{!?_without_ffmpeg:BuildRequires: lame-devel}
-#{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
-%{!?_without_xvid:BuildRequires: xvidcore-devel}
-%{!?_without_a52:BuildRequires: a52dec-devel}
-%{?_with_dv:BuildRequires: libdv-devel}
-%{!?_without_flac:BuildRequires: flac-devel}
-%{!?_without_vorbis:BuildRequires: libvorbis-devel}
-%{!?_without_speex:BuildRequires: speex-devel}
-%{!?_without_sdl:BuildRequires: SDL-devel}
-%{!?_without_aa:BuildRequires: aalib-devel}
-%{!?_without_esd:BuildRequires: esound-devel}
-%{!?_without_arts:BuildRequires: arts-devel}
-%{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_gtk:BuildRequires: gtk+-devel}
-%{!?_without_gnome:BuildRequires: gnome-libs-devel}
-%{!?_without_wxwin:BuildRequires: wxGTK-devel}
-%{?_with_qt:BuildRequires: qt-devel}
-%{?_with_kde:BuildRequires: kdelibs-devel}
-%{?_with_ncurses:BuildRequires: ncurses-devel}
-%{!?_without_xosd:BuildRequires: xosd-devel}
-%{!?_without_lirc:BuildRequires: lirc}
-%{?_with_mozilla:BuildRequires: mozilla-devel}
-%{!?_without_id3tag:BuildRequires: libid3tag-devel}
-%{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel >= 0.3.2}
-%{!?_without_faad:BuildRequires: faad2-devel}
-%{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_mkv:BuildRequires: libebml-devel, libmatroska-devel}
 %{!?_without_modplug:BuildRequires: libmodplug-devel}
+%{!?_without_mad:BuildRequires: libmad-devel}
+%{!?_without_id3tag:BuildRequires: libid3tag-devel}
+%{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
+%{!?_without_faad2:BuildRequires: faad2-devel}
+%{!?_without_a52:BuildRequires: a52dec-devel}
+%{!?_without_flac:BuildRequires: flac-devel}
+%{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel}
+%{!?_without_vorbis:BuildRequires: libvorbis-devel}
+%{!?_without_speex:BuildRequires: speex-devel}
+%{!?_without_theora:BuildRequires: libtheora-devel}
+%{?_with_x264:BuildRequires: x264-devel}
+%{!?_without_sdl:BuildRequires: SDL-devel}
+%{!?_without_fribidi:BuildRequires: fribidi-devel}
+%{!?_without_aa:BuildRequires: aalib-devel}
+%{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_esd:BuildRequires: esound-devel}
+%{?_with_portaudio:BuildRequires: portaudio-devel}
+%{!?_without_arts:BuildRequires: arts-devel}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_wxwin:BuildRequires: wxGTK-devel}
+%{!?_without_xosd:BuildRequires: xosd-devel}
+%{!?_without_lirc:BuildRequires: lirc-devel}
+%{?_with_mozilla:BuildRequires: mozilla-devel}
+%{?_with_ncurses:BuildRequires: ncurses-devel}
+%{?_with_glide:BuildRequires: Glide3-devel}
+%{!?_without_cdio:BuildRequires: libcdio-devel}
 Conflicts: vlc
 
 %description
@@ -104,13 +97,13 @@ audio and video formats (MPEG-1, MPEG-2, MPEG-4, DivX, mp3, ogg, ...) as
 well as DVDs, VCDs, and various streaming protocols.
 
 Available rpmbuild rebuild options :
---with dv mga qt kde ncurses
---without dvd dvdread dvdplay dvbpsi v4l avi asf aac ogg rawdv mad ffmpeg xvid
-          mp4 a52 vorbis mpeg2dec flac aa esd arts alsa gtk gnome wxwin xosd
-          lsp lirc pth id3tag faad theora mkv
+--with mga ncurses glide pth mozilla portaudio
+--without dvdread dvdnav dvbpsi v4l avi asf aac ogg mad ffmpeg cdio
+          a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwin xosd
+          lsp lirc id3tag faad2 theora mkv modplug smb speex glx
 
 Options that would need not yet existing add-on packages :
---with tremor tarkin svgalib ggi glide wxwindows
+--with tremor tarkin svgalib ggi x264
 
 
 %package devel
@@ -128,7 +121,8 @@ to link statically to it.
 
 
 %prep
-%setup -n %{real_name}-%{version}%{?prever:-%{prever}} -a 1
+%setup -n %{real_name}-%{version} -a 1
+%patch0 -p0 -b .ffmpeg
 
 
 %build
@@ -138,8 +132,8 @@ pushd ffmpeg-%{ffmpeg_date}
         --disable-shared \
         --enable-gpl \
         --enable-pp \
-        --enable-mp3lame
-#       --enable-faac
+        --enable-mp3lame \
+        --enable-faac
     %{__make} %{?_smp_mflags}
 popd
 
@@ -147,82 +141,58 @@ popd
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --program-prefix="%{?_program_prefix}" \
     --enable-release \
-    %{?_without_dvd:--disable-dvd} \
     %{!?_without_dvdread:--enable-dvdread} \
-    %{!?_without_dvdplay:--enable-dvdplay} \
+    %{?_without_dvdnav:--disable-dvdnav} \
+    %{?_without_smb:--disable-smb} \
     %{!?_without_dvbpsi:--enable-dvbpsi} \
     %{!?_without_v4l:--enable-v4l} \
-    --enable-vcd \
-    %{?_without_avi:--disable-avi} \
-    %{?_without_asf:--disable-asf} \
-    %{?_without_aac:--disable-aac} \
+    %{?_without_cdio--disable-libcdio} \
     %{?_without_ogg:--disable-ogg} \
-    %{?_without_rawdv:--disable-rawdv} \
-    %{!?_without_mad:--enable-mad} \
-    %{!?_without_ffmpeg:--enable-ffmpeg --with-ffmpeg-mp3lame} \
+    %{?_without_mkv:--disable-mkv} \
+    %{?_without_modplug:--disable-mod} \
+    %{?_without_mad:--disable-mad} \
+    %{!?_without_ffmpeg:--enable-ffmpeg} \
+    %{!?_without_ffmpeg:--with-ffmpeg-mp3lame --with-ffmpeg-faac} \
     %{!?_without_ffmpeg:--with-ffmpeg-tree=ffmpeg-%{ffmpeg_date}} \
-    %{!?_without_faad:--enable-faad} \
-    %{!?_without_xvid:--enable-xvid} \
-    %{?_without_mp4:--disable-mp4} \
+    %{!?_without_faad2:--enable-faad} \
     %{?_without_a52:--disable-a52} \
-    %{?_without_cinepak:--disable-cinepak} \
-    %{?_with_dv:--enable-dv} \
     %{!?_without_flac:--enable-flac} \
     %{?_without_mpeg2dec:--disable-libmpeg2} \
     %{?_without_vorbis:--disable-vorbis} \
+    %{?_without_speex:--disable-speex} \
+    %{!?_without_theora:--enable-theora} \
+    %{?_without_x264:--disable-theora} \
+    %{?_without_sdl:--disable-sdl} \
+    %{?_without_fribidi:--disable-fribidi} \
+    %{!?_without_aa:--enable-aa} \
+    %{!?_without_caca:--enable-caca} \
+    %{!?_without_esd:--enable-esd} \
+    %{?_with_portaudio:--enable-portaudio} \
+    %{!?_without_arts:--enable-arts} \
+    %{!?_without_alsa:--enable-alsa} \
+    %{?_without_wxwindows:--disable-wxwindows} \
+    %{!?_without_xosd:--enable-xosd} \
+    %{!?_without_lirc:--enable-lirc} \
+    %{?_with_mozilla:--enable-mozilla} \
     %{?_with_tremor:--enable-tremor} \
     %{?_with_tarkin:--enable-tarkin} \
-    %{!?_without_theora:--enable-theora} \
-    %{!?_without_mkv:--enable-mkv} \
-    %{?_without_modplug:--disable-mod} \
-    --enable-x11 \
     %{?_without_glx:--disable-glx} \
-    --enable-xvideo \
-    %{?_without_sdl:--disable-sdl} \
-    --disable-qte \
-    --disable-directx \
-    --enable-fb \
     %{?_with_mga:--enable-mga} \
     %{?_with_svgalib:--enable-svgalib} \
     %{?_with_ggi:--enable-ggi} \
     %{?_with_glide:--enable-glide} \
-    %{!?_without_aa:--enable-aa} \
-    --without-wingdi \
-    --enable-oss \
-    %{!?_without_esd:--enable-esd} \
-    %{!?_without_arts:--enable-arts} \
-    %{!?_without_alsa:--enable-alsa} \
-    --disable-waveout \
-    %{!?_without_gtk:--enable-gtk} \
-    --disable-familiar \
-    %{!?_without_gnome:--enable-gnome} \
-    %{!?_without_wxwindows:--enable-wxwindows} \
-    %{?_with_qt:--enable-qt} \
-    %{?_with_kde:--enable-kde} \
-    --disable-opie \
-    --disable-macosx \
-    --disable-qnx \
-    --disable-intfwin \
     %{?_with_ncurses:--enable-ncurses} \
-    %{!?_without_xosd:--enable-xosd} \
     %{?_without_slp:--disable-slp} \
-    %{!?_without_lirc:--enable-lirc} \
-    %{!?_without_pth:--enable-pth} \
-    --disable-st \
-    %{?_with_mozilla:--enable-mozilla} \
-    --disable-testsuite \
-    --enable-plugins
+    %{?_with_pth:--enable-pth}
 %{__make} %{?_smp_mflags}
 
 
 %install
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} _docs
 %makeinstall
-find %{buildroot}%{_libdir}/vlc -name "*.so" | xargs strip
 %find_lang vlc
 # Include the docs below, our way
-%{__rm} -rf installed-docs
-%{__mv} %{buildroot}%{_docdir}/vlc installed-docs
+%{__mv} %{buildroot}%{_docdir}/vlc _docs
 # So that the icon gets themable
 %{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
 %{__cp} -ap %{buildroot}%{_datadir}/vlc/vlc48x48.png \
@@ -262,7 +232,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 %files -f vlc.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog MAINTAINERS README THANKS
-%doc installed-docs/*
+%doc _docs/*
 %{_bindir}/*vlc
 %{_libdir}/vlc/
 %exclude %{_libdir}/vlc/*.a
@@ -282,6 +252,23 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Mon Jun 27 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-1
+- Update to 0.8.2, ffmpeg 20050513.
+- Remove explicit stripping of the plugin libraries (14MB debuginfo now!).
+- Change lirc build requirement to lirc-devel.
+- FC4 speex package is too old, so it's disabled.
+- Update DVD options : Remove dvd and dvdplay, add dvdnav.
+- Add libxml2-devel, libgcrypt-devel and gnutls-devel build dependencies.
+- Add smbclient support (--without smb to disable).
+- Add libcdio support.
+- Add libcaca support.
+- Add portaudio support (disabled by default).
+- Prepare for future x264 support (no package yet).
+- Remove obsolete options (xvid, dv, rawdv, mp4, cinepack, gtk, gnome, qt, kde,
+  ntfwin), unrelevant options (embedded, Windows) and defaults (X, oss...).
+- Re-enable faac in ffmpeg.
+- Don't enable pth by default, as it's not the default the developers chose.
+
 * Wed Apr 06 2005 Dag Wieers <dag@wieers.com> - 0.8.1-3
 - Added libmodplug support, enabled by default.
 
