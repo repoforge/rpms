@@ -5,16 +5,16 @@
 
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
-Version: 0.88.2
-Release: 2
+Version: 0.93.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://gtkpod.sourceforge.net/
 Source: http://dl.sf.net/gtkpod/gtkpod-%{version}.tar.gz
-Patch0: gtk2.4-gtk2.0.diff
-Patch1: gtkpod-0.88.2-gcc4.patch
+Patch: gtkpod-0.88.2-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel, libid3tag-devel, faad2-devel, gettext
+BuildRequires: gtk2-devel, libglade2-devel, libid3tag-devel, faad2-devel
+BuildRequires: gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -26,8 +26,7 @@ modification of the database with later synchronisation, and more.
 
 %prep
 %setup
-%patch0 -p0
-%patch1 -p1 -b .gcc4
+%patch -p1 -b .gcc4
 
 # Create a desktop menu entry
 %{__cat} > %{name}.desktop << EOF
@@ -44,7 +43,7 @@ EOF
 
 
 %build
-%configure 
+%configure
 %{__make} %{?_smp_mflags}
 
 
@@ -69,6 +68,14 @@ desktop-file-install \
     %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
+# Workaround for absolute symlink problem
+for file in gtkpod.glade gtkpod.gladep; do
+    if [ -L %{buildroot}%{_datadir}/gtkpod/pixmaps/${file} -a \
+         -f %{buildroot}%{_datadir}/gtkpod/$file ]; then
+        %{__ln_s} -f ../${file} %{buildroot}%{_datadir}/gtkpod/pixmaps/${file}
+    fi
+done
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -88,6 +95,12 @@ desktop-file-install \
 
 
 %changelog
+* Mon Jun 27 2005 Matthias Saou <http://freshrpms.net> 0.93.1-1
+- Update to 0.93.1.
+- Add libglade2-devel build dependency.
+- Remove gtk2.4-gtk2.0.diff patch.
+- Add workaround for absolute symlinks of glade files.
+
 * Wed Apr 20 2005 Matthias Saou <http://freshrpms.net> 0.88.2-2
 - Add patch to fix building with gcc4.
 
@@ -108,7 +121,7 @@ desktop-file-install \
 * Sat Mar 21 2004 Casper Pedersen <cpedersen [at] c-note.dk> 0.72-2.3
 - BuildRequires:  gtk2-devel >= 2.2.4
 - BuildRequires:  glib2-devel >= 2.2.3
- 
+
 * Tue Mar 16 2004 Casper Pedersen <cpedersen [at] c-note.dk> 0.72-2.1
 - Follow Fedora specs
 - add .desktop file
