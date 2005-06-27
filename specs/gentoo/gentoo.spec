@@ -1,22 +1,30 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{!?dist:%define _with_gamin}
+%{?fc4:%define _with_gamin}
+%{?el4:%define _with_gamin}
+%{?fc3:%define _with_gamin}
+%{?fc2:%define _with_fam}
+%{?el3:%define _with_fam}
+
 %define desktop_vendor rpmforge
 
 Summary: Graphical file management program in GTK+ for Linux
 Name: gentoo
-Version: 0.11.54
+Version: 0.11.55
 Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.obsession.se/gentoo/
-Source0: http://dl.sf.net/gentoo/gentoo-%{version}.tar.gz
-Source1: gnome-db-icon.png
+Source: http://dl.sf.net/gentoo/gentoo-%{version}.tar.gz
 Patch: gentoo-0.11.52-pomkinstalldirs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, desktop-file-utils
-%{?fc4:BuildRequires: gamin-devel}
-%{!?el4:BuildRequires: fam-devel}
+%{?_with_gamin:BuildRequires: gamin-devel}
+%{?_with_fam:BuildRequires: fam-devel}
 
 
 %description
@@ -44,14 +52,15 @@ file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
-%{__install} -Dp docs/gentoo.1x %{buildroot}%{_mandir}/man1/gentoo.1
-%{__install} -Dp -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D docs/gentoo.1x %{buildroot}%{_mandir}/man1/gentoo.1
+%{__install} -D -m 644 icons/gentoo.png \
+    %{buildroot}%{_datadir}/pixmaps/gentoo.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=Gentoo File Manager
 Comment=Graphical file managment program in GTK+ for Linux
-Icon=%{name}.png
+Icon=gentoo.png
 Exec=gentoo
 Terminal=false
 Type=Application
@@ -71,17 +80,22 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog CONFIG-CHANGES COPYING CREDITS docs
+%doc AUTHORS BUGS ChangeLog CONFIG-CHANGES COPYING CREDITS docs/
 %doc NEWS ONEWS README README.gtkrc TODO
 %config %{_sysconfdir}/gentoo*
 %{_bindir}/gentoo
 %{_datadir}/applications/*%{name}.desktop
-%{_datadir}/gentoo
-%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/gentoo/
+%{_datadir}/pixmaps/gentoo.png
 %{_mandir}/man1/gentoo.1*
 
 
 %changelog
+* Mon Jun 27 2005 Matthias Saou <http://freshrpms.net/> 0.11.55-1
+- Update to 0.11.55.
+- Replace gnome-db-icon.png used until now with included gentoo.png.
+- Fix wrong gamin/fam build requirement.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 0.11.54-1
 - Update to 0.11.54.
 
