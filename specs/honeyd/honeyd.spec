@@ -13,7 +13,8 @@ URL: http://www.citi.umich.edu/u/provos/honeyd/
 Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libevent-devel, flex, libpcap, libdnet
+BuildRequires: libevent-devel, flex, libpcap, libdnet, automake, autoconf
+BuildRequires: readline-devel, bison
 
 %description
 Honeyd is a small daemon that creates virtual hosts on a network.

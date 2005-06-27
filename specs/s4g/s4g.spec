@@ -25,8 +25,9 @@ to insert a specific module nor to have special administrator rights.
 %setup
 
 %build
+%{__perl} -pi -e 's|#include <linux/user.h>|#include <sys/user.h>|g;' common.h
 %{__make} %{?_smp_mflags} \
-	FLAGS="%{optflags} -I%{_includedir}"
+	FLAGS="-Wall %{optflags} -I%{_includedir}"
 #	FLAGS="%{optflags} -I%{_includedir} -I/%{_lib}/modules/%{kernel}/build/include"
 
 %install

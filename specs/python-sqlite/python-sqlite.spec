@@ -41,7 +41,7 @@ sqlite is a simple database engine.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README doc/ examples/
+%doc LICENSE doc/ 
 %{python_sitearch}/*
 
 %changelog
