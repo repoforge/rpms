@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: <transcode-users$exit1.org>
 
-%define prever beta3
+%define prever rc1
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -128,6 +128,9 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Tue Jun 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-0.1.rc1
+- Update to 1.0.0rc1.
+
 * Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-0.1.beta3
 - Update to 1.0.0beta3 (not the released tarball, a CVS checkout with fixes).
 - Explicitly disable MMX for now, it makes the build fail :-(
