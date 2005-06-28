@@ -11,7 +11,7 @@
 
 Summary: Network monitoring/graphing tool
 Name: cacti
-Version: 0.8.6d
+Version: 0.8.6e
 Release: 1
 License: GPL
 Group: Applications/System
@@ -123,6 +123,9 @@ fi
 %doc docs/
 
 %changelog
+* Tue Jun 28 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.6e-1
+- Updated to release 0.8.6e.
+
 * Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 0.8.6d-1
 - Updated to release 0.8.6d.
 
