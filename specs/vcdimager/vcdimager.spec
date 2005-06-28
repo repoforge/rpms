@@ -4,15 +4,14 @@
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
 Version: 0.7.22
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
 Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt
+BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt, gcc-c++
 BuildRequires: libcdio-devel >= 0.71
-BuildRequires: gcc-c++
 
 %description 
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
@@ -60,13 +59,13 @@ applications that will use VCDImager.
 
 %post
 for infofile in vcdxrip.info vcdimager.info vcd-info.info; do
-    /sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir
+    /sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir || :
 done
 
 %preun
 if [ $1 -eq 0 ]; then
     for infofile in vcdxrip.info vcdimager.info vcd-info.info; do
-        /sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir
+        /sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir || :
     done
 fi
 
@@ -92,6 +91,9 @@ fi
 
 
 %changelog
+* Tue Jun 28 2005 Matthias Saou <http://freshrpms.net/> 0.7.22-2
+- Prevent scriplets from failing if the info calls return an error.
+
 * Tue May 17 2005 Matthias Saou <http://freshrpms.net/> 0.7.22-1
 - Update to 0.7.22.
 

@@ -106,7 +106,7 @@ On x86, additional Win32 binary codecs should be added to %{_libdir}/win32/.
 
 Available rpmbuild rebuild options :
 --with : samba dvb
---without : aalib lirc cdparanoia arts xvid esd dvdread lzo libfame caca
+--without : aalib lirc cdparanoia arts xvid esd dvdread lzo fame caca
             theora osdmenu gcccheck fribidi xvmc
 
 
@@ -204,7 +204,7 @@ echo | ./configure \
     %{?_without_arts:--disable-arts} \
     %{?_without_esd:--disable-esd} \
     %{?_without_dvdread:--disable-dvdread} \
-    %{?_without_libfame:--disable-libfame} \
+    %{?_without_fame:--disable-libfame} \
     %{?_without_caca:--disable-caca} \
     %{?_without_theora:--disable-theora} \
     %{?_with_dvb:--enable-dvbhead} \
@@ -320,6 +320,9 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Jun 28 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.16.pre7
+- Fix "libfame" to "fame" rebuild option listed in the description.
+
 * Sun May  1 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.16.pre7
 - Include gcc4 patches from Gentoo portage, to build on FC4..
 - Split off docs sub-package, as it represents 7MB of data!
