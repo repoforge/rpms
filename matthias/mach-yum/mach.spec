@@ -2,8 +2,6 @@
 # Authority: matthias
 # Upstream: Thomas Vander Stichele <thomas$apestaart,org>
 
-# ExcludeDist: rh7
-
 %{!?builduser:  %define builduser  machbuild}
 %{!?buildgroup: %define buildgroup machbuild}
 # Override with --define 'python python2'
@@ -12,7 +10,7 @@
 Summary: Make A CHroot
 Name: mach
 Version: 0.4.6.1
-Release: 2.yum
+Release: 3.yum
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
@@ -111,6 +109,9 @@ fi
 
 
 %changelog
+* Tue Jun 28 2005 Matthias Saou <http://freshrpms.net> 0.4.6.1-3.yum
+- Update patch to fix inclusion of FC4 entries.
+
 * Tue Jun 14 2005 Matthias Saou <http://freshrpms.net> 0.4.6.1-2.yum
 - Add FC4 entries.
 
