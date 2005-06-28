@@ -25,6 +25,7 @@ Group: User Interface/Desktops
 URL: http://desk3d.sourceforge.net/
 
 Source: http://dl.sf.net/desk3d/3ddesktop-%{version}.tar.gz
+Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, zlib-devel
@@ -42,6 +43,7 @@ different visualization modes are available.
 
 %prep
 %setup
+%patch -p1
 
 %build
 source /etc/profile.d/qt.sh

@@ -1,0 +1,13 @@
+diff -ur 3ddesktop-0.2.8/event.hpp 3ddesktop-0.2.8-new/event.hpp
+--- 3ddesktop-0.2.8/event.hpp	2004-12-06 03:57:32.000000000 +0100
++++ 3ddesktop-0.2.8-new/event.hpp	2005-06-28 07:58:39.982524984 +0200
+@@ -74,7 +74,8 @@
+         list<Event *>::iterator k;
+         for (k = events.begin(); k != events.end(); ++k) {
+             Event *e = *k;
+-            printf(":: Event %d  0x%x\n", e->type, (unsigned int)(e->function));
++            // pointer -> unsigned int cast  is an error with gcc4
++            // printf(":: Event %d  0x%x\n", e->type, (unsigned int)(e->function));
+         }
+     }
+ 
