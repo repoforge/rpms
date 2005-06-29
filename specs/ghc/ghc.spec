@@ -28,6 +28,7 @@ BuildRequires: readline-devel, readline
 BuildRequires: m4, python, perl 
 BuildRequires: python-devel, docbook-dtds
 BuildRequires: openjade, jadetex
+%{?fc4:BuildRequires:compat-readline43}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
 Requires: readline

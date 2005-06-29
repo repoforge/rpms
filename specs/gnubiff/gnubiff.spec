@@ -42,12 +42,12 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%find_lang %{name}
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README ABOUT-NLS AUTHORS ChangeLog COPYING NEWS INSTALL THANKS
 %{_bindir}/gnubiff
@@ -55,6 +55,8 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 %{?fc2:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{?fc3:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc3:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
+%{?fc4:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
+%{?fc4:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}
 %{_datadir}/gnubiff
 %{_datadir}/info/gnubiff.info.gz
 %{_mandir}/man1/gnubiff.*

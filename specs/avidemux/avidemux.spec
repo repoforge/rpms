@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk+-devel >= 1.2.9
 BuildRequires: nasm >= 0.98.32, gcc-c++, gettext
+%{?fc4:BuildRequires: gettext-devel}
 
 %description
 Avidemux is a graphical tool to edit AVI. It allows you to multiplex and

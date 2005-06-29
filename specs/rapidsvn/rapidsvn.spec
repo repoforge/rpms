@@ -20,6 +20,8 @@ BuildRequires: docbook-style-xsl >= 1.58.1, doxygen, libxslt >= 1.0.27
 BuildRequires: subversion-devel >= 1.0.0
 BuildRequires: wxGTK-devel >= 2.4.2
 BuildRequires: desktop-file-utils
+# for /usr/bin/convert:
+BuildRequires: ImageMagick
 Requires: subversion
 
 %description

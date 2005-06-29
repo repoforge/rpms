@@ -85,7 +85,7 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/*
-%{_includedir}/FL/
+%{_includedir}/F*
 %{_libdir}/*.a
 %{_libdir}/*.so
 

@@ -33,6 +33,7 @@ according file system.
 %setup -n %{real_name}-%{version}
 
 %build
+export CFLAGS="-fPIC"
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 

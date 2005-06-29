@@ -59,6 +59,7 @@ you will need to install %{name}-devel.
 
 %{__perl} -pi.orig -e 's|/lib/|/%{_lib}/|g' Makefile
 %{__perl} -pi.orig -e 's|-O2 -march=i486|%{optflags}|g' make.cfg
+%{__perl} -pi.orig -e 's|"CFLAGS = |"CFLAGS = -fPIC |g;' make.cfg
 
 %build
 %{__make} %{?_smp_mflags} linux

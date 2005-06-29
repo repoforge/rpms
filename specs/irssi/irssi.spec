@@ -18,7 +18,8 @@ URL: http://irssi.org/
 Source: http://irssi.org/files/irssi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel, ncurses-devel, libgc-devel
+BuildRequires: glib2-devel, ncurses-devel, libgc-devel, gcc-c++
+BuildRequires: autoconf, automake, ncurses-devel, imlib-devel
 
 %description
 Irssi is a modular IRC client that currently has only text mode user

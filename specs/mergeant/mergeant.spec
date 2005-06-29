@@ -16,7 +16,7 @@ Source: http://ftp.gnome.org/pub/GNOME/sources/mergeant/%{version}/mergeant-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgda-devel, libgnomedb-devel
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, gcc-c++
 
 Requires(post): scrollkeeper
 

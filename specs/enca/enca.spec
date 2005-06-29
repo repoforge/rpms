@@ -38,6 +38,7 @@ encoding of text files and can also convert them to other encodings.
 %defattr(-, root, root, 0755)
 %doc README AUTHORS ChangeLog COPYING FAQ INSTALL NEWS THANKS TODO
 %{_bindir}/enca
+%{_bindir}/enconv
 %{_includedir}/enca.h
 %{_libdir}/libenca.*
 %{_libdir}/pkgconfig/enca.pc
@@ -46,7 +47,9 @@ encoding of text files and can also convert them to other encodings.
 %{_libexecdir}/enca/extconv/piconv
 %{_libexecdir}/enca/extconv/recode
 %{_libexecdir}/enca/extconv/umap
-%{_datadir}/man/man1/enca.1.gz
+%{_datadir}/man/man1/enca.1*
+%{_datadir}/man/man1/enconv.1*
+
 
 %changelog
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> 1.7-1

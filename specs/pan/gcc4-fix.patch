@@ -1,0 +1,30 @@
+diff -ur pan-0.14.2.91/pan/base/msort.c pan-0.14.2.91-new/pan/base/msort.c
+--- pan-0.14.2.91/pan/base/msort.c	2001-06-18 20:33:38.000000000 +0200
++++ pan-0.14.2.91-new/pan/base/msort.c	2005-06-29 22:23:20.108964464 +0200
+@@ -65,14 +65,22 @@
+ 			if ((*cmp) (b1, b2) <= 0)
+ 			{
+ 				--n1;
+-				*((unsigned long int *) tmp)++ =
+-					*((unsigned long int *) b1)++;
++				//*((unsigned long int *) tmp)++ =
++				//	*((unsigned long int *) b1)++;
++				// avoid "error: invalid lvalue in increment"
++				*((unsigned long int*) tmp) = *((unsigned long int*) b1;
++				tmp = *((unsigned long int*) tmp) + 1;
++				b1 = *((unsigned long int*) b1) + 1;
+ 			}
+ 			else
+ 			{
+ 				--n2;
+-				*((unsigned long int *) tmp)++ =
+-					*((unsigned long int *) b2)++;
++				//*((unsigned long int *) tmp)++ =
++				//	*((unsigned long int *) b2)++;
++				
++				*((unsigned long int*) tmp) = *((unsigned long int*) b2;
++				tmp = *((unsigned long int*) tmp) + 1;
++				b2 = *((unsigned long int*) b2) + 1;
+ 			}
+ 		}
+ 	else

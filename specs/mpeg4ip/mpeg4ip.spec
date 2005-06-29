@@ -14,7 +14,7 @@ Source: http://dl.sf.net/mpeg4ip/mpeg4ip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, lame-devel, libogg-devel, libvorbis-devel, libid3tag-devel
-BuildRequires: libtool, glib-devel, glib2-devel
+BuildRequires: libtool, glib-devel, glib2-devel, gtk+-devel
 Requires: faad2
 
 %description
