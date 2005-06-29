@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pkgconfig >= 0.8
 BuildRequires: gtk2-devel >= 1.3.6, libbonoboui-devel, libglade2-devel
 BuildRequires: libgnomeui-devel >= 1.103.0, libgda-devel
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, gcc-c++
 
 Requires(post): scrollkeeper
 
