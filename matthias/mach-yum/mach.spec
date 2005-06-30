@@ -10,7 +10,7 @@
 Summary: Make A CHroot
 Name: mach
 Version: 0.4.6.1
-Release: 3.yum
+Release: 4.yum
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
@@ -109,6 +109,9 @@ fi
 
 
 %changelog
+* Thu Jun 30 2005 Matthias Saou <http://freshrpms.net> 0.4.6.1-4.yum
+- Add RHEL 3 & 4 config files.
+
 * Tue Jun 28 2005 Matthias Saou <http://freshrpms.net> 0.4.6.1-3.yum
 - Update patch to fix inclusion of FC4 entries.
 

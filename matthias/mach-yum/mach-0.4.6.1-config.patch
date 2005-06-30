@@ -1,6 +1,6 @@
 diff -Naupr mach-0.4.6.1.orig/etc/conf.in mach-0.4.6.1/etc/conf.in
 --- mach-0.4.6.1.orig/etc/conf.in	2005-03-17 08:06:49.000000000 +0100
-+++ mach-0.4.6.1/etc/conf.in	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/conf.in	2005-06-30 22:34:47.000000000 +0200
 @@ -19,8 +19,8 @@ config['spinner'] = {
  config['dirs'] = {
      'states':   '@STATESDIR@',
@@ -14,7 +14,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/conf.in mach-0.4.6.1/etc/conf.in
  }
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386 mach-0.4.6.1/etc/dist.d/fedora-3-i386
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386	2005-03-17 08:08:35.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-3-i386	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-3-i386	2005-06-30 22:34:47.000000000 +0200
 @@ -6,29 +6,29 @@
  # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
  
@@ -61,7 +61,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-i386 mach-0.4.6.1/etc/dist.d/f
  
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.6.1/etc/dist.d/fedora-3-x86_64
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64	2005-03-17 08:08:13.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-3-x86_64	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-3-x86_64	2005-06-30 22:34:47.000000000 +0200
 @@ -6,29 +6,29 @@
  # 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
  
@@ -108,7 +108,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.6.1/etc/dist.d
  
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-i386 mach-0.4.6.1/etc/dist.d/fedora-4-i386
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-4-i386	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-4-i386	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-4-i386	2005-06-30 22:34:47.000000000 +0200
 @@ -0,0 +1,34 @@
 +# mach dist configuration                                        -*- python -*-
 +
@@ -146,7 +146,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-i386 mach-0.4.6.1/etc/dist.d/f
 +
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-ppc mach-0.4.6.1/etc/dist.d/fedora-4-ppc
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-4-ppc	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-4-ppc	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-4-ppc	2005-06-30 22:34:47.000000000 +0200
 @@ -0,0 +1,34 @@
 +# mach dist configuration                                        -*- python -*-
 +
@@ -184,7 +184,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-ppc mach-0.4.6.1/etc/dist.d/fe
 +
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.6.1/etc/dist.d/fedora-4-x86_64
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-4-x86_64	1970-01-01 01:00:00.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-4-x86_64	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-4-x86_64	2005-06-30 22:34:47.000000000 +0200
 @@ -0,0 +1,34 @@
 +# mach dist configuration                                        -*- python -*-
 +
@@ -222,7 +222,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.6.1/etc/dist.d
 +
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386 mach-0.4.6.1/etc/dist.d/fedora-development-i386
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386	2005-03-18 07:33:15.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-development-i386	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-development-i386	2005-06-30 22:34:47.000000000 +0200
 @@ -1,37 +1,33 @@
 -# mach dist configuration                          -*- python -*-
 +# mach dist configuration                                        -*- python -*-
@@ -277,7 +277,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-i386 mach-0.4.6.1/et
 -}
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc mach-0.4.6.1/etc/dist.d/fedora-development-ppc
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc	2005-03-18 07:33:55.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-development-ppc	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-development-ppc	2005-06-30 22:34:47.000000000 +0200
 @@ -1,37 +1,33 @@
 -# mach dist configuration                          -*- python -*-
 +# mach dist configuration                                        -*- python -*-
@@ -332,7 +332,7 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-ppc mach-0.4.6.1/etc
 -}
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.6.1/etc/dist.d/fedora-development-x86_64
 --- mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64	2005-03-14 04:53:27.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/fedora-development-x86_64	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/dist.d/fedora-development-x86_64	2005-06-30 22:34:47.000000000 +0200
 @@ -1,37 +1,33 @@
 -# mach dist configuration                          -*- python -*-
 +# mach dist configuration                                        -*- python -*-
@@ -387,8 +387,8 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.6.1/
 -}
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/Makefile.am mach-0.4.6.1/etc/dist.d/Makefile.am
 --- mach-0.4.6.1.orig/etc/dist.d/Makefile.am	2005-03-18 07:34:09.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/Makefile.am	2005-06-28 11:30:42.000000000 +0200
-@@ -1,9 +1,12 @@
++++ mach-0.4.6.1/etc/dist.d/Makefile.am	2005-06-30 22:36:58.000000000 +0200
+@@ -1,9 +1,16 @@
  dists = \
  	fedora-3-i386 \
 -    fedora-3-x86_64 \
@@ -399,14 +399,18 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/Makefile.am mach-0.4.6.1/etc/dist.d/Mak
  	fedora-development-i386 \
  	fedora-development-ppc \
 -    fedora-development-x86_64
-+	fedora-development-x86_64
++	fedora-development-x86_64 \
++	redhat-el3AS-i386 \
++	redhat-el3AS-x86_64 \
++	redhat-el4AS-i386 \
++	redhat-el4AS-x86_64
  
  configdir = $(sysconfdir)/mach/dist.d
  config_DATA = $(dists)
 diff -Naupr mach-0.4.6.1.orig/etc/dist.d/Makefile.in mach-0.4.6.1/etc/dist.d/Makefile.in
 --- mach-0.4.6.1.orig/etc/dist.d/Makefile.in	2005-03-21 09:13:33.000000000 +0100
-+++ mach-0.4.6.1/etc/dist.d/Makefile.in	2005-06-28 14:18:58.000000000 +0200
-@@ -186,10 +186,13 @@ sysconfdir = @sysconfdir@
++++ mach-0.4.6.1/etc/dist.d/Makefile.in	2005-06-30 22:37:41.000000000 +0200
+@@ -186,10 +186,17 @@ sysconfdir = @sysconfdir@
  target_alias = @target_alias@
  dists = \
  	fedora-3-i386 \
@@ -418,13 +422,161 @@ diff -Naupr mach-0.4.6.1.orig/etc/dist.d/Makefile.in mach-0.4.6.1/etc/dist.d/Mak
  	fedora-development-i386 \
  	fedora-development-ppc \
 -    fedora-development-x86_64
-+	fedora-development-x86_64
++	fedora-development-x86_64 \
++	redhat-el3AS-i386 \
++	redhat-el3AS-x86_64 \
++	redhat-el4AS-i386 \
++	redhat-el4AS-x86_64
  
  configdir = $(sysconfdir)/mach/dist.d
  config_DATA = $(dists)
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/redhat-el3AS-i386 mach-0.4.6.1/etc/dist.d/redhat-el3AS-i386
+--- mach-0.4.6.1.orig/etc/dist.d/redhat-el3AS-i386	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/redhat-el3AS-i386	2005-06-30 22:40:32.000000000 +0200
+@@ -0,0 +1,32 @@
++# mach dist configuration                                        -*- python -*-
++
++# redhat-el3AS-i386: configuration for RHEL 3
++
++# yum sources layout:
++# 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
++
++yumsources['redhat-el3AS-i386'] = {
++    'os':          'rpm ' + redhat + ' /el3AS/i386/os os',
++    'updates':     'rpm ' + redhat + ' /el3AS/i386/updates updates',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
++}
++
++
++# RHEL 3
++groups['redhat-el3AS-i386'] = {
++    'minimal':  'build-minimal',
++    'base':     'build-base',
++    'build':    'build',
++}
++
++packages['redhat-el3AS-i386'] = {
++    'dir':      'redhat-el3AS-i386',
++}
++
++sourceslist['redhat-el3AS-i386'] = {
++    'redhat-el3AS-i386': ('os', 'updates', 'buildgroups', )
++}
++
++# RHEL3 roots should use su instead of runuser
++config['redhat-el3AS-i386'] = {'runuser': '/bin/su'}
++
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/redhat-el3AS-x86_64 mach-0.4.6.1/etc/dist.d/redhat-el3AS-x86_64
+--- mach-0.4.6.1.orig/etc/dist.d/redhat-el3AS-x86_64	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/redhat-el3AS-x86_64	2005-06-30 22:40:41.000000000 +0200
+@@ -0,0 +1,32 @@
++# mach dist configuration                                        -*- python -*-
++
++# redhat-el3AS-x86_64: configuration for RHEL 3
++
++# yum sources layout:
++# 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
++
++yumsources['redhat-el3AS-x86_64'] = {
++    'os':          'rpm ' + redhat + ' /el3AS/x86_64/os os',
++    'updates':     'rpm ' + redhat + ' /el3AS/x86_64/updates updates',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
++}
++
++
++# RHEL 3
++groups['redhat-el3AS-x86_64'] = {
++    'minimal':  'build-minimal',
++    'base':     'build-base',
++    'build':    'build',
++}
++
++packages['redhat-el3AS-x86_64'] = {
++    'dir':      'redhat-el3AS-x86_64',
++}
++
++sourceslist['redhat-el3AS-x86_64'] = {
++    'redhat-el3AS-x86_64': ('os', 'updates', 'buildgroups', )
++}
++
++# RHEL3 roots should use su instead of runuser
++config['redhat-el3AS-x86_64'] = {'runuser': '/bin/su'}
++
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/redhat-el4AS-i386 mach-0.4.6.1/etc/dist.d/redhat-el4AS-i386
+--- mach-0.4.6.1.orig/etc/dist.d/redhat-el4AS-i386	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/redhat-el4AS-i386	2005-06-30 22:40:12.000000000 +0200
+@@ -0,0 +1,32 @@
++# mach dist configuration                                        -*- python -*-
++
++# redhat-el4AS-i386: configuration for RHEL 4
++
++# yum sources layout:
++# 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
++
++yumsources['redhat-el4AS-i386'] = {
++    'os':          'rpm ' + redhat + ' /el4AS/i386/os os',
++    'updates':     'rpm ' + redhat + ' /el4AS/i386/updates updates',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
++}
++
++
++# RHEL 4
++groups['redhat-el4AS-i386'] = {
++    'minimal':  'build-minimal',
++    'base':     'build-base',
++    'build':    'build',
++}
++
++packages['redhat-el4AS-i386'] = {
++    'dir':      'redhat-el4AS-i386',
++}
++
++sourceslist['redhat-el4AS-i386'] = {
++    'redhat-el4AS-i386': ('os', 'updates', 'buildgroups', )
++}
++
++# RHEL4 roots should use runuser instead of su
++config['redhat-el4AS-i386'] = {'runuser': '/sbin/runuser'}
++
+diff -Naupr mach-0.4.6.1.orig/etc/dist.d/redhat-el4AS-x86_64 mach-0.4.6.1/etc/dist.d/redhat-el4AS-x86_64
+--- mach-0.4.6.1.orig/etc/dist.d/redhat-el4AS-x86_64	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.6.1/etc/dist.d/redhat-el4AS-x86_64	2005-06-30 22:40:22.000000000 +0200
+@@ -0,0 +1,32 @@
++# mach dist configuration                                        -*- python -*-
++
++# redhat-el4AS-x86_64: configuration for RHEL 4
++
++# yum sources layout:
++# 'key':    'rpm ' + locationkey + ' path/to/repo reponame'
++
++yumsources['redhat-el4AS-x86_64'] = {
++    'os':          'rpm ' + redhat + ' /el4AS/x86_64/os os',
++    'updates':     'rpm ' + redhat + ' /el4AS/x86_64/updates updates',
++    'buildgroups': 'rpm ' + buildgroups + ' / groups',
++}
++
++
++# RHEL 4
++groups['redhat-el4AS-x86_64'] = {
++    'minimal':  'build-minimal',
++    'base':     'build-base',
++    'build':    'build',
++}
++
++packages['redhat-el4AS-x86_64'] = {
++    'dir':      'redhat-el4AS-x86_64',
++}
++
++sourceslist['redhat-el4AS-x86_64'] = {
++    'redhat-el4AS-x86_64': ('os', 'updates', 'buildgroups', )
++}
++
++# RHEL4 roots should use runuser instead of su
++config['redhat-el4AS-x86_64'] = {'runuser': '/sbin/runuser'}
++
 diff -Naupr mach-0.4.6.1.orig/etc/location mach-0.4.6.1/etc/location
 --- mach-0.4.6.1.orig/etc/location	2005-03-14 04:51:20.000000000 +0100
-+++ mach-0.4.6.1/etc/location	2005-06-28 11:29:41.000000000 +0200
++++ mach-0.4.6.1/etc/location	2005-06-30 22:34:47.000000000 +0200
 @@ -7,12 +7,15 @@
  
  # Base download locations.
