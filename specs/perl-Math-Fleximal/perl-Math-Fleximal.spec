@@ -38,7 +38,7 @@ your numbers.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-#%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}

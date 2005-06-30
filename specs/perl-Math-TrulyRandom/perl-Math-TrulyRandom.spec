@@ -30,7 +30,6 @@ Perl interface to a truly random number generator function.
 %{__perl} -pi -e 's|^#!\s+/.*bin/perl|#!%{__perl}|i' *.pm
 
 %build
-%build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 

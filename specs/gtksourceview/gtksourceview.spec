@@ -13,7 +13,7 @@ URL: http://gtksourceview.sourceforge.net/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/0.9/gtksourceview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, intltool, perl-XML-Parser
+BuildRequires: gcc-c++, intltool, perl-XML-Parser, gtk2-devel
 BuildRequires: pkgconfig, libxml2-devel, libgnomeprint22
 
 %description

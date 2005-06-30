@@ -15,7 +15,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: gpgme-devel >= 0.3.14
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, pkgconfig, GConf2
+BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel
+BuildRequires: libbonobo-devel, libbonoboui-devel
 
 Requires(post): scrollkeeper
 

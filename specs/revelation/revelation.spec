@@ -17,7 +17,7 @@ Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.3, python-crypto >= 1.9, python-devel, pygtk2 >= 2.4
-BuildRequires: gnome-keyring-devel
+BuildRequires: gnome-keyring-devel, pygtk2-devel
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
 Requires: cracklib

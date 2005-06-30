@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnome-devel, ORBit
 BuildRequires: gtk2-devel >= 1.2.0
 BuildRequires: gnome-print-devel >= 0.24
-BuildRequires: scrollkeeper, gcc-c++
+BuildRequires: scrollkeeper, gcc-c++, libgnomeui-devel
 
 Requires(post): scrollkeeper
 

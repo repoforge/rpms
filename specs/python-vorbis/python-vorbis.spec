@@ -19,7 +19,8 @@ URL: http://www.andrewchatham.com/pyogg/
 Source: http://www.andrewchatham.com/pyogg/download/pyvorbis-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, python-ogg
+BuildRequires: python, python-ogg, python-devel
+BuildRequires: libvorbis-devel, libogg-devel
 Requires: python >= %{python_version}, python-ogg
 
 %description

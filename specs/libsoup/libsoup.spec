@@ -16,6 +16,8 @@ Patch: libsoup-1.99.26-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, openssl-devel, gnutls-devel >= 0.8.10, libgcrypt-devel >= 1.1.12
+BuildRequires: gettext
+%{?fc4:BuildRequires: gettext-devel}
 Obsoletes: soup <= %{version}
 
 %description

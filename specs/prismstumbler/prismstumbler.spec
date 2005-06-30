@@ -14,6 +14,7 @@ Source: http://dl.sf.net/prismstumbler/prismstumbler-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, sqlite-devel, autoconf, automake, libtool
+BuildRequires: libpcap
 
 %description
 Prismstumbler is a wireless LAN (WLAN) discovery tool which scans for

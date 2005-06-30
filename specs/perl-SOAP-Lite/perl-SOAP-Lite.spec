@@ -39,8 +39,8 @@ on client and server side.
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
-%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/i386-linux-thread-multi/auto/*/*/.packlist
+%{__rm} -f %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/perllocal.pod
+%{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*/*/.packlist
 # remove dependency on MQSeries
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/SOAP/Transport/MQ.pm
 

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 %define real_name XML-SAX-Base
 
 Summary: XML-SAX-Base Perl module
@@ -46,7 +49,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/XML/SAX/Base.pm
+%{perl_vendorlib}/XML/SAX/Exception.pm
+%{perl_vendorlib}/XML/SAX/placeholder.pl
 
 %changelog
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 1.04-0

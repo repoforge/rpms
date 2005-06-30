@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: dag
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name IPC-Shareable
 
@@ -48,7 +50,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING CREDITS MANIFEST README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%{perl_vendorlib}/IPC/Shareable.pm
+%{perl_vendorlib}/IPC/Shareable/SharedMem.pm
 
 %changelog
 * Sun Mar 07 2004 Dag Wieers <dag@wieers.com> - 0.60-1

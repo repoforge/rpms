@@ -13,7 +13,7 @@ URL: ftp://impre.ssive.net/pub/proxy-profiles-applet/
 Source: ftp://impre.ssive.net/pub/proxy-profiles-applet/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig
+BuildRequires: pkgconfig, libgnomeui-devel
 
 %description
 Proxy Profiles Applet allows you to switch between preset profiles of the GNOME

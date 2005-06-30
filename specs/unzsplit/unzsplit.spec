@@ -13,7 +13,7 @@ URL: http://www.device-image.de/
 Source: http://www.device-image.de/download/unzsplit_src-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel
+BuildRequires: zlib-devel, gcc-c++
 
 %description
 zunsplit decompresses, glues and restores zsplit images to its original form.

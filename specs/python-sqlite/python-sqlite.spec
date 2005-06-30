@@ -41,8 +41,9 @@ sqlite is a simple database engine.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE doc/ 
+%doc LICENSE doc/
 %{python_sitearch}/*
+%{_bindir}/test-pysqlite
 
 %changelog
 * Sat Jun 25 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1

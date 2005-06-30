@@ -15,7 +15,7 @@ URL: http://gnofract4d.sourceforge.net/
 Source: http://dl.sf.net/gnofract4d/gnofract4d-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: scrollkeeper, python, gcc-c++
+BuildRequires: scrollkeeper, python, gcc-c++, pkgconfig
 
 Requires(post): scrollkeeper
 Requires: gcc-c++
