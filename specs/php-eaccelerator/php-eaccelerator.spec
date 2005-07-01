@@ -9,11 +9,12 @@
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-eaccelerator
 Version: %{php_version}_%{module_version}
-Release: 0
+Release: 1
 License: GPL
 Group: Development/Languages
 URL: http://eaccelerator.sourceforge.net/
 Source: http://dl.sf.net/eaccelerator/eaccelerator-%{module_version}.tar.gz
+Patch: eaccelerator-0.9.3-buffer-overflow.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php = %{php_version}
 Provides: php-zend_extension
@@ -30,6 +31,7 @@ that the overhead of compiling is almost completely eliminated.
 
 %prep
 %setup -n eaccelerator-%{module_version}
+%patch -p1
 
 
 %build
@@ -64,6 +66,9 @@ eaccelerator.shm_prune_period = 0
 eaccelerator.shm_only = 0
 eaccelerator.compress = 1
 eaccelerator.compress_level = 9
+eaccelerator.keys = "shm_and_disk"
+eaccelerator.sessions = "shm_and_disk"
+eaccelerator.content = "shm_and_disk"
 eaccelerator.debug = 0
 EOF
 
@@ -82,6 +87,9 @@ EOF
 
 
 %changelog
+* Fri Jul  1 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-1
+- Include buffer overflow patch from zoeloelip.
+
 * Tue Jun 21 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-0
 - Update to 0.9.3, bugfix release.
 

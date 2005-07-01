@@ -1,0 +1,26 @@
+diff -u eaccelerator-old/cache.c eaccelerator-0.9.3/cache.c
+--- eaccelerator-old/cache.c	2005-04-26 16:47:58.000000000 +0200
++++ eaccelerator-0.9.3/cache.c	2005-06-27 13:54:13.370695656 +0200
+@@ -276,7 +276,7 @@
+ 			if (f > 0) {
+ 				mm_file_header hdr;
+ 				EACCELERATOR_FLOCK (f, LOCK_EX);
+-				strcpy (hdr.magic, "EACCELERATOR");
++				strncpy (hdr.magic, "EACCELERATOR", 8);
+ 				hdr.eaccelerator_version = binary_eaccelerator_version;
+ 				hdr.zend_version = binary_zend_version;
+ 				hdr.php_version = binary_php_version;
+diff -u eaccelerator-old/eaccelerator.c eaccelerator-0.9.3/eaccelerator.c
+--- eaccelerator-old/eaccelerator.c	2005-06-23 13:06:47.431329000 +0200
++++ eaccelerator-0.9.3/eaccelerator.c	2005-06-27 13:53:58.575944800 +0200
+@@ -921,7 +921,7 @@
+   f = open(s, O_CREAT | O_WRONLY | O_EXCL | O_BINARY, S_IRUSR | S_IWUSR);
+   if (f > 0) {
+     EACCELERATOR_FLOCK(f, LOCK_EX);
+-    strcpy(hdr.magic,"EACCELERATOR");
++    strncpy(hdr.magic, "EACCELERATOR", 8);
+     hdr.eaccelerator_version = binary_eaccelerator_version;
+     hdr.zend_version    = binary_zend_version;
+     hdr.php_version     = binary_php_version;
+Common subdirectories: eaccelerator-old/eLoader and eaccelerator-0.9.3/eLoader
+Common subdirectories: eaccelerator-old/win32 and eaccelerator-0.9.3/win32
