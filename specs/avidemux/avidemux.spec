@@ -24,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc >= 3.0, glib-devel, gtk+-devel >= 1.2.9
 BuildRequires: nasm >= 0.98.32, gcc-c++, gettext
 %{?fc4:BuildRequires: gettext-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Avidemux is a graphical tool to edit AVI. It allows you to multiplex and
@@ -57,7 +58,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%if %{dfi}
+%if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 avidemux.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/avidemux.desktop
 %else
         %{__install} -d -m0755 %{buildroot}%{_datadir}/applications

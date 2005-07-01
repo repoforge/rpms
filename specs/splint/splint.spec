@@ -15,7 +15,7 @@ URL: http://www.splint.org/
 Source: http://www.splint.org/downloads/splint-%{version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildRequires: flex, bison
 Provides: lclint = %{version}
 Obsoletes: lclint
 

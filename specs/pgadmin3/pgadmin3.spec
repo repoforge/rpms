@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: wxGTK-devel >= 2.4.2, postgresql-devel, wxGTK-stc, wxGTK-xrc
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, gcc-c++
 
 %description
 pgAdmin III is a comprehensive PostgreSQL database design and management

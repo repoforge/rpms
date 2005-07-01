@@ -7,7 +7,7 @@
 
 # ExcludeDist: el3
 
-%define real_version 0.1beta5
+%define real_version 0.9
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -42,8 +42,8 @@
 
 Summary: Integrated environment for managing data.
 Name: kexi
-Version: 0.1
-Release: beta5.1
+Version: 0.9
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://www.koffice.org/kexi/
@@ -117,5 +117,8 @@ source /etc/profile.d/qt.sh
 %{_datadir}/icons/crystalsvg/*/mimetypes/*.png
 
 %changelog
-* Tue Nov 02 2004 Dries Verachtert <dries@ulyssis.org> - 1.0beta5-1
+* Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Update to release 0.9.
+
+* Tue Nov 02 2004 Dries Verachtert <dries@ulyssis.org> - 0,1beta5-1
 - Initial package.

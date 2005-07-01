@@ -15,7 +15,7 @@
 
 Summary: The Glasgow Haskell Compiler
 Name: ghc
-Version: 6.2
+Version: 6.4
 Release: 1
 License: Other
 Group: Development/Languages
@@ -93,6 +93,8 @@ export PATH=`pwd`/ghc-6.2/lib/i386-unknown-linux:`pwd`/ghc-6.2/bin/i386-unknown-
 %{_libexecdir}/*
 
 %changelog
+* Fri Jul 1 2005 Dries Verachtert <dries@ulyssis.org>
+- Update to release 6.4.
+
 * Mon Mar 1 2004 Dries Verachtert <dries@ulyssis.org>
 - first packaging for Fedora Core 1
-

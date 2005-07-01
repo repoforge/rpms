@@ -23,7 +23,7 @@ Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, esound-devel, gtk2-devel
-BuildRequires: openmotif-devel, openmotif
+BuildRequires: openmotif-devel, openmotif, pam-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
 

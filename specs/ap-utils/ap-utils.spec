@@ -14,7 +14,7 @@ Source: ftp://linux.zhitomir.net/ap-utils/ap-utils-%{version}.tar.bz2
 #Source: http://dl.sf.net/ap-utils/ap-utils-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: ncurses-devel
+Buildrequires: ncurses-devel, gettext
 
 %description
 Wireless Access Point Utilities for Unix is a set of utilities 

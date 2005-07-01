@@ -15,6 +15,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, lame-devel, libogg-devel, libvorbis-devel, libid3tag-devel
 BuildRequires: libtool, glib-devel, glib2-devel, gtk+-devel, gcc-c++
+BuildRequires: faad2-devel, a52dec-devel, id3lib-devel, xvidcore-devel
+BuildRequires: mpeg2dec-devel, ffmpeg, SDL-devel, alsa-lib-devel
+BuildRequires: arts-devel, esound-devel
+BuildRequires: SDL-devel
 Requires: faad2
 
 %description

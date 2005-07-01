@@ -5,13 +5,13 @@
 
 Summary: Accessibility implementation for GTK+ and GNOME libraries
 Name: gail
-Version: 1.3.3
+Version: 1.8.2
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
 URL: http://developer.gnome.org/projects/gap/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/gail/1.3/gail-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/gail/1.8/gail-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.2.0
@@ -72,5 +72,8 @@ you will need to install %{name}-devel.
 %{_datadir}/gtk-doc/
 
 %changelog
+* Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1
+- Update to release 1.8.2.
+
 * Sat Jun 28 2003 Dag Wieers <dag@wieers.com> - 2.3.3-0
 - Initial package. (using DAR)

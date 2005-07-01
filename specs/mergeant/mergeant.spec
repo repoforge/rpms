@@ -15,8 +15,8 @@ URL: http://www.gnome-db.org/
 Source: http://ftp.gnome.org/pub/GNOME/sources/mergeant/%{version}/mergeant-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgda-devel, libgnomedb-devel
-BuildRequires: scrollkeeper, gcc-c++
+BuildRequires: libgda-devel, libgnomedb-devel, gettext
+BuildRequires: scrollkeeper, gcc-c++, libgnomeprint22-devel
 
 Requires(post): scrollkeeper
 

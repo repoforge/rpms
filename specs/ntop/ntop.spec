@@ -16,6 +16,7 @@ Source: http://dl.sf.net/ntop/ntop-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
+BuildRequires: gd-devel
 Prereq: /sbin/chkconfig, /sbin/ldconfig
 
 %description
