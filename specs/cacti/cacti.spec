@@ -11,7 +11,7 @@
 
 Summary: Network monitoring/graphing tool
 Name: cacti
-Version: 0.8.6e
+Version: 0.8.6f
 Release: 1
 License: GPL
 Group: Applications/System
@@ -26,7 +26,9 @@ BuildRequires: mysql-devel, openssl-devel
 %{?_without_net_snmp:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
 
 Requires: webserver, mysql, rrdtool
-Requires: php, php-mysql, php-snmp
+Requires: php, php-mysql
+# el3 doesn't contain php-snmp
+%{!?el3:Requires: php-snmp}
 %{!?_without_net_snmp:Requires: net-snmp}
 %{?_without_net_snmp:Requires: ucd-snmp}
 
@@ -123,6 +125,9 @@ fi
 %doc docs/
 
 %changelog
+* Sat Jul 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.6f-1
+- Updated to release 0.8.6f.
+
 * Tue Jun 28 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.6e-1
 - Updated to release 0.8.6e.
 
