@@ -25,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk2-devel >= 2.0.0
 BuildRequires: nasm >= 0.98.32, automake, gettext, autoconf
+BuildRequires: gcc-c++
 %{?fc4:BuildRequires: gettext-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

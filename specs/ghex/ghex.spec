@@ -16,6 +16,7 @@ BuildRequires: libgnome-devel, ORBit
 BuildRequires: gtk2-devel >= 1.2.0
 BuildRequires: gnome-print-devel >= 0.24
 BuildRequires: scrollkeeper, gcc-c++, libgnomeui-devel
+BuildRequires: libgnomeprintui22-devel
 
 Requires(post): scrollkeeper
 

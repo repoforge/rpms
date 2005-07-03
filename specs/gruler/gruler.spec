@@ -18,6 +18,7 @@ Source: http://linuxadvocate.org/projects/gruler/downloads/gruler-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, libgnomeui-devel
+BuildRequires: desktop-file-utils
 
 %description
 gruler is a customizable screen ruler.

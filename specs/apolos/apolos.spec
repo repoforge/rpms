@@ -22,6 +22,7 @@ Source: http://savannah.nongnu.org/download/apolos/apolos-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2 >= 2.0, cdparanoia-devel, pkgconfig, gtk2-devel
+BuildRequires: gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

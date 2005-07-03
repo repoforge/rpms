@@ -15,7 +15,7 @@ Patch1: gspy-autogen.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, autoconf, automake, gtk+-devel
-BuildRequires: gnome-libs-devel
+BuildRequires: gnome-libs-devel, intltool
 %{?fc4:BuildRequires: gettext-devel}
 
 %description

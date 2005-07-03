@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: scrollkeeper, python, gcc-c++, pkgconfig
 
 Requires(post): scrollkeeper
-Requires: gcc-c++
+Requires: gcc-c++, gtk2-devel
 
 %description
 Gnofract 4D is a GNOME-based program to draw fractals. What sets it

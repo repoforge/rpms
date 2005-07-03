@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel >= 2.2.0
 BuildRequires: atk-devel >= 1.2.0
 BuildRequires: libgnomecanvas-devel >= 2.0.1
+BuildRequires: gcc-c++
 
 %description
 GAIL implements the abstract interfaces found in ATK for GTK+ and

@@ -26,6 +26,7 @@ BuildRequires: gcc-c++, esound-devel, gtk2-devel
 BuildRequires: openmotif-devel, openmotif, pam-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGL, xorg-x11-Mesa-libGLU}
+BuildRequires: desktop-file-utils
 
 %description
 A screen locker and screen saver.

@@ -7,7 +7,7 @@
 
 # ExcludeDist: el3
 
-%define real_version 0.9
+%define real_version 0.9beta1
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -43,13 +43,13 @@
 Summary: Integrated environment for managing data.
 Name: kexi
 Version: 0.9
-Release: 1
+Release: 0.beta1
 License: GPL
 Group: Applications/Databases
 URL: http://www.koffice.org/kexi/
 
 Source: http://ftp.scarlet.be/pub/kde/unstable/apps/KDE3.x/office/kexi-%{real_version}.tar.bz2
-Source2: http://www.kexi-project.org/fixes/keximainwindowimpl.cpp
+#Source2: http://www.kexi-project.org/fixes/keximainwindowimpl.cpp
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel 
@@ -77,7 +77,7 @@ OS X platforms.
 source /etc/profile.d/qt.sh
 %configure --enable-debug=full
 %{__sed} -i 's/-lpqxx/-lpqxx -lpq/g;'  kexi/kexidb/drivers/pqxx/Makefile
-%{__cp} -fp %{SOURCE2} kexi/main/keximainwindowimpl.cpp
+#%{__cp} -fp %{SOURCE2} kexi/main/keximainwindowimpl.cpp
 %{__make} %{?_smp_mflags}
 
 %install

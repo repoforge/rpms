@@ -21,8 +21,8 @@ BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0, pango-devel >= 1.
 BuildRequires: libart_lgpl-devel >= 2.3.10, libxslt-devel, libpng-devel
 BuildRequires: python-devel >= 2.2.1, pygtk2-devel, gcc-c++
 BuildRequires: intltool, perl-XML-Parser
-%{?fc4: BuildRequires: gcc-gfortran}
-%{!?fc4: BuildRequires: gcc-g77}
+%{?fc4:BuildRequires: gcc-gfortran}
+%{!?fc4:BuildRequires: gcc-g77}
 
 %description
 The Dia drawing program is designed to be like the Microsoft(R) Visio
