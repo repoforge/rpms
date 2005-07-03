@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+Requires: perl-HTML-Template
 
 %description
 CGI::Application is intended to make it easier to create sophisticated,
@@ -50,6 +51,10 @@ document, easier to write, and easier to evolve.
 %{perl_vendorlib}/CGI/Application
 
 %changelog
+* Sun Jul 03 2005 Dries Verachtert <dries@ulyssis.org> - 4.01-1
+- Updated to release 4.01.
+- Added perl-HTML-Template requirement (thanks to Cesar Alba).
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 4.0_4-1
 - Updated to release 4.0_4.
 

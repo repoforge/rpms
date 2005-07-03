@@ -7,7 +7,7 @@
 
 Summary: Text mode SMB (Samba) commander
 Name: smbc
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -50,6 +50,9 @@ directories. Smbc has a resume function and supports UTF-8 characters.
 #exclude %{_datadir}/smbc/sample.smbcrc
 
 %changelog
+* Sun Jul 03 2005 Dries Verachtert <dries@ulyssis.org> 1.2.2-1
+- Updated to release 1.2.2.
+
 * Sat Mar 19 2005 Dries Verachtert <dries@ulyssis.org> 1.2.1-1
 - Updated to version 1.2.1.
 

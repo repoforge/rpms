@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 35
+Release: 36
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -21,9 +21,9 @@ Source4: http://www.netmeister.org/apps/fortune-mod-futurama-0.2.tar.bz2
 Source5: http://www.netmeister.org/apps/fortune-mod-calvin-0.1.1.tar.gz
 # http://www.aboleo.net/software/index.ds
 #  Zippy the Pinhead
-Source6: http://www.aboleo.net/software/misc/fortune-zippy.tar.gz
+Source6: fortune-zippy.tar.gz
 #  Tao Te Ching
-Source7: http://www.aboleo.net/sw/other/fortune-tao.tar.gz
+Source7: fortune-tao.tar.gz
 # http://www.splitbrain.org/./Fortunes/hitchhiker/
 Source8: http://www.splitbrain.org/Fortunes/hitchhiker/fortune-hitchhiker.tgz
 # http://www.splitbrain.org/./Fortunes/simpsons/
@@ -41,7 +41,7 @@ Source13: http://www.splitbrain.org/Fortunes/xfiles/fortune-xfiles.tgz
 # http://www.schwarzvogel.de/software-misc.shtml
 Source14: http://www.schwarzvogel.de/pkgs/kernelcookies-8.tar.gz
 # http://dune.s31.pl/
-Source15: http://dune.s31.pl/fortune-mod-dune-quotes.2.0.1.tar.gz
+Source15: fortune-mod-dune-quotes.2.0.1.tar.gz
 # quotes of 'Comic Book Guy'
 Source16: http://pinkemostar.com:8008/files/cbg-quotes.tar.gz
 # Simpsons Ralph Wiggum Quotes is a 'fortune' quote file with quotes from
@@ -171,6 +171,10 @@ util/strfile ralph
 # WTF they'll change it too next.
 
 bzcat %{SOURCE2} | %{__tar} xvf - -C %{buildroot}%{_datadir}/games/fortune/
+
+# call strfile on all fortune files
+%{__rm} -f %{buildroot}%{_datadir}/games/fortune/*.dat
+(cd %{buildroot}%{_datadir}/games/fortune/; for i in *; do %{buildroot}%{_sbindir}/strfile ${i}; done)
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -647,6 +651,9 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 
 %changelog
+* Sun Jul 03 2005 Dries Verachtert <dries@ulyssis.org> 1.0-36
+- Apply strfile to all fortune files.
+
 * Tue Mar 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0-35
 - Added macintosh quotes
 - New url for Tao quotes
