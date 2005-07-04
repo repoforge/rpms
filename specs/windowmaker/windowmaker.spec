@@ -1,6 +1,17 @@
 # $Id$
 # Authority: dag
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 %define real_name WindowMaker
 
 Summary: Fast, feature rich Window manager
@@ -14,8 +25,10 @@ URL: http://www.windowmaker.org/
 Source: ftp://windowmaker.org/pub/source/release/WindowMaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: XFree86-devel, libpng-devel, libjpeg-devel, libungif-devel 
+BuildRequires: libpng-devel, libjpeg-devel, libungif-devel 
 BuildRequires: libtiff-devel, zlib-devel, gettext, gcc-c++
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 Provides: WindowMaker = %{version}-%{release}
 Provides: WindowMaker-libs = %{version}-%{release}

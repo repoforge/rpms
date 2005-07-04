@@ -6,6 +6,16 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+
 %{?rh7:%define _without_gnome2 1}
 %{?el2:%define _without_gnome2 1}
 %{?rh6:%define _without_gnome2 1}
@@ -22,10 +32,11 @@ Source: http://dl.sf.net/sourceforge/icewm/icewm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake, libtool
-BuildRequires: XFree86-devel, XFree86-font-utils
 BuildRequires: imlib-devel, libpng-devel, kdelibs
 BuildRequires: gcc-c++
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-font-utils}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-font-utils}
 Obsoletes: icewm-common <= %{version}
 Obsoletes: icewm-l10n <= %{version}
 Obsoletes: icewm-menu-gnome2 <= %{version}
