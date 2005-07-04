@@ -11,7 +11,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.3
-Release: 4
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -19,7 +19,8 @@ Source0: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
 Source1: xine.png
 Source2: http://www.bluebeamentertainment.com/xine/smokeyglass_splash.png
 Source3: http://www.bluebeamentertainment.com/xine/smokeyglass_logo.m1v
-Patch: xine-ui-0.99.3-gcc4.patch
+Patch0: xine-ui-0.99.3-gcc4.patch
+Patch1: xine-ui-0.99.3-menucrash.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
@@ -45,7 +46,8 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-ui-%{version}
-%patch -p1 -b .gcc4
+%patch0 -p1 -b .gcc4
+%patch1 -p1 -b .menucrash
 # Fix for lirc needed to be searched for in lib64
 %{__perl} -pi.orig -e 's|(lirc_libprefix /lib) /usr/lib|$1 %{_libdir}|g' \
     configure
@@ -147,6 +149,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Jul  5 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-5
+- Add menucrash patch from Alex Stewart, at last! :-) (for x86_64)
+
 * Fri Apr 29 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-4
 - Replace Christmas splash screen with another one.
 - Add gcc4 patch.
