@@ -1,0 +1,21 @@
+diff -Naupr mpg321-0.2.10.orig/mpg321.c mpg321-0.2.10/mpg321.c
+--- mpg321-0.2.10.orig/mpg321.c	2002-03-24 06:49:20.000000000 +0100
++++ mpg321-0.2.10/mpg321.c	2004-01-04 20:21:33.000000000 +0100
+@@ -188,7 +188,7 @@ static int show_id3(struct id3_tag const
+             
+             else
+             {
+-                printf(names[i]);
++                printf("%s", names[i]);
+                 free(names[i]);
+             }
+         }
+@@ -203,7 +203,7 @@ static int show_id3(struct id3_tag const
+             if (!names[i])  {
+                 fprintf (stderr, emptystring);
+             }   else    {
+-                fprintf (stderr, names[i]);
++                fprintf (stderr, "%s", names[i]);
+                 free (names[i]);
+             }
+             if (i%2) fprintf (stderr, "\n");
