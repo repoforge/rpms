@@ -1,10 +1,12 @@
 # $Id$
 # Authority: dag
 
+%define debug_package %{nil}
+
 Summary: C interface to CGI (common gateway interface)
 Name: cgilib
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://www.infodrom.north.de/cgilib/
@@ -28,7 +30,7 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-%prep 
+%prep
 %setup
 
 %build
@@ -57,5 +59,10 @@ done
 %{_includedir}/cgi.h
 
 %changelog
+* Thu May 19 2005 Matthias Saou <http://freshrpms.net/> 0.5-2
+- Disable debuginfo package, as it ends up empty because there is only a
+  static library.
+
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.5-1
 - Initial package. (using DAR)
+
