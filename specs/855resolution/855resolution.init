@@ -1,0 +1,52 @@
+#!/bin/sh
+# $Id$
+#
+# 855resolution	This shell script takes care of overwriting an existing video
+#		mode with a custom one.
+#
+# chkconfig: - 10 10
+# description: Overwrite an existing video mode with a custom one.
+# config: /etc/sysconfig/855resolution
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source configuration
+. /etc/sysconfig/855resolution
+
+RETVAL=0
+
+prog="855resolution"
+
+[ -z "$MODE" -o -z "$RESOLUTION" ] && exit 1
+
+start() {
+	# "Mode 50 : 640x480, 32 bits/pixel" -> "640x480"
+	CURRENT_RESOLUTION="`$prog -l | grep "^Mode $MODE : " | cut -d ' ' -f 4 | tr -d ','`"
+	# "640 480" -> "640x480"
+	NEW_RESOLUTION="`echo $RESOLUTION | tr ' ' x`"
+	echo -n $"Overriding video bios mode $MODE from $CURRENT_RESOLUTION to $NEW_RESOLUTION: "
+	SET_CMD="$prog $MODE $RESOLUTION"
+	if [ "$BOOTUP" = "color" ]; then
+	    $SET_CMD | grep complete >/dev/null && echo_success || echo_failure
+	else
+	    $SET_CMD | grep complete >/dev/null
+	fi
+	RETVAL=$?
+	echo
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	exit 0
+	;;
+  *)
+	echo "Usage: $prog {start|stop}"
+	exit 1
+esac
+
+exit $RETVAL
