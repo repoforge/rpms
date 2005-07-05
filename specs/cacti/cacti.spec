@@ -9,10 +9,10 @@
 
 %define logmsg logger -t %{name}/rpm
 
-Summary: Network monitoring/graphing tool
+Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
 Version: 0.8.6f
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -29,13 +29,13 @@ Requires: webserver, mysql, rrdtool
 Requires: php, php-mysql
 # el3 doesn't contain php-snmp
 %{!?el3:Requires: php-snmp}
-%{!?_without_net_snmp:Requires: net-snmp}
-%{?_without_net_snmp:Requires: ucd-snmp}
+%{!?_without_net_snmp:Requires: net-snmp, net-snmp-utils}
+%{?_without_net_snmp:Requires: ucd-snmp, ucd-snmp-utils}
 
 %description
-Cacti is a complete frontend to RRDTool. It stores all of the necessary 
+Cacti is a complete frontend to RRDTool. It stores all of the necessary
 information to create graphs and populate them with data in a MySQL
-database. 
+database.
 
 The frontend is completely PHP driven. Along with being able to maintain
 graphs, data sources, and round robin archives in a database, Cacti also
@@ -43,13 +43,13 @@ handles the data gathering. There is SNMP support for those used to
 creating traffic graphs with MRTG.
 
 %package docs
-Summary: Documentation for package %{name}
+Summary: Documentation for the cacti network graphing solution
 Group: Documentation
 
 %description docs
-Cacti is a complete frontend to RRDTool. It stores all of the necessary 
+Cacti is a complete frontend to RRDTool. It stores all of the necessary
 information to create graphs and populate them with data in a MySQL
-database. 
+database.
 
 This package includes the documentation for %{name}.
 
@@ -62,12 +62,12 @@ echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/n
 %{__cat} <<EOF >cacti.httpd
 Alias /cacti/ %{_localstatedir}/www/cacti/
 <Directory %{_localstatedir}/www/cacti/>
-        DirectoryIndex index.php
+	DirectoryIndex index.php
 	Options -Indexes
 	AllowOverride all
-        order deny,allow
-        deny from all
-        allow from 127.0.0.1
+	order deny,allow
+	deny from all
+	allow from 127.0.0.1
 	AddType application/x-httpd-php .php
 	php_flag magic_quotes_gpc on
 	php_flag track_vars on
@@ -80,7 +80,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/cacti/
 %{__install} -p -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
-%{__cp} -apvx docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
+%{__cp} -av docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
 %{__install} -Dp -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
 %{__install} -Dp -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
@@ -122,9 +122,13 @@ fi
 
 %files docs
 %defattr(-, root, root, 0755)
-%doc docs/
+%doc docs/*
 
 %changelog
+* Tue Jul  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.6f-2
+- Add *-snmp-utils requirement (snmpget/walk).
+- Minor cosmetic changes.
+
 * Sat Jul 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.6f-1
 - Updated to release 0.8.6f.
 
