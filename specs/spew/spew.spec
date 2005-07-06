@@ -43,8 +43,12 @@ problems.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man1/spew.1*
+%doc %{_mandir}/man1/gorge.1*
+%doc %{_mandir}/man1/regorge.1*
 %config(noreplace) %{_sysconfdir}/spew.conf
 %{_bindir}/spew
+%{_bindir}/gorge
+%{_bindir}/regorge
 
 %changelog
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.0.4-1
