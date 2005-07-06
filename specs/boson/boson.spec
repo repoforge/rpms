@@ -20,6 +20,7 @@ Group: Amusements/Games
 URL: http://boson.eu.org/
 
 Source: http://dl.sf.net/boson/boson-all-%{version}.tar.bz2
+Patch: python2.4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel, gcc-c++, zlib-devel, qt-devel
@@ -37,9 +38,11 @@ intelligence yet.
 
 %prep
 %setup -n boson-all-%{version}
+%patch -p1
 
 %build
 source "/etc/profile.d/qt.sh"
+make -f Makefile.cvs
 %configure
 %{__make} %{?_smp_mflags}
 

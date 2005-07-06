@@ -1,0 +1,22 @@
+diff -d -ur boson-all-0.10-orig/admin/acinclude.m4.in boson-all-0.10/admin/acinclude.m4.in
+--- boson-all-0.10-orig/admin/acinclude.m4.in	2004-04-30 15:03:30.000000000 +0200
++++ boson-all-0.10/admin/acinclude.m4.in	2005-07-06 22:49:42.073188688 +0200
+@@ -3998,11 +3998,13 @@
+ 
+ AC_DEFUN(KDE_CHECK_PYTHON,
+ [
+-  KDE_CHECK_PYTHON_INTERN("2.3", 
+-   [KDE_CHECK_PYTHON_INTERN("2.2", 
+-     [KDE_CHECK_PYTHON_INTERN("2.1", 
+-       [KDE_CHECK_PYTHON_INTERN("2.0", 
+-         [KDE_CHECK_PYTHON_INTERN($1, $2) ])
++  KDE_CHECK_PYTHON_INTERN("2.4", 
++   [KDE_CHECK_PYTHON_INTERN("2.3", 
++     [KDE_CHECK_PYTHON_INTERN("2.2", 
++       [KDE_CHECK_PYTHON_INTERN("2.1", 
++         [KDE_CHECK_PYTHON_INTERN("2.0", 
++           [KDE_CHECK_PYTHON_INTERN($1, $2) ])
++         ])
+        ])
+      ])
+    ])
