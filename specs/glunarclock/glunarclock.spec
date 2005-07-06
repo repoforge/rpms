@@ -16,6 +16,7 @@ Source: http://dl.sf.net/glunarclock/glunarclock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gail-devel, libxklavier-devel, scrollkeeper, gcc-c++
+BuildRequires: gnome-panel-devel
 
 Requires(post): scrollkeeper
 

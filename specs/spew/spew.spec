@@ -13,7 +13,7 @@ URL: http://spew.berlios.de/
 Source: ftp://ftp.berlios.de/pub/spew/1.0.4/spew-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, ncurses-devel
 
 %description
 Spew is used to measure I/O performance of character devices, block devices,

@@ -38,8 +38,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-
-%configure
+%configure --enable-static --enable-shared
 %{__make} %{?_smp_mflags}
 
 %install

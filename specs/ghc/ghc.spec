@@ -47,12 +47,12 @@ comprehensive set of libraries.
 
 %build
 # This is ugly and x86 centric... :-(
-%{__mkdir_p} ghc-6.2/temp
-echo `pwd`/ghc-6.2/lib/i386-unknown-linux/ghc-6.2 -B`pwd`/ghc-6.2/lib/i386-unknown-linux \$\{1+\"\$@\"\} > ghc-6.2/lib/i386-unknown-linux/ghc
-echo `pwd`/ghc-6.2/lib/i386-unknown-linux/ghc-asm.prl \$\{1+\"\$@\"\} > ghc-6.2/lib/i386-unknown-linux/ghc-asm
-chmod +x ghc-6.2/lib/i386-unknown-linux/ghc
-chmod +x ghc-6.2/lib/i386-unknown-linux/ghc-asm
-export PATH=`pwd`/ghc-6.2/lib/i386-unknown-linux:`pwd`/ghc-6.2/bin/i386-unknown-linux/:$PATH
+%{__mkdir_p} ghc-%{version}/temp
+echo `pwd`/ghc-%{version}/lib/i386-unknown-linux/ghc-%{version} -B`pwd`/ghc-%{version}/lib/i386-unknown-linux \$\{1+\"\$@\"\} > ghc-%{version}/lib/i386-unknown-linux/ghc
+echo `pwd`/ghc-%{version}/lib/i386-unknown-linux/ghc-asm.prl \$\{1+\"\$@\"\} > ghc-%{version}/lib/i386-unknown-linux/ghc-asm
+chmod +x ghc-%{version}/lib/i386-unknown-linux/ghc
+chmod +x ghc-%{version}/lib/i386-unknown-linux/ghc-asm
+export PATH=`pwd`/ghc-%{version}/lib/i386-unknown-linux:`pwd`/ghc-%{verson}/bin/i386-unknown-linux/:$PATH
 # when you use the configure macro:
 # GHC configuration does not support differing host/target (i.e., cross-compiling)
 ./configure --program-prefix= \

@@ -16,7 +16,7 @@ Source: http://labs.libre-entreprise.org/download/gurlchecker/gurlchecker-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.0, libglade2-devel >= 2.0, gnet2 >= 2.0
-BuildRequires: gnet2-devel
+BuildRequires: gnet2-devel, gnutls-devel
 
 %description
 gURLChecker is a graphical web link checker. It can work on a whole

@@ -23,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex, bison, gmp-devel >= 2.0.2, glib-devel, gtk+-devel
 BuildRequires: guile-devel, gnome-libs-devel, gob >= 1.0.10
-BuildRequires: perl-XML-Parser, intltool, gcc-c++
+BuildRequires: perl-XML-Parser, intltool, gcc-c++, gtk2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 Obsoletes: drgenius

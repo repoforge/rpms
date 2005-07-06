@@ -12,7 +12,7 @@ URL: http://esvn.umputun.com/
 Source: http://esvn.umputun.com/esvn-%{version}-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: qt-devel, qt, subversion, 
+Requires: qt-devel, qt, subversion
 
 %description
 eSvn is a graphical frontend for the subversion revision system.

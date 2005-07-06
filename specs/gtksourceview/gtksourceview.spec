@@ -15,7 +15,7 @@ Source: http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/0.9/gtksourceview-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, intltool, perl-XML-Parser, gtk2-devel
 BuildRequires: pkgconfig, libxml2-devel, libgnomeprint22
-BuildRequires: libgnomeprint22-devel
+BuildRequires: libgnomeprint22-devel, gnome-vfs2-devel
 
 %description
 GtkSourceView is a text widget that extends the standard gtk+ 2.x
