@@ -16,8 +16,8 @@ Patch: rsnapshot-1.2.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: rsync, openssh, autoconf, automake, openssh-client
-Requires: perl, rsync, openssh-client
+BuildRequires: rsync, openssh, autoconf, automake, openssh-clients
+Requires: perl, rsync, openssh-clients
 
 %description
 rsnapshot is a remote backup program that uses rsync to take backup snapshots

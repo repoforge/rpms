@@ -33,7 +33,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake, libtool
 BuildRequires: imlib-devel, libpng-devel, kdelibs
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, gettext
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-font-utils}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-font-utils}

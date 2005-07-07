@@ -16,7 +16,7 @@ Source: http://dl.sf.net/gnofract4d/gnofract4d-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: scrollkeeper, python, gcc-c++, pkgconfig
-BuildRequires: gtk2-devel
+BuildRequires: gtk2-devel, python-devel
 
 Requires(post): scrollkeeper
 
