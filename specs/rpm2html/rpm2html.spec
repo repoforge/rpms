@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: rpm-devel, zlib-devel, bzip2-devel, popt, libxml2-devel
-BuildRequires: automake, autoconf
+BuildRequires: automake, autoconf, db4-devel, automake16
 Requires: gnupg
 
 %description

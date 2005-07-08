@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel >= 2.1.0, gtk2-devel >= 2.1.1, libgnome-devel >= 2.1.1
 BuildRequires: gnome-desktop-devel >= 2.1.1, gnome-vfs2-devel >= 2.0.0, libglade2-devel >= 2.0.0
 BuildRequires: libgnomeui-devel >= 2.1.1, gnome-panel >= 2.0.0, gnome-panel-devel
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, intltool, perl-XML-Parser
 
 %description
 The Quick Lounge applet is an applet for the GNOME Panel. With this

@@ -14,7 +14,7 @@ Source: http://ftp.gnome.org/pub/GNOME/sources/drwright/%{version}/drwright-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pango-devel >= 1.0.99, gtk2-devel >= 2.0.4, GConf2-devel >= 1.2.0
-BuildRequires: libglade2-devel >= 2.0.0, fontconfig, gcc-c++
+BuildRequires: libglade2-devel >= 2.0.0, fontconfig, gcc-c++, dbus-devel
 BuildRequires: intltool, perl-XML-Parser, libgnomeui-devel, gettext
 
 %description

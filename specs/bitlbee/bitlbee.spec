@@ -13,7 +13,7 @@ URL: http://www.bitlbee.org/
 Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gnutls-devel, libgcrypt-devel
+BuildRequires: gnutls-devel, libgcrypt-devel, glib-devel
 
 %description
 Bitlbee is an IRC to other chat networks gateway. bitlbee can be used as

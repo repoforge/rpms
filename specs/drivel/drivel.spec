@@ -14,6 +14,7 @@ Source: http://dl.sf.net/drivel/drivel-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, perl(XML::Parser), intltool, pkgconfig
 BuildRequires: gtk2-devel, GConf2-devel, gnome-vfs2-devel, glib2 >= 2.4
+BuildRequires: libgnome-devel
 Requires: gtk2 >= 2.0.0, curl >= 7.10.0
 
 %description

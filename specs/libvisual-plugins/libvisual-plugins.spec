@@ -27,7 +27,7 @@ URL: http://libvisual.sourceforge.net/v2/
 Source: http://dl.sf.net/libvisual/libvisual-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libvisual-devel, gcc-c++
+BuildRequires: libvisual-devel, gcc-c++, esound-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 

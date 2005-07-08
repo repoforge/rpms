@@ -1,7 +1,7 @@
 # $Id$
 
 # Authority: dries
-# Upstream:
+# Upstream: Dirk-Jan C. Binnema <djcb$djcbsoftware,nl>
 # Screenshot: http://www.djcbsoftware.nl/projecten/gnuvd/gnuvd1.png
 
 Summary: Dutch online dictionary
@@ -15,6 +15,7 @@ URL: http://www.djcbsoftware.nl/projecten/gnuvd/
 Source: http://www.djcbsoftware.nl/code/gnuvd/gnuvd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
+Obsoletes: %{name}-devel < %{version}
 
 %description
 A program which searches Dutch words in the online dictionary Van Dale.
@@ -33,35 +34,35 @@ A program which searches Dutch words in the online dictionary Van Dale.
 %clean
 %{__rm} -rf %{buildroot}
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}.
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+#%package devel
+#Summary: Header files, libraries and development documentation for %{name}.
+#Group: Development/Libraries
+#Requires: %{name} = %{version}-%{release}
 
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
+#%description devel
+#This package contains the header files, static libraries and development
+#documentation for %{name}. If you like to develop programs using %{name},
+#you will need to install %{name}-devel.
 
-%post
-/sbin/ldconfig 2>/dev/null
+#%post
+#/sbin/ldconfig 2>/dev/null
 
-%postun
-/sbin/ldconfig 2>/dev/null
+#%postun
+#/sbin/ldconfig 2>/dev/null
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ABOUT-NLS AUTHORS COPYING ChangeLog INSTALL NEWS TODO README.nl
+%doc README AUTHORS COPYING ChangeLog INSTALL NEWS README.nl
 %{_bindir}/gnuvd
 %doc %{_mandir}/man?/*
-%{_libdir}/*.so.*
+#%{_libdir}/*.so.*
 
-%files devel
-%defattr(-, root, root, 0755)
-%{_includedir}/libgnuvd/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
-%exclude %{_libdir}/*.la
+#%files devel
+#%defattr(-, root, root, 0755)
+#%{_includedir}/libgnuvd/*.h
+#%{_libdir}/*.a
+#%{_libdir}/*.so
+#%exclude %{_libdir}/*.la
 
 %changelog
 * Tue Feb 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0-1

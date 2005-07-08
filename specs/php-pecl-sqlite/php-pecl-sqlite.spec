@@ -15,7 +15,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: php
 BuildRequires: php, php-devel
 # Required by phpize
+
 BuildRequires: autoconf, automake, libtool, gcc-c++
+BuildRequires: sqlite-devel
 
 %description
 SQLite is a C library that implements an embeddable SQL database engine.

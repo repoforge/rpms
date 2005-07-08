@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libraw1394-devel, libavc1394-devel, libdv-devel
 BuildRequires: libquicktime-devel, libjpeg-devel, libpng-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel, libmpeg3
+BuildRequires: gcc-c++
 Requires: kernel >= 2.4.0
 
 %description

@@ -17,6 +17,7 @@ Source: http://dl.sf.net/modplug-xmms/modplugxmms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, xmms-devel, gtk+-devel, libmodplug-devel
+BuildRequires: gcc-c++
 Requires: xmms
 
 %description

@@ -37,6 +37,9 @@ prism2 based cards.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/ssidsniff
+%{_bindir}/pcapset
+%{_bindir}/nldump
+%{_bindir}/pcapdump
 
 %changelog
 * Sat Jul 12 2003 Dag Wieers <dag@wieers.com> - 0.36-0

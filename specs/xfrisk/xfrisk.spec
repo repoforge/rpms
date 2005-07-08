@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: Xaw3d-devel
 %{!?dist:BuildRequires: xorg-x11-devel}
+%{?fc4:BuildRequires: xorg-x11-devel}
 %{?fc3:BuildRequires: xorg-x11-devel}
 %{?fc2:BuildRequires: xorg-x11-devel}
 %{?fc1:BuildRequires: XFree86-devel}

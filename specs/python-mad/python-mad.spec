@@ -17,7 +17,7 @@ URL: http://spacepants.org/src/pymad/
 Source: http://spacepants.org/src/pymad/download/pymad-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, python-devel, libmad-devel
 Requires: python >= %{python_version}
 
 %description

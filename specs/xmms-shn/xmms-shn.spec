@@ -14,7 +14,7 @@ URL: http://www.etree.org/shnutils/xmms-shn/
 Source: http://www.etree.org/shnutils/xmms-shn/source/xmms-shn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: xmms-devel, gtk+-devel
+BuildRequires: xmms-devel, gtk+-devel, gcc-c++
 Requires: xmms
 
 %description

@@ -14,7 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: /usr/GNUstep/System/Library/Makefiles/GNUstep.sh
 BuildRequires: diffutils, openssl-devel, gcc-objc, ffcall-devel 
-BuildRequires: gnustep-make, libxml2-devel
+BuildRequires: gnustep-make, libxml2-devel, gmp-devel
 Requires: ffcall
 
 %description

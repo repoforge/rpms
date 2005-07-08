@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gnome-vfs2-devel >= 2.0.0, libbonobo-devel >= 2.0.0
 BuildRequires: gtk-doc >= 0.9
+%{?fc4:BuildRequires: pyorbit-devel}
 %{?rh9:BuildRequires: pyorbit-devel}
 %{?rh8:BuildRequires: orbit-python-devel}
 

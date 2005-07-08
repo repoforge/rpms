@@ -12,6 +12,8 @@ URL: http://nfswatch.sourceforge.net/
 Source: http://dl.sf.net/nfswatch/nfswatch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: ncurses-devel
+
 %description
 nfswatch is a command-line tool for monitoring NFS traffic. nfswatch
 can capture and analyze the NFS packets on a particular network

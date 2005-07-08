@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, glib-devel, gtk+-devel, id3lib-devel
 BuildRequires: libogg-devel, pcre-devel, libstdc++-devel,
 BuildRequires: libvorbis-devel, xmms-devel, sqlite-devel, zlib-devel
+BuildRequires: automake, autoconf
 
 %description
 IMMS is an adaptive playlist plug-in for XMMS designed to simplify management

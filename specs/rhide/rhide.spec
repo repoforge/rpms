@@ -3,6 +3,8 @@
 # Upstream: Robert Hoehne <robert,hoehne$gmx,net>
 # Upstream: <salvador$inti,gov,ar>
 
+ExcludeArch: x86_64
+
 Summary: IDE for developing like the old known Borland 3.1 IDE
 Name: rhide
 Version: 1.5

@@ -16,7 +16,7 @@ URL: http://www.luga.de/pytone/
 Source: http://www.luga.de/pytone/download/PyTone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}%{release}-root
 
-BuildRequires: python
+BuildRequires: python, python-devel
 Requires: python, python-ao, python-mad, python-ogg, python-vorbis
 #Requires: python-xmms, python-eyed3
 

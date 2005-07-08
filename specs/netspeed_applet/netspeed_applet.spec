@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, intltool, scrollkeeper, gcc-c++
 BuildRequires: libgnomeui-devel >= 2.0, libgtop2-devel >= 2.0
+BuildRequires: gnome-panel-devel
 Requires(post): scrollkeeper
 
 %description

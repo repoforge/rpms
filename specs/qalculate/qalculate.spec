@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, libglade2-devel, pkgconfig, cln-devel
 BuildRequires: ImageMagick, gettext, glib2-devel >= 2.4
+BuildRequires: intltool, perl-XML-Parser
 Requires: gnuplot, wget
 
 %description
