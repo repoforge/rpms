@@ -4,7 +4,7 @@
 # 855resolution	This shell script takes care of overwriting an existing video
 #		mode with a custom one.
 #
-# chkconfig: - 10 10
+# chkconfig: 345 04 96
 # description: Overwrite an existing video mode with a custom one.
 # config: /etc/sysconfig/855resolution
 
@@ -33,6 +33,7 @@ start() {
 	    $SET_CMD | grep complete >/dev/null
 	fi
 	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
 	echo
 }
 
@@ -42,6 +43,7 @@ case "$1" in
 	start
 	;;
   stop)
+	rm -f /var/lock/subsys/$prog
 	exit 0
 	;;
   *)

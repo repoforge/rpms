@@ -4,13 +4,15 @@
 Summary: Change video bios resolutions on laptops with Intel graphic chipsets
 Name: 855resolution
 Version: 0.4
-Release: 1
+Release: 2
 License: Public Domain
 Group: Applications/System
 URL: http://perso.wanadoo.fr/apoirier/
 Source0: http://perso.wanadoo.fr/apoirier/855resolution-%{version}.tgz
 Source1: 855resolution.init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+# This utility doesn't make sense on other archs, those chipsets are i386 only
+ExclusiveArch: i386
 
 %description
 This software changes the resolution of an available vbios mode. It is useful
@@ -75,6 +77,11 @@ fi
 
 
 %changelog
+* Tue Jul  5 2005 Matthias Saou <http://freshrpms.net/> 0.4-2
+- Make package ExclusiveArch i386, it doesn't make sense on other archs.
+- Fix init script (add subsys lock) to not have it run on each runlevel change.
+- Enable service by default : People who install this package want it!
+
 * Mon Jul  4 2005 Matthias Saou <http://freshrpms.net/> 0.4-1
 - Initial RPM release.
 
