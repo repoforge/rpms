@@ -5,7 +5,7 @@
 Summary: Console-based network traffic monitor
 Name: vnstat
 Version: 1.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://humdi.net/vnstat/
@@ -28,14 +28,14 @@ EOF
 #!/bin/bash
 VNSTAT_CONFIG="%{_sysconfdir}/sysconfig/%{name}"
 
-if [ ! -r "$VNSTAT_CONFIG"  then
+if [ ! -r "$VNSTAT_CONFIG" ]; then
 	echo "vnstat.cron: File \"$VNSTAT_CONFIG\" could not be read." >&2
 	exit 1
 fi
 
 source "$VNSTAT_CONFIG"
 
-if [ -z "$VNSTAT_OPTIONS"  then
+if [ -z "$VNSTAT_OPTIONS" ]; then
 	echo "vnstat.cron: Options VNSTAT_OPTIONS not defined in file \"$VNSTAT_CONFIG\"." >&2
 	exit 1
 fi
@@ -46,7 +46,7 @@ EOF
 %{__cat} <<EOF >vnstat.crond
 MAILTO=root
 
-*/5 * * * * nobody %{_sbindir}/vnstat.cron %{_sysconfdir}/sysconfig/vnstat
+*/5 * * * * nobody %{_sbindir}/vnstat.cron
 EOF
 
 %build
@@ -78,5 +78,8 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.4-2
+- Fixed cron job and sysv script. (Alexander Dalloz)
+
 * Sat Mar 05 2005 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)
