@@ -4,13 +4,15 @@
 
 Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss
-Version: 1.2.8
-Release: 4
+Version: 1.2.9
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvdcss/
 Source: http://download.videolan.org/pub/libdvdcss/%{version}/libdvdcss-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+# For the documentation
+BuildRequires: doxygen
 
 %description
 This is a portable abstraction library for DVD decryption which is used by
@@ -61,19 +63,24 @@ any of the above programs.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog README
-%{_libdir}/%{name}.so.*
+%doc AUTHORS COPYING ChangeLog NEWS README
+%{_libdir}/libdvdcss.so.*
 
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/dvdcss
-%{_libdir}/%{name}.a
-%exclude %{_libdir}/%{name}.la
-%{_libdir}/%{name}.so
+%doc doc/html/
+%{_includedir}/dvdcss/
+%{_libdir}/libdvdcss.a
+%exclude %{_libdir}/libdvdcss.la
+%{_libdir}/libdvdcss.so
 
 
 %changelog
+* Mon Jul 11 2005 Matthias Saou <http://freshrpms.net/> 1.2.9-1
+- Update to 1.2.9.
+- Include doxygen generated html doc. Don't include refman, it's too big.
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 1.2.8-4
 - Rebuild for Fedora Core 2.
 
