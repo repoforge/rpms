@@ -6,7 +6,7 @@
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.0.4a
+Version: 1.0.5
 Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -114,6 +114,9 @@ desktop-file-install \
 
 
 %changelog
+* Mon Jul 11 2005 Matthias Saou <http://freshrpms.net/> 1.0.5-1
+- Update to 1.0.5.
+
 * Fri May 27 2005 Matthias Saou <http://freshrpms.net/> 1.0.4a-1
 - Update to 1.0.4a.
 
