@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: tcl tk Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
 BuildRequires: perl gtkhtml2-devel, gcc-c++, gtk+-devel
 Requires: libpng10
-%{?fc4:BuildRequires: gcc-gfortran}
+%{?fc4:BuildRequires: gcc-gfortran, compat-gcc-32-g77}
 %{!?fc4:BuildRequires: gcc-g77}
 
 
@@ -38,6 +38,7 @@ overloading. A number of toolboxes are available with the system.
 %setup
 
 %build
+%{__perl} -pi.orig -e 's|-fwritable-strings||g;' configure
 %configure \
 	--with-gcc \
 	--with-g77 \
@@ -45,6 +46,9 @@ overloading. A number of toolboxes are available with the system.
 	--with-xaw3d \
 	--with-gtk \
 	--with-x
+# ../include/pvmtev.h nodig in pvm3/src/global.h
+(echo '#include "../include/pvmtev.h"'; cat pvm3/src/global.h) > pvm3/src/global.h.temp
+%{__mv} pvm3/src/global.h.temp pvm3/src/global.h
 %{__make} %{?_smp_mflags} all
 
 %install
@@ -53,13 +57,13 @@ overloading. A number of toolboxes are available with the system.
 	%{buildroot}%{_bindir}
 %{__perl} -pi.orig -e '
 	s|/usr/bin|%{buildroot}%{_bindir}|g;
-	s|ln -fs \$\{LIBPREFIX\}|ln -fs %{_libdir}|g;
+	s|ln -fs \$\(PREFIX\)/lib|ln -fs %{_libdir}|g;
 	' Makefile
 
 %{__perl} -pi -e '
 	s|/bin/sh5|/bin/sh|g;
 	' bin/dold
-%makeinstall LIBPREFIX=%{buildroot}%{_libdir}
+%makeinstall PREFIX=%{buildroot}%{_prefix} LIBPREFIX=%{buildroot}%{_libdir}
 
 %{__perl} -pi -e '
 	s|%{buildroot}||g;
@@ -72,6 +76,7 @@ overloading. A number of toolboxes are available with the system.
 %{__rm} -rf %{buildroot}
 
 %files
+%doc ACKNOWLEDGEMENTS CHANGES README_Unix Version.incl licence.txt
 %defattr(-, root, root, 0755)
 %{_bindir}/*
 %{_libdir}/scilab-%{version}

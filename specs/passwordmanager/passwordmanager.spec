@@ -38,8 +38,8 @@
 
 Summary: Personal password manager
 Name: passwordmanager
-Version: 1.0.2
-Release: 2
+Version: 1.2.2
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://passwordmanager.sourceforge.net/
@@ -89,6 +89,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{!?_without_kwallet:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Mon Jul 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
+- Update to release 1.2.2.
+
 * Fri Mar 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.2-2
 - Included the real 1.0.2. (Ian MacGregor)
 
