@@ -1,0 +1,76 @@
+--- xmms-1.2.8/xmms/main.c.orig	2003-09-10 12:35:02.000000000 +0200
++++ xmms-1.2.8/xmms/main.c	2003-10-07 16:38:28.000000000 +0200
+@@ -303,6 +303,39 @@
+ 	sizeof(mainwin_general_menu_entries) / 
+ 	sizeof(mainwin_general_menu_entries[0]);
+ 
++#include <kde/artsc/artsc.h>
++#include <dlfcn.h>
++
++/* dlopen libarts, for seeing if we should use this as the default plugin. */
++static int arts_running(void) {
++	void *arts_handle;
++	int (*a_init)(void);
++	void (*a_close)(void);
++	int ret = 0;
++	
++	arts_handle = dlopen("libartsc.so.0", RTLD_NOW);
++	if (!arts_handle)
++		return 0;
++
++	a_init = dlsym(arts_handle, "arts_init");
++	a_close = dlsym(arts_handle, "arts_free");
++	if (!a_init || !a_close) {
++		dlclose(arts_handle);
++		return 0;
++	}
++	signal(SIGPIPE, SIG_DFL);
++	if ((*a_init)() == 0) {
++		ret = 1;
++		/* there are problems with library unloading in conjunction with X11, */
++		/* (Arts::X11GlobalComm), so we don't unload stuff here */
++ 		/* (*a_close)(); */
++	}
++	signal(SIGPIPE, SIG_IGN);
++	dlclose(arts_handle);
++	return ret;
++}
++
++
+ static void make_xmms_dir(void)
+ {
+ 	gchar *filename;
+@@ -499,6 +532,19 @@
+ 		cfg.skin = g_strdup("/usr/share/xmms/Skins/Bluecurve-xmms.zip");
+ 	if (cfg.outputplugin == NULL)
+ 	{
++		/* If aRts is running and the plugin is there, use that... */
++		if (arts_running())
++		{
++			cfg.outputplugin = g_strdup_printf("%s/%s/libarts.so", PLUGIN_DIR, plugin_dir_list[0]);
++			if (access(cfg.outputplugin, X_OK))
++			{
++				g_free(cfg.outputplugin);
++				cfg.outputplugin = NULL;
++			}
++		}
++	}
++	if (cfg.outputplugin == NULL)
++	{
+ #ifdef HAVE_OSS
+ 		cfg.outputplugin = g_strdup_printf("%s/%s/libesdout.so", PLUGIN_DIR, plugin_dir_list[0]);
+ #elif defined(sun)
+@@ -511,6 +557,13 @@
+ 		cfg.outputplugin = g_strdup("");
+ #endif
+ 	}
++	/* Migrate users of the previous arts plugin */
++	if (!strcmp(g_basename(cfg.outputplugin),"libartsout.so")) {
++		if (access(cfg.outputplugin,X_OK)) {
++			g_free(cfg.outputplugin);
++			cfg.outputplugin = g_strdup_printf("%s/%s/libarts.so", PLUGIN_DIR, plugin_dir_list[0]);
++		}
++	}
+ 	if (cfg.eqpreset_default_file == NULL)
+ 		cfg.eqpreset_default_file = g_strdup("dir_default.preset");
+ 	if (cfg.eqpreset_extension == NULL)

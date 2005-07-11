@@ -1,0 +1,11 @@
+--- ming-0.2a-orig/util/listmp3.c	Fri Aug 17 19:06:16 2001
++++ ming-0.2a/util/listmp3.c	Tue Aug 21 10:01:27 2001
+@@ -169,7 +169,7 @@
+ 
+   putchar('\n');
+ 
+-  length = numFrames*(sampleRate > 3200 ? 1152 : 576)/samplerate;
++  length = numFrames*(samplerate > 3200 ? 1152 : 576)/samplerate;
+ 
+   printf("Number of frames: %i\n", numFrames);
+   printf("Average bitrate: %i\n", bitrateSum/numFrames);

@@ -1,0 +1,49 @@
+--- ming-0.2a/php_ext/Makefile.orig	Fri Aug 17 20:01:02 2001
++++ ming-0.2a/php_ext/Makefile	Wed Oct 24 23:17:28 2001
+@@ -6,14 +6,14 @@
+ 
+ CFILES = ming.c
+ 
+-php_ming.so: ming.o ../libming.a
+-	${CC} -shared -fpic ming.o ../libming.a -o php_ming.so -lm
++php_ming.so: ming.o ../libming.so
++	${CC} -shared -fpic ming.o -L.. -lming -o php_ming.so -lm
+ 
+ ming.o: ${CFILES}
+ 	${CC} ${DEFINES} -c ming.c -I. -I.. `php-config --includes`
+ 
+-../libming.a:
+-	cd ..; make static
++../libming.so:
++	cd ..; make dynamic
+ 
+ clean:
+ 	rm -f php_ming.so
+--- ming-0.2a/perl_ext/Makefile.PL.orig	Fri Aug 17 19:05:50 2001
++++ ming-0.2a/perl_ext/Makefile.PL	Wed Oct 24 23:20:59 2001
+@@ -37,14 +37,13 @@
+ WriteMakefile(
+     'NAME'	   => 'SWF',
+     'VERSION_FROM' => 'SWF.pm', # finds $VERSION
+-    'LIBS'	   => [''],   # e.g., '-lm' 
++    'LIBS'	   => ["-L$MING_DIR -lming"],   # e.g., '-lm' 
+     'DEFINE'	   => '',     # e.g., '-DHAVE_SOMETHING' 
+     'INC'	   => '',     # e.g., '-I/usr/include/other'
+-    'MYEXTLIB'     => $MING_DIR . '/libming.a',
+ );
+ 
+ sub ming_is_compiled{
+-    return undef unless (-e "$MING_DIR/libming.a");
++    return undef unless (-e "$MING_DIR/libming.so");
+     return 1;
+ }
+ 
+@@ -52,7 +51,7 @@
+     print "Compiling ming ...\n";
+     my $cur_dir = cwd;
+     chdir $MING_DIR;
+-    system "make static";
++    system "make dynamic";
+     chdir $cur_dir;
+ }
+ 

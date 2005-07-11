@@ -1,0 +1,77 @@
+--- arpd.c.orig	2005-01-20 05:53:35.490004952 +0100
++++ arpd.c	2005-01-20 05:53:46.668305592 +0100
+@@ -27,6 +27,7 @@
+ #undef timeout_initialized
+ 
+ #include <event.h>
++#include <event-internal.h>
+ #include <dnet.h>
+ #include "tree.h"
+ 
+@@ -265,7 +266,7 @@
+ 	    spa->addr_ip, tha->addr_eth, tpa->addr_ip);
+ 	
+ 	if (op == ARP_OP_REQUEST) {
+-		syslog(LOG_DEBUG, __FUNCTION__ ": who-has %s tell %s",
++		syslog(LOG_DEBUG, "arpd_send: who-has %s tell %s",
+ 		    addr_ntoa(tpa), addr_ntoa(spa));
+ 	} else if (op == ARP_OP_REPLY) {
+ 		syslog(LOG_INFO, "arp reply %s is-at %s",
+@@ -282,7 +283,7 @@
+ 	int error;
+ 
+ 	if (addr_cmp(addr, &arpd_ifent.intf_addr) == 0) {
+-		syslog(LOG_DEBUG, __FUNCTION__ ": %s at %s",
++		syslog(LOG_DEBUG, "arpd_lookup: %s at %s",
+ 		    addr_ntoa(addr), addr_ntoa(&arpd_ifent.intf_link_addr));
+ 		return (0);
+ 	}
+@@ -291,10 +292,10 @@
+ 	error = arp_get(arpd_arp, &arpent);
+ 	
+ 	if (error == -1) {
+-		syslog(LOG_DEBUG, __FUNCTION__ ": no entry for %s",
++		syslog(LOG_DEBUG, "arpd_lookup: no entry for %s",
+ 		    addr_ntoa(addr));
+ 	} else {
+-		syslog(LOG_DEBUG, __FUNCTION__ ": %s at %s",
++		syslog(LOG_DEBUG, "arpd_lookup: %s at %s",
+ 		    addr_ntoa(addr), addr_ntoa(&arpent.arp_ha));
+ 	}
+ 	return (error);
+@@ -315,7 +316,7 @@
+ 	struct arp_req *req = arg;
+ 	
+ 	SPLAY_REMOVE(tree, &arpd_reqs, req);
+-	syslog(LOG_DEBUG, "%s: expiring %s",__FUNCTION__, addr_ntoa(&req->pa));
++	syslog(LOG_DEBUG, "%s: expiring %s", "arpd_timeout", addr_ntoa(&req->pa));
+ 	arpd_free(req);
+ }
+ 
+@@ -400,7 +401,7 @@
+ 			
+ 			if (req->negative) {
+ 				syslog(LOG_DEBUG, "%s: %s is allocated",
+-				    __FUNCTION__, addr_ntoa(&req->pa));
++				    "arpd_recv_cb", addr_ntoa(&req->pa));
+ 				return;
+ 			}
+ 
+@@ -411,7 +412,7 @@
+ 			} else {
+ 				syslog(LOG_DEBUG,
+ 				    "%s: %s still discovering (%d)",
+-				    __FUNCTION__, addr_ntoa(&req->pa),
++				    "arpd_recv_cb", addr_ntoa(&req->pa),
+ 				    req->cnt);
+ 			}
+ 		}
+@@ -423,7 +424,7 @@
+ 		if ((req = SPLAY_FIND(tree, &arpd_reqs, &tmp)) != NULL) {
+ 			addr_pack(&src.arp_ha, ADDR_TYPE_ETH, ETH_ADDR_BITS,
+ 			    ethip->ar_sha, ETH_ADDR_LEN);
+-			syslog(LOG_DEBUG, __FUNCTION__ ": %s at %s",
++			syslog(LOG_DEBUG, "arpd_recv_cb: %s at %s",
+ 			    addr_ntoa(&req->pa), addr_ntoa(&src.arp_ha));
+ 			
+ 			/* This address is claimed */

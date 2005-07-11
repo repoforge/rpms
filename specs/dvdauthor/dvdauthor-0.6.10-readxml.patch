@@ -1,0 +1,17 @@
+--- src/readxml.c.orig	2004-03-13 08:57:39.000000000 +0100
++++ src/readxml.c	2005-01-02 06:53:59.149461784 +0100
+@@ -221,11 +221,11 @@
+ char *utf8tolocal(const char *in)
+ {
+     iconv_t c=get_conv();
+-    int inlen=strlen(in);
+-    int outlen=inlen*5;
++    size_t inlen=strlen(in);
++    size_t outlen=inlen*5;
+     char *r=malloc(outlen+1);
+     char *out=r;
+-    int v;
++    size_t v;
+ 
+     v=iconv(c,ICONV_CAST &in,&inlen,&out,&outlen);
+     if(v==-1) {

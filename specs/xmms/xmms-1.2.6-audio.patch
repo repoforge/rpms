@@ -1,0 +1,32 @@
+--- xmms-1.2.4/xmms/main.c.audio	Mon Nov 20 10:45:10 2000
++++ xmms-1.2.4/xmms/main.c	Tue Nov 28 19:39:51 2000
+@@ -469,7 +469,7 @@
+ 	if (cfg.outputplugin == NULL)
+ 	{
+ #ifdef HAVE_OSS
+-		cfg.outputplugin = g_strdup_printf("%s/%s/libOSS.so", PLUGIN_DIR, plugin_dir_list[0]);
++		cfg.outputplugin = g_strdup_printf("%s/%s/libALSA.so", PLUGIN_DIR, plugin_dir_list[0]);
+ #elif defined(sun)
+ 		cfg.outputplugin = g_strdup_printf("%s/%s/libSolaris.so", PLUGIN_DIR, plugin_dir_list[0]);
+ #else
+--- xmms-1.2.4/Output/OSS/audio.c.audio	Fri Jul 28 20:19:41 2000
++++ xmms-1.2.4/Output/OSS/audio.c	Tue Nov 28 19:36:19 2000
+@@ -592,7 +592,7 @@
+ 		else
+ 			device_name = g_strdup(DEV_DSP);
+ 	}
+-	fd = open(device_name, O_WRONLY);
++	fd = open(device_name, O_WRONLY|O_NONBLOCK);
+ 	if (fd == -1)
+ 	{
+ 		g_warning("oss_open(): Failed to open audio device (%s): %s",
+@@ -600,7 +600,8 @@
+ 		g_free(device_name);
+ 		return 0;
+ 	}
+-
++	fcntl(fd,F_SETFL,fcntl(fd,F_GETFL) &~ O_NONBLOCK);
++	
+ 	input.format.xmms = fmt;
+ 	input.frequency = rate;
+ 	input.channels = nch;

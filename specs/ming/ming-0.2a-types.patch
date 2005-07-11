@@ -1,0 +1,11 @@
+--- ming-0.2a/src/blocks/loadfont.c.orig	2001-08-17 17:06:08.000000000 +0000
++++ ming-0.2a/src/blocks/loadfont.c	2004-06-05 08:20:01.000000000 +0000
+@@ -190,7 +190,7 @@
+ 
+   /* adjust offset table to point to shapes */
+   for(i=0; i<=nGlyphs; ++i)
+-    font->glyphOffset[i] += (unsigned int)font->shapes;
++    font->glyphOffset[i] += (unsigned long)font->shapes;
+ 
+   p = font->shapes;
+ 

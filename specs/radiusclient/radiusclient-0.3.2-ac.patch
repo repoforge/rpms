@@ -1,0 +1,12 @@
+--- configure.in
++++ configure.in
+@@ -179,7 +179,8 @@
+ AC_SUBST(RC_LOG_FACILITY)
+ 
+ AM_CONFIG_HEADER(config.h)
+-LTLIBOBJS=`echo "$LIBOBJS" | sed 's/\.o/.lo/g'`
++LTLIBOBJS=`echo "$LIB@&t@OBJS" |
++                sed 's,\.[[^.]]* ,.lo ,g;s,\.[[^.]]*$,.lo,'`
+ AC_SUBST(LTLIBOBJS)
+ AC_OUTPUT([
+ Makefile

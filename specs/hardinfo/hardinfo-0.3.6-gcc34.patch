@@ -1,0 +1,13 @@
+--- intl.c.orig	2005-03-11 23:43:48.847665800 +0100
++++ intl.c	2005-03-11 23:44:44.757166264 +0100
+@@ -43,9 +43,7 @@
+ /*
+  * GNU's gettext is cool and all... but hey, this is smaller :)
+  */
+-const gchar *
+-intl_translate(const gchar * string, const gchar * source) __THROW
+-{
++const gchar * intl_translate(const gchar * string, const gchar * source) {
+ 	FILE *file;
+ 	gchar buffer[256], *keyname, *lang = NULL, *langenv = NULL;
+ 	const gchar *retval, *langvars[] =

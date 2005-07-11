@@ -1,0 +1,11 @@
+--- xmms-1.2.6/xmms/pluginenum.c.lazy	Tue Jan 15 17:14:24 2002
++++ xmms-1.2.6/xmms/pluginenum.c	Tue Jan 15 17:14:33 2002
+@@ -229,7 +229,7 @@
+ 	 */
+ 	return shl_load(filename, BIND_DEFERRED, 0); 
+ #else
+-	return dlopen(filename, RTLD_NOW);
++	return dlopen(filename, RTLD_LAZY);
+ #endif
+ }
+ 

@@ -1,0 +1,11 @@
+--- ming-0.2a/src/Makefile.orig	Fri Aug 17 19:06:01 2001
++++ ming-0.2a/src/Makefile	Wed Oct 24 23:34:48 2001
+@@ -21,7 +21,7 @@
+ dynamic: ${OFILES}
+ 	cd blocks && make
+ 	cd actioncompiler && make
+-	${CC} ${OFILES} ${COMPILEROFILES} blocks/*.o -shared -fpic \
++	${CC} ${OFILES} ${COMPILEROFILES} blocks/*.o -shared -fpic -Wl,-soname=libming.so.0 \
+ 	  -o libming.so
+ 	cp libming.so ..
+ 

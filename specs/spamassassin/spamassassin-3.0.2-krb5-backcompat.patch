@@ -1,0 +1,11 @@
+--- Makefile.PL.orig	2005-03-25 19:16:55.809866720 +0100
++++ Makefile.PL	2005-03-25 19:17:30.552585024 +0100
+@@ -1106,7 +1106,7 @@
+ LIBSPAMC_SRC    = spamc/libspamc.c spamc/utils.c
+ 
+ $(SPAMC_MAKEFILE): $(SPAMC_MAKEFILE).in $(SPAMC_MAKEFILE).win
+-	$(CONFIGURE) --prefix="$(I_PREFIX)" --sysconfdir="$(I_CONFDIR)" --datadir="$(I_DATADIR)" --enable-ssl="$(ENABLE_SSL)"
++	$(CONFIGURE) --prefix="$(I_PREFIX)" --sysconfdir="$(I_CONFDIR)" --datadir="$(I_DATADIR)" --enable-ssl="$(ENABLE_SSL) --includedir=/usr/kerberos/include"
+ 
+ spamc_has_moved:
+ 	$(NOECHO) echo "***"

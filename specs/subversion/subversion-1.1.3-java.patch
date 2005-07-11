@@ -1,0 +1,11 @@
+--- subversion-1.1.0/build/ac-macros/java.m4~	2004-04-17 19:44:55.000000000 -0700
++++ subversion-1.1.0/build/ac-macros/java.m4	2005-02-01 05:53:28.081457080 -0800
+@@ -73,7 +73,7 @@ AC_DEFUN(SVN_FIND_JDK,
+     if test "$os_arch" = "Darwin"; then
+       AC_MSG_WARN([You may need to install the latest Java Development package from http://connect.apple.com/.  Apple no longer includes the JNI header files by default on Java updates.])
+     fi
+-    JDK_SUITABLE=no
++    JDK_SUITABLE=yes
+   fi
+   AC_MSG_RESULT([$JDK_SUITABLE])
+ 

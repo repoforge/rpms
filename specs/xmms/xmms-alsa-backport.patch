@@ -1,0 +1,452 @@
+Index: Output/alsa/audio.c
+===================================================================
+RCS file: /cvs/xmms/Output/alsa/audio.c,v
+retrieving revision 1.28
+retrieving revision 1.34
+diff -u -r1.28 -r1.34
+--- Output/alsa/audio.c	27 Jan 2004 22:36:45 -0000	1.28
++++ Output/alsa/audio.c	24 Aug 2004 18:30:08 -0000	1.34
+@@ -36,12 +36,14 @@
+ static snd_mixer_elem_t 	*pcm_element 	    = NULL;
+ static snd_mixer_t 		*mixer 		    = NULL;
+ 
+-static gboolean mmap, force_start, going, paused;
++static gboolean mmap, force_start, going = FALSE, paused, mixer_start = TRUE;
+ 
+ static gpointer buffer;
+ 
+ static int alsa_can_pause;
+ 
++static guint mixer_timeout;
++
+ struct snd_format {
+ 	unsigned int rate;
+ 	unsigned int channels;
+@@ -108,6 +110,7 @@
+ 
+ int alsa_playing(void)
+ {
++	debug("Alsa playing: %i %i\n", going, paused);
+ 	if (!going || paused)
+ 		return FALSE;
+ 
+@@ -183,14 +186,34 @@
+ 
+ void alsa_pause(short p)
+ {
++	int err;
+ 	debug("alsa_pause");
+ 	if (p)
+ 		paused = TRUE;
+ 
+-	if (alsa_can_pause)
+-		snd_pcm_pause(alsa_pcm, p);
+-	else if (p)
+-		snd_pcm_drop(alsa_pcm);
++	if (alsa_pcm && going)
++	{
++		if (alsa_can_pause)
++		{
++			if ((err = snd_pcm_pause (alsa_pcm, p)) < 0)
++				g_warning("snd_pcm_pause() failed: %s",
++					  snd_strerror(-err));
++		}
++		else
++		{
++			if (p)
++			{
++				if ((err = snd_pcm_drop (alsa_pcm)) < 0)
++					g_warning("snd_pcm_drop() failed: %s",
++						  snd_strerror(-err));
++			}
++			else
++				if ((err = snd_pcm_prepare (alsa_pcm)) < 0)
++					g_warning("snd_pcm_prepare() failed: %s",
++						  snd_strerror(-err));
++			force_start = FALSE;
++		}
++	}
+ 
+ 	if (!p)
+ 		paused = FALSE;
+@@ -205,14 +228,6 @@
+ 	started = going;
+ 	going = 0;
+ 
+-	pcm_element = NULL;
+-
+-	if (mixer)
+-	{
+-		snd_mixer_close(mixer);
+-		mixer = NULL;
+-	}
+-
+ 	if (alsa_pcm != NULL)
+ 	{
+ 		if (started)
+@@ -406,28 +421,45 @@
+ 	return 0;
+ }
+ 
++static int alsa_mixer_timeout(void *data)
++{
++	if (mixer)
++	{
++		snd_mixer_close(mixer);
++		mixer = NULL;
++		pcm_element = NULL;
++	}
++	mixer_timeout = 0;
++	mixer_start = TRUE;
++
++	g_message("alsa mixer timed out");
++	return FALSE;
++}
++
++
++
+ void alsa_get_volume(int *l, int *r)
+ {
+-	static gboolean first = TRUE;
+ 	long ll = *l, lr = *r;
+ 
+-	if (first)
++	if (mixer_start)
+ 	{
+ 		alsa_setup_mixer();
+-		first = !first;
++		mixer_start = FALSE;
+ 	}
+ 
+-	if (!pcm_element)
+-		return;
+-
+-	snd_mixer_handle_events(mixer);
+-
+ 	if (alsa_cfg.soft_volume)
+ 	{
+ 		*l = alsa_cfg.vol.left;
+ 		*r = alsa_cfg.vol.right;
+ 	}
+-	else
++
++	if (!pcm_element)
++		return;
++
++	snd_mixer_handle_events(mixer);
++
++	if (!alsa_cfg.soft_volume)
+ 	{
+ 		snd_mixer_selem_get_playback_volume(pcm_element,
+ 						    SND_MIXER_SCHN_FRONT_LEFT,
+@@ -438,26 +470,28 @@
+ 		*l = ll;
+ 		*r = lr;
+ 	}
++	if (mixer_timeout)
++		gtk_timeout_remove(mixer_timeout);
++	mixer_timeout = gtk_timeout_add(5000, alsa_mixer_timeout, NULL);
+ }
+ 
+ 
+ void alsa_set_volume(int l, int r)
+ {
+-	if (!pcm_element)
+-		return;
+-
+ 	if (alsa_cfg.soft_volume)
+ 	{
+ 		alsa_cfg.vol.left = l;
+ 		alsa_cfg.vol.right = r;
++		return;
+ 	}
+-	else
+-	{
+-		snd_mixer_selem_set_playback_volume(pcm_element,
+-						    SND_MIXER_SCHN_FRONT_LEFT, l);
+-		snd_mixer_selem_set_playback_volume(pcm_element,
+-						    SND_MIXER_SCHN_FRONT_RIGHT, r);
+-	}
++
++	if (!pcm_element)
++		return;
++
++	snd_mixer_selem_set_playback_volume(pcm_element,
++					    SND_MIXER_SCHN_FRONT_LEFT, l);
++	snd_mixer_selem_set_playback_volume(pcm_element,
++					    SND_MIXER_SCHN_FRONT_RIGHT, r);
+ }
+ 
+ 
+@@ -499,7 +533,7 @@
+ #define MONO_ADJUST(type, type2, endian)					\
+ do {										\
+ 	type *ptr = data;							\
+-	for (i = 0; i < length; i += 4)						\
++	for (i = 0; i < length; i += 2)						\
+ 	{									\
+ 		*ptr = type2##_TO_##endian(type2##_FROM_## endian(*ptr) *	\
+ 					   vol / 100);				\
+@@ -530,7 +564,7 @@
+ #define MONO_ADJUST8(type)			\
+ do {						\
+ 	type *ptr = data;			\
+-	for (i = 0; i < length; i += 4)		\
++	for (i = 0; i < length; i++)		\
+ 	{					\
+ 		*ptr = *ptr * vol / 100;	\
+ 		ptr++;				\
+@@ -727,6 +761,14 @@
+ 		alsa_total_written += cnt;
+ 		
+ 		length -= cnt;
++
++		if (length > 0 &&
++		    snd_pcm_state(alsa_pcm) == SND_PCM_STATE_PREPARED)
++		{
++			if ((err = snd_pcm_start(alsa_pcm)) < 0)
++				g_warning("alsa_mmap_audio(): snd_pcm_start() "
++					  "failed: %s", snd_strerror(-err));
++		}
+ 	}
+ }
+ 
+@@ -747,7 +789,8 @@
+ 		return 0;
+ 	}
+ 
+-	alsa_setup_mixer();
++	if (!mixer)
++		alsa_setup_mixer();
+ 
+ 	convertb = xmms_convert_buffers_new();
+ 	
+Index: Output/alsa/configure.c
+===================================================================
+RCS file: /cvs/xmms/Output/alsa/configure.c,v
+retrieving revision 1.16
+retrieving revision 1.17
+diff -u -r1.16 -r1.17
+--- Output/alsa/configure.c	17 Jan 2004 12:37:19 -0000	1.16
++++ Output/alsa/configure.c	25 Apr 2004 22:33:26 -0000	1.17
+@@ -21,10 +21,12 @@
+ 
+ static GtkWidget *configure_win = NULL;
+ static GtkWidget *buffer_time_spin, *period_time_spin;
+-static GtkWidget *mmap_button, *mixer_card_spin, *softvolume_toggle_button;
++static GtkWidget *mmap_button, *softvolume_toggle_button;
+ 
+ static GtkWidget *devices_combo, *mixer_devices_combo;
+ 
++static int current_mixer_card;
++
+ #define GET_SPIN_INT(spin) \
+ 	gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(spin))
+ #define GET_TOGGLE(tb) gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(tb))
+@@ -38,7 +40,7 @@
+ 	alsa_cfg.period_time = GET_SPIN_INT(period_time_spin);
+ 	alsa_cfg.mmap = GET_TOGGLE(mmap_button);
+ 	alsa_cfg.soft_volume = GET_TOGGLE(softvolume_toggle_button);
+-	alsa_cfg.mixer_card = GET_SPIN_INT(mixer_card_spin);
++	alsa_cfg.mixer_card = current_mixer_card;
+ 	alsa_cfg.mixer_device = GET_CHARS(GTK_COMBO(mixer_devices_combo)->entry);
+ 	
+ 	alsa_save_config();
+@@ -63,10 +65,50 @@
+ 	xmms_cfg_free(cfgfile);
+ }
+ 
++static int get_cards(GtkOptionMenu *omenu, GtkSignalFunc cb, int active)
++{
++	GtkWidget *menu, *item;
++	int card = -1, err, set = 0, curr = -1;
++
++	menu = gtk_menu_new();
++	if ((err = snd_card_next(&card)) != 0)
++		g_warning("snd_next_card() failed: %s", snd_strerror(-err));
++	
++	while (card > -1)
++	{
++		char *label;
++
++		curr++;
++		if (card == active)
++			set = curr;
++		if ((err = snd_card_get_name(card, &label)) != 0)
++		{
++			g_warning("snd_carg_get_name() failed: %s",
++				  snd_strerror(-err));
++			break;
++		}
++		
++		item = gtk_menu_item_new_with_label(label);
++		gtk_signal_connect(GTK_OBJECT(item), "activate", cb,
++				   GINT_TO_POINTER(card));
++		gtk_widget_show(item);
++		gtk_menu_append(GTK_MENU(menu), item);
++		if ((err = snd_card_next(&card)) != 0)
++		{
++			g_warning("snd_next_card() failed: %s",
++				  snd_strerror(-err));
++			break;
++		}
++	}
++
++	gtk_option_menu_set_menu(omenu, menu);
++	return set;
++}
++
+ static int get_mixer_devices(GtkCombo *combo, int card)
+ {	
+ 	GList *items = NULL;
+-	int err = 0;
++	int err;
+ 	snd_mixer_t *mixer;
+ 	snd_mixer_elem_t *current;
+ 
+@@ -92,12 +134,10 @@
+ static void get_devices_for_card(GtkCombo *combo, int card)
+ {
+ 	GtkWidget *item;
+-	int pcm_device = -1;
+-	int err = 0;
++	int pcm_device = -1, err;
+ 	snd_pcm_info_t *pcm_info;
+ 	snd_ctl_t *ctl;
+-	char dev[64];
+-	char *card_name;
++	char dev[64], *card_name;
+ 	
+ 	sprintf(dev, "hw:%i", card);
+ 
+@@ -192,29 +232,32 @@
+ 
+ static void mixer_card_cb(GtkWidget * widget, gpointer card)
+ {
+-	if (get_mixer_devices(GTK_COMBO(mixer_devices_combo),
+-			      gtk_spin_button_get_value_as_int(
+-				      GTK_SPIN_BUTTON(mixer_card_spin))) < 0)
+-		gtk_spin_button_set_value(GTK_SPIN_BUTTON(mixer_card_spin),
+-					  0);
++	if (current_mixer_card == GPOINTER_TO_INT(card))
++		return;
++	current_mixer_card = GPOINTER_TO_INT(card);
++	get_mixer_devices(GTK_COMBO(mixer_devices_combo),
++			  current_mixer_card);
+ }
+ 
+ static void softvolume_toggle_cb(GtkToggleButton * widget, gpointer data)
+ {
+ 	gboolean softvolume = gtk_toggle_button_get_active(widget);
+-	gtk_widget_set_sensitive(GTK_WIDGET(mixer_card_spin), !softvolume);
+-	gtk_widget_set_sensitive(GTK_WIDGET(mixer_devices_combo), !softvolume);
++	gtk_widget_set_sensitive(GTK_WIDGET(data), !softvolume);
++	gtk_widget_set_sensitive(mixer_devices_combo, !softvolume);
+ }
+ 
+ void alsa_configure(void)
+ {
+ 	GtkWidget *vbox, *notebook;
+ 	GtkWidget *dev_vbox, *adevice_frame, *adevice_box;
+-	GtkWidget *mixer_frame, *mixer_box, *mixer_card_box;
++	GtkWidget *mixer_frame, *mixer_box, *mixer_table, *mixer_card_om;
++	GtkWidget *mixer_card_label, *mixer_device_label;
+ 	GtkWidget *buffer_frame, *buffer_vbox, *buffer_table;
+ 	GtkWidget *buffer_time_label, *period_time_label;
+-	GtkObject *buffer_time_adj, *period_time_adj, *mixer_card_adj;
++	GtkObject *buffer_time_adj, *period_time_adj;
+ 	GtkWidget *bbox, *ok, *cancel;
++
++	int mset;
+ 	
+ 	if (configure_win)
+ 	{
+@@ -229,7 +272,7 @@
+ 	gtk_window_set_title(GTK_WINDOW(configure_win),
+ 			     _("ALSA Driver configuration"));
+ 	gtk_window_set_policy(GTK_WINDOW(configure_win),
+-			      FALSE, FALSE, FALSE);
++			      FALSE, TRUE, FALSE);
+ 	gtk_container_border_width(GTK_CONTAINER(configure_win), 10);
+ 	
+ 	vbox = gtk_vbox_new(FALSE, 10);
+@@ -264,42 +307,46 @@
+ 	
+ 	softvolume_toggle_button = gtk_check_button_new_with_label(
+ 		_("Use software volume control"));
+-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(softvolume_toggle_button),
+-				     alsa_cfg.soft_volume);
+-
+-	gtk_signal_connect(GTK_OBJECT(softvolume_toggle_button), "toggled", 
+-			   softvolume_toggle_cb, NULL);
+ 
+ 	gtk_box_pack_start(GTK_BOX(mixer_box), softvolume_toggle_button,
+ 			   FALSE, FALSE, 0);
+ 
+-	mixer_card_box = gtk_hbox_new(FALSE, 5);
+-	gtk_box_pack_start(GTK_BOX(mixer_box), mixer_card_box,
+-			   FALSE, FALSE, 0);
+-	gtk_box_pack_start(GTK_BOX(mixer_card_box), 
+-			   gtk_label_new(_("Mixer card:")), FALSE, FALSE, 0);
+-
+-	mixer_card_adj = gtk_adjustment_new(alsa_cfg.mixer_card,
+-					    0, 50, 1, 100, 100);
+-	mixer_card_spin = gtk_spin_button_new(GTK_ADJUSTMENT(mixer_card_adj),
+-					      8, 0);
+-	
+-	gtk_signal_connect(GTK_OBJECT(mixer_card_spin), "changed", 
+-			   mixer_card_cb, NULL);
++	mixer_table = gtk_table_new(2, 2, FALSE);
++	gtk_table_set_row_spacings(GTK_TABLE(mixer_table), 5);
++	gtk_table_set_col_spacings(GTK_TABLE(mixer_table), 5);
++	gtk_box_pack_start(GTK_BOX(mixer_box), mixer_table, FALSE, FALSE, 0);
++
++	mixer_card_label = gtk_label_new(_("Mixer card:"));
++	gtk_label_set_justify(GTK_LABEL(mixer_card_label), GTK_JUSTIFY_LEFT);
++	gtk_misc_set_alignment(GTK_MISC(mixer_card_label), 0, 0.5);
++	gtk_table_attach(GTK_TABLE(mixer_table), mixer_card_label,
++			 0, 1, 0, 1, GTK_FILL, 0, 0, 0);
+ 
+-	gtk_box_pack_start(GTK_BOX(mixer_card_box), mixer_card_spin,
+-			   FALSE, FALSE, 0);
+-	
+-	gtk_box_pack_start(GTK_BOX(mixer_card_box),
+-			   gtk_label_new(_("Mixer device:")), FALSE, FALSE, 0);
+-	
++	mixer_card_om = gtk_option_menu_new();
++	mset = get_cards(GTK_OPTION_MENU(mixer_card_om),
++			 mixer_card_cb, alsa_cfg.mixer_card);
++
++	gtk_table_attach(GTK_TABLE(mixer_table), mixer_card_om,
++			 1, 2, 0, 1, GTK_FILL | GTK_EXPAND, GTK_FILL, 0, 0);
++
++	mixer_device_label = gtk_label_new(_("Mixer device:"));
++	gtk_label_set_justify(GTK_LABEL(mixer_device_label), GTK_JUSTIFY_LEFT);
++	gtk_misc_set_alignment(GTK_MISC(mixer_device_label), 0, 0.5);
++	gtk_table_attach(GTK_TABLE(mixer_table), mixer_device_label,
++			 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
+ 	mixer_devices_combo = gtk_combo_new();
++	gtk_option_menu_set_history(GTK_OPTION_MENU(mixer_card_om), mset);
+ 	get_mixer_devices(GTK_COMBO(mixer_devices_combo), alsa_cfg.mixer_card);
+ 	gtk_entry_set_text(GTK_ENTRY(GTK_COMBO(mixer_devices_combo)->entry),
+ 			   alsa_cfg.mixer_device);
+ 	
+-	gtk_box_pack_start(GTK_BOX(mixer_card_box), 
+-			   mixer_devices_combo, TRUE, TRUE, 0);
++	gtk_table_attach(GTK_TABLE(mixer_table), mixer_devices_combo,
++			 1, 2, 1, 2, GTK_FILL | GTK_EXPAND, 0, 0, 0);
++	
++	gtk_signal_connect(GTK_OBJECT(softvolume_toggle_button), "toggled", 
++			   softvolume_toggle_cb, mixer_card_om);
++	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(softvolume_toggle_button),
++				     alsa_cfg.soft_volume);
+ 
+ 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), dev_vbox,
+ 				 gtk_label_new(_("Device settings")));
+@@ -371,6 +418,4 @@
+ 	gtk_box_pack_start(GTK_BOX(bbox), cancel, TRUE, TRUE, 0);
+ 	
+ 	gtk_widget_show_all(configure_win);
+-
+-	softvolume_toggle_cb(GTK_TOGGLE_BUTTON(softvolume_toggle_button), NULL);
+ }

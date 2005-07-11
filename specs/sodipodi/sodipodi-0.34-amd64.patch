@@ -1,0 +1,12 @@
+--- sodipodi-0.34.orig/src/libnr/nr-svp.c	2004-01-29 00:03:14.000000000 +0100
++++ sodipodi-0.34/src/libnr/nr-svp.c	2004-12-21 23:05:47.000000000 +0100
+@@ -32,7 +32,8 @@
+ 	NRSVL *si;
+ 	NRFlat *fi;
+ 	NRVertex *vi;
+-	unsigned int nsegs, npoints, clip;
++	int nsegs;
++	unsigned int npoints, clip;
+ 
+ 	nsegs = 0;
+ 	npoints = 0;

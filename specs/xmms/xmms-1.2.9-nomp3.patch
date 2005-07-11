@@ -1,0 +1,120 @@
+--- xmms-1.2.8/xmms/input.c.nomp3	2003-07-14 09:24:28.000000000 -0400
++++ xmms-1.2.8/xmms/input.c	2003-09-08 15:11:43.000000000 -0400
+@@ -17,6 +17,7 @@
+  *  along with this program; if not, write to the Free Software
+  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  */
++#define _GNU_SOURCE 1
+ #include "xmms.h"
+ #include "fft.h"
+ #include "libxmms/titlestring.h"
+@@ -228,16 +229,22 @@
+ {
+ 	GList *node;
+ 	InputPlugin *ip;
++	InputPlugin *rhmp3 = NULL;
+ 
+ 	node = get_input_list();
+ 	while (node)
+ 	{
+ 		ip = (InputPlugin *) node->data;
+-		if (ip && !g_list_find(disabled_iplugins, ip) &&
++		if (ip && !strcmp(basename(ip->filename),"librh_mp3.so"))
++			rhmp3 = ip;
++		else if (ip && !g_list_find(disabled_iplugins, ip) &&
+ 		    ip->is_our_file(filename))
+ 			return TRUE;
+ 		node = node->next;
+ 	}
++	if (rhmp3 && !g_list_find(disabled_iplugins, rhmp3) &&
++	    rhmp3->is_our_file(filename))
++		return TRUE;
+ 	return FALSE;
+ }
+ 
+@@ -245,6 +252,7 @@
+ {
+ 	GList *node;
+ 	InputPlugin *ip;
++	InputPlugin *rhmp3 = NULL;
+ 
+ 	node = get_input_list();
+ 	if (get_current_output_plugin() == NULL)
+@@ -258,7 +266,9 @@
+ 	while (node)
+ 	{
+ 		ip = node->data;
+-		if (ip && !g_list_find(disabled_iplugins, ip) &&
++		if (ip && !strcmp(basename(ip->filename),"librh_mp3.so"))
++			rhmp3 = ip;
++		else if (ip && !g_list_find(disabled_iplugins, ip) &&
+ 		    ip->is_our_file(filename))
+ 		{
+ 			set_current_input_plugin(ip);
+@@ -270,6 +280,15 @@
+ 		}
+ 		node = node->next;
+ 	}
++	if (rhmp3 && !g_list_find(disabled_iplugins, rhmp3) &&
++	    rhmp3->is_our_file(filename))
++	{
++		set_current_input_plugin(rhmp3);
++		rhmp3->output = get_current_output_plugin();
++		rhmp3->play_file(filename);
++		ip_data->playing = TRUE;
++		return;
++	}
+ 	/* We set the playing flag even if no inputplugin
+ 	   recognizes the file. This way we are sure it will be skipped. */
+ 	ip_data->playing = TRUE;
+--- xmms-1.2.8/Input/Makefile.am.nomp3	2002-03-18 09:29:42.000000000 -0500
++++ xmms-1.2.8/Input/Makefile.am	2003-09-08 15:12:24.000000000 -0400
+@@ -1,3 +1,3 @@
+-ALL_PLUGINS = wav mpg123 mikmod cdaudio tonegen vorbis
++ALL_PLUGINS = wav mikmod cdaudio tonegen vorbis
+ SUBDIRS = @INPUT_PLUGINS@
+ 
+--- xmms-1.2.8/Input/Makefile.in.nomp3	2003-09-04 17:01:25.000000000 -0400
++++ xmms-1.2.8/Input/Makefile.in	2003-09-08 15:12:40.000000000 -0400
+@@ -169,7 +169,7 @@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+ xmmsdir = @xmmsdir@
+-ALL_PLUGINS = wav mpg123 mikmod cdaudio tonegen vorbis
++ALL_PLUGINS = wav mikmod cdaudio tonegen vorbis
+ SUBDIRS = @INPUT_PLUGINS@
+ subdir = Input
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+--- xmms-1.2.8/po/POTFILES.in.nomp3	2003-08-13 08:59:04.000000000 -0400
++++ xmms-1.2.8/po/POTFILES.in	2003-09-08 15:13:06.000000000 -0400
+@@ -19,11 +19,6 @@
+ Input/cdaudio/http.c
+ Input/mikmod/drv_xmms.c
+ Input/mikmod/plugin.c
+-Input/mpg123/common.c
+-Input/mpg123/configure.c
+-Input/mpg123/fileinfo.c
+-Input/mpg123/http.c
+-Input/mpg123/mpg123.c
+ Input/tonegen/tonegen.c
+ Input/vorbis/configure.c
+ Input/vorbis/fileinfo.c
+--- xmms-1.2.9/configure.cow	2004-01-28 21:14:46.418517318 -0500
++++ xmms-1.2.9/configure	2004-01-28 21:14:57.290123348 -0500
+@@ -19192,7 +19192,7 @@
+ 
+ 
+ 
+-                                                                                                                                                                                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile xmms.1 wmxmms.1 xmms.spec xmms-config xmms/Makefile xmms/defskin/Makefile Output/Makefile Output/OSS/Makefile Output/esd/Makefile Output/disk_writer/Makefile Output/solaris/Makefile Output/sun/Makefile Output/alsa/Makefile Input/Makefile Input/wav/Makefile Input/mpg123/Makefile Input/mikmod/Makefile Input/cdaudio/Makefile Input/tonegen/Makefile Input/vorbis/Makefile Effect/Makefile Effect/voice/Makefile Effect/echo_plugin/Makefile Effect/stereo_plugin/Makefile General/Makefile General/ir/Makefile General/joystick/Makefile General/song_change/Makefile Visualization/Makefile Visualization/blur_scope/Makefile Visualization/sanalyzer/Makefile Visualization/opengl_spectrum/Makefile wmxmms/Makefile po/Makefile.in intl/Makefile"
++                                                                                                                                                                                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile xmms.1 wmxmms.1 xmms.spec xmms-config xmms/Makefile xmms/defskin/Makefile Output/Makefile Output/OSS/Makefile Output/esd/Makefile Output/disk_writer/Makefile Output/solaris/Makefile Output/sun/Makefile Output/alsa/Makefile Input/Makefile Input/wav/Makefile Input/mikmod/Makefile Input/cdaudio/Makefile Input/tonegen/Makefile Input/vorbis/Makefile Effect/Makefile Effect/voice/Makefile Effect/echo_plugin/Makefile Effect/stereo_plugin/Makefile General/Makefile General/ir/Makefile General/joystick/Makefile General/song_change/Makefile Visualization/Makefile Visualization/blur_scope/Makefile Visualization/sanalyzer/Makefile Visualization/opengl_spectrum/Makefile wmxmms/Makefile po/Makefile.in intl/Makefile"
+           ac_config_commands="$ac_config_commands default"
+ cat >confcache <<\_ACEOF
+ # This file is a shell script that caches the results of configure
+@@ -19863,7 +19863,6 @@
+   "Output/alsa/Makefile" ) CONFIG_FILES="$CONFIG_FILES Output/alsa/Makefile" ;;
+   "Input/Makefile" ) CONFIG_FILES="$CONFIG_FILES Input/Makefile" ;;
+   "Input/wav/Makefile" ) CONFIG_FILES="$CONFIG_FILES Input/wav/Makefile" ;;
+-  "Input/mpg123/Makefile" ) CONFIG_FILES="$CONFIG_FILES Input/mpg123/Makefile" ;;
+   "Input/mikmod/Makefile" ) CONFIG_FILES="$CONFIG_FILES Input/mikmod/Makefile" ;;
+   "Input/cdaudio/Makefile" ) CONFIG_FILES="$CONFIG_FILES Input/cdaudio/Makefile" ;;
+   "Input/tonegen/Makefile" ) CONFIG_FILES="$CONFIG_FILES Input/tonegen/Makefile" ;;

@@ -1,0 +1,19 @@
+--- xmms-1.2.8/configure.alsalib	2003-09-04 17:00:38.000000000 -0400
++++ xmms-1.2.8/configure	2003-12-12 18:21:24.000000000 -0500
+@@ -11930,8 +11930,6 @@
+ #define $ac_tr_lib 1
+ EOF
+ 
+-  LIBS="-lasound $LIBS"
+-
+ else
+   echo "$ac_t""no" 1>&6
+ 
+@@ -11944,7 +11942,6 @@
+    have_alsa=yes
+    LIBS=`echo $LIBS | sed 's/-lasound//g'`
+    LIBS=`echo $LIBS | sed 's/  //'`
+-   LIBS="-lasound $LIBS"
+ fi
+ if test "x$alsa_found" = "xno" ; then
+    have_alsa=no

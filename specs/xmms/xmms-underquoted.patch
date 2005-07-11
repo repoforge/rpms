@@ -1,0 +1,20 @@
+--- xmms-1.2.10/xmms.m4	2004-07-15 13:08:21.824795751 +0100
++++ xmms-1.2.10/xmms.m4	2004-08-15 22:13:25.298410035 +0100
+@@ -14,7 +14,7 @@
+ dnl
+ 
+ dnl XMMS_TEST_VERSION(AVAILABLE-VERSION, NEEDED-VERSION [, ACTION-IF-OKAY [, ACTION-IF-NOT-OKAY]])
+-AC_DEFUN(XMMS_TEST_VERSION, [
++AC_DEFUN([XMMS_TEST_VERSION], [
+ 
+ # Determine which version number is greater. Prints 2 to stdout if	
+ # the second number is greater, 1 if the first number is greater,	
+@@ -59,7 +59,7 @@
+     fi
+ ])
+ 
+-AC_DEFUN(AM_PATH_XMMS,
++AC_DEFUN([AM_PATH_XMMS],
+ [
+ AC_ARG_WITH(xmms-prefix,[  --with-xmms-prefix=PFX  Prefix where XMMS is installed (optional)],
+ 	xmms_config_prefix="$withval", xmms_config_prefix="")

@@ -1,0 +1,10 @@
+--- zoo-2.10.orig/ar.h	2005-04-05 10:53:38.000000000 +0200
++++ zoo-2.10/ar.h	2005-04-05 10:52:12.000000000 +0200
+@@ -117,7 +117,6 @@
+   void move_left();
+ #else
+ # define MOVE_LEFT memmove
+- extern VOIDPTR memmove();
+ #endif
+ 
+ #if 0

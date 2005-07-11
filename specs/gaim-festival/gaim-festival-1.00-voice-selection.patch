@@ -1,0 +1,37 @@
+--- festival-gaim-1.00.orig/festival.c	2004-09-20 23:38:41.000000000 -0500
++++ festival-gaim-1.00/festival.c	2005-01-19 03:31:32.643171168 -0500
+@@ -463,7 +463,7 @@
+ }
+ 
+ static void
+-_event_speak(char *buddy, char *state)
++_event_speak(const char *buddy, const char *state)
+ {
+ 
+   time_t now;
+@@ -735,8 +735,10 @@
+   else {
+     count_lang=0;
+     while( ( next_lang = readdir(dir) ) !=0  ) {
+-      if(count_lang++ < 2)
++      /* hide hidden files */
++      if( *next_lang->d_name == '.' )
+ 	continue;
++
+       frame= gtk_frame_new(next_lang->d_name);
+       gtk_box_pack_start(GTK_BOX(config_vbox),frame,FALSE,TRUE,3);
+       voices_vbox= gtk_vbox_new(FALSE,5);
+@@ -759,9 +761,10 @@
+       count_voices=0;
+       while( ( next_voice = readdir(lang_dir) )!=0  ) {
+ 	GString *voice_name;
+-	if(count_voices++ < 2)
+-	  continue;
+-	
++        /* hide hidden files */
++        if( *next_voice->d_name == '.' )
++          continue;
++
+ 	radio_button= gtk_radio_button_new_with_label(radio_group,next_voice->d_name);
+ 				
+ 	if( gaim_prefs_get_string("/plugins/gtk/festival/speaker/voice") && 

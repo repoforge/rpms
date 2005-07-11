@@ -1,0 +1,11 @@
+--- xmms-1.2.8/xmms/main.c.foo	2003-09-08 15:07:13.000000000 -0400
++++ xmms-1.2.8/xmms/main.c	2003-09-08 15:07:55.000000000 -0400
+@@ -495,6 +495,8 @@
+ 		cfg.mainwin_font = g_strdup("-adobe-helvetica-medium-r-*-*-8-*");
+ 	if (cfg.gentitle_format == NULL)
+ 		cfg.gentitle_format = g_strdup("%p - %t");
++	if (cfg.skin == NULL && !cfgfile && !access("/usr/share/xmms/Skins/Bluecurve-xmms.zip",R_OK))
++		cfg.skin = g_strdup("/usr/share/xmms/Skins/Bluecurve-xmms.zip");
+ 	if (cfg.outputplugin == NULL)
+ 	{
+ #ifdef HAVE_OSS

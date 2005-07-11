@@ -1,0 +1,27 @@
+--- browser/Makefile.am.orig	2005-01-03 00:17:26.775655896 +0100
++++ browser/Makefile.am	2005-01-03 00:18:22.531179768 +0100
+@@ -150,7 +150,7 @@
+ 	scp tables.sql server.cs server.asmx monodoc.dll root@www.go-mono.com:
+ 
+ install-data-local:
+-	$(GACUTIL) /i monodoc.dll /f /package gtk-sharp /gacdir $(GACDIR) /root $(GACROOT)
++	$(GACUTIL) /i monodoc.dll /f /package gtk-sharp /root $(GACROOT)
+ 
+ uninstall-local:
+-	$(GACUTIL) /u monodoc /package gtk-sharp /gacdir $(GACDIR)
++	$(GACUTIL) /u monodoc /package gtk-sharp /root $(GACROOT)
+--- browser/Makefile.in.orig	2005-01-03 00:19:14.497279720 +0100
++++ browser/Makefile.in	2005-01-03 00:19:44.129774896 +0100
+@@ -481,10 +481,10 @@
+ 	scp tables.sql server.cs server.asmx monodoc.dll root@www.go-mono.com:
+ 
+ install-data-local:
+-	$(GACUTIL) /i monodoc.dll /f /package gtk-sharp /gacdir $(GACDIR) /root $(GACROOT)
++	$(GACUTIL) /i monodoc.dll /f /package gtk-sharp /root $(GACROOT)
+ 
+ uninstall-local:
+-	$(GACUTIL) /u monodoc /package gtk-sharp /gacdir $(GACDIR)
++	$(GACUTIL) /u monodoc /package gtk-sharp /root $(GACROOT)
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

@@ -1,0 +1,11 @@
+--- arts_output-0.6.0/audio.c.foo	2003-09-08 15:54:58.000000000 -0400
++++ arts_output-0.6.0/audio.c	2003-09-08 15:55:04.000000000 -0400
+@@ -34,7 +34,7 @@
+ 
+ 	memset(&artsxmms_cfg, 0, sizeof (artsxmms_cfg));
+ 
+-	artsxmms_cfg.buffer_size = 400;
++	artsxmms_cfg.buffer_size = 1000;
+ 	
+ 	cfgfile = xmms_cfg_open_default_file();
+ 	xmms_cfg_read_int(cfgfile, "arts", "buffer_size",

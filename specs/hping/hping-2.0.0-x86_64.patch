@@ -1,0 +1,10 @@
+--- bytesex.h.old	2005-02-13 12:40:54.080545112 +0100
++++ bytesex.h	2005-02-13 12:41:55.517205320 +0100
+@@ -8,6 +8,7 @@
+ #define ARS_BYTESEX_H
+ 
+ #if 	defined(__i386__) \
++	|| defined(__x86_64__) \
+ 	|| defined(__alpha__) \
+ 	|| (defined(__mips__) && (defined(MIPSEL) || defined (__MIPSEL__)))
+ #define BYTE_ORDER_LITTLE_ENDIAN

@@ -1,0 +1,25 @@
+--- Makefile.PL.orig	2005-03-05 04:55:14.837134592 +0100
++++ Makefile.PL	2005-03-05 04:55:31.163652584 +0100
+@@ -304,14 +304,14 @@
+    package MY;
+    my $script = shift->SUPER::install(@_);
+    unless ( $::skipsaxinstall ) {
+-     $script =~ s/install :: (.*)$/install :: $1 install_sax_driver/m;
+-     $script .= <<"INSTALL";
+-
+-install_sax_driver :
+-\t\@\$(PERL) -MXML::SAX -e "XML::SAX->add_parser(q(XML::LibXML::SAX::Parser))->save_parsers()"
+-\t\@\$(PERL) -MXML::SAX -e "XML::SAX->add_parser(q(XML::LibXML::SAX))->save_parsers()"
+-
+-INSTALL
++#     $script =~ s/install :: (.*)$/install :: $1 install_sax_driver/m;
++#     $script .= <<"INSTALL";
++#
++#install_sax_driver :
++#\t\@\$(PERL) -MXML::SAX -e "XML::SAX->add_parser(q(XML::LibXML::SAX::Parser))->save_parsers()"
++#\t\@\$(PERL) -MXML::SAX -e "XML::SAX->add_parser(q(XML::LibXML::SAX))->save_parsers()"
++#
++#INSTALL
+    } else {
+      warn "Note: 'make install' will skip XML::LibXML::SAX registration with XML::SAX!\n";
+    }

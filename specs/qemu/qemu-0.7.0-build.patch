@@ -1,0 +1,39 @@
+--- qemu-0.7.0/Makefile.orig	2005-04-27 21:52:05.000000000 +0100
++++ qemu-0.7.0/Makefile	2005-04-30 11:01:41.000000000 +0100
+@@ -1,6 +1,6 @@
+ -include config-host.mak
+ 
+-CFLAGS=-Wall -O2 -g -fno-strict-aliasing 
++CFLAGS=$(RPM_OPT_FLAGS) -Wall -fno-strict-aliasing 
+ ifdef CONFIG_DARWIN
+ CFLAGS+= -mdynamic-no-pic
+ endif
+--- qemu-0.7.0/Makefile.target.orig	2005-04-27 21:52:05.000000000 +0100
++++ qemu-0.7.0/Makefile.target	2005-04-30 11:03:59.000000000 +0100
+@@ -14,7 +14,7 @@
+ VPATH+=:$(SRC_PATH)/linux-user
+ DEFINES+=-I$(SRC_PATH)/linux-user -I$(SRC_PATH)/linux-user/$(TARGET_ARCH)
+ endif
+-CFLAGS=-Wall -O2 -g -fno-strict-aliasing
++CFLAGS=$(RPM_OPT_FLAGS) -Wall -fno-strict-aliasing
+ #CFLAGS+=-Werror
+ LDFLAGS=-g
+ LIBS=
+@@ -177,7 +177,7 @@
+ ifeq ($(ARCH),alpha)
+ # -msmall-data is not used because we want two-instruction relocations
+ # for the constant constructions
+-OP_CFLAGS=-Wall -O2 -g
++OP_CFLAGS=$(RPM_OPT_FLAGS) -Wall
+ # Ensure there's only a single GP
+ CFLAGS += -msmall-data
+ LDFLAGS+=-Wl,-T,$(SRC_PATH)/alpha.ld
+@@ -463,7 +463,7 @@
+ 
+ install: all 
+ ifneq ($(PROGS),)
+-	install -m 755 -s $(PROGS) "$(bindir)"
++	install -m 755 $(PROGS) "$(bindir)"
+ endif
+ 
+ ifneq ($(wildcard .depend),)
