@@ -11,7 +11,7 @@
 
 Summary: Small and fast GUI web browser
 Name: dillo
-Version: 0.8.4
+Version: 0.8.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -89,6 +89,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dillo.desktop}
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.8.5-1
+- Updated to release 0.8.5.
+
 * Wed Jan 12 2005 Dag Wieers <dag@wieers.com> - 0.8.4-1
 - Updated to release 0.8.4.
 

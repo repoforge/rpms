@@ -13,7 +13,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.200
+Version: 1.210
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -146,6 +146,9 @@ fi
 %{_libexecdir}/webmin
 
 %changelog
+* Mon Jun 06 2005 Dag Wieers <dag@wieers.com> - 1.210-1
+- Updated to release 1.210.
+
 * Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 1.200-1
 - Updated to release 1.200.
 - Added perl(Authen::PAM) dependency. (Treyavn)

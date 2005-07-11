@@ -6,7 +6,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.8.2
+Version: 0.8.3
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -78,9 +78,12 @@ EOF
 %{_localstatedir}/lib/trac/
 
 %changelog
-* Wed Jun 01 2005 Matt Whiteley <mattw@cat.pdx.edu> - 0.8.2-1                                     
-- Updated to release 0.8.2.                                                                       
-- Fixed env in apache conf.d file     
+* Mon Jul 11 2005 Matt Whiteley <mattw@cat.pdx.edu> - 0.8.3-1
+- Updated to release 0.8.3.
+
+* Wed Jun 01 2005 Matt Whiteley <mattw@cat.pdx.edu> - 0.8.2-1
+- Updated to release 0.8.2.
+- Fixed env in apache conf.d file.
 
 * Fri Mar 04 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Updated to release 0.8.1.

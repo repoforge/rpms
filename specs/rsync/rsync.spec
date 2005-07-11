@@ -6,7 +6,7 @@
 
 Summary: Program for synchronizing files over a network
 Name: rsync
-Version: 2.6.4
+Version: 2.6.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -64,6 +64,9 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Mon Jun 06 2005 Dag Wieers <dag@wieers.com> - 2.6.5-1
+- Updated to release 2.6.5.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 2.6.4-1
 - Updated to release 2.6.4.
 

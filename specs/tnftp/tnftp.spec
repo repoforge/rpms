@@ -5,7 +5,7 @@
 
 Summary: Enhanced NetBSD ftp client
 Name: tnftp
-Version: 0.0.20050103
+Version: 0.0.20050625
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -43,6 +43,9 @@ in February 2003.
 %{_bindir}/tnftp
 
 %changelog 
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.0.20050625-1
+- Updated to release 20050625.
+
 * Mon Jan 03 2005 Dag Wieers <dag@wieers.com> - 0.0.20050103-1
 - Updated to release 20050103.
 

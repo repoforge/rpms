@@ -4,13 +4,13 @@
 
 Summary: TCP load-balancing proxy server
 Name: balance
-Version: 3.15
+Version: 3.24
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://balance.sourceforge.net/
 
-Source: http://dl.sf.net/balance/balance-%{version}.tar.gz
+Source: http://www.inlab.de/balance-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -45,6 +45,9 @@ at runtime using a simple command line syntax.
 %{_localstatedir}/run/balance/
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 3.24-1
+- Updated to release 3.24.
+
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 3.15-1
 - Updated to release 3.15.
 

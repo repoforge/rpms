@@ -4,7 +4,7 @@
 
 Summary: Graphical whois client
 Name: greenwich
-Version: 0.7.0
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -54,6 +54,9 @@ It can also do lookups against IP addresses.
 %{_datadir}/pixmaps/*.png
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Thu Apr 29 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 

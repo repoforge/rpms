@@ -4,7 +4,7 @@
 
 Summary: Dock any application into the system tray
 Name: alltray
-Version: 0.51
+Version: 0.60
 Release: 1
 License: GPL
 Group: System Environment/Desktops
@@ -53,6 +53,9 @@ done
 %{_libdir}/liballtraynomap.so.*
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.60-1
+- Updated to release 0.60.
+
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.51-1
 - Updated to release 0.51.
 

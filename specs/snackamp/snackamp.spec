@@ -13,7 +13,7 @@
 
 Summary: Versatile music player
 Name: snackamp
-Version: 3.0.2
+Version: 3.1.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -94,6 +94,9 @@ find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-snackamp.desktop}
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 3.1.2-1
+- Updated to release 3.1.2.
+
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 3.0.2-1
 - Updated to release 3.0.2.
 

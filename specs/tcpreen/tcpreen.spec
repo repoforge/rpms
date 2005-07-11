@@ -5,7 +5,7 @@
 
 Summary: TCP/IP re-engineering and monitoring program
 Name: tcpreen
-Version: 1.4.1
+Version: 1.4.3
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,6 +44,9 @@ TCPreen supports both TCP/IPv4 and TCP/IPv6 for data transport.
 %{_bindir}/tcpreen
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.4.3-1
+- Updated to release 1.4.3.
+
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 1.4.1-1
 - Updated to release 1.4.1.
 

@@ -27,6 +27,7 @@ BuildRequires: readline-devel, bison
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
 %{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}
+%{?fc4:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?el4:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc3:BuildRequires: beecrypt-devel, elfutils-devel}
 %{?fc2:BuildRequires: beecrypt-devel, elfutils-devel}
@@ -72,6 +73,7 @@ you will need to install %{name}-devel.
 # URL: http://dag.wieers.com/apt/
 
 ### Dag RPM Repository for Fedora Core
+%{!?fc4:#}rpm http://apt.sw.be fedora/4/en/%{_arch} dag
 %{!?fc3:#}rpm http://apt.sw.be fedora/3/en/%{_arch} dag
 %{!?fc2:#}rpm http://apt.sw.be fedora/2/en/%{_arch} dag
 %{!?fc1:#}rpm http://apt.sw.be fedora/1/en/i386 dag
@@ -93,6 +95,7 @@ EOF
 # URL: http://ayo.freshrpms.net/
 
 ### Fedora Core
+%{!?fc4:#}rpm http://ayo.freshrpms.net fedora/linux/4/%{_arch} core updates
 %{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} core updates
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/%{_arch} core updates
@@ -109,6 +112,7 @@ EOF
 # URL: http://ayo.freshrpms.net/
 
 ### Fedora Core
+%{!?fc4:#}rpm http://ayo.freshrpms.net fedora/linux/4/%{_arch} freshrpms
 %{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} freshrpms
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} freshrpms
 %{!?fc1:#}rpm http://ayo.freshrpms.net fedora/linux/1/i386 freshrpms
@@ -125,6 +129,7 @@ EOF
 # URL: http://newrpms.sunsite.dk/
 
 ### Fedora Core
+%{!?fc4:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc4 newrpms
 %{!?fc3:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc3 newrpms
 %{!?fc2:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
 %{!?fc1:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc1 newrpms
@@ -139,6 +144,7 @@ EOF
 # URL: http://dries.studentenweb.org/apt/
 
 ### Fedora Core
+%{!?fc4:#}rpm http://apt.sw.be dries/fedora/fc4/i386 dries
 %{!?fc3:#}rpm http://apt.sw.be dries/fedora/fc3/i386 dries
 %{!?fc2:#}rpm http://apt.sw.be dries/fedora/fc2/i386 dries
 %{!?fc1:#}rpm http://apt.sw.be dries/fedora/fc1/i386 dries
@@ -153,6 +159,7 @@ EOF
 # URL: http://atrpms.physik.fu-berlin.de/
 
 ### Fedora Core
+#rpm http://apt.physik.fu-berlin.de fedora/4/en/i386 at-testing
 #rpm http://apt.physik.fu-berlin.de fedora/3/en/i386 at-testing
 #rpm http://apt.physik.fu-berlin.de fedora/2/en/i386 at-testing
 #rpm http://apt.physik.fu-berlin.de fedora/1/en/i386 at-testing
