@@ -139,6 +139,11 @@ pushd ffmpeg-%{ffmpeg_date}
     %{__make} %{?_smp_mflags}
 popd
 
+# Altivec compiler flags aren't set properly (0.8.2)
+%ifarch ppc ppc64
+export CFLAGS="%{optflags} -maltivec -mabi=altivec"
+%endif
+
 %configure \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --program-prefix="%{?_program_prefix}" \
@@ -256,6 +261,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 %changelog
 * Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-2
 - Include vlc-0.8.2-asm.patch to fix build on x86_64, thanks to Sam Lau.
+- Force altivec gcc flags on ppc as configure doesn't set them properly.
 
 * Mon Jun 27 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-1
 - Update to 0.8.2, ffmpeg 20050513.
