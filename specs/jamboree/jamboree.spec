@@ -17,6 +17,7 @@ BuildRequires: gtk2-devel >= 2.2.0, libgnomeui-devel >= 2.0.0, libglade2-devel >
 BuildRequires: gstreamer-devel >= 0.7, libogg-devel >= 1.0, libvorbis-devel >= 1.0
 BuildRequires: libid3tag-devel >= 0.12, gdbm-devel >= 1.8.0, gcc-c++
 BuildRequires: intltool, perl-XML-Parser
+%{?fc4:BuildRequires: gstreamer-plugins-devel, gstreamer-devel}
 
 %description
 Jamboree is a music player.

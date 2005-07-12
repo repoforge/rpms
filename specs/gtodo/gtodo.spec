@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0, libxml2-devel >= 2.5, GConf2-devel
 BuildRequires: perl(XML::Parser), intltool, gtk2-devel, gettext
-
+BuildRequires: gnome-vfs2-devel
 
 %description
 gToDo is as the name suggests a todo list application.
