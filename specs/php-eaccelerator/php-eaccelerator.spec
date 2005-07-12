@@ -9,7 +9,7 @@
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-eaccelerator
 Version: %{php_version}_%{module_version}
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Languages
 URL: http://eaccelerator.sourceforge.net/
@@ -38,6 +38,10 @@ that the overhead of compiling is almost completely eliminated.
 # Workaround for broken phpize on 64 bits
 %{__cat} %{_bindir}/phpize | sed 's|/lib/|/%{_lib}/|g' > phpize && sh phpize
 %configure
+# Set fcntl based semaphores to avoid ipc based locking issues
+%{__perl} -pi -e 's|.*(MM_SEM_[A-Z]+).*|/* #undef $1 */|g' config.h
+%{__perl} -pi -e 's|.*(MM_SEM_FCNTL).*|#define $1 1|g' config.h
+# Compile!
 %{__make} %{?_smp_mflags}
 
 
@@ -87,6 +91,9 @@ EOF
 
 
 %changelog
+* Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-2
+- Force SEM to FCNTL as the IPC version is buggy on SMP systems at least.
+
 * Fri Jul  1 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-1
 - Include buffer overflow patch from zoeloelip.
 
