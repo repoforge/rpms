@@ -1,0 +1,11 @@
+diff -Naupr vlc-0.8.2.orig/modules/gui/skins2/src/theme_loader.cpp vlc-0.8.2/modules/gui/skins2/src/theme_loader.cpp
+--- vlc-0.8.2.orig/modules/gui/skins2/src/theme_loader.cpp	2005-06-25 15:43:08.000000000 +0200
++++ vlc-0.8.2/modules/gui/skins2/src/theme_loader.cpp	2005-06-28 16:00:44.000000000 +0200
+@@ -556,6 +556,6 @@ int gzopen_frontend( char *pathname, int
+         return -1;
+     }
+ 
+-    return (int)gzf;
++    return 1;
+ }
+ #endif

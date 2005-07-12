@@ -39,19 +39,20 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-%define ffmpeg_date    20050513
+%define ffmpeg_date    20050624
 %define real_name      vlc
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 Source0: http://download.videolan.org/pub/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://download.videolan.org/pub/vlc/0.8.1/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
-Patch0: ffmpeg-20050513-patch.diff
+Patch0: vlc-0.8.2-64bit.patch
+Patch1: vlc-0.8.2-asm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, libxml2-devel
 BuildRequires: libgcrypt-devel, gnutls-devel
@@ -122,7 +123,8 @@ to link statically to it.
 
 %prep
 %setup -n %{real_name}-%{version} -a 1
-%patch0 -p0 -b .ffmpeg
+%patch0 -p1 -b .64bit
+%patch1 -p1 -b .asm
 
 
 %build
@@ -252,6 +254,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-2
+- Include vlc-0.8.2-asm.patch to fix build on x86_64, thanks to Sam Lau.
+
 * Mon Jun 27 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-1
 - Update to 0.8.2, ffmpeg 20050513.
 - Remove explicit stripping of the plugin libraries (14MB debuginfo now!).
