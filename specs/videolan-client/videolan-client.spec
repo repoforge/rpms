@@ -45,7 +45,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -125,6 +125,8 @@ to link statically to it.
 %setup -n %{real_name}-%{version} -a 1
 %patch0 -p1 -b .64bit
 %patch1 -p1 -b .asm
+# Fix PLUGIN_PATH path for lib64
+%{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
 
 %build
@@ -259,9 +261,12 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-3
+- Force altivec gcc flags on ppc as configure doesn't set them properly.
+- Fix PLUGIN_PATH path for lib64 (they got searched for in lib, not lib64).
+
 * Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-2
 - Include vlc-0.8.2-asm.patch to fix build on x86_64, thanks to Sam Lau.
-- Force altivec gcc flags on ppc as configure doesn't set them properly.
 
 * Mon Jun 27 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-1
 - Update to 0.8.2, ffmpeg 20050513.
