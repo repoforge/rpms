@@ -3,15 +3,15 @@
 
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
-Version: 0.7.22
-Release: 2
+Version: 0.7.23
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
-Source: http://www.vcdimager.org/pub/vcdimager/vcdimager-0.7/%{name}-%{version}.tar.gz
+Source: ftp://ftp.gnu.org/pub/gnu/vcdimager/vcdimager-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt, gcc-c++
-BuildRequires: libcdio-devel >= 0.71
+BuildRequires: libcdio-devel >= 0.72
 
 %description 
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
@@ -91,6 +91,11 @@ fi
 
 
 %changelog
+* Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 0.7.23-1
+- Update to 0.7.23.
+- Update libcdio-devel requirement to >= 0.72.
+- Change source location from vcdimager.org to gnu.org for this release...
+
 * Tue Jun 28 2005 Matthias Saou <http://freshrpms.net/> 0.7.22-2
 - Prevent scriplets from failing if the info calls return an error.
 
