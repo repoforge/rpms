@@ -45,7 +45,8 @@ overloading. A number of toolboxes are available with the system.
 	--with-gnu \
 	--with-xaw3d \
 	--with-gtk \
-	--with-x
+	--with-x \
+	--without-java
 # ../include/pvmtev.h nodig in pvm3/src/global.h
 (echo '#include "../include/pvmtev.h"'; cat pvm3/src/global.h) > pvm3/src/global.h.temp
 %{__mv} pvm3/src/global.h.temp pvm3/src/global.h

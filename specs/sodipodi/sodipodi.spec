@@ -17,6 +17,7 @@ Patch0: sodipodi-0.34-amd64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml-devel, libpng-devel, libglade-devel, gcc-c++
+%{?fc4:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
 %{?fc3:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
 %{?fc2:BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel}
 %{?rh9:BuildRequires: libgnomeprint22-devel, libgnomeprintui-devel}

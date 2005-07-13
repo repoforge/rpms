@@ -24,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.0.4, gtk2-devel >= 2.0.5, libxml2-devel >= 2.4.22
 BuildRequires: gnet2-devel, gtkspell >= 2.0.2, pcre-devel >= 4.0, gettext
+BuildRequires: gtkspell-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
