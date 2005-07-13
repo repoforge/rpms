@@ -4,7 +4,7 @@
 
 Summary: Collect a system's hardware and software configuration
 Name: dconf
-Version: 0.4.1
+Version: 0.4.2
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -41,19 +41,24 @@ files to send out or compare with other systems.
 %makeinstall
 
 ### Install configfile for this distribution
-%{__install} -Dp -m0644 dconf-redhat.conf %{buildroot}%{_sysconfdir}/dconf.conf
+%{__install} -Dp -m0644 config/dconf-redhat.conf %{buildroot}%{_sysconfdir}/dconf.conf
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO *.conf
+%doc AUTHORS ChangeLog COPYING README TODO config/ scripts/
+%doc %{_mandir}/man1/dconf.1*
 %config %{_sysconfdir}/dconf.conf
 %config(noreplace) %{_sysconfdir}/dconf-custom.conf
 %{_bindir}/dconf
+%{_localstatedir}/log/dconf/
 
 %changelog
+* Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
+- Updated to release 0.4.2.
+
 * Wed Nov 24 2004 Dag Wieers <dag@wieers.com> - 0.4.1-1
 - Updated to release 0.4.1.
 
