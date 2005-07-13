@@ -22,7 +22,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.2.0
+Version: 1.2.1
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
@@ -192,6 +192,8 @@ export LANG=C LC_ALL=C
 %{__make} check CLEANUP=yes
 %endif
 
+find tools/ -type f -exec %{__chmod} -x {} \;
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -203,7 +205,7 @@ export LANG=C LC_ALL=C
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
-%doc tools subversion/LICENSE mod_authz_svn-INSTALL
+%doc tools/ subversion/LICENSE mod_authz_svn-INSTALL
 %doc doc/book/svn-book.html
 %doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
 %{_bindir}/*
@@ -240,6 +242,12 @@ export LANG=C LC_ALL=C
 %endif
 
 %changelog
+* Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.2.1-0.1
+- Updated to release 1.2.1
+
+* Mon Jun 06 2005 Dag Wieers <dag@wieers.com> - 1.2.0-0.2
+- Moved perl examples to subversion-perl.
+
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 1.2.0-0.1
 - Updated to release 1.2.0.
 

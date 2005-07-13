@@ -5,13 +5,13 @@
 ### FIXME: If clamd is installed, add user clamav to group amavis
 ### FIXME: Look into amavis own stop/reload functionality
 
-# ExclusiveDist: fc1 fc2 fc3 el4
+##ExclusiveDist: fc1 fc2 fc3 el4
 
 %define logmsg logger -t %{name}/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.3.1
+Version: 2.3.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -24,13 +24,16 @@ BuildRequires: perl >= 5.8.1, sendmail-devel >= 8.12, sendmail
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
 Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
 Requires: cabextract, ripole, perl(BerkeleyDB)
-Requires: perl(Archive::Tar), perl(Archive::Zip), perl(Compress::Zlib)
+Requires: perl(Archive::Tar), perl(Archive::Zip) >= 1.14, perl(Compress::Zlib)
 Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
 Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
-Requires: perl(Time::HiRes), perl(Digest::MD5) >= 2.22, perl(Digest::SHA1)
+Requires: perl(Time::HiRes), perl(Digest::MD5), perl(Digest::SHA1)
 Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
 Requires: perl-MailTools, perl(Net::Server) >= 0.86, perl-HTML-Parser >= 3.24
 Requires: perl(DB_File)
+
+### No longer required with new amavisd-new
+#Requires: perl(Digest::MD5) >= 2.22, perl-HTML-Parser >= 3.24
 Obsoletes: amavisd
 
 %description
@@ -311,6 +314,9 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 2.3.2-1
+- Updated to release 2.3.2.
+
 * Tue May 10 2005 Dag Wieers <dag@wieers.com> - 2.3.1-1
 - Updated to release 2.3.1.
 

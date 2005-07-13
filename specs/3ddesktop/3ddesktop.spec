@@ -28,7 +28,7 @@ Source: http://dl.sf.net/desk3d/3ddesktop-%{version}.tar.gz
 Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, zlib-devel
+BuildRequires: autoconf >= 2.58, gcc-c++, zlib-devel
 BuildRequires: imlib2-devel, qt-devel, kdelibs-devel
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGL, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}

@@ -17,7 +17,7 @@
 Summary: A free and portable TrueType font rendering engine.
 Name: freetype
 Version: 2.1.9
-Release: 1.0
+Release: 1.2
 License: BSD/GPL dual license
 Group: System Environment/Libraries
 URL: http://www.freetype.org
@@ -269,7 +269,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/
 
 %changelog
-* Sat Jun 04 2005 Avi Alkalay <avibrazil@gmail.com> - 2.1.9-1.0
+* Sat Jun 04 2005 Avi Alkalay <avibrazil@gmail.com> - 2.1.9-1.2
 - Undo bytecode interpreter.
 
 * Tue May 31 2005 Avi Alkalay <avibrazil@gmail.com> - 2.1.9-1

@@ -7,14 +7,13 @@
 
 Summary: Browser plugin for mplayer
 Name: mplayerplug-in
-Version: 2.80
-Release: 13
+Version: 2.85
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/
 
 Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
-Patch: mplayerplug-in-2.80-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, mozilla-devel, glib2-devel, gtk2-devel >= 2.2.1, mozilla-devel
@@ -31,7 +30,6 @@ in your browser.
 
 %prep
 %setup -n %{name}
-%patch0
 
 %build
 %configure
@@ -55,6 +53,9 @@ in your browser.
 %{_libdir}/mozilla/components/mplayerplug-in.xpt
 
 %changelog
+* Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 2.85-1
+- Updated to release 2.85.
+
 * Tue Feb 15 2005 Dag Wieers <dag@wieers.com> - 2.80-13
 - Added makefile patch, that adds locale.
 - Increased the accidental release inflation :)

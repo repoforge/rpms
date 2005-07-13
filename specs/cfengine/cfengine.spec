@@ -10,7 +10,7 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 2.1.14
+Version: 2.1.15
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -326,6 +326,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 2.1.15-1
+- Updated to release 2.1.15.
+
 * Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 2.1.14-1
 - Added sysconfig files for sysv scripts. (Nathan R. Hruby)
 - Updated to release 2.1.14.

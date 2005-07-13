@@ -4,7 +4,7 @@
 
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
-Version: 0.9.0
+Version: 0.9.1
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -73,6 +73,9 @@ scrollkeeper-update -q || :
 %exclude %{_localstatedir}/scrollkeeper/ 
 
 %changelog
+* Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Sun Mar 20 2005 Dag Wieers <dag@wieers.com> - 0.9.0-1
 - Updated to release 0.9.0.
 

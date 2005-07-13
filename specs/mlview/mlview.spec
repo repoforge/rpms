@@ -6,17 +6,17 @@
 
 Summary: Graphical XML Editor
 Name: mlview
-Version: 0.7.0
+Version: 0.8
 Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://www.mlview.org/
 
 #Source: http://savannah.gnu.org/download/mlview/tarballs/mlview-%{version}.tar.bz2
-Source: http://ftp.gnome.org/pub/GNOME/sources/mlview/0.7/mlview-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/mlview/0.8/mlview-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libxml2-devel >= 2.4.30, libgnomeui-devel >= 2.0.3, libglade-devel >= 0.17
+BuildRequires: libxml2-devel >= 2.4.30, libgnomeui-devel >= 2.0.3, libglade2-devel >= 2.4
 BuildRequires: eel2-devel, gettext, desktop-file-utils, perl(XML::Parser)
 BuildRequires: gcc-c++, intltool
 
@@ -80,19 +80,31 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %defattr(-, root, root, 0755)
 %doc AUTHORS BRANCHES ChangeLog COPYING COPYRIGHT NEWS README
 %config %{_sysconfdir}/gconf/schemas/mlview.schemas
-%{_bindir}/mlv
+%{_bindir}/mlview
+%{_bindir}/mlviewctl
 %{_libdir}/libmlview.so.*
+%{_libdir}/libmlviewdbusclient.so.*
 %{_datadir}/applications/%{desktop_vendor}-mlview.desktop
 %{_datadir}/mlview/
 %{_datadir}/pixmaps/mlview.png
+%{_datadir}/application-registry/mlview.applications
+%{_datadir}/mime-info/mlview.keys
+%{_datadir}/pixmaps/mlview-app-icon.png
+%{_datadir}/pixmaps/mlview-app-icon.xpm
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/libmlview.a
 %{_libdir}/libmlview.so
+%{_libdir}/libmlviewdbusclient.a
+%{_libdir}/libmlviewdbusclient.so
 %exclude %{_libdir}/libmlview.la
+%exclude %{_libdir}/libmlviewdbusclient.la
 
 %changelog
+* Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 0.8-1
+- Updated to release 0.8.
+
 * Sun Oct 03 2004 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 

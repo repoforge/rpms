@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Autouse-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-ExtUtils-AutoInstall
+BuildRequires: perl, perl-ExtUtils-AutoInstall, perl-Test-More >= 0.47, perl-List-util >= 1.11
 
 %description
 Class::Autouse allows you to specify a class the will only load when a

@@ -8,7 +8,7 @@
 
 Summary: Archive-Zip module for perl
 Name: perl-Archive-Zip
-Version: 1.09
+Version: 1.16
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -59,10 +59,16 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc README TODO docs/* examples/
 %doc %{_mandir}/man?/*
-%{_bindir}/*
-%{perl_vendorlib}/*
+%{_bindir}/crc32
+%dir %{perl_vendorlib}/Archive/
+%{perl_vendorlib}/Archive/Zip.pm
+%{perl_vendorlib}/Archive/Zip.pod
+%{perl_vendorlib}/Archive/Zip/
 
 %changelog
+* Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 1.16-1
+- Updated to release 1.16.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.09-0
 - Updated to release 1.09.
 

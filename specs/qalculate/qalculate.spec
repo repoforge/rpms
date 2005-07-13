@@ -4,13 +4,13 @@
 
 Summary: Versatile desktop calculator
 Name: qalculate
-Version: 0.7.2
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/Engineering
 URL: http://qalculate.sourceforge.net/
 
-Source: http://dl.sf.net/qalculate/qalculate-%{version}.tar.gz
+Source: http://dl.sf.net/qalculate/qalculate-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, libglade2-devel, pkgconfig, cln-devel
@@ -67,6 +67,9 @@ scrollkeeper-update -q
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Fri Jun 10 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1
+- Updated to release 0.8.1.
+
 * Sun Feb 06 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 

@@ -32,7 +32,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext
-BuildRequires: zlib-devel, qt-devel, libjpeg-devel
+BuildRequires: zlib-devel, qt-devel >= 3.2, libjpeg-devel
 BuildRequires: kdelibs-devel, gift-devel, desktop-file-utils
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}

@@ -27,7 +27,7 @@ minimize to system tray.
 
 %build
 %configure
-%{__make}  %{?_smp_mflags}
+%{__make}  %{?_smp_mflags} LIBDIR="%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}
