@@ -17,8 +17,8 @@ URL: http://scilabsoft.inria.fr/
 Source: http://scilabsoft.inria.fr/download/stable/scilab-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: tcl tk Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
-BuildRequires: perl gtkhtml2-devel, gcc-c++, gtk+-devel
+BuildRequires: tcl, tk, Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
+BuildRequires: perl, gtkhtml2-devel, gcc-c++, gtk+-devel
 Requires: libpng10
 %{?fc4:BuildRequires: gcc-gfortran, compat-gcc-32-g77}
 %{!?fc4:BuildRequires: gcc-g77}
