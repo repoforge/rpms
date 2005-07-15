@@ -4,6 +4,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %{!?dist: %define ft2build 1}
+%{?el4: %define ft2build 1}
 %{?fc3: %define ft2build 1}
 %{?fc2: %define ft2build 1}
 %{?yd4: %define ft2build 1}

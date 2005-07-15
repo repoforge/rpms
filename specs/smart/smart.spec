@@ -24,8 +24,8 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.35
-Release: 2
+Version: 0.36
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -75,10 +75,11 @@ KDE tray program for watching updates with Smart Package Manager.
 %prep
 %setup
 
-%{?fc4:name="Fedora Core"; version="4"; path="fedora"}
-%{?fc3:name="Fedora Core"; version="3"; path="fedora"}
-%{?fc2:name="Fedora Core"; version="2"; path="fedora"}
-%{?fc1:name="Fedora Core"; version="1"; path="fedora"}
+%{?fc4:name="Fedora Core"; version="4"; path="fedora/"}
+%{?fc3:name="Fedora Core"; version="3"; path="fedora/"}
+%{?fc2:name="Fedora Core"; version="2"; path="fedora/"}
+%{?fc1:name="Fedora Core"; version="1"; path="fedora/"}
+#{?el4:name="Red Hat Enterprise"; version="4"; path="redhat/el"}
 
 %{__cat} <<EOF >distro.py
 pkgconf.setFlag("multi-version", "kernel")
@@ -402,6 +403,9 @@ cd -
 %endif
 
 %changelog
+* Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 0.36-1
+- Updated to release 0.36.
+
 * Tue Jun 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.35-2
 - Added tags for fc4.
 

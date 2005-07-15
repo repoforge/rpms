@@ -7,7 +7,7 @@
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.1.16
+Version: 1.1.17
 Release: 1
 License: BSD-type
 Group: Applications/Internet
@@ -307,6 +307,9 @@ fi
 %{_includedir}/socks.h
 
 %changelog
+* Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 1.1.17-1
+- Updated to release 1.1.17.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.1.16-1
 - Updated to release 1.1.16.
 

@@ -4,7 +4,7 @@
 
 Summary: Partial/differential file transfer client over HTTP
 Name: zsync
-Version: 0.4.0
+Version: 0.4.1
 Release: 1
 License: Artistic License v2
 Group: Applications/Internet
@@ -49,6 +49,9 @@ the server, making it ideal for large scale file distribution.
 %exclude %{_docdir}/zsync/
 
 %changelog
+* Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Updated to release 0.4.0.
 

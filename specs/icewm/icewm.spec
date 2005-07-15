@@ -23,7 +23,7 @@
 Summary: Fast and small X11 window manager
 Name: icewm
 Version: 1.2.20
-Release: 1
+Release: 2
 License: LGPL
 Group: User Interface/Desktops
 URL: http://www.icewm.org/
@@ -51,6 +51,16 @@ status.
 %prep
 %setup
 
+%{__cat} <<EOF >icewm.switchdesk
+#!/bin/sh
+exec %{_bindir}/icewm
+EOF
+
+%{__cat} <<EOF >icewm.gdm
+#!/bin/sh
+exec /etc/X11/xdm/Xsession icewm
+EOF
+
 %build
 %configure \
    --enable-gradients \
@@ -61,12 +71,12 @@ status.
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/icewm/
+%{__install} -Dp -m0755 icewm.switchdesk %{buildroot}%{_datadir}/apps/switchdesk/Xclients.icewm
+%{__install} -Dp -m0755 icewm.gdm %{buildroot}%{_sysconfdir}/X11/gdm/Sessions/Icewm
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -80,10 +90,15 @@ status.
 %config %{_datadir}/icewm/toolbar
 %config %{_datadir}/icewm/winoptions
 %config(noreplace) %{_sysconfdir}/icewm/
+%{_datadir}/apps/switchdesk/Xclients.icewm
+%{_sysconfdir}/X11/gdm/Sessions/Icewm
 %{_bindir}/ice*
 %{_datadir}/icewm/
 
 %changelog
+* Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 1.2.20-2
+- Added files for icewm to work with switchdesk and GDM. (Troy Dawson)
+
 * Tue Jan 11 2005 Dag Wieers <dag@wieers.com> - 1.2.20-1
 - Updated to release 1.2.20.
 

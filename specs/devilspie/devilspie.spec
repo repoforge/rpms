@@ -4,7 +4,7 @@
 
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
-Version: 0.8
+Version: 0.10
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -13,7 +13,7 @@ URL: http://www.burtonini.com/blog/computers/devilspie/
 Source: http://www.burtonini.com/computing/devilspie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gob2 >= 2.0.4, libwnck-devel, libglade-devel, gtk2-devel
+BuildRequires: gob2 >= 2.0.4, libwnck-devel, gtk2-devel
 BuildRequires: libglade2-devel, intltool, perl-XML-Parser
 
 %description
@@ -46,11 +46,14 @@ in the pager or task list.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README NEWS TODO sample-config.xml devilspie.dtd
+%doc AUTHORS ChangeLog COPYING NEWS README TODO devilspie.dtd sample-config.xml
 %doc %{_mandir}/man1/devilspie.1*
 %{_bindir}/devilspie
 
 %changelog
+* Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 0.10-1
+- Updated to release 0.10.
+
 * Mon Feb 14 2005 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.
 

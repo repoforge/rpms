@@ -10,7 +10,7 @@
 Summary: Sophisticated file transfer program
 Name: lftp
 Version: 3.2.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
@@ -35,19 +35,13 @@ reliability in mind.
 %configure \
 	--with-modules \
 	--disable-static \
-	--without-gnutls \
-	--with-ssl
-%{__make} %{?_smp_mflags} \
-	LIBTOOL="%{_bindir}/libtool"
+	--with-openssl="/usr"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
-	LIBTOOL="%{_bindir}/libtool"
+%makeinstall
 %find_lang %{name}
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/lftp/%{version}/*.{a,la}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,6 +56,9 @@ reliability in mind.
 %{_libdir}/lftp/
 
 %changelog
+* Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 3.2.1-2
+- Fixed openssl build. (Tomá¨ Janou¨ek)
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 3.2.1-1
 - Updated to release 3.2.1.
 
