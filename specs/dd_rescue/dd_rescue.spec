@@ -20,13 +20,13 @@ not abort on errors in the input file. This makes it suitable for
 rescuing data from media with errors, e.g. a disk with bad sectors.
 
 %prep
-%setup
+%setup -n %{name}
 
 ### Remove binary object
 #%{__rm} -f dd_rescue
 
 %build
-%{__make} %{?_smp_mflags} clean all \
+%{__make} %{?_smp_mflags} clean dd_rescue \
 	EXTRA_CFLAGS="%{optflags}"
 
 %install
@@ -55,4 +55,4 @@ rescuing data from media with errors, e.g. a disk with bad sectors.
 - Updated to release 1.04.
 
 * Tue Jan 27 2004 Dag Wieers <dag@wieers.com> - 1.03-0
-- Initiale package. (using DAR)
+- Initial package. (using DAR)

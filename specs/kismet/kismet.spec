@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: <wireless$kismetwireless,net>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_gpsmap 1}
+%{?el2:%define _without_gpsmap 1}
+
 %define real_version 2005-06-R1
 
 Summary: 802.11 (wireless) network sniffer and network dissector
@@ -68,10 +73,12 @@ kismet on downloaded maps or user supplied image files.
 %{_bindir}/kismet*
 %{_datadir}/kismet/
 
+%if %{!?_without_gpsmap:1}0
 %files -n gpsmap
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/gpsmap.1*
 %{_bindir}/gpsmap*
+%endif
 
 %changelog
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 3.0.1-2.200506r1
