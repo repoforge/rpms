@@ -5,7 +5,7 @@
 
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
-Version: 0.93.1
+Version: 0.94.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -95,6 +95,9 @@ done
 
 
 %changelog
+* Mon Jul 18 2005 Matthias Saou <http://freshrpms.net> 0.94.0-1
+- Update to 0.94.0.
+
 * Mon Jun 27 2005 Matthias Saou <http://freshrpms.net> 0.93.1-1
 - Update to 0.93.1.
 - Add libglade2-devel build dependency.
