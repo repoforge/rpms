@@ -6,7 +6,7 @@
 
 Summary: Multiplayer game in space
 Name: kajaani-kombat
-Version: 0.6
+Version: 0.7
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -53,6 +53,9 @@ same computer. Enjoy it with your friends!
 %{_datadir}/games/kajaanikombat/
 
 %changelog
+* Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> 0.7-1
+- Updated to release 0.7.
+
 * Mon Jan 10 2005 Dries Verachtert <dries@ulyssis.org> 0.6-1
 - Updated to release 0.6.
 - Removed the patch (is applied upstream).

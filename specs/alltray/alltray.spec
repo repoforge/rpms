@@ -13,7 +13,7 @@ URL: http://alltray.sourceforge.net/
 Source: http://dl.sf.net/alltray/alltray-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.4
+BuildRequires: gtk2-devel >= 2.4, gcc-c++
 
 %description
 alltray allows you to dock any application into the system tray/notification

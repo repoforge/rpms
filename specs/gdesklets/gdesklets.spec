@@ -18,7 +18,7 @@ BuildRequires: libgtop2-devel >= 2.8, python-devel >= 2.3, gcc-c++
 BuildRequires: gnome-python2 >= 2.6, gnome-python2-gconf >= 2.4
 BuildRequires: libcroco-devel, perl(XML::Parser), intltool, pygtk2-devel >= 2.4
 BuildRequires: gtk2-devel, librsvg2 >= 2.8, pyorbit-devel
-BuildRequires: librsvg2-devel
+BuildRequires: librsvg2-devel, gettext
 Requires: python >= 2.3, gnome-python2 >= 2.4, gnome-python2-gconf >= 2.4
 Requires: gnome-python2-gnomevfs
 

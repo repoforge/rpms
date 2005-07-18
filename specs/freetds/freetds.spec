@@ -15,7 +15,7 @@ URL: http://www.freetds.org/
 Source:	ftp://ftp.ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: unixODBC-devel
+BuildRequires: unixODBC-devel, gcc-c++
 Obsoletes: freetds-unixodbc <= %{version}, freetds-doc <= %{version}
  
 %description 

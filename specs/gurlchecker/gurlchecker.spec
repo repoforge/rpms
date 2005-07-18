@@ -60,7 +60,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO
 %doc %{_datadir}/gtk-doc/html/gurlchecker/
 %{_bindir}/gurlchecker
-%{_datadir}/applications/gnome-gurlchecker.desktop
+%{_datadir}/applications/*gurlchecker.desktop
 %{_datadir}/gurlchecker/
 
 %changelog

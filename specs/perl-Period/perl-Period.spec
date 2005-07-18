@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: dag
+
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Period
 
@@ -47,7 +49,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man?/*
-%{_libdir}/perl5/vendor_perl/*/*
+%dir %{perl_vendorlib}/Time
+%{perl_vendorlib}/Time/Period.pm
 
 %changelog
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.20-1
