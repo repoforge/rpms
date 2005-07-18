@@ -5,8 +5,8 @@
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.3.13
-Release: 2
+Version: 1.3.15
+Release: 1
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
@@ -81,26 +81,26 @@ recompile PHP yourself.
     libdir="%{buildroot}%{_libdir}/lighttpd"
 
 # Install included init script and sysconfig entry
-%{__install} -Dp -m 0755 doc/rc.lighttpd.redhat \
+%{__install} -D -p -m 0755 doc/rc.lighttpd.redhat \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/lighttpd
-%{__install} -Dp -m 0644 doc/sysconfig.lighttpd \
+%{__install} -D -p -m 0644 doc/sysconfig.lighttpd \
     %{buildroot}%{_sysconfdir}/sysconfig/lighttpd
 
 # Install (*patched above*) sample config file
-%{__install} -Dp -m 0640 doc/lighttpd.conf \
+%{__install} -D -p -m 0640 doc/lighttpd.conf \
     %{buildroot}%{_sysconfdir}/lighttpd/lighttpd.conf
 
 # Install our own logrotate entry
-%{__install} -Dp -m 0644 %{SOURCE1} \
+%{__install} -D -p -m 0644 %{SOURCE1} \
     %{buildroot}%{_sysconfdir}/logrotate.d/lighttpd
 
 # Install our own php.d ini file
-%{__install} -Dp -m 0644 %{SOURCE2} \
+%{__install} -D -p -m 0644 %{SOURCE2} \
     %{buildroot}%{_sysconfdir}/php.d/lighttpd.ini
 
 # Install our own default web page and images
 %{__mkdir_p} %{buildroot}%{webroot}
-%{__install} -p -m0644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
+%{__install} -p -m 0644 %{SOURCE10} %{SOURCE11} %{SOURCE12} \
     %{buildroot}%{webroot}/
 
 # Install empty log directory to include
@@ -165,6 +165,12 @@ fi
 
 
 %changelog
+* Mon Jul 18 2005 Matthias Saou <http://freshrpms.net/> 1.3.15-1
+- Update to 1.3.15.
+
+* Mon Jun 20 2005 Matthias Saou <http://freshrpms.net/> 1.3.14-1
+- Update to 1.3.14.
+
 * Mon Apr  4 2005 Matthias Saou <http://freshrpms.net/> 1.3.13-2
 - Change signal sent from the logrotate script from USR1 to HUP, as that's the
   correct one.
