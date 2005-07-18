@@ -2,7 +2,7 @@
 # Authority: matthias
 # Upstream: <transcode-users$exit1.org>
 
-%define prever rc1
+#define prever rc1
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -24,7 +24,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.0
-Release: 0.1%{?prever:.%{prever}}
+Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -128,6 +128,9 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Mon Jul 18 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1
+- Update to 1.0.0.
+
 * Tue Jun 28 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-0.1.rc1
 - Update to 1.0.0rc1.
 
