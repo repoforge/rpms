@@ -49,7 +49,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.16%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.17%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -69,6 +69,7 @@ Patch11: MPlayer-1.0pre6a-udev.patch
 Patch12: MPlayer-1.0pre7-gcc4.patch
 Patch13: MPlayer-1.0pre7-gcc_detection.patch
 Patch14: MPlayer-1.0pre7-nostrip.patch
+Patch15: MPlayer-1.0pre7-x86_64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 Requires: libpostproc = %{version}-%{release}
@@ -165,6 +166,7 @@ to use MPlayer, transcode or other similar programs.
 %patch12 -p1 -b .gcc4
 %patch13 -p0 -b .gcc_detection
 %patch14 -p1 -b .nostrip
+%patch15 -p1 -b .x86_64
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -251,12 +253,10 @@ echo | ./configure \
 %post
 /sbin/ldconfig
 update-desktop-database %{_datadir}/applications &>/dev/null || :
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 
 %postun
 /sbin/ldconfig
 update-desktop-database %{_datadir}/applications &>/dev/null || :
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 
 %post -n libpostproc
 /sbin/ldconfig
@@ -320,6 +320,10 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Jul 19 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.17.pre7
+- Added x86_64 patch from Ryo Dairiki.
+- Remove gtk-update-icon-cache calls, at least until icon changes place.
+
 * Tue Jun 28 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.16.pre7
 - Fix "libfame" to "fame" rebuild option listed in the description.
 
