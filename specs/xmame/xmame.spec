@@ -12,7 +12,7 @@
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_glide3 1}
 
-#define rcver cvs
+%define rcver cvs
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
 
 %{!?_without_opengl:%define opengl 1}
@@ -22,18 +22,18 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.97
-Release: %{?rcver:0.%{rcver}.}2
-Source0: http://x.mame.net/download/xmame-%{version}%{?rcver:-%{rcver}}.tar.bz2
+Version: 0.98
+Release: 0.1%{?rcver:.%{rcver}}
+Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.96 - 06/05/2005
-Source21: http://www.mameworld.net/highscore/uhsdat096.zip
-# http://www.arcade-history.com/ 0.97 - 02/06/2005
-Source22: http://www.arcade-history.com/download/history0_96.zip
-# http://www.mameworld.net/mameinfo/ 0.97 - 06/06/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo097.zip
-# http://www.mameworld.net/catlist/ 0.97 - 03/06/2005
+# http://www.mameworld.net/highscore/ 0.98 - 11/07/2005
+Source21: http://www.mameworld.net/highscore/uhsdat098.zip
+# http://www.arcade-history.com/ 0.97f - 08/07/2005
+Source22: http://www.arcade-history.com/download/history0_97f.zip
+# http://www.mameworld.net/mameinfo/ 0.97u4 - 03/07/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo097u4.zip
+# http://www.mameworld.net/catlist/ 0.97u4 - 05/07/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 License: MAME
 URL: http://x.mame.net/
@@ -79,7 +79,7 @@ see http://www.mess.org/.
 
 
 %prep
-%setup -n %{name}-%{version}%{?rcver:-%{rcver}}
+%setup -n %{name}-%{version}
 # Cleanup CVS stuff
 find . -type d -name CVS | xargs %{__rm} -rf
 
@@ -255,6 +255,9 @@ popd
 
 
 %changelog
+* Tue Jul 19 2005 Matthias Saou <http://freshrpms.net/> 0.98-0.1.cvs
+- Update to 0.98 CVS snapshot.
+
 * Tue Jun 14 2005 Matthias Saou <http://freshrpms.net/> 0.97-2
 - Update to 0.97 (final).
 
