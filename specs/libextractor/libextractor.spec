@@ -18,7 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libvorbis-devel, libogg-devel, zlib-devel, gcc-c++, python
 BuildRequires: ImageMagick, python-devel, gettext, pkgconfig
 BuildRequires: intltool, glib2-devel, libvorbis-devel
-BuildRequires: ImageMagick-devel, ImageMagick-c++-devel
+BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2
 
 %description
 libextractor is a simple library for meta-data extraction.

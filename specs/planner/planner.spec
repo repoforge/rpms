@@ -23,7 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel >= 2.0.3, libgnomeui-devel >= 2.0.1, libglade2-devel >= 2.0.0
 BuildRequires: libgnomecanvas >= 2.0.1, libbonoboui-devel >= 2.0.1, libgsf-devel
 BuildRequires: intltool, libgnomeprint22, libgnomeprintui22, gcc-c++
-BuildRequires: libgnomeprintui22-devel
+BuildRequires: libgnomeprintui22-devel, python-devel
 %{!?_without_shared_mime:BuildRequires: shared-mime-info}
 
 BuildRequires: scrollkeeper

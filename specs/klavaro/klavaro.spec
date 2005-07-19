@@ -25,9 +25,10 @@ Source: http://dl.sf.net/klavaro/klavaro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: make, libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext
+BuildRequires: arts-devel, gcc-c++, gettext, bison
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
+BuildRequires: gtk+-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

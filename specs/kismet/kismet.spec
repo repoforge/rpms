@@ -22,6 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ImageMagick-devel, ncurses-devel, autoconf, flex, gcc-c++
 BuildRequires: zlib-devel, expat-devel, byacc, gmp-devel, wget
+BuildRequires: libtiff-devel
 
 %description
 Kismet is an 802.11 (wireless) network sniffer and network dissector.

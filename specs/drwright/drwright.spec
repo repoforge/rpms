@@ -35,6 +35,9 @@ Categories=Application;Utility;
 Encoding=UTF-8
 EOF
 
+# todo: possibly only needed on fc4, check
+%{__perl} -pi -e 's|dbus_bus_acquire_service|dbus_bus_request_name|g;' src/*.c
+
 %build
 %configure \
 	--disable-schemas-install

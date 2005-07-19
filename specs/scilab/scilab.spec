@@ -18,7 +18,8 @@ Source: http://scilabsoft.inria.fr/download/stable/scilab-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcl, tk, Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
-BuildRequires: perl, gtkhtml2-devel, gcc-c++, gtk+-devel
+BuildRequires: perl, gtkhtml2-devel, gcc-c++, gtk+-devel, gtk2-devel
+BuildRequires: gnome-libs-devel, libxslt
 Requires: libpng10
 %{?fc4:BuildRequires: gcc-gfortran, compat-gcc-32-g77}
 %{!?fc4:BuildRequires: gcc-g77}
@@ -44,7 +45,7 @@ overloading. A number of toolboxes are available with the system.
 	--with-g77 \
 	--with-gnu \
 	--with-xaw3d \
-	--with-gtk \
+	--with-gtk2 \
 	--with-x \
 	--without-java
 # ../include/pvmtev.h nodig in pvm3/src/global.h

@@ -45,7 +45,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING FAQ README NEWS
+%doc AUTHORS ChangeLog COPYING README NEWS
 %config %{_sysconfdir}/gconf/schemas/jamboree.schemas
 %{_bindir}/jamboree
 %{_datadir}/jamboree/

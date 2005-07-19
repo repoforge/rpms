@@ -15,7 +15,7 @@ Patch1: gspy-autogen.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, autoconf, automake, gtk+-devel
-BuildRequires: gnome-libs-devel, intltool
+BuildRequires: gnome-libs-devel, intltool, gettext
 %{?fc4:BuildRequires: gettext-devel}
 
 %description
@@ -30,6 +30,7 @@ normal compression obtained via the mpeg process.
 %setup -n %{name}
 %patch0
 %patch1
+%{__perl} -pi -e 's|intl/Makefile||g;' configure.in
 
 %build
 #configure

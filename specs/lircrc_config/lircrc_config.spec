@@ -13,6 +13,7 @@ URL: http://www.lirc.org/
 Source: http://dl.sf.net/lirc/lircrc_config-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, glib2-devel, lirc, glib-devel
+BuildRequires: libglade-config, lirc-devel
 
 %description
 A GNOME .lircrc configuration program.
