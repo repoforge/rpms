@@ -8,12 +8,13 @@ Version: 2.52
 Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://www.roaringpenguin.com/mimedefang/
+URL: http://www.mimedefang.org/
 
 Source: http://www.mimedefang.org/static/mimedefang-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: sendmail-devel > 8.12.0, perl-Mail-SpamAssassin
+BuildRequires: sendmail-devel > 8.12.0
+#BuildRequires: perl-Mail-SpamAssassin
 BuildRequires: perl-Digest-SHA1, perl-MIME-tools, perl-IO-stringy, perl-MailTools
 Requires: sendmail >= 8.12.0
 
@@ -41,6 +42,7 @@ complain loudly about MIMEDefang.
 
 %build
 %configure \
+	--with-milterlib="%{_libdir}" \
 	--with-spooldir="%{_localstatedir}/spool/MIMEDefang" \
 	--with-quarantinedir="%{_localstatedir}/spool/MD-Quarantine"
 %{__make} %{?_smp_mflags}
@@ -96,9 +98,9 @@ fi
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING README* examples/ contrib/ SpamAssassin/
 %doc %{_mandir}/man?/*
-%dir %{_sysconfdir}/mail/spamassassin
+%dir %{_sysconfdir}/mail/
 %config(noreplace) %{_sysconfdir}/mail/mimedefang-filter
-%config(noreplace) %{_sysconfdir}/mail/spamassassin/sa-mimedefang.cf
+%config(noreplace) %{_sysconfdir}/mail/sa-mimedefang.cf*
 %config(noreplace) %{_sysconfdir}/sysconfig/*
 %config(noreplace) %{_sysconfdir}/logrotate.d/*
 %config %{_initrddir}/*
@@ -113,6 +115,7 @@ fi
 
 %changelog
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 2.52-1
+- Fix for x86_64. (Chris Ausbrooks)
 - Updated to release 2.52.
 
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.45-1
