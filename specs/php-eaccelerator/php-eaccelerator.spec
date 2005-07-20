@@ -9,7 +9,7 @@
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-eaccelerator
 Version: %{php_version}_%{module_version}
-Release: 2
+Release: 4
 License: GPL
 Group: Development/Languages
 URL: http://eaccelerator.sourceforge.net/
@@ -91,7 +91,7 @@ EOF
 
 
 %changelog
-* Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-2
+* Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-4
 - Force SEM to FCNTL as the IPC version is buggy on SMP systems at least.
 
 * Fri Jul  1 2005 Matthias Saou <http://freshrpms.net/> 4.x.x_0.9.3-1
