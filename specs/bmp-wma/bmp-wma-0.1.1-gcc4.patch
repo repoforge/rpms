@@ -1,0 +1,18 @@
+diff -Naupr bmp-wma-0.1.1.orig/src/libffwma/common.h bmp-wma-0.1.1/src/libffwma/common.h
+--- bmp-wma-0.1.1.orig/src/libffwma/common.h	2004-07-23 07:15:03.000000000 +0200
++++ bmp-wma-0.1.1/src/libffwma/common.h	2005-07-21 00:42:32.000000000 +0200
+@@ -66,12 +66,8 @@
+ #define AVOPTION_END() AVOPTION_SUB(NULL)
+ 
+ struct AVOption;
+-#ifdef HAVE_MMX
+-extern const struct AVOption avoptions_common[3 + 5];
+-#else
+-extern const struct AVOption avoptions_common[3];
+-#endif
+-extern const struct AVOption avoptions_workaround_bug[11];
++extern const struct AVOption *avoptions_common;
++extern const struct AVOption *avoptions_workaround_bug;
+ 
+ #endif /* HAVE_AV_CONFIG_H */
+ 

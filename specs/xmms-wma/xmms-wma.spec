@@ -5,12 +5,13 @@
 Summary: X MultiMedia System input plugin to play Windows Media Audio files
 Name: xmms-wma
 Version: 1.0.4
-Release: 2
+Release: 4
 License: GPL
 Group: Applications/Multimedia
 URL: http://mcmcc.bat.ru/xmms-wma/
 Source: http://mcmcc.bat.ru/xmms-wma/xmms-wma-%{version}.tar.bz2
-Patch: xmms-wma-1.0.4-gcc4.patch
+Patch0: xmms-wma-1.0.4-build.patch
+Patch1: xmms-wma-1.0.4-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.1, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel
@@ -25,21 +26,12 @@ Tag informations are converted from unicode to your system locale.
 
 %prep
 %setup
-%patch -p1 -b .gcc4
-%{__perl} -pi.orig -e 's|\@strip .*||g' Makefile
-%ifnarch %{ix86}
-%{__perl} -pi.orig -e 's|#define ARCH_X86.*|#undef ARCH_X86|g;
-                       s|#define __CPU__.*|#undef __CPU__|g' \
-    ffmpeg-strip-wma/config.h
-%endif
-%{__perl} -pi.orig -e 's| (-shared)| $1 -fPIC|;
-                       s| (-DX86)| $1 -fPIC|;' i\
-    Makefile.inc
+%patch0 -p1 -b .build
+%patch1 -p1 -b .gcc4
 
 
 %build
-%{__make} %{?_smp_mflags} \
-    OPTFLAGS="%{optflags} -fPIC"
+%{__make} %{?_smp_mflags} OPTFLAGS="%{optflags} -finline-functions"
 
 
 %install
@@ -59,6 +51,13 @@ Tag informations are converted from unicode to your system locale.
 
 
 %changelog
+* Wed Jun 15 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-4
+- Force -finline-functions to work around possible bug in gcc 3.x (not 4.x),
+  thanks to Wesley Wright again.
+
+* Wed Jun  8 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-3
+- Include build patch with changes from Wesley Wright.
+
 * Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-2
 - Disable explicit stripping to get useful debuginfo package.
 
