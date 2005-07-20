@@ -12,7 +12,7 @@ Source: http://dl.sf.net/p7zip/p7zip_%{version}_src.tar.bz2
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
-%description 
+%description
 p7zip is a port of 7za.exe for Unix. 7-Zip is a file archiver with a very high
 compression ratio. The original version can be found at http://www.7-zip.org/.
 
@@ -27,7 +27,7 @@ Additional plugins that can be used with 7z to extend its abilities.
 This package contains also a virtual file system for Midnight Commander.
 
 
-%prep 
+%prep
 %setup -n %{name}_%{version}
 
 ### Create wrapper scripts, as 7zCon.sfx and Codecs/Formats need to be in the
@@ -57,7 +57,7 @@ EOF
 %{__make} %{?_smp_mflags} 7z 7za sfx
 
 
-%install 
+%install
 %{__rm} -rf %{buildroot}
 
 ### Install binaries (7za, 7z, 7zCon.sfx and Codecs/Formats)
@@ -73,8 +73,8 @@ EOF
 %{__rm} -rf %{buildroot}
 
 
-%files 
-%defattr(-, root, root, 0755) 
+%files
+%defattr(-, root, root, 0755)
 %doc ChangeLog README TODO DOCS/*
 %{_bindir}/7za
 %dir %{_libexecdir}/p7zip/
@@ -82,7 +82,7 @@ EOF
 %{_libexecdir}/p7zip/7zCon.sfx
 
 %files plugins
-%defattr(-, root, root, 0755) 
+%defattr(-, root, root, 0755)
 %doc contrib/
 %{_bindir}/7z
 %{_libexecdir}/p7zip/7z
@@ -104,13 +104,13 @@ EOF
 - Move files from /usr/share to /usr/libexec.
 - Various other minor changes.
 
-* Mon Jan 24 2005 Marcin Zaj±czkowski <mszpak@wp.pl>
+* Mon Jan 24 2005 Marcin ZajÄ…czkowski <mszpak@wp.pl>
  - upgraded to 4.14.01
 
-* Sun Jan 16 2005 Marcin Zaj±czkowski <mszpak@wp.pl>
+* Sun Jan 16 2005 Marcin ZajÄ…czkowski <mszpak@wp.pl>
  - upgraded to 4.14
 
-* Mon Dec 20 2004 Marcin Zaj±czkowski <mszpak@wp.pl>
+* Mon Dec 20 2004 Marcin ZajÄ…czkowski <mszpak@wp.pl>
  - added 7za script and moved SFX module to {_datadir}/%{name}/ to allow 7za & 7z
    use it simultaneously
  - returned to plugins in separate package
@@ -120,14 +120,14 @@ EOF
  - added 7z (not just 7za) with a shell wrapper
  - added gcc-c++ to the BuildRequires list
 
-* Sat Nov 20 2004 Marcin Zaj±czkowski <mszpak@wp.pl>
+* Sat Nov 20 2004 Marcin ZajÄ…czkowski <mszpak@wp.pl>
  - upgraded to 4.12
  - added virtual file system for Midnight Commander
 
-* Thu Nov 11 2004 Marcin Zaj±czkowski <mszpak@wp.pl>
+* Thu Nov 11 2004 Marcin ZajÄ…czkowski <mszpak@wp.pl>
  - upgraded to 4.10
  - plugins support was dropped out from p7zip
 
-* Sun Aug 29 2004 Marcin Zaj±czkowski <mszpak@wp.pl>
+* Sun Aug 29 2004 Marcin ZajÄ…czkowski <mszpak@wp.pl>
  - initial release
 
