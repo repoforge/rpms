@@ -8,17 +8,16 @@
 %{?fc3:  %define _with_gettextdevel 1}
 
 #define date 20041213
-%define prever beta1
+%define prever beta2
 
 Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.35
-Release: %{?date:0.%{date}.}%{?prever:0.%{prever}.}2
+Release: 0.1%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
 Source: http://dl.sf.net/gxmame/gxmame-%{version}%{?date:cvs}%{?prever}.tar.gz
-Patch: gxmame-0.35beta1-optfree.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1
 BuildRequires: gtk2-devel, zlib-devel, expat-devel, intltool, gettext
@@ -35,7 +34,6 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 %prep
 %setup -n %{name}-%{version}%{?date:cvs}%{?prever}
-%patch -p1 -b .optfree
 
 
 %build
@@ -69,6 +67,10 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 
 %changelog
+* Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.1.beta2
+- Update to 0.35beta2.
+- Remove optfree patch.
+
 * Wed Mar 16 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.beta1.2
 - Add gxmame-0.35beta1-optfree.patch to fix crash, as reported by Motor.
 - Add _with_gettextdevel build option.
