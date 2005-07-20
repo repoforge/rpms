@@ -1,12 +1,12 @@
 # $Id$
 # Authority: matthias
 
-#define prever cvs7
+%define prever cvs
 
 Summary: TV viewer for GNOME
 Name: zapping
-Version: 0.9.3
-Release: %{?prever:0.%{prever}.}1
+Version: 0.9.7
+Release: 0.1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
@@ -76,6 +76,9 @@ scrollkeeper-update -q || :
 
 
 %changelog
+* Mon Jul 18 2005 Matthias Saou <http://freshrpms.net/> 0.9.7-0.1.cvs
+- Update to 0.9.7cvs.
+
 * Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 0.9.3-1
 - Update to 0.9.3.
 
