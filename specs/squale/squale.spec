@@ -8,8 +8,8 @@
 
 Summary: Persistent SQL database connection libarary and daemon
 Name: squale
-Version: 0.1.4
-Release: 2
+Version: 0.1.5
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://squale.sourceforge.net/
@@ -137,6 +137,9 @@ fi
 
 
 %changelog
+* Thu Jun 23 2005 Matthias Saou <http://freshrpms.net/> 0.1.5-1
+- Update to 0.1.5.
+
 * Fri Apr 15 2005 Matthias Saou <http://freshrpms.net/> 0.1.4-2
 - Remove -fPIC forcing, as tests show it now works as expected (the shared lib
   is built with -fPIC, the rest isn't).
