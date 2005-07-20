@@ -2,13 +2,12 @@
 
 Summary: Portable C library for dynamically generating PDF files
 Name: pdflib
-Version: 4.0.3
-Release: 2
-License: Aladdin Free Public License
+Version: 6.0.1
+Release: 1
+License: See PDFlib-license.pdf
 Group: System Environment/Libraries
 URL: http://www.pdflib.com/
-Source: http://www.pdflib.com/pdflib/download/pdflib-%{version}.tar.gz
-Patch0: pdflib-4.0.3-DESTDIR.patch
+Source: http://www.pdflib.com/products/pdflib/download/601src/PDFlib-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # perl, python, tcl bindings are disabled on purpose : the goal was only to
 # get the php module built
@@ -40,21 +39,22 @@ the PDFlib library.
 
 
 %prep
-%setup -q
-%patch0 -p1 -b destdir
+%setup -n PDFlib-Lite-%{version}
 
 
 %build
 %configure \
-    --enable-cxx \
     --with-perl="no"
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
-%{__install} -D -p -m 0644 bind/cpp/pdflib.hpp %{buildroot}%{_includedir}/pdflib.hpp
+# This one is required (6.0.1)
+%{__mkdir_p} %{buildroot}%{_bindir}
+%makeinstall
+%{__install} -p -m 0644 bind/pdflib/cpp/pdflib.hpp \
+    %{buildroot}%{_includedir}/pdflib.hpp
 
 
 %clean
@@ -70,12 +70,13 @@ the PDFlib library.
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme.txt doc/*.txt doc/aladdin-license.pdf
+%doc readme.txt doc/pdflib/PDFlib-Lite-license.pdf
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/PDFlib-manual.pdf
+%doc doc/pdflib/changes.txt doc/pdflib/compatibility.txt
+%doc doc/pdflib/PDFlib-manual.pdf doc/pdflib/readme-source-unix.txt
 %{_bindir}/pdflib-config
 %{_includedir}/*
 %{_libdir}/*.a
@@ -84,6 +85,9 @@ the PDFlib library.
 
 
 %changelog
+* Wed Jun  1 2005 Matthias Saou <http://freshrpms.net/> 6.0.1-1
+- Update to 6.0.1 "Lite".
+
 * Tue May 17 2005 Matthias Saou <http://freshrpms.net/> 4.0.3-2
 - Use internal tiff and png libs to fix problems with external recent versions.
 - Keep zlib-devel and libpng-devel reqs for the devel package, as it fails
