@@ -38,7 +38,7 @@
 
 Summary: Personal password manager
 Name: passwordmanager
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -89,6 +89,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{!?_without_kwallet:%{_libdir}/kde3/kded_pwmanager_kwalletemu.*}
 
 %changelog
+* Thu Jul 21 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1
+- Update to release 1.2.3.
+
 * Mon Jul 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
 - Update to release 1.2.2.
 
