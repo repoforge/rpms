@@ -5,15 +5,17 @@
 
 %define desktop_vendor rpmforge
 
+%define real_version 3.6.0rc1
+
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 3.5.7
-Release: 1
+Version: 3.6.0
+Release: 0.rc1
 License: GPL
 Group: Applications/Text
 URL: http://www.vanheusden.com/multitail/
 
-Source: http://www.vanheusden.com/multitail/multitail-%{version}.tgz
+Source: http://www.vanheusden.com/multitail/multitail-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, ncurses-devel
@@ -54,6 +56,9 @@ given regular expressions and deleting and adding windows.
 %{_bindir}/multitail
 
 %changelog
+* Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0rc1
+- Updated to release 3.6.0rc1.
+
 * Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.5.7-1
 - Updated to release 3.5.7.
 
