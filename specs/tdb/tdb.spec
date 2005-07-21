@@ -14,7 +14,7 @@ Source: http://dl.sf.net/tdb/tdb-%{version}.tar.gz
 Patch: tdb-1.0.6-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gdbm-devel, libtool, gettext, sed
+BuildRequires: gdbm-devel, libtool, gettext, sed, grep
 
 %description
 TDB is a trivial database. In concept, it is very much like GDBM, 

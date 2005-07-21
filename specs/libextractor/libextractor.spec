@@ -55,7 +55,7 @@ Python bindings to libextractor.
 
 %build
 %configure \
-	--with-pic
+	--with-pic CFLAGS=-I/usr/include/exiv2
 %{__make} %{?_smp_mflags}
 
 %install

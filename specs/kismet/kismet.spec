@@ -7,6 +7,15 @@
 %{?rh7:%define _without_gpsmap 1}
 %{?el2:%define _without_gpsmap 1}
 
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 %define real_version 2005-06-R1
 
 Summary: 802.11 (wireless) network sniffer and network dissector
@@ -22,7 +31,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ImageMagick-devel, ncurses-devel, autoconf, flex, gcc-c++
 BuildRequires: zlib-devel, expat-devel, byacc, gmp-devel, wget
-BuildRequires: libtiff-devel
+BuildRequires: libtiff-devel, libjpeg-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Kismet is an 802.11 (wireless) network sniffer and network dissector.

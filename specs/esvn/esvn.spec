@@ -12,7 +12,7 @@ URL: http://esvn.umputun.com/
 Source: http://esvn.umputun.com/esvn-%{version}-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel, subversion-devel
+BuildRequires: qt-devel, subversion-devel, gcc-c++
 Requires: qt-devel, qt, subversion
 
 %description

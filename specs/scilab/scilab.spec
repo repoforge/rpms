@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcl, tk, Xaw3d-devel, libpng10-devel, tcl-devel, tk-devel
 BuildRequires: perl, gtkhtml2-devel, gcc-c++, gtk+-devel, gtk2-devel
-BuildRequires: gnome-libs-devel, libxslt
+BuildRequires: gnome-libs-devel, libxslt, gnome-libs-devel, vte-devel
 Requires: libpng10
 %{?fc4:BuildRequires: gcc-gfortran, compat-gcc-32-g77}
 %{!?fc4:BuildRequires: gcc-g77}

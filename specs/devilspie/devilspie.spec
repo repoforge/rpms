@@ -13,7 +13,7 @@ URL: http://www.burtonini.com/blog/computers/devilspie/
 Source: http://www.burtonini.com/computing/devilspie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gob2 >= 2.0.4, libwnck-devel, gtk2-devel
+BuildRequires: gob2 >= 2.0.4, libwnck-devel, gtk2-devel, gettext
 BuildRequires: libglade2-devel, intltool, perl-XML-Parser, libxslt
 
 %description

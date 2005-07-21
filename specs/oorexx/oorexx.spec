@@ -14,7 +14,7 @@ URL: http://www.oorexx.org/
 
 Source: http://dl.sf.net/oorexx/ooRexx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, ncurses-devel
 
 Obsoletes: ooRexx <= %{version}
 

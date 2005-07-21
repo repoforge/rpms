@@ -53,6 +53,7 @@ programs.
 %{_datadir}/info/bigloo*
 %exclude %{_datadir}/info/dir
 %{_datadir}/man/bigloo.1*
+%{_libdir}/libbigloo*
 
 %changelog
 * Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> 2.6f-1

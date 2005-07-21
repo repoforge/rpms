@@ -22,7 +22,9 @@ Source: http://fixounet.free.fr/avidemux/avidemux-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, glib-devel, gtk+-devel >= 1.2.9
-BuildRequires: nasm >= 0.98.32, gcc-c++, gettext
+BuildRequires: nasm >= 0.98.32, gcc-c++, gettext, automake, autoconf
+BuildRequires: libxml2-devel, xvidcore-devel, libmad-devel
+BuildRequires: a52dec-devel, lame-devel, mjpegtools-devel
 %{?fc4:BuildRequires: gettext-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
