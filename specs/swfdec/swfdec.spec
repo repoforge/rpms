@@ -33,7 +33,7 @@ BuildRequires: libmad-devel, SDL-devel, gdk-pixbuf-devel, gcc-c++
 BuildRequires: liboil-devel, GConf2-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
 %{!?_without_mozilla:BuildRequires: mozilla-devel}
-%{!?_without_gstreamer:gstreamer-plugins-devel}
+%{!?_without_gstreamer:BuildRequires: gstreamer-plugins-devel}
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it

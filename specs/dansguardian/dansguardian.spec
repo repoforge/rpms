@@ -14,7 +14,7 @@ URL: http://www.dansguardian.org/
 
 Source: http://dansguardian.org/downloads/2/Stable/dansguardian-%{version}.source.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, zlib-devel
+BuildRequires: gcc-c++, zlib-devel, which
 
 %description
 DansGuardian is a web filtering engine that checks the content within

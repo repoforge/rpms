@@ -5,13 +5,13 @@
 
 Summary: OO Graph Library for PHP
 Name: php-jpgraph
-Version: 1.16
+Version: 1.19
 Release: 1
 License: QPL
 Group: Development/Languages
 URL: http://www.aditus.nu/jpgraph/
 
-Source: http://www.aditus.nu/jpgraph/downloads/jpgraph-%{version}.tar.gz
+Source: http://members.chello.se/jpgraph/jpgdownloads/jpgraph-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -68,6 +68,9 @@ This package includes the documentation for %{name}.
 %doc src/Examples/ docs/*
 
 %changelog
+* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
+- Updated to release 1.19.
+
 * Tue Feb 17 2004 Dag Wieers <dag@wieers.com> - 1.14-1
 - Added missing dat files. (Matti Lindell)
 

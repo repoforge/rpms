@@ -10,9 +10,9 @@ Version: 1.8.8
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://webperso.easyconnect.fr/om.the/web/cwirc/
+URL: http://users.skynet.be/ppc/cwirc/
 
-Source: http://webperso.easyconnect.fr/om.the/web/cwirc/download/cwirc-%{version}.tar.gz
+Source: http://users.skynet.be/ppc/cwirc/download/cwirc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel

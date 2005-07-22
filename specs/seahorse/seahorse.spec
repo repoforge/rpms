@@ -4,7 +4,7 @@
 
 Summary: GNOME gnupg interface
 Name: seahorse
-Version: 0.7.3
+Version: 0.6.3
 Release: 0
 License: GPL
 Group: User Interface/Desktops

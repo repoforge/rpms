@@ -8,7 +8,7 @@
 
 Name: python-mad
 Summary: Python Wrapper for the MPEG Audio Decoder Library
-Version: 0.5.3
+Version: 0.5.4
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -46,5 +46,8 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/madmodule.so
 
 %changelog
+* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.4-1
+- Update to release 0.5.4.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 0.5.3-1
 - Initial package. (using DAR)

@@ -34,7 +34,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, glut, python-devel
 BuildRequires: openssl-devel, SDL-devel, libvorbis-devel
-BuildRequires: libogg-devel esound-devel, openal-devel, libtool, gettext
+BuildRequires: libogg-devel, esound-devel, openal-devel, libtool, gettext
 BuildRequires: scons, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_without_xorg:BuildRequires: XFree86-devel}

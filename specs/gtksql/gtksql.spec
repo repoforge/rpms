@@ -16,6 +16,7 @@ Source: http://dl.sf.net/gtksql/gtksql-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, lua-devel, postgresql-devel, gtk+-devel
+BuildRequires: automake, autoconf, desktop-file-utils
 
 %description
 GtkSQL is a graphical database query tool for the PostgreSQL and MySQL

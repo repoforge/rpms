@@ -9,13 +9,13 @@
 
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
-Version: 0.6.4
+Version: 0.6.7
 Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://gnokii.org/
 
-Source: http://www.gnokii.org/download/gnokii-%{version}.tar.bz2
+Source: http://www.gnokii.org/download/gnokii/gnokii-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, flex, gtk+-devel >= 1.2.0, bluez-libs-devel
@@ -151,6 +151,9 @@ EOF
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.7-1
+- Updated to release 0.6.7.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.
 
