@@ -10,7 +10,7 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/libgnomedb/1.1/libgnomedb-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/libgnomedb/1.2/libgnomedb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig >= 0.8
