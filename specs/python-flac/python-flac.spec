@@ -16,7 +16,7 @@ URL: http://www.sacredchao.net/quodlibet/browser/trunk/pyflac/
 Source: http://www.sacredchao.net/~piman/software/pyflac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, python-devel
+BuildRequires: python, python-devel, flac-devel
 
 Obsoletes: pyflac
 

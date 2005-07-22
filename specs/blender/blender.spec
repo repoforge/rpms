@@ -18,11 +18,11 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 2.36
+%define real_version 2.37
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.36
+Version: 2.37
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -107,6 +107,9 @@ scons
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 %changelog
+* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 2.37-1
+- Updated to release 2.37.
+
 * Thu Dec 23 2004 David Cornette <rpms@davidcornette.com> - 2.36-1
 - Updated to release 2.36.
 - Also install the python scripts

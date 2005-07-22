@@ -13,7 +13,7 @@ URL: http://bmp-plugins.berlios.de/
 Source: http://download.berlios.de/bmp-plugins/bmp-wma-%{version}.tar.gz 
 Patch: bmp-wma-0.1.1-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: bmp-devel
+BuildRequires: bmp-devel, gcc-c++
 
 
 %description

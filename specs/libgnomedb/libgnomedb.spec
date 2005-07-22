@@ -4,7 +4,7 @@
 
 Summary: Library for writing gnome database programs
 Name: libgnomedb
-Version: 1.1.2
+Version: 1.2.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -97,6 +97,9 @@ scrollkeeper-update -q || :
 %{_includedir}/libgnomedb/
 
 %changelog
+* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 1.1.1-1
 - Updated to release 1.1.1.
 

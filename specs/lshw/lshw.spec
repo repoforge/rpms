@@ -22,6 +22,8 @@ URL: http://www.ezix.org/software/lshw.html
 Source: http://ezix.sourceforge.net/software/files/lshw-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 lshw is a small tool to provide detailed informaton on the hardware
 configuration of the machine. It can report exact memory configuration,

@@ -2,6 +2,17 @@
 # Authority: dag
 # Upstream: Florian <florian,boor$unix-ag,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: Wireless LAN (WLAN) accesspoint discovery tool
 Name: prismstumbler
 Version: 0.7.3
@@ -14,7 +25,10 @@ Source: http://dl.sf.net/prismstumbler/prismstumbler-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, sqlite-devel, autoconf, automake, libtool
-BuildRequires: libpcap, gcc-c++, openmotif-devel
+BuildRequires: libpcap, gcc-c++
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
+%{?fc4:BuildRequires: openmotif-devel}
 
 %description
 Prismstumbler is a wireless LAN (WLAN) discovery tool which scans for

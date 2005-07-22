@@ -31,7 +31,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ImageMagick-devel, ncurses-devel, autoconf, flex, gcc-c++
 BuildRequires: zlib-devel, expat-devel, byacc, gmp-devel, wget
-BuildRequires: libtiff-devel, libjpeg-devel
+BuildRequires: libtiff-devel, libjpeg-devel, bzip2-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

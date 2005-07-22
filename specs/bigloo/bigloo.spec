@@ -41,6 +41,10 @@ programs.
 %makeinstall DESTDIR=%{buildroot}
 %{__mv} -f %{buildroot}%{_prefix}/doc/bigloo-%{version} rpm-doc
 %{__mv} -f %{buildroot}%{_bindir}/afile %{buildroot}%{_bindir}/afile-bigloo
+%{__rm} -f %{buildroot}%{_libdir}/libbigloo*.so
+for i in _s _u fth_s fth_u gc gc_fth ; do \
+  ln -s %{_libdir}/bigloo/libbigloo${i}-%{version}.so %{buildroot}%{_libdir}/libbigloo%{i}-%{version}.so
+done
 
 %clean
 %{__rm} -rf %{buildroot}

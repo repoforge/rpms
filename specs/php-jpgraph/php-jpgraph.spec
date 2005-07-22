@@ -60,7 +60,7 @@ This package includes the documentation for %{name}.
 
 %files
 %defattr(-, root, root, 0755)
-%doc QPL.txt README src/Changelog
+%doc QPL.txt README
 %{_localstatedir}/www/%{real_name}-%{version}/
 
 %files docs

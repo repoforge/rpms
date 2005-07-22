@@ -17,7 +17,7 @@ Source: http://dl.sf.net/mplayerplug-in/mplayerplug-in-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, mozilla-devel, glib2-devel, gtk2-devel >= 2.2.1, mozilla-devel
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, gettext
 
 Obsoletes: mozilla-mplayer <= %{version}-%{release}
 #Requires: mplayer, mozilla = %{mversion}
