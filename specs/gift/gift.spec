@@ -12,7 +12,7 @@ URL: http://www.giftproject.org/
 
 Source: http://dl.sf.net/gift/gift-%{version}.tar.bz2 
 %{?fc4:BuildRequires: libtool-ltdl-devel, libtool-ltdl}
-BuildRequires: libtool, gcc-c++
+BuildRequires: libtool, gcc-c++, libvorbis-devel, libogg-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -34,6 +34,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure
+# -O2 -Wp,-D_FORTIFY_SOURCE=2  causes compile problems
+%{expand: %%define optflags -O2 -Wall -g}
 %{__make} %{?_smp_mflags}
 
 %install
