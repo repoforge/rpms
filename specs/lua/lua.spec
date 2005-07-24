@@ -49,7 +49,7 @@ you will need to install %{name}-devel.
 
 %build
 %{__make} %{?_smp_mflags} all so \
-	MYCFLAGS="%{optflags}"
+	MYCFLAGS="%{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}

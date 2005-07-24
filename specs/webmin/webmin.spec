@@ -13,7 +13,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.210
+Version: 1.220
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -69,6 +69,7 @@ os_type="redhat-linux"
 %{?el4:os_version="12.0"; real_os_type="Red Hat Enterprise Linux"; real_os_version="4"}
 %{?el3:os_version="9.0";  real_os_type="Red Hat Enterprise Linux"; real_os_version="3"}
 %{?el2:os_version="7.2";  real_os_type="Red Hat Enterprise Linux"; real_os_version="2.1"}
+%{?fc4:os_version="13.0"; real_os_type="Fedora Core";      real_os_version="4"}
 %{?fc3:os_version="12.0"; real_os_type="Fedora Core";      real_os_version="3"}
 %{?fc2:os_version="11.0"; real_os_type="Fedora Core";      real_os_version="2"}
 %{?fc1:os_version="10.0"; real_os_type="Fedora Core";      real_os_version="1"}
@@ -140,12 +141,17 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/daemons/webmin
 %config(noreplace) %{_sysconfdir}/webmin/config/
 %config(noreplace) %{_sysconfdir}/webmin/miniserv.*
+%config(noreplace) %{_sysconfdir}/webmin/webmin.acl
 %ghost %{_sysconfdir}/webmin/miniserv.pem
 %ghost %{_sysconfdir}/webmin/module.infos.cache
 %dir %{_localstatedir}/webmin/
 %{_libexecdir}/webmin
 
 %changelog
+* Fri Jul 22 2005 Dag Wieers <dag@wieers.com> - 1.220-1
+- Updated to release 1.220.
+- Added /etc/webmin/webmin.acl to noreplace config files. (Ralph Angenendt)
+
 * Mon Jun 06 2005 Dag Wieers <dag@wieers.com> - 1.210-1
 - Updated to release 1.210.
 

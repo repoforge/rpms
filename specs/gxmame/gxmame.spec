@@ -20,7 +20,7 @@ URL: http://gxmame.sourceforge.net/
 Source: http://dl.sf.net/gxmame/gxmame-%{version}%{?date:cvs}%{?prever}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmame >= 0.77.1
-BuildRequires: gtk2-devel, zlib-devel, expat-devel, intltool, gettext
+BuildRequires: gtk2-devel >= 2.4, zlib-devel, expat-devel, intltool, gettext
 %{?_with_gettextdevel:BuildRequires: gettext-devel}
 
 %description
@@ -38,7 +38,7 @@ times played, last game selected, gui preference...) under windows and Linux.
 
 %build
 %configure \
-    --with-xmame-dir=%{_datadir}/xmame \
+    --with-xmame-dir="%{_datadir}/xmame" \
     --enable-joystick
 %{__make} %{?_smp_mflags}
 
@@ -60,10 +60,14 @@ times played, last game selected, gui preference...) under windows and Linux.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc _docs/*
-%{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/%{name}.png
-%{_datadir}/icons/mini/%{name}.xpm
+%doc %{_mandir}/man6/gxmame.6*
+%{_bindir}/gxmame
+%{_datadir}/applications/gxmame.desktop
+#%{_datadir}/icons/gxmame.png
+#%{_datadir}/icons/mini/gxmame.xpm
+%{_datadir}/pixmaps/gxmame.png
+%{_datadir}/pixmaps/gxmame.xpm
+%{_datadir}/gxmame/
 
 
 %changelog

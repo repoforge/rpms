@@ -1,10 +1,11 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: scilab@inria.fr
+
 # Screenshot: http://scilabsoft.inria.fr/images/session_27.png
 
-# ExcludeDist: el3 fc1
+### (dag) Is there a reason to exclude these ?
+##ExcludeDist: el3 fc1
 
 Summary: Scientific software package
 Name: scilab
@@ -48,7 +49,8 @@ overloading. A number of toolboxes are available with the system.
 	--with-xaw3d \
 	--with-gtk2 \
 	--with-x \
-	--without-java
+	--without-java \
+	--with-tcl-library="%{_libdir}"
 # ../include/pvmtev.h nodig in pvm3/src/global.h
 (echo '#include "../include/pvmtev.h"'; cat pvm3/src/global.h) > pvm3/src/global.h.temp
 %{__mv} pvm3/src/global.h.temp pvm3/src/global.h
@@ -82,11 +84,11 @@ overloading. A number of toolboxes are available with the system.
 %doc ACKNOWLEDGEMENTS CHANGES README_Unix Version.incl licence.txt
 %defattr(-, root, root, 0755)
 %{_bindir}/*
-%{_libdir}/scilab-%{version}
+%{_libdir}/scilab-%{version}/
 %exclude %{_libdir}/scilab-%{version}/examples/mex-examples/mexglx
 
 %changelog
-* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 3.1.1
+* Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> - 3.1.1-1
 - Update to release 3.1.1.
 
 * Wed Jul 14 2004 Dries Verachtert <dries@ulyssis.org> - 3.0-1

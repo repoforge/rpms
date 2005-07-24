@@ -5,7 +5,7 @@
 Summary: Console-based network traffic monitor
 Name: vnstat
 Version: 1.4
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://humdi.net/vnstat/
@@ -60,7 +60,7 @@ EOF
 %{__install} -Dp -m0755 src/vnstat %{buildroot}%{_bindir}/vnstat
 %{__install} -Dp -m0755 vnstat.cron %{buildroot}%{_sbindir}/vnstat.cron
 %{__install} -Dp -m0644 vnstat.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vnstat
-%{__install} -Dp -m0755 vnstat.crond %{buildroot}%{_sysconfdir}/cron.d/vnstat
+%{__install} -Dp -m0644 vnstat.crond %{buildroot}%{_sysconfdir}/cron.d/vnstat
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -78,6 +78,9 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
+* Sat Jul 23 2005 Dag Wieers <dag@wieers.com> - 1.4-3
+- Fixed permissions of /etc/cron.d/vnstat. (Alexander Dalloz)
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.4-2
 - Fixed cron job and sysv script. (Alexander Dalloz)
 

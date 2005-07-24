@@ -9,11 +9,11 @@
 %{?rh7:%define _without_gtk24 1}
 %{?el2:%define _without_gtk24 1}
 
-%define real_version B.02.05
+%define real_version B.02.05.01
 
 Summary: Hardware lister
 Name: lshw
-Version: 2.05
+Version: 2.05.01
 Release: 1
 License: GPL
 Group: Applications/System
@@ -95,6 +95,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Thu Jul 21 2005 Dag Wieers <dag@wieers.com> - 2.05.01-1
+- Updated to release B.02.05.01.
+
 * Wed Jul 20 2005 Dag Wieers <dag@wieers.com> - 2.05-1
 - Updated to release B.02.05.
 

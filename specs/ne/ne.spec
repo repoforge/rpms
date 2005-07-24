@@ -4,7 +4,7 @@
 
 Summary: Nice editor
 Name: ne
-Version: 1.38
+Version: 1.40
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -69,6 +69,9 @@ This package includes the documentation for package %{name}.
 %doc doc/*.html doc/*.pdf doc/*.ps doc/ne.txt
 
 %changelog
+* Sat Jul 23 2005 Dag Wieers <dag@wieers.com> - 1.40-1
+- Updated to release 1.40.
+
 * Mon Sep 27 2004 Dag Wieers <dag@wieers.com> - 1.38-1
 - Updated to release 1.38.
 

@@ -22,8 +22,8 @@
 
 Summary: Fast and small X11 window manager
 Name: icewm
-Version: 1.2.20
-Release: 2
+Version: 1.2.22
+Release: 1
 License: LGPL
 Group: User Interface/Desktops
 URL: http://www.icewm.org/
@@ -96,6 +96,9 @@ EOF
 %{_datadir}/icewm/
 
 %changelog
+* Wed Jul 20 2005 Dag Wieers <dag@wieers.com> - 1.2.22-1
+- Updated to release 1.2.22.
+
 * Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 1.2.20-2
 - Added files for icewm to work with switchdesk and GDM. (Troy Dawson)
 

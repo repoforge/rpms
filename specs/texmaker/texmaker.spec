@@ -12,7 +12,7 @@
 
 Summary: LaTeX editor
 Name: texmaker
-Version: 1.2
+Version: 1.2.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -112,6 +112,9 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{_datadir}/texmaker/
 
 %changelog
+* Sat Jul 23 2005 Dag Wieers <dag@weers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Mon Jul 11 2005 Dag Wieers <dag@weers.com> - 1.2-1
 - Updated to release 1.2.
 

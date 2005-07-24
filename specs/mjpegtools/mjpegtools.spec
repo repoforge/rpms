@@ -3,6 +3,8 @@
 # Upstream: Gernot Ziegler <gz$lysator,liu,se>
 # Upstream: <mjpeg-developer$lists,sourceforge,net>
 
+# Archs: i686 x86_64
+
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
 %{?rh9:%define _without_alsa 1}
@@ -73,6 +75,7 @@ popd
 %ifarch %{ix86}
     %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"}
 %endif
+
 %{__make} %{?_smp_mflags}
 
 

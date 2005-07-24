@@ -5,13 +5,13 @@
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.34.3
+Version: 0.35.1
 Release: 1
 License: GPL
 Group: User Interface/Desktops
-URL: http://gdesklets.gnomedesktop.org/
+URL: http://www.gdesklets.org/
 
-Source: http://www.pycage.de/download/gdesklets/gDesklets-%{version}.tar.bz2
+Source: http://www.gdesklets.org/releases/gDesklets-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgtop2-devel >= 2.8, python-devel >= 2.3, gcc-c++
@@ -82,6 +82,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/mime/packages/gdesklets.xml
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.35.1-1
+- Updated to release 0.35.1.
+
 * Thu Mar 24 2005 Dag Wieers <dag@wieers.com> - 0.34.3-1
 - Updated to release 0.34.3.
 

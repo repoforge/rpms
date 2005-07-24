@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: GNOME gnupg interface
@@ -13,10 +12,9 @@ URL: http://seahorse.sourceforge.net/
 Source: http://ftp.gnome.org/pub/GNOME/sources/seahorse/0.7/seahorse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: gpgme-devel >= 0.3.14
 BuildRequires: scrollkeeper, pkgconfig, GConf2, gnupg, gcc-c++
-BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel
+BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: libbonobo-devel, libbonoboui-devel, eel2-devel
 
 Requires(post): scrollkeeper
