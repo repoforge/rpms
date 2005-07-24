@@ -19,8 +19,8 @@ Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/Convert-PEM-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-Convert-ASN1, perl-Crypt-DES_EDE3
-BuildRequires: perl-Class-ErrorHandler
+BuildRequires: perl, perl(Convert::ASN1)
+BuildRequires: perl(Class::ErrorHandler), perl(Crypt::DES_EDE3)
 
 %description
 This is Convert::PEM, a module implementing read/write access
