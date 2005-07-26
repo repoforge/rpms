@@ -9,7 +9,7 @@ Version: 12.4.5
 Release: 1
 License: LGPL
 Group: Applications/Engineering
-URL: http://www.lightlink.com/computer/math/
+URL: http://www.mathomatic.com
 
 Source: http://www.panix.com/~gesslein/mathomatic-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -41,6 +41,9 @@ Gesslein II and has been under development since 1986.
 %exclude %{_usr}/doc
 
 %changelog
+* Mon Jul 25 2005 Dries Verachtert <dries@ulyssis.org> 12.4.5-2
+- Fixed the url (thanks to George John Gesslein II)
+
 * Thu Jul 21 2005 Dries Verachtert <dries@ulyssis.org> 12.4.5-1
 - Update to release 12.4.5.
 
