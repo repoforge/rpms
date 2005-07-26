@@ -10,7 +10,7 @@
 Summary: Perl interface to the Internet Relay Chat protocol
 Name: perl-Net-IRC
 Version: 0.75
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IRC/
@@ -30,6 +30,7 @@ protocol (RFC 1459).
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} -pi -e 's|IO::Socket::INET6?|IO::Socket::INET6|g;' *.pm
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX=%{buildroot}%{_prefix}
 %{__make} %{?_smp_mflags}
 
@@ -49,5 +50,8 @@ protocol (RFC 1459).
 %{perl_vendorlib}/Net/IRC
 
 %changelog
+* Tue Jul 26 2005 Jima <jima@devel.mintygreen.net> - 0.75-2
+- IO::Socket::INET calls changed to IO::Socket::INET6 so IPV6 can be used.
+
 * Sun Mar  6 2005 Dries Verachtert <dries@ulyssis.org> - 0.75-1
 - Initial package.
