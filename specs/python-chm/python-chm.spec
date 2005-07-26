@@ -16,7 +16,7 @@ URL: http://gnochm.sourceforge.net/
 Source: http://dl.sf.net/gnochm/pychm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.2, chmlib-devel
+BuildRequires: python >= 2.2, chmlib-devel, python-devel
 Requires: python >= 2.2, chmlib
 
 %description
