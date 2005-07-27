@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2,
 BuildRequires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
+BuildRequires: scrollkeeper
 
 Requires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2
 Requires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf

@@ -15,7 +15,7 @@
 
 Summary: Typing tutor
 Name: klavaro
-Version: 0.3
+Version: 0.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -83,5 +83,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Wed Jul 27 2005 Dries Verachtert <dries@ulyssis.org> - 0.4-1
+- Update to release 0.4.
+
 * Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.
