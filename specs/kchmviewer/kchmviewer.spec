@@ -1,4 +1,4 @@
-# $Id:$
+# $Id$
 # Authority: dries
 
 %{?dist: %{expand: %%define %dist 1}}
@@ -16,7 +16,7 @@
 
 Summary: CHM file viewer
 Name: kchmviewer
-Version: 0.92
+Version: 1.0
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -64,5 +64,8 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/services/msits.protocol
 
 %changelog
+* Thu Jul 28 2005 Dries Verachtert <dries@ulyssis.org>  1.0-1
+- Upgrade to release 1.0.
+
 * Tue Jul 26 2005 Dries Verachtert <dries@ulyssis.org> 0.9.1-1
 - First packaging.

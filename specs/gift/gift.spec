@@ -34,16 +34,17 @@ you will need to install %{name}-devel.
 
 %build
 %configure
-# -O2 -Wp,-D_FORTIFY_SOURCE=2  causes compile problems
-%{expand: %%define optflags -O2 -Wall -g}
+# -O2 -Wp,-D_FORTIFY_SOURCE=2  causes compile problems, mail sent to
+# gift-devel
+%{__perl} -pi -e 's|-O2.*|-g -Wall|g;' Makefile */Makefile */*/Makefile
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%clean
-%{__rm} -rf %{buildroot}
+#%clean
+#%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null

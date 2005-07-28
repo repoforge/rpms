@@ -5,6 +5,7 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %define _without_shmime 1
+%{?fc4:%undefine _without_shmime}
 %{?el4:%undefine _without_shmime}
 %{?fc3:%undefine _without_shmime}
 %{?fc2:%undefine _without_shmime}
@@ -23,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2,
 BuildRequires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
-BuildRequires: scrollkeeper
+BuildRequires: scrollkeeper, gettext
 
 Requires: python-chm >= 0.7.0, python, pygtk2, pygtk2-libglade, gnome-python2
 Requires: gnome-python2-bonobo, gnome-python2-gtkhtml2, gnome-python2-gconf
@@ -82,6 +83,8 @@ scrollkeeper-update -q || :
 %{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
 %{!?_without_shmime:%exclude %{_datadir}/mime/globs}
 %{!?_without_shmime:%exclude %{_datadir}/mime/magic}
+%{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
+%{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png

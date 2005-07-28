@@ -7,7 +7,7 @@
 
 Summary: Multiplayer 2D arcade game 
 Name: luola
-Version: 1.2.7
+Version: 1.2.8
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -67,6 +67,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Thu Jul 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.8-1
+- Update to release 1.2.8.
+
 * Sun Apr 10 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.7-1
 - Update to release 1.2.7.
 

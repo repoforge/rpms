@@ -4,12 +4,12 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{!?dist:%define _with_gamin}
-%{?fc4:%define _with_gamin}
-%{?el4:%define _with_gamin}
-%{?fc3:%define _with_gamin}
-%{?fc2:%define _with_fam}
-%{?el3:%define _with_fam}
+%{!?dist:%define _with_gamin 1}
+%{?fc4:%define _with_gamin 1}
+%{?el4:%define _with_gamin 1}
+%{?fc3:%define _with_gamin 1}
+%{?fc2:%define _with_fam 1}
+%{?el3:%define _with_fam 1}
 
 Summary: Top-like display of Apache logs
 Name: apachetop

@@ -11,10 +11,12 @@
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
 
+%define desktop_vendor rpmforge
+
 Summary: Screen lock and screen saver.
 Name: xlockmore
 Version: 5.18
-Release: 1
+Release: 2
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.tux.org/~bagleyd/xlockmore.html
@@ -97,6 +99,9 @@ desktop-file-install \
 %{_datadir}/applications/%{desktop_vendor}-xlockmore.desktop
 
 %changelog
+* Thu Jul 28 2005 Dries Verachtert <dries@ulyssis.org> - 5.18-2
+- Fixed the name of the desktop file (thanks to Erik Williamson)
+
 * Mon Jun 20 2005 Dries Verachtert <dries@ulyssis.org> - 5.18-1
 - Update to release 5.18.
 
