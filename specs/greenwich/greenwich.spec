@@ -10,7 +10,8 @@ License: GPL
 Group: Applications/System
 URL: http://jodrell.net/projects/greenwich/
 
-Source: http://jodrell.net/download.html?file=/files/greenwich-%{version}.tar.gz
+#Source: http://jodrell.net/download.html?file=/files/greenwich-%{version}.tar.gz
+Source: http://jodrell.net/files/greenwich/greenwich-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503

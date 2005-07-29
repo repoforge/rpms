@@ -13,7 +13,7 @@ URL: http://www.gnome-db.org/
 Source: http://ftp.gnome.org/pub/GNOME/sources/libgnomedb/1.2/libgnomedb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig >= 0.8
+BuildRequires: pkgconfig >= 0.8, gettext
 BuildRequires: gtk2-devel >= 1.3.6, libbonoboui-devel, libglade2-devel
 BuildRequires: libgnomeui-devel >= 1.103.0, libgda-devel
 BuildRequires: scrollkeeper, gcc-c++, gtksourceview-devel
