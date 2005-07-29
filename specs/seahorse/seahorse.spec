@@ -42,6 +42,12 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper
 %{__rm} -f %{buildroot}%{_libdir}/bonobo/*.a \
 		%{buildroot}%{_libdir}/bonobo/*.la
+%{__rm} -Rf %{buildroot}%{_datadir}/mime/XMLnamespaces \
+	%{buildroot}%{_datadir}/mime/aliases \
+	%{buildroot}%{_datadir}/mime/globs \
+	%{buildroot}%{_datadir}/mime/magic \
+	%{buildroot}%{_datadir}/mime/subclasses \
+	%{buildroot}%{_datadir}/mime/application
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,10 +67,13 @@ scrollkeeper-update -q || :
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_libdir}/bonobo/*.so
+%{_libdir}/gedit-2/plugins/libseahorse*
+%{_libdir}/libseahorse*
 %{_libdir}/bonobo/servers/*.server
 %{_datadir}/applications/*.desktop
 %{_datadir}/control-center-2.0/capplets/*.desktop
 %{_datadir}/mime-info/*
+%{_dataidr}/mime/packages/seahorse.xml
 %{_datadir}/omf/seahorse/
 %{_datadir}/pixmaps/*
 %{_datadir}/seahorse/
