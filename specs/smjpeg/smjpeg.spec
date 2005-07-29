@@ -36,11 +36,11 @@ you will need to install %{name}-devel.
 %build
 %{__libtoolize} --force --copy
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} SED=sed
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall SED=sed
 
 %clean
 %{__rm} -rf %{buildroot}

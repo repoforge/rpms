@@ -39,11 +39,11 @@ you will need to install %{name}-devel.
 %build
 %{__libtoolize} --force --copy
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} SED=sed
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall SED=sed
 
 ### FIXME: Move tdbdump and tdbtool to resp. tdb-dump and tdb-tool to avoid samba conflict. (Please fix upstream)
 %{__mv} -f %{buildroot}%{_bindir}/tdbdump %{buildroot}%{_bindir}/tdb-dump

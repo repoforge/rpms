@@ -28,7 +28,7 @@ Source: http://ktechlab.fadedminds.com/download/ktechlab-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gpsim-devel, gcc, make, libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext, glib2-devel
+BuildRequires: arts-devel, gcc-c++, gettext, glib2-devel, glib-devel
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
 %{?el4:BuildRequires: libselinux-devel}
