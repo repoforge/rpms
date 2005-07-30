@@ -41,14 +41,13 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.0.1
-Release: 2
+Version: 1.1.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.gz
 Patch0: xine-lib-1.0-unbreak-64bit-faad.patch
-Patch1: xine-lib-1.0.1-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
@@ -113,7 +112,6 @@ use the Xine library.
 %prep
 %setup
 %patch0 -p1 -b .faad
-%patch1 -p1 -b .gcc4
 
 
 %build
@@ -165,6 +163,9 @@ use the Xine library.
 
 
 %changelog
+* Sat Jul 30 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-1
+- Update to 1.1.0, which includes gcc4 fixes.
+
 * Tue May  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.1-2
 - Remove ffmpeg MMX disabling, it works, go figure.
 - No longer run autogen.sh or libtool. Same, it works... confusing.

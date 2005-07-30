@@ -10,8 +10,8 @@
 
 Summary: Free multimedia player
 Name: xine
-Version: 0.99.3
-Release: 5
+Version: 0.99.4
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -19,8 +19,9 @@ Source0: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
 Source1: xine.png
 Source2: http://www.bluebeamentertainment.com/xine/smokeyglass_splash.png
 Source3: http://www.bluebeamentertainment.com/xine/smokeyglass_logo.m1v
-Patch0: xine-ui-0.99.3-gcc4.patch
-Patch1: xine-ui-0.99.3-menucrash.patch
+Patch0: xine-ui-0.99.3-sprintf.patch
+Patch1: xine-ui-0.99.3-xftfontsize.patch
+Patch2: xine-ui-0.99.3-uifixups.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, xine-lib-devel >= 1.0.0
@@ -46,8 +47,9 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-ui-%{version}
-%patch0 -p1 -b .gcc4
-%patch1 -p1 -b .menucrash
+%patch0 -p1 -b .strintf
+%patch1 -p1 -b .xftfontsize
+%patch2 -p1 -b .uifixups
 # Fix for lirc needed to be searched for in lib64
 %{__perl} -pi.orig -e 's|(lirc_libprefix /lib) /usr/lib|$1 %{_libdir}|g' \
     configure
@@ -149,6 +151,13 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Sat Jul 30 2005 Matthias Saou <http://freshrpms.net/> 0.99.4-1
+- Update to 0.99.4, which includes gcc4 fixes.
+
+* Wed Jul 13 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-6
+- More patches from Alex Stewart : sprintf, xftfontsize and uifixups. These
+  should fix many bugs, including broken dialog boxes and broken menus.
+
 * Tue Jul  5 2005 Matthias Saou <http://freshrpms.net/> 0.99.3-5
 - Add menucrash patch from Alex Stewart, at last! :-) (for x86_64)
 

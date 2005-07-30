@@ -1,0 +1,64 @@
+diff -ur xine-ui-0.99.3/src/xitk/xine-toolkit/font.c xine-ui-0.99.3-xftfontsize/src/xitk/xine-toolkit/font.c
+--- xine-ui-0.99.3/src/xitk/xine-toolkit/font.c	2004-05-07 14:06:54.000000000 -0700
++++ xine-ui-0.99.3-xftfontsize/src/xitk/xine-toolkit/font.c	2005-07-12 18:18:53.000000000 -0700
+@@ -320,7 +320,8 @@
+       || strncmp(old_name, "-", 1) == 0 || strncmp(old_name, "*", 1) == 0) {
+     char  font[50];
+     char  style[15];
+-    char  *psize = "*", size[5], ptsize[5], pxsize[5];
++    char  ptsize[5], pxsize[5];
++    int   xft_pxsize;
+     
+     if( old_name[0] == '-' )
+       old_name++;
+@@ -330,27 +331,18 @@
+     sscanf( old_name, "%*[^-]-%*[^-]-%*[^-]-%*[^-]-%*[^-]-%*[^-]-%[^-]", pxsize);
+     sscanf( old_name, "%*[^-]-%*[^-]-%*[^-]-%*[^-]-%*[^-]-%*[^-]-%*[^-]-%[^-]", ptsize);
+ 
+-    /* Xft doesn't have lucida, which is a small font;
+-     * thus we make whatever is chosen 2 sizes smaller */
+-    if(strlen(pxsize) && strcmp(pxsize, "*"))
+-      psize = pxsize;
+-    else if(strlen(ptsize) && strcmp(ptsize, "*"))
+-      psize = ptsize;
++    if (!strcmp(style, "*"))
++      style[0] = 0;
+ 
+-    if( strcmp( font, "lucida" ) == 0 ) {
+-      int  sz = strtol(psize, &psize, 10);
++    if(strlen(pxsize) && strcmp(pxsize, "*")) {
++      /* Xft fonts usually come out looking slightly smaller at a given pixel
++       * size, so bump the px size up by 1 to get a more consistent appearance.
++       */
++      xft_pxsize = atoi(pxsize) + 1;
++      snprintf(new_name, sizeof(new_name)-5, "%s:pixelsize=%d:%s", font, xft_pxsize, style);
++    } else if(strlen(ptsize) && strcmp(ptsize, "*"))
++      snprintf(new_name, sizeof(new_name)-5, "%s-%s:%s", font, ptsize, style);
+ 
+-      sz -= 2;
+-      snprintf(size , sizeof(size), "%i", sz);
+-    }
+-    else
+-      snprintf(size, sizeof(size), "%s", psize);
+-    
+-    if( strcmp( style , "bold" ) != 0 )
+-      snprintf( new_name, sizeof(new_name), "%s-%s", font, size );
+-    else
+-      snprintf( new_name, sizeof(new_name), "%s-%s:%s", font, size, style );
+- 
+     return new_name;
+   }
+ 
+@@ -1096,8 +1088,11 @@
+   XUNLOCK(xtfs->display);
+   free(encoded_text);
+ 
++  /* Note: the fact that we have to fudge ascent so much means we're doing
++   * something wrong somewhere.  I don't have time to figure it out right now,
++   * and this makes everything look about right onscreen, at least... --AS */
+   if (width) *width       = xft_extents.width;
+-  if (ascent) *ascent     = xtfs->font->ascent - 1;
++  if (ascent) *ascent     = xtfs->font->ascent - 4;
+   if (descent) *descent   = xtfs->font->descent;
+   if (lbearing) *lbearing = 0;
+   if (rbearing) *rbearing = 0;
