@@ -73,7 +73,7 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/*.desktop
 %{_datadir}/control-center-2.0/capplets/*.desktop
 %{_datadir}/mime-info/*
-%{_dataidr}/mime/packages/seahorse.xml
+%{_datadir}/mime/packages/seahorse.xml
 %{_datadir}/omf/seahorse/
 %{_datadir}/pixmaps/*
 %{_datadir}/seahorse/

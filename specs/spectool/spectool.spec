@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl
+Requires: perl, rpm-build
 
 %description
 spectool is a tool to display expanded Source/Patch macros from a SPEC file.

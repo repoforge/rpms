@@ -68,6 +68,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 ### FIXME: Fixes to /usr/lib(64) for x86_64
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' \
     configure contrib/php4/configure Makefile.in
+%{__perl} -pi.orig -e 's|#include <config.h>|#include <config.h>\n#include "../config.h"|g;' src/rrd_tool.h
 
 %build
 %configure \
@@ -77,6 +78,9 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
     --enable-local-libpng \
     --enable-local-zlib \
     --with-pic
+# make sure the shared libraries have a .so extension
+%{__perl} -pi -e 's|shared_ext|shrext|g;' libtool
+%{__perl} -pi -e 's|\\\${shrext}|.so|g;' libtool
 %{__make} %{?_smp_mflags}
 
 # Build the php4 module, the tmp install is required
@@ -130,6 +134,8 @@ find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 %{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
 
+# remove the empty dir
+%{__rm} -Rf %{buildroot}%{_libdir}/perl
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -140,7 +146,7 @@ find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT README TODO
 %doc rpm-doc/docs/
 %{_bindir}/*
-#%{_libdir}/*.so.*
+%{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 
@@ -152,7 +158,7 @@ find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 %{_includedir}/rrd.h
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
-#%{_libdir}/*.so
+%{_libdir}/*.so
 
 
 %files -n perl-rrdtool
@@ -173,6 +179,9 @@ find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 
 
 %changelog
+* Sat Jul 30 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.50-2
+- Some fixes for FC4.
+
 * Wed May 18 2005 Dag Wieers <dag@wieers.com> - 1.0.50-2
 - Updated to release 1.0.50.
 

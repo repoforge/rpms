@@ -14,7 +14,7 @@ URL: http://jodrell.net/projects/greenwich/
 Source: http://jodrell.net/files/greenwich/greenwich-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503, gettext
+BuildRequires: perl >= 0:5.00503, gettext, GConf2
 Requires: perl >= 0:5.00503
 Requires: Gtk-Perl, perl(IP::Authority), perl(Locale::Maketext)
 Requires: perl(ExtUtils::Depends), perl(Gnome2), perl(Gtk2)

@@ -74,9 +74,10 @@ scons
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 blender %{buildroot}%{_bindir}/blender
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/blender.png
-%{__install} -d %{buildroot}%{_libdir}/blender %{buildroot}%{_libdir}/blender/bpydata %{buildroot}%{_libdir}/blender/bpymodules
+%{__install} -d %{buildroot}%{_libdir}/blender %{buildroot}%{_libdir}/blender/bpydata/config %{buildroot}%{_libdir}/blender/bpymodules
 %{__install} -p -m0644 release/scripts/*.* %{buildroot}%{_libdir}/blender/
-%{__install} -p -m0644 release/scripts/bpydata/* %{buildroot}%{_libdir}/blender/bpydata/
+%{__install} -p -m0644 release/scripts/bpydata/*.* %{buildroot}%{_libdir}/blender/bpydata/
+%{__install} -p -m0644 release/scripts/bpydata/config/*.* %{buildroot}%{_libdir}/blender/bpydata/config/
 %{__install} -p -m0644 release/scripts/bpymodules/* %{buildroot}%{_libdir}/blender/bpymodules/
 
 
