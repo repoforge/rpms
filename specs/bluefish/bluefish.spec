@@ -3,18 +3,17 @@
 
 Summary: Graphical web development application for experienced users
 Name: bluefish
-Version: 1.0
+Version: 1.0.2
 Release: 1
 Group: Development/Tools
 License: GPL
 URL: http://bluefish.openoffice.nl/
 Source: http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/bluefish-%{version}.tar.bz2
-Patch: bluefish-1.0-desktop_icon.patch
+Patch: bluefish-1.0.2-desktop_icon.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gtk2-devel >= 2.0.6, pcre-devel >= 3.9, gnome-vfs2-devel
-BuildRequires: aspell-devel, gettext, desktop-file-utils
 Requires: shared-mime-info >= 0.14
+BuildRequires: libgnomeui-devel >= 2.6, pcre-devel >= 3.9, gnome-vfs2-devel
+BuildRequires: aspell-devel, gettext, desktop-file-utils
 
 %description
 Bluefish is a GTK+ HTML editor for the experienced web designer or
@@ -26,7 +25,7 @@ support.
 
 %prep
 %setup
-%patch -p0 -b .desktop_icon
+%patch -p1 -b .desktop_icon
 
 
 %build
@@ -45,11 +44,11 @@ support.
 
 
 %post
-update-desktop-database -q 2>/dev/null || :
+update-desktop-database -q || :
 
 %postun
-update-mime-database %{_datadir}/mime >/dev/null 2>&1 || :
-update-desktop-database -q 2>/dev/null || :
+update-mime-database %{_datadir}/mime &>/dev/null || :
+update-desktop-database -q || :
 
 
 %files -f %{name}.lang
@@ -65,6 +64,11 @@ update-desktop-database -q 2>/dev/null || :
 
 
 %changelog
+* Mon Aug  1 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-1
+- Update to 1.0.2.
+- Update desktop icon patch.
+- Now require libgnomeui-devel >= 2.6.
+
 * Wed Jan 12 2005 Matthias Saou <http://freshrpms.net/> 1.0-1
 - Update to 1.0, thanks to Matthias Haase.
 

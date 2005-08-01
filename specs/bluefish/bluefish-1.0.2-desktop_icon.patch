@@ -1,0 +1,24 @@
+diff -Naupr bluefish-1.0.2.orig/data/bluefish.desktop.in bluefish-1.0.2/data/bluefish.desktop.in
+--- bluefish-1.0.2.orig/data/bluefish.desktop.in	2005-05-30 22:47:54.000000000 +0200
++++ bluefish-1.0.2/data/bluefish.desktop.in	2005-08-01 13:09:58.000000000 +0200
+@@ -4,7 +4,7 @@ Name[de]=Bluefish Editor
+ Comment=Web Development Editor
+ Comment[de]=Editor für Web-Entwickler
+ Exec=bluefish %F
+-Icon=ICONDIR/bluefish-icon.png
++Icon=bluefish-icon.png
+ Terminal=false
+ Type=Application
+ Categories=Application;Development;
+diff -Naupr bluefish-1.0.2.orig/data/bluefish-project.desktop.in bluefish-1.0.2/data/bluefish-project.desktop.in
+--- bluefish-1.0.2.orig/data/bluefish-project.desktop.in	2005-05-30 22:47:54.000000000 +0200
++++ bluefish-1.0.2/data/bluefish-project.desktop.in	2005-08-01 13:10:16.000000000 +0200
+@@ -4,7 +4,7 @@ Name[de]=Bluefish Editor
+ Comment=Web Development Editor
+ Comment[de]=Editor für Web-Entwickler
+ Exec=bluefish -n -p %f
+-Icon=ICONDIR/bluefish-icon.png
++Icon=bluefish-icon.png
+ Terminal=false
+ Type=Application
+ NoDisplay=true
