@@ -11,7 +11,7 @@ URL: http://djvu.sourceforge.net/
 Source: http://dl.sf.net/djvu/djvulibre-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: XFree86-devel, qt-devel, libjpeg-devel
-BuildRequires: libstdc++-devel, gcc-c++, mozilla, gettext
+BuildRequires: libstdc++-devel, gcc-c++, mozilla, gettext, libtiff-devel
 # Provide these here, they're so small, it's not worth splitting them out
 Provides: mozilla-djvulibre = %{version}-%{release}
 Provides: djvulibre-devel = %{version}-%{release}

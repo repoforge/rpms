@@ -13,7 +13,7 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.saunalahti.fi/~laakkon1/linux/luola/index.php
 
-Source: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/luola-%{version}.tar.gz
+Source: http://www.luolamies.org/software/luola/luola-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_gfx-devel
