@@ -5,7 +5,7 @@
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.3.15
+Version: 1.3.16
 Release: 1
 License: BSD
 Group: System Environment/Daemons
@@ -165,6 +165,9 @@ fi
 
 
 %changelog
+* Mon Aug  1 2005 Matthias Saou <http://freshrpms.net/> 1.3.16-1
+- Update to 1.3.16.
+
 * Mon Jul 18 2005 Matthias Saou <http://freshrpms.net/> 1.3.15-1
 - Update to 1.3.15.
 
