@@ -18,7 +18,7 @@
 
 Summary: Development and simulation of microcontrollers and electronic circuits
 Name: ktechlab
-Version: 0.1.2
+Version: 0.2
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -77,16 +77,19 @@ to KTechlab.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/ktechlab
-%{_bindir}/microbasic
+%{_bindir}/microbe
 %{_datadir}/apps/ktechlab
-%{_datadir}/apps/katepart/syntax/microbasic.xml
+%{_datadir}/apps/katepart/syntax/microbe.xml
 %{_datadir}/config.kcfg/ktechlab.kcfg
 %{_datadir}/mimelnk/application/*.desktop
 %{_datadir}/applnk/Development/ktechlab.desktop
-%{_datadir}/doc/HTML/en/ktechlab/microbasic_index.docbook
+%{_datadir}/doc/HTML/en/ktechlab
 %{_datadir}/icons/*/*/*/*.png
-%{_libdir}/libktechlab_gpsim.*
+#%{_libdir}/libktechlab_gpsim.*
 
 %changelog
+* Mon Aug 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Update to release 0.2.
+
 * Mon Jan 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.2-1
 - Initial package.

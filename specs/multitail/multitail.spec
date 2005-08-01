@@ -5,12 +5,12 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 3.6.0rc2
+%define real_version 3.6.0
 
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
 Version: 3.6.0
-Release: 0.rc2
+Release: 1
 License: GPL
 Group: Applications/Text
 URL: http://www.vanheusden.com/multitail/
@@ -56,6 +56,9 @@ given regular expressions and deleting and adding windows.
 %{_bindir}/multitail
 
 %changelog
+* Mon Aug 1 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1
+- Updated to release 3.6.0.
+
 * Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0rc2
 - Updated to release 3.6.0rc2.
 

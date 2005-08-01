@@ -66,10 +66,11 @@ scrollkeeper-update -q || :
 %doc %{_datadir}/gnome/help/seahorse/
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
-%{_libdir}/bonobo/*.so
+#%{_libdir}/bonobo/*.so
 %{_libdir}/gedit-2/plugins/libseahorse*
+%{_libdir}/gedit-2/plugins/seahorse-pgp.gedit-plugin
 %{_libdir}/libseahorse*
-%{_libdir}/bonobo/servers/*.server
+#%{_libdir}/bonobo/servers/*.server
 %{_datadir}/applications/*.desktop
 %{_datadir}/control-center-2.0/capplets/*.desktop
 %{_datadir}/mime-info/*
@@ -77,9 +78,10 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/seahorse/
 %{_datadir}/pixmaps/*
 %{_datadir}/seahorse/
+%{_libdir}/nautilus/extensions-1.0/libnautilus-seahorse.*
 
 %changelog
-* Fri Jul 22 2005 Dag Wieers <dries@ulyssis.org> - 0.7.8-0
+* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.8-0
 - Updated to release 0.7.8.
 
 * Fri May 02 2003 Dag Wieers <dag@wieers.com> - 0.6.3-0

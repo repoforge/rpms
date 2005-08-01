@@ -22,7 +22,7 @@ Source: http://dl.sf.net/glabels/glabels-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.4, libgnomeui-devel >= 2.0, libglade2-devel >= 2.0.1
-BuildRequires: gtk+-devel >= 1.2, libgnomecanvas-devel >= 2.0, gcc-c++
+BuildRequires: gtk+-devel >= 1.2, libgnomecanvas-devel >= 2.0, gcc-c++, gettext
 BuildRequires: libgnomeprint22-devel, libgnomeprintui22-devel, scrollkeeper
 #BuildRequires: libgnomeprint-devel >= 0.115
 
@@ -116,6 +116,7 @@ scrollkeeper-update -q || :
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libglabels/
+%{_libdir}/libglabels.so
 %{_libdir}/libglabels.a
 %exclude %{_libdir}/libglabels.la
 
