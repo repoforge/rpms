@@ -14,6 +14,7 @@ Source: http://ne.dsi.unimi.it/ne-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel >= 4.0
+BuildRequires: texinfo
 
 %description 
 ne is a free (GPL'd) text editor based on the POSIX standard that runs (we

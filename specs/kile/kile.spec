@@ -90,8 +90,7 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 %{_datadir}/apps/kconf_update/kile.upd
 %{_datadir}/apps/kconf_update/kile1.6_upd.pl
 %{_datadir}/config.kcfg/kile.kcfg
-%{_datadir}/icons/crystalsvg/*/apps/kile.png
-%{_datadir}/icons/hicolor/*/apps/kile.png
+%{_datadir}/icons/*/*/apps/kile.png
 %{_datadir}/applications/kile.desktop
 %{_datadir}/mimelnk/text/x-kilepr.desktop
 %{_bindir}/kile

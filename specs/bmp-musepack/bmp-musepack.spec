@@ -13,7 +13,7 @@ Group: Applications/Multimedia
 URL: http://www.musepack.net/
 Source: http://musepack.origean.net/files/linux/plugins/bmp-musepack-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: bmp-devel, libmpcdec-devel, taglib-devel
+BuildRequires: bmp-devel, libmpcdec-devel, taglib-devel, gcc-c++
 
 
 %description

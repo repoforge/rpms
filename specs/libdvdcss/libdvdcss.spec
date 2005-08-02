@@ -12,7 +12,7 @@ URL: http://developers.videolan.org/libdvdcss/
 Source: http://download.videolan.org/pub/libdvdcss/%{version}/libdvdcss-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # For the documentation
-BuildRequires: doxygen
+BuildRequires: doxygen, gcc-c++
 
 %description
 This is a portable abstraction library for DVD decryption which is used by

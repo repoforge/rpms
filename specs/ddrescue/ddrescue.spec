@@ -13,6 +13,8 @@ URL: http://www.gnu.org/software/ddrescue/ddrescue.html
 Source: http://savannah.gnu.org/download/ddrescue/ddrescue-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 GNU ddrescue is a data recovery tool. It copies data from one file or block
 device (hard disc, cdrom, etc) to another, trying hard to rescue data in

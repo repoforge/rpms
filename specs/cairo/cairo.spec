@@ -25,7 +25,7 @@ Source: http://cairo.freedesktop.org/snapshots/cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, freetype-devel, fontconfig-devel, libpixman-devel
-BuildRequires: libpng-devel
+BuildRequires: libpng-devel, gcc-c++
 #BuildRequires: glitz-devel, libxcb-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}

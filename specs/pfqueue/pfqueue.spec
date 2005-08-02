@@ -12,7 +12,7 @@ URL: http://pfqueue.sourceforge.net/
 Source: http://dl.sf.net/pfqueue/pfqueue-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel
+BuildRequires: ncurses-devel, gcc-c++
 Requires: postfix
 
 %description

@@ -25,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 AutoReq: 0
 BuildRequires: perl, perl-Net-SSLeay, perl(CGI), perl(Mon::Client)
+BuildRequires: perl-Mon
 Requires: perl, perl(Net::SSLeay), perl(CGI), perl(Mon::Client)
 Requires: perl(Authen::PAM)
 Requires(post): openssl

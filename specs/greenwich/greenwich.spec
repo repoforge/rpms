@@ -37,22 +37,27 @@ It can also do lookups against IP addresses.
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d %{buildroot}%{_datadir}/icons/Bluecurve/48x48/apps %{buildroot}%{_datadir}/icons/Industrial/48x48/apps
 %makeinstall \
 	mandir="%{buildroot}%{_mandir}/man1"
-%{__install} -Dp -m0644 src/redhat-whois.png %{buildroot}%{_datadir}/icons/Bluecurve/greenwich.png
+#%{__install} -Dp -m0644 src/redhat-whois.png %{buildroot}%{_datadir}/icons/Bluecurve/greenwich.png
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
 %doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/Greenwich/
-%{_datadir}/gnome/apps/Internet/*.desktop
-%{_datadir}/icons/Bluecurve/*.png
-%{_datadir}/pixmaps/*.png
+%{_bindir}/greenwich
+%dir %{_libdir}/greenwich
+%{_libdir}/greenwich/WhoisMap.pm
+%dir %{_datadir}/greenwich
+%{_datadir}/greenwich/greenwich.*
+%{_datadir}/applications/*.desktop
+%{_datadir}/icons/*/48x48/apps/greenwich.png
+%{_datadir}/pixmaps/greenwich.png
 
 %changelog
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.8.1-1

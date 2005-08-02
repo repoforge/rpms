@@ -15,7 +15,7 @@ Source: http://fondriest.frederic.free.fr/fichiers/bmp-mp4_%{date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bmp-devel
 # No configure included
-BuildRequires: autoconf, automake, libtool
+BuildRequires: autoconf, automake, libtool, gcc-c++
 
 
 %description
