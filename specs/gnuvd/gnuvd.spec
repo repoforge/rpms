@@ -6,7 +6,7 @@
 
 Summary: Dutch online dictionary
 Name: gnuvd
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -65,6 +65,9 @@ A program which searches Dutch words in the online dictionary Van Dale.
 #%exclude %{_libdir}/*.la
 
 %changelog
+* Tue Aug 02 2005 Dries Verachtert <dries@ulyssis.org> 1.0.1-1
+- Update to release 1.0.1.
+
 * Tue Feb 08 2005 Dries Verachtert <dries@ulyssis.org> 1.0-1
 - Update to release 1.0.
 
