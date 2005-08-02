@@ -3,12 +3,13 @@
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.273
+Version: 0.0.281
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
 # Available through "svn co svn://svn.videolan.org/x264/trunk x264"
+# find x264 -name .svn | xargs rm -rf
 Source: %{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: xorg-x11-devel, nasm
@@ -76,6 +77,9 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Tue Aug  2 2005 Matthias Saou <http://freshrpms.net/> 0.0.281-1
+- Update to svn 281.
+
 * Mon Jul 11 2005 Matthias Saou <http://freshrpms.net/> 0.0.273-1
 - Initial RPM release.
 
