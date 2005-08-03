@@ -13,7 +13,7 @@ URL: http://balance.sourceforge.net/
 Source: http://www.inlab.de/balance-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: groff
+BuildRequires: groff, ghostscript
 
 %description
 Balance is a simple but powerful generic tcp proxy with round robin

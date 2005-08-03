@@ -48,7 +48,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %dir %{perl_vendorarch}/Lingua/
 %dir %{perl_vendorarch}/Lingua/Stem/
 %{perl_vendorarch}/Lingua/Stem/Snowball.pm
-%{perl_vendorarch}/Lingua/Stem/add_stemmer.pl
+%{_bindir}/add_stemmer.pl
 %dir %{perl_vendorarch}/auto/Lingua/Stem/
 %{perl_vendorarch}/auto/Lingua/Stem/Snowball/
 

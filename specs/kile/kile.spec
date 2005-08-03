@@ -76,21 +76,23 @@ echo "Encoding=UTF-8" >> %{buildroot}%{_datadir}/applications/kde/kile.desktop
 sed -i "s/KDE Desktop Entry/Desktop Entry/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
 sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{_datadir}/applications/kde/kile.desktop
 %{__mv} %{buildroot}%{_datadir}/applications/kde/kile.desktop %{buildroot}%{_datadir}/applications/kile.desktop
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%{_datadir}/doc/HTML/*/kile
+%{_datadir}/doc/HTML/*/kile ??
+%{_datadir}/doc/HTML/*/doc
 %{_datadir}/apps/kile
 # conflicts with kdelibs-3.2.2-8.FC2
 %exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
 %exclude %{_datadir}/apps/katepart/syntax/latex.xml
 %{_datadir}/apps/kconf_update/kile.upd
-%{_datadir}/apps/kconf_update/kile1.6_upd.pl
+%{_datadir}/apps/kconf_update/kile*_upd.pl
 %{_datadir}/config.kcfg/kile.kcfg
-%{_datadir}/icons/*/*/apps/kile.png
+%{_datadir}/icons/*/*/apps/kile.*
 %{_datadir}/applications/kile.desktop
 %{_datadir}/mimelnk/text/x-kilepr.desktop
 %{_bindir}/kile

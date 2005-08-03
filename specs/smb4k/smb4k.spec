@@ -60,11 +60,15 @@ source "/etc/profile.d/qt.sh"
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc %{_docdir}/HTML/en/smb4k
+%{_includedir}/smb4k*.h
 %{_bindir}/smb4k
 %{_bindir}/smb4k_kill
 %{_bindir}/smb4k_mount
 %{_bindir}/smb4k_umount
+%{_libdir}/kde3/konqsidebar*
+%{_libdir}/libsmb4k*
 %{_datadir}/applications/kde/smb4k.desktop
+%{_datadir}/apps/konqsidebartng/add/smb4k_add.desktop
 %{_datadir}/apps/smb4k
 %{_datadir}/icons/crystalsvg/*/apps/smb4k.png
 

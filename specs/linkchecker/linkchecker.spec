@@ -15,7 +15,7 @@ URL: http://linkchecker.sourceforge.net/
 Source: http://dl.sf.net/linkchecker/linkchecker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, gettext
 BuildRequires: python-devel >= 2.4
 Requires: python >= 2.4
 
@@ -35,12 +35,13 @@ CFLAGS="%{optflags}" python setup.py build
 %{__rm} -rf %{buildroot}
 python setup.py install \
 	--root="%{buildroot}"
-%find_lang %{name}
+#%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
+# -f %{name}.lang
 %defattr(-, root, root, 0775)
 %doc ChangeLog INSTALL LICENSE README TODO
 # %doc create.sql draft-gilman-news-url-00.txt

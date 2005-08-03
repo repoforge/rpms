@@ -70,11 +70,12 @@ MimeType=application/x-uml
 Categories=Application;Development;X-Red-Hat-Extra;
 EOF
 %{__rm} -f %{buildroot}%{_datadir}/applications/kde/umbrello.desktop
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING README
 %{_bindir}/umbrello
@@ -84,6 +85,7 @@ EOF
 %{_datadir}/mimelnk/application/x-umbrello.desktop
 %{_datadir}/applications/umbrello.desktop
 %{_datadir}/icons/*/*/actions/umbrello_diagram_*.png
+%{_datadir}/doc/HTML/*/umbrello
 
 %changelog
 * Thu Jun 09 2005 Dries Verachtert <dries@ulyssis.org> 1.4.1-1

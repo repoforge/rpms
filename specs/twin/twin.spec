@@ -15,7 +15,7 @@ URL: http://linuz.sns.it/~max/twin/
 
 Source: http://dl.sf.net/twin/twin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: autoconf, ncurses-devel, autoheader
+BuildRequires: autoconf, ncurses-devel, automake
 
 %description
 Twin is a windowing environment with mouse support, window manager,

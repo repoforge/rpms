@@ -30,6 +30,7 @@ that are blocked by their local Internet service providers (ISPs).
 %setup
 
 %build
+export CPPFLAGS=-I/usr/include/kerberos
 %configure
 %{__make} %{?_smp_mflags}
 

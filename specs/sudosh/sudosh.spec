@@ -42,9 +42,11 @@ actual session output.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/sudosh.1*
+%doc %{_mandir}/man5/sudosh.conf*
 %doc %{_mandir}/man8/sudosh-replay.8*
 %{_bindir}/sudosh
 %{_bindir}/sudosh-replay
+%config(noreplace) %{_sysconfdir}/sudosh.conf
 
 %changelog
 * Mon Jun 13 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.2-1

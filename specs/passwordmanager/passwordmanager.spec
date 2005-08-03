@@ -73,12 +73,13 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{__rm} -rf %{buildroot}
 source %{_sysconfdir}/profile.d/qt.sh
 %makeinstall
-%find_lang %{real_name}
+#%find_lang %{real_name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{real_name}.lang
+%files
+# -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/*
