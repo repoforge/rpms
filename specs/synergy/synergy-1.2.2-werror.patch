@@ -1,0 +1,12 @@
+diff -Naupr synergy-1.2.2.orig/configure.in synergy-1.2.2/configure.in
+--- synergy-1.2.2.orig/configure.in	2005-01-01 21:52:42.000000000 +0100
++++ synergy-1.2.2/configure.in	2005-04-17 20:36:09.000000000 +0200
+@@ -203,7 +203,7 @@ dnl checks for system services
+ 
+ dnl enable maximum compiler warnings and warnings are errors.
+ ACX_CXX_WARNINGS
+-ACX_CXX_WARNINGS_ARE_ERRORS
++dnl ACX_CXX_WARNINGS_ARE_ERRORS
+ 
+ dnl adjust compiler and linker variables
+ CXXFLAGS="$CXXFLAGS $SYNERGY_CXXFLAGS $ARCH_CFLAGS"

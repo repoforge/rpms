@@ -3,12 +3,13 @@
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/
 Source: http://dl.sf.net/synergy2/%{name}-%{version}.tar.gz
+Patch: synergy-1.2.2-werror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, XFree86-devel
 
@@ -22,6 +23,8 @@ own display.
 
 %prep
 %setup
+%patch -p1 -b .werror
+%{__autoconf}
 
 
 %build
@@ -47,6 +50,16 @@ own display.
 
 
 %changelog
+* Wed Aug  3 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+- Update to 1.2.3, -Werror patch still required (only for warn_unused_result
+  anyway).
+
+* Wed May  4 2005 Matthias Saou <http://freshrpms.net/> 1.2.2-3
+- Rebuild (my bad with CVS "make tag", I guess).
+
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.2.2-2
+- Disable -Werror as build fails with gcc4 otherwise (temporary fix).
+
 * Mon Jan 31 2005 Matthias Saou <http://freshrpms.net/> 1.2.2-1
 - Update to 1.2.2.
 
