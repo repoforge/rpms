@@ -12,7 +12,7 @@
 
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.9.12
+Version: 1.9.13
 Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -24,13 +24,15 @@ Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0
 %{?_with_pilot:Requires: pilot-link}
 BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
-BuildRequires: openssl-devel, gpgme03-devel >= 0.3.10, openldap-devel
-BuildRequires: compface-devel, startup-notification-devel
+BuildRequires: openssl-devel, gpgme-devel >= 0.4.5, openldap-devel
+BuildRequires: compface-devel, libetpan-devel >= 0.38
+BuildRequires: startup-notification-devel
 %{?gettextdevel:BuildRequires: gettext-devel}
 BuildRequires: gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_aspell:BuildRequires: aspell-devel >= 0.50}
 %{?_with_pilot:BuildRequires: pilot-link-devel}
+%{!?_without_printing:BuildRequires: libgnomeprintui22-devel}
 Conflicts: sylpheed
 
 %description
@@ -48,7 +50,7 @@ You have been warned ;-)
 
 Available rpmbuild rebuild options :
 --with : pilot
---without : aspell freedesktop
+--without : aspell freedesktop printing
 
 
 %prep
@@ -91,7 +93,7 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     --add-category Application \
     --add-category Network \
-    %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+    %{buildroot}%{_datadir}/gnome/apps/Internet/sylpheed-claws.desktop
 %endif
 
 
@@ -111,17 +113,24 @@ desktop-file-install \
 %exclude %{_libdir}/sylpheed-claws/plugins/*.a
 %exclude %{_libdir}/sylpheed-claws/plugins/*.la
 %{_libdir}/sylpheed-claws/plugins/*.so
+%{_libdir}/sylpheed-claws/plugins/*.deps
 %if %{!?_without_freedesktop:1}0
-%{_datadir}/applications/%{desktop_vendor}-sylpheed.desktop
+%{_datadir}/applications/%{desktop_vendor}-sylpheed-claws.desktop
 %else
-%{_datadir}/gnome/apps/Internet/sylpheed.desktop
+%{_datadir}/gnome/apps/Internet/sylpheed-claws.desktop
 %endif
-%{_datadir}/pixmaps/sylpheed.png
+%{_datadir}/pixmaps/sylpheed-claws.png
 %{_datadir}/sylpheed-claws/
 %{_mandir}/man1/sylpheed.1*
 
 
 %changelog
+* Mon Aug  1 2005 Matthias Saou <http://freshrpms.net/> 1.9.13-1
+- Update to 1.9.13.
+- Added new libetpan dependency (for IMAP support).
+- Update gpgme dependency to >= 0.4.5 (no longer gpgme03).
+- Added new libgnomeprintui printing support.
+
 * Fri Jul  8 2005 Matthias Saou <http://freshrpms.net/> 1.9.12-1
 - Update to 1.9.12.
 
