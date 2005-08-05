@@ -16,12 +16,12 @@
 %{?rh6:%define _without_xorg 1}
 %{?yd3:%define _without_xorg 1}
 
-%define real_version 2005-06-R1
+%define real_version 2005-07-R1
 
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-Release: 3.200506r1
+Release: 3.200507r1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -93,6 +93,9 @@ kismet on downloaded maps or user supplied image files.
 %endif
 
 %changelog
+* Mon Jul 25 2005 Dag Wieers <dag@wieers.com> - 3.0.1-2.200507r1
+- Updated to release 2005-07-R1.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 3.0.1-2.200506r1
 - Updated to release 2005-06-R1.
 

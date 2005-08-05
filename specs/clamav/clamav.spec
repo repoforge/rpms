@@ -10,7 +10,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.86.1
+Version: 0.86.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -218,6 +218,8 @@ EOF
 %if %{!?_without_milter:1}0
 %{__install} -Dp -m0755 %{SOURCE2} %{buildroot}%{_initrddir}/clamav-milter
 %{__install} -Dp -m0644 clamav-milter.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/clamav-milter
+%else
+%{__rm} %{buildroot}%{_mandir}/man8/clamav-milter.8*
 %endif
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/clamav/
@@ -312,7 +314,8 @@ fi
 
 %defattr(0644, clamav, clamav, 0755)
 %{_localstatedir}/run/clamav/
-%{_localstatedir}/clamav/
+%dir %{_localstatedir}/clamav/
+%exclude %{_localstatedir}/clamav/*
 %dir %{_localstatedir}/log/clamav/
 %ghost %{_localstatedir}/log/clamav/clamd.log
 
@@ -346,6 +349,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Mon Jul 25 2005 Dag Wieers <dag@wieers.com> - 0.86.2-1
+- Updated to release 0.86.2.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.86.1-1
 - Updated to release 0.86.1.
 

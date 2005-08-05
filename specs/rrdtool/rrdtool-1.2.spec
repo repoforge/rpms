@@ -17,7 +17,7 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.2.9
+Version: 1.2.11
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -58,6 +58,15 @@ Obsoletes: rrdtool-perl <= %{version}
 
 %description -n perl-rrdtool
 The Perl RRDtool bindings
+
+%package -n tcl-rrdtool
+Summary: TCL bindings
+Group: Development/Languages
+Requires: %{name} = %{version}
+Obsoletes: rrdtool-tcl <= %{version}
+
+%description -n tcl-rrdtool
+The TCL RRDtool bindings
 
 %package -n python-rrdtool
 Summary: Python RRDtool bindings
@@ -120,7 +129,6 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %{_libdir}/librrd.so.*
 %{_libdir}/librrd_th.so.*
 %{_datadir}/rrdtool/
-%exclude %{_prefix}/shared/
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -140,7 +148,16 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %{perl_vendorlib}/RRDp.pm
 %{perl_vendorarch}/RRDs.pm
 %{perl_vendorarch}/auto/RRDs/
-%exclude %{_prefix}/examples/
+
+%files -n tcl-rrdtool
+%defattr(-, root, root, 0755)
+%{?fc3:%{_datadir}/tclrrd%{version}/ifOctets.tcl}
+%{?fc2:%{_datadir}/tclrrd%{version}/ifOctets.tcl}
+%{?fc1:%{_datadir}/tclrrd%{version}/ifOctets.tcl}
+%{?fc3:%{_datadir}/tclrrd%{version}/pkgIndex.tcl}
+%{?fc2:%{_datadir}/tclrrd%{version}/pkgIndex.tcl}
+%{?fc1:%{_datadir}/tclrrd%{version}/pkgIndex.tcl}
+%{_libdir}/tclrrd%{version}.so
 
 %if %{!?_without_python:1}0
 %files -n python-rrdtool
@@ -149,6 +166,9 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %endif
 
 %changelog
+* Wed Jul 27 2005 Dag Wieers <dag@wieers.com> - 1.2.11-1
+- Updated to release 1.2.11.
+
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 1.2.9-1
 - Updated to release 1.2.9.
 

@@ -14,7 +14,7 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.12.0
+Version: 1.12.1
 Release: 1
 License: GPL
 Group: System Environment/Shells
@@ -67,9 +67,12 @@ is simple but incompatible with other shell languages.
 %{_bindir}/set_color
 %{_bindir}/tokenize
 %{_bindir}/xsel
-%exclude %{_docdir}/fish
+%exclude %{_docdir}/fish/
 
 %changelog
+* Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 1.12.1-1
+- Updated to release 1.12.1.
+
 * Fri Jul 15 2005 Dag Wieers <dag@wieers.com> - 1.12.0-1
 - Updated to release 1.12.0.
 

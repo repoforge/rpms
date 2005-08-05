@@ -4,7 +4,7 @@
 
 Summary: Search for emails in a mailbox using regular expressions
 Name: grepmail
-Version: 5.3030
+Version: 5.3032
 Release: 1
 License: GPL
 Group: Applications/System
@@ -41,5 +41,8 @@ using a regular expression or date constraint.
 %{_bindir}/grepmail
 
 %changelog
+* Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 5.3032-1
+- Updated to release 5.3032.
+
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 5.3030-1
 - Initial package. (using DAR)
