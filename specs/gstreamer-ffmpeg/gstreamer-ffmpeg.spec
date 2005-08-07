@@ -9,13 +9,12 @@
 
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: %{gstreamer}-ffmpeg
-Version: 0.8.4.1
+Version: 0.8.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
-#Source: http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
-Source: http://ronald.bitfreak.net/priv/gst-ffmpeg-%{version}.tar.bz2
+Source: http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(pre): %{register}
 Requires(post): %{register}
@@ -68,10 +67,16 @@ plugins.
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
+%{_libdir}/gstreamer-%{majorminor}/libgstpostproc.so
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.la
+%exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
 
 
 %changelog
+* Sat Aug  6 2005 Matthias Saou <http://freshrpms.net/> 0.8.6-1
+- Update to 0.8.6.
+- Include new postproc plugin.
+
 * Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.4.1-1
 - Update to 0.8.4.1 snapshot that builds on FC4test.
 - Added some docs to be included, the mandatory license for instance.
