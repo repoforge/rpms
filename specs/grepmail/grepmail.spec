@@ -14,7 +14,7 @@ Source: http://dl.sf.net/grepmail/grepmail-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-Requires: perl
+Requires: perl, perl(Date::Parse)
 
 %description
 grepmail is a tool to search for emails in a normal or compressed mailbox
@@ -43,6 +43,7 @@ using a regular expression or date constraint.
 %changelog
 * Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 5.3032-1
 - Updated to release 5.3032.
+- Added missing perl(Date::Parse) dependency. (Ed Wilts)
 
 * Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 5.3030-1
 - Initial package. (using DAR)

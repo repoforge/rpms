@@ -4,7 +4,7 @@
 
 Summary: Interactivity benchmark tool
 Name: interbench
-Version: 0.27
+Version: 0.28
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -38,6 +38,9 @@ hardware can be compared.
 %{_bindir}/interbench
 
 %changelog
+* Sat Aug 06 2005 Dag Wieers <dag@wieers.com> - 0.28-1
+- Updated to release 0.28.
+
 * Thu Aug 04 2005 Dag Wieers <dag@wieers.com> - 0.27-1
 - Updated to release 0.27.
 

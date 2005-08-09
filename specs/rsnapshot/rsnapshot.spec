@@ -6,7 +6,7 @@
 Summary: Local and remote filesystem snapshot utility
 Name: rsnapshot
 Version: 1.2.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.rsnapshot.org/
@@ -43,12 +43,12 @@ of filesystems. rnsapshot uses hard links to save space on disk.
 %{__install} -Dp -m0644 rsnapshot.conf.default %{buildroot}%{_sysconfdir}/rsnapshot.conf
 
 %post
-VERSION="$(%{_bindir}/rsnapshot check-config-version &>/dev/null")
+VERSION="$(%{_bindir}/rsnapshot check-config-version &>/dev/null)"
 if [ $1 -gt 0 ]; then
 	%logmsg "Error upgrading %{_sysconfdir}/rsnapshot.conf."
 fi
 
-VERSION="$(%{_bindir}/rsnapshot check-config-version &>/dev/null")
+VERSION="$(%{_bindir}/rsnapshot check-config-version &>/dev/null)"
 if [ "$VERSION" == "unknown" ]; then
 	%{_bindir}/rsnapshot upgrade-config-file
 	exit $?
@@ -70,5 +70,8 @@ fi
 %{_bindir}/rsnapshot
 
 %changelog
+* Sat Aug 06 2005 Dag Wieers <dag@wieers.com> - 1.2.1-2
+- Fixed bug in %post script. (John Hinton)
+
 * Sat May 07 2005 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Initial package. (using DAR)

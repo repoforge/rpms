@@ -15,7 +15,7 @@ URL: http://openvpn.net/
 Source: http://openvpn.net/release/openvpn-%{version}%{?prever:_%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: lzo-devel >= 1.07, openssl-devel >= 0.9.6, pkgconfig
+BuildRequires: lzo-devel >= 1.07, openssl-devel >= 0.9.6, pkgconfig, pam-devel
 
 %description
 OpenVPN is a robust and highly flexible tunneling application.
@@ -97,6 +97,9 @@ fi
 
 
 %changelog
+* Mon Aug 08 2005 Dag Wieers <dag@wieers.com> - 2.0-1
+- Added pam-devel build requirement. (Greg Cope)
+
 * Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 2.0-1
 - Updated to release 2.0.
 

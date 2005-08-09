@@ -7,7 +7,7 @@
 
 Summary: Browser plugin for mplayer
 Name: mplayerplug-in
-Version: 2.85
+Version: 3.05
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -37,8 +37,7 @@ in your browser.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -50,9 +49,20 @@ in your browser.
 %config(noreplace) %{_sysconfdir}/mplayerplug-in.conf
 %config(noreplace) %{_sysconfdir}/mplayerplug-in.types
 %{_libdir}/mozilla/plugins/mplayerplug-in.so
-%{_libdir}/mozilla/components/mplayerplug-in.xpt
+%{_libdir}/mozilla/plugins/mplayerplug-in.xpt
+%{_libdir}/mozilla/plugins/mplayerplug-in-gmp.so
+%{_libdir}/mozilla/plugins/mplayerplug-in-gmp.xpt
+%{_libdir}/mozilla/plugins/mplayerplug-in-qt.so
+%{_libdir}/mozilla/plugins/mplayerplug-in-qt.xpt
+%{_libdir}/mozilla/plugins/mplayerplug-in-rm.so
+%{_libdir}/mozilla/plugins/mplayerplug-in-rm.xpt
+%{_libdir}/mozilla/plugins/mplayerplug-in-wmp.so
+%{_libdir}/mozilla/plugins/mplayerplug-in-wmp.xpt
 
 %changelog
+* Sat Aug 06 2005 Dag Wieers <dag@wieers.com> - 3.05-1
+- Updated to release 3.05.
+
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 2.85-1
 - Updated to release 2.85.
 

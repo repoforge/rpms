@@ -6,14 +6,14 @@
 
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 1.0.0
+Version: 1.0.4
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.vanheusden.com/httping/
 
 Source: http://www.vanheusden.com/httping/httping-%{version}.tgz
-Patch: httping-1.0.0-makefile.patch
+Patch: httping/httping-1.0.4-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -24,7 +24,7 @@ that the transmission across the network also takes time!
 
 %prep
 %setup
-%patch0 -b .orig
+%patch
 
 #{?el3:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
 #{?rh9:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
@@ -45,6 +45,9 @@ that the transmission across the network also takes time!
 %{_bindir}/httping
 
 %changelog
+* Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Mon Mar 28 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

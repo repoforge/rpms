@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Ali Akcaagac <aliakc$web,de>
 
+# Tag: test
+
 Summary: Light-weight GNOME web browser
 Name: atlantis
 Version: 0.1.3

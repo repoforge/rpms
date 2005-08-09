@@ -2,12 +2,12 @@
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 %{?!python:%define python python}
 
-%define     _upstream_nvr   elementtree-1.2.6-20050316
-%define     _upstream_cnvr  cElementTree-1.0.2-20050302    
+%define _upstream_nvr   elementtree-1.2.6-20050316
+%define _upstream_cnvr  cElementTree-1.0.2-20050302    
 
-Name: %{python}-elementtree
+Name: python-elementtree
 Version: 1.2.6
-Release: 4.1%{?dist}
+Release: 4
 Summary: Fast XML parser and writer
 Group: Development/Libraries
 License: PSF
@@ -28,7 +28,7 @@ between a Python list and a Python dictionary.
 This package also includes the C implementation, %{_upstream_cnvr}.
 
 %prep
-%setup -q -n %{_upstream_nvr} -a 1
+%setup -n %{_upstream_nvr} -a 1
 
 ## Take care of cElementTree
 pushd %{_upstream_cnvr}

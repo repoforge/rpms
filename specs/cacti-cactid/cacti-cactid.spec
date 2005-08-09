@@ -9,9 +9,9 @@
 
 Summary: Fast c-based poller for the cacti graphing solution
 Name: cacti-cactid
-Version: 0.8.6d
-Release: 2
-License: GPL
+Version: 0.8.6e
+Release: 1
+License: LGPL
 Group: Applications/System
 URL: http://www.cacti.net/
 
@@ -32,6 +32,7 @@ to achieve excellent performance.
 %prep
 %setup
 
+### FIXME: Patch to use /usr/lib64 on 64bit (Please fix upstream)
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
 
 %build
@@ -40,19 +41,24 @@ to achieve excellent performance.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 cactid %{buildroot}%{_bindir}/cactid
-%{__install} -D -m0600 -p cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
+%{__install} -Dp -m0755 cactid %{buildroot}%{_bindir}/cactid
+%{__install} -Dp -m0600 cactid.conf %{buildroot}%{_sysconfdir}/cactid.conf
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGELOG COPYING INSTALL NEWS README
-%attr(0600, cacti, cacti) %config(noreplace) %{_sysconfdir}/cactid.conf
+%doc AUTHORS CHANGELOG COPYING INSTALL LICENSE* NEWS README
 %{_bindir}/cactid
 
+%defattr(-, cacti, cacti, 0755)
+%config(noreplace) %{_sysconfdir}/cactid.conf
+
 %changelog
+* Tue Aug 09 2005 Dag Wieers <dag@wieers.com> - 0.8.6e-1
+- Updated to release 0.8.6e.
+
 * Thu May 19 2005 Matthias Saou <http://freshrpms.net/> 0.8.6d-2
 - Make the config file mode 0600 (it contains the mysql db password) and owned
   by the cacti user (he executes the cron job).
@@ -60,4 +66,3 @@ to achieve excellent performance.
 
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.8.6d-1
 - Initial package. (using DAR)
-

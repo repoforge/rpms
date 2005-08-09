@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEPHANB/Kolab-Cyrus-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.3
 
 %description
 Perl extension for interfacing with the Kolab Cyrus admin module.
@@ -43,6 +43,7 @@ Perl extension for interfacing with the Kolab Cyrus admin module.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Kolab/
 %{perl_vendorlib}/Kolab/Cyrus.pm
 
 %changelog

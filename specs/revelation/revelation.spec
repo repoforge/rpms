@@ -3,11 +3,11 @@
 # Upstream: Erik Grinaker <erikg$codepoet,no>
 # Upstream: <revelation-list$oss,codepoet,no>
 
-%define python_dir %(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.3
+Version: 0.4.4
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -60,7 +60,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/revelation.schemas
 %{_bindir}/revelation
-%{python_dir}/revelation/
+%{python_sitearch}/revelation/
 %{_datadir}/applications/revelation.desktop
 %{_datadir}/revelation/
 %{_datadir}/icons/hicolor/*/apps/revelation.png
@@ -69,7 +69,15 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/icons/hicolor/scalable/filesystems/revelation-fallback-folder-open.svg
 %{_datadir}/mime/packages/revelation.xml
 
+%config %{_sysconfdir}/gconf/schemas/revelation-applet.schemas
+%{_libdir}/bonobo/servers/GNOME_RevelationApplet.server
+%{_libexecdir}/revelation-applet
+%{_datadir}/icons/hicolor/*/apps/revelation-locked.png
+
 %changelog
+* Sun Aug 07 2005 Dag Wieers <dag@wieers.com> - 0.4.4-1
+- Updated to release 0.4.4.
+
 * Fri Apr 01 2005 Dag Wieers <dag@wieers.com> - 0.4.3-1
 - Updated to release 0.4.3.
 

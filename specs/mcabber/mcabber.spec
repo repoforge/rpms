@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Mikael BERTHE
+# Upstream: Mikael Berthe <mikael,berthe$lilotux,net>
 # ScreenshotURL: http://www.lilotux.net/~mikael/mcabber/screenshots/mcabber_sample.png
 
 Summary: Console jabber client
@@ -37,7 +37,7 @@ logging, external actions and more.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man?/mcabber*
+%doc %{_mandir}/man1/mcabber.1*
 %{_bindir}/mcabber
 
 %changelog

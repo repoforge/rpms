@@ -9,9 +9,11 @@ Release: 4
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
+
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
 Patch: lzo-1.08-asm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: zlib-devel, autoconf
 Requires: zlib >= 1.0.0
 

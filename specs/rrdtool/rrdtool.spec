@@ -74,7 +74,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-shared \
-    --with-perl-options='INSTALLDIRS="vendor"' \
+    --with-perl-options='INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"' \
     --enable-local-libpng \
     --enable-local-zlib \
     --with-pic
@@ -102,7 +102,8 @@ find examples/ -name "*.pl" \
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install site-perl-install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
+%{__make} site-perl-install
 
 # Install the php4 module
 %{__install} -Dp -m0755 contrib/php4/modules/rrdtool.so \

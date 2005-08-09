@@ -8,7 +8,7 @@
 Summary: Excellent LDAP browser and editor
 Name: lbe
 Version: 2.8.1
-Release: 1
+Release: 2
 License: Free to use
 Group: Applications/System
 URL: http://www-unix.mcs.anl.gov/~gawor/ldap/
@@ -16,6 +16,7 @@ URL: http://www-unix.mcs.anl.gov/~gawor/ldap/
 Source: http://www-unix.mcs.anl.gov/~gawor/ldapcommon/bin/%{real_name}%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 Requires: j2re >= 1.2.2
 
 %description
@@ -80,6 +81,9 @@ EOF
 %{_datadir}/lbe/
 
 %changelog
+* Tue Aug 09 2005 Dag Wieers <dag@wieers.com> - 2.8.1-2
+- Changed into a noach package. (C.Lee Taylor)
+
 * Tue Sep 02 2003 Dag Wieers <dag@wieers.com> - 2.8.1-1
 - Fixed help and templates.
 

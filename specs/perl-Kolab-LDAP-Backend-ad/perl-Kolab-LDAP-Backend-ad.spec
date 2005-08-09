@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEPHANB/Kolab-LDAP-Backend-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.3
 
 %description
 Perl extension for kolab for an Active Directory backend.
@@ -43,6 +43,9 @@ Perl extension for kolab for an Active Directory backend.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Kolab/
+%dir %{perl_vendorlib}/Kolab/LDAP/
+%dir %{perl_vendorlib}/Kolab/LDAP/Backend/
 %{perl_vendorlib}/Kolab/LDAP/Backend/ad.pm
 
 %changelog

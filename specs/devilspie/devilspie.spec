@@ -5,7 +5,7 @@
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
 Version: 0.10
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.burtonini.com/blog/computers/devilspie/
@@ -46,11 +46,15 @@ in the pager or task list.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO devilspie.dtd sample-config.xml
+%doc AUTHORS ChangeLog COPYING NEWS README TODO devilspie.dtd
+%doc devilspie-reference.html sample-config.xml
 %doc %{_mandir}/man1/devilspie.1*
 %{_bindir}/devilspie
 
 %changelog
+* Mon Aug 08 2005 Dag Wieers <dag@wieers.com> - 0.10-2
+- Added devilspie-reference.html to documentation. (Anthony Caetano)
+
 * Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 
