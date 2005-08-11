@@ -4,7 +4,7 @@
 
 Summary: Interactive packet manipulation tool and network scanner
 Name: scapy
-Version: 0.9.17
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -36,16 +36,21 @@ the interpretor, and restored the next time you launch scapy.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 scapy.py %{buildroot}%{_bindir}/scapy
+%{__install} -Dp -m0644 scapy.1.gz %{buildroot}%{_mandir}/man1/scapy.1.gz
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README
+%doc AUTHORS changelog.txt COPYING README
+%doc %{_mandir}/man1/scapy.1*
 %{_bindir}/scapy
 
 %changelog
+* Wed Aug 10 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Fri Sep 03 2004 Dag Wieers <dag@wieers.com> - 0.9.17-1
 - Updated to release 0.9.17.
 
