@@ -26,8 +26,8 @@
 Summary: Objective Caml
 Name: ocaml
 Version: 3.08.3
-Release: 1
-License: QPL
+Release: 2
+License: QPL/LGPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
 
@@ -37,11 +37,12 @@ Source2: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.ps.gz
 Source3: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.info.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gdbm-devel
+BuildRequires: ncurses-devel, gdbm-devel, emacs
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
+Obsoletes: ocaml-ocamldoc, labltk, camlp4
 
 %description
 Objective Caml is the latest implementation of the Caml dialect of ML. It
@@ -51,94 +52,127 @@ retaining separate compilation), a high-performance native code compiler (in
 addition to a Caml Light-style bytecode compiler), and labeled arguments
 with possible default value. 
 
+%package labltk
+Summary: Tk bindings for Objective Caml
+Group: Development/Languages
+Requires: ocaml = %{version}-%{release}
+Obsoletes: labltk <= %{version}
+
+%description labltk
+A library for interfacing Objective Caml with the scripting language
+Tcl/Tk. It include the OCamlBrowser code editor / library browser.
+
+%package camlp4
+Group: Development/Languages
+Summary: Pre-Processor-Pretty-Printer for OCaml
+Requires: ocaml = %{version}-%{release}
+Obsoletes: camlp4 <= %{version}
+
+%description camlp4
+Camlp4 is a Pre-Processor-Pretty-Printer for OCaml, parsing a source
+file and printing some result on standard output.
+
+%package -n emacs-ocaml
+Summary: Emacs mode for Objective Caml
+Group: Applications/Editors
+Requires: ocaml = %{version}-%{release}
+Obsoletes: ocaml-emacs <= %{version}
+
+%description -n emacs-ocaml
+Emacs mode for Objective Caml.
+
 %prep
-%setup
-%setup -T -q -D -a 1
-%setup -T -q -D -a 3
-cp %{SOURCE2} refman.ps.gz
+%setup -T -b 0
+%setup -T -D -a 1
+%setup -T -D -a 3
+%{__cp} -v %{SOURCE2} refman.ps.gz
 
 %build
-./configure -prefix %{_prefix} -bindir %{_bindir} -libdir %{_libdir}/ocaml -mandir %{_mandir} -verbose
-%{__make} %{?_smp_mflags} world
-%{__make} %{?_smp_mflags} bootstrap
-%{__make} %{?_smp_mflags} opt
-%{__make} %{?_smp_mflags} opt.opt
+./configure -verbose -cc "%{__cc} %{optflags}" -with-pthread \
+	-bindir "%{_bindir}" \
+	-libdir "%{_libdir}/ocaml" \
+	-mandir "%{_mandir}" \
+	-prefix "%{_prefix}" \
+	-x11lib "%{_prefix}/X11R6/%{_lib}"
+#%{__make} %{?_smp_mflags} world bootstrap opt opt.opt
+%{__make} world bootstrap opt opt.opt
+%{__make} -C emacs ocamltags
 
 %install
 %{__rm} -rf %{buildroot}
-%{__perl} -pi -e 's|^PREFIX=.*|PREFIX=%{buildroot}%{_prefix}|g;' config/Makefile camlp4/config/Makefile
-%{__perl} -pi -e 's|^BINDIR=.*|BINDIR=%{buildroot}%{_bindir}|g;' config/Makefile camlp4/config/Makefile
-%{__perl} -pi -e 's|^LIBDIR=.*|LIBDIR=%{buildroot}%{_libdir}/ocaml|g;' config/Makefile camlp4/config/Makefile
-%{__perl} -pi -e 's|^MANDIR=.*|MANDIR=%{buildroot}%{_mandir}|g;' config/Makefile camlp4/config/Makefile
-%makeinstall
+%{__make} install BINDIR="%{buildroot}%{_bindir}" LIBDIR="%{buildroot}%{_libdir}/ocaml" MANDIR="%{buildroot}%{_mandir}"
+%{__perl} -pi.orig -e 's|^%{buildroot}||' %{buildroot}%{_libdir}/ocaml/ld.conf
+
+%{__make} -C emacs install install-ocamltags BINDIR="%{buildroot}%{_bindir}" EMACSDIR="%{buildroot}%{_datadir}/emacs/site-lisp"
+
 %{__install} -d %{buildroot}%{_infodir}
-%{__cp} -p infoman/ocaml*.gz %{buildroot}%{_infodir}
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%{__install} -p -m0644 infoman/ocaml*.gz %{buildroot}%{_infodir}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL LICENSE README refman.ps.gz htmlman
+%doc Changes INSTALL LICENSE README refman.ps.gz htmlman/
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man3/*
-%{_bindir}/camlp4o.opt
-%{_bindir}/ocamlprof
-%{_bindir}/ocamllex
-%{_bindir}/camlp4
-%{_bindir}/ocamlmktop
-%{_bindir}/ocamllex.opt
-%{_bindir}/ocamlc.opt
-%{_bindir}/ocamlbrowser
+%doc %{_infodir}/ocaml*
+%{_bindir}/*
+%{_libdir}/ocaml/
+
+### in ocaml-camlp4
+%exclude %{_mandir}/man1/camlp4*
+%exclude %{_mandir}/man1/mkcamlp4*
+%exclude %{_bindir}/camlp4*
+%exclude %{_bindir}/mkcamlp4
+%exclude %{_bindir}/ocpp
+%exclude %{_libdir}/ocaml/camlp4/
+
+### in ocaml-labltk
+%exclude %{_bindir}/labltk
+%exclude %{_bindir}/ocamlbrowser
+%exclude %{_libdir}/ocaml/labltk/
+%exclude %{_libdir}/ocaml/stublibs/dlllabltk.so
+%exclude %{_libdir}/ocaml/stublibs/dlltkanim.so
+
+### in emacs-ocaml
+%exclude %{_bindir}/ocamltags
+
+%files camlp4
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/camlp4*
+%doc %{_mandir}/man1/mkcamlp4*
+%{_bindir}/camlp4*
 %{_bindir}/mkcamlp4
-%{_bindir}/ocamlyacc
-%{_bindir}/ocaml
-%{_bindir}/ocamlmklib
-%{_bindir}/camlp4o
 %{_bindir}/ocpp
-%{_bindir}/ocamldep.opt
-%{_bindir}/ocamlcp
-%{_bindir}/ocamldoc
-%{_bindir}/ocamlc
-%{_bindir}/ocamldebug
-%{_bindir}/ocamlrun
-%{_bindir}/ocamlopt.opt
+%dir %{_libdir}/ocaml/
+%{_libdir}/ocaml/camlp4/
+
+%files labltk
+%defattr(-, root, root, 0755)
+%doc otherlibs/labltk/examples_*tk
 %{_bindir}/labltk
-%{_bindir}/camlp4r.opt
-%{_bindir}/camlp4r
-%{_bindir}/ocamldep
-%{_bindir}/ocamldoc.opt
-%{_bindir}/ocamlopt
-%{_libdir}/ocaml/*.mli
-%{_libdir}/ocaml/*.ml
-%{_libdir}/ocaml/*.cm?
-%{_libdir}/ocaml/*.cmxa
-%{_libdir}/ocaml/*.a
-%{_libdir}/ocaml/*.o
-%{_libdir}/ocaml/addlabels
-%{_libdir}/ocaml/camlheader
-%{_libdir}/ocaml/camlheader_ur
-%{_libdir}/ocaml/expunge
-%{_libdir}/ocaml/extract_crc
-%{_libdir}/ocaml/ld.conf
-%{_libdir}/ocaml/scrapelabels
-# directories
-%{_libdir}/ocaml/caml
-%{_libdir}/ocaml/camlp4
-%{_libdir}/ocaml/labltk
-%{_libdir}/ocaml/ocamldoc
-%{_libdir}/ocaml/stublibs
-%{_libdir}/ocaml/threads
-%{_libdir}/ocaml/vmthreads
-%{_infodir}/*
+%{_bindir}/ocamlbrowser
+%dir %{_libdir}/ocaml/
+%dir %{_libdir}/ocaml/stublibs/
+%{_libdir}/ocaml/labltk/
+%{_libdir}/ocaml/stublibs/dlllabltk.so
+%{_libdir}/ocaml/stublibs/dlltkanim.so
+
+%files -n emacs-ocaml
+%defattr(-, root, root, 0755)
+%doc emacs/README
+%{_bindir}/ocamltags
+%dir %{_datadir}/emacs/
+%dir %{_datadir}/emacs/site-lisp/
+%{_datadir}/emacs/site-lisp/*.el
+%{_datadir}/emacs/site-lisp/*.elc
 
 %changelog
+* Tue Aug 09 2005 Dag Wieers <dag@wieers.com> - 3.08.3-2
+- Cleanup and fixes to build on x86_64.
+- Added subpackages and obsoletes for FE.
+
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 3.08.3-1
 - Update to release 3.08.3.
 

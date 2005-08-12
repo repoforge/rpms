@@ -9,7 +9,7 @@ Version: 12.4.7
 Release: 1
 License: LGPL
 Group: Applications/Engineering
-URL: http://www.mathomatic.com
+URL: http://www.mathomatic.com/
 
 Source: http://www.panix.com/~gesslein/mathomatic-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -36,9 +36,9 @@ Gesslein II and has been under development since 1986.
 %files
 %defattr(-, root, root, 0755)
 %doc *.txt doc/*.htm
-%{_bindir}/*
-%{_datadir}/man/man1/mathomatic.*
-%exclude %{_usr}/doc
+%doc %{_mandir}/man1/mathomatic.1*
+%{_bindir}/mathomatic
+%exclude %{_usr}/doc/
 
 %changelog
 * Sat Aug 06 2005 Dries Verachtert <dries@ulyssis.org> 12.4.7-1

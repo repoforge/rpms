@@ -13,7 +13,7 @@
 
 Summary: Top-like display of Apache logs
 Name: apachetop
-Version: 0.12
+Version: 0.12.5
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -23,7 +23,6 @@ Source: http://clueful.shagged.org/apachetop/files/apachetop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, m4, readline-devel, gcc-c++, pcre-devel
-Requires: httpd
 %{?_with_gamin:BuildRequires: gamin-devel}
 %{?_with_fam:BuildRequires: fam-devel}
 
@@ -51,8 +50,11 @@ fields in combined) and generates human-parsable output in realtime.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog LICENSE NEWS README TODO
 %doc %{_mandir}/man1/apachetop.1*
-%{_sbindir}/apachetop
+%{_bindir}/apachetop
 
 %changelog
+* Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.12.5-1
+- Updated to release 0.12.5.
+
 * Thu Aug 05 2004 Dag Wieers <dag@wieers.com> - 0.12-1
 - Initial package. (using DAR)

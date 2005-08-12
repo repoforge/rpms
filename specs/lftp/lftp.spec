@@ -10,7 +10,7 @@
 Summary: Sophisticated file transfer program
 Name: lftp
 Version: 3.2.1
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
@@ -31,7 +31,8 @@ reliability in mind.
 %setup
 
 %build
-#autoreconf --force --install --symlink
+### Workaround for broken openssl on RH9 and EL3
+export CPPFLAGS="-I/usr/kerberos/include"
 %configure \
 	--with-modules \
 	--disable-static \
@@ -56,6 +57,9 @@ reliability in mind.
 %{_libdir}/lftp/
 
 %changelog
+* Thu Aug 11 2005 Dag Wieers <dag@wieers.com> - 3.2.1-3
+- Fixed missing ssl support on rh9 and el3. (Michael McCallister)
+
 * Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 3.2.1-2
 - Fixed openssl build. (Tomá¨ Janou¨ek)
 

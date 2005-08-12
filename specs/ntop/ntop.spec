@@ -209,7 +209,7 @@ EOF
 
 %{__install} -Dp -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
 %{__install} -Dp -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
-%{__install} -Dp -m0700 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
+%{__install} -Dp -m0600 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
 
 %pre
 if ! /usr/bin/id ntop &>/dev/null; then
@@ -269,6 +269,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 3.1-2
+- Removed execute bit on ntop.conf. (C.Lee Taylor)
+
 * Sat Jan 01 2005 Dag Wieers <dag@wieers.com> - 3.1-1
 - Updated to release 3.1.
 

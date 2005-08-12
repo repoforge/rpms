@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: perl-Convert-ASN1, perl-XML-SAX-Base
+Requires: perl(Convert::ASN1), perl(XML::SAX::Base),  perl(IO::Socket::SSL)
 
 %description
 This package contains a perl module with an interface to LDAP.
@@ -35,8 +35,7 @@ This package contains a perl module with an interface to LDAP.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{perl_vendorarch}/auto/perl-ldap/.packlist
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
+%{__rm} -rf %{buildroot}%{perl_vendorarch} %{buildroot}%{perl_archlib}
 
 
 %clean
@@ -44,10 +43,15 @@ This package contains a perl module with an interface to LDAP.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog TODO CREDITS RELEASE_NOTES
+%doc README ChangeLog CREDITS RELEASE_NOTES TODO
 %{_mandir}/man3/*
+%dir %{perl_vendorlib}/Bundle/
+%dir %{perl_vendorlib}/Bundle/Net/
 %{perl_vendorlib}/Bundle/Net/LDAP.pm
+%dir %{perl_vendorlib}/LWP/
+%dir %{perl_vendorlib}/LWP/Protocol/
 %{perl_vendorlib}/LWP/Protocol/ldap.pm
+%dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/LDAP*
 
 %changelog

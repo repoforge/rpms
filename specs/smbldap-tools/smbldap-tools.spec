@@ -35,8 +35,8 @@ tools to manage users, groups and passwords.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -p -m0755 smbldap-* smbldap_tools.pm %{buildroot}%{_sbindir}
+%{__install} -Dp -m0755 smbldap_tools.pm %{buildroot}%{_sbindir}/smbldap_tools.pm
+%{__install} -p -m0755 smbldap-* %{buildroot}%{_sbindir}
 %{__install} -Dp -m0644 smbldap.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap.conf
 %{__install} -Dp -m0600 smbldap_bind.conf %{buildroot}%{_sysconfdir}/smbldap-tools/smbldap_bind.conf
 
@@ -48,9 +48,13 @@ tools to manage users, groups and passwords.
 %doc ChangeLog CONTRIBUTORS COPYING FILES INFRA INSTALL README TODO
 %doc configure.pl *.conf doc/html/*.html
 %config(noreplace) %{_sysconfdir}/smbldap-tools/
-%{_sbindir}/*
+%{_sbindir}/smbldap*
+%exclude %{_sbindir}/smbldap-tools.spec
 
 %changelog
+* Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.9.1-2
+- Excluded smbldap-tools.spec. (Simon Perreault)
+
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 

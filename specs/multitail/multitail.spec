@@ -5,8 +5,6 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 3.6.0
-
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
 Version: 3.6.0
@@ -15,7 +13,7 @@ License: GPL
 Group: Applications/Text
 URL: http://www.vanheusden.com/multitail/
 
-Source: http://www.vanheusden.com/multitail/multitail-%{real_version}.tgz
+Source: http://www.vanheusden.com/multitail/multitail-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, make, ncurses-devel
@@ -42,8 +40,7 @@ given regular expressions and deleting and adding windows.
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
 			%{buildroot}%{_mandir}/man1/ \
 			%{buildroot}%{_sysconfdir}
-%makeinstall \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,10 +56,10 @@ given regular expressions and deleting and adding windows.
 * Mon Aug 1 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1
 - Updated to release 3.6.0.
 
-* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0rc2
+* Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0-0.rc2
 - Updated to release 3.6.0rc2.
 
-* Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0rc1
+* Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0-0.rc1
 - Updated to release 3.6.0rc1.
 
 * Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.5.7-1

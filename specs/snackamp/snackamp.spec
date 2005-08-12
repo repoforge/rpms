@@ -23,7 +23,7 @@ Source: http://dl.sf.net/snackamp/snackAmp-%{version}.tar.gz
 Source1: snackamp.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
+#BuildArch: noarch
 BuildRequires: dos2unix, tcl >= 8.4
 Requires: tcl >= 8.4, tk, libsnack, metakit
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -94,6 +94,9 @@ find %{buildroot}%{_libdir}/tcl/snackAmp/ -type d -exec chmod 0755 {} \;
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-snackamp.desktop}
 
 %changelog
+* Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 3.1.2-2
+- This is NOT a noarch package.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 3.1.2-1
 - Updated to release 3.1.2.
 

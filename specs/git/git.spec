@@ -45,7 +45,7 @@ similar to other SCM tools (like CVS, BitKeeper or Monotone).
 %{__make} install %{!?_without_asciidoc:install-doc} dest="%{buildroot}" prefix="%{_prefix}" mandir="%{_mandir}"
 
 %clean
-%{__rm} -rf "%{buildroot}"
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
