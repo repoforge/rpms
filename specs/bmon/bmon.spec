@@ -6,7 +6,7 @@ Name: bmon
 Version: 2.1.0
 Release: 1
 License: Artistic
-Group: Applications/Networking
+Group: Applications/Internet
 URL: http://trash.net/~reeler/bmon/
 
 Source: http://people.suug.ch/~tgr/bmon/files/bmon-%{version}.tar.gz

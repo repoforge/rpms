@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dries
+
 # Upstream: Berke Durak <berke-dev$ouvaton,org>
 # Screenshot: http://ara.alioth.debian.org/xara.png
 
@@ -9,7 +9,7 @@ Name: ara
 Version: 1.0.9
 Release: 1
 License: GPL
-Group: Applications/Utilities
+Group: Applications/Databases
 URL: http://ara.alioth.debian.org/
 
 Source: http://ara.alioth.debian.org/incoming/ara_%{version}.tar.gz

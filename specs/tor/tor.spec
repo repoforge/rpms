@@ -7,7 +7,7 @@ Name: tor
 Version: 0.1.0.13
 Release: 1
 License: BSD
-Group: Applications/Networking
+Group: Applications/Internet
 URL: http://tor.eff.org/
 
 Source: http://tor.eff.org/dist/tor-%{version}.tar.gz

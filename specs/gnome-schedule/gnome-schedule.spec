@@ -7,7 +7,7 @@ Name: gnome-schedule
 Version: 0.9.0
 Release: 1
 License: GPL
-Group: Applications/Poductivity
+Group: Applications/Productivity
 URL: http://gnome-schedule.sourceforge.net/
 
 Source: http://dl.sf.net/gnome-schedule/gnome-schedule-%{version}.tar.bz2
