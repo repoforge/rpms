@@ -8,7 +8,7 @@ Name: rapidsvn
 Version: 0.7.2
 Release: 1
 License: BSD
-Group: Utilities/System
+Group: Development/Tools
 URL: http://rapidsvn.tigris.org/
 
 Source: http://www.rapidsvn.org/download/rapidsvn-%{version}.tar.gz

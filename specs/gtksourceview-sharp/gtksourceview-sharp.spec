@@ -6,7 +6,7 @@ Name: gtksourceview-sharp
 Version: 0.5
 Release: 1
 License: GPL
-Group: Development/Library
+Group: Development/Libraries
 URL: http://go-mono.com/
 
 Source: http://www.go-mono.com/packagers/gtksourceview-sharp/gtksourceview-sharp-%{version}.tar.gz

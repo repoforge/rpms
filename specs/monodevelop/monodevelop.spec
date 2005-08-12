@@ -6,7 +6,7 @@ Name: monodevelop
 Version: 0.5.1
 Release: 3
 License: GPL
-Group: Development/Environment
+Group: Development/Tools
 URL: http://www.monodevelop.com/
 
 Source: http://www.go-mono.com/archive/1.0.5/monodevelop-%{version}.tar.gz

@@ -2,12 +2,12 @@
 # Authority: bert
 # Upstream: <Bernhard,Walle$gmx,de>
 
-Summary: pretty printing of mails with Mutt
+Summary: Pretty printing of mails with Mutt
 Name: muttprint
 Version: 0.72
 Release: 1
 License: GPL
-Group: Applications/Mail
+Group: Applications/Internet
 URL: http://muttprint.sourceforge.net/
 
 Source: http://dl.sf.net/muttprint/muttprint-%{version}.tar.gz

@@ -8,7 +8,7 @@ Name: python-wifi
 Version: 0.2
 Release: 1
 License: LGPL
-Group: Libraries/Development
+Group: Development/Libraries
 URL: http://www.romanofski.de/downloads/pywifi
 
 Source: http://www.romanofski.de/downloads/pywifi/%{version}/pywifi-%{version}.tar.gz

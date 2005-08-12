@@ -8,7 +8,7 @@ Name: python-tdb
 Version: 0.0.6
 Release: 1
 License: LGPL
-Group: Libraries/Development
+Group: Development/Libraries
 URL: http://clarens.sourceforge.net/
 
 Source: http://dl.sf.net/tdb/python-tdb-%{version}.tar.gz

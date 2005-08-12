@@ -11,7 +11,7 @@ Name: perl-PatchReader
 Version: 0.9.5
 Release: 1
 License: MPL
-Group: Development/CPAN
+Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PatchReader/
 
 Source: http://www.cpan.org/authors/id/J/JK/JKEISER/PatchReader-%{version}.tar.gz

@@ -9,7 +9,7 @@ Name: ipe
 Version: 6.0
 Release: 0.pre20
 License: GPL
-Group: Publishing
+Group: Applications/Editors
 URL: http://ipe.compgeom.org/
 
 Source: http://ipe.compgeom.org/ipe-%{real_version}-src.tar.gz

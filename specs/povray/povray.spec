@@ -12,7 +12,7 @@ Name: povray
 Version: 3.6.0
 Release: 1
 License: Other
-Group: Applications/
+Group: Amusements/Graphics
 URL: http://www.povray.org/
 
 Source: %{name}-%{version}.tar.gz

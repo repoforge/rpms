@@ -6,7 +6,7 @@ Name: scponly
 Version: 4.1
 Release: 1
 License: GPL
-Group: System Environments/Shell
+Group: System Environment/Shells
 URL: http://sublimation.org/scponly/
 
 Source: http://sublimation.org/scponly/scponly-%{version}.tgz

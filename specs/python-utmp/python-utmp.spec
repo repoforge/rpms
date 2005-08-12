@@ -9,7 +9,7 @@ Name: python-utmp
 Version: 0.7
 Release: 1
 License: GPL
-Group: Development/Python
+Group: Development/Libraries
 URL: http://melkor.dnp.fmph.uniba.sk/~garabik/python-utmp/
 
 Source: http://melkor.dnp.fmph.uniba.sk/~garabik/python-utmp/python-utmp_%{version}.tar.gz

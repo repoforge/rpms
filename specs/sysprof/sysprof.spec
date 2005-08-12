@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dag
-# Upstream: 
 
 Summary: System sampling profiler
 Name: sysprof
@@ -12,6 +11,7 @@ URL: http://cvs.gnome.org/viewcvs/sysprof/
 
 Source: http://www.daimi.au.dk/~sandmann/sysprof-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: pkgconfig, gtk2-devel, libglade2-devel
 
 %description
