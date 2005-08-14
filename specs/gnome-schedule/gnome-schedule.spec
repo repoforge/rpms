@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildarch: noarch
 ### FIXME: We need yelp now to *build* gnome-schedule ?
 BuildRequires: python, yelp, pygtk2 >= 2.3, gnome-python2
+BuildRequires: pkgconfig, pygtk2-devel, glib2-devel, gettext
 Requires: python, pygtk2 >= 2.3, gnome-python2
 
 %description
