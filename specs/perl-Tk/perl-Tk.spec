@@ -20,7 +20,7 @@
 Summary: Object Oriented Tk extension for Perl
 Name: perl-Tk
 Version: 804.027
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk/
@@ -28,7 +28,7 @@ URL: http://search.cpan.org/dist/Tk/
 Source: http://www.cpan.org/modules/by-module/Tk/Tk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, tk-devel
+BuildRequires: perl, tk-devel, libpng-devel, libjpeg-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Provides: perl(Tk::LabRadio), perl(Tk::TextReindex)
@@ -40,7 +40,7 @@ This module contains an object oriented Tk extension for Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" X11LIB=%{_prefix}/X11R6/%{_lib}
 %{__make} %{?_smp_mflags}
 
 %install
@@ -77,5 +77,8 @@ This module contains an object oriented Tk extension for Perl.
 %{perl_vendorarch}/fix_4_os2.pl
 
 %changelog
+* Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 804.027-2
+- Fix for x86_64.
+
 * Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 804.027-1
 - Initial package.
