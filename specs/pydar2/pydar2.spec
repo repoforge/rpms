@@ -4,7 +4,7 @@
 
 Summary: rpm build system
 Name: pydar2
-Version: 0.037
+Version: 0.040
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -123,7 +123,7 @@ which can be used to customize pydar2 so it builds rpmforge packages.
 %config(noreplace) %{_sysconfdir}/pydar2/slave.conf
 %dir %{_sysconfdir}/pydar2/yum
 %config(noreplace) %{_sysconfdir}/pydar2/yum/*.conf
-%defattr(-, pydar2slave, pydar2slave, 0700)
+%defattr(-, pydar2slave, pydar2slave, 0740)
 %dir %{_var}/lib/pydar2/slavedataroot
 %dir %{_var}/lib/pydar2/roots
 %dir %{_var}/lib/pydar2/yum

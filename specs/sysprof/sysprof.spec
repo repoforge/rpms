@@ -3,13 +3,13 @@
 
 Summary: System sampling profiler
 Name: sysprof
-Version: 0.02
+Version: 0.91
 Release: 1
 License: GPL
 Group: Development/System
 URL: http://cvs.gnome.org/viewcvs/sysprof/
 
-Source: http://www.daimi.au.dk/~sandmann/sysprof-%{version}.tar.gz
+Source: http://www.daimi.au.dk/~sandmann/sysprof/sysprof-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, gtk2-devel, libglade2-devel
@@ -59,5 +59,8 @@ desktop-file-install --vendor net                  \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.91-1
+- Update to release 0.91.
+
 * Mon May 24 2004 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

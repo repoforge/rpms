@@ -14,7 +14,7 @@ URL: http://www.suphp.org/
 Source: http://projects.marsching.org/suphp/download/suphp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: httpd-devel >= 2.0
+BuildRequires: httpd-devel >= 2.0, gcc-c++, automake, autoconf
 Requires: httpd >= 2.0, php
 
 %description 

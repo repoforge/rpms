@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: <morin$cs,carleton,ca>
 
-%define real_version 6.0pre20
+%define real_version 6.0pre23
 
 Summary: Extensible drawing editor
 Name: ipe
 Version: 6.0
-Release: 0.pre20
+Release: 0.pre23
 License: GPL
 Group: Applications/Editors
 URL: http://ipe.compgeom.org/
@@ -49,5 +49,8 @@ qmake main.pro
 %{_libdir}/ipe/
 
 %changelog
+* Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> 6.0-0.pre23
+- Update to release 6.0pre23.
+
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 6.0-1
 - Initial package. (using DAR)

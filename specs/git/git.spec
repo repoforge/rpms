@@ -14,7 +14,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 0.99.1
+Version: 0.99.4
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -53,8 +53,12 @@ similar to other SCM tools (like CVS, BitKeeper or Monotone).
 %{!?_without_asciidoc:%doc %{_mandir}/man1/*.1*}
 %{!?_without_asciidoc:%doc %{_mandir}/man7/*.7*}
 %{_bindir}/git*
+%{_datadir}/git-core
 
 %changelog
+* Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.99.4-1
+- Update to release 0.99.4.
+
 * Wed Aug 10 2005 Dag Wieers <dag@wieers.com> - 0.99.1-1
 - Small cleanup.
 - Added documentation using asciidoc.

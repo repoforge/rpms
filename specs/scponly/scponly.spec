@@ -12,7 +12,7 @@ URL: http://sublimation.org/scponly/
 Source: http://sublimation.org/scponly/scponly-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssh >= 3.4, perl
+BuildRequires: openssh >= 3.4, perl, openssh-server
 
 %description
 scponly is an alternative 'shell' for system administrators 
