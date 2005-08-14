@@ -14,7 +14,7 @@ Source: http://alpha.uhasselt.be/Research/Algebra/Members/pytraffic/pytraffic-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: python >= 2.2
+BuildRequires: python >= 2.2, python-devel
 Requires: python >= 2.2 , python-game >= 1.6, pygtk2 >= 2.4
 Obsoletes: ttraffic
 

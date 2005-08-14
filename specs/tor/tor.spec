@@ -4,7 +4,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.1.0.13
+Version: 0.1.0.14
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -52,6 +52,9 @@ export CPPFLAGS=-I/usr/include/kerberos
 %{_bindir}/torify
 
 %changelog
+* Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.0.14-1
+- Update to release 0.1.0.14.
+
 * Sat Aug 06 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.0.13-1
 - Update to release 0.1.0.13.
 
