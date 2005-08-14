@@ -77,7 +77,7 @@ This module contains an object oriented Tk extension for Perl.
 %{perl_vendorarch}/fix_4_os2.pl
 
 %changelog
-* Mon Dec 06 2004 Dries Verachtert <dries@ulyssis.org> - 804.027-3
+* Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 804.027-3
 - Enable XFT support (thanks to Void Main).
 
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 804.027-2
