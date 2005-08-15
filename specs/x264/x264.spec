@@ -12,7 +12,7 @@ URL: http://developers.videolan.org/x264.html
 # find x264 -name .svn | xargs rm -rf
 Source: %{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xorg-x11-devel, nasm
+BuildRequires: xorg-x11-devel, nasm, yasm
 # version.sh requires svnversion
 BuildRequires: subversion
 
@@ -37,6 +37,8 @@ scratch.
 # AUTHORS file is in iso-8859-1
 iconv -f iso-8859-1 -t utf-8 -o AUTHORS.utf8 AUTHORS
 mv -f AUTHORS.utf8 AUTHORS
+# configure hardcodes X11 lib path
+%{__perl} -pi -e 's|/usr/X11R6/lib |/usr/X11R6/%{_lib} |g' configure
 
 
 %build
@@ -77,6 +79,10 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 0.0.281-1
+- Add yasm build requirement (needed on x86_64).
+- Replace X11 lib with lib/lib64 to fix x86_64 build.
+
 * Tue Aug  2 2005 Matthias Saou <http://freshrpms.net/> 0.0.281-1
 - Update to svn 281.
 
