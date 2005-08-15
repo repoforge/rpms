@@ -6,6 +6,7 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+# Tag: test
 # ExcludeDist: fc1
 
 %{?fc1:%define _without_xorg 1}
@@ -28,7 +29,8 @@ Source: http://www.dtek.chalmers.se/~d3august/xt/dl/xtraceroute-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bind-utils, traceroute, gettext, gtk2-devel, gtk+-devel
-BuildRequires: gdk-pixbuf-devel, gtkglarea
+BuildRequires: gdk-pixbuf-devel
+%{?fc4:BuildRequires: gtkglarea2}
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
 

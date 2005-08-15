@@ -18,6 +18,7 @@ Source1: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/nostalgy.tar.gz
 Source2: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/demolevel.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Requires: luola
 BuildArch: noarch
 # Dist: nodist
 

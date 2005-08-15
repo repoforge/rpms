@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spiffy/
 
-Source: http://www.cpan.org/modules/by-module/Spiffy/Spiffy-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/Spiffy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

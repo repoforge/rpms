@@ -18,7 +18,7 @@
 
 Summary: Abstraction library between applications and visualisation plugins
 Name: libvisual
-Version: 0.1.7
+Version: 0.2.0
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -84,5 +84,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1
+- Update to release 0.2.0.
+
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1
 - Initial package.

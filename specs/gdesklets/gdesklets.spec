@@ -5,7 +5,7 @@
 
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
-Version: 0.35.1
+Version: 0.35.2
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -82,6 +82,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/mime/packages/gdesklets.xml
 
 %changelog
+* Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.35.2-1
+- Updated to release 0.35.2.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.35.1-1
 - Updated to release 0.35.1.
 

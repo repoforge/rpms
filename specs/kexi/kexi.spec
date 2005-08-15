@@ -6,8 +6,7 @@
 # ScreenshotURL: http://www.koffice.org/kexi/screenshots.php
 
 # ExcludeDist: el3
-
-%define real_version 0.9beta1
+# Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -43,13 +42,13 @@
 Summary: Integrated environment for managing data.
 Name: kexi
 Version: 0.9
-Release: 0.beta1
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://www.koffice.org/kexi/
 
-Source: http://ftp.scarlet.be/pub/kde/unstable/apps/KDE3.x/office/kexi-%{real_version}.tar.bz2
-#Source2: http://www.kexi-project.org/fixes/keximainwindowimpl.cpp
+Source: http://ftp.belnet.be/packages/kde/stable/apps/KDE3.x/database/kexi-%{version}.tar.bz2
+Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel 
@@ -71,7 +70,8 @@ is designed to be fully usable also without KDE on Unix, MS Windows and Mac
 OS X platforms. 
 
 %prep
-%setup -n kexi-%{real_version}
+%setup -n kexi-%{version}
+%patch -p1
 
 %build
 source /etc/profile.d/qt.sh
@@ -115,10 +115,14 @@ source /etc/profile.d/qt.sh
 %{_datadir}/applications/kde/kexi.desktop
 %{_datadir}/icons/crystalsvg/*/apps/kexi.*
 %{_datadir}/icons/crystalsvg/*/mimetypes/*.png
+%{_includedir}/kexidb
 
 %changelog
-* Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+* Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
 - Update to release 0.9.
 
-* Tue Nov 02 2004 Dries Verachtert <dries@ulyssis.org> - 0,1beta5-1
+* Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-0.beta1
+- Update to release 0.9-0.beta1.
+
+* Tue Nov 02 2004 Dries Verachtert <dries@ulyssis.org> - 0.1beta5-1
 - Initial package.

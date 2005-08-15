@@ -18,7 +18,7 @@
 
 Summary: Plugins for libvisual
 Name: libvisual-plugins
-Version: 0.1.7
+Version: 0.2.0
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -70,5 +70,8 @@ SDL, as a surface on an OpenGL object, etc.
 %{_datadir}/libvisual/actor/actor_madspin
 
 %changelog
+* Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1
+- Update to release 0.2.0.
+
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1
 - Initial package.

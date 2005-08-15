@@ -67,9 +67,7 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/config/kkeyledrc
 %{_datadir}/apps/kkeyled
 %{_datadir}/applications/*kkeyled.desktop
-%{_datadir}/locale/de/LC_MESSAGES/kkeyled.mo
-%{_datadir}/doc/HTML/en/kkeyled
-%{_datadir}/doc/HTML/de/kkeyled
+%{_datadir}/doc/HTML/*/kkeyled
 %{_datadir}/icons/*/*/apps/kkeyled.png
 %{_bindir}/kkeyled
 

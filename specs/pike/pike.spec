@@ -13,18 +13,18 @@
 %{?rh6:%define _without_xorg 1}
 
 %define real_name Pike
-%define real_version v7.6.6
+%define real_version v7.6.24
 
 Summary: General purpose programming language
 Name: pike
-Version: 7.6.6
+Version: 7.6.24
 Release: 1
 License: GPL/LGPL/MPL
 Group: Development/Languages
 URL: http://pike.ida.liu.se/
 
-Source: ftp://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}.tar.gz
-Source1: ftp://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}-doc.tar.gz
+Source: http://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}.tar.gz
+Source1: http://pike.ida.liu.se/pub/pike/latest-stable/Pike-v%{version}-doc.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: nettle-devel, gmp-devel, autoconf
@@ -107,6 +107,9 @@ find . -type f | xargs perl -pi -e "s|/usr/local/bin/pike|%{_bindir}/pike|g"
 ### FIXME : some libs needs to be moved from the main to here?
 
 %changelog
+* Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 7.6.24-1
+- Update to release 7.6.24.
+
 * Tue Jun 08 2004 Dries Verachtert <dries@ulyssis.org> - 7.6.6-1
 - Initial package.
 

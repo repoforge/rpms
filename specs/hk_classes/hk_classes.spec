@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 BuildRequires: postgresql-devel, mysql-devel
 BuildRequires: unixODBC-devel, python
-BuildRequires: python-devel, sqlite-devel
+BuildRequires: python-devel, sqlite-devel, pkgconfig
 
 %description
 hk_classes is C++ library which allows rapid development of database

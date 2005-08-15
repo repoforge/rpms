@@ -38,7 +38,7 @@ xmkmf
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 xautolock %{buildroot}%{_prefix}/usr/X11R6/bin/xautolock
+%{__install} -Dp -m0755 xautolock %{buildroot}%{_prefix}/X11R6/bin/xautolock
 %{__install} -Dp -m0644 xautolock._man %{buildroot}%{_prefix}/X11R6/man/man1/xautolock.1x
 
 %clean

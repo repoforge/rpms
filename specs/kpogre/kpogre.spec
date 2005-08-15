@@ -5,7 +5,7 @@
 # Screenshot: http://kpogre.sourceforge.net/kpogre1.png
 # ScreenshotURL: http://kpogre.sourceforge.net/screenshots.htm
 
-%define real_version 1.3.0
+%define real_version 1.3.5
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -19,7 +19,7 @@
 
 Summary: PostgreSQL graphical frontend
 Name: kpogre
-Version: 1.3.0
+Version: 1.3.5
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -73,6 +73,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/doc/HTML/en/kpogre
 
 %changelog
+* Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.5-1
+- Update to release 1.3.5.
+
 * Mon Jan 03 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.7-1
 - Update to release 1.2.7.
 

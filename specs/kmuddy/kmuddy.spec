@@ -25,7 +25,7 @@ Group: Amusements/Games
 URL: http://www.kmuddy.org/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Source: http://www.kmuddy.org/files/kmuddy-%{version}.tar.gz
+Source: http://www.kmuddy.net/files/kmuddy-%{version}.tar.gz
 
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
@@ -81,4 +81,3 @@ text-based online multi-player role-playing game.
 
 * Fri Dec 13 2003 Dries Verachtert <dries@ulyssis.org> 0.6-1
 - first packaging for Fedora Core 1
-

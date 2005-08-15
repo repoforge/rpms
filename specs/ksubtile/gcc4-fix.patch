@@ -1,0 +1,12 @@
+diff -uNr ksubtile-1.0-orig/src/csubtitles.h ksubtile-1.0/src/csubtitles.h
+--- ksubtile-1.0-orig/src/csubtitles.h	2003-12-24 21:43:30.000000000 +0100
++++ ksubtile-1.0/src/csubtitles.h	2005-08-15 18:04:58.000000000 +0200
+@@ -23,6 +23,8 @@
+ #include <qptrlist.h>
+ #include <qtextcodec.h>
+ 
++class QTextStream;
++
+ /**Contains a number of subtitles
+   *@author Tom Deblauwe
+   */

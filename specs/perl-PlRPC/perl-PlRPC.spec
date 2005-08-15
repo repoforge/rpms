@@ -3,7 +3,6 @@
 # Authority: dries
 # Upstream: Jochen Wiedmann <jwied$cpan,org>
 
-
 %define real_name PlRPC
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -18,7 +17,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PlRPC/
 
-Source: http://www.cpan.org/modules/by-module/PlRPC/PlRPC-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JW/JWIED/PlRPC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

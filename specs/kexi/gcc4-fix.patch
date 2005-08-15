@@ -1,0 +1,11 @@
+diff -uNr kexi-0.9-orig/kexi/plugins/forms/kexilabel.h kexi-0.9/kexi/plugins/forms/kexilabel.h
+--- kexi-0.9-orig/kexi/plugins/forms/kexilabel.h	2005-05-31 11:34:43.000000000 +0200
++++ kexi-0.9/kexi/plugins/forms/kexilabel.h	2005-08-15 17:02:39.000000000 +0200
+@@ -30,6 +30,7 @@
+ 
+ class QPainter;
+ class QTimer;
++class KexiLabel;
+ 
+ class KexiLabelPrivate : public QLabel {
+ 		friend class KexiLabel;
