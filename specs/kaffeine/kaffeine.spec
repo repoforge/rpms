@@ -8,17 +8,9 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 Summary: Media player based on xine-lib
 Name: kaffeine
-Version: 0.6
+Version: 0.7
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -27,21 +19,16 @@ URL: http://kaffeine.sourceforge.net
 Source: http://dl.sf.net/kaffeine/kaffeine-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc, make, libpng-devel, libart_lgpl-devel
-BuildRequires: arts-devel, gcc-c++, gettext
-BuildRequires: zlib-devel, qt-devel, libjpeg-devel
-BuildRequires: kdelibs-devel, desktop-file-utils
+BuildRequires: kdelibs-devel, desktop-file-utils, gettext
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
-BuildRequires: xine-lib-devel
+BuildRequires: xine-lib-devel >= 1.0.0
 
 %description
 Kaffeine is a simple and easy to use media player based on the xine-lib and
 full integrated in KDE3. It supports drag and drop and provides an editable
-playlist, a Konqueror plugin, a Mozilla plugin, OSD, and much more. 
+playlist, a Konqueror plugin, a Mozilla plugin, OSD, and much more.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -58,7 +45,7 @@ you will need to install %{name}-devel.
 
 %build
 source /etc/profile.d/qt.sh
-%configure
+%configure --without-gstreamer
 %{__make} %{?_smp_mflags}
 
 %install
@@ -78,7 +65,7 @@ source /etc/profile.d/qt.sh
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL README TODO
+%doc AUTHORS ChangeLog COPYING CREDITS README TODO
 %doc %{_mandir}/man?/*
 %doc %{_mandir}/de/man?/*
 %{_bindir}/kaffeine
@@ -89,24 +76,29 @@ source /etc/profile.d/qt.sh
 %{_datadir}/services/kaffeine_part.desktop
 %{_datadir}/apps/konqueror/servicemenus/kaffeine*.desktop
 %{_datadir}/apps/profiles/kaffeine.profile.xml
-%{_datadir}/apps/kaffeine
+%{_datadir}/apps/kaffeine/
 %{_datadir}/mimelnk/application/*.desktop
 %{_datadir}/applnk/Multimedia/kaffeine.desktop
 %doc %{_datadir}/doc/HTML/*/kaffeine
 %{_datadir}/icons/*/*/*/*.png
 
 %files devel
-%{_includedir}/kaffeine
+%{_includedir}/kaffeine/
 %{_libdir}/libkmediapart.so
 %{_libdir}/kde3/libkaffeinepart.so
 
 %changelog
+* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 0.7-1
+- Update to 0.7, which doesn't build on FC4 it seems.
+- Remove unnecessary build requirements.
+
 * Sun Mar 20 2005 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Updated to release 0.6.
 
 * Sun Jan 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-2
-- Added a devel subpackage so it can update and can be updated by 
+- Added a devel subpackage so it can update and can be updated by
   the kaffeine package of kde-redhat.
 
 * Mon Jan 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Initial package.
+
