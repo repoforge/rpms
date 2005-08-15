@@ -6,7 +6,7 @@
 
 Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.52.5
+Version: 0.52.6
 Release: 1
 License: Artistic
 Group: Applications/Multimedia
@@ -89,6 +89,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Sun Jul 31 2005 Matthias Saou <http://freshrpms.net/> 0.52.6-1
+- Update to 0.52.6.
+
 * Mon May 23 2005 Matthias Saou <http://freshrpms.net/> 0.52.5-1
 - Update to 0.52.5.
 
