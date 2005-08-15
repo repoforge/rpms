@@ -17,12 +17,13 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.3
-Release: 0.1.rc1
+Release: 0.1.rc2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}-rc1.tar.gz
+Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}-rc2.tar.gz
 Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
+Patch0: mjpegtools-1.6.3-rc2-mplex.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel
@@ -61,7 +62,10 @@ of the mjpegtools package.
 
 
 %prep
-%setup -a 1 -n %{name}-%{version}-rc1
+%setup -a 1 -n %{name}-%{version}-rc2
+%ifarch ppc
+%patch0 -p1 -b .mplex
+%endif
 
 
 %build
@@ -120,6 +124,10 @@ fi
 
 
 %changelog
+* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.6.3-0.1.rc2
+- Update to 1.6.3-rc2.
+- Include mjpegtools-1.6.3-rc2-mplex.patch (for ppc only, fails for others).
+
 * Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 1.6.3-0.1.rc1
 - Update to 1.6.3-rc1.
 - Don't enable "MPEG Z/Alpha" anymore : It fails to compile.
