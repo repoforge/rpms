@@ -1,19 +1,19 @@
 # $Id$
-
 # Authority: dries
-# Upstream: Calle Laakkonen <calle,laakkonen$saunalahti,fi>
-# Screenshot: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/screenshot7.jpg
-# ScreenshotURL: http://www.saunalahti.fi/~laakkon1/linux/luola/index.php#screenshots
+# Upstream: Calle Laakkonen <calle$luolamies,org>
+# Screenshot: Screenshot:http://www.luolamies.org/software/luola/screens/screen6.png
+# ScreenshotURL:http://www.luolamies.org/software/luola/#screenshots
 
 Summary: Multiplayer 2D arcade game 
 Name: luola
 Version: 1.2.9
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
-URL: http://www.saunalahti.fi/~laakkon1/linux/luola/index.php
+URL: http://www.luolamies.org/software/luola/index.php
 
 Source: http://www.luolamies.org/software/luola/luola-%{version}.tar.gz
+Source1: %{name}.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, SDL_image-devel, SDL_mixer-devel, SDL_gfx-devel
@@ -31,10 +31,12 @@ Finnish, nowdays most of them are.
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
-Name=Luolo
+Name=Luola
 Comment=2D arcade game
-Exec=luolo
+Exec=luola
+Icon=luola.png
 Terminal=false
+Version=%{version}
 Type=Application
 StartupNotify=true
 Encoding=UTF-8
@@ -55,6 +57,7 @@ desktop-file-install --vendor rpmforge             \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop
+%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,8 +68,12 @@ desktop-file-install --vendor rpmforge             \
 %{_bindir}/luola
 %{_datadir}/luola
 %{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Mon Aug 15 2005 C.Lee Taylor <leet@leenx.co.za> - 1.2.9-2
+- Added icon and changed to new internet site.
+
 * Sun Aug 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.9-1
 - Update to release 1.2.9.
 
