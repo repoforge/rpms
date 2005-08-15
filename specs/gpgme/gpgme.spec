@@ -8,7 +8,7 @@ Version: 1.0.3
 Release: 1
 License: GPL
 Group: Applications/System
-Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}.tar.gz
+Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}.tar.bz2
 URL: http://www.gnupg.org/related_software/gpgme/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
