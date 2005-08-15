@@ -13,7 +13,7 @@
 Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.35
-Release: 0.1%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.2%{?date:.%{date}}%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/
@@ -60,17 +60,18 @@ times played, last game selected, gui preference...) under windows and Linux.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc _docs/*
-%doc %{_mandir}/man6/gxmame.6*
 %{_bindir}/gxmame
 %{_datadir}/applications/gxmame.desktop
-#%{_datadir}/icons/gxmame.png
-#%{_datadir}/icons/mini/gxmame.xpm
 %{_datadir}/pixmaps/gxmame.png
-%{_datadir}/pixmaps/gxmame.xpm
+%exclude %{_datadir}/pixmaps/gxmame.xpm
 %{_datadir}/gxmame/
+%{_mandir}/man6/gxmame.6*
 
 
 %changelog
+* Sat Jul 30 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.2.beta2
+- Remove the xpm icon, only the png one is used.
+
 * Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.35-0.1.beta2
 - Update to 0.35beta2.
 - Remove optfree patch.

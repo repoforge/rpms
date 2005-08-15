@@ -37,7 +37,6 @@
 %{?yd3:%define _without_xvmc 1}
 
 %define libname libxine1
-%define libver  1.0
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
@@ -128,30 +127,31 @@ use the Xine library.
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{libname}
 # Remove all those unused docs
-%{__rm} -rf %{buildroot}%{_docdir}/xine || :
+%{__rm} -rf %{buildroot}%{_docdir}/xine/ || :
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 
 %files -f %{libname}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
+%doc doc/README.dvb doc/README.dxr3 doc/README.network_dvd doc/README.opengl
+%doc doc/README.syncfb doc/README_xxmc.html doc/faq/faq.html
 %{_libdir}/*.so.*
 %{_libdir}/xine/
 %{_datadir}/xine/
+%{_mandir}/man5/*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/hackersguide/*.sgml
+%doc doc/hackersguide/*.html doc/hackersguide/*.png
 %{_bindir}/*
 %{_includedir}/xine.h
 %{_includedir}/xine/
@@ -159,10 +159,15 @@ use the Xine library.
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/aclocal/*.m4
-%{_mandir}/man?/*
+%{_mandir}/man1/*
 
 
 %changelog
+* Tue Aug  2 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-1
+- Move xine.5 man page from devel to the main package.
+- Add some READMEs from doc/.
+- Change the devel doc from sgml to html/png, makes more sense.
+
 * Sat Jul 30 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-1
 - Update to 1.1.0, which includes gcc4 fixes.
 

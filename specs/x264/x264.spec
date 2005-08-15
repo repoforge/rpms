@@ -3,7 +3,7 @@
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.281
+Version: 0.0.285
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -79,7 +79,8 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
-* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 0.0.281-1
+* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 0.0.285-1
+- Update to svn 285.
 - Add yasm build requirement (needed on x86_64).
 - Replace X11 lib with lib/lib64 to fix x86_64 build.
 
