@@ -7,13 +7,13 @@ Name: iperf
 Version: 2.0.1
 Release: 1
 License: GPL
-Group:  Applications/Internet
+Group: Applications/Internet
 URL: http://dast.nlanr.net/Projects/Iperf/
 
 Source: http://dast.nlanr.net/Projects/Iperf/iperf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++ libstdc++-devel
+BuildRequires: gcc-c++, libstdc++-devel
 
 %description
 Iperf is a tool to measure maximum TCP bandwidth, allowing the tuning

@@ -12,7 +12,7 @@ Name: xpde
 Version: 0.4.0
 Release: 1
 License: GPL
-Group: User Interface/Desktops 
+Group: User Interface/Desktops
 URL: http://www.xpde.com/
 
 NoSource: 0

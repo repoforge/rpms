@@ -7,7 +7,7 @@ Name: tvision
 Version: 0.8
 Release: 1
 License: BSD-like
-Group: Libraries
+Group: Development/Libraries
 URL: http://tvision.sourceforge.net/
 
 Source: http://www.sigala.it/sergio/tvision/mysource/tvision-%{version}.tar.gz

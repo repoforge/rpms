@@ -4,7 +4,7 @@
 
 Summary: Reliable 802.11 (wireless) sniffer and WEP key cracker
 Name: aircrack
-Version: 2.2
+Version: 2.22
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,6 +44,9 @@ Reliable 802.11 (wireless) sniffer and WEP key cracker
 %{_bindir}/arpforge
 
 %changelog
+* Mon Aug 05 2005 Dag Wieers <dag@wieers.com> - 2.22-1
+- Updated to release 2.22.
+
 * Thu Aug 04 2005 Dag Wieers <dag@wieers.com> - 2.2-1
 - Updated to release 2.2.
 

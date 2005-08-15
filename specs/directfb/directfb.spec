@@ -6,7 +6,7 @@ Name: directfb
 Version: 0.9.20
 Release: 1
 License: GPL
-Group: System/Libraries
+Group: System Environment/Libraries
 URL: http://www.directfb.org/
 Source: http://www.directfb.org/download/DirectFB/DirectFB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -6,7 +6,7 @@ Name: dkftpbench
 Version: 0.45
 Release: 1
 License: GPL
-Group: applications/Internet
+Group: Applications/Internet
 URL: http://www.kegel.com/dkftpbench/
 
 Source: http://www.kegel.com/dkftpbench/dkftpbench-%{version}.tar.gz

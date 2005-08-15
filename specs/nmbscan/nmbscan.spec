@@ -7,7 +7,7 @@ Name: nmbscan
 Version: 1.2.4
 Release: 1
 License: GPL
-Group: Applications/System 
+Group: Applications/System
 URL: http://gbarbier.free.fr/prj/dev/#nmbscan
 
 Source: http://gbarbier.free.fr/prj/dev/down.php3?file=nmbscan-%{version}.tar.gz

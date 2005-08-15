@@ -3,12 +3,12 @@
 # Upstream: Ben Escoto <bescoto$stanford,edu>
 # Upstream: <rdiff-backup-users$nongnu,org>
 
-%define python_version %(python2 -c 'import sys; print sys.version[:3]')
+%define python_version %(%{__python} -c 'import sys; print sys.version[:3]')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
-Version: 0.12.8
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Applications/Archiving
@@ -37,15 +37,14 @@ differences from the previous backup will be transmitted.
 %setup
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
-	--root "%{buildroot}"
+%{__python} setup.py install --root "%{buildroot}"
 
 ### Create .pyo files
-python -Oc 'from compileall import *; compile_dir("%{buildroot}%{_libdir}/python%{python_version}/site-packages/rdiff_backup")'
+%{__python} -Oc 'from compileall import *; compile_dir("%{buildroot}%{python_sitearch}/rdiff_backup")'
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,6 +61,9 @@ python -Oc 'from compileall import *; compile_dir("%{buildroot}%{_libdir}/python
 %{python_sitearch}/rdiff_backup/*.so
 
 %changelog
+* Mon Aug 15 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Sat Apr 09 2005 Dag Wieers <dag@wieers.com> - 0.12.8-1
 - Updated to release 0.12.8.
 

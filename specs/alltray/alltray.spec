@@ -7,7 +7,7 @@ Name: alltray
 Version: 0.60
 Release: 1
 License: GPL
-Group: System Environment/Desktops
+Group: User Interface/Desktops
 URL: http://alltray.sourceforge.net/
 
 Source: http://dl.sf.net/alltray/alltray-%{version}.tar.gz

@@ -6,14 +6,14 @@
 
 %{?fc1:%define _without_python 1}
 %{?el3:%define _without_python 1}
+
 %{?rh9:%define _without_python 1}
-%{?rh7:%define _without_python 1}
-%{?el2:%define _without_python 1}
+%{?rh9:%define _without_tcltk_devel 1}
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
-%define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
+%define python_version %(%{__python} -c 'import string, sys; print string.split(sys.version, " ")[0]')
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
@@ -29,6 +29,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, openssl-devel, libart_lgpl-devel >= 2.0, cgilib-devel
 BuildRequires: libpng-devel, zlib-devel, freetype-devel
 %{!?_without_python:BuildRequires: python-devel >= 2.3}
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl, tk}
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 
 %description
@@ -90,19 +92,27 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %prep
 %setup
 
-### FIXME: Fixes to /usr/lib(64) for x86_64
+### FIXME: Fixes to /usr/lib(64) for x86_64. (Fix upstream)
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure Makefile.in
 
 %build
 %configure \
 	--enable-perl-site-install \
-	--with-perl-options='INSTALLDIRS="vendor"'
-#	--with-tcllib="%{_libdir}"
+	--with-perl-options='INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"'
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}" \
+	pkglibdir="%{_datadir}/tclrrd1.2.11" \
+	pythondir="%{python_sitearch}"
+### FIXME: pkglibdir ends up being "/usr/lib /usr/share/tclrrd1.2.11" on EL4 (Fix upstream)
+### FIXME: pythondir is /usr/lib on 64bit too, should be /usr/lib64 (Fix upstream)
+
+### FIXME: Another dirty hack to install perl modules with old and new perl-ExtUtils-MakeMaker (Fix upstream)
+%{__rm} -rf %{buildroot}%{buildroot}
+%{__make} -C bindings/perl-piped install INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"
+%{__make} -C bindings/perl-shared install INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"
 
 ### We only want .txt and .html files for the main documentation
 %{__mkdir_p} rpm-doc/docs/
@@ -151,12 +161,8 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 %files -n tcl-rrdtool
 %defattr(-, root, root, 0755)
-%{?fc3:%{_datadir}/tclrrd%{version}/ifOctets.tcl}
-%{?fc2:%{_datadir}/tclrrd%{version}/ifOctets.tcl}
-%{?fc1:%{_datadir}/tclrrd%{version}/ifOctets.tcl}
-%{?fc3:%{_datadir}/tclrrd%{version}/pkgIndex.tcl}
-%{?fc2:%{_datadir}/tclrrd%{version}/pkgIndex.tcl}
-%{?fc1:%{_datadir}/tclrrd%{version}/pkgIndex.tcl}
+%{_datadir}/tclrrd%{version}/ifOctets.tcl
+%{_datadir}/tclrrd%{version}/pkgIndex.tcl
 %{_libdir}/tclrrd%{version}.so
 
 %if %{!?_without_python:1}0
@@ -168,6 +174,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %changelog
 * Wed Jul 27 2005 Dag Wieers <dag@wieers.com> - 1.2.11-1
 - Updated to release 1.2.11.
+- Fixes for x86_64 and perl/tcl/python bindings.
 
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 1.2.9-1
 - Updated to release 1.2.9.
