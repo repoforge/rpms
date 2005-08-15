@@ -5,7 +5,7 @@
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.5.4
-Release: 4
+Release: 5
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3
@@ -30,6 +30,8 @@ libmpeg3 currently decodes:
 %prep
 %setup
 %patch -p1 -b .gcc4
+# Workaround for FC4 ppc build failure
+echo "#define __USE_LARGEFILE64" >> mpeg3private.h
 
 %build
 # With gcc 3.4 (FC3), build fails with -O2 and also with -fPIC :-(
@@ -69,6 +71,9 @@ export CFLAGS="`echo "%{optflags} -fPIC" | sed 's/-O./-O1/'`"
 %{_includedir}/*.h
 
 %changelog
+* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.5.4-5
+- Force __USE_LARGEFILE64 to fix FC4 ppc build.
+
 * Fri Apr 22 2005 Matthias Saou <http://freshrpms.net/> 1.5.4-4
 - Add gcc4 patch.
 
