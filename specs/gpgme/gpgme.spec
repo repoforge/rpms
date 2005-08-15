@@ -4,7 +4,7 @@
 
 Summary: GnuPG Made Easy
 Name: gpgme
-Version: 1.0.2
+Version: 1.0.3
 Release: 1
 License: GPL
 Group: Applications/System
@@ -93,6 +93,9 @@ fi
 
 
 %changelog
+* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
+- Update to 1.0.3.
+
 * Mon Jan  3 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Update to 1.0.2.
 - Re-enable static libs by explicitely requesting them to configure.
