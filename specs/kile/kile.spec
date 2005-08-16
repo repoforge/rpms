@@ -83,7 +83,7 @@ sed -i "s/Categories=.*/Categories=Qt;KDE;Application;Office;/g;" %{buildroot}%{
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%{_datadir}/doc/HTML/*/kile ??
+%{_datadir}/doc/HTML/*/kile
 %{_datadir}/doc/HTML/*/doc
 %{_datadir}/apps/kile
 # conflicts with kdelibs-3.2.2-8.FC2

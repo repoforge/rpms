@@ -20,7 +20,7 @@ to generate stacktraces which are then interpreted by the userspace
 program "sysprof".
 
 %prep
-%setup -n %{name}
+%setup
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]

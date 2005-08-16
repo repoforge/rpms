@@ -62,6 +62,7 @@ text-based online multi-player role-playing game.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README AUTHORS CHANGELOG README.MIDI TODO
+%doc %{_mandir}/man1/kmuddy*
 %{_bindir}/kmuddy
 %{_datadir}/applnk/Games/kmuddy.desktop
 %{_datadir}/doc/HTML/en/kmuddy
