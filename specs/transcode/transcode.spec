@@ -24,7 +24,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.0
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -128,6 +128,9 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Tue Aug 16 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-2
+- Rebuild against new mjpegtools.
+
 * Mon Jul 18 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-1
 - Update to 1.0.0.
 
