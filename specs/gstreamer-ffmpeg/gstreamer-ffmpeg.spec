@@ -10,7 +10,7 @@
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: %{gstreamer}-ffmpeg
 Version: 0.8.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
@@ -43,7 +43,11 @@ plugins.
 
 
 %build
+%ifarch ppc
+%configure --disable-altivec
+%else
 %configure
+%endif
 %{__make} %{?_smp_mflags}
 
 
@@ -73,6 +77,9 @@ plugins.
 
 
 %changelog
+* Tue Aug 16 2005 Matthias Saou <http://freshrpms.net/> 0.8.6-2
+- Force --disable-altivec on ppc, as the build fails otherwise.
+
 * Sat Aug  6 2005 Matthias Saou <http://freshrpms.net/> 0.8.6-1
 - Update to 0.8.6.
 - Include new postproc plugin.
