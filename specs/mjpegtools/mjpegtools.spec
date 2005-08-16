@@ -17,7 +17,7 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.6.3
-Release: 0.1.rc2
+Release: 0.2.rc2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
@@ -124,7 +124,7 @@ fi
 
 
 %changelog
-* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.6.3-0.1.rc2
+* Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.6.3-0.2.rc2
 - Update to 1.6.3-rc2.
 - Include mjpegtools-1.6.3-rc2-mplex.patch (for ppc only, fails for others).
 
