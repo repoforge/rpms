@@ -31,7 +31,7 @@ Obsoletes: libclamav < %{version}-%{release}
 Obsoletes: clamav-lib < %{version}-%{release}
 Provides: libclamav
 
-%description 
+%description
 Clam AntiVirus is a GPL anti-virus toolkit for UNIX. The main purpose of
 this software is the integration with mail servers (attachment scanning).
 The package provides a flexible and scalable multi-threaded daemon, a

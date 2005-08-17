@@ -7,6 +7,7 @@ Version: 2.5
 Release: 2
 License: distributable
 Group: Applications/Archiving
+URL: ftp://ftp.std.com/src/util/
 
 Source: ftp://ftp.std.com/src/util/freeze%{version}/freeze-%{version}.tar.gz
 Patch: freeze-2.5.patch

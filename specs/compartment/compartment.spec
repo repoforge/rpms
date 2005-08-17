@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dag
 # Upstream: Marc Heuse <marc$suse,de>
 
 Summary: Confine services in a limited environment

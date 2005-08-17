@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: e2fsprogs-devel, readline-devel, curl-devel, pkgconfig, glib2-devel
 Requires: webserver
 
-%description 
+%description
 InterSync is a C based InterMezzo client, intended to
 operate with an http server (e.g. TUX or Apache) as a server. 
 

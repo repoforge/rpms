@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
 
-%description 
+%description
 Metacam is an utility to read and decode metadata from digital camera
 images with Exif information. It was specifically written to read images
 from a Nikon D1, but it supports other cameras too.

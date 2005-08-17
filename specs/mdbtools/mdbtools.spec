@@ -23,7 +23,7 @@ BuildRequires: unixODBC-devel >= 2.0.0, libgnomeui-devel >= 2.0, bison, flex
 BuildRequires: glib-devel, glib2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
  
-%description 
+%description
 MDB Tools is a suite of libraries and program for accessing data stored
 in Microsoft Access databases.
  

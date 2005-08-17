@@ -8,6 +8,7 @@ Version: 0.0.6
 Release: 6
 License: GPL
 Group: System Environment/Base
+URL: http://pweb.netcom.com/~spoon/lcap/
 
 Source: http://svn.rpmforge.net/svn/trunk/rpms/lcap/lcap-%{version}.tar.bz2
 Patch1: lcap-0.0.6-morecaps.patch

@@ -22,7 +22,7 @@ Buildrequires: mhash-devel, zlib-devel
 ### Postgresql support doesn't build.
 #Buildconflicts: postgresql-devel
 
-%description 
+%description
 AIDE (Advanced Intrusion Detection Environment) is a file integrity
 checker and intrusion detection program.
 

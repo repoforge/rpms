@@ -27,7 +27,7 @@ BuildRequires: ncurses-devel, doxygen, groff
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
-%description 
+%description
 fish is a shell geared towards interactive use. It's features are
 focused on user friendlieness and discoverability. The language syntax
 is simple but incompatible with other shell languages.

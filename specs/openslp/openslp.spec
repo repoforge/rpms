@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Provides: openslp libslp.so libslp.so.0 slpd
 Obsoletes: openslp-server
 
-%Description
+%description
 Service Location Protocol is an IETF standards track protocol that
 provides a framework to allow networking applications to discover the
 existence, location, and configuration of networked services in

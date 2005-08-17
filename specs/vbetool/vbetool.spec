@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildarch: i386
 BuildRequires: autoconf, pciutils-devel, automake
 
-%description 
+%description
 vbetool allows you to run real-mode video BIOS code to alter 
 hardware state. It uses lrmi in order to run code from the video BIOS. 
 Currently, it is able to alter DPMS states, save/restore video card state

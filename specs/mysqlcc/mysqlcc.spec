@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pkgconfig, qt-devel >= 3.0.5, openssl-devel
 #BuildRequires: mysql-devel >= 4.0
 
-%description 
+%description
 mysqlcc is a platform independent graphical MySQL administration client.
 
 %prep

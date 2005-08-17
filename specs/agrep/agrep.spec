@@ -13,7 +13,7 @@ URL: http://www.tgries.de/agrep/
 Source: http://gd.tuwien.ac.at/utils/admin-tools/agrep/agrep-%{version}.tar.Z
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%description 
+%description
 agrep is similar to egrep (or grep or fgrep), but it is
 much more general and usually faster.
 

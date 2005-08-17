@@ -17,7 +17,7 @@ BuildRequires: gtk+-devel >= 1.2.4, pkgconfig >= 0.9.0
 # libtool, *sigh*
 BuildRequires: gcc-c++
 
-%description 
+%description
 The Quasar DV codec (libdv) is a software codec for DV video, the encoding
 format used by most digital camcorders, typically those that support the
 IEEE 1394 (a.k.a. FireWire or i.Link) interface. Libdv was developed

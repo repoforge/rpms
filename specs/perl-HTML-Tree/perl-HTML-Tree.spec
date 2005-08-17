@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dries
 
 %define real_name HTML-Tree
 

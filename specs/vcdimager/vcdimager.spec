@@ -13,7 +13,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt, gcc-c++
 BuildRequires: libcdio-devel >= 0.72
 
-%description 
+%description
 VCDImager allows you to create VideoCD BIN/CUE CD images from mpeg
 files which can be burned with cdrdao or any other program capable of
 burning BIN/CUE files.

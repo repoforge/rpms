@@ -10,7 +10,7 @@ Version: 3.242
 Release: 1
 License: Freeware
 Group: Applications/System
-URL: http://www.iozone.org/ 
+URL: http://www.iozone.org/
 
 Source: http://www.iozone.org/src/current/iozone%{real_version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -16,7 +16,7 @@ BuildRequires: libstdc++-devel, gcc-c++, mozilla, gettext, libtiff-devel
 Provides: mozilla-djvulibre = %{version}-%{release}
 Provides: djvulibre-devel = %{version}-%{release}
 
-%description 
+%description
 DjVu is a web-centric format and software platform for distributing documents
 and images.  DjVu content downloads faster, displays and renders faster, looks
 nicer on a screen, and consume less client resources than competing formats.

@@ -15,11 +15,10 @@ URL: http://www.oberhumer.com/opensource/lzo/
 Source: http://www.oberhumer.com/opensource/%{name}/download/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: zlib-devel
 Requires: zlib >= 1.0.0
 
-%description 
+%description
 LZO is a portable lossless data compression library written in ANSI C. It
 offers pretty fast compression and *very* fast decompression.
 

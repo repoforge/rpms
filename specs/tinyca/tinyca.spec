@@ -28,7 +28,7 @@ Requires: openssl, Gtk-Perl
 
 Obsoletes: TinyCA < %{version}
 
-%description 
+%description
 TinyCA is a graphical tool written in Perl/Gtk to manage a small
 Certification Authority (CA) using openssl.
 

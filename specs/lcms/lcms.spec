@@ -14,7 +14,7 @@ Name: lcms
 Version: 1.14
 Release: 1
 License: MIT
-Group: System/Libraries
+Group: System Environment/Libraries
 URL: http://www.littlecms.com/
 
 Source: http://www.littlecms.com/lcms-%{version}.tar.gz

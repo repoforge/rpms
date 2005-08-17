@@ -1,14 +1,15 @@
 # $Id$
 # Authority: dag
 
-%define real_version 1.1a
 
 Summary: Print average throughput for a tcp connection
 Name: tcpspray
+%define real_version 1.1a
 Version: 1.1
 Release: 0.a
 License: Unknown
 Group: Applications/Internet
+URL: http://ftp.linux.org.uk/pub/linux/Networking/attic/Other/tcpspray/
 
 Source: http://ftp.linux.org.uk/pub/linux/Networking/attic/Other/tcpspray/tcpspray.%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

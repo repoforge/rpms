@@ -23,7 +23,7 @@ Obsoletes: streamtuner-xiph < %{version}
 Obsoletes: streamtuner-local < %{version}
 Obsoletes: streamtuner-python < %{version}
 
-%description 
+%description
 Streamtuner is a stream directory browser. Through the use
 of a plugin system, it offers an intuitive GTK+ 2.0 interface
 to Internet radio directories such as SHOUTcast and Live365.

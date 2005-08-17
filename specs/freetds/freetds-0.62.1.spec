@@ -19,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: unixODBC-devel
 Obsoletes: freetds-unixodbc <= %{version}, freetds-doc <= %{version}
  
-%description 
+%description
 FreeTDS is a project to document and implement the TDS (Tabular
 DataStream) protocol. TDS is used by Sybase and Microsoft for
 client to database server communications. FreeTDS includes call

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
 # Tag: test

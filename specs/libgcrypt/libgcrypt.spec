@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
 # ExcludeDist: fc1 fc2 fc3 el4

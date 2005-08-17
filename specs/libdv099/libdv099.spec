@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig >= 0.9.0, glib-devel, gtk+-devel
 
-%description 
+%description
 The Quasar DV codec (libdv) is a software codec for DV video, the encoding
 format used by most digital camcorders, typically those that support the
 IEEE 1394 (a.k.a. FireWire or i.Link) interface. Libdv was developed

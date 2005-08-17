@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel, autoconf
 Requires: zlib >= 1.0.0
 
-%description 
+%description
 LZO is a portable lossless data compression library written in ANSI C.
 It offers pretty fast compression and *very* fast decompression.
 Decompression requires no memory. In addition there are slower

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Portable C library for dynamically generating PDF files
 Name: pdflib

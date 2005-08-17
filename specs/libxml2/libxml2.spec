@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dries
 # ExclusiveDist: el2 rh7 rh8 rh9 el3 fc1 fc2
 
 #%define python_version %(python2 -c 'import sys; print sys.version[:3]')

@@ -23,7 +23,7 @@ BuildRequires: bash, gtk2-devel >= 2.4, pkgconfig, autoconf, automake
 BuildRequires: desktop-file-utils
 Requires: bash, gtk2 >= 2.4
 
-%description 
+%description
 A visualition add-on for Bash and Zsh that shows the current tree (visual ls of
 the current dir) and the glob patterns. This allows one to evaluate the
 ramifications of a command while typing. and it eases the tab-completion driven

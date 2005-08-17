@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: libtermcap
 
-%description 
+%description
 tnftp is a port of the NetBSD FTP client to other systems.
 tnftp was formerly known as `lukemftp' and was renamed by Luke Mewburn
 in February 2003.

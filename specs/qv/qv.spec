@@ -1,5 +1,4 @@
 # $Id: $
-
 # Authority: dries
 # Upstream: Hasanen Nawfal <hasanen$iraqilinux,com>
 
@@ -7,7 +6,7 @@ compiles without problems but does not work: 100% cpu usage and no window
 
 Summary: Image viewer
 Name: qv
-Version: 0.2 
+Version: 0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia

@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 %define real_version 1.0b1
@@ -16,7 +15,7 @@ Source: http://dl.sf.net/fidelio/fidelio-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gnome-libs-devel, libxml-devel, gettext
 
-%description 
+%description
 Fidelio is a Hotline compatible client that supports most of the features of
 Hotline. Public chat, tranfsers, flat and threaded news, icons, sounds, and 
 messages are supported. Banners, private chat, and the administrative 

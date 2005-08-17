@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dag
 
 # ExcludeDist: el4
 

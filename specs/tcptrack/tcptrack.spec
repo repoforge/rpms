@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, ncurses-devel, libpcap
 
-%description 
+%description
 tcptrack is a sniffer which displays information about TCP connections it
 sees on a network interface. It passively watches for connections on the
 network interface, keeps track of their state and displays a list of

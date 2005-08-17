@@ -7,6 +7,7 @@ Version: 2.10
 Release: 2
 License: Distributable
 Group: Applications/Archiving
+URL: ftp://sunsite.unc.edu/pub/Linux/utils/compress/
 
 Source: http://slackware.cs.utah.edu/slackware_source/a/bin/zoo-%{version}.tar.gz
 Patch0: http://ftp.debian.org/debian/pool/non-free/z/zoo/zoo_2.10-9.diff.gz

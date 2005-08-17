@@ -10,11 +10,9 @@ Release: 0.a
 Group: Applications/Archiving
 License: distributable
 
-
 Source: http://www.ibiblio.org/pub/Linux/utils/compress/unarj-%{real_version}.tar.gz
 Patch: unarj-subdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 The UNARJ program is used to uncompress .arj format archives.  The
@@ -38,7 +36,7 @@ The UNARJ program is used to uncompress .arj format archives.  The
 %files
 %defattr(-, root, root, 0755)
 %doc *.txt
-%{_bindir}/*
+%{_bindir}/unarj
 
 %changelog
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 2.43-1

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dries
 # Upstream: Kevin DeKorte <kdekorte$users,sourceforge,net>
 # Upstream: <mplayerplug-in-devel$lists,sourceforge,net>
 
