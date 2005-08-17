@@ -7,13 +7,13 @@
 
 Summary: Python module for interfacing with the SDL multimedia library
 Name: python-game
-Version: 1.6
+Version: 1.7.1
 Release: 0
 License: LGPL style
 Group: Development/Libraries
-URL: http://pygame.seul.org/
+URL: http://pygame.org/
 
-Source: http://pygame.seul.org/ftp/pygame-%{version}.tar.gz
+Source: http://www.pygame.org/ftp/%{real_name}-%{version}release.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-numeric, smpeg-devel, python-devel
@@ -46,7 +46,7 @@ Mark Baker.
 Install pygame-doc if you need the API documentation and example programs.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}release
 
 %build
 %{__python} config.py
@@ -72,6 +72,10 @@ Install pygame-doc if you need the API documentation and example programs.
 %doc docs/ examples/
 
 %changelog
+* Wed Aug 17 2005 C.Lee Taylor <leet@leenx.co.za> - 1.7.1-0
+- Updated to release 1.7.1.
+- Fix url for new site
+
 * Thu Sep 04 2003 Dag Wieers <dag@wieers.com> - 1.6-0
 - Updated to release 1.6.
 
