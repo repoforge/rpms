@@ -103,6 +103,8 @@ sprite blitting.
 %{_mandir}/man1/cacaball.1*
 %{_mandir}/man1/cacademo.1*
 %{_mandir}/man1/cacafire.1*
+%{_mandir}/man1/cacamoir.1*
+%{_mandir}/man1/cacaplas.1*
 %{_mandir}/man1/cacaview.1*
 %{_mandir}/man1/cacamoir.1*
 %{_mandir}/man1/cacaplas.1*

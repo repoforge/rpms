@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dag
 
 Summary: Unicode manipulation library
@@ -8,6 +7,7 @@ Version: 0.4
 Release: 12.0
 License: LGPL
 Group: System Environment/Libraries
+URL: http://www.pango.org/
 
 Source: http://www.pango.org/download/libunicode-%{version}.tar.gz
 Patch0: libunicode-0.4-64bit.patch

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dries
 # Upstream: Chip Turner <cturner$redhat,com>
 
 %define real_name RPM-Specfile

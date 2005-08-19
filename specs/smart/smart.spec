@@ -2,6 +2,7 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
+%{?el4:%define _without_channels 1}
 %{?el3:%define _without_gui 1}
 
 # ExclusiveDist: fc3 fc4 el4
@@ -12,9 +13,6 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{!?dist: %define fc4 1}
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-
 %define desktop_vendor rpmforge
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
@@ -24,7 +22,7 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.36
+Version: 0.37
 Release: 1
 License: GPL
 Group: Applications/System
@@ -75,11 +73,9 @@ KDE tray program for watching updates with Smart Package Manager.
 %prep
 %setup
 
-%{?fc4:name="Fedora Core"; version="4"; path="fedora"}
-%{?fc3:name="Fedora Core"; version="3"; path="fedora"}
-%{?fc2:name="Fedora Core"; version="2"; path="fedora"}
-%{?fc1:name="Fedora Core"; version="1"; path="fedora"}
-#{?el4:name="Red Hat Enterprise"; version="4"; path="redhat/el"}
+%{?el4:name='Red Hat Enterprise'; version='4'}
+%{?fc4:name='Fedora Core'; version='4'}
+%{?fc3:name='Fedora Core'; version='3'}
 
 %{__cat} <<EOF >distro.py
 pkgconf.setFlag("multi-version", "kernel")
@@ -95,178 +91,36 @@ EOF
 [rpm-db]
 name = RPM Database on this system
 type = rpm-sys
-priority = 10
 EOF
 
+%if %{!?_without_channels:1}0
 %{__cat} <<EOF >os.channel
 ### URL: http://fedora.redhat.com/
 [os]
-name = OS packages from Red Hat for $name $version (%{_arch})
-baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/core
+name = OS packages from Red Hat for $name $version - %{_arch}
+baseurl = http://ayo.freshrpms.net/fedora/linux/$version/%{_arch}/core
 type = rpm-md
-priority = 10
 EOF
 
 %{__cat} <<EOF >updates.channel
 ### URL: http://fedora.redhat.com/
 [updates]
-name = Updated packages from Red Hat for $name $version (%{_arch})
-baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/updates
+name = Updated packages from Red Hat for $name $version - %{_arch}
+baseurl = http://ayo.freshrpms.net/fedora/linux/$version/%{_arch}/updates
 type = rpm-md
-priority = 10
-EOF
-
-%{__cat} <<EOF >dag.channel
-### URL: http://dag.wieers.com/apt/
-[dag]
-name = RPMforge.net: Various packages from Dag RPM Repository for $name $version (%{_arch})
-baseurl = http://apt.sw.be/$path/$version/en/%{_arch}/dag
-type = rpm-md
-priority = 10
-EOF
-
-%{__cat} <<EOF >freshrpms.channel
-### URL: http://freshrpms.net/
-[freshrpms]
-name = RPMforge.net: Various packages from FreshRPMS.net for $name $version (%{_arch})
-baseurl = http://ayo.freshrpms.net/$path/linux/$version/%{_arch}/freshrpms
-type = rpm-md
-priority = 10
-EOF
-
-%{__cat} <<EOF >planetccrma.channel
-### URL: http://ccrma.stanford.edu/planetccrma/software/
-[planetccrma]
-name = RPMforge.net: Various packages from Planet CCRMA for $name $version (%{_arch})
-baseurl = http://ccrma.stanford.edu/planetccrma/apt/$path/$version/%{_arch}
-components = planetccrma planetcore
-type = apt-rpm
-priority = 10
-disabled = true
-EOF
-
-%ifarch %{ix86}
-%{__cat} <<EOF >dries.channel
-### URL: http://dries.studentenweb.org/ayo/
-[dries]
-name = RPMforge.net: Various packages from Dries RPM Repository for $name $version (%{_arch})
-baseurl = http://apt.sw.be/dries/$path/fc$version/%{_arch}/dries/RPMS
-type = rpm-md
-priority = 10
 EOF
 %endif
 
-%ifarch %{ix86}
-%{__cat} <<EOF >newrpms.channel
-### URL: http://newrpms.sunsite.dk/
-[newrpms]
-name = Various packages from NewRPMS for $name $version (%{_arch})
-baseurl = http://newrpms.sunsite.dk/apt/redhat/en/%{_arch}/fc$version
-type = rpm-md
-priority = 0
-EOF
-%endif
-
-%{__cat} <<EOF >atrpms.channel
-### URL: http://atrpms.net/
-[atrpms]
-name = Various packages from ATrpms for $name $version (%{_arch})
-baseurl = http://apt.physik.fu-berlin.de/$path/$version/en/%{_arch}/at-testing
-type = rpm-md
-priority = -10
-EOF
-
-%{__cat} <<EOF >jpackage.channel
-### URL: http://jpackage.org/
-[jpackage]
-name = Java packages from JPackage.org for $name $version (%{_arch})
-baseurl = http://mirrors.sunsite.dk/jpackage/1.6/$path-$version/free
-type = rpm-md
-priority = 0
-disabled = true
-EOF
-
-%{__cat} <<EOF >jpackage-generic.channel
-### URL: http://jpackage.org/
-[jpackage-generic]
-name = Java packages from JPackage.org for all distributions
-baseurl = http://mirrors.sunsite.dk/jpackage/1.6/generic/free
-type = rpm-md
-priority = 0
-disabled = true
-EOF
-
-%{__cat} <<EOF >biorpms.channel
-### URL: http://apt.bea.ki.se/
-[biorpms]
-name = Bioinformatic packages from BIOrpms for $name $version (%{_arch})
-baseurl = http://apt.bea.ki.se/biorpms/$path/linux/$version/%{_arch}/biorpms
-type = rpm-md
-priority = 0
-disabled = true
-EOF
-
-%{__cat} <<EOF >kde-redhat.channel
-### URL: http://kde-redhat.sourceforge.net/
-[kde-redhat]
-name = KDE packages from the kde-redhat project for $name $version (%{_arch})
-baseurl = http://apt.kde-redhat.org/apt/kde-redhat/$version/stable
-type = rpm-md
-priority = -5
-disabled = true
-EOF
-
-%{__cat} <<EOF >kde-redhat-all.channel
-### URL: http://kde-redhat.sourceforge.net/
-[kde-redhat-all]
-name = KDE packages from the kde-redhat project for all distributions
-baseurl = http://apt.kde-redhat.org/apt/kde-redhat/all/stable
-type = rpm-md
-priority = -5
-disabled = true
-EOF
-
-%{__cat} <<EOF >nrpms.channel
-### URL: http://www.nrpms.net/
-[nrpms]
-name = Various packages from Nrpms for $name $version (%{_arch})
-baseurl = http://yum.nrpms.net/$path-$version-%{_arch}/production
-type = rpm-md
-priority = -10
-disabled = true
-EOF
-
-%{__cat} <<EOF >mozilla-seamonkey.channel
-### URL: http://mozilla.org/
-[mozilla-seamonkey]
-name = Mozilla packages from Mozilla SeaMonkey for $name $version (%{_arch})
-baseurl = http://ftp.mozilla.org/pub/mozilla.org/mozilla/yum/SeaMonkey/releases/current/redhat/$version
-type = rpm-md
-priority = -10
-disabled = true
-EOF
-
-%{__cat} <<EOF >livna.channel
-### URL: http://rpm.livna.org/
-[livna]
-name = Incompatible packages from Livna.org for $name $version (%{_arch})
-baseurl = http://rpm.livna.org/$path/$version/%{_arch}/RPMS.stable
-type = rpm-md 
-priority = -100
-disabled = true
-EOF
-
-%ifarch %{ix86}
-%{__cat} <<EOF >fedora.us.channel
-### URL: http://fedora.us/
-[fedora.us]
-name = Incompatible packages from Fedora.us for $name $version (%{_arch})
-baseurl = http://download.fedora.us/fedora/$path/$version/%{_arch}/RPMS.extras
-type = rpm-md
-priority = -100
-disabled = true
-EOF
-%endif
+#### URL: http://dag.wieers.com/apt/
+#### URL: http://ccrma.stanford.edu/planetccrma/software/
+#### URL: http://dries.studentenweb.org/ayo/
+#### URL: http://newrpms.sunsite.dk/
+### See freshrpms-release package
+### See atrpms-release package
+### See kde-redhat-release package
+### See nrpms-release package
+### See livna-release package
+### See jpackage-release package
 
 %{__cat} <<EOF >smart-gui.console
 USER=root
@@ -403,6 +257,9 @@ cd -
 %endif
 
 %changelog
+* Fri Aug 19 2005 Dag Wieers <dag@wieers.com> - 0.37-1
+- Updated to release 0.37.
+
 * Thu Jul 14 2005 Dag Wieers <dag@wieers.com> - 0.36-1
 - Updated to release 0.36.
 

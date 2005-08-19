@@ -6,13 +6,13 @@
 
 Summary: Meta-data extraction library 
 Name: libextractor
-Version: 0.5.2
+Version: 0.5.3
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://gnunet.org/libextractor/
 
-Source: http://gnunet.org/libextractor/download/libextractor-%{version}.tar.bz2
+Source: http://gnunet.org/libextractor/download/libextractor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libvorbis-devel, libogg-devel, zlib-devel, gcc-c++, python
@@ -90,11 +90,14 @@ export LDFLAGS=-L%{buildroot}%{_libdir}
 %exclude %{_libdir}/libextractor.la
 %{_libdir}/libextractor.so
 
-%files -n python-extractor
-%defattr(-, root, root, 0755)
-%{python_sitearch}/extractor.so
+#%files -n python-extractor
+#%defattr(-, root, root, 0755)
+#%{python_sitearch}/extractor.so
 
 %changelog
+* Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1
+- Updated to release 0.5.3.
+
 * Thu Jul 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1
 - Updated to release 0.5.2.
 

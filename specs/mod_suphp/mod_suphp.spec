@@ -12,12 +12,13 @@ Group: System Environment/Daemons
 URL: http://www.suphp.org/
 
 Source: http://projects.marsching.org/suphp/download/suphp-%{version}.tar.gz
+Patch: suphp-0.6.0-handler.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: httpd-devel >= 2.0, gcc-c++, automake, autoconf
 Requires: httpd >= 2.0, php
 
-%description 
+%description
 The suPHP Apache module together with suPHP itself provides an easy way to
 run PHP scripts with different users on the same server. It provides security,
 because the PHP scripts are not run with the rights of the webserver's user.
@@ -26,6 +27,7 @@ applies many restrictions on the scripts.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch
 
 %{__cat} <<EOF >suphp.conf
 [global]
@@ -65,14 +67,22 @@ EOF
 
 LoadModule suphp_module modules/mod_suphp.so
 
-# To use suPHP to parse PHP-Files
-AddHandler x-httpd-php .php
-AddHandler x-httpd-php .php .php4 .php3 .phtml
-
 # This option tells mod_suphp if a PHP-script requested on this server (or
 # VirtualHost) should be run with the PHP-interpreter or returned to the
 # browser "as it is".
 suPHP_Engine off
+
+# Disable php when suphp is used, to avoid having both.
+#<IfModule mod_php5.c>
+#php_admin_flag engine off
+#</IfModule>
+#<IfModule mod_php4.c>
+#php_admin_flag engine off
+#</IfModule>
+
+# To use suPHP to parse PHP-Files
+AddHandler x-httpd-php .php
+AddHandler x-httpd-php .php .php4 .php3 .phtml
 
 # This option tells mod_suphp which path to pass on to the PHP-interpreter
 # (by setting the PHPRC environment variable).
@@ -110,7 +120,7 @@ export CPPFLAGS="-I/usr/include/apr-0"
 	--with-php="%{_bindir}/php" \
 	--with-setid-mode="paranoid"
 #	--with-setid-mode="owner"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} clean all
 
 %install
 %{__rm} -rf %{buildroot}
@@ -131,5 +141,8 @@ export CPPFLAGS="-I/usr/include/apr-0"
 %{_sbindir}/suphp
 
 %changelog
+* Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.6.0-2
+- Added suPHP_AddHandler/suPHP_RemoveHandler patch.
+
 * Thu Aug 11 2005 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Initial package. (using DAR)

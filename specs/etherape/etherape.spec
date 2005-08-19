@@ -10,7 +10,7 @@
 
 Summary: Graphical network viewer modeled after etherman
 Name: etherape
-Version: 0.9.1
+Version: 0.9.3
 Release: 1
 License: GPL
 Group: Applications/System
@@ -104,6 +104,9 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-etherape.desktop}
 
 %changelog
+* Fri Aug 19 2005 Dag Wieers <dag@wieers.com> - 0.9.3-1
+- Updated to release 0.9.3.
+
 * Wed Dec 22 2004 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 
