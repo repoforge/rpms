@@ -115,7 +115,7 @@ exit 0
 
 %changelog
 * Fri Aug 19 2005 Dag Wieers <dag@wieers.com> - 0.1-3
-- Improver smart channel.
+- Improve smart channel.
 
 * Fri Aug 19 2005 Dag Wieers <dag@wieers.com> - 0.1-2
 - Added mirrors-rpmforge locally.

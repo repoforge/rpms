@@ -96,7 +96,6 @@ done
 %{__install} -d -m0755 %{buildroot}%{_includedir}/nagios/
 %{__install} -p -m0644 include/*.h %{buildroot}%{_includedir}/nagios/
 
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/httpd/conf.d/
 %{__install} -Dp -m0644 sample-config/httpd.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/nagios.conf
 
 ### Install logos

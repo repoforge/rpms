@@ -2,16 +2,13 @@
 # Authority: dag
 # Upstream: Gustavo Niemeyer <niemeyer$conectiva,com>
 
-%{?el4:%define _without_channels 1}
-%{?el3:%define _without_gui 1}
-
 # ExclusiveDist: fc3 fc4 el4
-
-### Testing for EL3
-##Tag: test
 
 %{?dist: %{expand: %%define %dist 1}}
 %{!?dist: %define fc4 1}
+
+%{?el4:%define _without_channels 1}
+%{?el3:%define _without_gui 1}
 
 %define desktop_vendor rpmforge
 
@@ -23,7 +20,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.37
-Release: 1
+Release: 11
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -73,10 +70,6 @@ KDE tray program for watching updates with Smart Package Manager.
 %prep
 %setup
 
-%{?el4:name='Red Hat Enterprise'; version='4'}
-%{?fc4:name='Fedora Core'; version='4'}
-%{?fc3:name='Fedora Core'; version='3'}
-
 %{__cat} <<EOF >distro.py
 pkgconf.setFlag("multi-version", "kernel")
 pkgconf.setFlag("multi-version", "kernel-smp")
@@ -94,6 +87,9 @@ type = rpm-sys
 EOF
 
 %if %{!?_without_channels:1}0
+%{?fc4:name='Fedora Core'; version='4'}
+%{?fc3:name='Fedora Core'; version='3'}
+
 %{__cat} <<EOF >os.channel
 ### URL: http://fedora.redhat.com/
 [os]
@@ -110,17 +106,6 @@ baseurl = http://ayo.freshrpms.net/fedora/linux/$version/%{_arch}/updates
 type = rpm-md
 EOF
 %endif
-
-#### URL: http://dag.wieers.com/apt/
-#### URL: http://ccrma.stanford.edu/planetccrma/software/
-#### URL: http://dries.studentenweb.org/ayo/
-#### URL: http://newrpms.sunsite.dk/
-### See freshrpms-release package
-### See atrpms-release package
-### See kde-redhat-release package
-### See nrpms-release package
-### See livna-release package
-### See jpackage-release package
 
 %{__cat} <<EOF >smart-gui.console
 USER=root

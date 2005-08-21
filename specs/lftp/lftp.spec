@@ -1,5 +1,5 @@
 # $Id$
-# Authority: axel
+# Authority: dag
 # Upstream: Alexander V. Lukyanov <lav$yars,free,net>
 # Upstream: <lftp-devel$uniyar,ac,ru>
 

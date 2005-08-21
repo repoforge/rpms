@@ -16,8 +16,8 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4
-Release: 2
+Version: 1.4.1
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
@@ -98,10 +98,14 @@ done
 %doc ACKNOWLEDGEMENTS AUTHORS BUGS ChangeLog CHANGES COPYING FAQ INSTALL
 %doc LEGAL NEWS README REQUIREMENTS SUPPORT THANKS command.cfg
 %config(noreplace) %{_sysconfdir}/nagios/
+%dir %{_libdir}/nagios/
 %{_libdir}/nagios/plugins/
 %{perl_vendorlib}/utils.pm
 
 %changelog
+* Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.4-2
 - Fixed setuid bit for ping and fping.
 - Added /sbin and /usr/sbin to $PATH.
