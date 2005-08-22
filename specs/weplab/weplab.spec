@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: José Ignacio Sánchez Martín <topolb@users.sourceforge.net>
+# Upstream: JosÃ© Ignacio SÃ¡nchez MartÃ­n <topolb@users.sourceforge.net>
 
 Summary: Analyzing WEP encryption security on wireless networks
 Name: weplab

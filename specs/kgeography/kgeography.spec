@@ -19,7 +19,7 @@
 
 Summary: Geography learning tool
 Name: kgeography
-Version: 0.3
+Version: 0.4
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -72,6 +72,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/config.kcfg/kgeography.kcfg
 
 %changelog
+* Mon Aug 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.4-1
+- Updated to release 0.4.
+
 * Sun Dec 26 2004 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Updated to release 0.3.
 
