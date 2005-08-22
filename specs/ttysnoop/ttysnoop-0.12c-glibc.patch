@@ -1,0 +1,73 @@
+diff -uN ttysnoop-0.12c/Makefile ttysnoop-0.12c.glibc/Makefile
+--- ttysnoop-0.12c/Makefile	Sat Mar 14 00:38:22 1998
++++ ttysnoop-0.12c.glibc/Makefile	Sat Mar 14 00:36:38 1998
+@@ -23,7 +23,7 @@
+ all:		ttysnoops ttysnoop
+ 
+ ttysnoops:	$(SERVEROBJS)
+-		$(CC) $(SERVEROBJS) -o ttysnoops $(LIBS)
++		$(CC) $(SERVEROBJS) -o ttysnoops $(LIBS) -lcrypt
+ 
+ ttysnoop:	$(CLIENTOBJS)
+ 		$(CC) $(CLIENTOBJS) -o ttysnoop $(LIBS)
+Binary files ttysnoop-0.12c/common.o and ttysnoop-0.12c.glibc/common.o differ
+Binary files ttysnoop-0.12c/ttysnoop and ttysnoop-0.12c.glibc/ttysnoop differ
+diff -uN ttysnoop-0.12c/ttysnoop.c ttysnoop-0.12c.glibc/ttysnoop.c
+--- ttysnoop-0.12c/ttysnoop.c	Wed Sep  7 06:04:01 1994
++++ ttysnoop-0.12c.glibc/ttysnoop.c	Sat Mar 14 00:37:16 1998
+@@ -14,8 +14,8 @@
+ #include <sys/stat.h>
+ #include <sys/ioctl.h>
+ #include <sys/socket.h>
+-#include <linux/time.h>
+-#include <linux/un.h>
++/* #include <linux/time.h>
++#include <linux/un.h> */
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <stdarg.h>
+@@ -32,6 +32,13 @@
+ #define BUFF_SIZE	256
+ 
+ char buff[BUFF_SIZE];
++
++#define UNIX_PATH_MAX   108
++
++struct sockaddr_un {
++	unsigned short sun_family;      /* AF_UNIX */
++	char sun_path[UNIX_PATH_MAX];   /* pathname */
++}; 
+ 
+ int main (int argc, char *argv[])
+ {
+Binary files ttysnoop-0.12c/ttysnoop.o and ttysnoop-0.12c.glibc/ttysnoop.o differ
+Binary files ttysnoop-0.12c/ttysnoops and ttysnoop-0.12c.glibc/ttysnoops differ
+diff -uN ttysnoop-0.12c/ttysnoops.c ttysnoop-0.12c.glibc/ttysnoops.c
+--- ttysnoop-0.12c/ttysnoops.c	Thu Mar 21 10:47:08 1996
++++ ttysnoop-0.12c.glibc/ttysnoops.c	Sat Mar 14 00:36:05 1998
+@@ -22,8 +22,8 @@
+ #include <sys/ioctl.h>
+ #include <sys/socket.h>
+ #include <sys/syslog.h>
+-#include <linux/time.h>
+-#include <linux/un.h>
++/* #include <linux/time.h> */
++/* #include <linux/un.h> */
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <stdarg.h>
+@@ -425,6 +425,13 @@
+ }
+ 
+ /* main program */
++
++#define UNIX_PATH_MAX   108
++
++struct sockaddr_un {
++	unsigned short sun_family;      /* AF_UNIX */
++	char sun_path[UNIX_PATH_MAX];   /* pathname */
++};
+ 
+ int main (int argc, char *argv[])
+ {
+Binary files ttysnoop-0.12c/ttysnoops.o and ttysnoop-0.12c.glibc/ttysnoops.o differ

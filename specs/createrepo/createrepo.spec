@@ -7,7 +7,7 @@
 
 Summary: Creates a common metadata repository
 Name: createrepo
-Version: 0.4.2
+Version: 0.4.3
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -52,6 +52,9 @@ fi
 
 
 %changelog
+* Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.4.3-1
+- Updated to release 0.4.3.
+
 * Thu Mar 10 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Updated to release 0.4.2.
 
