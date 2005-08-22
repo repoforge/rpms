@@ -6,8 +6,8 @@
 
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
-Version: 0.1
-Release: 3
+Version: 0.2
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://rpmforge.net/
@@ -46,7 +46,7 @@ EOF
 # Name: RPMforge RPM Repository for $name $version - %{_arch}
 # URL: http://rpmforge.net/
 [rpmforge]
-name = Extra packages from RPMforge.net for $name $version - %{_arch}
+name = Extra packages from RPMforge.net for $name $version - %{_arch} - $builder
 baseurl = http://apt.sw.be/$url/%{_arch}/$builder/$yumsuffix
 type = rpm-md
 EOF
@@ -55,12 +55,12 @@ EOF
 # Name: RPMforge RPM Repository for $name $version - %{_arch}
 # URL: http://rpmforge.net/
 [rpmforge]
-name = $name $version - %{_arch} - RPMforge.net
-#baseurl = http://apt.sw.be/$url/${_arch}/$builder/$yumsuffix
-#mirrorlist = http://apt.sw.be/$url/mirrors-rpmforge
-mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
+name = $name $version - %{_arch} - RPMforge.net - $builder
+#baseurl = http://apt.sw.be/$url/$basearch/$builder/$yumsuffix
+mirrorlist = http://apt.sw.be/$url/mirrors-rpmforge
+#mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
-gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-$builder
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
 gpgcheck = 1
 EOF
 
@@ -116,6 +116,10 @@ exit 0
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
 
 %changelog
+* Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.2-1
+- Fixes to up2date channel and mirrorlist. (Dries Verachtert)
+- Fixes to GPG key location.
+
 * Fri Aug 19 2005 Dag Wieers <dag@wieers.com> - 0.1-3
 - Improve smart channel.
 
