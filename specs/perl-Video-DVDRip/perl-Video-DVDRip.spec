@@ -1,6 +1,11 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?rh7:%define _without_freedesktop 1}
+%{?el2:%define _without_freedesktop 1}
+
 %define desktop_vendor  rpmforge
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 
@@ -17,7 +22,8 @@ AutoReq: no
 Requires: transcode >= 0.6.13
 Requires: Gtk-Perl, ImageMagick, ogmtools, subtitleripper, vcdimager
 Requires: perl(Locale::Messages)
-BuildRequires: Gtk-Perl, desktop-file-utils
+BuildRequires: Gtk-Perl
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 dvd::rip is a Perl Gtk+ based DVD copy program built on top of a low level
@@ -64,10 +70,14 @@ Type=Application
 Categories=Application;AudioVideo;
 EOF
 
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    dvdrip.desktop
+%if %{?_without_freedesktop:1}0
+	%{__install} -Dp -m0644 dvdrip.desktop %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/dvdrip.desktop
+%else
+	%{__mkdir_p} %{buildroot}%{_datadir}/applications
+	desktop-file-install --vendor %{desktop_vendor} \
+	    --dir %{buildroot}%{_datadir}/applications \
+	    dvdrip.desktop
+%endif
 
 
 %clean 
@@ -84,7 +94,8 @@ desktop-file-install --vendor %{desktop_vendor} \
 %lang(it) %{perl_sitelib}/LocaleData/it/LC_MESSAGES/video.dvdrip.mo
 %lang(sr) %{perl_sitelib}/LocaleData/sr/LC_MESSAGES/video.dvdrip.mo
 %{perl_sitelib}/Video/
-%{_datadir}/applications/*dvdrip.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dvdrip.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Multimedia/dvdrip.desktop}
 %{_mandir}/man*/*
 
 

@@ -141,8 +141,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/application-registry/xine.applications
 %{_datadir}/pixmaps/xine.png
 %{_datadir}/xine/
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Multimedia/%{name}.desktop}
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xine.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Multimedia/xine.desktop}
 %{_mandir}/man1/*
 %lang(de)%{_mandir}/de/man1/*
 %lang(es)%{_mandir}/es/man1/*
