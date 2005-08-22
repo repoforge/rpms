@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
 Version: 0.1
@@ -25,7 +27,7 @@ GPG keys used to sign them.
 %{?el4:name='Red Hat Enterprise'; version='4'; url="redhat/el$version/en"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; url="redhat/el$version/en"; builder='dag'}
 %{?el2:name='Red Hat Enterprise'; version='2'; url="redhat/el$version/en"; builder='dag'}
-%{?fc4:name='Fedora Core'; version='4'; url="dries/fedora/$version"; builder='dries'}
+%{?fc4:name='Fedora Core'; version='4'; url="dries/fedora/fc$version"; builder='dries'; yumsuffix='RPMS'}
 %{?fc3:name='Fedora Core'; version='3'; url="fedora/$version/en"; builder='dag'}
 %{?fc2:name='Fedora Core'; version='2'; url="fedora/$version/en"; builder='dag'}
 %{?fc1:name='Fedora Core'; version='1'; url="fedora/$version/en"; builder='dag'}
@@ -45,7 +47,7 @@ EOF
 # URL: http://rpmforge.net/
 [rpmforge]
 name = Extra packages from RPMforge.net for $name $version - %{_arch}
-baseurl = http://apt.sw.be/$url/%{_arch}/$builder
+baseurl = http://apt.sw.be/$url/%{_arch}/$builder/$yumsuffix
 type = rpm-md
 EOF
 
@@ -54,9 +56,9 @@ EOF
 # URL: http://rpmforge.net/
 [rpmforge]
 name = $name $version - %{_arch} - RPMforge.net
-#baseurl = http://apt.sw.be/$url/$basearch/$builder/
-mirrorlist = http://apt.sw.be/$url/mirrors-rpmforge
-#mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
+#baseurl = http://apt.sw.be/$url/${_arch}/$builder/$yumsuffix
+#mirrorlist = http://apt.sw.be/$url/mirrors-rpmforge
+mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-$builder
 gpgcheck = 1
@@ -68,11 +70,11 @@ EOF
 #
 # Add the following line to /etc/sysconfig/rhn/sources
 #
-#	yum dag http://apt.sw.be/$url/$ARCH/$builder
+#	yum rpmforge http://apt.sw.be/$url/%{_arch}/$builder/$yumsuffix
 EOF
 
 for mirror in $(%{__cat} %{SOURCE0}); do
-	echo "$mirror/$url/\$ARCH/$builder"
+	echo "$mirror/$url/\$ARCH/$builder/$yumsuffix"
 done >mirrors-rpmforge.yum
 
 %build
