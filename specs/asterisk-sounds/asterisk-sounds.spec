@@ -52,6 +52,8 @@ used with Asterisk.
 %defattr(0644, root, root, 0755)
 %doc README.txt sounds-extra.txt
 %{_var}/lib/asterisk/sounds/
+# Exclude files already present in the main asterisk package (conflict)
+%exclude %{_var}/lib/asterisk/sounds/invalid.gsm
 
 
 %changelog
