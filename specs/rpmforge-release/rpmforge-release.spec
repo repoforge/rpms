@@ -7,7 +7,7 @@
 Summary: RPMforge release file and package configuration
 Name: rpmforge-release
 Version: 0.2
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://rpmforge.net/
@@ -56,7 +56,7 @@ EOF
 # URL: http://rpmforge.net/
 [rpmforge]
 name = $name $version - %{_arch} - RPMforge.net - $builder
-#baseurl = http://apt.sw.be/$url/$basearch/$builder/$yumsuffix
+#baseurl = http://apt.sw.be/$url/\$basearch/$builder/$yumsuffix
 mirrorlist = http://apt.sw.be/$url/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
@@ -103,19 +103,27 @@ exit 0
 %files
 %defattr(-, root, root, 0755)
 %doc RPM-GPG-KEY-rpmforge-* rpmforge.* mirrors-rpmforge.yum
+%dir %{_sysconfdir}/apt/
+%dir %{_sysconfdir}/apt/sources.list.d/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge.list
+%dir %{_sysconfdir}/smart/
+%dir %{_sysconfdir}/smart/channels/
 %config(noreplace) %{_sysconfdir}/smart/channels/rpmforge.channel
-%config(noreplace) %{_sysconfdir}/yum.repos.d/rpmforge.repo
+%dir %{_sysconfdir}/sysconfig/rhn/
 %config %{_sysconfdir}/sysconfig/rhn/sources.rpmforge.txt
+%dir %{_sysconfdir}/yum.repos.d/
+%config(noreplace) %{_sysconfdir}/yum.repos.d/rpmforge.repo
 %config %{_sysconfdir}/yum.repos.d/mirrors-rpmforge
 %pubkey RPM-GPG-KEY-rpmforge-dag
 %pubkey RPM-GPG-KEY-rpmforge-dries
 %pubkey RPM-GPG-KEY-rpmforge-matthias
-%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
-%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries
-%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
+%dir %{_sysconfdir}/pki/rpm-gpg/
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Tue Aug 23 2005 Dag Wieers <dag@wieers.com> - 0.2-2
+- Included directories too.
+
 * Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.2-1
 - Fixes to up2date channel and mirrorlist. (Dries Verachtert)
 - Fixes to GPG key location.

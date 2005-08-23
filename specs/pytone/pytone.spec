@@ -1,5 +1,7 @@
 # $Id$
 # Authority: dag
+# Upstream: Joerg Lehmann <joerg@luga.de>
+# Upstream: <pytone-users@luga.de>
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
@@ -7,7 +9,7 @@
 
 Summary: Music Jukebox with a Curses Based GUI
 Name: pytone
-Version: 2.2.3
+Version: 2.2.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -63,5 +65,8 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/pytone/
 
 %changelog
+* Tue Aug 23 2005 Dag Wieers <dag@wieers.com> - 2.2.4-1
+- Updated to release 2.2.4.
+
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 2.2.3-1
 - Initial package. (using DAR)
