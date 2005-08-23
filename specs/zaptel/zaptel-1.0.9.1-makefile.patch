@@ -1,0 +1,419 @@
+diff -Naupr zaptel-1.0.9.1.orig/Makefile zaptel-1.0.9.1/Makefile
+--- zaptel-1.0.9.1.orig/Makefile	2005-07-25 16:42:56.000000000 +0200
++++ zaptel-1.0.9.1/Makefile	2005-08-23 13:41:28.000000000 +0200
+@@ -13,7 +13,8 @@ BASEADDR=0xd0000
+ # (assuming He's running Linux -- which we all know He must).
+ #
+ HOSTCC=gcc
+-KINCLUDES=$(shell if [ -d /usr/src/linux-2.4/include ]; then echo /usr/src/linux-2.4/include ; else echo /usr/src/linux/include ; fi)
++[ -z "${KVERSION}" ] && KVERSION=`uname -r`
++KINCLUDES=$(shell if [ -d /usr/src/linux-2.4/include ]; then echo /usr/src/linux-2.4/include ; else echo /lib/modules/${KVERSION}/build ; fi)
+ 
+ CFLAGS+=-I. -O4 -g -Wall -DBUILDING_TONEZONE #-DTONEZONE_DRIVER
+ CFLAGS+=$(shell if uname -m | grep -q ppc; then echo "-fsigned-char"; fi)
+@@ -38,7 +39,7 @@ INSTALL_PREFIX=
+ CONFIG_FILE=$(INSTALL_PREFIX)/etc/zaptel.conf
+ CFLAGS+=-DZAPTEL_CONFIG=\"$(CONFIG_FILE)\"
+ 
+-BUILDVER=$(shell if uname -r | grep -q ^2.6; then echo "linux26"; else echo "linux24"; fi)
++BUILDVER=$(shell if echo ${KVERSION} | grep -q ^2.6; then echo "linux26"; else echo "linux24"; fi)
+ MODCONF=$(shell if [ -d $(ROOT_PREFIX)/etc/modprobe.d ]; then echo "$(ROOT_PREFIX)/etc/modprobe.d/zaptel"; elif [ -d $(ROOT_PREFIX)/etc/modutils ]; then echo "$(ROOT_PREFIX)/etc/modutils/zaptel"; elif [ -f $(ROOT_PREFIX)/etc/modprobe.conf ]; then echo "$(ROOT_PREFIX)/etc/modprobe.conf"; elif [ -f $(ROOT_PREFIX)/etc/modules.conf ]; then echo "$(ROOT_PREFIX)/etc/modules.conf"; else echo $(ROOT_PREFIX)/etc/conf.modules ; fi)
+ 
+ ifeq (${BUILDVER},linux24)
+@@ -71,7 +72,7 @@ BINS=ztcfg torisatool makefw ztmonitor z
+ PRIMARY=torisa
+ #PRIMARY=wcfxo
+ PWD=$(shell pwd)
+-KERNEL_SOURCE?=/lib/modules/`uname -r`/build
++KERNEL_SOURCE=/lib/modules/${KVERSION}/build
+ 
+ all: $(BUILDVER) $(LIBTONEZONE)
+ 
+@@ -262,7 +263,7 @@ else
+ 	@echo "**** If you are running udev, read README.udev"
+ endif
+ 
+-install:  all devices
++install:  all
+ 	install -D -m 755 ztcfg $(INSTALL_PREFIX)/sbin/ztcfg
+ 	if [ -f sethdlc-new ]; then \
+ 		install -D -m 755 sethdlc-new $(INSTALL_PREFIX)/sbin/sethdlc; \
+@@ -272,17 +273,17 @@ install:  all devices
+ 	if [ -f zttool ]; then install -D -m 755 zttool $(INSTALL_PREFIX)/sbin/zttool; fi
+ 	if [ -f zaptel.ko ]; then \
+ 		for x in $(MODULESKO) ztdummy.ko; do \
+-			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/$$x ; \
+ 		done; \
+ 		if ! [ -f wcfxsusb.ko ]; then \
+-			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.o; \
++			rm -f $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/wcfxsusb.o; \
+ 		fi; \
+ 	else \
+ 		for x in $(MODULESO); do \
+-			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/$$x ; \
+ 		done; \
+ 		if ! [ -f wcfxsusb.o ]; then \
+-			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.ko; \
++			rm -f $(INSTALL_PREFIX)/lib/modules/${KVERSION}/misc/wcfxsusb.ko; \
+ 		fi; \
+ 	fi
+ 	install -D -m 755 $(LIBTONEZONE) $(INSTALL_PREFIX)/usr/lib/$(LIBTONEZONE)
+diff -Naupr zaptel-1.0.9.1.orig/Makefile.orig zaptel-1.0.9.1/Makefile.orig
+--- zaptel-1.0.9.1.orig/Makefile.orig	1970-01-01 01:00:00.000000000 +0100
++++ zaptel-1.0.9.1/Makefile.orig	2005-08-23 13:41:09.000000000 +0200
+@@ -0,0 +1,353 @@
++#
++# Makefile for tormenta/carrier driver and utilities
++# $Id: Makefile,v 1.52.2.12 2005/07/25 14:42:56 russell Exp $
++#
++BASEADDR=0xd0000
++
++#
++# Okay, the people at RedHat have to break everything they can possibly even attempt to.
++# So, we have to look in /usr/src/linux-2.4/include for header files given their brain dead
++# crappy installation.  (Mind you, I'm a RedHat user myself, so I suppose I'm just as
++# stupid as they are).  Everyone else who is mildly sane of course links /usr/include/linux
++# to their working kernel source directory, the way God himself does, of course
++# (assuming He's running Linux -- which we all know He must).
++#
++HOSTCC=gcc
++KINCLUDES=$(shell if [ -d /usr/src/linux-2.4/include ]; then echo /usr/src/linux-2.4/include ; else echo /usr/src/linux/include ; fi)
++
++CFLAGS+=-I. -O4 -g -Wall -DBUILDING_TONEZONE #-DTONEZONE_DRIVER
++CFLAGS+=$(shell if uname -m | grep -q ppc; then echo "-fsigned-char"; fi)
++CFLAGS+=$(shell if uname -m | grep -q x86_64; then echo "-m64"; fi)
++LCFLAGS=-fPIC $(CFLAGS) -DBUILDING_TONEZONE
++KFLAGS+=-I/usr/src/linux-2.4/include -O6
++KFLAGS+=-DMODULE -D__KERNEL__ -DEXPORT_SYMTAB -I/usr/src/linux/drivers/net \
++	-Wall -I. -Wstrict-prototypes -fomit-frame-pointer -I/usr/src/linux/drivers/net/wan -I /usr/src/linux/include -I/usr/src/linux/include/net
++KFLAGS+=$(shell if [ -f $(KINCLUDES)/linux/modversions.h ] ; then echo "-DMODVERSIONS -include $(KINCLUDES)/linux/modversions.h" ; fi)
++KFLAGS+=$(shell if uname -m | grep -q ppc; then echo "-msoft-float -fsigned-char"; fi)
++#
++# Features are now configured in zconfig.h
++#
++#
++
++KFLAGS+=-DSTANDALONE_ZAPATA
++CFLAGS+=-DSTANDALONE_ZAPATA
++
++ROOT_PREFIX=
++INSTALL_PREFIX=
++
++CONFIG_FILE=$(INSTALL_PREFIX)/etc/zaptel.conf
++CFLAGS+=-DZAPTEL_CONFIG=\"$(CONFIG_FILE)\"
++
++BUILDVER=$(shell if uname -r | grep -q ^2.6; then echo "linux26"; else echo "linux24"; fi)
++MODCONF=$(shell if [ -d $(ROOT_PREFIX)/etc/modprobe.d ]; then echo "$(ROOT_PREFIX)/etc/modprobe.d/zaptel"; elif [ -d $(ROOT_PREFIX)/etc/modutils ]; then echo "$(ROOT_PREFIX)/etc/modutils/zaptel"; elif [ -f $(ROOT_PREFIX)/etc/modprobe.conf ]; then echo "$(ROOT_PREFIX)/etc/modprobe.conf"; elif [ -f $(ROOT_PREFIX)/etc/modules.conf ]; then echo "$(ROOT_PREFIX)/etc/modules.conf"; else echo $(ROOT_PREFIX)/etc/conf.modules ; fi)
++
++ifeq (${BUILDVER},linux24)
++#We only support DEVFS in linux 2.4 kernels, since its considered obsolete post 2.4
++DYNFS=$(shell ps ax | grep -v grep | grep -q devfsd && echo "yes")
++endif
++ifeq (${BUILDVER},linux26)
++#Tests for newer linux-2.6 udev support
++DYNFS=$(shell ps ax | grep -v grep | grep udevd && echo "yes")
++endif
++
++CHKCONFIG=$(shell sh -c 'type -p chkconfig' 2> /dev/null)
++ifeq ($(CHKCONFIG),)
++CHKCONFIG=:
++endif
++
++TZOBJS=zonedata.lo tonezone.lo
++LIBTONEZONE=libtonezone.so.1.0
++MODULES=zaptel tor2 torisa wcusb wcfxo wcfxs \
++	ztdynamic ztd-eth wct1xxp wct4xxp wcte11xp # ztdummy
++#MODULES+=wcfxsusb
++
++MODULESO=$(shell for x in $(MODULES); do echo "$$x.o "; done )
++MODULESKO=$(shell for x in $(MODULES); do echo "$$x.ko "; done )
++
++ZTTOOL=$(shell if [ -f /usr/include/newt.h ]; then echo zttool; fi)
++BINS=ztcfg torisatool makefw ztmonitor ztspeed $(ZTTOOL) zttest
++
++#PRIMARY=wcfxsusb
++PRIMARY=torisa
++#PRIMARY=wcfxo
++PWD=$(shell pwd)
++KERNEL_SOURCE?=/lib/modules/`uname -r`/build
++
++all: $(BUILDVER) $(LIBTONEZONE)
++
++linux24: $(MODULESO) $(BINS)
++
++linux26: 
++linux26: prereq $(BINS)
++	@if ! [ -d $(KERNEL_SOURCE) ]; then echo "You do not appear to have the kernel sources for your current kernel installed."; exit 1 ; fi
++	make -C $(KERNEL_SOURCE) SUBDIRS=$(PWD) modules
++
++obj-m := $(MODULESO) ztdummy.o
++
++#ifneq ($(TOPDIR),)
++#include $(TOPDIR)/Rules.make
++#endif
++
++MOD_DESTDIR := zaptel
++
++devel: tor2ee 
++
++tests: patgen pattest patlooptest hdlcstress hdlctest hdlcgen hdlcverify timertest
++
++tor2.o: tor2.c tor2-hw.h tor2fw.h zaptel.h
++	$(HOSTCC) $(KFLAGS) -c tor2.c
++
++zaptel.o: zaptel.c zaptel.h digits.h arith.h sec.h mec.h sec-2.h mec2.h mec3.h zconfig.h
++	$(HOSTCC) $(KFLAGS) -c zaptel.c
++
++torisa.o: torisa.c zaptel.h torisa.h
++	$(HOSTCC) $(KFLAGS) -c torisa.c
++
++wcusb.o: wcusb.c wcusb.h zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wcusb.c
++
++wcfxsusb.o: wcfxsusb.c wcfxsusb.h zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wcfxsusb.c
++
++wcfxo.o: wcfxo.c zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wcfxo.c
++
++wct1xxp.o:wct1xxp.c zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wct1xxp.c
++
++wcte11xp.o:wcte11xp.c zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wcte11xp.c
++
++wct4xxp.o:wct4xxp.c zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wct4xxp.c
++
++wcfxs.o:wcfxs.c zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wcfxs.c
++
++wcs3200p.o:wcs3200p.c zaptel.h
++	$(HOSTCC) $(KFLAGS) -c wcs3200p.c
++
++ztdummy.o:ztdummy.c ztdummy.h
++	$(HOSTCC) $(KFLAGS) -c ztdummy.c
++
++ztdynamic.o: ztdynamic.c zaptel.h
++	$(HOSTCC) $(KFLAGS)  -c ztdynamic.c
++
++ztd-eth.o: ztd-eth.c zaptel.h
++	$(HOSTCC) $(KFLAGS)  -c ztd-eth.c
++
++tor2ee.o: tor2-hw.h
++
++tor2ee: tor2ee.o
++	$(CC) $(CFLAGS) -o tor2ee tor2ee.o -lpci
++
++zonedata.lo: zonedata.c
++	$(CC) -c $(LCFLAGS) -o zonedata.lo zonedata.c
++
++tonezone.lo: tonezone.c
++	$(CC) -c $(LCFLAGS) -o tonezone.lo tonezone.c
++
++torisatool: torisatool.o
++	$(CC) -o torisatool torisatool.o
++
++tones.h: gendigits
++	./gendigits
++
++tor2fw.h: makefw tormenta2.rbt
++	./makefw tormenta2.rbt tor2fw > tor2fw.h
++
++gendigits: gendigits.o
++	$(CC) -o gendigits gendigits.o -lm
++
++zaptel.c: tones.h 
++
++prereq: tones.h tor2fw.h
++
++zttool.o: zttool.c zaptel.h
++
++ztprovision.o: ztprovision.c zaptel.h
++
++ztmonitor.o: ztmonitor.c zaptel.h
++
++ztspeed.o: ztspeed.c
++	$(CC) -c ztspeed.c
++
++zttool: zttool.o
++	$(CC) -o zttool zttool.o -lnewt
++
++ztprovision: ztprovision.o
++	$(CC) -o ztprovision ztprovision.o -lnewt
++
++ztmonitor: ztmonitor.o
++	$(CC) -o ztmonitor ztmonitor.o
++
++ztcat: ztcat.o
++	$(CC) -o ztcat ztcat.o -ltonezone
++
++ztspeed: ztspeed.o
++	$(CC) -o ztspeed ztspeed.o
++
++sethdlc-new: sethdlc-new.o
++	$(CC) -o sethdlc-new sethdlc-new.o
++
++sethdlc-new.o: sethdlc-new.c
++	$(CC) -c $(CFLAGS) -I$(KINCLUDES) sethdlc-new.c
++
++libtonezone.a: $(TZOBJS)
++	ar rcs libtonezone.a $(TZOBJS)
++
++$(LIBTONEZONE): $(TZOBJS)
++	$(CC) -shared -Wl,-soname,libtonezone.so.1 -lm -o $@ $(TZOBJS)
++	[ `id -u` = 0 ] && /sbin/ldconfig || :
++	ln -sf libtonezone.so.1 libtonezone.so                                  
++
++ztcfg.c: ztcfg.h
++
++ztcfg-shared: ztcfg.o $(LIBTONEZONE)
++	$(CC) -o ztcfg-shared ztcfg.o -lm -L. -ltonezone
++
++ztcfg: ztcfg.o libtonezone.a
++	$(CC) -o ztcfg ztcfg.o -lm -L. libtonezone.a
++
++ztcfg-dude: ztcfg-dude.o mknotch.o complex.o $(LIBTONEZONE)
++	$(CC) -o ztcfg ztcfg-dude.o mknotch.o complex.o -lm -L. -ltonezone
++
++mknotch.o: mknotch.cc
++	$(CC) -c mknotch.cc
++
++complex.o: complex.cc
++	$(CC) -c complex.cc
++
++usbfxstest.o: usbfxstest.c
++	$(CC) -g -c usbfxstest.c
++
++usbfxstest: usbfxstest.o 
++	$(CC) -o usbfxstest usbfxstest.o -lzap
++
++fxstest: fxstest.o 
++	$(CC) -o fxstest fxstest.o -L. -ltonezone -lm
++
++fxsdump: fxsdump.o
++	$(CC) -o fxsdump fxsdump.o -lm
++
++stackcheck: checkstack $(BUILDVER)
++	./checkstack *.o
++
++ztdiag: ztdiag.o 
++	$(CC) -o ztdiag ztdiag.o
++
++devices:
++ifeq ($(DYNFS),)
++	mkdir -p $(INSTALL_PREFIX)/dev/zap
++	rm -f $(INSTALL_PREFIX)/dev/zap/ctl
++	rm -f $(INSTALL_PREFIX)/dev/zap/channel
++	rm -f $(INSTALL_PREFIX)/dev/zap/pseudo
++	rm -f $(INSTALL_PREFIX)/dev/zap/timer
++	rm -f $(INSTALL_PREFIX)/dev/zap/253
++	rm -f $(INSTALL_PREFIX)/dev/zap/252
++	rm -f $(INSTALL_PREFIX)/dev/zap/251
++	rm -f $(INSTALL_PREFIX)/dev/zap/250
++	mknod $(INSTALL_PREFIX)/dev/zap/ctl c 196 0
++	mknod $(INSTALL_PREFIX)/dev/zap/timer c 196 253
++	mknod $(INSTALL_PREFIX)/dev/zap/channel c 196 254
++	mknod $(INSTALL_PREFIX)/dev/zap/pseudo c 196 255
++	N=1; \
++	while [ $$N -lt 250 ]; do \
++		rm -f $(INSTALL_PREFIX)/dev/zap/$$N; \
++		mknod $(INSTALL_PREFIX)/dev/zap/$$N c 196 $$N; \
++		N=$$[$$N+1]; \
++	done
++else
++	@echo "**** Dynamic filesystem detected -- not creating device nodes"
++	@echo "**** If you are running udev, read README.udev"
++endif
++
++install:  all
++	install -D -m 755 ztcfg $(INSTALL_PREFIX)/sbin/ztcfg
++	if [ -f sethdlc-new ]; then \
++		install -D -m 755 sethdlc-new $(INSTALL_PREFIX)/sbin/sethdlc; \
++	elif [ -f sethdlc ]; then \
++		install -D -m 755 sethdlc $(INSTALL_PREFIX)/sbin/sethdlc ; \
++	fi
++	if [ -f zttool ]; then install -D -m 755 zttool $(INSTALL_PREFIX)/sbin/zttool; fi
++	if [ -f zaptel.ko ]; then \
++		for x in $(MODULESKO) ztdummy.ko; do \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++		done; \
++		if ! [ -f wcfxsusb.ko ]; then \
++			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.o; \
++		fi; \
++	else \
++		for x in $(MODULESO); do \
++			install -D -m 644 $$x $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/$$x ; \
++		done; \
++		if ! [ -f wcfxsusb.o ]; then \
++			rm -f $(INSTALL_PREFIX)/lib/modules/`uname -r`/misc/wcfxsusb.ko; \
++		fi; \
++	fi
++	install -D -m 755 $(LIBTONEZONE) $(INSTALL_PREFIX)/usr/lib/$(LIBTONEZONE)
++	if [ -x /usr/sbin/sestatus ] && (/usr/sbin/sestatus | grep "SELinux status:" | grep -q "enabled") ; then restorecon -v $(INSTALL_PREFIX)/usr/lib/$(LIBTONEZONE); fi
++	install -D -m 644 zaptel.h $(INSTALL_PREFIX)/usr/include/linux/zaptel.h
++	install -D -m 644 torisa.h $(INSTALL_PREFIX)/usr/include/linux/torisa.h
++	install -D -m 644 tonezone.h $(INSTALL_PREFIX)/usr/include/tonezone.h
++	( cd $(INSTALL_PREFIX)/usr/lib ; rm -f libtonezone.so ; ln -sf $(LIBTONEZONE) libtonezone.so )
++	[ `id -u` = 0 ] && /sbin/ldconfig || :
++	if [ -f $(MODCONF) ]; then mv -f $(MODCONF) $(MODCONF).bak ; fi
++	cat $(MODCONF).bak | grep -v "alias char-major-250" | \
++	grep -v "post-install torisa /sbin/ztcfg" | \
++	grep -v "post-install wcfxsusb /sbin/ztcfg" | \
++	grep -v "post-install wcfxs /sbin/ztcfg" > $(MODCONF) || true
++	if ! grep "options torisa" $(MODCONF); then \
++		echo "options torisa base=$(BASEADDR)" >> $(MODCONF); \
++	fi
++	if ! grep "alias char-major-196" $(MODCONF); then \
++		echo "alias char-major-196 $(PRIMARY)" >> $(MODCONF); \
++	fi
++	for x in $(MODULES); do \
++		if ! grep "post-install $$x" $(MODCONF); then \
++			if ! grep "install $$x " $(MODCONF); then \
++				if [ "$$x" != "zaptel" ] ; then \
++					if [ -f zaptel.ko ]; then echo "install $$x /sbin/modprobe --ignore-install $$x && /sbin/ztcfg" >> $(MODCONF); \
++					else echo "post-install $$x /sbin/ztcfg" >> $(MODCONF); \
++					fi; \
++				fi; \
++			fi; \
++		fi; \
++	done
++	if ! grep "alias wctdm" $(MODCONF); then \
++		echo "alias wctdm wcfxs" >> $(MODCONF); \
++	fi
++	if ! grep "alias wct2xxp" $(MODCONF); then \
++		echo "alias wct2xxp wct4xxp" >> $(MODCONF); \
++	fi
++	if [ -d /etc/modutils ]; then \
++		/sbin/update-modules ; \
++	fi
++	[ `id -u` = 0 ] && /sbin/depmod -a || :
++	[ -f $(CONFIG_FILE) ] || install -D -m 644 zaptel.conf.sample $(CONFIG_FILE)
++
++config:
++	if [ -d $(INSTALL_PREFIX)/etc/rc.d/init.d ]; then \
++		install -D -m 755 zaptel.init $(INSTALL_PREFIX)/etc/rc.d/init.d/zaptel; \
++		$(CHKCONFIG) --add zaptel; \
++	elif [ -d $(INSTALL_PREFIX)/etc/init.d ]; then \
++		install -D -m 755 zaptel.init $(INSTALL_PREFIX)/etc/init.d/zaptel; \
++		$(CHKCONFIG) --add zaptel; \
++	fi 
++	if [ ! -f /etc/sysconfig/zaptel ]; then \
++		install -D -m 644 zaptel.sysconfig $(INSTALL_PREFIX)/etc/sysconfig/zaptel; \
++	fi
++	if [ -d /etc/sysconfig/network-scripts ]; then \
++		install -D -m 755 ifup-hdlc $(INSTALL_PREFIX)/etc/sysconfig/network-scripts/ifup-hdlc; \
++	fi
++
++clean:
++	rm -f torisatool makefw tor2fw.h
++	rm -f zttool
++	rm -f *.o ztcfg tzdriver sethdlc sethdlc-new
++	rm -f $(TZOBJS) $(LIBTONEZONE) *.lo
++	rm -f *.ko *.mod.c .*o.cmd
++	rm -f gendigits tones.h
++	rm -f libtonezone*
++	rm -f tor2ee
++	rm -f core

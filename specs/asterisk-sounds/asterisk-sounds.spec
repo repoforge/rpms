@@ -7,7 +7,7 @@
 
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
-Version: 1.0.7
+Version: 1.0.9
 Release: %{?prever:0.%{prever}.}1
 License: BSD
 Group: Applications/Internet
@@ -55,6 +55,9 @@ used with Asterisk.
 
 
 %changelog
+* Tue Aug 23 2005 Matthias Saou <http://freshrpms.net> 1.0.9-1
+- Update to 1.0.9.
+
 * Tue Apr  5 2005 Matthias Saou <http://freshrpms.net> 1.0.7-1
 - Update to 1.0.7.
 

@@ -16,14 +16,14 @@
 
 Summary: Telephony interface support
 Name: zaptel
-Version: 1.0.7
+Version: 1.0.9.1
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
 Source0: ftp://ftp.asterisk.org/pub/zaptel/zaptel-%{version}%{?prever:-%{prever}}.tar.gz
 Source1: zaptel-makedev.d.txt
-Patch: zaptel-1.0.6-makefile.patch
+Patch: zaptel-1.0.9.1-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kernel-devel = %{kversion}
 BuildRequires: newt-devel, MAKEDEV
@@ -54,6 +54,7 @@ This package contains the zaptel kernel modules for the Linux kernel package :
 %prep
 %setup -n zaptel-%{version}%{?prever:-%{prever}}
 %patch -p1 -b .makefile
+%{__perl} -pi -e 's|/usr/lib|%{_libdir}|g' Makefile
 
 
 %build
@@ -143,6 +144,11 @@ ${MAKEDEV} \
 
 
 %changelog
+* Tue Aug 23 2005 Matthias Saou <http://freshrpms.net/> 1.0.9.1-0
+- Update to 1.0.9.1.
+- Remove "devices" from install with the Makefile patch.
+- Replace /usr/lib in Makefile with %%{_libdir} to fix 64bit lib location.
+
 * Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 1.0.7-0
 - Update to 1.0.7.
 - This spec still doesn't build with mach (sub-package release tag bug).
