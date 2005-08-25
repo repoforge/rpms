@@ -4,7 +4,7 @@
 
 Summary: Python bindings for GStreamer
 Name: %{gstreamer}-python
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 Group: Development/Languages
 License: LGPL
@@ -13,7 +13,7 @@ Source: http://gstreamer.freedesktop.org/src/gst-python/gst-python-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gnome-python2, pygtk2
 Requires: %{gstreamer}, %{gstreamer}-plugins
-BuildRequires: gcc-c++, python >= 2, python-devel >= 2, pygtk2-devel >= 2.4.0
+BuildRequires: gcc-c++, python, python-devel >= 2.3, pygtk2-devel >= 2.4.0
 BuildRequires: %{gstreamer}-devel, %{gstreamer}-plugins-devel, xmlto, links
 # xwindowlistener needs X11 headers
 BuildRequires: XFree86-devel
@@ -59,6 +59,9 @@ fi
 
 
 %changelog
+* Thu Aug 25 2005 Matthias Saou <http://freshrpms.net> 0.8.2-1
+- Update to 0.8.2.
+
 * Thu Dec  9 2004 Matthias Saou <http://freshrpms.net> 0.8.1-1
 - Update to 0.8.1.
 
