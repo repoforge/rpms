@@ -8,8 +8,7 @@ Release: 1
 License: GPL
 Group: System/Library
 URL: http://www.videolan.org/libdca.html
-# No download URL since this is an SVN checkout
-Source: libdts-%{version}-svn.tar.gz
+Source: http://debian.unnet.nl/pub/videolan/libdts/%{version}/libdts-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Only a static lib, but two binaries too, so provide devel in the main
 Provides: %{name}-devel = %{version}-%{release}
@@ -20,7 +19,7 @@ Free library for decoding DTS Coherent Acoustics streams.
 
 
 %prep
-%setup -n libdts-%{version}-svn
+%setup -n libdts-%{version}
 
 
 %build
@@ -45,7 +44,7 @@ Free library for decoding DTS Coherent Acoustics streams.
 %{_bindir}/extract_dts
 %{_includedir}/dts.h
 %{_libdir}/libdts.a
-%exclude %{_libdir}/libdts.la
+%{_libdir}/libdts_pic.a
 %{_libdir}/pkgconfig/libdts.pc
 %{_mandir}/man1/dtsdec.1*
 %{_mandir}/man1/extract_dts.1*
@@ -53,5 +52,5 @@ Free library for decoding DTS Coherent Acoustics streams.
 
 %changelog
 * Thu Aug 25 2005 Matthias Saou <http://freshrpms.net/> 0.0.2-1
-- Initial RPM release with source taken from the Packman rpm.
+- Initial RPM release.
 
