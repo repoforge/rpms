@@ -73,6 +73,7 @@ grip
 gsm
 gstreamer-ffmpeg
 gstreamer-monkeysaudio
+libdca
 libdvdnav *
 libdvdread *
 libfame *
