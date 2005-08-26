@@ -40,7 +40,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
-BuildRequires: kdelibs-devel
+BuildRequires: kdelibs-devel, autoconf, automake
 %{!?_without_selinux:BuildRequires: libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}

@@ -65,10 +65,11 @@ source /etc/profile.d/qt.sh
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING INSTALL README TODO
+%doc /usr/share/doc/HTML/en/kgeography
 %{_bindir}/*
 %{_datadir}/applications/kde/*.desktop
 %{_datadir}/apps/kgeography
-%{_datadir}/icons/crystalsvg/*/apps/kgeography.png
+%{_datadir}/icons/*/*/apps/kgeography.*
 %{_datadir}/config.kcfg/kgeography.kcfg
 
 %changelog
