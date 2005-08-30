@@ -2,12 +2,12 @@
 # Authority: matthias
 # Dist: nodist
 
-%define skindir %(rpm -ql xine | grep '/skins$' || :)
+%define skindir %(rpm -ql xine | grep '/skins$' || echo %{_datadir}/xine/skins)
 
 Summary: Collection of skins for the Xine multimedia player
 Name: xine-skins
 Version: 1.10
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -71,6 +71,10 @@ find . -type d -and \( -name "CVS" -or -name ".xvpics" \) \
 
 
 %changelog
+* Wed Aug 31 2005 Matthias Saou <http://freshrpms.net/> 1.10-2
+- Default %%skindir to %%{_datadir}/xine/skins instead of nothing if the nested
+  rpm query to get the skindir from the xine package fails.
+
 * Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.10-1
 - Added xinium skin.
 
