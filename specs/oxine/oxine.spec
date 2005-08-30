@@ -3,15 +3,19 @@
 
 Summary: Lightweight, purely OSD based xine frontend
 Name: oxine
-Version: 0.2
-Release: 3
+Version: 0.3.5
+Release: 0.1.cvs
 License: GPL
 Group: Applications/Multimedia
 Source: http://dl.sf.net/oxine/%{name}-%{version}.tar.gz
 URL: http://oxine.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xine-lib >= 1.0.0
-BuildRequires: xine-lib-devel >= 1.0.0
+Requires: util-linux, eject, netpbm-progs, mjpegtools, ImageMagick
+BuildRequires: xine-lib-devel >= 1.0.0, lirc-devel
+# configure checks for those
+BuildRequires: util-linux, eject, netpbm-progs, mjpegtools, ImageMagick
+BuildRequires: gettext-devel
 
 %description
 oxine is a lightweight gui for the famous xine engine which uses the on screen
@@ -21,27 +25,37 @@ any video output device the xine library provides (e.g. frame buffer, dxr3,...)
 and is particularly suitable for appliances like set-top boxes, home
 entertainment systems or kiosk systems.
 
+
 %prep
 %setup
 
+
 %build
-%configure --datadir=%{_datadir}/%{name}
+%configure
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall datadir=%{buildroot}%{_datadir}/%{name}
+%makeinstall
+%find_lang %{name}
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO doc/doc.html
-%{_bindir}/%{name}
-%{_datadir}/%{name}
+%{_bindir}/oxine
+%{_datadir}/oxine/
+
 
 %changelog
+* Wed Aug 31 2005 Matthias Saou <http://freshrpms.net/> 0.3.5-0.1.cvs
+- Update to CVS snapshot.
+
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.2-3.fr
 - Rebuild for Fedora Core 1.
 
