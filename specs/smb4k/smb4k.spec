@@ -17,7 +17,7 @@
 
 Summary: SMB (samba) share browser for KDE
 Name: smb4k
-Version: 0.6.1
+Version: 0.6.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -29,6 +29,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make
 BuildRequires: gcc-c++, qt-devel, fam-devel, fam, kdebase-devel
+BuildRequires: autoconf, automake
 %{?fc3:BuildRequires:libselinux-devel}
 %{?fc2:BuildRequires:libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
@@ -73,6 +74,9 @@ source "/etc/profile.d/qt.sh"
 %{_datadir}/icons/crystalsvg/*/apps/smb4k.png
 
 %changelog
+* Tue Aug 30 2005 Dries Verachtert <dries@ulyssis.org> 0.6.2-1
+- Updated to release 0.6.2.
+
 * Mon Aug 1 2005 Dries Verachtert <dries@ulyssis.org> 0.6.1-1
 - Updated to release 0.6.1.
 

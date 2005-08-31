@@ -2,15 +2,17 @@
 # Authority: dries
 # Upstream: 
 
+%define real_version 2.0.0-pre4
+
 Summary: 1394-based digital camera control library
 Name: libdc1394
-Version: 1.1.0
-Release: 1
+Version: 2.0.0
+Release: 0.pre4
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libdc1394/
 
-Source: http://dl.sf.net/libdc1394/libdc1394-%{version}.tar.gz
+Source: http://dl.sf.net/libdc1394/libdc1394-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libraw1394-devel
@@ -31,7 +33,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n libdc1394-%{real_version}
 
 %build
 %configure
@@ -63,5 +65,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Aug 30 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.0-0.pre4-1 
+- Update to release 2.0.0-0.pre4.
+
 * Thu Aug 25 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1 
 - Initial package.

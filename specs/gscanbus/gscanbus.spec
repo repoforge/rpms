@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Scan the firewire IEEE-1394 bus
 Name: gscanbus
 Version: 0.7.1
