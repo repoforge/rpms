@@ -7,7 +7,7 @@
 
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 0.9.6
+Version: 0.9.7b
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -17,7 +17,7 @@ Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
-BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4
+BuildRequires: gettext, gcc-c++, desktop-file-utils, gtk2 >= 2.4, mozilla-devel
 Requires: GConf2
 
 %description
@@ -28,7 +28,7 @@ browse through their items, and show their contents
 using GtkHTML.
 
 %prep
-%setup -n liferea-%{version}
+%setup
 
 %build
 %configure \
@@ -37,7 +37,7 @@ using GtkHTML.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 desktop-file-install \
@@ -72,6 +72,12 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %{_libdir}/liferea/*.so*
 
 %changelog
+* Mon Sep 05 2005 Dag Wieers <dag@wieers.com> - 0.9.7b-1
+- Updated to release 0.9.7b.
+
+* Sat Sep 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.7-1
+- Updated to release 0.9.7.
+
 * Thu Aug 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
 - Updated to release 0.9.6.
 
