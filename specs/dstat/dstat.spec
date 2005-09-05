@@ -9,7 +9,7 @@
 
 Summary: Versatile resource statistics tool
 Name: dstat
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -19,8 +19,8 @@ Source: http://dag.wieers.com/home-made/dstat/dstat-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: python
 BuildRequires: python
+Requires: python
 
 %description
 Dstat is a versatile replacement for vmstat, iostat, netstat and ifstat.
@@ -36,20 +36,6 @@ with the disk throughput (in the same interval).
 Dstat gives you detailed selective information in columns and clearly
 indicates in what magnitude and unit the output is displayed. Less
 confusion, less mistakes.
-
-Dstat is unique in letting you aggregate block device throughput for
-a certain diskset or networkset, ie. you can see the throughput for
-all the block devices that make up a single filesystem or storage
-system.
-
-You can write your own dstat plugins to monitor whatever you like in
-just a few minutes based on provided examples and a little bit of
-Python knowledge.
-
-Dstat's output by default is designed for being interpreted by humans
-in real-time, however the new CSV output allows you to store CSV
-output in detail to a file to be imported later into Gnumeric or Excel
-to generate graphs.
 
 %prep
 %setup
@@ -68,13 +54,15 @@ to generate graphs.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README* TODO examples/ *.conf
-#%doc *.conf
 %doc %{_mandir}/man1/dstat.1*
 #%config(noreplace) %{_sysconfdir}/dstat.conf
 %{_bindir}/dstat
 %{_datadir}/dstat/
 
 %changelog
+* Mon Sep 05 2005 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Sun May 29 2005 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Updated to release 0.6.0.
 

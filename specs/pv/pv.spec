@@ -4,7 +4,7 @@
 
 Summary: Monitor the progress of data through a pipe
 Name: pv
-Version: 0.9.1
+Version: 0.9.2
 Release: 1
 License: Artistic
 Group: Development/Tools
@@ -53,6 +53,9 @@ will be until completion.
 %{_bindir}/pv
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.9.1-1
 - Updated to release 0.9.1.
 

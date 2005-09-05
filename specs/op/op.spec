@@ -4,7 +4,7 @@
 
 Summary: Allows restricted root access for specified users
 Name: op
-Version: 1.30
+Version: 1.31
 Release: 1
 License: BSD
 Group: Applications/System
@@ -24,14 +24,6 @@ controlled.
 
 %prep
 %setup
-
-### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
-%{__perl} -pi.orig -e '
-		s|\$\(BINDIR\)|\$(DESTDIR)\$(bindir)|;
-		s|\$\(MANDIR\)|\$(DESTDIR)\$(mandir)/man1|;
-		s|\$\(CONFDIR\)|\$(DESTDIR)\$(sysconfdir)/man1|;
-		s|-o \$\(\w+\) -g \$\(\w+\)||;
-	' Makefile
 
 %{__cat} <<'EOF' >op.conf
 ### This is the config file for the op tool.
@@ -100,13 +92,12 @@ session    required	pam_stack.so service=system-auth
 EOF
 
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" \
-	bindir="%{_bindir}" \
-	mandir="%{_mandir}"
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0600 op.conf %{buildroot}%{_sysconfdir}/op.conf
 %{__install} -Dp -m0644 op.pam %{buildroot}%{_sysconfdir}/pam.d/op
@@ -125,6 +116,9 @@ EOF
 %{_bindir}/op
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 1.31-1
+- Updated to release 1.31.
+
 * Sat May 28 2005 Dag Wieers <dag@wieers.com> - 1.30-1
 - Updated to release 1.30.
 

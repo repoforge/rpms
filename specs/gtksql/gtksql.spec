@@ -7,7 +7,7 @@
 Summary: Graphical database query tool for MySQL and PostgreSQL
 Name: gtksql
 Version: 0.4.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://gtksql.sourceforge.net/
@@ -34,6 +34,8 @@ and	PostgreSQL and MySQL support (and easy addition of other databases)
 
 %prep
 %setup
+
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' configure Makefile.in
 
 %{__cat} <<EOF >gtksql.desktop
 [Desktop Entry]
@@ -77,6 +79,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %exclude %{_prefix}/doc/
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.4.2-2
+- Fixed mysql support in x86_64 build. (Preet Khalsa)
+
 * Thu May 13 2004 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Updated to release 0.4.2.
 

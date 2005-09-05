@@ -3,7 +3,7 @@
 
 Summary: Console ncurses based ICQ2000, Yahoo!, MSN, AIM, IRC client
 Name: centericq
-Version: 4.20.0
+Version: 4.21.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -53,6 +53,9 @@ groups. Internal RSS reader and a client for LiveJournal are provided.
 %{_datadir}/centericq/
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 4.21.0-1
+- Updated to release 4.21.0.
+
 * Fri Mar 25 2005 Dag Wieers <dag@wieers.com> - 4.20.0-1
 - Updated to release 4.20.0.
 

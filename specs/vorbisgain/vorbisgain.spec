@@ -4,12 +4,13 @@
 Summary: Lossless volume-adjusting utility for Ogg Vorbis files
 Name: vorbisgain
 Version: 0.36
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://sjeng.org/vorbisgain.html
 
 Source: http://sjeng.org/ftp/vorbis/vorbisgain-%{version}.zip
+Patch: vorbisgain-0.36-double-fclose.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libogg, libogg-devel, libvorbis, libvorbis-devel
@@ -31,6 +32,7 @@ technology.
 
 %prep
 %setup
+%patch -p1
 
 %build
 %configure
@@ -50,5 +52,8 @@ technology.
 %{_bindir}/vorbisgain
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.3.6-2
+- Added patch fo a double free condition. (Noa Resare)
+
 * Wed Jul 20 2005 Dag Wieers <dag@wieers.com> - 0.3.6-1
 - Updated to release 0.3.6.

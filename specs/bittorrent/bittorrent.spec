@@ -12,8 +12,8 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.1.2
-Release: 1
+Version: 4.1.4
+Release: 2
 License: BitTorrent Open Source License
 Group: Applications/Internet
 URL: http://bittorrent.com/
@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-devel >= 2.3, pygtk2-devel >= 2.4
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: python >= 2.3, python-khashmir
+Requires: python >= 2.3, python-khashmir, python-crypto
 Obsoletes: BitTorrent <= %{version}
 
 %description
@@ -60,7 +60,7 @@ implemented in Python.
 [Desktop Entry]
 Name=BitTorrent Transfer Tool
 Comment=Download files from the Internet
-Exec=btdownloadgui.py
+Exec=bittorrent
 Icon=bittorrent.png
 Terminal=false
 Type=Application
@@ -79,7 +79,7 @@ EOF
 	--skip-build \
 	--root "%{buildroot}"
 %find_lang %{name}
-%{__perl} -pi -e 's|env python2|env python|' %{buildroot}%{_bindir}/*.py
+%{__perl} -pi -e 's|env python2|env python|' %{buildroot}%{_bindir}/*
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 bittorrent.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/bittorrent.desktop
@@ -105,27 +105,32 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc *.html *.txt
-%{_bindir}/*.py
-%exclude %{_bindir}/btdownloadgui.py
+%{_bindir}/*
+%exclude %{_bindir}/bittorrent
 %{python_sitelib}/BitTorrent/
 %{_datadir}/pixmaps/BitTorrent-%{version}/
-#exclude %{_docdir}/BitTorrent-%{version}/
+%exclude %{_docdir}/BitTorrent-%{version}/
 
 %files gui
 %defattr(-, root, root, 0755)
-%{_bindir}/btdownloadgui.py
+%{_bindir}/bittorrent
 %{_datadir}/pixmaps/bittorrent.png
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-bittorrent.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/bittorrent.desktop}
-
 
 %files -n python-khashmir
 %defattr(-, root, root, 0755)
 %{python_sitelib}/khashmir/
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 4.1.4-2
+- Added python-crypto dependency. (Jim Perrin, Petr Klíma)
+
+* Sat Aug 27 2005 Dries Verachtert <dries@ulyssis.org> - 4.1.4-1
+- Update to release 4.1.4.
+
 * Thu Jun 23 2005 Dries Verachtert <dries@ulyssis.org> - 4.1.2-1
-- Update to release 4.1.2.
+- Updated to release 4.1.2.
 
 * Sun May 29 2005 Dag Wieers <dag@wieers.com> - 4.1.1-2
 - Small fix for About to work.

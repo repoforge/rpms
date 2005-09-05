@@ -8,7 +8,7 @@
 
 Summary: Compress-Zlib module for perl
 Name: perl-Compress-Zlib
-Version: 1.34
+Version: 1.37
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Compress/
 
 %changelog
+* Mon Sep 05 2005 Dag Wieers <dag@wieers.com> - 1.37-1
+- Updated to release 1.37.
+
 * Thu Mar 10 2005 Dag Wieers <dag@wieers.com> - 1.34-1
 - Updated to release 1.34.
 

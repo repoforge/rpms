@@ -5,7 +5,7 @@
 
 Summary: Local and remote filesystem snapshot utility
 Name: rsnapshot
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: GPL
 Group: Applications/System
@@ -37,9 +37,8 @@ of filesystems. rnsapshot uses hard links to save space on disk.
 
 %install
 %{__rm} -rf %{buildroot}
-#makeinstall
-%{__install} -Dp -m0755 rsnapshot %{buildroot}%{_bindir}/rsnapshot
-%{__install} -Dp -m0644 rsnapshot.1 %{buildroot}%{_mandir}/man1/rsnapshot.1
+%{__make} install DESTDIR="%{buildroot}"
+
 %{__install} -Dp -m0644 rsnapshot.conf.default %{buildroot}%{_sysconfdir}/rsnapshot.conf
 
 %post
@@ -67,9 +66,13 @@ fi
 %doc rsnapshot.conf.default utils/
 %doc %{_mandir}/man1/rsnapshot.1*
 %config %{_sysconfdir}/rsnapshot.conf
+%exclude %{_sysconfdir}/rsnapshot.conf.default
 %{_bindir}/rsnapshot
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Sun Aug 21 2005 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 

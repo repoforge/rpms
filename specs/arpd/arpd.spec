@@ -10,7 +10,7 @@ Group: Applications/Internet
 URL: http://www.citi.umich.edu/u/provos/arpd/
 
 Source: http://www.citi.umich.edu/u/provos/honeyd/arpd-%{version}.tar.gz
-Patch: arpd-0.2-function.patch
+Patch: arpd-0.2-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet, libevent-devel, libpcap
@@ -23,7 +23,7 @@ but only after determining if another host already claims it.
 
 %prep
 %setup -n %{name}
-%patch0
+%patch0 -p1
 
 %{__perl} -pi.orig -e 's|/lib/|/%{_lib}/|g' configure
 
@@ -45,6 +45,9 @@ but only after determining if another host already claims it.
 %{_sbindir}/arpd
 
 %changelog
+* Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 0.2-2
+- Fixed a problem with gcc4. (Francisco Monserrat)
+
 * Thu Jan 20 2005 Dag Wieers <dag@wieers.com> - 0.2-1
 - Fixed a problem with newer gcc.
 

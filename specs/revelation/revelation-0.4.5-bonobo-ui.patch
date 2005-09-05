@@ -1,0 +1,137 @@
+--- configure.orig	2005-08-25 13:44:51.000000000 +0200
++++ configure	2005-08-26 01:47:16.913924424 +0200
+@@ -3913,25 +3913,6 @@
+ 	fi
+ 
+ 
+-	echo "$as_me:$LINENO: checking python module bonobo.ui" >&5
+-echo $ECHO_N "checking python module bonobo.ui... $ECHO_C" >&6
+-
+-	$PYTHON -c "import bonobo.ui" 2>/dev/null
+-
+-	if test $? -eq 0; then
+-		echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6
+-		eval HAVE_PYMOD_BONOBO_UI=yes
+-	else
+-		echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6
+-		{ { echo "$as_me:$LINENO: error: failed to find module bonobo.ui" >&5
+-echo "$as_me: error: failed to find module bonobo.ui" >&2;}
+-   { (exit 1); exit 1; }; }
+-		exit 1
+-	fi
+-
+-
+ 	echo "$as_me:$LINENO: checking python module gconf" >&5
+ echo $ECHO_N "checking python module gconf... $ECHO_C" >&6
+ 
+@@ -3951,44 +3932,6 @@
+ 	fi
+ 
+ 
+-	echo "$as_me:$LINENO: checking python module gtk" >&5
+-echo $ECHO_N "checking python module gtk... $ECHO_C" >&6
+-
+-	$PYTHON -c "import gtk" 2>/dev/null
+-
+-	if test $? -eq 0; then
+-		echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6
+-		eval HAVE_PYMOD_GTK=yes
+-	else
+-		echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6
+-		{ { echo "$as_me:$LINENO: error: failed to find module gtk" >&5
+-echo "$as_me: error: failed to find module gtk" >&2;}
+-   { (exit 1); exit 1; }; }
+-		exit 1
+-	fi
+-
+-
+-	echo "$as_me:$LINENO: checking python module gtk.gdk" >&5
+-echo $ECHO_N "checking python module gtk.gdk... $ECHO_C" >&6
+-
+-	$PYTHON -c "import gtk.gdk" 2>/dev/null
+-
+-	if test $? -eq 0; then
+-		echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6
+-		eval HAVE_PYMOD_GTK_GDK=yes
+-	else
+-		echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6
+-		{ { echo "$as_me:$LINENO: error: failed to find module gtk.gdk" >&5
+-echo "$as_me: error: failed to find module gtk.gdk" >&2;}
+-   { (exit 1); exit 1; }; }
+-		exit 1
+-	fi
+-
+-
+ 	echo "$as_me:$LINENO: checking python module gnome" >&5
+ echo $ECHO_N "checking python module gnome... $ECHO_C" >&6
+ 
+@@ -4008,63 +3951,6 @@
+ 	fi
+ 
+ 
+-	echo "$as_me:$LINENO: checking python module gnome.applet" >&5
+-echo $ECHO_N "checking python module gnome.applet... $ECHO_C" >&6
+-
+-	$PYTHON -c "import gnome.applet" 2>/dev/null
+-
+-	if test $? -eq 0; then
+-		echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6
+-		eval HAVE_PYMOD_GNOME_APPLET=yes
+-	else
+-		echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6
+-		{ { echo "$as_me:$LINENO: error: failed to find module gnome.applet" >&5
+-echo "$as_me: error: failed to find module gnome.applet" >&2;}
+-   { (exit 1); exit 1; }; }
+-		exit 1
+-	fi
+-
+-
+-	echo "$as_me:$LINENO: checking python module gnome.ui" >&5
+-echo $ECHO_N "checking python module gnome.ui... $ECHO_C" >&6
+-
+-	$PYTHON -c "import gnome.ui" 2>/dev/null
+-
+-	if test $? -eq 0; then
+-		echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6
+-		eval HAVE_PYMOD_GNOME_UI=yes
+-	else
+-		echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6
+-		{ { echo "$as_me:$LINENO: error: failed to find module gnome.ui" >&5
+-echo "$as_me: error: failed to find module gnome.ui" >&2;}
+-   { (exit 1); exit 1; }; }
+-		exit 1
+-	fi
+-
+-
+-	echo "$as_me:$LINENO: checking python module gnome.vfs" >&5
+-echo $ECHO_N "checking python module gnome.vfs... $ECHO_C" >&6
+-
+-	$PYTHON -c "import gnome.vfs" 2>/dev/null
+-
+-	if test $? -eq 0; then
+-		echo "$as_me:$LINENO: result: yes" >&5
+-echo "${ECHO_T}yes" >&6
+-		eval HAVE_PYMOD_GNOME_VFS=yes
+-	else
+-		echo "$as_me:$LINENO: result: no" >&5
+-echo "${ECHO_T}no" >&6
+-		{ { echo "$as_me:$LINENO: error: failed to find module gnome.vfs" >&5
+-echo "$as_me: error: failed to find module gnome.vfs" >&2;}
+-   { (exit 1); exit 1; }; }
+-		exit 1
+-	fi
+-
+-
+ 	echo "$as_me:$LINENO: checking python module gobject" >&5
+ echo $ECHO_N "checking python module gobject... $ECHO_C" >&6
+ 

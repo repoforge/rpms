@@ -7,28 +7,30 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.4
+Version: 0.4.5
 Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.codepoet.no/revelation/
 
 Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
+Patch: revelation-0.4.5-bonobo-ui.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.3, python-crypto >= 1.9, python-devel, pygtk2 >= 2.4
-BuildRequires: gnome-keyring-devel, pygtk2-devel, gnome-python2
-BuildRequires: gtk2-devel, gnome-vfs2-devel, libgnomeui-devel
+BuildRequires: python >= 2.3, python-devel, python-crypto >= 1.9
+BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.4, gnome-python2
+BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
-Requires: cracklib
+Requires: gnome-python2-bonobo, cracklib
 
 %description
 Revelation is a password manager. It organizes accounts in
 a tree structure, and stores them as AES-encrypted XML files.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
+%patch
 
 %build
 %configure \
@@ -75,6 +77,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/icons/hicolor/*/apps/revelation-locked.png
 
 %changelog
+* Fri Aug 26 2005 Dag Wieers <dag@wieers.com> - 0.4.5-1
+- Updated to release 0.4.5.
+
 * Sun Aug 07 2005 Dag Wieers <dag@wieers.com> - 0.4.4-1
 - Updated to release 0.4.4.
 
