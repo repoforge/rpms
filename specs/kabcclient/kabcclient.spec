@@ -23,7 +23,7 @@ use in Unix shell pipe and filter constructs. Input and output text is
 interpreted and formatted by filters.
 
 %prep
-%setup -n %{name}
+%setup
 
 %build
 qmake

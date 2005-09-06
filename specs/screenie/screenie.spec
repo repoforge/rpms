@@ -6,13 +6,13 @@
 
 Summary: Small frontend for screen
 Name: screenie
-Version: 1.12
+Version: 1.19.0
 Release: 1
 License: GPL
 Group: Applications/Utilities
 URL: http://pubwww.fhzh.ch/~mgloor/screenie.html
 
-Source: http://pubwww.fhzv.ch/~mgloor/data/screenie.gz
+Source: http://pubwww.fhzh.ch/~mgloor/data/screenie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -24,21 +24,25 @@ of administrating detached jobs by providing an interactive
 menu.
 
 %prep
-gunzip -c %{SOURCE0} > /tmp/screenie
+%setup
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -D -m0755 /tmp/screenie %{buildroot}%{_bindir}/screenie
+%{__install} -D -m0755 screenie %{buildroot}%{_bindir}/screenie
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%doc ChangeLog AUTHORS COPYING INSTALL README TODO
 %{_bindir}/screenie
 
 %changelog
+* Tue Sep 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.19.0-1
+- Updated to release 1.19.0.
+
 * Tue Aug 30 2005 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Initial package.

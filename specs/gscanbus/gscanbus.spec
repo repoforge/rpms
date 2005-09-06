@@ -40,6 +40,7 @@ EOF
 
 %build
 %{?fc4:export CC=gcc32}
+%{expand: %%define optflags -O2}
 %configure --disable-gtktest
 %{__make} %{?_smp_mflags}
 

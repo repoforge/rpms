@@ -15,7 +15,7 @@ URL: http://www.linuxhardware.org/nvclock/
 Source: http://www.linuxhardware.org/nvclock/nvclock%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel
+BuildRequires: kdelibs-devel, gcc-c++
 
 %description
 Nvclock allows you to tweak your Nvidia card under Linux and FreeBSD. 

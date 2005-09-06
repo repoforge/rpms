@@ -16,7 +16,7 @@ Group: Amusements/Games
 URL: http://www.heptargon.de/gl-117/gl-117.html
 
 Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.bz2
-Patch: gcc-fc3-fixes.patch
+#Patch: gcc-fc3-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, gcc-c++
 %{!?dist:BuildRequires: freeglut-devel, xorg-x11-devel}
@@ -36,7 +36,7 @@ perfectly adjust the game to the performance of your system.
 
 %prep
 %setup -n %{name}-%{version}-src
-%patch -p1
+#%patch -p1
 
 %build
 export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "

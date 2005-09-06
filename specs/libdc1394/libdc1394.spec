@@ -15,7 +15,7 @@ URL: http://sourceforge.net/projects/libdc1394/
 Source: http://dl.sf.net/libdc1394/libdc1394-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libraw1394-devel
+BuildRequires: libraw1394-devel, gcc-c++
 
 %description
 Libdc1394 is a library that is intended to provide a high level programming 

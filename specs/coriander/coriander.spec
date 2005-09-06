@@ -15,7 +15,7 @@ URL: http://damien.douxchamps.net/ieee1394/coriander/
 Source: http://dl.sf.net/coriander/coriander-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnomeui-devel, gettext, libraw1394-devel
+BuildRequires: libgnomeui-devel, gettext, libraw1394-devel, libdc1394-devel
 BuildRequires: desktop-file-utils
 
 %description
