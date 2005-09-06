@@ -4,7 +4,7 @@
 
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
-Version: 0.8
+Version: 0.9
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -88,6 +88,9 @@ desktop-file-install --vendor gnome --delete-original \
 %{_datadir}/pixmaps/configure-thinkpad/
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Updated to release 0.9.
+
 * Tue Oct 05 2004 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.
 

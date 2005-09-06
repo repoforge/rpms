@@ -1,0 +1,14 @@
+diff -ur widelands-old/src/machdep.h widelands/src/machdep.h
+--- widelands-old/src/machdep.h	2004-07-27 14:27:25.000000000 +0200
++++ widelands/src/machdep.h	2005-07-08 08:01:08.352084416 +0200
+@@ -36,6 +36,10 @@
+ #undef P_BIG_ENDIAN
+ #define P_LITTLE_ENDIAN
+ #undef P_ALIGNMENT
++#elif defined (__x86_64__)
++#undef P_BIG_ENDIAN
++#define P_LITTLE_ENDIAN
++#undef P_ALIGNMENT
+ #else
+ #error architecture not supported
+ #endif

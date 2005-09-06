@@ -15,7 +15,7 @@
 
 Summary: Utility to find and clean "lint" on a filesystem
 Name: fslint
-Version: 2.08
+Version: 2.12
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -94,6 +94,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-fslint.desktop}
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 2.12-1
+- Updated to release 2.12.
+
 * Thu Jun 17 2004 Dag Wieers <dag@wieers.com> - 2.08-1
 - Updated to release 2.08.
 

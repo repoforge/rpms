@@ -9,11 +9,11 @@
 
 Summary: Action flight simulator
 Name: gl-117
-Version: 1.3
+Version: 1.3.2
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://home.t-online.de/home/Primetime./gl-117/gl-117.html
+URL: http://www.heptargon.de/gl-117/gl-117.html
 
 Source: http://dl.sf.net/gl-117/gl-117-%{version}-src.tar.bz2
 Patch: gcc-fc3-fixes.patch
@@ -57,6 +57,9 @@ export LDFLAGS=" -lXmu -lXi -lSDL -lSDL_mixer "
 %{_datadir}/gl-117/
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
+- Update to release 1.3.2.
+
 * Mon Jun 14 2004 Dries Verachtert <dries@ulyssis.org> 1.3-1
 - update to 1.3
 

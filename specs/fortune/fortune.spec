@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 36
+Release: 37
 License: BSD
 Group: Amusements/Games
 # no URL found
@@ -63,6 +63,8 @@ Source21: http://eelco.is.a.rootboy.net/fortunecookies/powerpuff-0.3.tar.gz
 Source22: http://eelco.is.a.rootboy.net/fortunecookies/oneliners-0.1.tar.gz
 # fortune macintosh
 Source23: http://www.diablonet.net/~mercadal/projects/fortune/macintosh-1.3.tgz
+# The Art of War Fortune Mod
+Source24: http://www.de-brauwer.be/wastebasket/fortunes-taow-1.0.tar.gz
 
 Obsoletes: fortune-mod < %{version}-%{release}
 Provides:  fortune-mod = %{version}-%{release}
@@ -104,6 +106,7 @@ wisdom each time they log in.
 %setup -D -T -a 21 -n fortune-mod-9708
 %setup -D -T -a 22 -n fortune-mod-9708
 %setup -D -T -a 23 -n fortune-mod-9708
+%setup -D -T -a 24 -n fortune-mod-9708
 
 %if %{DisableOffensiveFortunes}
 %patch0 -p1 -b .disable-offensive1
@@ -160,6 +163,7 @@ util/strfile ralph
 %{__cp} -p powerpuff-*/powerpuff* %{buildroot}%{_datadir}/games/fortune/
 %{__cp} -p oneliners-0.1/oneliners* %{buildroot}%{_datadir}/games/fortune/
 %{__cp} -p macintosh/macintosh* %{buildroot}%{_datadir}/games/fortune/
+%{__cp} -p fortunes-taow-1.0/taow* %{buildroot}%{_datadir}/games/fortune/
 
 %{__tar} zxvf %{SOURCE1} -C %{buildroot}%{_datadir}/games/fortune/
 %if %{DisableOffensiveFortunes}
@@ -467,6 +471,16 @@ Requires: fortune = %{version}-%{release}
 Fortune files with quotes about macintoshes, found at:
 http://www.diablonet.net/~mercadal/projects/fortune/
 
+%package taow
+Summary: Fortune files with quotes from Sun Tzu's "The Art of War"
+Group: Amusements/Games
+Requires: fortune = %{version}-%{release}
+
+%description taow
+Fortune files with quotes from Sun Tzu's "The Art of War", made by Elie De 
+Brauwer.
+http://www.de-brauwer.be/wiki/wikka.php?wakka=TheArtOfWar
+
 %package all
 Summary: Installs all fortune packages
 Group: Amusements/Games
@@ -497,6 +511,8 @@ Requires: fortune-simpsons-homer = %{version}-%{release}
 Requires: fortune-osho = %{version}-%{release}
 Requires: fortune-powerpuff = %{version}-%{release}
 Requires: fortune-oneliners = %{version}-%{release}
+Requires: fortune-macintosh = %{version}-%{release}
+Requires: fortune-taow = %{version}-%{release}
 
 %description all
 All fortune packages will be installed if you install this package.
@@ -647,10 +663,17 @@ All fortune packages will be installed if you install this package.
 %defattr(-, root, root, 0755)
 %{_datadir}/games/fortune/macintosh*
 
+%files taow
+%defattr(-, root, root, 0755)
+%{_datadir}/games/fortune/taow*
+
 %files all
 %defattr(-, root, root, 0755)
 
 %changelog
+* Wed Aug 31 2005 Dries Verachtert <dries@ulyssis.org> 1.0-37
+- Quotes from Sun Tzu's "The Art of War" added, made by Elie De Brauwer.
+
 * Sun Jul 03 2005 Dries Verachtert <dries@ulyssis.org> 1.0-36
 - Apply strfile to all fortune files.
 

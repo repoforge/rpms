@@ -4,7 +4,7 @@
 
 Summary: rpm build system
 Name: pydar2
-Version: 0.040
+Version: 0.041
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -93,6 +93,9 @@ which can be used to customize pydar2 so it builds rpmforge packages.
 %attr(0740, root, pydar2master) %config(noreplace) %{_sysconfdir}/pydar2/specrepositories.conf
 %attr(0740, root, pydar2master) %config(noreplace) %{_sysconfdir}/pydar2/targets.conf
 %attr(0740, root, pydar2master) %config(noreplace) %{_sysconfdir}/pydar2/accounts.conf
+%config(noreplace) %{_sysconfdir}/pydar2/rpmforgeacceptcommandconfig/excluded
+%config(noreplace) %{_sysconfdir}/pydar2/rpmforgeacceptcommandconfig/excludedauthoritytags
+%config(noreplace) %{_sysconfdir}/pydar2/rpmforgeacceptcommandconfig/temporarilyexcluded
 %defattr(-, pydar2master, pydar2master, 0700)
 %dir %{_var}/lib/pydar2/specrepos
 %defattr(-, pydar2master, pydar2master, 0755)

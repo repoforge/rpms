@@ -7,8 +7,8 @@
 
 Summary: APC UPS power control daemon
 Name: apcupsd
-Version: 3.10.13
-Release: 2
+Version: 3.10.18
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.sibbald.com/apcupsd/
@@ -115,6 +115,9 @@ fi
 %exclude %{_initrddir}/halt*
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 3.10.18-1
+- Updated to new release 3.10.18.
+
 * Fri Mar 25 2005 Dag Wieers <dag@wieers.com> - 3.10.13-2
 - Added --enable-snmp configure option. (Bobby Kuo)
 

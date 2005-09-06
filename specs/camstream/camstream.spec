@@ -4,7 +4,7 @@
 
 Summary: collection of tools for webcams and other video-devices
 Name: camstream
-Version: 0.26.2
+Version: 0.26.3
 Release: 0
 Group: Applications/Multimedia
 License: GPL
@@ -47,5 +47,8 @@ framework.
 %{_datadir}/pixmaps/gv4l/gv4l.png
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.26.3-0
+- Update to release 0.26.3.
+
 * Sat Feb 01 2003 Dag Wieers <dag@wieers.com> - 0.26.2
 - Initial package. (using DAR)

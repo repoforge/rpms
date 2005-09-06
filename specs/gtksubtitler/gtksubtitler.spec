@@ -3,7 +3,7 @@
 
 Summary: Tool for editing and converting subtitles for DivX films
 Name: GTKsubtitler
-Version: 0.2.0
+Version: 0.2.4
 Release: 0
 License: GPL
 Group: Applications/Multimedia
@@ -48,5 +48,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Multimedia
 %{_datadir}/pixmaps/GTKsubtitler.xpm
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.4-0
+- Update to release 0.2.4-0.
+
 * Wed Feb 19 2003 Dag Wieers <dag@wieers.com> - 0.2.0-0
 - Initial package. (using DAR)

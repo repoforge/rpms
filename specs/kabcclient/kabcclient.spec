@@ -4,7 +4,7 @@
 
 Summary: Command line access to the KDE address book
 Name: kabcclient
-Version: 0.8
+Version: 0.8.1
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -42,5 +42,8 @@ qmake
 %{_bindir}/kabcclient
 
 %changelog
+* Wed Aug 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1
+- Update to release 0.8.1.
+
 * Mon Aug 29 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
 - Initial package.

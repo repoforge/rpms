@@ -9,7 +9,7 @@
 
 Summary: Simple DirectMedia Layer - Sample TrueType Font Library
 Name: SDL_ttf
-Version: 2.0.6
+Version: 2.0.7
 Release: 0
 License: LGPL
 Group: System Environment/Libraries
@@ -76,6 +76,9 @@ you will need to install %{name}-devel.
 #exclude %{_libdir}/*.la
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.7-0
+- Update to release 2.0.7.
+
 * Thu Sep 04 2003 Dag Wieers <dag@wieers.com> - 2.0.6-0
 - Initial package. (using DAR)
 

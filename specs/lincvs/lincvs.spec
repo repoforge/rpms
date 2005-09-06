@@ -4,13 +4,14 @@
 
 Summary: Graphical frontend to CVS.
 Name: lincvs
-Version: 1.3.2
+Version: 1.4.3
 Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://www.lincvs.org/
 
-Source: http://ppprs1.phy.tu-dresden.de/~trogisch/lincvs/download/20_LinCVS/hn_lincvs-%{version}/lincvs-%{version}-1-generic-src.tgz
+Source: http://lincvs.com/download/lincvs-%{version}-0-generic-src.tgz
+#http://ppprs1.phy.tu-dresden.de/~trogisch/lincvs/download/20_LinCVS/hn_lincvs-%{version}/lincvs-%{version}-1-generic-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 3.0.5
@@ -89,6 +90,9 @@ desktop-file-install --vendor net                  \
 %{_datadir}/pixmaps/*.xpm
 
 %changelog
+* Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
+- Updated to release 1.4.3.
+
 * Tue May 18 2004 Dag Wieers <dag@wieers.com> - 1.3.2-1
 - Updated to release 1.3.2.
 
