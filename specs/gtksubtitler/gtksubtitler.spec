@@ -43,7 +43,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Multimedia
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README SUB_FORMATS
-%{_bindir}/*
+%{_bindir}/GTKsubtitler
 %{_datadir}/apps/gnome/Multimedia/%{name}.desktop
 %{_datadir}/pixmaps/GTKsubtitler.xpm
 
