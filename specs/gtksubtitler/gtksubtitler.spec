@@ -10,7 +10,7 @@ Group: Applications/Multimedia
 #Source1: %{name}.desktop
 URL: http://www.gtksubtitler.prv.pl/
 
-Source: http://www.gtksubtitler.prv.pl/download/%{name}-%{version}.tar.gz
+Source: http://matrix.kamp.pl/~pawelb/gtksubtitler/download/GTKsubtitler-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gnome-libs-devel

@@ -14,7 +14,7 @@ URL: http://gscanbus.berlios.de/
 Source: http://download.berlios.de/gscanbus/gscanbus-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libraw1394-devel, gtk+-devel
+BuildRequires: libraw1394-devel, gtk+-devel, desktop-file-utils
 %{?fc4:BuildRequires: compat-gcc-32}
 
 %description

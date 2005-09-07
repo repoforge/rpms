@@ -14,7 +14,7 @@ Source: http://lincvs.com/download/lincvs-%{version}-0-generic-src.tgz
 #http://ppprs1.phy.tu-dresden.de/~trogisch/lincvs/download/20_LinCVS/hn_lincvs-%{version}/lincvs-%{version}-1-generic-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 3.0.5
+BuildRequires: qt-devel >= 3.0.5, gcc-c++
 
 %description
 LinCVS is a graphical interface for the cvs client commandline tool.

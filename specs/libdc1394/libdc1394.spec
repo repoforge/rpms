@@ -2,6 +2,18 @@
 # Authority: dries
 # Upstream: 
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
+
 %define real_version 2.0.0-pre4
 
 Summary: 1394-based digital camera control library
@@ -16,6 +28,8 @@ Source: http://dl.sf.net/libdc1394/libdc1394-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libraw1394-devel, gcc-c++
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Libdc1394 is a library that is intended to provide a high level programming 

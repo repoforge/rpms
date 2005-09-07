@@ -21,7 +21,7 @@ License: GPL
 Group: System Environment/Base
 URL: http://www.pixelbeat.org/fslint/
 
-Source: http://www.iol.ie/~padraiga/fslint/FSlint-%{version}.tar.gz
+Source: http://www.pixelbeat.org/fslint/FSlint-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
