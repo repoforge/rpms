@@ -50,12 +50,8 @@ EOF
 source "%{_sysconfdir}/profile.d/qt.sh"
 
 ### FIXME: Dirty trick so RH qmake creates Makefile with exceptions enabled (Please fix upstream)
-qmake -o - lincvs.pro | sed -e 's|-fno-exceptions|-fexceptions|g' > Makefile
-
-#qmake -o Makefile.tmp lincvs.pro
-#sed -e 's|-fno-exceptions|-fexceptions|g' Makefile.tmp >Makefile
-#rm Makefile.tmp
-
+qmake lincvs.pro
+%{__perl} -pi -e "s|-fno-exceptions|-fexceptions|g;" Makefile
 %{__make} %{?_smp_mflags}
 
 %install
@@ -83,7 +79,7 @@ desktop-file-install --vendor net                  \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS.txt ChangeLog COPYING LICENSE NEWS README THANKS VERSION doc/
+%doc AUTHORS ChangeLog COPYING LICENSE NEWS README THANKS VERSION doc/
 %{_bindir}/*
 %{_datadir}/lincvs/
 %{_datadir}/applications/*.desktop
