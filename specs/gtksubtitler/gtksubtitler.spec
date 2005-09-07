@@ -21,7 +21,7 @@ mergeing, moveing, changeing format of sub-file and converting (to
 iso-8859-1/2) divix subtitles.
 
 %prep
-%setup
+%setup -n %{name}-v%{version}
 
 %build
 %configure

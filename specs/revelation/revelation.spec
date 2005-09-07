@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python >= 2.3, python-devel, python-crypto >= 1.9
 BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.4, gnome-python2
 BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
+BuildRequires: GConf2-devel
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
 Requires: gnome-python2-bonobo, cracklib
