@@ -4,10 +4,12 @@
 ### FC2, FC3 and EL4 come with the latest gaim
 ##ExcludeDist: fc2 fc3 el4
 
-### rh7, rh9 and el3 wants to install perl modules outside buildroot
-#{?el3:%define _without_perl 1}
-#{?rh9:%define _without_perl 1}
-#{?rh7:%define _without_perl 1}
+%{?el3:%define _without_krb4 1}
+%{?el3:%define _without_perl 1}
+%{?rh9:%define _without_krb4 1}
+%{?rh9:%define _without_perl 1}
+%{?rh7:%define _without_krb4 1}
+%{?rh7:%define _without_perl 1}
 %{?rh7:%define _without_startup_notification 1}
 
 %define perl_vendorarch    %(eval "`perl -V:installvendorarch`";    echo $installvendorarch)
@@ -15,7 +17,7 @@
 
 Summary: Multiprotocol instant messaging client
 Name: gaim
-Version: 1.3.1
+Version: 1.5.0
 Release: 0.1
 Epoch: 1
 License: GPL
@@ -24,10 +26,8 @@ URL: http://gaim.sourceforge.net/
 
 Source: http://dl.sf.net/gaim/gaim-%{version}.tar.bz2
 #Source1: gaim-rpmforge-prefs.xml
-Patch0: gaim-0.80-desktop.patch
-### soon to be replaced by upstream fix
 Patch4: gaim-0.76-xinput.patch
-Patch128: gaim-0.79-cached_buddy_icons.patch
+Patch6: gaim-1.0.1-naive-gnome-check.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, gcc-c++
@@ -39,6 +39,7 @@ BuildRequires: audiofile-devel
 %{?_with_tcltk:BuildRequires: tcl-devel, tk-devel}
 %{?_with_arts:BuildRequires: arts-devel}
 %{!?_without_perl:BuildRequires: perl}
+%{!?_without_krb4:BuildRequires: krb5-devel >= 1.3}
 %{?_with_tcltk:Requires: tcl, tk}
 %{!?_without_perl:Requires: perl}
 
@@ -67,25 +68,26 @@ Available rpmbuild rebuild options :
 
 
 %prep
-%setup -n %{name}-%{?date:%{date}}%{!?date:%{version}}
-%patch0 -b .desktop
+%setup
 %patch4 -p1
-
+%patch6 -p1
 
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}" \
+	--enable-gnutls="no" \
 	--enable-nss="yes" \
-	%{!?_with_tcltk:--disable-tcl --disable-tk} \
 	%{!?_with_arts:--disable-artsc} \
+	%{!?_without_krb4:--with-krb4} \
+	--with-silc-includes="%{_includedir}/silc" --with-silc-libs="%{_libdir}" \
+	%{!?_with_tcltk:--disable-tcl --disable-tk} \
 	%{?_without_perl:--disable-perl}
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 %{__strip} %{buildroot}%{_libdir}/*.so* %{buildroot}%{_libdir}/gaim/*.so || :
 
@@ -120,6 +122,7 @@ Available rpmbuild rebuild options :
 %{_datadir}/sounds/gaim/
 %{_mandir}/man1/gaim*.1*
 %{_libdir}/pkgconfig/gaim.pc
+
 %if %{!?_without_perl:1}0
 %{perl_vendorarch}/Gaim.pm
 %{perl_vendorarch}/auto/Gaim/
@@ -128,6 +131,9 @@ Available rpmbuild rebuild options :
 %endif
 
 %changelog
+* Tue Sep 06 2005 Dag Wieers <dag@wieers.com> - 1.5.0-0.1
+- Updated to release 1.5.0.
+
 * Sat Jun 11 2005 Dag Wieers <dag@wieers.com> - 1.3.1-0.1
 - Updated to release 1.3.1.
 
