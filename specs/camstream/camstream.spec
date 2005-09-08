@@ -32,19 +32,19 @@ framework.
 	--datadir="%{_datadir}" --includedir="%{_includedir}" --libdir="%{_libdir}" \
 	--libexecdir="%{_libexecdir}" --localstatedir="%{_localstatedir}" \
 	--sharedstatedir="%{_sharedstatedir}" --mandir="%{_mandir}" --infodir="%{_infodir}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} SHARE_DIR=%{_datadir} SHAREDIR=%{_datadir} BIN_DIR=%{_bindir}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall SHARE_DIR=%{buildroot}%{_datadir} SHAREDIR=%{buildroot}%{_datadir} BIN_DIR=%{buildroot}%{_bindir}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%{_bindir}/*
-%{_datadir}/pixmaps/gv4l/gv4l.png
+%{_bindir}/camstream
+%{_datadir}/icons/*.png
 
 %changelog
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.26.3-0

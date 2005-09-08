@@ -12,7 +12,7 @@ Release: %{?prever:0.%{prever}.}1
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
-Source: ftp://ftp.asterisk.org/pub/asterisk/asterisk-sounds-%{version}%{?prever:-%{prever}}.tar.gz
+Source: http://ftp.digium.com/pub/asterisk/asterisk-sounds-%{version}%{?prever:-%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: asterisk
 BuildArch: noarch

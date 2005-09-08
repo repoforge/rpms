@@ -33,7 +33,7 @@ Version: 1.60.0
 Release: 1
 License: GPL
 Group: User Interface/Desktops
-URL: http://krusader.sourceforge.net/home.php
+URL: http://krusader.sourceforge.net/
 
 Source: http://dl.sf.net/krusader/krusader-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -59,6 +59,10 @@ great on your desktop! :-)
 
 %prep
 %setup
+%{__perl} -pi -e "s|class vfs;|class ListPanelFunc;\nclass vfs;|g;" krusader/Panel/listpanel.h
+%{__perl} -pi -e "s|^class KmountMan|class KMountManGUI;\nclassKmountMan|g;" krusader/MountMan/kmountman.h
+%{__perl} -pi -e "s|class ListPanel;|class ListPanel;\nclass KrDetailedViewItem;|g;" krusader/Panel/krdetailedview.h
+
 
 %build
 export KDEDIR=/usr

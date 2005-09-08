@@ -21,7 +21,7 @@ Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
-Source0: ftp://ftp.asterisk.org/pub/zaptel/zaptel-%{version}%{?prever:-%{prever}}.tar.gz
+Source0: http://ftp.digium.com/pub/zaptel/zaptel-%{version}%{?prever:-%{prever}}.tar.gz
 Source1: zaptel-makedev.d.txt
 Patch: zaptel-1.0.9.1-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

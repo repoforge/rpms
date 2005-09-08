@@ -7,13 +7,12 @@ Version: 0.2.4
 Release: 0
 License: GPL
 Group: Applications/Multimedia
-#Source1: %{name}.desktop
 URL: http://www.gtksubtitler.prv.pl/
 
 Source: http://matrix.kamp.pl/~pawelb/gtksubtitler/download/GTKsubtitler-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, gnome-libs-devel
+BuildRequires: gtk+-devel, gnome-libs-devel, desktop-file-utils
 
 %description
 Tool for editing and converting subtitles for DivX films. It supports
@@ -23,19 +22,32 @@ iso-8859-1/2) divix subtitles.
 %prep
 %setup -n %{name}-v%{version}
 
+%{__cat} <<EOF >%{name}.desktop
+[Desktop Entry]
+Name=GTKsubtitler
+Comment=Edit subtitles
+Icon=/usr/share/pixmaps/GTKsubtitler/GTKsubtitler.xpm
+Exec=GTKsubtitler
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Application;AudioVideo;
+EOF
+
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_datadir}/pixmaps
+%makeinstall
 
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_pixmapsdir},%{_applnkdir}/Multimedia}
-install src/GTKsubtitler $RPM_BUILD_ROOT%{_bindir}/GTKsubtitler
-install pixmaps/GTKsubtitler.xpm $RPM_BUILD_ROOT%{_pixmapsdir}/GTKsubtitler.xpm
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Multimedia
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor rpmforge             \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{name}.desktop
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,8 +56,9 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Multimedia
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README SUB_FORMATS
 %{_bindir}/GTKsubtitler
-%{_datadir}/apps/gnome/Multimedia/%{name}.desktop
-%{_datadir}/pixmaps/GTKsubtitler.xpm
+%{_datadir}/applications/*%{name}.desktop
+%{_datadir}/pixmaps/GTKsubtitler/GTKsubtitler.xpm
+%{_datadir}/GTKsubtitler
 
 %changelog
 * Mon Sep 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.4-0

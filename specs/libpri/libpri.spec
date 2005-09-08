@@ -8,7 +8,7 @@ Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
-Source: http://www.asterisk.org/html/downloads/libpri-%{version}.tar.gz
+Source: http://ftp.digium.com/pub/libpri/libpri-%{version}.tar.gz
 Patch: libpri-1.0.9-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Provides: %{name}-devel = %{version}-%{release}
