@@ -13,7 +13,7 @@ URL: http://www.methylblue.com/filelight/
 Source: http://www.methylblue.com/filelight/packages/filelight-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 3.1, kdelibs-devel >= 3.1
+BuildRequires: qt-devel >= 3.1, kdelibs-devel >= 3.1, gcc-c++
 
 %description
 Filelight graphically represents a file system as a set of concentric
