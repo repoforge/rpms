@@ -13,7 +13,7 @@
 
 Summary: Real-time strategy game
 Name: boson
-Version: 0.10
+Version: 0.11
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -78,6 +78,9 @@ source "/etc/profile.d/qt.sh"
 %{_libdir}/kde3/plugins/boson/libbogroundrendererplugin.la
 
 %changelog
+* Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
+- Updated to release 0.11.
+
 * Mon May 3 2004 Dries Verachtert <dries@ulyssis.org> 0.10-1 
 - Initial package.
 

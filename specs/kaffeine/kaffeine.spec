@@ -10,7 +10,7 @@
 
 Summary: Media player based on xine-lib
 Name: kaffeine
-Version: 0.7
+Version: 0.7.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -19,7 +19,7 @@ URL: http://kaffeine.sourceforge.net
 Source: http://dl.sf.net/kaffeine/kaffeine-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, desktop-file-utils, gettext
+BuildRequires: kdelibs-devel, desktop-file-utils, gettext, gcc-c++
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
@@ -78,16 +78,20 @@ source /etc/profile.d/qt.sh
 %{_datadir}/apps/profiles/kaffeine.profile.xml
 %{_datadir}/apps/kaffeine/
 %{_datadir}/mimelnk/application/*.desktop
-%{_datadir}/applnk/Multimedia/kaffeine.desktop
+%{_datadir}/applications/kde/kaffeine.desktop
 %doc %{_datadir}/doc/HTML/*/kaffeine
 %{_datadir}/icons/*/*/*/*.png
 
 %files devel
+%{_includedir}/kaffeine_export.h
 %{_includedir}/kaffeine/
 %{_libdir}/libkmediapart.so
 %{_libdir}/kde3/libkaffeinepart.so
 
 %changelog
+* Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 0.7-1
 - Update to 0.7, which doesn't build on FC4 it seems.
 - Remove unnecessary build requirements.

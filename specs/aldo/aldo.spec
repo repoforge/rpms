@@ -7,7 +7,7 @@
 
 Summary: Morse tutor
 Name: aldo
-Version: 0.6.5
+Version: 0.6.8
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -59,5 +59,8 @@ random generated callsigns
 %{_bindir}/aldo
 
 %changelog
+* Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.8-1
+- Updated to release 0.6.8.
+
 * Sat May 1 2004 Dries Verachtert <dries@ulyssis.org> 0.6.5-1
 - initial package
