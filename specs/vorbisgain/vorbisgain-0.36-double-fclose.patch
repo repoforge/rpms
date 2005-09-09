@@ -1,0 +1,15 @@
+diff -ur vorbisgain-0.36.vanilla/vorbis.c vorbisgain-0.36/vorbis.c
+--- vorbisgain-0.36.vanilla/vorbis.c	2005-02-06 18:40:19.000000000 +0100
++++ vorbisgain-0.36/vorbis.c	2005-08-28 21:02:21.000000000 +0200
+@@ -798,11 +798,6 @@
+         fclose(infile);
+     }
+ 
+-    if (infile != NULL)
+-    {
+-        fclose(infile);
+-    }
+-
+     if (delete_temp)
+     {
+         if (remove(TEMP_NAME) != 0)
