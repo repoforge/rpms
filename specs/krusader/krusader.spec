@@ -60,7 +60,7 @@ great on your desktop! :-)
 %prep
 %setup
 %{__perl} -pi -e "s|class vfs;|class ListPanelFunc;\nclass vfs;|g;" krusader/Panel/listpanel.h
-%{__perl} -pi -e "s|^class KmountMan|class KMountManGUI;\nclassKmountMan|g;" krusader/MountMan/kmountman.h
+%{__perl} -pi -e "s|^class KMountMan|class KMountManGUI;\nclass KMountMan|g;" krusader/MountMan/kmountman.h
 %{__perl} -pi -e "s|class ListPanel;|class ListPanel;\nclass KrDetailedViewItem;|g;" krusader/Panel/krdetailedview.h
 
 
@@ -92,7 +92,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_datadir}/applnk/Applications/krusader.desktop
+%{_datadir}/applnk/Applications/krusader*.desktop
 %{_datadir}/icons/*/*/apps/krusader*.png
 %{_datadir}/apps/krusader
 %{_datadir}/doc/HTML/en/krusader

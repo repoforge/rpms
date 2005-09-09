@@ -26,6 +26,7 @@ ExcludeArch: sparc sparc64
 BuildRequires: freetype-devel >= 2.0, zlib-devel, libpng-devel, XFree86-libs
 BuildRequires: SDL-devel, gcc-c++, libxml2-devel
 #BuildRequires: libstdc++-devel
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 tvtime is a high quality television application for use with video

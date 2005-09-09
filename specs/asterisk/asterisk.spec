@@ -16,7 +16,7 @@ Release: %{?prever:0.%{prever}.}%{?cvs:1.%{cvs}.}1
 License: GPL
 Group: Applications/Internet
 URL: http://www.asterisk.org/
-Source0: ftp://ftp.digium.com/pub/asterisk/asterisk-%{version}%{?prever:-%{prever}}.tar.gz
+Source0: http://ftp.digium.com/pub/asterisk/asterisk-%{version}%{?prever:-%{prever}}.tar.gz
 Source1: asterisk.init
 Patch0: asterisk-1.0-RC2-cdr.patch
 Patch1: get-data-char-escape.patch2
