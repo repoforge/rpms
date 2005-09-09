@@ -7,9 +7,9 @@ Version: 2.1.6
 Release: 1
 License: GPL
 Group: Applications/Engineering
-URL: http://www.parigp-home.de/
+URL: http://pari.math.u-bordeaux.fr/
 
-Source: pari-%{version}.tgz
+Source: http://pari.math.u-bordeaux.fr/pub/pari/unix/pari-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, readline-devel

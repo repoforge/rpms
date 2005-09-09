@@ -15,7 +15,8 @@ License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
 
-Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{version}.tar.bz2
+Source: http://www.ibiblio.org/pub/Linux/system/network/file-transfer/lftp-%{version}.tar.gz
+#Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel, gcc-c++

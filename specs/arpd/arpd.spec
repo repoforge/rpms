@@ -13,7 +13,7 @@ Source: http://www.citi.umich.edu/u/provos/honeyd/arpd-%{version}.tar.gz
 Patch: arpd-0.2-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libdnet, libevent-devel, libpcap
+BuildRequires: libdnet-devel, libevent-devel, libpcap
 Provides: farpd = %{version}-%{release}
 
 %description
