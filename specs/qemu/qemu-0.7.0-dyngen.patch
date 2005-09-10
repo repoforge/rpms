@@ -1,5 +1,5 @@
---- qemu-0.7.0/dyngen.c.orig	2005-04-30 11:59:05.000000000 +0100
-+++ qemu-0.7.0/dyngen.c	2005-04-30 12:00:11.000000000 +0100
+--- dyngen.c.orig	2005-04-30 11:59:05.000000000 +0100
++++ dyngen.c	2005-04-30 12:00:11.000000000 +0100
 @@ -1396,11 +1395,13 @@ void gen_code(const char *name, host_ulo
  #elif defined(HOST_PPC)
      {

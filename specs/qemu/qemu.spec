@@ -4,7 +4,7 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.7.0
+Version: 0.7.2
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -13,6 +13,8 @@ URL: http://fabrice.bellard.free.fr/qemu/
 Source: http://fabrice.bellard.free.fr/qemu/qemu-%{version}.tar.gz
 Patch0: qemu-0.7.0-build.patch
 Patch1: qemu-0.7.0-dyngen.patch
+Patch2: qemu-0.7.0-gcc4-x86.patch
+Patch3: qemu-0.7.0-gcc4-ppc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
@@ -37,8 +39,10 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-%patch0 -p1 -b .build
-%patch1 -p1 -b .dyngen
+%patch0 -b .build
+%patch1 -b .dyngen
+%patch2
+%patch3
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -178,9 +182,13 @@ fi
 %{_datadir}/qemu/keymaps/
 %{_datadir}/qemu/*.bin
 %{_datadir}/qemu/*.elf
+%{_datadir}/qemu/video.x
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
+- Updated to release 0.7.2.
+
 * Sun May 01 2005 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 
