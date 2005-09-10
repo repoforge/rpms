@@ -28,7 +28,7 @@ Group: Amusements/Graphics
 URL: http://stellarium.free.fr/
 
 Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
-Patch: gcc4-fix.patch
+#Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: dos2unix, gcc-c++, SDL-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -57,7 +57,7 @@ telescope.
  
 %prep
 %setup
-%patch -p1
+#%patch -p1
 %{__cat} > stellarium.desktop <<EOF
 [Desktop Entry]
 Version=1.0
@@ -96,11 +96,12 @@ EOF
                 --dir %{buildroot}%{_datadir}/applications \
                 stellarium.desktop
 %endif
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man?/*

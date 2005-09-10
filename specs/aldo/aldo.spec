@@ -14,12 +14,9 @@ Group: Applications/Internet
 URL: http://www.nongnu.org/aldo/
 
 Source: http://savannah.nongnu.org/download/aldo/aldo-%{version}.tar.bz2
-Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
-%{?el4:BuildRequires: compat-gcc-c++}
-%{?fc3:BuildRequires: compat-gcc-c++}
+BuildRequires: gcc-c++, automake, autoconf
 
 %description
 Aldo is a morse tutor released under GPL. 
@@ -34,28 +31,26 @@ random generated callsigns
 
 %prep
 %setup
-%patch -p1
-%{__perl} -pi.orig -e 's| -oroot | |' Makefile */Makefile
 
 %build
-%{?el4:export CXX=g++33}
-%{?fc3:export CXX=g++33}
+%{__aclocal} -I config
+%{__autoheader}
+%{__automake} --gnu --add-missing
+%{__autoconf}
+%configure
 %{__make} %{?_smp_mflags} \
 	CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{?fc3:export CXX=g++33}
-%makeinstall \
-	PREFIX="%{buildroot}%{_prefix}"
+%makeinstall
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog README.sources THANKS VERSION
+%doc AUTHORS ChangeLog THANKS VERSION NEWS TODO README VERSION
 %{_bindir}/aldo
 
 %changelog
