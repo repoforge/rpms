@@ -4,7 +4,7 @@
 
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
-Version: 0.35
+Version: 0.36
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -34,15 +34,14 @@ you will need to install %{name}-devel.
 #patch0 -p1
 
 %build
-%{__make} %{?_smp_mflags} \
-	INSTALLPREFIX="%{_prefix}"
+%configure
+%{__make} %{?_smp_mflags} INSTALLPREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir} \
 			%{buildroot}%{_includedir}
-%{__make} install \
-	INSTALLPREFIX="%{buildroot}%{_prefix}"
+%{__make} install DESTDIR="%{buildroot}" INSTALLPREFIX="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
 #%{__install} -Dp -m0755 chm_http %{buildroot}%{_bindir}/chm_http
 #%{__install} -Dp -m0755 enum_chmLib %{buildroot}%{_bindir}/enum_chmLib
 #%{__install} -Dp -m0755 enumdir_chmLib %{buildroot}%{_bindir}/enumdir_chmLib
@@ -51,16 +50,13 @@ you will need to install %{name}-devel.
 
 
 ### Fix library symlinks
-for lib in $(ls %{buildroot}%{_libdir}); do
-        %{__ln_s} -f $lib %{buildroot}%{_libdir}/${lib//%\.?}
-        %{__ln_s} -f $lib %{buildroot}%{_libdir}/${lib//%\.?\.?}
-done
+#for lib in $(ls %{buildroot}%{_libdir}); do
+#        %{__ln_s} -f $lib %{buildroot}%{_libdir}/${lib//%\.?}
+#        %{__ln_s} -f $lib %{buildroot}%{_libdir}/${lib//%\.?\.?}
+#done
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -85,6 +81,9 @@ done
 %{_includedir}/chm_lib.h
 
 %changelog
+* Fri Sep 09 2005 Dag Wieers <dag@wieers.com> - 0.36-1
+- Updated to release 0.36.
+
 * Tue Jun 29 2004 Dag Wieers <dag@wieers.com> - 0.35-1
 - Updated to release 0.35.
 

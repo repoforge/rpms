@@ -50,13 +50,13 @@ directly from Amazon.com.
 %setup
 
 %build
-source  /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-source  /etc/profile.d/qt.sh
+source /etc/profile.d/qt.sh
 %makeinstall
 %find_lang %{name}
 
@@ -72,11 +72,13 @@ source  /etc/profile.d/qt.sh
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc %{_docdir}/HTML/en/tellico/
 %{_bindir}/*
-%{_datadir}/apps/tellico
 %{_datadir}/applnk/Applications/tellico.desktop
+%dir %{_datadir}/apps/kconf_update/
+%{_datadir}/apps/kconf_update/tellico.upd
 %{_datadir}/apps/kconf_update/tellico-rename.upd
-%{_datadir}/doc/HTML/en/tellico
+%{_datadir}/apps/tellico/
 %{_datadir}/icons/hicolor/*/apps/tellico.png
 %{_datadir}/icons/hicolor/*/mimetypes/tellico.png
 %{_datadir}/mimelnk/application/x-tellico.desktop

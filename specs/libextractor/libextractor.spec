@@ -6,7 +6,7 @@
 
 Summary: Meta-data extraction library 
 Name: libextractor
-Version: 0.5.3
+Version: 0.5.5
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -95,6 +95,9 @@ export LDFLAGS=-L%{buildroot}%{_libdir}
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Thu Sep 08 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.5-1
+- Updated to release 0.5.5.
+
 * Mon Aug 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1
 - Updated to release 0.5.3.
 

@@ -98,6 +98,7 @@ you will need to install %{name}-devel.
 		s|\@CFGDIR\@|\$(sysconfdir)|g;
 		s|\@CFGINST\@|\$(sysconfdir)|g;
 		s|^\@INSTALL_CLAMAV_CONF_TRUE\@|\t|g;
+		s|^\@INSTALL_FRESHCLAM_CONF_TRUE\@|\t|g;
 	' database/Makefile.in etc/Makefile.in
 
 %{__perl} -pi.orig -e '
@@ -412,7 +413,7 @@ fi
 - Updated to release 0.71.
 
 * Sun May 02 2004 Dag Wieers <dag@wieers.com> - 0.70-2
-- Fixed the installation check for conf files. (Richard Soderberg)
+- Fixed the installation check for conf files. (Richard Soderberg, Udo Ruecker)
 - Changed the init-order of the sysv scripts. (Will McCutcheon)
 - Changes to the default configuration files.
 

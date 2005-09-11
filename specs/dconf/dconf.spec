@@ -4,7 +4,7 @@
 
 Summary: Collect a system's hardware and software configuration
 Name: dconf
-Version: 0.4.2
+Version: 0.5.0
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -38,10 +38,12 @@ files to send out or compare with other systems.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install install-redhat DESTDIR="%{buildroot}"
 
-### Install configfile for this distribution
-%{__install} -Dp -m0644 config/dconf-redhat.conf %{buildroot}%{_sysconfdir}/dconf.conf
+%postun
+if [ $1 -eq 0 ]; then
+        %{__rm} -f /etc/cron.*/dconf
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -56,6 +58,10 @@ files to send out or compare with other systems.
 %{_localstatedir}/log/dconf/
 
 %changelog
+* Fri Sep 09 2005 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Remove cron entry on removal. (David M. Dowdle)
+- Updated to release 0.5.0.
+
 * Wed Jul 13 2005 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Updated to release 0.4.2.
 

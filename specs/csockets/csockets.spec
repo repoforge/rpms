@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dries
-# Upstream: 
 
 Summary: C++ wrapper for sockets
 Name: csockets
@@ -33,6 +32,10 @@ you will need to install %{name}-devel.
 %prep
 %setup -n Sockets-%{version}
 
+### Work-around for kerberos/openssl on RH9 and EL3
+%{__perl} -pi.orig -e 's|^(INCLUDE\s*=\s*)|$1 -I/usr/kerberos/include |' Makefile
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' Makefile
+
 %build
 %{__make} %{?_smp_mflags} PREFIX=%{_prefix}
 
@@ -48,7 +51,7 @@ you will need to install %{name}-devel.
 %{_bindir}/Sockets-config
 
 %files devel
-%{_includedir}/Sockets
+%{_includedir}/Sockets/
 %{_libdir}/*.a
 
 %changelog

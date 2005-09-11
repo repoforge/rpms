@@ -11,8 +11,8 @@
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
-Version: 0.8.6f
-Release: 2
+Version: 0.8.6g
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -125,6 +125,9 @@ fi
 %doc docs/*
 
 %changelog
+* Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.8.6g-1
+- Updated to 0.8.6g.
+
 * Tue Jul  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.6f-2
 - Add *-snmp-utils requirement (snmpget/walk).
 - Minor cosmetic changes.
