@@ -19,8 +19,8 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.37
-Release: 11
+Version: 0.39
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -242,6 +242,9 @@ cd -
 %endif
 
 %changelog
+* Mon Sep 12 2005 Dag Wieers <dag@wieers.com> - 0.39-1
+- Updated to release 0.39.
+
 * Fri Aug 19 2005 Dag Wieers <dag@wieers.com> - 0.37-1
 - Updated to release 0.37.
 

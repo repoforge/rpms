@@ -37,7 +37,7 @@ export CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 %{__install} -Dp -m755 bin/eyeD3 %{buildroot}%{_bindir}/eyeD3
 

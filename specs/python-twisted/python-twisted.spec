@@ -47,7 +47,7 @@ This package contains all the documentation for Twisted.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root=%{buildroot}
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 # the man pages are not installed, so install them
 # and remove them from the doc dir

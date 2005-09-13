@@ -1,6 +1,5 @@
-%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
-%{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
-%{?!python:%define python python}
+%define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+%define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 
 %define _upstream_nvr   elementtree-1.2.6-20050316
 %define _upstream_cnvr  cElementTree-1.0.2-20050302    
@@ -16,7 +15,7 @@ Source0: http://effbot.org/downloads/%{_upstream_nvr}.zip
 Source1: http://effbot.org/downloads/%{_upstream_cnvr}.zip
 Source2: cElementTree-system-expat-setup.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: expat-devel, %{python}-devel
+BuildRequires: expat-devel, python-devel
 Requires: python-abi = %(%{__python} -c "import sys ; print sys.version[:3]")
 
 %description
@@ -48,9 +47,9 @@ popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 pushd %{_upstream_cnvr}
-%{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 popd
 
 

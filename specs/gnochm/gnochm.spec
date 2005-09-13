@@ -12,7 +12,7 @@
 
 Summary: CHM file viewer
 Name: gnochm
-Version: 0.9.5
+Version: 0.9.6
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -83,14 +83,17 @@ scrollkeeper-update -q || :
 %{!?_without_shmime:%exclude %{_datadir}/mime/XMLnamespaces}
 %{!?_without_shmime:%exclude %{_datadir}/mime/globs}
 %{!?_without_shmime:%exclude %{_datadir}/mime/magic}
-%{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
-%{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
+#{!?_without_shmime:%exclude %{_datadir}/mime/aliases}
+#{!?_without_shmime:%exclude %{_datadir}/mime/subclasses}
 %{_datadir}/mime-info/gnochm.*
 %{_datadir}/omf/gnochm/
 %{_datadir}/pixmaps/*.png
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
+* Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.9.6-1
+- Updated to release 0.9.6.
+
 * Sat Apr 30 2005 Dag Wieers <dag@wieers.com> - 0.9.5-1
 - Updated to release 0.9.5.
 

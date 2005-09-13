@@ -4,7 +4,7 @@
 
 Summary: Email filtering application using sendmail's milter interface
 Name: mimedefang
-Version: 2.52
+Version: 2.53
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: sendmail-devel > 8.12.0
 #BuildRequires: perl-Mail-SpamAssassin
 BuildRequires: perl-Digest-SHA1, perl-MIME-tools, perl-IO-stringy, perl-MailTools
+BuildRequires: perl-Unix-Syslog
 Requires: sendmail >= 8.12.0
 
 %description
@@ -114,8 +115,12 @@ fi
 %dir %{_localstatedir}/spool/MD-Quarantine
 
 %changelog
+* Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 2.53-1
+- Updated to release 2.53.
+
 * Sat Jun 04 2005 Dag Wieers <dag@wieers.com> - 2.52-1
 - Fix for x86_64. (Chris Ausbrooks)
+- Added perl-Unix-Syslog as a buildrequirement. (Josh Kelley)
 - Updated to release 2.52.
 
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 2.45-1
