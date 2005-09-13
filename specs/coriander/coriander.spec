@@ -16,7 +16,7 @@ Source: http://dl.sf.net/coriander/coriander-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel, gettext, libraw1394-devel, libdc1394-devel
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, SDL-devel, automake, autoconf, ffmpeg-devel
 
 %description
 Coriander is a GUI that let you control your 1394 digital video camera 

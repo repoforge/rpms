@@ -6,7 +6,7 @@
 
 Summary: Visualize and manipulate multidimensional surfaces
 Name: k3dsurf
-Version: 0.5.2
+Version: 0.5.4
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -54,12 +54,6 @@ desktop-file-install --vendor rpmforge             \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{name}.desktop
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -70,5 +64,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-k3dsurf.desktop
 
 %changelog
+* Tue Sep 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.3-1
+- Updated to release 0.5.3.
+
 * Fri Aug 26 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1
 - Initial package.

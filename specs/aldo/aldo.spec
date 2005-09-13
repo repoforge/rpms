@@ -16,7 +16,7 @@ URL: http://www.nongnu.org/aldo/
 Source: http://savannah.nongnu.org/download/aldo/aldo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, automake, autoconf
+BuildRequires: gcc-c++, automake, autoconf, readline-devel
 
 %description
 Aldo is a morse tutor released under GPL. 

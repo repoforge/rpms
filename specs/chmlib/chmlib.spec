@@ -14,7 +14,7 @@ Source: http://66.93.236.84/~jedwin/projects/chmlib/chmlib-%{version}.tgz
 Patch0: chmlib-0.31-morearchs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtool
+BuildRequires: libtool, gcc-c++
 
 %description
 chmlib is a library for dealing with Microsoft ITSS/CHM format files.

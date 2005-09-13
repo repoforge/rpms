@@ -16,9 +16,10 @@ Source: http://gnunet.org/libextractor/download/libextractor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libvorbis-devel, libogg-devel, zlib-devel, gcc-c++, python
-BuildRequires: ImageMagick, python-devel, gettext, pkgconfig
+BuildRequires: ImageMagick, python-devel, gettext, pkgconfig, bzip2-devel
 BuildRequires: intltool, glib2-devel, libvorbis-devel, gtk2-devel
 BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2
+%{?fc4:BuildRequires: libtool-ltdl-devel}
 
 %description
 libextractor is a simple library for meta-data extraction.
