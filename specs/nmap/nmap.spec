@@ -6,7 +6,7 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 3.90
+Version: 3.93
 Release: 0
 Epoch: 2
 License: GPL
@@ -81,6 +81,9 @@ desktop-file-install \
 
 
 %changelog
+* Tue Sep 13 2005 Matthias Saou <http://freshrpms.net/> 3.93-0
+- Update to 3.93.
+
 * Thu Sep  8 2005 Matthias Saou <http://freshrpms.net/> 3.90-0
 - Update to 3.90.
 

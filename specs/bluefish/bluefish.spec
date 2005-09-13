@@ -3,7 +3,7 @@
 
 Summary: Graphical web development application for experienced users
 Name: bluefish
-Version: 1.0.2
+Version: 1.0.4
 Release: 1
 Group: Development/Tools
 License: GPL
@@ -64,6 +64,9 @@ update-desktop-database -q || :
 
 
 %changelog
+* Tue Sep 13 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-1
+- Update to 1.0.4.
+
 * Mon Aug  1 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Update to 1.0.2.
 - Update desktop icon patch.
