@@ -6,7 +6,7 @@
 
 Summary: Visualize and manipulate multidimensional surfaces
 Name: k3dsurf
-Version: 0.5.4
+Version: 0.5.3
 Release: 1
 License: GPL
 Group: Applications/Engineering

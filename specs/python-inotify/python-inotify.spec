@@ -44,6 +44,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/_inotify.so
 %{python_sitearch}/inotify.py
 %{python_sitearch}/inotify.pyc
+%{python_sitearch}/FSTree.pyo
+%{python_sitearch}/inotify.pyo
 
 %changelog
 * Mon May 30 2005 Dag Wieers <dag@wieers.com> - 0.0.6-1

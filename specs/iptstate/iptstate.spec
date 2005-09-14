@@ -5,13 +5,13 @@
 
 Summary: Display IP Tables state table information in a "top"-like interface
 Name: iptstate
-Version: 1.3
-Release: 0
+Version: 1.4
+Release: 1
 License: zlib License
 Group: Applications/System
-URL: http://iptstate.phildev.net/
+URL: http://www.phildev.net/iptstate/
 
-Source: http://iptstate.phildev.net/iptstate-%{version}.tar.gz
+Source: http://www.phildev.net/iptstate/iptstate-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
@@ -46,5 +46,8 @@ firewall in a "top"-like manner.
 %{_sbindir}/*
 
 %changelog
+* Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
+- Updated to release 1.4.
+
 * Tue Jan 27 2004 Dag Wieers <dag@wieers.com> - 1.3-0
 - Initial package. (using DAR)

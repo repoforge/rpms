@@ -4,13 +4,13 @@
 
 Name: openslp
 Summary: OpenSLP implementation of Service Location Protocol V2 
-Version: 1.0.11
+Version: 1.2.1
 Release: 0
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.openslp.org/
 
-Source: ftp://openslp.org/pub/openslp/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/openslp/openslp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -234,5 +234,8 @@ fi
 %exclude %{_libdir}/*.la
 
 %changeLog
+* Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Thu Apr 10 2003 Dag Wieers <dag@wieers.com> - 1.0.11-0
 - Initial package. (using DAR)

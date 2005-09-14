@@ -3,8 +3,8 @@
 
 Summary: Unicode manipulation library
 Name: libunicode
-Version: 0.4
-Release: 12.0
+Version: 0.7
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.pango.org/
@@ -72,5 +72,8 @@ you will need to install %{name}-devel.
 %{_includedir}/*.h
 
 %changelog
+* Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.7-1
+- Updated to release 0.7.
+
 * Sat Jan 03 2004 Dag Wieers <dag@wieers.com> - 0.4-12.0
 - Initial package. (using DAR)
