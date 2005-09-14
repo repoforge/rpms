@@ -30,7 +30,7 @@ URL: http://stellarium.free.fr/
 Source: http://dl.sf.net/stellarium/%{name}-%{version}.tar.gz
 #Patch: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: dos2unix, gcc-c++, SDL-devel
+BuildRequires: dos2unix, gcc-c++, SDL-devel, libpng-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}

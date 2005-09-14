@@ -17,7 +17,7 @@ URL: http://pilcrow.madison.wi.us/pynids/
 Source: http://pilcrow.madison.wi.us/pynids/pynids-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.2, python-devel, libnids
+BuildRequires: python >= 2.2, python-devel, libnids, libpcap
 Requires: python >= 2.2, libpcap, libnet, libnids
 
 %description

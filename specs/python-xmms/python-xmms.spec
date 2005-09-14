@@ -19,7 +19,7 @@ URL: http://www.via.ecp.fr/~flo/
 Source: http://people.via.ecp.fr/~flo/2002/PyXMMS/dist/pyxmms-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, glib-devel
 Requires: python >= %{python_version}
 
 %description

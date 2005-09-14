@@ -3,13 +3,13 @@
 
 Summary: Archiver and compressor
 Name: freeze
-Version: 2.5
-Release: 2
+Version: 2.5.0
+Release: 1
 License: distributable
 Group: Applications/Archiving
 URL: ftp://ftp.std.com/src/util/
 
-Source: ftp://ftp.std.com/src/util/freeze%{version}/freeze-%{version}.tar.gz
+Source: http://www.ibiblio.org/pub/Linux/utils/compress/freeze-%{version}.tar.gz
 Patch: freeze-2.5.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -51,6 +51,9 @@ done
 %{_mandir}/man?/*
 
 %changelog
+* Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 2.5.0-1
+- Update to latest found version 2.5.0.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.5-2
 - Cosmetic rebuild for Group-tag.
 

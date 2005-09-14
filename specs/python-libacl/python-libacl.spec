@@ -18,7 +18,7 @@ Source: http://dl.sf.net/pylibacl/pylibacl-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: pylibacl <= %{version}-%{release}
-BuildRequires: python >= 2.2, libacl-devel
+BuildRequires: python >= 2.2, libacl-devel, python-devel
 Requires: python >= 2.2, libacl
 
 %description
