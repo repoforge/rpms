@@ -9,7 +9,7 @@
 
 Summary: Music Jukebox with a Curses Based GUI
 Name: pytone
-Version: 2.2.4
+Version: 2.3.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -47,7 +47,7 @@ export CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}"
+%{__python} setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 %find_lang %{real_name}
 
 %{__install} -Dp -m0755 pytone.sh %{buildroot}%{_bindir}/pytone
@@ -65,6 +65,9 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/pytone/
 
 %changelog
+* Wed Sep 14 2005 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Tue Aug 23 2005 Dag Wieers <dag@wieers.com> - 2.2.4-1
 - Updated to release 2.2.4.
 

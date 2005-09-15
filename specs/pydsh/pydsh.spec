@@ -5,7 +5,7 @@
 Summary: Simple remote administration tool, pydsh and pydcp
 Name: pydsh
 Version: 0.5.4
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 URL: http://pydsh.sourceforge.net/
@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Buildarch: noarch
 
 BuildRequires: python
-Requires: python, python-pexpect
+Requires: python, python-expect
 
 %description
 PyDSH is a simple remote administration toolkit, consisting of
@@ -51,5 +51,8 @@ two tools: pydsh and pydcp.
 %{_bindir}/pydsh
 
 %changelog
-* Sun May 29 2005 Dag Wieers <dag@wieers.com> - 0.6.0-1
+* Tue Sep 13 2005 Dag Wieers <dag@wieers.com> - 0.5.4-2
+- Changed requirement to python-expect.
+
+* Sun May 29 2005 Dag Wieers <dag@wieers.com> - 0.5.4-1
 - Initial package. (using DAR)
