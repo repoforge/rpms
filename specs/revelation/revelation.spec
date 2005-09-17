@@ -24,7 +24,7 @@ BuildRequires: GConf2-devel, gnome-python2-gconf
 %{?fc4:BuildRequires: gnome-python2-extras, gnome-panel-devel}
 Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
 Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
-Requires: gnome-python2-bonobo, cracklib
+Requires: gnome-python2-bonobo, cracklib, gnome-python2-applet
 
 %description
 Revelation is a password manager. It organizes accounts in
