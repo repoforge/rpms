@@ -13,7 +13,7 @@ URL: http://students.ceid.upatras.gr/~sxanth/ncc/index.html
 Source: http://students.ceid.upatras.gr/~sxanth/ncc/ncc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, ncurses-devel
 
 %description
 ncc is a C source code analyzer which generates program flow and variable 

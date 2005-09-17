@@ -14,7 +14,7 @@ URL: http://www.phildev.net/iptstate/
 Source: http://www.phildev.net/iptstate/iptstate-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel
+BuildRequires: ncurses-devel, gcc-c++
 
 %description
 IP Tables State (iptstate) was originally written to

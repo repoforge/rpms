@@ -13,7 +13,7 @@ URL: http://www.openslp.org/
 Source: http://dl.sf.net/openslp/openslp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
+BuildRequires: gcc-c++
 #Provides: openslp libslp.so libslp.so.0 slpd
 Obsoletes: openslp-server
 
