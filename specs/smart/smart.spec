@@ -20,7 +20,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.39
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -71,8 +71,9 @@ KDE tray program for watching updates with Smart Package Manager.
 %setup
 
 %{__cat} <<EOF >distro.py
-pkgconf.setFlag("multi-version", "kernel")
-pkgconf.setFlag("multi-version", "kernel-smp")
+if not sysconf.getReadOnly():
+       pkgconf.setFlag("multi-version", "kernel")
+       pkgconf.setFlag("multi-version", "kernel-smp")
 EOF
 
 %{__cat} <<EOF >smart-gui.sh
@@ -242,6 +243,9 @@ cd -
 %endif
 
 %changelog
+* Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.39-2
+- Applied a fix by Ben Segall so smart works with a readonly configuration.
+
 * Mon Sep 12 2005 Dag Wieers <dag@wieers.com> - 0.39-1
 - Updated to release 0.39.
 
