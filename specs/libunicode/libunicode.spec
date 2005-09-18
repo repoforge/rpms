@@ -9,7 +9,8 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.pango.org/
 
-Source: http://www.pango.org/download/libunicode-%{version}.tar.gz
+#Source: http://www.pango.org/download/libunicode-%{version}.tar.gz
+Source: http://dl.sf.net/libunicode/libunicode-%{version}.tar.gz
 Patch0: libunicode-0.4-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

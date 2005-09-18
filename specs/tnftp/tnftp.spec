@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-%define real_version 20050103
+%define real_version 20050625
 
 Summary: Enhanced NetBSD ftp client
 Name: tnftp
@@ -43,6 +43,9 @@ in February 2003.
 %{_bindir}/tnftp
 
 %changelog 
+* Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.20050625-2
+- Rebuild with corrected real_version.
+
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.0.20050625-1
 - Updated to release 20050625.
 

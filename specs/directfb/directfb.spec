@@ -3,7 +3,7 @@
 
 Summary: Hardware graphics acceleration library
 Name: directfb
-Version: 0.9.20
+Version: 0.9.22
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -122,6 +122,9 @@ find %{buildroot} -name "*.la" | xargs rm -f
 
 
 %changelog
+* Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.22-1
+- Updated to release 0.9.22.
+
 * Tue Nov 11 2003 Matthias Saou <http://freshrpms.net/> 0.9.20-1
 - Update to 0.9.20.
 - Rebuild for Fedora Core 1.
