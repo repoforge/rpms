@@ -4,7 +4,7 @@
 Summary: MPEG audio player
 Name: mpg321
 Version: 0.2.10
-Release: 6
+Release: 7
 License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/
@@ -28,7 +28,7 @@ mpg123.
 
 
 %build
-%configure --with-default-audio="esd"
+%configure --with-default-audio="alsa"
 %{__make} %{?_smp_mflags}
 
 
@@ -49,6 +49,9 @@ mpg123.
 
 
 %changelog
+* Mon Sep 19 2005 Matthias Saou <http://freshrpms.net/> 0.2.10-7
+- Change default audio from esd to alsa.
+
 * Mon Jul  4 2005 Matthias Saou <http://freshrpms.net/> 0.2.10-6
 - Include printf patch to fix CAN-2003-0969 (Jens Koerber).
 
