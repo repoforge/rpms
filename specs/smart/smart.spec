@@ -20,7 +20,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.39
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -63,6 +63,7 @@ special suid command.
 Summary: KDE tray program for watching updates with Smart Package Manager
 Group: Applications/System
 Requires: smart-update = %{version}
+Requires: smart-gui = %{version}
 
 %description -n ksmarttray
 KDE tray program for watching updates with Smart Package Manager.
@@ -243,6 +244,9 @@ cd -
 %endif
 
 %changelog
+* Mon Sep 19 2005 Dries Verachtert <dries@ulyssis.org> - 0.39-3
+- Fix by Jeff Pitman: ksmarttray requires smart-gui.
+
 * Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.39-2
 - Applied a fix by Ben Segall so smart works with a readonly configuration.
 
