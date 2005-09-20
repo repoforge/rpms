@@ -5,8 +5,8 @@
 
 Summary: Console-based network monitoring utility
 Name: iptraf
-Version: 2.7.0
-Release: 2
+Version: 3.0.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://iptraf.seul.org/
@@ -88,6 +88,9 @@ touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \
 %{_localstatedir}/lock/iptraf/
 
 %changelog
+* Tue Sep 20 2005 Dag Wieers <dag@wieers.com> - 3.0.0-1
+- Updated to release 3.0.0.
+
 * Mon May 03 2004 Dag Wieers <dag@wieers.com> - 2.7.0-2
 - Fix inline makefile patch.
 
