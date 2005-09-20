@@ -26,8 +26,7 @@ rpm packages
 %setup
 # Replace interpreter's name if it's not "python"
 if [ "%{python}" != "python" ]; then
-    find . -type f | \
-        xargs %{__perl} -pi -e 's|/usr/bin/python|/usr/bin/%{python}|g'
+    %{__perl} -pi -e 's|/usr/bin/python|/usr/bin/%{python}|g' *.py
 fi
 
 
