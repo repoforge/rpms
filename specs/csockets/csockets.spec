@@ -3,7 +3,7 @@
 
 Summary: C++ wrapper for sockets
 Name: csockets
-Version: 1.9.6
+Version: 1.9.7
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -55,6 +55,9 @@ you will need to install %{name}-devel.
 %{_libdir}/*.a
 
 %changelog
+* Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 1.9.7-1
+- Update to release 1.9.7.
+
 * Tue Sep 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.9.6-1
 - Update to release 1.9.6.
 

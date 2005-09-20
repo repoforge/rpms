@@ -21,7 +21,7 @@
 
 Summary: Stellarium renders 3D photo-realistic skies in real time
 Name: stellarium
-Version: 0.7.0
+Version: 0.7.1
 Release: 1
 License: GPL
 Group: Amusements/Graphics
@@ -111,6 +111,9 @@ EOF
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
+- Update to release 0.7.1.
+
 * Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
 - Update to release 0.7.0.
 
