@@ -37,6 +37,6 @@ ${CC:-%{__cc}} %{optflags} -o tphdisk %{SOURCE0}
 %defattr(-, root, root, 0755)
 %{_sbindir}/*
 
-%Changelog
+%changelog
 * Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)

@@ -52,6 +52,6 @@ devices supported by the wireless kernel extensions by Jean Tourrilhes.
 %doc %{_mandir}/man?/*
 %{_bindir}/wavemon
 
-%changelog -n wavemon
+%changelog
 * Mon Jul 12 2004 Dag Wieers <dag@wieers.com> - 0.4.0-0.b
 - Initial package. (using DAR)

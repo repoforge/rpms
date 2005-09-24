@@ -38,3 +38,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %doc MANIFEST README.txt LICENSE.txt Doc/* PKG-INFO
 %{python_sitearch}/numarray/
 %{_includedir}/python*/numarray/
+
+%changelog
+* Sat Sep 24 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.3-1
+- changelog added.

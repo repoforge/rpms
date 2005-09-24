@@ -78,7 +78,7 @@ you will need to install %{name}-devel.
 ### Redefined _includedir to be %{_includedir}/freetds/
 %{_includedir}/
  
-%changelog 
+%changelog
 * Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 0.63-1
 - Updated to release 0.63.
 

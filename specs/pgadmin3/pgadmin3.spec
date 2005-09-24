@@ -60,7 +60,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/*.desktop
 %{_datadir}/pgadmin3/
 
-%changelogA
+%changelog
 * Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-0
 - Update.
 

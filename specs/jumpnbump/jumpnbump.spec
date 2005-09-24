@@ -46,7 +46,7 @@ alone. It has network support.
 %{_bindir}/*
 %{_datadir}/jumpnbump/
 
-%changelog 
+%changelog
 * Wed Jun 16 2004 Dag Wieers <dag@wieers.com> - 1.50-1
 - Updated to release 1.50.
 

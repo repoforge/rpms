@@ -60,7 +60,7 @@ your own units.
 %{_datadir}/pixmaps/*.png
 %exclude %{_docdir}/gonvert/
 
-%changelog 
+%changelog
 * Wed May 18 2005 Dag Wieers <dag@wieers.com> - 0.2.12-1
 - Updated to release 0.2.12.
 

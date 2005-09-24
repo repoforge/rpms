@@ -233,7 +233,7 @@ fi
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
 
-%changeLog
+%changelog
 * Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
 - Updated to release 1.2.1.
 

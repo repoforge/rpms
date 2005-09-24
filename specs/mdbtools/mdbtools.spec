@@ -115,6 +115,6 @@ EOF
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Development/gmdb2.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/gnome-gmdb2.desktop}
 
-%changelog 
+%changelog
 * Fri Jun 13 2003 Dag Wieers <dag@wieers.com> - 0.5-0
 - Initial package. (using DAR)

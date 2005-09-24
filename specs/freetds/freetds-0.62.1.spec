@@ -78,7 +78,7 @@ you will need to install %{name}-devel.
 ### Redefined _includedir to be %{_includedir}/freetds/
 %{_includedir}/
  
-%changelog 
+%changelog
 * Fri Jun 13 2003 Dag Wieers <dag@wieers.com> - 0.62.1-0
 - Added --enable-msdblib configure option. (Dean Mumby)
 - Updated to release 0.62.1.

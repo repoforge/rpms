@@ -64,7 +64,7 @@ you will need to install %{name}-devel.
 %{_includedir}/sidplay/
 #exclude %{_libdir}/*.la
 
-%changelog 
+%changelog
 * Thu Aug 28 2003 Dag Wieers <dag@wieers.com> - 1.36.57-0
 - Initial package. (using DAR)
 

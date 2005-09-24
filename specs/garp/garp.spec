@@ -39,7 +39,7 @@ unused IP addresses (from a given IP range).
 %doc %{_mandir}/man8/garp.8
 %{_sbindir}/garp
 
-%changelog 
+%changelog
 * Thu May 01 2003 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Changed URL: and Source: to http://garp.3va.net/
 

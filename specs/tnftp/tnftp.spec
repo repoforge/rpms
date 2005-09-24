@@ -42,7 +42,7 @@ in February 2003.
 %doc %{_mandir}/man1/tnftp.1*
 %{_bindir}/tnftp
 
-%changelog 
+%changelog
 * Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.20050625-2
 - Rebuild with corrected real_version.
 

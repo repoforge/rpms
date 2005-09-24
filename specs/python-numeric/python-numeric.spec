@@ -41,3 +41,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/Numeric.pth
 %{python_sitearch}/Numeric/
 %{_includedir}/python*/Numeric/
+
+%changelog
+* Sat Sep 24 2005 Dries Verachtert <dries@ulyssis.org> - 23.1-1
+- changelog added.
