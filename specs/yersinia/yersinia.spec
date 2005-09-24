@@ -12,7 +12,7 @@ URL: http://yersinia.sourceforge.net/
 Source: http://dl.sf.net/yersinia/yersinia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libnet, libpcap
+BuildRequires: libnet, libpcap, ncurses-devel
 
 %description
 Yersinia implements several attacks for the following protocols: 

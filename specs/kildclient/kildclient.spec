@@ -13,7 +13,7 @@ URL: http://kildclient.sourceforge.net/
 Source: http://dl.sf.net/kildclient/kildclient-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: perl(XML::Parser), intltool
 
 %description
 KildClient is a MUD client written with the GTK+ windowing toolkit. It 

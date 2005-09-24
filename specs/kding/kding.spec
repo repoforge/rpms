@@ -13,7 +13,7 @@ URL: http://www.rexi.org/software/kding/
 Source: http://www.rexi.org/downloads/kding/kding-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gcc-c++
+BuildRequires: kdelibs-devel, gcc-c++, gettext
 Requires: ding
 
 %description

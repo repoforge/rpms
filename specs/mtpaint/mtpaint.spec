@@ -4,7 +4,7 @@
 
 Summary: Painting program for creating icons and pixel-based artwork
 Name: mtpaint
-Version: 2.02
+Version: 2.03
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -13,7 +13,7 @@ URL: http://www.btinternet.com/~mark.tyler4/mtpaint/index.html
 Source: http://www.btinternet.com/~mark.tyler4/mtpaint/mtpaint-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: gtk2-devel
 
 %description
 mtPaint is a simple GTK+1/2 painting program designed for creating icons 
@@ -61,5 +61,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Sat Sep 24 2005 Dries Verachtert <dries@ulyssis.org> - 2.03-1
+- Updated to release 2.03.
+
 * Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 2.02-1
 - Initial package.
