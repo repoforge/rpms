@@ -8,7 +8,7 @@
 
 Summary: Scan ssh server logs and block hosts
 Name: denyhosts
-Version: 1.0.3
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -48,5 +48,8 @@ logins.
 %{python_sitearch}/DenyHosts/
 
 %changelog
+* Tue Sep 27 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.3-1
 - Initial package.
