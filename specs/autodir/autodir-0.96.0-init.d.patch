@@ -1,0 +1,299 @@
+diff -Naupr autodir-0.96.0.orig/misc/init.scripts/autogroup autodir-0.96.0/misc/init.scripts/autogroup
+--- autodir-0.96.0.orig/misc/init.scripts/autogroup	2005-01-06 03:22:27.000000000 +0100
++++ autodir-0.96.0/misc/init.scripts/autogroup	2005-08-24 17:50:56.000000000 +0200
+@@ -1,47 +1,35 @@
+ #!/bin/sh
+-# chkconfig: - 28 72
+-# description: \
+-#	Autodir is for creating directories transparently to the applications
+-#	accessing them  based on available information from
+-#	sources like password database, group database.
+-#
+-#	Autodir depends on linux autofs kernel module to transparently detect
+-#	directory requests and create them on demand.
+-#
+-#	This invocation loads autogroup module which handles group directories
+-#
+-# config /etc/sysconfg/autogroup
+-#
+-#
++# chkconfig: - 29 71
++# description: Creates user group directories on demand
+ 
+-CONFIG=/etc/sysconfig/autogroup
+ 
+ # Source function library.
+ . /etc/init.d/functions
+ 
++# Source configuration
++. /etc/sysconfig/autogroup
++
++prog=autogroup
+ RETVAL=0
+ 
+ start() {
+ 
+ 	# If autofs old module is loaded unload it now
+ 	grep -q -w autofs /proc/modules || \
+-		/sbin/rmmod autofs 1> /dev/null
++		/sbin/rmmod autofs &>/dev/null
+ 
+ 	# If module is not loaded load it now
+ 	grep -q autofs4 /proc/modules || \
+-		/sbin/modprobe -k autofs4 1> /dev/null
++		/sbin/modprobe -k autofs4 &>/dev/null
+ 
+ 	# See if autofs module actually loaded
+-	grep -q -w autofs4 /proc/modules 
+-	if [ $? -ne 0 ]
++	if ! grep -q -w autofs4 /proc/modules
+ 	then
+-		RETVAL=1;
+-		return $RETVAL
++		exit 1
+ 	fi
+ 
+-	echo -n $"Starting up autogroup : "
++	echo -n $"Starting $prog: "
+ 
+-	test -r "$CONFIG" && . "$CONFIG"
+ 	daemon /usr/sbin/autodir -d $AUTOGROUP_HOME -m $AUTOGROUP_MODULE \
+ 		${AUTOGROUP_OPTIONS+"-o $AUTOGROUP_OPTIONS"} \
+ 		${AUTOGROUP_TIMEOUT+"-t $AUTOGROUP_TIMEOUT"} \
+@@ -49,48 +37,34 @@ start() {
+ 		${AUTOGROUP_BACKWAIT+"-w $AUTOGROUP_BACKWAIT"} \
+ 		${AUTOGROUP_BACKPRI+"-p $AUTOGROUP_BACKPRI"} \
+ 		${AUTOGROUP_MAXBACK+"-c $AUTOGROUP_MAXBACK"} \
+-		-l /var/run/autogroup.pid
++		-l /var/run/$prog.pid
+ 
+ 	RETVAL=$?
+-	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/autogroup
++	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
+ 	echo
+-
+-	return $RETVAL
+ }
+ 
+ stop() {
+-	echo -n $"Shutting down autogroup daemon: "
+-	killproc autogroup
++	echo -n $"Stopping $prog: "
++	killproc $prog
+ 	RETVAL=$?
+-	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/autogroup
++	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$prog
+ 	echo
+-	return $RETVAL
+ }
+ 
+ dostatus() {
+-	local pid
+-
+-	pid=`pidfileofproc autogroup`
++	pid=`pidfileofproc $prog`
+ 
+ 	if [ -n "$pid" -a -d "/proc/$pid" ]
+ 	then
+-		echo "autogroup (pid $pid) running..."
+-		return 0
++		echo "$prog (pid $pid) running..."
++		RETVAL=0
+ 	else
+-		echo "auotogroup stopped"
+-		return 1
++		echo "$prog stopped"
++		RETVAL=1
+ 	fi
+ }
+ 
+-restart() {
+-	stop
+-	start
+-}
+-
+-condrestart() {
+-	[ -e /var/lock/subsys/autogroup ] && restart || :
+-}
+-
+ # See how we were called.
+ case "$1" in
+   start)
+@@ -99,17 +73,21 @@ case "$1" in
+   stop)
+ 	stop
+ 	;;
+-  status)
+-	dostatus
+-	;;
+-  restart|reload)
+-	restart
++  restart)
++	stop
++	start
+ 	;;
+   condrestart)
+-	condrestart
++	if [ -f /var/lock/subsys/$prog ]; then
++		stop
++		start
++	fi
++	;;
++  status)
++	dostatus
+ 	;;
+   *)
+-	echo $"Usage: autogroup {start|stop|status|restart|reload|condrestart}"
++	echo $"Usage: $prog {start|stop|restart|condrestart|status}"
+ 	exit 1
+ esac
+ 
+diff -Naupr autodir-0.96.0.orig/misc/init.scripts/autohome autodir-0.96.0/misc/init.scripts/autohome
+--- autodir-0.96.0.orig/misc/init.scripts/autohome	2005-01-06 03:20:14.000000000 +0100
++++ autodir-0.96.0/misc/init.scripts/autohome	2005-08-24 17:51:05.000000000 +0200
+@@ -1,47 +1,35 @@
+ #!/bin/sh
+ # chkconfig: - 28 72
+-# description: \
+-#	Autodir is for creating directories transparently to the applications
+-#	accessing them  based on available information from
+-#	sources like password database, group database.
+-#
+-#	Autodir depends on linux autofs kernel module to transparently detect
+-#	directory requests and create them on demand.
+-#
+-#	This invocation loads autohome module which handles home directories
+-#
+-# config /etc/sysconfg/autohome
+-#
+-#
++# description: Creates user home directories on demand
+ 
+-CONFIG=/etc/sysconfig/autohome
+ 
+ # Source function library.
+ . /etc/init.d/functions
+ 
++# Source configuration
++. /etc/sysconfig/autohome
++
++prog=autohome
+ RETVAL=0
+ 
+ start() {
+ 
+ 	# If autofs old module is loaded unload it now
+ 	grep -q -w autofs /proc/modules || \
+-		/sbin/rmmod autofs 1> /dev/null
++		/sbin/rmmod autofs &>/dev/null
+ 
+ 	# If module is not loaded load it now
+ 	grep -q autofs4 /proc/modules || \
+-		/sbin/modprobe -k autofs4 1> /dev/null
++		/sbin/modprobe -k autofs4 &>/dev/null
+ 
+ 	# See if autofs module actually loaded
+-	grep -q -w autofs4 /proc/modules 
+-	if [ $? -ne 0 ]
++	if ! grep -q -w autofs4 /proc/modules
+ 	then
+-		RETVAL=1;
+-		return $RETVAL
++		exit 1
+ 	fi
+ 
+-	echo -n $"Starting up autohome daemon: "
++	echo -n $"Starting $prog: "
+ 
+-	test -r "$CONFIG" && . "$CONFIG"
+ 	daemon /usr/sbin/autodir -d $AUTOHOME_HOME -m $AUTOHOME_MODULE \
+ 		${AUTOHOME_OPTIONS+"-o $AUTOHOME_OPTIONS"} \
+ 		${AUTOHOME_TIMEOUT+"-t $AUTOHOME_TIMEOUT"} \
+@@ -49,48 +37,34 @@ start() {
+ 		${AUTOHOME_BACKWAIT+"-w $AUTOHOME_BACKWAIT"} \
+ 		${AUTOHOME_BACKPRI+"-p $AUTOHOME_BACKPRI"} \
+ 		${AUTOHOME_MAXBACK+"-c $AUTOHOME_MAXBACK"} \
+-		-l /var/run/autohome.pid
++		-l /var/run/$prog.pid
+ 
+ 	RETVAL=$?
+-	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/autohome
++	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
+ 	echo
+-
+-	return $RETVAL
+ }
+ 
+ stop() {
+-	echo -n $"Shutting down autohome daemon: "
+-	killproc autohome
++	echo -n $"Stopping $prog: "
++	killproc $prog
+ 	RETVAL=$?
+-	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/autohome
++	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$prog
+ 	echo
+-	return $RETVAL
+ }
+ 
+ dostatus() {
+-	local pid
+-
+-	pid=`pidfileofproc autohome`
++	pid=`pidfileofproc $prog`
+ 
+ 	if [ -n "$pid" -a -d "/proc/$pid" ]
+ 	then
+-		echo "autohome (pid $pid) running..."
+-		return 0
++		echo "$prog (pid $pid) running..."
++		RETVAL=0
+ 	else
+-		echo "auotohome stopped"
+-		return 1
++		echo "$prog stopped"
++		RETVAL=1
+ 	fi
+ }
+ 
+-restart() {
+-	stop
+-	start
+-}
+-
+-condrestart() {
+-	[ -e /var/lock/subsys/autohome ] && restart || :
+-}
+-
+ # See how we were called.
+ case "$1" in
+   start)
+@@ -99,17 +73,21 @@ case "$1" in
+   stop)
+ 	stop
+ 	;;
+-  status)
+-	dostatus
+-	;;
+-  restart|reload)
+-	restart
++  restart)
++	stop
++	start
+ 	;;
+   condrestart)
+-	condrestart
++	if [ -f /var/lock/subsys/$prog ]; then
++		stop
++		start
++	fi
++	;;
++  status)
++	dostatus
+ 	;;
+   *)
+-	echo $"Usage: autohome {start|stop|status|restart|reload|condrestart}"
++	echo $"Usage: $prog {start|stop|restart|condrestart|status}"
+ 	exit 1
+ esac
+ 

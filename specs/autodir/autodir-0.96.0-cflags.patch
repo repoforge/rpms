@@ -1,0 +1,38 @@
+diff -Naupr autodir-0.96.0.orig/configure autodir-0.96.0/configure
+--- autodir-0.96.0.orig/configure	2005-08-24 06:31:51.000000000 +0200
++++ autodir-0.96.0/configure	2005-08-24 14:36:04.000000000 +0200
+@@ -19138,15 +19138,6 @@ LIBTOOL='$(SHELL) $(top_builddir)/libtoo
+ 
+ 
+ 
+-if test "$GCC" = yes
+-then
+-
+-	CFLAGS="-O2 -Wall -Wwrite-strings \
+-		-Wpointer-arith -Wcast-qual -Wcast-align \
+-		-Wstrict-prototypes -Wmissing-prototypes \
+-		-Wnested-externs -Winline -Wshadow"
+-fi
+-
+ # Checks for libraries.
+ 
+ LIBS_SAVE=$LIBS
+diff -Naupr autodir-0.96.0.orig/configure.in autodir-0.96.0/configure.in
+--- autodir-0.96.0.orig/configure.in	2005-08-24 06:30:56.000000000 +0200
++++ autodir-0.96.0/configure.in	2005-08-24 14:34:23.000000000 +0200
+@@ -21,15 +21,6 @@ AC_PROG_CC
+ AC_LIBTOOL_DLOPEN
+ AC_PROG_LIBTOOL
+ 
+-if test "$GCC" = yes
+-then
+-
+-	CFLAGS="-O2 -Wall -Wwrite-strings \
+-		-Wpointer-arith -Wcast-qual -Wcast-align \
+-		-Wstrict-prototypes -Wmissing-prototypes \
+-		-Wnested-externs -Winline -Wshadow"
+-fi
+-
+ # Checks for libraries.
+ 
+ LIBS_SAVE=$LIBS
