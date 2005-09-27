@@ -214,7 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_libdir}/libfreetype.so.*
 %doc ChangeLog README
 %if %{with_freetype1}
@@ -224,7 +224,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with_freetype1}
 %files utils
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 # 2.0.4 version included in demos package now
 #%{_bindir}/ftdump
 # 2.0.4 version included in demos package now

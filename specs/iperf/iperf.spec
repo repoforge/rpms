@@ -33,7 +33,7 @@ delay jitter, datagram loss.
 	INSTALL_DIR="%{buildroot}%{_bindir}"
 
 %files
-%defattr(-, root, root 0755)
+%defattr(-, root, root, 0755)
 %doc README doc/*.html doc/*.gif
 %{_bindir}/iperf
 

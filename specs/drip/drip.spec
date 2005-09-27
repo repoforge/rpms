@@ -52,7 +52,7 @@ LibIFO and a set of tools to handle DVD's
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %{_bindir}/drip
 %{_bindir}/dripencoder
@@ -60,7 +60,7 @@ LibIFO and a set of tools to handle DVD's
 %{_datadir}/pixmaps/*
 
 %files libifo
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_bindir}/bwifo
 %{_bindir}/cmdifo
 %{_bindir}/navdump

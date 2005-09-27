@@ -77,7 +77,7 @@ EOF
 /sbin/ldconfig 2>/dev/null
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO INSTALL NEWS ChangeLog 
 %{_bindir}/%{name}-%{rev}
 %{_datadir}/%{name}-%{rev}/*

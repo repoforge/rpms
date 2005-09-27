@@ -51,7 +51,7 @@ passwdGen and have a Palm OS based PDA I would greatly appreciate your support.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README
 %doc %{_mandir}/man1/*
 %{_bindir}/*

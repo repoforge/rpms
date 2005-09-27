@@ -58,7 +58,7 @@ autotrace.
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO
 %{_bindir}/*
 %{_libdir}/*.a

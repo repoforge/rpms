@@ -48,7 +48,7 @@ cd ..
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_libdir}/libfmod-3.74.1.so
 %dir %{_includedir}/fmod
 %{_includedir}/fmod/*

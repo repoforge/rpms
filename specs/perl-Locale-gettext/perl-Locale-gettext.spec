@@ -54,7 +54,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc README
 %doc %{_mandir}/man?/*
 %{_libdir}/perl5/vendor_perl/*/*

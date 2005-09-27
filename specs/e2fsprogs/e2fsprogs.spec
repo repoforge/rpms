@@ -105,7 +105,7 @@ fi
 exit 0
 
 %files -f %{name}.lang
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc README RELEASE-NOTES
 
 %{_root_sbindir}/badblocks
@@ -174,7 +174,7 @@ exit 0
 %{_mandir}/man8/tune2fs.8*
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_infodir}/libext2fs.info*
 %{_bindir}/compile_et
 %{_bindir}/mk_cmds

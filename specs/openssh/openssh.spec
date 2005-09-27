@@ -382,7 +382,7 @@ then
 fi
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc CREDITS ChangeLog INSTALL LICENCE OVERVIEW README* RFC* TODO WARNING*
 %attr(0755,root,root) %dir %{_sysconfdir}/ssh
 %attr(0600,root,root) %config(noreplace) %{_sysconfdir}/ssh/moduli

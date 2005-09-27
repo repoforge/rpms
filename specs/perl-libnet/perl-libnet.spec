@@ -52,7 +52,7 @@ if [ "$(cat libnet-1.0901-filelist)X" = "X" ] ; then
 fi
 
 %files -f libnet-1.0901-filelist
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 
 %changelog
 * Wed Dec 19 2001 root <root@redhat.com>

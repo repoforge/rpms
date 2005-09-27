@@ -160,7 +160,7 @@ fi
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc README COPYING ChangeLog
 %doc %{_mandir}/man8/athcool.8*
 %{_initrddir}/athcool

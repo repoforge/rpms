@@ -44,7 +44,7 @@ according to the official standards for DV video: IEC 61834 and SMPTE 314M.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPY* NEWS README* TODO
 %{_libdir}/*.so.*
 %exclude %{_bindir}/*

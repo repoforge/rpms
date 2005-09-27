@@ -47,7 +47,7 @@ and resource locking.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc ChangeLog COPYING FAQ NEWS README THANKS TODO
 %doc %{_mandir}/man1/cadaver.1*
 %{_bindir}/cadaver

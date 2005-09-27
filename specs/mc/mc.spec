@@ -207,7 +207,7 @@ fi
 %endif ## no mcserv/gmc
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 %doc FAQ COPYING NEWS README
 %{_bindir}/mc
@@ -230,7 +230,7 @@ fi
 %ifarch nonexistent_arch  ## no mcserv/gmc
 
 %files -n mcserv
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 %attr(0644, root, root) %config %{_sysconfdir}/pam.d/mcserv
 %config %{_sysconfdir}/rc.d/init.d/mcserv
@@ -238,7 +238,7 @@ fi
 %{_bindir}/mcserv
 
 %files -n gmc
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 
 %doc lib/README.desktop
 %config %{_sysconfdir}/mc.global

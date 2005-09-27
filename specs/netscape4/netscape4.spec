@@ -202,7 +202,7 @@ ln -s ../../netscape/plugins/libflashplayer.so \
 %{__rm} -rf %{buildroot}
 
 %files -n netscape-common
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_bindir}/netscape
 %dir %{_libdir}/netscape
 %lang(de_DE) %{_libdir}/netscape/de_DE
@@ -228,13 +228,13 @@ ln -s ../../netscape/plugins/libflashplayer.so \
 
 
 %files -n netscape-navigator
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %config(missingok) /etc/X11/applnk/Internet/netscape-navigator.desktop
 %{_bindir}/netscape-navigator
 %{_libdir}/netscape/netscape-navigator
 
 %files -n netscape-communicator
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %config(missingok) /etc/X11/applnk/Internet/netscape-communicator.desktop
 %{_bindir}/netscape-communicator
 %{_libdir}/netscape/netscape-communicator

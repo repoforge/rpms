@@ -51,7 +51,7 @@ Mixer binding.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_bindir}/gemu
 %{_datadir}/gnome/apps/Multimedia/*.desktop

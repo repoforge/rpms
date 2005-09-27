@@ -35,7 +35,7 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS NEWS README TODO
 %doc -P examples/[^M]*
 %doc %{_mandir}/man1/gob.1*

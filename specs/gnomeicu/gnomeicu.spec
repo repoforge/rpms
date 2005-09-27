@@ -81,7 +81,7 @@ scrollkeeper-update -q || :
 
 %if %{!?_without_applet:1}0
 %files applet
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_libexecdir}/gnomeicu-applet
 %{_datadir}/gnome-2.0/ui/GNOME_GnomeICUApplet.xml
 %{_libdir}/bonobo/servers/GNOME_GnomeICUApplet.server

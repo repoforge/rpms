@@ -309,7 +309,7 @@ rm -f %{buildroot}%{_sbindir}/updatedcc
 %attr(0644,root,root) %{_mandir}/man8/dccsight.8*
 
 %files milter
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc dccm.html
 %config(noreplace) %attr(0644,dcc,dcc) %{_localstatedir}/dcc/dict-attack-aliases
 %attr(0755,root,root) %{_sbindir}/dccm
@@ -323,7 +323,7 @@ rm -f %{buildroot}%{_sbindir}/updatedcc
 %attr(0644,root,root) %{_mandir}/man8/dccm.8*
 
 %files		cgi
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc README.cgi-bin
 %config(noreplace) %attr(0640,root,root) %{_sysconfdir}/httpd/conf.d/Z15_dcc.conf
 %config(noreplace) %attr(0644,root,root) %{_localstatedir}/dcc/userdirs/webusers
@@ -336,7 +336,7 @@ rm -f %{buildroot}%{_sbindir}/updatedcc
 %attr(0755,root,root) /var/www/dcc-bin/webuser-notify
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %attr(0644,root,root) %{_includedir}/dcc/*.h
 %attr(0755,root,root) %{_libdir}/*.a
 

@@ -406,7 +406,7 @@ exit 0
 %endif
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 /usr/bin/hoststat
 /usr/bin/makemap
 /usr/bin/purgestat
