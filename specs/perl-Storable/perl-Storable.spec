@@ -45,7 +45,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 find %{buildroot}%{_libdir} -name "*.so" -exec chmod u+w {} \;
 
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 

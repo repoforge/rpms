@@ -59,7 +59,7 @@ you will need to install %{name}-devel.
 %postun
 /sbin/ldconfig &>/dev/null
  
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
  
 %files 

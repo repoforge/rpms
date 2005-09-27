@@ -47,7 +47,7 @@ program, pid and text returned in a hash-reference.
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

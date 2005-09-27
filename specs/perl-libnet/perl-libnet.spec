@@ -31,7 +31,7 @@ libnet module for perl
 CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL < /dev/null
 make
 
-%clean 
+%clean
 rm -rf $RPM_BUILD_ROOT
 
 %install

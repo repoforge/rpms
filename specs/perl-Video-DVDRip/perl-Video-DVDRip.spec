@@ -80,7 +80,7 @@ EOF
 %endif
 
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 

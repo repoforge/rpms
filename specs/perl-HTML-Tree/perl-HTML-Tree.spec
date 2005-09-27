@@ -38,7 +38,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/perl5/*/i386-linux-thread-multi/perllocal.pod
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

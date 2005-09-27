@@ -39,7 +39,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
                 %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/ \
                 %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux/
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

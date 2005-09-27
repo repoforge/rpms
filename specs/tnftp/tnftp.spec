@@ -33,7 +33,7 @@ in February 2003.
 %{__install} -Dp -m0755 src/ftp %{buildroot}%{_bindir}/tnftp
 %{__install} -Dp -m0644 src/ftp.1 %{buildroot}%{_mandir}/man1/tnftp.1
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files 

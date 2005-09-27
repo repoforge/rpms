@@ -45,7 +45,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__rm} -rf %{buildroot}%{_libdir}/perl5/*/*-linux-thread-multi/
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/.packlist
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

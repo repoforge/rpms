@@ -39,7 +39,7 @@ Gregorian calendar date calculations
 %{__rm} -rf %{buildroot}%{perl_archlib}
 %{__rm} -rf %{buildroot}%{perl_vendorarch}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

@@ -39,7 +39,7 @@ Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) modu
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

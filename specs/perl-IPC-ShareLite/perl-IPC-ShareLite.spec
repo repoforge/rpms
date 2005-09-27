@@ -51,7 +51,7 @@ EOF
 %{__rm} -f %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux-thread-multi/auto/*{,/*}/{.packlist,*.bs}
 
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 

@@ -39,7 +39,7 @@ Text utilities for use with GD.
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

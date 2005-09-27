@@ -45,7 +45,7 @@ subclasses for any of these objects.
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files 

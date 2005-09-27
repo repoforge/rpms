@@ -40,7 +40,7 @@ mkdir -p $RPM_BUILD_ROOT/%{_docdir}
 make prefix=$RPM_BUILD_ROOT/%{_prefix} mandir=$RPM_BUILD_ROOT/%{_mandir} \
 		docdir=$RPM_BUILD_ROOT/%{_docdir} install
 
-%clean 
+%clean
 rm -rf $RPM_BUILD_ROOT
 
 

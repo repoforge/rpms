@@ -52,7 +52,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 		%{buildroot}%{perl_vendorarch}
 
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

@@ -48,7 +48,7 @@ rendering, and new events not originally part of the ASP API!
 %{__rm} -rf %{buildroot}%{perl_archlib} \
                 %{buildroot}%{perl_vendorarch}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

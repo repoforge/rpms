@@ -47,7 +47,7 @@ develop applications using libshout.
 test -d %{buildroot}%{_datadir}/doc && %{__rm} -rf %{buildroot}%{_datadir}/doc
 
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 

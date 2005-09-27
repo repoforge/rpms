@@ -40,7 +40,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL PREFIX="%{buildroot}%{_prefix}" INSTA
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

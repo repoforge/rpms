@@ -42,7 +42,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__rm} -rf %{buildroot}%{perl_archlib} \
 		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

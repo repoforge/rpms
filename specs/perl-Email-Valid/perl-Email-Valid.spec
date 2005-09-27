@@ -41,7 +41,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{__rm} -rf %{buildroot}%{perl_archlib}
 %{__rm} -rf %{buildroot}%{perl_vendorarch}
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 %files

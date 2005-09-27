@@ -77,7 +77,7 @@ done
 %{__rm} -f `find %{buildroot}%{_libdir}/perl5/vendor_perl/*/*-linux*/ \
     -name .packlist -o -name '*.bs'`
 
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
 
 
