@@ -1,0 +1,14 @@
+diff -Naupr xmame-0.100/src/unix.orig/video-drivers/xgl.c xmame-0.100/src/unix/video-drivers/xgl.c
+--- xmame-0.100/src/unix.orig/video-drivers/xgl.c	2005-09-17 03:43:05.000000000 +0200
++++ xmame-0.100/src/unix/video-drivers/xgl.c	2005-09-26 18:17:17.000000000 +0200
+@@ -78,8 +78,8 @@ struct rc_option xgl_opts[] = {
+ 
+ int xgl_init(void)
+ {
+-  const char *libGLName = "libGL.so";
+-  const char *libGLUName = "libGLU.so";
++  const char *libGLName = "libGL.so.1";
++  const char *libGLUName = "libGLU.so.1";
+   
+   if (!loadGLLibrary(libGLName, libGLUName))
+   {

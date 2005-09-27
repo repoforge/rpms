@@ -12,29 +12,28 @@
 %{?el2:%define _without_alsa 1}
 %{?el2:%define _without_glide3 1}
 
-%define rcver cvs
+#define rcver cvs
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
 
 %{!?_without_opengl:%define opengl 1}
-%ifarch %{ix86}
 %{!?_without_glide3:%define glide3 1}
-%endif
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.98
-Release: 0.1%{?rcver:.%{rcver}}
+Version: 0.100
+Release: 1%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
 Source20: http://cheat.retrogames.com/cheat.zip
-# http://www.mameworld.net/highscore/ 0.98 - 11/07/2005
-Source21: http://www.mameworld.net/highscore/uhsdat098.zip
-# http://www.arcade-history.com/ 0.97f - 08/07/2005
-Source22: http://www.arcade-history.com/download/history0_97f.zip
-# http://www.mameworld.net/mameinfo/ 0.97u4 - 03/07/2005
-Source23: http://www.mameworld.net/mameinfo/update/Mameinfo097u4.zip
-# http://www.mameworld.net/catlist/ 0.97u4 - 05/07/2005
+# http://www.mameworld.net/highscore/ 0.100 - 18/09/2005
+Source21: http://www.mameworld.net/highscore/uhsdat0100.zip
+# http://www.arcade-history.com/ 1.02 - 23/09/2005
+Source22: http://www.arcade-history.com/download/history1_02.zip
+# http://www.mameworld.net/mameinfo/ 0.99u6a - 02/09/2005
+Source23: http://www.mameworld.net/mameinfo/update/Mameinfo099u6a.zip
+# http://www.mameworld.net/catlist/ 0.99u2 - 12/09/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
+Patch0: xmame-0.100-libgl.patch
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -79,7 +78,8 @@ see http://www.mess.org/.
 
 
 %prep
-%setup -n %{name}-%{version}
+%setup
+%patch0 -p1 -b .libgl
 # Cleanup CVS stuff
 find . -type d -name CVS | xargs %{__rm} -rf
 
@@ -87,7 +87,7 @@ find . -type d -name CVS | xargs %{__rm} -rf
 %build
 %{__rm} -f makefile Makefile; %{__cp} -ap makefile.unix Makefile
 
-# For CVS snapshots, there are empty instead of symlinks, so fix that
+# For CVS snapshots, these are empty instead of symlinks, so fix that
 for dir in contrib doc; do
     if test -d ${dir}; then
         %{__rm} -rf ${dir}
@@ -97,6 +97,7 @@ done
 
 # Comment out the defaults, to enable overriding with the env variables
 %{__perl} -pi -e 's/^CFLAGS/# CFLAGS/g' Makefile
+%{__perl} -pi -e 's/^LD/# LD/g' Makefile
 %{__perl} -pi -e 's/^MY_CPU/# MY_CPU/g' Makefile
 
 # Replace lib with lib64 when required
@@ -106,7 +107,6 @@ done
 %{__perl} -pi -e 's/^SEPARATE_LIBM/# SEPARATE_LIBM/g' Makefile
 
 # Disable stripping on install, to get proper debuginfo
-%{__perl} -pi -e 's/ -s /    /g' Makefile
 %{__perl} -pi -e 's/^ASM_STRIP/ASM_STRIP = true/g' Makefile
 
 # Make the package build verbose by default (to see opts etc.)
@@ -115,8 +115,10 @@ done
 # The default, if not overwritten below
 export PREFIX=%{_prefix}
 export CFLAGS="%{optflags} -fno-merge-constants"
+export LD='$(CC) -Wl'
 export JOY_STANDARD=1
 export JOY_PAD=1
+export LIGHTGUN_ABS_EVENT=1
 %{!?_without_alsa:   export SOUND_ALSA=1}
 %{!?_without_esound: export SOUND_ESOUND=1}
 %{!?_without_arts:   export SOUND_ARTS_SMOTEK=1}
@@ -142,7 +144,7 @@ export JOY_PAD=1
 
 %ifarch ppc
     export MY_CPU="risc"
-    export LDFLAGS="-Wl,--relax"
+    export LD='$(CC) -Wl,--relax'
     %{!?_without_opts: export CFLAGS="-O3 -g -pipe -Wall -mlongcall -fno-merge-constants"}
 %endif
 
@@ -255,6 +257,17 @@ popd
 
 
 %changelog
+* Mon Sep 26 2005 Matthias Saou <http://freshrpms.net/> 0.100-1
+- Update to 0.100.
+- Remove explicit stripping disabling, since the default is to not strip now.
+- Enable LIGHTGUN_ABS_EVENT.
+- Override default LD (remove ,-s) to try and get real debuginfo at last...
+- Include patch to change dlopen of libGL.so to libGL.so.1 (and libGLU too).
+
+* Tue Aug 16 2005 Matthias Saou <http://freshrpms.net/> 0.99-1
+- Update to 0.99 (final).
+- Enable Glide3 for non-x86 archs again, since Hans has fixed it in Extras.
+
 * Tue Jul 19 2005 Matthias Saou <http://freshrpms.net/> 0.98-0.1.cvs
 - Update to 0.98 CVS snapshot.
 
