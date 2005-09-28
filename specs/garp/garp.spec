@@ -36,7 +36,7 @@ unused IP addresses (from a given IP range).
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING
-%doc %{_mandir}/man8/garp.8
+%doc %{_mandir}/man8/garp.8*
 %{_sbindir}/garp
 
 %changelog

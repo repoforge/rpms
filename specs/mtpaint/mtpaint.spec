@@ -13,7 +13,7 @@ URL: http://www.btinternet.com/~mark.tyler4/mtpaint/index.html
 Source: http://www.btinternet.com/~mark.tyler4/mtpaint/mtpaint-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel
+BuildRequires: gtk2-devel, libpng-devel
 
 %description
 mtPaint is a simple GTK+1/2 painting program designed for creating icons 
