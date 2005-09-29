@@ -67,6 +67,8 @@ is simple but incompatible with other shell languages.
 %{_bindir}/set_color
 %{_bindir}/tokenize
 %{_bindir}/xsel
+%{_bindir}/fish_pager
+%{_bindir}/fishd
 %exclude %{_docdir}/fish/
 
 %changelog

@@ -28,7 +28,7 @@ BuildRequires: make, libpng-devel, libart_lgpl-devel
 BuildRequires: arts-devel, gcc-c++, gettext, bison
 BuildRequires: zlib-devel, qt-devel, libjpeg-devel
 BuildRequires: kdelibs-devel, desktop-file-utils
-BuildRequires: gtk+-devel, gtkextra-devel
+BuildRequires: gtk+-devel, gtkextra-devel, gtk2-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

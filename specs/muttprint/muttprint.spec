@@ -27,6 +27,7 @@ plethora of them.
 %setup
 
 %build
+(cd langinfo; %{__make} clean)
 %{__make} %{?_smp_mflags}
 
 %install
