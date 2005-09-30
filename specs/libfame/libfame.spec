@@ -4,7 +4,7 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 7
+Release: 8
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/
@@ -12,6 +12,7 @@ Source: http://dl.sf.net/fame/libfame-%{version}.tar.gz
 Patch0: libfame-0.9.1-fstrict-aliasing.patch
 Patch1: http://www.linuxfromscratch.org/blfs/downloads/svn/libfame-0.9.1-gcc34-1.patch
 Patch2: libfame-0.9.1-underquoted.patch
+Patch3: libfame-0.9.1-x86_64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -40,6 +41,7 @@ libfame library.
 %patch0 -p1 -b .fstrict-aliasing
 %patch1 -p1 -b .mmxone
 %patch2 -p1 -b .m4
+%patch3 -p1 -b .x86_64
 ./autogen.sh
 
 # Fix lib stuff for lib64
@@ -104,6 +106,10 @@ libfame library.
 
 
 %changelog
+* Fri Sep 30 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-8
+- Include x86_64 patch from Andy Loening, fixes some segfaults.
+- Update underquoted patch to also remove warnings at libfame build time.
+
 * Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 0.9.1-7
 - Make the underquoted patch apply to the .in file too, so it actually works.
 - Put ldconfig calls back as programs to have rpm's deps pick them up.

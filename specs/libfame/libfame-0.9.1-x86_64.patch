@@ -1,0 +1,15 @@
+diff -Naupr libfame-0.9.1.orig/src/fame_malloc.c libfame-0.9.1/src/fame_malloc.c
+--- libfame-0.9.1.orig/src/fame_malloc.c	2003-06-20 14:40:30.000000000 +0200
++++ libfame-0.9.1/src/fame_malloc.c	2005-09-30 11:08:48.000000000 +0200
+@@ -36,9 +36,9 @@ void* fame_malloc(size_t size)
+    */  
+ 
+   ptr = (unsigned char*) malloc(size+ALIGN);
+-  aligned = (unsigned char*) (((unsigned int)ptr & (~(ALIGN-1))) + ALIGN );
++  aligned = (unsigned char*) (((unsigned long)ptr &(~(ALIGN-1))) + ALIGN );
+   padding = aligned - 1;
+-  *padding = (ALIGN-1) - ((unsigned int)ptr & (ALIGN-1));
++  *padding = (ALIGN-1) - ((unsigned long)ptr & (ALIGN-1));
+ 
+   return ((void*)aligned);
+ }

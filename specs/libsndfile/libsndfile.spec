@@ -11,7 +11,7 @@
 
 Summary: Library for reading and writing files containing sampled sound
 Name: libsndfile
-Version: 1.0.11
+Version: 1.0.12
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -20,6 +20,7 @@ Source: http://www.mega-nerd.com/libsndfile/libsndfile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_flac:BuildRequires: flac-devel}
 
 %description
 Libsndfile is a C library for reading and writing files containing
@@ -87,6 +88,10 @@ documentation for libsndfile.
 
 
 %changelog
+* Fri Sep 30 2005 Matthias Saou <http://freshrpms.net/> 1.0.12-1
+- Update to 1.0.12.
+- Enabled new FLAC support (not sqlite3, though).
+
 * Mon Dec 13 2004 Matthias Saou <http://freshrpms.net/> 1.0.11-2
 - No longer exclude octave *.m files: Can't find the reason why they were,
   maybe in the PLD spec used as the starting point?
