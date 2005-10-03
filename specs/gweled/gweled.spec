@@ -4,7 +4,7 @@
 
 Summary: Clone of 'bjeweled' or 'diamond mine'
 Name: gweled
-Version: 0.6
+Version: 0.7
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -60,6 +60,9 @@ zet nog mogelijk is.
 
 
 %changelog
+* Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.7-1
+- Updated to release 0.7.
+
 * Sat Dec 04 2004 Dries Verachtert <dries@ulyssis.org> - 0.6-1
 - Update to release 0.6.
 
