@@ -17,7 +17,7 @@
 
 Summary: collection manager
 Name: tellico
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -84,6 +84,9 @@ source /etc/profile.d/qt.sh
 %{_datadir}/mimelnk/application/x-tellico.desktop
 
 %changelog
+* Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Thu Sep 22 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Updated to release 1.0.1.
 

@@ -7,7 +7,7 @@
 
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
-Version: 3.6.0
+Version: 3.7.2
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -53,6 +53,9 @@ given regular expressions and deleting and adding windows.
 %{_bindir}/multitail
 
 %changelog
+* Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.7.2-1
+- Updated to release 3.7.2.
+
 * Mon Aug 1 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1
 - Updated to release 3.6.0.
 

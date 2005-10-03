@@ -6,7 +6,7 @@
 
 Summary: PoEdit is a cross-platform gettext catalogs (.po files) editor
 Name: poedit
-Version: 1.3.3
+Version: 1.3.4
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -56,6 +56,9 @@ EOF
 %{_datadir}/applications/poedit.desktop
 
 %changelog
+* Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1
+- Updated to release 1.3.4.
+
 * Mon Jun 27 2005 Dries Verachtert <dries@ulyssis.org> 1.3.3-1
 - Update to release 1.3.3.
 
