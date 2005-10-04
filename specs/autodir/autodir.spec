@@ -12,7 +12,7 @@ Source: http://dl.sf.net/intraperson/autodir-%{version}.tar.gz
 Patch0: autodir-0.96.0-init.d.patch
 Patch1: autodir-0.96.0-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libcap-devel
+BuildRequires: libcap-devel, gcc-c++
 
 %description
 Autodir offers a simple and effective means to create directories like home
