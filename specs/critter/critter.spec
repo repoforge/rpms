@@ -1,13 +1,10 @@
 # $Id$
 # Authority: leet
-
 # Upstream: Frank Becker <crittermail2005$telus,net>
 # Screenshot: http://criticalmass.sourceforge.net/images-critter/pics.v097/snap04.jpeg
 # ScreenshotURL: http://criticalmass.sourceforge.net/oldweb/screenshots.html
 
 %define real_name CriticalMass
-
-%{!?_dist: %{expand: %%define dist rhfc4}}
 
 %{?dist: %{expand: %%define %dist 1}}
 
@@ -19,6 +16,8 @@
 %{?el2:%define _without_xorg 1}
 %{?rh6:%define _without_xorg 1}
 
+%define desktop_vendor rpmforge
+
 Summary: SDL/OpenGL space shoot'em up game
 Name: critter
 Version: 0.9.12
@@ -28,21 +27,32 @@ Group: Amusements/Games
 URL: http://criticalmass.sourceforge.net/critter.php
 
 Source: http://dl.sf.net/criticalmass/%{real_name}-%{version}.tar.bz2
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, zlib-devel
-BuildRequires: libpng-devel, gcc-c++, desktop-file-utils
+BuildRequires: libpng-devel >= 1.2, gcc-c++
+BuildRequires: desktop-file-utils
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
-Critical Mass (aka Critter) is an SDL/OpenGL space shoot'em up game. It
-currently runs on Mac OS X, Windows, and Linux. The latter is my main
-development platform. Other platforms supported by SDL/OpenGL may also
-work with a bit of work.
+Critical Mass (aka Critter) is an SDL/OpenGL space shoot'em up game.
 
 %prep
 %setup -n %{real_name}-%{version}
+
+%{__cat} <<EOF >critter.desktop
+[Desktop Entry]
+Name=Critical Mass
+Comment=SDL/OpenGL space shoot'em up game
+Exec=critter
+Icon=critter.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Encoding=UTF-8
+Categories=Application;Game;
+EOF
 
 %build
 %configure
@@ -52,55 +62,33 @@ work with a bit of work.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m 0755 %{buildroot}%{_datadir}/icons/
-%{__install} -m 0644 %{name}.png %{buildroot}%{_datadir}/icons/%{name}.png
+%{__install} -Dp -m0644 critter.png %{buildroot}%{_datadir}/icons/critter.png
 
-%{__cat} <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=%{real_name}
-Comment=SDL/OpenGL space shoot'em up game
-Exec=%{name}
-Icon=%{name}.png
-Terminal=false
-Version=%{version}
-Type=Application
-StartupNotify=true
-Encoding=UTF-8
-EOF
 
-#Categories=Application;Game;X-Red-Hat-Extra;
-#EOF
-
-%if %{!?_without_freedesktop:1}0
-%{__install} -d -m 0755 %{buildroot}%{_datadir}/applications/
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install \
-    --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    --delete-original \
-    --add-category X-Fedora \
-    --add-category Application \
-    --add-category Game \
-    %{name}.desktop
-#    %{buildroot}%{_datadir}/applications/%{name}.desktop
-%else
-%{__install} -D -m 0644 %{name}.desktop \
-    %{buildroot}%{_sysconfdir}/X11/applnk/Games/%{name}.desktop
-%endif
+	--vendor %{desktop_vendor} \
+	--dir %{buildroot}%{_datadir}/applications \
+	critter.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%doc COPYING Readme.html TODO
+%doc %{_mandir}/man6/critter.6*
+%{_bindir}/Packer
+%{_bindir}/critter
+%{_datadir}/applications/%{desktop_vendor}-critter.desktop
+%{_datadir}/icons/critter.png
+%{_datadir}/Critical_Mass/
 
-%doc Readme.html COPYING TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/%{name}.png
-%{_datadir}/Critical_Mass/*
 
 %changelog
+* Wed Oct 05 2005 Dag Wieers <dag@wieers.com> - 0.9.12-1
+- Cosmetic changes.
+
 * Thu Sep 29 2005 C.Lee Taylor <leet@leenx.co.za> 0.9.12-1
 - Made some minor updates and fix icon
 
