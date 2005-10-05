@@ -62,12 +62,13 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -Dp -m0644 critter.png %{buildroot}%{_datadir}/icons/critter.png
+%{__install} -Dp -m0644 critter.png %{buildroot}%{_datadir}/pixmaps/critter.png
 
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install \
 	--vendor %{desktop_vendor} \
+	--add-category X-Red-Hat-Base \
 	--dir %{buildroot}%{_datadir}/applications \
 	critter.desktop
 
@@ -78,11 +79,11 @@ desktop-file-install \
 %defattr(-, root, root, 0755)
 %doc COPYING Readme.html TODO
 %doc %{_mandir}/man6/critter.6*
-%{_bindir}/Packer
 %{_bindir}/critter
+%{_bindir}/Packer
 %{_datadir}/applications/%{desktop_vendor}-critter.desktop
-%{_datadir}/icons/critter.png
 %{_datadir}/Critical_Mass/
+%{_datadir}/pixmaps/critter.png
 
 
 %changelog
