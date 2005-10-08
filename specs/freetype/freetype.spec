@@ -14,7 +14,7 @@
 
 %{!?with_xfree86:%define with_xfree86 1}
 
-Summary: A free and portable TrueType font rendering engine.
+Summary: Free and portable TrueType font rendering engine.
 Name: freetype
 Version: 2.1.9
 Release: 1.2
@@ -48,7 +48,7 @@ text-rendering library.
 
 %if %{with_freetype1}
 %package utils
-Summary: A collection of FreeType utilities.
+Summary: Collection of FreeType utilities.
 Group: System Environment/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -62,7 +62,7 @@ text-rendering library.
 %endif
 
 %package demos
-Summary: A collection of FreeType demos.
+Summary: Collection of FreeType demos.
 Group: System Environment/Libraries
 Requires: %{name} = %{version}-%{release}
 

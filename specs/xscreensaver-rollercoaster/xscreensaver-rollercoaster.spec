@@ -3,7 +3,7 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-Summary: An OpenGL rollercoaster ride animation for xscreensaver
+Summary: OpenGL rollercoaster ride animation for xscreensaver
 Name: xscreensaver-rollercoaster
 Version: 1.0.0
 Release: 0

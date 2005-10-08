@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-Summary: A Wrapper for run-time loading of XvMC libraries
+Summary: Wrapper for run-time loading of XvMC libraries
 Name: libXvMCW
 Version: 0.9.3
 Release: 1

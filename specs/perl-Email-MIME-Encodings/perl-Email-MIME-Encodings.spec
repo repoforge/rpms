@@ -7,7 +7,7 @@
 
 %define real_name Email-MIME-Encodings
 
-Summary: A unified interface to MIME encoding and decoding
+Summary: Unified interface to MIME encoding and decoding
 Name: perl-Email-MIME-Encodings
 Version: 1.3
 Release: 1

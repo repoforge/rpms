@@ -7,7 +7,7 @@
 
 %define real_name Plucene
 
-Summary: A Perl port of the Lucene search engine
+Summary: Perl port of the Lucene search engine
 Name: perl-Plucene
 Version: 1.21
 Release: 1

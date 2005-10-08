@@ -7,7 +7,7 @@
 
 %define real_name Test-Extreme
 
-Summary: A perlish unit testing framework
+Summary: Perlish unit testing framework
 Name: perl-Test-Extreme
 Version: 0.12
 Release: 1

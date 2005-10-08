@@ -24,7 +24,7 @@
 %{?rh6:%define _without_selinux 1}
 %{?yd3:%define _without_selinux 1}
 
-Summary: An IRC client
+Summary: IRC client
 Name: kvirc
 Version: 3.2.0
 Release: 2

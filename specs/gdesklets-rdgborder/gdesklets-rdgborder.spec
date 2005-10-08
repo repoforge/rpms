@@ -1,6 +1,6 @@
 %define rname RDGBorder
 
-Summary: A resizable border sensor, designed to replace LTVBorder.
+Summary: Resizable border sensor, designed to replace LTVBorder.
 Name: gdesklets-rdgborder
 Version: 0.2
 Release: 0

@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Casey Crabb <crabbkw$nafai,dyndns,org>
 
-Summary: A command line Jabber client written in Python
+Summary: Command line Jabber client written in Python
 Name: imcom
 Version: 1.33
 Release: 1

@@ -7,7 +7,7 @@
 
 %define real_name Params-Check
 
-Summary: A generic input parsing/checking mechanism
+Summary: Generic input parsing/checking mechanism
 Name: perl-Params-Check
 Version: 0.23
 Release: 1

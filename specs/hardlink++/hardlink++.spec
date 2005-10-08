@@ -1,6 +1,6 @@
 # $Id$
 
-Summary: A rewrite in C++ of the hardlink utility
+Summary: Rewrite in C++ of the hardlink utility
 Name: hardlink++
 Version: 0.02
 Release: 1
