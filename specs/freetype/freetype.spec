@@ -197,7 +197,7 @@ mv $RPM_BUILD_ROOT/%{_includedir}/freetype $RPM_BUILD_ROOT/%{_includedir}/freety
 %find_lang %{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %triggerpostun -- freetype < 2.0.5-3
 {

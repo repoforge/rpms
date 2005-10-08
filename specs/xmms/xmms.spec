@@ -203,7 +203,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)

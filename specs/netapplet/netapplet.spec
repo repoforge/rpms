@@ -134,6 +134,9 @@ if [ $1 -ne 0 ]; then
 	/sbin/service netdaemon restart &>/dev/null
 fi
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %exclude %{_sysconfdir}/init.d/netdaemon

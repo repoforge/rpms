@@ -186,7 +186,7 @@ install -m 644 %{SOURCE11} $RPM_BUILD_ROOT/%{_libdir}/desktop-links/ja/redhat.li
 %find_lang %name
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %ifarch nonexistent_arch ## no mcserv/gmc
 

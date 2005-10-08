@@ -306,7 +306,7 @@ mv $RPM_BUILD_ROOT%{_mandir}/man5/aliases.5 $RPM_BUILD_ROOT%{_mandir}/man5/alias
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %pre
 /usr/sbin/useradd -u 47 -d /var/spool/mqueue -r -s %{smshell} mailnull >/dev/null 2>&1

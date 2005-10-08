@@ -142,7 +142,7 @@ make check check-swig-pl CLEANUP=yes
 %endif
 
 %clean
-rm -rf ${RPM_BUILD_ROOT}
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 

@@ -36,8 +36,8 @@ Note: only recent hard drives have a temperature sensor.
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/hddtemp/hddtemp.db
 %find_lang %{name}
 
-#%clean
-#%{__rm} -rf %{buildroot}
+%clean
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)

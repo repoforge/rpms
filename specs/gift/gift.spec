@@ -43,8 +43,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-#%clean
-#%{__rm} -rf %{buildroot}
+%clean
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null
@@ -64,7 +64,6 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
 %{_includedir}/libgift/
 
 %changelog

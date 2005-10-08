@@ -84,7 +84,7 @@ ln -sf %{_root_libdir}/libss.so.2 libss.so
 ln -sf %{_root_libdir}/libuuid.so.1 libuuid.so
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig 2>/dev/null

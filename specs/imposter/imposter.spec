@@ -64,6 +64,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %postun
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO

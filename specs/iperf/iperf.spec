@@ -32,6 +32,9 @@ delay jitter, datagram loss.
 %makeinstall -C src \
 	INSTALL_DIR="%{buildroot}%{_bindir}"
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc README doc/*.html doc/*.gif

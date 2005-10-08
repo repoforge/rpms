@@ -52,10 +52,8 @@ pushd %{_upstream_cnvr}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 popd
 
-
 %clean
-rm -rf $RPM_BUILD_ROOT
-
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)

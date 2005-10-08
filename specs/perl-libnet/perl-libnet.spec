@@ -32,7 +32,7 @@ CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL < /dev/null
 make
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %install
 rm -rf $RPM_BUILD_ROOT

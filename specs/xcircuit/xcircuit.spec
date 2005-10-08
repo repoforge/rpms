@@ -47,6 +47,9 @@ CAD program for circuit schematic drawing and schematic capture.
 %{__make} install-man \
 	mandir="%{buildroot}%{_mandir}"
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %doc CHANGES COPYRIGHT README* TODO examples/
 %doc %{_mandir}/man1/xcircuit.1*

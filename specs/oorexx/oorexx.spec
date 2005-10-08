@@ -52,6 +52,9 @@ for lib in $(ls %{buildroot}%{_libdir}/ooRexx/*.so.?.?.?); do
 	%{__ln_s} -f $(basename $lib) ${lib//%\.?\.?\.?}
 done
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc CPLv1.0.txt INSTALL samples/

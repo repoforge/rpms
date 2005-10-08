@@ -40,7 +40,7 @@ for file in %{buildroot}%{_libdir}/gtk*/*/engines/libindustrial; do
 done
 
 %clean
-%{__rm} -rf %buildroot
+%{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)

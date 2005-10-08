@@ -33,7 +33,7 @@ to perform this configuration step.
 %{__install} -Dp -m0644 lphdisk.8 %{buildroot}%{_mandir}/man8/lphdisk.8
 
 %clean
-%{__rm} -rf ${buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

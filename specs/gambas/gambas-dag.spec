@@ -33,6 +33,9 @@ CXXFLAGS="%{optflags} -fpermissive -L/usr/lib/qt2/lib" \
 %install
 %makeinstall
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO

@@ -151,7 +151,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 %find_lang %{po_package}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig

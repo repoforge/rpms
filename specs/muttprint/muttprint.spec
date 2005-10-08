@@ -42,8 +42,7 @@ make prefix=$RPM_BUILD_ROOT/%{_prefix} mandir=$RPM_BUILD_ROOT/%{_mandir} \
 		docdir=$RPM_BUILD_ROOT/%{_docdir} install
 
 %clean
-rm -rf $RPM_BUILD_ROOT
-
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

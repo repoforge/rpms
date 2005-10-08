@@ -42,8 +42,8 @@ same computer. Enjoy it with your friends!
 %{__install} -d -m0755 %{buildroot}/%{_datadir}/games/kajaanikombat
 %{__install} -p -m0644 *.ogg *.png *.ttf %{buildroot}%{_datadir}/games/kajaanikombat/
 
-#%clean
-#%{__rm} -rf %{buildroot}
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
