@@ -56,7 +56,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %config %{_sysconfdir}/sound/events/*
 %{_bindir}/*

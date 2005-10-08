@@ -46,7 +46,7 @@ A great visual plugins for XMMS.
 
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING KNOWNBUGS NEWS README
 %{xmms_visualdir}/*.so
 %exclude %{xmms_visualdir}/*.la

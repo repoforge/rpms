@@ -58,12 +58,12 @@ programs that use this library.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/dvdread/
 %{_libdir}/*.a
 %{_libdir}/*.so

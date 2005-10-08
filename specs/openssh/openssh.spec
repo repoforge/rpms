@@ -399,7 +399,7 @@ fi
 %endif
 
 %files clients
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %attr(0755,root,root) %{_bindir}/ssh
 %attr(0644,root,root) %{_mandir}/man1/ssh.1*
 %attr(0755,root,root) %{_bindir}/scp
@@ -421,7 +421,7 @@ fi
 
 %if ! %{rescue}
 %files server
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %dir %attr(0111,root,root) %{_var}/empty/sshd
 %attr(0755,root,root) %{_sbindir}/sshd
 %attr(0755,root,root) %{_libexecdir}/openssh/sftp-server
@@ -436,7 +436,7 @@ fi
 
 %if ! %{no_x11_askpass}
 %files askpass
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc x11-ssh-askpass-%{aversion}/README
 %doc x11-ssh-askpass-%{aversion}/ChangeLog
 %doc x11-ssh-askpass-%{aversion}/SshAskpass*.ad
@@ -446,7 +446,7 @@ fi
 
 %if ! %{no_gnome_askpass}
 %files askpass-gnome
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %attr(0755,root,root) %config %{_sysconfdir}/profile.d/gnome-ssh-askpass.*
 %attr(0755,root,root) %{_libexecdir}/openssh/gnome-ssh-askpass
 %endif

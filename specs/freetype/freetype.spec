@@ -236,7 +236,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %files demos
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_bindir}/ftdump
 %{_bindir}/ftlint
 %if %{with_xfree86}
@@ -248,7 +248,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %if %{with_freetype1}
 %dir %{_includedir}/freetype1
 %{_includedir}/freetype1/*

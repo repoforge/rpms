@@ -41,7 +41,7 @@ keyboard.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog INSTALL NEWS README
 %{bmp_generalplugindir}/libitouch.so
 %config(noreplace) %{bmp_datadir}/bmp-itouch.config

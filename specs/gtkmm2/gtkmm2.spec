@@ -65,13 +65,13 @@ needed for developing GTK+ (GIMP ToolKit) applications in C++.
 
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING CHANGES ChangeLog NEWS README
 %{_libdir}/*.so.*
 
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc docs-to-include/*
 %{_includedir}/*
 %{_libdir}/*.so

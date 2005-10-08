@@ -135,7 +135,7 @@ env DISPLAY= %{_bindir}/gst-register-%{majmin} > /dev/null 2> /dev/null
 %postun -p /sbin/ldconfig
 
 %files -f %{po_package}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README TODO ABOUT-NLS REQUIREMENTS DOCBUILDING 
 %dir %{_libdir}/gstreamer-%{majmin}
 %dir %{_localstatedir}/cache/gstreamer-%{majmin}
@@ -145,7 +145,7 @@ env DISPLAY= %{_bindir}/gst-register-%{majmin} > /dev/null 2> /dev/null
 %{_mandir}/man1/*-%{majmin}.1.gz
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %dir %{_includedir}/%{name}-%{majmin}
 %{_includedir}/%{name}-%{majmin}/*
 %{_libdir}/libgstreamer-%{majmin}.so
@@ -156,7 +156,7 @@ env DISPLAY= %{_bindir}/gst-register-%{majmin} > /dev/null 2> /dev/null
 %{_datadir}/gstreamer-%{majmin}/doc
 
 %files tools
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_bindir}/*
 %exclude %{_bindir}/*-%{majmin}
 %{_mandir}/man1/*

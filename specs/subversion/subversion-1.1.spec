@@ -153,7 +153,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %postun perl -p /sbin/ldconfig
 
 %files -f %{name}.lang
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
 %doc tools subversion/LICENSE mod_authz_svn-INSTALL
 %doc doc/book/book/svn-book.html doc/book/book/images
@@ -169,7 +169,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %exclude %{_mandir}/man*/*::*
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_includedir}/subversion-1
 %{_libdir}/libsvn*.a
 %{_libdir}/libsvn*.la
@@ -177,13 +177,13 @@ rm -rf ${RPM_BUILD_ROOT}
 %exclude %{_libdir}/libsvn_swig_perl*
 
 %files -n mod_dav_svn
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/subversion.conf
 %{_libdir}/httpd/modules/mod_dav_svn.so
 %{_libdir}/httpd/modules/mod_authz_svn.so
 
 %files perl
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %{perl_vendorarch}/auto/SVN
 %{perl_vendorarch}/SVN
 %{_libdir}/libsvn_swig_perl*

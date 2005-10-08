@@ -99,7 +99,7 @@ fi
 
 
 %files -f %{name}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING CREDITS ChangeLog NEWS README TODO
 %{_bindir}/*
 %dir %{_libdir}/glame/
@@ -114,7 +114,7 @@ fi
 %endif
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %dir %{_libdir}/glame/
 %{_libdir}/glame/*.a
 %exclude %{_libdir}/glame/*.la

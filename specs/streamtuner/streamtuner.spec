@@ -81,7 +81,7 @@ scrollkeeper-update -q || :
 %{_datadir}/streamtuner/
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/streamtuner/
 %{_libdir}/pkgconfig/streamtuner.pc
 %dir %{_libdir}/streamtuner/

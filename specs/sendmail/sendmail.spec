@@ -508,18 +508,18 @@ exit 0
 %endif
 
 %files cf
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 /%{sendmailcf}
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_includedir}/libmilter/*.h
 %{_libdir}/libmilter.a
 %{_libdir}/libsmutil.a
 %{_libdir}/libsm.a
 
 %files doc
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_docdir}/sendmail
 
 %changelog

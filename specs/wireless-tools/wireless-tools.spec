@@ -59,7 +59,7 @@ specific stats for wireless networking equipment.
 /sbin/ldconfig 2>/dev/null
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc *.txt README
 %doc %{_mandir}/man?/*
 %{_sbindir}/*

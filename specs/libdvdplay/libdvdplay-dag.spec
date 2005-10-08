@@ -57,12 +57,12 @@ package installed.
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO
 %{_libdir}/*.so.*
 
 %files devel
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/dvdplay/

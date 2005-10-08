@@ -126,7 +126,7 @@ install -m 644 contrib/RPM/squirrelmail.conf \
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %config %dir %{_sysconfdir}/squirrelmail
 %config(noreplace) %{_sysconfdir}/squirrelmail/config.php
 %if %{rhl7}

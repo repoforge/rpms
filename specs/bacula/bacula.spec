@@ -450,7 +450,7 @@ fi
 %if %{sqlite}
 
 %files sqlite
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 
 /etc/bacula/bacula
 /etc/bacula/console
@@ -521,8 +521,7 @@ fi
 %endif
 
 %files client
-%defattr(-,root,root)
-
+%defattr(-, root, root, 0755)
 /etc/bacula/fd
 /etc/bacula/console
 /etc/init.d/bacula-fd
@@ -554,7 +553,7 @@ if [ $1 = 0 ]; then
 fi
 
 %files rescue
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 /etc/bacula/rescue/backup.etc.list
 /etc/bacula/rescue/format_floppy
 /etc/bacula/rescue/getdiskinfo

@@ -167,7 +167,7 @@ done
 env DISPLAY= /usr/bin/gst-register-%{majmin} >/dev/null 2>&1 || true
 
 %files -f %{po_package}.lang
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README
 %doc AUTHORS.Hermes COPYING.Hermes README.Hermes
 %{_sysconfdir}/gconf/schemas/gstreamer-%{majmin}.schemas
@@ -305,7 +305,7 @@ env DISPLAY= /usr/bin/gst-register-%{majmin} >/dev/null 2>&1 || true
 %{_libdir}/gstreamer-%{majmin}/libgstmpegstream.*
 
 %files devel
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/gstreamer-%{majmin}/gst/*
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*so
