@@ -11,7 +11,7 @@ Group: Applications/File
 URL: http://he.fi/bchunk/
 
 Source: http://he.fi/bchunk/bchunk-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 binchunker converts a CD image in a ".bin / .cue" format (sometimes

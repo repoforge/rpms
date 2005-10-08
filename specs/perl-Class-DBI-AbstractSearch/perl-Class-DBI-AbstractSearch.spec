@@ -15,7 +15,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-AbstractSearch/
 
 Source: http://www.cpan.org/modules/by-module/Class/Class-DBI-AbstractSearch-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 Requires: perl

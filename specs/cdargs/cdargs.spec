@@ -10,7 +10,7 @@ Group: Applications/File
 URL: http://www.skamphausen.de/software/cdargs/
 
 Source: http://www.skamphausen.de/software/cdargs/cdargs-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
 

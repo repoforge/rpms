@@ -15,7 +15,7 @@ Group: Development/Libraries
 URL: http://pyxattr.sourceforge.net/
 
 Source: http://dl.sf.net/pyxattr/pyxattr-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}--%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: pyxattr <= %{version}-%{release}
 BuildRequires: python >= 2.2, libattr-devel, python-devel

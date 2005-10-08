@@ -10,7 +10,7 @@ Group: Utilities
 URL: http://www.bitmover.com/lmbench
 
 Source: http://dl.sf.net/lmbench/lmbench-%{version}-a5.tgz
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Bandwidth benchmarks: cached file read, memory copy (bcopy), memory read,

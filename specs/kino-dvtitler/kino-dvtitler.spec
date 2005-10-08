@@ -11,7 +11,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://dvtitler.sourceforge.net/
 Source0: http://dl.sf.net/dvtitler/dvtitler-%{version}.tar.gz
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: kino >= 0.7.0
 BuildRequires: kino >= 0.7.0, libgnomeui-devel, gcc-c++
 

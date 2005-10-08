@@ -9,7 +9,7 @@ License: LGPL
 Group: Applications/Archiving
 URL: http://p7zip.sourceforge.net/
 Source: http://dl.sf.net/p7zip/p7zip_%{version}_src.tar.bz2
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description

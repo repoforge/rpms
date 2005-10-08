@@ -24,7 +24,7 @@ Group: Amusements/Games
 URL: http://armagetronad.sourceforge.net/
 Source: http://dl.sf.net/armagetronad/armagetronad-%{version}.tar.bz2
 Patch: armagetronad-0.2.7.1-gcc4.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL_image >= 1.2.0, esound
 BuildRequires: gcc-c++, libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: XFree86-devel, SDL_image-devel, SDL-devel, esound-devel

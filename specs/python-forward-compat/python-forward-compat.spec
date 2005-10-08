@@ -13,7 +13,7 @@ Summary:        Forward compatibility package for Python %{version}
 
 Group:          Development/Languages
 License:        PSF
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch:      noarch
 Requires:       %{_bindir}/python%{version}

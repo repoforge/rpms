@@ -12,7 +12,7 @@ Group: Applications/Multimedia
 Source0: http://dl.sf.net/glame/glame-%{version}.tar.gz
 Source1: glame.png
 URL: http://glame.sourceforge.net/
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): info
 Requires(preun): info
 BuildRequires: gcc-c++, libgnomeui-devel, libglade-devel, guile-devel

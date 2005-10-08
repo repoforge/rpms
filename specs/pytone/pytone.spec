@@ -16,7 +16,7 @@ Group: Applications/Multimedia
 URL: http://www.luga.de/pytone/
 
 Source: http://www.luga.de/pytone/download/PyTone-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel, libao-devel
 Requires: python, python-ao, python-mad, python-ogg, python-vorbis

@@ -14,7 +14,7 @@ URL: http://armagetronad.sourceforge.net/
 Source0: http://armagetron.sourceforge.net/addons/moviepack.zip
 Source1: http://armagetron.sourceforge.net/addons/moviesounds_mq.zip
 Source2: settings.cfg.realistic
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 Requires: armagetronad
 Obsoletes: armagetron-moviepack < 1.0-2

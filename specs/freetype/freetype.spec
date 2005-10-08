@@ -34,7 +34,7 @@ Patch5: ft2demos-2.1.9-mathlib.patch
 Patch20:  freetype-2.1.3-enable-ft2-bci.patch
 Patch21:  freetype-1.4-disable-ft1-bci.patch
 
-Buildroot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: automake autoconf >= 2.59 libtool symlinks zlib-devel
 
 %description

@@ -19,7 +19,7 @@ URL: http://games.hollowworks.com/index.php
 
 Source: http://www.hollowworks.com/downloads/adventuresonplanetzephulor/files/%{name}-source.tar.gz
 Source1: %{name}.png
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 #Requires: python, python-game
 Requires: python-game

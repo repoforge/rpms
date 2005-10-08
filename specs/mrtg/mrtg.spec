@@ -18,7 +18,7 @@ Source4: README-14allcgi
 Source5: 14all.cgi
 Source6: filter-requires-mrtg.sh
 Patch: mrtg-2.9.17-lib64.patch
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel, gd-devel, libjpeg-devel, libpng-devel
 Requires: perl >= 0:5.004, gd
