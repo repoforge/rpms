@@ -19,7 +19,7 @@
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
-Version: 1.2.3
+Version: 1.3.1
 Release: 0
 License: GPL
 Group: Applications/Productivity
@@ -95,6 +95,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Wed Oct 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1
 - Updated to release 1.2.3.
 

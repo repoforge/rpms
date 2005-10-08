@@ -6,7 +6,7 @@
 
 Summary: Detect Unintended Memory Access
 Name: duma
-Version: 2.4.19
+Version: 2.4.23
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -68,5 +68,11 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Sat Oct 08 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.23-1
+- Updated to release 2.4.23.
+
+* Fri Oct 07 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.22-1
+- Updated to release 2.4.22.
+
 * Tue Sep 20 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.19-1
 - Initial package.
