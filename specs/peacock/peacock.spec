@@ -50,7 +50,8 @@ Peacock is an HTML Editor for Gnome. Its is distributed under the GNU GPL Licens
 
 make
 
-%install  
+%install
+%{__rm} -rf %{buildroot}  
 mkdir -p $RPM_BUILD_ROOT/
 
 %makeinstall

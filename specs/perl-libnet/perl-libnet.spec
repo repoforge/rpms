@@ -35,7 +35,7 @@ make
 %{__rm} -rf %{buildroot}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 eval `perl '-V:installarchlib'`
 mkdir -p $RPM_BUILD_ROOT/$installarchlib
 make PREFIX=$RPM_BUILD_ROOT/usr INSTALLDIRS=vendor install

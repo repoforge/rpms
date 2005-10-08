@@ -158,8 +158,8 @@ export CFLAGS="-D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE $RPM_OPT_FLAGS"
 	--without-debug
 make
 
-%install 
-rm -rf $RPM_BUILD_ROOT
+%install
+%{__rm} -rf %{buildroot} 
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/{rc.d/init.d,pam.d,profile.d,X11/wmconfig}
 
 %{makeinstall} sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir}

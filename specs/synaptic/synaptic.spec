@@ -66,7 +66,7 @@ EOF
 
 
 %install
-%{__rm} -fr %{buildroot}
+%{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 

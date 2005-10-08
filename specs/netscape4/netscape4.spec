@@ -90,7 +90,7 @@ mv communic*/* .
 rmdir communicator*
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir} \
 	%{buildroot}%{_libdir}/netscape/plugins \
 	%{buildroot}%{_libdir}/netscape/java/classes

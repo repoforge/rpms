@@ -26,6 +26,7 @@ read latency; Miscellanious Processor clock rate calculation.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 #%{__make} install DESTDIR="%{buildroot}"
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 %{__install} -d -m0755 %{buildroot}%{_mandir}/{man1,man3,man8}/ \

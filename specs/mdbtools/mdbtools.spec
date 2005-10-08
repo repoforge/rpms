@@ -65,7 +65,7 @@ EOF
 	--with-unixodbc="%{_prefix}"
 %{__make} %{?_smp_mflags}
  
-%install 
+%install
 %{__rm} -rf %{buildroot}
 %makeinstall
 

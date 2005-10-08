@@ -40,8 +40,8 @@ EOF
 # python prog
 
 %install
-# strange install script
 %{__rm} -rf %{buildroot}
+# strange install script
 %{__mkdir_p} %{buildroot}%{_datadir}
 %{__tar} -xf setup.tar -C %{buildroot}%{_datadir}
 %{__sed} -i 's/python2\.2/python/g;' %{buildroot}%{_datadir}/pgst/pgst.py*

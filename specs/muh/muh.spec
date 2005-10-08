@@ -35,7 +35,7 @@ If you have no idea what this is good for you probably don't need it.
 %configure
 %{__make} %{?_smp_mflags}
 
-%install 
+%install
 %{__rm} -rf %{buildroot}
 %makeinstall
 

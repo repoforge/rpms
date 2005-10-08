@@ -34,7 +34,7 @@ This package provides virtual capabilities and directories for Python
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}

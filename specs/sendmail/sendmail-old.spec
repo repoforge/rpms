@@ -155,7 +155,7 @@ for i in libmilter libsmutil sendmail mailstats rmail praliases \
 done
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 mkdir -p $RPM_BUILD_ROOT
 
 cd $RPM_BUILD_ROOT

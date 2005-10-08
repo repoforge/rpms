@@ -28,7 +28,7 @@ in February 2003.
 %configure 
 %{__make} %{?_smp_mflags}
 
-%install 
+%install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 src/ftp %{buildroot}%{_bindir}/tnftp
 %{__install} -Dp -m0644 src/ftp.1 %{buildroot}%{_mandir}/man1/tnftp.1

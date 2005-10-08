@@ -94,7 +94,7 @@ make %{?_smp_mflags} all swig-py %{swigdirs}
 make swig-pl
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
+%{__rm} -rf %{buildroot}
 make install install-swig-py install-swig-pl-lib \
         DESTDIR=$RPM_BUILD_ROOT %{swigdirs}
 

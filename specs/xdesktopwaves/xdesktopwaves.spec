@@ -28,6 +28,7 @@ stirring up the water.
 
 
 %install
+%{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}{%{_bindir},%{_mandir}/man1}
 %{__make} install \
     BINDIR=%{buildroot}%{_bindir} \

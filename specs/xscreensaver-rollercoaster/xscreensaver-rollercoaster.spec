@@ -39,6 +39,7 @@ gunzip -c %{SOURCE1} | patch -f || true
 
 
 %install
+%{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 bin/roller-ss %{buildroot}/usr/X11R6/lib/xscreensaver/roller-ss
 mkdir -p %{buildroot}%{_datadir}/rollercoaster/
 %{__install} -Dp -m0644 bin/*.tga bin/*.bmp %{buildroot}%{_datadir}/rollercoaster/
