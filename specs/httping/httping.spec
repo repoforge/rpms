@@ -13,7 +13,7 @@ Group: Applications/Internet
 URL: http://www.vanheusden.com/httping/
 
 Source: http://www.vanheusden.com/httping/httping-%{version}.tgz
-Patch: httping/httping-1.0.4-makefile.patch
+#Patch: httping-1.0.4-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -24,16 +24,19 @@ that the transmission across the network also takes time!
 
 %prep
 %setup
-%patch
+#%patch
 
 #{?el3:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
 #{?rh9:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS:="%{optflags}"
+# The CFLAGS in the makefile are needed, so VERSION is set correctly
+# CFLAGS:="%{optflags}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -d %{buildroot}%{_bindir}
 %{__make} install DESTDIR="%{buildroot}"
 
 %clean
