@@ -78,7 +78,7 @@ find doc -name "*.fixes" |xargs rm -f
 make %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}/etc/{rc.d/init.d,logrotate.d}
 mkdir -p %{buildroot}/usr/{bin,lib,sbin,include}
 mkdir -p %{buildroot}/var/named

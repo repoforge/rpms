@@ -45,7 +45,7 @@ you will need to install %{name}-devel.
 	--with-unixodbc="%{_prefix}"
 %{__make} %{?_smp_mflags}
  
-%install 
+%install
 %{__rm} -rf %{buildroot}
 %makeinstall
 

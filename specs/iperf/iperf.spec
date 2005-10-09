@@ -29,6 +29,7 @@ delay jitter, datagram loss.
 %{__make} %{?_smp_mflags}
 
 %install
+%{__rm} -rf %{buildroot}
 %makeinstall -C src \
 	INSTALL_DIR="%{buildroot}%{_bindir}"
 

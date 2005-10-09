@@ -46,7 +46,7 @@ you will need to install %{name}-devel.
 	--enable-sybase-compat
 %{__make} %{?_smp_mflags}
  
-%install 
+%install
 %{__rm} -rf %{buildroot}
 %makeinstall
 

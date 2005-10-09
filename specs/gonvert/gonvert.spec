@@ -35,7 +35,7 @@ your own units.
 %build 
 %{__make} %{?_smp_mflags}
 
-%install 
+%install
 %{__rm} -rf %{buildroot}
 %makeinstall
 

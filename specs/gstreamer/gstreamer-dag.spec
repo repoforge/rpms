@@ -100,7 +100,7 @@ with different major/minor versions of GStreamer.
 %{__make} %{?_smp_mflags}
 
 
-%install  
+%install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang gstreamer-%{majmin}

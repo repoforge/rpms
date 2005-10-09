@@ -67,7 +67,7 @@ make
 make -C po
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 export PATH=/sbin:$PATH
 
 make install install-libs DESTDIR="$RPM_BUILD_ROOT" \

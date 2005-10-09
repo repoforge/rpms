@@ -166,7 +166,7 @@ export CXXFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
 %endif
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 
 # Install Freetype 2
