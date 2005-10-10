@@ -16,16 +16,16 @@
 
 Summary: Telephony interface support
 Name: zaptel
-Version: 1.0.9.1
+Version: 1.0.9.2
 Release: %{?prever:0.%{prever}.}1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
 Source0: http://ftp.digium.com/pub/zaptel/zaptel-%{version}%{?prever:-%{prever}}.tar.gz
 Source1: zaptel-makedev.d.txt
-Patch: zaptel-1.0.9.1-makefile.patch
+Patch: zaptel-1.0.9.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: kernel-devel = %{kversion}
+BuildRequires: kernel%{?ksmp}-devel = %{kversion}
 BuildRequires: newt-devel, MAKEDEV
 Provides: %{name}-devel = %{version}-%{release}
 
@@ -60,7 +60,7 @@ This package contains the zaptel kernel modules for the Linux kernel package :
 %build
 export CFLAGS="%{optflags}"
 %{__make} %{?_smp_mflags} \
-    KVERSION="%{kversion}"
+    KVERSION="%{kernel}"
 
 
 %install
@@ -70,7 +70,7 @@ export CFLAGS="%{optflags}"
 touch %{buildroot}%{_sysconfdir}/modprobe.conf
 # Main install
 %{__make} install \
-    KVERSION="%{kversion}" \
+    KVERSION="%{kernel}" \
     INSTALL_PREFIX="%{buildroot}" \
     ROOT_PREFIX="%{buildroot}"
 
@@ -91,9 +91,9 @@ ${MAKEDEV} \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/zaptel
 
 # Move kernel modules in the "kernel" subdirectory, also get smp right
-%{__mkdir_p} %{buildroot}/lib/modules/%{kernel}/kernel
-%{__mv} %{buildroot}/lib/modules/%{kversion}/misc \
-        %{buildroot}/lib/modules/%{kernel}/kernel/
+#%{__mkdir_p} %{buildroot}/lib/modules/%{kernel}/kernel
+#%{__mv} %{buildroot}/lib/modules/%{kernel}/misc \
+#        %{buildroot}/lib/modules/%{kernel}/kernel/
 
 # Move the modules config file back in order to put it in docs instead
 %{__mv} %{buildroot}%{_sysconfdir}/modprobe.conf . || :
@@ -110,11 +110,9 @@ ${MAKEDEV} \
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %post -n kernel%{?ksmp}-module-zaptel
@@ -144,6 +142,11 @@ ${MAKEDEV} \
 
 
 %changelog
+* Thu Sep 15 2005 Matthias Saou <http://freshrpms.net/> 1.0.9.2-1
+- Update to 1.0.9.2.
+- Update makefile patch to add ztdummy to the modules.
+- Fix kernel-smp-devel requirement for smp modules rebuild.
+
 * Tue Aug 23 2005 Matthias Saou <http://freshrpms.net/> 1.0.9.1-0
 - Update to 1.0.9.1.
 - Remove "devices" from install with the Makefile patch.
