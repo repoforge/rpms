@@ -2,17 +2,16 @@
 # Authority: matthias
 
 # Define when building a CVS shapshot
-#define	cvs	-cvs
+%define	cvs	-cvs
 
 Summary: Library for reading DVD video disks
 Name: libdvdread
 Version: 0.9.4
-Release: 7%{?cvs:cvs}
+Release: 8%{?cvs:cvs}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dtek.chalmers.se/groups/dvd/
 Source: http://www.dtek.chalmers.se/groups/dvd/dist/libdvdread-%{version}%{?cvs}.tar.gz
-Patch: libdvdread-udffindfile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss >= 1.2.5
 # The old libtool included b0rkes the build on an x86_64 FC3 mach root
@@ -42,7 +41,6 @@ programs that use this library.
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
-%patch -p1
 %{__libtoolize} --force --copy
 %{__aclocal}
 %{__autoconf}
@@ -84,6 +82,10 @@ programs that use this library.
 
 
 %changelog
+* Mon Sep 19 2005 Matthias Saou <http://freshrpms.net/> 0.9.4-8cvs
+- Update to 0.9.4-cvs pre-release.
+- Remove udffindfile patch, projects shouldn't need it.
+
 * Tue Apr 19 2005 Dries Verachtert <dries@ulyssis.org> 0.9.4-7
 - Added a patch provided by Ralf Ertzinger so certain symbols 
   are exported again.
