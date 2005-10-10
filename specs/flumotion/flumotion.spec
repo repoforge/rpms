@@ -3,7 +3,7 @@
 
 Summary: Fluendo Streaming Server
 Name: flumotion
-Version: 0.1.7
+Version: 0.1.9
 Release: 1
 Group: Applications/Internet
 License: GPL
@@ -135,10 +135,11 @@ fi
 %{_bindir}/flumotion-worker
 %{_sbindir}/flumotion
 %{_libdir}/flumotion/
-%{_datadir}/applications/flu-admin.desktop
+%{_datadir}/applications/flumotion-admin.desktop
 %{_datadir}/flumotion/
 %{_datadir}/pixmaps/flumotion.png
 %dir %attr(0750, flumotion, flumotion) %{_datadir}/flumotion/.flumotion
+%{_mandir}/man1/flumotion-*
 %{_libdir}/pkgconfig/flumotion.pc
 %dir %attr(0750, flumotion, flumotion) %{_var}/cache/flumotion/
 %dir %attr(0750, flumotion, flumotion) %{_var}/log/flumotion/
@@ -146,6 +147,12 @@ fi
 
 
 %changelog
+* Thu Aug  4 2005 Matthias Saou <http://freshrpms.net/> 0.1.9-1
+- Update to 0.1.9.
+
+* Mon Jun 13 2005 Matthias Saou <http://freshrpms.net/> 0.1.8-1
+- Update to 0.1.8.
+
 * Sat Apr  9 2005 Matthias Saou <http://freshrpms.net/> 0.1.7-1
 - Update to 0.1.7.
 
