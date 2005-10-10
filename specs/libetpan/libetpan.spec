@@ -1,6 +1,6 @@
 Summary: Portable mail access library
 Name: libetpan
-Version: 0.38
+Version: 0.39.1
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -31,7 +31,7 @@ the libetpan library.
 
 
 %prep
-%setup
+%setup -n %{name}-0.39
 
 
 %build
@@ -72,6 +72,9 @@ the libetpan library.
 
 
 %changelog
+* Mon Oct 11 2005 Matthias Saou <http://freshrpms.net/> 0.39.1-1
+- Update to 0.39.1.
+
 * Wed Aug  3 2005 Matthias Saou <http://freshrpms.net/> 0.38-1
 - Initial RPM release.
 

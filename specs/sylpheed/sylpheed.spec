@@ -5,14 +5,14 @@
 
 Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
-Version: 1.0.5
+Version: 2.0.2
 Release: 0
 License: GPL
 Group: Applications/Internet
 URL: http://sylpheed.good-day.net/
-Source: http://sylpheed.good-day.net/sylpheed/v1.0/sylpheed-%{version}.tar.bz2
+Source: http://sylpheed.good-day.net/sylpheed/v2.0/sylpheed-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk+-devel >= 1.2.6, gdk-pixbuf-devel >= 0.8.0
+BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, gettext, desktop-file-utils, gcc-c++
 BuildRequires: openssl-devel >= 0.9.6
 %{!?_without_gpgme:BuildRequires: gpgme-devel >= 0.4.5}
@@ -40,10 +40,12 @@ Available rpmbuild rebuild options :
 
 
 %build
+# Workaround for missing krb5 includes (on RHL9 was it?)
 if pkg-config openssl; then
     CFLAGS="%{optflags} `pkg-config --cflags openssl`"
     LDFLAGS="$LDFLAGS `pkg-config --libs-only-L openssl`"
 fi
+
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-ssl \
@@ -76,13 +78,19 @@ desktop-file-install --vendor %{desktop_vendor} \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING README* TODO*
-%{_bindir}/%{name}
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
-%{_datadir}/%{name}
+%{_bindir}/sylpheed
+%{_datadir}/applications/%{desktop_vendor}-sylpheed.desktop
+%{_datadir}/pixmaps/sylpheed.png
+%{_datadir}/sylpheed/
 
 
 %changelog
+* Mon Oct 10 2005 Matthias Saou <http://freshrpms.net/> 2.0.2-0
+- Update to 2.0.2.
+
+* Tue Sep 13 2005 Matthias Saou <http://freshrpms.net/> 2.0.1-0
+- Update to 2.0.1.
+
 * Mon Jul 11 2005 Matthias Saou <http://freshrpms.net/> 1.0.5-0
 - Update to 1.0.5.
 

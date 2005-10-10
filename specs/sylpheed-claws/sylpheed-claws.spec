@@ -10,9 +10,9 @@
 %{?el4:   %define gettextdevel 1}
 %{?fc3:   %define gettextdevel 1}
 
-Summary: DEVELOPMENT branch of the sylpheed e-mail client
+Summary: Enhanced branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.9.13
+Version: 1.9.15
 Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -25,7 +25,7 @@ Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0
 BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
 BuildRequires: openssl-devel, gpgme-devel >= 0.4.5, openldap-devel
-BuildRequires: compface-devel, libetpan-devel >= 0.38
+BuildRequires: compface-devel, libetpan-devel >= 0.39
 BuildRequires: startup-notification-devel
 %{?gettextdevel:BuildRequires: gettext-devel}
 BuildRequires: gettext
@@ -45,8 +45,7 @@ Windows, such as Outlook Express, Becky!, and Datula. The interface is also
 designed to emulate the mailers on Emacsen, and almost all commands are
 accessible with the keyboard.
 
-This is the BLEEDING EDGE, DEVELOPMENT branch of sylpheed!
-You have been warned ;-)
+This is the enhanced branch of sylpheed.
 
 Available rpmbuild rebuild options :
 --with : pilot
@@ -125,6 +124,14 @@ desktop-file-install \
 
 
 %changelog
+* Mon Oct 10 2005 Matthias Saou <http://freshrpms.net/> 1.9.15-1
+- Update to 1.9.15.
+- Update libetpan dependency to >= 0.39.
+
+* Tue Sep 13 2005 Matthias Saou <http://freshrpms.net/> 1.9.14-1
+- Update to 1.9.14.
+- Replace "development" and "bleeding edge" with "enhanced".
+
 * Mon Aug  1 2005 Matthias Saou <http://freshrpms.net/> 1.9.13-1
 - Update to 1.9.13.
 - Added new libetpan dependency (for IMAP support).
