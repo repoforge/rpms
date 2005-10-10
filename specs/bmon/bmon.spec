@@ -40,7 +40,7 @@ bmon is an interface bandwidth monitor.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(- , root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc BUGS ChangeLog TODO
 %doc %{_mandir}/man1/bmon.1*
 %{_bindir}/bmon

@@ -138,7 +138,7 @@ fi
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root, 0755)
+%defattr(-, root, root, 0755)
 %doc CHANGES.txt CONTRIBUTORS COPYING FAQ.txt LICENSE README README.SSL STATUS
 %doc %{_mandir}/man1/monit.1*
 %config(noreplace) %{_sysconfdir}/monit.conf

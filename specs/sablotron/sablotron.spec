@@ -70,7 +70,7 @@ export SABLOT_GPL="1"
 %{_libdir}/libsablot.so.*
 
 %files devel
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc doc/apidoc/jsdom-ref doc/apidoc/sablot doc/apidoc/sxp
 %{_bindir}/sablot-config
 %{_libdir}/libsablot.a

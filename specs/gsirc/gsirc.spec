@@ -43,7 +43,7 @@ gsirc that now lies abandoned in GNOME CVS.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,0755)
+%defattr(-, root, root, 0755)
 %doc README
 %{_bindir}/*
 %{_libdir}/*

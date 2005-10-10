@@ -56,7 +56,7 @@ popd
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc docs samples README* CHANGES* benchmark.py
 %dir %{python_sitelib}/elementtree
 %{python_sitelib}/elementtree/*.py
