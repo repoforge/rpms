@@ -1,0 +1,12 @@
+diff -Naupr bmp-itouch-1.1.0.orig/src/keyboard_play_function.c bmp-itouch-1.1.0/src/keyboard_play_function.c
+--- bmp-itouch-1.1.0.orig/src/keyboard_play_function.c	2005-01-26 02:10:04.000000000 +0100
++++ bmp-itouch-1.1.0/src/keyboard_play_function.c	2005-04-20 17:55:49.000000000 +0200
+@@ -122,7 +122,7 @@ static GeneralPlugin gp = {
+ 
+ GeneralPlugin *get_gplugin_info(void)
+ {
+-	gp.description = g_strdup_printf(_("Multimedia Keyboard Control (UNSTABLE) %s"),
++	gp.description = g_strdup_printf(_("Multimedia Keyboard Control %s"),
+ 					 VERSION);
+ 	return &gp;
+ }
