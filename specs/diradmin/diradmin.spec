@@ -6,16 +6,16 @@
 
 Summary: User control management tool for LDAP directories
 Name: diradmin
-Version: 1.6.0
+Version: 1.7.1
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://diradmin.open-it.org/
-Source: http://diradmin.open-it.org/directory_administrator-%{version}.tar.gz
+Source: http://diradmin.open-it.org/releases/directory_administrator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gnome-libs-devel, openldap-devel, desktop-file-utils
 BuildRequires: openssl-devel
-Obsoletes: directory_administrator <= 1.3.5
+Obsoletes: directory_administrator <= 1.5.1-4
 
 %description
 Directory administrator is a smart LDAP directory management tool. It can be
@@ -27,11 +27,11 @@ for single sign-on maintenance.
 
 
 %prep
-%setup
+%setup -n directory_administrator-%{version}
 
 
 %build
-%configure
+%configure --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
 
@@ -40,28 +40,45 @@ for single sign-on maintenance.
 %makeinstall
 
 
-# Replace desktop file, removing the categories
+# Replace desktop file, removing the categories and updating Icon=
 %{__rm} -f %{buildroot}%{_datadir}/applications/*
 %{__cat} applnk/dragonfear-directory_administrator.desktop \
-  | grep -v ^Categories > %{name}.desktop
+    | grep -v ^Categories | grep -v '^$' \
+    | sed 's|Icon=.*|Icon=diradmin.png|g' \
+    > %{name}.desktop
+
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-  --dir %{buildroot}%{_datadir}/applications    \
-  --add-category Application                    \
-  --add-category System                         \
-  %{name}.desktop
+    --dir %{buildroot}%{_datadir}/applications  \
+    --add-category Application                  \
+    --add-category System                       \
+    --add-category GNOME                        \
+    %{name}.desktop
+
+# Install provided 48x48 icon
+%{__install} -D -p -m 0644 pixmaps/diradminlogo.png \
+    %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/diradmin.png
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
+%post
+gtk-update-icon-cache -q -f %{_datadir}/icons/hicolor || :
+
+%postun
+gtk-update-icon-cache -q -f %{_datadir}/icons/hicolor || :
+
+
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS NEWS COPYING ChangeLog TODO README doc/
+%doc AUTHORS COPYING CREDITS ChangeLog TODO README doc/
 %{_bindir}/directory_administrator
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%{_datadir}/pixmaps/directory_administrator
+%{_datadir}/applications/*%{name}.desktop
+%{_datadir}/icons/hicolor/48x48/apps/diradmin.png
+%{_datadir}/pixmaps/directory_administrator/
+#{_mandir}/man1/directory_administrator.1*
 
 
 %changelog
