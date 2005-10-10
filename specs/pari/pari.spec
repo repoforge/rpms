@@ -66,6 +66,7 @@ you will need to install %{name}-devel.
 %{_libdir}/pari
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/pari
 %{_libdir}/libpari.so
 

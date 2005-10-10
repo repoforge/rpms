@@ -70,7 +70,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so.*
  
 %files devel 
-%defattr (-, root, root, 0755) 
+%defattr(-, root, root, 0755) 
 %doc samples/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

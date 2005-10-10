@@ -38,7 +38,7 @@ number, and the percentage of the file so far displayed.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc COPYRIGHT README *.doc *.rc *.txt
 %doc %{_mandir}/man1/most.1*
 %{_bindir}/most

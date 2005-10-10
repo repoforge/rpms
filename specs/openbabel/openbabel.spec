@@ -63,6 +63,7 @@ you will need to install %{name}-devel.
 %{_datadir}/openbabel
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/openbabel
 %{_libdir}/pkgconfig/openbabel.pc
 %{_libdir}/libopenbabel.a

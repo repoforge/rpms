@@ -74,7 +74,7 @@ scrollkeeper-update -q
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %doc %{_mandir}/man1/gcm.*
 %dir %{_libdir}/gcm/
@@ -90,7 +90,7 @@ scrollkeeper-update -q
 %{_datadir}/pixmaps/*
 
 %files devel
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc doc/HACKING doc/*.html doc/*.png
 %doc %{_mandir}/man1/gcm-config.*
 %{_bindir}/gcm-config

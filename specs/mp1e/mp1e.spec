@@ -60,14 +60,14 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc ChangeLog README
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %{_libdir}/*.a
 %{_libdir}/*.la
 %{_libdir}/*.so

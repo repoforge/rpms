@@ -67,7 +67,7 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %files -f %{name}.lang
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README*
 %config %{_sysconfdir}/hotplug/usb/*
 %{_bindir}/*

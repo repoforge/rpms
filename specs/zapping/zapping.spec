@@ -59,7 +59,7 @@ scrollkeeper-update -q || :
 
 
 %files -f %{name}.lang
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README* THANKS TODO
 %config %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %config %{_sysconfdir}/pam.d/zapping_setup_fb

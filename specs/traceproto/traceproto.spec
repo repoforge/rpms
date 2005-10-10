@@ -36,7 +36,7 @@ are open.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man8/traceproto.8*
 %{_bindir}/traceproto

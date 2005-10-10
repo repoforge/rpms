@@ -34,7 +34,7 @@ Postfix mail transport agent.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_mandir}/man1/pfqueue.1*
 %{_bindir}/pfqueue

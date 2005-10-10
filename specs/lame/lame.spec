@@ -79,14 +79,14 @@ find doc/html -name "Makefile*" | xargs rm -f
 
 
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README TODO USAGE doc/html/
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 %files devel
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc API HACKING STYLEGUIDE
 %{_includedir}/*
 %{_libdir}/*.a

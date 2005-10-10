@@ -99,9 +99,8 @@ EOF
 %clean
 %{__rm} -rf %{buildroot}
 
-#%files -f %{name}.lang
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog* COPYING INSTALL NEWS README TODO
 %config(noreplace) %{_sysconfdir}/pam.d/gtoaster
 %config(noreplace) %{_sysconfdir}/security/console.apps/gtoaster

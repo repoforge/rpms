@@ -58,6 +58,7 @@ bash autogen.sh
 %{_libdir}/libcal3d-*.so
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/cal3d/
 %{_libdir}/libcal3d.so
 %{_libdir}/pkgconfig/cal3d.pc

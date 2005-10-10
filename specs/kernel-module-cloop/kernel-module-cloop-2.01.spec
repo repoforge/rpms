@@ -157,6 +157,7 @@ done
 /dev/cloop*
 
 %files -n cloop-utils
+%defattr(-, root, root, 0755)
 %doc CHANGELOG README
 %{_bindir}/*
 

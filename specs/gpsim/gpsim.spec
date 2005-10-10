@@ -84,6 +84,7 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/gpsim
 %{_includedir}/eXdbm
 %{_libdir}/*.a

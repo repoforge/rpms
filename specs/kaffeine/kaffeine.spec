@@ -83,6 +83,7 @@ source /etc/profile.d/qt.sh
 %{_datadir}/icons/*/*/*/*.png
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/kaffeine_export.h
 %{_includedir}/kaffeine/
 %{_libdir}/libkmediapart.so

@@ -66,7 +66,7 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
 %{_bindir}/gwget
 %exclude %{_datadir}/applications/gwget.desktop

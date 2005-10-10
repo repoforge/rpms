@@ -81,8 +81,8 @@ overloading. A number of toolboxes are available with the system.
 %{__rm} -rf %{buildroot}
 
 %files
-%doc ACKNOWLEDGEMENTS CHANGES README_Unix Version.incl licence.txt
 %defattr(-, root, root, 0755)
+%doc ACKNOWLEDGEMENTS CHANGES README_Unix Version.incl licence.txt
 %{_bindir}/*
 %{_libdir}/scilab-%{version}/
 %exclude %{_libdir}/scilab-%{version}/examples/mex-examples/mexglx

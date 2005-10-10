@@ -51,6 +51,7 @@ you will need to install %{name}-devel.
 %{_bindir}/Sockets-config
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/Sockets/
 %{_libdir}/*.a
 

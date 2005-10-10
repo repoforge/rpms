@@ -74,6 +74,7 @@ cd ../..
 #%{_libdir}/*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/*.h
 %{_includedir}/daap
 %{_libdir}/*.a

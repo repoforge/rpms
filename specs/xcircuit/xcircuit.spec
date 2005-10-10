@@ -51,6 +51,7 @@ CAD program for circuit schematic drawing and schematic capture.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc CHANGES COPYRIGHT README* TODO examples/
 %doc %{_mandir}/man1/xcircuit.1*
 %{_bindir}/xcircuit

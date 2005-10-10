@@ -54,6 +54,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libopendaap.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %doc %{_mandir}/man?/*
 %{_includedir}/daap
 %{_libdir}/libopendaap.a

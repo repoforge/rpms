@@ -42,7 +42,6 @@ software useful.
 %{__rm} -rf %{buildroot}
 
 %files
-
 %defattr(-, root, root, 0755)
 %doc changelog README TODO
 %config %{_sysconfdir}/solfege1.4/

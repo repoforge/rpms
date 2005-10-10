@@ -48,7 +48,7 @@ scrollkeeper-update -q || :
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}-%{po_version}.lang
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* NEWS README 
 #%doc %{_mandir}/man1/*
 %doc %{_datadir}/gnome/help/glunarclock-applet-2/

@@ -59,6 +59,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libdc1394*.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_includedir}/libdc1394
 %{_libdir}/libdc1394*.a
 %{_libdir}/libdc1394*.so

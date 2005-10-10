@@ -100,7 +100,7 @@ EOF
 %{_libdir}/*.so.*
  
 %files devel 
-%defattr (-, root, root, 0755) 
+%defattr(-, root, root, 0755) 
 %doc HACKING
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -108,7 +108,7 @@ EOF
 %{_includedir}/*.h
 
 %files gui
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc %{_datadir}/gnome/help/gmdb/
 %{_bindir}/gmdb2
 %{_datadir}/gmdb/

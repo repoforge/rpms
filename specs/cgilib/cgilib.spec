@@ -50,7 +50,7 @@ done
 %{__rm} -rf %{buildroot}
 
 %files devel
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc CHANGES CREDITS cookies.txt readme
 %doc cgitest.c jumpto.c
 %doc %{_mandir}/man3/cgi*.3*
@@ -65,4 +65,3 @@ done
 
 * Fri Apr 29 2005 Dag Wieers <dag@wieers.com> - 0.5-1
 - Initial package. (using DAR)
-

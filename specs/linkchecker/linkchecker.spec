@@ -41,7 +41,6 @@ python setup.py install \
 %{__rm} -rf %{buildroot}
 
 %files
-# -f %{name}.lang
 %defattr(-, root, root, 0775)
 %doc ChangeLog INSTALL LICENSE README TODO
 # %doc create.sql draft-gilman-news-url-00.txt

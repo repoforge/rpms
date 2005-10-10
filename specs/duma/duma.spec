@@ -64,6 +64,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_libdir}/libduma.a
 %{_libdir}/libduma.so
 

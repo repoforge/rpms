@@ -44,7 +44,7 @@ groups. Internal RSS reader and a client for LiveJournal are provided.
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*.?.gz
 %{_bindir}/centericq

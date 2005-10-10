@@ -40,7 +40,7 @@ the server, making it ideal for large scale file distribution.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc COPYING INSTALL README
 %doc %{_mandir}/man1/zsync.1*
 %doc %{_mandir}/man1/zsyncmake.1*

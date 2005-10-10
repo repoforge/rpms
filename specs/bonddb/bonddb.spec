@@ -74,6 +74,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libbondsql.so.*
 
 %files devel
+%defattr(-, root, root, 0755)
 %{_libdir}/pkgconfig/bond*.pc
 %{_includedir}/bond/
 %{_includedir}/config.h

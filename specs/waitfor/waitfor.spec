@@ -36,8 +36,8 @@ shutdown of services.
 %{__rm} -rf %{buildroot}
 
 %files
-%doc COPYING INSTALL README
 %defattr(-, root, root, 0755)
+%doc COPYING INSTALL README
 %doc %{_mandir}/man1/waitfor.1*
 %{_bindir}/waitfor
 

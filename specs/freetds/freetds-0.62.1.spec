@@ -72,7 +72,7 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so.*
  
 %files devel 
-%defattr (-, root, root, 0755) 
+%defattr(-, root, root, 0755) 
 %{_libdir}/*.a
 %{_libdir}/*.so
 ### Redefined _includedir to be %{_includedir}/freetds/

@@ -60,7 +60,7 @@ the zvbi library.
 
 
 %files -f %{name}.lang
-%defattr (-, root, root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO doc/html
 %{_bindir}/zvbi-chains
 %{_sbindir}/zvbid
@@ -69,7 +69,7 @@ the zvbi library.
 %{_mandir}/man1/zvbid.1*
 
 %files devel
-%defattr (-, root, root)
+%defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

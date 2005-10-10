@@ -48,7 +48,7 @@ scrollkeeper-update -q || :
 scrollkeeper-update -q || :
 
 %files -f %{name}-2.0.lang
-%defattr (-, root, root, 0755)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %doc %{_mandir}/man?/*
 %doc %{_datadir}/gnome/help/gnotime/
