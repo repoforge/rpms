@@ -3,7 +3,7 @@
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.285
+Version: 0.0.315
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -44,7 +44,6 @@ mv -f AUTHORS.utf8 AUTHORS
 %build
 %configure \
     --enable-pthread \
-    --enable-visualize \
     --enable-debug \
     --extra-cflags="%{optflags}"
 %{__make} %{?_smp_mflags}
@@ -79,6 +78,11 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Tue Oct  4 2005 Matthias Saou <http://freshrpms.net/> 0.0.315-1
+- Update to svn 315.
+- Disable vizualize since otherwise programs trying to link without -lX11 will
+  fail (cinelerra in this particular case).
+
 * Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 0.0.285-1
 - Update to svn 285.
 - Add yasm build requirement (needed on x86_64).
