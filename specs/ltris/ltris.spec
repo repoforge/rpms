@@ -5,7 +5,7 @@
 
 Summary: Game of skill with falling blocks
 Name: ltris
-Version: 1.0.10
+Version: 1.0.11
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -39,7 +39,8 @@ convert icons/ltris48.xpm ltris.png
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-%{__install} -Dp ltris.png %{buildroot}%{_datadir}/pixmaps/ltris.png
+%find_lang %{name}
+%{__install} -D -p ltris.png %{buildroot}%{_datadir}/pixmaps/ltris.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
@@ -70,7 +71,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO
 %attr(2551, root, games) %{_bindir}/ltris
@@ -81,6 +82,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri Oct  7 2005 Matthias Saou <http://freshrpms.net/> 1.0.11-1
+- Update to 1.0.11.
+- Include new translation.
+
 * Sat Feb 19 2005 Matthias Saou <http://freshrpms.net/> 1.0.10-1
 - Update to 1.0.10.
 
