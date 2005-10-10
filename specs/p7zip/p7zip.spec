@@ -3,12 +3,12 @@
 
 Summary: Very high compression ratio file archiver
 Name: p7zip
-Version: 4.20
+Version: 4.29
 Release: 1
 License: LGPL
 Group: Applications/Archiving
 URL: http://p7zip.sourceforge.net/
-Source: http://dl.sf.net/p7zip/p7zip_%{version}_src.tar.bz2
+Source: http://dl.sf.net/p7zip/p7zip_%{version}_src_all.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -53,7 +53,6 @@ EOF
 ### Use optflags
 %{__perl} -pi -e 's|^ALLFLAGS=.*|ALLFLAGS=-Wall %{optflags} -fPIC \\|g' \
     makefile.machine
-
 %{__make} %{?_smp_mflags} 7z 7za sfx
 
 
@@ -65,8 +64,8 @@ EOF
 %{__cp} -a bin/* %{buildroot}%{_libexecdir}/p7zip/
 
 ### Install wrapper scripts
-%{__install} -D -m0755 7z.sh %{buildroot}%{_bindir}/7z
-%{__install} -D -m0755 7za.sh %{buildroot}%{_bindir}/7za
+%{__install} -D -m 0755 7z.sh  %{buildroot}%{_bindir}/7z
+%{__install} -D -m 0755 7za.sh %{buildroot}%{_bindir}/7za
 
 
 %clean
@@ -91,6 +90,9 @@ EOF
 
 
 %changelog
+* Mon Oct 10 2005 Matthias Saou <http://freshrpms.net/> 4.29-1
+- Update to 4.29.
+
 * Sun Jun 05 2005 Dag Wieers <dag@wieers.com> - 4.20-1
 - Updated to release 4.20.
 
