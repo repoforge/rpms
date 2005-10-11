@@ -6,7 +6,7 @@
 
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
-Version: 2.2.5
+Version: 2.2.7
 Release: 0
 License: GPL
 Group: Applications/System
@@ -76,6 +76,10 @@ displays a graph of the link quality percentage for each card.
 %{__perl} -pi.orig -e 's|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g' \
     Makefile Makefile.i18n */Makefile
 %{__perl} -pi.orig -e 's|lib/pkgconfig|%{_lib}/pkgconfig|g' Makefile
+# Also for the plugins search path and documentation
+%{__perl} -pi.orig -e 's|/usr/lib/|%{_libdir}/|g;
+                       s|/usr/local/lib/|/usr/local/%{_lib}/|g' \
+    server/gkrellmd.h src/gkrellm.h README Changelog* *.1
 
 
 %build
@@ -188,6 +192,10 @@ fi
 
 
 %changelog
+* Tue Oct 11 2005 Matthias Saou <http://freshrpms.net/> 2.2.7-0
+- Update to 2.2.7.
+- Fix lib64 plugin search path and references to it in the docs.
+
 * Tue Mar 29 2005 Matthias Saou <http://freshrpms.net/> 2.2.5-0
 - Update to 2.2.5.
 - Update source location.
