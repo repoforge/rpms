@@ -4,7 +4,7 @@
 
 Summary: Dhcp/omapi tool for operating on a running dhcp server
 Name: omcmd
-Version: 0.4.3
+Version: 0.4.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -39,6 +39,9 @@ hosts and leases.
 %{_bindir}/*
 
 %changelog
+* Tue Oct 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.4.6-1
+- Updated to release 0.4.6.
+
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 0.4.3-1
 - Added summary/description from David's package. (David L. Parsley)
 
