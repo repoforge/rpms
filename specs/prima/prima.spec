@@ -60,7 +60,7 @@ identically on X, Win32 and OS/2 PM.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Copying HISTORY README 
+%doc Copying HISTORY README
 %{perl_sitearch}/Prima.pm
 %{perl_sitearch}/Prima
 %exclude %{perl_sitearch}/auto/Prima/.packlist

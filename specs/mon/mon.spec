@@ -233,7 +233,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING COPYRIGHT CREDITS README TODO doc/README.* 
+%doc CHANGES COPYING COPYRIGHT CREDITS README TODO doc/README.*
 %doc KNOWN-PROBLEMS VERSION utils/ mon.lsm
 %doc alerts/*/*.README mon.cgi-1.52/
 %doc etc/*.cf etc/example.m4 etc/example.monshowrc clients/{skymon,batch-example}

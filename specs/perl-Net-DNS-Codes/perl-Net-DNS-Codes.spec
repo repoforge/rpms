@@ -45,7 +45,7 @@ library DNS codes as well as all the codes for the DNS HEADER field.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/DNS/Codes.pm
 

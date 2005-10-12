@@ -45,7 +45,7 @@ With this module, you can translate ports to services and vice versa.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/IANA/PortNumbers.pm
 %{perl_vendorlib}/Net/IANA

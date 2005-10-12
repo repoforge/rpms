@@ -51,7 +51,7 @@ Apache-AuthCookie while not in user space.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes makeCert.pl
+%doc Changes README makeCert.pl
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Crypt/License.pm
 %{perl_vendorlib}/Crypt/License/*

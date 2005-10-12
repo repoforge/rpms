@@ -61,7 +61,7 @@ vraag te stellen.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING TODO
+%doc AUTHORS COPYING README TODO
 %{_bindir}/kmemaid
 %{_datadir}/applnk/Applications/kmemaid.desktop
 %{_datadir}/apps/kmemaid/kmemaidui.rc

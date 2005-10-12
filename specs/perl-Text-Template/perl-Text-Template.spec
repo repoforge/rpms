@@ -49,7 +49,7 @@ them with their values.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING Artistic
+%doc COPYING README Artistic
 %{_mandir}/man3/*
 %{perl_vendorlib}/Text/Template.pm
 %{perl_vendorlib}/Text/Template/*

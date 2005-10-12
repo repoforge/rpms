@@ -114,7 +114,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING TODO
+%doc AUTHORS COPYING README TODO
 %doc RPM-GPG-KEY-freshrpms
 %if %{distro} == yd
 %doc RPM-GPG-KEY-yellowdog

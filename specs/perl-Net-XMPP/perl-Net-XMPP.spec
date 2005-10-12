@@ -49,7 +49,7 @@ talk to each other.  XMPP seeks to get rid of those barriers.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/XMPP.pm

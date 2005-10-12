@@ -52,7 +52,7 @@ Easter Sunday) by passing 49.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DateTime/Event/Easter.pm
 

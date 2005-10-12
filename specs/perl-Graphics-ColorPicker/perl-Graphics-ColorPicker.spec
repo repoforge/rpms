@@ -48,7 +48,7 @@ safe colors only.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Graphics/ColorPicker.pm
 %{perl_vendorlib}/auto/Graphics/ColorPicker

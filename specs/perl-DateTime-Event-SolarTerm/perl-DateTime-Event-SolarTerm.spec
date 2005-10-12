@@ -44,7 +44,7 @@ DateTime Extension to Calculate Solar Terms.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Event/

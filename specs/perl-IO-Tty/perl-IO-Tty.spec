@@ -43,7 +43,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc README 
+%doc README
 %{_mandir}/man3/*
 %dir %{perl_vendorarch}/IO/
 %{perl_vendorarch}/IO/Pty.pm

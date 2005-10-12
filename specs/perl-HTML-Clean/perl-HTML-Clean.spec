@@ -48,7 +48,7 @@ translates HTML input into optimized machine readable code.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_bindir}/htmlclean
 %{_mandir}/man?/*
 %{perl_vendorlib}/auto/HTML/Clean/autosplit.ix

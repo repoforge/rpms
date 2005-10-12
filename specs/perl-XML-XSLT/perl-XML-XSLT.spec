@@ -48,7 +48,7 @@ XML::XPath.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %{_bindir}/xslt-parser
 %{_mandir}/man?/*
 %{perl_vendorlib}/XML/XSLT.pm

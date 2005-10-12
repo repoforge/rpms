@@ -101,7 +101,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README TODO 
+%doc AUTHORS COPYING README TODO
 %{_bindir}/swf_play
 %{_libdir}/libswfdec*.so.*
 %{?gimp_plugin:%{_libdir}/gimp/2.0/plug-ins/swf}

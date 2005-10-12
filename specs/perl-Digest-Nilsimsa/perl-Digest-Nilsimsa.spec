@@ -44,7 +44,7 @@ This module contains a perl version of the Nilsimsa code.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING
+%doc COPYING README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Digest/Nilsimsa.pm
 %{perl_vendorarch}/auto/Digest/Nilsimsa/Nilsimsa.bs

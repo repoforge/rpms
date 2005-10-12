@@ -49,7 +49,7 @@ for the built-in Perl format() mechanism.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Text/Reform.pm
 %{perl_vendorlib}/Text/demo*.pl

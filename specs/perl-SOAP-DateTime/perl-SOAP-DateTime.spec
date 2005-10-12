@@ -47,7 +47,7 @@ lazy way to make sure that we are forgiving in what we accept.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/SOAP/DateTime.pm
 

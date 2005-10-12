@@ -72,7 +72,7 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc README COPYING AUTHORS CREDITS COPYING.LIB TODO INSTALL
+%doc COPYING README AUTHORS CREDITS COPYING.LIB TODO INSTALL
 %{_bindir}/kdirstat
 %{_datadir}/applications/kdirstat.desktop
 %{_datadir}/apps/kdirstat

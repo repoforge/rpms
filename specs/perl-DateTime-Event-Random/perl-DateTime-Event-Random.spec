@@ -44,7 +44,7 @@ This module creates DateTime::* objects with random values.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DateTime/Event/Random.pm
 

@@ -42,7 +42,7 @@ standaard input of via commandline opties.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING
+%doc COPYING README
 %{_bindir}/fm-submit
 %{_mandir}/man1/fm-submit.1.gz
 

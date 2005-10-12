@@ -53,7 +53,7 @@ shell.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Net/Telnet.pm
 

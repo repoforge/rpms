@@ -52,7 +52,7 @@ the Apache API with Perl and C.  Functionality includes:
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 #%{perl_vendorlib}/libapreq.pm
 #%{perl_vendorlib}/libapreq/*

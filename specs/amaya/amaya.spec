@@ -68,7 +68,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README* 
+%doc README*
 %{_bindir}/amaya
 %{_bindir}/amaya-gtk
 %{_libdir}/Amaya/

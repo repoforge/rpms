@@ -46,7 +46,7 @@ to an arbitrary depth.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES AUTHORS
+%doc CHANGES README AUTHORS
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Config/
 %{perl_vendorlib}/Config/Record.pm

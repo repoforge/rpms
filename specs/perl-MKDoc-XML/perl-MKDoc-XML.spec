@@ -46,7 +46,7 @@ hyperlinks expressions so that MKDoc users don't have to know about a tag syntax
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/MKDoc/XML.pm
 %{perl_vendorlib}/MKDoc/XML/*

@@ -47,7 +47,7 @@ echo 1 | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Inline/Python.*
 %{perl_vendorarch}/auto/Inline/Python/*

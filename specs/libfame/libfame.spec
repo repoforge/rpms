@@ -88,7 +88,7 @@ libfame library.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS CHANGES COPYING README TODO 
+%doc AUTHORS BUGS CHANGES COPYING README TODO
 %{_libdir}/*.so.*
 %ifarch %{ix86}
     %{_libdir}/sse2/*.so.*

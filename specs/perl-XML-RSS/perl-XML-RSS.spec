@@ -46,7 +46,7 @@ creating, updating, and saving RSS files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/RSS.pm

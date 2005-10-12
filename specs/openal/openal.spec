@@ -86,7 +86,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING CREDITS README 
+%doc CHANGES COPYING CREDITS README
 %doc %{_infodir}/*.info*
 %config(noreplace) %{_sysconfdir}/openalrc
 %{_libdir}/*.so.*

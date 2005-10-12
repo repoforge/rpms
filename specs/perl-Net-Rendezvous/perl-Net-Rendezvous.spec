@@ -46,7 +46,7 @@ Apple Computer.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/Rendezvous.pm
 %{perl_vendorlib}/Net/Rendezvous/*

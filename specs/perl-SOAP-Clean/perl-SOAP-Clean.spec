@@ -64,7 +64,7 @@ recommend SOAP::Lite.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %doc %{_mandir}/man3/*
 %{_bindir}/*
 %{perl_vendorlib}/SOAP/Clean.pm

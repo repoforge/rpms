@@ -57,7 +57,7 @@ cadaver and the Mac OS X Finder as clients.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/DAV/Server.pm
 

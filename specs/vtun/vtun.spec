@@ -167,7 +167,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog Credits FAQ README* TODO vtund.conf 
+%doc ChangeLog Credits FAQ README* TODO vtund.conf
 %doc %{_mandir}/man?/*
 %attr(600, root, root) %config(noreplace) %{_sysconfdir}/vtund.conf
 %config %{_initrddir}/vtund

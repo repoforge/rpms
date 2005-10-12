@@ -46,7 +46,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Authen/PAM/FAQ.pod
 %{perl_vendorarch}/Authen/PAM.pm

@@ -48,7 +48,7 @@ OpenSSL crypto library, located at http://www.openssl.org.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/OpenSSL/DSA.pm
 %{perl_vendorarch}/Crypt/OpenSSL/DSA/Signature.pod

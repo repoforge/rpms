@@ -54,7 +54,7 @@ done
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGES PRINCIPLES README TODO 
+%doc BUGS CHANGES PRINCIPLES README TODO
 %doc rpm2html-cdrom.config rpm2html-en.config
 %doc %{_mandir}/man1/rpm2html.1*
 %config %{_sysconfdir}/rpm2html.config

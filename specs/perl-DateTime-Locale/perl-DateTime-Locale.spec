@@ -44,7 +44,7 @@ DateTime.pm class.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/DateTime/
 %{perl_vendorlib}/DateTime/Locale.pm

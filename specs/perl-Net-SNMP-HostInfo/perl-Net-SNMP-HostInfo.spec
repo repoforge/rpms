@@ -54,7 +54,7 @@ Browse the list of available methods to see what values are available.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/SNMP/HostInfo.pm
 %{perl_vendorlib}/Net/SNMP/HostInfo/*

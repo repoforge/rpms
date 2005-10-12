@@ -45,7 +45,7 @@ repositories.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/SVN/
 %{perl_vendorlib}/SVN/Log.pm

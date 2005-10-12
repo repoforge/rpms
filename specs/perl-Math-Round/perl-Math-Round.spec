@@ -46,7 +46,7 @@ a little tricky, so I thought some people might find this useful.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Math/
 %{perl_vendorlib}/Math/Round.pm

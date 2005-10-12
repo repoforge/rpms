@@ -52,7 +52,7 @@ encapsulated in the data structure itself.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/YAML/
 %{perl_vendorlib}/YAML/Active.pm

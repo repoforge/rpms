@@ -44,7 +44,7 @@ SCons is an easier, more reliable and faster way to build software.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt 
+%doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt
 %{_prefix}/bin/*
 %{_prefix}/lib/scons/
 %{_mandir}/man1/*

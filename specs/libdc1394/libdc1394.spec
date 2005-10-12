@@ -54,7 +54,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README 
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{_bindir}/dc1394_vloopback
 %{_libdir}/libdc1394*.so.*
 

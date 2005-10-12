@@ -44,7 +44,7 @@ This is a Perl extension for accessing _all_ bash environment variables.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Env/
 %{perl_vendorlib}/Env/Bash.pm

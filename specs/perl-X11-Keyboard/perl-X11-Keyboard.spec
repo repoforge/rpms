@@ -45,7 +45,7 @@ keysyms and keycodes, when working with the X11::Protocol module.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/X11/
 %{perl_vendorlib}/X11/Keyboard.pm

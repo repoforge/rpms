@@ -45,7 +45,7 @@ This module contains functions for reading the dimensions of images in several p
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %{_bindir}/imgsize
 %{_mandir}/man?/*
 %{perl_vendorlib}/Image/Size.pm

@@ -49,7 +49,7 @@ http://www.research.att.com/sw/tools/graphviz/).
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Devel/
 %{perl_vendorlib}/GraphViz.pm

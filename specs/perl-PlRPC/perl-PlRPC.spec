@@ -48,7 +48,7 @@ OO framework in a very simple manner.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Bundle/PlRPC.pm
 %{perl_vendorlib}/RPC

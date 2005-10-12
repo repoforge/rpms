@@ -45,7 +45,7 @@ With this module, you can read and edit information within MP3 files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorlib}/MP3/Info.pm
 %{perl_vendorlib}/MPEG/MP3Info.pm

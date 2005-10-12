@@ -49,7 +49,7 @@ on client and server side.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man?/*
 %{_bindir}/SOAPsh.pl
 %{_bindir}/XMLRPCsh.pl

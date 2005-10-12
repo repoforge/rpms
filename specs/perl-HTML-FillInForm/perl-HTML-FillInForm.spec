@@ -47,7 +47,7 @@ tags.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorlib}/HTML/FillInForm.pm
 

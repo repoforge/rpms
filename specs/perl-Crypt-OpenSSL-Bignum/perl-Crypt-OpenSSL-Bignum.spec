@@ -48,7 +48,7 @@ requires that the OpenSSL libraries and header files be installed.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/OpenSSL/Bignum.pm
 %{perl_vendorarch}/Crypt/OpenSSL/Bignum

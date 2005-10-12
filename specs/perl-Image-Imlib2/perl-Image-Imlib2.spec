@@ -43,7 +43,7 @@ output the images in a range of formats.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorarch}/Image/
 %{perl_vendorarch}/Image/Imlib2.pm

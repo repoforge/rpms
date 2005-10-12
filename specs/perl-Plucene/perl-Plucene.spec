@@ -44,7 +44,7 @@ and search for things in them later.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Plucene.pm
 %{perl_vendorlib}/Plucene/

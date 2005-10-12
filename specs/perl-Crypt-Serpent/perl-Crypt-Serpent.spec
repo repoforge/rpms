@@ -66,7 +66,7 @@ main algorithm."
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/Serpent.pm
 %{perl_vendorarch}/auto/Crypt/Serpent

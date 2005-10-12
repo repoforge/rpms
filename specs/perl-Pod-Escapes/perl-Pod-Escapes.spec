@@ -51,7 +51,7 @@ Pod::Escapes qw(:ALL);' to get all exportable symbols.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Pod/Escapes.pm
 

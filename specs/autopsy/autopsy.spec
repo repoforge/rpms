@@ -68,7 +68,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING README TODO 
+%doc CHANGES COPYING README TODO
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_datadir}/autopsy/conf.pl
 %config(noreplace) %{_datadir}/autopsy/define.pl

@@ -224,7 +224,7 @@ popd
 %if %{?_without_mame:0}%{!?_without_mame:1}
 %files
 %defattr(-, root, root, 0755)
-%doc README _docs/xmame/* contrib/tools/mame-cd 
+%doc README _docs/xmame/* contrib/tools/mame-cd
 %doc _docs/catver.ini
 %{_bindir}/chdman
 %{_bindir}/romcmp

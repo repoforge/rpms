@@ -38,7 +38,7 @@ redirecting both input and output from/to it.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README 
+%doc README
 %doc %{_mandir}/man8/ttysnoop.8*
 %config %{_sysconfdir}/snooptab
 %{_sbindir}/ttysnoop

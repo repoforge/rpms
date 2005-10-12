@@ -67,7 +67,7 @@ programming language used for the software.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES AUTHORS INSTALL
+%doc CHANGES README AUTHORS INSTALL
 %doc %{_mandir}/man3/*
 %dir %{_sysconfdir}/auto-build.d
 %dir %{_sysconfdir}/auto-build.d/templates

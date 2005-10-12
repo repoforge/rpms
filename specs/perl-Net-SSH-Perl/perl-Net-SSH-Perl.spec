@@ -44,7 +44,7 @@ both the SSH1 and SSH2 protocols.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 #%{perl_vendorlib}/NAMEDIR.pm
 #%{perl_vendorlib}/NAMEDIR/*

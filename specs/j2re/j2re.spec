@@ -223,7 +223,7 @@ find %{buildroot}%{_libdir}/jre/ -type f -name "*.so" -exec %{__chmod} 0755 {} \
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYRIGHT ControlPanel.html LICENSE README THIRDPARTYLICENSEREADME.txt Welcome.html 
+%doc CHANGES COPYRIGHT ControlPanel.html LICENSE README THIRDPARTYLICENSEREADME.txt Welcome.html
 %doc %{_mandir}/man?/*
 %dir %{_libdir}/jre/
 %config %{_sysconfdir}/profile.d/java.sh

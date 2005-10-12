@@ -50,7 +50,7 @@ make install
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_archlib}/Class/
 %{perl_archlib}/Class/MethodMaker.pm

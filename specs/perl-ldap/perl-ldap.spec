@@ -43,7 +43,7 @@ This package contains a perl module with an interface to LDAP.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog CREDITS RELEASE_NOTES TODO
+%doc ChangeLog README CREDITS RELEASE_NOTES TODO
 %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Bundle/
 %dir %{perl_vendorlib}/Bundle/Net/

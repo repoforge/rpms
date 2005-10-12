@@ -44,7 +44,7 @@ With this module, you can disassemble and investigate Python bytecode.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Python/Bytecode.pm
 %{perl_vendorlib}/Python/Bytecode/*

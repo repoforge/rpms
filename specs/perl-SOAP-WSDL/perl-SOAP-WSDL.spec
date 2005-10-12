@@ -44,7 +44,7 @@ A WSDL-driven message preprocessor for SOAP::Lite.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/SOAP/WSDL.pm
 

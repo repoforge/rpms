@@ -70,7 +70,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS LICENSE  README 
+%doc AUTHORS LICENSE  README
 %doc %{_mandir}/man?/*
 %{_bindir}/man*
 %{_datadir}/manedit/

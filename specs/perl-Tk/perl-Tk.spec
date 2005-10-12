@@ -74,7 +74,7 @@ This module contains an object oriented Tk extension for Perl.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man1/*
 %{_bindir}/gedi

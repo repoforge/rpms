@@ -50,7 +50,7 @@ this API.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man3/*
 %{_bindir}/cpan2dist

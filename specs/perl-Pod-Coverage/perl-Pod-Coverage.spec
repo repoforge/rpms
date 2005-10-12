@@ -39,7 +39,7 @@ Checks if the documentation of a module is comprehensive.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{_bindir}/*
 %dir %{perl_vendorarch}/Pod/

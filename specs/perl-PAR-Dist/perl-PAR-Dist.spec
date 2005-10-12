@@ -45,7 +45,7 @@ With this module, you can create and manipulate PAR distributions.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/PAR/Dist.pm
 

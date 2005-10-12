@@ -66,7 +66,7 @@ A wizard helps you with the first steps in using Konserve.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING TODO
+%doc AUTHORS COPYING README TODO
 %{_bindir}/konserve
 %{_datadir}/applnk/Applications/konserve.desktop
 %{_datadir}/apps/konserve/tips

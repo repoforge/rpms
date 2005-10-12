@@ -45,7 +45,7 @@ This package contains a perl extension for portable daemons.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Net/Daemon.pm
 %{perl_vendorlib}/Net/Daemon/*

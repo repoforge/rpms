@@ -45,7 +45,7 @@ This module contains an easy API to XML files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorlib}/XML/Simple.pm
 %{perl_vendorlib}/XML/Simple/*

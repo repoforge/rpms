@@ -44,7 +44,7 @@ Parse an ascii string containing fixed length fields into component parts.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Parse/FixedLength.pm
 

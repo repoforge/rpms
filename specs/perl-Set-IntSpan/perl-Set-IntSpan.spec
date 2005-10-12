@@ -45,7 +45,7 @@ have long runs of consecutive integers.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Set/IntSpan.pm
 

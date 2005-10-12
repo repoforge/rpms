@@ -44,7 +44,7 @@ With this module, you can manipulate IPv4/IPv6 netblocks in CIDR notation.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/CIDR.pm
 

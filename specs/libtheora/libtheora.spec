@@ -95,7 +95,7 @@ automake
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING
+%doc COPYING README
 %{_libdir}/libtheora.so.*
 
 %files devel

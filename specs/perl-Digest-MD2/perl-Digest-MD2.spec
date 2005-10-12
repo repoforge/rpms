@@ -47,7 +47,7 @@ output a 128-bit "fingerprint" or "message digest" of the input.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Digest/MD2.pm
 %{perl_vendorarch}/auto/Digest/MD2/MD2.bs

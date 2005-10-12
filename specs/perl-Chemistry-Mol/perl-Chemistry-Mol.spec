@@ -47,7 +47,7 @@ PerlMol toolkit; see http://www.perlmol.org/.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Chemistry/
 %{perl_vendorlib}/Chemistry/*.pm

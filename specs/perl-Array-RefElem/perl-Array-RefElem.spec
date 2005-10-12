@@ -43,7 +43,7 @@ you store reference to things in arrays and hashes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Array/RefElem.pm
 %{perl_vendorarch}/auto/Array/RefElem/RefElem.*

@@ -46,7 +46,7 @@ treatments with mime types are implemented.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/MIME/*
 

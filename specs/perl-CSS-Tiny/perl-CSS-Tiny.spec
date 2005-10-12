@@ -54,7 +54,7 @@ still live with simple CSS files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes LICENSE
+%doc Changes README LICENSE
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/CSS/
 %{perl_vendorlib}/CSS/Tiny.pm

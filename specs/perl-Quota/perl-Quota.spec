@@ -50,7 +50,7 @@ export CFLAGS="-fPIC"
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Quota.pm
 %{perl_vendorarch}/auto/Quota/

@@ -91,7 +91,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL README TODO doc moagg.dxy 
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO doc moagg.dxy
 %{_bindir}/moagg
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 %{?_without_freedesktop:%{_datadir}/applnk/Games/*.desktop}

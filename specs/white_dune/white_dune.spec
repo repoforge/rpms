@@ -85,7 +85,7 @@ Documentatie over het gebruik van dune is ook beschikbaar.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING docs
+%doc COPYING README docs
 %{_bindir}/dune
 %{_bindir}/dune4kids
 %{_bindir}/illegal2vrml

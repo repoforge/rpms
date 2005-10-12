@@ -519,7 +519,7 @@ All fortune packages will be installed if you install this package.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog TODO
+%doc ChangeLog README TODO
 %{_bindir}/fortune
 %{_sbindir}/strfile
 %{_sbindir}/unstr

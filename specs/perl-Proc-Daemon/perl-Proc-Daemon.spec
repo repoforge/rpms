@@ -45,7 +45,7 @@ as a Unix daemon process.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Proc/
 %{perl_vendorlib}/Proc/Daemon.pm

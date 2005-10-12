@@ -64,7 +64,7 @@ you will need to install %{name}-devel.
  
 %files 
 %defattr(-, root, root, 0755) 
-%doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO 
+%doc AUTHORS BUGS ChangeLog COPYING NEWS README TODO
 %doc doc/doc/freetds-*/reference/ doc/doc/freetds-*/userguide/ doc/images/
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/*.conf

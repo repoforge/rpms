@@ -42,7 +42,7 @@ A Crypt::CBC compliant RC6 block cipher encryption module.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/RC6.pm
 %{perl_vendorarch}/auto/Crypt/RC6

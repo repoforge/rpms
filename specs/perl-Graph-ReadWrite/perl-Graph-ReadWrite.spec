@@ -46,7 +46,7 @@ represented in Perl using Jarkko Hietaniemi's Graph classes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Graph/
 %{perl_vendorlib}/Graph/*.pm

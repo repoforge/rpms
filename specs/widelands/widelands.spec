@@ -62,7 +62,7 @@ export DESTDIR=%{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING AUTHORS
+%doc COPYING README AUTHORS
 %{_bindir}/widelands
 %{_datadir}/widelands/
 %{_datadir}/applications/widelands.desktop

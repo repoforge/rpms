@@ -45,7 +45,7 @@ SVN::Web is a subversion repository web frontend.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES TODO
+%doc CHANGES README TODO
 %doc %{_mandir}/man3/*
 %{_bindir}/svnweb-install
 %dir %{perl_vendorlib}/SVN/

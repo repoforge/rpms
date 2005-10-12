@@ -45,7 +45,7 @@ This package contains a Perl interface to the MD5 Message-Digest Algorithm.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorlib}/MD5.pm
 

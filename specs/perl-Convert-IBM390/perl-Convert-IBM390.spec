@@ -48,7 +48,7 @@ hexdump:  dump memory in an MVS-like format
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Convert/IBM390.pm
 %{perl_vendorarch}/auto/Convert/IBM390/*

@@ -64,7 +64,7 @@ error response.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README ChangeLog
+%doc ChangeLog README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/XML/RSS/TimingBot.*
 

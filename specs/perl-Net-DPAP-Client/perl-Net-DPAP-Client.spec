@@ -49,7 +49,7 @@ It currently doesn't support password-protected shares.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Net/DPAP/Client.pm
 %{perl_vendorlib}/Net/DPAP/Client/*

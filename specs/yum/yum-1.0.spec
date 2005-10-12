@@ -86,7 +86,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING TODO RPM-GPG-KEY-*
+%doc AUTHORS COPYING README TODO RPM-GPG-KEY-*
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %config %{_sysconfdir}/cron.daily/%{name}.cron
 %config %{_sysconfdir}/init.d/%{name}

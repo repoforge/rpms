@@ -44,7 +44,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES CREDITS
+%doc CHANGES README CREDITS
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorarch}/Math/
 %{perl_vendorarch}/Math/BigInt/

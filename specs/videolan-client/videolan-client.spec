@@ -252,7 +252,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc HACKING 
+%doc HACKING
 %{_bindir}/vlc-config
 %{_includedir}/vlc/
 %dir %{_libdir}/vlc/

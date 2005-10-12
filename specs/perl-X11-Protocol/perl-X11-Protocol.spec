@@ -44,7 +44,7 @@ This is a module for the X Window System Protocol.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/X11/
 %{perl_vendorlib}/X11/*.pm

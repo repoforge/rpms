@@ -53,7 +53,7 @@ EOF
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING LICENCE* NEWS README TODO 
+%doc AUTHORS ChangeLog COPYING LICENCE* NEWS README TODO
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.png

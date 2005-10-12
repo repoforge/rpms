@@ -45,7 +45,7 @@ write scripts in html format.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man1/*
 %{_bindir}/perltidy

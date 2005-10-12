@@ -44,7 +44,7 @@ DateTime extension for generating recurrence sets from crontab lines and files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DateTime/Event/Cron.pm
 

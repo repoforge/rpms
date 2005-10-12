@@ -161,7 +161,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING ChangeLog
+%doc COPYING README ChangeLog
 %doc %{_mandir}/man8/athcool.8*
 %{_initrddir}/athcool
 %{_sbindir}/athcool

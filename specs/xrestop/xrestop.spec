@@ -47,7 +47,7 @@ display them in a manner similar to top.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README 
+%doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/xrestop.1*
 %{_bindir}/xrestop
 

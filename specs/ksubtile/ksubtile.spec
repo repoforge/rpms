@@ -66,7 +66,7 @@ echo "Categories=Application;AudioVideo;X-Red-Hat-Extra;" >> %{buildroot}/usr/sh
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING TODO
+%doc AUTHORS COPYING README TODO
 %{_bindir}/ksubtile
 %{_bindir}/ksubtile_client
 %{_datadir}/applications/ksubtile.desktop

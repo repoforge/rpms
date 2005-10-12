@@ -45,7 +45,7 @@ transparently gzip/gunzip files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorarch}/PerlIO/gzip.pm
 %{perl_vendorarch}/auto/PerlIO

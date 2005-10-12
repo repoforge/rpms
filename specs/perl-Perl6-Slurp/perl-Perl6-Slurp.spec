@@ -44,7 +44,7 @@ This package implements the Perl 6 'slurp' built-in.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Perl6/
 %{perl_vendorlib}/Perl6/Slurp.pm

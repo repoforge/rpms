@@ -45,7 +45,7 @@ the Julian and the Gregorian calendars.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Calendar/

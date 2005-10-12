@@ -45,7 +45,7 @@ This module contains support for XPG4 message catalog functions  : catopen(3), c
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Locale/Msgcat.pm
 %{perl_vendorarch}/auto/Locale/Msgcat

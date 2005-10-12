@@ -50,7 +50,7 @@ pure-perl and written in a very cross-platform way.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man?/*
 %{_bindir}/config_data
 %dir %{perl_vendorlib}/Module/

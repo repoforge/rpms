@@ -46,7 +46,7 @@ which are going to pass through the shell or a shell-like object.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_bindir}/shell-quote
 %{_mandir}/man3/*
 %{_mandir}/man1/*

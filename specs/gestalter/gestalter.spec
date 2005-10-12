@@ -45,7 +45,7 @@ The object model is multi-layered.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README COPYING
+%doc COPYING README
 %{_bindir}/*
 
 %changelog

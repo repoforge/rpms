@@ -57,7 +57,7 @@ tester.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Net/Jabber.pm
 %{perl_vendorlib}/Net/Jabber/*

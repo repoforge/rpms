@@ -86,7 +86,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog NEWS 
+%doc ChangeLog NEWS
 %doc doc/*.txt doc/*.sgml doc/*.html
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/intermezzo/

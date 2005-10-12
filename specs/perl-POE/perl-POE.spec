@@ -49,7 +49,7 @@ framework for Perl.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES TODO HISTORY
+%doc CHANGES README TODO HISTORY
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/POE/
 %{perl_vendorlib}/POE.pm

@@ -91,7 +91,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog doc/BUGS doc/ChangeLog.rxvt doc/FAQ doc/README* 
+%doc ChangeLog doc/BUGS doc/ChangeLog.rxvt doc/FAQ doc/README*
 %doc doc/TODO doc/menu/* doc/*.html
 %doc %{_mandir}/man1/aterm.1*
 %{_bindir}/aterm

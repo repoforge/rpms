@@ -41,7 +41,7 @@ Authen::Smb allows you to authenticate users against an NT server.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Authen/Smb.pm
 %{perl_vendorarch}/auto/Authen/Smb

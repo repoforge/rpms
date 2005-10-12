@@ -56,7 +56,7 @@ Some of the key features include:
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README 
+%doc LICENSE README
 %{xmms_generaldir}/libimms.so
 
 %changelog

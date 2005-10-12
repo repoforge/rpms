@@ -48,7 +48,7 @@ to a given node which can be used as an identifier.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Class/
 

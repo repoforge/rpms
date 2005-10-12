@@ -69,7 +69,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* HACKING INSTALL NEWS README TODO 
+%doc AUTHORS ChangeLog COPYING* HACKING INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/viewglob/

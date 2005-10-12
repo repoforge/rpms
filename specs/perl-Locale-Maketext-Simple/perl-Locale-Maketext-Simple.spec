@@ -44,7 +44,7 @@ Simple interface to Locale::Maketext::Lexicon.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Locale/
 %dir %{perl_vendorlib}/Locale/Maketext/

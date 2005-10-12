@@ -41,7 +41,7 @@ autoreconf --force --install --symlink
 
 %files 
 %defattr(-, root, root, 0755)
-%doc COPYING 
+%doc COPYING
 %doc %{_mandir}/man1/vbetool.1*
 %{_sbindir}/vbetool
 

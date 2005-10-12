@@ -45,7 +45,7 @@ These modules scrape data from search engines on the WWW.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/WWW/Scraper*.pm
 %{perl_vendorlib}/WWW/Scraper/*

@@ -44,7 +44,7 @@ standard RDF files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGES Copyright PRINCIPLES README TODO 
+%doc BUGS CHANGES Copyright PRINCIPLES README TODO
 %doc rpm2html-cdrom.config rpm2html-en.config rpm2html-rdf.config
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/rpm2html.config

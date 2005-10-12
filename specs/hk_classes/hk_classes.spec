@@ -38,7 +38,7 @@ like forms an reports. hk_classes is database and GUI independent.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING NEWS 
+%doc README AUTHORS COPYING NEWS
 %{_bindir}/hk_*
 %{_includedir}/hk_classes/*.h
 %{_libdir}/hk_classes/drivers/libhk_*driver.*
