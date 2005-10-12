@@ -46,7 +46,7 @@ built on top of Spoon.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changes
+%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Spoon.pm
 %{perl_vendorlib}/Spoon/
