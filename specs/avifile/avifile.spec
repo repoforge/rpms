@@ -29,7 +29,7 @@ BuildRequires: libstdc++-devel
 BuildRequires: qt-devel >= 2.1.0, SDL-devel >= 1.1.3, esound-devel
 BuildRequires: libvorbis-devel, libjpeg-devel, libpng-devel
 BuildRequires: libmad-devel, lame-devel, a52dec-devel, divx4linux
-BuildRequires: zlib-devel, xvidcore-devel
+BuildRequires: zlib-devel, xvidcore-devel, automake, autoconf
 
 %description
 Avifile is a library that allows you to read and write compressed AVI

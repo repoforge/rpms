@@ -11,7 +11,7 @@ URL: http://synergy2.sourceforge.net/
 Source: http://dl.sf.net/synergy2/%{name}-%{version}.tar.gz
 Patch: synergy-1.2.2-werror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, XFree86-devel
+BuildRequires: gcc-c++, XFree86-devel, autoconf
 
 %description
 Synergy lets you easily share a single mouse and keyboard between

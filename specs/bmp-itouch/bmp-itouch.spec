@@ -16,7 +16,7 @@ URL: http://bmp-itouch.sourceforge.net/
 Source: http://dl.sf.net/bmp-itouch/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bmp-devel >= 0.9.7
+BuildRequires: bmp-devel >= 0.9.7, gettext, pkgconfig
 Requires: bmp >= 0.9.7
 
 %description

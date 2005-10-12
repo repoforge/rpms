@@ -15,7 +15,7 @@ URL: http://cal3d.sourceforge.net/
 Source: http://dl.sf.net/cal3d/cal3d-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, autoconf, automake, doxygen, docbook-utils
 
 %description
 Cal3D is a skeletal based 3d character animation library written in C++ in a 

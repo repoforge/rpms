@@ -13,7 +13,7 @@ Group: Applications/Multimedia
 URL: http://www.musepack.net/
 Source: http://musepack.origean.net/files/linux/plugins/xmms-musepack-%{version}%{?prever:-%{prever}}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xmms-devel, libmpcdec-devel, taglib-devel
+BuildRequires: xmms-devel, libmpcdec-devel, taglib-devel, gcc-c++
 
 
 %description
