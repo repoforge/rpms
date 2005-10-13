@@ -4,7 +4,7 @@
 
 Summary: text viewer similar to more or less, but with additional capabilities
 Name: most
-Version: 4.9.5
+Version: 4.10.2
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -44,5 +44,8 @@ number, and the percentage of the file so far displayed.
 %{_bindir}/most
 
 %changelog
+* Thu Oct 13 2005 Dries Verachtert <dries@ulyssis.org> - 4.10.2-1
+- Updated to release 4.10.2.
+
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 4.9.5-1
 - Initial package. (using DAR)
