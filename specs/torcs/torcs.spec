@@ -5,7 +5,7 @@
 
 Summary: The Open Racing Car Simulator
 Name: torcs
-Version: 1.2.3
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -14,24 +14,25 @@ Source: http://dl.sf.net/torcs/TORCS-%{version}-src.tgz
 Source1: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-base.tgz
 Source2: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-berniw.tgz
 Source3: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-bt.tgz
+Source4: http://dl.sf.net/torcs/TORCS-%{version}-src-robots-olethros.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: torcs-data
+Requires: torcs-data, torcs-data-tracks-road, torcs-data-cars-extra
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU, xorg-x11-Mesa-libGL}
-BuildRequires: gcc-c++, plib-devel >= 1.8.3, freeglut-devel
-BuildRequires: libpng-devel, libjpeg-devel, zlib-devel
+BuildRequires: gcc-c++, freeglut-devel, plib-devel >= 1.8.3
+BuildRequires: libpng-devel, libjpeg-devel, zlib-devel, openal-devel
 BuildRequires: desktop-file-utils
 
 %description
 TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
 programmed robots drivers racing against each others.  You can also drive
-yourself with either a wheel, keyboard or mouse. 
+yourself with either a wheel, keyboard or mouse.
 
 
 %package robots
 Summary: The Open Racing Car Simulator robots
 Group: Amusements/Games
-Requires: %{name}
+Requires: %{name} = %{version}
 
 %description robots
 TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
@@ -42,7 +43,7 @@ This package contains the robots who can race on their own.
 
 
 %prep
-%setup -a 1 -a 2 -a 3
+%setup -a 1 -a 2 -a 3 -a 4
 # Put the drivers back where they belong
 %{__mv} %{name}-%{version}/src/drivers/* src/drivers/
 
@@ -57,14 +58,14 @@ This package contains the robots who can race on their own.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
-%{__install} -Dp -m0644 Ticon.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+%{__install} -D -p -m 0644 Ticon.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
 Name=TORCS
 Comment=The Open Racing Car Simulator
 Exec=torcs
-Icon=torcs.png
+Icon=%{name}.png
 Terminal=false
 Type=Application
 Encoding=UTF-8
@@ -77,7 +78,7 @@ desktop-file-install --vendor %{desktop_vendor} \
     %{name}.desktop
 
 # We need this for proper automatic stripping to take place (still in 1.2.3)
-find %{buildroot}%{_libdir}/%{name} -name '*.so' | xargs %{__chmod} +x
+find %{buildroot}%{_libdir}/%{name}/ -name '*.so' | xargs %{__chmod} +x
 
 
 %clean
@@ -88,35 +89,84 @@ find %{buildroot}%{_libdir}/%{name} -name '*.so' | xargs %{__chmod} +x
 %defattr(-, root, root, 0755)
 %doc CHANGELOG.html COPYING README.linux TODO.html
 %{_bindir}/*
-%dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/drivers
-%{_libdir}/%{name}/drivers/human
-%{_libdir}/%{name}/lib
-%{_libdir}/%{name}/modules
+%dir %{_libdir}/%{name}/
+%dir %{_libdir}/%{name}/drivers/
+# From main
+%{_libdir}/%{name}/drivers/human/
+# From robots-base
+%{_libdir}/%{name}/drivers/cylos1/
+%{_libdir}/%{name}/drivers/damned/
+%{_libdir}/%{name}/drivers/inferno/
+%{_libdir}/%{name}/drivers/inferno2/
+%{_libdir}/%{name}/drivers/lliaw/
+%{_libdir}/%{name}/drivers/tanhoj/
+%{_libdir}/%{name}/drivers/tita/
+%{_libdir}/%{name}/lib/
+%{_libdir}/%{name}/modules/
 %{_libdir}/%{name}/setup_linux.sh
 %{_libdir}/%{name}/*-bin
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%dir %{_datadir}/games/%{name}
-%{_datadir}/games/%{name}/config
-%dir %{_datadir}/games/%{name}/drivers
-%{_datadir}/games/%{name}/drivers/human
-%{_datadir}/games/%{name}/results
-%{_datadir}/games/%{name}/telemetry
+%dir %{_datadir}/games/%{name}/
+%{_datadir}/games/%{name}/config/
+%dir %{_datadir}/games/%{name}/drivers/
+# From main
+%{_datadir}/games/%{name}/drivers/human/
+# From robots-base
+%{_datadir}/games/%{name}/drivers/cylos1/
+%{_datadir}/games/%{name}/drivers/damned/
+%{_datadir}/games/%{name}/drivers/inferno/
+%{_datadir}/games/%{name}/drivers/inferno2/
+%{_datadir}/games/%{name}/drivers/lliaw/
+%{_datadir}/games/%{name}/drivers/tanhoj/
+%{_datadir}/games/%{name}/drivers/tita/
+%{_datadir}/games/%{name}/results/
+%{_datadir}/games/%{name}/telemetry/
 %{_datadir}/pixmaps/%{name}.png
-
 
 %files robots
 %defattr(-, root, root, 0755)
-%dir %{_libdir}/%{name}
-%{_libdir}/%{name}/drivers
-# Easier this way, since we package them all-minus-one in ;-)
-%exclude %{_libdir}/%{name}/drivers/human
-%dir %{_datadir}/games/%{name}
-%{_datadir}/games/%{name}/drivers
-%exclude %{_datadir}/games/%{name}/drivers/human
+%dir %{_libdir}/%{name}/
+%dir %{_libdir}/%{name}/drivers/
+# From robots-berniw
+%{_libdir}/%{name}/drivers/berniw/
+%{_libdir}/%{name}/drivers/berniw2/
+%{_libdir}/%{name}/drivers/berniw3/
+%{_libdir}/%{name}/drivers/sparkle/
+# From robots-bt
+%{_libdir}/%{name}/drivers/bt/
+# From robots-olethros
+%{_libdir}/%{name}/drivers/olethros/
+%dir %{_datadir}/games/%{name}/
+%dir %{_datadir}/games/%{name}/drivers/
+# From robots-berniw
+%{_datadir}/games/%{name}/drivers/berniw/
+%{_datadir}/games/%{name}/drivers/berniw2/
+%{_datadir}/games/%{name}/drivers/berniw3/
+%{_datadir}/games/%{name}/drivers/sparkle/
+# From robots-bt
+%{_datadir}/games/%{name}/drivers/bt/
+# From robots-olethros
+%{_datadir}/games/%{name}/drivers/olethros/
 
 
 %changelog
+* Wed Oct 12 2005 Matthias Saou <http://freshrpms.net/> 1.2.4-1
+- Update to 1.2.4.
+- Add torcs-data-tracks-road requirement directly to main torcs.
+- Drop no longer needed TORCS-1.2.3-64bit.patch.
+- Add openal-devel build dependency.
+
+* Wed Aug  3 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-5
+- Move base robots from the sub-package to the main one to have the default
+  quick race work. Hopefully this will change in later versions if the game
+  checks which drivers are available before starting the default quick race.
+- Add torcs-data-cars-extra requirement for the same reason as above : Without,
+  none of the drivers of the default quick race have a car and the game exits.
+- Add olethros robots.
+- Change %%files section to explicitly list all robots since the above change
+  moved many of them to the main package, not just "human".
+- Renamed 64bit patch to TORCS-1.2.3-64bit.patch.
+
 * Mon Feb  7 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
 - Update to 1.2.3.
 - Remove billy and K1999 robot packages (no longer upstream).

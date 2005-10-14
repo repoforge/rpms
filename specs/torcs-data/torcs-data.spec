@@ -4,7 +4,7 @@
 
 Summary: The Open Racing Car Simulator data files
 Name: torcs-data
-Version: 1.2.3
+Version: 1.2.4
 Release: 1
 License: GPL and Free Art License
 Group: Amusements/Games
@@ -17,7 +17,7 @@ Source4: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-extra.tgz
 Source5: http://dl.sf.net/torcs/TORCS-%{version}-data-cars-nascar.tgz
 Source90: Free-Art-License
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: torcs, %{name}-tracks = %{version}
+Requires: torcs, %{name}-tracks-road = %{version}
 BuildArch: noarch
 
 %description
@@ -32,7 +32,6 @@ This package contains the data files needed to run the game.
 Summary: The Open Racing Car Simulator additional dirt tracks
 Group: Amusements/Games
 Requires: torcs
-Provides: %{name}-tracks = %{version}-%{release}
 
 %description tracks-dirt
 TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
@@ -46,7 +45,6 @@ This package contains additional tracks for the game.
 Summary: The Open Racing Car Simulator additional oval tracks
 Group: Amusements/Games
 Requires: torcs
-Provides: %{name}-tracks = %{version}-%{release}
 
 %description tracks-oval
 TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
@@ -60,7 +58,6 @@ This package contains additional tracks for the game.
 Summary: The Open Racing Car Simulator additional road tracks
 Group: Amusements/Games
 Requires: torcs
-Provides: %{name}-tracks = %{version}-%{release}
 
 %description tracks-road
 TORCS is a 3D racing cars simulator using OpenGL.  The goal is to have
@@ -166,7 +163,16 @@ done
 
 
 %changelog
-* Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
+* Wed Oct 12 2005 Matthias Saou <http://freshrpms.net/> 1.2.4-1
+- Update to 1.2.4.
+
+* Wed Aug  3 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-3
+- Replace default tracks requirement (provided by all 3 tracks sub-packages)
+  by tracks-road since those are the ones required for a quick race, and yum
+  was installing the first available (alphabetically?) package, tracks-dirt.
+- Remove now unused virtual provides of tracks sub-packages.
+
+* Mon Feb 28 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-2
 - Change %%doc and %%defattr order to fix wrong ownership of doc files.
 
 * Fri Feb 11 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
