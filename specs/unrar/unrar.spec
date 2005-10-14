@@ -4,7 +4,7 @@
 
 Summary: Extract, test and view RAR archives
 Name: unrar
-Version: 3.5.2
+Version: 3.5.4
 Release: 1
 License: Freeware
 Group: Applications/Archiving
@@ -48,6 +48,9 @@ archives created with the RAR archiver version 1.50 and above.
 
 
 %changelog
+* Fri Oct 14 2005 Matthias Saou <http://freshrpms.net/> 3.5.4-1
+- Update to 3.5.4.
+
 * Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 3.5.2-1
 - Update to 3.5.2.
 - Disable stripping to get useful debuginfo package.

@@ -8,12 +8,12 @@
 
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
-Version: 3.5
-Release: 0.b1
+Version: 3.5.1
+Release: 1
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/
-Source: http://www.rarlabs.com/rar/rarlinux-%{version}.b1.tar.gz
+Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: i586
 
@@ -29,9 +29,9 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 rar %{buildroot}%{_bindir}/rar
-%{__install} -Dp -m0644 rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
-%{__install} -Dp -m0755 default.sfx %{buildroot}%{_libdir}/default.sfx
+%{__install} -D -p -m 0755 rar %{buildroot}%{_bindir}/rar
+%{__install} -D -p -m 0644 rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
+%{__install} -D -p -m 0755 default.sfx %{buildroot}%{_libdir}/default.sfx
 
 
 %clean
@@ -47,6 +47,9 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 
 %changelog
+* Fri Oct 14 2005 Matthias Saou <http://freshrpms.net/> 3.5.1-1
+- Update to 3.5.1 (aka 3.51).
+
 * Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 3.5-0.b1
 - Update to 3.5.b1.
 
