@@ -16,7 +16,10 @@
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
 
 %{!?_without_opengl:%define opengl 1}
+# Glide3 is only available on x86 and x86_64 (as of Oct 2005 - 0.100)
+%ifarch %{ix86} x86_64
 %{!?_without_glide3:%define glide3 1}
+%endif
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
@@ -259,6 +262,7 @@ popd
 %changelog
 * Fri Oct 14 2005 Matthias Saou <http://freshrpms.net/> 0.100-2
 - Update Mameinfo0100u3.zip and history1_04a.zip.
+- Disable Glide3 on non x86/x86_64 archs to fix ppc build.
 
 * Mon Sep 26 2005 Matthias Saou <http://freshrpms.net/> 0.100-1
 - Update to 0.100.
