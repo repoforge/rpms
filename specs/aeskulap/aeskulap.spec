@@ -16,6 +16,7 @@ Source: http://www.bms-austria.com/~pipelka/aeskulap/aeskulap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gtkmm24-devel, libglademm24-devel, gconfmm26-devel
+BuildRequires: zlib-devel, libpng-devel
 
 %description
 Aeskulap is a medical image viewer. It is able to load a series of special 
@@ -55,6 +56,9 @@ any platform were these packages are available.
 %{_datadir}/gconf/schemas/aeskulap.schema
 
 %changelog
+* Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-2
+- zlib-devel and libpng-devel buildrequirements added.
+
 * Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1
 - Updated to release 0.2.0.
 

@@ -3,8 +3,8 @@
 
 Summary: Extension for reading and writing YAML
 Name: syck
-Version: 0.51
-Release: 2
+Version: 0.55
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://www.whytheluckystiff.net/syck/
@@ -59,6 +59,9 @@ export CFLAGS="%{optflags} -fPIC"
 %{_libdir}/libsyck.a
 
 %changelog
+* Thu Oct 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.55-1
+- Updated to release 0.55.
+
 * Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 0.51-2
 - Renamed package syck to syck-devel.
 - Added -fPIC to the compile options for x86_64.

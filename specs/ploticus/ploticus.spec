@@ -2,6 +2,17 @@
 # Authority: dries
 # Upstream: Steve Grubb <scg$jax,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 %define real_version 232
 
 Summary: Command line utility for creating charts and plots
@@ -16,6 +27,8 @@ Source: http://ploticus.sourceforge.net/download/pl%{real_version}src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, zlib-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 PLOTICUS is a command line utility for creating bar, line, pie, boxplot, 
@@ -50,5 +63,8 @@ cd src
 %{_datadir}/ploticus
 
 %changelog
+* Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 2.32-2
+- xorg/XFree86 buildreqs added.
+
 * Wed Aug 31 2005 Dries Verachtert <dries@ulyssis.org> - 2.32-1
 - Initial package.
