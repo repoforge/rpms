@@ -11,12 +11,12 @@
 Summary: Perl Palm classes
 Name: perl-Palm
 Version: 1.3.0
-Release: 1
+Release: 2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/p5-Palm/
 
-Source: http://www.cpan.org/modules/by-module/p5/p5-Palm-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AR/ARENSB/p5-Palm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -54,5 +54,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/*
 
 %changelog
+* Sat Oct 15 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-2
+- Fixed the source url.
+
 * Fri Apr 30 2004 Dag Wieers <dag@wieers.com> - 1.3.0-1
 - Initial package. (using DAR)
