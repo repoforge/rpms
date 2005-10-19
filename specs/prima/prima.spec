@@ -19,8 +19,8 @@
 
 Summary: Extensible Perl toolkit for multi-platform GUI development
 Name: prima
-Version: 1.16
-Release: 2
+Version: 1.19
+Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.prima.eu.org/
@@ -75,6 +75,9 @@ identically on X, Win32 and OS/2 PM.
 %{_bindir}/podview
 
 %changelog
+* Wed Oct 19 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
+- Updated to release 1.19.
+
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> 1.16-2
 - Fix requirements.
 
