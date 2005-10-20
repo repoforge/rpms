@@ -97,7 +97,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING README* examples/ contrib/ SpamAssassin/
+%doc Changelog contrib/ COPYING examples/ README* SpamAssassin/
 %doc %{_mandir}/man?/*
 %dir %{_sysconfdir}/mail/
 %config(noreplace) %{_sysconfdir}/mail/mimedefang-filter

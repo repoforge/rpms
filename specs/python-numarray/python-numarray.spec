@@ -35,7 +35,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README.txt LICENSE.txt Doc/* PKG-INFO
+%doc Doc/* LICENSE.txt MANIFEST PKG-INFO README.txt
 %{python_sitearch}/numarray/
 %{_includedir}/python*/numarray/
 

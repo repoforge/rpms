@@ -76,7 +76,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.TXT LICENSE* *.html
+%doc *.html CHANGES.TXT LICENSE*
 %{_bindir}/*
 %{_datadir}/lbe/
 

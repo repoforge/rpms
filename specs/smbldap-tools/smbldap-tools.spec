@@ -46,7 +46,7 @@ tools to manage users, groups and passwords.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog CONTRIBUTORS COPYING FILES INFRA INSTALL README TODO
-%doc configure.pl *.conf doc/html/*.html
+%doc *.conf configure.pl doc/html/*.html
 %config(noreplace) %{_sysconfdir}/smbldap-tools/
 %{_sbindir}/smbldap*
 %exclude %{_sbindir}/smbldap-tools.spec

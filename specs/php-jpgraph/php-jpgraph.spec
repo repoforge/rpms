@@ -65,7 +65,7 @@ This package includes the documentation for %{name}.
 
 %files docs
 %defattr(-, root, root, 0755)
-%doc src/Examples/ docs/*
+%doc docs/* src/Examples/
 
 %changelog
 * Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1

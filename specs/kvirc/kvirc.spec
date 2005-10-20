@@ -92,7 +92,7 @@ echo "Categories=Application;Network;X-Red-Hat-Extra" >> %{buildroot}/usr/share/
 
 %files
 %defattr(-, root, root, 0755)
-%doc README FAQ TODO ChangeLog
+%doc ChangeLog FAQ README TODO
 %{_datadir}/applications/kvirc.desktop
 %{_datadir}/kvirc
 %{_datadir}/icons/hicolor/*/apps/kvirc.png

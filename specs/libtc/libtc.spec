@@ -55,7 +55,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README NEWS
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_libdir}/*.so.*
 
 %files devel

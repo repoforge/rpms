@@ -39,7 +39,7 @@ signatures on the RRsets within the zone.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README index.html
+%doc ChangeLog COPYING index.html README
 %doc %{_mandir}/man?/walker*
 %{_bindir}/walker
 

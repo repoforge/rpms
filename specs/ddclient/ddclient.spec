@@ -58,7 +58,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYRIGHT COPYING README README.cisco sample-*
+%doc COPYING COPYRIGHT README README.cisco sample-*
 %{_sbindir}/ddclient
 %config(noreplace) %{_sysconfdir}/ddclient/ddclient.conf
 %{_sysconfdir}/rc.d/init.d/ddclient

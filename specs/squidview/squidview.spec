@@ -48,7 +48,7 @@ functions.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING HOWTO NEWS README example.log
+%doc AUTHORS BUGS ChangeLog COPYING example.log HOWTO NEWS README
 %{_bindir}/*
 
 %changelog

@@ -68,7 +68,7 @@ desktop-file-install --vendor rpmforge             \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc rpmdocs/* ChangeLog INSTALL
+%doc ChangeLog INSTALL rpmdocs/*
 %doc %{_mandir}/man1/kildclient*
 %{_bindir}/kildclient
 %{_datadir}/kildclient/

@@ -49,7 +49,7 @@ install dependencies via CPAN or CPANPLUS.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README AUTHORS
+%doc AUTHORS Changes README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/ExtUtils/
 %{perl_vendorlib}/ExtUtils/AutoInstall.pm

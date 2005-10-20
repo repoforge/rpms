@@ -89,7 +89,7 @@ scrollkeeper-update -q || :
 
 %files -f %{name}-2.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README NEWS
+%doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/libgda/
 %{_bindir}/*

@@ -80,7 +80,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/
+%doc AUTHORS ChangeLog COPYING doc/ NEWS README
 %config(noreplace) %{_sysconfdir}/*
 %{_bindir}/*
 %{_libdir}/dillo/

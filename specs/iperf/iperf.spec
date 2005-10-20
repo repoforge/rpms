@@ -38,7 +38,7 @@ delay jitter, datagram loss.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README doc/*.html doc/*.gif
+%doc doc/*.gif doc/*.html README
 %{_bindir}/iperf
 
 %changelog

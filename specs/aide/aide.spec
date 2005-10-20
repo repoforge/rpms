@@ -59,7 +59,7 @@ checker and intrusion detection program.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README* ./doc/manual.html
+%doc ./doc/manual.html AUTHORS ChangeLog COPYING NEWS README*
 %doc %{_mandir}/man?/aide.*
 %doc %lang(ru) %{_mandir}/ru/man?/aide.*
 

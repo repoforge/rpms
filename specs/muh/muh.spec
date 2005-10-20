@@ -52,7 +52,7 @@ If you have no idea what this is good for you probably don't need it.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO VERSION muhrc
+%doc AUTHORS ChangeLog COPYING INSTALL muhrc NEWS README TODO VERSION
 %doc %{_infodir}/*.info*
 %{_bindir}/*
 %exclude %{_datadir}/muhrc

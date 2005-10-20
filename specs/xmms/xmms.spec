@@ -207,7 +207,7 @@ update-desktop-database %{_datadir}/desktop-menu-patches &>/dev/null || :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog FAQ INSTALL NEWS TODO README
+%doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README TODO
 %{_bindir}/xmms
 %{_bindir}/wmxmms
 %{_libdir}/libxmms.so.1*

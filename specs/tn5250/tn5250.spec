@@ -66,7 +66,7 @@ export TERMINFO="%{buildroot}%{_datadir}/terminfo/"
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS COPYING ChangeLog NEWS README TODO linux/*.map doc/*
+%doc AUTHORS BUGS ChangeLog COPYING doc/* linux/*.map NEWS README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/lp5250d
 %{_bindir}/scs2*

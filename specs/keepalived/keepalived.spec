@@ -73,7 +73,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHOR ChangeLog CONTRIBUTORS COPYING README TODO doc/
+%doc AUTHOR ChangeLog CONTRIBUTORS COPYING doc/ README TODO
 %doc %{_mandir}/man1/genhash.1*
 %doc %{_mandir}/man5/keepalived.conf.5*
 %doc %{_mandir}/man8/keepalived.8*

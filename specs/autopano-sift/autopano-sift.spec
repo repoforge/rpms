@@ -55,7 +55,7 @@ available at http://hugin.sf.net/
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES src/TODO doc/* src/doc/*
+%doc CHANGES doc/* src/doc/* src/TODO
 %{_bindir}/autopanog.exe
 %{_bindir}/autopano.exe
 %{_bindir}/showone.exe

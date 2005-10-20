@@ -36,7 +36,7 @@ Utilities to update from Avantgo and MobileLink web site to Palm's.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Doc/README* mal/MPL-1_0.txt mal/client/unix/{HISTORY,TODO} README
+%doc Doc/README* mal/client/unix/{HISTORY,TODO} mal/MPL-1_0.txt README
 %{_bindir}/malsync
 
 %changelog

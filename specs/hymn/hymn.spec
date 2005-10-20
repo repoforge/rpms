@@ -35,7 +35,7 @@ operating systems not supported by iTunes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog NEWS README THANKS doc/hymn-manual* doc/*.png
+%doc AUTHORS ChangeLog doc/*.png doc/hymn-manual* NEWS README THANKS
 %{_bindir}/hymn
 
 %changelog

@@ -35,7 +35,7 @@ a remote host by sending it TCP "echo" (or other protocol) packets.
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING DETAILS ChangeLog INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING DETAILS INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 

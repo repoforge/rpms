@@ -86,7 +86,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/Autodir-HOWTO.html
+%doc AUTHORS ChangeLog COPYING doc/Autodir-HOWTO.html NEWS README
 %config(noreplace) %{_sysconfdir}/sysconfig/autogroup
 %config(noreplace) %{_sysconfdir}/sysconfig/autohome
 %{_sysconfdir}/rc.d/init.d/autogroup

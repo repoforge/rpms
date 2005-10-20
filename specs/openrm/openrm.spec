@@ -81,7 +81,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README FUTUREPLANS LICENSE.html OLD-RELEASENOTES RELEASENOTES VERSION docs
+%doc docs FUTUREPLANS LICENSE.html OLD-RELEASENOTES README RELEASENOTES VERSION
 %{_libdir}/*.so.*
 
 %files devel

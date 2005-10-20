@@ -43,10 +43,10 @@ strip -S Sketch/Modules/*.so
 
 %files
 %defattr(-, root, root, 0755)
-%doc Examples/ Doc/
-%doc README INSTALL BUGS CREDITS COPYING TODO PROJECTS FAQ NEWS
-%doc Pax/README.pax Pax/COPYING.pax Pax/COPYING.xext
-%doc Filter/README.filter Filter/COPYING.filter
+%doc Doc/ Examples/
+%doc BUGS COPYING CREDITS FAQ INSTALL NEWS PROJECTS README TODO
+%doc Pax/COPYING.pax Pax/COPYING.xext Pax/README.pax
+%doc Filter/COPYING.filter Filter/README.filter
 %{_libdir}/sketch-%{version}
 %{_bindir}/sketch
 %{_bindir}/sk2ps

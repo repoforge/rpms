@@ -69,7 +69,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog* COPYING* NEWS README TODO doc/rfc1413
+%doc AUTHORS ChangeLog* COPYING* doc/rfc1413 NEWS README TODO
 %attr(0640, root, nobody) %config(noreplace) %{_sysconfdir}/identd.spoof
 %attr(0640, root, nobody) %config(noreplace) %{_sysconfdir}/oidentd.users
 %config /etc/rc.d/init.d/identd

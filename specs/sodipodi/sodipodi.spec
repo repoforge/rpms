@@ -49,7 +49,7 @@ with anti-aliased display, alpha transparency, and vector fonts.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO samples/
+%doc AUTHORS ChangeLog COPYING NEWS README samples/ TODO
 %doc %{_mandir}/man1/sodipodi.1*
 %{_bindir}/sodipodi
 %{_libdir}/sodipodi/

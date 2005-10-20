@@ -157,7 +157,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO doc/*.txt
+%doc AUTHORS ChangeLog COPYING doc/*.txt INSTALL NEWS README TODO
 %doc %{_mandir}/man1/memcached.1*
 %config(noreplace) %{_sysconfdir}/sysconfig/memcached
 %config %{_initrddir}/memcached

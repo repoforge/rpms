@@ -65,7 +65,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README Documentation/*.txt
+%doc COPYING Documentation/*.txt README
 %doc %{_mandir}/man8/*.8*
 %config %{_sysconfdir}/acpi/actions/lm_*.sh
 %config %{_sysconfdir}/acpi/events/lm_*

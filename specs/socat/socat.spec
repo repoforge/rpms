@@ -51,7 +51,7 @@ line editor, a program, or a combination of two of these.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGREPORTS CHANGES COPYING* DEVELOPMENT EXAMPLES FAQ FILES PORTING README SECURITY
-%doc xio.help socat.html *.sh
+%doc *.sh socat.html xio.help
 %doc %{_mandir}/man1/socat.1*
 %{_bindir}/filan
 %{_bindir}/procan

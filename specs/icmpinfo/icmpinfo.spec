@@ -35,7 +35,7 @@ the running host.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES DOC LICENSE README TODO NocTools.Infos
+%doc CHANGES DOC LICENSE NocTools.Infos README TODO
 %doc %{_mandir}/man1/icmpinfo.1*
 %{_sbindir}/icmpinfo
 

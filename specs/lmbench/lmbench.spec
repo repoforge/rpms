@@ -61,7 +61,7 @@ cd -
 
 %files
 %defattr(-, root, root, 0755)
-%doc ACKNOWLEDGEMENTS CHANGES COPYING COPYING-2 README hbench-REBUTTAL doc/*.ms
+%doc ACKNOWLEDGEMENTS CHANGES COPYING COPYING-2 doc/*.ms hbench-REBUTTAL README
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 

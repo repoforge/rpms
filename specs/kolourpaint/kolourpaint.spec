@@ -74,7 +74,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog README BUGS
+%doc AUTHORS BUGS ChangeLog COPYING README
 %{_bindir}/kolourpaint
 %{_datadir}/applications/kolourpaint.desktop
 %{_datadir}/apps/kolourpaint

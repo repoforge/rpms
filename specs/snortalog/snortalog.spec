@@ -76,7 +76,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README *.pdf
+%doc *.pdf CHANGES README
 %config %{_sysconfdir}/snortalog/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/*.conf
 %{_bindir}/snortalog

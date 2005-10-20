@@ -47,7 +47,7 @@ which shall never be blamed for any error.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README.txt CHANGES.txt GNU_GPL.txt
+%doc CHANGES.txt GNU_GPL.txt README.txt
 %{_mandir}/man3/*
 %{perl_vendorlib}/Carp/Clan.pm
 %{perl_vendorlib}/Carp/Clan.pod

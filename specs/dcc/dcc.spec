@@ -243,7 +243,7 @@ rm -f %{buildroot}%{_sbindir}/updatedcc
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES FAQ.txt INSTALL.txt LICENSE README.misc README.homedir
+%doc CHANGES FAQ.txt INSTALL.txt LICENSE README.homedir README.misc
 %doc FAQ.html INSTALL.html cdcc.html dbclean.html dblist.html
 %doc dcc.html dccd.html dccifd.html dccproc.html dccsight.html
 

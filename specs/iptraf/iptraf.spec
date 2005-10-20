@@ -78,7 +78,7 @@ touch %{buildroot}%{_localstatedir}/log/iptraf/rvnamed.log \
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES FAQ LICENSE INSTALL README* RELEASE-NOTES Documentation/
+%doc CHANGES Documentation/ FAQ INSTALL LICENSE README* RELEASE-NOTES
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 

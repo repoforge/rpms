@@ -46,7 +46,7 @@ This module contains a Whois Client Interface for Perl.
 
 %files
 %defattr(-, root, root, 0755)
-%doc TODO ARTISTIC Changes
+%doc ARTISTIC Changes TODO
 %{_mandir}/man3/*
 %{perl_vendorlib}/Net/XWhois.pm
 

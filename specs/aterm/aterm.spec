@@ -92,7 +92,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog doc/BUGS doc/ChangeLog.rxvt doc/FAQ doc/README*
-%doc doc/TODO doc/menu/* doc/*.html
+%doc doc/*.html doc/menu/* doc/TODO
 %doc %{_mandir}/man1/aterm.1*
 %{_bindir}/aterm
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-aterm.desktop}

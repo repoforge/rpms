@@ -54,7 +54,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README* THANKS TODO *.conf
+%doc *.conf AUTHORS ChangeLog COPYING README* THANKS TODO
 %config(noreplace) %{_sysconfdir}/yam.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/yam.conf
 %config %{_initrddir}/yam

@@ -55,7 +55,7 @@ pgpool can work with PostgreSQL 7.0 to 7.4.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README ChangeLog NEWS TODO README.euc_jp
+%doc AUTHORS ChangeLog COPYING NEWS README README.euc_jp TODO
 %config(noreplace) %{_sysconfdir}/pgpool.conf
 %{_bindir}/pgpool
 

@@ -288,7 +288,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AAAREADME.first LDAP.schema LICENSE MANIFEST RELEASE_NOTES README_FILES/*
+%doc AAAREADME.first LDAP.schema LICENSE MANIFEST README_FILES/* RELEASE_NOTES
 %doc amavisd.conf* test-messages/
 %config %{_initrddir}/amavisd
 %config %{_sysconfdir}/openldap/schema/*.schema

@@ -56,7 +56,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE doc/README.* doc/*.css
+%doc doc/*.css doc/README.* LICENSE
 %doc %{_mandir}/man?/*
 %{_mandir}/man8/*
 %config %{_initrddir}/waproamd

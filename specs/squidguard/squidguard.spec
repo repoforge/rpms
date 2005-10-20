@@ -90,7 +90,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc samples/sample.conf samples/squidGuard-simple.cgi samples/squidGuard.cgi
-%doc doc/*.txt doc/*.html doc/*.gif
+%doc doc/*.gif doc/*.html doc/*.txt
 %config(noreplace) %{_sysconfdir}/squid/
 %config %{_sysconfdir}/logrotate.d/*
 %{_bindir}/*

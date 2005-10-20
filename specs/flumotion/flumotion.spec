@@ -125,7 +125,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README AUTHORS
+%doc AUTHORS ChangeLog COPYING README
 %doc conf/ doc/reference/html/
 %{_sysconfdir}/rc.d/init.d/flumotion
 %attr(0750, flumotion, flumotion) %{_sysconfdir}/flumotion/

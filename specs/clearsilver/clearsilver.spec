@@ -107,7 +107,7 @@ clearsilver templating system.
 
 %files 
 %defattr(-, root, root, 0755)
-%doc CS_LICENSE INSTALL LICENSE README scripts/cs_lint.py contrib/cs-mode.el
+%doc contrib/cs-mode.el CS_LICENSE INSTALL LICENSE README scripts/cs_lint.py
 %doc %{_mandir}/man3/*.3.*
 %{_bindir}/*
 

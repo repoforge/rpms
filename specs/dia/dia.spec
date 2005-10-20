@@ -66,7 +66,7 @@ format, and can export to PostScript(TM).
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING KNOWN_BUGS NEWS README TODO doc/
+%doc AUTHORS ChangeLog COPYING doc/ KNOWN_BUGS NEWS README TODO
 %doc %{_datadir}/gnome/help/dia/
 %doc %{_mandir}/man?/*
 %{_bindir}/*

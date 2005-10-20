@@ -68,7 +68,7 @@ export OPTIONS="
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO misc/miaurc
+%doc AUTHORS ChangeLog COPYING INSTALL misc/miaurc NEWS README TODO
 %doc %{_infodir}/*.info*
 %doc %{_mandir}/man1/miau.1*
 %{_bindir}/miau*

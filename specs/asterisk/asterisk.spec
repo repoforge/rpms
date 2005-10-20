@@ -113,7 +113,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS ChangeLog CREDITS HARDWARE LICENSE README SECURITY doc/*.txt configs/
+%doc BUGS ChangeLog configs/ CREDITS doc/*.txt HARDWARE LICENSE README SECURITY
 %doc sounds.txt
 %attr(750, %{uname}, %{gname}) %dir %{_sysconfdir}/asterisk
 %attr(640, %{uname}, %{gname}) %config(noreplace) %{_sysconfdir}/asterisk/*.conf

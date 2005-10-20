@@ -49,7 +49,7 @@ and	phentropy (plots a large data source onto a 3D matrix)
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO docs/
+%doc AUTHORS ChangeLog COPYING docs/ INSTALL NEWS README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_sbindir}/*

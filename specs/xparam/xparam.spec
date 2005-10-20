@@ -65,7 +65,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL README TODO BUGS XPARAM-VERSION doc
+%doc AUTHORS BUGS ChangeLog COPYING doc INSTALL README TODO XPARAM-VERSION
 %{_libdir}/*.so.*
 
 %files devel

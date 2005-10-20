@@ -132,7 +132,7 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 %defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO
 ### FIXME: examples/ includes scripts that require perl-rrdtool (circular dependency)
-%doc rpm-doc/docs/ examples/
+%doc examples/ rpm-doc/docs/
 %doc %{_mandir}/man1/*.1*
 %{_bindir}/rrdcgi
 %{_bindir}/rrdtool

@@ -49,7 +49,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc README mx/Doc/ mx/*/Doc/ mx/DateTime/COPYRIGHT mx/DateTime/LICENSE
+%doc mx/*/Doc/ mx/DateTime/COPYRIGHT mx/DateTime/LICENSE mx/Doc/ README
 %{python_sitearch}/mx/
 
 %changelog

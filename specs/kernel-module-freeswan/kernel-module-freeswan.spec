@@ -298,7 +298,7 @@ fi
 %defattr(-, root, root, 0755)
 %doc BUGS CHANGES COPYING CREDITS INSTALL README
 %doc programs/_confread/ipsec.conf
-%doc x509-*/CHANGES x509-*/README x509-*/*.template
+%doc x509-*/*.template x509-*/CHANGES x509-*/README
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/ipsec.secrets
 %config(noreplace) %{_sysconfdir}/ipsec.conf

@@ -103,7 +103,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGELOG LICENSE TODO INSTALL contrib/ docs/*
+%doc AUTHORS CHANGELOG contrib/ docs/* INSTALL LICENSE TODO
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/mod_log_sql.conf
 %{_libdir}/httpd/modules/mod_log_sql.so
 %{_libdir}/httpd/modules/mod_log_sql_mysql.so

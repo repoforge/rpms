@@ -38,7 +38,7 @@ to configure and monitor Wireless Access Points using SNMP.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc Documentation/FAQ Documentation/*.html
+%doc Documentation/*.html Documentation/FAQ
 %doc %{_mandir}/man8/ap-auth.8*
 %doc %{_mandir}/man8/ap-config.8*
 %doc %{_mandir}/man8/ap-gl.8*

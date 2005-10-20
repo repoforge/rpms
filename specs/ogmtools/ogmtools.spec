@@ -39,7 +39,7 @@ streams".
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README TODO COPYING
+%doc ChangeLog COPYING README TODO
 %{_bindir}/*
 %{_mandir}/man1/*
 

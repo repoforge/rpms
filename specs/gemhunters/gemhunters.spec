@@ -78,7 +78,7 @@ desktop-file-install --vendor net                  \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO ABOUT-NLS
+%doc ABOUT-NLS AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/GemHunters

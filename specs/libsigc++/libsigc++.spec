@@ -75,7 +75,7 @@ find doc -name "Makefile*" | xargs rm -f
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* FEATURES README IDEAS NEWS TODO
+%doc AUTHORS ChangeLog COPYING* FEATURES IDEAS NEWS README TODO
 %{_libdir}/*.so.*
 
 %files devel

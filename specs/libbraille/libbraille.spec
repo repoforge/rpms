@@ -64,7 +64,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc NEWS TODO COPYING AUTHORS ChangeLog README
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config(noreplace) %{_sysconfdir}/libbraille.conf
 %{_bindir}/*
 %{_libdir}/*.so.*

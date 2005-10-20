@@ -38,7 +38,7 @@ thus many new possibilities.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING *.style example.camErc*
+%doc *.style AUTHORS COPYING example.camErc*
 %{_bindir}/%{name}
 
 

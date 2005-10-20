@@ -45,7 +45,7 @@ This module contains support for XML stream connections.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README INFO LICENSE.LGPL CHANGES
+%doc CHANGES INFO LICENSE.LGPL README
 %{_mandir}/man3/*
 %{perl_vendorlib}/XML/Stream.pm
 %{perl_vendorlib}/XML/Stream/*

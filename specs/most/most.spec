@@ -39,7 +39,7 @@ number, and the percentage of the file so far displayed.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYRIGHT README *.doc *.rc *.txt
+%doc *.doc *.rc *.txt COPYRIGHT README
 %doc %{_mandir}/man1/most.1*
 %{_bindir}/most
 

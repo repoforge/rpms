@@ -55,7 +55,7 @@ not to change the message format.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README Changes
+%doc Changes LICENSE README
 %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Log/
 %dir %{perl_vendorlib}/Log/Dispatch/

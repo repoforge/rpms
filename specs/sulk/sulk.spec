@@ -41,7 +41,7 @@ made in Python with Pygame.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING HACKING WHATSNEW
+%doc AUTHORS COPYING HACKING README WHATSNEW
 %{_datadir}/games/sulk/
 %{_bindir}/sulk
 

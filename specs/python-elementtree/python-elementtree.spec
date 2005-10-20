@@ -57,7 +57,7 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
-%doc docs samples README* CHANGES* benchmark.py
+%doc benchmark.py CHANGES* docs README* samples
 %dir %{python_sitelib}/elementtree
 %{python_sitelib}/elementtree/*.py
 %{python_sitelib}/elementtree/*.pyc

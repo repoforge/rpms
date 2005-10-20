@@ -39,7 +39,7 @@ Portable, robust, fully-threaded I/O benchmark program
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS ChangeLog COPYING README TODO scripts/
+%doc BUGS ChangeLog COPYING README scripts/ TODO
 %{_bindir}/*
 
 %changelog

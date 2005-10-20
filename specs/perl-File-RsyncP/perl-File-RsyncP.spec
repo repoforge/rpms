@@ -49,7 +49,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST LICENSE README
+%doc Changes LICENSE MANIFEST README
 %doc %{_mandir}/man?/*
 %{perl_vendorarch}/*
 

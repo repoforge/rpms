@@ -66,7 +66,7 @@ desktop-file-install --vendor net                  \
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING INSTALL TODO BUGS
+%doc BUGS COPYING INSTALL TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/ara
 %{_bindir}/xara

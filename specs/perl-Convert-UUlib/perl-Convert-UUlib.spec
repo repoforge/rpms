@@ -46,7 +46,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes COPYING* MANIFEST README doc/*
+%doc Changes COPYING* doc/* MANIFEST README
 %doc %{_mandir}/man?/*
 %{perl_vendorarch}/Convert/
 %{perl_vendorarch}/auto/Convert/

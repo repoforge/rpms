@@ -76,7 +76,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES LICENSE README *.png sample/
+%doc *.png CHANGES LICENSE README sample/
 %{_bindir}/asp2php
 
 %files gtk

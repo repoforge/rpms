@@ -49,7 +49,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Install.txt readme.txt research.txt doc/
+%doc COPYING doc/ Install.txt readme.txt research.txt
 %config(noreplace) %{_sysconfdir}/apserver.cfg
 %{_bindir}/apserver
 %{_datadir}/apserver/

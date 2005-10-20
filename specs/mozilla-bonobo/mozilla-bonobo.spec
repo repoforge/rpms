@@ -53,7 +53,7 @@ scrollkeeper-update -q
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README NEWS TODO
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_libdir}/mozilla/plugins/*.so

@@ -46,7 +46,7 @@ interacts with a tied hash.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README TODO CHANGES
+%doc CHANGES README TODO
 %{_mandir}/man3/*
 %{perl_vendorlib}/Apache/Session.pm
 %{perl_vendorlib}/Apache/Session/*

@@ -63,7 +63,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc vrb/doc/ChangeLog LICENSE README
+%doc LICENSE README vrb/doc/ChangeLog
 %{_bindir}/*
 %{_libdir}/*.so.*
 

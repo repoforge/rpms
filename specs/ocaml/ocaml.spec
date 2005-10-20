@@ -113,7 +113,7 @@ Emacs mode for Objective Caml.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL LICENSE README refman.ps.gz htmlman/
+%doc Changes htmlman/ INSTALL LICENSE README refman.ps.gz
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man3/*
 %doc %{_infodir}/ocaml*

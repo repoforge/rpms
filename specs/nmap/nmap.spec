@@ -66,7 +66,7 @@ desktop-file-install \
 
 %files 
 %defattr(-, root, root, 0755)
-%doc COPYING docs/README docs/*.html docs/*.txt
+%doc COPYING docs/*.html docs/*.txt docs/README
 %{_bindir}/nmap
 %{_datadir}/nmap
 %{_mandir}/man1/nmap.1*

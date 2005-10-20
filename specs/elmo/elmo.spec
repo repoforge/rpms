@@ -42,7 +42,7 @@ mailers and competes with Mutt.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ADVOCACY AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README THANKS TODO
-%doc doc/README.txt TODO doc/sample.elmorc doc/tutorial.gpg
+%doc doc/README.txt doc/sample.elmorc doc/tutorial.gpg TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/elmo
 %{_bindir}/elmoconf.pl

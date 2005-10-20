@@ -68,7 +68,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/DETAILS doc/*.html
+%doc doc/*.html doc/DETAILS
 %{_bindir}/*
 %{_includedir}/*
 %{_libdir}/*.a

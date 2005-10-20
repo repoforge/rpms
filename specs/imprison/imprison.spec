@@ -37,7 +37,7 @@ capabilities, userid, and groups.
 
 %files
 %defattr(-, root, root, 0755)
-%doc src/CHANGES src/COPYING src/COPYRIGHT package/README doc/*.html doc/imprison/
+%doc doc/*.html doc/imprison/ package/README src/CHANGES src/COPYING src/COPYRIGHT
 %{_sbindir}/*
 
 %changelog

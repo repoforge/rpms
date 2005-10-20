@@ -42,7 +42,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc/* readme.txt log4py.conf
+%doc doc/* log4py.conf readme.txt
 %{python_sitearch}/log4py.py*
 
 %changelog

@@ -67,7 +67,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING INSTALL FAQ README cron/ pppd/
+%doc CHANGES COPYING cron/ FAQ INSTALL pppd/ README
 %doc %{_mandir}/man1/vnstat.1*
 %config(noreplace) %{_sysconfdir}/sysconfig/vnstat
 %config %{_sysconfdir}/cron.d/vnstat

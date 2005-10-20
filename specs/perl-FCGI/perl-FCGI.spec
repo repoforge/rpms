@@ -46,7 +46,7 @@ not require you to recompile perl.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README LICENSE.TERMS
+%doc ChangeLog LICENSE.TERMS README
 %{_mandir}/man3/*
 %{perl_vendorarch}/FCGI.pm
 %{perl_vendorarch}/auto/FCGI/FCGI.bs

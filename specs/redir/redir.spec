@@ -45,7 +45,7 @@ someone else liked it enough to fix it.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING README transproxy.txt contrib/README* contrib/redir-wrapper*
+%doc CHANGES contrib/README* contrib/redir-wrapper* COPYING README transproxy.txt
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 

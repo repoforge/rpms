@@ -69,7 +69,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README* TODO *.txt
+%doc *.txt AUTHORS ChangeLog COPYING INSTALL NEWS README* TODO
 %doc %{_mandir}/man1/airsnort.1*
 %doc %{_mandir}/man1/decrypt.1*
 %doc %{_mandir}/man1/gencases.1*

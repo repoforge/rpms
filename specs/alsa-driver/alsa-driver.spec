@@ -149,7 +149,7 @@ test -L /dev/snd && rm -f /dev/snd 2>/dev/null 2>&1 || :
 %files -f device.list
 %defattr(-, root, root, 0755)
 %doc CARDS-STATUS COPYING FAQ README TODO WARNING
-%doc doc/ alsa-kernel/Documentation/
+%doc alsa-kernel/Documentation/ doc/
 %{_sysconfdir}/makedev.d/alsa
 %{_includedir}/sound
 

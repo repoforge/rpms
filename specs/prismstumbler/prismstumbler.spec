@@ -82,7 +82,7 @@ cd -
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog doc/INSTALL NEWS README doc/TODO doc/help.txt doc/README*
+%doc AUTHORS ChangeLog doc/help.txt doc/INSTALL doc/README* doc/TODO NEWS README
 %config %{_sysconfdir}/manufacturers.dat.gz
 %{_bindir}/*
 %{_datadir}/pixmaps/*.png

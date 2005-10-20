@@ -104,7 +104,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING INSTALL doc/* examples/
+%doc ChangeLog COPYING doc/* examples/ INSTALL
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/apcupsd/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/apcupsd.conf

@@ -46,7 +46,7 @@ hinting which directories and files to use.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog FAQ.shtml NEWS README THANKS TODO README.ms
+%doc AUTHORS ChangeLog COPYING FAQ.shtml NEWS README README.ms THANKS TODO
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm

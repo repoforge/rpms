@@ -103,7 +103,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS Changelog COPYING COPYRIGHT INSTALL linux.conf NEWS README TODO *.html
+%doc *.html AUTHORS Changelog COPYING COPYRIGHT INSTALL linux.conf NEWS README TODO
 %doc %{_mandir}/man?/afick.*
 %config(noreplace) %{_sysconfdir}/afick.conf
 %config(noreplace) %{_sysconfdir}/cron.daily/afick

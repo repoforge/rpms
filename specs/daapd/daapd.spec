@@ -68,7 +68,7 @@ cd ../..
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README* FAQ daapd.conf daapd-example.conf daapd.rc
+%doc COPYING daapd-example.conf daapd.conf daapd.rc FAQ README*
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 #%{_libdir}/*.so.*

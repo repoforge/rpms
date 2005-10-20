@@ -60,7 +60,7 @@ This package includes the documentation for package %{name}.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING README doc/default.* doc/*.html doc/ne.txt terms/
+%doc CHANGES COPYING doc/*.html doc/default.* doc/ne.txt README terms/
 %doc %{_mandir}/man1/ne.1*
 %doc %{_infodir}/*.info*
 %{_bindir}/ne

@@ -73,7 +73,7 @@ gtk-update-icon-cache -q -f %{_datadir}/icons/hicolor || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING CREDITS ChangeLog TODO README doc/
+%doc AUTHORS ChangeLog COPYING CREDITS doc/ README TODO
 %{_bindir}/directory_administrator
 %{_datadir}/applications/*%{name}.desktop
 %{_datadir}/icons/hicolor/48x48/apps/diradmin.png

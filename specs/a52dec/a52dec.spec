@@ -68,7 +68,7 @@ to build programs that use it.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING HISTORY NEWS README TODO doc/liba52.txt
+%doc AUTHORS ChangeLog COPYING doc/liba52.txt HISTORY NEWS README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*

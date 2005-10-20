@@ -47,7 +47,7 @@ will be until completion.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc README doc/COPYING doc/NEWS doc/TODO doc/*.html doc/*.txt
+%doc doc/*.html doc/*.txt doc/COPYING doc/NEWS doc/TODO README
 %doc %{_mandir}/man1/pv.1*
 %doc %{_infodir}/pv.info*
 %{_bindir}/pv

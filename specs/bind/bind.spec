@@ -154,7 +154,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc doc/arm doc/draft doc/rfc doc/misc
+%doc doc/arm doc/draft doc/misc doc/rfc
 %config(noreplace) /etc/logrotate.d/named
 %config /etc/rc.d/init.d/named
 %config(noreplace) /etc/sysconfig/named

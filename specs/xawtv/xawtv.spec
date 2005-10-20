@@ -80,7 +80,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes COPYING README* TODO contrib/frequencies*
+%doc Changes contrib/frequencies* COPYING README* TODO
 %doc %{_mandir}/man?/*
 %doc %{_mandir}/*/man?/*
 %{_bindir}/*

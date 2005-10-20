@@ -85,7 +85,7 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc License project/CHANGES project/TODO
-%doc README HOWTO-Make-Filter
+%doc HOWTO-Make-Filter README
 %doc %{_mandir}/man8/*
 %config %{_sysconfdir}/log.d/
 %config %{_sysconfdir}/cron.daily/00-logwatch

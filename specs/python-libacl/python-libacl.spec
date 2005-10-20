@@ -41,7 +41,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc BENCHMARK IMPLEMENTATION MANIFEST PLATFORMS README *.html *.txt
+%doc *.html *.txt BENCHMARK IMPLEMENTATION MANIFEST PLATFORMS README
 %{python_sitearch}/posix1e.so
 %exclude %{_docdir}/pylibacl-%{version}/
 

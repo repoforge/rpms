@@ -80,7 +80,7 @@ find doc/html -name "Makefile*" | xargs rm -f
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README TODO USAGE doc/html/
+%doc ChangeLog COPYING doc/html/ README TODO USAGE
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*

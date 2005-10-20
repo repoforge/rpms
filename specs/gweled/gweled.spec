@@ -48,7 +48,7 @@ zet nog mogelijk is.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING NEWS
+%doc AUTHORS COPYING NEWS README
 %attr(2551, root, games) %{_bindir}/gweled
 %{_datadir}/applications/gweled.desktop
 %{_datadir}/pixmaps/gweled.png

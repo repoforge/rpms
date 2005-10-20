@@ -82,8 +82,8 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc BUGS Changelog.txt COPYING* README* twin-current.lsm
-%doc docs/Compatibility docs/FAQ docs/Philosophy docs/Tutorial docs/*.txt
-%doc TODOS/twin-thoughts TODOS/TODO
+%doc docs/*.txt docs/Compatibility docs/FAQ docs/Philosophy docs/Tutorial
+%doc TODOS/TODO TODOS/twin-thoughts
 %doc %{_mandir}/man?/*
 %config %{_libdir}/twin/
 %{_bindir}/*

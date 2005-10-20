@@ -223,7 +223,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING tsocks.conf.simple.example tsocks.conf.complex.example
+%doc ChangeLog COPYING tsocks.conf.complex.example tsocks.conf.simple.example
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/tsocks.conf
 %config %{_initrddir}/tsocksify

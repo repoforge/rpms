@@ -136,7 +136,7 @@ env DISPLAY= %{_bindir}/gst-register-%{majmin} > /dev/null 2> /dev/null
 
 %files -f %{po_package}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README TODO ABOUT-NLS REQUIREMENTS DOCBUILDING
+%doc ABOUT-NLS AUTHORS COPYING DOCBUILDING README REQUIREMENTS TODO
 %dir %{_libdir}/gstreamer-%{majmin}
 %dir %{_localstatedir}/cache/gstreamer-%{majmin}
 %{_libdir}/gstreamer-%{majmin}/*.so*

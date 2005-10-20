@@ -91,7 +91,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING INSTALL gpl.txt doc/*
+%doc AUTHORS COPYING doc/* gpl.txt INSTALL
 %config %{_sysconfdir}/X11/gdm/Sessions/*
 %{_datadir}/apps/switchdesk/*
 %{installdir}

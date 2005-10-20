@@ -55,7 +55,7 @@ with the server. It contains also the namespace and URL as well.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README HowTo-SOAPLite.txt
+%doc HowTo-SOAPLite.txt README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/WSDL/Generator.pm
 %{perl_vendorlib}/WSDL/WSDLTest.pm

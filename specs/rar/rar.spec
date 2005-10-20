@@ -40,7 +40,7 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 %files
 %defattr(-, root, root, 0755)
-%doc file_id.diz *.txt
+%doc *.txt file_id.diz
 %{_sysconfdir}/rarfiles.lst
 %{_bindir}/rar
 %{_libdir}/default.sfx

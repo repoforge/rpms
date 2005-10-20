@@ -68,7 +68,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES DISCLAIMER LICENSE README clamtk.pl clamtk
+%doc CHANGES clamtk clamtk.pl DISCLAIMER LICENSE README
 %{_bindir}/clamtk
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-clamtk.desktop}
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/clamtk.desktop}

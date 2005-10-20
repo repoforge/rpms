@@ -59,7 +59,7 @@ accessible through the AppConfig.pm module.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README TODO Changes
+%doc Changes README TODO
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/AppConfig.pm
 %{perl_vendorlib}/AppConfig/*

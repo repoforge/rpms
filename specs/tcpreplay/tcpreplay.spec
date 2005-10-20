@@ -41,7 +41,7 @@ capture files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Docs/CHANGELOG Docs/CREDIT Docs/INSTALL Docs/LICENSE Docs/TODO
+%doc Docs/CHANGELOG Docs/CREDIT Docs/INSTALL Docs/LICENSE Docs/TODO README
 #%doc Docs/*.css Docs/*.html Docs/*.txt
 %doc %{_mandir}/man1/capinfo.1*
 %doc %{_mandir}/man1/flowreplay.1*

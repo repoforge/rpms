@@ -59,7 +59,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc README TODO LICENSE
+%doc LICENSE README TODO
 %{_usr}/X11R6/include/X11/pixmaps/pathological.xpm
 %{_usr}/games/pathological
 %{_usr}/lib/pathological/

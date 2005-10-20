@@ -67,7 +67,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYRIGHT HISTORY INSTALL MANIFEST README UPDATE doc/*html doc/*gif
+%doc COPYRIGHT doc/*gif doc/*html HISTORY INSTALL MANIFEST README UPDATE
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*

@@ -74,7 +74,7 @@ against.
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc/GPL doc/LGPL doc/LICENSE doc/tcl.license.terms doc/tk.license.terms doc/ChangeLog
+%doc doc/ChangeLog doc/GPL doc/LGPL doc/LICENSE doc/tcl.license.terms doc/tk.license.terms
 %doc doc/INSTALL doc/Layout.notes doc/MimeTypes.README doc/Programming.notes
 %config(noreplace) %{_sysconfdir}/xclass/
 %{_datadir}/xclass/

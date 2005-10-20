@@ -64,7 +64,7 @@ cd frontend/gnome
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CREDITS HISTORY README REMARK.txt REVIEW TODO
-%doc doc/*.txt doc/*.html
+%doc doc/*.html doc/*.txt
 %doc %{_mandir}/man?/*
 %{_bindir}/gocr
 

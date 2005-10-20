@@ -72,7 +72,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog* CREDITS* COPYING INSTALL README
+%doc Changelog* COPYING CREDITS* INSTALL README
 %doc doc/*.html doc/*.txt
 %doc %{_mandir}/man1/*
 %{_bindir}/*

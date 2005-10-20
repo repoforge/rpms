@@ -72,7 +72,7 @@ scrollkeeper-update -q || :
 
 %files -f %{name}-2.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README NEWS
+%doc AUTHORS ChangeLog COPYING NEWS README
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 #%config %{_sysconfdir}/gnome-vfs-2.0/modules/*
 %{_bindir}/*

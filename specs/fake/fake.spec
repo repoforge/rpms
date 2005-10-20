@@ -39,7 +39,7 @@ on a LAN.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README docs/*.txt instance_config/*.cfg heartbeat/fake
+%doc AUTHORS ChangeLog COPYING docs/*.txt heartbeat/fake instance_config/*.cfg README
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/fake/
 %{_sbindir}/*

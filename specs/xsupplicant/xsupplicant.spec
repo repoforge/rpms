@@ -58,7 +58,7 @@ you will need to install %{name}-devel.
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README README.wireless_cards doc/html/ doc/txt/ doc/README* etc/*.conf
+%doc AUTHORS COPYING doc/html/ doc/README* doc/txt/ etc/*.conf README README.wireless_cards
 %config(noreplace) %{_sysconfdir}/xsupplicant.conf
 %{_bindir}/config-parser
 %{_bindir}/xsup_monitor

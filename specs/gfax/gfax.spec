@@ -84,7 +84,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING hylafax.txt INSTALL NEWS README TODO doc/*.txt
+%doc AUTHORS ChangeLog COPYING doc/*.txt hylafax.txt INSTALL NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/*
 %{_datadir}/applications/*.desktop

@@ -46,7 +46,7 @@ This module permits authentication with SASL.
 
 %files
 %defattr(-, root, root, 0755)
-%doc api.txt example_pl Changes
+%doc api.txt Changes example_pl
 %{_mandir}/man3/*
 %{perl_vendorlib}/Authen/SASL.pm
 %{perl_vendorlib}/Authen/SASL.pod

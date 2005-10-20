@@ -68,7 +68,7 @@ Themes for xpenguins, includes:
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README lay-out-frames.scm resize-frames.scm
+%doc AUTHORS ChangeLog COPYING lay-out-frames.scm README resize-frames.scm
 %doc %{_mandir}/man1/*
 %dir %{_datadir}/xpenguins/
 %{_bindir}/*

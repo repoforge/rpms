@@ -55,7 +55,7 @@ entities of the DXF specification.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README HACKING TODO
+%doc COPYING HACKING README TODO
 %{_bindir}/dxfscope
 %{_datadir}/dxfscope/
 

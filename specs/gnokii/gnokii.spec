@@ -113,7 +113,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING MAINTAINERS TODO Docs/Bugs Docs/CREDITS Docs/DataCalls-QuickStart
+%doc ChangeLog COPYING Docs/Bugs Docs/CREDITS Docs/DataCalls-QuickStart MAINTAINERS TODO
 %doc Docs/FAQ Docs/README* Docs/gnokii-IrDA-Linux Docs/gnokii-ir-howto Docs/ringtones.txt
 %doc Docs/protocol/ Docs/sample/ utils/gnapplet.sis
 %doc %{_mandir}/man?/gnokii*

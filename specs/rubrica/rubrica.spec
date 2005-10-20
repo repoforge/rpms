@@ -64,7 +64,7 @@ scrollkeeper-update -q
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS NEWS README TODO doc/examples.rub
+%doc AUTHORS ChangeLog COPYING CREDITS doc/examples.rub NEWS README TODO
 %config %{_sysconfdir}/gconf/schemas/rubrica.schemas
 %{_bindir}/rubrica
 %{_datadir}/applications/rubrica.desktop

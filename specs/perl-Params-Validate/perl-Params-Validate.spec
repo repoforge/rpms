@@ -55,7 +55,7 @@ implementation that it can fall back on.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE README Changes
+%doc Changes LICENSE README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Attribute/Params/Validate.pm
 %{perl_vendorarch}/Params/Validate*

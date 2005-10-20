@@ -43,7 +43,7 @@ desktop-file-install --vendor gnome --delete-original \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS TODO README COPYING INSTALL
+%doc AUTHORS COPYING INSTALL README TODO
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/gregexp/glade/*.glade

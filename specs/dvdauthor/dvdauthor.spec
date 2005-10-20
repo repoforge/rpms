@@ -44,7 +44,7 @@ mpeg2 stream that should play when you put it in a DVD player.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING HISTORY README TODO menu.txt doc/*.html doc/*.sgml doc/*.dsl
+%doc COPYING doc/*.dsl doc/*.html doc/*.sgml HISTORY menu.txt README TODO
 %doc %{_mandir}/man1/*
 %{_bindir}/*
 

@@ -111,7 +111,7 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README doc/CREDITS doc/EXCEPTIONS doc/KNOWN_BUGS doc/README-DEVEL doc/TODO doc/VIDEO-PERFORMANCE doc/WARNINGS
+%doc ChangeLog COPYING doc/CREDITS doc/EXCEPTIONS doc/KNOWN_BUGS doc/README-DEVEL doc/TODO doc/VIDEO-PERFORMANCE doc/WARNINGS README
 %doc %{_mandir}/man?/*
 %dir %{_libdir}/avifile0.7/
 %{_bindir}/avibench

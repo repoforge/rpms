@@ -62,7 +62,7 @@ EOF
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/CREDITS doc/FAQ doc/PERL_HOWTO.dox
+%doc AUTHORS ChangeLog COPYING doc/CREDITS doc/FAQ doc/PERL_HOWTO.dox NEWS README
 %doc doc/gaims_funniest_home_convos.txt doc/the_penguin.txt
 %doc %{_mandir}/man?/*
 %{_bindir}/*

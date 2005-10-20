@@ -90,8 +90,8 @@ at parse time or later once the document has been modified.
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/xml2-config.1.gz
-%doc doc/*.html doc/html doc/*.gif doc/*.png
-%doc doc/tutorial doc/libxml2-api.xml
+%doc doc/*.gif doc/*.html doc/*.png doc/html
+%doc doc/libxml2-api.xml doc/tutorial
 %doc doc/examples
 #%doc %{_datadir}/doc/libxml2-python-%{version}/
 %{_bindir}/xml2-config
@@ -109,7 +109,7 @@ at parse time or later once the document has been modified.
 %files python
 %defattr(-, root, root, 0755)
 %doc python/TODO python/libxml2class.txt
-%doc python/tests/*.py doc/*.py doc/python.html
+%doc doc/*.py doc/python.html python/tests/*.py
 %{_libdir}/python%{python_version}/site-packages/*.py
 %{_libdir}/python%{python_version}/site-packages/*.so
 

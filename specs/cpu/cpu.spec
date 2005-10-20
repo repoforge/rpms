@@ -48,7 +48,7 @@ the administration.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO rpm-doc/*
+%doc AUTHORS ChangeLog COPYING NEWS README rpm-doc/* TODO
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*
 %{_sbindir}/*

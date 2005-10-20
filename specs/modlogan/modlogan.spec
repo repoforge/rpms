@@ -49,7 +49,7 @@ done
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING Doxyfile NEWS README TODO doc/license.GD doc/*txt doc/*ihtml
+%doc AUTHORS ChangeLog COPYING doc/*ihtml doc/*txt doc/license.GD Doxyfile NEWS README TODO
 %doc %{_mandir}/man1/modlogan.1*
 %config %{_sysconfdir}/modlogan/
 %{_bindir}/modlogan

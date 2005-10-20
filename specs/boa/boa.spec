@@ -103,7 +103,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc docs/*.{html,png,txt} COPYING CREDITS README examples/
+%doc COPYING CREDITS docs/*.{html,png,txt} examples/ README
 %dir %{_sysconfdir}/boa/
 %config(noreplace) %{_sysconfdir}/boa/boa.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/boa

@@ -49,7 +49,7 @@ other features, making it invaluable for examining binary code.
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc/*.txt doc/*.en
+%doc doc/*.en doc/*.txt
 %{_bindir}/biew
 %{_datadir}/biew/
 

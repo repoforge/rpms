@@ -60,7 +60,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc NEWS LICENSE README AUTHORS COPYING
+%doc AUTHORS COPYING LICENSE NEWS README
 %{_libdir}/lib*.so.*
 
 %files devel

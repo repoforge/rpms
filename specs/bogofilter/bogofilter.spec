@@ -73,7 +73,7 @@ done
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS CHANGES* COPYING METHODS NEWS README* RELEASE.NOTES* TODO bogofilter.cf.example
-%doc doc/bogofilter-tuning.HOWTO doc/bogofilter-SA-2002-01 doc/integrating* doc/programmer/
+%doc doc/bogofilter-SA-2002-01 doc/bogofilter-tuning.HOWTO doc/integrating* doc/programmer/
 %doc rpm-doc/html/ rpm-doc/xml/
 %doc %{_mandir}/man1/bogo*.1*
 %config(noreplace) %{_sysconfdir}/bogofilter.cf

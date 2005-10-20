@@ -57,7 +57,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING INSTALL NEWS OLDNEWS README tech_report.tex TODO *.txt doc/ support/
+%doc *.txt COPYING doc/ INSTALL NEWS OLDNEWS README support/ tech_report.tex TODO
 %doc %{_mandir}/man1/rsync.1*
 %doc %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/xinetd.d/rsync

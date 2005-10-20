@@ -219,7 +219,7 @@ fi
 						
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING LICENSE RELEASE.NOTES contrib/
+%doc ChangeLog contrib/ COPYING LICENSE RELEASE.NOTES
 %doc doc/AUTHORS doc/BUGS doc/CREDITS doc/NEWS doc/PROBLEMS
 %doc doc/README* doc/RULES.todo doc/TODO doc/USAGE doc/WISHLIST
 %doc doc/*.pdf doc/signatures/ rpm/CHANGES.rpms rpm/README* rpm/RPM-TODO

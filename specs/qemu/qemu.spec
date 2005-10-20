@@ -174,7 +174,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING* README* TODO *.html
+%doc *.html Changelog COPYING* README* TODO
 %doc %{_mandir}/man1/qemu*
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*

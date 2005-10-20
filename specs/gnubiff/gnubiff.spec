@@ -49,7 +49,7 @@ mails. It supports pop3, apop, imap4, mh, qmail and mailfile.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc README ABOUT-NLS AUTHORS ChangeLog COPYING NEWS INSTALL THANKS
+%doc ABOUT-NLS AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS
 %{_bindir}/gnubiff
 %{?fc2:%{_libdir}/bonobo/servers/GNOME_gnubiffApplet.server}
 %{?fc2:%{_datadir}/gnome-2.0/ui/GNOME_gnubiffApplet.xml}

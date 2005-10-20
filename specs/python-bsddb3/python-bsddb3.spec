@@ -54,7 +54,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog *.txt docs/
+%doc *.txt ChangeLog docs/
 %{python_sitearch}/bsddb3/
 
 %changelog

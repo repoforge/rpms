@@ -71,7 +71,7 @@ Header, static libraries and documentation for Imlib2.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README doc/
+%doc AUTHORS ChangeLog COPYING doc/ README
 %{_bindir}/imlib2_*
 %{_libdir}/libImlib2.so.*
 %{_libdir}/imlib2/

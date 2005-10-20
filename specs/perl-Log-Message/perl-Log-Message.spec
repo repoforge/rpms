@@ -48,7 +48,7 @@ regexes on messages, tags and level.
 
 %files
 %defattr(-, root, root, 0755)
-%doc  README
+%doc README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Log/
 %{perl_vendorlib}/Log/Message.pm

@@ -41,7 +41,7 @@ workstations/servers.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGELOG LICENSE README RELEASE-NOTES TODO
-%doc docs/FAQ docs/client/ docs/developer_docs/ docs/current-guide/ docs/*.txt
+%doc docs/*.txt docs/client/ docs/current-guide/ docs/developer_docs/ docs/FAQ
 %config(noreplace) %{_sysconfdir}/current/current.conf
 %config %{_sysconfdir}/current/
 %{_sbindir}/cadmin

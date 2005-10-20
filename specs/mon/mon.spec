@@ -234,9 +234,9 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING COPYRIGHT CREDITS README TODO doc/README.*
-%doc KNOWN-PROBLEMS VERSION utils/ mon.lsm
+%doc KNOWN-PROBLEMS mon.lsm utils/ VERSION
 %doc alerts/*/*.README mon.cgi-1.52/
-%doc etc/*.cf etc/example.m4 etc/example.monshowrc clients/{skymon,batch-example}
+%doc clients/{skymon,batch-example} etc/*.cf etc/example.m4 etc/example.monshowrc
 %config(noreplace) %{_sysconfdir}/mon/
 %config %{_initrddir}/*
 %{_mandir}/man?/* 

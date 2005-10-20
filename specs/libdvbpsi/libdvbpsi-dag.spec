@@ -54,7 +54,7 @@ information using the libdvbpsi library.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS README COPYING ChangeLog
+%doc AUTHORS ChangeLog COPYING README
 %{_libdir}/*.so.*
 
 %files devel

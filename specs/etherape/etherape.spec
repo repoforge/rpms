@@ -90,7 +90,7 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING FAQ NEWS OVERVIEW README* TODO html/*.html
+%doc AUTHORS ChangeLog COPYING FAQ html/*.html NEWS OVERVIEW README* TODO
 %doc %{_mandir}/man1/etherape.1*
 %doc %{_datadir}/gnome/help/etherape/
 %config %{_sysconfdir}/etherape/

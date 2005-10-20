@@ -57,7 +57,7 @@ program.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* FAQ NEWS README TODO doc/README* doc/*.txt
+%doc AUTHORS ChangeLog COPYING* doc/*.txt doc/README* FAQ NEWS README TODO
 %doc %{_mandir}/man?/micq*
 %{_bindir}/micq
 %{_datadir}/micq/

@@ -49,7 +49,7 @@ HTML-formatting (for World-Wide-Web output).
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README GNU-LICENSE
+%doc Changes GNU-LICENSE README
 %{_bindir}/showtable
 %{_mandir}/man?/*
 %{perl_vendorlib}/Data/ShowTable.pm

@@ -46,7 +46,7 @@ for short) from Perl.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README LICENSE ChangeLog
+%doc ChangeLog LICENSE README
 %{_mandir}/man3/*
 %{perl_vendorarch}/Gnome2/Vte.pm
 %{perl_vendorarch}/Gnome2/Vte

@@ -47,9 +47,9 @@ IMCom supports the following Jabber technologies:
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CONTRIBUTORS LICENSE README.autostatus WHATSNEW TODO
+%doc CONTRIBUTORS LICENSE README README.autostatus TODO WHATSNEW
 %doc docs/advanced.html docs/commands.html docs/download.html docs/imcomrc.html
-%doc docs/news.html docs/template.html docs/whatis.html docs/jabberbutton.png
+%doc docs/jabberbutton.png docs/news.html docs/template.html docs/whatis.html
 %doc docs/style.css
 %{_bindir}/imcom
 %{_datadir}/imcom

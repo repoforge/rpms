@@ -63,13 +63,13 @@ zziplib library.
 
 %files
 %defattr(-, root, root, 0755)
-%doc docs/COPYING* ChangeLog README TODO
+%doc ChangeLog docs/COPYING* README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc docs/README.SDL docs/*.htm
+%doc docs/*.htm docs/README.SDL
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

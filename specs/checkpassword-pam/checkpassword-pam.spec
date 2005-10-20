@@ -43,7 +43,7 @@ support POP toasters.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING interface.html README NEWS
+%doc AUTHORS ChangeLog COPYING interface.html NEWS README
 %doc %{_mandir}/man8/checkpassword-pam.8*
 %{_bindir}/checkpassword-pam
 

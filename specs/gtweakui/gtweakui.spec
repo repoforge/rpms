@@ -96,7 +96,7 @@ EOF
 
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README TODO FAQ
+%doc AUTHORS ChangeLog COPYING FAQ NEWS README TODO
 %{_bindir}/*
 %{_datadir}/gTweakUI/
 %{_datadir}/applications/*.desktop

@@ -47,7 +47,7 @@ that module (except generality, which is often a good thing), since
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README COPYING
+%doc Changes COPYING README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/Twofish2.pm
 %{perl_vendorarch}/auto/Crypt/Twofish2/*

@@ -76,7 +76,7 @@ CFLAGS="%{optflags}" \
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/*.txt doc/*.c
+%doc doc/*.c doc/*.txt
 %{_includedir}/mpeg2dec/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la

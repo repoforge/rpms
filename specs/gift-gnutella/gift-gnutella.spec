@@ -40,7 +40,7 @@ packages provides the plugin to access the Gnutella network.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS ChangeLog COPYING NEWS TODO
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 ### .la file is needed for gift at runtime !
 %{_libdir}/giFT/libGnutella.la
 %{_libdir}/giFT/libGnutella.so

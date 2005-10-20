@@ -91,7 +91,7 @@ scrollkeeper-update -q
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/HACKING doc/*.html doc/*.png
+%doc doc/*.html doc/*.png doc/HACKING
 %doc %{_mandir}/man1/gcm-config.*
 %{_bindir}/gcm-config
 %{_includedir}/libgcm/*.h

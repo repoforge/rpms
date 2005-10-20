@@ -50,7 +50,7 @@ random generated callsigns
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog THANKS VERSION NEWS TODO README VERSION
+%doc AUTHORS ChangeLog NEWS README THANKS TODO VERSION VERSION
 %{_bindir}/aldo
 
 %changelog

@@ -209,7 +209,7 @@ fi
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 
-%doc FAQ COPYING NEWS README
+%doc COPYING FAQ NEWS README
 %{_bindir}/mc
 %{_bindir}/mcedit
 %{_bindir}/mcmfmt

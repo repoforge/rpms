@@ -39,7 +39,7 @@ desktop. Unlike Citrix ICA, no server extensions are required.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README doc/AUTHORS doc/ChangeLog doc/HACKING doc/TODO doc/*.txt
+%doc COPYING doc/*.txt doc/AUTHORS doc/ChangeLog doc/HACKING doc/TODO README
 %doc %{_mandir}/man1/rdesktop.1*
 %{_bindir}/rdesktop
 %{_datadir}/rdesktop/

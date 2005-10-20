@@ -36,7 +36,7 @@ encoding of text files and can also convert them to other encodings.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS ChangeLog COPYING FAQ INSTALL NEWS THANKS TODO
+%doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README THANKS TODO
 %{_bindir}/enca
 %{_bindir}/enconv
 %{_includedir}/enca.h

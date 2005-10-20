@@ -71,7 +71,7 @@ cd unix
 
 %files
 %defattr(-, root, root, 0755)
-%doc changes README doc/*
+%doc changes doc/* README
 %{_lib32dir}/snack%{version}/
 
 %changelog

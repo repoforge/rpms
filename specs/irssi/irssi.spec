@@ -68,7 +68,7 @@ Support for other protocols like ICQ could be created some day too.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc docs/*.txt docs/*.html
+%doc docs/*.html docs/*.txt
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/*
 %{_bindir}/botti

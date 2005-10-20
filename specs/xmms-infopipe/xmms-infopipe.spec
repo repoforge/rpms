@@ -44,7 +44,7 @@ chmod 0644 applications/*
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README applications/*.php applications/*.pl
+%doc applications/*.php applications/*.pl AUTHORS ChangeLog COPYING INSTALL NEWS README
 %{xmms_generaldir}/libinfopipe.so
 %exclude %{xmms_generaldir}/libinfopipe.a
 %exclude %{xmms_generaldir}/libinfopipe.la

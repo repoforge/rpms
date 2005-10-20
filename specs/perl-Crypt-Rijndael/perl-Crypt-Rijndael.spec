@@ -44,7 +44,7 @@ and Vincent Rijmen.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README NEWS
+%doc NEWS README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/Rijndael.pm
 %{perl_vendorarch}/auto/Crypt/Rijndael

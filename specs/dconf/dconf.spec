@@ -50,7 +50,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO config/ scripts/
+%doc AUTHORS ChangeLog config/ COPYING README scripts/ TODO
 %doc %{_mandir}/man1/dconf.1*
 %config %{_sysconfdir}/dconf.conf
 %config(noreplace) %{_sysconfdir}/dconf-custom.conf

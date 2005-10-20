@@ -90,7 +90,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO docs/reference/html
+%doc AUTHORS ChangeLog COPYING docs/reference/html README TODO
 %doc examples
 %{_bindir}/%{name}
 %{_includedir}/%{name}

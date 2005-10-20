@@ -44,7 +44,7 @@ Text utilities for use with GD.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST README *LICENSE
+%doc *LICENSE Changes MANIFEST README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/GD/
 %{perl_vendorlib}/GD/Text/

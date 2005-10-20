@@ -49,7 +49,7 @@ similar to other SCM tools (like CVS, BitKeeper or Monotone).
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README Documentation/*.txt
+%doc COPYING Documentation/*.txt README
 %{!?_without_asciidoc:%doc %{_mandir}/man1/*.1*}
 %{!?_without_asciidoc:%doc %{_mandir}/man7/*.7*}
 %{_bindir}/git*

@@ -48,7 +48,7 @@ ruby ./installer.rb common cli cgi \
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS ChangeLog COPYING CREDITS GPL HISTORY README TODO doc/html
+%doc BUGS ChangeLog COPYING CREDITS doc/html GPL HISTORY README TODO
 %doc %{_mandir}/man?/*
 %dir %{_sysconfdir}/zonecheck/
 %config %{_sysconfdir}/zonecheck/rootservers

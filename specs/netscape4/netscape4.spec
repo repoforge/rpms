@@ -211,7 +211,7 @@ ln -s ../../netscape/plugins/libflashplayer.so \
 %lang(ja_JP.eucJP) %{_libdir}/netscape/ja_JP.eucJP
 %lang(ko_KR.eucKR) %{_libdir}/netscape/ko_KR.eucKR
 %lang(zh_TW.big5) %{_libdir}/netscape/zh_TW.big5
-%doc README LICENSE Netscape.ad
+%doc LICENSE Netscape.ad README
 %{_libdir}/netscape/bookmark.htm
 %{_libdir}/netscape/java
 %{_libdir}/netscape/libjsd.so

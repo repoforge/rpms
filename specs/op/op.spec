@@ -108,7 +108,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README op.conf* op.paper
+%doc ChangeLog COPYING op.conf* op.paper README
 %doc %{_mandir}/man1/op.1*
 %config(noreplace) %{_sysconfdir}/op.conf
 %config(noreplace) %{_sysconfdir}/op.d/

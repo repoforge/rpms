@@ -85,7 +85,7 @@ done
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog README NEWS
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/*
 %{_sysconfdir}/gconf/schemas/rhythmbox.schemas
 %{_datadir}/rhythmbox/*

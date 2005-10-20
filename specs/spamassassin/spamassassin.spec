@@ -167,7 +167,7 @@ fi
 %files 
 %defattr(-, root, root, 0755)
 %doc BUGS Changes CREDITS LICENSE NOTICE PACKAGING README STATUS TRADEMARK
-%doc UPGRADE USAGE *.txt spamc/README.qmail
+%doc *.txt spamc/README.qmail UPGRADE USAGE
 %doc %{_mandir}/man1/*.1*
 %doc %{_mandir}/man3/*.3pm*
 %config %{_initrddir}/spamassassin

@@ -94,7 +94,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/CodingStyle doc/attribute_definitions doc/*.txt doc/tunable_settings doc/template.c doc/template.h
+%doc doc/*.txt doc/attribute_definitions doc/CodingStyle doc/template.c doc/template.h doc/tunable_settings
 %{_includedir}/ntfs/
 %{_libdir}/*.so
 %{_libdir}/*.a

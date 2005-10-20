@@ -51,7 +51,7 @@ is simple but incompatible with other shell languages.
 
 %files
 %defattr(-, root, root, 0755)
-%doc INSTALL README *.html doc_src/*.txt user_doc/html/
+%doc *.html doc_src/*.txt INSTALL README user_doc/html/
 %doc %{_mandir}/man1/count.1*
 %doc %{_mandir}/man1/fish.1*
 %doc %{_mandir}/man1/mimedb.1*

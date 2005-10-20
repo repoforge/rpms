@@ -39,8 +39,8 @@ and independent from the GNOME and KDE desktop environment.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS FAQ NEWS TODO doc/README* doc/TIPS
-%doc doc/menu/ doc/mrxvt.vbs doc/mrxvtset.pl doc/xterm.seq doc/*.txt
+%doc AUTHORS ChangeLog COPYING CREDITS doc/README* doc/TIPS FAQ NEWS TODO
+%doc doc/*.txt doc/menu/ doc/mrxvt.vbs doc/mrxvtset.pl doc/xterm.seq
 %doc %{_mandir}/man1/mrxvt.1*
 %{_bindir}/mrxvt
 %{_datadir}/pixmaps/mrxvt*.png

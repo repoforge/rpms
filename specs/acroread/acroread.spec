@@ -105,7 +105,7 @@ ln -f %{buildroot}%{_libdir}/acroread/Browser/intellinux/nppdf.so %{buildroot}%{
 
 %files
 %defattr(-, root, root, 0755)
-%doc AdobeReader/README AdobeReader/*.TXT
+%doc AdobeReader/*.TXT AdobeReader/README
 %{_bindir}/acroread
 %dir %{_libdir}/acroread/
 %{_libdir}/acroread/Reader/

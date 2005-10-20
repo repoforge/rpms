@@ -90,7 +90,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc/BUGS doc/FAQ doc/README* doc/TODO doc/*.txt doc/*.html
+%doc doc/*.html doc/*.txt doc/BUGS doc/FAQ doc/README* doc/TODO
 %doc doc/menu/ doc/rxvt* doc/xterm.seq
 %doc %{_mandir}/man?/*
 %{_bindir}/*

@@ -63,7 +63,7 @@ scrollkeeper-update -q || :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO examples/
+%doc AUTHORS ChangeLog COPYING examples/ NEWS README TODO
 %doc %{_datadir}/gnome/help/mergeant/
 %{_bindir}/*
 %{_libdir}/*.so.*

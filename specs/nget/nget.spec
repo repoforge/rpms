@@ -45,7 +45,7 @@ succesfully downloaded.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING FAQ README TODO .ngetrc
+%doc .ngetrc Changelog COPYING FAQ README TODO
 %doc %{_mandir}/man1/nget.1*
 %doc %{_mandir}/man1/ngetlite.1*
 %{_bindir}/nget

@@ -56,7 +56,7 @@ by relying on as little compiled code as possible.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes CREDITS MANIFEST README TODO contrib/
+%doc Changes contrib/ CREDITS MANIFEST README TODO
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/Bundle/
 %dir %{perl_vendorlib}/Bundle/Net/

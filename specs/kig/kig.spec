@@ -65,7 +65,7 @@ wiskundige concepten.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README AUTHORS VERSION INSTALL
+%doc AUTHORS COPYING INSTALL README VERSION
 %{_bindir}/kig
 %{_libdir}/kde3/libkigpart*
 %{_datadir}/applications/kde/kig.desktop

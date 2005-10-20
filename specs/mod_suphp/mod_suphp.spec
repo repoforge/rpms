@@ -134,7 +134,7 @@ export CPPFLAGS="-I/usr/include/apr-0"
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/
+%doc AUTHORS ChangeLog COPYING doc/ NEWS README
 %config(noreplace) %{_sysconfdir}/suphp.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/suphp.conf
 %{_libdir}/httpd/modules/mod_suphp.so

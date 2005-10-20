@@ -39,7 +39,7 @@ Nagios services without the expense or availability of a GUI.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.txt LICENSE NOTES.txt README.txt status.log nsc.doc
+%doc CHANGES.txt LICENSE NOTES.txt nsc.doc README.txt status.log
 %doc %{_mandir}/man?/*
 %{_sbindir}/*
 

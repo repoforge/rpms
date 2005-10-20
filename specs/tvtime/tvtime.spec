@@ -60,7 +60,7 @@ videophiles.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README* data/COPYING* docs/html/
+%doc AUTHORS ChangeLog COPYING data/COPYING* docs/html/ NEWS README*
 %doc %{_mandir}/man?/*
 %doc %{_mandir}/de/man?/*
 %doc %{_mandir}/es/man?/*

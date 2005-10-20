@@ -297,7 +297,7 @@ fi
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc INSTALL doc/rfc* doc/SOCKS4.protocol
+%doc doc/rfc* doc/SOCKS4.protocol INSTALL
 #%{_libdir}/libdsocks.a
 %exclude %{_libdir}/libdsocks.la
 %{_libdir}/libdsocks.so

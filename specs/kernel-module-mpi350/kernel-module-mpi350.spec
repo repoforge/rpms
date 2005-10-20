@@ -143,7 +143,7 @@ cd driver/
 
 %files -n aironet-utils
 %defattr(-, root, root, 0755)
-%doc config.350 readme.txt ethX.cfg
+%doc config.350 ethX.cfg readme.txt
 %{_sysconfdir}/*
 %{_bindir}/*
 /opt/cisco/

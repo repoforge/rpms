@@ -113,7 +113,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING INSTALL* README* UPGRADING TODO
+%doc CHANGES COPYING INSTALL* README* TODO UPGRADING
 %config(noreplace) %{_sysconfdir}/sysconfig/otrs
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/otrs.conf
 %config %{_initrddir}/otrs

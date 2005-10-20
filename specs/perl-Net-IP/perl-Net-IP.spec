@@ -44,7 +44,7 @@ Perl extension for manipulating IPv4/IPv6 addresses.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README COPYING
+%doc Changes COPYING README
 %doc %{_mandir}/man3/*
 %{_bindir}/*
 %{perl_vendorlib}/Net/IP.pm

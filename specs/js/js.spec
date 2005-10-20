@@ -65,7 +65,7 @@ BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
 
 %files
 %defattr(-, root, root, 0755)
-%doc src/README.html README
+%doc README src/README.html
 %{_bindir}/js
 %{_libdir}/libjs.so.*
 

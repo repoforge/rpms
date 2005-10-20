@@ -106,8 +106,8 @@ Available rpmbuild rebuild options :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc doc/the_penguin.txt doc/CREDITS NEWS COPYING AUTHORS doc/FAQ README
-%doc ChangeLog doc/PERL-HOWTO.dox HACKING doc/gaims_funniest_home_convos.txt
+%doc AUTHORS COPYING doc/CREDITS doc/FAQ doc/the_penguin.txt NEWS README
+%doc ChangeLog doc/gaims_funniest_home_convos.txt doc/PERL-HOWTO.dox HACKING
 #%{_sysconfdir}/gaim/
 %{_bindir}/gaim*
 %{_includedir}/gaim/

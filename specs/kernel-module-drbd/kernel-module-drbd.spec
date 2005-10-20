@@ -181,7 +181,7 @@ fi
 %files -n drbd-utils
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README scripts/drbd.conf
-%doc documentation/*.sgml documentation/*.txt documentation/*.html documentation/HOWTO/*.html
+%doc documentation/*.html documentation/*.sgml documentation/*.txt documentation/HOWTO/*.html
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/ha.d/resource.d/*
 %config(noreplace) %{_sysconfdir}/drbd.conf

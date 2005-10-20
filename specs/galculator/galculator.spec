@@ -41,7 +41,7 @@ Reverse Polish Notation.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO doc/shortcuts
+%doc AUTHORS ChangeLog COPYING doc/shortcuts NEWS README THANKS TODO
 %doc %{_mandir}/man1/galculator.1*
 %{_bindir}/galculator
 %{_datadir}/applications/galculator.desktop

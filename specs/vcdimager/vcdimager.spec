@@ -72,7 +72,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS FAQ TODO COPYING ChangeLog NEWS README THANKS
+%doc AUTHORS BUGS ChangeLog COPYING FAQ NEWS README THANKS TODO
 %{_bindir}/*
 %{_libdir}/libvcdinfo.so.*
 %{_infodir}/vcdxrip.info*

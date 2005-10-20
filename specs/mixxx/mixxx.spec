@@ -88,7 +88,7 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING LICENSE README* Mixxx-Manual.pdf
+%doc COPYING LICENSE Mixxx-Manual.pdf README*
 %{_bindir}/mixxx
 %{_datadir}/mixxx/
 %{_datadir}/pixmaps/mixxx.png

@@ -37,7 +37,7 @@ exists a format module to handle that particular file type.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/
+%doc AUTHORS ChangeLog COPYING doc/ NEWS README
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 

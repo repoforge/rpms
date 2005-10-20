@@ -43,8 +43,8 @@ own display.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/PORTING
-%doc doc/*.html doc/*.css
+%doc AUTHORS ChangeLog COPYING doc/PORTING NEWS README
+%doc doc/*.css doc/*.html
 %doc examples/synergy.conf
 %{_bindir}/*
 

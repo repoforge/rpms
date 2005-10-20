@@ -55,7 +55,7 @@ An Internet Relay Chat (IRC) client for KDE.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc COPYING AUTHORS README TODO
+%doc AUTHORS COPYING README TODO
 %{_bindir}/kmyirc
 %{_libdir}/lib*
 %{_datadir}/apps/kmyirc/icons/*

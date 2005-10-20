@@ -53,7 +53,7 @@ firewall filters.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README *.txt tcptraceroute.1.html
+%doc *.txt AUTHORS ChangeLog COPYING INSTALL NEWS README tcptraceroute.1.html
 %doc %{_mandir}/man1/tcptraceroute.1*
 %{_bindir}/tcptraceroute
 %exclude %{_docdir}/tcptraceroute/

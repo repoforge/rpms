@@ -148,7 +148,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING FAQ dnsmasq.conf.example doc.html setup.html UPGRADING_to_2.0 contrib/*
+%doc CHANGELOG contrib/* COPYING dnsmasq.conf.example doc.html FAQ setup.html UPGRADING_to_2.0
 %doc %{_mandir}/man8/dnsmasq.8*
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config %{_initrddir}/dnsmasq

@@ -58,7 +58,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc changelog copying readme.txt docs/examples/ docs/docs/
+%doc changelog copying docs/docs/ docs/examples/ readme.txt
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/gammurc
 %{_bindir}/*

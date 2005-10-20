@@ -79,7 +79,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README TODO INSTALL NEWS ChangeLog
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/%{name}-%{rev}
 %{_datadir}/%{name}-%{rev}/*
 #%{_datadir}/locale/*

@@ -49,7 +49,7 @@ old version of Norton Disk Edit for DOS.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README* TODO WARNING doc/UNERASE src/ChangeLog doc/*.tex
+%doc doc/*.tex doc/UNERASE README* src/ChangeLog TODO WARNING
 %doc %{_mandir}/man?/*
 %{_sbindir}/*
 

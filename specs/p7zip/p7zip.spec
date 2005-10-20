@@ -74,7 +74,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README TODO DOCS/*
+%doc ChangeLog DOCS/* README TODO
 %{_bindir}/7za
 %dir %{_libexecdir}/p7zip/
 %{_libexecdir}/p7zip/7za

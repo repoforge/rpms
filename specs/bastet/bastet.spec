@@ -44,7 +44,7 @@ touch %{buildroot}%{_localstatedir}/games/bastet.scores
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README* TODO BUGS NEWS
+%doc AUTHORS BUGS COPYING NEWS README* TODO
 %{_bindir}/bastet
 
 %defattr(-, games, root, 0755)

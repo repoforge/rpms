@@ -78,7 +78,7 @@ find %{buildroot} -name "*.la" | xargs rm -f
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README fb.modes docs/README.screenshots
+%doc AUTHORS ChangeLog COPYING docs/README.screenshots fb.modes NEWS README
 %{_libdir}/*.so.*
 %dir %{_libdir}/%{name}-%{version}
 %dir %{_libdir}/%{name}-%{version}/gfxdrivers

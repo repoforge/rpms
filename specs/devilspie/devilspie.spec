@@ -46,7 +46,7 @@ in the pager or task list.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO devilspie.dtd
+%doc AUTHORS ChangeLog COPYING devilspie.dtd NEWS README TODO
 %doc devilspie-reference.html sample-config.xml
 %doc %{_mandir}/man1/devilspie.1*
 %{_bindir}/devilspie

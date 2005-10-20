@@ -114,7 +114,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README HISTORY holiday
+%doc HISTORY holiday README
 %config %{_sysconfdir}/skel/.plan.dir/
 %config %{_sysconfdir}/X11/applnk/Applications/plan.desktop
 %{_bindir}/*

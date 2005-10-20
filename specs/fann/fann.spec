@@ -47,7 +47,7 @@ Development headers of fann: fast artificial neural network library
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING INSTALL NEWS README TODO
+%doc AUTHORS COPYING INSTALL NEWS README README TODO
 %{_libdir}/libfloatfann.so.*
 %{_libdir}/libdoublefann.so.*
 %{_libdir}/libfixedfann.so.*

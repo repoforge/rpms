@@ -60,7 +60,7 @@ scrollkeeper-update -q || :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL README NEWS
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %doc %{_datadir}/gnome/help/sound-juicer/
 %{_bindir}/sound-juicer
 %{_sysconfdir}/gconf/schemas/sound-juicer.schemas

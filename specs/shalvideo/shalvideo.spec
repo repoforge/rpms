@@ -103,7 +103,7 @@ moc shalvideo/kvideodlg2.h > shalvideo/kvideodlg2.moc
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING FAQ README INSTALL TODO
+%doc AUTHORS COPYING FAQ INSTALL README TODO
 %{_bindir}/shalvideo
 %{_datadir}/icons/locolor/32x32/apps/shalvideo.png
 %{_datadir}/pixmaps/shalvideo.png

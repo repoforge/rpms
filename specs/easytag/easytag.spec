@@ -39,7 +39,7 @@ MP2, FLAC, Ogg Vorbis, MusePack and Monkey's Audio files.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc COPYING ChangeLog README TODO THANKS USERS-GUIDE
+%doc ChangeLog COPYING README THANKS TODO USERS-GUIDE
 %{_bindir}/easytag
 %{_datadir}/applications/easytag.desktop
 %{_datadir}/easytag/

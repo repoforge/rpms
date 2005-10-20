@@ -38,7 +38,7 @@ database files.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE *.TXT *.html *.sh
+%doc *.html *.sh *.TXT LICENSE
 %doc %{_mandir}/man1/nettee.1*
 %{_bindir}/nettee
 

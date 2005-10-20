@@ -40,7 +40,7 @@ specified which patterns result in which colors.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO example-conf/conf.*
+%doc AUTHORS ChangeLog COPYING example-conf/conf.* NEWS README TODO
 %{_bindir}/colortail
 
 %changelog

@@ -34,7 +34,7 @@ A GNOME .lircrc configuration program.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO samples/
+%doc AUTHORS ChangeLog COPYING NEWS README samples/ TODO
 %{_bindir}/*
 %{_datadir}/lircrc_config/
 

@@ -38,7 +38,7 @@ make install
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme.txt lgpl.txt
+%doc lgpl.txt readme.txt
 %{_datadir}/games/solarwolf
 %{_usr}/games/solarwolf
 %{_datadir}/applications/solarwolf.desktop

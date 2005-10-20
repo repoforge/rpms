@@ -59,7 +59,7 @@ ISO 9660 CD-ROMs (ISOLINUX).
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README* TODO *.doc memdisk/memdisk.doc sample/
+%doc *.doc BUGS COPYING memdisk/memdisk.doc NEWS README* sample/ TODO
 %{_sbindir}/extlinux
 %{_bindir}/*
 %{_libdir}/syslinux/

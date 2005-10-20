@@ -291,7 +291,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README TODO test/
+%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README test/ TODO
 %doc docs/*.pdf etc/freshclam.conf
 %doc %{_mandir}/man1/sigtool.1*
 %doc %{_mandir}/man1/clamscan.1*

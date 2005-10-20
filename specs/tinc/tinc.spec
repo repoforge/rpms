@@ -44,7 +44,7 @@ information to others.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* NEWS README THANKS TODO
-%doc doc/tinc.info* doc/tinc.texi doc/sample-config*
+%doc doc/sample-config* doc/tinc.info* doc/tinc.texi
 %doc %{_mandir}/man5/tinc.conf.5*
 %doc %{_mandir}/man8/tincd.8*
 %{_sbindir}/tincd

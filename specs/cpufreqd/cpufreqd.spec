@@ -141,7 +141,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO examples/
+%doc AUTHORS ChangeLog COPYING examples/ INSTALL NEWS README TODO
 %doc %{_mandir}/man5/cpufreqd.conf.5*
 %doc %{_mandir}/man8/cpufreqd.8*
 %config(noreplace) %{_sysconfdir}/cpufreqd.conf

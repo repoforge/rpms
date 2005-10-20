@@ -102,7 +102,7 @@ exit 0
 
 %files
 %defattr(-, root, root, 0755)
-%doc RPM-GPG-KEY-rpmforge-* rpmforge.* mirrors-rpmforge.yum
+%doc mirrors-rpmforge.yum RPM-GPG-KEY-rpmforge-* rpmforge.*
 %dir %{_sysconfdir}/apt/
 %dir %{_sysconfdir}/apt/sources.list.d/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge.list

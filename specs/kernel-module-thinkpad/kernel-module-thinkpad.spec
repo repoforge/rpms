@@ -113,7 +113,7 @@ groupdel thinkpad
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README* SUPPORTED-MODELS TECHNOTES man/
+%doc AUTHORS ChangeLog COPYING man/ README* SUPPORTED-MODELS TECHNOTES
 #%doc %{_mandir}/man4/*
 %{_libmoddir}/%{kversion}-%{krelease}%{moduledir}/
 %ghost /dev/thinkpad

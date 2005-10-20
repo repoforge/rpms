@@ -58,7 +58,7 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/celestia.sche
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO controls.txt
+%doc AUTHORS ChangeLog controls.txt COPYING NEWS README TODO
 %{_sysconfdir}/gconf/schemas/celestia.schemas
 %{_bindir}/celestia
 %{_datadir}/applications/celestia.desktop

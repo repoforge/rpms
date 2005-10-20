@@ -53,7 +53,7 @@ still alive at the end.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README *.html
+%doc *.html AUTHORS ChangeLog COPYING NEWS README
 %{_bindir}/dkftpbench
 %{_bindir}/dklimits
 %exclude %{_includedir}/dkftpbench

@@ -173,7 +173,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING IAFA-PACKAGE NEWS README TODO watchdog.lsm examples/
+%doc AUTHORS ChangeLog COPYING examples/ IAFA-PACKAGE NEWS README TODO watchdog.lsm
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/watchdog.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/watchdog

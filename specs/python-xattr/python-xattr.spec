@@ -41,7 +41,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README *.html *.txt
+%doc *.html *.txt MANIFEST README
 %{python_sitearch}/xattr.so
 %exclude %{_docdir}/pyxattr-%{version}/
 

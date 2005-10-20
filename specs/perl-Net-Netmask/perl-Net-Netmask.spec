@@ -43,7 +43,7 @@ lookup IP network blocks.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGELOG
+%doc CHANGELOG README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Net/Netmask.pm
 %{perl_vendorlib}/Net/Netmask.pod

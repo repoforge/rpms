@@ -83,13 +83,13 @@ This package contains some tools using for GnuTLS.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* NEWS README THANKS doc/TODO
+%doc AUTHORS ChangeLog COPYING* doc/TODO NEWS README THANKS
 %{_libdir}/*.so.*
 
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/tex/gnutls.ps doc/examples/ doc/README*
+%doc doc/examples/ doc/README* doc/tex/gnutls.ps
 %doc %{_mandir}/man1/*
 %{_bindir}/*-config
 %{_includedir}/*

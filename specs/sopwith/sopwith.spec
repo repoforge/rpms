@@ -68,7 +68,7 @@ EOF
 
 %files 
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING FAQ NEWS README TODO doc/*.txt
+%doc AUTHORS ChangeLog COPYING doc/*.txt FAQ NEWS README TODO
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_bindir}/gtksopwith

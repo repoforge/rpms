@@ -46,7 +46,7 @@ Tag informations are converted from unicode to your system locale.
 %files
 %defattr(-, root, root, 0755)
 %lang(ru) %doc readme.rus
-%doc readme.eng COPYING
+%doc COPYING readme.eng
 %{xmms_inputdir}/libwma.so
 
 

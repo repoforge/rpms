@@ -41,7 +41,7 @@ create new instances of a RRD, and to generate the graphs for them.
 
 %files
 %defattr(-, root, root, 0755)
-%doc DESCRIPTION ToDo EXAMPLES examples.dir snmp-kit/table_db.patch
+%doc DESCRIPTION EXAMPLES examples.dir snmp-kit/table_db.patch ToDo
 %{_bindir}/RRD*
 %{_bindir}/*.sh
 %{_libdir}/perl5/site_perl/RRDutils.pm

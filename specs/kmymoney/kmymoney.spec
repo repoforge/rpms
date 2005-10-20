@@ -71,7 +71,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
-%doc BUGS TODO ChangeLog.original README AUTHORS INSTALL ChangeLog COPYING
+%doc AUTHORS BUGS ChangeLog ChangeLog.original COPYING INSTALL README TODO
 %doc %{_datadir}/doc/HTML/en/kmymoney2
 %doc %{_mandir}/man?/*
 %{_datadir}/apps/kmymoney2

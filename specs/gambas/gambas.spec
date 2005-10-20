@@ -106,7 +106,7 @@ The gambas-examples package contains some examples for gambas.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING INSTALL NEWS README README.REDHAT TODO
+%doc AUTHORS COPYING INSTALL NEWS README README README.REDHAT TODO
 %{_libdir}/gambas
 # %{_libdir}/info
 %{_bindir}/*

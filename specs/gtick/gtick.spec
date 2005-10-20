@@ -60,7 +60,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README THANKS TODO doc/NOTES
+%doc AUTHORS ChangeLog COPYING doc/NOTES NEWS README THANKS TODO
 %doc %{_mandir}/man1/gtick.1*
 %{_bindir}/gtick
 %{_datadir}/applications/%{desktop_vendor}-gtick.desktop

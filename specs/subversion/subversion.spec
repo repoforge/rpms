@@ -204,8 +204,8 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
-%doc tools/ subversion/LICENSE mod_authz_svn-INSTALL
+%doc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
+%doc mod_authz_svn-INSTALL subversion/LICENSE tools/
 %doc doc/book/svn-book.html
 %doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
 %{_bindir}/*

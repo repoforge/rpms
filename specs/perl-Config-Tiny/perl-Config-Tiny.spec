@@ -53,7 +53,7 @@ file.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README LICENSE
+%doc Changes LICENSE README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Config/Tiny.pm
 

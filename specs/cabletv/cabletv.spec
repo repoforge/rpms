@@ -60,7 +60,7 @@ Supports color MMX decoding and b/w x86 assembler decoding.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Modeline.sample cabletv.sample
+%doc cabletv.sample Modeline.sample README
 %{_bindir}/*
 #%{_bindir}/v4l-conf
 %{_prefix}/X11R6/lib/X11/app-defaults/CableTV

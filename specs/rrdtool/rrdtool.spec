@@ -154,7 +154,7 @@ find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 %files devel
 %defattr(-, root, root, 0755)
 %doc contrib/add_ds contrib/killspike contrib/log2rrd contrib/rrdexplorer
-%doc contrib/rrdfetchnames contrib/rrd-file-icon contrib/rrdlastds
+%doc contrib/rrd-file-icon contrib/rrdfetchnames contrib/rrdlastds
 %doc contrib/rrdproc contrib/rrdview contrib/snmpstats contrib/trytime
 %{_includedir}/rrd.h
 %{_libdir}/*.a

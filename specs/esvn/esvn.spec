@@ -36,7 +36,7 @@ eSvn is a graphical frontend for the subversion revision system.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING LICENSE README html-docs/*
+%doc AUTHORS ChangeLog COPYING html-docs/* LICENSE README
 %{_bindir}/esvn
 %{_bindir}/esvn-diff-wrapper
 %{_datadir}/pixmaps/esvn.png

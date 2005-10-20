@@ -83,7 +83,7 @@ sprite blitting.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc COPYING %{name}-devel-docs/*
+%doc %{name}-devel-docs/* COPYING
 %{_libdir}/*.a
 %{_bindir}/caca-config
 %{_includedir}/*

@@ -86,7 +86,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT.GPL INSTALL NEWS PORTS README
-%doc contrib/ easy-rsa/ management/ sample-*/ plugin/README.*
+%doc contrib/ easy-rsa/ management/ plugin/README.* sample-*/
 %doc %{_mandir}/man8/openvpn.8*
 %dir %{_sysconfdir}/openvpn/
 %config %{_initrddir}/openvpn

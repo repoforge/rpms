@@ -120,7 +120,7 @@ cd -
 %defattr(-, root, root, 0755)
 %doc examples/
 %doc contrib/add_ds contrib/killspike contrib/log2rrd contrib/rrdexplorer
-%doc contrib/rrdfetchnames contrib/rrd-file-icon contrib/rrdlastds
+%doc contrib/rrd-file-icon contrib/rrdfetchnames contrib/rrdlastds
 %doc contrib/rrdproc contrib/rrdview contrib/snmpstats contrib/trytime
 %{_libdir}/*.a
 %{_libdir}/*.so

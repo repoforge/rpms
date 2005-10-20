@@ -64,7 +64,7 @@ export CFLAGS='%{optflags} -DRELEASE'
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING AUTHORS ChangeLog NEWS README doc/manual.pdf
+%doc AUTHORS ChangeLog COPYING doc/manual.pdf NEWS README
 %{_bindir}/speexdec
 %{_bindir}/speexenc
 %{_libdir}/libspeex.so.*

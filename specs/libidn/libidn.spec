@@ -72,7 +72,7 @@ you will need to install %{name}-devel.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* FAQ INSTALL NEWS README* THANKS TODO doc/libidn.html contrib
+%doc AUTHORS ChangeLog contrib COPYING* doc/libidn.html FAQ INSTALL NEWS README* THANKS TODO
 %doc %{_mandir}/man1/*
 %{_bindir}/*
 %{_datadir}/emacs/site-lisp/*.el
@@ -80,7 +80,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc examples/ doc/specifications/ TODO doc/*.pdf libc/example.c doc/reference
+%doc doc/*.pdf doc/reference doc/specifications/ examples/ libc/example.c TODO
 %doc %{_mandir}/man3/*
 %doc %{_infodir}/*.info*
 %{_libdir}/*.a

@@ -79,7 +79,7 @@ desktop-file-install --vendor net                  \
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING LICENSE NEWS README THANKS VERSION doc/
+%doc AUTHORS ChangeLog COPYING doc/ LICENSE NEWS README THANKS VERSION
 %{_bindir}/*
 %{_datadir}/lincvs/
 %{_datadir}/applications/*.desktop

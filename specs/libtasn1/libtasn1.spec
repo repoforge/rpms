@@ -57,7 +57,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/TODO doc/*.ps
+%doc doc/*.ps doc/TODO
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so

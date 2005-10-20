@@ -99,7 +99,7 @@ scrollkeeper-update -q || :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README* examples/*.planner
+%doc AUTHORS ChangeLog COPYING examples/*.planner NEWS README*
 %doc %{_datadir}/gnome/help/planner/
 %{_bindir}/planner
 %{_libdir}/libplanner-1.so.*

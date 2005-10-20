@@ -92,7 +92,7 @@ fi
 
 %files
 %defattr(-, root, root, -)
-%doc ChangeLog COPYING README AUTHORS BUGS TODO FORGETMENOT RELEASE
+%doc AUTHORS BUGS ChangeLog COPYING FORGETMENOT README RELEASE TODO
 %dir %{_sysconfdir}/mach/
 %config %{_sysconfdir}/mach/conf
 %config %{_sysconfdir}/mach/location

@@ -52,7 +52,7 @@ A program which searches Dutch words in the online dictionary Van Dale.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README AUTHORS COPYING ChangeLog INSTALL NEWS README.nl
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README README.nl
 %{_bindir}/gnuvd
 %doc %{_mandir}/man?/*
 #%{_libdir}/*.so.*

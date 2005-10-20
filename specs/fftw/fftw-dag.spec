@@ -74,7 +74,7 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc FAQ/fftw-faq.html/ doc/*.html doc/*.gif doc/*.ps
+%doc doc/*.gif doc/*.html doc/*.ps FAQ/fftw-faq.html/
 %doc %{_infodir}/*.info*
 %{_includedir}/*.h
 %{_libdir}/*.a

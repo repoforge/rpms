@@ -70,7 +70,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING CREDITS README TODO doc/callback_example.sh doc/nvram.txt doc/tpbrc
+%doc ChangeLog COPYING CREDITS doc/callback_example.sh doc/nvram.txt doc/tpbrc README TODO
 %doc %{_mandir}/man1/tpb.1*
 %config(noreplace) %{_sysconfdir}/tpbrc
 %config(noreplace) %{_sysconfdir}/X11/xinit/xinitrc.d/tpb.sh

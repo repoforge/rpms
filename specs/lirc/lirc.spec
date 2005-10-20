@@ -99,7 +99,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE AUTHORS ChangeLog COPYING NEWS README TODO doc/ remotes
+%doc ANNOUNCE AUTHORS ChangeLog COPYING doc/ NEWS README remotes TODO
 %doc contrib/*.conf contrib/irman2lirc contrib/lircrc contrib/lircs
 %{_sysconfdir}/rc.d/init.d/lircd
 %config %{_sysconfdir}/logrotate.d/lircd

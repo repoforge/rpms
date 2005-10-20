@@ -84,7 +84,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README*
-%doc eaccelerator.ini *.php
+%doc *.php eaccelerator.ini
 %config(noreplace) %{_sysconfdir}/php.d/eaccelerator.ini
 %{php_extdir}/eaccelerator.so
 %attr(0750, apache, apache) %{_localstatedir}/cache/php-eaccelerator

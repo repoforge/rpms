@@ -96,7 +96,7 @@ Some demo graphs for %{name}.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README *.txt
+%doc *.txt AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/*
 %{_bindir}/*
 %dir %{_datadir}/graphviz/

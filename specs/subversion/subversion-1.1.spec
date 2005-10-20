@@ -154,9 +154,9 @@ make check check-swig-pl CLEANUP=yes
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc BUGS COMMITTERS COPYING HACKING INSTALL README CHANGES
-%doc tools subversion/LICENSE mod_authz_svn-INSTALL
-%doc doc/book/book/svn-book.html doc/book/book/images
+%doc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
+%doc mod_authz_svn-INSTALL subversion/LICENSE tools
+%doc doc/book/book/images doc/book/book/svn-book.html
 %doc contrib/client-side/svn_load_dirs{.pl,_*,.README}
 %{_bindir}/*
 %{_libdir}/libsvn_*.so.*

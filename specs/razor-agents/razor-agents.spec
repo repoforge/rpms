@@ -74,7 +74,7 @@ done
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changes CREDITS FAQ INSTALL README docs/
+%doc BUGS Changes CREDITS docs/ FAQ INSTALL README
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man5/*
 %{_bindir}/*

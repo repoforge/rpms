@@ -60,7 +60,7 @@ configuration.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README Changelog
+%doc Changelog README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Config/General.pm
 %{perl_vendorlib}/Config/General/*

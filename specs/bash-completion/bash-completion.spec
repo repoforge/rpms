@@ -61,7 +61,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS Changelog COPYING README contrib/
+%doc BUGS Changelog contrib/ COPYING README
 %config %{_sysconfdir}/bash_completion
 %config %{_sysconfdir}/profile.d/*
 %config %{_sysconfdir}/bash_completion.d/

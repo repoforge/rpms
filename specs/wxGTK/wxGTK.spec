@@ -126,7 +126,7 @@ popd
 
 %files -f wxstd.lang
 %defattr(-, root, root, 0755)
-%doc COPYING.LIB *.txt
+%doc *.txt COPYING.LIB
 %{_libdir}/libwx_gtk-*.so.*
 %{_datadir}/wx/
 

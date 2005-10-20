@@ -71,7 +71,7 @@ the PDFlib library.
 
 %files
 %defattr(-, root, root, 0755)
-%doc readme.txt doc/pdflib/PDFlib-Lite-license.pdf
+%doc doc/pdflib/PDFlib-Lite-license.pdf readme.txt
 %{_libdir}/*.so.*
 
 %files devel

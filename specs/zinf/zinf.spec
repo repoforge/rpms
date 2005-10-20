@@ -80,7 +80,7 @@ EOF
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/README.linux doc/*.txt doc/WISHLIST
+%doc AUTHORS ChangeLog COPYING doc/*.txt doc/README.linux doc/WISHLIST NEWS README
 %{_bindir}/zinf
 %{_libdir}/zinf/
 %{_datadir}/zinf/

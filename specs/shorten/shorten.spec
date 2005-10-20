@@ -33,7 +33,7 @@ operate in both lossy and lossless modes.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/LICENSE doc/TODO doc/tr156.ps
+%doc AUTHORS ChangeLog COPYING doc/LICENSE doc/TODO doc/tr156.ps NEWS README
 %doc %{_mandir}/man?/*
 %{_bindir}/shorten
 

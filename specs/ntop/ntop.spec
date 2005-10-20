@@ -250,7 +250,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog CONTENTS COPYING INSTALL MANIFESTO NEWS PORTING THANKS
-%doc ntop.conf.sample *.txt docs/*
+%doc *.txt docs/* ntop.conf.sample
 %doc %{_mandir}/man8/ntop.8*
 %config(noreplace) %{_sysconfdir}/ntop.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/ntop

@@ -37,7 +37,7 @@ menu.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog AUTHORS COPYING INSTALL README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL README TODO
 %{_bindir}/screenie
 
 %changelog

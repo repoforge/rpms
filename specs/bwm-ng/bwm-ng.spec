@@ -61,7 +61,7 @@ Short list of features:
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS changelog README bwm-ng.conf-example
+%doc AUTHORS bwm-ng.conf-example changelog README
 %doc %{_mandir}/man1/bwm-ng.1*
 %{_bindir}/bwm-ng
 

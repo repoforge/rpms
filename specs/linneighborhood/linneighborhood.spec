@@ -82,7 +82,7 @@ EOF
 
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog CONFIGURATION COPYING NEWS README TODO THANKS
+%doc AUTHORS BUGS ChangeLog CONFIGURATION COPYING NEWS README THANKS TODO
 %{_bindir}/linneighborhood
 %{_bindir}/LinNeighborhood
 %{_datadir}/icons/LinNeighborhood.xpm

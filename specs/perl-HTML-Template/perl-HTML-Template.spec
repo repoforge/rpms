@@ -47,7 +47,7 @@ With this module, you can use HTML templates in CGI scripts.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README ANNOUNCE FAQ
+%doc ANNOUNCE Changes FAQ README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/HTML/Template.pm
 

@@ -46,7 +46,7 @@ vnc2swf is a recoding tool for Flash.
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENCE.TXT README* *.html
+%doc *.html LICENCE.TXT README*
 #%doc docs/
 %{_bindir}/recordwin
 %{_bindir}/vnc2swf

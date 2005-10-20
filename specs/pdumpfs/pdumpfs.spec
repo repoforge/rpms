@@ -44,7 +44,7 @@ day's snapshot for saving a disk space.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README doc/
+%doc ChangeLog COPYING doc/ README
 %doc %{_mandir}/man8/pdumpfs.8*
 %{_bindir}/pdumpfs
 

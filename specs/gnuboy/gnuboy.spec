@@ -38,7 +38,7 @@ Nintendo GameBoy Color software platform.
 
 %files
 %defattr(-, root, root, 0755)
-%doc docs/* COPYING README
+%doc COPYING docs/* README
 %{_bindir}/*
 
 

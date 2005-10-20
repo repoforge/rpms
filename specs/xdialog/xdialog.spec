@@ -50,7 +50,7 @@ range box, and much more).
 %files -f %{real_name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING NEWS README
-%doc samples/ doc/*.html doc/*.png
+%doc doc/*.html doc/*.png samples/
 %doc %{_mandir}/man1/Xdialog.1*
 %{_bindir}/Xdialog
 %exclude %{_docdir}/%{real_name}-%{version}
