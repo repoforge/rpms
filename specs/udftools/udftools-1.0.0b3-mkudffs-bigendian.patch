@@ -1,0 +1,36 @@
+Date: Sun, 12 Dec 2004 14:25:09 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: submit@bugs.debian.org
+
+Package: udftools
+Version: 1.0.0b3-6
+
+mkduffs crashes with a segmentation fault when trying to create a
+filesystem on big-endian systems.  e.g. mkudffs /dev/sda4 on my
+PowerMac.
+
+udffstools from CVS on sf.net is fine, and I've extracted the actual
+fix:
+
+
+diff -uNr -Xdontdiff -p udftools-1.0.0b3/mkudffs/mkudffs.c udftools/mkudffs/mkudffs.c
+--- udftools-1.0.0b3/mkudffs/mkudffs.c	2004-02-23 04:35:33.000000000 +0100
++++ udftools/mkudffs/mkudffs.c	2004-03-02 03:09:39.000000000 +0100
+@@ -250,14 +250,14 @@ void split_space(struct udf_disc *disc)
+ 	if (size % offsets[PSPACE_SIZE])
+ 		size -= (size % offsets[PSPACE_SIZE]);
+ 	set_extent(disc, PSPACE, start, size);
+-	for (i=0; i<disc->udf_lvd[0]->numPartitionMaps; i++)
++	for (i=0; i<le32_to_cpu(disc->udf_lvd[0]->numPartitionMaps); i++)
+ 	{
+ 		if (i == 1)
+ 			disc->udf_lvid->freeSpaceTable[i] = cpu_to_le32(0xFFFFFFFF);
+ 		else
+ 			disc->udf_lvid->freeSpaceTable[i] = cpu_to_le32(size);
+ 	}
+-	for (j=0; j<disc->udf_lvd[0]->numPartitionMaps; j++)
++	for (j=0; j<le32_to_cpu(disc->udf_lvd[0]->numPartitionMaps); j++)
+ 	{
+ 		if (j == 1)
+ 			disc->udf_lvid->sizeTable[i+j] = cpu_to_le32(0xFFFFFFFF);
+

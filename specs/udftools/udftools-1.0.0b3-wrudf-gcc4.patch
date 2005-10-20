@@ -1,0 +1,53 @@
+Subject: Bug#288621: udftools: FTBFS (amd64/gcc-4.0): invalid lvalue in assignment
+From: Andreas Jochens <aj@andaco.de>
+Message-Id: <E1CltQT-00068G-Sy@localhost.localdomain>
+Date: Tue, 04 Jan 2005 19:29:01 +0100
+Lines: 59
+
+Package: udftools
+Severity: normal
+Tags: patch
+
+When building 'udftools' on amd64 with gcc-4.0,
+I get the following error:
+
+wrudf.c:119: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:119: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:119: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness
+wrudf.c:119: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness
+wrudf.c:230: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:230: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:230: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:230: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness
+wrudf.c:230: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness
+wrudf.c:245: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:245: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:245: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness
+wrudf.c:245: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness
+wrudf.c:245: warning: pointer targets in passing argument 1 of 'strncmp' differ in signedness
+wrudf.c:248: error: invalid lvalue in assignment
+make[2]: *** [wrudf.o] Error 1
+make[2]: Leaving directory `/udftools-1.0.0b3/wrudf'
+
+With the attached patch 'udftools' can be compiled
+on amd64 using gcc-4.0.
+
+The patch also changes the Build-Depends from 'libreadline4-dev'
+to 'libreadline5-dev'.
+
+Regards
+Andreas Jochens
+
+diff -urN ../tmp-orig/udftools-1.0.0b3/wrudf/wrudf.c ./wrudf/wrudf.c
+--- ../tmp-orig/udftools-1.0.0b3/wrudf/wrudf.c	2002-11-26 08:18:51.000000000 +0100
++++ ./wrudf/wrudf.c	2005-01-04 16:56:49.394078200 +0100
+@@ -245,7 +245,7 @@
+ 	    } else if( strncmp( spm->partIdent.ident, UDF_ID_VIRTUAL, strlen(UDF_ID_VIRTUAL)) == 0 )
+ 		virtualPartitionNum = i;
+ 	}
+-	(char*)spm += spm->partitionMapLength;
++	spm = (char*)spm + spm->partitionMapLength;
+     }
+ 
+     if( medium == CDR ) {
+diff -urN ../tmp-orig/udftools-1.0.0b3/debian/control ./debian/control
