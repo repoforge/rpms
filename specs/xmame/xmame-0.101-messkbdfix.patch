@@ -1,0 +1,11 @@
+--- xmame-0.101.orig/src/usrintrf.c	2005-10-22 22:37:29.000000000 +0200
++++ xmame-0.101/src/usrintrf.c	2005-10-25 11:03:36.000000000 +0200
+@@ -1219,7 +1219,7 @@ static int handle_keys(mame_bitmap *bitm
+ #ifdef MESS
+ 	if (osd_trying_to_quit())
+ 		return 1;
+-	if (options.disable_normal_ui || !mess_ui_active())
++	if (options.disable_normal_ui || ((Machine->gamedrv->flags & GAME_COMPUTER) && !mess_ui_active()))
+ 		return 0;
+ #endif
+ 
