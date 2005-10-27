@@ -4,14 +4,15 @@
 
 Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
-Version: 2.3
-Release: 2
+Version: 2.4
+Release: 1
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2200.sourceforge.net/firmware.php
 # License agreement is displayed before download (referer protection)
 Source0: ipw2200-fw-%{version}.tgz
-Source1: ipw2200-fw-2.2.tgz
+Source1: ipw2200-fw-2.3.tgz
+Source2: ipw2200-fw-2.2.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -22,7 +23,7 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 
 %prep
-%setup -c -a 1
+%setup -c -a 1 -a 2
 
 
 %build
@@ -45,6 +46,9 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 
 %changelog
+* Thu Oct 27 2005 Matthias Saou <http://freshrpms.net> 2.4-1
+- Update to 2.4, but keep 2.2 and 2.3 included too.
+
 * Tue May 31 2005 Matthias Saou <http://freshrpms.net> 2.3-2
 - Also bundle 2.2 firmware : The recent driver downgrade required this :-/
 
