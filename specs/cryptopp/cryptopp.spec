@@ -6,14 +6,15 @@
 Summary: Free C++ class library of cryptographic schemes
 Name: cryptopp
 Version: 5.2.1
-Release: 2
+Release: 3
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://www.cryptopp.com/
 Source: http://www.eskimo.com/~weidai/cryptopp%{real_version}.zip
-Patch: crypto-5.2.patch.bz2
+Patch0: crypto-5.2.patch.bz2
+Patch1: http://www.eskimo.com/~weidai/crypto521gcc4patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Buildrequires: unzip, gcc-c++
+Buildrequires: unzip, dos2unix, gcc-c++
 
 %description
 Crypto++ Library is a free C++ class library of cryptographic schemes. 
@@ -54,7 +55,10 @@ This package contains programs for manipulating Crypto++ routines.
 
 %prep
 %setup -c -n %{name}-%{version}
-%patch -p1 -b .autotools
+# All files have ^M end of lines, fix that for the gcc4 patch to apply
+find . -type f -exec dos2unix {} \;
+%patch0 -p1 -b .autotools
+%patch1 -p0 -b .gcc4
 %{__chmod} 755 configure
 
 
@@ -101,6 +105,9 @@ This package contains programs for manipulating Crypto++ routines.
 
 
 %changelog
+* Fri Oct 28 2005 Matthias Saou <http://freshrpms.net/> 5.2.1-3
+- Include gcc4 patch, and convert all files to UNIX line breaks.
+
 * Tue Nov 16 2004 Matthias Saou <http://freshrpms.net/> 5.2.1-2
 - Use optflags, but replace -O? with -O1, since it breaks otherwise.
 

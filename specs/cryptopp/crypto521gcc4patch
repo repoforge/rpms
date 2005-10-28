@@ -1,0 +1,158 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_gcc4_compile-fixes.dpatch by Jens Peter Secher <jps@debian.org>
+##
+## DP: Avoid problems with anonymous types, see also
+## DP: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=20589 .
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./iterhash.h /tmp/dpep-work.kJMPta/libcrypto++-5.2.1/iterhash.h
+--- ./iterhash.h	2005-07-31 01:37:41.000000000 +0200
++++ /tmp/dpep-work.kJMPta/libcrypto++-5.2.1/iterhash.h	2005-07-31 01:38:39.100001152 +0200
+@@ -88,7 +88,7 @@
+ 	: public ClonableImpl<T_Transform, AlgorithmImpl<IteratedHash<T_HashWordType, T_Endianness, T_BlockSize>, T_Transform> >
+ {
+ public:
+-	enum {DIGESTSIZE = T_DigestSize};
++	enum GCC4FIX2 {DIGESTSIZE = T_DigestSize};
+ 	unsigned int DigestSize() const {return DIGESTSIZE;};
+ 
+ protected:
+diff -urNad --exclude=CVS --exclude=.svn ./lubyrack.h /tmp/dpep-work.kJMPta/libcrypto++-5.2.1/lubyrack.h
+--- ./lubyrack.h	2005-07-31 01:37:41.000000000 +0200
++++ /tmp/dpep-work.kJMPta/libcrypto++-5.2.1/lubyrack.h	2005-07-31 01:38:39.101001000 +0200
+@@ -38,7 +38,7 @@
+ 		}
+ 
+ 	protected:
+-		enum {S=T::DIGESTSIZE};
++		enum GCC4FIX4 {S=T::DIGESTSIZE};
+ 		unsigned int L;	// key length / 2
+ 		SecByteBlock key;
+ 
+diff -urNad --exclude=CVS --exclude=.svn ./seckey.h /tmp/dpep-work.kJMPta/libcrypto++-5.2.1/seckey.h
+--- ./seckey.h	2005-07-31 01:37:41.000000000 +0200
++++ /tmp/dpep-work.kJMPta/libcrypto++-5.2.1/seckey.h	2005-07-31 01:40:04.980945264 +0200
+@@ -21,7 +21,7 @@
+ class FixedBlockSize
+ {
+ public:
+-	enum {BLOCKSIZE = N};
++	enum GCC4FIX0 {BLOCKSIZE = N};
+ };
+ 
+ // ************** rounds ***************
+@@ -31,7 +31,7 @@
+ class FixedRounds
+ {
+ public:
+-	enum {ROUNDS = R};
++	enum GCC4FIX1 {ROUNDS = R};
+ 
+ protected:
+ 	template <class T>
+@@ -50,7 +50,7 @@
+ class VariableRounds
+ {
+ public:
+-	enum {DEFAULT_ROUNDS = D, MIN_ROUNDS = N, MAX_ROUNDS = M};
++	enum GCC4FIX3 {DEFAULT_ROUNDS = D, MIN_ROUNDS = N, MAX_ROUNDS = M};
+ 	static unsigned int StaticGetDefaultRounds(unsigned int keylength) {return DEFAULT_ROUNDS;}
+ 
+ protected:
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 15_gcc4_template_instatiation_fixes.dpatch by Jens Peter Secher <jps@debian.org>
+##
+## DP: Avoid problems with template instatiation.
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./dll.cpp /tmp/dpep-work.r5hvim/libcrypto++-5.2.1/dll.cpp
+--- ./dll.cpp	2004-06-20 11:22:24.000000000 +0200
++++ /tmp/dpep-work.r5hvim/libcrypto++-5.2.1/dll.cpp	2005-07-30 22:10:10.420609464 +0200
+@@ -1,6 +1,6 @@
+ // dll.cpp - written and placed in the public domain by Wei Dai
+ 
+-#define CRYPTOPP_MANUALLY_INSTANTIATE_TEMPLATES
++#undef CRYPTOPP_MANUALLY_INSTANTIATE_TEMPLATES
+ #define CRYPTOPP_DEFAULT_NO_DLL
+ 
+ #include "dll.h"
+@@ -37,6 +37,79 @@
+ CRYPTOPP_DLL_TEMPLATE_CLASS AbstractEuclideanDomain<Integer>;
+ #endif
+ 
++#if defined(__GNUC__) && __GNUC__ > 3
++template class CRYPTOPP_DLL AbstractEuclideanDomain<Integer>;
++template class CRYPTOPP_DLL AbstractEuclideanDomain<PolynomialMod2>;
++template class CRYPTOPP_DLL AbstractGroup<Integer>;
++template class CRYPTOPP_DLL AbstractGroup<EC2NPoint>;
++template class CRYPTOPP_DLL AbstractGroup<ECPPoint>;
++template class CRYPTOPP_DLL AbstractGroup<PolynomialMod2>;
++template class CRYPTOPP_DLL AbstractPolicyHolder<AdditiveCipherAbstractPolicy, TwoBases<SimpleKeyedTransformation<StreamTransformation>, RandomNumberGenerator> >;
++template class CRYPTOPP_DLL AbstractRing<Integer>;
++template class CRYPTOPP_DLL AbstractRing<PolynomialMod2>;
++template class CRYPTOPP_DLL AdditiveCipherTemplate<>;
++template class CRYPTOPP_DLL AdditiveCipherTemplate<AbstractPolicyHolder<AdditiveCipherAbstractPolicy, CTR_ModePolicy> >;
++template class CRYPTOPP_DLL AdditiveCipherTemplate<AbstractPolicyHolder<AdditiveCipherAbstractPolicy, OFB_ModePolicy> >;
++template class CRYPTOPP_DLL AllocatorWithCleanup<byte>;
++template class CRYPTOPP_DLL AllocatorWithCleanup<word16>;
++template class CRYPTOPP_DLL AllocatorWithCleanup<word32>;
++template class CRYPTOPP_DLL AutoSeededX917RNG<DES_EDE3>;
++template class CRYPTOPP_DLL CFB_CipherTemplate<AbstractPolicyHolder<CFB_CipherAbstractPolicy, CFB_ModePolicy> >;
++template class CRYPTOPP_DLL CFB_CipherTemplate<AbstractPolicyHolder<CFB_CipherAbstractPolicy, SymmetricCipher> >;
++template class CRYPTOPP_DLL CFB_DecryptionTemplate<>;
++template class CRYPTOPP_DLL CFB_DecryptionTemplate<AbstractPolicyHolder<CFB_CipherAbstractPolicy, CFB_ModePolicy> >;
++template class CRYPTOPP_DLL CFB_EncryptionTemplate<>;
++template class CRYPTOPP_DLL CFB_EncryptionTemplate<AbstractPolicyHolder<CFB_CipherAbstractPolicy, CFB_ModePolicy> >;
++template class CRYPTOPP_DLL CipherModeFinalTemplate_ExternalCipher<CBC_CTS_Decryption>;
++template class CRYPTOPP_DLL CipherModeFinalTemplate_ExternalCipher<CBC_CTS_Encryption>;
++template class CRYPTOPP_DLL CipherModeFinalTemplate_ExternalCipher<CBC_Decryption>;
++template class CRYPTOPP_DLL CipherModeFinalTemplate_ExternalCipher<CBC_Encryption>;
++template class CRYPTOPP_DLL CipherModeFinalTemplate_ExternalCipher<ECB_OneWay>;
++template class CRYPTOPP_DLL DH_Domain<DL_GroupParameters_GFP_DefaultSafePrime>;
++template class CRYPTOPP_DLL DL_Algorithm_GDSA<EC2N::Point>;
++template class CRYPTOPP_DLL DL_Algorithm_GDSA<ECP::Point>;
++template class CRYPTOPP_DLL DL_Algorithm_GDSA<Integer>;
++template class CRYPTOPP_DLL DL_FixedBasePrecomputationImpl<EC2N::Point>;
++template class CRYPTOPP_DLL DL_FixedBasePrecomputationImpl<ECPPoint>;
++template class CRYPTOPP_DLL DL_FixedBasePrecomputationImpl<Integer>;
++template class CRYPTOPP_DLL DL_GroupParameters<Integer>;
++template class CRYPTOPP_DLL DL_GroupParameters_EC<EC2N>;
++template class CRYPTOPP_DLL DL_GroupParameters_EC<ECP>;
++template class CRYPTOPP_DLL DL_GroupParameters_IntegerBasedImpl<ModExpPrecomputation>;
++template class CRYPTOPP_DLL DL_GroupPrecomputation<EC2N::Point>;
++template class CRYPTOPP_DLL DL_GroupPrecomputation<ECPPoint>;
++template class CRYPTOPP_DLL DL_PrivateKeyImpl<DL_GroupParameters_EC<EC2N> >;
++template class CRYPTOPP_DLL DL_PrivateKeyImpl<DL_GroupParameters_EC<ECP> >;
++template class CRYPTOPP_DLL DL_PrivateKey_EC<EC2N>;
++template class CRYPTOPP_DLL DL_PrivateKey_EC<ECP>;
++template class CRYPTOPP_DLL DL_PrivateKey_GFP<DL_GroupParameters_DSA>;
++template class CRYPTOPP_DLL DL_PrivateKey_WithSignaturePairwiseConsistencyTest<DL_PrivateKey_EC<EC2N>, ECDSA<EC2N> >;
++template class CRYPTOPP_DLL DL_PrivateKey_WithSignaturePairwiseConsistencyTest<DL_PrivateKey_EC<ECP>, ECDSA<ECP> >;
++template class CRYPTOPP_DLL DL_PrivateKey_WithSignaturePairwiseConsistencyTest<DL_PrivateKey_GFP<DL_GroupParameters_DSA>, DSA>;
++template class CRYPTOPP_DLL DL_PublicKeyImpl<DL_GroupParameters_EC<EC2N> >;
++template class CRYPTOPP_DLL DL_PublicKeyImpl<DL_GroupParameters_EC<ECP> >;
++template class CRYPTOPP_DLL DL_PublicKey_EC<EC2N>;
++template class CRYPTOPP_DLL DL_PublicKey_EC<ECP>;
++template class CRYPTOPP_DLL DL_PublicKey_GFP<DL_GroupParameters_DSA>;
++template class CRYPTOPP_DLL EuclideanDomainOf<PolynomialMod2>;
++template class CRYPTOPP_DLL IteratedHashBase<word32, HashTransformation>;
++template class CRYPTOPP_DLL IteratedHashBase<word32, MessageAuthenticationCode>;
++#ifdef WORD64_AVAILABLE
++template class CRYPTOPP_DLL IteratedHashBase<word64, HashTransformation>;
++template class CRYPTOPP_DLL IteratedHashBase<word64, MessageAuthenticationCode>;
++#endif
++template class CRYPTOPP_DLL OAEP<SHA>;
++#ifdef CRYPTOPP_IS_DLL
++template class CRYPTOPP_DLL PKCS_DigestDecoration<SHA>;
++#endif
++template class CRYPTOPP_DLL QuotientRing<EuclideanDomainOf<PolynomialMod2> >;
++template class CRYPTOPP_DLL SimpleKeyedTransformation<BlockTransformation>;
++template class CRYPTOPP_DLL SimpleKeyedTransformation<HashTransformation>;
++template class CRYPTOPP_DLL SimpleKeyedTransformation<StreamTransformation>;
++template class CRYPTOPP_DLL StringSinkTemplate<std::string>;
++template class CRYPTOPP_DLL TwoBases<SymmetricCipher, RandomNumberGenerator>;
++#endif // __GNUC__ > 3
++
+ template<> const byte PKCS_DigestDecoration<SHA>::decoration[] = {0x30,0x21,0x30,0x09,0x06,0x05,0x2B,0x0E,0x03,0x02,0x1A,0x05,0x00,0x04,0x14};
+ template<> const unsigned int PKCS_DigestDecoration<SHA>::length = sizeof(PKCS_DigestDecoration<SHA>::decoration);
+ 
