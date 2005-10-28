@@ -3,16 +3,17 @@
 
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
-Version: 1.9.4b
-Release: 2
+Version: 1.12.0
+Release: 1
 License: GPL
 Group: Applications/Internet
-Source: http://download.berlios.de/xmule/xmule-%{version}.tar.bz2
-Patch: xmule-1.9.2-install.patch
 URL: http://www.xmule.ws/
+Source: http://dl.sf.net/xmule/xmule-%{version}.tar.bz2
+Patch: xmule-1.10.0-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: wxGTK, /usr/sbin/alternatives
-BuildRequires: gcc-c++, wxGTK-devel, zlib-devel, gettext
+Requires: /usr/sbin/alternatives
+BuildRequires: gcc-c++, wxGTK2-devel >= 2.4.2, zlib-devel, gettext
+BuildRequires: cryptopp-devel
 # Required by xrc
 BuildRequires: expat-devel
 Obsoletes: lmule <= 1.2.1
@@ -29,7 +30,7 @@ same network.
 
 
 %build
-CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \
+#CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -37,7 +38,7 @@ CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang xMule
+%find_lang xmule
 %{__mv} %{buildroot}%{_bindir}/ed2k %{buildroot}%{_bindir}/ed2k.%{name}
 
 
@@ -52,15 +53,30 @@ CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \
 /usr/sbin/alternatives --remove ed2k %{_bindir}/ed2k.%{name} || :
 
 
-%files -f xMule.lang
+%files -f xmule.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog ED2K-Links.HOWTO README TODO
+%doc docs/*
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.xpm
 
 
 %changelog
+* Fri Oct 28 2005 Matthias Saou <http://freshrpms.net/> 1.12.0-1
+- Update to 1.12.0.
+- Source is back from BerliOS to SourceForge...
+- Re-add cryptopp dependency, as there is now a gcc4 fix to 5.2.1... but it
+  seems that the configure check is buggy and the internal lib is used.
+
+* Thu Jul 21 2005 Matthias Saou <http://freshrpms.net/> 1.10.1-1
+- Update to 1.10.1.
+- Change find_land from xMule to xmule (again!).
+- Update %%doc to docs/*.
+- Apparently, cryptopp could maybe be used again, but it doesn't build w/ gcc4.
+
+* Sun Apr 17 2005 Matthias Saou <http://freshrpms.net/> 1.10.0-1
+- Update to 1.10.0 w/ new install patch.
+
 * Mon Nov 22 2004 Matthias Saou <http://freshrpms.net/> 1.9.4b-2
 - Rebuild changing -O? to -O1 to fix cryptopp error with -O2.
 
