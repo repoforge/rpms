@@ -3,7 +3,7 @@
 
 Summary: Creates user directories on demand
 Name: autodir
-Version: 0.96.0
+Version: 0.96.1
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -12,7 +12,7 @@ Source: http://dl.sf.net/intraperson/autodir-%{version}.tar.gz
 Patch0: autodir-0.96.0-init.d.patch
 Patch1: autodir-0.96.0-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libcap-devel, gcc-c++
+BuildRequires: libcap-devel, gcc-c++, libtool-ltdl-devel
 
 %description
 Autodir offers a simple and effective means to create directories like home
@@ -96,6 +96,10 @@ fi
 
 
 %changelog
+* Fri Oct 28 2005 Matthias Saou <http://freshrpms.net/> 0.96.1-1
+- Update to 0.96.1.
+- Add newly required libtool-ltdl-devel build dependency.
+
 * Wed Aug 24 2005 Matthias Saou <http://freshrpms.net/> 0.96.0-1
 - Initial RPM release.
 
