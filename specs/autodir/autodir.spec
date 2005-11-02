@@ -3,7 +3,7 @@
 
 Summary: Creates user directories on demand
 Name: autodir
-Version: 0.96.1
+Version: 0.96.2
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -96,6 +96,9 @@ fi
 
 
 %changelog
+* Wed Nov  2 2005 Matthias Saou <http://freshrpms.net/> 0.96.2-1
+- Update to 0.96.2.
+
 * Fri Oct 28 2005 Matthias Saou <http://freshrpms.net/> 0.96.1-1
 - Update to 0.96.1.
 - Add newly required libtool-ltdl-devel build dependency.
