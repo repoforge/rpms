@@ -6,8 +6,8 @@
 
 Summary: Multiplayer 2D arcade game 
 Name: luola
-Version: 1.2.9
-Release: 2
+Version: 1.3.0
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.luolamies.org/software/luola/index.php
@@ -71,6 +71,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Mon Aug 15 2005 C.Lee Taylor <leet@leenx.co.za> - 1.2.9-2
 - Added icon and changed to new internet site.
 

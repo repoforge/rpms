@@ -18,7 +18,7 @@
 
 Summary: Manage a list of currently active VNC server sessions
 Name: vncselector
-Version: 1.6
+Version: 1.6.1
 Release: 1
 License: GPL
 Group: User Interface/Desktops
@@ -63,6 +63,9 @@ server sessions. This can be useful in a thin client situation (run from
 %{_bindir}/*
 
 %changelog
+* Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> 1.6.1-1
+- update to version 1.6.1.
+
 * Sat Oct 02 2004 Dries Verachtert <dries@ulyssis.org> 1.6-1
 - update to version 1.6.
 

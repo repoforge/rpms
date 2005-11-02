@@ -8,7 +8,7 @@
 
 Summary: Battle for Wesnoth is a fantasy turn-based strategy game
 Name: wesnoth
-Version: 1.0
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -71,7 +71,11 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/wesnoth/
 
 %changelog
+* Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Mon Oct 03 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
+- Updated to release 1.0.
 
 * Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.7
 - Update to release 0.9.7.
