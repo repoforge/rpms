@@ -3,7 +3,7 @@
 
 Summary: Tag editor for mp3, ogg, flac and other music files
 Name: easytag
-Version: 1.99.8
+Version: 1.99.9
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -49,6 +49,9 @@ tagging easier.
 
 
 %changelog
+* Thu Nov  3 2005 Matthias Saou <http://freshrpms.net/> 1.99.9-1
+- Update to 1.99.9.
+
 * Mon Oct 10 2005 Matthias Saou <http://freshrpms.net/> 1.99.8-1
 - Update to 1.99.8.
 - Try to add MP4/AAC support, but with current faad2 it fails to compile.
