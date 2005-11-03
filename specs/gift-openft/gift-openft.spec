@@ -3,7 +3,7 @@
 
 Summary: Gift plugin to access the openft network
 Name: gift-openft
-Version: 0.2.1.5
+Version: 0.2.1.6
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -49,6 +49,9 @@ packages provides the plugin to access the openft network.
 %{_libdir}/giFT/libOpenFT.so
 
 %changelog
+* Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.1.6-1
+- Update to release 0.2.1.6.
+
 * Wed Feb 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.1.5-1
 - Update to release 0.2.1.5.
 
