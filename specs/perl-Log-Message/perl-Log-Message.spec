@@ -10,7 +10,7 @@
 Summary: Generic message storage mechanism
 Name: perl-Log-Message
 Version: 0.01
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Message/
@@ -55,5 +55,8 @@ regexes on messages, tags and level.
 %{perl_vendorlib}/Log/Message/
 
 %changelog
+* Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-2
+- Rebuild.
+
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.
