@@ -6,7 +6,7 @@
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 3.1
+Version: 3.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -26,7 +26,7 @@ web interface. Optionally, data may be stored into a database for analysis or
 extracted from the web server in formats suitable for manipulation in perl or php.
 
 %prep
-%setup -n %{name}
+%setup
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
 
@@ -269,6 +269,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Thu Nov 03 2005 Dries Verachtert <dries@ulyssis.org> - 3.2-1
+- Updated to release 3.2.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 3.1-2
 - Removed execute bit on ntop.conf. (C.Lee Taylor)
 
