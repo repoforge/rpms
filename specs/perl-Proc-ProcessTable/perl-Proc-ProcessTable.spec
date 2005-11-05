@@ -8,7 +8,7 @@
 
 Summary: Perl interface to the UNIX process table
 Name: perl-Proc-ProcessTable
-Version: 0.39
+Version: 0.40
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -62,5 +62,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Proc/ProcessTable/
 
 %changelog
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.40-1
+- Updated to release 0.40.
+
 * Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 0.39-1
 - Initial package, contributed by Rudolf Kastl.

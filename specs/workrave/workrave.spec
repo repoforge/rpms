@@ -6,7 +6,7 @@
 
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
-Version: 1.6.1
+Version: 1.8.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -69,6 +69,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/workrave/
 
 %changelog
+* Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.1-1
+- Updated to release 1.8.1.
+
 * Fri May 14 2004 Dag Wieers <dag@wieers.com> - 1.6.1-1
 - Updated to release 1.6.1.
 

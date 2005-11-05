@@ -4,7 +4,7 @@
 
 Summary: Flickr uploader
 Name: kflickr
-Version: 0.3
+Version: 0.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -44,5 +44,8 @@ sending the photo. Multiple users are supported.
 %{_datadir}/icons/hicolor/*/apps/kflickr.png
 
 %changelog
+* Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 0.4-1
+- Updated to release 0.4.
+
 * Tue Oct 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.

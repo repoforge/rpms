@@ -5,7 +5,7 @@
 
 Summary: Discover wireless clients and access points
 Name: wifiscanner
-Version: 0.9.6
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -47,6 +47,9 @@ WifiScanner is a tool to discover wireless clients and access points.
 %exclude %{_libdir}/libwiretap.la
 
 %changelog
+* Thu Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.9.6-1
 - Updated to release 0.9.6.
 

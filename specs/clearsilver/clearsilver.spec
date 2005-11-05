@@ -8,7 +8,7 @@
 
 Summary: ClearSilver HTML template system
 Name: clearsilver
-Version: 0.9.13
+Version: 0.10.1
 Release: 1
 License: Apache License style
 Group: Development/Libraries
@@ -136,6 +136,9 @@ clearsilver templating system.
 #{apache_libexec}/mod_ecs.so
 
 %changelog
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.10.1-1
+- Updated to release 0.10.1.
+
 * Mon Nov 29 2004 Dag Wieers <dag@wieers.com> - 0.9.13-1
 - Updated to release 0.9.13.
 

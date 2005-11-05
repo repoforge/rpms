@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex
 %{!?_without_tdb:BuildRequires: tdb-devel}
+%{?fc4:BuildRequires: db4-devel}
 Conflicts: bogofilter-static
 
 %description

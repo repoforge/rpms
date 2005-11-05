@@ -12,7 +12,7 @@ URL: http://sketch.sourceforge.net/
 Source: http://dl.sf.net/sketch/sketch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-imaging >= 1.1
+BuildRequires: python-imaging-devel >= 1.1, python-devel, python
 Requires: python >= 1.5.1, python-imaging >= 1.1
 
 %description
