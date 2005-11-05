@@ -9,7 +9,7 @@
 
 Summary: Various subroutines to format text
 Name: perl-Text-Format
-Version: 
+Version: 0.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,8 +46,5 @@ Various subroutines to format text.
 %{perl_vendorlib}/Text/Format.pm
 
 %changelog
-* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - -1
-- Updated to release .
-
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 0.52-1
 - Initial package.

@@ -47,6 +47,7 @@ the name is broken down into components.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Lingua/EN/NameParse.pm
 %{perl_vendorlib}/Lingua/EN/NameGrammar.pm
+%{perl_vendorlib}/Lingua/EN/demo.pl
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.22-1

@@ -52,7 +52,8 @@ genereren.
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALLING README*
 %doc %{_mandir}/man3/MIME::Lite.3pm.gz
-%{perl_vendorlib}/MIME/Lite.pm
+%doc %{_mandir}/man3/MIME::changes.3pm.gz
+%{perl_vendorlib}/MIME/Lite.p*
 
 %changelog
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> 3.01-2

@@ -44,7 +44,7 @@ anything that is a reference is considered an object.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes.pod README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Set/Object.pm
 %{perl_vendorarch}/auto/Set/Object

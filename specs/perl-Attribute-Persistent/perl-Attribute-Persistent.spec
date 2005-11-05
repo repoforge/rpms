@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Attribute-Persistent/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIMON/Attribute-Persistent-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCOTT/Attribute-Persistent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

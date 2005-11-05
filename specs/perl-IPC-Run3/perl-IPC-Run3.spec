@@ -44,7 +44,7 @@ Run a subprocess in batch mode.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES
+%doc README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/IPC/
 %{perl_vendorlib}/IPC/Run3.pm

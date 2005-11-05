@@ -47,6 +47,8 @@ template. It can also parse options per unix style.
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Term/
 %{perl_vendorlib}/Term/UI.pm
+%dir %{perl_vendorlib}/Term/UI
+%{perl_vendorlib}/Term/UI/History.pm
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
