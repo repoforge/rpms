@@ -9,7 +9,7 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 3.20
+Version: 3.028
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 3.028-1
+- Updated to release 3.028.
+
 * Sat Mar 03 2004 Dag Wieers <dag@wieers.com> - 3.20-1
 - Initial package. (using DAR)

@@ -9,7 +9,7 @@
 
 Summary: Perl wrappers for the GLib utility and object libraries
 Name: perl-Glib
-Version: 1.080
+Version: 1.101
 Release: 1
 License: LGPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Glib/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.101-1
+- Updated to release 1.101.
+
 * Tue Mar 08 2005 Dag Wieers <dag@wieers.com> - 1.080-1
 - Updated to release 1.080.
 

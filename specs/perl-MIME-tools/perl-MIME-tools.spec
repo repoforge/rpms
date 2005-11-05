@@ -13,7 +13,7 @@
 
 Summary: Perl modules for parsing (and creating!) MIME entities
 Name: perl-MIME-tools
-Version: 5.417
+Version: 5.418
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorlib}/set-version.pl
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 5.418-1
+- Updated to release 5.418.
+
 * Thu Mar 10 2005 Dag Wieers <dag@wieers.com> - 5.417-1
 - Updated to release 5.417.
 

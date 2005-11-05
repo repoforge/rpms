@@ -7,8 +7,8 @@
 
 Summary: XML-SAX Perl module
 Name: perl-XML-SAX
-Version: 0.12
-Release: 3
+Version: 0.13
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX/
@@ -58,6 +58,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.13-1
+- Updated to release 0.13.
+
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.12-3
 - Added missing provides. (Ville Skyttä)
 - Obsoletes perl-XML-SAX-PurePerl and perl-XML-SAX-Base.

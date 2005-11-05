@@ -10,7 +10,7 @@
 
 Summary: XML-NamespaceSupport Perl module
 Name: perl-XML-NamespaceSupport
-Version: 1.08
+Version: 1.09
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/XML/NamespaceSupport.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-1
+- Updated to release 1.09.
+
 * Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 1.08-1
 - Fixed site -> vendor. (Matthew Mastracci)
 

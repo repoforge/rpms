@@ -13,7 +13,7 @@
 
 Summary: Net-DNS Perl module
 Name: perl-Net-DNS
-Version: 0.48
+Version: 0.53
 Release: 1
 License: Artistic and GPL
 Group: Applications/CPAN
@@ -67,6 +67,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Net/
 
 %changelog
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.53-1
+- Update to release 0.53.
+
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 0.48-1
 - Update to release 0.48.
 

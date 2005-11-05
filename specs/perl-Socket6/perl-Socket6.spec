@@ -8,7 +8,7 @@
 
 Summary: IPv6 related part of the C socket.h defines and structure manipulators
 Name: perl-Socket6
-Version: 0.18
+Version: 0.19
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Socket6/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.19-1
+- Updated to release 0.19.
+
 * Wed Mar 30 2005 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)

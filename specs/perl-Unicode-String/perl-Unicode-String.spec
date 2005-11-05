@@ -5,8 +5,8 @@
 
 Summary: Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl
 Name: perl-Unicode-String
-Version: 2.07
-Release: 0
+Version: 2.09
+Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-String/
@@ -48,5 +48,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
+- Updated to release 2.09.
+
 * Wed Jan 21 2004 Dag Wieers <dag@wieers.com> - 2.07-0
 - Initial package. (using DAR)

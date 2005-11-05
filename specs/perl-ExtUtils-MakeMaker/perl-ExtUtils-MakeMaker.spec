@@ -10,7 +10,7 @@
 
 Summary: Create a module Makefile 
 Name: perl-ExtUtils-MakeMaker
-Version: 6.17
+Version: 6.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ This is a CPAN distribution of the venerable MakeMaker module.
 %{perl_vendorlib}/ExtUtils/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 6.30-1
+- Updated to release 6.30.
+
 * Sat Apr 02 2005 Dag Wieers <dag@wieers.com> - 6.17-1
 - Initial package. (using DAR)

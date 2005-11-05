@@ -8,7 +8,7 @@
 
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
-Version: 2.16
+Version: 2.30
 Release: 1
 License: LGPL
 Group: Applications/CPAN
@@ -64,6 +64,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/qd.pl
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1
+- Updated to release 2.30.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 2.16-1
 - Updated to release 2.16.
 

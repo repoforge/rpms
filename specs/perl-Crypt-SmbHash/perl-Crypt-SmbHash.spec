@@ -8,7 +8,7 @@
 
 Summary: Crypt-SmbHash module for perl 
 Name: perl-Crypt-SmbHash
-Version: 0.02
+Version: 0.12
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Mon Jun 21 2004 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)

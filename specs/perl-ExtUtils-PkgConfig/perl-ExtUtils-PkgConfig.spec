@@ -6,8 +6,8 @@
 
 Summary: ExtUtils-PkgConfig module for perl
 Name: perl-ExtUtils-PkgConfig
-Version: 1.03
-Release: 0
+Version: 1.07
+Release: 1
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-PkgConfig/
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.07-1
+- Updated to release 1.07.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 1.03-0
 - Updated to release 1.03.
 

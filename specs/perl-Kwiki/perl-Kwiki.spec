@@ -8,7 +8,7 @@
 
 Summary: Kwiki module for perl
 Name: perl-Kwiki
-Version: 0.33
+Version: 0.38
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_bindir}/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.38-1
+- Updated to release 0.38.
+
 * Thu Sep 30 2004 Dag Wieers <dag@wieers.com> - 0.33-1
 - Initial package. (using DAR)

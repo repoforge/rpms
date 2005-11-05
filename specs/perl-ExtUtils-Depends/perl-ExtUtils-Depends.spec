@@ -6,8 +6,8 @@
 
 Summary: ExtUtils-Depends module for perl
 Name: perl-ExtUtils-Depends
-Version: 0.202
-Release: 0
+Version: 0.205
+Release: 1
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-Depends/
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.205-1
+- Updated to release 0.205.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.202-0
 - Updated to release 0.202.
 

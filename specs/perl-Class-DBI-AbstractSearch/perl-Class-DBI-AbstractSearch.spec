@@ -8,7 +8,7 @@
 
 Summary: The Perl DB Abstract Search
 Name: perl-Class-DBI-AbstractSearch
-Version: 0.05
+Version: 0.07
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorlib}/Class/DBI/AbstractSearch.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)

@@ -8,8 +8,8 @@
 
 Summary: Active Server Pages for Apache with mod_perl
 Name: perl-Apache-ASP
-Version: 2.57
-Release: 2
+Version: 2.59
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-ASP/
@@ -65,6 +65,9 @@ rendering, and new events not originally part of the ASP API!
 %{_bindir}/asp-perl
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.59-1
+- Updated to release 2.59.
+
 * Fri Aug 06 2004 Dag Wieers <dag@wieers.com> - 2.57-2
 - Added explicit perl(Apache::ASP::Share::CORE) provides. (Johnathan Kupferer)
 

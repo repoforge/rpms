@@ -6,7 +6,7 @@
 
 Summary: Perl Simple Network Pager Protocol Client
 Name: perl-Net-SNPP
-Version: 1.16
+Version: 1.17
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.17-1
+- Updated to release 1.17.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.16-1
 - Initial package. (using DAR)

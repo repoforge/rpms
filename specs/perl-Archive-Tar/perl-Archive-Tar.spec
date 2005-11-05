@@ -8,8 +8,8 @@
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
-Version: 1.08
-Release: 0
+Version: 1.26
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar/
@@ -58,5 +58,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.26-1
+- Updated to release 1.26.
+
 * Thu Mar 04 2004 Dag Wieers <dag@wieers.com> - 1.08-0
 - Initial package. (using DAR)

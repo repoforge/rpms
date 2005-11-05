@@ -10,8 +10,8 @@
 
 Summary: Perl classes implementing conversion from/to ASN.1 data structures using BER/DER rules
 Name: perl-Convert-ASN1
-Version: 0.18
-Release: 0
+Version: 0.19
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-ASN1/
@@ -56,6 +56,9 @@ encoding and decoding ASN.1 data structures using BER/DER rules.
 %{perl_vendorlib}/Convert/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.19-1
+- Updated to release 0.19.
+
 * Thu Mar 18 2004 Dag Wieers <dag@wieers.com> - 0.18-0
 - Updated to release 0.18.
 

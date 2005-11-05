@@ -5,8 +5,8 @@
 
 Summary: Gtk-HandyCList module for perl 
 Name: perl-Gtk-HandyCList
-Version: 0.02
-Release: 0
+Version: 0.031
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk-HandyCList/
@@ -48,5 +48,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_libdir}/perl5/vendor_perl/*/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.031-1
+- Updated to release 0.031.
+
 * Sun Oct 12 2003 Dag Wieers <dag@wieers.com> - 0.02
 - Initial package. (using DAR)
