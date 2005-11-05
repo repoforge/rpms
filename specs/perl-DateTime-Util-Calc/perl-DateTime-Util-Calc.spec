@@ -9,7 +9,7 @@
 
 Summary: DateTime calculation utilities 
 Name: perl-DateTime-Util-Calc
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ A perl module with additional DateTime calculation utilities.
 %{perl_vendorlib}/DateTime/Util/Calc.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
+- Updated to release 0.09.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 

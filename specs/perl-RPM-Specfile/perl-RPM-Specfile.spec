@@ -4,7 +4,7 @@
 
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
-Version: 1.13
+Version: 1.19
 Release: 1
 License: GPL or Artistic
 Group: Development/Tools
@@ -48,6 +48,9 @@ find %{buildroot} -type f -print | \
 %doc Changes README
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
+- Updated to release 1.19.
+
 * Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 1.13-1
 - Update to 1.13.
 - Rebuild for Fedora Core 1.

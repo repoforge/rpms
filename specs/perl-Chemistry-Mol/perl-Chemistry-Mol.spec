@@ -9,7 +9,7 @@
 
 Summary: Molecule object toolkit
 Name: perl-Chemistry-Mol
-Version: 0.35
+Version: 0.36
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ PerlMol toolkit; see http://www.perlmol.org/.
 %{perl_vendorlib}/Chemistry/Tutorial.pod
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.36-1
+- Updated to release 0.36.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Updated to release 0.35.
 

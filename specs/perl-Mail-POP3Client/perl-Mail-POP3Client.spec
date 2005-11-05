@@ -9,7 +9,7 @@
 
 Summary: Talk to a POP3 (RFC1939) server
 Name: perl-Mail-POP3Client
-Version: 2.16
+Version: 2.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ perl-based biff clients, mail readers, or whatever.
 %{perl_vendorlib}/Mail/POP3Client.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.17-1
+- Updated to release 2.17.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.16-1
 - Initial package.

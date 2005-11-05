@@ -9,7 +9,7 @@
 
 Summary: Interface to the bzip2 compression library
 Name: perl-Compress-Bzip2
-Version: 2.08
+Version: 2.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ library from your Perl scripts to compress ordinary Perl strings.
 %{perl_vendorarch}/auto/Compress/Bzip2
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.09-1
+- Updated to release 2.09.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.08-1
 - Updated to release 2.08.
 

@@ -9,7 +9,7 @@
 
 Summary: Seamlessly enable SVG output from scripts written using GD
 Name: perl-GD-SVG
-Version: 0.25
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ functions into SVG functions.
 %{perl_vendorlib}/GD/SVG.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.27-1
+- Updated to release 0.27.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Initial package.

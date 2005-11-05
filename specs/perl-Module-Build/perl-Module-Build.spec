@@ -11,7 +11,7 @@
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.2608
+Version: 0.2611
 Release: 1
 License: Artistic or GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ pure-perl and written in a very cross-platform way.
 %{perl_vendorlib}/Module/Build.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.2611-1
+- Updated to release 0.2611.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 0.2608-1
 - Updated to release 0.2608.
 

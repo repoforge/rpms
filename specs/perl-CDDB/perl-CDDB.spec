@@ -9,7 +9,7 @@
 
 Summary: High-level interface to cddb protocol servers (freedb and CDDB)
 Name: perl-CDDB
-Version: 1.15
+Version: 1.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Database protocol.
 %{perl_vendorlib}/CDDB.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-1
+- Updated to release 1.16.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-1
 - Initial package.

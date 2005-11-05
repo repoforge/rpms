@@ -9,7 +9,7 @@
 
 Summary: Provides information about Classes
 Name: perl-Class-Inspector
-Version: 1.08
+Version: 1.13
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ information.
 %{perl_vendorlib}/Class/Inspector.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
+- Updated to release 1.13.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Updated to release 1.08.
 

@@ -9,7 +9,7 @@
 
 Summary: Term::ReadLine UI made easy
 Name: perl-Term-UI
-Version: 0.05
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ template. It can also parse options per unix style.
 %{perl_vendorlib}/Term/UI.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Thu Mar 31 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

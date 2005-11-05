@@ -9,7 +9,7 @@
 
 Summary: Create regular expressions more verbosely
 Name: perl-Regexp-English
-Version: 0.21
+Version: 1.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Perl module to create regular expressions more verbosely.
 %{perl_vendorlib}/Regexp/English.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.00-1
+- Updated to release 1.00.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.21-1
 - Initial package.

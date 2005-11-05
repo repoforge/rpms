@@ -11,7 +11,7 @@
 
 Summary: Manipulate IPv4/IPv6 netblocks in CIDR notation
 Name: perl-Net-CIDR
-Version: 0.10
+Version: 0.11
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ With this module, you can manipulate IPv4/IPv6 netblocks in CIDR notation.
 %{perl_vendorlib}/Net/CIDR.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
+- Updated to release 0.11.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Initial package.

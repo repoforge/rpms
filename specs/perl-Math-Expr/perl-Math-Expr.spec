@@ -9,7 +9,7 @@
 
 Summary: Parses mathematical expressions
 Name: perl-Math-Expr
-Version: 0.4
+Version: 0.2
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ on a digit, and not all chars are accepted in operation names.
 %{perl_vendorlib}/Math/Expr
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
+- Updated to release 0.2.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Initial package.

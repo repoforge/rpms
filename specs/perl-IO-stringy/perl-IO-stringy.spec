@@ -8,7 +8,7 @@
 
 Summary: IO-Stringy - I/O on in-core objects like strings and arrays
 Name: perl-IO-stringy
-Version: 2.109
+Version: 2.110
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorlib}/IO/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.110-1
+- Updated to release 2.110.
+
 * Sun Aug 08 2004 Dag Wieers <dag@wieers.com> - 2.109-1
 - Cosmetic cleanup.
 

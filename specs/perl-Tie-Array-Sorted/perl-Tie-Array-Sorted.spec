@@ -9,7 +9,7 @@
 
 Summary: Sorted array
 Name: perl-Tie-Array-Sorted
-Version: 1.3
+Version: 1.4
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ An array which is kept sorted.
 %{perl_vendorlib}/Tie/Array/Sorted
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.4-1
+- Updated to release 1.4.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Initial package.

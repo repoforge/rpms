@@ -9,7 +9,7 @@
 
 Summary: Module for reading Microsoft WAV files
 Name: perl-Audio-Wav
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ Microsoft WAV files.
 %{perl_vendorlib}/Audio/Wav
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

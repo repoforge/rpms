@@ -9,7 +9,7 @@
 
 Summary: Versatile text pre-processor
 Name: perl-Text-Vpp
-Version: 1.16
+Version: 1.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ subroutines in the text.
 %{perl_vendorlib}/auto/Text/Vpp
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.17-1
+- Updated to release 1.17.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.

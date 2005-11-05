@@ -9,7 +9,7 @@
 
 Summary: Check if Makefile.PL has the right pre-requisites
 Name: perl-Test-Prereq
-Version: 1.027
+Version: 1.028
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Check if Makefile.PL has the right pre-requisites.
 %{perl_vendorlib}/Test/Prereq
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.028-1
+- Updated to release 1.028.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.027-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Test functions for particular variable types
 Name: perl-Test-Data
-Version: 1.17
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Test functions for particular variable types.
 %{perl_vendorlib}/Test/Data
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.18-1
+- Updated to release 1.18.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Initial package.

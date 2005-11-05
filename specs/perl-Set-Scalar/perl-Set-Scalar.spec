@@ -9,7 +9,7 @@
 
 Summary: Basic set operations
 Name: perl-Set-Scalar
-Version: 1.19
+Version: 1.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Basic set operations.
 %{perl_vendorlib}/Set/Scalar
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.20-1
+- Updated to release 1.20.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.19-1
 - Initial package.

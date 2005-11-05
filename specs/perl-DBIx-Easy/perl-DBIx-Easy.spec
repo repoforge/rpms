@@ -9,7 +9,7 @@
 
 Summary: Easy to Use DBI interface
 Name: perl-DBIx-Easy
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Easy to Use DBI interface.
 %{perl_vendorlib}/DBIx/Easy.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
+- Updated to release 0.16.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Initial package.

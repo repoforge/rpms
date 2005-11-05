@@ -9,7 +9,7 @@
 
 Summary: Additions to List::Util
 Name: perl-List-MoreUtils
-Version: 0.10
+Version: 0.12
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/List/MoreUtils/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.12-1
+- Updated to release 0.12.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 

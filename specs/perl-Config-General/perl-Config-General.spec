@@ -9,7 +9,7 @@
 
 Summary: Generic config module
 Name: perl-Config-General
-Version: 2.29
+Version: 2.30
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ configuration.
 %{perl_vendorlib}/Config/General/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1
+- Updated to release 2.30.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.29-1
 - Updated to release 2.29.
 

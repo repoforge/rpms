@@ -9,7 +9,7 @@
 
 Summary: Human-readable unit-aware calculator
 Name: perl-Math-Calc-Units
-Version: 1.03
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ Human-readable unit-aware calculator.
 %{perl_vendorlib}/Math/Calc/Units
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
+- Updated to release 1.05.
+
 * Mon Apr 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

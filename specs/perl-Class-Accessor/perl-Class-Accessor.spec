@@ -9,7 +9,7 @@
 
 Summary: Automated accessor generation
 Name: perl-Class-Accessor
-Version: 0.19
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ This module automagically generates accessor/mutators for your class.
 %{perl_vendorlib}/Class/Accessor
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.22-1
+- Updated to release 0.22.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Determine the infinitive form of a conjugated word
 Name: perl-Lingua-EN-Infinitive
-Version: 1.08
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Determine the infinitive form of a conjugated word.
 %{perl_vendorlib}/Lingua/EN/Infinitive.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-1
+- Updated to release 1.09.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.

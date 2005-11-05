@@ -9,7 +9,7 @@
 
 Summary: Extension for comparing arrays
 Name: perl-Array-Compare
-Version: 1.12
+Version: 1.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ differing columns.
 %{perl_vendorlib}/Array/Compare.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
+- Updated to release 1.13.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Initial package.

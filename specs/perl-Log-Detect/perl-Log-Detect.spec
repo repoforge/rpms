@@ -9,7 +9,7 @@
 
 Summary: Detect errors in log files
 Name: perl-Log-Detect
-Version: 1.415
+Version: 1.420
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ and such that do not want to exit on the first error.
 %{perl_vendorlib}/Log/Delayed.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.420-1
+- Updated to release 1.420.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.415-1
 - Initial package.

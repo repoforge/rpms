@@ -9,7 +9,7 @@
 
 Summary: Subversion repository web frontend
 Name: perl-SVN-Web
-Version: 0.38
+Version: 0.40
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ SVN::Web is a subversion repository web frontend.
 %{perl_vendorlib}/SVN/Web/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.40-1
+- Updated to release 0.40.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.38-1
 - Updated to release 0.38.
 

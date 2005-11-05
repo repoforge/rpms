@@ -9,7 +9,7 @@
 
 Summary: OS independent interface to the Unix 'at' command
 Name: perl-Schedule-At
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ This module privides an OS independent interface to the Unix 'at' command
 %{perl_vendorlib}/Schedule/At.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

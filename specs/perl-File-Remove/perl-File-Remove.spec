@@ -9,7 +9,7 @@
 
 Summary: Remove files and directories
 Name: perl-File-Remove
-Version: 0.29
+Version: 0.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Remove files and directories.
 %{perl_vendorlib}/File/Remove.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.30-1
+- Updated to release 0.30.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.29-1
 - Initial package.

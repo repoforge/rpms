@@ -9,7 +9,7 @@
 
 Summary: Perl interface to Snowball stemmers
 Name: perl-Lingua-Stem-Snowball
-Version: 0.92
+Version: 0.93
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Lingua/Stem/Snowball/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.93-1
+- Updated to release 0.93.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.92-1
 - Updated to release 0.92.
 

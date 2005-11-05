@@ -9,7 +9,7 @@
 
 Summary: Mixin to add / call inheritable triggers
 Name: perl-Class-Trigger
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ get called at some points you specify.
 %{perl_vendorlib}/Class/Trigger.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Run-time class loading on first method call
 Name: perl-Class-Autouse
-Version: 1.17
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ large amounts of memory, and decrease the script load time.
 %{perl_vendorlib}/Class/Autouse
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1
+- Updated to release 1.21.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
 

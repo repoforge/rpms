@@ -9,7 +9,7 @@
 
 Summary: CipherSaber encryption
 Name: perl-Crypt-CipherSaber
-Version: 0.61
+Version: 1.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ CipherSaber-1 and CipherSaber-2 encryption.
 %{perl_vendorlib}/Crypt/CipherSaber.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.00-1
+- Updated to release 1.00.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.61-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Framework for building reusable web-applications
 Name: perl-CGI-Application
-Version: 4.0_4
+Version: 4.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ document, easier to write, and easier to evolve.
 %{perl_vendorlib}/CGI/Application
 
 %changelog
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 4.04-1
+- Updated to release 4.04.
+
 * Sun Jul 03 2005 Dries Verachtert <dries@ulyssis.org> - 4.01-1
 - Updated to release 4.01.
 - Added perl-HTML-Template requirement (thanks to Cesar Alba).

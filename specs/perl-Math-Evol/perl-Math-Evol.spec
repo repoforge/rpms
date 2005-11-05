@@ -9,7 +9,7 @@
 
 Summary: Evolution search optimisation
 Name: perl-Math-Evol
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,5 +59,8 @@ each step will choose the better of two (or several) possibilities.
 %{perl_vendorlib}/Math/Evol.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Mon Apr 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Initial package.

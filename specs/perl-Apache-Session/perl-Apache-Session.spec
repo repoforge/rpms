@@ -9,7 +9,7 @@
 
 Summary: Session data persistence
 Name: perl-Apache-Session
-Version: 1.6
+Version: 1.80
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ interacts with a tied hash.
 %{perl_vendorlib}/Apache/Session/*
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.80-1
+- Updated to release 1.80.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.
 

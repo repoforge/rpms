@@ -9,7 +9,7 @@
 
 Summary: Database connection caching and organization
 Name: perl-Ima-DBI
-Version: 0.33
+Version: 0.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Database connection caching and organization.
 %{perl_vendorlib}/Ima/DBI.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.34-1
+- Updated to release 0.34.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Initial package.

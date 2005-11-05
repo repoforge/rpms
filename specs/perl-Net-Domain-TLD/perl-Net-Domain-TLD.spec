@@ -11,7 +11,7 @@
 
 Summary: Retrieve currently available tld names and descriptions
 Name: perl-Net-Domain-TLD
-Version: 1.5
+Version: 1.62
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ ccTLDs
 %{perl_vendorlib}/Net/Domain/TLD.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.62-1
+- Updated to release 1.62.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Perl interface to file system quotas
 Name: perl-Quota
-Version: 1.5.0
+Version: 1.5.1
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ export CFLAGS="-fPIC"
 %{perl_vendorarch}/auto/Quota/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.5.1-1
+- Updated to release 1.5.1.
+
 * Wed Dec 08 2004 Dries Verachtert <dries@ulyssis.org> - 1.5.0
 - Initial package.

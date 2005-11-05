@@ -9,7 +9,7 @@
 
 Summary: Perl in HTML pages
 Name: perl-PLP
-Version: 3.18
+Version: 3.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ run as a CGI script.
 %{perl_vendorlib}/PLP
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 3.19-1
+- Updated to release 3.19.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 3.18-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Read-only access to UNIX-mailboxes
 Name: perl-Mail-MboxParser
-Version: 0.53
+Version: 0.54
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Mail::MboxParser is a module for working with UNIX-flavoured mailboxes.
 %{perl_vendorlib}/Mail/MboxParser
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.54-1
+- Updated to release 0.54.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.53-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: OO modules for logging
 Name: perl-Log-Dispatch
-Version: 2.10
+Version: 2.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -67,5 +67,8 @@ not to change the message format.
 %{perl_vendorlib}/Log/Dispatch/File/*.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.11-1
+- Updated to release 2.11.
+
 * Sat Jun 5 2004 Dries Verachtert <dries@ulyssis.org> - 2.10-1
 - Initial package.

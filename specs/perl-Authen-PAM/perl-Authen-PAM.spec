@@ -9,7 +9,7 @@
 
 Summary: Interface to the PAM library
 Name: perl-Authen-PAM
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Authen/PAM/PAM.so
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1
+- Updated to release 0.16.
+
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Updated to release 0.15.
 

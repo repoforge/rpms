@@ -9,7 +9,7 @@
 
 Summary: Persistent database connections and basic authentication support
 Name: perl-Apache-DBI
-Version: 0.94
+Version: 0.9901
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ connections via Perl's Database Independent Interface (DBI).
 %{perl_vendorlib}/Apache/AuthDBI.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.9901-1
+- Updated to release 0.9901.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.94-1
 - Initial package.

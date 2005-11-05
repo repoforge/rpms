@@ -9,7 +9,7 @@
 
 Summary: Really lazy persistence
 Name: perl-Attribute-Persistent
-Version: 1.0
+Version: 1.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Really lazy persistence.
 %{perl_vendorlib}/Attribute/Persistent.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.1-1
+- Updated to release 1.1.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
 - Initial package.

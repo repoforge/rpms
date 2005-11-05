@@ -9,7 +9,7 @@
 
 Summary: Calculate the similarity of two strings
 Name: perl-String-Similarity
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ similarity between the strings.
 %{perl_vendorarch}/auto/String/Similarity
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
+- Updated to release 1.02.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.

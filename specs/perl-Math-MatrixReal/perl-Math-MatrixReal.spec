@@ -9,7 +9,7 @@
 
 Summary: Matrix of Reals
 Name: perl-Math-MatrixReal
-Version: 1.9
+Version: 2.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ Perl type thanks to OPERATOR OVERLOADING.
 %{perl_vendorlib}/Math/funcs.pl
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.01-1
+- Updated to release 2.01.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.9-1
 - Initial package.

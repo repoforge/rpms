@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the Video4linux framegrabber interface
 Name: perl-Video-Capture-V4l
-Version: 0.225
+Version: 0.9
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Perl interface to the Video4linux framegrabber interface.
 %{perl_vendorarch}/auto/Video
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Updated to release 0.9.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.225-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Reads the CDDB entry for an audio CD in your drive
 Name: perl-CDDB_get
-Version: 2.23
+Version: 2.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ in order to do that.
 %{perl_vendorlib}/cddb.pl
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.25-1
+- Updated to release 2.25.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.23-1
 - Initial package.

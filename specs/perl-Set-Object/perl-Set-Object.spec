@@ -9,7 +9,7 @@
 
 Summary: Set of objects and strings
 Name: perl-Set-Object
-Version: 1.10
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ anything that is a reference is considered an object.
 %{perl_vendorarch}/auto/Set/Object
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
+- Updated to release 1.14.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.

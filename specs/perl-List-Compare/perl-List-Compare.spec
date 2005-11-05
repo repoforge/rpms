@@ -9,7 +9,7 @@
 
 Summary: Compare elements of two or more lists
 Name: perl-List-Compare
-Version: 0.31
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ Compare elements of two or more lists.
 %{perl_vendorlib}/List/Compare
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.32-1
+- Updated to release 0.32.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Initial package.

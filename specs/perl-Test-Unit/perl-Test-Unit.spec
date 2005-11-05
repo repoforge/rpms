@@ -9,7 +9,7 @@
 
 Summary: Unit testing framework for Perl
 Name: perl-Test-Unit
-Version: 0.24
+Version: 0.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ Beck and Erich Gamma.
 %{perl_vendorlib}/Test
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.25-1
+- Updated to release 0.25.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.24-1
 - Initial package.

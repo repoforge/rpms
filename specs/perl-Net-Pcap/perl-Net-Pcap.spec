@@ -9,7 +9,7 @@
 
 Summary: Interface to pcap(3) LBL packet capture library
 Name: perl-Net-Pcap
-Version: 0.05
+Version: 0.10
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ This module is an interface to pcap(3) LBL packet capture library.
 %{perl_vendorarch}/auto/Net/Pcap/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Fri Dec 10 2004 Dries Verachtert <dries@ulyssis.org> - 0.05-1
 - Initial package.

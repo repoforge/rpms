@@ -11,7 +11,7 @@
 
 Summary: Automatic install of dependencies via CPAN
 Name: perl-ExtUtils-AutoInstall
-Version: 0.61
+Version: 0.63
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,5 +55,8 @@ install dependencies via CPAN or CPANPLUS.
 %{perl_vendorlib}/ExtUtils/AutoInstall.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.63-1
+- Updated to release 0.63.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.61-1
 - Initial package.

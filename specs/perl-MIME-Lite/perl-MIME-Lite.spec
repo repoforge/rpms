@@ -8,13 +8,13 @@
 
 Summary: Simple standalone module for generating MIME messages
 Name: perl-MIME-Lite
-Version: 2.117
+Version: 3.01
 Release: 2
 License: GPL
 Group: Applications/CPAN
-URL: http://www.zeegee.com/code/perl/MIME-Lite/
+URL: http://search.cpan.org/dist/MIME-Types/
 
-Source: http://www.zeegee.com/code/perl/MIME-Lite/download/MIME-Lite-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/Y/YV/YVES/MIME-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -55,6 +55,12 @@ genereren.
 %{perl_vendorlib}/MIME/Lite.pm
 
 %changelog
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> 3.01-2
+- URL changed to cpan.
+
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> 3.01-1
+- Updated to release 3.01.
+
 * Sun Dec 11 2004 Dries Verachtert <dries@ulyssis.org> 2.117-2
 - cleanup of spec file
 

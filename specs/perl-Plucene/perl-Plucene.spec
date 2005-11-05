@@ -9,7 +9,7 @@
 
 Summary: Perl port of the Lucene search engine
 Name: perl-Plucene
-Version: 1.21
+Version: 1.24
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ and search for things in them later.
 %{perl_vendorlib}/Plucene/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.24-1
+- Updated to release 1.24.
+
 * Fri Mar  4 2005 Dries Verachtert <dries@ulyssis.org> - 1.21-1
 - Updated to release 1.21.
 
