@@ -5,7 +5,7 @@
 Summary: IRC to other chat networks gateway
 Name: bitlbee
 Version: 0.99
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
@@ -13,7 +13,7 @@ URL: http://www.bitlbee.org/
 Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gnutls-devel, libgcrypt-devel, glib-devel
+BuildRequires: gnutls-devel, libgcrypt-devel, glib-devel, perl, libxslt, xmlto
 
 %description
 Bitlbee is an IRC to other chat networks gateway. bitlbee can be used as
@@ -62,7 +62,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 ### FIXME: makeinstall-phase doesn't use autotool dirs and wants to change ownerships.
-%makeinstall
+%makeinstall DATADIR=%{buildroot}%{_datadir}/bitlbee
 #%{__install} -Dp -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
 ##%{__install} -Dp -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
 %{__install} -Dp -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
@@ -78,7 +78,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc bitlbee.conf COPYING doc/AUTHORS doc/CHANGES doc/CREDITS motd.txt
-%doc doc/*.xml doc/FAQ doc/INSTALL doc/README doc/TODO utils/
+%doc doc/user-guide/*.html doc/user-guide/*.txt doc/FAQ doc/INSTALL doc/README doc/TODO utils/
 %doc %{_mandir}/man5/bitlbee.conf.5*
 %doc %{_mandir}/man8/bitlbee.8*
 %config %{_sysconfdir}/xinetd.d/bitlbee
@@ -89,6 +89,9 @@ EOF
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.99-2
+- Buildrequirements added, install of user-guide fixed.
+
 * Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 0.99-1
 - Updated to release 0.99.
 

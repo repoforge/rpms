@@ -10,12 +10,12 @@
 Summary: Subversion repository web frontend
 Name: perl-SVN-Web
 Version: 0.40
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Web/
 
-Source: http://www.cpan.org/modules/by-module/OurNet/CLKAO/SVN-Web-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/N/NI/NIKC/SVN-Web-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,6 +53,9 @@ SVN::Web is a subversion repository web frontend.
 %{perl_vendorlib}/SVN/Web/
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.40-2
+- Fixed the source url.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.40-1
 - Updated to release 0.40.
 

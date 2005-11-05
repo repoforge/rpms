@@ -10,12 +10,12 @@
 Summary: Perl in HTML pages
 Name: perl-PLP
 Version: 3.19
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PLP/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JU/JUERD/PLP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHIAR/PLP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,6 +51,9 @@ run as a CGI script.
 %{perl_vendorlib}/PLP
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 3.19-2
+- Fixed the source url.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 3.19-1
 - Updated to release 3.19.
 

@@ -8,7 +8,7 @@
 
 Summary: Exception-Class module for perl
 Name: perl-Exception-Class
-Version: 1.20
+Version: 1.22
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ default base class for all other exceptions.
 %{perl_vendorlib}/Exception/Class.pm
 
 %changelog
+* Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.22-1
+- Updated to release 1.22.
+
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 1.20-1
 - Initial package. (using DAR)
