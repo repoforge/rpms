@@ -16,7 +16,7 @@ Source: http://dl.sf.net/workrave/workrave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel
-BuildRequires: gtkmm2-devel, libgnomeuimm
+BuildRequires: gtkmm2-devel, libgnomeuimm26-devel, gettext
 
 %description
 Workrave is a program that assists in the recovery and prevention of
@@ -44,7 +44,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%find_lang %{name}
+#%find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
@@ -55,7 +55,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
+# -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %config %{_sysconfdir}/sound/events/*
@@ -67,6 +68,7 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/pixmaps/workrave/
 %{_datadir}/sounds/workrave/
 %{_datadir}/workrave/
+%{_datadir}/locale/*/LC_MESSAGES/workrave.po
 
 %changelog
 * Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.1-1
