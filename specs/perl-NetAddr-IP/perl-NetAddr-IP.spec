@@ -47,7 +47,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README TODO tutorial.htm
+%doc MANIFEST README TODO
 %doc %{_mandir}/man?/*
 %{perl_vendorlib}/*
 

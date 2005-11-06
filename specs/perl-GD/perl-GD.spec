@@ -62,6 +62,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/GD/
 %{perl_vendorarch}/auto/GD/
 %{perl_vendorarch}/qd.pl
+%{_bindir}/bdf2gdfont.pl
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1

@@ -16,7 +16,7 @@ Source: http://dl.sf.net/gtk2-perl/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.8.0
+BuildRequires: pkgconfig, perl >= 0:5.8.0
 Requires: perl >= 0:5.8.0
 
 %description

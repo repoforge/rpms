@@ -53,7 +53,7 @@ and backwards as you want or retrieve specific frames.
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
-* Sat Nov 05 Dries Verachtert <dries@ulyssis.org> - 1.12-1
+* Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Upgraded to version 1.12.
 
 * Thu Mar 31 2005 Dag Wieers <dag@wieers.com> - 1.11

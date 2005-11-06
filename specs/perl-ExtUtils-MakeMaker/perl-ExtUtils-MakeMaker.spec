@@ -49,6 +49,7 @@ This is a CPAN distribution of the venerable MakeMaker module.
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST NOTES README
 %doc %{_mandir}/man3/*
+%doc %{_mandir}/man1/instmodsh*
 %dir %{perl_vendorlib}/ExtUtils/
 %{_bindir}/instmodsh
 %{perl_vendorlib}/ExtUtils/

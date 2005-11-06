@@ -55,7 +55,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %doc MANIFEST README
 %doc %{_mandir}/man?/*
 %{perl_vendorlib}/*
-
+%{_bindir}/ptar*
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.26-1
