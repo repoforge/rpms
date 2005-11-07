@@ -3,7 +3,7 @@
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.2.3
+Version: 1.2.5
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -46,10 +46,17 @@ own display.
 %doc AUTHORS ChangeLog COPYING doc/PORTING NEWS README
 %doc doc/*.css doc/*.html
 %doc examples/synergy.conf
-%{_bindir}/*
+%{_bindir}/synergyc
+%{_bindir}/synergys
 
 
 %changelog
+* Mon Nov  7 2005 Matthias Saou <http://freshrpms.net/> 1.2.5-1
+- Update to 1.2.5, -Werror patch still required.
+
+* Wed Aug 17 2005 Matthias Saou <http://freshrpms.net/> 1.2.4-1
+- Update to 1.2.4, -Werror patch still required.
+
 * Wed Aug  3 2005 Matthias Saou <http://freshrpms.net/> 1.2.3-1
 - Update to 1.2.3, -Werror patch still required (only for warn_unused_result
   anyway).
