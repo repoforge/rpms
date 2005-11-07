@@ -23,6 +23,7 @@ Source: http://dl.sf.net/sourceforge/spacepong/spacepong-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
+BuildRequires: python
 Requires: python, python-game
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
@@ -67,7 +68,7 @@ Terminal=false
 Version=%{version}
 Type=Application
 Encoding=UTF-8
-Categories=Application;Game;ArcadeGame
+Categories=Application;Game;ArcadeGame;
 EOF
 
 %build

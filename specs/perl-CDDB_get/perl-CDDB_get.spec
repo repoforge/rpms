@@ -48,7 +48,9 @@ in order to do that.
 %{_bindir}/cddb.pl
 %{perl_vendorlib}/CDDB_get.pm
 %{perl_vendorlib}/auto/CDDB_get
+%{perl_vendorlib}/auto/CDDB_cache
 %{perl_vendorlib}/cddb.pl
+%{perl_vendorlib}/CDDB_cache.pm
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.25-1

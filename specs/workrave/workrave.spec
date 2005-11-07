@@ -15,7 +15,7 @@ URL: http://workrave.sourceforge.net/
 Source: http://dl.sf.net/workrave/workrave-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel
+BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel, gcc-c++
 BuildRequires: gtkmm2-devel, libgnomeuimm26-devel, gettext
 
 %description

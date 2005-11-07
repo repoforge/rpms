@@ -18,7 +18,7 @@
 
 Summary: Graph Visualization Tools
 Name: graphviz
-Version: 2.2
+Version: 2.6
 Release: 1
 License: CPL
 Group: Applications/Multimedia
@@ -27,7 +27,7 @@ URL: http://www.graphviz.org/
 Source: http://www.graphviz.org/pub/graphviz/ARCHIVE/graphviz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: freetype-devel >= 2.0, bison, m4, flex
+BuildRequires: freetype-devel >= 2.0, bison, m4, flex, ruby-devel
 BuildRequires: libjpeg-devel, libpng-devel, zlib-devel, expat-devel, gcc-c++
 #BuildRequires: /bin/ksh
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
@@ -138,6 +138,9 @@ Some demo graphs for %{name}.
 %doc rpmdoc/*
 
 %changelog
+* Mon Nov 07 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-1
+- Updated to release 2.6.
+
 * Fri Mar 11 2005 Dag Wieers <dag@wieers.com> - 2.2-1
 - Updated to release 2.2.
 

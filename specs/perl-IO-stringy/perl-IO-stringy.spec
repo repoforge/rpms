@@ -54,7 +54,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING docs/* MANIFEST README*
+%doc COPYING MANIFEST README*
 %doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/IO/
 

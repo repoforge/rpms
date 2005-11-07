@@ -20,6 +20,7 @@ URL: http://sam.zoy.org/monsterz/
 
 Source: http://sam.zoy.org/monsterz/monsterz-%{version}.tar.gz
 
+BuildRequires: python
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -62,7 +63,7 @@ Terminal=false
 Version=%{version}
 Type=Application
 Encoding=UTF-8
-Categories=Application;Game;ArcadeGame
+Categories=Application;Game;ArcadeGame;
 EOF
 
 %build

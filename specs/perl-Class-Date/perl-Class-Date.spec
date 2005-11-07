@@ -9,7 +9,7 @@
 
 Summary: Class for easy date and time manipulation
 Name: perl-Class-Date
-Version: 1.1.7
+Version: 1.1.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ datetime, and have a Class::Date::Rel class for relative dates.
 %{perl_vendorarch}/auto/Class/Date
 
 %changelog
+* Mon Nov  7 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.8-1
+- Updated to release 1.1.8.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.7-1
 - Initial package.

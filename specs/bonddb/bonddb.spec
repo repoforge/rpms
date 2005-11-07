@@ -16,7 +16,7 @@ Source: http://www.treshna.com/downloads/bonddb-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: bonddb-fixmakefile.patch
 
-BuildRequires: postgresql-devel
+BuildRequires: postgresql-devel, libtool
 %{?fc4:BuildRequires: compat-gcc-32}
 
 %description

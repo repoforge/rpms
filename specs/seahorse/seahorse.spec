@@ -3,13 +3,13 @@
 
 Summary: GNOME gnupg interface
 Name: seahorse
-Version: 0.7.8
-Release: 0
+Version: 0.8
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://seahorse.sourceforge.net/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/seahorse/0.7/seahorse-%{version}.tar.gz
+Source: http://ftp.gnome.org/pub/GNOME/sources/seahorse/0.8/seahorse-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gpgme-devel >= 0.3.14
@@ -81,6 +81,9 @@ scrollkeeper-update -q || :
 %{_libdir}/nautilus/extensions-1.0/libnautilus-seahorse.*
 
 %changelog
+* Mon Nov 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
+- Updated to release 0.8.
+
 * Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.8-0
 - Updated to release 0.7.8.
 

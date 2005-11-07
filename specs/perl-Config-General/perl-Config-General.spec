@@ -64,6 +64,7 @@ configuration.
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Config/General.pm
 %{perl_vendorlib}/Config/General/*
+%{perl_vendorlib}/Config/Extended.pm
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1

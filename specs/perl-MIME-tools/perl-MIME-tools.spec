@@ -63,7 +63,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %doc COPYING INSTALLING MANIFEST README* examples/
 %doc %{_mandir}/man?/*
 %{perl_vendorlib}/MIME/
-%{perl_vendorlib}/set-version.pl
+#%{perl_vendorlib}/set-version.pl
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 5.418-1

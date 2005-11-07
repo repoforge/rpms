@@ -45,13 +45,13 @@ Use TTF fonts with Perl.
 %defattr(-, root, root, 0755)
 %doc README.TXT
 %doc %{_mandir}/man?/*
-%{_bindir}/check_attach.plx
-%{_bindir}/eurofix.plx
-%{_bindir}/hackos2.plx
-%{_bindir}/psfix.plx
-%{_bindir}/ttfbuilder.plx
-%{_bindir}/ttfname.plx
-%{_bindir}/ttfremap.plx
+#%{_bindir}/check_attach.plx
+#%{_bindir}/eurofix.plx
+#%{_bindir}/hackos2.plx
+#%{_bindir}/psfix.plx
+#%{_bindir}/ttfbuilder.plx
+#%{_bindir}/ttfname.plx
+#%{_bindir}/ttfremap.plx
 #%{perl_vendorlib}/Font/TTF.pm
 %{perl_vendorlib}/Font/TTF
 %{perl_vendorlib}/ttfmod.pl

@@ -54,6 +54,7 @@ genereren.
 %doc %{_mandir}/man3/MIME::Lite.3pm.gz
 %doc %{_mandir}/man3/MIME::changes.3pm.gz
 %{perl_vendorlib}/MIME/Lite.p*
+%{perl_vendorlib}/MIME/changes.pod
 
 %changelog
 * Sat Nov 05 2005 Dries Verachtert <dries@ulyssis.org> 3.01-2

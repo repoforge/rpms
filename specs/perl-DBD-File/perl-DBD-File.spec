@@ -45,9 +45,9 @@ for modules like DBD::CSV and DBD::AnyData.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/DBD::File*
 %{perl_vendorlib}/DBD/File.pm
-%{perl_vendorlib}/DBI/SQL/Nano.pm
+#%{perl_vendorlib}/DBI/SQL/Nano.pm
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.34-1

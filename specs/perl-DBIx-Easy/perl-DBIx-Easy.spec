@@ -45,6 +45,8 @@ Easy to Use DBI interface.
 %doc %{_mandir}/man?/*
 %{_bindir}/dbs_*
 %{perl_vendorlib}/DBIx/Easy.pm
+%dir %{perl_vendorlib}/DBIx/Easy/
+%{perl_vendorlib}/DBIx/Easy/Import.pm
 
 %changelog
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.16-1

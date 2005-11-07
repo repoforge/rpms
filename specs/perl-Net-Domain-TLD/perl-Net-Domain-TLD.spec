@@ -29,7 +29,7 @@ available top level domain names including new ICANN additions and
 ccTLDs
 
 %prep
-%setup -n %{real_name}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
