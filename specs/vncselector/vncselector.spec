@@ -19,15 +19,15 @@
 Summary: Manage a list of currently active VNC server sessions
 Name: vncselector
 Version: 1.6.1
-Release: 1
+Release: 2
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.dooglio.net/VncSelector/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Source: http://www.dooglio.net/VncSelector/VncSelector_%{version}.tar.gz
-# Source: http://dl.sf.net/vncselector/VncSelector_1.6.tar.gz
-Source: http://vncselector.sourceforge.net/VncSelector_%{version}.tar.gz
+Source: http://dl.sf.net/vncselector/vncselector_%{version}.tar.gz
+# Source: http://vncselector.sourceforge.net/VncSelector_%{version}.tar.gz
 BuildRequires: fltk-devel, gcc-c++, autoconf, automake
 BuildRequires: libtool
 %{?_without_xorg:BuildRequires: XFree86-devel}
@@ -63,6 +63,9 @@ server sessions. This can be useful in a thin client situation (run from
 %{_bindir}/*
 
 %changelog
+* Tue Nov 08 2005 Dries Verachtert <dries@ulyssis.org> 1.6.1-2
+- Source url fixed.
+
 * Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> 1.6.1-1
 - update to version 1.6.1.
 

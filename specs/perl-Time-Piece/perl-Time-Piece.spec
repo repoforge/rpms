@@ -15,7 +15,7 @@ License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Piece/
 
-Source: http://www.cpan.org/modules/by-module/Time/Time-Piece-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/Time-Piece-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

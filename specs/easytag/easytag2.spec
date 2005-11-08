@@ -11,7 +11,7 @@ URL: http://easytag.sourceforge.net/
 Source: http://dl.sf.net/easytag/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk2-devel >= 2.4.0, id3lib-devel >= 3.7.12
-BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext
+BuildRequires: libvorbis-devel >= 1.0, flac-devel, gettext, gcc-c++
 
 %description
 EasyTAG is an utility for viewing, editing and writing tags of your

@@ -7,7 +7,7 @@
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
 Version: 1.8.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://workrave.sourceforge.net/
@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsigc++-devel, gnet2-devel, glib2-devel, gcc-c++
 BuildRequires: gtkmm2-devel, libgnomeuimm26-devel, gettext
+BuildRequires: gnome-panel-devel
 
 %description
 Workrave is a program that assists in the recovery and prevention of
@@ -71,6 +72,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/locale/*/LC_MESSAGES/workrave.po
 
 %changelog
+* Tue Nov 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.1-2
+- gnome-panel-devel added to buildreqs.
+
 * Fri Nov 04 2005 Dries Verachtert <dries@ulyssis.org> - 1.8.1-1
 - Updated to release 1.8.1.
 
