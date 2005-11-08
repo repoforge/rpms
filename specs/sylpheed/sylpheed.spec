@@ -5,7 +5,7 @@
 
 Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
-Version: 2.0.2
+Version: 2.0.4
 Release: 0
 License: GPL
 Group: Applications/Internet
@@ -85,6 +85,12 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Nov  8 2005 Matthias Saou <http://freshrpms.net/> 2.0.4-0
+- Update to 2.0.4.
+
+* Wed Oct 19 2005 Matthias Saou <http://freshrpms.net/> 2.0.3-0
+- Update to 2.0.3.
+
 * Mon Oct 10 2005 Matthias Saou <http://freshrpms.net/> 2.0.2-0
 - Update to 2.0.2.
 
