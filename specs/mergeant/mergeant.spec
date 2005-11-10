@@ -6,7 +6,7 @@
 
 Summary: Database administration tool
 Name: mergeant
-Version: 0.61
+Version: 0.62
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -84,6 +84,9 @@ scrollkeeper-update -q || :
 %exclude %{_libdir}/*.la
 
 %changelog
+* Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 0.62-1
+- Updated to release 0.62.
+
 * Mon Jul 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.61-1
 - Updated to release 0.61.
 

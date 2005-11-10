@@ -12,7 +12,7 @@
 
 Summary: High quality TV viewer
 Name: tvtime
-Version: 1.0.1
+Version: 1.0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -77,6 +77,9 @@ videophiles.
 %{_bindir}/tvtime
 
 %changelog
+* Thu Nov 10 2005 Dries Verachtert <dries$ulyssis,org> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Thu Sep 08 2005 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 

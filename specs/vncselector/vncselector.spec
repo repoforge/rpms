@@ -41,7 +41,7 @@ server sessions. This can be useful in a thin client situation (run from
 
 %prep
 %{__rm} -rf %{buildroot}
-%setup -n VncSelector_%{version}
+%setup -n %{name}_%{version}
 
 %build
 %{__make} -f Makefile.cvs

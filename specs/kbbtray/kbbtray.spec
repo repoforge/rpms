@@ -4,7 +4,7 @@
 
 Summary: Display the status of a Big Brother page in the system tray
 Name: kbbtray
-Version: 0.06
+Version: 0.07
 Release: 1
 License: GPL
 Group: Applications/System
@@ -41,6 +41,9 @@ sed -i "s|/usr/local|%{_prefix}|g" kbbtray.py
 %{_datadir}/kbbtray/
 
 %changelog
+* Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> 0.07-1
+- Update to version 0.07.
+
 * Wed Dec 22 2004 Dries Verachtert <dries@ulyssis.org> 0.06-1
 - Update to version 0.06.
 

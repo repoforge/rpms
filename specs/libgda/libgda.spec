@@ -4,13 +4,14 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc4:%define _without_mdbtools 1}
 %{?rh7:%define _without_mdbtools 1}
 %{?el2:%define _without_mdbtools 1}
 %{?rh6:%define _without_mdbtools 1}
 
 Summary: Library for writing gnome database programs
 Name: libgda
-Version: 1.1.6
+Version: 1.2.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -109,6 +110,9 @@ scrollkeeper-update -q || :
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Wed Aug 18 2004 Dag Wieers <dag@wieers.com> - 1.1.6-1
 - Updated to release 1.1.6.
 

@@ -7,12 +7,12 @@
 Summary: Detect Unintended Memory Access
 Name: duma
 Version: 2.4.26
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
-URL: http://www.pf-lug.de/projekte/haya/duma.php
+URL: http://duma.sourceforge.net/
 
-Source: http://www.pf-lug.de/projekte/haya/duma_%{real_version}.tar.gz
+Source: http://dl.sf.net/duma/duma_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -69,7 +69,11 @@ you will need to install %{name}-devel.
 %{_libdir}/libduma.so
 
 %changelog
+* Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.26-2
+- Fixed the project url and source url.
+
 * Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.26-1
+
 - Updated to release 2.4.26.
 
 * Sat Oct 08 2005 Dries Verachtert <dries@ulyssis.org> - 2.4.23-1
