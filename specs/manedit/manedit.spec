@@ -14,7 +14,7 @@ URL: http://wolfpack.twu.net/ManEdit/
 Source: http://wolfpack.twu.net/users/wolfpack/manedit-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, zlib-devel
+BuildRequires: gtk+-devel, zlib-devel, gcc-c++
 Requires: groff
 
 %description

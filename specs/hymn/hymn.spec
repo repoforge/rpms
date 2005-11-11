@@ -21,7 +21,7 @@ can then be played outside of the iTunes environment, even on
 operating systems not supported by iTunes.
 
 %prep
-%setup
+%setup -n JHymn
 
 %build
 %configure

@@ -7,7 +7,7 @@ Version: 1.0.3
 Release: 7
 License: GPL
 Group: Applications/Emulators
-Source: http://gnuboy.unix-fu.org/%{name}-%{version}.tar.gz
+Source: http://gnuboy.unix-fu.org/src/%{name}-%{version}.tar.gz
 URL: http://gnuboy.unix-fu.org/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.2.0

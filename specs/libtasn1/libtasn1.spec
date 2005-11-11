@@ -12,7 +12,7 @@ URL: http://www.gnu.org/software/gnutls/download.html
 Source: ftp://ftp.gnutls.org/pub/gnutls/libtasn1/libtasn1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison
+BuildRequires: bison, gcc-c++
 
 %description
 This is the ASN.1 library used in GNUTLS.

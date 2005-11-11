@@ -15,7 +15,7 @@ URL: http://www.luolamies.org/software/luola/
 
 Source0: http://www.luolamies.org/software/luola/stdlevels.tar.gz
 Source1: http://www.luolamies.org/software/luola/nostalgia-1.0.tar.gz
-Source2: http://www.luolamies.org/software/luola/demolevel.tar.gz
+#Source2: http://www.luolamies.org/software/luola/demolevel.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: luola
@@ -39,7 +39,7 @@ This package contains the levels of Luola.
 %{__mkdir_p} %{buildroot}%{_datadir}/luola/levels
 %{__tar} -xzvf %{SOURCE0} -C %{buildroot}%{_datadir}/luola/levels
 %{__tar} -xzvf %{SOURCE1} -C %{buildroot}%{_datadir}/luola/levels
-%{__tar} -xzvf %{SOURCE2} -C %{buildroot}%{_datadir}/luola/levels
+#%{__tar} -xzvf %{SOURCE2} -C %{buildroot}%{_datadir}/luola/levels
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -51,6 +51,7 @@ This package contains the levels of Luola.
 %changelog
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-2
 - Fixed the urls.
+- 'demolevel' removed, no working url found.
 
 * Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-1
 - Updated to release 1.3.0.

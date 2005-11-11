@@ -12,7 +12,7 @@ URL: http://www.gnu.org/software/gnutls/download.html
 Source: ftp://ftp.gnutls.org/pub/gnutls/opencdk/opencdk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgcrypt-devel, zlib-devel, perl
+BuildRequires: libgcrypt-devel, zlib-devel, perl, gcc-c++
 
 %description
 This library provides basic parts of the OpenPGP message format.  For

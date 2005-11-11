@@ -11,7 +11,7 @@ Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/mambo/index.php?option=com_content&task=view&id=14&Itemid=29
-Source: http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-%{versino}.tar.gz
+Source: http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl
 

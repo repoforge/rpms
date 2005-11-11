@@ -31,11 +31,12 @@ sending the photo. Multiple users are supported.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/kflickr

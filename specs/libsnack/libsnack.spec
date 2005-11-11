@@ -23,7 +23,7 @@ URL: http://www.speech.kth.se/snack/
 Source: http://www.speech.kth.se/~kare/snack%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: sphere-devel
+BuildRequires: sphere-devel, libvorbis-devel
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tcl >= 8.3, tk}
 Obsoletes: snack-ogg, snack-sphere

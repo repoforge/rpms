@@ -22,7 +22,7 @@ nsc is a curses-based console monitor for Nagios. It allows you to monitor
 Nagios services without the expense or availability of a GUI.
 
 %prep
-%setup -c
+%setup -n %{name}
 
 %{__perl} -pi.orig -e '
 		s|/usr/local/nagios/var/status.log|%{_localstatedir}/log/nagios/status.log|;

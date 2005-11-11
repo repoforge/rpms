@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, flex, gtk+-devel >= 1.2.0, bluez-libs-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, gtk2-devel
 
 %description
 Gnokii is a Linux/UNIX tool suite and a modem/fax driver for

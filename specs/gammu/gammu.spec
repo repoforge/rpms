@@ -15,7 +15,7 @@ URL: http://www.gammu.net/
 Source: http://www.mwiacek.com/zips/gsm/gammu/stable/1_0x/gammu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bluez-libs-devel
+BuildRequires: bluez-libs-devel, autoconf, automake
 
 %description
 Gammu can do such things with cellular phones as making data calls,

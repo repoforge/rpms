@@ -13,7 +13,7 @@ Group: Applications/System
 URL: http://lde.sourceforge.net/
 
 Source: http://dl.sf.net/lde/lde-%{version}.tar.gz
-Patch: lde-2.6.0-build.patch
+#Patch: lde-2.6.0-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, gpm-devel, ncurses-devel
@@ -25,7 +25,7 @@ old version of Norton Disk Edit for DOS.
 
 %prep
 %setup -n %{name}
-%patch
+#patch
 
 ### FIXME: Make buildsystem use standard autotools directories (Please fix upstream)
 %{__perl} -pi.orig -e 's|(\$\(mandir\))|$1/man8|' macros/Makefile.in

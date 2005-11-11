@@ -29,7 +29,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Source: http://dl.sf.net/vncselector/vncselector_%{version}.tar.gz
 # Source: http://vncselector.sourceforge.net/VncSelector_%{version}.tar.gz
 BuildRequires: fltk-devel, gcc-c++, autoconf, automake
-BuildRequires: libtool
+BuildRequires: libtool, libpng-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 Requires: fltk

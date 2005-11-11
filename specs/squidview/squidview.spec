@@ -49,7 +49,8 @@ functions.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING example.log HOWTO NEWS README
-%{_bindir}/*
+%{_mandir}/man1/squidview*
+%{_bindir}/squidview
 
 %changelog
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.69-1

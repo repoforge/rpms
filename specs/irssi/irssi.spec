@@ -7,15 +7,17 @@
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 
+%define real_version 0.8.10-rc7
+
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.10
-Release: 1
+Release: 0.rc7
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
 
-Source: http://irssi.org/files/irssi-%{version}.tar.bz2
+Source: http://irssi.org/files/irssi-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, ncurses-devel, libgc-devel, gcc-c++
@@ -29,7 +31,7 @@ specific anymore, there's already a working SILC module available.
 Support for other protocols like ICQ could be created some day too.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 %{?el3:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 %{?rh9:%{__perl} -pi.orig -e 's|^CFLAGS = |CFLAGS = -I/usr/kerberos/include |' src/core/Makefile.in}
 

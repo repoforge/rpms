@@ -39,7 +39,7 @@ CFLAGS="%{optflags} -fPIC -fomit-frame-pointer -DPIC" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc GPL license.py README
+%doc GPL README
 %{python_sitearch}/*
 
 %changelog

@@ -3,7 +3,7 @@
 
 Summary: GNUstep base library package
 Name: gnustep-base
-Version: 1.11.0
+Version: 1.11.1
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -51,6 +51,9 @@ chmod -s-t %{buildroot}%{_prefix}/GNUstep/Tools/gdomap
 %{_prefix}/GNUstep/
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.11.1-1
+- Updated to release 1.11.1.
+
 * Sun Aug 07 2005 Dries Verachtert <dries@ulyssis.org> 1.11.0-1
 - Update to version 1.11.0.
 

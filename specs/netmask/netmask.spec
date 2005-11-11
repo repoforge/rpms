@@ -4,13 +4,15 @@
 Summary: tool for figuring out network masks
 Name: netmask
 Version: 2.3.7
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://packages.qa.debian.org/n/netmask.html
 
 Source: http://http.us.debian.org/debian/pool/main/n/netmask/netmask_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: automake, autoconf
 
 %description
 This is a tiny program handy if you work with firewalls or routers
@@ -52,6 +54,9 @@ fi
 %{_bindir}/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.3.7-2
+- Added build requirements.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.3.7-1
 - Updated to release 2.3.7.
 
