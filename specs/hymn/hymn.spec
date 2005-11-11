@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dag
 
+%define real_version 0_9_1
+
 Summary: Hymn allows you to free your iTunes purchases
 Name: hymn
-Version: 0.7.1
+Version: 0.9.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://hymn-project.org/
 
-#Source: http://hymn-project.org/download.php?dl=dlsrc
-Source: hymn-%{version}.tar.gz
+Source: http://hymn-project.org/download/JHymn_%{real_version}_source.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -39,5 +40,8 @@ operating systems not supported by iTunes.
 %{_bindir}/hymn
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Sun Aug 01 2004 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Initial package. (using DAR)

@@ -4,13 +4,12 @@
 Summary: Extension for reading and writing YAML
 Name: syck
 Version: 0.55
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Libraries
 URL: http://www.whytheluckystiff.net/syck/
 
-Source: http://rubyforge.org/frs/download.php/3136/syck-%{version}.tar.gz
-#Source: http://rubyforge.org/frs/download.php/3717/syck-%{version}.tar.gz
+Source: http://rubyforge.org/frs/download.php/4492/syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: byacc, flex, bison
@@ -59,6 +58,9 @@ export CFLAGS="%{optflags} -fPIC"
 %{_libdir}/libsyck.a
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.55-2
+- Fixed the source url.
+
 * Thu Oct 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.55-1
 - Updated to release 0.55.
 

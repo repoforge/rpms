@@ -11,13 +11,13 @@
 
 Summary: Library for writing gnome database programs
 Name: libgda
-Version: 1.2.2
+Version: 1.2.3
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/
 
-Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/1.1/libgda-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/GNOME/sources/libgda/1.2/libgda-%{version}.tar.bz2
 #Source: ftp://ftp.gnome-db.org/pub/gnome-db/sources/v%{version}/libgda-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -110,6 +110,9 @@ scrollkeeper-update -q || :
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
 - Updated to release 1.2.2.
 

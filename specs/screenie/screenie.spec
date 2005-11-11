@@ -6,7 +6,7 @@
 
 Summary: Small frontend for screen
 Name: screenie
-Version: 1.19.0
+Version: 1.26.0
 Release: 1
 License: GPL
 Group: Applications/Utilities
@@ -41,6 +41,9 @@ menu.
 %{_bindir}/screenie
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.26.0-1
+- Updated to release 1.26.0.
+
 * Tue Sep 06 2005 Dries Verachtert <dries@ulyssis.org> - 1.19.0-1
 - Updated to release 1.19.0.
 

@@ -4,7 +4,7 @@
 Summary: Nintendo GameBoy Color emulator
 Name: gnuboy
 Version: 1.0.3
-Release: 6
+Release: 7
 License: GPL
 Group: Applications/Emulators
 Source: http://gnuboy.unix-fu.org/%{name}-%{version}.tar.gz
@@ -43,6 +43,9 @@ Nintendo GameBoy Color software platform.
 
 
 %changelog
+* Fri Nov 11 2005 Dries verachtert <dries@ulyssis.org> 1.0.3-7
+- Fixed the source url.
+
 * Sun Jun  5 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-6
 - Remove LDFLAGS (-s) to get useful debuginfo package.
 

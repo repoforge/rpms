@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(XML::Parser), intltool, pkgconfig, gettext
 BuildRequires: libglade2-devel, glib2-devel, gtk2-devel
+BuildRequires: desktop-file-utils
 
 %description
 KildClient is a MUD client written with the GTK+ windowing toolkit. It 

@@ -5,7 +5,7 @@
 Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer
 Version: 0.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Text
 URL: http://regexxer.sourceforge.net/
@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel >= 2.0.7, gtk2-devel >= 2.0
 BuildRequires: libsigc++-devel >= 1.2, gtkmm2-devel >= 2.0
 BuildRequires: libglademm24-devel
-BuildRequires: pcre >= 3.9, gtkmm24-devel, gcc-c++
+BuildRequires: pcre >= 3.9, gtkmm24-devel, gcc-c++, gconfmm26-devel
 
 %description
 regexxer is a nifty GUI search/replace tool featuring Perl-style
@@ -70,6 +70,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_datadir}/pixmaps/regexxer.png
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-2
+- gconfmm26-devel added to buildrequirements.
+
 * Fri Jul 09 2004 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.
 

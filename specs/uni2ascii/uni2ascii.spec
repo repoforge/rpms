@@ -5,7 +5,7 @@
 Summary: Convert between UTF-8 Unicode and 7-bit ASCII equivalents
 Name: uni2ascii
 Version: 2.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://billposer.org/Software/uni2ascii.html
@@ -41,7 +41,7 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE README
+%doc AUTHORS ChangeLog COPYING CREDITS INSTALL README
 %doc %{_mandir}/man1/ascii2uni*
 %doc %{_mandir}/man1/uni2ascii*
 %{_bindir}/ascii2uni*
@@ -49,6 +49,9 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %{_bindir}/uni2html*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-2
+- Fix files section.
+
 * Wed Nov 09 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-1
 - Updated to release 2.6.
 

@@ -8,7 +8,7 @@
 Summary: Morse tutor
 Name: aldo
 Version: 0.7.0
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/aldo/
@@ -16,7 +16,7 @@ URL: http://www.nongnu.org/aldo/
 Source: http://savannah.nongnu.org/download/aldo/aldo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, automake, autoconf, readline-devel
+BuildRequires: gcc-c++, automake, autoconf, readline-devel, libao-devel
 
 %description
 Aldo is a morse tutor released under GPL. 
@@ -54,6 +54,9 @@ random generated callsigns
 %{_bindir}/aldo
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.0-2
+- Libao-devel added to buildrequirements.
+
 * Sat Oct 08 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.0-1
 - Updated to release 0.7.0.
 

@@ -8,14 +8,14 @@
 Summary: Levels for Luola
 Name: luola-levels
 Version: 1.3.0
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
-URL: http://www.saunalahti.fi/~laakkon1/linux/luola/index.php
+URL: http://www.luolamies.org/software/luola/
 
-Source0: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/stdlevels.tar.gz
-Source1: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/nostalgy.tar.gz
-Source2: http://www.saunalahti.fi/~laakkon1/linux/luola/bin/demolevel.tar.gz
+Source0: http://www.luolamies.org/software/luola/stdlevels.tar.gz
+Source1: http://www.luolamies.org/software/luola/nostalgia-1.0.tar.gz
+Source2: http://www.luolamies.org/software/luola/demolevel.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: luola
@@ -49,6 +49,9 @@ This package contains the levels of Luola.
 %{_datadir}/luola/levels/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-2
+- Fixed the urls.
+
 * Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-1
 - Updated to release 1.3.0.
 

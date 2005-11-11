@@ -14,7 +14,7 @@
 
 Summary: Snack Sound Toolkit
 Name: libsnack
-Version: 2.2.7
+Version: 2.2.9
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -75,6 +75,9 @@ cd unix
 %{_lib32dir}/snack%{version}/
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.2.9-1
+- Updated to release 2.2.9.
+
 * Sun Jul 18 2004 Dag Wieers <dag@wieers.com> - 2.2.7-1
 - Updated to release 2.2.7.
 - Build libsnackogg and libsnacksphere ourselves.

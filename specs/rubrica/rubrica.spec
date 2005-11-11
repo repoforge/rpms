@@ -4,13 +4,13 @@
 
 Summary: Address book application
 Name: rubrica
-Version: 1.0.14
+Version: 1.1.60
 Release: 1
 License: GPL
 Group: Applications/Productivity
-URL: http://digilander.iol.it/nfragale/
+URL: http://rubrica.berlios.de/
 
-Source: http://digilander.libero.it/nfragale/download/rubrica/rubrica-%{version}.tar.bz2
+Source: http://download.berlios.de/rubrica/rubrica-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.0, libxslt-devel >= 1.0
@@ -73,6 +73,9 @@ scrollkeeper-update -q
 %{_datadir}/rubrica/
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.60-1
+- Updated to release 1.1.60.
+
 * Tue May 24 2004 Dag Wieers <dag@wieers.com> - 1.0.14-1
 - Updated to release 1.0.14.
 

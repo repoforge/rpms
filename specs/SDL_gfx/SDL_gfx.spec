@@ -7,11 +7,11 @@
 Summary: Graphic primitives, rotozoomer, framerate control and image filters
 Name: SDL_gfx
 Version: 2.0.13
-Release: 1
+Release: 2
 License: LGPL
 Group: System Environment/Libraries
-URL: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/
-Source: http://www.ferzkopp.net/~aschiffler/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
+URL: http://www.ferzkopp.net/mambo/index.php?option=com_content&task=view&id=14&Itemid=29
+Source: http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-%{versino}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl
 
@@ -71,6 +71,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org - 2.0.13-2
+- Fixed the project and source urls.
+
 * Tue Dec 21 2004 Dries Verachtert <dries@ulyssis.org> 2.0.13-1
 - Updated to release 2.0.13 and removed the patch (has been 
   applied upstream)

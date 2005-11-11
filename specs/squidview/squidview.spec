@@ -5,8 +5,8 @@
 
 Summary: Interactive program which monitors squid logs and displays them in a nice fashion
 Name: squidview
-Version: 0.63
-Release: 0
+Version: 0.69
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.rillion.net/squidview/
@@ -52,6 +52,9 @@ functions.
 %{_bindir}/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.69-1
+- Updated to release 0.69.
+
 * Wed Dec 17 2003 Dag Wieers <dag@wieers.com> - 0.63-0
 - Updated to release 0.63.
 

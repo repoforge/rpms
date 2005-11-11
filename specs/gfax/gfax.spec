@@ -2,12 +2,12 @@
 # Authority: dag
 # Upstream: George Farris <farrisg$mala,bc,ca>
 
-%define real_version 0.6.beta9
+%define real_version 0.7.3-1
 
 Summary: The GNOME Fax Application
 Name: gfax
-Version: 0.6
-Release: 0.beta9
+Version: 0.7.3.1
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://gfax.cowlug.org/
@@ -96,6 +96,9 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %{_localstatedir}/spool/gfax/
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.3.1-1
+- Updated to release 0.7.3.1.
+
 * Wed Mar 03 2004 Dag Wieers <dag@wieers.com> - 0.6-0.beta9
 - Updated to release 0.6.beta9.
 

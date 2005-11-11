@@ -6,13 +6,13 @@
 
 Summary: Mobile phone tools
 Name: gammu
-Version: 0.98.0
+Version: 1.03.0
 Release: 1
 License: GPL
 Group: Applications/Communications
-URL: http://www.mwiacek.com/gsm/gammu/gammu.html
+URL: http://www.gammu.net/
 
-Source: http://www.mwiacek.com/zips/gsm/gammu/older/gammu-%{version}.tar.gz
+Source: http://www.mwiacek.com/zips/gsm/gammu/stable/1_0x/gammu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bluez-libs-devel
@@ -84,6 +84,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.03.0-1
+- Updated to release 1.03.0.
+
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 0.98.0-1
 - Updated to release 0.98.0.
 

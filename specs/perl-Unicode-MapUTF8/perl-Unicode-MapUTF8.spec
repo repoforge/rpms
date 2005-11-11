@@ -47,7 +47,7 @@ Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) modu
 %doc MANIFEST README
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/Unicode/
-%{perl_vendorlib}/Unicode/MapUTF8.pm
+%{perl_vendorlib}/Unicode/MapUTF8.p*
 
 %changelog
 * Sat Oct 15 2005 Dries Verachtert <dries@ulyssis.org> - 1.11-1

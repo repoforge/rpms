@@ -5,13 +5,13 @@
 
 Summary: Graphical editor for creating man pages. 
 Name: manedit
-Version: 0.5.12
+Version: 0.6.1
 Release: 1
 License: GPL
 Group: Development/Tools
 URL: http://wolfpack.twu.net/ManEdit/
 
-Source: http://wolfpack.twu.net/users/wolfpack/manedit-%{version}.tar.bz2
+Source: http://wolfpack.twu.net/users/wolfpack/manedit-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, zlib-devel
@@ -79,6 +79,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-manedit.desktop
  
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.5.12-1
 - Updated to release 0.5.12.
 

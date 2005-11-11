@@ -14,6 +14,7 @@ Source: http://dl.sf.net/kflickr/kflickr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, kdelibs-devel
+BuildRequires: automake, autoconf
 
 %description
 kFlickr is a standalone Flickr uploader for KDE. It allows for easy 

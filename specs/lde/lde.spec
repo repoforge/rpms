@@ -6,7 +6,7 @@
 
 Summary: Console-based disk editor
 Name: lde
-Version: 2.6.0
+Version: 2.6.1
 Release: 1
 License: GPL
 Group: Applications/System
@@ -54,5 +54,8 @@ old version of Norton Disk Edit for DOS.
 %{_sbindir}/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.6.1-1
+- Updated to release 2.6.1.
+
 * Fri Apr 17 2004 Dag Wieers <dag@wieers.com> - 2.6.0-1
 - Initial package. (using DAR)

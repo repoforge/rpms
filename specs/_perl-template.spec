@@ -1,74 +1,57 @@
-# $Id: perl-IP-Country.spec 171 2004-03-28 01:43:07Z dag $
-# Authority: dag
+# $Id$
+# Authority: dries
+# Upstream: UPSTREAMTAG
 
-%define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
-%define perl_vendorarch  %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name NetAddr-IP
+%define real_name NNAAMMEE
 
-Summary: Manages IPv4 and IPv6 addresses and subnets
-Name: perl-NetAddr-IP
-Version: 3.20
+Summary: 
+Name: perl-NNAAMMEE
+Version: 
 Release: 1
-License: distributable
+License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/NetAddr-IP/
+URL: http://search.cpan.org/dist/NNAAMMEE/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
-Source: http://search.cpan.org/CPAN/authors/id/L/LU/LUISMUNOZ/NetAddr-IP-%{version}.tar.gz
+Source: NNAAMMEE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
-Requires: perl >= 0:5.00503
-
+#BuildArch: noarch
+BuildRequires: perl
 
 %description
-Manages IPv4 and IPv6 addresses and subnets.
-
 
 %prep
 %setup -n %{real_name}-%{version}
 
-
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLDIRS="vendor"
-%{__make} %{?_smp_mflags} \
-        OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+#%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
-### Clean up buildroot (noarch)
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}
-
-### Clean up buildroot (arch)
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
-
-
-%clean 
+%clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README TODO tutorial.htm
-%doc %{_mandir}/man?/*
+%doc Changes README
+%doc %{_mandir}/man3/*
+#%{perl_vendorlib}/NAMEDIR.pm
+#%{perl_vendorlib}/NAMEDIR/*
+#%exclude %{perl_archlib}/perllocal.pod
+#%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
-### (noarch)
-%{perl_vendorlib}/*
-
-### (arch)
-%{perl_vendorarch}/*
-
+# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
+# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
+# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
+# perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
-* Sat Mar 03 2004 Dag Wieers <dag@wieers.com> - 3.20-1
-- Initial package. (using DAR)
+* Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 
+- Initial package.

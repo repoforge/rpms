@@ -44,7 +44,6 @@ server sessions. This can be useful in a thin client situation (run from
 %setup -n %{name}_%{version}
 
 %build
-%{__make} -f Makefile.cvs
 %{__perl} -npi -e "s/xtightvncviewer/vncviewer/g;" src/VncOptions.cxx
 %{__perl} -npi -e "s/tightvncserver/vncserver/g;" src/VncOptions.cxx
 %configure LDFLAGS="-L/lib -L/usr/lib -L/usr/X11R6/lib"

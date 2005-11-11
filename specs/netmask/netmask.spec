@@ -3,8 +3,8 @@
 
 Summary: tool for figuring out network masks
 Name: netmask
-Version: 2.3.6
-Release: 0
+Version: 2.3.7
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://packages.qa.debian.org/n/netmask.html
@@ -52,5 +52,8 @@ fi
 %{_bindir}/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.3.7-1
+- Updated to release 2.3.7.
+
 * Sun Jul 13 2003 Dag Wieers <dag@wieers.com> - 2.3.5-0
 - Initial package. (using DAR)

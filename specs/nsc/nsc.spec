@@ -2,15 +2,17 @@
 # Authority: dag
 # Upstream: Stig H. Jacobsen <nsc$gothix,dk>
 
+%define real_version 0.80-2
+
 Summary: Console monitor for Nagios
 Name: nsc
-Version: 0.71
+Version: 0.80.2
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://www.goth.dk/nsc/
+URL: http://nsc-gothix.sourceforge.net/
 
-Source: http://www.goth.dk/nsc/nsc-%{version}.tgz
+Source: http://dl.sf.net/nsc-gothix/nsc-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: nagios, perl(Curses)
@@ -44,5 +46,9 @@ Nagios services without the expense or availability of a GUI.
 %{_sbindir}/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.80.2-1
+- Updated to release 0.80.2.
+- Updated the source and project urls.
+
 * Fri Apr 16 2004 Dag Wieers <dag@wieers.com> - 0.71-1
 - Initial package. (using DAR)

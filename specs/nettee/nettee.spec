@@ -2,11 +2,9 @@
 # Authority: dag
 # Upstream: David Mathog <mathog@caltech.edu>
 
-%define real_version 0.1.6
-
 Summary: Network "tee" program
 Name: nettee
-Version: 0.1.6
+Version: 0.1.7
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -22,7 +20,7 @@ which connects them.  It is handy for cloning nodes or moving large
 database files.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup -n %{name}-%{version}
 
 %build
 %{__cc} %{optflags} -D_LARGEFILE64_SOURCE -o nettee nettee.c
@@ -43,6 +41,9 @@ database files.
 %{_bindir}/nettee
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1
+- Updated to release 0.1.7.
+
 * Thu Jun 23 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.6-1
 - Update to release 0.1.6.
 

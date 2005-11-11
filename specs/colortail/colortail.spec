@@ -7,13 +7,12 @@
 Summary: Log colorizer that makes log checking easier
 Name: colortail
 Version: 0.3.0
-Release: 1
+Release: 2
 Group: Applications/File
 License: GPL
 URL: http://www.student.hk-r.se/~pt98jan/colortail.html
 
-Source: http://search.belnet.be/mirror/ftp.openbsd.org/distfiles/colortail-%{version}.tar.gz
-#Source: http://www.student.hk-r.se/~pt98jan/colortail-%{version}.tar.gz
+Source: ftp://ftp.be.netbsd.org/pub/NetBSD/packages/distfiles/colortail-%{version}.tar.gz
 Patch: colortail-0.3.0-gcc3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, automake, autoconf
@@ -44,6 +43,9 @@ specified which patterns result in which colors.
 %{_bindir}/colortail
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.3.0-2
+- Modified the source url. Project page doesn't exist anymore.
+
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 0.3.0-1
 - Added example config files. (Adrian Reber)
 

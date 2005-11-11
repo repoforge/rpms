@@ -16,7 +16,7 @@ Source: http://www.bms-austria.com/~pipelka/aeskulap/aeskulap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gtkmm24-devel, libglademm24-devel, gconfmm26-devel
-BuildRequires: zlib-devel, libpng-devel
+BuildRequires: zlib-devel, libpng-devel, libtiff-devel
 
 %description
 Aeskulap is a medical image viewer. It is able to load a series of special 

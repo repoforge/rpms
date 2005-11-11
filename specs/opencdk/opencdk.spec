@@ -3,7 +3,7 @@
 
 Summary: Provides basic parts of the OpenPGP message format.
 Name: opencdk
-Version: 0.4.5
+Version: 0.5.8
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -76,5 +76,8 @@ you will need to install %{name}-devel.
 %{_libdir}/*.so
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.8-1
+- Updated to release 0.5.8.
+
 * Wed Dec 31 2003 Dag Wieers <dag@wieers.com> - 0.4.5-0
 - Initial package. (using DAR)

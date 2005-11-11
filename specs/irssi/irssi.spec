@@ -9,8 +9,8 @@
 
 Summary: Modular text-mode IRC client
 Name: irssi
-Version: 0.8.9
-Release: 4
+Version: 0.8.10
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
@@ -82,6 +82,9 @@ Support for other protocols like ICQ could be created some day too.
 #%exclude %{perl_vendorarch}
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1
+- Updated to release 0.8.10.
+
 * Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.8.9-4
 - Workaround directory-conflicts bug in up2date. (RHbz #106123)
 

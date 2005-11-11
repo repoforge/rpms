@@ -3,7 +3,7 @@
 
 Summary: IBM ThinkPad configuration tools
 Name: tpctl
-Version: 4.14
+Version: 4.17
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -59,6 +59,9 @@ tpctl is a package of IBM ThinkPad configuration tools for Linux.
 %{_bindir}/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 4.17-1
+- Updated to release 4.17.
+
 * Sun Jun 20 2004 Dag Wieers <dag@wieers.com> - 4.14-1
 - Updated to release 4.14.
 

@@ -6,7 +6,7 @@
 
 Summary: Query the Debian package database
 Name: ara
-Version: 1.0.9
+Version: 1.1.0
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -74,6 +74,9 @@ desktop-file-install --vendor net                  \
 %{_sysconfdir}/*ara.config
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Sun Apr 03 2004 Dries Verachtert <dries@ulyssis.org> - 1.0.9-1
 - Updated to release 1.0.9.
 

@@ -13,7 +13,7 @@ URL: http://coid.sourceforge.net/
 Source: http://dl.sf.net/coid/coid-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, ncurses-devel
 
 %description
 COID is an object-oriented networking library with a tool that automatically 

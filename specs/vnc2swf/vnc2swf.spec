@@ -14,8 +14,8 @@
 
 Summary: Recording tool for VNC
 Name: vnc2swf
-Version: 0.4.2
-Release: 2
+Version: 0.5.0
+Release: 1
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.unixuser.org/~euske/vnc2swf/
@@ -52,6 +52,9 @@ vnc2swf is a recoding tool for Flash.
 %{_bindir}/vnc2swf
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Tue Mar 15 2005 Dag Wieers <dag@wieers.com> - 0.4.2-2
 - Build against newer ming.
 

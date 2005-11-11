@@ -1,16 +1,14 @@
 # $Id$
 # Authority: dag
 
-%define real_version 1.5-rc6a
-
 Summary: JavaScript interpreter
 Name: js
 Version: 1.5
-Release: 0.rc6a
+Release: 1
 License: MPL
 Group: Development/Languages
 URL: http://www.mozilla.org/js/
-Source: http://ftp.mozilla.org/pub/mozilla.org/js/js-%{real_version}.tar.gz
+Source: http://ftp.mozilla.org/pub/mozilla.org/js/js-%{version}.tar.gz
 Patch0: js-make.patch
 Patch1: js-shlib.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -77,6 +75,9 @@ BUILD_OPT="1" %{__make} -C src -f Makefile.ref \
 %{_includedir}/js/
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.5-1.
+- Updated to final release of 1.5.
+
 * Sat Mar 26 2005 Dag Wieers <dag@wieers.com> - 1.5-0.rc6a
 - Added x86_64 VA_COPY patch. (Stef Van Dessel)
 

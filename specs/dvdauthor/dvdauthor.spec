@@ -4,8 +4,8 @@
 
 Summary: Set of tools to author a DVD
 Name: dvdauthor
-Version: 0.6.10
-Release: 2
+Version: 0.6.11
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://dvdauthor.sourceforge.net/
@@ -49,6 +49,9 @@ mpeg2 stream that should play when you put it in a DVD player.
 %{_bindir}/*
 
 %changelog
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.6.11-1
+- Updated to release 0.6.11.
+
 * Sun Jan 02 2005 Dag Wieers <dag@wieers.com> - 0.6.10-2
 - Added readxml patch. (John Veysey)
 
