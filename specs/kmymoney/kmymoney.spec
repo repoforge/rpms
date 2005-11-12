@@ -80,6 +80,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/icons/*/*/mimetypes/kmy.png
 %{_datadir}/mimelnk/application/x-kmymoney2.desktop
 %{_bindir}/*
+%{_includedir}/kmymoney/
+%{_libdir}/libkmm*
+%{_datadir}/servicetypes/kmymoney*.desktop
 
 %changelog
 * Sun Nov 06 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.1-1

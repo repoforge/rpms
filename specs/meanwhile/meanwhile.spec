@@ -43,6 +43,7 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__mv} %{buildroot}%{_datadir}/doc/meanwhile-doc-%{version} rpmdoc
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -55,7 +56,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README rpmdoc/* TODO
 %{_libdir}/libmeanwhile.so.*
 
 %files devel

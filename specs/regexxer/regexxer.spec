@@ -17,6 +17,7 @@ BuildRequires: glib2-devel >= 2.0.7, gtk2-devel >= 2.0
 BuildRequires: libsigc++-devel >= 1.2, gtkmm2-devel >= 2.0
 BuildRequires: libglademm24-devel, pcre-devel, gettext
 BuildRequires: pcre >= 3.9, gtkmm24-devel, gcc-c++, gconfmm26-devel
+BuildRequires: desktop-file-utils
 
 %description
 regexxer is a nifty GUI search/replace tool featuring Perl-style
