@@ -13,7 +13,7 @@ URL: http://meanwhile.sourceforge.net/
 Source: http://dl.sf.net/meanwhile/meanwhile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.2, gcc-c++, gmp-devel
+BuildRequires: glib2-devel >= 2.2, gcc-c++, gmp-devel, doxygen
 
 %description
 The heart of the Meanwhile Project is the Meanwhile library, providing the

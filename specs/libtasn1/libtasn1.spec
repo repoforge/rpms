@@ -61,6 +61,11 @@ you will need to install %{name}-devel.
 %{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.so
+%{_bindir}/libtasn1-config
+%{_libdir}/pkgconfig/libtasn1.pc
+%{_datadir}/aclocal/libtasn1.m4
+%{_datadir}/info/libtasn1*
+%{_mandir}/man3/*asn1*
 
 %changelog
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.17-1

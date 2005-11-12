@@ -4,7 +4,7 @@
 Summary: tool for figuring out network masks
 Name: netmask
 Version: 2.3.7
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://packages.qa.debian.org/n/netmask.html
@@ -25,15 +25,14 @@ common IP netmask and address formats.
 
 %build
 ### FIXME: Doesn't build for RH80 or RH90 ;(
-%{__aclocal}
-%{__automake} --add-missing
+#%{__aclocal}
+#%{__automake} --add-missing
 %configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 netmask %{buildroot}%{_bindir}/netmask
-%{__install} -Dp -m0644 netmask.1 %{buildroot}%{_mandir}/man1/netmask.1
+%makeinstall
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info %{_infodir}/dir &>/dev/null || :
@@ -49,11 +48,14 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README
-%doc %{_mandir}/man?/*
-%doc %{_infodir}/*.info*
-%{_bindir}/*
+%doc %{_mandir}/man1/netmask*
+%doc %{_infodir}/netmask.info*
+%{_bindir}/netmask
 
 %changelog
+* Sat Nov 12 2005 Dries Verachtert <dries@ulyssis.org> - 2.3.7-3
+- Cleanup of spec file.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.3.7-2
 - Added build requirements.
 

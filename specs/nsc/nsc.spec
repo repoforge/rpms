@@ -41,9 +41,9 @@ Nagios services without the expense or availability of a GUI.
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.txt LICENSE NOTES.txt nsc.doc README.txt status.log
-%doc %{_mandir}/man?/*
-%{_sbindir}/*
+%doc CHANGES.txt INSTALL.txt LICENSE.txt NOTES.txt nsc.doc README.txt *status.log
+%doc %{_mandir}/man?/nsc*
+%{_sbindir}/nsc
 
 %changelog
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.80.2-1

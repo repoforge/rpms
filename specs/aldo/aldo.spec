@@ -51,6 +51,7 @@ random generated callsigns
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
+%{_mandir}/man1/aldo*
 %{_bindir}/aldo
 
 %changelog

@@ -19,7 +19,7 @@
 Summary: Graph Visualization Tools
 Name: graphviz
 Version: 2.6
-Release: 1
+Release: 2
 License: CPL
 Group: Applications/Multimedia
 URL: http://www.graphviz.org/
@@ -104,8 +104,8 @@ Some demo graphs for %{name}.
 %{_libdir}/graphviz/*.so.*
 %exclude %{_libdir}/graphviz/lib*tcl*.so.*
 %exclude %{_libdir}/graphviz/libtk*.so.*
-%exclude %{_bindir}/dotneato-config
-%exclude %{_mandir}/man1/dotneato-config.1*
+#%exclude %{_bindir}/dotneato-config
+#%exclude %{_mandir}/man1/dotneato-config.1*
 
 %files tcl
 %defattr(-, root, root, 0755)
@@ -120,11 +120,12 @@ Some demo graphs for %{name}.
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/dotneato-config.1*
+#%doc %{_mandir}/man1/dotneato-config.1*
 %doc %{_mandir}/man3/*
-%{_bindir}/dotneato-config
+#%{_bindir}/dotneato-config
 %{_includedir}/graphviz/
 %{_libdir}/graphviz/*.so
+%{_libdir}/graphviz/*.a
 %{_libdir}/pkgconfig/*.pc
 %exclude %{_libdir}/graphviz/*.la
 
@@ -138,6 +139,9 @@ Some demo graphs for %{name}.
 %doc rpmdoc/*
 
 %changelog
+* Sat Nov 12 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-2
+- Changes in files section: dotneato* removed, static libs added.
+
 * Mon Nov 07 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-1
 - Updated to release 2.6.
 

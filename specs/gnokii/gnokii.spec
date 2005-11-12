@@ -53,17 +53,6 @@ you will need to install %{name}-devel.
 %{__perl} -pi.orig -e 's| --msgid-bugs-address=||' configure
 %{__perl} -pi.orig -e 's| --msgid-bugs-address=.+||' po/Makefile.in.in
 
-%{__cat} <<EOF >gnokii.desktop
-[Desktop Entry]
-Name=Gnokii Mobile Manager
-Comment=Access your mobile phone data
-Icon=redhat-accessories.png
-Exec=xgnokii
-Terminal=false
-Type=Application
-Categories=Application;Utility;
-EOF
-
 %build
 #./autogen.sh
 %configure \
@@ -87,16 +76,6 @@ EOF
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
 %{__install} -p -m0644 Docs/man/*.8 %{buildroot}%{_mandir}/man8/
-
-%if %{?_without_freedesktop:1}0
-        %{__install} -Dp -m0644 gnokii.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/gnokii.desktop
-%else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor net                  \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-                %{name}.desktop
-%endif
 
 %pre
 /usr/sbin/groupadd -r -f gnokii &>/dev/null || :
@@ -138,8 +117,7 @@ EOF
 %doc %{_mandir}/man?/xgnokii*
 %{_bindir}/xgnokii
 %{_datadir}/xgnokii/
-%{!?_without_freedesktop:%{_datadir}/applications/net-gnokii.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/gnokii.desktop}
+%{_datadir}/applications/*gnokii.desktop
 
 %files devel
 %defattr(-, root, root, 0755)

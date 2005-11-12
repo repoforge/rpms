@@ -80,6 +80,7 @@ Support for other protocols like ICQ could be created some day too.
 %{perl_vendorarch}/Irssi/
 %{perl_vendorarch}/Irssi.pm
 %{perl_vendorarch}/auto/Irssi/
+%{_includedir}/irssi/
 %exclude %{_docdir}/irssi/
 #%exclude %{perl_vendorarch}
 

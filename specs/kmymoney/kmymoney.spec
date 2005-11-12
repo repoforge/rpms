@@ -75,7 +75,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 %doc %{_datadir}/doc/HTML/en/kmymoney2
 %doc %{_mandir}/man?/*
 %{_datadir}/apps/kmymoney2
-%{_datadir}/applnk/Applications/kmymoney2.desktop
+%{_datadir}/applications/kde/kmymoney2.desktop
 %{_datadir}/icons/*/*/apps/kmymoney2.png
 %{_datadir}/icons/*/*/mimetypes/kmy.png
 %{_datadir}/mimelnk/application/x-kmymoney2.desktop
