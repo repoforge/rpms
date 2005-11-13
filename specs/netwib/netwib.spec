@@ -1,0 +1,55 @@
+# $Id$
+# Authority: dries
+# Upstream: Laurent Constantin <laurent$constantin,aql,fr>
+
+Summary: Functions for network programs
+Name: netwib
+Version: 5.31.0
+Release: 1
+License: GPL
+Group: Development/Libraries
+URL: http://www.laurentconstantin.com/en/netw/netwib/
+
+Source: http://www.laurentconstantin.com/common/netw/netwib/download/v5/netwib-%{version}-src.tgz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: libnet, libpcap
+
+%description
+Netwib provides most functions needed by network programs. Its objective is 
+to let programmers easily create network programs. This library provides 
+features for Ethernet, IPv4, IPv6, UDP, TCP, ICMP, ARP, and RARP protocols. 
+It supports spoofing, sniffing, client, and server creation. Furthermore, 
+netwib contains high level functions dealing with data handling.
+
+This package contains the header files, the static library and development 
+documentation.
+
+%prep
+%setup -n %{name}-%{version}-src
+
+%build
+cd src
+./genemake
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+cd src
+%makeinstall INSTINCLUDE=%{buildroot}%{_includedir} INSTLIB=%{buildroot}%{_libdir} INSTBIN=%{buildroot}%{_bindir} INSTMAN3=%{buildroot}%{_mandir}/man3
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc doc/* README.TXT
+%doc %{_mandir}/man3/netwib*
+%{_bindir}/netwib*-config
+%{_includedir}/netwib*/
+%{_includedir}/netwib*.h
+%{_libdir}/libnetwib*.a
+
+%changelog
+* Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 5.31.0-1
+- Initial package.
