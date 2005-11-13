@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Devel-Symdump/
 Source: http://search.cpan.org/CPAN/authors/id/A/AN/ANDK/Devel-Symdump-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildArch: noarch
+BuildArch: noarch
 BuildRequires: perl
 
 %description
