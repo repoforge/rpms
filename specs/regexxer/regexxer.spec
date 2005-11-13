@@ -5,7 +5,7 @@
 Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer
 Version: 0.8
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Text
 URL: http://regexxer.sourceforge.net/
@@ -26,18 +26,6 @@ regular expressions.
 %prep
 %setup
 
-%{__cat} <<EOF >regexxer.desktop
-[Desktop Entry]
-Name=Regular Expression Tool
-Comment=Perform search and replace operations
-Exec=regexxer
-Icon=regexxer.png
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=GNOME;Application;Development;
-EOF
-
 %build
 %configure \
 	--disable-schemas-install
@@ -48,12 +36,6 @@ EOF
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome --delete-original \
-	--add-category X-Red-Hat-Base                 \
-	--dir %{buildroot}%{_datadir}/applications    \
-	regexxer.desktop
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -67,10 +49,14 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
 %config %{_sysconfdir}/gconf/schemas/*.schemas
 %{_bindir}/regexxer
-%{_datadir}/applications/gnome-regexxer.desktop
+%{_datadir}/applications/regexxer.desktop
 %{_datadir}/pixmaps/regexxer.png
+%{_datadir}/regexxer/
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-3
+- Fixed files section.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-2
 - gconfmm26-devel added to buildrequirements.
 

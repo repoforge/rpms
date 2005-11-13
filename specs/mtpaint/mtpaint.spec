@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, libpng-devel
 BuildRequires: libungif-devel, libjpeg-devel, libtiff-devel
+BuildRequires: desktop-file-utils, gettext
 
 %description
 mtPaint is a simple GTK+1/2 painting program designed for creating icons 

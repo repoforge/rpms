@@ -11,8 +11,8 @@ Group: Applications/Multimedia
 URL: http://dvdauthor.sourceforge.net/
 
 Source: http://dl.sf.net/dvdauthor/dvdauthor-%{version}.tar.gz
-Patch0: dvdauthor-0.6.10-gcc34.patch
-Patch1: dvdauthor-0.6.10-readxml.patch
+#Patch0: dvdauthor-0.6.10-gcc34.patch
+#Patch1: dvdauthor-0.6.10-readxml.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel >= 2.5.0, libdvdread-devel
@@ -25,8 +25,8 @@ mpeg2 stream that should play when you put it in a DVD player.
 
 %prep 
 %setup
-%patch0
-%patch1
+#%patch0
+#%patch1
 
 %{__perl} -pi.orig -e 's|(-ldvdread)|$1 -ldl|g' configure
 
@@ -44,8 +44,9 @@ mpeg2 stream that should play when you put it in a DVD player.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING doc/*.dsl doc/*.html doc/*.sgml HISTORY menu.txt README TODO
+%doc AUTHORS ChangeLog COPYING README TODO
 %doc %{_mandir}/man1/*
+%{_datadir}/dvdauthor/
 %{_bindir}/*
 
 %changelog

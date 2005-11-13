@@ -14,7 +14,7 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/dsniff/
 
-Source: http://www.monkey.org/~dugsong/dsniff/dsniff-%{version}b1.tar.gz
+Source: http://www.monkey.org/~dugsong/dsniff/beta/dsniff-%{version}b1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet > 1.0, libnet < 1.1, libnids >= 1.16, openssl-devel >= 0.9.5a

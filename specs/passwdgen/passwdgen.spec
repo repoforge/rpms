@@ -9,9 +9,11 @@ Version: 2.2
 Release: 1
 License: GPL
 Group: System Environment/Base
-URL: http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/
+URL: http://directory.fsf.org/security/auth/pwdgen.html
+#http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/
 
-Source: http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/download/passwdgen-%{version}.tar.gz
+Source: http://downloads.securityfocus.com/tools/passwdgen-2.2.tar.gz
+#http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/download/passwdgen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

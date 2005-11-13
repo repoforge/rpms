@@ -7,14 +7,14 @@ Version: 2.1.0
 Release: 1
 License: Artistic
 Group: Applications/Internet
-URL: http://trash.net/~reeler/bmon/
+URL: http://people.suug.ch/~tgr/bmon/
 
 Source: http://people.suug.ch/~tgr/bmon/files/bmon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Conflicts: nstats
 #BuildRequires: gettext-devel
-BuildRequires: gettext, ncurses-devel
+BuildRequires: gettext, ncurses-devel, rrdtool-devel
 
 %description
 bmon is an interface bandwidth monitor.

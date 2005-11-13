@@ -30,7 +30,7 @@ devices supported by the wireless kernel extensions by Jean Tourrilhes.
 %prep
 %setup -n %{name}-%{real_version}
 %patch0 -p1
-%patch1
+%patch1 -p1
 
 %build
 %configure

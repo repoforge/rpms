@@ -7,13 +7,13 @@
 
 Summary: %{real_name} module for perl
 Name: perl-Storable
-Version: 2.11
+Version: 2.15
 Release: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/%{real_name}/
 
-Source: http://www.cpan.org/modules/by-module/Storable/Storable-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/Storable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: perl >= 0:5.8.0
@@ -58,6 +58,9 @@ find %{buildroot}%{_libdir} -name "*.so" -exec chmod u+w {} \;
 
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 2.15-1
+- Updated to release 2.15.
+
 * Fri Mar 19 2004 Matthias Saou <http://freshrpms.net/> 2.11-1
 - Initial RPM release.
 

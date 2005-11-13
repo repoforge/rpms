@@ -4,13 +4,13 @@
 
 Summary: C++ Class Library for Numbers
 Name: cln
-Version: 1.1.8
-Release: 2
+Version: 1.1.10
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ginac.de/CLN/
 
-Source: ftp://ftpthep.physik.uni-mainz.de/pub/gnu/cln-%{version}.tar.bz2
+Source: http://www.ginac.de/CLN/cln-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gmp-devel, gcc-c++
@@ -86,6 +86,9 @@ fi
 %{_libdir}/pkgconfig/cln.pc
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.10-1
+- Updated to release 1.1.10.
+
 * Fri Dec 10 2004 Dag Wieers <dag@wieers.com> - 1.1.8-2
 - Fixed Group tag.
 

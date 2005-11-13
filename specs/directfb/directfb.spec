@@ -3,7 +3,7 @@
 
 Summary: Hardware graphics acceleration library
 Name: directfb
-Version: 0.9.22
+Version: 0.9.24
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -87,15 +87,25 @@ find %{buildroot} -name "*.la" | xargs rm -f
 %dir %{_libdir}/%{name}-%{version}/interfaces/*
 %dir %{_libdir}/%{name}-%{version}/systems
 %{_libdir}/%{name}-%{version}/gfxdrivers/*.so
+%{_libdir}/%{name}-%{version}/gfxdrivers/*.o
 %{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_joystick.so
 %{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_keyboard.so
+%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_mutouch.so
 %{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_linux_input.so
 %{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_lirc.so
 %{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_ps2mouse.so
 %{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_serialmouse.so
 %{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_sonypi.so
+%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_wm97xx_ts.so
+%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_sdlinput.so
+%{_libdir}/%{name}-%{version}/inputdrivers/*.o
 %{_libdir}/%{name}-%{version}/interfaces/*/*.so
+%{_libdir}/%{name}-%{version}/interfaces/*/*.o
 %{_libdir}/%{name}-%{version}/systems/libdirectfb_fbdev.so
+%{_libdir}/%{name}-%{version}/systems/libdirectfb_sdl.so
+%{_libdir}/%{name}-%{version}/systems/*.o
+%{_libdir}/%{name}-%{version}/wm/*.o
+%{_libdir}/%{name}-%{version}/wm/*.so
 %{_datadir}/%{name}-%{version}
 %{_mandir}/man5/*
 
@@ -105,6 +115,7 @@ find %{buildroot} -name "*.la" | xargs rm -f
 %{_bindir}/*
 %{_includedir}/*
 %{_libdir}/*.a
+%{_libdir}/*.so
 %dir %{_libdir}/%{name}-%{version}
 %dir %{_libdir}/%{name}-%{version}/gfxdrivers
 %dir %{_libdir}/%{name}-%{version}/inputdrivers
@@ -113,15 +124,17 @@ find %{buildroot} -name "*.la" | xargs rm -f
 %dir %{_libdir}/%{name}-%{version}/systems
 %{_libdir}/%{name}-%{version}/gfxdrivers/*.a
 %{_libdir}/%{name}-%{version}/inputdrivers/*.a
-%{_libdir}/%{name}-%{version}/inputdrivers/libdirectfb_sdlinput.so
 %{_libdir}/%{name}-%{version}/interfaces/*/*.a
 %{_libdir}/%{name}-%{version}/systems/*.a
-%{_libdir}/%{name}-%{version}/systems/libdirectfb_sdl.so
+%{_libdir}/%{name}-%{version}/wm/*.a
 %{_libdir}/pkgconfig/*
 %{_mandir}/man1/*
 
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.24-1
+- Updated to release 0.9.24.
+
 * Sun Sep 18 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.22-1
 - Updated to release 0.9.22.
 

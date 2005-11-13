@@ -33,6 +33,7 @@ Checks if the documentation of a module is comprehensive.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%{__rm} -rf %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}

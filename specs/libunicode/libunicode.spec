@@ -9,12 +9,11 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://www.pango.org/
 
-#Source: http://www.pango.org/download/libunicode-%{version}.tar.gz
 Source: http://dl.sf.net/libunicode/libunicode-%{version}.tar.gz
-Patch0: libunicode-0.4-64bit.patch
+#Patch0: libunicode-0.4-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: /usr/bin/automake-1.4, /usr/bin/autoconf, libtool
+BuildRequires: automake, autoconf, libtool
 
 %description
 A library to handle unicode strings
@@ -31,13 +30,13 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p0 -b .64bit
+#%patch -p0 -b .64bit
 
 %build
-%{__libtoolize} --copy --force
-%{__aclocal}-1.4
-%{__automake}-1.4
-%{__autoconf}
+#%{__libtoolize} --copy --force
+#%{__aclocal}-1.4
+#%{__automake}-1.4
+#%{__autoconf}
 
 %configure
 %{__make} %{?_smp_mflags} \
@@ -62,17 +61,20 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_bindir}/*
+#%{_bindir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_includedir}/*.h
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.7-2
+- Some fixes.
+
 * Wed Sep 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.7-1
 - Updated to release 0.7.
 

@@ -12,7 +12,7 @@ License: GPL
 Group: Applications/Databases
 URL: http://ara.alioth.debian.org/
 
-Source: http://ara.alioth.debian.org/incoming/ara_%{version}.tar.bz2
+Source: http://ara.alioth.debian.org/incoming/ara-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lablgtk, ocaml, gtk2-devel

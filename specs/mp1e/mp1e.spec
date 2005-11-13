@@ -13,7 +13,7 @@ Source: http://dl.sf.net/zapping/mp1e-%{version}.tar.bz2
 Patch0: mp1e-1.9.3-common.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: esound-devel, audiofile-devel
+BuildRequires: esound-devel, audiofile-devel, libtool
 #BuildRequires: alsa-lib-devel >= 0.9.0
 
 %description

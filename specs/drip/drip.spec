@@ -5,13 +5,13 @@
 
 Summary: Drip is a DVD-to-DIVX;-) ripping frontend for GNOME
 Name: drip
-Version: 0.8.3.2
-Release: 0
+Version: 0.9.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://www.xs4all.nl/~jarl/
+URL: http://drip.sourceforge.net/
 
-Source: http://www.xs4all.nl/~jarl/%{name}-%{version}.tar.gz
+Source: http://drip.sourceforge.net/files/drip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -68,6 +68,10 @@ LibIFO and a set of tools to handle DVD's
 %{_libdir}/*
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.0-1
+- Updated to release 0.9.0.
+- Urls fixed.
+
 * Thu Feb 20 2003 Dag Wieers <dag@wieers.com>
 - Updated to 0.8.3.2
 

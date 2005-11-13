@@ -7,8 +7,8 @@
 
 Summary: C++ X11 widget set providing win95 look and feel
 Name: libxclass
-Version: 0.8.2
-Release: 0
+Version: 0.9.1
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://xclass.sourceforge.net/
@@ -17,6 +17,7 @@ Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{!?dist:BuildRequires: compat-gcc-c++}
+%{?fc4:BuildRequires: compat-gcc-32-c++}
 %{?el4:BuildRequires: compat-gcc-c++}
 %{?fc3:BuildRequires: compat-gcc-c++}
 %{?fc2:BuildRequires: compat-gcc-c++}
@@ -47,6 +48,7 @@ against.
 	' lib/libxclass/Makefile.in
 
 %build
+%{?fc4:export CXX="g++32"}
 %{?fc3:export CXX="g++296"}
 %{?fc2:export CXX="g++296"}
 %{?fc1:export CXX="g++296"}
@@ -83,6 +85,9 @@ against.
 %{_libdir}/*
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Tue Dec 02 2003 Dag Wieers <dag@wieers.com> - 0.8.2-0
 - Updated to release 0.8.2.
 

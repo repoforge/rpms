@@ -10,7 +10,7 @@ Epoch: 2
 Release: 1
 License: distributable
 Group: Applications/CPAN
-Source0: libnet-%{version}.tar.gz
+Source0: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/libnet-%{version}.tar.gz
 Source10: filter-depends.sh
 URL: http://www.cpan.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

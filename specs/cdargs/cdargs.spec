@@ -12,7 +12,7 @@ URL: http://www.skamphausen.de/software/cdargs/
 Source: http://www.skamphausen.de/software/cdargs/cdargs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, ncurses-devel
 
 %description
 Navigate cd Arguments/expand the shell built-in cd with bookmarks and browser

@@ -5,8 +5,8 @@
 
 Summary: free vector drawing application
 Name: gestalter
-Version: 0.6.7
-Release: 0
+Version: 0.7.6
+Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://www.linotux.ch/gestalter/
@@ -14,12 +14,13 @@ URL: http://www.linotux.ch/gestalter/
 Source: http://www.linotux.ch/gestalter/gestalter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel >= 1.2.0, gnome-libs >= 1.4.0, gnomemm >= 1.2.1
+BuildRequires: gtk+-devel >= 1.2.0, gnome-libs >= 1.4.0
 BuildRequires: glib-devel >= 1.2.0, gtkmm2-devel >= 2.0.0
 BuildRequires: gdk-pixbuf-devel >= 0.18.0, libsigc++-devel >= 1.0.0
 BuildRequires: expat-devel >= 1.95.0, freetype-devel >= 2.0.0
 #%{?rh8:BuildRequires: gtkmm2-devel >= 2.0.0, gnomemm-devel >= 2.0.0}
 #%{?rh7:BuildRequires: gtkmm-devel >= 1.2.0, gnomemm-devel >= 1.2.1}
+%{?fc4:BuildRequires: libgnomemm26-devel}
 
 %description
 Gestalter is a free vector drawing program. The user interface is loosly
@@ -49,6 +50,9 @@ The object model is multi-layered.
 %{_bindir}/*
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.6-1
+- Updated to release 0.7.6.
+
 * Sat Oct 25 2003 Dag Wieers <dag@wieers.com> - 0.6.7-0
 - Updated to release 0.6.7.
 
