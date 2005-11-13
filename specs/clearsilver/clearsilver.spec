@@ -5,6 +5,7 @@
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define need_buildroot %(perl -e 'use ExtUtils::MakeMaker; print ($ExtUtils::MakeMaker::VERSION<6.10?1:0)')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: ClearSilver HTML template system
 Name: clearsilver
@@ -88,15 +89,16 @@ clearsilver templating system.
 %{__make} %{?_smp_mflags}
 
 %install
+export PYTHON=python
 %{__rm} -rf %{buildroot}
 %{__make} install \
 	DESTDIR="%{buildroot}" \
-	INSTALLDIRS="vendor"
+	INSTALLDIRS="vendor" PYTHON=python
 %{__make} install -C python \
-	DESTDIR="%{buildroot}"
+	DESTDIR="%{buildroot}" PYTHON=python PYTHON_SITE=%{python_sitearch}
 %{__make} install -C perl \
 	DESTDIR="%{buildroot}" \
-	INSTALLDIRS="vendor"
+	INSTALLDIRS="vendor" PYTHON=python
 
 ### Clean up buildroot (arch)
 %{__rm} -rf %{buildroot}%{perl_archlib} \
