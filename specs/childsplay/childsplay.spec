@@ -3,17 +3,15 @@
 # Authority: dag
 # Upstream: <childsplay$linux,isbeter,nl>
 
-%define real_version 0.69-1
-
 Summary: Games for children with plugins
 Name: childsplay
-Version: 0.69
-Release: 0
+Version: 0.81.1
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://childsplay.sourceforge.net/
 
-Source: http://dl.sf.net/childsplay/%{name}-%{real_version}.tar.gz
+Source: http://dl.sf.net/childsplay/%{name}-%{version}.tar.gz
 Source1: http://dl.sf.net/childsplay/%{name}-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -33,7 +31,7 @@ to play.
 NOTE: This package also requires the childsplay-plugins package.
 
 %prep
-%setup -a1 -n %{name}-%{real_version}
+%setup -a1 -n %{name}-%{version}
 
 ### fix python compile error
 %{__perl} -pi.orig -e 's|quiet\=1||g' install.py
@@ -97,6 +95,9 @@ cd -
 %dir %{_libdir}/childsplay/Data/score/
 
 %changelog
+* Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.81.1-1
+- Updated to release 0.81.1.
+
 * Mon Nov 17 2003 Dag Wieers <dag@wieers.com> - 0.69-0
 - Updated to release 0.69.
 

@@ -47,8 +47,8 @@ in order to do that.
 %doc %{_mandir}/man3/*
 %{_bindir}/cddb.pl
 %{perl_vendorlib}/CDDB_get.pm
-%{perl_vendorlib}/auto/CDDB_get
-%{perl_vendorlib}/auto/CDDB_cache
+%{perl_vendorlib}/auto/CDDB_get/
+%{perl_vendorlib}/auto/CDDB_cache/
 %{perl_vendorlib}/cddb.pl
 %{perl_vendorlib}/CDDB_cache.pm
 
