@@ -45,8 +45,8 @@ you will need to install %{name}-devel.
 %{__install} -d -m0755 %{buildroot}%{_libdir} \
 			%{buildroot}%{_includedir}/libgc/ \
 			%{buildroot}%{_mandir}/man1/
-%makeinstall \
-	DESTDIR="%{buildroot}"
+%makeinstall
+#	DESTDIR="%{buildroot}"
 #%{__install} -Dp -m0644 include/*.h %{buildroot}%{_includedir}/libgc/
 %{__install} -Dp -m0655 doc/gc.man %{buildroot}%{_mandir}/man1/gc.1
 

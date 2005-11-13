@@ -65,6 +65,7 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_libdir}/*.so
 %{_includedir}/libgift/
+%{_libdir}/pkgconfig/libgift.pc
 
 %changelog
 * Wed Feb 02 2005 Dries Verachtert <dries@ulyssis.org> 0.11.8.1-1
