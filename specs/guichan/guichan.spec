@@ -2,6 +2,17 @@
 # Authority: dries
 # Upstream: Olof Naessen <olof$darkbits,org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: Small efficient C++ GUI library
 Name: guichan
 Version: 0.4.0
@@ -13,7 +24,10 @@ URL: http://guichan.sourceforge.net
 Source: http://dl.sf.net/guichan/guichan-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, autoconf, automake, allegro-devel, SDL-devel
+BuildRequires: SDL_image-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Guichan is a small, efficient C++ GUI library designed for games. It comes 

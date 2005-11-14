@@ -13,7 +13,7 @@ URL: http://qalculate.sourceforge.net/
 Source: http://dl.sf.net/qalculate/libqalculate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, cln-devel
+BuildRequires: pkgconfig, cln-devel, gcc-c++
 BuildRequires: ImageMagick, gettext, glib2-devel >= 2.4
 BuildRequires: intltool, perl-XML-Parser
 Requires: gnuplot, wget

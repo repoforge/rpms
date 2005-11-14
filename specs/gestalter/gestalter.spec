@@ -14,7 +14,7 @@ URL: http://www.linotux.ch/gestalter/
 Source: http://www.linotux.ch/gestalter/gestalter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel >= 1.2.0, gnome-libs >= 1.4.0
+BuildRequires: gtk+-devel >= 1.2.0, gnome-libs >= 1.4.0, gcc-c++
 BuildRequires: glib-devel >= 1.2.0, gtkmm2-devel >= 2.0.0
 BuildRequires: gdk-pixbuf-devel >= 0.18.0, libsigc++-devel >= 1.0.0
 BuildRequires: expat-devel >= 1.95.0, freetype-devel >= 2.0.0
