@@ -7,11 +7,11 @@
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
 Version: 2.6
-Release: 0.1%{?prever:.%{prever}}
+Release: 0.4%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
-URL: http://www.lgames.org/
-Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?prever}.tar.gz
+URL: http://lgames.sourceforge.net/
+Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?prever}-4.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, zlib-devel, libpng-devel
 BuildRequires: ImageMagick
@@ -27,13 +27,12 @@ the integrated level editor.
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever}
+%setup -n %{name}-%{version}%{?prever}-4
 
 
 %build
 %configure \
-    --datadir="%{_datadir}/games" \
-    --localstatedir="%{_localstatedir}/lib/games" \
+    --localstatedir="%{_var}/lib/games" \
     --with-docdir="/tmp"
 %{__make} %{?_smp_mflags}
 
@@ -41,6 +40,7 @@ the integrated level editor.
 %install
 %{__rm} -rf %{buildroot} _docs
 %{__make} install DESTDIR=%{buildroot}
+%find_lang %{name}
 
 # Put the docs back into place
 %{__mv} %{buildroot}/tmp _docs
@@ -78,14 +78,14 @@ desktop-file-install \
 %{__rm} -rf %{buildroot}
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog README TODO _docs/lbreakout2/
 %attr(2551, root, games) %{_bindir}/lbreakout2
 %{_bindir}/lbreakout2server
-%{_datadir}/games/lbreakout2
+%{_datadir}/lbreakout2
 %{_datadir}/pixmaps/lbreakout.png
-%config(noreplace) %attr(664, games, games) %{_localstatedir}/lib/games/lbreakout2.hscr
+%config(noreplace) %attr(664, games, games) %{_var}/lib/games/lbreakout2.hscr
 %if 0%{!?_without_freedesktop:1}
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
 %else
@@ -94,8 +94,20 @@ desktop-file-install \
 
 
 %changelog
+* Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.4.beta
+- Update to 2.6beta-4.
+- No longer override datadir to datadir/games/ to get the locales installed.
+- Include translations.
+
+* Fri Oct 21 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.3.beta
+- Update to 2.6beta-3.
+
+* Thu Oct 20 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.2.beta
+- Update to 2.6beta-2 (use ugly temp "-2" instead of complex macros).
+- Missing common/gettext.h, doesn't build, reported upstream, so beta-3 out.
+
 * Tue May 17 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.1.beta
-- Update to 2.5.2.
+- Update to 2.6beta.
 
 * Fri Jan 14 2005 Matthias Saou <http://freshrpms.net/> 2.5.2-1
 - Update to 2.5.2.
