@@ -6,10 +6,10 @@
 %{?dist: %{expand: %%define %dist 1}}
 %{?rh7:  %define _without_python 1}
 
-Summary: Persistent SQL database connection libarary and daemon
+Summary: Persistent SQL database connection library and daemon
 Name: squale
 Version: 0.1.5
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://squale.sourceforge.net/
@@ -25,13 +25,12 @@ Requires(postun): /usr/sbin/userdel, /usr/sbin/groupdel, /sbin/ldconfig, /sbin/s
 Requires: glib2 >= 2.2.0
 BuildRequires: glib2-devel >= 2.2.0, libxml2-devel, pkgconfig, gettext, popt
 BuildRequires: perl(XML::Parser), gcc-c++
-%{!?_without_python:BuildRequires: Pyrex, python-devel, python}
 %{?_with_oracle:BuildRequires: libsqlora8-devel >= 2.3.1}
 %{!?_without_mysql:BuildRequires: mysql-devel}
 %{!?_without_postgresql:BuildRequires: postgresql-devel}
 
 %description
-SQuaLe.
+SQuaLe, persistent SQL database connection library and daemon.
 
 Available rpmbuild rebuild options :
 --with : oracle
@@ -47,12 +46,22 @@ Requires: %{name} = %{version}, glib2-devel, libxml2-devel, pkgconfig
 Development headers and library for SQuaLe.
 
 
+%package -n python-squale
+Summary: Python bindings for SQuaLe
+Group: System Environment/Daemons
+Requires: %{name} = %{version}, python
+%{!?_without_python:BuildRequires: Pyrex, python-devel, python}
+
+%description -n python-squale
+Python module which provides bindings to the SQuaLe persistent SQL database
+connection library.
+
+
 %prep
 %setup
 
 
 %build
-export CFLAGS="%{optflags}"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -63,20 +72,20 @@ export CFLAGS="%{optflags}"
 %find_lang %{name}
 
 # Change the default log file
-%{__perl} -pi -e 's|"/.*log"|"%{_localstatedir}/log/squale/squale.log"|g' \
+%{__perl} -pi -e 's|"/.*log"|"%{_var}/log/squale/squale.log"|g' \
     %{buildroot}%{_sysconfdir}/squale.xml
-%{__mkdir_p} %{buildroot}%{_localstatedir}/log/squale
+%{__mkdir_p} %{buildroot}%{_var}/log/squale
 
 # Install the init script
-%{__install} -Dp -m0755 contrib/squale.init \
-    %{buildroot}%{_initrddir}/squale
+%{__install} -D -p -m 0755 contrib/squale.init \
+    %{buildroot}%{_sysconfdir}/rc.d/init.d/squale
 
 # Install the logrotate entry
-%{__install} -Dp -m0644 contrib/squale.logrotate \
+%{__install} -D -p -m 0644 contrib/squale.logrotate \
     %{buildroot}%{_sysconfdir}/logrotate.d/squale
 
 # Install the monitoring check script
-%{__install} -Dp -m0755 %{SOURCE1} \
+%{__install} -D -p -m 0755 %{SOURCE1} \
     %{buildroot}%{_bindir}/squale_check.py
 
 
@@ -86,7 +95,7 @@ export CFLAGS="%{optflags}"
 
 %pre
 # Create system account
-/usr/sbin/useradd -c "SQuaLe" -r -M -d / -s '' squale >/dev/null 2>&1 || :
+/usr/sbin/useradd -c "SQuaLe" -r -M -d / -s '' squale &>/dev/null || :
 
 %post
 /sbin/ldconfig
@@ -95,7 +104,7 @@ export CFLAGS="%{optflags}"
 %preun
 if [ $1 -eq 0 ]; then
     # Last removal, stop service and remove it
-    /sbin/service squale stop >/dev/null 2>&1 || :
+    /sbin/service squale stop &>/dev/null || :
     /sbin/chkconfig --del squale
 fi
 
@@ -103,10 +112,10 @@ fi
 /sbin/ldconfig
 if [ $1 -eq 0 ]; then
     # Last removal, remove system account and matching group
-    /usr/sbin/userdel squale >/dev/null 2>&1 || :
-    /usr/sbin/groupdel squale >/dev/null 2>&1 || :
+    /usr/sbin/userdel squale &>/dev/null || :
+    /usr/sbin/groupdel squale &>/dev/null || :
 else
-    /sbin/service squale condrestart >/dev/null 2>&1 || :
+    /sbin/service squale condrestart &>/dev/null || :
 fi
 
 
@@ -116,16 +125,11 @@ fi
 %doc conf/squale.xml
 %attr(0640, root, squale) %config(noreplace) %{_sysconfdir}/squale.xml
 %config %{_sysconfdir}/logrotate.d/squale
-%{_initrddir}/squale
+%{_sysconfdir}/rc.d/init.d/squale
 %{_bindir}/*
-%if %{!?_without_python:1}0
-%exclude %{python_sitearch}/squale.a
-%exclude %{python_sitearch}/squale.la
-%{python_sitearch}/squale.so
-%endif
 %{_libdir}/*.so.*
 %{_mandir}/man?/*
-%attr(0770, root, squale) %{_localstatedir}/log/squale
+%attr(0770, root, squale) %{_var}/log/squale
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -135,8 +139,21 @@ fi
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 
+%if %{!?_without_python:1}0
+%files -n python-squale
+%defattr(-, root, root, 0755)
+%exclude %{python_sitearch}/squale.a
+%exclude %{python_sitearch}/squale.la
+%{python_sitearch}/squale.so
+%endif
+
 
 %changelog
+* Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 0.1.5-2
+- Split off the python bindings.
+- Remove redundant CFLAGS export.
+- Minor spec file cleanups.
+
 * Thu Jun 23 2005 Matthias Saou <http://freshrpms.net/> 0.1.5-1
 - Update to 0.1.5.
 
