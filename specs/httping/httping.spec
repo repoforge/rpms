@@ -2,19 +2,17 @@
 # Authority: dag
 # Upstream: Folkert Vanheusden <folkert$vanheusden,com>
 
-%{?dist: %{expand: %%define %dist 1}}
-
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 1.0.7
+Version: 1.0.8
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.vanheusden.com/httping/
-
 Source: http://www.vanheusden.com/httping/httping-%{version}.tgz
-#Patch: httping-1.0.4-makefile.patch
+Patch: httping-1.0.8-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: openssl-devel
 
 %description
 Httping is like 'ping' but for http-requests.
@@ -24,19 +22,15 @@ that the transmission across the network also takes time!
 
 %prep
 %setup
-#%patch
-
-#{?el3:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
-#{?rh9:%{__perl} -pi -e 's|^(CFLAGS=.+)$|$1 -I/usr/kerberos/include|' Makefile}
+%patch -p1 -b .makefile
 
 %build
 # The CFLAGS in the makefile are needed, so VERSION is set correctly
-# CFLAGS:="%{optflags}"
-%{__make} %{?_smp_mflags}
+# (fixed with the included patch, won't work without)
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}" DEBUG=""
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_bindir}
 %{__make} install DESTDIR="%{buildroot}"
 
 %clean
@@ -46,8 +40,13 @@ that the transmission across the network also takes time!
 %defattr(-, root, root, 0755)
 %doc license.txt readme.txt
 %{_bindir}/httping
+%{_mandir}/man1/httping.1*
 
 %changelog
+* Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 1.0.8-1
+- Update to 1.0.8.
+- Add OpenSSL build requirement.
+
 * Sat Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1
 - Updated to release 1.0.7.
 
