@@ -14,7 +14,7 @@ Source: http://download.berlios.de/rubrica/rubrica-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgnomeui-devel >= 2.0, libxslt-devel >= 1.0
-BuildRequires: libmcrypt-devel, gettext
+BuildRequires: libmcrypt-devel, gettext, gcc-c++
 
 %description
 An address book for GNOME. 

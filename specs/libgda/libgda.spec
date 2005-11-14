@@ -24,7 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: pkgconfig >= 0.8, glib2-devel >= 2.0, ncurses-devel
 BuildRequires: libxml2-devel, libxslt-devel >= 1.0.9
 BuildRequires: mysql-devel, postgresql-devel, unixODBC-devel, sqlite-devel
-BuildRequires: freetds-devel, xbase-devel
+BuildRequires: freetds-devel, xbase-devel, readline-devel
 %{!?_without_mdbtools:BuildRequires: mdbtools-devel}
 BuildRequires: scrollkeeper
 

@@ -4,7 +4,7 @@
 
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
-Version: 0.36
+Version: 0.37
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -70,7 +70,6 @@ you will need to install %{name}-devel.
 #%{_bindir}/extract_chmLib
 #%{_bindir}/test_chmLib
 %{_libdir}/libchm.so.*
-%{_libdir}/libchm
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -81,6 +80,9 @@ you will need to install %{name}-devel.
 %{_includedir}/chm_lib.h
 
 %changelog
+* Mon Nov 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.37-1
+- Updated to release 0.37.
+
 * Fri Sep 09 2005 Dag Wieers <dag@wieers.com> - 0.36-1
 - Updated to release 0.36.
 

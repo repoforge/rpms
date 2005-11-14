@@ -25,7 +25,7 @@ Source: http://dl.sf.net/guichan/guichan-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, autoconf, automake, allegro-devel, SDL-devel
-BuildRequires: SDL_image-devel
+BuildRequires: SDL_image-devel, libtool
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

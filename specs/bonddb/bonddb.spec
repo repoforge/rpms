@@ -46,6 +46,7 @@ you will need to install %{name}-devel.
 %{__automake} --add-missing -a --foreign
 %{__autoconf}
 %{?fc4:export CC=gcc32}
+%{expand: %%define optflags -O2}
 %configure
 %{__make} %{?_smp_mflags}
 

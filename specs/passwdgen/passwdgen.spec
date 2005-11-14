@@ -16,6 +16,8 @@ Source: http://downloads.securityfocus.com/tools/passwdgen-2.2.tar.gz
 #http://members-http-1.rwc1.sfba.home.net/denisl/passwdgen/download/passwdgen-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++, autoconf, automake
+
 %description
 passwdGen is a flexible but user-friendly random password generator. It should
 be extremely useful for network administrators, or simply those who wish to
