@@ -9,7 +9,7 @@
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
 Version: 1.25
-Release: 2
+Release: 3
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSLeay.pm/
@@ -17,7 +17,7 @@ URL: http://search.cpan.org/dist/Net-SSLeay.pm/
 Source: http://www.cpan.org/modules/by-module/Net/Net_SSLeay.pm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.00503
+BuildRequires: perl >= 0:5.00503, openssl-devel
 Requires: perl >= 0:5.00503
 
 %description
@@ -55,6 +55,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} INSTALLDIRS="vendor" PREFI
 %{perl_vendorarch}/auto/Net/SSLeay/
 
 %changelog
+* Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 1.25-3
+- Add missing openssl-devel build requirement.
+
 * Fri Mar 18 2005 Dag Wieers <dag@wieers.com> - 1.25-2
 - Cosmetic cleanup.
 
