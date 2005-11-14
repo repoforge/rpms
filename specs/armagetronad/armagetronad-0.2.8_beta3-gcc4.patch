@@ -1,0 +1,11 @@
+diff -Naupr armagetronad-0.2.8_beta3.orig/src/tron/gParser.cpp armagetronad-0.2.8_beta3/src/tron/gParser.cpp
+--- armagetronad-0.2.8_beta3.orig/src/tron/gParser.cpp	2005-10-22 02:31:29.000000000 +0200
++++ armagetronad-0.2.8_beta3/src/tron/gParser.cpp	2005-11-14 13:42:41.000000000 +0100
+@@ -6,6 +6,7 @@
+ #include <string.h>
+ #include <sys/types.h>
+ 
++#include "rSDL.h"
+ #include "eCoord.h"
+ #include "eGrid.h"
+ #include "gWall.h"

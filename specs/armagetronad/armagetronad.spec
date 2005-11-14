@@ -13,24 +13,24 @@
 %{?yd3:%define _without_xorg 1}
 
 %define desktop_vendor rpmforge
-%define prefix %{_prefix}/games/armagetronad
+%define prever beta3
 
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
-Version: 0.2.7.1
-Release: 2
+Version: 0.2.8
+Release: 0.1%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
 URL: http://armagetronad.sourceforge.net/
-Source: http://dl.sf.net/armagetronad/armagetronad-%{version}.tar.bz2
-Patch: armagetronad-0.2.7.1-gcc4.patch
+Source: http://dl.sf.net/armagetronad/armagetronad-%{version}%{?prever:_%{prever}}.src.tar.bz2
+Patch0: armagetronad-0.2.8_beta3-gcc4.patch
+Patch1: armagetronad-0.2.8_beta3-desktop.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: SDL_image >= 1.2.0, esound
-BuildRequires: gcc-c++, libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
-BuildRequires: XFree86-devel, SDL_image-devel, SDL-devel, esound-devel
-BuildRequires: /usr/bin/find, unzip, ImageMagick
-%{?_without_xorg:BuildRequires: XFree86-Mesa-libGLU}
-%{!?_without_xorg:BuildRequires: xorg-x11-Mesa-libGLU}
+BuildRequires: libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
+BuildRequires: SDL_image-devel, SDL-devel, esound-devel, libxml2-devel
+BuildRequires: /usr/bin/find, unzip
+%{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Obsoletes: armagetron <= 0.2.6.1
 Provides: armagetron = %{version}-%{release}
@@ -47,12 +47,16 @@ Available rpmbuild rebuild options :
 
 
 %prep
-%setup
-%patch -p1 -b .gcc4
+%setup -n armagetronad-%{version}%{?prever:_%{prever}}
+%patch0 -p1 -b .gcc4
+%patch1 -p1 -b .desktop
 
 
 %build
-%configure
+%configure \
+    --enable-music \
+    --disable-uninstall \
+    --disable-games
 %{__make} %{?_smp_mflags}
 
 
@@ -61,57 +65,43 @@ Available rpmbuild rebuild options :
 %makeinstall
 
 # Put the docs where we include them with %%doc
-%{__mv} %{buildroot}%{prefix}/doc _docs
+%{__mv} %{buildroot}%{_datadir}/doc/armagetronad/html _docs
 
-# Yeah, add an icon for the menu entry!
-%{__mkdir_p} %{buildroot}%{_datadir}/pixmaps
-convert tron.ico %{buildroot}%{_datadir}/pixmaps/armagetron.png
-
-## The wrapper script (overwrite the default)
-#%{__cat} > %{buildroot}%{_bindir}/armagetron << 'EOF'
-##!/bin/sh -e
-#
-#INSTALL=%{prefix}
-#VARDIR=$HOME/.armagetron/var
-#
-#if test ! -d $VARDIR ; then
-#    mkdir -p $VARDIR
-#        
-#    # Migrate old configuration
-#    files=$( find $HOME/.armagetron -type f -maxdepth 1 )
-# 
-#    test "$files" != "" && echo "Porting old configuration..." && mv $files $VARDIR
-#fi
-#
-#$INSTALL/bin/armagetron --datadir $INSTALL --configdir %{_sysconfdir}/armagetron --userconfigdir $HOME/.armagetron --vardir $VARDIR "$@"
-#
-#EOF
-
-%{__cat} > %{name}.desktop << EOF
-[Desktop Entry]
-Name=Armagetron Advanced
-Comment=Multiplayer 'Tron' 3D racing game
-Exec=%{_bindir}/armagetronad
-Icon=armagetron.png
-Terminal=false
-Type=Application
-Categories=Application;Game;
-Encoding=UTF-8
-EOF
+# Yeah, add icons for the menu entry!
+# New freedesktop locations
+%{__install} -D -p -m 0644 desktop/icons/large/armagetronad.png \
+    %{buildroot}%{_datadir}/icons/hicolor/48x48/armagetronad.png
+%{__install} -D -p -m 0644 desktop/icons/medium/armagetronad.png \
+    %{buildroot}%{_datadir}/icons/hicolor/32x32/armagetronad.png
+%{__install} -D -p -m 0644 desktop/icons/small/armagetronad.png \
+    %{buildroot}%{_datadir}/icons/hicolor/16x16/armagetronad.png
+# Legacy location (put 32 x 32 in there)
+%{__install} -D -p -m 0644 desktop/icons/medium/armagetronad.png \
+    %{buildroot}%{_datadir}/pixmaps/armagetronad.png
 
 %if %{!?_without_freedesktop:1}%{?_without_freedesktop:0}
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
+    --dir %{buildroot}%{_datadir}/applications  \
+    desktop/armagetronad.desktop
 %else
-%{__install} -Dp -m 644 %{name}.desktop \
-  %{buildroot}/etc/X11/applnk/Games/%{name}.desktop
+%{__install} -D -p -m 0644 desktop/armagetronad.desktop \
+    %{buildroot}/etc/X11/applnk/Games/armagetronad.desktop
 %endif
+
+# Workaround for 0.2.8_beta3 not finding the config files in /etc/
+%{__ln_s} /etc/armagetronad %{buildroot}%{_datadir}/armagetronad/config
 
 
 %clean
 %{__rm} -rf %{buildroot}
+
+
+%post
+gtk-update-icon-cache || :
+
+%postun
+gtk-update-icon-cache || :
 
 
 %files
@@ -119,26 +109,34 @@ desktop-file-install --vendor %{desktop_vendor} \
 %doc _docs/*
 %dir %{_sysconfdir}/armagetronad/
 %config(noreplace) %{_sysconfdir}/armagetronad/*
-%{_sysconfdir}/armagetronad/.orig/
 %{_bindir}/armagetronad
-%{_bindir}/armagetronad-stat
-%dir %{prefix}
-%exclude %{prefix}/COPYING.txt
-%{prefix}/arenas/
-%{prefix}/bin/
-%exclude %{prefix}/bin/uninstall
-%{prefix}/language/
-%exclude %{prefix}/log/
-%{prefix}/models/
-%{prefix}/music/
-%{prefix}/sound/
-%{prefix}/textures/
-%{_datadir}/pixmaps/armagetron.png
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Games/%{name}.desktop}
+%dir %{_datadir}/armagetronad/
+%{_datadir}/armagetronad/config
+%exclude %{_datadir}/armagetronad/desktop/
+%{_datadir}/armagetronad/language/
+%{_datadir}/armagetronad/models/
+%{_datadir}/armagetronad/resource/
+%exclude %{_datadir}/armagetronad/scripts/
+%{_datadir}/armagetronad/sound/
+%{_datadir}/armagetronad/textures/
+%{_datadir}/icons/hicolor/*/armagetronad.png
+%{_datadir}/pixmaps/armagetronad.png
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-armagetronad.desktop}
+%{?_without_freedesktop:/etc/X11/applnk/Games/armagetronad.desktop}
 
 
 %changelog
+* Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 0.2.8-0.1.beta3
+- Update to 0.2.8_beta3.
+- Update gcc4 patch (only one line left now).
+- Add new libxml2-devel build dependency.
+- Use included desktop icons, no longer convert the .ico file.
+- Use included desktop file, but patch it first (fixes + enhancements).
+- Add gtk-update-icon-cache scriplets.
+- Enable music.
+- Disable the "games path".
+- Add "config" symlink to workaround the config files not found (ugly, but...).
+
 * Fri Apr 22 2005 Matthias Saou <http://freshrpms.net/> 0.2.7.1-2
 - Added gcc4 patch (sf.net bug 1187292).
 

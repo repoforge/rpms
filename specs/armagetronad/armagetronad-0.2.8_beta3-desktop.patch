@@ -1,0 +1,21 @@
+diff -Naupr armagetronad-0.2.8_beta3.orig/desktop/armagetronad.desktop.in armagetronad-0.2.8_beta3/desktop/armagetronad.desktop.in
+--- armagetronad-0.2.8_beta3.orig/desktop/armagetronad.desktop.in	2005-10-22 02:31:26.000000000 +0200
++++ armagetronad-0.2.8_beta3/desktop/armagetronad.desktop.in	2005-11-14 14:29:12.000000000 +0100
+@@ -1,14 +1,11 @@
+ [Desktop Entry]
+-Type=Application
+-Version=@version@
+ Encoding=UTF-8
+ Name=@progtitle@@progtitle_server@
+ Exec=@progname@
+-Comment=3d light cycle game
++Comment=Multiplayer 3D light cycle game
+ Icon=@progname@.png
+ Terminal=@build_dedicated@
+ Path=@prefix@/bin
+ Type=Application
+-Categories=Application;Game;ActionGame;GameAction;ActionGames;GamesAction
+-StartupNotify=@build_dedicated@
+-MimeType=application/x-armagetronad;
++Categories=Application;Game;
++StartupNotify=false
