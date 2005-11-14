@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, cln-devel, gcc-c++
 BuildRequires: ImageMagick, gettext, glib2-devel >= 2.4
-BuildRequires: intltool, perl-XML-Parser
+BuildRequires: intltool, perl-XML-Parser, libxml2-devel
 Requires: gnuplot, wget
 
 %description

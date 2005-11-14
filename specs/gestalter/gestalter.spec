@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel >= 1.2.0, gnome-libs >= 1.4.0, gcc-c++
 BuildRequires: glib-devel >= 1.2.0, gtkmm2-devel >= 2.0.0
 BuildRequires: gdk-pixbuf-devel >= 0.18.0, libsigc++-devel >= 1.0.0
-BuildRequires: expat-devel >= 1.95.0, freetype-devel >= 2.0.0
+BuildRequires: expat-devel >= 1.95.0, freetype-devel >= 2.0.0, libxml-devel
 #%{?rh8:BuildRequires: gtkmm2-devel >= 2.0.0, gnomemm-devel >= 2.0.0}
 #%{?rh7:BuildRequires: gtkmm-devel >= 1.2.0, gnomemm-devel >= 1.2.1}
 %{?fc4:BuildRequires: libgnomemm26-devel}
