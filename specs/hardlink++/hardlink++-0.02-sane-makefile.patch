@@ -1,0 +1,13 @@
+diff -Nuar hardlink++-0.02.orig/Makefile hardlink++-0.02/Makefile
+--- hardlink++-0.02.orig/Makefile	2003-08-14 12:59:21.000000000 -0700
++++ hardlink++-0.02/Makefile	2005-01-29 20:00:47.618746992 -0800
+@@ -1,2 +1,7 @@
+-hardlink++: hardlink.cpp hardlink.h
+-	g++ -Wall -o hardlink++ hardlink.cpp
++CXX := g++
++CXXFLAGS := 
++BIN := hardlink++
++SRC := hardlink.cpp
++
++$(BIN): $(SRC)
++	$(CXX) -Wall $(CXXFLAGS) -o $@ $^

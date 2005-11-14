@@ -3,14 +3,15 @@
 Summary: Rewrite in C++ of the hardlink utility
 Name: hardlink++
 Version: 0.02
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Base
 Source: http://www.sodarock.com/hardlink/hardlink++-%{version}.tgz
-Patch: hardlink++-0.02-stdio.patch
+Patch0: hardlink++-0.02-stdio.patch
+Patch1: hardlink++-0.02-sane-makefile.patch
+Patch2: hardlink++-0.02-gcc34-optimize-help.patch
 URL: http://www.sodarock.com/hardlink/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: libstdc++
 BuildRequires: gcc-c++, libstdc++-devel
 
 %description
@@ -20,16 +21,18 @@ structures and creates hard links for identical files found.
 
 %prep
 %setup
-%patch -p1 -b .stdio
+%patch0 -p1 -b .stdio
+%patch1 -p1 -b .sane-makefile
+%patch2 -p1 -b .gcc34-optimize-help
 
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CXXFLAGS="%{optflags}"
 
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 hardlink++ %{buildroot}%{_bindir}/hardlink++
+%{__install} -D -p -m 0755 hardlink++ %{buildroot}%{_bindir}/hardlink++
 
 
 %clean
@@ -43,6 +46,10 @@ structures and creates hard links for identical files found.
 
 
 %changelog
+* Mon Nov 14 2004 Matthias Saou <http://freshrpms.net/> 0.02-2
+- Include sane-makefile and gcc43-optimize-help patches from Gentoo.
+- Pass CXXFLAGS to the build.
+
 * Fri Jan  9 2004 Matthias Saou <http://freshrpms.net/> 0.02-1
 - Initial RPM release.
 

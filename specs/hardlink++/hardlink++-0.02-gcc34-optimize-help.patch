@@ -1,0 +1,48 @@
+diff -Nuar hardlink++-0.02.orig/hardlink.cpp hardlink++-0.02/hardlink.cpp
+--- hardlink++-0.02.orig/hardlink.cpp	2003-08-14 19:25:32.000000000 -0700
++++ hardlink++-0.02/hardlink.cpp	2005-01-29 19:57:12.312478520 -0800
+@@ -171,7 +171,7 @@
+ 
+ // If two files have the same inode and are on the same device then they are
+ // already hardlinked.
+-bool isAlreadyHardlinked(
++inline bool isAlreadyHardlinked(
+     const struct stat & st1,     // first file's status
+     const struct stat & st2 )    // second file's status
+ {
+@@ -185,7 +185,7 @@
+ 
+ // Determine if a file is eligibile for hardlinking.  Files will only be
+ // considered for hardlinking if this function returns true.
+-bool eligibleForHardlink(
++inline bool eligibleForHardlink(
+     const struct stat & st1,     // first file's status
+     const struct stat & st2 )    // second file's status
+ {
+@@ -203,7 +203,7 @@
+         );
+ }
+ 
+-bool getFileStatus( const string & filename, struct stat & st )
++inline bool getFileStatus( const string & filename, struct stat & st )
+ {
+     // Get the file status
+     if ( !lstat ( filename.c_str(), &st ) )
+diff -Nuar hardlink++-0.02.orig/hardlink.h hardlink++-0.02/hardlink.h
+--- hardlink++-0.02.orig/hardlink.h	2003-08-14 17:24:59.000000000 -0700
++++ hardlink++-0.02/hardlink.h	2005-01-29 19:55:40.699405824 -0800
+@@ -103,10 +103,10 @@
+     public:
+ 	// cStats( void ):dircount(0) {}
+ 
+-	void foundDirectory( void ) { ++dircount; }
+-	void foundRegularFile( void ) { ++regularfiles; }
+-	void didComparison( void ) { ++comparisons; }
+-	void foundHardlink( const off_t filesize  )
++	inline void foundDirectory( void ) { ++dircount; }
++	inline void foundRegularFile( void ) { ++regularfiles; }
++	inline void didComparison( void ) { ++comparisons; }
++	inline void foundHardlink( const off_t filesize  )
+ 	{
+ 	    ++hardlinked_previously;
+ 	    bytes_saved_previously += filesize;
