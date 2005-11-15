@@ -6,7 +6,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.8.4
+Version: 0.9
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -78,6 +78,9 @@ EOF
 %{_localstatedir}/lib/trac/
 
 %changelog
+* Tue Nov 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.9-1
+- Updated to release 0.9.
+
 * Tue Jul 19 2005 Dag Wieers <dag@wieers.com> - 0.8.4-1
 - Updated to release 0.8.4.
 
