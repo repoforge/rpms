@@ -12,7 +12,7 @@
 
 Summary: Enhanced branch of the sylpheed e-mail client
 Name: sylpheed-claws
-Version: 1.9.15
+Version: 1.9.100
 Release: 1%{?extraver:.%{extraver}}
 License: GPL
 Group: Applications/Internet
@@ -25,7 +25,7 @@ Requires: gtk2 >= 2.0.0, gdk-pixbuf >= 0.8.0
 BuildRequires: gtk2-devel >= 2.0.0, gdk-pixbuf-devel >= 0.8.0
 BuildRequires: flex, pkgconfig, gcc-c++
 BuildRequires: openssl-devel, gpgme-devel >= 0.4.5, openldap-devel
-BuildRequires: compface-devel, libetpan-devel >= 0.39
+BuildRequires: compface-devel, libetpan-devel >= 0.40
 BuildRequires: startup-notification-devel
 %{?gettextdevel:BuildRequires: gettext-devel}
 BuildRequires: gettext
@@ -103,7 +103,7 @@ desktop-file-install \
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog* README* TODO*
-%{_bindir}/sylpheed
+%{_bindir}/sylpheed-claws
 %{_includedir}/sylpheed-claws
 %{_libdir}/pkgconfig/sylpheed-claws.pc
 %dir %{_libdir}/sylpheed-claws
@@ -120,10 +120,15 @@ desktop-file-install \
 %endif
 %{_datadir}/pixmaps/sylpheed-claws.png
 %{_datadir}/sylpheed-claws/
-%{_mandir}/man1/sylpheed.1*
+%{_mandir}/man1/sylpheed-claws.1*
 
 
 %changelog
+* Thu Nov 17 2005 Matthias Saou <http://freshrpms.net/> 1.9.100-1
+- Update to 1.9.100.
+- Binary and man page are s/sylpheed/sylpheed-claws/ too now.
+- Update libetpan dependency to >= 0.40.
+
 * Mon Oct 10 2005 Matthias Saou <http://freshrpms.net/> 1.9.15-1
 - Update to 1.9.15.
 - Update libetpan dependency to >= 0.39.

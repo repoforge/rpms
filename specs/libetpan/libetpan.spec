@@ -1,6 +1,9 @@
+# $Id$
+# Authority: matthias
+
 Summary: Portable mail access library
 Name: libetpan
-Version: 0.39.1
+Version: 0.40
 Release: 1
 License: BSD
 Group: System Environment/Libraries
@@ -31,7 +34,7 @@ the libetpan library.
 
 
 %prep
-%setup -n %{name}-0.39
+%setup
 
 
 %build
@@ -42,7 +45,7 @@ the libetpan library.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-# Fix execution bit on the library so that it gets properly stripped
+# Fix execution bit on the library to get it properly stripped (still in 0.40)
 %{__chmod} +x %{buildroot}%{_libdir}/*.so.*
 
 
@@ -72,6 +75,9 @@ the libetpan library.
 
 
 %changelog
+* Thu Nov 17 2005 Matthias Saou <http://freshrpms.net/> 0.40-1
+- Update to 0.40.
+
 * Mon Oct 11 2005 Matthias Saou <http://freshrpms.net/> 0.39.1-1
 - Update to 0.39.1.
 
