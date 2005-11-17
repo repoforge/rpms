@@ -14,6 +14,7 @@ Source: http://download.berlios.de/libral/libral-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libxml2-devel, pkgconfig, gcc-c++
+BuildRequires: glib2-devel
 
 %description
 Libral is an address book engine. It allows you to create your address books 

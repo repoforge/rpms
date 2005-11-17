@@ -13,7 +13,7 @@ URL: http://kamix.sourceforge.net
 Source: http://dl.sf.net/kamix/kamix-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gcc-c++, gettext
+BuildRequires: kdelibs-devel, gcc-c++, gettext, autoconf, automake
 
 %description
 kamix is a mixer for KDE and ALSA, with more features than kmix (or at least 

@@ -6,7 +6,7 @@
 
 Summary: Image viewing utility
 Name: gliv
-Version: 1.9.3
+Version: 1.9.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -86,6 +86,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/gnome-gliv.desktop
 
 %changelog
+* Thu Nov 17 2005 Dries Verachtert <dries@ulyssis.org> - 1.9.4-1
+- Updated to release 1.9.4.
+
 * Fri May 27 2005 Dag Wieers <dag@wieers.com> - 1.9.3-1
 - Updated to release 1.9.3.
 

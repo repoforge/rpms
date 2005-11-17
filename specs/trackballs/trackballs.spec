@@ -15,7 +15,7 @@
 
 Summary: Steer a marble ball through a labyrinth
 Name: trackballs
-Version: 1.1.0
+Version: 1.1.1
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -61,6 +61,9 @@ sed -i "s/chgrp/#chgrp/g;" share/Makefile*
 %{_datadir}/trackballs
 
 %changelog
+* Thu Nov 17 2005 Dries Verachtert <dries@ulyssis.org> 1.1.1-1
+- Update to release 1.1.1.
+
 * Sat Mar 05 2005 Dries Verachtert <dries@ulyssis.org> 1.1.0-1
 - Update to release 1.1.0.
 
