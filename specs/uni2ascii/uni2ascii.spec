@@ -13,6 +13,8 @@ URL: http://billposer.org/Software/uni2ascii.html
 Source: http://billposer.org/Software/Downloads/uni2ascii.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: python, python-devel
+
 %description
 uni2ascii and ascii2uni convert between UTF-8 Unicode and more than a 
 dozen 7-bit ASCII equivalents including: hexadecimal and decimal HTML 

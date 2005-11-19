@@ -4,14 +4,14 @@
 
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
-Version: 0.37
+Version: 0.37.4
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://66.93.236.84/~jedwin/projects/chmlib/
 
 Source: http://66.93.236.84/~jedwin/projects/chmlib/chmlib-%{version}.tgz
-Patch0: chmlib-0.31-morearchs.patch
+#Patch0: chmlib-0.31-morearchs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libtool, gcc-c++
@@ -30,12 +30,13 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -n %{name}-0.37
 #patch0 -p1
 
 %build
 %configure
-%{__make} %{?_smp_mflags} INSTALLPREFIX="%{_prefix}"
+# %{?_smp_mflags}
+%{__make}  INSTALLPREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -80,6 +81,9 @@ you will need to install %{name}-devel.
 %{_includedir}/chm_lib.h
 
 %changelog
+* Thu Nov 17 2005 Dries Verachtert <dries@ulyssis.org> - 0.37.4-1
+- Updated to release 0.37.4.
+
 * Mon Nov 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.37-1
 - Updated to release 0.37.
 

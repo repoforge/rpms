@@ -14,7 +14,7 @@ Source: http://files.randombit.net/botan/archive/v1.4/Botan-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, perl
-#BuildRequires: compat-gcc-c++
+%{?fc4:BuildRequires: compat-gcc-32-c++}
 
 %description
 Botan is a library, written in C++. It's main purpose it to provide an easy
@@ -37,9 +37,10 @@ you will need to install %{name}-devel.
 %setup -n Botan-%{version}
 
 %build
+%{expand: %%define optflags -O2}
 ./configure.pl \
 	--prefix="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CXX=g++32
 
 %install
 %{__rm} -rf %{buildroot}
