@@ -3,7 +3,7 @@
 
 Summary: Portable C library for dynamically generating PDF files
 Name: pdflib
-Version: 6.0.1
+Version: 6.0.2
 Release: 1
 License: See PDFlib-license.pdf
 Group: System Environment/Libraries
@@ -62,11 +62,9 @@ the PDFlib library.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -86,6 +84,9 @@ the PDFlib library.
 
 
 %changelog
+* Mon Nov 21 2005 Matthias Saou <http://freshrpms.net/> 6.0.2-1
+- Update to 6.0.2.
+
 * Wed Jun  1 2005 Matthias Saou <http://freshrpms.net/> 6.0.1-1
 - Update to 6.0.1 "Lite".
 
