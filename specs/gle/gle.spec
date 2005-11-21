@@ -16,7 +16,7 @@
 Summary: Graphics Layout Engine
 Name: gle
 Version: 4.0.10
-Release: 1
+Release: 2
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.gle-graphics.org/
@@ -42,6 +42,7 @@ JPEG, and PNG.
 %setup
 
 %build
+export GLE_TOP=%{builddir}/%{name}-%{version}/src/fonts
 %{__make} %{?_smp_mflags} -f Makefile.gcc
 
 %install
@@ -58,5 +59,8 @@ JPEG, and PNG.
 %{_datadir}/gle
 
 %changelog
+* Sat Nov 19 2005 Jonas Frantz <jonas.frantz@welho.com> - 4.0.10-2
+- Fix problem with making inittex.ini
+
 * Mon Nov 08 2005 Dries Verachtert <dries@ulyssis.org> - 4.0.10-1
 - Initial package.

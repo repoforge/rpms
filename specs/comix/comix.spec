@@ -4,7 +4,7 @@
 
 Summary: Comic book viewer
 Name: comix
-Version: 1.6
+Version: 2.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -43,5 +43,8 @@ python install.py install --installdir %{buildroot}%{_prefix}
 %{_datadir}/applications/*comix.desktop
 
 %changelog
+* Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 2.0-1
+- Updated to release 2.0.
+
 * Mon Nov 07 2005 Dries Verachtert <dries@ulyssis.org> - 1.6-1
 - Initial package.

@@ -4,7 +4,7 @@
 
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
-Version: 0.7
+Version: 0.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -53,5 +53,8 @@ or the plain data for each tag (here is a sample)
 %{_libdir}/libexiv2*
 
 %changelog
+* Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.8-1
+- Updated to release 0.8.
+
 * Sun Jun 25 2005 Dries Verachtert <dries@ulyssis.org> 0.7-1
 - initial package

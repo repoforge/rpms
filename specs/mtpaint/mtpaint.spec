@@ -4,7 +4,7 @@
 
 Summary: Painting program for creating icons and pixel-based artwork
 Name: mtpaint
-Version: 2.03
+Version: 2.10
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -63,6 +63,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 2.10-1
+- Updated to release 2.10.
+
 * Sat Sep 24 2005 Dries Verachtert <dries@ulyssis.org> - 2.03-1
 - Updated to release 2.03.
 
