@@ -6,14 +6,14 @@
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
-%define desktop_vendor rpmforge
-
 %define real_name BitTorrent
+
+%define desktop_vendor rpmforge
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.1.4
-Release: 2
+Version: 4.2.0
+Release: 1
 License: BitTorrent Open Source License
 Group: Applications/Internet
 URL: http://bittorrent.com/
@@ -123,6 +123,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{python_sitelib}/khashmir/
 
 %changelog
+* Sat Nov 26 2005 Dag Wieers <dag@wieers.com> - 4.2.0-2
+- Updated to release 4.2.0.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 4.1.4-2
 - Added python-crypto dependency. (Jim Perrin, Petr Klíma)
 

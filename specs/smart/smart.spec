@@ -19,13 +19,14 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.39
-Release: 3
+Version: 0.40
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
 
-Source: http://linux-br.conectiva.com.br/~niemeyer/smart/files/smart-%{version}.tar.bz2
+#Source: http://labix.org/smart?action=AttachFile&do=get&target=smart-%{version}.tar.bz2
+Source: smart-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, rpm-python
@@ -244,6 +245,9 @@ cd -
 %endif
 
 %changelog
+* Thu Oct 06 2005 Dag Wieers <dag@wieers.com> - 0.40-1
+- Updated to release 0.40.
+
 * Mon Sep 19 2005 Dries Verachtert <dries@ulyssis.org> - 0.39-3
 - Fix by Jeff Pitman: ksmarttray requires smart-gui.
 

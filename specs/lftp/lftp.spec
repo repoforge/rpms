@@ -9,14 +9,13 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 3.2.1
-Release: 3
+Version: 3.3.4
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
 
-Source: http://www.ibiblio.org/pub/Linux/system/network/file-transfer/lftp-%{version}.tar.gz
-#Source: http://ftp.yars.free.net/pub/software/unix/net/ftp/client/lftp/lftp-%{version}.tar.bz2
+Source: http://ftp.yars.free.net/pub/source/lftp/lftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, openssl-devel, pkgconfig, readline-devel, gcc-c++
@@ -58,6 +57,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{_libdir}/lftp/
 
 %changelog
+* Sat Nov 26 2005 Dag Wieers <dag@wieers.com> - 3.3.4-1
+- Updated to release 3.3.4.
+
 * Thu Aug 11 2005 Dag Wieers <dag@wieers.com> - 3.2.1-3
 - Fixed missing ssl support on rh9 and el3. (Michael McCallister)
 

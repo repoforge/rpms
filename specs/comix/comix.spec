@@ -4,7 +4,7 @@
 
 Summary: Comic book viewer
 Name: comix
-Version: 2.0
+Version: 2.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -29,7 +29,7 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_prefix}
-python install.py install --installdir %{buildroot}%{_prefix}
+%{__python} install.py install --installdir %{buildroot}%{_prefix}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -37,12 +37,15 @@ python install.py install --installdir %{buildroot}%{_prefix}
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
-%doc %{_mandir}/man1/comix*
+%doc %{_mandir}/man1/comix.1*
 %{_bindir}/comix
 %{_datadir}/pixmaps/comix.png
 %{_datadir}/applications/*comix.desktop
 
 %changelog
+* Sat Nov 26 2005 Dag Wieers <dag@wieers.coM> - 2.1-1
+- Updated to release 2.1.
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Updated to release 2.0.
 
