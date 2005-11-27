@@ -3,14 +3,14 @@
 
 Summary: Multimedia container format library
 Name: libmatroska
-Version: 0.7.7
+Version: 0.8.0
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.matroska.org/
 Source: http://dl.matroska.org/downloads/libmatroska/libmatroska-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, libebml-devel >= 0.7.5
+BuildRequires: gcc-c++, libebml-devel >= 0.7.6
 
 %description
 In short, matroska is a new Audio/Video container file format. It is an
@@ -69,11 +69,9 @@ the Matroska container format library.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -89,6 +87,9 @@ the Matroska container format library.
 
 
 %changelog
+* Sun Nov 27 2005 Matthias Saou <http://freshrpms.net/> 0.8.0-1
+- Update to 0.8.0.
+
 * Tue May 31 2005 Matthias Saou <http://freshrpms.net/> 0.7.7-1
 - Update to 0.7.7.
 - Shared lib is now built by default, so include it at last.

@@ -3,7 +3,7 @@
 
 Summary: Extensible Binary Meta Language library
 Name: libebml
-Version: 0.7.5
+Version: 0.7.6
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -53,11 +53,9 @@ use the Extensible Binary Meta Language.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -73,6 +71,9 @@ use the Extensible Binary Meta Language.
 
 
 %changelog
+* Sun Nov 27 2005 Matthias Saou <http://freshrpms.net/> 0.7.6-1
+- Update to 0.7.6.
+
 * Tue May 31 2005 Matthias Saou <http://freshrpms.net/> 0.7.5-1
 - Update to 0.7.5.
 - Shared lib is now built by default, so include it at last.
