@@ -4,7 +4,7 @@
 
 Summary: Reliable 802.11 (wireless) sniffer and WEP key cracker
 Name: aircrack
-Version: 2.23
+Version: 2.41
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -33,7 +33,7 @@ Reliable 802.11 (wireless) sniffer and WEP key cracker
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README* linux/patch/*.patch
+%doc ChangeLog README* linux/patch/*.patch linux/kismet.conf~ airmon.sh
 #%{_bindir}/802ether
 %{_bindir}/aircrack
 %{_bindir}/airdecap
@@ -41,8 +41,13 @@ Reliable 802.11 (wireless) sniffer and WEP key cracker
 %{_bindir}/airmon.sh
 %{_bindir}/airodump
 %{_bindir}/arpforge
+%{_bindir}/mergeivs
+%{_bindir}/pcap2ivs
 
 %changelog
+* Sat Nov 26 2005 Dag Wieers <dag@wieers.com> - 2.41-1
+- Updated to release 2.41.
+
 * Thu Aug 18 2005 Dag Wieers <dag@wieers.com> - 2.23-1
 - Updated to release 2.23.
 

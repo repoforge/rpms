@@ -42,7 +42,7 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir} \
 			%{buildroot}%{_includedir}
-%{__make} install DESTDIR="%{buildroot}" INSTALLPREFIX="%{buildroot}%{_prefix}" libdir="%{buildroot}%{_libdir}"
+%{__make} install DESTDIR="%{buildroot}" INSTALLPREFIX="%{_prefix}" libdir="%{_libdir}"
 #%{__install} -Dp -m0755 chm_http %{buildroot}%{_bindir}/chm_http
 #%{__install} -Dp -m0755 enum_chmLib %{buildroot}%{_bindir}/enum_chmLib
 #%{__install} -Dp -m0755 enumdir_chmLib %{buildroot}%{_bindir}/enumdir_chmLib

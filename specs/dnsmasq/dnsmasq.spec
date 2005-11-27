@@ -4,7 +4,7 @@
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
-Version: 2.23
+Version: 2.24
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -124,7 +124,7 @@ EOF
 %{__install} -Dp -m0755 src/dnsmasq %{buildroot}%{_sbindir}/dnsmasq
 %{__install} -Dp -m0644 dnsmasq.conf.example %{buildroot}%{_sysconfdir}/dnsmasq.conf
 %{__install} -Dp -m0755 dnsmasq.sysv %{buildroot}%{_initrddir}/dnsmasq
-%{__install} -Dp -m0644 dnsmasq.8 %{buildroot}%{_mandir}/man8/dnsmasq.8
+%{__install} -Dp -m0644 man/dnsmasq.8 %{buildroot}%{_mandir}/man8/dnsmasq.8
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/misc/
 
@@ -148,7 +148,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG contrib/* COPYING dnsmasq.conf.example doc.html FAQ setup.html UPGRADING_to_2.0
+%doc CHANGELOG contrib/* COPYING dnsmasq.conf.example FAQ UPGRADING_to_2.0 *.html
 %doc %{_mandir}/man8/dnsmasq.8*
 %config(noreplace) %{_sysconfdir}/dnsmasq.conf
 %config %{_initrddir}/dnsmasq
@@ -156,6 +156,9 @@ fi
 %{_localstatedir}/lib/misc/
 
 %changelog
+* Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - 2.24-1
+- Updated to release 2.24.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 2.23-1
 - Updated to release 2.23.
 
