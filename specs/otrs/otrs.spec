@@ -5,11 +5,11 @@
 %{?dist: %{expand: %%define %dist 1}}
 
 %define logmsg logger -t %{name}/rpm
-%define real_version 2.0.3-01
+%define real_version 2.0.4-01
 
 Summary: Open Ticket Request System
 Name: otrs
-Version: 2.0.3
+Version: 2.0.4
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -158,6 +158,9 @@ fi
 %doc doc/
 
 %changelog
+* Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1
+- Updated to release 2.0.4.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1
 - Updated to release 2.0.3.
 

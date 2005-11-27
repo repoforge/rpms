@@ -4,7 +4,7 @@
 
 Summary: Functions for network programs
 Name: netwib
-Version: 5.31.0
+Version: 5.32.0
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -51,5 +51,8 @@ cd src
 %{_libdir}/libnetwib*.a
 
 %changelog
+* Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> - 5.32.0-1
+- Initial package.
+
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 5.31.0-1
 - Initial package.

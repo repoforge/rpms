@@ -5,8 +5,8 @@
 
 Summary: CSS stylesheets editor
 Name: cssed
-Version: 0.3.0
-Release: 2
+Version: 0.4.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://cssed.sourceforge.net/
@@ -58,6 +58,9 @@ EOF
 %{_mandir}/man1/cssed*
 
 %changelog
+* Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> - 0.4.0-1
+- Updated to release 0.4.0.
+
 * Wed Nov 17 2004 Dries Verachtert <dries@ulyssis.org> 0.3.0-2
 - Fix of the source url (Thanks to Marek Matulka!)
 
