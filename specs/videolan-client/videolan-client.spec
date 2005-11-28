@@ -39,20 +39,18 @@
 %{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
-%define ffmpeg_date    20050624
+%define ffmpeg_date    20051126
 %define real_name      vlc
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.8.2
-Release: 3
+Version: 0.8.4
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
-Source0: http://download.videolan.org/pub/vlc/%{version}/vlc-%{version}.tar.bz2
-Source1: http://download.videolan.org/pub/vlc/0.8.1/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
-Patch0: vlc-0.8.2-64bit.patch
-Patch1: vlc-0.8.2-asm.patch
+Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
+Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, libxml2-devel
 BuildRequires: libgcrypt-devel, gnutls-devel
@@ -74,8 +72,8 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_vorbis:BuildRequires: libvorbis-devel}
 %{!?_without_speex:BuildRequires: speex-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
-%{?_with_x264:BuildRequires: x264-devel}
-%{!?_without_sdl:BuildRequires: SDL-devel}
+%{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_sdl:BuildRequires: SDL-devel, SDL_image-devel}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
 %{!?_without_aa:BuildRequires: aalib-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
@@ -90,6 +88,12 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{?_with_ncurses:BuildRequires: ncurses-devel}
 %{?_with_glide:BuildRequires: Glide3-devel}
 %{!?_without_cdio:BuildRequires: libcdio-devel}
+# Added in 0.8.4
+%{!?_without_gnomevfs:BuildRequires: gnome-vfs2-devel}
+%{?_with_hal:BuildRequires: hal-devel}
+%{!?_without_vcd:BuildRequires: vcdimager-devel}
+%{?_with_avahi:BuildRequires: avahi-devel}
+%{!?_without_daap:BuildRequires: libopendaap-devel}
 Conflicts: vlc
 
 %description
@@ -98,13 +102,14 @@ audio and video formats (MPEG-1, MPEG-2, MPEG-4, DivX, mp3, ogg, ...) as
 well as DVDs, VCDs, and various streaming protocols.
 
 Available rpmbuild rebuild options :
---with mga ncurses glide pth mozilla portaudio
+--with mga ncurses glide pth mozilla portaudio avahi hal
 --without dvdread dvdnav dvbpsi v4l avi asf aac ogg mad ffmpeg cdio
           a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwin xosd
-          lsp lirc id3tag faad2 theora mkv modplug smb speex glx
+          lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
+          gnomevfs vcd daap
 
 Options that would need not yet existing add-on packages :
---with tremor tarkin svgalib ggi x264
+--with tremor tarkin svgalib ggi
 
 
 %package devel
@@ -123,21 +128,19 @@ to link statically to it.
 
 %prep
 %setup -n %{real_name}-%{version} -a 1
-%patch0 -p1 -b .64bit
-%patch1 -p1 -b .asm
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
 
 %build
+export CFLAGS="%{optflags}"
 # Build bundeled ffmpeg first
 pushd ffmpeg-%{ffmpeg_date}
-    %configure \
-        --disable-shared \
-        --enable-gpl \
-        --enable-pp \
+    ./configure \
         --enable-mp3lame \
-        --enable-faac
+        --enable-faac \
+        --enable-pp \
+        --enable-gpl
     %{__make} %{?_smp_mflags}
 popd
 
@@ -147,8 +150,6 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 %endif
 
 %configure \
-    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
-    --program-prefix="%{?_program_prefix}" \
     --enable-release \
     %{!?_without_dvdread:--enable-dvdread} \
     %{?_without_dvdnav:--disable-dvdnav} \
@@ -255,12 +256,22 @@ desktop-file-install --vendor %{desktop_vendor} \
 %doc HACKING
 %{_bindir}/vlc-config
 %{_includedir}/vlc/
-%dir %{_libdir}/vlc/
-%{_libdir}/vlc/*.a
-%{_libdir}/libvlc.a
+#dir %{_libdir}/vlc/
+%exclude %{_libdir}/vlc/*.a
+%exclude %{_libdir}/libvlc.a
 
 
 %changelog
+* Sun Nov 27 2005 Matthias Saou <http://freshrpms.net/> 0.8.4-1
+- Update to 0.8.4.
+- Remove no longer needed 64bit and asm patches.
+- Exclude static libraries (from the devel package).
+- Add SDL_image-devel to the sdl conditional build (now checked for).
+- Add gnome-vfs, vcdimager, libopendaap support.
+- Ready for bonjour support (avahi will be in FC5).
+- Now enable x264 by default (there are freshrpms.net packages of it now).
+- Add hal, but disable for now (build fails on FC4).
+
 * Tue Jul 12 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-3
 - Force altivec gcc flags on ppc as configure doesn't set them properly.
 - Fix PLUGIN_PATH path for lib64 (they got searched for in lib, not lib64).
