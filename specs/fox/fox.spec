@@ -24,8 +24,8 @@ URL: http://www.fox-toolkit.com
 Source: ftp://ftp.fox-toolkit.com/pub/fox-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, automake, autoconf, zlib-devel bzip2-devel
-BuildRequires: libpng-devel libjpeg-devel libtiff-devel
+BuildRequires: gcc-c++, automake, autoconf, zlib-devel, bzip2-devel
+BuildRequires: libpng-devel, libjpeg-devel, libtiff-devel
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

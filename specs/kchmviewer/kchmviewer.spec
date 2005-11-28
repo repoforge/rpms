@@ -16,7 +16,7 @@
 
 Summary: CHM file viewer
 Name: kchmviewer
-Version: 1.2
+Version: 1.3
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -64,6 +64,9 @@ source  /etc/profile.d/qt.sh
 %{_datadir}/services/msits.protocol
 
 %changelog
+* Mon Nov 28 2005 Dries Verachtert <dries@ulyssis.org>  1.3-1
+- Upgrade to release 1.3.
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org>  1.2-1
 - Upgrade to release 1.2.
 

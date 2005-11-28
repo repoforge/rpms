@@ -11,7 +11,7 @@
 
 Summary: Open Source color management engine
 Name: lcms
-Version: 1.14
+Version: 1.15
 Release: 1
 License: MIT
 Group: System Environment/Libraries
@@ -84,6 +84,7 @@ engine.
 %{_bindir}/icclink
 %{_bindir}/icctrans
 %{_bindir}/jpegicc
+%{_bindir}/tiffdiff
 %{_bindir}/tifficc
 %{_bindir}/wtpt
 %{_libdir}/liblcms.so.*
@@ -108,5 +109,8 @@ engine.
 %endif
 
 %changelog
+* Mon Nov 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.15-1
+- Updated to release 1.15.
+
 * Wed Jan 19 2005 Dag Wieers <dag@wieers.com> - 1.14-1
 - Initial package. (using DAR)
