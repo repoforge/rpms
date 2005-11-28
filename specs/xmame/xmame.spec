@@ -23,7 +23,7 @@
 
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
-Version: 0.101
+Version: 0.102
 Release: 1%{?rcver:.%{rcver}}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.81 - 21/04/2004
@@ -37,7 +37,6 @@ Source23: http://www.mameworld.net/mameinfo/update/Mameinfo0100u3.zip
 # http://www.mameworld.net/catlist/ 0.99u2 - 12/09/2005
 Source30: http://www.mameworld.net/catlist/files/catver.zip
 Patch0: xmame-0.100-libgl.patch
-Patch1: xmame-0.101-messkbdfix.patch
 License: MAME
 URL: http://x.mame.net/
 Group: Applications/Emulators
@@ -84,7 +83,6 @@ see http://www.mess.org/.
 %prep
 %setup
 %patch0 -p1 -b .libgl
-%patch1 -p1 -b .messkbdfix
 # Cleanup CVS stuff
 find . -type d -name CVS | xargs %{__rm} -rf
 
@@ -262,6 +260,9 @@ popd
 
 
 %changelog
+* Sun Nov 27 2005 Matthias Saou <http://freshrpms.net/> 0.102-1
+- Update to 0.102.
+
 * Tue Oct 25 2005 Matthias Saou <http://freshrpms.net/> 0.101-1
 - Update to 0.101.
 - Include fix for MESS keyboard input.
