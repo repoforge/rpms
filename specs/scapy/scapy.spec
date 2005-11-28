@@ -8,9 +8,9 @@ Version: 1.0.2
 Release: 1
 License: GPL
 Group: Applications/Internet
-URL: http://www.cartel-securite.fr/pbiondi/projects/scapy.html
+URL: http://www.secdev.org/projects/scapy/
 
-Source: http://www.cartel-securite.fr/pbiondi/projects/scapy/files/scapy-%{version}.tar.gz
+Source: http://www.secdev.org/projects/scapy/files/scapy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
