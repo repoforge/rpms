@@ -7,12 +7,11 @@
 %{?el2:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
-%define _bindir /usr/X11R6/bin
 
 Summary: heXoNet RFB (remote control for the X Window System)
 Name: rfb
 Version: 0.6.1
-Release: 4
+Release: 5
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.hexonet.de/software/rfb/
@@ -84,18 +83,18 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -p -m0644 man/man1/* %{buildroot}%{_mandir}/man1/
-%{__install} -Dps -m0755 x0rfbserver/x0rfbserver %{buildroot}%{_bindir}/x0rfbserver
-%{__install} -Dps -m0755 xvncconnect/xvncconnect %{buildroot}%{_bindir}/xvncconnect
-%{__install} -Dps -m0755 xrfbviewer/xplayfbs %{buildroot}%{_bindir}/xplayfbs
-%{__install} -Dps -m0755 xrfbviewer/xrfbviewer %{buildroot}%{_bindir}/xrfbviewer
-%{__install} -Dps -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}/rfbcat
+%{__install} -Dp -m0755 x0rfbserver/x0rfbserver %{buildroot}%{_bindir}/x0rfbserver
+%{__install} -Dp -m0755 xvncconnect/xvncconnect %{buildroot}%{_bindir}/xvncconnect
+%{__install} -Dp -m0755 xrfbviewer/xplayfbs %{buildroot}%{_bindir}/xplayfbs
+%{__install} -Dp -m0755 xrfbviewer/xrfbviewer %{buildroot}%{_bindir}/xrfbviewer
+%{__install} -Dp -m0755 rfbcat/rfbcat %{buildroot}%{_bindir}/rfbcat
 
 %if %{?_without_freedesktop:1}0
 	%{__install} -Dp -m0644 x0rfbserver.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/x0rfbserver.desktop
 	%{__install} -Dp -m0644 xvncconnect.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/xvncconnect.desktop
 %else
         install -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor "%{desktop_vendor}"              \
+        desktop-file-install --vendor "%{desktop_vendor}"  \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 x0rfbserver.desktop xvncconnect.desktop
@@ -113,6 +112,10 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Sun Nov  6 2005 Matthias Saou <http://freshrpms.net/> 0.6.1-5
+- Remove /usr/X11R6/bin bindir, it's obsoleted with the newest X.org server.
+- Don't strip binaries upon install to get useful debuginfo packages.
+
 * Mon Jan 19 2004 Dag Wieers <dag@wieers.com> - 0.6.1-4
 - Added desktop-files.
 - Added requirements for compat-libstdc++.
@@ -125,3 +128,4 @@ EOF
 
 * Sun Dec 15 2002 Dag Wieers <dag@wieers.com> - 0.6.1-0
 - Initial package. (using DAR)
+

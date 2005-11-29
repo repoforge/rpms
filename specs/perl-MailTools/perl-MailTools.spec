@@ -11,7 +11,7 @@
 Summary: MailTools module for perl 
 Name: perl-MailTools
 Version: 1.67
-Release: 1
+Release: 2
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MailTools/
@@ -26,10 +26,10 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
 %{?rh7:BuildRequires: perl-libnet >= 1.05}
 Requires: perl >= 0:5.00503
-%{?rh7:BuildRequires: perl-libnet >= 1.05}
+%{?rh7:Requires: perl-libnet >= 1.05}
 
 %description
-MailTools module for perl
+MailTools module for perl.
 
 %prep
 %setup -n %{real_name}-%{version} 
@@ -46,7 +46,7 @@ MailTools module for perl
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{perl_archlib} \
-                %{buildroot}%{perl_vendorarch}
+	%{buildroot}%{perl_vendorarch}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,6 +59,9 @@ MailTools module for perl
 %{perl_vendorlib}/auto/Mail/
 
 %changelog
+* Tue Nov  8 2005 Matthias Saou <http://freshrpms.net/> 1.67-2
+- Fix RH7 perl-libnet dependency.
+
 * Sat Jun 19 2005 Dries Verachtert <dries@ulyssis.org> - 1.67-1
 - Updated to release 1.67.
 
@@ -76,3 +79,4 @@ MailTools module for perl
 
 * Sun Jan 23 2003 Dag Wieers <dag@wieers.com>
 - Initial package. (using DAR)
+

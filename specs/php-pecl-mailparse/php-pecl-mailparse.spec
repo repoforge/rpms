@@ -24,7 +24,7 @@ Mailparse is an extension for parsing and working with email messages.
 It can deal with rfc822 and rfc2045 (MIME) compliant messages.
 
 
-%prep 
+%prep
 %setup -a 1 -n mailparse-%{version}
 
 

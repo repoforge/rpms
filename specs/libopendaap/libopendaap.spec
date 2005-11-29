@@ -16,12 +16,12 @@ BuildRequires: gcc-c++
 
 %description
 Libopendaap is a library written in C which enables applications to
-discover, and connect to, iTunes music shares. 
+discover, and connect to, iTunes music shares.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}-%{release}, pkgconfig
 
 %description devel
 This package contains the header files, static libraries and development
@@ -50,17 +50,17 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc AUTHORS ChangeLog COPYING NEWS README
 %{_libdir}/libopendaap.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man?/*
-%{_includedir}/daap
+%{_includedir}/daap/
 %{_libdir}/libopendaap.a
 %exclude %{_libdir}/libopendaap.la
 %{_libdir}/libopendaap.so
 %{_libdir}/pkgconfig/opendaap.pc
+%{_mandir}/man?/*
 
 %changelog
 * Mon May 16 2005 Dag Wieers <dag@wieers.com> - 0.4.0-1
