@@ -4,7 +4,7 @@
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
 Version: 0.0.380
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
@@ -47,7 +47,8 @@ mv -f AUTHORS.utf8 AUTHORS
 %configure \
     --enable-pthread \
     --enable-debug \
-    --extra-cflags="%{optflags} -fpic -fPIC"
+    --extra-cflags="%{optflags} -fPIC" \
+    --extra-asflags="-D__PIC__"
 %{__make} %{?_smp_mflags}
 
 
@@ -79,6 +80,9 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Tue Nov 29 2005 Matthias Saou <http://freshrpms.net/> 0.0.380-2
+- Also force PIC for the yasm bits, thanks to Anssi Hannula.
+
 * Tue Nov 29 2005 Matthias Saou <http://freshrpms.net/> 0.0.380-1
 - Update to svn 380.
 - Force PIC as apps fail to recompile against the lib on x86_64 without.

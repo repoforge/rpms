@@ -45,7 +45,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -150,6 +150,7 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 %endif
 
 %configure \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --enable-release \
     %{!?_without_dvdread:--enable-dvdread} \
     %{?_without_dvdnav:--disable-dvdnav} \
@@ -262,6 +263,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Tue Nov 29 2005 Matthias Saou <http://freshrpms.net/> 0.8.4-2
+- Re-add --x-libraries prefix, as it's still required for x86_64 to build.
+
 * Sun Nov 27 2005 Matthias Saou <http://freshrpms.net/> 0.8.4-1
 - Update to 0.8.4.
 - Remove no longer needed 64bit and asm patches.
