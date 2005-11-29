@@ -3,7 +3,7 @@
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.315
+Version: 0.0.380
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -26,6 +26,7 @@ Summary: Development files for the x264 library
 Group: Development/Libraries
 # Only an include file and a static lib, so don't require the main package
 #Requires: %{name} = %{version}
+Requires: pkgconfig
 
 %description devel
 x264 is a free library for encoding H264/AVC video streams, written from
@@ -42,10 +43,11 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %build
+# Force PIC as applications fail to recompile against the lib on x86_64 without
 %configure \
     --enable-pthread \
     --enable-debug \
-    --extra-cflags="%{optflags}"
+    --extra-cflags="%{optflags} -fpic -fPIC"
 %{__make} %{?_smp_mflags}
 
 
@@ -58,11 +60,9 @@ mv -f AUTHORS.utf8 AUTHORS
 %{__rm} -rf %{buildroot}
 
 
-#post
-#/sbin/ldconfig
+#post -p /sbin/ldconfig
 
-#postun
-#/sbin/ldconfig
+#postun -p /sbin/ldconfig
 
 
 %files
@@ -74,10 +74,16 @@ mv -f AUTHORS.utf8 AUTHORS
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING TODO
 %{_includedir}/x264.h
+%{_libdir}/pkgconfig/x264.pc
 %{_libdir}/libx264.a
 
 
 %changelog
+* Tue Nov 29 2005 Matthias Saou <http://freshrpms.net/> 0.0.380-1
+- Update to svn 380.
+- Force PIC as apps fail to recompile against the lib on x86_64 without.
+- Include new pkgconfig file.
+
 * Tue Oct  4 2005 Matthias Saou <http://freshrpms.net/> 0.0.315-1
 - Update to svn 315.
 - Disable vizualize since otherwise programs trying to link without -lX11 will
