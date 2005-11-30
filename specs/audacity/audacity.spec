@@ -9,21 +9,20 @@
 %{?rh8:%define _without_alsa 1}
 %{?yd3:%define _without_alsa 1}
 
-#define prever         pre3
-%define desktop_vendor rpmforge
-
 Summary: Powerful audio editor
 Name: audacity
-Version: 1.2.3
-Release: %{?prever:0.%{prever}.}2
+Version: 1.3.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/
-Source: http://dl.sf.net/audacity/audacity-src-%{version}%{?prever:-%{prever}}.tar.gz
+Source: http://dl.sf.net/audacity/audacity-src-%{version}.tar.gz
+Patch0: audacity-src-1.3.0-beta-localeinstall.patch
+Patch1: audacity-src-1.3.0-beta-desktop.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: wxGTK >= 2.4.0
+Requires: wxGTK >= 2.6.0
 BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
-BuildRequires: wxGTK-devel >= 2.4.0, libogg-devel, libvorbis-devel
+BuildRequires: wxGTK-devel >= 2.6.0, libogg-devel, libvorbis-devel
 BuildRequires: libmad-devel, flac-devel, libsndfile-devel
 BuildRequires: libsamplerate-devel, libid3tag-devel
 BuildRequires: autoconf
@@ -40,18 +39,15 @@ and Noise Removal, and it also supports VST plug-in effects.
 
 
 %prep
-%setup -n %{name}-src-%{version}%{?prever:-%{prever}}
+%setup -n %{name}-src-%{version}-beta
+%patch0 -p1 -b .localeinstall
+%patch1 -p1 -b .desktop
 
 
 %build
-# This is required or the configure in that directory will fail (1.2.1 & 1.2.2)
-(cd lib-src/portaudio-v19/ && autoconf)
 %configure \
     --with-libsndfile="system" \
-    --with-portaudio="v18" \
-    --without-portmixer
-%{__perl} -pi.orig -e 's|^(CFLAGS) = -g |$1 = -fPIC |' \
-    lib-src/portaudio-v19/Makefile
+    --with-portaudio="v18"
 %{__make} %{?_smp_mflags}
 
 
@@ -60,46 +56,46 @@ and Noise Removal, and it also supports VST plug-in effects.
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
-# Create a desktop entry
-%{__cat} << EOF > %{name}.desktop
-[Desktop Entry]
-Name=Audacity Audio Editor
-Comment=Audio editor to record, play sounds and import, export files
-Icon=audacity.xpm
-Exec=audacity
-Terminal=false
-Type=Application
-Categories=Application;AudioVideo;
-EOF
+# Install the icon (not automatically done in 1.3.0)
+%{__install} -D -m 0644 images/AudacityLogo.xpm \
+    %{buildroot}%{_datadir}/pixmaps/audacity.xpm
 
-# Complete the modifications
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications  \
-    %{name}.desktop
-
-# Install the image used in the desktop entry
-%{__install} -Dp -m 644 images/AudacityLogo.xpm \
-    %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
+# Remove those two text files we include in %%doc instead (1.3.0)
+%{__rm} %{buildroot}%{_docdir}/audacity/{LICENSE.txt,README.txt}
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
 
+%post
+update-desktop-database -q || :
+
+%postun
+update-desktop-database -q || :
+
+
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-# The help is actually in %{_docdir}/%{name} in order to be accessible directly
-#doc LICENSE.txt README.txt help
+%doc LICENSE.txt README.txt
 %{_bindir}/audacity
-%{_datadir}/applications/%{desktop_vendor}-audacity.desktop
+%{_datadir}/applications/audacity.desktop
 %{_datadir}/audacity/
-%{_docdir}/audacity/
+%{_datadir}/mime/packages/audacity.xml
 %{_datadir}/pixmaps/audacity.xpm
-%{_mandir}/man1/*
+%{_mandir}/man1/audacity.1*
 
 
 %changelog
+* Wed Nov 30 2005 Matthias Saou <http://freshrpms.net/> 1.3.0-1
+- Update to 1.3.0, the wxGTK 2.6.x compatible development branch.
+- Include patch to fix the locale installation (weird...).
+- Include patch to fix the strange characters in the desktop file.
+- Use the now included desktop file, but its ref to the image is broken,
+  fixed in the desktop patch + "manually" install the xpm.
+- The docs currently no longer include "help", so include the usual way.
+- Add update-desktop-database scriplets for the mime types.
+
 * Thu Nov 25 2004 Matthias Saou <http://freshrpms.net/> 1.2.3-2
 - Move back from postaudio v19 to v18 for now, as v19 has too many issues :-(
   (leave no longer relevant deps as-is, for later switching back to v19).
