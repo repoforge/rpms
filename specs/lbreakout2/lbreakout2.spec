@@ -7,11 +7,11 @@
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
 Version: 2.6
-Release: 0.4%{?prever:.%{prever}}
+Release: 0.5%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/
-Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?prever}-4.tar.gz
+Source: http://dl.sf.net/lgames/lbreakout2-%{version}%{?prever}-5.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, zlib-devel, libpng-devel
 BuildRequires: ImageMagick
@@ -27,7 +27,7 @@ the integrated level editor.
 
 
 %prep
-%setup -n %{name}-%{version}%{?prever}-4
+%setup -n %{name}-%{version}%{?prever}-5
 
 
 %build
@@ -94,6 +94,9 @@ desktop-file-install \
 
 
 %changelog
+* Wed Nov 30 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.5.beta
+- Update to 2.6beta-5.
+
 * Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 2.6-0.4.beta
 - Update to 2.6beta-4.
 - No longer override datadir to datadir/games/ to get the locales installed.
