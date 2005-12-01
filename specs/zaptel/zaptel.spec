@@ -1,9 +1,6 @@
 # $id: zaptel.spec,v 1.2 2003/11/17 12:31:10 dude Exp $
 # Authority: matthias
 
-# For pre-versions
-#define prever RC2
-
 # "uname -r" output of the kernel to build for, the running one
 # if none was specified with "--define 'kernel <uname -r>'"
 %{!?kernel: %{expand: %%define kernel %(uname -r)}}
@@ -16,18 +13,16 @@
 
 Summary: Telephony interface support
 Name: zaptel
-Version: 1.0.9.2
-Release: %{?prever:0.%{prever}.}1
+Version: 1.2.0
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
-Source0: http://ftp.digium.com/pub/zaptel/zaptel-%{version}%{?prever:-%{prever}}.tar.gz
+Source0: http://ftp.digium.com/pub/zaptel/zaptel-%{version}.tar.gz
 Source1: zaptel-makedev.d.txt
-Patch: zaptel-1.0.9.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: kernel%{?ksmp}-devel = %{kversion}
 BuildRequires: newt-devel, MAKEDEV
-Provides: %{name}-devel = %{version}-%{release}
 
 %description
 This package contains the libraries, device entries, startup scripts and tools
@@ -36,6 +31,16 @@ interfaces.
 
 You will also need to install a kernel modules package matching your current
 kernel for everything to work, and edit /etc/modprobe.conf.
+
+
+%package devel
+Summary: Header files and development libraries for Zaptel
+Group: Development/Libraries
+Requires: %{name} = %{version}
+
+%description devel
+This package contains the header files needed to compile applications that
+will use Zaptel, such as Asterisk.
 
 
 %package -n kernel%{?ksmp}-module-zaptel
@@ -52,15 +57,16 @@ This package contains the zaptel kernel modules for the Linux kernel package :
 
 
 %prep
-%setup -n zaptel-%{version}%{?prever:-%{prever}}
-%patch -p1 -b .makefile
+%setup
+# Fix lib vs. lib64
 %{__perl} -pi -e 's|/usr/lib|%{_libdir}|g' Makefile
+# Force mknod calls to never happen
+%{__perl} -pi -e 's|mknod |true |g' Makefile
 
 
 %build
 export CFLAGS="%{optflags}"
-%{__make} %{?_smp_mflags} \
-    KVERSION="%{kernel}"
+%{__make} %{?_smp_mflags} KVERS="%{kernel}"
 
 
 %install
@@ -68,14 +74,17 @@ export CFLAGS="%{optflags}"
 # Install checks the presence of this file to decide which to modify
 %{__mkdir_p} %{buildroot}%{_sysconfdir}
 touch %{buildroot}%{_sysconfdir}/modprobe.conf
+# Required in 1.2.0
+%{__mkdir_p} %{buildroot}%{_mandir}/man8
 # Main install
 %{__make} install \
-    KVERSION="%{kernel}" \
+    KVERS="%{kernel}" \
     INSTALL_PREFIX="%{buildroot}" \
     ROOT_PREFIX="%{buildroot}"
 
 # Install and generate all the device stuff
-%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/makedev.d/zaptel
+%{__install} -D -p -m 0644 %{SOURCE1} \
+    %{buildroot}%{_sysconfdir}/makedev.d/zaptel
  
 # Create entry list
 [ -x /sbin/MAKEDEV ] && MAKEDEV=/sbin/MAKEDEV || MAKEDEV=/dev/MAKEDEV
@@ -90,10 +99,10 @@ ${MAKEDEV} \
 %{__install} -Dp -m0755 zaptel.init \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/zaptel
 
-# Move kernel modules in the "kernel" subdirectory, also get smp right
-#%{__mkdir_p} %{buildroot}/lib/modules/%{kernel}/kernel
-#%{__mv} %{buildroot}/lib/modules/%{kernel}/misc \
-#        %{buildroot}/lib/modules/%{kernel}/kernel/
+# Move kernel modules in the "kernel" subdirectory
+%{__mkdir_p} %{buildroot}/lib/modules/%{kernel}/kernel
+%{__mv} %{buildroot}/lib/modules/%{kernel}/extra \
+        %{buildroot}/lib/modules/%{kernel}/kernel/
 
 # Move the modules config file back in order to put it in docs instead
 %{__mv} %{buildroot}%{_sysconfdir}/modprobe.conf . || :
@@ -130,18 +139,29 @@ ${MAKEDEV} \
 %config(noreplace) %{_sysconfdir}/zaptel.conf
 %{_sysconfdir}/makedev.d/zaptel
 %{_sysconfdir}/rc.d/init.d/zaptel
-%{_includedir}/*.h
-%{_includedir}/linux/*.h
 %{_sbindir}/ztcfg
 %{_sbindir}/zttool
-%{_libdir}/*.so*
+%{_libdir}/*.so.*
+%{_mandir}/man8/*
+
+%files devel
+%defattr(-, root, root, 0755)
+%{_includedir}/*.h
+%{_includedir}/linux/*.h
+%{_libdir}/*.so
 
 %files -n kernel%{?ksmp}-module-zaptel
 %defattr(-, root, root, 0755)
-/lib/modules/%{kernel}/kernel/misc/
+/lib/modules/%{kernel}/kernel/extra/
 
 
 %changelog
+* Fri Nov 25 2005 Matthias Saou <http://freshrpms.net/> 1.2.0-1
+- Update to 1.2.0.
+- No longer patch the Makefile, horray!
+- Kernel modules are now in "extra" and no longer in "misc".
+- Split off devel sub-package.
+
 * Thu Sep 15 2005 Matthias Saou <http://freshrpms.net/> 1.0.9.2-1
 - Update to 1.0.9.2.
 - Update makefile patch to add ztdummy to the modules.

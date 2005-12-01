@@ -1,0 +1,11 @@
+diff -Naupr libpri-1.2.0.orig/Makefile libpri-1.2.0/Makefile
+--- libpri-1.2.0.orig/Makefile	2005-09-26 17:57:23.000000000 +0200
++++ libpri-1.2.0/Makefile	2005-11-25 18:09:10.000000000 +0100
+@@ -38,7 +38,6 @@ STATIC_LIBRARY=libpri.a
+ DYNAMIC_LIBRARY=libpri.so.1.0
+ STATIC_OBJS=copy_string.o pri.o q921.o prisched.o q931.o pri_facility.o
+ DYNAMIC_OBJS=copy_string.lo pri.lo q921.lo prisched.lo q931.lo pri_facility.lo
+-CFLAGS=-Wall -Werror -Wstrict-prototypes -Wmissing-prototypes -g $(ALERTING) $(LIBPRI_COUNTERS)
+ INSTALL_PREFIX?=
+ INSTALL_BASE=/usr
+ SOFLAGS = -Wl,-hlibpri.so.1

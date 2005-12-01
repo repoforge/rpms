@@ -2,17 +2,14 @@
 # Authority: matthias
 # Dist: nodist
 
-# For pre-versions
-#define prever RC2
-
 Summary: Sound files for the Asterisk PBX and telephony application and toolkit
 Name: asterisk-sounds
-Version: 1.0.9
-Release: %{?prever:0.%{prever}.}1
+Version: 1.2.0
+Release: 1
 License: BSD
 Group: Applications/Internet
 URL: http://www.asterisk.org/
-Source: http://ftp.digium.com/pub/asterisk/asterisk-sounds-%{version}%{?prever:-%{prever}}.tar.gz
+Source: http://ftp.digium.com/pub/asterisk/asterisk-sounds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: asterisk
 BuildArch: noarch
@@ -33,7 +30,7 @@ used with Asterisk.
 
 
 %prep
-%setup -n asterisk-sounds-%{version}%{?prever:-%{prever}}
+%setup
 
 
 %build
@@ -53,10 +50,16 @@ used with Asterisk.
 %doc README.txt sounds-extra.txt
 %{_var}/lib/asterisk/sounds/
 # Exclude files already present in the main asterisk package (conflict)
+%exclude %{_var}/lib/asterisk/sounds/conf-hasleft.gsm
+%exclude %{_var}/lib/asterisk/sounds/conf-thereare.gsm
 %exclude %{_var}/lib/asterisk/sounds/invalid.gsm
 
 
 %changelog
+* Fri Nov 25 2005 Matthias Saou <http://freshrpms.net> 1.2.0-1
+- Update to 1.2.0.
+- Update list of excluded conflicting sounds (+conf-hasleft, +conf-thereare).
+
 * Tue Aug 23 2005 Matthias Saou <http://freshrpms.net> 1.0.9-1
 - Update to 1.0.9.
 
