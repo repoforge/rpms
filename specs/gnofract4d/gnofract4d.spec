@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: scrollkeeper, python, gcc-c++, pkgconfig
 BuildRequires: gtk2-devel, python-devel
-BuildRequires: desktop-file-utils
+BuildRequires: desktop-file-utils, GConf2-devel
 Requires(post): scrollkeeper
 
 %description

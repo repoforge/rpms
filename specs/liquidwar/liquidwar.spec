@@ -3,8 +3,8 @@
 
 Summary: Multiplayer wargame with liquid armies
 Name: liquidwar
-Version: 5.6.2
-Release: 3
+Version: 5.6.3
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.ufoot.org/liquidwar/
@@ -78,6 +78,9 @@ and info format.
 %{_mandir}/man6/liquidwar.6.gz
 
 %changelog
+* Tue Nov 29 2005 Dries Verachtert <dries@ulyssis.org> 5.6.3-1
+- Updated to release 5.6.3.
+
 * Fri Oct 29 2004 Dries Verachtert <dries@ulyssis.org> 5.6.2-3
 - Some fixes in the spec file
 

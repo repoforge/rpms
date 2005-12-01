@@ -12,7 +12,7 @@ URL: http://kcheckgmail.sf.net/
 Source: http://dl.sf.net/kcheckgmail/kcheckgmail-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gcc-c++, gettext
+BuildRequires: kdelibs-devel, gcc-c++, gettext, autoconf, automake
 
 %description
 KCheckGmail is a system tray application to notify you about how many email 

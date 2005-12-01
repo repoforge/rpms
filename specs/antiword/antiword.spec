@@ -4,7 +4,7 @@
 
 Summary: Converts MS-Word documents to ASCII and Postscript
 Name: antiword
-Version: 0.36.1
+Version: 0.37
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -41,5 +41,8 @@ Antiword tries to keep the layout of the document intact.
 %{_datadir}/antiword/
 
 %changelog
+* Tue Nov 29 2005 Dries Verachtert <dries@ulyssis.org> - 0.37-1
+- Updated to release 0.37.
+
 * Thu Sep 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.36.1
 - Initial package.

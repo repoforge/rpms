@@ -4,6 +4,17 @@
 
 %define real_name OpenEXR
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+%{?yd3:%define _without_xorg 1}
+
 Summary: High dynamic range image file format
 Name: openexr
 Version: 1.2.2
@@ -15,7 +26,9 @@ URL: http://www.openexr.com
 Source: http://savannah.nongnu.org/download/openexr/OpenEXR-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, fltk-devel, 
+BuildRequires: gcc-c++, fltk-devel
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 OpenEXR is a high dynamic range (HDR) image file format developed by 
