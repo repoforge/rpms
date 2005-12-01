@@ -7,7 +7,7 @@
 Summary: Python bindings for wxWindows
 Name: wxpython
 Version: 2.6.1.0
-Release: 1
+Release: 2
 License: GPL
 Group: Development/Tools
 URL: http://www.wxpython.org/
@@ -65,6 +65,9 @@ python setup.py install --root %{buildroot}
 
 
 %changelog
+* Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 2.7.1.0-2
+- Rebuild.
+
 * Fr Jul 01 2005 Dries Verachtert <dries@ulyssis.org> 2.6.1.0-1
 - Update to release 2.6.1.0.
 

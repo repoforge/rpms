@@ -13,7 +13,7 @@ URL: http://www.laurentconstantin.com/en/netw/netwox/
 Source: http://www.laurentconstantin.com/common/netw/netwox/download/v5/netwox-%{version}-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: netwib, pkgconfig
+BuildRequires: netwib, pkgconfig, libpcap
 
 %description
 Netwox is a toolbox that helps to find and solve networks' problems.

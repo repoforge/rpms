@@ -3,7 +3,7 @@
 
 Summary: Compiler for the Scheme programming language
 Name: bigloo
-Version: 2.6f
+Version: 2.7a
 Release: 1
 License: LGPL/GPL
 Group: Development/Languages
@@ -60,6 +60,9 @@ done
 %{_libdir}/libbigloo*
 
 %changelog
+* Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> 2.7a-1
+- Updated to release 2.7a.
+
 * Fri Jul 01 2005 Dries Verachtert <dries@ulyssis.org> 2.6f-1
 - Update to release 2.6f.
 
