@@ -1,26 +1,26 @@
 # $Id$
 # Authority: matthias
 
-%define date 20050315
+%define date 20051130
 %define mon_version 3.1
 %define desktop_vendor rpmforge
 
 Summary: Power Macintosh emulator
 Name: SheepShaver
-Version: 2.2
-Release: 0.%{date}
+Version: 2.3
+Release: 0.1.%{date}
 License: GPL
 Group: Applications/Emulators
-URL: http://gwenole.beauchesne.free.fr/sheepshaver/
-Source0: http://gwenole.beauchesne.free.fr/sheepshaver/files/SheepShaver-%{version}-%{date}.tar.bz2
+URL: http://www.gibix.net/projects/sheepshaver/
+Source0: http://www.gibix.net/projects/sheepshaver/files/SheepShaver-%{version}-%{date}.tar.bz2
 Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
 Source2: SheepShaver.png
-Patch0: SheepShaver-2.2-misc.patch
-Patch1: SheepShaver-2.2-stats.patch
-Patch2: SheepShaver-2.2-nostrip.patch
+Patch0: SheepShaver-2.2-stats.patch
+Patch1: SheepShaver-2.2-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, gtk+-devel >= 1.2, esound-devel >= 0.2.8
+BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
+%{?_with_sdl:BuildRequires: SDL-devel}
 #BuildRequires: SDL-devel
 # Other archs need an instruction skipper on well-known invalid
 # memory references (e.g. illegal writes to ROM).
@@ -35,21 +35,23 @@ If you are using a PowerPC-based system, applications will run at native
 speed (i.e. with no emulation involved). There is also a built-in PowerPC
 G4 emulator, without MMU support, for non-PowerPC systems.
 
+Available rebuild options :
+--without : mon
+--with    : sdl
+
 
 %prep
 %setup -a 1
-%patch0 -p1 -b .misc
-%patch1 -p1 -b .stats
-%patch2 -p1 -b .nostrip
+%patch0 -p1 -b .stats
+%patch1 -p1 -b .nostrip
 
 
 %build
 pushd src/Unix
 %configure \
     --datadir=%{_sysconfdir} \
-    %{!?_without_mon: --with-mon=../../cxmon-%{mon_version}/src}
-#   --enable-sdl-video \
-#   --enable-sdl-audio
+    %{!?_without_mon: --with-mon=../../cxmon-%{mon_version}/src} \
+    %{?_with_sdl: --enable-sdl-video --enable-sdl-audio}
 %{__make} %{?_smp_mflags}
 popd
 
@@ -89,8 +91,8 @@ desktop-file-install --vendor %{desktop_vendor} \
 %defattr(-, root, root, 0755)
 %doc COPYING NEWS doc/Linux/*
 %dir %{_sysconfdir}/SheepShaver/
-%{_sysconfdir}/SheepShaver/keycodes
-%{_sysconfdir}/SheepShaver/tunconfig
+%config %{_sysconfdir}/SheepShaver/keycodes
+%config %{_sysconfdir}/SheepShaver/tunconfig
 %{_bindir}/SheepShaver
 %{_datadir}/pixmaps/SheepShaver.png
 %{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
@@ -98,6 +100,13 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Dec  1 2005 Matthias Saou <http://freshrpms.net/> 2.3-0.1.20051130
+- Update to 2.3 20051130 snapshot.
+- Update URLs to gibix.net.
+- Drop no longer relevant misc patch (NET_IF_SHEEPNET change).
+- Add --with sdl rebuild option.
+- Switch from gtk1 to new gtk2 GUI.
+
 * Sat Apr 21 2005 Matthias Saou <http://freshrpms.net/> 2.2-0.20050315
 - Spec file cleanup, based on the .src.rpm from the SheepShaver website.
 - Make cxmon support optionnal with --without mon.

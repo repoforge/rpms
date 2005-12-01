@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-%define date 20050322
-%define inv_date 22032005
+%define date 20051122
+%define inv_date 22112005
 %define mon_version 3.1
 %define desktop_vendor rpmforge
 
@@ -18,23 +18,25 @@ Version: 1.0
 Release: 0.%{date}
 License: GPL
 Group: Applications/Emulators
-URL: http://gwenole.beauchesne.online.fr/basilisk2/
-
-Source0: http://gwenole.beauchesne.online.fr/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
+URL: http://www.gibix.net/projects/basilisk2/
+Source0: http://www.gibix.net/projects/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
 Source1: http://wwwthep.physik.uni-mainz.de/~cbauer/cxmon-%{mon_version}.tar.gz
 Source2: BasiliskII.png
 Patch: BasiliskII-1.0-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: gcc-c++, gtk+-devel >= 1.2, esound-devel >= 0.2.8
+BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
-#BuildRequires: SDL-devel
+%{?_with_sdl:BuildRequires: SDL-devel}
 
 %description
 Basilisk II is an Open Source 68k Macintosh emulator. That is, it enables
 you to run 68k MacOS software on you computer, even if you are using a
 different operating system. However, you still need a copy of MacOS and
 a Macintosh ROM image to use Basilisk II.
+
+Available rebuild options :
+--with    : sdl banks
+--without : mon
 
 
 %prep
@@ -48,9 +50,8 @@ pushd src/Unix
     --datadir=%{_sysconfdir} \
     %{?_with_banks:--enable-addressing="banks"} \
     %{!?_with_banks:--enable-jit-compiler} \
-    %{!?_without_mon: --with-mon=../../cxmon-%{mon_version}/src}
-#   --enable-sdl-video \
-#   --enable-sdl-audio
+    %{!?_without_mon: --with-mon=../../cxmon-%{mon_version}/src} \
+    %{?_with_sdl: --enable-sdl-video --enable-sdl-audio}
 %{__make} %{?_smp_mflags}
 popd
 
@@ -100,6 +101,11 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Thu Dec  1 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.20051122
+- Update to 20051122 snapshot.
+- Add --with sdl rebuild option.
+- Switch from gtk1 to new gtk2 GUI.
+
 * Fri Apr  1 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.20050322
 - Update to latest snapshot.
 - Add a menu entry.
