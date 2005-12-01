@@ -1,0 +1,26 @@
+diff -Naupr audacity-src-1.3.0-beta.orig/locale/Makefile.in audacity-src-1.3.0-beta/locale/Makefile.in
+--- audacity-src-1.3.0-beta.orig/locale/Makefile.in	2005-11-27 17:47:27.000000000 +0100
++++ audacity-src-1.3.0-beta/locale/Makefile.in	2005-11-30 14:07:41.000000000 +0100
+@@ -16,11 +16,6 @@ DATADIR=@datadir@
+ top_srcdir=@top_srcdir@
+ INSTALL=@INSTALL@
+ AUDACITY_NAME=@AUDACITY_NAME@
+-ifdef DESTDIR
+-   INSTALL_PATH=$(top_srcdir)/$(DESTDIR)
+-else
+-   INSTALL_PATH=
+-endif
+ 
+ all: allmo
+ 
+@@ -71,8 +66,8 @@ FORCE:
+ 
+ install: allmo
+ 	linguas='$(LINGUAS)'; for lang in $$linguas ; do \
+-	   $(INSTALL) -d $(INSTALL_PATH)$(DATADIR)/locale/$$lang/LC_MESSAGES ; \
+-	   $(INSTALL) -m 644 $$lang/audacity.mo $(INSTALL_PATH)$(DATADIR)/locale/$$lang/LC_MESSAGES/$(AUDACITY_NAME).mo ; \
++	   $(INSTALL) -d $(DESTDIR)$(DATADIR)/locale/$$lang/LC_MESSAGES ; \
++	   $(INSTALL) -m 644 $$lang/audacity.mo $(DESTDIR)$(DATADIR)/locale/$$lang/LC_MESSAGES/$(AUDACITY_NAME).mo ; \
+ 	done
+ 
+ uninstall:
