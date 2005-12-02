@@ -18,10 +18,13 @@ URL: http://otrs.org/
 Source: ftp://ftp.otrs.org/pub/otrs/otrs-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#Autoreqprov:  no
+#Autoreqprov: no
 BuildArch: noarch
 Requires: perl, perl-DBI, perl-DBD-MySQL, perl-URI, mod_perl
 Requires: mysql, mysql-server, fetchmail, procmail, smtpdaemon
+%{?fc4:BuildRequires: httpd}
+%{?fc3:BuildRequires: httpd}
+%{?fc2:BuildRequires: httpd}
 %{?fc1:BuildRequires: httpd}
 %{?el3:BuildRequires: httpd}
 %{?rh9:BuildRequires: httpd}

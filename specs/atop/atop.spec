@@ -5,7 +5,7 @@
 
 Summary: AT Computing System and Process Monitor
 Name: atop
-Version: 1.14
+Version: 1.15
 Release: 1
 License: GPL
 Group: Applications/System
@@ -88,6 +88,9 @@ fi
 %{_bindir}/atop
 
 %changelog
+* Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.15-1
+- Updated to release 1.15.
+
 * Wed Dec 22 2004 Dag Wieers <dag@wieers.com> - 1.14-1
 - Updated to release 1.14.
 

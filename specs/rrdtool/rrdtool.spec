@@ -9,14 +9,14 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.0.50
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-1.0.x/rrdtool-%{version}.tar.gz
-Patch: rrdtool-1.0.48-php_config.patch
+Patch0: rrdtool-1.0.48-php_config.patch
+Patch1: rrdtool-1.0.50-configure.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 BuildRequires: gcc-c++, perl, php-devel >= 4.0, openssl-devel
 BuildRequires: libpng-devel, zlib-devel
 
@@ -46,6 +46,7 @@ Summary: Perl RRDtool bindings
 Group: Development/Languages
 Requires: %{name} = %{version}
 Obsoletes: rrdtool-perl <= %{version}
+Requires: perl >= %(rpm -q --qf '%{RPMTAG_EPOCH}:%{RPMTAG_VERSION}' perl | tail -1)
 
 %description -n perl-rrdtool
 The Perl RRDtool bindings
@@ -63,11 +64,11 @@ RRDtool bindings to the PHP HTML-embedded scripting language.
 
 %prep
 %setup
-%patch -b .phpfix
+%patch0 -b .phpfix
+%patch1 -b .config64
 
 ### FIXME: Fixes to /usr/lib(64) for x86_64
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' \
-    configure contrib/php4/configure Makefile.in
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure contrib/php4/configure Makefile.in
 %{__perl} -pi.orig -e 's|#include <config.h>|#include <config.h>\n#include "../config.h"|g;' src/rrd_tool.h
 
 %build
@@ -180,10 +181,17 @@ find examples/ contrib/ -type d -name CVS -o -name .libs | xargs %{__rm} -rf
 
 
 %changelog
-* Sat Jul 30 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.50-2
+* Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.0.50-3
+- Moved perl dependency to perl-rrdtool.
+- Fixed perl dependency-problem on EL4/i386 caused by duplicate package.
+
+* Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - 1.0.50-2
+- Fixed libpng problem on x86_64 because of missing architecture in configure. (Andrey Brindeev)
+
+* Sat Jul 30 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.50-1
 - Some fixes for FC4.
 
-* Wed May 18 2005 Dag Wieers <dag@wieers.com> - 1.0.50-2
+* Wed May 18 2005 Dag Wieers <dag@wieers.com> - 1.0.50-1
 - Updated to release 1.0.50.
 
 * Mon Apr 04 2005 Dag Wieers <dag@wieers.com> - 1.0.49-2

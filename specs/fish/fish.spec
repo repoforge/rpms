@@ -72,8 +72,8 @@ is simple but incompatible with other shell languages.
 %exclude %{_docdir}/fish/
 
 %changelog
-* Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.17.1-1
-- Updated to release 1.17.1.
+* Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.17.0-1
+- Updated to release 1.17.0.
 
 * Fri Oct 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.16.2-1
 - Updated to release 1.16.2.
