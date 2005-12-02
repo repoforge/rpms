@@ -60,8 +60,10 @@ scrollkeeper-update -q || :
 %{_bindir}/gnofract4d
 %dir %{_datadir}/maps/
 %{_datadir}/maps/gnofract4d/
+%{_datadir}/mime/packages/gnofract4d-mime.xml
 %{_datadir}/applications/%{desktop_vendor}-gnofract4d.desktop
 %{_datadir}/pixmaps/gnofract4d/
+%{_datadir}/pixmaps/gnofract4d-logo.png
 %{_prefix}/lib/gnofract4d-%{version}/
 %{_datadir}/formulas/gnofract4d/
 
