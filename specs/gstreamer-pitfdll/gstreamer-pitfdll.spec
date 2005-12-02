@@ -9,13 +9,12 @@
 
 Summary: GStreamer streaming media framework DLL loader plugin
 Name: %{gstreamer}-pitfdll
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://ronald.bitfreak.net/pitfdll
 Source: http://dl.sf.net/pitfdll/pitfdll-%{version}.tar.bz2
-Patch: pitfdll-0.8.1-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(pre): %{register}
 Requires(post): %{register}
@@ -42,7 +41,6 @@ proprietary formats.
 
 %prep
 %setup -n pitfdll-%{version}
-%patch -p1 -b .gcc4
 
 
 %build
@@ -77,6 +75,10 @@ proprietary formats.
 
 
 %changelog
+* Fri Dec  2 2005 Matthias Saou <http://freshrpms.net/> 0.8.2-1
+- Update to 0.8.2.
+- Drop gcc4 patch.
+
 * Thu May  5 2005 Matthias Saou <http://freshrpms.net/> 0.8.1-1
 - Initial RPM release.
 - Include gcc4 patch from sf.net tracker bug #1188654.
