@@ -4,14 +4,13 @@
 
 Summary: X MultiMedia System input plugin to play Windows Media Audio files
 Name: xmms-wma
-Version: 1.0.4
-Release: 4
+Version: 1.0.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mcmcc.bat.ru/xmms-wma/
 Source: http://mcmcc.bat.ru/xmms-wma/xmms-wma-%{version}.tar.bz2
-Patch0: xmms-wma-1.0.4-build.patch
-Patch1: xmms-wma-1.0.4-gcc4.patch
+Patch: xmms-wma-1.0.5-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.1, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel
@@ -26,8 +25,7 @@ Tag informations are converted from unicode to your system locale.
 
 %prep
 %setup
-%patch0 -p1 -b .build
-%patch1 -p1 -b .gcc4
+%patch -p1 -b .build
 
 
 %build
@@ -51,6 +49,12 @@ Tag informations are converted from unicode to your system locale.
 
 
 %changelog
+* Fri Dec  2 2005 Matthias Saou <http://freshrpms.net/> 1.0.5-1
+- Update to 1.0.5.
+- Drop gcc4 patch, got fixed in 1.0.4.1.
+- Update build patch, seems like -fPIC got added at least in one place, but I
+  don't think it's sufficient.
+
 * Wed Jun 15 2005 Matthias Saou <http://freshrpms.net/> 1.0.4-4
 - Force -finline-functions to work around possible bug in gcc 3.x (not 4.x),
   thanks to Wesley Wright again.
