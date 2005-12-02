@@ -42,7 +42,7 @@ desktop-file-install --delete-original             \
 	--vendor %{desktop_vendor}                 \
 	--add-category X-Red-Hat-Base              \
 	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/gnome/apps/Graphics/gnofract4d.desktop
+	%{buildroot}%{_datadir}/gnofract4d/gnofract4d.desktop
 
 %post
 scrollkeeper-update -q || :

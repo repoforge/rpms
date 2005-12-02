@@ -11,7 +11,7 @@ License: LGPL
 Group: Applications/Engineering
 URL: http://www.mathomatic.com/
 
-Source: http://www.panix.com/~gesslein/mathomatic-%{version}.tgz
+Source: http://www.panix.com/~gesslein/mathomatic-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

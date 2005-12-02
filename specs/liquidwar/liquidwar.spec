@@ -9,7 +9,7 @@ License: GPL
 Group: Amusements/Games
 URL: http://www.ufoot.org/liquidwar/
 
-Source: http://liquidwar.sunsite.dk/archive/%{name}-%{version}.tar.gz
+Source: http://www.ufoot.org/archive/liquidwar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: allegro-devel, allegro-tools, tetex-latex, python, texinfo
 Requires: allegro
