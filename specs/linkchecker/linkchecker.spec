@@ -26,31 +26,24 @@ LinkChecker checks HTML documents for broken links.
 %setup
 
 %build
-# you can build and install on older python with the following line, 
-# but the program will not run
-# %{__perl} -pi -e 's|python2.4|python|g;' test/*.sh test/*.py
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-python setup.py install \
+%{__python} setup.py install \
 	--root="%{buildroot}"
-#%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0775)
-%doc ChangeLog INSTALL LICENSE README TODO
-# %doc create.sql draft-gilman-news-url-00.txt
-# %doc lconline/
-%doc test/
-%{_mandir}/man1/linkchecker*
-%{_mandir}/*/man1/linkchecker*
+%doc ChangeLog INSTALL LICENSE README TODO test/
+%doc %{_mandir}/man1/linkchecker*
+%doc %{_mandir}/*/man1/linkchecker*
 %{_bindir}/linkchecker
-%{_datadir}/linkchecker
-%{python_dir}/linkcheck
+%{_datadir}/linkchecker/
+%{python_dir}/linkcheck/
 %{python_dir}/_linkchecker_configdata.py
 
 

@@ -5,7 +5,7 @@
 
 Summary: Apache module that enables running PHP scripts under different users
 Name: mod_suphp
-Version: 0.6.0
+Version: 0.6.1
 Release: 1
 License: GPL/Apache License
 Group: System Environment/Daemons
@@ -141,6 +141,9 @@ export CPPFLAGS="-I/usr/include/apr-0"
 %{_sbindir}/suphp
 
 %changelog
+* Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.6.0-2
 - Added suPHP_AddHandler/suPHP_RemoveHandler patch.
 

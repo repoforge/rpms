@@ -72,7 +72,7 @@ source /etc/profile.d/qt.sh
 %{_datadir}/apps/gwenview
 %{_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
 %{_datadir}/icons/*/*/apps/gwenview.png
-%{_datadir}/icons/*/*/apps/imagegallery.png
+#%{_datadir}/icons/*/*/apps/imagegallery.png
 %{_datadir}/services/gv*.desktop
 %{_datadir}/man/man1/gwenview*
 

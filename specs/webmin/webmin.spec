@@ -13,7 +13,7 @@
 
 Summary: Web-based administration interface
 Name: webmin
-Version: 1.240
+Version: 1.250
 Release: 1
 License: BSD
 Group: System Environment/Base
@@ -149,6 +149,9 @@ fi
 %{_libexecdir}/webmin
 
 %changelog
+* Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 1.250-1
+- Updated to release 1.250.
+
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.240-1
 - Updated to release 1.240.
 
