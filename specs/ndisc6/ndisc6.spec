@@ -25,7 +25,7 @@ This package consists of two programs:
 %{__perl} -pi -e 's|install: all|install: |g;' Makefile
 
 %build
-%{__make} %{?_smp_mflags} ndisc6 rdisc6
+%{__make} %{?_smp_mflags} ndisc6 rdisc6 traceroute6
 
 %install
 %{__rm} -rf %{buildroot}
@@ -38,9 +38,12 @@ This package consists of two programs:
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING INSTALL NEWS README
-%doc %{_mandir}/man?/*disc6*
+%doc %{_mandir}/man8/ndisc6.8*
+%doc %{_mandir}/man8/rdisc6.8*
+%doc %{_mandir}/man8/traceroute6.8*
 %{_bindir}/ndisc6
 %{_bindir}/rdisc6
+%{_bindir}/traceroute6
 
 %changelog
 * Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1

@@ -37,7 +37,7 @@ Patch: kvirc-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: openssl-devel, libvorbis-devel, gettext, libart_lgpl-devel
 BuildRequires: libjpeg-devel, libpng-devel, arts-devel, zlib-devel
-BuildRequires: kdelibs-devel, gcc, make, gcc-c++, qt-devel
+BuildRequires: kdelibs-devel, gcc, make, gcc-c++, qt-devel >= 3.2
 BuildRequires: audiofile-devel, fam-devel
 %{!?_without_selinux:BuildRequires: libselinux-devel}
 %{?_without_xorg:BuildRequires: XFree86-devel}
