@@ -14,6 +14,7 @@ Source: http://dl.sf.net/qalculate/qalculate-kde-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel, gettext, gcc-c++, qalculate, cln-devel
+BuildRequires: gmp-devel
 
 %description
 Qalculate! is a modern multi-purpose desktop calculator for GNU/Linux. It is

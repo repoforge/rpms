@@ -16,7 +16,6 @@ URL: http://xclass.sourceforge.net/
 Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
-%{!?dist:BuildRequires: compat-gcc-c++}
 %{?fc4:BuildRequires: compat-gcc-32-c++}
 %{?el4:BuildRequires: compat-gcc-c++}
 %{?fc3:BuildRequires: compat-gcc-c++}

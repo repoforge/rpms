@@ -12,7 +12,7 @@ URL: http://themanaworld.org/
 Source: http://dl.sf.net/themanaworld/tmw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, guichan-devel, physfs-devel
+BuildRequires: zlib-devel, guichan-devel, physfs-devel, gcc-c++
 
 %description
 The Mana World (TMW) is a serious effort to create an innovative free and 

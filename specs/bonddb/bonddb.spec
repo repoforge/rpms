@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Patch: bonddb-fixmakefile.patch
 
 BuildRequires: postgresql-devel, libtool
+BuildRequires: glib2-devel, pkgconfig
 %{?fc4:BuildRequires: compat-gcc-32}
 
 %description

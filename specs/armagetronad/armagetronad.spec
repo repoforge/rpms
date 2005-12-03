@@ -28,7 +28,7 @@ Patch1: armagetronad-0.2.8_beta3-desktop.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libstdc++-devel, zlib-devel, libpng-devel, libjpeg-devel
 BuildRequires: SDL_image-devel, SDL-devel, esound-devel, libxml2-devel
-BuildRequires: /usr/bin/find, unzip
+BuildRequires: /usr/bin/find, unzip, gcc-c++
 %{?_without_xorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel, xorg-x11-Mesa-libGLU}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}

@@ -15,6 +15,7 @@
 %{?yd3:%define _without_xorg 1}
 
 %{?el3:%define _without_lesstif 1}
+%{?fc4:%define _without_lesstif 1}
 
 %define real_version 0.29beta221
 

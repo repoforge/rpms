@@ -17,7 +17,7 @@ URL: http://pybsddb.sourceforge.net/
 Source: http://dl.sf.net/pybsddb/bsddb3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python
+BuildRequires: python, python-devel
 Requires: python
 
 %description

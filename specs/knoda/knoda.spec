@@ -103,6 +103,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_datadir}/icons/*/*/apps/*.png
 %{_datadir}/applnk/Office/*.desktop
 %{_datadir}/mimelnk/application/x-hk_classes-sqlite*.desktop
+%{_datadir}/mimelnk/application/x-hk_connection.desktop
+%{_datadir}/mimelnk/application/x-paradox.desktop
+%{_datadir}/mimelnk/application/x-xbase.desktop
 %{_datadir}/doc/HTML/en/knoda
 
 %files devel

@@ -49,6 +49,7 @@ or the plain data for each tag (here is a sample)
 %defattr(-, root, root, 0755)
 %doc COPYING README
 %{_bindir}/exiv2
+${_bindir}/exiv2-config
 %{_includedir}/exiv2
 %{_libdir}/libexiv2*
 

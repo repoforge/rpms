@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://www.etpan.org/
 Source: http://dl.sf.net/libetpan/libetpan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: openssl-devel, db4-devel, cyrus-sasl-devel
+BuildRequires: gcc-c++, openssl-devel, db4-devel, cyrus-sasl-devel
 
 %description
 The purpose of this mail library is to provide a portable, efficient middleware

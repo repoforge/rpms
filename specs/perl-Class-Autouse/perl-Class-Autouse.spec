@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-Autouse-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl-ExtUtils-AutoInstall, perl-Test-More >= 0.47, perl-List-util >= 1.11
+BuildRequires: perl, perl-ExtUtils-AutoInstall
+#Test-Simple and Scalar-List-Utils is already included in the perl package on fedora core
 
 %description
 Class::Autouse allows you to specify a class the will only load when a

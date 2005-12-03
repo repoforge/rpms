@@ -60,7 +60,7 @@ source /etc/profile.d/qt.sh
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING CREDITS NEWS README TODO
+%doc AUTHORS COPYING NEWS README TODO
 %{_bindir}/gwenview
 %{_libdir}/kde3/libgv*
 %{_libdir}/kde3/gwenview.*

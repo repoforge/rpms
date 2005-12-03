@@ -12,7 +12,7 @@ License: Artistic
 Group: Applications/Databases
 URL: http://www.pgadmin.org/
 
-Source: ftp://ftp.postgresql.org/pub/pgadmin3/release/v1.2.2/src/pgadmin3-%{version}.tar.gz
+Source: ftp://ftp.postgresql.org/pub/pgadmin3/release/v1.4.0/src/pgadmin3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

@@ -14,7 +14,7 @@ Source: http://savannah.nongnu.org/download/paragui/paragui-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, libpng-devel, SDL_image-devel, libtiff-devel, freetype-devel, 
-BuildRequires: gcc-c++, expat-devel, physfs-devel, readline-devel
+BuildRequires: gcc-c++, expat-devel, physfs-devel, readline-devel, libsigc++-devel
 
 %description
 ParaGUI is a cross-platform high-level application framework and GUI

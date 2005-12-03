@@ -38,7 +38,7 @@ selected channel.
 
 %prep
 %setup
-
+%{__rm} -f src/gpsd/config.cache
 ### FIXME: Make Makefile use autotool directory standard. (Please fix upstream)
 %{__perl} -pi.orig -e '
 		s|\$\(PREFIX\)|\$(prefix)|g;

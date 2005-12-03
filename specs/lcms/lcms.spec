@@ -21,7 +21,7 @@ Source: http://www.littlecms.com/lcms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libjpeg-devel, libtiff-devel, zlib-devel
-%{!?_without_python:BuildRequires: python-devel >= 2.0, gcc-c++}
+%{!?_without_python:BuildRequires: python-devel >= 2.0, gcc-c++, swig, libtool}
 Obsoletes: liblcms <= %{version}
 
 %description

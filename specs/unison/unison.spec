@@ -21,7 +21,8 @@ Source: http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/uniso
 Source1: unison.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ocaml
+# emacs is needed for etags
+BuildRequires: ocaml, emacs
 #BuildRequires: tetex-latex, lablgtk >= 2.4.0, gtk2-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 

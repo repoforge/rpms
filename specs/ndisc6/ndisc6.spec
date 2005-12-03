@@ -29,7 +29,7 @@ This package consists of two programs:
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d %{buildroot}%{_mandir}/man8
+%{__install} -d %{buildroot}%{_mandir}/man8 %{buildroot}%{_bindir}
 %makeinstall #DESTDIR=%{buildroot}
 
 %clean

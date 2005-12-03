@@ -1,0 +1,66 @@
+diff -ur kvirc-3.2.0/src/kvi_configstatus.h kvirc-3.2.0-patched/src/kvi_configstatus.h
+--- kvirc-3.2.0/src/kvi_configstatus.h	2005-02-26 15:05:36.000000000 +0100
++++ kvirc-3.2.0-patched/src/kvi_configstatus.h	2005-12-03 19:48:13.000000000 +0100
+@@ -8,7 +8,7 @@
+ /* #undef BIG_ENDIAN_MACHINE_BYTE_ORDER */
+ 
+ /* this is the build date (configure date rather) */
+-#define BUILD_DATE "Sat Feb 26 14:03:35 UTC 2005"
++#define BUILD_DATE "Sat Dec  3 17:19:39 UTC 2005"
+ 
+ /* these are the build flags */
+ #define BUILD_FLAGS "i686-cefikoprsAGST"
+@@ -180,7 +180,7 @@
+ #define PACKAGE_VERSION ""
+ 
+ /* this is the source tree date */
+-#define SOURCES_DATE "2004.11.05"
++#define SOURCES_DATE "2005.02.26"
+ 
+ /* Define to 1 if you have the ANSI C header files. */
+ #define STDC_HEADERS 1
+diff -ur kvirc-3.2.0/src/kvirc/kernel/kvi_irccontext.h kvirc-3.2.0-patched/src/kvirc/kernel/kvi_irccontext.h
+--- kvirc-3.2.0/src/kvirc/kernel/kvi_irccontext.h	2004-11-22 03:13:17.000000000 +0100
++++ kvirc-3.2.0-patched/src/kvirc/kernel/kvi_irccontext.h	2005-12-03 19:10:23.000000000 +0100
+@@ -38,6 +38,7 @@
+ class KviIrcDataStreamMonitor;
+ class KviWindow;
+ class QTimer;
++class KviConsole;
+ 
+ /*
+ 	KviIrcContext is the structure that groups the objects and resources
+diff -ur kvirc-3.2.0/src/kvirc/module/kvi_moduleextension.h kvirc-3.2.0-patched/src/kvirc/module/kvi_moduleextension.h
+--- kvirc-3.2.0/src/kvirc/module/kvi_moduleextension.h	2004-09-09 23:51:07.000000000 +0200
++++ kvirc-3.2.0-patched/src/kvirc/module/kvi_moduleextension.h	2005-12-03 18:32:10.000000000 +0100
+@@ -36,6 +36,7 @@
+ class KviModule;
+ class KviModuleExtension;
+ class KviModuleExtensionDescriptor;
++class KviModuleExtensionManager;
+ 
+ typedef struct _KviModuleExtensionAllocStructTag
+ {
+diff -ur kvirc-3.2.0/src/kvirc/ui/kvi_console.cpp kvirc-3.2.0-patched/src/kvirc/ui/kvi_console.cpp
+--- kvirc-3.2.0/src/kvirc/ui/kvi_console.cpp	2005-02-25 18:57:45.000000000 +0100
++++ kvirc-3.2.0-patched/src/kvirc/ui/kvi_console.cpp	2005-12-03 19:24:32.000000000 +0100
+@@ -88,6 +88,7 @@
+ #define __KVI_DEBUG__
+ #include "kvi_debug.h"
+ 
++class KviIrcServerDataBase;
+ 
+ extern KVIRC_API KviIrcServerDataBase           * g_pIrcServerDataBase;
+ extern KVIRC_API KviProxyDataBase               * g_pProxyDataBase;
+diff -ur kvirc-3.2.0/src/kvirc/ui/kvi_console.h kvirc-3.2.0-patched/src/kvirc/ui/kvi_console.h
+--- kvirc-3.2.0/src/kvirc/ui/kvi_console.h	2005-02-25 18:57:45.000000000 +0100
++++ kvirc-3.2.0-patched/src/kvirc/ui/kvi_console.h	2005-12-03 18:26:19.000000000 +0100
+@@ -46,6 +46,8 @@
+ class KviIrcServer;
+ class KviIrcNetwork;
+ class KviProxy;
++class KviIrcSocketMonitor;
++
+ #ifndef COMPILE_ON_WINDOWS
+ 	class KviChannel;
+ 	class KviQuery;
