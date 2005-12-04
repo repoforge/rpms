@@ -47,6 +47,7 @@ tables and views is easily accessible in a tree view.
 %build
 source /etc/profile.d/qt.sh
 %configure
+%{__perl} -pi -e "s|-Iincludedir\@| |g; s|-Llibdir\@| |g;" $(find . -type f | grep Makefile)
 %{__make} %{?_smp_mflags}
 
 %install
