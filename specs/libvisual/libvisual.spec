@@ -55,6 +55,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+%{expand: %%define optflags -mmmx -O2} 
 %configure
 %{__make} %{?_smp_mflags}
 

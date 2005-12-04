@@ -48,7 +48,8 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %doc %{_mandir}/man1/uni2ascii*
 %{_bindir}/ascii2uni*
 %{_bindir}/uni2ascii*
-%{_bindir}/uni2html*
+# isn't included anymore in 2.6 ?
+#%{_bindir}/uni2html*
 
 %changelog
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-2

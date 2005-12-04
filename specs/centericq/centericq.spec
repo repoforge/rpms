@@ -28,6 +28,8 @@ invisible lists. It can also associate events with sounds, has support
 for Hebrew and Arabic languages and allows to arrange contacts into
 groups. Internal RSS reader and a client for LiveJournal are provided.
 
+BuildRequires: gcc-c++
+
 %prep
 %setup
 

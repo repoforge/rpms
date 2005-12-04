@@ -16,6 +16,7 @@ Source: http://dl.sf.net/cinepaint/cinepaint-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openexr-devel, pkgconfig, libtiff-devel, lcms-devel
+BuildRequires: gcc-c++
 
 %description
 CinePaint is an application primarily used for motion picture frame-by-frame 

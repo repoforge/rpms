@@ -14,6 +14,7 @@ Source: http://scanline.ca/exrtools/exrtools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openexr-devel, gcc-c++, libpng-devel, zlib-devel, libjpeg-devel
+BuildRequires: pkgconfig
 
 %description
 exrtools is a set of simple command line utilities for manipulating high 

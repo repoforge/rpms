@@ -35,6 +35,7 @@ Categories=GNOME;Application;AudioVideo;
 EOF
 
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
