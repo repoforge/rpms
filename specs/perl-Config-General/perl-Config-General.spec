@@ -10,12 +10,13 @@
 Summary: Generic config module
 Name: perl-Config-General
 Version: 2.30
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-General/
 
 Source: http://www.cpan.org/modules/by-module/Config/Config-General-%{version}.tar.gz
+Patch: carp-heavy.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,6 +45,7 @@ configuration.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -67,6 +69,10 @@ configuration.
 %{perl_vendorlib}/Config/Extended.pm
 
 %changelog
+* Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-2
+- Applied a patch made by Ralph Angenendt which removes the 
+  dependency on Carp::Heavy.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1
 - Updated to release 2.30.
 

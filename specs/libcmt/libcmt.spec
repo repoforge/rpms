@@ -4,7 +4,7 @@
 
 Summary: Composable Memory Transactions Library
 Name: libcmt
-Version: 0.0.3
+Version: 0.0.4
 Release: 1
 License: LGPL
 Group: Developments/Libraries
@@ -64,6 +64,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libcmt.pc
 
 %changelog
+* Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.4-1
+- Updated to release 0.0.4.
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.3-1
 - Updated to release 0.0.3.
 

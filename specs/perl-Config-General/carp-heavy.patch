@@ -1,0 +1,17 @@
+diff -Naur Config-General-2.30.orig/General.pm Config-General-2.30/General.pm
+--- Config-General-2.30.orig/General.pm	2005-09-15 21:42:34.000000000 +0200
++++ Config-General-2.30/General.pm	2005-11-28 12:35:47.000000000 +0100
+@@ -16,13 +16,6 @@
+ use File::Spec::Functions qw(splitpath file_name_is_absolute catfile catpath);
+ use strict;
+ 
+-# on debian with perl > 5.8.4 croak() doesn't work anymore without this.
+-# There is some require statement which dies 'cause it can't find Carp::Heavy,
+-# I really don't understand, what the hell they made, but the debian perl
+-# installation is definetly bullshit, damn!
+-use Carp::Heavy;
+-
+-
+ use Carp;
+ use Exporter;
+ 
