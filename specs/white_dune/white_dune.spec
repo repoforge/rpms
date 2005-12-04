@@ -57,7 +57,7 @@ gebruiker toe om eigenschappen te wijzigen.
 Documentatie over het gebruik van dune is ook beschikbaar.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \

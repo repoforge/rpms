@@ -16,7 +16,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 
-Source: http://dl.sf.net/xine/gxine-%{version}.tar.gz
+Source: http://dl.sf.net/xine/gxine-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0

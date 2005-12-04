@@ -14,7 +14,7 @@ Source: http://dl.sf.net/meanwhile/gaim-meanwhile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gaim >= 1.2.1, meanwhile-devel >= 0.4.1, gcc-c++
-BuildRequires: pkgconfig
+BuildRequires: pkgconfig, glib2-devel
 Obsoletes: meanwhile-gaim <= %{version}
 
 %description

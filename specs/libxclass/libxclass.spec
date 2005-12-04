@@ -54,6 +54,7 @@ against.
 %{?el3:export CXX="g++296"}
 %{?rh9:export CXX="g++296"}
 %{?rh8:export CXX="g++296"}
+%{?fc4:%{expand: %%define optflags -O2}}
 %configure
 %{__make} %{?_smp_mflags}
 

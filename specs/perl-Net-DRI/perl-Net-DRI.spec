@@ -10,7 +10,7 @@
 
 Summary: Uniform API to access domain registries, registrars and resellers
 Name: perl-Net-DRI
-Version: 0.19
+Version: 0.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN

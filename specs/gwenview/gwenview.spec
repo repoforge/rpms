@@ -66,12 +66,15 @@ source /etc/profile.d/qt.sh
 %{_libdir}/kde3/gwenview.*
 %{_libdir}/libgwenview*
 %{_libdir}/libkdeinit_gwenview.*
-%{_datadir}/doc/HTML/en/gwenview
+%{_datadir}/doc/HTML/*/gwenview/
 %{_datadir}/apps/gv*
+%{_datadir}/apps/kconf_update/gwenview*
+%{_datadir}/config.kcfg/gv*
 %{_datadir}/applications/kde/gwenview.desktop
 %{_datadir}/apps/gwenview
 %{_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
-%{_datadir}/icons/*/*/apps/gwenview.png
+%{_datadir}/icons/*/*/apps/gwenview.*
+%{_datadir}/icons/*/*/apps/gvdirpart.*
 #%{_datadir}/icons/*/*/apps/imagegallery.png
 %{_datadir}/services/gv*.desktop
 %{_datadir}/man/man1/gwenview*
