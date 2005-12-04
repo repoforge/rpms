@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Rocco Caputo <rcaputo$pobox,com>
 
+# ExcludeDist: el3
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 

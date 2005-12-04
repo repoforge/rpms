@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl, perl-ExtUtils-AutoInstall, perl-File-Slurp
 BuildRequires: perl-List-MoreUtils, perl-Clone, perl-Class-Autouse
-BuildRequires: perl-Test-ClassAPI
+BuildRequires: perl-Test-ClassAPI, perl-Storable, perl-Params-Util
 
 %description
 This is an in-development package for parsing, manipulating and saving
