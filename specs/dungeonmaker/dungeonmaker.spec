@@ -4,23 +4,19 @@
 
 Summary: Library which grows dungeons
 Name: dungeonmaker
-Version: 1.01
-Release: 2
+Version: 2.03
+Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://dungeonmakerlib.sourceforge.net/
+URL: http://dungeonmaker.sourceforge.net/
 
-Source: http://dl.sf.net/dungeonmakerlib/dungeonmaker-%{version}.tar.gz
+Source: http://dl.sf.net/dungeonmaker/dungeonmaker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
 
 %description
-DungeonMaker-Lib is a fork of the project DungeonMaker, which has been 
-abandoned. A fork was chosen as changes needed to be made to the original 
-code to more easily accommodate scripting front-ends. The code forks from 
-their 2.02 release. This library "grows" dungeons using artificial life 
-algorithms for use in isometric games.
+Dungeonmaker creates labyrinths and dungeons using artificial life methods.
 
 %prep
 %setup -n dungeonmaker-%{version}
@@ -39,11 +35,14 @@ algorithms for use in isometric games.
 
 %files
 %defattr(-, root, root, 0755)
-%doc README VERSION
+%doc README.txt VERSION
 %{_bindir}/dungeonmaker
 %{_datadir}/dungeonmaker/
 
 %changelog
+* Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org> - 2.03-1
+- Updated to release 2.03.
+
 * Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-2
 - Added the designs.
 
