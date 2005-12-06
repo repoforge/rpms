@@ -4,7 +4,7 @@
 
 Summary: Convert between UTF-8 Unicode and 7-bit ASCII equivalents
 Name: uni2ascii
-Version: 2.6
+Version: 2.7
 Release: 2
 License: GPL
 Group: Applications/Publishing
@@ -52,6 +52,9 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 #%{_bindir}/uni2html*
 
 %changelog
+* Tue Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 2.7-1
+- Updated to release 2.7.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 2.6-2
 - Fix files section.
 
