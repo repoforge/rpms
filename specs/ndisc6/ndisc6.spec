@@ -41,9 +41,11 @@ This package consists of two programs:
 %doc %{_mandir}/man8/ndisc6.8*
 %doc %{_mandir}/man8/rdisc6.8*
 %doc %{_mandir}/man8/traceroute6.8*
+%doc %{_mandir}/man8/tcptraceroute6.8*
 %{_bindir}/ndisc6
 %{_bindir}/rdisc6
 %{_bindir}/traceroute6
+%{_bindir}/tcptraceroute6
 
 %changelog
 * Thu Dec 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1

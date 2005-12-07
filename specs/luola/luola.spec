@@ -10,7 +10,7 @@ Version: 1.3.0
 Release: 1
 License: GPL
 Group: Amusements/Games
-URL: http://www.luolamies.org/software/luola/index.php
+URL: http://www.luolamies.org/software/luola/
 
 Source: http://www.luolamies.org/software/luola/luola-%{version}.tar.gz
 Source1: %{name}.png

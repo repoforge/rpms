@@ -21,7 +21,7 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.42
+Version: 0.43
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -30,8 +30,9 @@ URL: http://inkscape.sourceforge.net/
 Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(XML::Parser), libsigc++2-devel, libgc-devel
-BuildRequires: gtkmm24-devel, glibmm-devel, gcc-c++, pkgconfig
+#BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
+BuildRequires: libgc-devel,  perl(XML::Parser)
+BuildRequires: gcc-c++, pkgconfig
 BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
 BuildRequires: gtk2-devel, libxml2-devel, libxslt-devel
 BuildRequires: python-devel
@@ -57,7 +58,8 @@ Exec=inkscape %U
 TryExec=inkscape
 Terminal=false
 StartupNotify=true
-Categories=GNOME;Application;Graphics;
+Encoding=UTF-8
+Categories=Application;Graphics;
 EOF
 
 %build
@@ -85,16 +87,23 @@ EOF
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* HACKING NEWS README
+%doc AUTHORS ChangeLog COPYING* HACKING*txt NEWS README TRANSLATORS
 %doc %{_mandir}/man1/ink*.1*
+%doc %{_mandir}/*/man1/ink*.1*
 %{_bindir}/ink*
-%{_libdir}/inkscape
+#%{_libdir}/inkscape
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-inkscape.desktop}
 %{?_without_freedesktop:%{_datadir}/applications/inkscape.desktop}
 %{_datadir}/inkscape/
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.43-1
+- Updated to release 0.43.
+
+* Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.42-2
+- Fixes by Brent Terp.
+
 * Thu Jul 28 2005 Dries Verachtert <dries@ulyssis.org> - 0.42-1
 - Updated to release 0.42.
 
