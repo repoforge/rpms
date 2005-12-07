@@ -5,15 +5,17 @@
 
 %define desktop_vendor rpmforge
 
+%define real_version 1.0-RC4
+
 Summary: RSS/RDF feed reader
 Name: liferea
-Version: 0.9.7b
-Release: 1
+Version: 1.0
+Release: 0.rc4
 License: GPL
 Group: Applications/Internet
 URL: http://liferea.sourceforge.net/
 
-Source: http://dl.sf.net/liferea/liferea-%{version}.tar.gz
+Source: http://dl.sf.net/liferea/liferea-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: GConf2-devel >= 2.2, gtkhtml2-devel, libxml2-devel >= 2.5.10
@@ -28,7 +30,7 @@ browse through their items, and show their contents
 using GtkHTML.
 
 %prep
-%setup
+%setup -n liferea-%{real_version}
 
 %build
 %configure \
@@ -72,6 +74,9 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %{_libdir}/liferea/*.so*
 
 %changelog
+* Wed Dec 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-0.rc4
+- Updated to release 1.0-RC4.
+
 * Mon Sep 05 2005 Dag Wieers <dag@wieers.com> - 0.9.7b-1
 - Updated to release 0.9.7b.
 
