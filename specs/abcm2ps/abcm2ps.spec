@@ -1,0 +1,49 @@
+# $Id$
+# Authority: dries
+# Upstream: Jean-Francois <moinejf$free,fr>
+
+Summary: Convert music tunes from ABC format to PostScript
+Name: abcm2ps
+Version: 4.12.3
+Release: 1
+License: GPL
+Group: Applications/Multimedia
+URL: http://moinejf.free.fr/
+
+Source: http://moinejf.free.fr/abcm2ps-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+#BuildRequires: 
+
+%description
+abcm2ps is a package that converts music tunes from ABC format to 
+PostScript. Based on abc2ps version 1.2.5, it was developed mainly 
+to print baroque organ scores that have independant voices played 
+on one or more keyboards, and a pedal-board. It introduces many 
+extensions to the ABC language that make it suitable for classical 
+music.
+
+%prep
+%setup
+
+%build
+%configure
+%{__make} %{?_smp_mflags}
+
+%install
+%{__rm} -rf %{buildroot}
+%makeinstall docdir=%{buildroot}%{_datadir}/doc
+%{__mv} %{buildroot}%{_datadir}/doc/abcm2ps rpmdocs
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc INSTALL rpmdocs/*
+%{_bindir}/abcm2ps
+%{_datadir}/abcm2ps/
+
+%changelog
+* Tue Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 4.12.3-1
+- Initial package.

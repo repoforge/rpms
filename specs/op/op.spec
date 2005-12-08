@@ -4,7 +4,7 @@
 
 Summary: Allows restricted root access for specified users
 Name: op
-Version: 1.31
+Version: 1.32
 Release: 1
 License: BSD
 Group: Applications/System
@@ -116,6 +116,9 @@ EOF
 %{_bindir}/op
 
 %changelog
+* Thu Dec 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.32-1
+- Updated to release 1.32.
+
 * Sat Sep 03 2005 Dag Wieers <dag@wieers.com> - 1.31-1
 - Updated to release 1.31.
 
