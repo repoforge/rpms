@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Neal Norwitz <neal$metaslash,com>
 
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define real_name pychecker
 
 Summary: Find common bugs in Python source code
@@ -46,15 +46,14 @@ parameters to a function/method, and not using a module/variable.
 %defattr(-, root, root, 0755)
 %doc CHANGELOG KNOWN_BUGS MAINTAINERS README TODO
 %{_bindir}/pychecker
-%dir %{python_sitearch}/pychecker
-%{python_sitearch}/pychecker/*.py*
-%exclude %{python_sitearch}/pychecker/CHANGELOG
-%exclude %{python_sitearch}/pychecker/COPYRIGHT
-%exclude %{python_sitearch}/pychecker/KNOWN_BUGS
-%exclude %{python_sitearch}/pychecker/MAINTAINERS
-%exclude %{python_sitearch}/pychecker/README
-%exclude %{python_sitearch}/pychecker/TODO
-%exclude %{python_sitearch}/pychecker/VERSION
+%{python_sitelib}/pychecker/
+%exclude %{python_sitelib}/pychecker/CHANGELOG
+%exclude %{python_sitelib}/pychecker/COPYRIGHT
+%exclude %{python_sitelib}/pychecker/KNOWN_BUGS
+%exclude %{python_sitelib}/pychecker/MAINTAINERS
+%exclude %{python_sitelib}/pychecker/README
+%exclude %{python_sitelib}/pychecker/TODO
+%exclude %{python_sitelib}/pychecker/VERSION
 
 %changelog
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.16-1
