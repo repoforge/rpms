@@ -45,7 +45,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
 Version: 0.8.4
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
