@@ -5,9 +5,9 @@
 Summary: Disk free stats with colors
 Name: freecolor
 Version: 0.8.7
-Release: 1
+Release: 2
 License: GPL
-Group: Applications/Utilities
+Group: Applications/System
 URL: http://www.rkeene.org/oss/freecolor/
 
 Source: http://www.rkeene.org/files/oss/freecolor/freecolor-%{version}.tar.gz
@@ -36,5 +36,8 @@ freecolor adds color and bargraphs to the "free" command.
 %{_bindir}/freecolor
 
 %changelog
+* Wed Dec 07 2005 Dag Wieers <dag@wieers.com> - 0.8.7-2
+- Fixed RPM Group.
+
 * Wed Oct 19 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.7-1
 - Initial package.

@@ -4,17 +4,17 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 1.2.1-1
+%define real_version 1.4.0-1
 
 Summary: GUI for making IP address based calculations
 Name: gip
-Version: 1.2.1.1
+Version: 1.4.0.1
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.debain.org/?session=&project=19
 
-#Source: http://debain.org/dlcounter.php?id=78&file=gip-1.2.1-1.tar.gz
+#Source: http://www.debain.org/dlcounter.php?id=83&file=gip-1.4.0-1.tar.gz
 Source: gip-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -72,6 +72,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/gip/
 
 %changelog
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.4.0.1-1
+- Updated to release 1.4.0-1
+
 * Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 1.2.1.1-1
 - Updated to release 1.2.1-1
 

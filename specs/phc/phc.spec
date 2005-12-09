@@ -7,7 +7,7 @@ Version: 0.1.3
 Release: 1
 License: GPL
 Group: Development/Languages
-URL: http://www.phpcompiler.org
+URL: http://www.phpcompiler.org/
 
 Source: http://www.phpcompiler.org/src/phc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -24,20 +24,18 @@ that operate on PHP scripts.
 %setup
 
 %build
-cd src
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} -C src
 
 %install
 %{__rm} -rf %{buildroot}
-cd src
-%{__install} -D phc %{buildroot}%{_bindir}/phc
+%{__install} -Dp -m0755 src/phc %{buildroot}%{_bindir}/phc
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README CHANGES
+%doc CHANGES README
 %{_bindir}/phc
 
 %changelog

@@ -15,10 +15,9 @@ Source: http://dl.sf.net/wlassistant/wlassistant-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel >= 3.2.0
-BuildRequires: gcc-c++, libstdc++, libstdc++-devel, libart_lgpl, libart_lgpl-devel, wireless-tools
-BuildRequires: make, autoconf, automake, libtool, libpng, libpng-devel, zlib, zlib-devel
-Requires: kdelibs3 >= %{kde_major_version}.0
-Requires: wireless-tools, libstdc++, libgcc, libart_lgpl, libpng, zlib, sudo
+BuildRequires: gcc-c++, libstdc++-devel, libart_lgpl-devel, wireless-tools
+BuildRequires: libpng-devel, zlib-devel
+Requires: kdelibs, wireless-tools, libstdc++, libgcc, libart_lgpl, libpng, zlib, sudo
 Obsoletes: wirelessassisstant, wlassisant
 Provides: wirelessassisstant
 
@@ -54,6 +53,7 @@ source /etc/profile.d/qt.sh
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/wlassistant
+%{_datadir}/applnk/Utilities/wlassistant.desktop
 %{_datadir}/icons/*/*x*/apps/wlassistant.png
 
 %changelog

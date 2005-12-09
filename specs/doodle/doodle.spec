@@ -4,13 +4,13 @@
 
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
-Version: 0.6.2
+Version: 0.6.4
 Release: 1
 License: GPL
 Group: Applications/File
-URL: http://www.ovmj.org/doodle/
+URL: http://gnunet.org/doodle/
 
-Source: http://www.ovmj.org/doodle/download/doodle-%{version}.tar.bz2
+Source: http://gnunet.org/doodle/download/doodle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libextractor-devel
@@ -64,6 +64,12 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
+* Thu Dec 08 2005 Dag Wieers <dag@wieers.com> - 0.6.4-1
+- Updated to release 0.6.4.
+
+* Sun Aug 07 2005 Dag Wieers <dag@wieers.com> - 0.6.3-1
+- Updated to release 0.6.3.
+
 * Thu Jan 06 2005 Dag Wieers <dag@wieers.com> - 0.6.2-1
 - Updated to release 0.6.2.
 
