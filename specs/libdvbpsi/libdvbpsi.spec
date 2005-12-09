@@ -2,16 +2,16 @@
 # Authority: matthias
 # Upstream: <libdvbpsi-devel$videolan,org>
 
-%define real_name libdvbpsi3
+%define real_name libdvbpsi4
 
 Summary: Library for decoding and generating MPEG TS and DVB PSI tables
 Name: libdvbpsi
-Version: 0.1.4
+Version: 0.1.5
 Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvbpsi/
-Source: http://download.videolan.org/pub/libdvbpsi/%{version}/libdvbpsi3-%{version}.tar.bz2
+Source: http://download.videolan.org/pub/libdvbpsi/%{version}/%{real_name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -58,11 +58,9 @@ programs with libdvbpsi support.
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -79,6 +77,9 @@ programs with libdvbpsi support.
 
 
 %changelog
+* Thu Dec  8 2005 Matthias Saou <http://freshrpms.net/> 0.1.5-1
+- Update to 0.1.5 (soname change from .3 to .4).
+
 * Wed May 19 2004 Matthias Saou <http://freshrpms.net/> 0.1.4-2
 - Rebuild for Fedora Core 2.
 

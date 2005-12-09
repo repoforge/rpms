@@ -106,7 +106,7 @@ Available rpmbuild rebuild options :
 --without dvdread dvdnav dvbpsi v4l avi asf aac ogg mad ffmpeg cdio
           a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwin xosd
           lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
-          gnomevfs vcd daap
+          gnomevfs vcd daap pvr
 
 Options that would need not yet existing add-on packages :
 --with tremor tarkin svgalib ggi
@@ -157,6 +157,7 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
     %{?_without_smb:--disable-smb} \
     %{!?_without_dvbpsi:--enable-dvbpsi} \
     %{!?_without_v4l:--enable-v4l} \
+    %{!?_without_pvr:--enable-pvr} \
     %{?_without_cdio--disable-libcdio} \
     %{?_without_ogg:--disable-ogg} \
     %{?_without_mkv:--disable-mkv} \
@@ -263,6 +264,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 0.8.4-3
+- Add PVR option, enabled by default.
+- Rebuild against new libdvbpsi.
+
 * Tue Nov 29 2005 Matthias Saou <http://freshrpms.net/> 0.8.4-2
 - Re-add --x-libraries prefix, as it's still required for x86_64 to build.
 
