@@ -49,7 +49,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.18%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.19%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -71,6 +71,7 @@ Patch13: MPlayer-1.0pre7-gcc_detection.patch
 Patch14: MPlayer-1.0pre7-nostrip.patch
 Patch15: MPlayer-1.0pre7-x86_64.patch
 Patch16: MPlayer-1.0pre7-ad_pcm_fix.patch
+Patch17: MPlayer-1.0pre7-gcc4-altivec.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 BuildRequires: XFree86-devel, gtk+-devel, SDL-devel
@@ -153,6 +154,7 @@ This package contains the end user documentation.
 %patch14 -p1 -b .nostrip
 %patch15 -p1 -b .x86_64
 %patch16 -p0 -b .ad_pcm_fix
+%patch17 -p0 -b .gcc4-altivec
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -294,6 +296,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.19.pre7
+- Include patch to fix PPC compilation on FC4 at last.
+
 * Thu Dec  8 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.18.pre7
 - Disabled shared libpostprocess, let the original ffmpeg package take
   care of that once and for all.
