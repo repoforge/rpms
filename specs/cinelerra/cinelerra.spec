@@ -6,7 +6,7 @@
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.0
-Release: 0.2%{?prever:.%{prever}}
+Release: 0.3%{?prever:.%{prever}}.2.fc4
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
@@ -101,6 +101,9 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 
 %changelog
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 2.0-0.3.20051118
+- Rebuild against mjpegtools 1.8.0.
+
 * Fri Nov 18 2005 Matthias Saou <http://freshrpms.net/> 2.0-0.2.20051118
 - Update to today's svn code.
 - Add --enable-altivec for ppc (we require high end machines anyway).
