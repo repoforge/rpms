@@ -3,7 +3,7 @@
 # Upstream: Gernot Ziegler <gz$lysator,liu,se>
 # Upstream: <mjpeg-developer$lists,sourceforge,net>
 
-# Archs: i686 x86_64
+# Archs: i686 x86_64 ppc
 
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
@@ -16,14 +16,13 @@
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
-Version: 1.6.3
-Release: 0.2.rc2
+Version: 1.8.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
-Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}-rc2.tar.gz
+Source0: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
 Source1: http://dl.sf.net/mjpeg/jpeg-mmx-%{jpegmmx_version}.tar.gz
-Patch0: mjpegtools-1.6.3-rc2-mplex.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel
@@ -37,12 +36,12 @@ BuildRequires: arts-devel
 %{!?_without_mmx:BuildArch: i686}
 BuildRequires: nasm
 %endif
-Requires(post): /sbin/install-info
+Requires(post): /sbin/install-info, /sbin/ldconfig
 Requires(preun): /sbin/install-info
 
 
 %description
-The MJPEG-tools are a basic set of utilities for recording, editing, 
+The MJPEG-tools are a basic set of utilities for recording, editing,
 playing back and encoding (to mpeg) video under linux. Recording can
 be done with zoran-based MJPEG-boards (LML33, Iomega Buz, Pinnacle
 DC10(+), Marvel G200/G400), these can also playback video using the
@@ -62,10 +61,7 @@ of the mjpegtools package.
 
 
 %prep
-%setup -a 1 -n %{name}-%{version}-rc2
-%ifarch ppc
-%patch0 -p1 -b .mplex
-%endif
+%setup -a 1
 
 
 %build
@@ -74,19 +70,18 @@ pushd jpeg-mmx
     ./configure && %{__make} CFLAGS="%{optflags}"
 popd
 %endif
-
 %configure \
 %ifarch %{ix86}
     %{?_without_mmx:--with-jpeg-mmx="`pwd`/jpeg-mmx-%{jpegmmx_version}"}
 %endif
-
-%{__make} %{?_smp_mflags}
+# Don't use %{?_smp_mflags}, the build can fail! (1.8.0)
+%{__make}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
-%{__rm} -f %{buildroot}%{_infodir}/dir
+%{__rm} -f %{buildroot}%{_infodir}/dir || :
 
 
 %clean
@@ -102,8 +97,7 @@ if [ $1 -eq 0 ]; then
     /sbin/install-info --delete %{_infodir}/mjpeg-howto.info.gz %{_infodir}/dir
 fi
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -124,6 +118,11 @@ fi
 
 
 %changelog
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 1.8.0-1
+- Update to 1.8.0.
+- Remove %%{?_smp_mflags}, as the build failed for me on x86_64 with -j4.
+- Remove obsolete PPC-only mplex patch.
+
 * Mon Aug 15 2005 Matthias Saou <http://freshrpms.net/> 1.6.3-0.2.rc2
 - Update to 1.6.3-rc2.
 - Include mjpegtools-1.6.3-rc2-mplex.patch (for ppc only, fails for others).

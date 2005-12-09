@@ -24,7 +24,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.2
-Release: 1%{?prever:.%{prever}}
+Release: 2%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -127,6 +127,9 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-2
+- Rebuild against mjpegtools 1.8.0.
+
 * Thu Dec  8 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-1
 - Update to 1.0.2.
 - No longer explicitly disable MMX, it builds again now.
