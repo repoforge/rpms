@@ -1,6 +1,7 @@
---- libavcodec/Makefile~	2005-04-20 12:40:04.000000000 +0300
-+++ libavcodec/Makefile	2005-04-29 20:26:08.000000000 +0300
-@@ -73,7 +73,9 @@
+diff -Naupr ffmpeg-20051207.orig/libavcodec/Makefile ffmpeg-20051207/libavcodec/Makefile
+--- ffmpeg-20051207.orig/libavcodec/Makefile	2005-11-30 02:40:50.000000000 +0100
++++ ffmpeg-20051207/libavcodec/Makefile	2005-12-07 21:13:38.000000000 +0100
+@@ -249,7 +249,9 @@ ifeq ($(CONFIG_AC3),yes)
  OBJS+= a52dec.o
  
  # using builtin liba52 or runtime linked liba52.so.0

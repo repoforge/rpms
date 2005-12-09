@@ -49,7 +49,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.17%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.18%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -70,9 +70,9 @@ Patch12: MPlayer-1.0pre7-gcc4.patch
 Patch13: MPlayer-1.0pre7-gcc_detection.patch
 Patch14: MPlayer-1.0pre7-nostrip.patch
 Patch15: MPlayer-1.0pre7-x86_64.patch
+Patch16: MPlayer-1.0pre7-ad_pcm_fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
-Requires: libpostproc = %{version}-%{release}
 BuildRequires: XFree86-devel, gtk+-devel, SDL-devel
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
 BuildRequires: lame-devel, libmad-devel, flac-devel
@@ -137,21 +137,6 @@ nice antialiased shaded subtitles and OSD.
 This package contains the end user documentation.
 
 
-%package -n libpostproc
-Summary: Video postprocessing library from MPlayer
-Group: System Environment/Libraries
-Provides: libpostproc-devel = %{version}-%{release}
-
-%description -n libpostproc
-MPlayer is a movie player. It plays most video formats as well as DVDs.
-Its big feature is the wide range of supported output drivers. There are also
-nice antialiased shaded subtitles and OSD.
-
-This package contains only MPlayer's libpostproc post-processing library which
-other projects such as transcode may use. Install this package if you intend
-to use MPlayer, transcode or other similar programs.
-
-
 %prep
 %if %{?date:1}0
 %setup -n MPlayer-%{date}
@@ -167,6 +152,7 @@ to use MPlayer, transcode or other similar programs.
 %patch13 -p0 -b .gcc_detection
 %patch14 -p1 -b .nostrip
 %patch15 -p1 -b .x86_64
+%patch16 -p0 -b .ad_pcm_fix
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -211,7 +197,6 @@ echo | ./configure \
     %{?_without_theora:--disable-theora} \
     %{?_with_dvb:--enable-dvbhead} \
     %{?_with_dvb:--with-dvbincdir=/lib/modules/`uname -r`/build/include} \
-    --enable-shared-pp \
     --disable-fastmemcpy \
     --enable-i18n \
     --language=all \
@@ -257,12 +242,6 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %postun
 /sbin/ldconfig
 update-desktop-database %{_datadir}/applications &>/dev/null || :
-
-%post -n libpostproc
-/sbin/ldconfig
-
-%postun -n libpostproc
-/sbin/ldconfig
 
 
 %clean
@@ -313,13 +292,13 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc DOCS/*
 
-%files -n libpostproc
-%defattr(-, root, root, 0755)
-%{_includedir}/postproc/
-%{_libdir}/libpostproc.so*
-
 
 %changelog
+* Thu Dec  8 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.18.pre7
+- Disabled shared libpostprocess, let the original ffmpeg package take
+  care of that once and for all.
+- Include ad_pcm_fix patch.
+
 * Tue Jul 19 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.17.pre7
 - Added x86_64 patch from Ryo Dairiki.
 - Remove gtk-update-icon-cache calls, at least until icon changes place.

@@ -1,0 +1,12 @@
+diff -Naupr kino-0.8.0.orig/configure.in kino-0.8.0/configure.in
+--- kino-0.8.0.orig/configure.in	2005-11-21 00:01:31.000000000 +0100
++++ kino-0.8.0/configure.in	2005-12-07 13:36:11.000000000 +0100
+@@ -83,7 +83,7 @@ AC_ARG_WITH(quicktime,[  --with-quicktim
+ [
+ 	AC_CHECK_HEADERS(quicktime/quicktime.h,
+ 	[
+-		AC_CHECK_LIB(quicktimehv, quicktime_open, ,
++		AC_CHECK_LIB(quicktime, quicktime_open, ,
+ 			[AC_WARN(libquicktime missing; install libquicktime or quicktime4linux to support Quicktime files.)],
+ 			[$LIBRAW1394_CFLAGS $LIBRAW1394_LIBS -lm]
+ 		)

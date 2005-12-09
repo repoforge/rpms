@@ -4,7 +4,7 @@
 Summary: DTS Coherent Acoustics decoder
 Name: libdca
 Version: 0.0.2
-Release: 1
+Release: 2
 License: GPL
 Group: System/Library
 URL: http://www.videolan.org/libdca.html
@@ -23,6 +23,8 @@ Free library for decoding DTS Coherent Acoustics streams.
 
 
 %build
+# Force PIC as applications fail to recompile against the lib on x86_64 without
+export CFLAGS="%{optflags} -fPIC"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -51,6 +53,10 @@ Free library for decoding DTS Coherent Acoustics streams.
 
 
 %changelog
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 0.0.2-2
+- Force -fPIC, as applications fail to recompile against the lib on x86_64
+  without.
+
 * Thu Aug 25 2005 Matthias Saou <http://freshrpms.net/> 0.0.2-1
 - Initial RPM release.
 

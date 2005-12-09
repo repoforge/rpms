@@ -23,8 +23,8 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 1.0.0
-Release: 2%{?prever:.%{prever}}
+Version: 1.0.2
+Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -36,7 +36,7 @@ BuildRequires: libdv-devel, bzip2-devel, ed, lzo-devel, libpng-devel
 BuildRequires: mpeg2dec-devel, ffmpeg-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
-%{!?_without_postproc:BuildRequires: libpostproc-devel}
+%{!?_without_postproc:BuildRequires: ffmpeg-libpostproc-devel}
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
@@ -62,7 +62,7 @@ Please see the included README file for more.
 
 Available rpmbuild rebuild options :
 --without : lame theora dvdread quicktime a52 mpeg3 mjpeg libfame magick
-            nasm postproc ffmpeg xvidcore
+            nasm postproc xvidcore
 
 
 %prep
@@ -73,7 +73,6 @@ Available rpmbuild rebuild options :
 # This is required to get "#include <postprocess.h>" to work
 export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 %configure \
-    --disable-mmx \
     --enable-netstream \
     --enable-v4l \
     %{!?_without_postproc:--enable-libpostproc} \
@@ -128,6 +127,10 @@ export CFLAGS="%{optflags} -I%{_includedir}/postproc"
 
 
 %changelog
+* Thu Dec  8 2005 Matthias Saou <http://freshrpms.net/> 1.0.2-1
+- Update to 1.0.2.
+- No longer explicitly disable MMX, it builds again now.
+
 * Tue Aug 16 2005 Matthias Saou <http://freshrpms.net/> 1.0.0-2
 - Rebuild against new mjpegtools.
 

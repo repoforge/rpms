@@ -1,77 +1,79 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: el3
-
-Summary: library for providing raw access to IEEE 1394 devices
+Summary: Audio/Video Control library for IEEE-1394 devices
 Name: libavc1394
-Version: 0.4.1
-Release: 2
+Version: 0.5.1
+Release: 0
 License: GPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libavc1394/
-
 Source: http://dl.sf.net/libavc1394/libavc1394-%{version}.tar.gz
+Patch: libavc1394-0.5.1-librom.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: libraw1394-devel >= 0.8
-Requires: libraw1394 >= 0.8
+BuildRequires: libraw1394-devel, pkgconfig
 
 %description
-libavc1394 is a programming interface for the 1394 Trade Association
-AV/C (Audio/Video Control) Digital Interface Command Set.
-s
+The libavc1394 library allows utilities to control IEEE-1394 devices
+using the AV/C specification.  Audio/Video Control allows applications
+to control devices like the tape on a VCR or camcorder.
 
 %package devel
-Summary: Files for developing applications that use libavc1394
-Requires: %{name} = %{version}-%{release}
+Summary: Development libs for libavc1394
 Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+Requires: libraw1394-devel
 
 %description devel
-The header files, static library, libtool library and man pages for
-developing applications that use libavc1394.
+Development libraries required to build applications using libavc1394.
 
 
 %prep
 %setup
+%patch -p1 -b .librom
+
 
 %build
-#%{__libtoolize} --force --copy
-#%{__aclocal}
-#%{__automake}
-##%{__autoconf}
 %configure
 %{__make} %{?_smp_mflags}
 
+
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
+
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING NEWS README TODO
+%doc ChangeLog COPYING NEWS README TODO
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_mandir}/man1/*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
+%{_includedir}/libavc1394/
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/libavc1394.pc
+
 
 %changelog
-* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.4.1-2.fr
+* Fri Dec  9 2003 Matthias Saou <http://freshrpms.net/> 0.5.1-0
+- Update to 0.5.1.
+- Sync with Fedora Core spec file.
+
+* Fri Nov  7 2003 Matthias Saou <http://freshrpms.net/> 0.4.1-2
 - Rebuild for Fedora Core 1.
 
 * Wed Apr  9 2003 Matthias Saou <http://freshrpms.net/>

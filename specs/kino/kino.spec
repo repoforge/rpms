@@ -6,26 +6,28 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 0.7.6
+Version: 0.8.0
 Release: 1%{?cvs:.%{cvs}}
 License: GPL
 Group: Applications/Multimedia
-URL: http://kino.schirmacher.de/
+URL: http://www.kinodv.org/
 Source: http://dl.sf.net/kino/kino-%{version}.tar.gz
+Patch: kino-0.8.0-libquicktime.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: gtk2 >= 2.6
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
-BuildRequires: XFree86-devel, libgnomeui-devel >= 2.0, gettext
+BuildRequires: XFree86-devel, gtk2-devel >= 2.6, libglade2-devel, gettext
 BuildRequires: libxml2-devel, libsamplerate-devel
 # libtool *sigh*
 BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
 %{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
-%if %{?cvs:1}0
+#if %{?cvs:1}0
 BuildRequires: automake, autoconf, libtool
-%endif
-
+#endif
 Obsoletes: kino-devel <= %{version}
+Obsoletes: kino-dvtitler <= 0.2.0-2
 
 %description
 The new generation of digital camcorders use the Digital Video (DV) data
@@ -35,10 +37,12 @@ commands for fast navigating and editing inside the movie.
 
 %prep
 %setup
+%patch -p1 -b .libquicktime
 
 
 %build
 %{?cvs:./autogen.sh}
+./autogen.sh
 %configure \
     --with-hotplug-script-dir=%{_sysconfdir}/hotplug/usb \
     --with-hotplug-usermap-dir=%{_libdir}/hotplug/kino \
@@ -53,6 +57,9 @@ commands for fast navigating and editing inside the movie.
     hotplugscriptdir=%{buildroot}%{_sysconfdir}/hotplug/usb \
     hotplugusermapdir=%{buildroot}%{_libdir}/hotplug/kino
 %find_lang %{name}
+# Move plugins back where they belong (new in 0.8.0)
+%{__mkdir_p} %{buildroot}%{_libdir}/kino-gtk2/
+%{__mv} %{buildroot}%{_libdir}/*.* %{buildroot}%{_libdir}/kino-gtk2/
 
 
 %post
@@ -73,6 +80,10 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %{_bindir}/*
 %{_includedir}/kino/
 %{_libdir}/hotplug/kino/
+%dir %{_libdir}/kino-gtk2/
+%{_libdir}/kino-gtk2/*.so*
+%exclude %{_libdir}/kino-gtk2/*.a
+%exclude %{_libdir}/kino-gtk2/*.la
 %{_datadir}/applications/Kino.desktop
 %{_datadir}/kino/
 %{_datadir}/mime/packages/kino.xml
@@ -81,6 +92,14 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 
 
 %changelog
+* Wed Dec  7 2005 Matthias Saou <http://freshrpms.net> 0.8.0-1
+- Update to 0.8.0.
+- Change libgnomeui-devel dependency to new gtk2-devel only.
+- Add explicit gtk2 >= 2.6 requirement.
+- Include patch to change detection of libquicktime (HV was tested).
+- Include new libdvtitler and libtimfx shared libraries.
+- Obsolete kino-dvtitler <= 0.2.0-2.
+
 * Mon Jun  6 2005 Matthias Saou <http://freshrpms.net> 0.7.6-1
 - Update to 0.7.6.
 - Add update-mime-database calls.
