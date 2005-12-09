@@ -3,7 +3,7 @@
 
 Summary: Fluendo Streaming Server
 Name: flumotion
-Version: 0.1.9
+Version: 0.1.10
 Release: 1
 Group: Applications/Internet
 License: GPL
@@ -12,17 +12,18 @@ Source: http://www.flumotion.net/src/flumotion/flumotion-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): openssl
 Requires: python >= 2.3
-Requires: gstreamer >= 0.8.5
-Requires: gstreamer-python >= 0.7.93
+Requires: gstreamer >= 0.8.7
+Requires: gstreamer-python >= 0.8.0
 Requires: python-twisted >= 1.3.0
 Requires: pygtk2 >= 2.4.0
 Requires: python-imaging
-BuildRequires: gstreamer-devel >= 0.8.5, gstreamer-python >= 0.7.93
-BuildRequires: python-devel >= 2.3, python-twisted >= 1.3.0
+BuildRequires: python-devel >= 2.3
+BuildRequires: gstreamer-devel >= 0.8.7
+BuildRequires: gstreamer-python >= 0.8.0
+BuildRequires: python-twisted >= 1.3.0
 BuildRequires: pygtk2-devel >= 2.4.0
 BuildRequires: epydoc
 BuildRequires: gcc-c++
-BuildArch: noarch
 
 %description
 Fluendo Streaming Server.
@@ -40,11 +41,12 @@ Fluendo Streaming Server.
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+%find_lang %{name}
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/flumotion/managers/default/flows
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/flumotion/workers
 
 # Install init script
-%{__install} -Dp -m 0755 doc/redhat/flumotion \
+%{__install} -D -p -m 0755 doc/redhat/flumotion \
     %{buildroot}%{_sysconfdir}/rc.d/init.d/flumotion
 
 # Create a .flumotion in the new home
@@ -123,22 +125,21 @@ if [ $1 -eq 0 ]; then
 fi
 
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
 %doc conf/ doc/reference/html/
 %{_sysconfdir}/rc.d/init.d/flumotion
 %attr(0750, flumotion, flumotion) %{_sysconfdir}/flumotion/
-%{_bindir}/flumotion-admin
-%{_bindir}/flumotion-manager
-%{_bindir}/flumotion-tester
-%{_bindir}/flumotion-worker
+%{_bindir}/flumotion-*
 %{_sbindir}/flumotion
 %{_libdir}/flumotion/
 %{_datadir}/applications/flumotion-admin.desktop
-%{_datadir}/flumotion/
-%{_datadir}/pixmaps/flumotion.png
+%dir %{_datadir}/flumotion/
+%{_datadir}/flumotion/glade/
+%{_datadir}/flumotion/image/
 %dir %attr(0750, flumotion, flumotion) %{_datadir}/flumotion/.flumotion
+%{_datadir}/pixmaps/flumotion.png
 %{_mandir}/man1/flumotion-*
 %{_libdir}/pkgconfig/flumotion.pc
 %dir %attr(0750, flumotion, flumotion) %{_var}/cache/flumotion/
@@ -147,6 +148,12 @@ fi
 
 
 %changelog
+* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 0.1.10-1
+- Update to 0.1.10.
+- No longer noarch (because of the tray icon stuff).
+- Include (new) translations.
+- Update versions in the requirements, based on configure's output.
+
 * Thu Aug  4 2005 Matthias Saou <http://freshrpms.net/> 0.1.9-1
 - Update to 0.1.9.
 
