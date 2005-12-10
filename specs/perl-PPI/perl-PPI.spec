@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl, perl-ExtUtils-AutoInstall, perl-File-Slurp
 BuildRequires: perl-List-MoreUtils, perl-Clone, perl-Class-Autouse
 BuildRequires: perl-Test-ClassAPI, perl-Storable, perl-Params-Util
+BuildRequires: perl-IO-stringy
 
 %description
 This is an in-development package for parsing, manipulating and saving
