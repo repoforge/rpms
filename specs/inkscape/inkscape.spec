@@ -31,6 +31,7 @@ Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
+BuildRequires: gtkmm2 >= 2.4
 BuildRequires: libgc-devel,  perl(XML::Parser)
 BuildRequires: gcc-c++, pkgconfig
 BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel

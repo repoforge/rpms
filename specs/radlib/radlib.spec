@@ -45,11 +45,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,6 +54,8 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%{_bindir}/raddebug
+%{_bindir}/radmrouted
 %{_libdir}/librad.so.*
 
 %files devel

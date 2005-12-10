@@ -60,7 +60,7 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{!?_without_smb:BuildRequires: samba-common}
 %{!?_without_dvbpsi:BuildRequires: libdvbpsi-devel}
 %{!?_without_ogg:BuildRequires: libogg-devel}
-%{!?_without_mkv:BuildRequires: libebml-devel, libmatroska-devel}
+%{!?_without_mkv:BuildRequires: libebml-devel >= 0.7.6, libmatroska-devel}
 %{!?_without_modplug:BuildRequires: libmodplug-devel}
 %{!?_without_mad:BuildRequires: libmad-devel}
 %{!?_without_id3tag:BuildRequires: libid3tag-devel}

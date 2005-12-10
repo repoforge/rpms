@@ -56,18 +56,17 @@ using AA-lib, you'll need to install aalib-devel.
 
 
 %post
+/sbin/ldconfig
 if [ -e %{_infodir}/libaa.info.gz ]; then
     /sbin/install-info %{_infodir}/libaa.info.gz %{_infodir}/dir
 fi
-/sbin/ldconfig
 
 %preun
 if [ -e %{_infodir}/libaa.info.gz ]; then
     /sbin/install-info --delete %{_infodir}/libaa.info.gz %{_infodir}/dir
 fi
 
-%postun
-/sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %clean
