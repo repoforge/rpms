@@ -1,0 +1,10 @@
+--- libiec61883-1.0.0/examples/Makefile.am~	2005-03-25 21:14:38.000000000 +0100
++++ libiec61883-1.0.0/examples/Makefile.am	2005-05-21 10:37:38.356213254 +0200
+@@ -1,6 +1,5 @@
+ 
+-noinst_PROGRAMS = test-amdtp test-dv test-mpeg2 test-plugs
+-bin_PROGRAMS = plugreport plugctl
++bin_PROGRAMS = plugreport plugctl test-amdtp test-dv test-mpeg2 test-plugs
+ 
+ test_amdtp_SOURCES = test-amdtp.c
+ test_dv_SOURCES = test-dv.c

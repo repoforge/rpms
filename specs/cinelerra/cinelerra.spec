@@ -1,12 +1,12 @@
 # $Id$
 # Authority: matthias
 
-%define prever 20051118
+%define prever 20051210
 
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.0
-Release: 0.3%{?prever:.%{prever}}.2.fc4
+Release: 0.3%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
@@ -101,7 +101,8 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 
 %changelog
-* Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 2.0-0.3.20051118
+* Sat Dec 10 2005 Matthias Saou <http://freshrpms.net/> 2.0-0.3.20051210
+- Update to today's SVN code.
 - Rebuild against mjpegtools 1.8.0.
 
 * Fri Nov 18 2005 Matthias Saou <http://freshrpms.net/> 2.0-0.2.20051118
