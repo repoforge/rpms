@@ -1,0 +1,12 @@
+diff -Naupr MPlayer-1.0pre7.orig/configure MPlayer-1.0pre7/configure
+--- MPlayer-1.0pre7.orig/configure	2005-04-13 13:46:35.000000000 +0200
++++ MPlayer-1.0pre7/configure	2005-12-11 13:36:38.000000000 +0100
+@@ -5940,7 +5940,7 @@ cat > $TMPC << EOF
+ #endif
+ int main(void) { x264_encoder_open((void*)0); return 0; }
+ EOF
+-_ld_x264="$_ld_x264 -lx264 $_ld_lm"
++_ld_x264="$_ld_x264 -lx264 $_ld_pthread $_ld_lm"
+ if test "$_x264" != no && cc_check $_inc_x264 $_ld_x264 ; then
+   _x264=yes
+   _def_x264='#define HAVE_X264 1'
