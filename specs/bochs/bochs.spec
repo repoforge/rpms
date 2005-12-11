@@ -19,7 +19,7 @@
 
 Summary: IA-32 (x86) PC emulator
 Name: bochs
-Version: 2.1.1
+Version: 2.2.1
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -41,7 +41,7 @@ and other OS's, all on your workstation.
 %prep
 %setup
 #setup -a 1
-%patch -b .gcc243
+#patch -b .gcc243
 
 %build
 %configure \
@@ -92,6 +92,9 @@ fi
 %{_datadir}/bochs/
 
 %changelog
+* Sun Dec 11 2005 Dag Wieers <dag@wieers.com> - 2.2.1-1
+- Updated to release 2.2.1.
+
 * Fri Nov 26 2004 Dag Wieers <dag@wieers.com> - 2.1.1-1
 - Added patch for fc3/i386. (Nigel Smith)
 

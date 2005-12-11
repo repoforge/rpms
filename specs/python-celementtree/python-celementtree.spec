@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.2, expat-devel, python-devel
 Requires: python >= %{python_version}, expat
+Conflicts: python-elementtree
 
 %description
 The Element type is a simple but flexible container object, designed

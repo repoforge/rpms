@@ -52,7 +52,8 @@ you will need to install %{name}-devel.
 perl -pi -e 's|include .map.|include <map>\nclass Image;|g;' exrmaketiled/Image.h
 
 %build
-%configure
+%configure \
+	--program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

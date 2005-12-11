@@ -7,17 +7,17 @@
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 
-%define real_version 0.8.10-rc7
+%define real_version 0.8.10
 
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.10
-Release: 0.rc7
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/
 
-Source: http://irssi.org/files/irssi-%{real_version}.tar.gz
+Source: http://mirror.irssi.org/irssi-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel, ncurses-devel, libgc-devel, gcc-c++
@@ -85,8 +85,11 @@ Support for other protocols like ICQ could be created some day too.
 #%exclude %{perl_vendorarch}
 
 %changelog
-* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.10-1
+* Sun Dec 11 2005 Dag Wieers <dag@wieers.com> - 0.8.10-1
 - Updated to release 0.8.10.
+
+* Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.8.10-0.rc7
+- Updated to release 0.8.10-rc7.
 
 * Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.8.9-4
 - Workaround directory-conflicts bug in up2date. (RHbz #106123)

@@ -8,9 +8,11 @@ Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/
+
 Source: ftp://ftp.gnu.org/pub/gnu/vcdimager/vcdimager-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig, popt, gcc-c++
+
+BuildRequires: libxml2-devel >= 2.3.8, zlib-devel, pkgconfig >= 0.9, popt, gcc-c++
 BuildRequires: libcdio-devel >= 0.72
 
 %description
