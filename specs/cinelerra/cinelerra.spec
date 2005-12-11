@@ -6,7 +6,7 @@
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.0
-Release: 0.3%{?prever:.%{prever}}
+Release: 0.4%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
@@ -58,6 +58,7 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 %build
 %configure \
+    --with-plugindir=%{_libdir}/cinelerra \
 %ifarch %{ix86} x86_64
     --enable-mmx \
 %endif
@@ -70,7 +71,8 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall \
+    plugindir=%{buildroot}%{_libdir}/cinelerra
 %find_lang %{name}
 
 
@@ -101,6 +103,9 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 
 %changelog
+* Sat Dec 10 2005 Matthias Saou <http://freshrpms.net/> 2.0-0.4.20051210
+- Force plugindir, so that 64bit plugins go into /usr/lib64.
+
 * Sat Dec 10 2005 Matthias Saou <http://freshrpms.net/> 2.0-0.3.20051210
 - Update to today's SVN code.
 - Rebuild against mjpegtools 1.8.0.
