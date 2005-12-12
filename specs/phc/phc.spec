@@ -12,7 +12,7 @@ URL: http://www.phpcompiler.org/
 Source: http://www.phpcompiler.org/src/phc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, bison
+BuildRequires: flex, bison, gcc-c++
 
 %description
 phc is a compiler for PHP that will translate PHP code directly into Linux 

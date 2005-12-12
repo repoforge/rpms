@@ -18,7 +18,7 @@ Requires: gtk2 >= 2.6
 BuildRequires: libdv-devel >= 0.102, libavc1394-devel, libraw1394-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel
 BuildRequires: XFree86-devel, gtk2-devel >= 2.6, libglade2-devel, gettext
-BuildRequires: libxml2-devel, libsamplerate-devel
+BuildRequires: libxml2-devel, libsamplerate-devel, intltool
 # libtool *sigh*
 BuildRequires: gcc-c++
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}

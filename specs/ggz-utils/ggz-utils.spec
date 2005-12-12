@@ -12,7 +12,7 @@ URL: http://www.ggzgamingzone.org/
 Source: http://ftp.belnet.be/packages/ggzgamingzone/ggz/%{version}/ggz-utils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libggz-devel
+BuildRequires: libggz-devel, gcc-c++
 
 %description
 GGZ (which is a recursive acronym for GGZ Gaming Zone) develops libraries, 

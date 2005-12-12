@@ -13,7 +13,7 @@ URL: http://gnunet.org/doodle/
 Source: http://gnunet.org/doodle/download/doodle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libextractor-devel
+BuildRequires: libextractor-devel, gcc-c++
 
 %description
 Doodle is a tool that searches your hard drive for files using pattern

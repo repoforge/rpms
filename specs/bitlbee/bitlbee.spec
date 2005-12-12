@@ -78,7 +78,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc bitlbee.conf COPYING doc/AUTHORS doc/CHANGES doc/CREDITS motd.txt
-%doc doc/user-guide/*.html doc/user-guide/*.txt doc/FAQ doc/INSTALL doc/README doc/TODO utils/
+%doc doc/user-guide/*.html doc/user-guide/*.txt doc/FAQ doc/INSTALL doc/README utils/
 %doc %{_mandir}/man5/bitlbee.conf.5*
 %doc %{_mandir}/man8/bitlbee.8*
 %config %{_sysconfdir}/xinetd.d/bitlbee

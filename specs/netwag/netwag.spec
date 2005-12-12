@@ -13,7 +13,7 @@ URL: http://www.laurentconstantin.com/en/netw/netwox/
 Source: http://www.laurentconstantin.com/common/netw/netwag/download/v5/netwag-%{version}-src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: netwox, netwib, tcl, tk
+BuildRequires: netwox, netwib, tcl, tk, xterm
 Requires: netwox
 
 %description

@@ -4,13 +4,13 @@
 
 Summary: Image Blending with Multiresolution Splines
 Name: enblend
-Version: 1.3
+Version: 2.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://www-cad.eecs.berkeley.edu/~mihal/enblend/
+URL: http://enblend.sourceforge.net/
 
-Source: http://www-cad.eecs.berkeley.edu/~mihal/enblend/enblend-%{version}.tar.gz
+Source: http://dl.sf.net/enblend/enblend-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libtiff-devel, gcc-c++
@@ -51,6 +51,9 @@ does not line up the images for you. Use a tool like Hugin to do that.
 %{_bindir}/enblend
 
 %changelog
+* Mon Dec 12 2005 Dries Verachtert <dries@ulyssis.org> - 2.5-1
+- Updated to release 2.5.
+
 * Sat Sep 04 2004 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updatd to release 1.3.
 

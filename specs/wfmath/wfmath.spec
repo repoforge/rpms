@@ -12,7 +12,7 @@ URL: http://www.worldforge.org/dev/eng/libraries/wfmath
 Source: http://dl.sf.net/worldforge/wfmath-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: gcc-c++
 
 %description
 The primary focus of WFMath is geometric objects. Thus, it includes several 

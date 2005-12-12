@@ -4,7 +4,7 @@
 
 Summary: Extracts attachments out of mailpack format emails
 Name: ripole
-Version: 0.1.4
+Version: 0.2.0
 Release: 1
 License: BSD
 Group: Applications/File
@@ -76,5 +76,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libripole.so
 
 %changelog
+* Mon Dec 12 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.0-1
+- Updated to release 0.2.0.
+
 * Tue Mar 29 2005 Dag Wieers <dag@wieers.com> - 0.1.4-1
 - Initial package. (using DAR)
