@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%define _without_x264 1
+
 %{?dist: %{expand: %%define %dist 1}}
 
 %{?fc1:%define _without_alsa 1}
@@ -91,7 +93,7 @@ BuildRequires: ImageMagick
 %{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
-#{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_x264:BuildRequires: x264-devel}
 %{!?_without_esd:BuildRequires: esound-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_lzo:BuildRequires: lzo-devel}
@@ -201,6 +203,7 @@ echo | ./configure \
     %{?_without_fame:--disable-libfame} \
     %{?_without_caca:--disable-caca} \
     %{?_without_theora:--disable-theora} \
+    %{?_without_x264:--disable-x264} \
     %{?_with_dvb:--enable-dvbhead} \
     %{?_with_dvb:--with-dvbincdir=/lib/modules/`uname -r`/build/include} \
     --disable-fastmemcpy \

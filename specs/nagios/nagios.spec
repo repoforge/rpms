@@ -9,14 +9,14 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
+%define real_version 2.0b6
 Version: 2.0
-Release: 0.b4.1
+Release: 0.b6.1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
-### TODO : change when RC2 is out
-Source: http://dl.sf.net/nagios/nagios-%{version}b4.tar.gz
+Source: http://dl.sf.net/nagios/nagios-%{real_version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -46,7 +46,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{version}b4
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \
@@ -168,6 +168,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Mon Dec 12 2005 Dag Wieers <dag@wieers.com> - 2.0-0.b6.1
+- Updated to release 2.0b6.
+
 * Fri Aug 05 2005 Dag Wieers <dag@wieers.com> - 2.0-0.b4.1
 - Updated to release 2.0b4.
 

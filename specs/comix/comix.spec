@@ -43,7 +43,7 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{_datadir}/applications/*comix.desktop
 
 %changelog
-* Sat Dec 100 2005 Dries Verachtert <dries@ulyssis.org> - 2.2-1
+* Sat Dec 10 2005 Dries Verachtert <dries@ulyssis.org> - 2.2-1
 - Updated to release 2.2.
 
 * Sat Nov 26 2005 Dag Wieers <dag@wieers.com> - 2.1-1

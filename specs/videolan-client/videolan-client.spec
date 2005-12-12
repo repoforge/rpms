@@ -4,26 +4,37 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?el4:%define _without_wxwidgets 1}
+
+%{?fc3:%define _without_wxwidgets 1}
+
+%{?fc2:%define _without_wxwidgets 1}
+
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
+%{?fc1:%define _without_wxwidgets 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_theora 1}
+%{?el3:%define _without_wxwidgets 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_theora 1}
+%{?rh9:%define _without_wxwidgets 1}
 
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_theora 1}
+%{?rh8:%define _without_wxwidgets 1}
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_freedesktop 1}
 %{?rh7:%define _without_fribidi 1}
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_vorbis 1}
+%{?rh7:%define _without_wxwidgets 1}
 %{?rh7:%define _without_xosd 1}
 
 %{?el2:%define _without_alsa 1}
@@ -33,6 +44,7 @@
 %{?el2:%define _without_glx 1}
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_vorbis 1}
+%{?el2:%define _without_wxwidgets 1}
 %{?el2:%define _without_xosd 1}
 
 %{?yd3:%define _without_alsa 1}
@@ -81,7 +93,7 @@ BuildRequires: libgcrypt-devel, gnutls-devel
 %{?_with_portaudio:BuildRequires: portaudio-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_wxwin:BuildRequires: wxGTK-devel}
+%{!?_without_wxwidgets:BuildRequires: wxGTK-devel}
 %{!?_without_xosd:BuildRequires: xosd-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
 %{?_with_mozilla:BuildRequires: mozilla-devel}
@@ -104,7 +116,7 @@ well as DVDs, VCDs, and various streaming protocols.
 Available rpmbuild rebuild options :
 --with mga ncurses glide pth mozilla portaudio avahi hal
 --without dvdread dvdnav dvbpsi v4l avi asf aac ogg mad ffmpeg cdio
-          a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwin xosd
+          a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwidgets xosd
           lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
           gnomevfs vcd daap pvr
 
@@ -182,7 +194,7 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
     %{?_with_portaudio:--enable-portaudio} \
     %{!?_without_arts:--enable-arts} \
     %{!?_without_alsa:--enable-alsa} \
-    %{?_without_wxwindows:--disable-wxwindows} \
+    %{?_without_wxwidgets:--disable-wxwidgets} \
     %{!?_without_xosd:--enable-xosd} \
     %{!?_without_lirc:--enable-lirc} \
     %{?_with_mozilla:--enable-mozilla} \
