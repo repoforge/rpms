@@ -52,7 +52,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.21%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.22%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -183,9 +183,11 @@ popd
 export CFLAGS="%{optflags}"
 echo | ./configure \
     --prefix=%{_prefix} \
+    --bindir=%{_bindir} \
     --datadir=%{_datadir}/mplayer \
-    --confdir=%{_sysconfdir}/mplayer \
     --mandir=%{_mandir} \
+    --confdir=%{_sysconfdir}/mplayer \
+    --libdir=%{_libdir} \
     --enable-gui \
     --enable-largefiles \
     --enable-dynamic-plugins \
@@ -246,6 +248,8 @@ echo | ./configure \
 # Create empty Win32 binary codec directory
 %ifarch %{ix86}
 %{__mkdir_p} %{buildroot}%{_libdir}/win32
+%else
+%{__mkdir_p} %{buildroot}%{_libdir}/real
 %endif
 
 
@@ -271,11 +275,11 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_bindir}/mplayer
 %ifarch %{ix86}
 %dir %{_libdir}/win32/
+%else
+%dir %{_libdir}/real/
 %endif
-%ifarch %{ix86} ppc
 %{_libdir}/libdha.so*
 %{_libdir}/mplayer/
-%endif
 %{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
 %{_datadir}/mplayer/
 %{_datadir}/pixmaps/mplayer-desktop.xpm
@@ -308,6 +312,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Tue Dec 13 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.22.20051211
+- Force _libdir since libdha and vidix modules are now built on x86_64.
+- Include empty _libdir/real/ for non-x86 archs.
+
 * Sun Dec 11 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.21.20051211
 - Update to CVS code.
 - Update Blue skin to 1.5.
