@@ -15,7 +15,8 @@ Source: http://atterer.net/jigdo/jigdo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: w3c-libwww-devel, gtk2-devel, pkgconfig, db4-devel 
-BuildRequires: gcc-c++, openssl-devel, desktop-file-utils
+BuildRequires: gcc-c++, openssl-devel, desktop-file-utils, wget
+Requires: wget
 
 %description
 Jigsaw Download, or short jigdo, is a tool designed to ease the distribution

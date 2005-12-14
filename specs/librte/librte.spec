@@ -16,6 +16,7 @@ URL: http://zapping.sourceforge.net/
 Source: http://dl.sf.net/zapping/rte-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
 %{!?rh6:BuildRequires: doxygen}
 
 Obsoletes: rte < %{version}

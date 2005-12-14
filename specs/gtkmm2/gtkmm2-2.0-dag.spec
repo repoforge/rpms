@@ -14,7 +14,7 @@ URL: http://gtkmm.sourceforge.net/
 Source: http://dl.sf.net/gtkmm/gtkmm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libsigc++-devel >= 1.2.0, glib2-devel >= 2.0.4
+BuildRequires: libsigc++-devel >= 1.2.0, glib2-devel >= 2.0.4, gcc-c++
 BuildRequires: atk-devel >= 1.0.0, pango-devel >= 1.0.0, gtk2-devel >= 2.0.5
 
 %description

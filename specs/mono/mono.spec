@@ -14,6 +14,7 @@ Patch: mono-remove-gacdir-flag.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, glib2-devel >= 1.3.11, pkgconfig, libicu-devel
+BuildRequires: gcc-c++
 #BuildRequires: rsync, j2sdk
 
 %description

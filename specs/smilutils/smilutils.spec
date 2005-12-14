@@ -14,7 +14,7 @@ Source: http://kino.schirmacher.de/filemanager/download/14/smilutils-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: libxml2-devel, gtk+-devel
+BuildRequires: libxml2-devel, gtk+-devel, gdk-pixbuf-devel, gcc-c++
 Buildrequires: libraw1394-devel, libavc1394-devel, libdv-devel
 BuildRequires: libquicktime-devel, SDL-devel, imlib2-devel, libpng-devel
 

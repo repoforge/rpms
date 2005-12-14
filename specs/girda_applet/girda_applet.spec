@@ -13,9 +13,10 @@ Source: http://dl.sf.net/girda/girda_applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel, gtk+-devel >= 1.2.9, gnome-libs-devel >= 1.2.11, ORBit-devel >= 0.5.7
-BuildRequires: gdk-pixbuf-devel >= 0.11, libglade-devel >= 0.14
+BuildRequires: gdk-pixbuf-devel >= 0.11, libglade2-devel
 #BuildRequires: openobex-devel
-BuildRequires: scrollkeeper, gtk2-devel
+BuildRequires: scrollkeeper, gtk2-devel, libwnck-devel
+BuildRequires: gnome-panel-devel
 
 Requires(post): scrollkeeper
 

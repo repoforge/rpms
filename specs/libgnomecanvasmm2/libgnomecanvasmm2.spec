@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtkmm2-devel >= 2.2.5, libsigc++ >= 1.2, glib2-devel >= 2.0
 BuildRequires: pango-devel >= 1.0, freetype-devel >= 2.0
 BuildRequires: atk-devel >= 1.0, libgnomecanvas-devel >= 1.113.0, libart_lgpl-devel >= 2.0
+BuildRequires: gcc-c++
 
 %description
 libgnomemm provides C++ wrappers for libgnome, for use with gtkmm.

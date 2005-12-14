@@ -13,6 +13,8 @@ URL: http://www.monkey.org/~dugsong/fragrouter/
 Source: fragrouter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: byacc, flex, libpcap
+
 %description
 Fragrouter is a network intrusion detection evasion toolkit. It
 implements most of the attacks described in the Secure Networks
