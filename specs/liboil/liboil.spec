@@ -3,13 +3,13 @@
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.2
+Version: 0.3.6
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
-URL: http://www.schleef.org/liboil/
-Source: http://www.schleef.org/liboil/download/liboil-%{version}.tar.gz
-Patch: liboil-0.3.0-gccoptfixes.patch
+URL: http://liboil.freedesktop.org/
+Source: http://liboil.freedesktop.org/download/liboil-%{version}.tar.gz
+Patch0: liboil-0.3.3-gccoptfixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: glib2-devel, gcc-c++
 
@@ -38,12 +38,16 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 %prep
 %setup
-%patch0 -p1
+%patch0 -p1 -b .gccoptfixes
 
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+# multi-jobbed make makes the build fail:
+# ./build_prototypes_doc >liboilfuncs-doc.h
+# /bin/sh: ./build_prototypes_doc: No such file or directory
+# %{__make} %{?_smp_mflags}
+%{__make}
 
 
 %install
@@ -67,7 +71,6 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_datadir}/gtk-doc/html/liboil/
 %{_includedir}/*
 %{_libdir}/*.a
 %exclude %{_libdir}/*.la
@@ -77,10 +80,34 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 
 %changelog
+* Wed Dec 14 2005 Matthias Saou <http://freshrpms.net/> 0.3.6-1
+- Update to 0.3.6.
+
+* Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 0.3.5-3
+- Sync spec files across branches.
+- Parallel make seems to have worked for 0.3.5 on devel, but just in case...
+
+* Sat Nov 12 2005 Thomas Vander Stichele <thomas at apestaart dot org> 0.3.5-2
+- Trigger rebuild.
+
+* Sat Nov 12 2005 Thomas Vander Stichele <thomas at apestaart dot org> 0.3.5-1
+- Update to 0.3.5.
+
+* Wed Oct 12 2005 Matthias Saou <http://freshrpms.net/> 0.3.3-3
+- Add patch to disable unrecognized "-fasm-blocks" gcc option on PPC.
+
+* Tue Oct  4 2005 Matthias Saou <http://freshrpms.net/> 0.3.3-2
+- Update to 0.3.3.
+- Update liboil-0.3.3-gccoptfixes.patch.
+
+* Thu Jun 16 2005 Thomas Vander Stichele <thomas at apestaart dot org> 0.3.2-2
+- Disable parallel make
+
 * Wed May 25 2005 Matthias Saou <http://freshrpms.net/> 0.3.2-1
 - Update to 0.3.2.
 - Change ldconfig calls to be the program.
 - Include new gtk-doc files in the devel package.
+- add dist macro.
 
 * Tue May 24 2005 Tom "spot" Callaway <tcallawa@redhat.com> - 0.3.0-4
 - fix compilation error in FC-4 (bz #158641)

@@ -1,0 +1,33 @@
+diff -Naupr liboil-0.3.3.orig/configure liboil-0.3.3/configure
+--- liboil-0.3.3.orig/configure	2005-09-30 01:52:47.000000000 +0200
++++ liboil-0.3.3/configure	2005-10-04 13:50:39.000000000 +0200
+@@ -2833,7 +2833,7 @@ echo "${ECHO_T}$ac_cv_c_compiler_gnu" >&
+ GCC=`test $ac_compiler_gnu = yes && echo yes`
+ ac_test_CFLAGS=${CFLAGS+set}
+ ac_save_CFLAGS=$CFLAGS
+-CFLAGS="-g"
++#CFLAGS="-g"
+ echo "$as_me:$LINENO: checking whether $CC accepts -g" >&5
+ echo $ECHO_N "checking whether $CC accepts -g... $ECHO_C" >&6
+ if test "${ac_cv_prog_cc_g+set}" = set; then
+@@ -21513,7 +21513,7 @@ fi
+ 
+ 
+ 
+-LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_BSD_SOURCE -D_GNU_SOURCE -I\$(top_srcdir) -O2"
++LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_BSD_SOURCE -D_GNU_SOURCE -I\$(top_srcdir)"
+ 
+ 
+ LIBOIL_LIBS="\$(top_builddir)/liboil/liboil-$LIBOIL_MAJORMINOR.la"
+diff -Naupr liboil-0.3.3.orig/configure.ac liboil-0.3.3/configure.ac
+--- liboil-0.3.3.orig/configure.ac	2005-09-30 01:51:05.000000000 +0200
++++ liboil-0.3.3/configure.ac	2005-10-04 13:51:17.000000000 +0200
+@@ -158,7 +158,7 @@ AC_SUBST(SSE2_CFLAGS)
+ AC_SUBST(SSE3_CFLAGS)
+ AC_SUBST(_3DNOW_CFLAGS)
+ 
+-LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_BSD_SOURCE -D_GNU_SOURCE -I\$(top_srcdir) -O2"
++LIBOIL_CFLAGS="$LIBOIL_CFLAGS -D_BSD_SOURCE -D_GNU_SOURCE -I\$(top_srcdir)"
+ AC_SUBST(LIBOIL_CFLAGS)
+ 
+ LIBOIL_LIBS="\$(top_builddir)/liboil/liboil-$LIBOIL_MAJORMINOR.la"
