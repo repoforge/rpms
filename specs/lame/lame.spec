@@ -5,7 +5,7 @@
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.96.1
-Release: 2
+Release: 3
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
@@ -53,7 +53,7 @@ these libraries.
     --with-vorbis \
     --enable-analyser="no" \
     --enable-brhist
-%{__make} %{?_smp_mflags} test CFLAGS="%{optflags}"
+%{__make} test CFLAGS="%{optflags}"
 
 
 %install
@@ -67,11 +67,9 @@ find doc/html -name "Makefile*" | xargs rm -f
 %{__rm} -rf %{buildroot}%{_docdir}/lame/
 
 
-%post
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 
 %clean
@@ -95,6 +93,10 @@ find doc/html -name "Makefile*" | xargs rm -f
 
 
 %changelog
+* Thu Dec 15 2005 Matthias Saou <http://freshrpms.net/> 3.96.1-3
+- Remove the use off _smp_mflags, as build fails on i386 with -j4 (but didn't
+  on x86_64, strange).
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 3.96.1-2
 - Remove complex CFLAGS, recent compilers already do a grrreat job.
 
