@@ -13,7 +13,7 @@ URL: http://enblend.sourceforge.net/
 Source: http://dl.sf.net/enblend/enblend-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtiff-devel, gcc-c++
+BuildRequires: libtiff-devel, gcc-c++, boost-devel
 
 %description
 Enblend is a tool for compositing images. Given a set of images that overlap

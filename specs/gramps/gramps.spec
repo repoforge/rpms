@@ -7,7 +7,7 @@
 
 Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
-Version: 1.0.2
+Version: 2.0.9
 Release: 1
 License: GPL
 Group: Applications/Editors
@@ -79,6 +79,9 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/*.png
  
 %changelog
+* Fri Dec 16 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.9-1
+- Updated to release 2.0.9.
+
 * Sun Apr 04 2004 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Updated to release 1.0.2.
 

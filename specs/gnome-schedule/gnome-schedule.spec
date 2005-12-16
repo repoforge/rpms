@@ -17,9 +17,9 @@ Buildarch: noarch
 ### FIXME: We need yelp now to *build* gnome-schedule ?
 BuildRequires: python, yelp, pygtk2 >= 2.3, gnome-python2
 BuildRequires: pkgconfig, pygtk2-devel, glib2-devel, gettext
-# configure checks for crontab
-BuildRequires: vixie-cron
-Requires: python, pygtk2 >= 2.3, gnome-python2, vixie-cron
+# configure checks for crontab and for at
+BuildRequires: vixie-cron, at
+Requires: python, pygtk2 >= 2.3, gnome-python2, vixie-cron, at
 
 %description
 Gnome-schedule is a GNOME GUI for configuring a users crontab. It was made

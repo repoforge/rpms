@@ -14,6 +14,7 @@ URL: http://denemo.sourceforge.net/
 Source: http://dl.sf.net/denemo/denemo-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, libxml2-devel, pkgconfig, gcc-c++
+BuildRequires: gtk2-devel
 
 %description
 Denemo is a graphical music notation program written in C with
