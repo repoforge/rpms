@@ -5,7 +5,7 @@
 Summary: Guitar and other instruments tuner
 Name: k3guitune
 Version: 0.5.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://home.planet.nl/~lamer024/k3guitune.html
@@ -22,6 +22,7 @@ graphic and an oscilloscope. It supports normal, Wien, and physical tuning.
 
 %prep
 %setup
+%{__perl} -pi -e "s|^\.#|#|g;" k3guitune/k3guitune.desktop
 
 %build
 %configure
@@ -44,5 +45,8 @@ graphic and an oscilloscope. It supports normal, Wien, and physical tuning.
 %{_datadir}/doc/HTML/*/k3guitune/
 
 %changelog
+* Fri Dec 16 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.1-2
+- Fix the desktop file, thanks to xyzzy1 at hotpop dot com.
+
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1
 - Initial package.
