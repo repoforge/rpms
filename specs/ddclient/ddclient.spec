@@ -3,8 +3,8 @@
 
 Summary: Updates dynamic DNS entries
 Name: ddclient
-Version: 3.6.5
-Release: 4
+Version: 3.6.7
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/
@@ -65,6 +65,9 @@ fi
 
 
 %changelog
+* Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.7-1
+- Updated to release 3.6.7.
+
 * Sun Mar 13 2005 Dries Verachtert <dries@ulyssis.org> - 3.6.5-4
 - Fixed the permissions of the ddclient init script (Thanks to Stef Van Dessel)
 

@@ -4,7 +4,7 @@
 
 Summary: Charset and encoding analyser
 Name: enca
-Version: 1.8
+Version: 1.9
 Release: 1
 License: GPL
 Group: Applications/Text
@@ -52,6 +52,9 @@ encoding of text files and can also convert them to other encodings.
 
 
 %changelog
+* Sun Dec 18 2005 Dries Verachtert <dries@ulyssis.org> 1.9-1
+- Update to release 1.9.
+
 * Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> 1.8-1
 - Update to release 1.8.
 

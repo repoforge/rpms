@@ -13,7 +13,7 @@ URL: http://www.nongnu.org/gksu/
 Source: http://people.debian.org/~kov/gksu/libgksu1.2/libgksu1.2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gettext, bison, pkgconfig, glib2-devel
+BuildRequires: gcc-c++, gettext, bison, pkgconfig, glib2-devel, gtk-doc
 
 %description
 LibGKSu is a library from the gksu program that provides a simple API for 

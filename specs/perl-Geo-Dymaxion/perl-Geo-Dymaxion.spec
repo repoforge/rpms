@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Geo-Dymaxion/
 Source: http://search.cpan.org/CPAN/authors/id/S/SD/SDERLE/Geo-Dymaxion-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, perl-Inline
+BuildRequires: perl, perl-Inline, perl-Parse-RecDescent
 
 %description
 "Geo::Dymaxion" allows you to draw points on Dymaxion(tm) maps using
