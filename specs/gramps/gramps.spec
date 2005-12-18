@@ -18,7 +18,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf >= 2.52, automake >= 1.6, scrollkeeper >= 0.1.4
 BuildRequires: gnome-python2-canvas, gnome-python2-gconf
-BuildRequires: pygtk2, pygtk2-libglade, gnome-python2-vfs
+BuildRequires: pygtk2, pygtk2-libglade
+BuildRequires: desktop-file-utils
 
 Requires(post): scrollkeeper
 Requires: python >= 2.2, gnome-python2-canvas, gnome-python2-gconf
@@ -45,12 +46,12 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor gnome --delete-original \
-	--add-category X-Red-Hat-Base                 \
-	--add-category Application                    \
-	--add-category Utility                        \
-	--dir %{buildroot}%{_datadir}/applications    \
-	%{buildroot}%{_datadir}/gramps/%{name}.desktop
+desktop-file-install --vendor rpmforge --delete-original \
+	--add-category X-Red-Hat-Base                    \
+	--add-category Application                       \
+	--add-category Utility                           \
+	--dir %{buildroot}%{_datadir}/applications       \
+	%{buildroot}%{_datadir}/applications/%{name}.desktop
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper/
@@ -71,12 +72,20 @@ scrollkeeper-update -q || :
 #%doc %{_datadir}/gnome/help/gramps-manual/
 #%doc %{_datadir}/gnome/help/extending-gramps/
 %{_bindir}/*
-%{_libdir}/gramps/
 %{_datadir}/applications/*.desktop
-%{_datadir}/gnome/apps/Applications/*.desktop
 %{_datadir}/gramps/
 %{_datadir}/omf/gramps/
-%{_datadir}/pixmaps/*.png
+%{_sysconfdir}/gconf/schemas/gramps.schemas
+%{_datadir}/application-registry/gramps.applications
+%{_datadir}/icons/*/*/*/*.png
+%{_datadir}/mime-info/gramps.*
+%{_datadir}/mime/application/*.xml
+%{_datadir}/mime/packages/gramps.xml
+%exclude %{_datadir}/mime/aliases
+%exclude %{_datadir}/mime/XMLnamespaces
+%exclude %{_datadir}/mime/globs
+%exclude %{_datadir}/mime/magic
+%exclude %{_datadir}/mime/subclasses
  
 %changelog
 * Fri Dec 16 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.9-1

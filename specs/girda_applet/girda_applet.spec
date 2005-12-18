@@ -16,7 +16,7 @@ BuildRequires: glib-devel, gtk+-devel >= 1.2.9, gnome-libs-devel >= 1.2.11, ORBi
 BuildRequires: gdk-pixbuf-devel >= 0.11, libglade2-devel
 #BuildRequires: openobex-devel
 BuildRequires: scrollkeeper, gtk2-devel, libwnck-devel
-BuildRequires: gnome-panel-devel
+BuildRequires: gnome-panel-devel, gettext
 
 Requires(post): scrollkeeper
 

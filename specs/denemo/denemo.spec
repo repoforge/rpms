@@ -40,8 +40,8 @@ computer-music-related purposes as well.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING DESIGN GOALS NEWS README TODO
-%config(noreplace) %{_datadir}/denemo/denemo.conf
-%config %{_datadir}/denemo/*.keymaprc
+%config(noreplace) %{_sysconfdir}/denemo.conf
+%config(noreplace) %{_sysconfdir}/denemo.keymaprc
 %dir %{_datadir}/denemo/
 %{_datadir}/denemo/
 %{_bindir}/*

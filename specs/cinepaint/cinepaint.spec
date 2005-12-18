@@ -17,7 +17,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openexr-devel, pkgconfig, libtiff-devel, lcms-devel
 BuildRequires: gcc-c++, gtk+-devel, glib-devel, libjpeg-devel
-BuildRequires: fltk-devel, libpng-devel
+BuildRequires: fltk-devel, libpng-devel, desktop-file-utils
+BuildRequires: python-devel, python
 
 %description
 CinePaint is an application primarily used for motion picture frame-by-frame 

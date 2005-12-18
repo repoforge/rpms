@@ -46,6 +46,7 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %doc AUTHORS ChangeLog COPYING CREDITS INSTALL README
 %doc %{_mandir}/man1/ascii2uni*
 %doc %{_mandir}/man1/uni2ascii*
+%{_bindir}/u2a
 %{_bindir}/ascii2uni*
 %{_bindir}/uni2ascii*
 # isn't included anymore in 2.6 ?

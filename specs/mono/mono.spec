@@ -263,6 +263,10 @@ This package contains all runtime Mono packages
 %{_libdir}/mono/1.0/System.Xml.dll
 %{_libdir}/mono/gac/System.Xml/
 %{_libdir}/mscorlib.dll
+%{_libdir}/mono/1.0/Mono.Security.Win32.dll
+%{_libdir}/mono/1.0/nunit.core.dll
+%{_libdir}/mono/1.0/nunit.framework.dll
+%{_libdir}/mono/1.0/nunit.util.dll
 %exclude %{_datadir}/libgc-mono/
 
 %files -n bytefx-data-mysql

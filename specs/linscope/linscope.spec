@@ -12,7 +12,7 @@ URL: http://sourceforge.net/projects/linscope/
 Source: http://dl.sf.net/linscope/linscope-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel, desktop-file-utils
+BuildRequires: qt-devel, desktop-file-utils, gcc-c++
 Requires: /usr/bin/rpcclient
 
 %description

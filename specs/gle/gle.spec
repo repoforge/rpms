@@ -15,7 +15,7 @@
 
 Summary: Graphics Layout Engine
 Name: gle
-Version: 4.0.10
+Version: 4.0.11
 Release: 2
 License: BSD
 Group: Applications/Multimedia
@@ -59,6 +59,9 @@ export GLE_TOP=%{builddir}/%{name}-%{version}/src/fonts
 %{_datadir}/gle
 
 %changelog
+* Sat Dec 17 2005 Dries Verachtert <dries@ulyssis.org> - 4.0.11-1
+- Updated to release 4.0.11.
+
 * Sat Nov 19 2005 Jonas Frantz <jonas.frantz@welho.com> - 4.0.10-2
 - Fix problem with making inittex.ini
 
