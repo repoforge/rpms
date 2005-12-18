@@ -12,7 +12,7 @@
 
 Summary: Network file transfer tool
 Name: bittorrent
-Version: 4.2.1
+Version: 4.2.2
 Release: 1
 License: BitTorrent Open Source License
 Group: Applications/Internet
@@ -123,6 +123,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{python_sitelib}/khashmir/
 
 %changelog
+* Sun Dec 18 2005 Dag Wieers <dag@wieers.com> - 4.2.2-1
+- Updated to release 4.2.2.
+
 * Tue Dec 06 2005 Dries Verachtert <dries@ulyssis.org> - 4.2.1-1
 - Updated to release 4.2.1.
 
