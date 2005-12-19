@@ -21,7 +21,7 @@ Version: 0.2.8
 Release: 0.1%{?prever:.%{prever}}
 License: GPL
 Group: Amusements/Games
-URL: http://armagetronad.sourceforge.net/
+URL: http://www.armagetronad.net/
 Source: http://dl.sf.net/armagetronad/armagetronad-%{version}%{?prever:_%{prever}}.src.tar.bz2
 Patch0: armagetronad-0.2.8_beta3-gcc4.patch
 Patch1: armagetronad-0.2.8_beta3-desktop.patch

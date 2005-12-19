@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%define gstreamer gstreamer
+
 Summary: Fluendo Streaming Server
 Name: flumotion
 Version: 0.1.10
@@ -12,18 +14,20 @@ Source: http://www.flumotion.net/src/flumotion/flumotion-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): openssl
 Requires: python >= 2.3
-Requires: gstreamer >= 0.8.7
-Requires: gstreamer-python >= 0.8.0
+Requires: %{gstreamer} >= 0.8.7
+Requires: %{gstreamer}-python >= 0.8.0
 Requires: python-twisted >= 1.3.0
 Requires: pygtk2 >= 2.4.0
 Requires: python-imaging
 BuildRequires: python-devel >= 2.3
-BuildRequires: gstreamer-devel >= 0.8.7
-BuildRequires: gstreamer-python >= 0.8.0
+BuildRequires: %{gstreamer}-devel >= 0.8.7
+BuildRequires: %{gstreamer}-python >= 0.8.0
 BuildRequires: python-twisted >= 1.3.0
 BuildRequires: pygtk2-devel >= 2.4.0
 BuildRequires: epydoc
 BuildRequires: gcc-c++
+# Required for ./autogen.sh
+#BuildRequires: gettext-devel, cvs, autoconf, automake, libtool
 
 %description
 Fluendo Streaming Server.
@@ -148,6 +152,9 @@ fi
 
 
 %changelog
+* Thu Dec 15 2005 Matthias Saou <http://freshrpms.net/> 0.1.10-1
+- Use gstreamer macro to enable use of other package versions (gstreamer010).
+
 * Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 0.1.10-1
 - Update to 0.1.10.
 - No longer noarch (because of the tray icon stuff).

@@ -2,21 +2,19 @@
 # Authority: matthias
 # Dist: nodist
 
-%define prefix %{_prefix}/games/armagetronad
-
 Summary: Sounds and graphics to give armagetronad the real 'Tron' look
 Name: armagetronad-moviepack
 Version: 1.0
-Release: 2
+Release: 3
 License: Proprietary
 Group: Amusements/Games
 URL: http://armagetronad.sourceforge.net/
-Source0: http://armagetron.sourceforge.net/addons/moviepack.zip
-Source1: http://armagetron.sourceforge.net/addons/moviesounds_mq.zip
+Source0: http://armagetron.sourceforge.net/old/addons/moviepack.zip
+Source1: http://armagetron.sourceforge.net/old/addons/moviesounds_mq.zip
 Source2: settings.cfg.realistic
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-Requires: armagetronad
+Requires: armagetronad >= 0.2.8
 Obsoletes: armagetron-moviepack < 1.0-2
 Provides: armagetron-moviepack = %{version}-%{release}
 
@@ -39,10 +37,10 @@ more realistic (read "fast!" ;-)).
 
 %install
 %{__rm} -rf %{buildroot}
-%{__mkdir_p} %{buildroot}%{prefix}
+%{__mkdir_p} %{buildroot}%{_datadir}/armagetronad
 # The main moviepack stuff
-unzip -d %{buildroot}%{prefix}/ %{SOURCE0}
-unzip -d %{buildroot}%{prefix}/ %{SOURCE1}
+unzip -d %{buildroot}%{_datadir}/armagetronad/ %{SOURCE0}
+unzip -d %{buildroot}%{_datadir}/armagetronad/ %{SOURCE1}
 
 # The 'realistic' settings
 %{__cp} -p %{SOURCE2} settings.cfg.realistic
@@ -55,11 +53,14 @@ unzip -d %{buildroot}%{prefix}/ %{SOURCE1}
 %files
 %defattr(0644, root, root, 0755)
 %doc settings.cfg.realistic
-%{prefix}/moviepack/
-%{prefix}/moviesounds/
+%{_datadir}/armagetronad/moviepack/
+%{_datadir}/armagetronad/moviesounds/
 
 
 %changelog
+* Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 1.0-3
+- Update path to the files for the latest armagetronad 0.2.8 betas.
+
 * Mon Mar 14 2005 Matthias Saou <http://freshrpms.net/> 1.0-2
 - Initial RPM release based on my armagetron-moviepack package.
 
