@@ -52,7 +52,7 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.22%{?rcver:.%{rcver}}%{?date:.%{date}}
+Release: 0.23%{?rcver:.%{rcver}}%{?date:.%{date}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -106,6 +106,7 @@ BuildRequires: ImageMagick
 %{!?_without_dts:BuildRequires: libdca-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_mpc:BuildRequires: libmpcdec-devel}
+%{!?_without_vstream:BuildRequires: vstream-client-devel}
 
 %description
 MPlayer is a multimedia player. It plays most video formats as well as DVDs.
@@ -116,7 +117,7 @@ On x86, additional Win32 binary codecs should be added to %{_libdir}/win32/.
 
 Available rpmbuild rebuild options :
 --with : samba dvdread
---without : aalib lirc cdparanoia arts xvid esd lzo fame caca dvb
+--without : aalib lirc cdparanoia arts xvid esd lzo fame caca dvb vstream
             theora osdmenu gcccheck fribidi xvmc x264 faac mpc live ladspa
 
 
@@ -312,6 +313,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 
 %changelog
+* Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.23.20051211
+- Enable vstream support (TiVo vserver stream).
+
 * Tue Dec 13 2005 Matthias Saou <http://freshrpms.net/> 1.0-0.22.20051211
 - Force _libdir since libdha and vidix modules are now built on x86_64.
 - Include empty _libdir/real/ for non-x86 archs.
