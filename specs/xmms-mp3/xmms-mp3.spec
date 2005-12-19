@@ -28,7 +28,7 @@ Linux because the patented mp3 format itself is theoretically GPL incompatible.
 %build
 %configure \
     --disable-opengl
-%{__make}
+%{__make} %{?_smp_mflags}
 
 
 %install
