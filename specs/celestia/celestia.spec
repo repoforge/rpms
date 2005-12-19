@@ -13,6 +13,8 @@ Patch: celestia-1.3.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel, gtkglext-devel, freeglut-devel
 BuildRequires: libpng-devel, libjpeg-devel, gcc-c++
+Requires(post): GConf2
+Requires(preun): GConf2
 
 %description
 Celestia is a free real-time space simulation that lets you experience our
@@ -30,9 +32,8 @@ simple to navigate through the universe to the object you want to visit.
 
 
 %build
-%configure \
-    --with-gnome \
-    --x-libraries="%{_prefix}/X11R6/%{_lib}"
+export CXXFLAGS="%{optflags} -fno-strict-aliasing"
+%configure --with-gnome
 %{__make} %{?_smp_mflags}
 
 
@@ -79,6 +80,9 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/celestia.sche
 
 
 %changelog
+* Wed Nov 23 2005 Matthias Saou <http://freshrpms.net/> 1.3.2-2
+- Add -fno-strict-aliasing since -O2 breaks things (rh#171636).
+
 * Mon Nov 15 2004 Matthias Saou <http://freshrpms.net/> 1.3.2-1
 - Added GCC 3.4 patch from Marius L. Jøhndal.
 - Back from the kde to the gnome version.
