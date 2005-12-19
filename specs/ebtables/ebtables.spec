@@ -7,7 +7,7 @@
 Summary: Ethernet Bridge frame table administration tool
 Name: ebtables
 Version: 2.0.6
-Release: 2
+Release: 3
 License: GPL
 Group: System Environment/Base
 URL: http://ebtables.sourceforge.net/
@@ -50,9 +50,9 @@ source %{_sysconfdir}/sysconfig/network
 
 [ -x %{_sbindir}/ebtables ] || exit 1
 
-[ -r %{_sysconfdir}/sysconfig/etables.filter ] || exit 1
-[ -r %{_sysconfdir}/sysconfig/etables.nat ] || exit 1
-[ -r %{_sysconfdir}/sysconfig/etables.broute ] || exit 1
+[ -r %{_sysconfdir}/sysconfig/ebtables.filter ] || exit 1
+[ -r %{_sysconfdir}/sysconfig/ebtables.nat ] || exit 1
+[ -r %{_sysconfdir}/sysconfig/ebtables.broute ] || exit 1
 
 RETVAL=0
 prog="ebtables"
@@ -179,6 +179,9 @@ fi
 %{_sbindir}/ebtables
 
 %changelog
+* Mon Dec 19 2005 Dag Wieers <dag@wieers.com> - 2.0.6-3
+- Fixed typo in sysv script that prevented saving ruleset. (Neil McCalden)
+
 * Thu Dec 02 2004 Dag Wieers <dag@wieers.com> - 2.0.6-2
 - Added patch for gcc 3.4. (Nigel Smith)
 
