@@ -1,0 +1,30 @@
+--- res/res_agi.c	2005-10-26 17:52:10.000000000 +0200
++++ res/res_agi.c	2005-10-26 17:56:34.000000000 +0200
+@@ -421,7 +421,9 @@
+ static int handle_streamfile(struct ast_channel *chan, AGI *agi, int argc, char *argv[])
+ {
+ 	int res;
++	int vres;
+ 	struct ast_filestream *fs;
++	struct ast_filestream *vfs;
+ 	long sample_offset = 0;
+ 	long max_length;
+ 
+@@ -437,11 +439,17 @@
+ 		fdprintf(agi->fd, "200 result=%d endpos=%ld\n", 0, sample_offset);
+ 		return RESULT_SUCCESS;
+ 	}
++	vfs = ast_openvstream(chan, argv[2], chan->language);
++        if (vfs)
++               ast_log(LOG_DEBUG, "Ooh, found a video stream, too\n");
++
+ 	ast_seekstream(fs, 0, SEEK_END);
+ 	max_length = ast_tellstream(fs);
+ 	ast_seekstream(fs, sample_offset, SEEK_SET);
+ 	res = ast_applystream(chan, fs);
++	if (vfs)  vres = ast_applystream(chan, vfs);
+ 	res = ast_playstream(fs);
++	if (vfs)  vres = ast_playstream(vfs);
+ 	if (res) {
+ 		fdprintf(agi->fd, "200 result=%d endpos=%ld\n", res, sample_offset);
+ 		if (res >= 0)
