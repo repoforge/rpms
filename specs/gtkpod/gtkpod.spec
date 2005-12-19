@@ -5,29 +5,25 @@
 
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
-Version: 0.94.0
+Version: 0.99.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://gtkpod.sourceforge.net/
+URL: http://www.gtkpod.org/
 Source: http://dl.sf.net/gtkpod/gtkpod-%{version}.tar.gz
-Patch: gtkpod-0.88.2-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gtk2-devel, libglade2-devel, libid3tag-devel, faad2-devel
-BuildRequires: gettext
+BuildRequires: libgpod-devel, gtk2-devel, libglade2-devel
+BuildRequires: libid3tag-devel, faad2-devel, gettext
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
-gtkpod is a platform independent GUI for Apple's iPod using GTK2. It allows you
-to upload songs and playlists to your iPod. It supports ID3 tag editing,
-multiple charsets for ID3 tags, detects duplicate songs, allows offline
-modification of the database with later synchronisation, and more.
+gtkpod is a platform independent Graphical User Interface for Apple's iPod
+using GTK2. It supports the first to fifth Generation including the iPod
+mini, iPod Photo, iPod Shuffle, iPod nano, and iPod Video..
 
 
 %prep
 %setup
-%patch -p1 -b .gcc4
-
 # Create a desktop menu entry
 %{__cat} > %{name}.desktop << EOF
 [Desktop Entry]
@@ -68,14 +64,6 @@ desktop-file-install \
     %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
 %endif
 
-# Workaround for absolute symlink problem
-for file in gtkpod.glade gtkpod.gladep; do
-    if [ -L %{buildroot}%{_datadir}/gtkpod/pixmaps/${file} -a \
-         -f %{buildroot}%{_datadir}/gtkpod/$file ]; then
-        %{__ln_s} -f ../${file} %{buildroot}%{_datadir}/gtkpod/pixmaps/${file}
-    fi
-done
-
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -83,7 +71,7 @@ done
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING README
+%doc AUTHORS ChangeLog COPYING NEWS README TODOandBUGS.txt TROUBLESHOOTING
 %{_bindir}/gtkpod
 %{_datadir}/gtkpod/
 %{_datadir}/pixmaps/gtkpod.png
@@ -95,6 +83,12 @@ done
 
 
 %changelog
+* Mon Dec 19 2005 Matthias Saou <http://freshrpms.net> 0.99.2-1
+- Update to 0.99.2.
+- Now depend on split-off libgpod.
+- Remove no longer needed gcc4 patch.
+- Remove no longer needed workaround for the absolute symlinks.
+
 * Mon Jul 18 2005 Matthias Saou <http://freshrpms.net> 0.94.0-1
 - Update to 0.94.0.
 
