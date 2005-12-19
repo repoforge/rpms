@@ -1,0 +1,23 @@
+--- xmms-1.2.10.orig/General/ir/ir.h	2001-03-06 00:17:44.000000000 +1100
++++ xmms-1.2.10/General/ir/ir.h	2005-08-07 18:07:23.000000000 +1000
+@@ -49,8 +49,6 @@ typedef struct
+ }
+ irConfig;
+ 
+-extern pthread_t irapp_thread;
+-extern gboolean keepGoing;
+ extern irConfig ircfg;
+ extern gboolean irconf_is_going;
+ 
+
+--- xmms-1.2.10.orig/Output/esd/esdout.h	2001-12-03 13:38:42.000000000 +1100
++++ xmms-1.2.10/Output/esd/esdout.h	2005-08-07 17:59:45.000000000 +1000
+@@ -58,6 +58,7 @@ typedef struct
+ ESDConfig;
+ 
+ extern ESDConfig esd_cfg;
++extern void esdout_reset_playerid(void);
+ 
+ void esdout_init(void);
+ void esdout_about(void);
+
