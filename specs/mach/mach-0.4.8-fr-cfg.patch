@@ -1,0 +1,2621 @@
+diff -Naupr mach-0.4.8.orig/configure.in mach-0.4.8-cfgchange/configure.in
+--- mach-0.4.8.orig/configure.in	2005-11-21 17:00:51.000000000 +0100
++++ mach-0.4.8-cfgchange/configure.in	2005-12-14 13:30:07.000000000 +0100
+@@ -83,19 +83,20 @@ AC_MSG_NOTICE(Using build groupname $BUI
+ 
+ dnl default root
+ dnl first try to guess the platform
+-CHECK_RELEASE(fedora,    "(Stentz)",     defaultroot="fedora-4-i386")
+-CHECK_RELEASE(fedora,    "(Heidelberg)", defaultroot="fedora-3-i386")
+-CHECK_RELEASE(fedora,    "(Tettnang)",   defaultroot="fedora-2-i386")
+-CHECK_RELEASE(fedora,    "(Yarrow)",     defaultroot="fedora-1-i386")
+-
+-CHECK_RELEASE(redhat,    "(Guinness)",   defaultroot="redhat-70-i386")
+-CHECK_RELEASE(redhat,    "(Seawolf)",    defaultroot="redhat-71-i386")
+-CHECK_RELEASE(redhat,    "(Enigma)",     defaultroot="redhat-72-i386")
+-CHECK_RELEASE(redhat,    "(Valhalla)",   defaultroot="redhat-73-i386")
+-CHECK_RELEASE(redhat,    "(Psyche)",     defaultroot="redhat-80-i386")
+-CHECK_RELEASE(redhat,    "(Shrike)",     defaultroot="redhat-9-i386")
++CHECK_RELEASE(fedora,    "(Stentz)",     defaultroot="fedora-4-i386-core")
++CHECK_RELEASE(fedora,    "(Heidelberg)", defaultroot="fedora-3-i386-core")
++CHECK_RELEASE(fedora,    "(Tettnang)",   defaultroot="fedora-2-i386-core")
++CHECK_RELEASE(fedora,    "(Yarrow)",     defaultroot="fedora-1-i386-core")
++
++CHECK_RELEASE(redhat,    "(Guinness)",   defaultroot="redhat-70-i386-os")
++CHECK_RELEASE(redhat,    "(Seawolf)",    defaultroot="redhat-71-i386-os")
++CHECK_RELEASE(redhat,    "(Enigma)",     defaultroot="redhat-72-i386-os")
++CHECK_RELEASE(redhat,    "(Valhalla)",   defaultroot="redhat-73-i386-os")
++CHECK_RELEASE(redhat,    "(Psyche)",     defaultroot="redhat-80-i386-os")
++CHECK_RELEASE(redhat,    "(Shrike)",     defaultroot="redhat-9-i386-os")
+ 
+-CHECK_RELEASE(yellowdog, "(Sirius)",     defaultroot="yellowdog-30-ppc")
++CHECK_RELEASE(yellowdog, "(Orion)",      defaultroot="yellowdog-40-ppc-os")
++CHECK_RELEASE(yellowdog, "(Sirius)",     defaultroot="yellowdog-30-ppc-os")
+ 
+ dnl now append a modifier if asked for
+ 
+diff -Naupr mach-0.4.8.orig/etc/conf.in mach-0.4.8-cfgchange/etc/conf.in
+--- mach-0.4.8.orig/etc/conf.in	2004-11-07 17:47:59.000000000 +0100
++++ mach-0.4.8-cfgchange/etc/conf.in	2005-12-15 14:09:18.000000000 +0100
+@@ -35,11 +35,6 @@ nameserver 192.168.1.1
+ ''',
+     '/etc/hosts': '''
+ 127.0.0.1 localhost localhost.localdomain
+-''',
+-    '/usr/bin/apt-sigchecker': '''#!/bin/bash
+-while read p; do
+-/bin/true
+-done
+ '''
+ }
+ 
+diff -Naupr mach-0.4.8.orig/etc/dist.d/cnc-9-i386 mach-0.4.8-cfgchange/etc/dist.d/cnc-9-i386
+--- mach-0.4.8.orig/etc/dist.d/cnc-9-i386	2004-03-28 21:04:16.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/cnc-9-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,36 +0,0 @@
+-# mach dist configuration                          -*- python -*-
+-
+-# cnc-9-i386: configuration for Conectiva Linux 9
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Conectiva Linux 9 flavours
+-aptsources['cnc-9-i386'] = {
+-    'all':      'rpm ' + conectiva + ' 9/i386 001 002 003 004',
+-    'updates':  'rpm ' + conectiva + '/updates 9/i386 updates',
+-}
+-
+-# Conectiva Linux 9
+-packages['cnc-9-i386'] = {
+-    'dir':      'cnc-9-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'filesystem fileutils findutils openssh-server textutils',
+-    'build':    'rpm-build make gcc tar gzip patch unzip bzip2 ' +
+-                'diffutils cpio',
+-}
+-sourceslist['cnc-9-i386'] = {
+-    'cnc-9-i386': ('all', )
+-}
+-config['cnc-9-i386'] = {}
+-aliases['cnc-9-i386'] = ('cnc9', )
+-
+-# Conectiva Linux 9, updates
+-packages['cnc-9-i386-updates'] = packages['cnc-9-i386']
+-sourceslist['cnc-9-i386-updates'] = {
+-    'cnc-9-i386': ('all', 'updates', )
+-}
+-config['cnc-9-i386-updates'] = {}
+-aliases['cnc-9-i386-updates'] = ('cnc9u', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/davedina mach-0.4.8-cfgchange/etc/dist.d/davedina
+--- mach-0.4.8.orig/etc/dist.d/davedina	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/davedina	1970-01-01 01:00:00.000000000 +0100
+@@ -1,37 +0,0 @@
+-# mach dist configuration                          -*- python -*-
+-
+-# davedina: configuration for Dave/Dina
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Dave/Dina
+-aptsources['davedina-00'] = {
+-    'os':      'rpm ' + davedina   + ' davedina-0.0 os',
+-    'fridge':  'rpm ' + davedina   + ' davedina-0.0 fridge',
+-    'oven':    'rpm ' + davedina   + ' davedina-0.0 oven',
+-}
+-
+-#packages['davedina-00-fridge'] = packages['redhat-9-i386']
+-packages['davedina-00-fridge'] = {
+-    'dir':      'redhat-9-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'coreutils findutils openssh-server',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio elfutils',
+-}
+-sourceslist['davedina-00-fridge'] = {
+-    'davedina-00': ('os', 'fridge', ),
+-}
+-
+-config['davedina-00-fridge'] = {}
+-aliases['davedina-00-fridge'] = ('dd00f', 'ddf', )
+-
+-packages['davedina-00-oven'] = packages['davedina-00-fridge']
+-sourceslist['davedina-00-oven'] = {
+-    'davedina-00': ('os', 'fridge', 'oven', ),
+-}
+-config['davedina-00-oven'] = {}
+-aliases['davedina-00-oven'] = ('dd00o', 'ddo', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-1-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-1-i386
+--- mach-0.4.8.orig/etc/dist.d/fedora-1-i386	2005-09-17 23:08:13.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-1-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,142 +0,0 @@
+-# mach dist configuration                                        -*- python -*-
+-
+-# fedora-1-i386: configuration for Fedora 1
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Fedora Core 1 flavours
+-aptsources['fedora-1-i386'] = {
+-    'core':             'rpm ' + fedora      + ' 1/i386 core',
+-    'updates':          'rpm ' + fedora      + ' 1/i386 updates',
+-    'gstreamer':        'rpm ' + gstreamer   + ' fedora/1/i386 gst',
+-    'gstreamer-build':  'rpm ' + gstreamer   + ' fedora/1/i386 build',
+-    'gstreamer-deps':   'rpm ' + gstreamer   + ' fedora/1/i386 deps',
+-    'fedora-stable':    'rpm ' + fedoraus    + ' fedora/1/i386 stable',
+-    'fedora-testing':   'rpm ' + fedoraus    + ' fedora/1/i386 testing',
+-    'fedora-unstable':  'rpm ' + fedoraus    + ' fedora/1/i386 unstable',
+-    'livna-stable':     'rpm ' + livna       + ' fedora/1/i386 stable',
+-    'livna-testing':    'rpm ' + livna       + ' fedora/1/i386 testing',
+-    'livna-unstable':   'rpm ' + livna       + ' fedora/1/i386 unstable',
+-    'freshrpms':        'rpm ' + freshrpmsfd + ' 1/i386 freshrpms',
+-    'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-    'jpackage-fc1':     'rpm ' + jpackage    + ' fedora-1 free',
+-    'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-# Fedora Core 1
+-packages['fedora-1-i386-core'] = {
+-    'dir':      'fedoracore-1-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'coreutils findutils openssh-server',
+-    'build':    'dev rpm-build make gcc-c++ tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio elfutils',
+-}
+-sourceslist['fedora-1-i386-core'] = {
+-    'fedora-1-i386': ('core', )
+-}
+-config['fedora-1-i386-core'] = {}
+-aliases['fedora-1-i386-core'] = ('f1c', 'fc1', )
+-
+-# Fedora Core 1 with updates
+-packages['fedora-1-i386-updates'] = packages['fedora-1-i386-core']
+-sourceslist['fedora-1-i386-updates'] = {
+-    'fedora-1-i386': ('core', 'updates', )
+-}
+-config['fedora-1-i386-updates'] = {}
+-aliases['fedora-1-i386-updates'] = ('f1u', )
+-
+-# Fedora Core 1 with GStreamer
+-packages['fedora-1-i386-gstreamer'] = packages['fedora-1-i386-core']
+-sourceslist['fedora-1-i386-gstreamer'] = {
+-    'fedora-1-i386': ('core', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+-}
+-config['fedora-1-i386-gstreamer'] = { 'release': '1' }
+-aliases['fedora-1-i386-gstreamer'] = ('f1g', )
+-
+-packages['fedora-1-i386-gstreamer-deps'] = packages['fedora-1-i386-core']
+-sourceslist['fedora-1-i386-gstreamer-deps'] = {
+-    'fedora-1-i386': ('core', 'gstreamer-deps')
+-}
+-config['fedora-1-i386-gstreamer-deps'] = { 'release': '1' }
+-aliases['fedora-1-i386-gstreamer-deps'] = ('f1gd', )
+-
+-# Fedora Core 1 with fedora.us
+-packages['fedora-1-i386-fedora-stable'] = packages['fedora-1-i386-updates'].copy ()
+-packages['fedora-1-i386-fedora-stable']['build'] = packages['fedora-1-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-1-i386-fedora-stable'] = {
+-    'fedora-1-i386':
+-    sourceslist['fedora-1-i386-updates']['fedora-1-i386'] +
+-    ('fedora-stable', )
+-}
+-config['fedora-1-i386-fedora-stable']  = { 'release': '1' }
+-aliases['fedora-1-i386-fedora-stable'] = ('f1fs', )
+-
+-packages['fedora-1-i386-fedora-testing'] = packages['fedora-1-i386-fedora-stable']
+-sourceslist['fedora-1-i386-fedora-testing'] = {
+-    'fedora-1-i386':
+-    sourceslist['fedora-1-i386-fedora-stable']['fedora-1-i386'] +
+-    ('fedora-testing', )
+-}
+-config['fedora-1-i386-fedora-testing']  = config['fedora-1-i386-fedora-stable']
+-aliases['fedora-1-i386-fedora-testing'] = ('f1ft', )
+-
+-packages['fedora-1-i386-fedora-unstable'] = packages['fedora-1-i386-fedora-testing']
+-sourceslist['fedora-1-i386-fedora-unstable'] = {
+-    'fedora-1-i386':
+-    sourceslist['fedora-1-i386-fedora-testing']['fedora-1-i386'] +
+-    ('fedora-unstable', )
+-}
+-config['fedora-1-i386-fedora-unstable']  = config['fedora-1-i386-fedora-testing']
+-aliases['fedora-1-i386-fedora-unstable'] = ('f1fu', )
+-
+-# Fedora Core 1 with livna (+ fedora.us)
+-packages['fedora-1-i386-livna-stable'] = packages['fedora-1-i386-updates'].copy ()
+-packages['fedora-1-i386-livna-stable']['build'] = packages['fedora-1-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-1-i386-livna-stable'] = {
+-    'fedora-1-i386':
+-    sourceslist['fedora-1-i386-updates']['fedora-1-i386'] +
+-    ('fedora-stable', 'livna-stable', )
+-}
+-config['fedora-1-i386-livna-stable']  = { 'release': '1' }
+-aliases['fedora-1-i386-livna-stable'] = ('f1ls', )
+-
+-packages['fedora-1-i386-livna-testing'] = packages['fedora-1-i386-livna-stable']
+-sourceslist['fedora-1-i386-livna-testing'] = {
+-    'fedora-1-i386':
+-    sourceslist['fedora-1-i386-livna-stable']['fedora-1-i386'] +
+-    ('fedora-testing', 'livna-testing', )
+-}
+-config['fedora-1-i386-livna-testing']  = config['fedora-1-i386-livna-stable']
+-aliases['fedora-1-i386-livna-testing'] = ('f1lt', )
+-
+-packages['fedora-1-i386-livna-unstable'] = packages['fedora-1-i386-livna-testing']
+-sourceslist['fedora-1-i386-livna-unstable'] = {
+-    'fedora-1-i386':
+-    sourceslist['fedora-1-i386-livna-testing']['fedora-1-i386'] +
+-    ('fedora-unstable', 'livna-unstable', )
+-}
+-config['fedora-1-i386-livna-unstable']  = config['fedora-1-i386-livna-testing']
+-aliases['fedora-1-i386-livna-unstable'] = ('f1lu', )
+-
+-# Fedora Core 1 with freshrpms
+-packages['fedora-1-i386-freshrpms'] = packages['fedora-1-i386-core']
+-sourceslist['fedora-1-i386-freshrpms'] = {
+-    'fedora-1-i386': ('core', 'freshrpms', )
+-}
+-config['fedora-1-i386-freshrpms'] = {}
+-aliases['fedora-1-i386-freshrpms'] = ('f1fr', )
+-
+-# Fedora Core 1 with JPackage
+-packages['fedora-1-i386-jpackage'] = packages['fedora-1-i386-updates'].copy()
+-packages['fedora-1-i386-jpackage']['base'] = packages['fedora-1-i386-updates']['base'] + ' java-1.4.2-sun'
+-packages['fedora-1-i386-jpackage']['build'] = packages['fedora-1-i386-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['fedora-1-i386-jpackage'] = {
+-    'fedora-1-i386':
+-    sourceslist['fedora-1-i386-updates']['fedora-1-i386'] +
+-    ('jpackage-generic', 'jpackage-fc1', 'jpackage-nonfree', ),
+-}
+-config['fedora-1-i386-jpackage'] = {}
+-aliases['fedora-1-i386-jpackage'] = ('fc1jpp', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-2-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-2-i386
+--- mach-0.4.8.orig/etc/dist.d/fedora-2-i386	2005-09-17 23:08:06.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-2-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,142 +0,0 @@
+-# mach dist configuration                                        -*- python -*-
+-
+-# fedora-2-i386: configuration for Fedora 2
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Fedora Core 2 flavours
+-aptsources['fedora-2-i386'] = {
+-    'core':             'rpm ' + fedora      + ' 2/i386 core',
+-    'updates':          'rpm ' + fedora      + ' 2/i386 updates',
+-    'gstreamer':        'rpm ' + gstreamer   + ' fedora/2/i386 gst',
+-    'gstreamer-build':  'rpm ' + gstreamer   + ' fedora/2/i386 build',
+-    'gstreamer-deps':   'rpm ' + gstreamer   + ' fedora/2/i386 deps',
+-    'fedora-stable':    'rpm ' + fedoraus    + ' fedora/2/i386 stable',
+-    'fedora-testing':   'rpm ' + fedoraus    + ' fedora/2/i386 testing',
+-    'fedora-unstable':  'rpm ' + fedoraus    + ' fedora/2/i386 unstable',
+-    'livna-stable':     'rpm ' + livna       + ' fedora/2/i386 stable',
+-    'livna-testing':    'rpm ' + livna       + ' fedora/2/i386 testing',
+-    'livna-unstable':   'rpm ' + livna       + ' fedora/2/i386 unstable',
+-    'freshrpms':        'rpm ' + freshrpmsfd + ' 2/i386 freshrpms',
+-    'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-    'jpackage-fc2':     'rpm ' + jpackage    + ' fedora-2 free',
+-    'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-# Fedora Core 2
+-packages['fedora-2-i386-core'] = {
+-    'dir':      'fedoracore-2-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'coreutils findutils openssh-server',
+-    'build':    'dev rpm-build make gcc gcc-c++ tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio elfutils',
+-}
+-sourceslist['fedora-2-i386-core'] = {
+-    'fedora-2-i386': ('core', )
+-}
+-config['fedora-2-i386-core'] = {}
+-aliases['fedora-2-i386-core'] = ('f2c', 'fc2', )
+-
+-# Fedora Core 2 with updates
+-packages['fedora-2-i386-updates'] = packages['fedora-2-i386-core']
+-sourceslist['fedora-2-i386-updates'] = {
+-    'fedora-2-i386': ('core', 'updates', )
+-}
+-config['fedora-2-i386-updates'] = {}
+-aliases['fedora-2-i386-updates'] = ('f2u', )
+-
+-# Fedora Core 2 with GStreamer
+-packages['fedora-2-i386-gstreamer'] = packages['fedora-2-i386-core']
+-sourceslist['fedora-2-i386-gstreamer'] = {
+-    'fedora-2-i386': ('core', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+-}
+-config['fedora-2-i386-gstreamer'] = { 'release': '2' }
+-aliases['fedora-2-i386-gstreamer'] = ('f2g', )
+-
+-packages['fedora-2-i386-gstreamer-deps'] = packages['fedora-2-i386-core']
+-sourceslist['fedora-2-i386-gstreamer-deps'] = {
+-    'fedora-2-i386': ('core', 'gstreamer-deps')
+-}
+-config['fedora-2-i386-gstreamer-deps'] = { 'release': '2' }
+-aliases['fedora-2-i386-gstreamer-deps'] = ('f2gd', )
+-
+-# Fedora Core 2 with fedora.us
+-packages['fedora-2-i386-fedora-stable'] = packages['fedora-2-i386-updates'].copy ()
+-packages['fedora-2-i386-fedora-stable']['build'] = packages['fedora-2-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-2-i386-fedora-stable'] = {
+-    'fedora-2-i386':
+-    sourceslist['fedora-2-i386-updates']['fedora-2-i386'] +
+-    ('fedora-stable', )
+-}
+-config['fedora-2-i386-fedora-stable']  = { 'release': '2' }
+-aliases['fedora-2-i386-fedora-stable'] = ('f2fs', )
+-
+-packages['fedora-2-i386-fedora-testing'] = packages['fedora-2-i386-fedora-stable']
+-sourceslist['fedora-2-i386-fedora-testing'] = {
+-    'fedora-2-i386':
+-    sourceslist['fedora-2-i386-fedora-stable']['fedora-2-i386'] +
+-    ('fedora-testing', )
+-}
+-config['fedora-2-i386-fedora-testing']  = config['fedora-2-i386-fedora-stable']
+-aliases['fedora-2-i386-fedora-testing'] = ('f2ft', )
+-
+-packages['fedora-2-i386-fedora-unstable'] = packages['fedora-2-i386-fedora-testing']
+-sourceslist['fedora-2-i386-fedora-unstable'] = {
+-    'fedora-2-i386':
+-    sourceslist['fedora-2-i386-fedora-testing']['fedora-2-i386'] +
+-    ('fedora-unstable', )
+-}
+-config['fedora-2-i386-fedora-unstable']  = config['fedora-2-i386-fedora-testing']
+-aliases['fedora-2-i386-fedora-unstable'] = ('f2fu', )
+-
+-# Fedora Core 2 with livna (+ fedora.us)
+-packages['fedora-2-i386-livna-stable'] = packages['fedora-2-i386-updates'].copy ()
+-packages['fedora-2-i386-livna-stable']['build'] = packages['fedora-2-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-2-i386-livna-stable'] = {
+-    'fedora-2-i386':
+-    sourceslist['fedora-2-i386-updates']['fedora-2-i386'] +
+-    ('fedora-stable', 'livna-stable', )
+-}
+-config['fedora-2-i386-livna-stable']  = { 'release': '2' }
+-aliases['fedora-2-i386-livna-stable'] = ('f2ls', )
+-
+-packages['fedora-2-i386-livna-testing'] = packages['fedora-2-i386-livna-stable']
+-sourceslist['fedora-2-i386-livna-testing'] = {
+-    'fedora-2-i386':
+-    sourceslist['fedora-2-i386-livna-stable']['fedora-2-i386'] +
+-    ('fedora-testing', 'livna-testing', )
+-}
+-config['fedora-2-i386-livna-testing']  = config['fedora-2-i386-livna-stable']
+-aliases['fedora-2-i386-livna-testing'] = ('f2lt', )
+-
+-packages['fedora-2-i386-livna-unstable'] = packages['fedora-2-i386-livna-testing']
+-sourceslist['fedora-2-i386-livna-unstable'] = {
+-    'fedora-2-i386':
+-    sourceslist['fedora-2-i386-livna-testing']['fedora-2-i386'] +
+-    ('fedora-unstable', 'livna-unstable', )
+-}
+-config['fedora-2-i386-livna-unstable']  = config['fedora-2-i386-livna-testing']
+-aliases['fedora-2-i386-livna-unstable'] = ('f2lu', )
+-
+-# Fedora Core 2 with freshrpms
+-packages['fedora-2-i386-freshrpms'] = packages['fedora-2-i386-core']
+-sourceslist['fedora-2-i386-freshrpms'] = {
+-    'fedora-2-i386': ('core', 'freshrpms', )
+-}
+-config['fedora-2-i386-freshrpms'] = {}
+-aliases['fedora-2-i386-freshrpms'] = ('f2fr', )
+-
+-# Fedora Core 2 with JPackage
+-packages['fedora-2-i386-jpackage'] = packages['fedora-2-i386-updates'].copy()
+-packages['fedora-2-i386-jpackage']['base'] = packages['fedora-2-i386-updates']['base'] + ' java-1.4.2-sun'
+-packages['fedora-2-i386-jpackage']['build'] = packages['fedora-2-i386-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['fedora-2-i386-jpackage'] = {
+-    'fedora-2-i386':
+-    sourceslist['fedora-2-i386-updates']['fedora-2-i386'] +
+-    ('jpackage-generic', 'jpackage-fc2', 'jpackage-nonfree', ),
+-}
+-config['fedora-2-i386-jpackage'] = {}
+-aliases['fedora-2-i386-jpackage'] = ('fc2jpp', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-3-i386
+--- mach-0.4.8.orig/etc/dist.d/fedora-3-i386	2005-09-17 23:07:52.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-3-i386	2005-12-19 18:58:47.000000000 +0100
+@@ -1,146 +1,104 @@
+ # mach dist configuration                                        -*- python -*-
+ 
+-# fedora-3-i386: configuration for Fedora 3
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-V = '3'      # distro version
+-A = 'i386'   # architecture
+-AS = ''      # 'short' version of arch
+-
+-### Fedora Core flavours
+-aptsources['fedora-' + V + '-' + A ] = {
+-  'core':             'rpm ' + fedora      + ' ' + V + '/' + A + ' core',
+-  'updates':          'rpm ' + fedora      + ' ' + V + '/' + A + ' updates',
+-  'extras':           'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' extras',
+-  'gstreamer':        'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' gst',
+-  'gstreamer-build':  'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' build',
+-  'gstreamer-deps':   'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' deps',
+-  'livna-stable':     'rpm ' + livna       + ' fedora/' + V + '/' + A + ' stable',
+-  'livna-testing':    'rpm ' + livna       + ' fedora/' + V + '/' + A + ' testing',
+-  'livna-unstable':   'rpm ' + livna       + ' fedora/' + V + '/' + A + ' unstable',
+-  'freshrpms':        'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' freshrpms',
+-  'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-  'jpackage-fc' + V : 'rpm ' + jpackage    + ' fedora-' + V + ' free',
+-  'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-yumsources['fedora-' + V + '-' + A ] = {
+-  'core':             fedorayum   + '/core/' + V + '/' + A + '/os',
+-  'updates':          fedorayum   + '/core/updates/' + V + '/' + A ,
+-  'extras':           fedorayum   + '/extras/' + V + '/' + A ,
++V = '3'                       # distro version
++A = 'i386'                    # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'updates':          fedora      + '/core/updates/' + V + '/' + A ,
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
+   'gstreamer':        gstreamer   + '/fedora/' + V + '/' + A + '/yum/gst',
+   'gstreamer-build':  gstreamer   + '/fedora/' + V + '/' + A + '/yum/build',
+   'gstreamer-deps':   gstreamer   + '/fedora/' + V + '/' + A + '/yum/deps',
+   'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
+-  'livna-stable':     livna       + '/fedora/' + V + '/' + A + '/yum/stable/RPMS',
+-  'livna-testing':    livna       + '/fedora/' + V + '/' + A + '/yum/testing/RPMS',
+-  'livna-unstable':   livna       + '/fedora/' + V + '/' + A + '/yum/unstable/RPMS',
++  'livna':            livna       + '/fedora/' + V + '/' + A + '/RPMS.lvn',
+ }
+ 
+ # Fedora Core
+-packages['fedora-' + V + '-' + A + '-core'] = {
+-  'dir':      'fedoracore-' + V + '-' + A ,
+-  'minimal':  'bash glibc',
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
+   'base':     'coreutils findutils openssh-server',
+-  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip patch ' +
+-              'unzip bzip2 diffutils cpio elfutils',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'patch unzip bzip2 diffutils cpio elfutils',
+ }
+-sourceslist['fedora-' + V + '-' + A + '-core'] = {
+-  'fedora-' + V + '-' + A : ('core', )
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
+ }
+-# FC3 roots should use runuser instead of su
+-config['fedora-' + V + '-' + A + '-core'] = {'runuser': '/sbin/runuser'}
+-aliases['fedora-' + V + '-' + A + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
+ 
+ # Fedora Core with updates
+-packages['fedora-' + V + '-' + A + '-updates'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-updates'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', )
++packages[DVA + '-updates'] = packages[DVA + '-core']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('core', 'updates', )
+ }
+-config['fedora-' + V + '-' + A + '-updates'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-updates'] = ('f' + V + 'u' + AS, )
++aliases[DVA + '-updates'] = ('f' + V + 'u' + AS, )
+ 
+ # Fedora Core with extras
+-packages['fedora-' + V + '-' + A + '-extras'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-extras']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] # + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-extras'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-extras'] = packages[DVA + '-updates']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('extras', )
+ }
+-config['fedora-' + V + '-' + A + '-extras'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-extras'] = {
+   'buildopts': "--define 'dist .fc" + V + "'",
+ }
+-aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + V + 'e' + AS, )
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
+ 
+ # Fedora Core with GStreamer
+-packages['fedora-' + V + '-' + A + '-gstreamer'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
++packages[DVA + '-gstreamer'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-gstreamer'] = {
+   'release': V,
+ }
+-aliases['fedora-' + V + '-' + A + '-gstreamer'] = ('f' + V + 'g' + AS, )
++aliases[DVA + '-gstreamer'] = ('f' + V + 'g' + AS, )
+ 
+-packages['fedora-' + V + '-' + A + '-gstreamer-deps'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer-deps'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps')
++packages[DVA + '-gstreamer-deps'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer-deps'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer-deps'] = config['fedora-' + V + '-' + A + '-gstreamer']
+-aliases['fedora-' + V + '-' + A + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
++config[DVA + '-gstreamer-deps'] = config[DVA + '-gstreamer']
++aliases[DVA + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
+ 
+ # Fedora Core with livna (+ extras)
+-packages['fedora-' + V + '-' + A + '-livna-stable'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-livna-stable']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-livna-stable'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
+-  ('extras', 'livna-stable', )
+-}
+-config['fedora-' + V + '-' + A + '-livna-stable']  = config['fedora-' + V + '-' + A + '-extras']
+-aliases['fedora-' + V + '-' + A + '-livna-stable'] = ('f' + V + 'ls' + AS, )
+-
+-packages['fedora-' + V + '-' + A + '-livna-testing'] = packages['fedora-' + V + '-' + A + '-livna-stable']
+-sourceslist['fedora-' + V + '-' + A + '-livna-testing'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-livna-stable']['fedora-' + V + '-' + A ] +
+-  ('extras', 'livna-testing', )
+-}
+-config['fedora-' + V + '-' + A + '-livna-testing']  = config['fedora-' + V + '-' + A + '-livna-stable']
+-aliases['fedora-' + V + '-' + A + '-livna-testing'] = ('f' + V + 'lt' + AS, )
+-
+-packages['fedora-' + V + '-' + A + '-livna-unstable'] = packages['fedora-' + V + '-' + A + '-livna-testing']
+-sourceslist['fedora-' + V + '-' + A + '-livna-unstable'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-livna-testing']['fedora-' + V + '-' + A ] +
+-  ('extras', 'livna-unstable', )
+-}
+-config['fedora-' + V + '-' + A + '-livna-unstable']  = config['fedora-' + V + '-' + A + '-livna-testing']
+-aliases['fedora-' + V + '-' + A + '-livna-unstable'] = ('f' + V + 'lu' + AS, )
+-
+-# Fedora Core with freshrpms
+-packages['fedora-' + V + '-' + A + '-freshrpms'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-freshrpms'] = {
+-  'fedora-' + V + '-' + A : ('core', 'freshrpms', )
++packages[DVA + '-livna'] = packages[DVA + '-updates'].copy ()
++packages[DVA + '-livna']['build'] = packages[DVA + '-updates']['build'] + " fedora-rpmdevtools"
++sourceslist[DVA + '-livna'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
++  ('extras', 'livna', )
++}
++config[DVA + '-livna']  = config[DVA + '-extras']
++aliases[DVA + '-livna'] = ('f' + V + 'l' + AS, )
++
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '1.fc' + V,
++  'buildopts': "--define 'dist fc" + V + "'",
+ }
+-config['fedora-' + V + '-' + A + '-freshrpms'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-freshrpms'] = ('f' + V + 'fr' + AS, )
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
+ 
+ # Fedora Core with JPackage
+-packages['fedora-' + V + '-' + A + '-jpackage'] = packages['fedora-' + V + '-' + A + '-updates'].copy()
+-packages['fedora-' + V + '-' + A + '-jpackage']['base'] = packages['fedora-' + V + '-' + A + '-updates']['base'] + ' java-1.4.2-sun'
+-packages['fedora-' + V + '-' + A + '-jpackage']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['fedora-' + V + '-' + A + '-jpackage'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-jpackage'] = packages[DVA + '-updates'].copy()
++packages[DVA + '-jpackage']['base'] = packages[DVA + '-updates']['base'] + ' java-1.4.2-sun'
++packages[DVA + '-jpackage']['build'] = packages[DVA + '-updates']['build'] + ' java-1.4.2-sun-devel'
++sourceslist[DVA + '-jpackage'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('jpackage-generic', 'jpackage-fc' + V , 'jpackage-nonfree', ),
+ }
+-config['fedora-' + V + '-' + A + '-jpackage'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++config[DVA + '-jpackage'] = config[DVA + '-core']
++aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64 mach-0.4.8-cfgchange/etc/dist.d/fedora-3-x86_64
+--- mach-0.4.8.orig/etc/dist.d/fedora-3-x86_64	2005-06-14 20:56:22.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-3-x86_64	2005-12-19 18:59:00.000000000 +0100
+@@ -1,147 +1,104 @@
+ # mach dist configuration                                        -*- python -*-
+ 
+-# fedora-3-x86_64: configuration for Fedora 3
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-V = '3'      # distro version
+-A = 'x86_64' # architecture
+-AS = '64'    # 'short' version of arch
+-
+-
+-### Fedora Core flavours
+-aptsources['fedora-' + V + '-' + A ] = {
+-  'core':             'rpm ' + fedora      + ' ' + V + '/' + A + ' core',
+-  'updates':          'rpm ' + fedora      + ' ' + V + '/' + A + ' updates',
+-  'extras':           'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' extras',
+-  'gstreamer':        'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' gst',
+-  'gstreamer-build':  'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' build',
+-  'gstreamer-deps':   'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' deps',
+-  'livna-stable':     'rpm ' + livna       + ' fedora/' + V + '/' + A + ' stable',
+-  'livna-testing':    'rpm ' + livna       + ' fedora/' + V + '/' + A + ' testing',
+-  'livna-unstable':   'rpm ' + livna       + ' fedora/' + V + '/' + A + ' unstable',
+-  'freshrpms':        'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' freshrpms',
+-  'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-  'jpackage-fc' + V : 'rpm ' + jpackage    + ' fedora-' + V + ' free',
+-  'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-yumsources['fedora-' + V + '-' + A ] = {
+-  'core':             fedorayum   + '/core/' + V + '/' + A + '/os',
+-  'updates':          fedorayum   + '/core/updates/' + V + '/' + A ,
+-  'extras':           fedorayum   + '/extras/' + V + '/' + A ,
++V = '3'                       # distro version
++A = 'x86_64'                  # architecture
++AS = '64'                     # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'updates':          fedora      + '/core/updates/' + V + '/' + A ,
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
+   'gstreamer':        gstreamer   + '/fedora/' + V + '/' + A + '/yum/gst',
+   'gstreamer-build':  gstreamer   + '/fedora/' + V + '/' + A + '/yum/build',
+   'gstreamer-deps':   gstreamer   + '/fedora/' + V + '/' + A + '/yum/deps',
+   'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
+-  'livna-stable':     livna       + '/fedora/' + V + '/' + A + '/yum/stable/RPMS',
+-  'livna-testing':    livna       + '/fedora/' + V + '/' + A + '/yum/testing/RPMS',
+-  'livna-unstable':   livna       + '/fedora/' + V + '/' + A + '/yum/unstable/RPMS',
++  'livna':            livna       + '/fedora/' + V + '/' + A + '/RPMS.lvn',
+ }
+ 
+ # Fedora Core
+-packages['fedora-' + V + '-' + A + '-core'] = {
+-  'dir':      'fedoracore-' + V + '-' + A ,
+-  'minimal':  'bash glibc',
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
+   'base':     'coreutils findutils openssh-server',
+-  'build':    'dev redhat-rpm-config rpm-build make gcc tar gzip patch ' +
+-              'unzip bzip2 diffutils cpio elfutils',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'patch unzip bzip2 diffutils cpio elfutils',
+ }
+-sourceslist['fedora-' + V + '-' + A + '-core'] = {
+-  'fedora-' + V + '-' + A : ('core', )
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
+ }
+-# FC3 roots should use runuser instead of su
+-config['fedora-' + V + '-' + A + '-core'] = {'runuser': '/sbin/runuser'}
+-aliases['fedora-' + V + '-' + A + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
+ 
+ # Fedora Core with updates
+-packages['fedora-' + V + '-' + A + '-updates'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-updates'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', )
++packages[DVA + '-updates'] = packages[DVA + '-core']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('core', 'updates', )
+ }
+-config['fedora-' + V + '-' + A + '-updates'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-updates'] = ('f' + V + 'u'+ AS, )
++aliases[DVA + '-updates'] = ('f' + V + 'u' + AS, )
+ 
+ # Fedora Core with extras
+-packages['fedora-' + V + '-' + A + '-extras'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-extras']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] # + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-extras'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-extras'] = packages[DVA + '-updates']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('extras', )
+ }
+-config['fedora-' + V + '-' + A + '-extras'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-extras'] = {
+   'buildopts': "--define 'dist .fc" + V + "'",
+ }
+-aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + V + 'e' + AS, )
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
+ 
+ # Fedora Core with GStreamer
+-packages['fedora-' + V + '-' + A + '-gstreamer'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
++packages[DVA + '-gstreamer'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-gstreamer'] = {
+   'release': V,
+ }
+-aliases['fedora-' + V + '-' + A + '-gstreamer'] = ('f' + V + 'g' + AS, )
++aliases[DVA + '-gstreamer'] = ('f' + V + 'g' + AS, )
+ 
+-packages['fedora-' + V + '-' + A + '-gstreamer-deps'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer-deps'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps')
++packages[DVA + '-gstreamer-deps'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer-deps'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer-deps'] = config['fedora-' + V + '-' + A + '-gstreamer']
+-aliases['fedora-' + V + '-' + A + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
++config[DVA + '-gstreamer-deps'] = config[DVA + '-gstreamer']
++aliases[DVA + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
+ 
+ # Fedora Core with livna (+ extras)
+-packages['fedora-' + V + '-' + A + '-livna-stable'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-livna-stable']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-livna-stable'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
+-  ('extras', 'livna-stable', )
+-}
+-config['fedora-' + V + '-' + A + '-livna-stable']  = config['fedora-' + V + '-' + A + '-extras']
+-aliases['fedora-' + V + '-' + A + '-livna-stable'] = ('f' + V + 'ls' + AS, )
+-
+-packages['fedora-' + V + '-' + A + '-livna-testing'] = packages['fedora-' + V + '-' + A + '-livna-stable']
+-sourceslist['fedora-' + V + '-' + A + '-livna-testing'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-livna-stable']['fedora-' + V + '-' + A ] +
+-  ('extras', 'livna-testing', )
+-}
+-config['fedora-' + V + '-' + A + '-livna-testing']  = config['fedora-' + V + '-' + A + '-livna-stable']
+-aliases['fedora-' + V + '-' + A + '-livna-testing'] = ('f' + V + 'lt' + AS, )
+-
+-packages['fedora-' + V + '-' + A + '-livna-unstable'] = packages['fedora-' + V + '-' + A + '-livna-testing']
+-sourceslist['fedora-' + V + '-' + A + '-livna-unstable'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-livna-testing']['fedora-' + V + '-' + A ] +
+-  ('extras', 'livna-unstable', )
+-}
+-config['fedora-' + V + '-' + A + '-livna-unstable']  = config['fedora-' + V + '-' + A + '-livna-testing']
+-aliases['fedora-' + V + '-' + A + '-livna-unstable'] = ('f' + V + 'lu' + AS, )
+-
+-# Fedora Core with freshrpms
+-packages['fedora-' + V + '-' + A + '-freshrpms'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-freshrpms'] = {
+-  'fedora-' + V + '-' + A : ('core', 'freshrpms', )
++packages[DVA + '-livna'] = packages[DVA + '-updates'].copy ()
++packages[DVA + '-livna']['build'] = packages[DVA + '-updates']['build'] + " fedora-rpmdevtools"
++sourceslist[DVA + '-livna'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
++  ('extras', 'livna', )
++}
++config[DVA + '-livna']  = config[DVA + '-extras']
++aliases[DVA + '-livna'] = ('f' + V + 'l' + AS, )
++
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '1.fc' + V,
++  'buildopts': "--define 'dist fc" + V + "'",
+ }
+-config['fedora-' + V + '-' + A + '-freshrpms'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-freshrpms'] = ('f' + V + 'fr' + AS, )
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
+ 
+ # Fedora Core with JPackage
+-packages['fedora-' + V + '-' + A + '-jpackage'] = packages['fedora-' + V + '-' + A + '-updates'].copy()
+-packages['fedora-' + V + '-' + A + '-jpackage']['base'] = packages['fedora-' + V + '-' + A + '-updates']['base'] + ' java-1.4.2-sun'
+-packages['fedora-' + V + '-' + A + '-jpackage']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['fedora-' + V + '-' + A + '-jpackage'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-jpackage'] = packages[DVA + '-updates'].copy()
++packages[DVA + '-jpackage']['base'] = packages[DVA + '-updates']['base'] + ' java-1.4.2-sun'
++packages[DVA + '-jpackage']['build'] = packages[DVA + '-updates']['build'] + ' java-1.4.2-sun-devel'
++sourceslist[DVA + '-jpackage'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('jpackage-generic', 'jpackage-fc' + V , 'jpackage-nonfree', ),
+ }
+-config['fedora-' + V + '-' + A + '-jpackage'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++config[DVA + '-jpackage'] = config[DVA + '-core']
++aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-4-i386
+--- mach-0.4.8.orig/etc/dist.d/fedora-4-i386	2005-09-17 23:07:43.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-4-i386	2005-12-19 18:59:12.000000000 +0100
+@@ -1,35 +1,14 @@
+ # mach dist configuration                                        -*- python -*-
+ 
+-# fedora-4-i386: configuration for Fedora 4
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-V = '4'      # distro version
+-A = 'i386'   # architecture
+-AS = ''      # 'short' version of arch
+-
+-### Fedora Core flavours
+-aptsources['fedora-' + V + '-' + A ] = {
+-  'core':             'rpm ' + fedora      + ' ' + V + '/' + A + ' core',
+-  'updates':          'rpm ' + fedora      + ' ' + V + '/' + A + ' updates',
+-  'extras':           'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' extras',
+-  'gstreamer':        'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' gst',
+-  'gstreamer-build':  'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' build',
+-  'gstreamer-deps':   'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' deps',
+-  'livna':            'rpm ' + livna       + ' fedora/' + V + '/' + A + ' lvn',
+-  'freshrpms':        'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' freshrpms',
+-  'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-  'jpackage-fc' + V : 'rpm ' + jpackage    + ' fedora-' + V + ' free',
+-  'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-yumsources['fedora-' + V + '-' + A ] = {
+-  'core':             fedorayum   + '/core/' + V + '/' + A + '/os',
+-  'updates':          fedorayum   + '/core/updates/' + V + '/' + A ,
+-  'extras':           fedorayum   + '/extras/' + V + '/' + A ,
++V = '4'                       # distro version
++A = 'i386'                    # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'updates':          fedora      + '/core/updates/' + V + '/' + A ,
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
+   'gstreamer':        gstreamer   + '/fedora/' + V + '/' + A + '/yum/gst',
+   'gstreamer-build':  gstreamer   + '/fedora/' + V + '/' + A + '/yum/build',
+   'gstreamer-deps':   gstreamer   + '/fedora/' + V + '/' + A + '/yum/deps',
+@@ -38,87 +17,88 @@ yumsources['fedora-' + V + '-' + A ] = {
+ }
+ 
+ # Fedora Core
+-packages['fedora-' + V + '-' + A + '-core'] = {
+-  'dir':      'fedoracore-' + V + '-' + A ,
+-  'minimal':  'bash glibc',
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
+   'base':     'coreutils findutils openssh-server',
+-  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip patch ' +
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
+               'unzip bzip2 diffutils cpio elfutils',
+ }
+-sourceslist['fedora-' + V + '-' + A + '-core'] = {
+-  'fedora-' + V + '-' + A : ('core', )
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
+ }
+-# FC4 roots should use runuser instead of su
+-config['fedora-' + V + '-' + A + '-core'] = {'runuser': '/sbin/runuser'}
+-aliases['fedora-' + V + '-' + A + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
+ 
+ # Fedora Core with updates
+-packages['fedora-' + V + '-' + A + '-updates'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-updates'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', )
++packages[DVA + '-updates'] = packages[DVA + '-core']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('core', 'updates', )
+ }
+-config['fedora-' + V + '-' + A + '-updates'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-updates'] = ('f' + V + 'u' + AS, )
++aliases[DVA + '-updates'] = ('f' + V + 'u' + AS, )
+ 
+ # Fedora Core with extras
+-packages['fedora-' + V + '-' + A + '-extras'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-extras']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] # + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-extras'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-extras'] = packages[DVA + '-updates']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('extras', )
+ }
+-config['fedora-' + V + '-' + A + '-extras'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-extras'] = {
+   'buildopts': "--define 'dist .fc" + V + "'",
+ }
+-aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + V + 'e' + AS, )
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
+ 
+ # Fedora Core with GStreamer
+-packages['fedora-' + V + '-' + A + '-gstreamer'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
++packages[DVA + '-gstreamer'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-gstreamer'] = {
+   'release': V,
+ }
+-aliases['fedora-' + V + '-' + A + '-gstreamer'] = ('f' + V + 'g' + AS, )
++aliases[DVA + '-gstreamer'] = ('f' + V + 'g' + AS, )
+ 
+-packages['fedora-' + V + '-' + A + '-gstreamer-deps'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer-deps'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps')
++packages[DVA + '-gstreamer-deps'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer-deps'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer-deps'] = config['fedora-' + V + '-' + A + '-gstreamer']
+-aliases['fedora-' + V + '-' + A + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
++config[DVA + '-gstreamer-deps'] = config[DVA + '-gstreamer']
++aliases[DVA + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
+ 
+ # Fedora Core with livna (+ extras)
+-packages['fedora-' + V + '-' + A + '-livna'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-livna']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-livna'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-livna'] = packages[DVA + '-updates'].copy ()
++packages[DVA + '-livna']['build'] = packages[DVA + '-updates']['build'] + " fedora-rpmdevtools"
++sourceslist[DVA + '-livna'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('extras', 'livna', )
+ }
+-config['fedora-' + V + '-' + A + '-livna']  = config['fedora-' + V + '-' + A + '-extras']
+-aliases['fedora-' + V + '-' + A + '-livna'] = ('f' + V + 'l' + AS, )
++config[DVA + '-livna']  = config[DVA + '-extras']
++aliases[DVA + '-livna'] = ('f' + V + 'l' + AS, )
+ 
+-# Fedora Core with freshrpms
+-packages['fedora-' + V + '-' + A + '-freshrpms'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-freshrpms'] = {
+-  'fedora-' + V + '-' + A : ('core', 'freshrpms', )
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '2.fc' + V,
++  'buildopts': "--define 'dist fc" + V + "'",
+ }
+-config['fedora-' + V + '-' + A + '-freshrpms'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-freshrpms'] = ('f' + V + 'fr' + AS, )
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
+ 
+ # Fedora Core with JPackage
+-packages['fedora-' + V + '-' + A + '-jpackage'] = packages['fedora-' + V + '-' + A + '-updates'].copy()
+-packages['fedora-' + V + '-' + A + '-jpackage']['base'] = packages['fedora-' + V + '-' + A + '-updates']['base'] + ' java-1.4.2-sun'
+-packages['fedora-' + V + '-' + A + '-jpackage']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['fedora-' + V + '-' + A + '-jpackage'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-jpackage'] = packages[DVA + '-updates'].copy()
++packages[DVA + '-jpackage']['base'] = packages[DVA + '-updates']['base'] + ' java-1.4.2-sun'
++packages[DVA + '-jpackage']['build'] = packages[DVA + '-updates']['build'] + ' java-1.4.2-sun-devel'
++sourceslist[DVA + '-jpackage'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('jpackage-generic', 'jpackage-fc' + V , 'jpackage-nonfree', ),
+ }
+-config['fedora-' + V + '-' + A + '-jpackage'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++config[DVA + '-jpackage'] = config[DVA + '-core']
++aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-ppc mach-0.4.8-cfgchange/etc/dist.d/fedora-4-ppc
+--- mach-0.4.8.orig/etc/dist.d/fedora-4-ppc	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-4-ppc	2005-12-19 18:59:17.000000000 +0100
+@@ -0,0 +1,104 @@
++# mach dist configuration                                        -*- python -*-
++
++V = '4'                       # distro version
++A = 'ppc'                     # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'updates':          fedora      + '/core/updates/' + V + '/' + A ,
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
++  'gstreamer':        gstreamer   + '/fedora/' + V + '/' + A + '/yum/gst',
++  'gstreamer-build':  gstreamer   + '/fedora/' + V + '/' + A + '/yum/build',
++  'gstreamer-deps':   gstreamer   + '/fedora/' + V + '/' + A + '/yum/deps',
++  'freshrpms':        freshrpmsfd + '/' + V + '/' + A + '/freshrpms',
++  'livna':            livna       + '/fedora/' + V + '/' + A + '/RPMS.lvn',
++}
++
++# Fedora Core
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
++  'base':     'coreutils findutils openssh-server',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'unzip bzip2 diffutils cpio elfutils',
++}
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
++}
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++
++# Fedora Core with updates
++packages[DVA + '-updates'] = packages[DVA + '-core']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('core', 'updates', )
++}
++aliases[DVA + '-updates'] = ('f' + V + 'u' + AS, )
++
++# Fedora Core with extras
++packages[DVA + '-extras'] = packages[DVA + '-updates']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
++  ('extras', )
++}
++config[DVA + '-extras'] = {
++  'buildopts': "--define 'dist .fc" + V + "'",
++}
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
++
++# Fedora Core with GStreamer
++packages[DVA + '-gstreamer'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
++}
++config[DVA + '-gstreamer'] = {
++  'release': V,
++}
++aliases[DVA + '-gstreamer'] = ('f' + V + 'g' + AS, )
++
++packages[DVA + '-gstreamer-deps'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer-deps'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps')
++}
++config[DVA + '-gstreamer-deps'] = config[DVA + '-gstreamer']
++aliases[DVA + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
++
++# Fedora Core with livna (+ extras)
++packages[DVA + '-livna'] = packages[DVA + '-updates'].copy ()
++packages[DVA + '-livna']['build'] = packages[DVA + '-updates']['build'] + " fedora-rpmdevtools"
++sourceslist[DVA + '-livna'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
++  ('extras', 'livna', )
++}
++config[DVA + '-livna']  = config[DVA + '-extras']
++aliases[DVA + '-livna'] = ('f' + V + 'l' + AS, )
++
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '2.fc' + V,
++  'buildopts': "--define 'dist fc" + V + "'",
++}
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
++
++# Fedora Core with JPackage
++packages[DVA + '-jpackage'] = packages[DVA + '-updates'].copy()
++packages[DVA + '-jpackage']['base'] = packages[DVA + '-updates']['base'] + ' java-1.4.2-sun'
++packages[DVA + '-jpackage']['build'] = packages[DVA + '-updates']['build'] + ' java-1.4.2-sun-devel'
++sourceslist[DVA + '-jpackage'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
++  ('jpackage-generic', 'jpackage-fc' + V , 'jpackage-nonfree', ),
++}
++config[DVA + '-jpackage'] = config[DVA + '-core']
++aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64 mach-0.4.8-cfgchange/etc/dist.d/fedora-4-x86_64
+--- mach-0.4.8.orig/etc/dist.d/fedora-4-x86_64	2005-06-15 11:49:38.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-4-x86_64	2005-12-19 18:59:20.000000000 +0100
+@@ -1,36 +1,14 @@
+ # mach dist configuration                                        -*- python -*-
+ 
+-# fedora-4-x86_64: configuration for Fedora 4
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-V = '4'      # distro version
+-A = 'x86_64' # architecture
+-AS = '64'    # 'short' version of arch
+-
+-
+-### Fedora Core flavours
+-aptsources['fedora-' + V + '-' + A ] = {
+-  'core':             'rpm ' + fedora      + ' ' + V + '/' + A + ' core',
+-  'updates':          'rpm ' + fedora      + ' ' + V + '/' + A + ' updates',
+-  'extras':           'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' extras',
+-  'gstreamer':        'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' gst',
+-  'gstreamer-build':  'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' build',
+-  'gstreamer-deps':   'rpm ' + gstreamer   + ' fedora/' + V + '/' + A + ' deps',
+-  'livna':            'rpm ' + livna       + ' fedora/' + V + '/' + A + ' lvn',
+-  'freshrpms':        'rpm ' + freshrpmsfd + ' ' + V + '/' + A + ' freshrpms',
+-  'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-  'jpackage-fc' + V : 'rpm ' + jpackage    + ' fedora-' + V + ' free',
+-  'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-yumsources['fedora-' + V + '-' + A ] = {
+-  'core':             fedorayum   + '/core/' + V + '/' + A + '/os',
+-  'updates':          fedorayum   + '/core/updates/' + V + '/' + A ,
+-  'extras':           fedorayum   + '/extras/' + V + '/' + A ,
++V = '4'                       # distro version
++A = 'x86_64'                  # architecture
++AS = '64'                     # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'updates':          fedora      + '/core/updates/' + V + '/' + A ,
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
+   'gstreamer':        gstreamer   + '/fedora/' + V + '/' + A + '/yum/gst',
+   'gstreamer-build':  gstreamer   + '/fedora/' + V + '/' + A + '/yum/build',
+   'gstreamer-deps':   gstreamer   + '/fedora/' + V + '/' + A + '/yum/deps',
+@@ -39,87 +17,88 @@ yumsources['fedora-' + V + '-' + A ] = {
+ }
+ 
+ # Fedora Core
+-packages['fedora-' + V + '-' + A + '-core'] = {
+-  'dir':      'fedoracore-' + V + '-' + A ,
+-  'minimal':  'bash glibc',
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
+   'base':     'coreutils findutils openssh-server',
+-  'build':    'dev redhat-rpm-config rpm-build make gcc tar gzip patch ' +
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
+               'unzip bzip2 diffutils cpio elfutils',
+ }
+-sourceslist['fedora-' + V + '-' + A + '-core'] = {
+-  'fedora-' + V + '-' + A : ('core', )
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
+ }
+-# FC4 roots should use runuser instead of su
+-config['fedora-' + V + '-' + A + '-core'] = {'runuser': '/sbin/runuser'}
+-aliases['fedora-' + V + '-' + A + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
+ 
+ # Fedora Core with updates
+-packages['fedora-' + V + '-' + A + '-updates'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-updates'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', )
++packages[DVA + '-updates'] = packages[DVA + '-core']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('core', 'updates', )
+ }
+-config['fedora-' + V + '-' + A + '-updates'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-updates'] = ('f' + V + 'u'+ AS, )
++aliases[DVA + '-updates'] = ('f' + V + 'u' + AS, )
+ 
+ # Fedora Core with extras
+-packages['fedora-' + V + '-' + A + '-extras'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-extras']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] # + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-extras'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-extras'] = packages[DVA + '-updates']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('extras', )
+ }
+-config['fedora-' + V + '-' + A + '-extras'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-extras'] = {
+   'buildopts': "--define 'dist .fc" + V + "'",
+ }
+-aliases['fedora-' + V + '-' + A + '-extras'] = ('f' + V + 'e' + AS, )
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
+ 
+ # Fedora Core with GStreamer
+-packages['fedora-' + V + '-' + A + '-gstreamer'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
++packages[DVA + '-gstreamer'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer'] = {
+-  'runuser': '/sbin/runuser',
++config[DVA + '-gstreamer'] = {
+   'release': V,
+ }
+-aliases['fedora-' + V + '-' + A + '-gstreamer'] = ('f' + V + 'g' + AS, )
++aliases[DVA + '-gstreamer'] = ('f' + V + 'g' + AS, )
+ 
+-packages['fedora-' + V + '-' + A + '-gstreamer-deps'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-gstreamer-deps'] = {
+-  'fedora-' + V + '-' + A : ('core', 'updates', 'extras', 'gstreamer-deps')
++packages[DVA + '-gstreamer-deps'] = packages[DVA + '-core']
++sourceslist[DVA + '-gstreamer-deps'] = {
++  DVA : ('core', 'updates', 'extras', 'gstreamer-deps')
+ }
+-config['fedora-' + V + '-' + A + '-gstreamer-deps'] = config['fedora-' + V + '-' + A + '-gstreamer']
+-aliases['fedora-' + V + '-' + A + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
++config[DVA + '-gstreamer-deps'] = config[DVA + '-gstreamer']
++aliases[DVA + '-gstreamer-deps'] = ('f' + V + 'gd' + AS, )
+ 
+ # Fedora Core with livna (+ extras)
+-packages['fedora-' + V + '-' + A + '-livna'] = packages['fedora-' + V + '-' + A + '-updates'].copy ()
+-packages['fedora-' + V + '-' + A + '-livna']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-' + V + '-' + A + '-livna'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-livna'] = packages[DVA + '-updates'].copy ()
++packages[DVA + '-livna']['build'] = packages[DVA + '-updates']['build'] + " fedora-rpmdevtools"
++sourceslist[DVA + '-livna'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('extras', 'livna', )
+ }
+-config['fedora-' + V + '-' + A + '-livna']  = config['fedora-' + V + '-' + A + '-extras']
+-aliases['fedora-' + V + '-' + A + '-livna'] = ('f' + V + 'l' + AS, )
++config[DVA + '-livna']  = config[DVA + '-extras']
++aliases[DVA + '-livna'] = ('f' + V + 'l' + AS, )
+ 
+-# Fedora Core with freshrpms
+-packages['fedora-' + V + '-' + A + '-freshrpms'] = packages['fedora-' + V + '-' + A + '-core']
+-sourceslist['fedora-' + V + '-' + A + '-freshrpms'] = {
+-  'fedora-' + V + '-' + A : ('core', 'freshrpms', )
++# Fedora Core with freshrpms (+ extras)
++packages[DVA + '-freshrpms'] = packages[DVA + '-core']
++sourceslist[DVA + '-freshrpms'] = {
++  DVA :
++  sourceslist[DVA + '-extras'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'release': '2.fc' + V,
++  'buildopts': "--define 'dist fc" + V + "'",
+ }
+-config['fedora-' + V + '-' + A + '-freshrpms'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-freshrpms'] = ('f' + V + 'fr' + AS, )
++aliases[DVA + '-freshrpms'] = ('f' + V + 'fr' + AS, )
+ 
+ # Fedora Core with JPackage
+-packages['fedora-' + V + '-' + A + '-jpackage'] = packages['fedora-' + V + '-' + A + '-updates'].copy()
+-packages['fedora-' + V + '-' + A + '-jpackage']['base'] = packages['fedora-' + V + '-' + A + '-updates']['base'] + ' java-1.4.2-sun'
+-packages['fedora-' + V + '-' + A + '-jpackage']['build'] = packages['fedora-' + V + '-' + A + '-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['fedora-' + V + '-' + A + '-jpackage'] = {
+-  'fedora-' + V + '-' + A :
+-  sourceslist['fedora-' + V + '-' + A + '-updates']['fedora-' + V + '-' + A ] +
++packages[DVA + '-jpackage'] = packages[DVA + '-updates'].copy()
++packages[DVA + '-jpackage']['base'] = packages[DVA + '-updates']['base'] + ' java-1.4.2-sun'
++packages[DVA + '-jpackage']['build'] = packages[DVA + '-updates']['build'] + ' java-1.4.2-sun-devel'
++sourceslist[DVA + '-jpackage'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
+   ('jpackage-generic', 'jpackage-fc' + V , 'jpackage-nonfree', ),
+ }
+-config['fedora-' + V + '-' + A + '-jpackage'] = config['fedora-' + V + '-' + A + '-core']
+-aliases['fedora-' + V + '-' + A + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++config[DVA + '-jpackage'] = config[DVA + '-core']
++aliases[DVA + '-jpackage'] = ('fc' + V + 'jpp' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-i386 mach-0.4.8-cfgchange/etc/dist.d/fedora-development-i386
+--- mach-0.4.8.orig/etc/dist.d/fedora-development-i386	2004-11-08 20:26:32.000000000 +0100
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-i386	2005-12-19 18:59:26.000000000 +0100
+@@ -1,87 +1,39 @@
+-# mach dist configuration                          -*- python -*-
++# mach dist configuration                                        -*- python -*-
+ 
+-# fedora-development-i386: configuration for Fedora development
++V = 'development'             # distro version
++NEXTV = '5'                   # next (target) distro version
++A = 'i386'                    # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
+ 
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Fedora Core Development flavours
+-aptsources['fedora-development-i386'] = {
+-    'core':             'rpm ' + fedora + ' development/i386 core',
+-    'fedora-stable':    'rpm ' + fedoraus    + ' fedora/latest/i386 stable',
+-    'fedora-testing':   'rpm ' + fedoraus    + ' fedora/latest/i386 testing',
+-    'fedora-unstable':  'rpm ' + fedoraus    + ' fedora/latest/i386 unstable',
+-    'livna-stable':     'rpm ' + livna       + ' fedora/3/i386 stable',
+-    'livna-testing':    'rpm ' + livna       + ' fedora/3/i386 testing',
+-    'livna-unstable':   'rpm ' + livna       + ' fedora/3/i386 unstable',
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
+ }
+ 
+-# Fedora Core Development
+-packages['fedora-development-i386-core'] = {
+-    'dir':      'fedoracore-development-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'coreutils findutils openssh-server',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio elfutils',
++# Fedora Core
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
++  'base':     'coreutils findutils openssh-server',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'unzip bzip2 diffutils cpio elfutils',
+ }
+-sourceslist['fedora-development-i386-core'] = {
+-    'fedora-development-i386': ('core', )
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
+ }
+-config['fedora-development-i386-core'] = {}
+-aliases['fedora-development-i386-core'] = ('fd', 'fcd', )
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
+ 
+-# Fedora Development with fedora.us
+-packages['fedora-development-i386-fedora-stable'] = packages['fedora-development-i386-core'].copy ()
+-packages['fedora-development-i386-fedora-stable']['build'] = packages['fedora-development-i386-core']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-development-i386-fedora-stable'] = {
+-    'fedora-development-i386': ('core', 'fedora-stable', )
+-}
+-config['fedora-development-i386-fedora-stable']  = { 'release': '1.91' }
+-aliases['fedora-development-i386-fedora-stable'] = ('fdfs', )
+-                                                                                
+-packages['fedora-development-i386-fedora-testing'] = packages['fedora-development-i386-fedora-stable']
+-sourceslist['fedora-development-i386-fedora-testing'] = {
+-    'fedora-development-i386':
+-    sourceslist['fedora-development-i386-fedora-stable']['fedora-development-i386'] +
+-    ('fedora-testing', )
+-}
+-config['fedora-development-i386-fedora-testing']  = config['fedora-development-i386-fedora-stable']
+-aliases['fedora-development-i386-fedora-testing'] = ('fdft', )
+-                                                                                
+-packages['fedora-development-i386-fedora-unstable'] = packages['fedora-development-i386-fedora-testing']
+-sourceslist['fedora-development-i386-fedora-unstable'] = {
+-    'fedora-development-i386':
+-    sourceslist['fedora-development-i386-fedora-testing']['fedora-development-i386'] +
+-    ('fedora-unstable', )
++# Fedora Core with extras
++packages[DVA + '-extras'] = packages[DVA + '-core']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-core'][DVA ] +
++  ('extras', )
+ }
+-config['fedora-development-i386-fedora-unstable']  = config['fedora-development-i386-fedora-testing']
+-aliases['fedora-development-i386-fedora-unstable'] = ('fdfu', )
+-                                                                                
+-# Fedora Core development with livna (+ fedora.us)
+-packages['fedora-development-i386-livna-stable'] = packages['fedora-development-i386-core'].copy ()
+-packages['fedora-development-i386-livna-stable']['build'] = packages['fedora-development-i386-core']['build'] + " fedora-rpmdevtools"
+-sourceslist['fedora-development-i386-livna-stable'] = {
+-    'fedora-development-i386': ('core', 'fedora-stable', 'livna-stable', )
++config[DVA + '-extras'] = {
++  'buildopts': "--define 'dist .fc" + NEXTV + "'",
+ }
+-config['fedora-development-i386-livna-stable']  = { 'release': '1.91' }
+-aliases['fedora-development-i386-livna-stable'] = ('fdls', )
+-                                                                                
+-packages['fedora-development-i386-livna-testing'] = packages['fedora-development-i386-livna-stable']
+-sourceslist['fedora-development-i386-livna-testing'] = {
+-    'fedora-development-i386':
+-    sourceslist['fedora-development-i386-livna-stable']['fedora-development-i386'] +
+-    ('fedora-testing', 'livna-testing', )
+-}
+-config['fedora-development-i386-livna-testing']  = config['fedora-development-i386-livna-stable']
+-aliases['fedora-development-i386-livna-testing'] = ('fdlt', )
+-                                                                                
+-packages['fedora-development-i386-livna-unstable'] = packages['fedora-development-i386-livna-testing']
+-sourceslist['fedora-development-i386-livna-unstable'] = {
+-    'fedora-development-i386':
+-    sourceslist['fedora-development-i386-livna-testing']['fedora-development-i386'] +
+-    ('fedora-unstable', 'livna-unstable', )
+-}
+-config['fedora-development-i386-livna-unstable']  = config['fedora-development-i386-livna-testing']
+-aliases['fedora-development-i386-livna-unstable'] = ('fdlu', )
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-ppc mach-0.4.8-cfgchange/etc/dist.d/fedora-development-ppc
+--- mach-0.4.8.orig/etc/dist.d/fedora-development-ppc	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-ppc	2005-12-19 18:59:35.000000000 +0100
+@@ -0,0 +1,39 @@
++# mach dist configuration                                        -*- python -*-
++
++V = 'development'             # distro version
++NEXTV = '5'                   # next (target) distro version
++A = 'ppc'                     # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
++}
++
++# Fedora Core
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
++  'base':     'coreutils findutils openssh-server',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'unzip bzip2 diffutils cpio elfutils',
++}
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
++}
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++
++# Fedora Core with extras
++packages[DVA + '-extras'] = packages[DVA + '-core']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-core'][DVA ] +
++  ('extras', )
++}
++config[DVA + '-extras'] = {
++  'buildopts': "--define 'dist .fc" + NEXTV + "'",
++}
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64 mach-0.4.8-cfgchange/etc/dist.d/fedora-development-x86_64
+--- mach-0.4.8.orig/etc/dist.d/fedora-development-x86_64	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8-cfgchange/etc/dist.d/fedora-development-x86_64	2005-12-19 18:59:30.000000000 +0100
+@@ -0,0 +1,39 @@
++# mach dist configuration                                        -*- python -*-
++
++V = 'development'             # distro version
++NEXTV = '5'                   # next (target) distro version
++A = 'x86_64'                  # architecture
++AS = '64'                     # 'short' version of arch
++DVA = 'fedora-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'core':             fedora      + '/core/' + V + '/' + A + '/os',
++  'extras':           fedora      + '/extras/' + V + '/' + A ,
++}
++
++# Fedora Core
++packages[DVA + '-core'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc fedora-release',
++  'base':     'coreutils findutils openssh-server',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'unzip bzip2 diffutils cpio elfutils',
++}
++sourceslist[DVA + '-core'] = {
++  DVA : ('core', )
++}
++config[DVA + '-core'] = {}
++aliases[DVA + '-core'] = ('f' + V + 'c' + AS, 'fc' + V + AS, )
++
++# Fedora Core with extras
++packages[DVA + '-extras'] = packages[DVA + '-core']
++sourceslist[DVA + '-extras'] = {
++  DVA :
++  sourceslist[DVA + '-core'][DVA ] +
++  ('extras', )
++}
++config[DVA + '-extras'] = {
++  'buildopts': "--define 'dist .fc" + NEXTV + "'",
++}
++aliases[DVA + '-extras'] = ('f' + V + 'e' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/Makefile.am mach-0.4.8-cfgchange/etc/dist.d/Makefile.am
+--- mach-0.4.8.orig/etc/dist.d/Makefile.am	2005-06-13 16:50:25.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/Makefile.am	2005-12-13 13:39:18.000000000 +0100
+@@ -1,24 +1,16 @@
+ dists = \
+-	redhat-70-i386 \
+-	redhat-71-i386 \
+-	redhat-72-i386 \
+-	redhat-73-i386 \
+-	redhat-80-i386 \
+-	redhat-9-i386 \
+-	fedora-1-i386 \
+-	fedora-2-i386 \
+ 	fedora-3-i386 \
+ 	fedora-3-x86_64 \
+ 	fedora-4-i386 \
++	fedora-4-ppc \
+ 	fedora-4-x86_64 \
+ 	fedora-development-i386 \
+-	cnc-9-i386 \
+-	suse-81-i386 \
+-	suse-82-i386 \
+-	suse-90-i386 \
+-	yellowdog-23-ppc \
+-	yellowdog-30-ppc \
+-	davedina
++	fedora-development-ppc \
++	fedora-development-x86_64 \
++	redhat-70-i386 \
++	redhat-73-i386 \
++	rhel-4AS-i386 \
++	rhel-4AS-x86_64
+ 
+ configdir = $(sysconfdir)/mach/dist.d
+ config_DATA = $(dists)
+diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-70-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-70-i386
+--- mach-0.4.8.orig/etc/dist.d/redhat-70-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/redhat-70-i386	2005-12-19 19:00:25.000000000 +0100
+@@ -1,54 +1,50 @@
+ # mach dist configuration                                        -*- python -*-
+ 
+-# redhat-70-i386: configuration for Red Hat 7.0
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Red Hat Linux 7.0 flavours
+-aptsources['redhat-70-i386'] = {
+-    'os':               'rpm ' + redhat      + ' 7.0/i386 os',
+-    'updates':          'rpm ' + redhat      + ' 7.0/i386 updates',
+-    'freshrpms':        'rpm ' + freshrpmsrh + ' 7.0/i386 freshrpms',
+-}
+-
+-# Red Hat Linux 7.0
+-packages['redhat-70-i386'] = {
+-    'dir':      'redhat-70-i386',
+-    'minimal':  'bash glibc',
+-    # net-tools provides hostname, otherwise it complains about it for chroot
+-    'base':     'fileutils findutils openssh-server net-tools file sh-utils',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio',
+-}
+-sourceslist['redhat-70-i386'] = {
+-    'redhat-70-i386': ('os', )
+-}
+-config['redhat-70-i386'] = {}
+-aliases['redhat-70-i386'] = ('rh70', )
+-
+-# Red Hat Linux 7.0, updates (rpm 4.0.4)
+-packages['redhat-70-i386-updates'] = packages['redhat-70-i386']
+-sourceslist['redhat-70-i386-updates'] = {
+-    'redhat-70-i386': ('os', 'updates', )
+-}
+-config['redhat-70-i386-updates'] = {}
+-aliases['redhat-70-i386-updates'] = ('rh70u', )
+-
+-# Red Hat Linux 7.0, FreshRPMS
+-packages['redhat-70-i386-freshrpms'] = packages['redhat-70-i386']
+-sourceslist['redhat-70-i386-freshrpms'] = {
+-    'redhat-70-i386': ('os', 'freshrpms', )
+-}
+-config['redhat-70-i386-freshrpms'] = {}
+-aliases['redhat-70-i386-freshrpms'] = ('rh70fr', )
+-
+-# Red Hat Linux 7.0, updates + FreshRPMS
+-packages['redhat-70-i386-updates-freshrpms'] = packages['redhat-70-i386']
+-sourceslist['redhat-70-i386-updates-freshrpms'] = {
+-    'redhat-70-i386': ('os', 'updates', 'freshrpms', )
++V = '7.0'                     # distro version
++A = 'i386'                    # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'redhat-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'os':               redhatyum   + V + '/' + A + '/os',
++  'updates':          redhatyum   + V + '/' + A + '/updates',
++  'freshrpms':        freshrpmsrh + V + '/' + A + '/freshrpms',
++}
++
++# Red Hat Linux
++packages[DVA + '-os'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc redhat-release',
++  'base':     'fileutils findutils openssh-server file sh-utils',
++  'build':    'dev rpm-build make gcc gcc-c++ tar gzip ' +
++              'patch unzip bzip2 diffutils cpio',
++}
++sourceslist[DVA + '-os'] = {
++  DVA : ('os', )
++}
++# RHL roots should use su instead of runuser
++config[DVA + '-os'] = {'runuser': '/bin/su'}
++aliases[DVA + '-os'] = ('rh' + V + AS, )
++
++# Red Hat Linux with updates
++packages[DVA + '-updates'] = packages[DVA + '-os']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('os', 'updates', )
++}
++config[DVA + '-updates'] = config[DVA + '-os']
++aliases[DVA + '-updates'] = ('rh' + V + 'u' + AS, )
++
++# Red Hat Linux with freshrpms
++packages[DVA + '-freshrpms'] = packages[DVA + '-os']
++sourceslist[DVA + '-os'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'runuser': '/bin/su',
++  'release': '1.rh7',
++  'buildopts': "--define 'dist rh7'",
+ }
+-config['redhat-70-i386-updates-freshrpms'] = {}
+-aliases['redhat-70-i386-updates-freshrpms'] = ('rh70ufr', )
++aliases[DVA + '-freshrpms'] = ('rh' + V + 'fr' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-71-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-71-i386
+--- mach-0.4.8.orig/etc/dist.d/redhat-71-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/redhat-71-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,55 +0,0 @@
+-# mach dist configuration                                        -*- python -*-
+-
+-# redhat-71-i386: configuration for Red Hat 7.1
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Red Hat Linux 7.1 flavours
+-aptsources['redhat-71-i386'] = {
+-    'os':               'rpm ' + redhat      + ' 7.1/i386 os',
+-    'updates':          'rpm ' + redhat      + ' 7.1/i386 updates',
+-    'freshrpms':        'rpm ' + freshrpmsrh + ' 7.1/i386 freshrpms',
+-}
+-
+-# Red Hat Linux 7.1
+-packages['redhat-71-i386'] = {
+-    'dir':      'redhat-71-i386',
+-    'minimal':  'bash glibc',
+-    # net-tools provides hostname, otherwise it complains about it for chroot
+-    # sh-utils provides 'su' on older systems
+-    'base':     'fileutils findutils openssh-server net-tools file sh-utils',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio',
+-}
+-sourceslist['redhat-71-i386'] = {
+-    'redhat-71-i386': ('os', )
+-}
+-config['redhat-71-i386'] = {}
+-aliases['redhat-71-i386'] = ('rh71', )
+-
+-# Red Hat Linux 7.1, updates (rpm 4.0.4)
+-packages['redhat-71-i386-updates'] = packages['redhat-71-i386']
+-sourceslist['redhat-71-i386-updates'] = {
+-    'redhat-71-i386': ('os', 'updates', )
+-}
+-config['redhat-71-i386-updates'] = {}
+-aliases['redhat-71-i386-updates'] = ('rh71u', )
+-
+-# Red Hat Linux 7.1, FreshRPMS
+-packages['redhat-71-i386-freshrpms'] = packages['redhat-71-i386']
+-sourceslist['redhat-71-i386-freshrpms'] = {
+-    'redhat-71-i386': ('os', 'freshrpms', )
+-}
+-config['redhat-71-i386-freshrpms'] = {}
+-aliases['redhat-71-i386-freshrpms'] = ('rh71fr', )
+-
+-# Red Hat Linux 7.1, updates + FreshRPMS
+-packages['redhat-71-i386-updates-freshrpms'] = packages['redhat-71-i386']
+-sourceslist['redhat-71-i386-updates-freshrpms'] = {
+-    'redhat-71-i386': ('os', 'updates', 'freshrpms', )
+-}
+-config['redhat-71-i386-updates-freshrpms'] = {}
+-aliases['redhat-71-i386-updates-freshrpms'] = ('rh71ufr', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-72-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-72-i386
+--- mach-0.4.8.orig/etc/dist.d/redhat-72-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/redhat-72-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,69 +0,0 @@
+-# mach dist configuration                                        -*- python -*-
+-
+-# redhat-72-i386: configuration for Red Hat 7.2
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Red Hat Linux 7.2 flavours
+-aptsources['redhat-72-i386'] = {
+-    'os':               'rpm ' + redhat      + ' 7.2/i386 os',
+-    'updates':          'rpm ' + redhat      + ' 7.2/i386 updates',
+-    'freshrpms':        'rpm ' + freshrpmsrh + ' 7.2/i386 freshrpms',
+-    'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-    'jpackage-rh72':    'rpm ' + jpackage    + ' redhat-7.2 free',
+-    'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-# Red Hat Linux 7.2
+-packages['redhat-72-i386'] = {
+-    'dir':      'redhat-72-i386',
+-    'minimal':  'bash glibc',
+-    # net-tools provides hostname, otherwise it complains about it for chroot
+-    'base':     'fileutils findutils openssh-server net-tools file',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio',
+-}
+-sourceslist['redhat-72-i386'] = {
+-    'redhat-72-i386': ('os', )
+-}
+-config['redhat-72-i386'] = {}
+-aliases['redhat-72-i386'] = ('rh72', )
+-
+-# Red Hat Linux 7.2, updates (rpm 4.0.4)
+-packages['redhat-72-i386-updates'] = packages['redhat-72-i386']
+-sourceslist['redhat-72-i386-updates'] = {
+-    'redhat-72-i386': ('os', 'updates', )
+-}
+-config['redhat-72-i386-updates'] = {}
+-aliases['redhat-72-i386-updates'] = ('rh72u', )
+-
+-# Red Hat Linux 7.2, FreshRPMS
+-packages['redhat-72-i386-freshrpms'] = packages['redhat-72-i386']
+-sourceslist['redhat-72-i386-freshrpms'] = {
+-    'redhat-72-i386': ('os', 'freshrpms', )
+-}
+-config['redhat-72-i386-freshrpms'] = {}
+-aliases['redhat-72-i386-freshrpms'] = ('rh72fr', )
+-
+-# Red Hat Linux 7.2, updates + FreshRPMS
+-packages['redhat-72-i386-updates-freshrpms'] = packages['redhat-72-i386']
+-sourceslist['redhat-72-i386-updates-freshrpms'] = {
+-    'redhat-72-i386': ('os', 'updates', 'freshrpms', )
+-}
+-config['redhat-72-i386-updates-freshrpms'] = {}
+-aliases['redhat-72-i386-updates-freshrpms'] = ('rh72ufr', )
+-
+-# Red Hat Linux 7.2 with JPackage
+-packages['redhat-72-i386-jpackage'] = packages['redhat-72-i386-updates'].copy()
+-packages['redhat-72-i386-jpackage']['base'] = packages['redhat-72-i386-updates']['base'] + ' java-1.4.2-sun'
+-packages['redhat-72-i386-jpackage']['build'] = packages['redhat-72-i386-updates']['build'] + ' gcc-c++ java-1.4.2-sun-devel'
+-sourceslist['redhat-72-i386-jpackage'] = {
+-    'redhat-72-i386':
+-    sourceslist['redhat-72-i386-updates']['redhat-72-i386'] +
+-    ('jpackage-generic', 'jpackage-rh72', 'jpackage-nonfree', ),
+-}
+-config['redhat-72-i386-jpackage'] = {}
+-aliases['redhat-72-i386-jpackage'] = ('rh72jpp', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-73-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-73-i386
+--- mach-0.4.8.orig/etc/dist.d/redhat-73-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/redhat-73-i386	2005-12-19 19:00:35.000000000 +0100
+@@ -1,68 +1,50 @@
+ # mach dist configuration                                        -*- python -*-
+ 
+-# redhat-73-i386: configuration for Red Hat 7.3
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Red Hat Linux 7.3 flavours
+-aptsources['redhat-73-i386'] = {
+-    'os':               'rpm ' + redhat      + ' 7.3/i386 os',
+-    'updates':          'rpm ' + redhat      + ' 7.3/i386 updates',
+-    'freshrpms':        'rpm ' + freshrpmsrh + ' 7.3/i386 freshrpms',
+-    'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-    'jpackage-rh73':    'rpm ' + jpackage    + ' redhat-7.3 free',
+-    'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-# Red Hat Linux 7.3
+-packages['redhat-73-i386'] = {
+-    'dir':      'redhat-73-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'fileutils findutils file openssh-server',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio',
+-}
+-sourceslist['redhat-73-i386'] = {
+-    'redhat-73-i386': ('os', )
+-}
+-config['redhat-73-i386'] = {}
+-aliases['redhat-73-i386'] = ('rh73', )
+-
+-# Red Hat Linux 7.3, updates
+-packages['redhat-73-i386-updates'] = packages['redhat-73-i386']
+-sourceslist['redhat-73-i386-updates'] = {
+-    'redhat-73-i386': ('os', 'updates', )
+-}
+-config['redhat-73-i386-updates'] = {}
+-aliases['redhat-73-i386-updates'] = ('rh73u', )
+-
+-# Red Hat Linux 7.3, FreshRPMS
+-packages['redhat-73-i386-freshrpms'] = packages['redhat-73-i386']
+-sourceslist['redhat-73-i386-freshrpms'] = {
+-    'redhat-73-i386': ('os', 'freshrpms', )
+-}
+-config['redhat-73-i386-freshrpms'] = {}
+-aliases['redhat-73-i386-freshrpms'] = ('rh73fr', )
+-
+-# Red Hat Linux 7.3, updates + FreshRPMS
+-packages['redhat-73-i386-updates-freshrpms'] = packages['redhat-73-i386']
+-sourceslist['redhat-73-i386-updates-freshrpms'] = {
+-    'redhat-73-i386': ('os', 'updates', 'freshrpms', )
+-}
+-config['redhat-73-i386-updates-freshrpms'] = {}
+-aliases['redhat-73-i386-updates-freshrpms'] = ('rh73ufr', )
+-
+-# Red Hat Linux 7.3 with JPackage
+-packages['redhat-73-i386-jpackage'] = packages['redhat-73-i386-updates'].copy()
+-packages['redhat-73-i386-jpackage']['base'] = packages['redhat-73-i386-updates']['base'] + ' java-1.4.2-sun'
+-packages['redhat-73-i386-jpackage']['build'] = packages['redhat-73-i386-updates']['build'] + ' gcc-c++ java-1.4.2-sun-devel'
+-sourceslist['redhat-73-i386-jpackage'] = {
+-    'redhat-73-i386':
+-    sourceslist['redhat-73-i386-updates']['redhat-73-i386'] +
+-    ('jpackage-generic', 'jpackage-rh73', 'jpackage-nonfree', ),
++V = '7.3'                     # distro version
++A = 'i386'                    # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'redhat-' + V + '-' + A # distro-version-architecture
++
++yumsources[DVA] = {
++  'os':               redhatyum   + V + '/' + A + '/os',
++  'updates':          redhatyum   + V + '/' + A + '/updates',
++  'freshrpms':        freshrpmsrh + V + '/' + A + '/freshrpms',
++}
++
++# Red Hat Linux
++packages[DVA + '-os'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc redhat-release',
++  'base':     'fileutils findutils openssh-server file sh-utils',
++  'build':    'dev rpm-build make gcc gcc-c++ tar gzip ' +
++              'patch unzip bzip2 diffutils cpio',
++}
++sourceslist[DVA + '-os'] = {
++  DVA : ('os', )
++}
++# RHL roots should use su instead of runuser
++config[DVA + '-os'] = {'runuser': '/bin/su'}
++aliases[DVA + '-os'] = ('rh' + V + AS, )
++
++# Red Hat Linux with updates
++packages[DVA + '-updates'] = packages[DVA + '-os']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('os', 'updates', )
++}
++config[DVA + '-updates'] = config[DVA + '-os']
++aliases[DVA + '-updates'] = ('rh' + V + 'u' + AS, )
++
++# Red Hat Linux with freshrpms
++packages[DVA + '-freshrpms'] = packages[DVA + '-os']
++sourceslist[DVA + '-os'] = {
++  DVA :
++  sourceslist[DVA + '-updates'][DVA ] +
++  ('freshrpms', )
++}
++config[DVA + '-freshrpms'] = {
++  'runuser': '/bin/su',
++  'release': '1.rh7',
++  'buildopts': "--define 'dist rh7'",
+ }
+-config['redhat-73-i386-jpackage'] = {}
+-aliases['redhat-73-i386-jpackage'] = ('rh73jpp', )
++aliases[DVA + '-freshrpms'] = ('rh' + V + 'fr' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-80-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-80-i386
+--- mach-0.4.8.orig/etc/dist.d/redhat-80-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/redhat-80-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,150 +0,0 @@
+-# mach dist configuration                                        -*- python -*-
+-
+-# redhat-80-i386: configuration for Red Hat 8.0
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Red Hat Linux 8.0 flavours
+-aptsources['redhat-80-i386'] = {
+-    'os':               'rpm ' + redhat      + ' 8.0/i386 os',
+-    'updates':          'rpm ' + redhat      + ' 8.0/i386 updates',
+-    'gstreamer':        'rpm ' + gstreamer   + ' redhat/80/i386 gst',
+-    'gstreamer-build':  'rpm ' + gstreamer   + ' redhat/80/i386 build',
+-    'gstreamer-deps':   'rpm ' + gstreamer   + ' redhat/80/i386 deps',
+-    'fedora-stable':    'rpm ' + fedoraus    + ' redhat/8.0/i386 stable',
+-    'fedora-testing':   'rpm ' + fedoraus    + ' redhat/8.0/i386 testing',
+-    'fedora-unstable':  'rpm ' + fedoraus    + ' redhat/8.0/i386 unstable',
+-    'livna-stable':     'rpm ' + livna       + ' redhat/8.0/i386 stable',
+-    'livna-testing':    'rpm ' + livna       + ' redhat/8.0/i386 testing',
+-    'livna-unstable':   'rpm ' + livna       + ' redhat/8.0/i386 unstable',
+-    'freshrpms':        'rpm ' + freshrpmsrh + ' 8.0/i386 freshrpms',
+-    'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-    'jpackage-rh80':    'rpm ' + jpackage    + ' redhat-8.0 free',
+-    'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-# Red Hat Linux 8.0
+-packages['redhat-80-i386'] = {
+-    'dir':      'redhat-80-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'fileutils findutils openssh-server',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio',
+-}
+-sourceslist['redhat-80-i386'] = {
+-    'redhat-80-i386': ('os', )
+-}
+-config['redhat-80-i386'] = {}
+-aliases['redhat-80-i386'] = ('rh8', 'rh80')
+-
+-# Red Hat Linux 8.0 with updates
+-packages['redhat-80-i386-updates'] = packages['redhat-80-i386']
+-sourceslist['redhat-80-i386-updates'] = {
+-    'redhat-80-i386': ('os', 'updates', )
+-}
+-config['redhat-80-i386-updates'] = {}
+-aliases['redhat-80-i386-updates'] = ('rh8u', 'rh80u')
+-
+-# Red Hat Linux 8.0 with GStreamer
+-packages['redhat-80-i386-gstreamer'] = packages['redhat-80-i386']
+-sourceslist['redhat-80-i386-gstreamer'] = {
+-    'redhat-80-i386': ('os', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+-}
+-config['redhat-80-i386-gstreamer'] = { 'release': 'rh80' }
+-aliases['redhat-80-i386-gstreamer'] = ('rh8g', 'rh80g')
+-
+-packages['redhat-80-i386-gstreamer-deps'] = packages['redhat-80-i386']
+-sourceslist['redhat-80-i386-gstreamer-deps'] = {
+-    'redhat-80-i386': ('os', 'gstreamer-deps')
+-}
+-config['redhat-80-i386-gstreamer-deps'] = { 'release': 'rh80' }
+-aliases['redhat-80-i386-gstreamer-deps'] = ('rh8gd', 'rh80gd')
+-
+-# Red Hat Linux 8.0 with fedora.us
+-packages['redhat-80-i386-fedora-stable'] = packages['redhat-80-i386-updates'].copy ()
+-packages['redhat-80-i386-fedora-stable']['build'] = packages['redhat-80-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['redhat-80-i386-fedora-stable'] = {
+-    'redhat-80-i386':
+-    sourceslist['redhat-80-i386-updates']['redhat-80-i386'] +
+-    ('fedora-stable', )
+-}
+-config['redhat-80-i386-fedora-stable']  = { 'release': 'rh80' }
+-aliases['redhat-80-i386-fedora-stable'] = ('rh8fs', 'rh80fs')
+-
+-packages['redhat-80-i386-fedora-testing'] = packages['redhat-80-i386-fedora-stable']
+-sourceslist['redhat-80-i386-fedora-testing'] = {
+-    'redhat-80-i386':
+-    sourceslist['redhat-80-i386-fedora-stable']['redhat-80-i386'] +
+-    ('fedora-testing', )
+-}
+-config['redhat-80-i386-fedora-testing']  = config['redhat-80-i386-fedora-stable']
+-aliases['redhat-80-i386-fedora-testing'] = ('rh8ft', 'rh80ft')
+-
+-packages['redhat-80-i386-fedora-unstable'] = packages['redhat-80-i386-fedora-testing']
+-sourceslist['redhat-80-i386-fedora-unstable'] = {
+-    'redhat-80-i386':
+-    sourceslist['redhat-80-i386-fedora-testing']['redhat-80-i386'] +
+-    ('fedora-unstable', )
+-}
+-config['redhat-80-i386-fedora-unstable']   = config['redhat-80-i386-fedora-testing']
+-aliases['redhat-80-i386-fedora-unstable']  = ('rh8fu', 'rh80fu')
+-
+-# Red Hat Linux 8.0 with livna (+ fedora.us)
+-packages['redhat-80-i386-livna-stable'] = packages['redhat-80-i386-updates'].copy ()
+-packages['redhat-80-i386-livna-stable']['build'] = packages['redhat-80-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['redhat-80-i386-livna-stable'] = {
+-    'redhat-80-i386':
+-    sourceslist['redhat-80-i386-updates']['redhat-80-i386'] +
+-    ('fedora-stable', 'livna-stable', )
+-}
+-config['redhat-80-i386-livna-stable']  = { 'release': 'rh80' }
+-aliases['redhat-80-i386-livna-stable'] = ('rh8ls', 'rh80ls', )
+-
+-packages['redhat-80-i386-livna-testing'] = packages['redhat-80-i386-livna-stable']
+-sourceslist['redhat-80-i386-livna-testing'] = {
+-    'redhat-80-i386':
+-    sourceslist['redhat-80-i386-livna-stable']['redhat-80-i386'] +
+-    ('fedora-testing', 'livna-testing', )
+-}
+-config['redhat-80-i386-livna-testing']  = config['redhat-80-i386-livna-stable']
+-aliases['redhat-80-i386-livna-testing'] = ('rh8lt', 'rh80lt', )
+-
+-packages['redhat-80-i386-livna-unstable'] = packages['redhat-80-i386-livna-testing']
+-sourceslist['redhat-80-i386-livna-unstable'] = {
+-    'redhat-80-i386':
+-    sourceslist['redhat-80-i386-livna-testing']['redhat-80-i386'] +
+-    ('fedora-unstable', 'livna-unstable', )
+-}
+-config['redhat-80-i386-livna-unstable']  = config['redhat-80-i386-livna-testing']
+-aliases['redhat-80-i386-livna-unstable'] = ('rh8lu', 'rh80lu', )
+-
+-# Red Hat Linux 8.0, FreshRPMS
+-packages['redhat-80-i386-freshrpms'] = packages['redhat-80-i386']
+-sourceslist['redhat-80-i386-freshrpms'] = {
+-    'redhat-80-i386': ('os', 'freshrpms', )
+-}
+-config['redhat-80-i386-freshrpms'] = {}
+-aliases['redhat-80-i386-freshrpms'] = ('rh8fr', 'rh80fr')
+-
+-# Red Hat Linux 8.0, updates + FreshRPMS
+-packages['redhat-80-i386-updates-freshrpms'] = packages['redhat-80-i386']
+-sourceslist['redhat-80-i386-updates-freshrpms'] = {
+-    'redhat-80-i386': ('os', 'updates', 'freshrpms', )
+-}
+-config['redhat-80-i386-updates-freshrpms'] = {}
+-aliases['redhat-80-i386-updates-freshrpms'] = ('rh8ufr', 'rh80ufr')
+-
+-# Red Hat Linux 8.0 with JPackage
+-packages['redhat-80-i386-jpackage'] = packages['redhat-80-i386-updates'].copy()
+-packages['redhat-80-i386-jpackage']['base'] = packages['redhat-80-i386-updates']['base'] + ' java-1.4.2-sun'
+-packages['redhat-80-i386-jpackage']['build'] = packages['redhat-80-i386-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['redhat-80-i386-jpackage'] = {
+-    'redhat-80-i386':
+-    sourceslist['redhat-80-i386-updates']['redhat-80-i386'] +
+-    ('jpackage-generic', 'jpackage-rh80', 'jpackage-nonfree', ),
+-}
+-config['redhat-80-i386-jpackage'] = {}
+-aliases['redhat-80-i386-jpackage'] = ('rh8jpp', 'rh80jpp')
+diff -Naupr mach-0.4.8.orig/etc/dist.d/redhat-9-i386 mach-0.4.8-cfgchange/etc/dist.d/redhat-9-i386
+--- mach-0.4.8.orig/etc/dist.d/redhat-9-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/redhat-9-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,150 +0,0 @@
+-# mach dist configuration                                        -*- python -*-
+-
+-# redhat-9-i386: configuration for Red Hat 9
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Red Hat Linux 9 flavours
+-aptsources['redhat-9-i386'] = {
+-    'os':               'rpm ' + redhat      + ' 9/i386 os',
+-    'updates':          'rpm ' + redhat      + ' 9/i386 updates',
+-    'gstreamer':        'rpm ' + gstreamer   + ' redhat/9/i386 gst',
+-    'gstreamer-build':  'rpm ' + gstreamer   + ' redhat/9/i386 build',
+-    'gstreamer-deps':   'rpm ' + gstreamer   + ' redhat/9/i386 deps',
+-    'fedora-stable':    'rpm ' + fedoraus    + ' redhat/9/i386 stable',
+-    'fedora-testing':   'rpm ' + fedoraus    + ' redhat/9/i386 testing',
+-    'fedora-unstable':  'rpm ' + fedoraus    + ' redhat/9/i386 unstable',
+-    'livna-stable':     'rpm ' + livna       + ' redhat/9/i386 stable',
+-    'livna-testing':    'rpm ' + livna       + ' redhat/9/i386 testing',
+-    'livna-unstable':   'rpm ' + livna       + ' redhat/9/i386 unstable',
+-    'freshrpms':        'rpm ' + freshrpmsrh + ' 9/i386 freshrpms',
+-    'jpackage-generic': 'rpm ' + jpackage    + ' generic free',
+-    'jpackage-rh9':     'rpm ' + jpackage    + ' redhat-9 free',
+-    'jpackage-nonfree': 'rpm ' + jpackagenf  + ' generic non-free',
+-}
+-
+-# Red Hat Linux 9
+-packages['redhat-9-i386'] = {
+-    'dir':      'redhat-9-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'coreutils findutils openssh-server',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio elfutils',
+-}
+-sourceslist['redhat-9-i386'] = {
+-    'redhat-9-i386': ('os', )
+-}
+-config['redhat-9-i386'] = {}
+-aliases['redhat-9-i386'] = ('rh9', 'rh90')
+-
+-# Red Hat Linux 9 with updates
+-packages['redhat-9-i386-updates'] = packages['redhat-9-i386']
+-sourceslist['redhat-9-i386-updates'] = {
+-    'redhat-9-i386': ('os', 'updates', )
+-}
+-config['redhat-9-i386-updates'] = {}
+-aliases['redhat-9-i386-updates'] = ('rh9u', 'rh90u')
+-
+-# Red Hat Linux 9 with GStreamer
+-packages['redhat-9-i386-gstreamer'] = packages['redhat-9-i386']
+-sourceslist['redhat-9-i386-gstreamer'] = {
+-    'redhat-9-i386': ('os', 'gstreamer-deps', 'gstreamer-build', 'gstreamer')
+-}
+-config['redhat-9-i386-gstreamer'] = { 'release': 'rh90' }
+-aliases['redhat-9-i386-gstreamer'] = ('rh9g', 'rh90g')
+-
+-packages['redhat-9-i386-gstreamer-deps'] = packages['redhat-9-i386']
+-sourceslist['redhat-9-i386-gstreamer-deps'] = {
+-    'redhat-9-i386': ('os', 'gstreamer-deps')
+-}
+-config['redhat-9-i386-gstreamer-deps'] = { 'release': 'rh90' }
+-aliases['redhat-9-i386-gstreamer-deps'] = ('rh9gd', 'rh90gd')
+-
+-# Red Hat Linux 9 with fedora.us
+-packages['redhat-9-i386-fedora-stable'] = packages['redhat-9-i386-updates'].copy ()
+-packages['redhat-9-i386-fedora-stable']['build'] = packages['redhat-9-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['redhat-9-i386-fedora-stable'] = {
+-    'redhat-9-i386':
+-    sourceslist['redhat-9-i386-updates']['redhat-9-i386'] +
+-    ('fedora-stable', )
+-}
+-config['redhat-9-i386-fedora-stable']  = { 'release': 'rh90' }
+-aliases['redhat-9-i386-fedora-stable'] = ('rh9fs', 'rh90fs')
+-
+-packages['redhat-9-i386-fedora-testing'] = packages['redhat-9-i386-fedora-stable']
+-sourceslist['redhat-9-i386-fedora-testing'] = {
+-    'redhat-9-i386':
+-    sourceslist['redhat-9-i386-fedora-stable']['redhat-9-i386'] +
+-    ('fedora-testing', )
+-}
+-config['redhat-9-i386-fedora-testing']  = config['redhat-9-i386-fedora-stable']
+-aliases['redhat-9-i386-fedora-testing'] = ('rh9ft', 'rh90ft')
+-
+-packages['redhat-9-i386-fedora-unstable'] = packages['redhat-9-i386-fedora-testing']
+-sourceslist['redhat-9-i386-fedora-unstable'] = {
+-    'redhat-9-i386':
+-    sourceslist['redhat-9-i386-fedora-testing']['redhat-9-i386'] +
+-    ('fedora-unstable', )
+-}
+-config['redhat-9-i386-fedora-unstable']  = config['redhat-9-i386-fedora-testing']
+-aliases['redhat-9-i386-fedora-unstable'] = ('rh9fu', 'rh90fu')
+-
+-# Red Hat Linux 9 with livna (+ fedora.us)
+-packages['redhat-9-i386-livna-stable'] = packages['redhat-9-i386-updates'].copy ()
+-packages['redhat-9-i386-livna-stable']['build'] = packages['redhat-9-i386-updates']['build'] + " fedora-rpmdevtools"
+-sourceslist['redhat-9-i386-livna-stable'] = {
+-    'redhat-9-i386':
+-    sourceslist['redhat-9-i386-updates']['redhat-9-i386'] +
+-    ('fedora-stable', 'livna-stable', )
+-}
+-config['redhat-9-i386-livna-stable']  = { 'release': 'rh90' }
+-aliases['redhat-9-i386-livna-stable'] = ('rh9ls', )
+-
+-packages['redhat-9-i386-livna-testing'] = packages['redhat-9-i386-livna-stable']
+-sourceslist['redhat-9-i386-livna-testing'] = {
+-    'redhat-9-i386':
+-    sourceslist['redhat-9-i386-livna-stable']['redhat-9-i386'] +
+-    ('fedora-testing', 'livna-testing', )
+-}
+-config['redhat-9-i386-livna-testing']  = config['redhat-9-i386-livna-stable']
+-aliases['redhat-9-i386-livna-testing'] = ('rh9lt', )
+-
+-packages['redhat-9-i386-livna-unstable'] = packages['redhat-9-i386-livna-testing']
+-sourceslist['redhat-9-i386-livna-unstable'] = {
+-    'redhat-9-i386':
+-    sourceslist['redhat-9-i386-livna-testing']['redhat-9-i386'] +
+-    ('fedora-unstable', 'livna-unstable', )
+-}
+-config['redhat-9-i386-livna-unstable']  = config['redhat-9-i386-livna-testing']
+-aliases['redhat-9-i386-livna-unstable'] = ('rh9lu', )
+-
+-# Red Hat Linux 9, FreshRPMS
+-packages['redhat-9-i386-freshrpms'] = packages['redhat-9-i386']
+-sourceslist['redhat-9-i386-freshrpms'] = {
+-    'redhat-9-i386': ('os', 'freshrpms', )
+-}
+-config['redhat-9-i386-freshrpms'] = {}
+-aliases['redhat-9-i386-freshrpms'] = ('rh9fr', 'rh90fr')
+-
+-# Red Hat Linux 9, updates + FreshRPMS
+-packages['redhat-9-i386-updates-freshrpms'] = packages['redhat-9-i386']
+-sourceslist['redhat-9-i386-updates-freshrpms'] = {
+-    'redhat-9-i386': ('os', 'updates', 'freshrpms', )
+-}
+-config['redhat-9-i386-updates-freshrpms'] = {}
+-aliases['redhat-9-i386-updates-freshrpms'] = ('rh9ufr', 'rh90ufr')
+-
+-# Red Hat Linux 9 with JPackage
+-packages['redhat-9-i386-jpackage'] = packages['redhat-9-i386-updates'].copy()
+-packages['redhat-9-i386-jpackage']['base'] = packages['redhat-9-i386-updates']['base'] + ' java-1.4.2-sun'
+-packages['redhat-9-i386-jpackage']['build'] = packages['redhat-9-i386-updates']['build'] + ' gcc-c++ redhat-rpm-config java-1.4.2-sun-devel'
+-sourceslist['redhat-9-i386-jpackage'] = {
+-    'redhat-9-i386':
+-    sourceslist['redhat-9-i386-updates']['redhat-9-i386'] +
+-    ('jpackage-generic', 'jpackage-rh9', 'jpackage-nonfree', ),
+-}
+-config['redhat-9-i386-jpackage'] = {}
+-aliases['redhat-9-i386-jpackage'] = ('rh9jpp', 'rh90jpp')
+diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-i386 mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-i386
+--- mach-0.4.8.orig/etc/dist.d/rhel-4AS-i386	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-i386	2005-12-19 18:59:59.000000000 +0100
+@@ -0,0 +1,34 @@
++# mach dist configuration                                        -*- python -*-
++
++V = '4AS'                     # distro version
++A = 'i386'                    # architecture
++AS = ''                       # 'short' version of arch
++DVA = 'rhel-' + V + '-' + A   # distro-version-architecture
++
++yumsources[DVA] = {
++  'os':               rhelyum + '/el' + V + '/' + A + '/os',
++  'updates':          rhelyum + '/el' + V + '/' + A + '/updates',
++}
++
++# RHEL
++packages[DVA + '-os'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc redhat-release',
++  'base':     'coreutils findutils openssh-server',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'patch unzip bzip2 diffutils cpio elfutils',
++}
++sourceslist[DVA + '-os'] = {
++  DVA : ('os', )
++}
++config[DVA + '-os'] = {}
++aliases[DVA + '-os'] = ('rh' + V + AS, 'rhel' + V + AS, )
++
++# RHEL with updates
++packages[DVA + '-updates'] = packages[DVA + '-os']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('os', 'updates', )
++}
++config[DVA + '-updates'] = config[DVA + '-os']
++aliases[DVA + '-updates'] = ('rh' + V + 'u' + AS, 'rhel' + V + 'u' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/rhel-4AS-x86_64 mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-x86_64
+--- mach-0.4.8.orig/etc/dist.d/rhel-4AS-x86_64	1970-01-01 01:00:00.000000000 +0100
++++ mach-0.4.8-cfgchange/etc/dist.d/rhel-4AS-x86_64	2005-12-19 19:00:10.000000000 +0100
+@@ -0,0 +1,34 @@
++# mach dist configuration                                        -*- python -*-
++
++V = '4AS'                     # distro version
++A = 'x86_64'                  # architecture
++AS = '64'                     # 'short' version of arch
++DVA = 'rhel-' + V + '-' + A   # distro-version-architecture
++
++yumsources[DVA] = {
++  'os':               rhelyum + '/el' + V + '/' + A + '/os',
++  'updates':          rhelyum + '/el' + V + '/' + A + '/updates',
++}
++
++# RHEL
++packages[DVA + '-os'] = {
++  'dir':      DVA,
++  'minimal':  'bash glibc redhat-release',
++  'base':     'coreutils findutils openssh-server',
++  'build':    'dev redhat-rpm-config rpm-build make gcc gcc-c++ tar gzip ' +
++              'patch unzip bzip2 diffutils cpio elfutils',
++}
++sourceslist[DVA + '-os'] = {
++  DVA : ('os', )
++}
++config[DVA + '-os'] = {}
++aliases[DVA + '-os'] = ('rh' + V + AS, 'rhel' + V + AS, )
++
++# RHEL with updates
++packages[DVA + '-updates'] = packages[DVA + '-os']
++sourceslist[DVA + '-updates'] = {
++  DVA : ('os', 'updates', )
++}
++config[DVA + '-updates'] = config[DVA + '-os']
++aliases[DVA + '-updates'] = ('rh' + V + 'u' + AS, 'rhel' + V + 'u' + AS, )
++
+diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-81-i386 mach-0.4.8-cfgchange/etc/dist.d/suse-81-i386
+--- mach-0.4.8.orig/etc/dist.d/suse-81-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/suse-81-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,36 +0,0 @@
+-# mach dist configuration                          -*- python -*-
+-
+-# suse-81-i386: configuration for SuSE 8.1
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### SuSE Linux 8.1 flavours
+-aptsources['suse-81-i386'] = {
+-    'base':              'rpm ' + suse + ' SuSE/8.1-i386 base',
+-    'security':          'rpm ' + suse + ' SuSE/8.1-i386 security',
+-    'update':            'rpm ' + suse + ' SuSE/8.1-i386 update',
+-}
+-
+-# SuSE Linux 8.1
+-packages['suse-81-i386'] = {
+-    'dir':      'suse-81-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'fileutils findutils openssh',
+-    'build':    'make gcc tar gzip patch unzip cpio',
+-}
+-sourceslist['suse-81-i386'] = {
+-    'suse-81-i386': ('base',)
+-}
+-config['suse-81-i386'] = { 'root_rpmbuild': 'rpm', }
+-aliases['suse-81-i386'] = ('suse81', )
+-
+-# SuSE Linux 8.1, updates
+-packages['suse-81-i386-updates'] = packages['suse-81-i386']
+-sourceslist['suse-81-i386-updates'] = {
+-    'suse-81-i386': ('base', 'update', 'security', )
+-}
+-config['suse-81-i386-updates'] = config['suse-81-i386']
+-aliases['suse-81-i386-updates'] = ('suse81u', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-82-i386 mach-0.4.8-cfgchange/etc/dist.d/suse-82-i386
+--- mach-0.4.8.orig/etc/dist.d/suse-82-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/suse-82-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,37 +0,0 @@
+-# mach dist configuration                          -*- python -*-
+-
+-# suse-82-i386: configuration for SuSE 8.2
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### SuSE Linux 8.2 flavours
+-aptsources['suse-82-i386'] = {
+-    'base':              'rpm ' + suse + ' SuSE/8.2-i386 base',
+-    'security':          'rpm ' + suse + ' SuSE/8.2-i386 security',
+-    'update':            'rpm ' + suse + ' SuSE/8.2-i386 update',
+-}
+-
+-# SuSE Linux 8.2
+-packages['suse-82-i386'] = {
+-    'dir':      'suse-82-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'aaa_base coreutils findutils openssh openssl=0.9.6i ' +
+-                'pam-modules',
+-    'build':    'make gcc tar gzip patch unzip cpio',
+-}
+-sourceslist['suse-82-i386'] = {
+-    'suse-82-i386': ('base', )
+-}
+-config['suse-82-i386'] = { 'root_rpmbuild': 'rpm', }
+-aliases['suse-82-i386'] = ('suse82', )
+-
+-# SuSE Linux 8.2, updates
+-packages['suse-82-i386-updates'] = packages['suse-82-i386']
+-sourceslist['suse-82-i386-updates'] = {
+-    'suse-82-i386': ('base', 'update', 'security', )
+-}
+-config['suse-82-i386-updates'] = config['suse-82-i386']
+-aliases['suse-82-i386-updates'] = ('suse82u', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/suse-90-i386 mach-0.4.8-cfgchange/etc/dist.d/suse-90-i386
+--- mach-0.4.8.orig/etc/dist.d/suse-90-i386	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/suse-90-i386	1970-01-01 01:00:00.000000000 +0100
+@@ -1,36 +0,0 @@
+-# mach dist configuration                          -*- python -*-
+-
+-# suse-90-i386: configuration for SuSE 9.0
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### SuSE Linux 9.0 flavours
+-aptsources['suse-90-i386'] = {
+-    'base':              'rpm ' + suse + ' SuSE/9.0-i386 base',
+-    'security':          'rpm ' + suse + ' SuSE/9.0-i386 security',
+-    'update':            'rpm ' + suse + ' SuSE/9.0-i386 update',
+-}
+-
+-# SuSE Linux 9.0
+-packages['suse-90-i386'] = {
+-    'dir':      'suse-90-i386',
+-    'minimal':  'bash glibc',
+-    'base':     'aaa_base coreutils findutils openssh pam pam-modules',
+-    'build':    'make gcc tar gzip patch unzip cpio',
+-}
+-sourceslist['suse-90-i386'] = {
+-    'suse-90-i386': ('base', )
+-}
+-config['suse-90-i386'] = {}
+-aliases['suse-90-i386'] = ('suse9', 'suse90', )
+-
+-# SuSE Linux 9.0, updates
+-packages['suse-90-i386-updates'] = packages['suse-90-i386']
+-sourceslist['suse-90-i386-updates'] = {
+-    'suse-90-i386': ('base', 'update', 'security', )
+-}
+-config['suse-90-i386-updates'] = {}
+-aliases['suse-90-i386-updates'] = ('suse9u', 'suse90u', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/yellowdog-23-ppc mach-0.4.8-cfgchange/etc/dist.d/yellowdog-23-ppc
+--- mach-0.4.8.orig/etc/dist.d/yellowdog-23-ppc	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/yellowdog-23-ppc	1970-01-01 01:00:00.000000000 +0100
+@@ -1,53 +0,0 @@
+-# mach dist configuration                          -*- python -*-
+-
+-# yellowdog-23-i386: configuration for Yellowdog 2.3
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Yellow Dog Linux 2.3 flavours
+-aptsources['yellowdog-23-ppc'] = {
+-    'os':               'rpm ' + yellowdog   + ' 2.3/ppc os',
+-    'updates':          'rpm ' + yellowdog   + ' 2.3/ppc updates',
+-    'freshrpms':        'rpm ' + freshrpmsyd + ' 2.3/ppc freshrpms',
+-}
+-
+-# Yellow Dog Linux 2.3
+-packages['yellowdog-23-ppc'] = {
+-    'dir':      'yellowdog-23-ppc',
+-    'minimal':  'bash glibc',
+-    'base':     'fileutils findutils file openssh-server',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio glibc-devel',
+-}
+-sourceslist['yellowdog-23-ppc'] = {
+-    'yellowdog-23-ppc': ('os', )
+-}
+-config['yellowdog-23-ppc'] = {}
+-aliases['yellowdog-23-ppc'] = ('yd23', )
+-
+-# Yellow Dog Linux 2.3 with updates
+-packages['yellowdog-23-ppc-updates'] = packages['yellowdog-23-ppc']
+-sourceslist['yellowdog-23-ppc-updates'] = {
+-    'yellowdog-23-ppc': ('os', 'updates', )
+-}
+-config['yellowdog-23-ppc-updates'] = {}
+-aliases['yellowdog-23-ppc-updates'] = ('yd23u', )
+-
+-# Yellow Dog Linux 2.3, FreshRPMS
+-packages['yellowdog-23-ppc-freshrpms'] = packages['yellowdog-23-ppc']
+-sourceslist['yellowdog-23-ppc-freshrpms'] = {
+-    'yellowdog-23-ppc': ('os', 'freshrpms', )
+-}
+-config['yellowdog-23-ppc-freshrpms'] = {}
+-aliases['yellowdog-23-ppc-freshrpms'] = ('yd23fr', )
+-
+-# Yellow Dog Linux 2.3, updates + FreshRPMS
+-packages['yellowdog-23-ppc-updates-freshrpms'] = packages['yellowdog-23-ppc']
+-sourceslist['yellowdog-23-ppc-updates-freshrpms'] = {
+-    'yellowdog-23-ppc': ('os', 'updates', 'freshrpms', )
+-}
+-config['yellowdog-23-ppc-updates-freshrpms'] = {}
+-aliases['yellowdog-23-ppc-updates-freshrpms'] = ('yd23ufr', )
+diff -Naupr mach-0.4.8.orig/etc/dist.d/yellowdog-30-ppc mach-0.4.8-cfgchange/etc/dist.d/yellowdog-30-ppc
+--- mach-0.4.8.orig/etc/dist.d/yellowdog-30-ppc	2004-07-29 10:26:35.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/dist.d/yellowdog-30-ppc	1970-01-01 01:00:00.000000000 +0100
+@@ -1,53 +0,0 @@
+-# mach dist configuration                          -*- python -*-
+-
+-# yellowdog-30-i386: configuration for Yellowdog 3.0
+-
+-# each distro flavour has an aptsources line describing where to get each
+-# kind of package from
+-# each actual dist has a packages dict for bootstrap packages and
+-# a sourceslist dict referencing aptsources lines to use
+-
+-### Yellow Dog Linux 3.0 flavours
+-aptsources['yellowdog-30-ppc'] = {
+-    'os':               'rpm ' + yellowdog   + ' 3.0/ppc os',
+-    'updates':          'rpm ' + yellowdog   + ' 3.0/ppc updates',
+-    'freshrpms':        'rpm ' + freshrpmsyd + ' 3.0/ppc freshrpms',
+-}
+-
+-# Yellow Dog Linux 3.0
+-packages['yellowdog-30-ppc'] = {
+-    'dir':      'yellowdog-30-ppc',
+-    'minimal':  'bash glibc',
+-    'base':     'fileutils findutils openssh-server',
+-    'build':    'dev rpm-build make gcc tar gzip patch ' +
+-                'unzip bzip2 diffutils cpio',
+-}
+-sourceslist['yellowdog-30-ppc'] = {
+-    'yellowdog-30-ppc': ('os', )
+-}
+-config['yellowdog-30-ppc'] = {}
+-aliases['yellowdog-30-ppc'] = ('yd30', )
+-
+-# Yellow Dog Linux 3.0 with updates
+-packages['yellowdog-30-ppc-updates'] = packages['yellowdog-30-ppc']
+-sourceslist['yellowdog-30-ppc-updates'] = {
+-    'yellowdog-30-ppc': ('os', 'updates', )
+-}
+-config['yellowdog-30-ppc-updates'] = {}
+-aliases['yellowdog-30-ppc-updates'] = ('yd30u', )
+-
+-# Yellow Dog Linux 3.0, FreshRPMS
+-packages['yellowdog-30-ppc-freshrpms'] = packages['yellowdog-30-ppc']
+-sourceslist['yellowdog-30-ppc-freshrpms'] = {
+-    'yellowdog-30-ppc': ('os', 'freshrpms', )
+-}
+-config['yellowdog-30-ppc-freshrpms'] = {}
+-aliases['yellowdog-30-ppc-freshrpms'] = ('yd30fr', )
+-
+-# Yellow Dog Linux 3.0, updates + FreshRPMS
+-packages['yellowdog-30-ppc-updates-freshrpms'] = packages['yellowdog-30-ppc']
+-sourceslist['yellowdog-30-ppc-updates-freshrpms'] = {
+-    'yellowdog-30-ppc': ('os', 'updates', 'freshrpms', )
+-}
+-config['yellowdog-30-ppc-updates-freshrpms'] = {}
+-aliases['yellowdog-30-ppc-updates-freshrpms'] = ('yd30ufr', )
+diff -Naupr mach-0.4.8.orig/etc/location mach-0.4.8-cfgchange/etc/location
+--- mach-0.4.8.orig/etc/location	2005-06-12 22:25:40.000000000 +0200
++++ mach-0.4.8-cfgchange/etc/location	2005-12-13 12:26:24.000000000 +0100
+@@ -9,32 +9,16 @@
+ 
+ # Official distributions
+ 
+-# Red Hat Linux base; this location should contain versioned directories
+-redhat      = 'http://ayo.freshrpms.net/redhat'
+-#redhat      = 'http://download.fedora.us/fedora/redhat'
+-
+-# Fedora Core; this location should contain versioned directions
+-fedora      = 'http://ayo.freshrpms.net/fedora/linux'
+-#fedora      = 'http://download.fedora.us/fedora/fedora'
+-# fedorayum trees should contain their repodata/ dirs in the "official"
+-# location, and start in the dir that has "core" and "extras"
+-fedorayum   = 'http://download.fedora.redhat.com/pub/fedora/linux'
++# Red Hat Linux
++redhatyum   = 'http://ayo.freshrpms.net/redhat'
++
++# Fedora Core
++fedora      = 'http://download.fedora.redhat.com/pub/fedora/linux'
+ 
+ # Yellow Dog Linux
+ yellowdog   = 'http://ayo.freshrpms.net/yellowdog'
+ 
+-# SuSE Linux: http://apt4rpm.sourceforge.net/repos.html
+-suse        = 'ftp://mirrors.mathematik.uni-bielefeld.de/pub/linux/suse/apt'
+-
+-# Conectiva Linux: http://distro.conectiva.com.br/atualizacoes/#aptmirrors
+-#                  https://moin.conectiva.com.br/mirrors
+-conectiva   = 'ftp://ftp.tiscali.nl/pub/mirrors/conectiva'
+-
+-# Dave/Dina: http://www.davedina.org
+-davedina    = 'http://download.davedina.org/apt'
+-
+ # Add-on locations
+-fedoraus    = 'http://download.fedora.us/fedora'
+ livna       = 'http://rpm.livna.org'
+ gstreamer   = 'http://gstreamer.freedesktop.org/pkg'
+ freshrpmsrh = 'http://ayo.freshrpms.net/redhat'
+@@ -46,3 +30,8 @@ jpackage    = 'http://dl.sf.net/jpackage
+ # must set up one yourself and point this variable at if before you can use
+ # the JPackage configurations.  http://www.jpackage.org/faq.php
+ jpackagenf  = ''
++
++# RHEL
++# you must create your own yum repository for RHEL, there are no public ones
++rhelyum     = ''
++

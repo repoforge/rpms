@@ -1,0 +1,413 @@
+diff -Naupr mach-0.4.8.orig/scripts/mach.in mach-0.4.8-binchange/scripts/mach.in
+--- mach-0.4.8.orig/scripts/mach.in	2005-11-21 15:44:14.000000000 +0100
++++ mach-0.4.8-binchange/scripts/mach.in	2005-12-14 12:58:17.000000000 +0100
+@@ -37,6 +37,7 @@ Mach options:
+   -f, --force           override root lock
+   -k, --keep            do not revert buildroot to initial package list
+   -s, --sign            sign packages after build
++  -m, --md5sum          create md5sum file after build
+   -c, --collect         collect packages and relevant files to .
+   -q, --quiet           no spinners, minimal output
+   --release=(tag)       add given tag to release tag
+@@ -44,8 +45,6 @@ Mach options:
+   --canonify            just output the canonical root name and exit
+ 
+ Commands:
+-  apt-get           run host\'s apt-get on target root
+-  apt-cache         run host\'s apt-cache on target root
+   build             build from (set of) .spec file(s)
+                                 (passes options given to rpmbuild)
+   chroot            chroot into root
+@@ -62,7 +61,7 @@ Commands:
+ '''
+ 
+ # list of allowed commands
+-allowed_commands = ('apt-get', 'apt-cache', 'build',
++allowed_commands = ('build',
+                     'chroot', 'clean', 'rebuild', 'rpm',
+                     'setup', 'status', 'unlock', 'yum')
+ 
+@@ -71,6 +70,7 @@ config = {
+   'force': 0,
+   'check': 0,
+   'sign': 0,
++  'md5sum': 0,
+   'collect': 0,
+   'release': 0,
+   'quiet': 0,
+@@ -82,11 +82,9 @@ config = {
+   'rpm': '@SBINDIR@/mach-helper rpm',
+   'umount': '@SBINDIR@/mach-helper umount',
+   'rm': '@SBINDIR@/mach-helper rm',
+-  'apt-get': '@SBINDIR@/mach-helper apt-get',
+-  'apt-cache': '/usr/bin/apt-cache',
+   'yum': '@SBINDIR@/mach-helper yum',
+   'mknod': '@SBINDIR@/mach-helper mknod',
+-  'runuser': '/bin/su',
++  'runuser': '/sbin/runuser',
+   'installer': 'yum',
+ 
+   # root_*: commands run inside the build root
+@@ -106,7 +104,6 @@ except:
+ # read dist information
+ 
+ # clear stuff
+-aptsources = {}
+ yumsources = {}
+ packages = {}
+ sourceslist = {}
+@@ -529,15 +526,6 @@ class Root:
+     def splitargsrpms (self, args):
+         return self._splitarg ('\.src\.rpm$', args)
+ 
+-    # mach apt-get
+-    def aptget (self, args):
+-        if self.config['installer'] != 'apt-get':
+-            raise self.Error, "Installer is not configured to be apt-get"
+-
+-        self._setup_prep ()
+-
+-        self.installer (args, interactive = True)
+-
+     # mach yum
+     def yum (self, args):
+         if self.config['installer'] != 'yum':
+@@ -554,13 +542,9 @@ class Root:
+     # if no message specified, then it's up to caller
+     def installer (self, args, message = None,
+                 progress = False, interactive = False):
+-        "run apt-get (arg) or yum (arg) from outside the root on the root"
+-        if self.config['installer'] == "yum":
+-            conf = 'yum.conf'
+-            extras = '--installroot=' + self.rootdir + ' '
+-        else:
+-            conf = 'apt.conf'
+-            extras = ''
++        "run yum (arg) from outside the root on the root"
++        conf = 'yum.conf'
++        extras = '--installroot=' + self.rootdir + ' '
+ 
+         conf = os.path.join (self.statedir, conf)
+         debug ("installer: args: %r" % args)
+@@ -578,22 +562,6 @@ class Root:
+         if status != 0:
+             raise self.Error, "Could not %s %s" % (self.config['installer'], string.join (args))
+ 
+-    def intaptget (self, args):
+-        if not self.get_state ('base'):
+-            self.setup (['base', ])
+-        self.mount ()
+-        self.installer (args, interactive = True)
+-        self.umount ()
+-
+-    def aptcache (self, args, progress = False):
+-        "run apt-cache (arg) from outside the root on the root"
+-        conf = os.path.join (self.statedir, 'apt.conf')
+-        command = "%s -c %s %s" % (self.config['apt-cache'], conf, string.join (args))
+-        (status, output) = do_with_output (command, progress)
+-        if status != 0:
+-            raise self.Error, "Could not apt-cache %s" % string.join (args)
+-        print output
+-
+     def rpm (self, args, progress = False):
+         "run rpm (arg) from outside the root on the root, returns output"
+         command = "%s --root %s %s" % (self.config['rpm'], self.rootdir, join_quoted (args))
+@@ -781,9 +749,11 @@ class Root:
+             self.do_chroot ("cd / && mv %s %s" % (
+                             os.path.join ('tmp', os.path.basename (specfile)),
+                             os.path.join ('usr', 'src', 'rpm', 'SPECS')))
+-            # fix ownership on all of these
++            # fix ownership on all of these, not repodata
+             self.do_chroot ("cd /usr/src/rpm && chown -R %s:%s *" %
+                             (builduser, buildgroup))
++            self.do_chroot ("cd /usr/src/rpm/RPMS && test -d repodata/ && chown -R %s repodata/ || true" %
++                            os.getuid ())
+             try:
+                 self.do_chroot ("cd / && %s %s -bs --nodeps %s" \
+                                 % (self.config['root_rpmbuild'],
+@@ -1025,13 +995,15 @@ class Root:
+                 # only try to install if filtering left buildreqs
+                 if (buildreqs):
+                     srcs = get_sources_dict (self.config)
+-                    # this ensures that locally built RPMS are already used for apt-get
++                    # this ensures that locally built RPMS are already used for yum
+                     root = get_config_dir (config, 'root')
+-                    if config['installer'] == 'yum':
+-                        srcs['local'] = 'file://%s/usr/src/rpm/RPMS.mach-local' % root
+-                    else:
+-                        srcs['local'] = 'rpm-dir file://%s/usr/src rpm mach-local' % root
++                    srcs['local'] = 'file://%s/usr/src/rpm/RPMS' % root
+                     debug ('creating sources list with dict %r' % srcs)
++
++                    # FIXME : workaround as owner here must be the "outside" user
++                    self.do_chroot ("cd /usr/src/rpm/RPMS && test -d repodata/ && chown -R %s repodata/ || true" %
++                        os.getuid ())
++
+                     create_sources_list (config, srcs)
+ 
+                     try:
+@@ -1116,6 +1088,10 @@ class Root:
+             else:
+                nrcpus = os.environ['RPM_BUILD_NCPUS']
+ 
++            # FIXME : workaround as owner here must be the "outside" user
++            self.do_chroot ("chown %s:%s /usr/src/rpm/SOURCES/*" %
++                (os.getuid (), buildgroup))
++
+             # run an rpmbuild test using the root argument to check for
+             # fulfilled BuildRequires, using the host's rpmbuild
+             # so that it understands the created database
+@@ -1136,6 +1112,10 @@ class Root:
+             except self.ReturnValue, (retval, output):
+                 raise self.Error, "BuildRequires not met:\n%s" % output
+ 
++            # FIXME : workaround as owner here must now be the "inside" user
++            self.do_chroot ("chown %s:%s /usr/src/rpm/SOURCES/*" %
++                (builduser, buildgroup))
++
+             # rebuild from spec inside chroot, note: using a login shell
+             # in order to get a vanilla default environment
+             # we use --nodeps here to that the build doesn't try to read
+@@ -1202,29 +1182,27 @@ class Root:
+                 # for now, we do, for multiple builds
+                 # self.do_chroot ('rm ' + file)
+ 
+-            # update internal apt/yum repo
++            # update internal yum repo
+             srcs = get_sources_dict (self.config)
+-            # this ensures that locally built RPMS are already used for apt-get
++            # this ensures that locally built RPMS are already used for yum
+             root = get_config_dir (self.config, 'root')
+-            if config['installer'] == 'yum':
+-                srcs['local'] = 'file://%s/usr/src/rpm/RPMS.mach-local' % root
+-            else:
+-                srcs['local'] = 'rpm-dir file://%s/usr/src rpm mach-local' % root
++            srcs['local'] = 'file://%s/usr/src/rpm/RPMS' % root
+             create_sources_list (self.config, srcs)
+             if self.config['installer'] != 'yum':
+                 self.installer (["update", ])
+             print "Build of %s succeeded, results in\n%s" % (fullname, resultdir)
+             resultdirs.append (resultdir)
+ 
+-        # md5sum packages and spec file
+-        for resultdir in resultdirs:
+-            md5sumpath = os.path.join (resultdir, 'md5sum')
+-            if os.path.exists (md5sumpath):
+-                os.unlink (md5sumpath)
+-            cmd = 'cd %s && md5sum *.rpm *.spec > md5sum' % resultdir
+-            debug ("running %s" % cmd)
+-            os.system (cmd)
+-            os.chown (md5sumpath, -1, mach_gid)
++        # md5sum packages and spec file if requested
++        if self.config['md5sum']:
++            for resultdir in resultdirs:
++                md5sumpath = os.path.join (resultdir, 'md5sum')
++                if os.path.exists (md5sumpath):
++                    os.unlink (md5sumpath)
++                cmd = 'cd %s && md5sum *.rpm *.spec > md5sum' % resultdir
++                debug ("running %s" % cmd)
++                os.system (cmd)
++                os.chown (md5sumpath, -1, mach_gid)
+         # now sign packages if requested
+         if self.config['sign']:
+             print "Signing built packages ..."
+@@ -1342,11 +1320,11 @@ class Root:
+ 
+         print "Preparing root"
+         # apt bits
+-        ensure_dir (os.path.join (self.rootdir, 'etc', 'apt'))
+-        ensure_dir (os.path.join (self.rootdir, 'var', 'lib', 'rpm'))
+-        ensure_dir (os.path.join (self.statedir, 'apt/etc/apt'))
+-        ensure_dir (os.path.join (self.statedir, 'apt/var/cache/apt/archives'))
+-        ensure_dir (os.path.join (self.statedir, 'apt/var/state/apt/lists/partial'))
++        #ensure_dir (os.path.join (self.rootdir, 'etc', 'apt'))
++        #ensure_dir (os.path.join (self.rootdir, 'var', 'lib', 'rpm'))
++        #ensure_dir (os.path.join (self.statedir, 'apt/etc/apt'))
++        #ensure_dir (os.path.join (self.statedir, 'apt/var/cache/apt/archives'))
++        #ensure_dir (os.path.join (self.statedir, 'apt/var/state/apt/lists/partial'))
+ 
+         # this bit is really dirty.  But it allows me to set up an FC3 target
+         # on an FC4 host, allowing runuser to be installed instead of having
+@@ -1358,12 +1336,6 @@ class Root:
+             debug (command)
+             os.system (command)
+             
+-        prifile = os.path.join ('@SYSCONFDIR@', 'apt', 'rpmpriorities')
+-        if os.path.exists (prifile):
+-            command = ('install -m 664 %s %s/apt/etc/apt/rpmpriorities' % (prifile, self.statedir))
+-            debug (command)
+-            os.system (command)
+-
+         # yum bits
+         ensure_dir (os.path.join (self.rootdir, 'var', 'log'))
+         open (os.path.join (self.rootdir, 'var', 'log', 'yum.log'), 'w')
+@@ -1402,60 +1374,10 @@ class Root:
+         if os.WIFEXITED (status) and os.WEXITSTATUS (status) == 0:
+             epochopt = 'Options { "--promoteepoch"; }'
+ 
+-        # create a custom apt.conf file
+-
++        # create a custom yum.conf file
+         root = self.rootdir
+         state = self.statedir
+-        conf = '''
+-// apt.conf generated by mach
+-
+-// clear RPM::Pre-Install-Pkgs; // this makes sure packages don\'t get checked
+-// Allow-Duplicated { "^kernel$"; "^kernel-"; "^alsa-kernel"; "^gpg-pubkey$" };
+ 
+-APT {
+-    Clean-Installed "false";
+-    Get {
+-        Assume-Yes "false";
+-        Download-Only "false";
+-        Show-Upgraded "true";
+-        Fix-Broken "false";
+-        Ignore-Missing "false";
+-        Compile "false";
+-        Archive-Cleanup "false";
+-    };
+-};
+-
+-Acquire {
+-    Retries "0";
+-    Http {
+-        Pipeline-Depth "0";
+-    }
+-};
+-
+-RPM {
+-    Ignore { };
+-    Hold { };
+-    Allow-Duplicated { "^gpg-pubkey$" };
+-    Source {
+-        Build-Command "''' + self.config['root_rpmbuild'] + ''' --rebuild";
+-    };
+-    GPG-Check "false";
+-    RootDir "''' + root + '''";
+-    ''' + epochopt + '''
+-    Install-Options "--root ''' + root + '''";
+-    Erase-Options "--root ''' + root + '''";
+-}
+-Dir {
+-     Etc "''' + os.path.join (state, 'apt', 'etc', 'apt') + '''";
+-     Cache "''' + os.path.join ('/', 'var', 'cache', 'mach') + '''";
+-     State "''' + os.path.join (state, 'apt', 'var', 'state', 'apt') + '''";
+-     Bin { scripts "/dev/null"; }; // do not execute lua scripts
+-}
+-
+-'''
+-        self.set_state ("apt.conf", conf)
+-
+-        # create a custom yum.conf file
+         # FIXME: the list of double dots going up should be gotten
+         # by calculating the depth of the file tree
+         conf = '''
+@@ -1560,12 +1482,9 @@ reposdir = /../../../../..''' + os.path.
+ 
+         # create dir structure
+         for dir in ('RPMS', 'SRPMS', 'SOURCES', 'SPECS', 'BUILD'):
+-            self.do_chroot ("%s -c 'mkdir -p /usr/src/rpm/%s' %s" %
+-                            (self.config['runuser'], dir, builduser), fatal = True)
++            self.do_chroot ("%s -c 'mkdir -p /usr/src/rpm/%s; chmod 775 /usr/src/rpm/%s' %s" %
++                            (self.config['runuser'], dir, dir, builduser), fatal = True)
+ 
+-        # this ensures that locally built RPMS are already used for apt-get
+-        for dir in ('RPMS', 'SRPMS'):
+-            self.do_chroot ('ln -sf %s /usr/src/rpm/%s.mach-local' % (dir, dir), fatal = True)
+         # upgrade packages; that way our snapshot contains the latest versions
+         # available and a revert to snapshot will not try to remove packages
+         # that have been upgraded from the snapshot
+@@ -1892,10 +1811,7 @@ def get_sources_dict (config):
+     root = config['root']
+     for platform in config['sourceslist'][root].keys ():
+         for source in config['sourceslist'][root][platform]:
+-            if config['installer'] == 'yum':
+-                sourcestype = 'yumsources'
+-            else:
+-                sourcestype = 'aptsources'
++            sourcestype = 'yumsources'
+             try:
+                 sourcesdict[source] = config[sourcestype][platform][source]
+             except KeyError:
+@@ -1911,26 +1827,20 @@ def get_sources_dict (config):
+ def create_sources_list (config, list):
+     root = get_config_dir (config, 'root')
+     statedir = get_config_dir (config, 'state')
+-    if config['installer'] == 'yum':
+-        debug ("Creating files in yum.repos.d")
++    debug ("Creating files in yum.repos.d")
+ 
+-        for source in list.keys():
+-            line = list[source]
+-            debug ('writing file for repo %s' % line)
+-            sources = open (statedir + '/yum/yum.repos.d/%s.repo' % source, 'w')
+-            sources.write("[%s]\nname=%s\nbaseurl=%s\nenabled=1\n" % (source, source, line))
+-            ensure_dir (os.path.join (root, 'var/cache/mach/yum/%s/packages' % source))
+-            ensure_dir (os.path.join (root, 'var/cache/mach/yum/%s/headers' % source))
+-            if source == 'local':
+-                cmd = 'createrepo %s/usr/src/rpm/RPMS.mach-local' % root
+-                (status, output) = do_with_output (cmd, False)
+-                if status != 0:
+-                    raise Exception, "Could not update local yum repository"
+-            sources.close ()
+-    else:
+-        debug ("Creating sources.list")
+-        sources = open (statedir + '/apt/etc/apt/sources.list', 'w')
+-        sources.write (string.join (list.values(), "\n"))
++    for source in list.keys():
++        line = list[source]
++        debug ('writing file for repo %s' % line)
++        sources = open (statedir + '/yum/yum.repos.d/%s.repo' % source, 'w')
++        sources.write("[%s]\nname=%s\nbaseurl=%s\nenabled=1\n" % (source, source, line))
++        ensure_dir (os.path.join (root, 'var/cache/mach/yum/%s/packages' % source))
++        ensure_dir (os.path.join (root, 'var/cache/mach/yum/%s/headers' % source))
++        if source == 'local':
++            cmd = 'createrepo %s/usr/src/rpm/RPMS' % root
++            (status, output) = do_with_output (cmd, False)
++            if status != 0:
++                raise Exception, "Could not update local yum repository"
+         sources.close ()
+ 
+ # lock a given root; creates a lock file in the statedir under root
+@@ -2012,10 +1922,11 @@ def main (config, args):
+     cli_config = {}
+ 
+     try:
+-        opts, args = getopt.getopt (args, 'r:hdfkscqv',
++        opts, args = getopt.getopt (args, 'r:hdfksmcqv',
+                                     ['root=', 'help', 'debug', 'force', 'keep',
+-                                     'sign', 'collect', 'quiet', 'release=',
+-                                     'no-scripts', 'canonify', 'version'])
++                                     'sign', 'md5sum', 'collect', 'quiet',
++                                     'release=', 'no-scripts', 'canonify',
++                                     'version'])
+     except getopt.error, exc:
+         sys.stderr.write ('error: %s\n' % str (exc))
+         sys.exit (1)
+@@ -2046,6 +1957,8 @@ def main (config, args):
+             cli_config['keep'] = 1
+         elif opt in ('-s', '--sign'):
+             cli_config['sign'] = 1
++        elif opt in ('-m', '--md5sum'):
++            cli_config['md5sum'] = 1
+         elif opt in ('-c', '--collect'):
+             cli_config['collect'] = 1
+         elif opt in ('-q', '--quiet'):
+@@ -2087,7 +2000,6 @@ def main (config, args):
+         sys.stderr.write ('No definition for packages found for %s\n' % root)
+         sys.exit (1)
+     try:
+-        config['aptsources'] = aptsources
+         config['yumsources'] = yumsources
+         config['sourceslist'] = sourceslist
+     except KeyError:
+@@ -2131,8 +2043,6 @@ def main (config, args):
+         # no '-' allowed is silly but what can we do about it ?
+         # this is also a good place to intercept commands that need to
+         # be interactive
+-        if command == "apt-get": command = "intaptget"
+-        if command == "apt-cache": command = "aptcache"
+         if command == "yum": command = "yum"
+ 
+         if command == "status":

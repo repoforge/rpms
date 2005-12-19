@@ -2,8 +2,6 @@
 # Authority: matthias
 # Upstream: Thomas Vander Stichele <thomas$apestaart,org>
 
-# ExcludeDist: rh7
-
 %{!?builduser:  %define builduser  machbuild}
 %{!?buildgroup: %define buildgroup machbuild}
 # Override with --define 'python python2'
@@ -11,51 +9,49 @@
 
 Summary: Make A CHroot
 Name: mach
-Version: 0.4.6
-Release: 2
+Version: 0.4.8
+Release: 0.1
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/
 Source: http://thomas.apestaart.org/download/mach/mach-%{version}.tar.bz2
-Source1: fedora-2-x86_64
-Source2: fedora-3-i386
-Source3: fedora-3-x86_64
+Patch0: mach-0.4.8-fr-cfg.patch
+Patch1: mach-0.4.8-fr-bin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: %{python} >= 2.0.0
-Requires: rpm-python, apt, sed, cpio, python >= 2.0
+Requires: yum, createrepo, rpm-build, sed, cpio
+BuildRequires: %{python} >= 2.0, libselinux-devel
+BuildRequires: autoconf, automake, libtool
+ExclusiveArch: %{ix86} x86_64 ppc
 
 %description
-mach makes a chroot.
-Using apt-get and a suid binary, it manages to install clean chroot
-environments based on the original packages for that distribution.
-
-The clean root can be used to run jail roots, to create image files, or
-to build clean packages.
+mach allows you to set up clean build roots from scratch for any distribution
+or distribution variation supported. In this clean build root you can then
+easily generate pristine packages.
 
 
 %prep
 %setup
+%patch0 -p1 -b .cfg
+%patch1 -p1 -b .bin
+autoreconf
 
 
 %build
 %configure \
     --enable-builduser=%{builduser} \
-    --enable-buildgroup=%{buildgroup}
+    --enable-buildgroup=%{buildgroup} \
+    %{?_without_selinux:--disable-selinux}
 
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach
-%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach/states
-%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mach/roots
-%{__install} -d -m775 %{buildroot}%{_localstatedir}/cache/mach/packages
-%{__install} -d -m775 %{buildroot}%{_localstatedir}/cache/mach/archives
-
-# Additionnal config files
-%{__install} -p -m0644 %{SOURCE1} %{SOURCE2} %{SOURCE3} \
-    %{buildroot}%{_sysconfdir}/mach/dist.d/
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/states
+%{__install} -d -m 2775 %{buildroot}%{_localstatedir}/lib/mach/roots
+%{__install} -d -m 0775 %{buildroot}%{_localstatedir}/cache/mach/packages
+%{__install} -d -m 0775 %{buildroot}%{_localstatedir}/cache/mach/archives
 
 
 %clean
@@ -65,40 +61,47 @@ to build clean packages.
 %pre
 # create user and group mach
 /usr/sbin/useradd -c "mach user" \
-    -r -m mach -d %{_localstatedir}/lib/mach >/dev/null 2>&1 || :
+    -r -m mach -d %{_localstatedir}/lib/mach &>/dev/null || :
 
 %preun
 if [ $1 -eq 0 ]; then
     # Last removal
     # Be a good boy and clean out the dirs we filled with junk
     # Actually... the roots may be used later on, so better keep them
-    #rm -rf %{_localstatedir}/lib/mach/states/*
-    umount %{_localstatedir}/lib/mach/roots/*/proc >/dev/null 2>&1 || :
-    #rm -rf %{_localstatedir}/lib/mach/roots/* >/dev/null 2>&1 || :
-    rm -rf %{_localstatedir}/cache/mach/* >/dev/null 2>&1 || :
-    #rmdir %{_localstatedir}/lib/mach/states >/dev/null 2>&1 || :
-    #rmdir %{_localstatedir}/lib/mach/roots >/dev/null 2>&1 || :
-    rmdir %{_localstatedir}/cache/mach >/dev/null 2>&1 || :
-    rm -rf %{_localstatedir}/tmp/mach >/dev/null 2>&1 || :
-fi
-
-%postun
-if [ $1 -eq 0 ]; then
-    # Last removal
-    userdel mach >/dev/null 2>&1 || : 
-    groupdel mach >/dev/null 2>&1 || :
+    umount %{_localstatedir}/lib/mach/roots/*/proc &>/dev/null || :
+    #rm -rf %{_localstatedir}/lib/mach/states/ &>/dev/null || :
+    #rm -rf %{_localstatedir}/lib/mach/roots/ &>/dev/null || :
+    #rm -rf %{_localstatedir}/tmp/mach/ &>/dev/null || :
+    rm -rf %{_localstatedir}/cache/mach/ &>/dev/null || :
 fi
 
 
 %files
-%defattr(-, root, root, -)
+%defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING FORGETMENOT README RELEASE TODO
 %dir %{_sysconfdir}/mach/
 %config %{_sysconfdir}/mach/conf
 %config %{_sysconfdir}/mach/location
-%config %{_sysconfdir}/mach/dist.d/
+%dir %{_sysconfdir}/mach/dist.d/
+# PPC configuration
+%ifarch ppc
+%config %{_sysconfdir}/mach/dist.d/*-ppc
+%else
+%exclude %{_sysconfdir}/mach/dist.d/*-ppc
+%endif
+# x86 -> only i386, but x86_64 -> x86_64 _and_ i386
+%ifarch %{ix86} x86_64
+%config %{_sysconfdir}/mach/dist.d/*-i386
+%ifarch x86_64
+%config %{_sysconfdir}/mach/dist.d/*-x86_64
+%else
+%exclude %{_sysconfdir}/mach/dist.d/*-x86_64
+%endif
+%endif
 %{_bindir}/mach
 %attr(04750, root, mach) %{_sbindir}/mach-helper
+%exclude %{_libdir}/*.la
+%{_libdir}/*.so*
 %attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/
 %attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/states/
 %attr(-, mach, mach) %dir %{_localstatedir}/lib/mach/roots/
@@ -107,6 +110,12 @@ fi
 
 
 %changelog
+* Mon Dec 12 2005 Matthias Saou <http://freshrpms.net> 0.4.8-0.1
+- Update to 0.4.8 (and only support yum, not apt).
+- Include only relevant dist.d files for given archs.
+- Include configuration patch (heavy!).
+- Include script patch to fix non-uid 500 user problems, and rip out apt.
+
 * Fri Nov  5 2004 Matthias Saou <http://freshrpms.net> 0.4.6-2
 - Added Fedora Core 3 files for i386 and x86_64.
 
