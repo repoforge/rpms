@@ -1,6 +1,8 @@
 # $Id$
 # Authority: rudolf
 
+%{?dist: %{expand: %%define %dist 1}}
+
 Summary: Console ncurses based ICQ2000, Yahoo!, MSN, AIM, IRC client
 Name: centericq
 Version: 4.21.0
@@ -34,6 +36,7 @@ BuildRequires: gcc-c++, gpgme-devel, curl-devel, libjpeg-devel
 %setup
 
 %build
+%{expand: %%define optflags -O2}
 %configure
 %{__make} %{?_smp_mflags}
 

@@ -46,8 +46,6 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %makeinstall
 %find_lang %{name}
 
-%{__install} -Dp -m0644 pixmaps/rubrica/rub.png %{buildroot}%{_datadir}/pixmaps/rubrica.png
-
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_docdir}/rubrica/
 

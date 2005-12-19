@@ -12,7 +12,7 @@ URL: http://www.gnu.org/software/libcdio/
 Source: http://ftp.gnu.org/gnu/libcdio/libcdio-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel, pkgconfig
+BuildRequires: ncurses-devel, pkgconfig, gcc-c++
 Requires: /sbin/ldconfig
 Requires: /sbin/install-info
 
