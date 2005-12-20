@@ -4,14 +4,14 @@
 Summary: XMMS plugin for mp3 playback.
 Name: xmms-mp3
 Version: 1.2.10
-Release: 12
+Release: 13
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.xmms.org/
 Source: http://www.xmms.org/files/1.2.x/xmms-%{version}.tar.bz2
 Patch: xmms-1.2.10-gcc4.patch
-Requires: xmms = 1.2.10
+Requires: xmms = 1:1.2.10
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel
 
@@ -48,6 +48,9 @@ Linux because the patented mp3 format itself is theoretically GPL incompatible.
 
 
 %changelog
+* Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 1:1.2.10-13
+- Fix xmms requirement by adding the 1 epoch.
+
 * Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 1:1.2.10-12
 - Split off xmms-mp3 in a separate source package at last. Yes, we rebuild
   the entire xmms to get it... but it saves hacking out only the mpg123
