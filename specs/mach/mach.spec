@@ -94,9 +94,10 @@ fi
 %config %{_sysconfdir}/mach/dist.d/*-i386
 %ifarch x86_64
 %config %{_sysconfdir}/mach/dist.d/*-x86_64
-%else
-%exclude %{_sysconfdir}/mach/dist.d/*-x86_64
 %endif
+%else
+%exclude %{_sysconfdir}/mach/dist.d/*-i386
+%exclude %{_sysconfdir}/mach/dist.d/*-x86_64
 %endif
 %{_bindir}/mach
 %attr(04750, root, mach) %{_sbindir}/mach-helper
