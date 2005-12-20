@@ -1,5 +1,4 @@
 # $Id$
-
 # Authority: dries
 # Screenshot: http://libvisual.sourceforge.net/v2/images/jess1.png
 # ScreenshotURL: http://libvisual.sourceforge.net/v2/index.php?page=screenshots
@@ -44,7 +43,7 @@ SDL, as a surface on an OpenGL object, etc.
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{version}-%{release}, pkgconfig
 
 %description devel
 This package contains the header files, static libraries and development
@@ -55,7 +54,9 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%{expand: %%define optflags -mmmx -O2} 
+%ifarch %{ix86}
+export CFLAGS="%{optflags} -mmmx"
+%endif
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -80,7 +81,7 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/pkgconfig/libvisual.pc
-%{_includedir}/libvisual
+%{_includedir}/libvisual/
 %{_libdir}/*.so
 %exclude %{_libdir}/*.la
 
@@ -90,3 +91,4 @@ you will need to install %{name}-devel.
 
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> - 0.1.7-1
 - Initial package.
+
