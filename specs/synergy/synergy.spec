@@ -1,17 +1,27 @@
 # $Id$
 # Authority: matthias
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?fc5: %define fedora 5}
+
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.2.5
+Version: 1.2.7
 Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/
-Source: http://dl.sf.net/synergy2/%{name}-%{version}.tar.gz
+Source: http://dl.sf.net/synergy2/synergy-%{version}.tar.gz
 Patch: synergy-1.2.2-werror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, XFree86-devel, autoconf, automake
+BuildRequires: gcc-c++, autoconf, automake
+%if "%{fedora}" >= "5"
+BuildRequires: libX11-devel, libXext-devel, libXtst-devel, libXt-devel
+BuildRequires: libXinerama-devel
+%else
+BuildRequires: xorg-x11-devel
+%endif
 
 %description
 Synergy lets you easily share a single mouse and keyboard between
@@ -51,6 +61,11 @@ own display.
 
 
 %changelog
+* Tue Dec 20 2005 Matthias Saou <http://freshrpms.net/> 1.2.7-1
+- Update to 1.2.7.
+- Add automake build requirement (to get aclocal).
+- For %%{fedora} >= 5, buildrequire modular X packages.
+
 * Mon Nov  7 2005 Matthias Saou <http://freshrpms.net/> 1.2.5-1
 - Update to 1.2.5, -Werror patch still required.
 
