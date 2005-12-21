@@ -44,5 +44,8 @@ cd src
 %{_bindir}/netwag*
 
 %changelog
+* Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 5.33.0-1
+- Updated to release 5.33.0.
+
 * Sun Nov 27 2005 Dries Verachtert <dries@ulyssis.org> - 5.32-1
 - Initial package.

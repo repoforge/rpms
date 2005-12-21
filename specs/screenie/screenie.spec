@@ -6,8 +6,8 @@
 
 Summary: Small frontend for screen
 Name: screenie
-Version: 1.26.0
-Release: 2
+Version: 1.30.0
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://pubwww.fhzh.ch/~mgloor/screenie.html
@@ -41,6 +41,9 @@ menu.
 %{_bindir}/screenie
 
 %changelog
+* Tue Dec 20 2005 Dries Verachtert <dries@ulyssis.org> - 1.30.0-1
+- Updated to release 1.30.0.
+
 * Wed Dec 07 2005 Dag Wieers <dag@wieers.com> - 1.26.0-2
 - Fixed RPM Group.
 

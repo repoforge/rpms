@@ -7,8 +7,8 @@
 
 Summary: Levels for Luola
 Name: luola-levels
-Version: 1.3.0
-Release: 2
+Version: 1.3.1
+Release: 1
 License: GPL
 Group: Amusements/Games
 URL: http://www.luolamies.org/software/luola/
@@ -49,6 +49,9 @@ This package contains the levels of Luola.
 %{_datadir}/luola/levels/*
 
 %changelog
+* Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.0-2
 - Fixed the urls.
 - 'demolevel' removed, no working url found.
