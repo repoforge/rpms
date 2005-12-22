@@ -19,14 +19,13 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.40
+Version: 0.41
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
 
-#Source: http://labix.org/smart?action=AttachFile&do=get&target=smart-%{version}.tar.bz2
-Source: smart-%{version}.tar.bz2
+Source: http://labix.org/download/smart/smart-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, rpm-python
@@ -245,6 +244,9 @@ cd -
 %endif
 
 %changelog
+* Thu Dec 22 2005 Dag Wieers <dag@wieers.com> - 0.41-1
+- Updated to release 0.41.
+
 * Thu Oct 06 2005 Dag Wieers <dag@wieers.com> - 0.40-1
 - Updated to release 0.40.
 

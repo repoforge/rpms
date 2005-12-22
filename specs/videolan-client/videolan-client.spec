@@ -8,26 +8,31 @@
 
 %{?fc3:%define _without_wxwidgets 1}
 
+%{?fc2:%define _without_x264 1}
 %{?fc2:%define _without_wxwidgets 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
 %{?fc1:%define _without_wxwidgets 1}
+%{?fc1:%define _without_x264 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_wxwidgets 1}
+%{?el3:%define _without_x264 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}
 %{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_wxwidgets 1}
+%{?rh9:%define _without_x264 1}
 
 %{?rh8:%define _without_alsa 1}
 %{?rh8:%define _without_fribidi 1}
 %{?rh8:%define _without_theora 1}
 %{?rh8:%define _without_wxwidgets 1}
+%{?rh8:%define _without_x264 1}
 
 %{?rh7:%define _without_alsa 1}
 %{?rh7:%define _without_freedesktop 1}
@@ -35,6 +40,7 @@
 %{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_vorbis 1}
 %{?rh7:%define _without_wxwidgets 1}
+%{?rh7:%define _without_x264 1}
 %{?rh7:%define _without_xosd 1}
 
 %{?el2:%define _without_alsa 1}
@@ -45,6 +51,7 @@
 %{?el2:%define _without_theora 1}
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_wxwidgets 1}
+%{?el2:%define _without_x264 1}
 %{?el2:%define _without_xosd 1}
 
 %{?yd3:%define _without_alsa 1}
