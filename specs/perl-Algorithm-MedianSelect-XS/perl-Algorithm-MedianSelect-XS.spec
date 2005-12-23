@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/Algorithm-MedianSelect-XS/
 Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHUBIGER/Algorithm-MedianSelect-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 Algorithm::MedianSelect::XS finds the item which is smaller than half of

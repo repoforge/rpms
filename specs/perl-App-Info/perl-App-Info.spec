@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DW/DWHEELER/App-Info-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 App::Info provides a generalized interface for providing metadata about

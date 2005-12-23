@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/H/HA/HANENKAMP/File-System-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 The goal of the File::System module is to provide a very general framework for

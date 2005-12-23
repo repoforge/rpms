@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASCOPE/Net-Delicious-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 OOP for the del.icio.us API.

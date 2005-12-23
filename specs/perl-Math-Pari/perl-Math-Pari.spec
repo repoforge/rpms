@@ -22,7 +22,7 @@ Source0: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/Math-Pari-%{v
 Source1: pari-%{pari_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 Math::Pari is the PERL interface to the PARI part of GP/PARI (version 2.*).

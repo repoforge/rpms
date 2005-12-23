@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CL/CLACO/Net-Blogger-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 Blogger.pm provides an OOP-ish interface for accessing a weblog via the
