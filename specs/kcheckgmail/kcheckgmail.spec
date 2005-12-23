@@ -4,7 +4,7 @@
 Summary: System tray application with information about your gmail account
 Name: kcheckgmail
 Version: 0.5.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://kcheckgmail.sf.net/
@@ -12,7 +12,7 @@ URL: http://kcheckgmail.sf.net/
 Source: http://dl.sf.net/kcheckgmail/kcheckgmail-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gcc-c++, gettext, autoconf, automake
+BuildRequires: kdelibs-devel, gcc-c++, gettext, autoconf, automake, dos2unix
 
 %description
 KCheckGmail is a system tray application to notify you about how many email 
@@ -20,6 +20,7 @@ messages you have in your Gmail account.
 
 %prep
 %setup
+dos2unix src/kcheckgmail.desktop
 
 %build
 %configure
@@ -43,5 +44,8 @@ messages you have in your Gmail account.
 %{_datadir}/doc/HTML/*/kcheckgmail/
 
 %changelog
+* Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.5-2
+- Fix the desktop file, thanks to xyzzy1 at hotpop dot com.
+
 * Tue Nov 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.5-1
 - Initial package.
