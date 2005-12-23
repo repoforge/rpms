@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://www.gtkpod.org/libgpod.html
 Source: http://dl.sf.net/gtkpod/libgpod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: glib2-devel, gettext
+BuildRequires: glib2-devel, gettext, gcc-c++
 
 %description
 Libgpod is a library to access the contents of an iPod. It supports playlists,

@@ -14,7 +14,7 @@ Source: http://people.mmgsecurity.com/~lorenb/bhv/releases/bhv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, python, intltool, perl-XML-Parser
-BuildRequires: pygtk2-devel, gnome-python2
+BuildRequires: pygtk2-devel, gnome-python2, pygtk2-libglade
 
 %description
 browser-history-viewer allows you to examine the contents of Web browser 

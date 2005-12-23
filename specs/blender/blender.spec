@@ -18,7 +18,7 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 2.37
+%define real_version 2.40
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
@@ -112,6 +112,9 @@ scons
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-blender.desktop}
 
 %changelog
+* Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 2.40-1
+- Updated to release 2.40.
+
 * Fri Jul 22 2005 Dries Verachtert <dries@ulyssis.org> - 2.37-1
 - Updated to release 2.37.
 
