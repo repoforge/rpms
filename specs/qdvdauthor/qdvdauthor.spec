@@ -6,7 +6,7 @@
 
 Summary: Frontend for dvdauthor
 Name: qdvdauthor
-Version: 0.0.10
+Version: 0.1.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -77,5 +77,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/qdvdauthor/
 
 %changelog
+* Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.0-1
+- Updated to release 0.1.0.
+
 * Mon Nov 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.10-1
 - Initial package.
