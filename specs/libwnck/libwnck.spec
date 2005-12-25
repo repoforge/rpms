@@ -9,7 +9,7 @@ Version: 0.18
 Release: 0
 License: GPL
 Group: System Environment/Libraries
-#URL: http://
+URL: ftp://ftp.gnome.org/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/libwnck/2.1/libwnck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

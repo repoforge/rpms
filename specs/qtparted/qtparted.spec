@@ -6,6 +6,8 @@
 
 %{?dist: %{expand: %%define %dist 1}}
   
+%{?el4:%define _without_jfs 1}
+
 %{?fc1:%define _without_xfs 1}
 %{?el3:%define _without_xfs 1}
 %{?rh9:%define _without_xfs 1}
@@ -22,7 +24,7 @@
 
 Summary: Graphical frontend for parted
 Name: qtparted
-Version: 0.4.4
+Version: 0.4.5
 Release: 1
 License: GPL
 Group: Applications/System
@@ -31,7 +33,8 @@ URL: http://qtparted.sourceforge.net/
 Source: http://dl.sf.net/qtparted/qtparted-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: progsreiserfs-devel, jfsutils, e2fsprogs
+BuildRequires: progsreiserfs-devel, e2fsprogs
+%{!?_without_jfs:BuildRequires: jfsutils}
 %{!?_without_ntfs:BuildRequires: ntfsprogs}
 %{!?_without_xfs:BuildRequires: xfsprogs}
 BuildRequires: parted-devel, qt-designer
@@ -118,6 +121,9 @@ source /etc/profile.d/qt.sh
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-qtparted.desktop}
 
 %changelog
+* Sat Aug 13 2005 Dag Wieers <dag@wieers.com> - 0.4.5-1
+- Updated to release 0.4.5.
+
 * Sun Jan 09 2005 Dag Wieers <dag@wieers.com> - 0.4.4-1
 - Updated to release 0.4.4.
 

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define xmms_inputdir %(xmms-config --input-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/Input)
 

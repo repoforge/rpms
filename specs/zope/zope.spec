@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define real_name      Zope
 %define real_version   2.7.2-0

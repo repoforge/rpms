@@ -2,17 +2,15 @@
 # Authority: dag
 # Upstream: Judd Vinet <jvinet$zeroflux,org>
 
-# Distcc: 0
-
 Summary: Port-knocking server
 Name: knock
-Version: 0.1
+Version: 0.4
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.zeroflux.org/knock/
 
-Source: http://www.zeroflux.org/knock/knock-%{version}.tar.gz
+Source: http://www.zeroflux.org/knock/files/knock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap

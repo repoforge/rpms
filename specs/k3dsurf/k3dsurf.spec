@@ -10,7 +10,7 @@ Version: 0.5.4
 Release: 1
 License: GPL
 Group: Applications/Engineering
-URL: http://k3dsurf.sourceforge.net
+URL: http://k3dsurf.sourceforge.net/
 
 Source: http://dl.sf.net/k3dsurf/k3dsurf-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
