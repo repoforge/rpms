@@ -3,7 +3,7 @@
 
 Summary: Navigate cd
 Name: cdargs
-Version: 1.31 
+Version: 1.31
 Release: 1
 License: GPL
 Group: Applications/File

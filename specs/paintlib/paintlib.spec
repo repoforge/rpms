@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Portable C++ class library for image loading, saving and manipulation
 Name: paintlib

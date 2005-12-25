@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 # Tag: test
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')

@@ -7,6 +7,7 @@ Version: 1.1
 Release: 1
 License: GPL
 Group: System Environment/Base
+URL: http://freshrpms.net/
 Source0: GPL
 Source1: RPM-GPG-KEY-freshrpms
 Source2: freshrpms.repo

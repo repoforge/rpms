@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 # Override libdir for plugin install
 %define _libdir /usr/lib/kino-gtk2

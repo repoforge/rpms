@@ -2,7 +2,7 @@
 # Authority: dag
 
 Summary: Program to snoop on a TTY through another
-Name: ttysnoop 
+Name: ttysnoop
 Version: 0.12c
 Release: 1
 License: distributable

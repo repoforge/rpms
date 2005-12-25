@@ -10,7 +10,7 @@
 
 Summary: Frontend for the xine multimedia library
 Name: gxine
-Version: 0.5.1
+Version: 0.5.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -20,7 +20,7 @@ Source: http://dl.sf.net/xine/gxine-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.0, xine-lib-devel >= 1.0.0
-BuildRequires: glib2 >= 2.4, mozilla-devel
+BuildRequires: glib2-devel >= 2.6, mozilla-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: gtk2 >= 2.0, xine-lib >= 1.0.0
 
@@ -113,6 +113,9 @@ EOF
 %{_datadir}/pixmaps/gxine.png
 
 %changelog
+* Thu Dec 22 2005 Dag Wieers <dag@wieers.com> - 0.5.2-1
+- Updated to release 0.5.2.
+
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 0.5.1-1
 - Updated to release 0.5.1.
 

@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Rewrite in C++ of the hardlink utility
 Name: hardlink++

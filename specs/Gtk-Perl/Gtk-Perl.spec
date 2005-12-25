@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define _use_internal_dependency_generator 0
 

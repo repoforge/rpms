@@ -4,7 +4,7 @@
 
 Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
-Version:  1.5.0
+Version: 1.5.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -32,6 +32,9 @@ proxy authentication
 
 %prep
 %setup
+
+### Remove ownership changes from Makefile
+%{__perl} -pi.orig -e 's| -[og] root | |g' Makefile
 
 %build
 %{__make} %{?_smp_mflags}

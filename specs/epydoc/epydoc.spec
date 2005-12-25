@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 Summary: Edward Loper's Python API documentation generation tool
 Name: epydoc

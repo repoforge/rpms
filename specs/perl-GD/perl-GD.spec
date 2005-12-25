@@ -9,7 +9,7 @@
 Summary: GD Perl interface to the GD Graphics Library
 Name: perl-GD
 Version: 2.30
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD/
@@ -31,7 +31,7 @@ and emit the drawings as PNG files.
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL \
-	-options "JPEG,FT,XPM" \
+	-options "JPEG,FT,XPM,PNG,GIF" \
 	-lib_gd_path "%{_libdir}" \
 	-lib_ft_path "%{_libdir}" \
 	-lib_png_path "%{_libdir}" \
@@ -48,8 +48,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %makeinstall
 
 ### Clean up buildroot
-%{__rm} -rf %{buildroot}%{perl_archlib} \
-		%{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -65,6 +64,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{_bindir}/bdf2gdfont.pl
 
 %changelog
+* Sun Dec 25 2005 Dag Wieers <dag@wieers.com> - 2.30-2
+- Added PNG support. (Why was it gone ?)
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.30-1
 - Updated to release 2.30.
 

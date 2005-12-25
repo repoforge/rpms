@@ -1,4 +1,5 @@
 # $Id$
+# Authority: matthias
 
 %define real_name gTweakUI
 

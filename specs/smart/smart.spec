@@ -20,7 +20,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 0.41
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -80,12 +80,6 @@ EOF
 %{__cat} <<EOF >smart-gui.sh
 #!/bin/sh
 exec %{_bindir}/smart --gui $@
-EOF
-
-%{__cat} <<EOF >rpm-db.channel
-[rpm-db]
-name = RPM Database on this system
-type = rpm-sys
 EOF
 
 %if %{!?_without_channels:1}0
@@ -244,6 +238,9 @@ cd -
 %endif
 
 %changelog
+* Fri Dec 23 2005 Dag Wieers <dag@wieers.com> - 0.41-2
+- Removed standard rpm-sys channel.
+
 * Thu Dec 22 2005 Dag Wieers <dag@wieers.com> - 0.41-1
 - Updated to release 0.41.
 
