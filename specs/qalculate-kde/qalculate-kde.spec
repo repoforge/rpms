@@ -4,7 +4,7 @@
 
 Summary: Versatile desktop calculator
 Name: qalculate-kde
-Version: 0.9.0
+Version: 0.9.2
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -46,5 +46,8 @@ Features include customizable functions, units, arbitrary precision and plotting
 %{_datadir}/doc/HTML/*/qalculate_kde/
 
 %changelog
+* Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.2-1
+- Updated to release 0.9.2.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.0-1
 - Initial package.

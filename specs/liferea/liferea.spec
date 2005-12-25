@@ -5,12 +5,12 @@
 
 %define desktop_vendor rpmforge
 
-%define real_version 1.0-RC4
+%define real_version 1.0
 
 Summary: RSS/RDF feed reader
 Name: liferea
 Version: 1.0
-Release: 0.rc4
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://liferea.sourceforge.net/
@@ -74,6 +74,9 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schem
 %{_libdir}/liferea/*.so*
 
 %changelog
+* Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-1
+- Updated to release 1.0.
+
 * Wed Dec 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.0-0.rc4
 - Updated to release 1.0-RC4.
 

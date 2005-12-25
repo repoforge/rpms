@@ -41,6 +41,7 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{_bindir}/comix
 %{_datadir}/pixmaps/comix.png
 %{_datadir}/applications/*comix.desktop
+%{_datadir}/pixmaps/comix/
 
 %changelog
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 2.3-1

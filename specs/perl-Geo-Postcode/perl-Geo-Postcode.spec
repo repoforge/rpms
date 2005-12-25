@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WR/WROSS/Geo-Postcode-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-DBI
 
 %description
 This is a very simple module that tests the well-formedness of UK

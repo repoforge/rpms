@@ -12,7 +12,7 @@ Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
 Patch: celestia-1.3.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel, gtkglext-devel, freeglut-devel
-BuildRequires: libpng-devel, libjpeg-devel, gcc-c++
+BuildRequires: libpng-devel, libjpeg-devel, gcc-c++, zlib-devel
 Requires(post): GConf2
 Requires(preun): GConf2
 

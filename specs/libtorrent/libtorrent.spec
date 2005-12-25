@@ -12,7 +12,7 @@ URL: http://libtorrent.rakshasa.no
 Source: http://libtorrent.rakshasa.no/downloads/libtorrent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, pkgconfig, openssl-devel
 
 %description
 LibTorrent is a BitTorrent library written in C++ for Unix. It is designed to 

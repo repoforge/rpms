@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AU/AUTRIJUS/Module-Install-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-ScanDeps, perl-Module-CoreList
 
 %description
 Module::Install is a standalone, extensible installer for Perl modules.  It is 
