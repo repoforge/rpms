@@ -3,7 +3,7 @@
 
 Summary: Innovative free MMORPG with 2D graphics
 Name: themanaworld
-Version: 0.0.17
+Version: 0.0.18
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -50,5 +50,8 @@ solved. Quests should also encourage teamwork.
 %{_datadir}/tmw/
 
 %changelog
+* Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.18-1
+- Updated to release 0.0.18.
+
 * Thu Oct 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.0.17-1
 - Initial package.
