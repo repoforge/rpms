@@ -4,7 +4,7 @@
 
 Summary: Full featured IRC bouncer
 Name: miau
-Version: 0.5.4
+Version: 0.6.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -75,6 +75,9 @@ export OPTIONS="
 %exclude %{_datadir}/miaurc
 
 %changelog
+* Sun Dec 25 2005 Dag Wieers <dag@wieers.com> - 0.6.0-1
+- Updated to release 0.6.0.
+
 * Sat May 21 2005 Dag Wieers <dag@wieers.com> - 0.5.4-1
 - Updated to release 0.5.4.
 
