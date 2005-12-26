@@ -22,7 +22,7 @@
 
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
-Version: 2.37
+Version: 2.40
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -50,7 +50,7 @@ secure, multi-platform content to the web, CD-ROMs, and other media, whether
 they are users of Windows, Linux, Irix, Sun Solaris, FreeBSD or OSX.
 
 %prep
-%setup -n %{name}
+%setup
 
 %{__cat} <<EOF >blender.desktop
 [Desktop Entry]

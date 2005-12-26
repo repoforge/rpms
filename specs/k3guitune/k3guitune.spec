@@ -46,7 +46,7 @@ graphic and an oscilloscope. It supports normal, Wien, and physical tuning.
 
 %changelog
 * Fri Dec 16 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.1-2
-- Fix the desktop file, thanks to xyzzy1 at hotpop dot com.
+- Fix the desktop file, thanks to Stephen Biggs.
 
 * Fri Oct 14 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.1-1
 - Initial package.

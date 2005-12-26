@@ -45,7 +45,7 @@ dos2unix src/kcheckgmail.desktop
 
 %changelog
 * Fri Dec 23 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.5-2
-- Fix the desktop file, thanks to xyzzy1 at hotpop dot com.
+- Fix the desktop file, thanks to Stephen Biggs.
 
 * Tue Nov 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.5-1
 - Initial package.
