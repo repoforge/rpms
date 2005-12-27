@@ -29,7 +29,7 @@
 
 Summary: Full featured MSN Messenger clone
 Name: amsn
-Version: 0.94
+Version: 0.95
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -159,6 +159,9 @@ cd plugins/traydock
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-amsn.desktop}
 
 %changelog
+* Tue Dec 27 2005 Dag Wieers <dag@wieers.com> - 0.95-1
+- Updated to release 0.95.
+
 * Sat Nov 06 2004 Dag Wieers <dag@wieers.com> - 0.94-1
 - Updated to release 0.94.
 

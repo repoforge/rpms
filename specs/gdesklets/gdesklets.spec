@@ -11,7 +11,7 @@ License: GPL
 Group: User Interface/Desktops
 URL: http://www.gdesklets.org/
 
-Source: http://www.gdesklets.org/releases/gDesklets-%{version}.tar.bz2
+Source: http://gdesklets.org/downloads/gDesklets-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libgtop2-devel >= 2.8, python-devel >= 2.3, gcc-c++
