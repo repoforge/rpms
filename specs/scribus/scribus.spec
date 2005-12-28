@@ -7,14 +7,6 @@
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
 
-%{?fc1:%define _without_xorg 1}
-%{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
-%{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-
 %define desktop_vendor rpmforge
 
 Summary: Graphical desktop publishing (DTP) application
@@ -28,12 +20,12 @@ URL: http://web2.altmuehlnet.de/fschmid/
 Source: http://www.scribus.org.uk/downloads/%{version}/scribus-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 3.0, gcc-c++
+BuildRequires: gcc-c++, python-devel >= 2.3, python >= 2.3
 BuildRequires: zlib-devel, libjpeg-devel, libpng-devel, libtiff-devel
-BuildRequires: libart_lgpl-devel, arts-devel, gettext, kdelibs-devel
+BuildRequires: libart_lgpl-devel, gettext, kdelibs-devel
+BuildRequires: cups-devel, lcms-devel >= 1.12, libtool, libxml2-devel
+BuildRequires: freetype-devel >= 2.1.7, ghostscript >= 7.07, tkinter
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_without_xorg:BuildRequires: XFree86-devel}
-%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 
 %description
 Scribus is a GUI desktop publishing (DTP) application for GNU/Linux.
@@ -50,6 +42,7 @@ Icon=scribus.png
 Type=Application
 Terminal=false
 Categories=Application;Office;
+Encoding=UTF-8
 EOF
 
 %build
@@ -95,6 +88,9 @@ source "%{_sysconfdir}/profile.d/qt.sh"
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 
 %changelog
+* Wed Dec 28 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.1-2
+- Fixes in the buildrequirements, thanks to Peter Linell.
+
 * Wed Oct 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
 - Updated to release 1.3.1.
 

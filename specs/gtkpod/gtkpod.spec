@@ -13,7 +13,7 @@ URL: http://www.gtkpod.org/
 Source: http://dl.sf.net/gtkpod/gtkpod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgpod-devel, gtk2-devel, libglade2-devel
-BuildRequires: libid3tag-devel, faad2-devel, gettext
+BuildRequires: libid3tag-devel, faad2-devel, gettext, flex
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description

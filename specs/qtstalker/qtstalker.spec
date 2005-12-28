@@ -13,7 +13,7 @@ URL: http://qtstalker.sourceforge.net/
 Source: http://dl.sf.net/qtstalker/qtstalker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel, gcc-c++
+BuildRequires: qt-devel, gcc-c++, db4-devel
 
 %description
 Stock market, commodity and technical analysis charting app based on the 
