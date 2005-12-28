@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-Format-Buil
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 With this module, you can create DateTime parser classes and objects.

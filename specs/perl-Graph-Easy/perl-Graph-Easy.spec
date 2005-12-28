@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TE/TELS/graph/Graph-Easy-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(Scalar::Util) >= 1.13
+BuildRequires: perl, perl-Heap, perl(Scalar::Util) >= 1.13
 
 %description
 This module let's you create graphs (nodes/vertices connected by edges/arcs,
