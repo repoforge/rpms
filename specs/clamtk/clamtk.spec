@@ -11,7 +11,7 @@
 
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
-Version: 2.10
+Version: 2.13
 Release: 1
 License: Perl
 Group: Applications/File
@@ -75,6 +75,9 @@ EOF
 %{_datadir}/pixmaps/clam.xpm
 
 %changelog
+* Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 2.13-1
+- Updated to release 2.13.
+
 * Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 2.10-1
 - Updated to release 2.10.
 

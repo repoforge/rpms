@@ -4,7 +4,7 @@
 
 Summary: Countdown timer applet for GNOME
 Name: timer-applet
-Version: 1.0
+Version: 1.2
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -53,5 +53,8 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/timer-applet.
 %{_libdir}/bonobo/servers/GNOME_TimerApplet.server
 
 %changelog
+* Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Tue Apr 05 2005 Dag Wieers <dag@wieers.com> - 1.0-1
 - Initial package. (using DAR)
