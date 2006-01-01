@@ -4,14 +4,15 @@
 
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 1.0.8
+Version: 1.0.9
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.vanheusden.com/httping/
+
 Source: http://www.vanheusden.com/httping/httping-%{version}.tgz
-Patch: httping-1.0.8-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: openssl-devel
 
 %description
@@ -22,16 +23,17 @@ that the transmission across the network also takes time!
 
 %prep
 %setup
-%patch -p1 -b .makefile
 
 %build
-# The CFLAGS in the makefile are needed, so VERSION is set correctly
-# (fixed with the included patch, won't work without)
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags}" DEBUG=""
+%{__make} %{?_smp_mflags} \
+	CFLAGS="%{optflags} -DVERSION=\\\"%{version}\\\" -I/usr/kerberos/include" \
+	DEBUG=""
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+#{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m0755 httping %{buildroot}%{_bindir}/httping
+%{__install} -Dp -m0644 httping.1 %{buildroot}%{_mandir}/man1/httping.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -43,6 +45,10 @@ that the transmission across the network also takes time!
 %{_mandir}/man1/httping.1*
 
 %changelog
+* Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 1.0.9-1
+- Updated to release 1.0.9.
+- Included fix for broken openssl/kerberos on RH9, EL3 and FC1.
+
 * Mon Nov 14 2005 Matthias Saou <http://freshrpms.net/> 1.0.8-1
 - Update to 1.0.8.
 - Add OpenSSL build requirement.
