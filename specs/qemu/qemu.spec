@@ -4,7 +4,7 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.7.2
+Version: 0.8.0
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -186,6 +186,9 @@ fi
 %exclude %{_datadir}/qemu/doc/
 
 %changelog
+* Thu Dec 29 2005 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Sun Sep 11 2005 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 

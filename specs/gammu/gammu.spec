@@ -6,7 +6,7 @@
 
 Summary: Mobile phone tools
 Name: gammu
-Version: 1.03.0
+Version: 1.04.0
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -84,6 +84,9 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Sun Jan 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.04.0-1
+- Updated to release 1.04.0.
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.03.0-1
 - Updated to release 1.03.0.
 
