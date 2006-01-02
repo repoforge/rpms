@@ -7,18 +7,21 @@
 
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
-Version: 0.5.15cnc6
-Release: 4
+Version: 0.5.15cnc7
+Release: 1
 License: GPL
 Group: System Environment/Base
 URL: https://moin.conectiva.com.br/AptRpm
 
-#Source: https://moin.conectiva.com.br/AptRpm?action=AttachFile&do=get&target=apt-0.5.15cnc6.tar.bz2
-Source: http://moin.conectiva.com.br/files/AptRpm/attachments/apt-%{version}.tar.bz2
+#can't find a normal link which works with spectool or wget
+Source: apt-%{version}.tar.bz2
+#Source: https://moin.conectiva.com.br/AptRpm?action=AttachFile&do=get&target=apt-%{version}.tar.bz2
+#Source: http://moin.conectiva.com.br/files/AptRpm/attachments/apt-%{version}.tar.bz2
 Patch0: apt-0.5.15cnc6-rpmpriorities.patch
 Patch1: apt-0.5.15cnc5-nodignosig.patch
 Patch2: apt-0.5.15cnc4-nopromote.patch
 #Patch3: apt-0.5.5cnc6-rpm402.patch
+#is applied in 0.5.15cnc7
 Patch4: apt-0.5.15cnc6-rpmhandler.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -64,7 +67,7 @@ you will need to install %{name}-devel.
 #patch1 -b .nodignosig
 #patch2 -p1 -b .nopromote
 #{?rh6:%patch3 -b .402}
-%patch4 -b .rpmhandler
+#%patch4 -b .rpmhandler
 
 %{__perl} -pi.orig -e 's|RPM APT-HTTP/1.3|Dag RPM Repository %{dist}/%{_arch} APT-HTTP/1.3|' methods/http.cc
 
@@ -73,6 +76,7 @@ you will need to install %{name}-devel.
 # URL: http://dag.wieers.com/apt/
 
 ### Dag RPM Repository for Fedora Core
+%{!?fc5:#}rpm http://apt.sw.be fedora/5/en/%{_arch} dag
 %{!?fc4:#}rpm http://apt.sw.be fedora/4/en/%{_arch} dag
 %{!?fc3:#}rpm http://apt.sw.be fedora/3/en/%{_arch} dag
 %{!?fc2:#}rpm http://apt.sw.be fedora/2/en/%{_arch} dag
@@ -95,6 +99,7 @@ EOF
 # URL: http://ayo.freshrpms.net/
 
 ### Fedora Core
+%{!?fc5:#}rpm http://ayo.freshrpms.net fedora/linux/5/%{_arch} core updates
 %{!?fc4:#}rpm http://ayo.freshrpms.net fedora/linux/4/%{_arch} core updates
 %{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} core updates
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} core updates
@@ -112,6 +117,7 @@ EOF
 # URL: http://ayo.freshrpms.net/
 
 ### Fedora Core
+%{!?fc5:#}rpm http://ayo.freshrpms.net fedora/linux/5/%{_arch} freshrpms
 %{!?fc4:#}rpm http://ayo.freshrpms.net fedora/linux/4/%{_arch} freshrpms
 %{!?fc3:#}rpm http://ayo.freshrpms.net fedora/linux/3/%{_arch} freshrpms
 %{!?fc2:#}rpm http://ayo.freshrpms.net fedora/linux/2/%{_arch} freshrpms
@@ -129,6 +135,7 @@ EOF
 # URL: http://newrpms.sunsite.dk/
 
 ### Fedora Core
+%{!?fc5:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc5 newrpms
 %{!?fc4:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc4 newrpms
 %{!?fc3:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc3 newrpms
 %{!?fc2:#}rpm http://newrpms.sunsite.dk/apt/ redhat/en/i386/fc2 newrpms
@@ -144,13 +151,14 @@ EOF
 # URL: http://dries.studentenweb.org/apt/
 
 ### Fedora Core
+%{!?fc5:#}rpm http://apt.sw.be dries/fedora/fc5/i386 dries
 %{!?fc4:#}rpm http://apt.sw.be dries/fedora/fc4/i386 dries
 %{!?fc3:#}rpm http://apt.sw.be dries/fedora/fc3/i386 dries
 %{!?fc2:#}rpm http://apt.sw.be dries/fedora/fc2/i386 dries
 %{!?fc1:#}rpm http://apt.sw.be dries/fedora/fc1/i386 dries
 
 ### Red Hat Enterprise Linux
-#rpm http://apt.sw.be dries/redhat/el4/en/i386 dries
+%{!?el4:#}rpm http://apt.sw.be dries/redhat/el4/en/i386 dries
 %{!?el3:#}rpm http://apt.sw.be dries/redhat/el3/en/i386 dries
 EOF
 
@@ -209,6 +217,7 @@ RPM {
 EOF
 
 %build
+%{?fc5:libtoolize -f && autoreconf}
 #{__autoconf}
 %configure \
 	--program-prefix="%{?_program_prefix}" \
@@ -263,6 +272,7 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 %{_bindir}/genbasedir
 %{_bindir}/genpkglist
 %{_bindir}/gensrclist
+%{_bindir}/countpkglist
 %{_libdir}/apt/
 %{_libdir}/libapt-pkg-*.so.*
 %{_localstatedir}/cache/apt/
@@ -277,6 +287,11 @@ touch %{buildroot}%{_sysconfdir}/apt/preferences \
 #exclude %{_libdir}/*.la
 
 %changelog
+* Mon Jan 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.5.15cnc7-1
+- Added libtoolize and autoreconf fix for Fedora Core 5, thanks 
+  to Stephen Clement.
+- Updated to release 0.5.15cnc7.
+
 * Sat Nov 20 2004 Dag Wieers <dag@wieers.com> - 0.5.15cnc6-4
 - Added readline-devel as buildrequirement for apt-shell.
 
