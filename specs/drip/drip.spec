@@ -15,8 +15,8 @@ Source: http://drip.sourceforge.net/files/drip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
-BuildRequires: gtk+-devel >= 1.2, libdvdcss, libdvdread
-BuildRequires: avifile-devel >= 0.7.22, a52dec-devel, mpeg2dec-devel = 0.2.1
+BuildRequires: gtk+-devel >= 1.2, libdvdcss, libdvdread, a52dec-devel
+#BuildRequires: avifile-devel >= 0.7.22, mpeg2dec-devel = 0.2.1
 #BuildRequires: orbitcpp-devel
 
 %description

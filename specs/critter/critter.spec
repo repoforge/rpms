@@ -20,7 +20,7 @@
 
 Summary: SDL/OpenGL space shoot'em up game
 Name: critter
-Version: 0.9.12
+Version: 1.0.0
 Release: 1
 License: GPL
 Group: Amusements/Games
@@ -87,6 +87,9 @@ desktop-file-install \
 
 
 %changelog
+* Mon Jan 02 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Wed Oct 05 2005 Dag Wieers <dag@wieers.com> - 0.9.12-1
 - Cosmetic changes.
 

@@ -4,7 +4,7 @@
 
 Summary: Viewer for comic book archives
 Name: qcomicbook
-Version: 0.2.5
+Version: 0.2.6
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -63,5 +63,8 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/qcomicbook/
 
 %changelog
+* Thu Dec 29 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.6-1
+- Updated to release 0.2.6.
+
 * Fri Dec 02 2005 Dries Verachtert <dries@ulyssis.org> - 0.2.5-1
 - Initial package.
