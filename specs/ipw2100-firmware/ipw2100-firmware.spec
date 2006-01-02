@@ -2,10 +2,10 @@
 # Authority: matthias
 # Dist: nodist
 
-Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
+Summary: Firmware for IntelÂ® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
 Version: 1.3
-Release: 1
+Release: 2
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/firmware.php
@@ -29,18 +29,8 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 %install
 %{__rm} -rf %{buildroot}
-# Install all firmware files
-%{__mkdir_p} %{buildroot}/lib/firmware \
-             %{buildroot}%{_sysconfdir}/firmware \
-             %{buildroot}%{_libdir}/hotplug/firmware
-%{__install} -p -m0644 *.fw %{buildroot}/lib/firmware/
-# Symlink all of them for new and old hotplug loading to work
-for file in *.fw; do
-    %{__ln_s} /lib/firmware/${file} \
-        %{buildroot}%{_sysconfdir}/firmware/
-    %{__ln_s} /lib/firmware/${file} \
-        %{buildroot}%{_libdir}/hotplug/firmware/
-done
+%{__mkdir_p} %{buildroot}/lib/firmware
+%{__install} -p -m 0644 *.fw %{buildroot}/lib/firmware/
 
 
 %clean
@@ -51,12 +41,14 @@ done
 %defattr(-, root, root, 0755)
 %doc LICENSE
 /lib/firmware/*.fw
-%{_sysconfdir}/firmware/*.fw
-%{_libdir}/hotplug/firmware/*.fw
 
 
 %changelog
-* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net> 1.3-2
+* Mon Jan  2 2006 Matthias Saou <http://freshrpms.net> 1.3-2
+- Convert spec file to UTF-8.
+- Remove all symlinks to keep only /lib/firmware like in ipw2200-firmware.
+
+* Wed Nov  3 2004 Matthias Saou <http://freshrpms.net> 1.3-1
 - Now put the files in /lib/firmware and symlinks in other dirs.
 
 * Tue Sep 28 2004 Matthias Saou <http://freshrpms.net> 1.3-1

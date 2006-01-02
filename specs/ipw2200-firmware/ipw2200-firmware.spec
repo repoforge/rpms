@@ -2,10 +2,10 @@
 # Authority: matthias
 # Dist: nodist
 
-Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
+Summary: Firmware for IntelÂ® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
 Version: 2.4
-Release: 1
+Release: 2
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2200.sourceforge.net/firmware.php
@@ -46,6 +46,9 @@ Linux. Usage of the firmware is subject to the terms contained in :
 
 
 %changelog
+* Mon Jan  2 2006 Matthias Saou <http://freshrpms.net> 2.4-2
+- Convert spec file to UTF-8.
+
 * Thu Oct 27 2005 Matthias Saou <http://freshrpms.net> 2.4-1
 - Update to 2.4, but keep 2.2 and 2.3 included too.
 
