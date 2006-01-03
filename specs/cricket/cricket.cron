@@ -1,0 +1,4 @@
+MAILTO=root
+*/5 * * * * cricket /usr/lib/cricket/collect-subtrees -cf=/etc/cricket/subtree-sets normal #>/dev/null 2>&1
+*/5 * * * * apache find /var/cache/cricket -type f -mmin +10 | xargs -r rm
+

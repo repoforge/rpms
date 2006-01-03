@@ -1,0 +1,17 @@
+Alias /cricket/images   /usr/lib/cricket/www/images
+Alias /cricket          /usr/lib/cricket/www/cgi
+
+<Directory /usr/lib/cricket/www/cgi>
+    Options +ExecCGI
+    Order Deny,Allow
+    Deny from all
+    Allow from localhost
+</Directory>
+
+<Directory /usr/lib/cricket/www/images>
+    Order Deny,Allow
+    Deny from all
+    Allow from localhost
+</Directory>
+
+# vim:ft=apache

@@ -1,0 +1,294 @@
+diff -N -ru -x '*.orig' cricket-1.0.5/collect-subtrees cricket-1.0.5.work/collect-subtrees
+--- cricket-1.0.5/collect-subtrees	2001-10-24 15:51:27.000000000 -0700
++++ cricket-1.0.5.work/collect-subtrees	2005-04-06 15:09:37.000000000 -0700
+@@ -32,7 +32,7 @@
+ BEGIN {
+     my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . ".";
+     eval "require '$programdir/cricket-conf.pl'";
+-    eval "require '/usr/local/etc/cricket-conf.pl'"
++    eval "require '/etc/cricket/cricket-conf.pl'"
+         unless $Common::global::gInstallRoot;
+     $Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/collector cricket-1.0.5.work/collector
+--- cricket-1.0.5/collector	2003-10-31 17:32:54.000000000 -0800
++++ cricket-1.0.5.work/collector	2005-04-06 15:10:01.000000000 -0700
+@@ -22,7 +22,7 @@
+ BEGIN {
+     my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . ".";
+     eval "require '$programdir/cricket-conf.pl'";
+-    eval "require '/usr/local/etc/cricket-conf.pl'"
++    eval "require '/etc/cricket/cricket-conf.pl'"
+         unless $Common::global::gInstallRoot;
+     $Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/compile cricket-1.0.5.work/compile
+--- cricket-1.0.5/compile	2002-03-24 18:43:19.000000000 -0800
++++ cricket-1.0.5.work/compile	2005-04-06 15:11:27.000000000 -0700
+@@ -22,7 +22,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . ".";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/cricket-conf.pl cricket-1.0.5.work/cricket-conf.pl
+--- cricket-1.0.5/cricket-conf.pl	1969-12-31 16:00:00.000000000 -0800
++++ cricket-1.0.5.work/cricket-conf.pl	2005-04-06 14:20:42.000000000 -0700
+@@ -0,0 +1,73 @@
++#	Sample Cricket configuration file.
++#	This file is looked for in the same directory where the executable
++#	scripts are located, or in /usr/local/etc/cricket-conf.pl.
++#	In its absence, the rules for Cricket 1.0.2 and previous versions
++#	apply, i.e. Cricket looks at your HOME directory to find its
++#	components.
++#
++#	The commented out variables are optional and should probably
++#	not be tweaked unless you know what you're doing.
++#
++#	It is possible to modify the Perl environment, e.g. by adding
++#	"use lib /foo" to this file.
++#	$Id: cricket-conf.pl.sample,v 1.12 2004/02/10 18:06:44 xkilian Exp $
++package Common::global;
++
++$gCricketHome = "/usr/lib/cricket";
++$gInstallRoot = "$gCricketHome";
++$gConfigRoot = "/etc/cricket/";
++
++#	Whether to optimize config tree access for the collector by
++#	copying the database into memory on startup.
++#	Switch off if your collector becomes too big in run time.
++#	Most sites will probably want slurp, this is the default.
++#$gDbAccess = "slurp";	# Slurp the database into memory
++#$gDbAccess = "lookup";	# Use normal DB lookups
++
++#	Where cricket caches generated images.
++#$gCacheDir = "/tmp/cricket-cache";
++$gCacheDir = "/var/cache/cricket";
++
++#	It is strongly recommended that you *not* set a global logLevel.
++#	Use the CRICKET_LOG_LEVEL environment variable or the
++#	-logLevel <level> option instead.
++#$gLogLevel = "info";
++
++#	It is strongly recommended that you *not* set a global logFormat.
++#	Use the CRICKET_LOG_FORMAT environment variable or the
++#	-logFormat <format> option instead.
++#	Three formats are supported by Log.pm. Minimal, standard and extended.
++#   Consult the documentation. Default format is standard.
++#$gLogFormat = "standard";
++
++#	Pick the style of URL you want Cricket to use when generating
++#	self-referencing URLs (either URL's to targets, or URL's to
++#	graphed images).
++#	It is recommended not to touch this unless you need to.
++#$gUrlStyle="classic";    # What Cricket before 1.0.4 did.
++#$gUrlStyle="relative";  # Required if Cricket sits behind a reverse proxy
++$gUrlStyle="pathinfo";  # Encode the target in the URL path for authentication
++
++#	Set this to "1" to enable the new (and experimental!) feature to
++#	use long RRD datasource names. See the CHANGES file before enabling
++#	this.
++$gLongDSName=0;
++
++#	Set to "1" to make collector log fully qualified datasource names.
++#	e.g. When enabled, you get "/Switches/Cat4000/Core/FastEthernet0_1"
++#       instead of just "FastEthernet0_1".
++$gLogFullPath=0;
++
++#       Set this to "1" to enable the tag search feature. When enabled
++#       this adds a small search box to the bottom of the grapher
++#       window, which can be used to do a recursive search on
++#       values contained in the chassis target. It is currently
++#       limited to searching for a value in the snmp-host and display-name tags.
++$gEnableSearch=1;
++
++# For users of monitoring thresholds. This variable defines how to treat
++# conditions where a threshold is tested against an unavailable value or
++# a database lookup error.
++# Set to 1, and it will treat unvailable values (or NaNs) as alarms.
++# Set to 0 or undefined it will not treat NaNs as alarms. 
++$gEnableNoValueAlarms = 0;
+diff -N -ru -x '*.orig' cricket-1.0.5/grapher.cgi cricket-1.0.5.work/grapher.cgi
+--- cricket-1.0.5/grapher.cgi	2004-02-06 08:27:34.000000000 -0800
++++ cricket-1.0.5.work/grapher.cgi	2005-04-06 15:09:12.000000000 -0700
+@@ -32,7 +32,7 @@
+             require "$dir/cricket-conf.pl";
+         }
+     }
+-    eval "require '/usr/local/etc/cricket-conf.pl'"
++    eval "require '/etc/cricket/cricket-conf.pl'"
+         unless $Common::global::gInstallRoot;
+     $Common::global::gInstallRoot ||= $programdir;
+     $Common::global::gConfigRoot ||= 'cricket-config';
+diff -N -ru -x '*.orig' cricket-1.0.5/mini-graph.cgi cricket-1.0.5.work/mini-graph.cgi
+--- cricket-1.0.5/mini-graph.cgi	2002-07-02 17:32:00.000000000 -0700
++++ cricket-1.0.5.work/mini-graph.cgi	2005-04-06 18:44:07.000000000 -0700
+@@ -25,7 +25,7 @@
+     # hardcode it.
+     my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . ".";
+     eval "require '$programdir/cricket-conf.pl'";
+-    eval "require '/usr/local/etc/cricket-conf.pl'"
++    eval "require '/etc/cricket/cricket-conf.pl'"
+         unless $Common::global::gInstallRoot;
+     $Common::global::gInstallRoot ||= $programdir;
+ }
+@@ -72,7 +72,7 @@
+         if (Common::Util::isWin32()) {
+             exec("perl $Common::global::gInstallRoot/grapher.cgi");
+         } else {
+-            exec("$Common::global::gInstallRoot/grapher.cgi");
++            exec("$Common::global::gInstallRoot/www/cgi/grapher.cgi");
+         }
+     } else {
+         Debug("Cached image exists: $imageName. Using that.");
+diff -N -ru -x '*.orig' cricket-1.0.5/subtree-sets cricket-1.0.5.work/subtree-sets
+--- cricket-1.0.5/subtree-sets	2000-02-08 01:58:14.000000000 -0800
++++ cricket-1.0.5.work/subtree-sets	2005-04-06 14:21:57.000000000 -0700
+@@ -4,10 +4,10 @@
+ # This will be passed to collector so it can find the Config Tree.
+ # If this directory does not start with a slash, it will
+ # have $HOME prepended.
+-base:	cricket-config
++base:	config
+ 
+ # this is where logs will be put. (The $HOME rule applies here too.)
+-logdir:	cricket-logs
++logdir:	/var/log/cricket
+ 
+ set normal:
+ 	/routers
+diff -N -ru -x '*.orig' cricket-1.0.5/util/convert-named-ds cricket-1.0.5.work/util/convert-named-ds
+--- cricket-1.0.5/util/convert-named-ds	2002-07-01 16:06:13.000000000 -0700
++++ cricket-1.0.5.work/util/convert-named-ds	2005-04-06 15:13:01.000000000 -0700
+@@ -23,7 +23,7 @@
+ BEGIN {
+         my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+         eval "require '$programdir/cricket-conf.pl'";
+-        eval "require '/usr/local/etc/cricket-conf.pl'"
++        eval "require '/etc/cricket/cricket-conf.pl'"
+                                         unless $Common::global::gInstallRoot;
+         $Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/dump-targets cricket-1.0.5.work/util/dump-targets
+--- cricket-1.0.5/util/dump-targets	2002-06-06 17:15:46.000000000 -0700
++++ cricket-1.0.5.work/util/dump-targets	2005-04-06 15:13:01.000000000 -0700
+@@ -22,7 +22,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/generate-statics cricket-1.0.5.work/util/generate-statics
+--- cricket-1.0.5/util/generate-statics	2002-04-09 16:02:23.000000000 -0700
++++ cricket-1.0.5.work/util/generate-statics	2005-04-06 15:13:01.000000000 -0700
+@@ -22,7 +22,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/get-collector-stats cricket-1.0.5.work/util/get-collector-stats
+--- cricket-1.0.5/util/get-collector-stats	2003-11-22 12:38:08.000000000 -0800
++++ cricket-1.0.5.work/util/get-collector-stats	2005-04-06 15:13:01.000000000 -0700
+@@ -22,7 +22,7 @@
+ BEGIN {
+    my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+    eval "require '$programdir/cricket-conf.pl'";
+-   eval "require '/usr/local/etc/cricket-conf.pl'"
++   eval "require '/etc/cricket/cricket-conf.pl'"
+                  unless $Common::global::gInstallRoot;
+    $Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/listInterfaces cricket-1.0.5.work/util/listInterfaces
+--- cricket-1.0.5/util/listInterfaces	2002-04-09 16:02:23.000000000 -0700
++++ cricket-1.0.5.work/util/listInterfaces	2005-04-06 15:13:01.000000000 -0700
+@@ -22,7 +22,7 @@
+ BEGIN {
+     my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+     eval "require '$programdir/cricket-conf.pl'";
+-    eval "require '/usr/local/etc/cricket-conf.pl'"
++    eval "require '/etc/cricket/cricket-conf.pl'"
+                     unless $Common::global::gInstallRoot;
+     $Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/metaQuery.pl cricket-1.0.5.work/util/metaQuery.pl
+--- cricket-1.0.5/util/metaQuery.pl	2004-03-04 13:09:01.000000000 -0800
++++ cricket-1.0.5.work/util/metaQuery.pl	2005-04-06 15:13:01.000000000 -0700
+@@ -27,7 +27,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/perfInfo.pl cricket-1.0.5.work/util/perfInfo.pl
+--- cricket-1.0.5/util/perfInfo.pl	2003-12-22 16:58:07.000000000 -0800
++++ cricket-1.0.5.work/util/perfInfo.pl	2005-04-06 15:13:01.000000000 -0700
+@@ -21,7 +21,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ 
+diff -N -ru -x '*.orig' cricket-1.0.5/util/rrd-dump cricket-1.0.5.work/util/rrd-dump
+--- cricket-1.0.5/util/rrd-dump	2002-04-09 16:02:23.000000000 -0700
++++ cricket-1.0.5.work/util/rrd-dump	2005-04-06 15:13:01.000000000 -0700
+@@ -7,7 +7,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/rrd-tune cricket-1.0.5.work/util/rrd-tune
+--- cricket-1.0.5/util/rrd-tune	2003-11-21 12:14:08.000000000 -0800
++++ cricket-1.0.5.work/util/rrd-tune	2005-04-06 15:13:01.000000000 -0700
+@@ -22,7 +22,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/systemPerfConf.pl cricket-1.0.5.work/util/systemPerfConf.pl
+--- cricket-1.0.5/util/systemPerfConf.pl	2004-01-08 18:02:20.000000000 -0800
++++ cricket-1.0.5.work/util/systemPerfConf.pl	2005-04-06 15:13:01.000000000 -0700
+@@ -25,7 +25,7 @@
+ BEGIN {
+     my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+     eval "require '$programdir/cricket-conf.pl'";
+-    eval "require '/usr/local/etc/cricket-conf.pl'"
++    eval "require '/etc/cricket/cricket-conf.pl'"
+         unless $Common::global::gInstallRoot;
+     $Common::global::gInstallRoot ||= $programdir;
+ }
+diff -N -ru -x '*.orig' cricket-1.0.5/util/usrModemUsage cricket-1.0.5.work/util/usrModemUsage
+--- cricket-1.0.5/util/usrModemUsage	2002-04-09 16:02:23.000000000 -0700
++++ cricket-1.0.5.work/util/usrModemUsage	2005-04-06 15:13:01.000000000 -0700
+@@ -25,7 +25,7 @@
+ BEGIN {
+ 	my $programdir = (($0 =~ m:^(.*/):)[0] || "./") . "..";
+ 	eval "require '$programdir/cricket-conf.pl'";
+-	eval "require '/usr/local/etc/cricket-conf.pl'"
++	eval "require '/etc/cricket/cricket-conf.pl'"
+ 					unless $Common::global::gInstallRoot;
+ 	$Common::global::gInstallRoot ||= $programdir;
+ }
