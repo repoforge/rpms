@@ -84,7 +84,7 @@ done
 %{_datadir}/bogofilter/
 
 %changelog
-* Mon Jan 02 2005 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
+* Mon Jan 02 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.1-1
 - Updated to release 1.0.1.
 
 * Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
