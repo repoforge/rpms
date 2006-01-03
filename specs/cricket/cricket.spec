@@ -1,7 +1,5 @@
 # Authority: nac
-#
 # $Id$
-# 
 
 %define     version     1.0.5
 %define     release     6.0
