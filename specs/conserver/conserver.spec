@@ -7,7 +7,7 @@
 
 Summary: Serial console server daemon/client
 Name: conserver
-Version: 8.1.7
+Version: 8.1.12
 Release: 1
 License: BSD style
 Group: System Environment/Daemons
@@ -62,13 +62,18 @@ fi
 %defattr(-, root, root, 0755)
 %doc CHANGES FAQ INSTALL README conserver.cf/
 %doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/conserver.*
-%config %{_initrddir}/*
-%{_bindir}/*
-%{_sbindir}/*
+%config(noreplace) %{_sysconfdir}/conserver.cf
+%config(noreplace) %{_sysconfdir}/conserver.passwd
+%config %{_initrddir}/conserver
+%{_bindir}/console
+%{_sbindir}/conserver
+%{_libdir}/conserver/
 %exclude %{_datadir}/examples/
 
 %changelog
+* Tue Jan 03 2006 Dag Wieers <dag@wieers.com> - 8.1.12-1
+- Updated to release 8.1.12.
+
 * Sat May 29 2004 Dag Wieers <dag@wieers.com> - 8.1.7-1
 - Updated to release 8.1.7.
 
