@@ -5,8 +5,8 @@
 
 Summary: Perform consistency checks on DNS zones
 Name: zonecheck
-Version: 2.0.3
-Release: 0
+Version: 2.0.4
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.zonecheck.fr/
@@ -41,7 +41,8 @@ ruby ./installer.rb common cli cgi \
 	-DLIBEXEC="%{_libdir}" \
 	-DMANDIR="%{_mandir}" \
         -DETCDIST="" \
-	-DCHROOT="%{buildroot}"
+	-DCHROOT="%{buildroot}" \
+	-DRUBY="%{_bindir}/ruby"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,6 +59,11 @@ ruby ./installer.rb common cli cgi \
 %{_libdir}/zonecheck/
 
 %changelog
+* Tue Jan 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1
+- Updated to release 2.0.4.
+- RUBY parameter added so installer.rb doesn't search for the interpreter, 
+  thanks to Michael Mansour and Wil Cooley.
+
 * Sat Jun 18 2005 Dries Verachtert <dries@ulyssis.org> -2.0.3-0
 - Updated to release 2.0.3.
 

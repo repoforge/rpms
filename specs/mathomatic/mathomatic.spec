@@ -35,7 +35,7 @@ Gesslein II and has been under development since 1986.
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.txt doc/*.htm doc/*.html
+%doc *.txt doc/*.html
 %doc %{_mandir}/man1/mathomatic.1*
 %{_bindir}/mathomatic
 

@@ -2,6 +2,8 @@
 # Authority: bert
 # Upstream: <Bernhard,Walle$gmx,de>
 
+%define debug_package %{nil}
+
 Summary: Pretty printing of mails with Mutt
 Name: muttprint
 Version: 0.72

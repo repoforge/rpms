@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Jos&#233; Alves de Castro <cog$cpan,org>
 
+%define debug_package %{nil}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -37,7 +39,7 @@ Ngram analysis of text.
 %{__rm} -rf %{buildroot}%{perl_archlib}/perllocal.pod %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
 %clean
-%{__rm} -rf %{buildroot}
+#%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)

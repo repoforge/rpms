@@ -56,6 +56,7 @@ export OPTIONS="
 %makeinstall
 
 %{__install} -Dp -m0755 src/miau-ipv6 %{buildroot}%{_bindir}/miau-ipv6
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 %post
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
