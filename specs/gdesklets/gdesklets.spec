@@ -54,6 +54,10 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 %find_lang %{name}
 %{__rm} -f %{buildroot}%{_datadir}/mime/aliases
 %{__rm} -f %{buildroot}%{_datadir}/mime/subclasses
+%{__rm} -f %{buildroot}%{_datadir}/mime/XMLnamespaces
+%{__rm} -f %{buildroot}%{_datadir}/mime/globs
+%{__rm} -f %{buildroot}%{_datadir}/mime/magic
+%{__rm} -f %{buildroot}%{_datadir}/applications/mimeinfo.cache
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
@@ -76,11 +80,7 @@ gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/gdesklets-displ
 %{_datadir}/gdesklets/
 %{_datadir}/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gdesklets-display.png
 %{_datadir}/pixmaps/gdesklets.png
-%exclude %{_datadir}/mime/XMLnamespaces
 %{_datadir}/mime/application/x-gdesklets-display.xml
-%exclude %{_datadir}/applications/mimeinfo.cache
-%exclude %{_datadir}/mime/globs
-%exclude %{_datadir}/mime/magic
 %{_datadir}/mime/packages/gdesklets.xml
 
 %changelog

@@ -47,10 +47,12 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/timer-applet.
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_datadir}/gnome/help/timer-applet/
 %config %{_sysconfdir}/gconf/schemas/timer-applet.schemas
-%{_bindir}/timer-applet
+%{_libexecdir}/timer-applet
 %{_datadir}/gnome-2.0/ui/GNOME_TimerApplet.xml
-%{_datadir}/pixmaps/timer-applet/
 %{_libdir}/bonobo/servers/GNOME_TimerApplet.server
+%{_datadir}/pixmaps/timer-applet/
+%{_datadir}/gnome/help/timer-applet/
+%{_datadir}/omf/timer-applet/
 
 %changelog
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 1.2-1

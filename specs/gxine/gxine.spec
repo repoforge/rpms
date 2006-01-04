@@ -78,7 +78,7 @@ EOF
 	DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%{__install} -Dp -m0644 pixmaps/gxine-logo.png %{buildroot}%{_datadir}/pixmaps/gxine.png
+%{__install} -Dp -m0644 pixmaps/gxine.png %{buildroot}%{_datadir}/pixmaps/gxine.png
 %{__install} -Dp -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
 
 %if %{?_without_freedesktop:1}0

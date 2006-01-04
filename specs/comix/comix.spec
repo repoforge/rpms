@@ -30,11 +30,12 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_prefix}
 %{__python} install.py install --installdir %{buildroot}%{_prefix}
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README
 %doc %{_mandir}/man1/comix.1*

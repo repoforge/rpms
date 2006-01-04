@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
 BuildRequires: gtk+-devel >= 1.2, libdvdcss, libdvdread, a52dec-devel
+BuildRequires: gnome-libs-devel
 #BuildRequires: avifile-devel >= 0.7.22, mpeg2dec-devel = 0.2.1
 #BuildRequires: orbitcpp-devel
 
