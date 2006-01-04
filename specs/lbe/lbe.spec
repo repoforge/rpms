@@ -17,7 +17,7 @@ Source: http://www-unix.mcs.anl.gov/~gawor/ldapcommon/bin/%{real_name}%{real_ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: j2re >= 1.2.2
+#Requires: j2re >= 1.2.2
 
 %description
 The LDAP Browser/Editor allows users to view the items stored in a LDAP
