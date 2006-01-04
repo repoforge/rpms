@@ -1,5 +1,7 @@
 # $Id$
 # Authority: dries
+# Screenshot: http://www.ufoot.org/images/liquidwarshot5s.jpg
+# ScreenshotURL: http://www.ufoot.org/liquidwar/screenshots.php3
 
 Summary: Multiplayer wargame with liquid armies
 Name: liquidwar
@@ -13,9 +15,6 @@ Source: http://www.ufoot.org/archive/liquidwar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: allegro-devel, allegro-tools, tetex-latex, python, texinfo
 Requires: allegro
-
-# Screenshot: http://www.ufoot.org/images/liquidwarshot5s.jpg
-# ScreenshotURL: http://www.ufoot.org/liquidwar/screenshots.php3
 
 %description
 Liquid War is a unique multiplayer wargame. You control an army of liquid
@@ -44,9 +43,9 @@ and info format.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
-# fix the desktop file
-%{__perl} -pi.orig -e 's|Exec=|Exec=%{_prefix}/games/|' \
-    %{buildroot}%{_datadir}/applications/liquidwar.desktop
+## fix the desktop file
+#%{__perl} -pi.orig -e 's|Exec=|Exec=%{_prefix}/games/|' \
+#    %{buildroot}%{_datadir}/applications/liquidwar.desktop
 %{__mv} %{buildroot}%{_datadir}/doc/liquidwar liquidwardocs
 
 %clean
@@ -61,13 +60,16 @@ and info format.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING
+%{_bindir}/liquidwar
+%{_bindir}/liquidwar-mapgen
+%{_bindir}/liquidwar-server
 %{_prefix}/games/liquidwar
 %{_prefix}/games/liquidwar-mapgen
 %{_prefix}/games/liquidwar-server
 %{_datadir}/games/liquidwar/
 %{_datadir}/pixmaps/liquidwar.xpm
 %{_datadir}/applications/liquidwar.desktop
-%exclude %{_datadir}/applications/liquidwar.desktop.orig
+#%exclude %{_datadir}/applications/liquidwar.desktop.orig
 
 %files doc
 %defattr(-, root, root, 0755)
@@ -106,4 +108,3 @@ and info format.
 
 * Sat Dec 20 2003 Dries Verachtert <dries@ulyssis.org> 5.6.0-1
 - first packaging for Fedora Core 1
-
