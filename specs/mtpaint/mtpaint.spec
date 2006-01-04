@@ -8,9 +8,9 @@ Version: 2.20
 Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://www.btinternet.com/~mark.tyler4/mtpaint/index.html
+URL: http://mtpaint.sourceforge.net/
 
-Source: http://www.btinternet.com/~mark.tyler4/mtpaint/mtpaint-%{version}.tar.bz2
+Source: http://dl.sf.net/mtpaint/mtpaint-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel, libpng-devel

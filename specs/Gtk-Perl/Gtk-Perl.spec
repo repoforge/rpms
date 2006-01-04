@@ -10,7 +10,9 @@ Release: 37
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gtkperl.org/
-Source: http://www.gtkperl.org/Gtk-Perl-%{version}.tar.gz
+# www.gtkperl.org doesn't seem to work anymore
+Source: http://search.cpan.org/CPAN/authors/id/L/LU/LUPUS/Gtk-Perl-%{version}.tar.gz
+#Source: http://www.gtkperl.org/Gtk-Perl-%{version}.tar.gz
 Source10: filter-depends.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, gdk-pixbuf-devel, libglade-devel
