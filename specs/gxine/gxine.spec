@@ -102,7 +102,7 @@ EOF
 %doc AUTHORS ChangeLog COPYING README TODO
 %{_bindir}/gxine*
 %{_libdir}/gxine/
-%exclude %{_libdir}/gxine/*.a
+#%exclude %{_libdir}/gxine/*.a
 %exclude %{_libdir}/gxine/*.la
 %{_mandir}/man1/gxine*.1*
 %lang(de) %{_mandir}/de/man1/gxine*.1*

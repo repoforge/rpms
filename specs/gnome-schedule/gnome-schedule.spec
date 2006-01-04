@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Productivity
 URL: http://gnome-schedule.sourceforge.net/
 
-Source: http://dl.sf.net/gnome-schedule/gnome-schedule-%{version}.tar.bz2
+Source: http://dl.sf.net/gnome-schedule/gnome-schedule-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
