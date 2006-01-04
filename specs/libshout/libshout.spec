@@ -5,7 +5,7 @@
 
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout
-Version: 2.0
+Version: 2.2
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -51,11 +51,8 @@ test -d %{buildroot}%{_datadir}/doc && %{__rm} -rf %{buildroot}%{_datadir}/doc
 %{__rm} -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 
 %files
@@ -74,6 +71,9 @@ test -d %{buildroot}%{_datadir}/doc && %{__rm} -rf %{buildroot}%{_datadir}/doc
 
 
 %changelog
+* Wed Jan 04 2005 Dag Wieers <dag@wieers.com> - 2.2-1
+- Updated to release 2.2.
+
 * Fri May 21 2004 Matthias Saou <http://freshrpms.net/> 2.0-1
 - Rebuild for Fedora Core 2.
 - Update to 2.0, major spec changes to match.
