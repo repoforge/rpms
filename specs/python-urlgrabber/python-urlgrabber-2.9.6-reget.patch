@@ -1,0 +1,92 @@
+--- urlgrabber-2.9.6/urlgrabber/grabber.py.reget	2005-03-03 01:54:23.000000000 +0100
++++ urlgrabber-2.9.6/urlgrabber/grabber.py	2005-06-03 11:08:00.000000000 +0200
+@@ -724,6 +724,7 @@
+         self._tsize = 0
+         self._amount_read = 0
+         self._opener = None
++        self._samefile = 0
+         self._do_open()
+         
+     def __getattr__(self, name):
+@@ -789,17 +790,20 @@
+ 
+         req = urllib2.Request(self.url) # build request object
+         self._add_headers(req) # add misc headers that we need
+-        self._build_range(req) # take care of reget and byterange stuff
++        self._build_range(req, False) # take care of reget and byterange stuff
+ 
+-        fo, hdr = self._make_request(req, opener)
+         if self.reget_time and self.opts.reget == 'check_timestamp':
+             # do this if we have a local file with known timestamp AND
+             # we're in check_timestamp reget mode.
+             fetch_again = 0
+             try:
++                fo, hdr = self._make_request(req, opener)
+                 modified_tuple  = hdr.getdate_tz('last-modified')
+                 modified_stamp  = rfc822.mktime_tz(modified_tuple)
+                 if modified_stamp > self.reget_time: fetch_again = 1
++                if modified_stamp == self.reget_time and \
++                   int(hdr['Content-Length']) == self.reget_length:
++                    self._samefile = 1
+             except (TypeError,):
+                 fetch_again = 1
+             
+@@ -809,9 +813,11 @@
+                 # and fetch the whole thing again.
+                 fo.close()
+                 self.opts.reget = None
+-                del req.headers['Range']
++            if not self._samefile:
+                 self._build_range(req)
+-                fo, hdr = self._make_request(req, opener)
++        else:
++            self._build_range(req)
++        fo, hdr = self._make_request(req, opener)
+ 
+         (scheme, host, path, parm, query, frag) = urlparse.urlparse(self.url)
+         if not (self.opts.progress_obj or self.opts.raw_throttle() \
+@@ -844,10 +850,10 @@
+             for h, v in self.opts.ftp_headers:
+                 req.add_header(h, v)
+ 
+-    def _build_range(self, req):
++    def _build_range(self, req, dorange=True):
+         self.reget_time = None
+         self.append = 0
+-        reget_length = 0
++        self.reget_length = 0
+         rt = None
+         if have_range and self.opts.reget and type(self.filename) == type(''):
+             # we have reget turned on and we're dumping to a file
+@@ -857,8 +863,8 @@
+                 pass
+             else:
+                 self.reget_time = s[ST_MTIME]
+-                reget_length = s[ST_SIZE]
+-                rt = reget_length, ''
++                self.reget_length = s[ST_SIZE]
++                rt = self.reget_length, ''
+                 self.append = 1
+                 
+         if self.opts.range:
+@@ -866,9 +872,9 @@
+                 raise URLGrabError(10, _('Byte range requested but range '\
+                                          'support unavailable'))
+             rt = self.opts.range
+-            if rt[0]: rt = (rt[0] + reget_length, rt[1])
++            if rt[0]: rt = (rt[0] + self.reget_length, rt[1])
+ 
+-        if rt:
++        if rt and dorange:
+             header = range_tuple_to_header(rt)
+             if header: req.add_header('Range', header)
+ 
+@@ -904,6 +910,8 @@
+         
+     def _do_grab(self):
+         """dump the file to self.filename."""
++        if self._samefile:
++            return 0
+         if self.append: new_fo = open(self.filename, 'ab')
+         else: new_fo = open(self.filename, 'wb')
+         bs = 1024*8

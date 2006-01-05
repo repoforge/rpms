@@ -281,6 +281,8 @@ fi
 %doc %{_mandir}/man5/socks.conf.5*
 %config %{_sysconfdir}/socks.conf
 %config %{_initrddir}/dsocksify
+### Required for dsocksify script
+%{_libdir}/libdsocks.so
 %{_libdir}/libdsocks.so.*
 %{_libdir}/libsocks.so.*
 %{_bindir}/dsocksify
@@ -300,7 +302,6 @@ fi
 %doc doc/rfc* doc/SOCKS4.protocol INSTALL
 #%{_libdir}/libdsocks.a
 %exclude %{_libdir}/libdsocks.la
-%{_libdir}/libdsocks.so
 %{_libdir}/libsocks.a
 %exclude %{_libdir}/libsocks.la
 %{_libdir}/libsocks.so

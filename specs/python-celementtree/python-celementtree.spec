@@ -9,7 +9,7 @@
 
 Summary: Fast XML parser and writer (written in C)
 Name: python-celementtree
-Version: 1.0.2
+Version: 1.0.5
 Release: 1
 License: MIT
 Group: Development/Libraries
@@ -47,5 +47,8 @@ between a Python list and a Python dictionary.
 %{python_sitearch}/cElementTree.so
 
 %changelog
+* Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
 * Mon May 09 2005 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Initial package. (using DAR)
