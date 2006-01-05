@@ -281,6 +281,7 @@ EOF
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfexecd
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfservd
 %{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 ### Clean up buildroot
 #%{__rm} -f %{buildroot}%{_infodir}/dir

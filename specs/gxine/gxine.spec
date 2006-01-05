@@ -100,6 +100,11 @@ EOF
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
+%dir %{_sysconfdir}/gxine/
+%config(noreplace) %{_sysconfdir}/gxine/gtkrc
+%config(noreplace) %{_sysconfdir}/gxine/keypad.xml
+%config(noreplace) %{_sysconfdir}/gxine/startup
+%config(noreplace) %{_sysconfdir}/gxine/toolbar*.xml
 %{_bindir}/gxine*
 %{_libdir}/gxine/
 #%exclude %{_libdir}/gxine/*.a
@@ -111,6 +116,8 @@ EOF
 %{_datadir}/application-registry/gxine.applications
 %{_datadir}/gxine/
 %{_datadir}/pixmaps/gxine.png
+%{_datadir}/icons/*/*/apps/gxine.png
+%{_datadir}/locale/*/LC_MESSAGES/gxine.*
 
 %changelog
 * Sun Jan 01 2006 Dag Wieers <dag@wieers.com> - 0.5.3-1

@@ -18,7 +18,7 @@ Buildarch: noarch
 BuildRequires: python, yelp, pygtk2 >= 2.3, gnome-python2
 BuildRequires: pkgconfig, pygtk2-devel, glib2-devel, gettext
 # configure checks for crontab and for at
-BuildRequires: vixie-cron, at
+BuildRequires: vixie-cron, at, gnome-doc-utils
 Requires: python, pygtk2 >= 2.3, gnome-python2, vixie-cron, at
 
 %description

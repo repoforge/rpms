@@ -21,6 +21,8 @@ BuildRequires: glib2-devel, libglade2-devel, gamin-devel
 BuildRequires: texinfo
 %{!?dist:BuildRequires: gnome-panel-devel}
 %{?el4:BuildRequires: gnome-panel-devel}
+%{?fc4:BuildRequires: gnome-panel-devel}
+%{?fc5:BuildRequires: gnome-panel-devel}
 %{?fc3:BuildRequires: gnome-panel-devel}
 %{?fc2:BuildRequires: gnome-panel-devel}
 

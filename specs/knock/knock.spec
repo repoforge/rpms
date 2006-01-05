@@ -36,19 +36,18 @@ holes in a firewall for quick access.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%makeinstall DESTDIR=%{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS INSTALL LICENSE NEWS README THANKS TODO
+%doc ChangeLog COPYING  README TODO
 %doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/pixmaps/*.png
-%{_datadir}/applications/*.desktop
+%config(noreplace) %{_sysconfdir}/knockd.conf
+%{_bindir}/knock
+%{_sbindir}/knockd
 
 %changelog
 * Thu Apr 15 2004 Dag Wieers <dag@wieers.com> - 0.1-1

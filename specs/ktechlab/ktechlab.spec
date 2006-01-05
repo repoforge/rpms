@@ -18,7 +18,7 @@
 
 Summary: Development and simulation of microcontrollers and electronic circuits
 Name: ktechlab
-Version: 0.2
+Version: 0.3
 Release: 1
 License: GPL
 Group: Applications/Engineering
@@ -88,6 +88,9 @@ to KTechlab.
 #%{_libdir}/libktechlab_gpsim.*
 
 %changelog
+* Thu Jan 05 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
+- Update to release 0.3.
+
 * Mon Aug 01 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Update to release 0.2.
 

@@ -218,6 +218,7 @@ EOF
 
 %build
 %{?fc5:libtoolize -f && autoreconf}
+%{?fc4:libtoolize -f && autoreconf}
 #{__autoconf}
 %configure \
 	--program-prefix="%{?_program_prefix}" \
