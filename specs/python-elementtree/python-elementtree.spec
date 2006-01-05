@@ -1,22 +1,30 @@
-%define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
-%define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
+# $Id$
+# Authority: dag
 
-%define _upstream_nvr   elementtree-1.2.6-20050316
-%define _upstream_cnvr  cElementTree-1.0.2-20050302    
+%define python_abi %(%{__python} -c 'import sys; print ".".join(sys.version.split(".")[:2])')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
-Name: python-elementtree
-Version: 1.2.6
-Release: 4
+%define real_name elementtree
+
 Summary: Fast XML parser and writer
-Group: Development/Libraries
+Name: python-elementtree
+%define real_version 1.2.6-20050316
+%define real_version_celementtree 1.0.2-20050302
+Version: 1.2.6
+Release: 5
 License: PSF
+Group: Development/Libraries
 URL: http://effbot.org/zone/element-index.htm
-Source0: http://effbot.org/downloads/%{_upstream_nvr}.zip
-Source1: http://effbot.org/downloads/%{_upstream_cnvr}.zip
+
+Source0: http://effbot.org/downloads/elementtree-%{real_version}.tar.gz
+Source1: http://effbot.org/downloads/cElementTree-%{real_version_celementtree}.tar.gz
 Source2: cElementTree-system-expat-setup.py
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: expat-devel, python-devel
-Requires: python-abi = %(%{__python} -c "import sys ; print sys.version[:3]")
+Requires: python-abi = %{python_abi}
+Obsoletes: python-celementtree
 
 %description
 The Element type is a simple but flexible container object, designed
@@ -27,29 +35,25 @@ between a Python list and a Python dictionary.
 This package also includes the C implementation, %{_upstream_cnvr}.
 
 %prep
-%setup -n %{_upstream_nvr} -a 1
-
-## Take care of cElementTree
-pushd %{_upstream_cnvr}
-mv -f setup.py setup.py-orig
-cp -f %{SOURCE2} setup.py
-cp -f README ../README-cElementTree
-cp -f CHANGES ../CHANGES-cElementTree
+%setup -a1 -n %{real_name}-%{real_version}
+pushd cElementTree-%{real_version_celementtree}
+%{__mv} -f setup.py setup.py-orig
+%{__cp} -f %{SOURCE2} setup.py
+%{__mv} -f CHANGES ../CHANGES-cElementTree
+%{__mv} -f README ../README-cElementTree
 popd
-
 
 %build
 %{__python} setup.py build
-pushd %{_upstream_cnvr}
-CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
+pushd cElementTree-%{real_version_celementtree}
+CFLAGS="%{optflags}" %{__python} setup.py build
 popd
-
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-pushd %{_upstream_cnvr}
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}"
+pushd cElementTree-%{real_version_celementtree}
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}"
 popd
 
 %clean
@@ -57,14 +61,15 @@ popd
 
 %files
 %defattr(-, root, root, 0755)
-%doc benchmark.py CHANGES* docs README* samples
-%dir %{python_sitelib}/elementtree
-%{python_sitelib}/elementtree/*.py
-%{python_sitelib}/elementtree/*.pyc
+%doc CHANGES* README* benchmark.py docs/ samples/
+%{python_sitelib}/elementtree/
 %ghost %{python_sitelib}/elementtree/*.pyo
 %{python_sitearch}/*.so
 
 %changelog
+* Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 1.2.6-5
+- Obsoleted python-celementtree.
+
 * Tue Jul 26 2005 Jeff Pitman <symbiont+pyvault@berlios.de> 1.2.6-4.1
 - pyvaultize
 
@@ -91,4 +96,3 @@ popd
 
 * Sat Mar  5 2005 Konstantin Ryabitsev <icon@linux.duke.edu> - 1.2.5-1
 - Initial RPM release.
-

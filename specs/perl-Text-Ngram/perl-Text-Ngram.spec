@@ -20,7 +20,6 @@ URL: http://search.cpan.org/dist/Text-Ngram/
 Source: http://search.cpan.org/CPAN/authors/id/C/CO/COG/Text-Ngram-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl
 
 %description

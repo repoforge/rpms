@@ -33,7 +33,8 @@ ranges, throttling, authentication, proxies and more.
 %{__python} setup.py build
 
 %install
-%{__python} setup.py install --root="%{buildroot}"
+%{__rm} -rf %{buildroot}
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_docdir}
@@ -46,6 +47,7 @@ ranges, throttling, authentication, proxies and more.
 %doc ChangeLog LICENSE README TODO
 %{_bindir}/urlgrabber
 %{python_sitelib}/urlgrabber/
+%ghost %{python_sitelib}/urlgrabber/*.pyo
 
 %changelog
 * Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 2.9.7-1
