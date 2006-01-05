@@ -22,9 +22,9 @@ Version: 0.3
 Release: 1
 License: GPL
 Group: Applications/Engineering
-URL: http://ktechlab.fadedminds.com/
+URL: http://ktechlab.org/
 
-Source: http://ktechlab.fadedminds.com/download/ktechlab-%{version}.tar.bz2
+Source: http://ktechlab.org/download/ktechlab-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gpsim-devel, gcc, make, libpng-devel, libart_lgpl-devel

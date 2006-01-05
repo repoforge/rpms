@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Provides: urlgrabber
+BuildRequires: python
 
 %description
 python-urlgrabber is a high-level cross-protocol url-grabber for python
