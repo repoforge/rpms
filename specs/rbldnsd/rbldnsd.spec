@@ -1,21 +1,19 @@
 # $Id$
 # Authority: nac
 
-%define         pkghome    /var/lib/rbldns
+Summary: Small and fast DNS server for serving blacklist zones.
+Name: rbldnsd
+Version: 0.995
+Release: 1
+License: GPL
+Group: System Environment/Daemons
+URL: http://www.corpit.ru/mjt/rbldnsd.html  
 
-Summary:        Small and fast DNS server for serving blacklist zones.
-Name:           rbldnsd
-Version:        0.995
-Release:        1
-License:        GPL
-Group:          System Environment/Daemons
-Source:         http://www.corpit.ru/mjt/rbldnsd/%{name}_%{version}.tar.gz
-URL:            http://www.corpit.ru/mjt/rbldnsd.html  
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
-Prereq:         /sbin/chkconfig, /sbin/nologin, shadow-utils
+Source: http://www.corpit.ru/mjt/rbldnsd/rbldnsd_%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Requires: /sbin/chkconfig, /sbin/nologin, shadow-utils
 
 %description
-
 rbldnsd is a small and fast DNS daemon which is especially made to serve
 DNSBL zones. This daemon was inspired by Dan J. Bernstein's rbldns program
 found in the djbdns package.
@@ -35,26 +33,17 @@ TXT values which are stored only once.
 %setup
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" CC="${CC:-%__cc}" ./configure 
+CFLAGS="%{optflags}" CC="${CC:-%__cc}" ./configure 
 %{__make} %{_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
+%{__install} -Dp -m0555 rbldnsd %{buildroot}%{_sbindir}/rbldnsd
+%{__install} -Dp -m0444 rbldnsd.8 %{buildroot}%{_mandir}/man8/rbldnsd.8
+%{__install} -Dp -m0664 debian/rbldnsd.default %{buildroot}%{_sysconfdir}/sysconfig/rbldnsd
+%{__install} -Dp -m0555 debian/rbldnsd.init %{buildroot}%{_initrddir}/rbldnsd
 
-%{__install} -d %{buildroot}%{_sbindir}     \
-    %{buildroot}%{_mandir}/man8             \
-    %{buildroot}%{_sysconfdir}/rc.d/init.d/ \
-    %{buildroot}%{_sysconfdir}/sysconfig/   \
-    %{buildroot}%{_var}/lib/rbldns          \
-    %{buildroot}%{_var}/lib/rbldns/log      \
-    %{buildroot}%{_var}/lib/rbldns/work     \
-
-%{__install} -m555 rbldnsd %{buildroot}%{_sbindir}
-%{__install} -m444 rbldnsd.8 %{buildroot}%{_mandir}/man8
-%{__install} -m664 debian/rbldnsd.default \
-    %{buildroot}%{_sysconfdir}/sysconfig/rbldnsd
-%{__install} -m555 debian/rbldnsd.init \
-    %{buildroot}%{_sysconfdir}/rc.d/init.d/rbldnsd
+%{__install} -d %{buildroot}%{_localstatedir}/lib/rbldns/{log,work}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,8 +51,8 @@ CFLAGS="$RPM_OPT_FLAGS" CC="${CC:-%__cc}" ./configure
 %pre
 if [ $1 -eq 1 ]; then
 	if ! getent passwd rbldns ; then
-    		useradd -r -d %{pkghome} -M -c "rbldns Daemon" -s /sbin/nologin rbldns
-    		#chown root:root %{pkghome}
+    		useradd -r -d %{_localstatedir}/lib/rbldns -M -c "rbldns Daemon" -s /sbin/nologin rbldns
+    		#chown root:root %{_localstatedir}/lib/rbldns
 	fi
 fi
 
@@ -80,14 +69,16 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc README.user NEWS TODO debian/changelog CHANGES-0.81
-%{_sbindir}/rbldnsd
-%{_mandir}/man8/rbldnsd.8*
+%doc CHANGES-0.81 debian/changelog NEWS README.user TODO
+%doc %{_mandir}/man8/rbldnsd.8*
 %config(noreplace) %{_sysconfdir}/sysconfig/rbldnsd
-%{_sysconfdir}/rc.d/init.d/rbldnsd                  
-%{_var}/lib/rbldns
-%attr(0775,rbldns,rbldns) %{_var}/lib/rbldns/log
-%attr(0775,rbldns,rbldns) %{_var}/lib/rbldns/work
+%config %{_initrddir}/rbldnsd                  
+%{_sbindir}/rbldnsd
+%dir %{_localstatedir}/lib/rbldns/
+
+%defattr(0775, rbldns, rbldns, 0755)
+%{_localstatedir}/lib/rbldns/log/
+%{_localstatedir}/lib/rbldns/work/
 
 %changelog
 * Tue Jan 03 2006 Dries Verachtert <dries@ulyssis.org> - 0.995-1
