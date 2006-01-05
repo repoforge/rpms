@@ -42,7 +42,7 @@ ${CC:-%{__cc}} %{optflags} -o ttcp ttcp.c
 %{_bindir}/*
 
 %changelog
-* Sun Aug 17 2003 Dag Wieers <dag@wieers.coM> - 3.7-1
+* Sun Aug 17 2003 Dag Wieers <dag@wieers.com> - 3.7-1
 - Added manpage and README. (Matthew Bogosian)
 
 * Mon Aug 04 2003 Dag Wieers <dag@wieers.com> - 3.7-0

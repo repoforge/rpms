@@ -7,7 +7,7 @@ Version: 0.995
 Release: 1
 License: GPL
 Group: System Environment/Daemons
-URL: http://www.corpit.ru/mjt/rbldnsd.html  
+URL: http://www.corpit.ru/mjt/rbldnsd.html
 
 Source: http://www.corpit.ru/mjt/rbldnsd/rbldnsd_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

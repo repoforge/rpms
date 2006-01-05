@@ -70,7 +70,7 @@ you will need to install %{name}-devel.
 %{_libdir}/libcardif.a
 
 %changelog
-* Sun Feb 13 2005 Dag Wieers <dag@wieers.coM> - 1.0.1-2
+* Sun Feb 13 2005 Dag Wieers <dag@wieers.com> - 1.0.1-2
 - Added default xsupplicant.conf.
 
 * Tue Jan 11 2005 Chris Weyl <cweyl@alumni.drew.edu> - 1.0.1-1

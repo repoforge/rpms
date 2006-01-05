@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dag
-# Upstream: 
 
 %define real_name rrdUtils
 
@@ -10,6 +9,7 @@ Version: 3.3
 Release: 1
 License: El Menda
 Group: Applications/Databases
+URL: http://www.rediris.es/app/rrdUtils/
 
 Source: ftp://ftp.rediris.es/rediris/software/rrdUtils/rrdUtils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

@@ -7,7 +7,7 @@ Version: 1.11
 Release: 1
 License: GPL
 Group: Applications/System
-URL: http://people.ee.ethz.ch/~dws/software/mailgraph/  
+URL: http://people.ee.ethz.ch/~dws/software/mailgraph/
 
 Source0: http://people.ee.ethz.ch/~dws/software/mailgraph/pub/mailgraph-%{version}.tar.gz
 Source1: mailgraph.httpd-conf

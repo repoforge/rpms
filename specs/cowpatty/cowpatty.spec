@@ -39,5 +39,5 @@ wordlist.
 %{_bindir}/cowpatty
 
 %changelog
-* Fri Dec 02 2005 Dag Wieers <dag@wieers.coM> - 2.0-1
+* Fri Dec 02 2005 Dag Wieers <dag@wieers.com> - 2.0-1
 - Initial package. (using DAR)

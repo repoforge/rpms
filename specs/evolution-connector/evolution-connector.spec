@@ -70,5 +70,5 @@ gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/apps_evolutio
 %{_datadir}/ximian-connector/
 
 %changelog
-* Fri Aug 27 2004 Dag Wieers <dag@wieers.coM> - 1.4.7.2-1
+* Fri Aug 27 2004 Dag Wieers <dag@wieers.com> - 1.4.7.2-1
 - Initial package. (using DAR)

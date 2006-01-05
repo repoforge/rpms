@@ -65,7 +65,7 @@ MailTools module for perl.
 * Sat Jun 19 2005 Dries Verachtert <dries@ulyssis.org> - 1.67-1
 - Updated to release 1.67.
 
-* Mon Feb 21 2005 Dag Wieers <dag@wieers.coM> - 1.66-1
+* Mon Feb 21 2005 Dag Wieers <dag@wieers.com> - 1.66-1
 - Updated to release 1.66.
 
 * Wed Oct 20 2004 Dries Verachtert <dries@ulyssis.org> - 1.64-0
