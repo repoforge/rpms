@@ -14,7 +14,7 @@
 
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
-Version: 4.63
+Version: 4.64
 Release: 1
 License: Freely Distributable
 Group: Applications/Internet
@@ -173,6 +173,9 @@ cd pinepgp-%{pgpver}
 %{_sbindir}/mlock
 
 %changelog
+* Thu Jan 05 2006 Dag Wieers <dag@wieers.com> - 4.64-1
+- Updated to release 4.64.
+
 * Mon May 16 2005 Dag Wieers <dag@wieers.com> - 4.63-1
 - Updated to release 4.63.
 

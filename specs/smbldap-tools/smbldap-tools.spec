@@ -15,6 +15,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 5.6
 Requires: perl >= 5.6, openldap, openldap-clients, samba
+Requires: perl(XML::SAX::Base), perl-ldap, perl(XML::NamespaceSupport)
+Requires: perl(Convert::ASN1)
 
 BuildArch: noarch
 

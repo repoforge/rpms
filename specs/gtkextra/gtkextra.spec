@@ -1,6 +1,6 @@
 # $Id$
-
 # Authority: dries
+
 # Screenshot: http://scigraphica.sourceforge.net/images/gradient.jpg
 # ScreenshotURL: http://scigraphica.sourceforge.net/screenshots.html
 
@@ -15,7 +15,7 @@ URL: http://gtkextra.sourceforge.net/
 Source: http://gtkextra.sourceforge.net/src/gtk+extra-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: automake, autoconf, gtk+-devel, glib-devel
+BuildRequires: glib-devel, gtk+-devel
 
 %description
 GtkExtra is a useful set of widgets for creating GUI's for the Xwindows
@@ -43,11 +43,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %makeinstall
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}

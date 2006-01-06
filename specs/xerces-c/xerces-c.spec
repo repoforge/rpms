@@ -1,17 +1,17 @@
 # $Id$
 # Authority: leet
 
-%define tarversion  2_7_0
+%define real_version 2_7_0
 
 Summary: Validating XML Parser
 Name: xerces-c
-License: Apache
-Group: Development/Libraries
 Version: 2.7.0
 Release: 1
+License: Apache
+Group: Development/Libraries
 URL: http://xml.apache.org/xerces-c/
 
-Source0: http://www.apache.org/dist/xml/xerces-c/source/xerces-c-src_%{tarversion}.tar.gz
+Source: http://www.apache.org/dist/xml/xerces-c/source/xerces-c-src_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -22,71 +22,58 @@ generating, manipulating, and validating XML documents. Xerces-C is
 faithful to the XML 1.0 recommendation and associated standards ( DOM
 1.0, DOM 2.0. SAX 1.0, SAX 2.0, Namespaces).
 
-Authors:
---------
-    The Apache Group <apache@apache.org>
-
 %package devel
-Requires:     xerces-c = %{version}
-Group:        Development/Libraries/C and C++
-Summary:      A validating XML parser - Development Files
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
 
 %description devel
-Xerces-C is a validating XML parser written in a portable subset of
-C++. Xerces-C makes it easy to give your application the ability to
-read and write XML data. A shared library is provided for parsing,
-generating, manipulating, and validating XML documents.
-
-This package includes files needed for development with Xerces-c
-
-Authors:
---------
-    The Apache Group <apache@apache.org>
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -n xerces-c-src_%{tarversion}
-%{__perl} -pi -e "s|{PREFIX}/lib|{PREFIX}\@libdir\@|g;" */Makefile.in
-%{__perl} -pi -e "s|\(PREFIX\)/lib|\(PREFIX\)\@libdir\@|g;" */Makefile.in
+%setup -n xerces-c-src_%{real_version}
+%{__perl} -pi.orig -e 's|(PREFIX.)/lib\b|$1/%{_lib}|g' src/xercesc/configure */Makefile.in
 
 %build
-export XERCESCROOT=`pwd`
+export XERCESCROOT="$PWD"
 pushd src/xercesc
-autoreconf --install --force
+#autoreconf --install --force
 %ifarch alpha ppc64 s390x sparc64 x86_64
-BITSTOBUILD=64
+./runConfigure -plinux -cgcc -xg++ -minmem -nsocket -tnative -b64 -P %{_prefix} -C --libdir="%{_libdir}"
 %else
-BITSTOBUILD=32
+./runConfigure -plinux -cgcc -xg++ -minmem -nsocket -tnative -b32 -P %{_prefix} -C --libdir="%{_libdir}"
 %endif
-./runConfigure -plinux -cgcc -xg++ -minmem -nsocket -tnative -b "$BITSTOBUILD" -P /usr -C --libdir=%{_libdir}
 %{__make}
 popd
 
 %install
-rm -rf %{buildroot}
-export XERCESCROOT=`pwd`
-pushd src/xercesc
-make install PREFIX=%{buildroot} PREFIX_INCLUDE=%{buildroot}/%{_includedir}/xercesc 
-popd
+%{__rm} -rf %{buildroot}
+export XERCESCROOT="$PWD"
+%{__make} install -C src/xercesc DESTDIR="%{buildroot}"
+#	PREFIX="%{buildroot}%{_prefix}"
 
-%post   -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root)
+%defattr(-, root, root, 0755)
 %doc LICENSE.txt Readme.html
-%{_libdir}/lib%{name}.so.*
-%{_libdir}/libxerces-depdom.so.*
+%{_libdir}/libxerces*.so.*
 
 %files devel
-%defattr(-,root,root)
-%{_libdir}/lib%{name}.so
-%{_libdir}/libxerces-depdom.so
-%attr( - ,root,root) %{_includedir}/xercesc/
+%defattr(-, root, root, 0755)
+%{_libdir}/libxerces*.so
+%{_includedir}/xercesc/
 
 %changelog
+* Fri Jan 06 2006 Dag Wieers <dag@wieers.com> - 2.7.0-1
+- Cleaned SPEC file.
+
 * Tue Jan 03 2006 Dries Verachtert <dries@ulyssis.org> - 2.7.0-1
 - Updated to release 2.7.0.
 
