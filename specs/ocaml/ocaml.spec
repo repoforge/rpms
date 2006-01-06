@@ -26,15 +26,15 @@
 Summary: Objective Caml
 Name: ocaml
 Version: 3.09.1
-Release: 1
+Release: 2
 License: QPL/LGPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
 
-Source: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-%{version}.tar.bz2
-Source1: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.html.tar.gz
-Source2: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.ps.gz
-Source3: http://caml.inria.fr/distrib/ocaml-3.08/ocaml-3.08-refman.info.tar.gz
+Source: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-%{version}.tar.bz2
+Source1: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-3.09-refman.html.tar.gz
+Source2: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-3.09-refman.ps.gz
+Source3: http://caml.inria.fr/distrib/ocaml-3.09/ocaml-3.09-refman.info.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, gdbm-devel, emacs
@@ -169,6 +169,9 @@ Emacs mode for Objective Caml.
 %{_datadir}/emacs/site-lisp/*.elc
 
 %changelog
+* Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 3.09.1-2
+- Source url fixed.
+
 * Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 3.09.1-1
 - Updated to release 3.09.1.
 

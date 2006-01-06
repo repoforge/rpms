@@ -12,7 +12,7 @@ License: GPL
 Group: X11/Applications
 URL: http://ripperx.sourceforge.net
 
-Source:	ftp://ftp.sf.net/pub/sourceforge/r/ri/ripperx/ripperX-%{version}.tar.gz
+Source:	http://dl.sf.net/ripperx/ripperX-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: cdparanoia
