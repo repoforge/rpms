@@ -1,6 +1,14 @@
 # $Id$
 # Authority: matthias
 
+%{?fc1:%define _without_xorg 1}
+%{?el3:%define _without_xorg 1}
+%{?rh9:%define _without_xorg 1}
+%{?rh8:%define _without_xorg 1}
+%{?rh7:%define _without_xorg 1}
+%{?el2:%define _without_xorg 1}
+%{?rh6:%define _without_xorg 1}
+
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
 Version: 0.0.380
@@ -12,7 +20,9 @@ URL: http://developers.videolan.org/x264.html
 # find x264 -name .svn | xargs rm -rf
 Source: %{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: xorg-x11-devel, nasm, yasm
+BuildRequires: nasm, yasm
+%{?_without_xorg:BuildRequires: XFree86-devel}
+%{!?_without_xorg:BuildRequires: xorg-x11-devel}
 # version.sh requires svnversion
 BuildRequires: subversion
 
