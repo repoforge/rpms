@@ -1,7 +1,8 @@
 # $Id$
 
 # Authority: dries
-# Upstream: 
+
+%{?dist: %{expand: %%define %dist 1}}
 
 Summary: Tool for distributing large files
 Name: jigdo
@@ -17,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: w3c-libwww-devel, gtk2-devel, pkgconfig, db4-devel 
 BuildRequires: gcc-c++, openssl-devel, desktop-file-utils, wget
 Requires: wget
+%{?fc4:BuildRequires: compat-gcc-32, compat-gcc-32-c++}
 
 %description
 Jigsaw Download, or short jigdo, is a tool designed to ease the distribution
@@ -41,6 +43,8 @@ Categories=Application;Network;X-Red-Hat-Extra;
 EOF
 
 %build
+%{?fc4:export CC=gcc32}
+%{?fc4:export CXX=g++32}
 %configure
 %{__make} %{?_smp_mflags}
 

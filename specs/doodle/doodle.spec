@@ -2,6 +2,12 @@
 # Authority: dag
 # Upstream: Christian Grothoff <christian@grothoff.org>
 
+%{?dist: %{expand: %%define %dist 1}}
+
+%{?el3:%define _without_gamin 1}
+%{?fc2:%define _without_gamin 1}
+%{?fc1:%define _without_gamin 1}
+
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
 Version: 0.6.4
@@ -14,6 +20,8 @@ Source: http://gnunet.org/doodle/download/doodle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libextractor-devel, gcc-c++, gettext
+%{?_without_gamin:BuildRequires: fam-devel}
+%{!?_without_gamin:BuildRequires: gamin-devel}
 
 %description
 Doodle is a tool that searches your hard drive for files using pattern
@@ -61,6 +69,7 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man3/libdoodle.3*
 %{_includedir}/doodle.h
 %{_libdir}/libdoodle.a
+%{_libdir}/libdoodle.so
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
