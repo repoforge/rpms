@@ -3,9 +3,14 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?rh9:%define _without_x264 1}
+
 %{?rh7:%define _without_faac 1}
+%{?rh7:%define _without_x264 1}
+
 %{?el2:%define _without_faac 1}
 %{?el2:%define _without_vorbis 1}
+%{?el2:%define _without_x264 1}
 
 %define date   20051207
 #define prever pre1

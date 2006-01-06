@@ -1,6 +1,13 @@
 # $Id$
 # Authority: matthias
 
+%{?fc2:%define _without_gettextdevel 1}
+%{?fc1:%define _without_gettextdevel 1}
+%{?el3:%define _without_gettextdevel 1}
+%{?rh9:%define _without_gettextdevel 1}
+%{?rh7:%define _without_gettextdevel 1}
+%{?el2:%define _without_gettextdevel 1}
+
 Summary: Complete rewrite of the NASM assembler
 Name: yasm
 Version: 0.4.0
@@ -10,7 +17,10 @@ Group: Development/Languages
 URL: http://www.tortall.net/projects/yasm/
 Source: http://www.tortall.net/projects/yasm/releases/yasm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: bison, byacc, xmlto, gettext-devel
+BuildRequires: bison, byacc, xmlto
+
+%{!?_without_gettextdevel:BuildRequires: gettext-devel}
+%{?_without_gettextdevel:BuildRequires: gettext}
 
 
 %description

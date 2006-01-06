@@ -3,12 +3,12 @@
 # Upstream: Dan Kaminsky <dan$doxpara,com>
 # Distcc: 0
 
-%define real_version 2.00pre3
 
 Summary: Unusual TCP/IP testing tools
 Name: paketto
+%define real_version 2.00pre5
 Version: 2.00
-Release: 1.pre3
+Release: 1.pre5
 License: GPL
 Group: Applications/Internet
 URL: http://www.doxpara.com/
@@ -52,6 +52,9 @@ and	phentropy (plots a large data source onto a 3D matrix)
 %{_libdir}/*
 
 %changelog
+* Fri Jan 06 2006 Dag Wieers <dag@wieers.com> - 2.00-1.pre5
+- Updated to release 2.00pre5.
+
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.00-1.pre3
 - Cosmetic rebuild for Group-tag.
 
