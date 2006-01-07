@@ -26,7 +26,7 @@
 Summary: Objective Caml
 Name: ocaml
 Version: 3.09.1
-Release: 2
+Release: 1
 License: QPL/LGPL
 Group: Development/Languages
 URL: http://caml.inria.fr/
@@ -169,9 +169,6 @@ Emacs mode for Objective Caml.
 %{_datadir}/emacs/site-lisp/*.elc
 
 %changelog
-* Fri Jan 06 2006 Dries Verachtert <dries@ulyssis.org> - 3.09.1-2
-- Source url fixed.
-
 * Wed Jan 04 2006 Dries Verachtert <dries@ulyssis.org> - 3.09.1-1
 - Updated to release 3.09.1.
 

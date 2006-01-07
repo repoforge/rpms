@@ -8,19 +8,16 @@
 
 %{?fc3:%define _without_wxwidgets 1}
 
-%{?fc2:%define _without_x264 1}
 %{?fc2:%define _without_wxwidgets 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
 %{?fc1:%define _without_wxwidgets 1}
-%{?fc1:%define _without_x264 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_wxwidgets 1}
-%{?el3:%define _without_x264 1}
 
 %{?rh9:%define _without_alsa 1}
 %{?rh9:%define _without_fribidi 1}

@@ -1,7 +1,13 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4
+# ExcludeDist: fc3 el4
+
+%{?fc1:%define _without_alsa 1}
+%{?el3:%define _without_alsa 1}
+%{?rh9:%define _without_alsa 1}
+%{?rh7:%define _without_alsa 1}
+%{?el2:%define _without_alsa 1}
 
 %define prever alpha3
 

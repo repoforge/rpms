@@ -3,12 +3,18 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
+%{?fc1:%define _without_theora 1}
+%{?el3:%define _without_theora 1}
+
+%{?rh9:%define _without_theora 1}
 %{?rh9:%define _without_x264 1}
 
 %{?rh7:%define _without_faac 1}
+%{?rh7:%define _without_theora 1}
 %{?rh7:%define _without_x264 1}
 
 %{?el2:%define _without_faac 1}
+%{?el2:%define _without_theora 1}
 %{?el2:%define _without_vorbis 1}
 %{?el2:%define _without_x264 1}
 
