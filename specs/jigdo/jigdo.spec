@@ -45,6 +45,7 @@ EOF
 %build
 %{?fc4:export CC=gcc32}
 %{?fc4:export CXX=g++32}
+%{expand: %%define optflags -O2}
 %configure
 %{__make} %{?_smp_mflags}
 

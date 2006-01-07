@@ -19,7 +19,7 @@ URL: http://www.debain.org/software/gip/
 Source: http://web222.mis02.de/releases/gip/gip-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, gtkmm2-devel, libsigc++-devel
+BuildRequires: gettext, gtkmm2-devel, libsigc++-devel, which
 
 %description
 Gip is a nice GNOME GUI for making IP address based calculations.

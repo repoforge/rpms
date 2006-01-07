@@ -12,7 +12,7 @@ URL: http://savannah.nongnu.org/projects/gksu/
 Source: http://people.debian.org/~kov/gksu/libgksuui1.0/libgksuui1.0-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, bison, gcc-c++, gtk-doc
+BuildRequires: gettext, bison, gcc-c++, gtk-doc, pkgconfig, gtk2-devel
 
 %description
 Libgksuui uses the Gtk+2 library to show the dialog asking for the target 

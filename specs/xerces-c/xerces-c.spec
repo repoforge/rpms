@@ -14,6 +14,8 @@ URL: http://xml.apache.org/xerces-c/
 Source: http://www.apache.org/dist/xml/xerces-c/source/xerces-c-src_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
 Xerces-C is a validating XML parser written in a portable subset of
 C++. Xerces-C makes it easy to give your application the ability to

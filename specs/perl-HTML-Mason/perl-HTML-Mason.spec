@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/HTML-Mason-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 Mason is a Perl-based web site development and delivery
