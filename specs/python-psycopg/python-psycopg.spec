@@ -16,7 +16,7 @@ URL: http://initd.org/projects/psycopg1
 Source: http://initd.org/pub/software/psycopg/psycopg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python >= 2.2, python-devel, postgresql-devel
+BuildRequires: python >= 2.2, python-devel, postgresql-devel, mx
 
 %description
 psycopg is a PostgreSQL database adapter for the Python programming 
@@ -30,8 +30,7 @@ distribution includes ZPsycopgDA, a Zope Database Adapter.
 %setup -n %{real_name}-%{version}
 
 %build
-./configure --help
-%configure --with-postgres-includes=%{_includedir}/pgsql/
+%configure --with-postgres-includes="%{_includedir}/pgsql/"
 %{__make}
 
 %install
