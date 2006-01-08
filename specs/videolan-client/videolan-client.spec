@@ -60,13 +60,14 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: videolan-client
-Version: 0.8.4
-Release: 3
+Version: 0.8.4a
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
+Source2: http://www.live555.com/liveMedia/public/live.2006.01.05.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, XFree86-devel, libpng-devel, libxml2-devel
 BuildRequires: libgcrypt-devel, gnutls-devel
@@ -122,7 +123,7 @@ Available rpmbuild rebuild options :
 --without dvdread dvdnav dvbpsi v4l avi asf aac ogg mad ffmpeg cdio
           a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwidgets xosd
           lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
-          gnomevfs vcd daap pvr
+          gnomevfs vcd daap pvr live
 
 Options that would need not yet existing add-on packages :
 --with tremor tarkin svgalib ggi
@@ -143,7 +144,7 @@ to link statically to it.
 
 
 %prep
-%setup -n %{real_name}-%{version} -a 1
+%setup -n %{real_name}-%{version} -a 1 -a 2
 # Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib/vlc|/%{_lib}/vlc|g' vlc-config.in.in configure*
 
@@ -159,6 +160,16 @@ pushd ffmpeg-%{ffmpeg_date}
         --enable-gpl
     %{__make} %{?_smp_mflags}
 popd
+
+# Then bundled live555
+%if 0%{!?_without_live:1}
+pushd live
+    # Force the use of our CFLAGS
+    %{__perl} -pi -e 's|-O2|%{optflags}|g' config.linux
+    # Configure and build
+    ./genMakefiles linux && %{__make}
+popd
+%endif
 
 # Altivec compiler flags aren't set properly (0.8.2)
 %ifarch ppc ppc64
@@ -211,7 +222,8 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
     %{?_with_glide:--enable-glide} \
     %{?_with_ncurses:--enable-ncurses} \
     %{?_without_slp:--disable-slp} \
-    %{?_with_pth:--enable-pth}
+    %{?_with_pth:--enable-pth} \
+    %{!?_without_live:--enable-livedotcom --with-livedotcom-tree="`pwd`/live"}
 %{__make} %{?_smp_mflags}
 
 
@@ -280,6 +292,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 
 %changelog
+* Sun Jan  8 2006 Matthias Saou <http://freshrpms.net/> 0.8.4a-1
+- Update to 0.8.4a.
+- Enable live555.
+
 * Fri Dec  9 2005 Matthias Saou <http://freshrpms.net/> 0.8.4-3
 - Add PVR option, enabled by default.
 - Rebuild against new libdvbpsi.

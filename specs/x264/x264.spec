@@ -11,8 +11,8 @@
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
-Version: 0.0.380
-Release: 2
+Version: 0.0.396
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
@@ -90,6 +90,9 @@ mv -f AUTHORS.utf8 AUTHORS
 
 
 %changelog
+* Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 0.0.396-1
+- Update to svn 396.
+
 * Tue Nov 29 2005 Matthias Saou <http://freshrpms.net/> 0.0.380-2
 - Also force PIC for the yasm bits, thanks to Anssi Hannula.
 
