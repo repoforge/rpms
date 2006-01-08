@@ -9,7 +9,7 @@
 
 Summary: Render Graph-Easy as SVG
 Name: perl-Graph-Easy-As_svg
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ that is human readable and maintainable.
 %{perl_vendorlib}/Graph/Easy/As_svg.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
+- Updated to release 0.16.
+
 * Sun Dec 25 2005 Dries Verachtert <dries@ulyssis.org> - 0.15-1
 - Updated to release 0.15.
 

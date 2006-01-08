@@ -9,7 +9,7 @@
 
 Summary: Create generic methods for OO Perl
 Name: perl-Class-MethodMaker
-Version: 2.07
+Version: 2.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ make install
 %{perl_archlib}/auto/Class/MethodMaker/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1
+- Updated to release 2.08.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 2.07-1
 - Updated to release 2.07.
 
