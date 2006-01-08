@@ -9,7 +9,7 @@
 
 Summary: Sprintf-like string formatting capabilities with arbitrary format definitions
 Name: perl-String-Format
-Version: 1.13
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ query need to be formatted in a particular way.
 %{perl_vendorlib}/String/Format.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.14-1
+- Updated to release 1.14.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.13-1
 - Initial package.

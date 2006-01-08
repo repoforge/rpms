@@ -9,7 +9,7 @@
 
 Summary: Wrapper to canonicalization functions
 Name: perl-XML-CanonicalizeXML
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ canonicalization (http://www.w3.org/TR/2002/REC-xml-exc-c14n-20020718/)
 %{perl_vendorarch}/auto/XML/CanonicalizeXML/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1
+- Updated to release 0.03.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.

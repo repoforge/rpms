@@ -9,7 +9,7 @@
 
 Summary: Fine-grained html-filter, xss-blocker and mailto-obfuscator
 Name: perl-HTML-TagFilter
-Version: 1.01
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ values for each attribute in as much detail as you like.
 %{perl_vendorlib}/HTML/TagFilter.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1
+- Updated to release 1.03.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

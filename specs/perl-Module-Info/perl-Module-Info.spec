@@ -9,7 +9,7 @@
 
 Summary: Information about Perl modules
 Name: perl-Module-Info
-Version: 0.28
+Version: 0.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ Information about Perl modules.
 %{perl_vendorlib}/B
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
+- Updated to release 0.30.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.28-1
 - Updated to release 0.28.
 

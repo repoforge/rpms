@@ -9,7 +9,7 @@
 
 Summary: Get information about memory usage
 Name: perl-Sys-MemInfo
-Version: 0.3
+Version: 0.4
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ in bytes in totalmem and freemem variables.
 %{perl_vendorarch}/auto/Sys/MemInfo/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-1
+- Updated to release 0.4.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.

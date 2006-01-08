@@ -9,7 +9,7 @@
 
 Summary: Wrapper around shellwords.pl
 Name: perl-Text-Shellwords
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ respects backslash escapes.
 %{perl_vendorlib}/Text/Shellwords.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1
+- Updated to release 1.08.
+
 * Sat Apr  2 2005 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Initial package.

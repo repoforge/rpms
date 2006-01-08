@@ -9,7 +9,7 @@
 
 Summary: Perl module for WWW searches.
 Name: perl-WWW-Search
-Version: 2.479
+Version: 2.484
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ This module contains functions for WWW searches.
 %{perl_vendorlib}/WWW/Search/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.484-1
+- Updated to release 2.484.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.479-1
 - Updated to release 2.479.
 

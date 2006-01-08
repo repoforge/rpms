@@ -9,7 +9,7 @@
 
 Summary: Simple interface to F77 libs
 Name: perl-ExtUtils-F77
-Version: 1.14
+Version: 1.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ and name varies with each OS/compiler combination!
 %{perl_vendorlib}/ExtUtils/F77.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.15-1
+- Updated to release 1.15.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Initial package.

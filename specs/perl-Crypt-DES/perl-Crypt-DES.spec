@@ -8,7 +8,7 @@
 
 Summary: Crypt-DES module for perl 
 Name: perl-Crypt-DES
-Version: 2.03
+Version: 2.05
 Release: 3
 License: distributable
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL \
 %{perl_vendorarch}/auto/Crypt/DES/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.05-1
+- Updated to release 2.05.
+
 * Fri Jan 21 2005 Dag Wieers <dag@wieers.com> - 2.03-3
 - Fixes to conform with new perl template. (C.Lee Taylor)
 

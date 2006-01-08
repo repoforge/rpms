@@ -9,7 +9,7 @@
 
 Summary: Cross-platform path specification manipulation
 Name: perl-Path-Class
-Version: 0.14
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ Unix, Windows, Mac, VMS, Epoc, Cygwin, OS/2, and NetWare.
 %{perl_vendorlib}/Path/Class/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1
+- Updated to release 0.15.
+
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Initial package.

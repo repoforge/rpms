@@ -9,7 +9,7 @@
 
 Summary: Perl S/Key calculator
 Name: perl-Crypt-SKey
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ optionally export the function "compute".
 %{perl_vendorlib}/Crypt/SKey.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1
+- Updated to release 0.07.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.

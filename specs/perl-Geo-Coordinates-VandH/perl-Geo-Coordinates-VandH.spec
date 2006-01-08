@@ -9,7 +9,7 @@
 
 Summary: Convert and Manipulate telco V and H coordinates.
 Name: perl-Geo-Coordinates-VandH
-Version: 1.10
+Version: 1.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ With this module, you can convert and Manipulate telco V and H coordinates.
 %{perl_vendorlib}/Geo/Coordinates/vhtest.pl
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.11-1
+- Updated to release 1.11.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Initial package.

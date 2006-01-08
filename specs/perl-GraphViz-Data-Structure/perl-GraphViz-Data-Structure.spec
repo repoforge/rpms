@@ -9,7 +9,7 @@
 
 Summary: Visualise data structures
 Name: perl-GraphViz-Data-Structure
-Version: 0.14
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ of Perl data structures using Leon Brocard's GraphViz module.
 %{perl_vendorlib}/GraphViz/Data/Structure.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.15-1
+- Updated to release 0.15.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 

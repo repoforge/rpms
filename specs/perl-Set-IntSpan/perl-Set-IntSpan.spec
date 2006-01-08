@@ -11,7 +11,7 @@
 
 Summary: Manages sets of integers
 Name: perl-Set-IntSpan
-Version: 1.08
+Version: 1.09
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ have long runs of consecutive integers.
 %{perl_vendorlib}/Set/IntSpan.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.09-1
+- Updated to release 1.09.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 1.08-1
 - Initial package.

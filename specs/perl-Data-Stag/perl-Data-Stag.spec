@@ -9,7 +9,7 @@
 
 Summary: Structured Tags datastructures
 Name: perl-Data-Stag
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ native to perl.
 %{perl_vendorlib}/Data/Stag/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Initial package.

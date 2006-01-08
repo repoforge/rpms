@@ -9,7 +9,7 @@
 
 Summary: Collection of planar geometry functions
 Name: perl-Math-Geometry-Planar
-Version: 1.14
+Version: 1.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ The module also uses the GPC module for polygon clipping operations.
 %{perl_vendorlib}/Math/Geometry/Planar.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1
+- Updated to release 1.16.
+
 * Tue Apr 05 2005 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Initial package.
 

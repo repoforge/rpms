@@ -10,7 +10,7 @@
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
-Version: 0.60a
+Version: 0.66.1
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -62,5 +62,8 @@ on client and server side.
 %{perl_vendorlib}/XMLRPC/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.66.1-1
+- Updated to release 0.66.1.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.60a
 - Initial package.

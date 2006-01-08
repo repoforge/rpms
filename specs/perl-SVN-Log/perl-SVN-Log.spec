@@ -9,7 +9,7 @@
 
 Summary: Extract change logs from a Subversion server
 Name: perl-SVN-Log
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ repositories.
 %{perl_vendorlib}/SVN/Log.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1
+- Updated to release 0.02.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.01-1
 - Initial package.

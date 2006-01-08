@@ -9,7 +9,7 @@
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
-Version: 1.103
+Version: 1.109
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}
 %{perl_vendorlib}/PPI/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.109-1
+- Updated to release 1.109.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.103-1
 - Updated to release 1.103.
 

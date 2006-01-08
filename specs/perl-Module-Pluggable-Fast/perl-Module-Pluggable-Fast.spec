@@ -9,7 +9,7 @@
 
 Summary: Fast plugins with instantiation
 Name: perl-Module-Pluggable-Fast
-Version: 0.17
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ they're found, useful for code generators like "Class::DBI::Loader".
 %{perl_vendorlib}/Module/Pluggable/Fast.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.18-1
+- Updated to release 0.18.
+
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.17-1
 - Initial package.

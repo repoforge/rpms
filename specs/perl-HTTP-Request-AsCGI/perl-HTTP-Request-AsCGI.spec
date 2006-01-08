@@ -9,7 +9,7 @@
 
 Summary: Setup a CGI enviroment from a HTTP::Request
 Name: perl-HTTP-Request-AsCGI
-Version: 0.2
+Version: 0.3
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Provides a convinient way of setting up an CGI enviroment from a HTTP::Request.
 %{perl_vendorlib}/HTTP/Request/AsCGI.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1
+- Updated to release 0.3.
+
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.2-1
 - Initial package.

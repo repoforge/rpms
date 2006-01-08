@@ -9,7 +9,7 @@
 
 Summary: Create sitemaps
 Name: perl-WWW-Google-SiteMap
-Version: 1.03
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ they change, etc.
 %{perl_vendorlib}/WWW/Google/SiteMap/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
+- Updated to release 1.04.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Initial package.

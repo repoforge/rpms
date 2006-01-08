@@ -9,7 +9,7 @@
 
 Summary: library for enabling X-WSSE authentication in LWP
 Name: perl-LWP-Authen-Wsse
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ This module is a library for enabling X-WSSE authentication in LWP.
 %{perl_vendorlib}/LWP/Authen/Wsse.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.05-1
+- Updated to release 0.05.
+
 * Thu Dec 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.

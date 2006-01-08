@@ -9,7 +9,7 @@
 
 Summary: Emulate file interface for in-core strings
 Name: perl-IO-String
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ such IO::String is a replacement for IO::Scalar.
 %{perl_vendorlib}/IO/String.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1
+- Updated to release 1.08.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Updated to release 1.07.
 
