@@ -41,7 +41,7 @@ Remove files and directories.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc CHANGES README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/File/Remove.pm
 

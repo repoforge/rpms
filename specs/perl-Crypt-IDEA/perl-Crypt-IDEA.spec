@@ -43,6 +43,7 @@ Perl interface to IDEA block cipher.
 #%doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorarch}/Crypt/IDEA.p*
+%{perl_vendorarch}/Crypt/._test.pl
 %{perl_vendorarch}/auto/Crypt/IDEA
 
 %changelog

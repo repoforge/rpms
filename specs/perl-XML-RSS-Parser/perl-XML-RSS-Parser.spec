@@ -28,7 +28,7 @@ XML::RSS::Parser is an objected-oriented liberal parser for handling
 the morass of RSS formats in use.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-4
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

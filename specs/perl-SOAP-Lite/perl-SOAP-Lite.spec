@@ -6,7 +6,6 @@
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name SOAP-Lite
-%define dir_version 0.60
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
@@ -28,7 +27,7 @@ and lightweight interface to the Simple Object Access Protocol (SOAP) both
 on client and server side.
 
 %prep
-%setup -n %{real_name}-%{dir_version}
+%setup
 
 %build
 (echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}") || echo "ignore warnings"

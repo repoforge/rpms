@@ -44,6 +44,10 @@ With this module, you can get the home directory of a user.
 %doc Changes README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/File/HomeDir.pm
+%{perl_vendorlib}/File/HomeDir/Darwin.pm
+%{perl_vendorlib}/File/HomeDir/MacOS9.pm
+%{perl_vendorlib}/File/HomeDir/Unix.pm
+%{perl_vendorlib}/File/HomeDir/Windows.pm
 
 %changelog
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1

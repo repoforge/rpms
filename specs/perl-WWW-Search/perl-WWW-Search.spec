@@ -46,7 +46,7 @@ This module contains functions for WWW searches.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
+%doc Changes README
 %doc %{_mandir}/man3/*
 %doc %{_mandir}/man1/*
 %{_bindir}/AutoSearch

@@ -52,11 +52,11 @@ make install
 %defattr(-, root, root, 0755)
 %doc Changes README
 %doc %{_mandir}/man3/*
-%dir %{perl_archlib}/Class/
-%{perl_archlib}/Class/MethodMaker.pm
-%{perl_archlib}/Class/MethodMaker/
-%dir %{perl_archlib}/auto/Class/
-%{perl_archlib}/auto/Class/MethodMaker/
+%dir %{perl_vendorarch}/Class/
+%{perl_vendorarch}/Class/MethodMaker.pm
+%{perl_vendorarch}/Class/MethodMaker/
+%dir %{perl_vendorarch}/auto/Class/
+%{perl_vendorarch}/auto/Class/MethodMaker/
 
 %changelog
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.08-1

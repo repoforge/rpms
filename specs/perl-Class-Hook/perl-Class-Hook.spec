@@ -26,7 +26,7 @@ Class::Hook enables you to trace methods calls from your code to other
 classes.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

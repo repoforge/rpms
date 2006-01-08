@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl-Module-ScanDeps, perl-Module-CoreList, perl-CPANPLUS
+BuildRequires: perl-YAML, perl-PAR-Dist, perl-Archive-Tar, perl-ExtUtils-ParseXS
 
 %description
 Module::Install is a standalone, extensible installer for Perl modules.  It is 
