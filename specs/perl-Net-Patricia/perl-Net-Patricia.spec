@@ -9,7 +9,7 @@
 
 Summary: Patricia Trie perl module for fast IP address lookups
 Name: perl-Net-Patricia
-Version: 1.010
+Version: 1.014
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,5 +58,8 @@ Reno release.
 %{perl_vendorarch}/auto/Net/Patricia
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.014-1
+- Updated to release 1.014.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.010-1
 - Initial package.

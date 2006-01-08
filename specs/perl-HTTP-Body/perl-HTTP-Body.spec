@@ -9,7 +9,7 @@
 
 Summary: HTTP Body parser
 Name: perl-HTTP-Body
-Version: 0.5
+Version: 0.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ This module contains a HTTP body parser.
 %{perl_vendorlib}/HTTP/Body/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1
+- Updated to release 0.6.
+
 * Thu Dec 15 2005 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Initial package.

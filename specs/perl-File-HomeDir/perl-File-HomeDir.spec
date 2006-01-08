@@ -9,7 +9,7 @@
 
 Summary: Get the home directory of a user
 Name: perl-File-HomeDir
-Version: 0.07
+Version: 0.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ With this module, you can get the home directory of a user.
 %{perl_vendorlib}/File/HomeDir.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.52-1
+- Updated to release 0.52.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Initial package.

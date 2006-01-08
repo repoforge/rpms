@@ -12,7 +12,7 @@
 
 Summary: Support for DNS Resource Record
 Name: perl-Net-DNS-SEC
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ document set.
 %{perl_vendorlib}/Net/DNS
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1
+- Updated to release 0.13.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.12-1
 - Initial package.

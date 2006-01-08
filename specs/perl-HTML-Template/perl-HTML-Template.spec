@@ -10,7 +10,7 @@
 
 Summary: HTML Templates for CGI scripts
 Name: perl-HTML-Template
-Version: 2.7
+Version: 2.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ With this module, you can use HTML templates in CGI scripts.
 %{perl_vendorlib}/HTML/Template.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.8-1
+- Updated to release 2.8.
+
 * Fri Nov 05 2004 Dries Verachtert <dries@ulyssis.org> - 2.7-1
 - Initial package.

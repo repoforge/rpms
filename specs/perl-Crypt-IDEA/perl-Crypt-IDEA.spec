@@ -9,7 +9,7 @@
 
 Summary: IDEA block cipher
 Name: perl-Crypt-IDEA
-Version: 1.02
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,5 +46,8 @@ Perl interface to IDEA block cipher.
 %{perl_vendorarch}/auto/Crypt/IDEA
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1
+- Updated to release 1.06.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Initial package.

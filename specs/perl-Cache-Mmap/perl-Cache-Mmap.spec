@@ -9,7 +9,7 @@
 
 Summary: Shared data cache using memory mapped files
 Name: perl-Cache-Mmap
-Version: 0.081
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ data, if necessary.
 %{perl_vendorarch}/auto/Cache/Mmap
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
+- Updated to release 0.09.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.081-1
 - Initial package.

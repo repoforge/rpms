@@ -12,7 +12,7 @@
 
 Summary: Perl interface to PARI
 Name: perl-Math-Pari
-Version: 2.010700
+Version: 2.010702
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ More info can be found at http://www.parigp-home.de/
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.010702-1
+- Updated to release 2.010702.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.010700-1
 - Updated to release 2.010700.
 

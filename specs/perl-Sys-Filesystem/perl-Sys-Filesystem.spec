@@ -9,7 +9,7 @@
 
 Summary: Interface to filesystem names and their properties
 Name: perl-Sys-Filesystem
-Version: 1.16
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ query filesystem names and their properties.
 %{perl_vendorlib}/Sys/Filesystem/
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.18-1
+- Updated to release 1.18.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.16-1
 - Initial package.

@@ -9,7 +9,7 @@
 
 Summary: Check and create SIGNATURE files for CPAN distributions
 Name: perl-Module-Signature
-Version: 0.50
+Version: 0.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ echo n | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefi
 %{perl_vendorlib}/Module/Signature.pm
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.51-1
+- Updated to release 0.51.
+
 * Thu Dec 22 2005 Dries Verachtert <dries@ulyssis.org> - 0.50-1
 - Initial package.

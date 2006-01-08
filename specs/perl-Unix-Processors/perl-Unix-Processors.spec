@@ -9,7 +9,7 @@
 
 Summary: Per-processor information
 Name: perl-Unix-Processors
-Version: 2.032
+Version: 2.033
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,9 @@ This package provides access to per-processor information from Perl.
 %{perl_vendorarch}/auto/Unix/Processors
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 2.033-1
+- Updated to release 2.033.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 2.032-1
 - Updated to release 2.032.
 

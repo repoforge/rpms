@@ -9,7 +9,7 @@
 
 Summary: TTF Fonts
 Name: perl-Font-TTF
-Version: 0.35
+Version: 0.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ Use TTF fonts with Perl.
 %{perl_vendorlib}/ttfmod.pl
 
 %changelog
+* Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.37-1
+- Updated to release 0.37.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Updated to release 0.35.
 
