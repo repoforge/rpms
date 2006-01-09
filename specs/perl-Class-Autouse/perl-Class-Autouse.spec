@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl-ExtUtils-AutoInstall
+BuildRequires: perl(List::Util) >= 1.18
 #Test-Simple and Scalar-List-Utils is already included in the perl package on fedora core
 
 %description

@@ -3,7 +3,7 @@
 
 Summary: Fast artificial neural network library
 Name: fann
-Version: 1.2.0
+Version: 2.0.0
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -80,6 +80,9 @@ Development headers of fann: fast artificial neural network library
 %{_includedir}/fann_errno.h
 
 %changelog
+* Sun Jan 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1
+- Updated to release 2.0.0.
+
 * Mon Oct 25 2004 Dries Verachtert <dries@ulyssis.org> 1.2.0-1
 - Update to 1.2.0
 

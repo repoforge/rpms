@@ -27,7 +27,7 @@ and lightweight interface to the Simple Object Access Protocol (SOAP) both
 on client and server side.
 
 %prep
-%setup
+%setup -n %{real_name}-%{version}
 
 %build
 (echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}") || echo "ignore warnings"

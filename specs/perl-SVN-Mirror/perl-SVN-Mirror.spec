@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, subversion-perl, perl-Data-UUID, perl-Term-ReadKey
-BuildRequires: perl-SVN-Simple
+BuildRequires: perl-SVN-Simple, perl-TimeDate, perl-File-chdir, perl-Class-Accessor
 
 %description
 SVN::Mirror is a subversion repository mirroring tool.

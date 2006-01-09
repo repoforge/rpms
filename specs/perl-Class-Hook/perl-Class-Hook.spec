@@ -48,7 +48,7 @@ classes.
 %doc README
 %doc %{_mandir}/man3/*
 %dir %{perl_vendorlib}/Class/
-%{perl_vendorlib}/Class/FOO.pm
+#%{perl_vendorlib}/Class/FOO.pm
 %{perl_vendorlib}/Class/Hook.pm
 
 %changelog
