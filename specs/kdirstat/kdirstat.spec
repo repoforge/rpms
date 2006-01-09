@@ -16,8 +16,8 @@
 
 Summary: Graphical disk usage utility
 Name: kdirstat
-Version: 2.4.0
-Release: 3
+Version: 2.4.4
+Release: 1
 License: GPL
 Group: Applications/File
 URL: http://kdirstat.sourceforge.net/
@@ -81,6 +81,9 @@ echo "Categories=Application;System;X-Red-Hat-Extra" >> %{buildroot}/usr/share/a
 %{_datadir}/*/*/actions/symlink.png
 
 %changelog
+* Mon Jan 09 2006 Dries Verachtert <dries@ulyssis.org> - 2.4.4-1
+- Updated to release 2.4.4.
+
 * Wed Apr 21 2004 Dries Verachtert <dries@ulyssis.org> 2.4.0-3
 - spec cleanup
 

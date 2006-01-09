@@ -3,7 +3,7 @@
 
 Summary: PHP compiler
 Name: phc
-Version: 0.1.3
+Version: 0.1.4
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -39,5 +39,8 @@ that operate on PHP scripts.
 %{_bindir}/phc
 
 %changelog
+* Mon Jan 09 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.4-1
+- Updated to release 0.1.4.
+
 * Mon Dec 05 2005 Dries Verachtert <dries@ulyssis.org> - 0.1.3-1
 - Initial package.
