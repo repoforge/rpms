@@ -9,19 +9,20 @@
 %define desktop_vendor  rpmforge
 %define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 
-Summary: Graphical DVD ripping and encoding tool based on transcode
+Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
-Version: 0.97.6
+Version: 0.52.6
 Release: 1
-License: Artistic or GPL
+License: Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
 Source: http://www.exit1.org/dvdrip/dist/Video-DVDRip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+AutoReq: no
 Requires: transcode >= 0.6.13
-Requires: ImageMagick, ogmtools, subtitleripper, vcdimager
-BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.58
-BuildRequires: perl(Locale::TextDomain)
+Requires: Gtk-Perl, ImageMagick, ogmtools, subtitleripper, vcdimager
+Requires: perl(Locale::Messages)
+BuildRequires: Gtk-Perl
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -70,13 +71,12 @@ Categories=Application;AudioVideo;
 EOF
 
 %if %{?_without_freedesktop:1}0
-    %{__install} -D -p -m 0644 dvdrip.desktop \
-        %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/dvdrip.desktop
+	%{__install} -Dp -m0644 dvdrip.desktop %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/dvdrip.desktop
 %else
-    %{__mkdir_p} %{buildroot}%{_datadir}/applications
-    desktop-file-install --vendor %{desktop_vendor} \
-        --dir %{buildroot}%{_datadir}/applications \
-        dvdrip.desktop
+	%{__mkdir_p} %{buildroot}%{_datadir}/applications
+	desktop-file-install --vendor %{desktop_vendor} \
+	    --dir %{buildroot}%{_datadir}/applications \
+	    dvdrip.desktop
 %endif
 
 
@@ -86,7 +86,6 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes COPYRIGHT Credits README TODO
 %attr(0755, root, root) %{_bindir}/*
 %lang(cs) %{perl_sitelib}/LocaleData/cs/LC_MESSAGES/video.dvdrip.mo
 %lang(de) %{perl_sitelib}/LocaleData/de/LC_MESSAGES/video.dvdrip.mo
@@ -101,11 +100,6 @@ EOF
 
 
 %changelog
-* Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 0.97.6-1
-- Update to gtk2 branch at last, 0.97.6.
-- Include doc.
-- Re-enable auto-requires, so perl(Event) is now required.
-
 * Sun Jul 31 2005 Matthias Saou <http://freshrpms.net/> 0.52.6-1
 - Update to 0.52.6.
 
