@@ -3,10 +3,10 @@
 
 #define prever rc8
 
-Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
+Summary: Client for ED2K Peer-to-Peer Networks based on eMule
 Name: amule
-Version: 2.0.3
-Release: 2%{?prever:.%{prever}}
+Version: 2.1.0
+Release: 1%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Internet
 URL: http://www.amule.org/
@@ -14,12 +14,8 @@ Source: http://download.berlios.de/amule/aMule-%{version}%{?prever}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires(post): /usr/sbin/alternatives
 Requires(preun): /usr/sbin/alternatives
-BuildRequires: gcc-c++, wxGTK-devel >= 2.5.1, curl-devel >= 7.9.7, zlib-devel
-BuildRequires: gd-progs, gd-devel, libidn-devel, libjpeg-devel, gettext-devel
-# Required on Yellow Dog Linux 3.0
-BuildRequires: openssl-devel
-# Required for a configure check (curl)
-BuildRequires: bc
+BuildRequires: gcc-c++, wxGTK-devel >= 2.6.0, zlib-devel, gettext-devel
+BuildRequires: flex, bison
 
 %description
 aMule is an easy to use multi-platform client for ED2K Peer-to-Peer Network.
@@ -83,6 +79,11 @@ update-desktop-database -q 2>/dev/null || :
 
 
 %changelog
+* Mon Jan  9 2006 Matthias Saou <http://freshrpms.net/> 2.1.0-1
+- Update to 2.1.0.
+- Add flex build requirement (optional, and FC4's version it too old anyway).
+- Clean up no longer needed build requirements (many!).
+
 * Mon Nov 28 2005 Matthias Saou <http://freshrpms.net/> 2.0.3-2
 - Change build requirement s/wxGTK2/wxGTK/.
 
