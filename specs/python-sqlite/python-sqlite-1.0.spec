@@ -1,4 +1,4 @@
-# $Id$
+# $Id: python-sqlite.spec 3576 2005-09-13 00:54:46Z dag $
 # Authority: dag
 # Upstream: <pysqlite-devel$lists,sf,net>
 
@@ -8,13 +8,13 @@
 
 Summary: Python bindings for sqlite
 Name: python-sqlite
-Version: 2.0.5
+Version: 1.0.1
 Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://pysqlite.org/
 
-Source: http://initd.org/pub/software/pysqlite/releases/2.0/%{version}/pysqlite-%{version}.tar.gz
+Source: http://initd.org/pub/software/pysqlite/releases/1.0/%{version}/pysqlite-%{version}.tar.gz
 #Source: http://dl.sf.net/pysqlite/pysqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -25,7 +25,7 @@ This packages allows you to use sqlite with python.
 sqlite is a simple database engine.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}
 %{__rm} -f doc/rest/.*swp
 
 %build
@@ -40,16 +40,13 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE doc/
+%doc LICENSE README* doc/rest/manual.txt examples/
 %{python_sitearch}/*
-%{_bindir}/test-pysqlite
+#%{_bindir}/test-pysqlite
 
 %changelog
-* Mon Jan 09 2006 Dag Wieers <dag@wieers.com> - 2.0.5-1
-- Updated to release 2.0.5.
-
-* Sat Jun 25 2005 Dries Verachtert <dries@ulyssis.org> - 2.0.3-1
-- Updated to release 2.0.3.
+* Mon Jan 09 2006 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
 
 * Sat May 01 2004 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Initial package. (using DAR)

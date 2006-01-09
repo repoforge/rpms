@@ -10,7 +10,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.87.1
+Version: 0.88
 Release: 1
 License: GPL
 Group: Applications/System
@@ -20,7 +20,6 @@ URL: http://www.clamav.net/
 Source: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
-Patch: clamav-0.87-milter.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel, zlib-devel, gmp-devel, curl-devel
@@ -90,7 +89,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 
@@ -352,6 +350,9 @@ fi
 %{_libdir}/pkgconfig/libclamav.pc
 
 %changelog
+* Mon Jan 09 2006 Dag Wieers <dag@wieers.com> - 0.88-1
+- Updated to release 0.88.
+
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 0.87.1-1
 - Updated to release 0.87.1.
 
