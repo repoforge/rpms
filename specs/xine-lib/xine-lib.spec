@@ -4,8 +4,6 @@
 
 %{?dist: %{expand: %%define %dist 1}}
 
-%{?fc4:%define _with_extffmpeg 1}
-
 %{?fc1:%define _without_alsa 1}
 %{?fc1:%define _without_theora 1}
 %{?fc1:%define _without_xvmc 1}
@@ -40,13 +38,12 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.0
+Version: 1.1.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.gz
-Patch0: xine-lib-1.0-unbreak-64bit-faad.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: libdvdcss
 BuildRequires: gcc-c++, pkgconfig, XFree86-devel, zlib-devel
@@ -110,7 +107,6 @@ use the Xine library.
 
 %prep
 %setup
-%patch0 -p1 -b .faad
 
 
 %build
@@ -163,6 +159,12 @@ use the Xine library.
 
 
 %changelog
+* Tue Jan 10 2006 Matthias Saou <http://freshrpms.net/> 1.1.1-1
+- Update to 1.1.1 (missed that one in Nov.!).
+- Remove no longer needed faad patch.
+- Don't use external ffmpeg (on FC4), as it's nearly never a good idea, so
+  let only people who really want to do it... do it.
+
 * Tue Aug  2 2005 Matthias Saou <http://freshrpms.net/> 1.1.0-1
 - Move xine.5 man page from devel to the main package.
 - Add some READMEs from doc/.
