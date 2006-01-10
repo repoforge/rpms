@@ -59,6 +59,7 @@ on client and server side.
 %{perl_vendorlib}/UDDI/
 %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XMLRPC/
+%{perl_vendorlib}/OldDocs/
 
 %changelog
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 0.66.1-1

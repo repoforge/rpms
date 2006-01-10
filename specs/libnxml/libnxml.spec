@@ -13,7 +13,7 @@ URL: http://autistici.org/bakunin/codes.php
 Source: http://autistici.org/bakunin/libnxml/libnxml-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: 
+BuildRequires: gcc-c++, curl-devel
 
 %description
 nXML is a C library for parsing, writing, and creating XML 1.0 and 1.1 

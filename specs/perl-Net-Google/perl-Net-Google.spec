@@ -21,7 +21,7 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Google-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl, perl-Module-Build
 
 %description
 A simple OOP interface to the Google SOAP API.

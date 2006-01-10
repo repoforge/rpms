@@ -26,7 +26,7 @@ Patch4: apt-0.5.15cnc6-rpmhandler.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: rpm-devel >= 4.0, zlib-devel, gettext
-BuildRequires: readline-devel, bison, gcc-c++
+BuildRequires: readline-devel, bison, gcc-c++, libtool
 %{!?rh6:BuildRequires: bzip2-devel, libstdc++-devel, docbook-utils}
 
 %{!?dist:BuildRequires: beecrypt-devel, elfutils-devel}

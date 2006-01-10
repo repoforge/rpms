@@ -13,7 +13,7 @@ URL: http://automagically.de/index.shtml?g3dviewer
 Source: http://automagically.de/files/libg3d-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, gtk2-devel, glib2-devel
+BuildRequires: pkgconfig, gtk2-devel, glib2-devel, gcc-c++
 
 %description
 Libg3d is a glib-based library for loading and manipulating 3D objects. 

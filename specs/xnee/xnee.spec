@@ -13,7 +13,7 @@ URL: http://www.gnu.org/software/xnee/
 Source: ftp://ftp.gnu.org/gnu/xnee/Xnee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel
+BuildRequires: gtk2-devel, desktop-file-utils
 
 %description
 Xnee can record, distribute, and replay X (X11) protocol data. This is 

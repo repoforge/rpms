@@ -65,9 +65,7 @@ Development headers of fann: fast artificial neural network library
 %{_libdir}/libfann.la
 %{_includedir}/compat_time.h
 %{_includedir}/doublefann.h
-%{_includedir}/fann.h
-%{_includedir}/fann_data.h
-%{_includedir}/fann_internal.h
+%{_includedir}/fann*.h
 %{_includedir}/fixedfann.h
 %{_includedir}/floatfann.h
 %{_libdir}/libdoublefann.a
@@ -76,8 +74,6 @@ Development headers of fann: fast artificial neural network library
 %{_libdir}/libfixedfann.la
 %{_libdir}/libfloatfann.a
 %{_libdir}/libfloatfann.la
-%{_includedir}/fann_activation.h
-%{_includedir}/fann_errno.h
 
 %changelog
 * Sun Jan 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.0-1

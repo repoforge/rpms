@@ -25,7 +25,7 @@ Source: http://dl.sf.net/alleg/allegro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: allegro-tools
 
-BuildRequires: gcc-c++, esound-devel, arts-devel, pkgconfig
+BuildRequires: gcc-c++, esound-devel, arts-devel, pkgconfig, texinfo
 %{?_without_xorg:BuildRequires: XFree86-devel}
 %{!?_without_xorg:BuildRequires: xorg-x11-devel}
 

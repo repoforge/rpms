@@ -13,7 +13,7 @@ URL: http://www.worldforge.org/dev/eng/libraries/mercator
 Source: http://dl.sf.net/worldforge/mercator-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: wfmath-devel, gcc-c++
+BuildRequires: wfmath-devel, gcc-c++, pkgconfig
 
 %description
 Mercator is a terrain generation and management library that handles the 
