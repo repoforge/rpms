@@ -1,12 +1,13 @@
 # $Id$
 # Authority: dag
+# Upstream: Ethan Galstad <nagios$nagios,org>
 
 %define real_name nrpe
 
 Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
 Version: 2.0
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -18,6 +19,7 @@ BuildRequires: openssl-devel, krb5-devel
 Provides: nrpe
 Obsoletes: nrpe, netsaint-nrpe
 Requires: nagios-plugins
+Conflicts: nagios
 
 %description
 The nagios-nrpe packages contains the Nagios Remote Plug-ins Executor
@@ -31,7 +33,7 @@ from check_nrpe on this hosts.
 %package -n nagios-plugins-nrpe
 Summary: Nagios plug-in for NRPE
 Group: Applications/Internet
-Requires: nagios
+Requires: nagios, nagios-plugins
 
 %description -n nagios-plugins-nrpe
 Plug-in for Nagios monitoring system. With this plug-in you can send check
@@ -164,16 +166,26 @@ EOF
 %{__install} -Dp -m0755 nrpe.sysv %{buildroot}%{_initrddir}/nrpe
 %{__install} -Dp -m0644 nrpe.xinetd.dag %{buildroot}%{_sysconfdir}/xinetd.d/nrpe
 
+%pre
+if ! /usr/bin/id nagios &>/dev/null; then
+	/usr/sbin/useradd -r -d %{_localstatedir}/log/nagios -s /bin/sh -c "nagios" nagios || \
+		%logmsg "Unexpected error adding user \"nagios\". Aborting installation."
+fi
+
 %post
 /sbin/chkconfig --add nrpe
 
 %preun
 if [ $1 -eq 0 ]; then
-        /sbin/service nrpe stop &>/dev/null || :
-        /sbin/chkconfig --del nrpe
+	/sbin/service nrpe stop &>/dev/null || :
+	/sbin/chkconfig --del nrpe
 fi
 
-%postun
+%postun 
+if [ $1 -eq 0 ]; then
+	/usr/sbin/userdel nagios || %logmsg "User \"nagios\" could not be deleted."
+	/usr/sbin/groupdel nagios || %logmsg "Group \"nagios\" could not be deleted."
+fi
 /sbin/service nrpe condrestart &>/dev/null || :
 
 %clean
@@ -185,16 +197,23 @@ fi
 %config(noreplace) %{_sysconfdir}/nagios/
 %config(noreplace) %{_sysconfdir}/xinetd.d/nrpe
 %config %{_initrddir}/nrpe
-%{_sbindir}/*
+%{_sbindir}/nrpe
+%dir %{_libdir}/nagios/
+%dir %{_libdir}/nagios/plugins/
 
 %files -n nagios-plugins-nrpe
 %defattr(-, root, root, 0755)
 %doc Changelog LEGAL README
+%dir %{_libdir}/nagios/
 %{_libdir}/nagios/plugins/
 
 %changelog
+* Sat Aug 06 2005 Dag Wieers <dag@wieers.com> - 2.0-4
+- Added nagios user-creation. (Jamie Wilkinson)
+- Conflicts nagios-nrpe with nagios. (Jesse Keating)
+
 * Mon Apr 26 2004 Dag Wieers <dag@wieers.com> - 2.0-3
-- Added nagios-plugins requirement. (James Wilkinson)
+- Added nagios-plugins requirement. (Jamie Wilkinson)
 
 * Tue Nov 06 2003 Dag Wieers <dag@wieers.com> - 2.0-2
 - Removed the nagios dependency. (Johan Krisar)

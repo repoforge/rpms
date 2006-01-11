@@ -13,7 +13,7 @@ URL: http://www.beesoft.org/index.html
 Source: http://www.beesoft.org/download/bsc_%{version}_src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gettext, gcc-c++
+BuildRequires: gcc-c++, gettext, kdelibs-devel, qt-devel >= 3.2
 
 %description
 Beesoft Commander is a file manager (like Norton Commander) for Linux.

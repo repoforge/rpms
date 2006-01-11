@@ -14,7 +14,7 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 3.0.4
+Version: 3.1.0
 Release: 1
 License: Apache License
 Group: Applications/Internet
@@ -22,7 +22,7 @@ URL: http://spamassassin.apache.org/
 
 Source: http://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-%{version}.tar.bz2
 Source99: filter-requires-spamassassin.sh
-Patch3: spamassassin-3.0.2-krb5-backcompat.patch
+#Patch3: spamassassin-3.0.2-krb5-backcompat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(HTML::Parser), perl(Net::DNS), perl(Time::HiRes), openssl-devel
@@ -62,7 +62,7 @@ with SpamAssassin. See /usr/share/doc/SpamAssassin-tools-*/.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch3 -p0
+#patch3 -p0
 
 %{__cat} <<EOF >local.cf		### SOURCE2
 # These values can be overridden by editing ~/.spamassassin/user_prefs.cf 
@@ -177,6 +177,7 @@ fi
 %{_datadir}/spamassassin/
 %{_libdir}/libspamc.so
 %{perl_vendorlib}/Mail/
+%{perl_vendorlib}/spamassassin-run.pod
 %{_includedir}/libspamc.h
 
 %files tools
@@ -184,6 +185,9 @@ fi
 %doc contrib/ masses/ sql/ tools/
 
 %changelog
+* Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 3.1.0-1
+- Updated to release 3.1.0.
+
 * Sat Aug 20 2005 Dag Wieers <dag@wieers.com> - 3.0.4-1
 - Updated to release 3.0.4.
 

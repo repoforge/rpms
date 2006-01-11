@@ -3,7 +3,6 @@
 # Authority: dries
 # Upstream: Roderick Schertler <roderick$argon,org>
 
-
 %define real_name String-ShellQuote
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -13,7 +12,7 @@
 Summary: Quote a string for passing through a shell
 Name: perl-String-ShellQuote
 Version: 1.03
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-ShellQuote/
@@ -48,11 +47,15 @@ which are going to pass through the shell or a shell-like object.
 %defattr(-, root, root, 0755)
 %doc Changes README
 %{_bindir}/shell-quote
-%{_mandir}/man3/*
-%{_mandir}/man1/*
+%{_mandir}/man3/String::ShellQuote.3pm*
+%{_mandir}/man1/shell-quote.1*
+%dir %{perl_vendorlib}/String/
 %{perl_vendorlib}/String/ShellQuote.pm
 
 %changelog
+* Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 1.03-2
+- Rebuild due to problematic 1.03-1 builds. (Dean Takemori)
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 1.03-1
 - Updated to release 1.03.
 

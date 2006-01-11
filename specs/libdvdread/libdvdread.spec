@@ -41,11 +41,7 @@ programs that use this library.
 
 %prep
 %setup -n %{name}-%{version}%{?cvs}
-%{__libtoolize} --force --copy
-%{__aclocal}
-%{__autoconf}
-%{__automake}
-
+autoreconf --force --install --symlink
 
 %build
 %configure

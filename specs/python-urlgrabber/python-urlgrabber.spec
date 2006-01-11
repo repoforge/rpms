@@ -7,7 +7,7 @@
 
 Summary: High-level cross-protocol url-grabber
 Name: python-urlgrabber
-Version: 2.9.6
+Version: 2.9.7
 Release: 1
 License: LGPL
 Group: Development/Libraries

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 
-# DistExclude: el4
+# ExcludeDist: el4
 
 Summary: Audio/Video Control library for IEEE-1394 devices
 Name: libavc1394

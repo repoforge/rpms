@@ -12,7 +12,7 @@
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.3.3
-Release: 1
+Release: 3
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -24,10 +24,10 @@ BuildRequires: perl >= 5.8.1, sendmail-devel >= 8.12, sendmail
 Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
 Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
 Requires: cabextract, ripole, perl(BerkeleyDB)
-Requires: perl(Archive::Tar), perl(Archive::Zip) >= 1.14, perl(Compress::Zlib)
+Requires: perl(Archive::Tar), perl(Archive::Zip) >= 1.14, perl(Compress::Zlib) >= 1.35
 Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
 Requires: perl(MIME::Base64), perl(MIME::Tools), perl(Unix::Syslog)
-Requires: perl(Time::HiRes), perl(Digest::MD5), perl(Digest::SHA1)
+Requires: perl(Time::HiRes) >= 1.49, perl(Digest::MD5), perl(Digest::SHA1)
 Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
 Requires: perl-MailTools, perl(Net::Server) >= 0.86, perl-HTML-Parser >= 3.24
 Requires: perl(DB_File)
@@ -314,6 +314,12 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Wed Jan 11 2006 Dag Wieers <dag@wieers.com> - 2.3.2-3
+- Added perl(Time::HiRes) >= 1.49 requirement.
+
+* Tue Jan 10 2006 Dag Wieers <dag@wieers.com> - 2.3.2-2
+- Added perl(Compress::Zlib) >= 1.35 requirement. (Luigi Iotti)
+
 * Thu Jan 05 2006 Dries Verachtert <dries@ulyssis.org> - 2.3.2-1
 - Updated to release 2.3.3.
 

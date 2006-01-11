@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# DistExclude: fc1 fc2 fc3 el4
+# ExcludeDist: fc1 fc2 fc3 el4
 
 Summary: Library for writing pagers and taskslists
 Name: libwnck

@@ -4,7 +4,7 @@
 # Upstream: 
 # Screenshot: http://www.dooglio.net/VncSelector/screenshot.png
 
-# DistExclude: el3
+# ExcludeDist: el3
 
 %{?dist: %{expand: %%define %dist 1}}
 
