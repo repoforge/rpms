@@ -16,7 +16,7 @@
 Summary: Typing tutor
 Name: klavaro
 Version: 0.9.6
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://klavaro.sourceforge.net/en/
@@ -57,6 +57,8 @@ Categories=KDE;Application;Education;
 EOF
 
 %build
+# otherwise it doesn't work
+%{expand: %%define optflags -O2}
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -83,6 +85,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Wed Jan 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.9.6-2
+- Changed optflags so it doesn't crash immediately, thanks to Andrew Ziem!
+
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.9.6-1
 - Updated to release 0.9.6.
 

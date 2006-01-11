@@ -4,7 +4,7 @@
 
 Summary: Comic book viewer
 Name: comix
-Version: 2.4
+Version: 2.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -15,7 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
 BuildRequires: python
-Requires: python
+Requires: python, python-imaging
 
 %description
 Comix is a comic book viewer. It reads zip, rar, tar, tar.gz, and tar.bz2 
@@ -45,6 +45,10 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{_datadir}/pixmaps/comix/
 
 %changelog
+* Wed Jan 11 2006 Dries Verachtert <dries@ulyssis.org> - 2.5-1
+- Updated to release 2.5.
+- Added the python-imaging requirement, thanks to Gergely Gabor!
+
 * Sun Jan 01 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1
 - Updated to release 2.4.
 

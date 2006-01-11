@@ -26,8 +26,8 @@
 
 Summary: Client application for the Jabber network
 Name: psi
-Version: 0.9.3
-Release: 2
+Version: 0.10
+Release: 1
 License: GPL
 Group: Applications/Communications
 URL: http://psi.affinix.com/
@@ -76,18 +76,18 @@ in other languages than English.
 %prep
 %setup -a 1 -a 2 -a 3
 
-%{__cat} <<EOF >psi.desktop
-[Desktop Entry]
-Name=Psi Jabber Client
-Comment=Connect and chat on the Jabber network
-Icon=psi.png
-Exec=psi -caption "%%c" %%i %%m
-Terminal=false
-Type=Application
-Encoding=UTF-8
-StartupNotify=true
-Categories=Application;Network;
-EOF
+#%{__cat} <<EOF >psi.desktop
+#[Desktop Entry]
+#Name=Psi Jabber Client
+#Comment=Connect and chat on the Jabber network
+#Icon=psi.png
+#Exec=psi -caption "%%c" %%i %%m
+#Terminal=false
+#Type=Application
+#Encoding=UTF-8
+#StartupNotify=true
+#Categories=Application;Network;
+#EOF
 
 %build
 # We need to build QCA-1.0 first
@@ -100,10 +100,10 @@ popd
 source %{_sysconfdir}/profile.d/qt.sh
 # It's not an autoconf generated script...
 # The PWD thing is an ugly hack since relative paths mess everything up...
+#    --libdir="${PWD}/src%{_datadir}/%{name}" \
 ./configure \
     --prefix="${PWD}/src%{_prefix}" \
     --bindir="${PWD}/src%{_bindir}" \
-    --libdir="${PWD}/src%{_datadir}/%{name}" \
     --with-qca-inc="${PWD}/%{qca}/src" \
     --with-qca-lib="${PWD}/%{qca}"
 %{__perl} -pi.orig -e "s|${PWD}/src||g" Makefile src/config.h
@@ -137,20 +137,20 @@ popd
 %{__install} -Dp -m0644 iconsets/system/default/icon_32.png \
     %{buildroot}%{_datadir}/pixmaps/psi.png
 
-### Cleanup buildroot
-%{__rm} -f %{buildroot}%{_datadir}/applnk/Internet/psi.desktop \
-		%{buildroot}%{_datadir}/icons/hicolor/*/apps/psi.png
+#### Cleanup buildroot
+#%{__rm} -f %{buildroot}%{_datadir}/applnk/Internet/psi.desktop \
+#		%{buildroot}%{_datadir}/icons/hicolor/*/apps/psi.png
 
-%if %{!?_without_freedesktop:1}0
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-desktop-file-install \
-    --vendor %{desktop_vendor} \
-    --dir %{buildroot}%{_datadir}/applications \
-    psi.desktop
-%else
-%{__install} -Dp -m0644 psi.desktop \
-    %{buildroot}%{_sysconfdir}/X11/applnk/Internet/psi.desktop
-%endif
+#%if %{!?_without_freedesktop:1}0
+#%{__mkdir_p} %{buildroot}%{_datadir}/applications
+#desktop-file-install \
+#    --vendor %{desktop_vendor} \
+#    --dir %{buildroot}%{_datadir}/applications \
+#    psi.desktop
+#%else
+#%{__install} -Dp -m0644 psi.desktop \
+#    %{buildroot}%{_sysconfdir}/X11/applnk/Internet/psi.desktop
+#%endif
  
 # Install the languagepack files
 %{__install} -p -m0644 \
@@ -175,8 +175,9 @@ desktop-file-install \
 %{_datadir}/psi/
 %{qtdir}/plugins/crypto/libqca-tls.so
 %{_datadir}/pixmaps/psi.png
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-psi.desktop}
-%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/psi.desktop}
+%{_datadir}/applications/psi.desktop
+#%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-psi.desktop}
+#%{?_without_freedesktop:%{_sysconfdir}/X11/applnk/Internet/psi.desktop}
 
 %files languagepack
 %defattr(-, root, root, 0755)
@@ -198,6 +199,9 @@ desktop-file-install \
 %lang(ru) %{_datadir}/psi/psi_ru.qm
 
 %changelog
+* Wed Jan 11 2006 Dries Verachtert <dries@ulyssis.org> - 0.10-1
+- Updated to release 0.10.
+
 * Thu Jan 20 2005 Derek Atkins <warlord@mit.edu> 0.9.3-2
 - Changes for QCA 1.0 support.
 
