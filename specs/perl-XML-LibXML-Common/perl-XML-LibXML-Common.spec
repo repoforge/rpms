@@ -2,7 +2,7 @@
 # Authority: dag
 
 ### Already ships with 0.13
-# DistExclude: fc2 fc3 el4
+# ExcludeDist: fc2 fc3 el4
 
 %define real_name XML-LibXML-Common
 
